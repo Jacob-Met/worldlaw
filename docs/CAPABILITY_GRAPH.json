@@ -1,0 +1,90 @@
+{
+  "format": "hamon-product-capability-graph/v1",
+  "id": "worldlaw",
+  "original_identity": "Learn executable physical laws/models from observations and actively test the resulting hypotheses.",
+  "capabilities": [
+    {
+      "id": "actual_mechanism_observation_and_evidence_ingestion",
+      "status": "unassessed",
+      "producer": null,
+      "consumer": null,
+      "dependencies": [],
+      "evidence": []
+    },
+    {
+      "id": "candidate_structural_and_parameter_model_discovery",
+      "status": "unassessed",
+      "producer": null,
+      "consumer": null,
+      "dependencies": [],
+      "evidence": []
+    },
+    {
+      "id": "reproducible_executable_physics_models",
+      "status": "unassessed",
+      "producer": null,
+      "consumer": null,
+      "dependencies": [],
+      "evidence": []
+    },
+    {
+      "id": "active_discriminating_experiment_design",
+      "status": "unassessed",
+      "producer": null,
+      "consumer": null,
+      "dependencies": [],
+      "evidence": []
+    },
+    {
+      "id": "actual_experiment_or_solver_execution",
+      "status": "unassessed",
+      "producer": null,
+      "consumer": null,
+      "dependencies": [],
+      "evidence": []
+    },
+    {
+      "id": "prediction_residual_based_model_revision",
+      "status": "unassessed",
+      "producer": null,
+      "consumer": null,
+      "dependencies": [],
+      "evidence": []
+    },
+    {
+      "id": "interactive_model_comparison_and_visualization",
+      "status": "unassessed",
+      "producer": null,
+      "consumer": null,
+      "dependencies": [],
+      "evidence": []
+    }
+  ],
+  "frontiers": [
+    {
+      "id": "inferring_structure_not_just_fitting_known_parameters",
+      "status": "unassessed",
+      "experiment": null,
+      "evidence": []
+    },
+    {
+      "id": "identifiability_and_uncertainty",
+      "status": "unassessed",
+      "experiment": null,
+      "evidence": []
+    },
+    {
+      "id": "closed_loop_active_discovery",
+      "status": "unassessed",
+      "experiment": null,
+      "evidence": []
+    },
+    {
+      "id": "physics_transfer_and_model_generalization",
+      "status": "unassessed",
+      "experiment": null,
+      "evidence": []
+    }
+  ],
+  "golden_path": "Give unfamiliar mechanism observations -> propose competing models -> select informative experiment -> run it -> compare model predictions to measured outcome -> revise executable law -> demonstrate improved out-of-sample prediction."
+}
