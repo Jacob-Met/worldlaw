@@ -9,8 +9,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const root = resolve(dirname(scriptPath), '..');
-const outputPath = join(root, '.receipts/trajectory-standalone-92be.html');
-const manifestPath = join(root, '.receipts/trajectory-standalone-92be.manifest.json');
+// Preserve the separately received first synthetic-only artifact.
+const outputPath = join(root, '.receipts/trajectory-angular-standalone-92be.html');
+const manifestPath = join(root, '.receipts/trajectory-angular-standalone-92be.manifest.json');
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const portablePath = path => relative(root, path).split(sep).join('/');
 const snapshots = new Map();
@@ -56,6 +57,9 @@ function safeScript(code) {
   // The HTML raw-text parser recognizes closing tags even inside JS strings.
   return code.replace(/<\/script/gi, '<\\/script');
 }
+function safeHTML(text) {
+  return String(text).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+}
 function git(...args) {
   try { return execFileSync('git', args, { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim(); }
   catch { return null; }
@@ -64,18 +68,41 @@ function git(...args) {
 async function main() {
   const { api: esbuild, modulePath, moduleSHA256 } = await installedEsbuild();
   const assetPaths = ['trajectory.html', 'trajectory.css', 'favicon.svg',
-    'examples/trajectory-pendulum-92be.json', 'examples/trajectory-ambiguous-92be.json'];
+    'examples/trajectory-pendulum-92be.json', 'examples/trajectory-ambiguous-92be.json',
+    'examples/physical-pasco-92be.json', 'examples/physical-pasco-92be/LICENSE'];
   const assets = new Map(await Promise.all(assetPaths.map(async name => [name, await snapshot(join(root, name))])));
   await snapshot(scriptPath);
   const htmlTemplate = assets.get('trajectory.html').toString('utf8');
   const css = assets.get('trajectory.css').toString('utf8');
   if (/@import\b|url\s*\(/i.test(css)) throw new Error('The standalone stylesheet now contains asset references; embed them explicitly before rebuilding.');
   if (/<\/style/i.test(css)) throw new Error('The standalone stylesheet contains an HTML closing-style sequence.');
-  const exampleNames = ['trajectory-pendulum-92be.json', 'trajectory-ambiguous-92be.json'];
+  const exampleNames = ['trajectory-pendulum-92be.json', 'trajectory-ambiguous-92be.json', 'physical-pasco-92be.json'];
   const examples = Object.fromEntries(exampleNames.map(name => [name, JSON.parse(assets.get(`examples/${name}`).toString('utf8'))]));
   for (const [name, value] of Object.entries(examples)) {
-    if (!value || Array.isArray(value) || value.schema !== 'worldlaw.trajectory-bundle/v1') throw new Error(`Unexpected embedded example schema: ${name}`);
+    const expectedSchema = name === 'physical-pasco-92be.json' ? 'worldlaw.angular-bundle/v1' : 'worldlaw.trajectory-bundle/v1';
+    if (!value || Array.isArray(value) || value.schema !== expectedSchema) throw new Error(`Unexpected embedded example schema: ${name}`);
   }
+  const measured = examples['physical-pasco-92be.json'];
+  const measuredRuns = [...measured.trainingRuns, ...measured.challengeRuns];
+  const datasetSource = measuredRuns[0]?.source;
+  if (measured.trainingRuns.length !== 2 || measured.challengeRuns.length !== 1 ||
+    datasetSource?.repository !== 'https://github.com/EnzeXu/Damped_Pendulum_Dataset' ||
+    !/^[a-f0-9]{40}$/.test(datasetSource.revision) ||
+    measuredRuns.some(run => run.source?.repository !== datasetSource.repository ||
+      run.source?.revision !== datasetSource.revision || run.source?.license !== 'Apache-2.0')) {
+    throw new Error('Measured example attribution changed; review the embedded dataset source notice before rebuilding.');
+  }
+  const datasetLicensePath = 'examples/physical-pasco-92be/LICENSE';
+  const datasetLicenseBytes = assets.get(datasetLicensePath);
+  const datasetLicense = datasetLicenseBytes.toString('utf8');
+  if (!datasetLicense.includes('Apache License') || !datasetLicense.includes('Version 2.0, January 2004') ||
+    !datasetLicense.includes('END OF TERMS AND CONDITIONS')) throw new Error('Expected the complete original Apache 2.0 dataset license.');
+  const licenseDisclosure = `<details id="dataset-license" class="standalone-license"><summary>Measured-data source and Apache 2.0 license</summary>
+<div class="standalone-license-body"><p>The measured PASCO pendulum recordings are from the <a href="${safeHTML(datasetSource.repository)}">Damped Pendulum Dataset</a>, provided by Enze Xu and collaborators for <em>Identifying Invariant Physical Dynamics Across Multiple Environments</em>. Source revision: <code>${safeHTML(datasetSource.revision)}</code>.</p>
+<p>WORLDLAW modified the source into a JSON selection of original seconds 5–25 from recordings 1, 2, and 3 of length group 1, air condition 1. Recorded positions and timestamps remain unchanged. Recordings 1 and 2 train the model; recording 3 supplies a separate prediction comparison. The supplied starting rates come from the original sensor channel. This benchmark has been reused during method development; it is not new blind validation. Physical inertia and absolute torque remain unknown.</p>
+<p>The original CSV files, extraction script, and complete provenance remain in the source repository. This standalone file embeds the selected JSON, its per-run source metadata, and the complete original dataset license below. The license applies to the dataset; it does not claim ownership of the WORLDLAW application.</p>
+<pre class="standalone-license-text" tabindex="0" aria-label="Complete Apache License 2.0 dataset license">${safeHTML(datasetLicense)}</pre></div></details>`;
+  const licenseCSS = '\n.standalone-license{margin:1.25rem 0;padding:1rem 0;border-top:1px solid #d9dece;font-size:.85rem;color:#425b4b}.standalone-license summary{cursor:pointer;font-weight:650}.standalone-license-body{max-width:65rem;line-height:1.65}.standalone-license-body a{text-decoration:underline}.standalone-license-body code{overflow-wrap:anywhere}.standalone-license-text{white-space:pre-wrap;overflow-wrap:anywhere;max-height:28rem;overflow:auto;padding:1rem;background:#f7f8f1;border:1px solid #d9dece;border-radius:.4rem;font-size:.75rem;line-height:1.5}.standalone-license-text:focus-visible,.standalone-license summary:focus-visible{outline:2px solid #315b48;outline-offset:4px}\n';
 
   const build = await esbuild.build({
     absWorkingDir: root, entryPoints: ['src/trajectory/app.mjs'],
@@ -111,13 +138,16 @@ async function main() {
     tool: { name: 'esbuild', version: esbuild.version, modulePath, moduleSHA256, node: process.version, platform: process.platform, architecture: process.arch },
     entryPoint: 'src/trajectory/app.mjs', format: 'iife', target: 'es2022',
     embeddedExamples: exampleNames, sources,
-    scope: 'Actual finite-library trajectory discovery, forward prediction, numerical sensitivity and sampled error comparison; synthetic examples, no physical validation claim.',
+    datasetAttribution: { repository: datasetSource.repository, revision: datasetSource.revision,
+      license: 'Apache-2.0', licensePath: datasetLicensePath, licenseSHA256: hash(datasetLicenseBytes),
+      disclosureId: 'dataset-license', fullLicenseEmbedded: true, originalCSVFilesEmbedded: false },
+    scope: 'Actual finite-library trajectory and angular-acceleration discovery, forward prediction, numerical sensitivity and sampled error comparison; two synthetic examples plus separately recorded PASCO measurements with unknown physical torque scale. The measured benchmark was reused during method development; no new blind-validation or unique-mechanism claim.',
   };
 
   let html = replaceExactlyOnce(htmlTemplate, /<link\b[^>]*\brel="stylesheet"[^>]*>/gi,
     tag => {
       if (!/\bhref="\/trajectory\.css"/.test(tag)) throw new Error('Unexpected stylesheet reference.');
-      return `<style id="worldlaw-standalone-styles">\n${css}\n</style>`;
+      return `<style id="worldlaw-standalone-styles">\n${css}${licenseCSS}</style>`;
     }, 'trajectory stylesheet link');
   html = replaceExactlyOnce(html, /<link\b[^>]*\brel="icon"[^>]*>/gi,
     `<link rel="icon" href="data:image/svg+xml;base64,${assets.get('favicon.svg').toString('base64')}" type="image/svg+xml">`, 'favicon link');
@@ -128,6 +158,8 @@ async function main() {
     tag => tag.replace('href="/index.html"', 'href="#workbench"').replace('aria-label="WORLDLAW torque studio"', 'aria-label="WORLDLAW trajectory workbench"'), 'wordmark link');
   html = replaceExactlyOnce(html, /<a\b[^>]*\bclass="studio-link"[^>]*>[\s\S]*?<\/a>/gi,
     '', 'unavailable torque-studio backlink');
+  html = replaceExactlyOnce(html, /<footer\b[^>]*\bclass="page-footer"[^>]*>/gi,
+    tag => `${licenseDisclosure}\n${tag}`, 'footer for dataset license disclosure');
   const commentJSON = JSON.stringify(buildInfo).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/--/g, '\\u002d\\u002d');
   html = html.replace('</head>', `<!-- WORLDLAW_STANDALONE_BUILD ${commentJSON} -->\n</head>`);
   if (/<script\b[^>]*\bsrc\s*=|<link\b[^>]*\brel="stylesheet"/i.test(html)) throw new Error('External script or stylesheet reference survived packaging.');

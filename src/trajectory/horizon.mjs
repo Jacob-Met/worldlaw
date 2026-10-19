@@ -31,8 +31,11 @@ export function summarizePredictionHorizon(source, options = {}) {
   const positionTolerance = options.positionTolerance;
   insist(typeof positionTolerance === 'number' && Number.isFinite(positionTolerance) && positionTolerance > 0,
     'positionTolerance must be an explicitly supplied positive finite number in radians.', 'invalid_options');
-  insist(record(source) && source.schema === 'worldlaw.trajectory-rollout/v1',
-    'Expected a worldlaw.trajectory-rollout/v1 result.', 'invalid_rollout');
+  insist(record(source) && ['worldlaw.trajectory-rollout/v1', 'worldlaw.angular-rollout/v1'].includes(source.schema),
+    'Expected a WORLDLAW trajectory or angular rollout result.', 'invalid_rollout');
+  const angular = source.schema === 'worldlaw.angular-rollout/v1';
+  if (angular) insist(record(source.units) && source.units.position === 'rad' && source.units.time === 's' && source.units.rate === 'rad/s',
+    'Angular rollout must declare radian position, seconds, and rad/s rate.', 'invalid_rollout');
   const modelId = identity(source.modelId, 'Model ID'), runId = identity(source.runId, 'Run ID');
   insist(Array.isArray(source.rows) && source.rows.length >= 2 && source.rows.length <= 10000,
     'Rollout must contain 2–10000 sample rows.', 'invalid_rollout');
@@ -41,7 +44,10 @@ export function summarizePredictionHorizon(source, options = {}) {
   const rows = Array.from(source.rows, (row, index) => {
     insist(record(row), `Rollout row ${index} must be an object.`, 'invalid_rollout');
     const time = finite(row.time, `Row ${index} time`);
-    for (const key of ['observed', 'predicted', 'rate', 'residual', 'command']) finite(row[key], `Row ${index} ${key}`);
+    for (const key of ['observed', 'predicted', 'rate', 'residual']) finite(row[key], `Row ${index} ${key}`);
+    if (angular) insist(row.command === undefined && row.jointTorque === undefined,
+      'Angular rollout rows must not claim a torque command or torque observation.', 'invalid_rollout');
+    else finite(row.command, `Row ${index} command`);
     insist(Number.isFinite(row.observed - row.predicted) && row.residual === row.observed - row.predicted,
       `Row ${index} residual must equal observed minus predicted.`, 'invalid_rollout');
     if (index) insist(time > previousTime && Number.isFinite(time - previousTime),
@@ -67,7 +73,7 @@ export function summarizePredictionHorizon(source, options = {}) {
   }
   const count = rows.length - 1;
   return {
-    schema: 'worldlaw.trajectory-horizon/v1', modelId, runId, positionTolerance, positionUnit: 'rad',
+    schema: 'worldlaw.trajectory-horizon/v1', sourceSchema: source.schema, modelId, runId, positionTolerance, positionUnit: 'rad',
     status: firstExceeded ? 'threshold_exceeded' : 'not_exceeded_at_samples',
     firstExceeded, previousSample, lastWithin,
     count, withinCount, exceededCount: count - withinCount, withinFraction: withinCount / count,
@@ -78,7 +84,9 @@ export function summarizePredictionHorizon(source, options = {}) {
       'previousSample is the preceding observed boundary, not an interpolated crossing; it may be the excluded initialization row.',
       'lastWithin is the latest evaluated sample within tolerance, including returns after an earlier exceedance.',
       'The tolerance is a user-selected comparison criterion, not a calibrated uncertainty or automatic law-validation threshold.',
-      'Residuals include model, measurement, initial-state, command, inertia, and numerical integration errors.',
+      angular
+        ? 'Residuals include model, measurement, initial-state, unrecorded-forcing, and numerical integration errors; physical inertia and absolute torque remain unknown.'
+        : 'Residuals include model, measurement, initial-state, command, inertia, and numerical integration errors.',
     ],
   };
 }

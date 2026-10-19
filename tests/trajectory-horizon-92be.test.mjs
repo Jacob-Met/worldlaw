@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { summarizePredictionHorizon, TrajectoryHorizonError } from '../src/trajectory/horizon.mjs';
 import { rollout } from '../src/trajectory/forward.mjs';
+import { discoverAngular, rolloutAngular } from '../src/trajectory/angular-discovery.mjs';
 
 const source = (errors = [0, .02, -.1, .03], times = [10, 11, 14, 18]) => ({
   schema: 'worldlaw.trajectory-rollout/v1', modelId: 'test-model', runId: 'test-run',
@@ -84,6 +85,26 @@ test('a real free-running wrong-law result is directly consumable and tolerance 
   assert.equal(strict.firstExceeded.index, 1);
   assert.equal(loose.status, 'not_exceeded_at_samples');
   assert.equal(JSON.stringify(prediction), before);
+});
+
+test('angular acceleration predictions support the same sampled position check without a fabricated torque channel', () => {
+  const makeRun = (id, amplitude) => ({
+    id, label: 'Unknown-scale harmonic recording', kind: 'synthetic', inertia: null,
+    dynamics: 'unforced_scalar_rotation', initialRate: 0, source: { label: 'Independent exact harmonic trajectory' },
+    samples: Array.from({ length: 101 }, (_, i) => ({ time: i * .02, position: amplitude * Math.cos(2 * i * .02) })),
+  });
+  const discovery = discoverAngular([makeRun('train', .5)], { terms: ['spring'], noiseSigma: .0001 });
+  const prediction = rolloutAngular(discovery.selected, makeRun('challenge', 1.2));
+  const result = summarizePredictionHorizon(prediction, { positionTolerance: .01 });
+  assert.equal(result.sourceSchema, 'worldlaw.angular-rollout/v1');
+  assert.equal(result.status, 'not_exceeded_at_samples');
+  assert.equal(result.count, 100);
+  assert.ok(result.limitations.some(text => text.includes('physical inertia and absolute torque remain unknown')));
+  assert.ok(result.limitations.every(text => !text.includes('command, inertia')));
+  assert.ok(prediction.rows.every(row => !Object.hasOwn(row, 'command')));
+  throwsCode(() => summarizePredictionHorizon({ ...prediction, units: { ...prediction.units, position: 'deg' } }, { positionTolerance: .01 }), 'invalid_rollout');
+  const forged = structuredClone(prediction); forged.rows[1].command = 0;
+  throwsCode(() => summarizePredictionHorizon(forged, { positionTolerance: .01 }), 'invalid_rollout');
 });
 
 test('input arrays and options remain unchanged and output points are independent', () => {

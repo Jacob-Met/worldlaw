@@ -122,7 +122,7 @@ computed rollout and does not fit models, rerank candidates, or run the solver.
 Changing the tolerance therefore only changes the comparison criterion.
 
 The result schema is `worldlaw.trajectory-horizon/v1`, with the same `modelId`
-and `runId`, `positionTolerance`, and these fields:
+and `runId`, the original `sourceSchema`, `positionTolerance`, and these fields:
 
 - `status`: `threshold_exceeded` or `not_exceeded_at_samples`.
 - `firstExceeded`: `{index, time, elapsed, absoluteError}`, or null. Indices are
@@ -148,6 +148,28 @@ physical validity or calibrated uncertainty. Run
 `node tests/trajectory-horizon-92be.test.mjs` for irregular-time crossings,
 threshold equality, symmetric errors, initialization exclusion, real-rollout
 consumption, input integrity, and explicit failure behavior.
+
+## Angular-acceleration recordings with unknown physical scale
+
+`src/trajectory/angular-resolution.mjs` exports
+`rolloutAngularWithResolution(model, run, options)`. It wraps the angular
+rollout through the same shared numerical comparison implementation, including
+one combined step budget, preserved coarse failures, and unavailable-refinement
+semantics. Its `rollout` retains `worldlaw.angular-rollout/v1`, radian position
+and angular-rate units, `physicalInertia: null`, and no torque-command channel.
+The private numerical factor used by angular execution does not identify an
+apparatus inertia or an absolute torque scale.
+
+The horizon helper also accepts `worldlaw.angular-rollout/v1` when the declared
+position, time, and rate units are `rad`, `s`, and `rad/s`. It checks the same
+sampled position errors while rejecting fabricated command or torque fields.
+For this mode, residual limitations name unrecorded forcing and unknown physical
+scale rather than implying that command or inertia was measured. Neither helper
+changes fitted coefficients, training order, or the supplied initial rate.
+
+Run `node tests/trajectory-angular-resolution-92be.test.mjs` for analytic
+harmonic motion, retained stiff numerical error, combined-budget refusal,
+angular unit preservation, input integrity, and typed failures.
 
 ## Verification
 

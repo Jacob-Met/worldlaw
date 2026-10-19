@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {resolve,extname} from 'node:path';
 import {createProductServer} from '../server.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
-const publicFiles=new Set(['/trajectory.html','/trajectory.css','/examples/trajectory-pendulum-92be.json','/examples/trajectory-ambiguous-92be.json']);
+const publicFiles=new Set(['/trajectory.html','/trajectory.css','/examples/trajectory-pendulum-92be.json','/examples/trajectory-ambiguous-92be.json','/examples/physical-pasco-92be.json']);
 const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8'};
 export function createChallengeServer(){
   const studio=createProductServer();
