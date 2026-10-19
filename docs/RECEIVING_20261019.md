@@ -56,4 +56,19 @@ The deterministic source packager records each included file's size and SHA-256.
 
 Final delivery must regenerate the package against the verified published commit/tree and record its archive SHA-256. A source ZIP requires Node.js on the receiving machine; downloaded browser/model runtimes are not bundled.
 
+### Cross-runtime notebook correction
+
+Fresh extraction of the first merged main, `45c5e45bb40bd8682bbecf84b5011700bcd147d8`, exposed a portability defect that the same-runtime tests did not catch. Chrome 155 exported a valid virtual notebook, but Node 24.19 rejected its seed baseline because the check compared JSON strings exactly. Four held-out scalars differed after independently evaluating `Math.sin`/`Math.cos`; every fitting row and all other held-out values matched. The maximum absolute difference was `2.220446049250313e-16`, one scaled machine epsilon. The first archive was withheld from successful distribution receiving; its failure and original downloaded notebook were retained.
+
+| Held-out row and field (zero-based) | Chrome 155 value | Node 24.19 value |
+| --- | ---: | ---: |
+| 7, command | 0.40532430827279287 | 0.4053243082727928 |
+| 7, rate | 0.22712985455717755 | 0.22712985455717752 |
+| 23, command | -0.23255343879859894 | -0.23255343879859888 |
+| 23, jointTorque | 0.9476413432861367 | 0.9476413432861369 |
+
+The correction compares the four finite numeric fields only when verifying a virtual seed baseline, using `abs(a-b) <= 16 * Number.EPSILON * max(1, abs(a), abs(b))`. Array lengths, row order, schema and integer seed checks retain their strict contracts. The supplied observations remain unchanged; the tolerance is not applied to imported measured-data admission, event identity, or source metadata. This is numerical compatibility, not a claim of cryptographic authenticity or statistical uncertainty. Recomputed floating-point predictions can differ in their last rounding bits across runtimes.
+
+`node tests/virtual-notebook-portability.test.mjs` passes three focused regressions containing the actual four-scalar Chrome counterexample, every-field bounds, an accepted 16-epsilon boundary, a refused 17-epsilon perturbation, and strict nonnumeric/identity cases. The seven existing session tests also pass. Actual browser receiving confirmed the original fresh experiment path, the captured failing notebook reopening in Node, Node-created evidence opening in Chrome, a Chrome experiment on that evidence returning through Node to Chrome, and atomic rejection beyond the bound. All baseline numbers survived those exports and reopens without rewriting; there were no browser JavaScript errors.
+
 Open scope includes real sensor or vision ingestion, physical experiment control, discovery beyond the finite library, statistically calibrated uncertainty, mechanism transfer, independently measured physical trajectory fidelity, human usability acceptance, contest-specific qualification, and official submission. No available receipt closes those gates.

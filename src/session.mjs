@@ -1,11 +1,18 @@
 import {discover, evaluate, revise, planExperiment} from './science/torque-discovery.mjs';
 import {createLab, executeLab} from './science/virtual-lab.mjs';
-import {validateDataset, validateRows, candidateGrid, MAX_ROWS, MAX_TEXT_LENGTH} from './data.mjs';
+import {validateDataset, validateRows, candidateGrid, FIELDS, MAX_ROWS, MAX_TEXT_LENGTH} from './data.mjs';
 
 export const SESSION_SCHEMA='worldlaw.session/v1';
 export const DEFAULT_OPTIONS=Object.freeze({noiseSigma:0.01,maxTerms:4,ambiguityDelta:6});
 const MAX_EVENTS=128;
 function validSeed(seed){if(!Number.isSafeInteger(seed)||Math.abs(seed)>1e9)throw new Error('Invalid virtual instrument seed. Use an integer between −1000000000 and 1000000000.');return seed;}
+function matchesVirtualSeed(rows,expected) {
+  // Math.sin/cos can differ by a few rounding bits between JS runtimes. This is
+  // only a seed-baseline compatibility check; the supplied evidence is retained.
+  return rows.length===expected.length && rows.every((row,i)=>FIELDS.every(field=>
+    Number.isFinite(row[field]) && Number.isFinite(expected[i][field]) &&
+    Math.abs(row[field]-expected[i][field])<=16*Number.EPSILON*Math.max(1,Math.abs(row[field]),Math.abs(expected[i][field]))));
+}
 const cleanOptions = options => {
   const result={...DEFAULT_OPTIONS};
   for (const key of Object.keys(DEFAULT_OPTIONS)) if(options?.[key] !== undefined) result[key]=options[key];
@@ -20,7 +27,7 @@ export function createSession(dataset,options=DEFAULT_OPTIONS,{labSeed=null}={})
   const base=validateDataset(dataset,dataset?.source?.label); const lab=labSeed === null ? null : {seed:validSeed(labSeed)};
   if(lab) {
     const fixture=createLab({seed:labSeed});
-    if(JSON.stringify(base.observations)!==JSON.stringify(validateRows(fixture.initialSamples)) || JSON.stringify(base.heldOut)!==JSON.stringify(validateRows(fixture.evaluationSamples,{allowEmpty:true}))) throw new Error('Virtual instrument data does not match its declared seed.');
+    if(!matchesVirtualSeed(base.observations,validateRows(fixture.initialSamples)) || !matchesVirtualSeed(base.heldOut,validateRows(fixture.evaluationSamples,{allowEmpty:true}))) throw new Error('Virtual instrument data does not match its declared seed.');
     base.source={label:fixture.label,kind:'synthetic-virtual-instrument',units:{...base.source.units}};
   }
   const initialOptions=cleanOptions(options); const discovery=discover(base.observations,initialOptions);
