@@ -49,3 +49,11 @@ The full-vision checkboxes below remain open. The bounded results above do not r
 
 ## Submission
 Not submitted. Complete official category requirements, demo video, and confirmed contest receipt.
+
+## Motion Lab additive increment (2026-10-19)
+
+Team `15cc377ad586` owns the complementary local-video measurement route and its independent tests. Open `/motion.html` from the studio header. The current route supports actual video decoding, fixed-pivot calibration, marker tracking, explicit gaps, manual correction, bounded time intervals, decoded-frame timing, a source-bound portable notebook and export into the existing studio. The original observation-to-experiment studio remains the default entry point.
+
+The first real Chrome receiving run followed 161 frames of an encoded synthetic film, exported 106 fitting and 43 held-out observations, imported them into the studio, and exercised correction, reopening, file-digest refusal, occlusion, blank input and 320–1440 px layouts. Peer review additionally repaired stale callback/raster association and oversized-notebook mutation atomicity; focused tests and actual Chrome timing probes cover those repairs. Exact final candidate/source hashes and subsequent browser results belong in [Motion Lab receiving](MOTION_RECEIVING.md) and its publication receipt.
+
+The licensed real double-pendulum sample currently produces honest low-texture/ambiguous refusals. It is not evidence of successfully reconstructed motion, arbitrary mechanism discovery, calibrated uncertainty or scalar-inertia physics. The full-vision requirements above remain open.

@@ -1,0 +1,47 @@
+{
+  "schema": "worldlaw.motion-receiving-sources/v1",
+  "synthetic": {
+    "generator": "scripts/generate-motion-fixtures-15cc.py",
+    "command": "python3 scripts/generate-motion-fixtures-15cc.py --output .receipts/motion-fixtures",
+    "provenance": "Deterministic Pillow rendering of analytic coordinates, encoded with FFmpeg; no external source media and no image-generation model.",
+    "dimensions": [640, 480],
+    "fps": 30,
+    "durationSeconds": 8,
+    "equation": "theta(t)=0.60*exp(-0.08*t)*cos(2.8*t)",
+    "pivotPixels": [320, 90],
+    "radiusPixels": 230,
+    "inertiaKgM2": 0.8,
+    "commandNm": 0,
+    "interpretation": "Prescribed damped harmonic angle with exact frame coordinates and derivatives. This is not captured physical motion or the exact nonlinear pendulum equation.",
+    "occlusionFrames": [60, 74],
+    "truthManifest": ".receipts/motion-fixtures/truth.json"
+  },
+  "real": {
+    "title": "Double-pendulum-metastable-mode.webm",
+    "creators": ["Frank Stollmeier", "Manuel Schottdorf"],
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Double-pendulum-metastable-mode.webm",
+    "sourceRevision": "https://commons.wikimedia.org/w/index.php?title=File:Double-pendulum-metastable-mode.webm&oldid=1211663781",
+    "mediaUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Double-pendulum-metastable-mode.webm",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "sourceDeclaration": "Own work, uploaded by creator Frank Stollmeier; file description names both creators.",
+    "captureDate": "2018-09-19",
+    "retrievedDate": "2026-10-19",
+    "width": 476,
+    "height": 476,
+    "fps": 25,
+    "durationSeconds": 182.6,
+    "originalBytes": 15764266,
+    "originalSha256": "fbec4761d153c6a5bf486e88ff333aef9cd32b64e1fc87488a594d22b18c9bad",
+    "receivingExcerpt": {
+      "transformation": "First four seconds, audio removed, re-encoded VP9 at CRF18 using FFmpeg. No crop, interpolation, retiming or stabilization.",
+      "command": "ffmpeg -i double-pendulum-original.webm -t 4 -an -c:v libvpx-vp9 -crf 18 -b:v 0 -threads 1 double-pendulum-excerpt.webm",
+      "sha256": "552dac87ddb8ab171c951ae9cd8f3240937aa838436192260906b803f8247824",
+      "bytes": 275792,
+      "license": "CC BY-SA 4.0",
+      "attribution": "Double-pendulum-metastable-mode.webm by Frank Stollmeier and Manuel Schottdorf, CC BY-SA 4.0; four-second excerpt re-encoded for WORLDLAW receiving."
+    },
+    "interpretation": "Real video suitable for point-tracking inspection. Coupled double-pendulum dynamics do not satisfy the scalar known-constant-inertia torque assumption. No exact angle, torque, inertia or topology truth is provided.",
+    "redistribution": "Do not bundle the original movie in source. Any delivered excerpt must retain attribution, source and license links, identify transformations, and preserve CC BY-SA 4.0 for the adapted media."
+  }
+}

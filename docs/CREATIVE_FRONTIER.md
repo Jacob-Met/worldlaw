@@ -23,3 +23,9 @@ These increments were independently received in the actual browser on 2026-10-19
 Continuously explore new capabilities without waiting for manual feature-by-feature authorization, respecting provider access, budget, safety and rights.
 
 The next valuable extensions are a real calibrated telemetry acquisition path, explicit alternatives for missing structure, and interventions that distinguish mechanisms outside the current term family. Each should consume the existing notebook and expose failures against fixed held-out evidence. Physical actuation needs an actual instrument contract and appropriate operational limits before it can be claimed.
+
+## Source-bound Motion Lab (team 15cc377ad586)
+
+An implemented additive observation route converts local mechanism video into inspectable pixel tracks, calibrated angular segments and portable evidence. Decoding, source SHA-256, explicit marker reanchoring and failed-match states are connected to the existing torque observation consumer. Known constant inertia and applied torque remain required caller declarations. The encoded synthetic-film receiving reaches the actual browser studio; the real double-pendulum input demonstrates retained ambiguity, not claimed arbitrary topology recovery. See [Motion Lab receiving](MOTION_RECEIVING.md) and [tracking limits](MOTION_TRACKING.md).
+
+The next experiment is chromatic marker identity on real colored-marker ambiguity, preserving baseline refusal gates. Pivot sensitivity is another direct measurement-quality consumer; neither establishes an unknown physical topology.

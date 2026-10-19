@@ -17,9 +17,9 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
     "AGENTS.md", "README.md", "LICENSE", "LICENSE.md", "package.json",
-    "index.html", "styles.css", "favicon.svg", "server.mjs",
-    "docs/*.md", "docs/*.json", "src/*.mjs", "src/science/*.mjs",
-    "scripts/*.mjs", "scripts/package.py", "tests/*.test.mjs",
+    "index.html", "styles.css", "favicon.svg", "server.mjs", "motion.html", "motion.css",
+    "docs/*.md", "docs/*.json", "src/*.mjs", "src/science/*.mjs", "src/motion/*.mjs",
+    "scripts/*.mjs", "scripts/package.py", "scripts/generate-motion-fixtures-15cc.py", "tests/*.test.mjs",
     "examples/*.json", "experiments/active-discovery.mjs",
     "evidence/active-discovery-results.json",
     "evidence/derived-telemetry-observations.json",
@@ -30,6 +30,8 @@ REQUIRED = (
     "src/science/torque-discovery.mjs", "src/science/virtual-lab.mjs",
     "src/science/trajectory-observations.mjs", "scripts/package.py",
     "docs/DISTRIBUTION.md",
+    "motion.html", "motion.css", "src/motion/app.mjs", "src/motion/demo.mjs",
+    "src/motion/measurement.mjs", "src/motion/tracker.mjs", "src/motion/video.mjs",
 )
 EXCLUDED_COMPONENTS = {
     ".git", "node_modules", ".receipts", "__pycache__", ".cache",
