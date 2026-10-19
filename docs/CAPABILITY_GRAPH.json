@@ -6,7 +6,7 @@
     {
       "id": "actual_mechanism_observation_and_evidence_ingestion",
       "status": "partial_independently_received",
-      "interpretation": "Validated CSV/JSON, calibrated telemetry conversion, and a local-video fixed-pivot marker measurement route. Encoded synthetic video is independently received; real coupled video currently demonstrates honest tracking refusal, not general physical acquisition.",
+      "interpretation": "Validated CSV/JSON, calibrated telemetry conversion, and a local-video fixed-pivot marker measurement route. Encoded synthetic video is independently received; real coupled video currently demonstrates honest tracking refusal, not general physical acquisition. Three attributed measured PASCO recordings additionally enter the angular trajectory consumer with raw source, units and unknown inertia preserved.",
       "producer": "src/data.mjs; src/science/trajectory-observations.mjs; src/motion/video.mjs; src/motion/tracker.mjs; src/motion/measurement.mjs",
       "consumer": "src/session.mjs; browser import; motion.html; Studio observation export",
       "dependencies": [],
@@ -35,7 +35,7 @@
     {
       "id": "reproducible_executable_physics_models",
       "status": "partial_independently_received",
-      "interpretation": "Prediction and RK4 trajectory simulation consumed by the browser; physical trajectory fidelity remains open.",
+      "interpretation": "Prediction and RK4 trajectory simulation consumed by the browser; physical trajectory fidelity remains open. Free-running trajectory models now compare against separate recordings, with two-step numerical sensitivity and explicit model failures.",
       "producer": "src/science/torque-discovery.mjs",
       "consumer": "src/app.mjs; solver-driven canvas",
       "dependencies": [],
@@ -87,7 +87,7 @@
     {
       "id": "interactive_model_comparison_and_visualization",
       "status": "partial_independently_received",
-      "interpretation": "Real browser workbench, alternative model inspection, evidence plots, predicted scene, file transfer, and responsive controls; human acceptance remains open.",
+      "interpretation": "Real browser workbench, alternative model inspection, evidence plots, predicted scene, file transfer, and responsive controls; human acceptance remains open. The integrated trajectory route adds model-by-model observed/predicted curves, tolerance inspection and measured-mode failures.",
       "producer": "src/app.mjs; index.html; styles.css",
       "consumer": "local browser user",
       "dependencies": [],
@@ -133,6 +133,34 @@
         "scripts/motion-browser-15cc.mjs"
       ],
       "benefit": "A local video can produce inspectable angular evidence and explicitly conditioned torque observations, preserving source identity, timing, rejected points, corrections and segment boundaries."
+    },
+    {
+      "id": "independent_free_trajectory_challenge",
+      "status": "integrated_independently_received",
+      "producer": "src/trajectory/integral-discovery.mjs; src/trajectory/forward.mjs; src/trajectory/resolution.mjs",
+      "consumer": "trajectory.html; src/trajectory/session.mjs; portable input notebook",
+      "owner": "Team 92be8b055703 trajectory increment; accepted studio and Motion ownership preserved",
+      "evidence": [
+        "docs/TRAJECTORY_CHALLENGE_92be.md",
+        "tests/trajectory-session-review-92be.test.mjs",
+        "scripts/trajectory-browser-92be.mjs",
+        "https://github.com/Jacob-Met/worldlaw/pull/4"
+      ],
+      "benefit": "Fits training recordings and predicts separate trajectories without observation resets; numerical sensitivity and sampled error crossings stay distinct from physical correctness."
+    },
+    {
+      "id": "unknown_scale_measured_angular_models",
+      "status": "integrated_exploratory_measured_receiving",
+      "producer": "src/trajectory/angular-discovery.mjs; src/trajectory/angular-weak.mjs; src/trajectory/angular-resolution.mjs",
+      "consumer": "trajectory.html; measured PASCO fixture; angular notebook reopen",
+      "owner": "Team 92be8b055703 measured angular increment",
+      "evidence": [
+        "research/PHYSICAL_TELEMETRY_92be.md",
+        "examples/physical-pasco-92be/README.md",
+        "tests/trajectory-angular-session-review-92be.test.mjs",
+        "https://github.com/Jacob-Met/worldlaw/pull/6"
+      ],
+      "benefit": "Uses attributed measured positions with explicitly unknown inertia/torque scale, preserves failed cumulative predictions, and compares an experimental window fit without treating reused validation as blind evidence."
     }
   ],
   "frontiers": [
@@ -179,6 +207,22 @@
     "date": "2026-10-19",
     "scope": "Bounded synthetic and imported-fixture receiving in real Chrome; full vision remains open.",
     "integration_owner": "HAMON team 288492d6ffef root for this increment",
-    "receipt": "docs/RECEIVING_20261019.md"
+    "receipt": "docs/RECEIVING_20261019.md",
+    "trajectory_increment": {
+      "date": "2026-10-19",
+      "scope": "Known-inertia synthetic free trajectories plus attributed measured angular recordings with unknown torque scale; broad mechanism discovery and calibrated uncertainty remain open.",
+      "owner": "Team 92be8b055703 for trajectory/main-launch integration",
+      "merged_source": [
+        {
+          "pr": 4,
+          "commit": "1817f043091ce75c6bbf2a081e1a30da447a5808"
+        },
+        {
+          "pr": 6,
+          "commit": "d63d31f8981d38ef0307dd3fc4f8e2806a9fb223"
+        }
+      ],
+      "receipt": "docs/TRAJECTORY_LAUNCH_92be.md"
+    }
   }
 }
