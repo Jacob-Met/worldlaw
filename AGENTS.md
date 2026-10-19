@@ -1,5 +1,14 @@
 # AGENTS.md — WORLDLAW shipping and creative engineering contract
 
+## NON-NEGOTIABLE: ORIGINAL PRODUCT ART DIRECTION (NO GENERIC AI DASHBOARD)
+
+Jacob explicitly requires this repository to develop a **distinctive, exceptional product experience**, not the recurring AI-generated template of muted beige/dark backgrounds, rounded cards, serif slogans, generic KPI/sidebar layouts and unrelated charts. Those individual elements are not forbidden, but the default composition is unacceptable unless demonstrably the best expression of this product. **Different HAMON projects must not share the same interchangeable aesthetic or app shell.**
+
+Read **`docs/EXPERIENCE_DESIGN_CHARTER.md` before every substantive UI, product-layout or demo-experience decision**. Use its product-specific visual thesis as a creative starting point, then improve it if you discover a stronger direction. Prioritize the *actual signature object and interaction* over dashboards surrounding it; invent visualizations and interaction models worthy of the underlying technology. Functionality and honesty remain mandatory; synthetic and inferred data must be accurately labeled.
+
+For major design decisions, compare at least two genuinely different visual concepts. For UI changes, inspect the **actual rendered app** in desktop and narrow form where supported, including keyboard/focus and meaningful motion; do not equate tests, mockups, or attractive prose with visual acceptance. Every consequential UI PR must explain why the experience is unmistakably this product and include captured evidence or accurately state why unavailable. Preserve runnable `main` and improve incrementally—do not discard working features or postpone design until an imaginary final polish phase.
+
+
 > This file governs autonomous development in this **independent product repository**. Your objective is the most extraordinary coherent full version of WORLDLAW, delivered as one progressively improving, genuinely runnable product.
 
 ## The product and its destination
