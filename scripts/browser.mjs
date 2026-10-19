@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createProductServer} from '../server.mjs';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const dir=process.env.BROWSER_ARTIFACT_DIR||resolve('.receipts');await mkdir(dir,{recursive:true});
+const server=createProductServer();await new Promise((res,rej)=>{server.once('error',rej);server.listen(0,'127.0.0.1',res);});
+let browser;const checks=[];const mark=name=>{checks.push(name);console.log('PASS '+name);};
+try{
+  browser=await chromium.launch({headless:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+  const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(`http://127.0.0.1:${server.address().port}`);await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='64');
+  assert.match(await page.locator('#source-kind').innerText(),/synthetic/);assert.match(await page.locator('#selected-terms').innerText(),/Linear spring/);
+  assert.equal(await page.locator('#prediction-chart svg').count(),1);assert.equal(await page.locator('#residual-chart svg').count(),1);assert.equal(await page.locator('#trajectory-chart svg').count(),1);
+  assert.ok(await page.locator('#mechanism-canvas').evaluate(c=>c.getContext('2d').getImageData(0,0,c.width,c.height).data.some(x=>x)));
+  await page.screenshot({path:resolve(dir,'worldlaw-initial.png'),fullPage:true});mark('real initial workbench, hypotheses, evidence plots and solver-driven canvas render');
+  const before=Number((await page.locator('#heldout-error').innerText()).replaceAll(',',''));
+  await page.locator('#use-proposal').focus();await page.keyboard.press('Enter');assert.ok(Math.abs(Number(await page.locator('#position').inputValue()))>2);
+  await page.locator('#run-experiment').click();await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='65');
+  assert.match(await page.locator('#selected-terms').innerText(),/Sinusoidal gravity/);const after=Number((await page.locator('#heldout-error').innerText()).replaceAll(',',''));assert.ok(after<before/100);
+  assert.equal(await page.locator('#history-list li').count(),2);await page.screenshot({path:resolve(dir,'worldlaw-revised.png'),fullPage:true});mark('keyboard-selected experiment produces fresh virtual measurement, structural revision and improved held-out prediction');
+  const downloaded=page.waitForEvent('download');await page.locator('#export-session').click();const file=await downloaded;const saved=resolve(dir,'worldlaw-notebook.json');await file.saveAs(saved);assert.equal(JSON.parse(await readFile(saved,'utf8')).events.length,1);
+  await page.reload();await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='65');assert.equal(await page.locator('#history-list li').count(),2);
+  await page.locator('#undo').click();assert.equal(await page.locator('#sample-count').innerText(),'64');await page.locator('#session-file').setInputFiles(saved);await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='65');
+  mark('completed notebook download, browser reload, undo and portable file reopen preserve evidence');
+  await page.locator('#observation-file').setInputFiles({name:'bad.csv',mimeType:'text/csv',buffer:Buffer.from('command,position,rate,jointTorque\n1,2,3,NaN')});await page.locator('#error').waitFor({state:'visible'});assert.equal(await page.locator('#sample-count').innerText(),'65');
+  await page.locator('#observation-file').setInputFiles(resolve('examples/synthetic-quadratic-drag.json'));await page.waitForFunction(()=>document.getElementById('selected-terms').textContent.includes('Quadratic drag'));
+  assert.equal(await page.locator('#measured-field').isVisible(),true);assert.match(await page.locator('#source-kind').innerText(),/user-supplied/);assert.equal(await page.locator('#heldout-count').innerText(),'31');
+  for(const name of ['command','position','rate','measured-torque'])await page.locator('#'+name).fill('0');await page.locator('#run-experiment').click();assert.equal(await page.locator('#sample-count').innerText(),'65');
+  mark('malformed replacement is atomic; separate imported drag mechanism reaches model comparison and recorded measurement path');
+  await page.locator('#initial-angle').fill('1.1');await page.locator('#inertia').fill('2');await page.locator('#run-simulation').click();assert.match(await page.locator('#simulation-status').innerText(),/RK4/);
+  await page.locator('#inertia').fill('0');await page.locator('#run-simulation').click();await page.locator('#error').waitFor({state:'visible'});assert.equal(await page.locator('#sample-count').innerText(),'65');await page.waitForFunction(()=>document.getElementById('mechanism-canvas').getAttribute('aria-label').includes('Prediction unavailable'));
+  await page.locator('#inertia').fill('1');await page.locator('#run-simulation').click();mark('changed dynamics input runs; invalid inertia refuses without corrupting evidence');
+  await page.locator('#session-file').setInputFiles(saved);await page.waitForFunction(()=>document.getElementById('source-kind').textContent.includes('synthetic'));
+  const layouts=[];for(const width of [1440,768,390,320]){await page.setViewportSize({width,height:960});const measured=await page.evaluate(()=>({width:innerWidth,document:document.documentElement.scrollWidth}));assert.ok(measured.document<=width,JSON.stringify(measured));layouts.push(measured);if(width===390)await page.screenshot({path:resolve(dir,'worldlaw-mobile.png'),fullPage:true});}
+  mark('complete notebook fits 320, 390, 768 and 1440 pixel viewports');
+  await page.evaluate(()=>{const original=File.prototype.text;File.prototype.text=async function(){if(this.name==='delayed.csv')await new Promise(resolve=>window.releaseRead=resolve);return original.call(this);};});
+  await page.locator('#observation-file').setInputFiles({name:'delayed.csv',mimeType:'text/csv',buffer:await readFile(resolve('examples/synthetic-quadratic-drag.json'))});
+  await page.locator('#session-file').setInputFiles(saved);await page.waitForFunction(()=>document.getElementById('source-kind').textContent.includes('synthetic'));await page.evaluate(()=>window.releaseRead());await page.waitForTimeout(100);
+  assert.match(await page.locator('#source-kind').innerText(),/synthetic/);assert.deepEqual(errors,[]);mark('late input read cannot replace a newer notebook; no JavaScript page errors');
+  await writeFile(resolve(dir,'receipt.json'),JSON.stringify({product:'worldlaw',browser:await browser.version(),checks,metrics:{beforeHeldOutRMSE:before,afterHeldOutRMSE:after},layouts,scope:'Real Chrome product receiving with declared synthetic observations; no physical mechanism or human acceptance claim.'},null,2)+'\n');
+}finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}

@@ -1,0 +1,1081 @@
+{
+  "schema": "worldlaw.active-discovery-experiment/v1",
+  "evidence": "controlled_synthetic",
+  "runtime": "v24.19.0",
+  "options": {
+    "noiseSigma": 0.008,
+    "maxTerms": 4,
+    "ambiguityDelta": 6
+  },
+  "method": "One maximum-disagreement observation versus one fixed narrow-angle observation; independent held-out conditions; 20 varied coefficients/noise seeds per family.",
+  "limitations": [
+    "Two in-library families, not arbitrary mechanisms.",
+    "Noise is additive and inputs are exact.",
+    "No calibration or real apparatus evidence.",
+    "Acquisition only varies position in a permitted finite grid."
+  ],
+  "summaries": [
+    {
+      "family": "linear_spring",
+      "count": 20,
+      "activeCorrect": 19,
+      "passiveCorrect": 19,
+      "activeBeatsPassive": 17,
+      "medianInitialRmse": 0.001720924861273176,
+      "medianActiveRmse": 0.00047741075365160727,
+      "medianPassiveRmse": 0.0016640804019050575
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "count": 20,
+      "activeCorrect": 19,
+      "passiveCorrect": 0,
+      "activeBeatsPassive": 20,
+      "medianInitialRmse": 1.5224338209348427,
+      "medianActiveRmse": 0.0007473266973765388,
+      "medianPassiveRmse": 1.5224789126621732
+    }
+  ],
+  "cases": [
+    {
+      "family": "linear_spring",
+      "seed": 1,
+      "coefficients": {
+        "drive": 1.5053708251332865,
+        "drag": 0.18819501339457928,
+        "restoring": 2.2569295891094954,
+        "bias": 0.08706912235356867
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 3.8887866268209876,
+      "initialHeldOutRmse": 0.0007370299962470712,
+      "activeHeldOutRmse": 0.0007313963177538289,
+      "passiveHeldOutRmse": 0.0005907143881583451,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 2,
+      "coefficients": {
+        "drive": 2.2107416617916895,
+        "drag": 0.27580344129819423,
+        "restoring": 2.392780195036903,
+        "bias": 0.06300549316219986
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 4.127022528625037,
+      "initialHeldOutRmse": 0.0021981874157661787,
+      "activeHeldOutRmse": 0.00018536202772315957,
+      "passiveHeldOutRmse": 0.0020738201791319364,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 3,
+      "coefficients": {
+        "drive": 1.5069438513135538,
+        "drag": 0.34825305119156835,
+        "restoring": 2.186117244372144,
+        "bias": -0.026866953633725644
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 3.772249303712573,
+      "initialHeldOutRmse": 0.0034866533648186732,
+      "activeHeldOutRmse": 0.000988024834578691,
+      "passiveHeldOutRmse": 0.00393221994978041,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 4,
+      "coefficients": {
+        "drive": 2.121483335108496,
+        "drag": 0.1521923238178715,
+        "restoring": 2.706639804923907,
+        "bias": 0.03675378421321512
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 4.6681864302805955,
+      "initialHeldOutRmse": 0.0021931632806639996,
+      "activeHeldOutRmse": 0.00027590048465388976,
+      "passiveHeldOutRmse": 0.0025743937061757797,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 5,
+      "coefficients": {
+        "drive": 1.5143762524938211,
+        "drag": 0.24352454212494196,
+        "restoring": 2.4413922842592,
+        "bias": 0.06019295700825751
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 4.209233621354294,
+      "initialHeldOutRmse": 0.0010014668004671835,
+      "activeHeldOutRmse": 0.0006765043398526561,
+      "passiveHeldOutRmse": 0.0011603333920338539,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 6,
+      "coefficients": {
+        "drive": 2.213887714152224,
+        "drag": 0.29599519094917925,
+        "restoring": 2.208980326540768,
+        "bias": 0.08973211939446629
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 3.8080257694529225,
+      "initialHeldOutRmse": 0.0006627307885610151,
+      "activeHeldOutRmse": 0.00024797949865654987,
+      "passiveHeldOutRmse": 0.0006107885889260487,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 7,
+      "coefficients": {
+        "drive": 1.510067730746232,
+        "drag": 0.3659269402734935,
+        "restoring": 2.401560285128653,
+        "bias": -0.0000886322930455208
+      },
+      "initialModel": "command+rate+spring",
+      "activeModel": "command+rate+spring",
+      "passiveModel": "command+rate+spring",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 7.889457189954378,
+      "initialHeldOutRmse": 0.0012582086874654236,
+      "activeHeldOutRmse": 0.0007654115532473771,
+      "passiveHeldOutRmse": 0.0008435583809134863,
+      "activeCorrectStructure": false,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "linear_spring",
+      "seed": 8,
+      "coefficients": {
+        "drive": 1.9429666817421094,
+        "drag": 0.204898992436938,
+        "restoring": 1.6187763197813183,
+        "bias": -0.08167186747305095
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 2.7879567590550387,
+      "initialHeldOutRmse": 0.0017131310179891875,
+      "activeHeldOutRmse": 0.00041247058053610916,
+      "passiveHeldOutRmse": 0.0013680959516010579,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 9,
+      "coefficients": {
+        "drive": 1.5232901271199808,
+        "drag": 0.14828647749964147,
+        "restoring": 2.742746038036421,
+        "bias": -0.06396649586968124
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 4.726408299877535,
+      "initialHeldOutRmse": 0.000755117494237809,
+      "activeHeldOutRmse": 0.0003168231095327137,
+      "passiveHeldOutRmse": 0.0003125392080978111,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 10,
+      "coefficients": {
+        "drive": 2.228752516512759,
+        "drag": 0.38646364533342425,
+        "restoring": 2.80740362838842,
+        "bias": -0.0861080898437649
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 4.835857658854579,
+      "initialHeldOutRmse": 0.002177595466629481,
+      "activeHeldOutRmse": 0.0008606923728498546,
+      "passiveHeldOutRmse": 0.0023808223128989883,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 11,
+      "coefficients": {
+        "drive": 1.5248631533002481,
+        "drag": 0.3081616959301755,
+        "restoring": 2.557234281906858,
+        "bias": 0.02261207848787308
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 4.409188166252683,
+      "initialHeldOutRmse": 0.0014765167223526581,
+      "activeHeldOutRmse": 0.00031886792445356635,
+      "passiveHeldOutRmse": 0.001606400345818838,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 12,
+      "coefficients": {
+        "drive": 2.1277754398295654,
+        "drag": 0.19257696969434618,
+        "restoring": 2.2933351601008325,
+        "bias": -0.013748921919614077
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 3.950162174495213,
+      "initialHeldOutRmse": 0.0020306630922168377,
+      "activeHeldOutRmse": 0.001368282381786764,
+      "passiveHeldOutRmse": 0.0019137154528304356,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 13,
+      "coefficients": {
+        "drive": 1.5205324586248026,
+        "drag": 0.12819486365187913,
+        "restoring": 2.9838977571576835,
+        "bias": -0.09032672639004886
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 5.146105150215645,
+      "initialHeldOutRmse": 0.0027278923784358603,
+      "activeHeldOutRmse": 0.00048563915273573904,
+      "passiveHeldOutRmse": 0.003058361555614425,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 14,
+      "coefficients": {
+        "drive": 2.2201354730175806,
+        "drag": 0.3311976313125342,
+        "restoring": 2.5660349713638424,
+        "bias": -0.059598332131281496
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 4.420652757098894,
+      "initialHeldOutRmse": 0.0014872321505506351,
+      "activeHeldOutRmse": 0.0005652451769703916,
+      "passiveHeldOutRmse": 0.0017217604579912772,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 15,
+      "coefficients": {
+        "drive": 1.5162239368772135,
+        "drag": 0.25070741118397566,
+        "restoring": 2.8302461111918094,
+        "bias": 0.04887484051287175
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 4.870786389634071,
+      "initialHeldOutRmse": 0.005868879465006693,
+      "activeHeldOutRmse": 0.0004619094536688304,
+      "passiveHeldOutRmse": 0.005601846902789851,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 16,
+      "coefficients": {
+        "drive": 1.5859333750093356,
+        "drag": 0.3104600992053747,
+        "restoring": 2.7793807472102343,
+        "bias": 0.07702863295562566
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 4.792247551641163,
+      "initialHeldOutRmse": 0.0014899338894998366,
+      "activeHeldOutRmse": 0.0010678727886633853,
+      "passiveHeldOutRmse": 0.0009832292896804686,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 17,
+      "coefficients": {
+        "drive": 1.4943457174347714,
+        "drag": 0.1359352767234668,
+        "restoring": 1.5899287393782289,
+        "bias": -0.050704855704680085
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 2.7385611462089,
+      "initialHeldOutRmse": 0.0012994011095430465,
+      "activeHeldOutRmse": 0.0004691823545674755,
+      "passiveHeldOutRmse": 0.000969746235218823,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 18,
+      "coefficients": {
+        "drive": 2.246580265765078,
+        "drag": 0.19715825533494352,
+        "restoring": 1.56044730017893,
+        "bias": 0.05468736081384123
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 2.696423813928769,
+      "initialHeldOutRmse": 0.005371242685341574,
+      "activeHeldOutRmse": 0.00022476766450302182,
+      "passiveHeldOutRmse": 0.005180650289171359,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 19,
+      "coefficients": {
+        "drive": 1.4081890972563997,
+        "drag": 0.2923677644925192,
+        "restoring": 1.7102058010641485,
+        "bias": -0.049439032468944794
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 2.9428388268273737,
+      "initialHeldOutRmse": 0.0038393183517178462,
+      "activeHeldOutRmse": 0.0003360126035767875,
+      "passiveHeldOutRmse": 0.003988797276066416,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "linear_spring",
+      "seed": 20,
+      "coefficients": {
+        "drive": 2.1575050445506347,
+        "drag": 0.37234085039235654,
+        "restoring": 1.7389795679133386,
+        "bias": 0.04556023357436061
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+spring+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 2.9950691151465056,
+      "initialHeldOutRmse": 0.0017287187045571643,
+      "activeHeldOutRmse": 0.0005385530169821545,
+      "passiveHeldOutRmse": 0.0014258907493784243,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": true
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 1,
+      "coefficients": {
+        "drive": 1.5053708251332865,
+        "drag": 0.18819501339457928,
+        "restoring": 2.2569295891094954,
+        "bias": 0.08706912235356867
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 3.882413274866003,
+      "initialHeldOutRmse": 1.4520035742567294,
+      "activeHeldOutRmse": 0.0010354688152664105,
+      "passiveHeldOutRmse": 1.4521707329913933,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 2,
+      "coefficients": {
+        "drive": 2.2107416617916895,
+        "drag": 0.27580344129819423,
+        "restoring": 2.392780195036903,
+        "bias": 0.06300549316219986
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 4.12141962254953,
+      "initialHeldOutRmse": 1.5175879806875767,
+      "activeHeldOutRmse": 0.0004660094824069451,
+      "passiveHeldOutRmse": 1.5175017025414705,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 3,
+      "coefficients": {
+        "drive": 1.5069438513135538,
+        "drag": 0.34825305119156835,
+        "restoring": 2.186117244372144,
+        "bias": -0.026866953633725644
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 3.7665901277132066,
+      "initialHeldOutRmse": 1.452514212979541,
+      "activeHeldOutRmse": 0.001832708641170238,
+      "passiveHeldOutRmse": 1.452956290332002,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 4,
+      "coefficients": {
+        "drive": 2.121483335108496,
+        "drag": 0.1521923238178715,
+        "restoring": 2.706639804923907,
+        "bias": 0.03675378421321512
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 4.661795385990471,
+      "initialHeldOutRmse": 1.665673806273426,
+      "activeHeldOutRmse": 0.00017050836729102392,
+      "passiveHeldOutRmse": 1.6660573722970198,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 5,
+      "coefficients": {
+        "drive": 1.5143762524938211,
+        "drag": 0.24352454212494196,
+        "restoring": 2.4413922842592,
+        "bias": 0.06019295700825751
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 4.203157120073244,
+      "initialHeldOutRmse": 1.527279661182109,
+      "activeHeldOutRmse": 0.0006481096719980074,
+      "passiveHeldOutRmse": 1.5274561227828758,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 6,
+      "coefficients": {
+        "drive": 2.213887714152224,
+        "drag": 0.29599519094917925,
+        "restoring": 2.208980326540768,
+        "bias": 0.08973211939446629
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 3.802273532150519,
+      "initialHeldOutRmse": 1.445595135200416,
+      "activeHeldOutRmse": 0.00021719018082928836,
+      "passiveHeldOutRmse": 1.445574386923201,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 7,
+      "coefficients": {
+        "drive": 1.510067730746232,
+        "drag": 0.3659269402734935,
+        "restoring": 2.401560285128653,
+        "bias": -0.0000886322930455208
+      },
+      "initialModel": "command+rate+spring",
+      "activeModel": "command+rate+gravity",
+      "passiveModel": "command+rate+spring",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 4.131458252809803,
+      "initialHeldOutRmse": 1.750931783050321,
+      "activeHeldOutRmse": 0.0006841880465198399,
+      "passiveHeldOutRmse": 1.7513546453475968,
+      "activeCorrectStructure": false,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 8,
+      "coefficients": {
+        "drive": 1.9429666817421094,
+        "drag": 0.204898992436938,
+        "restoring": 1.6187763197813183,
+        "bias": -0.08167186747305095
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 2.7835684202105897,
+      "initialHeldOutRmse": 1.2249575936832946,
+      "activeHeldOutRmse": 0.00022026017439136496,
+      "passiveHeldOutRmse": 1.225303315076862,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 9,
+      "coefficients": {
+        "drive": 1.5232901271199808,
+        "drag": 0.14828647749964147,
+        "restoring": 2.742746038036421,
+        "bias": -0.06396649586968124
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 4.719481516948624,
+      "initialHeldOutRmse": 1.8403701863192772,
+      "activeHeldOutRmse": 0.00043996781598919406,
+      "passiveHeldOutRmse": 1.8408601770147652,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 10,
+      "coefficients": {
+        "drive": 2.228752516512759,
+        "drag": 0.38646364533342425,
+        "restoring": 2.80740362838842,
+        "bias": -0.0861080898437649
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 4.828678726738989,
+      "initialHeldOutRmse": 1.7192462471187393,
+      "activeHeldOutRmse": 0.001470810121887183,
+      "passiveHeldOutRmse": 1.7190843126008073,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 11,
+      "coefficients": {
+        "drive": 1.5248631533002481,
+        "drag": 0.3081616959301755,
+        "restoring": 2.557234281906858,
+        "bias": 0.02261207848787308
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 4.40237457857305,
+      "initialHeldOutRmse": 1.781848044425579,
+      "activeHeldOutRmse": 0.0004450445569754146,
+      "passiveHeldOutRmse": 1.782001435759783,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 12,
+      "coefficients": {
+        "drive": 2.1277754398295654,
+        "drag": 0.19257696969434618,
+        "restoring": 2.2933351601008325,
+        "bias": -0.013748921919614077
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 3.9442439513132532,
+      "initialHeldOutRmse": 1.5702526317786067,
+      "activeHeldOutRmse": 0.0020098761857354286,
+      "passiveHeldOutRmse": 1.5703884754355557,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 13,
+      "coefficients": {
+        "drive": 1.5205324586248026,
+        "drag": 0.12819486365187913,
+        "restoring": 2.9838977571576835,
+        "bias": -0.09032672639004886
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 5.138363442463854,
+      "initialHeldOutRmse": 2.0956435092220413,
+      "activeHeldOutRmse": 0.0008555941652809177,
+      "passiveHeldOutRmse": 2.095978871406814,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 14,
+      "coefficients": {
+        "drive": 2.2201354730175806,
+        "drag": 0.3311976313125342,
+        "restoring": 2.5660349713638424,
+        "bias": -0.059598332131281496
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 4.414087561904347,
+      "initialHeldOutRmse": 1.407713125688676,
+      "activeHeldOutRmse": 0.0005007427908122377,
+      "passiveHeldOutRmse": 1.4075230082137407,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 15,
+      "coefficients": {
+        "drive": 1.5162239368772135,
+        "drag": 0.25070741118397566,
+        "restoring": 2.8302461111918094,
+        "bias": 0.04887484051287175
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 4.86363170296042,
+      "initialHeldOutRmse": 1.8964418143655621,
+      "activeHeldOutRmse": 0.0013214290056639516,
+      "passiveHeldOutRmse": 1.8967147020071091,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 16,
+      "coefficients": {
+        "drive": 1.5859333750093356,
+        "drag": 0.3104600992053747,
+        "restoring": 2.7793807472102343,
+        "bias": 0.07702863295562566
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 4.785281187658257,
+      "initialHeldOutRmse": 1.7599081355680561,
+      "activeHeldOutRmse": 0.0016513574315941593,
+      "passiveHeldOutRmse": 1.7594640724384316,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 17,
+      "coefficients": {
+        "drive": 1.4943457174347714,
+        "drag": 0.1359352767234668,
+        "restoring": 1.5899287393782289,
+        "bias": -0.050704855704680085
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 2.7342813327402884,
+      "initialHeldOutRmse": 1.083151766047127,
+      "activeHeldOutRmse": 0.000788608213986638,
+      "passiveHeldOutRmse": 1.0834783267365093,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 18,
+      "coefficients": {
+        "drive": 2.246580265765078,
+        "drag": 0.19715825533494352,
+        "restoring": 1.56044730017893,
+        "bias": 0.05468736081384123
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 2.692519139068545,
+      "initialHeldOutRmse": 0.9954462236451098,
+      "activeHeldOutRmse": 0.0007060451807664396,
+      "passiveHeldOutRmse": 0.9952880228807853,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 19,
+      "coefficients": {
+        "drive": 1.4081890972563997,
+        "drag": 0.2923677644925192,
+        "restoring": 1.7102058010641485,
+        "bias": -0.049439032468944794
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": 2.400000000000001,
+        "rate": 0
+      },
+      "predictionSpread": 2.938766058566093,
+      "initialHeldOutRmse": 1.1842071335761646,
+      "activeHeldOutRmse": 0.0008990185026506602,
+      "passiveHeldOutRmse": 1.18408583951615,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    },
+    {
+      "family": "sinusoidal_gravity",
+      "seed": 20,
+      "coefficients": {
+        "drive": 2.1575050445506347,
+        "drag": 0.37234085039235654,
+        "restoring": 1.7389795679133386,
+        "bias": 0.04556023357436061
+      },
+      "initialModel": "command+rate+spring+bias",
+      "activeModel": "command+rate+gravity+bias",
+      "passiveModel": "command+rate+spring+bias",
+      "initialAmbiguous": true,
+      "planStatus": "proposed",
+      "chosenInput": {
+        "command": 0,
+        "position": -2.4,
+        "rate": 0
+      },
+      "predictionSpread": 2.990717754680444,
+      "initialHeldOutRmse": 1.1395219569435566,
+      "activeHeldOutRmse": 0.0009564581756089611,
+      "passiveHeldOutRmse": 1.1398318939770924,
+      "activeCorrectStructure": true,
+      "passiveCorrectStructure": false
+    }
+  ]
+}

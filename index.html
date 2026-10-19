@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f2eb">
+  <meta name="description" content="WORLDLAW is an experimental workbench for learning executable torque models, comparing their predictions, and designing discriminating experiments.">
+  <title>WORLDLAW — The experimental workbench</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#workbench">Skip to workbench</a>
+  <div class="page-shell">
+    <header class="masthead">
+      <a class="wordmark" href="/" aria-label="WORLDLAW home"><span class="brand-mark" aria-hidden="true">W<span>∴</span></span><span>WORLDLAW<small>THE EXPERIMENTAL WORKBENCH</small></span></a>
+      <div class="session-tools" aria-label="Session controls">
+        <span class="local-indicator"><i aria-hidden="true"></i>Local workspace</span>
+        <button id="open-session" class="button button-quiet" type="button">Open session</button>
+        <button id="export-session" class="button button-outline" type="button">Save session <span aria-hidden="true">↗</span></button>
+      </div>
+    </header>
+
+    <main id="workbench">
+      <section class="intro" aria-labelledby="page-title">
+        <div><p class="eyebrow"><span class="tiny-rule" aria-hidden="true"></span>OBSERVE. QUESTION. TEST.</p><h1 id="page-title">Let the experiment<br><em>change your mind.</em></h1></div>
+        <div class="intro-copy"><p>Turn torque observations into competing explanations. Find the state that separates them, then see what the evidence changes.</p><a href="#scope" class="scope-link">A finite-library discovery experiment <span aria-hidden="true">↘</span></a></div>
+      </section>
+
+      <div id="notice" class="notice" role="status" aria-live="polite"></div>
+      <div id="error" class="error" role="alert" tabindex="-1" hidden></div>
+
+      <div class="workbench-grid">
+        <aside class="sidebar" aria-label="Observations and experiment controls">
+          <section class="panel source-panel" aria-labelledby="source-heading">
+            <div class="section-heading"><span class="section-number">01</span><h2 id="source-heading">Start with evidence</h2></div>
+            <span id="source-kind" class="source-kind">Virtual instrument</span>
+            <h3 id="source-name" class="source-name">Virtual geared pendulum</h3>
+            <p class="muted small">Begin with the simulated mechanism or bring your own torque observations.</p>
+            <div class="sample-counts"><div><strong id="sample-count">—</strong><span>fit observations</span></div><div><strong id="heldout-count">—</strong><span>held-out rows</span></div></div>
+            <button id="load-observations" class="button button-dark button-full" type="button"><span aria-hidden="true">↑</span> Import observations</button>
+            <p class="input-hint">CSV or JSON · N·m, radians, rad/s<br>Imported observations stay local.</p>
+            <div class="source-actions"><button id="export-observations" class="text-button" type="button">Export data <span aria-hidden="true">↗</span></button><button id="new-lab" class="text-button" type="button">New virtual lab</button></div>
+          </section>
+
+          <section class="panel experiment-panel" aria-labelledby="experiment-heading">
+            <div class="section-heading"><span class="section-number">02</span><h2 id="experiment-heading">Ask a better question</h2></div>
+            <div class="proposal-card"><span class="eyebrow">SUGGESTED NEXT STATE</span><p id="planner-status" class="planner-status">Compare the current hypotheses.</p><div id="planned-input" class="planned-input">—</div><div class="spread-line"><span>Model spread</span><strong id="model-spread">—</strong></div><button id="use-proposal" class="button button-proposal button-full" type="button">Use suggested state <span aria-hidden="true">↙</span></button></div>
+            <p id="experiment-mode" class="experiment-mode">Virtual instrument</p>
+            <div class="control-grid">
+              <label for="position">Position <span>rad</span><input id="position" name="position" type="number" step="0.05" value="0.8" inputmode="decimal"></label>
+              <label for="rate">Rate <span>rad/s</span><input id="rate" name="rate" type="number" step="0.05" value="0" inputmode="decimal"></label>
+              <label for="command" class="wide-control">Command <span>N·m</span><input id="command" name="command" type="number" step="0.05" value="0" inputmode="decimal"></label>
+              <label id="measured-field" for="measured-torque" class="wide-control" hidden>Measured net torque <span>N·m</span><input id="measured-torque" name="measured-torque" type="number" step="0.001" inputmode="decimal" placeholder="Enter your instrument reading"></label>
+            </div>
+            <button id="run-experiment" class="button button-accent button-full" type="button">Run virtual experiment <span aria-hidden="true">→</span></button>
+            <p class="input-hint">Compare the new outcome with the model’s prediction, then revise the explanation.</p>
+            <details class="fit-settings"><summary>Fitting assumptions <span aria-hidden="true">+</span></summary><div class="fit-settings-body"><label for="noise-sigma">Assumed torque noise <span>N·m</span><input id="noise-sigma" type="number" value="0.01" min="0.000000000001" step="0.001" inputmode="decimal"></label><p class="input-hint">This assumption affects model ranking. Model spread is not probability.</p><button id="refit" class="button button-outline button-full" type="button">Refit observations</button></div></details>
+          </section>
+          <p id="storage-status" class="storage-status" role="status">Session storage is initializing.</p>
+        </aside>
+
+        <div class="main-column">
+          <section class="instrument-stage" aria-label="Executable mechanism view">
+            <div class="stage-header"><div><span class="stage-dot" aria-hidden="true"></span><span>THE MECHANISM</span></div><span class="stage-tag">TORQUE LAB / 01</span></div>
+            <div class="canvas-wrap"><canvas id="mechanism-canvas" width="1200" height="520" role="img" aria-label="Live schematic of the current angular mechanism and experiment state">A canvas-capable browser is required to display the mechanism.</canvas></div>
+            <div class="stage-footer"><span><i class="legend-dot lime" aria-hidden="true"></i>Learned-model dynamics</span><span class="stage-coordinate">θ · ω · τ</span><span>Simulated view</span></div>
+          </section>
+
+          <section class="model-panel panel" aria-labelledby="model-heading">
+            <div class="model-header"><div><p class="eyebrow">THE CURRENT EXPLANATION</p><h2 id="model-heading">A model to put to the test.</h2></div><span class="model-label">EXECUTABLE TORQUE LAW</span></div>
+            <div id="selected-equation" class="equation" aria-live="polite">τ = …</div>
+            <div id="selected-terms" class="selected-terms"></div>
+            <div class="model-metrics"><div><span class="metric-label">Training error</span><strong id="training-error">—</strong><small>RMSE · N·m</small></div><div><span class="metric-label">Held-out error</span><strong id="heldout-error">—</strong><small>RMSE · N·m</small></div><div class="metric-explanation"><span class="metric-label">After the experiment</span><span id="heldout-change">Held-out evidence will appear here.</span></div></div>
+            <div id="diagnostics" class="diagnostics"></div>
+          </section>
+
+          <section class="hypotheses-section" aria-labelledby="hypotheses-heading">
+            <div class="section-title-row"><div><p class="eyebrow">KEEP THE ALTERNATIVES VISIBLE</p><h2 id="hypotheses-heading">Competing hypotheses</h2></div><span class="count-label"><strong id="candidate-count">—</strong> candidates</span></div>
+            <div id="hypothesis-list" class="hypothesis-list" aria-label="Candidate model comparison"></div>
+          </section>
+
+          <section class="chart-grid" aria-label="Prediction and residual evidence">
+            <figure class="panel chart-panel"><figcaption><span class="eyebrow">PREDICT & COMPARE</span><h2>Do the predictions hold?</h2><p>Predicted torque against observed torque.</p></figcaption><div id="prediction-chart" class="chart" role="img" aria-label="Predicted torque compared with observed torque for fitting and held-out observations"></div></figure>
+            <figure class="panel chart-panel"><figcaption><span class="eyebrow">LOOK FOR THE MISMATCH</span><h2>What the model misses</h2><p>Residual = observation − prediction.</p></figcaption><div id="residual-chart" class="chart" role="img" aria-label="Observation residuals for the selected model"></div></figure>
+          </section>
+
+          <section class="panel dynamics-panel" aria-labelledby="dynamics-heading">
+            <details class="dynamics-details" open>
+              <summary><div><span class="eyebrow">EXECUTE THE LEARNED LAW</span><h2 id="dynamics-heading">Let the model move.</h2></div><span class="details-toggle" aria-hidden="true">↗</span></summary>
+              <div class="dynamics-body"><p class="muted small">Run rotational dynamics with a declared inertia and starting state. Predictions outside the observed range remain a hypothesis.</p><div class="dynamics-controls"><label for="initial-angle">Initial angle <span>rad</span><input id="initial-angle" type="number" step="0.05" value="0.8" inputmode="decimal"></label><label for="initial-rate">Initial rate <span>rad/s</span><input id="initial-rate" type="number" step="0.05" value="0" inputmode="decimal"></label><label for="inertia">Inertia <span>kg·m²</span><input id="inertia" type="number" min="0.000001" step="0.1" value="1" inputmode="decimal"></label><label for="duration">Duration <span>s</span><input id="duration" type="number" min="0.01" max="100" step="0.5" value="5" inputmode="decimal"></label><button id="run-simulation" class="button button-dark" type="button">Run dynamics <span aria-hidden="true">→</span></button></div><p id="simulation-status" class="simulation-status" role="status">The solver uses the selected torque model.</p><div id="trajectory-chart" class="chart trajectory-chart" role="img" aria-label="Simulated angular trajectory under the learned torque model"></div></div>
+            </details>
+          </section>
+
+          <section class="history-section" aria-labelledby="history-heading"><div class="section-title-row"><div><p class="eyebrow">AN EVIDENCE TRAIL</p><h2 id="history-heading">How the explanation changed</h2></div><button id="undo" class="button button-outline" type="button"><span aria-hidden="true">↶</span> Undo last observation</button></div><ol id="history-list" class="history-list" aria-label="Experiment and model revision history"></ol></section>
+        </div>
+      </div>
+
+      <section id="scope" class="scope-note" aria-label="Scope and limitations"><span class="scope-symbol" aria-hidden="true">∴</span><div><h2>One carefully bounded step toward discovering physical laws.</h2><p>WORLDLAW searches a finite library of scalar torque terms. The default mechanism and its observations are virtual. Model comparisons depend on the supplied evidence and noise assumption; model spread is not calibrated probability. This workbench does not infer mechanism topology or operate physical hardware.</p></div></section>
+    </main>
+    <footer class="page-footer"><span>WORLDLAW <span class="footer-dot">·</span> An open question, made executable.</span><span>Observations → hypotheses → experiments</span></footer>
+  </div>
+  <input id="observation-file" type="file" accept=".csv,.json,text/csv,application/json" hidden aria-label="Choose observations CSV or JSON">
+  <input id="session-file" type="file" accept=".json,application/json" hidden aria-label="Choose a saved WORLDLAW session">
+  <script type="module" src="/src/app.mjs"></script>
+</body>
+</html>
