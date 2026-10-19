@@ -5,94 +5,164 @@
   "capabilities": [
     {
       "id": "actual_mechanism_observation_and_evidence_ingestion",
-      "status": "unassessed",
-      "interpretation": "source-benefit-anchor",
-      "producer": null,
-      "consumer": null,
+      "status": "partial_independently_received",
+      "interpretation": "Validated CSV/JSON observations and calibrated telemetry conversion; receiving used synthetic sources. Physical acquisition remains open.",
+      "producer": "src/data.mjs; src/science/trajectory-observations.mjs",
+      "consumer": "src/session.mjs; browser import",
       "dependencies": [],
-      "evidence": []
+      "evidence": [
+        "docs/TRAJECTORY_ADAPTER.md",
+        "tests/trajectory-observations.test.mjs"
+      ],
+      "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
     {
       "id": "candidate_structural_and_parameter_model_discovery",
-      "status": "unassessed",
-      "interpretation": "source-benefit-anchor",
-      "producer": null,
-      "consumer": null,
+      "status": "partial_independently_received",
+      "interpretation": "Executable subset selection within a declared seven-term torque library. Unrestricted law discovery remains open.",
+      "producer": "src/science/torque-discovery.mjs",
+      "consumer": "src/session.mjs; model comparison",
       "dependencies": [],
-      "evidence": []
+      "evidence": [
+        "docs/SCIENTIFIC_CORE.md",
+        "tests/torque-discovery.test.mjs"
+      ],
+      "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
     {
       "id": "reproducible_executable_physics_models",
-      "status": "unassessed",
-      "interpretation": "source-benefit-anchor",
-      "producer": null,
-      "consumer": null,
+      "status": "partial_independently_received",
+      "interpretation": "Prediction and RK4 trajectory simulation consumed by the browser; physical trajectory fidelity remains open.",
+      "producer": "src/science/torque-discovery.mjs",
+      "consumer": "src/app.mjs; solver-driven canvas",
       "dependencies": [],
-      "evidence": []
+      "evidence": [
+        "tests/torque-discovery.test.mjs",
+        "scripts/browser.mjs"
+      ],
+      "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
     {
       "id": "active_discriminating_experiment_design",
-      "status": "unassessed",
-      "interpretation": "source-benefit-anchor",
-      "producer": null,
-      "consumer": null,
+      "status": "partial_independently_received",
+      "interpretation": "Finite declared candidate inputs ranked by plausible-model disagreement; heuristic uncertainty and hardware control remain open.",
+      "producer": "src/science/torque-discovery.mjs",
+      "consumer": "src/session.mjs; proposed experiment controls",
       "dependencies": [],
-      "evidence": []
+      "evidence": [
+        "experiments/active-discovery.mjs",
+        "evidence/active-discovery-results.json"
+      ],
+      "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
     {
       "id": "actual_experiment_or_solver_execution",
-      "status": "unassessed",
-      "interpretation": "source-benefit-anchor",
-      "producer": null,
-      "consumer": null,
+      "status": "partial_independently_received",
+      "interpretation": "Independent virtual-instrument execution and RK4 simulation; imported evidence accepts supplied measurements. No physical actuator integration.",
+      "producer": "src/science/virtual-lab.mjs; src/science/torque-discovery.mjs",
+      "consumer": "src/session.mjs; src/app.mjs",
       "dependencies": [],
-      "evidence": []
+      "evidence": [
+        "scripts/smoke.mjs",
+        "scripts/browser.mjs"
+      ],
+      "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
     {
       "id": "prediction_residual_based_model_revision",
-      "status": "unassessed",
-      "interpretation": "source-benefit-anchor",
-      "producer": null,
-      "consumer": null,
+      "status": "partial_independently_received",
+      "interpretation": "Append evidence, revise structure, compare fixed held-out predictions, undo, and replay. Real mechanism transfer remains open.",
+      "producer": "src/session.mjs",
+      "consumer": "src/app.mjs; portable notebook",
       "dependencies": [],
-      "evidence": []
+      "evidence": [
+        "tests/session.test.mjs",
+        "evidence/active-discovery-results.json"
+      ],
+      "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
     {
       "id": "interactive_model_comparison_and_visualization",
-      "status": "unassessed",
-      "interpretation": "source-benefit-anchor",
-      "producer": null,
-      "consumer": null,
+      "status": "partial_independently_received",
+      "interpretation": "Real browser workbench, alternative model inspection, evidence plots, predicted scene, file transfer, and responsive controls; human acceptance remains open.",
+      "producer": "src/app.mjs; index.html; styles.css",
+      "consumer": "local browser user",
       "dependencies": [],
-      "evidence": []
+      "evidence": [
+        "scripts/browser.mjs",
+        "docs/RECEIVING_20261019.md"
+      ],
+      "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     }
   ],
-  "creative_inventions": [],
+  "creative_inventions": [
+    {
+      "id": "replayable_evidence_notebook",
+      "status": "independently_received",
+      "producer": "src/session.mjs",
+      "consumer": "src/app.mjs",
+      "evidence": [
+        "tests/session.test.mjs",
+        "scripts/browser.mjs"
+      ],
+      "benefit": "Portable observations and revisions recompute derived model claims; undo and reopen preserve evidence."
+    },
+    {
+      "id": "trajectory_window_provenance",
+      "status": "synthetic_consumer_received",
+      "producer": "src/science/trajectory-observations.mjs",
+      "consumer": "scripts/derive-telemetry.mjs; observation import",
+      "evidence": [
+        "docs/TRAJECTORY_ADAPTER.md",
+        "tests/trajectory-observations.test.mjs"
+      ],
+      "benefit": "Calibrated telemetry conversion retains source assumptions and excludes raw derivative-window overlap across evaluation splits."
+    }
+  ],
   "frontiers": [
     {
       "id": "inferring_structure_not_just_fitting_known_parameters",
-      "status": "unassessed",
-      "experiment": null,
-      "evidence": []
+      "status": "partial_finite_library",
+      "experiment": "Subset search within seven terms; omitted structure remains a counterexample.",
+      "evidence": [
+        "docs/SCIENTIFIC_CORE.md",
+        "tests/torque-discovery.test.mjs"
+      ]
     },
     {
       "id": "identifiability_and_uncertainty",
-      "status": "unassessed",
-      "experiment": null,
-      "evidence": []
+      "status": "partial_heuristic",
+      "experiment": "Rank/conditioning diagnostics, ambiguity threshold, and near-zero-feature handling; probability calibration remains open.",
+      "evidence": [
+        "docs/SCIENTIFIC_CORE.md",
+        "tests/torque-discovery.test.mjs"
+      ]
     },
     {
       "id": "closed_loop_active_discovery",
-      "status": "unassessed",
-      "experiment": null,
-      "evidence": []
+      "status": "synthetic_loop_independently_received",
+      "experiment": "Actual app executes virtual observations and revises models; 40-case active/passive comparison retains losses.",
+      "evidence": [
+        "scripts/browser.mjs",
+        "experiments/active-discovery.mjs",
+        "evidence/active-discovery-results.json"
+      ]
     },
     {
       "id": "physics_transfer_and_model_generalization",
-      "status": "unassessed",
-      "experiment": null,
-      "evidence": []
+      "status": "open_with_counterexamples",
+      "experiment": "Synthetic family variation and omitted-term/drift counterexamples; independently measured mechanism transfer not demonstrated.",
+      "evidence": [
+        "docs/SCIENTIFIC_CORE.md",
+        "evidence/active-discovery-results.json"
+      ]
     }
   ],
-  "golden_path": "Give unfamiliar mechanism observations -> propose competing models -> select informative experiment -> run it -> compare model predictions to measured outcome -> revise executable law -> demonstrate improved out-of-sample prediction."
+  "golden_path": "Give unfamiliar mechanism observations -> propose competing models -> select informative experiment -> run it -> compare model predictions to measured outcome -> revise executable law -> demonstrate improved out-of-sample prediction.",
+  "assessment": {
+    "date": "2026-10-19",
+    "scope": "Bounded synthetic and imported-fixture receiving in real Chrome; full vision remains open.",
+    "integration_owner": "HAMON team 288492d6ffef root for this increment",
+    "receipt": "docs/RECEIVING_20261019.md"
+  }
 }
