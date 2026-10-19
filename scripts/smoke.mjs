@@ -5,7 +5,10 @@ const server=createProductServer();
 await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
 try{
   const base=`http://127.0.0.1:${server.address().port}`;
-  for(const path of ['/','/styles.css','/src/app.mjs','/src/session.mjs','/src/science/torque-discovery.mjs','/src/science/virtual-lab.mjs']){
+  for(const path of ['/','/styles.css','/src/app.mjs','/src/session.mjs','/src/science/torque-discovery.mjs','/src/science/virtual-lab.mjs',
+    '/motion.html','/motion.css','/src/motion/app.mjs','/trajectory.html','/trajectory.css',
+    '/src/trajectory/app.mjs','/src/trajectory/angular-discovery.mjs','/src/trajectory/angular-weak.mjs',
+    '/examples/trajectory-pendulum-92be.json','/examples/trajectory-ambiguous-92be.json','/examples/physical-pasco-92be.json']){
     const response=await fetch(base+path);assert.equal(response.status,200,path);assert.ok((await response.text()).length>10,path);
   }
   assert.equal((await(await fetch(base+'/health')).json()).product,'worldlaw');

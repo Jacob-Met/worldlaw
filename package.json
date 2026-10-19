@@ -4,13 +4,19 @@
   "private": true,
   "type": "module",
   "description": "An experimental physical-law discovery studio with reproducible evidence and executable models.",
-  "engines": {"node": ">=20"},
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node server.mjs",
     "test": "node --test tests/*.test.mjs",
     "smoke": "node scripts/smoke.mjs",
-    "verify": "npm test && npm run smoke",
+    "verify": "npm test && npm run smoke && npm run smoke:trajectory",
     "browser": "node scripts/browser.mjs",
-    "motion:browser": "node scripts/motion-browser-15cc.mjs"
+    "motion:browser": "node scripts/motion-browser-15cc.mjs",
+    "trajectory": "node scripts/trajectory-server-92be.mjs",
+    "smoke:trajectory": "node scripts/trajectory-smoke-92be.mjs",
+    "trajectory:browser": "node scripts/trajectory-browser-92be.mjs",
+    "trajectory:build": "node scripts/build-trajectory-92be.mjs"
   }
 }

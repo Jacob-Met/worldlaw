@@ -13,6 +13,12 @@ On Windows, PowerShell works; on macOS and Linux, use the usual terminal. Open t
 
 The default source is a clearly labeled synthetic virtual instrument. Imported observations remain in the local browser. The scientific scope and limitations are described in [SCIENTIFIC_CORE.md](SCIENTIFIC_CORE.md); source-telemetry conversion is described in [TRAJECTORY_ADAPTER.md](TRAJECTORY_ADAPTER.md). Export a notebook before moving to another browser or origin: browser storage does not automatically transfer between them.
 
+## Included workbenches
+
+The studio header opens **Motion Lab** and **Trajectory Challenge** on the same origin. The trajectory route includes both controlled synthetic examples and the attributed measured PASCO example. Select a training method, run the comparison, inspect the recorded source and model failures, then save and reopen its input notebook. Measured angular models retain unknown physical inertia and report acceleration units.
+
+The source package includes all three original CSV recordings, the complete dataset license, extraction/receiving programs and `research/PHYSICAL_TELEMETRY_92be.md`. The independent trajectory entry point remains available with `npm run trajectory`; `npm run trajectory:build` creates the separate self-contained HTML when an installed esbuild module is supplied.
+
 ## Build a reproducible package
 
 Packaging needs Python 3.9 or newer and Git. It uses only the Python standard library, makes no network request, and never stages source files. Run from a source checkout:
