@@ -132,6 +132,45 @@ test('renamed contiguous copied subsets of training samples are refused as chall
   }
 });
 
+test('independent quantized analytic recordings may naturally share short sequences without being copied evidence', () => {
+  const quantized = run => ({...run, source: {...run.source, recordingId: run.id, quantizationRad: .001},
+    samples: run.samples.map(row => ({...row, position: Math.round(row.position * 1000) / 1000}))});
+  const training = quantized(springRun({id: 'quantized-training', position: .8, rate: .3, dt: .01, duration: 6}));
+  for (const [position, trainStart, challengeStart, overlap] of [[.801, 514, 492, 8], [.81, 361, 339, 28]]) {
+    const challenge = quantized(springRun({id: 'independent-quantized-challenge', position, rate: -.2, dt: .01, duration: 6}));
+    const sensorValues = rows => rows.map(({position, command}) => [position, command]);
+    assert.deepEqual(sensorValues(training.samples.slice(trainStart, trainStart + overlap)), sensorValues(challenge.samples.slice(challengeStart, challengeStart + overlap)));
+    assert.notDeepEqual(sensorValues(training.samples), sensorValues(challenge.samples));
+    const received = validateBundle({schema: BUNDLE_SCHEMA, label: 'Separate analytic starts with sensor quantization', units: RUN_UNITS,
+      trainingRuns: [training], challengeRuns: [challenge]});
+    assert.equal(received.challengeRuns[0].initialRate, -.2); assert.equal(received.trainingRuns[0].initialRate, .3);
+  }
+});
+
+test('a long matching training sequence embedded amid unrelated challenge values is still refused', () => {
+  const evidence = bundle(), training = evidence.trainingRuns[0], challenge = evidence.challengeRuns[0];
+  for (let i = 0; i < 32; i++) {
+    const original = training.samples[17 + i];
+    challenge.samples[30 + i] = {...original, time: challenge.samples[30 + i].time};
+  }
+  typedFailure(() => validateBundle(evidence), 'shared_evidence');
+});
+
+test('a shorter partial match can pass numerical screening, which therefore cannot authenticate recording independence', () => {
+  const evidence = bundle(), training = evidence.trainingRuns[0], challenge = evidence.challengeRuns[0];
+  challenge.source.label = 'Constructed mixed evidence demonstrating the documented screening limit';
+  for (let i = 0; i < 31; i++) {
+    const original = training.samples[17 + i];
+    challenge.samples[30 + i] = {...original, time: challenge.samples[30 + i].time};
+  }
+  const received = validateBundle(evidence);
+  assert.equal(received.challengeRuns[0].samples[45].position, training.samples[32].position);
+  assert.equal(received.challengeRuns[0].source.label, challenge.source.label);
+  // The accepted bundle preserves the author's declaration; it contains no
+  // authenticated-independence certificate or claim that the overlap is absent.
+  assert.equal(received.independenceVerified, undefined);
+});
+
 test('non-JSON direct-JS provenance objects fail with typed errors rather than TypeErrors', () => {
   const run = bundle().trainingRuns[0];
   for (const value of [undefined, null, 2, 'x']) {

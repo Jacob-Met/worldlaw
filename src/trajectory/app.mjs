@@ -1,5 +1,5 @@
 import {createChallenge,exportChallenge,restoreChallenge} from './session.mjs';
-import {parseBundleText,MAX_TEXT_LENGTH} from './data.mjs';
+import {MAX_TEXT_LENGTH} from './data.mjs';
 import {summarizePredictionHorizon} from './horizon.mjs';
 
 const $=id=>document.getElementById(id);
@@ -9,9 +9,12 @@ const fmt=(value,digits=4)=>!Number.isFinite(value)?'—':Math.abs(value)>0&&Mat
 const axisFmt=value=>Math.abs(value)>=1000||(Math.abs(value)>0&&Math.abs(value)<.001)?value.toExponential(1):fmt(value,3);
 const termNames={command:'Actuation',rate:'Linear rate',coulomb:'Rate sign',spring:'Linear position',gravity:'Sinusoidal position',quadratic:'Quadratic rate',bias:'Constant torque'};
 const storageKey='worldlaw.trajectory-challenge.v1';
-const exampleURLs={pendulum:'/examples/trajectory-pendulum-92be.json',ambiguous:'/examples/trajectory-ambiguous-92be.json'};
+const exampleURLs={pendulum:'/examples/trajectory-pendulum-92be.json',ambiguous:'/examples/trajectory-ambiguous-92be.json',measured:'/examples/physical-pasco-92be.json'};
 let state,selectedRunId,generation=0,busy=false,rows=[],playing=false,playStarted=0,playFrom=0,animationHandle=0,viewIndex=0,chartX=null,positionTolerance=.05,horizon=null;
 
+function angularMode(){return state?.bundle?.schema==='worldlaw.angular-bundle/v1';}
+function termName(term){return angularMode()&&term.id==='bias'?'Constant acceleration':termNames[term.id]||term.id;}
+function predictionFailure(result){return result?.error?.code==='runaway_state'?'The selected prediction exceeded numerical execution limits.':result?.error?errorMessage(result.error):'A complete forward prediction is unavailable.';}
 function resolutionReason(resolution){return {combined_step_budget:'The shared solver budget could not accommodate the finer run.',half_step_not_representable:'A smaller step cannot be represented at this numerical precision.',refinement_execution_refused:'The finer run exceeded numerical execution limits.'}[resolution?.reason]||errorMessage(resolution?.reason||'The refined prediction could not be completed.');}
 function errorMessage(error){return error?.message||String(error);}
 function alertError(error){set('error',errorMessage(error));$('error').hidden=false;$('error').focus();}
@@ -23,10 +26,11 @@ function save(){
   catch{set('storage-status','Browser storage is unavailable or full. Save notebook to keep a portable copy.');}
 }
 function updateMethodDescription(){
-  const method=document.querySelector('input[name="method"]:checked').value;
-  set('noise-unit',method==='integral'?'rad':'N·m');
-  set('method-explanation',method==='integral'?'Fits accumulated motion without taking a second derivative of the angle.':'Estimates angular acceleration first, then fits a torque law to those derived observations.');
+  const method=document.querySelector('input[name="method"]:checked').value,angular=angularMode();
+  set('noise-unit',angular||method!=='derivative'?'rad':'N·m');
+  set('method-explanation',angular?(method==='weak'?'Experimental fit across compact time windows. It eliminates initial rate from fitting; forward prediction still uses the supplied rate.':'Fits accumulated angular motion. The learned coefficients describe acceleration; physical torque scale remains unknown.'):method==='integral'?'Fits accumulated motion without taking a second derivative of the angle.':'Estimates angular acceleration first, then fits a torque law to those derived observations.');
 }
+
 function settings(){const raw=$('noise-sigma').value.trim(),noiseSigma=Number(raw);if(!raw||!Number.isFinite(noiseSigma)||noiseSigma<=0)throw new Error('Enter an assumed residual noise greater than zero.');return {...state?.options,method:document.querySelector('input[name="method"]:checked').value,noiseSigma};}
 async function perform(getNext,message,{persist=true}={}){
   const ticket=++generation;setBusy(true);
@@ -37,7 +41,7 @@ async function perform(getNext,message,{persist=true}={}){
     state=next;positionTolerance=state.positionTolerance??.05;state.positionTolerance=positionTolerance;$('position-tolerance').value=String(positionTolerance);selectedRunId=state.selectedRunId||state.bundle.challengeRuns[0].id;
     if(!state.bundle.challengeRuns.some(run=>run.id===selectedRunId))selectedRunId=state.bundle.challengeRuns[0].id;
     state.selectedRunId=selectedRunId;
-    document.querySelector(`input[name="method"][value="${state.options.method}"]`).checked=true;
+    const methods=state.supportedMethods||(angularMode()?['integral']:['integral','derivative']);for(const radio of document.querySelectorAll('input[name="method"]')){radio.closest('label').hidden=!methods.includes(radio.value);radio.disabled=!methods.includes(radio.value);radio.checked=radio.value===state.options.method;}document.querySelector('.method-switch').classList.toggle('single-method',methods.length===1);
     $('noise-sigma').value=state.options.noiseSigma;updateMethodDescription();render();
     if(persist)save();notice(message);
   }catch(error){if(ticket===generation){alertError(error);if(!state)set('notice','No challenge is loaded. Import paired runs or load the synthetic example.');}}
@@ -48,39 +52,45 @@ async function exampleBundle(choice){
   if(embedded&&typeof embedded==='object'&&Object.hasOwn(embedded,key))return embedded[key];
   const response=await fetch(path);if(!response.ok)throw new Error('The example runs could not be loaded. Import a paired-run bundle to continue.');return response.json();
 }
-async function loadExample({persist=true}={}){const choice=$('example-choice').value;await perform(async()=>createChallenge(await exampleBundle(choice),{method:'integral',noiseSigma:.01,maxTerms:4,maxStep:.01}),'Synthetic paired runs loaded. The law was learned from training motion and challenged on a separate run.',{persist});}
+async function loadExample({persist=true}={}){const choice=$('example-choice').value;await perform(async()=>createChallenge(await exampleBundle(choice),{method:'integral',noiseSigma:.01,maxTerms:4,maxStep:.01}),choice==='measured'?'Measured angular recordings loaded. Training and challenge roles are preserved; physical torque scale remains unknown.':'Synthetic paired runs loaded. The law was learned from training motion and challenged on a separate run.',{persist});}
 function currentModel(){return state.discovery.candidates.find(m=>m.id===state.selectedModelId)||state.discovery.selected;}
 function currentRun(){return state.bundle.challengeRuns.find(r=>r.id===selectedRunId)||state.bundle.challengeRuns[0];}
 function currentResult(){return state.results.find(result=>result.modelId===currentModel().id&&(result.runId||result.rollout?.runId)===currentRun().id);}
-function modelName(model){return model.terms?.length?model.terms.map(term=>termNames[term.id]||term.id).join(' + '):'Zero torque';}
+function modelName(model){return model.terms?.length?model.terms.map(term=>termName(term)).join(' + '):(angularMode()?'Zero angular acceleration':'Zero torque');}
 function sourceLabel(run){return run.source?.label||run.label||run.id;}
 function render(){
   const b=state.bundle,all=[...b.trainingRuns,...b.challengeRuns],synthetic=all.every(run=>run.kind==='synthetic');
   set('source-name',b.label||'Paired trajectory evidence');set('source-kind',synthetic?'SYNTHETIC PAIRED RUNS':all.every(run=>run.kind==='measured')?'IMPORTED MEASURED RUNS':'IMPORTED PAIRED RUNS');
-  set('source-description',synthetic?'Separate simulated recordings with different initial conditions. A controlled test of predictive transfer.':'User-supplied angular recordings. Fit and challenge runs remain separate throughout discovery.');
+  const knownBenchmark=all.some(run=>run.source?.repository==='https://github.com/EnzeXu/Damped_Pendulum_Dataset');
+  set('source-description',knownBenchmark?'Known PASCO benchmark, reused during method development. Separate recordings test prediction; this is not a fresh blind validation.':synthetic?'Separate simulated recordings with different initial conditions. A controlled test of predictive transfer.':angularMode()?'Measured or declared angular recordings, with separate training and challenge roles. Physical torque scale is not supplied.':'User-supplied angular recordings. Fit and challenge runs remain separate throughout discovery.');
+  const angular=angularMode();$('scale-note').hidden=!angular;set('import-hint',angular?'JSON · radians and seconds · processed in this browser.':'JSON · radians, seconds, N·m · processed in this browser.');$('torque-format').hidden=angular;$('angular-format').hidden=!angular;
+  set('scope-heading',angular?'A separate recording puts the law to the test.':'A law earns its keep on motion it has never seen.');
+  set('scope-explanation',angular?'WORLDLAW searches a finite library of autonomous angular-acceleration terms. Physical inertia and absolute torque are unknown. The model uses supplied initial angle and rate; later challenge angles only test its prediction. Unforced scalar rotation is a declared assumption. Separate recordings of one apparatus do not establish transfer to an unseen mechanism.':'WORLDLAW searches a declared library of scalar angular torque terms. Each challenge uses its recorded command, supplied inertia, initial angle and initial rate; later observed angles are used only for comparison. The default paired runs are synthetic. This test examines predictive transfer within that library; it does not establish a unique physical mechanism.');
+  set('fit-assumptions',angular?(state.options.method==='weak'?'Window fitting uses a normalized weak-equation residual and an assumed position-noise scale in radians. Overlapping windows and estimated rates can bias the fit. Window residuals are distinct from forward trajectory errors; method fit scores are not directly comparable.':'Integral angular fitting compares accumulated displacement using an assumed residual-noise scale in radians.')+' Fit scores and competitive model spread are heuristics. A training mismatch or numerical refusal remains visible; selecting another candidate does not reorder the training ranking. Reusing this challenge to choose a method is exploration, not a new blind validation.':'Integral fitting compares accumulated displacement; derivative fitting estimates acceleration from the angle samples. Their noise settings have different units and their fit scores are not directly comparable. A good challenge score is evidence for this run, not a probability that a model is true.');
   set('training-count',String(b.trainingRuns.reduce((n,run)=>n+run.samples.length,0)));set('challenge-count',String(b.challengeRuns.reduce((n,run)=>n+run.samples.length,0)));
   set('training-run-count',`${b.trainingRuns.length} fit ${b.trainingRuns.length===1?'run':'runs'} · samples`);set('challenge-run-count',`${b.challengeRuns.length} test ${b.challengeRuns.length===1?'run':'runs'} · samples`);
   const runList=$('run-list');runList.replaceChildren();
-  for(const [role,runs]of [['Fit',b.trainingRuns],['Challenge',b.challengeRuns]])for(const run of runs){const li=el('li');li.append(el('strong',`${role} · ${run.label||run.id}`),el('small',`${run.samples.length} samples · ${fmt(run.samples.at(-1).time-run.samples[0].time,3)} s · ${run.kind||'unknown origin'}`),el('small',`Inertia ${fmt(run.inertia)} kg·m² · initial rate ${fmt(run.initialRate)} rad/s`),el('small',sourceLabel(run)));runList.append(li);}
+  for(const [role,runs]of [['Fit',b.trainingRuns],['Challenge',b.challengeRuns]])for(const run of runs){const li=el('li');li.append(el('strong',`${role} · ${run.label||run.id}`),el('small',`${run.samples.length} samples · ${fmt(run.samples.at(-1).time-run.samples[0].time,3)} s · ${run.kind||'unknown origin'}`),el('small',angular?`Physical inertia unknown · initial rate ${fmt(run.initialRate)} rad/s`:`Inertia ${fmt(run.inertia)} kg·m² · initial rate ${fmt(run.initialRate)} rad/s`),el('small',sourceLabel(run)));if(run.source?.url){try{const url=new URL(run.source.url);if(['http:','https:'].includes(url.protocol)){const link=el('a','Source recording ↗','source-recording-link');link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';li.append(link);}}catch{}}runList.append(li);}
   const select=$('challenge-run');select.replaceChildren();for(const run of b.challengeRuns){const option=el('option',run.label||run.id);option.value=run.id;select.append(option);}select.value=selectedRunId;
   renderModel();
 }
 function renderModel(){
   stopPlayback();const model=currentModel(),result=currentResult(),run=currentRun();
-  rows=result?.status==='ok'&&Array.isArray(result.rollout?.rows)?result.rollout.rows:[];viewIndex=0;
+  rows=result?.status==='ok'&&Array.isArray(result.rollout?.rows)?result.rollout.rows:[];viewIndex=0;const angular=angularMode(),failed=result?.status==='failed';$('prediction-status').hidden=!failed;set('prediction-status',failed?`${predictionFailure(result)} The observed recording remains visible; no incomplete prediction is presented.`:'');$('prediction-legend').hidden=!rows.length;$('motion-panel').hidden=angular||!rows.length;$('angular-context').hidden=!angular;$('comparison-grid').classList.toggle('without-motion',!angular&&!rows.length);$('sample-readout').hidden=!rows.length;set('angular-initial-rate',`${fmt(run.initialRate)} rad/s`);set('angular-recording',run.label||run.id);
+  const angularReplay=angular&&rows.length,playback=document.querySelector('.playback-controls'),playbackParent=angularReplay?$('angular-context'):$('motion-panel');playbackParent.insertBefore(playback,playbackParent.querySelector(angularReplay?'.angular-assumption':'.schematic-note'));$('angular-context').classList.toggle('with-replay',Boolean(angularReplay));
   const m=result?.rollout?.metrics||{};set('position-rmse',fmt(m.positionRMSE));set('maximum-error',fmt(m.maxAbsError));set('final-error',fmt(m.finalAbsError));
   const resolution=result?.resolution,compared=resolution?.status==='compared';$('resolution-metric').hidden=!resolution;$('resolution-note').hidden=!resolution;$('challenge-metrics').classList.toggle('with-resolution',Boolean(resolution));
   set('step-sensitivity',compared?fmt(resolution.positionRMSEDifference):'Unavailable');$('step-sensitivity').dataset.unavailable=String(!compared);set('step-sensitivity-unit',compared?'rad · RMS prediction difference':'refinement unavailable');
   set('resolution-note',compared?`Step sensitivity compares ${fmt(resolution.coarseMaxStep)} s and ${fmt(resolution.refinedMaxStep)} s solver steps. It is not a bound on numerical error.`:resolution?`Numerical step comparison unavailable: ${resolutionReason(resolution)}`:'');
   set('run-kind',run.kind==='synthetic'?'SYNTHETIC CHALLENGE':'SEPARATE RECORDED RUN');
-  set('rollout-summary',rows.length?`${rows.length} states · inertia ${fmt(run.inertia)} kg·m² · recorded command · no observation resets`:result?.error?`Prediction could not complete: ${errorMessage(result.error)}`:'No forward prediction is available for this model.');
-  set('selected-equation',(model.equation||'Torque model').replaceAll(' + -',' − ').replace(' = -',' = −'));
-  set('selected-terms',model.terms?.length?model.terms.map(term=>`${termNames[term.id]||term.id} ${fmt(term.coefficient)}`).join(' · '):'Zero torque across the declared state space.');
-  set('method-badge',state.options.method==='integral'?'INTEGRAL FIT':'DERIVATIVE FIT');
+  set('rollout-summary',rows.length?(angular?`${rows.length} states · angular acceleration · supplied initial rate · no observation resets`:`${rows.length} states · inertia ${fmt(run.inertia)} kg·m² · recorded command · no observation resets`):result?.error?`Observed recording only · ${predictionFailure(result)}`:'No forward prediction is available for this model.');
+  set('selected-equation',(model.equation||(angular?'Angular acceleration model':'Torque model')).replaceAll(' + -',' − ').replace(' = -',' = −'));
+  set('selected-terms',model.terms?.length?model.terms.map(term=>`${termName(term)} ${fmt(term.coefficient)}${angular?` ${term.coefficientUnit||''}`:''}`).join(' · '):angular?'Zero angular acceleration across the declared state space.':'Zero torque across the declared state space.');
+  set('method-badge',state.options.method==='weak'?'WINDOW ANGULAR FIT':angular?'ANGULAR ACCELERATION':state.options.method==='integral'?'INTEGRAL FIT':'DERIVATIVE FIT');
   const d=state.discovery.diagnostics||{},trainedLeader=model.id===state.discovery.selected.id;
   let diagnostic=trainedLeader?'Leading structure from the training runs.':'An alternative structure, ranked using the training runs.';
   if(d.selectionAmbiguous)diagnostic+=' The training evidence does not isolate a unique explanation.';
-  if(d.adequacy==='residual_mismatch')diagnostic+=' Residual mismatch exceeds the assumed fit noise.';
+  if(d.adequacy==='residual_mismatch')diagnostic+=' Residual mismatch exceeds the assumed fit noise.';if(trainedLeader&&Number.isFinite(d.trainingRmseInNoiseUnits))diagnostic+=` Training residual is ${fmt(d.trainingRmseInNoiseUnits,3)}× the assumed noise.`;if(angular)diagnostic+=' Physical inertia and absolute torque remain unknown.';
   if(d.identifiability==='insufficient_excitation')diagnostic+=' More varied training motion is needed to separate some terms.';
   diagnostic+=' Challenge error is shown independently and never changes this ranking.';set('model-diagnostics',diagnostic);
   updateHorizon();renderModels();renderCharts();renderTable();
@@ -109,32 +119,32 @@ function renderModels(){
 }
 function svgElement(tag,attrs={},text){const node=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,String(value));if(text!==undefined)node.textContent=text;return node;}
 function chart(containerId,series,{dark=false,residual=false}={}){
-  const container=$(containerId);container.replaceChildren();
-  if(!rows.length){const result=currentResult();container.append(el('p',`Prediction unavailable. ${result?.error?errorMessage(result.error):'Select another model to inspect its motion.'}`,'chart-empty'));return;}
+  const container=$(containerId);container.replaceChildren();const plotRows=rows.length?rows:residual?[]:currentRun().samples.map(sample=>({time:sample.time,observed:sample.position}));
+  if(!plotRows.length){container.append(el('p',`No residual can be computed without a complete prediction. Select another law to inspect its motion.`,'chart-empty'));return;}
   const W=Math.max(270,Math.round(container.clientWidth)-(dark?16:0)),H=dark?(W>650?300:W>430?270:235):(W>400?205:190),L=W<350?45:53,R=15,T=18,B=40;
-  const x0=rows[0].time,x1=rows.at(-1).time;let y0=residual?0:Infinity,y1=residual?0:-Infinity;
-  for(const s of series)for(const row of rows){const y=row[s.key];if(Number.isFinite(y)){y0=Math.min(y0,y);y1=Math.max(y1,y);}}
+  const x0=plotRows[0].time,x1=plotRows.at(-1).time;let y0=residual?0:Infinity,y1=residual?0:-Infinity;
+  for(const s of series)for(const row of plotRows){const y=row[s.key];if(Number.isFinite(y)){y0=Math.min(y0,y);y1=Math.max(y1,y);}}
   if(!Number.isFinite(y0)||!Number.isFinite(y1)){container.append(el('p','Finite trajectory values are unavailable.','chart-empty'));return;}
   const pad=Math.max((y1-y0)*.16,residual?.00001:.05);y0-=pad;y1+=pad;
   const X=x=>L+(x-x0)/Math.max(x1-x0,1e-12)*(W-L-R),Y=y=>H-B-(y-y0)/(y1-y0)*(H-T-B);
-  const svg=svgElement('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':residual?`Observed minus predicted angle for ${currentRun().label}, across ${rows.length} challenge samples.`:`Observed and model-predicted angle for ${currentRun().label}, across ${rows.length} challenge samples. Position RMSE ${fmt(currentResult()?.rollout?.metrics?.positionRMSE)} radians.`});
-  svg.append(svgElement('title',{},residual?'Challenge angle residual over time':'Observed and predicted challenge trajectory'));
+  const svg=svgElement('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':residual?`Observed minus predicted angle for ${currentRun().label}, across ${plotRows.length} challenge samples.`:`${rows.length?'Observed and model-predicted angle':'Observed angle'} for ${currentRun().label}, across ${plotRows.length} challenge samples. ${rows.length?`Position RMSE ${fmt(currentResult()?.rollout?.metrics?.positionRMSE)} radians.`:'Selected model prediction unavailable.'}`});
+  svg.append(svgElement('title',{},residual?'Challenge angle residual over time':rows.length?'Observed and predicted challenge trajectory':'Observed challenge trajectory; prediction unavailable'));
   const grid=dark?'#547046':'#d9e1cd',ink=dark?'#b7c8a7':'#768769';
   for(let i=0;i<=4;i++){const x=x0+(x1-x0)*i/4,y=y0+(y1-y0)*i/4;
     svg.append(svgElement('line',{x1:X(x),x2:X(x),y1:T,y2:H-B,stroke:grid,'stroke-width':.7,'stroke-dasharray':'2 5',opacity:dark?.65:1}),svgElement('line',{x1:L,x2:W-R,y1:Y(y),y2:Y(y),stroke:grid,'stroke-width':.7,'stroke-dasharray':'2 5',opacity:dark?.65:1}),svgElement('text',{x:X(x),y:H-B+19,'text-anchor':'middle',fill:ink,'font-size':9},axisFmt(x-x0)),svgElement('text',{x:L-8,y:Y(y)+3,'text-anchor':'end',fill:ink,'font-size':9},axisFmt(y)));
   }
   if(y0<0&&y1>0)svg.append(svgElement('line',{x1:L,x2:W-R,y1:Y(0),y2:Y(0),stroke:dark?'#7c9663':'#a7b791','stroke-width':1}));
   if(residual&&horizon){for(const bound of [-positionTolerance,positionTolerance])if(bound>y0&&bound<y1)svg.append(svgElement('line',{x1:L,x2:W-R,y1:Y(bound),y2:Y(bound),stroke:'#b99a6a','stroke-width':.9,'stroke-dasharray':'4 5','data-tolerance-line':'true'}));if(horizon.firstExceeded){const hx=X(horizon.firstExceeded.time);svg.append(svgElement('line',{x1:hx,x2:hx,y1:T,y2:H-B,stroke:'#ac794f','stroke-width':1.2,'stroke-dasharray':'4 4','data-horizon-marker':'true'}),svgElement('text',{x:Math.max(L+3,Math.min(W-R-78,hx+5)),y:T+9,fill:'#977247','font-size':8},'first breach'));}}
-  const stride=Math.max(1,Math.floor(rows.length/1600)),plotted=rows.filter((_,i)=>i%stride===0||i===rows.length-1);
+  const stride=Math.max(1,Math.floor(plotRows.length/1600)),plotted=plotRows.filter((_,i)=>i%stride===0||i===plotRows.length-1);
   if(residual){const points=[`${X(x0)},${Y(0)}`,...plotted.map(row=>`${X(row.time)},${Y(row.residual)}`),`${X(x1)},${Y(0)}`].join(' ');svg.append(svgElement('polygon',{points,fill:'#aebf88',opacity:.22}));}
   for(const s of series){svg.append(svgElement('polyline',{points:plotted.map(row=>`${X(row.time).toFixed(2)},${Y(row[s.key]).toFixed(2)}`).join(' '),fill:'none',stroke:s.color,'stroke-width':s.key==='observed'?2.6:2,'stroke-dasharray':s.dash||'none','stroke-linejoin':'round','stroke-linecap':'round','data-series':s.key}));}
-  const cursor=svgElement('line',{x1:X(rows[viewIndex]?.time||x0),x2:X(rows[viewIndex]?.time||x0),y1:T,y2:H-B,stroke:dark?'#f2f6e6':'#839965','stroke-width':1,'stroke-dasharray':'3 3',opacity:.6,'data-cursor':containerId});svg.append(cursor);
+  const cursor=svgElement('line',{x1:X(plotRows[viewIndex]?.time||x0),x2:X(plotRows[viewIndex]?.time||x0),y1:T,y2:H-B,stroke:dark?'#f2f6e6':'#839965','stroke-width':1,'stroke-dasharray':'3 3',opacity:.6,'data-cursor':containerId});svg.append(cursor);
   svg.append(svgElement('text',{x:L,y:10,fill:ink,'font-size':8},residual?'Δ angle / rad':'angle / rad'),svgElement('text',{x:W-R,y:H-4,'text-anchor':'end',fill:ink,'font-size':8},'elapsed time / s'));
   container.append(svg);if(dark)chartX=X;else container._mapX=X;
 }
 function renderCharts(){
   if(!state)return;
-  chart('trajectory-chart',[{key:'observed',color:'#e2ecdf'},{key:'predicted',color:'#d4ed87',dash:'7 5'}],{dark:true});
+  chart('trajectory-chart',[{key:'observed',color:'#e2ecdf'},...(rows.length?[{key:'predicted',color:'#d4ed87',dash:'7 5'}]:[])],{dark:true});
   chart('residual-chart',[{key:'residual',color:'#708e42'}],{residual:true});setSample(viewIndex);
 }
 function renderTable(){
@@ -158,10 +168,10 @@ function tick(now){
   let low=0,high=rows.length-1;while(low<high){const mid=Math.floor((low+high)/2);if(rows[mid].time-rows[0].time<elapsed)low=mid+1;else high=mid;}setSample(low);animationHandle=requestAnimationFrame(tick);
 }
 function download(){const blob=new Blob([exportChallenge(state)],{type:'application/json'}),url=URL.createObjectURL(blob),a=el('a');a.href=url;a.download='worldlaw-trajectory-notebook.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);notice('Portable notebook exported with the source runs, fitting settings and current selection.');}
-async function readInput(event,kind){const file=event.target.files?.[0];if(!file)return;await perform(async()=>{if(file.size>MAX_TEXT_LENGTH)throw new Error('Choose a JSON file smaller than 3 MB.');const text=await file.text();return kind==='notebook'?restoreChallenge(text):createChallenge(parseBundleText(text),{method:'integral',noiseSigma:.01,maxTerms:4,maxStep:.01});},kind==='notebook'?'Notebook reopened. Models and challenge trajectories were recomputed from its recorded evidence.':'Paired runs imported. Training and challenge evidence remain separate.');event.target.value='';}
+async function readInput(event,kind){const file=event.target.files?.[0];if(!file)return;await perform(async()=>{if(file.size>MAX_TEXT_LENGTH)throw new Error('Choose a JSON file smaller than 3 MB.');const text=await file.text();return restoreChallenge(text);},kind==='notebook'?'Notebook reopened. Models and challenge trajectories were recomputed from its recorded evidence.':'Paired runs imported. Training and challenge evidence remain separate.');event.target.value='';}
 
 $('import-bundle').addEventListener('click',()=>$('bundle-file').click());$('open-notebook').addEventListener('click',()=>$('notebook-file').click());$('bundle-file').addEventListener('change',event=>readInput(event,'bundle'));$('notebook-file').addEventListener('change',event=>readInput(event,'notebook'));
-$('example-choice').addEventListener('change',()=>set('example-description',$('example-choice').value==='ambiguous'?'Fit gentle motion, then challenge the law with a wide-angle release.':'Learn from driven motion, then test two separate releases.'));
+$('example-choice').addEventListener('change',()=>set('example-description',$('example-choice').value==='measured'?'Real sensor recordings with unknown inertia. The current fit may mismatch or fail its challenge.':$('example-choice').value==='ambiguous'?'Fit gentle motion, then challenge the law with a wide-angle release.':'Learn from driven motion, then test two separate releases.'));
 $('load-example').addEventListener('click',()=>loadExample());$('export-notebook').addEventListener('click',()=>{try{download();}catch(error){alertError(error);}});
 $('refit').addEventListener('click',()=>perform(()=>{const next=createChallenge(state.bundle,settings());next.positionTolerance=positionTolerance;return next;},'Refitted the training runs and recomputed free forward predictions on the separate challenge runs.'));
 for(const radio of document.querySelectorAll('input[name="method"]'))radio.addEventListener('change',()=>{$('noise-sigma').value='.01';updateMethodDescription();notice('Method ready. Fit & challenge will apply it to the training runs and refresh the predictions.');});

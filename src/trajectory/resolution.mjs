@@ -15,8 +15,13 @@ const LIMITATIONS = [
  * A failed coarse run still throws; an unavailable refinement never implies agreement.
  */
 export function rolloutWithResolution(model, run, options = {}) {
+  return compareRolloutResolution(rollout, model, run, options);
+}
+
+/** Internal composition helper shared by torque and angular rollout wrappers. */
+export function compareRolloutResolution(execute, model, run, options = {}) {
   // Forward owns all model/run/options validation and the dynamics implementation.
-  const coarse = rollout(model, run, options);
+  const coarse = execute(model, run, options);
   const { maxStep, maxSteps, steps: stepsCoarse } = coarse.diagnostics;
   const refinedMaxStep = maxStep / 2;
   const availableRefinementSteps = maxSteps - stepsCoarse;
@@ -37,7 +42,7 @@ export function rolloutWithResolution(model, run, options = {}) {
 
   let refined;
   try {
-    refined = rollout(model, run, { maxStep: refinedMaxStep, maxSteps: availableRefinementSteps });
+    refined = execute(model, run, { maxStep: refinedMaxStep, maxSteps: availableRefinementSteps });
   } catch (error) {
     if (!(error instanceof TrajectoryRolloutError)) throw error;
     if (error.code === 'step_limit') return unavailable('combined_step_budget');

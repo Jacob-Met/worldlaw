@@ -25,9 +25,10 @@ same application and scientific modules, without requiring a local server.
 
 ## Use the challenge
 
-1. Start with the driven-pendulum example or import a JSON bundle. The two
-   supplied examples are explicitly synthetic observations from a separate
-   fine-step numerical reference.
+1. Start with the driven-pendulum example or import a JSON bundle. Two examples
+   are explicitly synthetic observations from a separate fine-step numerical
+   reference. The third uses attributed PASCO sensor recordings and preserves
+   their unknown physical inertia.
 2. Fit the training runs using integral or derivative fitting. Only training
    evidence determines coefficients and model order.
 3. Inspect the separate challenge run: the observed and predicted angles,
@@ -47,7 +48,49 @@ Browser storage is a convenience. Imports and fitting run in the browser; no
 provider upload or physical actuation occurs. A storage failure is shown, and
 the current in-memory notebook can still be exported.
 
-## Evidence contract
+## Measured angular recordings
+
+Select **Measured PASCO recordings** in the example selector. This is a known
+benchmark reused during method development, with two training recordings and
+one separate challenge recording. It does not establish new blind validation
+or transfer to another apparatus. The source revision, original hashes,
+selected rows and transformations are preserved in each run's source metadata.
+
+The original cumulative integral fit remains the default. Its training-selected
+model fails to complete the challenge and the observed trace stays visible.
+Selecting **Window fit** uses compact integral equations that remove the initial
+rate from fitting; free prediction still starts from the supplied sensor rate.
+At the UI's 0.01-second solver step, the training leader produces approximately
+0.323 rad position RMSE over the reserved 20 seconds. Its weak-equation training
+residual remains 7.55 times the assumed noise, visibly marked as a mismatch.
+Alternative challenge errors never reorder the training-derived candidates.
+
+The angular bundle has schema `worldlaw.angular-bundle/v1`, with units
+`{time:'s',position:'rad',initialRate:'rad/s'}`. Each run explicitly declares
+`dynamics:'unforced_scalar_rotation'`, `inertia:null`, a supplied `initialRate`,
+and samples `{time,position}`. Angular outputs use an acceleration equation
+`α`, dimensioned coefficients, `physicalInertia:null`, and
+`absoluteTorqueIdentified:false`. A missing actuator channel does not prove
+that external forcing is absent. Conflicting per-run units are rejected.
+
+The cumulative and compact-window methods are experimental, finite-library
+estimators. The latter's residual is a noise-normalized weak-equation residual,
+not a forward prediction error; overlapping windows are correlated. Window
+duration and stride default to 1 and 0.5 seconds and survive notebook reopening.
+Torque bundles retain integral and derivative methods; angular bundles offer
+cumulative integral and window methods. A method from the wrong mode is refused.
+
+Read [the physical telemetry study](../research/PHYSICAL_TELEMETRY_92be.md) for
+the source audit, model assumptions, fixed experiments, preserved failures and
+independent review. Original data and the complete Apache 2.0 license are in
+`examples/physical-pasco-92be/`; the measured standalone includes that license.
+
+Both evidence modes screen equal recording IDs, complete reused runs/subsets,
+and 32-sample partial matches across roles. Short quantized coincidences can
+occur in independent measurements. The screen cannot authenticate acquisition
+independence or detect every transformed or shorter partial copy.
+
+## Known-inertia torque evidence contract
 
 `src/trajectory/data.mjs` validates `worldlaw.trajectory-bundle/v1`:
 

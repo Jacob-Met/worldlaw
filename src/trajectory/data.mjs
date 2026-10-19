@@ -60,44 +60,44 @@ export function validateBundle(raw) {
   const all=[...trainingRuns,...challengeRuns];
   if(all.reduce((sum,r)=>sum+r.samples.length,0)>8192)fail('The interactive bundle supports at most 8192 total samples.','resource_limit');
   if(new Set(all.map(r=>r.id)).size!==all.length)fail('Every training and challenge run needs a distinct id.','shared_evidence');
-  // Reject copied evidence with renamed ids or shifted clocks. This is a guard,
-  // not independent authentication that two declared recordings are unrelated.
-  function copiedSamples(a,b){
-    if(a.samples.length!==b.samples.length)return false;
-    const startA=a.samples[0].time,startB=b.samples[0].time;
-    return a.samples.every((x,i)=>{
-      const y=b.samples[i];
-      if(x.position!==y.position||x.command!==y.command)return false;
-      // Adding an epoch rounds floating timestamps. Compare relative clocks
-      // at their representable precision, without treating altered sampling
-      // rates or merely similar sensor positions as duplicate evidence.
-      const tolerance=8*Number.EPSILON*Math.max(1,Math.abs(startA),Math.abs(startB),Math.abs(x.time),Math.abs(y.time));
-      return Math.abs((x.time-startA)-(y.time-startB))<=tolerance;
-    });
+  // This screens obvious shared evidence, not acquisition independence. Short
+  // quantized sensor sequences can recur naturally in different recordings.
+  // Keep complete-run/subset checks, but use a longer partial-match window.
+  const partialWindow=32;
+  const key=(run,start,size)=>JSON.stringify(run.samples.slice(start,start+size).map(s=>[s.position,s.command]));
+  function sameClock(a,startA,b,startB,size){
+    const originA=a.samples[startA].time,originB=b.samples[startB].time;
+    for(let offset=1;offset<size;offset++){
+      const timeA=a.samples[startA+offset].time,timeB=b.samples[startB+offset].time;
+      // Adding an epoch can round timestamps; preserve representable clocks.
+      const tolerance=8*Number.EPSILON*Math.max(1,Math.abs(originA),Math.abs(originB),Math.abs(timeA),Math.abs(timeB));
+      if(Math.abs((timeA-originA)-(timeB-originB))>tolerance)return false;
+    }
+    return true;
+  }
+  function completeSubset(a,b){
+    const [short,long]=a.samples.length<=b.samples.length?[a,b]:[b,a];
+    const size=short.samples.length,needle=key(short,0,size);
+    for(let start=0;start<=long.samples.length-size;start++){
+      if(long.samples[start].position!==short.samples[0].position||long.samples[start].command!==short.samples[0].command)continue;
+      if(key(long,start,size)===needle&&sameClock(short,0,long,start,size))return true;
+    }
+    return false;
   }
   const trainingRecordings=new Set(trainingRuns.map(r=>r.source.recordingId).filter(Boolean));
-  const windowKey=(run,start)=>JSON.stringify(run.samples.slice(start,start+5).map(s=>[s.position,s.command]));
   const trainingWindows=new Map();
-  for(const run of trainingRuns)for(let start=0;start<=run.samples.length-5;start++){
-    const key=windowKey(run,start);
-    if(!trainingWindows.has(key))trainingWindows.set(key,[]);
-    trainingWindows.get(key).push({run,start});
-  }
-  function copiedWindow(run,start){
-    return (trainingWindows.get(windowKey(run,start))??[]).some(prior=>{
-      const sourceStart=prior.run.samples[prior.start].time,targetStart=run.samples[start].time;
-      for(let offset=1;offset<5;offset++){
-        const sourceTime=prior.run.samples[prior.start+offset].time,targetTime=run.samples[start+offset].time;
-        const tolerance=8*Number.EPSILON*Math.max(1,Math.abs(sourceStart),Math.abs(targetStart),Math.abs(sourceTime),Math.abs(targetTime));
-        if(Math.abs((sourceTime-sourceStart)-(targetTime-targetStart))>tolerance)return false;
-      }
-      return true;
-    });
+  for(const run of trainingRuns)for(let start=0;start<=run.samples.length-partialWindow;start++){
+    const signature=key(run,start,partialWindow);
+    if(!trainingWindows.has(signature))trainingWindows.set(signature,[]);
+    trainingWindows.get(signature).push({run,start});
   }
   for(const run of challengeRuns){
-    if(trainingRuns.some(training=>copiedSamples(training,run)))fail(`Challenge run ${run.id} repeats training samples. Import a separately acquired run.`,'shared_evidence');
     if(run.source.recordingId&&trainingRecordings.has(run.source.recordingId))fail(`Challenge run ${run.id} shares a declared recording with training evidence.`,'shared_evidence');
-    for(let start=0;start<=run.samples.length-5;start++)if(copiedWindow(run,start))fail(`Challenge run ${run.id} contains copied training samples. Import a separate run without overlapping raw evidence.`,'shared_evidence');
+    if(trainingRuns.some(training=>completeSubset(training,run)))fail(`Challenge run ${run.id} matches a complete training run or contiguous subset. Supply separately acquired evidence.`,'shared_evidence');
+    for(let start=0;start<=run.samples.length-partialWindow;start++){
+      const matches=trainingWindows.get(key(run,start,partialWindow))??[];
+      if(matches.some(prior=>sameClock(prior.run,prior.start,run,start,partialWindow)))fail(`Challenge run ${run.id} matches a ${partialWindow}-sample training window. This independence screen cannot authenticate separate acquisition; inspect the original recordings.`,'shared_evidence');
+    }
   }
   return {schema:BUNDLE_SCHEMA,label:label(raw.label??'Imported trajectory challenge','Bundle label'),units:declaredUnits,trainingRuns,challengeRuns};
 }

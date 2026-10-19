@@ -10,7 +10,7 @@ session modules or change production integral ranking.
 node tests/trajectory-session-review-92be.test.mjs
 ```
 
-**12/12 tests pass.** The fixtures use independently written closed-form damped
+**15/15 tests pass** after the v2 quantization-screen repair described below. The fixtures use independently written closed-form damped
 spring trajectories from `experiments/integral-discovery-92be.mjs`; their truth
 does not import the fitting feature evaluator or forward solver.
 
@@ -27,7 +27,7 @@ The tests exercise the actual `validateBundle → createChallenge → exportChal
 | Selection persistence | A valid alternative model and challenge-run selection survives reopen; unavailable model/run IDs are refused. |
 | Units | Integral residual/noise units are rad; derivative residual/noise units are N·m. Derivative evidence is derived only from training runs. |
 | Provenance | Source metadata is deep copied and preserved by the bundle/notebook layer; kind remains a caller declaration. |
-| Evidence separation guard | Duplicate IDs, common declared recording IDs, renamed full copies, clock-shifted copies, and matching contiguous subwindows of at least five samples are refused across roles. |
+| Evidence separation guard | Duplicate IDs, common declared recording IDs, renamed full copies, clock-shifted complete subsets, and embedded matching sequences of at least 32 samples are refused across roles. Short coincident quantized sequences are accepted; the screen is not acquisition authentication. |
 | Failed forward execution | A request exceeding the solver step budget produces explicit failed results, null aggregate selected error, zero completed runs, and reproducible failures after reopen. |
 | Validation | Unsupported units, missing rate/inertia, sparse sample arrays, malformed source serialization, malformed/oversized JSON, excessive durations, and invalid settings produce typed refusals. |
 
@@ -53,6 +53,56 @@ subsequence detection, and this review added explicit five-sample, middle-window
 and suffix regression cases, including shifted clocks. All now pass. These
 checks detect obvious copied evidence; they do not authenticate acquisition
 independence or establish that two different noisy recordings are unrelated.
+
+### V2 quantization-screen repair and retained limits
+
+Receiving real PASCO data revealed that independently recorded, quantized smooth
+trajectories can naturally share short sequences: the supplied physical recordings
+share 12 consecutive angle values. The torque path also had a concrete independent
+analytic counterexample. Generate a known-inertia spring with initial angle 0.8 rad,
+rate 0.3 rad/s, step 0.01 s, duration 6 s, and zero command. Quantize its angles to
+0.001 rad. A separately generated start at 0.801 rad and −0.2 rad/s naturally shares
+eight sensor values (training index 514, challenge index 492); a start at 0.81 rad
+shares 28 values (indices 361 and 339). The old five-sample partial-match guard
+incorrectly refused both as copied evidence, despite distinct analytic trajectories.
+
+The integration owner replaced that guard in v2 with the longer/full-subset
+strategy: same declared recording IDs remain refused; matching a complete shorter
+run anywhere within the opposite role remains refused; partial matches use 32
+samples. Existing five-, 25-, and eight-sample complete copied challenge subsets,
+including epoch shifts, still fail. A 32-sample copied window embedded among other
+challenge values also fails. Both independently quantized counterexamples now pass.
+The frozen v1 source artifact is unchanged.
+
+The longer threshold is a screening heuristic, not statistical authentication.
+The review deliberately retains a constructed challenge with a 31-sample copied
+middle section that passes the screen. It must not acquire an independence
+certificate merely because validation accepts it. Longer natural quantized
+coincidences, transformed copies, mislabeled sources and shared experimental errors
+also remain possible. UI/source claims must distinguish declared acquisition
+identity from what a numerical comparison can establish. A trusted acquisition
+record or audited provenance is stronger evidence than any fixed match length.
+
+### Angular measured-session receiving
+
+`node tests/trajectory-angular-session-review-92be.test.mjs` passes **7/7**.
+This retained independent review uses the actual licensed PASCO bundle: cumulative
+fitting keeps its training mismatch and typed runaway, while compact-window weak
+fitting keeps its mismatch but predicts the entire reserved recording with
+0.322967992 rad RMSE. All eight weak receiving results complete their resolution
+comparison within the shared budget. The sixth-ranked model predicts more closely,
+but remains sixth in the training-derived order.
+
+Future challenge-angle changes preserve coefficients, rank and predictions while
+changing reported errors. Export/reopen recomputes fabricated cached models,
+results and summary statistics, preserves the chosen alternative and tolerance,
+and retains original timestamps, initial sensor rate, raw hash and unknown inertia.
+Mode-incompatible methods/settings and fabricated physical scale are refused.
+The review also exposed an angular import defect: per-run unit declarations in
+degrees or milliseconds were silently ignored beneath a valid bundle-level SI
+declaration. The angular boundary now rejects such contradictions; no conversion
+or physical scale is inferred. Full source, numerical-method and uncertainty
+qualification is in `research/PHYSICAL_TELEMETRY_92be.md`.
 
 ### Actual bundled examples independently received
 
