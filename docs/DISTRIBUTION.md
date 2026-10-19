@@ -19,6 +19,15 @@ The studio header opens **Motion Lab** and **Trajectory Challenge** on the same 
 
 The source package includes all three original CSV recordings, the complete dataset license, extraction/receiving programs and `research/PHYSICAL_TELEMETRY_92be.md`. The independent trajectory entry point remains available with `npm run trajectory`; `npm run trajectory:build` creates the separate self-contained HTML when an installed esbuild module is supplied.
 
+The small-angle trajectory example also supports a complete synthetic release
+experiment: **Plan a release**, inspect the numerical screen and forecasts,
+acquire the recording, then explicitly **Learn from this run**. Acquisition
+leaves training unchanged until application. A failed numerical screen blocks
+new acquisition while keeping previously acquired evidence usable. The source
+ZIP includes the planner, independent instrument, session, shared qualifier,
+controller adapter, test fixture and reproduction studies. See
+[the experiment release record](TRAJECTORY_EXPERIMENT_RELEASE_92be.md).
+
 ## Build a reproducible package
 
 Packaging needs Python 3.9 or newer and Git. It uses only the Python standard library, makes no network request, and never stages source files. Run from a source checkout:

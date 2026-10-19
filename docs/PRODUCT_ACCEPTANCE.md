@@ -65,3 +65,27 @@ The standard studio header now opens **Trajectory Challenge** on the same local 
 The delivered measured example contains three pinned PASCO recordings with original CSV files, full Apache 2.0 license, extraction/receiving scripts and [scientific audit](../research/PHYSICAL_TELEMETRY_92be.md). A cumulative-fit failure remains visible. The experimental window estimator predicts the reused third recording at approximately 0.323 rad RMSE, while training mismatch remains 7.55 assumed noise units. A lower-ranked alternative is not silently promoted. These results do not establish a uniquely identified law or blind validation.
 
 [Launch and receiving details](TRAJECTORY_LAUNCH_92be.md) identify the source composition, real entry point, package contents and remaining scope. The full-vision requirements above remain open.
+
+## Screened trajectory experiment increment (2026-10-19)
+
+The actual trajectory app now plans a whole bounded release from its training
+hypotheses, checks the proposal at two solver steps, acquires an independent
+synthetic recording, and waits for explicit application before learning from
+that run. Portable notebooks preserve pending observations, applied history,
+source identity, settings and the fixed before/after evaluation recording.
+
+The served application passes 21 browser groups and the frozen standalone passes
+23 independent offline groups. The ordinary example applies 201 new samples,
+changing 322 training samples to 523 and displayed reused-recording RMSE from
+about 0.5644 to 0.000442 rad. The high-noise counterexample retains its applied
+failed prediction; no better-looking alternative is substituted. A real
+threshold-sensitive proposal is refused, while a previously acquired recording
+remains learnable after the same refusal.
+
+These are controlled synthetic acquisitions with finite-library alternatives.
+The screen is a two-step sensitivity check, not convergence, calibrated
+uncertainty or physical validation. The measured PASCO example has no connected
+acquisition instrument and retains its prior mismatch and unknown scale.
+[The exact release record](TRAJECTORY_EXPERIMENT_RELEASE_92be.md) separates
+component, browser, artifact and integration evidence. The full-vision
+requirements remain open.

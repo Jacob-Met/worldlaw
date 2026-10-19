@@ -9,9 +9,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const scriptPath = fileURLToPath(import.meta.url);
 const root = resolve(dirname(scriptPath), '..');
-// Preserve the separately received first synthetic-only artifact.
-const outputPath = join(root, '.receipts/trajectory-angular-standalone-92be.html');
-const manifestPath = join(root, '.receipts/trajectory-angular-standalone-92be.manifest.json');
+// Preserve the separately received synthetic-only and measured-angular revisions.
+const outputPath = join(root, '.receipts/trajectory-experiment-screened-standalone-92be.html');
+const manifestPath = join(root, '.receipts/trajectory-experiment-screened-standalone-92be.manifest.json');
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 const portablePath = path => relative(root, path).split(sep).join('/');
 const snapshots = new Map();
@@ -141,7 +141,13 @@ async function main() {
     datasetAttribution: { repository: datasetSource.repository, revision: datasetSource.revision,
       license: 'Apache-2.0', licensePath: datasetLicensePath, licenseSHA256: hash(datasetLicenseBytes),
       disclosureId: 'dataset-license', fullLicenseEmbedded: true, originalCSVFilesEmbedded: false },
-    scope: 'Actual finite-library trajectory and angular-acceleration discovery, forward prediction, numerical sensitivity and sampled error comparison; two synthetic examples plus separately recorded PASCO measurements with unknown physical torque scale. The measured benchmark was reused during method development; no new blind-validation or unique-mechanism claim.',
+    experiment: {instrumentId:'worldlaw.virtual-pendulum/v1',kind:'synthetic',
+      planning:'Training-ranked competitive predictions only; RMS pairwise position disagreement, sampled state limits.',
+      numericalScreen:'Shared PR7 qualifier checks retained designs/models at the stated step and half step before new acquisition. Existing recorded evidence remains usable. The 750,000-step screen allowance is separate from the 250,000-step planner allowance; two-step agreement is not convergence or an accuracy bound.',
+      acquisition:'Separate fixed-equation fine-step virtual instrument; explicit application before training changes.',
+      reopening:'Input-based replay with exact protocol/source identity, position-only 64-epsilon roundoff allowance, and preserved supplied observations.',
+      evaluation:'The same reserved recording is compared before and after refitting; exploratory reuse is not fresh blind validation.'},
+    scope: 'Actual finite-library trajectory and angular-acceleration discovery, independent synthetic experiment planning/acquisition/refitting, free forward prediction, numerical sensitivity and sampled error comparison; two synthetic examples plus separately recorded PASCO measurements with unknown physical torque scale. Acquisitions are synthetic, not physical measurements. Reused evaluation, finite-library alternatives and retained refit failures do not establish unique structure or general physical-law discovery.',
   };
 
   let html = replaceExactlyOnce(htmlTemplate, /<link\b[^>]*\brel="stylesheet"[^>]*>/gi,

@@ -3,7 +3,7 @@
 The standalone build packages the current trajectory interface, scientific
 modules, stylesheet, favicon, two declared synthetic examples, and the measured
 PASCO angular example into one HTML file. Open
-`.receipts/trajectory-angular-standalone-92be.html` directly in a modern
+`.receipts/trajectory-experiment-screened-standalone-92be.html` directly in a modern
 browser. Using the artifact does not require Node, a server, or a network
 connection. It runs the actual model discovery and trajectory calculations in
 the browser; no prediction or discovery results are precomputed into the file.
@@ -21,13 +21,12 @@ ESBUILD_MODULE=/absolute/path/to/esbuild/lib/main.js node scripts/build-trajecto
 The script does not install software and adds no application runtime dependency.
 The initial receiving build uses esbuild 0.27.3. Its exact module path, module
 digest, version, Node version, platform, build options, and source digests are
-recorded in `.receipts/trajectory-angular-standalone-92be.manifest.json`.
+recorded in `.receipts/trajectory-experiment-screened-standalone-92be.manifest.json`.
 
-The current script always writes the new angular artifact and manifest. It does
-not overwrite the separately received first release,
-`.receipts/trajectory-standalone-92be.html`. That frozen synthetic-only artifact
-was built from its recorded first-release source; rerunning the current script
-does not reconstruct an earlier source revision.
+The current script writes the screened experiment artifact and manifest. It
+preserves the separately received synthetic-only V1, measured-angular V2, and
+earlier unscreened V3 checkpoints. Each was built from its recorded source;
+rerunning the current script does not reconstruct an earlier source revision.
 
 ## What packaging changes
 
@@ -41,6 +40,13 @@ objects are supplied through the explicit
 passes those objects through the same validation, fitting, and forward challenge
 path used by its served version. Ordinary application loading still falls back
 to fetching the examples when no embedded object is supplied.
+
+The same bundle includes the experiment controller, independent fixed-equation
+virtual instrument, planner and shared numerical-screen adapter. The small-angle
+example offers **Plan a release**, a numerical qualification, separate
+acquisition and **Learn from this run**. Acquired observations remain pending
+until that explicit learning action. An unresolved screen blocks new acquisition
+while retaining already acquired evidence and its replay history.
 
 The artifact contains inline CSS and a data-URL favicon. The wordmark points to
 the workbench in the same file, and the backlink to the separate torque studio
@@ -84,6 +90,13 @@ reopen. The existing browser harness supports this mode through
 `TRAJECTORY_OFFLINE_FILE`; record the concrete browser run and output digest
 alongside release evidence. A successful build alone does not establish a
 successful browser receiving pass.
+
+Also receive the actual planning, numerical refusal and explicit recovery,
+independent acquisition, pending export/reopen, application and before/after
+comparison. Retain the high-noise failed refit and verify that an already
+recorded run can still be applied when its recommendation fails screening.
+The standalone contains a synthetic acquisition instrument; it does not operate
+physical hardware or turn a manual request into an acquired measurement.
 
 For the measured example, receive both the retained cumulative-integral failure
 and the compact-window method's complete prediction. A failed selected model
