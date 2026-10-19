@@ -16,6 +16,16 @@ npm start
 
 Open **http://127.0.0.1:4193**. No package installation, cloud account, model download or API key is needed. The server binds to loopback and serves maintained application assets. Observations and model computation stay in your browser. Stop the server with Ctrl+C.
 
+## Measure recorded motion
+
+Open **Motion Lab** from the studio header, or visit **http://127.0.0.1:4193/motion.html**. Load a local WebM/MP4 mechanism video, mark a fixed pivot and a stable visible marker, then track a selected time interval. The pixel view, angular plot and measurement ledger show what was accepted and where tracking stopped. Correct the marker to resume; missing frames remain visible and split the evidence into separate segments.
+
+The notebook preserves the original video's SHA-256, decoded image coordinates, browser-reported frame timestamps, calibration, match diagnostics and corrections. Saving and reopening the notebook does not embed the video: reconnect the matching original file to inspect its frames. An optional synthetic instrument exercises the same pixel tracker and is labeled synthetic throughout.
+
+**Export angles** requires an explicit segment selection when a track contains gaps. **Studio observations** additionally requires your known constant inertia and applied torque declaration; the video does not establish either. The export uses the existing angular telemetry adapter and its disjoint derivative-window split. Import that file into the discovery studio to compare executable torque models. Coupled mechanisms such as the real double-pendulum verification video do not automatically satisfy the scalar-inertia assumption.
+
+Motion Lab currently assumes a fixed camera, a declared fixed pivot, approximately planar motion and a marker whose appearance stays stable. A high image-match score is not calibrated location confidence. Read [Motion Lab receiving and limitations](docs/MOTION_RECEIVING.md) and [the tracking contract](docs/MOTION_TRACKING.md) before interpreting video-derived physics.
+
 ## Try the complete experiment
 
 1. The virtual notebook starts with 64 observations at small angles. Linear spring and sinusoidal gravity are competing explanations.

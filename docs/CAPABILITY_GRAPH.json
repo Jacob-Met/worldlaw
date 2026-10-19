@@ -6,13 +6,16 @@
     {
       "id": "actual_mechanism_observation_and_evidence_ingestion",
       "status": "partial_independently_received",
-      "interpretation": "Validated CSV/JSON observations and calibrated telemetry conversion; receiving used synthetic sources. Physical acquisition remains open.",
-      "producer": "src/data.mjs; src/science/trajectory-observations.mjs",
-      "consumer": "src/session.mjs; browser import",
+      "interpretation": "Validated CSV/JSON, calibrated telemetry conversion, and a local-video fixed-pivot marker measurement route. Encoded synthetic video is independently received; real coupled video currently demonstrates honest tracking refusal, not general physical acquisition.",
+      "producer": "src/data.mjs; src/science/trajectory-observations.mjs; src/motion/video.mjs; src/motion/tracker.mjs; src/motion/measurement.mjs",
+      "consumer": "src/session.mjs; browser import; motion.html; Studio observation export",
       "dependencies": [],
       "evidence": [
         "docs/TRAJECTORY_ADAPTER.md",
-        "tests/trajectory-observations.test.mjs"
+        "tests/trajectory-observations.test.mjs",
+        "docs/MOTION_RECEIVING.md",
+        "tests/motion-acceptance-15cc.test.mjs",
+        "scripts/motion-browser-15cc.mjs"
       ],
       "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
@@ -117,6 +120,19 @@
         "tests/trajectory-observations.test.mjs"
       ],
       "benefit": "Calibrated telemetry conversion retains source assumptions and excludes raw derivative-window overlap across evaluation splits."
+    },
+    {
+      "id": "source_bound_motion_measurement",
+      "status": "integrated_fixture_received",
+      "producer": "src/motion/video.mjs; src/motion/tracker.mjs; src/motion/measurement.mjs",
+      "consumer": "motion.html; existing observation import",
+      "owner": "Team 15cc377ad586 complementary Motion Lab; baseline mainline integrator 288492d6ffef",
+      "evidence": [
+        "docs/MOTION_RECEIVING.md",
+        "tests/motion-boundaries-15cc.test.mjs",
+        "scripts/motion-browser-15cc.mjs"
+      ],
+      "benefit": "A local video can produce inspectable angular evidence and explicitly conditioned torque observations, preserving source identity, timing, rejected points, corrections and segment boundaries."
     }
   ],
   "frontiers": [
