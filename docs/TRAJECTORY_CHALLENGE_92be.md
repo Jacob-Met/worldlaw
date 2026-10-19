@@ -29,10 +29,12 @@ same application and scientific modules, without requiring a local server.
    are explicitly synthetic observations from a separate fine-step numerical
    reference. The third uses attributed PASCO sensor recordings and preserves
    their unknown physical inertia.
-2. Fit the training runs using integral or derivative fitting. Only training
+2. Fit torque training runs using integral or derivative fitting; measured
+   angular runs offer integral or window fitting. Only training
    evidence determines coefficients and model order.
 3. Inspect the separate challenge run: the observed and predicted angles,
-   residuals, initial-state schematic replay, and forward error metrics.
+   residuals, sampled playback and forward error metrics. Known-inertia torque
+   mode also shows an initialized motion schematic.
 4. Select another candidate or challenge run without refitting. The candidate
    list preserves training-derived order even when an alternative predicts the
    challenge better.
@@ -50,7 +52,7 @@ the current in-memory notebook can still be exported.
 
 ## Measured angular recordings
 
-Select **Measured PASCO recordings** in the example selector. This is a known
+Select **Measured PASCO pendulum** in the example selector. This is a known
 benchmark reused during method development, with two training recordings and
 one separate challenge recording. It does not establish new blind validation
 or transfer to another apparatus. The source revision, original hashes,
@@ -127,8 +129,10 @@ fitting also limits derived training rows to 4096. Source metadata is copied and
 preserved. Source kinds and recording identities remain input-author claims.
 
 The importer rejects repeated run IDs, shared declared recording IDs across
-training/challenge, whole copied runs including representable clock shifts,
-and matching contiguous raw windows of at least five samples across roles.
+training/challenge, whole copied runs or complete shorter-run subsets including
+representable clock shifts, and matching contiguous raw windows of at least
+32 samples across roles. Shorter partial matches can occur legitimately after
+sensor quantization; the screen intentionally does not refuse every such match.
 These checks prevent common accidental leakage; they do not authenticate
 acquisition independence or detect every possible transformation of copied data.
 Separating a trajectory into files does not make it a new apparatus or
@@ -191,6 +195,58 @@ portable notebook, and checks relevant failure paths. Real browser receiving
 uses `scripts/trajectory-browser-92be.mjs` with separately installed Playwright
 and Chromium. Exact published revision, source tree, artifact hashes and browser
 receipts belong in the PR/distribution record. No GitHub Actions runner is used.
+
+## Plan, acquire, and revise a trajectory model
+
+The small-angle ambiguity example now connects the trajectory consumer to an
+independent virtual release instrument. In **Plan the next run**, choose
+**Plan a release**, inspect the competing training-selected predictions and
+numerical screen, acquire its recommended release,
+then choose **Learn from this run** to add the new observations to training.
+Acquisition alone leaves the fitted evidence unchanged. The standard acquisition
+contains 201 samples. **Learn from this run** raises the example's training
+count from 322 to 523 when that recording is applied.
+
+New acquisition requires a passed comparison at the chosen solver step and
+half that step. The screen compares the same retained models and designs;
+agreement at two steps is not an accuracy bound. A refusal keeps its forecasts
+and reason visible. In **Release limits and observation time**, **Maximum
+solver step** and **Minimum model spread** expose the numerical settings and
+decision threshold for an explicit new plan. An already pending recording
+remains learnable even if its earlier recommendation now fails screening.
+
+The planner uses only the training discovery and ranks initial conditions by
+RMS pairwise position disagreement. Its state limits apply at the scheduled
+prediction samples. They do not guarantee containment between samples or safe
+physical actuation. The independent fixed-equation instrument is explicitly
+synthetic, has its own finer integration step and seeded observation noise,
+and does not accept learned model coefficients. Only the matching controlled
+unforced pendulum source enables this acquisition path; the measured PASCO
+recordings have no connected physical acquisition instrument.
+
+The before/after comparison uses the same named reserved recording. It is
+exploratory reuse, not a new blind test or an input to the planner. The default
+received browser path changes displayed RMSE from about 0.5644 to 0.000442 rad.
+The separate high-noise counterexample learns a model whose forward integration
+runs away. Its evidence and training-selected failed revision remain applied;
+the app does not replace it with the best-looking challenge result.
+
+Notebooks preserve raw base evidence, design settings, acquisition requests,
+pending runs and applied history. Reopening recomputes fits and predictions,
+validates the declared virtual protocol, and preserves the supplied recorded
+positions. Different JavaScript engines can produce last-bit position
+differences, so position replay allows `64 * Number.EPSILON * max(1, |position|)`;
+request, source, clock and command metadata stay exact. This is a numerical
+interoperability allowance, not authentication or a physical error bound.
+View selection and tolerance survive reopening. Edited evidence, stale plans,
+reused acquisition streams and changed reserved-comparison identity are refused.
+
+See `TRAJECTORY_PLANNER.md` and `TRAJECTORY_VIRTUAL_EXPERIMENT_92be.md` for the
+API, bounded resources, retained counterexamples and independent instrument.
+The standalone builder now writes
+`.receipts/trajectory-experiment-screened-standalone-92be.html` and its exact-source
+manifest, preserving the separately received V1, measured V2 and earlier
+unscreened V3 artifacts.
 
 ## Source and ownership
 

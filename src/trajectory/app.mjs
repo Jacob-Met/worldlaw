@@ -1,6 +1,10 @@
-import {createChallenge,exportChallenge,restoreChallenge} from './session.mjs';
+import {createChallenge} from './session.mjs';
 import {MAX_TEXT_LENGTH} from './data.mjs';
 import {summarizePredictionHorizon} from './horizon.mjs';
+import {createExperimentPanel} from './experiment-panel.mjs';
+import * as experimentController from './experiment-session.mjs';
+import {withNumericalScreen} from '../experiment-design/screened-controller.mjs';
+const {createExperimentSession,planNextExperiment,acquireNextExperiment,applyNextExperiment,experimentView,exportExperimentSession,restoreExperimentSession}=withNumericalScreen(experimentController);
 
 const $=id=>document.getElementById(id);
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
@@ -10,7 +14,7 @@ const axisFmt=value=>Math.abs(value)>=1000||(Math.abs(value)>0&&Math.abs(value)<
 const termNames={command:'Actuation',rate:'Linear rate',coulomb:'Rate sign',spring:'Linear position',gravity:'Sinusoidal position',quadratic:'Quadratic rate',bias:'Constant torque'};
 const storageKey='worldlaw.trajectory-challenge.v1';
 const exampleURLs={pendulum:'/examples/trajectory-pendulum-92be.json',ambiguous:'/examples/trajectory-ambiguous-92be.json',measured:'/examples/physical-pasco-92be.json'};
-let state,selectedRunId,generation=0,busy=false,rows=[],playing=false,playStarted=0,playFrom=0,animationHandle=0,viewIndex=0,chartX=null,positionTolerance=.05,horizon=null;
+let state,workflow,experimentPanel,selectedRunId,generation=0,busy=false,rows=[],playing=false,playStarted=0,playFrom=0,animationHandle=0,viewIndex=0,chartX=null,positionTolerance=.05,horizon=null;
 
 function angularMode(){return state?.bundle?.schema==='worldlaw.angular-bundle/v1';}
 function termName(term){return angularMode()&&term.id==='bias'?'Constant acceleration':termNames[term.id]||term.id;}
@@ -22,7 +26,7 @@ function notice(text){set('notice',text);$('error').hidden=true;}
 function setBusy(value){busy=value;$('challenge-workspace').setAttribute('aria-busy',String(value));for(const id of ['refit','export-notebook','challenge-run'])$(id).disabled=value||!state;$('refit').textContent=value?'Running the challenge…':'Fit & challenge →';}
 function save(){
   if(!state)return;
-  try{localStorage.setItem(storageKey,exportChallenge(state));set('storage-status','Notebook saved in this browser. Export for a portable copy.');}
+  try{localStorage.setItem(storageKey,exportExperimentSession(workflow));set('storage-status','Notebook saved in this browser. Export for a portable copy.');}
   catch{set('storage-status','Browser storage is unavailable or full. Save notebook to keep a portable copy.');}
 }
 function updateMethodDescription(){
@@ -32,19 +36,20 @@ function updateMethodDescription(){
 }
 
 function settings(){const raw=$('noise-sigma').value.trim(),noiseSigma=Number(raw);if(!raw||!Number.isFinite(noiseSigma)||noiseSigma<=0)throw new Error('Enter an assumed residual noise greater than zero.');return {...state?.options,method:document.querySelector('input[name="method"]:checked').value,noiseSigma};}
-async function perform(getNext,message,{persist=true}={}){
+async function perform(getNext,message,{persist=true,propagate=false}={}){
   const ticket=++generation;setBusy(true);
   try{
     await new Promise(resolve=>requestAnimationFrame(resolve));
-    const next=await getNext();if(ticket!==generation)return;
+    const result=await getNext();if(ticket!==generation)return;
+    const nextWorkflow=result?.current?result:createExperimentSession(result),next=nextWorkflow.current;
     if(!next?.bundle?.challengeRuns?.length||!next?.discovery?.candidates?.length)throw new Error('This notebook does not contain a complete trajectory challenge.');
-    state=next;positionTolerance=state.positionTolerance??.05;state.positionTolerance=positionTolerance;$('position-tolerance').value=String(positionTolerance);selectedRunId=state.selectedRunId||state.bundle.challengeRuns[0].id;
+    workflow=nextWorkflow;state=workflow.current;positionTolerance=state.positionTolerance??.05;state.positionTolerance=positionTolerance;$('position-tolerance').value=String(positionTolerance);selectedRunId=state.selectedRunId||state.bundle.challengeRuns[0].id;
     if(!state.bundle.challengeRuns.some(run=>run.id===selectedRunId))selectedRunId=state.bundle.challengeRuns[0].id;
     state.selectedRunId=selectedRunId;
     const methods=state.supportedMethods||(angularMode()?['integral']:['integral','derivative']);for(const radio of document.querySelectorAll('input[name="method"]')){radio.closest('label').hidden=!methods.includes(radio.value);radio.disabled=!methods.includes(radio.value);radio.checked=radio.value===state.options.method;}document.querySelector('.method-switch').classList.toggle('single-method',methods.length===1);
     $('noise-sigma').value=state.options.noiseSigma;updateMethodDescription();render();
-    if(persist)save();notice(message);
-  }catch(error){if(ticket===generation){alertError(error);if(!state)set('notice','No challenge is loaded. Import paired runs or load the synthetic example.');}}
+    if(persist)save();notice(message);return workflow;
+  }catch(error){if(ticket===generation){if(propagate)throw error;alertError(error);if(!state)set('notice','No challenge is loaded. Import paired runs or load the synthetic example.');}}
   finally{if(ticket===generation){setBusy(false);}}
 }
 async function exampleBundle(choice){
@@ -58,6 +63,13 @@ function currentRun(){return state.bundle.challengeRuns.find(r=>r.id===selectedR
 function currentResult(){return state.results.find(result=>result.modelId===currentModel().id&&(result.runId||result.rollout?.runId)===currentRun().id);}
 function modelName(model){return model.terms?.length?model.terms.map(term=>termName(term)).join(' + '):(angularMode()?'Zero angular acceleration':'Zero torque');}
 function sourceLabel(run){return run.source?.label||run.label||run.id;}
+function experimentPanelView(){
+  const view=experimentView(workflow);
+  if(view.acquisition&&['numerically_unresolved','unavailable'].includes(view.numericalQualification?.status))return {...view,error:undefined,notice:'The existing recording is retained and can be learned from. This numerical check limits new acquisition; it does not discard evidence already acquired.'};
+  return view;
+}
+function renderExperiment(){if(workflow&&experimentPanel)experimentPanel.render(experimentPanelView());}
+async function advanceExperiment(action,message){const previous=workflow;await perform(()=>action(previous),message,{propagate:true});return experimentPanelView();}
 function render(){
   const b=state.bundle,all=[...b.trainingRuns,...b.challengeRuns],synthetic=all.every(run=>run.kind==='synthetic');
   set('source-name',b.label||'Paired trajectory evidence');set('source-kind',synthetic?'SYNTHETIC PAIRED RUNS':all.every(run=>run.kind==='measured')?'IMPORTED MEASURED RUNS':'IMPORTED PAIRED RUNS');
@@ -94,7 +106,7 @@ function renderModel(){
   if(d.identifiability==='insufficient_excitation')diagnostic+=' More varied training motion is needed to separate some terms.';
   diagnostic+=' Challenge error is shown independently and never changes this ranking.';set('model-diagnostics',diagnostic);
   updateHorizon();renderModels();renderCharts();renderTable();
-  $('playback-time').max=String(Math.max(0,rows.length-1));$('playback-time').value='0';$('playback-time').disabled=!rows.length;$('play-pause').disabled=!rows.length;setSample(0);
+  $('playback-time').max=String(Math.max(0,rows.length-1));$('playback-time').value='0';$('playback-time').disabled=!rows.length;$('play-pause').disabled=!rows.length;setSample(0);renderExperiment();
 }
 function updateHorizon(){
   const rollout=currentResult()?.rollout;horizon=rollout&&rows.length?summarizePredictionHorizon(rollout,{positionTolerance}):null;
@@ -167,8 +179,15 @@ function tick(now){
   if(elapsed>=rows.at(-1).time-rows[0].time){setSample(rows.length-1);stopPlayback();return;}
   let low=0,high=rows.length-1;while(low<high){const mid=Math.floor((low+high)/2);if(rows[mid].time-rows[0].time<elapsed)low=mid+1;else high=mid;}setSample(low);animationHandle=requestAnimationFrame(tick);
 }
-function download(){const blob=new Blob([exportChallenge(state)],{type:'application/json'}),url=URL.createObjectURL(blob),a=el('a');a.href=url;a.download='worldlaw-trajectory-notebook.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);notice('Portable notebook exported with the source runs, fitting settings and current selection.');}
-async function readInput(event,kind){const file=event.target.files?.[0];if(!file)return;await perform(async()=>{if(file.size>MAX_TEXT_LENGTH)throw new Error('Choose a JSON file smaller than 3 MB.');const text=await file.text();return restoreChallenge(text);},kind==='notebook'?'Notebook reopened. Models and challenge trajectories were recomputed from its recorded evidence.':'Paired runs imported. Training and challenge evidence remain separate.');event.target.value='';}
+function download(){const blob=new Blob([exportExperimentSession(workflow)],{type:'application/json'}),url=URL.createObjectURL(blob),a=el('a');a.href=url;a.download='worldlaw-trajectory-notebook.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);notice('Portable notebook exported with source runs, fitting settings, selection and any experiment history.');}
+async function readInput(event,kind){const file=event.target.files?.[0];if(!file)return;await perform(async()=>{if(file.size>MAX_TEXT_LENGTH)throw new Error('Choose a JSON file smaller than 3 MB.');const text=await file.text();return restoreExperimentSession(text);},kind==='notebook'?'Notebook reopened. Models, challenge trajectories and any experiment history were recomputed from the recorded evidence.':'Evidence imported. Training, challenge and any retained experiment history remain distinct.');event.target.value='';}
+
+experimentPanel=createExperimentPanel($('experiment-panel'),{
+  onPlan:settings=>advanceExperiment(session=>planNextExperiment(session,settings),'A release plan and its numerical check were computed from training-compatible forecasts. No new recording has been acquired.'),
+  onAcquire:()=>advanceExperiment(session=>acquireNextExperiment(session,{}),'A separate synthetic recording was acquired from the virtual instrument. It has not yet joined the training evidence.'),
+  onApplyEvidence:()=>advanceExperiment(session=>applyNextExperiment(session),'The acquired recording joined the training evidence. The revised law is compared on the same evaluation recording.'),
+  onLoadExample:async()=>{$('example-choice').value='ambiguous';$('example-choice').dispatchEvent(new Event('change'));await loadExample();return experimentPanelView();},
+});
 
 $('import-bundle').addEventListener('click',()=>$('bundle-file').click());$('open-notebook').addEventListener('click',()=>$('notebook-file').click());$('bundle-file').addEventListener('change',event=>readInput(event,'bundle'));$('notebook-file').addEventListener('change',event=>readInput(event,'notebook'));
 $('example-choice').addEventListener('change',()=>set('example-description',$('example-choice').value==='measured'?'Real sensor recordings with unknown inertia. The current fit may mismatch or fail its challenge.':$('example-choice').value==='ambiguous'?'Fit gentle motion, then challenge the law with a wide-angle release.':'Learn from driven motion, then test two separate releases.'));
@@ -184,7 +203,7 @@ let resizeFrame;const observer=new ResizeObserver(()=>{cancelAnimationFrame(resi
 window.addEventListener('pagehide',stopPlayback);
 async function start(){
   let saved,storageError;try{saved=localStorage.getItem(storageKey);}catch{storageError='Browser storage is unavailable. Save notebook to keep a portable copy.';}
-  if(saved){await perform(()=>restoreChallenge(saved),'Reopened the local notebook and recomputed the challenge from its source runs.',{persist:false});if(state){set('storage-status','Local notebook restored. Save notebook for a portable copy.');return;}set('storage-status','Stored notebook could not be reopened. Its saved bytes were left intact.');return;}
+  if(saved){await perform(()=>restoreExperimentSession(saved),'Reopened the local notebook and recomputed the challenge and any experiment history from source evidence.',{persist:false});if(state){set('storage-status','Local notebook restored. Save notebook for a portable copy.');return;}set('storage-status','Stored notebook could not be reopened. Its saved bytes were left intact.');return;}
   await loadExample({persist:false});if(storageError)set('storage-status',storageError);
 }
 start();

@@ -7,15 +7,17 @@
       "id": "actual_mechanism_observation_and_evidence_ingestion",
       "status": "partial_independently_received",
       "interpretation": "Validated CSV/JSON, calibrated telemetry conversion, and a local-video fixed-pivot marker measurement route. Encoded synthetic video is independently received; real coupled video currently demonstrates honest tracking refusal, not general physical acquisition. Three attributed measured PASCO recordings additionally enter the angular trajectory consumer with raw source, units and unknown inertia preserved.",
-      "producer": "src/data.mjs; src/science/trajectory-observations.mjs; src/motion/video.mjs; src/motion/tracker.mjs; src/motion/measurement.mjs",
-      "consumer": "src/session.mjs; browser import; motion.html; Studio observation export",
+      "producer": "src/data.mjs; src/science/trajectory-observations.mjs; src/motion/video.mjs; src/motion/tracker.mjs; src/motion/measurement.mjs; src/trajectory/data.mjs; src/trajectory/angular-discovery.mjs",
+      "consumer": "src/session.mjs; browser import; motion.html; Studio observation export; src/trajectory/session.mjs; trajectory.html",
       "dependencies": [],
       "evidence": [
         "docs/TRAJECTORY_ADAPTER.md",
         "tests/trajectory-observations.test.mjs",
         "docs/MOTION_RECEIVING.md",
         "tests/motion-acceptance-15cc.test.mjs",
-        "scripts/motion-browser-15cc.mjs"
+        "scripts/motion-browser-15cc.mjs",
+        "research/PHYSICAL_TELEMETRY_92be.md",
+        "tests/trajectory-angular-session-review-92be.test.mjs"
       ],
       "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
@@ -36,51 +38,60 @@
       "id": "reproducible_executable_physics_models",
       "status": "partial_independently_received",
       "interpretation": "Prediction and RK4 trajectory simulation consumed by the browser; physical trajectory fidelity remains open. Free-running trajectory models now compare against separate recordings, with two-step numerical sensitivity and explicit model failures.",
-      "producer": "src/science/torque-discovery.mjs",
-      "consumer": "src/app.mjs; solver-driven canvas",
+      "producer": "src/science/torque-discovery.mjs; src/trajectory/forward.mjs; src/trajectory/resolution.mjs; src/trajectory/angular-resolution.mjs",
+      "consumer": "src/app.mjs; solver-driven canvas; src/trajectory/app.mjs; trajectory.html",
       "dependencies": [],
       "evidence": [
         "tests/torque-discovery.test.mjs",
-        "scripts/browser.mjs"
+        "scripts/browser.mjs",
+        "tests/trajectory-forward-92be.test.mjs",
+        "tests/trajectory-resolution-92be.test.mjs"
       ],
       "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
     {
       "id": "active_discriminating_experiment_design",
       "status": "partial_independently_received",
-      "interpretation": "Finite declared candidate inputs ranked by plausible-model disagreement; heuristic uncertainty and hardware control remain open.",
-      "producer": "src/science/torque-discovery.mjs",
-      "consumer": "src/session.mjs; proposed experiment controls",
+      "interpretation": "Finite declared candidate inputs ranked by plausible-model disagreement; heuristic uncertainty and hardware control remain open. The trajectory consumer additionally screens a bounded whole-release proposal, retains independent synthetic acquisition pending explicit application, and preserves failed refits and input-based replay.",
+      "producer": "src/science/torque-discovery.mjs; src/trajectory/planner.mjs; src/experiment-design/qualify-trajectory-plan.mjs",
+      "consumer": "src/session.mjs; proposed experiment controls; src/trajectory/experiment-session.mjs; src/experiment-design/screened-controller.mjs",
       "dependencies": [],
       "evidence": [
         "experiments/active-discovery.mjs",
-        "evidence/active-discovery-results.json"
+        "evidence/active-discovery-results.json",
+        "docs/TRAJECTORY_PLANNER.md",
+        "tests/trajectory-planner-92be.test.mjs",
+        "tests/trajectory-plan-qualification.test.mjs"
       ],
       "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
     {
       "id": "actual_experiment_or_solver_execution",
       "status": "partial_independently_received",
-      "interpretation": "Independent virtual-instrument execution and RK4 simulation; imported evidence accepts supplied measurements. No physical actuator integration.",
-      "producer": "src/science/virtual-lab.mjs; src/science/torque-discovery.mjs",
-      "consumer": "src/session.mjs; src/app.mjs",
+      "interpretation": "Independent virtual-instrument execution and RK4 simulation; imported evidence accepts supplied measurements. No physical actuator integration. The trajectory consumer additionally screens a bounded whole-release proposal, retains independent synthetic acquisition pending explicit application, and preserves failed refits and input-based replay.",
+      "producer": "src/science/virtual-lab.mjs; src/science/torque-discovery.mjs; src/trajectory/virtual-experiment.mjs",
+      "consumer": "src/session.mjs; src/app.mjs; src/trajectory/experiment-session.mjs",
       "dependencies": [],
       "evidence": [
         "scripts/smoke.mjs",
-        "scripts/browser.mjs"
+        "scripts/browser.mjs",
+        "docs/TRAJECTORY_VIRTUAL_EXPERIMENT_92be.md",
+        "tests/trajectory-virtual-experiment-92be.test.mjs"
       ],
       "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
     {
       "id": "prediction_residual_based_model_revision",
       "status": "partial_independently_received",
-      "interpretation": "Append evidence, revise structure, compare fixed held-out predictions, undo, and replay. Real mechanism transfer remains open.",
-      "producer": "src/session.mjs",
-      "consumer": "src/app.mjs; portable notebook",
+      "interpretation": "Append evidence, revise structure, compare fixed held-out predictions, undo, and replay. Real mechanism transfer remains open. The trajectory consumer additionally screens a bounded whole-release proposal, retains independent synthetic acquisition pending explicit application, and preserves failed refits and input-based replay.",
+      "producer": "src/session.mjs; src/trajectory/experiment-session.mjs",
+      "consumer": "src/app.mjs; portable notebook; src/trajectory/app.mjs; input-based experiment notebook",
       "dependencies": [],
       "evidence": [
         "tests/session.test.mjs",
-        "evidence/active-discovery-results.json"
+        "evidence/active-discovery-results.json",
+        "tests/trajectory-experiment-session-review-92be.test.mjs",
+        "tests/trajectory-experiment-portability-92be.test.mjs"
       ],
       "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     },
@@ -88,12 +99,14 @@
       "id": "interactive_model_comparison_and_visualization",
       "status": "partial_independently_received",
       "interpretation": "Real browser workbench, alternative model inspection, evidence plots, predicted scene, file transfer, and responsive controls; human acceptance remains open. The integrated trajectory route adds model-by-model observed/predicted curves, tolerance inspection and measured-mode failures.",
-      "producer": "src/app.mjs; index.html; styles.css",
-      "consumer": "local browser user",
+      "producer": "src/app.mjs; index.html; styles.css; src/trajectory/app.mjs; src/trajectory/experiment-panel.mjs; trajectory.html",
+      "consumer": "local browser user; local browser user",
       "dependencies": [],
       "evidence": [
         "scripts/browser.mjs",
-        "docs/RECEIVING_20261019.md"
+        "docs/RECEIVING_20261019.md",
+        "scripts/trajectory-browser-92be.mjs",
+        "docs/TRAJECTORY_EXPERIMENT_RELEASE_92be.md"
       ],
       "owner": "HAMON 288492d6ffef root integration; worldlaw_models scientific producer and independent receiver"
     }
@@ -161,6 +174,20 @@
         "https://github.com/Jacob-Met/worldlaw/pull/6"
       ],
       "benefit": "Uses attributed measured positions with explicitly unknown inertia/torque scale, preserves failed cumulative predictions, and compares an experimental window fit without treating reused validation as blind evidence."
+    },
+    {
+      "id": "screened_replayable_trajectory_experiments",
+      "status": "integrated_synthetic_consumer_received",
+      "producer": "src/trajectory/planner.mjs; src/trajectory/virtual-experiment.mjs; src/trajectory/experiment-session.mjs; src/experiment-design/screened-controller.mjs",
+      "consumer": "src/trajectory/app.mjs; src/trajectory/experiment-panel.mjs; portable experiment notebook",
+      "owner": "Team 92be8b055703 trajectory consumer; team 74334802bd53 shared numerical qualifier",
+      "evidence": [
+        "docs/TRAJECTORY_EXPERIMENT_RELEASE_92be.md",
+        "docs/NUMERICAL_EXPERIMENT_SCREEN.md",
+        "experiments/trajectory-planning-92be.mjs",
+        "scripts/trajectory-browser-92be.mjs"
+      ],
+      "benefit": "A training-only whole-trajectory proposal receives a separate numerical screen, independently generated synthetic observations and explicit evidence application; pending recordings and failed revisions survive replay without treating forecasts as observations."
     }
   ],
   "frontiers": [
@@ -185,11 +212,13 @@
     {
       "id": "closed_loop_active_discovery",
       "status": "synthetic_loop_independently_received",
-      "experiment": "Actual app executes virtual observations and revises models; 40-case active/passive comparison retains losses.",
+      "experiment": "Actual app executes virtual observations and revises models; 40-case active/passive comparison retains losses. The separate trajectory loop now plans, numerically screens, acquires and explicitly applies whole synthetic runs; fresh-seed losses and failed refits remain retained.",
       "evidence": [
         "scripts/browser.mjs",
         "experiments/active-discovery.mjs",
-        "evidence/active-discovery-results.json"
+        "evidence/active-discovery-results.json",
+        "experiments/trajectory-planning-92be.mjs",
+        "docs/TRAJECTORY_EXPERIMENT_RELEASE_92be.md"
       ]
     },
     {
@@ -220,9 +249,24 @@
         {
           "pr": 6,
           "commit": "d63d31f8981d38ef0307dd3fc4f8e2806a9fb223"
+        },
+        {
+          "pr": 8,
+          "commit": "0b408cde9af0d56ba75950a8fcaa7880606956f9"
+        },
+        {
+          "pr": 7,
+          "commit": "b93dfb6bce58111077c84614608326af47d894c1"
         }
       ],
-      "receipt": "docs/TRAJECTORY_LAUNCH_92be.md"
+      "receipt": "docs/TRAJECTORY_LAUNCH_92be.md",
+      "experiment_consumer": {
+        "scope": "Bounded known-instrument synthetic planning, separate two-step screen, independent acquisition, explicit refit and replay; measured acquisition remains unconnected.",
+        "owner": "Team 92be8b055703 for this consumer integration",
+        "receipt": "docs/TRAJECTORY_EXPERIMENT_RELEASE_92be.md",
+        "local_frozen_source": "26950770245528182e40d35c32c263ad8f605bf5",
+        "standalone_sha256": "6412a71ed6cf64f67318cb4bfda717af30e4eb3ed8650b04fa76d15bfa7dc5db"
+      }
     }
   }
 }
