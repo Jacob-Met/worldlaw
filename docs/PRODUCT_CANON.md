@@ -1,5 +1,12 @@
 # WORLDLAW — Uncompromised Product & Research Blueprint
 
+> **CREATIVE AUTONOMY — USER DIRECTIVE:** This assistant-written blueprint is an invention launchpad, **not a ceiling**. Freely reinvent the user experience, interaction paradigm, visual direction, algorithms, architecture, and feature groupings. Invent new features nobody proposed. Preserve or exceed the *original human-desired benefit*, not the exact mechanics of my proposal. A superior redesign can replace a reference capability if its benefit is independently demonstrated and traced. See the [Creative Autonomy Charter](https://github.com/Jacob-Met/hamon/blob/main/docs/hackathons/CREATIVE_AUTONOMY_CHARTER.md).
+
+## Invent beyond this specification
+
+Autonomously seek radical, astonishing new product possibilities; prototype promising alternatives and merge the best **into the working experience**. Parallel invention, hard-science experimentation, design exploration, and integration should feed one another. Treat the signature IDs below as **trace anchors**, not unchangeable implementations or an exhaustive catalog. No routine permission ceremony is required to ideate or develop legitimate improvements. Keep human-origin scope and rights intact, compare real outcomes, and avoid dropping hard original benefits behind easier substitutes.
+
+
 **Original identity:** Learn executable physical laws/models from observations and actively test the resulting hypotheses.
 
 **Competition:** Nebius × NVIDIA | **Standalone repository:** `Jacob-Met/worldlaw` (create if absent) | **State:** proposed maximal future product specification, not a claim of built features.
@@ -15,7 +22,7 @@ Build an autonomous physical scientist that discovers not only unknown coefficie
 3. An AI scientist picks a mass/force/initial-condition experiment that best separates its hypotheses, then runs an instrumented simulator or authorized physical test.
 4. Predictions and observations overlay, weak models fail, parameters and even model topology revise, and a new predictive controller can be generated.
 
-## Essential capabilities preserved from the original portfolio
+## Original reference outcomes; implementations are open
 - `actual_mechanism_observation_and_evidence_ingestion` — retain across architecture changes; qualify through real consumer operation.
 - `candidate_structural_and_parameter_model_discovery` — retain across architecture changes; qualify through real consumer operation.
 - `reproducible_executable_physics_models` — retain across architecture changes; qualify through real consumer operation.

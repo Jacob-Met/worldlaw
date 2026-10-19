@@ -6,6 +6,8 @@ Observe an unknown physical mechanism, discover an executable explanatory model 
 
 ## Original full scope
 See docs/PRODUCT_CANON.md. A functional partial demo must never replace this complete specification.
+Agents are encouraged to invent stronger product visions; see docs/CREATIVE_AUTONOMY.md.
+A continuously runnable mainline is essential; see docs/CONTINUOUS_MAINLINE_DELIVERY.md.
 
 ## Status
 See docs/PRODUCT_ACCEPTANCE.md. Repository creation does not establish working code.

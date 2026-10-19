@@ -6,6 +6,7 @@
     {
       "id": "actual_mechanism_observation_and_evidence_ingestion",
       "status": "unassessed",
+      "interpretation": "source-benefit-anchor",
       "producer": null,
       "consumer": null,
       "dependencies": [],
@@ -14,6 +15,7 @@
     {
       "id": "candidate_structural_and_parameter_model_discovery",
       "status": "unassessed",
+      "interpretation": "source-benefit-anchor",
       "producer": null,
       "consumer": null,
       "dependencies": [],
@@ -22,6 +24,7 @@
     {
       "id": "reproducible_executable_physics_models",
       "status": "unassessed",
+      "interpretation": "source-benefit-anchor",
       "producer": null,
       "consumer": null,
       "dependencies": [],
@@ -30,6 +33,7 @@
     {
       "id": "active_discriminating_experiment_design",
       "status": "unassessed",
+      "interpretation": "source-benefit-anchor",
       "producer": null,
       "consumer": null,
       "dependencies": [],
@@ -38,6 +42,7 @@
     {
       "id": "actual_experiment_or_solver_execution",
       "status": "unassessed",
+      "interpretation": "source-benefit-anchor",
       "producer": null,
       "consumer": null,
       "dependencies": [],
@@ -46,6 +51,7 @@
     {
       "id": "prediction_residual_based_model_revision",
       "status": "unassessed",
+      "interpretation": "source-benefit-anchor",
       "producer": null,
       "consumer": null,
       "dependencies": [],
@@ -54,12 +60,14 @@
     {
       "id": "interactive_model_comparison_and_visualization",
       "status": "unassessed",
+      "interpretation": "source-benefit-anchor",
       "producer": null,
       "consumer": null,
       "dependencies": [],
       "evidence": []
     }
   ],
+  "creative_inventions": [],
   "frontiers": [
     {
       "id": "inferring_structure_not_just_fitting_known_parameters",
