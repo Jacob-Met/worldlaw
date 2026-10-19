@@ -1,0 +1,2529 @@
+{
+  "schema": "worldlaw.trajectory-bundle/v1",
+  "label": "Small-angle ambiguity · wide-angle challenge",
+  "units": {
+    "time": "s",
+    "position": "rad",
+    "command": "N·m",
+    "inertia": "kg·m²",
+    "initialRate": "rad/s"
+  },
+  "trainingRuns": [
+    {
+      "id": "fit-small-positive",
+      "label": "fit small positive",
+      "kind": "synthetic",
+      "inertia": 0.8,
+      "initialRate": 0,
+      "units": {
+        "time": "s",
+        "position": "rad",
+        "command": "N·m",
+        "inertia": "kg·m²",
+        "initialRate": "rad/s"
+      },
+      "samples": [
+        {
+          "time": 0,
+          "position": 0.06,
+          "command": 0
+        },
+        {
+          "time": 0.04,
+          "position": 0.0598863916191982,
+          "command": 0
+        },
+        {
+          "time": 0.08,
+          "position": 0.059451710965876405,
+          "command": 0
+        },
+        {
+          "time": 0.12,
+          "position": 0.05882515481740145,
+          "command": 0
+        },
+        {
+          "time": 0.16,
+          "position": 0.05795175728360577,
+          "command": 0
+        },
+        {
+          "time": 0.2,
+          "position": 0.05677787422567033,
+          "command": 0
+        },
+        {
+          "time": 0.24,
+          "position": 0.05541145026427185,
+          "command": 0
+        },
+        {
+          "time": 0.28,
+          "position": 0.053825796557412986,
+          "command": 0
+        },
+        {
+          "time": 0.32,
+          "position": 0.052017233348689546,
+          "command": 0
+        },
+        {
+          "time": 0.36,
+          "position": 0.04999087366857707,
+          "command": 0
+        },
+        {
+          "time": 0.4,
+          "position": 0.04776346800719159,
+          "command": 0
+        },
+        {
+          "time": 0.44,
+          "position": 0.04532058355651536,
+          "command": 0
+        },
+        {
+          "time": 0.48,
+          "position": 0.04280874522846129,
+          "command": 0
+        },
+        {
+          "time": 0.52,
+          "position": 0.04008024330126795,
+          "command": 0
+        },
+        {
+          "time": 0.56,
+          "position": 0.037205908231458557,
+          "command": 0
+        },
+        {
+          "time": 0.6,
+          "position": 0.03424031561644997,
+          "command": 0
+        },
+        {
+          "time": 0.64,
+          "position": 0.031093290292106168,
+          "command": 0
+        },
+        {
+          "time": 0.68,
+          "position": 0.027927080098549273,
+          "command": 0
+        },
+        {
+          "time": 0.72,
+          "position": 0.02464339770231988,
+          "command": 0
+        },
+        {
+          "time": 0.76,
+          "position": 0.0212779918071097,
+          "command": 0
+        },
+        {
+          "time": 0.8,
+          "position": 0.01781017440049058,
+          "command": 0
+        },
+        {
+          "time": 0.84,
+          "position": 0.01439474316406516,
+          "command": 0
+        },
+        {
+          "time": 0.88,
+          "position": 0.01094012316804243,
+          "command": 0
+        },
+        {
+          "time": 0.92,
+          "position": 0.0074879662412055785,
+          "command": 0
+        },
+        {
+          "time": 0.96,
+          "position": 0.003987940161354847,
+          "command": 0
+        },
+        {
+          "time": 1,
+          "position": 0.00052913360762711,
+          "command": 0
+        },
+        {
+          "time": 1.04,
+          "position": -0.0028547804517925135,
+          "command": 0
+        },
+        {
+          "time": 1.08,
+          "position": -0.006245486814267698,
+          "command": 0
+        },
+        {
+          "time": 1.12,
+          "position": -0.009487410057023906,
+          "command": 0
+        },
+        {
+          "time": 1.16,
+          "position": -0.012691980722410894,
+          "command": 0
+        },
+        {
+          "time": 1.2,
+          "position": -0.01585210155364803,
+          "command": 0
+        },
+        {
+          "time": 1.24,
+          "position": -0.0188504368474026,
+          "command": 0
+        },
+        {
+          "time": 1.28,
+          "position": -0.021666924465233346,
+          "command": 0
+        },
+        {
+          "time": 1.32,
+          "position": -0.02446629175897938,
+          "command": 0
+        },
+        {
+          "time": 1.36,
+          "position": -0.02706140312379673,
+          "command": 0
+        },
+        {
+          "time": 1.4,
+          "position": -0.029569586146598336,
+          "command": 0
+        },
+        {
+          "time": 1.44,
+          "position": -0.03186738774603125,
+          "command": 0
+        },
+        {
+          "time": 1.48,
+          "position": -0.03401453362899941,
+          "command": 0
+        },
+        {
+          "time": 1.52,
+          "position": -0.035975353935747065,
+          "command": 0
+        },
+        {
+          "time": 1.56,
+          "position": -0.03774918398022757,
+          "command": 0
+        },
+        {
+          "time": 1.6,
+          "position": -0.0394065254920592,
+          "command": 0
+        },
+        {
+          "time": 1.64,
+          "position": -0.040804745391876465,
+          "command": 0
+        },
+        {
+          "time": 1.68,
+          "position": -0.042004411490055335,
+          "command": 0
+        },
+        {
+          "time": 1.72,
+          "position": -0.04303987277776761,
+          "command": 0
+        },
+        {
+          "time": 1.76,
+          "position": -0.0438869375936052,
+          "command": 0
+        },
+        {
+          "time": 1.8,
+          "position": -0.04444829263650571,
+          "command": 0
+        },
+        {
+          "time": 1.84,
+          "position": -0.04484845239217899,
+          "command": 0
+        },
+        {
+          "time": 1.88,
+          "position": -0.045073626479562506,
+          "command": 0
+        },
+        {
+          "time": 1.92,
+          "position": -0.04511028917193229,
+          "command": 0
+        },
+        {
+          "time": 1.96,
+          "position": -0.04487646691222943,
+          "command": 0
+        },
+        {
+          "time": 2,
+          "position": -0.04453346837923456,
+          "command": 0
+        },
+        {
+          "time": 2.04,
+          "position": -0.043957350787512416,
+          "command": 0
+        },
+        {
+          "time": 2.08,
+          "position": -0.04320557263855184,
+          "command": 0
+        },
+        {
+          "time": 2.12,
+          "position": -0.042259717925082776,
+          "command": 0
+        },
+        {
+          "time": 2.16,
+          "position": -0.04115309347695262,
+          "command": 0
+        },
+        {
+          "time": 2.2,
+          "position": -0.03986731883491613,
+          "command": 0
+        },
+        {
+          "time": 2.24,
+          "position": -0.03847639431062558,
+          "command": 0
+        },
+        {
+          "time": 2.28,
+          "position": -0.036856160794751514,
+          "command": 0
+        },
+        {
+          "time": 2.32,
+          "position": -0.03513748078471407,
+          "command": 0
+        },
+        {
+          "time": 2.36,
+          "position": -0.033273816280794705,
+          "command": 0
+        },
+        {
+          "time": 2.4,
+          "position": -0.03131193807387723,
+          "command": 0
+        },
+        {
+          "time": 2.44,
+          "position": -0.0292138570503578,
+          "command": 0
+        },
+        {
+          "time": 2.48,
+          "position": -0.027036265551542427,
+          "command": 0
+        },
+        {
+          "time": 2.52,
+          "position": -0.024712239757017668,
+          "command": 0
+        },
+        {
+          "time": 2.56,
+          "position": -0.022343776102732985,
+          "command": 0
+        },
+        {
+          "time": 2.6,
+          "position": -0.01992124188567257,
+          "command": 0
+        },
+        {
+          "time": 2.64,
+          "position": -0.017378942852519362,
+          "command": 0
+        },
+        {
+          "time": 2.68,
+          "position": -0.014867413901453535,
+          "command": 0
+        },
+        {
+          "time": 2.72,
+          "position": -0.012303970248492491,
+          "command": 0
+        },
+        {
+          "time": 2.76,
+          "position": -0.009689063001858327,
+          "command": 0
+        },
+        {
+          "time": 2.8,
+          "position": -0.007100913054915847,
+          "command": 0
+        },
+        {
+          "time": 2.84,
+          "position": -0.004478466160470954,
+          "command": 0
+        },
+        {
+          "time": 2.88,
+          "position": -0.001847291535161397,
+          "command": 0
+        },
+        {
+          "time": 2.92,
+          "position": 0.0007350686695829391,
+          "command": 0
+        },
+        {
+          "time": 2.96,
+          "position": 0.0032487607802720395,
+          "command": 0
+        },
+        {
+          "time": 3,
+          "position": 0.005756199033267871,
+          "command": 0
+        },
+        {
+          "time": 3.04,
+          "position": 0.008207301899567296,
+          "command": 0
+        },
+        {
+          "time": 3.08,
+          "position": 0.010578242773995118,
+          "command": 0
+        },
+        {
+          "time": 3.12,
+          "position": 0.012883896002933371,
+          "command": 0
+        },
+        {
+          "time": 3.16,
+          "position": 0.01511882917958948,
+          "command": 0
+        },
+        {
+          "time": 3.2,
+          "position": 0.01724898426327323,
+          "command": 0
+        },
+        {
+          "time": 3.24,
+          "position": 0.019271504620883093,
+          "command": 0
+        },
+        {
+          "time": 3.28,
+          "position": 0.021187822732635277,
+          "command": 0
+        },
+        {
+          "time": 3.32,
+          "position": 0.023004226746024325,
+          "command": 0
+        },
+        {
+          "time": 3.36,
+          "position": 0.02469875797088997,
+          "command": 0
+        },
+        {
+          "time": 3.4,
+          "position": 0.026251018169293514,
+          "command": 0
+        },
+        {
+          "time": 3.44,
+          "position": 0.027623362778069965,
+          "command": 0
+        },
+        {
+          "time": 3.48,
+          "position": 0.02891878129172036,
+          "command": 0
+        },
+        {
+          "time": 3.52,
+          "position": 0.030079554740461468,
+          "command": 0
+        },
+        {
+          "time": 3.56,
+          "position": 0.031070150339109696,
+          "command": 0
+        },
+        {
+          "time": 3.6,
+          "position": 0.03189500597045546,
+          "command": 0
+        },
+        {
+          "time": 3.64,
+          "position": 0.03261679831990455,
+          "command": 0
+        },
+        {
+          "time": 3.68,
+          "position": 0.03312494493180495,
+          "command": 0
+        },
+        {
+          "time": 3.72,
+          "position": 0.03354646913794755,
+          "command": 0
+        },
+        {
+          "time": 3.76,
+          "position": 0.03384034821140666,
+          "command": 0
+        },
+        {
+          "time": 3.8,
+          "position": 0.03386070373128119,
+          "command": 0
+        },
+        {
+          "time": 3.84,
+          "position": 0.03385874344867704,
+          "command": 0
+        },
+        {
+          "time": 3.88,
+          "position": 0.03365594011258246,
+          "command": 0
+        },
+        {
+          "time": 3.92,
+          "position": 0.03332359440575387,
+          "command": 0
+        },
+        {
+          "time": 3.96,
+          "position": 0.032814159485711196,
+          "command": 0
+        },
+        {
+          "time": 4,
+          "position": 0.032206046181949256,
+          "command": 0
+        },
+        {
+          "time": 4.04,
+          "position": 0.031426300168320605,
+          "command": 0
+        },
+        {
+          "time": 4.08,
+          "position": 0.030548768833244505,
+          "command": 0
+        },
+        {
+          "time": 4.12,
+          "position": 0.029563785588986143,
+          "command": 0
+        },
+        {
+          "time": 4.16,
+          "position": 0.028400646844515272,
+          "command": 0
+        },
+        {
+          "time": 4.2,
+          "position": 0.027160288995549897,
+          "command": 0
+        },
+        {
+          "time": 4.24,
+          "position": 0.025843047553361996,
+          "command": 0
+        },
+        {
+          "time": 4.28,
+          "position": 0.02435118897695724,
+          "command": 0
+        },
+        {
+          "time": 4.32,
+          "position": 0.022862778796334103,
+          "command": 0
+        },
+        {
+          "time": 4.36,
+          "position": 0.021223694060210255,
+          "command": 0
+        },
+        {
+          "time": 4.4,
+          "position": 0.019571507134944294,
+          "command": 0
+        },
+        {
+          "time": 4.44,
+          "position": 0.017794516289931436,
+          "command": 0
+        },
+        {
+          "time": 4.48,
+          "position": 0.01603039935911357,
+          "command": 0
+        },
+        {
+          "time": 4.52,
+          "position": 0.014113619815073065,
+          "command": 0
+        },
+        {
+          "time": 4.56,
+          "position": 0.012230157484282335,
+          "command": 0
+        },
+        {
+          "time": 4.6,
+          "position": 0.010332515809998551,
+          "command": 0
+        },
+        {
+          "time": 4.64,
+          "position": 0.008386179378939044,
+          "command": 0
+        },
+        {
+          "time": 4.68,
+          "position": 0.00640801487025929,
+          "command": 0
+        },
+        {
+          "time": 4.72,
+          "position": 0.004449455148160045,
+          "command": 0
+        },
+        {
+          "time": 4.76,
+          "position": 0.002449453470568744,
+          "command": 0
+        },
+        {
+          "time": 4.8,
+          "position": 0.0005258142116548717,
+          "command": 0
+        },
+        {
+          "time": 4.84,
+          "position": -0.001377647047933756,
+          "command": 0
+        },
+        {
+          "time": 4.88,
+          "position": -0.00327007376720463,
+          "command": 0
+        },
+        {
+          "time": 4.92,
+          "position": -0.005148483140279812,
+          "command": 0
+        },
+        {
+          "time": 4.96,
+          "position": -0.006940872033967697,
+          "command": 0
+        },
+        {
+          "time": 5,
+          "position": -0.00873557280757343,
+          "command": 0
+        },
+        {
+          "time": 5.04,
+          "position": -0.010447691571311651,
+          "command": 0
+        },
+        {
+          "time": 5.08,
+          "position": -0.012060884470822713,
+          "command": 0
+        },
+        {
+          "time": 5.12,
+          "position": -0.01366638912049203,
+          "command": 0
+        },
+        {
+          "time": 5.16,
+          "position": -0.015126639274832715,
+          "command": 0
+        },
+        {
+          "time": 5.2,
+          "position": -0.016545002826786875,
+          "command": 0
+        },
+        {
+          "time": 5.24,
+          "position": -0.017836001707200084,
+          "command": 0
+        },
+        {
+          "time": 5.28,
+          "position": -0.019089602177292015,
+          "command": 0
+        },
+        {
+          "time": 5.32,
+          "position": -0.02019584806959548,
+          "command": 0
+        },
+        {
+          "time": 5.36,
+          "position": -0.02126123437101874,
+          "command": 0
+        },
+        {
+          "time": 5.4,
+          "position": -0.022133953239429842,
+          "command": 0
+        },
+        {
+          "time": 5.44,
+          "position": -0.02298603183358482,
+          "command": 0
+        },
+        {
+          "time": 5.48,
+          "position": -0.023648783034851757,
+          "command": 0
+        },
+        {
+          "time": 5.52,
+          "position": -0.02426071192905983,
+          "command": 0
+        },
+        {
+          "time": 5.56,
+          "position": -0.024750295324440466,
+          "command": 0
+        },
+        {
+          "time": 5.6,
+          "position": -0.0250814210494283,
+          "command": 0
+        },
+        {
+          "time": 5.64,
+          "position": -0.025339626124694023,
+          "command": 0
+        },
+        {
+          "time": 5.68,
+          "position": -0.02550550127202424,
+          "command": 0
+        },
+        {
+          "time": 5.72,
+          "position": -0.02547092394989413,
+          "command": 0
+        },
+        {
+          "time": 5.76,
+          "position": -0.02537803821629183,
+          "command": 0
+        },
+        {
+          "time": 5.8,
+          "position": -0.025215115149672323,
+          "command": 0
+        },
+        {
+          "time": 5.84,
+          "position": -0.024884790846494215,
+          "command": 0
+        },
+        {
+          "time": 5.88,
+          "position": -0.024459377906838213,
+          "command": 0
+        },
+        {
+          "time": 5.92,
+          "position": -0.023986856706732146,
+          "command": 0
+        },
+        {
+          "time": 5.96,
+          "position": -0.02332973862534669,
+          "command": 0
+        },
+        {
+          "time": 6,
+          "position": -0.022592703451394722,
+          "command": 0
+        },
+        {
+          "time": 6.04,
+          "position": -0.021833902568514457,
+          "command": 0
+        },
+        {
+          "time": 6.08,
+          "position": -0.020942144302299383,
+          "command": 0
+        },
+        {
+          "time": 6.12,
+          "position": -0.019993484148843377,
+          "command": 0
+        },
+        {
+          "time": 6.16,
+          "position": -0.018901682630291503,
+          "command": 0
+        },
+        {
+          "time": 6.2,
+          "position": -0.017798260942788306,
+          "command": 0
+        },
+        {
+          "time": 6.24,
+          "position": -0.016606845041270118,
+          "command": 0
+        },
+        {
+          "time": 6.28,
+          "position": -0.015413879569612838,
+          "command": 0
+        },
+        {
+          "time": 6.32,
+          "position": -0.014092290709372629,
+          "command": 0
+        },
+        {
+          "time": 6.36,
+          "position": -0.01280763791182276,
+          "command": 0
+        },
+        {
+          "time": 6.4,
+          "position": -0.011440703070544645,
+          "command": 0
+        }
+      ],
+      "source": {
+        "label": "Controlled nonlinear pendulum simulation",
+        "recordingId": "fit-small-positive",
+        "generator": "scripts/generate-trajectory-fixtures-92be.mjs",
+        "seed": 293,
+        "positionNoiseSigma": 0.00002,
+        "acquisition": "Independent fine-step RK4 reference, dt=0.0005 s; observations every 0.04 s; commands held between observations.",
+        "initialState": "Initial angle and rate supplied directly by the controlled simulation; t=0 position noise is zero.",
+        "oracle": {
+          "inertia": 0.8,
+          "command": 1.6,
+          "rate": -0.24,
+          "gravity": -2.2,
+          "bias": 0
+        },
+        "rights": "Generated for this repository; no external media or personal information."
+      }
+    },
+    {
+      "id": "fit-small-negative",
+      "label": "fit small negative",
+      "kind": "synthetic",
+      "inertia": 0.8,
+      "initialRate": 0.025,
+      "units": {
+        "time": "s",
+        "position": "rad",
+        "command": "N·m",
+        "inertia": "kg·m²",
+        "initialRate": "rad/s"
+      },
+      "samples": [
+        {
+          "time": 0,
+          "position": -0.045,
+          "command": 0
+        },
+        {
+          "time": 0.04,
+          "position": -0.043887768153335234,
+          "command": 0
+        },
+        {
+          "time": 0.08,
+          "position": -0.04258420612467665,
+          "command": 0
+        },
+        {
+          "time": 0.12,
+          "position": -0.041194098034237306,
+          "command": 0
+        },
+        {
+          "time": 0.16,
+          "position": -0.039576395198027095,
+          "command": 0
+        },
+        {
+          "time": 0.2,
+          "position": -0.037828632849638694,
+          "command": 0
+        },
+        {
+          "time": 0.24,
+          "position": -0.035885695903997226,
+          "command": 0
+        },
+        {
+          "time": 0.28,
+          "position": -0.03387222425202237,
+          "command": 0
+        },
+        {
+          "time": 0.32,
+          "position": -0.03176382382944743,
+          "command": 0
+        },
+        {
+          "time": 0.36,
+          "position": -0.02944024612055566,
+          "command": 0
+        },
+        {
+          "time": 0.4,
+          "position": -0.027043187790350406,
+          "command": 0
+        },
+        {
+          "time": 0.44,
+          "position": -0.024622723040070807,
+          "command": 0
+        },
+        {
+          "time": 0.48,
+          "position": -0.02207318020043655,
+          "command": 0
+        },
+        {
+          "time": 0.52,
+          "position": -0.01942069450743332,
+          "command": 0
+        },
+        {
+          "time": 0.56,
+          "position": -0.016792528160860184,
+          "command": 0
+        },
+        {
+          "time": 0.6,
+          "position": -0.014117062976172545,
+          "command": 0
+        },
+        {
+          "time": 0.64,
+          "position": -0.011364612110600341,
+          "command": 0
+        },
+        {
+          "time": 0.68,
+          "position": -0.008643810165146204,
+          "command": 0
+        },
+        {
+          "time": 0.72,
+          "position": -0.0058430193265472455,
+          "command": 0
+        },
+        {
+          "time": 0.76,
+          "position": -0.0031169936238167172,
+          "command": 0
+        },
+        {
+          "time": 0.8,
+          "position": -0.0003788185871439765,
+          "command": 0
+        },
+        {
+          "time": 0.84,
+          "position": 0.0023462320620194804,
+          "command": 0
+        },
+        {
+          "time": 0.88,
+          "position": 0.004978996896953442,
+          "command": 0
+        },
+        {
+          "time": 0.92,
+          "position": 0.007612317364040919,
+          "command": 0
+        },
+        {
+          "time": 0.96,
+          "position": 0.010134242713251937,
+          "command": 0
+        },
+        {
+          "time": 1,
+          "position": 0.012600310773722055,
+          "command": 0
+        },
+        {
+          "time": 1.04,
+          "position": 0.01500378723206407,
+          "command": 0
+        },
+        {
+          "time": 1.08,
+          "position": 0.017240569856843184,
+          "command": 0
+        },
+        {
+          "time": 1.12,
+          "position": 0.019461363706294192,
+          "command": 0
+        },
+        {
+          "time": 1.16,
+          "position": 0.02152445365232253,
+          "command": 0
+        },
+        {
+          "time": 1.2,
+          "position": 0.023462032465383566,
+          "command": 0
+        },
+        {
+          "time": 1.24,
+          "position": 0.025292175738330112,
+          "command": 0
+        },
+        {
+          "time": 1.28,
+          "position": 0.027032643306926493,
+          "command": 0
+        },
+        {
+          "time": 1.32,
+          "position": 0.02852822988890037,
+          "command": 0
+        },
+        {
+          "time": 1.36,
+          "position": 0.029975497893600808,
+          "command": 0
+        },
+        {
+          "time": 1.4,
+          "position": 0.031249208105064208,
+          "command": 0
+        },
+        {
+          "time": 1.44,
+          "position": 0.032355789115449195,
+          "command": 0
+        },
+        {
+          "time": 1.48,
+          "position": 0.03328434687326935,
+          "command": 0
+        },
+        {
+          "time": 1.52,
+          "position": 0.03410679426808247,
+          "command": 0
+        },
+        {
+          "time": 1.56,
+          "position": 0.03476081849597417,
+          "command": 0
+        },
+        {
+          "time": 1.6,
+          "position": 0.0352604076592164,
+          "command": 0
+        },
+        {
+          "time": 1.64,
+          "position": 0.035561847909851625,
+          "command": 0
+        },
+        {
+          "time": 1.68,
+          "position": 0.035675602219037664,
+          "command": 0
+        },
+        {
+          "time": 1.72,
+          "position": 0.0357183989592752,
+          "command": 0
+        },
+        {
+          "time": 1.76,
+          "position": 0.035585275493204546,
+          "command": 0
+        },
+        {
+          "time": 1.8,
+          "position": 0.035301214236912376,
+          "command": 0
+        },
+        {
+          "time": 1.84,
+          "position": 0.03480440363203333,
+          "command": 0
+        },
+        {
+          "time": 1.88,
+          "position": 0.034234184879382144,
+          "command": 0
+        },
+        {
+          "time": 1.92,
+          "position": 0.03347991085881435,
+          "command": 0
+        },
+        {
+          "time": 1.96,
+          "position": 0.03260362554841438,
+          "command": 0
+        },
+        {
+          "time": 2,
+          "position": 0.03159794674477877,
+          "command": 0
+        },
+        {
+          "time": 2.04,
+          "position": 0.03041237647502136,
+          "command": 0
+        },
+        {
+          "time": 2.08,
+          "position": 0.02919119496995796,
+          "command": 0
+        },
+        {
+          "time": 2.12,
+          "position": 0.027815002819869594,
+          "command": 0
+        },
+        {
+          "time": 2.16,
+          "position": 0.026357421999489986,
+          "command": 0
+        },
+        {
+          "time": 2.2,
+          "position": 0.024774876763628582,
+          "command": 0
+        },
+        {
+          "time": 2.24,
+          "position": 0.02311538108634859,
+          "command": 0
+        },
+        {
+          "time": 2.28,
+          "position": 0.021362417621717037,
+          "command": 0
+        },
+        {
+          "time": 2.32,
+          "position": 0.019551696647025458,
+          "command": 0
+        },
+        {
+          "time": 2.36,
+          "position": 0.01767132378352496,
+          "command": 0
+        },
+        {
+          "time": 2.4,
+          "position": 0.015689924384272552,
+          "command": 0
+        },
+        {
+          "time": 2.44,
+          "position": 0.013739670656493218,
+          "command": 0
+        },
+        {
+          "time": 2.48,
+          "position": 0.011760327390921473,
+          "command": 0
+        },
+        {
+          "time": 2.52,
+          "position": 0.0097085875150255,
+          "command": 0
+        },
+        {
+          "time": 2.56,
+          "position": 0.007626172419783844,
+          "command": 0
+        },
+        {
+          "time": 2.6,
+          "position": 0.005546566660201647,
+          "command": 0
+        },
+        {
+          "time": 2.64,
+          "position": 0.0034620362953089014,
+          "command": 0
+        },
+        {
+          "time": 2.68,
+          "position": 0.0013985066359533305,
+          "command": 0
+        },
+        {
+          "time": 2.72,
+          "position": -0.00063595606056331,
+          "command": 0
+        },
+        {
+          "time": 2.76,
+          "position": -0.0025966852919194427,
+          "command": 0
+        },
+        {
+          "time": 2.8,
+          "position": -0.004598397506231889,
+          "command": 0
+        },
+        {
+          "time": 2.84,
+          "position": -0.0065437826122081285,
+          "command": 0
+        },
+        {
+          "time": 2.88,
+          "position": -0.008477868157622285,
+          "command": 0
+        },
+        {
+          "time": 2.92,
+          "position": -0.010267367842730937,
+          "command": 0
+        },
+        {
+          "time": 2.96,
+          "position": -0.012039149226846572,
+          "command": 0
+        },
+        {
+          "time": 3,
+          "position": -0.0136963764021013,
+          "command": 0
+        },
+        {
+          "time": 3.04,
+          "position": -0.01529177261448007,
+          "command": 0
+        },
+        {
+          "time": 3.08,
+          "position": -0.016801265347644444,
+          "command": 0
+        },
+        {
+          "time": 3.12,
+          "position": -0.018279489320247096,
+          "command": 0
+        },
+        {
+          "time": 3.16,
+          "position": -0.0196152643383663,
+          "command": 0
+        },
+        {
+          "time": 3.2,
+          "position": -0.020816958513703857,
+          "command": 0
+        },
+        {
+          "time": 3.24,
+          "position": -0.021922968751799297,
+          "command": 0
+        },
+        {
+          "time": 3.28,
+          "position": -0.022963387032063184,
+          "command": 0
+        },
+        {
+          "time": 3.32,
+          "position": -0.023834550620838748,
+          "command": 0
+        },
+        {
+          "time": 3.36,
+          "position": -0.024657284466624647,
+          "command": 0
+        },
+        {
+          "time": 3.4,
+          "position": -0.025294077483184026,
+          "command": 0
+        },
+        {
+          "time": 3.44,
+          "position": -0.025833213464156356,
+          "command": 0
+        },
+        {
+          "time": 3.48,
+          "position": -0.026321627857409064,
+          "command": 0
+        },
+        {
+          "time": 3.52,
+          "position": -0.02662071384122107,
+          "command": 0
+        },
+        {
+          "time": 3.56,
+          "position": -0.02681483171942301,
+          "command": 0
+        },
+        {
+          "time": 3.6,
+          "position": -0.026885768728110694,
+          "command": 0
+        },
+        {
+          "time": 3.64,
+          "position": -0.02685190352705559,
+          "command": 0
+        },
+        {
+          "time": 3.68,
+          "position": -0.02666000192158883,
+          "command": 0
+        },
+        {
+          "time": 3.72,
+          "position": -0.026371479320218136,
+          "command": 0
+        },
+        {
+          "time": 3.76,
+          "position": -0.026000281244848822,
+          "command": 0
+        },
+        {
+          "time": 3.8,
+          "position": -0.0254945264607929,
+          "command": 0
+        },
+        {
+          "time": 3.84,
+          "position": -0.02491735466877391,
+          "command": 0
+        },
+        {
+          "time": 3.88,
+          "position": -0.0241919629790312,
+          "command": 0
+        },
+        {
+          "time": 3.92,
+          "position": -0.023360227029094245,
+          "command": 0
+        },
+        {
+          "time": 3.96,
+          "position": -0.02248459318738458,
+          "command": 0
+        },
+        {
+          "time": 4,
+          "position": -0.02151905701363579,
+          "command": 0
+        },
+        {
+          "time": 4.04,
+          "position": -0.020454331693044503,
+          "command": 0
+        },
+        {
+          "time": 4.08,
+          "position": -0.0193207555111333,
+          "command": 0
+        },
+        {
+          "time": 4.12,
+          "position": -0.018066296021130204,
+          "command": 0
+        },
+        {
+          "time": 4.16,
+          "position": -0.016798052296342254,
+          "command": 0
+        },
+        {
+          "time": 4.2,
+          "position": -0.015461060290634281,
+          "command": 0
+        },
+        {
+          "time": 4.24,
+          "position": -0.01408408525989638,
+          "command": 0
+        },
+        {
+          "time": 4.28,
+          "position": -0.012668083262265702,
+          "command": 0
+        },
+        {
+          "time": 4.32,
+          "position": -0.011157064222727836,
+          "command": 0
+        },
+        {
+          "time": 4.36,
+          "position": -0.009633570370165132,
+          "command": 0
+        },
+        {
+          "time": 4.4,
+          "position": -0.008156547983510436,
+          "command": 0
+        },
+        {
+          "time": 4.44,
+          "position": -0.006566550890387693,
+          "command": 0
+        },
+        {
+          "time": 4.48,
+          "position": -0.005045303439860984,
+          "command": 0
+        },
+        {
+          "time": 4.52,
+          "position": -0.0035189496160489453,
+          "command": 0
+        },
+        {
+          "time": 4.56,
+          "position": -0.001919429634105092,
+          "command": 0
+        },
+        {
+          "time": 4.6,
+          "position": -0.00040794109833647497,
+          "command": 0
+        },
+        {
+          "time": 4.64,
+          "position": 0.0011347117860844044,
+          "command": 0
+        },
+        {
+          "time": 4.68,
+          "position": 0.0026570773203935063,
+          "command": 0
+        },
+        {
+          "time": 4.72,
+          "position": 0.004145308412185069,
+          "command": 0
+        },
+        {
+          "time": 4.76,
+          "position": 0.005561278111432681,
+          "command": 0
+        },
+        {
+          "time": 4.8,
+          "position": 0.006968014174317665,
+          "command": 0
+        },
+        {
+          "time": 4.84,
+          "position": 0.008334887931380295,
+          "command": 0
+        },
+        {
+          "time": 4.88,
+          "position": 0.009560174761967436,
+          "command": 0
+        },
+        {
+          "time": 4.92,
+          "position": 0.010829175107669693,
+          "command": 0
+        },
+        {
+          "time": 4.96,
+          "position": 0.012020627741348879,
+          "command": 0
+        },
+        {
+          "time": 5,
+          "position": 0.013141779606686495,
+          "command": 0
+        },
+        {
+          "time": 5.04,
+          "position": 0.014200060409149865,
+          "command": 0
+        },
+        {
+          "time": 5.08,
+          "position": 0.015143123024982148,
+          "command": 0
+        },
+        {
+          "time": 5.12,
+          "position": 0.01604084444963007,
+          "command": 0
+        },
+        {
+          "time": 5.16,
+          "position": 0.01685601879971545,
+          "command": 0
+        },
+        {
+          "time": 5.2,
+          "position": 0.017577203037156253,
+          "command": 0
+        },
+        {
+          "time": 5.24,
+          "position": 0.018181164670988688,
+          "command": 0
+        },
+        {
+          "time": 5.28,
+          "position": 0.01877847987686421,
+          "command": 0
+        },
+        {
+          "time": 5.32,
+          "position": 0.01920950360508304,
+          "command": 0
+        },
+        {
+          "time": 5.36,
+          "position": 0.01962283143259851,
+          "command": 0
+        },
+        {
+          "time": 5.4,
+          "position": 0.019925546881862405,
+          "command": 0
+        },
+        {
+          "time": 5.44,
+          "position": 0.020089731271888536,
+          "command": 0
+        },
+        {
+          "time": 5.48,
+          "position": 0.02018494243824802,
+          "command": 0
+        },
+        {
+          "time": 5.52,
+          "position": 0.020176009135997153,
+          "command": 0
+        },
+        {
+          "time": 5.56,
+          "position": 0.02008330195667055,
+          "command": 0
+        },
+        {
+          "time": 5.6,
+          "position": 0.01994445158403767,
+          "command": 0
+        },
+        {
+          "time": 5.64,
+          "position": 0.019719070227853627,
+          "command": 0
+        },
+        {
+          "time": 5.68,
+          "position": 0.01936351599896829,
+          "command": 0
+        },
+        {
+          "time": 5.72,
+          "position": 0.018961675985770317,
+          "command": 0
+        },
+        {
+          "time": 5.76,
+          "position": 0.018510486550545855,
+          "command": 0
+        },
+        {
+          "time": 5.8,
+          "position": 0.017888781573342796,
+          "command": 0
+        },
+        {
+          "time": 5.84,
+          "position": 0.017279350751184468,
+          "command": 0
+        },
+        {
+          "time": 5.88,
+          "position": 0.01657438170687514,
+          "command": 0
+        },
+        {
+          "time": 5.92,
+          "position": 0.015819124538134936,
+          "command": 0
+        },
+        {
+          "time": 5.96,
+          "position": 0.015002648846760617,
+          "command": 0
+        },
+        {
+          "time": 6,
+          "position": 0.014070918934305364,
+          "command": 0
+        },
+        {
+          "time": 6.04,
+          "position": 0.01315483471120362,
+          "command": 0
+        },
+        {
+          "time": 6.08,
+          "position": 0.012185254161298913,
+          "command": 0
+        },
+        {
+          "time": 6.12,
+          "position": 0.011166212552336926,
+          "command": 0
+        },
+        {
+          "time": 6.16,
+          "position": 0.010109025183690397,
+          "command": 0
+        },
+        {
+          "time": 6.2,
+          "position": 0.009038474980404818,
+          "command": 0
+        },
+        {
+          "time": 6.24,
+          "position": 0.007877340654239251,
+          "command": 0
+        },
+        {
+          "time": 6.28,
+          "position": 0.0067774792032412245,
+          "command": 0
+        },
+        {
+          "time": 6.32,
+          "position": 0.0056085274855695285,
+          "command": 0
+        },
+        {
+          "time": 6.36,
+          "position": 0.0044423250368819086,
+          "command": 0
+        },
+        {
+          "time": 6.4,
+          "position": 0.0032556851054953606,
+          "command": 0
+        }
+      ],
+      "source": {
+        "label": "Controlled nonlinear pendulum simulation",
+        "recordingId": "fit-small-negative",
+        "generator": "scripts/generate-trajectory-fixtures-92be.mjs",
+        "seed": 307,
+        "positionNoiseSigma": 0.00002,
+        "acquisition": "Independent fine-step RK4 reference, dt=0.0005 s; observations every 0.04 s; commands held between observations.",
+        "initialState": "Initial angle and rate supplied directly by the controlled simulation; t=0 position noise is zero.",
+        "oracle": {
+          "inertia": 0.8,
+          "command": 1.6,
+          "rate": -0.24,
+          "gravity": -2.2,
+          "bias": 0
+        },
+        "rights": "Generated for this repository; no external media or personal information."
+      }
+    }
+  ],
+  "challengeRuns": [
+    {
+      "id": "challenge-unseen-wide-angle",
+      "label": "challenge unseen wide angle",
+      "kind": "synthetic",
+      "inertia": 0.8,
+      "initialRate": 0,
+      "units": {
+        "time": "s",
+        "position": "rad",
+        "command": "N·m",
+        "inertia": "kg·m²",
+        "initialRate": "rad/s"
+      },
+      "samples": [
+        {
+          "time": 0,
+          "position": 1.9,
+          "command": 0
+        },
+        {
+          "time": 0.04,
+          "position": 1.8979422293700943,
+          "command": 0
+        },
+        {
+          "time": 0.08,
+          "position": 1.8917482377820525,
+          "command": 0
+        },
+        {
+          "time": 0.12,
+          "position": 1.8814636196406922,
+          "command": 0
+        },
+        {
+          "time": 0.16,
+          "position": 1.8671410694890305,
+          "command": 0
+        },
+        {
+          "time": 0.2,
+          "position": 1.848839083396062,
+          "command": 0
+        },
+        {
+          "time": 0.24,
+          "position": 1.8265053929994648,
+          "command": 0
+        },
+        {
+          "time": 0.28,
+          "position": 1.8002382105369799,
+          "command": 0
+        },
+        {
+          "time": 0.32,
+          "position": 1.7700186370360755,
+          "command": 0
+        },
+        {
+          "time": 0.36,
+          "position": 1.7358477065728195,
+          "command": 0
+        },
+        {
+          "time": 0.4,
+          "position": 1.6977570733968916,
+          "command": 0
+        },
+        {
+          "time": 0.44,
+          "position": 1.6558863317551011,
+          "command": 0
+        },
+        {
+          "time": 0.48,
+          "position": 1.6100563780026547,
+          "command": 0
+        },
+        {
+          "time": 0.52,
+          "position": 1.5604760500288406,
+          "command": 0
+        },
+        {
+          "time": 0.56,
+          "position": 1.5070683437420282,
+          "command": 0
+        },
+        {
+          "time": 0.6,
+          "position": 1.4499507502448805,
+          "command": 0
+        },
+        {
+          "time": 0.64,
+          "position": 1.389142445945597,
+          "command": 0
+        },
+        {
+          "time": 0.68,
+          "position": 1.3247825476082342,
+          "command": 0
+        },
+        {
+          "time": 0.72,
+          "position": 1.25694922923104,
+          "command": 0
+        },
+        {
+          "time": 0.76,
+          "position": 1.1857869797436302,
+          "command": 0
+        },
+        {
+          "time": 0.8,
+          "position": 1.1114044011221638,
+          "command": 0
+        },
+        {
+          "time": 0.84,
+          "position": 1.0340105445930003,
+          "command": 0
+        },
+        {
+          "time": 0.88,
+          "position": 0.9537015887871234,
+          "command": 0
+        },
+        {
+          "time": 0.92,
+          "position": 0.8708876121130648,
+          "command": 0
+        },
+        {
+          "time": 0.96,
+          "position": 0.785656061774551,
+          "command": 0
+        },
+        {
+          "time": 1,
+          "position": 0.6983929802147933,
+          "command": 0
+        },
+        {
+          "time": 1.04,
+          "position": 0.6093372176686516,
+          "command": 0
+        },
+        {
+          "time": 1.08,
+          "position": 0.5188476459152137,
+          "command": 0
+        },
+        {
+          "time": 1.12,
+          "position": 0.42728190794304594,
+          "command": 0
+        },
+        {
+          "time": 1.16,
+          "position": 0.33496718955157595,
+          "command": 0
+        },
+        {
+          "time": 1.2,
+          "position": 0.24234017332873492,
+          "command": 0
+        },
+        {
+          "time": 1.24,
+          "position": 0.14978915617560065,
+          "command": 0
+        },
+        {
+          "time": 1.28,
+          "position": 0.05767109071399579,
+          "command": 0
+        },
+        {
+          "time": 1.32,
+          "position": -0.03362325342896005,
+          "command": 0
+        },
+        {
+          "time": 1.36,
+          "position": -0.12363887779043518,
+          "command": 0
+        },
+        {
+          "time": 1.4,
+          "position": -0.21209344523220441,
+          "command": 0
+        },
+        {
+          "time": 1.44,
+          "position": -0.29858512702973294,
+          "command": 0
+        },
+        {
+          "time": 1.48,
+          "position": -0.38273119503961744,
+          "command": 0
+        },
+        {
+          "time": 1.52,
+          "position": -0.46418746130996674,
+          "command": 0
+        },
+        {
+          "time": 1.56,
+          "position": -0.542769786208906,
+          "command": 0
+        },
+        {
+          "time": 1.6,
+          "position": -0.618110729840287,
+          "command": 0
+        },
+        {
+          "time": 1.64,
+          "position": -0.690063549323146,
+          "command": 0
+        },
+        {
+          "time": 1.68,
+          "position": -0.7583898309945315,
+          "command": 0
+        },
+        {
+          "time": 1.72,
+          "position": -0.8228533672807478,
+          "command": 0
+        },
+        {
+          "time": 1.76,
+          "position": -0.8833583648131361,
+          "command": 0
+        },
+        {
+          "time": 1.8,
+          "position": -0.9397981221385577,
+          "command": 0
+        },
+        {
+          "time": 1.84,
+          "position": -0.9919912116422096,
+          "command": 0
+        },
+        {
+          "time": 1.88,
+          "position": -1.0399329510135733,
+          "command": 0
+        },
+        {
+          "time": 1.92,
+          "position": -1.0834758619132088,
+          "command": 0
+        },
+        {
+          "time": 1.96,
+          "position": -1.1226756598093535,
+          "command": 0
+        },
+        {
+          "time": 2,
+          "position": -1.1575237465442723,
+          "command": 0
+        },
+        {
+          "time": 2.04,
+          "position": -1.1878331765204209,
+          "command": 0
+        },
+        {
+          "time": 2.08,
+          "position": -1.2138238570165845,
+          "command": 0
+        },
+        {
+          "time": 2.12,
+          "position": -1.2353483547076487,
+          "command": 0
+        },
+        {
+          "time": 2.16,
+          "position": -1.252528797369204,
+          "command": 0
+        },
+        {
+          "time": 2.2,
+          "position": -1.2653146191201023,
+          "command": 0
+        },
+        {
+          "time": 2.24,
+          "position": -1.2737946259961734,
+          "command": 0
+        },
+        {
+          "time": 2.28,
+          "position": -1.2779993698845944,
+          "command": 0
+        },
+        {
+          "time": 2.32,
+          "position": -1.2779596136852,
+          "command": 0
+        },
+        {
+          "time": 2.36,
+          "position": -1.2736970712669957,
+          "command": 0
+        },
+        {
+          "time": 2.4,
+          "position": -1.265354113311935,
+          "command": 0
+        },
+        {
+          "time": 2.44,
+          "position": -1.2529126582560561,
+          "command": 0
+        },
+        {
+          "time": 2.48,
+          "position": -1.2364873922812458,
+          "command": 0
+        },
+        {
+          "time": 2.52,
+          "position": -1.2161068936085324,
+          "command": 0
+        },
+        {
+          "time": 2.56,
+          "position": -1.1919065036806251,
+          "command": 0
+        },
+        {
+          "time": 2.6,
+          "position": -1.1638891227366204,
+          "command": 0
+        },
+        {
+          "time": 2.64,
+          "position": -1.1322133098115132,
+          "command": 0
+        },
+        {
+          "time": 2.68,
+          "position": -1.0969067046558856,
+          "command": 0
+        },
+        {
+          "time": 2.72,
+          "position": -1.058180025363454,
+          "command": 0
+        },
+        {
+          "time": 2.76,
+          "position": -1.0161039945845227,
+          "command": 0
+        },
+        {
+          "time": 2.8,
+          "position": -0.9708194715115989,
+          "command": 0
+        },
+        {
+          "time": 2.84,
+          "position": -0.9224438320179452,
+          "command": 0
+        },
+        {
+          "time": 2.88,
+          "position": -0.8711977125341012,
+          "command": 0
+        },
+        {
+          "time": 2.92,
+          "position": -0.8171808911847885,
+          "command": 0
+        },
+        {
+          "time": 2.96,
+          "position": -0.7606173066039107,
+          "command": 0
+        },
+        {
+          "time": 3,
+          "position": -0.7017269902343809,
+          "command": 0
+        },
+        {
+          "time": 3.04,
+          "position": -0.6407340117723014,
+          "command": 0
+        },
+        {
+          "time": 3.08,
+          "position": -0.5778374642972239,
+          "command": 0
+        },
+        {
+          "time": 3.12,
+          "position": -0.5132820385491871,
+          "command": 0
+        },
+        {
+          "time": 3.16,
+          "position": -0.44739411728762135,
+          "command": 0
+        },
+        {
+          "time": 3.2,
+          "position": -0.38036721799051026,
+          "command": 0
+        },
+        {
+          "time": 3.24,
+          "position": -0.3125580812774666,
+          "command": 0
+        },
+        {
+          "time": 3.28,
+          "position": -0.2441526494121538,
+          "command": 0
+        },
+        {
+          "time": 3.32,
+          "position": -0.1755466197573888,
+          "command": 0
+        },
+        {
+          "time": 3.36,
+          "position": -0.10701757834725294,
+          "command": 0
+        },
+        {
+          "time": 3.4,
+          "position": -0.03879397660395228,
+          "command": 0
+        },
+        {
+          "time": 3.44,
+          "position": 0.0287377507731863,
+          "command": 0
+        },
+        {
+          "time": 3.48,
+          "position": 0.09538681119196715,
+          "command": 0
+        },
+        {
+          "time": 3.52,
+          "position": 0.16078263034636014,
+          "command": 0
+        },
+        {
+          "time": 3.56,
+          "position": 0.22471746407953352,
+          "command": 0
+        },
+        {
+          "time": 3.6,
+          "position": 0.28694388507865154,
+          "command": 0
+        },
+        {
+          "time": 3.64,
+          "position": 0.3471771882261596,
+          "command": 0
+        },
+        {
+          "time": 3.68,
+          "position": 0.40521295503041044,
+          "command": 0
+        },
+        {
+          "time": 3.72,
+          "position": 0.46079727984039676,
+          "command": 0
+        },
+        {
+          "time": 3.76,
+          "position": 0.5137810005671,
+          "command": 0
+        },
+        {
+          "time": 3.8,
+          "position": 0.563943973701249,
+          "command": 0
+        },
+        {
+          "time": 3.84,
+          "position": 0.6112744215476581,
+          "command": 0
+        },
+        {
+          "time": 3.88,
+          "position": 0.6555126830645249,
+          "command": 0
+        },
+        {
+          "time": 3.92,
+          "position": 0.696507159538578,
+          "command": 0
+        },
+        {
+          "time": 3.96,
+          "position": 0.734242462739186,
+          "command": 0
+        },
+        {
+          "time": 4,
+          "position": 0.7685776375436707,
+          "command": 0
+        },
+        {
+          "time": 4.04,
+          "position": 0.7994448784842708,
+          "command": 0
+        },
+        {
+          "time": 4.08,
+          "position": 0.826845138883088,
+          "command": 0
+        },
+        {
+          "time": 4.12,
+          "position": 0.850669038597289,
+          "command": 0
+        },
+        {
+          "time": 4.16,
+          "position": 0.8709487256899261,
+          "command": 0
+        },
+        {
+          "time": 4.2,
+          "position": 0.8876479696559426,
+          "command": 0
+        },
+        {
+          "time": 4.24,
+          "position": 0.9007462356477848,
+          "command": 0
+        },
+        {
+          "time": 4.28,
+          "position": 0.9102784466936614,
+          "command": 0
+        },
+        {
+          "time": 4.32,
+          "position": 0.9161848487059061,
+          "command": 0
+        },
+        {
+          "time": 4.36,
+          "position": 0.9186113309408549,
+          "command": 0
+        },
+        {
+          "time": 4.4,
+          "position": 0.9175217738373226,
+          "command": 0
+        },
+        {
+          "time": 4.44,
+          "position": 0.9129912455216904,
+          "command": 0
+        },
+        {
+          "time": 4.48,
+          "position": 0.9049650441131307,
+          "command": 0
+        },
+        {
+          "time": 4.52,
+          "position": 0.8937052564511679,
+          "command": 0
+        },
+        {
+          "time": 4.56,
+          "position": 0.8791063946867954,
+          "command": 0
+        },
+        {
+          "time": 4.6,
+          "position": 0.861331109757606,
+          "command": 0
+        },
+        {
+          "time": 4.64,
+          "position": 0.8404644283099868,
+          "command": 0
+        },
+        {
+          "time": 4.68,
+          "position": 0.8165805990647279,
+          "command": 0
+        },
+        {
+          "time": 4.72,
+          "position": 0.7897740209373193,
+          "command": 0
+        },
+        {
+          "time": 4.76,
+          "position": 0.7602040032905081,
+          "command": 0
+        },
+        {
+          "time": 4.8,
+          "position": 0.7279679790375837,
+          "command": 0
+        },
+        {
+          "time": 4.84,
+          "position": 0.6932526307489201,
+          "command": 0
+        },
+        {
+          "time": 4.88,
+          "position": 0.6560714095927499,
+          "command": 0
+        },
+        {
+          "time": 4.92,
+          "position": 0.6167209681096217,
+          "command": 0
+        },
+        {
+          "time": 4.96,
+          "position": 0.5752962770040652,
+          "command": 0
+        },
+        {
+          "time": 5,
+          "position": 0.5319542586555421,
+          "command": 0
+        },
+        {
+          "time": 5.04,
+          "position": 0.48697517100171916,
+          "command": 0
+        },
+        {
+          "time": 5.08,
+          "position": 0.44044515753321184,
+          "command": 0
+        },
+        {
+          "time": 5.12,
+          "position": 0.39266347432619403,
+          "command": 0
+        },
+        {
+          "time": 5.16,
+          "position": 0.34372569409952125,
+          "command": 0
+        },
+        {
+          "time": 5.2,
+          "position": 0.29388647024389014,
+          "command": 0
+        },
+        {
+          "time": 5.24,
+          "position": 0.24339509934614018,
+          "command": 0
+        },
+        {
+          "time": 5.28,
+          "position": 0.1924644698056524,
+          "command": 0
+        },
+        {
+          "time": 5.32,
+          "position": 0.14129318302950553,
+          "command": 0
+        },
+        {
+          "time": 5.36,
+          "position": 0.09015228212533505,
+          "command": 0
+        },
+        {
+          "time": 5.4,
+          "position": 0.0391583551921029,
+          "command": 0
+        },
+        {
+          "time": 5.44,
+          "position": -0.011342857600286723,
+          "command": 0
+        },
+        {
+          "time": 5.48,
+          "position": -0.06120244979192047,
+          "command": 0
+        },
+        {
+          "time": 5.52,
+          "position": -0.11021280180328821,
+          "command": 0
+        },
+        {
+          "time": 5.56,
+          "position": -0.15815227305523713,
+          "command": 0
+        },
+        {
+          "time": 5.6,
+          "position": -0.20482751178282274,
+          "command": 0
+        },
+        {
+          "time": 5.64,
+          "position": -0.25007233361722603,
+          "command": 0
+        },
+        {
+          "time": 5.68,
+          "position": -0.2936792091446037,
+          "command": 0
+        },
+        {
+          "time": 5.72,
+          "position": -0.3354989537630925,
+          "command": 0
+        },
+        {
+          "time": 5.76,
+          "position": -0.3753765163662015,
+          "command": 0
+        },
+        {
+          "time": 5.8,
+          "position": -0.41322815076580777,
+          "command": 0
+        },
+        {
+          "time": 5.84,
+          "position": -0.44881385435708593,
+          "command": 0
+        },
+        {
+          "time": 5.88,
+          "position": -0.48206796424105336,
+          "command": 0
+        },
+        {
+          "time": 5.92,
+          "position": -0.5129467462125085,
+          "command": 0
+        },
+        {
+          "time": 5.96,
+          "position": -0.541267328114245,
+          "command": 0
+        },
+        {
+          "time": 6,
+          "position": -0.5670627040890276,
+          "command": 0
+        },
+        {
+          "time": 6.04,
+          "position": -0.5901267414406697,
+          "command": 0
+        },
+        {
+          "time": 6.08,
+          "position": -0.610561377107481,
+          "command": 0
+        },
+        {
+          "time": 6.12,
+          "position": -0.6281387623275736,
+          "command": 0
+        },
+        {
+          "time": 6.16,
+          "position": -0.6429999747938647,
+          "command": 0
+        },
+        {
+          "time": 6.2,
+          "position": -0.6550975587955498,
+          "command": 0
+        },
+        {
+          "time": 6.24,
+          "position": -0.6643197200751432,
+          "command": 0
+        },
+        {
+          "time": 6.28,
+          "position": -0.6707731377489011,
+          "command": 0
+        },
+        {
+          "time": 6.32,
+          "position": -0.6744225012475619,
+          "command": 0
+        },
+        {
+          "time": 6.36,
+          "position": -0.6753328671059008,
+          "command": 0
+        },
+        {
+          "time": 6.4,
+          "position": -0.673467617519891,
+          "command": 0
+        }
+      ],
+      "source": {
+        "label": "Controlled nonlinear pendulum simulation",
+        "recordingId": "challenge-unseen-wide-angle",
+        "generator": "scripts/generate-trajectory-fixtures-92be.mjs",
+        "seed": 337,
+        "positionNoiseSigma": 0.00002,
+        "acquisition": "Independent fine-step RK4 reference, dt=0.0005 s; observations every 0.04 s; commands held between observations.",
+        "initialState": "Initial angle and rate supplied directly by the controlled simulation; t=0 position noise is zero.",
+        "oracle": {
+          "inertia": 0.8,
+          "command": 1.6,
+          "rate": -0.24,
+          "gravity": -2.2,
+          "bias": 0
+        },
+        "rights": "Generated for this repository; no external media or personal information."
+      }
+    }
+  ]
+}
