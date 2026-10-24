@@ -1,0 +1,97 @@
+{
+  "base": "bee2e5354fa321cf79c40498b4d17c9a52e1cc25",
+  "unchangedRuntimeSupportBlobsVerified": 320,
+  "excludedBaseArchives": [
+    "docs/receipts/",
+    "evidence/"
+  ],
+  "sourceFiles": [
+    {
+      "path": "src/cycle-work/branch-response.mjs",
+      "sha256": "2b1f5379d728d38cd63ff0ca084f883ef397b10628b863d70084812cbbb37f54",
+      "bytes": 9538
+    },
+    {
+      "path": "src/cycle-work/branch-response-example.mjs",
+      "sha256": "fd95c3d338b12d2c03c9322f63141169647391251dcd34fd299fc3fe4c47cdfd",
+      "bytes": 1776
+    },
+    {
+      "path": "src/cycle-work/branch-response-panel.mjs",
+      "sha256": "c2d2094a8fc97aa74fa0ce61ddd351a73b0ef48050d0fd8a6b350500dcddb9b5",
+      "bytes": 13508
+    },
+    {
+      "path": "src/cycle-work/app.mjs",
+      "sha256": "be3a0aa3a95fd8f3defe57eaee1faddedb73bb38f6516e31857d2127f243a28b",
+      "bytes": 5916
+    },
+    {
+      "path": "tests/cycle-branch-response.test.mjs",
+      "sha256": "c701a63837222a536cf78bba0b9c99a23a4c50910d1016509121249a214252a8",
+      "bytes": 6020
+    },
+    {
+      "path": "scripts/cycle-branch-response-browser.mjs",
+      "sha256": "a365e2a965c44e371b2a24796f1e6531d0fba7989b85ce645b3b1ae91391004d",
+      "bytes": 8499
+    },
+    {
+      "path": "docs/CYCLE_BRANCH_RESPONSE.md",
+      "sha256": "abbd94b9427ab6ab40a711fc5e31d50a1e8e024f666e54b1f3d099a01772cd90",
+      "bytes": 6495
+    },
+    {
+      "path": "scripts/package.py",
+      "sha256": "e68c07bf6ff32a0c6d84195c177f0e863009ce3af97e0c152f20341e39d2dd59",
+      "bytes": 15702
+    },
+    {
+      "path": "tests/cycle-branch-response-independent.test.mjs",
+      "sha256": "fde3a053d3a136cb47cf0806858c4acb2131f597773708c58f201b7fec1cae16",
+      "bytes": 6570
+    }
+  ],
+  "native": {
+    "pass": 568,
+    "skip": 1,
+    "launchSmokes": 2
+  },
+  "browser": {
+    "newGroups": 6,
+    "angleBoxes": 5
+  },
+  "review": {
+    "independentGroups": 7
+  },
+  "artifacts": {
+    "narrow.png": {
+      "sha256": "4c4db175db8c1adb19016e4fd6540b5ec67ef63b9e728f613ccc7a8bb749883d",
+      "gitBlob": "1b73a49b7b78c7e3ea970fb74ebbdeb52d9afcbe",
+      "bytes": 805668
+    },
+    "checks.json": {
+      "sha256": "893f2cdc605d29bd117ac93cc341bf85dde202b14208b5db51632477f72d076f",
+      "gitBlob": "1abd30a784dcdcd1f2ac252437164cb759537db3",
+      "bytes": 662
+    },
+    "branch-response-inputs.json": {
+      "sha256": "5307238e310203996dd15b03d8c59fd9424e1a0055f7f499c412af46618df1b3",
+      "gitBlob": "135b75a408245f60c16adfc9dfc3b6966f54836b",
+      "bytes": 5611
+    },
+    "desktop.png": {
+      "sha256": "8069bd878fe29c99c12557c2d6faa8aa3dd284abd36bd80936668bcc27b9cee1",
+      "gitBlob": "fa6d2f3f9cb9ca04fe9c13ee6b6bea3383fa4ab8",
+      "bytes": 1122713
+    }
+  },
+  "nativeLogSHA256": "df2daeba2820b66a1b87467e7d9fdaed66435ef026c7a668102a13528b845ecc",
+  "nativeLogGzipSHA256": "a47a0bb03be99c743225c4ad10a49dda786b96c212374892f1b00f8e338b152a",
+  "environment": {
+    "system": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "node": "v22.23.4",
+    "chrome": "Google Chrome 156.0.8078.47",
+    "chromiumSandbox": true
+  }
+}

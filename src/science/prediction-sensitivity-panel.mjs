@@ -1,3 +1,4 @@
+import {renderSharedTraining} from './shared-training-panel.mjs';
 import {predictionContrasts} from './prediction-contrast.mjs';
 import {renderPredictionContrasts} from './prediction-contrast-panel.mjs';
 const node=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
@@ -8,6 +9,7 @@ export function renderPredictionSensitivity(host,model,training,receiving){
  const button=node('button','Inspect held-out prediction sensitivity');button.type='button';button.className='button button-outline';
  const status=node('p',`${training.length} training readings and ${receiving.length} retained held-out readings. Held-out outcomes do not enter the fit.`);status.setAttribute('role','status');
  const output=node('div');host.replaceChildren(title,...controls.map(c=>c.label),button,status,output);
+ let joint=document.getElementById('shared-training-inspection');if(!joint){joint=node('section');joint.id='shared-training-inspection';}host.after(joint);renderSharedTraining(joint,model,training,receiving,controls);
  for(const {input} of controls)input.addEventListener('input',()=>{output.replaceChildren();status.textContent='Reading-error assumption changed. Recompute before interpreting the held-out comparison.';});
  button.addEventListener('click',()=>{
   output.replaceChildren();
