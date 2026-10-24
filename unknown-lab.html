@@ -31,6 +31,8 @@
   <input id="effect" type="range" min="-1.5" max="1.5" step=".05" value=".7">
   <label for="duration">Conditioning duration <output id="duration-out" for="duration">2.4</output><span>seconds (virtual)</span></label>
   <input id="duration" type="range" min="0" max="8" step=".2" value="2.4">
+  <div class="mini-inputs crossover-controls"><label for="drift">Simulated drift per reading <span>N·m</span><input id="drift" type="number" min="-.8" max=".8" step="any" value="0"></label><label for="order">Acquisition order <span>AB / BA sequence</span><select id="order"><option value="balanced">Counterbalanced AB/BA</option><option value="oneway">Reference first only</option></select></label></div>
+  <p class="input-hint">Order reversal can separate a constant per-reading drift from a preparation effect. It cannot eliminate nonlinear sensor drift or carryover.</p>
   <div class="mini-inputs"><label for="sigma">Declared sensor noise <span>N·m</span><input id="sigma" type="number" min=".000001" max="10" step="any" value=".02" required></label><label for="count">Trial pairs <span>4–128</span><input id="count" type="number" min="4" max="128" step="1" value="16" required></label></div>
   <button class="go" type="submit">Execute paired virtual trials <span aria-hidden="true">↗</span></button>
  </form>
@@ -48,15 +50,16 @@
  </div>
  <div class="chart-header"><div><p class="overline">ACTUAL MODEL OUTPUTS / OBSERVATIONS</p><h2>Paired torque readings</h2></div><span>REFERENCE <b class="dot cyan"></b> / CONDITIONED <b class="dot amber"></b></span></div>
  <div id="plot" class="plot" role="img" aria-label="Reference and conditioned torque observations for matched input pairs"></div>
+ <div class="order-readout" aria-live="polite"><strong id="order-status">ORDER NOT RECORDED</strong><span id="order-split">—</span><span id="order-adjustment">—</span></div>
  <p class="plot-hint">Horizontal axis: observed torque, N·m. Each connected pair has matched command, angle and velocity. Separation does not identify the cause.</p>
  </section>
 </div>
 <section class="verdict-band" aria-labelledby="verdict-title">
  <div><p class="overline">03 / CHALLENGE THE REPRESENTATION</p><h2 id="verdict-title">Does the past matter?</h2><p id="interpretation" class="interpretation" role="status" aria-live="polite"></p></div>
- <div class="metrics"><div><span>PAIRED OFFSET</span><strong id="offset">—</strong><small>conditioned − reference · N·m</small></div><div><span>SCREEN BOUND</span><strong id="bound">—</strong><small>3× estimated standard error</small></div><div><span>PAIRS ABOVE NOISE</span><strong id="detected">—</strong><small>individual pair differences</small></div><div class="verdict"><span>STATE-SUFFICIENCY CHALLENGE</span><strong id="status">—</strong><small id="source-note">Simulation, not physical evidence</small></div></div>
+ <div class="metrics"><div><span>SCREENED OFFSET</span><strong id="offset">—</strong><small>order-corrected if balanced · N·m</small></div><div><span>SCREEN BOUND</span><strong id="bound">—</strong><small>3× estimated standard error</small></div><div><span>PAIRS ABOVE NOISE</span><strong id="detected">—</strong><small>individual pair differences</small></div><div class="verdict"><span>STATE-SUFFICIENCY CHALLENGE</span><strong id="status">—</strong><small id="source-note">Simulation, not physical evidence</small></div></div>
 </section>
 <section class="readout" aria-label="Inspectable paired evidence"><div><p class="overline">THE RECEIPT</p><h2>Every observation is inspectable.</h2><p>Use the full JSON evidence package to inspect all pairs, units, assumed sensor noise and source classification.</p></div><div class="table-wrap"><table><caption>First 16 matched pairs of the current experiment</caption><thead><tr><th>Pair</th><th>Ref. torque</th><th>Cond. torque</th><th>Difference</th></tr></thead><tbody id="rows"></tbody></table></div></section>
-<section class="scientific-limit" aria-label="Interpretation limits"><span>IMPORTANT / NOT A VERDICT OF PHYSICAL TRUTH</span><p>This bounded screen tests a deterministic current-state-only description under a declared torque noise assumption. A result can challenge that description but cannot distinguish latent physical memory from changing instruments, other unobserved conditions, preparation artifacts or systematic measurement drift. An inconclusive result does not confirm memorylessness. Imported evidence is user-declared, not authenticated.</p></section>
+<section class="scientific-limit" aria-label="Interpretation limits"><span>IMPORTANT / NOT A VERDICT OF PHYSICAL TRUTH</span><p>This bounded screen tests a deterministic current-state-only description under a declared torque noise assumption. Counterbalancing removes only a linear per-reading order term; it does not validate instrument stability, independence, timing or absence of nonlinear drift. A result can challenge that description but cannot distinguish latent physical memory from changing instruments, other unobserved conditions, preparation artifacts or systematic measurement drift. An inconclusive result does not confirm memorylessness. Imported evidence is user-declared, not authenticated.</p></section>
 <div id="error" role="alert" tabindex="-1" hidden></div>
 </main>
 <footer><span>WORLDLAW ∴ UNKNOWN LAB</span><span>One more variable might change everything.</span></footer>

@@ -136,3 +136,13 @@ does not qualify a physical instrument or establish that preconditioning
 actually altered hidden state. Physical replication, authenticated observations,
 instrument drift, matched-history acquisition and held-out latent-law fitting
 remain research work.
+
+### UNKNOWN LAB — Counterbalance acquisition order against instrument drift
+
+The **Simulated drift per reading** control adds a known linear sensor offset in N·m at each successive virtual observation, independently of the synthetic preparation-memory effect. **Counterbalanced AB/BA** alternates which history condition is read first. Set memory coupling to zero and drift to a nonzero value to observe why a one-direction acquisition can imitate memory, and why reversing the order changes the explanation.
+
+Imported JSON can optionally include a nonnegative integer `sampleIndex` on **every** trial, with distinct indices globally and adjacent values within a pair. Four reference-first plus four conditioned-first pairs are required for a counterbalanced estimate. The order-corrected preparation contrast is half the sum of the two order-group mean differences; the linear per-reading drift estimate is half their difference. The displayed screen uses a conservative three-standard-error bound. If the declared reading order is insufficiently balanced, no history challenge is accepted even if the unadjusted differences look significant.
+
+Legacy JSON without `sampleIndex` remains supported and is explicitly labeled *order not recorded*, without gaining retrospective drift qualification. Declared sample order is not verified clock evidence. Linear drift separation does not handle nonlinear drift, carryover, temperature shifts, measurement-time differences, instrumental autocorrelation or other unmeasured confounding.
+
+Run `node --test tests/unknown-order.test.mjs` and `npm run unknown:browser` to receive the new behavior.

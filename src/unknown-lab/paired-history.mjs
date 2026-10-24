@@ -19,6 +19,11 @@ function row(input) {
   if (history !== 'reference' && history !== 'conditioned') fail('history must be reference or conditioned.');
   const result={pairId,history};
   for(const field of FIELDS) result[field]=finite(input[field],field);
+  if(input.sampleIndex!==undefined) {
+    if(!Number.isSafeInteger(input.sampleIndex)||input.sampleIndex<0||input.sampleIndex>1e9)
+      fail('sampleIndex must be a nonnegative safe measurement order index at most 1e9.');
+    result.sampleIndex=input.sampleIndex;
+  }
   return result;
 }
 export function validateNotebook(raw) {
@@ -32,6 +37,12 @@ export function validateNotebook(raw) {
     groups.get(trial.pairId).push(trial);
   }
   if(groups.size*2!==raw.trials.length) fail('Each pair needs exactly two trials.');
+  const all=[...groups.values()].flat();
+  const indexed=all.some(trial=>trial.sampleIndex!==undefined);
+  if(indexed) {
+    if(all.some(trial=>trial.sampleIndex===undefined)) fail('sampleIndex must be supplied on every trial when declaring measurement order.');
+    if(new Set(all.map(trial=>trial.sampleIndex)).size!==all.length) fail('Measurement sampleIndex must be unique across all trials.');
+  }
   const pairs=[];
   for(const [id,entries] of groups) {
     if(entries.length!==2 || entries[0].history===entries[1].history) fail('Each pair needs one reference and one conditioned observation.');
@@ -39,36 +50,77 @@ export function validateNotebook(raw) {
     for(const field of Object.keys(MATCH)) {
       if(Math.abs(reference[field]-conditioned[field])>MATCH[field]) fail('Pair '+id+' is not matched on '+field+' (tolerance '+MATCH[field]+').');
     }
+    if(indexed && Math.abs(reference.sampleIndex-conditioned.sampleIndex)!==1)
+      fail('Each declared measurement-order pair needs adjacent sampleIndex values.');
     pairs.push({id,reference,conditioned,difference:conditioned.jointTorque-reference.jointTorque});
   }
   const sourceNote=typeof raw.sourceNote==='string' ? raw.sourceNote.slice(0,240):'';
   return {schema:SCHEMA,source:raw.source,sourceNote,noiseSigma:sigma,trials:pairs.flatMap(p=>[p.reference,p.conditioned]),pairs};
 }
+const average=values=>values.reduce((sum,value)=>sum+value,0)/values.length;
+function sampleVariance(values) {
+  const center=average(values);
+  return values.reduce((sum,value)=>sum+(value-center)**2,0)/(values.length-1);
+}
 export function evaluateHistory(raw) {
-  const n=validateNotebook(raw), differences=n.pairs.map(p=>p.difference);
-  const count=differences.length, mean=differences.reduce((a,b)=>a+b,0)/count;
-  const sampleVar=differences.reduce((s,x)=>s+(x-mean)**2,0)/(count-1);
-  // Instrument noise and inter-pair variation are conservatively combined.
-  // Three standard errors is a screening boundary, not a calibrated p-value.
-  const standardError=Math.sqrt((sampleVar+2*n.noiseSigma**2)/count);
+  const notebook=validateNotebook(raw), differences=notebook.pairs.map(p=>p.difference);
+  const count=differences.length, mean=average(differences);
+  const naiveError=Math.sqrt((sampleVariance(differences)+2*notebook.noiseSigma**2)/count);
+  const naiveBoundary=3*naiveError;
+  const naiveVerdict=Math.abs(mean)>naiveBoundary?'challenged':'inconclusive';
+  let order={status:'unrecorded',referenceFirst:null,conditionedFirst:null,historyEstimate:null,driftPerStep:null,boundary:null};
+  let decisionDifference=mean, standardError=naiveError, verdict=naiveVerdict;
+  if(notebook.pairs[0].reference.sampleIndex!==undefined) {
+    const referenceFirst=notebook.pairs.filter(p=>p.reference.sampleIndex<p.conditioned.sampleIndex).map(p=>p.difference);
+    const conditionedFirst=notebook.pairs.filter(p=>p.conditioned.sampleIndex<p.reference.sampleIndex).map(p=>p.difference);
+    order={status:'unbalanced',referenceFirst:referenceFirst.length,conditionedFirst:conditionedFirst.length,
+      historyEstimate:null,driftPerStep:null,boundary:null};
+    // Linear drift per consecutive instrument reading enters the pair
+    // difference with opposite signs in the two orders. A balanced crossover
+    // separates the two mean effects, but NOT nonlinear or preparation drift.
+    if(referenceFirst.length>=4 && conditionedFirst.length>=4) {
+      const plus=average(referenceFirst), minus=average(conditionedFirst);
+      const historyEstimate=(plus+minus)/2, driftPerStep=(plus-minus)/2;
+      const correctionVariance=.25*((sampleVariance(referenceFirst)+2*notebook.noiseSigma**2)/referenceFirst.length+
+        (sampleVariance(conditionedFirst)+2*notebook.noiseSigma**2)/conditionedFirst.length);
+      standardError=Math.sqrt(correctionVariance);
+      decisionDifference=historyEstimate;
+      order={status:'counterbalanced',referenceFirst:referenceFirst.length,conditionedFirst:conditionedFirst.length,
+        historyEstimate,driftPerStep,boundary:3*standardError};
+      verdict=Math.abs(historyEstimate)>3*standardError?'challenged':'inconclusive';
+    } else {
+      // A one-order or sparse-order dataset can demonstrate disagreement but
+      // cannot separate the preparation effect from linear acquisition drift.
+      verdict='inconclusive';
+    }
+  }
   const boundary=3*standardError;
-  const verdict=Math.abs(mean)>boundary?'challenged':'inconclusive';
-  const errors=differences.filter(d=>Math.abs(d)>3*Math.SQRT2*n.noiseSigma).length;
-  return {schema:'worldlaw.history-result/v1',source:n.source,count,meanDifference:mean,
-    standardError,boundary,interval:[mean-boundary,mean+boundary],verdict,
-    pairsAboveInstrumentNoise:errors,pairs:n.pairs,
-    interpretation:verdict==='challenged'
-      ? 'Matched visible states produced systematic history-associated torque differences above the declared screening bound. A current-state-only deterministic torque law is challenged; sensor drift, unmeasured conditions and provenance still require investigation.'
-      : 'The observed pair differences do not clear the declared screening bound. This does not establish memorylessness or rule out smaller effects.'};
+  const errors=differences.filter(d=>Math.abs(d)>3*Math.SQRT2*notebook.noiseSigma).length;
+  const interpretation=order.status==='unbalanced'
+    ? 'Paired readings differ, but chronological AB/BA order is not sufficiently counterbalanced (four pairs per order are required). A sequential instrument drift could mimic a history effect; no corrected history conclusion is admitted.'
+    : verdict==='challenged'
+      ? order.status==='counterbalanced'
+        ? 'The counterbalanced preparation contrast exceeds its three-standard-error screen after allowing for linear per-reading drift. The current-state-only law is challenged under that model. Nonlinear drift, carryover, hidden confounders and measurement provenance remain open.'
+        : 'The pair contrast exceeds its declared screening bound, but measurement order was not recorded. Current-state-only torque is challenged under that assumption, not proven physically history-dependent.'
+      : order.status==='counterbalanced'
+        ? 'After counterbalancing the measurement order, the preparation contrast does not clear the screening bound. An apparent unadjusted offset may be instrument drift. A smaller history effect cannot be excluded.'
+        : 'Paired readings do not clear the declared screening bound. This does not establish memorylessness or rule out smaller effects.';
+  return {schema:'worldlaw.history-result/v1',source:notebook.source,count,meanDifference:mean,
+    naiveBoundary,naiveVerdict,decisionDifference,standardError,boundary,
+    interval:[decisionDifference-boundary,decisionDifference+boundary],verdict,
+    order,pairsAboveInstrumentNoise:errors,pairs:notebook.pairs,interpretation};
 }
 function generator(seed) {
   let s=seed>>>0;return ()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return (s+.5)/4294967296;};
 }
-export function syntheticChallenge({count=16,seed=41,noiseSigma=.02,effect=.7,duration=2.4}={}) {
+export function syntheticChallenge({count=16,seed=41,noiseSigma=.02,effect=.7,duration=2.4,
+  driftPerReading=0,counterbalanced=true}={}) {
   if(!Number.isInteger(count)||count<4||count>MAX_PAIRS) fail('count must be an integer from 4 through 128.');
   if(!Number.isSafeInteger(seed)||Math.abs(seed)>1e9) fail('seed must be a bounded integer.');
   finite(noiseSigma,'noiseSigma',1000);if(noiseSigma<1e-8) fail('noiseSigma must be positive.');
   finite(effect,'effect',100);finite(duration,'duration',30);if(duration<0) fail('duration must be nonnegative.');
+  finite(driftPerReading,'driftPerReading',10);
+  if(typeof counterbalanced!=='boolean') fail('counterbalanced must be boolean.');
   const random=generator(seed);
   // Independent, declared synthetic oracle. Reference/conditioned share exactly
   // the same visible state; the unobserved preparation is not a measured fact.
@@ -79,10 +131,15 @@ export function syntheticChallenge({count=16,seed=41,noiseSigma=.02,effect=.7,du
     const base=1.45*state.command-2.2*Math.sin(state.position)-.34*state.rate;
     const perturb=()=>noiseSigma*Math.sqrt(12)*(random()-.5);
     const pairId='synthetic-'+String(i+1).padStart(3,'0');
-    trials.push({pairId,history:'reference',...state,jointTorque:base+perturb()});
-    trials.push({pairId,history:'conditioned',...state,jointTorque:base+memory+perturb()});
+    const referenceIndex=2*i+(counterbalanced && i%2===1 ? 1 : 0);
+    const conditionedIndex=2*i+(counterbalanced && i%2===1 ? 0 : 1);
+    trials.push({pairId,history:'reference',...state,sampleIndex:referenceIndex,
+      jointTorque:base+driftPerReading*referenceIndex+perturb()});
+    trials.push({pairId,history:'conditioned',...state,sampleIndex:conditionedIndex,
+      jointTorque:base+memory+driftPerReading*conditionedIndex+perturb()});
   }
-  return {schema:SCHEMA,source:'synthetic',noiseSigma,sourceNote:'Declared virtual preconditioning oracle; latent effect and duration are simulation parameters, not physical observations.',trials};
+  return {schema:SCHEMA,source:'synthetic',noiseSigma,
+    sourceNote:'Declared virtual history oracle; linear measurement drift and preparation coupling are simulation parameters, not physical observations.',trials};
 }
 export function exportNotebook(raw) {
   const n=validateNotebook(raw);

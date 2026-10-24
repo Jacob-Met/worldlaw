@@ -39,7 +39,14 @@ function renderPlot(pairs){
 function render(){
  const report=evaluateHistory(notebook);
  $('source-badge').textContent=report.source==='measured'?'USER-DECLARED MEASUREMENTS':'DECLARED SIMULATION';
- $('offset').textContent=fmt(report.meanDifference)+' N·m';
+ $('offset').textContent=fmt(report.decisionDifference)+' N·m';
+ const order=report.order;
+ $('order-status').textContent=order.status==='counterbalanced'?'ORDER COUNTERBALANCED':order.status==='unbalanced'?'ORDER CONFOUNDED':'ORDER NOT RECORDED';
+ $('order-split').textContent=order.status==='unrecorded'?'Legacy observations: no sample chronology':
+   'Reference first '+order.referenceFirst+' / conditioned first '+order.conditionedFirst;
+ $('order-adjustment').textContent=order.status==='counterbalanced'
+   ?'Raw '+fmt(report.meanDifference)+' N·m → adjusted '+fmt(order.historyEstimate)+' N·m · estimated drift '+fmt(order.driftPerStep)+' N·m / reading'
+   :'Raw paired offset '+fmt(report.meanDifference)+' N·m · no qualified drift separation';
  $('bound').textContent='±'+fmt(report.boundary)+' N·m';
  $('detected').textContent=report.pairsAboveInstrumentNoise+'/'+report.count;
  $('status').textContent=report.verdict==='challenged'?'CHALLENGED':'INCONCLUSIVE';
@@ -64,8 +71,11 @@ function virtualRun(){
  if(!$('count').value.trim()||!Number.isInteger(count))throw new Error('Enter an integer count.');
  if(!$('sigma').value.trim()||!Number.isFinite(sigma))throw new Error('Enter a finite noise assumption.');
  const effect=Number($('effect').value),duration=Number($('duration').value);
+ const driftPerReading=Number($('drift').value);
+ if(!$('drift').value.trim()||!Number.isFinite(driftPerReading))throw new Error('Enter a finite simulated drift per reading.');
+ const counterbalanced=$('order').value==='balanced';
  seed+=1;
- adopt(syntheticChallenge({count,noiseSigma:sigma,effect,duration,seed}),'Executed independent paired virtual readings');
+ adopt(syntheticChallenge({count,noiseSigma:sigma,effect,duration,seed,driftPerReading,counterbalanced}),'Executed independent paired virtual readings');
 }
 function download(text,name){
  const url=URL.createObjectURL(new Blob([text],{type:'application/json'}));

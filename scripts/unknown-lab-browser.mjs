@@ -45,6 +45,25 @@ try {
   await wait("document.querySelector('#status').textContent==='INCONCLUSIVE'");
   assert.equal(await evaljs("document.querySelector('#effect-out').textContent"),'0.00');
  });
+ await check('balanced AB/BA cancels strong virtual linear drift with zero memory',async()=>{
+  await evaljs("(()=>{document.querySelector('#drift').value='.6';document.querySelector('#order').value='balanced';document.querySelector('#run-form').requestSubmit()})()");
+  await wait("document.querySelector('#order-status').textContent==='ORDER COUNTERBALANCED' && document.querySelector('#order-adjustment').textContent.includes('estimated drift')");
+  assert.equal(await evaljs("document.querySelector('#status').textContent"),'INCONCLUSIVE');
+  const r=await evaljs("(async()=>{const m=await import('/src/unknown-lab/paired-history.mjs');const d=m.syntheticChallenge({effect:0,driftPerReading:.6});return m.evaluateHistory(d).order.driftPerStep})()");
+  assert.ok(Math.abs(r-.6)<.06);
+ });
+ await check('one-way order suppresses a drift false positive despite large raw effect',async()=>{
+  await evaljs("(()=>{document.querySelector('#order').value='oneway';document.querySelector('#run-form').requestSubmit()})()");
+  await wait("document.querySelector('#order-status').textContent==='ORDER CONFOUNDED'");
+  assert.equal(await evaljs("document.querySelector('#status').textContent"),'INCONCLUSIVE');
+  const label=await evaljs("document.querySelector('#order-adjustment').textContent");
+  assert.match(label,/no qualified drift separation/);
+ });
+ await check('balanced acquisition retains a true history contrast despite drift',async()=>{
+  await evaljs("(()=>{document.querySelector('#effect').value='.8';document.querySelector('#drift').value='.45';document.querySelector('#order').value='balanced';document.querySelector('#run-form').requestSubmit()})()");
+  await wait("document.querySelector('#status').textContent==='CHALLENGED' && document.querySelector('#order-status').textContent==='ORDER COUNTERBALANCED'");
+  assert.match(await evaljs("document.querySelector('#order-adjustment').textContent"),/adjusted/);
+ });
  await check('negative memory effect challenges with negative offset',async()=>{
   await evaljs("(()=>{document.querySelector('#effect').value='-1';document.querySelector('#run-form').requestSubmit();})()");
   await wait("document.querySelector('#status').textContent==='CHALLENGED'");
