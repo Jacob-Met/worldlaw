@@ -1,0 +1,8 @@
+{
+  "repository": "Jacob-Met/chronos-vision",
+  "path": "evaluation/src/reference-admission.mjs",
+  "commit": "df6e60097c7502558b36312d13c3c13b7688d1ec",
+  "git_blob": "0401f9148e89bcbdaa86ff5237718291df336a6c",
+  "sha256": "a6bb176788e9934ac7ac5be12774db60d48fd170f3f90d406c05c31411db8b98",
+  "method": "Exact unchanged maintained reference admission; CHRONOS remains its owner. Motion supplies native-raster source context and separately compares its retained observations."
+}
