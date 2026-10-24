@@ -92,3 +92,47 @@ This browser course checks rendering and canvas output, keyboard experiment exec
 The program searches subsets of seven declared terms and distinguishes some alternative structures. It fits coefficients with scaled QR and ranks models with a noise-floor information criterion. Model spread is a heuristic, not calibrated probability. [Scientific details and retained counterexamples](docs/SCIENTIFIC_CORE.md) cover rank deficiency, an omitted cubic law, parameter drift and a 40-case active-versus-passive experiment.
 
 Video reconstruction, arbitrary mechanism topology, calibrated uncertainty, physical instrument receiving, broader generalization, provider/GPU qualification and contest submission remain open. This usable increment preserves the full original goal.
+
+
+## UNKNOWN LAB — matched-history challenge
+
+Open **Unknown Lab** from the main WORLDLAW header, or visit `/unknown-lab.html`.
+This is a complementary structural falsification instrument, not a replacement for
+the finite-library Discovery Studio, Motion Lab, or Trajectory Challenge.
+
+Run paired virtual experiments with *identical* command, angle and rate, but
+different declared preparation histories. The virtual oracle has a bounded
+hidden-memory torque term with an explicit decay time; its coupling and
+duration controls are simulation parameters. Toggle the coupling to zero to
+see how the same screening method can remain inconclusive. The apparatus
+displays each pair's two torque readings, the assumed independent sensor noise,
+the signed mean difference and a deliberately conservative three-standard-error
+screen. **CHALLENGED** means a memoryless deterministic torque relation is
+incompatible with the paired readings under those assumptions; it does *not*
+establish physical memory, causal history or calibrated probability.
+
+**Bring measurements:** Click **Open measured / saved pairs** and supply local
+UTF-8 JSON with the schema `worldlaw.history-challenge/v1`, `source:"measured"`,
+a declared `noiseSigma` in N·m and 4–128 matched pairs. Each pair contains
+one `history:"reference"` and one `history:"conditioned"` reading with the
+same `pairId` and numeric `command`, `position`, `rate`, `jointTorque`.
+Command, position and rate must match within 0.001 in the declared SI units,
+or import refuses; a small mismatch does not guarantee absence of confounding.
+Imported evidence is user-declared and stays in this browser. Export JSON to
+preserve exactly the imported trials, source classification and noise assumption.
+Saving in local browser storage is **explicit**; Forget deletes that local copy.
+
+```sh
+node --test tests/unknown-history.test.mjs
+npm run smoke
+# Optional: Node 22+, installed Chrome/Chromium and a writable scratch location
+BROWSER_EXECUTABLE_PATH=/path/to/chrome BROWSER_ARTIFACT_DIR=/tmp/worldlaw-evidence npm run unknown:browser
+```
+
+The Chrome receiver exercises a real local HTTP server, paired synthetic
+positive/negative interventions, user-declared import, mismatched-state refusal,
+explicit local persistence, reload, narrow viewport and page exceptions. It
+does not qualify a physical instrument or establish that preconditioning
+actually altered hidden state. Physical replication, authenticated observations,
+instrument drift, matched-history acquisition and held-out latent-law fitting
+remain research work.
