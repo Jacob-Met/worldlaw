@@ -36,3 +36,8 @@
 #state-support p,#state-support li{font-size:14px;line-height:1.6;color:var(--ink)}
 #state-support li{margin-bottom:.75rem}
 #state-support button{min-height:40px;padding:.5rem .75rem;max-width:100%;white-space:normal}
+
+#input-enclosures{margin-top:1.25rem;border-top:1px solid var(--line);padding-top:1rem;overflow-wrap:anywhere}
+#input-enclosures p,#input-enclosures li,#input-enclosures label{font-size:14px;line-height:1.6;color:var(--ink)}
+#input-enclosures label{display:block;margin:.5rem 0}#input-enclosures input{display:block;max-width:100%;min-height:36px}
+#input-enclosures button{min-height:40px;max-width:100%;white-space:normal;padding:.5rem .75rem}
