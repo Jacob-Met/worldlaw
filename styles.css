@@ -53,3 +53,17 @@
 #parameter-sensitivity ul{padding-left:24px}#parameter-sensitivity li{margin:14px 0}
 #parameter-sensitivity summary{display:list-item;list-style:disclosure-closed;font-size:14px;line-height:1.6;padding:5px 0;color:var(--forest);text-decoration:underline;text-underline-offset:3px}
 #parameter-sensitivity details[open]>summary{list-style:disclosure-open}
+
+/* Held-out prediction sensitivity: scoped scientific inspection typography. */
+#prediction-sensitivity{margin-top:1.5rem;padding-top:1rem;border-top:1px solid #c5d2dc;min-width:0}
+#prediction-sensitivity h3{font-size:16px;line-height:1.4;color:#19364a}
+#prediction-sensitivity p,#prediction-sensitivity label,#prediction-sensitivity td,#prediction-sensitivity th{font-size:14px;line-height:1.55;color:#243e50}
+#prediction-sensitivity label{display:block;margin:.6rem 0}
+#prediction-sensitivity input,#prediction-sensitivity select{min-height:36px;max-width:100%}
+#prediction-sensitivity button{min-height:40px;margin:.5rem 0}
+#prediction-sensitivity .prediction-sensitivity-scroll{max-width:100%;overflow-x:auto;margin:1rem 0}
+#prediction-sensitivity table{border-collapse:collapse;width:100%;min-width:560px}
+#prediction-sensitivity th,#prediction-sensitivity td{text-align:left;padding:.5rem;border-bottom:1px solid #c5d2dc;vertical-align:top}
+#prediction-sensitivity details{margin:1rem 0}
+#prediction-sensitivity summary{display:list-item;font-size:14px;color:#174f73;cursor:pointer}
+#prediction-sensitivity .prediction-sensitivity-scroll:focus-visible{outline:3px solid #9a5a16;outline-offset:2px}

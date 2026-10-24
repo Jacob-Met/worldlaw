@@ -223,3 +223,7 @@ BROWSER_ARTIFACT_DIR=/tmp/worldlaw-stiffness-receipts node scripts/stiffness-bro
 ## Cycle Work
 
 Open `/cycle-work.html` from the workbench to inspect signed polygonal work from ordered torque–angle return paths. Explicit exact-angle assumptions, torque-error bounds and an integration allowance are retained in input-only export/reopen. The nonlinear conservative control demonstrates a quadrature artifact: nonzero polygonal work alone does not identify continuous-path work or dissipation. See [Cycle Work](docs/CYCLE_WORK.md). Run `node --test tests/cycle-work.test.mjs` and `node scripts/cycle-work-browser.mjs` (the browser command uses the existing `PLAYWRIGHT_MODULE` and `BROWSER_EXECUTABLE_PATH` conventions).
+
+## Held-out prediction sensitivity
+
+The scalar model inspector can now compare every retained held-out torque reading with the prediction interval induced by shared bounded training-reading errors. It keeps the original inputs and inspected structure fixed, exposes each query's training-offset witness and contrast with an independent coefficient box, and marks numerical boundaries and coordinate extrapolation. Source notebooks reopen through the existing workflow; both error radii are explicitly redeclared. These per-row ranges do not establish joint feasibility, confidence or physical validity. See [the model and controls](docs/PREDICTION_SENSITIVITY.md) and [executed receiving](docs/receipts/prediction-sensitivity-195c0e2a/verification.json).

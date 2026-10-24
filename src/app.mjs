@@ -1,6 +1,7 @@
 import {renderInputEnclosures} from './science/input-enclosure-panel.mjs';
 import {renderStateSupport} from './science/state-support-panel.mjs';
 import {renderParameterSensitivity} from './science/parameter-sensitivity-panel.mjs';
+import {renderPredictionSensitivity} from './science/prediction-sensitivity-panel.mjs';
 import {diagnoseReplicates} from './science/replicate-diagnostics.mjs';
 import {evaluate,predict,simulate} from './science/torque-discovery.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
@@ -92,6 +93,8 @@ function renderModel(){
   renderStateSupport(support,m,state.discovery.observations);
   let sensitivity=$('parameter-sensitivity');if(!sensitivity){sensitivity=el('div');sensitivity.id='parameter-sensitivity';support.after(sensitivity);}
   renderParameterSensitivity(sensitivity,m,state.discovery.observations);
+  let readout=$('prediction-sensitivity');if(!readout){readout=el('div');readout.id='prediction-sensitivity';sensitivity.after(readout);}
+  renderPredictionSensitivity(readout,m,state.discovery.observations,state.base.heldOut);
   let enclosure=$('input-enclosures');if(!enclosure){enclosure=el('div');enclosure.id='input-enclosures';$('state-support').after(enclosure);}
   renderInputEnclosures(enclosure,m,state.discovery.observations);
   runSimulation(false);

@@ -1,0 +1,76 @@
+{
+  "schema": "worldlaw.observations/v1",
+  "source": {
+    "label": "Authored weak-excitation control; repeated numeric rows are not independent acquisitions"
+  },
+  "observations": [
+    {
+      "command": 0,
+      "position": 0.9999,
+      "rate": 0,
+      "jointTorque": 4.9996
+    },
+    {
+      "command": 0,
+      "position": 0.9999,
+      "rate": 0,
+      "jointTorque": 4.9996
+    },
+    {
+      "command": 0,
+      "position": 0.99995,
+      "rate": 0,
+      "jointTorque": 4.9998000000000005
+    },
+    {
+      "command": 0,
+      "position": 0.99995,
+      "rate": 0,
+      "jointTorque": 4.9998000000000005
+    },
+    {
+      "command": 0,
+      "position": 1.00005,
+      "rate": 0,
+      "jointTorque": 5.0002
+    },
+    {
+      "command": 0,
+      "position": 1.00005,
+      "rate": 0,
+      "jointTorque": 5.0002
+    },
+    {
+      "command": 0,
+      "position": 1.0001,
+      "rate": 0,
+      "jointTorque": 5.0004
+    },
+    {
+      "command": 0,
+      "position": 1.0001,
+      "rate": 0,
+      "jointTorque": 5.0004
+    }
+  ],
+  "heldOut": [
+    {
+      "command": 0,
+      "position": 1,
+      "rate": 0,
+      "jointTorque": 5.005
+    },
+    {
+      "command": 0,
+      "position": 2,
+      "rate": 0,
+      "jointTorque": 9.2
+    },
+    {
+      "command": 0,
+      "position": 1,
+      "rate": 0,
+      "jointTorque": 5.1
+    }
+  ]
+}
