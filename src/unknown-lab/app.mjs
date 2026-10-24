@@ -1,3 +1,4 @@
+import {mountSerialOrders} from './serial-order-panel.mjs';
 import {mountSerialNoise} from './serial-noise-panel.mjs';
 import {mountProbePlanner} from './probe-planner-panel.mjs';
 import {mountProbePanel} from './probe-panel.mjs';
@@ -134,3 +135,5 @@ mountProbePlanner(probePanel);
 
 mountSerialNoise(()=>notebook);
 
+
+mountSerialOrders();

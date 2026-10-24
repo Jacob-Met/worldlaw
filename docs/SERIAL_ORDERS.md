@@ -1,0 +1,13 @@
+# Compare offered acquisition orders
+
+UNKNOWN LAB's acquisition-order comparison takes explicit prospective reference/conditioned index pairs and a finite list of stationary AR(1) correlations. Open examples/serial-orders.json in the new instrument or paste equivalent JSON. No torque outcomes, fitting notebook or fictional measurements enter planning.
+
+The maintained signed covariance arithmetic is shared unchanged with serial-noise receiving. Each schedule requires at least four pairs in each direction; pairs occupy adjacent distinct acquisition indices. Index gaps remain real gaps. Variance is normalized to unit marginal sensor variance: multiply by the independently declared sigma squared for absolute variance. All offered plans must have the same total pair count; unequal AB/BA subgroup counts remain supported when each has at least four. Acquisition index span is reported separately. Equal paired-reading count does not imply equal elapsed sampling time or acquisition cost. A nonblank caller-declared sourceNote retains the planning basis literally through export/reopen; it does not authenticate physical provenance.
+
+Every plan and correlation remains visible, with worst variance over only the supplied finite hypotheses, all tied minima and conservative pairwise domination (componentwise no greater computed variance and at least one improvement exceeding 1e-12), with tied minima compared at absolute 1e-12 tolerance. This tolerance is a display comparison policy, not a rigorous numerical enclosure. No continuous correlation interval is certified. Complete calculation rejects more than two million covariance terms before evaluation rather than dropping rows or hypotheses.
+
+The authored eight-pair alternating and blocked schedules give worst variance .25 and .6340941843854192 with correlations [-.9,-.5,0,.5,.9]. Changing to [0,.5,.9] ties both at .25. No uniquely preferred order can be inferred from that latter course. The existing periodic-artifact counterexample also shows why an alternating covariance winner is not generally safer: carryover, deterministic phase artifacts and nonstationary noise are outside this model.
+
+Input-only save/reopen recomputes the complete result. Changing an input clears prior outputs and invalidates pending file reads. It neither freezes a physical protocol nor authorizes acquisition. Existing observed-pair receiving remains unchanged.
+
+Local tests: node --test tests/serial-order.test.mjs tests/serial-noise.test.mjs. Independent innovations oracle, gaps, negative correlation, changed hypotheses/ties, raw replay and refusals pass. Full regression, actual browser receiving and independent review remain required before integration.
