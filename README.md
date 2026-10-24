@@ -252,3 +252,7 @@ The held-out prediction sensitivity inspector also receives every unordered pair
 ### Shared training-reading evidence
 
 The Studio can separately search for one bounded training-reading perturbation that receives the complete held-out course, or a checked weighted separator for the computed linear envelope. It retains all source rows, original error radii, complete witness vectors and raw-source replay. Budget exhaustion remains unresolved. See [the scientific and replay contract](docs/SHARED_TRAINING.md).
+
+## Receive a closed two-coordinate path
+
+In Coupling Lab, **Take the response around a closed path** compares supplied paired-angle/torque readings with every fitted affine law using signed polygonal work. Inspect the numbered loop, shared reading-error bounds, model disagreements and coordinate extrapolation. Input-only save/reopen retains the original training and path without refitting on receiving evidence. The nonlinear conservative control exposes a quadrature artifact; nonzero polygonal work does not prove dissipation. See [the circulation contract](docs/COUPLED_CIRCULATION.md).
