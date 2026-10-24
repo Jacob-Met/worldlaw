@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {writeFile,readFile,readdir} from 'node:fs/promises';
 import path from 'node:path';
 export async function receiveCirculationBoxes({evaluate,send,check,click,text,wait,outputDir,downloads}){
+ await send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:downloads});
  const set=raw=>evaluate(`(()=>{const x=document.getElementById('circulation-box-input');x.value=${JSON.stringify(JSON.stringify(raw))};x.dispatchEvent(new Event('input'));})()`);
  const raw=()=>evaluate("JSON.parse(document.getElementById('circulation-box-input').value)");
  await click('circulation-load');await click('circulation-run');
