@@ -241,8 +241,70 @@ try {
   await evaljs("document.querySelector('#experiment-pending').scrollIntoView({block:'start',behavior:'instant'})");await screenshot('experiment-pending-'+width);
   await click('experiment-virtual-receive');await showHistory('experiment-history-'+width);
  }
+
+ let revisedSaved,revisionHistory;
+ const expand=async(origin=0)=>{await value('family-origin',origin);await value('family-reason','Test an explicit smooth alternative after the original family mismatch.');await click('family-expand');};
+ await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+ await check('explicit smooth expansion retains the original failure and exact earlier frozen errors',async()=>{
+  await course('smooth');await freeze(2);await click('experiment-virtual-receive');
+  revisionHistory=await text('experiment-history');await freeze(7);assert.equal(await pendingIndex(),'7');
+  await expand();assert.equal(await pendingIndex(),null);assert.equal(await historyCount(),1);
+  assert.equal(await text('verdict'),'SMOOTH CUBIC PREFERRED');assert.equal(await text('experiment-history'),revisionHistory);
+  assert.equal(await evaljs("document.querySelector('#family-revision-status').dataset.boundary"),'1');
+  assert.match(await text('family-original-error'),/training mismatch/);assert.match(await text('family-expanded-error'),/not falsified on training/);
+  assert.match(await text('equation'),/³/);assert.match(await text('slopes'),/Slope varies with angle/);
+  const saved=JSON.parse(await save());assert.equal(saved.schema,'worldlaw.stiffness-experiment/v2');
+  assert.equal(saved.initial.schema,'worldlaw.stiffness-notebook/v1');assert.equal(saved.revisions.length,1);assert.equal(saved.revisions[0].at,1);assert.equal(saved.revisions[0].origin,0);
+  assert.equal(await evaljs("document.querySelector('#family-expand').disabled"),true);
+ });
+ await check('future cubic forecasts receive separately and complete revised inputs reopen through actual download',async()=>{
+  await freeze(0);assert.match(await text('experiment-pending'),/Smooth cubic, origin 0/);await click('experiment-virtual-receive');
+  assert.equal(await historyCount(),2);assert.ok((await text('experiment-history')).startsWith(revisionHistory));
+  await freeze(7);revisedSaved=await save();const before=await renderedState();
+  await course('kink');await upload('source-file',revisedSaved,'revised-experiment.json');
+  await wait("document.querySelector('#family-revision-status').dataset.boundary==='1'&&document.querySelector('#experiment-history').dataset.acquisitionCount==='2'");
+  assert.deepEqual(await renderedState(),before);assert.equal(await evaljs("document.querySelector('#experiment-virtual-receive').disabled"),true);
+  await value('observation-source','Separate supplied authored cubic reading');await value('observation-kind','authored receiving control');
+  await value('observation-torque',-3.9);await click('experiment-receive');assert.equal(await historyCount(),3);assert.equal(await pendingIndex(),null);
+  assert.ok((await text('experiment-history')).startsWith(revisionHistory));
+ });
+ await check('changed separate checks preserve revised training, requests, revision evidence and sequential errors',async()=>{
+  await freeze(4);const before=await renderedState(),revision=await text('family-revision-comparison');
+  const input=JSON.parse(revisedSaved);const checks={source:{label:'Separate counterfactual check values'},observations:input.initial.dataset.heldOut.map(row=>({...row,jointTorque:999}))};
+  await upload('check-file',JSON.stringify(checks));await wait("document.querySelector('#experiment-status').textContent.includes('Separate checks replaced only')");assert.ok(await evaljs("[...document.querySelectorAll('#comparison-body tr')].every(row=>parseFloat(row.cells[2].textContent)>990)"));
+  assert.deepEqual(await renderedState(),before);assert.equal(await text('family-revision-comparison'),revision);
+ });
+ await check('malformed family event refuses without replacing the accepted revised experiment',async()=>{
+  const before=await renderedState(),bad=JSON.parse(revisedSaved);bad.revisions[0].at=99;
+  await upload('source-file',JSON.stringify(bad));await wait("document.querySelector('#error').textContent.includes('boundary')");assert.deepEqual(await renderedState(),before);
+ });
+ await check('a late source import cannot overwrite a newly declared family revision',async()=>{
+  await course('smooth');
+  await evaljs("window.originalFileText=File.prototype.text;File.prototype.text=function(){const file=this;return file.name==='slow-family.json'?new Promise(resolve=>setTimeout(()=>window.originalFileText.call(file).then(resolve),350)):window.originalFileText.call(file)}");
+  try{await upload('source-file',pendingSaved,'slow-family.json');await expand();await delay(500);
+   assert.equal(await text('verdict'),'SMOOTH CUBIC PREFERRED');assert.equal(await evaljs("document.querySelector('#family-revision-status').dataset.boundary"),'0');
+  }finally{await evaljs("File.prototype.text=window.originalFileText");}
+ });
+ await check('higher-order authored response still reports expanded-family mismatch',async()=>{
+  await course('higher');await expand();assert.equal(await planStatus(),'model_mismatch');assert.equal(await text('verdict'),'FAMILY MISMATCH');
+  assert.match(await text('family-expanded-error'),/training mismatch/);assert.equal(await evaljs("document.querySelector('#experiment-freeze-proposed').disabled"),true);
+ });
+ const revisionVisibility=[];
+ for(const width of [1440,390]){
+  await send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:false});
+  await check('family revision is keyboard-operable with original and expanded evidence visible at '+width+'px',async()=>{
+   await course('smooth');await value('family-origin',0);await value('family-reason','Explicit keyboard revision control.');
+   await evaljs("document.querySelector('#family-expand').focus()");
+   await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r'});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+   assert.equal(await text('verdict'),'SMOOTH CUBIC PREFERRED');
+   await evaljs("document.querySelector('#family-revision-status').scrollIntoView({block:'start',behavior:'instant'})");await paint();
+   const evidence=await evaljs("['family-revision-status','family-original-error','family-expanded-error','family-revision-guard'].map(id=>{const n=document.getElementById(id),r=n.getBoundingClientRect(),s=getComputedStyle(n);return{id,text:n.textContent,left:r.left,right:r.right,top:r.top,bottom:r.bottom,font:parseFloat(s.fontSize),display:s.display,visibility:s.visibility}})");
+   for(const e of evidence){assert.ok(e.left>=-1&&e.right<=width+1&&e.top>=-1&&e.bottom<=1001&&e.font>=13,JSON.stringify(e));assert.notEqual(e.display,'none');assert.notEqual(e.visibility,'hidden');}
+   assert.ok(await evaljs("document.documentElement.scrollWidth<=innerWidth+1"));revisionVisibility.push({width,evidence});await screenshot('stiffness-revision-'+width);
+  });
+ }
  await check('no uncaught page exceptions or external requests during experiment receiving',async()=>{assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);});
- const result={checks:out.length,pass:true,results:out,events,historyVisibility,proposalVisibility};if(outputDir)await writeFile(path.join(outputDir,'stiffness-experiment-browser.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
+ const result={checks:out.length,pass:true,results:out,events,historyVisibility,proposalVisibility,revisionVisibility};if(outputDir)await writeFile(path.join(outputDir,'stiffness-experiment-browser.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
 }catch(error){
  let page=null;try{page=await diagnosticEval?.("({state:document.querySelector('#verdict')?.textContent,error:document.querySelector('#error')?.textContent,focus:document.activeElement?.id,location:location.href,experiment:document.querySelector('#experiment-status')?.textContent,pending:document.querySelector('#experiment-pending')?.dataset.index,acquisitions:document.querySelector('#experiment-history')?.dataset.acquisitionCount})");}catch{}
  console.error(JSON.stringify({failure:error.message,completed:out,page,events},null,2));throw error;

@@ -5,7 +5,7 @@
 <header><a href="/">WORLDLAW</a><span> / STIFFNESS LAB</span><a class="back" href="/">Discovery Studio ↗</a></header>
 <main>
 <section class="opening"><p class="eyebrow">ONE RESPONSE. COMPETING EXPLANATIONS.</p><h1>Where does the response change?</h1>
-<p>Compare a global slope with a continuous change at a declared angle. Fit only training observations, then challenge the frozen explanations on separate measurements.</p></section>
+<p>Compare a global slope with a continuous change at a declared angle. When that family misses, explicitly offer a smooth alternative. Fit only training observations, then challenge frozen explanations on separate measurements.</p></section>
 <section class="source-tools" aria-label="Observation source">
 <label>Authored source <select id="example-kind"><option value="kink">Change in stiffness</option><option value="linear">Global linear response</option><option value="smooth">Smooth omitted law</option><option value="narrow">Change outside observed range</option></select></label>
 <button id="load-example">Load simulated source</button>
@@ -27,8 +27,15 @@
 <div class="decision"><strong id="verdict"></strong><span id="decision-detail"></span></div>
 </section>
 <section class="experiment-panel" aria-labelledby="experiment-title">
-<div class="experiment-heading"><div><p class="eyebrow">PROPOSE · FREEZE · OBSERVE · REFIT</p><h2 id="experiment-title">Which declared state separates these explanations?</h2></div><div class="experiment-course-controls"><label>Authored course<select id="experiment-course"><option value="kink">Ambiguous stiffness change</option><option value="smooth">Omitted smooth response</option></select></label><button id="experiment-load-course" type="button">Start authored course</button></div></div>
+<div class="experiment-heading"><div><p class="eyebrow">PROPOSE · FREEZE · OBSERVE · REFIT</p><h2 id="experiment-title">Which declared state separates these explanations?</h2></div><div class="experiment-course-controls"><label>Authored course<select id="experiment-course"><option value="kink">Ambiguous stiffness change</option><option value="smooth">Omitted smooth response</option><option value="higher">Omitted higher-order response</option></select></label><button id="experiment-load-course" type="button">Start authored course</button></div></div>
 <p id="experiment-status" role="status"></p><p id="experiment-plan-note" class="annotation"></p>
+<section class="family-revision" aria-labelledby="family-revision-title">
+<p class="eyebrow">REVISE THE EXPLANATION · KEEP THE EARLIER ERRORS</p><h3 id="family-revision-title">Could the response change smoothly?</h3>
+<p>Offer a linear-plus-cubic response, bθ + c(θ − θ₀)³, with the same declared nuisance terms. Choose its origin explicitly; it is never searched. Original global and one-hinge alternatives stay in the comparison.</p>
+<form id="family-revision-form" class="family-revision-controls"><label>Declared origin θ₀, rad<input id="family-origin" type="number" value="0" min="-1000000" max="1000000" step="any" required></label><label class="family-reason-label">Why test this alternative?<input id="family-reason" type="text" maxlength="240" value="Test whether a smooth response explains the current mismatch." required></label><button id="family-expand" type="submit">Add the declared smooth alternative</button></form>
+<p id="family-revision-status" role="status"></p>
+<div id="family-revision-comparison" class="family-revision-comparison" hidden><div><h4>Original family at revision</h4><p>Training error / RMSE</p><strong id="family-original-error"></strong></div><div><h4>Expanded family at revision</h4><p>Training error / RMSE</p><strong id="family-expanded-error"></strong></div><p id="family-revision-guard"></p></div>
+<p class="annotation">Expansion clears a pending request and applies only to subsequent forecasts. One explicit expansion is retained per experiment. This is a finite declared hypothesis, not identification of a physical mechanism.</p></section>
 <div class="experiment-proposal"><p id="experiment-proposed-summary"></p><button id="experiment-freeze-proposed" type="button" disabled>Freeze proposed state</button></div>
 <details class="permitted-editor"><summary>Declare the finite permitted input states</summary><p>Supply a JSON array of complete command, position and rate states in N·m, rad and rad/s. This is an investigation declaration, not safety validation or permission to actuate. Applying an allowed declaration clears the pending forecast. After the first acquisition, the whole declaration stays fixed to preserve historical planning context; changed declarations are refused. Load a new observation source or start a new authored course to use a different declaration.</p><label for="permitted-states">Permitted states JSON</label><textarea id="permitted-states" rows="6">[]</textarea><button id="experiment-set-permitted" type="button">Apply declared states</button></details>
 <div class="experiment-scroll" tabindex="0" aria-label="Permitted-state ranking"><table><thead><tr><th>Declared input</th><th>Forecast spread</th><th>Competitive predictions</th><th>Extrapolated axes</th><th>Freeze before observing</th></tr></thead><tbody id="experiment-ranking"></tbody></table></div>
@@ -51,6 +58,7 @@
 </section>
 <details><summary>Interpret the experiment</summary><ul>
 <li>The baseline is linear in angle. Each alternative adds one continuous hinge: max(0, θ − κ). Slopes and nuisance coefficients are fitted together.</li>
+<li>An explicitly expanded family also offers linear-plus-cubic response about one fixed declared origin. It requires four distinct angles and full numerical rank. Its slope varies with angle; it does not cover every smooth law. The original family failure and earlier frozen errors remain inspectable.</li>
 <li>The ranking uses a caller-assumed noise floor and penalizes fitted coefficients plus the searched change angle. This is a heuristic, without calibrated probabilities or confidence intervals.</li>
 <li>A kink can reflect omitted smooth response, instrument effects or other confounding. It does not identify contact, mechanism topology, physical stiffness or causation by itself.</li>
 <li>Positive slopes are allowed. Nothing here establishes passivity, physical safety, valid extrapolation or permission to actuate hardware.</li>
