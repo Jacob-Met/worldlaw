@@ -1,0 +1,119 @@
+{
+  "schema": "worldlaw.smooth-drift-verification/v1",
+  "qualifiedBase": "93130ac6d5dd96ce9c4cd028d0178a82328eccb5",
+  "qualification": "Exact base archive plus the retained candidate source files; executable hashes below. Documentation updated after execution.",
+  "runtime": {
+    "node": "22.23.4",
+    "browser": "Chrome/156.0.8078.47"
+  },
+  "commands": [
+    "PLAYWRIGHT_MODULE=<maintained local Playwright ESM> BROWSER_EXECUTABLE_PATH=/opt/google/chrome/chrome node --test tests/*.test.mjs",
+    "node scripts/smooth-drift-browser.mjs",
+    "node scripts/period-bands-browser.mjs"
+  ],
+  "native": {
+    "tests": 690,
+    "pass": 690,
+    "fail": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "groups": 8,
+    "exceptions": [],
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed."
+  },
+  "periodBandBrowser": {
+    "groups": 9,
+    "exceptions": []
+  },
+  "research": {
+    "exactFractionOrders": 1246,
+    "unequalGappedLargeOriginControls": 100,
+    "maximumCoefficientError": 8.89e-16,
+    "maximumWitnessResidualAtB1": 7.55e-15,
+    "peerExtreme": "128-pair/high-span/unequal strata and B=1000; no certified floating point claim"
+  },
+  "runtimeSources": [
+    {
+      "path": "src/unknown-lab/smooth-drift.mjs",
+      "bytes": 5586,
+      "sha256": "277ffb32d0d231bd9ca46c8af5259886ddb6d6d461c1a749619f3b936930fbe9",
+      "gitBlob": "3794d364d82dd315a4cf7a0d5c00a162735fda63"
+    },
+    {
+      "path": "src/unknown-lab/smooth-drift-panel.mjs",
+      "bytes": 11777,
+      "sha256": "085132ec7a9c996d4197b9496966b6ac999357ad45258dc62afbf432ad31b9f9",
+      "gitBlob": "421a94ea7bd4f3c48cf85d5b22cec46b46a2730d"
+    },
+    {
+      "path": "src/unknown-lab/app.mjs",
+      "bytes": 8966,
+      "sha256": "01322c3176fed605cf0df815411de33c057085910703a5929edf2d50c0e1e997",
+      "gitBlob": "8a5764434b6239846cab98140599d4c7766a0950"
+    },
+    {
+      "path": "tests/smooth-drift.test.mjs",
+      "bytes": 3487,
+      "sha256": "79825c48c0a928ab889b9c83b7fe40b47269e0c24a4d605961c209038f59f45d",
+      "gitBlob": "8b201b8b2a9d062254ee490d25a63a0d5ab67921"
+    },
+    {
+      "path": "examples/smooth-drift.json",
+      "bytes": 2740,
+      "sha256": "4934217fc3ae89912239a8dacd8450076143639013a16f6cea171b83d866bcef",
+      "gitBlob": "2f8b679bc0fadd3dbf273e0bae3e42f6621d8949"
+    },
+    {
+      "path": "scripts/smooth-drift-browser.mjs",
+      "bytes": 6088,
+      "sha256": "bee55044de55b4b7d896d6ad7ccae1765287a748f0a34f19b758b966be3e9433",
+      "gitBlob": "5ecc0aeeda83e9b114cbaa9f776418363f029911"
+    },
+    {
+      "path": "server.mjs",
+      "bytes": 2792,
+      "sha256": "abc84809a490730055b7bd51fbc3e722217dcd9f0aee8c3230d0d31dcf601e71",
+      "gitBlob": "ca51e73e72754d2cd92eea8abd67a8f16a3271a4"
+    },
+    {
+      "path": "tests/planning-examples-server.test.mjs",
+      "bytes": 1118,
+      "sha256": "0a22628b7f6c421591c6774bcf17d4b43a702528fc7719a26488b57a01951f64",
+      "gitBlob": "abb2c2ec036d6b3640461b6656bb02adb4ee00cd"
+    },
+    {
+      "path": "scripts/period-bands-browser.mjs",
+      "bytes": 5477,
+      "sha256": "a40b6001c9046e0590b4452564240e973aca9663d21ee40b137257640a9775c1",
+      "gitBlob": "f08dfc64a92e310ffe2477c8205303e27d89f4de"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "docs/receipts/smooth-drift-20261024/desktop-witness.png",
+      "bytes": 477734,
+      "sha256": "421e30cce05b59a375a90b0a50755d5bf5ce56e1dda840839556da47b3e6b37f",
+      "gitBlob": "93a05cde734e74131d96103eeaa9b9c8c6c10e76"
+    },
+    {
+      "path": "docs/receipts/smooth-drift-20261024/desktop-overview.png",
+      "bytes": 440986,
+      "sha256": "b486dc96cbce569476ad9dd1fec971f7ccbd6b7edd910fefb0ec6d7f386ecf85",
+      "gitBlob": "84cb37890d385855e933613cc8aac72c33a8d44f"
+    },
+    {
+      "path": "docs/receipts/smooth-drift-20261024/narrow-witness.png",
+      "bytes": 132726,
+      "sha256": "4fa49db866ce8cb9ee44541985747eb1d03f7b2a40a5c6b0217444d4cbd64417",
+      "gitBlob": "c0724f848ad3150a5be0e2d20df018e14246af82"
+    }
+  ],
+  "receivingCorrection": "Both example buttons initially returned404. Exact two routes were added; native source-byte/HEAD/refusal and both actual example actions now pass. Incoming motion-reference routes remain present.",
+  "limitations": [
+    "Conditional acquisition-index curvature family; no elapsed-time bound or sensor calibration",
+    "Kernel/witness theorem is exact-real; displayed computed allowance is engineering, not certified",
+    "Noise, periodic susceptibility and curvature remain separate quantities"
+  ],
+  "mergedConsumer": "Separate fresh archive receiving is recorded in the native PR."
+}
