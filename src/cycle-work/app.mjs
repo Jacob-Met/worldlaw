@@ -1,3 +1,4 @@
+import {mountBranchResponses} from './branch-response-panel.mjs';
 import {mountAngleBoxes} from './angle-boxes-panel.mjs';
 import {mountRefinement} from './refinement-panel.mjs';
 import {evaluateCycle,cycleExample,exportCycle,importCycle} from './core.mjs';
@@ -54,3 +55,5 @@ adopt(cycleExample());
 mountRefinement();
 
 mountAngleBoxes();
+
+mountBranchResponses();

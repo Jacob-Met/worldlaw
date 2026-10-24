@@ -87,7 +87,9 @@ export function reopenBranchResponses(raw){
   acquisition={request:frozen.request,assumption:BRANCH_RECEIVING_ASSUMPTION,records:acquired};
   receiving=frozen.models.map(model=>({family:model.family,trainingStatus:model.status,cycles:acquired.map(r=>score(model,r,frozen.request.settings.receivingRmsTolerance,frozen.ranges))}));
  }
- return {bundle:{schema:BRANCH_RESPONSE_SCHEMA,request:frozen.request,acquisition},frozen,receiving,
+ const bundle={schema:BRANCH_RESPONSE_SCHEMA,request:frozen.request,acquisition};
+ fail(new TextEncoder().encode(JSON.stringify(bundle)).byteLength<=2000000,'Complete normalized branch-response notebook exceeds the 2 MB receiver limit. No evidence was removed.');
+ return {bundle,frozen,receiving,
   scope:'All declared candidates and all per-cycle outcomes are retained. Receiving only scores unchanged models at supplied exact angles and branches; it never refits or selects a winner. Both source identity and independence are declarations, not authenticated acquisition.'};
 }
 export function importBranchResponses(text){
@@ -95,5 +97,5 @@ export function importBranchResponses(text){
  return reopenBranchResponses(JSON.parse(text));
 }
 export function exportBranchResponses(raw){
- const text=JSON.stringify(reopenBranchResponses(raw).bundle,null,2);fail(new TextEncoder().encode(text).byteLength<=2000000,'Branch-response export exceeds the 2 MB receiver limit. No evidence was removed.');return text;
+ const text=JSON.stringify(reopenBranchResponses(raw).bundle);fail(new TextEncoder().encode(text).byteLength<=2000000,'Branch-response export exceeds the 2 MB receiver limit. No evidence was removed.');return text;
 }
