@@ -1,0 +1,87 @@
+{
+  "schema": "worldlaw.periodic-course-source-manifest/v1",
+  "captured_at_utc": "2026-10-24T21:29:40.461986+00:00",
+  "base_commit": "1db1c84bafd6f7f1ae19483753b01408ecf82ae9",
+  "base_tree": "8166a70c6483848c4b561e604a7a5bb2dac83af3",
+  "source_files": {
+    "src/unknown-lab/periodic-course.mjs": {
+      "sha256": "7a09e2e794cf8e66c3c9600529c3cd6f672417dc70e03e288195f8ff368206e0",
+      "bytes": 10332
+    },
+    "src/unknown-lab/periodic-course-panel.mjs": {
+      "sha256": "75ae44af331d06f88ee062ea045189ff579351e01dc91740739f7c4af4518a8f",
+      "bytes": 9125
+    },
+    "src/unknown-lab/periodic-contrast-panel.mjs": {
+      "sha256": "8317a375c96bb47145f983da86fbc7cf130fd23b068b6e876c774e1daab7e0b9",
+      "bytes": 6692
+    },
+    "src/unknown-lab/app.mjs": {
+      "sha256": "ef6f7dd86828413bd9c50761b53bc974031fbfcff987d2f38ab64e1fdaabcd50",
+      "bytes": 9037
+    },
+    "unknown-lab.css": {
+      "sha256": "b1b441592876b40239caca7b21bb6ada58da3bd007e068948b6ed5f43e9b80a1",
+      "bytes": 17806
+    },
+    "tests/periodic-course.test.mjs": {
+      "sha256": "01858a38b08c5f52d02ec5b303149ee8400798db3e6aff20aca3a8d227815bc3",
+      "bytes": 5974
+    },
+    "scripts/periodic-course-browser.mjs": {
+      "sha256": "4f6fe453f213cf6adb5f00a7a25e659d4f37fd9c815d000ced7b8ce2c13e7f39",
+      "bytes": 7393
+    },
+    "scripts/course-browser-sandbox.mjs": {
+      "sha256": "339d64279c9f3374e7fa39f860569a198ce7f1c1a0875c5370efee7a1e59501b",
+      "bytes": 749
+    },
+    "docs/PERIODIC_COURSE.md": {
+      "sha256": "c15b6738312d927183d0d0ed11a0af01809e5c628a18cf67e661bd71ae810db9",
+      "bytes": 7027
+    },
+    "examples/periodic-course-pattern-failure.json": {
+      "sha256": "cdfcbc0e57f49576825142fffe32e8b404f779481665a0965303c56f84d6a05d",
+      "bytes": 10345
+    },
+    "scripts/support/chromium-sandbox.mjs": {
+      "sha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "bytes": 7602
+    },
+    "scripts/support/README.md": {
+      "sha256": "5d5b175ed9281d22232f8399a97f263d9a5ef4fe82d47bd77b4bcef88311da9d",
+      "bytes": 1407
+    }
+  },
+  "browser_and_log_artifacts": {
+    "browser-verification.json": {
+      "sha256": "138a1c4a9fe4bc8311c8af11a2a1fa445a13f88a0e5f2752232c3e54e40e4c43",
+      "bytes": 2388
+    },
+    "sandbox.json": {
+      "sha256": "b43f0a49c3c03421a51fae2f6b81aca66a41b80adb869a18006a0a34095aff17",
+      "bytes": 1728
+    },
+    "desktop-failure.png": {
+      "sha256": "78473be1767642716a0e8429fe1fdd8a26449bb5c6f06c95b1a1e671deecbcd4",
+      "bytes": 525715
+    },
+    "desktop-witness.png": {
+      "sha256": "2c91cc077e4bb1d01af884dde71edae05885a0f02a3c0a132f7d978f471bc507",
+      "bytes": 437465
+    },
+    "narrow-controls.png": {
+      "sha256": "799c433423a2e13227df6285ea88b78f44c665643fa27593d08261d66b0100c3",
+      "bytes": 112795
+    },
+    "narrow-result.png": {
+      "sha256": "73aaefb21f5fd80e62e3737dfde23faf3b6ae41a8dd6f4386440acefc370f8b7",
+      "bytes": 214111
+    },
+    "native.log": {
+      "sha256": "cd32f8a9af10dd2353d7ba05d1937232085d9ae745de5939aea783ce18e4f49d",
+      "bytes": 158944
+    }
+  },
+  "hash_scope": "Actual bytes read from the frozen qualified remote checkout and successful browser-03 directory at receipt staging time."
+}

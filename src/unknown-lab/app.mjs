@@ -1,3 +1,4 @@
+import {mountPeriodicCourse} from './periodic-course-panel.mjs';
 import {mountSmoothDrift} from './smooth-drift-panel.mjs';
 import {mountPeriodBands} from './period-band-panel.mjs';
 import {mountPeriodicContrast} from './periodic-contrast-panel.mjs';
@@ -16,6 +17,7 @@ const $=id=>document.getElementById(id);
 const ns='http://www.w3.org/2000/svg', storageKey='worldlaw.unknown-lab.history.v1';
 let notebook=null;
 let periodicContrastPanel=null;
+let periodicCoursePanel=null;
 const fmt=(v,d=3)=>Number.isFinite(v)?Number(v.toPrecision(d)).toLocaleString('en-US',{maximumFractionDigits:6}):'—';
 function clearError(){$('error').hidden=true;}
 function error(e){$('error').hidden=false;$('error').textContent=e.message||String(e);$('error').focus();}
@@ -140,7 +142,8 @@ const probePanel=mountProbePanel();
 mountProbePlanner(probePanel);
 
 mountSerialNoise(()=>notebook);
-periodicContrastPanel=mountPeriodicContrast(()=>notebook);
+periodicContrastPanel=mountPeriodicContrast(()=>notebook,{onInvalidate:()=>periodicCoursePanel?.invalidate()});
+periodicCoursePanel=mountPeriodicCourse(()=>periodicContrastPanel.getInputs());
 
 
 mountSerialOrders();
