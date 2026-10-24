@@ -76,13 +76,21 @@ try {
   await send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:download});
   await click('save');
   for(let i=0;i<60;i++){try{saved=await readFile(path.join(download,'worldlaw-stiffness-inputs.json'),'utf8');break;}catch{await delay(80);}}
-  assert.ok(saved);exported=JSON.parse(saved);assert.equal(exported.schema,'worldlaw.stiffness-notebook/v1');assert.ok(!('fit'in exported));
+  assert.ok(saved);exported=JSON.parse(saved);assert.equal(exported.schema,'worldlaw.stiffness-experiment/v1');
+  assert.equal(exported.initial.schema,'worldlaw.stiffness-notebook/v1');
+  assert.ok(!('fit'in exported)&&!('history'in exported)&&!('study'in exported)&&!('fit'in exported.initial));
+  assert.deepEqual(exported.acquisitions,[]);assert.equal(exported.pending,null);
   await example('linear');assert.equal(await evaljs("document.querySelector('#verdict').textContent"),'GLOBAL PREFERRED');
   await upload('source-file',saved);await wait("document.querySelector('#verdict').textContent==='PIECEWISE PREFERRED'");
+  // The maintained notebook-v1 format remains an actual file-input consumer.
+  await example('linear');assert.equal(await evaljs("document.querySelector('#verdict').textContent"),'GLOBAL PREFERRED');
+  await upload('source-file',JSON.stringify(exported.initial),'legacy-stiffness-notebook.json');
+  await wait("document.querySelector('#verdict').textContent==='PIECEWISE PREFERRED'");
+  assert.equal(await evaljs("document.querySelector('#experiment-history').dataset.acquisitionCount"),'0');
  });
  await check('separately supplied bad checks change errors without changing fitted explanation',async()=>{
   const equation=await evaljs("document.querySelector('#equation').textContent");
-  const data={observations:exported.dataset.heldOut.map(r=>({...r,jointTorque:100})),source:{label:'Independent declared challenge'}};
+  const data={observations:exported.initial.dataset.heldOut.map(r=>({...r,jointTorque:100})),source:{label:'Independent declared challenge'}};
   await upload('check-file',JSON.stringify(data));await wait("document.querySelector('#comparison-body').textContent.includes('100')");
   assert.equal(await evaljs("document.querySelector('#equation').textContent"),equation);
   assert.equal(await evaljs("document.querySelector('#verdict').textContent"),'PIECEWISE PREFERRED');
@@ -98,6 +106,10 @@ try {
  await check('input refusal and claimed-result tampering preserve the current valid study',async()=>{
   await upload('source-file',saved);await wait("document.querySelector('#verdict').textContent==='PIECEWISE PREFERRED'");
   const bad=JSON.parse(saved);bad.fit={status:'verified'};await upload('source-file',JSON.stringify(bad));
+  await wait("document.querySelector('#error').textContent.includes('unsupported field')");
+  assert.equal(await evaljs("document.querySelector('#verdict').textContent"),'PIECEWISE PREFERRED');
+  const badLegacy=structuredClone(exported.initial);badLegacy.fit={status:'verified'};
+  await upload('source-file',JSON.stringify(badLegacy),'malicious-legacy-notebook.json');
   await wait("document.querySelector('#error').textContent.includes('input-only')");
   assert.equal(await evaljs("document.querySelector('#verdict').textContent"),'PIECEWISE PREFERRED');
   await evaljs("document.querySelector('#knots').value='0,,1';document.querySelector('#settings').requestSubmit()");
@@ -105,7 +117,7 @@ try {
   assert.equal(await evaljs("document.querySelector('#verdict').textContent"),'PIECEWISE PREFERRED');
  });
  await check('unidentifiable declared nuisance columns refuse visibly without substitution',async()=>{
-  const bad=JSON.parse(saved);bad.dataset.observations.forEach(r=>{r.command=0;r.rate=0;});
+  const bad=JSON.parse(saved);bad.initial.dataset.observations.forEach(r=>{r.command=0;r.rate=0;});
   await upload('source-file',JSON.stringify(bad));await wait("document.querySelector('#verdict').textContent==='UNIDENTIFIABLE'");
   assert.match(await evaljs("document.querySelector('#profile-body').textContent"),/rank deficient/);
  });
@@ -148,3 +160,4 @@ try {
  try{ws?.close();}catch{}chrome.kill('SIGTERM');await delay(400);
  await rm(dir,{recursive:true,force:true}).catch(()=>{});await new Promise(resolve=>server.close(resolve));
 }
+

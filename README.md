@@ -205,6 +205,15 @@ the actual fitted models. A fitted kink does not establish contact topology,
 physical stiffness or causation. See [the mechanism, evidence and receiving
 limits](docs/STIFFNESS_LAB.md).
 
+The same lab can now run a sequential experiment: declare finite input states,
+inspect the training-model forecast spread, freeze a request, receive a separately
+labelled reading, score its earlier forecasts and refit. The complete input-only
+experiment saves and reopens its original training, acquired observations and
+pending request. Separate checks remain excluded from planning; input declarations
+stay fixed after the first acquisition. Explicit authored courses demonstrate
+both narrowing ambiguity and an omitted smooth response. See [sequential stiffness
+experiments](docs/STIFFNESS_EXPERIMENTS.md).
+
 ```sh
 node --test tests/stiffness.test.mjs
 BROWSER_ARTIFACT_DIR=/tmp/worldlaw-stiffness-receipts node scripts/stiffness-browser.mjs

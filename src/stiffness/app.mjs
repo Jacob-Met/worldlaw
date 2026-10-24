@@ -1,10 +1,13 @@
 import {parseObservationText, MAX_TEXT_LENGTH} from '../data.mjs';
-import {createStiffnessStudy,replaceStiffnessChecks,exportStiffnessStudy,importStiffnessStudy,NOTEBOOK_SCHEMA} from './notebook.mjs';
+import {createStiffnessStudy,importStiffnessStudy,NOTEBOOK_SCHEMA} from './notebook.mjs';
 import {defaultKnots,predictStiffness,evaluateStiffness} from './science.mjs';
 import {stiffnessExample,exampleSettings} from './fixture.mjs';
+import {EXPERIMENT_SCHEMA,importStiffnessExperiment,exportStiffnessExperiment} from './experiment.mjs';
+import {createExperimentPanel} from './experiment-panel.mjs';
 const $=id=>document.getElementById(id);
 const num=(n,d=4)=>n===null||n===undefined?'unavailable':Number(n.toPrecision(d)).toString();
 let study=null,inspected=null,epoch=0,view='response';
+const experimentPanel=createExperimentPanel({onChange:next=>install(next.study),onActivity:()=>{epoch++;},onError:fail});
 const NS='http://www.w3.org/2000/svg';
 function shape(tag,attrs,text){
  const n=document.createElementNS(NS,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));
@@ -115,11 +118,11 @@ function renderPlot(){
   ' checks. Comparison errors use every complete source state. View stays within training angles.';
 }
 function fail(error){$('error').textContent=error.message||String(error);}
-$('load-example').addEventListener('click',()=>{epoch++;try{install(createStiffnessStudy(stiffnessExample($('example-kind').value),exampleSettings()));}catch(e){fail(e);}});
+$('load-example').addEventListener('click',()=>{epoch++;try{experimentPanel.startStudy(createStiffnessStudy(stiffnessExample($('example-kind').value),exampleSettings()));}catch(e){fail(e);}});
 $('settings').addEventListener('submit',e=>{e.preventDefault();epoch++;try{
  const tokens=$('knots').value.split(',').map(x=>x.trim());if(tokens.some(x=>!x))throw new Error('Declare comma-separated angles without empty entries.');
  const knots=tokens.map(x=>{if(!/^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(x))throw new Error('Every change angle must be a decimal number.');return Number(x);});
- install(createStiffnessStudy(study.dataset,{knots,nuisanceTerms:['bias','command','rate'].filter(id=>$(id).checked),
+ experimentPanel.startStudy(createStiffnessStudy(study.dataset,{knots,nuisanceTerms:['bias','command','rate'].filter(id=>$(id).checked),
   noiseSigma:Number($('noise').value),ambiguityDelta:Number($('delta').value)}));
 }catch(error){fail(error);}});
 for(const id of ['source-file','check-file'])$(id).addEventListener('change',async e=>{
@@ -127,19 +130,18 @@ for(const id of ['source-file','check-file'])$(id).addEventListener('change',asy
  try{
   if(file.size>MAX_TEXT_LENGTH)throw new Error('Select a file smaller than 2 MB.');
   const content=await file.text();if(ticket!==epoch)return;
-  let next;
-  if(id==='check-file')next=replaceStiffnessChecks(study,parseObservationText(content,file.name));
+  if(id==='check-file')experimentPanel.replaceChecks(parseObservationText(content,file.name));
   else {
    let parsed=null;try{parsed=JSON.parse(content);}catch{}
-   if(parsed?.schema===NOTEBOOK_SCHEMA)next=importStiffnessStudy(content);
-   else {const dataset=parseObservationText(content,file.name);next=createStiffnessStudy(dataset,
-    {...study.settings,knots:defaultKnots(dataset.observations)});}
+   if(parsed?.schema===EXPERIMENT_SCHEMA)experimentPanel.install(importStiffnessExperiment(content));
+   else if(parsed?.schema===NOTEBOOK_SCHEMA)experimentPanel.startStudy(importStiffnessStudy(content));
+   else {const dataset=parseObservationText(content,file.name);experimentPanel.startStudy(createStiffnessStudy(dataset,
+    {...study.settings,knots:defaultKnots(dataset.observations)}));}
   }
-  if(ticket===epoch)install(next);
  }catch(error){if(ticket===epoch)fail(error);}finally{e.target.value='';}
 });
 $('save').addEventListener('click',()=>{try{
- const blob=new Blob([exportStiffnessStudy(study)],{type:'application/json'});
+ const blob=new Blob([exportStiffnessExperiment(experimentPanel.getSession())],{type:'application/json'});
  const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='worldlaw-stiffness-inputs.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }catch(e){fail(e);}});
 for(const id of ['slice-command','slice-rate','probe-angle'])$(id).addEventListener('input',()=>{try{renderPlot();}catch(e){fail(e);}});
@@ -147,4 +149,5 @@ for(const [id,value]of [['response-view','response'],['gauge-view','gauge']])$(i
  view=value;$('response-view').setAttribute('aria-pressed',String(view==='response'));$('gauge-view').setAttribute('aria-pressed',String(view==='gauge'));renderPlot();
 });
 window.addEventListener('resize',()=>{try{renderPlot();}catch(e){fail(e);}});
-install(createStiffnessStudy(stiffnessExample(),exampleSettings()));
+experimentPanel.startStudy(createStiffnessStudy(stiffnessExample(),exampleSettings()));
+
