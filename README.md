@@ -256,3 +256,7 @@ The Studio can separately search for one bounded training-reading perturbation t
 ## Receive a closed two-coordinate path
 
 In Coupling Lab, **Take the response around a closed path** compares supplied paired-angle/torque readings with every fitted affine law using signed polygonal work. Inspect the numbered loop, shared reading-error bounds, model disagreements and coordinate extrapolation. Input-only save/reopen retains the original training and path without refitting on receiving evidence. The nonlinear conservative control exposes a quadrature artifact; nonzero polygonal work does not prove dissipation. See [the circulation contract](docs/COUPLED_CIRCULATION.md).
+
+### Inspect what integrated work hides
+
+After a coupled-loop comparison, **Inspect responses hidden by integrated work** confronts every individual torque reading with the retained fixed models. It preserves explicit contradictions that cancel in the signed integral, identifies symmetric affine fields that no closed-work probe can separate, and shows the maintained training-only point proposal as a different observable. It reuses the same source inputs without refitting or treating the two summaries as independent evidence. See [the observable comparison](docs/COUPLING_OBSERVABLES.md).
