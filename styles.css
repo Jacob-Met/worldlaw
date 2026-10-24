@@ -44,3 +44,12 @@
 
 /* The refinement declaration shares the instrument's readable input layout. */
 #input-enclosures select{display:block;width:100%;max-width:100%;min-height:40px;margin-top:.25rem;padding:.35rem .5rem;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px}
+
+/* Coefficient sensitivity remains legible inside the existing residual panel. */
+#parameter-sensitivity{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);overflow-wrap:anywhere}
+#parameter-sensitivity h3{font-size:16px;line-height:1.45;margin-bottom:12px}
+#parameter-sensitivity p,#parameter-sensitivity li,#parameter-sensitivity label{font-size:14px;line-height:1.6;color:var(--ink)}
+#parameter-sensitivity button{min-height:40px;max-width:100%;white-space:normal;margin:10px 0;padding:.5rem .75rem}
+#parameter-sensitivity ul{padding-left:24px}#parameter-sensitivity li{margin:14px 0}
+#parameter-sensitivity summary{display:list-item;list-style:disclosure-closed;font-size:14px;line-height:1.6;padding:5px 0;color:var(--forest);text-decoration:underline;text-underline-offset:3px}
+#parameter-sensitivity details[open]>summary{list-style:disclosure-open}
