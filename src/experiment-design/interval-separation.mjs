@@ -8,8 +8,8 @@ export function screenIntervalPairs(predictions, contrastRadius) {
  }
  return pairs;
 }
-export function selectSeparatingCandidate(candidates, coordinateKey) {
+export function selectSeparatingCandidate(candidates, coordinateKey, costKey='costSeconds') {
  const eligible=candidates.filter(c=>c.withinBudget&&c.separated>0).sort((a,b)=>
-  Number(b.allSeparated)-Number(a.allSeparated)||b.separated-a.separated||a.costSeconds-b.costSeconds||a[coordinateKey]-b[coordinateKey]);
+  Number(b.allSeparated)-Number(a.allSeparated)||b.separated-a.separated||a[costKey]-b[costKey]||a[coordinateKey]-b[coordinateKey]);
  return eligible[0]??null;
 }
