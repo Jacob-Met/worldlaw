@@ -33,7 +33,7 @@ export function responseRegionVertices(center,generators){
  for(const sign of [1,-1])for(const g of half){point=point.map((x,a)=>x+sign*2*g[a]);vertices.push([...point]);}
  requireThat(vertices.flat().every(Number.isFinite),'Response-region drawing became nonfinite.');return vertices;
 }
-function screen(center,generators,observation,readingRadius){
+export function screenResponseRegion(center,generators,observation,readingRadius,sourceMagnitude=1){
  const all=[...generators,[readingRadius[0],0],[0,readingRadius[1]]],residual=observation.map((x,a)=>x-center[a]);
  const directions=[[1,0],[0,1]];
  for(const g of all){const norm=Math.hypot(...g);requireThat(Number.isFinite(norm),'Response generator became nonfinite.');if(norm)directions.push([-g[1]/norm,g[0]/norm]);}
@@ -42,7 +42,7 @@ function screen(center,generators,observation,readingRadius){
   const signed=dot(direction,residual),normal=direction.map(x=>x*(signed<0?-1:1));
   const products=all.map(g=>dot(normal,g)),support=sumAbs(products),gap=Math.abs(signed)-support;
   // Preserve pre-cancellation source/evaluation magnitudes in the screen.
-  const scale=Math.max(1,...center.map(Math.abs),...observation.map(Math.abs),all.reduce((s,g)=>s+Math.abs(normal[0]*g[0])+Math.abs(normal[1]*g[1]),0));
+  const scale=Math.max(1,sourceMagnitude,...center.map(Math.abs),...observation.map(Math.abs),all.reduce((s,g)=>s+Math.abs(normal[0]*g[0])+Math.abs(normal[1]*g[1]),0));
   const numericalTolerance=512*Number.EPSILON*scale;
   requireThat([support,gap,numericalTolerance,...products].every(Number.isFinite),'Response support arithmetic became nonfinite.');
   if(!witness||gap-numericalTolerance>witness.gap-witness.numericalTolerance)witness={normal,support,gap,numericalTolerance,trainingSigns:products.slice(0,generators.length).map(x=>Math.sign(x))};
@@ -71,7 +71,7 @@ export function inspectCoupledResponseRegions(rawNotebook,rawPath,trainingRadius
     const center=[0,1].map(axis=>features.reduce((s,f,j)=>s+f[axis]*operator.fit.coefficients[j],0));
     const generators=operator.target.map((_,i)=>weights.map(w=>w[i]*trainingRadius));
     requireThat([...center,...weights.flat(),...generators.flat()].every(Number.isFinite),'Response influence arithmetic became nonfinite.');
-    const result=screen(center,generators,row.torque,row.torqueRadius);
+    const result=screenResponseRegion(center,generators,row.torque,row.torqueRadius);
     const marginalTolerance=512*Number.EPSILON*Math.max(1,...center.map(Math.abs),...row.torque.map(Math.abs),...result.marginalRadii);
     return {index,q:[...row.q],observed:[...row.torque],readingRadius:[...row.torqueRadius],center,generators,...result,
      marginalStatus:result.marginalGaps.map(g=>g>marginalTolerance?'outside':g>=-marginalTolerance?'numerical-boundary':'not-excluded'),
