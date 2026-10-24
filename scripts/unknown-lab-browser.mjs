@@ -90,6 +90,13 @@ try {
  const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
  if(outputDir)await writeFile(path.join(outputDir,'worldlaw-unknown-lab-mobile.png'),Buffer.from(shot.data,'base64'));
  await check('browser isolation and script errors',async()=>{assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);});
+ await send('Page.navigate',{url:new URL('/',origin).href});
+ await wait("document.querySelector('#sample-count')?.textContent!=='—' && !!document.querySelector('a[href=\"/unknown-lab.html\"]')");
+ await check('original Discovery Studio remains usable at 390px with Unknown Lab navigation',async()=>{
+  const x=await evaljs("({href:document.querySelector('a[href=\"/unknown-lab.html\"]')?.getAttribute('href'),count:document.querySelector('#sample-count')?.textContent,scroll:document.documentElement.scrollWidth,width:window.innerWidth})");
+  assert.equal(x.href,'/unknown-lab.html');assert.ok(Number(x.count)>0);
+  assert.ok(x.scroll<=x.width+1,JSON.stringify(x));
+ });
  console.log(JSON.stringify({checks:out.length,pass:out.every(x=>x.passed),events,browserExecutable:process.env.BROWSER_EXECUTABLE_PATH||'/usr/local/bin/google-chrome',mobileScreenshot:!!outputDir},null,2));
 }finally{
  try{ws?.close();}catch{}
