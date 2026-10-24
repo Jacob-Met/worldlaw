@@ -1,0 +1,3194 @@
+
+> worldlaw@0.1.0 verify
+> npm test && npm run smoke && npm run smoke:trajectory
+
+
+> worldlaw@0.1.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: a frozen shifted coordinate predicts changed release with original recorded angles
+ok 1 - a frozen shifted coordinate predicts changed release with original recorded angles
+  ---
+  duration_ms: 94.171259
+  type: 'test'
+  ...
+# Subtest: unshifted data pays no needless offset parameter and remains preferred
+ok 2 - unshifted data pays no needless offset parameter and remains preferred
+  ---
+  duration_ms: 61.948629
+  type: 'test'
+  ...
+# Subtest: challenge changes cannot alter candidate coefficients, ranking or selected coordinate
+ok 3 - challenge changes cannot alter candidate coefficients, ranking or selected coordinate
+  ---
+  duration_ms: 110.491676
+  type: 'test'
+  ...
+# Subtest: spring plus bias retains equivalent coordinates instead of certifying calibration
+ok 4 - spring plus bias retains equivalent coordinates instead of certifying calibration
+  ---
+  duration_ms: 13.545532
+  type: 'test'
+  ...
+# Subtest: wrong restoring library retains mismatch; endpoint winner stays a boundary
+ok 5 - wrong restoring library retains mismatch; endpoint winner stays a boundary
+  ---
+  duration_ms: 30.026602
+  type: 'test'
+  ...
+# Subtest: reopen recomputes claims and rejects copied evidence, malformed settings and forged results
+ok 6 - reopen recomputes claims and rejects copied evidence, malformed settings and forged results
+  ---
+  duration_ms: 104.025033
+  type: 'test'
+  ...
+# Subtest: stationary motion leaves offset unresolved and solver budget failures visible
+ok 7 - stationary motion leaves offset unresolved and solver budget failures visible
+  ---
+  duration_ms: 30.11128
+  type: 'test'
+  ...
+# Subtest: analytic viscous oscillator recovers work coefficient with sampled endpoint kinetic correction
+ok 8 - analytic viscous oscillator recovers work coefficient with sampled endpoint kinetic correction
+  ---
+  duration_ms: 83.218195
+  type: 'test'
+  ...
+# Subtest: analytic Coulomb half-cycles recover coefficient without supplying rate observations
+ok 9 - analytic Coulomb half-cycles recover coefficient without supplying rate observations
+  ---
+  duration_ms: 82.148338
+  type: 'test'
+  ...
+# Subtest: conservative oscillator yields negligible inferred loss and exposes unsupported joint coefficients
+ok 10 - conservative oscillator yields negligible inferred loss and exposes unsupported joint coefficients
+  ---
+  duration_ms: 40.040121
+  type: 'test'
+  ...
+# Subtest: quantized contiguous maximum plateau has an explicit endpoint rule and interval
+ok 11 - quantized contiguous maximum plateau has an explicit endpoint rule and interval
+  ---
+  duration_ms: 45.080286
+  type: 'test'
+  ...
+# Subtest: no cycles, undersampling and unresolved disjoint maxima retain refusals
+ok 12 - no cycles, undersampling and unresolved disjoint maxima retain refusals
+  ---
+  duration_ms: 13.144551
+  type: 'test'
+  ...
+# Subtest: fitting ignores all receiving positions and export replays the executable population
+ok 13 - fitting ignores all receiving positions and export replays the executable population
+  ---
+  duration_ms: 268.018256
+  type: 'test'
+  ...
+# Subtest: complete coarse/refined receiving reservation refuses every declared model without survivor metrics
+ok 14 - complete coarse/refined receiving reservation refuses every declared model without survivor metrics
+  ---
+  duration_ms: 117.121912
+  type: 'test'
+  ...
+# Subtest: existing drag, incompatible units, copied evidence and invalid declarations refuse
+ok 15 - existing drag, incompatible units, copied evidence and invalid declarations refuse
+  ---
+  duration_ms: 24.335651
+  type: 'test'
+  ...
+# Subtest: physical reused-data disagreement and joint boundary remain visible; no winner selected
+ok 16 - physical reused-data disagreement and joint boundary remain visible; no winner selected
+  ---
+  duration_ms: 129.100502
+  type: 'test'
+  ...
+# Subtest: every declared trailing window recovers analytic cubic endpoint rate without torque scale
+ok 17 - every declared trailing window recovers analytic cubic endpoint rate without torque scale
+  ---
+  duration_ms: 2.314886
+  type: 'test'
+  ...
+# Subtest: late observations, mismatched endpoint, duplicate clocks and invalid windows refuse
+ok 18 - late observations, mismatched endpoint, duplicate clocks and invalid windows refuse
+  ---
+  duration_ms: 0.548264
+  type: 'test'
+  ...
+# Subtest: insufficient declared windows remain unavailable, never silently dropped
+ok 19 - insufficient declared windows remain unavailable, never silently dropped
+  ---
+  duration_ms: 1.698678
+  type: 'test'
+  ...
+# Subtest: longer noiseless harmonic windows can be biased beyond conditional noise sigma
+ok 20 - longer noiseless harmonic windows can be biased beyond conditional noise sigma
+  ---
+  duration_ms: 0.449896
+  type: 'test'
+  ...
+# Subtest: input custody is copied and optional conditional sigma never comes from sensor rate
+ok 21 - input custody is copied and optional conditional sigma never comes from sensor rate
+  ---
+  duration_ms: 1.188336
+  type: 'test'
+  ...
+# Subtest: sparse arrays refuse as incomplete measurements or declarations
+ok 22 - sparse arrays refuse as incomplete measurements or declarations
+  ---
+  duration_ms: 0.287188
+  type: 'test'
+  ...
+# Subtest: conditional noise scale agrees with an independent IID Gaussian cubic experiment
+ok 23 - conditional noise scale agrees with an independent IID Gaussian cubic experiment
+  ---
+  duration_ms: 41.123821
+  type: 'test'
+  ...
+# Subtest: unrepresentable derivative or noise gain remains an explicit unavailable window
+ok 24 - unrepresentable derivative or noise gain remains an explicit unavailable window
+  ---
+  duration_ms: 0.267087
+  type: 'test'
+  ...
+# Subtest: independent inertias execute analytic oscillators with nonzero starting rates
+ok 25 - independent inertias execute analytic oscillators with nonzero starting rates
+  ---
+  duration_ms: 53.089574
+  type: 'test'
+  ...
+# Subtest: coupled normal modes transfer motion into the initially still coordinate
+ok 26 - coupled normal modes transfer motion into the initially still coordinate
+  ---
+  duration_ms: 33.212896
+  type: 'test'
+  ...
+# Subtest: bias and unequal inertia preserve an independently solved static equilibrium
+ok 27 - bias and unequal inertia preserve an independently solved static equilibrium
+  ---
+  duration_ms: 12.484928
+  type: 'test'
+  ...
+# Subtest: declared damping follows the analytic damped oscillator and removes mechanical energy
+ok 28 - declared damping follows the analytic damped oscillator and removes mechanical energy
+  ---
+  duration_ms: 26.530005
+  type: 'test'
+  ...
+# Subtest: a directional response is integrated simultaneously rather than as independent scalar runs
+ok 29 - a directional response is integrated simultaneously rather than as independent scalar runs
+  ---
+  duration_ms: 6.581626
+  type: 'test'
+  ...
+# Subtest: coarse/fine disagreement stays visible rather than being called a screened prediction
+ok 30 - coarse/fine disagreement stays visible rather than being called a screened prediction
+  ---
+  duration_ms: 4.034875
+  type: 'test'
+  ...
+# Subtest: unstable runaway retains a failure and last finite output instead of a completed trajectory
+ok 31 - unstable runaway retains a failure and last finite output instead of a completed trajectory
+  ---
+  duration_ms: 0.338577
+  type: 'test'
+  ...
+# Subtest: the complete comparison reserves both resolutions for every model before work
+ok 32 - the complete comparison reserves both resolutions for every model before work
+  ---
+  duration_ms: 70.635596
+  type: 'test'
+  ...
+# Subtest: observed-range departure and absent range are explicit and never clamped
+ok 33 - observed-range departure and absent range are explicit and never clamped
+  ---
+  duration_ms: 44.446869
+  type: 'test'
+  ...
+# Subtest: source inputs and compared model values are not mutated
+ok 34 - source inputs and compared model values are not mutated
+  ---
+  duration_ms: 8.174833
+  type: 'test'
+  ...
+# Subtest: held-aside challenge values never select or alter conditional trajectories
+ok 35 - held-aside challenge values never select or alter conditional trajectories
+  ---
+  duration_ms: 69.318457
+  type: 'test'
+  ...
+# Subtest: dynamics notebook retains only declared inputs and recomputes the current models on reopen
+ok 36 - dynamics notebook retains only declared inputs and recomputes the current models on reopen
+  ---
+  duration_ms: 53.474265
+  type: 'test'
+  ...
+# Subtest: unsupported physical declarations, malformed units and invalid numerical controls are refused
+ok 37 - unsupported physical declarations, malformed units and invalid numerical controls are refused
+  ---
+  duration_ms: 0.704452
+  type: 'test'
+  ...
+# Subtest: independent analytic independent law selects its structure and coefficients
+ok 38 - independent analytic independent law selects its structure and coefficients
+  ---
+  duration_ms: 8.28478
+  type: 'test'
+  ...
+# Subtest: independent analytic reciprocal law selects its structure and coefficients
+ok 39 - independent analytic reciprocal law selects its structure and coefficients
+  ---
+  duration_ms: 3.959775
+  type: 'test'
+  ...
+# Subtest: independent analytic directional law selects its structure and coefficients
+ok 40 - independent analytic directional law selects its structure and coefficients
+  ---
+  duration_ms: 3.85536
+  type: 'test'
+  ...
+# Subtest: unchanged collinear evidence cannot identify cross terms; new permitted pilot restores rank
+ok 41 - unchanged collinear evidence cannot identify cross terms; new permitted pilot restores rank
+  ---
+  duration_ms: 4.959686
+  type: 'test'
+  ...
+# Subtest: constant two-coordinate data retains unidentifiable models without fabricated coefficients
+ok 42 - constant two-coordinate data retains unidentifiable models without fabricated coefficients
+  ---
+  duration_ms: 0.369675
+  type: 'test'
+  ...
+# Subtest: unoffered nonlinear law remains a residual failure
+ok 43 - unoffered nonlinear law remains a residual failure
+  ---
+  duration_ms: 3.215799
+  type: 'test'
+  ...
+# Subtest: two independently acquired probes revise reciprocal structure while preserving first-probe loss
+ok 44 - two independently acquired probes revise reciprocal structure while preserving first-probe loss
+  ---
+  duration_ms: 9.345447
+  type: 'test'
+  ...
+# Subtest: directional instrument can reject reciprocity; diagonal negative control keeps no-coupling family
+ok 45 - directional instrument can reject reciprocity; diagonal negative control keeps no-coupling family
+  ---
+  duration_ms: 13.689189
+  type: 'test'
+  ...
+# Subtest: separate-check counterfactual cannot change fitting, ranking, proposals or frozen revision history
+ok 46 - separate-check counterfactual cannot change fitting, ranking, proposals or frozen revision history
+  ---
+  duration_ms: 2.916665
+  type: 'test'
+  ...
+# Subtest: JSON replay recomputes from inputs and refuses renamed evidence reuse
+ok 47 - JSON replay recomputes from inputs and refuses renamed evidence reuse
+  ---
+  duration_ms: 16.609192
+  type: 'test'
+  ...
+# Subtest: matched input, units and quasi-static declaration are mandatory and invalid edits are atomic
+ok 48 - matched input, units and quasi-static declaration are mandatory and invalid edits are atomic
+  ---
+  duration_ms: 2.296773
+  type: 'test'
+  ...
+# Subtest: no separate observations means absent error, not perfect validation
+ok 49 - no separate observations means absent error, not perfect validation
+  ---
+  duration_ms: 0.800782
+  type: 'test'
+  ...
+# Subtest: caller permission is an explicit finite set, never silently expanded
+ok 50 - caller permission is an explicit finite set, never silently expanded
+  ---
+  duration_ms: 6.730288
+  type: 'test'
+  ...
+# Subtest: source class and supplied references survive measured import without oracle promotion
+ok 51 - source class and supplied references survive measured import without oracle promotion
+  ---
+  duration_ms: 0.634288
+  type: 'test'
+  ...
+# Subtest: identity and size bounds prevent unbounded replay
+ok 52 - identity and size bounds prevent unbounded replay
+  ---
+  duration_ms: 3.248095
+  type: 'test'
+  ...
+# Subtest: full-rank but unexecutable coefficient scales do not become an uninformative success
+ok 53 - full-rank but unexecutable coefficient scales do not become an uninformative success
+  ---
+  duration_ms: 2.391792
+  type: 'test'
+  ...
+# Subtest: cubic term repairs a known omitted restoring law on an independent changed-amplitude release
+ok 54 - cubic term repairs a known omitted restoring law on an independent changed-amplitude release
+  ---
+  duration_ms: 417.488994
+  type: 'test'
+  ...
+# Subtest: absence of cubic does not force a needless term and old defaults stay explicit
+ok 55 - absence of cubic does not force a needless term and old defaults stay explicit
+  ---
+  duration_ms: 244.676365
+  type: 'test'
+  ...
+# Subtest: cubic executes with correct sign and units through shared torque and angular integral paths
+ok 56 - cubic executes with correct sign and units through shared torque and angular integral paths
+  ---
+  duration_ms: 16.649352
+  type: 'test'
+  ...
+# Subtest: both library winners remain training-only and input-only reopen recomputes ablation
+ok 57 - both library winners remain training-only and input-only reopen recomputes ablation
+  ---
+  duration_ms: 287.595205
+  type: 'test'
+  ...
+# Subtest: shifted cubic is tested only in its declared coordinate and recovers a supported offset
+ok 58 - shifted cubic is tested only in its declared coordinate and recovers a supported offset
+  ---
+  duration_ms: 108.049161
+  type: 'test'
+  ...
+# Subtest: small motions retain competing explanations rather than certifying cubic
+ok 59 - small motions retain competing explanations rather than certifying cubic
+  ---
+  duration_ms: 9.14218
+  type: 'test'
+  ...
+# Subtest: adding cubic cannot silently repair an unsupported forcing law
+ok 60 - adding cubic cannot silently repair an unsupported forcing law
+  ---
+  duration_ms: 12.198687
+  type: 'test'
+  ...
+# Subtest: exact unequal spacings, equality, strict contradiction and monotone reversal
+ok 61 - exact unequal spacings, equality, strict contradiction and monotone reversal
+  ---
+  duration_ms: 6.441524
+  type: 'test'
+  ...
+# Subtest: torque boxes attain all eight exact rational corner values
+ok 62 - torque boxes attain all eight exact rational corner values
+  ---
+  duration_ms: 1.707303
+  type: 'test'
+  ...
+# Subtest: large common offsets, adjacent floats and subnormals retain exact decisions
+ok 63 - large common offsets, adjacent floats and subnormals retain exact decisions
+  ---
+  duration_ms: 1.542496
+  type: 'test'
+  ...
+# Subtest: deterministic mixed-scale boxes agree with independent rational interval oracle
+ok 64 - deterministic mixed-scale boxes agree with independent rational interval oracle
+  ---
+  duration_ms: 60.539459
+  type: 'test'
+  ...
+# Subtest: turning and repeated-angle triples cannot be treated as one smooth branch
+ok 65 - turning and repeated-angle triples cannot be treated as one smooth branch
+  ---
+  duration_ms: 0.32586
+  type: 'test'
+  ...
+# Subtest: maintained plan witness identities stay inside original directed spans and do not bridge jumps
+ok 66 - maintained plan witness identities stay inside original directed spans and do not bridge jumps
+  ---
+  duration_ms: 2.026186
+  type: 'test'
+  ...
+# Subtest: false curvature withholds continuous interpretation while preserving both polygons
+ok 67 - false curvature withholds continuous interpretation while preserving both polygons
+  ---
+  duration_ms: 4.380808
+  type: 'test'
+  ...
+# Subtest: declared rounding boxes retain the compatible authored controls
+ok 68 - declared rounding boxes retain the compatible authored controls
+  ---
+  duration_ms: 2.259218
+  type: 'test'
+  ...
+# Subtest: wide supplied reading boxes remove the necessary contradiction only
+ok 69 - wide supplied reading boxes remove the necessary contradiction only
+  ---
+  duration_ms: 0.774403
+  type: 'test'
+  ...
+# Subtest: partial and empty receiving preserves pending and branch custody
+ok 70 - partial and empty receiving preserves pending and branch custody
+  ---
+  duration_ms: 0.537483
+  type: 'test'
+  ...
+# Subtest: input-only replay ignores fabricated results and rejects stale acquisitions
+ok 71 - input-only replay ignores fabricated results and rejects stale acquisitions
+  ---
+  duration_ms: 3.713355
+  type: 'test'
+  ...
+# Subtest: bounded actual refinement separates branch work while conservative artifact stays enclosed
+ok 72 - bounded actual refinement separates branch work while conservative artifact stays enclosed
+  ---
+  duration_ms: 7.810539
+  type: 'test'
+  ...
+# Subtest: zero-angle jumps remain separate original rows and receive no requests
+ok 73 - zero-angle jumps remain separate original rows and receive no requests
+  ---
+  duration_ms: 0.785916
+  type: 'test'
+  ...
+# Subtest: deterministic greedy allocation matches exhaustive ideal small-budget objective
+ok 74 - deterministic greedy allocation matches exhaustive ideal small-budget objective
+  ---
+  duration_ms: 0.342812
+  type: 'test'
+  ...
+# Subtest: missing readings stay pending; duplicate, wrong angle and stale frozen input refuse
+ok 75 - missing readings stay pending; duplicate, wrong angle and stale frozen input refuse
+  ---
+  duration_ms: 5.046686
+  type: 'test'
+  ...
+# Subtest: budget and full declarations are bounded; zero curvature leaves unused budget
+ok 76 - budget and full declarations are bounded; zero curvature leaves unused budget
+  ---
+  duration_ms: 0.455416
+  type: 'test'
+  ...
+# Subtest: adjacent represented angles refuse midpoint acquisition rather than inventing samples
+ok 77 - adjacent represented angles refuse midpoint acquisition rather than inventing samples
+  ---
+  duration_ms: 0.287457
+  type: 'test'
+  ...
+# Subtest: wide actual reading bounds can leave a refined branch result inconclusive
+ok 78 - wide actual reading bounds can leave a refined branch result inconclusive
+  ---
+  duration_ms: 0.851981
+  type: 'test'
+  ...
+# Subtest: false curvature declaration demonstrates conditional guarantee, not inferred smoothness
+ok 79 - false curvature declaration demonstrates conditional guarantee, not inferred smoothness
+  ---
+  duration_ms: 0.182719
+  type: 'test'
+  ...
+# Subtest: 160 exact binary64 enclosure cases retain mixed scales, subnormals and 4096 samples
+ok 80 - 160 exact binary64 enclosure cases retain mixed scales, subnormals and 4096 samples
+  ---
+  duration_ms: 61.298728
+  type: 'test'
+  ...
+# Subtest: authored loop, conservative and uncertainty controls
+ok 81 - authored loop, conservative and uncertainty controls
+  ---
+  duration_ms: 2.011348
+  type: 'test'
+  ...
+# Subtest: ordering reverses work and common torque bias cancels
+ok 82 - ordering reverses work and common torque bias cancels
+  ---
+  duration_ms: 0.314498
+  type: 'test'
+  ...
+# Subtest: exact box corners agree with shared-observation bound
+ok 83 - exact box corners agree with shared-observation bound
+  ---
+  duration_ms: 1.934505
+  type: 'test'
+  ...
+# Subtest: turning observation weights cancel before bounding
+ok 84 - turning observation weights cancel before bounding
+  ---
+  duration_ms: 0.587607
+  type: 'test'
+  ...
+# Subtest: integration allowance can remove exclusion; input replay recomputes
+ok 85 - integration allowance can remove exclusion; input replay recomputes
+  ---
+  duration_ms: 0.340841
+  type: 'test'
+  ...
+# Subtest: refuses implied closure, units, missing assumptions and unobserved gaps
+ok 86 - refuses implied closure, units, missing assumptions and unobserved gaps
+  ---
+  duration_ms: 0.450057
+  type: 'test'
+  ...
+# Subtest: conservative nonlinear continuous law can produce nonzero polygonal work
+ok 87 - conservative nonlinear continuous law can produce nonzero polygonal work
+  ---
+  duration_ms: 0.198235
+  type: 'test'
+  ...
+# Subtest: UTF-8 cap counts bytes rather than characters
+ok 88 - UTF-8 cap counts bytes rather than characters
+  ---
+  duration_ms: 6.978078
+  type: 'test'
+  ...
+# Subtest: direct neighboring-position weight preserves tiny reversal coefficient
+ok 89 - direct neighboring-position weight preserves tiny reversal coefficient
+  ---
+  duration_ms: 0.362141
+  type: 'test'
+  ...
+# Subtest: total uses shared expression and exposes independently rounded ledger discrepancy
+ok 90 - total uses shared expression and exposes independently rounded ledger discrepancy
+  ---
+  duration_ms: 0.286061
+  type: 'test'
+  ...
+# Subtest: cancelling large weighted torques retain an uncancelled arithmetic guard
+ok 91 - cancelling large weighted torques retain an uncancelled arithmetic guard
+  ---
+  duration_ms: 0.127831
+  type: 'test'
+  ...
+# Subtest: integer oracle checks enclosure across large alternating weighted sums
+ok 92 - integer oracle checks enclosure across large alternating weighted sums
+  ---
+  duration_ms: 5.155341
+  type: 'test'
+  ...
+# Subtest: all nine declared starts follow independent oscillator solutions
+ok 93 - all nine declared starts follow independent oscillator solutions
+  ---
+  duration_ms: 49.954335
+  type: 'test'
+  ...
+# Subtest: later observations change only receiving; no grid point is selected or ranked
+ok 94 - later observations change only receiving; no grid point is selected or ranked
+  ---
+  duration_ms: 42.023944
+  type: 'test'
+  ...
+# Subtest: zero width retains exact nominal solver predictions and errors
+ok 95 - zero width retains exact nominal solver predictions and errors
+  ---
+  duration_ms: 4.637433
+  type: 'test'
+  ...
+# Subtest: wrong supplied rate can explain a mismatch without fitting the response
+ok 96 - wrong supplied rate can explain a mismatch without fitting the response
+  ---
+  duration_ms: 9.506944
+  type: 'test'
+  ...
+# Subtest: complete reservation refuses excess before output; malformed widths refused
+ok 97 - complete reservation refuses excess before output; malformed widths refused
+  ---
+  duration_ms: 2.685945
+  type: 'test'
+  ...
+# Subtest: unstable or step-sensitive variants remain visible and invalidate whole range
+ok 98 - unstable or step-sensitive variants remain visible and invalidate whole range
+  ---
+  duration_ms: 7.30206
+  type: 'test'
+  ...
+# Subtest: wrong physics remains outside a small declared initial-state grid
+ok 99 - wrong physics remains outside a small declared initial-state grid
+  ---
+  duration_ms: 20.256427
+  type: 'test'
+  ...
+# Subtest: joint dependence excludes a cancellation counterexample and refinement approaches analytic extrema
+ok 100 - joint dependence excludes a cancellation counterexample and refinement approaches analytic extrema
+  ---
+  duration_ms: 6.192465
+  type: 'test'
+  ...
+# Subtest: every row retains baseline when complete refinement reservation exceeds budget
+ok 101 - every row retains baseline when complete refinement reservation exceeds budget
+  ---
+  duration_ms: 1.158226
+  type: 'test'
+  ...
+# Subtest: mixed signed models, stationary points and domain endpoints retain independent sampled containment
+ok 102 - mixed signed models, stationary points and domain endpoints retain independent sampled containment
+  ---
+  duration_ms: 47.06757
+  type: 'test'
+  ...
+# Subtest: zero-width and non-position discontinuity behavior stays on maintained path
+ok 103 - zero-width and non-position discontinuity behavior stays on maintained path
+  ---
+  duration_ms: 0.385149
+  type: 'test'
+  ...
+# Subtest: declared state uncertainty changes exclusion while model stays fixed
+ok 104 - declared state uncertainty changes exclusion while model stays fixed
+  ---
+  duration_ms: 3.931943
+  type: 'test'
+  ...
+# Subtest: sign exact-zero, crossing and touching bounds remain distinct
+ok 105 - sign exact-zero, crossing and touching bounds remain distinct
+  ---
+  duration_ms: 0.480774
+  type: 'test'
+  ...
+# Subtest: dependency overbound does not establish an achievable torque
+ok 106 - dependency overbound does not establish an achievable torque
+  ---
+  duration_ms: 0.176841
+  type: 'test'
+  ...
+# Subtest: negative coefficients, sine extrema and polynomial intervals enclose sampled values
+ok 107 - negative coefficients, sine extrema and polynomial intervals enclose sampled values
+  ---
+  duration_ms: 0.575964
+  type: 'test'
+  ...
+# Subtest: invalid declaration and domain overflow refuse; empty remains empty
+ok 108 - invalid declaration and domain overflow refuse; empty remains empty
+  ---
+  duration_ms: 0.33627
+  type: 'test'
+  ...
+# Subtest: enlarging a declared box cannot shrink these prediction enclosures
+ok 109 - enlarging a declared box cannot shrink these prediction enclosures
+  ---
+  duration_ms: 1.527744
+  type: 'test'
+  ...
+# Subtest: all admitted terms retain nominal zero-radius predictions at endpoint extremes
+ok 110 - all admitted terms retain nominal zero-radius predictions at endpoint extremes
+  ---
+  duration_ms: 3.867552
+  type: 'test'
+  ...
+# Subtest: near-critical sine endpoint courses and increased radii retain containment
+ok 111 - near-critical sine endpoint courses and increased radii retain containment
+  ---
+  duration_ms: 1.305694
+  type: 'test'
+  ...
+# Subtest: calibrated exact coordinates reach existing discovery and retain source through session reopening
+ok 112 - calibrated exact coordinates reach existing discovery and retain source through session reopening
+  ---
+  duration_ms: 268.314648
+  type: 'test'
+  ...
+# Subtest: invalid coordinates, times, missing identity and incompatible declared units refuse atomically
+ok 113 - invalid coordinates, times, missing identity and incompatible declared units refuse atomically
+  ---
+  duration_ms: 11.980261
+  type: 'test'
+  ...
+# Subtest: rejected frames and explicit missing points stay gaps; derivative export cannot silently join segments
+ok 114 - rejected frames and explicit missing points stay gaps; derivative export cannot silently join segments
+  ---
+  duration_ms: 245.576856
+  type: 'test'
+  ...
+# Subtest: a missing-time interval and a physically implausible step split without inserting observations
+ok 115 - a missing-time interval and a physically implausible step split without inserting observations
+  ---
+  duration_ms: 8.066305
+  type: 'test'
+  ...
+# Subtest: manual correction replaces one timestamp and survives JSON reopening with original rejection revision
+ok 116 - manual correction replaces one timestamp and survives JSON reopening with original rejection revision
+  ---
+  duration_ms: 7.684786
+  type: 'test'
+  ...
+# Subtest: inertia, aligned command and explicit physics acknowledgement are required for torque export
+ok 117 - inertia, aligned command and explicit physics acknowledgement are required for torque export
+  ---
+  duration_ms: 36.333005
+  type: 'test'
+  ...
+# Subtest: plausible wrong pivot is a retained scientific counterexample, not a fake detectable input error
+ok 118 - plausible wrong pivot is a retained scientific counterexample, not a fake detectable input error
+  ---
+  duration_ms: 205.014576
+  type: 'test'
+  ...
+# Subtest: smoother derived evidence can fit better while its torque truth error grows
+ok 119 - smoother derived evidence can fit better while its torque truth error grows
+  ---
+  duration_ms: 32.811533
+  type: 'test'
+  ...
+# Subtest: unit event ordering: a pre-seek presentation stamp cannot label post-seek pixels
+ok 120 - unit event ordering: a pre-seek presentation stamp cannot label post-seek pixels
+  ---
+  duration_ms: 13.634725
+  type: 'test'
+  ...
+# Subtest: unit event ordering: cancellation removes callbacks and permits a new seek
+ok 121 - unit event ordering: cancellation removes callbacks and permits a new seek
+  ---
+  duration_ms: 8.364112
+  type: 'test'
+  ...
+# Subtest: unit event ordering: a valid target callback before seeked retains decoded timing
+ok 122 - unit event ordering: a valid target callback before seeked retains decoded timing
+  ---
+  duration_ms: 6.363742
+  type: 'test'
+  ...
+# Subtest: unit event ordering: absent frame callback support remains explicit nominal timing
+ok 123 - unit event ordering: absent frame callback support remains explicit nominal timing
+  ---
+  duration_ms: 6.932413
+  type: 'test'
+  ...
+# Subtest: notebook size overflow refuses an append atomically before returning invalid evidence
+ok 124 - notebook size overflow refuses an append atomically before returning invalid evidence
+  ---
+  duration_ms: 298.428199
+  type: 'test'
+  ...
+# Subtest: capture exposes fixed settings and freezes copied template samples
+ok 125 - capture exposes fixed settings and freezes copied template samples
+  ---
+  duration_ms: 3.787606
+  type: 'test'
+  ...
+# Subtest: integer translations and affine brightness changes are image observations
+ok 126 - integer translations and affine brightness changes are image observations
+  ---
+  duration_ms: 27.282843
+  type: 'test'
+  ...
+# Subtest: occlusion in textured noise is lost and never returns the prediction as an observation
+ok 127 - occlusion in textured noise is lost and never returns the prediction as an observation
+  ---
+  duration_ms: 5.916314
+  type: 'test'
+  ...
+# Subtest: a flat or transparent capture and a blank search are explicit low-texture states
+ok 128 - a flat or transparent capture and a blank search are explicit low-texture states
+  ---
+  duration_ms: 5.004424
+  type: 'test'
+  ...
+# Subtest: two identical displaced markers are ambiguous, including at zero configured margin
+ok 129 - two identical displaced markers are ambiguous, including at zero configured margin
+  ---
+  duration_ms: 9.392901
+  type: 'test'
+  ...
+# Subtest: a strong match at the artificial search boundary is not silently accepted
+ok 130 - a strong match at the artificial search boundary is not silently accepted
+  ---
+  duration_ms: 1.539037
+  type: 'test'
+  ...
+# Subtest: full-patch image edges are handled without padding or clamping observations
+ok 131 - full-patch image edges are handled without padding or clamping observations
+  ---
+  duration_ms: 1.258426
+  type: 'test'
+  ...
+# Subtest: changed frame geometry cannot silently produce coordinates in a different space
+ok 132 - changed frame geometry cannot silently produce coordinates in a different space
+  ---
+  duration_ms: 0.402602
+  type: 'test'
+  ...
+# Subtest: an affine image ramp has contrast but no identifiable patch location
+ok 133 - an affine image ramp has contrast but no identifiable patch location
+  ---
+  duration_ms: 9.126957
+  type: 'test'
+  ...
+# Subtest: subpixel refinement improves actual resampled NCC on smooth fractional translation
+ok 134 - subpixel refinement improves actual resampled NCC on smooth fractional translation
+  ---
+  duration_ms: 37.348812
+  type: 'test'
+  ...
+# Subtest: subpixel refinement can be disabled and fixed template does not adapt to target
+ok 135 - subpixel refinement can be disabled and fixed template does not adapt to target
+  ---
+  duration_ms: 9.881872
+  type: 'test'
+  ...
+# Subtest: a fractional user capture preserves its coordinate origin across subpixel phases
+ok 136 - a fractional user capture preserves its coordinate origin across subpixel phases
+  ---
+  duration_ms: 12.432843
+  type: 'test'
+  ...
+# Subtest: expensive option combinations are refused before the patch search
+ok 137 - expensive option combinations are refused before the patch search
+  ---
+  duration_ms: 1.831587
+  type: 'test'
+  ...
+# Subtest: malformed inputs are rejected before image loops or unbounded allocations
+ok 138 - malformed inputs are rejected before image loops or unbounded allocations
+  ---
+  duration_ms: 1.108875
+  type: 'test'
+  ...
+# Subtest: analytic symmetric spring and bias influence and independent box corners
+ok 139 - analytic symmetric spring and bias influence and independent box corners
+  ---
+  duration_ms: 2.924696
+  type: 'test'
+  ...
+# Subtest: each coefficient witness refits to its upper bound
+ok 140 - each coefficient witness refits to its upper bound
+  ---
+  duration_ms: 0.484461
+  type: 'test'
+  ...
+# Subtest: weak excitation exposes unstable parameters despite exact fit
+ok 141 - weak excitation exposes unstable parameters despite exact fit
+  ---
+  duration_ms: 0.30827
+  type: 'test'
+  ...
+# Subtest: rank deficiency, zero model, no rows and complete work refusal are explicit
+ok 142 - rank deficiency, zero model, no rows and complete work refusal are explicit
+  ---
+  duration_ms: 3.848587
+  type: 'test'
+  ...
+# Subtest: zero bound and row permutation preserve conditional coefficients
+ok 143 - zero bound and row permutation preserve conditional coefficients
+  ---
+  duration_ms: 0.490641
+  type: 'test'
+  ...
+# Subtest: refits inspected structure honestly and does not mutate caller inputs
+ok 144 - refits inspected structure honestly and does not mutate caller inputs
+  ---
+  duration_ms: 0.325831
+  type: 'test'
+  ...
+# Subtest: coefficient error amplification follows coordinate rescaling, without changing reading radius
+ok 145 - coefficient error amplification follows coordinate rescaling, without changing reading radius
+  ---
+  duration_ms: 0.357547
+  type: 'test'
+  ...
+# Subtest: identical coordinates expose a shared-reading contradiction hidden by marginal overlap
+ok 146 - identical coordinates expose a shared-reading contradiction hidden by marginal overlap
+  ---
+  duration_ms: 2.526499
+  type: 'test'
+  ...
+# Subtest: affine contrast combines signed influences before absolute values
+ok 147 - affine contrast combines signed influences before absolute values
+  ---
+  duration_ms: 0.53566
+  type: 'test'
+  ...
+# Subtest: all 256 corners obey the retained contrast envelope
+ok 148 - all 256 corners obey the retained contrast envelope
+  ---
+  duration_ms: 5.800716
+  type: 'test'
+  ...
+# Subtest: compact witness reconstructs independent refits reaching both endpoints
+ok 149 - compact witness reconstructs independent refits reaching both endpoints
+  ---
+  duration_ms: 0.853102
+  type: 'test'
+  ...
+# Subtest: receiving values cannot alter predicted contrast or training witness
+ok 150 - receiving values cannot alter predicted contrast or training witness
+  ---
+  duration_ms: 1.344864
+  type: 'test'
+  ...
+# Subtest: permuting two rows reverses the signed interval and keeps disposition
+ok 151 - permuting two rows reverses the signed interval and keeps disposition
+  ---
+  duration_ms: 0.417553
+  type: 'test'
+  ...
+# Subtest: common receiving bias cancels in contrasts without suppressing marginal rejection
+ok 152 - common receiving bias cancels in contrasts without suppressing marginal rejection
+  ---
+  duration_ms: 0.469367
+  type: 'test'
+  ...
+# Subtest: overlap of every pair is not promoted to joint feasibility
+ok 153 - overlap of every pair is not promoted to joint feasibility
+  ---
+  duration_ms: 0.41631
+  type: 'test'
+  ...
+# Subtest: receiving error and engineering boundary screen remain separate
+ok 154 - receiving error and engineering boundary screen remain separate
+  ---
+  duration_ms: 1.246531
+  type: 'test'
+  ...
+# Subtest: complete 128-row course retains every pair and compact witness
+ok 155 - complete 128-row course retains every pair and compact witness
+  ---
+  duration_ms: 26.605787
+  type: 'test'
+  ...
+# Subtest: rank, work, insufficient pairs and malformed inputs preserve explicit refusals
+ok 156 - rank, work, insufficient pairs and malformed inputs preserve explicit refusals
+  ---
+  duration_ms: 0.946112
+  type: 'test'
+  ...
+# Subtest: inputs remain unchanged
+ok 157 - inputs remain unchanged
+  ---
+  duration_ms: 0.242202
+  type: 'test'
+  ...
+# Subtest: shared reading influence retains interpolation cancellation and extrapolation exposure
+ok 158 - shared reading influence retains interpolation cancellation and extrapolation exposure
+  ---
+  duration_ms: 2.968435
+  type: 'test'
+  ...
+# Subtest: all 256 training-box corners stay in both receiving ranges
+ok 159 - all 256 training-box corners stay in both receiving ranges
+  ---
+  duration_ms: 5.705284
+  type: 'test'
+  ...
+# Subtest: each retained upper and lower witness attains its own scalar endpoint
+ok 160 - each retained upper and lower witness attains its own scalar endpoint
+  ---
+  duration_ms: 0.650844
+  type: 'test'
+  ...
+# Subtest: receiving outcomes never enter fit and receiving row order remains explicit
+ok 161 - receiving outcomes never enter fit and receiving row order remains explicit
+  ---
+  duration_ms: 1.005214
+  type: 'test'
+  ...
+# Subtest: touching boundaries remain numerically unresolved
+ok 162 - touching boundaries remain numerically unresolved
+  ---
+  duration_ms: 0.754473
+  type: 'test'
+  ...
+# Subtest: separate overlaps do not claim a jointly compatible perturbation
+ok 163 - separate overlaps do not claim a jointly compatible perturbation
+  ---
+  duration_ms: 0.355281
+  type: 'test'
+  ...
+# Subtest: common calibration offset shifts predictions without changing sensitivity
+ok 164 - common calibration offset shifts predictions without changing sensitivity
+  ---
+  duration_ms: 1.108263
+  type: 'test'
+  ...
+# Subtest: exact zero, zero-term model and empty receiving course stay explicit
+ok 165 - exact zero, zero-term model and empty receiving course stay explicit
+  ---
+  duration_ms: 0.420734
+  type: 'test'
+  ...
+# Subtest: rank and complete-work refusals never select a favorable subset
+ok 166 - rank and complete-work refusals never select a favorable subset
+  ---
+  duration_ms: 1.948087
+  type: 'test'
+  ...
+# Subtest: inputs are unchanged and malformed explicit radii are refused
+ok 167 - inputs are unchanged and malformed explicit radii are refused
+  ---
+  duration_ms: 1.204264
+  type: 'test'
+  ...
+# Subtest: roundoff screen retains the magnitude canceled inside shared influence
+ok 168 - roundoff screen retains the magnitude canceled inside shared influence
+  ---
+  duration_ms: 0.78235
+  type: 'test'
+  ...
+# Subtest: complete fixed structure set predicts each excluded training recording with independent analytic motion
+ok 169 - complete fixed structure set predicts each excluded training recording with independent analytic motion
+  ---
+  duration_ms: 151.110168
+  type: 'test'
+  ...
+# Subtest: separate challenge values cannot alter selection, fitted coefficients or free predictions
+ok 170 - separate challenge values cannot alter selection, fitted coefficients or free predictions
+  ---
+  duration_ms: 310.964103
+  type: 'test'
+  ...
+# Subtest: full experiment reservation refuses before offering a partial ranking
+ok 171 - full experiment reservation refuses before offering a partial ranking
+  ---
+  duration_ms: 0.928675
+  type: 'test'
+  ...
+# Subtest: shared recordings and copied raw evidence cannot masquerade as independent folds
+ok 172 - shared recordings and copied raw evidence cannot masquerade as independent folds
+  ---
+  duration_ms: 2.117321
+  type: 'test'
+  ...
+# Subtest: sparse fit and strict numeric-screen failures stay retained without silently promoting survivors across folds
+ok 173 - sparse fit and strict numeric-screen failures stay retained without silently promoting survivors across folds
+  ---
+  duration_ms: 36.483016
+  type: 'test'
+  ...
+# Subtest: explicit prelude rate improves known bad start without fitting later angles
+ok 174 - explicit prelude rate improves known bad start without fitting later angles
+  ---
+  duration_ms: 25.109485
+  type: 'test'
+  ...
+# Subtest: later challenge values cannot change rate estimate or either prediction
+ok 175 - later challenge values cannot change rate estimate or either prediction
+  ---
+  duration_ms: 11.68096
+  type: 'test'
+  ...
+# Subtest: window selection is explicit and notebook replays from raw inputs
+ok 176 - window selection is explicit and notebook replays from raw inputs
+  ---
+  duration_ms: 11.918414
+  type: 'test'
+  ...
+# Subtest: prelude endpoint and source contract refuse incompatible measurements
+ok 177 - prelude endpoint and source contract refuse incompatible measurements
+  ---
+  duration_ms: 0.303385
+  type: 'test'
+  ...
+# Subtest: comparison reserves original and all derived starts under one total budget
+ok 178 - comparison reserves original and all derived starts under one total budget
+  ---
+  duration_ms: 21.740435
+  type: 'test'
+  ...
+# Subtest: target run, evidence kind and declared recording identity must agree
+ok 179 - target run, evidence kind and declared recording identity must agree
+  ---
+  duration_ms: 0.350038
+  type: 'test'
+  ...
+# Subtest: cheapest complete separator wins over greatest disagreement, with all intervals retained
+ok 180 - cheapest complete separator wins over greatest disagreement, with all intervals retained
+  ---
+  duration_ms: 12.898936
+  type: 'test'
+  ...
+# Subtest: cost, budget and future precision alter the actual decision
+ok 181 - cost, budget and future precision alter the actual decision
+  ---
+  duration_ms: 18.63908
+  type: 'test'
+  ...
+# Subtest: exact boundary is not an all-outcome separating gap
+ok 182 - exact boundary is not an all-outcome separating gap
+  ---
+  duration_ms: 3.948597
+  type: 'test'
+  ...
+# Subtest: partial comparison remains explicit when two hypotheses coincide at offered state
+ok 183 - partial comparison remains explicit when two hypotheses coincide at offered state
+  ---
+  duration_ms: 1.774996
+  type: 'test'
+  ...
+# Subtest: no surviving or single surviving offered law is not silently a design decision
+ok 184 - no surviving or single surviving offered law is not silently a design decision
+  ---
+  duration_ms: 6.273653
+  type: 'test'
+  ...
+# Subtest: training-only contract and immutable inputs prevent later observations affecting planning
+ok 185 - training-only contract and immutable inputs prevent later observations affecting planning
+  ---
+  duration_ms: 7.342753
+  type: 'test'
+  ...
+# Subtest: bounded work and invalid declaration refusals
+ok 186 - bounded work and invalid declaration refusals
+  ---
+  duration_ms: 1.10576
+  type: 'test'
+  ...
+# Subtest: request export retains actual training and has no acquired challenge evidence
+ok 187 - request export retains actual training and has no acquired challenge evidence
+  ---
+  duration_ms: 4.356703
+  type: 'test'
+  ...
+# Subtest: request reopen recomputes from inputs and ignores forged cached recommendation
+ok 188 - request reopen recomputes from inputs and ignores forged cached recommendation
+  ---
+  duration_ms: 6.563862
+  type: 'test'
+  ...
+# Subtest: shared policy picks shortest full separation and independent acquisition discriminates models
+ok 189 - shared policy picks shortest full separation and independent acquisition discriminates models
+  ---
+  duration_ms: 40.542634
+  type: 'test'
+  ...
+# Subtest: budget retains partial/no-separation and every refused offered wait
+ok 190 - budget retains partial/no-separation and every refused offered wait
+  ---
+  duration_ms: 15.300157
+  type: 'test'
+  ...
+# Subtest: training-only proposal ignores future values and input request replay recomputes outputs
+ok 191 - training-only proposal ignores future values and input request replay recomputes outputs
+  ---
+  duration_ms: 26.214208
+  type: 'test'
+  ...
+# Subtest: changed training, settings or plan output refuse before acquired evidence is admitted
+ok 192 - changed training, settings or plan output refuse before acquired evidence is admitted
+  ---
+  duration_ms: 20.19838
+  type: 'test'
+  ...
+# Subtest: actual readout width/count/order failure is retained rather than called successful design
+ok 193 - actual readout width/count/order failure is retained rather than called successful design
+  ---
+  duration_ms: 24.718619
+  type: 'test'
+  ...
+# Subtest: authored oracle preserves new seeds across reopen; imported evidence cannot guess virtual instrument
+ok 194 - authored oracle preserves new seeds across reopen; imported evidence cannot guess virtual instrument
+  ---
+  duration_ms: 54.054769
+  type: 'test'
+  ...
+# Subtest: changed response can favor a different candidate; separation does not identify mechanism
+ok 195 - changed response can favor a different candidate; separation does not identify mechanism
+  ---
+  duration_ms: 21.355145
+  type: 'test'
+  ...
+# Subtest: shared separation keeps touching/negative intervals and applies two observation radii
+ok 196 - shared separation keeps touching/negative intervals and applies two observation radii
+  ---
+  duration_ms: 0.131572
+  type: 'test'
+  ...
+# Subtest: invalid future acquisition budgets and unbounded grids reject
+ok 197 - invalid future acquisition budgets and unbounded grids reject
+  ---
+  duration_ms: 12.672395
+  type: 'test'
+  ...
+# Subtest: separate recovery observations discriminate executable decaying response
+ok 198 - separate recovery observations discriminate executable decaying response
+  ---
+  duration_ms: 11.280918
+  type: 'test'
+  ...
+# Subtest: persistent and zero controls retain their own compatible structures
+ok 199 - persistent and zero controls retain their own compatible structures
+  ---
+  duration_ms: 7.902518
+  type: 'test'
+  ...
+# Subtest: challenge values cannot affect fit, forecast or declared amplitude range
+ok 200 - challenge values cannot affect fit, forecast or declared amplitude range
+  ---
+  duration_ms: 8.311588
+  type: 'test'
+  ...
+# Subtest: unbalanced training blocks every candidate, unbalanced challenge remains incomplete
+ok 201 - unbalanced training blocks every candidate, unbalanced challenge remains incomplete
+  ---
+  duration_ms: 3.994646
+  type: 'test'
+  ...
+# Subtest: qualified contradiction survives another unqualified challenge
+ok 202 - qualified contradiction survives another unqualified challenge
+  ---
+  duration_ms: 2.926435
+  type: 'test'
+  ...
+# Subtest: joint amplitude constraints catch inconsistent challenges despite individual overlap
+ok 203 - joint amplitude constraints catch inconsistent challenges despite individual overlap
+  ---
+  duration_ms: 2.294929
+  type: 'test'
+  ...
+# Subtest: renaming pairs/recordings and permuting rows does not permit reuse
+ok 204 - renaming pairs/recordings and permuting rows does not permit reuse
+  ---
+  duration_ms: 1.350921
+  type: 'test'
+  ...
+# Subtest: protocol, source, identity, delay and work bounds refuse before fitting
+ok 205 - protocol, source, identity, delay and work bounds refuse before fitting
+  ---
+  duration_ms: 1.660618
+  type: 'test'
+  ...
+# Subtest: input-only notebook replay reproduces every prediction without trusting result fields
+ok 206 - input-only notebook replay reproduces every prediction without trusting result fields
+  ---
+  duration_ms: 9.708383
+  type: 'test'
+  ...
+# Subtest: out-of-family responses keep no-candidate result; negative amplitude remains executable
+ok 207 - out-of-family responses keep no-candidate result; negative amplitude remains executable
+  ---
+  duration_ms: 3.286971
+  type: 'test'
+  ...
+# Subtest: late-only recordings refuse exponentially unexcited coefficients without nonfinite output
+ok 208 - late-only recordings refuse exponentially unexcited coefficients without nonfinite output
+  ---
+  duration_ms: 0.929809
+  type: 'test'
+  ...
+# Subtest: representative coefficient belongs to the simultaneous admissible range
+ok 209 - representative coefficient belongs to the simultaneous admissible range
+  ---
+  duration_ms: 1.374678
+  type: 'test'
+  ...
+# Subtest: large admitted notebook compact export reopens; aggregate byte overflow refuses
+ok 210 - large admitted notebook compact export reopens; aggregate byte overflow refuses
+  ---
+  duration_ms: 449.975301
+  type: 'test'
+  ...
+# Subtest: shared coordinate survives differing releases without changing pooled model
+ok 211 - shared coordinate survives differing releases without changing pooled model
+  ---
+  duration_ms: 265.927359
+  type: 'test'
+  ...
+# Subtest: disjoint supported coordinates expose run mismatch without declaring sensor drift
+ok 212 - disjoint supported coordinates expose run mismatch without declaring sensor drift
+  ---
+  duration_ms: 40.107688
+  type: 'test'
+  ...
+# Subtest: different physical coefficients can share a coordinate despite pooled law mismatch
+ok 213 - different physical coefficients can share a coordinate despite pooled law mismatch
+  ---
+  duration_ms: 68.656438
+  type: 'test'
+  ...
+# Subtest: inadequate per-run laws withhold coordinate inconsistency instead of blaming a reference
+ok 214 - inadequate per-run laws withhold coordinate inconsistency instead of blaming a reference
+  ---
+  duration_ms: 16.29965
+  type: 'test'
+  ...
+# Subtest: stationary and noise-dominated evidence remains insufficient excitation
+ok 215 - stationary and noise-dominated evidence remains insufficient excitation
+  ---
+  duration_ms: 71.837269
+  type: 'test'
+  ...
+# Subtest: bias/linear-spring equivalence retains a shared ambiguous set
+ok 216 - bias/linear-spring equivalence retains a shared ambiguous set
+  ---
+  duration_ms: 10.623058
+  type: 'test'
+  ...
+# Subtest: run and grid boundaries remain separate non-comparisons
+ok 217 - run and grid boundaries remain separate non-comparisons
+  ---
+  duration_ms: 88.571883
+  type: 'test'
+  ...
+# Subtest: challenge mutation and input-only replay cannot change run-wise comparison
+ok 218 - challenge mutation and input-only replay cannot change run-wise comparison
+  ---
+  duration_ms: 296.046556
+  type: 'test'
+  ...
+# Subtest: reordering training runs preserves shared-set decision and run-specific diagnostics
+ok 219 - reordering training runs preserves shared-set decision and run-specific diagnostics
+  ---
+  duration_ms: 106.734091
+  type: 'test'
+  ...
+# Subtest: zero winner is still a one-sided grid boundary: 0,0.1,0.3
+ok 220 - zero winner is still a one-sided grid boundary: 0,0.1,0.3
+  ---
+  duration_ms: 19.873871
+  type: 'test'
+  ...
+# Subtest: zero winner is still a one-sided grid boundary: -0.3,-0.1,0
+ok 221 - zero winner is still a one-sided grid boundary: -0.3,-0.1,0
+  ---
+  duration_ms: 19.685759
+  type: 'test'
+  ...
+# Subtest: independent repeated-state arithmetic separates changed scatter and mean
+ok 222 - independent repeated-state arithmetic separates changed scatter and mean
+  ---
+  duration_ms: 3.684225
+  type: 'test'
+  ...
+# Subtest: complete denominators preserve singletons, empty and one-state evidence
+ok 223 - complete denominators preserve singletons, empty and one-state evidence
+  ---
+  duration_ms: 0.380274
+  type: 'test'
+  ...
+# Subtest: model changes preserve within-state scatter; invalid source refuses
+ok 224 - model changes preserve within-state scatter; invalid source refuses
+  ---
+  duration_ms: 0.36209
+  type: 'test'
+  ...
+# Subtest: frozen analytic law predicts multiple prefixes and outperforms matched constant-rate forecast
+ok 225 - frozen analytic law predicts multiple prefixes and outperforms matched constant-rate forecast
+  ---
+  duration_ms: 37.010763
+  type: 'test'
+  ...
+# Subtest: future changes cannot enter the earlier origin; later origins legitimately see new prefixes
+ok 226 - future changes cannot enter the earlier origin; later origins legitimately see new prefixes
+  ---
+  duration_ms: 26.752812
+  type: 'test'
+  ...
+# Subtest: complete work is reserved and incomplete tails are refused rather than silently truncated
+ok 227 - complete work is reserved and incomplete tails are refused rather than silently truncated
+  ---
+  duration_ms: 14.779395
+  type: 'test'
+  ...
+# Subtest: missing law mechanism retains every failed trial and suppresses survivor aggregates
+ok 228 - missing law mechanism retains every failed trial and suppresses survivor aggregates
+  ---
+  duration_ms: 1.794474
+  type: 'test'
+  ...
+# Subtest: notebook replay derives outputs from inputs, preserving overlapping-window disclosure
+ok 229 - notebook replay derives outputs from inputs, preserving overlapping-window disclosure
+  ---
+  duration_ms: 42.699042
+  type: 'test'
+  ...
+# Subtest: all horizons remain descriptive, including wrong-law predictive failure
+ok 230 - all horizons remain descriptive, including wrong-law predictive failure
+  ---
+  duration_ms: 9.416806
+  type: 'test'
+  ...
+# Subtest: one unavailable prefix does not disappear from an otherwise successful population
+ok 231 - one unavailable prefix does not disappear from an otherwise successful population
+  ---
+  duration_ms: 11.522166
+  type: 'test'
+  ...
+# Subtest: exact 1/2/3/4 future-sample horizons execute without weakening training admission
+ok 232 - exact 1/2/3/4 future-sample horizons execute without weakening training admission
+  ---
+  duration_ms: 1.472066
+  type: 'test'
+  ...
+# Subtest: short forecast admission retains source, units, scale, dense samples and strict clock validation
+ok 233 - short forecast admission retains source, units, scale, dense samples and strict clock validation
+  ---
+  duration_ms: 2.975937
+  type: 'test'
+  ...
+# Subtest: virtual evidence revises the model and notebook replay recomputes its history
+ok 234 - virtual evidence revises the model and notebook replay recomputes its history
+  ---
+  duration_ms: 62.948187
+  type: 'test'
+  ...
+# Subtest: actual imported drag fixture changes structure and preserves held-out separation
+ok 235 - actual imported drag fixture changes structure and preserves held-out separation
+  ---
+  duration_ms: 73.108913
+  type: 'test'
+  ...
+# Subtest: CSV accepts quoted fields and refuses incomplete or nonnumeric observations
+ok 236 - CSV accepts quoted fields and refuses incomplete or nonnumeric observations
+  ---
+  duration_ms: 17.702447
+  type: 'test'
+  ...
+# Subtest: invalid session and conflicting virtual evidence refuse without changing the current object
+ok 237 - invalid session and conflicting virtual evidence refuse without changing the current object
+  ---
+  duration_ms: 14.613403
+  type: 'test'
+  ...
+# Subtest: noise revisions and undo preserve the measured evidence
+ok 238 - noise revisions and undo preserve the measured evidence
+  ---
+  duration_ms: 33.574155
+  type: 'test'
+  ...
+# Subtest: all unit declarations agree and source derivation metadata survives notebook replay
+ok 239 - all unit declarations agree and source derivation metadata survives notebook replay
+  ---
+  duration_ms: 25.187531
+  type: 'test'
+  ...
+# Subtest: every accepted virtual seed can export and reopen; oversized seeds refuse at creation
+ok 240 - every accepted virtual seed can export and reopen; oversized seeds refuse at creation
+  ---
+  duration_ms: 53.044921
+  type: 'test'
+  ...
+# Subtest: many rows do not replace independent state support
+ok 241 - many rows do not replace independent state support
+  ---
+  duration_ms: 3.109759
+  type: 'test'
+  ...
+# Subtest: rich analytic design preserves fixed structure after every state omission
+ok 242 - rich analytic design preserves fixed structure after every state omission
+  ---
+  duration_ms: 4.51484
+  type: 'test'
+  ...
+# Subtest: one contaminated state materially shifts refits without silently changing terms
+ok 243 - one contaminated state materially shifts refits without silently changing terms
+  ---
+  duration_ms: 2.693027
+  type: 'test'
+  ...
+# Subtest: exact grouping, complete work refusal, empty and invalid inputs
+ok 244 - exact grouping, complete work refusal, empty and invalid inputs
+  ---
+  duration_ms: 0.665992
+  type: 'test'
+  ...
+# Subtest: executable coefficient refusal is unavailable structure, not attributed rank loss
+ok 245 - executable coefficient refusal is unavailable structure, not attributed rank loss
+  ---
+  duration_ms: 0.315072
+  type: 'test'
+  ...
+# Subtest: finite permitted-state spread ranking and ties match analytic torques
+ok 246 - finite permitted-state spread ranking and ties match analytic torques
+  ---
+  duration_ms: 1.663404
+  type: 'test'
+  ...
+# Subtest: heuristic boundary, mismatch, singleton and empty/unidentifiable sets withhold recommendations
+ok 247 - heuristic boundary, mismatch, singleton and empty/unidentifiable sets withhold recommendations
+  ---
+  duration_ms: 0.294734
+  type: 'test'
+  ...
+# Subtest: permitted input admission is explicit, bounded and normalized before duplicate detection
+ok 248 - permitted input admission is explicit, bounded and normalized before duplicate detection
+  ---
+  duration_ms: 0.472083
+  type: 'test'
+  ...
+# Subtest: two actual sequential receipts score frozen forecasts before each analytic refit
+ok 249 - two actual sequential receipts score frozen forecasts before each analytic refit
+  ---
+  duration_ms: 6.853585
+  type: 'test'
+  ...
+# Subtest: future-check changes alter evaluation only, never plans or frozen forecasts
+ok 250 - future-check changes alter evaluation only, never plans or frozen forecasts
+  ---
+  duration_ms: 5.987157
+  type: 'test'
+  ...
+# Subtest: unarmed, modified and stale requests are refused without appending observations
+ok 251 - unarmed, modified and stale requests are refused without appending observations
+  ---
+  duration_ms: 3.780099
+  type: 'test'
+  ...
+# Subtest: duplicate acquisition IDs and mismatched observation coordinates are refused
+ok 252 - duplicate acquisition IDs and mismatched observation coordinates are refused
+  ---
+  duration_ms: 4.119497
+  type: 'test'
+  ...
+# Subtest: input-only experiment replay rebuilds history, pending forecasts and final fits
+ok 253 - input-only experiment replay rebuilds history, pending forecasts and final fits
+  ---
+  duration_ms: 5.836516
+  type: 'test'
+  ...
+# Subtest: acquisition, text and fitted-row ceilings refuse oversized replay
+ok 254 - acquisition, text and fitted-row ceilings refuse oversized replay
+  ---
+  duration_ms: 19.913955
+  type: 'test'
+  ...
+# Subtest: aggregate fit-work bound refuses before replaying a long sequential course
+ok 255 - aggregate fit-work bound refuses before replaying a long sequential course
+  ---
+  duration_ms: 102.594645
+  type: 'test'
+  ...
+# Subtest: permitted declaration cannot retroactively change frozen historical planning context
+ok 256 - permitted declaration cannot retroactively change frozen historical planning context
+  ---
+  duration_ms: 9.857562
+  type: 'test'
+  ...
+# Subtest: declared cubic recovers independent nuisance coefficients, conditional predictions and derivative
+ok 257 - declared cubic recovers independent nuisance coefficients, conditional predictions and derivative
+  ---
+  duration_ms: 10.103019
+  type: 'test'
+  ...
+# Subtest: default family and saved version remain unchanged until explicit expansion
+ok 258 - default family and saved version remain unchanged until explicit expansion
+  ---
+  duration_ms: 8.1642
+  type: 'test'
+  ...
+# Subtest: late family expansion retains exact earlier requests, observed errors and source inputs
+ok 259 - late family expansion retains exact earlier requests, observed errors and source inputs
+  ---
+  duration_ms: 36.963744
+  type: 'test'
+  ...
+# Subtest: check values never choose family fits, revision evidence, plans, pending forecasts or earlier errors
+ok 260 - check values never choose family fits, revision evidence, plans, pending forecasts or earlier errors
+  ---
+  duration_ms: 17.564572
+  type: 'test'
+  ...
+# Subtest: linear and weak-curvature controls retain complexity preference and family ambiguity
+ok 261 - linear and weak-curvature controls retain complexity preference and family ambiguity
+  ---
+  duration_ms: 0.638547
+  type: 'test'
+  ...
+# Subtest: distinct-angle and joint numerical rank failures remain explicit
+ok 262 - distinct-angle and joint numerical rank failures remain explicit
+  ---
+  duration_ms: 0.799205
+  type: 'test'
+  ...
+# Subtest: omitted fifth-order response still falsifies the expanded finite family
+ok 263 - omitted fifth-order response still falsifies the expanded finite family
+  ---
+  duration_ms: 0.494898
+  type: 'test'
+  ...
+# Subtest: versioned input-only study export and imported expanded study preserve the explicit origin
+ok 264 - versioned input-only study export and imported expanded study preserve the explicit origin
+  ---
+  duration_ms: 2.440381
+  type: 'test'
+  ...
+# Subtest: malformed, repeated, future-boundary and silently downgraded revision records refuse
+ok 265 - malformed, repeated, future-boundary and silently downgraded revision records refuse
+  ---
+  duration_ms: 26.630892
+  type: 'test'
+  ...
+# Subtest: canonical freeze refuses tampered history boundaries and ignores substituted cached fits
+ok 266 - canonical freeze refuses tampered history boundaries and ignores substituted cached fits
+  ---
+  duration_ms: 11.924663
+  type: 'test'
+  ...
+# Subtest: expanded replay fit-work budget remains enforced before sequential replay
+ok 267 - expanded replay fit-work budget remains enforced before sequential replay
+  ---
+  duration_ms: 97.655371
+  type: 'test'
+  ...
+# Subtest: recovers independently specified continuous change and both executable slopes
+ok 268 - recovers independently specified continuous change and both executable slopes
+  ---
+  duration_ms: 3.861847
+  type: 'test'
+  ...
+# Subtest: continuity holds at the searched knot and changed-input predictions remain live
+ok 269 - continuity holds at the searched knot and changed-input predictions remain live
+  ---
+  duration_ms: 2.648345
+  type: 'test'
+  ...
+# Subtest: global response prefers baseline despite executable flexible alternatives
+ok 270 - global response prefers baseline despite executable flexible alternatives
+  ---
+  duration_ms: 0.821918
+  type: 'test'
+  ...
+# Subtest: joint nuisance coefficients recover independently varied inputs
+ok 271 - joint nuisance coefficients recover independently varied inputs
+  ---
+  duration_ms: 13.861145
+  type: 'test'
+  ...
+# Subtest: repeated rows cannot replace distinct support on both sides
+ok 272 - repeated rows cannot replace distinct support on both sides
+  ---
+  duration_ms: 1.062938
+  type: 'test'
+  ...
+# Subtest: rank-deficient nuisance terms stay refused instead of being silently dropped
+ok 273 - rank-deficient nuisance terms stay refused instead of being silently dropped
+  ---
+  duration_ms: 3.966453
+  type: 'test'
+  ...
+# Subtest: one-sided observations cannot locate an unobserved change angle
+ok 274 - one-sided observations cannot locate an unobserved change angle
+  ---
+  duration_ms: 0.251306
+  type: 'test'
+  ...
+# Subtest: changing checks does not alter training fits, grid or ranking
+ok 275 - changing checks does not alter training fits, grid or ranking
+  ---
+  duration_ms: 38.370397
+  type: 'test'
+  ...
+# Subtest: smooth omitted law retains training mismatch rather than certifying a physical kink
+ok 276 - smooth omitted law retains training mismatch rather than certifying a physical kink
+  ---
+  duration_ms: 6.985684
+  type: 'test'
+  ...
+# Subtest: finite grid limitations remain visible for off-grid changes
+ok 277 - finite grid limitations remain visible for off-grid changes
+  ---
+  duration_ms: 0.703419
+  type: 'test'
+  ...
+# Subtest: extrapolation accounting includes positions and nuisance inputs
+ok 278 - extrapolation accounting includes positions and nuisance inputs
+  ---
+  duration_ms: 0.499416
+  type: 'test'
+  ...
+# Subtest: input-only save/reopen recomputes and rejects supplied claimed results
+ok 279 - input-only save/reopen recomputes and rejects supplied claimed results
+  ---
+  duration_ms: 23.980254
+  type: 'test'
+  ...
+# Subtest: finite bounds, complete rows, repeated knots and unsupported settings refuse
+ok 280 - finite bounds, complete rows, repeated knots and unsupported settings refuse
+  ---
+  duration_ms: 0.313157
+  type: 'test'
+  ...
+# Subtest: default grid depends only on training positions; narrow ranges retain honest support
+ok 281 - default grid depends only on training positions; narrow ranges retain honest support
+  ---
+  duration_ms: 2.65499
+  type: 'test'
+  ...
+# Subtest: a two-kink mechanism can fail the single-change family
+ok 282 - a two-kink mechanism can fail the single-change family
+  ---
+  duration_ms: 0.447787
+  type: 'test'
+  ...
+# Subtest: independent spring + quadratic drag fixture selects structure and coefficients
+ok 283 - independent spring + quadratic drag fixture selects structure and coefficients
+  ---
+  duration_ms: 49.553697
+  type: 'test'
+  ...
+# Subtest: independent Coulomb + gravity fixture does not inherit spring hypothesis
+ok 284 - independent Coulomb + gravity fixture does not inherit spring hypothesis
+  ---
+  duration_ms: 30.837706
+  type: 'test'
+  ...
+# Subtest: bounded-library omitted-physics counterexample is retained as mismatch
+ok 285 - bounded-library omitted-physics counterexample is retained as mismatch
+  ---
+  duration_ms: 27.690865
+  type: 'test'
+  ...
+# Subtest: narrow-angle ambiguity drives an experiment then independent prediction improves
+ok 286 - narrow-angle ambiguity drives an experiment then independent prediction improves
+  ---
+  duration_ms: 25.607852
+  type: 'test'
+  ...
+# Subtest: held-out evaluation never mutates or leaks into fit or acquisition
+ok 287 - held-out evaluation never mutates or leaks into fit or acquisition
+  ---
+  duration_ms: 25.949207
+  type: 'test'
+  ...
+# Subtest: constant/zero excitation cannot be mislabeled structurally identifiable
+ok 288 - constant/zero excitation cannot be mislabeled structurally identifiable
+  ---
+  duration_ms: 0.351783
+  type: 'test'
+  ...
+# Subtest: scale-aware QR recovers a tiny excitation with a large coefficient
+ok 289 - scale-aware QR recovers a tiny excitation with a large coefficient
+  ---
+  duration_ms: 4.215545
+  type: 'test'
+  ...
+# Subtest: tiny irrelevant feature rejects only unexecutable candidates, not the useful law
+ok 290 - tiny irrelevant feature rejects only unexecutable candidates, not the useful law
+  ---
+  duration_ms: 4.384257
+  type: 'test'
+  ...
+# Subtest: serialized discovery remains executable and revision-compatible
+ok 291 - serialized discovery remains executable and revision-compatible
+  ---
+  duration_ms: 42.686711
+  type: 'test'
+  ...
+# Subtest: RK4 agrees with independent harmonic-oscillator solution
+ok 292 - RK4 agrees with independent harmonic-oscillator solution
+  ---
+  duration_ms: 2.111068
+  type: 'test'
+  ...
+# Subtest: RK4 handles a nonmultiple final step and refuses runaway or invalid setup
+ok 293 - RK4 handles a nonmultiple final step and refuses runaway or invalid setup
+  ---
+  duration_ms: 4.223124
+  type: 'test'
+  ...
+# Subtest: invalid or underdetermined inputs fail explicitly instead of emitting NaNs
+ok 294 - invalid or underdetermined inputs fail explicitly instead of emitting NaNs
+  ---
+  duration_ms: 16.693971
+  type: 'test'
+  ...
+# Subtest: parameter drift is retained as conflicting residual evidence, not asserted solved
+ok 295 - parameter drift is retained as conflicting residual evidence, not asserted solved
+  ---
+  duration_ms: 23.424807
+  type: 'test'
+  ...
+# Subtest: analytic damped spring identifies acceleration coefficients and predicts a separate start without a torque scale
+ok 296 - analytic damped spring identifies acceleration coefficients and predicts a separate start without a torque scale
+  ---
+  duration_ms: 81.908025
+  type: 'test'
+  ...
+# Subtest: nonlinear fine-step gravity oracle transfers altered starts using angular units
+ok 297 - nonlinear fine-step gravity oracle transfers altered starts using angular units
+  ---
+  duration_ms: 70.326977
+  type: 'test'
+  ...
+# Subtest: held-out future observations change residuals but never predictions, coefficients, or training rank
+ok 298 - held-out future observations change residuals but never predictions, coefficients, or training rank
+  ---
+  duration_ms: 51.407903
+  type: 'test'
+  ...
+# Subtest: normalization, discovery and execution copy immutable caller evidence and JSON reopening is executable
+ok 299 - normalization, discovery and execution copy immutable caller evidence and JSON reopening is executable
+  ---
+  duration_ms: 28.991544
+  type: 'test'
+  ...
+# Subtest: requires explicit unknown inertia, declared angular units, and a supplied initial rate
+ok 300 - requires explicit unknown inertia, declared angular units, and a supplied initial rate
+  ---
+  duration_ms: 4.066602
+  type: 'test'
+  ...
+# Subtest: reused recording identity, complete copied subwindows and large pasted windows are refused
+ok 301 - reused recording identity, complete copied subwindows and large pasted windows are refused
+  ---
+  duration_ms: 13.452224
+  type: 'test'
+  ...
+# Subtest: invalid and sparse evidence, metadata transformations, and resource budgets yield typed errors
+ok 302 - invalid and sparse evidence, metadata transformations, and resource budgets yield typed errors
+  ---
+  duration_ms: 2.663824
+  type: 'test'
+  ...
+# Subtest: executable angular model refuses forged physical scale, torque units, bad coefficients and commands
+ok 303 - executable angular model refuses forged physical scale, torque units, bad coefficients and commands
+  ---
+  duration_ms: 19.613201
+  type: 'test'
+  ...
+# Subtest: real source bytes and role assignment are pinned; quantized matching motion is not falsely treated as copied evidence
+ok 304 - real source bytes and role assignment are pinned; quantized matching motion is not falsely treated as copied evidence
+  ---
+  duration_ms: 20.222886
+  type: 'test'
+  ...
+# Subtest: retains actual measured default failure: large training mismatch and a bounded typed challenge failure
+ok 305 - retains actual measured default failure: large training mismatch and a bounded typed challenge failure
+  ---
+  duration_ms: 112.108097
+  type: 'test'
+  ...
+# Subtest: angular comparison executes the same analytic problem and retains unknown physical scale
+ok 306 - angular comparison executes the same analytic problem and retains unknown physical scale
+  ---
+  duration_ms: 3.666868
+  type: 'test'
+  ...
+# Subtest: angular coarse plus refined execution consumes one combined resource budget
+ok 307 - angular coarse plus refined execution consumes one combined resource budget
+  ---
+  duration_ms: 1.181384
+  type: 'test'
+  ...
+# Subtest: angular resolution exposes the finite inaccurate damping case independently of unknown inertia
+ok 308 - angular resolution exposes the finite inaccurate damping case independently of unknown inertia
+  ---
+  duration_ms: 0.426867
+  type: 'test'
+  ...
+# Subtest: angular evidence and options remain intact and future positions affect only residuals
+ok 309 - angular evidence and options remain intact and future positions affect only residuals
+  ---
+  duration_ms: 1.445293
+  type: 'test'
+  ...
+# Subtest: angular comparison retains unit-validation, option and coarse-numerical typed refusals
+ok 310 - angular comparison retains unit-validation, option and coarse-numerical typed refusals
+  ---
+  duration_ms: 0.31097
+  type: 'test'
+  ...
+# Subtest: consumer rejects a method or term budget incompatible with the physical-scale mode
+ok 311 - consumer rejects a method or term budget incompatible with the physical-scale mode
+  ---
+  duration_ms: 94.449954
+  type: 'test'
+  ...
+# Subtest: actual measured cumulative failure remains explicit and does not become a successful zero-error result
+ok 312 - actual measured cumulative failure remains explicit and does not become a successful zero-error result
+  ---
+  duration_ms: 390.859768
+  type: 'test'
+  ...
+# Subtest: fixed weak measured receipt executes independently while preserving mismatch and training-derived ranking
+ok 313 - fixed weak measured receipt executes independently while preserving mismatch and training-derived ranking
+  ---
+  duration_ms: 453.857968
+  type: 'test'
+  ...
+# Subtest: future challenge angle perturbations change errors without changing coefficients, candidate order or predictions
+ok 314 - future challenge angle perturbations change errors without changing coefficients, candidate order or predictions
+  ---
+  duration_ms: 331.547695
+  type: 'test'
+  ...
+# Subtest: notebook reopening recomputes fabricated results and preserves the explicitly selected alternative and tolerance
+ok 315 - notebook reopening recomputes fabricated results and preserves the explicitly selected alternative and tolerance
+  ---
+  duration_ms: 651.038565
+  type: 'test'
+  ...
+# Subtest: declared unknown scale and per-run units cannot be silently overridden during source import
+ok 316 - declared unknown scale and per-run units cannot be silently overridden during source import
+  ---
+  duration_ms: 12.631296
+  type: 'test'
+  ...
+# Subtest: a stored selection must still exist after a fresh fit instead of trusting cached candidate identity
+ok 317 - a stored selection must still exist after a fresh fit instead of trusting cached candidate identity
+  ---
+  duration_ms: 288.289342
+  type: 'test'
+  ...
+# Subtest: weak spring equations recover acceleration coefficients without first or second derivatives
+ok 318 - weak spring equations recover acceleration coefficients without first or second derivatives
+  ---
+  duration_ms: 22.069367
+  type: 'test'
+  ...
+# Subtest: wide-angle gravity is recovered from a separate explicit equation oracle and predicts an altered start
+ok 319 - wide-angle gravity is recovered from a separate explicit equation oracle and predicts an altered start
+  ---
+  duration_ms: 56.660366
+  type: 'test'
+  ...
+# Subtest: changing supplied initial rates cannot change any weak coefficient, score, rank or first-rate estimate
+ok 320 - changing supplied initial rates cannot change any weak coefficient, score, rank or first-rate estimate
+  ---
+  duration_ms: 130.643154
+  type: 'test'
+  ...
+# Subtest: exact affine motion is annihilated with constant and linear endpoint nuisance eliminated
+ok 321 - exact affine motion is annihilated with constant and linear endpoint nuisance eliminated
+  ---
+  duration_ms: 1.202214
+  type: 'test'
+  ...
+# Subtest: first-rate nonlinear terms recover analytic quadratic drag without using initialRate
+ok 322 - first-rate nonlinear terms recover analytic quadratic drag without using initialRate
+  ---
+  duration_ms: 7.766706
+  type: 'test'
+  ...
+# Subtest: target row normalization makes iid position noise interpretable in radians, without claiming joint whitening
+ok 323 - target row normalization makes iid position noise interpretable in radians, without claiming joint whitening
+  ---
+  duration_ms: 6.209561
+  type: 'test'
+  ...
+# Subtest: preserves immutable evidence and large representable time shifts; JSON models remain executable
+ok 324 - preserves immutable evidence and large representable time shifts; JSON models remain executable
+  ---
+  duration_ms: 30.684943
+  type: 'test'
+  ...
+# Subtest: short-window boundaries use local elapsed intervals at very large representable epochs
+ok 325 - short-window boundaries use local elapsed intervals at very large representable epochs
+  ---
+  duration_ms: 9.901302
+  type: 'test'
+  ...
+# Subtest: held-out future positions only affect reported residuals and supplied start rate still matters in rollout
+ok 326 - held-out future positions only affect reported residuals and supplied start rate still matters in rollout
+  ---
+  duration_ms: 18.84546
+  type: 'test'
+  ...
+# Subtest: typed refusal covers insufficient samples, too few windows, sparse inputs and bounded computational work
+ok 327 - typed refusal covers insufficient samples, too few windows, sparse inputs and bounded computational work
+  ---
+  duration_ms: 68.967912
+  type: 'test'
+  ...
+# Subtest: stationary evidence explicitly reports deficient excitation and makes no torque or confidence claim
+ok 328 - stationary evidence explicitly reports deficient excitation and makes no torque or confidence claim
+  ---
+  duration_ms: 17.094896
+  type: 'test'
+  ...
+# Subtest: frozen measured receipt stays finite while retaining training mismatch and training-only ranking
+ok 329 - frozen measured receipt stays finite while retaining training mismatch and training-only ranking
+  ---
+  duration_ms: 119.311954
+  type: 'test'
+  ...
+# Subtest: analytic rate reference uses elapsed time and no later observations
+ok 330 - analytic rate reference uses elapsed time and no later observations
+  ---
+  duration_ms: 1.312855
+  type: 'test'
+  ...
+# Subtest: skill distinguishes improvement, loss, and perfect baseline
+ok 331 - skill distinguishes improvement, loss, and perfect baseline
+  ---
+  duration_ms: 1.439982
+  type: 'test'
+  ...
+# Subtest: aggregate uses sample weights and retains failed run refusal
+ok 332 - aggregate uses sample weights and retains failed run refusal
+  ---
+  duration_ms: 0.442234
+  type: 'test'
+  ...
+# Subtest: invalid input and overflow refuse
+ok 333 - invalid input and overflow refuse
+  ---
+  duration_ms: 0.254622
+  type: 'test'
+  ...
+# Subtest: challenge/reopen comparison preserves training ranking
+ok 334 - challenge/reopen comparison preserves training ranking
+  ---
+  duration_ms: 465.860135
+  type: 'test'
+  ...
+# Subtest: finite extreme errors retain finite per-run and weighted aggregate RMSE
+ok 335 - finite extreme errors retain finite per-run and weighted aggregate RMSE
+  ---
+  duration_ms: 0.613564
+  type: 'test'
+  ...
+# Subtest: actual captured Chrome131 positions reopen, apply and reopen again without replacing observations
+ok 336 - actual captured Chrome131 positions reopen, apply and reopen again without replacing observations
+  ---
+  duration_ms: 2144.919524
+  type: 'test'
+  ...
+# Subtest: runtime allowance does not accept materially changed positions, timestamps or provenance
+ok 337 - runtime allowance does not accept materially changed positions, timestamps or provenance
+  ---
+  duration_ms: 2662.707774
+  type: 'test'
+  ...
+# Subtest: same-runtime pending and applied evidence remain exact on notebook replay
+ok 338 - same-runtime pending and applied evidence remain exact on notebook replay
+  ---
+  duration_ms: 1823.810202
+  type: 'test'
+  ...
+# Subtest: live Node and Chromium exchange pending and applied notebooks through actual modules
+ok 339 - live Node and Chromium exchange pending and applied notebooks through actual modules # SKIP
+  ---
+  duration_ms: 0.115241
+  type: 'test'
+  ...
+# Subtest: stale model, evidence, planned request and pending samples are refused before later transitions
+ok 340 - stale model, evidence, planned request and pending samples are refused before later transitions
+  ---
+  duration_ms: 3561.719484
+  type: 'test'
+  ...
+# Subtest: fixed reserved evaluation identity cannot be changed to compare different before/after recordings
+ok 341 - fixed reserved evaluation identity cannot be changed to compare different before/after recordings
+  ---
+  duration_ms: 551.909088
+  type: 'test'
+  ...
+# Subtest: pending evidence transitions preserve the input and prohibit duplicate acquire or replacement plans
+ok 342 - pending evidence transitions preserve the input and prohibit duplicate acquire or replacement plans
+  ---
+  duration_ms: 627.632206
+  type: 'test'
+  ...
+# Subtest: instrument protocol and interactive workload bounds remain explicit refusals
+ok 343 - instrument protocol and interactive workload bounds remain explicit refusals
+  ---
+  duration_ms: 415.899022
+  type: 'test'
+  ...
+# Subtest: portable pending and applied recipes recompute scientific states and ignore cached predictions
+ok 344 - portable pending and applied recipes recompute scientific states and ignore cached predictions
+  ---
+  duration_ms: 1876.95683
+  type: 'test'
+  ...
+# Subtest: replay admits only bounded floating-point position differences and preserves recorded evidence
+ok 345 - replay admits only bounded floating-point position differences and preserves recorded evidence
+  ---
+  duration_ms: 3011.366165
+  type: 'test'
+  ...
+# Subtest: forged recipe identity, extra acquisitions and mismatched outer evidence cannot be replayed
+ok 346 - forged recipe identity, extra acquisitions and mismatched outer evidence cannot be replayed
+  ---
+  duration_ms: 2162.219768
+  type: 'test'
+  ...
+# Subtest: planning and whole-run acquisition leave the actual fitted challenge unchanged until explicit apply
+ok 347 - planning and whole-run acquisition leave the actual fitted challenge unchanged until explicit apply
+  ---
+  duration_ms: 792.213697
+  type: 'test'
+  ...
+# Subtest: the controller refuses acquisition under a plan with incompatible physical inertia or actuation
+ok 348 - the controller refuses acquisition under a plan with incompatible physical inertia or actuation
+  ---
+  duration_ms: 1100.512403
+  type: 'test'
+  ...
+# Subtest: original training and reserved-challenge noise streams are included in acquisition history
+ok 349 - original training and reserved-challenge noise streams are included in acquisition history
+  ---
+  duration_ms: 565.824879
+  type: 'test'
+  ...
+# Subtest: an acquired run whose training-selected refit runs away stays applied without a best-result fallback
+ok 350 - an acquired run whose training-selected refit runs away stays applied without a best-result fallback
+  ---
+  duration_ms: 606.699207
+  type: 'test'
+  ...
+# Subtest: poisoned future challenge positions change only receiving evidence, never the plan or acquired training refit
+ok 351 - poisoned future challenge positions change only receiving evidence, never the plan or acquired training refit
+  ---
+  duration_ms: 1230.069032
+  type: 'test'
+  ...
+# Subtest: pending raw acquisition survives reopen while fabricated cached models, curves and scores are recomputed
+ok 352 - pending raw acquisition survives reopen while fabricated cached models, curves and scores are recomputed
+  ---
+  duration_ms: 1268.755061
+  type: 'test'
+  ...
+# Subtest: applied history preserves complete raw runs, prevents replay and enforces the bounded training-run budget
+ok 353 - applied history preserves complete raw runs, prevents replay and enforces the bounded training-run budget
+  ---
+  duration_ms: 2424.59328
+  type: 'test'
+  ...
+# Subtest: reopening refuses edited acquisition samples, protocol requests and unreplayed current evidence
+ok 354 - reopening refuses edited acquisition samples, protocol requests and unreplayed current evidence
+  ---
+  duration_ms: 2179.604694
+  type: 'test'
+  ...
+# Subtest: external fitted-evidence, model, pending-run and plan mutation invalidates the opaque workflow
+ok 355 - external fitted-evidence, model, pending-run and plan mutation invalidates the opaque workflow
+  ---
+  duration_ms: 545.375358
+  type: 'test'
+  ...
+# Subtest: the comparison cannot change its reserved recording or cached before/after evidence outside a transition
+ok 356 - the comparison cannot change its reserved recording or cached before/after evidence outside a transition
+  ---
+  duration_ms: 1224.827017
+  type: 'test'
+  ...
+# Subtest: reopen retains a failed applied revision and its same-recording comparison rather than choosing a better cached model
+ok 357 - reopen retains a failed applied revision and its same-recording comparison rather than choosing a better cached model
+  ---
+  duration_ms: 1189.669606
+  type: 'test'
+  ...
+# Subtest: free-running RK4 matches an independent harmonic analytic trajectory and rate
+ok 358 - free-running RK4 matches an independent harmonic analytic trajectory and rate
+  ---
+  duration_ms: 5.298817
+  type: 'test'
+  ...
+# Subtest: irregular command switches use the left sample command including every RK4 endpoint stage
+ok 359 - irregular command switches use the left sample command including every RK4 endpoint stage
+  ---
+  duration_ms: 0.608867
+  type: 'test'
+  ...
+# Subtest: exact representable epoch shifts preserve dynamics and original timestamps
+ok 360 - exact representable epoch shifts preserve dynamics and original timestamps
+  ---
+  duration_ms: 3.506691
+  type: 'test'
+  ...
+# Subtest: held-out future observations never reset state or infer the supplied initial rate
+ok 361 - held-out future observations never reset state or infer the supplied initial rate
+  ---
+  duration_ms: 9.982369
+  type: 'test'
+  ...
+# Subtest: wrong restoring law accumulates independent forward error and metrics exclude initialization
+ok 362 - wrong restoring law accumulates independent forward error and metrics exclude initialization
+  ---
+  duration_ms: 0.9588
+  type: 'test'
+  ...
+# Subtest: inputs are not mutated and returned evidence rows do not alias caller data
+ok 363 - inputs are not mutated and returned evidence rows do not alias caller data
+  ---
+  duration_ms: 0.293376
+  type: 'test'
+  ...
+# Subtest: step budget is preflighted, exact limits accepted, and no partial success returned
+ok 364 - step budget is preflighted, exact limits accepted, and no partial success returned
+  ---
+  duration_ms: 0.44375
+  type: 'test'
+  ...
+# Subtest: a subnormal positive interval still receives one step and retains representable drift
+ok 365 - a subnormal positive interval still receives one step and retains representable drift
+  ---
+  duration_ms: 0.151018
+  type: 'test'
+  ...
+# Subtest: invalid models, runs, metadata, timestamps and options produce typed errors
+ok 366 - invalid models, runs, metadata, timestamps and options produce typed errors
+  ---
+  duration_ms: 0.809795
+  type: 'test'
+  ...
+# Subtest: runaway intermediate states and nonfinite accelerations fail explicitly
+ok 367 - runaway intermediate states and nonfinite accelerations fail explicitly
+  ---
+  duration_ms: 0.533054
+  type: 'test'
+  ...
+# Subtest: step refinement reduces smooth harmonic numerical error at approximately RK4 order
+ok 368 - step refinement reduces smooth harmonic numerical error at approximately RK4 order
+  ---
+  duration_ms: 0.312996
+  type: 'test'
+  ...
+# Subtest: a finite stiff-law rollout can be inaccurate; finer resolution resolves the retained counterexample
+ok 369 - a finite stiff-law rollout can be inaccurate; finer resolution resolves the retained counterexample
+  ---
+  duration_ms: 0.763861
+  type: 'test'
+  ...
+# Subtest: first sampled crossing uses absolute error and retains the actual irregular sampling bracket
+ok 370 - first sampled crossing uses absolute error and retains the actual irregular sampling bracket
+  ---
+  duration_ms: 1.354661
+  type: 'test'
+  ...
+# Subtest: positive and negative residuals are symmetric and equality is within tolerance
+ok 371 - positive and negative residuals are symmetric and equality is within tolerance
+  ---
+  duration_ms: 0.348636
+  type: 'test'
+  ...
+# Subtest: crossing at the first evaluated row uses t0 solely as a boundary and has no within sample
+ok 372 - crossing at the first evaluated row uses t0 solely as a boundary and has no within sample
+  ---
+  duration_ms: 0.178949
+  type: 'test'
+  ...
+# Subtest: no sampled crossing is explicitly limited to samples and excludes initialization from counts
+ok 373 - no sampled crossing is explicitly limited to samples and excludes initialization from counts
+  ---
+  duration_ms: 0.161977
+  type: 'test'
+  ...
+# Subtest: time shifts preserve elapsed crossing information without interpolating new timestamps
+ok 374 - time shifts preserve elapsed crossing information without interpolating new timestamps
+  ---
+  duration_ms: 0.200336
+  type: 'test'
+  ...
+# Subtest: a real free-running wrong-law result is directly consumable and tolerance changes do not alter it
+ok 375 - a real free-running wrong-law result is directly consumable and tolerance changes do not alter it
+  ---
+  duration_ms: 2.172797
+  type: 'test'
+  ...
+# Subtest: angular acceleration predictions support the same sampled position check without a fabricated torque channel
+ok 376 - angular acceleration predictions support the same sampled position check without a fabricated torque channel
+  ---
+  duration_ms: 6.299088
+  type: 'test'
+  ...
+# Subtest: input arrays and options remain unchanged and output points are independent
+ok 377 - input arrays and options remain unchanged and output points are independent
+  ---
+  duration_ms: 0.214759
+  type: 'test'
+  ...
+# Subtest: missing, invalid, nonpositive and nonfinite tolerances fail with typed errors
+ok 378 - missing, invalid, nonpositive and nonfinite tolerances fail with typed errors
+  ---
+  duration_ms: 0.481514
+  type: 'test'
+  ...
+# Subtest: invalid source schemas, identities, rows, residuals, and time ordering fail with typed errors
+ok 379 - invalid source schemas, identities, rows, residuals, and time ordering fail with typed errors
+  ---
+  duration_ms: 0.576493
+  type: 'test'
+  ...
+# Subtest: exact ZOH command quadrature recovers gain/bias and preserves SI executable units
+ok 380 - exact ZOH command quadrature recovers gain/bias and preserves SI executable units
+  ---
+  duration_ms: 2.503243
+  type: 'test'
+  ...
+# Subtest: representable absolute time shifts preserve fitted coefficients and unused final command never affects the fit
+ok 381 - representable absolute time shifts preserve fitted coefficients and unused final command never affects the fit
+  ---
+  duration_ms: 1.940091
+  type: 'test'
+  ...
+# Subtest: independent analytic damped springs recover physical coefficients and transfer to altered starts
+ok 382 - independent analytic damped springs recover physical coefficients and transfer to altered starts
+  ---
+  duration_ms: 103.596552
+  type: 'test'
+  ...
+# Subtest: independent fine-step nonlinear pendulum distinguishes sinusoidal restoration and transfers
+ok 383 - independent fine-step nonlinear pendulum distinguishes sinusoidal restoration and transfers
+  ---
+  duration_ms: 56.424358
+  type: 'test'
+  ...
+# Subtest: linear drag uses the position integral identity without any numerical rate estimation
+ok 384 - linear drag uses the position integral identity without any numerical rate estimation
+  ---
+  duration_ms: 0.791956
+  type: 'test'
+  ...
+# Subtest: stationary unexcited runs report rank deficiency and finite ambiguity
+ok 385 - stationary unexcited runs report rank deficiency and finite ambiguity
+  ---
+  duration_ms: 6.843759
+  type: 'test'
+  ...
+# Subtest: JSON reopening retains executable models and returned training data does not alias inputs
+ok 386 - JSON reopening retains executable models and returned training data does not alias inputs
+  ---
+  duration_ms: 2.020176
+  type: 'test'
+  ...
+# Subtest: row stride has explicit source equation counts and full endpoints
+ok 387 - row stride has explicit source equation counts and full endpoints
+  ---
+  duration_ms: 0.301506
+  type: 'test'
+  ...
+# Subtest: scaled QR remains finite at tiny valid inertia rather than silently discarding the nonzero structure
+ok 388 - scaled QR remains finite at tiny valid inertia rather than silently discarding the nonzero structure
+  ---
+  duration_ms: 0.385477
+  type: 'test'
+  ...
+# Subtest: bad runs/options including sparse arrays reject with typed errors
+ok 389 - bad runs/options including sparse arrays reject with typed errors
+  ---
+  duration_ms: 1.306805
+  type: 'test'
+  ...
+# Subtest: numerical-range failures reject instead of emitting nonfinite diagnostics
+ok 390 - numerical-range failures reject instead of emitting nonfinite diagnostics
+  ---
+  duration_ms: 0.263271
+  type: 'test'
+  ...
+# Subtest: noise sweep records independent forward improvement and retains concrete failures
+ok 391 - noise sweep records independent forward improvement and retains concrete failures
+  ---
+  duration_ms: 2010.53697
+  type: 'test'
+  ...
+# Subtest: first-derivative nonlinear terms recover analytic drag and retain honest smoothing bias
+ok 392 - first-derivative nonlinear terms recover analytic drag and retain honest smoothing bias
+  ---
+  duration_ms: 9.695741
+  type: 'test'
+  ...
+# Subtest: irregular cubic telemetry recovers exact analytic derivatives
+ok 393 - irregular cubic telemetry recovers exact analytic derivatives
+  ---
+  duration_ms: 4.8192
+  type: 'test'
+  ...
+# Subtest: trajectory consumer recovers restoring law and evaluates a disjoint time block
+ok 394 - trajectory consumer recovers restoring law and evaluates a disjoint time block
+  ---
+  duration_ms: 45.255567
+  type: 'test'
+  ...
+# Subtest: declared position noise propagates linearly and doubles with inertia
+ok 395 - declared position noise propagates linearly and doubles with inertia
+  ---
+  duration_ms: 2.615356
+  type: 'test'
+  ...
+# Subtest: wrapped-looking angles are flagged and never silently unwrapped
+ok 396 - wrapped-looking angles are flagged and never silently unwrapped
+  ---
+  duration_ms: 0.267253
+  type: 'test'
+  ...
+# Subtest: invalid times, inertia, undersized data and even windows fail without rewriting evidence
+ok 397 - invalid times, inertia, undersized data and even windows fail without rewriting evidence
+  ---
+  duration_ms: 0.344411
+  type: 'test'
+  ...
+# Subtest: default-step false proposal is screened out against independent exact damping trajectories
+ok 398 - default-step false proposal is screened out against independent exact damping trajectories
+  ---
+  duration_ms: 4.865996
+  type: 'test'
+  ...
+# Subtest: a smaller step produces a non-discriminating plan rather than manufacturing a qualified proposal
+ok 399 - a smaller step produces a non-discriminating plan rather than manufacturing a qualified proposal
+  ---
+  duration_ms: 31.988359
+  type: 'test'
+  ...
+# Subtest: constant acceleration preserves analytic radian disagreement and qualifies the original selection
+ok 400 - constant acceleration preserves analytic radian disagreement and qualifies the original selection
+  ---
+  duration_ms: 1.64954
+  type: 'test'
+  ...
+# Subtest: complete sampled-grid budget is checked before partial qualification
+ok 401 - complete sampled-grid budget is checked before partial qualification
+  ---
+  duration_ms: 1.453198
+  type: 'test'
+  ...
+# Subtest: refinement-only failure retains every fixed model and invalidates the whole design
+ok 402 - refinement-only failure retains every fixed model and invalidates the whole design
+  ---
+  duration_ms: 0.989745
+  type: 'test'
+  ...
+# Subtest: changed fitted coefficients or declared training IDs cannot qualify an old plan
+ok 403 - changed fitted coefficients or declared training IDs cannot qualify an old plan
+  ---
+  duration_ms: 0.748406
+  type: 'test'
+  ...
+# Subtest: forged proposal status cannot turn a below-threshold or singleton plan into a passed recommendation
+ok 404 - forged proposal status cannot turn a below-threshold or singleton plan into a passed recommendation
+  ---
+  duration_ms: 21.200853
+  type: 'test'
+  ...
+# Subtest: source observations, future challenge values and oracle metadata are never read
+ok 405 - source observations, future challenge values and oracle metadata are never read
+  ---
+  duration_ms: 1.177475
+  type: 'test'
+  ...
+# Subtest: all designs are screened deterministically without mutation or survival-based reranking
+ok 406 - all designs are screened deterministically without mutation or survival-based reranking
+  ---
+  duration_ms: 1.888992
+  type: 'test'
+  ...
+# Subtest: a refused original design remains ineligible without partial survivor checks
+ok 407 - a refused original design remains ineligible without partial survivor checks
+  ---
+  duration_ms: 0.98588
+  type: 'test'
+  ...
+# Subtest: two-step agreement retains an explicit between-sample aliasing counterexample
+ok 408 - two-step agreement retains an explicit between-sample aliasing counterexample
+  ---
+  duration_ms: 30.855277
+  type: 'test'
+  ...
+# Subtest: the actual ambiguous fixture can be screened over the complete original training shortlist
+ok 409 - the actual ambiguous fixture can be screened over the complete original training shortlist
+  ---
+  duration_ms: 1610.968315
+  type: 'test'
+  ...
+# Subtest: actual small-angle training proposes a bounded whole trajectory and preserves training model order
+ok 410 - actual small-angle training proposes a bounded whole trajectory and preserves training model order
+  ---
+  duration_ms: 513.976447
+  type: 'test'
+  ...
+# Subtest: pairwise position disagreement has exact radian meaning on constant-acceleration analytic models
+ok 411 - pairwise position disagreement has exact radian meaning on constant-acceleration analytic models
+  ---
+  duration_ms: 0.578034
+  type: 'test'
+  ...
+# Subtest: planner never reads observed futures, challenge fields, raw training samples or instrument truth metadata
+ok 412 - planner never reads observed futures, challenge fields, raw training samples or instrument truth metadata
+  ---
+  duration_ms: 810.278652
+  type: 'test'
+  ...
+# Subtest: immutable inputs remain unchanged, repeated calls are deterministic, and model changes update provenance
+ok 413 - immutable inputs remain unchanged, repeated calls are deterministic, and model changes update provenance
+  ---
+  duration_ms: 1265.59197
+  type: 'test'
+  ...
+# Subtest: exact zero-disagreement ties preserve grid order and remain uninformative
+ok 414 - exact zero-disagreement ties preserve grid order and remain uninformative
+  ---
+  duration_ms: 42.076658
+  type: 'test'
+  ...
+# Subtest: competitive-list display order cannot replace the original training candidate ordering
+ok 415 - competitive-list display order cannot replace the original training candidate ordering
+  ---
+  duration_ms: 828.413635
+  type: 'test'
+  ...
+# Subtest: candidate runaway or declared envelope violation makes a design ineligible rather than maximally informative
+ok 416 - candidate runaway or declared envelope violation makes a design ineligible rather than maximally informative
+  ---
+  duration_ms: 1.055392
+  type: 'test'
+  ...
+# Subtest: whole-grid work is refused before partial comparison when the shared budget cannot cover it
+ok 417 - whole-grid work is refused before partial comparison when the shared budget cannot cover it
+  ---
+  duration_ms: 431.266799
+  type: 'test'
+  ...
+# Subtest: sampled prediction-envelope checks explicitly retain the between-sample excursion counterexample
+ok 418 - sampled prediction-envelope checks explicitly retain the between-sample excursion counterexample
+  ---
+  duration_ms: 3.997339
+  type: 'test'
+  ...
+# Subtest: invalid units, unsupported angular scale, malformed ensembles and absent explicit bounds are refused
+ok 419 - invalid units, unsupported angular scale, malformed ensembles and absent explicit bounds are refused
+  ---
+  duration_ms: 14.294398
+  type: 'test'
+  ...
+# Subtest: a whole independently acquired planned release revises the ambiguous law while the original challenge remains fixed
+ok 420 - a whole independently acquired planned release revises the ambiguous law while the original challenge remains fixed
+  ---
+  duration_ms: 467.988643
+  type: 'test'
+  ...
+# Subtest: retained counterexample: finite default-step RK4 disagreement is not physical model separation
+ok 421 - retained counterexample: finite default-step RK4 disagreement is not physical model separation
+  ---
+  duration_ms: 3.878092
+  type: 'test'
+  ...
+# Subtest: reducing the integration step recovers the independent exact non-discriminating result
+ok 422 - reducing the integration step recovers the independent exact non-discriminating result
+  ---
+  duration_ms: 32.686232
+  type: 'test'
+  ...
+# Subtest: even a coarse and refined finite pair can disagree by a radian without hitting the state limit
+ok 423 - even a coarse and refined finite pair can disagree by a radian without hitting the state limit
+  ---
+  duration_ms: 0.461438
+  type: 'test'
+  ...
+# Subtest: smooth harmonic comparison reports prediction sensitivity and preserves the coarse result
+ok 424 - smooth harmonic comparison reports prediction sensitivity and preserves the coarse result
+  ---
+  duration_ms: 3.53906
+  type: 'test'
+  ...
+# Subtest: successive harmonic comparisons decrease under smooth-law step refinement
+ok 425 - successive harmonic comparisons decrease under smooth-law step refinement
+  ---
+  duration_ms: 1.003179
+  type: 'test'
+  ...
+# Subtest: the retained finite inaccurate stiff-law case produces a large resolution discrepancy
+ok 426 - the retained finite inaccurate stiff-law case produces a large resolution discrepancy
+  ---
+  duration_ms: 0.742257
+  type: 'test'
+  ...
+# Subtest: coarse and refined executions share one combined step budget
+ok 427 - coarse and refined executions share one combined step budget
+  ---
+  duration_ms: 0.999872
+  type: 'test'
+  ...
+# Subtest: prediction sensitivity is independent of held-out future observations
+ok 428 - prediction sensitivity is independent of held-out future observations
+  ---
+  duration_ms: 8.061786
+  type: 'test'
+  ...
+# Subtest: inputs remain intact, result rows are independent, and default options are normalized by forward
+ok 429 - inputs remain intact, result rows are independent, and default options are normalized by forward
+  ---
+  duration_ms: 3.78869
+  type: 'test'
+  ...
+# Subtest: invalid options, model and run retain forward typed refusals
+ok 430 - invalid options, model and run retain forward typed refusals
+  ---
+  duration_ms: 0.551524
+  type: 'test'
+  ...
+# Subtest: an unrepresentable half step is unavailable, never zero sensitivity
+ok 431 - an unrepresentable half step is unavailable, never zero sensitivity
+  ---
+  duration_ms: 0.125233
+  type: 'test'
+  ...
+# Subtest: actual bundle→fit→separate free-running challenge receives an independent analytic law
+ok 432 - actual bundle→fit→separate free-running challenge receives an independent analytic law
+  ---
+  duration_ms: 74.772359
+  type: 'test'
+  ...
+# Subtest: poisoning future challenge angles changes residuals but neither predictions nor model coefficients/ranks
+ok 433 - poisoning future challenge angles changes residuals but neither predictions nor model coefficients/ranks
+  ---
+  duration_ms: 74.312872
+  type: 'test'
+  ...
+# Subtest: changing challenge initial state or commands changes predictions without influencing training selection
+ok 434 - changing challenge initial state or commands changes predictions without influencing training selection
+  ---
+  duration_ms: 55.317217
+  type: 'test'
+  ...
+# Subtest: notebook exports source evidence/settings/selections and recomputes fabricated cached claims on reopen
+ok 435 - notebook exports source evidence/settings/selections and recomputes fabricated cached claims on reopen
+  ---
+  duration_ms: 67.331784
+  type: 'test'
+  ...
+# Subtest: cached selection IDs must correspond to an actually recomputed candidate/run pair
+ok 436 - cached selection IDs must correspond to an actually recomputed candidate/run pair
+  ---
+  duration_ms: 78.521477
+  type: 'test'
+  ...
+# Subtest: integral and derivative methods keep distinct residual units and training-only evidence
+ok 437 - integral and derivative methods keep distinct residual units and training-only evidence
+  ---
+  duration_ms: 102.304863
+  type: 'test'
+  ...
+# Subtest: units, provenance, missing rates, sparse rows and duplicate recording IDs are validated
+ok 438 - units, provenance, missing rates, sparse rows and duplicate recording IDs are validated
+  ---
+  duration_ms: 5.360241
+  type: 'test'
+  ...
+# Subtest: renamed exact and floating-epoch-shifted copies of training evidence are refused across roles
+ok 439 - renamed exact and floating-epoch-shifted copies of training evidence are refused across roles
+  ---
+  duration_ms: 4.111726
+  type: 'test'
+  ...
+# Subtest: renamed contiguous copied subsets of training samples are refused as challenge evidence
+ok 440 - renamed contiguous copied subsets of training samples are refused as challenge evidence
+  ---
+  duration_ms: 4.606136
+  type: 'test'
+  ...
+# Subtest: independent quantized analytic recordings may naturally share short sequences without being copied evidence
+ok 441 - independent quantized analytic recordings may naturally share short sequences without being copied evidence
+  ---
+  duration_ms: 8.911232
+  type: 'test'
+  ...
+# Subtest: a long matching training sequence embedded amid unrelated challenge values is still refused
+ok 442 - a long matching training sequence embedded amid unrelated challenge values is still refused
+  ---
+  duration_ms: 2.101376
+  type: 'test'
+  ...
+# Subtest: a shorter partial match can pass numerical screening, which therefore cannot authenticate recording independence
+ok 443 - a shorter partial match can pass numerical screening, which therefore cannot authenticate recording independence
+  ---
+  duration_ms: 2.261426
+  type: 'test'
+  ...
+# Subtest: non-JSON direct-JS provenance objects fail with typed errors rather than TypeErrors
+ok 444 - non-JSON direct-JS provenance objects fail with typed errors rather than TypeErrors
+  ---
+  duration_ms: 0.258382
+  type: 'test'
+  ...
+# Subtest: solver budget failures remain explicit receiving results and cannot become zero-error evidence
+ok 445 - solver budget failures remain explicit receiving results and cannot become zero-error evidence
+  ---
+  duration_ms: 23.295318
+  type: 'test'
+  ...
+# Subtest: text, sample, duration and option budgets reject invalid requests before fitting
+ok 446 - text, sample, duration and option budgets reject invalid requests before fitting
+  ---
+  duration_ms: 9.410981
+  type: 'test'
+  ...
+# Subtest: independent instrument exactly reproduces all original unforced fixture observations
+ok 447 - independent instrument exactly reproduces all original unforced fixture observations
+  ---
+  duration_ms: 17.765286
+  type: 'test'
+  ...
+# Subtest: acquisition is a complete valid synthetic SI run with fixed physical scale and bounded work
+ok 448 - acquisition is a complete valid synthetic SI run with fixed physical scale and bounded work
+  ---
+  duration_ms: 5.037717
+  type: 'test'
+  ...
+# Subtest: stationary zero-noise equilibrium remains exactly stationary through maximum bounded acquisition
+ok 449 - stationary zero-noise equilibrium remains exactly stationary through maximum bounded acquisition
+  ---
+  duration_ms: 17.535952
+  type: 'test'
+  ...
+# Subtest: known explicit pendulum law predicts independently acquired noiseless altered-start trajectories
+ok 450 - known explicit pendulum law predicts independently acquired noiseless altered-start trajectories
+  ---
+  duration_ms: 36.189516
+  type: 'test'
+  ...
+# Subtest: seeded noise is repeatable, initial state exact, and new seeds change observations without changing dynamics
+ok 451 - seeded noise is repeatable, initial state exact, and new seeds change observations without changing dynamics
+  ---
+  duration_ms: 7.747972
+  type: 'test'
+  ...
+# Subtest: retained evidence rejects exact replay, relabeling and reused noise streams even under different releases
+ok 452 - retained evidence rejects exact replay, relabeling and reused noise streams even under different releases
+  ---
+  duration_ms: 6.214935
+  type: 'test'
+  ...
+# Subtest: noiseless repetitions cannot become independent evidence by changing seed or recording grid
+ok 453 - noiseless repetitions cannot become independent evidence by changing seed or recording grid
+  ---
+  duration_ms: 8.406659
+  type: 'test'
+  ...
+# Subtest: canonical recording identity remains a guard when callers attempt train/challenge relabeling
+ok 454 - canonical recording identity remains a guard when callers attempt train/challenge relabeling
+  ---
+  duration_ms: 10.580162
+  type: 'test'
+  ...
+# Subtest: input request/history remain unchanged and replay output is fresh JSON-compatible evidence
+ok 455 - input request/history remain unchanged and replay output is fresh JSON-compatible evidence
+  ---
+  duration_ms: 3.71698
+  type: 'test'
+  ...
+# Subtest: typed refusal handles forged physical inputs, absent history, nonfinite settings and sampling budgets
+ok 456 - typed refusal handles forged physical inputs, absent history, nonfinite settings and sampling budgets
+  ---
+  duration_ms: 0.598675
+  type: 'test'
+  ...
+# Subtest: off-grid positive responses locate coherent witnesses while preserving finite-grid exclusion
+ok 457 - off-grid positive responses locate coherent witnesses while preserving finite-grid exclusion
+  ---
+  duration_ms: 17.888561
+  type: 'test'
+  ...
+# Subtest: negative coupling preserves sign and bounded future projections
+ok 458 - negative coupling preserves sign and bounded future projections
+  ---
+  duration_ms: 3.163172
+  type: 'test'
+  ...
+# Subtest: zero response stays unidentified across the whole domain without expensive subdivision
+ok 459 - zero response stays unidentified across the whole domain without expensive subdivision
+  ---
+  duration_ms: 2.375477
+  type: 'test'
+  ...
+# Subtest: one-box budget retains unvisited possible regions and cannot claim exclusion or feasibility
+ok 460 - one-box budget retains unvisited possible regions and cannot claim exclusion or feasibility
+  ---
+  duration_ms: 1.677973
+  type: 'test'
+  ...
+# Subtest: coarse outer boxes without a coherent witness are not called fitted models
+ok 461 - coarse outer boxes without a coherent witness are not called fitted models
+  ---
+  duration_ms: 1.926167
+  type: 'test'
+  ...
+# Subtest: contradictory signs and incompatible zero-duration response exclude only bounded offered family
+ok 462 - contradictory signs and incompatible zero-duration response exclude only bounded offered family
+  ---
+  duration_ms: 3.016441
+  type: 'test'
+  ...
+# Subtest: challenge outcomes do not change training boxes, witnesses or frozen projections
+ok 463 - challenge outcomes do not change training boxes, witnesses or frozen projections
+  ---
+  duration_ms: 8.405452
+  type: 'test'
+  ...
+# Subtest: individual envelope overlap cannot authorize per-challenge parameter switching
+ok 464 - individual envelope overlap cannot authorize per-challenge parameter switching
+  ---
+  duration_ms: 3.439858
+  type: 'test'
+  ...
+# Subtest: qualified contradiction survives an order-confounded challenge
+ok 465 - qualified contradiction survives an order-confounded challenge
+  ---
+  duration_ms: 7.690437
+  type: 'test'
+  ...
+# Subtest: insufficient training, out-of-domain values and malformed budgets refuse explicitly
+ok 466 - insufficient training, out-of-domain values and malformed budgets refuse explicitly
+  ---
+  duration_ms: 7.564086
+  type: 'test'
+  ...
+# Subtest: bounded noisy readings preserve coherent witnesses without precise identification
+ok 467 - bounded noisy readings preserve coherent witnesses without precise identification
+  ---
+  duration_ms: 3.696311
+  type: 'test'
+  ...
+# Subtest: input comparison roundtrip recomputes and ignores fabricated saved verdicts
+ok 468 - input comparison roundtrip recomputes and ignores fabricated saved verdicts
+  ---
+  duration_ms: 13.477226
+  type: 'test'
+  ...
+# Subtest: saved search bounds and work budget cannot silently reopen under fresh-call defaults
+ok 469 - saved search bounds and work budget cannot silently reopen under fresh-call defaults
+  ---
+  duration_ms: 15.572649
+  type: 'test'
+  ...
+# Subtest: complete prediction sets choose shortest full separation within time budget
+ok 470 - complete prediction sets choose shortest full separation within time budget
+  ---
+  duration_ms: 15.333169
+  type: 'test'
+  ...
+# Subtest: budget retains partial separation and excluded candidates without fabricated acquisition
+ok 471 - budget retains partial separation and excluded candidates without fabricated acquisition
+  ---
+  duration_ms: 6.19091
+  type: 'test'
+  ...
+# Subtest: zero response and large uncertainty refuse an informative request
+ok 472 - zero response and large uncertainty refuse an informative request
+  ---
+  duration_ms: 14.857626
+  type: 'test'
+  ...
+# Subtest: training only and deterministic grid ordering; complete input-based replay
+ok 473 - training only and deterministic grid ordering; complete input-based replay
+  ---
+  duration_ms: 20.467607
+  type: 'test'
+  ...
+# Subtest: zero budget and malformed acquisition constraints refuse without fallback
+ok 474 - zero budget and malformed acquisition constraints refuse without fallback
+  ---
+  duration_ms: 5.55891
+  type: 'test'
+  ...
+# Subtest: touching uncertainty-expanded prediction sets do not count as separated
+ok 475 - touching uncertainty-expanded prediction sets do not count as separated
+  ---
+  duration_ms: 10.593905
+  type: 'test'
+  ...
+# Subtest: independent saturation controls retain only matching grid law and predict separate duration
+ok 476 - independent saturation controls retain only matching grid law and predict separate duration
+  ---
+  duration_ms: 21.123371
+  type: 'test'
+  ...
+# Subtest: challenge outcomes cannot affect parameters, training eligibility or frozen predictions
+ok 477 - challenge outcomes cannot affect parameters, training eligibility or frozen predictions
+  ---
+  duration_ms: 5.501404
+  type: 'test'
+  ...
+# Subtest: zero response remains ambiguous; constant artifact is distinguished without latent-state claims
+ok 478 - zero response remains ambiguous; constant artifact is distinguished without latent-state claims
+  ---
+  duration_ms: 1.725074
+  type: 'test'
+  ...
+# Subtest: omitted duration law rejects complete finite family; high noise preserves ambiguity
+ok 479 - omitted duration law rejects complete finite family; high noise preserves ambiguity
+  ---
+  duration_ms: 2.392164
+  type: 'test'
+  ...
+# Subtest: sparse coverage and one-order readings refuse fitting; unqualified challenges stay visible
+ok 480 - sparse coverage and one-order readings refuse fitting; unqualified challenges stay visible
+  ---
+  duration_ms: 4.413893
+  type: 'test'
+  ...
+# Subtest: portable study recomputes; duplicated recordings, source mixing and duration mismatch refuse
+ok 481 - portable study recomputes; duplicated recordings, source mixing and duration mismatch refuse
+  ---
+  duration_ms: 3.001608
+  type: 'test'
+  ...
+# Subtest: challenge agreement requires one shared amplitude, not per-run parameter switching
+ok 482 - challenge agreement requires one shared amplitude, not per-run parameter switching
+  ---
+  duration_ms: 4.856392
+  type: 'test'
+  ...
+# Subtest: virtual duration provenance and independent random streams are enforced
+ok 483 - virtual duration provenance and independent random streams are enforced
+  ---
+  duration_ms: 1.057621
+  type: 'test'
+  ...
+# Subtest: negative amplitude is retained and repeated duration coverage is insufficient
+ok 484 - negative amplitude is retained and repeated duration coverage is insufficient
+  ---
+  duration_ms: 2.032193
+  type: 'test'
+  ...
+# Subtest: unqualified challenges cannot erase contradiction established by qualified challenges
+ok 485 - unqualified challenges cannot erase contradiction established by qualified challenges
+  ---
+  duration_ms: 2.142624
+  type: 'test'
+  ...
+# Subtest: independent hidden-history synthetic oracle challenges current-state-only torque
+ok 486 - independent hidden-history synthetic oracle challenges current-state-only torque
+  ---
+  duration_ms: 2.512116
+  type: 'test'
+  ...
+# Subtest: memoryless oracle is NOT misdiagnosed by noise alone
+ok 487 - memoryless oracle is NOT misdiagnosed by noise alone
+  ---
+  duration_ms: 1.461138
+  type: 'test'
+  ...
+# Subtest: preconditioning duration zero cannot create a hidden state effect
+ok 488 - preconditioning duration zero cannot create a hidden state effect
+  ---
+  duration_ms: 0.269131
+  type: 'test'
+  ...
+# Subtest: negative change direction remains detectable
+ok 489 - negative change direction remains detectable
+  ---
+  duration_ms: 0.196909
+  type: 'test'
+  ...
+# Subtest: export/import retain original measured samples, source and assumptions
+ok 490 - export/import retain original measured samples, source and assumptions
+  ---
+  duration_ms: 1.185468
+  type: 'test'
+  ...
+# Subtest: wrong observed state rejects apparent history correlation
+ok 491 - wrong observed state rejects apparent history correlation
+  ---
+  duration_ms: 0.403081
+  type: 'test'
+  ...
+# Subtest: missing, duplicates, nonfinite and mixed histories reject rather than invent pair
+ok 492 - missing, duplicates, nonfinite and mixed histories reject rather than invent pair
+  ---
+  duration_ms: 0.689748
+  type: 'test'
+  ...
+# Subtest: import refuses wrong schema, oversized payload, or untrusted source type
+ok 493 - import refuses wrong schema, oversized payload, or untrusted source type
+  ---
+  duration_ms: 0.332018
+  type: 'test'
+  ...
+# Subtest: screen is explicitly inconclusive at insufficient effect-to-noise ratio
+ok 494 - screen is explicitly inconclusive at insufficient effect-to-noise ratio
+  ---
+  duration_ms: 0.270278
+  type: 'test'
+  ...
+# Subtest: one-way chronological drift looks like history on naive screen but refuses causal interpretation
+ok 495 - one-way chronological drift looks like history on naive screen but refuses causal interpretation
+  ---
+  duration_ms: 2.646702
+  type: 'test'
+  ...
+# Subtest: AB/BA crossover cancels linear drift on an independent memoryless synthetic instrument
+ok 496 - AB/BA crossover cancels linear drift on an independent memoryless synthetic instrument
+  ---
+  duration_ms: 0.742376
+  type: 'test'
+  ...
+# Subtest: true memory effect survives controlled linear drift with both orders
+ok 497 - true memory effect survives controlled linear drift with both orders
+  ---
+  duration_ms: 0.839167
+  type: 'test'
+  ...
+# Subtest: single-order false positive is withheld even when all differences are far above noise
+ok 498 - single-order false positive is withheld even when all differences are far above noise
+  ---
+  duration_ms: 0.273135
+  type: 'test'
+  ...
+# Subtest: chronology survives portable measured notebook import/export without inventing authentication
+ok 499 - chronology survives portable measured notebook import/export without inventing authentication
+  ---
+  duration_ms: 1.017253
+  type: 'test'
+  ...
+# Subtest: unindexed legacy notebook remains supported and marked unrecorded
+ok 500 - unindexed legacy notebook remains supported and marked unrecorded
+  ---
+  duration_ms: 0.567496
+  type: 'test'
+  ...
+# Subtest: order index must be complete, bounded, unique and pairwise adjacent
+ok 501 - order index must be complete, bounded, unique and pairwise adjacent
+  ---
+  duration_ms: 1.037806
+  type: 'test'
+  ...
+# Subtest: too-few counterbalanced pairs do not imply history effect regardless of mean
+ok 502 - too-few counterbalanced pairs do not imply history effect regardless of mean
+  ---
+  duration_ms: 0.264366
+  type: 'test'
+  ...
+# Subtest: changing drift changes readings but not the source-visible state inputs
+ok 503 - changing drift changes readings but not the source-visible state inputs
+  ---
+  duration_ms: 0.39246
+  type: 'test'
+  ...
+# Subtest: independent periodic sensor artifact aliases fixed AB/BA into a false preparation challenge
+ok 504 - independent periodic sensor artifact aliases fixed AB/BA into a false preparation challenge
+  ---
+  duration_ms: 2.621199
+  type: 'test'
+  ...
+# Subtest: seeded shuffled balanced AB/BA breaks this exact phase-lock under equal observations
+ok 505 - seeded shuffled balanced AB/BA breaks this exact phase-lock under equal observations
+  ---
+  duration_ms: 0.293018
+  type: 'test'
+  ...
+# Subtest: shuffled scheduling does not destroy a genuine preparation effect
+ok 506 - shuffled scheduling does not destroy a genuine preparation effect
+  ---
+  duration_ms: 0.238251
+  type: 'test'
+  ...
+# Subtest: changing order alone preserves every state and noiseless target, no data leakage
+ok 507 - changing order alone preserves every state and noiseless target, no data leakage
+  ---
+  duration_ms: 0.632057
+  type: 'test'
+  ...
+# Subtest: the shuffled sequence and oracle parameters can be reconstructed from portable evidence
+ok 508 - the shuffled sequence and oracle parameters can be reconstructed from portable evidence
+  ---
+  duration_ms: 1.881155
+  type: 'test'
+  ...
+# Subtest: user-declared measured samples retain pairs but never inherited virtual-only metadata
+ok 509 - user-declared measured samples retain pairs but never inherited virtual-only metadata
+  ---
+  duration_ms: 0.435238
+  type: 'test'
+  ...
+# Subtest: invalid strategies, cycle amplitudes and forged simulation metadata fail validation
+ok 510 - invalid strategies, cycle amplitudes and forged simulation metadata fail validation
+  ---
+  duration_ms: 0.575396
+  type: 'test'
+  ...
+# Subtest: offset transfers with one coefficient to signed separate probes
+ok 511 - offset transfers with one coefficient to signed separate probes
+  ---
+  duration_ms: 12.688358
+  type: 'test'
+  ...
+# Subtest: drag transfers with one coefficient to signed separate probes
+ok 512 - drag transfers with one coefficient to signed separate probes
+  ---
+  duration_ms: 3.17472
+  type: 'test'
+  ...
+# Subtest: restoring transfers with one coefficient to signed separate probes
+ok 513 - restoring transfers with one coefficient to signed separate probes
+  ---
+  duration_ms: 3.209859
+  type: 'test'
+  ...
+# Subtest: omitted mixed response contradicts every offered family
+ok 514 - omitted mixed response contradicts every offered family
+  ---
+  duration_ms: 2.443096
+  type: 'test'
+  ...
+# Subtest: small correlated training states preserve alternatives; reversed probe distinguishes
+ok 515 - small correlated training states preserve alternatives; reversed probe distinguishes
+  ---
+  duration_ms: 2.435736
+  type: 'test'
+  ...
+# Subtest: challenge values cannot change fit or frozen prediction intervals
+ok 516 - challenge values cannot change fit or frozen prediction intervals
+  ---
+  duration_ms: 4.6155
+  type: 'test'
+  ...
+# Subtest: zero-rate unexcited drag remains ambiguous rather than identified
+ok 517 - zero-rate unexcited drag remains ambiguous rather than identified
+  ---
+  duration_ms: 1.539907
+  type: 'test'
+  ...
+# Subtest: unqualified challenge cannot erase a qualified contradiction
+ok 518 - unqualified challenge cannot erase a qualified contradiction
+  ---
+  duration_ms: 3.039957
+  type: 'test'
+  ...
+# Subtest: one coherent coefficient must explain all challenges
+ok 519 - one coherent coefficient must explain all challenges
+  ---
+  duration_ms: 2.683389
+  type: 'test'
+  ...
+# Subtest: input-only replay recomputes; invalid scope/source/state/reuse rejected
+ok 520 - input-only replay recomputes; invalid scope/source/state/reuse rejected
+  ---
+  duration_ms: 12.92533
+  type: 'test'
+  ...
+# Subtest: unrecorded training order is insufficient, not a fitted effect
+ok 521 - unrecorded training order is insufficient, not a fitted effect
+  ---
+  duration_ms: 1.91772
+  type: 'test'
+  ...
+# Subtest: training subset and partially overlapping challenge evidence are rejected despite renamed pairs and order
+ok 522 - training subset and partially overlapping challenge evidence are rejected despite renamed pairs and order
+  ---
+  duration_ms: 3.501162
+  type: 'test'
+  ...
+# Subtest: captured Chrome seed rounding reopens in Node without rewriting supplied evidence
+ok 523 - captured Chrome seed rounding reopens in Node without rewriting supplied evidence
+  ---
+  duration_ms: 62.018756
+  type: 'test'
+  ...
+# Subtest: roundoff bound applies to every numeric field in both baseline arrays
+ok 524 - roundoff bound applies to every numeric field in both baseline arrays
+  ---
+  duration_ms: 170.592268
+  type: 'test'
+  ...
+# Subtest: numeric compatibility does not relax row identity, seed, schema or finiteness
+ok 525 - numeric compatibility does not relax row identity, seed, schema or finiteness
+  ---
+  duration_ms: 55.617796
+  type: 'test'
+  ...
+1..525
+# tests 525
+# suites 0
+# pass 524
+# fail 0
+# cancelled 0
+# skipped 1
+# todo 0
+# duration_ms 19441.922976
+
+> worldlaw@0.1.0 smoke
+> node scripts/smoke.mjs
+
+PASS launched product assets and refusal paths; actual discovery → virtual measurement → revision → notebook reopen.
+
+> worldlaw@0.1.0 smoke:trajectory
+> node scripts/trajectory-smoke-92be.mjs
+
+{
+  "product": "worldlaw",
+  "route": "trajectory-challenge",
+  "runtime": "v22.23.4",
+  "inputSHA256": "fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e",
+  "received": "launched local HTTP server -> actual JSON input -> fitting -> forward predictions -> source notebook reopen",
+  "selectedModel": "command+rate+gravity+bias",
+  "selectedPositionRMSE": 0.0006561748182990025,
+  "comparedModels": 8,
+  "challengeRuns": 2,
+  "negativeCases": [
+    "missing initial rate refused",
+    "missing resource404",
+    "unsupported method405"
+  ],
+  "evidenceKind": "synthetic"
+}

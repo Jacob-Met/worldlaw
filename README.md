@@ -232,3 +232,7 @@ Open `/cycle-work.html` from the workbench to inspect signed polygonal work from
 ## Held-out prediction sensitivity
 
 The scalar model inspector can now compare every retained held-out torque reading with the prediction interval induced by shared bounded training-reading errors. It keeps the original inputs and inspected structure fixed, exposes each query's training-offset witness and contrast with an independent coefficient box, and marks numerical boundaries and coordinate extrapolation. Source notebooks reopen through the existing workflow; both error radii are explicitly redeclared. These per-row ranges do not establish joint feasibility, confidence or physical validity. See [the model and controls](docs/PREDICTION_SENSITIVITY.md) and [executed receiving](docs/receipts/prediction-sensitivity-195c0e2a/verification.json).
+
+## Shared-training receiving contrasts
+
+The held-out prediction sensitivity inspector also receives every unordered pair under one shared training-reading perturbation. Marginal ranges remain visible. Inspect signed pair ranges and witnesses, including contradictions hidden by individually overlapping intervals; passing all pairs does not establish joint feasibility. The complete 128-row limit includes all 8128 pairs. Numerical and source qualifications, examples and receiving commands are in [the contrast model](docs/PREDICTION_CONTRAST.md).

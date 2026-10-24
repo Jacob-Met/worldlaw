@@ -1,4 +1,5 @@
-import {predictionSensitivity} from './prediction-sensitivity.mjs';
+import {predictionContrasts} from './prediction-contrast.mjs';
+import {renderPredictionContrasts} from './prediction-contrast-panel.mjs';
 const node=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
 const number=value=>Number(value.toPrecision(6)).toLocaleString('en-US',{maximumSignificantDigits:6});
 export function renderPredictionSensitivity(host,model,training,receiving){
@@ -12,7 +13,8 @@ export function renderPredictionSensitivity(host,model,training,receiving){
   output.replaceChildren();
   try{
    if(controls.some(c=>c.input.value.trim()===''))throw new Error('Enter both explicit reading-error radii.');
-   const report=predictionSensitivity(model,training,receiving,Object.fromEntries(controls.map(c=>[c.key,Number(c.input.value)])));
+   const contrasts=predictionContrasts(model,training,receiving,Object.fromEntries(controls.map(c=>[c.key,Number(c.input.value)])));
+   const report=contrasts.marginal;
    if(report.status!=='computed'){status.textContent=`Prediction sensitivity unavailable: ${report.status}. Complete inputs: ${training.length} training and ${receiving.length} held-out readings. No subset was substituted.`;return;}
    status.textContent=`${report.outsideCount} of ${report.receivingCount} held-out readings outside the conditional perturbation range; ${report.boundaryCount} numerically unresolved at its boundary; ${report.notExcludedCount} not excluded. This is a per-row check, not joint compatibility or physical validation.`;
    const scroll=node('div');scroll.className='prediction-sensitivity-scroll';scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label','Complete held-out sensitivity comparison');
@@ -23,6 +25,7 @@ export function renderPredictionSensitivity(host,model,training,receiving){
    const label=node('label','Receiving row '),select=node('select');select.setAttribute('aria-label','Receiving row witness');for(const row of report.rows){const option=node('option',String(row.index+1));option.value=String(row.index);select.append(option);}label.append(select);details.append(label);const witness=node('div');details.append(witness);
    const show=()=>{const r=report.rows[Number(select.value)];witness.replaceChildren(node('p',`Command ${number(r.input.command)}, angle ${number(r.input.position)}, rate ${number(r.input.rate)}. Inspected point prediction ${number(r.inspectedPrediction)} N·m; conditional refit ${number(r.refittedPrediction)} N·m.`),node('p',`Shared-reading prediction radius ${number(r.radius)} N·m; treating separate coefficient ranges as independent would give ${number(r.independentCoefficientBoxRadius)} N·m. Boundary tolerance ${r.numericalTolerance} N·m.`),node('p','Add these offsets to training readings in retained order and refit this same structure to reach this row’s upper prediction endpoint. Negate them for its lower endpoint. Other rows can require different witnesses.'),node('p',r.upperWitnessOffsets.map((v,i)=>`${i+1}: ${number(v)}`).join('; ')));};select.addEventListener('change',show);show();
    output.append(details,node('p',report.interpretation),node('p',report.numericalQualification),node('p','All declared coordinates remain exact. Extrapolation marks departure from a coordinate’s observed range, not proof of physical invalidity. Reopen the source notebook and redeclare both radii to recompute this comparison.'));
+   renderPredictionContrasts(output,contrasts);
   }catch(error){output.replaceChildren();status.textContent=`Prediction sensitivity unavailable: ${error.message}`;}
  });
 }
