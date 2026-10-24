@@ -1,3 +1,4 @@
+import {mountDurationPlanner} from './duration-planner-panel.mjs';
 import {mountDurationPanel} from './duration-panel.mjs';
 import {syntheticChallenge,evaluateHistory,importNotebook,exportNotebook} from './paired-history.mjs';
 const $=id=>document.getElementById(id);
@@ -114,4 +115,5 @@ try {
 }catch(e){adopt(syntheticChallenge(),'Executed virtual baseline (browser storage unavailable)');}
 
 
-mountDurationPanel(()=>notebook);
+const durationPanel=mountDurationPanel(()=>notebook);
+mountDurationPlanner(durationPanel);
