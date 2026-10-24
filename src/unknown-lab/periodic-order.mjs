@@ -13,14 +13,21 @@ export function compareOrderArtifacts(raw){
  const rows=baseline.rows.map((row,i)=>{
   const weights=serialOrderWeights(baseline.inputs.plans[i].pairs);
   const artifacts=periods.map(period=>{
-   let cosine=0,sine=0;
-   // A common origin shift changes phase, not the arbitrary-phase gain.
-   for(const {sampleIndex,weight} of weights){const phase=2*Math.PI*((sampleIndex-row.firstIndex)%period)/period;cosine+=weight*Math.cos(phase);sine+=weight*Math.sin(phase);}
-   const gain=Math.hypot(cosine,sine);
-   return {period,gain,cosine,sine,nearCancellation:gain<=1e-10};
+   return periodicContrastGain(weights,period,row.firstIndex);
   });
   return {...row,artifacts};
  });
  return {...baseline,inputs:{...baseline.inputs,schema:raw.schema,periodic:{sourceNote:family.sourceNote,periods:[...periods]}},rows,
   interpretation:'Noise variance and normalized arbitrary-phase sinusoid gain are separate conditional quantities. Each gain applies only to its declared period in acquisition steps. Near cancellation is a floating-point diagnostic, not certified zero or immunity. No combined score, phase estimate, calibration, elapsed-time frequency or general artifact resistance is inferred.'};
+}
+
+// Shared conditional linear response; callers admit indices/periods and work bounds.
+export function periodicContrastGain(weights,period,origin){
+ let cosine=0,sine=0;
+ for(const {sampleIndex,weight} of weights){
+  const phase=2*Math.PI*((sampleIndex-origin)%period)/period;
+  cosine+=weight*Math.cos(phase);sine+=weight*Math.sin(phase);
+ }
+ const gain=Math.hypot(cosine,sine);
+ return {period,gain,cosine,sine,nearCancellation:gain<=1e-10};
 }
