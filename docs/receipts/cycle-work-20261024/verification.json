@@ -1,0 +1,82 @@
+{
+  "baseCommit": "7710a52887735467936358fb75b07a8ad0a3b4fb",
+  "verifiedUnchangedBlobs": 249,
+  "missingPriorProofImages": [
+    "docs/receipts/continuous-duration-20261024/continuous-390.png",
+    "docs/receipts/coupling-20261024/coupling-field-1440.png",
+    "docs/receipts/coupling-20261024/coupling-field-390.png",
+    "docs/receipts/coupling-20261024/coupling-gauge-1440.png",
+    "docs/receipts/coupling-20261024/coupling-gauge-390.png",
+    "docs/receipts/duration-planner-20261024/worldlaw-duration-planner-390.png",
+    "docs/receipts/prediction-baselines-20261024/baselines-390.png",
+    "docs/receipts/prediction-baselines-20261024/desktop-baselines.png",
+    "docs/receipts/stiffness-20261024/gauge-1440.png",
+    "docs/receipts/stiffness-20261024/gauge-390.png",
+    "docs/receipts/stiffness-20261024/response-1440.png",
+    "docs/receipts/stiffness-20261024/response-390.png"
+  ],
+  "mismatches": [],
+  "sha256": {
+    "server.mjs": "a2b58939a9e5e4f5669bbe7f311a3d2a9ad16250887bb5ec2ee4ca771fbdad13",
+    "cycle-work.html": "4e1e99d9784278fc668d7099014e9271b58c01153a71292142e16b97f89c14d2",
+    "README.md": "d712e33409249dc94926a61deafa59f7b8fcc441be2e6e093c998b661cfe87b3",
+    "index.html": "940fcfcdb531f99de580da2a3655ef9c22577a9ed60f94b394447ed88a5cd863",
+    "scripts/cycle-work-browser.mjs": "591f3f1d4e6dda43d4f73aa30b70c946097c60c520a53e7ba36896e7108c72db",
+    "tests/cycle-work.test.mjs": "5a4189399c5afa8893b3a123a522705acc792713d3cc45ad71a38677f7b7ca30",
+    "docs/CYCLE_WORK.md": "a8793eb123c423d12370569401e1e57291adb84226646253d13f1fcc588ef785",
+    "src/cycle-work/app.mjs": "ec15e1d3d5e769423612d743add26835151c568636ae84778394ee1a3ed6f9e0",
+    "src/cycle-work/core.mjs": "7edd6cf7559eac1bf50e73b081e2abef0fce34bb4fbaccc06b3048a2d87cc432",
+    "tests/cycle-work-exact-enclosure.test.mjs": "2492bc75339396c3ff2fced486e2066b7a40b0bbe344e20276e20a9afa667eed",
+    "scripts/package.py": "b51976a6178131003fef946a64dcf0250e7bf7c3477b0ca1bb5cb682a0fe2325"
+  },
+  "nodeSummary": "ok 229 - live Node and Chromium exchange pending and applied notebooks through actual modules # SKIP\n# tests 415\n# pass 414\n# fail 0\n# skipped 1\n# duration_ms 17957.615186",
+  "browser": {
+    "checks": [
+      "actual page and keyboard execution show ordered trace and five signed segments",
+      "reverse, conservative, uncertainty and nonlinear quadrature controls reach consumer",
+      "invalid closure clears old result; actual downloaded inputs reopen and recompute",
+      "late file read cannot replace newer control",
+      "desktop and narrow layouts fit with no runtime errors"
+    ],
+    "layouts": [
+      {
+        "width": 1440,
+        "document": 1440
+      },
+      {
+        "width": 390,
+        "document": 390
+      },
+      {
+        "width": 320,
+        "document": 320
+      }
+    ],
+    "browser": "156.0.8078.47",
+    "scope": "Actual browser with authored controls; no physical acquisition claim."
+  },
+  "node": "v22.23.4",
+  "receivedAt": "2026-10-24T06:20:01.792657+00:00",
+  "packaging": "Existing distribution allowlist accepts the entire candidate path set; Cycle Work HTML/app/core are included and required. No distribution archive or deployed application claim.",
+  "schema": "hamon.product-receiving/v1",
+  "owner": "hamon-583a018f54af-20261023",
+  "sourceScope": "Candidate source composed over baseCommit; missingPriorProofImages lists historical receipt images omitted only from the execution copy and retained unchanged in the Git base tree.",
+  "sandbox": "Ordinary Chromium sandbox; no --no-sandbox run.",
+  "limit": "Software and authored controls only. No physical acquisition, provider qualification, persistent deployment or submission is established.",
+  "commands": [
+    "npm run verify",
+    "PLAYWRIGHT_MODULE=<existing Playwright module> BROWSER_EXECUTABLE_PATH=/usr/local/bin/google-chrome BROWSER_ARTIFACT_DIR=<fresh artifact directory> node scripts/cycle-work-browser.mjs",
+    "Existing scripts/package.py included/check_tracked/REQUIRED checks over all candidate paths"
+  ],
+  "independentReview": {
+    "reviewer": "hamon-583a018f54af-20261023/mechanism",
+    "result": "No remaining blocker after cancellation-enclosure correction; 12 focused tests and independent 160-case exact dyadic BigInt oracle; final responsive label/redraw source reviewed separately.",
+    "coreSha256": "7edd6cf7559eac1bf50e73b081e2abef0fce34bb4fbaccc06b3048a2d87cc432",
+    "oracleSha256": "2492bc75339396c3ff2fced486e2066b7a40b0bbe344e20276e20a9afa667eed"
+  },
+  "smokeTests": [
+    "Actual discovery → virtual measurement → revision → notebook reopen",
+    "Actual trajectory JSON → fitting → forward predictions → notebook reopen; 8 models, 2 authored challenge runs, missing-rate/404/405 controls"
+  ],
+  "numericalCorrection": "Compute each shared interior torque weight directly from adjacent outer positions. Preserve small shared coefficients under large-angle cancellation; widen for subtraction/product/sum/bound arithmetic. Negative control remains about polygonal sampling, not continuous dissipation."
+}

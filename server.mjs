@@ -21,7 +21,7 @@ export function createProductServer() {
       res.end(req.method === 'HEAD' ? undefined : JSON.stringify({product:'worldlaw',version:'0.1.0',mode:'local-discovery-studio'})); return;
     }
     if (pathname === '/') pathname = '/index.html';
-    const allowed = ['/index.html','/stiffness.html','/stiffness.css','/styles.css','/favicon.svg','/motion.html','/motion.css',
+    const allowed = ['/cycle-work.html','/index.html','/stiffness.html','/stiffness.css','/styles.css','/favicon.svg','/motion.html','/motion.css',
       '/coupling.html','/coupling.css','/trajectory.html','/trajectory.css','/unknown-lab.html','/unknown-lab.css','/examples/trajectory-pendulum-92be.json',
       '/examples/trajectory-ambiguous-92be.json','/examples/physical-pasco-92be.json'].includes(pathname) || /^\/src\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+\.mjs$/.test(pathname);
     if (!allowed) { res.writeHead(404).end('File not found.'); return; }
