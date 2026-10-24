@@ -96,3 +96,8 @@ acquisition instrument and retains its prior mismatch and unknown scale.
 component, browser, artifact and integration evidence. The full-vision
 requirements remain open.
 
+
+## Motion sampled-patch search receiving (2026-10-24)
+
+The explicit2px profile retains full original integer candidate search, both-point evidence custody and atomic work-limit refusal. Current-main receiving:603 native tests (602 pass,0 fail,1 inherited optional skip), both launched consumer smokes,5 actual original-video groups and8 paired-pivot groups; desktop/390px/keyboard, raw download/reopen and exact source reattachment inspected. Dense defaults remain supported. Aliased unsampled changes are an explicit retained negative, not an equivalence claim. See [MOTION_GRID_TRACKING.md](MOTION_GRID_TRACKING.md) and the attributed grid receipt.
+

@@ -11,6 +11,7 @@ const artifactDir=resolve(process.env.BROWSER_ARTIFACT_DIR||'.receipts/tracked-p
 await mkdir(artifactDir,{recursive:true});
 const truth=JSON.parse(await readFile(resolve(fixtureDir,'truth.json'),'utf8'));
 const appearance=process.env.MOTION_APPEARANCE||'luminance';
+const sampleStep=Number(process.env.MOTION_SAMPLE_STEP||1);assert.ok([1,2].includes(sampleStep));
 assert.ok(['luminance','color'].includes(appearance));
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const server=createProductServer();await new Promise((yes,no)=>{server.once('error',no);server.listen(0,'127.0.0.1',yes);});
@@ -30,6 +31,7 @@ try {
     await page.waitForFunction(name=>document.getElementById('source-name').textContent.includes(name),`synthetic-translating-pivot-${variant}`);
     await page.waitForFunction(()=>!document.getElementById('pick-pivot').disabled);
     if(appearance==='color')await page.locator('#appearance-mode').selectOption('color');
+    if(sampleStep===2){await page.locator('#patch-radius').fill('8');await page.locator('#patch-sampling').selectOption('2');}
     await page.locator('#pivot-mode').selectOption('tracked');
     await point('#pick-pivot',truth.frames[0].pivot);await point('#pick-marker',truth.frames[0].point);
     await page.locator('#sample-step').fill('.1');await page.locator('#search-radius').fill('20');await page.locator('#track-until').fill('2.8');};
@@ -40,10 +42,11 @@ try {
   assert.equal(clean.value.schema,'worldlaw.motion-notebook/v2');
   assert.equal(clean.value.source.sha256,createHash('sha256').update(await readFile(source('clean'))).digest('hex'));
   assert.ok(clean.value.measurements.length>=28);assert.ok(clean.value.measurements.every(row=>row.pivotMeasurement?.point&&row.point));
-  if(appearance==='color')for(const row of clean.value.measurements) {
-    assert.equal(row.tracker.version,'worldlaw.patch-color-ncc/v1');
-    assert.equal(row.pivotMeasurement.tracker.version,'worldlaw.patch-color-ncc/v1');
-    assert.equal(row.tracker.appearance,'color');assert.equal(row.pivotMeasurement.tracker.appearance,'color');
+  for(const row of clean.value.measurements) {
+    const version=`worldlaw.patch-${appearance==='color'?'color-':''}${sampleStep===2?'grid-':''}ncc/v1`;
+    assert.equal(row.tracker.version,version);assert.equal(row.pivotMeasurement.tracker.version,version);
+    assert.equal(row.tracker.appearance,appearance);assert.equal(row.pivotMeasurement.tracker.appearance,appearance);
+    assert.equal(row.tracker.sampleStep,sampleStep);assert.equal(row.pivotMeasurement.tracker.sampleStep,sampleStep);
   }
   const angles=deriveAngles(clean.value);assert.equal(angles.segments.length,1);
   const angularErrors=[],pivotErrors=[];
@@ -68,6 +71,7 @@ try {
   await page.locator('#notebook-file').setInputFiles(clean.path);
   await page.waitForFunction(()=>document.getElementById('source-detail').textContent.includes('disconnected'));
   assert.equal(await page.locator('#pivot-mode').inputValue(),'tracked');
+  assert.equal(await page.locator('#patch-sampling').inputValue(),String(sampleStep));
   const reopened=await download('#save-notebook','reopened-notebook.json');assert.deepEqual(reopened.value,clean.value);
   await page.locator('#attach-video').click();await page.locator('#video-file').setInputFiles(source('pivot-hidden'));
   await page.locator('#motion-error').waitFor({state:'visible'});assert.match(await page.locator('#motion-error').textContent(),/SHA-256/);

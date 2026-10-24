@@ -159,3 +159,8 @@ Receipt and actual screenshots: [color receiving](receipts/color-tracking-e898/r
 
 The fixed translating patch still cannot establish geometric center accuracy under rotation, long-term tracking, invariance to color changes or the identity of a unique lookalike. The real movie's later refusal remains useful evidence for further registration work. Its coupled dynamics remain outside the scalar known-inertia torque assumption. The current visual increment keeps the source apparatus prominent and its observed/rejected states visible; the inherited long control stack remains an experience limitation on narrow screens.
 
+
+## Explicit sampled-patch wide search
+
+Motion Lab now offers an optional symmetric2px patch-sampling profile while retaining the dense default and unchanged ambiguity gates. It can cover a wider actual-image search under the same sampled-comparison cap; skipped detail can hide differences, so the profile is explicit and recorded per point. See [MOTION_GRID_TRACKING.md](MOTION_GRID_TRACKING.md) for mechanism, work limits, original-video receiving, aliasing controls and the rejected velocity-seeding experiment.
+
