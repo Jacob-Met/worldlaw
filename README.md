@@ -199,3 +199,8 @@ limits](docs/STIFFNESS_LAB.md).
 node --test tests/stiffness.test.mjs
 BROWSER_ARTIFACT_DIR=/tmp/worldlaw-stiffness-receipts node scripts/stiffness-browser.mjs
 ```
+
+
+## Cycle Work
+
+Open `/cycle-work.html` from the workbench to inspect signed polygonal work from ordered torque–angle return paths. Explicit exact-angle assumptions, torque-error bounds and an integration allowance are retained in input-only export/reopen. The nonlinear conservative control demonstrates a quadrature artifact: nonzero polygonal work alone does not identify continuous-path work or dissipation. See [Cycle Work](docs/CYCLE_WORK.md). Run `node --test tests/cycle-work.test.mjs` and `node scripts/cycle-work-browser.mjs` (the browser command uses the existing `PLAYWRIGHT_MODULE` and `BROWSER_EXECUTABLE_PATH` conventions).
