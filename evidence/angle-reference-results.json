@@ -1,0 +1,402 @@
+{
+  "method": "training-only declared grid; selected and zero-offset frozen before separate-run prediction",
+  "synthetic": [
+    {
+      "offset": 0,
+      "amplitude": 0.2,
+      "sigma": 0,
+      "status": "unshifted_preferred",
+      "selectedOffset": 0,
+      "competitive": [
+        0
+      ],
+      "model": "rate+gravity",
+      "trainingMismatch": 0.00000652301434671745,
+      "scoreImprovement": 0,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 6.358265825338298e-8,
+          "selectedRMSE": 6.358265825338298e-8,
+          "baselineFinalError": 5.5781021801593056e-8,
+          "selectedFinalError": 5.5781021801593056e-8,
+          "numericalMaxDifference": 1.1294290780394789e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    },
+    {
+      "offset": 0,
+      "amplitude": 0.2,
+      "sigma": 0.002,
+      "status": "unshifted_preferred",
+      "selectedOffset": 0,
+      "competitive": [
+        0
+      ],
+      "model": "rate+spring",
+      "trainingMismatch": 0.8922182867765428,
+      "scoreImprovement": 0,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 0.8920786847113594,
+          "selectedRMSE": 0.8920786847113594,
+          "baselineFinalError": 0.47854748664169355,
+          "selectedFinalError": 0.47854748664169355,
+          "numericalMaxDifference": 1.6631798716026935e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    },
+    {
+      "offset": 0,
+      "amplitude": 1.5,
+      "sigma": 0,
+      "status": "unshifted_preferred",
+      "selectedOffset": 0,
+      "competitive": [
+        0
+      ],
+      "model": "rate+gravity",
+      "trainingMismatch": 0.0011241892955163014,
+      "scoreImprovement": 0,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 5.647350981279248e-8,
+          "selectedRMSE": 5.647350981279248e-8,
+          "baselineFinalError": 9.322421068436171e-8,
+          "selectedFinalError": 9.322421068436171e-8,
+          "numericalMaxDifference": 1.1294283147611495e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    },
+    {
+      "offset": 0,
+      "amplitude": 1.5,
+      "sigma": 0.002,
+      "status": "unshifted_preferred",
+      "selectedOffset": 0,
+      "competitive": [
+        0
+      ],
+      "model": "rate+gravity",
+      "trainingMismatch": 0.9034829356188324,
+      "scoreImprovement": 0,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 0.00478234596118465,
+          "selectedRMSE": 0.00478234596118465,
+          "baselineFinalError": 0.001412703533873183,
+          "selectedFinalError": 0.001412703533873183,
+          "numericalMaxDifference": 1.1327108556669074e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    },
+    {
+      "offset": 0.075,
+      "amplitude": 0.2,
+      "sigma": 0,
+      "status": "residual_mismatch",
+      "selectedOffset": 0.05,
+      "competitive": [
+        0.05
+      ],
+      "model": "rate+spring+gravity+bias",
+      "trainingMismatch": 5.423371065923233,
+      "scoreImprovement": 21.19277571960822,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 0.6414925897537137,
+          "selectedRMSE": 0.3498108964041909,
+          "baselineFinalError": 0.4820278177062133,
+          "selectedFinalError": 0.3293086145853828,
+          "numericalMaxDifference": 1.1456973703083406e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    },
+    {
+      "offset": 0.075,
+      "amplitude": 0.2,
+      "sigma": 0.002,
+      "status": "ambiguous_reference",
+      "selectedOffset": 0,
+      "competitive": [
+        0,
+        -0.05,
+        0.05,
+        -0.1,
+        0.1,
+        -0.15,
+        0.15,
+        -0.2,
+        0.2,
+        -0.25,
+        0.25,
+        -0.3,
+        0.3,
+        -0.35,
+        0.35,
+        -0.4,
+        0.4,
+        -0.45,
+        0.45,
+        -0.5,
+        0.5
+      ],
+      "model": "rate+spring+bias",
+      "trainingMismatch": 0.8921110869749844,
+      "scoreImprovement": 0,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 0.8921898874683777,
+          "selectedRMSE": 0.8921898874683777,
+          "baselineFinalError": 0.4784456685042681,
+          "selectedFinalError": 0.4784456685042681,
+          "numericalMaxDifference": 1.6634095767464885e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    },
+    {
+      "offset": 0.075,
+      "amplitude": 1.5,
+      "sigma": 0,
+      "status": "residual_mismatch",
+      "selectedOffset": 0.1,
+      "competitive": [
+        0.1,
+        0.05
+      ],
+      "model": "rate+gravity+bias",
+      "trainingMismatch": 330.2185365582615,
+      "scoreImprovement": 42.0766070990953,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 0.07439337209362057,
+          "selectedRMSE": 0.02191187357202172,
+          "baselineFinalError": 0.07381295697391527,
+          "selectedFinalError": 0.004996673180922617,
+          "numericalMaxDifference": 1.1383763931505086e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    },
+    {
+      "offset": 0.075,
+      "amplitude": 1.5,
+      "sigma": 0.002,
+      "status": "shifted_hypothesis",
+      "selectedOffset": 0.05,
+      "competitive": [
+        0.05
+      ],
+      "model": "rate+gravity+bias",
+      "trainingMismatch": 1.6226005050174963,
+      "scoreImprovement": 40.880795657204374,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 0.06829428325225866,
+          "selectedRMSE": 0.025588484535955126,
+          "baselineFinalError": 0.07097426961883896,
+          "selectedFinalError": 0.00896798122633985,
+          "numericalMaxDifference": 1.1260259530354588e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    },
+    {
+      "offset": 0.3,
+      "amplitude": 0.2,
+      "sigma": 0,
+      "status": "shifted_hypothesis",
+      "selectedOffset": 0.3,
+      "competitive": [
+        0.3
+      ],
+      "model": "rate+gravity",
+      "trainingMismatch": 0.000006523013753312797,
+      "scoreImprovement": 113.24565255020866,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 0.8260475031666594,
+          "selectedRMSE": 6.35826581753981e-8,
+          "baselineFinalError": 0.4817915923093061,
+          "selectedFinalError": 5.578102102443694e-8,
+          "numericalMaxDifference": 1.1294303825515328e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    },
+    {
+      "offset": 0.3,
+      "amplitude": 0.2,
+      "sigma": 0.002,
+      "status": "ambiguous_reference",
+      "selectedOffset": 0,
+      "competitive": [
+        0,
+        0.3,
+        -0.05,
+        0.05,
+        -0.1,
+        0.1,
+        -0.15,
+        0.15,
+        -0.2,
+        0.2,
+        -0.25,
+        0.25,
+        -0.3,
+        -0.35,
+        0.35,
+        -0.4,
+        0.4,
+        -0.45,
+        0.45,
+        -0.5,
+        0.5
+      ],
+      "model": "rate+spring+bias",
+      "trainingMismatch": 0.8921110869749883,
+      "scoreImprovement": 0,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 0.892189887468377,
+          "selectedRMSE": 0.892189887468377,
+          "baselineFinalError": 0.47844566850426856,
+          "selectedFinalError": 0.47844566850426856,
+          "numericalMaxDifference": 1.6634080779454052e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    },
+    {
+      "offset": 0.3,
+      "amplitude": 1.5,
+      "sigma": 0,
+      "status": "shifted_hypothesis",
+      "selectedOffset": 0.3,
+      "competitive": [
+        0.3
+      ],
+      "model": "rate+gravity",
+      "trainingMismatch": 0.0011241892914018435,
+      "scoreImprovement": 340.60916805982606,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 0.34278793761852566,
+          "selectedRMSE": 5.647350981145604e-8,
+          "baselineFinalError": 0.2735548816956922,
+          "selectedFinalError": 9.322421068436171e-8,
+          "numericalMaxDifference": 1.1294283147611495e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    },
+    {
+      "offset": 0.3,
+      "amplitude": 1.5,
+      "sigma": 0.002,
+      "status": "shifted_hypothesis",
+      "selectedOffset": 0.3,
+      "competitive": [
+        0.3
+      ],
+      "model": "rate+gravity",
+      "trainingMismatch": 0.9034829356188335,
+      "scoreImprovement": 106.73961517843867,
+      "challenge": [
+        {
+          "runId": "separate-challenge",
+          "baselineRMSE": 0.33731496569071323,
+          "selectedRMSE": 0.004782345961182306,
+          "baselineFinalError": 0.27370853948447177,
+          "selectedFinalError": 0.0014127035338690197,
+          "numericalMaxDifference": 1.1327083715428898e-9,
+          "baselineFailure": null,
+          "selectedFailure": null
+        }
+      ]
+    }
+  ],
+  "physical": {
+    "sourceSHA256": "7e42868153d3aa15fc9722f665f5ed62cc491c4445768f8db74a6e36b85cb0e6",
+    "settings": {
+      "offsets": [
+        -0.5,
+        -0.45,
+        -0.4,
+        -0.35,
+        -0.3,
+        -0.25,
+        -0.2,
+        -0.15,
+        -0.1,
+        -0.05,
+        0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5
+      ],
+      "fit": {
+        "noiseSigma": 0.01
+      }
+    },
+    "status": "shifted_hypothesis",
+    "selectedOffset": -0.15,
+    "competitive": [
+      -0.15
+    ],
+    "model": "spring+gravity+bias",
+    "trainingMismatch": 2.839193412859557,
+    "scoreImprovement": 143.90749807199768,
+    "challenge": [
+      {
+        "runId": "pasco-len1-cond1-3",
+        "baselineRMSE": 0.3229694757859894,
+        "selectedRMSE": 0.25352499899175107,
+        "baselineFinalError": 0.3140331852423922,
+        "selectedFinalError": 0.3548895049847576,
+        "numericalMaxDifference": 0.000003802394595908698,
+        "baselineFailure": null,
+        "selectedFailure": null
+      }
+    ]
+  },
+  "limits": [
+    "Synthetic reference shifts are authored; no actual sensor calibration performed.",
+    "PASCO challenge was already used in prior method development; this is exploratory receiving, not blind validation.",
+    "The declared grid is deliberately too coarse to contain offset .075; retained failure tests discretization and excitation."
+  ]
+}

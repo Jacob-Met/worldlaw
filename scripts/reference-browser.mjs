@@ -1,0 +1,40 @@
+import assert from 'node:assert/strict';
+import {mkdir, readFile, writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createProductServer} from '../server.mjs';
+import {gravityRun} from '../experiments/integral-discovery-92be.mjs';
+
+const playwright = await import(process.env.PLAYWRIGHT_MODULE);
+const artifacts = resolve(process.env.BROWSER_ARTIFACT_DIR || '.receipts/reference');
+await mkdir(artifacts,{recursive:true});
+const make = (id, position) => {const r=gravityRun({id,position,rate:.2,duration:6,dt:.02});return {id,label:id,kind:'synthetic',dynamics:'unforced_scalar_rotation',inertia:null,initialRate:r.initialRate,source:{label:'Independent fine-step ODE with declared +0.3 rad reference',recordingId:id},samples:r.samples.map(s=>({time:s.time,position:s.position+.3}))};};
+const fixture={schema:'worldlaw.angular-bundle/v1',label:'Authored coordinate test',units:{time:'s',position:'rad',initialRate:'rad/s'},trainingRuns:[make('a',1.5),make('b',-1.3)],challengeRuns:[make('later',2.1)]};
+const server=createProductServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));
+const base=`http://127.0.0.1:${server.address().port}`;
+const browser=await playwright.chromium.launch({headless:true,executablePath:process.env.BROWSER_EXECUTABLE_PATH});
+const page=await browser.newPage({viewport:{width:1440,height:1000}}), errors=[];page.on('pageerror',e=>errors.push(e.message));
+try {
+  await page.goto(base+'/trajectory.html');await page.waitForFunction(()=>!document.getElementById('refit').disabled);
+  await page.locator('#bundle-file').setInputFiles({name:'authored-angular.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(fixture))});
+  await page.waitForFunction(()=>document.getElementById('source-description').textContent.includes('Synthetic')||document.getElementById('source-description').textContent.includes('simulated'));
+  const panel=page.locator('#angle-reference-panel');await panel.locator('summary').click();
+  await panel.locator('#noise').fill('0.00001');await panel.locator('#search').focus();await page.keyboard.press('Enter');
+  await panel.locator('#save').waitFor({state:'visible'});await page.waitForFunction(()=>!document.querySelector('#angle-reference-panel').shadowRoot.getElementById('save').disabled);
+  assert.match(await panel.locator('#status').textContent(),/selected offset 0.3 rad/);
+  const prediction=await panel.locator('#prediction').textContent();assert.match(prediction,/numerical comparison compared/);
+  const downloadEvent=page.waitForEvent('download');await panel.locator('#save').click();const downloaded=await downloadEvent;const notebook=resolve(artifacts,'reference-notebook.json');await downloaded.saveAs(notebook);
+  const saved=JSON.parse(await readFile(notebook,'utf8'));assert.equal(saved.schema,'worldlaw.angle-reference-investigation/v1');assert.equal(saved.search,undefined);
+  await panel.locator('#offsets').fill('0,0');assert.equal(await panel.locator('#save').isDisabled(),true);await panel.locator('#search').click();await page.waitForFunction(()=>document.querySelector('#angle-reference-panel').shadowRoot.getElementById('status').classList.contains('error'));assert.equal(await panel.locator('#save').isDisabled(),true);
+  await panel.locator('#open').setInputFiles(notebook);await page.waitForFunction(()=>!document.querySelector('#angle-reference-panel').shadowRoot.getElementById('save').disabled);assert.equal(await panel.locator('#prediction').textContent(),prediction);
+  await panel.locator('#open').setInputFiles({name:'bad.json',mimeType:'application/json',buffer:Buffer.from('{bad')});await page.waitForFunction(()=>document.querySelector('#angle-reference-panel').shadowRoot.getElementById('status').textContent.includes('prior result retained'));assert.equal(await panel.locator('#save').isDisabled(),false);
+  await panel.screenshot({path:resolve(artifacts,'desktop.png')});
+  await page.setViewportSize({width:390,height:900});await panel.screenshot({path:resolve(artifacts,'narrow.png')});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),'page fits narrow viewport');
+  await panel.locator('#offsets').focus();assert.equal(await page.evaluate(()=>document.querySelector('#angle-reference-panel').shadowRoot.activeElement.id),'offsets');
+  await page.setViewportSize({width:1440,height:1000});
+  await page.locator('#example-choice').selectOption('measured');await page.locator('#load-example').click();await page.waitForFunction(()=>!document.getElementById('refit').disabled);assert.equal(await panel.locator('#save').isDisabled(),true);
+  await panel.locator('#noise').fill('0.01');await panel.locator('#offsets').fill(Array.from({length:21},(_,i)=>(i-10)/20).join(','));await panel.locator('#search').click();await page.waitForFunction(()=>!document.querySelector('#angle-reference-panel').shadowRoot.getElementById('save').disabled);
+  const physical={status:await panel.locator('#status').textContent(),prediction:await panel.locator('#prediction').textContent(),source:await panel.locator('#source').textContent()};assert.match(physical.source,/MEASURED/);await panel.screenshot({path:resolve(artifacts,'pasco.png')});
+  assert.deepEqual(errors,[]);const receipt={checks:['actual angular import','keyboard search','frozen prediction','input-only download','invalid settings revoke','reopen recomputes','invalid reopen preserves','desktop+narrow canvas','focus+narrow bounds','source replacement revokes','measured PASCO comparison'],prediction,physical,errors};
+  await writeFile(resolve(artifacts,'receipt.json'),JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt,null,2));
+} finally {await browser.close();await new Promise(r=>server.close(r));}

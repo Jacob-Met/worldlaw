@@ -4,6 +4,7 @@ import {summarizePredictionHorizon} from './horizon.mjs';
 import {createExperimentPanel} from './experiment-panel.mjs';
 import * as experimentController from './experiment-session.mjs';
 import {withNumericalScreen} from '../experiment-design/screened-controller.mjs';
+import {createReferencePanel} from '../representation/reference-panel.mjs';
 const {createExperimentSession,planNextExperiment,acquireNextExperiment,applyNextExperiment,experimentView,exportExperimentSession,restoreExperimentSession}=withNumericalScreen(experimentController);
 
 const $=id=>document.getElementById(id);
@@ -15,6 +16,7 @@ const termNames={command:'Actuation',rate:'Linear rate',coulomb:'Rate sign',spri
 const storageKey='worldlaw.trajectory-challenge.v1';
 const exampleURLs={pendulum:'/examples/trajectory-pendulum-92be.json',ambiguous:'/examples/trajectory-ambiguous-92be.json',measured:'/examples/physical-pasco-92be.json'};
 let state,workflow,experimentPanel,selectedRunId,generation=0,busy=false,rows=[],playing=false,playStarted=0,playFrom=0,animationHandle=0,viewIndex=0,chartX=null,positionTolerance=.05,horizon=null;
+const referencePanel=createReferencePanel($('experiment-panel'));
 
 function angularMode(){return state?.bundle?.schema==='worldlaw.angular-bundle/v1';}
 function termName(term){return angularMode()&&term.id==='bias'?'Constant acceleration':termNames[term.id]||term.id;}
@@ -71,6 +73,7 @@ function experimentPanelView(){
 function renderExperiment(){if(workflow&&experimentPanel)experimentPanel.render(experimentPanelView());}
 async function advanceExperiment(action,message){const previous=workflow;await perform(()=>action(previous),message,{propagate:true});return experimentPanelView();}
 function render(){
+  referencePanel.update(state.bundle);
   const b=state.bundle,all=[...b.trainingRuns,...b.challengeRuns],synthetic=all.every(run=>run.kind==='synthetic');
   set('source-name',b.label||'Paired trajectory evidence');set('source-kind',synthetic?'SYNTHETIC PAIRED RUNS':all.every(run=>run.kind==='measured')?'IMPORTED MEASURED RUNS':'IMPORTED PAIRED RUNS');
   const knownBenchmark=all.some(run=>run.source?.repository==='https://github.com/EnzeXu/Damped_Pendulum_Dataset');
