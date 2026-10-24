@@ -1,0 +1,95 @@
+{
+  "schema": "worldlaw.serial-orders/v2",
+  "sourceNote": "Authored equal-count schedule comparison, not physical acquisition.",
+  "rhos": [
+    -0.9,
+    -0.5,
+    0,
+    0.5,
+    0.9
+  ],
+  "periodic": {
+    "sourceNote": "Declared hypothetical sensor sinusoids; no fitted frequency or amplitude.",
+    "periods": [
+      1,
+      4,
+      4.2
+    ]
+  },
+  "plans": [
+    {
+      "id": "mask85",
+      "pairs": [
+        {
+          "reference": 0,
+          "conditioned": 1
+        },
+        {
+          "reference": 3,
+          "conditioned": 2
+        },
+        {
+          "reference": 4,
+          "conditioned": 5
+        },
+        {
+          "reference": 7,
+          "conditioned": 6
+        },
+        {
+          "reference": 8,
+          "conditioned": 9
+        },
+        {
+          "reference": 11,
+          "conditioned": 10
+        },
+        {
+          "reference": 12,
+          "conditioned": 13
+        },
+        {
+          "reference": 15,
+          "conditioned": 14
+        }
+      ]
+    },
+    {
+      "id": "mask90",
+      "pairs": [
+        {
+          "reference": 1,
+          "conditioned": 0
+        },
+        {
+          "reference": 2,
+          "conditioned": 3
+        },
+        {
+          "reference": 5,
+          "conditioned": 4
+        },
+        {
+          "reference": 6,
+          "conditioned": 7
+        },
+        {
+          "reference": 8,
+          "conditioned": 9
+        },
+        {
+          "reference": 11,
+          "conditioned": 10
+        },
+        {
+          "reference": 12,
+          "conditioned": 13
+        },
+        {
+          "reference": 15,
+          "conditioned": 14
+        }
+      ]
+    }
+  ]
+}
