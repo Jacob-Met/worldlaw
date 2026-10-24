@@ -102,10 +102,15 @@ received in actual Chrome.
 ## Receiving and retained failures
 
 Initial source was main `2dde8158ece31a1e16eb162f9388483472fdd022`.
-The final composed receiving baseline is maintained
+The first composed receiving baseline is maintained
 `88f483ae95ab1e5448c588b60c2954f67dd93cb5`, including the coupling team's
 merged shared QR extraction and the newer repeated-state diagnosis.
 No coupling or scalar-discovery implementation was copied or overwritten.
+The final composition additionally preserves maintained main
+`d40af4328570153de1a25bc468c6a64d06a2b947` (UNKNOWN LAB probe choice).
+Its full native course passed 396 tests, with 0 failures and the same 1 optional
+skip, from 397 total. The 22 changed source/evidence blobs and complete Git
+index matched the published candidate exactly.
 
 Executed on an authorized isolated Linux host, Node **22.23.4**, installed
 Chrome, with source blobs verified against their Git identities:
@@ -130,7 +135,10 @@ new link, and 480px with it; wrapping the existing controls now contains both.
 An early browser receiver looked for an obsolete Studio status selector;
 it now checks the live observation count and executes an actual acquisition.
 
-Published commit/tree, independent review and package digest are recorded
-with the PR. These results establish implemented, exercised source and
+An independent teammate source review found no blocking math, evidence-role
+or replay defect. It was a source review, without a separate test-run claim.
+The exact-tree source archive was independently extracted and passed both
+launched smoke courses and all 16 actual-browser groups. Published commit/tree,
+review and final package digest are recorded with the PR. These results establish implemented, exercised source and
 browser behavior. Installed-service deployment, independently measured
 mechanical qualification, provider qualification and submission are separate.

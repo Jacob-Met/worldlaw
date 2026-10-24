@@ -1,6 +1,6 @@
 {
   "scope": "Implemented finite-grid scalar response investigation and actual browser receiving; no physical validation or deployment",
-  "baseCommit": "88f483ae95ab1e5448c588b60c2954f67dd93cb5",
+  "baseCommit": "d40af4328570153de1a25bc468c6a64d06a2b947",
   "runtime": "Node v22.23.4 / authorized isolated Linux / installed Chrome",
   "commands": [
     {
@@ -10,7 +10,7 @@
     },
     {
       "command": "node --test --test-concurrency=2 tests/*.test.mjs",
-      "passed": 387,
+      "passed": 396,
       "failed": 0,
       "skipped": 1,
       "skip": "inherited optional live Node/Chromium notebook interoperability dependency"
@@ -38,6 +38,11 @@
       "sourceFiles": 251,
       "bytes": 5518359,
       "mode": "working-tree-candidate"
+    },
+    {
+      "command": "Extract exact-tree distribution into an isolated directory, then run both smoke courses and stiffness-browser.mjs",
+      "passed": true,
+      "browserGroups": 16
     }
   ],
   "retainedFailures": [
@@ -53,5 +58,11 @@
     "gauge-390.png"
   ],
   "actualBehavior": "Import/fit/inspect/change slice/replace checks/download/reopen/refuse tampered results/reject late file reads/keyboard/desktop+narrow/ordinary Studio acquisition",
-  "qualification": "Synthetic software mechanism, not measured contact, physical stiffness, calibrated uncertainty, provider qualification or official submission."
+  "qualification": "Synthetic software mechanism, not measured contact, physical stiffness, calibrated uncertainty, provider qualification or official submission.",
+  "independentReview": {
+    "worker": "microverse (not author)",
+    "kind": "source review only",
+    "blockingFindings": 0,
+    "scope": "hinge math, nuisance parity, support/rank, held-out exclusion, input-only replay"
+  }
 }
