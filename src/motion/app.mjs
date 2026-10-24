@@ -1,6 +1,6 @@
 import {loadVideo} from './video.mjs';
 import {createNotebook, validateNotebook, calibrateNotebook, upsertMeasurement, truncateMeasurements, deriveAngles, exportAngular, exportStudio} from './measurement.mjs';
-import {createTemplate, trackTemplate, TRACKER_VERSION, COLOR_TRACKER_VERSION} from './tracker.mjs';
+import {createTemplate, trackTemplate, TRACKER_VERSION, COLOR_TRACKER_VERSION, GRID_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION} from './tracker.mjs';
 import {createDemoSource, DEMO_PIVOT, demoMarkerAt} from './demo.mjs';
 
 const $ = id => document.getElementById(id);
@@ -32,12 +32,15 @@ function finiteInput(id, label, {min = -Infinity, max = Infinity, integer = fals
 }
 function trackingSettings() {
   const settings = {step: finiteInput('sample-step', 'Sample interval', {min: .02, max: 2}),
-    searchRadius: finiteInput('search-radius', 'Search radius', {min: 4, max: 96, integer: true}),
+    searchRadius: finiteInput('search-radius', 'Search radius', {min: 4, max: 128, integer: true}),
     patchRadius: finiteInput('patch-radius', 'Marker patch radius', {min: 3, max: 24, integer: true}),
-    appearance: $('appearance-mode').value};
+    appearance: $('appearance-mode').value, sampleStep: Number($('patch-sampling').value)};
   if (!['luminance', 'color'].includes(settings.appearance)) throw new Error('Choose a supported patch appearance.');
-  if ((settings.searchRadius * 2 + 1) ** 2 * (settings.patchRadius * 2 + 1) ** 2 * ($('pivot-mode').value === 'tracked' ? 2 : 1) > 20_000_000)
-    throw new Error('This search and patch combination exceeds the local computation limit. Reduce the search radius or marker patch radius.');
+  if (![1, 2].includes(settings.sampleStep)) throw new Error('Choose a supported patch sampling spacing.');
+  if (settings.patchRadius % settings.sampleStep !== 0) throw new Error('Two-pixel sampling needs an even patch radius, so its grid includes the patch center symmetrically.');
+  // Reserve one additional patch for optional subpixel score refinement per point.
+  if (((settings.searchRadius * 2 + 1) ** 2 + 1) * (settings.patchRadius * 2 / settings.sampleStep + 1) ** 2 * ($('pivot-mode').value === 'tracked' ? 2 : 1) > 20_000_000)
+    throw new Error('This search and patch combination exceeds the local computation limit. Reduce the search radius or point patch radius, or explicitly choose two-pixel sampling.');
   return settings;
 }
 function currentRow() {
@@ -61,13 +64,20 @@ function restoreReferenceInputs() {
   $('pivot-pixel-sigma').value = String(calibration?.pivotPixelSigma ?? 1);
 }
 function appearanceLabel(tracker) {
-  return tracker?.version === COLOR_TRACKER_VERSION ? 'Brightness + color'
-    : tracker?.version === TRACKER_VERSION ? 'Brightness texture' : 'Not supplied';
+  return [COLOR_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION].includes(tracker?.version) ? 'Brightness + color'
+    : [TRACKER_VERSION, GRID_TRACKER_VERSION].includes(tracker?.version) ? 'Brightness texture' : 'Not supplied';
+}
+function samplingLabel(tracker) {
+  return [GRID_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION].includes(tracker?.version) ? '2 px spacing · sampled patch'
+    : [TRACKER_VERSION, COLOR_TRACKER_VERSION].includes(tracker?.version) ? 'Every pixel' : 'Not supplied';
 }
 function restoreTrackingAppearance() {
   // Restore the most recently recorded algorithm; each existing row keeps its own.
   const tracker = [...(state.notebook?.measurements || [])].reverse().find(row => row.tracker?.version)?.tracker;
-  $('appearance-mode').value = tracker?.version === COLOR_TRACKER_VERSION ? 'color' : 'luminance';
+  $('appearance-mode').value = [COLOR_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION].includes(tracker?.version) ? 'color' : 'luminance';
+  $('patch-sampling').value = [GRID_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION].includes(tracker?.version) ? '2' : '1';
+  if (Number.isInteger(tracker?.patchRadius) && tracker.patchRadius >= 3 && tracker.patchRadius <= 24) $('patch-radius').value = String(tracker.patchRadius);
+  if (Number.isInteger(tracker?.searchRadius) && tracker.searchRadius >= 4 && tracker.searchRadius <= 128) $('search-radius').value = String(tracker.searchRadius);
 }
 function stopWork() {
   state.epoch++; state.seekEpoch++; state.controller?.abort(); state.controller = null; state.tracking = false;
@@ -113,7 +123,7 @@ async function installSource(source, {attach = false, syntheticCalibration = fal
     state.template = null; state.mode = null; state.cursor = null; state.segmentId = null;
     if (!attach) invalidateStudioExport({clearNumbers: true});
     commitNotebook(notebook); restoreReferenceInputs();
-    if (attach) restoreTrackingAppearance(); else $('appearance-mode').value = 'luminance';
+    if (attach) restoreTrackingAppearance(); else { $('appearance-mode').value = 'luminance'; $('patch-sampling').value = '1'; }
     if (syntheticCalibration) {
       const settings = trackingSettings();
       state.notebook = calibrateNotebook(state.notebook, {pivot: {...DEMO_PIVOT}, maxGapSeconds: settings.step * 1.6});
@@ -205,13 +215,13 @@ async function applyMarker(point, reason = 'User marked the visible source pixel
   if (trackedPivot() && !pivot) throw new Error('Observe the pivot on this same frame before choosing the marker.');
   if (pivot && Math.hypot(point.x - pivot.x, point.y - pivot.y) < 2)
     throw new Error('Choose a marker at least 2 pixels away from the pivot. A point at the pivot has no measurable rotation angle.');
-  const {patchRadius, appearance} = trackingSettings();
-  const captured = createTemplate(state.frame, point, {patchRadius, appearance});
+  const {patchRadius, appearance, sampleStep} = trackingSettings();
+  const captured = createTemplate(state.frame, point, {patchRadius, appearance, sampleStep});
   if (captured.status !== 'ready') throw new Error(`Marker not captured: ${captured.reason || captured.status}. Choose a distinctive patch, or increase its radius to include a visible edge.`);
   const row = {time: state.frame.time, requestedTime: state.frame.requestedTime, timeBasis: state.frame.timeBasis,
     ...(Number.isInteger(state.frame.frameIndex) ? {frameIndex: state.frame.frameIndex} : {}),
     point: {...point}, status: 'manual', reason,
-    quality: {textureStd: captured.textureStd, patchRadius}, tracker: {version: captured.template.version, patchRadius, appearance},
+    quality: {textureStd: captured.textureStd, patchRadius}, tracker: {version: captured.template.version, patchRadius, appearance, sampleStep},
     ...(currentRow()?.pivotMeasurement ? {pivotMeasurement: currentRow().pivotMeasurement} : {})};
   const next = upsertMeasurement(state.notebook, row);
   state.template = captured.template; state.mode = null; state.cursor = null;
@@ -222,17 +232,17 @@ async function applyPoint(point) {
   if (!Number.isFinite(point.x) || !Number.isFinite(point.y) || point.x < 0 || point.y < 0 || point.x > state.frame.width - 1 || point.y > state.frame.height - 1)
     throw new Error('The point must be inside the decoded source image.');
   if (state.mode === 'pivot') {
-    const {step, patchRadius, appearance} = trackingSettings(), settings = referenceSettings();
+    const {step, patchRadius, appearance, sampleStep} = trackingSettings(), settings = referenceSettings();
     let next = calibrateNotebook(state.notebook, {pivot: {...point}, ...settings, maxGapSeconds: step * 1.6});
     if (settings.pivotMode === 'tracked') {
-      const captured = createTemplate(state.frame, point, {patchRadius, appearance});
+      const captured = createTemplate(state.frame, point, {patchRadius, appearance, sampleStep});
       if (captured.status !== 'ready') throw new Error(`Pivot not captured: ${captured.reason || captured.status}. Choose a distinctive visible pivot patch.`);
       const row = currentRow() || {time: state.frame.time, requestedTime: state.frame.requestedTime, timeBasis: state.frame.timeBasis,
         ...(Number.isInteger(state.frame.frameIndex) ? {frameIndex: state.frame.frameIndex} : {}),
         status: 'missing', point: null, reason: 'Marker not yet observed on this frame.'};
       next = upsertMeasurement(next, {...row, pivotMeasurement: {status: 'manual', point: {...point},
         reason: 'User observed the visible pivot on this frame.', quality: {textureStd: captured.textureStd, patchRadius},
-        tracker: {version: captured.template.version, patchRadius, appearance}}});
+        tracker: {version: captured.template.version, patchRadius, appearance, sampleStep}}});
     }
     commitNotebook(next);
     setMode('marker'); notice('Pivot observed. Choose the center of a distinctive visible marker on this frame.');
@@ -433,10 +443,11 @@ function renderInspection() {
     ['Uniqueness margin', fmt(row.quality?.ambiguityMargin, 4)], ['Texture spread', fmt(row.quality?.textureStd, 2)],
     ['Search clipped', row.quality?.searchClipped === undefined ? '—' : row.quality.searchClipped ? 'At image edge' : 'No'],
     ['Template anchor', Number.isFinite(row.tracker?.anchorTime) ? `${fmt(row.tracker.anchorTime, 3)} s` : row.status === 'manual' ? 'Manual anchor' : 'Not supplied'],
-    ['Patch appearance', appearanceLabel(row.tracker)],
+    ['Patch appearance', appearanceLabel(row.tracker)], ['Patch sampling', samplingLabel(row.tracker)],
   ];
   if (row && trackedPivot()) entries.push(['Pivot state', row.pivotMeasurement?.status ?? 'Unobserved'],
     ['Pivot appearance', appearanceLabel(row.pivotMeasurement?.tracker)],
+    ['Pivot sampling', samplingLabel(row.pivotMeasurement?.tracker)],
     ['Pivot match score', fmt(row.pivotMeasurement?.quality?.score, 4)],
     ['Pivot runner-up', fmt(row.pivotMeasurement?.quality?.runnerUpScore, 4)],
     ['Pivot uniqueness margin', fmt(row.pivotMeasurement?.quality?.ambiguityMargin, 4)],
@@ -479,7 +490,7 @@ function render() {
   $('track-motion').disabled = !hasFrame || !calibrated || !measuredPair(currentRow()) || measuring;
   $('track-motion').hidden = busy; $('cancel-tracking').hidden = !busy; $('tracking-progress').hidden = !busy;
   for (const id of ['sample-step', 'search-radius', 'patch-radius']) $(id).disabled = busy;
-  $('appearance-mode').disabled = measuring;
+  $('appearance-mode').disabled = measuring; $('patch-sampling').disabled = measuring;
   $('track-until').disabled = !hasFrame || busy;
   $('next-gap').disabled = !gaps.length || busy;
   $('pick-pivot').setAttribute('aria-pressed', String(state.mode === 'pivot'));
@@ -516,6 +527,10 @@ $('pick-pivot').addEventListener('click', safe(() => setMode('pivot')));
 $('appearance-mode').addEventListener('change', safe(() => {
   trackingSettings(); state.template = null;
   notice('Patch appearance changed for the next capture and run. Existing measurements retain their original algorithm and match scores. Color differences require stable source colors; duplicate or uncertain matches still pause.');
+}));
+$('patch-sampling').addEventListener('change', safe(() => {
+  state.template = null; trackingSettings();
+  notice('Patch sampling changed for the next capture and run. Two-pixel spacing uses fewer observed pixels and can miss fine differences. Every candidate location is still checked; existing measurements keep their recorded profile.');
 }));
 $('pivot-mode').addEventListener('change', safe(() => {
   if (state.notebook?.calibration) commitNotebook(calibrateNotebook(state.notebook, {...state.notebook.calibration, ...referenceSettings()}));

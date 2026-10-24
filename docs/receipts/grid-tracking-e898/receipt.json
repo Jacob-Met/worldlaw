@@ -1,0 +1,106 @@
+{
+  "checks": [
+    "unchanged dense color profile retains its actual radius64 loss at0.20s",
+    "explicit sampled profile searches every original candidate and retains all eight inspected source frames with unchanged score gates",
+    "desktop and390px original source overlays, keyboard sampling control and recorded profile diagnostics",
+    "completed raw download, reopening and matching original-video reattachment preserve the mixed recorded profiles and restore the latest settings",
+    "expensive dense and asymmetric sparse settings refuse without changing evidence; legacy dense notebook restores its actual profile"
+  ],
+  "errors": [],
+  "metrics": {
+    "elapsedMs": 2132,
+    "rows": [
+      {
+        "time": 0,
+        "point": {
+          "x": 260,
+          "y": 132
+        },
+        "status": "manual"
+      },
+      {
+        "time": 0.04,
+        "point": {
+          "x": 304.00336006849915,
+          "y": 154.9968170856456
+        },
+        "status": "accepted",
+        "score": 0.9418486563763188,
+        "margin": 0.09349193404764577
+      },
+      {
+        "time": 0.08,
+        "point": {
+          "x": 304.00336006849915,
+          "y": 154.9968170856456
+        },
+        "status": "accepted",
+        "score": 0.9418486563763188,
+        "margin": 0.09350304480076166
+      },
+      {
+        "time": 0.12,
+        "point": {
+          "x": 324.93808344814556,
+          "y": 176.02261516837277
+        },
+        "status": "accepted",
+        "score": 0.9224834345945883,
+        "margin": 0.1276433538818209
+      },
+      {
+        "time": 0.16,
+        "point": {
+          "x": 338.91261522691656,
+          "y": 198.97718609103364
+        },
+        "status": "accepted",
+        "score": 0.8970195221506058,
+        "margin": 0.11466942051521245
+      },
+      {
+        "time": 0.2,
+        "point": {
+          "x": 341,
+          "y": 274
+        },
+        "status": "accepted",
+        "score": 0.9021426872614471,
+        "margin": 0.22863977224315657
+      },
+      {
+        "time": 0.24,
+        "point": {
+          "x": 315.9802686143806,
+          "y": 316.9974724266907
+        },
+        "status": "accepted",
+        "score": 0.9399194477727414,
+        "margin": 0.23639532217909265
+      },
+      {
+        "time": 0.28,
+        "point": {
+          "x": 216.00047833310074,
+          "y": 341.9687250017829
+        },
+        "status": "accepted",
+        "score": 0.9420325191956737,
+        "margin": 0.1270459020043656
+      }
+    ]
+  },
+  "scope": "Original-video association receiving, not independent center truth or physical dynamics qualification. Sparse samples can miss changes in skipped pixels; retained native alias controls demonstrate this.",
+  "source": {
+    "sha256": "fbec4761d153c6a5bf486e88ff333aef9cd32b64e1fc87488a594d22b18c9bad",
+    "title": "Double-pendulum-metastable-mode.webm",
+    "creators": [
+      "Frank Stollmeier",
+      "Manuel Schottdorf"
+    ],
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Double-pendulum-metastable-mode.webm",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  "screenshotMedia": "Source movie pixels are adapted within app screenshots; source attribution and CC BY-SA4.0 apply."
+}
