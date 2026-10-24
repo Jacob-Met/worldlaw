@@ -1,7 +1,7 @@
 {
   "schema": "worldlaw.predictive-selection-receiving/v1",
   "result": "PASS",
-  "testedBase": "88f483ae95ab1e5448c588b60c2954f67dd93cb5",
+  "testedBase": "40ee8769eaa09befb89872bcd369625624980f47",
   "sourceFiles": [
     {
       "path": "src/predictive-selection/select.mjs",
@@ -40,8 +40,8 @@
     },
     {
       "path": "docs/PREDICTIVE_SELECTION.md",
-      "gitBlobSha": "61246b16279dd592834bb1234de4bf233f878b45",
-      "sha256": "e595bd22fead2e685e4d0a900a6fab496fe2b284d8f9b1253c26ac650508041e"
+      "gitBlobSha": "dc4c3653fd1771570e7ed05dd0e19972db5d2ab2",
+      "sha256": "165a663dd25213de7ab7aa22842eb82ff5b482b80e81a9ceaede19831d828025"
     },
     {
       "path": "src/trajectory/app.mjs",
@@ -50,8 +50,8 @@
     },
     {
       "path": "scripts/package.py",
-      "gitBlobSha": "68f6468ba309797c1f991e8f6d540cd79155bd47",
-      "sha256": "80da142fce20615588801cc7702d3248890146e631d169186cb6c42344e63d52"
+      "gitBlobSha": "81d7e3f89d8cbc12fd2766f246da5e67f1405ae7",
+      "sha256": "4d785cf6d5ff3e0cbafc7ecc98dc11acff04b3411d8b117a597e8b900ef030fd"
     },
     {
       "path": "scripts/browser-predictive-standalone.mjs",
@@ -61,12 +61,13 @@
   ],
   "native": {
     "command": "npm run verify",
-    "passed": 377,
+    "passed": 427,
     "failed": 0,
     "skipped": 1,
     "skipMeaning": "Optional Playwright-backed native case unavailable; actual separate Chrome courses ran",
     "node": "v22.23.4",
-    "launchedSmokes": 2
+    "launchedSmokes": 2,
+    "total": 428
   },
   "browser": {
     "hostedGroupsPassed": 8,
@@ -79,7 +80,9 @@
       "path": "/home/ubuntu/hamon-work/worldlaw-predictive-5739/.receipts/trajectory-experiment-screened-standalone-92be.html",
       "bytes": 695231,
       "sha256": "51c105f921a8aa9b8c50a313fb4c01871d4ce2ddc3737485a558e057d5315ae1"
-    }
+    },
+    "offlineTestedBase": "eb249b782b9dbb58de920951e1aa421ce14726ad",
+    "offlineDependencyScope": "All trajectory bundle dependencies unchanged in final40ee composition; Cycle Work adds separate modules/server route and package patterns."
   },
   "independentReview": {
     "reviewer": "separate MATERIALTRUTH worker in same contributor team/account",
@@ -90,5 +93,5 @@
     "sourceMutationControl": "Changing noninitial challenge positions does not change the training selection."
   },
   "scientificLimits": "57 structures offered,36 complete on reused PASCO evidence. Selection uses training folds only; separate challenge reuse remains exploratory. Three of eight small-excitation controls regress and changed-physics controls retain failure. No universal advantage or blind physical validation claim.",
-  "sourceMeaning": "All current88 text dependencies, including extracted linear-fit/torque functions, were received before these native/hosted/offline checks. SourceHead:null in the standalone receipt means a source-snapshot build, not a fabricated Git checkout."
+  "sourceMeaning": "Final native/hosted receiving includes all40ee text additions and additive package union. Earlier eb249 receiving includes all shared science/interval changes and generated offline5groups. SourceHead:null denotes a source-snapshot build."
 }

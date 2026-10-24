@@ -176,3 +176,31 @@ Verify with `node --test tests/unknown-phase.test.mjs` and `npm run unknown:brow
 ### Experimental cubic restoring laws
 
 In Trajectory Challenge → Investigate the angle reference, explicitly enable **Offer cubic restoring law θ³** to test a larger finite library. The maintained fitter and executable solver learn its coefficient from training motion; a purple trajectory preserves the matched training winner without cubic on each separate recording. Existing default libraries remain unchanged. Save/reopen preserves the offered terms and recomputes both comparisons. Small-motion data may not distinguish linear, sinusoidal and cubic restoring behavior, and a shifted cubic depends on the chosen origin. See [scientific evidence and receiving limits](docs/CUBIC_RESTORING.md).
+
+
+## Stiffness Lab — investigate a changing response
+
+Open **Stiffness Lab** from the studio header or visit `/stiffness.html`.
+Compare a global torque slope with one continuous change at a declared grid
+of possible angles, keeping the same explicit command/rate/offset terms.
+The complete profile retains ambiguous and unsupported knots. Frozen
+training explanations face separately supplied check observations; no check
+values enter fitting or selection. Save/reopen preserves source inputs and
+search settings.
+
+The authored examples include a located change, a globally linear response,
+a smooth omitted-law counterexample and a change outside the observed range.
+Conditional response curves and a torque-gauge inspection are computed from
+the actual fitted models. A fitted kink does not establish contact topology,
+physical stiffness or causation. See [the mechanism, evidence and receiving
+limits](docs/STIFFNESS_LAB.md).
+
+```sh
+node --test tests/stiffness.test.mjs
+BROWSER_ARTIFACT_DIR=/tmp/worldlaw-stiffness-receipts node scripts/stiffness-browser.mjs
+```
+
+
+## Cycle Work
+
+Open `/cycle-work.html` from the workbench to inspect signed polygonal work from ordered torque–angle return paths. Explicit exact-angle assumptions, torque-error bounds and an integration allowance are retained in input-only export/reopen. The nonlinear conservative control demonstrates a quadrature artifact: nonzero polygonal work alone does not identify continuous-path work or dissipation. See [Cycle Work](docs/CYCLE_WORK.md). Run `node --test tests/cycle-work.test.mjs` and `node scripts/cycle-work-browser.mjs` (the browser command uses the existing `PLAYWRIGHT_MODULE` and `BROWSER_EXECUTABLE_PATH` conventions).

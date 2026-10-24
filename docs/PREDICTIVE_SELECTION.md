@@ -207,3 +207,9 @@ browser download directories are not part of that receipt allowlist.
 The offline success establishes runnable local receiving of this generated
 consumer. It does not turn previously reused PASCO evidence into new acquisition,
 blind validation, or a guarantee of generalization.
+
+### Final publication composition, 2026-10-24 UTC
+
+Receiving against `eb249b782b9dbb58de920951e1aa421ce14726ad` passed 414 native cases, zero failures, one optional Playwright skip, both launched smokes, eight hosted groups and five offline groups. The generated offline HTML remained 695,231 bytes with SHA-256 `51c105f921a8aa9b8c50a313fb4c01871d4ce2ddc3737485a558e057d5315ae1`.
+
+The final composition preserves `40ee8769eaa09befb89872bcd369625624980f47`, including Cycle Work's separate modules, server route and additive package patterns. Fresh `npm run verify` passed **427 native cases**, zero failures, one optional skip (428 total), and both launched smokes. All **eight hosted receiving groups** passed on this composition. The standalone dependency source is unchanged from the preceding five-group offline receiving; Cycle Work adds no trajectory bundle dependency. Packaging retains all current upstream and predictive/rolling/offline requirements. The predictive selection, session and panel source bytes remain unchanged. Published verification records the distinct native/hosted and offline base scopes rather than treating a base revision alone as the complete candidate identity.
