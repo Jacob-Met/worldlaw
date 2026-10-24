@@ -1,3 +1,4 @@
+import {appendResponseRegionInspection} from './response-region-panel.mjs';
 import {appendObservableInspection} from './observable-panel.mjs';
 import {compareCirculation,circulationExample,exportCirculation,importCirculation} from './circulation.mjs';
 const node=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
@@ -29,7 +30,7 @@ export function mountCirculation(host,{getNotebook}){
   for(const c of result.refused)out.append(node('p',`${c.label}: no executable prediction (${c.reason}).`));
   out.append(node('p',result.scope));
   const details=node('details'),summary=node('summary','Inspect every source segment and shared reading weight');details.append(summary);
-  const ledger=node('pre');ledger.style.whiteSpace='pre-wrap';ledger.style.overflowWrap='anywhere';ledger.textContent=rows.map((s,i)=>`${i+1}: θ=[${s.q.map(fmt)}]; τ=[${s.torque.map(fmt)}]; error radii=[${s.torqueRadius.map(fmt)}]; work weights=[${r.axes.map(a=>fmt(a.weights[i]))}]`).join('\n');details.append(ledger);out.append(details);appendObservableInspection(out,result);
+  const ledger=node('pre');ledger.style.whiteSpace='pre-wrap';ledger.style.overflowWrap='anywhere';ledger.textContent=rows.map((s,i)=>`${i+1}: θ=[${s.q.map(fmt)}]; τ=[${s.torque.map(fmt)}]; error radii=[${s.torqueRadius.map(fmt)}]; work weights=[${r.axes.map(a=>fmt(a.weights[i]))}]`).join('\n');details.append(ledger);out.append(details);appendObservableInspection(out,result);appendResponseRegionInspection(out,result);
   $('save').disabled=false;
  }
  $('load').addEventListener('click',load);$('input').addEventListener('input',invalidate);
