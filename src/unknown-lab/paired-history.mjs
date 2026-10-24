@@ -55,7 +55,25 @@ export function validateNotebook(raw) {
     pairs.push({id,reference,conditioned,difference:conditioned.jointTorque-reference.jointTorque});
   }
   const sourceNote=typeof raw.sourceNote==='string' ? raw.sourceNote.slice(0,240):'';
-  return {schema:SCHEMA,source:raw.source,sourceNote,noiseSigma:sigma,trials:pairs.flatMap(p=>[p.reference,p.conditioned]),pairs};
+  let simulation;
+  // Measured imports intentionally discard any incidental virtual-only metadata.
+  // Their declared provenance remains sourceNote; synthetic params cannot authenticate them.
+  if(raw.simulation!==undefined && raw.source==='synthetic') {
+    if(!raw.simulation || typeof raw.simulation!=='object' || Array.isArray(raw.simulation))
+      fail('Invalid virtual simulation metadata.');
+    const x=raw.simulation;
+    if(!Number.isSafeInteger(x.seed)||Math.abs(x.seed)>1e9 ||
+      !Number.isInteger(x.count)||x.count!==pairs.length ||
+      !['oneway','alternating','shuffled'].includes(x.orderStrategy))
+      fail('Simulation seed, count or orderStrategy is invalid.');
+    for(const key of ['effect','duration','driftPerReading','cycleDriftAmplitude']) finite(x[key],key,100);
+    if(x.duration<0 || x.duration>30 || Math.abs(x.driftPerReading)>10 || Math.abs(x.cycleDriftAmplitude)>10)
+      fail('Simulation parameter is out of range.');
+    simulation={seed:x.seed,count:x.count,effect:x.effect,duration:x.duration,
+      driftPerReading:x.driftPerReading,cycleDriftAmplitude:x.cycleDriftAmplitude,orderStrategy:x.orderStrategy};
+  }
+  return {schema:SCHEMA,source:raw.source,sourceNote,noiseSigma:sigma,trials:pairs.flatMap(p=>[p.reference,p.conditioned]),pairs,
+    ...(simulation?{simulation}:{})};
 }
 const average=values=>values.reduce((sum,value)=>sum+value,0)/values.length;
 function sampleVariance(values) {
@@ -114,14 +132,25 @@ function generator(seed) {
   let s=seed>>>0;return ()=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return (s+.5)/4294967296;};
 }
 export function syntheticChallenge({count=16,seed=41,noiseSigma=.02,effect=.7,duration=2.4,
-  driftPerReading=0,counterbalanced=true}={}) {
+  driftPerReading=0,counterbalanced=true,cycleDriftAmplitude=0,orderStrategy=null}={}) {
   if(!Number.isInteger(count)||count<4||count>MAX_PAIRS) fail('count must be an integer from 4 through 128.');
   if(!Number.isSafeInteger(seed)||Math.abs(seed)>1e9) fail('seed must be a bounded integer.');
   finite(noiseSigma,'noiseSigma',1000);if(noiseSigma<1e-8) fail('noiseSigma must be positive.');
   finite(effect,'effect',100);finite(duration,'duration',30);if(duration<0) fail('duration must be nonnegative.');
   finite(driftPerReading,'driftPerReading',10);
+  finite(cycleDriftAmplitude,'cycleDriftAmplitude',10);
   if(typeof counterbalanced!=='boolean') fail('counterbalanced must be boolean.');
+  const strategy=orderStrategy??(counterbalanced?'shuffled':'oneway');
+  if(!['oneway','alternating','shuffled'].includes(strategy)) fail('Unsupported measurement order strategy.');
+  // A separate generator means changing the order cannot change the physical
+  // state/noise oracle; the intended comparison is strictly equal-input.
   const random=generator(seed);
+  const orderRandom=generator(seed ^ 0x9e3779b9);
+  const sequence=Array.from({length:count},(_,i)=>i<count/2);
+  if(strategy==='shuffled')for(let i=sequence.length-1;i>0;i--){
+    const j=Math.floor(orderRandom()*(i+1));
+    [sequence[i],sequence[j]]=[sequence[j],sequence[i]];
+  }
   // Independent, declared synthetic oracle. Reference/conditioned share exactly
   // the same visible state; the unobserved preparation is not a measured fact.
   const memory=effect*(1-Math.exp(-duration/1.3));
@@ -131,19 +160,24 @@ export function syntheticChallenge({count=16,seed=41,noiseSigma=.02,effect=.7,du
     const base=1.45*state.command-2.2*Math.sin(state.position)-.34*state.rate;
     const perturb=()=>noiseSigma*Math.sqrt(12)*(random()-.5);
     const pairId='synthetic-'+String(i+1).padStart(3,'0');
-    const referenceIndex=2*i+(counterbalanced && i%2===1 ? 1 : 0);
-    const conditionedIndex=2*i+(counterbalanced && i%2===1 ? 0 : 1);
+    const referenceFirst=strategy==='oneway'||(strategy==='alternating'?i%2===0:sequence[i]);
+    const referenceIndex=2*i+(referenceFirst?0:1);
+    const conditionedIndex=2*i+(referenceFirst?1:0);
+    const drift=index=>driftPerReading*index+cycleDriftAmplitude*Math.sin(Math.PI*index/2);
     trials.push({pairId,history:'reference',...state,sampleIndex:referenceIndex,
-      jointTorque:base+driftPerReading*referenceIndex+perturb()});
+      jointTorque:base+drift(referenceIndex)+perturb()});
     trials.push({pairId,history:'conditioned',...state,sampleIndex:conditionedIndex,
-      jointTorque:base+memory+driftPerReading*conditionedIndex+perturb()});
+      jointTorque:base+memory+drift(conditionedIndex)+perturb()});
   }
   return {schema:SCHEMA,source:'synthetic',noiseSigma,
-    sourceNote:'Declared virtual history oracle; linear measurement drift and preparation coupling are simulation parameters, not physical observations.',trials};
+    sourceNote:'Declared virtual history oracle; sensor drift and preparation parameters are simulated, not physical observations.',
+    simulation:{seed,count,effect,duration,driftPerReading,cycleDriftAmplitude,orderStrategy:strategy},
+    trials};
 }
 export function exportNotebook(raw) {
   const n=validateNotebook(raw);
-  return JSON.stringify({schema:SCHEMA,source:n.source,sourceNote:n.sourceNote,noiseSigma:n.noiseSigma,trials:n.trials},null,2)+'\n';
+  return JSON.stringify({schema:SCHEMA,source:n.source,sourceNote:n.sourceNote,noiseSigma:n.noiseSigma,
+    ...(n.simulation?{simulation:n.simulation}:{}),trials:n.trials},null,2)+'\n';
 }
 export function importNotebook(source) {
   if(typeof source!=='string'||source.length>200000) fail('Use UTF-8 JSON under 200 KB.');

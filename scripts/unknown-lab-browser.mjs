@@ -46,8 +46,8 @@ try {
   assert.equal(await evaljs("document.querySelector('#effect-out').textContent"),'0.00');
  });
  await check('balanced AB/BA cancels strong virtual linear drift with zero memory',async()=>{
-  await evaljs("(()=>{document.querySelector('#drift').value='.6';document.querySelector('#order').value='balanced';document.querySelector('#run-form').requestSubmit()})()");
-  await wait("document.querySelector('#order-status').textContent==='ORDER COUNTERBALANCED' && document.querySelector('#order-adjustment').textContent.includes('estimated drift')");
+  await evaljs("(()=>{document.querySelector('#drift').value='.6';document.querySelector('#order').value='shuffled';document.querySelector('#run-form').requestSubmit()})()");
+  await wait("document.querySelector('#order-status').textContent==='ORDER COUNTERBALANCED' && document.querySelector('#order-adjustment').textContent.includes('estimated linear drift')");
   assert.equal(await evaljs("document.querySelector('#status').textContent"),'INCONCLUSIVE');
   const r=await evaljs("(async()=>{const m=await import('/src/unknown-lab/paired-history.mjs');const d=m.syntheticChallenge({effect:0,driftPerReading:.6});return m.evaluateHistory(d).order.driftPerStep})()");
   assert.ok(Math.abs(r-.6)<.06);
@@ -60,9 +60,21 @@ try {
   assert.match(label,/no qualified drift separation/);
  });
  await check('balanced acquisition retains a true history contrast despite drift',async()=>{
-  await evaljs("(()=>{document.querySelector('#effect').value='.8';document.querySelector('#drift').value='.45';document.querySelector('#order').value='balanced';document.querySelector('#run-form').requestSubmit()})()");
+  await evaljs("(()=>{document.querySelector('#effect').value='.8';document.querySelector('#drift').value='.45';document.querySelector('#order').value='shuffled';document.querySelector('#run-form').requestSubmit()})()");
   await wait("document.querySelector('#status').textContent==='CHALLENGED' && document.querySelector('#order-status').textContent==='ORDER COUNTERBALANCED'");
   assert.match(await evaljs("document.querySelector('#order-adjustment').textContent"),/adjusted/);
+ });
+ await check('fixed ABAB aliases periodic instrument error into a false history signal',async()=>{
+  await evaljs("(()=>{document.querySelector('#effect').value='0';document.querySelector('#drift').value='0';document.querySelector('#cycle').value='.3';document.querySelector('#seed').value='41';document.querySelector('#order').value='alternating';document.querySelector('#run-form').requestSubmit()})()");
+  await wait("document.querySelector('#order-status').textContent.includes('PHASE RISK')");
+  assert.equal(await evaljs("document.querySelector('#status').textContent"),'CHALLENGED');
+  assert.match(await evaljs("document.querySelector('#order-adjustment').textContent"),/periodic alias warning/);
+ });
+ await check('seeded shuffled ABBA resolves this specific phase alias with equal physical inputs',async()=>{
+  await evaljs("(()=>{document.querySelector('#order').value='shuffled';document.querySelector('#run-form').requestSubmit()})()");
+  await wait("document.querySelector('#order-status').textContent==='ORDER COUNTERBALANCED' && document.querySelector('#status').textContent==='INCONCLUSIVE'");
+  const evidence=await evaljs("(async()=>{const m=await import('/src/unknown-lab/paired-history.mjs');const o=m.syntheticChallenge({effect:0,seed:41,cycleDriftAmplitude:.3,orderStrategy:'shuffled'});return m.importNotebook(m.exportNotebook(o)).simulation})()");
+  assert.equal(evidence.orderStrategy,'shuffled');assert.equal(evidence.seed,41);
  });
  await check('negative memory effect challenges with negative offset',async()=>{
   await evaljs("(()=>{document.querySelector('#effect').value='-1';document.querySelector('#run-form').requestSubmit();})()");

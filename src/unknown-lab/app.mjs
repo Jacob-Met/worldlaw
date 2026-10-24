@@ -1,7 +1,7 @@
 import {syntheticChallenge,evaluateHistory,importNotebook,exportNotebook} from './paired-history.mjs';
 const $=id=>document.getElementById(id);
 const ns='http://www.w3.org/2000/svg', storageKey='worldlaw.unknown-lab.history.v1';
-let notebook=null,seed=41;
+let notebook=null;
 const fmt=(v,d=3)=>Number.isFinite(v)?Number(v.toPrecision(d)).toLocaleString('en-US',{maximumFractionDigits:6}):'—';
 function clearError(){$('error').hidden=true;}
 function error(e){$('error').hidden=false;$('error').textContent=e.message||String(e);$('error').focus();}
@@ -41,11 +41,14 @@ function render(){
  $('source-badge').textContent=report.source==='measured'?'USER-DECLARED MEASUREMENTS':'DECLARED SIMULATION';
  $('offset').textContent=fmt(report.decisionDifference)+' N·m';
  const order=report.order;
- $('order-status').textContent=order.status==='counterbalanced'?'ORDER COUNTERBALANCED':order.status==='unbalanced'?'ORDER CONFOUNDED':'ORDER NOT RECORDED';
+ $('order-status').textContent=order.status==='counterbalanced'
+   ?notebook.simulation?.orderStrategy==='alternating'?'FIXED AB/BA · PHASE RISK':'ORDER COUNTERBALANCED'
+   :order.status==='unbalanced'?'ORDER CONFOUNDED':'ORDER NOT RECORDED';
  $('order-split').textContent=order.status==='unrecorded'?'Legacy observations: no sample chronology':
-   'Reference first '+order.referenceFirst+' / conditioned first '+order.conditionedFirst;
+   'Reference first '+order.referenceFirst+' / conditioned first '+order.conditionedFirst+(notebook.simulation?' · '+notebook.simulation.orderStrategy+' virtual sequence':'');
  $('order-adjustment').textContent=order.status==='counterbalanced'
-   ?'Raw '+fmt(report.meanDifference)+' N·m → adjusted '+fmt(order.historyEstimate)+' N·m · estimated drift '+fmt(order.driftPerStep)+' N·m / reading'
+   ?'Raw '+fmt(report.meanDifference)+' N·m → adjusted '+fmt(order.historyEstimate)+' N·m · estimated linear drift '+fmt(order.driftPerStep)+' N·m / reading'
+     +(notebook.simulation?.orderStrategy==='alternating' && notebook.simulation?.cycleDriftAmplitude!==0?' · periodic alias warning':'')
    :'Raw paired offset '+fmt(report.meanDifference)+' N·m · no qualified drift separation';
  $('bound').textContent='±'+fmt(report.boundary)+' N·m';
  $('detected').textContent=report.pairsAboveInstrumentNoise+'/'+report.count;
@@ -73,9 +76,11 @@ function virtualRun(){
  const effect=Number($('effect').value),duration=Number($('duration').value);
  const driftPerReading=Number($('drift').value);
  if(!$('drift').value.trim()||!Number.isFinite(driftPerReading))throw new Error('Enter a finite simulated drift per reading.');
- const counterbalanced=$('order').value==='balanced';
- seed+=1;
- adopt(syntheticChallenge({count,noiseSigma:sigma,effect,duration,seed,driftPerReading,counterbalanced}),'Executed independent paired virtual readings');
+ const orderStrategy=$('order').value;
+ const cycleDriftAmplitude=Number($('cycle').value),seed=Number($('seed').value);
+ if(!$('cycle').value.trim()||!Number.isFinite(cycleDriftAmplitude))throw new Error('Enter a finite periodic virtual sensor offset.');
+ if(!$('seed').value.trim()||!Number.isSafeInteger(seed))throw new Error('Enter an integer virtual randomization seed.');
+ adopt(syntheticChallenge({count,noiseSigma:sigma,effect,duration,seed,driftPerReading,cycleDriftAmplitude,orderStrategy}),'Executed independent paired virtual readings');
 }
 function download(text,name){
  const url=URL.createObjectURL(new Blob([text],{type:'application/json'}));

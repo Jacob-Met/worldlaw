@@ -146,3 +146,11 @@ Imported JSON can optionally include a nonnegative integer `sampleIndex` on **ev
 Legacy JSON without `sampleIndex` remains supported and is explicitly labeled *order not recorded*, without gaining retrospective drift qualification. Declared sample order is not verified clock evidence. Linear drift separation does not handle nonlinear drift, carryover, temperature shifts, measurement-time differences, instrumental autocorrelation or other unmeasured confounding.
 
 Run `node --test tests/unknown-order.test.mjs` and `npm run unknown:browser` to receive the new behavior.
+
+### UNKNOWN LAB — Test phase-locked artifacts with seeded order
+
+A known counterexample to fixed alternation: a *purely simulated*, zero-memory sensor with a period-four reading artifact can make ordinary ABAB data look like a preparation-dependent law, even after the linear-drift correction. The workbench now lets you choose **Fixed alternating AB/BA**, **Seeded shuffled AB/BA** or **Reference first only**, and set a synthetic **Period-four sensor artifact** amplitude. The virtual sequence seed is editable so changing the schedule does not secretly change the mechanism, its true effect or its noise. Alternating and shuffled schedules remain exactly reproducible given the same seed. The virtual evidence JSON records the declared seed and simulation parameters in a clearly simulated-only object; user-declared measured JSON never inherits those oracle claims.
+
+Shuffling the order breaks *this exact* phase-lock in the validated counterexample. It does **not** guarantee freedom from nonlinear drift, phase correlation with the new sequence, cross-over carryover, serial sensor noise, instrument heating or unsafe real-world randomization. Actual instruments require their own independent controls, timestamps, repetition, safety authority and source verification. A screening label never establishes physical causation.
+
+Verify with `node --test tests/unknown-phase.test.mjs` and `npm run unknown:browser`.
