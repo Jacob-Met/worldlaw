@@ -1,0 +1,113 @@
+/** Cycle work identifies dissipative candidates conditional on a supplied restoring law. */
+import {normalizeAngularRuns,normalizeAngularBundle,rolloutAngular,ANGULAR_COEFFICIENT_UNITS} from './angular-discovery.mjs';
+import {fitAngularWindow} from '../science/angular-kinematics.mjs';
+import {fitLinearColumns} from '../science/linear-fit.mjs';
+import {rolloutAngularWithResolution} from './angular-resolution.mjs';
+const insist=(ok,message)=>{if(!ok)throw new Error(message);};
+const finite=Number.isFinite,copy=value=>JSON.parse(JSON.stringify(value));
+const FAMILIES=[['viscous',[0]],['coulomb',[1]],['joint',[0,1]]];
+export const CYCLE_WORK_SCHEMA='worldlaw.cycle-work-inputs/v1';
+const LIMITS=[
+ 'Normalized potential and kinetic terms are not calibrated joules; physical inertia remains unknown.',
+ 'Recorded maxima and local polynomial rates are approximate. Sensor noise, endpoint selection, smoothing and quadrature can bias work estimates.',
+ 'Adjacent cycles share endpoints and rate windows; cycle counts are not independent replication or calibrated uncertainty.',
+ 'A nonnegative coefficient and small residual do not identify the physical cause of dissipation.',
+ 'The supplied restoring law is frozen. Receiving errors never choose a family or refit a coefficient.',
+ 'Reusing recordings or this challenge to choose declarations is exploratory, not a fresh blind test.'
+];
+function declaration(options={}){
+ const windowSize=options.windowSize??9,crossingAngle=options.crossingAngle??0;
+ insist(Number.isInteger(windowSize)&&windowSize>=5&&windowSize<=31&&windowSize%2===1,'Declare an odd derivative window of 5–31 samples.');
+ insist(finite(crossingAngle)&&Math.abs(crossingAngle)<=1e6,'Declare a finite crossing angle in radians.');
+ insist(options.turningPointRule===undefined||options.turningPointRule==='middle_sample_of_contiguous_maximum_plateau_earlier_sample_for_even_width','Unsupported turning-point declaration.');
+ return {windowSize,crossingAngle,turningPointRule:'middle_sample_of_contiguous_maximum_plateau_earlier_sample_for_even_width'};
+}
+function restoringLaw(model,run){
+ insist(model&&Array.isArray(model.terms)&&model.terms.length>0&&model.terms.every(t=>['gravity','spring','bias','cubic'].includes(t.id)),'Supply a frozen restoring-only law (gravity, spring, bias or cubic); existing drag is not silently removed.');
+ // Execute the maintained boundary at a tiny declared interval, validating the
+ // complete angular model schema without integrating an arbitrary long training run.
+ rolloutAngular(model,{...run,initialRate:0,samples:[{time:0,position:0},{time:1e-6,position:0}]},{maxStep:1e-6,maxSteps:2});
+ const c=Object.fromEntries(model.terms.map(t=>[t.id,t.coefficient]));
+ return q=>(c.gravity??0)*Math.cos(q)-(c.spring??0)*q*q/2-(c.cubic??0)*q**4/4-(c.bias??0)*q;
+}
+function extract(run,potential,decl){
+ const s=run.samples,h=(decl.windowSize-1)/2,crossings=[],peaks=[],cycles=[];
+ for(let i=1;i<s.length;i++)if(s[i-1].position<=decl.crossingAngle&&s[i].position>decl.crossingAngle)crossings.push(i);
+ for(let i=1;i<crossings.length;i++){
+  const start=crossings[i-1],end=crossings[i];let index=start;
+  for(let j=start+1;j<end;j++)if(s[j].position>s[index].position)index=j;
+  const ties=[];for(let j=start;j<end;j++)if(s[j].position===s[index].position)ties.push(j);
+  const contiguous=ties.every((value,j)=>j===0||value===ties[j-1]+1);
+  peaks.push({index:ties[Math.floor((ties.length-1)/2)],ambiguous:!contiguous,plateau:[ties[0],ties.at(-1)]});
+ }
+ const rates=new Map();const rate=i=>{if(!rates.has(i))rates.set(i,fitAngularWindow(s.slice(i-h,i+h+1),s[i],null).rate);return rates.get(i);};
+ for(let k=1;k<peaks.length;k++){
+  const a=peaks[k-1],b=peaks[k],first=a.index,last=b.index;
+  const row={runId:run.id,cycleIndex:k-1,first,last,start:s[first].time,end:s[last].time,status:'refused'};
+  try{
+   insist(!a.ambiguous&&!b.ambiguous,'Separated equal maxima leave the turning-point interval unresolved.');
+   row.endpointPlateaus=[a.plateau,b.plateau];
+   insist(first>=h&&last+h<s.length,'A complete centered derivative window is unavailable at a cycle endpoint.');
+   insist(last-first>=decl.windowSize,'Cycle is undersampled relative to the declared derivative window.');
+   let viscous=0,distance=0;
+   for(let i=first+1;i<=last;i++){
+    const dt=s[i].time-s[i-1].time;viscous+=(rate(i-1)**2+rate(i)**2)*dt/2;distance+=Math.abs(s[i].position-s[i-1].position);
+   }
+   const startRate=rate(first),endRate=rate(last),potentialLoss=potential(s[first].position)-potential(s[last].position),kineticCorrection=(startRate**2-endRate**2)/2,loss=potentialLoss+kineticCorrection;
+   insist([viscous,distance,potentialLoss,kineticCorrection,loss].every(finite)&&viscous>0&&distance>0,'Cycle work is nonfinite or has no supported motion.');
+   Object.assign(row,{status:'admitted',loss,potentialLoss,kineticCorrection,startRate,endRate,viscous,distance});
+  }catch(error){row.reason=error.message;}
+  cycles.push(row);
+ }
+ return {runId:run.id,source:copy(run.source),sampleCount:s.length,crossingCount:crossings.length,peakCount:peaks.length,cycles,
+  coverage:{firstCycleIndex:peaks[0]?.index??null,lastCycleIndex:peaks.at(-1)?.index??null,excludedPrefixSamples:peaks.length?peaks[0].index:s.length,excludedSuffixSamples:peaks.length?s.length-1-peaks.at(-1).index:0},
+  limitation:'Only maxima between complete upward-crossing intervals are considered. Prefix/suffix and all refused complete-cycle pairs remain disclosed.'};
+}
+function fitFamilies(rows,model){
+ const admitted=rows.filter(r=>r.status==='admitted'),target=admitted.map(r=>r.loss),columns=[admitted.map(r=>r.viscous),admitted.map(r=>r.distance)];
+ return FAMILIES.map(([id,indices])=>{
+  const result={id,status:'refused',cycleCount:admitted.length};
+  if(admitted.length<3)return {...result,reason:'At least three admitted complete cycles are required.'};
+  const unconstrained=fitLinearColumns(indices.map(i=>columns[i]),target);
+  if(!unconstrained)return {...result,reason:'Work feature columns are rank deficient.'};
+  result.unconstrainedCoefficients=unconstrained.coefficients;result.normalizedQRPivotRatio=unconstrained.conditionEstimate;
+  if(unconstrained.conditionEstimate>1000)return {...result,reason:'Normalized QR pivot ratio exceeds 1000; joint coefficients are unsupported.'};
+  // Enumerate every feasible NNLS active set for this two-column library.
+  const choices=[{coefficients:[0,0],active:[]}];
+  for(let mask=1;mask<1<<indices.length;mask++){
+   const active=indices.filter((_,j)=>mask&(1<<j)),fit=fitLinearColumns(active.map(i=>columns[i]),target);
+   if(!fit||fit.coefficients.some(c=>c<0))continue;
+   const coefficients=[0,0];active.forEach((index,j)=>coefficients[index]=fit.coefficients[j]);choices.push({coefficients,active});
+  }
+  for(const choice of choices)choice.sse=target.reduce((sum,y,i)=>sum+(y-choice.coefficients[0]*columns[0][i]-choice.coefficients[1]*columns[1][i])**2,0);
+  choices.sort((a,b)=>a.sse-b.sse||a.active.length-b.active.length);const best=choices[0];
+  if(!finite(best.sse))return {...result,reason:'Loss fit exceeded finite arithmetic.'};
+  const coefficients={rate:best.coefficients[0],coulomb:best.coefficients[1]},terms=copy(model.terms);
+  for(const term of ['rate','coulomb'])if(coefficients[term]>0)terms.push({id:term,coefficient:-coefficients[term],coefficientUnit:ANGULAR_COEFFICIENT_UNITS[term]});
+  const executable={...copy(model),id:`cycle-work-${id}`,terms,method:'frozen_restoring_cycle_work_nnls',equation:terms.map(t=>`${t.coefficient} × ${t.id}`).join(' + ')};
+  delete executable.metrics;
+  return {...result,status:'admitted',coefficients,activeTerms:best.active.map(i=>['rate','coulomb'][i]),boundary:best.active.length<indices.length,lossRMSE:Math.sqrt(best.sse/admitted.length),predictions:admitted.map((r,i)=>({runId:r.runId,cycleIndex:r.cycleIndex,observed:r.loss,predicted:best.coefficients[0]*columns[0][i]+best.coefficients[1]*columns[1][i]})),model:executable};
+ });
+}
+export function fitCycleWork(model,trainingRuns,options={}){
+ const training=normalizeAngularRuns(trainingRuns),decl=declaration(options),potential=restoringLaw(model,training[0]);
+ const records=training.map(run=>extract(run,potential,decl)),rows=records.flatMap(r=>r.cycles),candidates=fitFamilies(rows,model);
+ return {schema:'worldlaw.cycle-work-fit/v1',declaration:decl,restoringModel:copy(model),trainingRuns:training,records,candidates,cycleCount:rows.length,admittedCycleCount:rows.filter(r=>r.status==='admitted').length,limitations:[...LIMITS],coefficientMeaning:{rate:'1/s, nonnegative dissipative magnitude',coulomb:'rad/s², nonnegative dissipative magnitude'},lossUnits:'rad²/s² normalized by unknown inertia; not joules',selected:null};
+}
+export function cycleWorkInvestigation(bundle,model,options={}){
+ const normalized=normalizeAngularBundle(bundle),fit=fitCycleWork(model,normalized.trainingRuns,options),maxStep=options.maxStep??.01,maxSteps=options.maxSteps??300000;
+ insist(finite(maxStep)&&maxStep>=.00001&&maxStep<=.05,'Receiving maxStep must be 0.00001–0.05 seconds.');
+ insist(Number.isInteger(maxSteps)&&maxSteps>=1&&maxSteps<=1000000,'Declare a combined receiving budget of 1–1000000 steps.');
+ const models=[{id:'restoring-only',status:'admitted',model:fit.restoringModel},...fit.candidates];
+ let required=0;for(const c of models)if(c.status==='admitted')for(const r of normalized.challengeRuns)for(let i=1;i<r.samples.length;i++){const dt=r.samples[i].time-r.samples[i-1].time;required+=Math.ceil(dt/maxStep)+Math.ceil(dt/(maxStep/2));}
+ const receiving=[];
+ for(const c of models)for(const run of normalized.challengeRuns){
+  const row={candidateId:c.id,runId:run.id,status:'refused'};
+  if(c.status!=='admitted')row.reason='Training candidate refused: '+c.reason;
+  else if(required>maxSteps)row.reason=`Complete declared receiving population needs ${required} steps; budget ${maxSteps}.`;
+  else try{const execution=rolloutAngularWithResolution(c.model,run,{maxStep,maxSteps});Object.assign(row,{status:execution.resolution.status==='compared'?'compared':'unresolved',...execution});}catch(error){row.reason=error.message;}
+  receiving.push(row);
+ }
+ return {schema:'worldlaw.cycle-work-investigation/v1',fit,receiving,solver:{maxStep,maxSteps,requiredSteps:required},inputs:{schema:CYCLE_WORK_SCHEMA,bundle:normalized,restoringModel:copy(model),options:{...fit.declaration,maxStep,maxSteps}},selected:null};
+}
+export function replayCycleWork(inputs){insist(inputs?.schema===CYCLE_WORK_SCHEMA,'Expected cycle-work input notebook.');return cycleWorkInvestigation(inputs.bundle,inputs.restoringModel,inputs.options);}
