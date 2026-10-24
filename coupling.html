@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Coupling Lab · WORLDLAW</title><meta name="theme-color" content="#101c2d">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/coupling.css">
+</head>
+<body>
+  <a class="skip" href="#apparatus">Skip to apparatus</a>
+  <header><a class="wordmark" href="/">WORLDLAW <span>COUPLING LAB</span></a><nav aria-label="Notebook"><a href="/">Discovery Studio</a><button id="open" type="button">Open evidence</button><button id="save" type="button">Save notebook</button></nav></header>
+  <main>
+    <section class="opening"><div><p class="eyebrow">TWO COORDINATES. COMPETING EXPLANATIONS.</p><h1>Find the coupling.</h1><p class="lede">A response at one coordinate can depend on the other. Choose a state that separates the explanations, observe its torque, and let the new evidence change the model.</p></div><div class="course-controls"><label for="course">Authored instrument</label><select id="course"><option value="reciprocal">Reciprocal response</option><option value="independent">Independent response</option><option value="directional">Directional response</option><option value="collinear">Insufficient excitation</option><option value="nonlinear">Outside the linear families</option></select><button id="restart" type="button">Start this instrument</button><p>These controls generate synthetic evidence. Imported measurements remain user declared.</p></div></section>
+    <div id="error" role="alert" tabindex="-1" hidden></div>
+    <section class="source-strip" aria-label="Evidence source"><strong id="source-kind"></strong><span id="source-label"></span><span id="counts"></span></section>
+    <div class="lab-grid">
+      <section id="apparatus" class="apparatus" aria-labelledby="apparatus-title">
+        <div class="instrument-bar"><h2 id="apparatus-title">The response field</h2><div class="view-controls" role="group" aria-label="Apparatus view"><button id="field-view" type="button" aria-pressed="true">Response field</button><button id="gauge-view" type="button" aria-pressed="false">Paired gauges</button></div></div>
+        <div id="mechanism" role="group" aria-label="Executable torque responses at explicitly permitted angle pairs"></div>
+        <div class="legend"><span><i class="selected"></i><span id="model-legend">Inspected model</span></span><span><i class="alternative"></i>Competitive alternative</span><span><i class="observed"></i>Last supplied response</span></div>
+        <p class="plot-note" id="plot-note">Positions in radians; arrows encode predicted torque in N·m. This is a response diagram, not reconstructed physical geometry.</p>
+        <div class="inspect"><label for="inspect-model">Inspect a fitted explanation</label><select id="inspect-model"></select><div id="equation" aria-live="polite"></div></div>
+      </section>
+      <section class="acquisition" aria-labelledby="question-title">
+        <p class="eyebrow">THE NEXT QUESTION</p><h2 id="question-title">Separate the responses.</h2><p id="plan-status" role="status" aria-live="polite"></p>
+        <div class="suggestion"><strong id="suggestion"></strong><span id="spread"></span><button id="use-proposal" type="button">Use suggested input</button></div>
+        <label for="candidate">Explicitly permitted angle pair</label><select id="candidate"></select><p id="extrapolation" class="small"></p>
+        <div id="forecast" aria-label="Frozen predictions before acquisition"></div>
+        <button id="acquire-virtual" class="primary" type="button">Acquire simulated response</button>
+        <p id="acquisition-mode" class="small"></p>
+        <details id="manual-controls"><summary>Record a supplied response</summary><form id="manual-form"><label for="observation-id">Observation ID</label><input id="observation-id" required maxlength="120"><div class="pair-inputs"><label for="torque-a">Torque 1 · N·m<input id="torque-a" type="number" step="any" required></label><label for="torque-b">Torque 2 · N·m<input id="torque-b" type="number" step="any" required></label></div><button type="submit">Record and refit</button><p class="small">Record a separate acquisition at the selected angles. A declared permission or quasi-static state is not verified by this app.</p></form></details>
+      </section>
+    </div>
+    <section class="evidence" aria-labelledby="evidence-title"><div class="section-heading"><div><p class="eyebrow">KEEP EACH EXPLANATION TESTABLE</p><h2 id="evidence-title">Which response survives?</h2></div><p id="diagnostics"></p></div><div class="table-wrap"><table><caption>Training ranks models. Separate checks never enter fitting or proposal selection.</caption><thead><tr><th>Explanation</th><th>Training RMSE</th><th>Separate check RMSE</th><th>Evidence status</th></tr></thead><tbody id="models"></tbody></table></div><p id="comparison" class="comparison"></p><p class="small">Errors pool the two torque coordinates in N·m. The score uses a declared noise floor; model spread and reciprocity are not probabilities or evidence of passivity.</p></section>
+    <section class="revisions" aria-labelledby="revision-title"><p class="eyebrow">FREEZE. OBSERVE. REVISE.</p><h2 id="revision-title">The evidence changes the explanation.</h2><p>Each entry compares the new response with predictions frozen before that observation was added. Earlier mistakes stay visible.</p><ol id="history"></ol></section>
+    <section class="scope"><h2>A local response hypothesis.</h2><p>This lab compares three affine two-coordinate laws under a supplied quasi-static assumption. Both coordinates must use radians and conjugate torque signs in N·m. Hidden rates, changing loads, drift and nonlinear behavior can invalidate every offered explanation. Neither a fitted matrix nor the virtual instrument establishes mechanism topology, causal direction, physical safety or scientific validity.</p><details><summary>Source declaration and acquisition assumptions</summary><dl><dt>Source reference</dt><dd id="reference"></dd><dt>Coordinate convention</dt><dd id="convention"></dd><dt>Assumed torque noise</dt><dd id="noise"></dd></dl><p>Exact repeated numerical evidence is conservatively refused across fitting, separate checks and revisions. Repeated quantized readings can be genuine, but they do not establish fresh evidence here. Original acquisition references remain the operator's responsibility.</p></details></section>
+  </main>
+  <footer><a href="/">WORLDLAW</a><span>Local computation · Explicit evidence · Recomputed on reopen</span></footer>
+  <input type="file" id="notebook-file" accept=".json,application/json" hidden aria-label="Choose coupling evidence notebook">
+  <script type="module" src="/src/coupling/app.mjs"></script>
+</body>
+</html>

@@ -22,7 +22,7 @@ export function createProductServer() {
     }
     if (pathname === '/') pathname = '/index.html';
     const allowed = ['/index.html','/styles.css','/favicon.svg','/motion.html','/motion.css',
-      '/trajectory.html','/trajectory.css','/unknown-lab.html','/unknown-lab.css','/examples/trajectory-pendulum-92be.json',
+      '/coupling.html','/coupling.css','/trajectory.html','/trajectory.css','/unknown-lab.html','/unknown-lab.css','/examples/trajectory-pendulum-92be.json',
       '/examples/trajectory-ambiguous-92be.json','/examples/physical-pasco-92be.json'].includes(pathname) || /^\/src\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+\.mjs$/.test(pathname);
     if (!allowed) { res.writeHead(404).end('File not found.'); return; }
     try {

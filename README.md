@@ -20,6 +20,17 @@ npm start
 
 Open **http://127.0.0.1:4193**. No package installation, cloud account, model download or API key is needed. The server binds to loopback and serves maintained application assets. Observations and model computation stay in your browser. Stop the server with Ctrl+C.
 
+## Compare coupled responses
+
+Open **Coupling Lab** from the Studio header or visit `/coupling.html`. Compare
+independent, reciprocal and directional two-coordinate torque responses; choose
+an explicitly permitted discriminating input, add a separate response, inspect
+the frozen prediction error and replay the resulting notebook. The default
+instrument is synthetic and retains its first-probe loss before a second probe
+changes the selected family. Imported measurements stay local and preserve
+supplied units, source and quasi-static assumptions. [The contract, controls and
+receiving](docs/COUPLING_LAB.md) describe the numerical scope and physical limits.
+
 ## Measure recorded motion
 
 Open **Motion Lab** from the studio header, or visit **http://127.0.0.1:4193/motion.html**. Load a local WebM/MP4 mechanism video, mark a fixed pivot and a stable visible marker, then track a selected time interval. The pixel view, angular plot and measurement ledger show what was accepted and where tracking stopped. Correct the marker to resume; missing frames remain visible and split the evidence into separate segments.

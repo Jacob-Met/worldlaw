@@ -1,0 +1,171 @@
+{
+  "schema": "worldlaw.coupling-receiving/v1",
+  "date_utc": "2026-10-24",
+  "base_commit": "2dde8158ece31a1e16eb162f9388483472fdd022",
+  "original_base_commit": "b53b34c4ba8416a71e0d9dec227094968ad8febd",
+  "issue": "https://github.com/Jacob-Met/worldlaw/issues/40",
+  "source_hashes": {
+    "coupling.css": {
+      "sha256": "f491172b280d59a8c13c1515c93a10677552c4da1e6b02e06ed981a0e75f3436",
+      "git_blob_sha": "4103fd894e5852e02128cfb0aa90504b626eb7d5"
+    },
+    "coupling.html": {
+      "sha256": "5b1ca405bc1496ffd45ad57db058f20a9658d8a33b9993bdf9f82462806d9f10",
+      "git_blob_sha": "3d924a370768fbfb06f7c7e1ce17bcce27ab000c"
+    },
+    "index.html": {
+      "sha256": "27544236a6cad7bc1f887810e67d1d76380e535246843a4fc24e8b791aabcbf4",
+      "git_blob_sha": "705c2afb4119ba9797b6c15ca0eb5144e9b8bfa1"
+    },
+    "scripts/coupling-browser.mjs": {
+      "sha256": "4fc8e09b3222ea14768cd95e634f06cfdfdc6df899f1429acf8275661d38b937",
+      "git_blob_sha": "cec99005bfaec35fb9164f1c41426a93d93f07ce"
+    },
+    "scripts/package.py": {
+      "sha256": "4fc4ef75aeca614eda17f9d50ad04c936c1bd07ad67ee82b6c25853483c8632f",
+      "git_blob_sha": "8f3d025091163dd6a833496091a57c669ece7b09"
+    },
+    "server.mjs": {
+      "sha256": "8fce2d04fdba905e7e27647a5eac282c00e2b87a383dcc40107e76cff7948467",
+      "git_blob_sha": "11f848fddbb0d3095ce1428a30314811b0ddbcd0"
+    },
+    "src/coupling/app.mjs": {
+      "sha256": "c0ba87172db1160b8a3cdd8d86841efedd55d9f6bae6e2bbe659db018875c5c2",
+      "git_blob_sha": "200380fee76137f48fb4a563f14bfad4154e606d"
+    },
+    "src/coupling/notebook.mjs": {
+      "sha256": "01d69c0c37064f505bd65b69874e0f3afc23b9ae4d094baa4233c13825b96413",
+      "git_blob_sha": "4b8e0c4cf4c61446b2c2c4b4a63e991b6303ab94"
+    },
+    "src/coupling/science.mjs": {
+      "sha256": "67a5cb3268d370a0eb061ef6a9b97910fd9e8a311aea91b1bd6f394c7b039d0d",
+      "git_blob_sha": "5d6869919747093f43f60802c12fde494282c568"
+    },
+    "src/coupling/virtual-instrument.mjs": {
+      "sha256": "17aa5ea8b40b1253b3654f0eeb515fa35883f50abb4a18620290aad711b1fd91",
+      "git_blob_sha": "f0e6b799e093e87b896f62b2a84e810a1e697a80"
+    },
+    "src/science/linear-fit.mjs": {
+      "sha256": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+      "git_blob_sha": "5fc92b53ed52ba96dc60b1235aea87bffc4e83ca"
+    },
+    "src/science/torque-discovery.mjs": {
+      "sha256": "cf9d73b0eb007c75979b60ea5e2f63269f79b89eb6ca14089e5e9630fb3ca22e",
+      "git_blob_sha": "c1ce05339bfd072c748ff259834906654d61e83a"
+    },
+    "tests/coupling.test.mjs": {
+      "sha256": "307358171e06952e9282f19ddcf12358a7d0468a0d056ae3a2bbf6bdc5836c80",
+      "git_blob_sha": "e6600cba1acf22a4137b9b5821002be6c9eb8b5d"
+    },
+    "README.md": {
+      "sha256": "6b0274ee7f6599b64ab013dc851bd287b8b5bb4c73c2ae1eeabdd1cff1630a69",
+      "git_blob_sha": "8cbbfd3e3a58258cbbc3c7438c40e1bc478e8179"
+    },
+    "docs/COUPLING_LAB.md": {
+      "sha256": "8532c2f0f15c2ee81b18e6ce746e87975f6ee7e308bf68bef30ec06901919f3e",
+      "git_blob_sha": "43d2ce875c9434b40ceefde9bab991a832939f02"
+    },
+    "experiments/coupling-discovery.mjs": {
+      "sha256": "fe1d738f100654556f9437d0a71e0d2a0367efe989969326375c019f932246eb",
+      "git_blob_sha": "4b0c44e6e51c5d004e9552e762a344f3b930b490"
+    }
+  },
+  "environments": {
+    "authoring": "Node v24.19.0, Linux source workspace",
+    "receiving": "Node v22.23.4, Linux authorized RDC device 4403f155-1f0d-4f08-adf1-6f284be35909, installed Chrome"
+  },
+  "checks": {
+    "focused_native": {
+      "command": "node tests/coupling.test.mjs",
+      "passed": 16,
+      "failed": 0
+    },
+    "composed_native": {
+      "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+      "total": 370,
+      "passed": 369,
+      "failed": 0,
+      "skipped": 1,
+      "skip_reason": "Existing live Node/Chromium portability test requires PLAYWRIGHT_MODULE; no module path was supplied."
+    },
+    "consumer": [
+      "node scripts/smoke.mjs",
+      "node scripts/trajectory-smoke-92be.mjs"
+    ],
+    "browser": {
+      "command": "BROWSER_ARTIFACT_DIR=<receipts> node scripts/coupling-browser.mjs",
+      "passed_groups": 15,
+      "uncaught_exceptions": 0,
+      "external_requests": 0,
+      "widths": [
+        1440,
+        390
+      ],
+      "views": [
+        "response field",
+        "paired gauges"
+      ],
+      "maintained_scalar_studio_received": true
+    },
+    "scalar_numerical_extraction": {
+      "seeds": [
+        17,
+        79,
+        203
+      ],
+      "complete_discovery_and_proposal_JSON_byte_identical": true
+    },
+    "package": {
+      "command": "python3 scripts/package.py --working-tree --source-commit 7928c19e3a4b2c41f048715cf15ab7ce5843309f --output <new-output.zip>",
+      "source_mode": "working-tree-candidate",
+      "source_files": 230,
+      "every_archived_file_sha256_verified": true,
+      "initial_refusal": "Existing maintained initial-state experiment and duration receipts were absent from the explicit distribution allowlist; the newly added angular-prelude experiment also needed inclusion.",
+      "qualification": "Candidate source distribution receiving; no installed release or local authentication of the supplied remote commit is claimed."
+    }
+  },
+  "retained_failures": [
+    "Initial all-source transfer exceeded output capacity; no execution success inferred. Bounded transfers subsequently verified every file SHA-256.",
+    "Initial full-suite receiving lacked legacy telemetry JSON and raw PASCO CSV fixtures: 2 failures. Exact fixture recovery passed both affected files (17 tests), then composed full suite passed.",
+    "Initial interaction receiver passed but visual inspection found unreadable mobile SVG labels. Compact field coordinates and stacked gauges were re-received and inspected.",
+    "Default reciprocal first acquisition increases separate-check error before the second acquisition changes the selected family.",
+    "Source package first refused maintained files absent from the allowlist. The initial-state/prelude experiments and duration receipts were added; all 224 packaged file hashes subsequently verified."
+  ],
+  "scientific_boundary": "Authored synthetic controls and supplied-input software receiving. No independent physical apparatus, sensor calibration, arbitrary structure discovery, hardware actuation, provider execution, deployment or contest qualification.",
+  "composition_history": [
+    {
+      "base_commit": "736cd761ce15aa7e2e32b51af67a17cd7548381e",
+      "native": {
+        "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+        "total": 335,
+        "passed": 334,
+        "failed": 0,
+        "skipped": 1,
+        "skip_reason": "Existing live Node/Chromium portability test requires PLAYWRIGHT_MODULE; no module path was supplied."
+      }
+    },
+    {
+      "base_commit": "a4620e1cb73986b34be38da7ca11cb2de4f5870b",
+      "native": {
+        "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+        "total": 361,
+        "passed": 360,
+        "failed": 0,
+        "skipped": 1,
+        "skip_reason": "Existing live Node/Chromium portability test requires PLAYWRIGHT_MODULE; no module path was supplied."
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "scope": "coupling science, notebook, virtual instrument, shared QR and focused tests",
+      "reviewer": "hamon-ff3d0651adec / microverse_investigation",
+      "result": "No integration-blocking finding; source inspection and focused native test-file execution. Physical identification and calibrated uncertainty remain unqualified."
+    },
+    {
+      "scope": "coupling science/notebook/app, markup/style and browser receiver",
+      "reviewer": "hamon-ff3d0651adec / chronos_shared_openings",
+      "result": "No integration-blocking finding; read-only source review, no independent browser rerun or screenshot review. Empty-permitted-set range copy is a nonblocking follow-up."
+    }
+  ]
+}
