@@ -1,0 +1,67 @@
+{
+  "schema": "worldlaw.stiffness-experiment-receiving/v1",
+  "baseCommit": "e1a8b9aaff48df949b523b95eb1f82e80d2549c3",
+  "recordedAtUtc": "2026-10-24T07:18:04.786491+00:00",
+  "runtime": "Node22.23.4; actual local Chrome; Linux",
+  "native": {
+    "tests": 473,
+    "pass": 472,
+    "fail": 0,
+    "skipped": 1
+  },
+  "commands": [
+    "npm run verify",
+    "node scripts/stiffness-experiment-browser.mjs",
+    "node scripts/stiffness-browser.mjs"
+  ],
+  "browser": {
+    "experimentGroups": 15,
+    "legacyNotebookGroups": 16,
+    "desktopWidth": 1440,
+    "narrowWidth": 390,
+    "uncaughtExceptions": 0,
+    "externalRequests": 0
+  },
+  "sourceSHA256": {
+    "src/stiffness/experiment-fixture.mjs": "332378a492c22b52df16ca023c9773a764ea009c28dba840218a57a8cfdf2b76",
+    "src/stiffness/app.mjs": "8086774c2524292f86f2f5cb23ac7ce12039f209a2cee75c1bddf58e6af4a306",
+    "scripts/stiffness-browser.mjs": "9358cee089fd5ff8acd910eee2e1123ddd0d2dbc5a62c1b9a5435820c024ccdc",
+    "src/stiffness/experiment.mjs": "4bfddf98735ef2b4e4f48478ff1b1dfa0fd279becb41effa45271e9fe1470d19",
+    "tests/stiffness-experiment.test.mjs": "5e5474e4cdf50aaf48f6da34ebe60d34429217dc87d13180e97c394c258962fc",
+    "docs/STIFFNESS_EXPERIMENTS.md": "b0a291aff996a94150c9a18c0bcf08b7c5297a686a0772960f6c915b0abab341",
+    "src/stiffness/experiment-panel.mjs": "d78cfa568dfc1d10f76a24c241ade79c39997170bd86df55c3e43ba65b3a3f78",
+    "stiffness.html": "af79b53d83e3bae8ee4d6fcf65e4da286ecaa98884ef666b93c0e1d0a1b81d09",
+    "stiffness.css": "752e844ac26806e257a7346e883257752d8808ea617404389273463ac7499a9a",
+    "scripts/stiffness-experiment-browser.mjs": "d39d4727e3834302316aad43e641c06f2965c472f980f1155fafb28e002617ff",
+    "README.md": "446546db1a65a4df29082b015ea4b02b55fef0446a3268b917d2188664ef76bf",
+    "package.json": "6a371815f00f9001f216e6534d1263a6735f851e49734a80c8055412de338b58",
+    "scripts/package.py": "b97c4719dc4224b020a23cba3af9ba560f0343973ef6e43d702e41481c4d1d18"
+  },
+  "independentReview": [
+    "SYNAPSE contributor reviewed frozen-request canonical input binding and found the corrected stale-canonical-input defect",
+    "MICROVERSE contributor independently authored10 numerical/replay/bounds controls and reviewed the browser receiver; an additional declaration-history regression covers the later fix.",
+    "Lead received actual desktop/narrow rendering; mobile history and proposal access were corrected before final receiving"
+  ],
+  "authoredCourse": {
+    "initialProposal": {
+      "position": 0,
+      "spread": 0.3469460720333071
+    },
+    "afterFirstReading": {
+      "position": 0.3,
+      "spread": 0.18071792028700345
+    },
+    "afterSecondReading": {
+      "competitiveKnots": [
+        0.2
+      ],
+      "status": "uninformative"
+    }
+  },
+  "boundaries": [
+    "Authored analytic controls and supplied input provenance, not physical measurements or blind validation",
+    "Model spread is a finite-family heuristic, not information gain, probability or actuation authority",
+    "Separate checks never enter planning; declaration is fixed after first acquisition",
+    "One inherited optional native test remains skipped; no provider, installed service or hardware qualification"
+  ]
+}

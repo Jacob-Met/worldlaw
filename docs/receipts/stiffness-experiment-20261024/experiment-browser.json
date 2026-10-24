@@ -1,0 +1,466 @@
+{
+  "checks": 15,
+  "pass": true,
+  "results": [
+    {
+      "name": "maintained studio navigation enters the actual experiment-enabled lab",
+      "passed": true
+    },
+    {
+      "name": "authored ambiguous course exposes a numerical proposal from actual training",
+      "passed": true
+    },
+    {
+      "name": "keyboard freezes a current proposal before authored observation and refit",
+      "passed": true
+    },
+    {
+      "name": "input-only download reopens both accumulated history and a frozen pending request",
+      "passed": true
+    },
+    {
+      "name": "separate-check replacement leaves proposals, frozen forecasts and history unchanged",
+      "passed": true
+    },
+    {
+      "name": "manual acquisition preserves declared provenance and rejects coordinates outside the pending request",
+      "passed": true
+    },
+    {
+      "name": "declaration changes cannot rewrite historical planning; pending-only edits remain available in a fresh experiment",
+      "passed": true
+    },
+    {
+      "name": "omitted smooth course reports model mismatch without a recommendation",
+      "passed": true
+    },
+    {
+      "name": "late experiment import cannot replace a more recent course selection",
+      "passed": true
+    },
+    {
+      "name": "late source read cannot replace a newly frozen request",
+      "passed": true
+    },
+    {
+      "name": "late source read cannot overwrite a newly received acquisition",
+      "passed": true
+    },
+    {
+      "name": "malformed experiment results and invalid state declarations leave the valid experiment intact",
+      "passed": true
+    },
+    {
+      "name": "contained readable experiment controls and keyboard access at 1440px",
+      "passed": true
+    },
+    {
+      "name": "contained readable experiment controls and keyboard access at 390px",
+      "passed": true
+    },
+    {
+      "name": "no uncaught page exceptions or external requests during experiment receiving",
+      "passed": true
+    }
+  ],
+  "events": {
+    "exceptions": [],
+    "outside": []
+  },
+  "historyVisibility": [
+    {
+      "name": "experiment-refit-history-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 913
+      },
+      "table": {
+        "left": 113,
+        "right": 1327,
+        "top": -0.171875,
+        "bottom": 463.328125,
+        "width": 1214,
+        "height": 463.5
+      },
+      "row": {
+        "left": 113,
+        "right": 1327,
+        "top": 40.828125,
+        "bottom": 462.828125,
+        "width": 1214,
+        "height": 422
+      },
+      "container": {
+        "left": 113,
+        "right": 1327,
+        "top": -0.171875,
+        "bottom": 459.828125,
+        "width": 1214,
+        "height": 460
+      },
+      "acquisition": "authored-1",
+      "identity": {
+        "text": "Acquisition1 · authored-1",
+        "left": 113,
+        "right": 222.578125,
+        "top": 54.328125,
+        "bottom": 69.328125,
+        "width": 109.578125,
+        "height": 15,
+        "font": 13,
+        "visibility": "visible",
+        "display": "table-cell",
+        "visibleWidth": 109.578125,
+        "visibleHeight": 15,
+        "fullyVisible": true
+      },
+      "torque": {
+        "text": "Observed torque0.3 N·m",
+        "left": 725.203125,
+        "right": 780,
+        "top": 54.328125,
+        "bottom": 69.328125,
+        "width": 54.796875,
+        "height": 15,
+        "font": 13,
+        "visibility": "visible",
+        "display": "table-cell",
+        "visibleWidth": 54.796875,
+        "visibleHeight": 15,
+        "fullyVisible": true
+      },
+      "prediction": {
+        "text": "predicted 0.390057 N·m",
+        "left": 1023.9375,
+        "right": 1182.890625,
+        "top": 192.328125,
+        "bottom": 206.328125,
+        "width": 158.953125,
+        "height": 14,
+        "font": 12,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 158.953125,
+        "visibleHeight": 14,
+        "fullyVisible": true
+      },
+      "residual": {
+        "text": "frozen residual -0.0900571 N·m",
+        "left": 930.015625,
+        "right": 1146.78125,
+        "top": 210.328125,
+        "bottom": 224.328125,
+        "width": 216.765625,
+        "height": 14,
+        "font": 12,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 216.765625,
+        "visibleHeight": 14,
+        "fullyVisible": true
+      },
+      "labels": [
+        {
+          "declared": "Acquisition",
+          "before": "none",
+          "text": "Acquisition1 · authored-1"
+        },
+        {
+          "declared": "Received state",
+          "before": "none",
+          "text": "Received statecommand 0 N·m; angle 0 rad; rate 0 rad/s"
+        },
+        {
+          "declared": "Observed torque",
+          "before": "none",
+          "text": "Observed torque0.3 N·m"
+        },
+        {
+          "declared": "Frozen forecast evidence",
+          "before": "none",
+          "text": "Frozen forecast evidenceHinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Inspect 5 frozen forecasts and residualsSupplied source: Explicit kink analytical course generator; declared kind: authored simulation. Source identity and independence are not authenticated.Frozen plan: proposed; spread 0.346946 N·m; extrapolated axes none.Hinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Hinge at 0.2 rad: predicted 0.300146 N·m; observed 0.3 N·m; frozen residual -0.000145832 N·m (observed − predicted).Hinge at 0.3 rad: predicted 0.204145 N·m; observed 0.3 N·m; frozen residual 0.0958545 N·m (observed − predicted).Hinge at 0.4 rad: predicted 0.113272 N·m; observed 0.3 N·m; frozen residual 0.186728 N·m (observed − predicted).Hinge at 0 rad: predicted 0.460218 N·m; observed 0.3 N·m; frozen residual -0.160218 N·m (observed − predicted)."
+        }
+      ],
+      "scrollTop": 0,
+      "scrollLeft": 0
+    },
+    {
+      "name": "experiment-history-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "table": {
+        "left": 113,
+        "right": 1327,
+        "top": -0.171875,
+        "bottom": 463.328125,
+        "width": 1214,
+        "height": 463.5
+      },
+      "row": {
+        "left": 113,
+        "right": 1327,
+        "top": 40.828125,
+        "bottom": 462.828125,
+        "width": 1214,
+        "height": 422
+      },
+      "container": {
+        "left": 113,
+        "right": 1327,
+        "top": -0.171875,
+        "bottom": 459.828125,
+        "width": 1214,
+        "height": 460
+      },
+      "acquisition": "authored-1",
+      "identity": {
+        "text": "Acquisition1 · authored-1",
+        "left": 113,
+        "right": 222.578125,
+        "top": 54.328125,
+        "bottom": 69.328125,
+        "width": 109.578125,
+        "height": 15,
+        "font": 13,
+        "visibility": "visible",
+        "display": "table-cell",
+        "visibleWidth": 109.578125,
+        "visibleHeight": 15,
+        "fullyVisible": true
+      },
+      "torque": {
+        "text": "Observed torque0.3 N·m",
+        "left": 725.203125,
+        "right": 780,
+        "top": 54.328125,
+        "bottom": 69.328125,
+        "width": 54.796875,
+        "height": 15,
+        "font": 13,
+        "visibility": "visible",
+        "display": "table-cell",
+        "visibleWidth": 54.796875,
+        "visibleHeight": 15,
+        "fullyVisible": true
+      },
+      "prediction": {
+        "text": "predicted 0.390057 N·m",
+        "left": 1023.9375,
+        "right": 1182.890625,
+        "top": 192.328125,
+        "bottom": 206.328125,
+        "width": 158.953125,
+        "height": 14,
+        "font": 12,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 158.953125,
+        "visibleHeight": 14,
+        "fullyVisible": true
+      },
+      "residual": {
+        "text": "frozen residual -0.0900571 N·m",
+        "left": 930.015625,
+        "right": 1146.78125,
+        "top": 210.328125,
+        "bottom": 224.328125,
+        "width": 216.765625,
+        "height": 14,
+        "font": 12,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 216.765625,
+        "visibleHeight": 14,
+        "fullyVisible": true
+      },
+      "labels": [
+        {
+          "declared": "Acquisition",
+          "before": "none",
+          "text": "Acquisition1 · authored-1"
+        },
+        {
+          "declared": "Received state",
+          "before": "none",
+          "text": "Received statecommand 0 N·m; angle 0 rad; rate 0 rad/s"
+        },
+        {
+          "declared": "Observed torque",
+          "before": "none",
+          "text": "Observed torque0.3 N·m"
+        },
+        {
+          "declared": "Frozen forecast evidence",
+          "before": "none",
+          "text": "Frozen forecast evidenceHinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Inspect 5 frozen forecasts and residualsSupplied source: Explicit kink analytical course generator; declared kind: authored simulation. Source identity and independence are not authenticated.Frozen plan: proposed; spread 0.346946 N·m; extrapolated axes none.Hinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Hinge at 0.2 rad: predicted 0.300146 N·m; observed 0.3 N·m; frozen residual -0.000145832 N·m (observed − predicted).Hinge at 0.3 rad: predicted 0.204145 N·m; observed 0.3 N·m; frozen residual 0.0958545 N·m (observed − predicted).Hinge at 0.4 rad: predicted 0.113272 N·m; observed 0.3 N·m; frozen residual 0.186728 N·m (observed − predicted).Hinge at 0 rad: predicted 0.460218 N·m; observed 0.3 N·m; frozen residual -0.160218 N·m (observed − predicted)."
+        }
+      ],
+      "scrollTop": 0,
+      "scrollLeft": 0
+    },
+    {
+      "name": "experiment-history-390",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "table": {
+        "left": 29,
+        "right": 361,
+        "top": 0.375,
+        "bottom": 878.375,
+        "width": 332,
+        "height": 878
+      },
+      "row": {
+        "left": 29,
+        "right": 361,
+        "top": 0.375,
+        "bottom": 878.375,
+        "width": 332,
+        "height": 878
+      },
+      "container": {
+        "left": 29,
+        "right": 361,
+        "top": 0.375,
+        "bottom": 660.375,
+        "width": 332,
+        "height": 660
+      },
+      "acquisition": "authored-1",
+      "identity": {
+        "text": "Acquisition1 · authored-1",
+        "left": 40,
+        "right": 350,
+        "top": 11.375,
+        "bottom": 48.875,
+        "width": 310,
+        "height": 37.5,
+        "font": 13,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 310,
+        "visibleHeight": 37.5,
+        "fullyVisible": true
+      },
+      "torque": {
+        "text": "Observed torque0.3 N·m",
+        "left": 40,
+        "right": 350,
+        "top": 152.875,
+        "bottom": 190.375,
+        "width": 310,
+        "height": 37.5,
+        "font": 13,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 310,
+        "visibleHeight": 37.5,
+        "fullyVisible": true
+      },
+      "prediction": {
+        "text": "predicted 0.390057 N·m",
+        "left": 40,
+        "right": 321.765625,
+        "top": 238.375,
+        "bottom": 272.875,
+        "width": 281.765625,
+        "height": 34.5,
+        "font": 13,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 281.765625,
+        "visibleHeight": 34.5,
+        "fullyVisible": true
+      },
+      "residual": {
+        "text": "frozen residual -0.0900571 N·m",
+        "left": 40,
+        "right": 337.421875,
+        "top": 257.875,
+        "bottom": 292.375,
+        "width": 297.421875,
+        "height": 34.5,
+        "font": 13,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 297.421875,
+        "visibleHeight": 34.5,
+        "fullyVisible": true
+      },
+      "labels": [
+        {
+          "declared": "Acquisition",
+          "before": "none",
+          "text": "Acquisition1 · authored-1"
+        },
+        {
+          "declared": "Received state",
+          "before": "none",
+          "text": "Received statecommand 0 N·m; angle 0 rad; rate 0 rad/s"
+        },
+        {
+          "declared": "Observed torque",
+          "before": "none",
+          "text": "Observed torque0.3 N·m"
+        },
+        {
+          "declared": "Frozen forecast evidence",
+          "before": "none",
+          "text": "Frozen forecast evidenceHinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Inspect 5 frozen forecasts and residualsSupplied source: Explicit kink analytical course generator; declared kind: authored simulation. Source identity and independence are not authenticated.Frozen plan: proposed; spread 0.346946 N·m; extrapolated axes none.Hinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Hinge at 0.2 rad: predicted 0.300146 N·m; observed 0.3 N·m; frozen residual -0.000145832 N·m (observed − predicted).Hinge at 0.3 rad: predicted 0.204145 N·m; observed 0.3 N·m; frozen residual 0.0958545 N·m (observed − predicted).Hinge at 0.4 rad: predicted 0.113272 N·m; observed 0.3 N·m; frozen residual 0.186728 N·m (observed − predicted).Hinge at 0 rad: predicted 0.460218 N·m; observed 0.3 N·m; frozen residual -0.160218 N·m (observed − predicted)."
+        }
+      ],
+      "scrollTop": 0,
+      "scrollLeft": 0
+    }
+  ],
+  "proposalVisibility": [
+    {
+      "width": 1440,
+      "text": "Proposed state #2: command 0 N·m; angle 0 rad; rate 0 rad/s. Forecast spread 0.346946 N·m across 5 competitive models. Extrapolated axes: none.",
+      "index": "2",
+      "disabled": false,
+      "elements": [
+        {
+          "left": 130,
+          "right": 930.78125,
+          "top": -0.4375,
+          "bottom": 41.5625,
+          "font": 14
+        },
+        {
+          "left": 950.78125,
+          "right": 1116,
+          "top": -0.4375,
+          "bottom": 41.5625,
+          "font": 13
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "text": "Proposed state #2: command 0 N·m; angle 0 rad; rate 0 rad/s. Forecast spread 0.346946 N·m across 5 competitive models. Extrapolated axes: none.",
+      "index": "2",
+      "disabled": false,
+      "elements": [
+        {
+          "left": 42,
+          "right": 348,
+          "top": 0.046875,
+          "bottom": 84.046875,
+          "font": 14
+        },
+        {
+          "left": 42,
+          "right": 348,
+          "top": 96.046875,
+          "bottom": 138.046875,
+          "font": 13
+        }
+      ]
+    }
+  ]
+}
