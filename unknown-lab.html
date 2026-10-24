@@ -90,7 +90,17 @@
  <div class="table-wrap"><table><caption>Training-only choices: cost = pairs × (conditioning + overhead)</caption><thead><tr><th>Duration</th><th>Declared cost</th><th>Separated pairs</th><th>Budget</th></tr></thead><tbody id="duration-plan-rows"></tbody></table></div>
  <div class="secondary-actions"><button id="duration-plan-export" type="button" disabled>Export manual acquisition plan</button><button id="duration-plan-acquire" type="button" disabled>Acquire separate virtual challenge</button></div>
  <p class="input-hint">Virtual acquisition uses the original apparatus's current coupling and sensor-noise controls, a fresh seed, shuffled order and zero drift. Its actual contrast bound may exceed the proposed radius. Measured studies require separately supplied acquisitions. Plan export contains training inputs and predictions, no acquired samples.</p>
- <p id="duration-plan-error" role="alert"></p><p class="annotation">Cost and future precision are assumptions, not physical feasibility or guaranteed discrimination. Zero-effect overlapping families may have no informative duration. Outside-range forecasts are extrapolations.</p>
+ <p id="duration-plan-error" role="alert"></p>
+ <details class="duration-receiving"><summary>Freeze a request and receive separate observations</summary>
+ <p>Keep the selected forecast fixed while a separately supplied run challenges it. Declared preparation and source labels do not authenticate physical acquisition or independence.</p>
+ <label>Future run identifier <input id="duration-request-id" value="duration-next" maxlength="64"></label>
+ <label>Preparation and measurement arrangement <input id="duration-request-preparation" maxlength="240" placeholder="Describe the same controlled arrangement used for training"></label>
+ <div class="secondary-actions"><button id="duration-request-freeze" type="button">Freeze current duration plan</button><button id="duration-request-template" type="button" disabled>Download observation template</button><button id="duration-request-save" type="button" disabled>Save acquisition</button></div>
+ <label>Receive observation JSON <input id="duration-request-observation" type="file" accept=".json,application/json" disabled></label>
+ <label>Reopen saved acquisition <input id="duration-request-open" type="file" accept=".json,application/json"></label>
+ <p id="duration-request-status" role="status">No request frozen.</p><p id="duration-request-error" role="alert"></p>
+ </details>
+<p class="annotation">Cost and future precision are assumptions, not physical feasibility or guaranteed discrimination. Zero-effect overlapping families may have no informative duration. Outside-range forecasts are extrapolations.</p>
 </section>
 <section class="duration-investigation duration-continuous" aria-labelledby="continuous-title">
  <p class="overline">06 / LOOK BETWEEN THE OFFERED GRID POINTS</p><h2 id="continuous-title">Between the grid points.</h2>
