@@ -1,0 +1,111 @@
+{
+  "schema": "hamon.receiving/v1",
+  "base": "eda5d56862ad60cfe0125bc274399ea16154d3c8",
+  "testedBase": "eda5d56862ad60cfe0125bc274399ea16154d3c8",
+  "unchangedBaseFilesVerified": 302,
+  "sourceFiles": [
+    {
+      "path": "src/cycle-work/angle-boxes.mjs",
+      "sha256": "8ec4474b7199f973f6f224b59440e911c0e69072822d8568410fc58071b9f893",
+      "bytes": 7448
+    },
+    {
+      "path": "src/cycle-work/angle-boxes-example.mjs",
+      "sha256": "f8881c710fd8f583ead504978ae1c9227d164eb7db3071d7b4d684d2222df2bb",
+      "bytes": 899
+    },
+    {
+      "path": "src/cycle-work/angle-boxes-panel.mjs",
+      "sha256": "784ee6914c935477f2f0721d9549de68e8e410c9067ae054cc319b4042963762",
+      "bytes": 7061
+    },
+    {
+      "path": "src/cycle-work/app.mjs",
+      "sha256": "30e256b5475e7d87abb8fb1c7302a436a13e27845a799797af621e6749480b57",
+      "bytes": 5825
+    },
+    {
+      "path": "cycle-work.html",
+      "sha256": "5c5dd2d4928c50ddad49ef78ad2767e71e4e16525077f84af5f919eb8721cba1",
+      "bytes": 5848
+    },
+    {
+      "path": "tests/cycle-angle-boxes.test.mjs",
+      "sha256": "3203212a91daa26578de31607733a2f2617e84557c045d09b8959527251de00b",
+      "bytes": 4744
+    },
+    {
+      "path": "scripts/cycle-angle-boxes-browser.mjs",
+      "sha256": "900120bc9dfd7b7022915e7130a1157119391545b70aebf89e21d488eccc5b52",
+      "bytes": 5492
+    },
+    {
+      "path": "docs/ANGLE_BOX_WORK.md",
+      "sha256": "01692618b30ecd58ab5fc1c6b548e16909067215d1fde3700e128a8e1270de83",
+      "bytes": 4679
+    },
+    {
+      "path": "tests/cycle-angle-boxes-independent.test.mjs",
+      "sha256": "dd0d823af252de29c4905c215c16eebe709ba3824ef6ddf3bd86e0cc825e8ed6",
+      "bytes": 4513
+    },
+    {
+      "path": "scripts/package.py",
+      "sha256": "565204ee4c34466b3f2f0ebb1e9344337210b2a37fd00657791fed6ca31f509f",
+      "bytes": 15570
+    }
+  ],
+  "native": {
+    "pass": 513,
+    "skipped": 1,
+    "tests": 514,
+    "smokes": 2
+  },
+  "browser": {
+    "newGroups": 5,
+    "maintainedGroups": 6
+  },
+  "environment": {
+    "system": "Linux-6.12.94+-x86_64-with-glibc2.39",
+    "node": "v22.23.4",
+    "chrome": "Google Chrome 156.0.8078.47",
+    "sandbox": true
+  },
+  "logHashes": {
+    "/tmp/hamon-583a-worldlaw/angle-verify.log": "dad8da176f6d8f8f87a2fbcd519f5d26691e05e6f3fee67c1c30b0758b118940",
+    "/tmp/hamon-583a-worldlaw/angle-browser.log": "756cb7cef3cd3a11467ad82eaf30c9034a066d77f5bdd8623d15d656d190b603",
+    "/tmp/hamon-583a-worldlaw/angle-regression.log": "297972e446159f45c799eb09626c673fd9810056dbbcf7a5644f139020b38115"
+  },
+  "artifactHashes": {
+    "narrow-detail.png": "087f137c976fd33dfe8a829d4a5ef98cc708f144326723b52f9b228e1b25b6cc",
+    "angle-box-inputs.json": "176dffaba2e6bad0de779bf09a5e6d38f658f8407374508ddaca22d4640e129f",
+    "narrow.png": "a5604fbeab3b86a01ee7e29c17260dbbf5287bdb55b45e53bb00d757df7dda2a",
+    "checks.json": "573e2097defd376de902ad5caf041bd2c7fc3bc9905840ee4d4f30af1fad1638",
+    "desktop-detail.png": "cdabab61d7b17f800f2703f1003d1a0adcd8074a3f530d41868e240cfadc9c0a",
+    "desktop.png": "f498bf9878cae32a913fadccb7f59cb40804df434efc3397efffd8464436166e"
+  },
+  "sourceTree": "7cd7bbd1203cdc6550f676af8ad027ed5931d3c6",
+  "commands": [
+    "npm run verify",
+    "PLAYWRIGHT_MODULE=<installed Playwright index.mjs> BROWSER_EXECUTABLE_PATH=/usr/local/bin/google-chrome BROWSER_ARTIFACT_DIR=<receipt directory> node scripts/cycle-angle-boxes-browser.mjs",
+    "PLAYWRIGHT_MODULE=<installed Playwright index.mjs> BROWSER_EXECUTABLE_PATH=/usr/local/bin/google-chrome BROWSER_ARTIFACT_DIR=<receipt directory> node scripts/cycle-refinement-browser.mjs"
+  ],
+  "reviews": [
+    {
+      "reviewer": "mechanism",
+      "result": "No numerical blocker; four independent groups including 48 exhaustive exact 3–6-row corner courses, subnormals, sub-ulp boxes, mixed scales, closure, reversal, allowance and witness reevaluation.",
+      "test": "tests/cycle-angle-boxes-independent.test.mjs"
+    },
+    {
+      "reviewer": "skill_translator",
+      "result": "No integration blocker; original cycle/witness custody, unchanged authored refinement and maximum-size raw replay controls."
+    }
+  ],
+  "limits": [
+    "Authored software receiving, not physical acquisition.",
+    "Independent interior angle/torque boxes with one shared first/last angle; other measurement correlations unsupported.",
+    "Mathematical endpoint witnesses are not acquired observations.",
+    "Nominal/refined exact-angle calculations remain separate. Necessary signed polygon work is not a physical mechanism or continuous-path conclusion."
+  ],
+  "visualInspection": "Actual desktop screenshot and narrow screenshot detail inspected; no page overflow or page errors."
+}

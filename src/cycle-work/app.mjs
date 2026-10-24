@@ -1,3 +1,4 @@
+import {mountAngleBoxes} from './angle-boxes-panel.mjs';
 import {mountRefinement} from './refinement-panel.mjs';
 import {evaluateCycle,cycleExample,exportCycle,importCycle} from './core.mjs';
 const $=id=>document.getElementById(id),ns='http://www.w3.org/2000/svg';
@@ -51,3 +52,5 @@ $('open').addEventListener('change',async()=>{
 adopt(cycleExample());
 
 mountRefinement();
+
+mountAngleBoxes();

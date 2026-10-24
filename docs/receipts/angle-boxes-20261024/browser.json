@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "keyboard receiving, negative work, exact extremal witness and unchanged nominal path",
+    "wider boxes admit zero; actual downloaded inputs reopen and same-file replay clears derived results",
+    "shared-closure mismatch refuses; repeated nominal interior angles remain distinct rows",
+    "stale file completion cannot overwrite newer authored input",
+    "narrow layout and no page errors"
+  ],
+  "errors": []
+}

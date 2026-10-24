@@ -1,0 +1,44 @@
+import assert from 'node:assert/strict';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';import {resolve} from 'node:path';
+import {createProductServer} from '../server.mjs';
+import {analyzeAngleBoxes} from '../src/cycle-work/angle-boxes.mjs';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const dir=process.env.BROWSER_ARTIFACT_DIR||resolve('.receipts/cycle-angle-boxes');await mkdir(dir,{recursive:true});
+const server=createProductServer();await new Promise((r,j)=>{server.once('error',j);server.listen(0,'127.0.0.1',r);});
+let browser;const checks=[],errors=[];const mark=s=>{checks.push(s);console.log('PASS '+s);};
+try{
+ browser=await chromium.launch({headless:true,chromiumSandbox:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+ const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://127.0.0.1:'+server.address().port+'/cycle-work.html');
+ const original=await page.locator('#input').inputValue();
+ await page.locator('#angle-box-analyze').focus();await page.keyboard.press('Enter');
+ assert.match(await page.locator('#angle-box-result').innerText(),/negative-work/);
+ assert.match(await page.locator('#angle-box-details').innerText(),/-2.5000000/);
+ await page.locator('#angle-box-extreme').selectOption('maximum');await page.locator('#angle-box-row').fill('3');
+ assert.match(await page.locator('#angle-box-row-summary').innerText(),/shared/);
+ const exact=JSON.parse(await page.locator('#angle-box-exact').innerText());assert.equal(exact.row,3);assert.ok(exact.position.integer);
+ assert.equal(await page.locator('#input').inputValue(),original);
+ await page.locator('#angle-box-work').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(dir,'desktop.png'),fullPage:true});
+ mark('keyboard receiving, negative work, exact extremal witness and unchanged nominal path');
+ const downloadPromise=page.waitForEvent('download');await page.locator('#angle-box-save').click();const download=await downloadPromise,path=resolve(dir,'angle-box-inputs.json');await download.saveAs(path);
+ const raw=JSON.parse(await readFile(path,'utf8'));assert.equal(raw.minimum,undefined);assert.equal(analyzeAngleBoxes(raw).conclusion,'negative-work');
+ await page.locator('#angle-box-example').selectOption('zero-compatible');await page.locator('#angle-box-load').click();await page.locator('#angle-box-analyze').click();assert.match(await page.locator('#angle-box-result').innerText(),/zero-compatible/);
+ await page.locator('#angle-box-open').setInputFiles(path);await page.waitForFunction(()=>document.querySelector('#angle-box-open').value==='');await page.locator('#angle-box-analyze').click();assert.match(await page.locator('#angle-box-result').innerText(),/negative-work/);
+ // Same filename can be selected again; only input data are restored.
+ await page.locator('#angle-box-open').setInputFiles(path);await page.waitForFunction(()=>document.querySelector('#angle-box-open').value==='');assert.equal(await page.locator('#angle-box-witness').isVisible(),false);
+ mark('wider boxes admit zero; actual downloaded inputs reopen and same-file replay clears derived results');
+ const bad=structuredClone(raw);bad.positionRadii[0]=.25;await page.locator('#angle-box-input').fill(JSON.stringify(bad));await page.locator('#angle-box-analyze').click();assert.match(await page.locator('#angle-box-error').innerText(),/identical/);assert.equal(await page.locator('#angle-box-witness').isVisible(),false);
+ await page.locator('#angle-box-example').selectOption('independent-return-rows');await page.locator('#angle-box-load').click();await page.locator('#angle-box-analyze').click();assert.match(await page.locator('#angle-box-details').innerText(),/4 original rows/);
+ mark('shared-closure mismatch refuses; repeated nominal interior angles remain distinct rows');
+ await page.evaluate(()=>{const original=File.prototype.text;File.prototype.text=function(){if(this.name==='slow-angle.json')return new Promise(resolve=>{window.releaseAngleFile=()=>original.call(this).then(resolve);});return original.call(this);};});
+ await page.locator('#angle-box-open').setInputFiles({name:'slow-angle.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(raw))});
+ await page.waitForFunction(()=>typeof window.releaseAngleFile==='function');
+ const changed=JSON.stringify({...raw,radiusSource:'newer user input must survive'});
+ await page.locator('#angle-box-input').fill(changed);await page.evaluate(()=>window.releaseAngleFile());await page.waitForFunction(()=>document.querySelector('#angle-box-open').value==='');assert.equal(await page.locator('#angle-box-input').inputValue(),changed);
+ await page.locator('#angle-box-analyze').click();assert.match(await page.locator('#angle-box-details').innerText(),/newer user input/);
+ mark('stale file completion cannot overwrite newer authored input');
+ await page.setViewportSize({width:390,height:844});await page.locator('#angle-box-work').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(dir,'narrow.png'),fullPage:true});
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1));assert.equal(errors.length,0);
+ mark('narrow layout and no page errors');
+ await writeFile(resolve(dir,'checks.json'),JSON.stringify({checks,errors},null,2));
+}finally{await browser?.close();await new Promise(r=>server.close(r));}
