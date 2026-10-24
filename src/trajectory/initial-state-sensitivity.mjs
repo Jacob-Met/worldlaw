@@ -1,5 +1,5 @@
 /** Declared initial-state grid sensitivity. No fitting to receiving observations. */
-import {normalizeAngularRuns, AngularDataError} from './angular-discovery.mjs';
+import {normalizeAngularForecastRun, AngularDataError} from './angular-discovery.mjs';
 import {rolloutAngularWithResolution} from './angular-resolution.mjs';
 
 const insist = (ok, message) => {if (!ok) throw new AngularDataError(message, 'invalid_sensitivity');};
@@ -8,7 +8,7 @@ const offsets = width => width === 0 ? [0] : [-width, 0, width];
 
 /** The grid is fixed by declarations, never selected using receiving errors. */
 export function initialStateSensitivity(model, rawRun, requested = {}) {
-  const [run] = normalizeAngularRuns([rawRun]);
+  const run = normalizeAngularForecastRun(rawRun);
   insist(requested && typeof requested === 'object' && !Array.isArray(requested), 'Declare sensitivity settings as an object.');
   const options = {positionHalfWidth: requested.positionHalfWidth ?? 0,
     rateHalfWidth: requested.rateHalfWidth ?? 0, maxStep: requested.maxStep ?? .01,

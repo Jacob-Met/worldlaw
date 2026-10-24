@@ -169,13 +169,14 @@ passing scientific result; restoring the exact telemetry JSON and raw PASCO CSVs
 made both affected files pass (17 tests). All such preliminary failures remain
 separate from final composed-source evidence.
 
-The final integration composition includes main `a4620e1c` (angular prelude and
-UNKNOWN probe work). It passes 360 native tests, with no failures and one existing
+The final integration composition includes main `2dde8158` (angular prelude,
+UNKNOWN probe and rolling-origin work). It passes 369 native tests, with no failures and one existing
 optional Playwright portability test skipped, both launched HTTP smoke paths,
 and all 15 coupling/scalar Chrome workflow groups. The source-package receiver
 also found older omissions in its explicit allowlist: the initial-state and new
 prelude experiments plus duration receipts. Those maintained files are now
-included. A candidate archive contains 224 source files; every archived file
+included through scoped experiment and receipt-type patterns, keeping the source-path
+and secret/output exclusions intact. A candidate archive contains 230 source files; every archived file
 matches its recorded SHA-256. This packaging check is a working-tree candidate,
 not an installed release or an independently authenticated commit object.
 

@@ -1,7 +1,7 @@
 {
   "schema": "worldlaw.coupling-receiving/v1",
   "date_utc": "2026-10-24",
-  "base_commit": "a4620e1cb73986b34be38da7ca11cb2de4f5870b",
+  "base_commit": "2dde8158ece31a1e16eb162f9388483472fdd022",
   "original_base_commit": "b53b34c4ba8416a71e0d9dec227094968ad8febd",
   "issue": "https://github.com/Jacob-Met/worldlaw/issues/40",
   "source_hashes": {
@@ -22,8 +22,8 @@
       "git_blob_sha": "cec99005bfaec35fb9164f1c41426a93d93f07ce"
     },
     "scripts/package.py": {
-      "sha256": "6a670c79fd23b97ed9ed73e0639642ab8302e876d53cc3789f7d3427a63cb8bd",
-      "git_blob_sha": "f542ed56ccbd7ea82f464ce63b6dbf0b2aeaeeec"
+      "sha256": "4fc4ef75aeca614eda17f9d50ad04c936c1bd07ad67ee82b6c25853483c8632f",
+      "git_blob_sha": "8f3d025091163dd6a833496091a57c669ece7b09"
     },
     "server.mjs": {
       "sha256": "8fce2d04fdba905e7e27647a5eac282c00e2b87a383dcc40107e76cff7948467",
@@ -62,8 +62,8 @@
       "git_blob_sha": "8cbbfd3e3a58258cbbc3c7438c40e1bc478e8179"
     },
     "docs/COUPLING_LAB.md": {
-      "sha256": "71b71550f51d91120898fd2e696bf3088d61df1af07ce21a1880f66631ea389b",
-      "git_blob_sha": "513fbeb73f8a95cc588967f2938c3b660564900c"
+      "sha256": "8532c2f0f15c2ee81b18e6ce746e87975f6ee7e308bf68bef30ec06901919f3e",
+      "git_blob_sha": "43d2ce875c9434b40ceefde9bab991a832939f02"
     },
     "experiments/coupling-discovery.mjs": {
       "sha256": "fe1d738f100654556f9437d0a71e0d2a0367efe989969326375c019f932246eb",
@@ -82,8 +82,8 @@
     },
     "composed_native": {
       "command": "node --test --test-concurrency=2 tests/*.test.mjs",
-      "total": 361,
-      "passed": 360,
+      "total": 370,
+      "passed": 369,
       "failed": 0,
       "skipped": 1,
       "skip_reason": "Existing live Node/Chromium portability test requires PLAYWRIGHT_MODULE; no module path was supplied."
@@ -116,9 +116,9 @@
       "complete_discovery_and_proposal_JSON_byte_identical": true
     },
     "package": {
-      "command": "python3 scripts/package.py --working-tree --source-commit cf259aba085751a39819f94305d75e9254c56e13 --output <new-output.zip>",
+      "command": "python3 scripts/package.py --working-tree --source-commit 7928c19e3a4b2c41f048715cf15ab7ce5843309f --output <new-output.zip>",
       "source_mode": "working-tree-candidate",
-      "source_files": 224,
+      "source_files": 230,
       "every_archived_file_sha256_verified": true,
       "initial_refusal": "Existing maintained initial-state experiment and duration receipts were absent from the explicit distribution allowlist; the newly added angular-prelude experiment also needed inclusion.",
       "qualification": "Candidate source distribution receiving; no installed release or local authentication of the supplied remote commit is claimed."
@@ -132,15 +132,40 @@
     "Source package first refused maintained files absent from the allowlist. The initial-state/prelude experiments and duration receipts were added; all 224 packaged file hashes subsequently verified."
   ],
   "scientific_boundary": "Authored synthetic controls and supplied-input software receiving. No independent physical apparatus, sensor calibration, arbitrary structure discovery, hardware actuation, provider execution, deployment or contest qualification.",
-  "previous_composition": {
-    "base_commit": "736cd761ce15aa7e2e32b51af67a17cd7548381e",
-    "native": {
-      "command": "node --test --test-concurrency=2 tests/*.test.mjs",
-      "total": 335,
-      "passed": 334,
-      "failed": 0,
-      "skipped": 1,
-      "skip_reason": "Existing live Node/Chromium portability test requires PLAYWRIGHT_MODULE; no module path was supplied."
+  "composition_history": [
+    {
+      "base_commit": "736cd761ce15aa7e2e32b51af67a17cd7548381e",
+      "native": {
+        "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+        "total": 335,
+        "passed": 334,
+        "failed": 0,
+        "skipped": 1,
+        "skip_reason": "Existing live Node/Chromium portability test requires PLAYWRIGHT_MODULE; no module path was supplied."
+      }
+    },
+    {
+      "base_commit": "a4620e1cb73986b34be38da7ca11cb2de4f5870b",
+      "native": {
+        "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+        "total": 361,
+        "passed": 360,
+        "failed": 0,
+        "skipped": 1,
+        "skip_reason": "Existing live Node/Chromium portability test requires PLAYWRIGHT_MODULE; no module path was supplied."
+      }
     }
-  }
+  ],
+  "reviews": [
+    {
+      "scope": "coupling science, notebook, virtual instrument, shared QR and focused tests",
+      "reviewer": "hamon-ff3d0651adec / microverse_investigation",
+      "result": "No integration-blocking finding; source inspection and focused native test-file execution. Physical identification and calibrated uncertainty remain unqualified."
+    },
+    {
+      "scope": "coupling science/notebook/app, markup/style and browser receiver",
+      "reviewer": "hamon-ff3d0651adec / chronos_shared_openings",
+      "result": "No integration-blocking finding; read-only source review, no independent browser rerun or screenshot review. Empty-permitted-set range copy is a nonblocking follow-up."
+    }
+  ]
 }
