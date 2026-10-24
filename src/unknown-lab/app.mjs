@@ -1,3 +1,4 @@
+import {mountPeriodicContrast} from './periodic-contrast-panel.mjs';
 import {mountOrderConstruction} from './order-construction-panel.mjs';
 import {mountSerialOrders} from './serial-order-panel.mjs';
 import {mountSerialNoise} from './serial-noise-panel.mjs';
@@ -12,6 +13,7 @@ import {syntheticChallenge,evaluateHistory,importNotebook,exportNotebook} from '
 const $=id=>document.getElementById(id);
 const ns='http://www.w3.org/2000/svg', storageKey='worldlaw.unknown-lab.history.v1';
 let notebook=null;
+let periodicContrastPanel=null;
 const fmt=(v,d=3)=>Number.isFinite(v)?Number(v.toPrecision(d)).toLocaleString('en-US',{maximumFractionDigits:6}):'—';
 function clearError(){$('error').hidden=true;}
 function error(e){$('error').hidden=false;$('error').textContent=e.message||String(e);$('error').focus();}
@@ -47,6 +49,7 @@ function renderPlot(pairs){
   $('plot').replaceChildren(svg);
 }
 function render(){
+ periodicContrastPanel?.invalidate();
  const report=evaluateHistory(notebook);
  $('source-badge').textContent=report.source==='measured'?'USER-DECLARED MEASUREMENTS':'DECLARED SIMULATION';
  $('offset').textContent=fmt(report.decisionDifference)+' N·m';
@@ -135,9 +138,11 @@ const probePanel=mountProbePanel();
 mountProbePlanner(probePanel);
 
 mountSerialNoise(()=>notebook);
+periodicContrastPanel=mountPeriodicContrast(()=>notebook);
 
 
 mountSerialOrders();
 
 mountOrderConstruction();
+
 
