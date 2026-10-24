@@ -16,6 +16,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "independent-review/interaction-review.mjs", "independent-review/interaction-oracle.py",
+    "independent-review/interaction-oracle-cases.json", "docs/receipts/interaction-9e01d4dd/*.txt",
     "separability.css", "examples/separability/*.json",
     "independent-review/separability-oracle.py", "docs/receipts/separability-9e01d4dd/*.txt",
     "cycle-work.html", "src/cycle-work/*.mjs",

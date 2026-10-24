@@ -1,0 +1,100 @@
+{
+  "issue": "https://github.com/Jacob-Met/worldlaw/issues/118",
+  "status": "integrated candidate, independently reviewed; not merged",
+  "coreSha256": {
+    "src/science/torque-discovery.mjs": "667ed0e0c0156867af22960530f49883239357df601ace612d54cf060f4352cc",
+    "src/science/input-enclosure.mjs": "b544f25d15cdfa17aed60899545aef005614f67c910b33132619aab9dc0345fe",
+    "src/session.mjs": "f9d366c4472d683281a05ea48efefb86bebbfa912d38cdc88a2f53007251521c"
+  },
+  "independentReview": {
+    "reviewer": "retained worker togishi_optimizer",
+    "decision": "ACCEPT",
+    "exactPolynomialPointEnclosures": 62500,
+    "boxes": 500,
+    "refinementSettings": [
+      0,
+      1,
+      4,
+      16,
+      64
+    ],
+    "defaultSessionAndExportParity": 12,
+    "notes": "No blockers; v2 additive-only envelope acceptance intentional. Core hashes frozen during independent review."
+  },
+  "native": {
+    "command": "npm run verify",
+    "tests": 624,
+    "passed": 623,
+    "failed": 0,
+    "skipped": 1,
+    "smokes": [
+      "Studio",
+      "trajectory"
+    ],
+    "initialFailure": "Prior test used newly supported v2 as unknown; unsupported envelope control moved to v3."
+  },
+  "browser": {
+    "groups": 8,
+    "exceptions": 0,
+    "actualMotion": true,
+    "reducedMotion": true,
+    "downloadReopen": true,
+    "viewports": [
+      1440,
+      390
+    ]
+  },
+  "inputSha256": "274ae1914badae9939db616d12dc502d694ab8a60e806c64869d6b778d0a3029",
+  "limits": [
+    "Authored mathematical control, not physical validation",
+    "Finite explicit feature library, not topology inference",
+    "Independent-term product enclosure can be loose",
+    "No physical actuation"
+  ],
+  "portable": {
+    "archiveSha256": "908743e6901c27b53734a9b1b5d8487fb84e55144fffb54949e92a847c102472",
+    "sourceFiles": 496,
+    "bytes": 19794434,
+    "sourceMode": "working-tree-candidate",
+    "sourceTree": null,
+    "referenceCommit": "fc390452ec7e01fd5d3ce6c99539fadae9bfef93",
+    "referenceQualification": "Composition adds independently received #107 and this successor to reference main; not an exact remote-tree archive.",
+    "memberDigestsVerified": 496,
+    "focusedTests": 15,
+    "independentOracleChecks": 62500,
+    "browserGroups": 8,
+    "smokes": [
+      "Studio",
+      "trajectory"
+    ],
+    "missingHistoricalReceipt": "docs/receipts/branch-response-20261024/desktop.png; unchanged remote blob must be preserved",
+    "finalReceiptQualification": "Final archive8browser checks pass; science/test source unchanged from qualified15focused tests/62500oracle/2smokes. Final UI notice calls the retained baseline an initial fit, not necessarily a failed fit. Final receiving documentation follows archive; no runtime changes.",
+    "screenshotsIdenticalToInspectedSource": true
+  },
+  "mergedBaseComposition": {
+    "base": "6bbac9d5796c8abd34413af5c1228c2bf77135fe",
+    "baseTree": "17749a242e2dc38930761554ab3bb64277faa3c2",
+    "sourceIdentity": "Every present nonowned blob matches exact merged Git identity; only original historical branch-response desktop.png missing. All3reviewedcore hashes and25nonREADME candidate files matched prior frozen receiving before this receipt update.",
+    "focusedTests": {
+      "interaction": 4,
+      "durationAcquisition": 6,
+      "couplingObservables": 5,
+      "gridTracker": 8
+    },
+    "archive": {
+      "sha256": "329960a064580241194bc0a2065f492077d7c36db7f958d0da5c7a098c23e9e2",
+      "files": 515,
+      "bytes": 21095195,
+      "memberDigestsVerified": 515,
+      "sourceMode": "working-tree-candidate",
+      "sourceTree": null
+    },
+    "portableBrowserChecks": 8,
+    "portableSmokes": [
+      "Studio",
+      "trajectory"
+    ],
+    "merged107BrowserChecks": 6,
+    "qualification": "Targeted current composition receiving, not a repeat full624suite. Final receipt and guide added after archive; runtime unchanged."
+  }
+}

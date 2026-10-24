@@ -31,6 +31,7 @@ function featureRange(id,[lo,hi]){
  }
  return[lo,hi];
 }
+function productRange(a,b){const values=[a[0]*b[0],a[0]*b[1],a[1]*b[0],a[1]*b[1]];return[down(Math.min(...values)),up(Math.max(...values))];}
 const positionIds=new Set(['spring','gravity','cubic']);
 const scale=(v,c)=>c===0?[0,0]:[down(Math.min(c*v[0],c*v[1])),up(Math.max(c*v[0],c*v[1]))];
 const add=(a,b)=>[down(a[0]+b[0]),up(a[1]+b[1])];
@@ -80,7 +81,7 @@ export function inspectInputEnclosures(model,observations,radii,{refinementSegme
   for(const term of model.terms){
    if(term.coefficient===0)continue;
    const coordinate=term.id==='command'?'command':['rate','coulomb','quadratic'].includes(term.id)?'rate':'position';
-   const [a,b]=term.id==='bias'?[1,1]:featureRange(term.id,boxes[coordinate]);
+   const [a,b]=term.id==='command_position'?productRange(boxes.command,boxes.position):term.id==='bias'?[1,1]:featureRange(term.id,boxes[coordinate]);
    const products=[term.coefficient*a,term.coefficient*b];
    low=down(low+down(Math.min(...products)));high=up(high+up(Math.max(...products)));
   }
@@ -88,7 +89,7 @@ export function inspectInputEnclosures(model,observations,radii,{refinementSegme
   if(segments){
    const joint=refinePosition(positionTerms,boxes.position,segments);
    if(joint){let other=[0,0];
-    for(const t of model.terms.filter(t=>!positionIds.has(t.id)))other=add(other,scale(t.id==='bias'?[1,1]:featureRange(t.id,boxes[t.id==='command'?'command':'rate']),t.coefficient));
+    for(const t of model.terms.filter(t=>!positionIds.has(t.id)))other=add(other,scale(t.id==='command_position'?productRange(boxes.command,boxes.position):t.id==='bias'?[1,1]:featureRange(t.id,boxes[t.id==='command'?'command':'rate']),t.coefficient));
     const combined=add(joint,other),a=Math.max(low,combined[0]),b=Math.min(high,combined[1]);
     if(a<=b){low=a;high=b;refinedCount++;}
    }

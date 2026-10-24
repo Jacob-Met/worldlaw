@@ -11,6 +11,7 @@ export const TERMS = Object.freeze([
   { id: 'gravity', label: 'sin(θ)', coefficientUnit: 'N·m' },
   { id: 'quadratic', label: 'ω|ω|', coefficientUnit: 'N·m·s²/rad²' },
   { id: 'bias', label: '1', coefficientUnit: 'N·m' },
+  { id: 'command_position', label: 'uθ', coefficientUnit: '1/rad', optional: true },
   { id: 'cubic', label: 'θ³', coefficientUnit: 'N·m/rad³', optional: true },
 ].map(Object.freeze));
 export const DEFAULT_TERMS = Object.freeze(TERMS.filter(term => !term.optional).map(term => term.id));
@@ -43,6 +44,7 @@ function rows(values, minimum = 0) {
 function feature(id, row) {
   switch (id) {
     case 'command': return row.command;
+    case 'command_position': return row.command * row.position;
     case 'rate': return row.rate;
     case 'coulomb': return Math.sign(row.rate);
     case 'spring': return row.position;
