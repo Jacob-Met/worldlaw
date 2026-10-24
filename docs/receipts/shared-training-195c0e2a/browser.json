@@ -1,0 +1,520 @@
+{
+  "checks": [
+    "old marginal/pair action leaves joint search unexecuted while all three pairs overlap",
+    "explicit keyboard search produces native-equal whole-course separator without replacing marginal/pair outcomes",
+    "download includes raw source and candidate; public replay reproduces the check and refuses a forged zero separator",
+    "radius changes invalidate evidence; mismatched-source replay refuses; zero work/iteration budgets preserve the complete unresolved course",
+    "model and appended observation changes invalidate checked joint evidence",
+    "source notebook reopens without derived result; explicit matching model/radii restore independent certificate replay",
+    "positive shared vector exposes every offset and all three original-box margins with exact native refit agreement",
+    "narrow witness remains in viewport and keyboard scroll reaches the complete comparison",
+    "maximum 256-training/128-receiving course executes nonzero bounded search and complete-course outcome agrees with native computation"
+  ],
+  "errors": [],
+  "browser": "156.0.8078.47",
+  "native": {
+    "schema": "worldlaw.shared-training-search/v1",
+    "marginal": {
+      "schema": "worldlaw.prediction-sensitivity/v1",
+      "trainingCount": 8,
+      "receivingCount": 3,
+      "settings": {
+        "trainingRadius": 1,
+        "receivingRadius": 0
+      },
+      "maxReceivingRows": 128,
+      "interpretation": "Fixed-coordinate, fixed-structure least-squares response to bounded training-reading changes. Each receiving row has its own extremal perturbation; overlap for every row does not establish one common perturbation explaining them all. Not a confidence interval, feasible-law set, or physical qualification.",
+      "numericalQualification": "Floating-point QR and linear arithmetic, not certified interval arithmetic. The reported boundary tolerance is an engineering roundoff screen, not a proof of numerical accuracy.",
+      "status": "computed",
+      "domain": {
+        "command": {
+          "min": 0,
+          "max": 0
+        },
+        "position": {
+          "min": -1,
+          "max": 1
+        },
+        "rate": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "terms": [
+        "spring",
+        "bias"
+      ],
+      "rows": [
+        {
+          "index": 0,
+          "input": {
+            "command": 0,
+            "position": -1,
+            "rate": 0
+          },
+          "inspectedPrediction": 0,
+          "refittedPrediction": 0,
+          "observedTorque": -0.5,
+          "prediction": [
+            -0.9999999999999999,
+            0.9999999999999999
+          ],
+          "observation": [
+            -0.5,
+            -0.5
+          ],
+          "radius": 0.9999999999999999,
+          "independentCoefficientBoxRadius": 1.9999999999999998,
+          "influence": [
+            0.24999999999999997,
+            0.24999999999999997,
+            0.24999999999999997,
+            0.24999999999999997,
+            0,
+            0,
+            0,
+            0
+          ],
+          "upperWitnessOffsets": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "extrapolation": [],
+          "gap": -0.4999999999999999,
+          "numericalTolerance": 1.1368683772161602e-13,
+          "status": "not-excluded"
+        },
+        {
+          "index": 1,
+          "input": {
+            "command": 0,
+            "position": 0,
+            "rate": 0
+          },
+          "inspectedPrediction": 0,
+          "refittedPrediction": 0,
+          "observedTorque": 0.5,
+          "prediction": [
+            -0.9999999999999999,
+            0.9999999999999999
+          ],
+          "observation": [
+            0.5,
+            0.5
+          ],
+          "radius": 0.9999999999999999,
+          "independentCoefficientBoxRadius": 0.9999999999999999,
+          "influence": [
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999
+          ],
+          "upperWitnessOffsets": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "extrapolation": [],
+          "gap": -0.4999999999999999,
+          "numericalTolerance": 5.684341886080802e-14,
+          "status": "not-excluded"
+        },
+        {
+          "index": 2,
+          "input": {
+            "command": 0,
+            "position": 1,
+            "rate": 0
+          },
+          "inspectedPrediction": 0,
+          "refittedPrediction": 0,
+          "observedTorque": -0.5,
+          "prediction": [
+            -0.9999999999999999,
+            0.9999999999999999
+          ],
+          "observation": [
+            -0.5,
+            -0.5
+          ],
+          "radius": 0.9999999999999999,
+          "independentCoefficientBoxRadius": 1.9999999999999998,
+          "influence": [
+            0,
+            0,
+            0,
+            0,
+            0.24999999999999997,
+            0.24999999999999997,
+            0.24999999999999997,
+            0.24999999999999997
+          ],
+          "upperWitnessOffsets": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "extrapolation": [],
+          "gap": -0.4999999999999999,
+          "numericalTolerance": 1.1368683772161602e-13,
+          "status": "not-excluded"
+        }
+      ],
+      "outsideCount": 0,
+      "boundaryCount": 0,
+      "notExcludedCount": 3
+    },
+    "settings": {
+      "trainingRadius": 1,
+      "receivingRadius": 0,
+      "maxIterations": 512,
+      "maxProducts": 16777216
+    },
+    "status": "verified-separation",
+    "certificate": {
+      "schema": "worldlaw.shared-training-certificate/v1",
+      "sourceKey": "{\"schema\":\"worldlaw.shared-training-source/v1\",\"model\":{\"schema\":\"worldlaw.torque-model/v1\",\"terms\":[{\"id\":\"spring\",\"coefficient\":0},{\"id\":\"bias\",\"coefficient\":0}]},\"training\":[{\"command\":0,\"position\":-1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":-1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":-1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":-1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":1,\"rate\":0,\"jointTorque\":0}],\"receiving\":[{\"command\":0,\"position\":-1,\"rate\":0,\"jointTorque\":-0.5},{\"command\":0,\"position\":0,\"rate\":0,\"jointTorque\":0.5},{\"command\":0,\"position\":1,\"rate\":0,\"jointTorque\":-0.5}],\"settings\":{\"trainingRadius\":1,\"receivingRadius\":0}}",
+      "kind": "receiving-separator",
+      "values": [
+        -1,
+        1,
+        -1
+      ]
+    },
+    "check": {
+      "status": "verified-separation",
+      "reason": "positive-computed-envelope-separation",
+      "receivingCount": 3,
+      "weights": [
+        -1,
+        1,
+        -1
+      ],
+      "trainingProjection": [
+        -0.12499999999999999,
+        -0.12499999999999999,
+        -0.12499999999999999,
+        -0.12499999999999999,
+        -0.12499999999999999,
+        -0.12499999999999999,
+        -0.12499999999999999,
+        -0.12499999999999999
+      ],
+      "discrepancy": 1.5,
+      "trainingSupport": 0.9999999999999999,
+      "receivingSupport": 0,
+      "support": 0.9999999999999999,
+      "gap": 0.5000000000000001,
+      "numericalTolerance": 8.526512829121201e-13,
+      "qualification": "Numerical checks of the computed fixed-coordinate, fixed-structure least-squares envelope. Engineering arithmetic screens do not certify QR error, global physical feasibility, confidence or law adequacy."
+    },
+    "iterationsPerformed": 1,
+    "matrixTermsUsed": 72,
+    "interpretation": "Bounded search for independently checked numerical evidence about one shared training-reading perturbation. No convergence completeness, certified QR error, adequate-law or physical-feasibility claim. Search exhaustion is unresolved.",
+    "reason": "positive-computed-envelope-separation"
+  },
+  "positive": {
+    "schema": "worldlaw.shared-training-search/v1",
+    "marginal": {
+      "schema": "worldlaw.prediction-sensitivity/v1",
+      "trainingCount": 8,
+      "receivingCount": 3,
+      "settings": {
+        "trainingRadius": 1,
+        "receivingRadius": 0.01
+      },
+      "maxReceivingRows": 128,
+      "interpretation": "Fixed-coordinate, fixed-structure least-squares response to bounded training-reading changes. Each receiving row has its own extremal perturbation; overlap for every row does not establish one common perturbation explaining them all. Not a confidence interval, feasible-law set, or physical qualification.",
+      "numericalQualification": "Floating-point QR and linear arithmetic, not certified interval arithmetic. The reported boundary tolerance is an engineering roundoff screen, not a proof of numerical accuracy.",
+      "status": "computed",
+      "domain": {
+        "command": {
+          "min": 0,
+          "max": 0
+        },
+        "position": {
+          "min": -1,
+          "max": 1
+        },
+        "rate": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "terms": [
+        "spring",
+        "bias"
+      ],
+      "rows": [
+        {
+          "index": 0,
+          "input": {
+            "command": 0,
+            "position": -1,
+            "rate": 0
+          },
+          "inspectedPrediction": 0,
+          "refittedPrediction": 0,
+          "observedTorque": -0.3,
+          "prediction": [
+            -0.9999999999999999,
+            0.9999999999999999
+          ],
+          "observation": [
+            -0.31,
+            -0.29
+          ],
+          "radius": 0.9999999999999999,
+          "independentCoefficientBoxRadius": 1.9999999999999998,
+          "influence": [
+            0.24999999999999997,
+            0.24999999999999997,
+            0.24999999999999997,
+            0.24999999999999997,
+            0,
+            0,
+            0,
+            0
+          ],
+          "upperWitnessOffsets": [
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "extrapolation": [],
+          "gap": -0.71,
+          "numericalTolerance": 1.1368683772161602e-13,
+          "status": "not-excluded"
+        },
+        {
+          "index": 1,
+          "input": {
+            "command": 0,
+            "position": 0,
+            "rate": 0
+          },
+          "inspectedPrediction": 0,
+          "refittedPrediction": 0,
+          "observedTorque": 0.2,
+          "prediction": [
+            -0.9999999999999999,
+            0.9999999999999999
+          ],
+          "observation": [
+            0.19,
+            0.21000000000000002
+          ],
+          "radius": 0.9999999999999999,
+          "independentCoefficientBoxRadius": 0.9999999999999999,
+          "influence": [
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999,
+            0.12499999999999999
+          ],
+          "upperWitnessOffsets": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "extrapolation": [],
+          "gap": -0.8099999999999998,
+          "numericalTolerance": 5.684341886080802e-14,
+          "status": "not-excluded"
+        },
+        {
+          "index": 2,
+          "input": {
+            "command": 0,
+            "position": 1,
+            "rate": 0
+          },
+          "inspectedPrediction": 0,
+          "refittedPrediction": 0,
+          "observedTorque": 0.7,
+          "prediction": [
+            -0.9999999999999999,
+            0.9999999999999999
+          ],
+          "observation": [
+            0.69,
+            0.71
+          ],
+          "radius": 0.9999999999999999,
+          "independentCoefficientBoxRadius": 1.9999999999999998,
+          "influence": [
+            0,
+            0,
+            0,
+            0,
+            0.24999999999999997,
+            0.24999999999999997,
+            0.24999999999999997,
+            0.24999999999999997
+          ],
+          "upperWitnessOffsets": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1
+          ],
+          "extrapolation": [],
+          "gap": -0.30999999999999994,
+          "numericalTolerance": 1.1368683772161602e-13,
+          "status": "not-excluded"
+        }
+      ],
+      "outsideCount": 0,
+      "boundaryCount": 0,
+      "notExcludedCount": 3
+    },
+    "settings": {
+      "trainingRadius": 1,
+      "receivingRadius": 0.01,
+      "maxIterations": 512,
+      "maxProducts": 16777216
+    },
+    "status": "verified-interior-witness",
+    "certificate": {
+      "schema": "worldlaw.shared-training-certificate/v1",
+      "sourceKey": "{\"schema\":\"worldlaw.shared-training-source/v1\",\"model\":{\"schema\":\"worldlaw.torque-model/v1\",\"terms\":[{\"id\":\"spring\",\"coefficient\":0},{\"id\":\"bias\",\"coefficient\":0}]},\"training\":[{\"command\":0,\"position\":-1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":-1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":-1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":-1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":1,\"rate\":0,\"jointTorque\":0},{\"command\":0,\"position\":1,\"rate\":0,\"jointTorque\":0}],\"receiving\":[{\"command\":0,\"position\":-1,\"rate\":0,\"jointTorque\":-0.3},{\"command\":0,\"position\":0,\"rate\":0,\"jointTorque\":0.2},{\"command\":0,\"position\":1,\"rate\":0,\"jointTorque\":0.7}],\"settings\":{\"trainingRadius\":1,\"receivingRadius\":0.01}}",
+      "kind": "training-offsets",
+      "values": [
+        -0.29229444966400003,
+        -0.29229444966400003,
+        -0.29229444966400003,
+        -0.29229444966400003,
+        0.6917193989120001,
+        0.6917193989120001,
+        0.6917193989120001,
+        0.6917193989120001
+      ]
+    },
+    "check": {
+      "status": "verified-interior-witness",
+      "reason": "one-offset-vector-received-by-every-original-box",
+      "receivingCount": 3,
+      "offsets": [
+        -0.29229444966400003,
+        -0.29229444966400003,
+        -0.29229444966400003,
+        -0.29229444966400003,
+        0.6917193989120001,
+        0.6917193989120001,
+        0.6917193989120001,
+        0.6917193989120001
+      ],
+      "refittedCoefficients": [
+        0.49200692428799997,
+        0.19971247462399996
+      ],
+      "rows": [
+        {
+          "index": 0,
+          "reconstructedPrediction": -0.292294449664,
+          "refittedPrediction": -0.292294449664,
+          "observedTorque": -0.3,
+          "linearMargin": 0.002294449663999989,
+          "refitMargin": 0.002294449663999989,
+          "agreementError": 0,
+          "numericalTolerance": 2.2737367544323206e-13,
+          "strictInterior": true
+        },
+        {
+          "index": 1,
+          "reconstructedPrediction": 0.199712474624,
+          "refittedPrediction": 0.19971247462399996,
+          "observedTorque": 0.2,
+          "linearMargin": 0.00971247462399998,
+          "refitMargin": 0.009712474623999953,
+          "agreementError": 2.7755575615628914e-17,
+          "numericalTolerance": 1.7053025658242404e-13,
+          "strictInterior": true
+        },
+        {
+          "index": 2,
+          "reconstructedPrediction": 0.691719398912,
+          "refittedPrediction": 0.691719398912,
+          "observedTorque": 0.7,
+          "linearMargin": 0.0017193989120000055,
+          "refitMargin": 0.0017193989120000055,
+          "agreementError": 0,
+          "numericalTolerance": 2.2737367544323206e-13,
+          "strictInterior": true
+        }
+      ],
+      "qualification": "Numerical checks of the computed fixed-coordinate, fixed-structure least-squares envelope. Engineering arithmetic screens do not certify QR error, global physical feasibility, confidence or law adequacy."
+    },
+    "iterationsPerformed": 11,
+    "matrixTermsUsed": 792,
+    "interpretation": "Bounded search for independently checked numerical evidence about one shared training-reading perturbation. No convergence completeness, certified QR error, adequate-law or physical-feasibility claim. Search exhaustion is unresolved.",
+    "reason": "one-offset-vector-received-by-every-original-box"
+  },
+  "maxCourse": {
+    "synchronousComputeAndDomMs": 78.7999999821186,
+    "throughRenderingOpportunityMs": 103.39999997615814,
+    "status": "verified-interior-witness",
+    "reason": "one-offset-vector-received-by-every-original-box",
+    "trainingRows": 256,
+    "receivingRows": 128,
+    "iterationsPerformed": 19,
+    "matrixTermsUsed": 1867776,
+    "settings": {
+      "trainingRadius": 1,
+      "receivingRadius": 0.01,
+      "maxIterations": 512,
+      "maxProducts": 16777216
+    },
+    "lastReceivingCheck": {
+      "index": 127,
+      "reconstructedPrediction": 0.690292628408661,
+      "refittedPrediction": 0.6902926284086606,
+      "observedTorque": 0.7,
+      "linearMargin": 0.00029262840866105776,
+      "refitMargin": 0.00029262840866061367,
+      "agreementError": 4.440892098500626e-16,
+      "numericalTolerance": 2.2737367544323206e-13,
+      "strictInterior": true
+    },
+    "qualification": "One actual Chromium run at narrow viewport using default nonzero search budgets. Timing includes source preparation, candidate search, public certificate verification and DOM construction; second timestamp includes a rendering opportunity, not certified paint. No convergence or cross-device responsiveness guarantee."
+  }
+}
