@@ -1,0 +1,97 @@
+{
+  "schema": "worldlaw.predictive-selection-receiving/v1",
+  "result": "PASS",
+  "testedBase": "40ee8769eaa09befb89872bcd369625624980f47",
+  "sourceFiles": [
+    {
+      "path": "src/predictive-selection/select.mjs",
+      "gitBlobSha": "50ae0294a5027255b96fde200d169556d5464cb5",
+      "sha256": "0473f2f8bfdcf19530d15ef44e592d449f6c1b7dbb4447564202b6aa4432bd4a"
+    },
+    {
+      "path": "src/predictive-selection/session.mjs",
+      "gitBlobSha": "0e8e36a84b41f509a5e7c8ead349a65dc0736e05",
+      "sha256": "f6e3448f4c55ff31fa9e65e36be11e5df4f12c7aa8e22a9e5b1f5ecb479a4edc"
+    },
+    {
+      "path": "src/predictive-selection/panel.mjs",
+      "gitBlobSha": "401ae902ca05d744b401d5607fde01d958cc2876",
+      "sha256": "1be9037de77663b1212f0fc2ea5617a57bde174f9ba8abdd8ee6abcdd000701e"
+    },
+    {
+      "path": "tests/predictive-selection.test.mjs",
+      "gitBlobSha": "eda69f33ae29fcb0fe769d0ee268453075009244",
+      "sha256": "fa58a944cd6591bf814ac3b425843e6219b8ba93ada624174525b1325c691e7b"
+    },
+    {
+      "path": "scripts/browser-predictive-selection.mjs",
+      "gitBlobSha": "a3d83a81a5303213ba7dc355e0f412b5e090739e",
+      "sha256": "2721a92bf41fed747ebf19408f8ad6cb019cb42efe7bc62a566135b6e2bd5fff"
+    },
+    {
+      "path": "experiments/predictive-selection.mjs",
+      "gitBlobSha": "3cde0bfbd10a95a70906b07f87bfb1e23ffeb463",
+      "sha256": "1a4e83505496660b7d3330a28398b5a6e5396f734e7ff6069f1b62411742f790"
+    },
+    {
+      "path": "evidence/predictive-selection-results.json",
+      "gitBlobSha": "da07cc834124f2b5cb1125539385eee62483c697",
+      "sha256": "36a1512b7827ae7a3d33bdc04cb1a68f899d88b90fcb62c533a83fbf1549d47d"
+    },
+    {
+      "path": "docs/PREDICTIVE_SELECTION.md",
+      "gitBlobSha": "dc4c3653fd1771570e7ed05dd0e19972db5d2ab2",
+      "sha256": "165a663dd25213de7ab7aa22842eb82ff5b482b80e81a9ceaede19831d828025"
+    },
+    {
+      "path": "src/trajectory/app.mjs",
+      "gitBlobSha": "44e55357fcc724a5d787fa5bf8b993dc059c6d3c",
+      "sha256": "161ea9f888c520bc79fdceaab0cdf986da89e2e62da3fe09399c43665f05291c"
+    },
+    {
+      "path": "scripts/package.py",
+      "gitBlobSha": "81d7e3f89d8cbc12fd2766f246da5e67f1405ae7",
+      "sha256": "4d785cf6d5ff3e0cbafc7ecc98dc11acff04b3411d8b117a597e8b900ef030fd"
+    },
+    {
+      "path": "scripts/browser-predictive-standalone.mjs",
+      "gitBlobSha": "0aa050232721fef4789d7a0bd858e01da7405475",
+      "sha256": "551f33c9ccc5944837b6392219b3ae8a7ee2e98bf83ccc66d8dbc4c04486f29c"
+    }
+  ],
+  "native": {
+    "command": "npm run verify",
+    "passed": 427,
+    "failed": 0,
+    "skipped": 1,
+    "skipMeaning": "Optional Playwright-backed native case unavailable; actual separate Chrome courses ran",
+    "node": "v22.23.4",
+    "launchedSmokes": 2,
+    "total": 428
+  },
+  "browser": {
+    "hostedGroupsPassed": 8,
+    "offlineGroupsPassed": 5,
+    "version": "Chrome/156.0.8078.47",
+    "hostedCommand": "PUPPETEER_PATH=<installed-puppeteer> CHROME_BINARY=<chrome> node scripts/browser-predictive-selection.mjs",
+    "buildCommand": "ESBUILD_MODULE=<installed-esbuild-lib/main.js> npm run trajectory:build",
+    "offlineCommand": "PUPPETEER_PATH=<installed-puppeteer> CHROME_BINARY=<chrome> node scripts/browser-predictive-standalone.mjs",
+    "artifact": {
+      "path": "/home/ubuntu/hamon-work/worldlaw-predictive-5739/.receipts/trajectory-experiment-screened-standalone-92be.html",
+      "bytes": 695231,
+      "sha256": "51c105f921a8aa9b8c50a313fb4c01871d4ce2ddc3737485a558e057d5315ae1"
+    },
+    "offlineTestedBase": "eb249b782b9dbb58de920951e1aa421ce14726ad",
+    "offlineDependencyScope": "All trajectory bundle dependencies unchanged in final40ee composition; Cycle Work adds separate modules/server route and package patterns."
+  },
+  "independentReview": {
+    "reviewer": "separate MATERIALTRUTH worker in same contributor team/account",
+    "result": "PASS",
+    "focusedCases": 59,
+    "exactExperimentRows": 15,
+    "independentlyRecomputedCompleteTrainingStructures": 36,
+    "sourceMutationControl": "Changing noninitial challenge positions does not change the training selection."
+  },
+  "scientificLimits": "57 structures offered,36 complete on reused PASCO evidence. Selection uses training folds only; separate challenge reuse remains exploratory. Three of eight small-excitation controls regress and changed-physics controls retain failure. No universal advantage or blind physical validation claim.",
+  "sourceMeaning": "Final native/hosted receiving includes all40ee text additions and additive package union. Earlier eb249 receiving includes all shared science/interval changes and generated offline5groups. SourceHead:null denotes a source-snapshot build."
+}

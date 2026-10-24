@@ -1,0 +1,410 @@
+{
+  "scope": "Finite-library predictive selection; authored analytic controls and previously reused measured evidence; no physical acquisition or unrestricted discovery claim.",
+  "rows": [
+    {
+      "label": "noise-0-changed-physics-false",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+spring",
+      "original": "rate+spring",
+      "validation": 0.0000031188226055551474,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "noise-0-changed-physics-false-challenge",
+          "status": "complete",
+          "rmse": 0.0000052206778283026596,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "noise-0-changed-physics-false-challenge",
+          "status": "complete",
+          "rmse": 0.0000052206778283026596,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "noise-0-changed-physics-true",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+gravity",
+      "original": "spring+gravity",
+      "validation": 0.5568441190248569,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "noise-0-changed-physics-true-challenge",
+          "status": "failed",
+          "rmse": null,
+          "numericalStatus": null
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "noise-0-changed-physics-true-challenge",
+          "status": "complete",
+          "rmse": 0.5756089269336712,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "noise-0.001-changed-physics-false",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+spring",
+      "original": "rate+spring",
+      "validation": 0.0016669038232252965,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "noise-0.001-changed-physics-false-challenge",
+          "status": "complete",
+          "rmse": 0.0011807093911941667,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "noise-0.001-changed-physics-false-challenge",
+          "status": "complete",
+          "rmse": 0.0011807093911941667,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "noise-0.001-changed-physics-true",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+gravity",
+      "original": "spring+gravity",
+      "validation": 0.5572444462147067,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "noise-0.001-changed-physics-true-challenge",
+          "status": "failed",
+          "rmse": null,
+          "numericalStatus": null
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "noise-0.001-changed-physics-true-challenge",
+          "status": "complete",
+          "rmse": 0.5759944320827982,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "noise-0.01-changed-physics-false",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+spring",
+      "original": "rate+spring",
+      "validation": 0.016683244179577568,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "noise-0.01-changed-physics-false-challenge",
+          "status": "complete",
+          "rmse": 0.011744694457750084,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "noise-0.01-changed-physics-false-challenge",
+          "status": "complete",
+          "rmse": 0.011744694457750084,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "noise-0.01-changed-physics-true",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+gravity",
+      "original": "spring+gravity",
+      "validation": 0.5607923946814014,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "noise-0.01-changed-physics-true-challenge",
+          "status": "failed",
+          "rmse": null,
+          "numericalStatus": null
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "noise-0.01-changed-physics-true-challenge",
+          "status": "complete",
+          "rmse": 0.5793234440423758,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "small-excitation-seed-1",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+gravity",
+      "original": "spring",
+      "validation": 0.022003822586486463,
+      "completedStructures": 6,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "small-excitation-seed-1-challenge",
+          "status": "complete",
+          "rmse": 0.35067038033663017,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "small-excitation-seed-1-challenge",
+          "status": "complete",
+          "rmse": 0.46570958400307505,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "small-excitation-seed-2",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+spring",
+      "original": "spring",
+      "validation": 0.024426342285904557,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "small-excitation-seed-2-challenge",
+          "status": "complete",
+          "rmse": 0.35009111234827994,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "small-excitation-seed-2-challenge",
+          "status": "complete",
+          "rmse": 0.1601679443373502,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "small-excitation-seed-3",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+spring",
+      "original": "spring",
+      "validation": 0.023896772683263078,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "small-excitation-seed-3-challenge",
+          "status": "complete",
+          "rmse": 0.4397758545839142,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "small-excitation-seed-3-challenge",
+          "status": "complete",
+          "rmse": 0.2815602487675786,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "small-excitation-seed-4",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+spring",
+      "original": "spring",
+      "validation": 0.020112621555013446,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "small-excitation-seed-4-challenge",
+          "status": "complete",
+          "rmse": 0.3702783054022365,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "small-excitation-seed-4-challenge",
+          "status": "complete",
+          "rmse": 0.065666420764097,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "small-excitation-seed-5",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+gravity",
+      "original": "spring",
+      "validation": 0.015389739852523954,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "small-excitation-seed-5-challenge",
+          "status": "complete",
+          "rmse": 0.35041555121167156,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "small-excitation-seed-5-challenge",
+          "status": "complete",
+          "rmse": 0.5005670068783965,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "small-excitation-seed-6",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+spring",
+      "original": "spring",
+      "validation": 0.019180224721444587,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "small-excitation-seed-6-challenge",
+          "status": "complete",
+          "rmse": 0.35187259470687265,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "small-excitation-seed-6-challenge",
+          "status": "complete",
+          "rmse": 0.07036582457315357,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "small-excitation-seed-7",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+gravity",
+      "original": "spring",
+      "validation": 0.0196767787681291,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "small-excitation-seed-7-challenge",
+          "status": "complete",
+          "rmse": 0.35923140785495317,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "small-excitation-seed-7-challenge",
+          "status": "complete",
+          "rmse": 0.3919050623570767,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "small-excitation-seed-8",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "selected": "rate+spring",
+      "original": "spring",
+      "validation": 0.01656944237741065,
+      "completedStructures": 7,
+      "offeredStructures": 7,
+      "originalChallenge": [
+        {
+          "run": "small-excitation-seed-8-challenge",
+          "status": "complete",
+          "rmse": 0.35084604894939714,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "small-excitation-seed-8-challenge",
+          "status": "complete",
+          "rmse": 0.11059063785793664,
+          "numericalStatus": "screened"
+        }
+      ]
+    },
+    {
+      "label": "PASCO reused development recording; not blind validation",
+      "evidenceKinds": [
+        "measured"
+      ],
+      "selected": "rate+coulomb+gravity+bias",
+      "original": "gravity+bias",
+      "validation": 0.12932110781870118,
+      "completedStructures": 36,
+      "offeredStructures": 57,
+      "originalChallenge": [
+        {
+          "run": "pasco-len1-cond1-3",
+          "status": "complete",
+          "rmse": 0.3229694757859894,
+          "numericalStatus": "screened"
+        }
+      ],
+      "selectedChallenge": [
+        {
+          "run": "pasco-len1-cond1-3",
+          "status": "complete",
+          "rmse": 0.08950962721962619,
+          "numericalStatus": "screened"
+        }
+      ]
+    }
+  ]
+}

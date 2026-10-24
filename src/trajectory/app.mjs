@@ -1,5 +1,6 @@
 import {createRollingOriginPanel} from './rolling-origin-panel.mjs';
 import {createInitialStatePanel} from './initial-state-panel.mjs';
+import {createPredictiveSelectionPanel} from '../predictive-selection/panel.mjs';
 import {compareTrajectorySkill} from './baselines.mjs';
 import {createChallenge} from './session.mjs';
 import {MAX_TEXT_LENGTH} from './data.mjs';
@@ -95,6 +96,7 @@ function render(){
   renderModel();
 }
 function renderModel(){
+  predictivePanel.setBundle(state.bundle);
   stopPlayback();const model=currentModel(),result=currentResult(),run=currentRun();
   initialStatePanel.render(model,run,state.options);
 rollingOriginPanel.render(model,run,state.options);
@@ -200,6 +202,9 @@ function tick(now){
 }
 function download(){const blob=new Blob([exportExperimentSession(workflow)],{type:'application/json'}),url=URL.createObjectURL(blob),a=el('a');a.href=url;a.download='worldlaw-trajectory-notebook.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);notice('Portable notebook exported with source runs, fitting settings, selection and any experiment history.');}
 async function readInput(event,kind){const file=event.target.files?.[0];if(!file)return;await perform(async()=>{if(file.size>MAX_TEXT_LENGTH)throw new Error('Choose a JSON file smaller than 3 MB.');const text=await file.text();return restoreExperimentSession(text);},kind==='notebook'?'Notebook reopened. Models, challenge trajectories and any experiment history were recomputed from the recorded evidence.':'Evidence imported. Training, challenge and any retained experiment history remain distinct.');event.target.value='';}
+
+const predictiveHost=el('section');$('challenge-workspace').append(predictiveHost);
+const predictivePanel=createPredictiveSelectionPanel(predictiveHost);
 
 experimentPanel=createExperimentPanel($('experiment-panel'),{
   onPlan:settings=>advanceExperiment(session=>planNextExperiment(session,settings),'A release plan and its numerical check were computed from training-compatible forecasts. No new recording has been acquired.'),

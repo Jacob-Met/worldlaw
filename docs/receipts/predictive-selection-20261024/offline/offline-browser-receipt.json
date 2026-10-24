@@ -1,0 +1,64 @@
+{
+  "schema": "worldlaw.predictive-standalone-receiving/v1",
+  "result": "PASS",
+  "scope": "Actual file:// generated consumer; previously reused measured PASCO recordings, no new acquisition or blind physical validation.",
+  "offline": true,
+  "tests": [
+    "generated file opens offline and consumes its embedded measured example through actual weak-fit UI",
+    "offline prediction comparison retains57 offered/36 complete and selected0.08951 versus original0.32297 rad",
+    "actual offline download and local-file reopen recompute identical forecasts and restore applied settings",
+    "offline prediction panel remains readable at390px and320px without horizontal overflow",
+    "no browser exceptions, network requests or auxiliary local assets; exact generated HTML remained unchanged"
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "unexpectedLocalRequests": [],
+  "artifact": {
+    "path": "/home/ubuntu/hamon-work/worldlaw-predictive-5739/.receipts/trajectory-experiment-screened-standalone-92be.html",
+    "bytes": 695231,
+    "sha256": "51c105f921a8aa9b8c50a313fb4c01871d4ce2ddc3737485a558e057d5315ae1"
+  },
+  "bundledPredictiveSources": [
+    {
+      "path": "src/predictive-selection/panel.mjs",
+      "bytes": 9415,
+      "sha256": "1be9037de77663b1212f0fc2ea5617a57bde174f9ba8abdd8ee6abcdd000701e"
+    },
+    {
+      "path": "src/predictive-selection/select.mjs",
+      "bytes": 6858,
+      "sha256": "0473f2f8bfdcf19530d15ef44e592d449f6c1b7dbb4447564202b6aa4432bd4a"
+    },
+    {
+      "path": "src/predictive-selection/session.mjs",
+      "bytes": 2733,
+      "sha256": "f6e3448f4c55ff31fa9e65e36be11e5df4f12c7aa8e22a9e5b1f5ecb479a4edc"
+    }
+  ],
+  "sourceMeaning": "Source digests identify exact bytes bundled; sourceHead alone does not include uncommitted changes.",
+  "buildSourceHead": null,
+  "browser": "Chrome/156.0.8078.47",
+  "displayedResults": {
+    "offered": 57,
+    "complete": 36,
+    "original": "gravity+bias",
+    "selected": "rate+coulomb+gravity+bias",
+    "originalRMSE": "0.32297",
+    "selectedRMSE": "0.08951"
+  },
+  "notebook": {
+    "path": "/home/ubuntu/hamon-work/worldlaw-predictive-5739/docs/receipts/predictive-selection-20261024/downloads-qDMyMw/worldlaw-predictive-comparison.json",
+    "bytes": 199946,
+    "sha256": "d1485083511d12969307f71eb0202b12238d7eaa4ff6892dc544d78f4015b8c0"
+  },
+  "layouts": [
+    {
+      "viewport": 390,
+      "page": 390
+    },
+    {
+      "viewport": 320,
+      "page": 320
+    }
+  ]
+}
