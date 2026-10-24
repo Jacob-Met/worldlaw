@@ -24,6 +24,11 @@ INCLUDE = (
     "docs/receipts/*/*.json", "docs/receipts/*/*.png",
     "docs/receipts/branch-response-20261024/README.md",
     "docs/receipts/branch-response-20261024/maintained-angle-boxes.txt",
+    "docs/receipts/prediction-contrast-195c0e2a/README.md",
+    "docs/receipts/prediction-contrast-195c0e2a/initial-focused-failure.txt",
+    "docs/receipts/prediction-contrast-195c0e2a/native-tests.txt",
+    "docs/receipts/shared-training-195c0e2a/README.md",
+    "docs/receipts/shared-training-195c0e2a/native-tests.txt",
     "docs/*.md", "docs/*.json", "src/*.mjs", "src/science/*.mjs", "src/motion/*.mjs", "src/trajectory/*.mjs", "src/representation/*.mjs",
     "src/experiment-design/*.mjs", "tests/support/*.mjs",
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/*.mjs",
@@ -131,10 +136,12 @@ FORBIDDEN_SUFFIXES = {
 }
 FORBIDDEN_NAMES = {".env", "credentials", "credentials.json", "secrets.json", "id_rsa", "id_ed25519"}
 
-# A tracked historical compressed test receipt is intentionally not distributed.
-# Keep this path explicit: all other archives remain forbidden, not silently omitted.
+# Exact tracked historical evidence archives are intentionally not distributed.
+# Keep these paths explicit; other unapproved archives still fail closed.
 NON_DISTRIBUTED_TRACKED_RECEIPTS = frozenset({
     "docs/receipts/branch-response-20261024/native-tests.txt.gz",
+    "docs/receipts/prediction-contrast-195c0e2a/authored-inputs-and-notebook.tar.xz",
+    "docs/receipts/shared-training-195c0e2a/retained-source-evidence.tar.xz",
 })
 
 

@@ -10,7 +10,7 @@
     "stiffness.css": "ec30b1eef910c3489ae6c759f5044db8c3d473c1092228973c0100a3f1581e81",
     "tests/stiffness-knot-profile.test.mjs": "4c6a261fe576c584da5b159bdbe455c95d7264038f3d78fbde01652928123027",
     "scripts/stiffness-knot-profile-browser.mjs": "954efbe9b20bc57a548976a5f221775b11a10beed39936fd08fe357eea728f56",
-    "scripts/package.py": "6b04682a65616b35ee0529692223714c07697eb57114e187c472d8ed1007fdeb"
+    "scripts/package.py": "aa98cc443a89227edc1db0587f97c22ad49b8b6f1bf18bcdc1fb2ae2d212888b"
   },
   "native": {
     "command": "npm run verify",
@@ -53,13 +53,14 @@
     "upstreamCommit": "0a5bf7057ad715913407c9b6a07882751c758180",
     "compositionCommit": "9a0ea2d",
     "conflictResolution": "Current main include list retained; exactly two branch-response text paths added; exact historic gzip omitted; no inherited archive allowance copied",
-    "forbiddenPathControls": 10
+    "forbiddenPathControls": 10,
+    "followup": "Initial strict package refused seven existing unlisted receipts. Five exact text paths admitted; two exact historical .tar.xz files explicitly omitted alongside exact gzip. No generic archive allowlist."
   },
   "qualification": "Synthetic authored inputs; no physical calibration, external deployment, or hardware action.",
   "independentNumericalControl": {
     "method": "48 frozen authored cases, each compared against 1999 dense knots using independent NumPy SVD least squares",
     "design": "wildside_place",
-    "afterCorrectionExecution": "root reran unchanged independent control recipe",
+    "afterCorrectionExecution": "wildside_place and root each reran the unchanged independent control recipe; 18 transform and 4 rank controls also passed",
     "beforeWorstScoreDeficit": 0.9078092103631761,
     "afterWorstScoreDeficit": -6.097820914874319e-08,
     "interpretation": "All retained finite candidates matched or beat the dense comparison in these controls; no continuous optimum certificate."
