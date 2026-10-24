@@ -1,0 +1,74 @@
+{
+  "schema": "worldlaw.period-bands-receiving/v1",
+  "baseCommit": "1db1c84bafd6f7f1ae19483753b01408ecf82ae9",
+  "environment": {
+    "node": "22.23.4",
+    "browser": "Chrome156.0.8078.47",
+    "os": "Ubuntu",
+    "sandbox": "Namespace, PID/network namespaces, Seccomp-BPF and TSYNC observed"
+  },
+  "commands": [
+    "node --test tests/*.test.mjs",
+    "SOURCE_COMMIT=1db1c84bafd6f7f1ae19483753b01408ecf82ae9 PLAYWRIGHT_MODULE=<maintained installed module> BROWSER_EXECUTABLE_PATH=/opt/google/chrome/chrome BROWSER_ARTIFACT_DIR=<owned output> node scripts/period-bands-browser.mjs"
+  ],
+  "native": {
+    "tests": 675,
+    "passed": 674,
+    "failed": 0,
+    "skipped": 1,
+    "skip": "Optional existing trajectory Node/Chromium portability check requires PLAYWRIGHT_MODULE in the native-suite environment; it was not enabled. Separate period-band browser receiving executed."
+  },
+  "browser": {
+    "checks": 8,
+    "exceptions": 0,
+    "passed": true,
+    "desktopAnd390pxPixelsInspected": true
+  },
+  "executedFeatureBlobs": [
+    {
+      "path": "src/unknown-lab/period-band.mjs",
+      "gitBlob": "5698b767954661669efe154b1966a3e653d08164",
+      "sha256": "7c242eac6648d295f97f5abfaf11d2dec5aef0c2ad4132bf86881f89194cb7fd"
+    },
+    {
+      "path": "src/unknown-lab/period-band-panel.mjs",
+      "gitBlob": "1b3e038e1c54f914f75a33d926d62bf92c7499d5",
+      "sha256": "6f9ee24d229e02425d07b56466e462c91394d71afb5a1f54ed734aa5b382f76b"
+    },
+    {
+      "path": "src/unknown-lab/app.mjs",
+      "gitBlob": "4a5742d7ea19a1e446fd7db91d7a783ea81421b7",
+      "sha256": "c16859e193e61f9a349cfc4f79f05b327279bc55c107b944cc18c2452f1b48bc"
+    },
+    {
+      "path": "tests/period-band.test.mjs",
+      "gitBlob": "a1a45880143948184b9ae222fadf48fc7d090102",
+      "sha256": "1bc3ba8062a0f38fa5bcea5b440faf54f58bf24319ca5d3504c2069837aadf02"
+    },
+    {
+      "path": "examples/period-bands.json",
+      "gitBlob": "7716442a77a024e262d397f5fdb5f5eec9e71769",
+      "sha256": "aa5bbf8b77f291388909f1d5599e741cd0101be3f14aa7b99f73be4fc17c9e8f"
+    },
+    {
+      "path": "scripts/period-bands-browser.mjs",
+      "gitBlob": "cf9bcaa5bbc6685a93a4d83f569a692678ef7aa4",
+      "sha256": "f59136e0508ccf9babd05c5b2da2da7e11b1575700272fd1e2657a42eeb259d8"
+    }
+  ],
+  "images": [
+    {
+      "path": "desktop.png",
+      "gitBlob": "f81cc1549eb95129ae8cd4462d4b67abeadf6356",
+      "sha256": "59c4feaced6f1bbd5436543ab109c72e16c9074cf5eeae8a22261ccca4ea7dbe",
+      "bytes": 389265
+    },
+    {
+      "path": "narrow.png",
+      "gitBlob": "76fd9593cbcb3d5b3d18621775229a0e0732915d",
+      "sha256": "0945761625adead45d7f40d0aa4c63e053ab06e3d593e2952c3d6015f2d5982b",
+      "bytes": 88915
+    }
+  ],
+  "scope": "Raw prospective v2 orders and sourced constant-frequency bands. Engineering allowances and unresolved cells retained; no certified floating-point bounds or observed-mechanism inference. Final documentation/receipts added after unchanged executable-source qualification."
+}

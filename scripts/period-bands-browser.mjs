@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';
+import {createProductServer} from '../server.mjs';
+import {syntheticChallenge} from '../src/unknown-lab/paired-history.mjs';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE);
+const dir=process.env.BROWSER_ARTIFACT_DIR;
+await mkdir(dir,{recursive:true});
+const server=createProductServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));
+const browser=await chromium.launch({executablePath:process.env.BROWSER_EXECUTABLE_PATH,headless:true,chromiumSandbox:true});
+try {
+ const admission=await browser.newPage();await admission.goto('chrome://sandbox');const sandbox=await admission.locator('body').innerText();
+ await writeFile(dir+'/sandbox-admission.txt',sandbox);
+ assert.match(sandbox,/Layer 1 Sandbox\s+Namespace/i);assert.match(sandbox,/PID namespaces\s+Yes/i);assert.match(sandbox,/Network namespaces\s+Yes/i);assert.match(sandbox,/Seccomp-BPF sandbox\s+Yes/i);assert.match(sandbox,/Seccomp-BPF sandbox supports TSYNC\s+Yes/i);assert.match(sandbox,/You are adequately sandboxed\./i);await admission.close();
+ const page=await browser.newPage({viewport:{width:1440,height:1000},acceptDownloads:true});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(`http://127.0.0.1:${server.address().port}/unknown-lab.html`);
+ await page.locator('#band-open').setInputFiles(new URL('../examples/period-bands.json',import.meta.url).pathname);await page.waitForFunction(()=>document.querySelectorAll('#band-results article').length===2);
+ const original=await page.locator('#band-results').textContent();assert.match(original,/adaptive/);assert.match(original,/uniform/);assert.match(original,/1.422/);assert.match(await page.locator('#band-status').textContent(),/not formal certified/);
+ const promise=page.waitForEvent('download');await page.locator('#band-save').click();const saved=dir+'/bands.json';await(await promise).saveAs(saved);
+ await page.locator('#band-editor > summary').click();
+ const raw=JSON.parse(await page.locator('#band-input').inputValue());raw.evaluations=5;raw.tolerance=1e-10;await page.locator('#band-input').fill(JSON.stringify(raw));assert.equal(await page.locator('#band-results').textContent(),'');await page.locator('#band-run').click();assert.match(await page.locator('#band-results').textContent(),/unresolved-budget/);
+ await page.locator('#band-open').setInputFiles(saved);await page.waitForFunction(text=>document.querySelector('#band-results').textContent===text,original);
+ assert.equal(await page.locator('#band-results svg.band-chart').count(),4);
+ const cell=page.locator('.band-cell').first();await cell.focus();await page.keyboard.press('ArrowDown');await page.keyboard.press('Tab');assert.equal(await cell.inputValue(),'1');assert.match(await page.locator('.band-cell-readout').first().textContent(),/Cell 2:/);
+ assert.match(await page.locator('.band-legend').first().textContent(),/not a response trace or certified enclosure/);
+ await page.locator('#band-results summary').first().click();assert.ok(await page.locator('#band-results pre').first().textContent());await page.locator('#band-results summary').first().click();
+ await page.locator('#band-editor > summary').click();assert.ok(await page.locator('#period-bands').evaluate(e=>e.parentElement.tagName==='MAIN'&&e.getBoundingClientRect().width>1000));
+ await page.locator('#band-results article').first().scrollIntoViewIfNeeded();await page.screenshot({path:dir+'/desktop.png'});await page.locator('#period-bands').screenshot({path:dir+'/desktop-instrument.png'});
+ await page.setViewportSize({width:390,height:844});await page.locator('#band-results article').first().scrollIntoViewIfNeeded();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.screenshot({path:dir+'/narrow.png'});await page.locator('#period-bands').screenshot({path:dir+'/narrow-instrument.png'});assert.deepEqual(errors,[]);
+ const receipt={implementationBaseline:'399c5abbd46bfcef9042562c6292f93e3d9bf43d',executionBase:process.env.SOURCE_COMMIT||null,sandbox,exceptions:errors,passed:true,checks:['complete strategy comparison','unresolved budget','raw replay','retained cells and keyboard selection','four retained-data scientific charts','full-width placement','narrow','no exceptions'],sandboxRequested:true};await writeFile(dir+'/browser.json',JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt));
+}catch(error){await writeFile(dir+'/browser-failure.json',JSON.stringify({passed:false,error:error.message,stack:error.stack,implementationBaseline:'399c5abbd46bfcef9042562c6292f93e3d9bf43d',executionBase:process.env.SOURCE_COMMIT||null},null,2));throw error;}finally{await browser.close();await new Promise(r=>server.close(r));}
