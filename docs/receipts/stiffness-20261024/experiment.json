@@ -1,0 +1,233 @@
+{
+  "source": "independent repository-authored software controls; not physical measurements",
+  "results": [
+    {
+      "kind": "kink",
+      "status": "piecewise_preferred",
+      "adequacy": "not_falsified_on_training",
+      "knot": 0.4,
+      "settings": {
+        "knots": [
+          -1.2,
+          -1.1,
+          -1,
+          -0.9,
+          -0.8,
+          -0.7,
+          -0.6,
+          -0.5,
+          -0.4,
+          -0.3,
+          -0.2,
+          -0.1,
+          0,
+          0.1,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1,
+          1.1,
+          1.2
+        ],
+        "nuisanceTerms": [
+          "bias",
+          "command",
+          "rate"
+        ],
+        "noiseSigma": 0.01,
+        "ambiguityDelta": 6
+      },
+      "trainingCount": 116,
+      "checkCount": 92,
+      "baselineTrainingRMSE": 0.6511773432054524,
+      "selectedTrainingRMSE": 0.0007035457997858189,
+      "checks": [
+        {
+          "family": "piecewise",
+          "knot": 0.4,
+          "rmse": 0.000704334837585581,
+          "extrapolationCount": 0
+        },
+        {
+          "family": "global",
+          "knot": null,
+          "rmse": 0.6278179045216645,
+          "extrapolationCount": 0
+        }
+      ]
+    },
+    {
+      "kind": "linear",
+      "status": "global_preferred",
+      "adequacy": "not_falsified_on_training",
+      "knot": null,
+      "settings": {
+        "knots": [
+          -1.2,
+          -1.1,
+          -1,
+          -0.9,
+          -0.8,
+          -0.7,
+          -0.6,
+          -0.5,
+          -0.4,
+          -0.3,
+          -0.2,
+          -0.1,
+          0,
+          0.1,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1,
+          1.1,
+          1.2
+        ],
+        "nuisanceTerms": [
+          "bias",
+          "command",
+          "rate"
+        ],
+        "noiseSigma": 0.01,
+        "ambiguityDelta": 6
+      },
+      "trainingCount": 116,
+      "checkCount": 92,
+      "baselineTrainingRMSE": 0.0007035561943096304,
+      "selectedTrainingRMSE": 0.0007035561943096304,
+      "checks": [
+        {
+          "family": "global",
+          "knot": null,
+          "rmse": 0.0007043813954135757,
+          "extrapolationCount": 0
+        }
+      ]
+    },
+    {
+      "kind": "smooth",
+      "status": "change_angle_ambiguous",
+      "adequacy": "training_mismatch",
+      "knot": 1,
+      "settings": {
+        "knots": [
+          -1.2,
+          -1.1,
+          -1,
+          -0.9,
+          -0.8,
+          -0.7,
+          -0.6,
+          -0.5,
+          -0.4,
+          -0.3,
+          -0.2,
+          -0.1,
+          0,
+          0.1,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1,
+          1.1,
+          1.2
+        ],
+        "nuisanceTerms": [
+          "bias",
+          "command",
+          "rate"
+        ],
+        "noiseSigma": 0.01,
+        "ambiguityDelta": 6
+      },
+      "trainingCount": 116,
+      "checkCount": 92,
+      "baselineTrainingRMSE": 0.4113772090407667,
+      "selectedTrainingRMSE": 0.33772796885281764,
+      "checks": [
+        {
+          "family": "piecewise",
+          "knot": 1,
+          "rmse": 0.31192888610053143,
+          "extrapolationCount": 0
+        },
+        {
+          "family": "global",
+          "knot": null,
+          "rmse": 0.3807775922905844,
+          "extrapolationCount": 0
+        }
+      ]
+    },
+    {
+      "kind": "narrow",
+      "status": "global_preferred",
+      "adequacy": "not_falsified_on_training",
+      "knot": null,
+      "settings": {
+        "knots": [
+          -1.2,
+          -1.1,
+          -1,
+          -0.9,
+          -0.8,
+          -0.7,
+          -0.6,
+          -0.5,
+          -0.4,
+          -0.3,
+          -0.2,
+          -0.1,
+          0,
+          0.1,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9,
+          1,
+          1.1,
+          1.2
+        ],
+        "nuisanceTerms": [
+          "bias",
+          "command",
+          "rate"
+        ],
+        "noiseSigma": 0.01,
+        "ambiguityDelta": 6
+      },
+      "trainingCount": 116,
+      "checkCount": 92,
+      "baselineTrainingRMSE": 0.0007035561943096332,
+      "selectedTrainingRMSE": 0.0007035561943096332,
+      "checks": [
+        {
+          "family": "global",
+          "knot": null,
+          "rmse": 1.2210940344942336,
+          "extrapolationCount": 52
+        }
+      ]
+    }
+  ]
+}
