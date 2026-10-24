@@ -41,3 +41,6 @@
 #input-enclosures p,#input-enclosures li,#input-enclosures label{font-size:14px;line-height:1.6;color:var(--ink)}
 #input-enclosures label{display:block;margin:.5rem 0}#input-enclosures input{display:block;max-width:100%;min-height:36px}
 #input-enclosures button{min-height:40px;max-width:100%;white-space:normal;padding:.5rem .75rem}
+
+/* The refinement declaration shares the instrument's readable input layout. */
+#input-enclosures select{display:block;width:100%;max-width:100%;min-height:40px;margin-top:.25rem;padding:.35rem .5rem;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px}
