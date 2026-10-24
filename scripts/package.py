@@ -22,6 +22,8 @@ INCLUDE = (
     "AGENTS.md", "README.md", "LICENSE", "LICENSE.md", "package.json",
     "index.html", "styles.css", "favicon.svg", "server.mjs", "motion.html", "motion.css", "trajectory.html", "trajectory.css",
     "docs/receipts/*/*.json", "docs/receipts/*/*.png",
+    "docs/receipts/branch-response-20261024/README.md",
+    "docs/receipts/branch-response-20261024/maintained-angle-boxes.txt",
     "docs/*.md", "docs/*.json", "src/*.mjs", "src/science/*.mjs", "src/motion/*.mjs", "src/trajectory/*.mjs", "src/representation/*.mjs",
     "src/experiment-design/*.mjs", "tests/support/*.mjs",
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/*.mjs",
@@ -129,6 +131,12 @@ FORBIDDEN_SUFFIXES = {
 }
 FORBIDDEN_NAMES = {".env", "credentials", "credentials.json", "secrets.json", "id_rsa", "id_ed25519"}
 
+# A tracked historical compressed test receipt is intentionally not distributed.
+# Keep this path explicit: all other archives remain forbidden, not silently omitted.
+NON_DISTRIBUTED_TRACKED_RECEIPTS = frozenset({
+    "docs/receipts/branch-response-20261024/native-tests.txt.gz",
+})
+
 
 def git(*args):
     result = subprocess.run(["git", "-C", str(ROOT), *args], capture_output=True, check=False)
@@ -161,6 +169,8 @@ def check_path(path):
 
 def check_tracked(paths):
     for path in paths:
+        if path in NON_DISTRIBUTED_TRACKED_RECEIPTS:
+            continue  # Never copied into a release; keep every other rejection intact.
         check_path(path)
         # Repository collaboration configuration is intentionally not distributed.
         if not included(path) and path != ".gitignore" and not path.startswith(".github/"):
