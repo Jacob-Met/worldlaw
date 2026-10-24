@@ -95,6 +95,7 @@ try{
   if(process.env.WORLDLAW_SHARED_COURSE_RECEIVING==='1'){const {receiveSharedCourse}=await import('./coupling-shared-course-receiving.mjs');await receiveSharedCourse({evaluate,send,check,click,text,wait,outputDir});}
   if(process.env.WORLDLAW_ALLOWANCE_RECEIVING==='1'){const {receiveAllowance}=await import('./coupling-allowance-receiving.mjs');await receiveAllowance({evaluate,send,check,click,text,wait,outputDir});}
   if(process.env.WORLDLAW_CIRCULATION_BOX_RECEIVING==='1'){const {receiveCirculationBoxes}=await import('./coupling-angle-boxes-receiving.mjs');await receiveCirculationBoxes({evaluate,send,check,click,text,wait,outputDir,downloads});}
+  if(process.env.WORLDLAW_CALIBRATION_RECEIVING==='1'){const {receiveCalibration}=await import('./coupling-calibration-receiving.mjs');await receiveCalibration({evaluate,send,check,click,text,wait,outputDir,downloads});}
   await check('no page exceptions or external requests',async()=>{assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);});
   await writeFile(path.join(outputDir,'verification.json'),JSON.stringify({checks,events,node:process.version,pass:true,sandbox,downloads},null,2));
 }catch(error){
