@@ -18,13 +18,15 @@ ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
     "AGENTS.md", "README.md", "LICENSE", "LICENSE.md", "package.json",
     "index.html", "styles.css", "favicon.svg", "server.mjs", "motion.html", "motion.css", "trajectory.html", "trajectory.css",
+    "docs/receipts/coupling-20261024/*.json", "docs/receipts/coupling-20261024/*.png",
     "docs/receipts/prediction-baselines-20261024/*.json",
     "docs/receipts/prediction-baselines-20261024/*.png",
     "docs/*.md", "docs/*.json", "src/*.mjs", "src/science/*.mjs", "src/motion/*.mjs", "src/trajectory/*.mjs", "src/representation/*.mjs",
     "src/experiment-design/*.mjs", "tests/support/*.mjs",
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/*.mjs",
+    "coupling.html", "coupling.css", "src/coupling/*.mjs",
     "scripts/*.mjs", "scripts/package.py", "scripts/generate-motion-fixtures-15cc.py", "tests/*.test.mjs",
-    "examples/*.json", "experiments/active-discovery.mjs",
+    "examples/*.json", "experiments/active-discovery.mjs", "experiments/coupling-discovery.mjs",
     "experiments/integral-discovery-92be.mjs", "experiments/integral-stability-92be.mjs",
     "experiments/angular-weak-92be.mjs", "research/PHYSICAL_TELEMETRY_92be.md",
     "experiments/trajectory-planning-92be.mjs", "experiments/trajectory-numerical-qualification.mjs",
@@ -37,6 +39,8 @@ INCLUDE = (
     "evidence/cubic-restoring-results.json", "experiments/cubic-restoring.mjs",
 )
 REQUIRED = (
+    "coupling.html", "coupling.css", "src/coupling/app.mjs", "src/coupling/science.mjs",
+    "src/coupling/notebook.mjs", "src/coupling/virtual-instrument.mjs", "src/science/linear-fit.mjs",
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/app.mjs", "src/unknown-lab/paired-history.mjs",
     "README.md", "package.json", "index.html", "styles.css", "favicon.svg",
     "server.mjs", "src/app.mjs", "src/data.mjs", "src/session.mjs",

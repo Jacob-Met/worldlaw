@@ -1,0 +1,363 @@
+{
+  "schema": "worldlaw.coupling-experiment/v1",
+  "evidenceKind": "authored_synthetic",
+  "node": "v24.19.0",
+  "scope": "Finite affine quasi-static response comparison; no physical validation or probability calibration.",
+  "courses": [
+    {
+      "kind": "reciprocal",
+      "source": {
+        "kind": "synthetic",
+        "label": "Authored reciprocal response instrument",
+        "reference": "worldlaw.coupling-virtual/v1/reciprocal"
+      },
+      "noiseSigma": 0.025,
+      "trainingRows": 32,
+      "separateCheckRows": 25,
+      "steps": [
+        {
+          "step": 0,
+          "selected": "independent",
+          "designRank": 6,
+          "adequacy": "not_falsified_on_training",
+          "separateCheckRmse": 0.48292915149109955,
+          "plan": {
+            "status": "proposed",
+            "input": [
+              -1,
+              -1
+            ],
+            "disagreement": 1.4391028824276064
+          },
+          "matrix": [
+            [
+              -2.2442509887604083,
+              0
+            ],
+            [
+              0,
+              -1.5889624296972134
+            ]
+          ],
+          "bias": [
+            0.05006500721569345,
+            -0.03978763008350197
+          ]
+        },
+        {
+          "step": 1,
+          "selected": "independent",
+          "designRank": 6,
+          "adequacy": "not_falsified_on_training",
+          "separateCheckRmse": 0.6544989609164699,
+          "plan": {
+            "status": "proposed",
+            "input": [
+              -1,
+              1
+            ],
+            "disagreement": 2.251796444465954
+          },
+          "matrix": [
+            [
+              -1.20740305187774,
+              0
+            ],
+            [
+              0,
+              -0.6095476772270078
+            ]
+          ],
+          "bias": [
+            0.04954404044482012,
+            -0.04006529416582728
+          ]
+        },
+        {
+          "step": 2,
+          "selected": "reciprocal",
+          "designRank": 6,
+          "adequacy": "not_falsified_on_training",
+          "separateCheckRmse": 0.0005098269924933968,
+          "plan": {
+            "status": "uninformative",
+            "input": [
+              1,
+              1
+            ],
+            "disagreement": 0.00002225352574310026
+          },
+          "matrix": [
+            [
+              -1.999620663822954,
+              0.7999613278094693
+            ],
+            [
+              0.7999613278094693,
+              -1.400515795090848
+            ]
+          ],
+          "bias": [
+            0.049995849394460334,
+            -0.04000969450819216
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "independent",
+      "source": {
+        "kind": "synthetic",
+        "label": "Authored independent response instrument",
+        "reference": "worldlaw.coupling-virtual/v1/independent"
+      },
+      "noiseSigma": 0.025,
+      "trainingRows": 32,
+      "separateCheckRows": 25,
+      "steps": [
+        {
+          "step": 0,
+          "selected": "independent",
+          "designRank": 6,
+          "adequacy": "not_falsified_on_training",
+          "separateCheckRmse": 0.0007187898564809022,
+          "plan": {
+            "status": "uninformative",
+            "input": [
+              -1,
+              -1
+            ],
+            "disagreement": 0.001055235202903086
+          },
+          "matrix": [
+            [
+              -2.00121623205733,
+              0
+            ],
+            [
+              0,
+              -1.399279890014674
+            ]
+          ],
+          "bias": [
+            0.0499966536903707,
+            -0.04001263008350198
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "directional",
+      "source": {
+        "kind": "synthetic",
+        "label": "Authored directional response instrument",
+        "reference": "worldlaw.coupling-virtual/v1/directional"
+      },
+      "noiseSigma": 0.025,
+      "trainingRows": 32,
+      "separateCheckRows": 25,
+      "steps": [
+        {
+          "step": 0,
+          "selected": "independent",
+          "designRank": 6,
+          "adequacy": "not_falsified_on_training",
+          "separateCheckRmse": 0.36479905262118006,
+          "plan": {
+            "status": "proposed",
+            "input": [
+              -1,
+              -1
+            ],
+            "disagreement": 0.572342455333135
+          },
+          "matrix": [
+            [
+              -2.2442509887604083,
+              0
+            ],
+            [
+              0,
+              -1.3281489376337219
+            ]
+          ],
+          "bias": [
+            0.05006500721569345,
+            -0.040097005083501974
+          ]
+        },
+        {
+          "step": 1,
+          "selected": "independent",
+          "designRank": 6,
+          "adequacy": "not_falsified_on_training",
+          "separateCheckRmse": 0.49459280636935044,
+          "plan": {
+            "status": "proposed",
+            "input": [
+              -1,
+              1
+            ],
+            "disagreement": 0.705244648525684
+          },
+          "matrix": [
+            [
+              -1.20740305187774,
+              0
+            ],
+            [
+              0,
+              -1.6972410958243205
+            ]
+          ],
+          "bias": [
+            0.04954404044482012,
+            -0.03999236745665492
+          ]
+        },
+        {
+          "step": 2,
+          "selected": "directional",
+          "designRank": 6,
+          "adequacy": "not_falsified_on_training",
+          "separateCheckRmse": 0.0005095039989139247,
+          "plan": {
+            "status": "uninformative",
+            "input": [
+              -1,
+              -1
+            ],
+            "disagreement": 0
+          },
+          "matrix": [
+            [
+              -1.9996206470192979,
+              0.7999760963742809
+            ],
+            [
+              -0.30005436710171957,
+              -1.4005158118945036
+            ]
+          ],
+          "bias": [
+            0.04999585037846265,
+            -0.04001061358372677
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "collinear",
+      "source": {
+        "kind": "synthetic",
+        "label": "Authored collinear response instrument",
+        "reference": "worldlaw.coupling-virtual/v1/collinear"
+      },
+      "noiseSigma": 0.025,
+      "trainingRows": 32,
+      "separateCheckRows": 25,
+      "steps": [
+        {
+          "step": 0,
+          "selected": "independent",
+          "designRank": 4,
+          "adequacy": "not_falsified_on_training",
+          "separateCheckRmse": 0.6595520166137511,
+          "plan": {
+            "status": "needs_excitation",
+            "input": [
+              -1,
+              0
+            ],
+            "disagreement": 0
+          },
+          "matrix": [
+            [
+              -1.2012162320573294,
+              0
+            ],
+            [
+              0,
+              -0.5908507093413734
+            ]
+          ],
+          "bias": [
+            0.04999665369037069,
+            -0.04001520332149971
+          ]
+        },
+        {
+          "step": 1,
+          "selected": "reciprocal",
+          "designRank": 6,
+          "adequacy": "not_falsified_on_training",
+          "separateCheckRmse": 0.00401304743109251,
+          "plan": {
+            "status": "uninformative",
+            "input": [
+              1,
+              -1
+            ],
+            "disagreement": 0.0009936392814389424
+          },
+          "matrix": [
+            [
+              -1.9996185491117338,
+              0.7993805235794116
+            ],
+            [
+              0.7993805235794116,
+              -1.3902309578775556
+            ]
+          ],
+          "bias": [
+            0.049996162188120044,
+            -0.040015419780521144
+          ]
+        }
+      ]
+    },
+    {
+      "kind": "nonlinear",
+      "source": {
+        "kind": "synthetic",
+        "label": "Authored nonlinear response instrument",
+        "reference": "worldlaw.coupling-virtual/v1/nonlinear"
+      },
+      "noiseSigma": 0.025,
+      "trainingRows": 32,
+      "separateCheckRows": 25,
+      "steps": [
+        {
+          "step": 0,
+          "selected": "reciprocal",
+          "designRank": 6,
+          "adequacy": "residual_mismatch",
+          "separateCheckRmse": 0.3837743535184129,
+          "plan": {
+            "status": "model_mismatch",
+            "input": [
+              -1,
+              -1
+            ],
+            "disagreement": 0.14083063345394511
+          },
+          "matrix": [
+            [
+              -1.1468318508952702,
+              1.014993817072813
+            ],
+            [
+              1.014993817072813,
+              -1.349002680152422
+            ]
+          ],
+          "bias": [
+            0.04857911022724779,
+            0.4304718028814406
+          ]
+        }
+      ]
+    }
+  ]
+}

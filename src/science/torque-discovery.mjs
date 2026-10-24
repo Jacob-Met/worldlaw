@@ -17,7 +17,7 @@ export const DEFAULT_TERMS = Object.freeze(TERMS.filter(term => !term.optional).
 export const UNITS = Object.freeze({command:'N·m', position:'rad', rate:'rad/s', jointTorque:'N·m'});
 const ids = TERMS.map(t => t.id);
 const LIMIT = 4096;
-const RANK_TOLERANCE = 1e-8;
+import {fitLinearColumns as fit, linearColumnRank as libraryRank, RANK_TOLERANCE} from './linear-fit.mjs';
 const fields = ['command', 'position', 'rate'];
 
 export class DiscoveryError extends Error {
@@ -53,7 +53,6 @@ function feature(id, row) {
     default: throw new DiscoveryError(`Unknown feature ${id}.`);
   }
 }
-function dot(a, b) { let total = 0; for (let i = 0; i < a.length; ++i) total += a[i] * b[i]; return total; }
 function norm(a) { return Math.hypot(...a); }
 function normalizeOptions(options = {}) {
   requireThat(options && typeof options === 'object' && !Array.isArray(options), 'Options must be an object.');
@@ -73,58 +72,6 @@ function normalizeOptions(options = {}) {
   return result;
 }
 
-// Column normalization and two-pass modified Gram-Schmidt avoid normal-equation
-// squaring of condition number. Rank decisions are relative to unit-length columns.
-function fit(columns, target) {
-  if (columns.length === 0) return { coefficients: [], conditionEstimate: 1 };
-  const scales = columns.map(norm);
-  if (scales.some(value => value === 0 || !Number.isFinite(value))) return null;
-  const q = [], r = columns.map(() => columns.map(() => 0));
-  const pivots = [];
-  for (let j = 0; j < columns.length; ++j) {
-    const v = columns[j].map(value => value / scales[j]);
-    for (let pass = 0; pass < 2; ++pass) {
-      for (let i = 0; i < j; ++i) {
-        const projection = dot(q[i], v);
-        r[i][j] += projection;
-        for (let k = 0; k < v.length; ++k) v[k] -= projection * q[i][k];
-      }
-    }
-    const pivot = norm(v);
-    if (!(pivot > RANK_TOLERANCE)) return null;
-    r[j][j] = pivot; pivots.push(pivot); q.push(v.map(value => value / pivot));
-  }
-  const solution = q.map(col => dot(col, target));
-  for (let i = solution.length - 1; i >= 0; --i) {
-    for (let j = i + 1; j < solution.length; ++j) solution[i] -= r[i][j] * solution[j];
-    solution[i] /= r[i][i];
-  }
-  const coefficients = solution.map((value, i) => value / scales[i]);
-  if (!coefficients.every(Number.isFinite)) return null;
-  return { coefficients, conditionEstimate: Math.max(...pivots) / Math.min(...pivots) };
-}
-
-// Pivoted rank diagnostic for the whole offered library, including zero columns.
-function libraryRank(columns) {
-  let remaining = columns.map(col => { const scale = norm(col); return col.map(v => scale === 0 ? 0 : v / scale); });
-  let rank = 0;
-  while (remaining.length) {
-    const sizes = remaining.map(norm);
-    const index = sizes.indexOf(Math.max(...sizes));
-    if (!(sizes[index] > RANK_TOLERANCE)) break;
-    const basis = remaining[index].map(v => v / sizes[index]);
-    remaining.splice(index, 1); rank++;
-    remaining = remaining.map(col => {
-      const result = [...col];
-      for (let pass = 0; pass < 2; pass++) {
-        const projection = dot(basis, result);
-        for (let i = 0; i < result.length; i++) result[i] -= projection * basis[i];
-      }
-      return result;
-    });
-  }
-  return rank;
-}
 function checkedTerms(model) {
   requireThat(model && model.schema === 'worldlaw.torque-model/v1' && Array.isArray(model.terms), 'Invalid executable torque model.');
   requireThat(model.terms.length <= ids.length && new Set(model.terms.map(t => t?.id)).size === model.terms.length,
