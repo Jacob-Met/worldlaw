@@ -61,18 +61,26 @@ function checkOffsets(context,certificate){
   const refitted={...context.model,terms:context.model.terms.map((term,i)=>({id:term.id,coefficient:fitted.coefficients[i]}))};
   refittedRows=evaluate(refitted,context.receiving).rows;
  }catch{return {status:'unresolved',reason:'independent-refit-refused'};}
+ return checkLinearEnvelopeOffsets(rows,offsets,readingRadius,refittedRows.map(r=>r.prediction),fitted.coefficients);
+}
+/** Trusted freshly reconstructed envelope and independently refitted predictions. */
+export function checkLinearEnvelopeOffsets(rows,offsets,readingRadius,refittedPredictions,refittedCoefficients){
+ const vectorRadii=Array.isArray(readingRadius);
+ if(!Array.isArray(rows)||!rows.length||!Array.isArray(offsets)||offsets.some(x=>!Number.isFinite(x))||!Array.isArray(refittedPredictions)||refittedPredictions.length!==rows.length||refittedPredictions.some(x=>!Number.isFinite(x))||!Array.isArray(refittedCoefficients)||refittedCoefficients.some(x=>!Number.isFinite(x)))throw Error('Malformed prepared offset check.');
+ if(vectorRadii?readingRadius.length!==rows.length||readingRadius.some(r=>!Number.isFinite(r)||r<0):!Number.isFinite(readingRadius)||readingRadius<0)throw Error('Malformed prepared offset radii.');
  const checked=[];
  for(let j=0;j<rows.length;j++){
   const row=rows[j],terms=row.influence.map((value,i)=>value*offsets[i]);
-  const reconstructed=row.refittedPrediction+terms.reduce((sum,x)=>sum+x,0),refitted=refittedRows[j].prediction;
+  const reconstructed=row.refittedPrediction+terms.reduce((sum,x)=>sum+x,0),refitted=refittedPredictions[j];
   const scale=Math.max(1,Math.abs(row.observedTorque),Math.abs(reconstructed),Math.abs(refitted),terms.reduce((sum,x)=>sum+Math.abs(x),0));
   const numericalTolerance=row.numericalTolerance+512*Number.EPSILON*scale;
-  const linearMargin=readingRadius-Math.abs(row.observedTorque-reconstructed),refitMargin=readingRadius-Math.abs(row.observedTorque-refitted),agreementError=Math.abs(refitted-reconstructed);
+  const radius=vectorRadii?readingRadius[j]:readingRadius;
+  const linearMargin=radius-Math.abs(row.observedTorque-reconstructed),refitMargin=radius-Math.abs(row.observedTorque-refitted),agreementError=Math.abs(refitted-reconstructed);
   if(![reconstructed,refitted,numericalTolerance,linearMargin,refitMargin,agreementError].every(Number.isFinite))return {status:'unresolved',reason:'witness-numerical-range'};
   checked.push({index:j,reconstructedPrediction:reconstructed,refittedPrediction:refitted,observedTorque:row.observedTorque,linearMargin,refitMargin,agreementError,numericalTolerance,strictInterior:linearMargin>numericalTolerance&&refitMargin>numericalTolerance&&agreementError<=numericalTolerance});
  }
  const accepted=checked.every(row=>row.strictInterior);
- return {status:accepted?'verified-interior-witness':'unresolved',reason:accepted?'one-offset-vector-received-by-every-original-box':readingRadius===0?'zero-radius-contact-is-not-certified':checked.some(row=>row.agreementError>row.numericalTolerance)?'influence-and-independent-refit-disagree':'candidate-outside-or-near-original-boundary',receivingCount:checked.length,offsets:[...offsets],refittedCoefficients:[...fitted.coefficients],rows:checked};
+ return {status:accepted?'verified-interior-witness':'unresolved',reason:accepted?'one-offset-vector-received-by-every-original-box':(vectorRadii?readingRadius.every(r=>r===0):readingRadius===0)?'zero-radius-contact-is-not-certified':checked.some(row=>row.agreementError>row.numericalTolerance)?'influence-and-independent-refit-disagree':'candidate-outside-or-near-original-boundary',receivingCount:checked.length,offsets:[...offsets],refittedCoefficients:[...refittedCoefficients],rows:checked};
 }
 // Trusted-context internal helper. Never admit an imported prepared context.
 export function checkPreparedCertificate(context,certificate){
