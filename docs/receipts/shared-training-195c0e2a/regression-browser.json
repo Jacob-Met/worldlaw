@@ -1,0 +1,31 @@
+{
+  "contrast": {
+    "checks": [
+      "actual imported marginal overlaps retain a decisive shared-perturbation pair contradiction",
+      "every pair is selectable with orientation and native-equal interval/witness identity",
+      "relaxed declared reading radius removes definite contradiction without a joint-feasibility claim",
+      "model and appended-reading changes clear previously populated marginal and pair results",
+      "saved source reopens without derived results and recomputes pair contradiction from all nine training readings",
+      "narrow consumer keyboard selects a different pair and remains within viewport",
+      "single receiving row keeps its marginal result while pair assessment is explicitly unavailable",
+      "maximum 256-training/128-receiving course renders all 8128 pairs and final pair endpoints agree with native computation"
+    ],
+    "errors": [],
+    "browser": "156.0.8078.47",
+    "full_receipt_sha256": "1333b429d786376d1043f42376b0ffae11948da8b65b00f50ef7a616eba4a574"
+  },
+  "marginal": {
+    "checks": [
+      "actual imported held-out consumer matches native numbers and complete denominator through keyboard activation",
+      "row selection exposes the extrapolated query and its separate witness",
+      "radius edits invalidate old output; invalid and zero radii remain distinct",
+      "changing inspected model clears previously computed results",
+      "new measurement clears prior output and recomputes all nine training rows",
+      "source notebook reopens without stale output and recomputes retained evidence",
+      "narrow comparison stays within viewport and keyboard actually moves the table"
+    ],
+    "errors": [],
+    "browser": "156.0.8078.47",
+    "full_receipt_sha256": "622183a81e1bfa587b854e50227a032189d6c0c2b6cfa14d2462cf1e203ec733"
+  }
+}

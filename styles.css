@@ -67,3 +67,13 @@
 #prediction-sensitivity details{margin:1rem 0}
 #prediction-sensitivity summary{display:list-item;font-size:14px;color:#174f73;cursor:pointer}
 #prediction-sensitivity .prediction-sensitivity-scroll:focus-visible{outline:3px solid #9a5a16;outline-offset:2px}
+
+#shared-training-inspection { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #cbd5cc; min-width: 0; }
+#shared-training-inspection p, #shared-training-inspection label, #shared-training-inspection li { color: #344b42; font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
+#shared-training-inspection label { display: block; margin: .65rem 0; }
+#shared-training-inspection input { max-width: 100%; box-sizing: border-box; }
+#shared-training-inspection button { min-height: 40px; margin: .4rem .5rem .4rem 0; white-space: normal; }
+#shared-training-inspection summary { cursor: pointer; color: #245f4e; font-size: 14px; padding: .6rem 0; }
+#shared-training-inspection .shared-training-scroll { max-width: 100%; overflow-x: auto; }
+#shared-training-inspection table { min-width: 650px; font-size: 14px; }
+#shared-training-inspection th, #shared-training-inspection td { padding: .5rem; text-align: left; }

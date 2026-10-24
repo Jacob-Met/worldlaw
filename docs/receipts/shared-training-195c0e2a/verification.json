@@ -1,0 +1,132 @@
+{
+  "schema": "worldlaw.shared-training-receiving/v1",
+  "base_commit": "30937e84700bc268db63d5461b2f5f214abcadda",
+  "base_tree": "58038675e42e48084a7b6f43eba223eba7f19197",
+  "base_git_blobs_verified": 394,
+  "source_sha256": {
+    "src/science/shared-training-check.mjs": "9285a33c00e68cf1aa49dfeab78b25b9d9280233e753da5d551bb8049718c71b",
+    "src/science/shared-training-search.mjs": "2e5691b86e40507086d78d0f8ed80b75bc1810227e3ebc644772b324c2f34117",
+    "src/science/shared-training-replay.mjs": "67f92040f19b7af0d0c21d53be1027774d6c675e0f4f4ba7fd3bae725e0c9984",
+    "src/science/shared-training-panel.mjs": "9dfeb91f371f2298d6496e9d4bc38bcc5a903da8b584178d73bed65928b04ffc",
+    "src/science/prediction-sensitivity-panel.mjs": "5df27a51419c0c0e4a4c538d145f774504ccf5545adfe2cdf8b49264770abce3",
+    "styles.css": "78c8e37607ae15cf56c9f85063d04b2d2483b7af5a3e22ab6499eae338e2c738",
+    "tests/shared-training.test.mjs": "6024966e8a5f4ec3e75ac88b72cc78785ed5adb6697cf9490c67456d18b450d3",
+    "tests/shared-training-replay.test.mjs": "eb6f0352309cbd611067bd9036052b42a63682fce7787229ffa0fc14967c29a9",
+    "scripts/shared-training-browser.mjs": "6b668cdfeebc3e634e9578feae543b10b5ee764a93882a7c6c8a104a998808dd",
+    "docs/SHARED_TRAINING.md": "258d89b193b1966f63ad349e749c6f1176721adbe2e82e93c97dd85a08c73e6c",
+    "README.md": "cf6dec879912de0ab02e3db713a756fee335c550041a45f8ec85ecdea903885e"
+  },
+  "native": {
+    "tests": 553,
+    "pass": 552,
+    "fail": 0,
+    "skipped": 1,
+    "focused_shared_training_tests": 16,
+    "inherited_skip": "live Node and Chromium exchange pending and applied notebooks through actual modules",
+    "smoke_commands_passed": [
+      "npm run smoke",
+      "npm run smoke:trajectory"
+    ]
+  },
+  "runs": [
+    {
+      "name": "joint-contrast",
+      "lane": "joint",
+      "command": [
+        "node",
+        "scripts/prediction-contrast-browser.mjs"
+      ],
+      "environment": {
+        "PLAYWRIGHT_MODULE": "/home/ubuntu/hamon-195c0e2a763d/browser-deps/node_modules/playwright/index.mjs",
+        "BROWSER_EXECUTABLE_PATH": "/usr/local/bin/google-chrome",
+        "BROWSER_ARTIFACT_DIR": "/home/ubuntu/hamon-195c0e2a763d/joint-composed-contrast"
+      },
+      "returncode": 0,
+      "elapsed_seconds": 9.13289745998918,
+      "log": "/home/ubuntu/hamon-195c0e2a763d/joint-contrast-composed.log"
+    },
+    {
+      "name": "joint-browser",
+      "lane": "joint",
+      "command": [
+        "node",
+        "scripts/shared-training-browser.mjs"
+      ],
+      "environment": {
+        "PLAYWRIGHT_MODULE": "/home/ubuntu/hamon-195c0e2a763d/browser-deps/node_modules/playwright/index.mjs",
+        "BROWSER_EXECUTABLE_PATH": "/usr/local/bin/google-chrome",
+        "BROWSER_ARTIFACT_DIR": "/home/ubuntu/hamon-195c0e2a763d/joint-composed-browser"
+      },
+      "returncode": 0,
+      "elapsed_seconds": 11.259354352980154,
+      "log": "/home/ubuntu/hamon-195c0e2a763d/joint-browser-composed.log"
+    },
+    {
+      "name": "joint-marginal",
+      "lane": "joint",
+      "command": [
+        "node",
+        "scripts/prediction-sensitivity-browser.mjs"
+      ],
+      "environment": {
+        "PLAYWRIGHT_MODULE": "/home/ubuntu/hamon-195c0e2a763d/browser-deps/node_modules/playwright/index.mjs",
+        "BROWSER_EXECUTABLE_PATH": "/usr/local/bin/google-chrome",
+        "BROWSER_ARTIFACT_DIR": "/home/ubuntu/hamon-195c0e2a763d/joint-composed-marginal"
+      },
+      "returncode": 0,
+      "elapsed_seconds": 4.78649288698216,
+      "log": "/home/ubuntu/hamon-195c0e2a763d/joint-marginal-composed.log"
+    },
+    {
+      "name": "joint-native",
+      "lane": "joint",
+      "command": [
+        "npm",
+        "run",
+        "verify"
+      ],
+      "environment": {},
+      "returncode": 0,
+      "elapsed_seconds": 25.49809031301993,
+      "log": "/home/ubuntu/hamon-195c0e2a763d/joint-native-composed.log"
+    }
+  ],
+  "browser_groups": {
+    "shared_training": 9,
+    "pairwise_regression": 8,
+    "marginal_regression": 7
+  },
+  "maximum_course": {
+    "synchronousComputeAndDomMs": 78.7999999821186,
+    "throughRenderingOpportunityMs": 103.39999997615814,
+    "status": "verified-interior-witness",
+    "reason": "one-offset-vector-received-by-every-original-box",
+    "trainingRows": 256,
+    "receivingRows": 128,
+    "iterationsPerformed": 19,
+    "matrixTermsUsed": 1867776,
+    "settings": {
+      "trainingRadius": 1,
+      "receivingRadius": 0.01,
+      "maxIterations": 512,
+      "maxProducts": 16777216
+    },
+    "lastReceivingCheck": {
+      "index": 127,
+      "reconstructedPrediction": 0.690292628408661,
+      "refittedPrediction": 0.6902926284086606,
+      "observedTorque": 0.7,
+      "linearMargin": 0.00029262840866105776,
+      "refitMargin": 0.00029262840866061367,
+      "agreementError": 4.440892098500626e-16,
+      "numericalTolerance": 2.2737367544323206e-13,
+      "strictInterior": true
+    },
+    "qualification": "One actual Chromium run at narrow viewport using default nonzero search budgets. Timing includes source preparation, candidate search, public certificate verification and DOM construction; second timestamp includes a rendering opportunity, not certified paint. No convergence or cross-device responsiveness guarantee."
+  },
+  "independent_review": {
+    "mechanism_replay_lifecycle": "/root/skill_translator reviewed actual source; no blocker",
+    "actual_pixels": "/root/mechanism inspected desktop and narrow screenshots and full maximum-course receipt; no blocker"
+  },
+  "qualification": "Numerical evidence in the computed fixed-coordinate fixed-structure least-squares envelope. No certified QR-error, complete optimizer, physical feasibility, acquisition independence, provider or contest qualification."
+}

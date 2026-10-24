@@ -236,3 +236,7 @@ The scalar model inspector can now compare every retained held-out torque readin
 ## Shared-training receiving contrasts
 
 The held-out prediction sensitivity inspector also receives every unordered pair under one shared training-reading perturbation. Marginal ranges remain visible. Inspect signed pair ranges and witnesses, including contradictions hidden by individually overlapping intervals; passing all pairs does not establish joint feasibility. The complete 128-row limit includes all 8128 pairs. Numerical and source qualifications, examples and receiving commands are in [the contrast model](docs/PREDICTION_CONTRAST.md).
+
+### Shared training-reading evidence
+
+The Studio can separately search for one bounded training-reading perturbation that receives the complete held-out course, or a checked weighted separator for the computed linear envelope. It retains all source rows, original error radii, complete witness vectors and raw-source replay. Budget exhaustion remains unresolved. See [the scientific and replay contract](docs/SHARED_TRAINING.md).
