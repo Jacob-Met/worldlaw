@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "actual decoded frames measure translated pivot and changing marker angle; fixed-origin control fails",
+    "angular export carries both source observations and unsupported torque export is unavailable",
+    "v2 reopen preserves original paired evidence; wrong video refuses and matching source reconnects",
+    "actual desktop and 390px source overlays, keyboard pivot correction and reduced-motion layout",
+    "pivot-only occlusion retains marker evidence, pauses tracking and remains a gap after later re-anchor",
+    "marker-only loss preserves independently accepted pivot and produces no angular observation",
+    "a nearby imported timestamp cannot lend its pivot to a different displayed source frame",
+    "schema downgrade refuses atomically; complete browser course has zero page exceptions"
+  ],
+  "metrics": {
+    "frames": 29,
+    "maxAngularError": 5.551115123125783e-17,
+    "maxPivotPixelError": 0,
+    "fixedOriginMaxError": 0.24391673640777323
+  },
+  "errors": [],
+  "scope": "Authored synthetic encoded videos; no physical acquisition or camera-pose qualification"
+}

@@ -3,6 +3,8 @@ import {deriveTorqueObservations, splitTrajectoryEvidence} from '../science/traj
 import {validateDataset} from '../data.mjs';
 
 export const MOTION_SCHEMA = 'worldlaw.motion-notebook/v1';
+// Older readers must refuse a notebook whose angles require a measured pivot.
+export const MOTION_TRACKED_SCHEMA = 'worldlaw.motion-notebook/v2';
 export const MOTION_UNITS = Object.freeze({time:'s',point:'px',position:'rad'});
 export const MAX_MEASUREMENTS = 4000;
 const VALID = new Set(['accepted','manual']);
@@ -40,7 +42,9 @@ function sourceValue(input) {
 }
 function calibrationValue(input,source) {
   if (input===null) return null;
-  insist(input && typeof input==='object','Calibrate a fixed pivot before measuring angles.');
+  insist(input && typeof input==='object','Calibrate a pivot before measuring angles.');
+  const pivotMode=input.pivotMode??'fixed';
+  insist(['fixed','tracked'].includes(pivotMode),'Pivot mode must be fixed or tracked.');
   const result={pivot:point(input.pivot,source,'Pivot'),
     zeroAngle:finite(input.zeroAngle??0,'Reference angle (radians)',{min:-Math.PI,max:Math.PI}),
     direction:input.direction??1,
@@ -49,6 +53,8 @@ function calibrationValue(input,source) {
     maxAngularStep:finite(input.maxAngularStep??Math.PI/2,'Maximum angular step (radians)',{min:.001,max:Math.PI}),
     convention:'image_down_zero_positive_right'};
   insist(result.direction===1 || result.direction===-1,'Angle direction must be +1 or -1.');
+  if(input.pivotMode!==undefined) result.pivotMode=pivotMode;
+  if(pivotMode==='tracked') result.pivotPixelSigma=finite(input.pivotPixelSigma??1,'Assumed pivot error (pixels)',{min:0,max:100});
   if (input.convention!==undefined) insist(input.convention===result.convention,'Unsupported angular calibration convention.');
   return result;
 }
@@ -64,6 +70,18 @@ function rowValue(input,source) {
   if (input.frameIndex!==undefined) insist(Number.isInteger(input.frameIndex)&&input.frameIndex>=0,'Frame index must be a nonnegative integer.');
   if (input.timeBasis!==undefined) insist(['decoded-media-time','requested-seek-time','synthetic-time','user-supplied'].includes(input.timeBasis),'Unsupported measurement clock declaration.');
   if (input.quality!==undefined) insist(input.quality && typeof input.quality==='object'&&!Array.isArray(input.quality),'Tracking quality must be an object of diagnostics.');
+  if(input.pivotMeasurement!=null) {
+    const pivot=input.pivotMeasurement;
+    insist(pivot && typeof pivot==='object' && !Array.isArray(pivot),'Pivot measurement must be an object.');
+    insist(STATUSES.has(pivot.status),'Pivot measurement has an unsupported tracking status.');
+    if(VALID.has(pivot.status)) row.pivotMeasurement.point=point(pivot.point,source,'Measured pivot');
+    else {insist(pivot.point==null,'Rejected pivot results must not contain an observed point.');row.pivotMeasurement.point=null;}
+    if(pivot.candidatePoint!=null) row.pivotMeasurement.candidatePoint=point(pivot.candidatePoint,source,'Diagnostic pivot candidate');
+    // Both points belong to the enclosing decoded frame, never a nearby frame.
+    for(const key of ['time','requestedTime','timeBasis','frameIndex'])
+      insist(pivot[key]===undefined || pivot[key]===row[key],`Pivot ${key} must match its enclosing marker frame.`);
+    if(pivot.quality!==undefined) insist(pivot.quality && typeof pivot.quality==='object'&&!Array.isArray(pivot.quality),'Pivot quality must be an object of diagnostics.');
+  }
   return row;
 }
 
@@ -72,7 +90,7 @@ export function createNotebook({source,units:declaredUnits}={}) {
   return {schema:MOTION_SCHEMA,units:{...MOTION_UNITS},source:sourceValue(source),calibration:null,measurements:[],revisions:[]};
 }
 export function validateNotebook(input) {
-  insist(input && input.schema===MOTION_SCHEMA,`Expected ${MOTION_SCHEMA}.`);
+  insist(input && [MOTION_SCHEMA,MOTION_TRACKED_SCHEMA].includes(input.schema),`Expected ${MOTION_SCHEMA} or ${MOTION_TRACKED_SCHEMA}.`);
   units(input.units);
   const copy=cloneJSON(input);
   const source=sourceValue(input.source);
@@ -80,7 +98,10 @@ export function validateNotebook(input) {
   const measurements=input.measurements.map(row=>rowValue(row,source));
   for(let i=1;i<measurements.length;i++) insist(measurements[i].time>measurements[i-1].time,'Measurement timestamps must increase strictly; duplicate or unordered imported times are refused.');
   insist(input.revisions===undefined || (Array.isArray(input.revisions)&&input.revisions.length<=512),'Notebook revision history exceeds 512 entries.');
-  return {...copy,schema:MOTION_SCHEMA,units:{...MOTION_UNITS},source,calibration:calibrationValue(input.calibration,source),measurements,revisions:copy.revisions??[]};
+  const calibration=calibrationValue(input.calibration,source);
+  insist(input.schema===MOTION_TRACKED_SCHEMA || (calibration?.pivotMode!=='tracked' && !measurements.some(row=>row.pivotMeasurement!=null)),
+    'Measured pivots require the v2 motion notebook schema; v1 readers assume a fixed pivot.');
+  return {...copy,schema:input.schema,units:{...MOTION_UNITS},source,calibration,measurements,revisions:copy.revisions??[]};
 }
 function revision(nb,event) {
   // A bounded edit log; source observations themselves remain the authoritative data.
@@ -90,6 +111,7 @@ function revision(nb,event) {
 export function calibrateNotebook(input,calibration) {
   const nb=validateNotebook(input);
   nb.calibration=calibrationValue(calibration,nb.source);
+  if(nb.calibration?.pivotMode==='tracked') nb.schema=MOTION_TRACKED_SCHEMA;
   return validateNotebook(revision(nb,{type:'calibration',value:nb.calibration}));
 }
 export function upsertMeasurement(input,measurement) {
@@ -97,7 +119,8 @@ export function upsertMeasurement(input,measurement) {
   const index=nb.measurements.findIndex(old=>old.time===row.time);
   if(index>=0) {
     const previous=nb.measurements[index];nb.measurements[index]=row;
-    revision(nb,{type:'replace-measurement',time:row.time,previous:previous.status,previousPoint:previous.point,status:row.status});
+    revision(nb,{type:'replace-measurement',time:row.time,previous:previous.status,previousPoint:previous.point,status:row.status,
+      ...(previous.pivotMeasurement?{previousPivotMeasurement:previous.pivotMeasurement}:{})});
   } else {
     insist(nb.measurements.length<MAX_MEASUREMENTS,`Notebook has reached ${MAX_MEASUREMENTS} measured frames.`);
     nb.measurements.push(row);nb.measurements.sort((a,b)=>a.time-b.time);
@@ -118,7 +141,7 @@ export function truncateMeasurements(input,{afterTime}={}) {
 
 export function deriveAngles(input) {
   const nb=validateNotebook(input);
-  insist(nb.calibration,'Calibrate a fixed pivot before deriving angles.');
+  insist(nb.calibration,'Calibrate a pivot before deriving angles.');
   const c=nb.calibration,samples=[],segments=[];
   let previous=null,segment=null,breakReason=null;
   const warnings=new Set();
@@ -128,7 +151,14 @@ export function deriveAngles(input) {
     if(!VALID.has(row.status)) {
       samples.push({...row,position:null,positionSigma:null,segmentId:null,sourceIndex:i,reason:row.reason??row.status});reset('rejected_measurement');continue;
     }
-    const dx=row.point.x-c.pivot.x,dy=row.point.y-c.pivot.y,radius=Math.hypot(dx,dy);
+    const tracked=c.pivotMode==='tracked',pivot=tracked?row.pivotMeasurement:null;
+    if(tracked && (!pivot || !VALID.has(pivot.status))) {
+      const reason=pivot?`pivot_${pivot.status}`:'pivot_unobserved';
+      samples.push({...row,status:'missing',position:null,positionSigma:null,segmentId:null,sourceIndex:i,reason});
+      warnings.add('pivot_measurement_gaps');reset(reason);continue;
+    }
+    const origin=tracked?pivot.point:c.pivot;
+    const dx=row.point.x-origin.x,dy=row.point.y-origin.y,radius=Math.hypot(dx,dy);
     if(radius<2) {
       samples.push({...row,status:'missing',position:null,positionSigma:null,segmentId:null,sourceIndex:i,reason:'marker_too_close_to_pivot'});reset('marker_too_close_to_pivot');continue;
     }
@@ -144,7 +174,8 @@ export function deriveAngles(input) {
       segment={id:segments.length,startTime:row.time,endTime:row.time,count:0,sourceIndices:[],startReason:breakReason??'start'};
       segments.push(segment);breakReason=null;
     }
-    const sample={...row,position:angle,positionSigma:c.pixelSigma/radius,radius,segmentId:segment.id,sourceIndex:i};
+    const sigma=tracked?Math.hypot(c.pixelSigma,c.pivotPixelSigma):c.pixelSigma;
+    const sample={...row,position:angle,positionSigma:sigma/radius,radius,segmentId:segment.id,sourceIndex:i};
     samples.push(sample);segment.endTime=row.time;segment.count++;segment.sourceIndices.push(i);
     previous={time:row.time,raw,position:angle};
     if(row.timeBasis==='requested-seek-time') warnings.add('nominal_video_timestamps');
@@ -155,11 +186,11 @@ export function deriveAngles(input) {
   return {samples,segments,units:{time:'s',position:'rad',point:'px'},convention:c.convention,
     diagnostics:{acceptedCount:good.length,rejectedCount:samples.length-good.length,segmentCount:segments.length,radiusRatio,warnings:[...warnings],
       limitations:[
-        'A fixed pivot, front-facing camera and approximately planar motion are caller assumptions.',
+        c.pivotMode==='tracked'?'Both image points must describe the same planar mechanism under a fixed image orientation; common translation cancels, camera rotation and perspective do not.':'A fixed pivot, front-facing camera and approximately planar motion are caller assumptions.',
         'A visually plausible wrong pivot cannot be diagnosed from these coordinates alone.',
         'No interpolation crosses a rejected measurement, time gap or excessive angular step.',
         'Angle unwrapping assumes changes smaller than the declared limit; full hidden turns cannot be detected.',
-        'Position sigma is an assumed pixel-error propagation with an exact pivot, not calibrated tracking confidence.',
+        c.pivotMode==='tracked'?'Position sigma uses first-order propagation of caller-assumed independent isotropic marker and pivot errors, not calibrated tracking confidence.':'Position sigma is an assumed pixel-error propagation with an exact pivot, not calibrated tracking confidence.',
         'Template correlation can remain high while rotation, perspective or deformation biases the tracked location.'
       ]}};
 }
@@ -189,6 +220,8 @@ export function exportStudio(input,{inertia,command,positionSigma,segmentId,wind
   finite(inertia,'Known constant inertia (kg·m²)',{min:Number.MIN_VALUE,max:1e9});
   finite(command,'Explicit applied torque command (N·m)',{min:-1e6,max:1e6});
   const {nb,rows}=selected(input,segmentId);
+  insist(nb.calibration.pivotMode!=='tracked',
+    'Tracked-pivot evidence is angle-only. A moving pivot can add inertial terms that this fixed-pivot torque model does not represent. Export angular evidence instead.');
   if(nb.source.kind==='local-video') insist(rows.every(row=>row.timeBasis==='decoded-media-time'),
     'Studio derivation requires decoded media timestamps for local video. Nominal seek positions cannot qualify an acceleration estimate. Export angles for inspection instead.');
   const angular=exportAngular(nb,{segmentId,command});
