@@ -29,7 +29,7 @@ if (initialization.status !== 'ready') {
 }
 ```
 
-`TRACKER_VERSION` is `worldlaw.patch-ncc/v1`. A ready template contains that version, capture dimensions and point, patch settings, intensity standard deviation, and immutable normalized sample values copied from the source. It is fixed throughout tracking. Manual correction may explicitly capture a new template; there is no hidden adaptation or automatic recovery across occlusion. Template values are implementation data; notebook provenance should retain version, capture point, capture frame/time, and actual settings.
+`TRACKER_VERSION` is `worldlaw.patch-ncc/v1`, the unchanged default luminance method. The optional `appearance:'color'` capture uses `COLOR_TRACKER_VERSION`, `worldlaw.patch-color-ncc/v1`, described below. A ready template contains its version and appearance, capture dimensions and point, patch settings, intensity standard deviation, and immutable normalized sample values copied from the source. It is fixed throughout tracking. Manual correction may explicitly capture a new template; there is no hidden adaptation or automatic recovery across occlusion. Template values are implementation data; notebook provenance retains version, appearance, capture point, capture frame/time, and actual settings.
 
 ## Initialization and measurement results
 
@@ -42,7 +42,7 @@ if (initialization.status !== 'ready') {
 | `status` | `accepted`, `ambiguous`, `lost`, or `low-texture` |
 | `point` | Accepted image-derived `{x,y}` only; `null` in every rejected state |
 | `candidatePoint` | Best evaluated match for diagnostic display, including rejected matches; otherwise `null` |
-| `score` | Zero-mean normalized cross-correlation, bounded to `[-1,1]`; `null` if undefined |
+| `score` | Resolved appearance's normalized correlation, bounded to `[-1,1]`; `null` if undefined |
 | `runnerUpScore` | Best valid integer-grid candidate outside the exclusion disk; `null` when none exists |
 | `ambiguityMargin` | Best score minus runner-up score; `null` when no comparison exists |
 | `textureStd` | Intensity standard deviation of best candidate, or maximum searched contrast when all patches fail texture |
@@ -64,6 +64,7 @@ The `(2r+1)²` template is mean-centered and normalized to unit Euclidean energy
 | Setting | Default | Supported range / meaning |
 | --- | --- | --- |
 | `patchRadius` | 7 | Integer 2–24; capture-only, default 15×15 pixels |
+| `appearance` | `luminance` | Capture-only: `luminance` or explicit `color`; retained in template/result provenance |
 | `minTextureStd` | 5 | 0–127.5 intensity levels; tracking defaults to template's capture setting; zero-energy patches always fail |
 | `searchRadius` | 24 | Integer 2–128 pixels in each axis |
 | `minScore` | 0.75 | 0–1; the best match must reach this score |
@@ -108,4 +109,53 @@ Independent inspection of the decoded PNG raster's full search map found the int
 
 The intended marker moves roughly `(44,23)` pixels between these frames, so reducing the search radius to 24 would exclude it. The smaller radius-7 capture lies inside its nearly uniform saturated center and is correctly refused for low texture. This case motivates future measured-motion prediction or validated color identity; relaxing the ambiguity threshold would hide a real association uncertainty. The movie supplies no independent position truth, and its coupled double-pendulum dynamics do not qualify the scalar known-constant-inertia torque assumption.
 
-The intended consumer stops automatic continuation on rejection, keeps rejected samples unmeasured, and permits explicit user correction. It should display correlation as a match score, label generated demonstrations as synthetic, and retain source provenance. Pivot calibration, perspective assumptions, timestamp validity, angle unwrapping, derivatives, uncertainty propagation, and physical-model claims belong to separate consumer contracts.
+The consumer stops automatic continuation on rejection, keeps rejected samples unmeasured, and permits explicit user correction. It displays correlation as a match score, labels generated demonstrations as synthetic, and retains source provenance. Pivot calibration, perspective assumptions, timestamp validity, angle unwrapping, derivatives, uncertainty propagation, and physical-model claims belong to separate consumer contracts.
+
+## Optional color-aware appearance
+
+Motion Lab's **Patch appearance → Brightness + color** selects the optional color mode for the next capture and run, including both visible patches when the pivot is tracked. Existing measurements keep their actual algorithm and scores. Their per-frame diagnostics name the appearance used; save/reopen restores the latest recorded algorithm for the next run. A new source starts in the original luminance mode. Changing the control does not reinterpret earlier coordinates or replace a rejected row. An explicitly started replacement run retains the previous rows in the existing revision history.
+
+The same maintained search, runner-up, boundary and fractional-refinement code evaluates three fixed features per pixel:
+
+```
+L  = 0.299 R + 0.587 G + 0.114 B
+C1 = R - G
+C2 = B - (R + G)/2
+f  = [L - mean(L), C1, C2]
+score = dot(f_template, f_candidate) / (norm(f_template) * norm(f_candidate))
+```
+
+Alpha is applied to each feature before sampling. Chroma channels retain their mean so differently colored but similarly shaped patches can differ. Their weight is fixed at one, defined by the algorithm version, and does not adapt during a run. This method was developed using the first two frames of the known real-video counterexample, so that first association is a development control rather than a blind evaluation. For opaque pixels before quantization/clipping, a common positive RGB gain scales all three features and a common neutral RGB offset cancels. Changes in white balance, channel gains, colored lighting and transparency need not preserve the score.
+
+The original **luminance spatial-variation gate** remains mandatory: a flat saturated patch cannot become a usable template because its color energy is high. Both capture and candidate scoring reject zero luminance variation, even at a zero configured texture threshold. Color-template validation also rejects a normalized color-only vector with no spatial luminance energy. The score and margin thresholds remain 0.75 and 0.06 by default. Same-color duplicates still reject, and the search does not infer an identity or an invisible path.
+
+The existing limit remains **20 million candidate-pixel pairs** per call. A color pair evaluates three features, so this is at most **60 million feature pairs**, with three bounded region arrays instead of one. The Motion consumer separately bounds the combined pixel work of its two patches. There is no larger search region, downsampling, candidate pruning or hidden template adaptation. Native tests independently construct the mathematical score vector from source bytes and cover brightness controls, identical-color duplicates, a wrong-color substitute, flat and transparent inputs, achromatic parity, boundary/geometry/budget refusal and conflicting template provenance. Run `node tests/motion-color-tracker.test.mjs` alongside the original suite.
+
+### Real-source receiving and remaining failure
+
+The new receiving uses the **unchanged original** movie in the existing source manifest, SHA-256 `fbec4761d153c6a5bf486e88ff333aef9cd32b64e1fc87488a594d22b18c9bad`. It does not replace the historical excerpt or its receipt. Download the declared source into a local test directory and provide its path; neither the original movie nor a video excerpt is included in this repository.
+
+```sh
+MOTION_COLOR_VIDEO=/absolute/path/double-pendulum-original.webm \
+  node scripts/motion-color-browser.mjs
+MOTION_APPEARANCE=color \
+  node scripts/motion-tracked-pivot-browser.mjs
+```
+
+The second command uses the existing generated tracked-pivot movies; see `docs/MOTION_TRACKED_PIVOT.md` for fixture generation. Both scripts accept `PLAYWRIGHT_MODULE`, `BROWSER_EXECUTABLE_PATH` and `BROWSER_ARTIFACT_DIR` for installed browser tooling and output paths, and run Chromium with its sandbox enabled.
+
+With capture `(260,132)`, radius14 and the same radius64 search at decoded time0.04s, Chrome156 produced:
+
+| Appearance | Best score | Runner-up | Margin | Outcome |
+| --- | ---: | ---: | ---: | --- |
+| Luminance | 0.973784 | 0.952813 | 0.020971 | Ambiguous, no observed point |
+| Color | 0.943084 | 0.851649 | 0.091435 | Accepted near `(303.989,155.010)` |
+
+These coordinates lie on the visually inspected red marker. The movie has no independently measured center truth, so this establishes an improved source-image association, not calibrated position accuracy. The color run accepts four frames at0.04,0.08,0.12 and0.16s, then **stops at0.20s** with score0.574261 and `score-below-threshold`. The rejected point and angle remain null. The actual browser path retained this failure, the original luminance rejection in revision history, exact source digest, algorithm settings, desktop/narrow source overlays, keyboard mode selection, and unchanged notebook save/reopen. The whole five-frame run took about1.5s on the receiving machine; that is one observation, not a performance guarantee.
+
+Receipt and actual screenshots: [color receiving](receipts/color-tracking-e898/receipt.json), [desktop](receipts/color-tracking-e898/color-1440.png), [390px](receipts/color-tracking-e898/color-390.png). All eight existing tracked-pivot browser groups also ran with both patches explicitly in color mode, including independent marker/pivot occlusion and exact-frame association. Historical luminance behavior remains separately covered.
+
+**Media attribution:** the screenshots adapt pixels from *Double-pendulum-metastable-mode.webm* by Frank Stollmeier and Manuel Schottdorf, [source](https://commons.wikimedia.org/wiki/File:Double-pendulum-metastable-mode.webm), [CC BY-SA4.0](https://creativecommons.org/licenses/by-sa/4.0/). App overlays and resizing identify the transformation; CC BY-SA4.0 applies to the adapted movie imagery. Original source metadata remains in `examples/motion-fixtures-15cc.json`.
+
+The fixed translating patch still cannot establish geometric center accuracy under rotation, long-term tracking, invariance to color changes or the identity of a unique lookalike. The real movie's later refusal remains useful evidence for further registration work. Its coupled dynamics remain outside the scalar known-inertia torque assumption. The current visual increment keeps the source apparatus prominent and its observed/rejected states visible; the inherited long control stack remains an experience limitation on narrow screens.
+

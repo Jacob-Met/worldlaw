@@ -1,0 +1,183 @@
+{
+  "kind": "real-image association receiving, not independent marker ground truth or physical dynamics qualification",
+  "checks": [
+    "original real video retains the documented luminance ambiguity and no observed point",
+    "color resolves the first real association with unchanged gates, preserves later outcomes and prior rejected evidence",
+    "actual desktop and narrow source overlays, keyboard appearance choice and per-frame diagnostics",
+    "source-bound save/reopen restores the latest measured mode; changing next-run controls preserves recorded algorithms"
+  ],
+  "errors": [],
+  "metrics": {
+    "luminanceFirst": {
+      "time": 0.04,
+      "requestedTime": 0.04,
+      "timeBasis": "decoded-media-time",
+      "point": null,
+      "candidatePoint": {
+        "x": 303.98388980956895,
+        "y": 155.0074682083431
+      },
+      "status": "ambiguous",
+      "reason": "competing-match",
+      "quality": {
+        "score": 0.9737839890102344,
+        "runnerUpScore": 0.9528133494643147,
+        "ambiguityMargin": 0.02097063954591971,
+        "textureStd": 91.47167795532248,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 64,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 14,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 260,
+          "y": 132
+        }
+      }
+    },
+    "elapsedMs": 1583,
+    "colorFirst": {
+      "time": 0.04,
+      "requestedTime": 0.04,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 303.9888872521039,
+        "y": 155.00995632521636
+      },
+      "candidatePoint": {
+        "x": 303.9888872521039,
+        "y": 155.00995632521636
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9430838592781416,
+        "runnerUpScore": 0.851649072241461,
+        "ambiguityMargin": 0.09143478703668062,
+        "textureStd": 91.49211014330375,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-color-ncc/v1",
+        "searchRadius": 64,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "color",
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 14,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 260,
+          "y": 132
+        }
+      }
+    },
+    "rows": [
+      {
+        "time": 0,
+        "status": "manual",
+        "point": {
+          "x": 260,
+          "y": 132
+        },
+        "reason": "User marked the visible source pixels."
+      },
+      {
+        "time": 0.04,
+        "status": "accepted",
+        "point": {
+          "x": 303.9888872521039,
+          "y": 155.00995632521636
+        },
+        "reason": null,
+        "score": 0.9430838592781416,
+        "margin": 0.09143478703668062
+      },
+      {
+        "time": 0.08,
+        "status": "accepted",
+        "point": {
+          "x": 303.9888872521039,
+          "y": 155.00995632521636
+        },
+        "reason": null,
+        "score": 0.9430838592781416,
+        "margin": 0.2413433719064474
+      },
+      {
+        "time": 0.12,
+        "status": "accepted",
+        "point": {
+          "x": 324.95987453436703,
+          "y": 176.0064495814349
+        },
+        "reason": null,
+        "score": 0.9288393709770758,
+        "margin": 0.2561305994626637
+      },
+      {
+        "time": 0.16,
+        "status": "accepted",
+        "point": {
+          "x": 338.94126562980955,
+          "y": 198.9751485613077
+        },
+        "reason": null,
+        "score": 0.9055512637245887,
+        "margin": 0.2548380583084846
+      },
+      {
+        "time": 0.2,
+        "status": "lost",
+        "point": null,
+        "reason": "score-below-threshold",
+        "score": 0.5742607694948038,
+        "margin": 0.054735202514250125
+      }
+    ]
+  },
+  "source": {
+    "sha256": "fbec4761d153c6a5bf486e88ff333aef9cd32b64e1fc87488a594d22b18c9bad",
+    "title": "Double-pendulum-metastable-mode.webm",
+    "creators": [
+      "Frank Stollmeier",
+      "Manuel Schottdorf"
+    ],
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Double-pendulum-metastable-mode.webm",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+  },
+  "screenshotMedia": "Source movie pixels are adapted within app screenshots; attribution and CC BY-SA 4.0 apply to the source/adapted media.",
+  "developmentDisclosure": "Color feature choice was developed on the first two source frames. That pair is a development control, not blind validation. Later refusal and source-image ambiguity remain.",
+  "verification": {
+    "parent": "20f252133f08630d24950bd7d1afa46756f7013c",
+    "environment": "Linux x86_64, Node22.23.4, Chrome156.0.8078.47; new receiving scripts set chromiumSandbox:true",
+    "native": {
+      "command": "npm run verify",
+      "tests": 583,
+      "passed": 582,
+      "failed": 0,
+      "skipped": 1,
+      "skip": "inherited optional notebook-exchange check",
+      "launchedSmokes": 2
+    },
+    "browser": {
+      "realColorGroups": 4,
+      "trackedPivotColorGroups": 8,
+      "legacyLuminanceGroups": 9
+    },
+    "independentReview": "Retained chronos worker inspected mathematical normalization, luminance-only texture, alpha, work bounds and both-point provenance; no blocking defect. Inherited runner-up/refinement wording clarified without changing behavior.",
+    "qualification": "Controlled candidate before publication. The native PR records published-head/fresh-archive and merged-tree qualification."
+  }
+}
+

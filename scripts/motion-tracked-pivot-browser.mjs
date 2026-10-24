@@ -10,6 +10,8 @@ const fixtureDir=resolve(process.env.MOTION_FIXTURE_DIR||'.receipts/tracked-pivo
 const artifactDir=resolve(process.env.BROWSER_ARTIFACT_DIR||'.receipts/tracked-pivot-browser');
 await mkdir(artifactDir,{recursive:true});
 const truth=JSON.parse(await readFile(resolve(fixtureDir,'truth.json'),'utf8'));
+const appearance=process.env.MOTION_APPEARANCE||'luminance';
+assert.ok(['luminance','color'].includes(appearance));
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const server=createProductServer();await new Promise((yes,no)=>{server.once('error',no);server.listen(0,'127.0.0.1',yes);});
 const origin=`http://127.0.0.1:${server.address().port}`;
@@ -27,6 +29,7 @@ try {
   const load=async variant=>{await page.locator('#video-file').setInputFiles(source(variant));
     await page.waitForFunction(name=>document.getElementById('source-name').textContent.includes(name),`synthetic-translating-pivot-${variant}`);
     await page.waitForFunction(()=>!document.getElementById('pick-pivot').disabled);
+    if(appearance==='color')await page.locator('#appearance-mode').selectOption('color');
     await page.locator('#pivot-mode').selectOption('tracked');
     await point('#pick-pivot',truth.frames[0].pivot);await point('#pick-marker',truth.frames[0].point);
     await page.locator('#sample-step').fill('.1');await page.locator('#search-radius').fill('20');await page.locator('#track-until').fill('2.8');};
@@ -37,6 +40,11 @@ try {
   assert.equal(clean.value.schema,'worldlaw.motion-notebook/v2');
   assert.equal(clean.value.source.sha256,createHash('sha256').update(await readFile(source('clean'))).digest('hex'));
   assert.ok(clean.value.measurements.length>=28);assert.ok(clean.value.measurements.every(row=>row.pivotMeasurement?.point&&row.point));
+  if(appearance==='color')for(const row of clean.value.measurements) {
+    assert.equal(row.tracker.version,'worldlaw.patch-color-ncc/v1');
+    assert.equal(row.pivotMeasurement.tracker.version,'worldlaw.patch-color-ncc/v1');
+    assert.equal(row.tracker.appearance,'color');assert.equal(row.pivotMeasurement.tracker.appearance,'color');
+  }
   const angles=deriveAngles(clean.value);assert.equal(angles.segments.length,1);
   const angularErrors=[],pivotErrors=[];
   for(const row of angles.samples) {
