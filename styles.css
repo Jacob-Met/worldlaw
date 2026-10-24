@@ -26,3 +26,7 @@
 .history-list strong{font-size:11px;color:#546648;font-weight:550}
 .history-detail{grid-column:2;font-size:9px;line-height:1.7;color:#8b957d}
 .spread-line{display:block}.spread-line strong{display:block;margin-top:4px;font-size:9px;line-height:1.6}
+
+/* Keep the scientific diagnosis readable within the existing residual instrument. */
+#replicate-diagnostics{margin-top:1.25rem;border-top:1px solid var(--line);padding-top:1rem}
+#replicate-diagnostics p{font-size:14px;line-height:1.6;color:var(--ink)}

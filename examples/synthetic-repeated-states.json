@@ -1,0 +1,15 @@
+{
+  "schema": "worldlaw.observations/v1",
+  "source": {"label": "Authored repeated-state arithmetic control; not physical acquisition"},
+  "observations": [
+    {"command":0,"position":1,"rate":0,"jointTorque":1},
+    {"command":0,"position":1,"rate":0,"jointTorque":3},
+    {"command":0,"position":2,"rate":0,"jointTorque":5},
+    {"command":0,"position":2,"rate":0,"jointTorque":7},
+    {"command":0,"position":3,"rate":0,"jointTorque":9},
+    {"command":0,"position":3,"rate":0,"jointTorque":11},
+    {"command":0,"position":4,"rate":0,"jointTorque":13},
+    {"command":0,"position":4,"rate":0,"jointTorque":15}
+  ],
+  "heldOut": []
+}
