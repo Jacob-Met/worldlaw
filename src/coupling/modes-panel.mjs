@@ -10,12 +10,12 @@ export function appendModeInspection(root,notebook,study){
   out.replaceChildren();
   try{
    const analysis=analyzeCouplingNotebook(notebook),reports=analysis.discovery.candidates.map(model=>inspectModeTrajectory(model,study.inputs,study.results.find(r=>r.modelId===model.id)));
-   out.append(node('h3','The same motion in learned coordinates'),node('p','These directions diagonalize each symmetric fitted response after scaling by the declared inertia. They are a change of representation, not newly observed bodies. The original trajectory and its numerical status are retained.'));
+   out.append(node('h3','The same motion in learned coordinates'),node('p','These directions diagonalize each symmetric fitted response after transformation by the declared inertia. They are a change of representation, not newly observed bodies. The original trajectory and its numerical status are retained.'));
    const select=node('select',undefined,{id:'modes-model','aria-label':'Fitted law for coordinate inspection'}),view=node('div');
    for(const r of reports)select.append(node('option',r.label,{value:r.modelId}));out.append(select,view);
    const draw=()=>{
     view.replaceChildren();const r=reports.find(x=>x.modelId===select.value);view.dataset.modeStatus=r.status;
-    view.append(node('p',`Source: ${study.source.label}. Declared inertia [${study.inputs.inertia.map(fmt).join(', ')}] kg·m². ${study.inputs.declaration}`));
+    view.append(node('p',`Source: ${study.source.label}. Declared inertia diagonal [${study.inputs.inertia.map(fmt).join(', ')}]${study.inputs.inertiaCross===undefined?'':'; cross '+fmt(study.inputs.inertiaCross)} kg·m². ${study.inputs.declaration}`));
     if(r.status!=='available'){view.append(node('p',r.reason));return;}
     view.append(node('p',r.qualification));
     if(r.axisAmbiguity)view.append(node('strong','The stiffness eigenvalues are repeated or numerically unresolved. These axis directions are not uniquely identified.'));

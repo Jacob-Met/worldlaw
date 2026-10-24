@@ -41,6 +41,12 @@ extrapolation, and save/reopen the evidence plus dynamic inputs. Quasi-static
 measurements alone do not establish these dynamic assumptions. See
 [the execution contract and receiving](docs/COUPLED_DYNAMICS.md).
 
+Choose **Symmetric inertia matrix** to explore a declared cross-coordinate
+inertial coupling with the same fitted torque evidence. The actual motion,
+mode coordinates and versioned input-only notebook retain the full matrix;
+[the declaration and numerical contract](docs/COUPLED_INERTIA.md) explains
+what this conditional experiment establishes.
+
 After comparing an observed closed loop in Coupling Lab, open **Does circulation
 survive coordinate measurement uncertainty?** to inspect signed polygon work
 under explicitly declared paired angular reading bounds. The inspector reuses

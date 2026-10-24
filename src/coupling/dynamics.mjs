@@ -1,11 +1,15 @@
 /** Conditional two-coordinate dynamics, using the maintained torque predictor.
  * Quasi-static fitting never identifies inertia, damping, or a dynamic equation.
  */
+import {readSymmetricInertia,solveSymmetricInertia} from './inertia.mjs';
 import {predictCoupling, CouplingError, requireThat, finite, pair} from './science.mjs';
 import {analyzeCouplingNotebook, readCouplingNotebook} from './notebook.mjs';
 
 export const INPUT_SCHEMA = 'worldlaw.coupling-dynamics-input/v1';
 export const NOTEBOOK_SCHEMA = 'worldlaw.coupling-dynamics-notebook/v1';
+export const MATRIX_INPUT_SCHEMA = 'worldlaw.coupling-dynamics-input/v2';
+export const MATRIX_NOTEBOOK_SCHEMA = 'worldlaw.coupling-dynamics-notebook/v2';
+export const MATRIX_INTERPRETATION = 'position-torque-with-declared-symmetric-inertia-and-damping';
 export const STEP_BUDGET = 120000;
 const STATE_BOUND = 1e6;
 const UNITS = Object.freeze({position:'rad', rate:'rad/s', inertia:'kg·m²', damping:'N·m·s/rad', time:'s'});
@@ -28,15 +32,17 @@ export function defaultDynamicsInputs() {
     duration:4,samples:241,maxStep:.01,positionTolerance:.0001,rateTolerance:.0001};
 }
 export function readDynamicsInputs(raw) {
-  exactKeys(raw,inputKeys,'Dynamics inputs');
-  requireThat(raw.schema===INPUT_SCHEMA && raw.interpretation==='position-torque-with-declared-inertia-and-damping',
+  const matrix=raw?.schema===MATRIX_INPUT_SCHEMA;
+  exactKeys(raw,matrix?[...inputKeys,'inertiaCross']:inputKeys,'Dynamics inputs');
+  requireThat(matrix?raw.interpretation===MATRIX_INTERPRETATION:raw.schema===INPUT_SCHEMA && raw.interpretation==='position-torque-with-declared-inertia-and-damping',
     'Explicitly declare the position-torque dynamical interpretation.');
   exactKeys(raw.units,Object.keys(UNITS),'Dynamics units');
   requireThat(Object.entries(UNITS).every(([key,value])=>raw.units[key]===value),'Declare the exact dynamics units.');
   const inertia=pair(raw.inertia,'inertia',1e6),damping=pair(raw.damping,'damping',1e6);
   requireThat(inertia.every(x=>x>=1e-9),'Each constant diagonal inertia must be at least 1e-9 kg·m².');
   requireThat(damping.every(x=>x>=0),'Each declared viscous damping coefficient must be nonnegative.');
-  const inputs={schema:INPUT_SCHEMA,interpretation:raw.interpretation,declaration:label(raw.declaration,'Dynamics declaration'),units:{...UNITS},
+  if(matrix)readSymmetricInertia(inertia,raw.inertiaCross);
+  const inputs={schema:matrix?MATRIX_INPUT_SCHEMA:INPUT_SCHEMA,...(matrix?{inertiaCross:raw.inertiaCross}:{}),interpretation:raw.interpretation,declaration:label(raw.declaration,'Dynamics declaration'),units:{...UNITS},
     inertia,damping,initialPosition:pair(raw.initialPosition,'initialPosition'),initialRate:pair(raw.initialRate,'initialRate'),
     duration:positive(raw.duration,'duration',100),samples:raw.samples,maxStep:positive(raw.maxStep,'maxStep',1),
     positionTolerance:positive(raw.positionTolerance,'positionTolerance',1e3),rateTolerance:positive(raw.rateTolerance,'rateTolerance',1e3)};
@@ -64,6 +70,7 @@ function checkedState(state) {
 }
 function integrate(model,inputs,setup,refinement) {
   const steps=setup.substeps*refinement,h=setup.delta/steps,domain=domainOf(model);
+  const mass=inputs.schema===MATRIX_INPUT_SCHEMA?readSymmetricInertia(inputs.inertia,inputs.inertiaCross):null;
   let state=[...inputs.initialPosition,...inputs.initialRate],time=0,firstOutside=null;
   const ranges=state.slice(0,2).map(v=>({min:v,max:v}));
   function mark(values,t) {
@@ -79,7 +86,8 @@ function integrate(model,inputs,setup,refinement) {
   const derivative=(values,t)=>{
     mark(values,t);
     const torque=predictCoupling(model,values.slice(0,2));
-    const acceleration=torque.map((value,axis)=>(value-inputs.damping[axis]*values[axis+2])/inputs.inertia[axis]);
+    const acceleration=mass?solveSymmetricInertia(mass,torque.map((value,axis)=>value-inputs.damping[axis]*values[axis+2]))
+      :torque.map((value,axis)=>(value-inputs.damping[axis]*values[axis+2])/inputs.inertia[axis]);
     requireThat(acceleration.every(Number.isFinite),'Coupled acceleration became nonfinite.','numerical_failure');
     return [values[2],values[3],...acceleration];
   };
@@ -134,11 +142,13 @@ export function compareCoupledDynamics(models,rawInputs) {
   // Validate the real predictor for every model before executing a partial comparison.
   for(const model of models)predictCoupling(model,inputs.initialPosition);
   const results=models.map(model=>compareOne(model,inputs,setup));
-  return {schema:'worldlaw.coupling-dynamics-comparison/v1',inputs,results,
-    diagnostics:{method:'classical_RK4',equation:'q′ = v; v′ᵢ = (predictedTorqueᵢ(q) − dampingᵢ vᵢ) / inertiaᵢ',
+  const matrix=inputs.schema===MATRIX_INPUT_SCHEMA, mass=matrix?readSymmetricInertia(inputs.inertia,inputs.inertiaCross):null;
+  return {schema:matrix?'worldlaw.coupling-dynamics-comparison/v2':'worldlaw.coupling-dynamics-comparison/v1',inputs,results,
+    diagnostics:{method:'classical_RK4',equation:matrix?'q′ = v; M v′ = predictedTorque(q) − diag(damping) v':'q′ = v; v′ᵢ = (predictedTorqueᵢ(q) − dampingᵢ vᵢ) / inertiaᵢ',
+      ...(matrix?{inertia:{matrix:mass.matrix,minimumEigenvalue:mass.minimumEigenvalue,conditionInfinity:mass.conditionInfinity,qualification:mass.qualification}}:{}),
       reservedSteps:setup.requiredSteps,stepBudget:STEP_BUDGET,observationsResetState:false,stateMagnitudeLimit:STATE_BOUND,
       physicalValidity:'not_established',limitations:['Quasi-static observations do not identify this dynamic equation, inertia, damping or physical topology.',
-        'Only constant diagonal inertia and independent viscous damping are assumed.',
+        matrix?'Constant symmetric positive-definite inertia and independent viscous damping are assumed; configuration-dependent inertia and its velocity terms are not modeled.':'Only constant diagonal inertia and independent viscous damping are assumed.',
         'Domain checks inspect evaluated numerical states, not every point of a continuous trajectory.',
         'Agreement of two step sizes is not a bound on numerical error; both can miss unresolved behavior.']}};
 }
@@ -158,11 +168,14 @@ export function readDynamicsNotebook(input) {
     try{input=JSON.parse(input);}catch{throw new CouplingError('Motion notebook must be valid JSON.');}
   }
   exactKeys(input,['schema','evidence','inputs'],'Motion notebook');
-  requireThat(input.schema===NOTEBOOK_SCHEMA,'Choose a WORLDLAW coupled motion notebook.');
-  return {schema:NOTEBOOK_SCHEMA,evidence:readCouplingNotebook(input.evidence),inputs:readDynamicsInputs(input.inputs)};
+  requireThat(input.schema===NOTEBOOK_SCHEMA||input.schema===MATRIX_NOTEBOOK_SCHEMA,'Choose a WORLDLAW coupled motion notebook.');
+  const inputs=readDynamicsInputs(input.inputs),schema=inputs.schema===MATRIX_INPUT_SCHEMA?MATRIX_NOTEBOOK_SCHEMA:NOTEBOOK_SCHEMA;
+  requireThat(input.schema===schema,'Motion notebook and inertia-input versions must agree.');
+  return {schema,evidence:readCouplingNotebook(input.evidence),inputs};
 }
 export function exportDynamicsNotebook(evidence,inputs) {
-  const text=JSON.stringify(readDynamicsNotebook({schema:NOTEBOOK_SCHEMA,evidence,inputs}));
+  const schema=inputs?.schema===MATRIX_INPUT_SCHEMA?MATRIX_NOTEBOOK_SCHEMA:NOTEBOOK_SCHEMA;
+  const text=JSON.stringify(readDynamicsNotebook({schema,evidence,inputs}));
   requireThat(new TextEncoder().encode(text).length<=3*1024*1024,'Motion notebook exceeds 3 MB.');
   return text;
 }

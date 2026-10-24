@@ -1,0 +1,16 @@
+{
+  "sourceBase": "91a2a2086f7fec33bcd093d1c20f2293abbbe362",
+  "scope": "Local candidate composed with current main, exact published head verified separately in native PR",
+  "runtime": "Node v22.23.4; Linux x86_64",
+  "native": {
+    "tests": 725,
+    "pass": 724,
+    "fail": 0,
+    "skipped": 1
+  },
+  "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+  "legacyExactStudies": 8,
+  "coreAnalyticGroups": 7,
+  "browserGroups": 12,
+  "qualification": "Conditional mathematical/software receiving; no physical calibration or deployment"
+}
