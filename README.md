@@ -282,3 +282,7 @@ After a coupled-loop comparison, **Inspect responses hidden by integrated work**
 ### Useful coordinates for conditional coupled motion
 
 After a Coupling Lab motion comparison, **Find coordinates for this motion** derives inertia-scaled orthogonal directions for each symmetric fitted affine law and displays the retained trajectory in those coordinates. The original laws, evidence and solver remain unchanged. Damping cross terms, affine bias, asymmetric-model refusals and repeated-axis ambiguity remain visible. The stated frequencies are conditional and undamped; the feature does not identify inertia, bodies or topology from quasi-static evidence. See [the equations and receiving scope](docs/COUPLED_MODES.md).
+
+### Joint response regions from retained training
+
+A completed coupled circulation comparison now offers **Inspect the joint response region**. Declare a training torque-reading perturbation radius and inspect whether each supplied two-torque reading lies outside the computed shared-error region, even when both separate sensitivity bands overlap. The torque-plane plot retains marginal bands, the supplied reading rectangle and an extremal source-reading witness. Save/reopen retains original training, loop readings and the setting only. This is fixed-coordinate, fixed-structure least-squares sensitivity; agreement for every row does not establish a shared perturbation explaining the whole course. See [the geometry, source custody and limits](docs/COUPLED_RESPONSE_REGIONS.md).
