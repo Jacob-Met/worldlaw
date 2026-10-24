@@ -1,0 +1,9 @@
+# Shared-training receiving contrasts
+
+Composed over e50c352f7054fd381a6baa8d4bc7d5a560a34d91, preserving the maintained stiffness revision. 524 native tests passed, zero failed; one inherited opt-in test skipped. Both maintained smoke consumers passed. All twelve new contrast groups passed. The original seven marginal-browser groups and all eight new contrast-browser groups passed on this composition.
+
+The actual file-import course keeps individually overlapping readings visible beside a computed shared-training contradiction, inspects every pair, changes declared radii, invalidates on model/new reading/source changes, reopens an actual saved notebook and changes selection with the keyboard at 390 pixels. The maximum course receives all 256 training and 128 receiving rows, renders all 8128 options, selects the final pair and matches full-precision DOM endpoints to native computation. Timing in browser.json is one actual run, not a benchmark guarantee or certified paint latency.
+
+The archive contains original authored observation JSON, maximum-course data and the actual downloaded source notebook. Reproduce from repository root with npm run verify, then node scripts/prediction-contrast-browser.mjs and node scripts/prediction-sensitivity-browser.mjs. Set PLAYWRIGHT_MODULE, BROWSER_EXECUTABLE_PATH and distinct BROWSER_ARTIFACT_DIR paths for the receiving environment.
+
+The retained initial focused failure documents a test assumption correction: weakly conditioned zero-radius refit arithmetic is not required to land within an engineering arithmetic screen that does not certify QR error. The production gate was not widened. Necessary pairwise checks do not establish one joint perturbation, physical law adequacy or measured error realization. The narrow consumer preserves the existing horizontal marginal-table inspection; the maximum course has a long full-row report.

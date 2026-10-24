@@ -1,0 +1,66 @@
+import assert from 'node:assert/strict';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createProductServer} from '../server.mjs';
+import {createSession,restoreSession,appendMeasurements} from '../src/session.mjs';
+import {parseObservationText} from '../src/data.mjs';
+import {predictionContrasts} from '../src/science/prediction-contrast.mjs';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const dir=process.env.BROWSER_ARTIFACT_DIR||resolve('.receipts/prediction-contrast');await mkdir(dir,{recursive:true});
+const row=(position,jointTorque=4*position+1)=>({command:0,position,rate:0,jointTorque});
+const fixture={schema:'worldlaw.observations/v1',source:{label:'Authored shared-perturbation contradiction; duplicate coordinates are not independent acquisitions'},observations:[.9999,.99995,1.00005,1.0001].flatMap(x=>[row(x),row(x)]),heldOut:[row(1,4.995),row(1,5.005),row(2,9)]};
+const text=JSON.stringify(fixture,null,2),fixturePath=resolve(dir,'contrast-control.json');await writeFile(fixturePath,text);
+let source=createSession(parseObservationText(text,'contrast-control.json'));
+const modelOf=state=>{const model=state.discovery.candidates.find(m=>m.id==='spring+bias');assert.ok(model);assert.ok(state.discovery.candidates.slice(0,8).some(m=>m.id===model.id));return model;};
+const server=createProductServer();await new Promise((r,j)=>{server.once('error',j);server.listen(0,'127.0.0.1',r);});
+let browser,maxCourse=null;const checks=[],errors=[];
+try{
+ browser=await chromium.launch({headless:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+ const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(`http://127.0.0.1:${server.address().port}`);await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='64');
+ await page.locator('#observation-file').setInputFiles(fixturePath);await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='8');
+ const selectModel=()=>page.locator('#hypothesis-list button').filter({has:page.locator('.hypothesis-name').filter({hasText:/^Linear spring \+ Bias$/})}).click();await selectModel();
+ const host=page.locator('#prediction-sensitivity'),button=host.getByRole('button'),training=host.getByRole('spinbutton',{name:'Training torque-reading radius (N·m)',exact:true}),receiving=host.getByRole('spinbutton',{name:'Held-out torque-reading radius (N·m)',exact:true}),contrast=host.locator('#prediction-contrasts'),pairSelect=host.getByRole('combobox',{name:'Receiving contrast pair',exact:true});
+ const compare=async()=>{
+  const native=predictionContrasts(modelOf(source),source.discovery.observations,source.base.heldOut,{trainingRadius:Number(await training.inputValue()),receivingRadius:Number(await receiving.inputValue())});
+  assert.equal(await host.locator('tbody tr').count(),native.marginal.receivingCount);
+  const shown=await host.locator('tbody tr').evaluateAll(rows=>rows.map(r=>({center:Number(r.dataset.center),radius:Number(r.dataset.radius),status:r.dataset.status})));
+  assert.deepEqual(shown,native.marginal.rows.map(r=>({center:r.refittedPrediction,radius:r.radius,status:r.status})));
+  assert.equal(await pairSelect.locator('option').count(),native.expectedPairCount);
+  const selected=await contrast.locator('.contrast-detail').evaluate(e=>({index:Number(e.dataset.pairIndex),firstRow:Number(e.dataset.firstRow),secondRow:Number(e.dataset.secondRow),center:Number(e.dataset.center),radius:Number(e.dataset.radius),observedCenter:Number(e.dataset.observedCenter),observedRadius:Number(e.dataset.observedRadius),status:e.dataset.status}));
+  const p=native.pairs[selected.index];assert.deepEqual(selected,{index:p.index,firstRow:p.firstRow,secondRow:p.secondRow,center:p.center,radius:p.radius,observedCenter:p.observedCenter,observedRadius:p.observedRadius,status:p.status});
+  const endpoints=await contrast.locator('.contrast-detail').evaluate(e=>({prediction:[Number(e.dataset.predictionLower),Number(e.dataset.predictionUpper)],observation:[Number(e.dataset.observationLower),Number(e.dataset.observationUpper)]}));
+  assert.deepEqual(endpoints,{prediction:p.prediction,observation:p.observation});return native;
+ };
+ await receiving.fill('0');await button.focus();await page.keyboard.press('Enter');
+ const native=await compare();assert.equal(native.marginal.outsideCount,0);assert.equal(native.outsideCount,1);assert.equal(native.expectedPairCount,3);
+ assert.match(await contrast.innerText(),/1 of 3 receiving pairs outside/);assert.match(await contrast.innerText(),/marginal dispositions are not-excluded and not-excluded/);checks.push('actual imported marginal overlaps retain a decisive shared-perturbation pair contradiction');
+ await host.screenshot({path:resolve(dir,'desktop-panel.png')});
+ await pairSelect.selectOption({value:'1'});await compare();assert.match(await contrast.innerText(),/Rows 1 minus 3/);await pairSelect.selectOption({value:'2'});await compare();assert.match(await contrast.innerText(),/Rows 2 minus 3/);checks.push('every pair is selectable with orientation and native-equal interval/witness identity');
+ await receiving.fill('0.006');assert.equal(await contrast.count(),0);assert.equal(await host.locator('tbody tr').count(),0);await button.click();const relaxed=await compare();assert.equal(relaxed.outsideCount,0);assert.match(await contrast.innerText(),/not joint feasibility/);checks.push('relaxed declared reading radius removes definite contradiction without a joint-feasibility claim');
+ await page.locator('#hypothesis-list button[aria-pressed="false"]').first().click();assert.equal(await contrast.count(),0);await selectModel();await receiving.fill('0');await button.click();await compare();
+ await page.locator('#command').fill('0');await page.locator('#position').fill('1');await page.locator('#rate').fill('0');await page.locator('#measured-torque').fill('5');await page.locator('#run-experiment').click();await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='9');assert.equal(await contrast.count(),0);
+ source=appendMeasurements(source,[row(1,5)]);await selectModel();await receiving.fill('0');await button.click();await compare();checks.push('model and appended-reading changes clear previously populated marginal and pair results');
+ const download=page.waitForEvent('download');await page.locator('#export-session').click();const saved=resolve(dir,'source-notebook.json');await (await download).saveAs(saved);
+ await page.locator('#session-file').setInputFiles(saved);await page.waitForFunction(()=>document.querySelector('#notice').textContent.includes('Reopened the notebook'));assert.equal(await contrast.count(),0);source=restoreSession(await readFile(saved,'utf8'));await selectModel();await receiving.fill('0');await button.click();await compare();checks.push('saved source reopens without derived results and recomputes pair contradiction from all nine training readings');
+ await page.setViewportSize({width:390,height:844});await contrast.scrollIntoViewIfNeeded();await pairSelect.focus();await page.keyboard.press('Home');await page.keyboard.press('ArrowDown');await page.keyboard.press('Tab');assert.equal(await pairSelect.inputValue(),'1');await compare();await host.screenshot({path:resolve(dir,'narrow-panel.png')});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks.push('narrow consumer keyboard selects a different pair and remains within viewport');
+ const single={...fixture,heldOut:[row(1,5)]};const singlePath=resolve(dir,'one-receiving-row.json');await writeFile(singlePath,JSON.stringify(single));await page.locator('#observation-file').setInputFiles(singlePath);await page.waitForFunction(()=>document.getElementById('heldout-count').textContent==='1');await selectModel();await button.click();assert.equal(await host.locator('tbody tr').count(),1);assert.match(await contrast.innerText(),/unassessed: insufficient-pairs/);assert.equal(await pairSelect.count(),0);checks.push('single receiving row keeps its marginal result while pair assessment is explicitly unavailable');
+ // Maximum native contract: all 256 training/128 receiving/8128 pairs, not a subset.
+ const maximum={...fixture,source:{label:'Authored maximum-course receiving control; repeated numeric rows are not independent acquisitions'},observations:Array.from({length:32},()=>fixture.observations.map(r=>({...r}))).flat(),heldOut:Array.from({length:128},(_,i)=>row(1+i/127))};
+ const maximumText=JSON.stringify(maximum),maximumPath=resolve(dir,'maximum-course.json');await writeFile(maximumPath,maximumText);
+ await page.locator('#observation-file').setInputFiles(maximumPath);
+ await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='256'&&document.getElementById('heldout-count').textContent==='128');
+ source=createSession(parseObservationText(maximumText,'maximum-course.json'));await selectModel();await training.fill('0.01');await receiving.fill('0.001');
+ const timing=await page.evaluate(async()=>{
+  const host=document.getElementById('prediction-sensitivity'),start=performance.now();host.querySelector('button').click();const synchronousMs=performance.now()-start;
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  return {synchronousComputeAndDomMs:synchronousMs,throughRenderingOpportunityMs:performance.now()-start,receivingRows:host.querySelectorAll('tbody tr').length,pairOptions:host.querySelectorAll('[aria-label="Receiving contrast pair"] option').length};
+ });
+ assert.equal(timing.receivingRows,128);assert.equal(timing.pairOptions,8128);await pairSelect.selectOption({value:'8127'});
+ const maximumNative=await compare(),last=maximumNative.pairs[8127];assert.equal(last.firstRow,126);assert.equal(last.secondRow,127);
+ const displayedEndpoints=await contrast.locator('.contrast-detail').evaluate(e=>({prediction:[Number(e.dataset.predictionLower),Number(e.dataset.predictionUpper)],observation:[Number(e.dataset.observationLower),Number(e.dataset.observationUpper)]}));
+ assert.deepEqual(displayedEndpoints,{prediction:last.prediction,observation:last.observation});assert.match(await contrast.innerText(),/Rows 127 minus 128/);assert.match(await contrast.innerText(),/of 8128 receiving pairs/);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ maxCourse={...timing,trainingRows:256,receivingRows:128,expectedPairs:8128,selectedPair:8127,selectedRows:[126,127],displayedEndpoints,nativeEndpoints:{prediction:last.prediction,observation:last.observation},qualification:'Single actual Chromium computation at the narrow viewport; elapsed time includes maintained fit, complete pair computation and DOM construction. Second timestamp includes a rendering opportunity, not a certified paint or interaction-latency benchmark. No averaging or cross-device performance guarantee.'};
+ await host.screenshot({path:resolve(dir,'maximum-course-narrow.png')});checks.push('maximum 256-training/128-receiving course renders all 8128 pairs and final pair endpoints agree with native computation');
+ assert.deepEqual(errors,[]);await writeFile(resolve(dir,'verification.json'),JSON.stringify({checks,errors,browser:await browser.version(),native,maxCourse},null,2));console.log(JSON.stringify({checks,errors,maxCourse}));
+}finally{await browser?.close();await new Promise(r=>server.close(r));}

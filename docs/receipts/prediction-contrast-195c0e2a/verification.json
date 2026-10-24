@@ -1,0 +1,76 @@
+{
+  "schema": "worldlaw.prediction-contrast-receiving/v1",
+  "base_commit": "e50c352f7054fd381a6baa8d4bc7d5a560a34d91",
+  "source_sha256": {
+    "src/science/prediction-contrast.mjs": "68180a9c1f2df6df0d6f27c649851e871c7c9d1d88cc3aa45d8a66b59eff2c30",
+    "src/science/prediction-contrast-panel.mjs": "08697391e0a5a984cad17ea263f6109e357e533b73bf6f0f58472f30a17c92a2",
+    "src/science/prediction-sensitivity-panel.mjs": "e3724b5e55de07076abcc5d4b22013af94a49e5b3fbde66274a805e9a8c9a9ca",
+    "tests/prediction-contrast.test.mjs": "30c1167c614a0e7a7bdda39e244ddecbca178f28c6c9d0e7850014969abfd38a",
+    "scripts/prediction-contrast-browser.mjs": "85423bf143865e40aa3687b427c351f87e83e8040ab00d778716883253f964d5",
+    "docs/PREDICTION_CONTRAST.md": "09bcf42d4259ed60c2afeef0c6b4c6f338460d82ebc2f0a38d28740d98b5af2c",
+    "README.md": "abb17df9629d6f85962ded6b0c7426eb8822bdfeaeb0ffaa2ca2e66c244cc151"
+  },
+  "native": {
+    "command": "npm run verify",
+    "tests": 525,
+    "pass": 524,
+    "fail": 0,
+    "skipped": 1,
+    "smokes": [
+      "maintained product discovery/measurement/reopen",
+      "maintained trajectory source/forecast/reopen"
+    ],
+    "skip": "One inherited opt-in integration test; no new skips."
+  },
+  "focused": {
+    "tests": 12,
+    "pass": 12,
+    "fail": 0,
+    "initial_attempt": "11/12; an overstrong weak-conditioning zero-radius boundary assertion failed. Kept weak-case zero-radius arithmetic assertion, used a stable independent bias-only cancellation boundary oracle, and clarified computed-envelope wording. Production arithmetic/tolerances unchanged."
+  },
+  "browser": {
+    "new_groups": 8,
+    "maintained_marginal_groups": 7,
+    "page_errors": [],
+    "maximum_course": {
+      "synchronousComputeAndDomMs": 93.2999999821186,
+      "throughRenderingOpportunityMs": 222.69999998807907,
+      "receivingRows": 128,
+      "pairOptions": 8128,
+      "trainingRows": 256,
+      "expectedPairs": 8128,
+      "selectedPair": 8127,
+      "selectedRows": [
+        126,
+        127
+      ],
+      "displayedEndpoints": {
+        "prediction": [
+          -0.9763779527555088,
+          0.9133858267712143
+        ],
+        "observation": [
+          -0.03349606299212593,
+          -0.029496062992125927
+        ]
+      },
+      "nativeEndpoints": {
+        "prediction": [
+          -0.9763779527555088,
+          0.9133858267712143
+        ],
+        "observation": [
+          -0.03349606299212593,
+          -0.029496062992125927
+        ]
+      },
+      "qualification": "Single actual Chromium computation at the narrow viewport; elapsed time includes maintained fit, complete pair computation and DOM construction. Second timestamp includes a rendering opportunity, not a certified paint or interaction-latency benchmark. No averaging or cross-device performance guarantee."
+    }
+  },
+  "archive_sha256": "803e9cffd70c3d1f750ce705860924302bd7a1f2016ddd4793018e3db0c2fdc6",
+  "review": {
+    "mechanism": "Independent retained MECHANISM source/test/consumer review: no blockers; accepted stable zero-radius oracle and clarified wording. No independent runtime execution claimed.",
+    "pixels": "Independent retained Skill Translator reviewer inspected actual desktop, narrow and maximum overview plus receipt: no blocker; maximum overview is not individual-row pixel legibility proof. Root also inspected actual narrow consumer."
+  },
+  "qualification": "Complete necessary pairwise numerical checks of a fixed-coordinate, fixed-structure shared-training envelope. Passing every pair is not joint feasibility; arithmetic screens do not certify all QR error. Authored software controls, no physical/provider/contest qualification."
+}
