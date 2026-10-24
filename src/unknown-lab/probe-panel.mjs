@@ -21,7 +21,7 @@ export function mountProbePanel(){
  <p class="annotation">Screening bounds are not calibrated confidence. Compatible rate or angle response does not prove friction, restoring forces or physical memory. Mixed responses, nonlinear instrument drift and confounding remain possible. Changing training recomputes the model; challenge values only test frozen predictions.</p>`;
  document.querySelector('.scientific-limit').before(section);
  const $=id=>section.querySelector('#'+id);let study=null,readVersion=0;
- function adopt(next){const result=analyzeProbeStudy(next);study=next;render(result);$('probe-export').disabled=false;$('probe-error').textContent='';}
+ function adopt(next){const result=analyzeProbeStudy(next);study=next;render(result);$('probe-export').disabled=false;$('probe-error').textContent='';document.dispatchEvent(new CustomEvent('worldlaw-probe-study-change'));}
  function render(r){
   $('probe-state').textContent=r.fit.status.toUpperCase().replaceAll('-',' ');
   $('probe-summary').textContent=`${r.source??'No'} evidence · preparation ${study.preparation.id}, ${study.preparation.duration}s; recovery ${study.preparation.recovery}s. `+(r.fit.reasons.join(' ')||'Predictions below use training-only coefficients; failed alternatives remain visible.');
@@ -49,4 +49,5 @@ export function mountProbePanel(){
  $('probe-open').onclick=()=>$('probe-file').click();
  $('probe-file').onchange=async e=>{const version=++readVersion,file=e.target.files?.[0];if(!file)return;try{if(file.size>4000000)throw Error('Use JSON below 4 MB.');const next=importProbeStudy(await file.text());if(version===readVersion)adopt(next);}catch(error){if(version===readVersion)$('probe-error').textContent=error.message;}finally{e.target.value='';}};
  $('probe-export').onclick=()=>{if(!study)return;const url=URL.createObjectURL(new Blob([exportProbeStudy(study)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='worldlaw-probe-study.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+ return {getStudy:()=>study?structuredClone(study):null,adopt:next=>{readVersion++;adopt(next);}};
 }
