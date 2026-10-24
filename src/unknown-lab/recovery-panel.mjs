@@ -17,7 +17,7 @@ export function mountRecoveryPanel(currentEvidence){
  <div id="recovery-plot"></div><div class="recovery-scroll" tabindex="0" aria-label="Recovery model results"><table><thead><tr><th>Executable response</th><th>Amplitude N·m</th><th>Training screen</th><th>Separate challenge</th></tr></thead><tbody id="recovery-models"></tbody></table></div>
  <p id="recovery-qualification"></p><div class="recovery-controls"><button id="recovery-export" type="button">Export recovery evidence</button><button id="recovery-import" type="button">Import recovery evidence</button><input id="recovery-file" type="file" accept=".json,application/json" hidden></div>`;
  document.querySelector('.scientific-limit').before(host);
- const $=id=>host.querySelector('#'+id);let notebook=recoveryFixture();
+ const $=id=>host.querySelector('#'+id);let notebook=recoveryFixture();const listeners=new Set();
  const handle=fn=>{try{fn();$('recovery-error').hidden=true;}catch(e){$('recovery-error').hidden=false;$('recovery-error').textContent=e.message;}};
  function plot(result){
   const points=[...result.fit.training,...result.tests[0].rows];
@@ -39,10 +39,11 @@ export function mountRecoveryPanel(currentEvidence){
   $('recovery-protocol').value=notebook.protocolNote;
   $('recovery-source').textContent=notebook.source==='synthetic'?'DECLARED VIRTUAL COURSE · NOT PHYSICAL OBSERVATIONS':'USER-DECLARED MEASUREMENTS · CUSTODY UNVERIFIED';
   $('recovery-state').textContent=notebook.training.length+' training recordings / '+notebook.challenges.length+' separate challenges';
-  if(notebook.training.length<2){$('recovery-models').replaceChildren();$('recovery-plot').replaceChildren();$('recovery-qualification').textContent='Add two distinct training delays to freeze recovery forecasts.';return;}
+  if(notebook.training.length<2){$('recovery-models').replaceChildren();$('recovery-plot').replaceChildren();$('recovery-qualification').textContent='Add two distinct training delays to freeze recovery forecasts.';for(const listener of listeners)listener();return;}
   const result=evaluateRecovery(notebook);$('recovery-models').replaceChildren();
   result.fit.candidates.forEach((c,i)=>{const tr=document.createElement('tr');for(const value of [c.kind==='decay'?'A exp(−delay / '+c.tauSeconds+' s)':c.kind==='zero'?'Zero contrast':'Persistent A',fmt(c.amplitude),c.status,result.tests[i].status]){const td=document.createElement('td');td.textContent=value;tr.append(td);}tr.firstChild.style.color=colors[i%colors.length];$('recovery-models').append(tr);});
   $('recovery-qualification').textContent='White circles: training. Amber squares: separate challenges. Solid: compatible training hypothesis; dashed: refused. '+result.qualification;plot(result);
+  for(const listener of listeners)listener();
  }
  $('recovery-load').onclick=()=>handle(()=>{notebook=recoveryFixture($('recovery-demo').value);render();});
  $('recovery-reset').onclick=()=>handle(()=>{const evidence=currentEvidence();notebook={schema:RECOVERY_SCHEMA,source:evidence.source,protocolId:'fixed-preparation',protocolNote:'Describe the same preparation and matched readout for every recording.',amplitudeBounds:[-1,1],tauSeconds:[.5,1,2,4,8],training:[],challenges:[]};render();});
@@ -60,4 +61,5 @@ export function mountRecoveryPanel(currentEvidence){
  $('recovery-import').onclick=()=>$('recovery-file').click();
  $('recovery-file').onchange=async e=>{try{const f=e.target.files?.[0];if(!f)return;if(f.size>2000000)throw new Error('Use JSON under 2 MB.');const next=importRecovery(await f.text());evaluateRecovery(next);notebook=next;render();$('recovery-error').hidden=true;}catch(err){$('recovery-error').hidden=false;$('recovery-error').textContent=err.message;}finally{e.target.value='';}};
  render();
+ return {getStudy:()=>structuredClone(notebook),getPairedEvidence:()=>structuredClone(currentEvidence()),onChange:listener=>listeners.add(listener),replaceStudy:next=>{const checked=importRecovery(exportRecovery(next));evaluateRecovery(checked);notebook=checked;render();}};
 }
