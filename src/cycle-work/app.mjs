@@ -1,3 +1,4 @@
+import {mountRefinement} from './refinement-panel.mjs';
 import {evaluateCycle,cycleExample,exportCycle,importCycle} from './core.mjs';
 const $=id=>document.getElementById(id),ns='http://www.w3.org/2000/svg';
 let generation=0, rendered=null, renderedWidth=0;
@@ -48,3 +49,5 @@ $('open').addEventListener('change',async()=>{
  finally{if($('open').files[0]===file)$('open').value='';}
 });
 adopt(cycleExample());
+
+mountRefinement();

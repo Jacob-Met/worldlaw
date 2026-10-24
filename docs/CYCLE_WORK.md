@@ -30,3 +30,8 @@ Actual remote browser artifacts, exact composition and review results belong in 
 ### Exact arithmetic enclosure control
 
 `tests/cycle-work-exact-enclosure.test.mjs` independently checks 160 deterministic cases (seed 418617), including subnormal inputs, mixed magnitudes and the 4096-sample limit. A BigInt dyadic oracle compares interval endpoints without converting the exact oracle back to floating point. It covers shared torque coefficients and cancellation independently of the production arithmetic.
+
+
+## Refine the sampling
+
+The same instrument can propose a frozen grid under explicit per-segment curvature bounds and receive separately supplied new torque readings. Coarse and refined enclosures remain conditional on the declared response branch, smoothness and measurement bounds. See [Curvature-bounded refinement](CYCLE_REFINEMENT.md).
