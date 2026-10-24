@@ -1,0 +1,75 @@
+{
+  "base_commit": "cca4973ea70efe94a21c880652369f1e1a54d29c",
+  "candidate": "Frozen runtime from local2aa57e2; duplicate-acquisition browser assertion corrected in03365bf; lead made screenshot scrolling instantaneous to capture the actual panel.",
+  "files": {
+    "docs/UNKNOWN_DURATION_RESPONSE.md": {
+      "sha256": "2b310153dac6fd2b6862bff5e79b590ad67a981418c1d6ac7a7c31f1fc817c62"
+    },
+    "scripts/unknown-duration-browser.mjs": {
+      "sha256": "9ad80422f1398d6d577b51a2590351484ebd03364e1b495ab23b2b74f638d31c"
+    },
+    "src/unknown-lab/app.mjs": {
+      "sha256": "292d59edf4b43eae41dee0e97ccebb6bf1cdbb5ae98fbd13324dda2dfb437b24"
+    },
+    "src/unknown-lab/duration-panel.mjs": {
+      "sha256": "1a50bea970e550bb6fde80dfbf3c37e27f87b15f3dc09d0b60debe80e77ba44e"
+    },
+    "src/unknown-lab/duration-response.mjs": {
+      "sha256": "181db40575b3f99227fcb4b62eb9e38be2b79ff57c2d0d1400b15496287e82ee"
+    },
+    "tests/unknown-duration.test.mjs": {
+      "sha256": "4b3bdec8975f9ab77808c70549b0de31c19c5da1b852ccfef0d399d68d1ca5b2"
+    },
+    "unknown-lab.css": {
+      "sha256": "61c8209c78403f8473f4628cc8e31cdb0cd557a6e53b236be89d83a2ca313040"
+    },
+    "unknown-lab.html": {
+      "sha256": "9823e75a852707848b2a832269bd39bc6b2e01ad4dbaa81916dfd30c627693cf"
+    }
+  },
+  "native": {
+    "command": "npm test",
+    "runtime": "Node22.23.4 on authorized Linux RDC host",
+    "tests": 264,
+    "passed": 263,
+    "failed": 0,
+    "skipped": 1
+  },
+  "launched_smoke": {
+    "command": "npm run smoke",
+    "passed": true
+  },
+  "browser": {
+    "command": "BROWSER_EXECUTABLE_PATH=/usr/local/bin/google-chrome BROWSER_ARTIFACT_DIR=<receipt-directory> node scripts/unknown-duration-browser.mjs",
+    "checks": 9,
+    "passed": true,
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "exceptions": [],
+    "offsite": [],
+    "evidence": "Authored virtual acquisitions only"
+  },
+  "original_consumer_regression": {
+    "base_commit": "d04a780c16d21a595b8663b230a1e6f0faf90b08",
+    "command": "node scripts/unknown-lab-browser.mjs",
+    "checks": 16,
+    "passed": true,
+    "exceptions": [],
+    "offsite": []
+  },
+  "review": "Lead independently reviewed training-only feasible amplitude intersection, one shared amplitude across all qualified challenges, exact acquisition reuse rejection, source-class separation and UI export/reopen. Fixed contradiction precedence over unqualified challenges and made the finite amplitude bound explicit before receiving. Current-main angular-reference and prediction-baseline updates have no overlapping runtime paths and are preserved.",
+  "retained_failures": [
+    "A first composed-source attempt refused an exact-base check because the local text mirror had one extra trailing LF on three shared files. No candidate writes occurred. The difference was subsequently proved by git-blob hashing and all candidate files were applied with SHA256 readback before the passing run.",
+    "The first new browser course expected older duplicate-acquisition wording. The product refused the duplicate and retained one row; the assertion was corrected and all9 groups passed.",
+    "Initial screenshots caught an intermediate smooth-scroll position. Instant target scrolling was added to the harness, all9 groups passed again, and the390px actual duration panel was visually inspected."
+  ],
+  "limits": [
+    "The offered family is zero response, a constant artifact, and seven finite saturating time constants; amplitude is bounded to[-100,100]N·m.",
+    "Screen bounds and finite model survival are not calibrated confidence, continuous parameter identification or physical causal validation.",
+    "Challenge values do not refit training parameters. Acquisition independence and measured provenance are user-declared; actual physical experiments remain unverified.",
+    "No cloud/provider workload, deployment or competition qualification occurred."
+  ]
+}
