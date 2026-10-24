@@ -4,10 +4,23 @@ import {defaultKnots,predictStiffness,evaluateStiffness} from './science.mjs';
 import {stiffnessExample,exampleSettings} from './fixture.mjs';
 import {EXPERIMENT_SCHEMA,REVISED_EXPERIMENT_SCHEMA,importStiffnessExperiment,exportStiffnessExperiment} from './experiment.mjs';
 import {createExperimentPanel} from './experiment-panel.mjs';
+import {createKnotProfilePanel} from './knot-profile-panel.mjs';
 const $=id=>document.getElementById(id);
 const num=(n,d=4)=>n===null||n===undefined?'unavailable':Number(n.toPrecision(d)).toString();
-let study=null,inspected=null,epoch=0,view='response';
+let study=null,inspected=null,epoch=0,view='response',gridOverlay=null;
 const experimentPanel=createExperimentPanel({onChange:next=>install(next.study),onActivity:()=>{epoch++;},onError:fail});
+const knotProfilePanel=createKnotProfilePanel({onActivity:()=>{epoch++;},onError:fail,
+ onInspect:(model,compare)=>{inspected=model;gridOverlay=compare?study.fit.selected:null;render();},
+ onOffer:knot=>{
+  const tokens=$('knots').value.split(',').map(x=>x.trim());
+  if(tokens.some(x=>!x||!/^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(x)))throw Error('The edited grid must contain decimal angles before a computed angle can be added.');
+  const knots=tokens.map(Number);
+  if(knots.some(x=>!Number.isFinite(x)||Math.abs(x)>1e6)||new Set(knots).size!==knots.length)throw Error('Fit or correct the edited grid before adding a computed angle.');
+  if(!knots.includes(knot)){if(knots.length>=101)throw Error('The declared grid already contains 101 angles. Remove one before adding another.');knots.push(knot);}
+  $('knots').value=knots.sort((a,b)=>a-b).join(', ');
+  $('knot-profile-offer-note').textContent='The computed angle is in the editable declaration. Fit declared explanations to start the revised study; save the existing experiment first if its acquisition history is needed.';
+  $('settings').querySelector('button[type=submit]').focus();
+ }});
 const NS='http://www.w3.org/2000/svg';
 function shape(tag,attrs,text){
  const n=document.createElementNS(NS,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));
@@ -26,7 +39,7 @@ function stateText(){
  return ['PIECEWISE PREFERRED','This declared change angle leads the training comparison. Challenge it with separate measurements.'];
 }
 function renderControls(){
- $('knots').value=study.settings.knots.map(x=>num(x,12)).join(', ');
+ $('knots').value=study.settings.knots.join(', ');
  for(const id of ['bias','command','rate'])$(id).checked=study.settings.nuisanceTerms.includes(id);
  $('noise').value=study.settings.noiseSigma;$('delta').value=study.settings.ambiguityDelta;
  const d=study.fit.domain.position;$('probe-angle').min=d.min;$('probe-angle').max=d.max;
@@ -34,14 +47,14 @@ function renderControls(){
  $('probe-angle').value=Math.max(d.min,Math.min(d.max,study.fit.selected?.knot??0));
 }
 function install(next){
- study=next;inspected=study.fit.selected;renderControls();$('error').textContent='';render();
+ study=next;inspected=study.fit.selected;gridOverlay=null;renderControls();knotProfilePanel.update(study);$('knot-profile-offer-note').textContent='';$('error').textContent='';render();
 }
 function cell(row,value){const c=document.createElement('td');c.textContent=value;row.append(c);return c;}
 function render(){
  const f=study.fit,[verdict,detail]=stateText();
  $('source-label').textContent=study.dataset.source.label+' · declared '+study.dataset.source.declaredKind+
   ' · '+study.dataset.observations.length+' training / '+study.dataset.heldOut.length+' separate checks';
- $('verdict').textContent=verdict;$('decision-detail').textContent=detail;
+ $('verdict').textContent=verdict;$('decision-detail').textContent=(gridOverlay?'Declared-grid study, before offering the computed angle: ':'')+detail;
  const table=$('comparison-body');table.replaceChildren();
  for(const [name,model]of [['Global baseline',f.baseline],...(Object.hasOwn(f,'originalSelected')?[['Original family winner',f.originalSelected]]:[]),['Training winner',f.selected],...(inspected&&inspected!==f.selected?[['Inspected alternative',inspected]]:[])]){
   const tr=document.createElement('tr');cell(tr,name+(model?.knot!==null&&model?.knot!==undefined?' · κ '+num(model.knot)+' rad':''));
@@ -61,7 +74,7 @@ function render(){
  for(const p of f.profile){
   const tr=document.createElement('tr');if(p.model===inspected)tr.className='selected';if(!p.model)tr.className='refused';
   const c=cell(tr,'');const button=document.createElement('button');button.textContent=p.family==='cubic'?'Smooth cubic · origin '+num(p.origin)+' rad':p.knot===null?'Global':num(p.knot)+' rad';button.disabled=!p.model;
-  button.setAttribute('aria-label','Inspect '+button.textContent);button.addEventListener('click',()=>{inspected=p.model;render();});c.append(button);
+  button.setAttribute('aria-label','Inspect '+button.textContent);button.addEventListener('click',()=>{inspected=p.model;gridOverlay=null;render();});c.append(button);
   cell(tr,p.model?num(p.model.metrics.rmse):'—');cell(tr,p.model&&f.selected?num(p.model.metrics.score-f.selected.metrics.score):'—');
   cell(tr,p.status==='fitted'?(p.family==='cubic'?p.distinctPositions+' distinct angles; full numerical rank':p.support?p.support.left+' left / '+p.support.right+' right':'global support'):
    p.status.replaceAll('_',' ')+(p.support?' ('+p.support.left+'/'+p.support.right+')':''));body.append(tr);
@@ -70,6 +83,7 @@ function render(){
 }
 function renderPlot(){
  const svg=$('response-plot');svg.replaceChildren();if(!study)return;
+ $('profile-grid-legend').hidden=!(gridOverlay&&view==='response');
  const W=Math.max(300,svg.getBoundingClientRect().width),tight=W<600;
  svg.setAttribute('viewBox','0 0 '+W+' '+(view==='gauge'&&tight?500:420));
  const command=Number($('slice-command').value),rate=Number($('slice-rate').value),probe=Number($('probe-angle').value);
@@ -78,7 +92,9 @@ function renderPlot(){
  const f=study.fit,range=f.domain.position;
  const lo=range.min,hi=range.max>lo?range.max:lo+1;
  const xs=Array.from({length:161},(_,i)=>lo+(hi-lo)*i/160);
- const models=[{model:f.baseline,color:'#82cff1',dash:'8 5'},{model:inspected,color:'#ffac66'}].filter(x=>x.model);
+ const models=[{model:f.baseline,color:'#82cff1',dash:'8 5'},
+  ...(gridOverlay&&view==='response'?[{model:gridOverlay,color:'#d8f08c',dash:'9 4'}]:[]),
+  {model:inspected,color:'#ffac66'}].filter(x=>x.model);
  const close=r=>Math.abs(r.command-command)<=1e-10*Math.max(1,Math.abs(command))&&Math.abs(r.rate-rate)<=1e-10*Math.max(1,Math.abs(rate));
  const train=study.dataset.observations.filter(close),checks=study.dataset.heldOut.filter(close);
  const curves=models.map(m=>({...m,ys:xs.map(position=>predictStiffness(m.model,{position,command,rate}))}));

@@ -22,6 +22,13 @@ INCLUDE = (
     "AGENTS.md", "README.md", "LICENSE", "LICENSE.md", "package.json",
     "index.html", "styles.css", "favicon.svg", "server.mjs", "motion.html", "motion.css", "trajectory.html", "trajectory.css",
     "docs/receipts/*/*.json", "docs/receipts/*/*.png",
+    "docs/receipts/branch-response-20261024/README.md",
+    "docs/receipts/branch-response-20261024/maintained-angle-boxes.txt",
+    "docs/receipts/prediction-contrast-195c0e2a/README.md",
+    "docs/receipts/prediction-contrast-195c0e2a/initial-focused-failure.txt",
+    "docs/receipts/prediction-contrast-195c0e2a/native-tests.txt",
+    "docs/receipts/shared-training-195c0e2a/README.md",
+    "docs/receipts/shared-training-195c0e2a/native-tests.txt",
     "docs/*.md", "docs/*.json", "src/*.mjs", "src/science/*.mjs", "src/motion/*.mjs", "src/trajectory/*.mjs", "src/representation/*.mjs",
     "src/experiment-design/*.mjs", "tests/support/*.mjs",
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/*.mjs",
@@ -129,6 +136,14 @@ FORBIDDEN_SUFFIXES = {
 }
 FORBIDDEN_NAMES = {".env", "credentials", "credentials.json", "secrets.json", "id_rsa", "id_ed25519"}
 
+# Exact tracked historical evidence archives are intentionally not distributed.
+# Keep these paths explicit; other unapproved archives still fail closed.
+NON_DISTRIBUTED_TRACKED_RECEIPTS = frozenset({
+    "docs/receipts/branch-response-20261024/native-tests.txt.gz",
+    "docs/receipts/prediction-contrast-195c0e2a/authored-inputs-and-notebook.tar.xz",
+    "docs/receipts/shared-training-195c0e2a/retained-source-evidence.tar.xz",
+})
+
 
 def git(*args):
     result = subprocess.run(["git", "-C", str(ROOT), *args], capture_output=True, check=False)
@@ -161,6 +176,8 @@ def check_path(path):
 
 def check_tracked(paths):
     for path in paths:
+        if path in NON_DISTRIBUTED_TRACKED_RECEIPTS:
+            continue  # Never copied into a release; keep every other rejection intact.
         check_path(path)
         # Repository collaboration configuration is intentionally not distributed.
         if not included(path) and path != ".gitignore" and not path.startswith(".github/"):

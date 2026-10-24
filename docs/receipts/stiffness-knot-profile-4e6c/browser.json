@@ -1,0 +1,48 @@
+{
+  "pass": true,
+  "checks": 9,
+  "inputSHA256": "17202977841e2db5ac73d413c3c4bb1fc797f105260ff10cdc527ba467ea0de6",
+  "results": [
+    {
+      "name": "actual original source produces a computed non-grid curve without mutating the declared experiment",
+      "passed": true
+    },
+    {
+      "name": "native keyboard offers an angle, explicit fit changes the law, and an actual downloaded experiment reopens",
+      "passed": true
+    },
+    {
+      "name": "an admitted interior neighbor keeps exact editable precision through fit, actual save, reopen and unchanged refit",
+      "passed": true
+    },
+    {
+      "name": "separately supplied contradictory checks change challenge error without changing computed angle",
+      "passed": true
+    },
+    {
+      "name": "rank refusal, workload refusal and full declaration capacity stay visible without a substitute proposal",
+      "passed": true
+    },
+    {
+      "name": "search activity fences an outstanding source-file read and preserves the current raw source",
+      "passed": true
+    },
+    {
+      "name": "computed laws, controls and keyboard focus remain readable at 1440px",
+      "passed": true
+    },
+    {
+      "name": "computed laws, controls and keyboard focus remain readable at 390px",
+      "passed": true
+    },
+    {
+      "name": "no page exception or nonlocal request in the actual source-to-notebook course",
+      "passed": true
+    }
+  ],
+  "events": {
+    "exceptions": [],
+    "outside": []
+  },
+  "qualification": "Actual authored-source browser receiving; no physical calibration or runtime sandbox attestation."
+}
