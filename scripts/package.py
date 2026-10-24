@@ -18,6 +18,8 @@ ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
     "AGENTS.md", "README.md", "LICENSE", "LICENSE.md", "package.json",
     "index.html", "styles.css", "favicon.svg", "server.mjs", "motion.html", "motion.css", "trajectory.html", "trajectory.css",
+    "docs/receipts/prediction-baselines-20261024/*.json",
+    "docs/receipts/prediction-baselines-20261024/*.png",
     "docs/*.md", "docs/*.json", "src/*.mjs", "src/science/*.mjs", "src/motion/*.mjs", "src/trajectory/*.mjs", "src/representation/*.mjs",
     "src/experiment-design/*.mjs", "tests/support/*.mjs",
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/*.mjs",
@@ -49,6 +51,7 @@ REQUIRED = (
     "src/representation/reference-panel.mjs",
     "src/trajectory/data.mjs",
     "src/trajectory/session.mjs",
+    "src/trajectory/baselines.mjs",
     "src/trajectory/forward.mjs",
     "src/trajectory/resolution.mjs",
     "src/trajectory/horizon.mjs",

@@ -1,3 +1,4 @@
+import {compareTrajectorySkill} from './baselines.mjs';
 import {createChallenge} from './session.mjs';
 import {MAX_TEXT_LENGTH} from './data.mjs';
 import {summarizePredictionHorizon} from './horizon.mjs';
@@ -94,6 +95,15 @@ function renderModel(){
   rows=result?.status==='ok'&&Array.isArray(result.rollout?.rows)?result.rollout.rows:[];viewIndex=0;const angular=angularMode(),failed=result?.status==='failed';$('prediction-status').hidden=!failed;set('prediction-status',failed?`${predictionFailure(result)} The observed recording remains visible; no incomplete prediction is presented.`:'');$('prediction-legend').hidden=!rows.length;$('motion-panel').hidden=angular||!rows.length;$('angular-context').hidden=!angular;$('comparison-grid').classList.toggle('without-motion',!angular&&!rows.length);$('sample-readout').hidden=!rows.length;set('angular-initial-rate',`${fmt(run.initialRate)} rad/s`);set('angular-recording',run.label||run.id);
   const angularReplay=angular&&rows.length,playback=document.querySelector('.playback-controls'),playbackParent=angularReplay?$('angular-context'):$('motion-panel');playbackParent.insertBefore(playback,playbackParent.querySelector(angularReplay?'.angular-assumption':'.schematic-note'));$('angular-context').classList.toggle('with-replay',Boolean(angularReplay));
   const m=result?.rollout?.metrics||{};set('position-rmse',fmt(m.positionRMSE));set('maximum-error',fmt(m.maxAbsError));set('final-error',fmt(m.finalAbsError));
+  let baselineNote=document.getElementById('baseline-comparison');
+  if(!baselineNote){baselineNote=el('p',undefined,'resolution-note');baselineNote.id='baseline-comparison';baselineNote.style.margin='12px 3px';baselineNote.style.fontSize='11px';$('challenge-metrics').after(baselineNote);}
+  try {
+    const comparison=compareTrajectorySkill([run],state.results,model.id);
+    const names={persistence:'hold initial angle',initial_rate:'keep initial rate'};
+    baselineNote.textContent='No-learning comparison · '+comparison.baselines.map(b=>`${names[b.id]}: ${fmt(b.positionRMSE)} rad RMSE; skill ${b.skill===null?(b.skillStatus==='perfect_baseline'?'undefined (perfect reference)':'unavailable'):fmt(b.skill)}`).join(' · ')+
+      (comparison.status==='complete'?'. Positive skill beats that baseline; negative is worse.':'. Model prediction is incomplete; skill is unavailable.')+
+      ' Same non-initial timestamps, no observation resets. Initial rate is supplied, not estimated from challenge angles. These references ignore forces and commands.';
+  } catch(error){baselineNote.textContent='No-learning comparison unavailable: '+error.message;}
   const resolution=result?.resolution,compared=resolution?.status==='compared';$('resolution-metric').hidden=!resolution;$('resolution-note').hidden=!resolution;$('challenge-metrics').classList.toggle('with-resolution',Boolean(resolution));
   set('step-sensitivity',compared?fmt(resolution.positionRMSEDifference):'Unavailable');$('step-sensitivity').dataset.unavailable=String(!compared);set('step-sensitivity-unit',compared?'rad · RMS prediction difference':'refinement unavailable');
   set('resolution-note',compared?`Step sensitivity compares ${fmt(resolution.coarseMaxStep)} s and ${fmt(resolution.refinedMaxStep)} s solver steps. It is not a bound on numerical error.`:resolution?`Numerical step comparison unavailable: ${resolutionReason(resolution)}`:'');
@@ -210,3 +220,4 @@ async function start(){
   await loadExample({persist:false});if(storageError)set('storage-status',storageError);
 }
 start();
+

@@ -1,0 +1,119 @@
+{
+  "format": "worldlaw.prediction-baselines-receiving/v1",
+  "result": "PASS",
+  "maintainedBase": "b60c334fbfeb3536b095a21b01bf78b5e49686b9",
+  "sourceFiles": [
+    {
+      "path": "src/trajectory/baselines.mjs",
+      "gitBlobSha": "4d67187f78fa24a4c55450942f5b7ae87d185d9e",
+      "sha256": "3025038502fbc548befc3b519a848752ae7de48a263b0e7f701bb7daf734d5d9"
+    },
+    {
+      "path": "src/trajectory/session.mjs",
+      "gitBlobSha": "a09ba6218b9ed14bdc1f7503938716f9c107345e",
+      "sha256": "85cfad9d933443b3f8674a3753a509147b11da04b3bbec30c661f706fb15195f"
+    },
+    {
+      "path": "src/trajectory/app.mjs",
+      "gitBlobSha": "eb3c9d8a6f9941f7526c67105f6f5c31da36e486",
+      "sha256": "46d285f4ee6916f4b853ef1a98205daed23c3dde624de3d84879eef47c3738e3"
+    },
+    {
+      "path": "tests/trajectory-baselines.test.mjs",
+      "gitBlobSha": "2bbb18951ae48f8864bff15a6215a6e9333d4c17",
+      "sha256": "2a83719c6a99dc13eebc9eb6ec45a4d931f1e0bcdbe6ca75abc856c4409b314c"
+    },
+    {
+      "path": "docs/PREDICTION_BASELINES.md",
+      "gitBlobSha": "4fcc87e2710e244ee079a64d022e492d79535b30",
+      "sha256": "33cf6d7b66fdbc599e1691b37b4d22dfc8d37ec788c0ab4460527a652234fd3a"
+    },
+    {
+      "path": "scripts/browser-baselines.mjs",
+      "gitBlobSha": "0b7e20b35f95d41bf3741cd061dcdcbd947530af",
+      "sha256": "aa80b77bc2aaa931772cec34462f6fe452614202edf7d2719a4b6c98aba5c3e7"
+    },
+    {
+      "path": "scripts/package.py",
+      "gitBlobSha": "fea4ad812e6a3b7bd4ac96572c3bb46f4c7d1e2a",
+      "sha256": "d2d0143a9d1482fd301054b88de725986a54e4b0a8bee669a5548a2d9c1a5b42"
+    }
+  ],
+  "native": {
+    "command": "npm run verify",
+    "node": "22.23.4",
+    "passed": 253,
+    "failed": 0,
+    "conditionalSkipped": 1,
+    "launchedSmokes": 2
+  },
+  "optionalPortability": {
+    "base": "d04a780c16d21a595b8663b230a1e6f0faf90b08",
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "course": "trajectory no-learning reference comparison",
+    "result": "PASS",
+    "tests": [
+      "synthetic separate release visibly compares finite model skill with both no-learning references",
+      "keyboard alternative inspection changes comparison without reranking training models",
+      "existing measured-model failure retains observed curve and finite baseline errors while refusing model skill",
+      "actual exported input notebook recomputes identical reference comparison and selected prediction after reopen",
+      "390px and 320px comparison text remains visible and within the viewport",
+      "no browser exceptions or offsite requests"
+    ],
+    "inputs": {
+      "trajectory-ambiguous-92be.json": "dd3a43b09b669fa062850d8d6e0980199ea176da9e67d15cfe3f98a38d69941e",
+      "physical-pasco-92be.json": "7e42868153d3aa15fc9722f665f5ed62cc491c4445768f8db74a6e36b85cb0e6"
+    },
+    "errors": [],
+    "offsite": [],
+    "browser": "Chrome/156.0.8078.47",
+    "notebookSha256": "31a95f05ec8fafe44b195dd6fed7b608b8ffd4d1469ec3520b30ef4d13b05fc4",
+    "layouts": [
+      {
+        "viewport": 390,
+        "page": 390,
+        "left": 21,
+        "right": 369,
+        "height": 93.4375,
+        "text": "No-learning comparison · hold initial angle: 2.024 rad RMSE; skill 1 · keep initial rate: 2.024 rad RMSE; skill 1. Positive skill beats that baseline; negative is worse. Same non-initial timestamps, no observation resets. Initial rate is supplied, not estimated from challenge angles. These references ignore forces and commands."
+      },
+      {
+        "viewport": 320,
+        "page": 320,
+        "left": 17,
+        "right": 303,
+        "height": 130.8125,
+        "text": "No-learning comparison · hold initial angle: 2.024 rad RMSE; skill 1 · keep initial rate: 2.024 rad RMSE; skill 1. Positive skill beats that baseline; negative is worse. Same non-initial timestamps, no observation resets. Initial rate is supplied, not estimated from challenge angles. These references ignore forces and commands."
+      }
+    ]
+  },
+  "standalone": {
+    "result": "PASS",
+    "consumer": "actual generated standalone HTML",
+    "checks": [
+      "numeric baseline comparison",
+      "measured failure retains observation and refuses skill",
+      "no external requests or browser exceptions"
+    ],
+    "numeric": "No-learning comparison · hold initial angle: 2.024 rad RMSE; skill 0.9222 · keep initial rate: 2.024 rad RMSE; skill 0.9222. Positive skill beats that baseline; negative is worse. Same non-initial timestamps, no observation resets. Initial rate is supplied, not estimated from challenge angles. These references ignore forces and commands.",
+    "browser": "Chrome/156.0.8078.47",
+    "esbuild": "0.25.5",
+    "htmlSha256": "9049f404b14850f4526be36b812ac26407c109c10723514d29b67db9193e5677",
+    "sourceHead": null
+  },
+  "sourceDistribution": {
+    "sourceFiles": 141,
+    "candidateTree": "e0391fbf97550e124d13b52ba12c42ef3e8aa983",
+    "zipSha256": "0417e745bc92e1bc509b1a2997cfa61f887c6358e33261644a2da2b1dcf8d0a9",
+    "scope": "Verified local candidate before final receiving documentation; not a published candidate commit association"
+  },
+  "review": "Independent root review; intermediate-overflow defect fixed with verified regression.",
+  "limits": [
+    "PASCO was reused during development, not fresh blind validation.",
+    "No physical-model adequacy, deployment or new acquisition established."
+  ]
+}

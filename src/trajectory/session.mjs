@@ -1,3 +1,4 @@
+import {compareTrajectorySkill} from './baselines.mjs';
 /** Training-only model selection followed by a separate receiving experiment. */
 import {discover} from '../science/torque-discovery.mjs';
 import {deriveTorqueObservations} from '../science/trajectory-observations.mjs';
@@ -49,10 +50,13 @@ function summary(discovery,results,bundle,options){
   const received=results.filter(r=>r.modelId===discovery.selected.id&&r.status==='ok');
   const count=received.reduce((s,r)=>s+r.rollout.metrics.count,0);
   const selectedRMSE=count?Math.sqrt(received.reduce((s,r)=>s+r.rollout.metrics.count*r.rollout.metrics.positionRMSE**2,0)/count):null;
-  return {trainingRunCount:bundle.trainingRuns.length,challengeRunCount:bundle.challengeRuns.length,
+  let predictionSkill;
+  try {predictionSkill=compareTrajectorySkill(bundle.challengeRuns,results,discovery.selected.id);}
+  catch(error){predictionSkill={status:'unavailable',reason:error.message};}
+  return {predictionSkill,trainingRunCount:bundle.trainingRuns.length,challengeRunCount:bundle.challengeRuns.length,
     trainingSampleCount:bundle.trainingRuns.reduce((s,r)=>s+r.samples.length,0),challengeSampleCount:bundle.challengeRuns.reduce((s,r)=>s+r.samples.length,0),
     fittedModelCount:discovery.candidates.length,comparedModelCount:new Set(results.map(r=>r.modelId)).size,
-    selectedPositionRMSE:selectedRMSE,completedChallengeRuns:received.length,failedRollouts:results.filter(r=>r.status==='failed').length,
+    selectedPositionRMSE:received.length===bundle.challengeRuns.length?selectedRMSE:null,completedChallengeRuns:received.length,failedRollouts:results.filter(r=>r.status==='failed').length,
     fitResidualUnits:discovery.residualUnits??(options.method==='integral'?'rad':'N·m'),selectionBasis:'training_evidence_only',
     evidenceKinds:[...new Set([...bundle.trainingRuns,...bundle.challengeRuns].map(r=>r.kind))],
     limitations:[angularBundle(bundle)?'Finite-library angular-acceleration models; physical inertia and absolute torque remain unknown.':'Finite-library scalar models with caller-supplied constant inertia and initial velocity.',
@@ -105,3 +109,4 @@ export function restoreChallenge(text){
   selection(state);
   return state;
 }
+
