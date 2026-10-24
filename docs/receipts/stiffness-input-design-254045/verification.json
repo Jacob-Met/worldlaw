@@ -1,0 +1,40 @@
+{
+  "schema": "worldlaw.stiffness-input-design.receiving/v1",
+  "base": "30937e84700bc268db63d5461b2f5f214abcadda",
+  "receivedAt": "2026-10-24",
+  "native": {
+    "passed": 546,
+    "failed": 0,
+    "inheritedOptionalSkipped": 1,
+    "launchedHttpSmokes": 2,
+    "focusedInputDesignControls": 10
+  },
+  "browser": {
+    "experimentGroups": 31,
+    "notebookGroups": 16,
+    "exceptions": 0,
+    "outsideRequests": 0,
+    "viewports": [
+      1440,
+      390
+    ]
+  },
+  "authoredCourse": {
+    "trainingRows": 17,
+    "initialRank": 2,
+    "coefficients": 3,
+    "selectedPermittedIndex": 1,
+    "prospectiveRank": 3,
+    "receivedTorque": 1.4,
+    "recovered": [
+      0.2,
+      1.2,
+      -3
+    ],
+    "originalFrozenPredictions": [],
+    "originalHistoricalErrors": []
+  },
+  "independentReview": "MICROVERSE accepted actual fitter basis/support, input-only diagnostics, full histories, work estimate and capacity repair. HamonLang authored actual browser receiver separately from scientific core/UI.",
+  "observedRepair": "At4096 observations, a truthful prospective improvement could offer an unreceivable next row. Interface now retains diagnostics and disables all owned acquisition actions with defensive guard; actual Chrome control passes.",
+  "scope": "Numerical one-step design and explicit position support for one offered structure. No inferred torque, retroactive prediction, adequacy, probability, globally optimal design or physical action."
+}

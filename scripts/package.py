@@ -60,6 +60,7 @@ INCLUDE = (
     'experiments/rolling-origin.mjs',
 )
 REQUIRED = (
+    "src/stiffness/design.mjs", "src/stiffness/design-panel.mjs", "docs/STIFFNESS_INPUT_DESIGN.md",
     "cycle-work.html", "src/cycle-work/app.mjs", "src/cycle-work/core.mjs",
     "src/cycle-work/refinement.mjs", "src/cycle-work/refinement-panel.mjs", "src/cycle-work/refinement-example.mjs",
     "src/cycle-work/curvature-witness.mjs",
@@ -306,3 +307,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

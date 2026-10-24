@@ -214,6 +214,16 @@ stay fixed after the first acquisition. Explicit authored courses demonstrate
 both narrowing ambiguity and an omitted smooth response. See [sequential stiffness
 experiments](docs/STIFFNESS_EXPERIMENTS.md).
 
+### Inspect input support before coefficients can be estimated
+
+Stiffness Lab can inspect the actual basis rank and position support of one offered
+structure using input coordinates alone. Compare every declared state, inspect
+remaining deficiencies, and freeze a proposed input through the existing request
+path. The authored confounded course demonstrates an off-line input making
+coefficients estimable while earlier unsupported forecasts and errors stay absent.
+See [input-design diagnostics and limits](docs/STIFFNESS_INPUT_DESIGN.md). This is
+not a torque prediction, adequacy test or physical-identifiability claim.
+
 ### Explicit smooth-family revision
 
 When the original global and one-hinge alternatives fail the observed response, STIFFNESS LAB can add one explicitly declared linear-plus-cubic alternative about a fixed origin. It preserves the original failure and earlier frozen errors, applies the revision to subsequent forecasts, and keeps separate checks outside fitting. See [explicit family revision](docs/STIFFNESS_REVISION.md) for the recorded boundary, saved replay, finite-model limits and receiving evidence.
@@ -236,3 +246,4 @@ The scalar model inspector can now compare every retained held-out torque readin
 ## Shared-training receiving contrasts
 
 The held-out prediction sensitivity inspector also receives every unordered pair under one shared training-reading perturbation. Marginal ranges remain visible. Inspect signed pair ranges and witnesses, including contradictions hidden by individually overlapping intervals; passing all pairs does not establish joint feasibility. The complete 128-row limit includes all 8128 pairs. Numerical and source qualifications, examples and receiving commands are in [the contrast model](docs/PREDICTION_CONTRAST.md).
+
