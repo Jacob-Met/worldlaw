@@ -12,7 +12,7 @@ export function createReferencePanel(anchor) {
     button{cursor:pointer}button:disabled{opacity:.5;cursor:default}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #ffdc82;outline-offset:3px}
     .controls{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:15px 0}
     .status{border-left:3px solid #5bd2dc;padding:10px;white-space:pre-line}.error{color:#ffb9ae}.plot{width:100%;height:auto;background:#09131d;display:block}
-    .scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:8px;border-bottom:1px solid #425263}th{color:#b8cbdc}
+    .scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:8px;border-bottom:1px solid #425263}th{color:#b8cbdc}#run-audit td:last-child{min-width:210px}
     .legend{display:flex;gap:16px;flex-wrap:wrap}.observed{color:#fff}.baseline{color:#f9ad65}.shifted{color:#5bd2dc}[hidden]{display:none!important}
     @media(max-width:600px){details{padding:12px}.controls{grid-template-columns:1fr}.actions>*{flex:1 1 140px}summary{font-size:18px}}
   </style><details><summary>Investigate the angle reference</summary>
@@ -24,7 +24,12 @@ export function createReferencePanel(anchor) {
     </div><p id="library">Uses the six maintained autonomous terms, at most four per model. The same options apply to every offset. A shifted coordinate costs one additional score parameter; scores are heuristic.</p>
     <div class="actions"><button id="search" disabled>Compare references</button><button id="save" disabled>Save reference notebook</button><label>Reopen reference notebook<input id="open" type="file" accept="application/json,.json"></label></div>
     <p id="status" class="status" role="status">Load measured or declared angular evidence with unknown torque scale in Trajectory Challenge.</p>
-    <div id="results" hidden><label>Separate recording<select id="run"></select></label>
+    <div id="results" hidden><h3>Does one reference explain every training run?</h3>
+      <p id="consistency" class="status"></p>
+      <p>Training-run comparison — scroll horizontally on narrow screens.</p>
+      <div class="scroll" tabindex="0" role="region" aria-label="Training-run reference comparison"><table><thead><tr><th>Training run</th><th>Preferred offset rad</th><th>Selected model</th><th>Supported competitive offsets rad</th><th>Qualification</th></tr></thead><tbody id="run-audit"></tbody></table></div>
+      <p id="next-observation"></p><p>The pooled winner and its predictions below are unchanged by this diagnostic. Shared coordinates do not imply a shared physical law; disagreement does not identify sensor drift.</p>
+      <label>Separate recording<select id="run"></select></label>
       <p id="source"></p><div class="legend"><span class="observed">White: observed</span><span class="baseline">Orange: zero-offset prediction</span><span class="shifted">Cyan: selected-reference prediction</span></div>
       <canvas id="plot" class="plot" width="900" height="340" aria-label="Original recorded angles and frozen free-running predictions"></canvas>
       <p id="prediction"></p><p>Training ranking — scroll horizontally on narrow screens.</p><div class="scroll" tabindex="0" role="region" aria-label="Training ranking table"><table><thead><tr><th>Offset rad</th><th>Training model</th><th>Weak residual rad</th><th>Penalized score</th></tr></thead><tbody id="candidates"></tbody></table></div>
@@ -37,6 +42,10 @@ export function createReferencePanel(anchor) {
   function show(next) {
     result = next; $('results').hidden = false; $('save').disabled = false;
     const s = next.search;
+    const audit = next.consistency;
+    $('consistency').textContent = `${audit.status.replaceAll('_',' ')} · ${audit.sharedOffsets === null ? 'Shared-set comparison withheld.' : audit.sharedOffsets.length ? `Shared supported offsets: ${audit.sharedOffsets.map(fmt).join(', ')} rad.` : 'No shared supported grid offset.'}`;
+    $('run-audit').replaceChildren(...audit.runs.map(run=>{const tr=document.createElement('tr');for(const text of [run.label,fmt(run.selectedOffset),run.modelId??'unavailable',run.supportedOffsets.length?run.supportedOffsets.map(fmt).join(', '):'none',run.blockers.length?run.blockers.join(', ').replaceAll('_',' ')+(run.failures.length?`: ${run.failures.map(f=>f.message).join('; ')}`:''):`within declared gates; residual ${fmt(run.trainingRmseInNoiseUnits)}× assumed noise`]){const td=document.createElement('td');td.textContent=text;tr.append(td);}return tr;}));
+    $('next-observation').textContent = audit.nextObservation;
     $('library').textContent = `Offered terms: ${s.selected.fitOptions.terms.join(', ')}; at most ${s.selected.fitOptions.maxTerms} per model. Identical settings for every offset; a nonzero offset pays one additional heuristic score parameter.`;
     status(`${s.status.replaceAll('_',' ')} · selected offset ${fmt(s.selected.offset)} rad · score improvement ${fmt(s.scoreImprovement)}\nCompetitive offsets: ${s.competitiveOffsets.map(fmt).join(', ')} rad. Coordinate evidence does not identify a sensor defect or physical gravity direction.`);
     $('run').replaceChildren(...next.bundle.challengeRuns.map(run => {const option = document.createElement('option'); option.value = run.id; option.textContent = run.label; return option;}));

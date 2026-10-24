@@ -71,11 +71,71 @@ was 3.8024e-6 rad. Large physical mismatch remains. PASCO challenge data has
 been reused during prior development: this is exploratory receiving, not fresh
 blind validation or new acquisition.
 
+## Does one reference survive across training runs?
+
+The same panel also compares every training run separately before interpreting
+one pooled coordinate. `auditAngleReferenceRuns` accepts training runs only.
+Each run uses the same declared grid, noise assumption and weak-fit options;
+its competitive offsets are measured relative to **that run's** best penalized
+score. Absolute scores from different lengths or recordings are never compared.
+Candidates also must meet the maintained residual/rank gates. The intersection
+of these run-specific sets is an advisory diagnostic; it neither selects a
+different pooled model nor changes any frozen challenge prediction.
+
+The panel preserves distinct reasons for withholding a coordinate comparison:
+
+| Status | Meaning |
+| --- | --- |
+| Run fit unavailable | A run lacks enough weak windows, a grid fit failed, or another fitting prerequisite failed; its error remains visible. |
+| Model inadequacy | At least one run's selected law exceeds the inherited three-noise-sigma residual gate. Investigate missing dynamics before attributing disagreement to a reference. |
+| Insufficient excitation | A selected fit has deficient/weak numerical conditioning, or observed span is at most six assumed noise sigmas. The span gate is a conservative heuristic, not a calibrated test. |
+| Grid boundary | A preferred nonzero coordinate lies at an offered endpoint; an interior comparison has not been established. |
+| Incompatible run references | Individually admissible competitive sets have no shared grid coordinate. This does **not** identify sensor drift; changed dynamics, forcing, sampling or model bias can produce the same result. |
+| Shared grid reference / ambiguous shared reference | One or several coordinates survive every run's gates. Different structures and coefficients can share a coordinate; this is not evidence for one shared physical law. |
+
+At least two runs and two offered coordinates are needed for this comparison.
+Supplied run/recording labels do not authenticate independent acquisition. The
+suggested next observation asks for an independently measured fixed reference
+or matched release, never performs hardware operations or claims safety.
+
+Controlled negative comparisons distinguish a changing reference from changing
+law coefficients: equal +0.3 shifts produce a shared {+0.3}; shifts 0/+0.3 give
+disjoint sets; stiffness 2.2/3.2 with unchanged zero retains shared {0}, even
+though the pooled law mismatches. Stationary motion, spring/bias equivalence,
+omitted terms, short runs and boundary grids retain their different limitations.
+Changing challenge observations cannot change this diagnostic, and reopening
+input-only notebooks recomputes it.
+
+For the retained measured PASCO training recordings at the same declared grid
+and 0.01 rad noise assumption, the first prefers -0.1 rad with gravity+bias
+(0.8045 noise-unit residual); the second prefers zero with
+coulomb+spring+gravity+bias (1.0849 noise units). Their supported competitive
+sets are disjoint. The pooled -0.15 rad hypothesis and its large challenge
+errors remain unchanged. This exposes a real weakness of treating a pooled
+training winner as calibration, without claiming which physical cause is true.
+
+Nine new diagnostic tests pass ordinarily and with `--no-opt`, including
+immutable input, unchanged pooled fit, changed-coefficient controls, separate
+inadmissibility reasons, challenge isolation, replay and run-order invariance.
+The complete composed suite passes 245 tests with zero failures and one existing
+conditional skip. The extended actual-browser course passes 14 workflow groups,
+including shared-reference display, measured disagreement, and a stationary-run
+reopen that withholds the comparison. Both maintained launched smokes pass.
+Desktop and narrow captures were inspected; both comparison tables retain
+keyboard-focusable horizontal scrolling.
+
+The fixed exploration also illustrates why this is useful beyond a pooled
+winner: noisy small-angle runs that pool to an unshifted preference retain all
+21 offsets in the shared competitive set. When a noiseless true +0.075 offset
+is absent from the grid, inadequate per-run fits withhold comparison instead
+of inventing a coordinate inconsistency.
+
 ## Reproduce
 
 ```sh
 node --test --test-isolation=none tests/angle-reference.test.mjs
 node --no-opt --test --test-isolation=none tests/angle-reference.test.mjs
+node --test --test-isolation=none tests/reference-consistency.test.mjs
 node experiments/angle-reference.mjs
 node scripts/smoke.mjs
 node scripts/trajectory-smoke-92be.mjs

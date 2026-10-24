@@ -10,6 +10,34 @@
       "competitive": [
         0
       ],
+      "consistency": {
+        "status": "shared_grid_reference",
+        "sharedOffsets": [
+          0
+        ],
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0,
+            "supportedOffsets": [
+              0
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.000007389835738253842
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0,
+            "supportedOffsets": [
+              0
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.000005204477852362162
+          }
+        ]
+      },
       "model": "rate+gravity",
       "trainingMismatch": 0.00000652301434671745,
       "scoreImprovement": 0,
@@ -35,6 +63,94 @@
       "competitive": [
         0
       ],
+      "consistency": {
+        "status": "ambiguous_shared_reference",
+        "sharedOffsets": [
+          -0.5,
+          -0.45,
+          -0.4,
+          -0.35,
+          -0.3,
+          -0.25,
+          -0.2,
+          -0.15,
+          -0.1,
+          -0.05,
+          0,
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4,
+          0.45,
+          0.5
+        ],
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0,
+            "supportedOffsets": [
+              -0.5,
+              -0.45,
+              -0.4,
+              -0.35,
+              -0.3,
+              -0.25,
+              -0.2,
+              -0.15,
+              -0.1,
+              -0.05,
+              0,
+              0.05,
+              0.1,
+              0.15,
+              0.2,
+              0.25,
+              0.3,
+              0.35,
+              0.4,
+              0.45,
+              0.5
+            ],
+            "modelId": "rate+spring",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.9702796965726478
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0,
+            "supportedOffsets": [
+              -0.5,
+              -0.45,
+              -0.4,
+              -0.35,
+              -0.3,
+              -0.25,
+              -0.2,
+              -0.15,
+              -0.1,
+              -0.05,
+              0,
+              0.05,
+              0.1,
+              0.15,
+              0.2,
+              0.25,
+              0.3,
+              0.35,
+              0.4,
+              0.45,
+              0.5
+            ],
+            "modelId": "rate+spring",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.8056981786379958
+          }
+        ]
+      },
       "model": "rate+spring",
       "trainingMismatch": 0.8922182867765428,
       "scoreImprovement": 0,
@@ -60,6 +176,34 @@
       "competitive": [
         0
       ],
+      "consistency": {
+        "status": "shared_grid_reference",
+        "sharedOffsets": [
+          0
+        ],
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0,
+            "supportedOffsets": [
+              0
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.001163701576734449
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0,
+            "supportedOffsets": [
+              0
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.001072439734034734
+          }
+        ]
+      },
       "model": "rate+gravity",
       "trainingMismatch": 0.0011241892955163014,
       "scoreImprovement": 0,
@@ -85,6 +229,34 @@
       "competitive": [
         0
       ],
+      "consistency": {
+        "status": "shared_grid_reference",
+        "sharedOffsets": [
+          0
+        ],
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0,
+            "supportedOffsets": [
+              0
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.96887288842621
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0,
+            "supportedOffsets": [
+              0
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.8315515698335787
+          }
+        ]
+      },
       "model": "rate+gravity",
       "trainingMismatch": 0.9034829356188324,
       "scoreImprovement": 0,
@@ -110,6 +282,32 @@
       "competitive": [
         0.05
       ],
+      "consistency": {
+        "status": "model_inadequacy",
+        "sharedOffsets": null,
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0.05,
+            "supportedOffsets": [],
+            "modelId": "rate+spring+gravity+bias",
+            "blockers": [
+              "model_inadequacy"
+            ],
+            "trainingRmseInNoiseUnits": 6.265712212158466
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0.05,
+            "supportedOffsets": [
+              0.05
+            ],
+            "modelId": "rate+spring+gravity+bias",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 2.917258060615297
+          }
+        ]
+      },
       "model": "rate+spring+gravity+bias",
       "trainingMismatch": 5.423371065923233,
       "scoreImprovement": 21.19277571960822,
@@ -155,6 +353,94 @@
         -0.5,
         0.5
       ],
+      "consistency": {
+        "status": "ambiguous_shared_reference",
+        "sharedOffsets": [
+          -0.5,
+          -0.45,
+          -0.4,
+          -0.35,
+          -0.3,
+          -0.25,
+          -0.2,
+          -0.15,
+          -0.1,
+          -0.05,
+          0,
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4,
+          0.45,
+          0.5
+        ],
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0,
+            "supportedOffsets": [
+              -0.5,
+              -0.45,
+              -0.4,
+              -0.35,
+              -0.3,
+              -0.25,
+              -0.2,
+              -0.15,
+              -0.1,
+              -0.05,
+              0,
+              0.05,
+              0.1,
+              0.15,
+              0.2,
+              0.25,
+              0.3,
+              0.35,
+              0.4,
+              0.45,
+              0.5
+            ],
+            "modelId": "rate+spring+bias",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.9631826242410205
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0,
+            "supportedOffsets": [
+              -0.5,
+              -0.45,
+              -0.4,
+              -0.35,
+              -0.3,
+              -0.25,
+              -0.2,
+              -0.15,
+              -0.1,
+              -0.05,
+              0,
+              0.05,
+              0.1,
+              0.15,
+              0.2,
+              0.25,
+              0.3,
+              0.35,
+              0.4,
+              0.45,
+              0.5
+            ],
+            "modelId": "rate+spring+bias",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.8023991844515557
+          }
+        ]
+      },
       "model": "rate+spring+bias",
       "trainingMismatch": 0.8921110869749844,
       "scoreImprovement": 0,
@@ -181,6 +467,32 @@
         0.1,
         0.05
       ],
+      "consistency": {
+        "status": "model_inadequacy",
+        "sharedOffsets": null,
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0.05,
+            "supportedOffsets": [],
+            "modelId": "rate+spring+gravity+bias",
+            "blockers": [
+              "model_inadequacy"
+            ],
+            "trainingRmseInNoiseUnits": 293.3073489083798
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0.1,
+            "supportedOffsets": [],
+            "modelId": "rate+gravity+bias",
+            "blockers": [
+              "model_inadequacy"
+            ],
+            "trainingRmseInNoiseUnits": 304.84289702152563
+          }
+        ]
+      },
       "model": "rate+gravity+bias",
       "trainingMismatch": 330.2185365582615,
       "scoreImprovement": 42.0766070990953,
@@ -206,6 +518,34 @@
       "competitive": [
         0.05
       ],
+      "consistency": {
+        "status": "shared_grid_reference",
+        "sharedOffsets": [
+          0.05
+        ],
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0.05,
+            "supportedOffsets": [
+              0.05
+            ],
+            "modelId": "rate+spring+gravity+bias",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 1.4829597232281484
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0.05,
+            "supportedOffsets": [
+              0.05
+            ],
+            "modelId": "rate+gravity+bias",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 1.4009731032368018
+          }
+        ]
+      },
       "model": "rate+gravity+bias",
       "trainingMismatch": 1.6226005050174963,
       "scoreImprovement": 40.880795657204374,
@@ -231,6 +571,34 @@
       "competitive": [
         0.3
       ],
+      "consistency": {
+        "status": "shared_grid_reference",
+        "sharedOffsets": [
+          0.3
+        ],
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0.3,
+            "supportedOffsets": [
+              0.3
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.000007389834723444026
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0.3,
+            "supportedOffsets": [
+              0.3
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.000005204477102508578
+          }
+        ]
+      },
       "model": "rate+gravity",
       "trainingMismatch": 0.000006523013753312797,
       "scoreImprovement": 113.24565255020866,
@@ -276,6 +644,94 @@
         -0.5,
         0.5
       ],
+      "consistency": {
+        "status": "ambiguous_shared_reference",
+        "sharedOffsets": [
+          -0.5,
+          -0.45,
+          -0.4,
+          -0.35,
+          -0.3,
+          -0.25,
+          -0.2,
+          -0.15,
+          -0.1,
+          -0.05,
+          0,
+          0.05,
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3,
+          0.35,
+          0.4,
+          0.45,
+          0.5
+        ],
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0.3,
+            "supportedOffsets": [
+              -0.5,
+              -0.45,
+              -0.4,
+              -0.35,
+              -0.3,
+              -0.25,
+              -0.2,
+              -0.15,
+              -0.1,
+              -0.05,
+              0,
+              0.05,
+              0.1,
+              0.15,
+              0.2,
+              0.25,
+              0.3,
+              0.35,
+              0.4,
+              0.45,
+              0.5
+            ],
+            "modelId": "rate+spring",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.9702796965726647
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0.3,
+            "supportedOffsets": [
+              -0.5,
+              -0.45,
+              -0.4,
+              -0.35,
+              -0.3,
+              -0.25,
+              -0.2,
+              -0.15,
+              -0.1,
+              -0.05,
+              0,
+              0.05,
+              0.1,
+              0.15,
+              0.2,
+              0.25,
+              0.3,
+              0.35,
+              0.4,
+              0.45,
+              0.5
+            ],
+            "modelId": "rate+spring",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.8056981786379974
+          }
+        ]
+      },
       "model": "rate+spring+bias",
       "trainingMismatch": 0.8921110869749883,
       "scoreImprovement": 0,
@@ -301,6 +757,34 @@
       "competitive": [
         0.3
       ],
+      "consistency": {
+        "status": "shared_grid_reference",
+        "sharedOffsets": [
+          0.3
+        ],
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0.3,
+            "supportedOffsets": [
+              0.3
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.001163701574334111
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0.3,
+            "supportedOffsets": [
+              0.3
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.0010724397292007871
+          }
+        ]
+      },
       "model": "rate+gravity",
       "trainingMismatch": 0.0011241892914018435,
       "scoreImprovement": 340.60916805982606,
@@ -326,6 +810,34 @@
       "competitive": [
         0.3
       ],
+      "consistency": {
+        "status": "shared_grid_reference",
+        "sharedOffsets": [
+          0.3
+        ],
+        "runs": [
+          {
+            "runId": "training-a",
+            "selectedOffset": 0.3,
+            "supportedOffsets": [
+              0.3
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.9688728884262252
+          },
+          {
+            "runId": "training-b",
+            "selectedOffset": 0.3,
+            "supportedOffsets": [
+              0.3
+            ],
+            "modelId": "rate+gravity",
+            "blockers": [],
+            "trainingRmseInNoiseUnits": 0.8315515698335691
+          }
+        ]
+      },
       "model": "rate+gravity",
       "trainingMismatch": 0.9034829356188335,
       "scoreImprovement": 106.73961517843867,
@@ -378,6 +890,32 @@
     "competitive": [
       -0.15
     ],
+    "consistency": {
+      "status": "incompatible_run_references",
+      "sharedOffsets": [],
+      "runs": [
+        {
+          "runId": "pasco-len1-cond1-1",
+          "selectedOffset": -0.1,
+          "supportedOffsets": [
+            -0.1
+          ],
+          "modelId": "gravity+bias",
+          "blockers": [],
+          "trainingRmseInNoiseUnits": 0.8044747857471822
+        },
+        {
+          "runId": "pasco-len1-cond1-2",
+          "selectedOffset": 0,
+          "supportedOffsets": [
+            0
+          ],
+          "modelId": "coulomb+spring+gravity+bias",
+          "blockers": [],
+          "trainingRmseInNoiseUnits": 1.084940505868197
+        }
+      ]
+    },
     "model": "spring+gravity+bias",
     "trainingMismatch": 2.839193412859557,
     "scoreImprovement": 143.90749807199768,

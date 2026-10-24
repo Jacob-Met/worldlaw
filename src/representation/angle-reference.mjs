@@ -63,6 +63,74 @@ export function searchAngleReference(trainingRuns, requested = {}) {
     ]};
 }
 
+/** Compare training runs without pooling scores, coefficients, or challenge data.
+ * Each run gets its own relative competitive set; absolute weak scores across
+ * different run lengths are not comparable. This never replaces the pooled fit.
+ */
+export function auditAngleReferenceRuns(trainingRuns, requested = {}) {
+  const runs = normalizeAngularRuns(trainingRuns), settings = options(requested);
+  const summaries = runs.map(run => {
+    const positions = run.samples.map(row => row.position);
+    const summary = {runId: run.id, label: run.label, kind: run.kind,
+      source: copy(run.source), positionSpan: Math.max(...positions) - Math.min(...positions)};
+    try {
+      const search = searchAngleReference([run], settings), best = search.selected;
+      const candidates = search.candidates.map(c => ({offset: c.offset, modelId: c.model.id,
+        scoreDelta: c.score - best.score, trainingRmseInNoiseUnits: c.fitDiagnostics.trainingRmseInNoiseUnits,
+        adequacy: c.fitDiagnostics.adequacy, identifiability: c.fitDiagnostics.identifiability}));
+      const supportedOffsets = candidates.filter(c => c.scoreDelta <= best.fitOptions.ambiguityDelta &&
+        c.adequacy !== 'residual_mismatch' && c.identifiability === 'finite_library_local_only').map(c => c.offset).sort((a,b)=>a-b);
+      const blockers = [];
+      if (search.failures.length) blockers.push('incomplete_search');
+      if (best.fitDiagnostics.adequacy === 'residual_mismatch') blockers.push('model_inadequacy');
+      if (best.fitDiagnostics.identifiability !== 'finite_library_local_only' ||
+          summary.positionSpan <= 6 * best.fitOptions.noiseSigma) blockers.push('insufficient_excitation');
+      if ([settings.offsets[0],settings.offsets.at(-1)].includes(best.offset)) blockers.push('grid_boundary');
+      return {...summary, selectedOffset: best.offset, modelId: best.model.id, competitiveOffsets: search.competitiveOffsets,
+        supportedOffsets, trainingRmseInNoiseUnits: best.fitDiagnostics.trainingRmseInNoiseUnits,
+        noiseSigma: best.fitOptions.noiseSigma, blockers, candidates, failures: search.failures};
+    } catch (error) {
+      if (!(error instanceof AngularDataError)) throw error;
+      return {...summary, selectedOffset: null, modelId: null, competitiveOffsets: [], supportedOffsets: [],
+        blockers: ['run_fit_unavailable'], candidates: [], failures: [{code: error.code, message: error.message}]};
+    }
+  });
+  const blockers = summaries.flatMap(run => run.blockers.map(reason => ({runId: run.runId, reason})));
+  let status, sharedOffsets = null;
+  if (runs.length < 2) status = 'insufficient_runs';
+  else if (settings.offsets.length < 2) status = 'insufficient_grid';
+  else if (blockers.some(b => ['run_fit_unavailable','incomplete_search'].includes(b.reason))) status = 'run_fit_unavailable';
+  else if (blockers.some(b => b.reason === 'model_inadequacy')) status = 'model_inadequacy';
+  else if (blockers.some(b => b.reason === 'insufficient_excitation')) status = 'insufficient_excitation';
+  else if (blockers.some(b => b.reason === 'grid_boundary')) status = 'grid_boundary';
+  else {
+    sharedOffsets = settings.offsets.filter(offset => summaries.every(run => run.supportedOffsets.includes(offset)));
+    status = sharedOffsets.length === 0 ? 'incompatible_run_references' : sharedOffsets.length === 1 ? 'shared_grid_reference' : 'ambiguous_shared_reference';
+  }
+  const nextObservation = status === 'incompatible_run_references'
+    ? 'Measure the angle zero against an independent fixed reference for each run, and repeat a matched release. Different laws, forces or reference changes can all cause this disagreement.'
+    : status === 'model_inadequacy'
+      ? 'Investigate missing dynamics or measurement error in the listed training runs before attributing mismatch to a reference change.'
+      : status === 'insufficient_excitation' || status === 'ambiguous_shared_reference'
+        ? 'Obtain a separately authorized run spanning a wider angular range, or an independent angle-reference measurement. The current motion does not isolate one shared reference.'
+        : status === 'grid_boundary' || status === 'insufficient_grid'
+          ? 'The declared coordinate grid does not establish an interior comparison. Inspect the reference range before interpreting a shared coordinate.'
+          : status === 'insufficient_runs' || status === 'run_fit_unavailable'
+            ? 'Supply at least two usable training runs with enough weak windows; inspect each retained refusal.'
+            : 'A common grid reference survives these training comparisons. Challenge it with independent reference measurements; agreement does not certify calibration or a shared physical law.';
+  return {schema: 'worldlaw.reference-consistency/v1', status, sharedOffsets, blockers, runs: summaries,
+    method: 'intersection_of_run_specific_supported_competitive_offset_sets', nextObservation,
+    limits: [
+      'Run-specific absolute scores are never compared; each competitive set is relative to that run and its declared noise assumption.',
+      'Adequate residuals and numerical rank are necessary gates, not proof of sufficient scientific excitation or model validity.',
+      'Position span at most six assumed noise sigmas is conservatively treated as insufficient excitation; this is a declared heuristic.',
+      'Different coefficients and structures may survive at the same reference. Shared coordinates do not imply one shared law.',
+      'Disjoint finite-grid sets do not identify sensor drift: changed dynamics, omitted forcing, model bias or sampling can also cause disagreement.',
+      'Run labels and recording identifiers are supplied provenance, not independent authentication of separate acquisition.',
+      'This training-only diagnostic neither changes the pooled selected model nor uses challenge observations.',
+    ]};
+}
+
 /** Return predictions to the original observation coordinates, without resetting. */
 export function predictAngleReference(candidate, run, solver = {}) {
   insist(object(candidate) && Number.isFinite(candidate.offset) && Math.abs(candidate.offset) <= Math.PI, 'Invalid coordinate hypothesis.');
@@ -74,6 +142,7 @@ export function predictAngleReference(candidate, run, solver = {}) {
 
 export function investigateAngleReference(rawBundle, requested = {}) {
   const bundle = normalizeAngularBundle(rawBundle), search = searchAngleReference(bundle.trainingRuns, requested);
+  const consistency = auditAngleReferenceRuns(bundle.trainingRuns, search.settings);
   const comparisons = bundle.challengeRuns.map(run => {
     const execute = candidate => {
       try {return predictAngleReference(candidate, run, search.settings.solver);}
@@ -81,7 +150,7 @@ export function investigateAngleReference(rawBundle, requested = {}) {
     };
     return {runId: run.id, baseline: execute(search.baseline), selected: execute(search.selected)};
   });
-  return {schema: REFERENCE_SCHEMA, bundle, search, comparisons};
+  return {schema: REFERENCE_SCHEMA, bundle, search, consistency, comparisons};
 }
 
 /** Save only inputs. Reopening always recomputes every derived claim. */
