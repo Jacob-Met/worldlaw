@@ -16,6 +16,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "independent-review/additive-graph-review.py", "independent-review/additive-graph-review.json",
+    "docs/receipts/sparse-additivity-9e01d4dd/*.txt",
     "independent-review/interaction-review.mjs", "independent-review/interaction-oracle.py",
     "independent-review/interaction-oracle-cases.json", "docs/receipts/interaction-9e01d4dd/*.txt",
     "separability.css", "examples/separability/*.json",
@@ -71,6 +73,7 @@ INCLUDE = (
     'experiments/rolling-origin.mjs',
 )
 REQUIRED = (
+    "src/science/additive-source.mjs", "src/science/additive-graph.mjs", "src/science/additive-graph-panel.mjs",
     "separability.css", "src/science/separability.mjs", "src/science/separability-panel.mjs",
     "cycle-work.html", "src/cycle-work/app.mjs", "src/cycle-work/core.mjs",
     "src/cycle-work/refinement.mjs", "src/cycle-work/refinement-panel.mjs", "src/cycle-work/refinement-example.mjs",

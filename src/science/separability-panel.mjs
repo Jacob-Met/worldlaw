@@ -1,3 +1,6 @@
+import {prepareAdditiveSlice} from './additive-source.mjs';
+import {inspectSparseAdditivity} from './additive-graph.mjs';
+import {renderAdditiveGraph} from './additive-graph-panel.mjs';
 import {inspectSeparability} from './separability.mjs';
 
 const labels={command:'Command (N·m)',position:'Angle (rad)',rate:'Rate (rad/s)'};
@@ -19,10 +22,10 @@ export function renderSeparability(container, observations, source) {
   const fixedLabel=labelled('Fixed coordinate',fixed);
   const radius=el('input');radius.type='number';radius.min='0';radius.max='1000000';radius.step='any';radius.placeholder='Declare a bound';radius.id='separability-radius';
   const exact=el('input');exact.type='checkbox';exact.id='separability-exact';
-  const run=el('button','Inspect all complete rectangles');run.type='button';run.id='separability-run';
+  const run=el('button','Inspect additive evidence');run.type='button';run.id='separability-run';
   run.className='button button-outline';
   controls.append(labelled('Varied inputs',pair),fixedLabel,labelled('Absolute error of each torque reading (N·m)',radius),labelled('Assume the declared input coordinates are exact',exact),run);
-  details.append(controls,el('p','The absolute error bound is your declaration, not the fitted noise standard deviation. No near-match rounding or interpolation is used. A missing rectangle is missing evidence.'));
+  details.append(controls,el('p','The absolute error bound is your declaration, not the fitted noise standard deviation. No near-match rounding or interpolation is used. Sparse cycles can also contradict additivity even when no complete rectangle exists.'));
   const output=el('div');output.id='separability-output';output.setAttribute('aria-live','polite');details.append(output);
   function resetFixed(){
     const axes=pair.value.split(','),axis=Object.keys(labels).find(k=>!axes.includes(k));
@@ -37,8 +40,11 @@ export function renderSeparability(container, observations, source) {
     output.replaceChildren();
     try{
       if(radius.value.trim()==='')throw new Error('Declare an absolute reading-error bound before screening.');
-      const result=inspectSeparability(observations,{axes:pair.value.split(','),fixedValue:Number(fixed.value),torqueRadius:Number(radius.value),exactCoordinates:exact.checked});
-      show(result);
+      const declaration={axes:pair.value.split(','),fixedValue:Number(fixed.value),torqueRadius:Number(radius.value),exactCoordinates:exact.checked};
+      prepareAdditiveSlice(observations,declaration);
+      try{show(inspectSeparability(observations,declaration));}catch(error){output.append(el('p',`Rectangle screen refused: ${error.message}`));}
+      const graph=el('section');graph.id='additive-graph-output';output.append(graph);
+      try{renderAdditiveGraph(graph,inspectSparseAdditivity(observations,declaration),observations);}catch(error){graph.append(el('p',`Joint source screen refused: ${error.message}`));}
     }catch(error){output.append(el('p',`Screen refused: ${error.message}`));}
   });
   function show(result){

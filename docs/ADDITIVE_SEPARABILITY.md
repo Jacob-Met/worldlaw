@@ -5,6 +5,12 @@ beside the original repeated-state diagnosis. It uses the current notebook's
 original fitting rows. It does not change fitting, ranking, observations,
 held-out data, discovery options or the notebook schema.
 
+The integrated sparse-source companion now also checks joint compatibility on
+the observed finite slice and exposes either source-cycle contradictions or
+constructive coordinate assignments. Its exact arithmetic and separate
+qualifications are documented in [Sparse Additivity](SPARSE_ADDITIVITY.md).
+The original rectangle-specific claims and limits below remain unchanged.
+
 ## What this tests
 
 Every candidate in the default additive scalar library is a sum of functions of separate inputs:

@@ -1,0 +1,59 @@
+{
+  "schema": "worldlaw.observations/v1",
+  "source": {
+    "label": "Authored sparse additive contradiction",
+    "kind": "synthetic-authored",
+    "description": "Original mathematical control tau=u*theta. Six-state contradiction plus a disconnected two-edge source tree. No physical measurements."
+  },
+  "observations": [
+    {
+      "command": 0,
+      "position": 0,
+      "rate": 0,
+      "jointTorque": 0
+    },
+    {
+      "command": 0,
+      "position": 1,
+      "rate": 0,
+      "jointTorque": 0
+    },
+    {
+      "command": 1,
+      "position": 1,
+      "rate": 0,
+      "jointTorque": 1
+    },
+    {
+      "command": 1,
+      "position": 2,
+      "rate": 0,
+      "jointTorque": 2
+    },
+    {
+      "command": 2,
+      "position": 2,
+      "rate": 0,
+      "jointTorque": 4
+    },
+    {
+      "command": 2,
+      "position": 0,
+      "rate": 0,
+      "jointTorque": 0
+    },
+    {
+      "command": 3,
+      "position": 3,
+      "rate": 0,
+      "jointTorque": 9
+    },
+    {
+      "command": 4,
+      "position": 3,
+      "rate": 0,
+      "jointTorque": 12
+    }
+  ],
+  "heldOut": []
+}

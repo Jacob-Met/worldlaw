@@ -11,3 +11,16 @@
 .separability th, .separability td { padding: .5rem; text-align: left; border-bottom: 1px solid currentColor; overflow-wrap: anywhere; }
 .separability th { font-weight: 650; }
 @media (max-width: 500px) { .separability-controls { display: block; } .separability table { font-size: .72rem; } .separability th, .separability td { padding: .3rem; } }
+
+.additive-graph { border-top: 2px solid #496457; margin-top: 1.5rem; padding-top: 1rem; color: #203b32; }
+.additive-graph h4 { font-size: 1.15rem; margin: 0 0 .6rem; }
+.additive-graph svg { display: block; width: 100%; max-width: 520px; margin: 0 auto; }
+.additive-graph-table { max-width: 100%; overflow-x: auto; }
+.additive-graph table { width: 100%; font-size: .82rem; border-collapse: collapse; }
+.additive-graph th, .additive-graph td { padding: .55rem; text-align: left; border-bottom: 1px solid #c1cdc0; vertical-align: top; }
+.additive-graph code { display: block; overflow-wrap: anywhere; font-size: .8rem; }
+.additive-graph details { margin: .45rem 0; }
+
+@media (max-width: 500px) { .additive-graph th, .additive-graph td { padding: .35rem; } }
+.additive-graph th, .additive-graph td { overflow-wrap: normal; word-break: normal; }
+.additive-graph-drawing { max-width: 100%; }

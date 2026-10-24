@@ -1,0 +1,16 @@
+{
+  "status": "ACCEPT integrated mathematical mechanism and preserved rectangle behavior",
+  "cases": 320,
+  "counts": {
+    "additivity-excluded": 185,
+    "incompatible-replicates": 53,
+    "compatible-on-observed-slice": 82
+  },
+  "hashes": {
+    "src/science/additive-source.mjs": "9f922708f7b1198a68ff929fe4f3137d6e0f15261bd425af315df24fc2c0a9b2",
+    "src/science/separability.mjs": "c9d8905b28bd8b3e9b416850c2c90c57ffbb7bf925fd54aae4a1222b578cec52",
+    "src/science/additive-graph.mjs": "abc271879ba03d987fec8595a1ce627e5a7c72ee7e1e64bb06bfc74ee1296818"
+  },
+  "whole_rectangle_result_parity": 320,
+  "coverage": "Exact Fraction certificate checks,4ordered-axis pairs,subnormal/very-small radii,original-row replicate conflicts,off-slice exclusion. Scope is sampled coordinate feasibility, not physical identification."
+}

@@ -1,0 +1,121 @@
+{
+  "issue": 127,
+  "base": "1c9d34b1d44e8707a08e60e59c7da97ac1c0e9d3",
+  "baseTree": "ebd7939948d815845a75366665433cf7dbeb71a0",
+  "inputSha256": "effb787f03c299138863e104f9b183824f8a3f8e8fc54750849b90d47b2ca441",
+  "independentCoreReview": {
+    "status": "ACCEPT integrated mathematical mechanism and preserved rectangle behavior",
+    "cases": 320,
+    "counts": {
+      "additivity-excluded": 185,
+      "incompatible-replicates": 53,
+      "compatible-on-observed-slice": 82
+    },
+    "hashes": {
+      "src/science/additive-source.mjs": "9f922708f7b1198a68ff929fe4f3137d6e0f15261bd425af315df24fc2c0a9b2",
+      "src/science/separability.mjs": "c9d8905b28bd8b3e9b416850c2c90c57ffbb7bf925fd54aae4a1222b578cec52",
+      "src/science/additive-graph.mjs": "abc271879ba03d987fec8595a1ce627e5a7c72ee7e1e64bb06bfc74ee1296818"
+    },
+    "whole_rectangle_result_parity": 320,
+    "coverage": "Exact Fraction certificate checks,4ordered-axis pairs,subnormal/very-small radii,original-row replicate conflicts,off-slice exclusion. Scope is sampled coordinate feasibility, not physical identification."
+  },
+  "native": {
+    "graphGroups": 6,
+    "preservedRectangleGroups": 8,
+    "preservedInteractionGroups": 4,
+    "launchedSmokes": [
+      "Studio",
+      "trajectory"
+    ]
+  },
+  "browser": {
+    "groups": 7,
+    "exceptions": 0,
+    "viewports": [
+      1440,
+      390
+    ],
+    "views": [
+      "signed source cycle",
+      "two coordinate groups"
+    ],
+    "screenshotsInspected": 5,
+    "sourceReopen": true,
+    "assumptionsRedeclared": true
+  },
+  "limits": [
+    "Only observed finite slice under exact-coordinate and reading-bound declarations",
+    "No physical cause, unseen-state prediction or finite-feature fit established",
+    "One original historical image unavailable locally; preserve unchanged remote blob"
+  ],
+  "portable": {
+    "archiveSha256": "060db16134c475f51cbe40ac5bcb475c1f1f78802461488221a9a14486d96a69",
+    "sourceFiles": 536,
+    "bytes": 21629683,
+    "sourceMode": "working-tree-candidate",
+    "sourceTree": null,
+    "allMemberDigestsVerified": true,
+    "focusedNativeGroups": 14,
+    "independentExactCertificates": 320,
+    "wholeRectangleParity": 320,
+    "browserGroups": {
+      "sparseGraph": 7,
+      "preservedRectangles": 6,
+      "interaction": 8
+    },
+    "screenshotsIdenticalToInspectedSource": true,
+    "packageRefusalControls": 5,
+    "finalDocumentationQualification": "Final docs/receipt added after archive; runtime unchanged. Known historical branch-response desktop.png remains absent locally; unchanged remote blob must remain untouched.",
+    "browserReceipts": {
+      "graph": {
+        "browser": "156.0.8078.47",
+        "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "checks": [
+          "Actual eight-row authored import exposes six-row contradiction despite zero rectangles; evidence remains unchanged",
+          "Original signed readings, exact bound, cycle and coordinate-group diagrams received at desktop and narrow viewport",
+          "Changed declarations invalidate prior result; equality gives constructive finite-slice assignment and every source row",
+          "Strictly smaller declared bound restores a source-supported contradiction",
+          "Actual downloaded source notebook reopens, requires new declarations, and reconstructs the witness",
+          "Repeated-reading contradiction remains distinct from an additive interaction claim",
+          "No JavaScript exceptions"
+        ],
+        "errors": []
+      },
+      "rectangles": {
+        "url": "http://127.0.0.1:45381",
+        "browser": "156.0.8078.47",
+        "checks": [
+          "Actual authored observation import; explicit assumptions; all nine source rectangles exclude additivity",
+          "Every original corner reading; both scientific compositions at desktop and390px without panel overflow",
+          "Changed bounds invalidate old result; keyboard rerun changes conclusion; source notebook is unchanged",
+          "Actual downloaded notebook reopens and recomputes after deliberate redeclaration",
+          "Independent additive source control excludes none; previous source conclusion is removed",
+          "No page exceptions"
+        ],
+        "screenshots": [
+          "corners-1440.png",
+          "differences-1440.png",
+          "corners-390.png",
+          "differences-390.png"
+        ],
+        "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "status": "passed"
+      },
+      "interaction": {
+        "browser": "156.0.8078.47",
+        "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "checks": [
+          "actual authored import and failed baseline",
+          "keyboard feature revision and heldout improvement",
+          "fixed-command dynamics",
+          "browser reload retains v2 model history",
+          "desktop and narrow model panel",
+          "undo preserves failed baseline",
+          "actual moving model and reduced-motion freeze",
+          "downloaded v2 source notebook reopens and invalid dynamics refuses"
+        ],
+        "errors": []
+      }
+    }
+  }
+}

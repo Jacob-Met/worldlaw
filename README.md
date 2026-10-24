@@ -282,3 +282,12 @@ After a coupled-loop comparison, **Inspect responses hidden by integrated work**
 ### Useful coordinates for conditional coupled motion
 
 After a Coupling Lab motion comparison, **Find coordinates for this motion** derives inertia-scaled orthogonal directions for each symmetric fitted affine law and displays the retained trajectory in those coordinates. The original laws, evidence and solver remain unchanged. Damping cross terms, affine bias, asymmetric-model refusals and repeated-axis ambiguity remain visible. The stated frequencies are conditional and undamped; the feature does not identify inertia, bodies or topology from quasi-static evidence. See [the equations and receiving scope](docs/COUPLED_MODES.md).
+
+## Challenge additivity from sparse readings
+
+The Studio additive inspector now receives sparse source cycles as well as
+complete rectangles. Inspect either an exact signed contradiction from original
+readings or one additive assignment that satisfies every bound on the observed
+finite slice. Original rectangle views, repeated-reading conflicts and source
+notebook replay remain distinct. No unseen-state law or physical cause is
+asserted. See [the sparse source course and qualification](docs/SPARSE_ADDITIVITY.md).
