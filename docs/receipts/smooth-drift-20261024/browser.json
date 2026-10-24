@@ -1,0 +1,18 @@
+{
+  "implementationBaseline": "1db1c84bafd6f7f1ae19483753b01408ecf82ae9",
+  "executionBase": "93130ac6d5dd96ce9c4cd028d0178a82328eccb5",
+  "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+  "exceptions": [],
+  "passed": true,
+  "checks": [
+    "actual authored comparison",
+    "sample keyboard inspection",
+    "changed order",
+    "two visual concepts",
+    "input download and replay",
+    "changed curvature zero control",
+    "delayed input invalidation",
+    "narrow full-width instrument"
+  ],
+  "sandboxRequested": true
+}
