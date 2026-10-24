@@ -41,6 +41,14 @@ extrapolation, and save/reopen the evidence plus dynamic inputs. Quasi-static
 measurements alone do not establish these dynamic assumptions. See
 [the execution contract and receiving](docs/COUPLED_DYNAMICS.md).
 
+After comparing an observed closed loop in Coupling Lab, open **Does circulation
+survive coordinate measurement uncertainty?** to inspect signed polygon work
+under explicitly declared paired angular reading bounds. The inspector reuses
+the maintained exact scalar endpoint solver, preserves original readings and
+shows simultaneous extremal witnesses. Save/reopen retains inputs, not cached
+conclusions. This is separate from the nominal fitted-law comparison; see
+[the coordinate-box contract and limits](docs/COUPLED_COORDINATE_BOXES.md).
+
 ## Measure recorded motion
 
 Open **Motion Lab** from the studio header, or visit **http://127.0.0.1:4193/motion.html**. Load a local WebM/MP4 mechanism video, mark a fixed pivot and a stable visible marker, then track a selected time interval. The pixel view, angular plot and measurement ledger show what was accepted and where tracking stopped. Correct the marker to resume; missing frames remain visible and split the evidence into separate segments.
