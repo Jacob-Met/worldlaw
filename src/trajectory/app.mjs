@@ -1,3 +1,4 @@
+import {createCycleWorkPanel} from './cycle-work-panel.mjs';
 import {createRollingOriginPanel} from './rolling-origin-panel.mjs';
 import {createInitialStatePanel} from './initial-state-panel.mjs';
 import {createPredictiveSelectionPanel} from '../predictive-selection/panel.mjs';
@@ -14,6 +15,7 @@ const {createExperimentSession,planNextExperiment,acquireNextExperiment,applyNex
 const $=id=>document.getElementById(id);
 const initialStatePanel=createInitialStatePanel($('comparison-grid'));
 const rollingOriginPanel=createRollingOriginPanel($('initial-state-panel'));
+const cycleWorkPanel=createCycleWorkPanel($('rolling-origin-panel'));
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
 const set=(id,text)=>{$(id).textContent=text;};
 const fmt=(value,digits=4)=>!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});
@@ -100,6 +102,7 @@ function renderModel(){
   stopPlayback();const model=currentModel(),result=currentResult(),run=currentRun();
   initialStatePanel.render(model,run,state.options);
 rollingOriginPanel.render(model,run,state.options);
+cycleWorkPanel.render(model,state.bundle,state.options);
   rows=result?.status==='ok'&&Array.isArray(result.rollout?.rows)?result.rollout.rows:[];viewIndex=0;const angular=angularMode(),failed=result?.status==='failed';$('prediction-status').hidden=!failed;set('prediction-status',failed?`${predictionFailure(result)} The observed recording remains visible; no incomplete prediction is presented.`:'');$('prediction-legend').hidden=!rows.length;$('motion-panel').hidden=angular||!rows.length;$('angular-context').hidden=!angular;$('comparison-grid').classList.toggle('without-motion',!angular&&!rows.length);$('sample-readout').hidden=!rows.length;set('angular-initial-rate',`${fmt(run.initialRate)} rad/s`);set('angular-recording',run.label||run.id);
   const angularReplay=angular&&rows.length,playback=document.querySelector('.playback-controls'),playbackParent=angularReplay?$('angular-context'):$('motion-panel');playbackParent.insertBefore(playback,playbackParent.querySelector(angularReplay?'.angular-assumption':'.schematic-note'));$('angular-context').classList.toggle('with-replay',Boolean(angularReplay));
   const m=result?.rollout?.metrics||{};set('position-rmse',fmt(m.positionRMSE));set('maximum-error',fmt(m.maxAbsError));set('final-error',fmt(m.finalAbsError));

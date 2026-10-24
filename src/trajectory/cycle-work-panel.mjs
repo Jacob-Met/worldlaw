@@ -1,0 +1,65 @@
+import {cycleWorkInvestigation,replayCycleWork} from './cycle-work.mjs';
+const node=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
+const fmt=x=>Number.isFinite(x)?Number(x.toPrecision(5)).toString():'unavailable';
+const COLORS={'restoring-only':'#777b72',viscous:'#ad4a20',coulomb:'#256a8b',joint:'#72559b'};
+export function createCycleWorkPanel(anchor){
+ const host=node('section');host.id='cycle-work-panel';host.className='panel';host.hidden=true;anchor.after(host);
+ const style=node('style');style.textContent=`#cycle-work-panel{padding:clamp(16px,2.5vw,28px);display:grid;gap:16px;border-top:3px solid #ad4a20}#cycle-work-panel[hidden],#cycle-work-panel [hidden]{display:none}#cycle-work-panel h2{font-size:clamp(19px,2vw,25px);margin:0;line-height:1.3}#cycle-work-panel p{margin:0;font-size:12px;line-height:1.65;color:#3e5145}#cycle-work-panel .cycle-controls{display:flex;align-items:end;gap:12px;flex-wrap:wrap}#cycle-work-panel label{display:grid;gap:6px;font-size:11px;min-width:0;max-width:100%;flex:1 1 180px}#cycle-work-panel input,#cycle-work-panel select{min-width:0;width:100%;box-sizing:border-box;padding:10px;background:#fffef9;color:#203928;border:1px solid #bac9b5;min-height:42px}#cycle-work-panel button{min-height:42px}#cycle-work-status{border-left:3px solid #ad4a20;background:#fbf7ed;padding:12px}#cycle-work-chart{min-width:0}#cycle-work-chart svg{display:block;width:100%;height:auto;background:#fffef9;border:1px solid #d8dfd1}#cycle-work-panel table{border-collapse:collapse;width:100%;font-size:11px;line-height:1.5}#cycle-work-panel td,#cycle-work-panel th{padding:9px 7px;text-align:left;border-bottom:1px solid #d8dfd1}#cycle-work-panel .cycle-table{max-width:100%;overflow:auto;min-width:0}#cycle-work-panel details{min-width:0;overflow:auto}#cycle-work-panel summary{font-size:12px;cursor:pointer;font-weight:650}#cycle-work-panel details p{margin:8px 0}#cycle-work-panel .cycle-key{display:flex;gap:14px;flex-wrap:wrap}#cycle-work-panel .cycle-key span{font-size:11px;font-weight:650}@media(max-width:540px){#cycle-work-panel .cycle-controls{display:grid;grid-template-columns:1fr}#cycle-work-panel button{width:100%}}`;
+ const title=node('h2','Where does the motion lose its energy?');
+ const intro=node('p','Keep the selected restoring law fixed. Use complete training cycles to fit viscous and Coulomb loss, then execute every admitted law on the separate receiving recordings. This is normalized work with unknown inertia, not calibrated joules.');
+ const controls=node('div');controls.className='cycle-controls';
+ function input(label,id,value){const wrap=node('label',label),e=node('input');e.id=id;e.type='number';e.value=value;wrap.append(e);controls.append(wrap);return e;}
+ const window=input('Centered rate window · odd samples','cycle-work-window','9');window.min=5;window.max=31;window.step=2;
+ const crossing=input('Upward crossing angle · rad','cycle-work-crossing','0');crossing.step='.01';
+ const run=node('button','Compare cycle-work laws');run.id='compare-cycle-work';run.type='button';run.className='button outline';controls.append(run);
+ const status=node('p','Choose a restoring-only angular law. Declarations are exploratory when chosen after viewing these recordings.');status.id='cycle-work-status';status.setAttribute('role','status');
+ const chart=node('div');chart.id='cycle-work-chart';
+ const key=node('div');key.className='cycle-key';key.hidden=true;for(const [id,color]of Object.entries(COLORS)){const span=node('span',id);span.style.color=color;key.append(span);}key.append(node('span','Dark: observations'));
+ const tables=node('div');tables.className='cycle-table';
+ const recordChoice=node('label','Receiving recording');recordChoice.hidden=true;const select=node('select');select.id='cycle-work-receiving';recordChoice.append(select);
+ const details=node('details'),summary=node('summary','Cycle coverage, refusals and interpretation'),disclosures=node('div');details.append(summary,disclosures);details.hidden=true;
+ const actions=node('div');actions.className='cycle-controls';
+ const download=node('button','Export cycle-work inputs');download.id='export-cycle-work';download.type='button';download.className='button outline';download.hidden=true;
+ const fileLabel=node('label','Reopen cycle-work input notebook');const file=node('input');file.type='file';file.accept='.json,application/json';file.id='cycle-work-file';fileLabel.append(file);actions.append(download,fileLabel);
+ host.append(style,title,intro,controls,status,recordChoice,chart,key,tables,details,actions);
+ let bundle,model,solver={},result=null,ticket=0,width=0,resizeFrame;
+ function invalidate(message='Declarations changed. Recompute before exporting.'){ticket++;result=null;chart.replaceChildren();tables.replaceChildren();disclosures.replaceChildren();download.hidden=details.hidden=key.hidden=recordChoice.hidden=true;run.disabled=false;status.textContent=message;}
+ const table=(head,rows)=>{const t=node('table'),tr=node('tr');for(const text of head)tr.append(node('th',text));t.append(tr);for(const row of rows){const r=node('tr');for(const value of row)r.append(node('td',String(value)));t.append(r);}return t;};
+ function plot(){
+  chart.replaceChildren();if(!result)return;const W=Math.max(240,chart.clientWidth||700),H=470,L=62,R=20,T=40;width=Math.round(chart.clientWidth);
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('role','img');svg.setAttribute('aria-label','Training cycle work observations versus fitted loss; receiving angular observations versus all admitted executable laws.');
+  const shape=(tag,attrs,text)=>{const e=document.createElementNS(svg.namespaceURI,tag);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,String(v));if(text!==undefined)e.textContent=text;svg.append(e);return e;};
+  const label=(text,x,y,anchor='start')=>shape('text',{x,y,'text-anchor':anchor,'font-size':11,fill:'#3e5145'},text);
+  const cycles=result.fit.records.flatMap(r=>r.cycles).filter(c=>c.status==='admitted'),candidates=result.fit.candidates.filter(c=>c.status==='admitted');
+  function frame(points,top,bottom,title,xLabel){
+   const ys=points.map(p=>p.y),xs=points.map(p=>p.x),lo=Math.min(...ys),hi=Math.max(...ys),minX=Math.min(...xs),maxX=Math.max(...xs),span=Math.max(1e-9,hi-lo),dx=Math.max(1e-9,maxX-minX);
+   const x=v=>L+(W-L-R)*(v-minX)/dx,y=v=>bottom-(bottom-top)*(v-lo)/span;
+   label(title,12,top-18);shape('path',{d:`M${L},${top}V${bottom}H${W-R}`,fill:'none',stroke:'#bac9b5'});label(fmt(hi),L-7,top+4,'end');label(fmt(lo),L-7,bottom+4,'end');label(fmt(minX),L,bottom+18);label(fmt(maxX),W-R,bottom+18,'end');label(xLabel,W-R,bottom+35,'end');return {x,y};
+  }
+  if(cycles.length){const points=cycles.map((c,i)=>({x:i+1,y:c.loss}));for(const c of candidates)c.predictions.forEach((p,i)=>points.push({x:i+1,y:p.predicted}));const f=frame(points,T,170,'Training work · rad²/s²','Admitted cycle ordinal');
+   for(const c of candidates)shape('polyline',{points:c.predictions.map((p,i)=>`${f.x(i+1)},${f.y(p.predicted)}`).join(' '),fill:'none',stroke:COLORS[c.id],'stroke-width':c.id==='joint'?1:2,'stroke-dasharray':c.id==='joint'?'4 3':'none'});
+   cycles.forEach((c,i)=>shape('circle',{cx:f.x(i+1),cy:f.y(c.loss),r:2.5,fill:'#173c30'}));
+  }else label('No admitted cycles. Inspect refusals below.',12,65);
+  const receiving=result.inputs.bundle.challengeRuns.find(r=>r.id===select.value),runs=result.receiving.filter(r=>r.runId===select.value&&r.rollout);
+  if(receiving){const start=receiving.samples[0].time,points=receiving.samples.map(s=>({x:s.time-start,y:s.position}));for(const r of runs)r.rollout.rows.forEach(s=>points.push({x:s.time-start,y:s.predicted}));const f=frame(points,280,415,'Receiving angle · rad','Elapsed receiving time · s');
+   shape('polyline',{points:receiving.samples.map(s=>`${f.x(s.time-start)},${f.y(s.position)}`).join(' '),fill:'none',stroke:'#173c30','stroke-width':2});
+   for(const r of runs)shape('polyline',{points:r.rollout.rows.map(s=>`${f.x(s.time-start)},${f.y(s.predicted)}`).join(' '),fill:'none',stroke:COLORS[r.candidateId],'stroke-width':1.5,'stroke-dasharray':r.candidateId==='joint'?'4 3':'none'});
+  }chart.append(svg);
+ }
+ function show(){
+  tables.replaceChildren();disclosures.replaceChildren();select.replaceChildren();for(const r of result.inputs.bundle.challengeRuns){const e=node('option',r.label||r.id);e.value=r.id;select.append(e);}
+  const fit=result.fit;status.textContent=`${result.inputs.bundle.label} · frozen ${fit.restoringModel.id}. ${fit.admittedCycleCount}/${fit.cycleCount} complete cycle pairs admitted. All three candidate families retained; no receiving winner selected. Reused challenge results remain exploratory.`;
+  tables.append(table(['Training law','Viscous · 1/s','Coulomb · rad/s²','Work RMSE','Support'],fit.candidates.map(c=>[c.id,fmt(c.coefficients?.rate),fmt(c.coefficients?.coulomb),fmt(c.lossRMSE),c.status==='refused'?c.reason:c.boundary?'Nonnegative boundary; fewer active terms':'Admitted'])));
+  tables.append(table(['Receiving law / recording','Angle RMSE · rad','Numerical screen','Outcome'],result.receiving.map(r=>[r.candidateId+' / '+r.runId,fmt(r.rollout?.metrics.positionRMSE),r.resolution?.status??'unavailable',r.reason??r.status])));
+  for(const r of fit.records){disclosures.append(node('p',`${r.runId}: ${r.crossingCount} upward crossings, ${r.peakCount} maxima, ${r.cycles.length} cycle pairs. Excluded prefix ${r.coverage.excludedPrefixSamples} and suffix ${r.coverage.excludedSuffixSamples} samples.`));disclosures.append(table(['Cycle','Outcome','Potential loss','Endpoint kinetic correction','Reason'],r.cycles.map(c=>[c.cycleIndex,c.status,fmt(c.potentialLoss),fmt(c.kineticCorrection),c.reason??'Contiguous peak plateau midpoint; local rate estimate'])));}
+  for(const c of fit.candidates)disclosures.append(node('p',`${c.id}: unconstrained coefficients ${JSON.stringify(c.unconstrainedCoefficients??null)}; normalized QR pivot ratio ${fmt(c.normalizedQRPivotRatio)}. This ratio is a numerical diagnostic, not a spectral condition number or uncertainty bound.`));
+  disclosures.append(node('p',`Declared receiving maximum step ${result.solver.maxStep} s; combined budget ${result.solver.maxSteps}; complete population requires ${result.solver.requiredSteps} steps.`));
+  for(const text of fit.limitations)disclosures.append(node('p',text));download.hidden=details.hidden=key.hidden=recordChoice.hidden=false;plot();
+ }
+ for(const input of [window,crossing])input.addEventListener('input',()=>invalidate());select.addEventListener('change',plot);
+ run.addEventListener('click',async()=>{invalidate();const mine=ticket;run.disabled=true;status.textContent='Computing declared training cycles and every receiving model…';await new Promise(requestAnimationFrame);if(mine!==ticket)return;try{if(window.value.trim()===''||crossing.value.trim()==='')throw Error('Complete both cycle declarations.');result=cycleWorkInvestigation(bundle,model,{windowSize:Number(window.value),crossingAngle:Number(crossing.value),maxStep:solver.maxStep??.01,maxSteps:solver.maxSteps??300000});show();}catch(error){result=null;status.textContent=error.message;}finally{if(mine===ticket)run.disabled=false;}});
+ file.addEventListener('change',async()=>{invalidate('Reading cycle-work inputs…');const mine=ticket;try{const source=file.files?.[0];if(!source||source.size>4*1024*1024)throw Error('Choose an input notebook of at most 4 MiB.');const inputs=JSON.parse(await source.text());if(mine!==ticket)return;result=replayCycleWork(inputs);bundle=result.inputs.bundle;model=result.inputs.restoringModel;solver=result.inputs.options;window.value=String(result.fit.declaration.windowSize);crossing.value=String(result.fit.declaration.crossingAngle);show();}catch(error){if(mine===ticket){result=null;status.textContent=error.message;}}finally{if(mine===ticket)file.value='';}});
+ download.addEventListener('click',()=>{if(!result)return;const url=URL.createObjectURL(new Blob([JSON.stringify(result.inputs,null,2)],{type:'application/json'})),a=node('a');a.href=url;a.download='worldlaw-cycle-work.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+ new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if(result&&Math.round(chart.clientWidth)!==width)plot();});}).observe(chart);
+ return {render(nextModel,nextBundle,nextSolver){bundle=nextBundle;model=nextModel;solver=nextSolver??{};host.hidden=nextBundle?.schema!=='worldlaw.angular-bundle/v1';invalidate('Selected restoring law or evidence changed. Compare declared cycle work; existing drag is never silently removed.');}};
+}
