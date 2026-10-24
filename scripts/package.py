@@ -39,6 +39,7 @@ REQUIRED = (
     "stiffness.html", "stiffness.css", "src/stiffness/app.mjs", "src/stiffness/science.mjs", "src/stiffness/notebook.mjs", "src/stiffness/fixture.mjs", "src/science/linear-fit.mjs",
     "coupling.html", "coupling.css", "src/coupling/app.mjs", "src/coupling/science.mjs",
     "src/coupling/notebook.mjs", "src/coupling/virtual-instrument.mjs", "src/science/linear-fit.mjs",
+    "src/coupling/dynamics.mjs", "src/coupling/dynamics-panel.mjs",
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/app.mjs", "src/unknown-lab/paired-history.mjs",
     "README.md", "package.json", "index.html", "styles.css", "favicon.svg",
     "server.mjs", "src/app.mjs", "src/data.mjs", "src/session.mjs",
