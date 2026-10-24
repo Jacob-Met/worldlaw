@@ -64,6 +64,8 @@ function runList(values, minimum = 5) {
 }
 /** Shared angular evidence boundary; performs no fitting or torque conversion. */
 export function normalizeAngularRuns(trainingRuns) { return runList(trainingRuns); }
+/** Forecast-only boundary: same source/state checks, two points suffice to execute. */
+export function normalizeAngularForecastRun(run) { return normalizeRun(run, 2); }
 function repeatedEvidence(training, challenges) {
   const recordings = new Set(training.map(run => run.source.recordingId).filter(Boolean));
   const windows = new Map();
@@ -173,7 +175,7 @@ function numericalModel(model) {
 }
 /** Execute alpha directly via the shared numerical kernel; never export its unit proxy. */
 export function rolloutAngular(model, run, options = {}) {
-  const normalized = normalizeRun(run, 2), result = rollout(numericalModel(model), numericalRun(normalized), options);
+  const normalized = normalizeAngularForecastRun(run), result = rollout(numericalModel(model), numericalRun(normalized), options);
   const {commandConvention, ...diagnostics} = result.diagnostics;
   return {schema: 'worldlaw.angular-rollout/v1', modelId: result.modelId, runId: result.runId,
     rows: result.rows.map(({command, ...row}) => row), metrics: {...result.metrics}, units: {...ANGULAR_MODEL_UNITS, time: 's'},
