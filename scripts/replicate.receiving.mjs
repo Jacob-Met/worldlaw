@@ -24,7 +24,7 @@ export async function receiveReplicateDiagnosis({evaluate,send,report}) {
   assert.ok(await evaluate('document.documentElement.scrollWidth<=innerWidth'));assert.ok(await evaluate("(()=>{const r=document.querySelector('#replicate-diagnostics').getBoundingClientRect();return r.width>0&&r.left>=0&&r.right<=innerWidth})()"));
   captures[name]=await send('Page.captureScreenshot',{format:'png'});
  }
- await send('Emulation.clearDeviceMetricsOverride');await evaluate("document.querySelector('#hypothesis-list button').focus()");assert.equal(await evaluate("document.activeElement.matches('#hypothesis-list button')"),true);
- await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});assert.match(await text(),/8 rows in 4 repeated states/);
+ await send('Emulation.clearDeviceMetricsOverride');await evaluate("document.querySelectorAll('#hypothesis-list button')[1].focus()");assert.equal(await evaluate("document.activeElement.matches('#hypothesis-list button')"),true);
+ await send('Input.dispatchKeyEvent',{type:'keyDown',text:'\r',unmodifiedText:'\r',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});assert.match(await text(),/8 rows in 4 repeated states/);assert.equal(await evaluate("document.querySelectorAll('#hypothesis-list button')[1].getAttribute('aria-pressed')"),'true');
  report.push('desktop/narrow viewport and keyboard model interaction pass');return captures;
 }

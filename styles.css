@@ -30,3 +30,9 @@
 /* Keep the scientific diagnosis readable within the existing residual instrument. */
 #replicate-diagnostics{margin-top:1.25rem;border-top:1px solid var(--line);padding-top:1rem}
 #replicate-diagnostics p{font-size:14px;line-height:1.6;color:var(--ink)}
+
+/* Explicit state-support inspection shares the residual instrument's readable scale. */
+#state-support{margin-top:1.25rem;border-top:1px solid var(--line);padding-top:1rem;overflow-wrap:anywhere}
+#state-support p,#state-support li{font-size:14px;line-height:1.6;color:var(--ink)}
+#state-support li{margin-bottom:.75rem}
+#state-support button{min-height:40px;padding:.5rem .75rem;max-width:100%;white-space:normal}
