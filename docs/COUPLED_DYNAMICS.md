@@ -5,6 +5,10 @@ motion, under additional assumptions explicitly supplied by the investigator.
 Open `/coupling.html`, find **Let the laws move**, enter the inertias, damping
 and initial state, declare the interpretation, and select **Compare the motion**.
 
+The original diagonal interpretation below remains the default. An explicit
+[constant symmetric inertia extension](COUPLED_INERTIA.md) also executes
+cross-coordinate acceleration coupling in the same solver.
+
 ## What is executed
 
 For each current fitted candidate, the maintained `predictCoupling` supplies
