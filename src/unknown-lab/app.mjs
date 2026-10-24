@@ -1,3 +1,4 @@
+import {mountSerialNoise} from './serial-noise-panel.mjs';
 import {mountProbePlanner} from './probe-planner-panel.mjs';
 import {mountProbePanel} from './probe-panel.mjs';
 import {mountRecoveryPlanner} from './recovery-planner-panel.mjs';
@@ -130,3 +131,6 @@ mountRecoveryPlanner(recoveryPanel);
 
 const probePanel=mountProbePanel();
 mountProbePlanner(probePanel);
+
+mountSerialNoise(()=>notebook);
+
