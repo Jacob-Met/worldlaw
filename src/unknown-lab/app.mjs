@@ -1,3 +1,4 @@
+import {mountProbePanel} from './probe-panel.mjs';
 import {mountRecoveryPlanner} from './recovery-planner-panel.mjs';
 import {mountRecoveryPanel} from './recovery-panel.mjs';
 import {mountContinuousDuration} from './continuous-duration-panel.mjs';
@@ -125,3 +126,5 @@ mountContinuousDuration(durationPanel);
 
 const recoveryPanel=mountRecoveryPanel(()=>notebook);
 mountRecoveryPlanner(recoveryPanel);
+
+mountProbePanel();
