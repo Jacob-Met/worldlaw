@@ -26,7 +26,8 @@ try {
   socket.addEventListener('message',({data})=>{const message=JSON.parse(data);if(message.id){const pending=waiting.get(message.id);if(pending){waiting.delete(message.id);message.error?pending.reject(new Error(JSON.stringify(message.error))):pending.resolve(message.result);}}else{if(message.method==='Runtime.exceptionThrown')exceptions.push(message.params.exceptionDetails);if(message.method==='Network.requestWillBeSent')requests.push(message.params.request.url);}});
   const call=(method,params={})=>new Promise((resolve,reject)=>{const id=++sequence;waiting.set(id,{resolve,reject});socket.send(JSON.stringify({id,method,params}));});
   const evaluate=async(expression)=>{const result=await call('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(result.exceptionDetails)throw Error(result.exceptionDetails.text+' '+JSON.stringify(result.exceptionDetails.exception));return result.result.value;};
-  const click=async id=>{const point=await evaluate(`(()=>{const e=document.getElementById(${JSON.stringify(id)});e.scrollIntoView({block:'center'});const r=e.getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2};})()`);await call('Input.dispatchMouseEvent',{type:'mousePressed',...point,button:'left',clickCount:1});await call('Input.dispatchMouseEvent',{type:'mouseReleased',...point,button:'left',clickCount:1});};
+  const clickSelector=async selector=>{const point=await evaluate(`(()=>{const e=document.querySelector(${JSON.stringify(selector)});if(!e)throw Error('Missing requested control');e.scrollIntoView({block:'center',behavior:'instant'});const r=e.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;if(!e.contains(document.elementFromPoint(x,y)))throw Error('Requested control is not the hit target');return {x,y};})()`);await call('Input.dispatchMouseEvent',{type:'mousePressed',...point,button:'left',clickCount:1});await call('Input.dispatchMouseEvent',{type:'mouseReleased',...point,button:'left',clickCount:1});};
+  const click=id=>clickSelector('#'+id);
   const set=(id,value,event='input')=>evaluate(`(()=>{const e=document.getElementById(${JSON.stringify(id)});e.value=${JSON.stringify(String(value))};e.dispatchEvent(new Event(${JSON.stringify(event)},{bubbles:true}));})()`);
   const ready=()=>waitFor(()=>evaluate("document.getElementById('refit') && !document.getElementById('refit').disabled"),'challenge finished');
   const compared=()=>waitFor(()=>evaluate("!document.getElementById('compare-initial-states').disabled"),'grid finished');
@@ -41,6 +42,9 @@ try {
   await check('original torque consumer remains usable; angular cycle instrument is hidden',async()=>{assert.equal(await evaluate("document.getElementById('cycle-work-panel').hidden"),true);assert.ok(await evaluate("document.querySelector('#trajectory-chart svg')!==null"));});
   await set('example-choice','measured','change');await click('load-example');await ready();
   await evaluate("(()=>{const radio=document.querySelector('input[name=method][value=weak]');radio.checked=true;radio.dispatchEvent(new Event('change',{bubbles:true}));})()");await click('refit');await ready();
+  assert.match(await evaluate("document.getElementById('method-badge').textContent"),/weak|window/i);
+  await clickSelector('#model-list button[data-model-id="gravity+bias"]');
+  assert.equal(await evaluate("document.querySelector('#model-list button[data-model-id=\"gravity+bias\"]').getAttribute('aria-pressed')"),'true');
   await check('maintained measured source and frozen restoring law execute cycle work by keyboard',async()=>{
     assert.equal(await evaluate("document.getElementById('cycle-work-panel').hidden"),false);
     await evaluate("document.getElementById('compare-cycle-work').focus()");
@@ -82,7 +86,7 @@ try {
       await call('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:false});await delay(100);
       const bounds=await evaluate(`(()=>{const p=document.getElementById('cycle-work-panel'),r=p.getBoundingClientRect();return {left:r.left,right:r.right,viewport:innerWidth,overflow:[...p.querySelectorAll('input,button,svg')].filter(e=>e.getClientRects().length).map(e=>({id:e.id,left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right})).filter(r=>r.left< -1||r.right>innerWidth+1)};})()`);
       assert.ok(bounds.left>=-1&&bounds.right<=width+1,JSON.stringify(bounds));assert.deepEqual(bounds.overflow,[]);
-      await evaluate("document.getElementById('cycle-work-panel').scrollIntoView({block:'start'})");await delay(100);const shot=await call('Page.captureScreenshot',{format:'png'});await writeFile(join(output,`cycle-work-${width}.png`),Buffer.from(shot.data,'base64'));
+      await evaluate("document.getElementById('cycle-work-panel').scrollIntoView({block:'start',behavior:'instant'})");await delay(100);const shot=await call('Page.captureScreenshot',{format:'png'});await writeFile(join(output,`cycle-work-${width}.png`),Buffer.from(shot.data,'base64'));
     }
   });
   await check('no page exceptions or external network requests',async()=>{assert.deepEqual(exceptions,[]);assert.deepEqual(requests.filter(url=>!url.startsWith(origin+'/')&&!url.startsWith('blob:')&&!url.startsWith('data:')),[]);});
