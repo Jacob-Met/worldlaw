@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-24",
+  "team": "hamon-de5a050960c6-20261023",
+  "qualifiedBase": "2cffb8120dc4bac7b453559beb3a06cc976329b2",
+  "runtime": {
+    "node": "22.23.4",
+    "chrome": "156.0.8078.47"
+  },
+  "sources": [
+    {
+      "path": "docs/UNKNOWN_CONTINUOUS_DURATION.md",
+      "sha256": "3f59dbc1f1f4b161abd835a73d5c3d4cb554c2115dc0f3075bfba044d0a81f48",
+      "baseBlob": null
+    },
+    {
+      "path": "scripts/unknown-continuous-browser.mjs",
+      "sha256": "a098dfed0331fbb37f347b7c83c6dfb1299e97add451adf45adb6d313620fd87",
+      "baseBlob": null
+    },
+    {
+      "path": "src/unknown-lab/app.mjs",
+      "sha256": "aa750b7522dfcbb8591f3ccec455c2c216b55c15c17a0350ce04ecb570f04582",
+      "baseBlob": "15b41b81e1ad7682ab90f1e5541c413c892e85fb"
+    },
+    {
+      "path": "src/unknown-lab/continuous-duration-example.mjs",
+      "sha256": "d65908d87fdf204c027e9daaab8a4997b6dbe1d89a5946c1d2d97edd2dbe082e",
+      "baseBlob": null
+    },
+    {
+      "path": "src/unknown-lab/continuous-duration-panel.mjs",
+      "sha256": "b8f1a0240d940379560a6b17079a2afd2a7a469cc6487ae4f3883af3320f88e0",
+      "baseBlob": null
+    },
+    {
+      "path": "src/unknown-lab/continuous-duration.mjs",
+      "sha256": "f825b00d2e8c8e89945bf651bad2081f344c11b6b251866a5828d86dc2f88819",
+      "baseBlob": null
+    },
+    {
+      "path": "tests/unknown-continuous-duration.test.mjs",
+      "sha256": "e72605c852c2d1cab917ac231c1a0ec17924703de94dc454cefa03d7277f24a7",
+      "baseBlob": null
+    },
+    {
+      "path": "unknown-lab.css",
+      "sha256": "468d22206ae94e2cac5ab6921c1989235dd5ee2c1aaff37dc2bde43525fbe46b",
+      "baseBlob": "86c70db5c0df4a86c8f89bcf634eb38f16d18507"
+    },
+    {
+      "path": "unknown-lab.html",
+      "sha256": "46ff26b81dd345576761849cc5367a9f6fd836ad2a0b8ee07d32a877583c1ed1",
+      "baseBlob": "21ae20b09d124f8a884dc1f593de4c31c3e782cb"
+    }
+  ],
+  "native": {
+    "passed": 296,
+    "failed": 0,
+    "skipped": 1,
+    "total": 297,
+    "log": "/tmp/de5a-worldlaw-continuous-native.log"
+  },
+  "smoke": "PASS",
+  "browser": {
+    "passed": 11,
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "exceptions": [],
+    "externalRequests": [],
+    "course": "scripts/unknown-continuous-browser.mjs",
+    "receipts": "/tmp/de5a-worldlaw-continuous-receipts",
+    "screenshotSha256": "d0703dc21419d69f1b3345e52147cc00405c2ae443fc6a08fc99f8f596141fc2"
+  },
+  "review": {
+    "materialtruth": "Independent 13/13 current tests; missing/null saved settings fixed and rerun",
+    "microverse": "Independent 13/13 current tests; signed bounds, witnesses, joint constraints, zero and budget retention reviewed",
+    "lead": "Numerical contract, actual source composition, browser and 390px panel checked. Documentation clarifies witness existence versus incomplete search."
+  },
+  "limits": [
+    "Bounded numerical screen, not formally certified interval arithmetic",
+    "Outer boxes need not contain any feasible parameter pair",
+    "A witness directly checks one fixed tau and amplitude against every supplied qualified interval",
+    "Budget exhaustion retains unvisited regions; a checked witness may still establish existence",
+    "Authored virtual controls do not establish physical acquisition, calibrated confidence or causal memory",
+    "Challenges do not refit training"
+  ]
+}
