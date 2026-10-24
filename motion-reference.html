@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f2eb">
+  <meta name="description" content="Compare retained Motion Lab positions with separately marked source frames, keeping missing evidence and marking uncertainty visible.">
+  <title>WORLDLAW — Source-frame comparison</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/motion-reference.css">
+</head>
+<body class="reference-lab">
+  <a class="skip-link" href="#reference-workbench">Skip to source-frame comparison</a>
+  <div class="page-shell">
+    <header class="masthead">
+      <a class="wordmark" href="/" aria-label="WORLDLAW torque studio"><span class="brand-mark" aria-hidden="true">W<span>∴</span></span><span>WORLDLAW<small>THE EXPERIMENTAL WORKBENCH</small></span></a>
+      <nav class="reference-actions" aria-label="Motion tools"><a class="button button-quiet" href="/motion.html">← Motion Lab</a><button id="open-case" class="button button-outline" type="button">Open comparison</button><button id="save-case" class="button button-dark" type="button" disabled>Save inputs ↗</button></nav>
+    </header>
+    <main id="reference-workbench">
+      <section class="intro reference-intro" aria-labelledby="page-title">
+        <div><p class="eyebrow"><span class="tiny-rule" aria-hidden="true"></span>MOTION LAB / SOURCE-FRAME COMPARISON</p><h1 id="page-title">Put the position<br><em>back in the frame.</em></h1></div>
+        <div class="intro-copy"><p>Challenge a retained marker or pivot position with separately marked source frames. See the disagreement, its declared marking radius, and every point that cannot be compared.</p><a class="scope-link" href="#comparison-scope">Original pixels · explicit frame times · unchanged notebook ↘</a></div>
+      </section>
+      <p id="notice" class="notice" role="status" aria-live="polite">Choose a Motion notebook and separate reference marks, then compare.</p>
+      <p id="error" class="error" role="alert" tabindex="-1" hidden></p>
+      <div class="reference-layout">
+        <aside class="reference-sidebar" aria-label="Comparison inputs">
+          <section class="panel reference-panel">
+            <p class="eyebrow">01 / KEEP BOTH ACCOUNTS</p><h2>Bring the evidence</h2>
+            <label class="file-label" for="notebook-file">Motion notebook <input id="notebook-file" type="file" accept=".json,application/json"></label><p id="notebook-name" class="input-hint">No notebook selected.</p>
+            <label class="file-label" for="reference-file">Separate reference marks <input id="reference-file" type="file" accept=".json,application/json"></label><p id="reference-name" class="input-hint">No reference selected.</p>
+            <label for="frame-skew">Maximum decoded-frame difference <span>s</span><input id="frame-skew" type="number" min="0" max="0.05" step="0.001" value="0.005"></label>
+            <button id="compare" class="button button-accent" type="button" disabled>Compare these inputs →</button>
+            <p class="input-hint">Only explicitly labeled times join. A missing point, nominal seek clock, hidden mark or different frame stays unscored.</p>
+            <details><summary>What reference file is accepted?</summary><p class="small">Use the shared <code>chronos-independent-reference/v1</code> format with target IDs <code>marker</code> or <code>pivot</code>, the original video SHA-256 and raster, a separate annotation method, decoded frame times and PNG hashes. Visible marks need an explicit radius in pixels. The method and hashes remain producer declarations.</p></details>
+          </section>
+          <section class="panel reference-panel" aria-labelledby="source-heading">
+            <p class="eyebrow">02 / LOOK AT THE SOURCE</p><h2 id="source-heading">Reconnect the video</h2>
+            <p id="source-name" class="source-title">No accepted comparison.</p><p id="source-detail" class="small muted">The comparison can be reopened without media. Attach the matching original video to inspect its pixels.</p>
+            <button id="attach-source" class="button button-outline" type="button" disabled>Choose matching video</button><p id="source-state" class="input-hint">Source video is not attached.</p>
+            <details><summary>Source identity & annotation</summary><pre id="provenance">No inputs accepted.</pre></details>
+            <p class="input-hint">Files stay in this browser. Video is never included in a saved comparison.</p>
+          </section>
+        </aside>
+        <div class="reference-main">
+          <section class="reference-stage" aria-labelledby="frame-heading">
+            <div class="stage-title"><h2 id="frame-heading">SOURCE FRAME</h2><span id="frame-tag">NO VIDEO ATTACHED</span></div>
+            <div class="reference-canvas-wrap"><canvas id="source-canvas" width="640" height="400" role="img" aria-label="No source frame displayed.">Source-frame inspection needs a canvas-capable browser.</canvas><p id="frame-empty">Attach the matching video<br>to see the source pixels.</p></div>
+            <p id="frame-caption" class="frame-caption" role="status">No decoded source frame displayed.</p>
+            <div class="reference-legend"><span><i class="point-legend"></i>Retained position</span><span><i class="mark-legend"></i>Separate mark + radius</span><span><i class="pivot-legend"></i>Fixed pivot declaration</span></div>
+          </section>
+          <section id="results" class="panel reference-panel" aria-labelledby="results-heading" hidden>
+            <div class="results-heading"><div><p class="eyebrow">03 / INSPECT THE DIFFERENCE</p><h2 id="results-heading">A comparison, with its gaps.</h2></div><button id="save-report" class="button button-outline" type="button">Export report ↗</button></div>
+            <div class="reference-filters"><label for="target">Evidence target<select id="target"></select></label><label for="row-filter">Show rows<select id="row-filter"><option value="labeled">Explicit reference labels</option><option value="all">All retained and reference times</option><option value="scored">Scored comparisons</option><option value="unscored">Unscored evidence</option></select></label></div>
+            <p id="target-kind" class="input-hint"></p>
+            <div class="reference-summary" aria-label="All times for this target"><div><span>Scored</span><strong id="scored-count">0</strong></div><div><span>Unscored</span><strong id="unscored-count">0</strong></div><div><span>Mean distance / px</span><strong id="mean-error">—</strong></div><div><span>Largest distance / px</span><strong id="max-error">—</strong></div></div>
+            <p class="input-hint">Distances summarize only scored rows. They do not describe the unlabeled or missing positions.</p>
+            <div class="reference-table-wrap"><table class="reference-table"><caption>Retained positions against separate frame marks. Select a time to inspect.</caption><thead><tr><th scope="col">Time / s</th><th scope="col">Result</th><th scope="col">Distance / px</th><th scope="col">Radius interval / px</th></tr></thead><tbody id="comparison-rows"></tbody></table></div>
+            <nav class="row-navigation" aria-label="Comparison pages"><button id="previous-page" class="button button-quiet" type="button">← Previous page</button><span id="page-status"></span><button id="next-page" class="button button-quiet" type="button">Next page →</button></nav>
+            <section class="selected-evidence" aria-labelledby="selected-heading"><h3 id="selected-heading">Selected evidence</h3><p id="selected-decision"></p><dl id="selected-detail"></dl></section>
+          </section>
+        </div>
+      </div>
+      <section id="comparison-scope" class="scope-note"><span class="scope-symbol" aria-hidden="true">∴</span><div><h2>A separate mark is evidence to inspect.</h2><p>The interval uses only the reference mark’s declared radius. It does not include clock error, calibrated tracker error, physical accuracy or a probability. A high pixel-match score does not shrink that radius. A fixed pivot remains a declared location. Original measurements, revisions, gaps and angular evidence stay unchanged; these marks do not correct or train the tracker.</p><p>Reference coordinates, independence, frame times and PNG hashes are producer-declared and fallible. Attaching the original video verifies its identity and dimensions. The browser’s decoded image is shown at its own reported time; it is not authenticated against the producer’s PNG hash.</p></div></section>
+    </main>
+    <footer class="page-footer"><span>WORLDLAW · Observe → challenge → inspect</span><span>Source media stays on this device.</span></footer>
+  </div>
+  <input id="case-file" type="file" accept=".json,application/json" hidden aria-label="Open a saved source-frame comparison">
+  <input id="source-file" type="file" accept="video/*,.mp4,.webm,.mov,.m4v" hidden aria-label="Attach the matching original video">
+  <script type="module" src="/src/motion/reference-app.mjs"></script>
+</body>
+</html>
