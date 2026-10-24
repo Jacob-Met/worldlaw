@@ -1,0 +1,49 @@
+import {createPredictiveChallenge,exportPredictiveChallenge,importPredictiveChallenge} from './session.mjs';
+const node=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
+const fmt=x=>Number.isFinite(x)?Number(x.toPrecision(5)).toString():'unavailable';
+export function createPredictiveSelectionPanel(container){
+ container.id='predictive-selection';container.style.cssText='grid-column:1 / -1;min-width:0;width:100%;box-sizing:border-box;overflow-wrap:anywhere;margin:28px 0;padding:20px;border-top:2px solid #647d48;line-height:1.6;';
+ let bundle=null,contextKey='',state=null,generation=0;
+ const heading=node('h2','Which law predicts another recording?');
+ const intro=node('p','This separate investigation uses compact-window weak fitting. Fit each offered structure on the other training recordings, then predict the omitted recording without resets. Freeze the selected structure and refit all training evidence before looking at the separate challenge.');
+ const source=node('p'),controls=node('div');controls.style.cssText='display:flex;flex-wrap:wrap;gap:14px;align-items:end;min-width:0;max-width:100%';
+ const field=(label,id,value,min,max)=>{const l=node('label',label+' '),e=node('input');e.id=id;e.type='number';e.step='any';e.min=min;e.max=max;e.value=value;e.style.width='100px';l.style.cssText='min-width:0;max-width:100%';l.append(e);controls.append(l);return e;};
+ const noise=field('Assumed position noise / rad','predictive-noise',.01,1e-8,1000),maxTerms=field('Maximum terms','predictive-terms',4,0,6),numeric=field('Two-step screen / rad','predictive-numeric',.001,0,1);
+ const run=node('button','Compare training predictions');run.id='predictive-run';run.style.cssText='max-width:100%;min-width:0;white-space:normal';controls.append(run);
+ const save=node('button','Save comparison inputs');save.id='predictive-save';save.style.cssText='max-width:100%;min-width:0;white-space:normal';save.disabled=true;
+ const file=node('input');file.type='file';file.accept='.json,application/json';file.id='predictive-open';file.style.cssText='display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box';const fileLabel=node('label','Reopen comparison ');fileLabel.style.cssText='display:block;min-width:0;max-width:100%';fileLabel.append(file);
+ const status=node('p');status.id='predictive-status';status.setAttribute('role','status');
+ const outputs=node('div');outputs.id='predictive-results';
+ container.append(heading,intro,source,controls,status,outputs,save,fileLabel);
+ function labelSource(b){source.textContent=(b?.label||'Angular recordings')+' · '+[...new Set([...(b?.trainingRuns||[]),...(b?.challengeRuns||[])].map(r=>r.kind))].join(', ')+' evidence. Separate challenge reuse during development remains exploratory.';}
+ function render(){
+  outputs.replaceChildren();const s=state.selection;labelSource(state.bundle);noise.value=s.options.noiseSigma;maxTerms.value=s.options.maxTerms;numeric.value=s.options.maxNumericalDifference;
+  outputs.append(node('p',`${s.offeredStructureCount} structures offered; ${s.ranking.length} complete across every training fold. Original weak-fit leader: ${s.originalSelectedModel.id}. Predictive selection: ${s.selectedId||'none — no complete candidate'}. Selected training-validation RMSE: ${fmt(s.results.find(r=>r.id===s.selectedId)?.validationRMSE)} rad.`));
+  const table=node('table');table.style.cssText='width:100%;table-layout:fixed;font-size:12px;overflow-wrap:anywhere';
+  const cell=(tag,text)=>{const e=node(tag,text);e.style.cssText='white-space:normal;overflow-wrap:anywhere';return e;};
+  const head=node('tr');for(const t of ['Frozen law','Separate run','Position RMSE / rad','Two-step difference / rad'])head.append(cell('th',t));table.append(head);
+  for(const r of state.results){const tr=node('tr');for(const text of [r.modelId,r.runId,r.status==='complete'?fmt(r.rollout.metrics.positionRMSE)+(r.numericalStatus==='unresolved'?' (numerically unresolved)':''):r.status,fmt(r.resolution?.positionRMSEDifference)])tr.append(cell('td',text));table.append(tr);}
+  outputs.append(table);
+  const runChoice=node('select');runChoice.id='predictive-run-choice';runChoice.setAttribute('aria-label','Separate challenge recording');runChoice.style.cssText='width:100%;max-width:100%;min-width:0';for(const r of state.bundle.challengeRuns){const o=node('option',r.label||r.id);o.value=r.id;runChoice.append(o);}
+  const chart=node('div');chart.id='predictive-chart';outputs.append(runChoice,chart);
+  const draw=()=>{
+   chart.replaceChildren();const r=state.bundle.challengeRuns.find(r=>r.id===runChoice.value),receipts=state.results.filter(x=>x.runId===r.id&&x.status==='complete');
+   const lines=[{id:'observed',values:r.samples.map(x=>({time:x.time,value:x.position})),color:'#31482f'},...receipts.map((x,i)=>({id:x.modelId,values:x.rollout.rows.map(y=>({time:y.time,value:y.predicted})),color:i?'#af5f20':'#587eb0'}))];
+   const values=lines.flatMap(l=>l.values.map(x=>x.value)),min=Math.min(...values),max=Math.max(...values),span=Math.max(.01,max-min),start=r.samples[0].time,duration=r.samples.at(-1).time-start;
+   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 600 240');svg.setAttribute('role','img');svg.setAttribute('aria-label','Observed separate trajectory and frozen law predictions');svg.style.width='100%';
+   for(const l of lines){const p=document.createElementNS(svg.namespaceURI,'polyline');p.setAttribute('points',l.values.map(x=>`${30+550*(x.time-start)/duration},${210-180*(x.value-min)/span}`).join(' '));p.setAttribute('fill','none');p.setAttribute('stroke',l.color);p.setAttribute('stroke-width','2');if(l.id!=='observed')p.setAttribute('stroke-dasharray','5 3');p.dataset.model=l.id;svg.append(p);}
+   for(const [x,y,text] of [[5,24,fmt(max)+' rad'],[5,224,fmt(min)+' rad'],[500,238,fmt(duration)+' elapsed s']]){const t=document.createElementNS(svg.namespaceURI,'text');t.setAttribute('x',String(x));t.setAttribute('y',String(y));t.setAttribute('font-size','10');t.textContent=text;svg.append(t);}
+   chart.append(svg,node('p','Observed: dark green. Original weak-fit leader: blue dashed. Predictive selection, when different: orange dashed. Elapsed time runs left to right; angle runs bottom to top. '+r.id));
+  };runChoice.addEventListener('change',draw);draw();
+  const details=node('details'),summary=node('summary','Inspect every structure and retained fold failure');details.append(summary);
+  for(const r of s.results){const d=node('details');d.append(node('summary',`${r.id} · ${r.status} · training validation RMSE ${fmt(r.validationRMSE)} rad`));for(const f of r.folds)d.append(node('p',`${f.runId}: ${f.status}; ${f.error?.message||'RMSE '+fmt(f.rollout?.metrics.positionRMSE)+' rad; two-step difference '+fmt(f.resolution?.positionRMSEDifference)+' rad'}`));details.append(d);}outputs.append(details,node('p',state.limitations),node('p',s.limitations.join(' ')));
+  status.textContent=s.status==='selected'?'Structure selected using training recordings only. Separate errors did not choose or replace it.':'No structure completed every training prediction and numerical screen. Original leader remains inspectable.';save.disabled=false;
+ }
+ function controlsMatch(){return state&&Number(noise.value)===state.selection.options.noiseSigma&&Number(maxTerms.value)===state.selection.options.maxTerms&&Number(numeric.value)===state.selection.options.maxNumericalDifference;}
+ async function perform(fn){const ticket=++generation;run.disabled=true;save.disabled=true;status.textContent='Executing the complete reserved training comparison…';try{await new Promise(ok=>requestAnimationFrame(ok));const next=await fn();if(ticket!==generation)return;state=next;bundle=structuredClone(next.bundle);render();}catch(error){if(ticket===generation){status.textContent='Comparison refused; previous completed result retained. '+error.message;save.disabled=!controlsMatch();}}finally{if(ticket===generation)run.disabled=!bundle;}}
+ run.addEventListener('click',()=>perform(()=>createPredictiveChallenge(bundle,{noiseSigma:Number(noise.value),maxTerms:Number(maxTerms.value),maxNumericalDifference:Number(numeric.value)})));
+ for(const e of [noise,maxTerms,numeric])e.addEventListener('input',()=>{generation++;save.disabled=true;run.disabled=!bundle;status.textContent='Settings changed. Run the complete comparison before saving.';});
+ save.addEventListener('click',()=>{try{const url=URL.createObjectURL(new Blob([exportPredictiveChallenge(state)],{type:'application/json'})),a=node('a');a.href=url;a.download='worldlaw-predictive-comparison.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}catch(error){status.textContent=error.message;}});
+ file.addEventListener('change',()=>{const f=file.files[0];if(!f)return;perform(async()=>{if(f.size>3000000)throw Error('Use JSON under 3 MB.');return importPredictiveChallenge(await f.text());});file.value='';});
+ return {setBundle(next){const key=JSON.stringify(next);if(key===contextKey)return;contextKey=key;generation++;state=null;outputs.replaceChildren();save.disabled=true;bundle=next?.schema==='worldlaw.angular-bundle/v1'?JSON.parse(key):null;container.hidden=!bundle;run.disabled=!bundle;if(bundle){labelSource(bundle);status.textContent='No predictive comparison run. Original model and observations are unchanged.';}}};
+}
