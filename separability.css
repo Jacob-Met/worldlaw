@@ -1,0 +1,13 @@
+.separability { margin-block: 1.5rem; border-block: 1px solid currentColor; padding-block: 1rem; }
+.separability summary { cursor: pointer; font-weight: 650; }
+.separability p { color: #30463f; font-size: .875rem; line-height: 1.5; }
+.separability-controls { display: flex; flex-wrap: wrap; align-items: end; gap: .75rem; }
+.separability label { display: flex; flex-direction: column; gap: .3rem; margin-block: .5rem; max-width: 100%; }
+.separability input, .separability select { max-width: 100%; min-width: 0; }
+.separability select { font: inherit; padding: .4rem; border: 1px solid #778b82; background: transparent; }
+.separability input[type=checkbox] { align-self: start; }
+.separability-view svg { display: block; width: 100%; max-width: 500px; height: auto; }
+.separability table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.separability th, .separability td { padding: .5rem; text-align: left; border-bottom: 1px solid currentColor; overflow-wrap: anywhere; }
+.separability th { font-weight: 650; }
+@media (max-width: 500px) { .separability-controls { display: block; } .separability table { font-size: .72rem; } .separability th, .separability td { padding: .3rem; } }

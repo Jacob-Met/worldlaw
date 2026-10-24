@@ -1,0 +1,16 @@
+✔ source rectangles expose the omitted interaction behind the maintained residual mismatch (5.676619ms)
+✔ arbitrary separate functions cancel, and axis reversal preserves conclusions (2.403857ms)
+✔ absolute reading bounds retain touching zero and enlarge monotonically (0.354474ms)
+✔ repeated rows remain source-linked, and contradictory replicates are not an interaction claim (0.371419ms)
+✔ no interpolation, rounding, hidden third coordinate matching or incomplete-corner success (0.317879ms)
+✔ complete enumeration and row-order symmetry against independent Cartesian oracle (8.542924ms)
+✔ invalid declarations and full-work exhaustion refuse without mutating inputs (1.236157ms)
+✔ actual retained notebook replay preserves source rows and recomputes the same screen (2.576938ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28.837487

@@ -1,0 +1,21 @@
+✔ independent spring + quadratic drag fixture selects structure and coefficients (19.225529ms)
+✔ independent Coulomb + gravity fixture does not inherit spring hypothesis (10.845137ms)
+✔ bounded-library omitted-physics counterexample is retained as mismatch (9.620104ms)
+✔ narrow-angle ambiguity drives an experiment then independent prediction improves (14.601467ms)
+✔ held-out evaluation never mutates or leaks into fit or acquisition (16.774047ms)
+✔ constant/zero excitation cannot be mislabeled structurally identifiable (0.549482ms)
+✔ scale-aware QR recovers a tiny excitation with a large coefficient (0.3858ms)
+✔ tiny irrelevant feature rejects only unexecutable candidates, not the useful law (3.4243ms)
+✔ serialized discovery remains executable and revision-compatible (19.497581ms)
+✔ RK4 agrees with independent harmonic-oscillator solution (2.07104ms)
+✔ RK4 handles a nonmultiple final step and refuses runaway or invalid setup (0.694947ms)
+✔ invalid or underdetermined inputs fail explicitly instead of emitting NaNs (9.202438ms)
+✔ parameter drift is retained as conflicting residual evidence, not asserted solved (20.280488ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 135.879035

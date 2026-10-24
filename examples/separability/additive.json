@@ -1,0 +1,68 @@
+{
+  "schema": "worldlaw.observations/v1",
+  "source": {
+    "label": "Authored additive separability control",
+    "kind": "synthetic-authored",
+    "metadata": {
+      "basis": "Original mathematical control, not a physical measurement",
+      "equation": "tau = 2*command - 3*position"
+    }
+  },
+  "observations": [
+    {
+      "command": -1,
+      "position": -1,
+      "rate": 0,
+      "jointTorque": 1
+    },
+    {
+      "command": -1,
+      "position": 0,
+      "rate": 0,
+      "jointTorque": -2
+    },
+    {
+      "command": -1,
+      "position": 1,
+      "rate": 0,
+      "jointTorque": -5
+    },
+    {
+      "command": 0,
+      "position": -1,
+      "rate": 0,
+      "jointTorque": 3
+    },
+    {
+      "command": 0,
+      "position": 0,
+      "rate": 0,
+      "jointTorque": 0
+    },
+    {
+      "command": 0,
+      "position": 1,
+      "rate": 0,
+      "jointTorque": -3
+    },
+    {
+      "command": 1,
+      "position": -1,
+      "rate": 0,
+      "jointTorque": 5
+    },
+    {
+      "command": 1,
+      "position": 0,
+      "rate": 0,
+      "jointTorque": 2
+    },
+    {
+      "command": 1,
+      "position": 1,
+      "rate": 0,
+      "jointTorque": -1
+    }
+  ],
+  "heldOut": []
+}
