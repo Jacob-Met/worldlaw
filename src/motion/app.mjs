@@ -1,6 +1,6 @@
 import {loadVideo} from './video.mjs';
 import {createNotebook, validateNotebook, calibrateNotebook, upsertMeasurement, truncateMeasurements, deriveAngles, exportAngular, exportStudio} from './measurement.mjs';
-import {createTemplate, trackTemplate, TRACKER_VERSION} from './tracker.mjs';
+import {createTemplate, trackTemplate, TRACKER_VERSION, COLOR_TRACKER_VERSION} from './tracker.mjs';
 import {createDemoSource, DEMO_PIVOT, demoMarkerAt} from './demo.mjs';
 
 const $ = id => document.getElementById(id);
@@ -33,7 +33,9 @@ function finiteInput(id, label, {min = -Infinity, max = Infinity, integer = fals
 function trackingSettings() {
   const settings = {step: finiteInput('sample-step', 'Sample interval', {min: .02, max: 2}),
     searchRadius: finiteInput('search-radius', 'Search radius', {min: 4, max: 96, integer: true}),
-    patchRadius: finiteInput('patch-radius', 'Marker patch radius', {min: 3, max: 24, integer: true})};
+    patchRadius: finiteInput('patch-radius', 'Marker patch radius', {min: 3, max: 24, integer: true}),
+    appearance: $('appearance-mode').value};
+  if (!['luminance', 'color'].includes(settings.appearance)) throw new Error('Choose a supported patch appearance.');
   if ((settings.searchRadius * 2 + 1) ** 2 * (settings.patchRadius * 2 + 1) ** 2 * ($('pivot-mode').value === 'tracked' ? 2 : 1) > 20_000_000)
     throw new Error('This search and patch combination exceeds the local computation limit. Reduce the search radius or marker patch radius.');
   return settings;
@@ -57,6 +59,15 @@ function restoreReferenceInputs() {
   $('pixel-sigma').value = String(calibration?.pixelSigma ?? 1);
   $('pivot-mode').value = calibration?.pivotMode ?? 'fixed';
   $('pivot-pixel-sigma').value = String(calibration?.pivotPixelSigma ?? 1);
+}
+function appearanceLabel(tracker) {
+  return tracker?.version === COLOR_TRACKER_VERSION ? 'Brightness + color'
+    : tracker?.version === TRACKER_VERSION ? 'Brightness texture' : 'Not supplied';
+}
+function restoreTrackingAppearance() {
+  // Restore the most recently recorded algorithm; each existing row keeps its own.
+  const tracker = [...(state.notebook?.measurements || [])].reverse().find(row => row.tracker?.version)?.tracker;
+  $('appearance-mode').value = tracker?.version === COLOR_TRACKER_VERSION ? 'color' : 'luminance';
 }
 function stopWork() {
   state.epoch++; state.seekEpoch++; state.controller?.abort(); state.controller = null; state.tracking = false;
@@ -102,6 +113,7 @@ async function installSource(source, {attach = false, syntheticCalibration = fal
     state.template = null; state.mode = null; state.cursor = null; state.segmentId = null;
     if (!attach) invalidateStudioExport({clearNumbers: true});
     commitNotebook(notebook); restoreReferenceInputs();
+    if (attach) restoreTrackingAppearance(); else $('appearance-mode').value = 'luminance';
     if (syntheticCalibration) {
       const settings = trackingSettings();
       state.notebook = calibrateNotebook(state.notebook, {pivot: {...DEMO_PIVOT}, maxGapSeconds: settings.step * 1.6});
@@ -149,6 +161,7 @@ async function openNotebook(file) {
   $('track-until').value = String(parsed.source.duration); $('track-until').max = String(parsed.source.duration);
   state.mode = null; state.template = null; state.cursor = null; state.segmentId = null;
   invalidateStudioExport({clearNumbers: true}); commitNotebook(parsed); restoreReferenceInputs();
+  restoreTrackingAppearance();
   notice(source ? 'Synthetic notebook reopened. Supplied provenance and measurements are preserved; its matching declared generator restores the image sequence.'
     : parsed.source.kind.startsWith('synthetic') ? 'Synthetic notebook reopened with its evidence and provenance. The declared generator or parameters cannot be reproduced here, so no replacement pixels are displayed.'
       : 'Notebook reopened with its evidence and provenance. Reconnect the matching original video to inspect or correct pixels.');
@@ -192,13 +205,13 @@ async function applyMarker(point, reason = 'User marked the visible source pixel
   if (trackedPivot() && !pivot) throw new Error('Observe the pivot on this same frame before choosing the marker.');
   if (pivot && Math.hypot(point.x - pivot.x, point.y - pivot.y) < 2)
     throw new Error('Choose a marker at least 2 pixels away from the pivot. A point at the pivot has no measurable rotation angle.');
-  const {patchRadius} = trackingSettings();
-  const captured = createTemplate(state.frame, point, {patchRadius});
+  const {patchRadius, appearance} = trackingSettings();
+  const captured = createTemplate(state.frame, point, {patchRadius, appearance});
   if (captured.status !== 'ready') throw new Error(`Marker not captured: ${captured.reason || captured.status}. Choose a distinctive patch, or increase its radius to include a visible edge.`);
   const row = {time: state.frame.time, requestedTime: state.frame.requestedTime, timeBasis: state.frame.timeBasis,
     ...(Number.isInteger(state.frame.frameIndex) ? {frameIndex: state.frame.frameIndex} : {}),
     point: {...point}, status: 'manual', reason,
-    quality: {textureStd: captured.textureStd, patchRadius}, tracker: {version: TRACKER_VERSION, patchRadius},
+    quality: {textureStd: captured.textureStd, patchRadius}, tracker: {version: captured.template.version, patchRadius, appearance},
     ...(currentRow()?.pivotMeasurement ? {pivotMeasurement: currentRow().pivotMeasurement} : {})};
   const next = upsertMeasurement(state.notebook, row);
   state.template = captured.template; state.mode = null; state.cursor = null;
@@ -209,17 +222,17 @@ async function applyPoint(point) {
   if (!Number.isFinite(point.x) || !Number.isFinite(point.y) || point.x < 0 || point.y < 0 || point.x > state.frame.width - 1 || point.y > state.frame.height - 1)
     throw new Error('The point must be inside the decoded source image.');
   if (state.mode === 'pivot') {
-    const {step, patchRadius} = trackingSettings(), settings = referenceSettings();
+    const {step, patchRadius, appearance} = trackingSettings(), settings = referenceSettings();
     let next = calibrateNotebook(state.notebook, {pivot: {...point}, ...settings, maxGapSeconds: step * 1.6});
     if (settings.pivotMode === 'tracked') {
-      const captured = createTemplate(state.frame, point, {patchRadius});
+      const captured = createTemplate(state.frame, point, {patchRadius, appearance});
       if (captured.status !== 'ready') throw new Error(`Pivot not captured: ${captured.reason || captured.status}. Choose a distinctive visible pivot patch.`);
       const row = currentRow() || {time: state.frame.time, requestedTime: state.frame.requestedTime, timeBasis: state.frame.timeBasis,
         ...(Number.isInteger(state.frame.frameIndex) ? {frameIndex: state.frame.frameIndex} : {}),
         status: 'missing', point: null, reason: 'Marker not yet observed on this frame.'};
       next = upsertMeasurement(next, {...row, pivotMeasurement: {status: 'manual', point: {...point},
         reason: 'User observed the visible pivot on this frame.', quality: {textureStd: captured.textureStd, patchRadius},
-        tracker: {version: TRACKER_VERSION, patchRadius}}});
+        tracker: {version: captured.template.version, patchRadius, appearance}}});
     }
     commitNotebook(next);
     setMode('marker'); notice('Pivot observed. Choose the center of a distinctive visible marker on this frame.');
@@ -232,10 +245,10 @@ async function track() {
   if (!state.source || !state.frame || state.tracking || state.seeking) return;
   const anchor = currentRow();
   if (!accepted(anchor)) throw new Error('Choose or correct a visible marker on this frame before tracking.');
-  const settings = trackingSettings(), capture = createTemplate(state.frame, anchor.point, {patchRadius: settings.patchRadius});
+  const settings = trackingSettings(), capture = createTemplate(state.frame, anchor.point, settings);
   if (capture.status !== 'ready') throw new Error(`Cannot start tracking: ${capture.reason || capture.status}. Correct the marker or its patch radius.`);
   if (trackedPivot() && !accepted(anchor.pivotMeasurement)) throw new Error('Observe a visible pivot on this same starting frame before tracking.');
-  const pivotCapture = trackedPivot() ? createTemplate(state.frame, anchor.pivotMeasurement.point, {patchRadius: settings.patchRadius}) : null;
+  const pivotCapture = trackedPivot() ? createTemplate(state.frame, anchor.pivotMeasurement.point, settings) : null;
   if (pivotCapture && pivotCapture.status !== 'ready') throw new Error(`Cannot track the pivot: ${pivotCapture.reason || pivotCapture.status}. Correct its visible patch.`);
   const endTime = finiteInput('track-until', 'Tracking end time', {min: state.frame.time, max: state.source.duration});
   if (endTime <= state.frame.time + 1e-6) throw new Error('The tracking end must be later than the current marker frame. Seek an earlier start or increase “Track until”.');
@@ -268,13 +281,13 @@ async function track() {
         point: result.point, candidatePoint: result.candidatePoint, status: result.status, reason: result.reason,
         quality: {score: result.score, runnerUpScore: result.runnerUpScore, ambiguityMargin: result.ambiguityMargin,
           textureStd: result.textureStd, searchClipped: result.searchClipped},
-        tracker: {version: TRACKER_VERSION, ...result.settings, patchRadius: settings.patchRadius,
+        tracker: {version: result.version, ...result.settings, patchRadius: settings.patchRadius,
           anchorTime: start, anchorPoint: {...anchor.point}}};
       if (pivotResult) row.pivotMeasurement = {status: pivotResult.status, point: pivotResult.point,
         candidatePoint: pivotResult.candidatePoint, reason: pivotResult.reason,
         quality: {score: pivotResult.score, runnerUpScore: pivotResult.runnerUpScore, ambiguityMargin: pivotResult.ambiguityMargin,
           textureStd: pivotResult.textureStd, searchClipped: pivotResult.searchClipped},
-        tracker: {version: TRACKER_VERSION, ...pivotResult.settings, patchRadius: settings.patchRadius,
+        tracker: {version: pivotResult.version, ...pivotResult.settings, patchRadius: settings.patchRadius,
           anchorTime: start, anchorPoint: {...anchor.pivotMeasurement.point}}};
       state.notebook = upsertMeasurement(state.notebook, row);
       state.frame = frame; state.selectedTime = frame.time; previousTime = frame.time; processed++;
@@ -420,8 +433,10 @@ function renderInspection() {
     ['Uniqueness margin', fmt(row.quality?.ambiguityMargin, 4)], ['Texture spread', fmt(row.quality?.textureStd, 2)],
     ['Search clipped', row.quality?.searchClipped === undefined ? '—' : row.quality.searchClipped ? 'At image edge' : 'No'],
     ['Template anchor', Number.isFinite(row.tracker?.anchorTime) ? `${fmt(row.tracker.anchorTime, 3)} s` : row.status === 'manual' ? 'Manual anchor' : 'Not supplied'],
+    ['Patch appearance', appearanceLabel(row.tracker)],
   ];
   if (row && trackedPivot()) entries.push(['Pivot state', row.pivotMeasurement?.status ?? 'Unobserved'],
+    ['Pivot appearance', appearanceLabel(row.pivotMeasurement?.tracker)],
     ['Pivot match score', fmt(row.pivotMeasurement?.quality?.score, 4)],
     ['Pivot runner-up', fmt(row.pivotMeasurement?.quality?.runnerUpScore, 4)],
     ['Pivot uniqueness margin', fmt(row.pivotMeasurement?.quality?.ambiguityMargin, 4)],
@@ -464,6 +479,7 @@ function render() {
   $('track-motion').disabled = !hasFrame || !calibrated || !measuredPair(currentRow()) || measuring;
   $('track-motion').hidden = busy; $('cancel-tracking').hidden = !busy; $('tracking-progress').hidden = !busy;
   for (const id of ['sample-step', 'search-radius', 'patch-radius']) $(id).disabled = busy;
+  $('appearance-mode').disabled = measuring;
   $('track-until').disabled = !hasFrame || busy;
   $('next-gap').disabled = !gaps.length || busy;
   $('pick-pivot').setAttribute('aria-pressed', String(state.mode === 'pivot'));
@@ -497,6 +513,10 @@ $('notebook-file').addEventListener('change', safe(event => openNotebook(event.t
 $('save-notebook').addEventListener('click', safe(() => { if (state.notebook) { fileDownload('worldlaw-motion-notebook.json', validateNotebook(state.notebook)); notice('Motion notebook saved with source provenance, calibration, measurements, rejected states, and revision history. Media bytes are not included.'); } }));
 $('load-demo').addEventListener('click', safe(async () => { stopWork(); await installSource(createDemoSource({occlusion: $('demo-occlusion').checked}), {syntheticCalibration: true}); }));
 $('pick-pivot').addEventListener('click', safe(() => setMode('pivot')));
+$('appearance-mode').addEventListener('change', safe(() => {
+  trackingSettings(); state.template = null;
+  notice('Patch appearance changed for the next capture and run. Existing measurements retain their original algorithm and match scores. Color differences require stable source colors; duplicate or uncertain matches still pause.');
+}));
 $('pivot-mode').addEventListener('change', safe(() => {
   if (state.notebook?.calibration) commitNotebook(calibrateNotebook(state.notebook, {...state.notebook.calibration, ...referenceSettings()}));
   state.template = null;

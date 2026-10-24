@@ -1,5 +1,6 @@
 /** Fixed-template, bounded-search image measurements. No DOM or external dependencies. */
 export const TRACKER_VERSION = 'worldlaw.patch-ncc/v1';
+export const COLOR_TRACKER_VERSION = 'worldlaw.patch-color-ncc/v1';
 
 const MAX_FRAME_PIXELS = 16_777_216;
 const MAX_PATCH_SAMPLE_COMPARISONS = 20_000_000;
@@ -30,21 +31,28 @@ function validateFrame(frame) {
   }
 }
 
-function grayscale(frame, left, top, right, bottom) {
+function grayscale(frame, left, top, right, bottom, color = false) {
   const width = right - left + 1;
   const height = bottom - top + 1;
   const data = new Float32Array(width * height);
+  const redGreen = color ? new Float32Array(data.length) : null;
+  const blueYellow = color ? new Float32Array(data.length) : null;
   for (let y = top, i = 0; y <= bottom; y += 1) {
     for (let x = left, p = (y * frame.width + left) * 4; x <= right; x += 1, p += 4, i += 1) {
       // Transparent input is composited on black; hidden RGB cannot provide evidence.
       data[i] = (0.299 * frame.data[p] + 0.587 * frame.data[p + 1] + 0.114 * frame.data[p + 2])
         * frame.data[p + 3] / 255;
+      if (color) {
+        const alpha = frame.data[p + 3] / 255;
+        redGreen[i] = (frame.data[p] - frame.data[p + 1]) * alpha;
+        blueYellow[i] = (frame.data[p + 2] - (frame.data[p] + frame.data[p + 1]) / 2) * alpha;
+      }
     }
   }
-  return { data, width, height, left, top };
+  return { data, redGreen, blueYellow, width, height, left, top };
 }
 
-function sample(gray, x, y) {
+function sample(gray, x, y, channel = gray.data) {
   const localX = x - gray.left;
   const localY = y - gray.top;
   const left = Math.floor(localX);
@@ -53,8 +61,8 @@ function sample(gray, x, y) {
   const bottom = Math.min(top + 1, gray.height - 1);
   const fx = localX - left;
   const fy = localY - top;
-  return (gray.data[top * gray.width + left] * (1 - fx) + gray.data[top * gray.width + right] * fx) * (1 - fy)
-    + (gray.data[bottom * gray.width + left] * (1 - fx) + gray.data[bottom * gray.width + right] * fx) * fy;
+  return (channel[top * gray.width + left] * (1 - fx) + channel[top * gray.width + right] * fx) * (1 - fy)
+    + (channel[bottom * gray.width + left] * (1 - fx) + channel[bottom * gray.width + right] * fx) * fy;
 }
 
 function inside(frame, point, radius) {
@@ -65,7 +73,9 @@ function inside(frame, point, radius) {
 function templateOptions(options) {
   const patchRadius = finite(options.patchRadius ?? 7, 'patchRadius', 2, 24, true);
   const minTextureStd = finite(options.minTextureStd ?? 5, 'minTextureStd', 0, 127.5);
-  return Object.freeze({ patchRadius, minTextureStd });
+  const appearance = options.appearance ?? 'luminance';
+  if (!['luminance', 'color'].includes(appearance)) throw new TypeError('appearance must be luminance or color.');
+  return Object.freeze({ patchRadius, minTextureStd, appearance });
 }
 
 /** Capture a fixed, opaque template. Ordinary initialization failures are explicit states. */
@@ -73,6 +83,7 @@ export function createTemplate(frame, point, options = {}) {
   validateFrame(frame);
   validatePoint(point, 'point');
   const settings = templateOptions(options);
+  const color = settings.appearance === 'color', channels = color ? 3 : 1;
   const sourcePoint = Object.freeze({ x: point.x, y: point.y });
   if (!inside(frame, point, settings.patchRadius)) {
     return { status: 'out-of-bounds', template: null, point: sourcePoint, textureStd: null,
@@ -80,46 +91,55 @@ export function createTemplate(frame, point, options = {}) {
   }
   const gray = grayscale(frame, Math.floor(point.x - settings.patchRadius),
     Math.floor(point.y - settings.patchRadius), Math.ceil(point.x + settings.patchRadius),
-    Math.ceil(point.y + settings.patchRadius));
+    Math.ceil(point.y + settings.patchRadius), color);
   const values = [];
   let sum = 0;
   for (let dy = -settings.patchRadius; dy <= settings.patchRadius; dy += 1) {
     for (let dx = -settings.patchRadius; dx <= settings.patchRadius; dx += 1) {
       const value = sample(gray, point.x + dx, point.y + dy);
       values.push(value);
+      if (color) values.push(sample(gray, point.x + dx, point.y + dy, gray.redGreen),
+        sample(gray, point.x + dx, point.y + dy, gray.blueYellow));
       sum += value;
     }
   }
-  const mean = sum / values.length;
-  const centered = values.map(value => value - mean);
+  const count = values.length / channels, mean = sum / count;
+  // Center luminance only. Retaining color differences preserves observed hue.
+  // For opaque pixels, a common neutral offset cancels before quantization/clipping.
+  const centered = values.map((value, i) => i % channels === 0 ? value - mean : value);
   const energy = centered.reduce((total, value) => total + value * value, 0);
-  const textureStd = Math.sqrt(energy / values.length);
-  if (energy <= EPSILON || textureStd < settings.minTextureStd) {
+  const textureEnergy = centered.reduce((total, value, i) => total + (i % channels === 0 ? value * value : 0), 0);
+  const textureStd = Math.sqrt(textureEnergy / count);
+  if (textureEnergy <= EPSILON || textureStd < settings.minTextureStd) {
     return { status: 'low-texture', template: null, point: sourcePoint, textureStd,
       reason: 'The selected patch does not contain enough brightness variation.', settings };
   }
   const normalizedValues = Object.freeze(centered.map(value => value / Math.sqrt(energy)));
-  const template = Object.freeze({ version: TRACKER_VERSION, ...settings,
+  const template = Object.freeze({ version: color ? COLOR_TRACKER_VERSION : TRACKER_VERSION, ...settings,
     size: settings.patchRadius * 2 + 1, sourcePoint, frameWidth: frame.width,
     frameHeight: frame.height, textureStd, normalizedValues });
   return { status: 'ready', template, point: sourcePoint, textureStd, reason: null, settings };
 }
 
 function validateTemplate(template) {
-  if (!template || template.version !== TRACKER_VERSION || !Array.isArray(template.normalizedValues)) {
+  if (!template || ![TRACKER_VERSION, COLOR_TRACKER_VERSION].includes(template.version) || !Array.isArray(template.normalizedValues)) {
     throw new TypeError('A ready template from createTemplate is required.');
   }
   finite(template.patchRadius, 'template.patchRadius', 2, 24, true);
+  const color = template.version === COLOR_TRACKER_VERSION, channels = color ? 3 : 1;
+  if ((template.appearance ?? 'luminance') !== (color ? 'color' : 'luminance'))
+    throw new TypeError('Template appearance must match its algorithm version.');
   if (template.size !== template.patchRadius * 2 + 1
-    || template.normalizedValues.length !== template.size ** 2
+    || template.normalizedValues.length !== template.size ** 2 * channels
     || !template.normalizedValues.every(Number.isFinite)) {
     throw new TypeError('Template dimensions or normalized values are invalid.');
   }
   finite(template.minTextureStd, 'template.minTextureStd', 0, 127.5);
   const energy = template.normalizedValues.reduce((total, value) => total + value * value, 0);
-  const sum = template.normalizedValues.reduce((total, value) => total + value, 0);
-  if (Math.abs(energy - 1) > 1e-6 || Math.abs(sum) > 1e-6) {
-    throw new TypeError('Template values must have zero mean and unit energy.');
+  const sum = template.normalizedValues.reduce((total, value, i) => total + (i % channels === 0 ? value : 0), 0);
+  const textureEnergy = template.normalizedValues.reduce((total, value, i) => total + (i % channels === 0 ? value * value : 0), 0);
+  if (textureEnergy <= EPSILON || Math.abs(energy - 1) > 1e-6 || Math.abs(sum) > 1e-6) {
+    throw new TypeError('Template luminance must have zero mean and all features together must have unit energy.');
   }
 }
 
@@ -129,7 +149,7 @@ function trackingOptions(template, options) {
     'exclusionRadius', 1, searchRadius - 1);
   const subpixel = options.subpixel ?? true;
   if (typeof subpixel !== 'boolean') throw new TypeError('subpixel must be a boolean.');
-  return Object.freeze({ searchRadius, exclusionRadius, subpixel,
+  return Object.freeze({ searchRadius, exclusionRadius, subpixel, appearance: template.appearance ?? 'luminance',
     minScore: finite(options.minScore ?? 0.75, 'minScore', 0, 1),
     minMargin: finite(options.minMargin ?? 0.06, 'minMargin', 0, 2),
     minTextureStd: finite(options.minTextureStd ?? template.minTextureStd, 'minTextureStd', 0, 127.5) });
@@ -140,6 +160,8 @@ function scorePatch(gray, template, x, y, fractional = false) {
   let squareSum = 0;
   let dot = 0;
   let index = 0;
+  let colorEnergy = 0;
+  const color = template.version === COLOR_TRACKER_VERSION;
   const radius = template.patchRadius;
   for (let dy = -radius; dy <= radius; dy += 1) {
     const row = (y + dy - gray.top) * gray.width;
@@ -150,11 +172,21 @@ function scorePatch(gray, template, x, y, fractional = false) {
       squareSum += value * value;
       dot += template.normalizedValues[index] * value;
       index += 1;
+      if (color) {
+        const rg = fractional ? sample(gray, x + dx, y + dy, gray.redGreen)
+          : gray.redGreen[row + x + dx - gray.left];
+        const by = fractional ? sample(gray, x + dx, y + dy, gray.blueYellow)
+          : gray.blueYellow[row + x + dx - gray.left];
+        colorEnergy += rg * rg + by * by;
+        dot += template.normalizedValues[index] * rg + template.normalizedValues[index + 1] * by;
+        index += 2;
+      }
     }
   }
-  const energy = Math.max(0, squareSum - sum * sum / index);
-  return { x, y, textureStd: Math.sqrt(energy / index),
-    score: energy <= EPSILON ? null : Math.max(-1, Math.min(1, dot / Math.sqrt(energy))) };
+  const count = template.size ** 2;
+  const textureEnergy = Math.max(0, squareSum - sum * sum / count);
+  return { x, y, textureStd: Math.sqrt(textureEnergy / count),
+    score: textureEnergy <= EPSILON ? null : Math.max(-1, Math.min(1, dot / Math.sqrt(textureEnergy + colorEnergy))) };
 }
 
 function peakOffset(left, middle, right) {
@@ -173,7 +205,7 @@ export function trackTemplate(frame, template, predictedPoint, options = {}) {
   validateTemplate(template);
   validatePoint(predictedPoint, 'predictedPoint');
   const settings = trackingOptions(template, options);
-  const result = { version: TRACKER_VERSION, status: 'lost', point: null, candidatePoint: null,
+  const result = { version: template.version, status: 'lost', point: null, candidatePoint: null,
     score: null, runnerUpScore: null, ambiguityMargin: null, textureStd: null,
     searchClipped: false, searchBoundary: false, subpixelRefined: false, settings,
     reason: null, candidateCount: 0 };
@@ -196,8 +228,10 @@ export function trackTemplate(frame, template, predictedPoint, options = {}) {
     * template.size ** 2 > MAX_PATCH_SAMPLE_COMPARISONS) {
     throw new RangeError('Search exceeds 20 million patch sample comparisons; reduce searchRadius or patchRadius.');
   }
+  // This bounds pixel pairs. Color uses exactly three features per pixel pair,
+  // hence at most 60 million feature pairs and no larger search region.
   const gray = grayscale(frame, bounds.left - radius, bounds.top - radius,
-    bounds.right + radius, bounds.bottom + radius);
+    bounds.right + radius, bounds.bottom + radius, template.version === COLOR_TRACKER_VERSION);
   const columns = bounds.right - bounds.left + 1;
   const candidates = [];
   let best = null;
@@ -214,7 +248,8 @@ export function trackTemplate(frame, template, predictedPoint, options = {}) {
   result.candidateCount = candidates.length;
   if (!best) return { ...result, status: 'low-texture', textureStd: maxTextureStd, reason: 'search-has-no-texture' };
 
-  // Keep ambiguity tied to the integer-grid peak, before optional local refinement.
+  // Choose the competing location around the integer-grid peak. The final margin
+  // below compares its score with the retained (possibly refined) best score.
   let runnerUp = null;
   for (const candidate of candidates) {
     if (candidate.score !== null
@@ -250,3 +285,4 @@ export function trackTemplate(frame, template, predictedPoint, options = {}) {
   if (result.searchBoundary) return { ...result, status: 'ambiguous', reason: 'search-boundary' };
   return { ...result, status: 'accepted', point: { ...result.candidatePoint }, reason: null };
 }
+

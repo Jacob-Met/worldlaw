@@ -56,7 +56,13 @@ Team `15cc377ad586` owns the complementary local-video measurement route and its
 
 The first real Chrome receiving run followed 161 frames of an encoded synthetic film, exported 106 fitting and 43 held-out observations, imported them into the studio, and exercised correction, reopening, file-digest refusal, occlusion, blank input and 320–1440 px layouts. Peer review additionally repaired stale callback/raster association and oversized-notebook mutation atomicity; focused tests and actual Chrome timing probes cover those repairs. Exact final candidate/source hashes and subsequent browser results belong in [Motion Lab receiving](MOTION_RECEIVING.md) and its publication receipt.
 
-The licensed real double-pendulum sample currently produces honest low-texture/ambiguous refusals. It is not evidence of successfully reconstructed motion, arbitrary mechanism discovery, calibrated uncertainty or scalar-inertia physics. The full-vision requirements above remain open.
+The original luminance mode still produces honest low-texture/ambiguous refusals on the licensed real double-pendulum sample. The optional color-aware increment below improves its first association and retains the later failure. Neither result qualifies arbitrary mechanism discovery, calibrated uncertainty or scalar-inertia physics. The full-vision requirements above remain open.
+
+### Motion observation continuation (2026-10-24)
+
+PR #99 adds the optional same-frame tracked pivot, independent point diagnostics and v2 notebook, with explicit refusal of unsupported moving-pivot torque derivation; see [tracked-pivot receiving](MOTION_TRACKED_PIVOT.md). The maintained patch tracker now also supports explicitly selected color features while preserving the original luminance default and rejection gates. On the unchanged source-declared real movie, color resolves the first red/yellow marker ambiguity, accepts four subsequent sampled frames, then preserves a lost measurement at0.20s instead of inventing continuation. Both tracked points consume the same selected algorithm and decoded raster.
+
+The controlled candidate on parent `20f252133f08630d24950bd7d1afa46756f7013c` passed582 of583 native tests, with0 failures and1 inherited optional skip, plus both launched product smokes. It also passed4 actual real-video browser groups and8 tracked-pivot groups in color mode, including source-bound reopen and independent occlusion. This is actual image-association receiving, not physical ground truth. Exact math, source/media attribution, commands, observed scores, screenshots and the retained later failure are in [the tracking contract](MOTION_TRACKING.md#optional-color-aware-appearance). Published-head and merged-source receipts belong to the native PR; do not equate a locally tested candidate with deployment or submission.
 
 ## Trajectory and measured angular launch increment (2026-10-19)
 
@@ -89,3 +95,4 @@ acquisition instrument and retains its prior mismatch and unknown scale.
 [The exact release record](TRAJECTORY_EXPERIMENT_RELEASE_92be.md) separates
 component, browser, artifact and integration evidence. The full-vision
 requirements remain open.
+
