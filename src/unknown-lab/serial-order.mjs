@@ -1,6 +1,10 @@
 import {serialCovariance} from './serial-covariance.mjs';
 const dense=a=>Array.isArray(a)&&a.length<=128&&Array.from({length:a.length},(_,i)=>Object.hasOwn(a,i)).every(Boolean);
 const require=(ok,message)=>{if(!ok)throw Error(message);};
+export function serialOrderWeights(pairs){
+ const ab=pairs.filter(x=>x.reference<x.conditioned).length,ba=pairs.length-ab;
+ return pairs.flatMap(x=>{const n=x.reference<x.conditioned?ab:ba;return [{sampleIndex:x.reference,weight:-.5/n},{sampleIndex:x.conditioned,weight:.5/n}];});
+}
 export function compareSerialOrders(raw){
  require(raw?.schema==='worldlaw.serial-orders/v1','Expected declared serial-order inputs.');
  require(typeof raw.sourceNote==='string'&&raw.sourceNote.trim().length>0&&raw.sourceNote.length<=2000,'Declare a planning basis or source note (up to 2000 characters).');
@@ -25,7 +29,7 @@ export function compareSerialOrders(raw){
  require(plans.every(p=>p.pairs.length===plans[0].pairs.length),'Offer the same total pair count in every plan.');
  require(work<=2_000_000,'Complete offered course exceeds two million covariance terms; reduce plans or hypotheses explicitly.');
  const rows=plans.map(p=>{
-  const weights=p.pairs.flatMap(x=>{const n=x.reference<x.conditioned?p.ab:p.ba;return [{sampleIndex:x.reference,weight:-.5/n},{sampleIndex:x.conditioned,weight:.5/n}];});
+  const weights=serialOrderWeights(p.pairs);
   const variances=raw.rhos.map(r=>serialCovariance(weights,r,1).variance);
   const indices=p.pairs.flatMap(x=>[x.reference,x.conditioned]);
   return {id:p.id,pairCount:p.pairs.length,firstIndex:Math.min(...indices),lastIndex:Math.max(...indices),acquisitionSpan:Math.max(...indices)-Math.min(...indices),variances,worstVariance:Math.max(...variances)};
