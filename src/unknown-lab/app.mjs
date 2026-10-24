@@ -1,3 +1,4 @@
+import {mountContinuousDuration} from './continuous-duration-panel.mjs';
 import {mountDurationPlanner} from './duration-planner-panel.mjs';
 import {mountDurationPanel} from './duration-panel.mjs';
 import {syntheticChallenge,evaluateHistory,importNotebook,exportNotebook} from './paired-history.mjs';
@@ -117,3 +118,5 @@ try {
 
 const durationPanel=mountDurationPanel(()=>notebook);
 mountDurationPlanner(durationPanel);
+
+mountContinuousDuration(durationPanel);
