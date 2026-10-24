@@ -28,11 +28,20 @@ function admittedCertificate(context,certificate){
  if(certificate.kind==='receiving-separator'&&!certificate.values.some(x=>x!==0))throw new Error('A separating vector must be nonzero.');
 }
 function checkSeparator(context,certificate){
- const rows=context.marginal.rows,v=certificate.values,n=context.training.length;
+ return checkLinearEnvelopeSeparator(context.marginal.rows,certificate.values,context.marginal.settings.trainingRadius,context.marginal.settings.receivingRadius);
+}
+// Trusted, bounded, freshly computed linear envelope only. This does not admit
+// imported source or certificates; source-specific callers must reconstruct it.
+export function checkLinearEnvelopeSeparator(rows,v,trainingRadius,receivingRadius){
+ const n=rows?.[0]?.influence?.length;
+ if(!Array.isArray(rows)||!rows.length||!Number.isInteger(n)||n<1||!Array.isArray(v)||v.length!==rows.length||!v.some(x=>x!==0)||v.some(x=>!Number.isFinite(x)||Math.abs(x)>1)||!Number.isFinite(trainingRadius)||trainingRadius<0)throw new Error('Malformed computed linear-envelope separator.');
+ const radii=Array.isArray(receivingRadius)?receivingRadius:null;
+ if(radii?radii.length!==rows.length||radii.some(x=>!Number.isFinite(x)||x<0):!Number.isFinite(receivingRadius)||receivingRadius<0)throw new Error('Malformed receiving radii for computed separator.');
+ if(rows.some(row=>!Array.isArray(row.influence)||row.influence.length!==n||row.influence.some(x=>!Number.isFinite(x))||![row.observedTorque,row.refittedPrediction,row.independentCoefficientBoxRadius,row.numericalTolerance].every(Number.isFinite)||row.independentCoefficientBoxRadius<0||row.numericalTolerance<0))throw new Error('Malformed computed linear-envelope row.');
  const projected=Array.from({length:n},(_,i)=>rows.reduce((sum,row,j)=>sum+v[j]*row.influence[i],0));
  const discrepancy=rows.reduce((sum,row,j)=>sum+v[j]*(row.observedTorque-row.refittedPrediction),0);
- const trainingSupport=context.marginal.settings.trainingRadius*projected.reduce((sum,x)=>sum+Math.abs(x),0);
- const receivingSupport=context.marginal.settings.receivingRadius*v.reduce((sum,x)=>sum+Math.abs(x),0);
+ const trainingSupport=trainingRadius*projected.reduce((sum,x)=>sum+Math.abs(x),0);
+ const receivingSupport=radii?v.reduce((sum,x,i)=>sum+radii[i]*Math.abs(x),0):receivingRadius*v.reduce((sum,x)=>sum+Math.abs(x),0);
  const support=trainingSupport+receivingSupport;
  const magnitude=rows.reduce((sum,row,j)=>sum+Math.abs(v[j])*(Math.abs(row.observedTorque)+Math.abs(row.refittedPrediction)),0);
  const uncancelled=rows.reduce((sum,row,j)=>sum+Math.abs(v[j])*row.independentCoefficientBoxRadius,0);
