@@ -1,0 +1,232 @@
+{
+  "product": "WORLDLAW",
+  "issue": 79,
+  "base": "b2e40a9c5ee215af6a2f93507a9be3950d8b7bd3",
+  "date_utc": "2026-10-24T15:28:45.582428+00:00",
+  "runtime": "Node22.23.4; Chrome156.0.8078.47",
+  "native": {
+    "command": "npm run verify",
+    "discovered": 491,
+    "passed": 490,
+    "failed": 0,
+    "skipped": 1,
+    "skip_lines": [
+      "ok 305 - live Node and Chromium exchange pending and applied notebooks through actual modules # SKIP"
+    ],
+    "new_focused_groups": 11,
+    "maintained_smokes": [
+      "scripts/smoke.mjs",
+      "scripts/trajectory-smoke-92be.mjs"
+    ]
+  },
+  "browser": {
+    "checks": [
+      "actual imported held-out consumer matches native numbers and complete denominator through keyboard activation",
+      "row selection exposes the extrapolated query and its separate witness",
+      "radius edits invalidate old output; invalid and zero radii remain distinct",
+      "changing inspected model clears previously computed results",
+      "new measurement clears prior output and recomputes all nine training rows",
+      "source notebook reopens without stale output and recomputes retained evidence",
+      "narrow comparison stays within viewport and keyboard actually moves the table"
+    ],
+    "errors": [],
+    "browser": "156.0.8078.47",
+    "native": {
+      "schema": "worldlaw.prediction-sensitivity/v1",
+      "trainingCount": 8,
+      "receivingCount": 3,
+      "settings": {
+        "trainingRadius": 0.01,
+        "receivingRadius": 0.001
+      },
+      "maxReceivingRows": 128,
+      "interpretation": "Fixed-coordinate, fixed-structure least-squares response to bounded training-reading changes. Each receiving row has its own extremal perturbation; overlap for every row does not establish one common perturbation explaining them all. Not a confidence interval, feasible-law set, or physical qualification.",
+      "numericalQualification": "Floating-point QR and linear arithmetic, not certified interval arithmetic. The reported boundary tolerance is an engineering roundoff screen, not a proof of numerical accuracy.",
+      "status": "computed",
+      "domain": {
+        "command": {
+          "min": 0,
+          "max": 0
+        },
+        "position": {
+          "min": 0.9999,
+          "max": 1.0001
+        },
+        "rate": {
+          "min": 0,
+          "max": 0
+        }
+      },
+      "terms": [
+        "spring",
+        "bias"
+      ],
+      "rows": [
+        {
+          "index": 0,
+          "input": {
+            "command": 0,
+            "position": 1,
+            "rate": 0
+          },
+          "inspectedPrediction": 4.999999999999999,
+          "refittedPrediction": 4.999999999999999,
+          "observedTorque": 5.005,
+          "prediction": [
+            4.990000000000001,
+            5.009999999999997
+          ],
+          "observation": [
+            5.004,
+            5.006
+          ],
+          "radius": 0.009999999999997726,
+          "independentCoefficientBoxRadius": 240.0000000001457,
+          "influence": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.1250000000001137,
+            0.1250000000001137,
+            0.12499999999977263,
+            0.12499999999977263
+          ],
+          "upperWitnessOffsets": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01
+          ],
+          "extrapolation": [],
+          "gap": -0.005999999999997563,
+          "numericalTolerance": 1.3642420526602205e-11,
+          "status": "not-excluded"
+        },
+        {
+          "index": 1,
+          "input": {
+            "command": 0,
+            "position": 2,
+            "rate": 0
+          },
+          "inspectedPrediction": 9.000000000004789,
+          "refittedPrediction": 9.000000000004789,
+          "observedTorque": 9.2,
+          "prediction": [
+            -111.00000000006804,
+            129.00000000007762
+          ],
+          "observation": [
+            9.199,
+            9.200999999999999
+          ],
+          "radius": 120.00000000007283,
+          "independentCoefficientBoxRadius": 360.0000000002185,
+          "influence": [
+            -1999.8750000014757,
+            -1999.8750000014757,
+            -999.8750000003454,
+            -999.8750000003454,
+            1000.1250000019156,
+            1000.1250000019156,
+            2000.1249999999052,
+            2000.1249999999052
+          ],
+          "upperWitnessOffsets": [
+            -0.01,
+            -0.01,
+            -0.01,
+            -0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01
+          ],
+          "extrapolation": [
+            "position"
+          ],
+          "gap": -119.80100000007762,
+          "numericalTolerance": 2.0463630789903306e-11,
+          "status": "not-excluded"
+        },
+        {
+          "index": 2,
+          "input": {
+            "command": 0,
+            "position": 1,
+            "rate": 0
+          },
+          "inspectedPrediction": 4.999999999999999,
+          "refittedPrediction": 4.999999999999999,
+          "observedTorque": 5.1,
+          "prediction": [
+            4.990000000000001,
+            5.009999999999997
+          ],
+          "observation": [
+            5.098999999999999,
+            5.101
+          ],
+          "radius": 0.009999999999997726,
+          "independentCoefficientBoxRadius": 240.0000000001457,
+          "influence": [
+            0.125,
+            0.125,
+            0.125,
+            0.125,
+            0.1250000000001137,
+            0.1250000000001137,
+            0.12499999999977263,
+            0.12499999999977263
+          ],
+          "upperWitnessOffsets": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01
+          ],
+          "extrapolation": [],
+          "gap": 0.08900000000000219,
+          "numericalTolerance": 1.3642420526602205e-11,
+          "status": "outside"
+        }
+      ],
+      "outsideCount": 1,
+      "boundaryCount": 0,
+      "notExcludedCount": 2
+    }
+  },
+  "source_sha256": {
+    "src/science/prediction-sensitivity.mjs": "f6922003443fa247372f2703bb8d156f80dd9307d506cc2246a74b05da03eb49",
+    "tests/prediction-sensitivity.test.mjs": "1421004cdac76939a1811457ae19a95177e4ea56a6c3052ae2d60c0ac5df1d00",
+    "src/science/prediction-sensitivity-panel.mjs": "0a832c987f4bd3cbb8204c026b017d855fc5d696af92e8abf7d59a4ed8b24a10",
+    "scripts/prediction-sensitivity-browser.mjs": "772e3ff519e86fad47ac212f38d0b3ea023133e0d1fa606964d1c537d371a9c3",
+    "docs/PREDICTION_SENSITIVITY.md": "db1fb386e59ecd95e7ac4cfc81a8d20850c56e5e2b6c3642818aae18128b38f1",
+    "src/app.mjs": "eb11f5ef528cfce6cfcb69348aa19be88564f89318cf0a73a2064a62b75f5ff3",
+    "styles.css": "17eb2512a45233b744819ba091e00d525189dc5a9dc9e6ef3e3d031be3c6ddda",
+    "README.md": "dd641b46d62620e4db40bcecce001b0199e8c583d85124097547703b34105d97"
+  },
+  "receiving_artifacts_sha256": {
+    "desktop-panel.png": "03706fb05da4ea83d759d9ad3db80e9b028147f5564b3061704e777c2dd3fbea",
+    "narrow-panel.png": "3342417a86cbabfe0cb7e1d7345a7c9a83cbd2facc8d368f662b54ce958ebde4",
+    "authored-control.json": "7a4a09354e0977de8036de7ef4d7d9dbca82c689c15a329d55f29656336533ea",
+    "source-notebook.json": "4c0d6a279d6c2007e708e52594fdd2eed465a6e424c815564e59b962837a7fc0"
+  },
+  "independent_review": {
+    "reviewer": "retained /root/mechanism",
+    "scope": "source, focused test source, actual receipt and desktop/narrow pixels; no independent process execution",
+    "finding": "no blocking finding after adding independentCoefficientBoxRadius to cancellation-sensitive roundoff screen and its regression"
+  },
+  "execution_attribution": "Root executed native suites, maintained smokes and actual browser course on composed current main. Author and independent contributor inspected source/pixels; root also inspected pixels.",
+  "retained_iterations": "Initial core fixtures omitted required model schema and were corrected without weakening production admission. Initial browser witness selection used ambiguous string label/value and was corrected to explicit option value. Original logs retained in receiving workspace.",
+  "limitations": "Fixed input coordinates and model structure; independent per-row extremal perturbations, not one joint feasible perturbation. Engineering floating-point screen, not certified intervals or all-QR-error bound. No physical, provider, cloud or contest qualification."
+}
