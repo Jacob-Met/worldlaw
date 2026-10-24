@@ -22,6 +22,13 @@ INCLUDE = (
     "AGENTS.md", "README.md", "LICENSE", "LICENSE.md", "package.json",
     "index.html", "styles.css", "favicon.svg", "server.mjs", "motion.html", "motion.css", "trajectory.html", "trajectory.css",
     "docs/receipts/*/*.json", "docs/receipts/*/*.png",
+    "docs/receipts/prediction-contrast-195c0e2a/README.md",
+    "docs/receipts/prediction-contrast-195c0e2a/authored-inputs-and-notebook.tar.xz",
+    "docs/receipts/prediction-contrast-195c0e2a/initial-focused-failure.txt",
+    "docs/receipts/prediction-contrast-195c0e2a/native-tests.txt",
+    "docs/receipts/shared-training-195c0e2a/README.md",
+    "docs/receipts/shared-training-195c0e2a/native-tests.txt",
+    "docs/receipts/shared-training-195c0e2a/retained-source-evidence.tar.xz",
     "docs/*.md", "docs/*.json", "src/*.mjs", "src/science/*.mjs", "src/motion/*.mjs", "src/trajectory/*.mjs", "src/representation/*.mjs",
     "src/experiment-design/*.mjs", "tests/support/*.mjs",
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/*.mjs",
@@ -60,6 +67,7 @@ INCLUDE = (
     'experiments/rolling-origin.mjs',
 )
 REQUIRED = (
+    "src/stiffness/design.mjs", "src/stiffness/design-panel.mjs", "docs/STIFFNESS_INPUT_DESIGN.md",
     "cycle-work.html", "src/cycle-work/app.mjs", "src/cycle-work/core.mjs",
     "src/cycle-work/refinement.mjs", "src/cycle-work/refinement-panel.mjs", "src/cycle-work/refinement-example.mjs",
     "src/cycle-work/curvature-witness.mjs",
@@ -306,3 +314,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
