@@ -2,13 +2,14 @@ import {DURATION_SCHEMA,analyzeDurationStudy,exportDurationStudy,importDurationS
 import {syntheticChallenge} from './paired-history.mjs';
 const $=id=>document.getElementById(id),fmt=n=>Number(n.toPrecision(4)).toString();
 export function mountDurationPanel(currentNotebook){
- let study={schema:DURATION_SCHEMA,runs:[]};
+ let study={schema:DURATION_SCHEMA,runs:[]},revision=0,fileGeneration=0;
+ const beginOperation=()=>++revision,isCurrentOperation=token=>token===revision;
  const attempt=fn=>{try{fn();$('duration-error').textContent='';}catch(e){$('duration-error').textContent=e.message;}};
  const download=()=>{
   const url=URL.createObjectURL(new Blob([exportDurationStudy(study)],{type:'application/json'}));
   const a=document.createElement('a');a.href=url;a.download='worldlaw-duration-study.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
  };
- function adopt(next){const result=analyzeDurationStudy(next);study=next;render(result);document.dispatchEvent(new Event('worldlaw-duration-study-change'));}
+ function adopt(next){const result=analyzeDurationStudy(next);revision++;study=next;render(result);document.dispatchEvent(new Event('worldlaw-duration-study-change'));}
  function render(result){
   $('duration-state').textContent=result.fit.status.toUpperCase().replaceAll('-',' ');
   $('duration-summary').textContent=result.fit.reasons.join(' ')||'Frozen training hypotheses: '+result.fit.candidates.filter(c=>c.compatible).length+' / '+result.fit.candidates.length+'. Challenge results never refit or rerank these parameters.';
@@ -61,7 +62,15 @@ export function mountDurationPanel(currentNotebook){
  $('duration-clear').onclick=()=>attempt(()=>adopt({schema:DURATION_SCHEMA,runs:[]}));
  $('duration-export').onclick=()=>attempt(download);
  $('duration-open').onclick=()=>$('duration-file').click();
- $('duration-file').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;try{if(file.size>4000000)throw Error('Use JSON below 4 MB.');const next=importDurationStudy(await file.text());adopt(next);$('duration-error').textContent='';}catch(error){$('duration-error').textContent=error.message;}finally{e.target.value='';}};
+ $('duration-file').onchange=async e=>{
+  const input=e.target,file=input.files?.[0];if(!file)return;
+  const token=beginOperation(),generation=++fileGeneration;
+  try{if(file.size>4000000)throw Error('Use JSON below 4 MB.');const text=await file.text();
+   if(!isCurrentOperation(token))return;
+   const next=importDurationStudy(text);adopt(next);$('duration-error').textContent='';
+  }catch(error){if(isCurrentOperation(token))$('duration-error').textContent=error.message;}
+  finally{if(generation===fileGeneration)input.value='';}
+ };
  render(analyzeDurationStudy(study));
- return {getStudy:()=>structuredClone(study),adopt};
+ return {getStudy:()=>structuredClone(study),adopt,beginOperation,isCurrentOperation};
 }

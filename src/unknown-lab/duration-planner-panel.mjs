@@ -1,3 +1,4 @@
+import {mountDurationAcquisition} from './duration-acquisition-panel.mjs';
 import {planDurationAcquisition,exportDurationPlan} from './duration-planner.mjs';
 import {syntheticChallenge,evaluateHistory} from './paired-history.mjs';
 import {DURATION_SCHEMA} from './duration-response.mjs';
@@ -38,5 +39,6 @@ export function mountDurationPlanner(controller){
   $('duration-plan-status').textContent+=' Acquired separate virtual challenge at seed '+seed+'. Actual contrast radius '+actualRadius.toPrecision(4)+' N·m: '+(actualRadius<=plan.settings.contrastRadius?'within declared planning radius.':'EXCEEDS planning radius; proposed discrimination is not qualified.');
   $('duration-plan-acquire').disabled=true;
  });
+ mountDurationAcquisition(controller,()=>plan);
  invalidate();
 }

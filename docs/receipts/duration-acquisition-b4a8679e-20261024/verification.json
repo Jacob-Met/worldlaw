@@ -1,0 +1,125 @@
+{
+  "verify_exit_code": 0,
+  "browser_exit_code": 0,
+  "base": "0c5c991f35ccdf438431192324bee6024bf76d9a",
+  "native": {
+    "tests": 612,
+    "pass": 611,
+    "fail": 0,
+    "skipped": 1
+  },
+  "source_files": {
+    "src/unknown-lab/duration-acquisition.mjs": {
+      "git_blob": "1248ac5bd7113b3bf9ce51a591182298696df39a",
+      "sha256": "3a8a86dfcf119255f9a226314731a238c313b796266e26af3468e4fc77e28845"
+    },
+    "src/unknown-lab/duration-acquisition-panel.mjs": {
+      "git_blob": "3a750696cb84ab3720ae07e2556f84dc3b5a606b",
+      "sha256": "08350182e0a5f6cfc01e379b801e5d589edba666e27ab238a9a45846bda14b94"
+    },
+    "src/unknown-lab/duration-planner-panel.mjs": {
+      "git_blob": "9d9b9f4f70e18ba63772fbf338364ca2072e3e8a",
+      "sha256": "50f4f6f1c61d8ac811d9323fdb27b5e53107d5f56a0b6cb06d828ca39b14d6a4"
+    },
+    "src/unknown-lab/duration-panel.mjs": {
+      "git_blob": "481712c21b0937ba11d8ee9dcd7bd82ee00dc7cd",
+      "sha256": "00dacad051c0a39dcb0fed71a715faa80c58aaec9b4707d7a7251bfaed1dc9b4"
+    },
+    "unknown-lab.html": {
+      "git_blob": "e4255393f0c9d8fa13c69c82d03a3780d1167282",
+      "sha256": "269d5412a14b62d12aa246657d813469547fa9712c48fd37a08952065f919c89"
+    },
+    "unknown-lab.css": {
+      "git_blob": "1f2e2332c81e27ca4b8daf45babe2f45bb7b3f6d",
+      "sha256": "61e04c068da8efc17038fcdfe5524024b622bb02056859208926ef9f6b451e83"
+    },
+    "tests/duration-acquisition.test.mjs": {
+      "git_blob": "384f32253307d08f1b307985347458389f31f31a",
+      "sha256": "6dcc298641499e472abc6e68f13bf933b670e72de2aed9a6663708d994c1cab1"
+    },
+    "scripts/duration-acquisition-browser.mjs": {
+      "git_blob": "9cdad620b10b91f16d923f10f4661dbfdaade4b0",
+      "sha256": "f6642d685e1a803ce20a9e3942c6664cbd26e70a2bb6008a3d8d2bc6bba1eabc"
+    },
+    "docs/DURATION_ACQUISITION.md": {
+      "git_blob": "6347ba28b9f777d95ccb58c7ad4dd87f54bbdf07",
+      "sha256": "a24f0ebb76d7ab57ebbc9184eace84ed0ba4d6aa53e292ecac1a4b40485eead7"
+    }
+  },
+  "browser": {
+    "checks": 10,
+    "pass": true,
+    "results": [
+      {
+        "name": "freeze uses keyboard and exports input-only request",
+        "passed": true
+      },
+      {
+        "name": "wrong protocol refuses atomically",
+        "passed": true
+      },
+      {
+        "name": "separate file receives without training refit",
+        "passed": true
+      },
+      {
+        "name": "clear and input-only reopen reproduce the comparison",
+        "passed": true
+      },
+      {
+        "name": "reopen pending and receive poor precision preserves result",
+        "passed": true
+      },
+      {
+        "name": "late plain-study import cannot replace newer acquisition reopen",
+        "passed": true
+      },
+      {
+        "name": "late acquisition reopen cannot replace newer plain-study import",
+        "passed": true
+      },
+      {
+        "name": "receiving layout 1440",
+        "passed": true
+      },
+      {
+        "name": "receiving layout 390",
+        "passed": true
+      },
+      {
+        "name": "no page exceptions or external requests",
+        "passed": true
+      }
+    ],
+    "events": {
+      "exceptions": [],
+      "outside": []
+    }
+  },
+  "environment": {
+    "device": "65ff6088-8483-4ed9-9486-99d34d37d676",
+    "system": "Ubuntu Linux",
+    "node": "22.23.4",
+    "chrome": "/opt/google/chrome/chrome",
+    "launch": "headless with normal sandbox; no no-sandbox flag"
+  },
+  "commands": [
+    "npm run verify",
+    "BROWSER_EXECUTABLE_PATH=/opt/google/chrome/chrome BROWSER_ARTIFACT_DIR=<isolated output> node scripts/duration-acquisition-browser.mjs"
+  ],
+  "existing_skip": {
+    "test": "tests/trajectory-experiment-portability-92be.test.mjs: live Node and Chromium exchange pending and applied notebooks through actual modules",
+    "reason": "PLAYWRIGHT_MODULE not set; this pre-existing optional check was skipped, not passed."
+  },
+  "screenshots": {
+    "desktop.png": "2246cb485ccf21bf3b9365e2843f244b88806f5b",
+    "narrow.png": "cc6f9c054346f8f03acef2701235f26b04ae5f22"
+  },
+  "review": "SKILL TRANSLATOR independently reviewed core protocol/source/no-refit custody and found a legacy plain-file race. Author fixed shared revision handling; reviewer re-reviewed, and actual browser exercised both delayed import directions. Root reviewed source plus actual desktop/narrow pixels.",
+  "input_basis": "Authored duration histories and virtual/measured-source admission controls. Relabeling authored values to test measured-source admission is not a physical acquisition.",
+  "limits": [
+    "Declared source/preparation and local JSON do not authenticate acquisition or independence.",
+    "Challenge observations do not refit the frozen training forecast.",
+    "Contradictory, poor precision and order-confounded outcomes stay visible."
+  ]
+}
