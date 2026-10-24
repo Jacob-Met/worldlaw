@@ -11,7 +11,7 @@ const svgNode=(name,attrs,text)=>{const node=document.createElementNS('http://ww
 export function renderSeparability(container, observations, source) {
   container.replaceChildren();container.className='separability';
   const details=el('details'),summary=el('summary','Challenge the additive law library');details.append(summary);container.append(details);
-  details.append(el('p','Does changing one input have the same torque effect at two settings of another? Four matched source states can contradict every sum of separate command, angle and rate functions—including every current scalar candidate—without choosing new coefficients.'));
+  details.append(el('p','Does changing one input have the same torque effect at two settings of another? Four matched source states can contradict every sum of separate command, angle and rate functions—including every additive scalar candidate—without choosing new coefficients.'));
   const controls=el('div');controls.className='separability-controls';
   const pair=el('select');pair.id='separability-pair';
   for(const axes of [['command','position'],['command','rate'],['position','rate']])pair.append(option(axes.join(','),axes.map(k=>labels[k]).join(' × ')));

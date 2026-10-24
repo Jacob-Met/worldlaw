@@ -1,0 +1,120 @@
+{
+  "schema": "worldlaw.observations/v1",
+  "source": {
+    "label": "Authored command-position interaction control",
+    "kind": "synthetic-authored",
+    "description": "Original mathematical control tau=2u-3theta+u*theta; not measured physical evidence."
+  },
+  "observations": [
+    {
+      "command": -1,
+      "position": -1,
+      "rate": 0,
+      "jointTorque": 2
+    },
+    {
+      "command": -1,
+      "position": 0,
+      "rate": 0,
+      "jointTorque": -2
+    },
+    {
+      "command": -1,
+      "position": 1,
+      "rate": 0,
+      "jointTorque": -6
+    },
+    {
+      "command": 0,
+      "position": -1,
+      "rate": 0,
+      "jointTorque": 3
+    },
+    {
+      "command": 0,
+      "position": 0,
+      "rate": 0,
+      "jointTorque": 0
+    },
+    {
+      "command": 0,
+      "position": 1,
+      "rate": 0,
+      "jointTorque": -3
+    },
+    {
+      "command": 1,
+      "position": -1,
+      "rate": 0,
+      "jointTorque": 4
+    },
+    {
+      "command": 1,
+      "position": 0,
+      "rate": 0,
+      "jointTorque": 2
+    },
+    {
+      "command": 1,
+      "position": 1,
+      "rate": 0,
+      "jointTorque": 0
+    }
+  ],
+  "heldOut": [
+    {
+      "command": -0.75,
+      "position": -0.6,
+      "rate": 0,
+      "jointTorque": 0.7499999999999998
+    },
+    {
+      "command": -0.75,
+      "position": 0.4,
+      "rate": 0,
+      "jointTorque": -3.0
+    },
+    {
+      "command": -0.75,
+      "position": 0.9,
+      "rate": 0,
+      "jointTorque": -4.875
+    },
+    {
+      "command": 0.25,
+      "position": -0.6,
+      "rate": 0,
+      "jointTorque": 2.15
+    },
+    {
+      "command": 0.25,
+      "position": 0.4,
+      "rate": 0,
+      "jointTorque": -0.6000000000000002
+    },
+    {
+      "command": 0.25,
+      "position": 0.9,
+      "rate": 0,
+      "jointTorque": -1.975
+    },
+    {
+      "command": 0.8,
+      "position": -0.6,
+      "rate": 0,
+      "jointTorque": 2.92
+    },
+    {
+      "command": 0.8,
+      "position": 0.4,
+      "rate": 0,
+      "jointTorque": 0.72
+    },
+    {
+      "command": 0.8,
+      "position": 0.9,
+      "rate": 0,
+      "jointTorque": -0.38
+    }
+  ]
+}

@@ -43,7 +43,7 @@ test('numeric compatibility does not relax row identity, seed, schema or finiten
   const shortened=rawNotebook();shortened.base.heldOut.pop();assert.throws(()=>restoreSession(JSON.stringify(shortened)),/does not match/);
   const reordered=rawNotebook();[reordered.base.heldOut[7],reordered.base.heldOut[8]]=[reordered.base.heldOut[8],reordered.base.heldOut[7]];assert.throws(()=>restoreSession(JSON.stringify(reordered)),/does not match/);
   const seed=rawNotebook();seed.lab.seed=18;assert.throws(()=>restoreSession(JSON.stringify(seed)),/does not match/);
-  const schema=rawNotebook();schema.schema='worldlaw.session/v2';assert.throws(()=>restoreSession(JSON.stringify(schema)),/Unsupported/);
+  const schema=rawNotebook();schema.schema='worldlaw.session/v3';assert.throws(()=>restoreSession(JSON.stringify(schema)),/Unsupported/);
   const observationSchema=rawNotebook();observationSchema.base.schema='worldlaw.observations/v2';assert.throws(()=>restoreSession(JSON.stringify(observationSchema)),/Unsupported observation schema/);
   const fractional=rawNotebook();fractional.lab.seed=17.000000000000004;assert.throws(()=>restoreSession(JSON.stringify(fractional)),/Invalid virtual instrument seed/);
   const invalid=rawNotebook();invalid.base.heldOut[7].command=null;assert.throws(()=>restoreSession(JSON.stringify(invalid)),/finite number/);

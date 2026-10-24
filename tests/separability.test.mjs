@@ -38,8 +38,8 @@ test('arbitrary separate functions cancel, and axis reversal preserves conclusio
     const got=inspectSeparability(rows,{...declaration,axes});
     assert.equal(got.rectangles.length,9);assert.equal(got.excludedCount,0);
   }
-  // Guard the actual consumer claim about the maintained optional/default library.
-  for(const term of TERMS) {
+  // Guard the actual consumer claim about the maintained additive optional/default library.
+  for(const term of TERMS.filter(t=>t.id!=='command_position')) {
     const model={schema:'worldlaw.torque-model/v1',terms:[{id:term.id,coefficient:1}]};
     const source=rows.map(row=>({...row,jointTorque:predict(model,row)}));
     for(const axes of [['command','position'],['command','rate'],['position','rate']])

@@ -1,0 +1,98 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> worldlaw@0.1.0 verify
+> npm test && npm run smoke && npm run smoke:trajectory
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> worldlaw@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ tests/angle-reference.test.mjs (1347.494881ms)
+✔ tests/angular-cycle-work.test.mjs (3474.82127ms)
+✔ tests/angular-prelude.test.mjs (335.893013ms)
+✔ tests/coupling-circulation.test.mjs (496.908924ms)
+✔ tests/coupling-dynamics.test.mjs (1718.628105ms)
+✔ tests/coupling.test.mjs (507.208863ms)
+✔ tests/cubic-restoring.test.mjs (3381.144766ms)
+✔ tests/cycle-angle-boxes-independent.test.mjs (765.949649ms)
+✔ tests/cycle-angle-boxes.test.mjs (1045.739853ms)
+✔ tests/cycle-branch-response-independent.test.mjs (460.648481ms)
+✔ tests/cycle-branch-response.test.mjs (2536.010855ms)
+✔ tests/cycle-curvature-exact.test.mjs (551.402121ms)
+✔ tests/cycle-curvature-receiving.test.mjs (256.283027ms)
+✔ tests/cycle-refinement.test.mjs (253.341007ms)
+✔ tests/cycle-work-exact-enclosure.test.mjs (315.018369ms)
+✔ tests/cycle-work.test.mjs (341.770998ms)
+✔ tests/initial-state-sensitivity.test.mjs (583.676327ms)
+✔ tests/input-enclosure-joint.test.mjs (426.751652ms)
+✔ tests/input-enclosure.test.mjs (324.036831ms)
+✔ tests/interaction.test.mjs (326.783382ms)
+✔ tests/motion-acceptance-15cc.test.mjs (2842.425493ms)
+✔ tests/motion-boundaries-15cc.test.mjs (1319.105404ms)
+✔ tests/motion-color-tracker.test.mjs (1245.965554ms)
+✔ tests/motion-tracked-pivot.test.mjs (562.796289ms)
+✔ tests/motion-tracker-15cc.test.mjs (979.88983ms)
+✔ tests/parameter-sensitivity.test.mjs (227.676776ms)
+✔ tests/prediction-contrast.test.mjs (405.032782ms)
+✔ tests/prediction-sensitivity.test.mjs (228.287006ms)
+✔ tests/predictive-selection.test.mjs (2197.073923ms)
+✔ tests/prelude-investigation.test.mjs (483.441893ms)
+✔ tests/probe-planner.test.mjs (582.957536ms)
+✔ tests/recovery-planner.test.mjs (476.908457ms)
+✔ tests/recovery-response.test.mjs (2141.035977ms)
+✔ tests/reference-consistency.test.mjs (3441.114398ms)
+✔ tests/replicate-diagnostics.test.mjs (290.77846ms)
+✔ tests/rolling-origin.test.mjs (743.272612ms)
+✔ tests/separability.test.mjs (225.534697ms)
+✔ tests/serial-noise.test.mjs (305.149918ms)
+✔ tests/serial-order.test.mjs (162.851522ms)
+✔ tests/session.test.mjs (800.375711ms)
+✔ tests/shared-training-replay.test.mjs (263.515463ms)
+✔ tests/shared-training.test.mjs (451.668468ms)
+✔ tests/state-support.test.mjs (295.70037ms)
+✔ tests/stiffness-experiment.test.mjs (584.851394ms)
+✔ tests/stiffness-knot-profile.test.mjs (2131.269999ms)
+✔ tests/stiffness-revision.test.mjs (1274.94287ms)
+✔ tests/stiffness.test.mjs (374.911854ms)
+✔ tests/torque-discovery.test.mjs (764.209217ms)
+✔ tests/trajectory-angular-92be.test.mjs (2325.983952ms)
+✔ tests/trajectory-angular-resolution-92be.test.mjs (328.160458ms)
+✔ tests/trajectory-angular-session-review-92be.test.mjs (5854.101926ms)
+✔ tests/trajectory-angular-weak-92be.test.mjs (2026.914734ms)
+✔ tests/trajectory-baselines.test.mjs (2062.270347ms)
+✔ tests/trajectory-experiment-portability-92be.test.mjs (16227.225477ms)
+✔ tests/trajectory-experiment-protocol-92be.test.mjs (22104.785474ms)
+✔ tests/trajectory-experiment-session-review-92be.test.mjs (20722.925163ms)
+✔ tests/trajectory-forward-92be.test.mjs (427.913485ms)
+✔ tests/trajectory-horizon-92be.test.mjs (233.675249ms)
+✔ tests/trajectory-integral-92be.test.mjs (5667.633451ms)
+✔ tests/trajectory-observations.test.mjs (509.163196ms)
+✔ tests/trajectory-plan-qualification.test.mjs (6052.780343ms)
+✔ tests/trajectory-planner-92be.test.mjs (10249.863453ms)
+✔ tests/trajectory-planner-numerical-review.test.mjs (350.102786ms)
+✔ tests/trajectory-resolution-92be.test.mjs (120.113181ms)
+✔ tests/trajectory-session-review-92be.test.mjs (1986.131497ms)
+✔ tests/trajectory-virtual-experiment-92be.test.mjs (338.299298ms)
+✔ tests/unknown-continuous-duration.test.mjs (402.312781ms)
+✔ tests/unknown-duration-planner.test.mjs (355.936614ms)
+✔ tests/unknown-duration.test.mjs (217.614444ms)
+✔ tests/unknown-history.test.mjs (150.323019ms)
+✔ tests/unknown-order.test.mjs (158.078821ms)
+✔ tests/unknown-phase.test.mjs (142.600066ms)
+✔ tests/unknown-probe.test.mjs (195.266929ms)
+✖ tests/virtual-notebook-portability.test.mjs (630.16477ms)
+ℹ tests 74
+ℹ suites 0
+ℹ pass 73
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 29515.133207
+
+✖ failing tests:
+
+test at tests/virtual-notebook-portability.test.mjs:1:1
+✖ tests/virtual-notebook-portability.test.mjs (630.16477ms)
+  'test failed'
