@@ -3,7 +3,10 @@ export const TRACKER_VERSION = 'worldlaw.patch-ncc/v1';
 export const COLOR_TRACKER_VERSION = 'worldlaw.patch-color-ncc/v1';
 export const GRID_TRACKER_VERSION = 'worldlaw.patch-grid-ncc/v1';
 export const COLOR_GRID_TRACKER_VERSION = 'worldlaw.patch-color-grid-ncc/v1';
-const colorTemplate = template => [COLOR_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION].includes(template.version);
+export const CONFIRMED_GRID_TRACKER_VERSION = 'worldlaw.patch-grid-confirmed-ncc/v1';
+export const COLOR_CONFIRMED_GRID_TRACKER_VERSION = 'worldlaw.patch-color-grid-confirmed-ncc/v1';
+const colorTemplate = template => [COLOR_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION, COLOR_CONFIRMED_GRID_TRACKER_VERSION].includes(template.version);
+const confirmedTemplate = template => [CONFIRMED_GRID_TRACKER_VERSION, COLOR_CONFIRMED_GRID_TRACKER_VERSION].includes(template.version);
 
 const MAX_FRAME_PIXELS = 16_777_216;
 const MAX_PATCH_SAMPLE_COMPARISONS = 20_000_000;
@@ -80,7 +83,10 @@ function templateOptions(options) {
   if (!['luminance', 'color'].includes(appearance)) throw new TypeError('appearance must be luminance or color.');
   const sampleStep = finite(options.sampleStep ?? 1, 'sampleStep', 1, 2, true);
   if (patchRadius % sampleStep !== 0) throw new RangeError('Two-pixel sampling requires an even patch radius.');
-  return Object.freeze({ patchRadius, minTextureStd, appearance, sampleStep });
+  const confirmFullPixel = options.confirmFullPixel ?? false;
+  if (typeof confirmFullPixel !== 'boolean') throw new TypeError('confirmFullPixel must be a boolean.');
+  if (confirmFullPixel && sampleStep !== 2) throw new RangeError('Full-pixel candidate confirmation requires two-pixel sampling.');
+  return Object.freeze({ patchRadius, minTextureStd, appearance, sampleStep, ...(confirmFullPixel ? {confirmFullPixel: true} : {}) });
 }
 
 /** Capture a fixed, opaque template. Ordinary initialization failures are explicit states. */
@@ -120,22 +126,31 @@ export function createTemplate(frame, point, options = {}) {
       reason: 'The selected patch does not contain enough brightness variation.', settings };
   }
   const normalizedValues = Object.freeze(centered.map(value => value / Math.sqrt(energy)));
-  const version = settings.sampleStep === 1 ? color ? COLOR_TRACKER_VERSION : TRACKER_VERSION
+  let confirmationTemplate = null;
+  if (settings.confirmFullPixel) {
+    // Reuse the same feature capture on every original pixel in this support.
+    const full = createTemplate(frame, point, {...settings, sampleStep: 1, confirmFullPixel: false});
+    if (full.status !== 'ready') return {...full, settings, reason: 'The full original patch lacks enough brightness variation.'};
+    confirmationTemplate = full.template;
+  }
+  const version = settings.confirmFullPixel ? color ? COLOR_CONFIRMED_GRID_TRACKER_VERSION : CONFIRMED_GRID_TRACKER_VERSION
+    : settings.sampleStep === 1 ? color ? COLOR_TRACKER_VERSION : TRACKER_VERSION
     : color ? COLOR_GRID_TRACKER_VERSION : GRID_TRACKER_VERSION;
   const template = Object.freeze({ version, ...settings,
     size: settings.patchRadius * 2 / settings.sampleStep + 1, sourcePoint, frameWidth: frame.width,
-    frameHeight: frame.height, textureStd, normalizedValues });
+    frameHeight: frame.height, textureStd, normalizedValues, ...(confirmationTemplate ? {confirmationTemplate} : {}) });
   return { status: 'ready', template, point: sourcePoint, textureStd, reason: null, settings };
 }
 
 function validateTemplate(template) {
-  if (!template || ![TRACKER_VERSION, COLOR_TRACKER_VERSION, GRID_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION].includes(template.version) || !Array.isArray(template.normalizedValues)) {
+  if (!template || ![TRACKER_VERSION, COLOR_TRACKER_VERSION, GRID_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION, CONFIRMED_GRID_TRACKER_VERSION, COLOR_CONFIRMED_GRID_TRACKER_VERSION].includes(template.version) || !Array.isArray(template.normalizedValues)) {
     throw new TypeError('A ready template from createTemplate is required.');
   }
   finite(template.patchRadius, 'template.patchRadius', 2, 24, true);
   const color = colorTemplate(template), channels = color ? 3 : 1;
   const step = template.sampleStep ?? 1;
-  const sparse = [GRID_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION].includes(template.version);
+  const confirmed = confirmedTemplate(template);
+  const sparse = confirmed || [GRID_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION].includes(template.version);
   if (step !== (sparse ? 2 : 1) || template.patchRadius % step !== 0)
     throw new TypeError('Template sampling must match its algorithm version and patch support.');
   if ((template.appearance ?? 'luminance') !== (color ? 'color' : 'luminance'))
@@ -152,6 +167,17 @@ function validateTemplate(template) {
   if (textureEnergy <= EPSILON || Math.abs(energy - 1) > 1e-6 || Math.abs(sum) > 1e-6) {
     throw new TypeError('Template luminance must have zero mean and all features together must have unit energy.');
   }
+  if (Boolean(template.confirmFullPixel) !== confirmed || (!confirmed && template.confirmationTemplate))
+    throw new TypeError('Full-pixel confirmation must match its algorithm version.');
+  if (confirmed) {
+    const full = template.confirmationTemplate;
+    if (template.confirmFullPixel !== true || full?.version !== (color ? COLOR_TRACKER_VERSION : TRACKER_VERSION)
+      || full.patchRadius !== template.patchRadius || full.frameWidth !== template.frameWidth
+      || full.frameHeight !== template.frameHeight || full.minTextureStd !== template.minTextureStd
+      || full.sourcePoint?.x !== template.sourcePoint?.x || full.sourcePoint?.y !== template.sourcePoint?.y)
+      throw new TypeError('Full-pixel template must retain the same source point, dimensions, appearance and patch support.');
+    validateTemplate(full);
+  }
 }
 
 function trackingOptions(template, options) {
@@ -161,6 +187,7 @@ function trackingOptions(template, options) {
   const subpixel = options.subpixel ?? true;
   if (typeof subpixel !== 'boolean') throw new TypeError('subpixel must be a boolean.');
   return Object.freeze({ searchRadius, exclusionRadius, subpixel, appearance: template.appearance ?? 'luminance', sampleStep: template.sampleStep ?? 1,
+    ...(confirmedTemplate(template) ? {confirmFullPixel: true} : {}),
     minScore: finite(options.minScore ?? 0.75, 'minScore', 0, 1),
     minMargin: finite(options.minMargin ?? 0.06, 'minMargin', 0, 2),
     minTextureStd: finite(options.minTextureStd ?? template.minTextureStd, 'minTextureStd', 0, 127.5) });
@@ -220,6 +247,7 @@ export function trackTemplate(frame, template, predictedPoint, options = {}) {
     score: null, runnerUpScore: null, ambiguityMargin: null, textureStd: null,
     searchClipped: false, searchBoundary: false, subpixelRefined: false, settings,
     reason: null, candidateCount: 0 };
+  if (confirmedTemplate(template)) result.confirmation = {profile: 'full-pixel-candidate', status: 'not-evaluated', score: null, textureStd: null};
   if (frame.width !== template.frameWidth || frame.height !== template.frameHeight) {
     return { ...result, reason: 'frame-size-changed' };
   }
@@ -236,12 +264,13 @@ export function trackTemplate(frame, template, predictedPoint, options = {}) {
     return { ...result, reason: 'search-outside-image' };
   }
   if (((bounds.right - bounds.left + 1) * (bounds.bottom - bounds.top + 1) + (settings.subpixel ? 1 : 0))
-    * template.size ** 2 > MAX_PATCH_SAMPLE_COMPARISONS) {
+    * template.size ** 2 + (template.confirmationTemplate?.size ** 2 || 0) > MAX_PATCH_SAMPLE_COMPARISONS) {
     throw new RangeError('Search exceeds 20 million patch sample comparisons; reduce searchRadius or patchRadius.');
   }
   // Reserve at most one extra patch for subpixel rescoring. This bounds sampled
   // pixel pairs, not all pixels inside the support. Color uses three features
-  // per pair, hence at most 60 million feature pairs including that refinement.
+  // per pair, hence at most 60 million feature pairs including that refinement
+  // and, when requested, one complete original-pixel candidate patch.
   const gray = grayscale(frame, bounds.left - radius, bounds.top - radius,
     bounds.right + radius, bounds.bottom + radius, colorTemplate(template));
   const columns = bounds.right - bounds.left + 1;
@@ -295,6 +324,14 @@ export function trackTemplate(frame, template, predictedPoint, options = {}) {
   if (!runnerUp) return { ...result, status: 'ambiguous', reason: 'insufficient-alternative-patches' };
   if (result.ambiguityMargin <= Math.max(settings.minMargin, EPSILON)) return { ...result, status: 'ambiguous', reason: 'competing-match' };
   if (result.searchBoundary) return { ...result, status: 'ambiguous', reason: 'search-boundary' };
+  if (template.confirmationTemplate) {
+    const full = scorePatch(gray, template.confirmationTemplate, best.x, best.y, true);
+    const textureOK = full.score !== null && full.textureStd >= settings.minTextureStd;
+    const scoreOK = textureOK && full.score >= settings.minScore;
+    result.confirmation = {profile: 'full-pixel-candidate', status: scoreOK ? 'passed' : 'failed', score: full.score, textureStd: full.textureStd};
+    if (!textureOK) return {...result, status: 'low-texture', reason: 'full-pixel-candidate-low-texture'};
+    if (!scoreOK) return {...result, reason: 'full-pixel-candidate-score-below-threshold'};
+  }
   return { ...result, status: 'accepted', point: { ...result.candidatePoint }, reason: null };
 }
 

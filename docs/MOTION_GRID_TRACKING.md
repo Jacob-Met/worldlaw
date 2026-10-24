@@ -127,3 +127,12 @@ The browser scripts accept the maintained `PLAYWRIGHT_MODULE`,
 `BROWSER_EXECUTABLE_PATH`, `BROWSER_ARTIFACT_DIR` and paired-fixture
 `MOTION_FIXTURE_DIR` overrides. Browser sandboxing remains enabled.
 
+
+## Optional complete-patch confirmation
+
+The additional **2 px spacing + full candidate check** profile retains the sampled
+search and checks every source pixel at its selected candidate before accepting.
+It rejects skipped-pixel disagreements while retaining the same sparse ambiguity
+gates, explicit work cap and recorded evidence versions. It does not establish
+uniqueness among all full patches. See [the complete-patch confirmation guide](MOTION_CANDIDATE_CONFIRMATION.md)
+for the original-video and decoded alias controls, separate diagnostics and limits.
