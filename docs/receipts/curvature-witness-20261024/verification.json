@@ -1,0 +1,80 @@
+{
+  "format": "worldlaw-curvature-witness-receiving/v1",
+  "baseCommit": "b2e40a9c5ee215af6a2f93507a9be3950d8b7bd3",
+  "unchangedBaseBlobsVerified": 291,
+  "mismatches": [],
+  "candidateSha256": {
+    "scripts/cycle-refinement-browser.mjs": "84499e4c0878d476fb11b525caa4caf0745c1f4f64735332f9ca7be91d4381df",
+    "src/cycle-work/refinement-example.mjs": "e1fb5d622c5d71e6e55d983de9c00e624547a04ad94463f270d8898a80277722",
+    "src/cycle-work/refinement-panel.mjs": "bb7aca69996f0a31d9491025543fd81916ec788f91da5c9f408dc188b614689b",
+    "src/cycle-work/curvature-witness.mjs": "83c7852ed752b0a28ec3537ce6a9fd192704aec490e3c6caa1deb593a64ea681",
+    "src/cycle-work/refinement.mjs": "d157216810393280dce670067561e3d1393f62895a28afa49f316f2dbf3a0ce8",
+    "tests/cycle-curvature-receiving.test.mjs": "73e514f7bfca66ae617426a3834c0b33dc2951cf334cc8e8d984c9890c2c0216",
+    "docs/CURVATURE_WITNESSES.md": "ad2162feabb9df595b2d6c0be8cd28beeb661c822afb638b8cfa0b55209af295",
+    "tests/cycle-curvature-exact.test.mjs": "643275517120ad3ad57e3d4a64fbc515bfc101e3799f6cc7f0d560c0e238eba9",
+    "scripts/package.py": "6d5229fcee11a687e81058dea29bb7ad86e492b04ec4e2790b8235d12e54bbf2"
+  },
+  "nativeSummary": [
+    "# tests 491",
+    "# pass 490",
+    "# fail 0",
+    "# skipped 1",
+    "# duration_ms 20796.765454"
+  ],
+  "skips": [
+    "ok 305 - live Node and Chromium exchange pending and applied notebooks through actual modules # SKIP"
+  ],
+  "smokes": [
+    "product assets/refusal/discovery/virtual measurement/revision/reopen",
+    "trajectory launched server/JSON/fitting/forward/reopen"
+  ],
+  "browser": {
+    "browser": "156.0.8078.47",
+    "checks": [
+      "explicit assumptions, frozen grid and separate analytic acquisition resolve authored branch work",
+      "actual downloaded notebook recomputes; conservative sampling artifact remains enclosed",
+      "partial actual readings remain pending and stale request is refused",
+      "late import cannot replace newer source declarations",
+      "actual false-curvature readings withhold continuous-path conclusions, preserve polygon work, and replay; noisy boxes remove only the necessary contradiction",
+      "desktop and narrow consumer has no horizontal overflow or script errors"
+    ],
+    "layouts": [
+      {
+        "width": 1440,
+        "document": 1440
+      },
+      {
+        "width": 390,
+        "document": 390
+      },
+      {
+        "width": 320,
+        "document": 320
+      }
+    ],
+    "scope": "Authored analytic responses only; conditional curvature assumptions, no physical acquisition."
+  },
+  "receivedAt": "2026-10-24T15:29:28.990786+00:00",
+  "implementationHead": "e75f2bc910db5b18ad2444186c6305d5349d857e",
+  "commands": [
+    "npm run verify",
+    "PLAYWRIGHT_MODULE=/home/ubuntu/.npm/_npx/f0a362733743bae2/node_modules/playwright/index.mjs BROWSER_EXECUTABLE_PATH=/usr/local/bin/google-chrome BROWSER_ARTIFACT_DIR=/tmp/hamon-583a-worldlaw/curvature-receiving node scripts/cycle-refinement-browser.mjs"
+  ],
+  "runtime": {
+    "node": "22.23.4",
+    "browser": "Chrome156.0.8078.47",
+    "sandbox": "enabled"
+  },
+  "independentReview": {
+    "arithmetic": "Mechanism worker: exact-rational second-divided-difference oracle, all eight torque-box corners, equality/reversal/large offsets/adjacent floats/subnormals, 320 seeded mixed-scale cases and original-span identity control. Six groups pass on exact witness hash83c7852ed752b0a28ec3537ce6a9fd192704aec490e3c6caa1deb593a64ea681.",
+    "integration": "Skill worker: no blocker in partial/full contradiction withholding, retained polygon/raw observations, noisy/equality semantics, sample evaluation radii, stale UI, file identity and actual-download harness source. Runtime receipt is root's separate six-group browser course."
+  },
+  "recovery": "Five production/browser files and the independent oracle were recovered byte-identically after transient workspace loss. Missing receiving tests and documentation were deliberately reconstructed with the new hashes above. All qualification here was rerun on the actual composed candidate; no lost-file receipt is substituted.",
+  "limits": [
+    "Witness compatibility is necessary only and does not prove a jointly feasible smooth response or authenticate a curvature declaration.",
+    "Only consecutive observed triples within each original directed segment are inspected; zero-angle jumps and untested segments stay distinct.",
+    "Contradictions withhold curvature-conditional continuous-path conclusions; original and complete refined polygon measurements and supplied observations remain.",
+    "New authored analytic controls declare floating-evaluation radii; existing zero-radius inputs are not silently rewritten.",
+    "No physical acquisition, cloud/provider qualification or change to the manual/draft PR9 hold."
+  ]
+}

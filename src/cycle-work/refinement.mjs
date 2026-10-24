@@ -1,3 +1,4 @@
+import {inspectCurvatureWitnesses} from './curvature-witness.mjs';
 import {normalizeCycle,evaluateCycle,CycleWorkError} from './core.mjs';
 export const REFINEMENT_SCHEMA='worldlaw.cycle-refinement/v1';
 export const BRANCH_ASSUMPTION='monotone-angle-no-gaps-twice-differentiable-on-this-directed-segment';
@@ -71,7 +72,10 @@ export function reopenRefinement(raw){
   return {...request,id:r.id,source:r.source.trim(),jointTorque:r.jointTorque,torqueRadius:r.torqueRadius};
  });
  const allowance=extra=>{const sum=original.integrationAllowance+extra;fail(sum<=1e12,'Combined retained allowance and curvature bound exceeds the supported 1e12 J allowance.');return sum;};
- const coarse=evaluateCycle({...original,integrationAllowance:allowance(plan.coarseBound)});
+ const curvatureAudit=inspectCurvatureWitnesses(plan,readings);
+ const withheld=curvatureAudit.status==='contradicted';
+ const polygon={original:evaluateCycle(original),refined:null};
+ const coarse=withheld?null:evaluateCycle({...original,integrationAllowance:allowance(plan.coarseBound)});
  let refined=null;
  if(acquisition&&readings.length===plan.requests.length){
   const samples=[];
@@ -80,7 +84,8 @@ export function reopenRefinement(raw){
    for(const p of plan.requests.filter(p=>p.segment===i)){const r=readings.find(r=>r.segment===p.segment&&r.index===p.index);samples.push({position:r.position,jointTorque:r.jointTorque,torqueRadius:r.torqueRadius});}
   }
   samples.push(original.samples.at(-1));
-  refined=evaluateCycle({...original,samples,integrationAllowance:allowance(plan.refinedBound)});
+  polygon.refined=evaluateCycle({...original,samples});
+  refined=withheld?null:evaluateCycle({...original,samples,integrationAllowance:allowance(plan.refinedBound)});
  }
- return {bundle:{schema:REFINEMENT_SCHEMA,request:plan.request,acquisition:acquisition?{request:plan.request,branchAssumption:acquisition.branchAssumption,readings}:null},plan,coarse,refined,pending:plan.requests.length-readings.length};
+ return {bundle:{schema:REFINEMENT_SCHEMA,request:plan.request,acquisition:acquisition?{request:plan.request,branchAssumption:acquisition.branchAssumption,readings}:null},plan,coarse,refined,polygon,curvatureAudit,continuousPath:withheld?null:{coarse,refined},conditionalStatus:withheld?'withheld-curvature-contradiction':'conditional-on-unvalidated-assumptions',pending:plan.requests.length-readings.length};
 }
