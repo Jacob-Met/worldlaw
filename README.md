@@ -6,6 +6,10 @@ Import observations, compare competing law structures, choose a discriminating i
 
 Current scientific scope: **finite-library scalar torque discovery**. The default instrument and supplied examples are synthetic. The larger goal remains an autonomous physical scientist that discovers mechanism structure from real observations and transfers explanatory models to unfamiliar conditions. [The full product canon](docs/PRODUCT_CANON.md) remains open.
 
+## Open-ended research direction
+
+[UNKNOWN LAB exploration](docs/UNKNOWN_LAB_EXPLORATION.md) develops the existing ambition toward discovering useful representations, questions, measurements and experiments. It is a seed for further invention, not a fixed endpoint or a claim that the current finite-library workbench already provides those capabilities.
+
 ## Run locally
 
 With Node.js 20 or newer, from this directory:
