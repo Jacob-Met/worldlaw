@@ -1,3 +1,4 @@
+import {DEFAULT_ANGULAR_TERMS} from '../trajectory/angular-discovery.mjs';
 import {investigateAngleReference, exportReferenceInvestigation, reopenReferenceInvestigation} from './angle-reference.mjs';
 
 const fmt = value => Number.isFinite(value) ? Number(value.toPrecision(5)).toString() : 'unavailable';
@@ -21,7 +22,8 @@ export function createReferencePanel(anchor) {
       <label>Offsets to test (radians; include 0)<input id="offsets" value="-0.5,-0.4,-0.3,-0.2,-0.1,0,0.1,0.2,0.3,0.4,0.5"></label>
       <label>Assumed angle noise (rad)<input id="noise" type="number" min="0.000000000001" max="1000000" step="any" value="0.01"></label>
       <label>Weak window (seconds)<input id="window" type="number" min="0.02" max="60" step="any" value="1"></label>
-    </div><p id="library">Uses the six maintained autonomous terms, at most four per model. The same options apply to every offset. A shifted coordinate costs one additional score parameter; scores are heuristic.</p>
+    </div><label style="display:flex;align-items:center;gap:10px;margin-top:12px"><input id="cubic" type="checkbox" style="min-height:22px">Offer cubic restoring law θ³ (experimental)</label>
+    <p>A cubic term changes the model library, not the observations. Its origin matters; a shifted cubic is not a complete polynomial law. Small motions can leave spring, gravity and cubic terms indistinguishable.</p><p id="library">Uses the six maintained autonomous terms, at most four per model. The same options apply to every offset. A shifted coordinate costs one additional score parameter; scores are heuristic.</p>
     <div class="actions"><button id="search" disabled>Compare references</button><button id="save" disabled>Save reference notebook</button><label>Reopen reference notebook<input id="open" type="file" accept="application/json,.json"></label></div>
     <p id="status" class="status" role="status">Load measured or declared angular evidence with unknown torque scale in Trajectory Challenge.</p>
     <div id="results" hidden><h3>Does one reference explain every training run?</h3>
@@ -32,8 +34,8 @@ export function createReferencePanel(anchor) {
       <label>Separate recording<select id="run"></select></label>
       <p id="source"></p><div class="legend"><span class="observed">White: observed</span><span class="baseline">Orange: zero-offset prediction</span><span class="shifted">Cyan: selected-reference prediction</span></div>
       <canvas id="plot" class="plot" width="900" height="340" aria-label="Original recorded angles and frozen free-running predictions"></canvas>
-      <p id="prediction"></p><p>Training ranking — scroll horizontally on narrow screens.</p><div class="scroll" tabindex="0" role="region" aria-label="Training ranking table"><table><thead><tr><th>Offset rad</th><th>Training model</th><th>Weak residual rad</th><th>Penalized score</th></tr></thead><tbody id="candidates"></tbody></table></div>
-      <p id="limits"></p>
+      <p id="cubic-legend" style="color:#c89aff" hidden>Purple: training winner without cubic.</p><p id="prediction"></p><p>Training ranking — scroll horizontally on narrow screens.</p><div class="scroll" tabindex="0" role="region" aria-label="Training ranking table"><table><thead><tr><th>Offset rad</th><th>Training model</th><th>Weak residual rad</th><th>Penalized score</th></tr></thead><tbody id="candidates"></tbody></table></div>
+      <p id="library-comparison"></p><p id="limits"></p>
     </div></details>`;
   const $ = id => root.getElementById(id);
   let current = null, currentKey = '', result = null, generation = 0, fitOverrides = {};
@@ -42,6 +44,9 @@ export function createReferencePanel(anchor) {
   function show(next) {
     result = next; $('results').hidden = false; $('save').disabled = false;
     const s = next.search;
+    $('cubic').checked = s.selected.fitOptions.terms.includes('cubic');
+    $('cubic-legend').hidden = !next.libraryBaseline;
+    $('library-comparison').textContent = next.libraryBaseline ? `Matched library comparison: without cubic, ${next.libraryBaseline.selected.model.id} at offset ${fmt(next.libraryBaseline.selected.offset)} rad; with cubic offered, ${s.selected.model.id} at offset ${fmt(s.selected.offset)} rad. Both winners were selected on training only. Training scores and later prediction errors do not prove a physical restoring mechanism.` : '';
     const audit = next.consistency;
     $('consistency').textContent = `${audit.status.replaceAll('_',' ')} · ${audit.sharedOffsets === null ? 'Shared-set comparison withheld.' : audit.sharedOffsets.length ? `Shared supported offsets: ${audit.sharedOffsets.map(fmt).join(', ')} rad.` : 'No shared supported grid offset.'}`;
     $('run-audit').replaceChildren(...audit.runs.map(run=>{const tr=document.createElement('tr');for(const text of [run.label,fmt(run.selectedOffset),run.modelId??'unavailable',run.supportedOffsets.length?run.supportedOffsets.map(fmt).join(', '):'none',run.blockers.length?run.blockers.join(', ').replaceAll('_',' ')+(run.failures.length?`: ${run.failures.map(f=>f.message).join('; ')}`:''):`within declared gates; residual ${fmt(run.trainingRmseInNoiseUnits)}× assumed noise`]){const td=document.createElement('td');td.textContent=text;tr.append(td);}return tr;}));
@@ -58,9 +63,9 @@ export function createReferencePanel(anchor) {
     const run = result.bundle.challengeRuns.find(run => run.id === $('run').value), pair = result.comparisons.find(p => p.runId === run.id);
     $('source').textContent = `${run.kind.toUpperCase()} · ${run.source.label} · recording ${run.source.recordingId ?? 'not supplied'}. Original angle coordinates; no observation resets. Existing benchmark data remains exploratory.`;
     const summarize = (name, item) => item.error ? `${name}: refused (${item.error.message})` : `${name}: RMSE ${fmt(item.rollout.metrics.positionRMSE)} rad; numerical comparison ${item.resolution.status}${item.resolution.status === 'compared' ? `, max difference ${fmt(item.resolution.maxAbsPositionDifference)} rad` : ` (${item.resolution.reason})`}`;
-    $('prediction').textContent = [summarize('Unshifted',pair.baseline),summarize('Selected reference',pair.selected)].join('. ') + '. Numerical agreement is not physical validation.';
+    $('prediction').textContent = [summarize('Unshifted',pair.baseline),summarize('Selected reference',pair.selected),...(pair.withoutCubic?[summarize('Without cubic (training winner)',pair.withoutCubic)]:[])].join('. ') + '. Numerical agreement is not physical validation.';
     const canvas = $('plot'), ctx = canvas.getContext('2d'), lines = [{rows:run.samples.map(r=>({time:r.time,value:r.position})),color:'#ffffff'}];
-    for(const [key,color] of [['baseline','#f9ad65'],['selected','#5bd2dc']])if(pair[key].rollout)lines.push({rows:pair[key].rollout.rows.map(r=>({time:r.time,value:r.predicted})),color});
+    for(const [key,color] of [['baseline','#f9ad65'],['selected','#5bd2dc'],['withoutCubic','#c89aff']])if(pair[key]?.rollout)lines.push({rows:pair[key].rollout.rows.map(r=>({time:r.time,value:r.predicted})),color});
     const values=lines.flatMap(line=>line.rows.map(r=>r.value)),low=Math.min(...values),high=Math.max(...values),span=Math.max(high-low,.001),start=run.samples[0].time,end=run.samples.at(-1).time;
     const width=Math.max(200,canvas.getBoundingClientRect().width),height=width<500?240:340,dpr=window.devicePixelRatio||1;
     canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);canvas.style.height=`${height}px`;ctx.scale(dpr,dpr);
@@ -70,11 +75,12 @@ export function createReferencePanel(anchor) {
   }
   new ResizeObserver(()=>plot()).observe(host);
   $('run').addEventListener('change',plot);
-  for(const id of ['offsets','noise','window'])$(id).addEventListener('input',()=>{invalidate();status('Settings changed. Compare references to recompute before saving.');});
+  for(const id of ['offsets','noise','window','cubic'])$(id).addEventListener('input',()=>{invalidate();status('Settings changed. Compare references to recompute before saving.');});
   $('search').addEventListener('click',async()=>{
     if(!current)return;invalidate();const ticket=generation,bundle=current;$('search').disabled=true;status('Fitting training coordinates, then predicting separate recordings…');
     try{await new Promise(resolve=>requestAnimationFrame(resolve));if(ticket!==generation)return;const tokens=$('offsets').value.split(',').map(s=>s.trim());if(tokens.some(s=>!s))throw Error('Enter comma-separated numeric offsets with no empty values.');
-      const duration=Number($('window').value),next=investigateAngleReference(bundle,{offsets:tokens.map(Number),fit:{...fitOverrides,noiseSigma:Number($('noise').value),windowDuration:duration,windowStride:duration/2}});
+      const terms=(fitOverrides.terms??DEFAULT_ANGULAR_TERMS).filter(id=>id!=='cubic');if($('cubic').checked)terms.push('cubic');
+      const duration=Number($('window').value),next=investigateAngleReference(bundle,{offsets:tokens.map(Number),fit:{...fitOverrides,terms,maxTerms:Math.min(fitOverrides.maxTerms??4,terms.length),noiseSigma:Number($('noise').value),windowDuration:duration,windowStride:duration/2}});
       if(ticket===generation)show(next);
     }catch(error){if(ticket===generation)status(error.message,true);}finally{if(ticket===generation)$('search').disabled=!current;}
   });
@@ -86,7 +92,7 @@ export function createReferencePanel(anchor) {
       $('offsets').value=next.search.settings.offsets.join(',');$('noise').value=next.search.selected.fitOptions.noiseSigma;$('window').value=next.search.selected.fitOptions.windowDuration;show(next);
     }catch(error){if(ticket===generation)status(`Reopen refused; prior result retained. ${error.message}`,true);}finally{if(ticket===generation){$('open').value='';$('search').disabled=!current;}}
   });
-  return {update(bundle){const key=JSON.stringify(bundle);if(key===currentKey)return;currentKey=key;invalidate();fitOverrides={};current=bundle?.schema==='worldlaw.angular-bundle/v1'?bundle:null;$('search').disabled=!current;
+  return {update(bundle){const key=JSON.stringify(bundle);if(key===currentKey)return;currentKey=key;invalidate();fitOverrides={};$('cubic').checked=false;current=bundle?.schema==='worldlaw.angular-bundle/v1'?bundle:null;$('search').disabled=!current;
     $('library').textContent='Uses the six maintained autonomous terms, at most four per model. The same options apply to every offset. A shifted coordinate costs one additional score parameter; scores are heuristic.';
     status(current?'Current angular evidence ready. Declare a reference range and compare; challenge data never selects the coordinate.':'Load measured or declared angular evidence with unknown torque scale in Trajectory Challenge.');}};
 }

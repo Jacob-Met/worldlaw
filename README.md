@@ -161,3 +161,7 @@ A known counterexample to fixed alternation: a *purely simulated*, zero-memory s
 Shuffling the order breaks *this exact* phase-lock in the validated counterexample. It does **not** guarantee freedom from nonlinear drift, phase correlation with the new sequence, cross-over carryover, serial sensor noise, instrument heating or unsafe real-world randomization. Actual instruments require their own independent controls, timestamps, repetition, safety authority and source verification. A screening label never establishes physical causation.
 
 Verify with `node --test tests/unknown-phase.test.mjs` and `npm run unknown:browser`.
+
+### Experimental cubic restoring laws
+
+In Trajectory Challenge → Investigate the angle reference, explicitly enable **Offer cubic restoring law θ³** to test a larger finite library. The maintained fitter and executable solver learn its coefficient from training motion; a purple trajectory preserves the matched training winner without cubic on each separate recording. Existing default libraries remain unchanged. Save/reopen preserves the offered terms and recomputes both comparisons. Small-motion data may not distinguish linear, sinusoidal and cubic restoring behavior, and a shifted cubic depends on the chosen origin. See [scientific evidence and receiving limits](docs/CUBIC_RESTORING.md).

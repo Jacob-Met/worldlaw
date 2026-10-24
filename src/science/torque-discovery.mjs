@@ -11,7 +11,9 @@ export const TERMS = Object.freeze([
   { id: 'gravity', label: 'sin(θ)', coefficientUnit: 'N·m' },
   { id: 'quadratic', label: 'ω|ω|', coefficientUnit: 'N·m·s²/rad²' },
   { id: 'bias', label: '1', coefficientUnit: 'N·m' },
+  { id: 'cubic', label: 'θ³', coefficientUnit: 'N·m/rad³', optional: true },
 ].map(Object.freeze));
+export const DEFAULT_TERMS = Object.freeze(TERMS.filter(term => !term.optional).map(term => term.id));
 export const UNITS = Object.freeze({command:'N·m', position:'rad', rate:'rad/s', jointTorque:'N·m'});
 const ids = TERMS.map(t => t.id);
 const LIMIT = 4096;
@@ -45,6 +47,7 @@ function feature(id, row) {
     case 'coulomb': return Math.sign(row.rate);
     case 'spring': return row.position;
     case 'gravity': return Math.sin(row.position);
+    case 'cubic': return row.position ** 3;
     case 'quadratic': return row.rate * Math.abs(row.rate);
     case 'bias': return 1;
     default: throw new DiscoveryError(`Unknown feature ${id}.`);
@@ -54,7 +57,7 @@ function dot(a, b) { let total = 0; for (let i = 0; i < a.length; ++i) total += 
 function norm(a) { return Math.hypot(...a); }
 function normalizeOptions(options = {}) {
   requireThat(options && typeof options === 'object' && !Array.isArray(options), 'Options must be an object.');
-  const terms = options.terms === undefined ? [...ids] : options.terms;
+  const terms = options.terms === undefined ? [...DEFAULT_TERMS] : options.terms;
   requireThat(Array.isArray(terms) && terms.length > 0 && terms.length <= ids.length &&
     new Set(terms).size === terms.length && terms.every(id => ids.includes(id)), 'terms must be unique known feature IDs.');
   const result = {
