@@ -1,3 +1,4 @@
+import {mountDurationPanel} from './duration-panel.mjs';
 import {syntheticChallenge,evaluateHistory,importNotebook,exportNotebook} from './paired-history.mjs';
 const $=id=>document.getElementById(id);
 const ns='http://www.w3.org/2000/svg', storageKey='worldlaw.unknown-lab.history.v1';
@@ -111,3 +112,6 @@ try {
  if(saved) adopt(importNotebook(saved),'Reopened explicitly saved local copy');
  else adopt(syntheticChallenge(),'Executed virtual baseline');
 }catch(e){adopt(syntheticChallenge(),'Executed virtual baseline (browser storage unavailable)');}
+
+
+mountDurationPanel(()=>notebook);
