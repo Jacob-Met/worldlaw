@@ -1,0 +1,20 @@
+{
+  "url": "http://127.0.0.1:46659",
+  "browser": "156.0.8078.47",
+  "checks": [
+    "Actual authored observation import; explicit assumptions; all nine source rectangles exclude additivity",
+    "Every original corner reading; both scientific compositions at desktop and390px without panel overflow",
+    "Changed bounds invalidate old result; keyboard rerun changes conclusion; source notebook is unchanged",
+    "Actual downloaded notebook reopens and recomputes after deliberate redeclaration",
+    "Independent additive source control excludes none; previous source conclusion is removed",
+    "No page exceptions"
+  ],
+  "screenshots": [
+    "corners-1440.png",
+    "differences-1440.png",
+    "corners-390.png",
+    "differences-390.png"
+  ],
+  "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+  "status": "passed"
+}

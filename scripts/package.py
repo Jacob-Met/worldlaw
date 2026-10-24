@@ -16,6 +16,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "separability.css", "examples/separability/*.json",
+    "independent-review/separability-oracle.py", "docs/receipts/separability-9e01d4dd/*.txt",
     "cycle-work.html", "src/cycle-work/*.mjs",
     "stiffness.html", "stiffness.css", "src/stiffness/*.mjs",
     "docs/receipts/stiffness-20261024/*.json", "docs/receipts/stiffness-20261024/*.png",
@@ -67,6 +69,7 @@ INCLUDE = (
     'experiments/rolling-origin.mjs',
 )
 REQUIRED = (
+    "separability.css", "src/science/separability.mjs", "src/science/separability-panel.mjs",
     "cycle-work.html", "src/cycle-work/app.mjs", "src/cycle-work/core.mjs",
     "src/cycle-work/refinement.mjs", "src/cycle-work/refinement-panel.mjs", "src/cycle-work/refinement-example.mjs",
     "src/cycle-work/curvature-witness.mjs",

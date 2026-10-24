@@ -1,0 +1,7 @@
+{
+  "cases": 600,
+  "enclosed_nonempty_contrasts": 320,
+  "sound_replicate_conflicts": 412,
+  "sound_exclusions": 192,
+  "oracle": "Python Fraction of exact binary64 input values, independent extrema"
+}

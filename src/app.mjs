@@ -3,6 +3,7 @@ import {renderStateSupport} from './science/state-support-panel.mjs';
 import {renderParameterSensitivity} from './science/parameter-sensitivity-panel.mjs';
 import {renderPredictionSensitivity} from './science/prediction-sensitivity-panel.mjs';
 import {diagnoseReplicates} from './science/replicate-diagnostics.mjs';
+import {renderSeparability} from './science/separability-panel.mjs';
 import {evaluate,predict,simulate} from './science/torque-discovery.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
 import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,exportSession,restoreSession,undoSession} from './session.mjs';
@@ -97,6 +98,8 @@ function renderModel(){
   renderPredictionSensitivity(readout,m,state.discovery.observations,state.base.heldOut);
   let enclosure=$('input-enclosures');if(!enclosure){enclosure=el('div');enclosure.id='input-enclosures';$('state-support').after(enclosure);}
   renderInputEnclosures(enclosure,m,state.discovery.observations);
+  let separability=$('separability');if(!separability){separability=el('div');separability.id='separability';$('replicate-diagnostics').after(separability);}
+  renderSeparability(separability,state.discovery.observations,state.base.source);
   runSimulation(false);
 }
 function render(){

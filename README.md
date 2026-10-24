@@ -253,6 +253,15 @@ The held-out prediction sensitivity inspector also receives every unordered pair
 
 The Studio can separately search for one bounded training-reading perturbation that receives the complete held-out course, or a checked weighted separator for the computed linear envelope. It retains all source rows, original error radii, complete witness vectors and raw-source replay. Budget exhaustion remains unresolved. See [the scientific and replay contract](docs/SHARED_TRAINING.md).
 
+### Challenge the additive law library
+
+The scalar Studio now inspects four-corner contrasts from its original observation
+rows. Choose two varied inputs, an exactly fixed third coordinate, and an explicit
+absolute torque-reading bound. Compare every complete matched rectangle and
+inspect its original readings. A contrast excluding zero challenges the additive
+assumption shared by the current scalar library; incompatible repeated readings
+remain a separate outcome. No new physical cause, interaction model or observation
+is asserted. See [the mechanism, authored controls and receiving](docs/ADDITIVE_SEPARABILITY.md).
 ## Receive a closed two-coordinate path
 
 In Coupling Lab, **Take the response around a closed path** compares supplied paired-angle/torque readings with every fitted affine law using signed polygonal work. Inspect the numbered loop, shared reading-error bounds, model disagreements and coordinate extrapolation. Input-only save/reopen retains the original training and path without refitting on receiving evidence. The nonlinear conservative control exposes a quadrature artifact; nonzero polygonal work does not prove dissipation. See [the circulation contract](docs/COUPLED_CIRCULATION.md).

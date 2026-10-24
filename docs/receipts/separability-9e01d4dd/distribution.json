@@ -1,0 +1,107 @@
+{
+  "package": {
+    "output": "/tmp/worldlaw-separability-9e01d4dd-candidate.zip",
+    "sha256": "40e22e226c52c1a91a7279ee4eab5f8c0e641cf1dbbc36752f0009d13a2fa44d",
+    "sourceFiles": 458,
+    "bytes": 18832392,
+    "sourceCommit": "bb2924c209af8ff04431981472224953a0c58a60",
+    "sourceTree": null,
+    "sourceMode": "working-tree-candidate"
+  },
+  "archiveMemberHashesVerified": 458,
+  "sourceModeQualification": "Explicit working-tree-candidate, not a complete remote-tree copy; current source commits and all received base blobs separately verified.",
+  "missingHistoricalReceipt": {
+    "path": "docs/receipts/branch-response-20261024/desktop.png",
+    "bytes": 1122713,
+    "reason": "Available GitHub binary receiving route did not provide a >1MiB blob payload; no placeholder and no runtime omission.",
+    "publicationRequirement": "Preserve the unchanged original remote blob; absence applies only to this local receiving archive."
+  },
+  "ownerReuse": {
+    "pullRequest": "https://github.com/Jacob-Met/worldlaw/pull/98",
+    "head": "0a5bf7057ad715913407c9b6a07882751c758180",
+    "scope": "Nine exact current-main receipt inclusions and one explicit nondistributed historical gzip. No PR94-only REQUIRED paths."
+  },
+  "native": {
+    "command": "npm run verify",
+    "tests": 594,
+    "passed": 593,
+    "failed": 0,
+    "skipped": 1,
+    "smokes": [
+      "maintained Studio",
+      "maintained trajectory"
+    ]
+  },
+  "portableBrowser": {
+    "passedGroups": 6,
+    "errors": 0,
+    "sandbox": "Namespace/PID/network/seccomp; adequately sandboxed",
+    "screenshotsIdenticalToInspectedSource": [
+      {
+        "path": "differences-1440.png",
+        "sha256": "0ca9012e454b407c1d7297807b3ecd6b7332074813df9e6c027c354f3d43c465"
+      },
+      {
+        "path": "corners-390.png",
+        "sha256": "73b94e3db84f323f2704efe1f79a647994d6c495c5b68bfe914c23dd5a8e279e"
+      },
+      {
+        "path": "differences-390.png",
+        "sha256": "ebdb3ba3cefae940609801def4257578717892f9cdb318e5de3538da04ebf2b5"
+      },
+      {
+        "path": "corners-1440.png",
+        "sha256": "1145ea356f859c05e8d6dc8da5953f974870cb73c358697d85a0e0e0b7d1c616"
+      }
+    ]
+  },
+  "runtimeHashes": {
+    "src/science/separability.mjs": "5be9b65b60b8b4b592645bf8b55c68e75fc72bcd784a7c46b89f4ca283ee1b23",
+    "src/science/separability-panel.mjs": "5e0d869f3989605d46edce72068e1db9438a7c7c7b7f1dd9c12102d77f018ed3",
+    "src/app.mjs": "9f57c8a3465a77b905054300a8e24c271984db579807a6b8b1d3b7a858fad01e",
+    "index.html": "24d6077c66cf355ca254f8b8b2dc580939570c6a9687d8ce26d4cdefe4db50a3",
+    "server.mjs": "15aab8dbaf5339f8dd8672eb47318550afa70bef99b2562ec7d7bfbacab5ec17",
+    "separability.css": "e989f0970d530a510f9543ad12e77829ffba60569f7703c3063bc5f1d4d6ffa9",
+    "scripts/package.py": "79dbf69643d029b50fb760443defa6d871b83eed2d2a2631208acd3ea9856098"
+  },
+  "currentMainComposition": {
+    "base": "fc390452ec7e01fd5d3ce6c99539fadae9bfef93",
+    "baseTree": "6256f807aa11d0d8b7c7469d6007a26945d2cf11",
+    "package": {
+      "sha256": "90083c37642fa6a3a29d195d8462e6806fcc0218560ab3e70fd64373ed548b23",
+      "sourceFiles": 482,
+      "bytes": 19293935,
+      "sourceMode": "working-tree-candidate",
+      "sourceTree": null
+    },
+    "focusedTests": {
+      "separability": 8,
+      "circulation": 9,
+      "stiffnessKnotProfile": 11,
+      "serialOrder": 6,
+      "failed": 0,
+      "sourceAndExtractedArchive": true
+    },
+    "smokes": [
+      "maintained Studio",
+      "maintained trajectory"
+    ],
+    "browserGroups": 6,
+    "screenshotsIdenticalToOriginal": true,
+    "packageRefusalControls": 5,
+    "currentMainPackagePolicy": "Preserved exact 3 historical nondistributed archives and7 existing receipt inclusions; own4 inclusion patterns and3 required paths only.",
+    "missingHistoricalReceipts": "Only docs/receipts/branch-response-20261024/desktop.png; unavailable locally, remote blob must remain untouched. Incoming two stiffness PNGs received and Git-SHA verified.",
+    "qualification": "Full suite was received on prior bb2924; latest current-main composition receives targeted34 tests plus launched smoke/browser, not a new full-suite claim.",
+    "runtimeHashes": {
+      "src/science/separability.mjs": "5be9b65b60b8b4b592645bf8b55c68e75fc72bcd784a7c46b89f4ca283ee1b23",
+      "src/science/separability-panel.mjs": "5e0d869f3989605d46edce72068e1db9438a7c7c7b7f1dd9c12102d77f018ed3",
+      "src/app.mjs": "9f57c8a3465a77b905054300a8e24c271984db579807a6b8b1d3b7a858fad01e",
+      "index.html": "24d6077c66cf355ca254f8b8b2dc580939570c6a9687d8ce26d4cdefe4db50a3",
+      "server.mjs": "15aab8dbaf5339f8dd8672eb47318550afa70bef99b2562ec7d7bfbacab5ec17",
+      "separability.css": "e989f0970d530a510f9543ad12e77829ffba60569f7703c3063bc5f1d4d6ffa9",
+      "scripts/package.py": "4fa635b503958602ab9d19565112ec5ab87b68b3ecf593940a551e72558bb32e"
+    },
+    "finalArchiveQualification": "Every482member hash verified; all runtime/source/test/script/HTML/CSS bytes match prior composition received by34 focused tests and both smokes. Final archive browser6/6 passed separately. Final documentation/receipt updates follow archive construction.",
+    "currentMainSourceVerification": "Full latest manifest verified: all present non-owned blobs match Git SHA; only unavailable branch-response desktop.png is missing."
+  }
+}
