@@ -1,0 +1,754 @@
+{
+  "checks": 31,
+  "pass": true,
+  "results": [
+    {
+      "name": "maintained studio navigation enters the actual experiment-enabled lab",
+      "passed": true
+    },
+    {
+      "name": "authored ambiguous course exposes a numerical proposal from actual training",
+      "passed": true
+    },
+    {
+      "name": "keyboard freezes a current proposal before authored observation and refit",
+      "passed": true
+    },
+    {
+      "name": "input-only download reopens both accumulated history and a frozen pending request",
+      "passed": true
+    },
+    {
+      "name": "separate-check replacement leaves proposals, frozen forecasts and history unchanged",
+      "passed": true
+    },
+    {
+      "name": "manual acquisition preserves declared provenance and rejects coordinates outside the pending request",
+      "passed": true
+    },
+    {
+      "name": "declaration changes cannot rewrite historical planning; pending-only edits remain available in a fresh experiment",
+      "passed": true
+    },
+    {
+      "name": "omitted smooth course reports model mismatch without a recommendation",
+      "passed": true
+    },
+    {
+      "name": "late experiment import cannot replace a more recent course selection",
+      "passed": true
+    },
+    {
+      "name": "late source read cannot replace a newly frozen request",
+      "passed": true
+    },
+    {
+      "name": "late source read cannot overwrite a newly received acquisition",
+      "passed": true
+    },
+    {
+      "name": "malformed experiment results and invalid state declarations leave the valid experiment intact",
+      "passed": true
+    },
+    {
+      "name": "contained readable experiment controls and keyboard access at 1440px",
+      "passed": true
+    },
+    {
+      "name": "contained readable experiment controls and keyboard access at 390px",
+      "passed": true
+    },
+    {
+      "name": "explicit smooth expansion retains the original failure and exact earlier frozen errors",
+      "passed": true
+    },
+    {
+      "name": "future cubic forecasts receive separately and complete revised inputs reopen through actual download",
+      "passed": true
+    },
+    {
+      "name": "changed separate checks preserve revised training, requests, revision evidence and sequential errors",
+      "passed": true
+    },
+    {
+      "name": "malformed family event refuses without replacing the accepted revised experiment",
+      "passed": true
+    },
+    {
+      "name": "a late source import cannot overwrite a newly declared family revision",
+      "passed": true
+    },
+    {
+      "name": "higher-order authored response still reports expanded-family mismatch",
+      "passed": true
+    },
+    {
+      "name": "family revision is keyboard-operable with original and expanded evidence visible at 1440px",
+      "passed": true
+    },
+    {
+      "name": "family revision is keyboard-operable with original and expanded evidence visible at 390px",
+      "passed": true
+    },
+    {
+      "name": "confounded authored inputs expose rank two of three and the off-line proposed state",
+      "passed": true
+    },
+    {
+      "name": "design target inspection follows exactly the offered global hinge and revised cubic structures",
+      "passed": true
+    },
+    {
+      "name": "no-gain and still-deficient design states retain numerical qualifications without inventing a response",
+      "passed": true
+    },
+    {
+      "name": "full observation capacity preserves input diagnostics while disabling every design freeze affordance",
+      "passed": true
+    },
+    {
+      "name": "input-design request freezes no forecast then receives torque 1.4 and reopens unchanged historical absence",
+      "passed": true
+    },
+    {
+      "name": "changing an inspected design target fences a late source import without changing the experiment",
+      "passed": true
+    },
+    {
+      "name": "input support and proposal remain readable with keyboard request controls at 1440px",
+      "passed": true
+    },
+    {
+      "name": "input support and proposal remain readable with keyboard request controls at 390px",
+      "passed": true
+    },
+    {
+      "name": "no uncaught page exceptions or external requests during experiment receiving",
+      "passed": true
+    }
+  ],
+  "events": {
+    "exceptions": [],
+    "outside": []
+  },
+  "historyVisibility": [
+    {
+      "name": "experiment-refit-history-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 913
+      },
+      "table": {
+        "left": 113,
+        "right": 1327,
+        "top": -0.34375,
+        "bottom": 463.15625,
+        "width": 1214,
+        "height": 463.5
+      },
+      "row": {
+        "left": 113,
+        "right": 1327,
+        "top": 40.65625,
+        "bottom": 462.65625,
+        "width": 1214,
+        "height": 422
+      },
+      "container": {
+        "left": 113,
+        "right": 1327,
+        "top": -0.34375,
+        "bottom": 459.65625,
+        "width": 1214,
+        "height": 460
+      },
+      "acquisition": "authored-1",
+      "identity": {
+        "text": "Acquisition1 · authored-1",
+        "left": 113,
+        "right": 222.578125,
+        "top": 54.15625,
+        "bottom": 69.15625,
+        "width": 109.578125,
+        "height": 15,
+        "font": 13,
+        "visibility": "visible",
+        "display": "table-cell",
+        "visibleWidth": 109.578125,
+        "visibleHeight": 15,
+        "fullyVisible": true
+      },
+      "torque": {
+        "text": "Observed torque0.3 N·m",
+        "left": 725.203125,
+        "right": 780,
+        "top": 54.15625,
+        "bottom": 69.15625,
+        "width": 54.796875,
+        "height": 15,
+        "font": 13,
+        "visibility": "visible",
+        "display": "table-cell",
+        "visibleWidth": 54.796875,
+        "visibleHeight": 15,
+        "fullyVisible": true
+      },
+      "prediction": {
+        "text": "predicted 0.390057 N·m",
+        "left": 1023.9375,
+        "right": 1182.890625,
+        "top": 192.15625,
+        "bottom": 206.15625,
+        "width": 158.953125,
+        "height": 14,
+        "font": 12,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 158.953125,
+        "visibleHeight": 14,
+        "fullyVisible": true
+      },
+      "residual": {
+        "text": "frozen residual -0.0900571 N·m",
+        "left": 930.015625,
+        "right": 1146.78125,
+        "top": 210.15625,
+        "bottom": 224.15625,
+        "width": 216.765625,
+        "height": 14,
+        "font": 12,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 216.765625,
+        "visibleHeight": 14,
+        "fullyVisible": true
+      },
+      "labels": [
+        {
+          "declared": "Acquisition",
+          "before": "none",
+          "text": "Acquisition1 · authored-1"
+        },
+        {
+          "declared": "Received state",
+          "before": "none",
+          "text": "Received statecommand 0 N·m; angle 0 rad; rate 0 rad/s"
+        },
+        {
+          "declared": "Observed torque",
+          "before": "none",
+          "text": "Observed torque0.3 N·m"
+        },
+        {
+          "declared": "Frozen forecast evidence",
+          "before": "none",
+          "text": "Frozen forecast evidenceHinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Inspect 5 frozen forecasts and residualsSupplied source: Explicit kink analytical course generator; declared kind: authored simulation. Source identity and independence are not authenticated.Frozen plan: proposed; spread 0.346946 N·m; extrapolated axes none.Hinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Hinge at 0.2 rad: predicted 0.300146 N·m; observed 0.3 N·m; frozen residual -0.000145832 N·m (observed − predicted).Hinge at 0.3 rad: predicted 0.204145 N·m; observed 0.3 N·m; frozen residual 0.0958545 N·m (observed − predicted).Hinge at 0.4 rad: predicted 0.113272 N·m; observed 0.3 N·m; frozen residual 0.186728 N·m (observed − predicted).Hinge at 0 rad: predicted 0.460218 N·m; observed 0.3 N·m; frozen residual -0.160218 N·m (observed − predicted)."
+        }
+      ],
+      "scrollTop": 0,
+      "scrollLeft": 0
+    },
+    {
+      "name": "experiment-history-1440",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "table": {
+        "left": 113,
+        "right": 1327,
+        "top": -0.34375,
+        "bottom": 463.15625,
+        "width": 1214,
+        "height": 463.5
+      },
+      "row": {
+        "left": 113,
+        "right": 1327,
+        "top": 40.65625,
+        "bottom": 462.65625,
+        "width": 1214,
+        "height": 422
+      },
+      "container": {
+        "left": 113,
+        "right": 1327,
+        "top": -0.34375,
+        "bottom": 459.65625,
+        "width": 1214,
+        "height": 460
+      },
+      "acquisition": "authored-1",
+      "identity": {
+        "text": "Acquisition1 · authored-1",
+        "left": 113,
+        "right": 222.578125,
+        "top": 54.15625,
+        "bottom": 69.15625,
+        "width": 109.578125,
+        "height": 15,
+        "font": 13,
+        "visibility": "visible",
+        "display": "table-cell",
+        "visibleWidth": 109.578125,
+        "visibleHeight": 15,
+        "fullyVisible": true
+      },
+      "torque": {
+        "text": "Observed torque0.3 N·m",
+        "left": 725.203125,
+        "right": 780,
+        "top": 54.15625,
+        "bottom": 69.15625,
+        "width": 54.796875,
+        "height": 15,
+        "font": 13,
+        "visibility": "visible",
+        "display": "table-cell",
+        "visibleWidth": 54.796875,
+        "visibleHeight": 15,
+        "fullyVisible": true
+      },
+      "prediction": {
+        "text": "predicted 0.390057 N·m",
+        "left": 1023.9375,
+        "right": 1182.890625,
+        "top": 192.15625,
+        "bottom": 206.15625,
+        "width": 158.953125,
+        "height": 14,
+        "font": 12,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 158.953125,
+        "visibleHeight": 14,
+        "fullyVisible": true
+      },
+      "residual": {
+        "text": "frozen residual -0.0900571 N·m",
+        "left": 930.015625,
+        "right": 1146.78125,
+        "top": 210.15625,
+        "bottom": 224.15625,
+        "width": 216.765625,
+        "height": 14,
+        "font": 12,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 216.765625,
+        "visibleHeight": 14,
+        "fullyVisible": true
+      },
+      "labels": [
+        {
+          "declared": "Acquisition",
+          "before": "none",
+          "text": "Acquisition1 · authored-1"
+        },
+        {
+          "declared": "Received state",
+          "before": "none",
+          "text": "Received statecommand 0 N·m; angle 0 rad; rate 0 rad/s"
+        },
+        {
+          "declared": "Observed torque",
+          "before": "none",
+          "text": "Observed torque0.3 N·m"
+        },
+        {
+          "declared": "Frozen forecast evidence",
+          "before": "none",
+          "text": "Frozen forecast evidenceHinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Inspect 5 frozen forecasts and residualsSupplied source: Explicit kink analytical course generator; declared kind: authored simulation. Source identity and independence are not authenticated.Frozen plan: proposed; spread 0.346946 N·m; extrapolated axes none.Hinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Hinge at 0.2 rad: predicted 0.300146 N·m; observed 0.3 N·m; frozen residual -0.000145832 N·m (observed − predicted).Hinge at 0.3 rad: predicted 0.204145 N·m; observed 0.3 N·m; frozen residual 0.0958545 N·m (observed − predicted).Hinge at 0.4 rad: predicted 0.113272 N·m; observed 0.3 N·m; frozen residual 0.186728 N·m (observed − predicted).Hinge at 0 rad: predicted 0.460218 N·m; observed 0.3 N·m; frozen residual -0.160218 N·m (observed − predicted)."
+        }
+      ],
+      "scrollTop": 0,
+      "scrollLeft": 0
+    },
+    {
+      "name": "experiment-history-390",
+      "viewport": {
+        "width": 390,
+        "height": 1000
+      },
+      "table": {
+        "left": 29,
+        "right": 361,
+        "top": 0.3125,
+        "bottom": 878.3125,
+        "width": 332,
+        "height": 878
+      },
+      "row": {
+        "left": 29,
+        "right": 361,
+        "top": 0.3125,
+        "bottom": 878.3125,
+        "width": 332,
+        "height": 878
+      },
+      "container": {
+        "left": 29,
+        "right": 361,
+        "top": 0.3125,
+        "bottom": 660.3125,
+        "width": 332,
+        "height": 660
+      },
+      "acquisition": "authored-1",
+      "identity": {
+        "text": "Acquisition1 · authored-1",
+        "left": 40,
+        "right": 350,
+        "top": 11.3125,
+        "bottom": 48.8125,
+        "width": 310,
+        "height": 37.5,
+        "font": 13,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 310,
+        "visibleHeight": 37.5,
+        "fullyVisible": true
+      },
+      "torque": {
+        "text": "Observed torque0.3 N·m",
+        "left": 40,
+        "right": 350,
+        "top": 152.8125,
+        "bottom": 190.3125,
+        "width": 310,
+        "height": 37.5,
+        "font": 13,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 310,
+        "visibleHeight": 37.5,
+        "fullyVisible": true
+      },
+      "prediction": {
+        "text": "predicted 0.390057 N·m",
+        "left": 40,
+        "right": 321.765625,
+        "top": 238.3125,
+        "bottom": 272.8125,
+        "width": 281.765625,
+        "height": 34.5,
+        "font": 13,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 281.765625,
+        "visibleHeight": 34.5,
+        "fullyVisible": true
+      },
+      "residual": {
+        "text": "frozen residual -0.0900571 N·m",
+        "left": 40,
+        "right": 337.421875,
+        "top": 257.8125,
+        "bottom": 292.3125,
+        "width": 297.421875,
+        "height": 34.5,
+        "font": 13,
+        "visibility": "visible",
+        "display": "block",
+        "visibleWidth": 297.421875,
+        "visibleHeight": 34.5,
+        "fullyVisible": true
+      },
+      "labels": [
+        {
+          "declared": "Acquisition",
+          "before": "none",
+          "text": "Acquisition1 · authored-1"
+        },
+        {
+          "declared": "Received state",
+          "before": "none",
+          "text": "Received statecommand 0 N·m; angle 0 rad; rate 0 rad/s"
+        },
+        {
+          "declared": "Observed torque",
+          "before": "none",
+          "text": "Observed torque0.3 N·m"
+        },
+        {
+          "declared": "Frozen forecast evidence",
+          "before": "none",
+          "text": "Frozen forecast evidenceHinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Inspect 5 frozen forecasts and residualsSupplied source: Explicit kink analytical course generator; declared kind: authored simulation. Source identity and independence are not authenticated.Frozen plan: proposed; spread 0.346946 N·m; extrapolated axes none.Hinge at 0.1 rad: predicted 0.390057 N·m; observed 0.3 N·m; frozen residual -0.0900571 N·m (observed − predicted).Hinge at 0.2 rad: predicted 0.300146 N·m; observed 0.3 N·m; frozen residual -0.000145832 N·m (observed − predicted).Hinge at 0.3 rad: predicted 0.204145 N·m; observed 0.3 N·m; frozen residual 0.0958545 N·m (observed − predicted).Hinge at 0.4 rad: predicted 0.113272 N·m; observed 0.3 N·m; frozen residual 0.186728 N·m (observed − predicted).Hinge at 0 rad: predicted 0.460218 N·m; observed 0.3 N·m; frozen residual -0.160218 N·m (observed − predicted)."
+        }
+      ],
+      "scrollTop": 0,
+      "scrollLeft": 0
+    }
+  ],
+  "proposalVisibility": [
+    {
+      "width": 1440,
+      "text": "Proposed state #2: command 0 N·m; angle 0 rad; rate 0 rad/s. Forecast spread 0.346946 N·m across 5 competitive models. Extrapolated axes: none.",
+      "index": "2",
+      "disabled": false,
+      "elements": [
+        {
+          "left": 130,
+          "right": 930.78125,
+          "top": 0.390625,
+          "bottom": 42.390625,
+          "font": 14
+        },
+        {
+          "left": 950.78125,
+          "right": 1116,
+          "top": 0.390625,
+          "bottom": 42.390625,
+          "font": 13
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "text": "Proposed state #2: command 0 N·m; angle 0 rad; rate 0 rad/s. Forecast spread 0.346946 N·m across 5 competitive models. Extrapolated axes: none.",
+      "index": "2",
+      "disabled": false,
+      "elements": [
+        {
+          "left": 42,
+          "right": 348,
+          "top": -0.015625,
+          "bottom": 83.984375,
+          "font": 14
+        },
+        {
+          "left": 42,
+          "right": 348,
+          "top": 95.984375,
+          "bottom": 137.984375,
+          "font": 13
+        }
+      ]
+    }
+  ],
+  "revisionVisibility": [
+    {
+      "width": 1440,
+      "evidence": [
+        {
+          "id": "family-revision-status",
+          "text": "Expanded after 0 received observations, with cubic origin 0 rad. Declared reason: Explicit keyboard revision control.",
+          "left": 136,
+          "right": 936.78125,
+          "top": -0.046875,
+          "bottom": 20.953125,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "family-original-error",
+          "text": "0.292249 N·m · training mismatch",
+          "left": 136,
+          "right": 711.5,
+          "top": 104.453125,
+          "bottom": 126.84375,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "family-expanded-error",
+          "text": "0.00555995 N·m · not falsified on training",
+          "left": 731.5,
+          "right": 1307,
+          "top": 104.453125,
+          "bottom": 126.84375,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "family-revision-guard",
+          "text": "These are the training results at boundary 0. Frozen forecasts and errors for the 0 earlier acquisitions retain their original family. Subsequent requests use the expanded library. Checks never enter either fit.",
+          "left": 136,
+          "right": 879.59375,
+          "top": 144.84375,
+          "bottom": 183.84375,
+          "font": 13,
+          "display": "block",
+          "visibility": "visible"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "evidence": [
+        {
+          "id": "family-revision-status",
+          "text": "Expanded after 0 received observations, with cubic origin 0 rad. Declared reason: Explicit keyboard revision control.",
+          "left": 44,
+          "right": 349,
+          "top": 0.328125,
+          "bottom": 63.328125,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "family-original-error",
+          "text": "0.292249 N·m · training mismatch",
+          "left": 44,
+          "right": 349,
+          "top": 146.828125,
+          "bottom": 169.21875,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "family-expanded-error",
+          "text": "0.00555995 N·m · not falsified on training",
+          "left": 44,
+          "right": 349,
+          "top": 233.71875,
+          "bottom": 278.5,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "family-revision-guard",
+          "text": "These are the training results at boundary 0. Frozen forecasts and errors for the 0 earlier acquisitions retain their original family. Subsequent requests use the expanded library. Checks never enter either fit.",
+          "left": 44,
+          "right": 349,
+          "top": 296.5,
+          "bottom": 394,
+          "font": 13,
+          "display": "block",
+          "visibility": "visible"
+        }
+      ]
+    }
+  ],
+  "designVisibility": [
+    {
+      "width": 1440,
+      "evidence": [
+        {
+          "id": "input-design-structure",
+          "text": "GlobalOne hinge at -0.3 radOne hinge at 0 radOne hinge at 0.3 rad",
+          "left": 132,
+          "right": 1310,
+          "top": 479.828125,
+          "bottom": 519.828125,
+          "font": 13,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "input-design-status",
+          "text": "proposed · Global · 17 retained training input rows. Only coordinates enter this diagnostic; no torque forecast is produced.",
+          "left": 132,
+          "right": 932.78125,
+          "top": 478.828125,
+          "bottom": 520.828125,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "input-design-before",
+          "text": "Numerical rank 2 / 3 coefficients; 1 unresolved. Maintained fitter rank check not passed. Position support: 17 distinct angles; no additional position-count gate for this structure. Rank diagnostics agree.",
+          "left": 132,
+          "right": 932.78125,
+          "top": 478.828125,
+          "bottom": 520.828125,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "input-design-proposal",
+          "text": "Proposed state #1: command 1 N·m; angle 0 rad; rate 0 rad/s. After adding these coordinates: rank 3 / 3; 0 unresolved; 0 missing position supports. Rank and position gates would pass. Extrapolated axes: none.",
+          "left": 144,
+          "right": 944.78125,
+          "top": 478.828125,
+          "bottom": 520.828125,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "input-design-freeze",
+          "text": "Freeze proposed input state",
+          "left": 144,
+          "right": 344.71875,
+          "top": 477.828125,
+          "bottom": 521.828125,
+          "font": 13,
+          "display": "inline-block",
+          "visibility": "visible"
+        }
+      ],
+      "keyboardTarget": "#input-design-freeze"
+    },
+    {
+      "width": 390,
+      "evidence": [
+        {
+          "id": "input-design-structure",
+          "text": "GlobalOne hinge at -0.3 radOne hinge at 0 radOne hinge at 0.3 rad",
+          "left": 42,
+          "right": 350,
+          "top": 479.65625,
+          "bottom": 519.65625,
+          "font": 13,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "input-design-status",
+          "text": "proposed · Global · 17 retained training input rows. Only coordinates enter this diagnostic; no torque forecast is produced.",
+          "left": 42,
+          "right": 350,
+          "top": 468.65625,
+          "bottom": 531.65625,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "input-design-before",
+          "text": "Numerical rank 2 / 3 coefficients; 1 unresolved. Maintained fitter rank check not passed. Position support: 17 distinct angles; no additional position-count gate for this structure. Rank diagnostics agree.",
+          "left": 42,
+          "right": 350,
+          "top": 447.65625,
+          "bottom": 552.65625,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "input-design-proposal",
+          "text": "Proposed state #1: command 1 N·m; angle 0 rad; rate 0 rad/s. After adding these coordinates: rank 3 / 3; 0 unresolved; 0 missing position supports. Rank and position gates would pass. Extrapolated axes: none.",
+          "left": 54,
+          "right": 338,
+          "top": 436.65625,
+          "bottom": 562.65625,
+          "font": 14,
+          "display": "block",
+          "visibility": "visible"
+        },
+        {
+          "id": "input-design-freeze",
+          "text": "Freeze proposed input state",
+          "left": 54,
+          "right": 338,
+          "top": 477.65625,
+          "bottom": 521.65625,
+          "font": 13,
+          "display": "inline-block",
+          "visibility": "visible"
+        }
+      ],
+      "keyboardTarget": "#input-design-rows button[data-design-index=\"1\"]"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "worldlaw.stiffness-input-design.receiving/v1",
+  "base": "30937e84700bc268db63d5461b2f5f214abcadda",
+  "receivedAt": "2026-10-24",
+  "native": {
+    "passed": 546,
+    "failed": 0,
+    "inheritedOptionalSkipped": 1,
+    "launchedHttpSmokes": 2,
+    "focusedInputDesignControls": 10
+  },
+  "browser": {
+    "experimentGroups": 31,
+    "notebookGroups": 16,
+    "exceptions": 0,
+    "outsideRequests": 0,
+    "viewports": [
+      1440,
+      390
+    ]
+  },
+  "authoredCourse": {
+    "trainingRows": 17,
+    "initialRank": 2,
+    "coefficients": 3,
+    "selectedPermittedIndex": 1,
+    "prospectiveRank": 3,
+    "receivedTorque": 1.4,
+    "recovered": [
+      0.2,
+      1.2,
+      -3
+    ],
+    "originalFrozenPredictions": [],
+    "originalHistoricalErrors": []
+  },
+  "independentReview": "MICROVERSE accepted actual fitter basis/support, input-only diagnostics, full histories, work estimate and capacity repair. HamonLang authored actual browser receiver separately from scientific core/UI.",
+  "observedRepair": "At4096 observations, a truthful prospective improvement could offer an unreceivable next row. Interface now retains diagnostics and disables all owned acquisition actions with defensive guard; actual Chrome control passes.",
+  "scope": "Numerical one-step design and explicit position support for one offered structure. No inferred torque, retroactive prediction, adequacy, probability, globally optimal design or physical action.",
+  "packagingInitialFailure": {
+    "head": "446c0e848ea66066b358284ab4a5d93860171ae4",
+    "tree": "25ccc98c94c86bc61bbbaf1b07fef191524630d9",
+    "allGitBlobsVerified": 403,
+    "reason": "Maintained packager refused four tracked shared-contrast receipt artifacts absent from INCLUDE.",
+    "repair": "Added exactly the tracked README, authored-inputs-and-notebook.tar.xz, initial-focused-failure.txt and native-tests.txt paths to INCLUDE."
+  },
+  "composedMaintainedBase": "bee2e5354fa321cf79c40498b4d17c9a52e1cc25",
+  "composition": "The retained source/browser counts above qualify the 30937e8 composition. Subsequent shared-training main is preserved in the final candidate; full final-tree/archive receiving is recorded on PR94.",
+  "qualifiedArchiveBeforeComposition": {
+    "tree": "4a6fed82dfb0eedc4c24208d3595406cc526d5d7",
+    "gitBlobs": 403,
+    "distributedFiles": 401,
+    "bytes": 15491551,
+    "sha256": "2df4f2eff9e9831a2d09b31222fbf429b2545fdcbd9e5c314adca2061e3ab43b",
+    "freshNative": "passed",
+    "freshExperimentGroups": 31,
+    "freshNotebookGroups": 16
+  },
+  "packageComposition": "Explicitly include three additional tracked shared-training receipt artifacts alongside the four contrast receipt paths; current README and shared-training implementation remain intact."
+}
