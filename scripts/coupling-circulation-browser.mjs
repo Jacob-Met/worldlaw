@@ -89,6 +89,7 @@ try{
     const clip=await evaluate("(()=>{const r=document.getElementById('coupled-circulation').getBoundingClientRect();return {x:r.left+scrollX,y:r.top+scrollY,width:r.width,height:r.height,scale:1}})()");const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true,clip});await writeFile(path.join(outputDir,`circulation-${width}.png`),Buffer.from(shot.data,'base64'));
   }
   if(process.env.WORLDLAW_OBSERVABLE_RECEIVING==='1'){const {receiveObservables}=await import('./coupling-observables-receiving.mjs');await receiveObservables({evaluate,send,check,click,text,wait,outputDir});}
+  if(process.env.WORLDLAW_MODES_RECEIVING==='1'){const {receiveModes}=await import('./coupling-modes-receiving.mjs');await receiveModes({evaluate,send,check,click,text,wait,outputDir});}
   await check('no page exceptions or external requests',async()=>{assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);});
   await writeFile(path.join(outputDir,'verification.json'),JSON.stringify({checks,events,node:process.version,pass:true,sandbox,downloads},null,2));
 }catch(error){

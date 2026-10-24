@@ -1,3 +1,4 @@
+import {appendModeInspection} from './modes-panel.mjs';
 import {defaultDynamicsInputs,readDynamicsInputs,createCoupledDynamicsStudy,exportDynamicsNotebook,readDynamicsNotebook} from './dynamics.mjs';
 
 const NS='http://www.w3.org/2000/svg',palette=['#c7a4ff','#ffc65d','#64e0ce','#fe9b9b','#80c8ff','#f1a7e4'];
@@ -31,11 +32,12 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
     <p id="motion-error" role="alert" tabindex="-1" hidden></p>
     <p id="motion-status" role="status" aria-live="polite">No dynamic comparison has been run.</p>
     <div class="table-wrap" id="motion-results" hidden><table><caption>All fitted explanations are shown. Training rank and step agreement do not establish the dynamic assumptions.</caption><thead><tr><th>Explanation</th><th>Step comparison</th><th>Max angle difference</th><th>Max rate difference</th><th>Observed position range</th></tr></thead><tbody id="motion-rows"></tbody></table></div>
+    <section id="motion-modes" aria-label="Useful coordinates for the retained motion"></section>
     <div class="motion-files"><button id="motion-save" type="button">Save motion inputs</button><button id="motion-open" type="button">Open motion inputs</button><span>Evidence and declarations only; models and trajectories are recomputed.</span></div>
     <input id="motion-file" type="file" accept=".json,application/json" hidden aria-label="Choose coupled motion notebook">
   `;
   const $=id=>root.querySelector('#'+id);
-  let study=null,view='phase',frame=0,raf=null,playing=false,previousStamp=null,generation=0;
+  let study=null,retainedEvidence=null,view='phase',frame=0,raf=null,playing=false,previousStamp=null,generation=0;
   const reduce=matchMedia('(prefers-reduced-motion: reduce)');
   function stop(){playing=false;if(raf!==null)cancelAnimationFrame(raf);raf=null;previousStamp=null;$('motion-play').textContent='Play';}
   function error(err){stop();$('motion-error').textContent=err.message||String(err);$('motion-error').hidden=false;$('motion-error').focus();}
@@ -55,7 +57,7 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
     return readDynamicsInputs(result);
   }
   function invalidate(message) {
-    stop();study=null;frame=0;$('motion-frame').value='0';$('motion-frame').disabled=true;$('motion-play').disabled=true;
+    stop();study=null;retainedEvidence=null;$('motion-modes').replaceChildren();frame=0;$('motion-frame').value='0';$('motion-frame').disabled=true;$('motion-play').disabled=true;
     $('motion-results').hidden=true;$('motion-rows').replaceChildren();$('motion-legend').replaceChildren();
     $('motion-plot').replaceChildren(node('p',message,{class:'motion-empty'}));$('motion-time').textContent='0 s';$('motion-status').textContent=message;
   }
@@ -115,9 +117,9 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
       if(r.refined){const span=node('span'),mark=node('i');mark.style.background=palette[i%palette.length];span.append(mark,node('span',r.label+(r.status==='step_sensitive'?' · step-sensitive':'')));$('motion-legend').append(span);}
     });
     for(const r of study.refusedModels??[]){const row=node('tr');row.append(node('td',r.label),node('td','Response fit unavailable: '+r.reason),node('td','—'),node('td','—'),node('td','No executable model'));$('motion-rows').append(row);}
-    $('motion-results').hidden=false;draw();
+    $('motion-results').hidden=false;appendModeInspection($('motion-modes'),retainedEvidence,study);draw();
   }
-  function run() {invalidate('Computing the declared comparison…');try{study=createCoupledDynamicsStudy(getNotebook(),inputs());clearError();render();}catch(err){invalidate('No current dynamic comparison. Correct the inputs and run again.');error(err);}}
+  function run() {invalidate('Computing the declared comparison…');try{const evidence=structuredClone(getNotebook());study=createCoupledDynamicsStudy(evidence,inputs());retainedEvidence=evidence;clearError();render();}catch(err){invalidate('No current dynamic comparison. Correct the inputs and run again.');error(err);}}
   $('motion-form').addEventListener('submit',event=>{event.preventDefault();run();});
   $('motion-form').addEventListener('input',()=>{generation++;invalidate('Inputs changed. Compare again to see current predictions.');clearError();});
   for(const [id,next]of [['motion-phase','phase'],['motion-traces','traces']])$(id).addEventListener('click',()=>{view=next;draw();});
@@ -142,7 +144,7 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
       if(file.size>3*1024*1024)throw new Error('Motion notebook exceeds 3 MB.');
       const contents=await file.text();if(ticket!==generation)return;
       const parsed=readDynamicsNotebook(contents),next=createCoupledDynamicsStudy(parsed.evidence,parsed.inputs);if(ticket!==generation)return;
-      loadNotebook(parsed.evidence);setInputs(parsed.inputs,true);study=next;clearError();render();
+      loadNotebook(parsed.evidence);setInputs(parsed.inputs,true);study=next;retainedEvidence=parsed.evidence;clearError();render();
     }catch(err){if(ticket===generation)error(err);}
   });
   let resize;

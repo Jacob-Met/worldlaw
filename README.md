@@ -269,3 +269,7 @@ In Coupling Lab, **Take the response around a closed path** compares supplied pa
 ### Inspect what integrated work hides
 
 After a coupled-loop comparison, **Inspect responses hidden by integrated work** confronts every individual torque reading with the retained fixed models. It preserves explicit contradictions that cancel in the signed integral, identifies symmetric affine fields that no closed-work probe can separate, and shows the maintained training-only point proposal as a different observable. It reuses the same source inputs without refitting or treating the two summaries as independent evidence. See [the observable comparison](docs/COUPLING_OBSERVABLES.md).
+
+### Useful coordinates for conditional coupled motion
+
+After a Coupling Lab motion comparison, **Find coordinates for this motion** derives inertia-scaled orthogonal directions for each symmetric fitted affine law and displays the retained trajectory in those coordinates. The original laws, evidence and solver remain unchanged. Damping cross terms, affine bias, asymmetric-model refusals and repeated-axis ambiguity remain visible. The stated frequencies are conditional and undamped; the feature does not identify inertia, bodies or topology from quasi-static evidence. See [the equations and receiving scope](docs/COUPLED_MODES.md).
