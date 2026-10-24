@@ -18,8 +18,9 @@ ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
     "AGENTS.md", "README.md", "LICENSE", "LICENSE.md", "package.json",
     "index.html", "styles.css", "favicon.svg", "server.mjs", "motion.html", "motion.css", "trajectory.html", "trajectory.css",
-    "docs/*.md", "docs/*.json", "src/*.mjs", "src/science/*.mjs", "src/motion/*.mjs", "src/trajectory/*.mjs",
+    "docs/*.md", "docs/*.json", "src/*.mjs", "src/science/*.mjs", "src/motion/*.mjs", "src/trajectory/*.mjs", "src/representation/*.mjs",
     "src/experiment-design/*.mjs", "tests/support/*.mjs",
+    "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/*.mjs",
     "scripts/*.mjs", "scripts/package.py", "scripts/generate-motion-fixtures-15cc.py", "tests/*.test.mjs",
     "examples/*.json", "experiments/active-discovery.mjs",
     "experiments/integral-discovery-92be.mjs", "experiments/integral-stability-92be.mjs",
@@ -30,8 +31,10 @@ INCLUDE = (
     "examples/physical-pasco-92be/raw/*.csv",
     "evidence/active-discovery-results.json",
     "evidence/derived-telemetry-observations.json",
+    "evidence/angle-reference-results.json", "experiments/angle-reference.mjs",
 )
 REQUIRED = (
+    "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/app.mjs", "src/unknown-lab/paired-history.mjs",
     "README.md", "package.json", "index.html", "styles.css", "favicon.svg",
     "server.mjs", "src/app.mjs", "src/data.mjs", "src/session.mjs",
     "src/science/torque-discovery.mjs", "src/science/virtual-lab.mjs",
@@ -42,6 +45,8 @@ REQUIRED = (
     "trajectory.html",
     "trajectory.css",
     "src/trajectory/app.mjs",
+    "src/representation/angle-reference.mjs",
+    "src/representation/reference-panel.mjs",
     "src/trajectory/data.mjs",
     "src/trajectory/session.mjs",
     "src/trajectory/forward.mjs",

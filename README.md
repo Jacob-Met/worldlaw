@@ -89,6 +89,13 @@ This browser course checks rendering and canvas output, keyboard experiment exec
 
 ## Scientific interpretation
 
+Trajectory Challenge includes **Investigate the angle reference** for angular
+recordings with unknown torque scale. It compares a declared offset grid using
+training evidence, freezes the candidate, and tests separate recordings without
+changing the original notebook. The measured PASCO example retains substantial
+error even when a shifted coordinate improves average error. An offset does not
+identify a sensor defect or physical cause. See [the contract and receiving](docs/ANGLE_REFERENCE.md).
+
 The program searches subsets of seven declared terms and distinguishes some alternative structures. It fits coefficients with scaled QR and ranks models with a noise-floor information criterion. Model spread is a heuristic, not calibrated probability. [Scientific details and retained counterexamples](docs/SCIENTIFIC_CORE.md) cover rank deficiency, an omitted cubic law, parameter drift and a 40-case active-versus-passive experiment.
 
 Video reconstruction, arbitrary mechanism topology, calibrated uncertainty, physical instrument receiving, broader generalization, provider/GPU qualification and contest submission remain open. This usable increment preserves the full original goal.

@@ -9,6 +9,7 @@ try{
     '/src/unknown-lab/app.mjs','/src/unknown-lab/paired-history.mjs',
     '/motion.html','/motion.css','/src/motion/app.mjs','/trajectory.html','/trajectory.css',
     '/src/trajectory/app.mjs','/src/trajectory/angular-discovery.mjs','/src/trajectory/angular-weak.mjs',
+    '/src/representation/angle-reference.mjs','/src/representation/reference-panel.mjs',
     '/examples/trajectory-pendulum-92be.json','/examples/trajectory-ambiguous-92be.json','/examples/physical-pasco-92be.json']){
     const response=await fetch(base+path);assert.equal(response.status,200,path);assert.ok((await response.text()).length>10,path);
   }
