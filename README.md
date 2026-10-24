@@ -298,3 +298,7 @@ A completed coupled circulation comparison now offers **Inspect the joint respon
 The coupled retrospective receiver can inspect [shared training changes across selected receiving rows](docs/COUPLED_RESPONSE_CONTRASTS.md), retaining original source rows and a necessary-condition contrast rather than asserting whole-course feasibility.
 
 [Complete coupled-course shared-training evidence](docs/COUPLED_SHARED_COURSE.md) searches for one source-checked common offset or a separating output combination using the maintained bounded search and independent refit checks. Exhausted search remains unresolved.
+
+### Inspect encoder calibration dependence
+
+After comparing a closed loop in Coupling Lab, open **Does the encoder calibration act together or separately?** Compare explicitly declared shared versus independent positive gain hypotheses against the same original readings, inspect attaining mathematical witnesses, and save/reopen source-only calibration inputs. Constant per-coordinate offsets cancel; this does not infer sensor calibration or refit physical laws. See [the calibration contract](docs/COUPLED_CALIBRATION.md).

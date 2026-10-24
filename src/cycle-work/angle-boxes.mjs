@@ -12,6 +12,11 @@ function dyadic(value){
  return {n:bits>>63n?-n:n,e};
 }
 const pack=(n,e)=>({integer:n.toString(),powerOfTwo:e});
+/** Exact representation of a finite binary64 input; no displayed-decimal roundtrip. */
+export function exportExactDyadic(value){
+ check(typeof value==='number'&&Number.isFinite(value),'Exact conversion requires a finite number.');
+ const d=dyadic(value);return pack(d.n,d.e);
+}
 const integerAt=(d,e)=>d.n<<BigInt(d.e-e);
 export function displayExact(value){
  const n=BigInt(value.integer);if(n===0n)return '0';
