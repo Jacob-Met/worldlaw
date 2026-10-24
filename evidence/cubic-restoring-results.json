@@ -1,0 +1,949 @@
+{
+  "method": "Same declared evidence, grid, noise and maximum term count; each library freezes its training winner before evaluating challenge positions.",
+  "limits": [
+    "Synthetic truth is independently integrated, but within the offered extended model class.",
+    "Small-amplitude training with large-amplitude challenge intentionally tests unsupported extrapolation.",
+    "PASCO is a repeatedly reused exploratory benchmark, not blind validation.",
+    "Cubic law is origin-dependent and does not identify physical inertia, torque, calibration or mechanism."
+  ],
+  "cases": [
+    {
+      "cubic": 0,
+      "sigma": 0,
+      "amplitude": 0.05,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.0001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "rate+spring",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.27488532280699307,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "spring",
+            "coefficient": -2.742735031546526,
+            "coefficientUnit": "1/s²"
+          }
+        ],
+        "status": "unshifted_preferred",
+        "noiseResidual": 0.7600938713334164,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "rate+spring",
+          "status": "unshifted_preferred"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 0.9359918531207607,
+              "numericalDifference": 1.6760359766720967e-9
+            },
+            "withoutCubic": {
+              "rmse": 0.9359918531207607,
+              "numericalDifference": 1.6760359766720967e-9
+            }
+          }
+        ]
+      }
+    },
+    {
+      "cubic": 0,
+      "sigma": 0,
+      "amplitude": 1.5,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.0001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.2750000218733276,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -2.7499999257216783,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "status": "unshifted_preferred",
+        "noiseResidual": 0.00010499586796683841,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "rate+gravity",
+          "status": "unshifted_preferred"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 5.848231248296896e-8,
+              "numericalDifference": 1.161635260205074e-9
+            },
+            "withoutCubic": {
+              "rmse": 5.848231248296896e-8,
+              "numericalDifference": 1.161635260205074e-9
+            }
+          }
+        ]
+      }
+    },
+    {
+      "cubic": 0,
+      "sigma": 0.001,
+      "amplitude": 0.05,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "coulomb+spring+quadratic",
+        "terms": [
+          {
+            "id": "coulomb",
+            "coefficient": -0.0169394852682537,
+            "coefficientUnit": "rad/s²"
+          },
+          {
+            "id": "spring",
+            "coefficient": -2.743168308926827,
+            "coefficientUnit": "1/s²"
+          },
+          {
+            "id": "quadratic",
+            "coefficient": -0.9056473778941833,
+            "coefficientUnit": "1/rad"
+          }
+        ],
+        "status": "ambiguous_reference",
+        "noiseResidual": 1.0079961951107217,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0,
+          -0.15,
+          0.15,
+          -0.3,
+          0.3
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "coulomb+spring+quadratic",
+          "status": "ambiguous_reference"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 0.5774580291466667,
+              "numericalDifference": 0.00002131840885352676
+            },
+            "withoutCubic": {
+              "rmse": 0.5774580291466667,
+              "numericalDifference": 0.00002131840885352676
+            }
+          }
+        ]
+      }
+    },
+    {
+      "cubic": 0,
+      "sigma": 0.001,
+      "amplitude": 1.5,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.2752890920361915,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -2.750278698859005,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "status": "unshifted_preferred",
+        "noiseResidual": 1.1501906332075327,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "rate+gravity",
+          "status": "unshifted_preferred"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 0.0017297536230163606,
+              "numericalDifference": 1.1608074779179134e-9
+            },
+            "withoutCubic": {
+              "rmse": 0.0017297536230163606,
+              "numericalDifference": 1.1608074779179134e-9
+            }
+          }
+        ]
+      }
+    },
+    {
+      "cubic": 0.4,
+      "sigma": 0,
+      "amplitude": 0.05,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.0001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "rate+spring",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.2750105440671554,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "spring",
+            "coefficient": -2.7506665888743167,
+            "coefficientUnit": "1/s²"
+          }
+        ],
+        "status": "unshifted_preferred",
+        "noiseResidual": 0.07007328587359635,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "rate+spring",
+          "status": "unshifted_preferred"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 0.20208669938419077,
+              "numericalDifference": 1.6846490868971387e-9
+            },
+            "withoutCubic": {
+              "rmse": 0.20208669938419077,
+              "numericalDifference": 1.6846490868971387e-9
+            }
+          }
+        ]
+      }
+    },
+    {
+      "cubic": 0.4,
+      "sigma": 0,
+      "amplitude": 1.5,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.0001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "rate+gravity+cubic",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.27500004881080814,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -2.74999995057821,
+            "coefficientUnit": "rad/s²"
+          },
+          {
+            "id": "cubic",
+            "coefficient": -0.5000000062516197,
+            "coefficientUnit": "1/(rad²·s²)"
+          }
+        ],
+        "status": "unshifted_preferred",
+        "noiseResidual": 0.00001546675936800597,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "rate+spring+gravity",
+          "status": "residual_mismatch"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 8.595607050949408e-8,
+              "numericalDifference": 2.153329181631136e-9
+            },
+            "withoutCubic": {
+              "rmse": 0.061634554529153215,
+              "numericalDifference": 1.9823390706719124e-9
+            }
+          }
+        ]
+      }
+    },
+    {
+      "cubic": 0.4,
+      "sigma": 0.001,
+      "amplitude": 0.05,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "rate+spring",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.27170455865263227,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "spring",
+            "coefficient": -2.7562448041702345,
+            "coefficientUnit": "1/s²"
+          }
+        ],
+        "status": "ambiguous_reference",
+        "noiseResidual": 1.1205664657818053,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0,
+          -0.3,
+          0.3,
+          0.15,
+          -0.15
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "rate+spring",
+          "status": "ambiguous_reference"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 0.19607478743365792,
+              "numericalDifference": 1.7044642919294972e-9
+            },
+            "withoutCubic": {
+              "rmse": 0.19607478743365792,
+              "numericalDifference": 1.7044642919294972e-9
+            }
+          }
+        ]
+      }
+    },
+    {
+      "cubic": 0.4,
+      "sigma": 0.001,
+      "amplitude": 1.5,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "rate+spring+gravity+cubic",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.27531332392228924,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "spring",
+            "coefficient": 2.412073940457608,
+            "coefficientUnit": "1/s²"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -5.179835210226656,
+            "coefficientUnit": "rad/s²"
+          },
+          {
+            "id": "cubic",
+            "coefficient": -0.862641879029961,
+            "coefficientUnit": "1/(rad²·s²)"
+          }
+        ],
+        "status": "unshifted_preferred",
+        "noiseResidual": 0.941584568472848,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "rate+spring+gravity",
+          "status": "unshifted_preferred"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 0.03730502822156853,
+              "numericalDifference": 2.2668525945235274e-9
+            },
+            "withoutCubic": {
+              "rmse": 0.06746814733843876,
+              "numericalDifference": 1.9596778644270785e-9
+            }
+          }
+        ]
+      }
+    },
+    {
+      "cubic": 1.2,
+      "sigma": 0,
+      "amplitude": 0.05,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.0001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "rate+spring+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.27499998731381486,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "spring",
+            "coefficient": -9.014663247867526,
+            "coefficientUnit": "1/s²"
+          },
+          {
+            "id": "gravity",
+            "coefficient": 6.2646785329565455,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "status": "unshifted_preferred",
+        "noiseResidual": 0.0006484548470550947,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "rate+spring+gravity",
+          "status": "unshifted_preferred"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 0.2967197592645317,
+              "numericalDifference": 1.138089622543248e-8
+            },
+            "withoutCubic": {
+              "rmse": 0.2967197592645317,
+              "numericalDifference": 1.138089622543248e-8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "cubic": 1.2,
+      "sigma": 0,
+      "amplitude": 1.5,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.0001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "rate+gravity+cubic",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.2750000951755275,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -2.7499998739733886,
+            "coefficientUnit": "rad/s²"
+          },
+          {
+            "id": "cubic",
+            "coefficient": -1.5000002516850663,
+            "coefficientUnit": "1/(rad²·s²)"
+          }
+        ],
+        "status": "unshifted_preferred",
+        "noiseResidual": 0.0001193398300409542,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "rate+spring+gravity",
+          "status": "residual_mismatch"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 1.603002067301118e-7,
+              "numericalDifference": 1.8426855930009367e-8
+            },
+            "withoutCubic": {
+              "rmse": 0.138989467467203,
+              "numericalDifference": 1.3802341602975332e-8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "cubic": 1.2,
+      "sigma": 0.001,
+      "amplitude": 0.05,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "rate+spring+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.27130072066521027,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "spring",
+            "coefficient": -18.393209801929313,
+            "coefficientUnit": "1/s²"
+          },
+          {
+            "id": "gravity",
+            "coefficient": 15.66240305361129,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "status": "ambiguous_reference",
+        "noiseResidual": 1.0890945312041929,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0,
+          0.15,
+          -0.3,
+          -0.15,
+          0.3
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "rate+spring+gravity",
+          "status": "ambiguous_reference"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 1.355186014070808,
+              "numericalDifference": 6.352924603048038e-8
+            },
+            "withoutCubic": {
+              "rmse": 1.355186014070808,
+              "numericalDifference": 6.352924603048038e-8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "cubic": 1.2,
+      "sigma": 0.001,
+      "amplitude": 1.5,
+      "settings": {
+        "offsets": [
+          -0.3,
+          -0.15,
+          0,
+          0.15,
+          0.3
+        ],
+        "fit": {
+          "terms": [
+            "rate",
+            "coulomb",
+            "spring",
+            "gravity",
+            "quadratic",
+            "bias",
+            "cubic"
+          ],
+          "noiseSigma": 0.001
+        }
+      },
+      "result": {
+        "selectedOffset": 0,
+        "model": "rate+coulomb+gravity+cubic",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.2799418868767049,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "coulomb",
+            "coefficient": 0.007231585101689923,
+            "coefficientUnit": "rad/s²"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -2.745876256250422,
+            "coefficientUnit": "rad/s²"
+          },
+          {
+            "id": "cubic",
+            "coefficient": -1.505064986471335,
+            "coefficientUnit": "1/(rad²·s²)"
+          }
+        ],
+        "status": "unshifted_preferred",
+        "noiseResidual": 0.9566940713698382,
+        "identifiability": "finite_library_local_only",
+        "competitiveOffsets": [
+          0
+        ],
+        "withoutCubic": {
+          "offset": 0,
+          "model": "rate+spring+gravity",
+          "status": "unshifted_preferred"
+        },
+        "predictions": [
+          {
+            "runId": "c",
+            "selected": {
+              "rmse": 0.004450280134491407,
+              "numericalDifference": 0.000014986824572960078
+            },
+            "withoutCubic": {
+              "rmse": 0.1381107095416907,
+              "numericalDifference": 1.3823051370209782e-8
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "physical": {
+    "settings": {
+      "offsets": [
+        -0.5,
+        -0.45,
+        -0.4,
+        -0.35,
+        -0.3,
+        -0.25,
+        -0.2,
+        -0.15,
+        -0.1,
+        -0.05,
+        0,
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5
+      ],
+      "fit": {
+        "terms": [
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias",
+          "cubic"
+        ],
+        "noiseSigma": 0.01
+      }
+    },
+    "result": {
+      "selectedOffset": -0.2,
+      "model": "spring+gravity+bias+cubic",
+      "terms": [
+        {
+          "id": "spring",
+          "coefficient": 722.2552909151692,
+          "coefficientUnit": "1/s²"
+        },
+        {
+          "id": "gravity",
+          "coefficient": -765.1269005793514,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "id": "bias",
+          "coefficient": 6.4218243829208586,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "id": "cubic",
+          "coefficient": -112.43843244233348,
+          "coefficientUnit": "1/(rad²·s²)"
+        }
+      ],
+      "status": "shifted_hypothesis",
+      "noiseResidual": 2.2788641754386227,
+      "identifiability": "finite_library_local_only",
+      "competitiveOffsets": [
+        -0.2
+      ],
+      "withoutCubic": {
+        "offset": -0.15,
+        "model": "spring+gravity+bias",
+        "status": "shifted_hypothesis"
+      },
+      "predictions": [
+        {
+          "runId": "pasco-len1-cond1-3",
+          "selected": {
+            "rmse": 0.174539046732938,
+            "numericalDifference": 0.000003685103916406529
+          },
+          "withoutCubic": {
+            "rmse": 0.25352499899175107,
+            "numericalDifference": 0.000003802394595908698
+          }
+        }
+      ]
+    }
+  }
+}

@@ -34,6 +34,7 @@ INCLUDE = (
     "evidence/active-discovery-results.json",
     "evidence/derived-telemetry-observations.json",
     "evidence/angle-reference-results.json", "experiments/angle-reference.mjs",
+    "evidence/cubic-restoring-results.json", "experiments/cubic-restoring.mjs",
 )
 REQUIRED = (
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/app.mjs", "src/unknown-lab/paired-history.mjs",

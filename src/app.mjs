@@ -4,7 +4,7 @@ import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,
 
 const $=id=>document.getElementById(id);
 const storageKey='worldlaw.notebook.v1';
-const names={command:'Actuation',rate:'Viscous damping',coulomb:'Coulomb friction',spring:'Linear spring',gravity:'Sinusoidal gravity',quadratic:'Quadratic drag',bias:'Bias'};
+const names={command:'Actuation',rate:'Viscous damping',coulomb:'Coulomb friction',spring:'Linear spring',gravity:'Sinusoidal gravity',quadratic:'Quadratic drag',bias:'Bias',cubic:'Cubic position'};
 const fmt=(value,digits=4)=>value===null||!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<0.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
 const set=(id,text)=>{$(id).textContent=text;};

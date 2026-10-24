@@ -143,14 +143,21 @@ export function predictAngleReference(candidate, run, solver = {}) {
 export function investigateAngleReference(rawBundle, requested = {}) {
   const bundle = normalizeAngularBundle(rawBundle), search = searchAngleReference(bundle.trainingRuns, requested);
   const consistency = auditAngleReferenceRuns(bundle.trainingRuns, search.settings);
+  // A matched ablation: same training evidence, grid, noise and complexity cap.
+  // Each library freezes its own training winner before any challenge is read.
+  const offered = search.selected.fitOptions.terms;
+  const previousTerms = offered.filter(id => id !== 'cubic');
+  const libraryBaseline = offered.includes('cubic') && previousTerms.length
+    ? searchAngleReference(bundle.trainingRuns, {...search.settings, fit: {...search.settings.fit,
+      terms: previousTerms, maxTerms: Math.min(search.selected.fitOptions.maxTerms, previousTerms.length)}}) : null;
   const comparisons = bundle.challengeRuns.map(run => {
     const execute = candidate => {
       try {return predictAngleReference(candidate, run, search.settings.solver);}
       catch (error) {return {error: {code: error.code ?? 'prediction_failed', message: error.message}};}
     };
-    return {runId: run.id, baseline: execute(search.baseline), selected: execute(search.selected)};
+    return {runId: run.id, baseline: execute(search.baseline), selected: execute(search.selected), ...(libraryBaseline ? {withoutCubic: execute(libraryBaseline.selected)} : {})};
   });
-  return {schema: REFERENCE_SCHEMA, bundle, search, consistency, comparisons};
+  return {schema: REFERENCE_SCHEMA, bundle, search, consistency, comparisons, ...(libraryBaseline ? {libraryBaseline} : {})};
 }
 
 /** Save only inputs. Reopening always recomputes every derived claim. */

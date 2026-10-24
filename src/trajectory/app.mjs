@@ -13,7 +13,7 @@ const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!=
 const set=(id,text)=>{$(id).textContent=text;};
 const fmt=(value,digits=4)=>!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});
 const axisFmt=value=>Math.abs(value)>=1000||(Math.abs(value)>0&&Math.abs(value)<.001)?value.toExponential(1):fmt(value,3);
-const termNames={command:'Actuation',rate:'Linear rate',coulomb:'Rate sign',spring:'Linear position',gravity:'Sinusoidal position',quadratic:'Quadratic rate',bias:'Constant torque'};
+const termNames={command:'Actuation',rate:'Linear rate',coulomb:'Rate sign',spring:'Linear position',gravity:'Sinusoidal position',quadratic:'Quadratic rate',bias:'Constant torque',cubic:'Cubic position'};
 const storageKey='worldlaw.trajectory-challenge.v1';
 const exampleURLs={pendulum:'/examples/trajectory-pendulum-92be.json',ambiguous:'/examples/trajectory-ambiguous-92be.json',measured:'/examples/physical-pasco-92be.json'};
 let state,workflow,experimentPanel,selectedRunId,generation=0,busy=false,rows=[],playing=false,playStarted=0,playFrom=0,animationHandle=0,viewIndex=0,chartX=null,positionTolerance=.05,horizon=null;

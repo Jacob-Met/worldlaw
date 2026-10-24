@@ -5,8 +5,9 @@ import {rollout} from './forward.mjs';
 export const ANGULAR_BUNDLE_SCHEMA = 'worldlaw.angular-bundle/v1';
 export const ANGULAR_UNITS = Object.freeze({time: 's', position: 'rad', initialRate: 'rad/s'});
 export const ANGULAR_MODEL_UNITS = Object.freeze({position: 'rad', rate: 'rad/s', angularAcceleration: 'rad/s²'});
-export const ANGULAR_COEFFICIENT_UNITS = Object.freeze({rate: '1/s', coulomb: 'rad/s²', spring: '1/s²', gravity: 'rad/s²', quadratic: '1/rad', bias: 'rad/s²'});
+export const ANGULAR_COEFFICIENT_UNITS = Object.freeze({rate: '1/s', coulomb: 'rad/s²', spring: '1/s²', gravity: 'rad/s²', quadratic: '1/rad', bias: 'rad/s²', cubic: '1/(rad²·s²)'});
 const IDS = Object.keys(ANGULAR_COEFFICIENT_UNITS);
+export const DEFAULT_ANGULAR_TERMS = Object.freeze(IDS.filter(id => id !== 'cubic'));
 const SCALE_MEANING = 'angular_acceleration_only_absolute_torque_unknown';
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 export class AngularDataError extends Error {
@@ -128,7 +129,7 @@ function angularModel(model) {
 }
 export function discoverAngular(trainingRuns, requestedOptions = {}) {
   insist(object(requestedOptions), 'Angular discovery options must be an object.', 'invalid_options');
-  const terms = requestedOptions.terms ?? IDS;
+  const terms = requestedOptions.terms ?? DEFAULT_ANGULAR_TERMS;
   insist(Array.isArray(terms) && terms.length > 0 && new Set(terms).size === terms.length && Array.from(terms).every(id => IDS.includes(id)),
     'Only known autonomous angular terms are available; command is excluded.', 'invalid_options');
   const runs = runList(trainingRuns), settings = {...requestedOptions, terms: [...terms], maxTerms: requestedOptions.maxTerms ?? Math.min(4, terms.length)};

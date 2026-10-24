@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createProductServer} from '../server.mjs';
+import {gravityRun} from '../experiments/integral-discovery-92be.mjs';
+const playwright=await import(process.env.PLAYWRIGHT_MODULE),artifacts=resolve(process.env.BROWSER_ARTIFACT_DIR||'.receipts/cubic');await mkdir(artifacts,{recursive:true});
+const make=(id,position)=>{const r=gravityRun({id,position,cubic:.4,dt:.02});return {...r,inertia:null,dynamics:'unforced_scalar_rotation',samples:r.samples.map(({time,position})=>({time,position}))};};
+const fixture={schema:'worldlaw.angular-bundle/v1',label:'Independent cubic restoring fixture',units:{time:'s',position:'rad',initialRate:'rad/s'},trainingRuns:[make('a',1.5),make('b',-1.3)],challengeRuns:[make('c',2.1)]};
+const server=createProductServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));
+const browser=await playwright.chromium.launch({headless:true,executablePath:process.env.BROWSER_EXECUTABLE_PATH}),page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+try{
+ await page.goto(`http://127.0.0.1:${server.address().port}/trajectory.html`);await page.waitForFunction(()=>!document.getElementById('refit').disabled);
+ await page.locator('#bundle-file').setInputFiles({name:'cubic.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(fixture))});
+ await page.waitForFunction(()=>document.getElementById('source-description').textContent.includes('simulated'));
+ const panel=page.locator('#angle-reference-panel');await panel.locator('summary').click();
+ assert.equal(await panel.locator('#cubic').isChecked(),false);
+ await panel.locator('#noise').fill('0.0001');await panel.locator('#offsets').fill('-.3,-.15,0,.15,.3');
+ await panel.locator('#cubic').focus();await page.keyboard.press('Space');assert.equal(await panel.locator('#cubic').isChecked(),true);
+ await panel.locator('#search').click();await page.waitForFunction(()=>!document.querySelector('#angle-reference-panel').shadowRoot.getElementById('save').disabled);
+ const prediction=await panel.locator('#prediction').textContent();assert.match(prediction,/Without cubic/);assert.match(await panel.locator('#library-comparison').textContent(),/rate\+gravity\+cubic/);
+ assert.equal(await panel.locator('#cubic-legend').isVisible(),true);
+ const downloadEvent=page.waitForEvent('download');await panel.locator('#save').click();const download=await downloadEvent,path=resolve(artifacts,'notebook.json');await download.saveAs(path);const saved=JSON.parse(await readFile(path,'utf8'));assert.ok(saved.settings.fit.terms.includes('cubic'));assert.equal(saved.libraryBaseline,undefined);
+ await panel.locator('#cubic').uncheck();assert.equal(await panel.locator('#save').isDisabled(),true);await panel.locator('#open').setInputFiles(path);await page.waitForFunction(()=>!document.querySelector('#angle-reference-panel').shadowRoot.getElementById('save').disabled);assert.equal(await panel.locator('#cubic').isChecked(),true);assert.equal(await panel.locator('#prediction').textContent(),prediction);
+ const wide=structuredClone(saved);wide.settings.fit.maxTerms=7;
+ await panel.locator('#open').setInputFiles({name:'wide-library.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(wide))});await page.waitForFunction(()=>!document.querySelector('#angle-reference-panel').shadowRoot.getElementById('save').disabled);
+ await panel.locator('#cubic').uncheck();await panel.locator('#search').click();await page.waitForFunction(()=>!document.querySelector('#angle-reference-panel').shadowRoot.getElementById('save').disabled);assert.equal(await panel.locator('#cubic').isChecked(),false);assert.equal(await panel.locator('#cubic-legend').isVisible(),false);
+ await panel.locator('#open').setInputFiles(path);await page.waitForFunction(()=>!document.querySelector('#angle-reference-panel').shadowRoot.getElementById('save').disabled);
+ await panel.screenshot({path:resolve(artifacts,'desktop.png')});await page.setViewportSize({width:390,height:900});await panel.screenshot({path:resolve(artifacts,'narrow.png')});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ await page.setViewportSize({width:1440,height:1000});await page.locator('#example-choice').selectOption('measured');await page.locator('#load-example').click();await page.waitForFunction(()=>!document.getElementById('refit').disabled);assert.equal(await panel.locator('#cubic').isChecked(),false);
+ await panel.locator('#cubic').check();await panel.locator('#noise').fill('.01');await panel.locator('#offsets').fill(Array.from({length:21},(_,i)=>(i-10)/20).join(','));await panel.locator('#search').click();await page.waitForFunction(()=>!document.querySelector('#angle-reference-panel').shadowRoot.getElementById('save').disabled);
+ const physical={status:await panel.locator('#status').textContent(),prediction:await panel.locator('#prediction').textContent(),comparison:await panel.locator('#library-comparison').textContent()};assert.match(await panel.locator('#source').textContent(),/MEASURED/);assert.match(physical.prediction,/Without cubic/);await panel.screenshot({path:resolve(artifacts,'pasco.png')});
+ assert.deepEqual(errors,[]);const receipt={checks:['actual angular import','default opt-out','keyboard cubic offer','matched solver predictions','input-only export','toggle invalidates','reopen restores offer and predictions','desktop/narrow/reduced-motion','source replacement resets opt-in','actual PASCO ablation','wide imported cap clamps when cubic removed'],prediction,physical,errors};await writeFile(resolve(artifacts,'receipt.json'),JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt,null,2));
+}finally{await browser.close();await new Promise(r=>server.close(r));}

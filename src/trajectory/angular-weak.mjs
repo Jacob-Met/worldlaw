@@ -1,7 +1,7 @@
 /** Experimental compact-window weak angular law discovery. Training evidence only. */
-import {normalizeAngularRuns, ANGULAR_MODEL_UNITS, ANGULAR_COEFFICIENT_UNITS, AngularDataError} from './angular-discovery.mjs';
+import {normalizeAngularRuns, DEFAULT_ANGULAR_TERMS, ANGULAR_MODEL_UNITS, ANGULAR_COEFFICIENT_UNITS, AngularDataError} from './angular-discovery.mjs';
 const IDS = Object.keys(ANGULAR_COEFFICIENT_UNITS);
-const LABELS = {rate: 'ω', coulomb: 'sign(ω)', spring: 'θ', gravity: 'sin(θ)', quadratic: 'ω|ω|', bias: '1'};
+const LABELS = {rate: 'ω', coulomb: 'sign(ω)', spring: 'θ', gravity: 'sin(θ)', quadratic: 'ω|ω|', bias: '1', cubic: 'θ³'};
 const METHOD = 'compact_window_weak_angular_acceleration_regression';
 const SCALE = 'angular_acceleration_only_absolute_torque_unknown';
 const RANK_TOLERANCE = 1e-8;
@@ -12,7 +12,7 @@ const norm = values => Math.hypot(...values);
 const dot = (a, b) => a.reduce((sum, value, i) => sum + value * b[i], 0);
 function settings(raw) {
   insist(object(raw), 'Weak discovery options must be an object.');
-  const terms = raw.terms ?? IDS;
+  const terms = raw.terms ?? DEFAULT_ANGULAR_TERMS;
   insist(Array.isArray(terms) && terms.length >= 1 && new Set(terms).size === terms.length && Array.from(terms).every(id => IDS.includes(id)),
     'Offer unique known autonomous angular terms; no command feature is available.');
   const result = {terms: [...terms], maxTerms: raw.maxTerms ?? Math.min(4, terms.length), noiseSigma: raw.noiseSigma ?? .01,
@@ -104,7 +104,7 @@ function windows(run, options, rates) {
     const weights = x.map(() => 0), features = Object.fromEntries(options.terms.map(id => [id, 0]));
     const feature = (id, i) => {
       const position = rows[i].position;
-      switch (id) {case 'spring': return position; case 'gravity': return Math.sin(position); case 'bias': return 1;
+      switch (id) {case 'spring': return position; case 'cubic': return position ** 3; case 'gravity': return Math.sin(position); case 'bias': return 1;
         case 'coulomb': return Math.sign(rates[start + i]); case 'quadratic': return rates[start + i] * Math.abs(rates[start + i]); default: return 0;}
     };
     for (let i = 0; i < rows.length - 1; i++) {

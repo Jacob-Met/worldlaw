@@ -2,7 +2,7 @@
  * Fits training runs only. The score is a heuristic in radian displacement units,
  * never a calibrated likelihood and never independent forward validation.
  */
-import {TERMS, UNITS, DiscoveryError} from '../science/torque-discovery.mjs';
+import {TERMS, DEFAULT_TERMS, UNITS, DiscoveryError} from '../science/torque-discovery.mjs';
 
 const IDS = TERMS.map(term => term.id);
 const RANK_TOLERANCE = 1e-8;
@@ -18,7 +18,7 @@ const norm = values => Math.hypot(...values);
 
 function normalizeOptions(options) {
   insist(options && typeof options === 'object' && !Array.isArray(options), 'Integral options must be an object.');
-  const terms = options.terms ?? IDS;
+  const terms = options.terms ?? DEFAULT_TERMS;
   insist(Array.isArray(terms) && terms.length > 0 && terms.length <= IDS.length &&
     new Set(terms).size === terms.length && Array.from(terms).every(id => IDS.includes(id)), 'terms must be unique known torque-library IDs.');
   const result = {terms: [...terms], noiseSigma: options.noiseSigma ?? 0.01,
@@ -138,6 +138,7 @@ function integralRows(run, options) {
       case 'command': return rows[i].command;
       case 'spring': return rows[i].position;
       case 'gravity': return Math.sin(rows[i].position);
+      case 'cubic': return rows[i].position ** 3;
       case 'coulomb': return Math.sign(rawRates[i]);
       case 'quadratic': return rawRates[i] * Math.abs(rawRates[i]);
       default: return 0;
