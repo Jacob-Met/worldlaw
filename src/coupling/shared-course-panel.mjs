@@ -1,3 +1,4 @@
+import {appendReceivingAllowance} from './receiving-allowance-panel.mjs';
 import {searchCoupledSharedCourse,serializeCoupledCourseCertificate,reopenCoupledCourseCertificate,COUPLED_COURSE_MAX_BYTES} from './shared-course.mjs';
 import {STRUCTURES} from './science.mjs';
 import {analyzeCouplingNotebook} from './notebook.mjs';
@@ -16,6 +17,7 @@ export function appendSharedCourse(host,report){
   out.replaceChildren();save.disabled=!result?.certificate;const s=result.source,c=result.check;out.dataset.courseStatus=result.status??c.status;
   out.append(node('p',`Training source: ${s.notebook.source.label}. Receiving source: ${s.path.source.label}. Structure ${s.modelId}; training-reading radius ${fmt(s.trainingRadius)} N·m; ${s.path.samples.length} rows / ${s.path.samples.length*2} receiving outputs.`));
   if(result.iterationsPerformed!==undefined)out.append(node('p',`Search performed ${result.iterationsPerformed} iterations and ${result.matrixTermsUsed} matrix terms. Source preparation, QR refits, independent checks and rendering are additional bounded work.`));
+  const ladderButton=node('button','Inspect hypothetical receiving allowances',{id:'allowance-inspect',type:'button'}),ladderHost=node('div');out.append(ladderButton,ladderHost);ladderButton.addEventListener('click',()=>{ladderHost.replaceChildren();appendReceivingAllowance(ladderHost,s);});
   if(!c){out.append(node('strong','Unresolved: no checked complete-output conclusion.'),node('p',`Reason: ${result.reason}. This is not evidence of feasibility or infeasibility.`),node('p',result.interpretation));return;}
   const isOffset=c.status==='verified-interior-witness';
   out.append(node('strong',isOffset?'One independently checked training change receives every original output.':'A checked combination excludes one common training change for the complete course.'));
