@@ -1,4 +1,6 @@
 /** A supplemental instrument in the existing angular challenge, never a refitter. */
+import {createPreludeControls} from './prelude-panel.mjs';
+import {comparePrelude,exportPreludeComparison} from './prelude-investigation.mjs';
 import {initialStateSensitivity} from './initial-state-sensitivity.mjs';
 const node=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 const fmt=n=>Number(n.toPrecision(4)).toString();
@@ -38,8 +40,9 @@ export function createInitialStatePanel(anchor){
  const chart=node('div');chart.id='initial-state-chart';
  const detail=node('p');const download=node('button','Export sensitivity inputs and results');download.className='button outline';download.hidden=true;
  host.append(style,title,intro,form,status,legend,chart,detail,download);
- let model,run,options,result,ticket=0,plotWidth=0,resizeFrame;
- function invalidate(){ticket++;result=null;chart.replaceChildren();legend.hidden=true;detail.textContent='';download.hidden=true;runButton.disabled=false;status.textContent='Inputs changed. Recompute the declared grid; prior paths are cleared.';}
+ let model,run,options,result,ticket=0,plotWidth=0,resizeFrame,preludeSelection=null,preludeResult=null;
+ const prelude=createPreludeControls(form,()=>run,value=>{preludeSelection=value;invalidate();});
+ function invalidate(){ticket++;result=null;preludeResult=null;chart.replaceChildren();legend.hidden=true;detail.textContent='';download.hidden=true;runButton.disabled=false;status.textContent='Inputs changed. Recompute the declared grid; prior paths are cleared.';}
  position.addEventListener('input',invalidate);rate.addEventListener('input',invalidate);
  function plot(report){
   const f=report.forecasts; if(!f.complete)return;
@@ -59,13 +62,16 @@ export function createInitialStatePanel(anchor){
   await new Promise(requestAnimationFrame);if(mine!==ticket)return;
   try{
    if(!position.value.trim()||!rate.value.trim())throw Error('Enter both declared half-widths.');
-   result=initialStateSensitivity(model,run,{positionHalfWidth:Number(position.value),rateHalfWidth:Number(rate.value),maxStep:options.maxStep});
+   const gridOptions={positionHalfWidth:Number(position.value),rateHalfWidth:Number(rate.value),maxStep:options.maxStep};
+   if(preludeSelection){preludeResult=comparePrelude(model,run,preludeSelection.input,{...preludeSelection.options,...gridOptions});result=preludeResult.derived;}
+   else result=initialStateSensitivity(model,run,gridOptions);
    const f=result.forecasts,counts=f.variants.reduce((a,v)=>(a[v.status]=(a[v.status]||0)+1,a),{});
    status.textContent=f.complete?`${f.variants.length} starting states screened. ${result.receiving.outsideCount}/${result.receiving.count} later observed angles fall outside the sampled path range.`:`Grid incomplete: ${counts.failed||0} failed and ${counts.step_sensitive||0} step-sensitive variants. No range or partial-survivor plot is shown.`;
    detail.textContent=f.meaning+' Widths are declarations; the law and its training rank are unchanged. '+f.variants.filter(v=>v.error).map(v=>v.error.message).join(' ');
+   if(preludeResult)detail.textContent+=` Prelude rate ${fmt(preludeResult.derivedRate)} rad/s; original supplied rate ${fmt(preludeResult.originalRate)} rad/s. The original nominal prediction RMSE is ${Number.isFinite(preludeResult.original.receiving.scores[0].rmse)?fmt(preludeResult.original.receiving.scores[0].rmse):'unavailable'} rad. Conditional prelude sigma is not a grid width.`;
    plot(result);download.hidden=false;
   }catch(error){status.textContent=error.message;result=null;}finally{runButton.disabled=false;}
  });
- download.addEventListener('click',()=>{if(!result)return;const blob=new Blob([JSON.stringify({schema:'worldlaw.initial-state-receipt/v1',model,run,options:result.forecasts.options,result},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=node('a');a.href=url;a.download='worldlaw-initial-state-sensitivity.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
- return {render(nextModel,nextRun,nextOptions){invalidate();model=nextModel;run=nextRun;options=nextOptions;host.hidden=model?.schema!=='worldlaw.angular-model/v1';status.textContent='Choose widths from measurement knowledge before comparing. Reusing this recording to choose widths is exploratory.';}};
+ download.addEventListener('click',()=>{if(!result)return;const blob=new Blob([preludeResult?exportPreludeComparison(preludeResult):JSON.stringify({schema:'worldlaw.initial-state-receipt/v1',model,run,options:result.forecasts.options,result},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=node('a');a.href=url;a.download=preludeResult?'worldlaw-prelude-comparison.json':'worldlaw-initial-state-sensitivity.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+ return {render(nextModel,nextRun,nextOptions){invalidate();model=nextModel;run=nextRun;options=nextOptions;prelude.reset();host.hidden=model?.schema!=='worldlaw.angular-model/v1';status.textContent='Choose widths from measurement knowledge before comparing. Reusing this recording to choose widths is exploratory.';}};
 }
