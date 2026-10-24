@@ -8,7 +8,7 @@ export function mountDurationPanel(currentNotebook){
   const url=URL.createObjectURL(new Blob([exportDurationStudy(study)],{type:'application/json'}));
   const a=document.createElement('a');a.href=url;a.download='worldlaw-duration-study.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
  };
- function adopt(next){const result=analyzeDurationStudy(next);study=next;render(result);}
+ function adopt(next){const result=analyzeDurationStudy(next);study=next;render(result);document.dispatchEvent(new Event('worldlaw-duration-study-change'));}
  function render(result){
   $('duration-state').textContent=result.fit.status.toUpperCase().replaceAll('-',' ');
   $('duration-summary').textContent=result.fit.reasons.join(' ')||'Frozen training hypotheses: '+result.fit.candidates.filter(c=>c.compatible).length+' / '+result.fit.candidates.length+'. Challenge results never refit or rerank these parameters.';
@@ -63,4 +63,5 @@ export function mountDurationPanel(currentNotebook){
  $('duration-open').onclick=()=>$('duration-file').click();
  $('duration-file').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;try{if(file.size>4000000)throw Error('Use JSON below 4 MB.');const next=importDurationStudy(await file.text());adopt(next);$('duration-error').textContent='';}catch(error){$('duration-error').textContent=error.message;}finally{e.target.value='';}};
  render(analyzeDurationStudy(study));
+ return {getStudy:()=>structuredClone(study),adopt};
 }

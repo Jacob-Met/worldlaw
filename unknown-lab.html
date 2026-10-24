@@ -76,6 +76,22 @@
  <p id="duration-error" role="alert"></p>
  <p class="annotation">Finite-library screening, not calibrated confidence or uniquely identified physics. A constant preparation artifact is a competing explanation. Even successful saturation predictions cannot separate physical memory from duration-dependent instrument drift or carryover. Editing training explicitly recomputes all models; challenge outcomes never do.</p>
 </section>
+<section class="duration-investigation duration-planning" aria-labelledby="duration-planner-title">
+ <p class="overline">05 / CHOOSE A DISCRIMINATING DURATION</p><h2 id="duration-planner-title">Where do the hypotheses separate?</h2>
+ <p>Compare complete amplitude prediction intervals. Choose the shortest offered duration separating every hypothesis pair, or retain the strongest partial separation within a declared budget.</p>
+ <button id="duration-plan-example" type="button">Load ambiguous short-duration virtual training</button>
+ <form id="duration-plan-form">
+  <label for="duration-plan-grid">Offered durations (seconds, comma-separated)<input id="duration-plan-grid" value="0.5,1,2,4,8" required></label>
+  <div class="mini-inputs"><label for="duration-plan-radius">Future contrast radius (N·m)<input id="duration-plan-radius" type="number" value="0.01" min="0.00000001" step="any" required></label><label for="duration-plan-pairs">Balanced trial pairs<input id="duration-plan-pairs" type="number" value="32" min="8" max="128" step="2" required></label></div>
+  <div class="mini-inputs"><label for="duration-plan-overhead">Reset/read overhead per pair (seconds)<input id="duration-plan-overhead" type="number" value="0.1" min="0" step="any" required></label><label for="duration-plan-budget">Total budget (seconds)<input id="duration-plan-budget" type="number" value="300" min="0" step="any" required></label></div>
+  <button type="submit">Screen offered duration choices</button>
+ </form>
+ <p id="duration-plan-status" role="status"></p>
+ <div class="table-wrap"><table><caption>Training-only choices: cost = pairs × (conditioning + overhead)</caption><thead><tr><th>Duration</th><th>Declared cost</th><th>Separated pairs</th><th>Budget</th></tr></thead><tbody id="duration-plan-rows"></tbody></table></div>
+ <div class="secondary-actions"><button id="duration-plan-export" type="button" disabled>Export manual acquisition plan</button><button id="duration-plan-acquire" type="button" disabled>Acquire separate virtual challenge</button></div>
+ <p class="input-hint">Virtual acquisition uses the original apparatus's current coupling and sensor-noise controls, a fresh seed, shuffled order and zero drift. Its actual contrast bound may exceed the proposed radius. Measured studies require separately supplied acquisitions. Plan export contains training inputs and predictions, no acquired samples.</p>
+ <p id="duration-plan-error" role="alert"></p><p class="annotation">Cost and future precision are assumptions, not physical feasibility or guaranteed discrimination. Zero-effect overlapping families may have no informative duration. Outside-range forecasts are extrapolations.</p>
+</section>
 <section class="scientific-limit" aria-label="Interpretation limits"><span>IMPORTANT / NOT A VERDICT OF PHYSICAL TRUTH</span><p>This bounded screen tests a deterministic current-state-only description under a declared torque noise assumption. Counterbalancing removes only a linear per-reading order term; it does not validate instrument stability, independence, timing or absence of nonlinear drift. A result can challenge that description but cannot distinguish latent physical memory from changing instruments, other unobserved conditions, preparation artifacts or systematic measurement drift. An inconclusive result does not confirm memorylessness. Imported evidence is user-declared, not authenticated.</p></section>
 <div id="error" role="alert" tabindex="-1" hidden></div>
 </main>

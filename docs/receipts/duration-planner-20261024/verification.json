@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-24",
+  "team": "hamon-de5a050960c6-20261023",
+  "runtime": {
+    "node": "22.23.4",
+    "chrome": "156.0.8078.47",
+    "environment": "authorized Linux RDC receiving host"
+  },
+  "githubActions": "Unavailable; no required gate bypassed",
+  "qualifiedBase": "3824ee811a84279a2ebfd8a47646498675fbe317",
+  "sources": [
+    {
+      "path": "docs/UNKNOWN_DURATION_PLANNING.md",
+      "sha256": "cfb1d2ad50ddeca1538a40eeaedea2b28a7f170d7c88b6d9fe8f7121fbee019d",
+      "baseBlob": null
+    },
+    {
+      "path": "scripts/unknown-duration-planner-browser.mjs",
+      "sha256": "1cbcdbc1ec854898e41f2e1dfc22ddc6ba9f149ec5c09685df8c55c36d48bf4c",
+      "baseBlob": null
+    },
+    {
+      "path": "src/unknown-lab/app.mjs",
+      "sha256": "8dbd06fecd6af58ad2f84b3880996a3332d75815a85e9ec75955f97f6e98bbf1",
+      "baseBlob": "9da7099dd13afebf1a2aa7f54691f7391dd3fc77"
+    },
+    {
+      "path": "src/unknown-lab/duration-panel.mjs",
+      "sha256": "da4558aa5b3b4cd59461a071281bb97ac9e47c73e5cf135650ed14b11ab785e9",
+      "baseBlob": "5291b81d6870e45afc966fa3ec89a5fca7c552cd"
+    },
+    {
+      "path": "src/unknown-lab/duration-planner-panel.mjs",
+      "sha256": "0cec25a2ad69e5017548216eb9251fb983c373d3f792a8ed48bb3c50de4ad92b",
+      "baseBlob": null
+    },
+    {
+      "path": "src/unknown-lab/duration-planner.mjs",
+      "sha256": "16b7aaec3be57a1174c3c0938a092815fc3d6d498dcd9b1d1e5b26980df0fc08",
+      "baseBlob": null
+    },
+    {
+      "path": "tests/unknown-duration-planner.test.mjs",
+      "sha256": "4751fd0555e156c15f23277b100d9d3c0775e858754cbd8d8d125f0b7c8cac49",
+      "baseBlob": null
+    },
+    {
+      "path": "unknown-lab.css",
+      "sha256": "7a93c2369d1caaa63642428f3bcba32667aea8b0f884374b4c679ae892f20b3a",
+      "baseBlob": "85880005be6b0d50e0de4b5a66dafab6ca5b2209"
+    },
+    {
+      "path": "unknown-lab.html",
+      "sha256": "e27d4b06c42e40628f5d95253f3cb45bb46c660b8132f8fb34f10fdf94d1d001",
+      "baseBlob": "3eb239ddd33309e77703ccecbb700baa1ec72705"
+    }
+  ],
+  "native": {
+    "passed": 276,
+    "failed": 0,
+    "skipped": 1,
+    "total": 277,
+    "log": "/tmp/de5a-worldlaw-planner-native.log",
+    "note": "One pre-existing skip remains explicit"
+  },
+  "smoke": "PASS",
+  "browser": {
+    "passed": 11,
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "exceptions": [],
+    "externalRequests": [],
+    "course": "scripts/unknown-duration-planner-browser.mjs",
+    "screenshot": "worldlaw-duration-planner-390.png",
+    "screenshotSha256": "bc48c3571747c2af59f6f03d0c69bcd83fe16476770593978ca00a668b89d959"
+  },
+  "review": {
+    "independent": "MICROVERSE worker reviewed core/test and negative-amplitude, zero-duration and exact-budget controls",
+    "lead": "Verified composed current-main leases, actual browser/manual export/virtual acquisition and 390px panel"
+  },
+  "limits": [
+    "Finite offered duration and model grid only",
+    "Complete feasible amplitude intervals determine pairwise separation, not midpoints",
+    "Manual budget and future precision are declared assumptions",
+    "Virtual challenge is authored evidence; no physical qualification",
+    "Challenge outcomes never refit training or redefine the plan"
+  ]
+}
