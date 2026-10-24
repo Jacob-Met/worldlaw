@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stiffness Lab · WORLDLAW</title><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/stiffness.css">
+<script type="module" src="/src/stiffness/app.mjs"></script></head><body>
+<header><a href="/">WORLDLAW</a><span> / STIFFNESS LAB</span><a class="back" href="/">Discovery Studio ↗</a></header>
+<main>
+<section class="opening"><p class="eyebrow">ONE RESPONSE. COMPETING EXPLANATIONS.</p><h1>Where does the response change?</h1>
+<p>Compare a global slope with a continuous change at a declared angle. Fit only training observations, then challenge the frozen explanations on separate measurements.</p></section>
+<section class="source-tools" aria-label="Observation source">
+<label>Authored source <select id="example-kind"><option value="kink">Change in stiffness</option><option value="linear">Global linear response</option><option value="smooth">Smooth omitted law</option><option value="narrow">Change outside observed range</option></select></label>
+<button id="load-example">Load simulated source</button>
+<label class="file">Open observations / notebook<input id="source-file" type="file" accept=".json,.csv"></label>
+<label class="file">Replace separate checks<input id="check-file" type="file" accept=".json,.csv"></label>
+<button id="save">Save input notebook</button>
+</section>
+<p id="source-label" class="source-label"></p><p id="error" role="alert"></p>
+<section class="apparatus" aria-labelledby="apparatus-title">
+<div class="apparatus-heading"><div><p class="eyebrow">CONDITIONAL RESPONSE</p><h2 id="apparatus-title">Same state. Two laws.</h2></div>
+<div class="view-switch" aria-label="Apparatus view"><button id="response-view" aria-pressed="true">Response field</button><button id="gauge-view" aria-pressed="false">Torque gauge</button></div></div>
+<div class="slice-controls"><label>Command <input id="slice-command" type="number" step=".1" value="0"> N·m</label>
+<label>Rate <input id="slice-rate" type="number" step=".1" value="0"> rad/s</label>
+<label class="probe-control">Inspect angle <input id="probe-angle" type="range" min="-1.4" max="1.4" step=".01" value=".4"><output id="probe-value">0.40 rad</output></label></div>
+<svg id="response-plot" viewBox="0 0 1000 420" role="img" aria-label="Observed torques and competing conditional response curves"></svg>
+<p id="slice-note" class="annotation"></p>
+<div class="legend"><span class="training">● Training observation</span><span class="check">◆ Separate check</span><span class="global">━ Global model</span><span class="piecewise">━ Inspected model</span></div>
+<div class="decision"><strong id="verdict"></strong><span id="decision-detail"></span></div>
+</section>
+<section class="comparison" aria-labelledby="comparison-title"><h2 id="comparison-title">Freeze, then challenge</h2>
+<p>Check measurements never choose the grid, coefficients or training winner. “Separate” is a supplied role; physical independence and source identity are not authenticated.</p>
+<div class="comparison-scroll"><table><thead><tr><th>Frozen explanation</th><th>Training RMSE</th><th>Check RMSE</th><th>Checks outside input range</th></tr></thead><tbody id="comparison-body"></tbody></table></div>
+<p id="equation" class="equation"></p><p id="slopes"></p></section>
+<section class="investigation" aria-label="Investigation settings and complete profile">
+<form id="settings"><h2>Declare the search</h2><p>One change is offered. Try a different grid to investigate its numerical dependence.</p>
+<label>Possible change angles, radians<textarea id="knots" rows="3"></textarea></label>
+<fieldset><legend>Same nuisance terms for every explanation</legend><label><input id="bias" type="checkbox" checked> Constant offset</label><label><input id="command" type="checkbox" checked> Applied command</label><label><input id="rate" type="checkbox" checked> Angular rate</label></fieldset>
+<label>Assumed torque noise, N·m<input id="noise" type="number" min=".0000001" max="1000" step="any" value=".01"></label>
+<label>Competitive score difference<input id="delta" type="number" min="0" max="100" step="1" value="6"></label>
+<button type="submit" class="primary">Fit declared explanations</button><p class="annotation">Constant or correlated nuisance inputs can make every model unidentifiable. Terms are never silently removed. A change needs three distinct observed angles on each side.</p></form>
+<div class="profile"><h2>The complete change-angle profile</h2><p id="profile-note"></p><div class="profile-scroll" tabindex="0" aria-label="Scrollable complete candidate profile"><table><thead><tr><th>Inspect</th><th>Training RMSE</th><th>Score difference</th><th>Support / refusal</th></tr></thead><tbody id="profile-body"></tbody></table></div></div>
+</section>
+<details><summary>Interpret the experiment</summary><ul>
+<li>The baseline is linear in angle. Each alternative adds one continuous hinge: max(0, θ − κ). Slopes and nuisance coefficients are fitted together.</li>
+<li>The ranking uses a caller-assumed noise floor and penalizes fitted coefficients plus the searched change angle. This is a heuristic, without calibrated probabilities or confidence intervals.</li>
+<li>A kink can reflect omitted smooth response, instrument effects or other confounding. It does not identify contact, mechanism topology, physical stiffness or causation by itself.</li>
+<li>Positive slopes are allowed. Nothing here establishes passivity, physical safety, valid extrapolation or permission to actuate hardware.</li>
+<li>The input notebook preserves supplied measurements and assumptions. Opening it recomputes results. This page neither uploads observations nor saves them automatically.</li>
+</ul></details>
+</main><footer>WORLDLAW · An executable explanation is a hypothesis to test.</footer></body></html>

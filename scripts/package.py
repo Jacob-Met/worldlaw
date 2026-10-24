@@ -16,6 +16,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "stiffness.html", "stiffness.css", "src/stiffness/*.mjs",
+    "docs/receipts/stiffness-20261024/*.json", "docs/receipts/stiffness-20261024/*.png",
     "AGENTS.md", "README.md", "LICENSE", "LICENSE.md", "package.json",
     "index.html", "styles.css", "favicon.svg", "server.mjs", "motion.html", "motion.css", "trajectory.html", "trajectory.css",
     "docs/receipts/*/*.json", "docs/receipts/*/*.png",
@@ -34,6 +36,7 @@ INCLUDE = (
     "evidence/cubic-restoring-results.json",
 )
 REQUIRED = (
+    "stiffness.html", "stiffness.css", "src/stiffness/app.mjs", "src/stiffness/science.mjs", "src/stiffness/notebook.mjs", "src/stiffness/fixture.mjs", "src/science/linear-fit.mjs",
     "coupling.html", "coupling.css", "src/coupling/app.mjs", "src/coupling/science.mjs",
     "src/coupling/notebook.mjs", "src/coupling/virtual-instrument.mjs", "src/science/linear-fit.mjs",
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/app.mjs", "src/unknown-lab/paired-history.mjs",

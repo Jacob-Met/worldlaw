@@ -1,0 +1,57 @@
+{
+  "scope": "Implemented finite-grid scalar response investigation and actual browser receiving; no physical validation or deployment",
+  "baseCommit": "88f483ae95ab1e5448c588b60c2954f67dd93cb5",
+  "runtime": "Node v22.23.4 / authorized isolated Linux / installed Chrome",
+  "commands": [
+    {
+      "command": "node --test tests/stiffness.test.mjs",
+      "passed": 15,
+      "failed": 0
+    },
+    {
+      "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+      "passed": 387,
+      "failed": 0,
+      "skipped": 1,
+      "skip": "inherited optional live Node/Chromium notebook interoperability dependency"
+    },
+    {
+      "command": "node scripts/smoke.mjs",
+      "passed": true
+    },
+    {
+      "command": "node scripts/trajectory-smoke-92be.mjs",
+      "passed": true
+    },
+    {
+      "command": "BROWSER_ARTIFACT_DIR=<isolated receipt directory> node scripts/stiffness-browser.mjs",
+      "passedGroups": 16,
+      "uncaughtErrors": 0,
+      "externalRequests": 0
+    },
+    {
+      "command": "node scripts/stiffness-experiment.mjs",
+      "byteIdenticalTo": "experiment.json"
+    },
+    {
+      "command": "python3 scripts/package.py --source-commit <baseline> --working-tree --output <isolated candidate.zip>",
+      "sourceFiles": 251,
+      "bytes": 5518359,
+      "mode": "working-tree-candidate"
+    }
+  ],
+  "retainedFailures": [
+    "Initial noise input step was inconsistent with its valid default; repaired with admitted arbitrary numeric step.",
+    "Initial refresh did not retain new navigation anchor; repaired and real navigation verified.",
+    "Studio navigation overflow: 415px before new link and480px with link on390px viewport; existing control group now wraps.",
+    "Initial browser receiver used obsolete Studio #status selector; now checks live sample count and performs acquisition."
+  ],
+  "figures": [
+    "response-1440.png",
+    "response-390.png",
+    "gauge-1440.png",
+    "gauge-390.png"
+  ],
+  "actualBehavior": "Import/fit/inspect/change slice/replace checks/download/reopen/refuse tampered results/reject late file reads/keyboard/desktop+narrow/ordinary Studio acquisition",
+  "qualification": "Synthetic software mechanism, not measured contact, physical stiffness, calibrated uncertainty, provider qualification or official submission."
+}
