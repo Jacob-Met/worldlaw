@@ -61,6 +61,7 @@ INCLUDE = (
 )
 REQUIRED = (
     "cycle-work.html", "src/cycle-work/app.mjs", "src/cycle-work/core.mjs",
+    "src/cycle-work/refinement.mjs", "src/cycle-work/refinement-panel.mjs", "src/cycle-work/refinement-example.mjs",
     "stiffness.html", "stiffness.css", "src/stiffness/app.mjs", "src/stiffness/science.mjs", "src/stiffness/notebook.mjs", "src/stiffness/fixture.mjs", "src/science/linear-fit.mjs",
     "coupling.html", "coupling.css", "src/coupling/app.mjs", "src/coupling/science.mjs",
     "src/coupling/dynamics.mjs", "src/coupling/dynamics-panel.mjs",

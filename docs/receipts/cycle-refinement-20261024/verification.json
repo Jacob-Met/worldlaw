@@ -1,0 +1,66 @@
+{
+  "baseCommit": "40ee8769eaa09befb89872bcd369625624980f47",
+  "verifiedUnchangedNonReceiptBlobs": 253,
+  "mismatches": [],
+  "sha256": {
+    "src/cycle-work/refinement.mjs": "c328860c663c07ef4cabb6bc39969ebf7754199d5b0bb4868b07bed9aed07fcf",
+    "src/cycle-work/refinement-example.mjs": "cdc8e989bbf05897a12d2077623c11bf0adbefcdd28e0facf15f18e70476067c",
+    "src/cycle-work/refinement-panel.mjs": "6743d64db380e18e7a424d98b126557c836e9be24b5f634ccf9022f708d8dde6",
+    "src/cycle-work/app.mjs": "384397663e07f3c6626f7f2a98458e771f7b1b1bdc4dbbe71bcac587b5bc7d27",
+    "tests/cycle-refinement.test.mjs": "41b86de6113ef888e8726fb7d82f569a8e25e089408347500257d733aecce975",
+    "scripts/cycle-refinement-browser.mjs": "1a15cddfd7596fd3750025888e166fc917784c8d2d3f50401664fa98099838b2",
+    "docs/CYCLE_REFINEMENT.md": "3a5a8bd0c2984149987eadff1730bd07c86bca9472204b32657b43eee805a4d7",
+    "docs/CYCLE_WORK.md": "08cd46c5b28cf4a2e26301f10305525717e77e6708fbbcc476b85f738a86dde6",
+    "scripts/package.py": "12e8648a66b193422f68b8636fe02aa5ab7db7e3e49f94346c0876be75ceb5e6"
+  },
+  "nodeSummary": "ok 245 - live Node and Chromium exchange pending and applied notebooks through actual modules # SKIP\n# tests 431\n# pass 430\n# fail 0\n# skipped 1\n# duration_ms 18880.53685",
+  "browser": {
+    "browser": "156.0.8078.47",
+    "checks": [
+      "explicit assumptions, frozen grid and separate analytic acquisition resolve authored branch work",
+      "actual downloaded notebook recomputes; conservative sampling artifact remains enclosed",
+      "partial actual readings remain pending and stale request is refused",
+      "late import cannot replace newer source declarations",
+      "desktop and narrow consumer has no horizontal overflow or script errors"
+    ],
+    "layouts": [
+      {
+        "width": 1440,
+        "document": 1440
+      },
+      {
+        "width": 390,
+        "document": 390
+      },
+      {
+        "width": 320,
+        "document": 320
+      }
+    ],
+    "scope": "Authored analytic responses only; conditional curvature assumptions, no physical acquisition."
+  },
+  "receivedAt": "2026-10-24T06:35:35.462595+00:00",
+  "packaging": "Existing allowlist accepts candidate paths; all three refinement modules are included and required.",
+  "schema": "hamon.product-receiving/v1",
+  "owner": "hamon-583a018f54af-20261023",
+  "runtime": {
+    "node": "22.23.4",
+    "browser": "Chrome 156.0.8078.47",
+    "sandbox": true
+  },
+  "sourceScope": "All non-receipt base blobs not replaced by this candidate matched Git identities. Earlier receipts remain in the Git base tree.",
+  "commands": [
+    "npm run verify",
+    "PLAYWRIGHT_MODULE=<existing module> BROWSER_EXECUTABLE_PATH=/usr/local/bin/google-chrome BROWSER_ARTIFACT_DIR=<fresh output> node scripts/cycle-refinement-browser.mjs",
+    "Existing source-package allowlist and required-module control"
+  ],
+  "independentReview": {
+    "reviewer": "mechanism",
+    "focusedTests": 8,
+    "exhaustivePlannerCases": 50,
+    "exactDyadicCases": 60,
+    "seed": 90711,
+    "result": "No remaining blocker after repeated dirty-export correction."
+  },
+  "limits": "Authored software controls; no physical acquisition/outcome, provider qualification, deployment or submission."
+}
