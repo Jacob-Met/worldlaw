@@ -1,0 +1,75 @@
+{
+  "schema": "worldlaw.periodic-history-range-source-manifest/v1",
+  "captured_at_utc": "2026-10-24T22:08:38.688333+00:00",
+  "base_commit": "494d13854cef246d3b89b632cf49c3a958ed0fa9",
+  "base_tree": "e6e57807e48072281da1af789f569e534361532c",
+  "source_files": {
+    "src/unknown-lab/periodic-course.mjs": {
+      "sha256": "765ffe25440698c2b7a44bdda46da22fedc77458622fc6e84aed971b0c9e23ab",
+      "bytes": 11742
+    },
+    "src/unknown-lab/periodic-history-range.mjs": {
+      "sha256": "728c4a5b70604c4f706e9692f8eed4f4985365a06fa7242e48363bc610a338dc",
+      "bytes": 5325
+    },
+    "src/unknown-lab/periodic-history-range-panel.mjs": {
+      "sha256": "d00494355b9b3318dc240662b04acdb6ec7cecff652af158955143760a51df3b",
+      "bytes": 9826
+    },
+    "src/unknown-lab/periodic-course-panel.mjs": {
+      "sha256": "49753fafeeb3c4eed65bcf3af229e7fb4bd440757387d6b7b187748c71a7acf1",
+      "bytes": 9278
+    },
+    "src/unknown-lab/app.mjs": {
+      "sha256": "293f9954ba4952112a42994f15a2835300b9e08d5e34c306231f5b860b98e6f4",
+      "bytes": 9457
+    },
+    "unknown-lab.css": {
+      "sha256": "572742e5a065600d053d83b2261c046ccd9ac654f6983c67d198c884a065e3c6",
+      "bytes": 18461
+    },
+    "tests/periodic-history-range.test.mjs": {
+      "sha256": "6c6df2b81c1ad1b3816fd7e134a0dc0d798397f88c84327e489a16ab1a5b9d16",
+      "bytes": 5377
+    },
+    "scripts/periodic-history-range-browser.mjs": {
+      "sha256": "803341d75bbc9630be9f75e4a6080ab8926a4c501f9bd914fbd986bc0e8acf28",
+      "bytes": 7332
+    },
+    "docs/PERIODIC_HISTORY_RANGE.md": {
+      "sha256": "7f50b54a6f44ec0a3bb8b19e6eec845af730d70d0c0a9f035e19946b941819a3",
+      "bytes": 6742
+    },
+    "examples/periodic-history-range-shuffled.json": {
+      "sha256": "7411f1c3a55979e72aac85b7160378bbc892163baf4ab0b1e11e51d517910504",
+      "bytes": 10840
+    }
+  },
+  "browser_and_log_artifacts": {
+    "browser-verification.json": {
+      "sha256": "a7f00a3420fdb3b8113ad910490ba099b1a9815c8cf5004838724895f5973e88",
+      "bytes": 2423
+    },
+    "sandbox.json": {
+      "sha256": "52d77a02da7b27929d45a7af7cc048f6a60c586a1c3bb03d7bf156c442d2054f",
+      "bytes": 1728
+    },
+    "desktop-range.png": {
+      "sha256": "6a04d0d3d339c2b592bd7ea965d50fe1d40ce05110c7ef1570cdf2049c2071c5",
+      "bytes": 454044
+    },
+    "narrow-controls.png": {
+      "sha256": "57f06977b9378e4b600865dc955e545ea308d01c0d95c9071e20713782cc7813",
+      "bytes": 107624
+    },
+    "narrow-result.png": {
+      "sha256": "654613ab7dd88a47f052877eff384bfac1ced1a08d15bb60b5a8f5cba6784232",
+      "bytes": 202487
+    },
+    "native.log": {
+      "sha256": "d5b483adc0770e027aa085cf48338e31fe0264fa2007496a755f575ac75f2b69",
+      "bytes": 165220
+    }
+  },
+  "scope": "Actual supplied qualified checkout and actual executed receipt bytes; no test is rerun by staging."
+}

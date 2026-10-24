@@ -1,0 +1,38 @@
+{
+  "schema": "worldlaw.periodic-history-range-integration-receipt/v1",
+  "captured_at_utc": "2026-10-24T22:08:38.688333+00:00",
+  "native_issue": "https://github.com/Jacob-Met/worldlaw/issues/141",
+  "base_commit": "494d13854cef246d3b89b632cf49c3a958ed0fa9",
+  "base_tree": "e6e57807e48072281da1af789f569e534361532c",
+  "native": {
+    "status": "passed-with-skips",
+    "tests": 703,
+    "pass": 702,
+    "fail": 0,
+    "skipped": 1,
+    "raw_log": "native.log"
+  },
+  "browser": {
+    "status": "passed",
+    "completed_groups": [
+      "original observations reach a conditional offset bracket through actual parent instruments and keyboard",
+      "endpoint witness drawer exposes named coefficient units and original row checks",
+      "actual raw-source download and independent reopen retain declared work settings",
+      "parent edits invalidate dependent bounds; aliased course exposes prior-limited edge",
+      "contradictory course gives no invented interval and work exhaustion stays unresolved",
+      "frequency-band declaration refuses; final narrow bounds remain readable"
+    ],
+    "page_errors": [],
+    "raw_receipt": "browser-verification.json",
+    "sandbox_receipt": "sandbox.json"
+  },
+  "independent_review": {
+    "status": "reported-passed",
+    "reviewer": "existing direct Earth worker",
+    "scope": "Convex directional exclusion, fixed signed support, original-source context binding, global work accounting, zero-budget and negative-offset controls; seven production native groups passed.",
+    "evidence_boundary": "Reviewer execution reported separately; staging does not rerun independent controls."
+  },
+  "prior_receiving": [],
+  "interpretation": "Conditional projection of one declared fixed-period convex family. No confidence coverage, identified physical cause, unknown-frequency union, deployment or physical acquisition is established.",
+  "publication_status": "Receipts staged only; normal commit, PR, merge and post-merge receiving remain integration-owner actions."
+}

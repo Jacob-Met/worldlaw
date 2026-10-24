@@ -4,10 +4,11 @@ import {fitLinearColumns,linearColumnRank} from '../science/linear-fit.mjs';
 const require=(ok,message)=>{if(!ok)throw Error(message);};
 const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0);
 export const PERIODIC_COURSE_SCHEMA='worldlaw.periodic-course/v1';
-function prepare(raw){
+function prepare(raw,fixedHistory=null){
  require(raw?.schema===PERIODIC_COURSE_SCHEMA,'Expected periodic-course inputs v1.');
  require(raw.boundUnits?.history==='N*m'&&raw.boundUnits?.drift==='N*m/acquisition_step'&&raw.boundUnits?.pair==='N*m','Declare N*m history/pair bounds and N*m/acquisition_step drift bounds.');
  const aggregate=inspectPeriodicContrast(raw.evidence);
+ if(fixedHistory!==null)require(Number.isFinite(fixedHistory)&&Math.abs(fixedHistory)<=raw.historyBound,'Fixed history must lie inside the original prior bound.');
  for(const k of ['historyBound','driftBound','pairRadius'])require(typeof raw[k]==='number'&&Number.isFinite(raw[k])&&raw[k]>=0&&raw[k]<=1000,`${k} requires an explicit bound from 0 to 1000.`);
  require(typeof raw.discrepancyBasis==='string'&&raw.discrepancyBasis.trim()&&raw.discrepancyBasis.length<=2000,'Declare the pair-discrepancy basis.');
  const search=raw.search??{maxIterations:1024,maxProducts:16777216};
@@ -18,8 +19,8 @@ function prepare(raw){
  const rows=aggregate.original.pairs.map(p=>({id:p.id,reference:p.reference,conditioned:p.conditioned,y:p.difference,
   x:[1,p.conditioned.sampleIndex-p.reference.sampleIndex,...components.flatMap(c=>[Math.cos(phase(p.conditioned.sampleIndex,c.period))-Math.cos(phase(p.reference.sampleIndex,c.period)),Math.sin(phase(p.conditioned.sampleIndex,c.period))-Math.sin(phase(p.reference.sampleIndex,c.period))])]}));
  const columns=rows[0].x.map((_,i)=>rows.map(r=>r.x[i]));
- const active=columns.map((_,i)=>i).filter(i=>i===0?raw.historyBound>0:i===1?raw.driftBound>0:components[Math.floor((i-2)/2)].amplitudeBound>0);
- return {inputs,aggregate,origin,components,rows,columns,active,phase,sourceKey:JSON.stringify(inputs)};
+ const active=columns.map((_,i)=>i).filter(i=>i===0?raw.historyBound>0&&fixedHistory===null:i===1?raw.driftBound>0:components[Math.floor((i-2)/2)].amplitudeBound>0);
+ return {inputs,aggregate,origin,components,rows,columns,active,phase,fixedHistory,sourceKey:fixedHistory===null?JSON.stringify(inputs):JSON.stringify({schema:'worldlaw.fixed-periodic-history-context/v1',inputs,fixedHistory})};
 }
 function tolerance(c,magnitude){return 1024*Number.EPSILON*Math.max(1,magnitude,c.rows.reduce((s,r)=>s+Math.abs(r.y),0));}
 function checkPrepared(c,certificate){
@@ -29,6 +30,7 @@ function checkPrepared(c,certificate){
  require(Array.isArray(values)&&values.length<=128&&Array.from({length:values.length},(_,i)=>Object.hasOwn(values,i)).every(Boolean)&&values.every(Number.isFinite),'Certificate must retain finite dense values.');
  if(certificate.kind==='parameters'){
   require(values.length===c.columns.length,'Require every declared coefficient.');
+  require(c.fixedHistory===null||values[0]===c.fixedHistory,'Witness changes its fixed history.');
   require(Math.abs(values[0])<=raw.historyBound&&Math.abs(values[1])<=raw.driftBound,'Witness exceeds history/drift bound.');
   c.components.forEach((component,k)=>require(Math.hypot(values[2+2*k],values[3+2*k])<=component.amplitudeBound,'Witness exceeds a phasor disk.'));
   const rows=c.rows.map(row=>{
@@ -50,7 +52,7 @@ function checkPrepared(c,certificate){
    c.components.forEach((component,k)=>{const phase=c.phase(reading.sampleIndex,component.period);phasors[k].cosine+=w*Math.cos(phase);phasors[k].sine+=w*Math.sin(phase);});
   }
  });
- const historySupport=raw.historyBound*Math.abs(history),driftSupport=raw.driftBound*Math.abs(drift);
+ const historySupport=c.fixedHistory===null?raw.historyBound*Math.abs(history):c.fixedHistory*history,driftSupport=raw.driftBound*Math.abs(drift);
  const artifactSupport=phasors.reduce((s,p,k)=>s+c.components[k].amplitudeBound*Math.hypot(p.cosine,p.sine),0);
  const support=historySupport+driftSupport+artifactSupport+errorSupport;
  // Include raw readings in the scale: pair subtraction can cancel large baselines.
@@ -60,21 +62,21 @@ function checkPrepared(c,certificate){
  const numericalTolerance=tolerance(c,magnitude+support+uncancelledBound),gap=discrepancy-support;
  return {status:gap>numericalTolerance?'verified-course-separation':'unresolved',discrepancy,support,historySupport,driftSupport,artifactSupport,errorSupport,gap,numericalTolerance,uncancelledBound,phasors};
 }
-export function checkPeriodicCourse(raw,certificate){return checkPrepared(prepare(raw),certificate);}
-export function searchPeriodicCourse(raw,options){
+function checkContext(raw,certificate,fixedHistory=null){return checkPrepared(prepare(raw,fixedHistory),certificate);}
+function searchContext(raw,options,fixedHistory=null){
  if(options!==undefined)raw={...raw,search:{maxIterations:1024,maxProducts:16777216,...options}};
- const c=prepare(raw);raw=c.inputs;const {maxIterations,maxProducts}=raw.search;const rank=linearColumnRank(c.active.map(i=>c.columns[i]));
- const fit=fitLinearColumns(c.active.map(i=>c.columns[i]),c.rows.map(r=>r.y));
+ const c=prepare(raw,fixedHistory);raw=c.inputs;const {maxIterations,maxProducts}=raw.search;const rank=linearColumnRank(c.active.map(i=>c.columns[i]));
+ const fit=fitLinearColumns(c.active.map(i=>c.columns[i]),c.rows.map(r=>r.y-(fixedHistory??0)));
  const project=p=>{
-  p[0]=Math.max(-raw.historyBound,Math.min(raw.historyBound,p[0]));p[1]=Math.max(-raw.driftBound,Math.min(raw.driftBound,p[1]));
+  p[0]=fixedHistory??Math.max(-raw.historyBound,Math.min(raw.historyBound,p[0]));p[1]=Math.max(-raw.driftBound,Math.min(raw.driftBound,p[1]));
   c.components.forEach((component,k)=>{const a=2+2*k,b=a+1,norm=Math.hypot(p[a],p[b]);if(norm>component.amplitudeBound){const scale=component.amplitudeBound/norm*(1-4*Number.EPSILON);p[a]*=scale;p[b]*=scale;}});return p;
  };
  let p=Array(c.columns.length).fill(0);if(fit)c.active.forEach((i,j)=>p[i]=fit.coefficients[j]);p=project(p);
  const scale=c.rows.reduce((s,r)=>s+dot(r.x,r.x),0),perIteration=4*c.rows.length*c.columns.length;
  let products=0,iterations=0;
- const base={inputs:c.inputs,aggregate:c.aggregate,rank,activeColumns:c.active.length,qualification:'One shared constant preparation offset, linear acquisition-index drift and common fixed-period sensor process, under explicit coefficient and pair-discrepancy bounds. A witness is conditional compatibility, never identified phase/amplitude/history. A numerical separator rejects only this declared family. Exhaustion remains unresolved; no calibrated probability or certified floating-point interval arithmetic.'};
+ const base={...(fixedHistory===null?{}:{fixedHistory}),inputs:c.inputs,aggregate:c.aggregate,rank,activeColumns:c.active.length,qualification:'One shared constant preparation offset, linear acquisition-index drift and common fixed-period sensor process, under explicit coefficient and pair-discrepancy bounds. A witness is conditional compatibility, never identified phase/amplitude/history. A numerical separator rejects only this declared family. Exhaustion remains unresolved; no calibrated probability or certified floating-point interval arithmetic.'};
  const finish=(kind,values)=>{const certificate={schema:'worldlaw.periodic-course-certificate/v1',sourceKey:c.sourceKey,kind,values:[...values]},check=checkPrepared(c,certificate);return {certificate,check};};
- const admit=result=>{const independent=checkPeriodicCourse(raw,result.certificate);require(independent.status===result.check.status,'Independent raw-source certificate check disagrees.');return {...base,...result,check:independent,status:independent.status,iterations,products};};
+ const admit=result=>{const independent=checkContext(raw,result.certificate,fixedHistory);require(independent.status===result.check.status,'Independent raw-source certificate check disagrees.');return {...base,...result,check:independent,status:independent.status,iterations,products};};
  for(let iteration=0;iteration<maxIterations;iteration++){
   if(products+perIteration>maxProducts)return {...base,status:'unresolved',reason:'product-budget',iterations,products};
   products+=perIteration;iterations++;
@@ -89,6 +91,14 @@ export function searchPeriodicCourse(raw,options){
  }
  return {...base,status:'unresolved',reason:'iteration-budget',iterations,products};
 }
+
+// Ordinary v1 calls and certificate keys remain unchanged. Fixed-history checks
+// bind the additional model context without altering any supplied observations.
+export function normalizePeriodicCourse(raw){return prepare(raw).inputs;}
+export function checkPeriodicCourse(raw,certificate){return checkContext(raw,certificate);}
+export function searchPeriodicCourse(raw,options){return searchContext(raw,options);}
+export function checkFixedPeriodicHistory(raw,fixedHistory,certificate){require(Number.isFinite(fixedHistory),'Declare a finite fixed preparation offset.');return checkContext(raw,certificate,fixedHistory);}
+export function searchFixedPeriodicHistory(raw,fixedHistory,options){require(Number.isFinite(fixedHistory),'Declare a finite fixed preparation offset.');return searchContext(raw,options,fixedHistory);}
 
 export function comparePeriodicCourses(raw,options){
  if(options!==undefined)raw={...raw,search:{maxIterations:1024,maxProducts:16777216,...options}};
