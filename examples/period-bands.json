@@ -1,0 +1,107 @@
+{
+  "schema": "worldlaw.period-bands/v1",
+  "comparison": {
+    "schema": "worldlaw.serial-orders/v2",
+    "sourceNote": "Authored equal-count schedule comparison, not physical acquisition.",
+    "rhos": [
+      -0.9,
+      -0.5,
+      0,
+      0.5,
+      0.9
+    ],
+    "periodic": {
+      "sourceNote": "Declared hypothetical sensor sinusoids; no fitted frequency or amplitude.",
+      "periods": [
+        3,
+        5
+      ]
+    },
+    "plans": [
+      {
+        "id": "mask85",
+        "pairs": [
+          {
+            "reference": 0,
+            "conditioned": 1
+          },
+          {
+            "reference": 3,
+            "conditioned": 2
+          },
+          {
+            "reference": 4,
+            "conditioned": 5
+          },
+          {
+            "reference": 7,
+            "conditioned": 6
+          },
+          {
+            "reference": 8,
+            "conditioned": 9
+          },
+          {
+            "reference": 11,
+            "conditioned": 10
+          },
+          {
+            "reference": 12,
+            "conditioned": 13
+          },
+          {
+            "reference": 15,
+            "conditioned": 14
+          }
+        ]
+      },
+      {
+        "id": "mask101",
+        "pairs": [
+          {
+            "reference": 0,
+            "conditioned": 1
+          },
+          {
+            "reference": 3,
+            "conditioned": 2
+          },
+          {
+            "reference": 4,
+            "conditioned": 5
+          },
+          {
+            "reference": 7,
+            "conditioned": 6
+          },
+          {
+            "reference": 9,
+            "conditioned": 8
+          },
+          {
+            "reference": 10,
+            "conditioned": 11
+          },
+          {
+            "reference": 12,
+            "conditioned": 13
+          },
+          {
+            "reference": 15,
+            "conditioned": 14
+          }
+        ]
+      }
+    ]
+  },
+  "bands": [
+    {
+      "id": "uncertain-period",
+      "sourceNote": "Authored frequency-range hypothesis; not a calibrated sensor",
+      "fromPeriod": 3,
+      "toPeriod": 5
+    }
+  ],
+  "evaluations": 31,
+  "tolerance": 0.001
+}
