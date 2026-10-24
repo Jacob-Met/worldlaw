@@ -31,8 +31,9 @@
   <input id="effect" type="range" min="-1.5" max="1.5" step=".05" value=".7">
   <label for="duration">Conditioning duration <output id="duration-out" for="duration">2.4</output><span>seconds (virtual)</span></label>
   <input id="duration" type="range" min="0" max="8" step=".2" value="2.4">
-  <div class="mini-inputs crossover-controls"><label for="drift">Simulated drift per reading <span>N·m</span><input id="drift" type="number" min="-.8" max=".8" step="any" value="0"></label><label for="order">Acquisition order <span>AB / BA sequence</span><select id="order"><option value="balanced">Counterbalanced AB/BA</option><option value="oneway">Reference first only</option></select></label></div>
-  <p class="input-hint">Order reversal can separate a constant per-reading drift from a preparation effect. It cannot eliminate nonlinear sensor drift or carryover.</p>
+  <div class="mini-inputs crossover-controls"><label for="drift">Simulated drift per reading <span>N·m</span><input id="drift" type="number" min="-.8" max=".8" step="any" value="0"></label><label for="order">Acquisition order <span>AB / BA sequence</span><select id="order"><option value="shuffled">Seeded shuffled AB/BA</option><option value="alternating">Fixed alternating AB/BA</option><option value="oneway">Reference first only</option></select></label></div>
+  <div class="mini-inputs crossover-controls"><label for="cycle">Period-four sensor artifact <span>N·m · virtual amplitude</span><input id="cycle" type="number" min="-.8" max=".8" step="any" value="0"></label><label for="seed">Virtual sequence seed <span>repeatable integer</span><input id="seed" type="number" min="-1000000000" max="1000000000" step="1" value="41"></label></div>
+  <p class="input-hint">A fixed alternating order can alias phase-locked sensor noise into a false memory effect. Seeded shuffled order mitigates this declared example, not all nonlinear drift or carryover.</p>
   <div class="mini-inputs"><label for="sigma">Declared sensor noise <span>N·m</span><input id="sigma" type="number" min=".000001" max="10" step="any" value=".02" required></label><label for="count">Trial pairs <span>4–128</span><input id="count" type="number" min="4" max="128" step="1" value="16" required></label></div>
   <button class="go" type="submit">Execute paired virtual trials <span aria-hidden="true">↗</span></button>
  </form>
