@@ -1,8 +1,8 @@
 import {parseObservationText, MAX_TEXT_LENGTH} from '../data.mjs';
-import {createStiffnessStudy,importStiffnessStudy,NOTEBOOK_SCHEMA} from './notebook.mjs';
+import {createStiffnessStudy,importStiffnessStudy,NOTEBOOK_SCHEMA,REVISED_NOTEBOOK_SCHEMA} from './notebook.mjs';
 import {defaultKnots,predictStiffness,evaluateStiffness} from './science.mjs';
 import {stiffnessExample,exampleSettings} from './fixture.mjs';
-import {EXPERIMENT_SCHEMA,importStiffnessExperiment,exportStiffnessExperiment} from './experiment.mjs';
+import {EXPERIMENT_SCHEMA,REVISED_EXPERIMENT_SCHEMA,importStiffnessExperiment,exportStiffnessExperiment} from './experiment.mjs';
 import {createExperimentPanel} from './experiment-panel.mjs';
 const $=id=>document.getElementById(id);
 const num=(n,d=4)=>n===null||n===undefined?'unavailable':Number(n.toPrecision(d)).toString();
@@ -20,7 +20,8 @@ function stateText(){
  if(f.status==='unidentifiable')return ['UNIDENTIFIABLE','The declared columns do not support an executable comparison. Inspect refusals and the nuisance terms.'];
  if(f.diagnostics.adequacy==='training_mismatch')return ['FAMILY MISMATCH','Even the preferred explanation disagrees with training beyond three assumed noise units.'];
  if(f.status==='global_preferred')return ['GLOBAL PREFERRED','The global response leads this finite comparison. A physical change is not established.'];
- if(f.status==='structure_ambiguous')return ['STRUCTURE AMBIGUOUS','The global response and at least one changing response remain competitive.'];
+ if(f.status==='structure_ambiguous')return ['STRUCTURE AMBIGUOUS','Different declared response structures remain competitive. Inspect their support and separate predictions.'];
+ if(f.status==='cubic_preferred')return ['SMOOTH CUBIC PREFERRED','The explicitly declared linear-plus-cubic response leads this finite comparison. Challenge it with separate measurements.'];
  if(f.status==='change_angle_ambiguous')return ['CHANGE ANGLE AMBIGUOUS','Several declared angles remain competitive; inspect the complete profile.'];
  return ['PIECEWISE PREFERRED','This declared change angle leads the training comparison. Challenge it with separate measurements.'];
 }
@@ -42,25 +43,27 @@ function render(){
   ' · '+study.dataset.observations.length+' training / '+study.dataset.heldOut.length+' separate checks';
  $('verdict').textContent=verdict;$('decision-detail').textContent=detail;
  const table=$('comparison-body');table.replaceChildren();
- for(const [name,model]of [['Global baseline',f.baseline],['Training winner',f.selected],...(inspected&&inspected!==f.selected?[['Inspected alternative',inspected]]:[])]){
+ for(const [name,model]of [['Global baseline',f.baseline],...(Object.hasOwn(f,'originalSelected')?[['Original family winner',f.originalSelected]]:[]),['Training winner',f.selected],...(inspected&&inspected!==f.selected?[['Inspected alternative',inspected]]:[])]){
   const tr=document.createElement('tr');cell(tr,name+(model?.knot!==null&&model?.knot!==undefined?' · κ '+num(model.knot)+' rad':''));
   cell(tr,model?num(model.metrics.rmse)+' N·m':'unidentifiable');
   const check=model?evaluateStiffness(model,study.dataset.heldOut):null;
   cell(tr,check?.count?num(check.rmse)+' N·m':'no check result');
   cell(tr,check?.count?check.extrapolationCount+' / '+check.count:'—');table.append(tr);
  }
- const terms=inspected?.terms.map(t=>num(t.coefficient)+'·'+({bias:'1',command:'u',rate:'ω',position:'θ',hinge:'max(0, θ − '+num(inspected.knot)+')'}[t.id])).join(' + ');
+ const terms=inspected?.terms.map(t=>num(t.coefficient)+'·'+({bias:'1',command:'u',rate:'ω',position:'θ',hinge:'max(0, θ − '+num(inspected.knot)+')',cubic:'(θ − '+num(inspected.origin)+')³'}[t.id])).join(' + ');
  $('equation').textContent=inspected?'Inspected τ = '+terms:'No executable response.';
- $('slopes').textContent=inspected?'Slope before / after: '+num(inspected.slopeLeft)+' / '+num(inspected.slopeRight)+' N·m/rad. Signs are fitted without a physical-restoring constraint.':'';
+ $('slopes').textContent=inspected?.family==='cubic'?
+  `Slope varies with angle: ${num(inspected.terms.find(t=>t.id==='position').coefficient)} + ${num(3*inspected.terms.find(t=>t.id==='cubic').coefficient)}·(θ − ${num(inspected.origin)})² N·m/rad. The origin is declared, not searched; no physical-restoring constraint is imposed.`:
+  inspected?'Slope before / after: '+num(inspected.slopeLeft)+' / '+num(inspected.slopeRight)+' N·m/rad. Signs are fitted without a physical-restoring constraint.':'';
  $('profile-note').textContent=f.profile.length+' examined · '+f.candidates.length+' fitted · '+f.diagnostics.refused+
   ' refused. '+f.competitive.length+' competitive under the declared score difference; these are not confidence sets.';
  const body=$('profile-body');body.replaceChildren();
  for(const p of f.profile){
   const tr=document.createElement('tr');if(p.model===inspected)tr.className='selected';if(!p.model)tr.className='refused';
-  const c=cell(tr,'');const button=document.createElement('button');button.textContent=p.knot===null?'Global':num(p.knot)+' rad';button.disabled=!p.model;
+  const c=cell(tr,'');const button=document.createElement('button');button.textContent=p.family==='cubic'?'Smooth cubic · origin '+num(p.origin)+' rad':p.knot===null?'Global':num(p.knot)+' rad';button.disabled=!p.model;
   button.setAttribute('aria-label','Inspect '+button.textContent);button.addEventListener('click',()=>{inspected=p.model;render();});c.append(button);
   cell(tr,p.model?num(p.model.metrics.rmse):'—');cell(tr,p.model&&f.selected?num(p.model.metrics.score-f.selected.metrics.score):'—');
-  cell(tr,p.status==='fitted'?(p.support?p.support.left+' left / '+p.support.right+' right':'global support'):
+  cell(tr,p.status==='fitted'?(p.family==='cubic'?p.distinctPositions+' distinct angles; full numerical rank':p.support?p.support.left+' left / '+p.support.right+' right':'global support'):
    p.status.replaceAll('_',' ')+(p.support?' ('+p.support.left+'/'+p.support.right+')':''));body.append(tr);
  }
  renderPlot();
@@ -123,7 +126,8 @@ $('settings').addEventListener('submit',e=>{e.preventDefault();epoch++;try{
  const tokens=$('knots').value.split(',').map(x=>x.trim());if(tokens.some(x=>!x))throw new Error('Declare comma-separated angles without empty entries.');
  const knots=tokens.map(x=>{if(!/^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i.test(x))throw new Error('Every change angle must be a decimal number.');return Number(x);});
  experimentPanel.startStudy(createStiffnessStudy(study.dataset,{knots,nuisanceTerms:['bias','command','rate'].filter(id=>$(id).checked),
-  noiseSigma:Number($('noise').value),ambiguityDelta:Number($('delta').value)}));
+  noiseSigma:Number($('noise').value),ambiguityDelta:Number($('delta').value),
+  ...(Object.hasOwn(study.settings,'cubicOrigin')?{cubicOrigin:study.settings.cubicOrigin}:{})}));
 }catch(error){fail(error);}});
 for(const id of ['source-file','check-file'])$(id).addEventListener('change',async e=>{
  const file=e.target.files[0];if(!file)return;const ticket=++epoch;
@@ -133,8 +137,8 @@ for(const id of ['source-file','check-file'])$(id).addEventListener('change',asy
   if(id==='check-file')experimentPanel.replaceChecks(parseObservationText(content,file.name));
   else {
    let parsed=null;try{parsed=JSON.parse(content);}catch{}
-   if(parsed?.schema===EXPERIMENT_SCHEMA)experimentPanel.install(importStiffnessExperiment(content));
-   else if(parsed?.schema===NOTEBOOK_SCHEMA)experimentPanel.startStudy(importStiffnessStudy(content));
+   if([EXPERIMENT_SCHEMA,REVISED_EXPERIMENT_SCHEMA].includes(parsed?.schema))experimentPanel.install(importStiffnessExperiment(content));
+   else if([NOTEBOOK_SCHEMA,REVISED_NOTEBOOK_SCHEMA].includes(parsed?.schema))experimentPanel.startStudy(importStiffnessStudy(content));
    else {const dataset=parseObservationText(content,file.name);experimentPanel.startStudy(createStiffnessStudy(dataset,
     {...study.settings,knots:defaultKnots(dataset.observations)}));}
   }

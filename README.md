@@ -214,6 +214,11 @@ stay fixed after the first acquisition. Explicit authored courses demonstrate
 both narrowing ambiguity and an omitted smooth response. See [sequential stiffness
 experiments](docs/STIFFNESS_EXPERIMENTS.md).
 
+### Explicit smooth-family revision
+
+When the original global and one-hinge alternatives fail the observed response, STIFFNESS LAB can add one explicitly declared linear-plus-cubic alternative about a fixed origin. It preserves the original failure and earlier frozen errors, applies the revision to subsequent forecasts, and keeps separate checks outside fitting. See [explicit family revision](docs/STIFFNESS_REVISION.md) for the recorded boundary, saved replay, finite-model limits and receiving evidence.
+
+
 ```sh
 node --test tests/stiffness.test.mjs
 BROWSER_ARTIFACT_DIR=/tmp/worldlaw-stiffness-receipts node scripts/stiffness-browser.mjs

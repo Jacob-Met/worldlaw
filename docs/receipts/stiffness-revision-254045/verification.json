@@ -1,0 +1,21 @@
+{
+  "schema": "worldlaw.stiffness-revision.receiving/v1",
+  "receivingBase": "eda5d56862ad60cfe0125bc274399ea16154d3c8",
+  "native": {
+    "passed": 512,
+    "failed": 0,
+    "skipped": 1,
+    "skippedTest": "optional live Node and Chromium exchange of pending/applied notebooks"
+  },
+  "launchedSmokes": [
+    "maintained product",
+    "trajectory consumer"
+  ],
+  "experimentBrowserGroups": 23,
+  "legacyNotebookBrowserGroups": 16,
+  "independentReview": "SYNAPSE accepted all 11 new core controls plus independent boundary 0..3, exact prior history after later acquisition, held-out removal noninterference, forged forecast refusal and finite-difference derivative checks. UI scientific-claim review accepted; acquisition wording corrected.",
+  "scientificScope": "One explicitly fixed-origin linear-plus-cubic alternative; no origin search or arbitrary smooth-law identification. Same nuisance terms and normalized QR. Input-only v2 replay retains original v1 history and exactly one acquisition-boundary event; separate check values do not enter fitting/planning/revision evidence.",
+  "retainedCounterexample": "Authored fifth-order response still reports expanded-family mismatch and withholds automatic recommendation.",
+  "visuals": "1440/390px original and expanded evidence, keyboard expansion, unchanged no-document-overflow assertion. minmax(0,1fr) keeps wide profile content inside its existing scroller.",
+  "limits": "Source, authored arithmetic and actual browser qualification only. No physical mechanism, confidence, sensor accuracy, hardware control or authenticated historical-source claim."
+}

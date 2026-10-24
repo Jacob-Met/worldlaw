@@ -1,11 +1,11 @@
-import {createStiffnessExperiment,experimentInputs,replayStiffnessExperiment,setPendingStiffnessRequest,setPermittedStiffnessStates,receiveStiffnessObservation} from './experiment.mjs';
+import {createStiffnessExperiment,experimentInputs,replayStiffnessExperiment,setPendingStiffnessRequest,setPermittedStiffnessStates,receiveStiffnessObservation,addStiffnessCubicRevision} from './experiment.mjs';
 import {importStiffnessStudy,exportStiffnessStudy,replaceStiffnessChecks} from './notebook.mjs';
 import {stiffnessExperimentCourse,observeStiffnessCourse} from './experiment-fixture.mjs';
 
 const $=id=>document.getElementById(id);
 const number=value=>Number(value.toPrecision(6)).toString();
 const describeState=s=>`command ${number(s.command)} N·m; angle ${number(s.position)} rad; rate ${number(s.rate)} rad/s`;
-const modelLabel=p=>p.family==='global'?'Global':`Hinge at ${number(p.knot)} rad`;
+const modelLabel=p=>p.family==='global'?'Global':p.family==='cubic'?`Smooth cubic, origin ${number(p.origin)} rad`:`Hinge at ${number(p.knot)} rad`;
 function cell(tr,value){const td=document.createElement('td');td.textContent=value;tr.append(td);return td;}
 function paragraph(parent,value){const p=document.createElement('p');p.textContent=value;parent.append(p);return p;}
 function historyCell(tr,value,label,header){
@@ -31,6 +31,18 @@ export function createExperimentPanel({onChange,onActivity,onError}) {
   const status=$('experiment-status');status.dataset.planStatus=plan.status;
   status.textContent=`${plan.status.replaceAll('_',' ')} · ${session.permitted.length} explicitly permitted states · ${session.acquisitions.length} received observations. ${message}`;
   $('experiment-plan-note').textContent=`Ranking uses only retained training models. Spread must exceed ${number(plan.threshold)} N·m to propose a state. ${plan.interpretation}`;
+  const revision=session.revisionEvidence,revisionStatus=$('family-revision-status');
+  revisionStatus.dataset.boundary=revision?.at??'';
+  revisionStatus.textContent=revision?`Expanded after ${revision.at} received observations, with cubic origin ${number(revision.origin)} rad. Declared reason: ${revision.reason}`:
+   'The original global and one-hinge family is active. Expansion is an explicit hypothesis change; it does not authenticate a physical cause.';
+  $('family-revision-comparison').hidden=!revision;
+  if(revision){
+   $('family-original-error').textContent=`${revision.before.trainingRmse===null?'unavailable':number(revision.before.trainingRmse)+' N·m'} · ${revision.before.adequacy.replaceAll('_',' ')}`;
+   $('family-expanded-error').textContent=`${revision.after.trainingRmse===null?'unavailable':number(revision.after.trainingRmse)+' N·m'} · ${revision.after.adequacy.replaceAll('_',' ')}`;
+   $('family-revision-guard').textContent=`These are the training results at boundary ${revision.at}. Frozen forecasts and errors for the ${revision.at} earlier acquisitions retain their original family. Subsequent requests use the expanded library. Checks never enter either fit.`;
+   $('family-origin').value=revision.origin;$('family-reason').value=revision.reason;
+  }
+  for(const id of ['family-origin','family-reason','family-expand'])$(id).disabled=Boolean(revision);
   const proposed=plan.selected,proposedButton=$('experiment-freeze-proposed');proposedButton.disabled=!proposed;
   if(proposed){
    proposedButton.dataset.freezeIndex=proposed.index;
@@ -81,6 +93,12 @@ export function createExperimentPanel({onChange,onActivity,onError}) {
   }
   if(!history.length){const tr=document.createElement('tr'),td=cell(tr,'No sequential observations received. Separate checks do not enter this history.');td.colSpan=4;rows.append(tr);}
  }
+ $('family-revision-form').addEventListener('submit',event=>{event.preventDefault();act(()=>{
+  const origin=$('family-origin').value;
+  if(!origin.trim())throw new Error('Declare a cubic origin in radians.');
+  install(addStiffnessCubicRevision(session,Number(origin),$('family-reason').value),{course:authoredCourse,
+   message:'Added the explicit smooth alternative at the current boundary. Earlier frozen errors are retained; the pending request was cleared.'});
+ });});
  $('experiment-freeze-proposed').addEventListener('click',()=>act(()=>{
   if(!session.plan.selected)throw new Error('No automatic proposal is available. Inspect the declared alternatives.');
   freeze(session.plan.selected.index);

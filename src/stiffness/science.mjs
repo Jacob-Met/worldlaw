@@ -11,7 +11,7 @@ function bounded(value, label, max = LIMIT) {
 }
 export function normalizeSettings(settings) {
   need(settings && typeof settings === 'object' && !Array.isArray(settings), 'Supply investigation settings.');
-  need(Object.keys(settings).every(k => ['knots','nuisanceTerms','noiseSigma','ambiguityDelta'].includes(k)), 'Unknown investigation setting.');
+  need(Object.keys(settings).every(k => ['knots','nuisanceTerms','noiseSigma','ambiguityDelta','cubicOrigin'].includes(k)), 'Unknown investigation setting.');
   const knots = settings.knots;
   need(Array.isArray(knots) && knots.length > 0 && knots.length <= 101, 'Declare 1–101 possible change angles.');
   knots.forEach(x => bounded(x, 'Change angle'));
@@ -23,7 +23,8 @@ export function normalizeSettings(settings) {
   need(noiseSigma >= 1e-7, 'Assumed torque noise must be at least 0.0000001 N·m.');
   const ambiguityDelta = bounded(settings.ambiguityDelta ?? 6, 'Competitive score difference', 100);
   need(ambiguityDelta >= 0, 'Competitive score difference must be nonnegative.');
-  return {knots:[...knots].sort((a,b)=>a-b), nuisanceTerms:NUISANCE.filter(x=>nuisanceTerms.includes(x)), noiseSigma, ambiguityDelta};
+  const revision=Object.hasOwn(settings,'cubicOrigin')?{cubicOrigin:bounded(settings.cubicOrigin,'Declared cubic origin')}:{};
+  return {knots:[...knots].sort((a,b)=>a-b), nuisanceTerms:NUISANCE.filter(x=>nuisanceTerms.includes(x)), noiseSigma, ambiguityDelta,...revision};
 }
 export function defaultKnots(observations, count = 21) {
   const rows = validateRows(observations);
@@ -32,10 +33,11 @@ export function defaultKnots(observations, count = 21) {
   need(hi > lo, 'Different observed angles are needed to offer change angles.');
   return Array.from({length:count}, (_,i)=>lo+(hi-lo)*(i+1)/(count+1));
 }
-function feature(id, row, knot) {
+function feature(id, row, knot, origin) {
   if (id === 'bias') return 1;
   if (id === 'position') return row.position;
   if (id === 'hinge') return Math.max(0, row.position-knot);
+  if (id === 'cubic') return (row.position-origin)**3;
   return row[id];
 }
 function checkedInput(row) {
@@ -43,26 +45,38 @@ function checkedInput(row) {
   return Object.fromEntries(['command','position','rate'].map(k=>[k,bounded(row[k], k)]));
 }
 function checkModel(model) {
-  need(model?.schema === 'worldlaw.stiffness-model/v1' && ['global','piecewise'].includes(model.family),
+  need((model?.schema === 'worldlaw.stiffness-model/v1' && ['global','piecewise'].includes(model.family)) ||
+    (model?.schema === 'worldlaw.stiffness-model/v2' && model.family==='cubic'),
     'Expected an executable stiffness model.');
   need(Array.isArray(model.terms) && model.terms.length >= 1 && model.terms.length <= 5,
     'Invalid model terms.');
   const names = model.terms.map(t=>t?.id);
   need(new Set(names).size === names.length && names.includes('position') &&
-    names.every(x=>[...NUISANCE,'position','hinge'].includes(x)) &&
-    names.includes('hinge') === (model.family === 'piecewise'), 'Invalid stiffness structure.');
+    names.every(x=>[...NUISANCE,'position','hinge','cubic'].includes(x)) &&
+    names.includes('hinge') === (model.family === 'piecewise') &&
+    names.includes('cubic') === (model.family === 'cubic'), 'Invalid stiffness structure.');
   if (model.family === 'piecewise') bounded(model.knot, 'Model change angle');
-  else need(model.knot === null, 'Global models have no change angle.');
+  else need(model.knot === null, 'Smooth models have no change angle.');
+  if(model.family==='cubic')bounded(model.origin,'Declared cubic origin');
   model.terms.forEach(t=>bounded(t.coefficient, 'Coefficient', 1e18));
 }
 function prediction(model, row) {
-  const v = model.terms.reduce((sum,t)=>sum+t.coefficient*feature(t.id,row,model.knot),0);
+  const v = model.terms.reduce((sum,t)=>sum+t.coefficient*feature(t.id,row,model.knot,model.origin),0);
   need(Number.isFinite(v), 'Model prediction overflowed.');
   return v;
 }
 export function predictStiffness(model, row) {
   checkModel(model);
   return prediction(model, checkedInput(row));
+}
+/** Conditional derivative at fixed command/rate; a genuine hinge has no derivative at its knot. */
+export function stiffnessSlope(model, position) {
+  checkModel(model);bounded(position,'Angle');
+  const coefficient=id=>model.terms.find(t=>t.id===id)?.coefficient??0;
+  if(model.family==='piecewise'&&position===model.knot&&coefficient('hinge')!==0)return null;
+  const value=coefficient('position')+(model.family==='piecewise'&&position>model.knot?coefficient('hinge'):0)+
+    (model.family==='cubic'?3*coefficient('cubic')*(position-model.origin)**2:0);
+  need(Number.isFinite(value),'Model slope overflowed.');return value;
 }
 export function evaluateStiffness(model, observations) {
   checkModel(model);
@@ -84,22 +98,26 @@ export function investigateStiffness(observations, requestedSettings) {
     {min:Math.min(...rows.map(r=>r[k])), max:Math.max(...rows.map(r=>r[k]))}]));
   const positions = [...new Set(rows.map(r=>r.position))];
   const target = rows.map(r=>r.jointTorque), profile = [], candidates = [];
-  for (const knot of [null,...settings.knots]) {
-    const family = knot===null?'global':'piecewise';
-    const support = knot===null?null:{
+  const revised=Object.hasOwn(settings,'cubicOrigin');
+  const declarations=[{family:'global',knot:null},...settings.knots.map(knot=>({family:'piecewise',knot})),
+    ...(revised?[{family:'cubic',knot:null,origin:settings.cubicOrigin}]:[])];
+  for (const {family,knot,origin} of declarations) {
+    const support = family!=='piecewise'?null:{
       left:positions.filter(x=>x<knot).length, right:positions.filter(x=>x>knot).length};
-    const entry = {family,knot,support,status:'fitted',model:null};
+    const entry = {family,knot,...(family==='cubic'?{origin,distinctPositions:positions.length}:{}),support,status:'fitted',model:null};
+    if(family==='cubic'&&positions.length<4){entry.status='insufficient_distinct_positions';profile.push(entry);continue;}
     if (support && (support.left<3 || support.right<3)) {
       entry.status='insufficient_side_support'; profile.push(entry); continue;
     }
-    const ids = [...settings.nuisanceTerms,'position',...(knot===null?[]:['hinge'])];
-    const fitted = fitLinearColumns(ids.map(id=>rows.map(row=>feature(id,row,knot))),target);
+    const ids = [...settings.nuisanceTerms,'position',...(family==='piecewise'?['hinge']:family==='cubic'?['cubic']:[])];
+    const fitted = fitLinearColumns(ids.map(id=>rows.map(row=>feature(id,row,knot,origin))),target);
     if (!fitted) { entry.status='rank_deficient'; profile.push(entry); continue; }
     if (fitted.coefficients.some(c=>!Number.isFinite(c)||Math.abs(c)>1e18)) {
       entry.status='unexecutable'; profile.push(entry); continue;
     }
     const terms = ids.map((id,i)=>({id,coefficient:fitted.coefficients[i]}));
-    const model={schema:'worldlaw.stiffness-model/v1',family,knot,terms,units:{...UNITS},domain};
+    const model={schema:family==='cubic'?'worldlaw.stiffness-model/v2':'worldlaw.stiffness-model/v1',
+      family,knot,...(family==='cubic'?{origin}:{}),terms,units:{...UNITS},domain};
     const evaluation=evaluateStiffness(model,rows);
     // A finite-search ranking heuristic: count fitted coefficients plus the searched knot.
     // This is deliberately not a calibrated information criterion or probability.
@@ -108,7 +126,7 @@ export function investigateStiffness(observations, requestedSettings) {
       parameterCount*Math.log(rows.length);
     const slopeLeft=terms.find(t=>t.id==='position').coefficient;
     const slopeChange=terms.find(t=>t.id==='hinge')?.coefficient??0;
-    Object.assign(model,{slopeLeft,slopeRight:slopeLeft+slopeChange,
+    Object.assign(model,{slopeLeft:family==='cubic'?null:slopeLeft,slopeRight:family==='cubic'?null:slopeLeft+slopeChange,
       metrics:{...evaluation,rows:undefined,score,parameterCount,conditionEstimate:fitted.conditionEstimate}});
     delete model.metrics.rows;
     entry.model=model; profile.push(entry); candidates.push(model);
@@ -118,20 +136,24 @@ export function investigateStiffness(observations, requestedSettings) {
   const selected=candidates[0]??null;
   const competitive=selected?candidates.filter(m=>m.metrics.score-selected.metrics.score<=settings.ambiguityDelta):[];
   const baseline=candidates.find(m=>m.family==='global')??null;
-  const status=!selected?'unidentifiable':selected.family==='global'?'global_preferred':
+  const status=!selected?'unidentifiable':
+    revised&&new Set(competitive.map(m=>m.family)).size>1?'structure_ambiguous':
+    selected.family==='cubic'?'cubic_preferred':selected.family==='global'?'global_preferred':
     competitive.some(m=>m.family==='global')?'structure_ambiguous':
     competitive.length>1?'change_angle_ambiguous':'piecewise_preferred';
-  return {schema:'worldlaw.stiffness-investigation/v1',settings,observations:rows,domain,selected,baseline,
+  return {schema:revised?'worldlaw.stiffness-investigation/v2':'worldlaw.stiffness-investigation/v1',settings,observations:rows,domain,selected,baseline,
+    ...(revised?{originalSelected:candidates.find(m=>m.family!=='cubic')??null}:{}),
     candidates,competitive,profile,status,diagnostics:{
       examined:profile.length,fitted:candidates.length,refused:profile.filter(p=>p.status!=='fitted').length,
       adequacy:!selected?'unassessed':selected.metrics.rmse>3*settings.noiseSigma?'training_mismatch':'not_falsified_on_training',
       scoreMethod:'n*log(max(training_mse,assumed_noise^2))+(coefficient_count+searched_knot_count)*log(n)',
       minDistinctPositionsPerSide:3,
       limitations:[
-        'Only the declared finite change-angle grid and nuisance terms are tested.',
+        revised?'Only global, declared one-hinge and linear-plus-cubic-at-the-declared-origin alternatives are tested. The cubic origin is fixed, not searched.':'Only the declared finite change-angle grid and nuisance terms are tested.',
         'A lower score or a kink does not establish a contact, joint topology or physical cause.',
         'Noise and competitive-score settings are assumptions; no probability or confidence interval is computed.',
         'Piecewise candidates require three distinct observed positions on each side, plus full numerical rank.',
+        ...(revised?['The cubic alternative requires four distinct observed positions and full numerical rank. Its slope varies with angle; it is not an arbitrary smooth law.']:[]),
         'Slope signs are unrestricted. No passivity, physical safety or causal claim is established.',
         'Future checks are excluded from fitting, ranking, grid generation and competitive-set construction.',
         'Predictions outside the observed input ranges are explicitly marked as extrapolation.'
