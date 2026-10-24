@@ -7,9 +7,10 @@ held-out data, discovery options or the notebook schema.
 
 ## What this tests
 
-Every current scalar candidate is a sum of functions of separate inputs:
+Every candidate in the default additive scalar library is a sum of functions of separate inputs:
 `f(command) + g(position) + h(rate)`. This remains true of the optional cubic
-position term. At two distinct values of each of two inputs, holding the third
+position term. The explicitly admitted command–position interaction is outside
+this additive family; selecting it does not erase the original screen result. At two distinct values of each of two inputs, holding the third
 input exactly fixed, the four-corner torque contrast must be zero:
 
 `tau(x0,y0) - tau(x1,y0) - tau(x0,y1) + tau(x1,y1) = 0`.

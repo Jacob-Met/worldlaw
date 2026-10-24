@@ -1,8 +1,10 @@
-import {discover, evaluate, revise, planExperiment} from './science/torque-discovery.mjs';
+import {discover, evaluate, revise, planExperiment, DEFAULT_TERMS} from './science/torque-discovery.mjs';
 import {createLab, executeLab} from './science/virtual-lab.mjs';
 import {validateDataset, validateRows, candidateGrid, FIELDS, MAX_ROWS, MAX_TEXT_LENGTH} from './data.mjs';
 
 export const SESSION_SCHEMA='worldlaw.session/v1';
+export const INTERACTION_SESSION_SCHEMA='worldlaw.session/v2';
+const usesInteraction = raw => raw.initialOptions?.includeCommandPosition===true || raw.events.some(event=>event?.kind==='options' && event.options?.includeCommandPosition===true);
 export const DEFAULT_OPTIONS=Object.freeze({noiseSigma:0.01,maxTerms:4,ambiguityDelta:6});
 const MAX_EVENTS=128;
 function validSeed(seed){if(!Number.isSafeInteger(seed)||Math.abs(seed)>1e9)throw new Error('Invalid virtual instrument seed. Use an integer between −1000000000 and 1000000000.');return seed;}
@@ -18,8 +20,13 @@ const cleanOptions = options => {
   for (const key of Object.keys(DEFAULT_OPTIONS)) if(options?.[key] !== undefined) result[key]=options[key];
   if(!Number.isFinite(result.noiseSigma) || result.noiseSigma<1e-7 || result.noiseSigma>1000) throw new Error('Assumed sensor noise must be between 0.0000001 and 1000 N·m.');
   if(!Number.isInteger(result.maxTerms) || result.maxTerms<1 || result.maxTerms>7 || !Number.isFinite(result.ambiguityDelta) || result.ambiguityDelta<0 || result.ambiguityDelta>100) throw new Error('Unsupported discovery options.');
+  if(options?.includeCommandPosition !== undefined){
+    if(typeof options.includeCommandPosition !== 'boolean')throw new Error('Explicit interaction choice must be boolean.');
+    result.includeCommandPosition=options.includeCommandPosition;
+  }
   return result;
 };
+function discoveryOptions(options){return options.includeCommandPosition?{...options,terms:[...DEFAULT_TERMS,'command_position']}:options;}
 function summary(discovery,heldOut,label,kind) {
   return {label,kind,count:discovery.observations.length,modelId:discovery.selected.id,equation:discovery.selected.equation,rmse:discovery.selected.metrics.rmse,heldOutRMSE:evaluate(discovery.selected,heldOut).rmse};
 }
@@ -30,7 +37,7 @@ export function createSession(dataset,options=DEFAULT_OPTIONS,{labSeed=null}={})
     if(!matchesVirtualSeed(base.observations,validateRows(fixture.initialSamples)) || !matchesVirtualSeed(base.heldOut,validateRows(fixture.evaluationSamples,{allowEmpty:true}))) throw new Error('Virtual instrument data does not match its declared seed.');
     base.source={label:fixture.label,kind:'synthetic-virtual-instrument',units:{...base.source.units}};
   }
-  const initialOptions=cleanOptions(options); const discovery=discover(base.observations,initialOptions);
+  const initialOptions=cleanOptions(options); const discovery=discover(base.observations,discoveryOptions(initialOptions));
   return {schema:SESSION_SCHEMA,base,lab,initialOptions,options:initialOptions,events:[],discovery,history:[summary(discovery,base.heldOut,'Initial observations','initial')]};
 }
 export function newVirtualSession(seed=17) {
@@ -58,7 +65,8 @@ export function runVirtualExperiment(state,input) {
 }
 export function refitSession(state,options) {
   options=cleanOptions({...state.options,...options});
-  return eventState(state,{kind:'options',label:'Revised noise assumption',options},discover(state.discovery.observations,options),options);
+  const label=Boolean(options.includeCommandPosition)!==Boolean(state.options.includeCommandPosition)?'Revised scalar feature library':'Revised noise assumption';
+  return eventState(state,{kind:'options',label,options},discover(state.discovery.observations,discoveryOptions(options)),options);
 }
 export function sessionPlan(state) {
   const source=state.lab ? createLab({seed:state.lab.seed}).candidateInputs : candidateGrid(state.base.observations);
@@ -68,12 +76,13 @@ export function sessionPlan(state) {
   return candidates.length ? planExperiment(state.discovery,candidates) : {status:'no_unobserved_inputs',selected:null,ranked:[],modelIds:[]};
 }
 export function exportSession(state) {
-  return JSON.stringify({schema:SESSION_SCHEMA,base:state.base,lab:state.lab,initialOptions:state.initialOptions,events:state.events},null,2);
+  return JSON.stringify({schema:usesInteraction(state)?INTERACTION_SESSION_SCHEMA:SESSION_SCHEMA,base:state.base,lab:state.lab,initialOptions:state.initialOptions,events:state.events},null,2);
 }
 export function restoreSession(text) {
   if(typeof text!=='string' || text.length>MAX_TEXT_LENGTH) throw new Error('Notebook must be JSON smaller than 2 MB.');
   let raw; try{raw=JSON.parse(text);}catch{throw new Error('The notebook JSON could not be read.');}
-  if(raw?.schema!==SESSION_SCHEMA || !Array.isArray(raw.events) || raw.events.length>MAX_EVENTS) throw new Error('Unsupported or incomplete WORLDLAW notebook.');
+  if(![SESSION_SCHEMA,INTERACTION_SESSION_SCHEMA].includes(raw?.schema) || !Array.isArray(raw.events) || raw.events.length>MAX_EVENTS) throw new Error('Unsupported or incomplete WORLDLAW notebook.');
+  if(raw.schema===SESSION_SCHEMA && usesInteraction(raw))throw new Error('Interaction feature history requires the v2 notebook envelope.');
   if(raw.lab) validSeed(raw.lab.seed);
   let state=createSession(raw.base,raw.initialOptions,{labSeed:raw.lab?.seed??null});
   for(const event of raw.events) {

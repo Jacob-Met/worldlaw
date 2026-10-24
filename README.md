@@ -259,13 +259,22 @@ The scalar Studio now inspects four-corner contrasts from its original observati
 rows. Choose two varied inputs, an exactly fixed third coordinate, and an explicit
 absolute torque-reading bound. Compare every complete matched rectangle and
 inspect its original readings. A contrast excluding zero challenges the additive
-assumption shared by the current scalar library; incompatible repeated readings
+assumption shared by the default additive scalar library; incompatible repeated readings
 remain a separate outcome. No new physical cause, interaction model or observation
 is asserted. See [the mechanism, authored controls and receiving](docs/ADDITIVE_SEPARABILITY.md).
 ## Receive a closed two-coordinate path
 
 In Coupling Lab, **Take the response around a closed path** compares supplied paired-angle/torque readings with every fitted affine law using signed polygonal work. Inspect the numbered loop, shared reading-error bounds, model disagreements and coordinate extrapolation. Input-only save/reopen retains the original training and path without refitting on receiving evidence. The nonlinear conservative control exposes a quadrature artifact; nonzero polygonal work does not prove dissipation. See [the circulation contract](docs/COUPLED_CIRCULATION.md).
 
+## Revise an additive scalar explanation
+
+In the Studio, explicitly admit **command × position (uθ)** beside the current
+model, then refit the original observations through the maintained discovery
+engine. The initial fit, separate held-out evidence and revision history
+remain visible. Nonzero fixed-command dynamics makes the revised executable law
+inspectable. Default additive notebooks remain v1; histories using this option
+export v2 so older readers refuse rather than silently lose the model choice.
+See [the authored course, compatibility and receiving](docs/SCALAR_INTERACTION.md).
 ### Inspect what integrated work hides
 
 After a coupled-loop comparison, **Inspect responses hidden by integrated work** confronts every individual torque reading with the retained fixed models. It preserves explicit contradictions that cancel in the signed integral, identifies symmetric affine fields that no closed-work probe can separate, and shows the maintained training-only point proposal as a different observable. It reuses the same source inputs without refitting or treating the two summaries as independent evidence. See [the observable comparison](docs/COUPLING_OBSERVABLES.md).

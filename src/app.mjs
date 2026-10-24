@@ -10,7 +10,7 @@ import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,
 
 const $=id=>document.getElementById(id);
 const storageKey='worldlaw.notebook.v1';
-const names={command:'Actuation',rate:'Viscous damping',coulomb:'Coulomb friction',spring:'Linear spring',gravity:'Sinusoidal gravity',quadratic:'Quadratic drag',bias:'Bias',cubic:'Cubic position'};
+const names={command:'Actuation',rate:'Viscous damping',coulomb:'Coulomb friction',spring:'Linear spring',gravity:'Sinusoidal gravity',quadratic:'Quadratic drag',bias:'Bias',cubic:'Cubic position',command_position:'Command × position'};
 const fmt=(value,digits=4)=>value===null||!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<0.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
 const set=(id,text)=>{$(id).textContent=text;};
@@ -108,6 +108,8 @@ function render(){
   $('undo').disabled=state.events.length===0;$('measured-field').hidden=Boolean(state.lab);$('run-experiment').textContent=state.lab?'Run virtual experiment':'Record measured outcome';
   set('experiment-mode',state.lab?'Execute the virtual torque instrument at these inputs.':'Use your instrument, then enter its measured net torque. No hardware is controlled.');
   $('noise-sigma').value=state.options.noiseSigma;
+  $('include-command-position').checked=Boolean(state.options.includeCommandPosition);
+  set('feature-library-status',state.options.includeCommandPosition?'uθ is admitted, not assumed true. Selection uses fit rows only; held-out rows remain separate. Interaction history exports as a v2 notebook that older readers refuse.':'Additive library active. A revision retains the initial fit and evidence in notebook history.');
   const diag=d.diagnostics;
   set('diagnostics',`${diag.competitiveCount} competitive ${diag.competitiveCount===1?'structure':'structures'} at the current noise assumption. ${diag.adequacy==='residual_mismatch'?'Residual mismatch: this library does not explain the data within the assumed noise.':diag.selectionAmbiguous?'The current observations do not isolate a unique explanation.':'One structure ranks ahead within this finite library.'}${diag.identifiability==='insufficient_excitation'?' Some inputs are not independently excited; more varied observations are needed.':''}`);
   plan=sessionPlan(state);$('use-proposal').disabled=!plan.selected;
@@ -121,8 +123,8 @@ function render(){
 function useProposal(announce=true){if(!plan?.selected)return;for(const f of ['position','rate','command'])$(f).value=Number(plan.selected.input[f].toPrecision(10));if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
 function runSimulation(announce=true){
   try{
-    trajectory=simulate(model(),{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:0});
-    chart('trajectory-chart',[{name:'Selected model · zero input torque',color:'#1c7562',line:true,points:trajectory.map(r=>({x:r.time,y:r.position}))}],{xLabel:'Simulation time (s)',yLabel:'Predicted angle (rad)'});
+    trajectory=simulate(model(),{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')});
+    chart('trajectory-chart',[{name:`Selected model · fixed command ${fmt(numberInput('simulation-command'))} N·m`,color:'#1c7562',line:true,points:trajectory.map(r=>({x:r.time,y:r.position}))}],{xLabel:'Simulation time (s)',yLabel:'Predicted angle (rad)'});
     animationStart=performance.now();set('simulation-status',`${trajectory.length} RK4 states · schematic joint · prediction only`);
     if(announce)notice('Executed the selected torque model through the RK4 dynamics solver.');
   }catch(error){trajectory=[];set('simulation-status',`Prediction unavailable: ${error.message}`);$('trajectory-chart').replaceChildren(el('p',error.message,'empty-state'));if(announce)throw error;}
@@ -185,3 +187,5 @@ $('export-observations').addEventListener('click',()=>action(()=>download(observ
 $('run-simulation').addEventListener('click',()=>action(()=>runSimulation()));
 animationHandle=requestAnimationFrame(draw);
 window.addEventListener('pagehide',()=>cancelAnimationFrame(animationHandle));
+
+$('revise-features').addEventListener('click',()=>action(()=>adopt(refitSession(state,{includeCommandPosition:$('include-command-position').checked}),'Revised the candidate feature library. Original observations and the initial fit are retained.')));
