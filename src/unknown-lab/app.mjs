@@ -1,3 +1,4 @@
+import {mountPeriodBands} from './period-band-panel.mjs';
 import {mountPeriodicContrast} from './periodic-contrast-panel.mjs';
 import {mountOrderConstruction} from './order-construction-panel.mjs';
 import {mountSerialOrders} from './serial-order-panel.mjs';
@@ -145,4 +146,4 @@ mountSerialOrders();
 
 mountOrderConstruction();
 
-
+mountPeriodBands();
