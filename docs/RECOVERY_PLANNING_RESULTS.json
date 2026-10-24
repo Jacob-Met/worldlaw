@@ -1,0 +1,2730 @@
+{
+  "qualification": "72 authored noisy Euler controls, not physical validation or calibrated uncertainty. Both methods share all waits, pair counts, 500-second complete paired budget, positive-separation eligibility and independent acquisition noise seed. Refusals retained; this finite course does not establish universal planner superiority.",
+  "settings": {
+    "delays": [
+      0.2,
+      0.5,
+      1,
+      1.5,
+      2,
+      3,
+      4,
+      6,
+      10,
+      20,
+      60
+    ],
+    "pairs": 32,
+    "overheadPerPair": 1,
+    "budgetSeconds": 500,
+    "radius": "1.5 times authored per-reading noise sigma"
+  },
+  "summary": {
+    "shared_interval_policy": {
+      "offered": 56,
+      "refused": 16,
+      "uniquelyCorrect": 50,
+      "trueExcluded": 0,
+      "noCandidate": 0,
+      "radiusExceeded": 0,
+      "meanWaitSeconds": 2.017857142857143,
+      "meanSurviving": 1.1071428571428572
+    },
+    "largest_pair": {
+      "offered": 56,
+      "refused": 16,
+      "uniquelyCorrect": 27,
+      "trueExcluded": 0,
+      "noCandidate": 0,
+      "radiusExceeded": 0,
+      "meanWaitSeconds": 5.491071428571429,
+      "meanSurviving": 1.5357142857142858
+    }
+  },
+  "paired": {
+    "cases": 56,
+    "sharedPolicyUnique": 50,
+    "largestPairUnique": 27
+  },
+  "outcomes": [
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 11,
+      "trainingSurvivors": [
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1,
+          "costSeconds": 96,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010706569121555681,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": true,
+          "observedRadius": 0.01070656912155568,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 37,
+      "trainingSurvivors": [
+        "decay:1",
+        "decay:2"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 0.5,
+          "costSeconds": 64,
+          "allPairsSeparated": true,
+          "observedRadius": 0.009620883360604768,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.009620883360604765,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1,
+          "costSeconds": 96,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010971821161644843,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.010971821161644853,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 251,
+      "trainingSurvivors": [
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1,
+          "costSeconds": 96,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010690965374762886,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010690965374762888,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03211970736466704,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.032119707364667044,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 3,
+          "costSeconds": 224,
+          "allPairsSeparated": false,
+          "observedRadius": 0.028862650081814326,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.028862650081814326,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03291546348493455,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03291546348493456,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03207289612428867,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03207289612428867,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 11,
+      "trainingSurvivors": [
+        "decay:1"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "unavailable"
+        },
+        "largest_pair": {
+          "status": "unavailable"
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 37,
+      "trainingSurvivors": [
+        "decay:1"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "unavailable"
+        },
+        "largest_pair": {
+          "status": "unavailable"
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 103,
+      "trainingSurvivors": [
+        "decay:1"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "unavailable"
+        },
+        "largest_pair": {
+          "status": "unavailable"
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 251,
+      "trainingSurvivors": [
+        "decay:1"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "unavailable"
+        },
+        "largest_pair": {
+          "status": "unavailable"
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.03211970736466703,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03211970736466703,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 37,
+      "trainingSurvivors": [
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.028862650081814323,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": true,
+          "observedRadius": 0.028862650081814323,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.03291546348493455,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03291546348493455,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.03207289612428868,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03207289612428868,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08565255297244541,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08565255297244541,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": false,
+          "observedRadius": 0.07696706688483823,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.07696706688483823,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08777456929315877,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08777456929315877,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 1,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08552772299810318,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.0855277229981032,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.01070656912155567,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.010706569121555681,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1,
+          "costSeconds": 96,
+          "allPairsSeparated": true,
+          "observedRadius": 0.009620883360604767,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.009620883360604767,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010971821161644846,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.010971821161644853,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.0106909653747629,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.01069096537476289,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03211970736466703,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03211970736466704,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 3,
+          "costSeconds": 224,
+          "allPairsSeparated": false,
+          "observedRadius": 0.028862650081814326,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.028862650081814326,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03291546348493454,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03291546348493456,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03207289612428868,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03207289612428867,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 11,
+      "trainingSurvivors": [
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 0.5,
+          "costSeconds": 64,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010706569121555676,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 3,
+          "costSeconds": 224,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010706569121555678,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 37,
+      "trainingSurvivors": [
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 0.5,
+          "costSeconds": 64,
+          "allPairsSeparated": true,
+          "observedRadius": 0.009620883360604763,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 3,
+          "costSeconds": 224,
+          "allPairsSeparated": true,
+          "observedRadius": 0.009620883360604768,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 103,
+      "trainingSurvivors": [
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 0.5,
+          "costSeconds": 64,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010971821161644846,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 3,
+          "costSeconds": 224,
+          "allPairsSeparated": true,
+          "observedRadius": 0.01097182116164484,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 251,
+      "trainingSurvivors": [
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 0.5,
+          "costSeconds": 64,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010690965374762893,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 3,
+          "costSeconds": 224,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010690965374762891,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.03211970736466704,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03211970736466704,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.028862650081814326,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.028862650081814323,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": true,
+          "observedRadius": 0.03291546348493455,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03291546348493455,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.03207289612428868,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03207289612428867,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08565255297244541,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08565255297244541,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.07696706688483823,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.07696706688483823,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08777456929315877,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08777456929315877,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2",
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 2,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08552772299810318,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08552772299810318,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:1",
+            "decay:2"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010706569121555676,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.010706569121555671,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.009620883360604768,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.009620883360604767,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010971821161644843,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.010971821161644845,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.01,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010690965374762888,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.010690965374762898,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03211970736466703,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03211970736466703,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2",
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 3,
+          "costSeconds": 224,
+          "allPairsSeparated": false,
+          "observedRadius": 0.028862650081814323,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.028862650081814323,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03291546348493454,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03291546348493455,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.03,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03207289612428868,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03207289612428868,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2",
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.25,
+      "sigma": 0.08,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "no-informative-delay"
+        },
+        "largest_pair": {
+          "status": "no-informative-delay"
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 0.5,
+          "costSeconds": 64,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010706569121555676,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010706569121555674,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 0.5,
+          "costSeconds": 64,
+          "allPairsSeparated": true,
+          "observedRadius": 0.009620883360604765,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": true,
+          "observedRadius": 0.009620883360604763,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 0.5,
+          "costSeconds": 64,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010971821161644846,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010971821161644848,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.01,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 0.5,
+          "costSeconds": 64,
+          "allPairsSeparated": true,
+          "observedRadius": 0.010690965374762895,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": true,
+          "observedRadius": 0.01069096537476289,
+          "plannedRadius": 0.015,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 2,
+          "costSeconds": 160,
+          "allPairsSeparated": true,
+          "observedRadius": 0.03211970736466703,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03211970736466704,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.028862650081814326,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.02886265008181433,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.03291546348493456,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03291546348493454,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.03,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 1.5,
+          "costSeconds": 128,
+          "allPairsSeparated": true,
+          "observedRadius": 0.03207289612428868,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.03207289612428868,
+          "plannedRadius": 0.045,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 11,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08565255297244541,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08565255297244542,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2",
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 37,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.07696706688483823,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.07696706688483823,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 103,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08777456929315879,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08777456929315877,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        }
+      }
+    },
+    {
+      "tau": 4,
+      "amplitude": 0.6,
+      "sigma": 0.08,
+      "seed": 251,
+      "trainingSurvivors": [
+        "persistent",
+        "decay:1",
+        "decay:2",
+        "decay:4"
+      ],
+      "trials": {
+        "shared_interval_policy": {
+          "status": "observed",
+          "delaySeconds": 4,
+          "costSeconds": 288,
+          "allPairsSeparated": false,
+          "observedRadius": 0.0855277229981032,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": true
+        },
+        "largest_pair": {
+          "status": "observed",
+          "delaySeconds": 6,
+          "costSeconds": 416,
+          "allPairsSeparated": false,
+          "observedRadius": 0.08552772299810318,
+          "plannedRadius": 0.12,
+          "radiusMet": true,
+          "surviving": [
+            "decay:2",
+            "decay:4"
+          ],
+          "trueRetained": true,
+          "uniquelyCorrect": false
+        }
+      }
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import {screenIntervalPairs,selectSeparatingCandidate} from '../experiment-design/interval-separation.mjs';
 // Complete prediction-set separation under declared measurement/cost assumptions.
 import {fitDurationModels,validateDurationStudy,DURATION_SCHEMA} from './duration-response.mjs';
 export const DURATION_PLAN_SCHEMA='worldlaw.duration-plan/v1';
@@ -23,18 +24,13 @@ export function planDurationAcquisition(training,input){
  const minTraining=Math.min(...study.runs.map(r=>r.duration)),maxTraining=Math.max(...study.runs.map(r=>r.duration));
  const candidates=settings.durations.map(duration=>{
   const costSeconds=settings.pairs*(duration+settings.overheadPerPair);
-  const predictions=models.map(model=>({id:model.id,interval:interval(model,duration)})),pairs=[];
-  for(let i=0;i<predictions.length;i++)for(let j=i+1;j<predictions.length;j++){
-   const a=predictions[i],b=predictions[j],gap=Math.max(0,a.interval[0]-b.interval[1],b.interval[0]-a.interval[1]);
-   pairs.push({hypotheses:[a.id,b.id],gap,margin:gap-2*settings.contrastRadius,separable:gap>2*settings.contrastRadius+1e-12});
-  }
+  const predictions=models.map(model=>({id:model.id,interval:interval(model,duration)}));
+  const pairs=screenIntervalPairs(predictions,settings.contrastRadius);
   const separated=pairs.filter(p=>p.separable).length;
   return {duration,costSeconds,withinBudget:costSeconds<=settings.budgetSeconds,predictions,pairs,
    separated,total:pairs.length,allSeparated:separated===pairs.length,extrapolation:duration<minTraining||duration>maxTraining};
  });
- const eligible=candidates.filter(c=>c.withinBudget&&c.separated>0).sort((a,b)=>
-  Number(b.allSeparated)-Number(a.allSeparated)||b.separated-a.separated||a.costSeconds-b.costSeconds||a.duration-b.duration);
- const selected=eligible[0]??null;
+ const selected=selectSeparatingCandidate(candidates,'duration');
  return {...base,candidates,selected,status:selected?(selected.allSeparated?'all-pairs-separated':'partial-separation'):'no-informative-duration',
   reason:selected?'Separation depends on the declared future contrast radius and finite offered hypotheses.':
    candidates.some(c=>c.withinBudget)?'Every affordable duration leaves all prediction sets overlapping within the declared screen radius.':'No offered duration fits the declared time budget.'};
