@@ -1,0 +1,82 @@
+{
+  "format": "chronos-independent-reference/v1",
+  "source": {
+    "sha256": "fbec4761d153c6a5bf486e88ff333aef9cd32b64e1fc87488a594d22b18c9bad",
+    "width": 476,
+    "height": 476,
+    "video_stream": "v:0",
+    "pts_origin_s": 0,
+    "attribution": {
+      "title": "Double-pendulum-metastable-mode.webm",
+      "authors": [
+        "Frank Stollmeier",
+        "Manuel Schottdorf"
+      ],
+      "url": "https://commons.wikimedia.org/wiki/File:Double-pendulum-metastable-mode.webm",
+      "license": "CC BY-SA 4.0",
+      "media_distribution": "Original media and extracted PNGs are internal receiving inputs and are not included in the product."
+    }
+  },
+  "time_unit": "s",
+  "position_unit": "px",
+  "coordinate_frame": "native-video-raster",
+  "annotation": {
+    "method": "Assistant visual marking of the red-rimmed bright disk in four unannotated original PNGs at 2, 4, 6 and 8 seconds, before reading the retained tracker positions at those times. Integer pixel centers and a 5 px disk radius were estimated visually; the radius is authored, not calibrated. This is a sparse, fallible comparison, not a blind identity study or a ground-truth dataset.",
+    "independent_of_tracker": true
+  },
+  "tracks": [
+    {
+      "id": "marker",
+      "labels": [
+        {
+          "t": 2,
+          "frame_index": 50,
+          "frame_pts_s": 2,
+          "frame_t": 2,
+          "frame_file": "frame-001.png",
+          "frame_sha256": "04506b7cfbb97826bc267a633297cdc648d15e55d3f39a5b4513a7e528d05c80",
+          "status": "visible",
+          "x": 288,
+          "y": 140,
+          "uncertainty_px": 5
+        },
+        {
+          "t": 4,
+          "frame_index": 100,
+          "frame_pts_s": 4,
+          "frame_t": 4,
+          "frame_file": "frame-002.png",
+          "frame_sha256": "1b3e86db7711943d1de3f5a4b5ef876ffde817be62d8d257805774a79fb82e42",
+          "status": "visible",
+          "x": 220,
+          "y": 130,
+          "uncertainty_px": 5
+        },
+        {
+          "t": 6,
+          "frame_index": 150,
+          "frame_pts_s": 6,
+          "frame_t": 6,
+          "frame_file": "frame-003.png",
+          "frame_sha256": "b46d48bc95b009c51ab74c8f52c72f742f1f731d46faa3ab812b4a68d19ca98b",
+          "status": "visible",
+          "x": 146,
+          "y": 185,
+          "uncertainty_px": 5
+        },
+        {
+          "t": 8,
+          "frame_index": 200,
+          "frame_pts_s": 8,
+          "frame_t": 8,
+          "frame_file": "frame-004.png",
+          "frame_sha256": "1db32a79c24cc64046bbf51a5168b0e0e682f28ddd3b8300ea352f9effc53f4b",
+          "status": "visible",
+          "x": 340,
+          "y": 272,
+          "uncertainty_px": 5
+        }
+      ]
+    }
+  ]
+}
