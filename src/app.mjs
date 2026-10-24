@@ -1,5 +1,6 @@
 import {renderInputEnclosures} from './science/input-enclosure-panel.mjs';
 import {renderStateSupport} from './science/state-support-panel.mjs';
+import {renderParameterSensitivity} from './science/parameter-sensitivity-panel.mjs';
 import {diagnoseReplicates} from './science/replicate-diagnostics.mjs';
 import {evaluate,predict,simulate} from './science/torque-discovery.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
@@ -89,6 +90,8 @@ function renderModel(){
     el('p','Exact inputs are grouped without rounding. Scatter may include drift or hidden state; duplicate rows are not verified independent acquisitions. Group-mean mismatch includes noise and fitting reuse, not just systematic law error. No calibrated confidence or physical cause is established.','subtle'));
   let support=$('state-support');if(!support){support=el('div');support.id='state-support';$('replicate-diagnostics').after(support);}
   renderStateSupport(support,m,state.discovery.observations);
+  let sensitivity=$('parameter-sensitivity');if(!sensitivity){sensitivity=el('div');sensitivity.id='parameter-sensitivity';support.after(sensitivity);}
+  renderParameterSensitivity(sensitivity,m,state.discovery.observations);
   let enclosure=$('input-enclosures');if(!enclosure){enclosure=el('div');enclosure.id='input-enclosures';$('state-support').after(enclosure);}
   renderInputEnclosures(enclosure,m,state.discovery.observations);
   runSimulation(false);
