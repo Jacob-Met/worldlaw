@@ -21,6 +21,8 @@ try {
   await panel.locator('#noise').fill('0.00001');await panel.locator('#search').focus();await page.keyboard.press('Enter');
   await panel.locator('#save').waitFor({state:'visible'});await page.waitForFunction(()=>!document.querySelector('#angle-reference-panel').shadowRoot.getElementById('save').disabled);
   assert.match(await panel.locator('#status').textContent(),/selected offset 0.3 rad/);
+  assert.match(await panel.locator('#consistency').textContent(),/shared grid reference/);
+  assert.equal(await panel.locator('#run-audit tr').count(),2);
   const prediction=await panel.locator('#prediction').textContent();assert.match(prediction,/numerical comparison compared/);
   const downloadEvent=page.waitForEvent('download');await panel.locator('#save').click();const downloaded=await downloadEvent;const notebook=resolve(artifacts,'reference-notebook.json');await downloaded.saveAs(notebook);
   const saved=JSON.parse(await readFile(notebook,'utf8'));assert.equal(saved.schema,'worldlaw.angle-reference-investigation/v1');assert.equal(saved.search,undefined);
@@ -34,7 +36,11 @@ try {
   await page.setViewportSize({width:1440,height:1000});
   await page.locator('#example-choice').selectOption('measured');await page.locator('#load-example').click();await page.waitForFunction(()=>!document.getElementById('refit').disabled);assert.equal(await panel.locator('#save').isDisabled(),true);
   await panel.locator('#noise').fill('0.01');await panel.locator('#offsets').fill(Array.from({length:21},(_,i)=>(i-10)/20).join(','));await panel.locator('#search').click();await page.waitForFunction(()=>!document.querySelector('#angle-reference-panel').shadowRoot.getElementById('save').disabled);
-  const physical={status:await panel.locator('#status').textContent(),prediction:await panel.locator('#prediction').textContent(),source:await panel.locator('#source').textContent()};assert.match(physical.source,/MEASURED/);await panel.screenshot({path:resolve(artifacts,'pasco.png')});
-  assert.deepEqual(errors,[]);const receipt={checks:['actual angular import','keyboard search','frozen prediction','input-only download','invalid settings revoke','reopen recomputes','invalid reopen preserves','desktop+narrow canvas','focus+narrow bounds','source replacement revokes','measured PASCO comparison'],prediction,physical,errors};
+  const physical={status:await panel.locator('#status').textContent(),consistency:await panel.locator('#consistency').textContent(),prediction:await panel.locator('#prediction').textContent(),source:await panel.locator('#source').textContent()};assert.match(physical.source,/MEASURED/);assert.match(physical.consistency,/incompatible run references/);assert.match(await panel.locator('#next-observation').textContent(),/independent fixed reference/);await panel.screenshot({path:resolve(artifacts,'pasco.png')});
+  saved.bundle.trainingRuns[0].samples.forEach(row=>{row.position=.3;});saved.bundle.trainingRuns[0].source.label='Authored stationary negative control';
+  await panel.locator('#open').setInputFiles({name:'stationary-negative.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(saved))});
+  await page.waitForFunction(()=>document.querySelector('#angle-reference-panel').shadowRoot.getElementById('consistency').textContent.includes('insufficient excitation'));
+  assert.match(await panel.locator('#consistency').textContent(),/comparison withheld/);
+  assert.deepEqual(errors,[]);const receipt={checks:['actual angular import','keyboard search','frozen prediction','input-only download','invalid settings revoke','reopen recomputes','invalid reopen preserves','desktop+narrow canvas','focus+narrow bounds','source replacement revokes','measured PASCO comparison','shared training reference','measured run-reference disagreement','stationary run withholds comparison'],prediction,physical,errors};
   await writeFile(resolve(artifacts,'receipt.json'),JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt,null,2));
 } finally {await browser.close();await new Promise(r=>server.close(r));}

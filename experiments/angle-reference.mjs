@@ -7,6 +7,7 @@ const offsets=Array.from({length:21},(_,i)=>(i-10)/20);
 const angular=(r,offset)=>({id:r.id,label:r.label,kind:'synthetic',inertia:null,dynamics:'unforced_scalar_rotation',initialRate:r.initialRate,
   source:{...r.source,recordingId:r.id},samples:r.samples.map(s=>({time:s.time,position:s.position+offset}))});
 const summarize=r=>({status:r.search.status,selectedOffset:r.search.selected.offset,competitive:r.search.competitiveOffsets,
+  consistency:{status:r.consistency.status,sharedOffsets:r.consistency.sharedOffsets,runs:r.consistency.runs.map(run=>({runId:run.runId,selectedOffset:run.selectedOffset,supportedOffsets:run.supportedOffsets,modelId:run.modelId,blockers:run.blockers,trainingRmseInNoiseUnits:run.trainingRmseInNoiseUnits??null}))},
   model:r.search.selected.model.id,trainingMismatch:r.search.selected.fitDiagnostics.trainingRmseInNoiseUnits,
   scoreImprovement:r.search.scoreImprovement,challenge:r.comparisons.map(p=>({runId:p.runId,
     baselineRMSE:p.baseline.rollout?.metrics.positionRMSE??null,selectedRMSE:p.selected.rollout?.metrics.positionRMSE??null,
