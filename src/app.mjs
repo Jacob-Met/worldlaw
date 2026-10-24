@@ -1,3 +1,4 @@
+import {diagnoseReplicates} from './science/replicate-diagnostics.mjs';
 import {evaluate,predict,simulate} from './science/torque-discovery.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
 import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,exportSession,restoreSession,undoSession} from './session.mjs';
@@ -78,6 +79,12 @@ function renderModel(){
     {name:'Fit residual',color:'#1c7562',points:train.rows.map(r=>({x:r.position,y:r.residual}))},
     {name:'Held-out residual',color:'#ba6b32',points:held.rows.map(r=>({x:r.position,y:r.residual}))}
   ],{xLabel:'Angle (rad)',yLabel:'Observed − predicted (N·m)'});
+  let box=$('replicate-diagnostics');
+  if(!box){box=el('div');box.id='replicate-diagnostics';$('residual-chart').after(box);}
+  const rd=diagnoseReplicates(m,state.discovery.observations);
+  box.replaceChildren(el('h3','Repeated-state diagnosis'),
+    el('p',rd.pureErrorDF?`${rd.replicatedRows} rows in ${rd.replicatedGroups} repeated states; ${rd.singletonRows} singleton rows. Within-state scatter: ${fmt(rd.repeatabilityRMS)} N·m (${rd.pureErrorDF} degrees of freedom). Group-mean mismatch: ${fmt(rd.meanMismatchRMS)} N·m over all ${rd.count} rows.`:'No exact repeated states: within-state scatter is unavailable. Repeat the same declared command, angle and rate to examine variability.'),
+    el('p','Exact inputs are grouped without rounding. Scatter may include drift or hidden state; duplicate rows are not verified independent acquisitions. Group-mean mismatch includes noise and fitting reuse, not just systematic law error. No calibrated confidence or physical cause is established.','subtle'));
   runSimulation(false);
 }
 function render(){
