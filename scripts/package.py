@@ -64,6 +64,7 @@ REQUIRED = (
     "src/cycle-work/refinement.mjs", "src/cycle-work/refinement-panel.mjs", "src/cycle-work/refinement-example.mjs",
     "src/cycle-work/curvature-witness.mjs",
     "src/cycle-work/angle-boxes.mjs", "src/cycle-work/angle-boxes-panel.mjs", "src/cycle-work/angle-boxes-example.mjs",
+    "src/cycle-work/branch-response.mjs", "src/cycle-work/branch-response-panel.mjs", "src/cycle-work/branch-response-example.mjs",
     "stiffness.html", "stiffness.css", "src/stiffness/app.mjs", "src/stiffness/science.mjs", "src/stiffness/notebook.mjs", "src/stiffness/fixture.mjs", "src/stiffness/experiment.mjs", "src/stiffness/experiment-fixture.mjs", "src/stiffness/experiment-panel.mjs", "src/science/linear-fit.mjs",
     "coupling.html", "coupling.css", "src/coupling/app.mjs", "src/coupling/science.mjs",
     "src/coupling/dynamics.mjs", "src/coupling/dynamics-panel.mjs",

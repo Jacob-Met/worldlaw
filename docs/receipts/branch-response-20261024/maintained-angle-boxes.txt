@@ -1,0 +1,5 @@
+PASS keyboard receiving, negative work, exact extremal witness and unchanged nominal path
+PASS wider boxes admit zero; actual downloaded inputs reopen and same-file replay clears derived results
+PASS shared-closure mismatch refuses; repeated nominal interior angles remain distinct rows
+PASS stale file completion cannot overwrite newer authored input
+PASS narrow layout and no page errors
