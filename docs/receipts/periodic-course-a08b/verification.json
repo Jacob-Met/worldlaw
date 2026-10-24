@@ -1,0 +1,61 @@
+{
+  "schema": "worldlaw.periodic-course-integration-receipt/v1",
+  "captured_at_utc": "2026-10-24T21:29:40.461986+00:00",
+  "repository": "Jacob-Met/worldlaw",
+  "native_issue": "https://github.com/Jacob-Met/worldlaw/issues/138",
+  "base_commit": "1db1c84bafd6f7f1ae19483753b01408ecf82ae9",
+  "base_tree": "8166a70c6483848c4b561e604a7a5bb2dac83af3",
+  "publication_branch": "work/a08b-periodic-course",
+  "publication_status": "Receipt staging only; commit, PR, merge and post-merge verification are separate integration-owner actions.",
+  "native": {
+    "status": "passed-with-one-existing-optional-skip",
+    "provenance": "Executed full current-main composition reported by the integration owner; this staging script does not rerun or independently infer native tests.",
+    "tests": 677,
+    "passed": 676,
+    "failed": 0,
+    "skipped": 1,
+    "sequence": "Native composition qualified before the final UI-only wording and browser-assertion update. Core mathematics remained unchanged; browser-03 exercises the final UI/harness.",
+    "raw_log_included": true,
+    "raw_log": "native.log"
+  },
+  "browser": {
+    "status": "passed",
+    "run": "browser-03",
+    "completed_groups": [
+      "aggregate-compatible failure is rejected by both all-pair families through keyboard",
+      "full original pair witness and rank limits remain inspectable on compatible evidence",
+      "actual raw-input download and reopen retain model bounds and original source",
+      "parent declarations invalidate dependent course and budget exhaustion never becomes a witness",
+      "invalid bound and forged-unit reopen refuse without stale certificates",
+      "390px controls and full-pair evidence fit without clipping"
+    ],
+    "page_errors": [],
+    "sandbox_admitted": true,
+    "raw_receipt": "browser-verification.json",
+    "sandbox_receipt": "sandbox.json"
+  },
+  "independent_numerical_review": {
+    "status": "reported-passed",
+    "reviewer": "existing direct Workshop worker, same HAMON team",
+    "support_boundary_courses": 40,
+    "false_separations": 0,
+    "deliberately_beyond_support_courses": 40,
+    "verified_separations": 40,
+    "conditions": "64 pairs, 8 near-coincident periods, amplitude bounds 1000 N*m, raw baselines 0 or 900000 N*m; original endpoint support independently checked.",
+    "evidence_boundary": "Independent reviewer executed and reported these controls. Its separate local review script is not claimed to have been executed or copied by this receipt-staging script."
+  },
+  "prior_receiving": [
+    {
+      "run": "browser-01",
+      "status": "failed-receiver-assertion",
+      "reason": "A text regex counted status strings in raw certificate JSON as well as the two family results. The receiver was corrected to assert the two actual family status elements. Original failed log remains with the integration owner."
+    },
+    {
+      "run": "browser-02",
+      "status": "passed-before-final-wording",
+      "reason": "Six groups passed; rendered review requested human-facing headings/status labels. Browser-03 rechecks the final wording and data-status assertions."
+    }
+  ],
+  "interpretation": "Conditional fixed-period shared-parameter feasibility, verified against declared synthetic/input records. No physical sensor calibration, authenticated acquisition, uniquely identified parameters, continuous-frequency qualification, deployment or submission is established.",
+  "sources": "source-hashes.json"
+}

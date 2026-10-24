@@ -1,0 +1,324 @@
+{
+  "schema": "worldlaw.periodic-course/v1",
+  "boundUnits": {
+    "history": "N*m",
+    "drift": "N*m/acquisition_step",
+    "pair": "N*m"
+  },
+  "evidence": {
+    "schema": "worldlaw.periodic-contrast/v1",
+    "notebook": {
+      "schema": "worldlaw.history-challenge/v1",
+      "source": "synthetic",
+      "noiseSigma": 1e-8,
+      "sourceNote": "Authored synthetic counterexample: equal-and-opposite changes to two same-phase pair differences; not a physical acquisition.",
+      "trials": [
+        {
+          "pairId": "synthetic-001",
+          "history": "reference",
+          "command": -0.27284661527955906,
+          "position": 0.8953583046561108,
+          "rate": 0.5103448038105853,
+          "sampleIndex": 0,
+          "jointTorque": -2.2860977825966664
+        },
+        {
+          "pairId": "synthetic-001",
+          "history": "conditioned",
+          "command": -0.27284661527955906,
+          "position": 0.8953583046561108,
+          "rate": 0.5103448038105853,
+          "sampleIndex": 1,
+          "jointTorque": -1.906097764456689
+        },
+        {
+          "pairId": "synthetic-002",
+          "history": "reference",
+          "command": -0.2442516583367251,
+          "position": -0.8707603432936594,
+          "rate": -0.3870008452911861,
+          "sampleIndex": 3,
+          "jointTorque": 1.1600171904166747
+        },
+        {
+          "pairId": "synthetic-002",
+          "history": "conditioned",
+          "command": -0.2442516583367251,
+          "position": -0.8707603432936594,
+          "rate": -0.3870008452911861,
+          "sampleIndex": 2,
+          "jointTorque": 1.4600172102343572
+        },
+        {
+          "pairId": "synthetic-003",
+          "history": "reference",
+          "command": -0.11057521702023224,
+          "position": 0.5667562053306029,
+          "rate": 0.21468162141973154,
+          "sampleIndex": 4,
+          "jointTorque": -1.4145019750282306
+        },
+        {
+          "pairId": "synthetic-003",
+          "history": "conditioned",
+          "command": -0.11057521702023224,
+          "position": 0.5667562053306029,
+          "rate": 0.21468162141973154,
+          "sampleIndex": 5,
+          "jointTorque": -1.1945019937861838
+        },
+        {
+          "pairId": "synthetic-004",
+          "history": "reference",
+          "command": 0.13712042552651837,
+          "position": 0.8767000545049086,
+          "rate": 0.5653543546213768,
+          "sampleIndex": 7,
+          "jointTorque": -1.9843865278937862
+        },
+        {
+          "pairId": "synthetic-004",
+          "history": "conditioned",
+          "command": 0.13712042552651837,
+          "position": 0.8767000545049086,
+          "rate": 0.5653543546213768,
+          "sampleIndex": 6,
+          "jointTorque": -1.6843865494849428
+        },
+        {
+          "pairId": "synthetic-005",
+          "history": "reference",
+          "command": 0.3953635241254233,
+          "position": 0.21183788718190044,
+          "rate": 0.49380861615063626,
+          "sampleIndex": 8,
+          "jointTorque": -0.05718335628195911
+        },
+        {
+          "pairId": "synthetic-005",
+          "history": "conditioned",
+          "command": 0.3953635241254233,
+          "position": 0.21183788718190044,
+          "rate": 0.49380861615063626,
+          "sampleIndex": 9,
+          "jointTorque": 0.2428166658351715
+        },
+        {
+          "pairId": "synthetic-006",
+          "history": "reference",
+          "command": -0.13234111707424745,
+          "position": 0.10074044403154403,
+          "rate": -0.5689846066874452,
+          "sampleIndex": 11,
+          "jointTorque": -0.5196941430801523
+        },
+        {
+          "pairId": "synthetic-006",
+          "history": "conditioned",
+          "command": -0.13234111707424745,
+          "position": 0.10074044403154403,
+          "rate": -0.5689846066874452,
+          "sampleIndex": 10,
+          "jointTorque": -0.2196941504821259
+        },
+        {
+          "pairId": "synthetic-007",
+          "history": "reference",
+          "command": -0.07166338089155033,
+          "position": -0.21210036773700267,
+          "rate": 0.4766421976150014,
+          "sampleIndex": 12,
+          "jointTorque": 0.19715980029450733
+        },
+        {
+          "pairId": "synthetic-007",
+          "history": "conditioned",
+          "command": -0.07166338089155033,
+          "position": -0.21210036773700267,
+          "rate": 0.4766421976150014,
+          "sampleIndex": 13,
+          "jointTorque": 0.4971598018396501
+        },
+        {
+          "pairId": "synthetic-008",
+          "history": "reference",
+          "command": -0.04619005870772526,
+          "position": 0.41234913824591785,
+          "rate": 0.4867144681862556,
+          "sampleIndex": 15,
+          "jointTorque": -1.4141363669229692
+        },
+        {
+          "pairId": "synthetic-008",
+          "history": "conditioned",
+          "command": -0.04619005870772526,
+          "position": 0.41234913824591785,
+          "rate": 0.4867144681862556,
+          "sampleIndex": 14,
+          "jointTorque": -1.1141363752651436
+        },
+        {
+          "pairId": "synthetic-009",
+          "history": "reference",
+          "command": -0.266435345413629,
+          "position": 0.1082241747295484,
+          "rate": 0.04984435132937506,
+          "sampleIndex": 16,
+          "jointTorque": -0.640907005511817
+        },
+        {
+          "pairId": "synthetic-009",
+          "history": "conditioned",
+          "command": -0.266435345413629,
+          "position": 0.1082241747295484,
+          "rate": 0.04984435132937506,
+          "sampleIndex": 17,
+          "jointTorque": -0.34090699829189486
+        },
+        {
+          "pairId": "synthetic-010",
+          "history": "reference",
+          "command": -0.409318334364798,
+          "position": -0.23080409809481353,
+          "rate": 0.45730553892208264,
+          "sampleIndex": 19,
+          "jointTorque": -0.5457226471355283
+        },
+        {
+          "pairId": "synthetic-010",
+          "history": "conditioned",
+          "command": -0.409318334364798,
+          "position": -0.23080409809481353,
+          "rate": 0.45730553892208264,
+          "sampleIndex": 18,
+          "jointTorque": -0.2457226634671537
+        },
+        {
+          "pairId": "synthetic-011",
+          "history": "reference",
+          "command": -0.5242062786710449,
+          "position": -0.15797995284665375,
+          "rate": 0.609238845075015,
+          "sampleIndex": 20,
+          "jointTorque": -0.6211283095733594
+        },
+        {
+          "pairId": "synthetic-011",
+          "history": "conditioned",
+          "command": -0.5242062786710449,
+          "position": -0.15797995284665375,
+          "rate": 0.609238845075015,
+          "sampleIndex": 21,
+          "jointTorque": -0.32112830801827386
+        },
+        {
+          "pairId": "synthetic-012",
+          "history": "reference",
+          "command": -0.031107324722688647,
+          "position": 0.8832724087173119,
+          "rate": 0.1666121439426206,
+          "sampleIndex": 23,
+          "jointTorque": -2.1019572356792926
+        },
+        {
+          "pairId": "synthetic-012",
+          "history": "conditioned",
+          "command": -0.031107324722688647,
+          "position": 0.8832724087173119,
+          "rate": 0.1666121439426206,
+          "sampleIndex": 22,
+          "jointTorque": -1.8019572228143843
+        },
+        {
+          "pairId": "synthetic-013",
+          "history": "reference",
+          "command": 0.2086479456513189,
+          "position": 0.46014034578111024,
+          "rate": -0.4812637146445923,
+          "sampleIndex": 24,
+          "jointTorque": -0.5107932960982225
+        },
+        {
+          "pairId": "synthetic-013",
+          "history": "conditioned",
+          "command": 0.2086479456513189,
+          "position": 0.46014034578111024,
+          "rate": -0.4812637146445923,
+          "sampleIndex": 25,
+          "jointTorque": -0.21079329770066538
+        },
+        {
+          "pairId": "synthetic-014",
+          "history": "reference",
+          "command": -0.2604080578661524,
+          "position": -0.7577313395915554,
+          "rate": -0.38527672403724866,
+          "sampleIndex": 27,
+          "jointTorque": 0.9654080045360117
+        },
+        {
+          "pairId": "synthetic-014",
+          "history": "conditioned",
+          "command": -0.2604080578661524,
+          "position": -0.7577313395915554,
+          "rate": -0.38527672403724866,
+          "sampleIndex": 26,
+          "jointTorque": 1.26540799411876
+        },
+        {
+          "pairId": "synthetic-015",
+          "history": "reference",
+          "command": -0.061732395656872545,
+          "position": 0.889495953801088,
+          "rate": 0.3445536684826948,
+          "sampleIndex": 28,
+          "jointTorque": -1.915519889671696
+        },
+        {
+          "pairId": "synthetic-015",
+          "history": "conditioned",
+          "command": -0.061732395656872545,
+          "position": 0.889495953801088,
+          "rate": 0.3445536684826948,
+          "sampleIndex": 29,
+          "jointTorque": -1.6155198979593421
+        },
+        {
+          "pairId": "synthetic-016",
+          "history": "reference",
+          "command": -0.4050871458719485,
+          "position": -0.8542159994831309,
+          "rate": -0.1891977419727482,
+          "sampleIndex": 31,
+          "jointTorque": 0.835874520032961
+        },
+        {
+          "pairId": "synthetic-016",
+          "history": "conditioned",
+          "command": -0.4050871458719485,
+          "position": -0.8542159994831309,
+          "rate": -0.1891977419727482,
+          "sampleIndex": 30,
+          "jointTorque": 1.1358745424433188
+        }
+      ]
+    },
+    "sourceNote": "Authored period-four common-sensor hypothesis, deliberately inadequate for the full pair pattern.",
+    "periodUnit": "acquisition_steps",
+    "amplitudeUnit": "N*m",
+    "components": [
+      {
+        "period": 4,
+        "amplitudeBound": 0.3
+      }
+    ]
+  },
+  "historyBound": 0.5,
+  "driftBound": 0.1,
+  "pairRadius": 0.01,
+  "discrepancyBasis": "Authored discrepancy and coefficient bounds. Tests a finite conditional model; no physical calibration.",
+  "search": {
+    "maxIterations": 1024,
+    "maxProducts": 16777216
+  }
+}

@@ -68,3 +68,13 @@ input[type=range]{display:block;width:100%;height:32px;accent-color:var(--cyan);
 .periodic-investigation #periodic-result svg{background:linear-gradient(180deg,#123440,#081f29);border-bottom:1px solid var(--line);margin:12px 0}
 .periodic-investigation pre{max-height:400px;overflow:auto;background:var(--black);padding:12px;font-size:12px}
 @media(max-width:760px){.periodic-workbench{grid-template-columns:minmax(0,1fr);gap:24px}.periodic-controls{padding:16px}.periodic-investigation h2{font-size:28px}}
+
+/* Whole-course witnesses confront the original ordered pairs directly. */
+#periodic-course #course-run{background:var(--cyan);color:var(--black);border:0}
+#periodic-course #course-status{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+#periodic-course .periodic-controls>p{font-size:12px;color:var(--muted)}
+#periodic-course #course-result{min-width:0;overflow-wrap:anywhere}
+#periodic-course .course-family{border-top:2px solid var(--line);padding:12px 0;margin:10px 0 24px}
+#periodic-course .course-family h3{color:var(--cyan);font-size:20px;margin:0 0 10px}
+#periodic-course .course-family p{font-size:14px}
+#periodic-course svg{width:100%;background:#081f29;border-bottom:1px solid var(--line)}
