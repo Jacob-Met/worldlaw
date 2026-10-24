@@ -45,3 +45,26 @@ input[type=range]{display:block;width:100%;height:32px;accent-color:var(--cyan);
 .duration-receiving :disabled{opacity:.55}
 #duration-request-error{color:#ffad5c}#duration-request-status{overflow-wrap:anywhere}
 @media(max-width:500px){.duration-receiving .secondary-actions{grid-template-columns:1fr}}
+
+
+/* Observed contrast instrument owns a full-width section, outside verdict metrics. */
+.periodic-investigation{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:32px 0;margin:24px 0;scroll-margin-top:16px;min-width:0}
+.periodic-investigation h2{font-size:clamp(26px,3vw,42px);line-height:1.1;max-width:32ch;margin:0 0 16px}
+.periodic-investigation>p{max-width:82ch;color:var(--muted)}
+.periodic-workbench{display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);gap:32px;margin-top:20px;align-items:start}
+.periodic-controls{background:var(--panel);border-left:3px solid var(--cyan);padding:20px;min-width:0}
+.periodic-investigation label{margin:0 0 16px;min-width:0}
+.periodic-investigation input,.periodic-investigation textarea{font:inherit;display:block;width:100%;max-width:100%;min-width:0;border:1px solid #356776;background:#05171e;color:var(--ink);padding:10px;margin:8px 0 0}
+.periodic-investigation textarea{font:13px/1.5 monospace;resize:vertical}
+.periodic-investigation button{display:block;width:100%;min-height:44px;margin:10px 0;border:1px solid #356776;background:#10343f;color:var(--ink);padding:10px 14px;font-weight:700;text-align:left}
+.periodic-investigation #periodic-inspect{background:var(--cyan);color:var(--black);border:0}
+.periodic-investigation input::file-selector-button{background:#10343f;border:1px solid #356776;color:var(--ink);padding:6px;margin-right:6px}
+.periodic-investigation summary{cursor:pointer;color:var(--cyan);font-weight:700;padding:8px 0}
+.periodic-investigation textarea:focus-visible,.periodic-investigation summary:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.periodic-investigation #periodic-status{font-size:13px;overflow-wrap:anywhere;color:var(--muted)}
+.periodic-investigation #periodic-result{min-width:0;overflow-wrap:anywhere;padding:0 4px}
+.periodic-investigation #periodic-result>p{font-size:14px;line-height:1.55}
+.periodic-investigation #periodic-result>p:first-child{font-size:20px;color:var(--ink);margin-top:0}
+.periodic-investigation #periodic-result svg{background:linear-gradient(180deg,#123440,#081f29);border-bottom:1px solid var(--line);margin:12px 0}
+.periodic-investigation pre{max-height:400px;overflow:auto;background:var(--black);padding:12px;font-size:12px}
+@media(max-width:760px){.periodic-workbench{grid-template-columns:minmax(0,1fr);gap:24px}.periodic-controls{padding:16px}.periodic-investigation h2{font-size:28px}}

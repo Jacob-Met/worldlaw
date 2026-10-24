@@ -1,0 +1,41 @@
+{
+  "base_commit": "9e2d48647595c9bbbaa91c09defc2d21d4c5f08b",
+  "environment": {
+    "node": "22.23.4",
+    "chrome": "156.0.8078.47"
+  },
+  "native": {
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "total": 665,
+    "passed": 664,
+    "failed": 0,
+    "skipped": 1,
+    "skip": "optional live Node and Chromium exchange course"
+  },
+  "browser": {
+    "command": "PUPPETEER_MODULE=<installed package> BROWSER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable WORLDLAW_URL=<launched loopback> BROWSER_ARTIFACT_DIR=<fresh> node scripts/periodic-contrast-browser.mjs",
+    "passed_groups": 6,
+    "sandbox_admitted": true,
+    "page_errors": []
+  },
+  "smoke": "node scripts/smoke.mjs passed actual launched discovery, virtual measurement, revision and notebook reopen",
+  "gain_parity": {
+    "completeJsonParityChecks": 10,
+    "passed": true
+  },
+  "review": {
+    "independent_worker": "earth_product",
+    "unequal_order_direct_sum_error_upper": 1.5e-14,
+    "qualifications": "One shared additive sensor-offset process, independently phased listed components; bounds are assumptions, not inferred calibration."
+  },
+  "files": {
+    "src/unknown-lab/app.mjs": "24fa7d29e6725fa5828d4246f6e9346d7b90f2d2e5d1f0e30dcec1f6f9d68fca",
+    "src/unknown-lab/periodic-order.mjs": "59f8917cf77b115cd5de6480001ad6ccbf7791889255e99b083d0844cc6afb94",
+    "src/unknown-lab/periodic-contrast.mjs": "32dafdc15ccaf7a6d966fad2a0698aeb45b4772fa148c7ea2363e4e3fce49441",
+    "src/unknown-lab/periodic-contrast-panel.mjs": "e8ae14efeba89067011b6ed9d48b5bb3e9557a61e97b83d38a1834ae11d7d3e9",
+    "tests/periodic-contrast.test.mjs": "e5b7533fa69920e6c2067dfe954bee0b0b581599ab6fadd1b4a539552765ff97",
+    "scripts/periodic-contrast-browser.mjs": "aa4b97334a85dd14467b8f342496909120f09c150e2ad9a392cdfc79e24eedb0",
+    "docs/PERIODIC_CONTRAST.md": "58016bafb6c7f9997ee7a6a8632fc41af61d096a0850e6becc89c149f896181c",
+    "unknown-lab.css": "691178e702a227987f9437d3cadab0ae345a082bc3115db1912349898df44f94"
+  }
+}
