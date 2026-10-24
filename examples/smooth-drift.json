@@ -1,0 +1,133 @@
+{
+  "schema": "worldlaw.smooth-drift/v1",
+  "orders": {
+    "schema": "worldlaw.serial-orders/v2",
+    "sourceNote": "Authored twelve-pair schedules; not physical acquisitions.",
+    "rhos": [
+      -0.9,
+      -0.5,
+      0,
+      0.5,
+      0.9
+    ],
+    "periodic": {
+      "sourceNote": "Hypothetical finite periods, not measured sensor frequencies.",
+      "periods": [
+        3,
+        5
+      ]
+    },
+    "plans": [
+      {
+        "id": "order-819",
+        "pairs": [
+          {
+            "reference": 0,
+            "conditioned": 1
+          },
+          {
+            "reference": 2,
+            "conditioned": 3
+          },
+          {
+            "reference": 5,
+            "conditioned": 4
+          },
+          {
+            "reference": 7,
+            "conditioned": 6
+          },
+          {
+            "reference": 8,
+            "conditioned": 9
+          },
+          {
+            "reference": 10,
+            "conditioned": 11
+          },
+          {
+            "reference": 13,
+            "conditioned": 12
+          },
+          {
+            "reference": 15,
+            "conditioned": 14
+          },
+          {
+            "reference": 16,
+            "conditioned": 17
+          },
+          {
+            "reference": 18,
+            "conditioned": 19
+          },
+          {
+            "reference": 21,
+            "conditioned": 20
+          },
+          {
+            "reference": 23,
+            "conditioned": 22
+          }
+        ]
+      },
+      {
+        "id": "order-1365",
+        "pairs": [
+          {
+            "reference": 0,
+            "conditioned": 1
+          },
+          {
+            "reference": 3,
+            "conditioned": 2
+          },
+          {
+            "reference": 4,
+            "conditioned": 5
+          },
+          {
+            "reference": 7,
+            "conditioned": 6
+          },
+          {
+            "reference": 8,
+            "conditioned": 9
+          },
+          {
+            "reference": 11,
+            "conditioned": 10
+          },
+          {
+            "reference": 12,
+            "conditioned": 13
+          },
+          {
+            "reference": 15,
+            "conditioned": 14
+          },
+          {
+            "reference": 16,
+            "conditioned": 17
+          },
+          {
+            "reference": 19,
+            "conditioned": 18
+          },
+          {
+            "reference": 20,
+            "conditioned": 21
+          },
+          {
+            "reference": 23,
+            "conditioned": 22
+          }
+        ]
+      }
+    ]
+  },
+  "drift": {
+    "curvatureBound": 0.01,
+    "sourceNote": "Illustrative bound for a conditional design comparison; not a calibrated sensor specification."
+  }
+}

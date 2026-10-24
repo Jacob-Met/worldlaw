@@ -91,6 +91,7 @@ try{
   if(process.env.WORLDLAW_OBSERVABLE_RECEIVING==='1'){const {receiveObservables}=await import('./coupling-observables-receiving.mjs');await receiveObservables({evaluate,send,check,click,text,wait,outputDir});}
   if(process.env.WORLDLAW_MODES_RECEIVING==='1'){const {receiveModes}=await import('./coupling-modes-receiving.mjs');await receiveModes({evaluate,send,check,click,text,wait,outputDir});}
   if(process.env.WORLDLAW_RESPONSE_REGION_RECEIVING==='1'){const {receiveResponseRegions}=await import('./coupling-response-region-receiving.mjs');await receiveResponseRegions({evaluate,send,check,click,text,wait,outputDir});}
+  if(process.env.WORLDLAW_RESPONSE_CONTRAST_RECEIVING==='1'){const {receiveResponseContrasts}=await import('./coupling-response-contrast-receiving.mjs');await receiveResponseContrasts({evaluate,send,check,click,text,wait,outputDir});}
   await check('no page exceptions or external requests',async()=>{assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);});
   await writeFile(path.join(outputDir,'verification.json'),JSON.stringify({checks,events,node:process.version,pass:true,sandbox,downloads},null,2));
 }catch(error){

@@ -1,0 +1,59 @@
+{
+  "groups": [
+    "ordinary Motion link, explicit dual-input admission and all four original decoded frames display separate retained and marked positions",
+    "completed raw and report downloads preserve the entire ledger, recompute forged answers and retain independent pixel-distance oracles with bounded row pagination",
+    "an explicit offset reference remains visibly far from a high-score retained point; the marking interval does not borrow score confidence",
+    "nominal clocks, rejected candidates, different decoded frames and unidentifiable labels remain unscored with independently gated source overlays",
+    "marker and pivot gaps stay independent, and fixed-pivot comparisons keep their declaration identity in the visible source view",
+    "failed source/reference intake preserves accepted work; newer input choices suppress delayed case/video results and rapid row changes settle on the selected frame",
+    "fresh 390 px raw-file reopen, original-source attachment and keyboard row inspection work without horizontal page overflow",
+    "actual browser nominal-clock fallback shows source pixels with both overlays hidden and an explicit timing explanation"
+  ],
+  "source_sha256": "fbec4761d153c6a5bf486e88ff333aef9cd32b64e1fc87488a594d22b18c9bad",
+  "notebook_sha256": "243bc996b612094dd6ca6619172b4a4f6c038c038190ff44abc402034b34baad",
+  "reference_sha256": "cdb75f60476b41bed3526de4c5097449934c255790a2b924d51290bbffd06779",
+  "oracle": [
+    {
+      "time": 2,
+      "error": 1.029254383640355,
+      "radius": 5,
+      "score": 0.9721067714707219
+    },
+    {
+      "time": 4,
+      "error": 1.0448163215730264,
+      "radius": 5,
+      "score": 0.9507778821073188
+    },
+    {
+      "time": 6,
+      "error": 1.0755240424538735,
+      "radius": 5,
+      "score": 0.943226087793478
+    },
+    {
+      "time": 8,
+      "error": 1.0100294886173091,
+      "radius": 5,
+      "score": 0.9221286384337193
+    }
+  ],
+  "source_files": {
+    "motion.html": "2af102a9201a506cf5496c49ddcff602a13921572ef349fe9518c2bbc24d09b2",
+    "motion-reference.html": "83d4c3f925a00a4a80ee7313f7eb65f7d5a93346b1c81ec8de126014e807aa51",
+    "motion-reference.css": "07797c31f6d7aa2b2e8732efc6789caab93239f399a47288c8c77a0a8cda49ba",
+    "server.mjs": "84f50500fdf0781a4fa3c882650a665305abd9c161fa207cf9d3e0518686e962",
+    "src/motion/reference-app.mjs": "e8355e474eb4f6fff11e9ed721091b69a532c8e8ccc23cab8a2c7c65c001239d",
+    "src/motion/reference.mjs": "b002ef1e2e872ffb7b15caf91332f7312c461cebf6d90f37501e90077f8c09ba",
+    "src/motion/measurement.mjs": "ca2363711686b8d8993377b7c75629efeec83a278077b65fc11206a146ecf2c5",
+    "src/motion/video.mjs": "8878aca35a7619e3bfe710d86d2edc24a2baad8c4e282642c63e48faf360c8e0",
+    "src/motion/vendor/reference-admission.mjs": "a6bb176788e9934ac7ac5be12774db60d48fd170f3f90d406c05c31411db8b98",
+    "src/motion/vendor/reference-source.json": "af081c486392c05f629895505a6e21878ac20bad0bc804d3b2b253c34c864767",
+    "scripts/motion-reference-browser.mjs": "bb28b0c30fbfcc585cab363ff2c6f499aee11d091544ee0d73ce816e325061e7"
+  },
+  "errors": [],
+  "offsite": [],
+  "boundary": "Four separately visually marked original frames; fallible authored radii, not blind ground truth or full trajectory accuracy. Other altered cases below are explicit software controls.",
+  "browser": "156.0.8078.47",
+  "result": "PASS"
+}

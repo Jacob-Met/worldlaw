@@ -286,3 +286,5 @@ After a Coupling Lab motion comparison, **Find coordinates for this motion** der
 ### Joint response regions from retained training
 
 A completed coupled circulation comparison now offers **Inspect the joint response region**. Declare a training torque-reading perturbation radius and inspect whether each supplied two-torque reading lies outside the computed shared-error region, even when both separate sensitivity bands overlap. The torque-plane plot retains marginal bands, the supplied reading rectangle and an extremal source-reading witness. Save/reopen retains original training, loop readings and the setting only. This is fixed-coordinate, fixed-structure least-squares sensitivity; agreement for every row does not establish a shared perturbation explaining the whole course. See [the geometry, source custody and limits](docs/COUPLED_RESPONSE_REGIONS.md).
+
+The coupled retrospective receiver can inspect [shared training changes across selected receiving rows](docs/COUPLED_RESPONSE_CONTRASTS.md), retaining original source rows and a necessary-condition contrast rather than asserting whole-course feasibility.
