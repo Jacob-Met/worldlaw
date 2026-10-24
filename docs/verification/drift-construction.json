@@ -1,0 +1,200 @@
+{
+  "base": "b33bad913733fb39c8ede89142071c545be6cde7",
+  "native": {
+    "tests": 715,
+    "pass": 715,
+    "fail": 0,
+    "skipped": 0
+  },
+  "browser": {
+    "passed": true,
+    "executionBase": "b33bad913733fb39c8ede89142071c545be6cde7",
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "checks": [
+      "Complete actual family with separate units and all four tied replacements",
+      "Paged complete family and explicit selected-order file adoption into maintained attaining-drift consumer",
+      "Changed curvature refuses all admitted orders and exact zero restores original noise-admitted family",
+      "Downloaded raw declaration reopens and recomputes original complete family",
+      "Actual desktop and narrow scientific display with independent table scrolling"
+    ],
+    "exceptions": []
+  },
+  "manifest": {
+    "base": "b33bad913733fb39c8ede89142071c545be6cde7",
+    "overlays": true,
+    "execution": [
+      {
+        "course": "native",
+        "command": [
+          "node",
+          "--test",
+          "tests/angle-reference.test.mjs",
+          "tests/angular-cycle-work.test.mjs",
+          "tests/angular-prelude.test.mjs",
+          "tests/correlation-band.test.mjs",
+          "tests/correlation-example-server.test.mjs",
+          "tests/coupling-circulation.test.mjs",
+          "tests/coupling-dynamics.test.mjs",
+          "tests/coupling-modes.test.mjs",
+          "tests/coupling-observables.test.mjs",
+          "tests/coupling-receiving-allowance.test.mjs",
+          "tests/coupling-response-contrast.test.mjs",
+          "tests/coupling-response-region.test.mjs",
+          "tests/coupling-shared-course.test.mjs",
+          "tests/coupling.test.mjs",
+          "tests/cubic-restoring.test.mjs",
+          "tests/cycle-angle-boxes-independent.test.mjs",
+          "tests/cycle-angle-boxes.test.mjs",
+          "tests/cycle-branch-response-independent.test.mjs",
+          "tests/cycle-branch-response.test.mjs",
+          "tests/cycle-curvature-exact.test.mjs",
+          "tests/cycle-curvature-receiving.test.mjs",
+          "tests/cycle-refinement.test.mjs",
+          "tests/cycle-work-exact-enclosure.test.mjs",
+          "tests/cycle-work.test.mjs",
+          "tests/drift-construction.test.mjs",
+          "tests/duration-acquisition.test.mjs",
+          "tests/initial-state-sensitivity.test.mjs",
+          "tests/input-enclosure-joint.test.mjs",
+          "tests/input-enclosure.test.mjs",
+          "tests/interaction.test.mjs",
+          "tests/motion-acceptance-15cc.test.mjs",
+          "tests/motion-boundaries-15cc.test.mjs",
+          "tests/motion-color-tracker.test.mjs",
+          "tests/motion-confirmed-tracker.test.mjs",
+          "tests/motion-grid-tracker.test.mjs",
+          "tests/motion-reference.test.mjs",
+          "tests/motion-tracked-pivot.test.mjs",
+          "tests/motion-tracker-15cc.test.mjs",
+          "tests/order-construction.test.mjs",
+          "tests/parameter-sensitivity.test.mjs",
+          "tests/period-band.test.mjs",
+          "tests/periodic-contrast.test.mjs",
+          "tests/periodic-course.test.mjs",
+          "tests/periodic-order.test.mjs",
+          "tests/planning-examples-server.test.mjs",
+          "tests/prediction-contrast.test.mjs",
+          "tests/prediction-sensitivity.test.mjs",
+          "tests/predictive-selection.test.mjs",
+          "tests/prelude-investigation.test.mjs",
+          "tests/probe-planner.test.mjs",
+          "tests/recovery-planner.test.mjs",
+          "tests/recovery-response.test.mjs",
+          "tests/reference-consistency.test.mjs",
+          "tests/replicate-diagnostics.test.mjs",
+          "tests/rolling-origin.test.mjs",
+          "tests/separability.test.mjs",
+          "tests/serial-noise.test.mjs",
+          "tests/serial-order.test.mjs",
+          "tests/session.test.mjs",
+          "tests/shared-training-replay.test.mjs",
+          "tests/shared-training.test.mjs",
+          "tests/smooth-drift.test.mjs",
+          "tests/state-support.test.mjs",
+          "tests/stiffness-experiment.test.mjs",
+          "tests/stiffness-knot-profile.test.mjs",
+          "tests/stiffness-revision.test.mjs",
+          "tests/stiffness.test.mjs",
+          "tests/torque-discovery.test.mjs",
+          "tests/trajectory-angular-92be.test.mjs",
+          "tests/trajectory-angular-resolution-92be.test.mjs",
+          "tests/trajectory-angular-session-review-92be.test.mjs",
+          "tests/trajectory-angular-weak-92be.test.mjs",
+          "tests/trajectory-baselines.test.mjs",
+          "tests/trajectory-experiment-portability-92be.test.mjs",
+          "tests/trajectory-experiment-protocol-92be.test.mjs",
+          "tests/trajectory-experiment-session-review-92be.test.mjs",
+          "tests/trajectory-forward-92be.test.mjs",
+          "tests/trajectory-horizon-92be.test.mjs",
+          "tests/trajectory-integral-92be.test.mjs",
+          "tests/trajectory-observations.test.mjs",
+          "tests/trajectory-plan-qualification.test.mjs",
+          "tests/trajectory-planner-92be.test.mjs",
+          "tests/trajectory-planner-numerical-review.test.mjs",
+          "tests/trajectory-resolution-92be.test.mjs",
+          "tests/trajectory-session-review-92be.test.mjs",
+          "tests/trajectory-virtual-experiment-92be.test.mjs",
+          "tests/unknown-continuous-duration.test.mjs",
+          "tests/unknown-duration-planner.test.mjs",
+          "tests/unknown-duration.test.mjs",
+          "tests/unknown-history.test.mjs",
+          "tests/unknown-order.test.mjs",
+          "tests/unknown-phase.test.mjs",
+          "tests/unknown-probe.test.mjs",
+          "tests/virtual-notebook-portability.test.mjs"
+        ],
+        "exit": 0,
+        "seconds": 29.21275649900781
+      },
+      {
+        "course": "browser",
+        "command": [
+          "node",
+          "scripts/drift-construction-browser.mjs"
+        ],
+        "exit": 0,
+        "seconds": 2.630091277009342
+      }
+    ],
+    "archiveSha256": "60c98413bd7362fdd21f5d2ac7bbb6628968f74c19666ead4fafbe5a646172ef",
+    "reconstruction": null,
+    "sources": [
+      {
+        "path": "src/unknown-lab/drift-construction.mjs",
+        "bytes": 3815,
+        "sha256": "37192622904060a08236498eeac36ae9d8a7c99db3520ac4adfe8791e9e840f5",
+        "gitBlob": "b4aeb14ca8dfeb24276d35c679fa1a1546c41142"
+      },
+      {
+        "path": "src/unknown-lab/drift-construction-panel.mjs",
+        "bytes": 8411,
+        "sha256": "97030f437b9479291f3b4d0d5d0e8f5323493bda0da9ba28cd55edb8f8ba77eb",
+        "gitBlob": "7e8e0c22669aa95f329ebc7850e9b02a4597bdf3"
+      },
+      {
+        "path": "src/unknown-lab/app.mjs",
+        "bytes": 9385,
+        "sha256": "949ee53b3d5a8895852908ed36b1e2be627562745c18ac54037dad5b4f346921",
+        "gitBlob": "4ce1efecf01572fd7eea72cffeabbc2c198ab3ec"
+      },
+      {
+        "path": "tests/drift-construction.test.mjs",
+        "bytes": 2443,
+        "sha256": "61a02a7d75ba863b917af2d003faa6a6f1393a9a320cc29830ae14d5bbd75ff3",
+        "gitBlob": "67433b15d18e44ad197ad7312f67b232924de734"
+      },
+      {
+        "path": "scripts/drift-construction-browser.mjs",
+        "bytes": 5382,
+        "sha256": "f54cb909a344fdfa50e863918378033a075ef0b2c2ba7f08015ee96fe754c36d",
+        "gitBlob": "5c90abaf680839a336c8f56f51e3c1b42b90123d"
+      },
+      {
+        "path": "docs/DRIFT_CONSTRUCTION.md",
+        "bytes": 3477,
+        "sha256": "58d0ff76bbc64d467af6992860e8ec760bb0cfae45f5629eb4205b593e5450b6",
+        "gitBlob": "8661826cd4c7260e0936357d13eb2c31d11be88c"
+      }
+    ],
+    "images": [
+      {
+        "path": "/tmp/hamon-5e42-worldlaw-drift-design-corrected-qa/complete-narrow.png",
+        "bytes": 548824,
+        "sha256": "7515df8fd5b728827658fa4ac2720074f58c2e02c4af446799baead74af45694",
+        "gitBlob": "3fa7fcf308aa388294f0f5e0f9213f1d91a79b1b"
+      },
+      {
+        "path": "/tmp/hamon-5e42-worldlaw-drift-design-corrected-qa/desktop.png",
+        "bytes": 529756,
+        "sha256": "23021ea832384c604a5b706cbac14345b43b22b7533e6bf7d112aa954fe48dd5",
+        "gitBlob": "70aa8cd0d95eaf6c6eab7a4b0ab61d757921e88c"
+      },
+      {
+        "path": "/tmp/hamon-5e42-worldlaw-drift-design-corrected-qa/narrow.png",
+        "bytes": 187739,
+        "sha256": "880eef6516cf1d4561e710771f58ce7db507917636354e0c24e06623a3981e57",
+        "gitBlob": "e1fac404591685efc4ee41e9f2463d6aa83819a4"
+      }
+    ]
+  }
+}

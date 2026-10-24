@@ -1,3 +1,4 @@
+import {mountDriftConstruction} from './drift-construction-panel.mjs';
 import {mountCorrelationBand} from './correlation-band-panel.mjs';
 import {mountPeriodicCourse} from './periodic-course-panel.mjs';
 import {mountSmoothDrift} from './smooth-drift-panel.mjs';
@@ -156,3 +157,6 @@ mountPeriodBands();
 mountSmoothDrift();
 
 mountCorrelationBand();
+
+mountDriftConstruction();
+
