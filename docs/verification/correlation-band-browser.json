@@ -1,0 +1,68 @@
+{
+  "manifest": {
+    "base": "204acd8b356d72b2a0858422f0eb4f8bcc5e95c5",
+    "sources": [
+      {
+        "path": "src/unknown-lab/correlation-band-panel.mjs",
+        "bytes": 15109,
+        "sha256": "75d27165f09b86d513950814244ac9a7b9d91daf2b10a67af6f1bcd8ca1f432d",
+        "gitBlob": "cfabc0649aa8f4f8870cf9dbdc5b479b54178511"
+      },
+      {
+        "path": "scripts/correlation-band-browser.mjs",
+        "bytes": 8111,
+        "sha256": "2982ba29da4295812ba79b32ebd487de361c52faa5b7b8d5dd6507cea88cedc8",
+        "gitBlob": "f5a92d72d9e9e93d0b22ecb65bd2b8ffb551c508"
+      }
+    ],
+    "images": [
+      {
+        "path": "/tmp/hamon-5e42-worldlaw-rho-fixed-qa/narrow-instruments.png",
+        "bytes": 170652,
+        "sha256": "7a5d0d2a05af8272c90c4152dec831e521112ef88c9993629857f17542d52a86",
+        "gitBlob": "c98cc55e949f229b6f5aae2ecff88bae596b2b9a"
+      },
+      {
+        "path": "/tmp/hamon-5e42-worldlaw-rho-fixed-qa/desktop-strips.png",
+        "bytes": 434692,
+        "sha256": "bfd0bc609267d70d00ae66e671523d20cfa2a77878c8347eb707f684f7fd1bcd",
+        "gitBlob": "36612bbed7d1057741d71af35587f1a805a250c0"
+      },
+      {
+        "path": "/tmp/hamon-5e42-worldlaw-rho-fixed-qa/desktop-instruments.png",
+        "bytes": 481204,
+        "sha256": "ab77e258f6f6ae18f25ec519acaa5a4609ad28b3438015aff2fd30364525f437",
+        "gitBlob": "145ad0067d569c154c8593c0fd302f62c6e4210e"
+      }
+    ]
+  },
+  "browser": {
+    "implementationBaseline": "2754b42167ca2322bfab0b04567ade110fde15f2",
+    "executionBase": "204acd8b356d72b2a0858422f0eb4f8bcc5e95c5",
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "exceptions": [],
+    "passed": true,
+    "checks": [
+      "actual served example and worker classification",
+      "keyboard retained-cell inspection",
+      "two actual visual compositions",
+      "raw download and replay",
+      "exact equality budget control",
+      "10second worker termination and prior-source restoration",
+      "active worker canceled by edit",
+      "delayed-file invalidation",
+      "narrow full-width instrument"
+    ],
+    "sandboxRequested": true
+  },
+  "rootVisualReview": "Corrected shared budget strips inspected: finite order101 point below unchanged budget and visible teal exact-witness lower projection above it. Initial instruments/narrow remain visually verified. Bounds and scale unchanged.",
+  "history": [
+    "Initial708 native and9browser passed; screenshotreview found disappearing subpixel maximum bracket.",
+    "First displayfix course found missing attributes for svg title; corrected before publication. Final9group course passed with0exceptions."
+  ],
+  "imagesToPublish": [
+    "desktop-instruments.png",
+    "desktop-strips.png",
+    "narrow-instruments.png"
+  ]
+}

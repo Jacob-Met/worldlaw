@@ -1,0 +1,79 @@
+{
+  "base": "204acd8b356d72b2a0858422f0eb4f8bcc5e95c5",
+  "native": {
+    "tests": 708,
+    "pass": 708,
+    "fail": 0,
+    "skipped": 0,
+    "durationMs": 25777.097647
+  },
+  "sources": [
+    {
+      "path": "src/unknown-lab/correlation-band.mjs",
+      "bytes": 7401,
+      "sha256": "9e06abca747b7a5ec4181edf92fa48fa38d229282679d07b226cad9d2a52766d",
+      "gitBlob": "46bc6afe2ecb5287aa58032d923ef6ba3a3e6071"
+    },
+    {
+      "path": "src/unknown-lab/correlation-band-panel.mjs",
+      "bytes": 14401,
+      "sha256": "28c2cf9aaab8cde1f93e2f7d382673dab4680ae7b0c7cb7ddf9dc7844870d391",
+      "gitBlob": "fac3fc0ead00fb10d1cf82439d9a38ab6eda50b2"
+    },
+    {
+      "path": "src/unknown-lab/correlation-band-worker.mjs",
+      "bytes": 241,
+      "sha256": "2e8e471d117691606f566bdafaf501adf13a73533ffc6bd6808c86b282240fe5",
+      "gitBlob": "f7f2236d73cb272f9fb2bfff8dcecbbd9b9d7ae6"
+    },
+    {
+      "path": "src/unknown-lab/chronos-exact-halfplanes.mjs",
+      "bytes": 3863,
+      "sha256": "3f2020d8adac92ac1b82331dd5b30964a889a85d249e81cd16bb9dbba99b1150",
+      "gitBlob": "eb6552489373b2890b1b99fc829badf204218be7"
+    },
+    {
+      "path": "src/unknown-lab/app.mjs",
+      "bytes": 9286,
+      "sha256": "1008469dadadc30be572066c2b8a7f1efe1d6bb7a004a32bbd7658663ad5c737",
+      "gitBlob": "8e807340319a6683158e3194be50bb0bd475fae1"
+    },
+    {
+      "path": "server.mjs",
+      "bytes": 2825,
+      "sha256": "936bace219b9c59ad0e97f0a0fc7bb9b9fb0d5b004333e39a247f75c12da9699",
+      "gitBlob": "3180901ea705546505eceae2efb151dd0fd3b1e2"
+    },
+    {
+      "path": "tests/correlation-band.test.mjs",
+      "bytes": 5667,
+      "sha256": "85d4558d390dd2423f03b8cf50153a221d958902f9fb025ab922c7b3646ad113",
+      "gitBlob": "87a7d0b1b496b75062f5f517bbc83c3faf3c9852"
+    },
+    {
+      "path": "tests/correlation-example-server.test.mjs",
+      "bytes": 939,
+      "sha256": "b4b08a993cb44f9a559bf2ff11824525d9b6bcfb0b2f33d71476e0fb2d9b9485",
+      "gitBlob": "33b594989c7bf786c0326e5a37d2c4cce24f4232"
+    },
+    {
+      "path": "examples/correlation-band.json",
+      "bytes": 2102,
+      "sha256": "311cd18f0872d3b3f50e260d763a34b084fb8e6edf76a255863df38041c950e1",
+      "gitBlob": "e47b26bcafadc1fa3b59ab844350d8866372692b"
+    },
+    {
+      "path": "scripts/correlation-band-browser.mjs",
+      "bytes": 6766,
+      "sha256": "e436bb46d45fe35ef2306224c34d8cc8b324adaae8f5820cf11023d8e9c4f9eb",
+      "gitBlob": "e6e2953323ef1233cb85f94cb877dd3fdf71e2af"
+    },
+    {
+      "path": "docs/CORRELATION_BANDS.md",
+      "bytes": 8656,
+      "sha256": "a204b828acdc251e0d77afb64431bdae7f184ca0c7b9cb12f99326a8bf49957b",
+      "gitBlob": "f21b2935ee95011c7d221cb4f1c578a24695d818"
+    }
+  ],
+  "scope": "Full native suite before display-only correction; numerical source unchanged."
+}
