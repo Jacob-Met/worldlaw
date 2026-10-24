@@ -31,6 +31,16 @@ changes the selected family. Imported measurements stay local and preserve
 supplied units, source and quasi-static assumptions. [The contract, controls and
 receiving](docs/COUPLING_LAB.md) describe the numerical scope and physical limits.
 
+### Execute conditional coupled motion
+
+In Coupling Lab, **Let the laws move** compares the current fitted responses as
+two-coordinate trajectories under explicitly declared constant diagonal inertias,
+viscous damping and initial conditions. Inspect the coupled path or aligned angle
+traces, scrub computed time, retain numerical failures and observed-range
+extrapolation, and save/reopen the evidence plus dynamic inputs. Quasi-static
+measurements alone do not establish these dynamic assumptions. See
+[the execution contract and receiving](docs/COUPLED_DYNAMICS.md).
+
 ## Measure recorded motion
 
 Open **Motion Lab** from the studio header, or visit **http://127.0.0.1:4193/motion.html**. Load a local WebM/MP4 mechanism video, mark a fixed pivot and a stable visible marker, then track a selected time interval. The pixel view, angular plot and measurement ledger show what was accepted and where tracking stopped. Correct the marker to resume; missing frames remain visible and split the evidence into separate segments.
@@ -199,3 +209,8 @@ limits](docs/STIFFNESS_LAB.md).
 node --test tests/stiffness.test.mjs
 BROWSER_ARTIFACT_DIR=/tmp/worldlaw-stiffness-receipts node scripts/stiffness-browser.mjs
 ```
+
+
+## Cycle Work
+
+Open `/cycle-work.html` from the workbench to inspect signed polygonal work from ordered torque–angle return paths. Explicit exact-angle assumptions, torque-error bounds and an integration allowance are retained in input-only export/reopen. The nonlinear conservative control demonstrates a quadrature artifact: nonzero polygonal work alone does not identify continuous-path work or dissipation. See [Cycle Work](docs/CYCLE_WORK.md). Run `node --test tests/cycle-work.test.mjs` and `node scripts/cycle-work-browser.mjs` (the browser command uses the existing `PLAYWRIGHT_MODULE` and `BROWSER_EXECUTABLE_PATH` conventions).

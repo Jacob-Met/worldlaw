@@ -1,48 +1,32 @@
-# Cycle-work investigation
+# Signed work from an ordered torque–angle return
 
-The existing angular trajectory workbench offers a declared cycle-work investigation. Load angular observations, choose a restoring-only model, and select **Compare cycle-work laws**. The selected law stays frozen. Complete training cycles fit three nonnegative dissipative families; the restoring-only baseline and every admitted family execute on the supplied receiving recordings. Receiving performance never selects a family or replaces the main discovery selection.
+Open `/cycle-work.html` from the workbench. Load an authored control or paste/reopen input JSON, inspect its declared source and units, then Analyze. The trace numbers follow acquisition order; the ledger preserves every segment. Reverse order changes the sign and is a new declared input. Export saves normalized observations and assumptions only; reopening recomputes. Editing clears stale results; a late file read cannot replace newer inputs.
 
-For the included known PASCO source, load **Measured** and apply the maintained **Window / weak** fitting method first. A selected law already containing drag refuses explicitly; this instrument never silently removes drag or refits restoring terms. It preserves the separate structure-selection and shared-condition scopes.
+For segment i the instrument evaluates `(theta[i+1]-theta[i])*(torque[i]+torque[i+1])/2`. Angles are exact declared values, affirmatively retained as `angleAssumption:'exact-declared'`; no wrapping, sorting or closing segment is inferred. End angle must equal start angle exactly. Repeated angles are allowed and contribute zero segment work. This is angle closure, not full hidden-state or thermodynamic closure.
 
-## Observation and fitting contract
+The same torque reading contributes to both adjoining segments. Its coefficient is the sum of their half-angle increments. With bounded reading error `|error[i]| <= radius[i]`, the exact box bound for polygon work is `sum(abs(coefficient[i])*radius[i])`. This does not assume statistical independence: every error combination satisfying those bounds is covered. It neither treats repeated equal rows as the same error variable nor authenticates sensor calibration. First and last readings remain distinct. A genuinely common constant torque bias cancels on the exactly closed angle path.
 
-Supported restoring terms are gravity, spring, bias and cubic. For angular acceleration `a*sin(q) + b*q + c + d*q³`, normalized potential is `a*cos(q) - b*q²/2 - c*q - d*q⁴/4`. Physical inertia stays unknown; normalized potential and loss are not calibrated joules.
+Interior shared coefficients are evaluated directly as `(theta[i+1]-theta[i-1])/2`, with separate endpoint coefficients. Summing two separately rounded half-deltas can erase a small coefficient near a large reversal. The nominal work uses these shared weights. The segment ledger is diagnostic: its separately rounded sum and difference from the shared-weight total are disclosed.
 
-Declare an upward-crossing angle and an odd centered derivative window of5–31 samples. Between consecutive upward crossings, the highest sampled position marks a peak. A contiguous maximum plateau uses its middle sample (earlier for even width) and retains its full index interval. Separated equal maxima refuse the endpoint. No interpolation claim is made about the true continuous turning time.
+The reported interval adds the caller's absolute integration allowance and a floating-point guard to this box bound. The guard includes coefficient subtraction error acting on both torque and torque radius, product and sequential-sum error from uncancelled weighted magnitudes, and conservative error in assembling the bounds. Severe cancellation can therefore make the interval inconclusive. It is not a confidence interval. Angular measurement error is unsupported; a positive integration allowance alone does not validate it. Zero allowance explicitly claims the polygon is the object evaluated, not that continuous interpolation error is known to vanish.
 
-Complete cycles join consecutive such peaks. Prefix/suffix coverage and every admitted/refused complete pair remain visible. Missing centered windows, undersampling relative to the derivative window, ambiguous peaks and nonfinite work refuse. At least three admitted cycles are required for fitting. Rates reuse the maintained local cubic derivative.
+## An essential counterexample
 
-Observed loss includes estimated endpoint kinetic change:
+Torque=theta² is a conservative position-only law. Samples at angles `[0,1,2,0.5,0]` yield polygonal work −0.25 J while the exact continuous closed-path integral is zero. Unequal sampling changes quadrature. An allowance of 0.25 J includes zero. The fourth authored control exposes this in the actual consumer. Excluding zero tests only the declared polygon/bounds unless independent evidence justifies an allowance covering the continuous path. Compatibility with zero cannot establish conservativity, and nonzero work cannot identify friction, hysteresis, an energy source or a mechanism.
 
-`loss = V(q_start) - V(q_end) + (rate_start² - rate_end²)/2`.
+## Input and limits
 
-This avoids pretending that sampled maxima have exactly zero velocity. The viscous feature is trapezoidal integrated squared rate; the Coulomb feature is discrete total angular travel. Sensor noise, aliasing, peak selection, derivative smoothing and quadrature can bias these estimates. Adjacent cycles share observations and are not independent replicates.
+Schema `worldlaw.cycle-work/v1` requires `units:{position:'rad',jointTorque:'N·m'}`, source text, `angleAssumption:'exact-declared'`, `interpolation:'piecewise-linear'`, `gaps:'none-declared'`, nonnegative `integrationAllowance`, and 3–4096 ordered samples `{position,jointTorque,torqueRadius}`. All quantities must be finite; angle magnitude ≤1e6, torque/radius/allowance ≤1e12. Unobserved gap flags, incomplete closure, missing declarations and constant-angle records are refused. JSON is capped at 2,000,000 UTF-8 bytes. There is no hardware, provider or network acquisition.
 
-Viscous, Coulomb and joint families remain in a fixed order. The maintained column-normalized QR solver evaluates every feasible nonnegative active set, including zero. Negative unconstrained coefficients remain disclosed. A constrained boundary is labeled as a simpler active solution, not evidence identifying both effects. Rank deficiency refuses; normalized QR pivot ratio above1000 refuses the corresponding family. This ratio is a numerical diagnostic, not a spectral condition number or calibrated uncertainty bound.
+## Verification and design
 
-Positive loss magnitudes become negative `rate`/`coulomb` acceleration terms in the maintained executable model. Existing angular rollout and two-resolution comparison supply all dynamics. The full coarse-plus-refined model/run step population is reserved before execution. Insufficient budget refuses the whole receiving population; every numerical failure remains visible. Resolution agreement does not prove physical correctness, especially across Coulomb sign changes.
+Run `node --test tests/cycle-work.test.mjs`. The tests include all 64 corners of an authored uncertainty box, reverse-order and bias controls, shared turning-point cancellation, nonlinear conservative quadrature, explicit angle declarations and UTF-8 byte limits. Run `node scripts/cycle-work-browser.mjs` with the maintained Playwright/Chrome environment conventions for real input, keyboard, export/reopen, stale-file and narrow-layout receiving. Existing whole-product tests and smoke remain integration gates; a component pass alone is not a shipped-product claim.
 
-## Consumer and replay
+The design compares a large observed torque–angle trace with a moving-mechanism scene. The trace is selected because the source contains no clock or observed mechanism geometry: animation would invent states. Its signed segment ledger is a directly inspectable measurement object, not an unrelated dashboard chart. The trace shows central readings; the full interval is reported numerically. Existing fitting, simulation and manual-planner owners remain intact, including the PR9 hold.
 
-Two visual concepts were compared: phase-space loop area and a paired work/trajectory instrument. The paired instrument was chosen because the measured quantities here are cycle losses and angular trajectories; a loop-area composition could imply an independent force measurement that is absent. The upper trace compares training-cycle losses with all fitted candidates. The lower trace shows actual receiving motion against every executable law. The joint boundary trace remains dashed when coincident with a simpler family. Tables disclose both objectives without a winner badge; coverage and every refusal remain inspectable.
+Actual remote browser artifacts, exact composition and review results belong in the integration receipt. No physical acquisition or category qualification is claimed.
 
-Changing the main workbench model/source or a declaration clears stale results and export. An input notebook contains the source bundle, frozen restoring law and declarations, not trusted conclusions. Reopening recomputes the investigation and shows its source label and law identity. It remains local to this instrument; the next main workbench selection clears it. New drafts invalidate delayed notebook reads.
 
-## Reused physical evidence
+### Exact arithmetic enclosure control
 
-Run `node experiments/cycle-work.mjs`. Existing PASCO training recordings1/2 produce35 admitted cycle pairs with nine-sample derivatives and zero-radian crossing. Compared with the earlier research probe, production uses an explicit plateau midpoint and endpoint kinetic correction.
-
-| Candidate | Training work RMSE | Receiving angle RMSE (rad) | Qualification |
-|---|---:|---:|---|
-| Restoring only | — | 0.322969 | Frozen baseline |
-| Viscous | 0.0591425 | 0.0817604 | Nonnegative single-family fit |
-| Coulomb | 0.0704632 | 0.0616503 | Nonnegative single-family fit |
-| Joint | 0.0591425 | 0.0817604 | Viscous boundary; unconstrained Coulomb negative |
-
-Training work favors viscous while receiving trajectory favors Coulomb. Both remain visible. All recordings, including receiving, were previously used in development. This is exploratory evidence, not blind validation, identification of friction, or transfer to another mechanism.
-
-## Verification
-
-`node --test tests/cycle-work.test.mjs` checks analytic viscous/Coulomb/conservative motion, quantized peaks, refusal accounting, input/unit rejection, training isolation, exact notebook replay, full step reservation and physical disagreement retention.
-
-`node scripts/cycle-work-browser.mjs <repository-root> <fresh-output-directory>` receives the actual original torque journey, measured keyboard comparison, downloaded notebook/reopen, declaration and source invalidation, delayed reads, desktop/narrow layout and network/exception boundaries. Screenshots require independent visual review; a prepared receiver is not browser qualification.
+`tests/cycle-work-exact-enclosure.test.mjs` independently checks 160 deterministic cases (seed 418617), including subnormal inputs, mixed magnitudes and the 4096-sample limit. A BigInt dyadic oracle compares interval endpoints without converting the exact oracle back to floating point. It covers shared torque coefficients and cancellation independently of the production arithmetic.

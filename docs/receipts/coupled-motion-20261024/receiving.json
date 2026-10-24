@@ -1,0 +1,55 @@
+{
+  "schema": "worldlaw.coupled-dynamics-receiving/v1",
+  "task": "https://github.com/Jacob-Met/worldlaw/issues/60",
+  "candidateCodeCommit": "57a067cbb831e79e659141b3951819d001aa5499",
+  "maintainedBase": "7710a52887735467936358fb75b07a8ad0a3b4fb",
+  "environment": {
+    "platform": "Linux x86-64",
+    "node": "v22.23.4",
+    "chrome": "156.0.8078.47",
+    "device": "d0dd26a4-80c0-49bf-aa16-5bfdbf483e29"
+  },
+  "verification": {
+    "native": {
+      "command": "npm run verify",
+      "tests": 415,
+      "passed": 414,
+      "skipped": 1,
+      "failed": 0,
+      "skip": "optional live Node/Chromium notebook exchange controlled by environment"
+    },
+    "launchedSmoke": [
+      "scripts/smoke.mjs",
+      "scripts/trajectory-smoke-92be.mjs"
+    ],
+    "coupledNative": {
+      "command": "node --test tests/coupling-dynamics.test.mjs",
+      "passed": 13
+    },
+    "coupledBrowser": {
+      "command": "BROWSER_ARTIFACT_DIR=/tmp/hamon-df1a80f543e9-coupled-motion-v2 node scripts/coupling-dynamics-browser.mjs",
+      "groupsPassed": 16,
+      "viewports": [
+        1440,
+        390
+      ],
+      "uncaughtExceptions": 0,
+      "externalRequests": 0
+    },
+    "existingCouplingBrowser": {
+      "command": "node scripts/coupling-browser.mjs",
+      "groupsPassed": 15
+    }
+  },
+  "visualReview": {
+    "compositions": [
+      "two-angle phase path",
+      "aligned time traces"
+    ],
+    "changesAfterInspection": [
+      "Shortened numeric axis labels and enlarged the left plot margin at narrow widths",
+      "Reflowed comparison rows so range departures and numerical differences remain visible at narrow widths"
+    ]
+  },
+  "scope": "Authored numerical and actual local-browser receiving. Quasi-static evidence does not identify the declared dynamic model. No physical, cloud-provider or installed-deployment qualification."
+}

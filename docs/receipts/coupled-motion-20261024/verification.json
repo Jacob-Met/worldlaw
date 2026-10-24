@@ -1,0 +1,74 @@
+{
+  "checks": [
+    {
+      "name": "coupled dynamics enters through the maintained lab and explicit declaration",
+      "passed": true
+    },
+    {
+      "name": "real initial-state edits clear stale motion and change computed paths",
+      "passed": true
+    },
+    {
+      "name": "invalid inertia clears the trajectory and preserves source evidence",
+      "passed": true
+    },
+    {
+      "name": "a source acquisition invalidates old motion and requires its interpretation again",
+      "passed": true
+    },
+    {
+      "name": "trusted keyboard activation runs the actual declaration form",
+      "passed": true
+    },
+    {
+      "name": "actual download contains evidence and declarations, without stored models or forecasts",
+      "passed": true
+    },
+    {
+      "name": "reopening motion inputs restores declarations and recomputes the identical predictions",
+      "passed": true
+    },
+    {
+      "name": "changed held-aside checks do not change the motion and invalid motion input preserves the good source",
+      "passed": true
+    },
+    {
+      "name": "a late input file cannot overwrite a newer source or current predictions",
+      "passed": true
+    },
+    {
+      "name": "time inspection and explicit playback move computed sample markers",
+      "passed": true
+    },
+    {
+      "name": "phase comparison renders real paths without page overflow at 1440",
+      "passed": true
+    },
+    {
+      "name": "traces comparison renders real paths without page overflow at 1440",
+      "passed": true
+    },
+    {
+      "name": "phase comparison renders real paths without page overflow at 390",
+      "passed": true
+    },
+    {
+      "name": "traces comparison renders real paths without page overflow at 390",
+      "passed": true
+    },
+    {
+      "name": "reduced motion stops playback while time inspection remains available",
+      "passed": true
+    },
+    {
+      "name": "no uncaught errors or external requests were introduced",
+      "passed": true
+    }
+  ],
+  "pass": true,
+  "events": {
+    "exceptions": [],
+    "outside": []
+  },
+  "node": "v22.23.4"
+}

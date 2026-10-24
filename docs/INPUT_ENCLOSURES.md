@@ -1,0 +1,23 @@
+# Declared coordinate-error boxes
+
+The Studio's residual instrument now offers an explicit check of the inspected fixed scalar law under user-declared absolute radii for command (N·m), angle (rad), rate (rad/s), and observed torque (N·m). It reuses the maintained model and observation validator. No coefficients, rankings, observations or planner inputs change. Each row retains its nominal prediction, prediction enclosure, observation interval and excluded/not-excluded status. Totals cover all admitted rows; the panel lists the first 20.
+
+Each term is bounded over its declared coordinate interval, signed coefficients are applied, and the resulting intervals are added. Monotone polynomial/drag terms retain endpoint extrema. Sine checks both endpoints and all periodic extrema intersecting the interval; a full period yields [-1, 1]. Coulomb sign preserves jumps: exact zero radius at zero means sign(0)=0; a crossing interval permits both signs; an interval touching zero permits its one-sided sign and zero. Exact cancellation to zero in input-box endpoints is preserved.
+
+## Numerical meaning
+
+Basic interval arithmetic expands endpoints to the adjacent representable floating-point value. Cubic endpoint arithmetic additionally includes 8 machine-epsilon times its magnitude before outward rounding to cover the chained multiplications. Sine uses an explicitly disclosed engineering allowance of 64 machine-epsilon times (1+maximum absolute angle), applied to arguments and returned values, within the maintained absolute-coordinate bound 1e6. This allowance scales with argument magnitude, exceeds ordinary endpoint-rounding error, and avoids making endpoint evaluation look exact. This receiving course does not establish a formally certified transcendental error bound. These engineering enclosures and the supplied measurement bounds are assumptions, not verified sensor uncertainty. Nonfinite arithmetic and coordinate boxes extending outside the maintained domain refuse.
+
+## Interpretation
+
+Disjoint intervals exclude the observation under the supplied boxes and numerical enclosure assumptions. Overlap means only **not excluded**, never proof that any single physical input achieves the observed torque. Shared-coordinate terms are bounded independently and can overestimate the attainable range severely. For theta−sin(theta) on [-.1, .1], the termwise enclosure is approximately ±.199833, while the true range is approximately ±.000166583. Observed torque .1 remains not excluded by this intentionally conservative representation despite being impossible for that exact law and interval.
+
+Coefficients remain fixed; parameter uncertainty and model discrepancy are not included. Training-data fit/selection reuse remains, and copied input labels do not authenticate physical states. Increasing declared radii can remove exclusions without improving the law or measurements. No probability, physical cause, hardware acquisition or platform qualification follows.
+
+The user explicitly runs the check. Editing any radius clears displayed results; changing model/evidence resets the controls and results. The ordinary notebook preserves its original evidence/model inputs, but does not persist these diagnostic radii; the UI discloses that they must be re-entered.
+
+## Receiving
+
+Eight native groups pass on Node 24 against the maintained shared-fitter scalar evaluator: analytic stiffness/radius changes, exact and crossed sign boundaries, dependency counterexample, negative coefficients/sine extrema/polynomial sampled containment, invalid/empty/domain cases, monotone enlargement, 280 admitted-term/coordinate endpoint courses, and near-critical sine endpoint enlargement. Module, app and receiver syntax checks pass. scripts/input-enclosure.receiving.mjs exercises actual observation import, separate coordinate/reading radii, unchanged notebook, invalidation, invalid input, keyboard and desktop/narrow presentation. Root received the composed product on 2026-10-24 over main `7710a52887735467936358fb75b07a8ad0a3b4fb`, preserving the stiffness lab and prior diagnostics. Node 22.23.4 reported 409 native tests passed, 1 skipped and 0 failed; both launched Studio/Trajectory smokes passed. All 15 actual Chrome 156.0.8078.47 receiving groups passed with zero exceptions, admitted sandbox, keyboard activation and desktop/narrow presentation. Session: `.browser-receiving-437281ad-9482-4c45-ae1c-e02998bc19f1` on the authorized execution host. Independent SECOND GROUND review and root source/visual review found no remaining blocker.
+
+The consumer composes with the merged state-support diagnostic and current stiffness-lab styles. The maintained scalar evaluator and shared fitter are reused without modification.

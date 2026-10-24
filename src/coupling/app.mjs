@@ -1,9 +1,11 @@
+import {mountCoupledDynamics} from './dynamics-panel.mjs';
 import {analyzeCouplingNotebook,addCouplingObservation,exportCouplingNotebook,readCouplingNotebook} from './notebook.mjs';
 import {predictCoupling} from './science.mjs';
 import {createCouplingCourse,observeVirtualCoupling} from './virtual-instrument.mjs';
 
 const $=id=>document.getElementById(id),fmt=value=>value===null||value===undefined?'—':Math.abs(value)>=1e4||Math.abs(value)>0&&Math.abs(value)<.00001?value.toExponential(3):Number(value.toFixed(5)).toString();
 let notebook=createCouplingCourse(),analysis,activeCourse='reciprocal',inputIndex=0,inspected=null,view='field',generation=0;
+let dynamicsPanel;
 const colors={model:'#bd9dff',alternative:'#fbbf24',observed:'#4ade80',grid:'#35475e'};
 function element(tag,text,attributes={}){const el=document.createElement(tag);if(text!==undefined)el.textContent=text;for(const [key,value] of Object.entries(attributes))el.setAttribute(key,value);return el;}
 function svgElement(tag,attributes={},text){const el=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value]of Object.entries(attributes))el.setAttribute(key,value);if(text!==undefined)el.textContent=text;return el;}
@@ -77,6 +79,7 @@ function renderInput(){
   $('candidate').value=String(inputIndex);draw();
 }
 function render(){
+  dynamicsPanel?.sourceChanged();
   const d=analysis.discovery,p=analysis.plan;
   setText('source-kind',notebook.source.kind==='synthetic'?'Synthetic evidence':'User-declared measurements');setText('source-label',notebook.source.label);
   setText('counts',`${notebook.training.length} initial observations · ${notebook.revisions.length} acquisitions · ${notebook.challenges.length} separate checks`);
@@ -120,4 +123,5 @@ $('notebook-file').addEventListener('change',async()=>{
 $('save').addEventListener('click',()=>action(()=>{const blob=new Blob([exportCouplingNotebook(notebook)],{type:'application/json'}),url=URL.createObjectURL(blob),a=element('a',undefined,{href:url,download:'worldlaw-coupling-notebook.json'});a.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}));
 let resizeFrame;
 window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(draw);});
+dynamicsPanel=mountCoupledDynamics($('coupled-dynamics'),{getNotebook:()=>notebook,loadNotebook:next=>commit(next,{course:null,index:0})});
 commit(notebook,{course:activeCourse,index:0});
