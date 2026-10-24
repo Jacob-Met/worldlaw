@@ -1,0 +1,41 @@
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createProductServer} from '../server.mjs';
+import {newVirtualSession} from '../src/session.mjs';
+import {parameterSensitivity} from '../src/science/parameter-sensitivity.mjs';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const dir=process.env.BROWSER_ARTIFACT_DIR||resolve('.receipts/parameter-sensitivity');await mkdir(dir,{recursive:true});
+const server=createProductServer();await new Promise((r,j)=>{server.once('error',j);server.listen(0,'127.0.0.1',r);});
+let browser;const checks=[],errors=[];
+try{
+ browser=await chromium.launch({headless:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+ const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(`http://127.0.0.1:${server.address().port}`);await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='64');
+ const host=page.locator('#parameter-sensitivity'),button=host.getByRole('button'),input=host.getByRole('spinbutton');
+ await button.focus();await page.keyboard.press('Enter');
+ assert.match(await host.innerText(),/64 training readings/);
+ const state=newVirtualSession(),native=parameterSensitivity(state.discovery.selected,state.discovery.observations,.01);
+ assert.equal(await host.locator('li').count(),native.coefficients.length);
+ const shown=await host.locator('li').allTextContents(),format=value=>Number(value.toPrecision(6)).toLocaleString('en-US',{maximumSignificantDigits:6});
+ native.coefficients.forEach((coefficient,index)=>assert.ok(shown[index].includes(`${coefficient.id}: refit ${format(coefficient.refittedCoefficient)}; coefficient range ${format(coefficient.lower)} to ${format(coefficient.upper)} ${coefficient.unit}`)));
+
+ await host.locator('summary').first().click();assert.match(await host.innerText(),/Other coefficients need different witnesses/);
+ checks.push('actual Studio computes fixed-structure response; keyboard and witness disclosure');
+ await page.screenshot({path:resolve(dir,'desktop.png'),fullPage:true});await host.screenshot({path:resolve(dir,'desktop-panel.png')});
+ await input.fill('0.02');assert.equal(await host.locator('li').count(),0);assert.match(await host.innerText(),/Recompute/);
+ await button.click();assert.match(await host.innerText(),/±0.02/);checks.push('changed error assumption clears former results before recomputation');
+ await input.fill('-1');await button.click();assert.match(await host.innerText(),/unavailable/);assert.equal(await host.locator('li').count(),0);
+ await input.fill('0');await button.click();assert.match(await host.innerText(),/worst-case shift ±0/);checks.push('invalid radius refuses and exact zero remains supported');
+ const download=page.waitForEvent('download');await page.locator('#export-session').click();const file=await download;const saved=resolve(dir,'source-notebook.json');await file.saveAs(saved);
+ await page.locator('#session-file').setInputFiles(saved);await page.waitForFunction(()=>document.querySelectorAll('#parameter-sensitivity li').length===0);assert.equal(await host.locator('li').count(),0);await input.fill('0.02');await button.click();assert.match(await host.innerText(),/64 training readings/);checks.push('source notebook reopen recomputes the diagnostic from inputs and redeclared radius');
+ await page.locator('#hypothesis-list button[aria-pressed="false"]').first().click();
+ assert.equal(await host.locator('li').count(),0);await button.click();assert.ok(await host.locator('li').count()>0);checks.push('inspecting another model clears the former sensitivity before computing that structure');
+ await page.locator('#use-proposal').click();await page.locator('#run-experiment').click();await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='65');
+ assert.equal(await host.locator('li').count(),0);await button.click();assert.match(await host.innerText(),/65 training readings/);checks.push('new executed observation clears former results and recomputes all 65 readings');
+ await page.setViewportSize({width:390,height:844});await host.scrollIntoViewIfNeeded();await page.screenshot({path:resolve(dir,'narrow.png'),fullPage:true});await host.screenshot({path:resolve(dir,'narrow-panel.png')});
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));checks.push('390px actual consumer stays within viewport');
+ assert.deepEqual(errors,[]);
+ await writeFile(resolve(dir,'verification.json'),JSON.stringify({checks,errors,browser:await browser.version(),native},null,2));
+ console.log(JSON.stringify({checks,errors}));
+}finally{await browser?.close();await new Promise(r=>server.close(r));}
