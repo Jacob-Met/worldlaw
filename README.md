@@ -97,6 +97,21 @@ Try [the independent synthetic quadratic-drag fixture](examples/synthetic-quadra
 
 Held-out rows are excluded from fitting, ranking and acquisition. Source hashes and derivation assumptions are retained as supplied evidence, without independent authentication. CSV export contains numeric rows only; keep the notebook when provenance and history matter. Failed imports preserve the current valid notebook. Late file reads cannot replace a newer notebook.
 
+### Compare a different reading-loss assumption
+
+In the Discovery Studio's **Fitting assumptions**, explicitly choose **Soft-L1**
+and a transition scale in N·m to reduce the influence of large torque residuals.
+Refitting compares the same finite feature library, retains the original
+least-squares history, and executes the resulting law through the existing
+dynamics and experiment path. Every reading, raw residual and training error
+remains visible; reduced influence does not establish a bad sensor or a correct
+physical law. Downloaded v3 notebooks replay the actual loss and scale choices.
+
+Try [the authored reading-spike control](examples/synthetic-reading-spikes.json).
+See [the numerical contract, controls and retained failures](docs/SOFT_L1_DISCOVERY.md),
+including coordinate-leverage failures and complete-search refusal when the
+optimizer cannot finish. The original least-squares choice remains the default.
+
 ### Angular telemetry
 
 The optional Node CLI derives torque from time/angle telemetry with explicitly declared inertia:
@@ -335,3 +350,4 @@ The probe instrument can [profile a declared continuous saturation-scale interva
 ### Compare separate Motion recordings as executable angular laws
 
 Trajectory Challenge can now receive two saved Motion Lab notebooks directly. Choose continuous courses and explicitly declare starting rates, common angle coordinates and unforced dynamics. The existing angular fitter and forward solver retain source identities and compare a separate recording without invented physical inertia or torque. See [Motion-to-trajectory intake](docs/MOTION_TRAJECTORY_INTAKE.md) for the actual workflow, source/calibration limits and authored positive/failed-transfer receiving.
+

@@ -62,7 +62,12 @@
             </div>
             <button id="run-experiment" class="button button-accent button-full" type="button">Run virtual experiment <span aria-hidden="true">→</span></button>
             <p class="input-hint">Compare the new outcome with the model’s prediction, then revise the explanation.</p>
-            <details class="fit-settings"><summary>Fitting assumptions <span aria-hidden="true">+</span></summary><div class="fit-settings-body"><label for="noise-sigma">Assumed torque noise <span>N·m</span><input id="noise-sigma" type="number" value="0.01" min="0.000000000001" step="0.001" inputmode="decimal"></label><p class="input-hint">This assumption affects model ranking. Model spread is not probability.</p><button id="refit" class="button button-outline button-full" type="button">Refit observations</button></div></details>
+            <details class="fit-settings"><summary>Fitting assumptions <span aria-hidden="true">+</span></summary><div class="fit-settings-body"><label for="noise-sigma">Assumed torque noise <span>N·m</span><input id="noise-sigma" type="number" value="0.01" min="0.0000001" step="0.001" inputmode="decimal"></label><p class="input-hint">This assumption affects model ranking. Model spread is not probability.</p>
+              <label for="reading-loss">Reading loss<select id="reading-loss"><option value="least_squares">Least squares</option><option value="soft_l1">Soft-L1 · reduce large-residual influence</option></select></label>
+              <label for="loss-scale">Soft-L1 transition scale <span>N·m</span><input id="loss-scale" type="number" value="0.03" min="0.0000001" max="1000000" step="any" inputmode="decimal" disabled></label>
+              <p class="input-hint">A smaller scale reduces the influence of large residuals. It does not establish which readings are wrong; every reading and raw error remains visible.</p>
+              <p id="loss-choice-status" class="input-hint" role="status"></p>
+              <button id="refit" class="button button-outline button-full" type="button">Refit observations</button></div></details>
           </section>
           <p id="storage-status" class="storage-status" role="status">Session storage is initializing.</p>
         </aside>
@@ -80,6 +85,7 @@
             <div id="selected-terms" class="selected-terms"></div>
             <div class="model-metrics"><div><span class="metric-label">Training error</span><strong id="training-error">—</strong><small>RMSE · N·m</small></div><div><span class="metric-label">Held-out error</span><strong id="heldout-error">—</strong><small>RMSE · N·m</small></div><div class="metric-explanation"><span class="metric-label">After the experiment</span><span id="heldout-change">Held-out evidence will appear here.</span></div></div>
             <div id="diagnostics" class="diagnostics"></div>
+            <div id="reading-loss-result"></div>
             <fieldset class="feature-revision"><legend>Challenge the feature library</legend><p>The additive library cannot express command effects that change with position. Explicitly admit uθ as another candidate, then compare the retained baseline with the revised predictions.</p><label for="include-command-position"><input id="include-command-position" type="checkbox"> Admit command × position (uθ)</label><button id="revise-features" class="button button-outline" type="button">Revise candidate library</button><p id="feature-library-status" class="input-hint"></p></fieldset>
           </section>
 
@@ -113,3 +119,4 @@
   <script type="module" src="/src/app.mjs"></script>
 </body>
 </html>
+
