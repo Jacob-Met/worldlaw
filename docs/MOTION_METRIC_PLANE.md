@@ -144,7 +144,7 @@ That case stays admitted as a conditional declaration, with its physical limits
 visible; the product never interprets its small reference residual as validation.
 
 Four independently authored camera maps and both fixed/moving-pivot courses
-exercise the coordinate mechanism. The native suite passed with 975 tests,
+exercise the coordinate mechanism. The native suite passed with 983 tests after integrating the concurrent scalar replay change,
 one existing optional skip, and zero failures; both launched-product smoke
 checks passed. Actual Chromium receiving used namespace and Seccomp-BPF
 sandboxing, the desktop and 390 px layouts, keyboard activation/focus and
@@ -178,3 +178,8 @@ It adds no detached viewer or replacement app shell.
 ![Image and plane angle interpretations](receipts/metric-plane-4f4650/angles.png)
 ![Narrow calibration controls](receipts/metric-plane-4f4650/narrow.png)
 ![Actual separate-recording forward challenge](receipts/metric-plane-4f4650/trajectory.png)
+
+The source-distribution policy explicitly includes the new homography dependency,
+its provenance, fixture helper/generator and five authored example files. Two
+named test logs stay in Git but outside the archive. Unknown sibling files still
+refuse; the maintained distribution repair from #249 is preserved.

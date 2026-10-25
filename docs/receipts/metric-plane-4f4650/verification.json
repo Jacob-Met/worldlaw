@@ -3,7 +3,7 @@
   "issue": "https://github.com/Jacob-Met/worldlaw/issues/243",
   "baseCommit": "29b117100c57c5f132d45c53edda2febc0cd9926",
   "sourceManifest": "source-files.json",
-  "sourceManifestSha256": "d72d61c03b798b0e770407b7b29f855c86b6b2cb64e2e69c5fc8d916e601ae0a",
+  "sourceManifestSha256": "26cef99ed9ce04a5004de456c387d4279300e0a9bcccc11312415aaae2b90677",
   "environment": {
     "system": "Linux-6.18.55-x86_64-with-glibc2.39",
     "node": "v24.22.1",
@@ -21,7 +21,7 @@
     },
     {
       "command": "npm test",
-      "result": "975 passed, 1 existing optional skip, 0 failed",
+      "result": "983 passed, 1 existing optional skip, 0 failed after integrating main scalar replay #245",
       "log": "native-tests.log"
     },
     {
@@ -75,5 +75,16 @@
     "No physical inertia, torque scale, forces, camera/lens parameters or mechanism topology are inferred."
   ],
   "visualDecision": "Compared separate calibration editor with source overlays/paired angle interpretation. Selected the existing Motion source stage, numbered declared references, and solid/dashed trace comparison; no replacement shell.",
-  "integrationStatus": "Candidate receiving. GitHub PR and merged-head verification are recorded on issue 243; this receipt does not itself claim merge or deployment."
+  "integrationStatus": "Candidate receiving. GitHub PR and merged-head verification are recorded on issue 243; this receipt does not itself claim merge or deployment.",
+  "integrationBaseCommit": "ba171a17af10953aaf64b7159fc379c79bfa01b5",
+  "integrationQualification": "Original plane runtime and browser source unchanged after independent review. Concurrent main #245 scalar replay and #249 distribution repair preserved. The scalar core and its eight added tests were included in the combined native run. Complete current Git path manifest plus this candidate passes strict distribution admission: nine exact dependencies/fixtures added and two named logs omitted. No unknown-path rule is broadened.",
+  "distributionPolicy": {
+    "sourceMain": "ba171a17af10953aaf64b7159fc379c79bfa01b5",
+    "checks": [
+      "Complete current GitHub tree plus all candidate paths admitted",
+      "All required application dependencies included",
+      "Unknown sibling movie, vendor module and log refused"
+    ],
+    "qualification": "Path-policy receiving on the complete remote manifest. This record does not claim a newly built source ZIP."
+  }
 }

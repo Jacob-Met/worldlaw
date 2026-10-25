@@ -94,5 +94,11 @@
     "sha256": "123f6484585df1e71fb0fceeab8953249f91c03ffd61dd754704cd1d0fb6077f",
     "gitBlob": "652a5cf8de14b2037c0f486bd4a20ee6833d1650",
     "bytes": 2439
+  },
+  {
+    "path": "scripts/package.py",
+    "sha256": "be23da6887f00cb227cf7fc5f596d04e3ce55ede9dd52eb493f82bf82a7e0fa6",
+    "gitBlob": "aec26645f1319c506625dba37b9a9f9ff5328be5",
+    "bytes": 21452
   }
 ]
