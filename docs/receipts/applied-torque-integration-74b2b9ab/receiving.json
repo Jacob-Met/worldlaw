@@ -55,5 +55,38 @@
     "Authored analytic controls are conditional software evidence, not independently calibrated physical measurements.",
     "Full binary source archive not independently reconstructed through this connector.",
     "Exact published-head and merged-source checks are subsequent integration actions, not claimed by this prepublication receipt."
-  ]
+  ],
+  "reconciliation": {
+    "previousPublishedHead": "71ae03a1f797cd53b1f689ff7f69d6116777ce7c",
+    "newBaseCommit": "af9df5f85a09c98a15aa35ba51b7e4923c9fd693",
+    "newBaseTree": "46407748be77ccd9d711a32d9c7d279a2a4ca26d",
+    "preservation": "All merged weighted-reading and prepared-evaluator source retained; original17 featureblobs and2additive trajectory mount lines unchanged. Packaging reduces to2exact receipt additions over newmain.",
+    "native": {
+      "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+      "runtime": "Node v24.22.1, authorized loopback-capable runtime",
+      "total": 1125,
+      "passed": 1124,
+      "failed": 0,
+      "skipped": 1,
+      "skip": "Optional live Node/Chromium notebook exchange; not counted as passing"
+    },
+    "affectedNative": {
+      "weighted": 11,
+      "torque": 13,
+      "applied": 9,
+      "failed": 0
+    },
+    "smokes": {
+      "studio": true,
+      "trajectory": true
+    },
+    "policy": {
+      "tests": 7,
+      "passed": 7,
+      "trackedPaths": 1160,
+      "listingSource": "Authenticated exact Git-tree API, substituted only for git ls-files in source-path coverage test"
+    },
+    "counterexamples": "Re-executed against the weighted composition with identical result; no held-out fit influence, false calibration remains misleading",
+    "browser": "Root broker will receive exact reconciled publication; earlier7groups remain attributed to earlier source."
+  }
 }

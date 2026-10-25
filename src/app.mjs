@@ -87,14 +87,15 @@ function renderModel(){
   set('selected-equation',m.equation.replaceAll(' + -',' − ').replace(' = -',' = −'));set('selected-terms',m.terms.length?m.terms.map(t=>`${names[t.id]} ${fmt(t.coefficient)}`).join(' · '):'No selected terms');
   set('training-error',fmt(train.rmse));set('heldout-error',fmt(held.rmse));
   const lossResult=$('reading-loss-result');lossResult.replaceChildren();
-  if(m.fitting?.loss==='soft_l1'){
+  if(m.fitting?.loss==='soft_l1'||m.fitting?.loss==='weighted_least_squares'){
+    const weighted=m.fitting.loss==='weighted_least_squares';
     const scale=m.fitting.scale;
-    lossResult.append(el('p',`Soft-L1 fit at ${fmt(scale)} N·m scale. ${m.metrics.robust.halfWeightCount} of ${train.count} readings have loss weight below 0.5. Training error above still includes every raw residual. This does not identify faulty readings.`));
+    lossResult.append(el('p',weighted?`Weighted least squares under declared torque-noise ratios. Ratio-normalized training RMSE: ${fmt(m.metrics.weighted.relativeNoiseRmse)} N·m at reference ratio one. Ranking and adequacy compare that value with the assumed reference noise ${fmt(state.options.noiseSigma)} N·m. Raw training error above retains every reading. ${held.relativeNoiseRmse===undefined?'Held-out error remains raw; no held-out ratios were supplied.':`Held-out ratio-normalized RMSE: ${fmt(held.relativeNoiseRmse)} N·m; these held-out rows never fit or rank models.`}`:`Soft-L1 fit at ${fmt(scale)} N·m scale. ${m.metrics.robust.halfWeightCount} of ${train.count} readings have loss weight below 0.5. Training error above still includes every raw residual. This does not identify faulty readings.`));
     const details=el('details'),summary=el('summary','Inspect every original reading and its loss influence');details.append(summary);
-    const scroll=el('div',undefined,'prediction-sensitivity-scroll reading-influence-scroll');scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label','Original torque readings and soft-L1 loss influence');
+    const scroll=el('div',undefined,'prediction-sensitivity-scroll reading-influence-scroll');scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label',weighted?'Original torque readings and declared noise ratios':'Original torque readings and soft-L1 loss influence');
     const table=el('table'),head=el('thead'),heading=el('tr');
-    for(const title of ['Source row','Command N·m','Angle rad','Rate rad/s','Observed N·m','Residual N·m','Loss weight']){const th=el('th',title);th.scope='col';heading.append(th);}head.append(heading);table.append(head);
-    const body=el('tbody');train.rows.forEach((row,index)=>{const tr=el('tr');tr.dataset.sourceRow=String(index);for(const value of [String(index+1),fmt(row.command),fmt(row.position),fmt(row.rate),fmt(row.jointTorque),fmt(row.residual),fmt(softL1Weight(row.residual,scale))])tr.append(el('td',value));body.append(tr);});table.append(body);scroll.append(table);details.append(scroll,el('p','Weights describe this chosen loss, not reading reliability or probabilities. Coordinate leverage, coherent missing physics and many conflicting readings can still mislead the fit.'));lossResult.append(details);
+    for(const title of ['Source row','Command N·m','Angle rad','Rate rad/s','Observed N·m','Residual N·m',...(weighted?['Declared ratio','1 / ratio² weight']:['Loss weight'])]){const th=el('th',title);th.scope='col';heading.append(th);}head.append(heading);table.append(head);
+    const body=el('tbody');train.rows.forEach((row,index)=>{const tr=el('tr');tr.dataset.sourceRow=String(index);for(const value of [String(index+1),fmt(row.command),fmt(row.position),fmt(row.rate),fmt(row.jointTorque),fmt(row.residual),...(weighted?[fmt(row.torqueNoiseRatio),fmt(1/row.torqueNoiseRatio**2)]:[fmt(softL1Weight(row.residual,scale))])])tr.append(el('td',value));body.append(tr);});table.append(body);scroll.append(table);details.append(scroll,el('p',weighted?'The declared standard deviation of a row is reference noise × ratio. Weights are mathematical consequences of that declaration, not confidence. Wrong ratios, correlated noise and errors in input coordinates can mislead the fit. Rank and conditioning refer to the weighted design.':'Weights describe this chosen loss, not reading reliability or probabilities. Coordinate leverage, coherent missing physics and many conflicting readings can still mislead the fit.'));lossResult.append(details);
   }
   const before=state.history[0].heldOutRMSE;
   const change=before!==null&&held.rmse!==null?before-held.rmse:null;
@@ -119,7 +120,7 @@ function renderModel(){
   renderParameterSensitivity(sensitivity,m,state.discovery.observations);
   let readout=$('prediction-sensitivity');if(!readout){readout=el('div');readout.id='prediction-sensitivity';sensitivity.after(readout);}
   renderPredictionSensitivity(readout,m,state.discovery.observations,state.base.heldOut);
-  if(m.fitting?.loss==='soft_l1')for(const host of [support,sensitivity,readout])host.prepend(el('p','Least-squares comparison: this diagnostic refits the inspected structure using ordinary least squares. Any refit shift includes that change of loss; these are not sensitivities of the soft-L1 estimator.','loss-diagnostic-note'));
+  if(m.fitting?.loss==='soft_l1'||m.fitting?.loss==='weighted_least_squares')for(const host of [support,sensitivity,readout])host.prepend(el('p',`Least-squares comparison: this diagnostic refits the inspected structure using ordinary least squares. Any refit shift includes that change of loss; these are not sensitivities of the ${m.fitting.loss==='soft_l1'?'soft-L1':'declared-ratio weighted'} estimator.`,'loss-diagnostic-note'));
   let enclosure=$('input-enclosures');if(!enclosure){enclosure=el('div');enclosure.id='input-enclosures';$('state-support').after(enclosure);}
   renderInputEnclosures(enclosure,m,state.discovery.observations);
   let separability=$('separability');if(!separability){separability=el('div');separability.id='separability';$('replicate-diagnostics').after(separability);}
@@ -137,16 +138,20 @@ function render(){
   set('experiment-mode',state.lab?'Execute the virtual torque instrument at these inputs.':'Use your instrument, then enter its measured net torque. No hardware is controlled.');
   $('noise-sigma').value=state.options.noiseSigma;
   $('reading-loss').value=state.options.loss??'least_squares';
+  const hasRatios=d.observations[0]?.torqueNoiseRatio!==undefined;
+  $('weighted-loss-choice').disabled=!hasRatios;
+  $('measurement-noise-field').hidden=Boolean(state.lab)||!hasRatios;
+  set('noise-ratio-status',hasRatios?`${d.observations.length} original readings retain declared noise ratios. Weighted least squares uses assumed torque noise as the reference standard deviation, multiplied by each row’s ratio. Other losses retain these declarations without using them.`:'Import a torqueNoiseRatio column to declare each reading’s relative noise. Ratios are assumptions, not measured reliability. Weighted fitting is unavailable without a ratio for every training row.');
   $('loss-scale').value=state.options.lossScale??0.03;
   $('loss-scale').disabled=state.options.loss!=='soft_l1';
-  set('loss-choice-status',state.options.loss==='soft_l1'?`Applied soft-L1 scale ${fmt(state.options.lossScale)} N·m. Loss and scale revisions remain in the notebook.`:'Applied least squares. Choose a loss and refit to compare a different assumption.');
+  set('loss-choice-status',state.options.loss==='soft_l1'?`Applied soft-L1 scale ${fmt(state.options.lossScale)} N·m. Loss and scale revisions remain in the notebook.`:state.options.loss==='weighted_least_squares'?'Applied weighted least squares using the original declared noise ratios. Source and fitting history remain in the notebook.':'Applied least squares. Choose a loss and refit to compare a different assumption.');
   $('include-command-position').checked=Boolean(state.options.includeCommandPosition);
   set('feature-library-status',state.options.includeCommandPosition?'uθ is admitted, not assumed true. Selection uses fit rows only; held-out rows remain separate. A versioned notebook preserves the complete library and fitting history.':'Additive library active. A revision retains the initial fit and evidence in notebook history.');
   const diag=d.diagnostics;
-  set('diagnostics',`${diag.competitiveCount} competitive ${diag.competitiveCount===1?'structure':'structures'} at the current noise assumption. ${diag.adequacy==='residual_mismatch'?'Residual mismatch: this library does not explain the data within the assumed noise.':diag.selectionAmbiguous?'The current observations do not isolate a unique explanation.':'One structure ranks ahead within this finite library.'}${diag.identifiability==='insufficient_excitation'?' Some inputs are not independently excited; more varied observations are needed.':''}`);
+  set('diagnostics',`${diag.competitiveCount} competitive ${diag.competitiveCount===1?'structure':'structures'} at the current noise assumption. ${diag.adequacy==='residual_mismatch'?'Residual mismatch: this library does not explain the data within the assumed noise.':diag.selectionAmbiguous?'The current observations do not isolate a unique explanation.':'One structure ranks ahead within this finite library.'}${diag.identifiability==='insufficient_excitation'?' Some inputs are not independently excited; more varied observations are needed.':''}${state.options.loss==='weighted_least_squares'?' Adequacy and numerical rank use the declared weighted design; an incorrect noise declaration can conceal mismatch.':''}`);
   renderPlan();
   const history=$('history-list');history.replaceChildren();
-  state.history.forEach((entry,i)=>{const li=el('li');li.append(el('span',String(i+1).padStart(2,'0'),'history-index'),el('strong',entry.label),el('span',`${entry.count} rows · ${entry.modelId} · held-out ${fmt(entry.heldOutRMSE)} N·m`,'history-detail'));history.append(li);});
+  state.history.forEach((entry,i)=>{const li=el('li');li.append(el('span',String(i+1).padStart(2,'0'),'history-index'),el('strong',entry.label),el('span',`${entry.count} rows · ${entry.modelId} · held-out ${fmt(entry.heldOutRMSE)} N·m${entry.loss==='weighted_least_squares'?` · weighted fit, normalized training ${fmt(entry.relativeNoiseRmse)} N·m`:''}`,'history-detail'));history.append(li);});
   renderHypotheses();renderModel();
 }
 function renderPlan(){
@@ -164,7 +169,7 @@ function renderPlan(){
     set('model-spread',`${plan.currentRank}${plan.selected?' → '+plan.selected.prospectiveRank:''} / ${plan.librarySize} feature columns`);
     const source=plan.inputSource==='explicitly_offered'?`${plan.originalOfferedCount} explicitly offered states`:
       plan.inputSource==='virtual_instrument_course'?'the virtual instrument course':'the grid within the original observed ranges';
-    set('pilot-explanation',`Coordinates only, from ${source}. ${plan.previouslyObservedCount} already observed states excluded. ${plan.examinedOffers} remaining states compared. Rank gain supplies no torque forecast and does not establish a correct law.${plan.status==='work_limit'?' The complete course exceeds the declared work bound; no partial ranking was used.':''}${plan.selected?.extrapolation.length?' This offered state extends the observed '+plan.selected.extrapolation.join(', ')+' range.':''}`);
+    set('pilot-explanation',`Coordinates only, from ${source}. ${plan.previouslyObservedCount} already observed states excluded. ${plan.examinedOffers} remaining states compared. Rank gain supplies no torque forecast and does not establish a correct law.${state.options.loss==='weighted_least_squares'?' This input-only rank ignores declared torque-noise ratios; the fitted law reports weighted numerical rank.':''}${plan.status==='work_limit'?' The complete course exceeds the declared work bound; no partial ranking was used.':''}${plan.selected?.extrapolation.length?' This offered state extends the observed '+plan.selected.extrapolation.join(', ')+' range.':''}`);
     set('pilot-course-summary',`Inspect all ${plan.outcomes.length} compared states`);
     const rows=$('pilot-course-rows');rows.replaceChildren();
     for(const row of plan.outcomes){
@@ -231,7 +236,7 @@ useProposal(false);
 $('use-proposal').addEventListener('click',()=>action(useProposal));
 $('planner-objective').addEventListener('change',()=>action(()=>{renderPlan();notice('Planning objective changed. Original observations and fitted laws are unchanged.');}));
 $('run-experiment').addEventListener('click',()=>action(()=>{
-  const input=experimentInput();const next=state.lab?runVirtualExperiment(state,input):appendMeasurements(state,[{...input,jointTorque:numberInput('measured-torque')}]);
+  const input=experimentInput();const next=state.lab?runVirtualExperiment(state,input):appendMeasurements(state,[{...input,jointTorque:numberInput('measured-torque'),...(state.discovery.observations[0]?.torqueNoiseRatio===undefined?{}:{torqueNoiseRatio:numberInput('measurement-noise-ratio')})}]);
   const previous=state.discovery.selected.id;adopt(next,previous===next.discovery.selected.id?'New observation added. The leading structure is unchanged.':'New evidence changed the leading model structure.');
 }));
 $('refit').addEventListener('click',()=>action(()=>{
