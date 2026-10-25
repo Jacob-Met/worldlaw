@@ -1,4 +1,5 @@
 import {exportSaturationInvestigation,importSaturationInvestigation,profileSettings} from './saturation-profile.mjs';
+import {incompatibleSaturationChallenges} from './saturation-joint-fixture.mjs';
 import {saturatedProbeExample} from './probe-saturation-fixture.mjs';
 const fmt=x=>Number(x.toPrecision(5)).toString();
 export function mountSaturationProfile(probePanel){
@@ -23,9 +24,9 @@ export function mountSaturationProfile(probePanel){
  <label>Maximum scale (rad/s)<input id="profile-max" type="number" min="0.000001" value="1" step="any"></label>
  <label>Boundary resolution (rad/s)<input id="profile-resolution" type="number" min="0.000001" value="0.001" step="any"></label>
  <label>Maximum boxes<input id="profile-boxes" type="number" min="1" max="256" value="128"></label>
- <label>Feature evaluation budget<input id="profile-evaluations" type="number" min="1" max="1024" value="512"></label>
+ <label>Feature evaluations per stage<input id="profile-evaluations" type="number" min="1" max="1024" value="512"></label>
  </div>
- <div class="secondary-actions"><button id="profile-run" type="button">Profile current probe measurements</button><button id="profile-example" type="button">Load authored off-grid control</button><button id="profile-open" type="button">Reopen continuous investigation</button><button id="profile-export" type="button" disabled>Export source investigation</button></div>
+ <div class="secondary-actions"><button id="profile-run" type="button">Profile current probe measurements</button><button id="profile-example" type="button">Load authored off-grid control</button><button id="profile-joint-example" type="button">Load incompatible challenge control</button><button id="profile-open" type="button">Reopen continuous investigation</button><button id="profile-export" type="button" disabled>Export source investigation</button></div>
  <input id="profile-file" type="file" accept=".json,application/json" hidden>
  <p id="profile-status" role="status">Load a probe study above or the authored control, then run the profile.</p>
  <p id="profile-error" role="alert" tabindex="-1"></p><div id="profile-result" hidden></div>
@@ -38,7 +39,7 @@ export function mountSaturationProfile(probePanel){
  function inputs(){return profileSettings({scaleMin:Number($('profile-min').value),scaleMax:Number($('profile-max').value),scaleResolution:Number($('profile-resolution').value),maxBoxes:Number($('profile-boxes').value),maxEvaluations:Number($('profile-evaluations').value)});}
  function error(e){$('profile-error').textContent=e.message||String(e);$('profile-error').focus();$('profile-status').textContent='Profile not completed.';}
  function node(tag,text,parent=$('profile-result')){const el=document.createElement(tag);if(text!==undefined)el.textContent=text;parent.append(el);return el;}
- function render(r){
+ function render(r,joint){
   const out=$('profile-result');out.replaceChildren();out.hidden=false;
   node('h3',r.fit.status.replaceAll('-',' '));node('p','Source: '+(r.source??'none')+'. Finite offered comparison: '+r.fit.finiteBaseline.status+'. '+r.fit.boxes.length+' retained scale boxes; '+r.evaluations+' / '+r.fit.settings.maxEvaluations+' feature evaluations.');
   if(r.fit.reasons?.length)node('p',r.fit.reasons.join(' '));
@@ -56,12 +57,29 @@ export function mountSaturationProfile(probePanel){
   else{const scroll=node('div');scroll.className='profile-scroll';const table=node('table',undefined,scroll),head=node('tr',undefined,node('thead',undefined,table));for(const h of ['Run','Rate (rad/s)','Observed screen (N·m)','Entire outer family','Frozen witness'])node('th',h,head);
    const body=node('tbody',undefined,table);for(const c of r.challenges){const tr=node('tr',undefined,body);for(const value of [c.id,fmt(c.probe.rate),c.observed.map(fmt).join(' to '),c.status,c.witnessStatus??'not evaluated'])node('td',value,tr);}}
   node('p',r.interpretation);const details=node('details');node('summary','Inspect exact retained boxes, amplitude witnesses and complete challenge bands',details);node('pre',JSON.stringify(r,null,2),details);
+  node('h3','One parameter pair across all separate challenges');
+  const jointMessages={
+   'jointly-excluded':'No single amplitude and velocity scale satisfies all qualified original training and challenge screens in the declared domain.',
+   'joint-witness':'At least one common amplitude and scale satisfies all training and challenge screens. This post-training consistency witness does not replace the frozen training witness.',
+   'budget-unresolved':'The joint screen exhausted its separate work budget. Pending outer boxes remain unresolved; no family exclusion is claimed.',
+   'outer-boxes-only':'Outer boxes remain, but no joint consistency witness was certified at the declared resolution.',
+   'untested':'No separate challenges were supplied; no joint test was made.',
+   'insufficient-training':'Insufficient qualified training; no joint family inference was made.',
+   'unqualified-challenges':'At least one challenge lacks counterbalanced acquisition orders. The joint screen is not qualified.',
+   'unsupported-challenges':'At least one challenge rate is outside the supported numerical range. The joint screen was not evaluated.',
+   'unavailable':'The joint computation could not complete. The separately qualified training report is retained.'};
+  node('p',jointMessages[joint.status]??'Joint screen unavailable.');
+  if(joint.evaluations!==undefined)node('p','Joint verification: '+joint.evaluations+' / '+settings.maxEvaluations+' feature evaluations in its separate budget; '+joint.boxes.length+' retained boxes.');
+  if(joint.budgetExhausted&&joint.status==='joint-witness')node('p','A joint witness is certified, but the full joint parameter range remains unresolved because the work budget ended.');
+  if(joint.error)node('p',joint.error);
+  const jointDetails=node('details');node('summary','Inspect post-training joint consistency and original run roles',jointDetails);const jp=node('pre',JSON.stringify(joint,null,2),jointDetails);jp.id='profile-joint-report';
+
  }
  function run(){
   invalidate();try{source=probePanel.getStudy();if(!source)throw Error('Load a probe study first.');settings=inputs();const token=version;
    $('profile-status').textContent='Computing bounded continuous scale profile…';
    worker=new Worker(new URL('./saturation-profile-worker.mjs',import.meta.url),{type:'module'});
-   worker.onmessage=e=>{if(token!==version)return;worker.terminate();worker=null;if(e.data.error){error(Error(e.data.error));return;}result=e.data.result;render(result);$('profile-export').disabled=false;$('profile-status').textContent='Profile complete. Training and separate challenge screens are shown below.';};
+   worker.onmessage=e=>{if(token!==version)return;worker.terminate();worker=null;if(e.data.error){error(Error(e.data.error));return;}result=e.data.result;render(result,e.data.joint);$('profile-export').disabled=false;$('profile-status').textContent='Profile complete. Training and separate challenge screens are shown below.';};
    worker.onerror=e=>{if(token!==version)return;stop();error(Error(e.message||'Profile worker failed.'));};
    worker.postMessage({study:source,settings});
   }catch(e){error(e);}
@@ -70,6 +88,7 @@ export function mountSaturationProfile(probePanel){
  document.addEventListener('worldlaw-probe-study-change',invalidate);
  $('profile-run').onclick=run;
  $('profile-example').onclick=()=>{try{probePanel.adopt(saturatedProbeExample(.28));run();}catch(e){error(e);}};
+ $('profile-joint-example').onclick=()=>{try{probePanel.adopt(incompatibleSaturationChallenges());run();}catch(e){error(e);}};
  $('profile-open').onclick=()=>$('profile-file').click();
  $('profile-file').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;invalidate();const token=version;try{if(file.size>4000000)throw Error('Use investigation JSON below 4 MB.');const input=importSaturationInvestigation(await file.text());if(token!==version)return;
   probePanel.adopt(input.study);for(const [id,key] of [['min','scaleMin'],['max','scaleMax'],['resolution','scaleResolution'],['boxes','maxBoxes'],['evaluations','maxEvaluations']])$('profile-'+id).value=input.settings[key];run();

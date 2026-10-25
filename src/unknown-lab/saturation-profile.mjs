@@ -121,3 +121,24 @@ export function importSaturationInvestigation(text){
  if(raw?.schema!==PROFILE_SCHEMA)throw Error('Expected a saturation investigation.');
  return {study:validateProbeStudy(raw.study),settings:profileSettings(raw.settings)};
 }
+
+/** Post-training consistency only. Never used to choose the frozen training witness. */
+export function screenSaturationChallenges(raw,input={}){
+ const study=validateProbeStudy(raw),settings=profileSettings(input);
+ const training=fitProbeModels({...study,runs:study.runs.filter(r=>r.role==='training')});
+ const originalChallenges=study.runs.filter(r=>r.role==='challenge');
+ const base={schema:'worldlaw.saturation-joint-screen/v1',settings,trainingRunIds:study.runs.filter(r=>r.role==='training').map(r=>r.id),challengeRunIds:originalChallenges.map(r=>r.id),
+  interpretation:'Post-training consistency of one common amplitude and velocity scale across all original training and separate challenge screens. It does not revise the frozen training fit or select a training hypothesis from challenges. A joint witness demonstrates conditional screen compatibility, not uniqueness or a physical mechanism.'};
+ if(training.status==='insufficient-training')return {...base,status:'insufficient-training',boxes:[],evaluations:0};
+ if(!originalChallenges.length)return {...base,status:'untested',boxes:[],evaluations:0};
+ const points=originalChallenges.map(r=>({...r,...evaluateHistory(r.notebook)}));
+ const unqualified=points.filter(p=>p.order.status!=='counterbalanced').map(p=>p.id);
+ if(unqualified.length)return {...base,status:'unqualified-challenges',unqualified,boxes:[],evaluations:0};
+ const unsupported=points.filter(p=>p.probe.rate!==0&&Math.abs(p.probe.rate)<1e-8).map(p=>p.id);
+ if(unsupported.length)return {...base,status:'unsupported-challenges',unsupported,boxes:[],evaluations:0};
+ const rows=rowsOf({points:[...training.points,...points]}),ctx=context(settings.maxEvaluations),result=runProfile(rows,settings,ctx);
+ const boxes=result.boxes.map(b=>({scale:publicInterval(b.scale),amplitudeOuter:publicInterval(b.amplitude),covered:b.covered,unvisited:!!b.unvisited,
+  consistencyWitness:b.witness?{scale:text(b.witness.scale),amplitude:text(b.witness.amplitude),coversScaleInterval:b.covered}:null}));
+ return {...base,...result,boxes,evaluations:ctx.count,
+  status:!boxes.length?'jointly-excluded':boxes.some(b=>b.consistencyWitness)?'joint-witness':result.budgetExhausted?'budget-unresolved':'outer-boxes-only'};
+}

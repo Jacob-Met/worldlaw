@@ -18,9 +18,9 @@ try{
  await page.evaluate(()=>{window.profileBlob=null;const create=URL.createObjectURL.bind(URL);URL.createObjectURL=blob=>{window.profileBlob=blob;return create(blob);};document.querySelector('#profile-export').click();});
  const raw=JSON.parse(await page.evaluate(()=>window.profileBlob.text()));assert.equal(raw.schema,'worldlaw.saturation-investigation/v1');assert.equal(raw.fit,undefined);assert.equal(raw.result,undefined);
  const original=JSON.stringify(raw,null,2)+'\n',sourceSha256=createHash('sha256').update(original).digest('hex');await writeFile(path.join(out,'source-investigation.json'),original);
- raw.result={fit:{status:'identified',boxes:[]}};raw.frozenWitness={scale:999,amplitude:999};
+ raw.result={fit:{status:'identified',boxes:[]}};raw.frozenWitness={scale:999,amplitude:999};raw.joint={status:'jointly-excluded',boxes:[]};
  const reopen=async value=>page.evaluate(value=>{const d=new DataTransfer();d.items.add(new File([JSON.stringify(value)],'profile.json',{type:'application/json'}));const e=document.querySelector('#profile-file');e.files=d.files;e.dispatchEvent(new Event('change',{bubbles:true}));},value);
- await reopen(raw);await wait();assert.deepEqual((await report()).fit,initial.fit);
+ await reopen(raw);await wait();assert.deepEqual((await report()).fit,initial.fit);assert.equal(await page.$eval('#profile-joint-report',e=>JSON.parse(e.textContent).status),'joint-witness');
  const insufficient=structuredClone(raw);insufficient.study.runs=insufficient.study.runs.slice(0,1);
  await reopen(insufficient);await wait();assert.equal((await report()).fit.status,'insufficient-training');assert.equal(await page.$('.profile-band'),null);assert.match(await page.$eval('#profile-result',e=>e.textContent),/No scale has been excluded/);
  await reopen(raw);await wait();
@@ -35,6 +35,13 @@ try{
  await page.click('#profile-run');await wait();
  await page.select('#probe-example-kind','drag');await page.click('#probe-example');assert(await page.$eval('#profile-result',e=>e.hidden));
  await page.click('#profile-example');await wait();
+ await page.click('#profile-joint-example');await wait();
+ const isolated=await report();assert(isolated.challenges.every(c=>c.status==='outer-overlap-only'));
+ assert.equal(await page.$eval('#profile-joint-report',e=>JSON.parse(e.textContent).status),'jointly-excluded');
+ await setting('evaluations',1);await page.click('#profile-run');await wait();
+ assert.equal(await page.$eval('#profile-joint-report',e=>JSON.parse(e.textContent).status),'budget-unresolved');
+ await setting('evaluations',512);await page.click('#profile-example');await wait();
+ assert.equal(await page.$eval('#profile-joint-report',e=>JSON.parse(e.textContent).status),'joint-witness');
  await page.setViewport({width:390,height:844});await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);await page.$eval('.saturation-profile',e=>e.scrollIntoView());
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  await page.focus('#profile-evaluations');await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.id),'profile-run');assert(await page.$eval('#profile-run',e=>getComputedStyle(e).outlineStyle!=='none'));
