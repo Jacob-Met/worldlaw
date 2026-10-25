@@ -2,7 +2,7 @@ import {weakWindows, weakLocalRates} from './weak-operator.mjs';
 /** Experimental compact-window weak angular law discovery. Training evidence only. */
 import {normalizeAngularRuns, DEFAULT_ANGULAR_TERMS, ANGULAR_MODEL_UNITS, ANGULAR_COEFFICIENT_UNITS, AngularDataError} from './angular-discovery.mjs';
 const IDS = Object.keys(ANGULAR_COEFFICIENT_UNITS);
-const LABELS = {rate: 'ω', coulomb: 'sign(ω)', spring: 'θ', gravity: 'sin(θ)', quadratic: 'ω|ω|', bias: '1', cubic: 'θ³'};
+const LABELS = {rate: 'ω', coulomb: 'sign(ω)', spring: 'θ', gravity: 'sin(θ)', quadratic: 'ω|ω|', bias: '1', cubic: 'θ³', cosine: 'cos(θ)'};
 const METHOD = 'compact_window_weak_angular_acceleration_regression';
 const SCALE = 'angular_acceleration_only_absolute_torque_unknown';
 const RANK_TOLERANCE = 1e-8;
@@ -131,3 +131,4 @@ export function discoverAngularWeak(trainingRuns, requestedOptions = {}) {
         'Unforced dynamics and angle-zero consistency are assumptions; absent actuator/calibration channels cannot verify them.',
         'Different recordings of one apparatus do not establish transfer to unseen mechanisms.']}};
 }
+

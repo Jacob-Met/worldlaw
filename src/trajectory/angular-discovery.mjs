@@ -5,9 +5,9 @@ import {rollout} from './forward.mjs';
 export const ANGULAR_BUNDLE_SCHEMA = 'worldlaw.angular-bundle/v1';
 export const ANGULAR_UNITS = Object.freeze({time: 's', position: 'rad', initialRate: 'rad/s'});
 export const ANGULAR_MODEL_UNITS = Object.freeze({position: 'rad', rate: 'rad/s', angularAcceleration: 'rad/s²'});
-export const ANGULAR_COEFFICIENT_UNITS = Object.freeze({rate: '1/s', coulomb: 'rad/s²', spring: '1/s²', gravity: 'rad/s²', quadratic: '1/rad', bias: 'rad/s²', cubic: '1/(rad²·s²)'});
+export const ANGULAR_COEFFICIENT_UNITS = Object.freeze({rate: '1/s', coulomb: 'rad/s²', spring: '1/s²', gravity: 'rad/s²', quadratic: '1/rad', bias: 'rad/s²', cubic: '1/(rad²·s²)', cosine: 'rad/s²'});
 const IDS = Object.keys(ANGULAR_COEFFICIENT_UNITS);
-export const DEFAULT_ANGULAR_TERMS = Object.freeze(IDS.filter(id => id !== 'cubic'));
+export const DEFAULT_ANGULAR_TERMS = Object.freeze(IDS.filter(id => id !== 'cubic' && id !== 'cosine'));
 const SCALE_MEANING = 'angular_acceleration_only_absolute_torque_unknown';
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 export class AngularDataError extends Error {
@@ -185,3 +185,4 @@ export function rolloutAngular(model, run, options = {}) {
         'Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.',
         'Physical torque and inertia remain unidentified.']}};
 }
+

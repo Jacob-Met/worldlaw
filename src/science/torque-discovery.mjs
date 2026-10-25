@@ -12,6 +12,7 @@ export const TERMS = Object.freeze([
   { id: 'quadratic', label: 'ω|ω|', coefficientUnit: 'N·m·s²/rad²' },
   { id: 'bias', label: '1', coefficientUnit: 'N·m' },
   { id: 'command_position', label: 'uθ', coefficientUnit: '1/rad', optional: true },
+  { id: 'cosine', label: 'cos(θ)', coefficientUnit: 'N·m', optional: true },
   { id: 'cubic', label: 'θ³', coefficientUnit: 'N·m/rad³', optional: true },
 ].map(Object.freeze));
 export const DEFAULT_TERMS = Object.freeze(TERMS.filter(term => !term.optional).map(term => term.id));
@@ -54,6 +55,7 @@ function feature(id, row) {
     case 'coulomb': return Math.sign(row.rate);
     case 'spring': return row.position;
     case 'gravity': return Math.sin(row.position);
+    case 'cosine': return Math.cos(row.position);
     case 'cubic': return row.position ** 3;
     case 'quadratic': return row.rate * Math.abs(row.rate);
     case 'bias': return 1;
@@ -283,4 +285,5 @@ export function simulate(model, initial, { duration = 4, dt = 0.01, inertia = 1,
   }
   return trajectory;
 }
+
 

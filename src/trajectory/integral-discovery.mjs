@@ -141,6 +141,7 @@ function integralRows(run, options) {
       case 'command': return rows[i].command;
       case 'spring': return rows[i].position;
       case 'gravity': return Math.sin(rows[i].position);
+      case 'cosine': return Math.cos(rows[i].position);
       case 'cubic': return rows[i].position ** 3;
       case 'coulomb': return Math.sign(rawRates[i]);
       case 'quadratic': return rawRates[i] * Math.abs(rawRates[i]);
@@ -255,3 +256,4 @@ export function discoverIntegral(trainingRuns, requestedOptions = {}) {
         'No passivity, friction-sign, or mechanism-topology constraints are imposed.',
       ]}};
 }
+

@@ -1,0 +1,68 @@
+{
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-25T17:42:02.559Z",
+    "completedAt": "2026-10-25T17:42:02.657Z",
+    "durationMs": 97.969518,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "9844C2D7C5B6E9E5FF2AD983D316BEB1",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "837A39647002E120CEB2CD8AB60BDE68"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "checks": [
+    "actual angular import",
+    "default opt-out",
+    "keyboard phase offer",
+    "separate frozen solver predictions",
+    "input-only download",
+    "toggle invalidation",
+    "reopen recomputation",
+    "desktop and390/reduced-motion",
+    "insufficient excitation withholds phase",
+    "solver refusal retains grid and notebook",
+    "source replacement resets offer"
+  ],
+  "prediction": "Unshifted: RMSE 0.2976 rad; numerical comparison compared, max difference 9.9063e-10 rad. Selected reference: RMSE 0.058273 rad; numerical comparison compared, max difference 1.1864e-9 rad. Original-coordinate periodic comparison: RMSE 5.8721e-8 rad; numerical comparison compared, max difference 1.1616e-9 rad. Numerical agreement is not physical validation.",
+  "summary": "Yellow: original-coordinate periodic comparison. α = -0.275·ω + -2.6731·sin(θ) + 0.64567·cos(θ); periodic amplitude 2.75 rad/s², phase 0.237 rad modulo 2π. conditional_periodic_component; not_falsified_on_training; finite_library_local_only; 5 competitive models. Algebraic periodic component only; other restoring terms can change equilibria. Phase is modulo 2π and does not calibrate the sensor. This comparison does not replace the grid winner.",
+  "flatSummary": "Yellow: original-coordinate periodic comparison. α = 0; periodic amplitude 0 rad/s², phase unavailable. insufficient_excitation; not_falsified_on_training; insufficient_excitation; 5 competitive models. Algebraic periodic component only; other restoring terms can change equilibria. Phase is modulo 2π and does not calibrate the sensor. This comparison does not replace the grid winner.",
+  "errors": []
+}

@@ -13,6 +13,7 @@ function options(radii){
 }
 function box(value,radius){if(radius===0)return[value,value];const l=value-radius,h=value+radius;return[l===0?0:down(l),h===0?0:up(h)];}
 function featureRange(id,[lo,hi]){
+ if(id==='cosine')return cosineRange([lo,hi]);
  if(id==='coulomb')return[Math.sign(lo),Math.sign(hi)];
  if(id==='gravity'){
   // Explicit engineering allowance, not a formally certified transcendental interval.
@@ -32,7 +33,7 @@ function featureRange(id,[lo,hi]){
  return[lo,hi];
 }
 function productRange(a,b){const values=[a[0]*b[0],a[0]*b[1],a[1]*b[0],a[1]*b[1]];return[down(Math.min(...values)),up(Math.max(...values))];}
-const positionIds=new Set(['spring','gravity','cubic']);
+const positionIds=new Set(['spring','gravity','cubic','cosine']);
 const scale=(v,c)=>c===0?[0,0]:[down(Math.min(c*v[0],c*v[1])),up(Math.max(c*v[0],c*v[1]))];
 const add=(a,b)=>[down(a[0]+b[0]),up(a[1]+b[1])];
 function cosineRange([lo,hi]){
@@ -48,7 +49,7 @@ function derivativeRange(terms,[lo,hi]){
  let r=[0,0];
  for(const t of terms){
   const square=[lo<=0&&hi>=0?0:Math.max(0,down(Math.min(lo*lo,hi*hi))),up(Math.max(lo*lo,hi*hi))];
-  r=add(r,scale(t.id==='spring'?[1,1]:t.id==='gravity'?cosineRange([lo,hi]):scale(square,3),t.coefficient));
+  r=add(r,scale(t.id==='spring'?[1,1]:t.id==='gravity'?cosineRange([lo,hi]):t.id==='cosine'?scale(featureRange('gravity',[lo,hi]),-1):scale(square,3),t.coefficient));
  }
  return r;
 }
@@ -102,3 +103,4 @@ export function inspectInputEnclosures(model,observations,radii,{refinementSegme
  return{schema:'worldlaw.input-enclosure/v1',radii:r,count:rows.length,
   excludedCount:rows.filter(row=>row.status==='excluded').length,refinement:{requestedSegments:refinementSegments,usedSegments:segments,requestedRowSegments,limit,refinedCount,status:limited?'work-limit':segments?'joint-position':'independent-terms'},rows};
 }
+
