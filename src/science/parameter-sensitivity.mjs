@@ -1,3 +1,4 @@
+import {linearReadingInfluences} from './linear-reading-influences.mjs';
 import {evaluate, predict, TERMS} from './torque-discovery.mjs';
 import {fitLinearColumns} from './linear-fit.mjs';
 
@@ -18,13 +19,8 @@ export function parameterSensitivity(model, observations, readingRadius = 0.01) 
   });
   const fitted = fitLinearColumns(columns, original.rows.map(r=>r.jointTorque));
   if (!fitted) return {...base,status:'rank-unavailable',coefficients:[]};
-  const influence = model.terms.map(()=>[]);
-  for (let row = 0; row < n; row++) {
-    const target = Array(n).fill(0); target[row] = 1;
-    const response = fitLinearColumns(columns,target);
-    if (!response) return {...base,status:'rank-unavailable',coefficients:[]};
-    response.coefficients.forEach((value,j)=>influence[j].push(value));
-  }
+  const influence = linearReadingInfluences(columns,n);
+  if (!influence) return {...base,status:'rank-unavailable',coefficients:[]};
   const coefficients = model.terms.map((term,j)=>{
     const weights = influence[j];
     const amplification = weights.reduce((sum,value)=>sum+Math.abs(value),0);
