@@ -1,0 +1,100 @@
+{
+  "schema": "worldlaw.directional-quadratic.receiving/v1",
+  "sourceBase": "8a3f35d3a2d906beae61762ecb0383c61efbbc3b",
+  "publicationBase": "8a3f35d3a2d906beae61762ecb0383c61efbbc3b",
+  "environment": {
+    "device": "cursor",
+    "node": "22.23.4",
+    "browser": "Chrome 156",
+    "sandbox": "normal"
+  },
+  "native": {
+    "tests": 62,
+    "passed": 62,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 2916.300894,
+    "command": "node --test tests/weak-directional-loss.test.mjs tests/forced-weak-discovery.test.mjs tests/weak-command-position.test.mjs tests/torque-discovery.test.mjs tests/trajectory-integral-92be.test.mjs tests/trajectory-angular-weak-92be.test.mjs tests/periodic-phase.test.mjs"
+  },
+  "browser": {
+    "results": [
+      {
+        "width": 1440,
+        "before": "0.1841",
+        "after": "6.07e-8",
+        "reopened": true,
+        "keyboardToggle": true,
+        "unsupportedMethodHidden": true,
+        "viewport": {
+          "width": 1440,
+          "height": 1000,
+          "scrollWidth": 1440,
+          "scrollY": 822,
+          "focused": "directional-quadratic-loss",
+          "control": {
+            "x": 69,
+            "y": 493.40625,
+            "width": 236.34375,
+            "height": 38,
+            "bottom": 531.40625,
+            "right": 305.34375
+          },
+          "help": {
+            "x": 69,
+            "y": 544.40625,
+            "width": 237,
+            "height": 68,
+            "bottom": 612.40625,
+            "right": 306
+          }
+        }
+      },
+      {
+        "width": 390,
+        "before": "0.1841",
+        "after": "6.07e-8",
+        "reopened": true,
+        "keyboardToggle": true,
+        "unsupportedMethodHidden": true,
+        "viewport": {
+          "width": 390,
+          "height": 1000,
+          "scrollWidth": 390,
+          "scrollY": 890,
+          "focused": "directional-quadratic-loss",
+          "control": {
+            "x": 39,
+            "y": 492.890625,
+            "width": 298.078125,
+            "height": 38,
+            "bottom": 530.890625,
+            "right": 337.078125
+          },
+          "help": {
+            "x": 39,
+            "y": 543.890625,
+            "width": 312,
+            "height": 56.0625,
+            "bottom": 599.953125,
+            "right": 351
+          }
+        }
+      }
+    ],
+    "errors": [],
+    "screenshotsVisuallyInspected": true
+  },
+  "limits": [
+    "Authored analytic trajectories, not field sensor or physical drag validation",
+    "The browser's actual exported Blob is reopened; this harness does not establish native browser download completion",
+    "Focused regression, not the complete repository test suite"
+  ],
+  "history": [
+    {
+      "tests": 57,
+      "durationMs": 2759.310212,
+      "sourceBase": "0fa3ed42f25c9a83a1cc5a064333c8c8f42e7c28",
+      "note": "Superseded for current composition by the 62-test run including incoming periodic-phase support"
+    }
+  ]
+}

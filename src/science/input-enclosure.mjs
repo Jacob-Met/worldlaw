@@ -25,6 +25,7 @@ function featureRange(id,[lo,hi]){
   if(Math.ceil((l+Math.PI/2)/(2*Math.PI))<=Math.floor((h+Math.PI/2)/(2*Math.PI)))a=-1;
   return[Math.max(-1,down(a-slack)),Math.min(1,up(b+slack))];
  }
+ if(id==='rate_squared')return[lo<=0&&hi>=0?0:Math.max(0,down(Math.min(lo*lo,hi*hi))),up(Math.max(lo*lo,hi*hi))];
  if(id==='quadratic')return[down(lo*Math.abs(lo)),up(hi*Math.abs(hi))];
  if(id==='cubic'){
   const cube=x=>{const value=x*x*x;const slack=8*Number.EPSILON*Math.abs(value);return[value-slack,value+slack];};
@@ -81,7 +82,7 @@ export function inspectInputEnclosures(model,observations,radii,{refinementSegme
   let low=0,high=0;
   for(const term of model.terms){
    if(term.coefficient===0)continue;
-   const coordinate=term.id==='command'?'command':['rate','coulomb','quadratic'].includes(term.id)?'rate':'position';
+   const coordinate=term.id==='command'?'command':['rate','coulomb','quadratic','rate_squared'].includes(term.id)?'rate':'position';
    const [a,b]=term.id==='command_position'?productRange(boxes.command,boxes.position):term.id==='bias'?[1,1]:featureRange(term.id,boxes[coordinate]);
    const products=[term.coefficient*a,term.coefficient*b];
    low=down(low+down(Math.min(...products)));high=up(high+up(Math.max(...products)));
@@ -103,4 +104,5 @@ export function inspectInputEnclosures(model,observations,radii,{refinementSegme
  return{schema:'worldlaw.input-enclosure/v1',radii:r,count:rows.length,
   excludedCount:rows.filter(row=>row.status==='excluded').length,refinement:{requestedSegments:refinementSegments,usedSegments:segments,requestedRowSegments,limit,refinedCount,status:limited?'work-limit':segments?'joint-position':'independent-terms'},rows};
 }
+
 

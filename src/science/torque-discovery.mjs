@@ -12,6 +12,7 @@ export const TERMS = Object.freeze([
   { id: 'quadratic', label: 'ω|ω|', coefficientUnit: 'N·m·s²/rad²' },
   { id: 'bias', label: '1', coefficientUnit: 'N·m' },
   { id: 'command_position', label: 'uθ', coefficientUnit: '1/rad', optional: true },
+  { id: 'rate_squared', label: 'ω²', coefficientUnit: 'N·m·s²/rad²', optional: true },
   { id: 'cosine', label: 'cos(θ)', coefficientUnit: 'N·m', optional: true },
   { id: 'cubic', label: 'θ³', coefficientUnit: 'N·m/rad³', optional: true },
 ].map(Object.freeze));
@@ -58,6 +59,7 @@ function feature(id, row) {
     case 'cosine': return Math.cos(row.position);
     case 'cubic': return row.position ** 3;
     case 'quadratic': return row.rate * Math.abs(row.rate);
+    case 'rate_squared': return row.rate * row.rate;
     case 'bias': return 1;
     default: throw new DiscoveryError(`Unknown feature ${id}.`);
   }
@@ -285,5 +287,6 @@ export function simulate(model, initial, { duration = 4, dt = 0.01, inertia = 1,
   }
   return trajectory;
 }
+
 
 

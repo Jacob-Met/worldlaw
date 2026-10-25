@@ -1,5 +1,5 @@
 /** Plan → acquire independent synthetic evidence → explicitly refit → receive. */
-import {createChallenge,exportChallenge,restoreChallenge,CHALLENGE_SCHEMA,NOTEBOOK_SCHEMA,INTERACTION_NOTEBOOK_SCHEMA} from './session.mjs';
+import {createChallenge,exportChallenge,restoreChallenge,CHALLENGE_SCHEMA,NOTEBOOK_SCHEMA,INTERACTION_NOTEBOOK_SCHEMA,DIRECTIONAL_NOTEBOOK_SCHEMA} from './session.mjs';
 import {validateRun,RUN_UNITS,MAX_TEXT_LENGTH,TrajectoryDataError} from './data.mjs';
 import {planTrajectoryExperiment} from './planner.mjs';
 import {acquireVirtualPendulum,VIRTUAL_PENDULUM_INSTRUMENT as INSTRUMENT} from './virtual-experiment.mjs';
@@ -172,9 +172,9 @@ export function restoreExperimentSession(text){
   insist(typeof text==='string'&&text.length<=MAX_TEXT_LENGTH,'Notebook files must be JSON smaller than 3 MB.','resource_limit');
   let raw;try{raw=JSON.parse(text.replace(/^\uFEFF/,''));}catch{fail('The notebook JSON could not be read.');}
   if(!raw?.experiment)return createExperimentSession(restoreChallenge(text));
-  insist([NOTEBOOK_SCHEMA,INTERACTION_NOTEBOOK_SCHEMA].includes(raw.schema)&&object(raw.experiment)&&raw.experiment.schema===EXPERIMENT_HISTORY_SCHEMA,'Unsupported experiment notebook.','invalid_history');
+  insist([NOTEBOOK_SCHEMA,INTERACTION_NOTEBOOK_SCHEMA,DIRECTIONAL_NOTEBOOK_SCHEMA].includes(raw.schema)&&object(raw.experiment)&&raw.experiment.schema===EXPERIMENT_HISTORY_SCHEMA,'Unsupported experiment notebook.','invalid_history');
   const recipe=raw.experiment;
-  insist(object(recipe.base)&&[NOTEBOOK_SCHEMA,INTERACTION_NOTEBOOK_SCHEMA].includes(recipe.base.schema)&&!recipe.base.experiment&&Array.isArray(recipe.history)&&recipe.history.length<=4,
+  insist(object(recipe.base)&&[NOTEBOOK_SCHEMA,INTERACTION_NOTEBOOK_SCHEMA,DIRECTIONAL_NOTEBOOK_SCHEMA].includes(recipe.base.schema)&&!recipe.base.experiment&&Array.isArray(recipe.history)&&recipe.history.length<=4,
     'Experiment history needs one nonrecursive base and at most four acquisitions.','invalid_history');
   let session=createExperimentSession(restoreChallenge(JSON.stringify(recipe.base)));
   for(const event of Array.from(recipe.history))session=replayAcquisition(session,event,true);

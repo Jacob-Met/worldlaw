@@ -21,7 +21,7 @@ function normalizeOptions(options) {
   insist(options && typeof options === 'object' && !Array.isArray(options), 'Integral options must be an object.');
   const terms = options.terms ?? DEFAULT_TERMS;
   insist(Array.isArray(terms) && terms.length > 0 && terms.length <= IDS.length &&
-    new Set(terms).size === terms.length && Array.from(terms).every(id => IDS.includes(id)), 'terms must be unique known torque-library IDs.');
+    new Set(terms).size === terms.length && Array.from(terms).every(id => IDS.includes(id) && id !== 'rate_squared'), 'terms must be unique supported integral-library IDs; rate_squared requires weak fitting.');
   const result = {terms: [...terms], noiseSigma: options.noiseSigma ?? 0.01,
     maxTerms: options.maxTerms ?? Math.min(4, terms.length), ambiguityDelta: options.ambiguityDelta ?? 6,
     rateWindowSize: options.rateWindowSize ?? 9, rowStride: options.rowStride ?? 1};
@@ -256,4 +256,5 @@ export function discoverIntegral(trainingRuns, requestedOptions = {}) {
         'No passivity, friction-sign, or mechanism-topology constraints are imposed.',
       ]}};
 }
+
 
