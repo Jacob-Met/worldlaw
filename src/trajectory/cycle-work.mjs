@@ -7,6 +7,7 @@ const insist=(ok,message)=>{if(!ok)throw new Error(message);};
 const finite=Number.isFinite,copy=value=>JSON.parse(JSON.stringify(value));
 const FAMILIES=[['viscous',[0]],['coulomb',[1]],['joint',[0,1]]];
 export const CYCLE_WORK_SCHEMA='worldlaw.cycle-work-inputs/v1';
+export const QUADRATIC_CYCLE_WORK_SCHEMA='worldlaw.cycle-work-inputs/v2';
 const LIMITS=[
  'Normalized potential and kinetic terms are not calibrated joules; physical inertia remains unknown.',
  'Recorded maxima and local polynomial rates are approximate. Sensor noise, endpoint selection, smoothing and quadrature can bias work estimates.',
@@ -20,7 +21,8 @@ function declaration(options={}){
  insist(Number.isInteger(windowSize)&&windowSize>=5&&windowSize<=31&&windowSize%2===1,'Declare an odd derivative window of 5–31 samples.');
  insist(finite(crossingAngle)&&Math.abs(crossingAngle)<=1e6,'Declare a finite crossing angle in radians.');
  insist(options.turningPointRule===undefined||options.turningPointRule==='middle_sample_of_contiguous_maximum_plateau_earlier_sample_for_even_width','Unsupported turning-point declaration.');
- return {windowSize,crossingAngle,turningPointRule:'middle_sample_of_contiguous_maximum_plateau_earlier_sample_for_even_width'};
+ insist(options.includeQuadratic===undefined||typeof options.includeQuadratic==='boolean','Quadratic loss admission must be boolean.');
+ return {...(options.includeQuadratic?{includeQuadratic:true}:{}),windowSize,crossingAngle,turningPointRule:'middle_sample_of_contiguous_maximum_plateau_earlier_sample_for_even_width'};
 }
 function restoringLaw(model,run){
  insist(model&&Array.isArray(model.terms)&&model.terms.length>0&&model.terms.every(t=>['gravity','spring','bias','cubic'].includes(t.id)),'Supply a frozen restoring-only law (gravity, spring, bias or cubic); existing drag is not silently removed.');
@@ -49,13 +51,14 @@ function extract(run,potential,decl){
    row.endpointPlateaus=[a.plateau,b.plateau];
    insist(first>=h&&last+h<s.length,'A complete centered derivative window is unavailable at a cycle endpoint.');
    insist(last-first>=decl.windowSize,'Cycle is undersampled relative to the declared derivative window.');
-   let viscous=0,distance=0;
+   let viscous=0,distance=0,quadraticWork=0;
    for(let i=first+1;i<=last;i++){
     const dt=s[i].time-s[i-1].time;viscous+=(rate(i-1)**2+rate(i)**2)*dt/2;distance+=Math.abs(s[i].position-s[i-1].position);
+    if(decl.includeQuadratic)quadraticWork+=(Math.abs(rate(i-1))**3+Math.abs(rate(i))**3)*dt/2;
    }
    const startRate=rate(first),endRate=rate(last),potentialLoss=potential(s[first].position)-potential(s[last].position),kineticCorrection=(startRate**2-endRate**2)/2,loss=potentialLoss+kineticCorrection;
    insist([viscous,distance,potentialLoss,kineticCorrection,loss].every(finite)&&viscous>0&&distance>0,'Cycle work is nonfinite or has no supported motion.');
-   Object.assign(row,{status:'admitted',loss,potentialLoss,kineticCorrection,startRate,endRate,viscous,distance});
+   Object.assign(row,{status:'admitted',loss,potentialLoss,kineticCorrection,startRate,endRate,viscous,distance,...(decl.includeQuadratic?{quadraticWork:finite(quadraticWork)?quadraticWork:null,...(!finite(quadraticWork)?{quadraticWorkReason:'Quadratic rate-work arithmetic exceeded finite range.'}:{})}:{})});
   }catch(error){row.reason=error.message;}
   cycles.push(row);
  }
@@ -63,36 +66,37 @@ function extract(run,potential,decl){
   coverage:{firstCycleIndex:peaks[0]?.index??null,lastCycleIndex:peaks.at(-1)?.index??null,excludedPrefixSamples:peaks.length?peaks[0].index:s.length,excludedSuffixSamples:peaks.length?s.length-1-peaks.at(-1).index:0},
   limitation:'Only maxima between complete upward-crossing intervals are considered. Prefix/suffix and all refused complete-cycle pairs remain disclosed.'};
 }
-function fitFamilies(rows,model){
- const admitted=rows.filter(r=>r.status==='admitted'),target=admitted.map(r=>r.loss),columns=[admitted.map(r=>r.viscous),admitted.map(r=>r.distance)];
- return FAMILIES.map(([id,indices])=>{
+function fitFamilies(rows,model,includeQuadratic=false){
+ const admitted=rows.filter(r=>r.status==='admitted'),target=admitted.map(r=>r.loss),columns=[admitted.map(r=>r.viscous),admitted.map(r=>r.distance),...(includeQuadratic?[admitted.map(r=>r.quadraticWork??0)]:[])];
+ return [...FAMILIES,...(includeQuadratic?[['quadratic',[2]]]:[])].map(([id,indices])=>{
   const result={id,status:'refused',cycleCount:admitted.length};
   if(admitted.length<3)return {...result,reason:'At least three admitted complete cycles are required.'};
+  if(id==='quadratic'&&admitted.some(r=>r.quadraticWork===null))return {...result,reason:'Quadratic work unavailable on one or more original admitted cycles; the complete family is refused without dropping cycles.'};
   const unconstrained=fitLinearColumns(indices.map(i=>columns[i]),target);
   if(!unconstrained)return {...result,reason:'Work feature columns are rank deficient.'};
   result.unconstrainedCoefficients=unconstrained.coefficients;result.normalizedQRPivotRatio=unconstrained.conditionEstimate;
   if(unconstrained.conditionEstimate>1000)return {...result,reason:'Normalized QR pivot ratio exceeds 1000; joint coefficients are unsupported.'};
-  // Enumerate every feasible NNLS active set for this two-column library.
-  const choices=[{coefficients:[0,0],active:[]}];
+  // Enumerate every feasible NNLS active set for this offered one- or two-column family.
+  const choices=[{coefficients:columns.map(()=>0),active:[]}];
   for(let mask=1;mask<1<<indices.length;mask++){
    const active=indices.filter((_,j)=>mask&(1<<j)),fit=fitLinearColumns(active.map(i=>columns[i]),target);
    if(!fit||fit.coefficients.some(c=>c<0))continue;
-   const coefficients=[0,0];active.forEach((index,j)=>coefficients[index]=fit.coefficients[j]);choices.push({coefficients,active});
+   const coefficients=columns.map(()=>0);active.forEach((index,j)=>coefficients[index]=fit.coefficients[j]);choices.push({coefficients,active});
   }
-  for(const choice of choices)choice.sse=target.reduce((sum,y,i)=>sum+(y-choice.coefficients[0]*columns[0][i]-choice.coefficients[1]*columns[1][i])**2,0);
+  for(const choice of choices)choice.sse=target.reduce((sum,y,i)=>sum+(y-choice.coefficients[0]*columns[0][i]-choice.coefficients[1]*columns[1][i]-(includeQuadratic?choice.coefficients[2]*columns[2][i]:0))**2,0);
   choices.sort((a,b)=>a.sse-b.sse||a.active.length-b.active.length);const best=choices[0];
   if(!finite(best.sse))return {...result,reason:'Loss fit exceeded finite arithmetic.'};
-  const coefficients={rate:best.coefficients[0],coulomb:best.coefficients[1]},terms=copy(model.terms);
-  for(const term of ['rate','coulomb'])if(coefficients[term]>0)terms.push({id:term,coefficient:-coefficients[term],coefficientUnit:ANGULAR_COEFFICIENT_UNITS[term]});
+  const coefficients={rate:best.coefficients[0],coulomb:best.coefficients[1],...(includeQuadratic?{quadratic:best.coefficients[2]}:{})},terms=copy(model.terms);
+  for(const term of ['rate','coulomb',...(includeQuadratic?['quadratic']:[])])if(coefficients[term]>0)terms.push({id:term,coefficient:-coefficients[term],coefficientUnit:ANGULAR_COEFFICIENT_UNITS[term]});
   const executable={...copy(model),id:`cycle-work-${id}`,terms,method:'frozen_restoring_cycle_work_nnls',equation:terms.map(t=>`${t.coefficient} × ${t.id}`).join(' + ')};
   delete executable.metrics;
-  return {...result,status:'admitted',coefficients,activeTerms:best.active.map(i=>['rate','coulomb'][i]),boundary:best.active.length<indices.length,lossRMSE:Math.sqrt(best.sse/admitted.length),predictions:admitted.map((r,i)=>({runId:r.runId,cycleIndex:r.cycleIndex,observed:r.loss,predicted:best.coefficients[0]*columns[0][i]+best.coefficients[1]*columns[1][i]})),model:executable};
+  return {...result,status:'admitted',coefficients,activeTerms:best.active.map(i=>['rate','coulomb','quadratic'][i]),boundary:best.active.length<indices.length,lossRMSE:Math.sqrt(best.sse/admitted.length),predictions:admitted.map((r,i)=>({runId:r.runId,cycleIndex:r.cycleIndex,observed:r.loss,predicted:best.coefficients[0]*columns[0][i]+best.coefficients[1]*columns[1][i]+(includeQuadratic?best.coefficients[2]*columns[2][i]:0)})),model:executable};
  });
 }
 export function fitCycleWork(model,trainingRuns,options={}){
  const training=normalizeAngularRuns(trainingRuns),decl=declaration(options),potential=restoringLaw(model,training[0]);
- const records=training.map(run=>extract(run,potential,decl)),rows=records.flatMap(r=>r.cycles),candidates=fitFamilies(rows,model);
- return {schema:'worldlaw.cycle-work-fit/v1',declaration:decl,restoringModel:copy(model),trainingRuns:training,records,candidates,cycleCount:rows.length,admittedCycleCount:rows.filter(r=>r.status==='admitted').length,limitations:[...LIMITS],coefficientMeaning:{rate:'1/s, nonnegative dissipative magnitude',coulomb:'rad/s², nonnegative dissipative magnitude'},lossUnits:'rad²/s² normalized by unknown inertia; not joules',selected:null};
+ const records=training.map(run=>extract(run,potential,decl)),rows=records.flatMap(r=>r.cycles),candidates=fitFamilies(rows,model,decl.includeQuadratic===true);
+ return {schema:'worldlaw.cycle-work-fit/v1',declaration:decl,restoringModel:copy(model),trainingRuns:training,records,candidates,cycleCount:rows.length,admittedCycleCount:rows.filter(r=>r.status==='admitted').length,limitations:[...LIMITS],coefficientMeaning:{rate:'1/s, nonnegative dissipative magnitude',coulomb:'rad/s², nonnegative dissipative magnitude',...(decl.includeQuadratic?{quadratic:'1/rad, nonnegative dissipative magnitude'}:{})},lossUnits:'rad²/s² normalized by unknown inertia; not joules',selected:null};
 }
 export function cycleWorkInvestigation(bundle,model,options={}){
  const normalized=normalizeAngularBundle(bundle),fit=fitCycleWork(model,normalized.trainingRuns,options),maxStep=options.maxStep??.01,maxSteps=options.maxSteps??300000;
@@ -108,6 +112,6 @@ export function cycleWorkInvestigation(bundle,model,options={}){
   else try{const execution=rolloutAngularWithResolution(c.model,run,{maxStep,maxSteps});Object.assign(row,{status:execution.resolution.status==='compared'?'compared':'unresolved',...execution});}catch(error){row.reason=error.message;}
   receiving.push(row);
  }
- return {schema:'worldlaw.cycle-work-investigation/v1',fit,receiving,solver:{maxStep,maxSteps,requiredSteps:required},inputs:{schema:CYCLE_WORK_SCHEMA,bundle:normalized,restoringModel:copy(model),options:{...fit.declaration,maxStep,maxSteps}},selected:null};
+ return {schema:'worldlaw.cycle-work-investigation/v1',fit,receiving,solver:{maxStep,maxSteps,requiredSteps:required},inputs:{schema:fit.declaration.includeQuadratic?QUADRATIC_CYCLE_WORK_SCHEMA:CYCLE_WORK_SCHEMA,bundle:normalized,restoringModel:copy(model),options:{...fit.declaration,maxStep,maxSteps}},selected:null};
 }
-export function replayCycleWork(inputs){insist(inputs?.schema===CYCLE_WORK_SCHEMA,'Expected cycle-work input notebook.');return cycleWorkInvestigation(inputs.bundle,inputs.restoringModel,inputs.options);}
+export function replayCycleWork(inputs){insist([CYCLE_WORK_SCHEMA,QUADRATIC_CYCLE_WORK_SCHEMA].includes(inputs?.schema),'Expected cycle-work input notebook.');insist(inputs.schema===QUADRATIC_CYCLE_WORK_SCHEMA?inputs.options?.includeQuadratic===true:inputs.options?.includeQuadratic!==true,'Quadratic admission requires its explicit v2 notebook.');return cycleWorkInvestigation(inputs.bundle,inputs.restoringModel,inputs.options);}

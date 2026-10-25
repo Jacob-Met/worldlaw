@@ -46,3 +46,15 @@ Training work favors viscous while receiving trajectory favors Coulomb. Both rem
 `node --test tests/angular-cycle-work.test.mjs` checks analytic viscous/Coulomb/conservative motion, quantized peaks, refusal accounting, input/unit rejection, training isolation, exact notebook replay, full step reservation and physical disagreement retention.
 
 `node scripts/angular-cycle-work-browser.mjs <repository-root> <fresh-output-directory>` receives the actual original torque journey, measured keyboard comparison, downloaded notebook/reopen, declaration and source invalidation, delayed reads, desktop/narrow layout and network/exception boundaries. Screenshots require independent visual review; a prepared receiver is not browser qualification.
+
+## Optional quadratic speed loss
+
+Enable **Also compare quadratic speed loss** in the same cycle-work instrument to retain a fourth, separately fitted family. It uses the original accepted cycles and the same centered local-rate estimates. For a declared acceleration term `−c ω|ω|`, normalized lost work is `c ∫|ω|³ dt`; the implementation applies trapezoidal quadrature to those estimated rate magnitudes. The coefficient is constrained nonnegative and has units `1/rad`. The frozen restoring model is unchanged. Viscous, Coulomb and their joint family retain their original fitting population and objectives; the added family does not automatically replace them or select a receiving winner.
+
+The fourth law executes through the maintained angular solver and two-resolution receiver. Complete-population reservation includes its additional work, so the previous budget may now refuse every receiving prediction. Coarse rate estimates, noise, missed reversals and cubic amplification of estimated rate can bias quadratic work; no physical cause or calibrated uncertainty follows from a smaller residual.
+
+Default inputs remain `worldlaw.cycle-work-inputs/v1`. Explicit quadratic admission exports v2 and is restored on reopen. A v1 notebook carrying quadratic admission refuses rather than silently omitting the new family. Export retains original source, frozen law and declarations only. Editing the admission clears stale results.
+
+The focused authored controls are `node --test tests/angular-cycle-work-quadratic.test.mjs`: an independent fine-step oscillator with quadratic acceleration, held-out-value noninterference, whole-population refusal, v2 replay and retained measured PASCO comparison. These commands specify intended verification; executed values and browser receiving belong in the actual release receipt.
+
+If cubic-rate work exceeds numerical range on any original admitted cycle, that feature is retained as unavailable and the entire quadratic family refuses; original cycles and three existing families remain intact.
