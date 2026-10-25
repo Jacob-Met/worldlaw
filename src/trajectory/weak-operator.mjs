@@ -34,7 +34,7 @@ export function weakWindows(run, options, rates, insist) {
     const feature = (id, i) => {
       const position = rows[i].position;
       switch (id) {case 'command': return rows[i].command; case 'spring': return position; case 'cubic': return position ** 3; case 'gravity': return Math.sin(position); case 'cosine': return Math.cos(position); case 'bias': return 1;
-        case 'coulomb': return Math.sign(rates[start + i]); case 'quadratic': return rates[start + i] * Math.abs(rates[start + i]); default: return 0;}
+        case 'coulomb': return Math.sign(rates[start + i]); case 'quadratic': return rates[start + i] * Math.abs(rates[start + i]); case 'rate_squared': return rates[start + i] ** 2; default: return 0;}
     };
     for (let i = 0; i < rows.length - 1; i++) {
       const h = x[i + 1] - x[i], {integral, firstOffset} = moments(x[i], x[i + 1]);

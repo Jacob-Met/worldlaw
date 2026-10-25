@@ -31,7 +31,7 @@ const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!=
 const set=(id,text)=>{$(id).textContent=text;};
 const fmt=(value,digits=4)=>!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});
 const axisFmt=value=>Math.abs(value)>=1000||(Math.abs(value)>0&&Math.abs(value)<.001)?value.toExponential(1):fmt(value,3);
-const termNames={command:'Actuation',rate:'Linear rate',coulomb:'Rate sign',spring:'Linear position',gravity:'Sinusoidal position',quadratic:'Quadratic rate',bias:'Constant torque',cubic:'Cubic position',cosine:'Cosine position'};
+const termNames={command:'Actuation',rate:'Linear rate',coulomb:'Rate sign',spring:'Linear position',gravity:'Sinusoidal position',quadratic:'Odd quadratic rate',rate_squared:'Even quadratic rate',bias:'Constant torque',cubic:'Cubic position',cosine:'Cosine position'};
 const storageKey='worldlaw.trajectory-challenge.v1';
 const exampleURLs={pendulum:'/examples/trajectory-pendulum-92be.json',ambiguous:'/examples/trajectory-ambiguous-92be.json',measured:'/examples/physical-pasco-92be.json'};
 let state,workflow,experimentPanel,selectedRunId,generation=0,busy=false,rows=[],playing=false,playStarted=0,playFrom=0,animationHandle=0,viewIndex=0,chartX=null,positionTolerance=.05,horizon=null;
@@ -53,6 +53,10 @@ function save(){
 function updateMethodDescription(){
   const method=document.querySelector('input[name="method"]:checked').value,angular=angularMode();
   const interactionAllowed=!angular&&method==='weak';
+  $('directional-control').hidden=!interactionAllowed;
+  $('directional-explanation').hidden=!interactionAllowed;
+  $('directional-quadratic-loss').disabled=!interactionAllowed;
+  if(!interactionAllowed)$('directional-quadratic-loss').checked=false;
   $('interaction-control').hidden=!interactionAllowed;
   $('interaction-explanation').hidden=!interactionAllowed;
   $('command-position-interaction').disabled=!interactionAllowed;
@@ -61,7 +65,7 @@ function updateMethodDescription(){
   set('method-explanation',angular?(method==='weak'?'Experimental fit across compact time windows. It eliminates initial rate from fitting; forward prediction still uses the supplied rate.':'Fits accumulated angular motion. The learned coefficients describe acceleration; physical torque scale remains unknown.'):method==='weak'?'Fits compact windows using measured commands and declared inertia; starting rate enters forward prediction only.':method==='integral'?'Fits accumulated motion without taking a second derivative of the angle.':'Estimates angular acceleration first, then fits a torque law to those derived observations.');
 }
 
-function settings(){const raw=$('noise-sigma').value.trim(),noiseSigma=Number(raw);if(!raw||!Number.isFinite(noiseSigma)||noiseSigma<=0)throw new Error('Enter an assumed residual noise greater than zero.');return {...state?.options,commandPositionInteraction:$('command-position-interaction').checked,method:document.querySelector('input[name="method"]:checked').value,noiseSigma};}
+function settings(){const raw=$('noise-sigma').value.trim(),noiseSigma=Number(raw);if(!raw||!Number.isFinite(noiseSigma)||noiseSigma<=0)throw new Error('Enter an assumed residual noise greater than zero.');return {...state?.options,commandPositionInteraction:$('command-position-interaction').checked,directionalQuadraticLoss:$('directional-quadratic-loss').checked,method:document.querySelector('input[name="method"]:checked').value,noiseSigma};}
 async function perform(getNext,message,{persist=true,propagate=false}={}){
   commandTimingPanel.suspend();
   const ticket=++generation;setBusy(true);
@@ -74,7 +78,7 @@ async function perform(getNext,message,{persist=true,propagate=false}={}){
     if(!state.bundle.challengeRuns.some(run=>run.id===selectedRunId))selectedRunId=state.bundle.challengeRuns[0].id;
     state.selectedRunId=selectedRunId;
     const methods=state.supportedMethods||(angularMode()?['integral']:['integral','derivative']);for(const radio of document.querySelectorAll('input[name="method"]')){radio.closest('label').hidden=!methods.includes(radio.value);radio.disabled=!methods.includes(radio.value);radio.checked=radio.value===state.options.method;}document.querySelector('.method-switch').classList.toggle('single-method',methods.length===1);
-    $('noise-sigma').value=state.options.noiseSigma;$('command-position-interaction').checked=!!state.options.commandPositionInteraction;updateMethodDescription();render();
+    $('noise-sigma').value=state.options.noiseSigma;$('command-position-interaction').checked=!!state.options.commandPositionInteraction;$('directional-quadratic-loss').checked=!!state.options.directionalQuadraticLoss;updateMethodDescription();render();
     if(persist)save();notice(message);return workflow;
   }catch(error){if(ticket===generation){if(propagate)throw error;alertError(error);if(!state)set('notice','No challenge is loaded. Import paired runs or load the synthetic example.');}}
   finally{if(ticket===generation){setBusy(false);commandTimingPanel.setBundle(state?.bundle);}}

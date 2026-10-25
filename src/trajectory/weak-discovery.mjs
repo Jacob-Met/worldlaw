@@ -8,7 +8,7 @@ const norm=v=>Math.hypot(...v);
 export function discoverWeak(trainingRuns, raw={}) {
  insist(raw&&typeof raw==='object'&&!Array.isArray(raw),'Weak options must be an object.');
  const options={terms:raw.terms??DEFAULT_TERMS,maxTerms:raw.maxTerms??4,noiseSigma:raw.noiseSigma??.01,ambiguityDelta:raw.ambiguityDelta??6,windowDuration:raw.windowDuration??1,windowStride:raw.windowStride??.5,rateWindowSize:raw.rateWindowSize??9};
- insist(Array.isArray(options.terms)&&options.terms.length>0&&options.terms.length<=8&&new Set(options.terms).size===options.terms.length&&options.terms.every(id=>TERMS.some(t=>t.id===id)),'Offer unique supported scalar torque terms.');
+ insist(Array.isArray(options.terms)&&options.terms.length>0&&options.terms.length<=9&&new Set(options.terms).size===options.terms.length&&options.terms.every(id=>TERMS.some(t=>t.id===id)),'Offer unique supported scalar torque terms.');
  insist(Number.isInteger(options.maxTerms)&&options.maxTerms>=0&&options.maxTerms<=options.terms.length,'Invalid term limit.');
  insist(Number.isFinite(options.noiseSigma)&&options.noiseSigma>=1e-12&&options.noiseSigma<=1e6,'Invalid position noise scale.');
  insist(Number.isFinite(options.ambiguityDelta)&&options.ambiguityDelta>=0&&options.ambiguityDelta<=100,'Invalid ambiguity threshold.');
@@ -18,7 +18,7 @@ export function discoverWeak(trainingRuns, raw={}) {
  insist(Array.isArray(trainingRuns)&&trainingRuns.length>=1&&trainingRuns.length<=4,'Supply one to four training runs.');
  const runs=trainingRuns.map(run=>validateRun(run,{role:'training'}));
  insist(new Set(runs.map(r=>r.id)).size===runs.length&&runs.reduce((n,r)=>n+r.samples.length,0)<=8192,'Duplicate runs or excessive source size.');
- const needsRates=options.terms.some(id=>['coulomb','quadratic'].includes(id));
+ const needsRates=options.terms.some(id=>['coulomb','quadratic','rate_squared'].includes(id));
  const blocks=runs.map(run=>{const rates=needsRates?weakLocalRates(run,options.rateWindowSize,insist):null;return {run,rates,rows:weakWindows(run,options,rates,insist)};});
  const rows=blocks.flatMap(b=>b.rows.map(row=>({...row,columns:row.columns.map(v=>v/b.run.inertia)})));
  insist(rows.length>=8&&rows.length<=2048,'Require 8–2048 weak windows.','resource_limit');

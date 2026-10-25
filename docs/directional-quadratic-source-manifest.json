@@ -1,0 +1,102 @@
+{
+  "baseCommit": "8a3f35d3a2d906beae61762ecb0383c61efbbc3b",
+  "dependencyFeatureCommit": "0fa3ed42f25c9a83a1cc5a064333c8c8f42e7c28",
+  "files": [
+    {
+      "path": "src/science/torque-discovery.mjs",
+      "bytes": 18301,
+      "sha256": "4b825a7766d2ee986ccedf94a1a4607496086d346c6b379550625a33ebfe8421",
+      "gitBlobSha1": "dd9abee4754f979a9713a5f1e774035d11e7ee47"
+    },
+    {
+      "path": "src/science/input-enclosure.mjs",
+      "bytes": 6815,
+      "sha256": "91e4ee1624ddce208d47c1ed37ea12a93193e385d96c75c9d942eb22e582a3c8",
+      "gitBlobSha1": "630bb2e2b681823783a8f662aa3752eb9d13987d"
+    },
+    {
+      "path": "src/trajectory/weak-operator.mjs",
+      "bytes": 6020,
+      "sha256": "606d8801c23fe70f8b2b65853a2570d5a0ca18627ebbb7c2885640c6e27fae0a",
+      "gitBlobSha1": "f387cb3b3229bdb599d5a100033bcb869df08155"
+    },
+    {
+      "path": "src/trajectory/weak-discovery.mjs",
+      "bytes": 6709,
+      "sha256": "413b989af0ce263e8c77452ed31aedc5f55d74fd0ac664de73a0f5eddf1bf587",
+      "gitBlobSha1": "9f5a35e6c3f4fa3ee8ef8c99829b643783a4e3d1"
+    },
+    {
+      "path": "src/trajectory/integral-discovery.mjs",
+      "bytes": 19112,
+      "sha256": "187c374d2a7236862897b8f5b12f656a8fd3453cef1f7021c7c256149d9f622d",
+      "gitBlobSha1": "1df229d8148b813227457341c71aa7841c8b25eb"
+    },
+    {
+      "path": "src/trajectory/session.mjs",
+      "bytes": 12776,
+      "sha256": "26257e3fc3a624d4cea1777d6493e9f4a97b7dc90cd2c46312eb4b16ae83a874",
+      "gitBlobSha1": "405653ec711fa9afba969adc3f3444fbac252b4f"
+    },
+    {
+      "path": "src/trajectory/experiment-session.mjs",
+      "bytes": 15785,
+      "sha256": "96eae75e8c8a4b96979e04b26d95e929f3369d3b8cbfc0e7c09d1c74ab5e6ef5",
+      "gitBlobSha1": "6d90b3cb0198a7aa8b4f05d806d9c8827eb18a91"
+    },
+    {
+      "path": "src/trajectory/app.mjs",
+      "bytes": 38807,
+      "sha256": "56dfc50e5007d70009e284a4303c186225a7ab49f3281a3e70707adead7f183f",
+      "gitBlobSha1": "ef2f7ae7ab2edce1184c724c27f270fdd288d758"
+    },
+    {
+      "path": "trajectory.html",
+      "bytes": 15307,
+      "sha256": "9b1214acb0c688248716bbf0b0359bd30324dd6b05f3c569a494a24631a410a7",
+      "gitBlobSha1": "e7a8c4014fc3f4af24099a8c46e34be8675e8815"
+    },
+    {
+      "path": "tests/weak-directional-loss.test.mjs",
+      "bytes": 5939,
+      "sha256": "09a4130884fb09fc3c11b473b665af449d10359f9c94eec458fb9cce1b356763",
+      "gitBlobSha1": "3e6df6670a9b420e23b18bdaf5b854b6a5971969"
+    },
+    {
+      "path": "scripts/weak-directional-fixture.mjs",
+      "bytes": 1294,
+      "sha256": "8b390bf67a884cd0cd827dbc1c0dd064d93f8f63bd64b35d7f9ffe73e751f29b",
+      "gitBlobSha1": "4cb5637fc2ee0d6bcc16068a80c4bb2c72b94c8d"
+    },
+    {
+      "path": "scripts/weak-directional-browser.mjs",
+      "bytes": 3961,
+      "sha256": "691766fa7ecb7bedcbf5dbb19a8a637d44018dada146fb2ac474d5d1cc05d54c",
+      "gitBlobSha1": "6e4a29108f850e19c8b48eb4a49989e42f4625e5"
+    },
+    {
+      "path": "docs/DIRECTIONAL_QUADRATIC_RESPONSE.md",
+      "bytes": 6428,
+      "sha256": "abf241b66a02408e7aa00f5690c92c8975c48f67106b092801713b276e9af684",
+      "gitBlobSha1": "c0ab55ebba3b8b75b0c50ddd06e9f9552f0d5721"
+    },
+    {
+      "path": "docs/receipts/directional-quadratic-1d6c/browser.json",
+      "bytes": 2945,
+      "sha256": "d1223795ef02209b9c3d34f8222881cc6ee45990ec28605b5f6e369b9f6073ef",
+      "gitBlobSha1": "4066e22e6b7b405f6f51442bba1b7d5acf12fc8e"
+    },
+    {
+      "path": "docs/receipts/directional-quadratic-1d6c/desktop.png",
+      "bytes": 197212,
+      "sha256": "4f6a614a86fa5ff3627c9f71df297dea436c3163edbcd4eda0d31d819ccf18f2",
+      "gitBlobSha1": "2383866370516e2a4c2abd8918d6374b1eb4bd5f"
+    },
+    {
+      "path": "docs/receipts/directional-quadratic-1d6c/narrow.png",
+      "bytes": 62673,
+      "sha256": "5e89f2847ff08eb8a060b97981dee3c28a74263ad44b2a3cdf8325d4ee590e10",
+      "gitBlobSha1": "204814b493ec7a9128bdbeccbe1e2b5252e28f84"
+    }
+  ]
+}
