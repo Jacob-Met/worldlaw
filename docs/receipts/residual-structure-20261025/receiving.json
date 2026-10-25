@@ -1,0 +1,101 @@
+{
+  "issue": 218,
+  "composition_base": "928c0b22c2d5ebf85eb7c339f56e3e3afd41acac",
+  "receiving_base": "a5819cab6e84b8a47d48883665efbeaa1f2e73e8",
+  "freshness": "All47receiving dependencies unchanged; fresh compare changes only independent rate-reversal paths. Four exact app hooks preserve all maintained source.",
+  "native": {
+    "passed": 7,
+    "output": "TAP version 13\n# Subtest: same RMSE hides persistent versus alternating failures\nok 1 - same RMSE hides persistent versus alternating failures\n  ---\n  duration_ms: 1.003365\n  type: 'test'\n  ...\n# Subtest: zero error and constant bias have distinct magnitude but undefined centered cosine\nok 2 - zero error and constant bias have distinct magnitude but undefined centered cosine\n  ---\n  duration_ms: 1.638492\n  type: 'test'\n  ...\n# Subtest: uses original predictions, excludes imposed initial sample, retains pair custody\nok 3 - uses original predictions, excludes imposed initial sample, retains pair custody\n  ---\n  duration_ms: 0.723393\n  type: 'test'\n  ...\n# Subtest: retains irregular physical lags rather than inventing a sampling frequency\nok 4 - retains irregular physical lags rather than inventing a sampling frequency\n  ---\n  duration_ms: 0.896118\n  type: 'test'\n  ...\n# Subtest: complete population refuses malformed lags, rows and budgets\nok 5 - complete population refuses malformed lags, rows and budgets\n  ---\n  duration_ms: 0.609298\n  type: 'test'\n  ...\n# Subtest: scaled computation retains tiny nonzero errors without squared underflow\nok 6 - scaled computation retains tiny nonzero errors without squared underflow\n  ---\n  duration_ms: 0.109805\n  type: 'test'\n  ...\n# Subtest: lag cosine matches independent direct formula for all bounded declared pairs\nok 7 - lag cosine matches independent direct formula for all bounded declared pairs\n  ---\n  duration_ms: 0.650907\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 14.062117\n",
+    "actual_solver": "Default authored source through createChallenge:161rows,160noninitialerrors,622pairs at1/2/5/10; same source independently executed by worker and actual browser."
+  },
+  "browser": {
+    "checks": [
+      "actual Chrome Namespace/PID/network/Seccomp sandbox enabled",
+      "real solver rows feed keyboard-activated residual pair instrument",
+      "original-row ledger excludes imposed initial row and respects selected lag",
+      "changed declaration invalidates output; duplicate population refuses",
+      "source-only notebook download and reopened solver reproduce diagnostic",
+      "desktop and390px panel, original-pair scatter and scrollable ledger rendered",
+      "pending source replacement retires earlier residual authority",
+      "rejected source replacement re-enables retained original rows without restoring stale result",
+      "actual source ledger preserves distinct large-epoch times and nearby observed/predicted values",
+      "no JavaScript page errors"
+    ],
+    "browser": "156.0.8078.47",
+    "scope": "Actual maintained application with authored existing source; no physical identification or deployment claim."
+  },
+  "sandbox": {
+    "browser": "156.0.8078.47",
+    "checks": {
+      "namespace": true,
+      "pid": true,
+      "network": true,
+      "seccomp": true
+    },
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "environment": {
+      "PLAYWRIGHT_MODULE": "/home/ubuntu/.npm/_npx/f0a362733743bae2/node_modules/playwright-core/index.mjs",
+      "BROWSER_EXECUTABLE_PATH": "/opt/google/chrome/chrome"
+    },
+    "chromiumSandbox": true
+  },
+  "precision_negative": "PASS actual Chrome Namespace/PID/network/Seccomp sandbox enabled\nPASS real solver rows feed keyboard-activated residual pair instrument\nPASS original-row ledger excludes imposed initial row and respects selected lag\nPASS changed declaration invalidates output; duplicate population refuses\nPASS source-only notebook download and reopened solver reproduce diagnostic\nPASS desktop and390px panel, original-pair scatter and scrollable ledger rendered\nPASS pending source replacement retires earlier residual authority\nPASS rejected source replacement re-enables retained original rows without restoring stale result\nnode:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ '1000000000000'\n- '1000000000000.125'\n                ^\n\n    at file:///tmp/hamon-7bb49db0/worldlaw-receiver/scripts/residual-structure-browser.mjs:60:10 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: '1000000000000',\n  expected: '1000000000000.125',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v22.23.4\n",
+  "review": "SKILL peer independently reviewed core and reran7groups; source custody/statistics/budgeting/import lifecycle no blocker. It found raw-ledger rounding, corrected with actual red/green. Lead reviewed1440/390actualcaptures and found signed axis clipping; final gutter and actual getBBox assertions resolve it.",
+  "screenshots": {
+    "desktop.png": {
+      "git_blob": "bca8bab8026e47f317d5a0ab0eba9b90ca8b71ea",
+      "sha256": "d562ffd9006faaf395d2f4c3099c4f95f51c3414d64a09acfdcd4567a062708c",
+      "bytes": 162567
+    },
+    "narrow.png": {
+      "git_blob": "e076d7a09eb850c60d8efc7e28eb379552ef70a2",
+      "sha256": "81792f34a6f956239c23046a39d83d1a7f146298b60e0cc1a0f7c247fe035e5a",
+      "bytes": 98336
+    }
+  },
+  "source_input": {
+    "git_blob": "af7146e54045ff2d01b831a07517cb388a734c08",
+    "sha256": "fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e",
+    "bytes": 87534
+  },
+  "downloaded_notebook": {
+    "git_blob": "5ab5727f6161757c331c02f8a97ed5434f461658",
+    "sha256": "825f1d6569a905b0092439bddfe43d48dbf1e31d89dc43fef90df8a830fd312b",
+    "bytes": 94632
+  },
+  "limits": "Authored-source real solver receiving, not physical validation. Global receiving mean is shared by lag cosines; no unbiased autocorrelation/significance/frequency/refit/model-selection claim. No deployment.",
+  "team": "hamon-7bb49db0-20261024",
+  "created_at": "2026-10-25T06:13:34.156832+00:00",
+  "source": {
+    "src/trajectory/residual-structure.mjs": {
+      "git_blob": "2e85eb1df935d622c8080a2e71e5ca90b4884a23",
+      "sha256": "ab2c9b62580c762cb33682b394113d64b72eb798965d8816aaa6b1a5f98998bc",
+      "bytes": 3747
+    },
+    "src/trajectory/residual-structure-panel.mjs": {
+      "git_blob": "93dbc3357ea050db7c21a5b9721243173d52f2b9",
+      "sha256": "6886ccf9ff0e809815d9182e654f14c7c3ca39ea89ba363b2ae842d65154ccf8",
+      "bytes": 6930
+    },
+    "src/trajectory/app.mjs": {
+      "git_blob": "90e2d67aa9ffc9a61acf53f147b1e677daec1f6b",
+      "sha256": "080fc7145cfe13dae6e34cfcedea6ee043d8a5bf1f1a5a360ff598ff217b0d19",
+      "bytes": 36676
+    },
+    "tests/residual-structure.test.mjs": {
+      "git_blob": "d6a56c94cf84dec4b95472d6dace9a4fe4ed46e1",
+      "sha256": "44d16a01d005f065acb879f26003b1f2753038ba0e2e8285495ffffbea0bfbeb",
+      "bytes": 3648
+    },
+    "scripts/residual-structure-browser.mjs": {
+      "git_blob": "db587950e483cb35ffee442a7714ff260bbefaba",
+      "sha256": "30f1c285ae2899d8462c1cf2c17c2ece981564615a1e11c2e0aba30e9788e8e5",
+      "bytes": 8114
+    },
+    "docs/RESIDUAL_STRUCTURE.md": {
+      "git_blob": "a7223175aecb6856f5a33085da1f4a63afc36e3c",
+      "sha256": "9cf074052f01dae87fd4e93a84e51c926c85b00ef06e48ec2b32f1fbdb4682e8",
+      "bytes": 6075
+    }
+  }
+}
