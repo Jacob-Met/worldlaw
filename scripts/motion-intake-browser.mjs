@@ -16,6 +16,12 @@ const checks=[],errors=[],acquisitions=[];let browser;
 const mark=name=>{checks.push(name);console.log('PASS '+name);};
 try{
  browser=await chromium.launch({headless:true,chromiumSandbox:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+  const sandboxPage=await browser.newPage();await sandboxPage.goto('chrome://sandbox');
+  const sandboxStatus=await sandboxPage.locator('body').innerText();
+  assert.match(sandboxStatus,/Layer 1 Sandbox\s+Namespace/);
+  for(const key of ['PID namespaces','Network namespaces','Seccomp-BPF sandbox'])
+    assert.match(sandboxStatus,new RegExp(key+'\\s+Yes'));
+  await sandboxPage.close();
  const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});page.setDefaultTimeout(30000);
  page.on('pageerror',error=>errors.push(error.message));
  const download=async(selector,name)=>{const pending=page.waitForEvent('download');await page.locator(selector).click();
@@ -98,6 +104,6 @@ try{
  assert.deepEqual(errors,[]);mark('no uncaught page exceptions');
  const receipt={checks,acquisitions,positive:metrics,selectedModel:selected,
   differentLaw:{summary:failedTransfer.summary,selectedModel:failedTransfer.discovery.selected},errors,
-  scope:'Authored synthetic pixel movies through actual video decode/tracking; no physical-mechanism or blind-validation claim.',chromiumSandbox:true};
+  scope:'Authored synthetic pixel movies through actual video decode/tracking; no physical-mechanism or blind-validation claim.',chromiumSandbox:true,sandboxStatus,executable:process.env.BROWSER_EXECUTABLE_PATH||'playwright-managed'};
  await writeFile(resolve(artifacts,'receipt.json'),JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(receipt,null,2));
 }finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}

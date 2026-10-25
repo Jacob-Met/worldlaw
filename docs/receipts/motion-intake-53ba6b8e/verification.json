@@ -1,12 +1,14 @@
 {
-  "observedAtUTC": "2026-10-25 07:25:31 UTC",
+  "observedAtUTC": "2026-10-25 07:35:22 UTC",
   "baseCommit": "1c6da7efaee0113d78bb0e27ba5a80d16962debf",
   "implementationCommit": "acb29476d395598045d890e63543bd73c49a7bbb",
   "team": "hamon-53ba6b8e-20261024",
   "environment": {
     "node": "22.23.4",
     "os": "Linux",
-    "chromiumSandbox": true
+    "chromiumSandbox": true,
+    "browserExecutable": "/opt/google/chrome/chrome",
+    "sandboxAdmission": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed."
   },
   "commands": [
     {
@@ -265,7 +267,9 @@
     },
     "errors": [],
     "scope": "Authored synthetic pixel movies through actual video decode/tracking; no physical-mechanism or blind-validation claim.",
-    "chromiumSandbox": true
+    "chromiumSandbox": true,
+    "sandboxStatus": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "executable": "/opt/google/chrome/chrome"
   },
   "independentReview": {
     "reviewer": "/root/experimental_earth",
@@ -283,5 +287,17 @@
   "screenshots": {
     "desktop": "6866fb41c0bb71c47fcb9b08a3c485a96d4a41f3",
     "narrow": "c79b26d91451ba420a2ef210a50dbfa06c19f669"
+  },
+  "receiptCorrection": {
+    "earlierBasis": "Earlier receipts treated chromiumSandbox:true launch configuration as runtime evidence.",
+    "finding": "The convenience /usr/local/bin/google-chrome launcher unconditionally injected --no-sandbox.",
+    "resolution": "Reran every affected browser course with the installed /opt/google/chrome/chrome binary directly; new Motion receivers now require observed Namespace, PID/network namespaces and Seccomp-BPF admission before exercising the product.",
+    "rerunGroups": {
+      "motionIntake": 7,
+      "pathReference": 6,
+      "trackedPivot": 8,
+      "fixedPivot": 9
+    },
+    "scope": "Functional results and original input metrics were reproduced; no security setting or shared launcher was changed."
   }
 }
