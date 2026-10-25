@@ -1,0 +1,109 @@
+{
+  "issue": 221,
+  "base": "3a1a8d739862bd80bfe87f748b50009133e6c1fd",
+  "native": {
+    "passed": 18,
+    "node": "22.23.4",
+    "logs": {
+      "world-physical-selector.log": "TAP version 13\n# Subtest: closed delay bands retain original source indices and exclude imposed initial\nok 1 - closed delay bands retain original source indices and exclude imposed initial\n  ---\n  duration_ms: 1.218352\n  type: 'test'\n  ...\n# Subtest: empty and single-pair bands are explicit, overlapping bands retain shared identities\nok 2 - empty and single-pair bands are explicit, overlapping bands retain shared identities\n  ---\n  duration_ms: 0.245362\n  type: 'test'\n  ...\n# Subtest: the complete budget includes all overlapping cohorts and refuses atomically\nok 3 - the complete budget includes all overlapping cohorts and refuses atomically\n  ---\n  duration_ms: 0.365193\n  type: 'test'\n  ...\n# Subtest: input validation and output custody preserve exact original timestamps\nok 4 - input validation and output custody preserve exact original timestamps\n  ---\n  duration_ms: 1.147222\n  type: 'test'\n  ...\n# Subtest: 500 irregular and large-epoch cohorts match independent exhaustive pair membership\nok 5 - 500 irregular and large-epoch cohorts match independent exhaustive pair membership\n  ---\n  duration_ms: 28.075799\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 36.737522\n",
+      "world-physical-core.log": "TAP version 13\n# Subtest: shared summary refactor retains exact incumbent sample-lag output\nok 1 - shared summary refactor retains exact incumbent sample-lag output\n  ---\n  duration_ms: 4.723767\n  type: 'test'\n  ...\n# Subtest: exact physical-delay cohorts equal corresponding sample-lag source pairs\nok 2 - exact physical-delay cohorts equal corresponding sample-lag source pairs\n  ---\n  duration_ms: 1.207648\n  type: 'test'\n  ...\n# Subtest: empty/single cohorts do not invent a correlation or elapsed range\nok 3 - empty/single cohorts do not invent a correlation or elapsed range\n  ---\n  duration_ms: 0.190349\n  type: 'test'\n  ...\n# Subtest: physical membership ignores receiving amplitudes, and all original values stay copied\nok 4 - physical membership ignores receiving amplitudes, and all original values stay copied\n  ---\n  duration_ms: 0.582976\n  type: 'test'\n  ...\n# Subtest: every overlapping physical cohort counts toward complete work refusal\nok 5 - every overlapping physical cohort counts toward complete work refusal\n  ---\n  duration_ms: 0.42684\n  type: 'test'\n  ...\n# Subtest: large admitted physical cohort does not exceed JavaScript argument capacity\nok 6 - large admitted physical cohort does not exceed JavaScript argument capacity\n  ---\n  duration_ms: 106.962758\n  type: 'test'\n  ...\n1..6\n# tests 6\n# suites 0\n# pass 6\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 120.127845\n",
+      "world-physical-incumbent.log": "TAP version 13\n# Subtest: same RMSE hides persistent versus alternating failures\nok 1 - same RMSE hides persistent versus alternating failures\n  ---\n  duration_ms: 1.16226\n  type: 'test'\n  ...\n# Subtest: zero error and constant bias have distinct magnitude but undefined centered cosine\nok 2 - zero error and constant bias have distinct magnitude but undefined centered cosine\n  ---\n  duration_ms: 1.749111\n  type: 'test'\n  ...\n# Subtest: uses original predictions, excludes imposed initial sample, retains pair custody\nok 3 - uses original predictions, excludes imposed initial sample, retains pair custody\n  ---\n  duration_ms: 0.614029\n  type: 'test'\n  ...\n# Subtest: retains irregular physical lags rather than inventing a sampling frequency\nok 4 - retains irregular physical lags rather than inventing a sampling frequency\n  ---\n  duration_ms: 0.15823\n  type: 'test'\n  ...\n# Subtest: complete population refuses malformed lags, rows and budgets\nok 5 - complete population refuses malformed lags, rows and budgets\n  ---\n  duration_ms: 0.586372\n  type: 'test'\n  ...\n# Subtest: scaled computation retains tiny nonzero errors without squared underflow\nok 6 - scaled computation retains tiny nonzero errors without squared underflow\n  ---\n  duration_ms: 0.13702\n  type: 'test'\n  ...\n# Subtest: lag cosine matches independent direct formula for all bounded declared pairs\nok 7 - lag cosine matches independent direct formula for all bounded declared pairs\n  ---\n  duration_ms: 0.322333\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 11.800677\n"
+    }
+  },
+  "browser": {
+    "checks": [
+      "maintained solver source reaches explicit physical-delay mode with matching one-step population",
+      "actual styled trajectory app physical-delay consumer: desktop/narrow signed labels, overflow and original-pair ledger",
+      "malformed explicit band refuses after clearing previous authority",
+      "79401pair cohort remains bounded in DOM and exposes final original pair through explicit page selection",
+      "empty and single-pair physical cohorts remain explicit without invented correlation",
+      "isolated authored single-pair fixture: desktop/narrow component rendering only"
+    ],
+    "browser": "156.0.8078.47",
+    "screenshots": {
+      "maintainedApp": "physical-delay-app-*.png and physical-delay-app-context-*.png, captured at trajectory.html on maintained solver source before the isolated fixture",
+      "isolatedFixture": "physical-delay-fixture-*.png, authored single-pair component only"
+    },
+    "scope": "Actual styled product receiving plus separately labelled authored high-pair component course; no physical frequency or independence claim."
+  },
+  "legacy_browser": {
+    "checks": [
+      "actual Chrome Namespace/PID/network/Seccomp sandbox enabled",
+      "real solver rows feed keyboard-activated residual pair instrument",
+      "original-row ledger excludes imposed initial row and respects selected lag",
+      "changed declaration invalidates output; duplicate population refuses",
+      "source-only notebook download and reopened solver reproduce diagnostic",
+      "desktop and390px panel, original-pair scatter and scrollable ledger rendered",
+      "pending source replacement retires earlier residual authority",
+      "rejected source replacement re-enables retained original rows without restoring stale result",
+      "actual source ledger preserves distinct large-epoch times and nearby observed/predicted values",
+      "no JavaScript page errors"
+    ],
+    "browser": "156.0.8078.47",
+    "scope": "Actual maintained application with authored existing source; no physical identification or deployment claim."
+  },
+  "sandbox": {
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "browser": "156.0.8078.47"
+  },
+  "review": "SKILL and SECOND GROUND independently reviewed the selector/summary/panel.500exhaustive membership courses, decimal/ULP/subnormal boundaries, unchanged incumbent reports, complete budget/refusal, source custody and actual handler paging reviewed. A supported large-cohort spread RangeError was reproduced and repaired; native100576pairs and actualbrowser79401pairs pass. Root inspected actual styled trajectory app1440/390captures separately from isolated authored capacity/empty/single-pair component tests.",
+  "screenshots": {
+    "desktop.png": {
+      "git_blob": "58deb159beddaefe4898ba921beddafee29d6a2a",
+      "sha256": "818ac61c11fbebc10ded5af751416a462c4e17629fc8dab08fb55a14904f3ee2",
+      "bytes": 197197
+    },
+    "narrow.png": {
+      "git_blob": "c6db9e8c1b061b38dc7e1729cd7733abf90fdf44",
+      "sha256": "c2b926aaf353a9e2c06d706bd6fb9d9343287a7cab602cc9587042605e2955cf",
+      "bytes": 130336
+    }
+  },
+  "limits": "Exact selection uses supplied binary64 time differences, not interpolation or clock-error bounds. Full-population statistics and axes remain distinct from explicit200-pair display pages. Descriptive frozen-law evidence only; no refit, physical validation or deployment.",
+  "team": "hamon-7bb49db0-20261024",
+  "created_at": "2026-10-25T06:29:16.588273+00:00",
+  "source": {
+    "src/trajectory/physical-delay.mjs": {
+      "git_blob": "74af6bf9d6c08fa33d59346b67d5497afdd5084f",
+      "sha256": "0cc8966b47e0c05e844286c3ee429c04eac9d181fe8e7ba321a5940731bac8a9",
+      "bytes": 2914
+    },
+    "src/trajectory/residual-structure.mjs": {
+      "git_blob": "f8db38116d16b1923698a7a9ba4b9b15d8f78123",
+      "sha256": "0dc7b454d3eb320f8afff3f72440dcccf2d57eaf3f221f512e3985399d8464c2",
+      "bytes": 4379
+    },
+    "src/trajectory/residual-structure-panel.mjs": {
+      "git_blob": "f4bfa6378acee67378db3154468917c98bc55318",
+      "sha256": "868daa6d9b80c68070f364f1adb6bc59d3716a3a1e68cf22c96e148233d72a3f",
+      "bytes": 10194
+    },
+    "tests/physical-delay.test.mjs": {
+      "git_blob": "dbc24157c6be3277d9a1a72b78d907afad15066b",
+      "sha256": "9ce66434d42e60d17c91896ede18b834ba257961155d5ca760dca74d6d10b39c",
+      "bytes": 2512
+    },
+    "tests/physical-residual.test.mjs": {
+      "git_blob": "2315324f62200d2223c7074a6694ff3177ca84b8",
+      "sha256": "a66893f4323bac2e0cd79b1a8087df67a790e8909dc7b617ef75fb72740a61eb",
+      "bytes": 2886
+    },
+    "tests/support/residual-structure-incumbent-218.mjs": {
+      "git_blob": "2e85eb1df935d622c8080a2e71e5ca90b4884a23",
+      "sha256": "ab2c9b62580c762cb33682b394113d64b72eb798965d8816aaa6b1a5f98998bc",
+      "bytes": 3747
+    },
+    "scripts/physical-delay-browser.mjs": {
+      "git_blob": "449b6f4d9e6dba2cac6e097c014cf114666e8def",
+      "sha256": "765d11f2895b055edcc23154a1cf0036fd7865c7b41c7e1d2ef4159b53a5a6eb",
+      "bytes": 7488
+    },
+    "docs/PHYSICAL_DELAY_RESIDUALS.md": {
+      "git_blob": "7c1ce9c549f3adbffa7590d78a4448a8e55e6fe5",
+      "sha256": "a8149398b4872010b3f7f8e7810dc589d6465c27eea09c1ccf1404597a0fbbd1",
+      "bytes": 3197
+    }
+  },
+  "composition_base": "fcfc0f9bc43a45289ac2dc1bdfba2c98fa7d21fe",
+  "refresh": "Current main preserved; receiving source remains the published218trajectory closure. Exact changed paths checked before integration."
+}
