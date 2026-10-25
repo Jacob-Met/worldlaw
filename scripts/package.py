@@ -16,6 +16,50 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    # Maintained application routes and their exact shared-source dependencies.
+    "motion-reference.html", "motion-reference.css",
+    "src/motion/vendor/mechanism-core.mjs", "src/motion/vendor/mechanism-source.json",
+    "src/motion/vendor/reference-admission.mjs", "src/motion/vendor/reference-source.json",
+    "tests/coupling-shared-course-fixture.mjs", "tests/response-contrast-fixture.mjs",
+    "tests/fixtures/command-response-moments.json",
+    "scripts/support/README.md", "scripts/support/chromium-sandbox.mjs",
+    "scripts/package-policy-test.py",
+    "COUPLED_POINT_RESPONSE.md", "COUPLING_EXCITATION_WITNESSES.md",
+    "docs/receipts/forced-weak-760d4cf/README.md",
+    # Explicit retained receiving evidence; do not admit arbitrary nested outputs.
+    "docs/verification/correlation-band-browser.json",
+    "docs/verification/correlation-band-desktop.png",
+    "docs/verification/correlation-band-narrow.png",
+    "docs/verification/correlation-band-native.json",
+    "docs/verification/correlation-band-strips.png",
+    "docs/verification/coupled-inertia/inertia-1440.png",
+    "docs/verification/coupled-inertia/inertia-390.png",
+    "docs/verification/coupled-inertia/motion-form-390.png",
+    "docs/verification/coupled-inertia/motion-modes-390.png",
+    "docs/verification/coupled-inertia/native.json",
+    "docs/verification/coupled-inertia/receiving.json",
+    "docs/verification/coupled-inertia/sandbox.json",
+    "docs/verification/drift-construction-complete-narrow.png",
+    "docs/verification/drift-construction-desktop.png",
+    "docs/verification/drift-construction.json",
+    "evidence/clock-tick-host-export.json",
+    "evidence/conditional-rate/conditional-desktop.png",
+    "evidence/conditional-rate/conditional-narrow.png",
+    "evidence/conditional-rate/conditional-notebook.json",
+    "evidence/conditional-rate/receiving.md",
+    "evidence/conditional-rate/source-manifest.json",
+    "evidence/energy-accounting-8d076f/energy-desktop.png",
+    "evidence/energy-accounting-8d076f/energy-narrow.png",
+    "evidence/energy-accounting-8d076f/source-manifest.json",
+    "evidence/rate-dissipation-8d076f/rate-desktop.png",
+    "evidence/rate-dissipation-8d076f/rate-narrow.png",
+    "evidence/rate-dissipation-8d076f/source-manifest.json",
+    "evidence/rate-reversal/receiving.md",
+    "evidence/rate-reversal/reversal-desktop.png",
+    "evidence/rate-reversal/reversal-narrow.png",
+    "evidence/rate-reversal/reversal-notebook.json",
+    "evidence/rate-reversal/source-manifest.json",
+    "evidence/reversal-native-summary.txt",
     "independent-review/interaction-review.mjs", "independent-review/interaction-oracle.py",
     "independent-review/interaction-oracle-cases.json", "docs/receipts/interaction-9e01d4dd/*.txt",
     "separability.css", "examples/separability/*.json",
@@ -71,6 +115,9 @@ INCLUDE = (
     'experiments/rolling-origin.mjs',
 )
 REQUIRED = (
+    "motion-reference.html", "motion-reference.css", "src/motion/reference-app.mjs",
+    "src/motion/vendor/mechanism-core.mjs", "src/motion/vendor/mechanism-source.json",
+    "src/motion/vendor/reference-admission.mjs", "src/motion/vendor/reference-source.json",
     "separability.css", "src/science/separability.mjs", "src/science/separability-panel.mjs",
     "cycle-work.html", "src/cycle-work/app.mjs", "src/cycle-work/core.mjs",
     "src/cycle-work/refinement.mjs", "src/cycle-work/refinement-panel.mjs", "src/cycle-work/refinement-example.mjs",
@@ -141,12 +188,25 @@ FORBIDDEN_SUFFIXES = {
 }
 FORBIDDEN_NAMES = {".env", "credentials", "credentials.json", "secrets.json", "id_rsa", "id_ed25519"}
 
-# Exact tracked historical evidence archives are intentionally not distributed.
+# Exact tracked historical evidence archives and logs are not distributed.
 # Keep these paths explicit; other unapproved archives still fail closed.
 NON_DISTRIBUTED_TRACKED_RECEIPTS = frozenset({
     "docs/receipts/branch-response-20261024/native-tests.txt.gz",
     "docs/receipts/prediction-contrast-195c0e2a/authored-inputs-and-notebook.tar.xz",
     "docs/receipts/shared-training-195c0e2a/retained-source-evidence.tar.xz",
+    "docs/receipts/periodic-course-a08b/native.log",
+    "evidence/composed-reversal-browser.log",
+    "evidence/conditional-browser.log",
+    "evidence/conditional-core.log",
+    "evidence/energy-accounting-8d076f/energy-browser.log",
+    "evidence/energy-accounting-8d076f/energy-smoke.log",
+    "evidence/energy-accounting-8d076f/energy-tests.log",
+    "evidence/energy-accounting-8d076f/independent-root-energy-review.log",
+    "evidence/energy-accounting-8d076f/session-tests.log",
+    "evidence/energy-accounting-8d076f/torque-tests.log",
+    "evidence/rate-dissipation-8d076f/rate-browser.log",
+    "evidence/rate-dissipation-8d076f/rate-tests.log",
+    "evidence/reversal-browser.log",
 })
 
 
