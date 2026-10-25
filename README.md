@@ -10,6 +10,8 @@ Current scientific scope: **finite-library scalar torque discovery**. The defaul
 
 [UNKNOWN LAB exploration](docs/UNKNOWN_LAB_EXPLORATION.md) develops the existing ambition toward discovering useful representations, questions, measurements and experiments. It is a seed for further invention, not a fixed endpoint or a claim that the current finite-library workbench already provides those capabilities.
 
+The UNKNOWN LAB probe chooser also compares [two-state acquisition courses](docs/PROBE_COURSES.md): one coefficient per law must explain both proposed readouts, so a course can discriminate hypotheses even when each state alone has overlapping predictions. Requests preserve training and declared assumptions; they do not acquire observations.
+
 ## Run locally
 
 With Node.js 20 or newer, from this directory:
