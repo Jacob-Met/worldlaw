@@ -52,7 +52,12 @@
 
           <section class="panel experiment-panel" aria-labelledby="experiment-heading">
             <div class="section-heading"><span class="section-number">02</span><h2 id="experiment-heading">Ask a better question</h2></div>
-            <div class="proposal-card"><span class="eyebrow">SUGGESTED NEXT STATE</span><p id="planner-status" class="planner-status">Compare the current hypotheses.</p><div id="planned-input" class="planned-input">—</div><div class="spread-line"><span>Model spread</span><strong id="model-spread">—</strong></div><button id="use-proposal" class="button button-proposal button-full" type="button">Use suggested state <span aria-hidden="true">↙</span></button></div>
+            <div class="proposal-card"><span class="eyebrow">SUGGESTED NEXT STATE</span>
+              <label class="planner-objective" for="planner-objective">Plan by<select id="planner-objective"><option value="prediction">Separation between fitted models</option><option value="excitation">Missing input excitation</option></select></label>
+              <p id="planner-status" class="planner-status" aria-live="polite">Compare the current hypotheses.</p><div id="planned-input" class="planned-input">—</div><div class="spread-line"><span id="planner-metric-label">Model spread</span><strong id="model-spread">—</strong></div>
+              <p id="pilot-explanation" class="pilot-explanation" hidden></p>
+              <details id="pilot-course" class="pilot-course" hidden><summary id="pilot-course-summary">Inspect offered states</summary><div class="pilot-table-wrap" tabindex="0" role="region" aria-label="Complete offered-state rank comparison"><table><caption>Prospective numerical rank, with the offered library fixed. Inputs: u in N·m, θ in rad, ω in rad/s.</caption><thead><tr><th scope="col">Offer</th><th scope="col">State</th><th scope="col">Rank</th><th scope="col">Effect</th></tr></thead><tbody id="pilot-course-rows"></tbody></table></div><p>One row adds at most one independent direction. Rank loss or a larger jump remains numerically unresolved. No new torque reading is used.</p></details>
+              <button id="use-proposal" class="button button-proposal button-full" type="button">Use suggested state <span aria-hidden="true">↙</span></button></div>
             <p id="experiment-mode" class="experiment-mode">Virtual instrument</p>
             <div class="control-grid">
               <label for="position">Position <span>rad</span><input id="position" name="position" type="number" step="0.05" value="0.8" inputmode="decimal"></label>

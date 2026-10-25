@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "checks": [
+    "actual imported inputs and keyboard pilot preserve every observation and fitted law; all three offers are visible without a future reading",
+    "desktop and 390px keyboard course retain full offer inspection without page overflow under reduced motion",
+    "blank outcome cannot advance the notebook; an explicitly entered independent outcome restores rank and receiving accuracy through the unchanged fitter",
+    "actual downloaded source-only notebook survives reload, undo and native file reopening with exact offers and recomputed results",
+    "old-format offers and a forged future torque refuse atomically without replacing the accepted notebook",
+    "offered acquisition coordinates retain their full numeric precision through the actual input controls",
+    "the complete128-offer no-gain course remains inspectable with keyboard scrolling; no truncated success",
+    "a full-rank but omitted-law negative control remains a residual mismatch; excitation is never rendered as physical correctness"
+  ],
+  "errors": [],
+  "external": [],
+  "scope": "Authored source observations through the maintained Studio. Numerical excitation and receiving error; no hardware operation or physical identification.",
+  "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+  "browser": "156.0.8078.47",
+  "metrics": {
+    "beforeHeldOutRMSE": 0.8265,
+    "afterHeldOutRMSE": 1.87e-16
+  },
+  "sourceSHA256": "6e505b366b92f120154edf3599c6c18fb2befd9832ca2dd2dd448e62a0a69976"
+}

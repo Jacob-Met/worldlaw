@@ -1,6 +1,7 @@
 import {discover, refitDiscovery, evaluate, revise, planExperiment, DEFAULT_TERMS, discoveryRobustWork} from './science/torque-discovery.mjs';
 import {createLab, executeLab} from './science/virtual-lab.mjs';
 import {validateDataset, validateRows, candidateGrid, FIELDS, MAX_ROWS, MAX_TEXT_LENGTH} from './data.mjs';
+import {planInputExcitation} from './science/input-excitation.mjs';
 
 export const SESSION_SCHEMA='worldlaw.session/v1';
 export const INTERACTION_SESSION_SCHEMA='worldlaw.session/v2';
@@ -60,6 +61,7 @@ function summary(discovery,heldOut,label,kind) {
 export function createSession(dataset,options=DEFAULT_OPTIONS,{labSeed=null}={}) {
   const base=validateDataset(dataset,dataset?.source?.label); const lab=labSeed === null ? null : {seed:validSeed(labSeed)};
   if(lab) {
+    if(Object.hasOwn(base,'offeredInputs')) throw new Error('Explicit offered inputs are for imported observations; the virtual instrument retains its fixed candidate course.');
     const fixture=createLab({seed:labSeed});
     if(!matchesVirtualSeed(base.observations,validateRows(fixture.initialSamples)) || !matchesVirtualSeed(base.heldOut,validateRows(fixture.evaluationSamples,{allowEmpty:true}))) throw new Error('Virtual instrument data does not match its declared seed.');
     base.source={label:fixture.label,kind:'synthetic-virtual-instrument',units:{...base.source.units}};
@@ -101,12 +103,26 @@ export function refitSession(state,options) {
   assertReplayWork(state.base,state.initialOptions,[...state.events,event]);
   return eventState(state,event,refitDiscovery(state.discovery,discoveryOptions(options)),options);
 }
-export function sessionPlan(state) {
-  const source=state.lab ? createLab({seed:state.lab.seed}).candidateInputs : candidateGrid(state.base.observations);
-  const key = p => ['command','position','rate'].map(f=>p[f].toPrecision(12)).join('|');
+function candidateCourse(state) {
+  const explicit=!state.lab && Object.hasOwn(state.base,'offeredInputs');
+  const source=state.lab ? createLab({seed:state.lab.seed}).candidateInputs : explicit?state.base.offeredInputs:candidateGrid(state.base.observations);
+  const key = explicit ? p=>JSON.stringify(['command','position','rate'].map(f=>p[f]))
+    : p => ['command','position','rate'].map(f=>p[f].toPrecision(12)).join('|');
   const observed=new Set(state.discovery.observations.map(key));
-  const candidates=source.filter(p=>!observed.has(key(p)));
+  const indices=source.flatMap((p,i)=>observed.has(key(p))?[]:[i]);
+  return {candidates:indices.map(i=>source[i]),indices,offeredCount:source.length,explicit};
+}
+export function sessionPlan(state) {
+  const {candidates}=candidateCourse(state);
   return candidates.length ? planExperiment(state.discovery,candidates) : {status:'no_unobserved_inputs',selected:null,ranked:[],modelIds:[]};
+}
+export function sessionPilotPlan(state) {
+  const course=candidateCourse(state);
+  const result=planInputExcitation(state.discovery.observations,state.discovery.options.terms,course.candidates);
+  const outcomes=result.outcomes.map(row=>({...row,sourceIndex:course.indices[row.index]}));
+  return {...result,outcomes,selected:result.selected?outcomes[result.selected.index]:null,
+    inputSource:course.explicit?'explicitly_offered':state.lab?'virtual_instrument_course':'observed_range_grid',
+    originalOfferedCount:course.offeredCount,previouslyObservedCount:course.offeredCount-course.candidates.length};
 }
 export function exportSession(state) {
   return JSON.stringify({schema:usesRobust(state)?ROBUST_SESSION_SCHEMA:usesInteraction(state)?INTERACTION_SESSION_SCHEMA:SESSION_SCHEMA,base:state.base,lab:state.lab,initialOptions:state.initialOptions,events:state.events},null,2);
