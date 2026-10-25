@@ -1,3 +1,4 @@
+import {analyzeProbeMixtures} from './probe-mixture.mjs';
 import {analyzeProbeStudy,exportProbeStudy,importProbeStudy} from './probe-response.mjs';
 import {probeExample} from './probe-fixture.mjs';
 const fmt=x=>Number(x.toPrecision(4)).toString();
@@ -17,7 +18,7 @@ export function mountProbePanel(){
  <strong id="probe-state" role="status">NO STUDY</strong><p id="probe-summary"></p>
  <p id="probe-plot-hint" class="input-hint">Observed intervals are amber; predicted intervals retain their full width. On a narrow screen, scroll the plot horizontally or focus it and use arrow keys.</p><div class="probe-plot-scroll" tabindex="0" role="region" aria-label="Scrollable probe prediction comparison" aria-describedby="probe-plot-hint"><svg id="probe-plot" viewBox="0 0 820 350" role="img" aria-label="Separate observed probe contrasts against frozen hypothesis prediction intervals"></svg></div>
  <div class="table-wrap"><table><caption>Training-only coefficient intervals · declared coefficient bounds −100 to 100 in the listed units</caption><thead><tr><th>Hypothesis</th><th>Training</th><th>Coefficient interval</th><th>All challenges</th></tr></thead><tbody id="probe-models"></tbody></table></div>
- <div id="probe-challenges" aria-live="polite"></div><p id="probe-error" role="alert"></p>
+ <div id="probe-challenges" aria-live="polite"></div><details><summary>Challenge explicit mixed responses</summary><p>Exploratory offset/rate/sine combinations use training-only equal-weight fits. More training runs than coefficients are required. These are point predictions; failed representatives do not exclude the whole coefficient family.</p><div id="probe-mixtures" aria-live="polite"></div></details><p id="probe-error" role="alert"></p>
  <p class="annotation">Screening bounds are not calibrated confidence. Compatible rate or angle response does not prove friction, restoring forces or physical memory. Mixed responses, nonlinear instrument drift and confounding remain possible. Changing training recomputes the model; challenge values only test frozen predictions.</p>`;
  document.querySelector('.scientific-limit').before(section);
  const $=id=>section.querySelector('#'+id);let study=null,readVersion=0;
@@ -26,7 +27,19 @@ export function mountProbePanel(){
   $('probe-state').textContent=r.fit.status.toUpperCase().replaceAll('-',' ');
   $('probe-summary').textContent=`${r.source??'No'} evidence · preparation ${study.preparation.id}, ${study.preparation.duration}s; recovery ${study.preparation.recovery}s. `+(r.fit.reasons.join(' ')||'Predictions below use training-only coefficients; failed alternatives remain visible.');
   $('probe-models').replaceChildren();for(const c of r.fit.candidates){const tr=document.createElement('tr');for(const value of [c.label,c.compatible?(c.excited?'compatible':'compatible / unexcited'):'contradicted',c.coefficientInterval?c.coefficientInterval.map(fmt).join(' to ')+' '+c.units:'—',r.jointChallenges.find(j=>j.id===c.id)?.status??'not predicted']){const td=document.createElement('td');td.textContent=value;tr.append(td);}$('probe-models').append(tr);}
-  $('probe-challenges').replaceChildren();for(const p of r.challenges){const text=document.createElement('p');text.textContent=p.id+': angle '+fmt(p.probe.position)+' rad, rate '+fmt(p.probe.rate)+' rad/s; observed ['+p.interval.map(fmt).join(', ')+'] N·m. '+p.predictions.map(c=>c.id+' ['+c.interval.map(fmt).join(', ')+'] '+c.status).join('; ');$('probe-challenges').append(text);}draw(r);
+  $('probe-challenges').replaceChildren();for(const p of r.challenges){const text=document.createElement('p');text.textContent=p.id+': angle '+fmt(p.probe.position)+' rad, rate '+fmt(p.probe.rate)+' rad/s; observed ['+p.interval.map(fmt).join(', ')+'] N·m. '+p.predictions.map(c=>c.id+' ['+c.interval.map(fmt).join(', ')+'] '+c.status).join('; ');$('probe-challenges').append(text);}renderMixtures();draw(r);
+ }
+ function renderMixtures(){
+  const target=$('probe-mixtures');target.replaceChildren();
+  const result=analyzeProbeMixtures(study);
+  for(const candidate of result.candidates){
+   const title=document.createElement('h3');title.textContent=candidate.id+' · '+candidate.status;target.append(title);
+   const detail=document.createElement('p');detail.textContent=candidate.coefficients?candidate.labels.map((label,i)=>label+': '+fmt(candidate.coefficients[i])).join('; '):candidate.reason??'No admitted fit.';if(candidate.coefficients&&candidate.reason)detail.textContent+=' '+candidate.reason;target.append(detail);
+   for(const [role,rows] of [['Training',candidate.training??[]],['Separate challenge',candidate.challenges??[]]])for(const row of rows){
+    const p=document.createElement('p');p.textContent=role+' '+row.id+' · prediction '+fmt(row.prediction)+' N·m; observed ['+row.interval.map(fmt).join(', ')+']; residual '+fmt(row.residual)+' · '+row.status;target.append(p);
+   }
+  }
+  const note=document.createElement('p');note.textContent=result.interpretation;target.append(note);
  }
  function draw(r){
   const svg=$('probe-plot'),ns='http://www.w3.org/2000/svg';svg.replaceChildren();
@@ -51,3 +64,4 @@ export function mountProbePanel(){
  $('probe-export').onclick=()=>{if(!study)return;const url=URL.createObjectURL(new Blob([exportProbeStudy(study)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='worldlaw-probe-study.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
  return {getStudy:()=>study?structuredClone(study):null,adopt:next=>{readVersion++;adopt(next);}};
 }
+

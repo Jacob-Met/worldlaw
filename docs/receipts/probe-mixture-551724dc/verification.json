@@ -1,0 +1,104 @@
+{
+  "base": "e6a3908efcf8c2170f729efb4b8963b703935ad2",
+  "claim": "https://github.com/Jacob-Met/worldlaw/issues/161",
+  "sourceSha256": {
+    "src/unknown-lab/probe-mixture.mjs": "afea0b2f42fb030763de2d83b19c5400f661f95a588bc104be11c2366ded0226",
+    "src/unknown-lab/probe-panel.mjs": "0d4454d6d99a897794a44ee8c196dd0a7c42207489b3bc6ab07fe64b4fe2c514",
+    "tests/probe-mixture.test.mjs": "ae5effe2e52475afd37bbdd2018f9a50a9df0477612001c832786b67f81741b9",
+    "scripts/probe-mixture-browser.mjs": "b58118478e54f62b87e68dcf006e004dfc234ec9b84a1900956e844740b374e3",
+    "docs/PROBE_MIXTURES.md": "e6a0a6f2555c2ffb318a58585cb4d11102d725fadd5528ae7ef509fad63704d0"
+  },
+  "native": {
+    "total": 740,
+    "passed": 739,
+    "skipped": 1,
+    "failed": 0,
+    "durationSeconds": 32.779,
+    "environment": "Node22.23.4 Linux",
+    "base": "e6a3908efcf8c2170f729efb4b8963b703935ad2"
+  },
+  "productSmoke": "passed",
+  "trajectorySmoke": "passed",
+  "browser": {
+    "groups": 13,
+    "passed": true,
+    "version": "Chrome156.0.8078.47",
+    "sandbox": "admitted",
+    "exceptions": [],
+    "outsideRequests": [],
+    "visualReview": [
+      "root",
+      "worldlaw"
+    ]
+  },
+  "independentSourceReview": "MECHANISM worker reviewed core, validator and reused QR, independently executed first5tests with no blocker. Later domain-overflow guard independently rerun by root final native suite.",
+  "limitations": [
+    "Authored controls and declared imported source; no physical validation",
+    "Representative failure does not prove entire family infeasible",
+    "Numerical rank and inherited screens are not calibrated confidence",
+    "Merge/installation/deployment not yet established"
+  ],
+  "initialReceivingBase": "0b6323e5e142d2cec69ca879ea102c7564867191",
+  "baseTree": "f9ec5f758663d2ffa09bd05595f8a828a3c23d1c",
+  "composition": {
+    "upstreamCommits": 7,
+    "changedBaseTextFilesVerified": 39,
+    "probePanelUpstreamUnchanged": true,
+    "currentMainReceiving": {
+      "status": "passed",
+      "productSmoke": "passed",
+      "trajectorySmoke": "passed;8models,2challenges,source notebook reopen",
+      "browserGroups": 13,
+      "sandbox": "admitted",
+      "exceptions": [],
+      "offsiteRequests": [],
+      "device": "7bbde96a-7dad-438e-a035-cc2626ef02a5",
+      "browserLog": "/tmp/hamon-551724dc/worldlaw-browser-v3.log",
+      "sandboxReceipt": "/tmp/hamon-551724dc/worldlaw-browser-v3/sandbox.json"
+    }
+  },
+  "initialReceiving": {
+    "base": "0b6323e5e142d2cec69ca879ea102c7564867191",
+    "native": {
+      "total": 710,
+      "passed": 709,
+      "skipped": 1,
+      "failed": 0,
+      "environment": "Node22.23.4 Linux"
+    },
+    "browserGroups": 13,
+    "retainedScreenshotsAndBrowserJson": "Earlier run; same probe UI source/styles"
+  },
+  "qualifiedCompositionBase": "38a4bf0f93ab988fdd09c8dce2264402759c4950",
+  "finalComposition": {
+    "changedBaseFilesVerified": 9,
+    "scope": "coupled calibration and its scalar angle-box helper",
+    "probeDependenciesUnchanged": true,
+    "focusedReceiving": {
+      "environment": "local Node24.19.0",
+      "tests": 42,
+      "passed": 42,
+      "failed": 0,
+      "scope": "probe plus coupled calibration/coordinate boxes/scalar angle-box independent controls"
+    },
+    "remoteReceiving": {
+      "status": "passed",
+      "productSmoke": "passed",
+      "trajectorySmoke": "passed",
+      "browserGroups": 13,
+      "sandbox": "admitted",
+      "exceptions": [],
+      "offsiteRequests": [],
+      "device": "7bbde96a-7dad-438e-a035-cc2626ef02a5",
+      "browserLog": "/tmp/hamon-551724dc/worldlaw-final-v4-step3.log"
+    }
+  },
+  "previousCompositionNative": {
+    "total": 734,
+    "passed": 733,
+    "skipped": 1,
+    "failed": 0,
+    "durationSeconds": 32.891,
+    "environment": "Node22.23.4 Linux"
+  }
+}
