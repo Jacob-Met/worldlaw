@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "keyboard weak selection and independent forward challenge",
+    "original-input download and reopen",
+    "desktop and narrow layout",
+    "invalid inertia refuses atomically"
+  ],
+  "errors": []
+}

@@ -1,3 +1,4 @@
+import {discoverWeak} from './weak-discovery.mjs';
 import {compareTrajectorySkill} from './baselines.mjs';
 /** Training-only model selection followed by a separate receiving experiment. */
 import {discover} from '../science/torque-discovery.mjs';
@@ -17,17 +18,17 @@ const normalizeBundle=bundle=>angularBundle(bundle)?normalizeAngularBundle(bundl
 function check(condition,message){if(!condition)throw new TrajectoryDataError(message,'invalid_options');}
 export function normalizeOptions(raw={}, {angular=false}={}){
   check(raw!==null&&typeof raw==='object'&&!Array.isArray(raw),'Discovery settings must be an object.');
-  const defaults=angular?ANGULAR_DEFAULT_OPTIONS:DEFAULT_OPTIONS;
+  const defaults=angular||raw.method==='weak'?ANGULAR_DEFAULT_OPTIONS:DEFAULT_OPTIONS;
   const result={...defaults};
   for(const key of Object.keys(defaults))if(raw[key]!==undefined)result[key]=raw[key];
-  check((angular?['integral','weak']:['integral','derivative']).includes(result.method),angular?'Choose cumulative integral or compact-window weak fitting for angular evidence.':'Choose integral or derivative fitting for known-inertia torque evidence.');
+  check((angular?['integral','weak']:['integral','derivative','weak']).includes(result.method),angular?'Choose cumulative integral or compact-window weak fitting for angular evidence.':'Choose integral, derivative or compact-window weak fitting for known-inertia torque evidence.');
   check(typeof result.noiseSigma==='number'&&Number.isFinite(result.noiseSigma)&&result.noiseSigma>=1e-8&&result.noiseSigma<=1000,'Assumed residual noise must be between 0.00000001 and 1000.');
   check(Number.isInteger(result.maxTerms)&&result.maxTerms>=0&&result.maxTerms<=(angular?6:7),`The term limit must be an integer from 0 to ${angular?6:7}.`);
   check(typeof result.ambiguityDelta==='number'&&Number.isFinite(result.ambiguityDelta)&&result.ambiguityDelta>=0&&result.ambiguityDelta<=100,'The ambiguity threshold must be from 0 to 100.');
   check(typeof result.maxStep==='number'&&Number.isFinite(result.maxStep)&&result.maxStep>=1e-5&&result.maxStep<=0.1,'The solver step must be from 0.00001 to 0.1 seconds.');
   check(Number.isInteger(result.rateWindowSize)&&result.rateWindowSize>=5&&result.rateWindowSize<=31&&result.rateWindowSize%2===1,'The derivative window must be an odd integer from 5 to 31.');
   check(Number.isInteger(result.modelLimit)&&result.modelLimit>=1&&result.modelLimit<=8,'Compare between 1 and 8 models.');
-  if(angular){
+  if(angular||result.method==='weak'){
     check(typeof result.windowDuration==='number'&&Number.isFinite(result.windowDuration)&&result.windowDuration>=0.02&&result.windowDuration<=60,'The weak fitting window must be from 0.02 to 60 seconds.');
     check(typeof result.windowStride==='number'&&Number.isFinite(result.windowStride)&&result.windowStride>=0.01&&result.windowStride<=result.windowDuration,'The weak window stride must be from 0.01 seconds through the window duration.');
   }
@@ -39,6 +40,7 @@ function fitTraining(bundle,options){
     if(options.method==='weak')return discoverAngularWeak(bundle.trainingRuns,{...shared,rateWindowSize:options.rateWindowSize,windowDuration:options.windowDuration,windowStride:options.windowStride});
     return discoverAngular(bundle.trainingRuns,{...shared,rateWindowSize:options.rateWindowSize});
   }
+  if(options.method==='weak')return discoverWeak(bundle.trainingRuns,{...shared,rateWindowSize:options.rateWindowSize,windowDuration:options.windowDuration,windowStride:options.windowStride});
   if(options.method==='integral')return discoverIntegral(bundle.trainingRuns,{...shared,rateWindowSize:options.rateWindowSize});
   const derived=bundle.trainingRuns.map(run=>deriveTorqueObservations(run.samples,{inertia:run.inertia,windowSize:options.rateWindowSize}));
   const observations=derived.flatMap(run=>run.observations);
@@ -77,7 +79,7 @@ export function createChallenge(rawBundle,rawOptions={}){
     try{const receive=angular?rolloutAngularWithResolution:rolloutWithResolution;const received=receive(model,run,{maxStep:options.maxStep,maxSteps:200000});results.push({modelId:model.id,runId:run.id,status:'ok',...received});}
     catch(error){results.push({modelId:model.id,runId:run.id,status:'failed',rollout:null,resolution:null,error:{code:error.code??'prediction_failed',message:error.message??String(error)}});}
   }
-  return {schema:CHALLENGE_SCHEMA,bundle,options,supportedMethods:angular?['integral','weak']:['integral','derivative'],discovery,results,selectedModelId:discovery.selected.id,
+  return {schema:CHALLENGE_SCHEMA,bundle,options,supportedMethods:angular?['integral','weak']:['integral','derivative','weak'],discovery,results,selectedModelId:discovery.selected.id,
     selectedRunId:bundle.challengeRuns[0].id,positionTolerance:0.05,summary:summary(discovery,results,bundle,options)};
 }
 function selection(state){

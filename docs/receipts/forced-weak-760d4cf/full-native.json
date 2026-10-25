@@ -1,0 +1,34 @@
+[
+  {
+    "check": "native",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit_code": 0,
+    "seconds": 26.06669112399868,
+    "tail": "ategies, cycle amplitudes and forged simulation metadata fail validation\nok 786 - invalid strategies, cycle amplitudes and forged simulation metadata fail validation\n  ---\n  duration_ms: 0.650722\n  type: 'test'\n  ...\n# Subtest: offset transfers with one coefficient to signed separate probes\nok 787 - offset transfers with one coefficient to signed separate probes\n  ---\n  duration_ms: 13.260309\n  type: 'test'\n  ...\n# Subtest: drag transfers with one coefficient to signed separate probes\nok 788 - drag transfers with one coefficient to signed separate probes\n  ---\n  duration_ms: 3.321461\n  type: 'test'\n  ...\n# Subtest: restoring transfers with one coefficient to signed separate probes\nok 789 - restoring transfers with one coefficient to signed separate probes\n  ---\n  duration_ms: 3.843224\n  type: 'test'\n  ...\n# Subtest: omitted mixed response contradicts every offered family\nok 790 - omitted mixed response contradicts every offered family\n  ---\n  duration_ms: 2.877185\n  type: 'test'\n  ...\n# Subtest: small correlated training states preserve alternatives; reversed probe distinguishes\nok 791 - small correlated training states preserve alternatives; reversed probe distinguishes\n  ---\n  duration_ms: 2.337434\n  type: 'test'\n  ...\n# Subtest: challenge values cannot change fit or frozen prediction intervals\nok 792 - challenge values cannot change fit or frozen prediction intervals\n  ---\n  duration_ms: 5.004091\n  type: 'test'\n  ...\n# Subtest: zero-rate unexcited drag remains ambiguous rather than identified\nok 793 - zero-rate unexcited drag remains ambiguous rather than identified\n  ---\n  duration_ms: 1.81349\n  type: 'test'\n  ...\n# Subtest: unqualified challenge cannot erase a qualified contradiction\nok 794 - unqualified challenge cannot erase a qualified contradiction\n  ---\n  duration_ms: 2.906843\n  type: 'test'\n  ...\n# Subtest: one coherent coefficient must explain all challenges\nok 795 - one coherent coefficient must explain all challenges\n  ---\n  duration_ms: 2.960436\n  type: 'test'\n  ...\n# Subtest: input-only replay recomputes; invalid scope/source/state/reuse rejected\nok 796 - input-only replay recomputes; invalid scope/source/state/reuse rejected\n  ---\n  duration_ms: 14.504919\n  type: 'test'\n  ...\n# Subtest: unrecorded training order is insufficient, not a fitted effect\nok 797 - unrecorded training order is insufficient, not a fitted effect\n  ---\n  duration_ms: 2.283701\n  type: 'test'\n  ...\n# Subtest: training subset and partially overlapping challenge evidence are rejected despite renamed pairs and order\nok 798 - training subset and partially overlapping challenge evidence are rejected despite renamed pairs and order\n  ---\n  duration_ms: 3.411616\n  type: 'test'\n  ...\n# Subtest: captured Chrome seed rounding reopens in Node without rewriting supplied evidence\nok 799 - captured Chrome seed rounding reopens in Node without rewriting supplied evidence\n  ---\n  duration_ms: 86.799381\n  type: 'test'\n  ...\n# Subtest: roundoff bound applies to every numeric field in both baseline arrays\nok 800 - roundoff bound applies to every numeric field in both baseline arrays\n  ---\n  duration_ms: 276.09115\n  type: 'test'\n  ...\n# Subtest: numeric compatibility does not relax row identity, seed, schema or finiteness\nok 801 - numeric compatibility does not relax row identity, seed, schema or finiteness\n  ---\n  duration_ms: 55.245708\n  type: 'test'\n  ...\n1..801\n# tests 801\n# suites 0\n# pass 800\n# fail 0\n# cancelled 0\n# skipped 1\n# todo 0\n# duration_ms 25939.698192\n"
+  },
+  {
+    "check": "smoke",
+    "command": [
+      "npm",
+      "run",
+      "smoke"
+    ],
+    "exit_code": 0,
+    "seconds": 0.2463116020007874,
+    "tail": "\n> worldlaw@0.1.0 smoke\n> node scripts/smoke.mjs\n\nPASS launched product assets and refusal paths; actual discovery → virtual measurement → revision → notebook reopen.\n"
+  },
+  {
+    "check": "trajectory-smoke",
+    "command": [
+      "npm",
+      "run",
+      "smoke:trajectory"
+    ],
+    "exit_code": 0,
+    "seconds": 0.48772580200056836,
+    "tail": "\n> worldlaw@0.1.0 smoke:trajectory\n> node scripts/trajectory-smoke-92be.mjs\n\n{\n  \"product\": \"worldlaw\",\n  \"route\": \"trajectory-challenge\",\n  \"runtime\": \"v22.23.4\",\n  \"inputSHA256\": \"fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e\",\n  \"received\": \"launched local HTTP server -> actual JSON input -> fitting -> forward predictions -> source notebook reopen\",\n  \"selectedModel\": \"command+rate+gravity+bias\",\n  \"selectedPositionRMSE\": 0.0006561748182990025,\n  \"comparedModels\": 8,\n  \"challengeRuns\": 2,\n  \"negativeCases\": [\n    \"missing initial rate refused\",\n    \"missing resource404\",\n    \"unsupported method405\"\n  ],\n  \"evidenceKind\": \"synthetic\"\n}\n"
+  }
+]
