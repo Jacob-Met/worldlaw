@@ -5,6 +5,7 @@ import {createDemoSource, DEMO_PIVOT, demoMarkerAt} from './demo.mjs';
 import {pathReferenceCourses, proposePathReference, applyPathReference} from './path-reference.mjs';
 import {createMetricPlanePanel} from './metric-plane-panel.mjs';
 import {PLANE_CONVENTION} from './metric-plane.mjs';
+import {proposePlanePathReference, applyPlanePathReference, PLANE_PATH_REFERENCE_METHOD} from './plane-path-reference.mjs';
 
 const $ = id => document.getElementById(id);
 const canvas = $('evidence-canvas'), context = canvas.getContext('2d');
@@ -20,6 +21,7 @@ const state = {notebook: null, source: null, frame: null, derived: null, imageDe
 const planePanel = createMetricPlanePanel({root: $('metric-plane-panel'),
   getNotebook: () => state.notebook, getTime: () => state.frame?.time ?? state.selectedTime,
   isBusy: () => state.tracking || state.seeking, commit: commitNotebook,
+  changed: () => { state.pathReference = null; render(); },
   download: fileDownload, notice, showError, clearError});
 
 function notice(message) { $('motion-notice').textContent = message; }
@@ -93,6 +95,7 @@ function restoreTrackingAppearance() {
   if (Number.isInteger(tracker?.searchRadius) && tracker.searchRadius >= 4 && tracker.searchRadius <= 128) $('search-radius').value = String(tracker.searchRadius);
 }
 function stopWork() {
+  planePanel.cancelPending();
   state.epoch++; state.seekEpoch++; state.controller?.abort(); state.controller = null; state.tracking = false;
   state.seekTarget = null; state.seekController?.abort();
 }
@@ -140,7 +143,7 @@ async function installSource(source, {attach = false, syntheticCalibration = fal
     state.source?.dispose(); state.source = source; state.frame = frame; state.selectedTime = frame.time;
     $('track-until').value = String(source.duration); $('track-until').max = String(source.duration);
     state.template = null; state.mode = null; state.cursor = null; state.segmentId = null;
-    if (!attach) invalidateStudioExport({clearNumbers: true});
+    if (!attach) { planePanel.reset(); invalidateStudioExport({clearNumbers: true}); }
     commitNotebook(notebook); restoreReferenceInputs();
     if (attach) restoreTrackingAppearance(); else { $('appearance-mode').value = 'luminance'; $('patch-sampling').value = '1'; }
     if (syntheticCalibration) {
@@ -189,7 +192,7 @@ async function openNotebook(file) {
   state.source?.dispose(); state.source = source; state.frame = frame; state.selectedTime = frame?.time ?? parsed.measurements[0]?.time ?? 0;
   $('track-until').value = String(parsed.source.duration); $('track-until').max = String(parsed.source.duration);
   state.mode = null; state.template = null; state.cursor = null; state.segmentId = null;
-  invalidateStudioExport({clearNumbers: true}); commitNotebook(parsed); restoreReferenceInputs();
+  planePanel.reset(); invalidateStudioExport({clearNumbers: true}); commitNotebook(parsed); restoreReferenceInputs();
   restoreTrackingAppearance();
   notice(source ? 'Synthetic notebook reopened. Supplied provenance and measurements are preserved; its matching declared generator restores the image sequence.'
     : parsed.source.kind.startsWith('synthetic') ? 'Synthetic notebook reopened with its evidence and provenance. The declared generator or parameters cannot be reproduced here, so no replacement pixels are displayed.'
@@ -385,7 +388,11 @@ function renderCanvas() {
   if (state.pathReference?.status === 'candidate') {
     const proposal = state.pathReference;
     context.strokeStyle = '#7ce8f1'; context.setLineDash([7 * scale, 5 * scale]);
-    context.beginPath(); context.arc(proposal.pivot.x, proposal.pivot.y, proposal.radius, 0, Math.PI * 2);
+    context.beginPath();
+    if (proposal.projectedPath) proposal.projectedPath.forEach((point, i) => {
+      if (i === 0) context.moveTo(point.x, point.y); else context.lineTo(point.x, point.y);
+    });
+    else context.arc(proposal.pivot.x, proposal.pivot.y, proposal.radius, 0, Math.PI * 2);
     context.stroke(); context.setLineDash([]); cross(proposal.pivot, '#7ce8f1', true);
     context.fillStyle = '#7ce8f1';
     for (const index of proposal.course.sourceIndices) {
@@ -523,8 +530,11 @@ function pathReferenceSettings() {
 }
 function renderPathReference() {
   const busy = state.tracking || state.seeking, panel = $('path-reference-panel');
-  $('infer-path-reference').disabled = !state.notebook || busy || trackedPivot() || Boolean(state.notebook?.calibration?.plane);
-  $('apply-path-reference').disabled = busy || state.pathReference?.status !== 'candidate';
+  const plane = planePanel.declaration(), moving = trackedPivot() || $('pivot-mode').value === 'tracked';
+  $('infer-path-reference').disabled = !state.notebook || busy || moving;
+  $('apply-path-reference').disabled = busy || moving || state.pathReference?.status !== 'candidate';
+  $('infer-path-reference').textContent = plane ? 'Compare the rectified path' : 'Compare the observed path';
+  $('apply-path-reference').textContent = plane ? 'Use this conditional plane reference' : 'Use this fixed image reference';
   for (const id of ['path-gap', 'path-residual', 'path-course']) $(id).disabled = busy;
   if (!panel.open || busy) return;
   const select = $('path-course'), previous = select.value;
@@ -536,7 +546,8 @@ function renderPathReference() {
     select.value = courses.some(c => String(c.id) === previous) ? previous : courses.length === 1 ? String(courses[0].id) : '';
     const p = state.pathReference, result = $('path-reference-result');
     if (!p) {
-      result.textContent = state.notebook?.calibration?.plane ? 'The image-circle fit does not correct perspective. Keep a separately observed pivot while a metric plane is active.' : trackedPivot() ? 'Keep the independently observed moving pivot. Fixed-reference inference assumes a fixed camera.'
+      result.textContent = moving ? 'Keep the independently observed moving pivot. Fixed-reference inference assumes a fixed camera.'
+        : plane ? 'Four declared references are ready. Compare one continuous rectified marker path, inspect its source projection and explicitly accept a conditional reference. A good circle fit does not verify the plane geometry.'
         : 'Track one visible marker first, then compare its observed path. No angles are derived until a reference is explicitly accepted.';
       return;
     }
@@ -545,21 +556,27 @@ function renderPathReference() {
       short_arc: 'The observed arc is too short to qualify this circular reference.',
       insufficient_points: 'At least eight observed source points are required.',
       insufficient_spread: 'The source motion is too small for this comparison.',
+      insufficient_image_spread: 'The original image motion spans fewer than twelve pixels.',
       insufficient_training_spread: 'The fitting observations have insufficient image spread.',
       ambiguous_models: 'The line and circle remain ambiguous on the reserved source points.',
       neither_model_fits: 'Neither offered path explains the original observations adequately.',
       radial_discrepancy_exceeds_declaration: 'At least one original point exceeds the declared radial discrepancy.',
       inferred_reference_outside_image: 'The proposed center is outside the source image and cannot be applied here.',
+      projected_path_not_finite: 'The fitted plane path cannot be stably projected back into the source image.',
+      insufficient_radius: 'The fitted circle is too small in the declared reference-normalized coordinates.',
       unsupported_models: 'The offered paths are unsupported by these observations.'
     };
     const circle = p.comparison.circle, line = p.comparison.line;
+    const rectified = p.method === PLANE_PATH_REFERENCE_METHOD;
     result.textContent = (p.status === 'candidate'
       ? 'Proposed fixed reference: (' + fmt(p.pivot.x, 2) + ', ' + fmt(p.pivot.y, 2) + ') px. Cyan shows the fitted path on the original image.'
       : 'No applicable reference. ' + (reasons[p.reason] || p.reason)) +
       '\n' + p.course.count + ' original points · ' + p.trainingSourceIndices.length + ' fit / ' + p.checkSourceIndices.length + ' reserved checks.' +
-      '\nCircle check RMSE: ' + fmt(circle?.validationRmse, 3) + ' px; line: ' + fmt(line?.validationRmse, 3) +
-      ' px. Arc coverage: ' + fmt((circle?.coverageRadians ?? NaN) * 180 / Math.PI, 1) + '°.' +
-      '\nLargest original radial discrepancy: ' + fmt(p.maximumResidualPixels, 3) + ' px.' +
+      '\nCircle check RMSE: ' + fmt(circle?.validationRmse, 3) + '; line: ' + fmt(line?.validationRmse, 3) +
+      (rectified ? ' reference-normalized px.' : ' px.') + ' Arc coverage: ' + fmt((circle?.coverageRadians ?? NaN) * 180 / Math.PI, 1) + '°.' +
+      (rectified && p.planeCircle ? '\nPlane center: (' + fmt(p.planeCircle.center.x, 4) + ', ' + fmt(p.planeCircle.center.y, 4) + ') ' + p.declaration.coordinateUnit + '.' : '') +
+      '\nLargest original ' + (rectified ? 'projected radial' : 'radial') + ' discrepancy: ' + fmt(p.maximumResidualPixels, 3) + ' px.' +
+      (rectified ? '\nThis compares each original pixel with its projected plane-circle radial point, not the nearest image-conic point. Plane geometry and center uncertainty remain unverified.' : '') +
       '\nA deterministic split of the same source is not independent physical validation. A circular path does not establish a physical pivot or its uncertainty.';
   } catch (error) {
     $('path-reference-result').textContent = error.message;
@@ -634,6 +651,7 @@ $('patch-sampling').addEventListener('change', safe(() => {
   notice('Patch sampling changed for the next capture and run. Optional full-pixel confirmation checks the selected candidate after the sampled search; it does not establish uniqueness across every full patch. Existing measurements keep their recorded profile.');
 }));
 $('pivot-mode').addEventListener('change', safe(() => {
+  state.pathReference = null;
   if (state.notebook?.calibration) commitNotebook(calibrateNotebook(state.notebook, {...state.notebook.calibration, ...referenceSettings()}));
   state.template = null;
   if ($('pivot-mode').value === 'tracked') {
@@ -693,16 +711,20 @@ $('export-studio').addEventListener('click', safe(() => {
   notice('Studio observation JSON exported. These torque values are derived estimates from measured angles and your declared dynamics.');
 }));
 $('path-reference-panel').addEventListener('toggle', () => { if ($('path-reference-panel').open) renderPathReference(); });
-for (const id of ['path-gap', 'path-residual', 'path-course']) $(id).addEventListener('change', () => {
-  state.pathReference = null; render();
-});
+for (const id of ['path-gap', 'path-residual', 'path-course']) for (const event of ['input', 'change'])
+  $(id).addEventListener(event, () => { state.pathReference = null; render(); });
 $('infer-path-reference').addEventListener('click', safe(() => {
-  state.pathReference = proposePathReference(state.notebook, pathReferenceSettings()); render();
-  notice(state.pathReference.status === 'candidate' ? 'A fixed image reference is proposed. Inspect the original path before accepting it.'
+  planePanel.cancelPending();
+  const plane = planePanel.declaration();
+  state.pathReference = plane ? proposePlanePathReference(state.notebook, plane, pathReferenceSettings())
+    : proposePathReference(state.notebook, pathReferenceSettings()); render();
+  notice(state.pathReference.status === 'candidate' ? 'A conditional fixed reference is proposed. Inspect the original path before accepting it.'
     : 'The original path did not supply an applicable reference. Your calibration and source evidence are unchanged.');
 }));
 $('apply-path-reference').addEventListener('click', safe(() => {
-  const next = applyPathReference(state.notebook, state.pathReference, referenceSettings());
+  const next = state.pathReference?.method === PLANE_PATH_REFERENCE_METHOD
+    ? applyPlanePathReference(state.notebook, planePanel.declaration(), state.pathReference, referenceSettings())
+    : applyPathReference(state.notebook, state.pathReference, referenceSettings());
   commitNotebook(next); restoreReferenceInputs();
   notice('Fitted reference explicitly accepted. Original pixels and point observations are preserved. Angular noise remains conditional on this reference as exact; no physical pivot was measured.');
 }));

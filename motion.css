@@ -17,4 +17,7 @@
 
 #metric-plane-panel .button + .button { margin-top: 8px; }
 #metric-plane-panel .input-hint { overflow-wrap: anywhere; }
+#path-reference-panel .input-hint,
+#metric-plane-panel .input-hint { color: #4a5b4c; font-size: .82rem; line-height: 1.65; }
+#path-reference-result { color: #334b38; font-size: .85rem; overflow-wrap: anywhere; }
 .motion-lab label > #zero-axis-label { float: none; font: inherit; color: inherit; }
