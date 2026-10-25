@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> worldlaw@0.1.0 smoke
+> node scripts/smoke.mjs
+
+PASS launched product assets and refusal paths; actual discovery → virtual measurement → revision → notebook reopen.

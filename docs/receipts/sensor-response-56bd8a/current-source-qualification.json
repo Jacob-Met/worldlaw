@@ -1,0 +1,14 @@
+{
+  "historicalFreezeSha256": "aa6f6b12adddfdc222e7d32bd5660a1cd14df30a1648b146eb8856ab5251cfcc",
+  "inputsSha256": "8cdd31e3d60f8c138a4e8b821b52b6fd1c11da3f7a891d1740fc25089483b82e",
+  "sourceHashes": {
+    "src/data.mjs": "f094afc5349f5626973be8c0b98b0590acb8bfa9e56aacf182f76319ffb44036",
+    "src/science/sensor-response.mjs": "dc91f3da07f9bcb2d280c5272d864ee4ce6d934065e8f191650ad4614daf0293",
+    "src/science/command-deadzone.mjs": "65769ddc61c5073892da163981a762df5da78ec522fae47d95c75096690146b4",
+    "src/science/torque-discovery.mjs": "b7b04da10216be7b7a7324681708b506b129b55584a424bd0238280c569d8c79",
+    "src/science/linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+    "src/science/robust-fit.mjs": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1"
+  },
+  "exactCandidateReplay": true,
+  "scope": "Post-test compatibility receiving only. UTF-8/BOM intake repair and maintained optional cosine addition preserve every frozen training candidate, coefficient and diagnostic. Historical pre-test source receipt is unchanged; no new blind validation is claimed."
+}

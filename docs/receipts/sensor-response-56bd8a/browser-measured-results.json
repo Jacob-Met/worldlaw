@@ -1,0 +1,36 @@
+{
+  "rows": 929,
+  "selectedWidth": 0.75,
+  "candidates": [
+    {
+      "width": 0,
+      "rmse": 2.419861156513774,
+      "maxAbsResidual": 7.505949252774148
+    },
+    {
+      "width": 0.1,
+      "rmse": 2.404133092347674,
+      "maxAbsResidual": 7.34046587172212
+    },
+    {
+      "width": 0.25,
+      "rmse": 2.381839184055592,
+      "maxAbsResidual": 7.034342585445636
+    },
+    {
+      "width": 0.5,
+      "rmse": 2.3989898578915727,
+      "maxAbsResidual": 6.923753192776626
+    },
+    {
+      "width": 0.75,
+      "rmse": 2.3891650054352835,
+      "maxAbsResidual": 6.798177716393173
+    },
+    {
+      "width": 1,
+      "rmse": 2.3860559403912363,
+      "maxAbsResidual": 6.689126182004152
+    }
+  ]
+}

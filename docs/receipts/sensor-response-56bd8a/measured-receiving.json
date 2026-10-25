@@ -1,0 +1,43 @@
+{
+  "trainingSha256": "df28cc85a20a8a44ce69ec49cd3f8ebcd321f09bb9adb1afb23e0234dd5cdb65",
+  "receivingSha256": "86d49d30d60821021a6da1a884937f49be601999bba47cda00cb9d3ff7234cf9",
+  "rows": 929,
+  "selectedWidth": 0.75,
+  "competitiveWidths": [
+    0.75,
+    1
+  ],
+  "candidates": [
+    {
+      "width": 0,
+      "rmse": 2.419861156513774,
+      "maxAbsResidual": 7.505949252774148
+    },
+    {
+      "width": 0.1,
+      "rmse": 2.404133092347674,
+      "maxAbsResidual": 7.34046587172212
+    },
+    {
+      "width": 0.25,
+      "rmse": 2.381839184055592,
+      "maxAbsResidual": 7.034342585445636
+    },
+    {
+      "width": 0.5,
+      "rmse": 2.3989898578915727,
+      "maxAbsResidual": 6.923753192776626
+    },
+    {
+      "width": 0.75,
+      "rmse": 2.3891650054352835,
+      "maxAbsResidual": 6.798177716393173
+    },
+    {
+      "width": 1,
+      "rmse": 2.3860559403912363,
+      "maxAbsResidual": 6.689126182004152
+    }
+  ],
+  "interpretation": "Conditional sensor response at supplied contemporaneous position/rate/command. Algebraic coefficients are not identified mechanical properties. This is not net torque, a causal command effect or a free-running motion forecast."
+}
