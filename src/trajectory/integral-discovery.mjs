@@ -3,6 +3,7 @@
  * never a calibrated likelihood and never independent forward validation.
  */
 import {TERMS, DEFAULT_TERMS, UNITS, DiscoveryError} from '../science/torque-discovery.mjs';
+import {normalizeCommandTiming, prepareCommandTimeline} from './command-timeline.mjs';
 
 const IDS = TERMS.map(term => term.id);
 const RANK_TOLERANCE = 1e-8;
@@ -24,6 +25,7 @@ function normalizeOptions(options) {
   const result = {terms: [...terms], noiseSigma: options.noiseSigma ?? 0.01,
     maxTerms: options.maxTerms ?? Math.min(4, terms.length), ambiguityDelta: options.ambiguityDelta ?? 6,
     rateWindowSize: options.rateWindowSize ?? 9, rowStride: options.rowStride ?? 1};
+  if (options.commandTiming !== undefined) result.commandTiming = normalizeCommandTiming(options.commandTiming);
   finite(result.noiseSigma, 'noiseSigma', 1e6);
   insist(result.noiseSigma >= 1e-12, 'noiseSigma must be at least 1e-12 radians.');
   insist(Number.isInteger(result.maxTerms) && result.maxTerms >= 0 && result.maxTerms <= terms.length,
@@ -128,6 +130,7 @@ function whiten(values) {
 }
 
 function integralRows(run, options) {
+  const delayedCommand = options.commandTiming?.delaySeconds > 0 ? prepareCommandTimeline(run.samples, options.commandTiming) : null;
   const needsRates = options.terms.some(id => id === 'coulomb' || id === 'quadratic');
   const derivative = needsRates ? localRates(run, options.rateWindowSize) : null;
   const rows = run.samples, first = rows[0], integrals = Object.fromEntries(options.terms.map(id => [id, {first: 0, second: 0}]));
@@ -153,6 +156,7 @@ function integralRows(run, options) {
       const state = integrals[id];
       if (id === 'bias') state.second = elapsed * elapsed / 2;
       else if (id === 'rate') state.second = thetaIntegral - first.position * elapsed;
+      else if (id === 'command' && delayedCommand) state.second = delayedCommand.doubleIntegrals[i];
       else {
         const left = value(id, i - 1), right = id === 'command' ? left : value(id, i);
         state.second += h * state.first + h * h * (2 * left + right) / 6;
@@ -231,6 +235,7 @@ export function discoverIntegral(trainingRuns, requestedOptions = {}) {
       conditionEstimateMeaning: 'ratio_of_scaled_QR_diagonal_extremes_not_exact_condition_number',
       covarianceTreatment: 'inverse_sqrt_of_I_plus_ones_for_shared_initial_position_error_only',
       commandConvention: 'left_sample_zero_order_hold', quadrature: 'exact_for_piecewise_linear_features_and_zero_order_held_command',
+      ...(options.commandTiming ? {commandTiming: {...options.commandTiming}, commandConvention: 'delayed_left_sample_zero_order_hold_with_declared_constant_prehistory'} : {}),
       initialRateAssumption: 'caller_supplied_exact_initial_angular_rate', runs: blocks.map(block => block.diagnostics),
       warnings: [...(blocks.some(block => block.diagnostics.possibleWraps) ? ['possible_angle_wrap_no_unwrapping_applied'] : []),
         ...(blocks.some(block => block.diagnostics.gapRatio > 10) ? ['highly_irregular_sampling'] : []),
