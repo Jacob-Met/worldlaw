@@ -1,0 +1,92 @@
+{
+  "team": "hamon-53ba6b8e-20261024",
+  "baseCommit": "a4fc3861aba0ee9d2513e3711fe0b282f0dc1126",
+  "reviewedCandidate": "e456455a6c92b6d03d6a6de18426473bae3c212c",
+  "qualificationCommit": "c5983967f748e533210b6f696030b1f2119725ce",
+  "environment": {
+    "os": "Linux",
+    "node": "22.23.4",
+    "chromiumSandbox": true,
+    "source": "Exact maintained Git blobs materialized in isolated RDC directory; no credentials transferred",
+    "fixedPivotReceiving": "Existing native receiver run unchanged in assertions, with Chromium sandbox explicitly enabled; isolated Pillow11.3.0 fixture dependency. Local exact-blob source snapshot commit is distinct from published GitHub SHA."
+  },
+  "receiving": {
+    "checks": [
+      "circle-a: original video → one marker → observed circle → keyboard acceptance → source-bound angular export",
+      "circle-b: original video → one marker → observed circle → keyboard acceptance → source-bound angular export",
+      "save/reopen keeps exact source and derivation; wrong original refuses; matching video reconnects",
+      "390px source/candidate controls, focus and reduced-motion layout remain operable",
+      "actual straight-source movie cannot be reported or applied as a circular reference",
+      "no uncaught page exceptions across complete positive and negative journeys"
+    ],
+    "metrics": [
+      {
+        "course": "circle-a",
+        "frames": 40,
+        "sourceSha256": "dd6bfb77de85885bb46b7d58993aec010c5465c572225a76c3b2e539281df2c2",
+        "centerErrorPixels": 0.9917884126546692,
+        "maxAngularErrorRadians": 0.008065365545006475
+      },
+      {
+        "course": "circle-b",
+        "frames": 40,
+        "sourceSha256": "202759c41e65185528ef00d84313cf849527cb26fda5d0dd88b0cca39cf45147",
+        "centerErrorPixels": 0.6517165560335151,
+        "maxAngularErrorRadians": 0.007811126599617468
+      }
+    ],
+    "pageErrors": [],
+    "scope": "Original authored encoded movies; unmocked local browser acquisition. Not physical-mechanism validation.",
+    "chromiumSandbox": true
+  },
+  "commands": [
+    {
+      "command": "node --test tests/motion-path-reference.test.mjs",
+      "pass": 10,
+      "fail": 0
+    },
+    {
+      "command": "npm run verify",
+      "tests": 948,
+      "pass": 947,
+      "fail": 0,
+      "skip": 1,
+      "smokes": [
+        "launched Discovery Studio",
+        "launched Trajectory Challenge"
+      ],
+      "source": "composed a4fc3861 main plus implementation; later c5983967 export qualification separately covered by 10 focused tests and browser receiving"
+    },
+    {
+      "command": "node scripts/motion-path-reference-browser.mjs",
+      "pass": 6,
+      "fail": 0
+    },
+    {
+      "command": "node scripts/motion-tracked-pivot-browser.mjs",
+      "pass": 8,
+      "fail": 0
+    },
+    {
+      "command": "node scripts/motion-browser-15cc.mjs (temporary receiving copy with chromiumSandbox:true)",
+      "pass": 9,
+      "fail": 0,
+      "sourceCommit": "c5983967f748e533210b6f696030b1f2119725ce"
+    }
+  ],
+  "review": {
+    "reviewer": "/root/afterimage",
+    "blockingFindings": [],
+    "addressed": "Explicitly exported reference fit conditioning before downstream train/check split; Studio-export control passes."
+  },
+  "limits": [
+    "Authored synthetic source movies; no physical accuracy or calibrated uncertainty claim.",
+    "Optional exchange-browser test remains inherited skip.",
+    "No installation/deployment or contest submission."
+  ],
+  "screenshots": {
+    "desktop.png": "5e58a734ad23ff7b7d579c5d26aebe01bdb87cef",
+    "narrow.png": "3427cc7a4636afe9836bf297a7c48617e356114f"
+  },
+  "observedAtUTC": "2026-10-25 07:09:02 UTC"
+}

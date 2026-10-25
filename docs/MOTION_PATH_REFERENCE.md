@@ -96,3 +96,8 @@ off-image centers, source/calibration mutation, forged cached pivots and exact
 upstream dependency identity. Actual desktop/390px captures and numerical
 receipts accompany the integration. The older fixed and tracked-pivot browser
 courses remain regression receivers.
+
+
+## Integrated receiving evidence
+
+The [receiving record](receipts/path-reference-53ba6b8e/verification.json) captures the exact source pins, commands, original encoded movie hashes, measured image and angular errors, independent agent review, and limits. [Desktop](receipts/path-reference-53ba6b8e/desktop.png) and [narrow layout](receipts/path-reference-53ba6b8e/narrow.png) screenshots show the actual candidate over its decoded source. The existing fixed-reference browser flow passed nine groups and the tracked-reference flow passed eight groups alongside the six new marker-first groups. These authored fixtures establish software behavior; they do not establish physical measurement accuracy.
