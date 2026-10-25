@@ -1,3 +1,4 @@
+import {mountAffineClocks} from './science/clock-affine-panel.mjs';
 import {mountClockOffsets} from './science/clock-offset-panel.mjs';
 import {renderInputEnclosures} from './science/input-enclosure-panel.mjs';
 import {renderStateSupport} from './science/state-support-panel.mjs';
@@ -15,7 +16,7 @@ const names={command:'Actuation',rate:'Viscous damping',coulomb:'Coulomb frictio
 const fmt=(value,digits=4)=>value===null||!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<0.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
 const set=(id,text)=>{$(id).textContent=text;};
-let clockPanel=null;
+let clockPanel=null,affinePanel=null;
 let state,modelId,plan,trajectory=[],animationStart=0,animationHandle,restored=false,generation=0;
 function alertError(error) { $('error').hidden=false;set('error',error.message||String(error));$('error').focus(); }
 function notice(text) {set('notice',text);$('error').hidden=true;}
@@ -72,6 +73,7 @@ function renderHypotheses(){
 }
 function renderModel(){
   clockPanel?.studioChanged();
+  affinePanel?.studioChanged();
   const m=model(),train=evaluate(m,state.discovery.observations),held=evaluate(m,state.base.heldOut);
   set('model-heading',m.id===state.discovery.selected.id?'A model to put to the test.':'Inspecting an alternative model.');
   set('selected-equation',m.equation.replaceAll(' + -',' − ').replace(' = -',' = −'));set('selected-terms',m.terms.length?m.terms.map(t=>`${names[t.id]} ${fmt(t.coefficient)}`).join(' · '):'No selected terms');
@@ -194,3 +196,5 @@ window.addEventListener('pagehide',()=>cancelAnimationFrame(animationHandle));
 $('revise-features').addEventListener('click',()=>action(()=>adopt(refitSession(state,{includeCommandPosition:$('include-command-position').checked}),'Revised the candidate feature library. Original observations and the initial fit are retained.')));
 
 clockPanel=mountClockOffsets(document.querySelector('.main-column'),model);
+
+affinePanel=mountAffineClocks(document.querySelector('.main-column'),model);
