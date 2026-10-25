@@ -35,6 +35,9 @@ INCLUDE = (
     "COUPLED_POINT_RESPONSE.md", "COUPLING_EXCITATION_WITNESSES.md",
     "docs/receipts/forced-weak-760d4cf/README.md",
     # Explicit retained receiving evidence; do not admit arbitrary nested outputs.
+    "docs/receipts/command-deadzone-56bd8a/native-tests.txt",
+    "docs/receipts/command-deadzone-56bd8a/studio-smoke.txt",
+    "docs/receipts/command-deadzone-56bd8a/trajectory-smoke.txt",
     "docs/verification/correlation-band-browser.json",
     "docs/verification/correlation-band-desktop.png",
     "docs/verification/correlation-band-narrow.png",

@@ -12,9 +12,13 @@ function settingsOf(input){
  return {delays:[...input.delays],contrastRadius:input.contrastRadius,pairs:input.pairs,overheadPerPair:input.overheadPerPair,budgetSeconds:input.budgetSeconds};
 }
 export function planRecoveryAcquisition(raw,input){
- const settings=settingsOf(input);
  // Future challenges are deliberately not read by the planner or saved plan.
  const training=validateRecovery({...raw,challenges:[]}),fit=fitRecovery(training);
+ return planRecoveryReadouts(training,fit,input);
+}
+// Shared finite-delay policy; callers provide an already admitted training fit.
+export function planRecoveryReadouts(training,fit,input){
+ const settings=settingsOf(input);
  const models=fit.candidates.filter(c=>c.status==='compatible');
  const base={schema:RECOVERY_PLAN_SCHEMA,training,settings,fitStatus:fit.status,candidates:[],selected:null,status:'unavailable',reason:null};
  if(models.length<2)return {...base,reason:models.length?'Only one offered hypothesis survives; there are no competitors to separate.':'No qualified training hypothesis survives.'};
