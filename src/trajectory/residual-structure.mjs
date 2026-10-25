@@ -1,3 +1,4 @@
+import {residualPairStatistics} from './residual-pair-statistics.mjs';
 import {physicalDelayPairs} from './physical-delay.mjs';
 const check=(ok,message)=>{if(!ok)throw new Error(message);};
 function admit(rows){
@@ -9,7 +10,6 @@ function admit(rows){
     return {index,time:row.time,observed:row.observed,predicted:row.predicted,residual:row.observed-row.predicted};
   });
 }
-function norm(values){if(values.length<=20000)return Math.hypot(...values);let result=0;for(const value of values)result=Math.hypot(result,value);return result;}
 function summarize(source,groups,pairCount){
   const samples=source.slice(1),count=samples.length;
   const scale=Math.max(...samples.map(row=>Math.abs(row.residual)));
@@ -18,13 +18,9 @@ function summarize(source,groups,pairCount){
   const centered=normalized.map(value=>value-mean);
   const reports=groups.map(group=>{
     const pairs=group.indices.map(([i,j])=>({earlier:{...source[i]},later:{...source[j]},elapsed:source[j].time-source[i].time}));
-    const left=group.indices.map(([i])=>centered[i-1]),right=group.indices.map(([,j])=>centered[j-1]);
-    const leftNorm=norm(left),rightNorm=norm(right);
-    const correlation=pairs.length>=2&&leftNorm&&rightNorm?Math.max(-1,Math.min(1,left.reduce((sum,value,i)=>sum+(value/leftNorm)*(right[i]/rightNorm),0))):null;
-    const differenceNorm=norm(group.indices.map(([i,j])=>normalized[j-1]-normalized[i-1]));
-    const pairNorm=norm([...group.indices.map(([i])=>normalized[i-1]),...group.indices.map(([,j])=>normalized[j-1])]);
+    const {correlation,differenceRatio}=residualPairStatistics(normalized,centered,group.indices);
     const {indices,...metadata}=group;
-    return {...metadata,count:pairs.length,correlation,differenceRatio:pairNorm?(differenceNorm/pairNorm)**2:null,
+    return {...metadata,count:pairs.length,correlation,differenceRatio,
       elapsedMinimum:pairs.length?pairs.reduce((v,p)=>Math.min(v,p.elapsed),Infinity):null,
       elapsedMaximum:pairs.length?pairs.reduce((v,p)=>Math.max(v,p.elapsed),-Infinity):null,pairs,
       status:pairs.length<2?(pairs.length?'single_pair':'no_pairs'):correlation===null?'no_centered_variation':'descriptive'};

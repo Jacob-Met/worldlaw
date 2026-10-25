@@ -1,0 +1,171 @@
+{
+  "source": {
+    "bundleSHA256": "7e42868153d3aa15fc9722f665f5ed62cc491c4445768f8db74a6e36b85cb0e6",
+    "runId": "pasco-len1-cond1-3",
+    "kind": "measured",
+    "provenance": {
+      "label": "Xu et al., Damped Pendulum Dataset, original PASCO CSV",
+      "recordingId": "EnzeXu/Damped_Pendulum_Dataset/cbf82673641ecd65e902ad5c38a048387649a2a0/raw_data/len1_cond1_3.csv",
+      "repository": "https://github.com/EnzeXu/Damped_Pendulum_Dataset",
+      "revision": "cbf82673641ecd65e902ad5c38a048387649a2a0",
+      "url": "https://raw.githubusercontent.com/EnzeXu/Damped_Pendulum_Dataset/cbf82673641ecd65e902ad5c38a048387649a2a0/raw_data/len1_cond1_3.csv",
+      "license": "Apache-2.0",
+      "licenseFile": "physical-pasco-92be/LICENSE",
+      "localRawFile": "physical-pasco-92be/raw/len1_cond1_3.csv",
+      "sha256": "f034b8900c7b78f0dbe46805c2d5faa41bb1e238558302156d4965cfc1b4603c",
+      "apparatus": "same PASCO PS-3220 pendulum apparatus; author length group 1, air condition 1",
+      "authorLengthM": 0.236,
+      "authorRepetition": 3,
+      "columns": {
+        "time": "Time (s) Run #1",
+        "position": "Angle (rad) Run #1",
+        "initialRate": "Angular Velocity (rad/s) Run #1"
+      },
+      "selection": {
+        "firstRawRowZeroBased": 500,
+        "lastRawRowZeroBasedInclusive": 2500,
+        "timeStartS": 5,
+        "timeEndSInclusive": 25,
+        "rawSampleCount": 6691,
+        "reason": "Fixed common 20 s window; start 5 s follows author processing start; window declared before fitting."
+      },
+      "transform": {
+        "time": "original source seconds preserved",
+        "position": "original source radians preserved; no recentering or unwrap",
+        "resampling": "none",
+        "smoothing": "none",
+        "initialRate": "sensor CSV angular velocity at first selected row; not inferred from later challenge positions"
+      },
+      "uncertainty": {
+        "position": "CSV resolution 0.001 rad; sensor calibration and error distribution not established here",
+        "angularOrigin": "original sensor angle zero preserved; equilibrium-zero calibration across recordings not independently established here",
+        "initialRate": "published sensor rate, uncertainty and internal estimation method not established here",
+        "inertia": "not supplied by inspected primary dataset; absolute torque remains unknown",
+        "forcing": "unforced scalar rotation is an explicit interpretation of the damped-pendulum setup; no actuator channel verifies zero external forcing"
+      },
+      "evidenceRole": "challenge",
+      "roleAssignment": "original independent recording numbers 1 and 2 fit; 3 challenge; same mechanism, not unseen apparatus"
+    }
+  },
+  "model": {
+    "schema": "worldlaw.angular-model/v1",
+    "id": "published-rounded-gravity+bias",
+    "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+    "physicalInertia": null,
+    "absoluteTorqueIdentified": false,
+    "units": {
+      "position": "rad",
+      "rate": "rad/s",
+      "angularAcceleration": "rad/s²"
+    },
+    "terms": [
+      {
+        "id": "gravity",
+        "coefficient": -39.9074995,
+        "coefficientUnit": "rad/s²"
+      },
+      {
+        "id": "bias",
+        "coefficient": -0.2918417,
+        "coefficientUnit": "rad/s²"
+      }
+    ]
+  },
+  "fitExecuted": false,
+  "modelSource": "Research PHYSICAL_TELEMETRY_92be.md published rounded coefficient values; not an exact recovered full-precision fitted object.",
+  "sourceCount": 2000,
+  "accountedSourceCount": 2000,
+  "epochs": [
+    {
+      "epochIndex": 0,
+      "startExclusive": 5,
+      "endInclusive": 10,
+      "count": 500,
+      "status": "observed",
+      "meanError": 0.009832280342735785,
+      "rmse": 0.09142597865128513,
+      "maxAbsError": 0.17252971441720133,
+      "squaredErrorFraction": 0.020033472831888607,
+      "firstOriginalIndex": 1,
+      "lastOriginalIndex": 500
+    },
+    {
+      "epochIndex": 1,
+      "startExclusive": 10,
+      "endInclusive": 15,
+      "count": 500,
+      "status": "observed",
+      "meanError": 0.015900175827418272,
+      "rmse": 0.14420516068505077,
+      "maxAbsError": 0.30072416650897626,
+      "squaredErrorFraction": 0.04984006629184868,
+      "firstOriginalIndex": 501,
+      "lastOriginalIndex": 1000
+    },
+    {
+      "epochIndex": 2,
+      "startExclusive": 15,
+      "endInclusive": 20,
+      "count": 500,
+      "status": "observed",
+      "meanError": 0.004620262535034091,
+      "rmse": 0.3119965107023649,
+      "maxAbsError": 0.6059197013876859,
+      "squaredErrorFraction": 0.23330093519788578,
+      "firstOriginalIndex": 1001,
+      "lastOriginalIndex": 1500
+    },
+    {
+      "epochIndex": 3,
+      "startExclusive": 20,
+      "endInclusive": 25,
+      "count": 500,
+      "status": "observed",
+      "meanError": -0.02974065781901595,
+      "rmse": 0.5392045182475502,
+      "maxAbsError": 0.9436892067427549,
+      "squaredErrorFraction": 0.6968255256783769,
+      "firstOriginalIndex": 1501,
+      "lastOriginalIndex": 2000
+    }
+  ],
+  "pairPartitions": [
+    {
+      "total": 1950,
+      "accounted": 1950,
+      "within": [
+        {
+          "epochIndex": 0,
+          "count": 450,
+          "correlation": -0.9622463462294036,
+          "differenceRatio": 1.9613235389485353,
+          "status": "descriptive"
+        },
+        {
+          "epochIndex": 1,
+          "count": 450,
+          "correlation": -0.9792205558557381,
+          "differenceRatio": 1.9752038441887267,
+          "status": "descriptive"
+        },
+        {
+          "epochIndex": 2,
+          "count": 450,
+          "correlation": -0.9871193894344397,
+          "differenceRatio": 1.9850335564469288,
+          "status": "descriptive"
+        },
+        {
+          "epochIndex": 3,
+          "count": 450,
+          "correlation": -0.9881896396400018,
+          "differenceRatio": 1.9868545955261017,
+          "status": "descriptive"
+        }
+      ],
+      "crossCount": 150,
+      "crossCorrelation": -0.9823385908520195
+    }
+  ],
+  "meaning": "Complete left-open/right-closed original source epochs. The imposed initial row is excluded once. No epoch resets a forecast or fits a law. Every physical-delay pair remains within one epoch or explicitly crosses epochs; pair cosine retains the full receiving mean. Epochs are descriptive partitions, not independent experiments, change-point detection or causal explanations."
+}

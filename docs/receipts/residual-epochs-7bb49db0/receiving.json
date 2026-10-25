@@ -1,0 +1,71 @@
+{
+  "baseCommit": "5a7df2cc317bace9aeca494d94b48e8d598c7ba4",
+  "sourceHashes": {
+    "src/trajectory/residual-structure.mjs": "03a9e8133dc9199b571e6d1ff9d35125fa02763572ac1b61a0cc53390c1b268e",
+    "src/trajectory/residual-structure-panel.mjs": "245fba912eaa0a4044ade391cfa89b20e885aaeffc54aafa3b42bdd8a69628e6",
+    "src/trajectory/residual-pair-statistics.mjs": "5e770f59743e856c01476421463f5d5a593b65504bce43863f70c5e8b8e1ce53",
+    "src/trajectory/residual-epochs.mjs": "dc535b113a2db4c01feac2fd07798f3327f3e2df533f1db2533c6551cbe48102",
+    "src/trajectory/residual-epochs-panel.mjs": "c466911a2ec6f38fd4c53294b4bbf73eb09783eaf298d47c7dbd391c0f52ad49",
+    "tests/residual-epochs.test.mjs": "df6eca1a743be5e4c9a6236356c9c271a417976929ca30d133f267ecf467890d",
+    "tests/epoch-panel-handlers.test.mjs": "db83d30a07362cf2fc9657f7fdbc5fdfd1533abcdb4579e244e2d30a4b4822de",
+    "tests/support/residual-structure-incumbent-221.mjs": "e626a1418b537b6104991d2c447bef3a1dc4e84d16eb7a7f20eb95a113493d81",
+    "scripts/residual-epochs-browser.mjs": "7e95c8fd4d97eb1b5f6b0d2865d93b631d5b68771679db92ba73e9792ecaef07",
+    "docs/RESIDUAL_EPOCHS.md": "564bdbcdd5f22b466f1a7600b5a79f7aecaf9cdfb7cc16c021e868555c33c19d",
+    "experiments/residual-epochs-pasco.mjs": "b33399ab04e38dba927ccbde3a4d929cb27f8e87bf6ddfbff548288b864054e3",
+    "docs/receipts/residual-epochs-7bb49db0/measured.json": "dedcef08cdf97405619e542b28662745491831db2bb2d7cb9d5f574d1d84f8b3"
+  },
+  "native": [
+    {
+      "file": "tests/physical-residual.test.mjs",
+      "exit": 0,
+      "stdout": "TAP version 13\n# Subtest: shared summary refactor retains exact incumbent sample-lag output\nok 1 - shared summary refactor retains exact incumbent sample-lag output\n  ---\n  duration_ms: 4.919752\n  type: 'test'\n  ...\n# Subtest: exact physical-delay cohorts equal corresponding sample-lag source pairs\nok 2 - exact physical-delay cohorts equal corresponding sample-lag source pairs\n  ---\n  duration_ms: 1.219189\n  type: 'test'\n  ...\n# Subtest: empty/single cohorts do not invent a correlation or elapsed range\nok 3 - empty/single cohorts do not invent a correlation or elapsed range\n  ---\n  duration_ms: 0.192902\n  type: 'test'\n  ...\n# Subtest: physical membership ignores receiving amplitudes, and all original values stay copied\nok 4 - physical membership ignores receiving amplitudes, and all original values stay copied\n  ---\n  duration_ms: 0.600856\n  type: 'test'\n  ...\n# Subtest: every overlapping physical cohort counts toward complete work refusal\nok 5 - every overlapping physical cohort counts toward complete work refusal\n  ---\n  duration_ms: 0.359731\n  type: 'test'\n  ...\n# Subtest: large admitted physical cohort does not exceed JavaScript argument capacity\nok 6 - large admitted physical cohort does not exceed JavaScript argument capacity\n  ---\n  duration_ms: 99.064644\n  type: 'test'\n  ...\n1..6\n# tests 6\n# suites 0\n# pass 6\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 112.725415\n",
+      "stderr": ""
+    },
+    {
+      "file": "tests/residual-epochs.test.mjs",
+      "exit": 0,
+      "stdout": "TAP version 13\n# Subtest: complete epochs preserve every original row and pair, including cross-boundary pairs\nok 1 - complete epochs preserve every original row and pair, including cross-boundary pairs\n  ---\n  duration_ms: 2.18558\n  type: 'test'\n  ...\n# Subtest: epoch magnitudes reconstruct full error without excluding each new boundary row\nok 2 - epoch magnitudes reconstruct full error without excluding each new boundary row\n  ---\n  duration_ms: 0.425089\n  type: 'test'\n  ...\n# Subtest: global receiver and its physical pair evidence remain exactly equal to incumbent\nok 3 - global receiver and its physical pair evidence remain exactly equal to incumbent\n  ---\n  duration_ms: 2.111074\n  type: 'test'\n  ...\n# Subtest: empty epochs, one-pair groups and zero total error remain explicit\nok 4 - empty epochs, one-pair groups and zero total error remain explicit\n  ---\n  duration_ms: 0.241468\n  type: 'test'\n  ...\n# Subtest: source coordinates and pair membership remain unchanged under amplitude edits\nok 5 - source coordinates and pair membership remain unchanged under amplitude edits\n  ---\n  duration_ms: 0.565192\n  type: 'test'\n  ...\n# Subtest: incomplete, unordered, excessive or invalid declarations refuse without partial attribution\nok 6 - incomplete, unordered, excessive or invalid declarations refuse without partial attribution\n  ---\n  duration_ms: 0.462765\n  type: 'test'\n  ...\n# Subtest: tiny errors preserve nonzero epoch magnitude and exact original clock attribution\nok 7 - tiny errors preserve nonzero epoch magnitude and exact original clock attribution\n  ---\n  duration_ms: 0.360831\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 13.270413\n",
+      "stderr": ""
+    },
+    {
+      "file": "tests/residual-structure.test.mjs",
+      "exit": 0,
+      "stdout": "TAP version 13\n# Subtest: same RMSE hides persistent versus alternating failures\nok 1 - same RMSE hides persistent versus alternating failures\n  ---\n  duration_ms: 1.882927\n  type: 'test'\n  ...\n# Subtest: zero error and constant bias have distinct magnitude but undefined centered cosine\nok 2 - zero error and constant bias have distinct magnitude but undefined centered cosine\n  ---\n  duration_ms: 1.721619\n  type: 'test'\n  ...\n# Subtest: uses original predictions, excludes imposed initial sample, retains pair custody\nok 3 - uses original predictions, excludes imposed initial sample, retains pair custody\n  ---\n  duration_ms: 0.61142\n  type: 'test'\n  ...\n# Subtest: retains irregular physical lags rather than inventing a sampling frequency\nok 4 - retains irregular physical lags rather than inventing a sampling frequency\n  ---\n  duration_ms: 0.161966\n  type: 'test'\n  ...\n# Subtest: complete population refuses malformed lags, rows and budgets\nok 5 - complete population refuses malformed lags, rows and budgets\n  ---\n  duration_ms: 0.74522\n  type: 'test'\n  ...\n# Subtest: scaled computation retains tiny nonzero errors without squared underflow\nok 6 - scaled computation retains tiny nonzero errors without squared underflow\n  ---\n  duration_ms: 0.113828\n  type: 'test'\n  ...\n# Subtest: lag cosine matches independent direct formula for all bounded declared pairs\nok 7 - lag cosine matches independent direct formula for all bounded declared pairs\n  ---\n  duration_ms: 0.310531\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 11.712951\n",
+      "stderr": ""
+    },
+    {
+      "file": "tests/physical-delay.test.mjs",
+      "exit": 0,
+      "stdout": "TAP version 13\n# Subtest: closed delay bands retain original source indices and exclude imposed initial\nok 1 - closed delay bands retain original source indices and exclude imposed initial\n  ---\n  duration_ms: 1.192137\n  type: 'test'\n  ...\n# Subtest: empty and single-pair bands are explicit, overlapping bands retain shared identities\nok 2 - empty and single-pair bands are explicit, overlapping bands retain shared identities\n  ---\n  duration_ms: 0.243259\n  type: 'test'\n  ...\n# Subtest: the complete budget includes all overlapping cohorts and refuses atomically\nok 3 - the complete budget includes all overlapping cohorts and refuses atomically\n  ---\n  duration_ms: 0.33451\n  type: 'test'\n  ...\n# Subtest: input validation and output custody preserve exact original timestamps\nok 4 - input validation and output custody preserve exact original timestamps\n  ---\n  duration_ms: 1.023146\n  type: 'test'\n  ...\n# Subtest: 500 irregular and large-epoch cohorts match independent exhaustive pair membership\nok 5 - 500 irregular and large-epoch cohorts match independent exhaustive pair membership\n  ---\n  duration_ms: 27.962\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 36.285638\n",
+      "stderr": ""
+    },
+    {
+      "file": "tests/epoch-panel-handlers.test.mjs",
+      "exit": 0,
+      "stdout": "TAP version 13\n# Subtest: actual composed handlers expose original epoch rows and retained crossing pairs\nok 1 - actual composed handlers expose original epoch rows and retained crossing pairs\n  ---\n  duration_ms: 4.142527\n  type: 'test'\n  ...\n# Subtest: boundary edits and parent-source/mode changes retire every epoch result\nok 2 - boundary edits and parent-source/mode changes retire every epoch result\n  ---\n  duration_ms: 1.963879\n  type: 'test'\n  ...\n1..2\n# tests 2\n# suites 0\n# pass 2\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 11.409024\n",
+      "stderr": ""
+    }
+  ],
+  "browser": {
+    "checks": [
+      "actual maintained solver rows enter keyboard-operated complete source-epoch attribution",
+      "selected source epoch retains exact existing frozen prediction rather than reinitializing it",
+      "cross-epoch pairs retain exact original indices, timestamps, observations, frozen predictions and errors with complete accounting",
+      "actual styled epoch timeline and exact original-source ledger at desktop and390px, with signed labels inside SVG",
+      "incomplete boundary declaration refuses, and parent-band edits retire prior attribution",
+      "pending source retirement and source-only notebook reopen require recomputation of unchanged original forecast attribution"
+    ],
+    "browser": "156.0.8078.47",
+    "scope": "Actual maintained authored solver source through complete epoch consumer; measured PASCO receiving is separately recorded native exploration, not relabelled browser input."
+  },
+  "sandbox": {
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "browser": "156.0.8078.47"
+  },
+  "independentReview": "SECOND GROUND independently reran 7 epoch,6 incumbent physical and2 handler groups, plus100 irregular-time row/pair partition and input-custody controls; no blocker.",
+  "harnessRepair": "Original parent ledger was collapsed; explicitly opening it preserved exact visible value comparisons. No product-source or assertion weakening.",
+  "screens": [
+    "desktop.png",
+    "narrow.png"
+  ]
+}

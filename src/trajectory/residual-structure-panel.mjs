@@ -1,3 +1,4 @@
+import {createResidualEpochPanel} from './residual-epochs-panel.mjs';
 import {residualStructure,physicalResidualStructure} from './residual-structure.mjs';
 const element = (tag, text) => { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; return e; };
 const fmt = x => Number.isFinite(x) ? Number(x.toPrecision(5)).toString() : 'undefined';
@@ -20,8 +21,9 @@ export function createResidualStructurePanel(anchor) {
   const ledger = element('div'); ledger.className = 'residual-scroll'; details.append(ledger);
   const note = element('p', 'The imposed initial condition is excluded. All admitted pairs are shown; overlapping pairs are not independent evidence. Irregular sampling is retained as elapsed-time ranges. Physical-delay bands select original timestamp differences without interpolation. Bounds use supplied binary64 seconds; clock errors are not enclosed. Overlapping bands reuse pairs; empty and single-pair bands remain visible. Centering removes constant bias only from the correlation, so inspect the mean error too. Changing lags after inspection is exploratory reuse.');
   host.append(style, title, intro, modeLabel, label, bandsLabel, button, status, choiceLabel, pageLabel, pageNote, plot, details, note);
+  const epochPanel=createResidualEpochPanel(host);
   let rows = null, result = null, pageIndex=0;
-  function clear(message) { result = null; plot.replaceChildren(); ledger.replaceChildren(); choice.replaceChildren();pairPage.replaceChildren();pageNote.textContent='';pageIndex=0;pageLabel.hidden=true; choiceLabel.hidden = details.hidden = true; status.textContent = message; }
+  function clear(message) { epochPanel.render(null,null);result = null; plot.replaceChildren(); ledger.replaceChildren(); choice.replaceChildren();pairPage.replaceChildren();pageNote.textContent='';pageIndex=0;pageLabel.hidden=true; choiceLabel.hidden = details.hidden = true; status.textContent = message; }
   function draw() {
     plot.replaceChildren(); ledger.replaceChildren(); if (!result) return;
     const report = result.reports[Number(choice.value)];
@@ -57,7 +59,7 @@ export function createResidualStructurePanel(anchor) {
       result = mode.value==='samples'?residualStructure(rows, {lags: input.value.split(',').map(s => s.trim() === '' ? NaN : Number(s))}):physicalResidualStructure(rows,{bands:bandsInput.value.split(',').map(part=>{const fields=part.split(':');if(fields.length!==2||fields.some(x=>!x.trim()))throw new Error('Use lower:upper for every closed seconds band.');return {lowerSeconds:Number(fields[0]),upperSeconds:Number(fields[1])};})});
       status.textContent = `${result.count} receiving samples; mean error ${fmt(result.meanError)} rad; RMSE ${fmt(result.rmse)} rad; centered RMS ${fmt(result.centeredRMS)} rad. ${result.pairCount} complete pairs. No model was fitted or selected.`;
       result.reports.forEach((r,i) => { const option=element('option',`${r.lag===undefined?fmt(r.lowerSeconds)+'–'+fmt(r.upperSeconds)+' s':'Lag '+r.lag} · ${r.count} pairs`);option.value=String(i);choice.append(option); });
-      choiceLabel.hidden=details.hidden=false;draw();
+      choiceLabel.hidden=details.hidden=false;draw();if(mode.value==='seconds')epochPanel.render(rows,result.reports.map(r=>({lowerSeconds:r.lowerSeconds,upperSeconds:r.upperSeconds})));
     } catch(error) { clear(error.message); }
   });
   return {render(nextRows) { rows = nextRows; clear('Choose sample lags to inspect the currently selected frozen prediction.');host.hidden=!Array.isArray(rows)||rows.length<4; }};
