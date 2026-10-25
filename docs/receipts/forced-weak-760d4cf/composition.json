@@ -1,0 +1,19 @@
+{
+  "tested_main": "c78c76c7bb627742a78cba02fce8abcc5c7640ef",
+  "composed_main": "4c958472449d2c2590fed24b9b0d85d20b20e3b5",
+  "incoming_scope": "Coupled point-response compatibility preserved without changing the trajectory dependency closure.",
+  "full_native": {
+    "total": 801,
+    "passed": 800,
+    "skipped": 1,
+    "failed": 0
+  },
+  "smoke": [
+    "npm run smoke",
+    "npm run smoke:trajectory"
+  ],
+  "browser_groups": 4,
+  "browser_errors": [],
+  "desktop_and_narrow_visually_inspected": true,
+  "final_branch_receiving": "Full release-candidate commands and browser course will be repeated on the exact published branch, with results in the PR discussion."
+}

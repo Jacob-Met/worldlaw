@@ -28,7 +28,7 @@ function assertUnknownScale(state) {
 
 test('consumer rejects a method or term budget incompatible with the physical-scale mode', () => {
   assert.throws(() => createChallenge(bundle(), {method: 'derivative'}), error => error instanceof TrajectoryDataError && error.code === 'invalid_options');
-  assert.throws(() => normalizeOptions({method: 'weak'}), error => error instanceof TrajectoryDataError && error.code === 'invalid_options');
+  assert.equal(normalizeOptions({method: 'weak'}).method, 'weak'); // Also admitted for known-inertia torque traces.
   for (const options of [{maxTerms: 7}, {windowDuration: 0}, {windowDuration: .2, windowStride: .5}]) {
     assert.throws(() => createChallenge(bundle(), {...weak, ...options}), error => error instanceof TrajectoryDataError && error.code === 'invalid_options');
   }

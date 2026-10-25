@@ -1,0 +1,61 @@
+{
+  "base_commit": "c78c76c7bb627742a78cba02fce8abcc5c7640ef",
+  "issue": 188,
+  "sha256": {
+    "src/trajectory/weak-operator.mjs": "bd1a9a9d554ddad5c69a475266ddb6e6db9a84f4c294f8ac3d62a1e2f4bef08b",
+    "src/trajectory/weak-discovery.mjs": "55fe3c5fbebcf5d4aec7ccbdcd3b26d44c66952998d67194a79ea4fd6a190e8a",
+    "src/trajectory/angular-weak.mjs": "ff9dee22f2b6e5e2489cb7f8195664073953dc67fb34ff98c600ba539192ac2d",
+    "src/trajectory/session.mjs": "4756034cd92ae56f18e0d9401498c5ec13cd3a108537155fe47f0a2a1df0390d",
+    "src/trajectory/app.mjs": "34d7c6ed5de1606c9108552f8fc3d778ae4658f08059481edf577b843dbfbe3f",
+    "tests/forced-weak-operator.test.mjs": "9f8826c8d1ec061ea27255a9a240fdf2cf469640eb00df361c2236ab5f04c9f4",
+    "tests/forced-weak-discovery.test.mjs": "83303d0308f206e7a38152d08b1b4843b6c5d59021ea0799425856df57191431",
+    "tests/trajectory-angular-session-review-92be.test.mjs": "b6f0e20341b78c702ba1443fd86af40d7be37e3f4aa05fd49c03354b1c9a5afe",
+    "scripts/forced-weak-browser.mjs": "4c1a5896fdf53a902bdaf8a380939f8c0165463f4c0cb1fd0784f28b19b453cf"
+  },
+  "local": {
+    "runtime": "Node.js v24.19.0",
+    "command": "node --test tests/forced-weak*.test.mjs tests/trajectory-angular-weak-92be.test.mjs tests/trajectory-angular-session-review-92be.test.mjs tests/trajectory-session-review-92be.test.mjs tests/trajectory-integral-92be.test.mjs",
+    "result": {
+      "file_groups": 6,
+      "pass": 6,
+      "fail": 0,
+      "skip": 0,
+      "duration_ms": 2747.234679
+    },
+    "new_individual_groups": 9,
+    "log": "/tmp/worldlaw-760d-focused-final.log"
+  },
+  "remote_reported_by": "root, retained team hamon-760d4cf-20261024",
+  "remote": {
+    "source": "complete pinned archive with reviewed owned-file overlay",
+    "npm_test": {
+      "total": 801,
+      "pass": 800,
+      "skip": 1,
+      "fail": 0,
+      "duration_seconds": 26.07
+    },
+    "smokes": [
+      "npm run smoke passed",
+      "npm run smoke:trajectory passed"
+    ],
+    "browser": {
+      "groups": 4,
+      "errors": 0,
+      "viewports": [
+        1440,
+        390
+      ],
+      "flow": [
+        "real input import",
+        "keyboard weak selection",
+        "independent forward challenge",
+        "UI download",
+        "fresh-document input reopen",
+        "invalid inertia atomic refusal"
+      ],
+      "screenshots": "root inspected; exact remote receipts supplied separately"
+    }
+  },
+  "qualification": "Authored numerical controls and browser receiving; no physical acquisition, identification or deployment claimed."
+}
