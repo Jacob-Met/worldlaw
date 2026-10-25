@@ -9,7 +9,7 @@ const insist = (ok, message) => {if (!ok) throw new AngularDataError(message, 'i
 const copy = value => JSON.parse(JSON.stringify(value));
 
 function options(raw = {}) {
-  insist(object(raw) && Object.keys(raw).every(k => ['offsets', 'fit', 'solver'].includes(k)), 'Unknown reference search settings.');
+  insist(object(raw) && Object.keys(raw).every(k => ['offsets', 'fit', 'solver', 'phaseComparison'].includes(k)), 'Unknown reference search settings.');
   const offsets = raw.offsets ?? Array.from({length: 21}, (_, i) => (i - 10) / 20);
   insist(Array.isArray(offsets) && offsets.length >= 1 && offsets.length <= 41 &&
     Array.from(offsets).every(v => typeof v === 'number' && Number.isFinite(v) && Math.abs(v) <= Math.PI) &&
@@ -20,7 +20,8 @@ function options(raw = {}) {
   insist(object(raw.solver ?? {}) && Object.keys(solver).every(k => ['maxStep', 'maxSteps'].includes(k)) &&
     Number.isFinite(solver.maxStep) && solver.maxStep > 0 && solver.maxStep <= .1 &&
     Number.isInteger(solver.maxSteps) && solver.maxSteps >= 1 && solver.maxSteps <= 100000, 'Solver requires maxStep in (0, .1] and 1–100000 combined steps per run.');
-  return {offsets: [...offsets].sort((a, b) => a - b), fit: copy(fit), solver};
+  insist(raw.phaseComparison === undefined || typeof raw.phaseComparison === 'boolean', 'phaseComparison must be boolean.');
+  return {offsets: [...offsets].sort((a, b) => a - b), fit: copy(fit), solver, ...(raw.phaseComparison ? {phaseComparison: true} : {})};
 }
 
 function shift(run, offset) {
@@ -150,14 +151,38 @@ export function investigateAngleReference(rawBundle, requested = {}) {
   const libraryBaseline = offered.includes('cubic') && previousTerms.length
     ? searchAngleReference(bundle.trainingRuns, {...search.settings, fit: {...search.settings.fit,
       terms: previousTerms, maxTerms: Math.min(search.selected.fitOptions.maxTerms, previousTerms.length)}}) : null;
+  // A separate original-coordinate hypothesis; the grid winner remains intact.
+  // Both sine and cosine count as ordinary fitted coefficients, with no extra
+  // coordinate parameter. Source angles and initial states are never shifted.
+  let phaseComparison = null;
+  if (search.settings.phaseComparison) {
+    try {
+    const terms = [...new Set([...offered, 'gravity', 'cosine'])];
+    const fitted = discoverAngularWeak(bundle.trainingRuns, {...search.selected.fitOptions, terms});
+    const model = fitted.selected;
+    const sine = model.terms.find(t => t.id === 'gravity')?.coefficient ?? 0;
+    const cosine = model.terms.find(t => t.id === 'cosine')?.coefficient ?? 0;
+    const amplitude = Math.hypot(sine, cosine);
+    const phaseStatus = fitted.diagnostics.identifiability !== 'finite_library_local_only' ? 'insufficient_excitation' :
+      fitted.diagnostics.adequacy === 'residual_mismatch' ? 'residual_mismatch' : amplitude === 0 ? 'no_periodic_component' : 'conditional_periodic_component';
+    phaseComparison = {offset: 0, model, phaseStatus, candidates: fitted.candidates, competitive: fitted.competitive,
+      fitOptions: fitted.options, fitDiagnostics: fitted.diagnostics,
+      periodicComponent: {amplitude, phase: phaseStatus === 'conditional_periodic_component' ? Math.atan2(cosine, -sine) : null,
+        equation: '-amplitude*sin(theta-phase)',
+        interpretation: 'Algebraic periodic component only; other restoring terms can change equilibria. Phase is modulo 2π and does not calibrate the sensor.'}};
+    } catch (error) {
+      if (!(error instanceof AngularDataError)) throw error;
+      phaseComparison = {error: {code: error.code, message: error.message}};
+    }
+  }
   const comparisons = bundle.challengeRuns.map(run => {
     const execute = candidate => {
       try {return predictAngleReference(candidate, run, search.settings.solver);}
       catch (error) {return {error: {code: error.code ?? 'prediction_failed', message: error.message}};}
     };
-    return {runId: run.id, baseline: execute(search.baseline), selected: execute(search.selected), ...(libraryBaseline ? {withoutCubic: execute(libraryBaseline.selected)} : {})};
+    return {runId: run.id, baseline: execute(search.baseline), selected: execute(search.selected), ...(phaseComparison ? {phase: phaseComparison.error ? {error: phaseComparison.error} : execute(phaseComparison)} : {}), ...(libraryBaseline ? {withoutCubic: execute(libraryBaseline.selected)} : {})};
   });
-  return {schema: REFERENCE_SCHEMA, bundle, search, consistency, comparisons, ...(libraryBaseline ? {libraryBaseline} : {})};
+  return {schema: REFERENCE_SCHEMA, bundle, search, consistency, comparisons, ...(phaseComparison ? {phaseComparison} : {}), ...(libraryBaseline ? {libraryBaseline} : {})};
 }
 
 /** Save only inputs. Reopening always recomputes every derived claim. */
@@ -173,3 +198,4 @@ export function reopenReferenceInvestigation(text) {
   insist(object(value) && value.schema === REFERENCE_SCHEMA && Object.keys(value).every(k => ['schema','bundle','settings'].includes(k)), 'Unsupported reference notebook.');
   return investigateAngleReference(value.bundle, value.settings);
 }
+
