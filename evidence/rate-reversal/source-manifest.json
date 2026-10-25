@@ -1,0 +1,32 @@
+{
+  "base": "8ea147b277c8baca2364832be360d6486837d77b",
+  "issue": 215,
+  "files": [
+    {
+      "path": "src/science/rate-reversal.mjs",
+      "base_blob": null,
+      "sha256": "39a4bc57a444553f29ddf2db1c7b20095f637d5fe12ca45ba671eedb23a7f951"
+    },
+    {
+      "path": "src/science/prediction-contrast-panel.mjs",
+      "base_blob": "111154024ecace52a79b3c4d4f59b72ad3e28c4c",
+      "sha256": "0aa6c103651c5df68ed7c04e801d9169f8bb679de61b0d08f3d0be85a5c00da0"
+    },
+    {
+      "path": "tests/rate-reversal.test.mjs",
+      "base_blob": null,
+      "sha256": "2a8e5a060acd95a65701000bb21adb87989a0fb5dc46d25fb8f57a27976e1053"
+    },
+    {
+      "path": "scripts/rate-reversal-browser.mjs",
+      "base_blob": null,
+      "sha256": "88a1c5ccf53d843799e36d3c80896bccb73d60e3b20f46214590461a9ea2c4df"
+    },
+    {
+      "path": "docs/RATE_REVERSAL.md",
+      "base_blob": null,
+      "sha256": "aa214f82e126ae26a6c27e9b25bc7722b3f5769bc4ba218b873e132837d306cd"
+    }
+  ],
+  "composition_base": "a5819cab6e84b8a47d48883665efbeaa1f2e73e8"
+}

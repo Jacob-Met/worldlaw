@@ -1,0 +1,5 @@
+Observed direct native command results on candidate based on8ea147:
+node tests/rate-reversal.test.mjs:10pass,0fail; independently repeated by mechanism worker10pass.
+node tests/prediction-contrast.test.mjs:12pass,0fail.
+node tests/prediction-sensitivity.test.mjs:11pass,0fail.
+This is a concise recorded summary of actual tool output, not raw TAP output or a claim of whole-repository testing.
