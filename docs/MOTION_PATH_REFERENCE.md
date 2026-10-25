@@ -57,7 +57,12 @@ chosen fixed image reference. Angular noise propagation conditions on that point
 as exact. It **does not include fitted-center uncertainty or its correlation with
 the same marker observations**. The product states this beside application and
 in angle diagnostics. Fixed camera, planar rigid motion, known inertia and
-applied torque remain separate caller assumptions where relevant.
+applied torque remain separate caller assumptions where relevant. A reference
+fit can use observations from across the course before the downstream derivative
+train/check split. Export metadata explicitly records this conditioning; that
+later split alone does not provide independently calibrated reference evidence.
+The existing bounded edit history retains at most 512 events; keep the saved
+notebook/exports when preserving an earlier derivation over extended editing.
 
 ## Reproduce the actual consumer
 

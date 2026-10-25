@@ -212,7 +212,10 @@ export function exportAngular(input,{segmentId,command}={}) {
   return {schema:'worldlaw.angular-telemetry/v1',units:{time:'s',position:'rad',...(command!==undefined?{command:'N·m'}:{})},
     source:{label:`Motion Lab — ${nb.source.label}`,kind:'derived_from_image_points',declaredKind:nb.source.kind,
       metadata:{originalSource:nb.source,calibration:nb.calibration,notebookSchema:nb.schema,selectedSegment:segment,
-        ...(nb.revisions.some(event=>event?.type==='path-reference')?{referenceHistory:nb.revisions.filter(event=>event && ['calibration','path-reference'].includes(event.type))}:{}),
+        ...(nb.revisions.some(event=>event?.type==='path-reference')?{
+          referenceHistory:nb.revisions.filter(event=>event && ['calibration','path-reference'].includes(event.type)),
+          referenceConditioning:{fitPrecedesDownstreamSplit:true,independence:'A reference fit used source marker observations before any downstream derivative train/check split. Inspect referenceHistory; that split alone does not establish independently calibrated reference evidence.'}
+        }:{}),
         excludedSegments:angles.segments.filter(s=>s.id!==segment.id),measurementIndices:segment.sourceIndices,
         measurements:segment.sourceIndices.map(i=>nb.measurements[i]),diagnostics:angles.diagnostics,
         command:command===undefined?{status:'not_observed',requirement:'Supply synchronized applied torque before deriving net torque.'}:{status:'caller_declared_constant',value:command,unit:'N·m'}}},

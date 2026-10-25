@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
-import {createNotebook, validateNotebook, deriveAngles, exportAngular, calibrateNotebook} from '../src/motion/measurement.mjs';
+import {createNotebook, validateNotebook, deriveAngles, exportAngular, exportStudio, calibrateNotebook} from '../src/motion/measurement.mjs';
 import {proposePathReference, applyPathReference, pathReferenceCourses} from '../src/motion/path-reference.mjs';
 
 function notebook(points, {times, width = 640, height = 480} = {}) {
@@ -36,6 +36,10 @@ test('a marker-only notebook offers the observed center and uses it in actual an
   assert.deepEqual(saved, calibrated);
   const exported = exportAngular(saved);
   assert.equal(exported.samples.length, 41);
+  assert.equal(exported.source.metadata.referenceConditioning.fitPrecedesDownstreamSplit, true);
+  const studio = exportStudio(saved, {inertia: 1, command: 0, confirmKnownDynamics: true});
+  assert.ok(studio.heldOut.length > 0);
+  assert.deepEqual(studio.source.metadata.referenceConditioning, exported.source.metadata.referenceConditioning);
   assert.equal(exported.source.metadata.referenceHistory.at(-1).type, 'path-reference');
   assert.deepEqual(exported.source.metadata.referenceHistory.at(-1).sourceObservations.map(x => x.sourceIndex),
     preview.course.sourceIndices);
