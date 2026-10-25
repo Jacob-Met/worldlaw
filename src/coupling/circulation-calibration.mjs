@@ -39,3 +39,5 @@ export function analyzeCalibration(raw){
 }
 export const exportCalibration=raw=>JSON.stringify(normalizeCalibration(raw),null,2);
 export function importCalibration(text){requireThat(typeof text==='string'&&new TextEncoder().encode(text).length<=4*1024*1024,'Calibration input must be at most4MiB.');return normalizeCalibration(JSON.parse(text));}
+
+export {multiply as multiplyExactWork,compare as compareExactWork};

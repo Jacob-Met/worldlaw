@@ -1,3 +1,4 @@
+import {appendMatrixCalibration} from './circulation-matrix-panel.mjs';
 import {appendCalibration} from './circulation-calibration-panel.mjs';
 import {appendCirculationBoxes} from './circulation-angle-boxes-panel.mjs';
 import {appendResponseRegionInspection} from './response-region-panel.mjs';
@@ -35,6 +36,7 @@ export function mountCirculation(host,{getNotebook}){
   const ledger=node('pre');ledger.style.whiteSpace='pre-wrap';ledger.style.overflowWrap='anywhere';ledger.textContent=rows.map((s,i)=>`${i+1}: θ=[${s.q.map(fmt)}]; τ=[${s.torque.map(fmt)}]; error radii=[${s.torqueRadius.map(fmt)}]; work weights=[${r.axes.map(a=>fmt(a.weights[i]))}]`).join('\n');details.append(ledger);out.append(details);appendObservableInspection(out,result);appendResponseRegionInspection(out,result);
   appendCirculationBoxes(out,result);
   appendCalibration(out,result);
+  appendMatrixCalibration(out,result);
   $('save').disabled=false;
  }
  $('load').addEventListener('click',load);$('input').addEventListener('input',invalidate);
