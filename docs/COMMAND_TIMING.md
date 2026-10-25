@@ -2,8 +2,13 @@
 
 WORLDLAW can compare a finite declared family of nonnegative command delays in
 known-inertia recordings. Open the existing `/trajectory.html`, load paired
-source runs, and use **Does the command arrive late?** The normal instantaneous
+source runs, and use **How does the command reach the mechanism?** The normal instantaneous
 fit remains visible above the timing instrument.
+
+Set the offered response times to `0` for the delay-only course described here.
+The same instrument now also compares an explicitly declared gradual first-order
+response; see [Command response](COMMAND_RESPONSE.md). Existing delay-only input
+notebooks retain their original schema and are recomputed without a gradual response.
 
 ## Scientific question and preserved evidence
 

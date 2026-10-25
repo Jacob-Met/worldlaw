@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "checks": [
+    "original trajectory path and explicit prehistory requirement",
+    "controlled source, keyboard inference and separate-recording gain",
+    "whole-family and paired-waveform visual compositions",
+    "actual download contains only source and settings",
+    "edited declarations retire predictions and impossible budget refuses whole family",
+    "source-only reopen ignores fabricated saved answers and restores explicit settings",
+    "late file completion cannot revive a retired comparison",
+    "an edit during source installation cannot restore the old timing answers",
+    "narrow receiving, visible labels and keyboard focus",
+    "unknown-inertia source retires timing claims without disabling its existing journey",
+    "browser reload and raw reopening reconstruct the original study",
+    "no page exceptions or external source requests",
+    "gradual source selects the offered delay and response pair through the actual consumer",
+    "paired response waveform and complete two-dimensional family are inspectable",
+    "actual gradual-response download carries an explicit input schema",
+    "short response times reserve their full resolved work and refuse before a partial study",
+    "gradual replay ignores invented answers and refuses a silent schema downgrade",
+    "legacy pure-delay reopening retains its zero-response interpretation",
+    "a late gradual-response file cannot overwrite a newer response declaration",
+    "gradual family reloads and remains usable at 390 pixels with keyboard input",
+    "no page exceptions or external requests across the gradual-response course"
+  ],
+  "sourceRoot": "/tmp/hamon-62c186-worldlaw-response",
+  "sourceHashes": {
+    "src/trajectory/command-timeline.mjs": "b975f7f35a5834c0c9d9ae29ea2272085ae05a8c812d77487ce6df83d0d77e61",
+    "src/trajectory/command-timing-study.mjs": "76b7d68b3a7c1cb7515c9afbf6ef12a1a51e6373a6f8fd629ef95bd1a8c361a7",
+    "src/trajectory/command-timing-example.mjs": "f4b37100e6bebd0864c06117edf287f3a81a2dbe3f56e99ee911ed8b5fc31884",
+    "src/trajectory/command-response-example.mjs": "949b4a1926f29e6fbed3f6cf00bdceca21cb6d1172b5f836232cce4e03d1be52",
+    "src/trajectory/command-timing-panel.mjs": "fad169fccdb4fe578590a6e5dde79b1cd04b102b617f89db88564858c30a33a4",
+    "src/trajectory/forward.mjs": "992b43d726d7b35d71ad01f1d7234a3224bff0b935bee67efc3949365670322e",
+    "src/trajectory/integral-discovery.mjs": "5b3fa0f87ba2dce27ea1cae2ac6ef9ae3e9a9357df506432f086c9fdfb760db3",
+    "src/trajectory/resolution.mjs": "72f0c640524fc5018765912be590ef6c52c2b80a9a31f95d5b7cc841d8bdbe64",
+    "src/trajectory/app.mjs": "a6044a0428f8cf6fa89d2c0f1f8f37edc91843ddc517c88aed3a83222b2b3f0e",
+    "trajectory.html": "a804dec7725acc5a2113e86848f72f8044867fa2ea1c40dce7eaa545d5b9abf5",
+    "scripts/command-timing-browser.mjs": "cafd0240a084be10e1f613f11880b921d467e5435fc8fcd62ba35225dc373ead"
+  },
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/156.0.8078.47",
+    "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "jsVersion": "15.6.75.19"
+  },
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-25T02:41:09.164Z",
+    "completedAt": "2026-10-25T02:41:09.257Z",
+    "durationMs": 93.09969899999999,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "55E5F14254C65DFB49BC9A32451F8AFA",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "1086B70BDEB8DF0738EBE6803ADD909A"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "exceptions": [],
+  "sourceKind": "authored analytic recordings; no physical acquisition"
+}

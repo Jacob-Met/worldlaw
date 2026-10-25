@@ -1,6 +1,6 @@
 /** Free-running held-out trajectory evaluation. Dependency-free browser ESM. */
 import { predict, TERMS } from '../science/torque-discovery.mjs';
-import { normalizeCommandTiming, prepareCommandTimeline } from './command-timeline.mjs';
+import { normalizeCommandTiming, prepareCommandTimeline, commandAtSegment } from './command-timeline.mjs';
 
 const STATE_BOUND = 1e6;
 const SAMPLE_LIMIT = 10000;
@@ -106,19 +106,22 @@ export function rollout(model, run, options = {}) {
   const evidence = copyRun(run);
   const { maxStep, maxSteps } = checkedOptions(options);
   const commandTiming = options.commandTiming === undefined ? null : normalizeCommandTiming(options.commandTiming);
-  const timeline = commandTiming?.delaySeconds > 0 ? prepareCommandTimeline(evidence.samples, commandTiming) : null;
+  const timeline = commandTiming && (commandTiming.delaySeconds > 0 || commandTiming.responseTimeSeconds > 0) ? prepareCommandTimeline(evidence.samples, commandTiming) : null;
+  requireThat(!(commandTiming?.responseTimeSeconds>0)||maxStep<=commandTiming.responseTimeSeconds/4,
+    'A gradual response requires maxStep at most one quarter of its response time; the study reserves this resolution before execution.', 'response_resolution');
 
   // Preflight the entire run: reject resource excess before producing any rows.
   // Equal subdivisions of local intervals avoid accumulating large epoch times.
   let requiredSteps = 0;
   const intervals = evidence.samples.slice(1).map((sample, index) => {
     const segments = timeline?.intervals[index] ?? [{duration: sample.time - evidence.samples[index].time, command: evidence.samples[index].command}];
-    return segments.map(({duration, command}) => {
+    return segments.map(segment => {
+      const {duration}=segment;
       const steps = Math.max(1, Math.ceil(duration / maxStep));
       requireThat(Number.isSafeInteger(steps) && steps >= 1 && steps <= maxSteps - requiredSteps,
         `Trajectory requires more than the allowed ${maxSteps} integration steps.`, 'step_limit');
       requiredSteps += steps;
-      return { steps, step: duration / steps, command };
+      return { ...segment, steps, step: duration / steps };
     });
   });
 
@@ -141,12 +144,17 @@ export function rollout(model, run, options = {}) {
   const initial = evidence.samples[0];
   const rows = [{ time: initial.time, observed: initial.position, predicted: position, rate, residual: 0, command: initial.command }];
   for (let i = 0; i < intervals.length; i++) {
-    for (const { steps, step: h, command } of intervals[i]) {
-    for (let j = 0; j < steps; j++) {
-      const a = derivative(position, rate, command);
-      const b = derivative(position + (h * a.position) / 2, rate + (h * a.rate) / 2, command);
-      const c = derivative(position + (h * b.position) / 2, rate + (h * b.rate) / 2, command);
-      const d = derivative(position + h * c.position, rate + h * c.rate, command);
+    for (const segment of intervals[i]) {
+      const {steps,step:h,command}=segment;
+      for (let j = 0; j < steps; j++) {
+      const gradual=segment.responseTimeSeconds>0;
+      const ua=gradual?commandAtSegment(segment,j*h):command;
+      const um=gradual?commandAtSegment(segment,(j+.5)*h):command;
+      const ud=gradual?commandAtSegment(segment,(j+1)*h):command;
+      const a = derivative(position, rate, ua);
+      const b = derivative(position + (h * a.position) / 2, rate + (h * a.rate) / 2, um);
+      const c = derivative(position + (h * b.position) / 2, rate + (h * b.rate) / 2, um);
+      const d = derivative(position + h * c.position, rate + h * c.rate, ud);
       // Scale each derivative before summing; do not divide h before multiplication,
       // which would lose representable increments for subnormal sample intervals.
       position += (h * a.position) / 6 + (h * b.position) / 3 + (h * c.position) / 3 + (h * d.position) / 6;
@@ -173,7 +181,8 @@ export function rollout(model, run, options = {}) {
       steps: requiredSteps, method: 'classical_RK4', maxStep, maxSteps,
       commandConvention: 'samples[i].command held on [samples[i].time, samples[i+1].time)',
       ...(commandTiming ? {commandTiming, appliedCommandAtSamples: timeline?.commandsAtSamples ?? evidence.samples.map(row => row.command),
-        delayedCommandEvents: timeline?.events ?? [], commandConvention: 'delayed left-sample held command; exact delayed changes partition the RK4 steps'} : {}),
+        delayedCommandEvents: timeline?.events ?? [], commandConvention: timeline?.convention??'delayed left-sample held command; exact delayed changes partition the RK4 steps',
+        terminalCommandConvention:'left_limit_at_final_observation',...(commandTiming.responseTimeSeconds>0?{commandStageEvaluation:'exact_exponential_at_every_RK4_stage',maximumResponseStep:commandTiming.responseTimeSeconds/4}:{})} : {}),
       initialRateSource: 'run.initialRate', observationsResetState: false, initialSampleExcludedFromMetrics: true,
       stateMagnitudeLimit: STATE_BOUND, positionUnit: 'rad', rateUnit: 'rad/s',
       numericalErrorEstimate: null, physicalValidity: 'not_established_by_finite_rollout',

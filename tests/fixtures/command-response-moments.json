@@ -1,0 +1,302 @@
+{
+  "construction": "Python Decimal precision90 evaluation of exponential-input analytic antiderivatives, independent of JS kernels",
+  "cases": [
+    {
+      "start": 0.0,
+      "target": 1.0,
+      "duration": 1e-12,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 9.999999999995e-13,
+        "first": 4.999999999998334e-25,
+        "second": 1.66666666666625e-37
+      }
+    },
+    {
+      "start": 0.0,
+      "target": 1.0,
+      "duration": 1e-08,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 9.99999995e-09,
+        "first": 4.999999983333333e-17,
+        "second": 1.6666666625e-25
+      }
+    },
+    {
+      "start": 0.0,
+      "target": 1.0,
+      "duration": 0.0001,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 9.99950001666625e-05,
+        "first": 4.999833337499917e-09,
+        "second": 1.6666250008333196e-13
+      }
+    },
+    {
+      "start": 0.0,
+      "target": 1.0,
+      "duration": 0.017,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.016856315365090364,
+        "first": 0.00014368463490963484,
+        "second": 8.153650903651757e-07
+      }
+    },
+    {
+      "start": 0.0,
+      "target": 1.0,
+      "duration": 0.0499,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.04867544780053026,
+        "first": 0.0012245521994697453,
+        "second": 2.0452800530254804e-05
+      }
+    },
+    {
+      "start": 0.0,
+      "target": 1.0,
+      "duration": 0.0501,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.048865693685747474,
+        "first": 0.0012343063142525258,
+        "second": 2.069868574747408e-05
+      }
+    },
+    {
+      "start": 0.0,
+      "target": 1.0,
+      "duration": 0.7,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.5034146962085905,
+        "first": 0.1965853037914095,
+        "second": 0.048414696208590485
+      }
+    },
+    {
+      "start": 0.0,
+      "target": 1.0,
+      "duration": 3.0,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.950212931632136,
+        "first": 2.049787068367864,
+        "second": 2.450212931632136
+      }
+    },
+    {
+      "start": 0.0,
+      "target": 1.0,
+      "duration": 30.0,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.9999999999999064,
+        "first": 29.000000000000092,
+        "second": 420.9999999999999
+      }
+    },
+    {
+      "start": 1.0,
+      "target": 0.0,
+      "duration": 1e-12,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.999999999999,
+        "first": 9.999999999995e-13,
+        "second": 4.999999999998334e-25
+      }
+    },
+    {
+      "start": 1.0,
+      "target": 0.0,
+      "duration": 1e-08,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.9999999900000001,
+        "first": 9.99999995e-09,
+        "second": 4.999999983333333e-17
+      }
+    },
+    {
+      "start": 1.0,
+      "target": 0.0,
+      "duration": 0.0001,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.9999000049998333,
+        "first": 9.99950001666625e-05,
+        "second": 4.999833337499917e-09
+      }
+    },
+    {
+      "start": 1.0,
+      "target": 0.0,
+      "duration": 0.017,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.9831436846349096,
+        "first": 0.016856315365090364,
+        "second": 0.00014368463490963484
+      }
+    },
+    {
+      "start": 1.0,
+      "target": 0.0,
+      "duration": 0.0499,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.9513245521994698,
+        "first": 0.04867544780053026,
+        "second": 0.0012245521994697453
+      }
+    },
+    {
+      "start": 1.0,
+      "target": 0.0,
+      "duration": 0.0501,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.9511343063142526,
+        "first": 0.048865693685747474,
+        "second": 0.0012343063142525258
+      }
+    },
+    {
+      "start": 1.0,
+      "target": 0.0,
+      "duration": 0.7,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.4965853037914095,
+        "first": 0.5034146962085905,
+        "second": 0.1965853037914095
+      }
+    },
+    {
+      "start": 1.0,
+      "target": 0.0,
+      "duration": 3.0,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 0.049787068367863944,
+        "first": 0.950212931632136,
+        "second": 2.049787068367864
+      }
+    },
+    {
+      "start": 1.0,
+      "target": 0.0,
+      "duration": 30.0,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 9.357622968840175e-14,
+        "first": 0.9999999999999064,
+        "second": 29.000000000000092
+      }
+    },
+    {
+      "start": 2.0,
+      "target": -3.0,
+      "duration": 1e-12,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 1.999999999995,
+        "first": 1.9999999999975e-12,
+        "second": 9.999999999991666e-25
+      }
+    },
+    {
+      "start": 2.0,
+      "target": -3.0,
+      "duration": 1e-08,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 1.9999999500000003,
+        "first": 1.999999975e-08,
+        "second": 9.999999916666666e-17
+      }
+    },
+    {
+      "start": 2.0,
+      "target": -3.0,
+      "duration": 0.0001,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 1.9995000249991668,
+        "first": 0.0001999750008333125,
+        "second": 9.999166687499583e-09
+      }
+    },
+    {
+      "start": 2.0,
+      "target": -3.0,
+      "duration": 0.017,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 1.915718423174548,
+        "first": 0.033281576825451825,
+        "second": 0.0002849231745481741
+      }
+    },
+    {
+      "start": 2.0,
+      "target": -3.0,
+      "duration": 0.0499,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 1.7566227609973488,
+        "first": 0.09367723900265128,
+        "second": 0.002387745997348726
+      }
+    },
+    {
+      "start": 2.0,
+      "target": -3.0,
+      "duration": 0.0501,
+      "responseTime": 1.0,
+      "expected": {
+        "end": 1.7556715315712625,
+        "first": 0.09402846842873737,
+        "second": 0.0024065165712626297
+      }
+    },
+    {
+      "start": 2.0,
+      "target": -3.0,
+      "duration": 0.7,
+      "responseTime": 1.0,
+      "expected": {
+        "end": -0.5170734810429525,
+        "first": 0.41707348104295244,
+        "second": 0.24792651895704756
+      }
+    },
+    {
+      "start": 2.0,
+      "target": -3.0,
+      "duration": 3.0,
+      "responseTime": 1.0,
+      "expected": {
+        "end": -2.75106465816068,
+        "first": -4.24893534183932,
+        "second": -3.25106465816068
+      }
+    },
+    {
+      "start": 2.0,
+      "target": -3.0,
+      "duration": 30.0,
+      "responseTime": 1.0,
+      "expected": {
+        "end": -2.999999999999532,
+        "first": -85.00000000000047,
+        "second": -1204.9999999999995
+      }
+    }
+  ]
+}

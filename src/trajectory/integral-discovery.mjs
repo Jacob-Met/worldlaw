@@ -3,7 +3,7 @@
  * never a calibrated likelihood and never independent forward validation.
  */
 import {TERMS, DEFAULT_TERMS, UNITS, DiscoveryError} from '../science/torque-discovery.mjs';
-import {normalizeCommandTiming, prepareCommandTimeline} from './command-timeline.mjs';
+import {normalizeCommandTiming, prepareCommandTimeline, commandAtSegment} from './command-timeline.mjs';
 
 const IDS = TERMS.map(term => term.id);
 const RANK_TOLERANCE = 1e-8;
@@ -130,7 +130,7 @@ function whiten(values) {
 }
 
 function integralRows(run, options) {
-  const delayedCommand = options.commandTiming?.delaySeconds > 0 ? prepareCommandTimeline(run.samples, options.commandTiming) : null;
+  const delayedCommand = options.commandTiming && (options.commandTiming.delaySeconds > 0 || options.commandTiming.responseTimeSeconds > 0) ? prepareCommandTimeline(run.samples, options.commandTiming) : null;
   const needsRates = options.terms.some(id => id === 'coulomb' || id === 'quadratic');
   const derivative = needsRates ? localRates(run, options.rateWindowSize) : null;
   const rows = run.samples, first = rows[0], integrals = Object.fromEntries(options.terms.map(id => [id, {first: 0, second: 0}]));
@@ -190,7 +190,10 @@ export function discoverIntegral(trainingRuns, requestedOptions = {}) {
   insist(target.length >= 8, 'At least eight integrated equations are required; decrease rowStride or supply longer training runs.');
   const observations = runs.flatMap(run => run.samples);
   const bounds = values => ({min: Math.min(...values), max: Math.max(...values)});
-  const domain = {position: bounds(observations.map(row => row.position)), command: bounds(observations.map(row => row.command)),
+  const dynamicCommand=options.commandTiming&&(options.commandTiming.delaySeconds>0||options.commandTiming.responseTimeSeconds>0);
+  const appliedCommands=dynamicCommand?runs.flatMap(run=>prepareCommandTimeline(run.samples,options.commandTiming).intervals.flatMap(segments=>segments.flatMap(segment=>[commandAtSegment(segment,0),commandAtSegment(segment,segment.duration)]))):null;
+  const domain = {position: bounds(observations.map(row => row.position)), command: appliedCommands?{...bounds(appliedCommands),source:'declared_timing_applied_command'}:bounds(observations.map(row => row.command)),
+    ...(appliedCommands?{recordedCommand:bounds(observations.map(row=>row.command))}:{}),
     rate: {...bounds(blocks.flatMap((block, i) => block.rawRates ?? [runs[i].initialRate])),
       source: blocks.some(block => block.rawRates) ? 'declared_initial_and_estimated_rates' : 'declared_initial_rates_only'}};
   const candidates = []; let examinedCandidates = 0, rankDeficientCandidates = 0, unexecutableCandidates = 0;
@@ -235,7 +238,7 @@ export function discoverIntegral(trainingRuns, requestedOptions = {}) {
       conditionEstimateMeaning: 'ratio_of_scaled_QR_diagonal_extremes_not_exact_condition_number',
       covarianceTreatment: 'inverse_sqrt_of_I_plus_ones_for_shared_initial_position_error_only',
       commandConvention: 'left_sample_zero_order_hold', quadrature: 'exact_for_piecewise_linear_features_and_zero_order_held_command',
-      ...(options.commandTiming ? {commandTiming: {...options.commandTiming}, commandConvention: 'delayed_left_sample_zero_order_hold_with_declared_constant_prehistory'} : {}),
+      ...(options.commandTiming ? {commandTiming: {...options.commandTiming}, commandConvention: options.commandTiming.responseTimeSeconds>0?'exact_first_order_response_to_delayed_held_command_with_declared_initial_equilibrium':'delayed_left_sample_zero_order_hold_with_declared_constant_prehistory'} : {}),
       initialRateAssumption: 'caller_supplied_exact_initial_angular_rate', runs: blocks.map(block => block.diagnostics),
       warnings: [...(blocks.some(block => block.diagnostics.possibleWraps) ? ['possible_angle_wrap_no_unwrapping_applied'] : []),
         ...(blocks.some(block => block.diagnostics.gapRatio > 10) ? ['highly_irregular_sampling'] : []),
