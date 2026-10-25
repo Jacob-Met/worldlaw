@@ -114,3 +114,24 @@ export function evaluateRecoveryPairs(raw, selections){
  if(unavailableChallenges.length)for(const t of result.tests)if(t.status==='compatible'||t.status==='untested')t.status='incomplete';
  return {...result,unavailableChallenges};
 }
+
+// Explicit externally derived conservative readout bounds. Original evidence
+// remains admitted in full; original sampling errors still weight the displayed
+// representative, while the larger bounds constrain its admissible interval.
+export function evaluateRecoveryReadoutBounds(raw, bounds){
+ const n=validateRecovery(raw),all=[...n.training,...n.challenges];
+ require(bounds&&typeof bounds==='object'&&!Array.isArray(bounds),'Provide original-recording readout bounds.');
+ require(Object.keys(bounds).length===all.length&&all.every(r=>Object.hasOwn(bounds,r.recordingId)),'Provide a bound or explicit unavailable result for every original recording.');
+ const rows=all.map((run,i)=>{
+  const bound=bounds[run.recordingId];
+  if(i>=n.training.length&&bound===null)return null;
+  const original=summary(run);
+  require(typeof bound==='number'&&Number.isFinite(bound)&&bound>=original.boundary&&bound<=1e15,'A conservative readout bound must include the original screen and be finite, at most 1e15 N·m.');
+  return {...original,originalBoundary:original.boundary,boundary:bound};
+ });
+ const fit=fitReadouts(n,rows.slice(0,n.training.length));
+ const unavailableChallenges=n.challenges.filter((_,i)=>rows[n.training.length+i]===null).map(r=>r.recordingId);
+ const result=evaluateReadouts(fit,rows.slice(n.training.length).filter(Boolean));
+ if(unavailableChallenges.length)for(const t of result.tests)if(t.status==='compatible'||t.status==='untested')t.status='incomplete';
+ return {...result,unavailableChallenges};
+}
