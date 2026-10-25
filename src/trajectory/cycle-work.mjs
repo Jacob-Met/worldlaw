@@ -8,6 +8,7 @@ const finite=Number.isFinite,copy=value=>JSON.parse(JSON.stringify(value));
 const FAMILIES=[['viscous',[0]],['coulomb',[1]],['joint',[0,1]]];
 export const CYCLE_WORK_SCHEMA='worldlaw.cycle-work-inputs/v1';
 export const QUADRATIC_CYCLE_WORK_SCHEMA='worldlaw.cycle-work-inputs/v2';
+export const MIXED_CYCLE_WORK_SCHEMA='worldlaw.cycle-work-inputs/v3';
 const LIMITS=[
  'Normalized potential and kinetic terms are not calibrated joules; physical inertia remains unknown.',
  'Recorded maxima and local polynomial rates are approximate. Sensor noise, endpoint selection, smoothing and quadrature can bias work estimates.',
@@ -22,7 +23,9 @@ function declaration(options={}){
  insist(finite(crossingAngle)&&Math.abs(crossingAngle)<=1e6,'Declare a finite crossing angle in radians.');
  insist(options.turningPointRule===undefined||options.turningPointRule==='middle_sample_of_contiguous_maximum_plateau_earlier_sample_for_even_width','Unsupported turning-point declaration.');
  insist(options.includeQuadratic===undefined||typeof options.includeQuadratic==='boolean','Quadratic loss admission must be boolean.');
- return {...(options.includeQuadratic?{includeQuadratic:true}:{}),windowSize,crossingAngle,turningPointRule:'middle_sample_of_contiguous_maximum_plateau_earlier_sample_for_even_width'};
+ insist(options.includeMixedQuadratic===undefined||typeof options.includeMixedQuadratic==='boolean','Mixed loss admission must be boolean.');
+ insist(!options.includeMixedQuadratic||options.includeQuadratic===true,'Mixed loss requires explicit quadratic admission.');
+ return {...(options.includeMixedQuadratic?{includeMixedQuadratic:true}:{}),...(options.includeQuadratic?{includeQuadratic:true}:{}),windowSize,crossingAngle,turningPointRule:'middle_sample_of_contiguous_maximum_plateau_earlier_sample_for_even_width'};
 }
 function restoringLaw(model,run){
  insist(model&&Array.isArray(model.terms)&&model.terms.length>0&&model.terms.every(t=>['gravity','spring','bias','cubic'].includes(t.id)),'Supply a frozen restoring-only law (gravity, spring, bias or cubic); existing drag is not silently removed.');
@@ -66,12 +69,12 @@ function extract(run,potential,decl){
   coverage:{firstCycleIndex:peaks[0]?.index??null,lastCycleIndex:peaks.at(-1)?.index??null,excludedPrefixSamples:peaks.length?peaks[0].index:s.length,excludedSuffixSamples:peaks.length?s.length-1-peaks.at(-1).index:0},
   limitation:'Only maxima between complete upward-crossing intervals are considered. Prefix/suffix and all refused complete-cycle pairs remain disclosed.'};
 }
-function fitFamilies(rows,model,includeQuadratic=false){
+function fitFamilies(rows,model,includeQuadratic=false,includeMixedQuadratic=false){
  const admitted=rows.filter(r=>r.status==='admitted'),target=admitted.map(r=>r.loss),columns=[admitted.map(r=>r.viscous),admitted.map(r=>r.distance),...(includeQuadratic?[admitted.map(r=>r.quadraticWork??0)]:[])];
- return [...FAMILIES,...(includeQuadratic?[['quadratic',[2]]]:[])].map(([id,indices])=>{
+ return [...FAMILIES,...(includeQuadratic?[['quadratic',[2]]]:[]),...(includeMixedQuadratic?[['viscous-quadratic',[0,2]]]:[])].map(([id,indices])=>{
   const result={id,status:'refused',cycleCount:admitted.length};
   if(admitted.length<3)return {...result,reason:'At least three admitted complete cycles are required.'};
-  if(id==='quadratic'&&admitted.some(r=>r.quadraticWork===null))return {...result,reason:'Quadratic work unavailable on one or more original admitted cycles; the complete family is refused without dropping cycles.'};
+  if(indices.includes(2)&&admitted.some(r=>r.quadraticWork===null))return {...result,reason:'Quadratic work unavailable on one or more original admitted cycles; the complete family is refused without dropping cycles.'};
   const unconstrained=fitLinearColumns(indices.map(i=>columns[i]),target);
   if(!unconstrained)return {...result,reason:'Work feature columns are rank deficient.'};
   result.unconstrainedCoefficients=unconstrained.coefficients;result.normalizedQRPivotRatio=unconstrained.conditionEstimate;
@@ -95,7 +98,7 @@ function fitFamilies(rows,model,includeQuadratic=false){
 }
 export function fitCycleWork(model,trainingRuns,options={}){
  const training=normalizeAngularRuns(trainingRuns),decl=declaration(options),potential=restoringLaw(model,training[0]);
- const records=training.map(run=>extract(run,potential,decl)),rows=records.flatMap(r=>r.cycles),candidates=fitFamilies(rows,model,decl.includeQuadratic===true);
+ const records=training.map(run=>extract(run,potential,decl)),rows=records.flatMap(r=>r.cycles),candidates=fitFamilies(rows,model,decl.includeQuadratic===true,decl.includeMixedQuadratic===true);
  return {schema:'worldlaw.cycle-work-fit/v1',declaration:decl,restoringModel:copy(model),trainingRuns:training,records,candidates,cycleCount:rows.length,admittedCycleCount:rows.filter(r=>r.status==='admitted').length,limitations:[...LIMITS],coefficientMeaning:{rate:'1/s, nonnegative dissipative magnitude',coulomb:'rad/s², nonnegative dissipative magnitude',...(decl.includeQuadratic?{quadratic:'1/rad, nonnegative dissipative magnitude'}:{})},lossUnits:'rad²/s² normalized by unknown inertia; not joules',selected:null};
 }
 export function cycleWorkInvestigation(bundle,model,options={}){
@@ -112,6 +115,6 @@ export function cycleWorkInvestigation(bundle,model,options={}){
   else try{const execution=rolloutAngularWithResolution(c.model,run,{maxStep,maxSteps});Object.assign(row,{status:execution.resolution.status==='compared'?'compared':'unresolved',...execution});}catch(error){row.reason=error.message;}
   receiving.push(row);
  }
- return {schema:'worldlaw.cycle-work-investigation/v1',fit,receiving,solver:{maxStep,maxSteps,requiredSteps:required},inputs:{schema:fit.declaration.includeQuadratic?QUADRATIC_CYCLE_WORK_SCHEMA:CYCLE_WORK_SCHEMA,bundle:normalized,restoringModel:copy(model),options:{...fit.declaration,maxStep,maxSteps}},selected:null};
+ return {schema:'worldlaw.cycle-work-investigation/v1',fit,receiving,solver:{maxStep,maxSteps,requiredSteps:required},inputs:{schema:fit.declaration.includeMixedQuadratic?MIXED_CYCLE_WORK_SCHEMA:fit.declaration.includeQuadratic?QUADRATIC_CYCLE_WORK_SCHEMA:CYCLE_WORK_SCHEMA,bundle:normalized,restoringModel:copy(model),options:{...fit.declaration,maxStep,maxSteps}},selected:null};
 }
-export function replayCycleWork(inputs){insist([CYCLE_WORK_SCHEMA,QUADRATIC_CYCLE_WORK_SCHEMA].includes(inputs?.schema),'Expected cycle-work input notebook.');insist(inputs.schema===QUADRATIC_CYCLE_WORK_SCHEMA?inputs.options?.includeQuadratic===true:inputs.options?.includeQuadratic!==true,'Quadratic admission requires its explicit v2 notebook.');return cycleWorkInvestigation(inputs.bundle,inputs.restoringModel,inputs.options);}
+export function replayCycleWork(inputs){insist([CYCLE_WORK_SCHEMA,QUADRATIC_CYCLE_WORK_SCHEMA,MIXED_CYCLE_WORK_SCHEMA].includes(inputs?.schema),'Expected cycle-work input notebook.');insist(inputs.schema===CYCLE_WORK_SCHEMA?inputs.options?.includeQuadratic!==true:inputs.options?.includeQuadratic===true,'Quadratic admission requires its explicit v2 or v3 notebook.');insist(inputs.schema===MIXED_CYCLE_WORK_SCHEMA?inputs.options?.includeMixedQuadratic===true:inputs.options?.includeMixedQuadratic!==true,'Mixed admission requires its explicit v3 notebook.');return cycleWorkInvestigation(inputs.bundle,inputs.restoringModel,inputs.options);}
