@@ -24,7 +24,7 @@ test('all source rows are admitted and invalid clocks/inertia/settings refuse',(
   const source=run();edit(source);assert.throws(()=>discoverWeak([source],options));
  }
  assert.throws(()=>discoverWeak([run()],{...options,windowDuration:.01}));
- assert.throws(()=>discoverWeak([run()],{...options,terms:['command_position']}));
+ assert.throws(()=>discoverWeak([run()],{...options,terms:['unknown_interaction']}));
  assert.throws(()=>discoverWeak([run(),run()],options));
 });
 test('left-held forcing agrees across discontinuities and ignores final endpoint command',()=>{
@@ -66,3 +66,4 @@ test('forced mixed-frequency trace identifies damping and spring with converging
  assert.ok(error(fine)<error(coarse)/2);
  assert.ok(error(fine)<.02);
 });
+
