@@ -1,0 +1,113 @@
+{
+  "schema": "worldlaw.joint-plan-qualification/v1",
+  "correlation": {
+    "schema": "worldlaw.correlation-band/v1",
+    "comparison": {
+      "schema": "worldlaw.serial-orders/v2",
+      "sourceNote": "Authored eight-pair schedules, not physical acquisitions.",
+      "plans": [
+        {
+          "id": "order-85",
+          "pairs": [
+            {
+              "reference": 0,
+              "conditioned": 1
+            },
+            {
+              "reference": 3,
+              "conditioned": 2
+            },
+            {
+              "reference": 4,
+              "conditioned": 5
+            },
+            {
+              "reference": 7,
+              "conditioned": 6
+            },
+            {
+              "reference": 8,
+              "conditioned": 9
+            },
+            {
+              "reference": 11,
+              "conditioned": 10
+            },
+            {
+              "reference": 12,
+              "conditioned": 13
+            },
+            {
+              "reference": 15,
+              "conditioned": 14
+            }
+          ]
+        },
+        {
+          "id": "order-101",
+          "pairs": [
+            {
+              "reference": 0,
+              "conditioned": 1
+            },
+            {
+              "reference": 3,
+              "conditioned": 2
+            },
+            {
+              "reference": 4,
+              "conditioned": 5
+            },
+            {
+              "reference": 7,
+              "conditioned": 6
+            },
+            {
+              "reference": 9,
+              "conditioned": 8
+            },
+            {
+              "reference": 10,
+              "conditioned": 11
+            },
+            {
+              "reference": 12,
+              "conditioned": 13
+            },
+            {
+              "reference": 15,
+              "conditioned": 14
+            }
+          ]
+        }
+      ],
+      "rhos": [
+        -0.9,
+        -0.5,
+        0,
+        0.5,
+        0.9
+      ],
+      "periodic": {
+        "sourceNote": "Hypothetical finite periodic family.",
+        "periods": [
+          3,
+          5
+        ]
+      }
+    },
+    "band": {
+      "lower": -0.9,
+      "upper": 0.9,
+      "sourceNote": "Hypothetical continuous AR(1) correlation band, not fitted or calibrated."
+    },
+    "maximumVariance": 0.26,
+    "maxCells": 16,
+    "workLimit": 40000
+  },
+  "drift": {
+    "curvatureBound": 0.01,
+    "sourceNote": "Authored hypothetical curvature bound, not physical calibration."
+  },
+  "maximumBias": 0.015
+}

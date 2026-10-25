@@ -1,0 +1,126 @@
+{
+  "scope": "Exact current source with explicit overlays; actual sandboxed consumer",
+  "base": "e6a3908efcf8c2170f729efb4b8963b703935ad2",
+  "native": 737,
+  "actualReceiving": {
+    "passed": true,
+    "executionBase": "e6a3908efcf8c2170f729efb4b8963b703935ad2",
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "checks": [
+      "Actual worker qualifies order 85 and refuses continuous-noise violation of order 101 despite passing drift",
+      "One-cell unresolved admits neither plan; two-cell refinement admits only the proven plan",
+      "Blank declaration refuses; downloaded raw inputs reopen and recompute",
+      "Explicit selected-plan file adoption preserves original plans and curvature in attaining-drift viewer",
+      "Input edits cancel worker and explicit restore returns original source",
+      "Owned 10-second stalled-worker refusal returns no partial classification and preserves explicit restoration",
+      "Separate numeric axes and exact disclosures fit actual desktop and narrow view"
+    ],
+    "exceptions": []
+  },
+  "manifest": {
+    "base": "e6a3908efcf8c2170f729efb4b8963b703935ad2",
+    "overlays": true,
+    "execution": [
+      {
+        "course": "native",
+        "command": [
+          "npm",
+          "test"
+        ],
+        "exit": 0,
+        "seconds": 29.189985230972525,
+        "sampledProcessPeakRssKiB": null,
+        "resourceGate": null
+      },
+      {
+        "course": "browser",
+        "command": [
+          "node",
+          "scripts/joint-qualification-browser.mjs"
+        ],
+        "exit": 0,
+        "seconds": 14.717664598982083,
+        "sampledProcessPeakRssKiB": null,
+        "resourceGate": null
+      }
+    ],
+    "archiveSha256": "bdf90bb470bbb389c8d6a945dd864199bec62b2f536790977ab3b15ef212065d",
+    "reconstruction": null,
+    "gitProvenance": null,
+    "sources": [
+      {
+        "path": "src/unknown-lab/joint-qualification.mjs",
+        "bytes": 3390,
+        "sha256": "c79c4158cc123df6b1d38d712862663874d581011e1616339c9c7c252f28d73f",
+        "gitBlob": "7335d9d88129c0fafaef1590839a45907c001f4b"
+      },
+      {
+        "path": "src/unknown-lab/joint-qualification-panel.mjs",
+        "bytes": 11820,
+        "sha256": "f0ed8f9513462c0ea28b107e8646ba71d73c1d315cf72e9eaa89c4cfa7219984",
+        "gitBlob": "3fa4f581e769bf124536853036467f6dfaefaa45"
+      },
+      {
+        "path": "src/unknown-lab/joint-qualification-worker.mjs",
+        "bytes": 303,
+        "sha256": "3397fd93d908b6436f5f514226c8635ce52acd04d68f8f9fcc0c73b67b065908",
+        "gitBlob": "2339476b64f529f3adb21f5ab4c823a2ca9dfda6"
+      },
+      {
+        "path": "src/unknown-lab/app.mjs",
+        "bytes": 9487,
+        "sha256": "aec7468ba32883732402dd62e74115691a43953583a9938972351ea90240ff9a",
+        "gitBlob": "32f370adcea0ba61544a857abf34fe8cb3e887cd"
+      },
+      {
+        "path": "tests/joint-qualification.test.mjs",
+        "bytes": 2122,
+        "sha256": "99fce82d8998ab1bcb52f16569e2435d674d3157b8115187a24923e1d2f61b26",
+        "gitBlob": "6761b249f1dae8970f091b0029e3449a1fecbbd0"
+      },
+      {
+        "path": "scripts/joint-qualification-browser.mjs",
+        "bytes": 6799,
+        "sha256": "6dfe617a00665967d27a6a1e77005e604c70868a61bb88a43c4247fd0010ab6c",
+        "gitBlob": "547a21b90f8d8c341ea4990cffd1d3630c3c6f9a"
+      },
+      {
+        "path": "examples/joint-qualification.json",
+        "bytes": 2538,
+        "sha256": "3950cfe8bcb0f6a974770324f61fbcc9a2f6e1c99c44a0c0e5e4c8f0df4e05e2",
+        "gitBlob": "d1b61ad4fe670972f3d8e4ab252d3eba0ec9395b"
+      },
+      {
+        "path": "docs/JOINT_PLAN_QUALIFICATION.md",
+        "bytes": 4662,
+        "sha256": "6afbc12fb7bd2192c35e5ce9fc97adf78120743e86dc556754b3ead8835326b9",
+        "gitBlob": "ce1eeb5fff23ae8048c65ce066215886adf5275c"
+      }
+    ],
+    "images": [
+      {
+        "path": "/tmp/hamon-5e42-worldlaw-joint-current-qa/complete-narrow.png",
+        "bytes": 536908,
+        "sha256": "cac055182dc8d62a3903eb74e80a3ec2acdd7804770369615763a60444e1f13b",
+        "gitBlob": "6a974fa0ff535a67d96e749e93758274f3e0a42c"
+      },
+      {
+        "path": "/tmp/hamon-5e42-worldlaw-joint-current-qa/desktop.png",
+        "bytes": 525829,
+        "sha256": "92617d7118bdb1464e0e1f01d1b452a3e8b1e692ccd94206913a9dbc3ccb8833",
+        "gitBlob": "d56bb29c0aa009cb1b1af3063eea1438ff99e58e"
+      },
+      {
+        "path": "/tmp/hamon-5e42-worldlaw-joint-current-qa/narrow.png",
+        "bytes": 199483,
+        "sha256": "91bd00d78f8d0160e7aece1460a5b299d1a5e55955d7a8a19c564fb4a82523ad",
+        "gitBlob": "ff2509c01e9c4dd9fd042fbda55c70fa2617090f"
+      }
+    ]
+  },
+  "notes": [
+    "Native: 737 passed, zero failed or skipped.",
+    "Corrected desktop/narrow receiver: seven checks, zero exceptions.",
+    "Independent CHRONOS core review passed; exact strip labels inspected after narrow correction."
+  ]
+}
