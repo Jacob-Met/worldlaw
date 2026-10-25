@@ -1,3 +1,4 @@
+import {mountSaturationRatePlanner} from './saturation-rate-panel.mjs';
 import {exportSaturationInvestigation,importSaturationInvestigation,profileSettings} from './saturation-profile.mjs';
 import {incompatibleSaturationChallenges} from './saturation-joint-fixture.mjs';
 import {saturatedProbeExample} from './probe-saturation-fixture.mjs';
@@ -35,8 +36,9 @@ export function mountSaturationProfile(probePanel){
  const $=id=>section.querySelector('#'+id),controls=['min','max','resolution','boxes','evaluations'];
  let worker=null,version=0,result=null,source=null,settings=null;
  function stop(){version++;worker?.terminate();worker=null;}
- function invalidate(){stop();result=null;source=null;settings=null;$('profile-result').hidden=true;$('profile-result').replaceChildren();$('profile-export').disabled=true;$('profile-status').textContent='Inputs changed. Run the profile again.';$('profile-error').textContent='';}
+ function invalidate(){stop();ratePlanner?.invalidate();result=null;source=null;settings=null;$('profile-result').hidden=true;$('profile-result').replaceChildren();$('profile-export').disabled=true;$('profile-status').textContent='Inputs changed. Run the profile again.';$('profile-error').textContent='';}
  function inputs(){return profileSettings({scaleMin:Number($('profile-min').value),scaleMax:Number($('profile-max').value),scaleResolution:Number($('profile-resolution').value),maxBoxes:Number($('profile-boxes').value),maxEvaluations:Number($('profile-evaluations').value)});}
+ const ratePlanner=mountSaturationRatePlanner({parent:section,controller:probePanel,getProfileSettings:inputs,setProfileSettings:s=>{for(const [id,key]of [['min','scaleMin'],['max','scaleMax'],['resolution','scaleResolution'],['boxes','maxBoxes'],['evaluations','maxEvaluations']])$('profile-'+id).value=s[key];invalidate();}});
  function error(e){$('profile-error').textContent=e.message||String(e);$('profile-error').focus();$('profile-status').textContent='Profile not completed.';}
  function node(tag,text,parent=$('profile-result')){const el=document.createElement(tag);if(text!==undefined)el.textContent=text;parent.append(el);return el;}
  function render(r,joint){
