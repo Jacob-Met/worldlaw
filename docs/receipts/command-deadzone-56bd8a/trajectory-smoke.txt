@@ -1,0 +1,22 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> worldlaw@0.1.0 smoke:trajectory
+> node scripts/trajectory-smoke-92be.mjs
+
+{
+  "product": "worldlaw",
+  "route": "trajectory-challenge",
+  "runtime": "v24.22.1",
+  "inputSHA256": "fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e",
+  "received": "launched local HTTP server -> actual JSON input -> fitting -> forward predictions -> source notebook reopen",
+  "selectedModel": "command+rate+gravity+bias",
+  "selectedPositionRMSE": 0.0006561748182990025,
+  "comparedModels": 8,
+  "challengeRuns": 2,
+  "negativeCases": [
+    "missing initial rate refused",
+    "missing resource404",
+    "unsupported method405"
+  ],
+  "evidenceKind": "synthetic"
+}
