@@ -1,0 +1,3002 @@
+{
+  "status": "PASS",
+  "policy": {
+    "seeds": [
+      8233,
+      19073,
+      31847,
+      47017,
+      65521,
+      81799
+    ],
+    "trainingCount": 96,
+    "receivingCount": 83,
+    "methods": [
+      "unchanged model-disagreement planner",
+      "input-rank pilot"
+    ],
+    "modes": [
+      "exact-additive",
+      "noisy-additive",
+      "omitted-cubic",
+      "no-exciting-offer"
+    ],
+    "selection": "Complete fixed three-state course; first numerical +1 rank gain, no output-aware ranking.",
+    "scope": "Authored independent-seed software receiving. No physical accuracy or calibrated uncertainty."
+  },
+  "summary": {
+    "exact-additive": {
+      "courses": 6,
+      "receivingReductionAfterPilot": 6,
+      "receivingReductionWithoutResidualMismatch": 6,
+      "minBeforeRMSE": 0.8527734966180308,
+      "maxAfterRMSE": 1.0634101241823546e-15,
+      "completeCourseRefusals": 0,
+      "residualMismatches": 0
+    },
+    "noisy-additive": {
+      "courses": 6,
+      "receivingReductionAfterPilot": 6,
+      "receivingReductionWithoutResidualMismatch": 6,
+      "minBeforeRMSE": 0.8334576046465314,
+      "maxAfterRMSE": 0.0013563483333024133,
+      "completeCourseRefusals": 0,
+      "residualMismatches": 0
+    },
+    "omitted-cubic": {
+      "courses": 6,
+      "receivingReductionAfterPilot": 6,
+      "receivingReductionWithoutResidualMismatch": 0,
+      "minBeforeRMSE": 0.858785588366766,
+      "maxAfterRMSE": 0.0704478344050248,
+      "completeCourseRefusals": 0,
+      "residualMismatches": 6
+    },
+    "no-exciting-offer": {
+      "courses": 6,
+      "receivingReductionAfterPilot": 0,
+      "receivingReductionWithoutResidualMismatch": 0,
+      "minBeforeRMSE": 0.8527734966180308,
+      "maxAfterRMSE": 1.089623671531925,
+      "completeCourseRefusals": 6,
+      "residualMismatches": 0
+    }
+  },
+  "courses": [
+    {
+      "seed": 8233,
+      "mode": "exact-additive",
+      "trainingSHA256": "b7f0124b60a5b67a2a35ad86f0f1acdeb4c0edbba85066f5abad56526c638c1f",
+      "receivingSHA256": "cca132f093dd67eb91dd7ef42668a9b878d6970e364ad521fcd085c4f2d0570e",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.8527734966180308,
+      "nominalHeldOutRMSE": 0.8527734966180308,
+      "pilotHeldOutRMSE": 3.540360053986263e-16,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 14.829093999999998,
+        "nominal": 0.34882999999999953,
+        "pilot": 2.776502999999998
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4769977072719485,
+            "max": 2.437960820971057
+          },
+          "rate": {
+            "min": -1.4501405549235642,
+            "max": 1.4977863519452512
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 8233,
+      "mode": "noisy-additive",
+      "trainingSHA256": "2f8e609942cfe2793fe1884acdf2dcb61178548cb565f734564c4b4515588b4a",
+      "receivingSHA256": "ff7d9059bc96be29deefde724205afbf800cdbfd238bea0487d7e35cd9ddd1a6",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.8342397094254614,
+      "nominalHeldOutRMSE": 0.83423972709713,
+      "pilotHeldOutRMSE": 0.001054796293567312,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 5.842950999999999,
+        "nominal": 0.11461500000000058,
+        "pilot": 2.0878039999999913
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4987274582963437,
+            "max": 2.4725927179679275
+          },
+          "rate": {
+            "min": -1.4642381428275257,
+            "max": 1.4977863519452512
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 8233,
+      "mode": "omitted-cubic",
+      "trainingSHA256": "6fb1ab5ccab4a28f7465c3d3661313a5e3b88771714dd9742290bd3eaa66e20e",
+      "receivingSHA256": "88dba72ed532e1d5ba8ce042796b1d49258d66f2b02f6a7d5ea78dd121051754",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.858785588366766,
+      "nominalHeldOutRMSE": 0.8588002835550089,
+      "pilotHeldOutRMSE": 0.06168451711001509,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "residual_mismatch",
+      "timingsMs": {
+        "fit": 7.892268000000001,
+        "nominal": 0.10978600000001393,
+        "pilot": 1.2900470000000155
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4769977072719485,
+            "max": 2.437960820971057
+          },
+          "rate": {
+            "min": -1.4501405549235642,
+            "max": 1.4977863519452512
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 8233,
+      "mode": "no-exciting-offer",
+      "trainingSHA256": "b7f0124b60a5b67a2a35ad86f0f1acdeb4c0edbba85066f5abad56526c638c1f",
+      "receivingSHA256": "cca132f093dd67eb91dd7ef42668a9b878d6970e364ad521fcd085c4f2d0570e",
+      "offeredSHA256": "7890ed3035686fa677de553e933051390f20add526efcf65282a3c334f14c952",
+      "beforeHeldOutRMSE": 0.8527734966180308,
+      "nominalHeldOutRMSE": 0.8527734966180308,
+      "pilotHeldOutRMSE": 0.8527734966180308,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": null,
+      "inputRankBefore": 6,
+      "inputRankAfter": 6,
+      "pilotStatus": "no_rank_gain",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 3.948073000000022,
+        "nominal": 0.09710699999999406,
+        "pilot": 0.6910129999999981
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": null,
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 0,
+              "position": 0.47,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": 0,
+              "position": 0.5700000000000001,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4769977072719485,
+            "max": 2.437960820971057
+          },
+          "rate": {
+            "min": -1.4501405549235642,
+            "max": 1.4977863519452512
+          }
+        },
+        "status": "no_rank_gain",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 19073,
+      "mode": "exact-additive",
+      "trainingSHA256": "a8a2752eb5d0434ca357bc01e99a6c5ed0f50d1fc3d0c8c0dca56bdac3bca9d5",
+      "receivingSHA256": "89a5459d60c2772d2ca44fe4bddbb610d34d595272a67506822c367c2f1ec41c",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.9647846493769701,
+      "nominalHeldOutRMSE": 0.9647846493769701,
+      "pilotHeldOutRMSE": 1.7331343265849537e-16,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 5.980947999999984,
+        "nominal": 0.09332200000000057,
+        "pilot": 0.8045570000000168
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.435032787034288,
+            "max": 2.3304240440484136
+          },
+          "rate": {
+            "min": -1.4607867286540568,
+            "max": 1.4185754754580557
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 19073,
+      "mode": "noisy-additive",
+      "trainingSHA256": "b47cee7a321ff573070726d7ae3483e461616635cd6c2579de45d35c8d3d2002",
+      "receivingSHA256": "3252fc2b614a621046702528546d6a957742dd6bc1057969724b77cbdec72537",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.9262890775031959,
+      "nominalHeldOutRMSE": 0.9262890081469322,
+      "pilotHeldOutRMSE": 0.0013563483333024133,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 4.304028000000017,
+        "nominal": 0.0888079999999718,
+        "pilot": 0.7508339999999976
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.488493259297684,
+            "max": 2.4909782700706273
+          },
+          "rate": {
+            "min": -1.4607867286540568,
+            "max": 1.4771376382559538
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 19073,
+      "mode": "omitted-cubic",
+      "trainingSHA256": "71de154a466e04e990f3f62d7e386b781e5cf3bc82411fdb8db2edc32c874b0e",
+      "receivingSHA256": "951b4ede1ddf19fa1938c8a0fa7e03963ede57f127452509b39ab53ed393e973",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.9596814073543594,
+      "nominalHeldOutRMSE": 0.9596800851614826,
+      "pilotHeldOutRMSE": 0.0704478344050248,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "residual_mismatch",
+      "timingsMs": {
+        "fit": 7.877970000000005,
+        "nominal": 0.14199300000001358,
+        "pilot": 1.1237600000000043
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.435032787034288,
+            "max": 2.3304240440484136
+          },
+          "rate": {
+            "min": -1.4607867286540568,
+            "max": 1.4185754754580557
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 19073,
+      "mode": "no-exciting-offer",
+      "trainingSHA256": "a8a2752eb5d0434ca357bc01e99a6c5ed0f50d1fc3d0c8c0dca56bdac3bca9d5",
+      "receivingSHA256": "89a5459d60c2772d2ca44fe4bddbb610d34d595272a67506822c367c2f1ec41c",
+      "offeredSHA256": "7890ed3035686fa677de553e933051390f20add526efcf65282a3c334f14c952",
+      "beforeHeldOutRMSE": 0.9647846493769701,
+      "nominalHeldOutRMSE": 0.9647846493769701,
+      "pilotHeldOutRMSE": 0.9647846493769701,
+      "nominalSourceIndex": 2,
+      "pilotSourceIndex": null,
+      "inputRankBefore": 6,
+      "inputRankAfter": 6,
+      "pilotStatus": "no_rank_gain",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 7.676311999999996,
+        "nominal": 0.13212099999998372,
+        "pilot": 1.1367020000000139
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": null,
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 0,
+              "position": 0.47,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": 0,
+              "position": 0.5700000000000001,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.435032787034288,
+            "max": 2.3304240440484136
+          },
+          "rate": {
+            "min": -1.4607867286540568,
+            "max": 1.4185754754580557
+          }
+        },
+        "status": "no_rank_gain",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 31847,
+      "mode": "exact-additive",
+      "trainingSHA256": "4bc1f0c64f2c0c4f28fd4ad9e9050f98466b0e82fd195bb713882d7999a6f9e5",
+      "receivingSHA256": "822d402e2424808cb8acc5d0736cdaafa601a1feb9402c58bc02f2b534ed396d",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.9131728874352961,
+      "nominalHeldOutRMSE": 0.9131728874352961,
+      "pilotHeldOutRMSE": 1.0634101241823546e-15,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 8.262080000000026,
+        "nominal": 0.09728300000000445,
+        "pilot": 0.587050999999974
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.293067058781162,
+            "max": 2.456437371438369
+          },
+          "rate": {
+            "min": -1.452344996854663,
+            "max": 1.4771766671910882
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 31847,
+      "mode": "noisy-additive",
+      "trainingSHA256": "173824c81bcd791f2ee33864233fdff839641b34ddd7e15bd87b4bfebba78955",
+      "receivingSHA256": "35ca357d93d5072075b7bbc930db878efb3870b97ef207db435c9274ba08b1d5",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.8909005114725735,
+      "nominalHeldOutRMSE": 0.8909002923913703,
+      "pilotHeldOutRMSE": 0.0006969759434569131,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 4.277343999999971,
+        "nominal": 0.0991350000000466,
+        "pilot": 0.6532470000000217
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.388631496578455,
+            "max": 2.432213891297579
+          },
+          "rate": {
+            "min": -1.4233041470870376,
+            "max": 1.4738624228630215
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 31847,
+      "mode": "omitted-cubic",
+      "trainingSHA256": "9e78ffcd039025e3d9d929c158f7396ea003dd07aa6beb4085880343fb73e399",
+      "receivingSHA256": "b58b2096d55b11a7b89475164a1a72f992eaa73a7583b94b635f047542cf089b",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.9150203683325404,
+      "nominalHeldOutRMSE": 0.9150244145166175,
+      "pilotHeldOutRMSE": 0.0539355430461766,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "residual_mismatch",
+      "timingsMs": {
+        "fit": 8.468016999999975,
+        "nominal": 0.15292900000002874,
+        "pilot": 1.3414739999999483
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.293067058781162,
+            "max": 2.456437371438369
+          },
+          "rate": {
+            "min": -1.452344996854663,
+            "max": 1.4771766671910882
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 31847,
+      "mode": "no-exciting-offer",
+      "trainingSHA256": "4bc1f0c64f2c0c4f28fd4ad9e9050f98466b0e82fd195bb713882d7999a6f9e5",
+      "receivingSHA256": "822d402e2424808cb8acc5d0736cdaafa601a1feb9402c58bc02f2b534ed396d",
+      "offeredSHA256": "7890ed3035686fa677de553e933051390f20add526efcf65282a3c334f14c952",
+      "beforeHeldOutRMSE": 0.9131728874352961,
+      "nominalHeldOutRMSE": 0.9131728874352963,
+      "pilotHeldOutRMSE": 0.9131728874352961,
+      "nominalSourceIndex": 1,
+      "pilotSourceIndex": null,
+      "inputRankBefore": 6,
+      "inputRankAfter": 6,
+      "pilotStatus": "no_rank_gain",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 6.270362999999975,
+        "nominal": 0.07340599999997721,
+        "pilot": 0.737261999999987
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": null,
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 0,
+              "position": 0.47,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": 0,
+              "position": 0.5700000000000001,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.293067058781162,
+            "max": 2.456437371438369
+          },
+          "rate": {
+            "min": -1.452344996854663,
+            "max": 1.4771766671910882
+          }
+        },
+        "status": "no_rank_gain",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 47017,
+      "mode": "exact-additive",
+      "trainingSHA256": "8af807e1bc03678a72cf67c30e9852c2fcd79ceec00c7468b4e9dfb31982c05c",
+      "receivingSHA256": "db40bd30dc15711ffd9d0fcaf895918f803ee849b15b1c0d0dc32f6eae796877",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.854890778494216,
+      "nominalHeldOutRMSE": 0.8548907784942162,
+      "pilotHeldOutRMSE": 6.757068344205574e-16,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 3.3617570000000114,
+        "nominal": 0.08391299999993862,
+        "pilot": 0.848901000000069
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4561198556330055,
+            "max": 2.423616893356666
+          },
+          "rate": {
+            "min": -1.4718516133725643,
+            "max": 1.448368740733713
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 47017,
+      "mode": "noisy-additive",
+      "trainingSHA256": "0752bc7409da905b437a0a7df16863d09badf965428582ba0d73b100f2bb9ac1",
+      "receivingSHA256": "812aa45698b0ec394d1fb5a0c8a5caff9e8205e8d64a1dced835d94219062fab",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.8334576046465314,
+      "nominalHeldOutRMSE": 0.833456614345769,
+      "pilotHeldOutRMSE": 0.00016944373739775882,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 4.398682000000008,
+        "nominal": 0.07365600000002814,
+        "pilot": 0.604148999999893
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4561198556330055,
+            "max": 2.4804168881382793
+          },
+          "rate": {
+            "min": -1.499338126508519,
+            "max": 1.4645139703061432
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 47017,
+      "mode": "omitted-cubic",
+      "trainingSHA256": "ed6ea62029a1f733c9ca77127df617a06420340f4853e0517c85a3a2d025569a",
+      "receivingSHA256": "b0229d0da778073f47bdcffff8a341711126a52489ff95b7032d4f0255a38a44",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.8702080025539257,
+      "nominalHeldOutRMSE": 0.8702259510086645,
+      "pilotHeldOutRMSE": 0.055505195207500635,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "residual_mismatch",
+      "timingsMs": {
+        "fit": 3.982287000000042,
+        "nominal": 0.07880499999998847,
+        "pilot": 0.6094270000000961
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4561198556330055,
+            "max": 2.423616893356666
+          },
+          "rate": {
+            "min": -1.4718516133725643,
+            "max": 1.448368740733713
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 47017,
+      "mode": "no-exciting-offer",
+      "trainingSHA256": "8af807e1bc03678a72cf67c30e9852c2fcd79ceec00c7468b4e9dfb31982c05c",
+      "receivingSHA256": "db40bd30dc15711ffd9d0fcaf895918f803ee849b15b1c0d0dc32f6eae796877",
+      "offeredSHA256": "7890ed3035686fa677de553e933051390f20add526efcf65282a3c334f14c952",
+      "beforeHeldOutRMSE": 0.854890778494216,
+      "nominalHeldOutRMSE": 0.8548907784942161,
+      "pilotHeldOutRMSE": 0.854890778494216,
+      "nominalSourceIndex": 2,
+      "pilotSourceIndex": null,
+      "inputRankBefore": 6,
+      "inputRankAfter": 6,
+      "pilotStatus": "no_rank_gain",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 5.05842599999994,
+        "nominal": 0.07249000000001615,
+        "pilot": 0.5394990000000917
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": null,
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 0,
+              "position": 0.47,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": 0,
+              "position": 0.5700000000000001,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4561198556330055,
+            "max": 2.423616893356666
+          },
+          "rate": {
+            "min": -1.4718516133725643,
+            "max": 1.448368740733713
+          }
+        },
+        "status": "no_rank_gain",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 65521,
+      "mode": "exact-additive",
+      "trainingSHA256": "775fb20d337b1bcd46f9df166d5bcd4252d8164a44d93cba8700476a516059eb",
+      "receivingSHA256": "8b3e95396488830fa78c8bc3781a901e1ac98888044f73bebd0e89838365501b",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.9383528199879523,
+      "nominalHeldOutRMSE": 0.9383528199879523,
+      "pilotHeldOutRMSE": 5.083648829958566e-16,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 3.441330999999991,
+        "nominal": 0.06873800000005303,
+        "pilot": 0.7226239999999962
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4748576537240297,
+            "max": 2.483761807670817
+          },
+          "rate": {
+            "min": -1.4263510345481336,
+            "max": 1.4982272861525416
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 65521,
+      "mode": "noisy-additive",
+      "trainingSHA256": "97eb184f34fe37a6eb578ffea23fc83c329f4dc1904ec296e34107250c99b559",
+      "receivingSHA256": "7f6f7cdf9fd20f79f0bf284e42d80fbf8553ebbb13981ba2bfc5258b789e62f4",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.9646394054311719,
+      "nominalHeldOutRMSE": 0.9646394733454089,
+      "pilotHeldOutRMSE": 0.00037866483033510473,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 4.324869000000035,
+        "nominal": 0.07075099999997292,
+        "pilot": 0.558936000000017
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4141115823294967,
+            "max": 2.4359847826417536
+          },
+          "rate": {
+            "min": -1.4666733294725418,
+            "max": 1.470887514995411
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 65521,
+      "mode": "omitted-cubic",
+      "trainingSHA256": "4ef5394334447dacb74732d4e797cfd18d0e9a074c54ff7d064bc3c0e020fb32",
+      "receivingSHA256": "d219ad2eb3962874e66ea38373b41c719256ee970eb9cca0657fa09684e14b16",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 0.9466926277196932,
+      "nominalHeldOutRMSE": 0.9466539977388991,
+      "pilotHeldOutRMSE": 0.05610211671501874,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "residual_mismatch",
+      "timingsMs": {
+        "fit": 4.050335000000018,
+        "nominal": 0.07867299999998068,
+        "pilot": 0.587635999999975
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4748576537240297,
+            "max": 2.483761807670817
+          },
+          "rate": {
+            "min": -1.4263510345481336,
+            "max": 1.4982272861525416
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 65521,
+      "mode": "no-exciting-offer",
+      "trainingSHA256": "775fb20d337b1bcd46f9df166d5bcd4252d8164a44d93cba8700476a516059eb",
+      "receivingSHA256": "8b3e95396488830fa78c8bc3781a901e1ac98888044f73bebd0e89838365501b",
+      "offeredSHA256": "7890ed3035686fa677de553e933051390f20add526efcf65282a3c334f14c952",
+      "beforeHeldOutRMSE": 0.9383528199879523,
+      "nominalHeldOutRMSE": 0.9383528199879523,
+      "pilotHeldOutRMSE": 0.9383528199879523,
+      "nominalSourceIndex": 2,
+      "pilotSourceIndex": null,
+      "inputRankBefore": 6,
+      "inputRankAfter": 6,
+      "pilotStatus": "no_rank_gain",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 7.418725999999992,
+        "nominal": 0.11765200000002096,
+        "pilot": 1.2525190000000066
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": null,
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 0,
+              "position": 0.47,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": 0,
+              "position": 0.5700000000000001,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4748576537240297,
+            "max": 2.483761807670817
+          },
+          "rate": {
+            "min": -1.4263510345481336,
+            "max": 1.4982272861525416
+          }
+        },
+        "status": "no_rank_gain",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 81799,
+      "mode": "exact-additive",
+      "trainingSHA256": "f847c00fe12a481eda194b72ad701d41af308bc68d9dbbbbe40e64f3febfd755",
+      "receivingSHA256": "6ecb575c63e7982d4bc8b884e8c80857f8bb42c43618906c3bd18a0fab820e03",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 1.089623671531925,
+      "nominalHeldOutRMSE": 1.0896236715319247,
+      "pilotHeldOutRMSE": 3.601788232751969e-16,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 3.55929500000002,
+        "nominal": 0.10244000000000142,
+        "pilot": 0.7543829999999616
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4711215135175735,
+            "max": 2.3526399314869195
+          },
+          "rate": {
+            "min": -1.422773826867342,
+            "max": 1.4278519595973194
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 81799,
+      "mode": "noisy-additive",
+      "trainingSHA256": "e43eef325da1196031b328c51b1a6c74dbeab12d0e478aa0e36095a36da24cda",
+      "receivingSHA256": "00eaa78bd84f7049770164d2d2dfcd865eef8e6924e6e8252c0c67fd685581b6",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 1.0649305139294554,
+      "nominalHeldOutRMSE": 1.0649292215392632,
+      "pilotHeldOutRMSE": 0.0008467989270442963,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 5.581384000000071,
+        "nominal": 0.1294669999999769,
+        "pilot": 1.1010119999999688
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.473273917566985,
+            "max": 2.448251210153103
+          },
+          "rate": {
+            "min": -1.4572873476427048,
+            "max": 1.4637708629015833
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 81799,
+      "mode": "omitted-cubic",
+      "trainingSHA256": "337d2feafef833d818fcb12707f1b54eb80a30e61ae048ca6b247eb79ac63332",
+      "receivingSHA256": "19a37f15813589c5bf356bb96500ddad2cc3f8771ba3d9ba0b93a45cd77a7deb",
+      "offeredSHA256": "0376ca8fcd98eba4aa6ace69b2610c8e51e5123dd60ea589b898e2ac983c2378",
+      "beforeHeldOutRMSE": 1.084261191152599,
+      "nominalHeldOutRMSE": 1.0842382793316179,
+      "pilotHeldOutRMSE": 0.06157465552348603,
+      "nominalSourceIndex": 0,
+      "pilotSourceIndex": 1,
+      "inputRankBefore": 6,
+      "inputRankAfter": 7,
+      "pilotStatus": "proposed",
+      "fitAdequacyAfter": "residual_mismatch",
+      "timingsMs": {
+        "fit": 6.939714999999978,
+        "nominal": 0.13080300000001444,
+        "pilot": 1.3987639999999146
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": {
+          "index": 1,
+          "input": {
+            "command": 1.1,
+            "position": 0.37,
+            "rate": -0.21
+          },
+          "prospectiveRank": 7,
+          "gain": 1,
+          "missingDirections": 0,
+          "status": "rank_gain",
+          "extrapolation": [
+            "command"
+          ],
+          "sourceIndex": 1
+        },
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 1.1,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": -1.2,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 7,
+            "gain": 1,
+            "missingDirections": 0,
+            "status": "rank_gain",
+            "extrapolation": [
+              "command"
+            ],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4711215135175735,
+            "max": 2.3526399314869195
+          },
+          "rate": {
+            "min": -1.422773826867342,
+            "max": 1.4278519595973194
+          }
+        },
+        "status": "proposed",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    },
+    {
+      "seed": 81799,
+      "mode": "no-exciting-offer",
+      "trainingSHA256": "f847c00fe12a481eda194b72ad701d41af308bc68d9dbbbbe40e64f3febfd755",
+      "receivingSHA256": "6ecb575c63e7982d4bc8b884e8c80857f8bb42c43618906c3bd18a0fab820e03",
+      "offeredSHA256": "7890ed3035686fa677de553e933051390f20add526efcf65282a3c334f14c952",
+      "beforeHeldOutRMSE": 1.089623671531925,
+      "nominalHeldOutRMSE": 1.0896236715319247,
+      "pilotHeldOutRMSE": 1.089623671531925,
+      "nominalSourceIndex": 2,
+      "pilotSourceIndex": null,
+      "inputRankBefore": 6,
+      "inputRankAfter": 6,
+      "pilotStatus": "no_rank_gain",
+      "fitAdequacyAfter": "not_falsified_on_training",
+      "timingsMs": {
+        "fit": 6.36975300000006,
+        "nominal": 0.08107299999994666,
+        "pilot": 1.4637619999999743
+      },
+      "completePilot": {
+        "schema": "worldlaw.input-excitation/v1",
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "sourceCount": 96,
+        "offeredCount": 3,
+        "currentRank": 6,
+        "librarySize": 7,
+        "missingDirections": 1,
+        "rankTolerance": 1e-8,
+        "estimatedRankWork": 18963,
+        "maxRankWork": 8000000,
+        "selected": null,
+        "outcomes": [
+          {
+            "index": 0,
+            "input": {
+              "command": 0,
+              "position": 0.37,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 0
+          },
+          {
+            "index": 1,
+            "input": {
+              "command": 0,
+              "position": 0.47,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 1
+          },
+          {
+            "index": 2,
+            "input": {
+              "command": 0,
+              "position": 0.5700000000000001,
+              "rate": -0.21
+            },
+            "prospectiveRank": 6,
+            "gain": 0,
+            "missingDirections": 1,
+            "status": "no_gain",
+            "extrapolation": [],
+            "sourceIndex": 2
+          }
+        ],
+        "examinedOffers": 3,
+        "method": "prospective_column_normalized_QR_rank",
+        "interpretation": "Coordinates only, with the offered finite feature library held fixed. Numerical rank gain is not a torque forecast, a confidence bound, physical identification, or evidence that the law is adequate.",
+        "numericalQualification": "The maintained floating-point QR threshold is used before and after adding each row. Rank loss or a jump greater than one is retained as a numerical rescaling outcome and cannot qualify a pilot.",
+        "domain": {
+          "command": {
+            "min": 0,
+            "max": 0
+          },
+          "position": {
+            "min": -2.4711215135175735,
+            "max": 2.3526399314869195
+          },
+          "rate": {
+            "min": -1.422773826867342,
+            "max": 1.4278519595973194
+          }
+        },
+        "status": "no_rank_gain",
+        "inputSource": "explicitly_offered",
+        "originalOfferedCount": 3,
+        "previouslyObservedCount": 0
+      }
+    }
+  ],
+  "robustNotebookComposition": "source offers and input-only rank preserved through v3 loss replay"
+}

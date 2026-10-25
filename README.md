@@ -93,7 +93,7 @@ Select **Import observations** and choose UTF-8 CSV or JSON. Supply 8–4,096 fi
 
 CSV starts with `command,position,rate,jointTorque`. Extra metadata columns are allowed but are not retained as observation fields. JSON may contain an array, or a `worldlaw.observations/v1` object with `observations`, optional `heldOut`, and a `source` label and metadata. All supplied unit declarations must agree. Files are limited to 2 MB.
 
-Try [the independent synthetic quadratic-drag fixture](examples/synthetic-quadratic-drag.json): 64 fitting and 31 held-out rows select actuation, linear spring and quadratic drag. Imported observations create an instrument notebook: virtual measurement generation is disabled and controls accept a measured torque result from your own instrument. Proposed states remain within the baseline's input ranges; the application does not control hardware.
+Try [the independent synthetic quadratic-drag fixture](examples/synthetic-quadratic-drag.json): 64 fitting and 31 held-out rows select actuation, linear spring and quadratic drag. Imported observations create an instrument notebook: virtual measurement generation is disabled and controls accept a measured torque result from your own instrument. Without an explicit offered course, proposed states remain within the baseline's input ranges. A versioned JSON source can instead declare input-only states beyond that range; those extensions remain visible. The application does not control hardware.
 
 Held-out rows are excluded from fitting, ranking and acquisition. Source hashes and derivation assumptions are retained as supplied evidence, without independent authentication. CSV export contains numeric rows only; keep the notebook when provenance and history matter. Failed imports preserve the current valid notebook. Late file reads cannot replace a newer notebook.
 
@@ -121,6 +121,13 @@ node scripts/derive-telemetry.mjs --input examples/synthetic-angular-telemetry.j
 ```
 
 Import that output into the same workbench. Read [the trajectory adapter contract](docs/TRAJECTORY_ADAPTER.md): numerical differentiation amplifies noise and introduces smoothing bias. Excellent error on derived data does not establish exact physical-law recovery.
+
+### Restore missing input excitation
+
+When current observations never vary an input independently, fitted models can all agree while missing its effect. In **Ask a better question → Plan by**, choose **Missing input excitation** to inspect whether any offered state adds a numerical input direction. The finite library stays fixed; no future torque or held-out reading is used. Use the suggested coordinates, then record a separately obtained instrument outcome through the existing notebook.
+
+A `worldlaw.observations/v2` source supplies up to128 unique `offeredInputs`, each containing only `command`, `position`, and `rate`. The complete course and original precision survive save/reopen. Try [the authored unexcited-command example](examples/scalar-unexcited-command.json) and read [the method, source contract and negative controls](docs/INPUT_EXCITATION.md). Numerical rank does not establish an adequate physical law.
+
 
 ## Verify
 

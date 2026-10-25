@@ -1,4 +1,7 @@
 export const OBSERVATION_SCHEMA = 'worldlaw.observations/v1';
+export const OFFERED_INPUT_SCHEMA = 'worldlaw.observations/v2';
+export const INPUT_FIELDS = Object.freeze(['command','position','rate']);
+export const MAX_OFFERED_INPUTS = 128;
 export const UNITS = Object.freeze({command:'N·m',position:'rad',rate:'rad/s',jointTorque:'N·m'});
 export const FIELDS = Object.keys(UNITS);
 export const MAX_ROWS = 4096;
@@ -6,6 +9,23 @@ export const MAX_TEXT_LENGTH = 2_000_000;
 const decimal = /^[+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?$/i;
 
 function fail(message) { throw new Error(message); }
+export function validateOfferedInputs(inputs) {
+  if (!Array.isArray(inputs) || inputs.length > MAX_OFFERED_INPUTS) fail(`Supply at most ${MAX_OFFERED_INPUTS} explicitly offered input states.`);
+  const seen = new Set();
+  return Array.from(inputs, (row, i) => {
+    if (!row || typeof row !== 'object' || Array.isArray(row) || Object.keys(row).some(key=>!INPUT_FIELDS.includes(key))) fail(`Offered state ${i+1} must contain only command, position and rate; no future torque reading.`);
+    const copy = {};
+    for (const field of INPUT_FIELDS) {
+      const value = row[field];
+      if (typeof value !== 'number' || !Number.isFinite(value) || Math.abs(value) > 1e6) fail(`Offered state ${i+1}: ${field} must be finite and between −1,000,000 and 1,000,000 (${UNITS[field]}).`);
+      copy[field] = value;
+    }
+    const key = JSON.stringify(INPUT_FIELDS.map(field=>copy[field]));
+    if (seen.has(key)) fail(`Offered state ${i+1} repeats an earlier offered state.`);
+    seen.add(key);
+    return copy;
+  });
+}
 export function validateRows(rows, {allowEmpty=false}={}) {
   if (!Array.isArray(rows) || (!allowEmpty && rows.length < 8) || rows.length > MAX_ROWS) fail(`Supply ${allowEmpty ? '0' : '8'}–${MAX_ROWS} complete observation rows.`);
   return Array.from(rows, (row, i) => {
@@ -21,7 +41,11 @@ export function validateRows(rows, {allowEmpty=false}={}) {
 }
 export function validateDataset(input, filename='Imported observations') {
   if (!input || typeof input !== 'object') fail('Expected an observation object or array.');
-  if (input.schema && input.schema !== OBSERVATION_SCHEMA) fail(`Unsupported observation schema: ${input.schema}.`);
+  if (input.schema && ![OBSERVATION_SCHEMA,OFFERED_INPUT_SCHEMA].includes(input.schema)) fail(`Unsupported observation schema: ${input.schema}.`);
+  const hasOfferedInputs = Object.hasOwn(input,'offeredInputs');
+  if (hasOfferedInputs && input.schema !== OFFERED_INPUT_SCHEMA) fail('Explicit offered inputs require the worldlaw.observations/v2 source format.');
+  if (input.schema === OFFERED_INPUT_SCHEMA && !hasOfferedInputs) fail('The worldlaw.observations/v2 source must declare offeredInputs, including an empty set when no states are offered.');
+  const offeredInputs = hasOfferedInputs ? validateOfferedInputs(input.offeredInputs) : null;
   for(const units of [input.units,input.source?.units]) {
     if (units !== undefined && units !== null && FIELDS.some(key => units[key] !== UNITS[key])) fail('Unit declarations must be command/jointTorque N·m, position rad, and rate rad/s. Convert the data before importing.');
   }
@@ -33,7 +57,8 @@ export function validateDataset(input, filename='Imported observations') {
   const metadataText=JSON.stringify(additional);
   if(metadataText.length>250_000) fail('Source metadata must be smaller than 250 KB.');
   const metadata=JSON.parse(metadataText);
-  return {schema:OBSERVATION_SCHEMA,source:{label,kind:'user-supplied',declaredKind:String(suppliedSource.declaredKind||suppliedSource.kind||'unspecified').slice(0,100),units:{...UNITS},metadata},observations,heldOut};
+  return {schema:hasOfferedInputs?OFFERED_INPUT_SCHEMA:OBSERVATION_SCHEMA,source:{label,kind:'user-supplied',declaredKind:String(suppliedSource.declaredKind||suppliedSource.kind||'unspecified').slice(0,100),units:{...UNITS},metadata},observations,heldOut,
+    ...(hasOfferedInputs?{offeredInputs}:{} )};
 }
 export function csvRecords(text) {
   const rows=[]; let row=[], cell='', quoted=false, closed=false;
@@ -85,3 +110,4 @@ export function candidateGrid(rows) {
   for(const command of axes[0]) for(const position of axes[1]) for(const rate of axes[2]) result.push({command,position,rate});
   return result;
 }
+

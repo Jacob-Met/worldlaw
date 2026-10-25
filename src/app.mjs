@@ -13,7 +13,7 @@ import {renderSeparability} from './science/separability-panel.mjs';
 import {evaluate,predict,simulate} from './science/torque-discovery.mjs';
 import {softL1Weight} from './science/robust-fit.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
-import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,exportSession,restoreSession,undoSession} from './session.mjs';
+import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,sessionPilotPlan,exportSession,restoreSession,undoSession} from './session.mjs';
 
 const $=id=>document.getElementById(id);
 const storageKey='worldlaw.notebook.v1';
@@ -141,15 +141,44 @@ function render(){
   set('feature-library-status',state.options.includeCommandPosition?'uθ is admitted, not assumed true. Selection uses fit rows only; held-out rows remain separate. A versioned notebook preserves the complete library and fitting history.':'Additive library active. A revision retains the initial fit and evidence in notebook history.');
   const diag=d.diagnostics;
   set('diagnostics',`${diag.competitiveCount} competitive ${diag.competitiveCount===1?'structure':'structures'} at the current noise assumption. ${diag.adequacy==='residual_mismatch'?'Residual mismatch: this library does not explain the data within the assumed noise.':diag.selectionAmbiguous?'The current observations do not isolate a unique explanation.':'One structure ranks ahead within this finite library.'}${diag.identifiability==='insufficient_excitation'?' Some inputs are not independently excited; more varied observations are needed.':''}`);
-  plan=sessionPlan(state);$('use-proposal').disabled=!plan.selected;
-  set('planner-status',plan.status==='proposed'?'An informative next observation':plan.selected?'Current models largely agree':'No unobserved candidate inputs');
-  set('planned-input',plan.selected?`θ ${fmt(plan.selected.input.position)} rad · ω ${fmt(plan.selected.input.rate)} rad/s · u ${fmt(plan.selected.input.command)} N·m`:'Change input conditions or import more varied observations.');
-  set('model-spread',plan.selected?`${fmt(plan.selected.disagreement)} N·m model disagreement${plan.selected.extrapolation?.length?' · extends the observed input range':''}`:'Model spread is unavailable');
+  renderPlan();
   const history=$('history-list');history.replaceChildren();
   state.history.forEach((entry,i)=>{const li=el('li');li.append(el('span',String(i+1).padStart(2,'0'),'history-index'),el('strong',entry.label),el('span',`${entry.count} rows · ${entry.modelId} · held-out ${fmt(entry.heldOutRMSE)} N·m`,'history-detail'));history.append(li);});
   renderHypotheses();renderModel();
 }
-function useProposal(announce=true){if(!plan?.selected)return;for(const f of ['position','rate','command'])$(f).value=Number(plan.selected.input[f].toPrecision(10));if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
+function renderPlan(){
+  const pilot=$('planner-objective').value==='excitation';
+  plan=pilot?sessionPilotPlan(state):sessionPlan(state);
+  $('use-proposal').disabled=!plan.selected;
+  $('pilot-explanation').hidden=!pilot;
+  $('pilot-course').hidden=!pilot || !plan.outcomes?.length;
+  if(pilot){
+    const messages={proposed:'A state that excites a missing input direction',already_excited:'The offered library already has full input rank',
+      no_rank_gain:'No offered state adds an input direction',no_offered_inputs:'No unobserved offered inputs',
+      work_limit:'Input-rank comparison exceeds the work limit',numerical_rescaling:'Input rank is numerically unresolved'};
+    set('planner-status',messages[plan.status]);
+    set('planner-metric-label','Input design rank');
+    set('model-spread',`${plan.currentRank}${plan.selected?' → '+plan.selected.prospectiveRank:''} / ${plan.librarySize} feature columns`);
+    const source=plan.inputSource==='explicitly_offered'?`${plan.originalOfferedCount} explicitly offered states`:
+      plan.inputSource==='virtual_instrument_course'?'the virtual instrument course':'the grid within the original observed ranges';
+    set('pilot-explanation',`Coordinates only, from ${source}. ${plan.previouslyObservedCount} already observed states excluded. ${plan.examinedOffers} remaining states compared. Rank gain supplies no torque forecast and does not establish a correct law.${plan.status==='work_limit'?' The complete course exceeds the declared work bound; no partial ranking was used.':''}${plan.selected?.extrapolation.length?' This offered state extends the observed '+plan.selected.extrapolation.join(', ')+' range.':''}`);
+    set('pilot-course-summary',`Inspect all ${plan.outcomes.length} compared states`);
+    const rows=$('pilot-course-rows');rows.replaceChildren();
+    for(const row of plan.outcomes){
+      const tr=el('tr');if(row.index===plan.selected?.index)tr.className='pilot-selected';
+      const stateText=`u ${fmt(row.input.command)} · θ ${fmt(row.input.position)} · ω ${fmt(row.input.rate)}`;
+      tr.append(el('td',String(row.sourceIndex+1)),el('td',stateText),el('td',String(row.prospectiveRank)),
+        el('td',row.status==='rank_gain'?'+1 direction':row.status==='no_gain'?'No gain':'Numerical rescaling'));
+      rows.append(tr);
+    }
+  }else{
+    set('planner-status',plan.status==='proposed'?'An informative next observation':plan.selected?'Current models largely agree':'No unobserved candidate inputs');
+    set('planner-metric-label','Model spread');
+    set('model-spread',plan.selected?`${fmt(plan.selected.disagreement)} N·m model disagreement${plan.selected.extrapolation?.length?' · extends the observed input range':''}`:'Model spread is unavailable');
+  }
+  set('planned-input',plan.selected?`θ ${fmt(plan.selected.input.position)} rad · ω ${fmt(plan.selected.input.rate)} rad/s · u ${fmt(plan.selected.input.command)} N·m`:'No new state is suggested under this objective.');
+}
+function useProposal(announce=true){if(!plan?.selected)return;const exact=!state.lab && Object.hasOwn(state.base,'offeredInputs');for(const f of ['position','rate','command'])$(f).value=exact?String(plan.selected.input[f]):Number(plan.selected.input[f].toPrecision(10));if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
 function runSimulation(announce=true){
   try{
     trajectory=simulate(model(),{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')});
@@ -197,6 +226,7 @@ if(restored){notice('Reopened your local notebook and recomputed every model rev
 else set('storage-status','Export a notebook to keep a portable copy');
 useProposal(false);
 $('use-proposal').addEventListener('click',()=>action(useProposal));
+$('planner-objective').addEventListener('change',()=>action(()=>{renderPlan();notice('Planning objective changed. Original observations and fitted laws are unchanged.');}));
 $('run-experiment').addEventListener('click',()=>action(()=>{
   const input=experimentInput();const next=state.lab?runVirtualExperiment(state,input):appendMeasurements(state,[{...input,jointTorque:numberInput('measured-torque')}]);
   const previous=state.discovery.selected.id;adopt(next,previous===next.discovery.selected.id?'New observation added. The leading structure is unchanged.':'New evidence changed the leading model structure.');

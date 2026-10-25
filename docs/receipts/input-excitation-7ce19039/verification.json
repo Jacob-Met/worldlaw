@@ -1,0 +1,143 @@
+{
+  "schema": "hamon.receiving/v1",
+  "issue": 253,
+  "owner": "hamon-7ce19039-20261025",
+  "sourceBase": "8a3f35d3a2d906beae61762ecb0383c61efbbc3b",
+  "source": [
+    {
+      "path": "src/data.mjs",
+      "sha256": "98ebf16d5c5f446166256f1c2d50b50521255d7dd2635eb8566156a9f82bcea0",
+      "gitBlob": "9e0c0ba520ba87dc4a36491521d151bbf2601e61"
+    },
+    {
+      "path": "src/science/input-excitation.mjs",
+      "sha256": "3afa62b28caf43708d9e664df5921eabcc5e9f8cb1f7b57a5949a48ce5b11dc5",
+      "gitBlob": "ab6fe22bf0a239eb9f44da0889bdc519a716f46a"
+    },
+    {
+      "path": "src/session.mjs",
+      "sha256": "050fceda418c3fc008f98a64508be40693635b9311b70dbe1c1f84849ce982ab",
+      "gitBlob": "70cb5345a7c4459b0036c63b9d34817231e4d1c2"
+    },
+    {
+      "path": "src/app.mjs",
+      "sha256": "3eb5085c09de67cc8cc8000668eb5a20110ff5908c3b42ae4fd476ece8f084c0",
+      "gitBlob": "827b717e3a3afb120e4cfa254274f44a7a9b6b65"
+    },
+    {
+      "path": "index.html",
+      "sha256": "dfe6e4e8a8c4a1bf2de24ae78cdf399a621e565887fbb8f7cb93e3e3667d08c1",
+      "gitBlob": "9084bf7826897b81662e7f4e49db74737213cf27"
+    },
+    {
+      "path": "styles.css",
+      "sha256": "454e62b89bab72bbdd542e30532e4b2fae610636387d630e248271a790b8ad29",
+      "gitBlob": "30e7a73253e7c2773c2cae691bdfe51951946daa"
+    },
+    {
+      "path": "tests/input-excitation.test.mjs",
+      "sha256": "2dc842f07ae1fbaeb7068bddff6b6b021a82b39db43f61409fe19bf3febb11d1",
+      "gitBlob": "239cea97be5b24d2a080ea62fdec9df213b2e296"
+    },
+    {
+      "path": "tests/virtual-notebook-portability.test.mjs",
+      "sha256": "bc38bda27c48c92f7601a13ab9dda06839e62474de0d4dfab0e23e9b9ab76355",
+      "gitBlob": "0085810488772e9c31425fc508d3ba1eda61bcdd"
+    },
+    {
+      "path": "examples/scalar-unexcited-command.json",
+      "sha256": "6e505b366b92f120154edf3599c6c18fb2befd9832ca2dd2dd448e62a0a69976",
+      "gitBlob": "02d6bae71d1b9805a702337cfb149bc38cc584e9"
+    },
+    {
+      "path": "scripts/input-excitation-browser.mjs",
+      "sha256": "eae1729688680a0516845b1adf23c2fdfdf3fe8f8706d651a7f348d9ad2b426f",
+      "gitBlob": "8d3a814068a81354c86c26ab8ce57d0bcb85d214"
+    },
+    {
+      "path": "scripts/input-excitation-study.mjs",
+      "sha256": "9fa221b4ec3bce5195f9cca6538cbd8650d4d437dbc3825c0ab642242dbf63ed",
+      "gitBlob": "3e0c8b4ce9b806bc4f64cbfa8d20ba2cf0583941"
+    },
+    {
+      "path": "docs/INPUT_EXCITATION.md",
+      "sha256": "8bc37e7600f2b717204ba080d5fef66be9bb887ca6e72c6bdde7cd08c3d4cc8f",
+      "gitBlob": "adde93bf8a8f9c7eddc8f85b21bf4250137a949f"
+    },
+    {
+      "path": "README.md",
+      "sha256": "57be2b4c122a850c17d25cb4de29ce199b0c9aad0658ad25934eb686ba14a484",
+      "gitBlob": "19893e3ad7303b59d1139e24f8abb92c0ea0f006"
+    },
+    {
+      "path": "scripts/package.py",
+      "sha256": "14b17692097fc5926b7e0c496408cfd5f517a58987d04dc4554dec9b4ff479ca",
+      "gitBlob": "5224b53129b3d73f264c709503be94ee3ca2e949"
+    }
+  ],
+  "environment": {
+    "node": "22.23.4",
+    "chrome": "156.0.8078.47",
+    "host": "authorized Ubuntu runtime",
+    "browserSandbox": "namespace, PID, network and seccomp verified"
+  },
+  "native": {
+    "base": "3a3955bf64cb034f7aebdf129e0ae84a61c75beb",
+    "command": "node --test --test-concurrency=1 tests/*.test.mjs",
+    "tests": 1032,
+    "pass": 1032,
+    "fail": 0,
+    "skip": 0,
+    "seconds": 112.16934326200862
+  },
+  "latestComposition": {
+    "base": "8a3f35d3a2d906beae61762ecb0383c61efbbc3b",
+    "tests": 32,
+    "pass": 32,
+    "fail": 0,
+    "command": "node --test --test-concurrency=1 tests/input-excitation.test.mjs tests/periodic-phase.test.mjs tests/recovery-transport.test.mjs tests/virtual-notebook-portability.test.mjs",
+    "seconds": 1.7605063129740302
+  },
+  "consumer": {
+    "browserGroups": 8,
+    "seconds": 2.1670337190153077,
+    "sourceOnlyDownloadReopen": true,
+    "preciseAcquisitionInputs": true,
+    "complete128OfferKeyboardInspection": true,
+    "negativeControls": [
+      "blank outcome cannot become an observation",
+      "prospective torque field and old schema refuse atomically",
+      "full input rank leaves omitted-law residual mismatch",
+      "no-action roundoff cannot count as improvement"
+    ],
+    "smokes": [
+      "npm run smoke",
+      "npm run smoke:trajectory"
+    ]
+  },
+  "study": {
+    "separateSeeds": 6,
+    "courses": 24,
+    "noiseCoursesImproved": 6,
+    "worstNoisyReceivingRMSE": 0.0013563483333024133,
+    "omittedLawResidualMismatches": 6,
+    "noUsefulOfferAcquisitions": 0
+  },
+  "review": {
+    "peer": "MECHANISM worker inspected core/data/session and directly executed 12 focused groups; no blocker",
+    "visual": "Actual desktop and 390px screenshots inspected; existing apparatus, law comparison and measurement flow retained. Narrow planner table headings remain whole and complete-course scrolling is keyboard accessible.",
+    "firstRemainingDesignFlaw": "The existing long Studio flow still puts detailed model and measurement sections far apart on narrow screens; this increment keeps its new choice inside the existing experiment card."
+  },
+  "scope": "Authored numerical and actual application receiving. No physical identification, hardware execution, calibrated precision or deployment.",
+  "distributionComposition": {
+    "status": "PASS",
+    "command": "GIT_INDEX_FILE=/tmp/hamon-7ce19039-worldlaw-candidate.index python3 scripts/package-policy-test.py",
+    "tests": 6,
+    "failures": 0,
+    "seconds": 0.064,
+    "pathIndexSource": "GitHub tree 978b09ff485455f64f0c352455d88a4b2a0a342f, all1037 blob paths/modes; isolated Git index",
+    "change": "Exclude exactly three retained command-deadzone historical text logs from distribution; no generic pattern expanded.",
+    "initialCheck": "The hydrated runtime's older Git index omitted five newer required source paths; that check failed. Re-ran with an isolated index populated from the actual candidate tree.",
+    "scope": "Distribution policy only; no new release ZIP claimed."
+  }
+}
