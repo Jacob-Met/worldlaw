@@ -1,3 +1,4 @@
+import {mountSaturationProfile} from './saturation-profile-panel.mjs';
 import {mountJointQualification} from './joint-qualification-panel.mjs';
 import {mountDriftConstruction} from './drift-construction-panel.mjs';
 import {mountCorrelationBand} from './correlation-band-panel.mjs';
@@ -143,6 +144,7 @@ mountRecoveryPlanner(recoveryPanel);
 
 const probePanel=mountProbePanel();
 mountProbePlanner(probePanel);
+mountSaturationProfile(probePanel);
 
 mountSerialNoise(()=>notebook);
 periodicContrastPanel=mountPeriodicContrast(()=>notebook,{onInvalidate:()=>periodicCoursePanel?.invalidate()});

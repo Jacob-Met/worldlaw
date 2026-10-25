@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+import {mkdir,writeFile} from 'node:fs/promises';import path from 'node:path';import {pathToFileURL} from 'node:url';
+import {createHash} from 'node:crypto';
+import {createProductServer} from '../server.mjs';
+const {default:puppeteer}=await import(process.env.PUPPETEER_PATH?pathToFileURL(process.env.PUPPETEER_PATH).href:'puppeteer');
+const server=createProductServer();await new Promise((r,j)=>{server.once('error',j);server.listen(0,'127.0.0.1',r);});
+const out=process.env.BROWSER_ARTIFACT_DIR||'/tmp/worldlaw-profile-browser';await mkdir(out,{recursive:true});let browser;const errors=[];
+try{
+ browser=await puppeteer.launch({headless:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+ const page=await browser.newPage();page.on('pageerror',e=>errors.push(e.message));await page.setViewport({width:1440,height:1000});
+ await page.goto('http://127.0.0.1:'+server.address().port+'/unknown-lab.html',{waitUntil:'networkidle0'});
+ const wait=()=>page.waitForFunction(()=>document.querySelector('#profile-status').textContent.startsWith('Profile complete'),{timeout:60000});
+ const report=()=>page.$eval('#profile-result pre',e=>JSON.parse(e.textContent));
+ const setting=async(id,value)=>page.$eval('#profile-'+id,(e,v)=>{e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));},String(value));
+ await page.click('#profile-example');await wait();const initial=await report();
+ assert.equal(initial.fit.finiteBaseline.status,'none-compatible');assert.equal(initial.fit.status,'covered-scale-intervals');assert(initial.fit.boxes.some(b=>b.covered&&b.scale.outer[0]<=.28&&b.scale.outer[1]>=.28));
+ await (await page.$('.saturation-profile')).screenshot({path:path.join(out,'desktop.png')});
+ await page.evaluate(()=>{window.profileBlob=null;const create=URL.createObjectURL.bind(URL);URL.createObjectURL=blob=>{window.profileBlob=blob;return create(blob);};document.querySelector('#profile-export').click();});
+ const raw=JSON.parse(await page.evaluate(()=>window.profileBlob.text()));assert.equal(raw.schema,'worldlaw.saturation-investigation/v1');assert.equal(raw.fit,undefined);assert.equal(raw.result,undefined);
+ const original=JSON.stringify(raw,null,2)+'\n',sourceSha256=createHash('sha256').update(original).digest('hex');await writeFile(path.join(out,'source-investigation.json'),original);
+ raw.result={fit:{status:'identified',boxes:[]}};raw.frozenWitness={scale:999,amplitude:999};
+ const reopen=async value=>page.evaluate(value=>{const d=new DataTransfer();d.items.add(new File([JSON.stringify(value)],'profile.json',{type:'application/json'}));const e=document.querySelector('#profile-file');e.files=d.files;e.dispatchEvent(new Event('change',{bubbles:true}));},value);
+ await reopen(raw);await wait();assert.deepEqual((await report()).fit,initial.fit);
+ const insufficient=structuredClone(raw);insufficient.study.runs=insufficient.study.runs.slice(0,1);
+ await reopen(insufficient);await wait();assert.equal((await report()).fit.status,'insufficient-training');assert.equal(await page.$('.profile-band'),null);assert.match(await page.$eval('#profile-result',e=>e.textContent),/No scale has been excluded/);
+ await reopen(raw);await wait();
+ const bad=structuredClone(raw);for(const r of bad.study.runs.filter(r=>r.role==='challenge'))for(const t of r.notebook.trials)if(t.history==='conditioned')t.jointTorque+=2;
+ await reopen(bad);await wait();const adverse=await report();assert.deepEqual(adverse.fit,initial.fit);assert.deepEqual(adverse.frozenWitness,initial.frozenWitness);assert(adverse.challenges.every(c=>c.status==='family-excluded'));
+ await setting('evaluations',1);assert(await page.$eval('#profile-result',e=>e.hidden));assert(await page.$eval('#profile-export',e=>e.disabled));await page.click('#profile-run');await wait();const budget=await report();assert.equal(budget.fit.status,'budget-exhausted');assert(budget.fit.boxes[0].scale.outer[0]<=.05&&budget.fit.boxes.at(-1).scale.outer[1]>=1);
+ await setting('min',0);await page.click('#profile-run');assert.match(await page.$eval('#profile-error',e=>e.textContent),/increasing saturation/);assert(await page.$eval('#profile-result',e=>e.hidden));
+ await setting('min',.05);await setting('evaluations',512);
+ // A synchronous edit after posting work must retire both pending and previous output.
+ await page.evaluate(()=>{document.querySelector('#profile-run').click();const e=document.querySelector('#profile-max');e.value='0.9';e.dispatchEvent(new Event('input',{bubbles:true}));});
+ assert(await page.$eval('#profile-result',e=>e.hidden));assert.match(await page.$eval('#profile-status',e=>e.textContent),/Inputs changed/);
+ await page.click('#profile-run');await wait();
+ await page.select('#probe-example-kind','drag');await page.click('#probe-example');assert(await page.$eval('#profile-result',e=>e.hidden));
+ await page.click('#profile-example');await wait();
+ await page.setViewport({width:390,height:844});await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);await page.$eval('.saturation-profile',e=>e.scrollIntoView());
+ assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ await page.focus('#profile-evaluations');await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.id),'profile-run');assert(await page.$eval('#profile-run',e=>getComputedStyle(e).outlineStyle!=='none'));
+ await (await page.$('.saturation-profile')).screenshot({path:path.join(out,'narrow-focus.png')});
+ assert.deepEqual(errors,[]);await writeFile(path.join(out,'receipt.json'),JSON.stringify({pass:true,sourceSha256,errors,source:'actual served UNKNOWN LAB worker and source-only notebook'},null,2)+'\n');console.log('PASS continuous profile: off-grid, source replay, frozen adverse challenges, budget, invalid domain, stale cancellation/source retirement, narrow layout and keyboard focus.');
+}finally{await browser?.close();await new Promise(r=>server.close(r));}

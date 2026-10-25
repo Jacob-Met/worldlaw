@@ -324,3 +324,7 @@ Coupling Lab can show distinct admitted affine response hypotheses with exactly 
 ## Position-only compatibility of original coupled readings
 
 After a circulation comparison, inspect whether one single-valued paired-position response can fit every original torque-reading box under explicit coordinate-sensitivity limits. Exact contradictory pairs distinguish repeated-state failures from slope-conditional failures; compatible cases construct a response through all point boxes. Polygon work and between-reading interpolation remain separate. See [the point-response contract](COUPLED_POINT_RESPONSE.md).
+
+### Investigate continuous saturation scales
+
+The probe instrument can [profile a declared continuous saturation-scale interval](docs/CONTINUOUS_SATURATION.md) after finite offered scales fail. It distinguishes covered inner support, unresolved outer support, excluded regions and unevaluated inputs, then freezes a training witness before separate challenges. Source-only replay preserves the original finite-family result and declared numerical work limits.
