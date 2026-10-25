@@ -46,7 +46,10 @@ function intersect(range,row,model){
 }
 export function fitRecovery(raw){
  // Intentionally accept no challenge data; predictions have a training-only input boundary.
- const n=validateRecovery({...raw,challenges:[]}), rows=n.training.map(summary);
+ const n=validateRecovery({...raw,challenges:[]});
+ return fitReadouts(n,n.training.map(summary));
+}
+function fitReadouts(n,rows){
  const models=[{id:'zero',kind:'zero'},{id:'persistent',kind:'persistent'},...n.tauSeconds.map(t=>({id:'decay:'+t,kind:'decay',tauSeconds:t}))];
  const qualified=rows.every(r=>r.qualified);
  const candidates=models.map(model=>{
@@ -66,7 +69,10 @@ export function predictRecovery(fit,delays){
  return fit.candidates.map(c=>({id:c.id,status:c.status,points:delays.map(delay=>({delaySeconds:delay,prediction:c.amplitude*factor(c,delay),range:c.amplitudeRange?.map(a=>a*factor(c,delay))??null}))}));
 }
 export function evaluateRecovery(raw){
- const n=validateRecovery(raw),fit=fitRecovery(n),observations=n.challenges.map(summary);
+ const n=validateRecovery(raw);
+ return evaluateReadouts(fitRecovery(n),n.challenges.map(summary));
+}
+function evaluateReadouts(fit,observations){
  const predictions=predictRecovery(fit,observations.map(r=>r.delaySeconds));
  const tests=fit.candidates.map((c,i)=>{
   let range=c.amplitudeRange?[...c.amplitudeRange]:null;
@@ -80,3 +86,31 @@ export function evaluateRecovery(raw){
 }
 export function exportRecovery(raw){const n=validateRecovery(raw),pretty=JSON.stringify(n,null,2)+'\n';return byteLength(pretty)<=MAX_BYTES?pretty:JSON.stringify(n)+'\n';}
 export function importRecovery(text){require(typeof text==='string'&&byteLength(text)<=MAX_BYTES,'Use recovery JSON under 2 MB.');return validateRecovery(JSON.parse(text));}
+
+
+// Select only original complete pairs after admitting the entire original study.
+// Identical selected numeric subsets are not new recordings: source-reuse checks
+// apply to the originals above, which remain the custody boundary.
+export function evaluateRecoveryPairs(raw, selections){
+ const n=validateRecovery(raw),all=[...n.training,...n.challenges];
+ require(selections&&typeof selections==='object'&&!Array.isArray(selections),'Provide original pair selections.');
+ require(Object.keys(selections).length===all.length&&all.every(r=>Object.hasOwn(selections,r.recordingId)),'Select every original recording explicitly.');
+ const selected=all.map((run,index)=>{
+  const ids=selections[run.recordingId];
+  require(Array.isArray(ids)&&new Set(ids).size===ids.length&&ids.every(x=>typeof x==='string'),'Select distinct original pair identities.');
+  const available=new Set(run.evidence.trials.map(t=>t.pairId));
+  require(ids.every(id=>available.has(id)),'A selected pair is absent from its original recording.');
+  if(index>=n.training.length&&ids.length===0)return null;
+  require(ids.length>=4,'A selected recording needs at least four original complete pairs.');
+  const keep=new Set(ids),evidence={...run.evidence,trials:run.evidence.trials.filter(t=>keep.has(t.pairId))};
+  // Original simulation metadata describes the full acquired count. Do not
+  // invent revised acquisition settings for a retrospective subset.
+  delete evidence.simulation;
+  return summary({...run,evidence});
+ });
+ const fit=fitReadouts(n,selected.slice(0,n.training.length));
+ const unavailableChallenges=n.challenges.filter((_,i)=>selected[n.training.length+i]===null).map(r=>r.recordingId);
+ const result=evaluateReadouts(fit,selected.slice(n.training.length).filter(Boolean));
+ if(unavailableChallenges.length)for(const t of result.tests)if(t.status==='compatible'||t.status==='untested')t.status='incomplete';
+ return {...result,unavailableChallenges};
+}
