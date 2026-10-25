@@ -1,0 +1,109 @@
+{
+  "source": {
+    "head": "b008517cf93394305e27d72ad10b1a00169e3d53",
+    "parent": "730122e84929936929cf1526f595279962c1ff7e",
+    "tree": "6e3e5421d40c56f99ce05aeb8d39f9df8708cf65",
+    "originalBaseline": "29b117100c57c5f132d45c53edda2febc0cd9926",
+    "receivedFiles": 948,
+    "allTestedSourceBytesMatchPublishedArchive": true
+  },
+  "runtime": {
+    "node": "22.23.4",
+    "platform": "Linux-6.12.94+-x86_64-with-glibc2.39"
+  },
+  "verification": {
+    "command": "npm run verify",
+    "exit": 0,
+    "native": {
+      "tests": 986,
+      "pass": 986,
+      "fail": 0,
+      "skip": 0
+    },
+    "launchedProductSmoke": "pass",
+    "launchedTrajectorySmoke": "pass",
+    "completeLogSHA256": "01cce20111f66b65812b97caa6af21148d6cd728d4d33552b2d8b72da4ae2fc6",
+    "outputTail": " no data leakage\nok 968 - changing order alone preserves every state and noiseless target, no data leakage\n  ---\n  duration_ms: 0.638863\n  type: 'test'\n  ...\n# Subtest: the shuffled sequence and oracle parameters can be reconstructed from portable evidence\nok 969 - the shuffled sequence and oracle parameters can be reconstructed from portable evidence\n  ---\n  duration_ms: 1.54216\n  type: 'test'\n  ...\n# Subtest: user-declared measured samples retain pairs but never inherited virtual-only metadata\nok 970 - user-declared measured samples retain pairs but never inherited virtual-only metadata\n  ---\n  duration_ms: 0.419337\n  type: 'test'\n  ...\n# Subtest: invalid strategies, cycle amplitudes and forged simulation metadata fail validation\nok 971 - invalid strategies, cycle amplitudes and forged simulation metadata fail validation\n  ---\n  duration_ms: 0.610879\n  type: 'test'\n  ...\n# Subtest: offset transfers with one coefficient to signed separate probes\nok 972 - offset transfers with one coefficient to signed separate probes\n  ---\n  duration_ms: 13.074456\n  type: 'test'\n  ...\n# Subtest: drag transfers with one coefficient to signed separate probes\nok 973 - drag transfers with one coefficient to signed separate probes\n  ---\n  duration_ms: 3.159845\n  type: 'test'\n  ...\n# Subtest: restoring transfers with one coefficient to signed separate probes\nok 974 - restoring transfers with one coefficient to signed separate probes\n  ---\n  duration_ms: 3.042585\n  type: 'test'\n  ...\n# Subtest: omitted mixed response contradicts every offered family\nok 975 - omitted mixed response contradicts every offered family\n  ---\n  duration_ms: 3.520406\n  type: 'test'\n  ...\n# Subtest: small correlated training states preserve alternatives; reversed probe distinguishes\nok 976 - small correlated training states preserve alternatives; reversed probe distinguishes\n  ---\n  duration_ms: 2.459812\n  type: 'test'\n  ...\n# Subtest: challenge values cannot change fit or frozen prediction intervals\nok 977 - challenge values cannot change fit or frozen prediction intervals\n  ---\n  duration_ms: 4.355404\n  type: 'test'\n  ...\n# Subtest: zero-rate unexcited drag remains ambiguous rather than identified\nok 978 - zero-rate unexcited drag remains ambiguous rather than identified\n  ---\n  duration_ms: 1.7326\n  type: 'test'\n  ...\n# Subtest: unqualified challenge cannot erase a qualified contradiction\nok 979 - unqualified challenge cannot erase a qualified contradiction\n  ---\n  duration_ms: 3.643784\n  type: 'test'\n  ...\n# Subtest: one coherent coefficient must explain all challenges\nok 980 - one coherent coefficient must explain all challenges\n  ---\n  duration_ms: 3.40225\n  type: 'test'\n  ...\n# Subtest: input-only replay recomputes; invalid scope/source/state/reuse rejected\nok 981 - input-only replay recomputes; invalid scope/source/state/reuse rejected\n  ---\n  duration_ms: 11.583954\n  type: 'test'\n  ...\n# Subtest: unrecorded training order is insufficient, not a fitted effect\nok 982 - unrecorded training order is insufficient, not a fitted effect\n  ---\n  duration_ms: 2.017491\n  type: 'test'\n  ...\n# Subtest: training subset and partially overlapping challenge evidence are rejected despite renamed pairs and order\nok 983 - training subset and partially overlapping challenge evidence are rejected despite renamed pairs and order\n  ---\n  duration_ms: 2.862842\n  type: 'test'\n  ...\n# Subtest: captured Chrome seed rounding reopens in Node without rewriting supplied evidence\nok 984 - captured Chrome seed rounding reopens in Node without rewriting supplied evidence\n  ---\n  duration_ms: 67.488969\n  type: 'test'\n  ...\n# Subtest: roundoff bound applies to every numeric field in both baseline arrays\nok 985 - roundoff bound applies to every numeric field in both baseline arrays\n  ---\n  duration_ms: 176.792468\n  type: 'test'\n  ...\n# Subtest: numeric compatibility does not relax row identity, seed, schema or finiteness\nok 986 - numeric compatibility does not relax row identity, seed, schema or finiteness\n  ---\n  duration_ms: 42.391377\n  type: 'test'\n  ...\n1..986\n# tests 986\n# suites 0\n# pass 986\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 38551.924378\n\n> worldlaw@0.1.0 smoke\n> node scripts/smoke.mjs\n\nPASS launched product assets and refusal paths; actual discovery → virtual measurement → revision → notebook reopen.\n\n> worldlaw@0.1.0 smoke:trajectory\n> node scripts/trajectory-smoke-92be.mjs\n\n{\n  \"product\": \"worldlaw\",\n  \"route\": \"trajectory-challenge\",\n  \"runtime\": \"v22.23.4\",\n  \"inputSHA256\": \"fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e\",\n  \"received\": \"launched local HTTP server -> actual JSON input -> fitting -> forward predictions -> source notebook reopen\",\n  \"selectedModel\": \"command+rate+gravity+bias\",\n  \"selectedPositionRMSE\": 0.0006561748182990025,\n  \"comparedModels\": 8,\n  \"challengeRuns\": 2,\n  \"negativeCases\": [\n    \"missing initial rate refused\",\n    \"missing resource404\",\n    \"unsupported method405\"\n  ],\n  \"evidenceKind\": \"synthetic\"\n}\n"
+  },
+  "focused": {
+    "command": "node --test tests/robust-fit.test.mjs tests/discovery-refit.test.mjs tests/torque-discovery.test.mjs tests/session.test.mjs tests/virtual-notebook-portability.test.mjs",
+    "tests": 43,
+    "pass": 43,
+    "fail": 0
+  },
+  "ordinaryParity": {
+    "command": "node experiments/scalar-refit-parity.mjs --baseline-root=<retained 29b1171>",
+    "completeResults": 240,
+    "allExact": true
+  },
+  "browser": {
+    "original-browser": {
+      "product": "worldlaw",
+      "browser": "156.0.8078.47",
+      "checks": [
+        "real initial workbench, hypotheses, evidence plots and solver-driven canvas render",
+        "keyboard-selected experiment produces fresh virtual measurement, structural revision and improved held-out prediction",
+        "completed notebook download replays in Node; browser reload, undo and portable file reopen preserve evidence",
+        "malformed replacement is atomic; separate imported drag mechanism reaches model comparison and recorded measurement path",
+        "changed dynamics input runs; invalid inertia refuses without corrupting evidence",
+        "complete notebook fits 320, 390, 768 and 1440 pixel viewports",
+        "late input read cannot replace a newer notebook; no JavaScript page errors"
+      ],
+      "metrics": {
+        "beforeHeldOutRMSE": 1.645,
+        "afterHeldOutRMSE": 0.000957
+      },
+      "layouts": [
+        {
+          "width": 1440,
+          "document": 1440
+        },
+        {
+          "width": 768,
+          "document": 768
+        },
+        {
+          "width": 390,
+          "document": 390
+        },
+        {
+          "width": 320,
+          "document": 320
+        }
+      ],
+      "scope": "Real Chrome product receiving with declared synthetic observations; no physical mechanism or human acceptance claim."
+    },
+    "soft-l1-browser": {
+      "browser": "156.0.8078.47",
+      "sandboxDisabled": false,
+      "sourceSHA256": "5aa6f8c98f7dcc8214575453c79b93347beeb012dea32896cb45556abe649c7e",
+      "checks": [
+        "actual imported source -> explicit keyboard-applied loss -> changed executable law; raw mismatch retained",
+        "every original reading remains inspectable; ordinary-refit diagnostics identify the different loss",
+        "download contains original inputs and explicit v3 history; reload, undo and portable reopen recompute",
+        "invalid scale focuses an error without replacing the law, evidence or history",
+        "390px workflow and scrollable full-reading table preserve keyboard access without document overflow",
+        "real unresolved candidate refuses the complete comparison; no successful fallback is displayed or saved"
+      ],
+      "metrics": {
+        "beforeHeldOutRMSE": 1.006,
+        "afterHeldOutRMSE": 0.003527,
+        "rawTrainingRMSE": 2.439
+      },
+      "width": {
+        "viewport": 390,
+        "document": 390
+      },
+      "scope": "Authored source controls through the actual local product. No physical calibration, blind validation or deployment."
+    },
+    "originalLaunchAdapter": "Unmodified maintained scripts/browser.mjs, with PLAYWRIGHT_MODULE injecting only chromiumSandbox:true and asserting absence of --no-sandbox/--disable-setuid-sandbox."
+  },
+  "retainedFailures": [
+    "High coordinate leverage remains an authored recovery failure; ordinary-region RMSE and slope error exceed 5.",
+    "An actual 35-row candidate reaches the iteration limit at scale 1e-7. Complete comparison refuses; browser verifies no saved or displayed fallback.",
+    "First full candidate test found an existing unknown-schema control using v3. v3 is now supported; control moved to v999 and refusal still passes.",
+    "First archive-index tree check omitted 13 pre-existing tracked logs because git add honored ignore rules. Explicitly admitting those archived paths reconstructs the exact published tree.",
+    "Initial browser receiver tested the empty open attribute as truthy and closed its target panel. Receiver condition corrected. Reading table was then bounded to preserve narrow-screen access."
+  ],
+  "scope": "Authored software and numerical controls through the maintained application; not blind or physical validation, installation or deployment."
+}
