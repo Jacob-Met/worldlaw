@@ -56,3 +56,5 @@ The fourth law executes through the maintained angular solver and two-resolution
 Default inputs remain `worldlaw.cycle-work-inputs/v1`. Explicit quadratic admission exports v2 and is restored on reopen. A v1 notebook carrying quadratic admission refuses rather than silently omitting the new family. Export retains original source, frozen law and declarations only. Editing the admission clears stale results.
 
 The focused authored controls are `node --test tests/angular-cycle-work-quadratic.test.mjs`: an independent fine-step oscillator with quadratic acceleration, held-out-value noninterference, whole-population refusal, v2 replay and retained measured PASCO comparison. These commands specify intended verification; executed values and browser receiving belong in the actual release receipt.
+
+If cubic-rate work exceeds numerical range on any original admitted cycle, that feature is retained as unavailable and the entire quadratic family refuses; original cycles and three existing families remain intact.

@@ -1,8 +1,10 @@
+import {planProbeCourses,exportProbeCourses,importProbeCourses,PROBE_COURSE_SCHEMA} from './probe-course.mjs';
 import {planProbeAcquisition,exportProbePlan,importProbePlan} from './probe-planner.mjs';
 const fmt=x=>Number(x.toPrecision(5)).toString();
 export function mountProbePlanner(controller){
  const section=document.createElement('section');section.className='duration-investigation probe-choice';section.setAttribute('aria-labelledby','probe-choice-title');
  section.innerHTML=`<style>
+ .probe-choice select{max-width:100%;min-width:0;width:100%}
  .probe-choice .mini-inputs{grid-template-columns:repeat(2,minmax(0,1fr))}
  .probe-choice .mini-inputs label{min-width:0}
  .probe-choice .mini-inputs input{display:block;min-width:0;max-width:100%;width:100%;box-sizing:border-box}
@@ -14,7 +16,7 @@ export function mountProbePlanner(controller){
  </style><p class="overline">NEXT PROBE / SPEND EFFORT WHERE PREDICTIONS DIFFER</p>
  <h2 id="probe-choice-title">Which state is worth measuring?</h2>
  <p>Use the cross-probe study above. Offer states you can measure, with your own effort costs. The chooser keeps the full training coefficient intervals and asks which affordable observation can separate them.</p>
- <form id="probe-choice-form">
+ <form id="probe-choice-form"><label>Acquisition comparison<select id="probe-choice-mode"><option value="single">One offered state</option><option value="course">Two states with one shared coefficient per law</option></select></label><p class="input-hint">Two-state mode compares all pairs from at most eight offered states. Both readouts must keep the same preparation and one unchanged response law. Effort is the sum of the two declared costs.</p>
  <div class="mini-inputs"><label>Effort budget<input id="probe-choice-budget" type="number" min="0" max="1000000" step="any" value="4" required></label><label>Assumed future contrast radius (N·m)<input id="probe-choice-radius" type="number" min="0.00000001" max="1000" step="any" value="0.01" required></label></div>
  <p class="input-hint">Effort uses your declared units, not seconds. Radius describes an assumed future screening bound, not a sensor specification or observed result. At least four matched pairs in each acquisition order and the same preparation, recovery and command are required by the study.</p>
  <div class="table-wrap" tabindex="0" role="region" aria-label="Editable offered probe states"><table><caption>Only these offered states are considered; feasibility is your declaration.</caption><thead><tr><th>Probe</th><th>Angle (rad)</th><th>Rate (rad/s)</th><th>Effort</th><th>Remove</th></tr></thead><tbody id="probe-choice-offered"></tbody></table></div>
@@ -41,21 +43,35 @@ export function mountProbePlanner(controller){
  }
  function render(next){
   plan=next;key=JSON.stringify(training());$('probe-choice-results').replaceChildren();$('probe-choice-detail').replaceChildren();
+  if(next.schema===PROBE_COURSE_SCHEMA){renderCourse(next);return;}
   const c=next.selected;$('probe-choice-status').textContent=c?next.status.toUpperCase().replaceAll('-',' ')+': '+c.id+' at angle '+fmt(c.probe.position)+' rad, rate '+fmt(c.probe.rate)+' rad/s; effort '+fmt(c.cost)+', '+c.separated+'/'+c.total+' pairs. '+next.reason:next.reason;
   for(const c of next.candidates){const tr=document.createElement('tr');for(const value of [c.id,c.separated+'/'+c.total,fmt(c.cost),c.withinBudget?'within budget':'over budget',Object.entries(c.extrapolation).filter(([,v])=>v).map(([k])=>k).join(', ')||'none']){const td=document.createElement('td');td.textContent=value;tr.append(td);}$('probe-choice-results').append(tr);
    const p=document.createElement('p');p.textContent=c.id+': '+c.predictions.map(x=>x.id+' ['+x.interval.map(fmt).join(', ')+'] N·m').join('; ')+'. '+c.comparisons.map(x=>x.hypotheses.join(' / ')+' gap '+fmt(x.gap)+', margin '+fmt(x.margin)+(x.separable?' separates':' unresolved')).join('; ');$('probe-choice-detail').append(p);}
   $('probe-choice-export').disabled=!next.selected;
  }
+ function renderCourse(next){
+  const chosen=next.selected;
+  $('probe-choice-status').textContent=next.status.toUpperCase().replaceAll('-',' ')+': '+(chosen?chosen.ids.join(' + ')+', effort '+fmt(chosen.cost)+'. ':'')+next.reason;
+  for(const c of next.courses){
+   const tr=document.createElement('tr');
+   for(const value of [c.ids.join(' + '),c.separated+'/'+c.total,fmt(c.cost),c.withinBudget?'within budget':'over budget',c.states.map(s=>s.id+': '+(Object.entries(s.extrapolation).filter(([,v])=>v).map(([k])=>k).join(', ')||'none')).join('; ')]){const td=document.createElement('td');td.textContent=value;tr.append(td);}
+   $('probe-choice-results').append(tr);
+   const p=document.createElement('p');p.textContent=c.ids.join(' + ')+': '+c.comparisons.map(x=>x.hypotheses.join(' / ')+(x.separable?' jointly separated':' overlapping joint predictions; one exact coefficient witness: '+x.overlapWitness.map((q,i)=>x.hypotheses[i]+' = '+q.numerator+'/'+q.denominator).join(', '))).join('; ')+'. Joint-only separations (neither state alone): '+(c.jointOnly.map(x=>x.join(' / ')).join('; ')||'none')+'.';$('probe-choice-detail').append(p);
+  }
+  for(const c of next.selected?.states??[]){const p=document.createElement('p');p.textContent=c.id+' marginal predictions: '+c.predictions.map(x=>x.id+' ['+x.interval.map(fmt).join(', ')+'] N·m').join('; ')+'. Marginal overlap alone does not establish joint overlap.';$('probe-choice-detail').append(p);}
+  const p=document.createElement('p');p.textContent=next.qualification;$('probe-choice-detail').append(p);
+  $('probe-choice-export').disabled=!next.selected;
+ }
  const safe=fn=>{try{fn();$('probe-choice-error').textContent='';}catch(e){$('probe-choice-error').textContent=e.message;}};
- $('probe-choice-form').onsubmit=e=>{e.preventDefault();readVersion++;safe(()=>{invalidate();render(planProbeAcquisition(training(),options()));});};
+ $('probe-choice-form').onsubmit=e=>{e.preventDefault();readVersion++;safe(()=>{invalidate();render(($('probe-choice-mode').value==='course'?planProbeCourses:planProbeAcquisition)(training(),options()));});};
  $('probe-choice-form').addEventListener('input',()=>{readVersion++;invalidate();});
  $('probe-choice-add').onclick=()=>safe(()=>{readVersion++;add();invalidate();});
  document.addEventListener('worldlaw-probe-study-change',()=>{readVersion++;try{if(JSON.stringify(training())!==key)invalidate();}catch{invalidate();}});
  $('probe-choice-export').onclick=()=>safe(()=>{
-  if(!plan?.selected||JSON.stringify(training())!==key||JSON.stringify([options().probes,options().contrastRadius,options().budget])!==JSON.stringify([plan.settings.probes,plan.settings.contrastRadius,plan.settings.budget])){invalidate();throw Error('Inputs changed; recompute an informative request first.');}
-  const url=URL.createObjectURL(new Blob([exportProbePlan(training(),plan.settings)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='worldlaw-probe-request.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  if(!plan?.selected||($('probe-choice-mode').value==='course')!==(plan.schema===PROBE_COURSE_SCHEMA)||JSON.stringify(training())!==key||JSON.stringify([options().probes,options().contrastRadius,options().budget])!==JSON.stringify([plan.settings.probes,plan.settings.contrastRadius,plan.settings.budget])){invalidate();throw Error('Inputs changed; recompute an informative request first.');}
+  const url=URL.createObjectURL(new Blob([(plan.schema===PROBE_COURSE_SCHEMA?exportProbeCourses:exportProbePlan)(training(),plan.settings)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='worldlaw-probe-request.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
  });
  $('probe-choice-open').onclick=()=>$('probe-choice-file').click();
- $('probe-choice-file').onchange=async e=>{const version=++readVersion,file=e.target.files?.[0];if(!file)return;try{if(file.size>4000000)throw Error('Use a request below 4 MB.');const next=importProbePlan(await file.text());if(version!==readVersion)return;controller.adopt(next.training);$('probe-choice-budget').value=next.settings.budget;$('probe-choice-radius').value=next.settings.contrastRadius;$('probe-choice-offered').replaceChildren();next.settings.probes.forEach(add);render(next);$('probe-choice-error').textContent='';}catch(error){if(version===readVersion)$('probe-choice-error').textContent=error.message;}finally{e.target.value='';}};
+ $('probe-choice-file').onchange=async e=>{const version=++readVersion,file=e.target.files?.[0];if(!file)return;try{if(file.size>4000000)throw Error('Use a request below 4 MB.');const text=await file.text();const next=JSON.parse(text)?.schema===PROBE_COURSE_SCHEMA?importProbeCourses(text):importProbePlan(text);if(version!==readVersion)return;controller.adopt(next.training);$('probe-choice-mode').value=next.schema===PROBE_COURSE_SCHEMA?'course':'single';$('probe-choice-budget').value=next.settings.budget;$('probe-choice-radius').value=next.settings.contrastRadius;$('probe-choice-offered').replaceChildren();next.settings.probes.forEach(add);render(next);$('probe-choice-error').textContent='';}catch(error){if(version===readVersion)$('probe-choice-error').textContent=error.message;}finally{e.target.value='';}};
  [{id:'correlated',position:.6,rate:.6,cost:1},{id:'zero-rate',position:.6,rate:0,cost:2},{id:'reversed',position:.6,rate:-.6,cost:4}].forEach(add);
 }

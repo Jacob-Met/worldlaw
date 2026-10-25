@@ -46,3 +46,15 @@ test('retained measured input admits explicit comparison without winner or new p
  for(let i=0;i<3;i++)assert.equal(old.fit.candidates[i].lossRMSE,r.fit.candidates[i].lossRMSE);
  console.log(JSON.stringify({measuredQuadratic:{status:r.fit.candidates[3].status,coefficient:r.fit.candidates[3].coefficients?.quadratic,lossRMSE:r.fit.candidates[3].lossRMSE},receiving:r.receiving.map(x=>({id:x.candidateId,status:x.status,rmse:x.rollout?.metrics.positionRMSE}))}));
 });
+
+test('cubic overflow preserves original admitted cycle population and refuses only quadratic family',()=>{
+ const pattern=Array.from({length:32},(_,i)=>Math.cos(2*Math.PI*i/32));
+ const tiny={id:'fast-authored',label:'Authored finite-rate numerical range control',kind:'synthetic',dynamics:'unforced_scalar_rotation',inertia:null,initialRate:0,source:{label:'Exact dyadic times, repeating sampled waveform',recordingId:'fast-authored'},samples:Array.from({length:321},(_,i)=>({time:i*2**-350,position:pattern[i%32]}))};
+ const baseline=fitCycleWork(spring,[tiny]),expanded=fitCycleWork(spring,[tiny],{includeQuadratic:true});
+ assert.ok(baseline.admittedCycleCount>=3);assert.equal(expanded.admittedCycleCount,baseline.admittedCycleCount);
+ assert.ok(expanded.records[0].cycles.filter(c=>c.status==='admitted').every(c=>c.quadraticWork===null));
+ const clean=structuredClone(expanded);delete clean.declaration.includeQuadratic;delete clean.coefficientMeaning.quadratic;clean.candidates.pop();
+ for(const record of clean.records)for(const row of record.cycles){delete row.quadraticWork;delete row.quadraticWorkReason;}
+ for(const candidate of clean.candidates)if(candidate.coefficients)delete candidate.coefficients.quadratic;
+ assert.deepEqual(clean,baseline);assert.equal(expanded.candidates[3].status,'refused');assert.match(expanded.candidates[3].reason,/without dropping cycles/);
+});

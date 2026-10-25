@@ -57,8 +57,8 @@ function extract(run,potential,decl){
     if(decl.includeQuadratic)quadraticWork+=(Math.abs(rate(i-1))**3+Math.abs(rate(i))**3)*dt/2;
    }
    const startRate=rate(first),endRate=rate(last),potentialLoss=potential(s[first].position)-potential(s[last].position),kineticCorrection=(startRate**2-endRate**2)/2,loss=potentialLoss+kineticCorrection;
-   insist([viscous,distance,potentialLoss,kineticCorrection,loss,...(decl.includeQuadratic?[quadraticWork]:[])].every(finite)&&viscous>0&&distance>0,'Cycle work is nonfinite or has no supported motion.');
-   Object.assign(row,{status:'admitted',loss,potentialLoss,kineticCorrection,startRate,endRate,viscous,distance,...(decl.includeQuadratic?{quadraticWork}:{})});
+   insist([viscous,distance,potentialLoss,kineticCorrection,loss].every(finite)&&viscous>0&&distance>0,'Cycle work is nonfinite or has no supported motion.');
+   Object.assign(row,{status:'admitted',loss,potentialLoss,kineticCorrection,startRate,endRate,viscous,distance,...(decl.includeQuadratic?{quadraticWork:finite(quadraticWork)?quadraticWork:null,...(!finite(quadraticWork)?{quadraticWorkReason:'Quadratic rate-work arithmetic exceeded finite range.'}:{})}:{})});
   }catch(error){row.reason=error.message;}
   cycles.push(row);
  }
@@ -67,10 +67,11 @@ function extract(run,potential,decl){
   limitation:'Only maxima between complete upward-crossing intervals are considered. Prefix/suffix and all refused complete-cycle pairs remain disclosed.'};
 }
 function fitFamilies(rows,model,includeQuadratic=false){
- const admitted=rows.filter(r=>r.status==='admitted'),target=admitted.map(r=>r.loss),columns=[admitted.map(r=>r.viscous),admitted.map(r=>r.distance),...(includeQuadratic?[admitted.map(r=>r.quadraticWork)]:[])];
+ const admitted=rows.filter(r=>r.status==='admitted'),target=admitted.map(r=>r.loss),columns=[admitted.map(r=>r.viscous),admitted.map(r=>r.distance),...(includeQuadratic?[admitted.map(r=>r.quadraticWork??0)]:[])];
  return [...FAMILIES,...(includeQuadratic?[['quadratic',[2]]]:[])].map(([id,indices])=>{
   const result={id,status:'refused',cycleCount:admitted.length};
   if(admitted.length<3)return {...result,reason:'At least three admitted complete cycles are required.'};
+  if(id==='quadratic'&&admitted.some(r=>r.quadraticWork===null))return {...result,reason:'Quadratic work unavailable on one or more original admitted cycles; the complete family is refused without dropping cycles.'};
   const unconstrained=fitLinearColumns(indices.map(i=>columns[i]),target);
   if(!unconstrained)return {...result,reason:'Work feature columns are rank deficient.'};
   result.unconstrainedCoefficients=unconstrained.coefficients;result.normalizedQRPivotRatio=unconstrained.conditionEstimate;
