@@ -67,6 +67,8 @@ The notebook preserves the original video's SHA-256, decoded image coordinates, 
 
 **Export angles** requires an explicit segment selection when a track contains gaps. **Studio observations** additionally requires your known constant inertia and applied torque declaration; the video does not establish either. The export uses the existing angular telemetry adapter and its disjoint derivative-window split. Import that file into the discovery studio to compare executable torque models. Coupled mechanisms such as the real double-pendulum verification video do not automatically satisfy the scalar-inertia assumption.
 
+**Marker-first acquisition:** select and track one visible marker before supplying a pivot. **Infer a fixed reference from the marker path** compares the original continuous observations with a circle and a line, overlays a supported candidate on the source image, and applies it only after explicit acceptance. The fitted reference and its source observations survive notebook and angular export. [Method, receiving and limits](docs/MOTION_PATH_REFERENCE.md) explain why a circular image path is still a conditional reference.
+
 Motion Lab currently assumes a fixed camera, a declared fixed pivot, approximately planar motion and a marker whose appearance stays stable. A high image-match score is not calibrated location confidence. Read [Motion Lab receiving and limitations](docs/MOTION_RECEIVING.md) and [the tracking contract](docs/MOTION_TRACKING.md) before interpreting video-derived physics.
 
 ## Try the complete experiment

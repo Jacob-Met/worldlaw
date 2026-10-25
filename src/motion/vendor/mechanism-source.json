@@ -1,0 +1,11 @@
+{
+  "repository": "Jacob-Met/mechanism",
+  "path": "src/core.js",
+  "gitBlob": "792f876916b5323510c2e8d7ce1f0a2377515afe",
+  "sourceCommit": "0b93c8e828ed40a2bb795bbe8a2869d382f24590",
+  "exportsConsumed": [
+    "classifyPath",
+    "geometricResidual"
+  ],
+  "policy": "Unmodified maintained source. MECHANISM remains owner; this consumer adapts original Motion notebook observations."
+}

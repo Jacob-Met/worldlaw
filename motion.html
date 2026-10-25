@@ -37,9 +37,22 @@
             <details class="provenance-details"><summary>Source & provenance</summary><pre id="source-provenance">A loaded source will have a recorded identity.</pre></details>
           </section>
           <section class="panel motion-panel" aria-labelledby="calibration-heading">
-            <div class="section-heading"><span class="section-number">02</span><h2 id="calibration-heading">Give motion a reference</h2></div>
-            <ol class="calibration-steps"><li id="pivot-step"><span>1</span><div><strong>Observe the pivot</strong><small>Click its center in the frame.</small></div></li><li id="marker-step"><span>2</span><div><strong>Choose a visible marker</strong><small>A small, distinctive texture works best.</small></div></li></ol>
+            <div class="section-heading"><span class="section-number">02</span><h2 id="calibration-heading">Track first. Find the reference.</h2></div>
+            <ol class="calibration-steps"><li id="marker-step"><span>1</span><div><strong>Choose a visible marker</strong><small>A small, distinctive texture works best.</small></div></li><li id="pivot-step"><span>2</span><div><strong>Choose a reference</strong><small>Mark a visible pivot, or infer it after tracking.</small></div></li></ol>
             <label for="pivot-mode" class="segment-field">Pivot reference<select id="pivot-mode"><option value="fixed">Fixed image point</option><option value="tracked">Track its visible patch in each frame</option></select></label><p class="input-hint">Tracked mode requires two visible, distinctive patches. Cyan marks the observed pivot; a missing pivot leaves an angular gap.</p><div class="calibration-actions"><button id="pick-pivot" class="button button-outline" type="button" disabled>Set pivot</button><button id="pick-marker" class="button button-outline" type="button" disabled>Set marker</button></div>
+            <details id="path-reference-panel" class="coordinate-details">
+              <summary>Infer a fixed reference from the marker path</summary>
+              <p class="input-hint">With a fixed camera, track a visible marker before setting a pivot. Compare a circle with a line on one uninterrupted source course.</p>
+              <div class="coordinate-controls">
+                <label for="path-gap">Largest time gap <span>s</span><input id="path-gap" type="number" min="0.001" max="86400" step="0.01" value="0.25"></label>
+                <label for="path-residual">Radial discrepancy limit <span>px</span><input id="path-residual" type="number" min="0" max="100" step="0.1" value="2"></label>
+              </div>
+              <label for="path-course" class="segment-field">Original continuous course<select id="path-course"><option value="">Choose a continuous course</option></select></label>
+              <button id="infer-path-reference" class="button button-outline button-full" type="button" disabled>Compare the observed path</button>
+              <p id="path-reference-result" class="input-hint" style="white-space:pre-line" aria-live="polite">Track a visible marker first. A proposed reference leaves the original evidence unchanged.</p>
+              <button id="apply-path-reference" class="button button-accent button-full" type="button" disabled>Use this fixed image reference</button>
+              <p class="input-hint">The center is inferred from these same observations. Accepting it conditions the angles on that fixed point; it does not measure a physical joint or calibrate uncertainty.</p>
+            </details>
             <p id="calibration-status" class="input-hint">Coordinates use the decoded source pixels.</p>
             <details id="coordinate-details" class="coordinate-details"><summary>Enter a point by coordinates</summary><div class="coordinate-controls"><label for="point-x">X <span>px</span><input id="point-x" type="number" min="0" step="0.1" inputmode="decimal"></label><label for="point-y">Y <span>px</span><input id="point-y" type="number" min="0" step="0.1" inputmode="decimal"></label></div><button id="apply-point" class="button button-outline button-full" type="button" disabled>Apply point</button></details>
             <p id="angle-convention" class="angle-convention">θ = 0 vertically down<br>Positive toward image right · radians</p>
