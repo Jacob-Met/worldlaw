@@ -12,6 +12,8 @@ Current scientific scope: **finite-library scalar torque discovery**. The defaul
 
 The UNKNOWN LAB probe chooser also compares [two-state acquisition courses](docs/PROBE_COURSES.md): one coefficient per law must explain both proposed readouts, so a course can discriminate hypotheses even when each state alone has overlapping predictions. Requests preserve training and declared assumptions; they do not acquire observations.
 
+The same probe instrument can explicitly compare [declared saturated-rate alternatives](docs/PROBE_SATURATION.md). It retains the original four-law failure, the entire offered scale grid and separate future-readout challenges; choosing a larger family does not establish a physical mechanism.
+
 ## Run locally
 
 With Node.js 20 or newer, from this directory:
