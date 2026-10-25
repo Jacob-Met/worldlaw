@@ -330,3 +330,8 @@ After a circulation comparison, inspect whether one single-valued paired-positio
 ### Investigate continuous saturation scales
 
 The probe instrument can [profile a declared continuous saturation-scale interval](docs/CONTINUOUS_SATURATION.md) after finite offered scales fail. It distinguishes covered inner support, unresolved outer support, excluded regions and unevaluated inputs, then freezes a training witness before separate challenges. Source-only replay preserves the original finite-family result and declared numerical work limits.
+
+
+### Compare separate Motion recordings as executable angular laws
+
+Trajectory Challenge can now receive two saved Motion Lab notebooks directly. Choose continuous courses and explicitly declare starting rates, common angle coordinates and unforced dynamics. The existing angular fitter and forward solver retain source identities and compare a separate recording without invented physical inertia or torque. See [Motion-to-trajectory intake](docs/MOTION_TRAJECTORY_INTAKE.md) for the actual workflow, source/calibration limits and authored positive/failed-transfer receiving.

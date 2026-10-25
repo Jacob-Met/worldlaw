@@ -1,3 +1,4 @@
+import {createMotionIntakePanel} from './motion-intake-panel.mjs';
 import {createResidualStructurePanel} from './residual-structure-panel.mjs';
 import {createCycleWorkPanel} from './cycle-work-panel.mjs';
 import {createCommandTimingPanel} from './command-timing-panel.mjs';
@@ -100,6 +101,7 @@ function render(){
   set('source-name',b.label||'Paired trajectory evidence');set('source-kind',synthetic?'SYNTHETIC PAIRED RUNS':all.every(run=>run.kind==='measured')?'IMPORTED MEASURED RUNS':'IMPORTED PAIRED RUNS');
   const knownBenchmark=all.some(run=>run.source?.repository==='https://github.com/EnzeXu/Damped_Pendulum_Dataset');
   set('source-description',knownBenchmark?'Known PASCO benchmark, reused during method development. Separate recordings test prediction; this is not a fresh blind validation.':synthetic?'Separate simulated recordings with different initial conditions. A controlled test of predictive transfer.':angularMode()?'Measured or declared angular recordings, with separate training and challenge roles. Physical torque scale is not supplied.':'User-supplied angular recordings. Fit and challenge runs remain separate throughout discovery.');
+  if(all.some(run=>run.source?.motion?.reference?.pathFitEventCount))set('source-description',$('source-description').textContent+' A Motion reference was fitted using observations across its recording, including later frames. Prediction comparisons condition on that calibration; this is not a prospectively calibrated physical test.');
   const angular=angularMode();$('scale-note').hidden=!angular;set('import-hint',angular?'JSON · radians and seconds · processed in this browser.':'JSON · radians, seconds, N·m · processed in this browser.');$('torque-format').hidden=angular;$('angular-format').hidden=!angular;
   set('scope-heading',angular?'A separate recording puts the law to the test.':'A law earns its keep on motion it has never seen.');
   set('scope-explanation',angular?'WORLDLAW searches a finite library of autonomous angular-acceleration terms. Physical inertia and absolute torque are unknown. The model uses supplied initial angle and rate; later challenge angles only test its prediction. Unforced scalar rotation is a declared assumption. Separate recordings of one apparatus do not establish transfer to an unseen mechanism.':'WORLDLAW searches a declared library of scalar angular torque terms. Each challenge uses its recorded command, supplied inertia, initial angle and initial rate; later observed angles are used only for comparison. The default paired runs are synthetic. This test examines predictive transfer within that library; it does not establish a unique physical mechanism.');
@@ -219,6 +221,14 @@ function tick(now){
 }
 function download(){const blob=new Blob([exportExperimentSession(workflow)],{type:'application/json'}),url=URL.createObjectURL(blob),a=el('a');a.href=url;a.download='worldlaw-trajectory-notebook.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);notice('Portable notebook exported with source runs, fitting settings, selection and any experiment history.');}
 async function readInput(event,kind){const file=event.target.files?.[0];if(!file)return;await perform(async()=>{if(file.size>MAX_TEXT_LENGTH)throw new Error('Choose a JSON file smaller than 3 MB.');const text=await file.text();return restoreExperimentSession(text);},kind==='notebook'?'Notebook reopened. Models, challenge trajectories and any experiment history were recomputed from the recorded evidence.':'Evidence imported. Training, challenge and any retained experiment history remain distinct.');event.target.value='';}
+
+createMotionIntakePanel(document.querySelector('.evidence-panel'),{
+  isBusy:()=>busy,
+  onLoad:(bundle,current)=>perform(()=>{
+    if(!current())throw new Error('Motion inputs changed before fitting. Apply the current pair again.');
+    return createChallenge(bundle,{method:'integral',noiseSigma:.01,maxTerms:4,maxStep:.01});
+  },'Motion recordings loaded. The law fits training angles; a separate original recording challenges its motion.',{propagate:true}),
+});
 
 const predictiveHost=el('section');$('challenge-workspace').append(predictiveHost);
 const predictivePanel=createPredictiveSelectionPanel(predictiveHost);
