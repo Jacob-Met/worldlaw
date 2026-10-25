@@ -1,4 +1,5 @@
 import {renderCommandDeadzone} from './science/command-deadzone-panel.mjs';
+import {mountSensorResponse} from './science/sensor-response-panel.mjs';
 import {renderConditionalRate} from './science/conditional-rate-panel.mjs';
 import {renderEnergyBudget} from './science/energy-budget-panel.mjs';
 import {mountAffineClocks} from './science/clock-affine-panel.mjs';
@@ -122,6 +123,7 @@ function renderModel(){
   let separability=$('separability');if(!separability){separability=el('div');separability.id='separability';$('replicate-diagnostics').after(separability);}
   renderSeparability(separability,state.discovery.observations,state.base.source);
   let deadzone=$('command-deadzone-container');if(!deadzone){deadzone=el('div');deadzone.id='command-deadzone-container';$('residual-chart').after(deadzone);}
+  if(!$('sensor-response-container')){const response=el('div');response.id='sensor-response-container';deadzone.after(response);mountSensorResponse(response,{chart});}
   renderCommandDeadzone(deadzone,state,{chart,widths:deadzoneWidths,onReopen:(next,widths)=>adopt(next,'Reopened original command-map comparison inputs. Compare again to recompute.',widths),simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
   runSimulation(false);
 }

@@ -35,7 +35,7 @@ export function validateDataset(input, filename='Imported observations') {
   const metadata=JSON.parse(metadataText);
   return {schema:OBSERVATION_SCHEMA,source:{label,kind:'user-supplied',declaredKind:String(suppliedSource.declaredKind||suppliedSource.kind||'unspecified').slice(0,100),units:{...UNITS},metadata},observations,heldOut};
 }
-function csvRecords(text) {
+export function csvRecords(text) {
   const rows=[]; let row=[], cell='', quoted=false, closed=false;
   for (let i=0;i<text.length;i++) {
     const c=text[i];

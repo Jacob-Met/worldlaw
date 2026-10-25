@@ -1,0 +1,362 @@
+{
+  "source": "df28cc85a20a8a44ce69ec49cd3f8ebcd321f09bb9adb1afb23e0234dd5cdb65",
+  "recording": "NAD/train/200_001.csv",
+  "rows": 942,
+  "joint": 4,
+  "selectedWidth": 0.75,
+  "competitiveWidths": [
+    0.75,
+    1
+  ],
+  "options": {
+    "terms": [
+      "command",
+      "rate",
+      "coulomb",
+      "spring",
+      "gravity",
+      "quadratic",
+      "bias"
+    ],
+    "noiseSigma": 0.1,
+    "maxTerms": 4,
+    "ambiguityDelta": 6
+  },
+  "candidates": [
+    {
+      "width": 0,
+      "terms": [
+        {
+          "id": "command",
+          "coefficient": 1.6267945250433764
+        },
+        {
+          "id": "rate",
+          "coefficient": -8.705373145089494
+        },
+        {
+          "id": "gravity",
+          "coefficient": -56.07009898867253
+        },
+        {
+          "id": "bias",
+          "coefficient": -19.65446909971695
+        }
+      ],
+      "equation": "τ = 1.6268·u + -8.7054·ω + -56.07·sin(θ) + -19.654·1",
+      "metrics": {
+        "count": 942,
+        "rmse": 2.4946154027055845,
+        "maxAbsResidual": 7.027037936685584,
+        "score": 1749.6215511843939,
+        "conditionEstimate": 10.901017188630838,
+        "rank": 4
+      },
+      "diagnostics": {
+        "examinedCandidates": 99,
+        "rankDeficientCandidates": 0,
+        "unexecutableCandidates": 0,
+        "fullLibraryRank": 7,
+        "librarySize": 7,
+        "rankTolerance": 1e-8,
+        "selectionAmbiguous": true,
+        "identifiability": "finite_library_local_only",
+        "competitiveCount": 4,
+        "trainingRmseInNoiseUnits": 24.946154027055844,
+        "adequacy": "residual_mismatch",
+        "scoreMethod": "n*log(max(training_mse,noise_sigma^2))+term_count*log(n)",
+        "conditionEstimateMeaning": "ratio_of_scaled_QR_diagonal_extremes_not_exact_condition_number",
+        "limitations": [
+          "Only structures expressible by the supplied finite term library are searched.",
+          "noiseSigma is a caller assumption; rankings and ambiguity depend on it.",
+          "Competitive-model spread is not calibrated predictive uncertainty.",
+          "Training fit does not establish physical validity or held-out performance.",
+          "No passivity, friction-sign, or mechanism-topology constraints are imposed.",
+          "Rank-deficient structures are not executable hypotheses; additional pilot excitation may be needed."
+        ]
+      }
+    },
+    {
+      "width": 0.1,
+      "terms": [
+        {
+          "id": "command",
+          "coefficient": 1.7680035785079184
+        },
+        {
+          "id": "rate",
+          "coefficient": -8.93540947719541
+        },
+        {
+          "id": "gravity",
+          "coefficient": -55.541646457367904
+        },
+        {
+          "id": "bias",
+          "coefficient": -19.3408835691564
+        }
+      ],
+      "equation": "τ = 1.768·u + -8.9354·ω + -55.542·sin(θ) + -19.341·1",
+      "metrics": {
+        "count": 942,
+        "rmse": 2.4847161700541496,
+        "maxAbsResidual": 6.913715381839939,
+        "score": 1742.1305140386246,
+        "conditionEstimate": 10.970715110699626,
+        "rank": 4
+      },
+      "diagnostics": {
+        "examinedCandidates": 99,
+        "rankDeficientCandidates": 0,
+        "unexecutableCandidates": 0,
+        "fullLibraryRank": 7,
+        "librarySize": 7,
+        "rankTolerance": 1e-8,
+        "selectionAmbiguous": true,
+        "identifiability": "finite_library_local_only",
+        "competitiveCount": 4,
+        "trainingRmseInNoiseUnits": 24.847161700541495,
+        "adequacy": "residual_mismatch",
+        "scoreMethod": "n*log(max(training_mse,noise_sigma^2))+term_count*log(n)",
+        "conditionEstimateMeaning": "ratio_of_scaled_QR_diagonal_extremes_not_exact_condition_number",
+        "limitations": [
+          "Only structures expressible by the supplied finite term library are searched.",
+          "noiseSigma is a caller assumption; rankings and ambiguity depend on it.",
+          "Competitive-model spread is not calibrated predictive uncertainty.",
+          "Training fit does not establish physical validity or held-out performance.",
+          "No passivity, friction-sign, or mechanism-topology constraints are imposed.",
+          "Rank-deficient structures are not executable hypotheses; additional pilot excitation may be needed."
+        ]
+      }
+    },
+    {
+      "width": 0.25,
+      "terms": [
+        {
+          "id": "command",
+          "coefficient": 1.9848734402772243
+        },
+        {
+          "id": "rate",
+          "coefficient": -9.105728817054674
+        },
+        {
+          "id": "gravity",
+          "coefficient": -54.74828272805482
+        },
+        {
+          "id": "bias",
+          "coefficient": -18.851652990940693
+        }
+      ],
+      "equation": "τ = 1.9849·u + -9.1057·ω + -54.748·sin(θ) + -18.852·1",
+      "metrics": {
+        "count": 942,
+        "rmse": 2.473164511676101,
+        "maxAbsResidual": 6.692859803431993,
+        "score": 1733.3512128961752,
+        "conditionEstimate": 11.092892835319276,
+        "rank": 4
+      },
+      "diagnostics": {
+        "examinedCandidates": 99,
+        "rankDeficientCandidates": 0,
+        "unexecutableCandidates": 0,
+        "fullLibraryRank": 7,
+        "librarySize": 7,
+        "rankTolerance": 1e-8,
+        "selectionAmbiguous": true,
+        "identifiability": "finite_library_local_only",
+        "competitiveCount": 4,
+        "trainingRmseInNoiseUnits": 24.731645116761012,
+        "adequacy": "residual_mismatch",
+        "scoreMethod": "n*log(max(training_mse,noise_sigma^2))+term_count*log(n)",
+        "conditionEstimateMeaning": "ratio_of_scaled_QR_diagonal_extremes_not_exact_condition_number",
+        "limitations": [
+          "Only structures expressible by the supplied finite term library are searched.",
+          "noiseSigma is a caller assumption; rankings and ambiguity depend on it.",
+          "Competitive-model spread is not calibrated predictive uncertainty.",
+          "Training fit does not establish physical validity or held-out performance.",
+          "No passivity, friction-sign, or mechanism-topology constraints are imposed.",
+          "Rank-deficient structures are not executable hypotheses; additional pilot excitation may be needed."
+        ]
+      }
+    },
+    {
+      "width": 0.5,
+      "terms": [
+        {
+          "id": "command",
+          "coefficient": 2.264523975876198
+        },
+        {
+          "id": "coulomb",
+          "coefficient": -0.6665023630795301
+        },
+        {
+          "id": "gravity",
+          "coefficient": -53.828571842570014
+        },
+        {
+          "id": "bias",
+          "coefficient": -18.17194954652745
+        }
+      ],
+      "equation": "τ = 2.2645·u + -0.6665·sign(ω) + -53.829·sin(θ) + -18.172·1",
+      "metrics": {
+        "count": 942,
+        "rmse": 2.452670338132354,
+        "maxAbsResidual": 6.920696364265041,
+        "score": 1717.674176648028,
+        "conditionEstimate": 11.247641122532409,
+        "rank": 4
+      },
+      "diagnostics": {
+        "examinedCandidates": 99,
+        "rankDeficientCandidates": 0,
+        "unexecutableCandidates": 0,
+        "fullLibraryRank": 7,
+        "librarySize": 7,
+        "rankTolerance": 1e-8,
+        "selectionAmbiguous": true,
+        "identifiability": "finite_library_local_only",
+        "competitiveCount": 4,
+        "trainingRmseInNoiseUnits": 24.52670338132354,
+        "adequacy": "residual_mismatch",
+        "scoreMethod": "n*log(max(training_mse,noise_sigma^2))+term_count*log(n)",
+        "conditionEstimateMeaning": "ratio_of_scaled_QR_diagonal_extremes_not_exact_condition_number",
+        "limitations": [
+          "Only structures expressible by the supplied finite term library are searched.",
+          "noiseSigma is a caller assumption; rankings and ambiguity depend on it.",
+          "Competitive-model spread is not calibrated predictive uncertainty.",
+          "Training fit does not establish physical validity or held-out performance.",
+          "No passivity, friction-sign, or mechanism-topology constraints are imposed.",
+          "Rank-deficient structures are not executable hypotheses; additional pilot excitation may be needed."
+        ]
+      }
+    },
+    {
+      "width": 0.75,
+      "terms": [
+        {
+          "id": "command",
+          "coefficient": 2.784693629987307
+        },
+        {
+          "id": "coulomb",
+          "coefficient": -0.6902512517620977
+        },
+        {
+          "id": "gravity",
+          "coefficient": -52.57752910325223
+        },
+        {
+          "id": "bias",
+          "coefficient": -17.342895896138685
+        }
+      ],
+      "equation": "τ = 2.7847·u + -0.69025·sign(ω) + -52.578·sin(θ) + -17.343·1",
+      "metrics": {
+        "count": 942,
+        "rmse": 2.4324118937786317,
+        "maxAbsResidual": 6.8012774376260765,
+        "score": 1702.0481846396547,
+        "conditionEstimate": 11.466570433524849,
+        "rank": 4
+      },
+      "diagnostics": {
+        "examinedCandidates": 99,
+        "rankDeficientCandidates": 0,
+        "unexecutableCandidates": 0,
+        "fullLibraryRank": 7,
+        "librarySize": 7,
+        "rankTolerance": 1e-8,
+        "selectionAmbiguous": true,
+        "identifiability": "finite_library_local_only",
+        "competitiveCount": 4,
+        "trainingRmseInNoiseUnits": 24.324118937786317,
+        "adequacy": "residual_mismatch",
+        "scoreMethod": "n*log(max(training_mse,noise_sigma^2))+term_count*log(n)",
+        "conditionEstimateMeaning": "ratio_of_scaled_QR_diagonal_extremes_not_exact_condition_number",
+        "limitations": [
+          "Only structures expressible by the supplied finite term library are searched.",
+          "noiseSigma is a caller assumption; rankings and ambiguity depend on it.",
+          "Competitive-model spread is not calibrated predictive uncertainty.",
+          "Training fit does not establish physical validity or held-out performance.",
+          "No passivity, friction-sign, or mechanism-topology constraints are imposed.",
+          "Rank-deficient structures are not executable hypotheses; additional pilot excitation may be needed."
+        ]
+      }
+    },
+    {
+      "width": 1,
+      "terms": [
+        {
+          "id": "command",
+          "coefficient": 3.3656213153588372
+        },
+        {
+          "id": "coulomb",
+          "coefficient": -0.6671320050483246
+        },
+        {
+          "id": "gravity",
+          "coefficient": -51.577875398741405
+        },
+        {
+          "id": "bias",
+          "coefficient": -16.629629678094304
+        }
+      ],
+      "equation": "τ = 3.3656·u + -0.66713·sign(ω) + -51.578·sin(θ) + -16.63·1",
+      "metrics": {
+        "count": 942,
+        "rmse": 2.432590469908032,
+        "maxAbsResidual": 6.6971453336974776,
+        "score": 1702.1864938953508,
+        "conditionEstimate": 11.731875569630306,
+        "rank": 4
+      },
+      "diagnostics": {
+        "examinedCandidates": 99,
+        "rankDeficientCandidates": 0,
+        "unexecutableCandidates": 0,
+        "fullLibraryRank": 7,
+        "librarySize": 7,
+        "rankTolerance": 1e-8,
+        "selectionAmbiguous": true,
+        "identifiability": "finite_library_local_only",
+        "competitiveCount": 4,
+        "trainingRmseInNoiseUnits": 24.32590469908032,
+        "adequacy": "residual_mismatch",
+        "scoreMethod": "n*log(max(training_mse,noise_sigma^2))+term_count*log(n)",
+        "conditionEstimateMeaning": "ratio_of_scaled_QR_diagonal_extremes_not_exact_condition_number",
+        "limitations": [
+          "Only structures expressible by the supplied finite term library are searched.",
+          "noiseSigma is a caller assumption; rankings and ambiguity depend on it.",
+          "Competitive-model spread is not calibrated predictive uncertainty.",
+          "Training fit does not establish physical validity or held-out performance.",
+          "No passivity, friction-sign, or mechanism-topology constraints are imposed.",
+          "Rank-deficient structures are not executable hypotheses; additional pilot excitation may be needed."
+        ]
+      }
+    }
+  ],
+  "work": {
+    "reserved": 13660884,
+    "limit": 25000000,
+    "robustReserved": 0,
+    "robustLimit": 250000000
+  },
+  "inputsSha256": "8cdd31e3d60f8c138a4e8b821b52b6fd1c11da3f7a891d1740fc25089483b82e",
+  "testRecording": "NAD/test/200_006.csv",
+  "testState": "unopened and undownloaded at freeze",
+  "sourceHashes": {
+    "src/data.mjs": "f094afc5349f5626973be8c0b98b0590acb8bfa9e56aacf182f76319ffb44036",
+    "src/science/sensor-response.mjs": "dc2e241269c0b4cea4371e0fbe4909d7f6931eb90ed44eeaea68f311dc8aef0f",
+    "src/science/command-deadzone.mjs": "65769ddc61c5073892da163981a762df5da78ec522fae47d95c75096690146b4",
+    "src/science/torque-discovery.mjs": "3799e898a9fb67f4dc97e08e38fe9ac6bb5065cb7d762ba3ab0373e5e3015395",
+    "src/science/linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+    "src/science/robust-fit.mjs": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1"
+  }
+}

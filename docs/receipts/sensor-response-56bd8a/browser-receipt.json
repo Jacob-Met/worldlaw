@@ -1,0 +1,18 @@
+{
+  "browser": "156.0.8078.47",
+  "sandbox": true,
+  "checks": [
+    "actual original CSV requires explicit channel-role declaration before inference",
+    "actual942-row training freeze retains all6candidates and leaves net-torque Studio source unchanged",
+    "browser input-only freeze exactly reproduces predeclared training candidates before any receiving source",
+    "actual BOM-bearing CSV retains original bytes and source SHA through browser export",
+    "invalid UTF-8 refuses original intake instead of silently replacing bytes",
+    "original separate measured recording executes every frozen model without receiving-driven selection",
+    "original-only saved recording replay reproduces receiving while net-torque source stays intact",
+    "actual desktop and390px plots retain readable ticks and no horizontal overflow",
+    "late receiving read cannot restore a retired fit or wrong joint",
+    "renaming or reusing training cannot count as a separate receiving recording",
+    "declaration changes retire computed claims and lock receiving until a new freeze"
+  ],
+  "errors": []
+}
