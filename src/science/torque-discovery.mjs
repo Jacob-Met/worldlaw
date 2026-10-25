@@ -23,7 +23,7 @@ const LIMIT = 4096;
 import {fitLinearColumns as fit, linearColumnRank as libraryRank, RANK_TOLERANCE} from './linear-fit.mjs';
 import {fitSoftL1Columns, softL1Work, SOFT_L1_MAX_WORK} from './robust-fit.mjs';
 const fields = ['command', 'position', 'rate'];
-const observedFields = [...fields, 'jointTorque'];
+const observedFields = [...fields, 'jointTorque', 'torqueNoiseRatio'];
 // Only private, freshly computed least-squares fits are reused. Robust fits
 // deliberately rerun the complete bounded optimization on every refit.
 const fittedSources = new WeakMap();
@@ -40,13 +40,22 @@ function finite(value, name, bound = 1e12) {
 function input(row, observed = false) {
   requireThat(row && typeof row === 'object' && !Array.isArray(row), 'Each observation/input must be an object.');
   const result = Object.fromEntries(fields.map(key => [key, finite(row[key], key, 1e6)]));
-  if (observed) result.jointTorque = finite(row.jointTorque, 'jointTorque');
+  if (observed) {
+    result.jointTorque = finite(row.jointTorque, 'jointTorque');
+    if (Object.hasOwn(row, 'torqueNoiseRatio')) {
+      result.torqueNoiseRatio = finite(row.torqueNoiseRatio, 'torqueNoiseRatio', 1e6);
+      requireThat(result.torqueNoiseRatio >= 1e-6, 'torqueNoiseRatio must be between 0.000001 and 1000000.');
+    }
+  }
   return result;
 }
 function rows(values, minimum = 0) {
   requireThat(Array.isArray(values) && values.length >= minimum && values.length <= LIMIT,
     `Expected between ${minimum} and ${LIMIT} observations.`);
-  return values.map(row => input(row, true));
+  const samples = values.map(row => input(row, true));
+  requireThat(!samples.some(row => row.torqueNoiseRatio !== undefined) || samples.every(row => row.torqueNoiseRatio !== undefined),
+    'Declare a torqueNoiseRatio for every row in this observation group, or omit it from every row.');
+  return samples;
 }
 function feature(id, row) {
   switch (id) {
@@ -80,7 +89,8 @@ function normalizeOptions(options = {}) {
     'maxTerms must be an integer between zero and the feature-library size.');
   finite(result.ambiguityDelta, 'ambiguityDelta', 100);
   requireThat(result.ambiguityDelta >= 0, 'ambiguityDelta must be nonnegative.');
-  requireThat(options.loss === undefined || ['least_squares', 'soft_l1'].includes(options.loss), 'Unknown reading-loss assumption.');
+  requireThat(options.loss === undefined || ['least_squares', 'soft_l1', 'weighted_least_squares'].includes(options.loss), 'Unknown reading-loss assumption.');
+  if (options.loss === 'weighted_least_squares') result.loss = 'weighted_least_squares';
   if (options.loss === 'soft_l1') {
     finite(options.lossScale, 'lossScale', 1e6);
     requireThat(options.lossScale >= 1e-7, 'Declare a soft-L1 scale of at least 0.0000001 N·m.');
@@ -117,6 +127,7 @@ export function evaluate(model, observations) {
   });
   const residuals = result.map(row => row.residual);
   return { count: samples.length, rmse: samples.length ? norm(residuals) / Math.sqrt(samples.length) : null,
+    ...(samples.length && samples[0].torqueNoiseRatio !== undefined ? {relativeNoiseRmse:norm(result.map(row => row.residual / row.torqueNoiseRatio)) / Math.sqrt(samples.length)} : {}),
     maxAbsResidual: samples.length ? Math.max(...residuals.map(Math.abs)) : null, rows: result };
 }
 
@@ -125,8 +136,13 @@ export function discover(observations, requestedOptions = {}) {
   const robustWork = discoveryRobustWork(samples.length, options);
   requireThat(robustWork <= SOFT_L1_MAX_WORK,
     `Complete soft-L1 search needs ${robustWork} work units; the limit is ${SOFT_L1_MAX_WORK}. No subset of the observations or candidate library was fitted.`, 'work_limit');
-  const columns = options.terms.map(id => samples.map(row => feature(id, row)));
-  const target = samples.map(row => row.jointTorque);
+  const weighted = options.loss === 'weighted_least_squares';
+  requireThat(!weighted || samples.every(row => row.torqueNoiseRatio !== undefined),
+    'Weighted least squares requires a declared torqueNoiseRatio on every original training row.');
+  // Whitening uses declared relative standard deviations, never fitted residuals
+  // or held-out data. All candidates share this same source and geometry.
+  const columns = options.terms.map(id => samples.map(row => feature(id, row) / (weighted ? row.torqueNoiseRatio : 1)));
+  const target = samples.map(row => row.jointTorque / (weighted ? row.torqueNoiseRatio : 1));
   const candidates = []; let rankDeficientCandidates = 0, unexecutableCandidates = 0, examined = 0;
   const domain = Object.fromEntries(fields.map(key => [key, {
     min: Math.min(...samples.map(row => row[key])), max: Math.max(...samples.map(row => row[key])),
@@ -154,10 +170,15 @@ export function discover(observations, requestedOptions = {}) {
     const evaluation = evaluate(model, samples);
     // This noise-floor information criterion is a ranking heuristic. It is not
     // a posterior, a confidence interval, or evidence of absolute model adequacy.
-    const scoreError = options.loss === 'soft_l1' ? fitted.meanLoss : evaluation.rmse ** 2;
+    const scoreError = options.loss === 'soft_l1' ? fitted.meanLoss : weighted ? evaluation.relativeNoiseRmse ** 2 : evaluation.rmse ** 2;
     const score = samples.length * Math.log(Math.max(scoreError, options.noiseSigma ** 2)) + terms.length * Math.log(samples.length);
     model.metrics = { count: samples.length, rmse: evaluation.rmse, maxAbsResidual: evaluation.maxAbsResidual,
       score, conditionEstimate: fitted.conditionEstimate, rank: terms.length };
+    if (weighted) {
+      model.fitting = {loss:'weighted_least_squares',ratioField:'torqueNoiseRatio'};
+      model.metrics.weighted = {relativeNoiseRmse:evaluation.relativeNoiseRmse,
+        minRatio:Math.min(...samples.map(row => row.torqueNoiseRatio)),maxRatio:Math.max(...samples.map(row => row.torqueNoiseRatio))};
+    }
     if (options.loss === 'soft_l1') {
       model.fitting = {loss:'soft_l1',scale:options.lossScale};
       model.metrics.robust = {meanLoss:fitted.meanLoss,iterations:fitted.iterations,
@@ -178,14 +199,16 @@ function rankFittedSource(source, options) {
   // ranked list would change the stable tie-break when a new noise floor ties it.
   const candidates = source.candidates.map(model => ({...model,
     terms: model.terms.map(term => ({...term})),
+    ...(model.fitting ? {fitting:{...model.fitting}} : {}),
     domain: Object.fromEntries(fields.map(key => [key, {...model.domain[key]}])),
-    metrics: {...model.metrics, score: samples.length * Math.log(Math.max(
-      options.loss === 'soft_l1' ? model.metrics.robust.meanLoss : model.metrics.rmse ** 2,
+    metrics: {...model.metrics, ...(model.metrics.weighted ? {weighted:{...model.metrics.weighted}} : {}), score: samples.length * Math.log(Math.max(
+      options.loss === 'soft_l1' ? model.metrics.robust.meanLoss : options.loss === 'weighted_least_squares' ? model.metrics.weighted.relativeNoiseRmse ** 2 : model.metrics.rmse ** 2,
       options.noiseSigma ** 2)) + model.terms.length * Math.log(samples.length)},
   }));
   candidates.sort((a, b) => a.metrics.score - b.metrics.score || a.terms.length - b.terms.length);
   const selected = candidates[0];
   const competitive = candidates.filter(model => model.metrics.score - selected.metrics.score <= options.ambiguityDelta);
+  const adequacyRmse = options.loss === 'weighted_least_squares' ? selected.metrics.weighted.relativeNoiseRmse : selected.metrics.rmse;
   const result = {
     schema: 'worldlaw.discovery/v1', scope: 'finite_library_scalar_torque_structure', units: UNITS,
     selected, candidates, competitive, observations: samples.map(row => ({...row})),
@@ -195,9 +218,10 @@ function rankFittedSource(source, options) {
       rankTolerance: RANK_TOLERANCE, selectionAmbiguous: competitive.length > 1 || fullLibraryRank < options.terms.length,
       identifiability: fullLibraryRank < options.terms.length ? 'insufficient_excitation' :
         selected.metrics.conditionEstimate > 1e4 ? 'weak_numerical_conditioning' : 'finite_library_local_only',
-      competitiveCount: competitive.length, trainingRmseInNoiseUnits: selected.metrics.rmse / options.noiseSigma,
-      adequacy: selected.metrics.rmse > 3 * options.noiseSigma ? 'residual_mismatch' : 'not_falsified_on_training',
-      scoreMethod: options.loss === 'soft_l1' ? 'n*log(max(mean_soft_l1_loss,noise_sigma^2))+term_count*log(n)' : 'n*log(max(training_mse,noise_sigma^2))+term_count*log(n)',
+      competitiveCount: competitive.length, trainingRmseInNoiseUnits: adequacyRmse / options.noiseSigma,
+      adequacy: adequacyRmse > 3 * options.noiseSigma ? 'residual_mismatch' : 'not_falsified_on_training',
+      scoreMethod: options.loss === 'soft_l1' ? 'n*log(max(mean_soft_l1_loss,noise_sigma^2))+term_count*log(n)' : options.loss === 'weighted_least_squares' ? 'n*log(max(mean_squared_residual_over_declared_ratio,noise_sigma^2))+term_count*log(n)' : 'n*log(max(training_mse,noise_sigma^2))+term_count*log(n)',
+      ...(options.loss === 'weighted_least_squares' ? {adequacyMetric:'relative_noise_rmse',rankGeometry:'columns_divided_by_declared_torque_noise_ratio'} : {}),
       conditionEstimateMeaning: 'ratio_of_scaled_QR_diagonal_extremes_not_exact_condition_number',
       limitations: [
         'Only structures expressible by the supplied finite term library are searched.',
@@ -211,6 +235,13 @@ function rankFittedSource(source, options) {
           'Raw RMSE and adequacy retain every original reading, including reduced-weight residuals.',
           'The soft-L1 complexity score is a ranking heuristic, not likelihood or calibrated confidence.',
           'Large coordinate leverage, coherent omitted physics and majority contamination can still mislead this estimator.',
+        ] : []),
+        ...(options.loss === 'weighted_least_squares' ? [
+          'torqueNoiseRatio is a caller-declared relative standard deviation, not measured reliability or confidence.',
+          'noiseSigma is the assumed torque standard deviation at ratio one; each row assumes noiseSigma times its declared ratio.',
+          'Ranking and adequacy use residuals divided by declared ratios; every raw residual and raw RMSE remains available.',
+          'The column rank and conditioning describe the declared weighted design; small-weight evidence may not resolve a structure numerically.',
+          'Wrong ratios, correlated noise, omitted physics and noisy input coordinates can still mislead this fit.',
         ] : []),
       ],
       ...(options.loss === 'soft_l1' ? {robustWorkReserved:robustWork,robustWorkLimit:SOFT_L1_MAX_WORK} : {}),
@@ -226,6 +257,7 @@ export function refitDiscovery(discovery, requestedOptions = {}) {
   const samples = rows(discovery.observations, 8), options = normalizeOptions(requestedOptions);
   const source = fittedSources.get(discovery);
   if (source && options.loss !== 'soft_l1' && source.options.loss !== 'soft_l1'
+    && options.loss === source.options.loss
     && options.maxTerms === source.options.maxTerms
     && options.terms.length === source.options.terms.length
     && options.terms.every((term, i) => term === source.options.terms[i])

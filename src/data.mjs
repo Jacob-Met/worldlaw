@@ -1,4 +1,6 @@
 export const OBSERVATION_SCHEMA = 'worldlaw.observations/v1';
+export const WEIGHTED_OBSERVATION_SCHEMA = 'worldlaw.observations/v3';
+export const NOISE_RATIO_FIELD = 'torqueNoiseRatio';
 export const OFFERED_INPUT_SCHEMA = 'worldlaw.observations/v2';
 export const INPUT_FIELDS = Object.freeze(['command','position','rate']);
 export const MAX_OFFERED_INPUTS = 128;
@@ -28,6 +30,7 @@ export function validateOfferedInputs(inputs) {
 }
 export function validateRows(rows, {allowEmpty=false}={}) {
   if (!Array.isArray(rows) || (!allowEmpty && rows.length < 8) || rows.length > MAX_ROWS) fail(`Supply ${allowEmpty ? '0' : '8'}–${MAX_ROWS} complete observation rows.`);
+  const hasRatios=rows.some(row=>row && Object.hasOwn(row,NOISE_RATIO_FIELD));
   return Array.from(rows, (row, i) => {
     if (!row || typeof row !== 'object' || Array.isArray(row)) fail(`Row ${i+1} must contain the four observation fields.`);
     const copy = {};
@@ -36,28 +39,37 @@ export function validateRows(rows, {allowEmpty=false}={}) {
       if (typeof value !== 'number' || !Number.isFinite(value) || Math.abs(value) > 1e6) fail(`Row ${i+1}: ${field} must be a finite number between −1,000,000 and 1,000,000 (${UNITS[field]}).`);
       copy[field] = value;
     }
+    if(hasRatios) {
+      const ratio=row[NOISE_RATIO_FIELD];
+      if(typeof ratio!=='number'||!Number.isFinite(ratio)||ratio<1e-6||ratio>1e6) fail(`Row ${i+1}: declare a torqueNoiseRatio between 0.000001 and 1000000 for every row in this group.`);
+      copy[NOISE_RATIO_FIELD]=ratio;
+    }
     return copy;
   });
 }
 export function validateDataset(input, filename='Imported observations') {
   if (!input || typeof input !== 'object') fail('Expected an observation object or array.');
-  if (input.schema && ![OBSERVATION_SCHEMA,OFFERED_INPUT_SCHEMA].includes(input.schema)) fail(`Unsupported observation schema: ${input.schema}.`);
+  if (input.schema && ![OBSERVATION_SCHEMA,OFFERED_INPUT_SCHEMA,WEIGHTED_OBSERVATION_SCHEMA].includes(input.schema)) fail(`Unsupported observation schema: ${input.schema}.`);
   const hasOfferedInputs = Object.hasOwn(input,'offeredInputs');
-  if (hasOfferedInputs && input.schema !== OFFERED_INPUT_SCHEMA) fail('Explicit offered inputs require the worldlaw.observations/v2 source format.');
+  if (hasOfferedInputs && ![OFFERED_INPUT_SCHEMA,WEIGHTED_OBSERVATION_SCHEMA].includes(input.schema)) fail('Explicit offered inputs require the worldlaw.observations/v2 or v3 source format.');
   if (input.schema === OFFERED_INPUT_SCHEMA && !hasOfferedInputs) fail('The worldlaw.observations/v2 source must declare offeredInputs, including an empty set when no states are offered.');
   const offeredInputs = hasOfferedInputs ? validateOfferedInputs(input.offeredInputs) : null;
   for(const units of [input.units,input.source?.units]) {
     if (units !== undefined && units !== null && FIELDS.some(key => units[key] !== UNITS[key])) fail('Unit declarations must be command/jointTorque N·m, position rad, and rate rad/s. Convert the data before importing.');
+    if(units?.torqueNoiseRatio!==undefined&&units.torqueNoiseRatio!=='1')fail('torqueNoiseRatio must be dimensionless, with unit 1.');
   }
   const observations = validateRows(Array.isArray(input) ? input : input.observations || input.samples);
   const heldOut = validateRows(input.heldOut || [], {allowEmpty:true});
+  const hasRatios=observations[0]?.torqueNoiseRatio!==undefined||heldOut[0]?.torqueNoiseRatio!==undefined;
+  if(input.schema&&input.schema!==WEIGHTED_OBSERVATION_SCHEMA&&hasRatios)fail('Declared torque-noise ratios require worldlaw.observations/v3.');
+  if(input.schema===WEIGHTED_OBSERVATION_SCHEMA&&!hasRatios)fail('The worldlaw.observations/v3 source must retain declared torque-noise ratios.');
   const label = String(input.source?.label || input.label || filename).trim().slice(0,240) || 'Imported observations';
   const suppliedSource=input.source&&typeof input.source==='object'?input.source:{};
   const additional=suppliedSource.metadata ?? Object.fromEntries(Object.entries(suppliedSource).filter(([key])=>!['label','kind','units','declaredKind'].includes(key)));
   const metadataText=JSON.stringify(additional);
   if(metadataText.length>250_000) fail('Source metadata must be smaller than 250 KB.');
   const metadata=JSON.parse(metadataText);
-  return {schema:hasOfferedInputs?OFFERED_INPUT_SCHEMA:OBSERVATION_SCHEMA,source:{label,kind:'user-supplied',declaredKind:String(suppliedSource.declaredKind||suppliedSource.kind||'unspecified').slice(0,100),units:{...UNITS},metadata},observations,heldOut,
+  return {schema:hasRatios?WEIGHTED_OBSERVATION_SCHEMA:hasOfferedInputs?OFFERED_INPUT_SCHEMA:OBSERVATION_SCHEMA,source:{label,kind:'user-supplied',declaredKind:String(suppliedSource.declaredKind||suppliedSource.kind||'unspecified').slice(0,100),units:{...UNITS,...(hasRatios?{torqueNoiseRatio:'1'}:{})},metadata},observations,heldOut,
     ...(hasOfferedInputs?{offeredInputs}:{} )};
 }
 export function csvRecords(text) {
@@ -90,9 +102,10 @@ export function parseObservationText(text, filename='observations.csv') {
   }
   const records=csvRecords(text); const headers=records.shift()?.map(x=>x.trim());
   if (!headers || new Set(headers).size !== headers.length || FIELDS.some(f=>!headers.includes(f))) fail(`CSV needs unique headers: ${FIELDS.join(',')}. Extra metadata columns are allowed.`);
+  const sourceFields=headers.includes(NOISE_RATIO_FIELD)?[...FIELDS,NOISE_RATIO_FIELD]:FIELDS;
   const observations=records.map((record,i)=> {
     if(record.length !== headers.length) fail(`CSV row ${i+2} has ${record.length} fields; expected ${headers.length}.`);
-    return Object.fromEntries(FIELDS.map(field=> {
+    return Object.fromEntries(sourceFields.map(field=> {
       const cell=record[headers.indexOf(field)].trim();
       if(!decimal.test(cell)) fail(`CSV row ${i+2}: ${field} is not a decimal number.`);
       return [field, Number(cell)];
@@ -100,7 +113,11 @@ export function parseObservationText(text, filename='observations.csv') {
   });
   return validateDataset({observations},filename);
 }
-export function observationsCSV(rows) { return FIELDS.join(',')+'\n'+rows.map(row=>FIELDS.map(f=>row[f]).join(',')).join('\n')+'\n'; }
+export function observationsCSV(rows) {
+  const checked=validateRows(rows,{allowEmpty:true});
+  const fields=checked[0]?.torqueNoiseRatio===undefined?FIELDS:[...FIELDS,NOISE_RATIO_FIELD];
+  return fields.join(',')+'\n'+checked.map(row=>fields.map(f=>row[f]).join(',')).join('\n')+'\n';
+}
 export function candidateGrid(rows) {
   const axes=['command','position','rate'].map(field=> {
     const values=rows.map(r=>r[field]); const lo=Math.min(...values), hi=Math.max(...values);

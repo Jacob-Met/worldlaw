@@ -6,8 +6,10 @@ import {planInputExcitation} from './science/input-excitation.mjs';
 export const SESSION_SCHEMA='worldlaw.session/v1';
 export const INTERACTION_SESSION_SCHEMA='worldlaw.session/v2';
 export const ROBUST_SESSION_SCHEMA='worldlaw.session/v3';
+export const WEIGHTED_SESSION_SCHEMA='worldlaw.session/v4';
 const usesInteraction = raw => raw.initialOptions?.includeCommandPosition===true || raw.events.some(event=>event?.kind==='options' && event.options?.includeCommandPosition===true);
 const usesRobust = raw => raw.initialOptions?.loss==='soft_l1' || raw.events.some(event=>event?.kind==='options' && event.options?.loss==='soft_l1');
+const usesWeighted = raw => raw.base?.observations?.some(row=>row&&Object.hasOwn(row,'torqueNoiseRatio')) || raw.base?.heldOut?.some(row=>row&&Object.hasOwn(row,'torqueNoiseRatio')) || raw.initialOptions?.loss==='weighted_least_squares' || raw.events.some(event=>event?.options?.loss==='weighted_least_squares'||event?.rows?.some(row=>row&&Object.hasOwn(row,'torqueNoiseRatio')));
 export const DEFAULT_OPTIONS=Object.freeze({noiseSigma:0.01,maxTerms:4,ambiguityDelta:6});
 const MAX_EVENTS=128;
 export const MAX_ROBUST_NOTEBOOK_WORK=2_000_000_000;
@@ -29,7 +31,7 @@ const cleanOptions = options => {
     result.includeCommandPosition=options.includeCommandPosition;
   }
   if(options?.loss !== undefined){
-    if(!['least_squares','soft_l1'].includes(options.loss))throw new Error('Choose least squares or soft-L1 reading loss.');
+    if(!['least_squares','soft_l1','weighted_least_squares'].includes(options.loss))throw new Error('Choose least squares, soft-L1, or declared-ratio weighted least squares.');
     result.loss=options.loss;
   }
   if(options?.lossScale !== undefined){
@@ -56,11 +58,13 @@ function assertReplayWork(base,initialOptions,events){
   }
 }
 function summary(discovery,heldOut,label,kind) {
-  return {label,kind,count:discovery.observations.length,modelId:discovery.selected.id,equation:discovery.selected.equation,rmse:discovery.selected.metrics.rmse,heldOutRMSE:evaluate(discovery.selected,heldOut).rmse};
+  return {label,kind,count:discovery.observations.length,modelId:discovery.selected.id,equation:discovery.selected.equation,rmse:discovery.selected.metrics.rmse,heldOutRMSE:evaluate(discovery.selected,heldOut).rmse,
+    ...(discovery.options.loss==='weighted_least_squares'?{loss:'weighted_least_squares',relativeNoiseRmse:discovery.selected.metrics.weighted.relativeNoiseRmse}:{})};
 }
 export function createSession(dataset,options=DEFAULT_OPTIONS,{labSeed=null}={}) {
   const base=validateDataset(dataset,dataset?.source?.label); const lab=labSeed === null ? null : {seed:validSeed(labSeed)};
   if(lab) {
+    if(base.observations.some(row=>row.torqueNoiseRatio!==undefined)||base.heldOut.some(row=>row.torqueNoiseRatio!==undefined))throw new Error('Virtual instrument source does not declare per-reading torque-noise ratios.');
     if(Object.hasOwn(base,'offeredInputs')) throw new Error('Explicit offered inputs are for imported observations; the virtual instrument retains its fixed candidate course.');
     const fixture=createLab({seed:labSeed});
     if(!matchesVirtualSeed(base.observations,validateRows(fixture.initialSamples)) || !matchesVirtualSeed(base.heldOut,validateRows(fixture.evaluationSamples,{allowEmpty:true}))) throw new Error('Virtual instrument data does not match its declared seed.');
@@ -125,14 +129,15 @@ export function sessionPilotPlan(state) {
     originalOfferedCount:course.offeredCount,previouslyObservedCount:course.offeredCount-course.candidates.length};
 }
 export function exportSession(state) {
-  return JSON.stringify({schema:usesRobust(state)?ROBUST_SESSION_SCHEMA:usesInteraction(state)?INTERACTION_SESSION_SCHEMA:SESSION_SCHEMA,base:state.base,lab:state.lab,initialOptions:state.initialOptions,events:state.events},null,2);
+  return JSON.stringify({schema:usesWeighted(state)?WEIGHTED_SESSION_SCHEMA:usesRobust(state)?ROBUST_SESSION_SCHEMA:usesInteraction(state)?INTERACTION_SESSION_SCHEMA:SESSION_SCHEMA,base:state.base,lab:state.lab,initialOptions:state.initialOptions,events:state.events},null,2);
 }
 export function restoreSession(text) {
   if(typeof text!=='string' || text.length>MAX_TEXT_LENGTH) throw new Error('Notebook must be JSON smaller than 2 MB.');
   let raw; try{raw=JSON.parse(text);}catch{throw new Error('The notebook JSON could not be read.');}
-  if(![SESSION_SCHEMA,INTERACTION_SESSION_SCHEMA,ROBUST_SESSION_SCHEMA].includes(raw?.schema) || !Array.isArray(raw.events) || raw.events.length>MAX_EVENTS) throw new Error('Unsupported or incomplete WORLDLAW notebook.');
+  if(![SESSION_SCHEMA,INTERACTION_SESSION_SCHEMA,ROBUST_SESSION_SCHEMA,WEIGHTED_SESSION_SCHEMA].includes(raw?.schema) || !Array.isArray(raw.events) || raw.events.length>MAX_EVENTS) throw new Error('Unsupported or incomplete WORLDLAW notebook.');
   if(raw.schema===SESSION_SCHEMA && usesInteraction(raw))throw new Error('Interaction feature history requires the v2 notebook envelope.');
-  if(raw.schema!==ROBUST_SESSION_SCHEMA && usesRobust(raw))throw new Error('Soft-L1 fitting history requires the v3 notebook envelope.');
+  if(![ROBUST_SESSION_SCHEMA,WEIGHTED_SESSION_SCHEMA].includes(raw.schema) && usesRobust(raw))throw new Error('Soft-L1 fitting history requires the v3 notebook envelope.');
+  if(raw.schema!==WEIGHTED_SESSION_SCHEMA && usesWeighted(raw))throw new Error('Declared torque-noise ratios and weighted history require the v4 notebook envelope.');
   assertReplayWork(raw.base,raw.initialOptions,raw.events);
   if(raw.lab) validSeed(raw.lab.seed);
   let state=createSession(raw.base,raw.initialOptions,{labSeed:raw.lab?.seed??null});
