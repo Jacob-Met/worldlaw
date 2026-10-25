@@ -1,0 +1,14 @@
+✔ independent conservative oscillator preserves kinetic plus relative potential (5.636124ms)
+✔ potential differences differentiate to negative restoring torque including gravity (0.335285ms)
+✔ analytic driven constant acceleration separates command and position-command work (1.432333ms)
+✔ antidamping is distinct from unstable conservative potential (0.253223ms)
+✔ actual maintained RK4 damped law balance improves with refinement (4.565975ms)
+✔ refuses malformed models, nonfinite states and nonmonotone time (0.568219ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17.906365

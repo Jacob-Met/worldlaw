@@ -1,0 +1,9 @@
+{
+  "source_sha256": "3568bfbbd1bdb7521472dfe555d70fc90e4cf3d8a06bee17b3018f6e43859c0f",
+  "checks": 23,
+  "mixed_sign_work": -0.399555,
+  "positive_portion": 0.0004950000000000001,
+  "coarse_residual": 0.000002567035116800287,
+  "fine_residual": 6.417746810996605e-7,
+  "status": "pass"
+}

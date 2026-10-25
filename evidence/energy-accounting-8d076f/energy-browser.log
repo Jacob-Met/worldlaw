@@ -1,0 +1,5 @@
+{
+  "status": "pass",
+  "groups": 7,
+  "initial": "Where the predicted energy goes\nExecuted model accounting · joules (J)\nKinetic + potential change\t-0.47336\nWork supplied by command\t0\nWork from rate-dependent terms\t-0.47336\nPositive rate-work portion\t0\nRemaining balance residual\t6.3074e-7\nLargest absolute residual along path\t0.000014279\n\nNo positive rate-work appears at these sampled states. This does not establish passivity between samples or beyond this trajectory.\n\nModel-relative kinetic and potential energy; trapezoidal work on executed states. Positive rate work means modeled energy input on these samples, not physical activity or global passivity. Balance residual combines solver and sampled quadrature error; no convergence certificate.\n\nPotential is relative to the initial angle and includes bias torque. A conservative unstable potential may release stored energy without positive rate-work. Inertia and fixed command are the simulation declarations; no measured energy or authenticated physical law is inferred."
+}

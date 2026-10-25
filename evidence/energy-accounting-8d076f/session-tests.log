@@ -1,0 +1,15 @@
+✔ virtual evidence revises the model and notebook replay recomputes its history (43.124976ms)
+✔ actual imported drag fixture changes structure and preserves held-out separation (29.347953ms)
+✔ CSV accepts quoted fields and refuses incomplete or nonnumeric observations (7.654402ms)
+✔ invalid session and conflicting virtual evidence refuse without changing the current object (5.585977ms)
+✔ noise revisions and undo preserve the measured evidence (24.073686ms)
+✔ all unit declarations agree and source derivation metadata survives notebook replay (14.554501ms)
+✔ every accepted virtual seed can export and reopen; oversized seeds refuse at creation (43.983093ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 178.706096
