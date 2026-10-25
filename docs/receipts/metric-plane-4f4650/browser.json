@@ -1,0 +1,172 @@
+{
+  "checks": [
+    "fit: original decoded pixels, retained fixed-template failures and explicit corrections reach improved metric angles with unchanged raw points",
+    "wrong source is transactional; keyboard removal restores image angles; notebook reopen and original-video reattachment preserve the declaration",
+    "390px layout, keyboard focus and reduced-motion controls remain operable",
+    "challenge: original decoded pixels, retained fixed-template failures and explicit corrections reach improved metric angles with unchanged raw points",
+    "separate corrected video recordings reach actual model fitting, forward challenge and input-only notebook reopen",
+    "no uncaught page errors or external requests"
+  ],
+  "metrics": [
+    {
+      "name": "fit",
+      "originalSha256": "5a27a92fe35d38e54f303b8299693f630223c6d252076b52820cb4e302e66d7c",
+      "measuredFrames": 160,
+      "initialAcquisition": {
+        "rows": 23,
+        "lastTime": 1.1,
+        "lastStatus": "lost"
+      },
+      "explicitManualCorrections": [
+        {
+          "time": 1.1,
+          "failedStatus": "lost",
+          "reason": "score-below-threshold",
+          "authoredControlPoint": {
+            "x": 334.6581782138513,
+            "y": 218.63783473778136
+          }
+        }
+      ],
+      "imageAngleRMSE": 0.2170781988139202,
+      "metricAngleRMSE": 0.0014240293160860025
+    },
+    {
+      "name": "challenge",
+      "originalSha256": "1740ff6d082d562f7b35bbb1d28e6eaaf5f0de1198d23721fb369912a59ad3c9",
+      "measuredFrames": 160,
+      "initialAcquisition": {
+        "rows": 50,
+        "lastTime": 2.433333,
+        "lastStatus": "lost"
+      },
+      "explicitManualCorrections": [
+        {
+          "time": 2.433333,
+          "failedStatus": "lost",
+          "reason": "score-below-threshold",
+          "authoredControlPoint": {
+            "x": 209.23316948328292,
+            "y": 187.51178267249202
+          }
+        },
+        {
+          "time": 3.933333,
+          "failedStatus": "lost",
+          "reason": "score-below-threshold",
+          "authoredControlPoint": {
+            "x": 386.73691728426166,
+            "y": 219.295441081826
+          }
+        }
+      ],
+      "imageAngleRMSE": 0.2935490597335591,
+      "metricAngleRMSE": 0.003103359628245381
+    }
+  ],
+  "trajectory": {
+    "predictionSkill": {
+      "status": "complete",
+      "modelId": "rate+spring",
+      "count": 159,
+      "runCount": 1,
+      "failedRunIds": [],
+      "modelRMSE": 0.0035073523538161834,
+      "baselines": [
+        {
+          "id": "persistence",
+          "count": 159,
+          "positionRMSE": 1.1875300026543079,
+          "skill": 0.999991276924843,
+          "skillStatus": "available"
+        },
+        {
+          "id": "initial_rate",
+          "count": 159,
+          "positionRMSE": 0.9260310515329813,
+          "skill": 0.9999856547640258,
+          "skillStatus": "available"
+        }
+      ],
+      "meaning": "Skill = 1 − model squared error / baseline squared error on identical non-initial samples; positive is better, negative is worse. Zero baseline error has undefined skill. No challenge-based model selection.",
+      "limitations": "No-learning references are not physical laws. Initial angle/rate are supplied; recording independence is not authenticated. Results describe these recordings, not generalization guarantees."
+    },
+    "trainingRunCount": 1,
+    "challengeRunCount": 1,
+    "trainingSampleCount": 160,
+    "challengeSampleCount": 160,
+    "fittedModelCount": 57,
+    "comparedModelCount": 8,
+    "selectedPositionRMSE": 0.0035073523538161856,
+    "completedChallengeRuns": 1,
+    "failedRollouts": 0,
+    "fitResidualUnits": "rad",
+    "selectionBasis": "training_evidence_only",
+    "evidenceKinds": [
+      "synthetic"
+    ],
+    "limitations": [
+      "Finite-library angular-acceleration models; physical inertia and absolute torque remain unknown.",
+      "Unforced scalar rotation is a declared assumption; absent actuator data cannot verify it.",
+      "A supplied initial angular rate is used for prediction. Compact-window weak fitting does not use that rate.",
+      "Challenge observations do not enter fitting, ranking, or initial velocity estimation.",
+      "Inspecting challenge errors and choosing settings is exploratory reuse, not a new blind validation.",
+      "Source kinds and acquisition independence are declared by the input author, not authenticated.",
+      "Numerical step error, calibration error and missing physical structure can all affect forward error."
+    ]
+  },
+  "selectedModel": {
+    "schema": "worldlaw.angular-model/v1",
+    "id": "rate+spring",
+    "terms": [
+      {
+        "id": "rate",
+        "coefficient": -0.1570378576600104,
+        "coefficientUnit": "1/s"
+      },
+      {
+        "id": "spring",
+        "coefficient": -2.562320648263547,
+        "coefficientUnit": "1/s²"
+      }
+    ],
+    "equation": "α = -0.15704·ω + -2.5623·θ",
+    "units": {
+      "position": "rad",
+      "rate": "rad/s",
+      "angularAcceleration": "rad/s²"
+    },
+    "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+    "physicalInertia": null,
+    "absoluteTorqueIdentified": false,
+    "method": "double_integral_angular_acceleration_regression",
+    "domain": {
+      "position": {
+        "min": -0.6400630538105011,
+        "max": 0.7499999999999997
+      },
+      "rate": {
+        "min": -1.1194659725375513,
+        "max": 0.9563867937085251,
+        "source": "declared_initial_and_estimated_rates"
+      }
+    },
+    "metrics": {
+      "count": 159,
+      "rmse": 0.005368558260215776,
+      "whitenedRmse": 0.004110742805015251,
+      "maxAbsResidual": 0.010187313295995426,
+      "score": -1454.3063107397725,
+      "residualUnits": "rad",
+      "residualMeaning": "integrated_training_displacement_not_forward_prediction",
+      "conditionEstimate": 1.078398699493796,
+      "rank": 2
+    }
+  },
+  "sandboxStatus": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+  "chromiumSandbox": true,
+  "browserVersion": "156.0.8078.47",
+  "pageErrors": [],
+  "externalRequests": [],
+  "scope": "Authored original pixel movies through actual decode, unchanged NCC tracker and explicitly recorded UI corrections, source-bound declared plane and maintained executable-law consumer. First-pass tracking losses remain in the receipt; this is not physical calibration or an automatic tracking-quality gain."
+}

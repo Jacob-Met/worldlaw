@@ -1,0 +1,98 @@
+[
+  {
+    "path": "src/motion/measurement.mjs",
+    "sha256": "e7e11dc38301d9aaf24b221b7bfea850dc5f5d8329d206f3969e6919233c710d",
+    "gitBlob": "2c3ed628959696ba39433f001d672f67f85933ad",
+    "bytes": 21687
+  },
+  {
+    "path": "src/motion/app.mjs",
+    "sha256": "8c7a4ba8c786db2b7754b48d4b535bacab184fcbdc22c6d9d4174b966adc66c1",
+    "gitBlob": "82d6e33548067df73b2ba9502d7d80d47342d237",
+    "bytes": 66500
+  },
+  {
+    "path": "src/motion/path-reference.mjs",
+    "sha256": "f8e18876c32da68ac5852ef11aacc723016cd5aa77979a3fb22f3a36d1bcb1ad",
+    "gitBlob": "423585a4c6fa409df60aba31e5fc59118f1e2177",
+    "bytes": 6162
+  },
+  {
+    "path": "src/motion/metric-plane.mjs",
+    "sha256": "6025f49822286bcda96f39c32494e5a234259150c34455acb4a33545f644cfb5",
+    "gitBlob": "b80a59114d207589f5d713456743481c53859e2f",
+    "bytes": 6405
+  },
+  {
+    "path": "src/motion/metric-plane-panel.mjs",
+    "sha256": "1dfa7c5549c2153f47452037643377c8385971f6d52da91e6892d1cd544c33e1",
+    "gitBlob": "4b67eece61d3178e1e8323f746e28751dd1ed6f8",
+    "bytes": 4133
+  },
+  {
+    "path": "src/motion/vendor/plane-homography.mjs",
+    "sha256": "336e03f3c2121aba99375cf7e855239353a216ee3d98135dda071602d5b34d81",
+    "gitBlob": "5f9ee62ce8e1511c882774303511a7850b535f65",
+    "bytes": 5975
+  },
+  {
+    "path": "src/motion/vendor/plane-homography-source.json",
+    "sha256": "fdde8854ddc1e8f0cec3937e824099e1cb373d2bdb288bbe823da81b95b67d36",
+    "gitBlob": "1c6199617f37f68512e5ef7011b6256446ba1637",
+    "bytes": 826
+  },
+  {
+    "path": "src/trajectory/app.mjs",
+    "sha256": "c90368388eb3ccc1a81f3fe418d270a810a2835d3f8773d5620273cdf26f421e",
+    "gitBlob": "bfaccc1f6557f781f39c22d14a6af1e66f50988c",
+    "bytes": 37884
+  },
+  {
+    "path": "src/trajectory/motion-intake.mjs",
+    "sha256": "ea62d778a2ec83bb4c3339cd34d993abe01467a8a670fa288a719e28ce39f17b",
+    "gitBlob": "89e311bf7d0feb78a742fd9f9cdaedd53d3318f4",
+    "bytes": 8198
+  },
+  {
+    "path": "src/trajectory/motion-intake-panel.mjs",
+    "sha256": "1341fdc8b56892f3c07fa4318336fcb4e965537b34694db3e6511e636b42aefe",
+    "gitBlob": "175ba12f71cf0e03ac4a6f298bca62909ecbb2d3",
+    "bytes": 8217
+  },
+  {
+    "path": "motion.html",
+    "sha256": "c492d5f16e16b8cc78e43977f60ab98af32522e424cee9e980addec3daeb5c07",
+    "gitBlob": "ebeac29a8b9e8dfe07c3f169259bd227380bb9dc",
+    "bytes": 21058
+  },
+  {
+    "path": "motion.css",
+    "sha256": "2d84fdb64d4f86214fc4076a55e52395fdf9da024cd5e345a60b93b699efa38e",
+    "gitBlob": "48dddd332209ab3f1b4ee7989802ce315ae003d8",
+    "bytes": 16768
+  },
+  {
+    "path": "scripts/make-metric-plane-fixtures.py",
+    "sha256": "ee639a182442c946ca9ff9514c30f31ef1b6e58c7a7b0e84c156cee3677d0678",
+    "gitBlob": "bc3096aeb9e3d7b8437dd5494b3b1e78a81aa9eb",
+    "bytes": 5007
+  },
+  {
+    "path": "scripts/motion-metric-plane-browser.mjs",
+    "sha256": "969f008fd94b73acdcdcf32d3ace01d5ed9ef996a0fa7313c3663fa6e57b8d8b",
+    "gitBlob": "37d3af3aff7a7b0fd22da53c758bd5b55ae7d8d9",
+    "bytes": 14078
+  },
+  {
+    "path": "tests/motion-metric-plane.test.mjs",
+    "sha256": "ed5bda0e78b3e526cb1aaafe5ba556617e1684376e45283c64d4a45c1b066c94",
+    "gitBlob": "84c225e85426fb363353d62389976211e832a015",
+    "bytes": 10644
+  },
+  {
+    "path": "tests/helpers/metric-plane-course.mjs",
+    "sha256": "123f6484585df1e71fb0fceeab8953249f91c03ffd61dd754704cd1d0fb6077f",
+    "gitBlob": "652a5cf8de14b2037c0f486bd4a20ee6833d1650",
+    "bytes": 2439
+  }
+]

@@ -1,0 +1,79 @@
+{
+  "schema": "worldlaw.metric-plane-receiving/v1",
+  "issue": "https://github.com/Jacob-Met/worldlaw/issues/243",
+  "baseCommit": "29b117100c57c5f132d45c53edda2febc0cd9926",
+  "sourceManifest": "source-files.json",
+  "sourceManifestSha256": "d72d61c03b798b0e770407b7b29f855c86b6b2cb64e2e69c5fc8d916e601ae0a",
+  "environment": {
+    "system": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "node": "v24.22.1",
+    "python": "3.12.14",
+    "pillow": "12.3.0",
+    "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers",
+    "chromium": "156.0.8078.47",
+    "browserAccount": "unprivileged nobody",
+    "browserSandbox": "Namespace, PID/network namespaces and Seccomp-BPF verified in chrome://sandbox"
+  },
+  "commands": [
+    {
+      "command": "python scripts/make-metric-plane-fixtures.py /tmp/hamon-4f4650-worldlaw-browser/fixtures",
+      "result": "passed: two independent authored camera-projection movies and source-bound declarations"
+    },
+    {
+      "command": "npm test",
+      "result": "975 passed, 1 existing optional skip, 0 failed",
+      "log": "native-tests.log"
+    },
+    {
+      "command": "npm run smoke",
+      "result": "passed: launched product HTTP and discovery consumer"
+    },
+    {
+      "command": "npm run smoke:trajectory",
+      "result": "passed: launched Trajectory fixture fit, forward prediction and reopen"
+    },
+    {
+      "command": "node scripts/motion-metric-plane-browser.mjs",
+      "environment": {
+        "PLAYWRIGHT_MODULE": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs",
+        "BROWSER_EXECUTABLE_PATH": "/tmp/hamon-shared-chrome-156.0.8078.47/chrome-linux64/chrome",
+        "MOTION_FIXTURE_DIR": "/tmp/hamon-4f4650-worldlaw-browser/fixtures",
+        "BROWSER_ARTIFACT_DIR": "/tmp/hamon-4f4650-worldlaw-browser/results"
+      },
+      "result": "passed: actual decoded source movies, retained tracker failures and explicit UI corrections, declared planes, original image comparison, wrong-source refusal, keyboard removal, exact reopen/source reattachment, desktop/390px keyboard and reduced-motion, actual Trajectory fitting/challenge/reopen; no external requests/page errors",
+      "details": "browser.json"
+    }
+  ],
+  "meaningfulFailuresRetained": [
+    {
+      "case": "fixed original NCC patch",
+      "observed": "First recording lost at 1.1 s; second lost at 2.433333 s and 3.933333 s. Existing explicit manual UI corrections use the authored control position and retain prior failures in revisions.",
+      "evidence": [
+        "fit-tracking-failure.png",
+        "challenge-tracking-failure.png",
+        "fit-plane-notebook.json",
+        "challenge-plane-notebook.json"
+      ]
+    },
+    {
+      "case": "30 Hz request versus observed decoded intervals",
+      "observed": "Alternating approximately 33/67 ms decoded gaps exceeded the existing 1.6-step continuity rule; courses fragmented and Trajectory refused intake. Final receiving explicitly requested 20 Hz without widening the rule or interpolation.",
+      "evidence": "thirty-hz-course-refused.log"
+    },
+    {
+      "case": "wrong declared aspect ratio",
+      "observed": "All four references fit to near floating-point precision while the inferred angles exceed 0.1 rad RMS error against independent authored truth. Remains a conditional geometry declaration, never physical validation.",
+      "test": "tests/motion-metric-plane.test.mjs"
+    }
+  ],
+  "qualification": [
+    "Authored synthetic movies and independent analytic camera projections; not measured physical calibration or a blind validation.",
+    "The unchanged tracker did not acquire either full course automatically. Angle comparisons use identical raw pixel observations after explicit recorded corrections.",
+    "The plane map and per-pixel angle sigma condition on exact declared correspondences, common plane, fixed camera and negligible lens distortion.",
+    "Initial rates are known authored inputs; challenge observations do not fit/rank models or initialize a later rate.",
+    "Original v1/v2 Motion notebooks and existing tracker defaults remain supported.",
+    "No physical inertia, torque scale, forces, camera/lens parameters or mechanism topology are inferred."
+  ],
+  "visualDecision": "Compared separate calibration editor with source overlays/paired angle interpretation. Selected the existing Motion source stage, numbered declared references, and solid/dashed trace comparison; no replacement shell.",
+  "integrationStatus": "Candidate receiving. GitHub PR and merged-head verification are recorded on issue 243; this receipt does not itself claim merge or deployment."
+}

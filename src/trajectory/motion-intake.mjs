@@ -107,7 +107,7 @@ export async function createMotionAngularBundle({training, challenge, label = 'S
   insist(assumptions?.unforcedScalarRotation === true,
     'Declare that these recordings represent unforced scalar rotation. Video alone does not establish absent external forcing.');
   insist(assumptions?.sharedAngleFrame === true,
-    'Declare the same physical angle zero, direction and fixed camera orientation across recordings.');
+    'Declare the same physical angle zero and direction across recordings, with each camera fixed. Image-angle recordings also require the same camera orientation.');
   const declarations = {
     unforcedScalarRotation: true, sharedAngleFrame: true,
     basis: boundedText(assumptions.basis, 'Shared dynamics and angle-coordinate basis'),
