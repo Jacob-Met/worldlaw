@@ -34,7 +34,7 @@ const axisFmt=value=>Math.abs(value)>=1000||(Math.abs(value)>0&&Math.abs(value)<
 const termNames={command:'Actuation',rate:'Linear rate',coulomb:'Rate sign',spring:'Linear position',gravity:'Sinusoidal position',quadratic:'Odd quadratic rate',rate_squared:'Even quadratic rate',bias:'Constant torque',cubic:'Cubic position',cosine:'Cosine position'};
 const storageKey='worldlaw.trajectory-challenge.v1';
 const exampleURLs={pendulum:'/examples/trajectory-pendulum-92be.json',ambiguous:'/examples/trajectory-ambiguous-92be.json',measured:'/examples/physical-pasco-92be.json'};
-let state,workflow,experimentPanel,selectedRunId,generation=0,busy=false,rows=[],playing=false,playStarted=0,playFrom=0,animationHandle=0,viewIndex=0,chartX=null,positionTolerance=.05,horizon=null;
+let state,workflow,experimentPanel,selectedRunId,generation=0,busy=false,rows=[],contactRows=[],playing=false,playStarted=0,playFrom=0,animationHandle=0,viewIndex=0,chartX=null,positionTolerance=.05,horizon=null;
 const referencePanel=createReferencePanel($('experiment-panel'));
 
 function angularMode(){return state?.bundle?.schema==='worldlaw.angular-bundle/v1';}
@@ -53,6 +53,8 @@ function save(){
 function updateMethodDescription(){
   const method=document.querySelector('input[name="method"]:checked').value,angular=angularMode();
   const interactionAllowed=!angular&&method==='weak';
+  $('contact-control').hidden=angular;$('contact-explanation').hidden=angular;$('compare-coulomb-contact').disabled=angular;
+  if(angular)$('compare-coulomb-contact').checked=false;
   $('directional-control').hidden=!interactionAllowed;
   $('directional-explanation').hidden=!interactionAllowed;
   $('directional-quadratic-loss').disabled=!interactionAllowed;
@@ -65,7 +67,7 @@ function updateMethodDescription(){
   set('method-explanation',angular?(method==='weak'?'Experimental fit across compact time windows. It eliminates initial rate from fitting; forward prediction still uses the supplied rate.':'Fits accumulated angular motion. The learned coefficients describe acceleration; physical torque scale remains unknown.'):method==='weak'?'Fits compact windows using measured commands and declared inertia; starting rate enters forward prediction only.':method==='integral'?'Fits accumulated motion without taking a second derivative of the angle.':'Estimates angular acceleration first, then fits a torque law to those derived observations.');
 }
 
-function settings(){const raw=$('noise-sigma').value.trim(),noiseSigma=Number(raw);if(!raw||!Number.isFinite(noiseSigma)||noiseSigma<=0)throw new Error('Enter an assumed residual noise greater than zero.');return {...state?.options,commandPositionInteraction:$('command-position-interaction').checked,directionalQuadraticLoss:$('directional-quadratic-loss').checked,method:document.querySelector('input[name="method"]:checked').value,noiseSigma};}
+function settings(){const raw=$('noise-sigma').value.trim(),noiseSigma=Number(raw);if(!raw||!Number.isFinite(noiseSigma)||noiseSigma<=0)throw new Error('Enter an assumed residual noise greater than zero.');return {...state?.options,commandPositionInteraction:$('command-position-interaction').checked,directionalQuadraticLoss:$('directional-quadratic-loss').checked,compareCoulombContact:$('compare-coulomb-contact').checked,method:document.querySelector('input[name="method"]:checked').value,noiseSigma};}
 async function perform(getNext,message,{persist=true,propagate=false}={}){
   commandTimingPanel.suspend();
   const ticket=++generation;setBusy(true);
@@ -78,7 +80,7 @@ async function perform(getNext,message,{persist=true,propagate=false}={}){
     if(!state.bundle.challengeRuns.some(run=>run.id===selectedRunId))selectedRunId=state.bundle.challengeRuns[0].id;
     state.selectedRunId=selectedRunId;
     const methods=state.supportedMethods||(angularMode()?['integral']:['integral','derivative']);for(const radio of document.querySelectorAll('input[name="method"]')){radio.closest('label').hidden=!methods.includes(radio.value);radio.disabled=!methods.includes(radio.value);radio.checked=radio.value===state.options.method;}document.querySelector('.method-switch').classList.toggle('single-method',methods.length===1);
-    $('noise-sigma').value=state.options.noiseSigma;$('command-position-interaction').checked=!!state.options.commandPositionInteraction;$('directional-quadratic-loss').checked=!!state.options.directionalQuadraticLoss;updateMethodDescription();render();
+    $('noise-sigma').value=state.options.noiseSigma;$('command-position-interaction').checked=!!state.options.commandPositionInteraction;$('directional-quadratic-loss').checked=!!state.options.directionalQuadraticLoss;$('compare-coulomb-contact').checked=!!state.options.compareCoulombContact;updateMethodDescription();render();
     if(persist)save();notice(message);return workflow;
   }catch(error){if(ticket===generation){if(propagate)throw error;alertError(error);if(!state)set('notice','No challenge is loaded. Import paired runs or load the synthetic example.');}}
   finally{if(ticket===generation){setBusy(false);commandTimingPanel.setBundle(state?.bundle);}}
@@ -130,6 +132,13 @@ function renderModel(){
 rollingOriginPanel.render(model,run,state.options);
 cycleWorkPanel.render(model,state.bundle,state.options);
   rows=result?.status==='ok'&&Array.isArray(result.rollout?.rows)?result.rollout.rows:[];residualStructurePanel.render(rows);viewIndex=0;const angular=angularMode(),failed=result?.status==='failed';$('prediction-status').hidden=!failed;set('prediction-status',failed?`${predictionFailure(result)} The observed recording remains visible; no incomplete prediction is presented.`:'');$('prediction-legend').hidden=!rows.length;$('motion-panel').hidden=angular||!rows.length;$('angular-context').hidden=!angular;$('comparison-grid').classList.toggle('without-motion',!angular&&!rows.length);$('sample-readout').hidden=!rows.length;set('angular-initial-rate',`${fmt(run.initialRate)} rad/s`);set('angular-recording',run.label||run.id);
+  const contact=state.contactResults?.find(r=>r.modelId===model.id&&r.runId===run.id);
+  contactRows=contact?.status==='ok'?contact.rollout.rows.map(row=>({...row,contact:row.predicted})):[];
+  if(contact?.status==='ok'&&rows.length)rows=rows.map((row,i)=>({...row,contact:contact.rollout.rows[i].predicted}));
+  let contactNote=document.getElementById('contact-comparison');
+  if(!contactNote){contactNote=el('p',undefined,'resolution-note');contactNote.id='contact-comparison';$('trajectory-chart').after(contactNote);}
+  contactNote.hidden=!state.options.compareCoulombContact;
+  contactNote.textContent=contact?.status==='ok'?`Orange dotted curve · sliding/sticking hypothesis: ${fmt(contact.rollout.metrics.positionRMSE)} rad RMSE; ${fmt(contact.rollout.diagnostics.coulombContact.heldDuration)} s at rest. Original dashed sign-rate forecast is unchanged. Equal static/kinetic threshold is assumed, not identified. Step comparison: ${contact.resolution.status==='compared'?fmt(contact.resolution.positionRMSEDifference)+' rad':'unavailable'}. Finite steps can miss internal zero crossings; agreement is not an error bound.`:contact?`Sliding/sticking forecast unavailable: ${contact.error.message} Original prediction remains available.`:'';
   const angularReplay=angular&&rows.length,playback=document.querySelector('.playback-controls'),playbackParent=angularReplay?$('angular-context'):$('motion-panel');playbackParent.insertBefore(playback,playbackParent.querySelector(angularReplay?'.angular-assumption':'.schematic-note'));$('angular-context').classList.toggle('with-replay',Boolean(angularReplay));
   const m=result?.rollout?.metrics||{};set('position-rmse',fmt(m.positionRMSE));set('maximum-error',fmt(m.maxAbsError));set('final-error',fmt(m.finalAbsError));
   let baselineNote=document.getElementById('baseline-comparison');
@@ -181,7 +190,7 @@ function renderModels(){
 }
 function svgElement(tag,attrs={},text){const node=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,String(value));if(text!==undefined)node.textContent=text;return node;}
 function chart(containerId,series,{dark=false,residual=false}={}){
-  const container=$(containerId);container.replaceChildren();const plotRows=rows.length?rows:residual?[]:currentRun().samples.map(sample=>({time:sample.time,observed:sample.position}));
+  const container=$(containerId);container.replaceChildren();const plotRows=rows.length?rows:residual?[]:contactRows.length?contactRows:currentRun().samples.map(sample=>({time:sample.time,observed:sample.position}));
   if(!plotRows.length){container.append(el('p',`No residual can be computed without a complete prediction. Select another law to inspect its motion.`,'chart-empty'));return;}
   const W=Math.max(270,Math.round(container.clientWidth)-(dark?16:0)),H=dark?(W>650?300:W>430?270:235):(W>400?205:190),L=W<350?45:53,R=15,T=18,B=40;
   const x0=plotRows[0].time,x1=plotRows.at(-1).time;let y0=residual?0:Infinity,y1=residual?0:-Infinity;
@@ -189,7 +198,7 @@ function chart(containerId,series,{dark=false,residual=false}={}){
   if(!Number.isFinite(y0)||!Number.isFinite(y1)){container.append(el('p','Finite trajectory values are unavailable.','chart-empty'));return;}
   const pad=Math.max((y1-y0)*.16,residual?.00001:.05);y0-=pad;y1+=pad;
   const X=x=>L+(x-x0)/Math.max(x1-x0,1e-12)*(W-L-R),Y=y=>H-B-(y-y0)/(y1-y0)*(H-T-B);
-  const svg=svgElement('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':residual?`Observed minus predicted angle for ${currentRun().label}, across ${plotRows.length} challenge samples.`:`${rows.length?'Observed and model-predicted angle':'Observed angle'} for ${currentRun().label}, across ${plotRows.length} challenge samples. ${rows.length?`Position RMSE ${fmt(currentResult()?.rollout?.metrics?.positionRMSE)} radians.`:'Selected model prediction unavailable.'}`});
+  const svg=svgElement('svg',{viewBox:`0 0 ${W} ${H}`,role:'img','aria-label':residual?`Observed minus predicted angle for ${currentRun().label}, across ${plotRows.length} challenge samples.`:`${rows.length?'Observed and model-predicted angle':'Observed angle'} for ${currentRun().label}, across ${plotRows.length} challenge samples. ${rows.length?`Position RMSE ${fmt(currentResult()?.rollout?.metrics?.positionRMSE)} radians.`:'Selected model prediction unavailable.'}${contactRows.length?' A separate sliding/sticking hypothesis is shown in orange.':''}`});
   svg.append(svgElement('title',{},residual?'Challenge angle residual over time':rows.length?'Observed and predicted challenge trajectory':'Observed challenge trajectory; prediction unavailable'));
   const grid=dark?'#547046':'#d9e1cd',ink=dark?'#b7c8a7':'#768769';
   for(let i=0;i<=4;i++){const x=x0+(x1-x0)*i/4,y=y0+(y1-y0)*i/4;
@@ -206,7 +215,7 @@ function chart(containerId,series,{dark=false,residual=false}={}){
 }
 function renderCharts(){
   if(!state)return;
-  chart('trajectory-chart',[{key:'observed',color:'#e2ecdf'},...(rows.length?[{key:'predicted',color:'#d4ed87',dash:'7 5'}]:[])],{dark:true});
+  chart('trajectory-chart',[{key:'observed',color:'#e2ecdf'},...(rows.length?[{key:'predicted',color:'#d4ed87',dash:'7 5'}]:[]),...(contactRows.length?[{key:'contact',color:'#f3b56b',dash:'2 4'}]:[])],{dark:true});
   chart('residual-chart',[{key:'residual',color:'#708e42'}],{residual:true});setSample(viewIndex);
 }
 function renderTable(){
