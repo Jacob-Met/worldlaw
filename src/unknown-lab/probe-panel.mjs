@@ -1,6 +1,7 @@
+import {saturatedProbeExample} from './probe-saturation-fixture.mjs';
 import {mountProbeMixtureConsistency} from './probe-mixture-consistency-panel.mjs';
 import {analyzeProbeMixtures} from './probe-mixture.mjs';
-import {analyzeProbeStudy,exportProbeStudy,importProbeStudy} from './probe-response.mjs';
+import {analyzeProbeStudy,exportProbeStudy,importProbeStudy,PROBE_SCHEMA,SATURATED_PROBE_SCHEMA} from './probe-response.mjs';
 import {probeExample} from './probe-fixture.mjs';
 const fmt=x=>Number(x.toPrecision(4)).toString();
 export function mountProbePanel(){
@@ -13,9 +14,10 @@ export function mountProbePanel(){
  .probe-investigation #probe-challenges p{overflow-wrap:anywhere}
  </style><p class="overline">CROSS-PROBE / TEST WHAT PREPARATION CHANGES</p><h2 id="probe-title">Does the effect reverse with motion?</h2>
  <p>Hold preparation and command fixed. Change the probe angle and rate to confront a constant torque offset, a change proportional to rate, and a change proportional to sin(angle). The same coefficient must predict every separate challenge.</p>
- <label for="probe-example-kind">Authored control <select id="probe-example-kind"><option value="ambiguous">Ambiguous small probes → reversed motion</option><option value="drag">Rate-dependent response</option><option value="offset">Constant response</option><option value="restoring">Sine-angle response</option><option value="mixed">Mixed offset + rate control</option></select></label>
+ <label for="probe-example-kind">Authored control <select id="probe-example-kind"><option value="ambiguous">Ambiguous small probes → reversed motion</option><option value="drag">Rate-dependent response</option><option value="offset">Constant response</option><option value="restoring">Sine-angle response</option><option value="mixed">Mixed offset + rate control</option><option value="saturated">Saturated-rate response</option></select></label>
  <div class="secondary-actions"><button id="probe-example" type="button">Run authored probe study</button><button id="probe-open" type="button">Open probe measurements</button><button id="probe-export" type="button" disabled>Export probe study</button></div><input id="probe-file" type="file" accept=".json,application/json" hidden>
- <p class="input-hint">Imports use worldlaw.probe-response/v1: 3 or more training runs, separate challenge runs, fixed preparation declarations and a fixed command/angle/rate within each run. Each run embeds the existing matched-pair notebook with at least four pairs per order. Source declarations are retained; no study is saved automatically.</p>
+ <p class="input-hint">Imports use worldlaw.probe-response/v1 (v2 when saturation scales are declared): 3 or more training runs, separate challenge runs, fixed preparation declarations and a fixed command/angle/rate within each run. Each run embeds the existing matched-pair notebook with at least four pairs per order. Source declarations are retained; no study is saved automatically.</p>
+ <details><summary>Revise with declared saturated-rate alternatives</summary><p>Compare a tanh(rate / scale) response at up to three explicitly chosen scales. These finite alternatives are conditional hypotheses, not discovered friction mechanisms. Original failed laws and independent challenges remain visible. Mixed-response fitting below keeps its original affine library.</p><label>Saturation scales (rad/s, comma-separated)<input id="probe-saturation-scales" value="0.1,0.2,0.4"></label><div class="secondary-actions"><button id="probe-saturation-apply" type="button">Compare declared saturation scales</button><button id="probe-saturation-reset" type="button">Return to original four hypotheses</button></div></details>
  <strong id="probe-state" role="status">NO STUDY</strong><p id="probe-summary"></p>
  <p id="probe-plot-hint" class="input-hint">Observed intervals are amber; predicted intervals retain their full width. On a narrow screen, scroll the plot horizontally or focus it and use arrow keys.</p><div class="probe-plot-scroll" tabindex="0" role="region" aria-label="Scrollable probe prediction comparison" aria-describedby="probe-plot-hint"><svg id="probe-plot" viewBox="0 0 820 350" role="img" aria-label="Separate observed probe contrasts against frozen hypothesis prediction intervals"></svg></div>
  <div class="table-wrap"><table><caption>Training-only coefficient intervals · declared coefficient bounds −100 to 100 in the listed units</caption><thead><tr><th>Hypothesis</th><th>Training</th><th>Coefficient interval</th><th>All challenges</th></tr></thead><tbody id="probe-models"></tbody></table></div>
@@ -25,10 +27,11 @@ export function mountProbePanel(){
  const $=id=>section.querySelector('#'+id);let study=null,readVersion=0,consistencyConfig=null;
  function adopt(next,config=null){const result=analyzeProbeStudy(next);study=next;consistencyConfig=config;render(result);$('probe-export').disabled=false;$('probe-error').textContent='';document.dispatchEvent(new CustomEvent('worldlaw-probe-study-change'));}
  function render(r){
+  $('probe-saturation-scales').value=(study.rateSaturationScales??[.1,.2,.4]).join(',');
   $('probe-state').textContent=r.fit.status.toUpperCase().replaceAll('-',' ');
   $('probe-summary').textContent=`${r.source??'No'} evidence · preparation ${study.preparation.id}, ${study.preparation.duration}s; recovery ${study.preparation.recovery}s. `+(r.fit.reasons.join(' ')||'Predictions below use training-only coefficients; failed alternatives remain visible.');
   $('probe-models').replaceChildren();for(const c of r.fit.candidates){const tr=document.createElement('tr');for(const value of [c.label,c.compatible?(c.excited?'compatible':'compatible / unexcited'):'contradicted',c.coefficientInterval?c.coefficientInterval.map(fmt).join(' to ')+' '+c.units:'—',r.jointChallenges.find(j=>j.id===c.id)?.status??'not predicted']){const td=document.createElement('td');td.textContent=value;tr.append(td);}$('probe-models').append(tr);}
-  $('probe-challenges').replaceChildren();for(const p of r.challenges){const text=document.createElement('p');text.textContent=p.id+': angle '+fmt(p.probe.position)+' rad, rate '+fmt(p.probe.rate)+' rad/s; observed ['+p.interval.map(fmt).join(', ')+'] N·m. '+p.predictions.map(c=>c.id+' ['+c.interval.map(fmt).join(', ')+'] '+c.status).join('; ');$('probe-challenges').append(text);}renderMixtures();draw(r);
+  $('probe-challenges').replaceChildren();for(const p of r.challenges){const text=document.createElement('p');text.textContent=p.id+': angle '+fmt(p.probe.position)+' rad, rate '+fmt(p.probe.rate)+' rad/s; observed ['+p.interval.map(fmt).join(', ')+'] N·m. '+p.predictions.map(c=>c.id+' ['+c.interval.map(fmt).join(', ')+'] '+c.status).join('; ');$('probe-challenges').append(text);}if(study.rateSaturationScales)$('probe-summary').textContent+=' Declared saturation scales '+study.rateSaturationScales.join(', ')+' rad/s; original four-law family '+(r.fit.candidates.some(c=>!c.id.startsWith('saturated-rate:')&&c.compatible)?'retains alternatives.':'has no compatible candidate.');renderMixtures();draw(r);
  }
  function renderMixtures(){
   const target=$('probe-mixtures');target.replaceChildren();
@@ -54,13 +57,16 @@ export function mountProbePanel(){
   for(let i=0;i<pts.length;i++){
    const p=pts[i],x=65+(i+.5)*730/pts.length;
    node('line',{x1:x,x2:x,y1:Y(p.interval[0]),y2:Y(p.interval[1]),stroke:'#ffad5c','stroke-width':7});node('circle',{cx:x,cy:Y(p.observed),r:5,fill:'#ffad5c'});
-   p.predictions.forEach((c,j)=>{const px=x+12+(j-p.predictions.length/2)*9;node('line',{x1:px,x2:px,y1:Y(c.interval[0]),y2:Y(c.interval[1]),stroke:colors[c.id],'stroke-width':4});});
+   p.predictions.forEach((c,j)=>{const px=x+12+(j-p.predictions.length/2)*9;node('line',{x1:px,x2:px,y1:Y(c.interval[0]),y2:Y(c.interval[1]),stroke:colors[c.id]??'#ffe06b','stroke-width':4});});
    node('text',{x,y:307,fill:'#d5dce2','text-anchor':'middle'},'θ '+fmt(p.probe.position));node('text',{x,y:325,fill:'#d5dce2','text-anchor':'middle'},'ω '+fmt(p.probe.rate));
   }
   node('text',{x:20,y:18,fill:'#d5dce2'},'Torque contrast N·m · amber observed / cyan rate / violet sine / pink offset / white zero');
+  if(study.rateSaturationScales)node('text',{x:20,y:36,fill:'#ffe06b'},'Yellow: declared saturated-rate alternatives; scales in the table.');
   for(const v of [lo,hi])node('text',{x:5,y:Y(v),fill:'#d5dce2'},fmt(v));
  }
- $('probe-example').onclick=()=>{readVersion++;try{adopt(probeExample($('probe-example-kind').value));}catch(e){$('probe-error').textContent=e.message;}};
+ $('probe-saturation-apply').onclick=()=>{readVersion++;try{if(!study)throw Error('Load a probe study first.');const pieces=$('probe-saturation-scales').value.split(',');if(pieces.some(x=>!x.trim()))throw Error('Provide explicit comma-separated scales.');adopt({...study,schema:SATURATED_PROBE_SCHEMA,rateSaturationScales:pieces.map(Number)});}catch(e){$('probe-error').textContent=e.message;}};
+ $('probe-saturation-reset').onclick=()=>{readVersion++;try{if(!study)throw Error('Load a probe study first.');const next=structuredClone(study);delete next.rateSaturationScales;next.schema=PROBE_SCHEMA;adopt(next);}catch(e){$('probe-error').textContent=e.message;}};
+ $('probe-example').onclick=()=>{readVersion++;try{adopt($('probe-example-kind').value==='saturated'?saturatedProbeExample():probeExample($('probe-example-kind').value));}catch(e){$('probe-error').textContent=e.message;}};
  $('probe-open').onclick=()=>$('probe-file').click();
  $('probe-file').onchange=async e=>{const version=++readVersion,file=e.target.files?.[0];if(!file)return;try{if(file.size>4000000)throw Error('Use JSON below 4 MB.');const next=importProbeStudy(await file.text());if(version===readVersion)adopt(next);}catch(error){if(version===readVersion)$('probe-error').textContent=error.message;}finally{e.target.value='';}};
  $('probe-export').onclick=()=>{if(!study)return;const url=URL.createObjectURL(new Blob([exportProbeStudy(study)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='worldlaw-probe-study.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};

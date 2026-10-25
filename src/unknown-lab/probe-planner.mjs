@@ -1,6 +1,6 @@
 import {screenIntervalPairs,selectSeparatingCandidate} from '../experiment-design/interval-separation.mjs';
 // Bounded manual acquisition choice; no physical control or calibrated information gain.
-import {fitProbeModels,validateProbeStudy,PROBE_MODELS} from './probe-response.mjs';
+import {fitProbeModels,validateProbeStudy,probeModelsFor} from './probe-response.mjs';
 export const PROBE_PLAN_SCHEMA='worldlaw.probe-plan/v1';
 const fail=m=>{throw Error(m);};
 const finite=(v,lo,hi)=>typeof v==='number'&&Number.isFinite(v)&&v>=lo&&v<=hi;
@@ -20,7 +20,7 @@ function settings(raw){
 export function planProbeAcquisition(training,input){
  const config=settings(input),study=validateProbeStudy(training),fit=fitProbeModels(study);
  const models=fit.candidates.filter(c=>c.compatible);
- const base={schema:PROBE_PLAN_SCHEMA,settings:config,training:study,fitStatus:fit.status,models:models.map(c=>({id:c.id,coefficientInterval:[...c.coefficientInterval],units:c.units,excited:c.excited})),
+ const base={schema:PROBE_PLAN_SCHEMA,settings:config,training:study,fitStatus:fit.status,models:models.map(c=>({id:c.id,coefficientInterval:[...c.coefficientInterval],units:c.units,excited:c.excited,...(c.rateSaturationScale===undefined?{}:{rateSaturationScale:c.rateSaturationScale})})),
   candidates:[],selected:null,status:'unavailable',reason:null,
   assumptions:['Only the offered probe states are considered; feasibility and effort costs are investigator declarations, not physical qualification.',
    'Prediction sets include complete surviving coefficient intervals. A separating gap must exceed twice the declared future contrast radius; that radius is an assumption, not predicted sensor performance.',
@@ -32,7 +32,7 @@ export function planProbeAcquisition(training,input){
  const angleRange=range('position'),rateRange=range('rate');
  const candidates=config.probes.map(p=>{
   const probe={command,position:p.position,rate:p.rate};
-  const predictions=models.map(c=>{const value=PROBE_MODELS.find(m=>m.id===c.id).feature(probe);return {id:c.id,interval:c.coefficientInterval.map(a=>a*value).sort((a,b)=>a-b)};});
+  const predictions=models.map(c=>{const value=probeModelsFor(study).find(m=>m.id===c.id).feature(probe);return {id:c.id,interval:c.coefficientInterval.map(a=>a*value).sort((a,b)=>a-b)};});
   const comparisons=screenIntervalPairs(predictions,config.contrastRadius);
   const separated=comparisons.filter(c=>c.separable).length;
   return {id:p.id,probe,cost:p.cost,withinBudget:p.cost<=config.budget,predictions,comparisons,separated,total:comparisons.length,allSeparated:separated===comparisons.length,
