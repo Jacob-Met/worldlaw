@@ -1,0 +1,24 @@
+{"name":"fit","originalSha256":"5a27a92fe35d38e54f303b8299693f630223c6d252076b52820cb4e302e66d7c","measuredFrames":160,"initialAcquisition":{"rows":23,"lastTime":1.1,"lastStatus":"lost"},"explicitManualCorrections":[{"time":1.1,"failedStatus":"lost","reason":"score-below-threshold","authoredControlPoint":{"x":334.6581782138513,"y":218.63783473778136}}],"imageAngleRMSE":0.21712451704221328,"metricAngleRMSE":0.001412143033899266}
+PASS fit: original decoded pixels, retained fixed-template failures and explicit corrections reach improved metric angles with unchanged raw points
+PASS wrong source is transactional; keyboard removal restores image angles; notebook reopen and original-video reattachment preserve the declaration
+PASS 390px layout, keyboard focus and reduced-motion controls remain operable
+{"name":"challenge","originalSha256":"1740ff6d082d562f7b35bbb1d28e6eaaf5f0de1198d23721fb369912a59ad3c9","measuredFrames":160,"initialAcquisition":{"rows":50,"lastTime":2.433333,"lastStatus":"lost"},"explicitManualCorrections":[{"time":2.433333,"failedStatus":"lost","reason":"score-below-threshold","authoredControlPoint":{"x":209.23316948328292,"y":187.51178267249202}},{"time":3.933333,"failedStatus":"lost","reason":"score-below-threshold","authoredControlPoint":{"x":386.73691728426166,"y":219.295441081826}}],"imageAngleRMSE":0.2935490597335591,"metricAngleRMSE":0.0031033596282453806}
+PASS challenge: original decoded pixels, retained fixed-template failures and explicit corrections reach improved metric angles with unchanged raw points
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+true !== false
+
+    at file:///workspace/scratch/4f4650488b08/worldlaw/scripts/motion-metric-plane-browser.mjs:146:10 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: true,
+  expected: false,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

@@ -1,0 +1,59 @@
+{
+  "schema": "worldlaw.metric-plane/v1",
+  "source": {
+    "sha256": "5a27a92fe35d38e54f303b8299693f630223c6d252076b52820cb4e302e66d7c",
+    "width": 640,
+    "height": 480
+  },
+  "referenceTime": 0,
+  "coordinateUnit": "m",
+  "basis": "Known independent camera projection and metric grid in an authored synthetic video; not physical calibration.",
+  "assumptions": {
+    "samePlane": true,
+    "fixedCamera": true,
+    "metricCoordinates": true,
+    "negligibleLensDistortion": true
+  },
+  "pairs": [
+    {
+      "image": {
+        "x": 196.5811965811966,
+        "y": 87.60683760683762
+      },
+      "plane": {
+        "x": -0.8,
+        "y": 0
+      }
+    },
+    {
+      "image": {
+        "x": 428.57142857142856,
+        "y": 92.10526315789473
+      },
+      "plane": {
+        "x": 0.8,
+        "y": 0
+      }
+    },
+    {
+      "image": {
+        "x": 488.0,
+        "y": 290.0
+      },
+      "plane": {
+        "x": 0.8,
+        "y": 1.6
+      }
+    },
+    {
+      "image": {
+        "x": 247.70642201834863,
+        "y": 314.2201834862385
+      },
+      "plane": {
+        "x": -0.8,
+        "y": 1.6
+      }
+    }
+  ]
+}

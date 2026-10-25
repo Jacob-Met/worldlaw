@@ -14,3 +14,7 @@
 .motion-legend .legend-pivot { background: #087f8c; border: 1px solid #07606b; }
 .motion-lab #pivot-mode { width: 100%; }
 .motion-lab .measurement-table td:nth-child(2) { overflow-wrap: anywhere; }
+
+#metric-plane-panel .button + .button { margin-top: 8px; }
+#metric-plane-panel .input-hint { overflow-wrap: anywhere; }
+.motion-lab label > #zero-axis-label { float: none; font: inherit; color: inherit; }

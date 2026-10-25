@@ -351,3 +351,7 @@ The probe instrument can [profile a declared continuous saturation-scale interva
 
 Trajectory Challenge can now receive two saved Motion Lab notebooks directly. Choose continuous courses and explicitly declare starting rates, common angle coordinates and unforced dynamics. The existing angular fitter and forward solver retain source identities and compare a separate recording without invented physical inertia or torque. See [Motion-to-trajectory intake](docs/MOTION_TRAJECTORY_INTAKE.md) for the actual workflow, source/calibration limits and authored positive/failed-transfer receiving.
 
+
+### Interpret planar motion through a declared camera calibration
+
+Motion Lab can now map both marker and pivot through four source-bound metric-plane references before deriving angles. Numbered references stay on the original raster, and a paired trace compares the plane interpretation with the original image angles. Raw observations, gaps and revisions survive save/reopen and the separate-recording Trajectory workflow. The declaration remains conditional: four fitted points do not verify physical geometry, lens distortion or out-of-plane motion. See [the workflow, maintained homography reuse, authored movie results and limits](docs/MOTION_METRIC_PLANE.md).

@@ -1,8 +1,10 @@
 import {loadVideo} from './video.mjs';
-import {createNotebook, validateNotebook, calibrateNotebook, upsertMeasurement, truncateMeasurements, deriveAngles, exportAngular, exportStudio} from './measurement.mjs';
+import {createNotebook, validateNotebook, calibrateNotebook, calibratePlaneNotebook, upsertMeasurement, truncateMeasurements, deriveAngles, exportAngular, exportStudio} from './measurement.mjs';
 import {createTemplate, trackTemplate, TRACKER_VERSION, COLOR_TRACKER_VERSION, GRID_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION, CONFIRMED_GRID_TRACKER_VERSION, COLOR_CONFIRMED_GRID_TRACKER_VERSION} from './tracker.mjs';
 import {createDemoSource, DEMO_PIVOT, demoMarkerAt} from './demo.mjs';
 import {pathReferenceCourses, proposePathReference, applyPathReference} from './path-reference.mjs';
+import {createMetricPlanePanel} from './metric-plane-panel.mjs';
+import {PLANE_CONVENTION} from './metric-plane.mjs';
 
 const $ = id => document.getElementById(id);
 const canvas = $('evidence-canvas'), context = canvas.getContext('2d');
@@ -11,10 +13,14 @@ const trackedPivot = () => state.notebook?.calibration?.pivotMode === 'tracked';
 const measuredPair = row => accepted(row) && (!trackedPivot() || accepted(row.pivotMeasurement));
 const currentPivot = () => trackedPivot() ? accepted(currentRow()?.pivotMeasurement) || null : state.notebook?.calibration?.pivot;
 const fmt = (value, places = 3) => Number.isFinite(value) ? value.toFixed(places) : '—';
-const state = {notebook: null, source: null, frame: null, derived: null, mode: null,
+const state = {notebook: null, source: null, frame: null, derived: null, imageDerived: null, mode: null,
   cursor: null, template: null, tracking: false, epoch: 0, seekEpoch: 0,
   pathReference: null, controller: null, attachIntent: false, selectedTime: null, segmentId: null,
   seeking: false, seekTarget: null, seekTask: null, seekController: null};
+const planePanel = createMetricPlanePanel({root: $('metric-plane-panel'),
+  getNotebook: () => state.notebook, getTime: () => state.frame?.time ?? state.selectedTime,
+  isBusy: () => state.tracking || state.seeking, commit: commitNotebook,
+  download: fileDownload, notice, showError, clearError});
 
 function notice(message) { $('motion-notice').textContent = message; }
 function clearError() { $('motion-error').hidden = true; $('motion-error').textContent = ''; }
@@ -57,6 +63,7 @@ function referenceSettings() {
     direction: Number($('angle-direction').value),
     pixelSigma: finiteInput('pixel-sigma', 'Assumed point noise', {min: 0, max: 100}),
     pivotMode: $('pivot-mode').value,
+    ...(state.notebook?.calibration?.plane ? {plane: state.notebook.calibration.plane, convention: PLANE_CONVENTION} : {}),
     ...($('pivot-mode').value === 'tracked' ? {pivotPixelSigma: finiteInput('pivot-pixel-sigma', 'Assumed pivot noise', {min: 0, max: 100})} : {})};
 }
 function restoreReferenceInputs() {
@@ -94,11 +101,16 @@ function invalidateStudioExport({clearNumbers = false} = {}) {
   if (clearNumbers) for (const id of ['known-inertia', 'declared-command', 'position-sigma']) $(id).value = '';
   $('studio-export-status').textContent = trackedPivot() ? 'Tracked-pivot measurements export as angular evidence. A translating pivot can add inertial terms that the fixed-pivot torque model does not represent.' : 'No export for the current evidence and assumptions. Enter known inertia and an explicit constant applied torque, then confirm them. Import the resulting JSON in the torque studio.';
 }
+function angleViews(notebook) {
+  return {derived: notebook.calibration?.pivot ? deriveAngles(notebook) : null,
+    imageDerived: notebook.calibration?.plane ? deriveAngles(calibratePlaneNotebook(notebook, null)) : null};
+}
 function commitNotebook(notebook) {
+  const views = angleViews(notebook);
   state.pathReference = null;
   state.notebook = notebook;
   invalidateStudioExport();
-  state.derived = notebook.calibration?.pivot ? deriveAngles(notebook) : null;
+  Object.assign(state, views);
   render();
 }
 function fileDownload(name, content) {
@@ -316,7 +328,7 @@ async function track() {
       else rejected = true;
       if (pivotResult?.status === 'accepted') lastPivot = {...pivotResult.point};
       else if (pivotResult) rejected = true;
-      state.derived = state.notebook.calibration ? deriveAngles(state.notebook) : null; render();
+      Object.assign(state, angleViews(state.notebook)); render();
       $('tracking-progress').value = i / Math.max(1, remaining);
       $('tracking-status').textContent = `${processed} frames inspected · ${fmt(frame.time, 2)} / ${fmt(endTime, 2)} s${duplicates ? ` · ${duplicates} repeated decoded frames skipped` : ''}`;
       if (rejected) { const failed = result.status !== 'accepted' ? `marker: ${result.reason || result.status}` : `pivot: ${pivotResult.reason || pivotResult.status}`;
@@ -345,6 +357,7 @@ function renderCanvas() {
   if (canvas.width !== frame.width || canvas.height !== frame.height) { canvas.width = frame.width; canvas.height = frame.height; }
   context.putImageData(new ImageData(frame.data, frame.width, frame.height), 0, 0);
   const scale = frame.width / 640, radius = Math.max(7, 9 * scale), pivot = currentPivot(), row = currentRow();
+  planePanel.draw(context, scale);
   context.lineWidth = Math.max(1.5, 1.5 * scale);
   function cross(point, color, ring = false) {
     context.strokeStyle = color; context.beginPath(); context.moveTo(point.x - radius, point.y); context.lineTo(point.x + radius, point.y); context.moveTo(point.x, point.y - radius); context.lineTo(point.x, point.y + radius); context.stroke();
@@ -392,10 +405,11 @@ function svgNode(name, attributes, text) {
 }
 function renderChart() {
   const container = $('angle-chart'), samples = state.derived?.samples || [], valid = samples.filter(row => Number.isFinite(row.position));
+  const imageSamples = state.imageDerived?.samples || [], imageValid = imageSamples.filter(row => Number.isFinite(row.position));
   if (!valid.length) { container.replaceChildren(Object.assign(document.createElement('p'), {textContent: state.notebook?.measurements.length ? 'Marker observations are ready. Set a visible pivot or inspect and accept a fitted reference to derive angles.' : 'Track a visible marker, then set or infer a reference to reveal its angle.'})); container.setAttribute('aria-label', 'No angular measurements yet.'); return; }
   const width = 760, height = 220, left = 48, right = 20, top = 14, bottom = 31;
   const minT = Math.min(0, samples[0].time), maxT = Math.max(samples.at(-1).time, minT + .1);
-  let minY = Math.min(...valid.map(row => row.position)), maxY = Math.max(...valid.map(row => row.position));
+  let minY = Math.min(...[...valid, ...imageValid].map(row => row.position)), maxY = Math.max(...[...valid, ...imageValid].map(row => row.position));
   const padding = Math.max(.08, (maxY - minY) * .15); minY -= padding; maxY += padding;
   const x = t => left + (t - minT) / (maxT - minT) * (width - left - right);
   const y = a => height - bottom - (a - minY) / (maxY - minY) * (height - top - bottom);
@@ -409,6 +423,9 @@ function renderChart() {
     const time = minT + (maxT - minT) * i / 4;
     svg.append(svgNode('text', {x: x(time), y: height - 9, 'text-anchor': 'middle', fill: '#8a987a', 'font-size': 9}, `${fmt(time, 2)} s`));
   }
+  const imageGroups = new Map();
+  for (const row of imageValid) { if (!imageGroups.has(row.segmentId)) imageGroups.set(row.segmentId, []); imageGroups.get(row.segmentId).push(row); }
+  for (const rows of imageGroups.values()) svg.append(svgNode('path', {d: rows.map((row, i) => `${i ? 'L' : 'M'}${x(row.time).toFixed(2)},${y(row.position).toFixed(2)}`).join(' '), fill: 'none', stroke: '#8d70a8', 'stroke-width': 1.5, 'stroke-dasharray': '6 4', 'data-angle-frame': 'image'}));
   const grouped = new Map();
   for (const row of samples) {
     if (!Number.isFinite(row.position)) { svg.append(svgNode('line', {x1: x(row.time), x2: x(row.time), y1: top, y2: height - bottom, stroke: '#ca8156', 'stroke-opacity': .55, 'stroke-dasharray': '3 4'})); continue; }
@@ -418,7 +435,7 @@ function renderChart() {
   for (const row of valid) if (row.status === 'manual' || valid.length < 100) svg.append(svgNode('circle', {cx: x(row.time), cy: y(row.position), r: row.status === 'manual' ? 3.5 : 1.8, fill: row.status === 'manual' ? '#244d36' : '#789b47'}));
   const selected = samples.find(row => Math.abs(row.time - (state.frame?.time ?? state.selectedTime)) < 1e-6);
   if (selected) svg.append(svgNode('line', {x1: x(selected.time), x2: x(selected.time), y1: top, y2: height - bottom, stroke: '#334f34', 'stroke-width': 1, 'stroke-dasharray': '2 3'}));
-  container.replaceChildren(svg); container.setAttribute('aria-label', `${valid.length} measured angles in ${grouped.size} continuous segments, from ${fmt(valid[0].time)} to ${fmt(valid.at(-1).time)} seconds. Gaps are not interpolated.`);
+  container.replaceChildren(svg); container.setAttribute('aria-label', `${valid.length} measured angles in ${grouped.size} continuous segments, from ${fmt(valid[0].time)} to ${fmt(valid.at(-1).time)} seconds. Gaps are not interpolated.${imageValid.length ? ' Solid: declared metric-plane angles. Dashed: original image-coordinate interpretation, with its own gaps.' : ''}`);
 }
 
 function renderLedger() {
@@ -492,7 +509,7 @@ function renderSegments() {
   select.replaceChildren(...options); select.value = state.segmentId === null ? '' : String(state.segmentId); select.disabled = !segments.length || state.tracking;
   $('angle-summary').textContent = `${segments.length} continuous evidence segment${segments.length === 1 ? '' : 's'}. Angles unwrap only within each segment. ${segments.length > 1 ? 'Choose a segment explicitly for derivative export; separate segments are never joined.' : 'Rejected points and large time or angle jumps break continuity.'}`;
   const warnings = state.derived?.diagnostics?.warnings || [];
-  const descriptions = {fixed_reference_fitted_from_same_marker_observations: 'The fixed reference was fitted to these marker observations and explicitly accepted. Angle-noise estimates condition on that point as exact; they exclude reference-fit uncertainty.', pivot_measurement_gaps: 'A marker was observed without an accepted pivot on the same frame. Its pixels remain recorded; no fixed pivot or interpolated angle fills the gap.', time_gap_split: 'A time gap exceeded the declared continuity limit.', angular_step_split: 'An angular jump exceeded the declared limit.', radius_varies_check_pivot_perspective_and_tracking: 'The marker-to-pivot radius varies by more than 15%. Review the pivot, perspective, and marker drift before interpreting this as rigid rotation.', nominal_video_timestamps: 'Some video timestamps are nominal seek positions. The torque export requires decoded frame timestamps and will refuse those segments.'};
+  const descriptions = {metric_plane_is_caller_declared: 'Angles condition on four declared metric-plane references. A good reference fit does not verify the physical geometry; noise propagation excludes calibration error.', plane_radius_varies_check_calibration_and_tracking: 'The rectified marker-to-pivot distance varies by more than 15%. Review the plane declaration, pivot and tracking before interpreting this as rigid rotation.', fixed_reference_fitted_from_same_marker_observations: 'The fixed reference was fitted to these marker observations and explicitly accepted. Angle-noise estimates condition on that point as exact; they exclude reference-fit uncertainty.', pivot_measurement_gaps: 'A marker was observed without an accepted pivot on the same frame. Its pixels remain recorded; no fixed pivot or interpolated angle fills the gap.', time_gap_split: 'A time gap exceeded the declared continuity limit.', angular_step_split: 'An angular jump exceeded the declared limit.', radius_varies_check_pivot_perspective_and_tracking: 'The marker-to-pivot radius varies by more than 15%. Review the pivot, perspective, and marker drift before interpreting this as rigid rotation.', nominal_video_timestamps: 'Some video timestamps are nominal seek positions. The torque export requires decoded frame timestamps and will refuse those segments.'};
   $('angle-diagnostics').hidden = !warnings.length;
   $('angle-diagnostics').textContent = warnings.map(warning => descriptions[warning] || warning).join(' ');
 }
@@ -506,7 +523,7 @@ function pathReferenceSettings() {
 }
 function renderPathReference() {
   const busy = state.tracking || state.seeking, panel = $('path-reference-panel');
-  $('infer-path-reference').disabled = !state.notebook || busy || trackedPivot();
+  $('infer-path-reference').disabled = !state.notebook || busy || trackedPivot() || Boolean(state.notebook?.calibration?.plane);
   $('apply-path-reference').disabled = busy || state.pathReference?.status !== 'candidate';
   for (const id of ['path-gap', 'path-residual', 'path-course']) $(id).disabled = busy;
   if (!panel.open || busy) return;
@@ -519,7 +536,7 @@ function renderPathReference() {
     select.value = courses.some(c => String(c.id) === previous) ? previous : courses.length === 1 ? String(courses[0].id) : '';
     const p = state.pathReference, result = $('path-reference-result');
     if (!p) {
-      result.textContent = trackedPivot() ? 'Keep the independently observed moving pivot. Fixed-reference inference assumes a fixed camera.'
+      result.textContent = state.notebook?.calibration?.plane ? 'The image-circle fit does not correct perspective. Keep a separately observed pivot while a metric plane is active.' : trackedPivot() ? 'Keep the independently observed moving pivot. Fixed-reference inference assumes a fixed camera.'
         : 'Track one visible marker first, then compare its observed path. No angles are derived until a reference is explicitly accepted.';
       return;
     }
@@ -550,11 +567,12 @@ function renderPathReference() {
   }
 }
 function render() {
+  planePanel.render();
   const notebook = state.notebook, source = notebook?.source, hasFrame = Boolean(state.frame), calibrated = Boolean(notebook?.calibration?.pivot), busy = state.tracking, measuring = state.tracking || state.seeking;
   const rows = notebook?.measurements || [], valid = rows.filter(measuredPair), gaps = rows.filter(row => !measuredPair(row));
   $('source-kind').textContent = source ? source.kind?.startsWith('synthetic') ? 'Generated pixels · synthetic' : 'Local video · user supplied' : 'No source loaded';
   $('source-name').textContent = source?.label || 'Your mechanism, in view.';
-  $('source-detail').textContent = source ? `${source.width} × ${source.height} pixels · ${fmt(source.duration, 2)} s${!state.source ? ' · video disconnected' : ''}. ${trackedPivot() ? 'Both patches are measured in each frame. Common image translation cancels; camera rotation and perspective do not.' : 'Keep the camera fixed and the marker appearance stable; inspect rotating or deforming patterns for drift.'}` : 'Use approximately planar motion and stable image orientation. A tracked pivot can follow image translation; it does not recover camera pose.';
+  $('source-detail').textContent = source ? `${source.width} × ${source.height} pixels · ${fmt(source.duration, 2)} s${!state.source ? ' · video disconnected' : ''}. ${notebook.calibration?.plane ? 'A fixed metric-plane declaration maps both source points before deriving angles. Its geometry remains caller supplied.' : trackedPivot() ? 'Both patches are measured in each frame. Common image translation cancels; camera rotation and perspective do not.' : 'Keep the camera fixed and the marker appearance stable; inspect rotating or deforming patterns for drift.'}` : 'Use approximately planar motion and stable image orientation. A tracked pivot can follow image translation; it does not recover camera pose.';
   $('source-provenance').textContent = source ? JSON.stringify(source, null, 2) : 'A loaded source will have a recorded identity.';
   $('attach-video').hidden = !notebook || Boolean(state.source) || source.kind?.startsWith('synthetic');
   $('save-notebook').disabled = !notebook || busy;
@@ -576,7 +594,12 @@ function render() {
   $('pivot-step').classList.toggle('complete', calibrated); $('pivot-step').classList.toggle('active', state.mode === 'pivot');
   $('marker-step').classList.toggle('complete', valid.length > 0); $('marker-step').classList.toggle('active', state.mode === 'marker' || state.mode === 'correct');
   $('calibration-status').textContent = calibrated ? trackedPivot() ? `Tracked pivot: ${currentPivot() ? `(${fmt(currentPivot().x, 1)}, ${fmt(currentPivot().y, 1)}) px on this frame` : 'not observed on this frame'}. Set pivot to observe or correct its visible patch; every angle needs both points.` : `Fixed pivot: (${fmt(notebook.calibration.pivot.x, 1)}, ${fmt(notebook.calibration.pivot.y, 1)}) px. ${state.mode ? `Now placing ${state.mode === 'pivot' ? 'pivot' : 'marker'}.` : 'Click “Set pivot” to revise the angular reference.'}` : 'Coordinates use the decoded source pixels.';
-  $('angle-convention').textContent = calibrated ? `Zero: ${fmt(notebook.calibration.zeroAngle * 180 / Math.PI, 1)}° from image down · positive toward image ${notebook.calibration.direction === 1 ? 'right' : 'left'}. Assumed marker noise: ${fmt(notebook.calibration.pixelSigma, 1)} px${trackedPivot() ? `; independent pivot noise: ${fmt(notebook.calibration.pivotPixelSigma, 1)} px` : ''}.` : 'θ = 0 vertically down · positive toward image right · radians';
+  const plane = notebook?.calibration?.plane;
+  $('angle-convention').textContent = calibrated ? `Zero: ${fmt(notebook.calibration.zeroAngle * 180 / Math.PI, 1)}° from ${plane ? 'plane +Y' : 'image down'} · positive toward ${plane ? (notebook.calibration.direction === 1 ? 'plane +X' : 'plane −X') : ('image ' + (notebook.calibration.direction === 1 ? 'right' : 'left'))}. Assumed marker noise: ${fmt(notebook.calibration.pixelSigma, 1)} px${trackedPivot() ? `; independent pivot noise: ${fmt(notebook.calibration.pivotPixelSigma, 1)} px` : ''}.` : 'θ = 0 vertically down · positive toward image right · radians';
+  $('zero-axis-label').textContent = plane ? 'Zero direction from plane +Y' : 'Zero direction from image down';
+  $('angle-direction').options[0].textContent = plane ? 'Toward plane +X' : 'Toward image right';
+  $('angle-direction').options[1].textContent = plane ? 'Toward plane −X' : 'Toward image left';
+  $('plane-angle-legend').hidden = !plane;
   $('apply-point').textContent = state.mode === 'pivot' ? 'Apply pivot' : state.mode ? 'Apply marker' : 'Choose pivot or marker first';
   $('frame-kind').textContent = !source ? 'WAITING FOR SOURCE' : source.kind?.startsWith('synthetic') ? 'SYNTHETIC PIXEL SEQUENCE' : 'LOCAL VIDEO PIXELS';
   $('frame-state').textContent = currentRow() && trackedPivot() ? `Marker ${currentRow().status} · pivot ${currentRow().pivotMeasurement?.status ?? 'unobserved'}` : currentRow()?.status || (hasFrame ? 'Unmeasured frame' : notebook ? 'Reconnect source video' : 'No frame');
