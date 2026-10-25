@@ -1,6 +1,7 @@
 import {createCycleWorkPanel} from './cycle-work-panel.mjs';
 import {createCommandTimingPanel} from './command-timing-panel.mjs';
 import {commandTimingExample} from './command-timing-example.mjs';
+import {commandResponseExample} from './command-response-example.mjs';
 import {createRollingOriginPanel} from './rolling-origin-panel.mjs';
 import {createInitialStatePanel} from './initial-state-panel.mjs';
 import {createPredictiveSelectionPanel} from '../predictive-selection/panel.mjs';
@@ -20,6 +21,7 @@ const rollingOriginPanel=createRollingOriginPanel($('initial-state-panel'));
 const cycleWorkPanel=createCycleWorkPanel($('rolling-origin-panel'));
 const commandTimingPanel=createCommandTimingPanel($('cycle-work-panel')||$('rolling-origin-panel'),{
   onExample:async()=>{$('example-choice').value='command-delay';await loadExample();},
+  onResponseExample:async()=>{$('example-choice').value='command-response';await loadExample();},
   onReopen:async (report,stillCurrent)=>{const next=await perform(()=>createChallenge(report.bundle,{method:'integral',noiseSigma:report.options.noiseSigma,maxStep:report.options.maxStep}),'Timing source reopened. The instantaneous baseline and delay comparison are recomputed from the original recordings.');if(next&&stillCurrent()){commandTimingPanel.configure(report.options);commandTimingPanel.present(report);}},
 });
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
@@ -71,11 +73,12 @@ async function perform(getNext,message,{persist=true,propagate=false}={}){
 }
 async function exampleBundle(choice){
   if(choice==='command-delay')return commandTimingExample().bundle;
+  if(choice==='command-response')return commandResponseExample().bundle;
   const path=exampleURLs[choice],key=path.slice(path.lastIndexOf('/')+1),embedded=globalThis.WORLDLAW_EMBEDDED_EXAMPLES;
   if(embedded&&typeof embedded==='object'&&Object.hasOwn(embedded,key))return embedded[key];
   const response=await fetch(path);if(!response.ok)throw new Error('The example runs could not be loaded. Import a paired-run bundle to continue.');return response.json();
 }
-async function loadExample({persist=true}={}){const choice=$('example-choice').value;const next=await perform(async()=>createChallenge(await exampleBundle(choice),{method:'integral',noiseSigma:choice==='command-delay'?.00001:.01,maxTerms:4,maxStep:.01}),choice==='measured'?'Measured angular recordings loaded. Training and challenge roles are preserved; physical torque scale remains unknown.':'Synthetic paired runs loaded. The law was learned from training motion and challenged on a separate run.',{persist});if(next&&choice==='command-delay')commandTimingPanel.configure(commandTimingExample().options);}
+async function loadExample({persist=true}={}){const choice=$('example-choice').value,commandExample=['command-delay','command-response'].includes(choice);const next=await perform(async()=>createChallenge(await exampleBundle(choice),{method:'integral',noiseSigma:commandExample?.00001:.01,maxTerms:4,maxStep:.01}),choice==='measured'?'Measured angular recordings loaded. Training and challenge roles are preserved; physical torque scale remains unknown.':'Synthetic paired runs loaded. The law was learned from training motion and challenged on a separate run.',{persist});if(next&&commandExample)commandTimingPanel.configure((choice==='command-response'?commandResponseExample():commandTimingExample()).options);}
 function currentModel(){return state.discovery.candidates.find(m=>m.id===state.selectedModelId)||state.discovery.selected;}
 function currentRun(){return state.bundle.challengeRuns.find(r=>r.id===selectedRunId)||state.bundle.challengeRuns[0];}
 function currentResult(){return state.results.find(result=>result.modelId===currentModel().id&&(result.runId||result.rollout?.runId)===currentRun().id);}
