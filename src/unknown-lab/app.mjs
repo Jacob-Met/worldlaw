@@ -1,3 +1,4 @@
+import {mountJointQualification} from './joint-qualification-panel.mjs';
 import {mountDriftConstruction} from './drift-construction-panel.mjs';
 import {mountCorrelationBand} from './correlation-band-panel.mjs';
 import {mountPeriodicCourse} from './periodic-course-panel.mjs';
@@ -160,3 +161,6 @@ mountCorrelationBand();
 
 mountDriftConstruction();
 
+
+
+mountJointQualification();
