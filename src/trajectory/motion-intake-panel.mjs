@@ -6,7 +6,7 @@ export function createMotionIntakePanel(host,{onLoad,isBusy=()=>false}={}){
  section.innerHTML=`<summary>Use two Motion Lab recordings <span aria-hidden="true">+</span></summary>
  <div class="motion-intake-body">
  <p class="small">Choose separately saved Motion notebooks. One recording teaches the law; the other tests its forward motion. Original video files stay on your device.</p>
- <p class="input-hint">Keep the original Motion files for pixel and revision reinspection. The comparison retains angles, source identities, calibration and course lineage.</p>
+ <p class="input-hint">Keep the original Motion files for point measurements and revisions, and the separately identified original videos for pixel reinspection. The comparison retains angles, source identities, calibration and course lineage.</p>
  <div id="motion-intake-roles"></div>
  <label class="motion-intake-check"><input id="motion-unforced" type="checkbox"> Both recordings describe unforced scalar rotation.</label>
  <label class="motion-intake-check"><input id="motion-shared-frame" type="checkbox"> Both use the same physical angle zero, direction and fixed camera orientation.</label>

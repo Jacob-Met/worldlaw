@@ -43,7 +43,8 @@ test('exact input-byte and video identity, course lineage and conditional refere
  assert.deepEqual(motion.observationIndices,deriveAngles(nb).segments[0].sourceIndices);
  assert.ok(motion.reference.activePathFit.method.startsWith('mechanism.path-classifier/'));
  assert.equal(motion.reference.conditioning.fitPrecedesDownstreamSplit,true);
- assert.match(motion.reference.retention,/Full original pixels/);
+ assert.match(motion.reference.retention,/Original point measurements/);
+ assert.match(motion.reference.retention,/separately identified original video for pixel reinspection/);
 });
 test('the same original video cannot masquerade as independent evidence after notebook edits',async()=>{
  const challenge=fixture({amplitude:1.15,sha:'a'});

@@ -69,7 +69,7 @@ async function makeRun(declaration, role, assumptions) {
       pivot: latestFit.pivot, maximumResidualPixels: latestFit.maximumResidualPixels,
       originalObservationCount: latestFit.sourceObservations?.length ?? null,
       interpretation: latestFit.interpretation} : null,
-    retention: 'Full original pixels, revisions and reference-fit membership remain in the identified Motion input file. Keep that file for pixel reinspection.',
+    retention: 'Original point measurements, revisions and reference-fit membership remain in the identified Motion input file. Retain the separately identified original video for pixel reinspection.',
     ...(metadata.referenceConditioning ? {conditioning: metadata.referenceConditioning} : {})
   };
   const original = nb.source;
