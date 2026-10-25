@@ -101,6 +101,7 @@ try{
     assert.ok((await text('selected-equation')).includes('sin')||(await text('selected-equation')).includes('sinus'));
     assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);
   });
+  if(process.env.WORLDLAW_EXCITATION_RECEIVING==='1'){const {receiveExcitationWitness}=await import('./coupling-excitation-receiving.mjs');await receiveExcitationWitness({evaluate,send,check,click,text,wait,outputDir,downloads,base});assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);}
   const receipt={checks,pass:true,events,node:process.version};await writeFile(path.join(outputDir,'verification.json'),JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt,null,2));
 }finally{
   for(const p of pending.values()){clearTimeout(p.timer);p.reject(new Error('Receiver closing'));}pending.clear();
