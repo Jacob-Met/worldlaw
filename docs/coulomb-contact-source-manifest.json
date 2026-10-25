@@ -1,0 +1,107 @@
+{
+  "baseCommit": "ff566099deb38095d3bd0ef20d13792aa8a647c2",
+  "files": [
+    {
+      "path": "src/trajectory/coulomb-contact.mjs",
+      "bytes": 1394,
+      "sha256": "8ebe543da7faf01666410cc9d1f14bf5bf7e5be58acb24b5eb57583bc5b59ae1",
+      "gitsha": "747134198854ab2cf9c98b1d7f6be1b30d70b587"
+    },
+    {
+      "path": "src/trajectory/forward.mjs",
+      "bytes": 13032,
+      "sha256": "4739ae220ae41c48a0c2e17b629db8bf5bcd2eebca091b3b37115fdced91ecd7",
+      "gitsha": "15e8514724952f2cadf22f9e09115502d5f85201"
+    },
+    {
+      "path": "src/trajectory/session.mjs",
+      "bytes": 14150,
+      "sha256": "a4aba6fcab9aaba2f8e114e18e5318e9f9e06dc0da4eb625657dd06a2faa196f",
+      "gitsha": "6f23b47ab6e7c07da03af8a1ffd92073b77ca7ee"
+    },
+    {
+      "path": "src/trajectory/experiment-session.mjs",
+      "bytes": 15857,
+      "sha256": "d8ab25de7b9755ea5b075361216e47ab3a800d7ea9390f0525c39b38cf19a039",
+      "gitsha": "12ca0c07253d9990f77b8f10e73450f3dba6ed7c"
+    },
+    {
+      "path": "src/trajectory/app.mjs",
+      "bytes": 40574,
+      "sha256": "6ac92193f859ad11d8a78268b10db37ebeedc69e882438d677217824d56c149d",
+      "gitsha": "41d00e7f5b80b9ad56a9311e2f59e0d74532b01f"
+    },
+    {
+      "path": "trajectory.html",
+      "bytes": 15759,
+      "sha256": "16ddb8c1127607e5d2764cd889812d58a07867ec896b236dcb8a3df38dc2a703",
+      "gitsha": "1d157226049348fdf8b4909d64eeca6338803fbc"
+    },
+    {
+      "path": "experiments/contact-oracle.mjs",
+      "bytes": 952,
+      "sha256": "d18d8675de6133e9ef1913f8ca493f03baa4b72d064456501e7312b1b3cf5582",
+      "gitsha": "9001ee84300ccea75bdb82f29242016f63d71a54"
+    },
+    {
+      "path": "tests/coulomb-contact.test.mjs",
+      "bytes": 6104,
+      "sha256": "0f40e4f5bb9629a23460dda0a39a7caccd9446f9a633c5cedd5937394e1e0db6",
+      "gitsha": "aec5d48211851feddc0b28d436f409935708c5d2"
+    },
+    {
+      "path": "scripts/coulomb-contact-fixture.mjs",
+      "bytes": 644,
+      "sha256": "3843df8af966201bba514980c344c81a38fbbe0609bba641d5023e6ce5ae3c11",
+      "gitsha": "a955425a7e21f40d04e2a0c3c1dc3dd22e009b79"
+    },
+    {
+      "path": "scripts/coulomb-contact-browser.mjs",
+      "bytes": 4288,
+      "sha256": "fd480fdd94e51316753baa1e0ec2ab1fc5c972afa7e1b2986d10fc53efa95f57",
+      "gitsha": "4b799e45f20716a532fa5f5228b417367f5e2fb5"
+    },
+    {
+      "path": "docs/COULOMB_CONTACT.md",
+      "bytes": 8108,
+      "sha256": "765544e6187f33f7e4f2cc0165bd43a621a21b09355f522775cd8568edb8eec9",
+      "gitsha": "7e02cedfff197f850fd09b183aae4cd08c3ea77d"
+    },
+    {
+      "path": "docs/receipts/coulomb-contact-1d6c/browser.json",
+      "bytes": 1351,
+      "sha256": "c7806e62caad01b2c17048ec4f4ee2642d3e5100083ce4e8bf7de60b86556f87",
+      "gitsha": "ef6ffe84f4f53c4de0d8907d574462dad27c0786"
+    },
+    {
+      "path": "docs/receipts/coulomb-contact-1d6c/contact-control-1440.png",
+      "bytes": 213625,
+      "sha256": "fe9f314166dd1ccbc4ed3e3052f26917f112c703dfe78a32cc31c40d44efb811",
+      "gitsha": "8e60bf2ed101c80b1f73578b7e3e133ea8e24b8a"
+    },
+    {
+      "path": "docs/receipts/coulomb-contact-1d6c/contact-control-390.png",
+      "bytes": 68000,
+      "sha256": "ce6598b63d5f0bc965928e14f1c15dc95057f90dbde93e539e4d480e1f85ad11",
+      "gitsha": "a8c53b33c100d47fce9bb67633ebf7e9e7584a69"
+    },
+    {
+      "path": "docs/receipts/coulomb-contact-1d6c/contact-forecast-1440.png",
+      "bytes": 164035,
+      "sha256": "c8ca328b3c7aee0c63884b45aece270cad9e1a6631b82df676a87cf8c88e01db",
+      "gitsha": "21b4c788fbeec5f3c107bc4eeb96683f6723b102"
+    },
+    {
+      "path": "docs/receipts/coulomb-contact-1d6c/contact-forecast-390.png",
+      "bytes": 74199,
+      "sha256": "45957c4d65de37a7920b6e5bd1a19b55bab1e4f013497cc316c2b4f3ac7603a8",
+      "gitsha": "369a10ef545a997f125a6b6cea0d89d8eea7c503"
+    },
+    {
+      "path": "docs/receipts/coulomb-contact-1d6c/native.json",
+      "bytes": 1260,
+      "sha256": "e1102522e4b9721d527764a899dd164b670599092e259e58c358f1e46e974bc1",
+      "gitsha": "f5d02667f1f034fdfec79a6be336deaafb57943d"
+    }
+  ]
+}
