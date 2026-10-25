@@ -1,5 +1,6 @@
+import {advanceCoulombContact} from './coulomb-contact.mjs';
 /** Free-running held-out trajectory evaluation. Dependency-free browser ESM. */
-import { predict, TERMS } from '../science/torque-discovery.mjs';
+import { prepareTorquePredictor, TERMS } from '../science/torque-discovery.mjs';
 import { normalizeCommandTiming, prepareCommandTimeline, commandAtSegment } from './command-timeline.mjs';
 
 const STATE_BOUND = 1e6;
@@ -105,6 +106,14 @@ export function rollout(model, run, options = {}) {
   const executable = copyModel(model);
   const evidence = copyRun(run);
   const { maxStep, maxSteps } = checkedOptions(options);
+  const contact = options.coulombContact ?? false;
+  requireThat(typeof contact === 'boolean', 'coulombContact must be boolean.', 'invalid_options');
+  const coulomb = executable.terms.find(term => term.id === 'coulomb');
+  requireThat(!contact || !coulomb || coulomb.coefficient <= 0, 'Sticking interpretation requires a nonpositive Coulomb coefficient.', 'unsupported_contact_model');
+  requireThat(!contact || options.commandTiming === undefined, 'Sticking interpretation currently requires the original held command timeline.', 'unsupported_contact_timing');
+  const friction = contact ? -(coulomb?.coefficient ?? 0) : 0;
+  const smooth = contact ? {...executable, terms: executable.terms.filter(term => term.id !== 'coulomb')} : executable;
+  const torque = prepareTorquePredictor(smooth);
   const commandTiming = options.commandTiming === undefined ? null : normalizeCommandTiming(options.commandTiming);
   const timeline = commandTiming && (commandTiming.delaySeconds > 0 || commandTiming.responseTimeSeconds > 0) ? prepareCommandTimeline(evidence.samples, commandTiming) : null;
   requireThat(!(commandTiming?.responseTimeSeconds>0)||maxStep<=commandTiming.responseTimeSeconds/4,
@@ -125,11 +134,11 @@ export function rollout(model, run, options = {}) {
     });
   });
 
-  const derivative = (position, rate, command) => {
+  const derivative = (position, rate, command, direction) => {
     checkedState(position, rate);
     let acceleration;
     try {
-      acceleration = predict(executable, { command, position, rate }) / evidence.inertia;
+      acceleration = (torque(command, position, rate) - (contact ? friction * direction : 0)) / evidence.inertia;
     } catch (cause) {
       throw new TrajectoryRolloutError('Executable torque prediction failed during rollout.', 'numerical_failure', { cause });
     }
@@ -137,6 +146,7 @@ export function rollout(model, run, options = {}) {
     return { position: rate, rate: acceleration };
   };
 
+  let evaluatedSteps = 0, contactEvents = 0, heldDuration = 0;
   let position = evidence.samples[0].position;
   let rate = evidence.initialRate;
   let residualNorm = 0;
@@ -151,15 +161,27 @@ export function rollout(model, run, options = {}) {
       const ua=gradual?commandAtSegment(segment,j*h):command;
       const um=gradual?commandAtSegment(segment,(j+.5)*h):command;
       const ud=gradual?commandAtSegment(segment,(j+1)*h):command;
-      const a = derivative(position, rate, ua);
-      const b = derivative(position + (h * a.position) / 2, rate + (h * a.rate) / 2, um);
-      const c = derivative(position + (h * b.position) / 2, rate + (h * b.rate) / 2, um);
-      const d = derivative(position + h * c.position, rate + h * c.rate, ud);
-      // Scale each derivative before summing; do not divide h before multiplication,
-      // which would lose representable increments for subnormal sample intervals.
-      position += (h * a.position) / 6 + (h * b.position) / 3 + (h * c.position) / 3 + (h * d.position) / 6;
-      rate += (h * a.rate) / 6 + (h * b.rate) / 3 + (h * c.rate) / 3 + (h * d.rate) / 6;
-      checkedState(position, rate);
+      const advance = (q, v, duration, direction) => {
+        requireThat(evaluatedSteps < maxSteps, `Trajectory requires more than the allowed ${maxSteps} smooth integration evaluations.`, 'step_limit');
+        evaluatedSteps++;
+        const a = derivative(q, v, ua, direction);
+        const b = derivative(q + (duration * a.position) / 2, v + (duration * a.rate) / 2, um, direction);
+        const c = derivative(q + (duration * b.position) / 2, v + (duration * b.rate) / 2, um, direction);
+        const d = derivative(q + duration * c.position, v + duration * c.rate, ud, direction);
+        const next = {
+          position: q + ((duration * a.position) / 6 + (duration * b.position) / 3 + (duration * c.position) / 3 + (duration * d.position) / 6),
+          rate: v + ((duration * a.rate) / 6 + (duration * b.rate) / 3 + (duration * c.rate) / 3 + (duration * d.rate) / 6),
+        };
+        checkedState(next.position, next.rate);return next;
+      };
+      if(contact && friction > 0) {
+        const result = advanceCoulombContact({position,rate,duration:h,friction,advance,
+          drive: q => torque(command,q,0),
+          fail: (message,code) => {throw new TrajectoryRolloutError(message,code);}});
+        position=result.position;rate=result.rate;contactEvents+=result.events;heldDuration+=result.held;
+      } else {
+        const next=advance(position,rate,h,0);position=next.position;rate=next.rate;
+      }
     }
     }
     const sample = evidence.samples[i + 1];
@@ -178,7 +200,8 @@ export function rollout(model, run, options = {}) {
       finalAbsError: Math.abs(rows.at(-1).residual),
     },
     diagnostics: {
-      steps: requiredSteps, method: 'classical_RK4', maxStep, maxSteps,
+      steps: evaluatedSteps, method: contact ? 'equal_threshold_coulomb_event_RK4' : 'classical_RK4', maxStep, maxSteps,
+      ...(contact ? {coulombContact: {frictionMagnitude:friction,zeroRateEvents:contactEvents,heldDuration,staticThresholdEqualsKinetic:true,assumption:'set_valued_balancing_force_at_zero_rate',eventSearch:'48_bisections_at_most_8_events_per_nominal_step',nominalSteps:requiredSteps}} : {}),
       commandConvention: 'samples[i].command held on [samples[i].time, samples[i+1].time)',
       ...(commandTiming ? {commandTiming, appliedCommandAtSamples: timeline?.commandsAtSamples ?? evidence.samples.map(row => row.command),
         delayedCommandEvents: timeline?.events ?? [], commandConvention: timeline?.convention??'delayed left-sample held command; exact delayed changes partition the RK4 steps',
@@ -188,10 +211,11 @@ export function rollout(model, run, options = {}) {
       numericalErrorEstimate: null, physicalValidity: 'not_established_by_finite_rollout',
       limitations: [
         'Fixed-step RK4 has no automatic local-error or stiffness estimate.',
-        'Coulomb sign changes and other nonsmooth behavior can require smaller steps.',
+        ...(contact ? ['Equal static and kinetic friction is an explicit hypothesis, not an identified material property.', 'Finite-step event bracketing can miss multiple velocity zeros inside one step; two-step agreement is not a proof of resolved contacts.'] : ['Coulomb sign changes and other nonsmooth behavior can require smaller steps.']),
         'Residuals combine model, initial-state, observation, command, inertia, and integration errors.',
         'A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.',
       ],
     },
   };
 }
+

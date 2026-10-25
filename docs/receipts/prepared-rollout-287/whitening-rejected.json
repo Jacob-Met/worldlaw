@@ -1,0 +1,157 @@
+{
+  "schema": "worldlaw.rejected-whitening-experiment/v1",
+  "baselineCommit": "f1d3dd08e1d3303b0e8b296b496c18738abb7b0b",
+  "method": "Form Gram matrix of normalized original-position target weights, Cholesky-whiten the target and both fixed rate/spring feature columns, reuse maintained scaled QR, then execute each law through maintained rolloutAngular on a separate analytical release.",
+  "data": {
+    "trainingSamples": 601,
+    "trainingIntervalSeconds": 0.02,
+    "amplitude": 0.7,
+    "decayPerSecond": 0.1,
+    "angularFrequencyPerSecond": 2.1,
+    "windowDurationSeconds": 1,
+    "seeds": "1–32 per setting, LCG1664525/1013904223 and Box-Muller noise",
+    "challengeSamples": 401,
+    "challengeIntervalSeconds": 0.025,
+    "challengePosition": 0.45,
+    "challengeInitialRate": 0.3,
+    "maxStepSeconds": 0.005
+  },
+  "courses": [
+    {
+      "stride": 0.025,
+      "noise": 0.0001,
+      "count": 32,
+      "baseline": 0.000010916917338929882,
+      "whitened": 0.00005372686093520633,
+      "wins": 1,
+      "maxRatio": 80.64406296317148
+    },
+    {
+      "stride": 0.025,
+      "noise": 0.001,
+      "count": 32,
+      "baseline": 0.00010914424801328308,
+      "whitened": 0.000533845287160345,
+      "wins": 1,
+      "maxRatio": 81.49486114571252
+    },
+    {
+      "stride": 0.025,
+      "noise": 0.01,
+      "count": 32,
+      "baseline": 0.0010961890054746965,
+      "whitened": 0.005354160699775961,
+      "wins": 1,
+      "maxRatio": 51.16356472985343
+    },
+    {
+      "stride": 0.05,
+      "noise": 0.0001,
+      "count": 32,
+      "baseline": 0.00001152942355620201,
+      "whitened": 0.000015250343397493297,
+      "wins": 9,
+      "maxRatio": 15.739668650937583
+    },
+    {
+      "stride": 0.05,
+      "noise": 0.001,
+      "count": 32,
+      "baseline": 0.00011526944992124862,
+      "whitened": 0.00015231356931657745,
+      "wins": 9,
+      "maxRatio": 15.970722921967395
+    },
+    {
+      "stride": 0.05,
+      "noise": 0.01,
+      "count": 32,
+      "baseline": 0.0011590849261814149,
+      "whitened": 0.0015086225669455916,
+      "wins": 11,
+      "maxRatio": 14.322977167341358
+    },
+    {
+      "stride": 0.1,
+      "noise": 0.0001,
+      "count": 32,
+      "baseline": 0.00001411527946811931,
+      "whitened": 0.000025712731466212738,
+      "wins": 6,
+      "maxRatio": 9.82537276420004
+    },
+    {
+      "stride": 0.1,
+      "noise": 0.001,
+      "count": 32,
+      "baseline": 0.00014112531237430554,
+      "whitened": 0.00025600146493120877,
+      "wins": 6,
+      "maxRatio": 9.82565936555805
+    },
+    {
+      "stride": 0.1,
+      "noise": 0.01,
+      "count": 32,
+      "baseline": 0.0014139786592188238,
+      "whitened": 0.0024679541878385443,
+      "wins": 8,
+      "maxRatio": 8.693806383552845
+    },
+    {
+      "stride": 0.25,
+      "noise": 0.0001,
+      "count": 32,
+      "baseline": 0.00003068775345483135,
+      "whitened": 0.000030147101994111312,
+      "wins": 16,
+      "maxRatio": 1.475654631090285
+    },
+    {
+      "stride": 0.25,
+      "noise": 0.001,
+      "count": 32,
+      "baseline": 0.00030692778374377276,
+      "whitened": 0.00030137380497216793,
+      "wins": 16,
+      "maxRatio": 1.4703717859973666
+    },
+    {
+      "stride": 0.25,
+      "noise": 0.01,
+      "count": 32,
+      "baseline": 0.003083579832205269,
+      "whitened": 0.003015945400615028,
+      "wins": 16,
+      "maxRatio": 1.4056852367562547
+    },
+    {
+      "stride": 0.5,
+      "noise": 0.0001,
+      "count": 32,
+      "baseline": 0.00006095041526644904,
+      "whitened": 0.0000578602984776148,
+      "wins": 20,
+      "maxRatio": 3.2437708117879667
+    },
+    {
+      "stride": 0.5,
+      "noise": 0.001,
+      "count": 32,
+      "baseline": 0.0006099052918046638,
+      "whitened": 0.0005789710669546153,
+      "wins": 21,
+      "maxRatio": 3.2325770662098243
+    },
+    {
+      "stride": 0.5,
+      "noise": 0.01,
+      "count": 32,
+      "baseline": 0.006134372777421444,
+      "whitened": 0.005826461707456571,
+      "wins": 21,
+      "maxRatio": 3.2548479918969777
+    }
+  ],
+  "decision": "Not promoted. Target-only whitening ignores feature-column noise and worsens most dense-window separate-release forecasts. Existing full-trajectory refinement retained; this PR makes its execution faster without changing its results."
+}

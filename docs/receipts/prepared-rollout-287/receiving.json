@@ -1,0 +1,171 @@
+{
+  "schema": "worldlaw.prepared-rollout-summary/v1",
+  "baselineCommit": "f1d3dd08e1d3303b0e8b296b496c18738abb7b0b",
+  "environment": {
+    "node": "v22.23.4",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "coreComparisons": {
+    "completeReceiptsCompared": 186,
+    "executedChangedCourses": 180,
+    "negativeControls": [
+      {
+        "name": "work limit",
+        "status": "failed",
+        "error": {
+          "name": "TrajectoryRolloutError",
+          "code": "step_limit",
+          "message": "Trajectory requires more than the allowed 1 integration steps."
+        }
+      },
+      {
+        "name": "stage state bound",
+        "status": "failed",
+        "error": {
+          "name": "TrajectoryRolloutError",
+          "code": "runaway_state",
+          "message": "Trajectory exceeded the executable state bound of ±1000000."
+        }
+      },
+      {
+        "name": "invalid source coordinate",
+        "status": "failed",
+        "error": {
+          "name": "TrajectoryRolloutError",
+          "code": "invalid_run",
+          "message": "Run initialRate must be finite with magnitude at most 1000000."
+        }
+      },
+      {
+        "name": "invalid model",
+        "status": "failed",
+        "error": {
+          "name": "TrajectoryRolloutError",
+          "code": "invalid_model",
+          "message": "Model coefficient must be finite with magnitude at most 1000000000000000000."
+        }
+      },
+      {
+        "name": "invalid contact timing",
+        "status": "failed",
+        "error": {
+          "name": "TrajectoryRolloutError",
+          "code": "unsupported_contact_timing",
+          "message": "Sticking interpretation currently requires the original held command timeline."
+        }
+      },
+      {
+        "name": "unresolved command response",
+        "status": "failed",
+        "error": {
+          "name": "TrajectoryRolloutError",
+          "code": "response_resolution",
+          "message": "A gradual response requires maxStep at most one quarter of its response time; the study reserves this resolution before execution."
+        }
+      }
+    ],
+    "fullReceiptEquality": true
+  },
+  "refinement": {
+    "sourceSha256": "fa05bd0612a8d265a3effe6bd6d4e6ec43656631838d69505e02cf56515b3eed",
+    "status": "training_improved",
+    "trials": 41,
+    "reservation": {
+      "steps": 270272,
+      "rows": 20541
+    },
+    "receiptSha256": "f98f0530228ceda1fa9e97059281ee192cdb294b2a59b5bd07ad7f4521d290ba",
+    "timings": {
+      "baselineMs": [
+        556.94607,
+        561.3651840000002,
+        541.9788170000002,
+        569.3315619999998,
+        537.9413760000002
+      ],
+      "candidateMs": [
+        151.5950580000001,
+        144.5902470000001,
+        135.46996500000023,
+        138.42586900000015,
+        126.01709100000016
+      ]
+    },
+    "baselineMedianMs": 556.94607,
+    "candidateMedianMs": 138.42586900000015
+  },
+  "crossRecording": {
+    "status": "selected",
+    "selectedId": "rate+spring",
+    "offeredStructureCount": 8,
+    "receiptSha256": "b865f1cba2695ed57be992e6be30bd62579dc697d03116c6fd7d7ce30398a8fb"
+  },
+  "native": {
+    "passed": 77,
+    "failed": 0,
+    "skipped": 0,
+    "command": "node --test --test-concurrency=2 tests/prepared-torque-prediction.test.mjs tests/forward-refinement.test.mjs tests/predictive-selection.test.mjs tests/trajectory-forward-92be.test.mjs tests/trajectory-angular-resolution-92be.test.mjs tests/trajectory-resolution-92be.test.mjs tests/torque-discovery.test.mjs tests/command-response.test.mjs tests/command-timing.test.mjs tests/coulomb-contact.test.mjs"
+  },
+  "launchedSmokes": {
+    "discovery": true,
+    "trajectory": true
+  },
+  "browser": {
+    "script": "scripts/forward-refinement-browser.mjs",
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "admitted": true,
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "checks": [
+      "actual analytic source import",
+      "default refinement off",
+      "keyboard opt-in and invalidation",
+      "maintained training refinement and ghost forecast",
+      "real source-only v2 download",
+      "reopen recomputes exact result",
+      "all retained trials inspected",
+      "desktop and390 layout",
+      "budget refusal retains incumbent forecast",
+      "numerical refusal withholds candidate",
+      "source reset clears opt-in",
+      "reused PASCO incumbent and transfer loss retained"
+    ],
+    "errors": []
+  },
+  "earlierFailure": {
+    "unsafeLauncher": "/usr/local/bin/google-chrome",
+    "result": "strict sandbox preflight refused before product navigation",
+    "resolvedWith": "/usr/bin/google-chrome-stable",
+    "change": "Selected the installed sandbox-capable browser directly; no system settings or security checks changed."
+  },
+  "limitations": [
+    "Authored software/behavior courses, not physical accuracy or production deployment.",
+    "Timing excludes startup and compares alternating calls on one named runtime.",
+    "Every complete returned receipt is compared exactly; no tolerance hides result changes."
+  ]
+}

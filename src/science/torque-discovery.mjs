@@ -118,6 +118,24 @@ function predictUnchecked(model, row) {
 }
 export function predict(model, values) { checkedTerms(model); return predictUnchecked(model, input(values)); }
 
+/**
+ * Snapshot one model for repeated numerical evaluation. Every point still uses
+ * the public coordinate bounds and finite-result check. The private snapshot
+ * prevents a caller's later edits from changing a running solver's equation.
+ */
+export function prepareTorquePredictor(model) {
+  checkedTerms(model);
+  const snapshot = {schema: 'worldlaw.torque-model/v1',
+    terms: model.terms.map(({id, coefficient}) => ({id, coefficient}))};
+  // Validate the captured values as well, including accessor-backed callers.
+  checkedTerms(snapshot);
+  return (command, position, rate) => predictUnchecked(snapshot, {
+    command: finite(command, 'command', 1e6),
+    position: finite(position, 'position', 1e6),
+    rate: finite(rate, 'rate', 1e6),
+  });
+}
+
 export function evaluate(model, observations) {
   checkedTerms(model);
   const samples = rows(observations);
@@ -300,14 +318,14 @@ export function revise(discovery, newObservations) {
 
 /** Execute learned dynamics θ'=ω, ω'=τ/I using fixed-step classical RK4. */
 export function simulate(model, initial, { duration = 4, dt = 0.01, inertia = 1, command = 0 } = {}) {
-  checkedTerms(model);
+  const torque = prepareTorquePredictor(model);
   finite(duration, 'duration', 1000); finite(dt, 'dt', 1); finite(inertia, 'inertia', 1e12); finite(command, 'command', 1e6);
   requireThat(duration > 0 && dt > 0 && inertia > 0 && Math.ceil(duration / dt) <= 10000,
     'Simulation needs positive duration, dt and inertia, with at most 10000 steps.');
   let position = finite(initial?.position, 'initial.position', 1e6), rate = finite(initial?.rate, 'initial.rate', 1e6), time = 0;
-  const state = () => ({time, position, rate, jointTorque: predict(model, {command, position, rate})});
+  const state = () => ({time, position, rate, jointTorque: torque(command, position, rate)});
   const trajectory = [state()];
-  const derivative = (p, v) => ({p: v, v: predict(model, {command, position:p, rate:v}) / inertia});
+  const derivative = (p, v) => ({p: v, v: torque(command, p, v) / inertia});
   const steps = Math.ceil(duration / dt);
   for (let i = 0; i < steps; ++i) {
     const h = Math.min(dt, duration - time);

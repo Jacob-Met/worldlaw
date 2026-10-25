@@ -1,0 +1,37 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "original": "0.003928",
+      "contact": "Orange dotted curve · sliding/sticking hypothesis: 0.000457 rad RMSE; 5.284 s at rest. Original dashed sign-rate forecast is unchanged. Equal static/kinetic threshold is assumed, not identified. Step comparison: 1.76e-10 rad. Finite steps can miss internal zero crossings; agreement is not an error bound.",
+      "reopened": true,
+      "mismatchRetained": true,
+      "viewport": {
+        "width": 1440,
+        "scrollWidth": 1440,
+        "focus": "compare-coulomb-contact",
+        "help": {
+          "top": 544.40625,
+          "bottom": 612.40625
+        }
+      }
+    },
+    {
+      "width": 390,
+      "original": "0.003928",
+      "contact": "Orange dotted curve · sliding/sticking hypothesis: 0.000457 rad RMSE; 5.284 s at rest. Original dashed sign-rate forecast is unchanged. Equal static/kinetic threshold is assumed, not identified. Step comparison: 1.76e-10 rad. Finite steps can miss internal zero crossings; agreement is not an error bound.",
+      "reopened": true,
+      "mismatchRetained": true,
+      "viewport": {
+        "width": 390,
+        "scrollWidth": 390,
+        "focus": "compare-coulomb-contact",
+        "help": {
+          "top": 533.890625,
+          "bottom": 608.640625
+        }
+      }
+    }
+  ],
+  "errors": []
+}

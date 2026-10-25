@@ -13,6 +13,7 @@ export const CHALLENGE_SCHEMA='worldlaw.trajectory-challenge/v1';
 export const NOTEBOOK_SCHEMA='worldlaw.trajectory-notebook/v1';
 export const INTERACTION_NOTEBOOK_SCHEMA='worldlaw.trajectory-notebook/v2';
 export const DIRECTIONAL_NOTEBOOK_SCHEMA='worldlaw.trajectory-notebook/v3';
+export const CONTACT_NOTEBOOK_SCHEMA='worldlaw.trajectory-notebook/v4';
 export const DEFAULT_OPTIONS=Object.freeze({method:'integral',noiseSigma:0.01,maxTerms:4,ambiguityDelta:6,maxStep:0.01,rateWindowSize:9,modelLimit:8});
 const ANGULAR_DEFAULT_OPTIONS=Object.freeze({...DEFAULT_OPTIONS,windowDuration:1,windowStride:0.5});
 const angularBundle=bundle=>bundle?.schema===ANGULAR_BUNDLE_SCHEMA;
@@ -43,6 +44,11 @@ export function normalizeOptions(raw={}, {angular=false}={}){
     check(typeof raw.directionalQuadraticLoss==='boolean','directionalQuadraticLoss must be boolean.');
     check(!raw.directionalQuadraticLoss||(!angular&&result.method==='weak'),'Directional quadratic loss requires known-inertia weak fitting.');
     result.directionalQuadraticLoss=raw.directionalQuadraticLoss;
+  }
+  if(raw.compareCoulombContact!==undefined){
+    check(typeof raw.compareCoulombContact==='boolean','compareCoulombContact must be boolean.');
+    check(!raw.compareCoulombContact||!angular,'Coulomb contact comparison currently requires known inertia.');
+    result.compareCoulombContact=raw.compareCoulombContact;
   }
   return result;
 }
@@ -91,7 +97,11 @@ export function createChallenge(rawBundle,rawOptions={}){
     try{const receive=angular?rolloutAngularWithResolution:rolloutWithResolution;const received=receive(model,run,{maxStep:options.maxStep,maxSteps:200000});results.push({modelId:model.id,runId:run.id,status:'ok',...received});}
     catch(error){results.push({modelId:model.id,runId:run.id,status:'failed',rollout:null,resolution:null,error:{code:error.code??'prediction_failed',message:error.message??String(error)}});}
   }
-  return {schema:CHALLENGE_SCHEMA,bundle,options,supportedMethods:angular?['integral','weak']:['integral','derivative','weak'],discovery,results,selectedModelId:discovery.selected.id,
+  const contactResults=options.compareCoulombContact?models.flatMap(model=>bundle.challengeRuns.map(run=>{
+    try{return {modelId:model.id,runId:run.id,status:'ok',...rolloutWithResolution(model,run,{maxStep:options.maxStep,maxSteps:200000,coulombContact:true})};}
+    catch(error){return {modelId:model.id,runId:run.id,status:'failed',rollout:null,resolution:null,error:{code:error.code??'prediction_failed',message:error.message??String(error)}};}
+  })):undefined;
+  return {schema:CHALLENGE_SCHEMA,bundle,options,...(contactResults?{contactResults}:{}),supportedMethods:angular?['integral','weak']:['integral','derivative','weak'],discovery,results,selectedModelId:discovery.selected.id,
     selectedRunId:bundle.challengeRuns[0].id,positionTolerance:0.05,summary:summary(discovery,results,bundle,options)};
 }
 function selection(state){
@@ -106,7 +116,7 @@ export function exportChallenge(state){
   if(state?.schema!==CHALLENGE_SCHEMA)throw new TrajectoryDataError('Expected an evaluated trajectory challenge.');
   const selected=selection(state);
   const bundle=normalizeBundle(state.bundle);
-  const raw={schema:state.options.directionalQuadraticLoss?DIRECTIONAL_NOTEBOOK_SCHEMA:state.options.commandPositionInteraction?INTERACTION_NOTEBOOK_SCHEMA:NOTEBOOK_SCHEMA,bundle,options:normalizeOptions(state.options,{angular:angularBundle(bundle)}),...selected};
+  const raw={schema:state.options.compareCoulombContact?CONTACT_NOTEBOOK_SCHEMA:state.options.directionalQuadraticLoss?DIRECTIONAL_NOTEBOOK_SCHEMA:state.options.commandPositionInteraction?INTERACTION_NOTEBOOK_SCHEMA:NOTEBOOK_SCHEMA,bundle,options:normalizeOptions(state.options,{angular:angularBundle(bundle)}),...selected};
   const text=JSON.stringify(raw,null,2);
   if(text.length>MAX_TEXT_LENGTH)throw new TrajectoryDataError('The notebook exceeds the 3 MB portable limit.');
   return text;
@@ -115,9 +125,11 @@ export function restoreChallenge(text){
   if(typeof text!=='string'||text.length>MAX_TEXT_LENGTH)throw new TrajectoryDataError('Notebook files must be JSON smaller than 3 MB.');
   let raw;try{raw=JSON.parse(text.replace(/^\uFEFF/,''));}catch{throw new TrajectoryDataError('The notebook JSON could not be read.');}
   if(raw?.schema==='worldlaw.trajectory-bundle/v1'||raw?.schema===ANGULAR_BUNDLE_SCHEMA)return createChallenge(raw);
-  if(![NOTEBOOK_SCHEMA,INTERACTION_NOTEBOOK_SCHEMA,DIRECTIONAL_NOTEBOOK_SCHEMA].includes(raw?.schema))throw new TrajectoryDataError('Unsupported trajectory notebook.');
+  if(![NOTEBOOK_SCHEMA,INTERACTION_NOTEBOOK_SCHEMA,DIRECTIONAL_NOTEBOOK_SCHEMA,CONTACT_NOTEBOOK_SCHEMA].includes(raw?.schema))throw new TrajectoryDataError('Unsupported trajectory notebook.');
+  if(raw.schema===CONTACT_NOTEBOOK_SCHEMA&&raw.options?.compareCoulombContact!==true)throw new TrajectoryDataError('Version 4 requires the explicit Coulomb contact comparison.');
+  if(raw.schema!==CONTACT_NOTEBOOK_SCHEMA&&raw.options?.compareCoulombContact===true)throw new TrajectoryDataError('Coulomb contact comparison requires a version 4 notebook.');
   if(raw.schema===DIRECTIONAL_NOTEBOOK_SCHEMA&&raw.options?.directionalQuadraticLoss!==true)throw new TrajectoryDataError('Version 3 requires the explicit directional quadratic loss declaration.');
-  if(raw.schema!==DIRECTIONAL_NOTEBOOK_SCHEMA&&raw.options?.directionalQuadraticLoss===true)throw new TrajectoryDataError('Directional quadratic loss requires a version 3 notebook.');
+  if(![DIRECTIONAL_NOTEBOOK_SCHEMA,CONTACT_NOTEBOOK_SCHEMA].includes(raw.schema)&&raw.options?.directionalQuadraticLoss===true)throw new TrajectoryDataError('Directional quadratic loss requires a version 3 notebook.');
   if(raw.schema===INTERACTION_NOTEBOOK_SCHEMA&&raw.options?.commandPositionInteraction!==true)throw new TrajectoryDataError('Version 2 requires the explicit command-position interaction declaration.');
   if(raw.schema===NOTEBOOK_SCHEMA&&raw.options?.commandPositionInteraction===true)throw new TrajectoryDataError('Command-position interaction requires a version 2 notebook.');
   const state=createChallenge(raw.bundle,raw.options);
