@@ -312,3 +312,7 @@ After comparing a closed loop in Coupling Lab, open **Does the encoder calibrati
 ### Inspect cross-channel encoder calibration
 
 After comparing a loop in Coupling Lab, open **Could the encoder channels mix the two coordinates?** Inspect an explicitly declared orientation-preserving matrix box while preserving each original torque-reading error across its matrix contributions. Retain attaining matrix/reading witnesses and source-only replay. See [the matrix calibration contract](docs/COUPLED_MATRIX_CALIBRATION.md).
+
+## Constructive fitting-support ambiguity
+
+Coupling Lab can show distinct admitted affine response hypotheses with exactly identical predictions at every fitting coordinate when an offered family is refused for insufficient excitation. Explicit illustrative coefficient amplitude, materialized-coefficient checks, and original permitted-coordinate contrasts preserve the distinction between an exhibited null direction and global identification. See [the exact support contract](COUPLING_EXCITATION_WITNESSES.md).
