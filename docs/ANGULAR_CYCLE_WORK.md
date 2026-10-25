@@ -58,3 +58,23 @@ Default inputs remain `worldlaw.cycle-work-inputs/v1`. Explicit quadratic admiss
 The focused authored controls are `node --test tests/angular-cycle-work-quadratic.test.mjs`: an independent fine-step oscillator with quadratic acceleration, held-out-value noninterference, whole-population refusal, v2 replay and retained measured PASCO comparison. These commands specify intended verification; executed values and browser receiving belong in the actual release receipt.
 
 If cubic-rate work exceeds numerical range on any original admitted cycle, that feature is retained as unavailable and the entire quadratic family refuses; original cycles and three existing families remain intact.
+
+## Optional simultaneous viscous and quadratic loss
+
+**Also combine viscous + quadratic loss** explicitly admits one additional law with two nonnegative dissipative coefficients. It includes the standalone quadratic comparison. The fit uses the same complete original admitted cycles and the existing work features `∫ω²dt` and `∫|ω|³dt`, giving the conditional loss equation `loss = c_v ∫ω²dt + c_q ∫|ω|³dt`. Its executable acceleration adds `−c_v ω − c_q ω|ω|` to the frozen restoring law. Coefficient units remain `1/s` and `1/rad`; no physical inertia or energy calibration is introduced.
+
+The maintained normalized QR fit and complete nonnegative active-set search compare the two-term solution, either single-term boundary and zero. Rank deficiency or the existing pivot-ratio limit refuses the mixed family. A boundary is explicitly a simpler active law, not evidence that two effects have been separately identified. Repeating effectively the same amplitude/speed profile can leave the two work columns inseparable. A small residual does not certify the restoring law, derivative estimate or physical mechanism.
+
+The original three families and optional quadratic family remain unchanged. If cubic work is unavailable on any original admitted cycle, both dependent families refuse without discarding that cycle or changing the original families. All admitted laws enter the complete receiving-step reservation; no law wins by dropping failed receiving runs or inspecting challenge error.
+
+Mixed admission exports `worldlaw.cycle-work-inputs/v3`, with both quadratic and mixed options explicit. Prior v1/v2 notebooks remain supported and restore their original offered populations. Changing admission invalidates the displayed comparison and export. Source-only reopen recomputes every coefficient and forecast.
+
+Run `node --test tests/angular-cycle-work-mixed.test.mjs` for independent sampled-position mixed damping, zero-component/zero-solution boundaries, repeated-amplitude rank refusal, cubic-overflow preservation, complete receiving limits and source replay. Actual executed numbers and consumer qualification belong in the release receipt; retained PASCO challenge data are exploratory reused evidence.
+
+### Executed mixed-law receiving
+
+On the authorized Node 22.23.4 receiving host, the five focused mixed-law groups passed. Independently integrated motion with viscous coefficient 0.04 and quadratic coefficient 0.08, supplied only as sampled positions, recovered 0.0400000255912227 and 0.0800000115621537. Work RMSE was 1.9232452326106085e-8; separate-start receiving position RMSE was 3.4171187153167445e-8 rad. Repeating the same amplitude profile refused the two-column family. These are authored numerical controls.
+
+The retained PASCO runs supplied 35 admitted cycles. Mixed coefficients were 0.008668878313165955 1/s and 0.0024797592895214574 1/rad, with normalized QR pivot ratio 9.970767601877842 and work RMSE 0.05738338835623262. Later-motion RMSE was 0.08980568925553244 rad: below quadratic-only 0.09462658250386549, but above viscous 0.08176042580434437 and Coulomb 0.06165031295966927. These reused recordings are exploratory evidence; no receiving winner is selected.
+
+The initial mixed candidate passed 859 native tests and one existing skip. After composing the independently owned saturated-probe change from main `222b821ccbec62ae77898c812a9e4f1a0eb00800`, the integrated source passed 864 native tests, one existing skip, and both maintained smokes; all 602 included source, test, and guide blobs matched their canonical Git objects. The additive `scripts/angular-cycle-work-mixed-browser.mjs` passed 11 sandboxed Chrome receiving groups, including actual v3/v2/v1 downloads and reopening, admission dependency, source replacement, stale input, budget refusal, keyboard and narrow views. Existing source and independent review details are retained in the native #206 delivery record and its pull request.
