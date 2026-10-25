@@ -145,6 +145,7 @@ export function deriveAngles(input) {
   const c=nb.calibration,samples=[],segments=[];
   let previous=null,segment=null,breakReason=null;
   const warnings=new Set();
+  if(c.pivotMode!=='tracked' && nb.revisions.some(event=>event?.type==='path-reference' && event.pivot?.x===c.pivot.x && event.pivot?.y===c.pivot.y)) warnings.add('fixed_reference_fitted_from_same_marker_observations');
   const reset=reason=>{previous=null;segment=null;breakReason=reason;};
   for(let i=0;i<nb.measurements.length;i++) {
     const row=nb.measurements[i];
@@ -188,6 +189,7 @@ export function deriveAngles(input) {
       limitations:[
         c.pivotMode==='tracked'?'Both image points must describe the same planar mechanism under a fixed image orientation; common translation cancels, camera rotation and perspective do not.':'A fixed pivot, front-facing camera and approximately planar motion are caller assumptions.',
         'A visually plausible wrong pivot cannot be diagnosed from these coordinates alone.',
+        'A fitted path center is a conditional image reference, not a measured physical joint. Fixed-reference sigma does not include center-fit uncertainty or its correlation with the same marker observations.',
         'No interpolation crosses a rejected measurement, time gap or excessive angular step.',
         'Angle unwrapping assumes changes smaller than the declared limit; full hidden turns cannot be detected.',
         c.pivotMode==='tracked'?'Position sigma uses first-order propagation of caller-assumed independent isotropic marker and pivot errors, not calibrated tracking confidence.':'Position sigma is an assumed pixel-error propagation with an exact pivot, not calibrated tracking confidence.',
@@ -210,6 +212,10 @@ export function exportAngular(input,{segmentId,command}={}) {
   return {schema:'worldlaw.angular-telemetry/v1',units:{time:'s',position:'rad',...(command!==undefined?{command:'N·m'}:{})},
     source:{label:`Motion Lab — ${nb.source.label}`,kind:'derived_from_image_points',declaredKind:nb.source.kind,
       metadata:{originalSource:nb.source,calibration:nb.calibration,notebookSchema:nb.schema,selectedSegment:segment,
+        ...(nb.revisions.some(event=>event?.type==='path-reference')?{
+          referenceHistory:nb.revisions.filter(event=>event && ['calibration','path-reference'].includes(event.type)),
+          referenceConditioning:{fitPrecedesDownstreamSplit:true,independence:'A reference fit used source marker observations before any downstream derivative train/check split. Inspect referenceHistory; that split alone does not establish independently calibrated reference evidence.'}
+        }:{}),
         excludedSegments:angles.segments.filter(s=>s.id!==segment.id),measurementIndices:segment.sourceIndices,
         measurements:segment.sourceIndices.map(i=>nb.measurements[i]),diagnostics:angles.diagnostics,
         command:command===undefined?{status:'not_observed',requirement:'Supply synchronized applied torque before deriving net torque.'}:{status:'caller_declared_constant',value:command,unit:'N·m'}}},
