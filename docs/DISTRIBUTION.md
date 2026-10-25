@@ -17,6 +17,8 @@ The default source is a clearly labeled synthetic virtual instrument. Imported o
 
 The studio header opens **Motion Lab** and **Trajectory Challenge** on the same origin. The trajectory route includes both controlled synthetic examples and the attributed measured PASCO example. Select a training method, run the comparison, inspect the recorded source and model failures, then save and reopen its input notebook. Measured angular models retain unknown physical inertia and report acceleration units.
 
+Motion Lab also links to **Motion Reference**. Its comparison of retained observations with separately marked source frames uses the maintained CHRONOS admission module; the Motion path-reference proposal uses the maintained MECHANISM geometry module. Both exact source snapshots and their provenance records are included. Their original projects remain the owners. Reference comparisons preserve unscored gaps and the distinction between a measured pivot and a declared fixed location.
+
 The source package includes all three original CSV recordings, the complete dataset license, extraction/receiving programs and `research/PHYSICAL_TELEMETRY_92be.md`. The independent trajectory entry point remains available with `npm run trajectory`; `npm run trajectory:build` creates the separate self-contained HTML when an installed esbuild module is supplied.
 
 The small-angle trajectory example also supports a complete synthetic release
@@ -56,7 +58,17 @@ This mode requires the local index tree to equal the independently supplied remo
 
 ## Included content and provenance
 
-`scripts/package.py` contains the explicit inclusion policy: root app files, source modules, maintained scripts, tests, Markdown/JSON documentation, JSON examples, and two named scientific evidence files. Repository collaboration configuration is omitted. Unknown tracked paths cause refusal until deliberately covered by the policy. Tracked secret-like names, key material, binary runtimes, archives, caches, dependency directories, and output directories also cause refusal. Untracked content outside the allowlist is ignored. The packager does not inspect user home directories or claim to detect every secret in arbitrary source text; maintainers remain responsible for the reviewed source.
+`scripts/package.py` contains the explicit inclusion policy: root app files, source modules, maintained scripts, tests, Markdown/JSON documentation, JSON examples, and explicitly listed receiving evidence. Repository collaboration configuration is omitted. Unknown tracked paths cause refusal until deliberately covered by the policy. Tracked secret-like names, key material, binary runtimes, archives, caches, dependency directories, and output directories also cause refusal. Untracked content outside the allowlist is ignored. The packager does not inspect user home directories or claim to detect every secret in arbitrary source text; maintainers remain responsible for the reviewed source.
+
+Named historical test logs and evidence archives listed in `NON_DISTRIBUTED_TRACKED_RECEIPTS` remain in the repository but are never read or copied into the ZIP. These exceptions match complete paths. Another log or archive still causes refusal; extending a receipt directory does not extend an exception.
+
+Before packaging a changed source checkout, run:
+
+```sh
+python3 scripts/package-policy-test.py
+```
+
+This checks the current Git index against the explicit policy, required runtime and fixture coverage, exact omitted receipts, unknown-file refusal and file/directory symlink refusal. It needs Git metadata and is a source-checkout check, separate from receiving the extracted application. After adding or removing maintained source files, review their distribution treatment instead of broadening a wildcard merely to make this check pass.
 
 Every included source file appears in `worldlaw/SOURCE_MANIFEST.json` with its relative path, byte length, and SHA-256. The manifest records the source commit, verification method, and Git tree when verified. The generated manifest cannot recursively hash itself; the archive SHA-256 printed by the command binds the complete archive, including the manifest.
 
@@ -67,3 +79,5 @@ ZIP entries are sorted, use a fixed 1980 timestamp and normalized regular-file p
 Extract into a new directory, then launch `node server.mjs` there. `http://127.0.0.1:4193/health` should identify `worldlaw`. In the browser, use the proposed experiment in the default virtual notebook, run it, and inspect the changed model and held-out prediction error. Export and reopen the notebook to check replay. These actions exercise packaged modules through the real application; a ZIP integrity check alone does not establish a working product.
 
 For a native smoke of the extracted source, run `npm run smoke`. The scientific and session tests are available with `npm test`. Optional browser automation requires a separately supplied Playwright installation and browser; those tools are intentionally absent from the source ZIP. A distribution receipt should record the exact archive SHA-256, source pin/tree, runtime, actual launch, and observed result. An archive is a runnable source delivery, not a claim that the full research vision or contest submission is complete.
+
+On Linux, `node scripts/distribution-browser.mjs` reuses the maintained Studio receiver and then opens Motion Reference through its ordinary Motion Lab link. Set `PLAYWRIGHT_MODULE`, `BROWSER_EXECUTABLE_PATH`, and `BROWSER_ARTIFACT_DIR` to the installed Playwright module, Chrome binary, and an output directory outside the extracted source. The receiver requests Chromium's sandbox and requires the same browser to report active namespace and seccomp protections; this specific admission check is Linux-only. It records raw-input download/reopen, an independently calculable authored 3–4–5 discrepancy, forged-answer and wrong-source controls, unscored gaps and narrow keyboard operation. Those authored coordinates are software controls, not physical-video evidence.
