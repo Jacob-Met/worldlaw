@@ -78,3 +78,22 @@
  #inertia-estimates td:nth-child(4)::before{content:'Absolute difference'}
 }
 
+
+/* Frozen-law challenge: three aligned traces expose a law's failed balance. */
+.inertia-challenge{margin-top:2rem;border-top:3px solid var(--ink);padding-top:1.2rem;min-width:0}
+.challenge-custody{border-block:1px solid var(--rule);padding:.5rem 0;overflow-wrap:anywhere}
+#challenge-training{font-size:.8rem;font-weight:750;letter-spacing:.02em}
+#challenge-coefficients{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.85rem;line-height:1.65}
+#challenge-form textarea{width:100%;font:inherit;font-size:.85rem;line-height:1.5;padding:.7rem;border:1px solid #98a9bd;resize:vertical}
+#challenge-form button{margin:.6rem 0}#challenge-status{border-left:4px solid #5b35bd;padding:.7rem 1rem;line-height:1.6;font-variant-numeric:tabular-nums}
+#challenge-status[data-outcome=exceeds_declared_tolerance]{border-color:#a73819;background:#fff0e7}
+#challenge-status[data-outcome=within_declared_tolerance]{border-color:#187366;background:#e5f5f2}
+#challenge-error{border:2px solid #a73819;color:#7c2815;background:#fff1e9;padding:1rem;overflow-wrap:anywhere}
+.challenge-instruments{display:grid;grid-template-columns:minmax(0,1fr);gap:2px;background:#35475e;margin-top:1rem;border:1px solid #35475e}
+.challenge-instruments figure{margin:0;min-width:0;background:#101c2d;color:#e7edf7;padding:1rem}
+.challenge-instruments figcaption{font-size:.85rem;font-weight:650}.challenge-instruments svg{display:block;width:100%;height:auto;max-height:280px}
+.challenge-instruments svg text{fill:#b8cadc;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+#challenge-window{accent-color:#785100}#challenge-window-label{margin-left:.6rem;font-variant-numeric:tabular-nums}
+.challenge-instruments[data-composition=split]{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.challenge-instruments[data-composition=split] .challenge-residual{grid-column:1/-1}
+@media(max-width:760px){.challenge-instruments[data-composition=split]{grid-template-columns:minmax(0,1fr)}.challenge-instruments figure{padding:.7rem .3rem}.challenge-instruments figcaption{padding:0 .5rem}.challenge-instruments svg{max-height:none}#challenge-coefficients{font-size:.76rem}.inertia-challenge .inertia-settings{gap:.7rem}}
