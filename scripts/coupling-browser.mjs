@@ -1,17 +1,20 @@
 import {spawn} from 'node:child_process';
-import {mkdtemp,readFile,writeFile,rm,mkdir,readdir} from 'node:fs/promises';
+import {mkdtemp,readFile,writeFile,rm,mkdir,readdir,access} from 'node:fs/promises';
+import {constants} from 'node:fs';
 import {createProductServer} from '../server.mjs';
 import os from 'node:os';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 
+const browserPath=process.env.BROWSER_EXECUTABLE_PATH||'/usr/bin/google-chrome-stable';
+try{await access(browserPath,constants.X_OK);}catch{throw new Error(`Cannot execute ${browserPath}. Set BROWSER_EXECUTABLE_PATH to an installed direct Chrome/Chromium executable; no browser is downloaded or sandbox disabled.`);}
 const server=createProductServer();
 await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
 const base='http://127.0.0.1:'+server.address().port,origin=base+'/coupling.html';
 const dir=await mkdtemp(path.join(os.tmpdir(),'worldlaw-coupling-chrome-'));
 const outputDir=process.env.BROWSER_ARTIFACT_DIR||path.join(dir,'receipts');
 await mkdir(outputDir,{recursive:true});const downloads=path.join(dir,'downloads');await mkdir(downloads);
-const chrome=spawn(process.env.BROWSER_EXECUTABLE_PATH||'/usr/local/bin/google-chrome',['--headless=new','--no-sandbox','--disable-gpu','--disable-background-networking','--hide-scrollbars','--remote-debugging-port=0','--user-data-dir='+dir,'--window-size=1440,1050',origin],{stdio:'ignore'});
+const chrome=spawn(browserPath,['--headless=new','--disable-gpu','--disable-background-networking','--hide-scrollbars','--remote-debugging-port=0','--user-data-dir='+dir,'--window-size=1440,1050',origin],{stdio:'ignore'});
 let ws,seq=0;const pending=new Map(),events={exceptions:[],outside:[]},checks=[];
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
 try{
@@ -102,6 +105,7 @@ try{
     assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);
   });
   if(process.env.WORLDLAW_EXCITATION_RECEIVING==='1'){const {receiveExcitationWitness}=await import('./coupling-excitation-receiving.mjs');await receiveExcitationWitness({evaluate,send,check,click,text,wait,outputDir,downloads,base});assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);}
+  if(process.env.WORLDLAW_POINT_RESPONSE_RECEIVING==='1'){const {receivePointResponse}=await import('./coupling-point-response-receiving.mjs');await receivePointResponse({evaluate,send,check,click,text,wait,outputDir,downloads,base});assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);}
   const receipt={checks,pass:true,events,node:process.version};await writeFile(path.join(outputDir,'verification.json'),JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt,null,2));
 }finally{
   for(const p of pending.values()){clearTimeout(p.timer);p.reject(new Error('Receiver closing'));}pending.clear();
