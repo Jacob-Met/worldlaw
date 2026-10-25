@@ -142,3 +142,49 @@ export function screenSaturationChallenges(raw,input={}){
  return {...base,...result,boxes,evaluations:ctx.count,
   status:!boxes.length?'jointly-excluded':boxes.some(b=>b.consistencyWitness)?'joint-witness':result.budgetExhausted?'budget-unresolved':'outer-boxes-only'};
 }
+
+export function saturationRateSettings(input){
+ if(!input||typeof input!=='object')throw Error('Declare a prospective saturation comparison.');
+ const settings=profileSettings(input.settings??{}),windows=input.windows,probes=input.probes,radius=input.contrastRadius,budget=input.budget;
+ if(!Array.isArray(windows)||windows.length!==2||windows.some(w=>!Array.isArray(w)||w.length!==2||w.some(v=>typeof v!=='number'||!Number.isFinite(v))||w[0]<settings.scaleMin||w[1]>settings.scaleMax||w[0]>w[1])||windows[0][1]>=windows[1][0])throw Error('Declare two separated increasing scale windows inside the original domain.');
+ if(!Array.isArray(probes)||probes.length<1||probes.length>8||probes.some(r=>typeof r?.id!=='string'||!/^[a-zA-Z0-9_-]{1,64}$/.test(r.id)||typeof r.position!=='number'||!Number.isFinite(r.position)||Math.abs(r.position)>1e6||typeof r.rate!=='number'||!Number.isFinite(r.rate)||Math.abs(r.rate)>1e6||(r.rate!==0&&Math.abs(r.rate)<1e-8)||!Number.isFinite(r.cost)||r.cost<=0||r.cost>1e6)||new Set(probes.map(r=>r.id)).size!==probes.length||new Set(probes.map(r=>JSON.stringify([r.position,r.rate]))).size!==probes.length)throw Error('Offer one to eight distinct full angle/rate states with safe names and positive costs.');
+ if(typeof radius!=='number'||!Number.isFinite(radius)||radius<0||radius>100||typeof budget!=='number'||!Number.isFinite(budget)||budget<0||budget>1e6)throw Error('Declare finite nonnegative future response radius and cost budget.');
+ return {settings,windows:windows.map(w=>[...w]),probes:probes.map(({id,position,rate,cost})=>({id,position,rate,cost})),contrastRadius:radius,budget};
+}
+export function compareSaturationRates(raw,input){
+ const study=validateProbeStudy(raw),config=saturationRateSettings(input),{settings,windows,probes:rates,contrastRadius:radius,budget}=config;
+ const work=engine({...study,runs:study.runs.filter(r=>r.role==='training')},settings);
+ const base={schema:'worldlaw.saturation-rate-comparison/v1',settings:config,preparation:{...study.preparation},source:study.runs[0]?.notebook.source??null,objective:'Largest certified separation margin among affordable offered rates; no global rate optimum claimed.',training:work.public,windows:windows.map(w=>[...w]),radius,budget,offered:rates.map(({id,position,rate,cost})=>({id,position,rate,cost})),selected:null,
+  uncomparedScaleRanges:[...(settings.scaleMin<windows[0][0]?[{lower:settings.scaleMin,upper:windows[0][0],lowerClosed:true,upperClosed:false}]:[]),{lower:windows[0][1],upper:windows[1][0],lowerClosed:false,upperClosed:false},...(windows[1][1]<settings.scaleMax?[{lower:windows[1][1],upper:settings.scaleMax,lowerClosed:false,upperClosed:true}]:[])],
+  qualification:'Conditional discrimination of two declared separated scale windows only; scales outside those windows remain untested. Forecasts retain each training box amplitude-scale association and over-enclose any remaining correlation. Disjoint expanded unions certify separation; overlap is unresolved. The candidate law depends on rate only; angular and mixed effects are not included. Offered states are not certified physically feasible. No future response is fabricated or acquired; declared response radius is not calibrated uncertainty.'};
+ if(!work.result)return {...base,status:'insufficient-training',courses:[]};
+ const groups=windows.map(w=>work.result.boxes.map(b=>{
+  const scale=[high(b.scale[0],Q(w[0])),low(b.scale[1],Q(w[1]))];if(cmp(scale[0],scale[1])>0)return null;
+  let witness=null;if(b.covered)witness={scale:mid(scale),amplitude:b.witness.amplitude};
+  else if(b.witness&&cmp(b.witness.scale,scale[0])>=0&&cmp(b.witness.scale,scale[1])<=0)witness=b.witness;
+  return {scale,amplitude:b.amplitude,witness};
+ }).filter(Boolean));
+ if(groups.some(g=>!g.length))return {...base,status:'training-excluded-window',courses:[]};
+ if(groups.some(g=>!g.some(b=>b.witness)))return {...base,status:'window-witness-unresolved',courses:[]};
+ const publicGroups=groups.map(g=>({boxes:g.map(b=>({scale:publicInterval(b.scale),amplitudeOuter:publicInterval(b.amplitude)})),witness:(()=>{const w=g.find(b=>b.witness).witness;return{scale:text(w.scale),amplitude:text(w.amplitude)};})()}));
+ const trainingRuns=study.runs.filter(r=>r.role==='training');
+ const range=field=>[Math.min(...trainingRuns.map(r=>r.probe[field])),Math.max(...trainingRuns.map(r=>r.probe[field]))];
+ const angleRange=range('position'),rateRange=range('rate');
+ const courses=[];
+ const comparisonWork=groups[0].length*groups[1].length*rates.length;
+ if(comparisonWork>150000)return {...base,status:'budget-unresolved',groups:publicGroups,courses:[],evaluations:work.ctx.count};
+ try{
+  for(const offered of rates){
+   const forecasts=groups.map(g=>g.map(b=>prediction(b.amplitude,b.scale,offered.rate,work.ctx)));
+   let margin=null;
+   for(const a of forecasts[0])for(const b of forecasts[1]){
+    const gap=cmp(a[1],b[0])<0?sub(b[0],a[1]):cmp(b[1],a[0])<0?sub(a[0],b[1]):Z;
+    const cleared=high(Z,sub(gap,mul(TWO,Q(radius))));margin=margin===null?cleared:low(margin,cleared);
+   }
+   courses.push({id:offered.id,probe:{command:study.runs.find(r=>r.role==='training').probe.command,position:offered.position,rate:offered.rate},cost:offered.cost,extrapolation:{position:offered.position<angleRange[0]||offered.position>angleRange[1],rate:offered.rate<rateRange[0]||offered.rate>rateRange[1]},affordable:offered.cost<=budget,forecasts:forecasts.map(g=>g.map(publicInterval)),margin:publicInterval([margin,margin]),separates:cmp(margin,Z)>0});
+  }
+ }catch(e){if(!(e instanceof Budget))throw e;return {...base,status:'budget-unresolved',groups:publicGroups,courses:[],evaluations:work.ctx.count};}
+ const eligible=courses.filter(c=>c.affordable&&c.separates);
+ eligible.sort((a,b)=>{const aq=a.margin.exact[0].split('/').map(BigInt),bq=b.margin.exact[0].split('/').map(BigInt);return -cmp(aq,bq)||a.cost-b.cost||(a.id<b.id?-1:a.id>b.id?1:0);});
+ return {...base,status:eligible.length?'separated-offered-windows':'no-certified-discriminator',groups:publicGroups,courses,selected:eligible[0]?.id??null,evaluations:work.ctx.count,comparisonWork};
+}

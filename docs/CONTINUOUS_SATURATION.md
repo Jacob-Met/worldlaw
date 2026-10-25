@@ -52,3 +52,7 @@ The joint screen reuses the directed feature enclosures and bounded complete box
 Training investigation and joint verification have **separate**, equally bounded work budgets, each controlled by the displayed per-stage settings. Source/settings edits cancel both stages. Reopening the same source recomputes both; derived reports remain ignored.
 
 The authored incompatible-challenge control has three high-rate training runs that support the full scale domain. Two different low-rate challenges separately admit scales near 0.1 and 0.5 rad/s, yet no common parameter pair survives them together. Each individual outer-overlap screen correctly remains inconclusive; the joint screen rejects this saturated-rate family. That rejection does not identify which omitted effect caused the inconsistency.
+
+## Choose a next observation
+
+The [prospective saturation-rate consumer](SATURATION_RATE_ACQUISITION.md) compares caller-offered complete states for separating two declared scale windows, freezes an original-input request, and receives a separately supplied observation. It preserves the original training profile and the untested scale ranges.
