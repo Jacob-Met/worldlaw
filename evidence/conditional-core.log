@@ -1,0 +1,17 @@
+✔ retains mixed-sign dissipative law instead of clipping coefficients (4.789994ms)
+✔ false assumption visibly harms an active law and preserves original (1.941559ms)
+✔ preserves fixed non-rate terms and leaves input observations unchanged (1.7923ms)
+✔ boundary fit returns exact feasibility after noisy numerical fitting (1.967607ms)
+✔ changing declaration changes the admitted revision (1.950483ms)
+✔ speed normalization preserves scaled physical laws (1.241258ms)
+✔ refuses rank-deficient and invalid declarations rather than fabricate fit (1.055064ms)
+✔ held-out mutation cannot change training-only revision (1.786511ms)
+✔ preserves original Coulomb sign when normalized nonzero rate underflows (0.727552ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24.420532

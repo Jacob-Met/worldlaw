@@ -1,0 +1,36 @@
+{
+  "base": "928c0b22c2d5ebf85eb7c339f56e3e3afd41acac",
+  "issue": 220,
+  "files": [
+    {
+      "path": "src/science/conditional-rate-fit.mjs",
+      "base_blob": null,
+      "sha256": "85c867085a648fa34d781fae217d0acb64048e8d3d4fd1b1ca0208278e12a1c5"
+    },
+    {
+      "path": "src/science/conditional-rate-panel.mjs",
+      "base_blob": null,
+      "sha256": "4696abc64a64c964875c54608b84d4e5a51ee9adaef0122ff286ecee2be1f300"
+    },
+    {
+      "path": "src/app.mjs",
+      "base_blob": "2728b98a85e7009fdb4a578fabeea50cbac62cb3",
+      "sha256": "859c61f72e2dcb9544719110780ffc1969e27f064e6a4d1f944c4d3254b94d01"
+    },
+    {
+      "path": "tests/conditional-rate-fit.test.mjs",
+      "base_blob": null,
+      "sha256": "99b2923d9ce874bb0ccc18f4de60ba8bb7127d0bd20117cc9ffb3259c5627958"
+    },
+    {
+      "path": "scripts/conditional-rate-browser.mjs",
+      "base_blob": null,
+      "sha256": "3398b181f0a4f2e0c3725d76e57368090b9ba3b0a3602739ca6edccbb6f41ac3"
+    },
+    {
+      "path": "docs/CONDITIONAL_RATE_REVISION.md",
+      "base_blob": null,
+      "sha256": "0b4960fd672e44181a08769918b0795ce679e54f6aa1f5862cdb61d70759e1ed"
+    }
+  ]
+}

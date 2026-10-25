@@ -1,3 +1,4 @@
+import {renderConditionalRate} from './science/conditional-rate-panel.mjs';
 import {renderEnergyBudget} from './science/energy-budget-panel.mjs';
 import {mountAffineClocks} from './science/clock-affine-panel.mjs';
 import {mountClockOffsets} from './science/clock-offset-panel.mjs';
@@ -133,6 +134,7 @@ function runSimulation(announce=true){
     chart('trajectory-chart',[{name:`Selected model · fixed command ${fmt(numberInput('simulation-command'))} N·m`,color:'#1c7562',line:true,points:trajectory.map(r=>({x:r.time,y:r.position}))}],{xLabel:'Simulation time (s)',yLabel:'Predicted angle (rad)'});
     let energy=$('energy-budget');if(!energy){energy=el('section');energy.id='energy-budget';$('trajectory-chart').after(energy);}
     renderEnergyBudget(energy,model(),trajectory,{inertia:numberInput('inertia'),command:numberInput('simulation-command')});
+    renderConditionalRate(energy,model(),state.discovery.observations,state.base.heldOut,{trajectory,solver:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')},chart});
     animationStart=performance.now();set('simulation-status',`${trajectory.length} RK4 states · schematic joint · prediction only`);
     if(announce)notice('Executed the selected torque model through the RK4 dynamics solver.');
   }catch(error){trajectory=[];$('energy-budget')?.replaceChildren(el('p','Energy accounting unavailable because the trajectory was refused.'));set('simulation-status',`Prediction unavailable: ${error.message}`);$('trajectory-chart').replaceChildren(el('p',error.message,'empty-state'));if(announce)throw error;}
