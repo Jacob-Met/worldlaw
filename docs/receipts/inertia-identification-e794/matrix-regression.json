@@ -1,0 +1,54 @@
+{
+  "checks": [
+    {
+      "name": "existing diagonal motion stays the default and matrix controls are explicit",
+      "passed": true
+    },
+    {
+      "name": "cross inertia changes every computed comparison without refitting source evidence",
+      "passed": true
+    },
+    {
+      "name": "cross-inertia sign reverses the declared interaction and source remains unchanged",
+      "passed": true
+    },
+    {
+      "name": "generalized modes use the same matrix and retained trajectories",
+      "passed": true
+    },
+    {
+      "name": "invalid and nearly singular matrices clear motion and announce a specific refusal",
+      "passed": true
+    },
+    {
+      "name": "actual input-only download uses v2 and preserves the supplied cross inertia",
+      "passed": true
+    },
+    {
+      "name": "original input file reopens the matrix controls and exactly recomputes paths",
+      "passed": true
+    },
+    {
+      "name": "downgraded schema and changed held-aside checks cannot silently change the inertia interpretation",
+      "passed": true
+    },
+    {
+      "name": "keyboard activation and reduced-motion time inspection use computed samples",
+      "passed": true
+    },
+    {
+      "name": "actual matrix apparatus and modes fit 1440 CSS pixels",
+      "passed": true
+    },
+    {
+      "name": "actual matrix apparatus and modes fit 390 CSS pixels",
+      "passed": true
+    },
+    {
+      "name": "no page exception or external network request occurred",
+      "passed": true
+    }
+  ],
+  "exceptions": [],
+  "outside": []
+}

@@ -42,3 +42,39 @@
  #motion-results td:nth-child(4)::before{content:'Max rate difference'}
  #motion-results td:nth-child(5)::before{content:'Observed position range'}
 }
+/* Motion-to-inertia apparatus: source and weak balance share an inspected window. */
+.inertia-identification{margin-top:2rem;border-top:1px solid #52667c;padding-top:1.2rem}
+.inertia-identification summary{font-size:1.1rem;font-weight:650;cursor:pointer;padding:.6rem 0}
+.inertia-heading{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:end;margin:1.2rem 0}
+.inertia-heading h3{font-size:1.65rem;margin:.3rem 0}.inertia-heading p{max-width:65ch}
+.inertia-equation{font-size:1.35rem;color:#785100;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.inertia-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}
+.inertia-source{border-left:3px solid #64e0ce;padding:.5rem .8rem;overflow-wrap:anywhere}
+.inertia-settings{display:flex;flex-wrap:wrap;align-items:end;gap:1rem;margin:1rem 0}
+.inertia-settings label{width:12rem;max-width:100%}.inertia-settings input{width:100%}
+.inertia-instruments{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.inertia-instruments figure{margin:0;min-width:0;border-top:2px solid #52667c;padding:1rem;background:#101c2d;color:#f0f6ff}
+.inertia-instruments figcaption{font-weight:650}.inertia-instruments svg{display:block;width:100%;height:auto;color:#b8cadc}
+.inertia-instruments svg text{fill:currentColor;font-family:inherit}
+#inertia-inspection>select{max-width:100%}#inertia-window{width:100%;accent-color:#ffc65d}
+#inertia-window-label{margin-left:.7rem;color:#ffc65d}#inertia-window-readout{min-height:2.5em}
+#inertia-status{border-left:3px solid #ffc65d;padding:.6rem .8rem;font-variant-numeric:tabular-nums}
+#inertia-error{border:1px solid #fe9b9b;padding:.8rem;color:#fe9b9b}
+.inertia-qualification{border-top:1px solid #52667c;padding-top:1rem;max-width:95ch}
+.inertia-method{margin-top:1rem}.inertia-method p{max-width:95ch}
+#inertia-coefficients td{font-variant-numeric:tabular-nums}
+#inertia-coefficients th{text-transform:none;letter-spacing:0}
+@media(max-width:760px){.inertia-heading,.inertia-instruments{grid-template-columns:1fr;gap:1rem}.inertia-heading{margin:1rem 0}.inertia-settings label{width:calc(50% - .5rem)}.inertia-settings button{width:100%}.inertia-heading h3{font-size:1.4rem}.inertia-equation{font-size:1.1rem}.inertia-actions button{flex:1 1 45%}.inertia-identification summary{font-size:1rem}}
+@media(max-width:600px){
+ #inertia-estimates table,#inertia-estimates tbody,#inertia-estimates tr,#inertia-estimates th,#inertia-estimates td{display:block;width:100%;min-width:0}
+ #inertia-estimates caption{display:block;text-align:left;white-space:normal;padding-bottom:1rem}
+ #inertia-estimates thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ #inertia-estimates tr{border-top:1px solid #c8d5e5;padding:.8rem 0}
+ #inertia-estimates th{border:0;padding:.2rem 0 .6rem}
+ #inertia-estimates td{display:flex;justify-content:space-between;gap:1rem;border:0;padding:.25rem 0;white-space:normal}
+ #inertia-estimates td::before{color:#526c88}
+ #inertia-estimates td:nth-child(2)::before{content:'Original rows'}
+ #inertia-estimates td:nth-child(3)::before{content:'Every second row'}
+ #inertia-estimates td:nth-child(4)::before{content:'Absolute difference'}
+}
+

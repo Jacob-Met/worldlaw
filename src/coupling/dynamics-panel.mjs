@@ -1,4 +1,5 @@
 import {appendModeInspection} from './modes-panel.mjs';
+import {mountInertiaIdentification} from './inertia-identification-panel.mjs';
 import {MATRIX_INPUT_SCHEMA,MATRIX_INTERPRETATION,defaultDynamicsInputs,readDynamicsInputs,createCoupledDynamicsStudy,exportDynamicsNotebook,readDynamicsNotebook} from './dynamics.mjs';
 
 const NS='http://www.w3.org/2000/svg',palette=['#c7a4ff','#ffc65d','#64e0ce','#fe9b9b','#80c8ff','#f1a7e4'];
@@ -8,7 +9,7 @@ const svg=(tag,attributes={},text)=>{const el=document.createElementNS(NS,tag);f
 
 export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
   root.innerHTML=`
-    <div class="motion-heading"><div><p class="eyebrow">SAME EVIDENCE. DIFFERENT MOTION.</p><h2 id="motion-title">Let the laws move.</h2></div><p>Explore what each fitted response would do under the same declared dynamic assumptions. The evidence remains quasi-static.</p></div>
+    <div class="motion-heading"><div><p class="eyebrow">SAME EVIDENCE. DIFFERENT MOTION.</p><h2 id="motion-title">Let the laws move.</h2></div><p>Explore what each fitted response would do under the same declared dynamic assumptions. The fitted response evidence remains quasi-static; a separate motion record can supply conditional inertia assumptions.</p></div>
     <div class="motion-layout">
       <div class="motion-instrument">
         <div class="instrument-bar"><h3>Conditional free response</h3><div class="view-controls" role="group" aria-label="Motion visualization"><button id="motion-phase" type="button" aria-pressed="true">Coupled path</button><button id="motion-traces" type="button" aria-pressed="false">Angle traces</button></div></div>
@@ -37,6 +38,7 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
     <section id="motion-modes" aria-label="Useful coordinates for the retained motion"></section>
     <div class="motion-files"><button id="motion-save" type="button">Save motion inputs</button><button id="motion-open" type="button">Open motion inputs</button><span>Evidence and declarations only; models and trajectories are recomputed.</span></div>
     <input id="motion-file" type="file" accept=".json,application/json" hidden aria-label="Choose coupled motion notebook">
+    <section id="motion-inertia-identification" class="inertia-identification" aria-label="Inertia from synchronized motion"></section>
   `;
   const $=id=>root.querySelector('#'+id);
   let study=null,retainedEvidence=null,view='phase',frame=0,raf=null,playing=false,previousStamp=null,generation=0;
@@ -168,5 +170,13 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
   let resize;
   window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});
   setInputs(defaultDynamicsInputs());
-  return {sourceChanged(){generation++;$('motion-declared').checked=false;invalidate('Evidence changed. Declare the dynamic interpretation and compare the current fitted responses.');clearError();}};
+  const identification=mountInertiaIdentification($('motion-inertia-identification'),{applyParameters(parameters,label){
+    generation++;$('motion-inertia-kind').value='symmetric';
+    for(let axis=0;axis<2;axis++){$('motion-inertia-'+axis).value=parameters.inertia[axis];$('motion-damping-'+axis).value=parameters.damping[axis];}
+    $('motion-inertia-cross').value=parameters.inertiaCross;syncInertiaControls();
+    $('motion-declaration').value=('Candidate weak-balance fit from '+label+'. Constant symmetric inertia and diagonal viscous loss; source pairing and physical validity remain declared assumptions.').slice(0,1000);
+    $('motion-declared').checked=false;invalidate('Candidate inertia and damping copied. Review the source pairing and declare this experiment before comparing motion.');clearError();$('motion-inertia-0').focus();
+  }});
+  return {sourceChanged(){generation++;identification.contextChanged();$('motion-declared').checked=false;invalidate('Evidence changed. Declare the dynamic interpretation and compare the current fitted responses.');clearError();}};
 }
+
