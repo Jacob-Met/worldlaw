@@ -20,6 +20,10 @@ const ids = TERMS.map(t => t.id);
 const LIMIT = 4096;
 import {fitLinearColumns as fit, linearColumnRank as libraryRank, RANK_TOLERANCE} from './linear-fit.mjs';
 const fields = ['command', 'position', 'rate'];
+const observedFields = [...fields, 'jointTorque'];
+// Only results produced in this process can reuse fitting work. This private
+// record never enters a notebook, and no public result shares its mutable data.
+const fittedSources = new WeakMap();
 
 export class DiscoveryError extends Error {
   constructor(message, code = 'invalid_input') { super(message); this.name = 'DiscoveryError'; this.code = code; }
@@ -131,15 +135,28 @@ export function discover(observations, requestedOptions = {}) {
     candidates.push(model);
   }
   requireThat(candidates.length, 'No estimable model in the candidate library.', 'unidentifiable');
-  // Stable order exposes library-order tie breaking: a tied selection is not a
-  // claim that one observationally equivalent physical explanation is correct.
+  const fullLibraryRank = libraryRank(columns);
+  return rankFittedSource({samples, options, candidates, examined, rankDeficientCandidates,
+    unexecutableCandidates, fullLibraryRank}, options);
+}
+
+function rankFittedSource(source, options) {
+  const {samples, examined, rankDeficientCandidates, unexecutableCandidates, fullLibraryRank} = source;
+  // Keep the private fits in their original enumeration order. Sorting a prior
+  // ranked list would change the stable tie-break when a new noise floor ties it.
+  const candidates = source.candidates.map(model => ({...model,
+    terms: model.terms.map(term => ({...term})),
+    domain: Object.fromEntries(fields.map(key => [key, {...model.domain[key]}])),
+    metrics: {...model.metrics, score: samples.length * Math.log(Math.max(model.metrics.rmse ** 2,
+      options.noiseSigma ** 2)) + model.terms.length * Math.log(samples.length)},
+  }));
   candidates.sort((a, b) => a.metrics.score - b.metrics.score || a.terms.length - b.terms.length);
   const selected = candidates[0];
   const competitive = candidates.filter(model => model.metrics.score - selected.metrics.score <= options.ambiguityDelta);
-  const fullLibraryRank = libraryRank(columns);
-  return {
+  const result = {
     schema: 'worldlaw.discovery/v1', scope: 'finite_library_scalar_torque_structure', units: UNITS,
-    selected, candidates, competitive, observations: samples, options,
+    selected, candidates, competitive, observations: samples.map(row => ({...row})),
+    options: {...options, terms: [...options.terms]},
     diagnostics: {
       examinedCandidates: examined, rankDeficientCandidates, unexecutableCandidates, fullLibraryRank, librarySize: options.terms.length,
       rankTolerance: RANK_TOLERANCE, selectionAmbiguous: competitive.length > 1 || fullLibraryRank < options.terms.length,
@@ -159,6 +176,29 @@ export function discover(observations, requestedOptions = {}) {
       ],
     },
   };
+  fittedSources.set(result, source);
+  return result;
+}
+
+/**
+ * Refit from the retained observations, reusing fresh QR fits only when the
+ * exact source rows, offered term order and maximum term count are unchanged.
+ * Serialized or edited evidence takes the ordinary complete discovery path.
+ * Equivalent to discover(discovery.observations, requestedOptions); derived
+ * public models/metrics are never used as fitting evidence.
+ */
+export function refitDiscovery(discovery, requestedOptions = {}) {
+  requireThat(discovery?.schema === 'worldlaw.discovery/v1', 'Expected a discovery result.');
+  const samples = rows(discovery.observations, 8), options = normalizeOptions(requestedOptions);
+  const source = fittedSources.get(discovery);
+  if (source && options.maxTerms === source.options.maxTerms
+    && options.terms.length === source.options.terms.length
+    && options.terms.every((term, i) => term === source.options.terms[i])
+    && samples.length === source.samples.length
+    && samples.every((row, i) => observedFields.every(key => Object.is(row[key], source.samples[i][key])))) {
+    return rankFittedSource(source, options);
+  }
+  return discover(samples, options);
 }
 
 export function planExperiment(discovery, candidateInputs) {
@@ -212,3 +252,4 @@ export function simulate(model, initial, { duration = 4, dt = 0.01, inertia = 1,
   }
   return trajectory;
 }
+

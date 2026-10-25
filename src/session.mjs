@@ -1,4 +1,4 @@
-import {discover, evaluate, revise, planExperiment, DEFAULT_TERMS} from './science/torque-discovery.mjs';
+import {discover, refitDiscovery, evaluate, revise, planExperiment, DEFAULT_TERMS} from './science/torque-discovery.mjs';
 import {createLab, executeLab} from './science/virtual-lab.mjs';
 import {validateDataset, validateRows, candidateGrid, FIELDS, MAX_ROWS, MAX_TEXT_LENGTH} from './data.mjs';
 
@@ -66,7 +66,7 @@ export function runVirtualExperiment(state,input) {
 export function refitSession(state,options) {
   options=cleanOptions({...state.options,...options});
   const label=Boolean(options.includeCommandPosition)!==Boolean(state.options.includeCommandPosition)?'Revised scalar feature library':'Revised noise assumption';
-  return eventState(state,{kind:'options',label,options},discover(state.discovery.observations,discoveryOptions(options)),options);
+  return eventState(state,{kind:'options',label,options},refitDiscovery(state.discovery,discoveryOptions(options)),options);
 }
 export function sessionPlan(state) {
   const source=state.lab ? createLab({seed:state.lab.seed}).candidateInputs : candidateGrid(state.base.observations);
@@ -97,3 +97,4 @@ export function undoSession(state) {
   if(!state.events.length) return state;
   const raw=JSON.parse(exportSession(state)); raw.events.pop(); return restoreSession(JSON.stringify(raw));
 }
+
