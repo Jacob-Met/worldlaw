@@ -55,12 +55,13 @@
             </details>
             <details id="metric-plane-panel" class="coordinate-details">
               <summary>Measure in a declared plane</summary>
-              <p class="input-hint">A slanted camera changes image angles. Supply four source points whose coordinates are known in the same motion plane, using the same length unit on both axes.</p>
+              <p class="input-hint">A slanted camera changes image angles. Supply four source points whose coordinates are known in the same motion plane, using the same length unit on both axes. If the pivot is hidden, stage this declaration, track a marker, then compare and explicitly accept a reference from its rectified path.</p>
               <button id="plane-template" class="button button-outline button-full" type="button" disabled>Save blank calibration file</button>
               <button id="open-plane-declaration" class="button button-outline button-full" type="button" disabled>Open plane calibration</button>
               <input id="plane-declaration-file" type="file" accept=".json,application/json" hidden aria-label="Choose a metric-plane calibration">
               <p id="plane-declaration-status" class="input-hint" aria-live="polite">Choose an original video with retained source identity to use a metric-plane calibration.</p>
               <p id="plane-declaration-limits" class="input-hint" hidden>Numbered cyan marks show the declared source references. The solid trace uses the plane; the dashed trace keeps the image interpretation. Four fitted points do not verify the geometry. Angle-noise estimates exclude calibration-point error, lens distortion and motion outside the plane.</p>
+              <button id="apply-staged-plane" class="button button-outline button-full" type="button" hidden>Apply staged plane to current reference</button>
               <button id="remove-plane-declaration" class="button button-quiet button-full" type="button" hidden>Return to image angles</button>
             </details>
             <p id="calibration-status" class="input-hint">Coordinates use the decoded source pixels.</p>

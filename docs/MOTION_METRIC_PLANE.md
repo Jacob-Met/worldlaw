@@ -99,11 +99,13 @@ existing torque export still requires its explicit dynamics assumptions and
 refuses tracked-pivot courses; this work does not identify physical inertia or
 absolute torque.
 
-Image-circle reference inference is disabled while a plane is active because
-the center of a projected circle is not generally the projected physical pivot.
-An already accepted image reference remains declared input and carries its
-existing fitted-reference warning. This feature does not independently correct
-or validate a previously inferred pivot.
+With a staged or active plane, reference inference compares the original marker
+course after rectification and projects its fitted center back to the original
+raster. A directly fitted image-circle center is not generally the projected
+physical pivot. See [conditional rectified-reference inference](MOTION_PLANE_REFERENCE.md)
+for the explicit acceptance workflow, source custody and informative failures.
+An already accepted image reference remains declared input; applying a plane to
+it does not independently correct or validate that pivot.
 
 ## Executed receiving
 

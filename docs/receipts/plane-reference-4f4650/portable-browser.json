@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "staging does not create a pivot; an explicitly observed image reference stays active until separate plane application",
+    "existing observed and tracked-reference modes remain explicit; tracked mode refuses fixed-reference inference",
+    "new source clears the staged plane and proposal; an older delayed plane read cannot modify it"
+  ],
+  "errors": [],
+  "sourceSha256": "5a27a92fe35d38e54f303b8299693f630223c6d252076b52820cb4e302e66d7c",
+  "otherSourceSha256": "1740ff6d082d562f7b35bbb1d28e6eaaf5f0de1198d23721fb369912a59ad3c9",
+  "browserVersion": "156.0.8078.47",
+  "chromiumSandbox": true,
+  "sandboxStatus": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed."
+}

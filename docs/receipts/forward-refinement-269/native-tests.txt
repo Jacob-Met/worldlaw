@@ -1,0 +1,18 @@
+✔ complete trajectory refinement improves independent analytic challenge without replacing incumbent (2006.239464ms)
+✔ challenge perturbation cannot select coefficients or alter predictions (484.729807ms)
+✔ whole-search budget refusal retains original predictive challenge (187.664222ms)
+✔ unresolved baseline produces no candidate and zero-step law cannot invent improvement (107.380387ms)
+✔ failed solver is retained, not promoted as a supported refined law (91.269736ms)
+✔ complete fixed structure set predicts each excluded training recording with independent analytic motion (79.723527ms)
+✔ separate challenge values cannot alter selection, fitted coefficients or free predictions (269.276589ms)
+✔ full experiment reservation refuses before offering a partial ranking (1.456045ms)
+✔ shared recordings and copied raw evidence cannot masquerade as independent folds (5.1532ms)
+✔ sparse fit and strict numeric-screen failures stay retained without silently promoting survivors across folds (64.933232ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3334.758086
