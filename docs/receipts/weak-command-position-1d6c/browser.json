@@ -1,0 +1,63 @@
+{
+  "format": "worldlaw-weak-command-position-browser/v1",
+  "sourceBase": "1a64f8f0ba4161a62592f1a3c84d20256233d505",
+  "overlaySha256": "792d0d9cf039a8292e24ce2dabd1cf9161954bcc6b44b47471740579f77999bf",
+  "environment": {
+    "os": "Linux",
+    "node": "22.23.4",
+    "browser": "Chrome/156.0.8078.47",
+    "browserSandboxDisabled": false
+  },
+  "native": {
+    "command": "node --test tests/*.test.mjs",
+    "scope": "41 materialized focused tests; not a whole-repository suite",
+    "passed": 41,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 2253.071476
+  },
+  "browser": {
+    "results": [
+      {
+        "width": 1440,
+        "before": "0.01337",
+        "after": "8.16e-7",
+        "reopened": true,
+        "keyboardToggle": true,
+        "unsupportedMethodHidden": true
+      },
+      {
+        "width": 390,
+        "before": "0.01337",
+        "after": "8.16e-7",
+        "reopened": true,
+        "keyboardToggle": true,
+        "unsupportedMethodHidden": true
+      }
+    ],
+    "errors": []
+  },
+  "visual": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "focus": "command-position-interaction",
+      "file": "desktop.png"
+    },
+    "narrow": {
+      "width": 390,
+      "height": 900,
+      "scrollWidth": 390,
+      "focus": "command-position-interaction",
+      "file": "narrow.png"
+    },
+    "inspected": true,
+    "boundary": "Precise controls captured on the preceding byte-identical trajectory UI; complete browser course rerun after latest core/Studio overlay."
+  },
+  "limits": [
+    "Authored analytic and browser fixtures, not identified physical actuator behavior",
+    "Legacy v1 saves preserved; opt-in uses v2 and rejects silent old-reader downgrade",
+    "Normal browser support checked on one Linux environment"
+  ]
+}

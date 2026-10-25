@@ -43,6 +43,12 @@ export function weakWindows(run, options, rates, insist) {
       weights[i] += amount; weights[i + 1] -= amount;
       for (const id of options.terms) {
         if (id === 'command') features[id] += duration * duration * rows[i].command * integral;
+        else if (id === 'command_position') {
+          // Command is held over this interval, including at a command jump.
+          // Only position is interpolated; interpolating u*theta would smear it.
+          features[id] += duration * duration * rows[i].command *
+            (rows[i].position * integral + (rows[i + 1].position - rows[i].position) / h * firstOffset);
+        }
         else if (id === 'rate') features[id] += duration * (rows[i + 1].position - rows[i].position) / h * integral;
         else {
           const left = feature(id, i), right = feature(id, i + 1);
@@ -82,3 +88,4 @@ export function weakLocalRates(run, requested, insist) {
     return rate;
   });
 }
+

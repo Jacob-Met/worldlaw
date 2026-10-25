@@ -1,0 +1,95 @@
+{
+  "baseCommit": "4837956e92b96da931693bddafb1c9ff3b9b85ad",
+  "files": [
+    {
+      "path": "src/trajectory/weak-operator.mjs",
+      "bytes": 5927,
+      "sha256": "5f9dcd0403a9ae99cbc888961da2fa9d22c149e4a5a19753f1f81907a18a4c49",
+      "gitBlobSha1": "0fd3b81511f53bca70d87a8530e396e00a9c468c"
+    },
+    {
+      "path": "src/trajectory/weak-discovery.mjs",
+      "bytes": 6694,
+      "sha256": "90650e3dfdb1f0eed975f7bd293aaf0154131176e65271d44be2c3e827dd9c00",
+      "gitBlobSha1": "21fb34a286632bd8f3fd9b9263889e4b8f52098c"
+    },
+    {
+      "path": "src/trajectory/session.mjs",
+      "bytes": 11718,
+      "sha256": "d59f6fe2d75e77a4486894f07140743c01e1300ea46a2e4190c5b75a80c3a0ce",
+      "gitBlobSha1": "5b3fdfca488da52e4ddf0546f1c0b144cf07735f"
+    },
+    {
+      "path": "src/trajectory/experiment-session.mjs",
+      "bytes": 15701,
+      "sha256": "696da041c6d7c0599a7698171ec54d5e5f7f009598f34419511640c81d6f2cfa",
+      "gitBlobSha1": "368eb8de2c1c9070cecdd68d3a367f7b00858cae"
+    },
+    {
+      "path": "src/trajectory/app.mjs",
+      "bytes": 38347,
+      "sha256": "15a3794a3188573208ee56d459bb6d6f277dbdf25809b2780bcea0cf108d4fa7",
+      "gitBlobSha1": "85dbcf21e99105dd45757a9f174d7b08339f93ea"
+    },
+    {
+      "path": "trajectory.html",
+      "bytes": 14938,
+      "sha256": "f5c6d04735e0eeababd01e598b06c176f1a424cb4d866c4a1cf125f5be8efd80",
+      "gitBlobSha1": "2ce5ca929eba346792ce94af2566a8e53c311ca2"
+    },
+    {
+      "path": "tests/forced-weak-discovery.test.mjs",
+      "bytes": 4559,
+      "sha256": "8678a717145710ea2de754a4370ef881cf7870a703d09ed206578e5a98026e87",
+      "gitBlobSha1": "91f4eef92c9ce7a72cd258b43c632bf538ab1143"
+    },
+    {
+      "path": "tests/weak-command-position.test.mjs",
+      "bytes": 5150,
+      "sha256": "35b321af0cfb3fe9c42836d247406fa16984514ab6ae3526a0d1ce0976d3951f",
+      "gitBlobSha1": "f445263bcc3bcab7fb875ffea4c26ac57601d368"
+    },
+    {
+      "path": "docs/WEAK_COMMAND_POSITION.md",
+      "bytes": 2755,
+      "sha256": "0a029b68830cf3fe5dcb58530d75acde8a9b92036cad5913fc42cae7d0149f21",
+      "gitBlobSha1": "84811bd80f58cf5392dafffc3e0937b240e53294"
+    },
+    {
+      "path": "scripts/weak-interaction-browser.mjs",
+      "bytes": 3007,
+      "sha256": "89ec49b6bfe67d20a1c8b26dff682a0d209810461aa49c199a2557e417fbe558",
+      "gitBlobSha1": "e25e0d947ddccb77627094f5e4f843e200e27e56"
+    },
+    {
+      "path": "scripts/weak-interaction-fixture.mjs",
+      "bytes": 1451,
+      "sha256": "40e5003e63489945aadebf19ebbc4f3998ad6de505d645a319743311901489c8",
+      "gitBlobSha1": "b82684f313a43f7a8d2d5cfaf68d1eef103736bc"
+    },
+    {
+      "path": "docs/WEAK_COMMAND_POSITION_RECEIVING.md",
+      "bytes": 5514,
+      "sha256": "86ec933bd10a67f7f68df45245b1971e28cf7d5fec3d630f3ff44fc0b22e844e",
+      "gitBlobSha1": "3517a92f6e8d604f1f13eab7bd4852fa50d02871"
+    },
+    {
+      "path": "docs/receipts/weak-command-position-1d6c/browser.json",
+      "bytes": 1810,
+      "sha256": "086eda0e71f957c428da840f9b257229a3f66aa4ed551600bde8097811dce175",
+      "gitBlobSha1": "7334854e3cdaad0b6e48829e3d641c672d89a899"
+    },
+    {
+      "path": "docs/receipts/weak-command-position-1d6c/desktop.png",
+      "bytes": 173918,
+      "sha256": "26f04b47bef66c6d0316b097d3ab4855abf34d879c683ec3a62caf17637fc7b6",
+      "gitBlobSha1": "983246fee72a664c192177a9f37a1231c6702a4e"
+    },
+    {
+      "path": "docs/receipts/weak-command-position-1d6c/narrow.png",
+      "bytes": 55253,
+      "sha256": "474bab418fed75d281552855f86a89f583f0fffc1a51a69748099152e99a3019",
+      "gitBlobSha1": "f9fa42dfc3d533b349e8c687f90330d1b86bf3ee"
+    }
+  ]
+}

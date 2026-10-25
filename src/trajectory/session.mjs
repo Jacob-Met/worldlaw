@@ -1,7 +1,7 @@
 import {discoverWeak} from './weak-discovery.mjs';
 import {compareTrajectorySkill} from './baselines.mjs';
 /** Training-only model selection followed by a separate receiving experiment. */
-import {discover} from '../science/torque-discovery.mjs';
+import {discover, DEFAULT_TERMS} from '../science/torque-discovery.mjs';
 import {deriveTorqueObservations} from '../science/trajectory-observations.mjs';
 import {discoverIntegral} from './integral-discovery.mjs';
 import {rolloutWithResolution} from './resolution.mjs';
@@ -11,6 +11,7 @@ import {rolloutAngularWithResolution} from './angular-resolution.mjs';
 import {validateBundle,MAX_TEXT_LENGTH,TrajectoryDataError} from './data.mjs';
 export const CHALLENGE_SCHEMA='worldlaw.trajectory-challenge/v1';
 export const NOTEBOOK_SCHEMA='worldlaw.trajectory-notebook/v1';
+export const INTERACTION_NOTEBOOK_SCHEMA='worldlaw.trajectory-notebook/v2';
 export const DEFAULT_OPTIONS=Object.freeze({method:'integral',noiseSigma:0.01,maxTerms:4,ambiguityDelta:6,maxStep:0.01,rateWindowSize:9,modelLimit:8});
 const ANGULAR_DEFAULT_OPTIONS=Object.freeze({...DEFAULT_OPTIONS,windowDuration:1,windowStride:0.5});
 const angularBundle=bundle=>bundle?.schema===ANGULAR_BUNDLE_SCHEMA;
@@ -32,6 +33,11 @@ export function normalizeOptions(raw={}, {angular=false}={}){
     check(typeof result.windowDuration==='number'&&Number.isFinite(result.windowDuration)&&result.windowDuration>=0.02&&result.windowDuration<=60,'The weak fitting window must be from 0.02 to 60 seconds.');
     check(typeof result.windowStride==='number'&&Number.isFinite(result.windowStride)&&result.windowStride>=0.01&&result.windowStride<=result.windowDuration,'The weak window stride must be from 0.01 seconds through the window duration.');
   }
+  if(raw.commandPositionInteraction!==undefined){
+    check(typeof raw.commandPositionInteraction==='boolean','commandPositionInteraction must be boolean.');
+    check(!raw.commandPositionInteraction||(!angular&&result.method==='weak'),'Command-position interaction requires known-inertia weak fitting.');
+    result.commandPositionInteraction=raw.commandPositionInteraction;
+  }
   return result;
 }
 function fitTraining(bundle,options){
@@ -40,7 +46,7 @@ function fitTraining(bundle,options){
     if(options.method==='weak')return discoverAngularWeak(bundle.trainingRuns,{...shared,rateWindowSize:options.rateWindowSize,windowDuration:options.windowDuration,windowStride:options.windowStride});
     return discoverAngular(bundle.trainingRuns,{...shared,rateWindowSize:options.rateWindowSize});
   }
-  if(options.method==='weak')return discoverWeak(bundle.trainingRuns,{...shared,rateWindowSize:options.rateWindowSize,windowDuration:options.windowDuration,windowStride:options.windowStride});
+  if(options.method==='weak')return discoverWeak(bundle.trainingRuns,{...shared,...(options.commandPositionInteraction?{terms:[...DEFAULT_TERMS,'command_position']} : {}),rateWindowSize:options.rateWindowSize,windowDuration:options.windowDuration,windowStride:options.windowStride});
   if(options.method==='integral')return discoverIntegral(bundle.trainingRuns,{...shared,rateWindowSize:options.rateWindowSize});
   const derived=bundle.trainingRuns.map(run=>deriveTorqueObservations(run.samples,{inertia:run.inertia,windowSize:options.rateWindowSize}));
   const observations=derived.flatMap(run=>run.observations);
@@ -94,7 +100,7 @@ export function exportChallenge(state){
   if(state?.schema!==CHALLENGE_SCHEMA)throw new TrajectoryDataError('Expected an evaluated trajectory challenge.');
   const selected=selection(state);
   const bundle=normalizeBundle(state.bundle);
-  const raw={schema:NOTEBOOK_SCHEMA,bundle,options:normalizeOptions(state.options,{angular:angularBundle(bundle)}),...selected};
+  const raw={schema:state.options.commandPositionInteraction?INTERACTION_NOTEBOOK_SCHEMA:NOTEBOOK_SCHEMA,bundle,options:normalizeOptions(state.options,{angular:angularBundle(bundle)}),...selected};
   const text=JSON.stringify(raw,null,2);
   if(text.length>MAX_TEXT_LENGTH)throw new TrajectoryDataError('The notebook exceeds the 3 MB portable limit.');
   return text;
@@ -103,7 +109,9 @@ export function restoreChallenge(text){
   if(typeof text!=='string'||text.length>MAX_TEXT_LENGTH)throw new TrajectoryDataError('Notebook files must be JSON smaller than 3 MB.');
   let raw;try{raw=JSON.parse(text.replace(/^\uFEFF/,''));}catch{throw new TrajectoryDataError('The notebook JSON could not be read.');}
   if(raw?.schema==='worldlaw.trajectory-bundle/v1'||raw?.schema===ANGULAR_BUNDLE_SCHEMA)return createChallenge(raw);
-  if(raw?.schema!==NOTEBOOK_SCHEMA)throw new TrajectoryDataError('Unsupported trajectory notebook.');
+  if(![NOTEBOOK_SCHEMA,INTERACTION_NOTEBOOK_SCHEMA].includes(raw?.schema))throw new TrajectoryDataError('Unsupported trajectory notebook.');
+  if(raw.schema===INTERACTION_NOTEBOOK_SCHEMA&&raw.options?.commandPositionInteraction!==true)throw new TrajectoryDataError('Version 2 requires the explicit command-position interaction declaration.');
+  if(raw.schema===NOTEBOOK_SCHEMA&&raw.options?.commandPositionInteraction===true)throw new TrajectoryDataError('Command-position interaction requires a version 2 notebook.');
   const state=createChallenge(raw.bundle,raw.options);
   if(raw.selectedModelId!==undefined)state.selectedModelId=raw.selectedModelId;
   if(raw.selectedRunId!==undefined)state.selectedRunId=raw.selectedRunId;
@@ -111,4 +119,5 @@ export function restoreChallenge(text){
   selection(state);
   return state;
 }
+
 

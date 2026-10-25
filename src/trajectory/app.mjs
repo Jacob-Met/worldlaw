@@ -52,11 +52,16 @@ function save(){
 }
 function updateMethodDescription(){
   const method=document.querySelector('input[name="method"]:checked').value,angular=angularMode();
+  const interactionAllowed=!angular&&method==='weak';
+  $('interaction-control').hidden=!interactionAllowed;
+  $('interaction-explanation').hidden=!interactionAllowed;
+  $('command-position-interaction').disabled=!interactionAllowed;
+  if(!interactionAllowed)$('command-position-interaction').checked=false;
   set('noise-unit',angular||method!=='derivative'?'rad':'N·m');
   set('method-explanation',angular?(method==='weak'?'Experimental fit across compact time windows. It eliminates initial rate from fitting; forward prediction still uses the supplied rate.':'Fits accumulated angular motion. The learned coefficients describe acceleration; physical torque scale remains unknown.'):method==='weak'?'Fits compact windows using measured commands and declared inertia; starting rate enters forward prediction only.':method==='integral'?'Fits accumulated motion without taking a second derivative of the angle.':'Estimates angular acceleration first, then fits a torque law to those derived observations.');
 }
 
-function settings(){const raw=$('noise-sigma').value.trim(),noiseSigma=Number(raw);if(!raw||!Number.isFinite(noiseSigma)||noiseSigma<=0)throw new Error('Enter an assumed residual noise greater than zero.');return {...state?.options,method:document.querySelector('input[name="method"]:checked').value,noiseSigma};}
+function settings(){const raw=$('noise-sigma').value.trim(),noiseSigma=Number(raw);if(!raw||!Number.isFinite(noiseSigma)||noiseSigma<=0)throw new Error('Enter an assumed residual noise greater than zero.');return {...state?.options,commandPositionInteraction:$('command-position-interaction').checked,method:document.querySelector('input[name="method"]:checked').value,noiseSigma};}
 async function perform(getNext,message,{persist=true,propagate=false}={}){
   commandTimingPanel.suspend();
   const ticket=++generation;setBusy(true);
@@ -69,7 +74,7 @@ async function perform(getNext,message,{persist=true,propagate=false}={}){
     if(!state.bundle.challengeRuns.some(run=>run.id===selectedRunId))selectedRunId=state.bundle.challengeRuns[0].id;
     state.selectedRunId=selectedRunId;
     const methods=state.supportedMethods||(angularMode()?['integral']:['integral','derivative']);for(const radio of document.querySelectorAll('input[name="method"]')){radio.closest('label').hidden=!methods.includes(radio.value);radio.disabled=!methods.includes(radio.value);radio.checked=radio.value===state.options.method;}document.querySelector('.method-switch').classList.toggle('single-method',methods.length===1);
-    $('noise-sigma').value=state.options.noiseSigma;updateMethodDescription();render();
+    $('noise-sigma').value=state.options.noiseSigma;$('command-position-interaction').checked=!!state.options.commandPositionInteraction;updateMethodDescription();render();
     if(persist)save();notice(message);return workflow;
   }catch(error){if(ticket===generation){if(propagate)throw error;alertError(error);if(!state)set('notice','No challenge is loaded. Import paired runs or load the synthetic example.');}}
   finally{if(ticket===generation){setBusy(false);commandTimingPanel.setBundle(state?.bundle);}}
@@ -259,4 +264,5 @@ async function start(){
   await loadExample({persist:false});if(storageError)set('storage-status',storageError);
 }
 start();
+
 
