@@ -1,11 +1,11 @@
 // Simultaneous prediction-set comparison: each law keeps ONE coefficient
 // throughout all offered states. Exact over supplied binary64 features/bounds.
 import {rational, mul, neg, clip, serial} from './chronos-exact-halfplanes.mjs';
-import {PROBE_MODELS} from './probe-response.mjs';
+import {probeModelForCandidate} from './probe-response.mjs';
 export function compareProbeCourse(models, probes, radius, work={count:0,limit:200000}) {
- if(!Array.isArray(models)||models.length>4||!Array.isArray(probes)||probes.length<1||probes.length>2||!Number.isFinite(radius)||radius<1e-8||radius>1000)throw Error('Use at most four models and one or two offered states with a bounded positive radius.');
+ if(!Array.isArray(models)||models.length>7||!Array.isArray(probes)||probes.length<1||probes.length>2||!Number.isFinite(radius)||radius<1e-8||radius>1000)throw Error('Use at most seven models and one or two offered states with a bounded positive radius.');
  const prepared=models.map(c=>{
-  const model=PROBE_MODELS.find(m=>m.id===c.id),range=c.coefficientInterval;
+  const model=probeModelForCandidate(c),range=c.coefficientInterval;
   if(!model||!Array.isArray(range)||range.length!==2||!range.every(x=>Number.isFinite(x)&&Math.abs(x)<=100)||range[0]>range[1])throw Error('Use admitted bounded coefficient intervals.');
   const features=probes.map(p=>{if(!p||!['position','rate'].every(k=>Number.isFinite(p[k])&&Math.abs(p[k])<=1e6))throw Error('Use bounded offered states.');return rational(model.feature(p));});
   return {id:c.id,range:range.map(rational),features};
