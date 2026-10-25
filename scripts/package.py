@@ -127,7 +127,7 @@ INCLUDE = (
 )
 REQUIRED = (
     "src/science/robust-fit.mjs",
-    "src/motion/metric-plane.mjs", "src/motion/metric-plane-panel.mjs",
+    "src/motion/metric-plane.mjs", "src/motion/metric-plane-panel.mjs", "src/motion/plane-path-reference.mjs",
     "src/motion/vendor/plane-homography.mjs", "src/motion/vendor/plane-homography-source.json",
     "motion-reference.html", "motion-reference.css", "src/motion/reference-app.mjs",
     "src/motion/vendor/mechanism-core.mjs", "src/motion/vendor/mechanism-source.json",

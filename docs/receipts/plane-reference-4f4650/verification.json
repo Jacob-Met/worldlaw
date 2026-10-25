@@ -1,0 +1,45 @@
+{
+  "baseCommit": "ff566099deb38095d3bd0ef20d13792aa8a647c2",
+  "runtime": "Node24.22.1; sandboxed Chromium156.0.8078.47 as nobody",
+  "sourceSha256": {
+    "src/motion/plane-path-reference.mjs": "ca4c2aeef83d572454407e4343d9cd66fc32f435538abbe839e151c1b40f3b87",
+    "src/motion/metric-plane-panel.mjs": "3c9f96ea29057af8642b9d4d3014623e13447a237bb9a579ba1ec72de4227b23",
+    "src/motion/app.mjs": "0ef909bd1591512f72bb0b90be02c0b84f5a87f5000c5d30eda1fa5715824c70",
+    "motion.html": "f927598fb0101a0ee0acec926fdf20b5d362748c3716bbbf7bb850958ec6ed15",
+    "scripts/motion-metric-plane-browser.mjs": "e271e107a6d81604f0a0be0b713d93fc1b739da8296281682c0c4bbfa4c30ee0",
+    "scripts/motion-plane-reference-state-browser.mjs": "be872e176dc4b86dfc2857039d01cc1eb76b242f5684bfe32526854c66ef2cd2",
+    "tests/motion-plane-path-reference.test.mjs": "48ff4258870ac2a0565d7ffe445f0a13aaeb4ffdff4020d25e48ff17d72196f7",
+    "scripts/package.py": "08e80b9c06a86faacb53fa98c5c46489c46b412a7d9bfa32628a767bb69341c5",
+    "motion.css": "f56d841d4ae01e72851cdbd8a6f7560bc9762888a42383f38318e668cc6f8fc8"
+  },
+  "nativeGroups": 9,
+  "independentReview": {
+    "numerical": "Experimental Earth worker found coordinate-axis-dependent classifier gates at high original noise. Canonical original-image reference direction now preserves gate results under axis rotations and pair permutations; original repro and9groups independently pass.",
+    "lifecycle": "SECOND GROUND worker checked staging/source resets/async and acceptance; found staged wording incorrectly denied an existing image pivot. Corrected wording, dynamic limits and explicit staged-plane application are received in3actual browser groups."
+  },
+  "proofBoundary": "Authored original MP4s, unchanged tracker and explicit existing UI corrections; no measured physical pivot/calibration/uncertainty. The independent-video model selected an extra Coulomb term absent from generator truth; retain this limitation.",
+  "browserReceipt": "browser.json",
+  "stateBrowserReceipt": "state-browser.json",
+  "baseTree": "2b31e545c0dad8d019a9606ecb67fbc20513e4fc",
+  "currentMainNative": {
+    "command": "node --test tests/motion*.test.mjs tests/trajectory*.test.mjs tests/forced-weak-discovery.test.mjs",
+    "passedFileSuites": 31,
+    "failed": 0,
+    "durationMs": 36371.951137
+  },
+  "currentMainBrowser": "Repeated all eight original-video/law groups after adopting62 current-main source/support files; same numeric outcomes",
+  "finalStateBrowser": "Three actual staging/manual-pivot/tracked/delayed-source groups pass after final contrast and source-overlay capture",
+  "laterComposition": "21 current-main files adopted; no Motion or trajectory runtime closure changes. scripts/package.py preserves upstream log policy plus required adapter.",
+  "portable": {
+    "sourceFiles": 539,
+    "archiveSha256": "fa9de021f6f75a3032098be95bf251d29def4bd100e330e6a5aff1e1743a50ca",
+    "sourceMode": "working-tree-candidate",
+    "browserGroupsPassed": 3,
+    "receipt": "portable-browser.json",
+    "scope": "Actual isolated extracted application; runtime bytes equal tested candidate; this archive predates only the later unrelated current-main composition and receipt updates."
+  },
+  "smokeAfterComposition": [
+    "npm run smoke: PASS launched discovery, virtual measurement, revision and notebook reopen",
+    "npm run smoke:trajectory: PASS launched fitting, forward predictions, reopen and negative controls"
+  ]
+}
