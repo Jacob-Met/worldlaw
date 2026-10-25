@@ -16,6 +16,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "docs/receipts/applied-torque-760d4cf/README.md",
     "independent-review/soft-l1-oracle.py",
     # Source-bound metric-plane consumer and exact authored receiving fixtures.
     "src/motion/vendor/plane-homography.mjs", "src/motion/vendor/plane-homography-source.json",
@@ -30,6 +31,13 @@ INCLUDE = (
     "tests/coupling-shared-course-fixture.mjs", "tests/response-contrast-fixture.mjs",
     "tests/fixtures/command-response-moments.json",
     "tests/fixtures/readout-assignment-oracle.json",
+    "tests/fixtures/weighted-readings.mjs",
+    "examples/physical-nad-56bd8a/AUTHOR-DATASET-CARD.md",
+    "examples/physical-nad-56bd8a/AUTHOR-LICENSE",
+    "examples/physical-nad-56bd8a/README.md",
+    "examples/physical-nad-56bd8a/test-200_006.csv",
+    "examples/physical-nad-56bd8a/train-200_001.csv",
+    "docs/receipts/sensor-response-56bd8a/README.md",
     "scripts/support/README.md", "scripts/support/chromium-sandbox.mjs",
     "scripts/package-policy-test.py",
     "COUPLED_POINT_RESPONSE.md", "COUPLING_EXCITATION_WITNESSES.md",
@@ -205,6 +213,12 @@ FORBIDDEN_NAMES = {".env", "credentials", "credentials.json", "secrets.json", "i
 # Exact tracked historical evidence archives and logs are not distributed.
 # Keep these paths explicit; other unapproved archives still fail closed.
 NON_DISTRIBUTED_TRACKED_RECEIPTS = frozenset({
+    "docs/receipts/applied-torque-760d4cf/full-verify.log.gz",
+    "docs/receipts/sensor-response-56bd8a/native-tests.txt",
+    "docs/receipts/sensor-response-56bd8a/studio-smoke.txt",
+    "docs/receipts/sensor-response-56bd8a/trajectory-smoke.txt",
+    "docs/receipts/forward-refinement-269/native-tests.txt",
+    "docs/receipts/forward-refinement-269/shared-tests.txt",
     "docs/receipts/command-deadzone-56bd8a/native-tests.txt",
     "docs/receipts/command-deadzone-56bd8a/studio-smoke.txt",
     "docs/receipts/command-deadzone-56bd8a/trajectory-smoke.txt",
@@ -242,7 +256,7 @@ def matches(path, pattern):
 
 
 def included(path):
-    return any(matches(path, pattern) for pattern in INCLUDE)
+    return path not in NON_DISTRIBUTED_TRACKED_RECEIPTS and any(matches(path, pattern) for pattern in INCLUDE)
 
 
 def check_path(path):

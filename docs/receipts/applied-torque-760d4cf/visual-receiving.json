@@ -1,0 +1,14 @@
+{
+  "sourceSHA256": {
+    "src/trajectory/applied-torque.mjs": "d76260421e539c520a49294605597998d98cf52bdba3df512f2ad1a20c79b340",
+    "src/trajectory/applied-torque-example.mjs": "6e67c37ae37c1c7535dbd8e7c78bbd2f015ad182dba9bc9f939cb8381f6ec35c",
+    "src/trajectory/applied-torque-panel.mjs": "8a24c96ca8b4b4b36a0c5aaee4024cb33b192c6909d2cdcd2c87c14ff5dc712e",
+    "src/trajectory/app.mjs": "297365b0e7730fe35688cbb9cf36c62a60169ac84d33e53a22626398fee32d33",
+    "tests/applied-torque.test.mjs": "d906d033bd21c826ed7bcd294ce99446de85a9325a6b02a77d4db953f76a4dfa",
+    "scripts/applied-torque-browser.mjs": "8a31bbeb8f923b0230148455895224ee941d7998d3720b84233edee3041930f0",
+    "docs/APPLIED_TORQUE_IDENTIFICATION.md": "329771b6525c59c867e800b03c623473363653e3ac98ad437d1299920ff4cf19"
+  },
+  "exit_code": 0,
+  "stdout": "{\"checks\":[\"keyboard authored excitation identifies physical coefficients and forecasts separate source\",\"desktop and narrow plotted source/prediction inspection\",\"original calibrated inputs download and fresh-document recomputation preserves nondefault forward step\",\"delayed replacement retires source authority and disables stale recomputation\",\"changed settings retire previous conclusions\",\"single frequency preserves confounding and supplies no inertia or forecast\",\"wrong physical torque units refuse with stale forecast retired\"],\"dir\":\"/tmp/hamon-760d4cf-worldlaw-applied/receiving-visual/run-pyw9VV\"}\n",
+  "stderr": ""
+}

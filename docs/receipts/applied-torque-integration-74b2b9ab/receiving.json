@@ -1,0 +1,59 @@
+{
+  "schema": "worldlaw.applied-torque-integration/v1",
+  "baseCommit": "cea2bb2ffea8d06d2514f099f96d91618cbfd5e3",
+  "baseTree": "54056b89a9672ddff6dbc88895d0a56449f87dd7",
+  "originalFeatureHead": "73ff7b7be424b937a8fd00e7a01d2b24876f2847",
+  "integration": {
+    "unchangedOriginalBlobs": 17,
+    "applicationChange": "Two additive import/mount lines in current src/trajectory/app.mjs; all current main content retained",
+    "packaging": "Reuse reviewed PR283 package policy corrections, add exact applied-torque README admission and historical full-verify.log.gz never-read omission. Original feature branch unchanged."
+  },
+  "verification": {
+    "source": "966 fetched text blobs checked against published Git blob SHA-1 before materialization; full binary archive not reconstructed",
+    "native": {
+      "command": "node --test --test-concurrency=2 consumer/tests/*.test.mjs",
+      "runtime": "Node v24.22.1",
+      "testFileGroups": 155,
+      "initialPass": 153,
+      "initialFail": 2,
+      "failures": "Only two HTTP server groups failed with sandbox listen EPERM. Both exact groups passed on authorized loopback-capable rerun; no code changed.",
+      "initialBase": "df821511bce92c2a9607a224303152c56e414e10",
+      "refreshedBaseChecks": "Latest #290 changes only prepared Studio simulation; exact changed torque source updated. node tests/torque-discovery.test.mjs 13/13; node tests/applied-torque.test.mjs 9/9.",
+      "loopbackRetryCommand": "node tests/correlation-example-server.test.mjs && node tests/planning-examples-server.test.mjs (authorized loopback-capable sandbox escalation)"
+    },
+    "smokes": {
+      "commands": [
+        "npm run smoke",
+        "npm run smoke:trajectory"
+      ],
+      "bothPassed": true,
+      "base": "cea2bb2ffea8d06d2514f099f96d91618cbfd5e3",
+      "trajectoryModel": "command+rate+gravity+bias",
+      "trajectoryRMSE": 0.0006561748182990025,
+      "comparedModels": 8,
+      "challengeRuns": 2
+    },
+    "packaging": {
+      "policyTests": 6,
+      "trackedPathsChecked": 1150,
+      "unknownPaths": 0,
+      "controls": "Exact historical compressed file is never read; copy/uppercase/unknown archives/secrets/traversal remain refused; symlinks refuse."
+    },
+    "browser": {
+      "executedBy": "Root team broker on authorized Linux host 082840b5-d84c-45db-a20f-78680857bafa",
+      "sourcePackageSHA256": "5d143e3cef9dc64d615db7da116b4f9d3ce7364c17a6fc101785e052eca2de48",
+      "script": "scripts/applied-torque-browser.mjs",
+      "groupsPassed": 7,
+      "pageErrors": 0,
+      "artifactDirectory": "/tmp/worldlaw-200-74b2b9ab/receipts/run-kOqZCm",
+      "sandbox": "Existing harness admitted namespace/PID/network/seccomp Chrome sandbox; controls unchanged",
+      "visualInspection": "Root inspected actual 1440/390 screenshots: readable source, inputs, coefficient units, separate-challenge axes/legend and wrapping; no clipping or overlap blocker",
+      "scope": "Current-main composed full trajectory consumer; before #290 simulation-only refresh. Fresh exact published-source receiving follows publication."
+    }
+  },
+  "limitations": [
+    "Authored analytic controls are conditional software evidence, not independently calibrated physical measurements.",
+    "Full binary source archive not independently reconstructed through this connector.",
+    "Exact published-head and merged-source checks are subsequent integration actions, not claimed by this prepublication receipt."
+  ]
+}

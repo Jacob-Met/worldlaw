@@ -1,0 +1,29 @@
+{
+  "previousHead": "5b0ac3b7fc660a97013e630aa76b743178a12b42",
+  "priorBase": "01a9a239a1f796e887bac51f1c3d43b0626e3279",
+  "composedBase": "c0ce92c2a2df130f5d807ec45be85fbd71436ce9",
+  "incomingChangedPaths": [
+    "docs/CLOCK_TICK_INTAKE.md",
+    "evidence/clock-tick-host-export.json",
+    "scripts/clock-ticks-browser.mjs",
+    "src/science/clock-affine-panel.mjs",
+    "src/science/clock-evidence.mjs",
+    "src/science/clock-tick-witness.mjs",
+    "src/science/clock-ticks-example.mjs",
+    "src/science/clock-ticks.mjs",
+    "tests/clock-ticks-host.test.mjs",
+    "tests/clock-ticks.test.mjs"
+  ],
+  "sourceSHA256": {
+    "src/trajectory/applied-torque.mjs": "d76260421e539c520a49294605597998d98cf52bdba3df512f2ad1a20c79b340",
+    "src/trajectory/applied-torque-example.mjs": "6e67c37ae37c1c7535dbd8e7c78bbd2f015ad182dba9bc9f939cb8381f6ec35c",
+    "src/trajectory/applied-torque-panel.mjs": "8a24c96ca8b4b4b36a0c5aaee4024cb33b192c6909d2cdcd2c87c14ff5dc712e",
+    "src/trajectory/app.mjs": "297365b0e7730fe35688cbb9cf36c62a60169ac84d33e53a22626398fee32d33",
+    "tests/applied-torque.test.mjs": "d906d033bd21c826ed7bcd294ce99446de85a9325a6b02a77d4db953f76a4dfa",
+    "scripts/applied-torque-browser.mjs": "8a31bbeb8f923b0230148455895224ee941d7998d3720b84233edee3041930f0",
+    "docs/APPLIED_TORQUE_IDENTIFICATION.md": "329771b6525c59c867e800b03c623473363653e3ac98ad437d1299920ff4cf19"
+  },
+  "composition": "Latest trajectory app Git blob is unchanged from the previously composed source; all seven owned source files retained. All incoming main blobs preserved.",
+  "qualification": "Prior native/measured/browser receipts remain tied to their stated sources; the exact composed published head receives fresh qualification before merge."
+}
+

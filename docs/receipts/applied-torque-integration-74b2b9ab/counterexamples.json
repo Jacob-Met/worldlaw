@@ -1,0 +1,26 @@
+{
+  "truth": {
+    "inertia": 0.7,
+    "damping": 0.19,
+    "stiffness": 3.4
+  },
+  "candidate": {
+    "inertia": 0.6995603181883585,
+    "damping": 0.18990185275896684,
+    "stiffness": 3.400069200295318,
+    "units": {
+      "inertia": "kg·m²",
+      "damping": "N·m·s/rad",
+      "stiffness": "N·m/rad"
+    },
+    "conditionEstimate": 1.5982745245526515,
+    "weakRmse": 0.0002665465580348171,
+    "residualUnits": "N·m·s²",
+    "residualMeaning": "torque_integral_divided_by_position_operator_gain_not_forward_error"
+  },
+  "heldOutRMSE": 0.0005726321757261307,
+  "changedHeldOutRMSE": 0.07018740667749952,
+  "falseCalibrationInertia": 1.1892525409202095,
+  "falseCalibrationHeldOutRMSE": 0.0005726321757261233,
+  "qualification": "Authored independently of repository fixture. Wrong absolute torque calibration changes inferred inertia without degrading motion predictions; this instrument cannot authenticate calibration."
+}
