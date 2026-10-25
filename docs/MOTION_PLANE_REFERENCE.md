@@ -124,6 +124,10 @@ and reopens the raw notebooks, refuses a different source, reconnects the exact
 original movie, checks the 390 px layout and executes the separate-recording law
 consumer.
 
+The authored rasters show their mechanism, but no pivot position is supplied to
+this workflow. This is an original-marker inference control, not a natural-video
+occlusion benchmark.
+
 | Original movie | Original accepted rows | Explicit tracker corrections | Inferred center error | Plane-angle RMS error | Image-angle RMS error |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | `fit.mp4` | 160 | 1 | 0.624879px | 0.002215rad | 0.219300rad |
@@ -169,6 +173,16 @@ runner's original uncalibrated notebooks through `MOTION_INPUT_DIR`. Package
 generation keeps the current distribution policy and explicitly requires the new
 adapter. Working-tree archives remain labeled candidates unless their exact
 source tree has separately been verified.
+
+## Visible experience
+
+Two experiences were considered: a separate rectified-coordinate study, and an
+inferred arc on the existing original-video stage. The original-stage approach
+was chosen so the source pixels, declared references, measured points and
+proposed center can be inspected together. Explicit comparison and acceptance
+sit beside the existing marker/reference controls. Desktop and narrow captures
+were inspected; the controls retain keyboard operation, and their qualification
+text uses a readable contrast and size.
 
 ![Original raster with proposed reference and projected observed arc](receipts/plane-reference-4f4650/desktop.png)
 ![Conditional reference controls at narrow width](receipts/plane-reference-4f4650/reference-panel.png)
