@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';
+import {mkdir,readFile} from 'node:fs/promises';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const artifacts=process.env.ARTIFACT_DIR || 'evidence/rate-reversal';await mkdir(artifacts,{recursive:true});
+const browser=await chromium.launch({executablePath:process.env.CHROME_BIN,headless:true,args:['--no-sandbox']});
+try{
+ const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(process.env.BASE_URL || 'http://127.0.0.1:4193');
+ const observations=Array.from({length:40},(_,i)=>{const command=Math.sin(i*.8),position=Math.cos(i*.7),rate=Math.sin(i*1.3);return {command,position,rate,jointTorque:command-2*position-.2*rate}});
+ const heldOut=[{command:.2,position:.3,rate:.5,jointTorque:3.2},{command:.2,position:.3,rate:-.5,jointTorque:2.8}];
+ const source={source:{label:'Authored held-out reversal contradiction',kind:'synthetic'},observations,heldOut};
+ const importSource=async data=>{await page.locator('#observation-file').setInputFiles({name:'authored-reversals.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(data))});await page.waitForFunction(label=>document.querySelector('#source-name').textContent===label,data.source.label)};
+ await importSource(source);
+ const controls=page.locator('#prediction-sensitivity'),inspect=()=>controls.getByRole('button',{name:'Inspect held-out prediction sensitivity'}).click();
+ await inspect();const reading=page.locator('.rate-reversal-reading');await reading.waitFor();
+ assert.equal(await reading.getAttribute('data-observed-sign'),'positive');
+ assert.match(await reading.innerText(),/compatibility: outside/);
+ assert.match(await page.getByLabel('Receiving contrast pair').innerText(),/matched rate reversal/);
+ await reading.getByText('Inspect exact observed bounds and assumptions').click();await reading.scrollIntoViewIfNeeded();
+ await reading.screenshot({path:artifacts+'/reversal-desktop.png'});
+ await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});await reading.scrollIntoViewIfNeeded();
+ assert.ok(await reading.evaluate(e=>e.scrollWidth<=e.clientWidth+1));await reading.screenshot({path:artifacts+'/reversal-narrow.png'});
+ await controls.getByLabel('Held-out torque-reading radius (N·m)').fill('0.3');assert.equal(await reading.count(),0);await inspect();
+ assert.equal(await reading.getAttribute('data-observed-sign'),'includes_zero');assert.match(await reading.innerText(),/compatibility: not-excluded/);
+ const download=page.waitForEvent('download');await page.locator('#export-session').click();const file=await download;const notebook=artifacts+'/reversal-notebook.json';await file.saveAs(notebook);
+ assert.ok(!(await readFile(notebook,'utf8')).includes('worldlaw.rate-reversal'));
+ await importSource({...source,source:{...source.source,label:'Authored held-out unmatched control'},heldOut:[heldOut[0],{...heldOut[1],rate:-.4}]});await inspect();
+ assert.equal(await reading.count(),0);assert.equal(await page.locator('.contrast-detail').count(),1);
+ await page.locator('#session-file').setInputFiles(notebook);await page.waitForFunction(()=>document.querySelector('#notice').textContent.includes('Reopened'));
+ assert.equal(await reading.count(),0);await controls.getByRole('button',{name:'Inspect held-out prediction sensitivity'}).focus();await page.keyboard.press('Enter');
+ assert.equal(await reading.getAttribute('data-observed-sign'),'positive');assert.deepEqual(errors,[]);
+ console.log('PASS authored input -> complete pair contrast -> positive exact reversal bounds -> desktop/narrow -> stale-radius clearing -> wide-bound ambiguity -> unmatched-pair refusal -> actual notebook export/reopen and keyboard recomputation.');
+}finally{await browser.close()}
