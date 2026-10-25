@@ -1,0 +1,74 @@
+{
+  "checks": 16,
+  "pass": true,
+  "results": [
+    {
+      "name": "probe panel starts without invented evidence",
+      "passed": true
+    },
+    {
+      "name": "correlated training remains ambiguous and reversed probes challenge sine response",
+      "passed": true
+    },
+    {
+      "name": "export actual inputs and reopen through file control",
+      "passed": true
+    },
+    {
+      "name": "measured declaration retained; training subset reuse refuses atomically",
+      "passed": true
+    },
+    {
+      "name": "older pending import cannot replace newer authored choice",
+      "passed": true
+    },
+    {
+      "name": "probe layout 1440px and keyboard focus",
+      "passed": true
+    },
+    {
+      "name": "probe plot readable text and keyboard scroll 1440px",
+      "passed": true
+    },
+    {
+      "name": "probe layout 390px and keyboard focus",
+      "passed": true
+    },
+    {
+      "name": "probe plot readable text and keyboard scroll 390px",
+      "passed": true
+    },
+    {
+      "name": "probe layout 320px and keyboard focus",
+      "passed": true
+    },
+    {
+      "name": "probe plot readable text and keyboard scroll 320px",
+      "passed": true
+    },
+    {
+      "name": "mixed response is executable in existing consumer and survives raw replay",
+      "passed": true
+    },
+    {
+      "name": "whole coefficient family witness and retrospective source-only replay",
+      "passed": true
+    },
+    {
+      "name": "zero budget is unresolved and a late consistency input cannot replace newer source",
+      "passed": true
+    },
+    {
+      "name": "consistency controls and source witness remain readable at desktop and narrow widths",
+      "passed": true
+    },
+    {
+      "name": "no script exceptions or external requests",
+      "passed": true
+    }
+  ],
+  "events": {
+    "exceptions": [],
+    "outside": []
+  }
+}

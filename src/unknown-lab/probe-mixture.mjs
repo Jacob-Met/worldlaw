@@ -3,7 +3,7 @@ import {validateProbeStudy} from './probe-response.mjs';
 import {evaluateHistory} from './paired-history.mjs';
 import {fitLinearColumns,linearColumnRank} from '../science/linear-fit.mjs';
 
-const families=[
+export const PROBE_MIXTURE_FAMILIES=[
  {id:'offset-rate',labels:['offset N·m','rate N·m·s/rad'],features:p=>[1,p.rate]},
  {id:'offset-sine',labels:['offset N·m','sine N·m'],features:p=>[1,Math.sin(p.position)]},
  {id:'rate-sine',labels:['rate N·m·s/rad','sine N·m'],features:p=>[p.rate,Math.sin(p.position)]},
@@ -14,7 +14,7 @@ export function analyzeProbeMixtures(raw){
  const points=study.runs.map(run=>({...run,observed:evaluateHistory(run.notebook)}));
  const training=points.filter(p=>p.role==='training');
  const challenges=points.filter(p=>p.role==='challenge');
- return {source:points[0]?.notebook.source??null,candidates:families.map(family=>{
+ return {source:points[0]?.notebook.source??null,candidates:PROBE_MIXTURE_FAMILIES.map(family=>{
   const base={id:family.id,labels:family.labels};
   if(training.length<=family.labels.length)return {...base,status:'insufficient-training',reason:'Require more training runs than coefficients; an exactly interpolated course cannot screen residuals.'};
   if(training.some(p=>p.observed.order.status!=='counterbalanced'))return {...base,status:'order-confounded'};
