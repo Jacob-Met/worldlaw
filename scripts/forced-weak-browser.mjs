@@ -1,0 +1,45 @@
+import assert from 'node:assert/strict';
+import {mkdir,mkdtemp,readFile,writeFile,readdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createChallengeServer} from './trajectory-server-92be.mjs';
+import {requireChromiumSandbox} from './support/chromium-sandbox.mjs';
+const {default:puppeteer}=await import(process.env.PUPPETEER_MODULE||'puppeteer');
+const base=resolve(process.env.BROWSER_ARTIFACT_DIR||'.receipts/forced-weak');await mkdir(base,{recursive:true});const dir=await mkdtemp(resolve(base,'run-'));console.log('ARTIFACT_DIR '+dir);
+const server=createChallengeServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));
+const browser=await puppeteer.launch({headless:true,executablePath:process.env.CHROME_PATH||'/opt/google/chrome/chrome'});
+const checks=[];
+try{
+ const page=await browser.newPage();await page.setViewport({width:1440,height:1000});
+ const client=await page.createCDPSession();const admission=await requireChromiumSandbox({send:(m,p)=>client.send(m,p),timeoutMs:8000});await writeFile(resolve(dir,'sandbox.json'),JSON.stringify(admission,null,2));
+ const text=sel=>page.$eval(sel,e=>e.innerText);
+ const upload=async value=>{const file=resolve(dir,'import.json');await writeFile(file,JSON.stringify(value));await(await page.$('#notebook-file')).uploadFile(file);};
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(`http://127.0.0.1:${server.address().port}/trajectory.html`);
+ const units={time:'s',position:'rad',command:'N·m',inertia:'kg·m²',initialRate:'rad/s'};
+ const run=(id,rate,offset)=>({id,kind:'synthetic',units,inertia:3,initialRate:rate,source:{label:'Authored constant acceleration control'},samples:Array.from({length:1001},(_,i)=>{const time=i*.01;return {time,position:offset+rate*time+time*time,command:2};})});
+ const bundle={schema:'worldlaw.trajectory-bundle/v1',label:'Forced weak authored control',units,trainingRuns:[run('training',4,2)],challengeRuns:[run('separate',-1,1)]};
+ const input={schema:'worldlaw.trajectory-notebook/v1',bundle,options:{method:'integral',maxTerms:1,noiseSigma:1e-8,modelLimit:1}};
+ await upload(input);
+ await page.waitForFunction(()=>document.querySelector('#source-name').textContent==='Forced weak authored control');
+ await page.focus('input[name=method][value=weak]');await page.keyboard.press('Space');await page.click('#refit');
+ await page.waitForFunction(()=>document.querySelector('#method-badge').textContent==='WINDOW TORQUE FIT');
+ assert.match(await text('#selected-equation'),/τ/);
+ assert.ok(Number(await text('#position-rmse'))<1e-5);checks.push('keyboard weak selection and independent forward challenge');
+ const equation=await text('#selected-equation');
+ const beforeDownload=new Set(await readdir(dir));
+ await client.send('Page.setDownloadBehavior',{behavior:'allow',downloadPath:dir});
+ await page.click('#export-notebook');
+ let file;
+ for(let i=0;i<100;i++){const names=await readdir(dir);const found=names.find(n=>n.endsWith('.json')&&!beforeDownload.has(n));if(found){file=resolve(dir,found);break;}await new Promise(r=>setTimeout(r,50));}
+ assert.ok(file,'download must complete');const raw=JSON.parse(await readFile(file,'utf8'));assert.equal(raw.options.method,'weak');
+ await page.evaluate(()=>localStorage.clear());
+ await page.reload();
+ await page.waitForFunction(()=>document.querySelector('#challenge-workspace').getAttribute('aria-busy')==='false');
+ assert.notEqual(await text('#source-name'),'Forced weak authored control');
+ await upload(raw);await page.waitForFunction(()=>document.querySelector('#source-name').textContent==='Forced weak authored control'&&document.querySelector('#method-badge').textContent==='WINDOW TORQUE FIT'&&document.querySelector('#challenge-workspace').getAttribute('aria-busy')==='false');
+ assert.equal(await text('#selected-equation'),equation);checks.push('original-input download and reopen');
+ for(const width of [1440,390]){await page.setViewport({width,height:1000});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:resolve(dir,`forced-${width}.png`),fullPage:true});}checks.push('desktop and narrow layout');
+ const bad=structuredClone(input);bad.options.method='weak';bad.bundle.trainingRuns[0].inertia=0;
+ await upload(bad);await page.waitForSelector('#error',{visible:true});assert.equal(await text('#selected-equation'),equation);checks.push('invalid inertia refuses atomically');
+ assert.deepEqual(errors,[]);await writeFile(resolve(dir,'receipt.json'),JSON.stringify({checks,errors},null,2));console.log(checks);
+}finally{await browser.close();await new Promise(r=>server.close(r));}
