@@ -316,3 +316,7 @@ After comparing a loop in Coupling Lab, open **Could the encoder channels mix th
 ## Constructive fitting-support ambiguity
 
 Coupling Lab can show distinct admitted affine response hypotheses with exactly identical predictions at every fitting coordinate when an offered family is refused for insufficient excitation. Explicit illustrative coefficient amplitude, materialized-coefficient checks, and original permitted-coordinate contrasts preserve the distinction between an exhibited null direction and global identification. See [the exact support contract](COUPLING_EXCITATION_WITNESSES.md).
+
+## Position-only compatibility of original coupled readings
+
+After a circulation comparison, inspect whether one single-valued paired-position response can fit every original torque-reading box under explicit coordinate-sensitivity limits. Exact contradictory pairs distinguish repeated-state failures from slope-conditional failures; compatible cases construct a response through all point boxes. Polygon work and between-reading interpolation remain separate. See [the point-response contract](COUPLED_POINT_RESPONSE.md).

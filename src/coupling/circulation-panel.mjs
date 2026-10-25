@@ -1,3 +1,4 @@
+import {appendPointResponse} from './point-response-panel.mjs';
 import {appendMatrixCalibration} from './circulation-matrix-panel.mjs';
 import {appendCalibration} from './circulation-calibration-panel.mjs';
 import {appendCirculationBoxes} from './circulation-angle-boxes-panel.mjs';
@@ -37,6 +38,7 @@ export function mountCirculation(host,{getNotebook}){
   appendCirculationBoxes(out,result);
   appendCalibration(out,result);
   appendMatrixCalibration(out,result);
+  appendPointResponse(out,result);
   $('save').disabled=false;
  }
  $('load').addEventListener('click',load);$('input').addEventListener('input',invalidate);
