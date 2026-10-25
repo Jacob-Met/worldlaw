@@ -286,14 +286,14 @@ export function revise(discovery, newObservations) {
 
 /** Execute learned dynamics θ'=ω, ω'=τ/I using fixed-step classical RK4. */
 export function simulate(model, initial, { duration = 4, dt = 0.01, inertia = 1, command = 0 } = {}) {
-  checkedTerms(model);
+  const torque = prepareTorquePredictor(model);
   finite(duration, 'duration', 1000); finite(dt, 'dt', 1); finite(inertia, 'inertia', 1e12); finite(command, 'command', 1e6);
   requireThat(duration > 0 && dt > 0 && inertia > 0 && Math.ceil(duration / dt) <= 10000,
     'Simulation needs positive duration, dt and inertia, with at most 10000 steps.');
   let position = finite(initial?.position, 'initial.position', 1e6), rate = finite(initial?.rate, 'initial.rate', 1e6), time = 0;
-  const state = () => ({time, position, rate, jointTorque: predict(model, {command, position, rate})});
+  const state = () => ({time, position, rate, jointTorque: torque(command, position, rate)});
   const trajectory = [state()];
-  const derivative = (p, v) => ({p: v, v: predict(model, {command, position:p, rate:v}) / inertia});
+  const derivative = (p, v) => ({p: v, v: torque(command, p, v) / inertia});
   const steps = Math.ceil(duration / dt);
   for (let i = 0; i < steps; ++i) {
     const h = Math.min(dt, duration - time);

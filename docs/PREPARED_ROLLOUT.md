@@ -57,6 +57,41 @@ Using the installed `/usr/bin/google-chrome-stable` directly with
 `chromiumSandbox:true` passed every required protection. No launcher, host
 security setting or test admission requirement was changed.
 
+## Discovery Studio and command dead-zone receiving
+
+The same private evaluator now serves `simulate`, including ordinary Studio
+dynamics and the existing command dead-zone simulation. These consumers also
+used repeated public model validation at every RK4 stage. They retain every
+stage, coordinate bound, term order and result row.
+
+Against merged baseline `df821511bce92c2a9607a224303152c56e414e10`,
+`experiments/prepared-studio-receiving.mjs` compares 96 independently seeded
+courses (5,454 states), all 5,001 states of a 100-second course, 15 dead-zone
+courses and 11 distinct refusals. All returned values and refusal details match
+exactly; the input objects remain unchanged. Forty-one affected native tests
+pass on Node 22.23.4. Ten alternating timed calls after four warmup rounds have
+medians 16.201 ms before and 3.686 ms after (4.40× on this workload).
+
+```sh
+WORLDLAW_BASELINE_DIR=/absolute/path/to/df821511-source \
+node experiments/prepared-studio-receiving.mjs
+
+PLAYWRIGHT_MODULE=/absolute/path/to/playwright/index.mjs \
+BROWSER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable \
+BROWSER_ARTIFACT_DIR=/absolute/path/to/browser-receipt \
+node experiments/prepared-studio-browser.mjs
+```
+
+The browser receiver extends the maintained Studio course with the existing
+Linux sandbox preflight and a 100-second run through the actual controls.
+All eight groups pass in Chrome 156.0.8078.47, including changed measured inputs,
+source-only notebook reopen, invalid inertia, narrow layouts and stale input
+retirement. The baseline and candidate long-course chart HTML are byte-identical.
+The retained [Studio receiving record](receipts/prepared-rollout-287/studio.json)
+contains the numerical samples and browser admission. This is a measured
+execution improvement; accuracy, accepted physical laws and scientific model
+selection are unchanged.
+
 ## Scientific experiment not promoted
 
 Before choosing this execution improvement, 480 independently authored noisy
