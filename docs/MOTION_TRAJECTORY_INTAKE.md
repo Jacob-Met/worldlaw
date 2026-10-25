@@ -6,7 +6,7 @@ The maintained angular fitter learns from training angles only. The maintained f
 
 ## What is preserved
 
-The trajectory notebook contains the original derived times and unwrapped angles, original video SHA-256, the exact UTF-8 Motion input byte digest, calibration, selected course, original observation indices, source declarations, and a bounded reference-history summary/digest. Full original pixel observations, revision records and reference-fit membership remain in the identified Motion notebook. Keep that original file for pixel reinspection. A digest identifies the bytes supplied; it does not authenticate acquisition, physical origin or independence.
+The trajectory notebook contains the original derived times and unwrapped angles, original video SHA-256, the exact UTF-8 Motion input byte digest, calibration, selected course, original observation indices, source declarations, and a bounded reference-history summary/digest. Original point measurements, revision records and reference-fit membership remain in the identified Motion notebook. Retain that notebook for measurement and revision reinspection, and retain the separately identified original video for pixel reinspection. Original video pixels are not embedded in the Motion notebook. A digest identifies the bytes supplied; it does not authenticate acquisition, physical origin or independence.
 
 Angle references fitted from the same recording are explicitly disclosed in the visible source description and retained provenance. Such calibration can use later source frames, including challenge frames. This is a retrospective comparison conditional on that calibration, not a prospectively calibrated physical test. The reference error and its correlation with the observed marker are not included in a calibrated physical uncertainty claim. Separate source hashes do not prove independent physical evidence.
 
@@ -19,7 +19,7 @@ Angle references fitted from the same recording are explicitly disclosed in the 
 - The same original video cannot serve both roles, even if its notebooks have different names, edits or selected courses. Maintained angular evidence checks also screen complete copied trajectories and long copied subwindows; these checks do not prove independence.
 - Existing Motion input (2 MB), angular sample/duration and source-metadata (32 KB per run), and portable trajectory notebook (3 MB) bounds apply. A rejected intake preserves the loaded challenge. Changing a prepared source clears its rate and common setup declarations.
 
-Reopen the normal exported trajectory notebook to reconstruct models and predictions from the retained angular inputs. The original Motion file is separately required to reconstruct pixel-to-angle derivation.
+Reopen the normal exported trajectory notebook to reconstruct models and predictions from the retained angular inputs. The original Motion file is separately required to reconstruct point-measurement-to-angle derivation. The separately identified original video is required to inspect or repeat measurements of its pixels.
 
 ## Executed authored control
 
