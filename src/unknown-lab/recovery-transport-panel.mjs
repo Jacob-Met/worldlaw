@@ -1,3 +1,4 @@
+import {mountRecoveryPopulationPlanner} from './recovery-population-planner-panel.mjs';
 import {compareRecoveryTransport,RECOVERY_TRANSPORT_SCHEMA,exportRecoveryTransport,importRecoveryTransport} from './recovery-transport.mjs';
 import {recoveryFixture} from './recovery-fixture.mjs';
 const fmt=x=>Number.isFinite(x)?Number(x.toPrecision(5)).toString():'—';
@@ -14,8 +15,8 @@ export function mountRecoveryTransport(recovery){
  <div class="recovery-controls"><button id="transport-compare" type="button">Apply declared population bounds</button><button id="transport-demo" type="button">Load authored continuous-state control</button><button id="transport-save" type="button">Save original case and assumptions</button><button id="transport-open" type="button">Open population-sensitivity case</button><input id="transport-file" type="file" accept=".json,application/json" hidden></div>
  <p id="transport-status" role="status" aria-live="polite">No conditional comparison computed.</p><div id="transport-result"></div>`;
  document.querySelector('#recovery-support').after(host);
- const $=id=>host.querySelector('#'+id);let epoch=0;
- const invalidate=()=>{epoch++;$('transport-result').replaceChildren();$('transport-status').textContent='Source or sensitivity changed. Recompute from original evidence.';};
+ const $=id=>host.querySelector('#'+id);let epoch=0;const listeners=[];
+ const invalidate=()=>{epoch++;for(const fn of listeners)fn();$('transport-result').replaceChildren();$('transport-status').textContent='Source or sensitivity changed. Recompute from original evidence.';};
  function refresh(){invalidate();const previous=$('transport-reference').value;$('transport-reference').replaceChildren();for(const r of recovery.getStudy().training){const o=document.createElement('option');o.value=r.recordingId;o.textContent=r.recordingId+' · '+fmt(r.delaySeconds)+' s recording (population only)';$('transport-reference').append(o);}if([...$('transport-reference').options].some(o=>o.value===previous))$('transport-reference').value=previous;}
  recovery.onChange(refresh);refresh();
  for(const key of ['reference','command','position','rate'])$('transport-'+key).addEventListener('input',invalidate);
@@ -40,5 +41,6 @@ export function mountRecoveryTransport(recovery){
  $('transport-save').onclick=()=>act(()=>{const text=exportRecoveryTransport(readCase()),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='worldlaw-recovery-population-sensitivity.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
  $('transport-open').onclick=()=>$('transport-file').click();
  $('transport-file').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;e.target.value='';const ticket=++epoch;try{if(file.size>2100000)throw Error('Use a case below 2.1 MB.');const next=importRecoveryTransport(await file.text());if(ticket!==epoch)return;compareRecoveryTransport(next);e.target.value='';recovery.replaceStudy(next.study);for(const key of ['command','position','rate'])$('transport-'+key).value=String(next.settings.sensitivity[key]);$('transport-reference').value=next.settings.referenceRecordingId;render();}catch(error){if(ticket===epoch)$('transport-status').textContent='Import refused; original case preserved: '+error.message;}finally{if(ticket===epoch)e.target.value='';}};
+ mountRecoveryPopulationPlanner(host,{readCase,onChange:fn=>listeners.push(fn),replaceCase(next){recovery.replaceStudy(next.study);for(const key of ['command','position','rate'])$('transport-'+key).value=String(next.settings.sensitivity[key]);$('transport-reference').value=next.settings.referenceRecordingId;render();}});
  return {invalidate};
 }
