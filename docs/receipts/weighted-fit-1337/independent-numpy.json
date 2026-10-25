@@ -1,0 +1,46 @@
+{
+  "method": "NumPy SVD least-squares against independently constructed weighted design for every candidate",
+  "numpy": "2.3.5",
+  "candidates": 594,
+  "maxCoefficientAbsoluteDifference": 1.532107773982716e-14,
+  "maxNormalizedRMSEDifference": 2.220446049250313e-16,
+  "courses": [
+    {
+      "seed": 1,
+      "ordinaryHeldOutRMSE": 0.3294942282776741,
+      "weightedHeldOutRMSE": 0.0027416360198900683,
+      "weightedModel": "command+spring+quadratic"
+    },
+    {
+      "seed": 17,
+      "ordinaryHeldOutRMSE": 0.6440507995697403,
+      "weightedHeldOutRMSE": 0.0017515800282293644,
+      "weightedModel": "command+spring+quadratic"
+    },
+    {
+      "seed": 92,
+      "ordinaryHeldOutRMSE": 0.38691927554285943,
+      "weightedHeldOutRMSE": 0.002428961378983964,
+      "weightedModel": "command+spring+quadratic"
+    },
+    {
+      "seed": 1337,
+      "ordinaryHeldOutRMSE": 0.09209863364321091,
+      "weightedHeldOutRMSE": 0.0017416648816542268,
+      "weightedModel": "command+spring+quadratic"
+    },
+    {
+      "seed": 2048,
+      "ordinaryHeldOutRMSE": 0.2807054082335133,
+      "weightedHeldOutRMSE": 0.0021384741634254707,
+      "weightedModel": "command+spring+quadratic"
+    },
+    {
+      "seed": 73111,
+      "ordinaryHeldOutRMSE": 0.2425990402069536,
+      "weightedHeldOutRMSE": 0.0026049475307832557,
+      "weightedModel": "command+spring+quadratic"
+    }
+  ],
+  "scope": "Six authored seeded courses; no independent physical measurements or general statistical calibration"
+}

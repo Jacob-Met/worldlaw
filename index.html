@@ -64,11 +64,13 @@
               <label for="rate">Rate <span>rad/s</span><input id="rate" name="rate" type="number" step="0.05" value="0" inputmode="decimal"></label>
               <label for="command" class="wide-control">Command <span>N·m</span><input id="command" name="command" type="number" step="0.05" value="0" inputmode="decimal"></label>
               <label id="measured-field" for="measured-torque" class="wide-control" hidden>Measured net torque <span>N·m</span><input id="measured-torque" name="measured-torque" type="number" step="0.001" inputmode="decimal" placeholder="Enter your instrument reading"></label>
+              <label id="measurement-noise-field" for="measurement-noise-ratio" class="wide-control" hidden>Declared torque-noise ratio <span>relative to reference noise</span><input id="measurement-noise-ratio" type="number" min="0.000001" max="1000000" step="any" inputmode="decimal" placeholder="Declare this reading’s ratio"></label>
             </div>
             <button id="run-experiment" class="button button-accent button-full" type="button">Run virtual experiment <span aria-hidden="true">→</span></button>
             <p class="input-hint">Compare the new outcome with the model’s prediction, then revise the explanation.</p>
             <details class="fit-settings"><summary>Fitting assumptions <span aria-hidden="true">+</span></summary><div class="fit-settings-body"><label for="noise-sigma">Assumed torque noise <span>N·m</span><input id="noise-sigma" type="number" value="0.01" min="0.0000001" step="0.001" inputmode="decimal"></label><p class="input-hint">This assumption affects model ranking. Model spread is not probability.</p>
-              <label for="reading-loss">Reading loss<select id="reading-loss"><option value="least_squares">Least squares</option><option value="soft_l1">Soft-L1 · reduce large-residual influence</option></select></label>
+              <label for="reading-loss">Reading loss<select id="reading-loss"><option value="least_squares">Least squares</option><option value="soft_l1">Soft-L1 · reduce large-residual influence</option><option id="weighted-loss-choice" value="weighted_least_squares" disabled>Weighted least squares · declared noise ratios</option></select></label>
+              <p id="noise-ratio-status" class="input-hint">Import a torqueNoiseRatio column to declare each reading’s relative noise. Ratios are assumptions, not measured reliability.</p>
               <label for="loss-scale">Soft-L1 transition scale <span>N·m</span><input id="loss-scale" type="number" value="0.03" min="0.0000001" max="1000000" step="any" inputmode="decimal" disabled></label>
               <p class="input-hint">A smaller scale reduces the influence of large residuals. It does not establish which readings are wrong; every reading and raw error remains visible.</p>
               <p id="loss-choice-status" class="input-hint" role="status"></p>
