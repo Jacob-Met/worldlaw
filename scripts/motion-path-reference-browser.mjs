@@ -18,6 +18,12 @@ const mark=name=>{checks.push(name);console.log('PASS '+name);};
 try{
   browser=await chromium.launch({headless:true,chromiumSandbox:true,
     ...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+  const sandboxPage=await browser.newPage();await sandboxPage.goto('chrome://sandbox');
+  const sandboxStatus=await sandboxPage.locator('body').innerText();
+  assert.match(sandboxStatus,/Layer 1 Sandbox\s+Namespace/);
+  for(const key of ['PID namespaces','Network namespaces','Seccomp-BPF sandbox'])
+    assert.match(sandboxStatus,new RegExp(key+'\\s+Yes'));
+  await sandboxPage.close();
   const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
   page.setDefaultTimeout(20000);page.on('pageerror',error=>errors.push(error.message));
   const download=async(selector,name)=>{
@@ -104,5 +110,5 @@ try{
   mark('actual straight-source movie cannot be reported or applied as a circular reference');
   assert.deepEqual(errors,[]);mark('no uncaught page exceptions across complete positive and negative journeys');
   await writeFile(resolve(artifacts,'receiving.json'),JSON.stringify({checks,metrics,pageErrors:errors,
-    scope:'Original authored encoded movies; unmocked local browser acquisition. Not physical-mechanism validation.',chromiumSandbox:true},null,2)+'\n');
+    scope:'Original authored encoded movies; unmocked local browser acquisition. Not physical-mechanism validation.',chromiumSandbox:true,sandboxStatus,executable:process.env.BROWSER_EXECUTABLE_PATH||'playwright-managed'},null,2)+'\n');
 }finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}
