@@ -6,7 +6,7 @@ UNKNOWN LAB's continuous saturation investigation can now ask which supplied pro
 
 For each scale window, every intersecting retained training box stays associated with its own amplitude outer interval. A window must also contain a certified training-compatible witness. This avoids declaring separation from an empty or merely speculative competing family.
 
-At an offered rate, each box receives a directed outer response interval using the maintained analytic tanh enclosure. The union may over-enclose the feasible family's remaining amplitude–scale correlation. Its endpoints are not asserted attainable. Disjointness of these conservative sets is a sufficient discriminator; overlap is unresolved.
+At an offered rate, each box receives a directed outer response interval using the maintained analytic tanh enclosure. Each band is then intersected with every original training response multiplied by a directed bound on tanh(offered rate / scale) / tanh(training rate / scale). This preserves the shared response amplitude. At an already observed rate, the ratio is exactly one, so the forecast respects the original training screen. The union may still over-enclose the feasible family's remaining amplitude–scale correlation. Its endpoints are not asserted attainable. Disjointness of these conservative sets is a sufficient discriminator; overlap is unresolved.
 
 The reported margin is the smallest gap over **every** cross-window pair of prediction bands, minus twice the declared future response radius, clipped at zero. Positive margin certifies separation of these two offered windows under the declared screening assumptions. The selected state maximizes that certified margin among affordable supplied states, then breaks ties by cost and identifier. This is not a globally optimal rate, calibrated information gain, mechanical feasibility check or hardware instruction.
 
@@ -67,3 +67,11 @@ Worker cancellation retires pending and completed results when sources or releva
 Native controls exercise informative and saturated/zero future rates, actual full-state freezing, original-source replay, challenge noninterference, repeated-acquisition rejection, mismatches, stale sources, realized order/radius failure, work/cost/radius negatives and the intermediate-scale adverse outcome. The actual browser receiver covers desktop/narrow layout, keyboard focus, source-only export/reopen, stale worker retirement and explicit later adoption.
 
 The implemented prospective research also received an independent exact interval-union oracle and a separate high-precision check of amplitude intersections and predicted intervals. These establish the conditional numerical mechanism, not new physical measurement accuracy.
+
+## Training-conditioned forecast proof
+
+For positive offered rate q and training rate r, the ratio tanh(q/s)/tanh(r/s) increases with s when q>r, decreases when q<r, and equals one when q=r. The derivative of its logarithm with respect to log(s) is h(r/s)−h(q/s), where h(x)=2x/sinh(2x) is decreasing for positive x. Directed tanh bounds at the appropriate endpoints therefore enclose the complete ratio on a retained scale interval. Multiplying all four endpoint products with the normalized original training interval and intersecting the original forecast cannot remove a feasible shared-amplitude response. Negative rates are normalized before this operation and restored afterward; zero queries return zero. A zero denominator lower bound skips that tightening.
+
+Each returned forecast retains its original box index. A proven empty response intersection is separately listed; it is not a silently missing course. Every offered course shares the original feature-work budget. Exhaustion discards all offered results and the selection. Forecast endpoints remain outer bounds, not asserted attainable states.
+
+This update does not revise the completed earlier acquisition receipts. Reopening source-only inputs recomputes under the current maintained producer and still refuses a frozen protocol that no longer matches the selected offer. Joint challenge screening and original training admission remain unchanged.

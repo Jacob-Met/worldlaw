@@ -4,7 +4,7 @@ const fmt=x=>Number(x.toPrecision(5)).toString(),same=(a,b)=>canonicalSaturation
 export function mountSaturationRatePlanner({parent,controller,getProfileSettings,setProfileSettings}){
  const host=document.createElement('section');host.className='saturation-rate-choice';host.setAttribute('aria-labelledby','rate-choice-title');
  host.innerHTML=`<h3 id="rate-choice-title">Which offered rate can distinguish two scale ranges?</h3>
- <p>Compare two separated velocity-scale windows using training measurements only. Every retained box keeps its amplitude–scale association. Scales between or outside the two windows remain untested.</p>
+ <p>Compare two separated velocity-scale windows using training measurements only. Every retained box keeps its amplitude–scale association. Forecasts also preserve the relation between each original training response and the offered response; this can tighten predictions without refitting the family. Scales between or outside the two windows remain untested.</p>
  <div class="profile-controls">
  <label>First window minimum<input id="rate-low-min" type="number" step="any" value=".05"></label><label>First window maximum<input id="rate-low-max" type="number" step="any" value=".2"></label>
  <label>Second window minimum<input id="rate-high-min" type="number" step="any" value=".5"></label><label>Second window maximum<input id="rate-high-max" type="number" step="any" value="1"></label>

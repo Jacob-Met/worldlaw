@@ -156,7 +156,7 @@ export function compareSaturationRates(raw,input){
  const work=engine({...study,runs:study.runs.filter(r=>r.role==='training')},settings);
  const base={schema:'worldlaw.saturation-rate-comparison/v1',settings:config,preparation:{...study.preparation},source:study.runs[0]?.notebook.source??null,objective:'Largest certified separation margin among affordable offered rates; no global rate optimum claimed.',training:work.public,windows:windows.map(w=>[...w]),radius,budget,offered:rates.map(({id,position,rate,cost})=>({id,position,rate,cost})),selected:null,
   uncomparedScaleRanges:[...(settings.scaleMin<windows[0][0]?[{lower:settings.scaleMin,upper:windows[0][0],lowerClosed:true,upperClosed:false}]:[]),{lower:windows[0][1],upper:windows[1][0],lowerClosed:false,upperClosed:false},...(windows[1][1]<settings.scaleMax?[{lower:windows[1][1],upper:settings.scaleMax,lowerClosed:false,upperClosed:true}]:[])],
-  qualification:'Conditional discrimination of two declared separated scale windows only; scales outside those windows remain untested. Forecasts retain each training box amplitude-scale association and over-enclose any remaining correlation. Disjoint expanded unions certify separation; overlap is unresolved. The candidate law depends on rate only; angular and mixed effects are not included. Offered states are not certified physically feasible. No future response is fabricated or acquired; declared response radius is not calibrated uncertainty.'};
+  qualification:'Conditional discrimination of two declared separated scale windows only; scales outside those windows remain untested. Forecasts retain each training box amplitude-scale association and intersect it with every original training-response ratio constraint. Remaining correlation is over-enclosed; forecastBoxIndices retain original box identity and excludedForecastBoxIndices record proven empty intersections. Disjoint expanded unions certify separation; overlap is unresolved. The candidate law depends on rate only; angular and mixed effects are not included. Offered states are not certified physically feasible. No future response is fabricated or acquired; declared response radius is not calibrated uncertainty.'};
  if(!work.result)return {...base,status:'insufficient-training',courses:[]};
  const groups=windows.map(w=>work.result.boxes.map(b=>{
   const scale=[high(b.scale[0],Q(w[0])),low(b.scale[1],Q(w[1]))];if(cmp(scale[0],scale[1])>0)return null;
@@ -170,21 +170,47 @@ export function compareSaturationRates(raw,input){
  const trainingRuns=study.runs.filter(r=>r.role==='training');
  const range=field=>[Math.min(...trainingRuns.map(r=>r.probe[field])),Math.max(...trainingRuns.map(r=>r.probe[field]))];
  const angleRange=range('position'),rateRange=range('rate');
- const courses=[];
+ const courses=[],trainingRows=rowsOf(work.public.finiteBaseline);
  const comparisonWork=groups[0].length*groups[1].length*rates.length;
  if(comparisonWork>150000)return {...base,status:'budget-unresolved',groups:publicGroups,courses:[],evaluations:work.ctx.count};
  try{
   for(const offered of rates){
-   const forecasts=groups.map(g=>g.map(b=>prediction(b.amplitude,b.scale,offered.rate,work.ctx)));
+   const conditioned=groups.map(g=>g.map((b,boxIndex)=>({boxIndex,band:conditionedPrediction(b.amplitude,b.scale,offered.rate,trainingRows,work.ctx)})));
+   const forecasts=conditioned.map(g=>g.filter(b=>b.band).map(b=>b.band));
+   if(forecasts.some(g=>!g.length))throw Error('Certified group unexpectedly has no forecast; no recommendation.');
    let margin=null;
    for(const a of forecasts[0])for(const b of forecasts[1]){
     const gap=cmp(a[1],b[0])<0?sub(b[0],a[1]):cmp(b[1],a[0])<0?sub(a[0],b[1]):Z;
     const cleared=high(Z,sub(gap,mul(TWO,Q(radius))));margin=margin===null?cleared:low(margin,cleared);
    }
-   courses.push({id:offered.id,probe:{command:study.runs.find(r=>r.role==='training').probe.command,position:offered.position,rate:offered.rate},cost:offered.cost,extrapolation:{position:offered.position<angleRange[0]||offered.position>angleRange[1],rate:offered.rate<rateRange[0]||offered.rate>rateRange[1]},affordable:offered.cost<=budget,forecasts:forecasts.map(g=>g.map(publicInterval)),margin:publicInterval([margin,margin]),separates:cmp(margin,Z)>0});
+   courses.push({id:offered.id,probe:{command:study.runs.find(r=>r.role==='training').probe.command,position:offered.position,rate:offered.rate},cost:offered.cost,extrapolation:{position:offered.position<angleRange[0]||offered.position>angleRange[1],rate:offered.rate<rateRange[0]||offered.rate>rateRange[1]},affordable:offered.cost<=budget,forecastBoxIndices:conditioned.map(g=>g.filter(b=>b.band).map(b=>b.boxIndex)),excludedForecastBoxIndices:conditioned.map(g=>g.filter(b=>!b.band).map(b=>b.boxIndex)),forecasts:forecasts.map(g=>g.map(publicInterval)),margin:publicInterval([margin,margin]),separates:cmp(margin,Z)>0});
   }
  }catch(e){if(!(e instanceof Budget))throw e;return {...base,status:'budget-unresolved',groups:publicGroups,courses:[],evaluations:work.ctx.count};}
  const eligible=courses.filter(c=>c.affordable&&c.separates);
  eligible.sort((a,b)=>{const aq=a.margin.exact[0].split('/').map(BigInt),bq=b.margin.exact[0].split('/').map(BigInt);return -cmp(aq,bq)||a.cost-b.cost||(a.id<b.id?-1:a.id>b.id?1:0);});
  return {...base,status:eligible.length?'separated-offered-windows':'no-certified-discriminator',groups:publicGroups,courses,selected:eligible[0]?.id??null,evaluations:work.ctx.count,comparisonWork};
+}
+
+function conditionedPrediction(amplitude,scale,rate,rows,ctx){
+ if(rate===0)return [Z,Z];
+ const query=Q(Math.abs(rate));let band=prediction(amplitude,scale,Math.abs(rate),ctx);
+ for(const row of rows){
+  if(!row.rate[0])continue;
+  let ratio;
+  const order=cmp(query,row.rate);
+  if(!order)ratio=[ONE,ONE];
+  else{
+   // tanh(q/s)/tanh(r/s) increases in s for q>r, decreases for q<r.
+   const start=order>0?scale[0]:scale[1],end=order>0?scale[1]:scale[0];
+   const qs=ctx.feature(query,start),rs=ctx.feature(row.rate,start),qe=ctx.feature(query,end),re=ctx.feature(row.rate,end);
+   // A zero directed lower bound supplies no finite quotient upper bound.
+   // Keep the existing conservative box forecast rather than divide by zero.
+   if(cmp(re[0],Z)<=0)continue;
+   ratio=[div(qs[0],rs[1]),div(qe[1],re[0])];
+  }
+  const values=row.interval.flatMap(y=>ratio.map(f=>mul(y,f)));
+  band=[high(band[0],values.reduce(low)),low(band[1],values.reduce(high))];
+  if(cmp(band[0],band[1])>0)return null;
+ }
+ return rate<0?[neg(band[1]),neg(band[0])]:band;
 }
