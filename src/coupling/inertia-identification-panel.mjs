@@ -1,3 +1,4 @@
+import {mountInertiaChallenge} from './inertia-challenge-panel.mjs';
 import {identifyInertia} from './inertia-identification.mjs';
 import {createInertiaExample} from './inertia-example.mjs';
 import {createInertiaCounterexample} from './inertia-counterexample.mjs';
@@ -25,6 +26,7 @@ export function mountInertiaIdentification(root,{applyParameters}){
       <p class="inertia-qualification"><strong>Candidate balance coefficients.</strong> Unmeasured forces or torque/coordinate calibration errors can be absorbed into inertia and damping—even with full rank, tiny residuals and stable coarsening. These diagnostics do not establish physical inertia.</p>
       <div id="inertia-apply-controls" hidden><label class="motion-consent"><input id="inertia-same-apparatus" type="checkbox"><span>I have checked that this motion source and the response notebook describe the same apparatus, angle coordinates and torque conventions.</span></label><button id="inertia-apply" type="button" disabled>Copy values into the motion experiment</button><p class="small">This copies numerical assumptions only. Review the experiment’s declaration before running the retained response laws.</p></div>
       <details class="inertia-method"><summary>What the fit and its diagnostics mean</summary><p>Endpoint-vanishing polynomial windows integrate the supplied angle and torque samples, avoiding pointwise acceleration differences. Quadrature is exact for the represented linear interpolants; observation noise and interpolation bias remain. Overlapping windows are correlated.</p><p>Rank concerns the offered five-column numerical library. The normalized QR pivot ratio is a numerical diagnostic, not a spectral condition number or parameter uncertainty. The coarser source keeps every second original row and the final endpoint; this comparison is not a confidence interval, error bound or new evidence.</p><p>An unconstrained fit outside the supported positive-definite-inertia/nonnegative-damping family is retained but cannot be copied into the solver. It does not prove that every physically plausible model is impossible.</p></details>
+      <div id="inertia-challenge-host"></div>
     </details>`;
   const $=id=>root.querySelector('#'+id);
   let record=null,result=null,generation=0,selected=0,pendingRead=false;
@@ -80,6 +82,7 @@ export function mountInertiaIdentification(root,{applyParameters}){
   $('inertia-open').addEventListener('click',()=>$('inertia-file').click());
   $('inertia-file').addEventListener('change',async()=>{const file=$('inertia-file').files?.[0];$('inertia-file').value='';if(!file)return;const ticket=++generation;invalidate('Opening a motion record…');pendingRead=true;try{if(file.size>3*1024*1024)throw new Error('Inertia investigation exceeds 3 MB.');const text=await file.text();if(ticket!==generation)return;load(text);fit();}catch(e){if(ticket===generation){pendingRead=false;$('inertia-status').textContent='The new motion record was refused. Any displayed source remains the previously admitted record.';error(e);}}});
   $('inertia-save').addEventListener('click',()=>{try{if(!record)throw new Error('Open a motion record first.');const text=exportInertiaInvestigation(record,settings()),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=el('a',undefined,{href:url,download:'worldlaw-inertia-investigation.json'});link.click();setTimeout(()=>URL.revokeObjectURL(url),10000);clearError();}catch(e){error(e);}});
-  let resize;window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});$('inertia-lab').addEventListener('toggle',()=>{if($('inertia-lab').open)draw();});
+  const challengePanel=mountInertiaChallenge($('inertia-challenge-host'),{getTraining:()=>result?.primary.status==='candidate'?{record,settings:settings()}:null});
+  let resize;window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});$('inertia-lab').addEventListener('toggle',()=>{if($('inertia-lab').open){draw();challengePanel.redraw();}});
   return {contextChanged(){generation++;if(pendingRead){pendingRead=false;$('inertia-status').textContent='Response notebook changed. Pending motion-file read canceled; open again or refit the displayed source.';}$('inertia-same-apparatus').checked=false;$('inertia-apply').disabled=true;}};
 }

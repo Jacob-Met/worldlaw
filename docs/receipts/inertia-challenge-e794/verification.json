@@ -1,0 +1,134 @@
+{
+  "schema": "worldlaw.inertia-challenge-receiving/v1",
+  "testedBase": "598e8b52d3d8a9321f600faf658c3a616940d0d8",
+  "node": "v22.23.4",
+  "sourceKind": "authored analytic angle and torque courses; not physical measurements",
+  "runtimeGitBlobs": {
+    "src/coupling/inertia-weak.mjs": "424d9ee8feed9034f43f41e8911fc477dd347d3a",
+    "src/coupling/inertia-identification.mjs": "b8beb1b147b16feb92d18030a6e7295bb9462c63",
+    "src/coupling/inertia-challenge.mjs": "3752b8931bf061bf0f796a0452ff1179d570d066",
+    "src/coupling/inertia-challenge-panel.mjs": "2750207aaf5819fcddf3730c7a0c1fc44e9aff73",
+    "src/coupling/inertia-challenge-example.mjs": "3fc4ae1a246d65428701666951dc7f2938c2064f",
+    "src/coupling/inertia-identification-panel.mjs": "49f54fa875544efa5aee740ea368fbfe62a9b188",
+    "coupling.css": "11552bfa7deeb25916e98a98ddcb25e8128d8730",
+    "tests/inertia-challenge.test.mjs": "30656950bc90185877844d8d5513e4d630310550",
+    "tests/inertia-challenge-example.test.mjs": "4dc7c7311308573d2a3c0675947dc56772a2aa57",
+    "scripts/coupling-inertia-challenge-browser.mjs": "f1dd1a54b162641de238eb78cabbfe2ca71ced0a"
+  },
+  "native": {
+    "command": "npm test",
+    "tests": 783,
+    "passed": 782,
+    "failed": 0,
+    "skipped": 1,
+    "skipMeaning": "inherited opt-in test"
+  },
+  "smoke": [
+    {
+      "command": "npm run smoke",
+      "passed": true,
+      "received": "launched product assets/refusal paths; actual discovery → virtual measurement → revision → notebook reopen"
+    },
+    {
+      "command": "npm run smoke:trajectory",
+      "passed": true,
+      "inputSHA256": "fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e",
+      "selectedModel": "command+rate+gravity+bias",
+      "selectedPositionRMSE": 0.0006561748182990025,
+      "comparedModels": 8,
+      "challengeRuns": 2
+    }
+  ],
+  "actualBrowser": {
+    "command": "BROWSER_EXECUTABLE_PATH=/opt/google/chrome/chrome node scripts/coupling-inertia-challenge-browser.mjs",
+    "passedGroups": 15,
+    "errors": [],
+    "offsiteRequests": [],
+    "rawReceipt": "browser.json",
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-25T01:24:08.921Z",
+      "completedAt": "2026-10-25T01:24:09.044Z",
+      "durationMs": 122.95344,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "9B6BCD2E5E0930B4CCC456B324BEF8CA",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "BCA5D7D28575E213AE7C76453ECD7B1B"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    }
+  },
+  "actualIdentificationRegression": {
+    "command": "BROWSER_EXECUTABLE_PATH=/opt/google/chrome/chrome node scripts/coupling-inertia-identification-browser.mjs",
+    "passedGroups": 16,
+    "rawReceipt": "identification-regression.json"
+  },
+  "downloadedInputSHA256": "91b14f6bb104dff2730aa25d4a9760a8e7739875d6f88f64e844adf70311d32e",
+  "independentReview": {
+    "exactExtractionReportParityCases": 12,
+    "primaryAndCoarserScalarRows": 4060,
+    "maxResidualDifferenceNm": 6.430056487261027e-11,
+    "positiveFrozenSameLawRmseNm": 1.7193865340576743e-8,
+    "omittedForceChangedMotionRmseNm": 0.8141494179519615,
+    "nonenumerableTrainingSettingAcceptedAfterFix": false,
+    "latestReviewCommand": "node worldlaw-inertia-challenge-review/core-review.mjs",
+    "timeOriginTranslationMaximumDifference": 7.075229291331198e-12,
+    "consistentCoordinateReflection": "passed"
+  },
+  "experience": {
+    "viewports": [
+      1440,
+      390
+    ],
+    "compositions": [
+      "aligned motion, torque balance and residual",
+      "split motion and balance with wide residual"
+    ],
+    "selected": "aligned",
+    "visualCorrection": "new-chart left margin increased from70 to98SVGunits, then full current-source receiving rerun"
+  },
+  "limits": [
+    "Frozen observed-motion torque balance; no forward trajectory forecast or physical identification.",
+    "Different labels and repeated-value screening cannot authenticate independently acquired evidence.",
+    "Weak-window tolerance is an explicit user criterion, not calibrated measurement uncertainty.",
+    "Exact independent repetitions can be conservatively refused by duplicate screening.",
+    "Node and Chrome transcendental functions can differ by one binary64 bit; downloaded source was compared exactly with same-browser authored source."
+  ]
+}

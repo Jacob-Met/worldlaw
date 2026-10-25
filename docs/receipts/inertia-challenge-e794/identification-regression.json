@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "name": "authored analytic motion produces the coupled candidate from original samples",
+      "passed": true
+    },
+    {
+      "name": "selected weak window keeps original row and clock identities",
+      "passed": true
+    },
+    {
+      "name": "keyboard copy requires source pairing and retains the simulation declaration step",
+      "passed": true
+    },
+    {
+      "name": "actual download contains only original record and window settings",
+      "passed": true
+    },
+    {
+      "name": "settings invalidate stale coefficients and reopening recomputes the original fit",
+      "passed": true
+    },
+    {
+      "name": "malformed units and saved verdicts refuse before candidate adoption",
+      "passed": true
+    },
+    {
+      "name": "affine motion retains nonidentification and out-of-family fits retain their refusal",
+      "passed": true
+    },
+    {
+      "name": "the omitted-force control exposes tiny residuals with wrong known physical inertia",
+      "passed": true
+    },
+    {
+      "name": "a delayed file read cannot replace a newer authored source",
+      "passed": true
+    },
+    {
+      "name": "literal source labels remain text and response changes clear pairing consent",
+      "passed": true
+    },
+    {
+      "name": "a response change cancels an outstanding motion-file read with a current status",
+      "passed": true
+    },
+    {
+      "name": "reduced-motion setting preserves static data inspection",
+      "passed": true
+    },
+    {
+      "name": "source, balance and coefficient instruments fit 1440 CSS pixels",
+      "passed": true
+    },
+    {
+      "name": "source, balance and coefficient instruments fit 390 CSS pixels",
+      "passed": true
+    },
+    {
+      "name": "compare an alternate stacked composition on the same actual data",
+      "passed": true
+    },
+    {
+      "name": "no page exception or external network request occurred",
+      "passed": true
+    }
+  ],
+  "exceptions": [],
+  "outside": []
+}

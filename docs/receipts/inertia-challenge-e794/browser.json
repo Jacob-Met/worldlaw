@@ -1,0 +1,66 @@
+{
+  "checks": [
+    {
+      "name": "freeze requires a current supported source and authored positive changes motion without refitting",
+      "passed": true
+    },
+    {
+      "name": "missing-force changed frequencies falsify the frozen effective inertia",
+      "passed": true
+    },
+    {
+      "name": "source window keeps original indices, clock, observed torque and coarser provenance",
+      "passed": true
+    },
+    {
+      "name": "actual save retains only raw frozen training, challenge and declared settings",
+      "passed": true
+    },
+    {
+      "name": "changing the source above preserves the frozen training and challenge",
+      "passed": true
+    },
+    {
+      "name": "fresh raw reopen recomputes and forged results or duplicate evidence refuse",
+      "passed": true
+    },
+    {
+      "name": "raw separate source requires a new explicit correspondence before keyboard evaluation",
+      "passed": true
+    },
+    {
+      "name": "changed tolerances invalidate the verdict without altering frozen coefficients",
+      "passed": true
+    },
+    {
+      "name": "a delayed reopen cannot replace a newer authored pair",
+      "passed": true
+    },
+    {
+      "name": "changing a declaration cancels an outstanding read and leaves no stale verdict",
+      "passed": true
+    },
+    {
+      "name": "literal source text remains inert and reduced motion preserves window inspection",
+      "passed": true
+    },
+    {
+      "name": "aligned scientific instruments fit 1440 CSS pixels",
+      "passed": true
+    },
+    {
+      "name": "aligned scientific instruments fit 390 CSS pixels",
+      "passed": true
+    },
+    {
+      "name": "capture materially different split-instrument composition on identical actual evidence",
+      "passed": true
+    },
+    {
+      "name": "no page exception or external network request occurred",
+      "passed": true
+    }
+  ],
+  "exceptions": [],
+  "outside": []
+}
