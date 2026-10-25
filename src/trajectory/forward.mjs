@@ -1,6 +1,6 @@
 import {advanceCoulombContact} from './coulomb-contact.mjs';
 /** Free-running held-out trajectory evaluation. Dependency-free browser ESM. */
-import { predict, TERMS } from '../science/torque-discovery.mjs';
+import { prepareTorquePredictor, TERMS } from '../science/torque-discovery.mjs';
 import { normalizeCommandTiming, prepareCommandTimeline, commandAtSegment } from './command-timeline.mjs';
 
 const STATE_BOUND = 1e6;
@@ -113,6 +113,7 @@ export function rollout(model, run, options = {}) {
   requireThat(!contact || options.commandTiming === undefined, 'Sticking interpretation currently requires the original held command timeline.', 'unsupported_contact_timing');
   const friction = contact ? -(coulomb?.coefficient ?? 0) : 0;
   const smooth = contact ? {...executable, terms: executable.terms.filter(term => term.id !== 'coulomb')} : executable;
+  const torque = prepareTorquePredictor(smooth);
   const commandTiming = options.commandTiming === undefined ? null : normalizeCommandTiming(options.commandTiming);
   const timeline = commandTiming && (commandTiming.delaySeconds > 0 || commandTiming.responseTimeSeconds > 0) ? prepareCommandTimeline(evidence.samples, commandTiming) : null;
   requireThat(!(commandTiming?.responseTimeSeconds>0)||maxStep<=commandTiming.responseTimeSeconds/4,
@@ -137,7 +138,7 @@ export function rollout(model, run, options = {}) {
     checkedState(position, rate);
     let acceleration;
     try {
-      acceleration = (predict(smooth, { command, position, rate }) - (contact ? friction * direction : 0)) / evidence.inertia;
+      acceleration = (torque(command, position, rate) - (contact ? friction * direction : 0)) / evidence.inertia;
     } catch (cause) {
       throw new TrajectoryRolloutError('Executable torque prediction failed during rollout.', 'numerical_failure', { cause });
     }
@@ -175,7 +176,7 @@ export function rollout(model, run, options = {}) {
       };
       if(contact && friction > 0) {
         const result = advanceCoulombContact({position,rate,duration:h,friction,advance,
-          drive: q => predict(smooth,{command,position:q,rate:0}),
+          drive: q => torque(command,q,0),
           fail: (message,code) => {throw new TrajectoryRolloutError(message,code);}});
         position=result.position;rate=result.rate;contactEvents+=result.events;heldDuration+=result.held;
       } else {

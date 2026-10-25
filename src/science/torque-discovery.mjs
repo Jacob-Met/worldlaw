@@ -108,6 +108,24 @@ function predictUnchecked(model, row) {
 }
 export function predict(model, values) { checkedTerms(model); return predictUnchecked(model, input(values)); }
 
+/**
+ * Snapshot one model for repeated numerical evaluation. Every point still uses
+ * the public coordinate bounds and finite-result check. The private snapshot
+ * prevents a caller's later edits from changing a running solver's equation.
+ */
+export function prepareTorquePredictor(model) {
+  checkedTerms(model);
+  const snapshot = {schema: 'worldlaw.torque-model/v1',
+    terms: model.terms.map(({id, coefficient}) => ({id, coefficient}))};
+  // Validate the captured values as well, including accessor-backed callers.
+  checkedTerms(snapshot);
+  return (command, position, rate) => predictUnchecked(snapshot, {
+    command: finite(command, 'command', 1e6),
+    position: finite(position, 'position', 1e6),
+    rate: finite(rate, 'rate', 1e6),
+  });
+}
+
 export function evaluate(model, observations) {
   checkedTerms(model);
   const samples = rows(observations);
