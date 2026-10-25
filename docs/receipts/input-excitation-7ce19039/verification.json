@@ -68,6 +68,11 @@
       "path": "README.md",
       "sha256": "57be2b4c122a850c17d25cb4de29ce199b0c9aad0658ad25934eb686ba14a484",
       "gitBlob": "19893e3ad7303b59d1139e24f8abb92c0ea0f006"
+    },
+    {
+      "path": "scripts/package.py",
+      "sha256": "14b17692097fc5926b7e0c496408cfd5f517a58987d04dc4554dec9b4ff479ca",
+      "gitBlob": "5224b53129b3d73f264c709503be94ee3ca2e949"
     }
   ],
   "environment": {
@@ -123,5 +128,16 @@
     "visual": "Actual desktop and 390px screenshots inspected; existing apparatus, law comparison and measurement flow retained. Narrow planner table headings remain whole and complete-course scrolling is keyboard accessible.",
     "firstRemainingDesignFlaw": "The existing long Studio flow still puts detailed model and measurement sections far apart on narrow screens; this increment keeps its new choice inside the existing experiment card."
   },
-  "scope": "Authored numerical and actual application receiving. No physical identification, hardware execution, calibrated precision or deployment."
+  "scope": "Authored numerical and actual application receiving. No physical identification, hardware execution, calibrated precision or deployment.",
+  "distributionComposition": {
+    "status": "PASS",
+    "command": "GIT_INDEX_FILE=/tmp/hamon-7ce19039-worldlaw-candidate.index python3 scripts/package-policy-test.py",
+    "tests": 6,
+    "failures": 0,
+    "seconds": 0.064,
+    "pathIndexSource": "GitHub tree 978b09ff485455f64f0c352455d88a4b2a0a342f, all1037 blob paths/modes; isolated Git index",
+    "change": "Exclude exactly three retained command-deadzone historical text logs from distribution; no generic pattern expanded.",
+    "initialCheck": "The hydrated runtime's older Git index omitted five newer required source paths; that check failed. Re-ran with an isolated index populated from the actual candidate tree.",
+    "scope": "Distribution policy only; no new release ZIP claimed."
+  }
 }
