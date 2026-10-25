@@ -1,0 +1,23 @@
+{
+  "browser": "156.0.8078.47",
+  "sandboxDisabled": false,
+  "sourceSHA256": "5aa6f8c98f7dcc8214575453c79b93347beeb012dea32896cb45556abe649c7e",
+  "checks": [
+    "actual imported source -> explicit keyboard-applied loss -> changed executable law; raw mismatch retained",
+    "every original reading remains inspectable; ordinary-refit diagnostics identify the different loss",
+    "download contains original inputs and explicit v3 history; reload, undo and portable reopen recompute",
+    "invalid scale focuses an error without replacing the law, evidence or history",
+    "390px workflow and scrollable full-reading table preserve keyboard access without document overflow",
+    "real unresolved candidate refuses the complete comparison; no successful fallback is displayed or saved"
+  ],
+  "metrics": {
+    "beforeHeldOutRMSE": 1.006,
+    "afterHeldOutRMSE": 0.003527,
+    "rawTrainingRMSE": 2.439
+  },
+  "width": {
+    "viewport": 390,
+    "document": 390
+  },
+  "scope": "Authored source controls through the actual local product. No physical calibration, blind validation or deployment."
+}

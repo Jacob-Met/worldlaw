@@ -1,0 +1,36 @@
+{
+  "product": "worldlaw",
+  "browser": "156.0.8078.47",
+  "checks": [
+    "real initial workbench, hypotheses, evidence plots and solver-driven canvas render",
+    "keyboard-selected experiment produces fresh virtual measurement, structural revision and improved held-out prediction",
+    "completed notebook download replays in Node; browser reload, undo and portable file reopen preserve evidence",
+    "malformed replacement is atomic; separate imported drag mechanism reaches model comparison and recorded measurement path",
+    "changed dynamics input runs; invalid inertia refuses without corrupting evidence",
+    "complete notebook fits 320, 390, 768 and 1440 pixel viewports",
+    "late input read cannot replace a newer notebook; no JavaScript page errors"
+  ],
+  "metrics": {
+    "beforeHeldOutRMSE": 1.645,
+    "afterHeldOutRMSE": 0.000957
+  },
+  "layouts": [
+    {
+      "width": 1440,
+      "document": 1440
+    },
+    {
+      "width": 768,
+      "document": 768
+    },
+    {
+      "width": 390,
+      "document": 390
+    },
+    {
+      "width": 320,
+      "document": 320
+    }
+  ],
+  "scope": "Real Chrome product receiving with declared synthetic observations; no physical mechanism or human acceptance claim."
+}

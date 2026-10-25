@@ -1,3 +1,4 @@
+import {renderCommandDeadzone} from './science/command-deadzone-panel.mjs';
 import {renderConditionalRate} from './science/conditional-rate-panel.mjs';
 import {renderEnergyBudget} from './science/energy-budget-panel.mjs';
 import {mountAffineClocks} from './science/clock-affine-panel.mjs';
@@ -19,7 +20,7 @@ const names={command:'Actuation',rate:'Viscous damping',coulomb:'Coulomb frictio
 const fmt=(value,digits=4)=>value===null||!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<0.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
 const set=(id,text)=>{$(id).textContent=text;};
-let clockPanel=null,affinePanel=null;
+let clockPanel=null,affinePanel=null,deadzoneWidths=null;
 let state,modelId,plan,trajectory=[],animationStart=0,animationHandle,restored=false,generation=0;
 function alertError(error) { $('error').hidden=false;set('error',error.message||String(error));$('error').focus(); }
 function notice(text) {set('notice',text);$('error').hidden=true;}
@@ -28,18 +29,18 @@ function save() {
   try{localStorage.setItem(storageKey,exportSession(state));set('storage-status','Notebook saved on this browser');}
   catch{set('storage-status','Browser storage unavailable · export to keep this notebook');}
 }
-function adopt(next,message) {generation++;state=next;modelId=state.discovery.selected.id;render();save();notice(message);}
+function adopt(next,message,widths=null) {generation++;state=next;deadzoneWidths=widths;modelId=state.discovery.selected.id;render();save();notice(message);}
 function model(){return state.discovery.candidates.find(m=>m.id===modelId)||state.discovery.selected;}
 function numberInput(id){const v=$(id).value.trim();if(!v||!Number.isFinite(Number(v)))throw new Error(`Enter a finite value for ${$(id).labels?.[0]?.textContent||id}.`);return Number(v);}
 function experimentInput(){return Object.fromEntries(['command','position','rate'].map(f=>[f,numberInput(f)]));}
 function download(text,filename,type='application/json') {
   const url=URL.createObjectURL(new Blob([text],{type}));const a=el('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);
 }
-function chart(container,series,{xLabel,yLabel,diagonal=false}={}) {
+function chart(container,series,{xLabel,yLabel,diagonal=false,width=580}={}) {
   const wrap=$(container);wrap.replaceChildren();
   const values=series.flatMap(s=>s.points).filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y));
   if(!values.length){wrap.append(el('p','No observations available for this view.','empty-state'));return;}
-  const ns='http://www.w3.org/2000/svg', W=580,H=264,L=68,R=18,T=18,B=50;
+  const ns='http://www.w3.org/2000/svg', W=Number.isFinite(width)?Math.max(280,Math.min(580,width)):580,H=264,L=68,R=18,T=18,B=50;
   const svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('role','img');svg.setAttribute('aria-label',`${yLabel} against ${xLabel}; ${values.length} plotted values.`);
   const title=document.createElementNS(ns,'title');title.textContent=`${yLabel} against ${xLabel}`;svg.append(title);
   let x0=Math.min(...values.map(p=>p.x)),x1=Math.max(...values.map(p=>p.x)),y0=Math.min(...values.map(p=>p.y)),y1=Math.max(...values.map(p=>p.y));
@@ -47,8 +48,9 @@ function chart(container,series,{xLabel,yLabel,diagonal=false}={}) {
   const xp=Math.max((x1-x0)*.07,1e-8),yp=Math.max((y1-y0)*.12,1e-8);x0-=xp;x1+=xp;y0-=yp;y1+=yp;
   const X=x=>L+(x-x0)/(x1-x0)*(W-L-R),Y=y=>H-B-(y-y0)/(y1-y0)*(H-T-B);
   function shape(tag,attrs,text){const n=document.createElementNS(ns,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;svg.append(n);return n;}
-  for(let i=0;i<=4;i++){
-    const x=x0+(x1-x0)*i/4,y=y0+(y1-y0)*i/4;
+  const ticks=W<420?2:4;
+  for(let i=0;i<=ticks;i++){
+    const x=x0+(x1-x0)*i/ticks,y=y0+(y1-y0)*i/ticks;
     shape('line',{x1:X(x),x2:X(x),y1:T,y2:H-B,stroke:'#dfe6df','stroke-dasharray':'2 5'});
     shape('line',{x1:L,x2:W-R,y1:Y(y),y2:Y(y),stroke:'#dfe6df','stroke-dasharray':'2 5'});
     shape('text',{x:X(x),y:H-B+21,'text-anchor':'middle',fill:'#53655f','font-size':11},fmt(x,3));
@@ -119,6 +121,8 @@ function renderModel(){
   renderInputEnclosures(enclosure,m,state.discovery.observations);
   let separability=$('separability');if(!separability){separability=el('div');separability.id='separability';$('replicate-diagnostics').after(separability);}
   renderSeparability(separability,state.discovery.observations,state.base.source);
+  let deadzone=$('command-deadzone-container');if(!deadzone){deadzone=el('div');deadzone.id='command-deadzone-container';$('residual-chart').after(deadzone);}
+  renderCommandDeadzone(deadzone,state,{chart,widths:deadzoneWidths,onReopen:(next,widths)=>adopt(next,'Reopened original command-map comparison inputs. Compare again to recompute.',widths),simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
   runSimulation(false);
 }
 function render(){
