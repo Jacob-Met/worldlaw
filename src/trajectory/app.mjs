@@ -1,4 +1,6 @@
 import {createCycleWorkPanel} from './cycle-work-panel.mjs';
+import {createCommandTimingPanel} from './command-timing-panel.mjs';
+import {commandTimingExample} from './command-timing-example.mjs';
 import {createRollingOriginPanel} from './rolling-origin-panel.mjs';
 import {createInitialStatePanel} from './initial-state-panel.mjs';
 import {createPredictiveSelectionPanel} from '../predictive-selection/panel.mjs';
@@ -16,6 +18,10 @@ const $=id=>document.getElementById(id);
 const initialStatePanel=createInitialStatePanel($('comparison-grid'));
 const rollingOriginPanel=createRollingOriginPanel($('initial-state-panel'));
 const cycleWorkPanel=createCycleWorkPanel($('rolling-origin-panel'));
+const commandTimingPanel=createCommandTimingPanel($('cycle-work-panel')||$('rolling-origin-panel'),{
+  onExample:async()=>{$('example-choice').value='command-delay';await loadExample();},
+  onReopen:async (report,stillCurrent)=>{const next=await perform(()=>createChallenge(report.bundle,{method:'integral',noiseSigma:report.options.noiseSigma,maxStep:report.options.maxStep}),'Timing source reopened. The instantaneous baseline and delay comparison are recomputed from the original recordings.');if(next&&stillCurrent()){commandTimingPanel.configure(report.options);commandTimingPanel.present(report);}},
+});
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
 const set=(id,text)=>{$(id).textContent=text;};
 const fmt=(value,digits=4)=>!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});
@@ -47,6 +53,7 @@ function updateMethodDescription(){
 
 function settings(){const raw=$('noise-sigma').value.trim(),noiseSigma=Number(raw);if(!raw||!Number.isFinite(noiseSigma)||noiseSigma<=0)throw new Error('Enter an assumed residual noise greater than zero.');return {...state?.options,method:document.querySelector('input[name="method"]:checked').value,noiseSigma};}
 async function perform(getNext,message,{persist=true,propagate=false}={}){
+  commandTimingPanel.suspend();
   const ticket=++generation;setBusy(true);
   try{
     await new Promise(resolve=>requestAnimationFrame(resolve));
@@ -60,14 +67,15 @@ async function perform(getNext,message,{persist=true,propagate=false}={}){
     $('noise-sigma').value=state.options.noiseSigma;updateMethodDescription();render();
     if(persist)save();notice(message);return workflow;
   }catch(error){if(ticket===generation){if(propagate)throw error;alertError(error);if(!state)set('notice','No challenge is loaded. Import paired runs or load the synthetic example.');}}
-  finally{if(ticket===generation){setBusy(false);}}
+  finally{if(ticket===generation){setBusy(false);commandTimingPanel.setBundle(state?.bundle);}}
 }
 async function exampleBundle(choice){
+  if(choice==='command-delay')return commandTimingExample().bundle;
   const path=exampleURLs[choice],key=path.slice(path.lastIndexOf('/')+1),embedded=globalThis.WORLDLAW_EMBEDDED_EXAMPLES;
   if(embedded&&typeof embedded==='object'&&Object.hasOwn(embedded,key))return embedded[key];
   const response=await fetch(path);if(!response.ok)throw new Error('The example runs could not be loaded. Import a paired-run bundle to continue.');return response.json();
 }
-async function loadExample({persist=true}={}){const choice=$('example-choice').value;await perform(async()=>createChallenge(await exampleBundle(choice),{method:'integral',noiseSigma:.01,maxTerms:4,maxStep:.01}),choice==='measured'?'Measured angular recordings loaded. Training and challenge roles are preserved; physical torque scale remains unknown.':'Synthetic paired runs loaded. The law was learned from training motion and challenged on a separate run.',{persist});}
+async function loadExample({persist=true}={}){const choice=$('example-choice').value;const next=await perform(async()=>createChallenge(await exampleBundle(choice),{method:'integral',noiseSigma:choice==='command-delay'?.00001:.01,maxTerms:4,maxStep:.01}),choice==='measured'?'Measured angular recordings loaded. Training and challenge roles are preserved; physical torque scale remains unknown.':'Synthetic paired runs loaded. The law was learned from training motion and challenged on a separate run.',{persist});if(next&&choice==='command-delay')commandTimingPanel.configure(commandTimingExample().options);}
 function currentModel(){return state.discovery.candidates.find(m=>m.id===state.selectedModelId)||state.discovery.selected;}
 function currentRun(){return state.bundle.challengeRuns.find(r=>r.id===selectedRunId)||state.bundle.challengeRuns[0];}
 function currentResult(){return state.results.find(result=>result.modelId===currentModel().id&&(result.runId||result.rollout?.runId)===currentRun().id);}
@@ -81,6 +89,7 @@ function experimentPanelView(){
 function renderExperiment(){if(workflow&&experimentPanel)experimentPanel.render(experimentPanelView());}
 async function advanceExperiment(action,message){const previous=workflow;await perform(()=>action(previous),message,{propagate:true});return experimentPanelView();}
 function render(){
+  commandTimingPanel.setBundle(state.bundle);
   referencePanel.update(state.bundle);
   const b=state.bundle,all=[...b.trainingRuns,...b.challengeRuns],synthetic=all.every(run=>run.kind==='synthetic');
   set('source-name',b.label||'Paired trajectory evidence');set('source-kind',synthetic?'SYNTHETIC PAIRED RUNS':all.every(run=>run.kind==='measured')?'IMPORTED MEASURED RUNS':'IMPORTED PAIRED RUNS');

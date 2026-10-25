@@ -1,5 +1,6 @@
 /** Free-running held-out trajectory evaluation. Dependency-free browser ESM. */
 import { predict, TERMS } from '../science/torque-discovery.mjs';
+import { normalizeCommandTiming, prepareCommandTimeline } from './command-timeline.mjs';
 
 const STATE_BOUND = 1e6;
 const SAMPLE_LIMIT = 10000;
@@ -104,17 +105,21 @@ export function rollout(model, run, options = {}) {
   const executable = copyModel(model);
   const evidence = copyRun(run);
   const { maxStep, maxSteps } = checkedOptions(options);
+  const commandTiming = options.commandTiming === undefined ? null : normalizeCommandTiming(options.commandTiming);
+  const timeline = commandTiming?.delaySeconds > 0 ? prepareCommandTimeline(evidence.samples, commandTiming) : null;
 
   // Preflight the entire run: reject resource excess before producing any rows.
   // Equal subdivisions of local intervals avoid accumulating large epoch times.
   let requiredSteps = 0;
   const intervals = evidence.samples.slice(1).map((sample, index) => {
-    const duration = sample.time - evidence.samples[index].time;
-    const steps = Math.max(1, Math.ceil(duration / maxStep));
-    requireThat(Number.isSafeInteger(steps) && steps >= 1 && steps <= maxSteps - requiredSteps,
-      `Trajectory requires more than the allowed ${maxSteps} integration steps.`, 'step_limit');
-    requiredSteps += steps;
-    return { steps, step: duration / steps };
+    const segments = timeline?.intervals[index] ?? [{duration: sample.time - evidence.samples[index].time, command: evidence.samples[index].command}];
+    return segments.map(({duration, command}) => {
+      const steps = Math.max(1, Math.ceil(duration / maxStep));
+      requireThat(Number.isSafeInteger(steps) && steps >= 1 && steps <= maxSteps - requiredSteps,
+        `Trajectory requires more than the allowed ${maxSteps} integration steps.`, 'step_limit');
+      requiredSteps += steps;
+      return { steps, step: duration / steps, command };
+    });
   });
 
   const derivative = (position, rate, command) => {
@@ -136,8 +141,7 @@ export function rollout(model, run, options = {}) {
   const initial = evidence.samples[0];
   const rows = [{ time: initial.time, observed: initial.position, predicted: position, rate, residual: 0, command: initial.command }];
   for (let i = 0; i < intervals.length; i++) {
-    const command = evidence.samples[i].command;
-    const { steps, step: h } = intervals[i];
+    for (const { steps, step: h, command } of intervals[i]) {
     for (let j = 0; j < steps; j++) {
       const a = derivative(position, rate, command);
       const b = derivative(position + (h * a.position) / 2, rate + (h * a.rate) / 2, command);
@@ -148,6 +152,7 @@ export function rollout(model, run, options = {}) {
       position += (h * a.position) / 6 + (h * b.position) / 3 + (h * c.position) / 3 + (h * d.position) / 6;
       rate += (h * a.rate) / 6 + (h * b.rate) / 3 + (h * c.rate) / 3 + (h * d.rate) / 6;
       checkedState(position, rate);
+    }
     }
     const sample = evidence.samples[i + 1];
     const residual = sample.position - position;
@@ -167,6 +172,8 @@ export function rollout(model, run, options = {}) {
     diagnostics: {
       steps: requiredSteps, method: 'classical_RK4', maxStep, maxSteps,
       commandConvention: 'samples[i].command held on [samples[i].time, samples[i+1].time)',
+      ...(commandTiming ? {commandTiming, appliedCommandAtSamples: timeline?.commandsAtSamples ?? evidence.samples.map(row => row.command),
+        delayedCommandEvents: timeline?.events ?? [], commandConvention: 'delayed left-sample held command; exact delayed changes partition the RK4 steps'} : {}),
       initialRateSource: 'run.initialRate', observationsResetState: false, initialSampleExcludedFromMetrics: true,
       stateMagnitudeLimit: STATE_BOUND, positionUnit: 'rad', rateUnit: 'rad/s',
       numericalErrorEstimate: null, physicalValidity: 'not_established_by_finite_rollout',

@@ -42,7 +42,7 @@ export function compareRolloutResolution(execute, model, run, options = {}) {
 
   let refined;
   try {
-    refined = execute(model, run, { maxStep: refinedMaxStep, maxSteps: availableRefinementSteps });
+    refined = execute(model, run, { ...options, maxStep: refinedMaxStep, maxSteps: availableRefinementSteps });
   } catch (error) {
     if (!(error instanceof TrajectoryRolloutError)) throw error;
     if (error.code === 'step_limit') return unavailable('combined_step_budget');

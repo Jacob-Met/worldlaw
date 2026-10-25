@@ -1,0 +1,119 @@
+{
+  "schema": "worldlaw.command-timing-verification/v1",
+  "issue": "https://github.com/Jacob-Met/worldlaw/issues/173",
+  "team": "hamon-62c186-20261024",
+  "baseCommit": "fbf0bf0b9c82d2180e9bb71f3a458b8fa6b6ed7d",
+  "baseTree": "4c595f8fd1f9cb7030e3fa356d2cef8293b851be",
+  "environment": {
+    "platform": "Linux x86_64",
+    "kernel": "6.12.94+",
+    "node": "v22.23.4",
+    "chrome": "156.0.8078.47",
+    "sandbox": "admitted by scripts/support/chromium-sandbox.mjs; browser.json retains full observation",
+    "execution": "isolated authorized RDC /tmp/hamon-62c186-worldlaw; no deployment"
+  },
+  "commands": [
+    {
+      "command": "node tests/command-timing.test.mjs",
+      "tests": 9,
+      "passed": 9,
+      "failed": 0
+    },
+    {
+      "command": "npm run verify",
+      "native": {
+        "tests": 792,
+        "passed": 791,
+        "failed": 0,
+        "skipped": 1,
+        "skip": "live Node and Chromium exchange pending and applied notebooks through actual modules",
+        "durationMs": 24264.374337
+      },
+      "launchedSmokes": [
+        "scripts/smoke.mjs passed",
+        "scripts/trajectory-smoke-92be.mjs passed"
+      ],
+      "exitCode": 0,
+      "logSHA256": "ae317dd374d9bdf093e555e31215c3d0aed2d50cb5b05442ef16095afcb22ad8"
+    },
+    {
+      "command": "node scripts/command-timing-browser.mjs . /tmp/hamon-62c186-timing-final",
+      "passedGroups": 12,
+      "exitCode": 0,
+      "receipt": "browser.json"
+    }
+  ],
+  "input": {
+    "inputSHA256": "1d6ee08f72898fb8df9a45edafa18492c9834ee9888a96693032a0ae55405fa8",
+    "selectedDelay": 0.137,
+    "competitiveDelays": [
+      0.137
+    ],
+    "candidates": [
+      {
+        "delay": 0,
+        "score": -1750.0058103637868,
+        "challengeRMSE": 0.15364235274027815
+      },
+      {
+        "delay": 0.05,
+        "score": -1971.8117160100676,
+        "challengeRMSE": 0.08895597455806639
+      },
+      {
+        "delay": 0.1,
+        "score": -2385.4007663431976,
+        "challengeRMSE": 0.034598771820811745
+      },
+      {
+        "delay": 0.137,
+        "score": -5504.2816674923415,
+        "challengeRMSE": 0.00013270724926792884
+      },
+      {
+        "delay": 0.2,
+        "score": -2134.2244617357264,
+        "challengeRMSE": 0.050364371062085245
+      },
+      {
+        "delay": 0.3,
+        "score": -1680.9940153092073,
+        "challengeRMSE": 0.11283112730144988
+      }
+    ],
+    "work": {
+      "fittingUnits": 230400,
+      "fitUnitMeaning": "original equation count × complete delay count × sum of (term count + 1)² over admitted subsets",
+      "reservedSteps": 11553,
+      "maxTotalSteps": 500000,
+      "completedSteps": 11553,
+      "failedRunStepsNotMeasured": false
+    }
+  },
+  "sourceHashes": {
+    "scripts/command-timing-browser.mjs": "0364ddefeee7889209e1889814a855ee7e323e5e407843abbdd2259ce42c50d8",
+    "src/trajectory/command-timeline.mjs": "7c43e9472b29ac78d2350a761fb59b2858559eed2b74d9d2701fd0bdc3901a59",
+    "src/trajectory/command-timing-example.mjs": "f4b37100e6bebd0864c06117edf287f3a81a2dbe3f56e99ee911ed8b5fc31884",
+    "src/trajectory/command-timing-panel.mjs": "05555b3d27df8cd92e73cc2f0663ba499766e0b7d477b1572d3a0e4f604161cb",
+    "src/trajectory/command-timing-study.mjs": "cc8b223e10cbcd62b611b7f78d89af0aa967880a5f21f642d003574c97b95e85",
+    "tests/command-timing.test.mjs": "9363e67120a6332ad56c9aa8ae4d1ed05d81526990418e78ffdc2ecd90ef52f2",
+    "src/trajectory/app.mjs": "f9b2b179d0693e7a7cc0f265e2517be63f675be99890b73ce8c359f1d12d5d93",
+    "src/trajectory/forward.mjs": "e141c2c876e818bfe150bcdcfe15fad7ef723531f418826ae6a9e674e180ca11",
+    "src/trajectory/integral-discovery.mjs": "a59071369a495e8f3bc2a7e249646a14a52765d306bbf2a145009b9ba0115997",
+    "src/trajectory/resolution.mjs": "72f0c640524fc5018765912be590ef6c52c2b80a9a31f95d5b7cc841d8bdbe64",
+    "trajectory.html": "0033fd2278baa1c24f6abcea43a6b52d455a6cb349dcf31c4f24d8a2758be876"
+  },
+  "sourceComposition": "All runtime/test text additions through baseCommit were received by Git blob SHA. Historic PNG receipts omitted from execution checkout were preserved in the GitHub base tree. Browser receipt predates the disjoint frozen-inertia merge; its exact timing and trajectory source hashes match this composition.",
+  "limitations": [
+    "Independent analytic synthetic observations; no physical acquisition or actuator latency identification.",
+    "Finite offered delays and restricted term library; common explicit constant command prehistory.",
+    "Reported current-main native result contains one existing optional Node/Chromium exchange skip; timing-specific real Chromium course is separately executed.",
+    "Initial localhost tests were unavailable in the local sandbox; first remote transfer lacked nine existing experiment/evidence dependencies, then original pinned dependencies were restored and full suite passed.",
+    "GitHub Actions was not used; no branch protection was bypassed."
+  ],
+  "artifacts": [
+    "desktop-response.png",
+    "desktop-profile.png",
+    "narrow-response.png"
+  ]
+}
