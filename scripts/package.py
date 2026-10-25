@@ -29,6 +29,7 @@ INCLUDE = (
     "src/motion/vendor/reference-admission.mjs", "src/motion/vendor/reference-source.json",
     "tests/coupling-shared-course-fixture.mjs", "tests/response-contrast-fixture.mjs",
     "tests/fixtures/command-response-moments.json",
+    "tests/fixtures/readout-assignment-oracle.json",
     "scripts/support/README.md", "scripts/support/chromium-sandbox.mjs",
     "scripts/package-policy-test.py",
     "COUPLED_POINT_RESPONSE.md", "COUPLING_EXCITATION_WITNESSES.md",

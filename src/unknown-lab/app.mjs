@@ -1,3 +1,4 @@
+import {mountRecoveryTransport} from './recovery-transport-panel.mjs';
 import {mountRecoverySupport} from './recovery-support-panel.mjs';
 import {mountSaturationProfile} from './saturation-profile-panel.mjs';
 import {mountJointQualification} from './joint-qualification-panel.mjs';
@@ -143,6 +144,7 @@ mountContinuousDuration(durationPanel);
 const recoveryPanel=mountRecoveryPanel(()=>notebook);
 mountRecoveryPlanner(recoveryPanel);
 mountRecoverySupport(recoveryPanel);
+mountRecoveryTransport(recoveryPanel);
 
 const probePanel=mountProbePanel();
 mountProbePlanner(probePanel);
