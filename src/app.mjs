@@ -9,6 +9,7 @@ import {renderPredictionSensitivity} from './science/prediction-sensitivity-pane
 import {diagnoseReplicates} from './science/replicate-diagnostics.mjs';
 import {renderSeparability} from './science/separability-panel.mjs';
 import {evaluate,predict,simulate} from './science/torque-discovery.mjs';
+import {softL1Weight} from './science/robust-fit.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
 import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,exportSession,restoreSession,undoSession} from './session.mjs';
 
@@ -80,6 +81,16 @@ function renderModel(){
   set('model-heading',m.id===state.discovery.selected.id?'A model to put to the test.':'Inspecting an alternative model.');
   set('selected-equation',m.equation.replaceAll(' + -',' − ').replace(' = -',' = −'));set('selected-terms',m.terms.length?m.terms.map(t=>`${names[t.id]} ${fmt(t.coefficient)}`).join(' · '):'No selected terms');
   set('training-error',fmt(train.rmse));set('heldout-error',fmt(held.rmse));
+  const lossResult=$('reading-loss-result');lossResult.replaceChildren();
+  if(m.fitting?.loss==='soft_l1'){
+    const scale=m.fitting.scale;
+    lossResult.append(el('p',`Soft-L1 fit at ${fmt(scale)} N·m scale. ${m.metrics.robust.halfWeightCount} of ${train.count} readings have loss weight below 0.5. Training error above still includes every raw residual. This does not identify faulty readings.`));
+    const details=el('details'),summary=el('summary','Inspect every original reading and its loss influence');details.append(summary);
+    const scroll=el('div',undefined,'prediction-sensitivity-scroll reading-influence-scroll');scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label','Original torque readings and soft-L1 loss influence');
+    const table=el('table'),head=el('thead'),heading=el('tr');
+    for(const title of ['Source row','Command N·m','Angle rad','Rate rad/s','Observed N·m','Residual N·m','Loss weight']){const th=el('th',title);th.scope='col';heading.append(th);}head.append(heading);table.append(head);
+    const body=el('tbody');train.rows.forEach((row,index)=>{const tr=el('tr');tr.dataset.sourceRow=String(index);for(const value of [String(index+1),fmt(row.command),fmt(row.position),fmt(row.rate),fmt(row.jointTorque),fmt(row.residual),fmt(softL1Weight(row.residual,scale))])tr.append(el('td',value));body.append(tr);});table.append(body);scroll.append(table);details.append(scroll,el('p','Weights describe this chosen loss, not reading reliability or probabilities. Coordinate leverage, coherent missing physics and many conflicting readings can still mislead the fit.'));lossResult.append(details);
+  }
   const before=state.history[0].heldOutRMSE;
   const change=before!==null&&held.rmse!==null?before-held.rmse:null;
   set('heldout-change',change===null?'Import held-out rows to test predictions':`${change>=0?'−':'+'}${fmt(Math.abs(change))} N·m vs initial model`);
@@ -103,6 +114,7 @@ function renderModel(){
   renderParameterSensitivity(sensitivity,m,state.discovery.observations);
   let readout=$('prediction-sensitivity');if(!readout){readout=el('div');readout.id='prediction-sensitivity';sensitivity.after(readout);}
   renderPredictionSensitivity(readout,m,state.discovery.observations,state.base.heldOut);
+  if(m.fitting?.loss==='soft_l1')for(const host of [support,sensitivity,readout])host.prepend(el('p','Least-squares comparison: this diagnostic refits the inspected structure using ordinary least squares. Any refit shift includes that change of loss; these are not sensitivities of the soft-L1 estimator.','loss-diagnostic-note'));
   let enclosure=$('input-enclosures');if(!enclosure){enclosure=el('div');enclosure.id='input-enclosures';$('state-support').after(enclosure);}
   renderInputEnclosures(enclosure,m,state.discovery.observations);
   let separability=$('separability');if(!separability){separability=el('div');separability.id='separability';$('replicate-diagnostics').after(separability);}
@@ -115,8 +127,12 @@ function render(){
   $('undo').disabled=state.events.length===0;$('measured-field').hidden=Boolean(state.lab);$('run-experiment').textContent=state.lab?'Run virtual experiment':'Record measured outcome';
   set('experiment-mode',state.lab?'Execute the virtual torque instrument at these inputs.':'Use your instrument, then enter its measured net torque. No hardware is controlled.');
   $('noise-sigma').value=state.options.noiseSigma;
+  $('reading-loss').value=state.options.loss??'least_squares';
+  $('loss-scale').value=state.options.lossScale??0.03;
+  $('loss-scale').disabled=state.options.loss!=='soft_l1';
+  set('loss-choice-status',state.options.loss==='soft_l1'?`Applied soft-L1 scale ${fmt(state.options.lossScale)} N·m. Loss and scale revisions remain in the notebook.`:'Applied least squares. Choose a loss and refit to compare a different assumption.');
   $('include-command-position').checked=Boolean(state.options.includeCommandPosition);
-  set('feature-library-status',state.options.includeCommandPosition?'uθ is admitted, not assumed true. Selection uses fit rows only; held-out rows remain separate. Interaction history exports as a v2 notebook that older readers refuse.':'Additive library active. A revision retains the initial fit and evidence in notebook history.');
+  set('feature-library-status',state.options.includeCommandPosition?'uθ is admitted, not assumed true. Selection uses fit rows only; held-out rows remain separate. A versioned notebook preserves the complete library and fitting history.':'Additive library active. A revision retains the initial fit and evidence in notebook history.');
   const diag=d.diagnostics;
   set('diagnostics',`${diag.competitiveCount} competitive ${diag.competitiveCount===1?'structure':'structures'} at the current noise assumption. ${diag.adequacy==='residual_mismatch'?'Residual mismatch: this library does not explain the data within the assumed noise.':diag.selectionAmbiguous?'The current observations do not isolate a unique explanation.':'One structure ranks ahead within this finite library.'}${diag.identifiability==='insufficient_excitation'?' Some inputs are not independently excited; more varied observations are needed.':''}`);
   plan=sessionPlan(state);$('use-proposal').disabled=!plan.selected;
@@ -179,7 +195,15 @@ $('run-experiment').addEventListener('click',()=>action(()=>{
   const input=experimentInput();const next=state.lab?runVirtualExperiment(state,input):appendMeasurements(state,[{...input,jointTorque:numberInput('measured-torque')}]);
   const previous=state.discovery.selected.id;adopt(next,previous===next.discovery.selected.id?'New observation added. The leading structure is unchanged.':'New evidence changed the leading model structure.');
 }));
-$('refit').addEventListener('click',()=>action(()=>adopt(refitSession(state,{noiseSigma:numberInput('noise-sigma')}),'Refitted the observed evidence using the new assumed sensor noise.')));
+$('refit').addEventListener('click',()=>action(()=>{
+  const loss=$('reading-loss').value;
+  const options={noiseSigma:numberInput('noise-sigma'),loss,...(loss==='soft_l1'?{lossScale:numberInput('loss-scale')}:{})};
+  adopt(refitSession(state,options),'Refitted the original observations using the declared noise and reading loss.');
+}));
+for(const id of ['reading-loss','loss-scale'])$(id).addEventListener('input',()=>{
+  $('loss-scale').disabled=$('reading-loss').value!=='soft_l1';
+  set('loss-choice-status','Unapplied fitting choice. The displayed law and predictions still use the last applied assumptions; select Refit observations to compare.');
+});
 $('undo').addEventListener('click',()=>action(()=>adopt(undoSession(state),'Undid the last notebook revision and restored the previous evidence.')));
 $('new-lab').addEventListener('click',()=>action(()=>{if(!confirm('Start a new virtual notebook? Export the current notebook first if you want to keep it.'))return;adopt(newVirtualSession(),'Started the virtual instrument with 64 initial observations.');useProposal();}));
 $('load-observations').addEventListener('click',()=>$('observation-file').click());
@@ -203,4 +227,5 @@ $('revise-features').addEventListener('click',()=>action(()=>adopt(refitSession(
 clockPanel=mountClockOffsets(document.querySelector('.main-column'),model);
 
 affinePanel=mountAffineClocks(document.querySelector('.main-column'),model);
+
 

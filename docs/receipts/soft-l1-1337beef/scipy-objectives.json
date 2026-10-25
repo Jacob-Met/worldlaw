@@ -1,0 +1,70 @@
+{
+  "scope": "Independent SciPy soft_l1 objectives on separately authored fixed-design controls; not physical validation",
+  "results": [
+    {
+      "case": "offset",
+      "rows": 47,
+      "columns": 1,
+      "scale": 0.05,
+      "oursObjective": 0.3205317434046271,
+      "scipyObjective": 0.32053174340462715,
+      "objectiveDifference": -5.551115123125783e-17,
+      "scipySuccess": true,
+      "iterations": 4,
+      "scaledGradient": 4.533292684427349e-10,
+      "gradientTolerance": 5e-10
+    },
+    {
+      "case": "line",
+      "rows": 47,
+      "columns": 2,
+      "scale": 0.12,
+      "oursObjective": 0.7513714457055811,
+      "scipyObjective": 0.7513714457055811,
+      "objectiveDifference": 0,
+      "scipySuccess": true,
+      "iterations": 5,
+      "scaledGradient": 9.102842959088259e-11,
+      "gradientTolerance": 1.2e-9
+    },
+    {
+      "case": "three",
+      "rows": 47,
+      "columns": 3,
+      "scale": 0.08,
+      "oursObjective": 0.5072835626785106,
+      "scipyObjective": 0.5072835626785106,
+      "objectiveDifference": 0,
+      "scipySuccess": true,
+      "iterations": 5,
+      "scaledGradient": 3.6633189709906945e-11,
+      "gradientTolerance": 8e-10
+    },
+    {
+      "case": "scaled",
+      "rows": 47,
+      "columns": 2,
+      "scale": 0.02,
+      "oursObjective": 0.12962238677925092,
+      "scipyObjective": 0.12962238677925092,
+      "objectiveDifference": 0,
+      "scipySuccess": true,
+      "iterations": 7,
+      "scaledGradient": 2.9090850944809487e-16,
+      "gradientTolerance": 2e-10
+    },
+    {
+      "case": "correlated",
+      "rows": 47,
+      "columns": 3,
+      "scale": 0.04,
+      "oursObjective": 0.25712354970659457,
+      "scipyObjective": 0.25712354970659457,
+      "objectiveDifference": 0,
+      "scipySuccess": true,
+      "iterations": 6,
+      "scaledGradient": 1.9183010078105532e-10,
+      "gradientTolerance": 4e-10
+    }
+  ]
+}

@@ -19,10 +19,11 @@ export const UNITS = Object.freeze({command:'N·m', position:'rad', rate:'rad/s'
 const ids = TERMS.map(t => t.id);
 const LIMIT = 4096;
 import {fitLinearColumns as fit, linearColumnRank as libraryRank, RANK_TOLERANCE} from './linear-fit.mjs';
+import {fitSoftL1Columns, softL1Work, SOFT_L1_MAX_WORK} from './robust-fit.mjs';
 const fields = ['command', 'position', 'rate'];
 const observedFields = [...fields, 'jointTorque'];
-// Only results produced in this process can reuse fitting work. This private
-// record never enters a notebook, and no public result shares its mutable data.
+// Only private, freshly computed least-squares fits are reused. Robust fits
+// deliberately rerun the complete bounded optimization on every refit.
 const fittedSources = new WeakMap();
 
 export class DiscoveryError extends Error {
@@ -75,7 +76,18 @@ function normalizeOptions(options = {}) {
     'maxTerms must be an integer between zero and the feature-library size.');
   finite(result.ambiguityDelta, 'ambiguityDelta', 100);
   requireThat(result.ambiguityDelta >= 0, 'ambiguityDelta must be nonnegative.');
+  requireThat(options.loss === undefined || ['least_squares', 'soft_l1'].includes(options.loss), 'Unknown reading-loss assumption.');
+  if (options.loss === 'soft_l1') {
+    finite(options.lossScale, 'lossScale', 1e6);
+    requireThat(options.lossScale >= 1e-7, 'Declare a soft-L1 scale of at least 0.0000001 N·m.');
+    result.loss = 'soft_l1'; result.lossScale = options.lossScale;
+  }
   return result;
+}
+
+export function discoveryRobustWork(rowCount, requestedOptions = {}) {
+  const options = normalizeOptions(requestedOptions);
+  return options.loss === 'soft_l1' ? softL1Work(rowCount, options.terms.length, options.maxTerms) : 0;
 }
 
 function checkedTerms(model) {
@@ -106,6 +118,9 @@ export function evaluate(model, observations) {
 
 export function discover(observations, requestedOptions = {}) {
   const samples = rows(observations, 8), options = normalizeOptions(requestedOptions);
+  const robustWork = discoveryRobustWork(samples.length, options);
+  requireThat(robustWork <= SOFT_L1_MAX_WORK,
+    `Complete soft-L1 search needs ${robustWork} work units; the limit is ${SOFT_L1_MAX_WORK}. No subset of the observations or candidate library was fitted.`, 'work_limit');
   const columns = options.terms.map(id => samples.map(row => feature(id, row)));
   const target = samples.map(row => row.jointTorque);
   const candidates = []; let rankDeficientCandidates = 0, unexecutableCandidates = 0, examined = 0;
@@ -116,11 +131,17 @@ export function discover(observations, requestedOptions = {}) {
     const indices = options.terms.flatMap((_, index) => mask & (1 << index) ? [index] : []);
     if (indices.length > options.maxTerms || indices.length >= samples.length) continue;
     examined++;
-    const fitted = fit(indices.map(index => columns[index]), target);
+    let fitted = fit(indices.map(index => columns[index]), target);
     if (!fitted) { rankDeficientCandidates++; continue; }
     // An irrelevant, almost-zero feature can demand an enormous coefficient.
     // Reject that candidate without discarding other well-defined structures.
     if (fitted.coefficients.some(value => Math.abs(value) > 1e18)) { unexecutableCandidates++; continue; }
+    if (options.loss === 'soft_l1') {
+      fitted = fitSoftL1Columns(indices.map(index => columns[index]), target, options.lossScale, fitted);
+      requireThat(fitted.status === 'converged',
+        `Soft-L1 optimization is unresolved for ${indices.map(index => options.terms[index]).join('+') || 'zero'} (${fitted.status}). No partially optimized ranking is reported.`, 'robust_fit_incomplete');
+      if (fitted.coefficients.some(value => Math.abs(value) > 1e18)) { unexecutableCandidates++; continue; }
+    }
     const terms = indices.map((index, j) => ({ id: options.terms[index], coefficient: fitted.coefficients[j] }));
     const model = {
       schema: 'worldlaw.torque-model/v1', id: terms.map(term => term.id).join('+') || 'zero', terms, units: UNITS, domain,
@@ -129,25 +150,33 @@ export function discover(observations, requestedOptions = {}) {
     const evaluation = evaluate(model, samples);
     // This noise-floor information criterion is a ranking heuristic. It is not
     // a posterior, a confidence interval, or evidence of absolute model adequacy.
-    const score = samples.length * Math.log(Math.max(evaluation.rmse ** 2, options.noiseSigma ** 2)) + terms.length * Math.log(samples.length);
+    const scoreError = options.loss === 'soft_l1' ? fitted.meanLoss : evaluation.rmse ** 2;
+    const score = samples.length * Math.log(Math.max(scoreError, options.noiseSigma ** 2)) + terms.length * Math.log(samples.length);
     model.metrics = { count: samples.length, rmse: evaluation.rmse, maxAbsResidual: evaluation.maxAbsResidual,
       score, conditionEstimate: fitted.conditionEstimate, rank: terms.length };
+    if (options.loss === 'soft_l1') {
+      model.fitting = {loss:'soft_l1',scale:options.lossScale};
+      model.metrics.robust = {meanLoss:fitted.meanLoss,iterations:fitted.iterations,
+        scaledGradient:fitted.scaledGradient,stationarityTolerance:fitted.stationarityTolerance,
+        minWeight:Math.min(...fitted.weights),halfWeightCount:fitted.weights.filter(weight => weight < 0.5).length};
+    }
     candidates.push(model);
   }
   requireThat(candidates.length, 'No estimable model in the candidate library.', 'unidentifiable');
   const fullLibraryRank = libraryRank(columns);
   return rankFittedSource({samples, options, candidates, examined, rankDeficientCandidates,
-    unexecutableCandidates, fullLibraryRank}, options);
+    unexecutableCandidates, fullLibraryRank, robustWork}, options);
 }
 
 function rankFittedSource(source, options) {
-  const {samples, examined, rankDeficientCandidates, unexecutableCandidates, fullLibraryRank} = source;
+  const {samples, examined, rankDeficientCandidates, unexecutableCandidates, fullLibraryRank, robustWork} = source;
   // Keep the private fits in their original enumeration order. Sorting a prior
   // ranked list would change the stable tie-break when a new noise floor ties it.
   const candidates = source.candidates.map(model => ({...model,
     terms: model.terms.map(term => ({...term})),
     domain: Object.fromEntries(fields.map(key => [key, {...model.domain[key]}])),
-    metrics: {...model.metrics, score: samples.length * Math.log(Math.max(model.metrics.rmse ** 2,
+    metrics: {...model.metrics, score: samples.length * Math.log(Math.max(
+      options.loss === 'soft_l1' ? model.metrics.robust.meanLoss : model.metrics.rmse ** 2,
       options.noiseSigma ** 2)) + model.terms.length * Math.log(samples.length)},
   }));
   candidates.sort((a, b) => a.metrics.score - b.metrics.score || a.terms.length - b.terms.length);
@@ -164,7 +193,7 @@ function rankFittedSource(source, options) {
         selected.metrics.conditionEstimate > 1e4 ? 'weak_numerical_conditioning' : 'finite_library_local_only',
       competitiveCount: competitive.length, trainingRmseInNoiseUnits: selected.metrics.rmse / options.noiseSigma,
       adequacy: selected.metrics.rmse > 3 * options.noiseSigma ? 'residual_mismatch' : 'not_falsified_on_training',
-      scoreMethod: 'n*log(max(training_mse,noise_sigma^2))+term_count*log(n)',
+      scoreMethod: options.loss === 'soft_l1' ? 'n*log(max(mean_soft_l1_loss,noise_sigma^2))+term_count*log(n)' : 'n*log(max(training_mse,noise_sigma^2))+term_count*log(n)',
       conditionEstimateMeaning: 'ratio_of_scaled_QR_diagonal_extremes_not_exact_condition_number',
       limitations: [
         'Only structures expressible by the supplied finite term library are searched.',
@@ -173,25 +202,27 @@ function rankFittedSource(source, options) {
         'Training fit does not establish physical validity or held-out performance.',
         'No passivity, friction-sign, or mechanism-topology constraints are imposed.',
         'Rank-deficient structures are not executable hypotheses; additional pilot excitation may be needed.',
+        ...(options.loss === 'soft_l1' ? [
+          'The chosen soft-L1 scale reduces large-residual influence; it does not identify which readings are wrong.',
+          'Raw RMSE and adequacy retain every original reading, including reduced-weight residuals.',
+          'The soft-L1 complexity score is a ranking heuristic, not likelihood or calibrated confidence.',
+          'Large coordinate leverage, coherent omitted physics and majority contamination can still mislead this estimator.',
+        ] : []),
       ],
+      ...(options.loss === 'soft_l1' ? {robustWorkReserved:robustWork,robustWorkLimit:SOFT_L1_MAX_WORK} : {}),
     },
   };
-  fittedSources.set(result, source);
+  if (options.loss !== 'soft_l1') fittedSources.set(result, source);
   return result;
 }
 
-/**
- * Refit from the retained observations, reusing fresh QR fits only when the
- * exact source rows, offered term order and maximum term count are unchanged.
- * Serialized or edited evidence takes the ordinary complete discovery path.
- * Equivalent to discover(discovery.observations, requestedOptions); derived
- * public models/metrics are never used as fitting evidence.
- */
+/** Reuse only private least-squares fits with identical source and library. */
 export function refitDiscovery(discovery, requestedOptions = {}) {
   requireThat(discovery?.schema === 'worldlaw.discovery/v1', 'Expected a discovery result.');
   const samples = rows(discovery.observations, 8), options = normalizeOptions(requestedOptions);
   const source = fittedSources.get(discovery);
-  if (source && options.maxTerms === source.options.maxTerms
+  if (source && options.loss !== 'soft_l1' && source.options.loss !== 'soft_l1'
+    && options.maxTerms === source.options.maxTerms
     && options.terms.length === source.options.terms.length
     && options.terms.every((term, i) => term === source.options.terms[i])
     && samples.length === source.samples.length

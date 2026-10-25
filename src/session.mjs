@@ -1,12 +1,15 @@
-import {discover, refitDiscovery, evaluate, revise, planExperiment, DEFAULT_TERMS} from './science/torque-discovery.mjs';
+import {discover, refitDiscovery, evaluate, revise, planExperiment, DEFAULT_TERMS, discoveryRobustWork} from './science/torque-discovery.mjs';
 import {createLab, executeLab} from './science/virtual-lab.mjs';
 import {validateDataset, validateRows, candidateGrid, FIELDS, MAX_ROWS, MAX_TEXT_LENGTH} from './data.mjs';
 
 export const SESSION_SCHEMA='worldlaw.session/v1';
 export const INTERACTION_SESSION_SCHEMA='worldlaw.session/v2';
+export const ROBUST_SESSION_SCHEMA='worldlaw.session/v3';
 const usesInteraction = raw => raw.initialOptions?.includeCommandPosition===true || raw.events.some(event=>event?.kind==='options' && event.options?.includeCommandPosition===true);
+const usesRobust = raw => raw.initialOptions?.loss==='soft_l1' || raw.events.some(event=>event?.kind==='options' && event.options?.loss==='soft_l1');
 export const DEFAULT_OPTIONS=Object.freeze({noiseSigma:0.01,maxTerms:4,ambiguityDelta:6});
 const MAX_EVENTS=128;
+export const MAX_ROBUST_NOTEBOOK_WORK=2_000_000_000;
 function validSeed(seed){if(!Number.isSafeInteger(seed)||Math.abs(seed)>1e9)throw new Error('Invalid virtual instrument seed. Use an integer between −1000000000 and 1000000000.');return seed;}
 function matchesVirtualSeed(rows,expected) {
   // Math.sin/cos can differ by a few rounding bits between JS runtimes. This is
@@ -24,9 +27,33 @@ const cleanOptions = options => {
     if(typeof options.includeCommandPosition !== 'boolean')throw new Error('Explicit interaction choice must be boolean.');
     result.includeCommandPosition=options.includeCommandPosition;
   }
+  if(options?.loss !== undefined){
+    if(!['least_squares','soft_l1'].includes(options.loss))throw new Error('Choose least squares or soft-L1 reading loss.');
+    result.loss=options.loss;
+  }
+  if(options?.lossScale !== undefined){
+    if(typeof options.lossScale!=='number'||!Number.isFinite(options.lossScale)||options.lossScale<1e-7||options.lossScale>1e6)throw new Error('Soft-L1 scale must be between 0.0000001 and 1000000 N·m.');
+    result.lossScale=options.lossScale;
+  }
+  if(result.loss==='soft_l1'&&result.lossScale===undefined)throw new Error('Declare a soft-L1 torque scale.');
   return result;
 };
 function discoveryOptions(options){return options.includeCommandPosition?{...options,terms:[...DEFAULT_TERMS,'command_position']}:options;}
+function assertReplayWork(base,initialOptions,events){
+  if(!Array.isArray(base?.observations))throw new Error('Notebook needs its original observations.');
+  let count=base.observations.length,options=cleanOptions(initialOptions);
+  let total=discoveryRobustWork(count,discoveryOptions(options));
+  for(const event of events){
+    if(event?.kind==='measurement'){
+      if(!Array.isArray(event.rows))throw new Error('Measurement history needs its original rows.');
+      count+=event.rows.length;
+    }else if(event?.kind==='virtual')count++;
+    else if(event?.kind==='options')options=cleanOptions({...options,...event.options});
+    else throw new Error('Notebook contains an unknown event.');
+    total+=discoveryRobustWork(count,discoveryOptions(options));
+    if(total>MAX_ROBUST_NOTEBOOK_WORK)throw new Error(`Complete soft-L1 notebook replay exceeds ${MAX_ROBUST_NOTEBOOK_WORK} reserved work units. Export the current notebook before starting a new one.`);
+  }
+}
 function summary(discovery,heldOut,label,kind) {
   return {label,kind,count:discovery.observations.length,modelId:discovery.selected.id,equation:discovery.selected.equation,rmse:discovery.selected.metrics.rmse,heldOutRMSE:evaluate(discovery.selected,heldOut).rmse};
 }
@@ -53,6 +80,7 @@ export function appendMeasurements(state,rows,label='Measured outcome') {
   rows=validateRows(rows,{allowEmpty:true});
   if(!rows.length || state.discovery.observations.length+rows.length>MAX_ROWS) throw new Error('The measurement batch is empty or exceeds the observation limit.');
   const event={kind:'measurement',label:String(label).slice(0,160),rows};
+  assertReplayWork(state.base,state.initialOptions,[...state.events,event]);
   return eventState(state,event,revise(state.discovery,rows));
 }
 export function runVirtualExperiment(state,input) {
@@ -61,12 +89,17 @@ export function runVirtualExperiment(state,input) {
   const row=executeLab(input,{experimentIndex,seed:state.lab.seed});
   if(state.discovery.observations.length+1>MAX_ROWS) throw new Error('Observation limit reached. Export this notebook before starting another.');
   const event={kind:'virtual',label:`Virtual experiment ${experimentIndex+1}`,input:{command:row.command,position:row.position,rate:row.rate}};
+  assertReplayWork(state.base,state.initialOptions,[...state.events,event]);
   return eventState(state,event,revise(state.discovery,[row]));
 }
 export function refitSession(state,options) {
   options=cleanOptions({...state.options,...options});
-  const label=Boolean(options.includeCommandPosition)!==Boolean(state.options.includeCommandPosition)?'Revised scalar feature library':'Revised noise assumption';
-  return eventState(state,{kind:'options',label,options},refitDiscovery(state.discovery,discoveryOptions(options)),options);
+  const lossChanged=(options.loss??'least_squares')!==(state.options.loss??'least_squares') ||
+    (options.loss==='soft_l1'&&options.lossScale!==state.options.lossScale);
+  const label=Boolean(options.includeCommandPosition)!==Boolean(state.options.includeCommandPosition)?'Revised scalar feature library':lossChanged?'Revised reading-loss assumption':'Revised noise assumption';
+  const event={kind:'options',label,options};
+  assertReplayWork(state.base,state.initialOptions,[...state.events,event]);
+  return eventState(state,event,refitDiscovery(state.discovery,discoveryOptions(options)),options);
 }
 export function sessionPlan(state) {
   const source=state.lab ? createLab({seed:state.lab.seed}).candidateInputs : candidateGrid(state.base.observations);
@@ -76,13 +109,15 @@ export function sessionPlan(state) {
   return candidates.length ? planExperiment(state.discovery,candidates) : {status:'no_unobserved_inputs',selected:null,ranked:[],modelIds:[]};
 }
 export function exportSession(state) {
-  return JSON.stringify({schema:usesInteraction(state)?INTERACTION_SESSION_SCHEMA:SESSION_SCHEMA,base:state.base,lab:state.lab,initialOptions:state.initialOptions,events:state.events},null,2);
+  return JSON.stringify({schema:usesRobust(state)?ROBUST_SESSION_SCHEMA:usesInteraction(state)?INTERACTION_SESSION_SCHEMA:SESSION_SCHEMA,base:state.base,lab:state.lab,initialOptions:state.initialOptions,events:state.events},null,2);
 }
 export function restoreSession(text) {
   if(typeof text!=='string' || text.length>MAX_TEXT_LENGTH) throw new Error('Notebook must be JSON smaller than 2 MB.');
   let raw; try{raw=JSON.parse(text);}catch{throw new Error('The notebook JSON could not be read.');}
-  if(![SESSION_SCHEMA,INTERACTION_SESSION_SCHEMA].includes(raw?.schema) || !Array.isArray(raw.events) || raw.events.length>MAX_EVENTS) throw new Error('Unsupported or incomplete WORLDLAW notebook.');
+  if(![SESSION_SCHEMA,INTERACTION_SESSION_SCHEMA,ROBUST_SESSION_SCHEMA].includes(raw?.schema) || !Array.isArray(raw.events) || raw.events.length>MAX_EVENTS) throw new Error('Unsupported or incomplete WORLDLAW notebook.');
   if(raw.schema===SESSION_SCHEMA && usesInteraction(raw))throw new Error('Interaction feature history requires the v2 notebook envelope.');
+  if(raw.schema!==ROBUST_SESSION_SCHEMA && usesRobust(raw))throw new Error('Soft-L1 fitting history requires the v3 notebook envelope.');
+  assertReplayWork(raw.base,raw.initialOptions,raw.events);
   if(raw.lab) validSeed(raw.lab.seed);
   let state=createSession(raw.base,raw.initialOptions,{labSeed:raw.lab?.seed??null});
   for(const event of raw.events) {

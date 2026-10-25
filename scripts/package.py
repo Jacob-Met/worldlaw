@@ -16,6 +16,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "independent-review/soft-l1-oracle.py",
     # Source-bound metric-plane consumer and exact authored receiving fixtures.
     "src/motion/vendor/plane-homography.mjs", "src/motion/vendor/plane-homography-source.json",
     "tests/helpers/metric-plane-course.mjs", "scripts/make-metric-plane-fixtures.py",
@@ -121,6 +122,7 @@ INCLUDE = (
     'experiments/rolling-origin.mjs',
 )
 REQUIRED = (
+    "src/science/robust-fit.mjs",
     "src/motion/metric-plane.mjs", "src/motion/metric-plane-panel.mjs",
     "src/motion/vendor/plane-homography.mjs", "src/motion/vendor/plane-homography-source.json",
     "motion-reference.html", "motion-reference.css", "src/motion/reference-app.mjs",
