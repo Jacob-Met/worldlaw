@@ -1,0 +1,35 @@
+import {mkdir} from 'node:fs/promises';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const artifacts=process.env.ARTIFACT_DIR || 'evidence/energy-budget';
+await mkdir(artifacts,{recursive:true});
+import assert from 'node:assert/strict';
+const browser=await chromium.launch({executablePath:process.env.CHROME_BIN,headless:true,args:['--no-sandbox']});
+try{
+const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
+page.on('pageerror',e=>errors.push(e.message));
+await page.goto(process.env.BASE_URL || 'http://127.0.0.1:4193');await page.locator('#energy-budget table').waitFor({state:'attached'});
+await page.locator('.dynamics-details').evaluate(e=>e.open=true);
+await page.locator('#energy-budget').scrollIntoViewIfNeeded();
+assert.equal(await page.locator('#energy-budget tbody tr').count(),6);
+const initial=await page.locator('#energy-budget').innerText();
+await page.screenshot({path:artifacts+'/energy-desktop.png',fullPage:false});
+await page.locator('#inertia').fill('0');await page.locator('#run-simulation').click();
+assert.match(await page.locator('#energy-budget').innerText(),/trajectory was refused/);
+await page.locator('#inertia').fill('1');await page.locator('#run-simulation').focus();await page.keyboard.press('Enter');
+assert.equal(await page.locator('#energy-budget tbody tr').count(),6);
+await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});
+await page.locator('#energy-budget').scrollIntoViewIfNeeded();
+assert.ok(await page.locator('#energy-budget').evaluate(e=>e.scrollWidth<=e.clientWidth+1));
+await page.screenshot({path:artifacts+'/energy-narrow.png',fullPage:false});
+await page.reload();await page.locator('#energy-budget table').waitFor({state:'attached'});
+assert.equal(await page.locator('#energy-budget').innerText(),initial);
+const observations=Array.from({length:40},(_,i)=>({command:Math.sin(i*1.7),position:Math.sin(i*.7),rate:Math.cos(i*.91),jointTorque:-2*Math.sin(i*.7)+.2*Math.cos(i*.91)}));
+await page.locator('#observation-file').setInputFiles({name:'authored-antidamping.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({source:{label:'Authored antidamping control',kind:'synthetic'},observations}))});
+await page.waitForFunction(()=>document.querySelector('#energy-budget').textContent.includes('Rate-dependent terms supply energy'));
+const active=await page.locator('#energy-budget').innerText();
+assert.match(active,/Rate-dependent terms supply energy/);
+const exported=await page.evaluate(()=>localStorage.getItem('worldlaw.notebook.v1'));
+await page.reload();await page.waitForFunction(()=>document.querySelector('#energy-budget')?.textContent.includes('Rate-dependent terms supply energy'));
+assert.equal(await page.evaluate(()=>localStorage.getItem('worldlaw.notebook.v1')),exported);
+assert.deepEqual(errors,[]);console.log(JSON.stringify({status:'pass',groups:7,initial},null,2));
+}finally{await browser.close()}

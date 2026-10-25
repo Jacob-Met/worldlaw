@@ -84,3 +84,14 @@
 .feature-revision input[type=checkbox] { width: 1.2rem; height: 1.2rem; }
 
 .feature-revision .input-hint { color: #374e49; }
+
+
+/* Model-relative accounting stays beside the executed dynamics instrument. */
+#energy-budget{margin:18px 0;padding-top:14px;border-top:1px solid var(--line);font-size:12px;line-height:1.5}
+#energy-budget h3{font-size:16px;margin:0 0 12px}
+#energy-budget table{width:100%;border-collapse:collapse;font-size:12px}
+#energy-budget caption{text-align:left;margin-bottom:8px;color:var(--ink)}
+#energy-budget th,#energy-budget td{padding:7px 4px;border-bottom:1px solid var(--line);text-align:left;overflow-wrap:anywhere}
+#energy-budget th{font-weight:500}
+#energy-budget td{text-align:right;font-family:var(--mono);white-space:nowrap;width:30%}
+#energy-budget p{margin:12px 0}

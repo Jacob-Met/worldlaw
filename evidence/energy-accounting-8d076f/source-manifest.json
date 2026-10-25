@@ -1,0 +1,41 @@
+{
+  "base": "222b821ccbec62ae77898c812a9e4f1a0eb00800",
+  "issue": 208,
+  "files": [
+    {
+      "path": "src/science/energy-budget.mjs",
+      "base_blob": null,
+      "sha256": "3568bfbbd1bdb7521472dfe555d70fc90e4cf3d8a06bee17b3018f6e43859c0f"
+    },
+    {
+      "path": "src/science/energy-budget-panel.mjs",
+      "base_blob": null,
+      "sha256": "0df501f43a072c4661483cf067fc520fc8ca54dd2e635d1e74af05e42aca5391"
+    },
+    {
+      "path": "src/app.mjs",
+      "base_blob": "efd20d2c56df790f5ee9cced52d4d8b49011d151",
+      "sha256": "2ca003341886345f1b72634e983b94f43f1b479f0a0675cc1578a9aea52b1f71"
+    },
+    {
+      "path": "styles.css",
+      "base_blob": "35a5482711700637e2f82f5c0795894b7b9b21e5",
+      "sha256": "3090699204336900a98208180e5b87947b96d66d57e5e1ad98775f53e559d633"
+    },
+    {
+      "path": "tests/energy-budget.test.mjs",
+      "base_blob": null,
+      "sha256": "97a6ed0d84ea6847eb334ec2016e3d0ec660629ea4368b34f6de695ca7c8eda1"
+    },
+    {
+      "path": "scripts/energy-budget-browser.mjs",
+      "base_blob": null,
+      "sha256": "68a60d32ffcb3a347d00064931bfa374878de8aab30cfc7cadfdb1e230fd93e8"
+    },
+    {
+      "path": "docs/ENERGY_ACCOUNTING.md",
+      "base_blob": null,
+      "sha256": "c04d945f5ec1b7eebf2deabe9ff5dc9917594e7191649618a9edcd4acfd64b9f"
+    }
+  ]
+}
