@@ -42,3 +42,13 @@ Each qualified challenge separately receives prediction bands from **every** ret
 Native controls cover the off-grid finite-library failure, sign reversal, saturated/zero underidentification, both work caps with full interval coverage, challenge mutation invariance, family exclusion from adverse measurements, source-only reopen, insufficient training and challenge budget exhaustion. Independent directed-enclosure and rational witness review complements these tests. Browser qualification is performed against the actual app with desktop/narrow layouts, cancellation, controls, export/reopen and visible keyboard focus.
 
 This capability addresses a continuous **velocity** scale. It does not alter duration/recovery/onset models, claim a time constant, identify a unique hidden mechanism, or establish causality.
+
+## Post-training joint family screen
+
+The separate joint screen asks whether **one amplitude and scale** can satisfy all original training screens and every qualified challenge screen together. It runs only after the original training investigation and frozen-witness challenge comparisons have completed. Original run roles are retained in the report and source export. A joint consistency witness is not substituted for the frozen training witness.
+
+The joint screen reuses the directed feature enclosures and bounded complete box partition. A nonempty inner interval or midpoint witness certifies existence of a common parameter pair. Only an empty complete outer family certifies exclusion in the declared domain. A work limit preserves pending boxes; absence of a witness is never treated as exclusion. Unqualified or numerically unsupported challenge rows refuse this joint inference rather than silently dropping measurements.
+
+Training investigation and joint verification have **separate**, equally bounded work budgets, each controlled by the displayed per-stage settings. Source/settings edits cancel both stages. Reopening the same source recomputes both; derived reports remain ignored.
+
+The authored incompatible-challenge control has three high-rate training runs that support the full scale domain. Two different low-rate challenges separately admit scales near 0.1 and 0.5 rad/s, yet no common parameter pair survives them together. Each individual outer-overlap screen correctly remains inconclusive; the joint screen rejects this saturated-rate family. That rejection does not identify which omitted effect caused the inconsistency.
