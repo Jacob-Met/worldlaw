@@ -1,0 +1,6436 @@
+{
+  "schema": "worldlaw.motion-notebook/v3",
+  "units": {
+    "time": "s",
+    "point": "px",
+    "position": "rad"
+  },
+  "source": {
+    "kind": "local-video",
+    "label": "fit.mp4",
+    "sha256": "5a27a92fe35d38e54f303b8299693f630223c6d252076b52820cb4e302e66d7c",
+    "width": 640,
+    "height": 480,
+    "duration": 8,
+    "nativeWidth": 640,
+    "nativeHeight": 480,
+    "bytes": 204844,
+    "mime": "video/mp4",
+    "metadata": {
+      "decoder": "HTMLVideoElement",
+      "coordinateSpace": "decoded image pixels after uniform size reduction",
+      "frameTimestamp": "per-sample decoded media time when available; nominal seek fallback explicitly labeled",
+      "mediaRetained": "local file only; notebook contains source digest and measurements"
+    }
+  },
+  "calibration": {
+    "pivot": {
+      "x": 320,
+      "y": 90
+    },
+    "zeroAngle": 0,
+    "direction": 1,
+    "pixelSigma": 1,
+    "maxGapSeconds": 0.08000000000000002,
+    "maxAngularStep": 1.5707963267948966,
+    "convention": "plane_positive_y_zero_positive_x",
+    "pivotMode": "fixed",
+    "plane": {
+      "schema": "worldlaw.metric-plane/v1",
+      "source": {
+        "sha256": "5a27a92fe35d38e54f303b8299693f630223c6d252076b52820cb4e302e66d7c",
+        "width": 640,
+        "height": 480
+      },
+      "referenceTime": 0,
+      "basis": "Known independent camera projection and metric grid in an authored synthetic video; not physical calibration.",
+      "coordinateUnit": "m",
+      "assumptions": {
+        "samePlane": true,
+        "fixedCamera": true,
+        "metricCoordinates": true,
+        "negligibleLensDistortion": true
+      },
+      "pairs": [
+        {
+          "image": {
+            "x": 196.5811965811966,
+            "y": 87.60683760683762
+          },
+          "plane": {
+            "x": -0.8,
+            "y": 0
+          }
+        },
+        {
+          "image": {
+            "x": 428.57142857142856,
+            "y": 92.10526315789473
+          },
+          "plane": {
+            "x": 0.8,
+            "y": 0
+          }
+        },
+        {
+          "image": {
+            "x": 488,
+            "y": 290
+          },
+          "plane": {
+            "x": 0.8,
+            "y": 1.6
+          }
+        },
+        {
+          "image": {
+            "x": 247.70642201834863,
+            "y": 314.2201834862385
+          },
+          "plane": {
+            "x": -0.8,
+            "y": 1.6
+          }
+        }
+      ]
+    }
+  },
+  "measurements": [
+    {
+      "time": 0,
+      "requestedTime": 0,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 439.4112794885508,
+        "y": 180.06984894461863
+      },
+      "status": "manual",
+      "reason": "User marked the visible source pixels.",
+      "quality": {
+        "textureStd": 46.12578416252434,
+        "patchRadius": 7
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "patchRadius": 7,
+        "appearance": "luminance",
+        "sampleStep": 1
+      }
+    },
+    {
+      "time": 0.033333,
+      "requestedTime": 0.05,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 438.87286638366254,
+        "y": 180.29091921501436
+      },
+      "candidatePoint": {
+        "x": 438.87286638366254,
+        "y": 180.29091921501436
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8647824895666515,
+        "runnerUpScore": 0.352503478275572,
+        "ambiguityMargin": 0.5122790112910796,
+        "textureStd": 45.03593788934178,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.1,
+      "requestedTime": 0.1,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 438.0285797351187,
+        "y": 181.33337592720622
+      },
+      "candidatePoint": {
+        "x": 438.0285797351187,
+        "y": 181.33337592720622
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8691366381033552,
+        "runnerUpScore": 0.3186341847935175,
+        "ambiguityMargin": 0.5505024533098377,
+        "textureStd": 45.461457029559725,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.133333,
+      "requestedTime": 0.15000000000000002,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 437.4390904977983,
+        "y": 182.0632143522391
+      },
+      "candidatePoint": {
+        "x": 437.4390904977983,
+        "y": 182.0632143522391
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.917436934008996,
+        "runnerUpScore": 0.34379012361479533,
+        "ambiguityMargin": 0.5736468103942006,
+        "textureStd": 45.9837674532076,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.2,
+      "requestedTime": 0.2,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 435.4427079841138,
+        "y": 184.11515632755132
+      },
+      "candidatePoint": {
+        "x": 435.4427079841138,
+        "y": 184.11515632755132
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8828878231319134,
+        "runnerUpScore": 0.35114046189106507,
+        "ambiguityMargin": 0.5317473612408483,
+        "textureStd": 45.50654370817033,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.233333,
+      "requestedTime": 0.25,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 434.205052105981,
+        "y": 185.3555689137787
+      },
+      "candidatePoint": {
+        "x": 434.205052105981,
+        "y": 185.3555689137787
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8481984193584514,
+        "runnerUpScore": 0.3330449487624255,
+        "ambiguityMargin": 0.5151534705960259,
+        "textureStd": 44.12997373132291,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.3,
+      "requestedTime": 0.30000000000000004,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 431.21449722390884,
+        "y": 188.32658616298755
+      },
+      "candidatePoint": {
+        "x": 431.21449722390884,
+        "y": 188.32658616298755
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8504493605233912,
+        "runnerUpScore": 0.34913454613347966,
+        "ambiguityMargin": 0.5013148143899115,
+        "textureStd": 44.97054006257065,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.333333,
+      "requestedTime": 0.35000000000000003,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 429.7098497262737,
+        "y": 190.0930571621023
+      },
+      "candidatePoint": {
+        "x": 429.7098497262737,
+        "y": 190.0930571621023
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9203440185205046,
+        "runnerUpScore": 0.34433894682003624,
+        "ambiguityMargin": 0.5760050717004683,
+        "textureStd": 46.24918015430007,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.4,
+      "requestedTime": 0.4,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 425.73363568936713,
+        "y": 193.74015377151636
+      },
+      "candidatePoint": {
+        "x": 425.73363568936713,
+        "y": 193.74015377151636
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8561952506981446,
+        "runnerUpScore": 0.3448581487719998,
+        "ambiguityMargin": 0.5113371019261448,
+        "textureStd": 43.52311541566892,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.433333,
+      "requestedTime": 0.45,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 423.37799374754553,
+        "y": 195.53666441304088
+      },
+      "candidatePoint": {
+        "x": 423.37799374754553,
+        "y": 195.53666441304088
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8945400870286532,
+        "runnerUpScore": 0.3714487881323892,
+        "ambiguityMargin": 0.5230912988962639,
+        "textureStd": 41.68151758807924,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.5,
+      "requestedTime": 0.5,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 417.7684615173921,
+        "y": 199.27088991619624
+      },
+      "candidatePoint": {
+        "x": 417.7684615173921,
+        "y": 199.27088991619624
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.870852044231685,
+        "runnerUpScore": 0.3523640407443221,
+        "ambiguityMargin": 0.5184880034873629,
+        "textureStd": 43.439321592449,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.533333,
+      "requestedTime": 0.55,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 414.7512510824873,
+        "y": 201.23892770703347
+      },
+      "candidatePoint": {
+        "x": 414.7512510824873,
+        "y": 201.23892770703347
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.870988663285851,
+        "runnerUpScore": 0.3245736620702205,
+        "ambiguityMargin": 0.5464150012156306,
+        "textureStd": 43.700717959420665,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.6,
+      "requestedTime": 0.6000000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 408.11690427881905,
+        "y": 205.12464667791536
+      },
+      "candidatePoint": {
+        "x": 408.11690427881905,
+        "y": 205.12464667791536
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.894606218242204,
+        "runnerUpScore": 0.3478277333983633,
+        "ambiguityMargin": 0.5467784848438406,
+        "textureStd": 46.363948327561,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.633333,
+      "requestedTime": 0.65,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 404.40006348191605,
+        "y": 206.92220642712235
+      },
+      "candidatePoint": {
+        "x": 404.40006348191605,
+        "y": 206.92220642712235
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8865715903844034,
+        "runnerUpScore": 0.36962179567655856,
+        "ambiguityMargin": 0.5169497947078447,
+        "textureStd": 45.327626648949305,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.7,
+      "requestedTime": 0.7000000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 396.2100412616776,
+        "y": 210.20696479021566
+      },
+      "candidatePoint": {
+        "x": 396.2100412616776,
+        "y": 210.20696479021566
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8736857827092549,
+        "runnerUpScore": 0.32667484051091045,
+        "ambiguityMargin": 0.5470109421983445,
+        "textureStd": 43.717687171129334,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.733333,
+      "requestedTime": 0.75,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 391.9748995160719,
+        "y": 211.979530305022
+      },
+      "candidatePoint": {
+        "x": 391.9748995160719,
+        "y": 211.979530305022
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8503893621118743,
+        "runnerUpScore": 0.3195434587466298,
+        "ambiguityMargin": 0.5308459033652445,
+        "textureStd": 49.81608303922669,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.8,
+      "requestedTime": 0.8,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 382.9823424283474,
+        "y": 214.74315803100336
+      },
+      "candidatePoint": {
+        "x": 382.9823424283474,
+        "y": 214.74315803100336
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8276706807281647,
+        "runnerUpScore": 0.3710773742447774,
+        "ambiguityMargin": 0.45659330648338736,
+        "textureStd": 43.89400877548888,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.833333,
+      "requestedTime": 0.8500000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 377.9486279768115,
+        "y": 215.90699873621335
+      },
+      "candidatePoint": {
+        "x": 377.9486279768115,
+        "y": 215.90699873621335
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.7946253611985995,
+        "runnerUpScore": 0.35268612706550295,
+        "ambiguityMargin": 0.44193923413309655,
+        "textureStd": 46.35712446987732,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.9,
+      "requestedTime": 0.9,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 367.6387658598418,
+        "y": 217.71739559121423
+      },
+      "candidatePoint": {
+        "x": 367.6387658598418,
+        "y": 217.71739559121423
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8405429320891643,
+        "runnerUpScore": 0.370855752033795,
+        "ambiguityMargin": 0.4696871800553693,
+        "textureStd": 41.95060673305374,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 0.933333,
+      "requestedTime": 0.9500000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 362.24884938555374,
+        "y": 218.1758427654847
+      },
+      "candidatePoint": {
+        "x": 362.24884938555374,
+        "y": 218.1758427654847
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8514797999504848,
+        "runnerUpScore": 0.3402113978999386,
+        "ambiguityMargin": 0.5112684020505462,
+        "textureStd": 44.21049891089475,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 1,
+      "requestedTime": 1,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 351.5261654059832,
+        "y": 219.2178328869527
+      },
+      "candidatePoint": {
+        "x": 351.5261654059832,
+        "y": 219.2178328869527
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8378844903045244,
+        "runnerUpScore": 0.3443259208718659,
+        "ambiguityMargin": 0.49355856943265847,
+        "textureStd": 42.795136049583974,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 1.033333,
+      "requestedTime": 1.05,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 345.8689998636838,
+        "y": 219.16339852979453
+      },
+      "candidatePoint": {
+        "x": 345.8689998636838,
+        "y": 219.16339852979453
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8565578140930905,
+        "runnerUpScore": 0.34881019497057764,
+        "ambiguityMargin": 0.5077476191225129,
+        "textureStd": 45.79335634096306,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 0,
+        "anchorPoint": {
+          "x": 439.4112794885508,
+          "y": 180.06984894461863
+        }
+      }
+    },
+    {
+      "time": 1.1,
+      "requestedTime": 1.1,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 334.6581782138513,
+        "y": 218.63783473778136
+      },
+      "status": "manual",
+      "reason": "User marked the visible source pixels.",
+      "quality": {
+        "textureStd": 40.83458499973755,
+        "patchRadius": 7
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "patchRadius": 7,
+        "appearance": "luminance",
+        "sampleStep": 1
+      }
+    },
+    {
+      "time": 1.133333,
+      "requestedTime": 1.1500000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 329.0462104017317,
+        "y": 217.98417565560442
+      },
+      "candidatePoint": {
+        "x": 329.0462104017317,
+        "y": 217.98417565560442
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8462755731453591,
+        "runnerUpScore": 0.4115248302915525,
+        "ambiguityMargin": 0.43475074285380655,
+        "textureStd": 48.75745247414327,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.2,
+      "requestedTime": 1.2000000000000002,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 318.42148831307765,
+        "y": 216.7976093151042
+      },
+      "candidatePoint": {
+        "x": 318.42148831307765,
+        "y": 216.7976093151042
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9098254674550154,
+        "runnerUpScore": 0.4296902591439176,
+        "ambiguityMargin": 0.48013520831109774,
+        "textureStd": 42.19301470926423,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.233333,
+      "requestedTime": 1.25,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 313.09166843869286,
+        "y": 215.8975555125203
+      },
+      "candidatePoint": {
+        "x": 313.09166843869286,
+        "y": 215.8975555125203
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.887029494560326,
+        "runnerUpScore": 0.41972244666299785,
+        "ambiguityMargin": 0.46730704789732813,
+        "textureStd": 46.98126743743863,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.3,
+      "requestedTime": 1.3,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 303.0685533215296,
+        "y": 213.86304762960188
+      },
+      "candidatePoint": {
+        "x": 303.0685533215296,
+        "y": 213.86304762960188
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.902877068640656,
+        "runnerUpScore": 0.4279972004735112,
+        "ambiguityMargin": 0.4748798681671448,
+        "textureStd": 45.489707900240916,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.333333,
+      "requestedTime": 1.35,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 298.7075808369228,
+        "y": 212.9400262306756
+      },
+      "candidatePoint": {
+        "x": 298.7075808369228,
+        "y": 212.9400262306756
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9076824884509007,
+        "runnerUpScore": 0.3933385287526016,
+        "ambiguityMargin": 0.514343959698299,
+        "textureStd": 45.049560852277544,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.4,
+      "requestedTime": 1.4000000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 289.7600618836955,
+        "y": 210.1080940467982
+      },
+      "candidatePoint": {
+        "x": 289.7600618836955,
+        "y": 210.1080940467982
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8807734555817137,
+        "runnerUpScore": 0.4134841423919105,
+        "ambiguityMargin": 0.4672893131898032,
+        "textureStd": 45.799360077628435,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.433333,
+      "requestedTime": 1.4500000000000002,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 285.4175842715802,
+        "y": 208.82679768557009
+      },
+      "candidatePoint": {
+        "x": 285.4175842715802,
+        "y": 208.82679768557009
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9052078299373135,
+        "runnerUpScore": 0.4356714447459013,
+        "ambiguityMargin": 0.4695363851914122,
+        "textureStd": 43.06868403149177,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.5,
+      "requestedTime": 1.5,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 277.87214894034724,
+        "y": 206.05453454711522
+      },
+      "candidatePoint": {
+        "x": 277.87214894034724,
+        "y": 206.05453454711522
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8761335200132626,
+        "runnerUpScore": 0.4384746159155591,
+        "ambiguityMargin": 0.4376589040977035,
+        "textureStd": 46.705097405062595,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.533333,
+      "requestedTime": 1.55,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 274.777853740983,
+        "y": 204.92953544022797
+      },
+      "candidatePoint": {
+        "x": 274.777853740983,
+        "y": 204.92953544022797
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8747191554955224,
+        "runnerUpScore": 0.45730352575410566,
+        "ambiguityMargin": 0.4174156297414167,
+        "textureStd": 46.11294523714834,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.6,
+      "requestedTime": 1.6,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 268.823671731854,
+        "y": 202.56338269546794
+      },
+      "candidatePoint": {
+        "x": 268.823671731854,
+        "y": 202.56338269546794
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8997385304424215,
+        "runnerUpScore": 0.43738293635504516,
+        "ambiguityMargin": 0.4623555940873763,
+        "textureStd": 42.50157139505367,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.633333,
+      "requestedTime": 1.6500000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 265.8635962130054,
+        "y": 201.06308456043186
+      },
+      "candidatePoint": {
+        "x": 265.8635962130054,
+        "y": 201.06308456043186
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8806857854869058,
+        "runnerUpScore": 0.4262339128673479,
+        "ambiguityMargin": 0.4544518726195579,
+        "textureStd": 46.33267683316679,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.7,
+      "requestedTime": 1.7000000000000002,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 261.6452954633242,
+        "y": 199.14109416314858
+      },
+      "candidatePoint": {
+        "x": 261.6452954633242,
+        "y": 199.14109416314858
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.87948496643715,
+        "runnerUpScore": 0.4173938129784496,
+        "ambiguityMargin": 0.46209115345870044,
+        "textureStd": 44.53285316847253,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.733333,
+      "requestedTime": 1.75,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 259.7523208124921,
+        "y": 198.316434874576
+      },
+      "candidatePoint": {
+        "x": 259.7523208124921,
+        "y": 198.316434874576
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9016040068167283,
+        "runnerUpScore": 0.43117681672945446,
+        "ambiguityMargin": 0.4704271900872738,
+        "textureStd": 43.20735622774309,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.8,
+      "requestedTime": 1.8000000000000003,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 256.9944301790413,
+        "y": 196.88292812058782
+      },
+      "candidatePoint": {
+        "x": 256.9944301790413,
+        "y": 196.88292812058782
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8776974525050288,
+        "runnerUpScore": 0.43597848896149,
+        "ambiguityMargin": 0.44171896354353885,
+        "textureStd": 46.693693616106664,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.833333,
+      "requestedTime": 1.85,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 255.87152682394296,
+        "y": 196.4675447037018
+      },
+      "candidatePoint": {
+        "x": 255.87152682394296,
+        "y": 196.4675447037018
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9200368209139643,
+        "runnerUpScore": 0.4009872111541357,
+        "ambiguityMargin": 0.5190496097598286,
+        "textureStd": 41.77811914665455,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.9,
+      "requestedTime": 1.9000000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 254.88601358001782,
+        "y": 195.88789616924822
+      },
+      "candidatePoint": {
+        "x": 254.88601358001782,
+        "y": 195.88789616924822
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8853335469520873,
+        "runnerUpScore": 0.41623948224003393,
+        "ambiguityMargin": 0.4690940647120534,
+        "textureStd": 45.859962445059246,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 1.933333,
+      "requestedTime": 1.9500000000000002,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 254.87666202802995,
+        "y": 195.89932362253765
+      },
+      "candidatePoint": {
+        "x": 254.87666202802995,
+        "y": 195.89932362253765
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8809541954535806,
+        "runnerUpScore": 0.4352365846419472,
+        "ambiguityMargin": 0.44571761081163336,
+        "textureStd": 46.01575545946067,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2,
+      "requestedTime": 2,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 255.20952704210555,
+        "y": 195.95280027704374
+      },
+      "candidatePoint": {
+        "x": 255.20952704210555,
+        "y": 195.95280027704374
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.869024064470851,
+        "runnerUpScore": 0.4061737398745401,
+        "ambiguityMargin": 0.4628503245963109,
+        "textureStd": 46.12460762061834,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.033333,
+      "requestedTime": 2.0500000000000003,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 256.2160521979223,
+        "y": 196.6075817140257
+      },
+      "candidatePoint": {
+        "x": 256.2160521979223,
+        "y": 196.6075817140257
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9391306153640306,
+        "runnerUpScore": 0.4024151902786664,
+        "ambiguityMargin": 0.5367154250853643,
+        "textureStd": 40.259550498116866,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.1,
+      "requestedTime": 2.1,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 258.2254402674951,
+        "y": 197.6797715371954
+      },
+      "candidatePoint": {
+        "x": 258.2254402674951,
+        "y": 197.6797715371954
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9353739770813151,
+        "runnerUpScore": 0.42611572030234024,
+        "ambiguityMargin": 0.5092582567789748,
+        "textureStd": 41.930787684250355,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.133333,
+      "requestedTime": 2.1500000000000004,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 259.75961153758817,
+        "y": 198.3162694711564
+      },
+      "candidatePoint": {
+        "x": 259.75961153758817,
+        "y": 198.3162694711564
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9024432321747174,
+        "runnerUpScore": 0.4322254698660802,
+        "ambiguityMargin": 0.47021776230863727,
+        "textureStd": 43.27360881874798,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.2,
+      "requestedTime": 2.2,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 263.2992863041431,
+        "y": 199.93176794632134
+      },
+      "candidatePoint": {
+        "x": 263.2992863041431,
+        "y": 199.93176794632134
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8619297529834371,
+        "runnerUpScore": 0.40105452510862294,
+        "ambiguityMargin": 0.46087522787481416,
+        "textureStd": 44.929254740650265,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.233333,
+      "requestedTime": 2.25,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 265.7801291971651,
+        "y": 201.03994378426802
+      },
+      "candidatePoint": {
+        "x": 265.7801291971651,
+        "y": 201.03994378426802
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8768227354728274,
+        "runnerUpScore": 0.40544283891658933,
+        "ambiguityMargin": 0.4713798965562381,
+        "textureStd": 46.66448350974746,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.3,
+      "requestedTime": 2.3000000000000003,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 270.8014665113035,
+        "y": 203.49258918292085
+      },
+      "candidatePoint": {
+        "x": 270.8014665113035,
+        "y": 203.49258918292085
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9234612830713882,
+        "runnerUpScore": 0.44687163256597173,
+        "ambiguityMargin": 0.47658965050541646,
+        "textureStd": 42.100548709027315,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.333333,
+      "requestedTime": 2.35,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 273.9923080470816,
+        "y": 204.69406955186452
+      },
+      "candidatePoint": {
+        "x": 273.9923080470816,
+        "y": 204.69406955186452
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9417929815079651,
+        "runnerUpScore": 0.45582380666319783,
+        "ambiguityMargin": 0.48596917484476726,
+        "textureStd": 43.520347929923126,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.4,
+      "requestedTime": 2.4000000000000004,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 280.6806292100144,
+        "y": 207.15348279627133
+      },
+      "candidatePoint": {
+        "x": 280.6806292100144,
+        "y": 207.15348279627133
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8990292102482765,
+        "runnerUpScore": 0.46130686622075434,
+        "ambiguityMargin": 0.4377223440275222,
+        "textureStd": 44.538289944826076,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.433333,
+      "requestedTime": 2.45,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 283.96896733682746,
+        "y": 208.46854030777342
+      },
+      "candidatePoint": {
+        "x": 283.96896733682746,
+        "y": 208.46854030777342
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9149322619891521,
+        "runnerUpScore": 0.4372352600083272,
+        "ambiguityMargin": 0.47769700198082493,
+        "textureStd": 42.32889328783002,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.5,
+      "requestedTime": 2.5,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 291.93590203306013,
+        "y": 210.88471601816306
+      },
+      "candidatePoint": {
+        "x": 291.93590203306013,
+        "y": 210.88471601816306
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.896511302194867,
+        "runnerUpScore": 0.3955308956981192,
+        "ambiguityMargin": 0.5009804064967478,
+        "textureStd": 45.76693521872455,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.533333,
+      "requestedTime": 2.5500000000000003,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 295.95205980018187,
+        "y": 211.97773664523157
+      },
+      "candidatePoint": {
+        "x": 295.95205980018187,
+        "y": 211.97773664523157
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8758129758218305,
+        "runnerUpScore": 0.40725538032462705,
+        "ambiguityMargin": 0.46855759549720344,
+        "textureStd": 47.5290068836437,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.6,
+      "requestedTime": 2.6,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 304.8894312530956,
+        "y": 214.21489586296624
+      },
+      "candidatePoint": {
+        "x": 304.8894312530956,
+        "y": 214.21489586296624
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9016938188918835,
+        "runnerUpScore": 0.38065705419742907,
+        "ambiguityMargin": 0.5210367646944545,
+        "textureStd": 44.72528230770688,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.633333,
+      "requestedTime": 2.6500000000000004,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 309.154403556045,
+        "y": 215.1688795285324
+      },
+      "candidatePoint": {
+        "x": 309.154403556045,
+        "y": 215.1688795285324
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8742777731727144,
+        "runnerUpScore": 0.42065651580865826,
+        "ambiguityMargin": 0.4536212573640561,
+        "textureStd": 45.37616388342979,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.7,
+      "requestedTime": 2.7,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 318.80044961874216,
+        "y": 216.93531465225922
+      },
+      "candidatePoint": {
+        "x": 318.80044961874216,
+        "y": 216.93531465225922
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9106532091819776,
+        "runnerUpScore": 0.391023922698548,
+        "ambiguityMargin": 0.5196292864834295,
+        "textureStd": 46.49607119981142,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.733333,
+      "requestedTime": 2.75,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 323.6013125110289,
+        "y": 217.7585242252671
+      },
+      "candidatePoint": {
+        "x": 323.6013125110289,
+        "y": 217.7585242252671
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9561229269042317,
+        "runnerUpScore": 0.4407785951461172,
+        "ambiguityMargin": 0.5153443317581146,
+        "textureStd": 41.66638022303593,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.8,
+      "requestedTime": 2.8000000000000003,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 332.9839881808345,
+        "y": 218.44495426213496
+      },
+      "candidatePoint": {
+        "x": 332.9839881808345,
+        "y": 218.44495426213496
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9013884353379112,
+        "runnerUpScore": 0.40911602198256614,
+        "ambiguityMargin": 0.4922724133553451,
+        "textureStd": 42.57066982586474,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.833333,
+      "requestedTime": 2.85,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 338.02310606630186,
+        "y": 218.8551655416505
+      },
+      "candidatePoint": {
+        "x": 338.02310606630186,
+        "y": 218.8551655416505
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8913817874484558,
+        "runnerUpScore": 0.4402470045640296,
+        "ambiguityMargin": 0.45113478288442616,
+        "textureStd": 45.82863847877742,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.9,
+      "requestedTime": 2.9000000000000004,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 347.67257984743907,
+        "y": 219.0032593498632
+      },
+      "candidatePoint": {
+        "x": 347.67257984743907,
+        "y": 219.0032593498632
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9023344226662838,
+        "runnerUpScore": 0.40065682004868974,
+        "ambiguityMargin": 0.5016776026175941,
+        "textureStd": 46.82258269922284,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 2.933333,
+      "requestedTime": 2.95,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 352.49526627446085,
+        "y": 218.6703307383869
+      },
+      "candidatePoint": {
+        "x": 352.49526627446085,
+        "y": 218.6703307383869
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9510550383097862,
+        "runnerUpScore": 0.4009491237523267,
+        "ambiguityMargin": 0.5501059145574595,
+        "textureStd": 39.871312968991646,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3,
+      "requestedTime": 3,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 361.4105993336928,
+        "y": 217.93130962921893
+      },
+      "candidatePoint": {
+        "x": 361.4105993336928,
+        "y": 217.93130962921893
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8756098283386334,
+        "runnerUpScore": 0.3925992796991932,
+        "ambiguityMargin": 0.4830105486394402,
+        "textureStd": 44.87192786440832,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.033333,
+      "requestedTime": 3.0500000000000003,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 366.0004632696012,
+        "y": 217.63403001150138
+      },
+      "candidatePoint": {
+        "x": 366.0004632696012,
+        "y": 217.63403001150138
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9263426383705867,
+        "runnerUpScore": 0.4190647140640611,
+        "ambiguityMargin": 0.5072779243065256,
+        "textureStd": 44.26845403802909,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.1,
+      "requestedTime": 3.1,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 374.2832557372181,
+        "y": 216.0271444202532
+      },
+      "candidatePoint": {
+        "x": 374.2832557372181,
+        "y": 216.0271444202532
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8401822241786414,
+        "runnerUpScore": 0.42323640439841503,
+        "ambiguityMargin": 0.4169458197802264,
+        "textureStd": 45.81513835054914,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.133333,
+      "requestedTime": 3.1500000000000004,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 378.25092198621275,
+        "y": 215.1207221018151
+      },
+      "candidatePoint": {
+        "x": 378.25092198621275,
+        "y": 215.1207221018151
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8573506053187058,
+        "runnerUpScore": 0.4311499688667058,
+        "ambiguityMargin": 0.42620063645199996,
+        "textureStd": 44.62581970470374,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.2,
+      "requestedTime": 3.2,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 385.9177805538702,
+        "y": 213.36872289486448
+      },
+      "candidatePoint": {
+        "x": 385.9177805538702,
+        "y": 213.36872289486448
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8944631447017803,
+        "runnerUpScore": 0.3942220217573253,
+        "ambiguityMargin": 0.500241122944455,
+        "textureStd": 42.89720940970276,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.233333,
+      "requestedTime": 3.25,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 389.2263421835793,
+        "y": 212.11237275537943
+      },
+      "candidatePoint": {
+        "x": 389.2263421835793,
+        "y": 212.11237275537943
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8599971904389776,
+        "runnerUpScore": 0.4109748714877839,
+        "ambiguityMargin": 0.4490223189511937,
+        "textureStd": 45.87857575002913,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.3,
+      "requestedTime": 3.3000000000000003,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 395.8339931362406,
+        "y": 210.01000751781993
+      },
+      "candidatePoint": {
+        "x": 395.8339931362406,
+        "y": 210.01000751781993
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.857859718951092,
+        "runnerUpScore": 0.4514553636054391,
+        "ambiguityMargin": 0.40640435534565295,
+        "textureStd": 47.51520633073769,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.333333,
+      "requestedTime": 3.35,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 398.8444632912574,
+        "y": 208.92965419251698
+      },
+      "candidatePoint": {
+        "x": 398.8444632912574,
+        "y": 208.92965419251698
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8739280288016671,
+        "runnerUpScore": 0.4484181536858211,
+        "ambiguityMargin": 0.425509875115846,
+        "textureStd": 46.672653913463186,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.4,
+      "requestedTime": 3.4000000000000004,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 404.04311595167445,
+        "y": 206.485810545175
+      },
+      "candidatePoint": {
+        "x": 404.04311595167445,
+        "y": 206.485810545175
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8948088870684299,
+        "runnerUpScore": 0.39107605517317523,
+        "ambiguityMargin": 0.5037328318952546,
+        "textureStd": 44.50573782945585,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.433333,
+      "requestedTime": 3.45,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 406.6610147739503,
+        "y": 205.4218858675094
+      },
+      "candidatePoint": {
+        "x": 406.6610147739503,
+        "y": 205.4218858675094
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9144231673439643,
+        "runnerUpScore": 0.4242995512922292,
+        "ambiguityMargin": 0.49012361605173516,
+        "textureStd": 42.65023609210915,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.5,
+      "requestedTime": 3.5000000000000004,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 410.8533876429609,
+        "y": 203.00192251276349
+      },
+      "candidatePoint": {
+        "x": 410.8533876429609,
+        "y": 203.00192251276349
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8540982077747917,
+        "runnerUpScore": 0.4264516940274106,
+        "ambiguityMargin": 0.4276465137473811,
+        "textureStd": 48.07093876532256,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.533333,
+      "requestedTime": 3.5500000000000003,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 412.7803647020838,
+        "y": 202.06962277082562
+      },
+      "candidatePoint": {
+        "x": 412.7803647020838,
+        "y": 202.06962277082562
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8778774005572041,
+        "runnerUpScore": 0.4149559678834828,
+        "ambiguityMargin": 0.46292143267372127,
+        "textureStd": 46.41742199989567,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.6,
+      "requestedTime": 3.6,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 415.86180187566055,
+        "y": 199.99241810160282
+      },
+      "candidatePoint": {
+        "x": 415.86180187566055,
+        "y": 199.99241810160282
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8422586022118935,
+        "runnerUpScore": 0.4282980089893677,
+        "ambiguityMargin": 0.4139605932225258,
+        "textureStd": 48.05687635435207,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.633333,
+      "requestedTime": 3.6500000000000004,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 417.0584568360327,
+        "y": 199.122477246171
+      },
+      "candidatePoint": {
+        "x": 417.0584568360327,
+        "y": 199.122477246171
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8459527186787723,
+        "runnerUpScore": 0.4327605718232632,
+        "ambiguityMargin": 0.4131921468555091,
+        "textureStd": 47.77132581631123,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.7,
+      "requestedTime": 3.7,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 419.3110335535867,
+        "y": 197.71741643566173
+      },
+      "candidatePoint": {
+        "x": 419.3110335535867,
+        "y": 197.71741643566173
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8854782509128264,
+        "runnerUpScore": 0.45254439634406995,
+        "ambiguityMargin": 0.43293385456875644,
+        "textureStd": 44.564634414418315,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.733333,
+      "requestedTime": 3.7500000000000004,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 420.05028870979476,
+        "y": 197.06593267578387
+      },
+      "candidatePoint": {
+        "x": 420.05028870979476,
+        "y": 197.06593267578387
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8538167310245359,
+        "runnerUpScore": 0.4264599578479615,
+        "ambiguityMargin": 0.42735677317657444,
+        "textureStd": 49.50299670792786,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.8,
+      "requestedTime": 3.8000000000000003,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 421.13656066632313,
+        "y": 196.1828496185924
+      },
+      "candidatePoint": {
+        "x": 421.13656066632313,
+        "y": 196.1828496185924
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8426513639217212,
+        "runnerUpScore": 0.390573223982726,
+        "ambiguityMargin": 0.45207813993899526,
+        "textureStd": 46.27140979578101,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.833333,
+      "requestedTime": 3.85,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 421.7611326785178,
+        "y": 196.10268886467307
+      },
+      "candidatePoint": {
+        "x": 421.7611326785178,
+        "y": 196.10268886467307
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8800487764369672,
+        "runnerUpScore": 0.41136182569896274,
+        "ambiguityMargin": 0.4686869507380045,
+        "textureStd": 45.57557411942539,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.9,
+      "requestedTime": 3.9000000000000004,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 421.9613817810925,
+        "y": 195.89194144819032
+      },
+      "candidatePoint": {
+        "x": 421.9613817810925,
+        "y": 195.89194144819032
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8476729706232833,
+        "runnerUpScore": 0.4198180619463231,
+        "ambiguityMargin": 0.4278549086769602,
+        "textureStd": 49.06305196144581,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 3.933333,
+      "requestedTime": 3.95,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 421.89669760380605,
+        "y": 195.89058607259244
+      },
+      "candidatePoint": {
+        "x": 421.89669760380605,
+        "y": 195.89058607259244
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8601066481025452,
+        "runnerUpScore": 0.4058758576118136,
+        "ambiguityMargin": 0.4542307904907316,
+        "textureStd": 47.31868155898358,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4,
+      "requestedTime": 4,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 421.072607984466,
+        "y": 196.29616974939273
+      },
+      "candidatePoint": {
+        "x": 421.072607984466,
+        "y": 196.29616974939273
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8511851448732156,
+        "runnerUpScore": 0.4056032439604814,
+        "ambiguityMargin": 0.4455819009127342,
+        "textureStd": 45.92120424229162,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.033333,
+      "requestedTime": 4.050000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 420.8342040467653,
+        "y": 196.89679995802226
+      },
+      "candidatePoint": {
+        "x": 420.8342040467653,
+        "y": 196.89679995802226
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8428587679116872,
+        "runnerUpScore": 0.41745992948464916,
+        "ambiguityMargin": 0.4253988384270381,
+        "textureStd": 47.41318093697247,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.066667,
+      "requestedTime": 4.1,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 419.83207544176184,
+        "y": 197.2531602766261
+      },
+      "candidatePoint": {
+        "x": 419.83207544176184,
+        "y": 197.2531602766261
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8061163627516033,
+        "runnerUpScore": 0.3891934266716707,
+        "ambiguityMargin": 0.4169229360799326,
+        "textureStd": 45.7716268554187,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.133333,
+      "requestedTime": 4.15,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 418.22212640429365,
+        "y": 198.56801185081335
+      },
+      "candidatePoint": {
+        "x": 418.22212640429365,
+        "y": 198.56801185081335
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8781169551174249,
+        "runnerUpScore": 0.4074025650162378,
+        "ambiguityMargin": 0.47071439010118715,
+        "textureStd": 42.862454517640444,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.2,
+      "requestedTime": 4.2,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 415.7472588615072,
+        "y": 200.172368038863
+      },
+      "candidatePoint": {
+        "x": 415.7472588615072,
+        "y": 200.172368038863
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8793796019519879,
+        "runnerUpScore": 0.4221131374269781,
+        "ambiguityMargin": 0.45726646452500985,
+        "textureStd": 45.7110387909741,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.233333,
+      "requestedTime": 4.25,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 414.21213219128117,
+        "y": 200.89537074171866
+      },
+      "candidatePoint": {
+        "x": 414.21213219128117,
+        "y": 200.89537074171866
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8813055373422939,
+        "runnerUpScore": 0.42464189076577374,
+        "ambiguityMargin": 0.45666364657652014,
+        "textureStd": 45.813109297979544,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.3,
+      "requestedTime": 4.300000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 410.85933918439525,
+        "y": 202.99792128191208
+      },
+      "candidatePoint": {
+        "x": 410.85933918439525,
+        "y": 202.99792128191208
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8476290755380377,
+        "runnerUpScore": 0.4304527458530622,
+        "ambiguityMargin": 0.4171763296849755,
+        "textureStd": 48.38450188873177,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.333333,
+      "requestedTime": 4.35,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 408.8690739278352,
+        "y": 203.98457273993967
+      },
+      "candidatePoint": {
+        "x": 408.8690739278352,
+        "y": 203.98457273993967
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8421939882130798,
+        "runnerUpScore": 0.44043543980335287,
+        "ambiguityMargin": 0.4017585484097269,
+        "textureStd": 48.47132387558838,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.4,
+      "requestedTime": 4.4,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 404.6521599478831,
+        "y": 206.407373531935
+      },
+      "candidatePoint": {
+        "x": 404.6521599478831,
+        "y": 206.407373531935
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9144858976356117,
+        "runnerUpScore": 0.42358783793279614,
+        "ambiguityMargin": 0.4908980597028156,
+        "textureStd": 42.324179303888805,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.433333,
+      "requestedTime": 4.45,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 402.0981683514626,
+        "y": 207.26826893520652
+      },
+      "candidatePoint": {
+        "x": 402.0981683514626,
+        "y": 207.26826893520652
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8653599715996436,
+        "runnerUpScore": 0.3959054598091751,
+        "ambiguityMargin": 0.46945451179046854,
+        "textureStd": 45.08963686250646,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.5,
+      "requestedTime": 4.5,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 397.18619090323915,
+        "y": 209.66749712691094
+      },
+      "candidatePoint": {
+        "x": 397.18619090323915,
+        "y": 209.66749712691094
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8968765847556179,
+        "runnerUpScore": 0.4013225534672146,
+        "ambiguityMargin": 0.4955540312884033,
+        "textureStd": 43.30720211741043,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.533333,
+      "requestedTime": 4.550000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 394.25896298083484,
+        "y": 210.63870598109972
+      },
+      "candidatePoint": {
+        "x": 394.25896298083484,
+        "y": 210.63870598109972
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8984698532841544,
+        "runnerUpScore": 0.39784821110812063,
+        "ambiguityMargin": 0.5006216421760338,
+        "textureStd": 42.272758126077534,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.6,
+      "requestedTime": 4.6,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 387.9703566667314,
+        "y": 212.8791760168377
+      },
+      "candidatePoint": {
+        "x": 387.9703566667314,
+        "y": 212.8791760168377
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8836330981567914,
+        "runnerUpScore": 0.41068306923002956,
+        "ambiguityMargin": 0.4729500289267618,
+        "textureStd": 46.805656763014696,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.633333,
+      "requestedTime": 4.65,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 384.74099534719795,
+        "y": 213.86479746662044
+      },
+      "candidatePoint": {
+        "x": 384.74099534719795,
+        "y": 213.86479746662044
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9337691060806736,
+        "runnerUpScore": 0.4005587756666352,
+        "ambiguityMargin": 0.5332103304140384,
+        "textureStd": 45.35341292495162,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.7,
+      "requestedTime": 4.7,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 377.9829459275883,
+        "y": 215.5644335295453
+      },
+      "candidatePoint": {
+        "x": 377.9829459275883,
+        "y": 215.5644335295453
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9168189588476535,
+        "runnerUpScore": 0.4182312906737705,
+        "ambiguityMargin": 0.498587668173883,
+        "textureStd": 43.418512445916114,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.733333,
+      "requestedTime": 4.75,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 374.17980716253453,
+        "y": 216.08308367987067
+      },
+      "candidatePoint": {
+        "x": 374.17980716253453,
+        "y": 216.08308367987067
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8580551946363961,
+        "runnerUpScore": 0.4388166375013041,
+        "ambiguityMargin": 0.419238557135092,
+        "textureStd": 45.83175560036615,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.8,
+      "requestedTime": 4.800000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 366.841639106386,
+        "y": 217.57364027947744
+      },
+      "candidatePoint": {
+        "x": 366.841639106386,
+        "y": 217.57364027947744
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9336100439743047,
+        "runnerUpScore": 0.41645125938960353,
+        "ambiguityMargin": 0.5171587845847012,
+        "textureStd": 42.80629918850149,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.833333,
+      "requestedTime": 4.85,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 362.85128993246195,
+        "y": 217.9413053236464
+      },
+      "candidatePoint": {
+        "x": 362.85128993246195,
+        "y": 217.9413053236464
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9045124270157298,
+        "runnerUpScore": 0.4274171589189428,
+        "ambiguityMargin": 0.477095268096787,
+        "textureStd": 47.31453530800019,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.9,
+      "requestedTime": 4.9,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 355.1893564099897,
+        "y": 218.5800728463845
+      },
+      "candidatePoint": {
+        "x": 355.1893564099897,
+        "y": 218.5800728463845
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9257939236518794,
+        "runnerUpScore": 0.43539517776424846,
+        "ambiguityMargin": 0.49039874588763094,
+        "textureStd": 42.573817245654105,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 4.933333,
+      "requestedTime": 4.95,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 350.9821608450977,
+        "y": 218.87050678343005
+      },
+      "candidatePoint": {
+        "x": 350.9821608450977,
+        "y": 218.87050678343005
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.89556998583643,
+        "runnerUpScore": 0.4252921969799935,
+        "ambiguityMargin": 0.4702777888564365,
+        "textureStd": 46.79009160204284,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5,
+      "requestedTime": 5,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 343.01379592321257,
+        "y": 218.8717039132142
+      },
+      "candidatePoint": {
+        "x": 343.01379592321257,
+        "y": 218.8717039132142
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.892283727681567,
+        "runnerUpScore": 0.42392188849738716,
+        "ambiguityMargin": 0.4683618391841799,
+        "textureStd": 46.82263390946494,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.033333,
+      "requestedTime": 5.050000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 339.1405927909001,
+        "y": 218.837782672129
+      },
+      "candidatePoint": {
+        "x": 339.1405927909001,
+        "y": 218.837782672129
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8916256918258164,
+        "runnerUpScore": 0.40918658655603035,
+        "ambiguityMargin": 0.48243910526978606,
+        "textureStd": 44.00371048612947,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.1,
+      "requestedTime": 5.1,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 331.23996662584267,
+        "y": 218.17803063105407
+      },
+      "candidatePoint": {
+        "x": 331.23996662584267,
+        "y": 218.17803063105407
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8783408551057681,
+        "runnerUpScore": 0.4175344807062867,
+        "ambiguityMargin": 0.4608063743994814,
+        "textureStd": 43.5706372117487,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.133333,
+      "requestedTime": 5.15,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 327.35432798936415,
+        "y": 217.9289450246505
+      },
+      "candidatePoint": {
+        "x": 327.35432798936415,
+        "y": 217.9289450246505
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8725656627798606,
+        "runnerUpScore": 0.43024805979753095,
+        "ambiguityMargin": 0.44231760298232964,
+        "textureStd": 45.353260206960975,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.2,
+      "requestedTime": 5.200000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 319.98965896449374,
+        "y": 217.00892090351334
+      },
+      "candidatePoint": {
+        "x": 319.98965896449374,
+        "y": 217.00892090351334
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8541675216343331,
+        "runnerUpScore": 0.41977702863726163,
+        "ambiguityMargin": 0.43439049299707144,
+        "textureStd": 49.01037197614178,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.233333,
+      "requestedTime": 5.25,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 316.7628927171506,
+        "y": 216.75446594559077
+      },
+      "candidatePoint": {
+        "x": 316.7628927171506,
+        "y": 216.75446594559077
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9814425159584156,
+        "runnerUpScore": 0.4326889550068027,
+        "ambiguityMargin": 0.5487535609516129,
+        "textureStd": 42.41617837496353,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.3,
+      "requestedTime": 5.300000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 309.85743943954515,
+        "y": 215.47515430778864
+      },
+      "candidatePoint": {
+        "x": 309.85743943954515,
+        "y": 215.47515430778864
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9332433088943429,
+        "runnerUpScore": 0.4037137547432873,
+        "ambiguityMargin": 0.5295295541510556,
+        "textureStd": 42.70136585922593,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.333333,
+      "requestedTime": 5.35,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 306.8884790467068,
+        "y": 214.76812368535278
+      },
+      "candidatePoint": {
+        "x": 306.8884790467068,
+        "y": 214.76812368535278
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9426751451308721,
+        "runnerUpScore": 0.4212540458698518,
+        "ambiguityMargin": 0.5214210992610203,
+        "textureStd": 43.3409237457356,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.4,
+      "requestedTime": 5.4,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 300.8946688833711,
+        "y": 213.3658153049519
+      },
+      "candidatePoint": {
+        "x": 300.8946688833711,
+        "y": 213.3658153049519
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9188989168578983,
+        "runnerUpScore": 0.4012916859652813,
+        "ambiguityMargin": 0.517607230892617,
+        "textureStd": 43.62444582366335,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.433333,
+      "requestedTime": 5.450000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 298.3397602209016,
+        "y": 212.68495069143205
+      },
+      "candidatePoint": {
+        "x": 298.3397602209016,
+        "y": 212.68495069143205
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9582628716880791,
+        "runnerUpScore": 0.4229576954082965,
+        "ambiguityMargin": 0.5353051762797827,
+        "textureStd": 40.637256583056356,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.5,
+      "requestedTime": 5.5,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 293.2955084789799,
+        "y": 211.34559087071125
+      },
+      "candidatePoint": {
+        "x": 293.2955084789799,
+        "y": 211.34559087071125
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8966788527350166,
+        "runnerUpScore": 0.41322496027587813,
+        "ambiguityMargin": 0.48345389245913845,
+        "textureStd": 42.610837803414796,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.533333,
+      "requestedTime": 5.550000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 291.22404263033803,
+        "y": 210.84869892663852
+      },
+      "candidatePoint": {
+        "x": 291.22404263033803,
+        "y": 210.84869892663852
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8991737619883611,
+        "runnerUpScore": 0.4287208610679091,
+        "ambiguityMargin": 0.470452900920452,
+        "textureStd": 42.73266806456736,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.6,
+      "requestedTime": 5.6,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 287.84040480920834,
+        "y": 209.73323127670525
+      },
+      "candidatePoint": {
+        "x": 287.84040480920834,
+        "y": 209.73323127670525
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9533811984351096,
+        "runnerUpScore": 0.4275025905941117,
+        "ambiguityMargin": 0.5258786078409978,
+        "textureStd": 42.608105293059765,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.633333,
+      "requestedTime": 5.65,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 286.00990970899187,
+        "y": 208.98922530137318
+      },
+      "candidatePoint": {
+        "x": 286.00990970899187,
+        "y": 208.98922530137318
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8673047965380436,
+        "runnerUpScore": 0.4318706297804593,
+        "ambiguityMargin": 0.4354341667575843,
+        "textureStd": 48.53764486652769,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.7,
+      "requestedTime": 5.700000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 283.8083264485855,
+        "y": 208.16885991402793
+      },
+      "candidatePoint": {
+        "x": 283.8083264485855,
+        "y": 208.16885991402793
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.886865240529097,
+        "runnerUpScore": 0.4289888626842347,
+        "ambiguityMargin": 0.4578763778448623,
+        "textureStd": 44.77857758665758,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.733333,
+      "requestedTime": 5.75,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 282.8255685054425,
+        "y": 207.94494237520914
+      },
+      "candidatePoint": {
+        "x": 282.8255685054425,
+        "y": 207.94494237520914
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8941731193649736,
+        "runnerUpScore": 0.4550419259189777,
+        "ambiguityMargin": 0.4391311934459959,
+        "textureStd": 46.88119456824095,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.8,
+      "requestedTime": 5.800000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 281.8449388842287,
+        "y": 207.69553392807882
+      },
+      "candidatePoint": {
+        "x": 281.8449388842287,
+        "y": 207.69553392807882
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9390815831172581,
+        "runnerUpScore": 0.4482953404323073,
+        "ambiguityMargin": 0.4907862426849508,
+        "textureStd": 42.86995589311035,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.833333,
+      "requestedTime": 5.85,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 281.42316445425666,
+        "y": 207.51430272082112
+      },
+      "candidatePoint": {
+        "x": 281.42316445425666,
+        "y": 207.51430272082112
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9179291996297902,
+        "runnerUpScore": 0.45239059518668273,
+        "ambiguityMargin": 0.4655386044431075,
+        "textureStd": 40.620165359346274,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.9,
+      "requestedTime": 5.9,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 281.58639149978995,
+        "y": 207.7146294937996
+      },
+      "candidatePoint": {
+        "x": 281.58639149978995,
+        "y": 207.7146294937996
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9377379509616207,
+        "runnerUpScore": 0.45392808842340415,
+        "ambiguityMargin": 0.48380986253821656,
+        "textureStd": 40.91672827122983,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 5.933333,
+      "requestedTime": 5.950000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 281.9967404461265,
+        "y": 207.68076026259996
+      },
+      "candidatePoint": {
+        "x": 281.9967404461265,
+        "y": 207.68076026259996
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9446651156621555,
+        "runnerUpScore": 0.4478135882059404,
+        "ambiguityMargin": 0.4968515274562151,
+        "textureStd": 43.19355986601351,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6,
+      "requestedTime": 6,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 283.01161347708955,
+        "y": 207.9777846774014
+      },
+      "candidatePoint": {
+        "x": 283.01161347708955,
+        "y": 207.9777846774014
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.873430196428142,
+        "runnerUpScore": 0.441803024893728,
+        "ambiguityMargin": 0.431627171534414,
+        "textureStd": 48.44371122522154,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.033333,
+      "requestedTime": 6.050000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 283.96488380734587,
+        "y": 208.46099736855277
+      },
+      "candidatePoint": {
+        "x": 283.96488380734587,
+        "y": 208.46099736855277
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9150755061840309,
+        "runnerUpScore": 0.43790147188952855,
+        "ambiguityMargin": 0.47717403429450234,
+        "textureStd": 42.28907201091584,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.1,
+      "requestedTime": 6.1,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 286.74267129542375,
+        "y": 209.19038237942996
+      },
+      "candidatePoint": {
+        "x": 286.74267129542375,
+        "y": 209.19038237942996
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8948390115399529,
+        "runnerUpScore": 0.4151818299761915,
+        "ambiguityMargin": 0.4796571815637614,
+        "textureStd": 44.75737188828073,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.133333,
+      "requestedTime": 6.15,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 288.12564959488407,
+        "y": 209.86706515606173
+      },
+      "candidatePoint": {
+        "x": 288.12564959488407,
+        "y": 209.86706515606173
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8930933070952466,
+        "runnerUpScore": 0.42861838181724227,
+        "ambiguityMargin": 0.4644749252780043,
+        "textureStd": 44.112016974748954,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.2,
+      "requestedTime": 6.200000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 291.90578794242515,
+        "y": 210.8791361884703
+      },
+      "candidatePoint": {
+        "x": 291.90578794242515,
+        "y": 210.8791361884703
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8859313821598617,
+        "runnerUpScore": 0.4183570895056195,
+        "ambiguityMargin": 0.46757429265424216,
+        "textureStd": 45.637380336420605,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.233333,
+      "requestedTime": 6.25,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 294.0604906748425,
+        "y": 211.63310842472023
+      },
+      "candidatePoint": {
+        "x": 294.0604906748425,
+        "y": 211.63310842472023
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.948310668556596,
+        "runnerUpScore": 0.42574819519861157,
+        "ambiguityMargin": 0.5225624733579843,
+        "textureStd": 42.37906261983024,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.3,
+      "requestedTime": 6.300000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 298.6716274673612,
+        "y": 212.95661869329078
+      },
+      "candidatePoint": {
+        "x": 298.6716274673612,
+        "y": 212.95661869329078
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9074020112434489,
+        "runnerUpScore": 0.3964371941393565,
+        "ambiguityMargin": 0.5109648171040924,
+        "textureStd": 45.509944841614455,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.333333,
+      "requestedTime": 6.35,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 300.9612992362539,
+        "y": 213.48566826811668
+      },
+      "candidatePoint": {
+        "x": 300.9612992362539,
+        "y": 213.48566826811668
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9137057209449575,
+        "runnerUpScore": 0.41854845933254475,
+        "ambiguityMargin": 0.49515726161241275,
+        "textureStd": 42.10732034832305,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.4,
+      "requestedTime": 6.4,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 306.77905592222476,
+        "y": 214.75173193705564
+      },
+      "candidatePoint": {
+        "x": 306.77905592222476,
+        "y": 214.75173193705564
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9789014099809767,
+        "runnerUpScore": 0.42967588380364374,
+        "ambiguityMargin": 0.549225526177333,
+        "textureStd": 42.87422637725596,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.433333,
+      "requestedTime": 6.450000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 309.69665068170457,
+        "y": 215.3196641046653
+      },
+      "candidatePoint": {
+        "x": 309.69665068170457,
+        "y": 215.3196641046653
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9215841566894692,
+        "runnerUpScore": 0.4190340778892112,
+        "ambiguityMargin": 0.502550078800258,
+        "textureStd": 42.956199243615096,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.5,
+      "requestedTime": 6.5,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 315.94986534318167,
+        "y": 216.57451977488859
+      },
+      "candidatePoint": {
+        "x": 315.94986534318167,
+        "y": 216.57451977488859
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9303501658164897,
+        "runnerUpScore": 0.3996413978528581,
+        "ambiguityMargin": 0.5307087679636315,
+        "textureStd": 43.07220685008712,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.533333,
+      "requestedTime": 6.550000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 318.8962596604,
+        "y": 216.91370389381913
+      },
+      "candidatePoint": {
+        "x": 318.8962596604,
+        "y": 216.91370389381913
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9099606177756607,
+        "runnerUpScore": 0.41552422659983873,
+        "ambiguityMargin": 0.494436391175822,
+        "textureStd": 46.11790123628524,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.6,
+      "requestedTime": 6.6,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 325.7696106415564,
+        "y": 217.9307529873815
+      },
+      "candidatePoint": {
+        "x": 325.7696106415564,
+        "y": 217.9307529873815
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9196385378456214,
+        "runnerUpScore": 0.4065250612935961,
+        "ambiguityMargin": 0.5131134765520253,
+        "textureStd": 45.44181564646716,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.633333,
+      "requestedTime": 6.65,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 329.0465105350367,
+        "y": 217.98694630646972
+      },
+      "candidatePoint": {
+        "x": 329.0465105350367,
+        "y": 217.98694630646972
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.847556535295117,
+        "runnerUpScore": 0.4055462965262021,
+        "ambiguityMargin": 0.4420102387689149,
+        "textureStd": 48.82369142287288,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.7,
+      "requestedTime": 6.700000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 336.1560626401365,
+        "y": 218.7014481631164
+      },
+      "candidatePoint": {
+        "x": 336.1560626401365,
+        "y": 218.7014481631164
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9497640365725617,
+        "runnerUpScore": 0.4132702061303626,
+        "ambiguityMargin": 0.5364938304421991,
+        "textureStd": 42.582609934436654,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.733333,
+      "requestedTime": 6.75,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 339.35038661483776,
+        "y": 218.83394645577113
+      },
+      "candidatePoint": {
+        "x": 339.35038661483776,
+        "y": 218.83394645577113
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9128809405983314,
+        "runnerUpScore": 0.4194658041372754,
+        "ambiguityMargin": 0.49341513646105595,
+        "textureStd": 43.8271985634613,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.8,
+      "requestedTime": 6.800000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 346.3397856042959,
+        "y": 218.83513770508748
+      },
+      "candidatePoint": {
+        "x": 346.3397856042959,
+        "y": 218.83513770508748
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9142277420920603,
+        "runnerUpScore": 0.4115627586763646,
+        "ambiguityMargin": 0.5026649834156957,
+        "textureStd": 44.300508874406134,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.833333,
+      "requestedTime": 6.85,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 349.945495057798,
+        "y": 218.89070787255034
+      },
+      "candidatePoint": {
+        "x": 349.945495057798,
+        "y": 218.89070787255034
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9053942200127546,
+        "runnerUpScore": 0.43337228954187296,
+        "ambiguityMargin": 0.47202193047088165,
+        "textureStd": 46.96966060922323,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.9,
+      "requestedTime": 6.9,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 356.9782696924314,
+        "y": 218.61628027948672
+      },
+      "candidatePoint": {
+        "x": 356.9782696924314,
+        "y": 218.61628027948672
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9445899227738485,
+        "runnerUpScore": 0.4152107093368458,
+        "ambiguityMargin": 0.5293792134370027,
+        "textureStd": 43.31250613976278,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 6.933333,
+      "requestedTime": 6.950000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 360.02605939708315,
+        "y": 218.14020016427375
+      },
+      "candidatePoint": {
+        "x": 360.02605939708315,
+        "y": 218.14020016427375
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8586688281289692,
+        "runnerUpScore": 0.4352517201805383,
+        "ambiguityMargin": 0.42341710794843085,
+        "textureStd": 47.022021214524365,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7,
+      "requestedTime": 7,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 366.705874092857,
+        "y": 217.68435759593635
+      },
+      "candidatePoint": {
+        "x": 366.705874092857,
+        "y": 217.68435759593635
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9341393466176048,
+        "runnerUpScore": 0.4328948379868933,
+        "ambiguityMargin": 0.5012445086307115,
+        "textureStd": 41.42140734124524,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.033333,
+      "requestedTime": 7.050000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 369.64127774407194,
+        "y": 217.00054727209675
+      },
+      "candidatePoint": {
+        "x": 369.64127774407194,
+        "y": 217.00054727209675
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9056599519538734,
+        "runnerUpScore": 0.4230162882860257,
+        "ambiguityMargin": 0.48264366366784767,
+        "textureStd": 46.882538805647435,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.1,
+      "requestedTime": 7.1,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 375.3528841385726,
+        "y": 215.84685206634393
+      },
+      "candidatePoint": {
+        "x": 375.3528841385726,
+        "y": 215.84685206634393
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9118527371240326,
+        "runnerUpScore": 0.42679293445662625,
+        "ambiguityMargin": 0.48505980266740634,
+        "textureStd": 44.40044896639157,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.133333,
+      "requestedTime": 7.15,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 378.229670843155,
+        "y": 215.19727886211325
+      },
+      "candidatePoint": {
+        "x": 378.229670843155,
+        "y": 215.19727886211325
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8717949470571923,
+        "runnerUpScore": 0.4222494855948957,
+        "ambiguityMargin": 0.44954546146229657,
+        "textureStd": 43.28358363732164,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.2,
+      "requestedTime": 7.200000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 383.24407280386544,
+        "y": 213.88606313978354
+      },
+      "candidatePoint": {
+        "x": 383.24407280386544,
+        "y": 213.88606313978354
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8912341640354675,
+        "runnerUpScore": 0.45236551317954016,
+        "ambiguityMargin": 0.43886865085592736,
+        "textureStd": 45.269898439557274,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.233333,
+      "requestedTime": 7.25,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 385.75107168152874,
+        "y": 213.4805215468153
+      },
+      "candidatePoint": {
+        "x": 385.75107168152874,
+        "y": 213.4805215468153
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9110475882235792,
+        "runnerUpScore": 0.44022035463661763,
+        "ambiguityMargin": 0.4708272335869616,
+        "textureStd": 42.2221572407438,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.3,
+      "requestedTime": 7.300000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 390.2386446450201,
+        "y": 211.8435390769949
+      },
+      "candidatePoint": {
+        "x": 390.2386446450201,
+        "y": 211.8435390769949
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8936636803515251,
+        "runnerUpScore": 0.41255328402772257,
+        "ambiguityMargin": 0.48111039632380254,
+        "textureStd": 44.25786361428878,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.333333,
+      "requestedTime": 7.35,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 392.18798190061017,
+        "y": 211.21072933500446
+      },
+      "candidatePoint": {
+        "x": 392.18798190061017,
+        "y": 211.21072933500446
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.870922710707986,
+        "runnerUpScore": 0.4196513420249307,
+        "ambiguityMargin": 0.4512713686830553,
+        "textureStd": 43.32175793519296,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.4,
+      "requestedTime": 7.4,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 396.00254680710697,
+        "y": 209.91016089138256
+      },
+      "candidatePoint": {
+        "x": 396.00254680710697,
+        "y": 209.91016089138256
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8690923340989749,
+        "runnerUpScore": 0.4484010137844945,
+        "ambiguityMargin": 0.4206913203144804,
+        "textureStd": 48.52693733783778,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.433333,
+      "requestedTime": 7.450000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 397.3643588988425,
+        "y": 209.22238145330493
+      },
+      "candidatePoint": {
+        "x": 397.3643588988425,
+        "y": 209.22238145330493
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8734443375482098,
+        "runnerUpScore": 0.42740291572320965,
+        "ambiguityMargin": 0.4460414218250002,
+        "textureStd": 44.15622209880987,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.5,
+      "requestedTime": 7.5,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 400.2543987178815,
+        "y": 208.0438233659943
+      },
+      "candidatePoint": {
+        "x": 400.2543987178815,
+        "y": 208.0438233659943
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8455508097406607,
+        "runnerUpScore": 0.4224799454531089,
+        "ambiguityMargin": 0.42307086428755175,
+        "textureStd": 47.14268514025967,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.533333,
+      "requestedTime": 7.550000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 401.74552886337324,
+        "y": 207.80085021611993
+      },
+      "candidatePoint": {
+        "x": 401.74552886337324,
+        "y": 207.80085021611993
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9024092393381697,
+        "runnerUpScore": 0.39013469152068075,
+        "ambiguityMargin": 0.512274547817489,
+        "textureStd": 45.13802295951834,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.6,
+      "requestedTime": 7.6,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 403.6849739880316,
+        "y": 206.97586182697054
+      },
+      "candidatePoint": {
+        "x": 403.6849739880316,
+        "y": 206.97586182697054
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8969385402809708,
+        "runnerUpScore": 0.41580336298200327,
+        "ambiguityMargin": 0.4811351772989675,
+        "textureStd": 46.80729742044228,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.633333,
+      "requestedTime": 7.65,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 404.2308227932436,
+        "y": 206.23373931415654
+      },
+      "candidatePoint": {
+        "x": 404.2308227932436,
+        "y": 206.23373931415654
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8619803218786442,
+        "runnerUpScore": 0.4134495720136624,
+        "ambiguityMargin": 0.44853074986498176,
+        "textureStd": 44.207543025312276,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.7,
+      "requestedTime": 7.700000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 405.71321522730346,
+        "y": 205.96904441966174
+      },
+      "candidatePoint": {
+        "x": 405.71321522730346,
+        "y": 205.96904441966174
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.886701980139443,
+        "runnerUpScore": 0.4191920580438913,
+        "ambiguityMargin": 0.4675099220955517,
+        "textureStd": 47.130509452285985,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.733333,
+      "requestedTime": 7.75,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 406.1639065391199,
+        "y": 205.52691857957714
+      },
+      "candidatePoint": {
+        "x": 406.1639065391199,
+        "y": 205.52691857957714
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8885927696642889,
+        "runnerUpScore": 0.4037591450489844,
+        "ambiguityMargin": 0.4848336246153045,
+        "textureStd": 43.64573412973719,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.8,
+      "requestedTime": 7.800000000000001,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 406.25955361873133,
+        "y": 205.21538801318965
+      },
+      "candidatePoint": {
+        "x": 406.25955361873133,
+        "y": 205.21538801318965
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8587326633795666,
+        "runnerUpScore": 0.41397274664517403,
+        "ambiguityMargin": 0.4447599167343925,
+        "textureStd": 44.227287666232954,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.833333,
+      "requestedTime": 7.85,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 406.25962573768777,
+        "y": 205.21548351685502
+      },
+      "candidatePoint": {
+        "x": 406.25962573768777,
+        "y": 205.21548351685502
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8586768889302416,
+        "runnerUpScore": 0.41389222874502457,
+        "ambiguityMargin": 0.44478466018521706,
+        "textureStd": 44.22666313662371,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.9,
+      "requestedTime": 7.9,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 406.3194374445108,
+        "y": 205.50105495356144
+      },
+      "candidatePoint": {
+        "x": 406.3194374445108,
+        "y": 205.50105495356144
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.9128470200656132,
+        "runnerUpScore": 0.3980393219949771,
+        "ambiguityMargin": 0.5148076980706362,
+        "textureStd": 42.27924358112053,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    },
+    {
+      "time": 7.933333,
+      "requestedTime": 7.95,
+      "timeBasis": "decoded-media-time",
+      "point": {
+        "x": 406.02100145021996,
+        "y": 205.73004571477205
+      },
+      "candidatePoint": {
+        "x": 406.02100145021996,
+        "y": 205.73004571477205
+      },
+      "status": "accepted",
+      "reason": null,
+      "quality": {
+        "score": 0.8635549566632246,
+        "runnerUpScore": 0.4061719953060423,
+        "ambiguityMargin": 0.45738296135718226,
+        "textureStd": 45.39705415312625,
+        "searchClipped": false
+      },
+      "tracker": {
+        "version": "worldlaw.patch-ncc/v1",
+        "searchRadius": 24,
+        "exclusionRadius": 3,
+        "subpixel": true,
+        "appearance": "luminance",
+        "sampleStep": 1,
+        "minScore": 0.75,
+        "minMargin": 0.06,
+        "minTextureStd": 5,
+        "patchRadius": 7,
+        "anchorTime": 1.1,
+        "anchorPoint": {
+          "x": 334.6581782138513,
+          "y": 218.63783473778136
+        }
+      }
+    }
+  ],
+  "revisions": [
+    {
+      "type": "calibration",
+      "value": {
+        "pivot": {
+          "x": 320,
+          "y": 90
+        },
+        "zeroAngle": 0,
+        "direction": 1,
+        "pixelSigma": 1,
+        "maxGapSeconds": 0.08000000000000002,
+        "maxAngularStep": 1.5707963267948966,
+        "convention": "image_down_zero_positive_right",
+        "pivotMode": "fixed"
+      }
+    },
+    {
+      "type": "calibration",
+      "value": {
+        "pivot": {
+          "x": 320,
+          "y": 90
+        },
+        "zeroAngle": 0,
+        "direction": 1,
+        "pixelSigma": 1,
+        "maxGapSeconds": 0.08000000000000002,
+        "maxAngularStep": 1.5707963267948966,
+        "convention": "image_down_zero_positive_right",
+        "pivotMode": "fixed"
+      }
+    },
+    {
+      "type": "replace-measurement",
+      "time": 1.1,
+      "previous": "lost",
+      "previousPoint": null,
+      "status": "manual"
+    },
+    {
+      "type": "calibration",
+      "value": {
+        "pivot": {
+          "x": 320,
+          "y": 90
+        },
+        "zeroAngle": 0,
+        "direction": 1,
+        "pixelSigma": 1,
+        "maxGapSeconds": 0.08000000000000002,
+        "maxAngularStep": 1.5707963267948966,
+        "convention": "image_down_zero_positive_right",
+        "pivotMode": "fixed"
+      }
+    },
+    {
+      "type": "calibration",
+      "value": {
+        "pivot": {
+          "x": 320,
+          "y": 90
+        },
+        "zeroAngle": 0,
+        "direction": 1,
+        "pixelSigma": 1,
+        "maxGapSeconds": 0.08000000000000002,
+        "maxAngularStep": 1.5707963267948966,
+        "convention": "plane_positive_y_zero_positive_x",
+        "pivotMode": "fixed",
+        "plane": {
+          "schema": "worldlaw.metric-plane/v1",
+          "source": {
+            "sha256": "5a27a92fe35d38e54f303b8299693f630223c6d252076b52820cb4e302e66d7c",
+            "width": 640,
+            "height": 480
+          },
+          "referenceTime": 0,
+          "basis": "Known independent camera projection and metric grid in an authored synthetic video; not physical calibration.",
+          "coordinateUnit": "m",
+          "assumptions": {
+            "samePlane": true,
+            "fixedCamera": true,
+            "metricCoordinates": true,
+            "negligibleLensDistortion": true
+          },
+          "pairs": [
+            {
+              "image": {
+                "x": 196.5811965811966,
+                "y": 87.60683760683762
+              },
+              "plane": {
+                "x": -0.8,
+                "y": 0
+              }
+            },
+            {
+              "image": {
+                "x": 428.57142857142856,
+                "y": 92.10526315789473
+              },
+              "plane": {
+                "x": 0.8,
+                "y": 0
+              }
+            },
+            {
+              "image": {
+                "x": 488,
+                "y": 290
+              },
+              "plane": {
+                "x": 0.8,
+                "y": 1.6
+              }
+            },
+            {
+              "image": {
+                "x": 247.70642201834863,
+                "y": 314.2201834862385
+              },
+              "plane": {
+                "x": -0.8,
+                "y": 1.6
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

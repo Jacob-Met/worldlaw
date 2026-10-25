@@ -1,0 +1,19 @@
+{
+  "repository": "Jacob-Met/mechanism",
+  "path": "src/plane-homography.js",
+  "sourceCommit": "b0ed325edbe8ea71a6e6989d33db3e61e902e304",
+  "gitBlob": "5f9ee62ce8e1511c882774303511a7850b535f65",
+  "exportsConsumed": [
+    "fitPlaneHomography",
+    "applyPlaneHomography",
+    "requireFinitePlaneDomain",
+    "requirePlaneDifferential"
+  ],
+  "otherMaintainedConsumer": {
+    "repository": "Jacob-Met/chronos-vision",
+    "path": "app/vendor/mechanism/plane-homography.mjs",
+    "sourceCommit": "41a5f6b0e69aa6b9c1588a2f811030ea3733d3e7",
+    "gitBlob": "5f9ee62ce8e1511c882774303511a7850b535f65"
+  },
+  "policy": "Exact unmodified maintained source. MECHANISM remains owner. WORLDLAW supplies source-bound declarations and propagates pixel noise through the returned map; it does not introduce another homography solver."
+}

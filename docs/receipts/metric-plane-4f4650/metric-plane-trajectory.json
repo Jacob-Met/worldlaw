@@ -1,0 +1,1946 @@
+{
+  "schema": "worldlaw.trajectory-notebook/v1",
+  "bundle": {
+    "schema": "worldlaw.angular-bundle/v1",
+    "label": "Separate Motion Lab recordings",
+    "units": {
+      "time": "s",
+      "position": "rad",
+      "initialRate": "rad/s"
+    },
+    "trainingRuns": [
+      {
+        "id": "training-a3ae4cec3a031e86d557",
+        "label": "training — fit.mp4",
+        "kind": "synthetic",
+        "dynamics": "unforced_scalar_rotation",
+        "inertia": null,
+        "initialRate": -0.06,
+        "source": {
+          "label": "Motion Lab — fit.mp4",
+          "recordingId": "sha256:5a27a92fe35d38e54f303b8299693f630223c6d252076b52820cb4e302e66d7c",
+          "motion": {
+            "schema": "worldlaw.motion-trajectory-source/v1",
+            "inputSha256": "a3ae4cec3a031e86d557b13ff623f1068fddf441761fd97a127882cd88dd8953",
+            "inputByteLength": 169532,
+            "notebookSchema": "worldlaw.motion-notebook/v3",
+            "originalVideo": {
+              "label": "fit.mp4",
+              "kind": "local-video",
+              "sha256": "5a27a92fe35d38e54f303b8299693f630223c6d252076b52820cb4e302e66d7c",
+              "width": 640,
+              "height": 480,
+              "duration": 8
+            },
+            "calibration": {
+              "pivot": {
+                "x": 320,
+                "y": 90
+              },
+              "zeroAngle": 0,
+              "direction": 1,
+              "pixelSigma": 1,
+              "maxGapSeconds": 0.08000000000000002,
+              "maxAngularStep": 1.5707963267948966,
+              "convention": "plane_positive_y_zero_positive_x",
+              "pivotMode": "fixed",
+              "plane": {
+                "schema": "worldlaw.metric-plane/v1",
+                "source": {
+                  "sha256": "5a27a92fe35d38e54f303b8299693f630223c6d252076b52820cb4e302e66d7c",
+                  "width": 640,
+                  "height": 480
+                },
+                "referenceTime": 0,
+                "basis": "Known independent camera projection and metric grid in an authored synthetic video; not physical calibration.",
+                "coordinateUnit": "m",
+                "assumptions": {
+                  "samePlane": true,
+                  "fixedCamera": true,
+                  "metricCoordinates": true,
+                  "negligibleLensDistortion": true
+                },
+                "pairs": [
+                  {
+                    "image": {
+                      "x": 196.5811965811966,
+                      "y": 87.60683760683762
+                    },
+                    "plane": {
+                      "x": -0.8,
+                      "y": 0
+                    }
+                  },
+                  {
+                    "image": {
+                      "x": 428.57142857142856,
+                      "y": 92.10526315789473
+                    },
+                    "plane": {
+                      "x": 0.8,
+                      "y": 0
+                    }
+                  },
+                  {
+                    "image": {
+                      "x": 488,
+                      "y": 290
+                    },
+                    "plane": {
+                      "x": 0.8,
+                      "y": 1.6
+                    }
+                  },
+                  {
+                    "image": {
+                      "x": 247.70642201834863,
+                      "y": 314.2201834862385
+                    },
+                    "plane": {
+                      "x": -0.8,
+                      "y": 1.6
+                    }
+                  }
+                ]
+              }
+            },
+            "selectedCourse": {
+              "id": 0,
+              "startTime": 0,
+              "endTime": 7.933333,
+              "count": 160,
+              "startReason": "start"
+            },
+            "observationIndices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              66,
+              67,
+              68,
+              69,
+              70,
+              71,
+              72,
+              73,
+              74,
+              75,
+              76,
+              77,
+              78,
+              79,
+              80,
+              81,
+              82,
+              83,
+              84,
+              85,
+              86,
+              87,
+              88,
+              89,
+              90,
+              91,
+              92,
+              93,
+              94,
+              95,
+              96,
+              97,
+              98,
+              99,
+              100,
+              101,
+              102,
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111,
+              112,
+              113,
+              114,
+              115,
+              116,
+              117,
+              118,
+              119,
+              120,
+              121,
+              122,
+              123,
+              124,
+              125,
+              126,
+              127,
+              128,
+              129,
+              130,
+              131,
+              132,
+              133,
+              134,
+              135,
+              136,
+              137,
+              138,
+              139,
+              140,
+              141,
+              142,
+              143,
+              144,
+              145,
+              146,
+              147,
+              148,
+              149,
+              150,
+              151,
+              152,
+              153,
+              154,
+              155,
+              156,
+              157,
+              158,
+              159
+            ],
+            "omittedCourseCount": 0,
+            "reference": {
+              "recordedEventCount": 4,
+              "pathFitEventCount": 0,
+              "eventsSha256": "6c964f87e6341852fa40e472e521fb539095ca99fc4f5e8dd278cd8ae63c3061",
+              "activePathFit": null,
+              "retention": "Original point measurements, revisions and reference-fit membership remain in the identified Motion input file. Retain the separately identified original video for pixel reinspection."
+            },
+            "initialRate": {
+              "value": -0.06,
+              "unit": "rad/s",
+              "basis": "Known independent authored oscillator derivative at release.",
+              "qualification": "Caller supplied; not inferred from future challenge positions or authenticated by the application."
+            },
+            "assumptions": {
+              "unforcedScalarRotation": true,
+              "sharedAngleFrame": true,
+              "basis": "Authored unforced scalar oscillators share metric plane axes; camera projections differ.",
+              "qualification": "User declarations, not a physical calibration or an authenticated independence guarantee."
+            },
+            "diagnostics": {
+              "acceptedCount": 160,
+              "rejectedCount": 0,
+              "segmentCount": 1,
+              "radiusRatio": 1.0078388526758995,
+              "warnings": [
+                "metric_plane_is_caller_declared"
+              ],
+              "metricPlane": {
+                "referenceResidual": {
+                  "rms": 6.329245045284193e-16,
+                  "maximum": 1.1102230246251565e-15,
+                  "unit": "m"
+                },
+                "qualification": "Four exact correspondences do not independently verify the plane, metric aspect ratio, camera stability, lens model or physical calibration.",
+                "radiusUnit": "m",
+                "uncertainty": "First-order propagation of declared independent isotropic pixel errors, conditional on exact plane correspondences and a fixed camera. Corner uncertainty, lens distortion and plane mismatch are excluded."
+              },
+              "limitations": [
+                "Angles use a caller-declared metric plane under a fixed camera with negligible lens distortion. Both points must lie in that plane; its metric aspect ratio and physical basis are not verified.",
+                "A visually plausible wrong pivot cannot be diagnosed from these coordinates alone.",
+                "A fitted path center is a conditional image reference, not a measured physical joint. Fixed-reference sigma does not include center-fit uncertainty or its correlation with the same marker observations.",
+                "No interpolation crosses a rejected measurement, time gap or excessive angular step.",
+                "Angle unwrapping assumes changes smaller than the declared limit; full hidden turns cannot be detected.",
+                "Position sigma is an assumed pixel-error propagation with an exact pivot, not calibrated tracking confidence.",
+                "Template correlation can remain high while rotation, perspective or deformation biases the tracked location."
+              ]
+            },
+            "angleSamples": "Unchanged Motion-derived times and unwrapped angles. No recentering, interpolation, torque command or physical inertia is introduced."
+          }
+        },
+        "samples": [
+          {
+            "time": 0,
+            "position": 0.7499999999999997
+          },
+          {
+            "time": 0.033333,
+            "position": 0.7455596904479084
+          },
+          {
+            "time": 0.1,
+            "position": 0.7336885661281498
+          },
+          {
+            "time": 0.133333,
+            "position": 0.7254029289907216
+          },
+          {
+            "time": 0.2,
+            "position": 0.7003134596733884
+          },
+          {
+            "time": 0.233333,
+            "position": 0.6850115078708683
+          },
+          {
+            "time": 0.3,
+            "position": 0.6483583766003468
+          },
+          {
+            "time": 0.333333,
+            "position": 0.6282830430444286
+          },
+          {
+            "time": 0.4,
+            "position": 0.5821644986933203
+          },
+          {
+            "time": 0.433333,
+            "position": 0.5572583576325145
+          },
+          {
+            "time": 0.5,
+            "position": 0.5014738377749147
+          },
+          {
+            "time": 0.533333,
+            "position": 0.47190904533378686
+          },
+          {
+            "time": 0.6,
+            "position": 0.4098504167840083
+          },
+          {
+            "time": 0.633333,
+            "position": 0.37728647714697494
+          },
+          {
+            "time": 0.7,
+            "position": 0.30920198968439067
+          },
+          {
+            "time": 0.733333,
+            "position": 0.27405864031710697
+          },
+          {
+            "time": 0.8,
+            "position": 0.20416415090532367
+          },
+          {
+            "time": 0.833333,
+            "position": 0.16674560544596995
+          },
+          {
+            "time": 0.9,
+            "position": 0.09253201692072617
+          },
+          {
+            "time": 0.933333,
+            "position": 0.055287471280356174
+          },
+          {
+            "time": 1,
+            "position": -0.018398380897028624
+          },
+          {
+            "time": 1.033333,
+            "position": -0.05587398733201594
+          },
+          {
+            "time": 1.1,
+            "position": -0.12917505815692182
+          },
+          {
+            "time": 1.133333,
+            "position": -0.1653510312934669
+          },
+          {
+            "time": 1.2,
+            "position": -0.23341196358063815
+          },
+          {
+            "time": 1.233333,
+            "position": -0.267272576067902
+          },
+          {
+            "time": 1.3,
+            "position": -0.33064150551422766
+          },
+          {
+            "time": 1.333333,
+            "position": -0.3580132768086964
+          },
+          {
+            "time": 1.4,
+            "position": -0.41492782350746743
+          },
+          {
+            "time": 1.433333,
+            "position": -0.4422930627298631
+          },
+          {
+            "time": 1.5,
+            "position": -0.4905538007862234
+          },
+          {
+            "time": 1.533333,
+            "position": -0.5102413566316614
+          },
+          {
+            "time": 1.6,
+            "position": -0.5484078155691525
+          },
+          {
+            "time": 1.633333,
+            "position": -0.5681339672095049
+          },
+          {
+            "time": 1.7,
+            "position": -0.5956540072562735
+          },
+          {
+            "time": 1.733333,
+            "position": -0.6078624724862199
+          },
+          {
+            "time": 1.8,
+            "position": -0.6262901799617634
+          },
+          {
+            "time": 1.833333,
+            "position": -0.6332726963091664
+          },
+          {
+            "time": 1.9,
+            "position": -0.6400513114931862
+          },
+          {
+            "time": 1.933333,
+            "position": -0.6400630538105011
+          },
+          {
+            "time": 2,
+            "position": -0.6382136786389914
+          },
+          {
+            "time": 2.033333,
+            "position": -0.6310941561841753
+          },
+          {
+            "time": 2.1,
+            "position": -0.6176030687844604
+          },
+          {
+            "time": 2.133333,
+            "position": -0.6078251460968559
+          },
+          {
+            "time": 2.2,
+            "position": -0.5847728623485875
+          },
+          {
+            "time": 2.233333,
+            "position": -0.5686404162984462
+          },
+          {
+            "time": 2.3,
+            "position": -0.5354144152407827
+          },
+          {
+            "time": 2.333333,
+            "position": -0.515117338315286
+          },
+          {
+            "time": 2.4,
+            "position": -0.47248717367714477
+          },
+          {
+            "time": 2.433333,
+            "position": -0.4512674578392054
+          },
+          {
+            "time": 2.5,
+            "position": -0.40098389813491797
+          },
+          {
+            "time": 2.533333,
+            "position": -0.37566168446936843
+          },
+          {
+            "time": 2.6,
+            "position": -0.3191921240519301
+          },
+          {
+            "time": 2.633333,
+            "position": -0.2921979223240638
+          },
+          {
+            "time": 2.7,
+            "position": -0.2309944509399422
+          },
+          {
+            "time": 2.733333,
+            "position": -0.20040315828070696
+          },
+          {
+            "time": 2.8,
+            "position": -0.13997641788476364
+          },
+          {
+            "time": 2.833333,
+            "position": -0.10730182859513228
+          },
+          {
+            "time": 2.9,
+            "position": -0.04368918197446267
+          },
+          {
+            "time": 2.933333,
+            "position": -0.01103161679764865
+          },
+          {
+            "time": 3,
+            "position": 0.05019403371871139
+          },
+          {
+            "time": 3.033333,
+            "position": 0.08173736755244473
+          },
+          {
+            "time": 3.1,
+            "position": 0.14177070834780342
+          },
+          {
+            "time": 3.133333,
+            "position": 0.17121795525980235
+          },
+          {
+            "time": 3.2,
+            "position": 0.2285489927216257
+          },
+          {
+            "time": 3.233333,
+            "position": 0.25527555962870585
+          },
+          {
+            "time": 3.3,
+            "position": 0.30754342394876266
+          },
+          {
+            "time": 3.333333,
+            "position": 0.3319820801351309
+          },
+          {
+            "time": 3.4,
+            "position": 0.37701391352660435
+          },
+          {
+            "time": 3.433333,
+            "position": 0.39903855487656453
+          },
+          {
+            "time": 3.5,
+            "position": 0.4380018446415611
+          },
+          {
+            "time": 3.533333,
+            "position": 0.4550820379868917
+          },
+          {
+            "time": 3.6,
+            "position": 0.48561134590356164
+          },
+          {
+            "time": 3.633333,
+            "position": 0.4978803297054272
+          },
+          {
+            "time": 3.7,
+            "position": 0.5197570414174606
+          },
+          {
+            "time": 3.733333,
+            "position": 0.5280424099644213
+          },
+          {
+            "time": 3.8,
+            "position": 0.53982853737448
+          },
+          {
+            "time": 3.833333,
+            "position": 0.5441145445122952
+          },
+          {
+            "time": 3.9,
+            "position": 0.5465703580728382
+          },
+          {
+            "time": 3.933333,
+            "position": 0.5461839909227081
+          },
+          {
+            "time": 4,
+            "position": 0.5387761936942393
+          },
+          {
+            "time": 4.033333,
+            "position": 0.5338311945953095
+          },
+          {
+            "time": 4.066667,
+            "position": 0.5256232282349143
+          },
+          {
+            "time": 4.133333,
+            "position": 0.508211472632173
+          },
+          {
+            "time": 4.2,
+            "position": 0.48391244860169597
+          },
+          {
+            "time": 4.233333,
+            "position": 0.47035543980814654
+          },
+          {
+            "time": 4.3,
+            "position": 0.4380603169575635
+          },
+          {
+            "time": 4.333333,
+            "position": 0.4203261265781657
+          },
+          {
+            "time": 4.4,
+            "position": 0.3813366175936333
+          },
+          {
+            "time": 4.433333,
+            "position": 0.36071442649567687
+          },
+          {
+            "time": 4.5,
+            "position": 0.31790406717830666
+          },
+          {
+            "time": 4.533333,
+            "position": 0.29453297888315977
+          },
+          {
+            "time": 4.6,
+            "position": 0.2440315547031083
+          },
+          {
+            "time": 4.633333,
+            "position": 0.21892842826645692
+          },
+          {
+            "time": 4.7,
+            "position": 0.16803439293083056
+          },
+          {
+            "time": 4.733333,
+            "position": 0.14091212562976982
+          },
+          {
+            "time": 4.8,
+            "position": 0.08753784350889457
+          },
+          {
+            "time": 4.833333,
+            "position": 0.059855420162989344
+          },
+          {
+            "time": 4.9,
+            "position": 0.007146021605798289
+          },
+          {
+            "time": 4.933333,
+            "position": -0.021460601671157726
+          },
+          {
+            "time": 5,
+            "position": -0.07441149941071237
+          },
+          {
+            "time": 5.033333,
+            "position": -0.0999378469459593
+          },
+          {
+            "time": 5.1,
+            "position": -0.15118438275821638
+          },
+          {
+            "time": 5.133333,
+            "position": -0.17628932420954926
+          },
+          {
+            "time": 5.2,
+            "position": -0.2234227995674868
+          },
+          {
+            "time": 5.233333,
+            "position": -0.24392738654181292
+          },
+          {
+            "time": 5.3,
+            "position": -0.2876660064312961
+          },
+          {
+            "time": 5.333333,
+            "position": -0.3064811004913123
+          },
+          {
+            "time": 5.4,
+            "position": -0.344341709644272
+          },
+          {
+            "time": 5.433333,
+            "position": -0.3605025484599333
+          },
+          {
+            "time": 5.5,
+            "position": -0.39230433047700897
+          },
+          {
+            "time": 5.533333,
+            "position": -0.4052390146769249
+          },
+          {
+            "time": 5.6,
+            "position": -0.4267415364162877
+          },
+          {
+            "time": 5.633333,
+            "position": -0.4385892916175503
+          },
+          {
+            "time": 5.7,
+            "position": -0.4527185382007223
+          },
+          {
+            "time": 5.733333,
+            "position": -0.4587655806899203
+          },
+          {
+            "time": 5.8,
+            "position": -0.46483246702207925
+          },
+          {
+            "time": 5.833333,
+            "position": -0.46757616316059564
+          },
+          {
+            "time": 5.9,
+            "position": -0.4662719128278051
+          },
+          {
+            "time": 5.933333,
+            "position": -0.46399265233221393
+          },
+          {
+            "time": 6,
+            "position": -0.45763915061627297
+          },
+          {
+            "time": 6.033333,
+            "position": -0.4513041491738033
+          },
+          {
+            "time": 6.1,
+            "position": -0.43400215051169155
+          },
+          {
+            "time": 6.133333,
+            "position": -0.424868516840669
+          },
+          {
+            "time": 6.2,
+            "position": -0.40116976305197694
+          },
+          {
+            "time": 6.233333,
+            "position": -0.38738467917826896
+          },
+          {
+            "time": 6.3,
+            "position": -0.3582128841995704
+          },
+          {
+            "time": 6.333333,
+            "position": -0.3438241894029942
+          },
+          {
+            "time": 6.4,
+            "position": -0.30716775464890667
+          },
+          {
+            "time": 6.433333,
+            "position": -0.2887453951021549
+          },
+          {
+            "time": 6.5,
+            "position": -0.24909475219720353
+          },
+          {
+            "time": 6.533333,
+            "position": -0.2303867170876307
+          },
+          {
+            "time": 6.6,
+            "position": -0.18651532799158507
+          },
+          {
+            "time": 6.633333,
+            "position": -0.16535035430455516
+          },
+          {
+            "time": 6.7,
+            "position": -0.11941871133636771
+          },
+          {
+            "time": 6.733333,
+            "position": -0.098553049850354
+          },
+          {
+            "time": 6.8,
+            "position": -0.05231018345446411
+          },
+          {
+            "time": 6.833333,
+            "position": -0.028400870559542712
+          },
+          {
+            "time": 6.9,
+            "position": 0.01905161077782848
+          },
+          {
+            "time": 6.933333,
+            "position": 0.040443777643747375
+          },
+          {
+            "time": 7,
+            "position": 0.0863533795409065
+          },
+          {
+            "time": 7.033333,
+            "position": 0.10782504869617386
+          },
+          {
+            "time": 7.1,
+            "position": 0.1495002872796451
+          },
+          {
+            "time": 7.133333,
+            "position": 0.17083532441682237
+          },
+          {
+            "time": 7.2,
+            "position": 0.20882843608787655
+          },
+          {
+            "time": 7.233333,
+            "position": 0.2270358783715878
+          },
+          {
+            "time": 7.3,
+            "position": 0.2630523788532042
+          },
+          {
+            "time": 7.333333,
+            "position": 0.2784954824510902
+          },
+          {
+            "time": 7.4,
+            "position": 0.3090743443261064
+          },
+          {
+            "time": 7.433333,
+            "position": 0.32097614158541815
+          },
+          {
+            "time": 7.5,
+            "position": 0.3451404093292563
+          },
+          {
+            "time": 7.533333,
+            "position": 0.35598827411514855
+          },
+          {
+            "time": 7.6,
+            "position": 0.3723992410613184
+          },
+          {
+            "time": 7.633333,
+            "position": 0.37941926322053143
+          },
+          {
+            "time": 7.7,
+            "position": 0.3902862522253286
+          },
+          {
+            "time": 7.733333,
+            "position": 0.3953212332549402
+          },
+          {
+            "time": 7.8,
+            "position": 0.397445192258833
+          },
+          {
+            "time": 7.833333,
+            "position": 0.39744519625215013
+          },
+          {
+            "time": 7.9,
+            "position": 0.3964509335504252
+          },
+          {
+            "time": 7.933333,
+            "position": 0.3934202953316478
+          }
+        ]
+      }
+    ],
+    "challengeRuns": [
+      {
+        "id": "challenge-2b4e1759e3b85632167d",
+        "label": "challenge — challenge.mp4",
+        "kind": "synthetic",
+        "dynamics": "unforced_scalar_rotation",
+        "inertia": null,
+        "initialRate": -0.084,
+        "source": {
+          "label": "Motion Lab — challenge.mp4",
+          "recordingId": "sha256:1740ff6d082d562f7b35bbb1d28e6eaaf5f0de1198d23721fb369912a59ad3c9",
+          "motion": {
+            "schema": "worldlaw.motion-trajectory-source/v1",
+            "inputSha256": "2b4e1759e3b85632167d16fc3d635ac353e4eebb27e96e7728df079ffc520371",
+            "inputByteLength": 170780,
+            "notebookSchema": "worldlaw.motion-notebook/v3",
+            "originalVideo": {
+              "label": "challenge.mp4",
+              "kind": "local-video",
+              "sha256": "1740ff6d082d562f7b35bbb1d28e6eaaf5f0de1198d23721fb369912a59ad3c9",
+              "width": 640,
+              "height": 480,
+              "duration": 8
+            },
+            "calibration": {
+              "pivot": {
+                "x": 325,
+                "y": 85
+              },
+              "zeroAngle": 0,
+              "direction": 1,
+              "pixelSigma": 1,
+              "maxGapSeconds": 0.08000000000000002,
+              "maxAngularStep": 1.5707963267948966,
+              "convention": "plane_positive_y_zero_positive_x",
+              "pivotMode": "fixed",
+              "plane": {
+                "schema": "worldlaw.metric-plane/v1",
+                "source": {
+                  "sha256": "1740ff6d082d562f7b35bbb1d28e6eaaf5f0de1198d23721fb369912a59ad3c9",
+                  "width": 640,
+                  "height": 480
+                },
+                "referenceTime": 0,
+                "basis": "Known independent camera projection and metric grid in an authored synthetic video; not physical calibration.",
+                "coordinateUnit": "m",
+                "assumptions": {
+                  "samePlane": true,
+                  "fixedCamera": true,
+                  "metricCoordinates": true,
+                  "negligibleLensDistortion": true
+                },
+                "pairs": [
+                  {
+                    "image": {
+                      "x": 215.51724137931035,
+                      "y": 62.26053639846743
+                    },
+                    "plane": {
+                      "x": -0.8,
+                      "y": 0
+                    }
+                  },
+                  {
+                    "image": {
+                      "x": 444.560669456067,
+                      "y": 109.8326359832636
+                    },
+                    "plane": {
+                      "x": 0.8,
+                      "y": 0
+                    }
+                  },
+                  {
+                    "image": {
+                      "x": 355.66037735849056,
+                      "y": 348.1132075471698
+                    },
+                    "plane": {
+                      "x": 0.8,
+                      "y": 1.6
+                    }
+                  },
+                  {
+                    "image": {
+                      "x": 154.18118466898952,
+                      "y": 286.5853658536585
+                    },
+                    "plane": {
+                      "x": -0.8,
+                      "y": 1.6
+                    }
+                  }
+                ]
+              }
+            },
+            "selectedCourse": {
+              "id": 0,
+              "startTime": 0,
+              "endTime": 7.933333,
+              "count": 160,
+              "startReason": "start"
+            },
+            "observationIndices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49,
+              50,
+              51,
+              52,
+              53,
+              54,
+              55,
+              56,
+              57,
+              58,
+              59,
+              60,
+              61,
+              62,
+              63,
+              64,
+              65,
+              66,
+              67,
+              68,
+              69,
+              70,
+              71,
+              72,
+              73,
+              74,
+              75,
+              76,
+              77,
+              78,
+              79,
+              80,
+              81,
+              82,
+              83,
+              84,
+              85,
+              86,
+              87,
+              88,
+              89,
+              90,
+              91,
+              92,
+              93,
+              94,
+              95,
+              96,
+              97,
+              98,
+              99,
+              100,
+              101,
+              102,
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111,
+              112,
+              113,
+              114,
+              115,
+              116,
+              117,
+              118,
+              119,
+              120,
+              121,
+              122,
+              123,
+              124,
+              125,
+              126,
+              127,
+              128,
+              129,
+              130,
+              131,
+              132,
+              133,
+              134,
+              135,
+              136,
+              137,
+              138,
+              139,
+              140,
+              141,
+              142,
+              143,
+              144,
+              145,
+              146,
+              147,
+              148,
+              149,
+              150,
+              151,
+              152,
+              153,
+              154,
+              155,
+              156,
+              157,
+              158,
+              159
+            ],
+            "omittedCourseCount": 0,
+            "reference": {
+              "recordedEventCount": 5,
+              "pathFitEventCount": 0,
+              "eventsSha256": "dcce76ebb6af87093af365c98690d0c281ccc984dedd0a26c89ff010b4b90192",
+              "activePathFit": null,
+              "retention": "Original point measurements, revisions and reference-fit membership remain in the identified Motion input file. Retain the separately identified original video for pixel reinspection."
+            },
+            "initialRate": {
+              "value": -0.084,
+              "unit": "rad/s",
+              "basis": "Known independent authored oscillator derivative at release.",
+              "qualification": "Caller supplied; not inferred from future challenge positions or authenticated by the application."
+            },
+            "assumptions": {
+              "unforcedScalarRotation": true,
+              "sharedAngleFrame": true,
+              "basis": "Authored unforced scalar oscillators share metric plane axes; camera projections differ.",
+              "qualification": "User declarations, not a physical calibration or an authenticated independence guarantee."
+            },
+            "diagnostics": {
+              "acceptedCount": 160,
+              "rejectedCount": 0,
+              "segmentCount": 1,
+              "radiusRatio": 1.0104869152523468,
+              "warnings": [
+                "metric_plane_is_caller_declared"
+              ],
+              "metricPlane": {
+                "referenceResidual": {
+                  "rms": 4.128631530366074e-16,
+                  "maximum": 6.661338147750939e-16,
+                  "unit": "m"
+                },
+                "qualification": "Four exact correspondences do not independently verify the plane, metric aspect ratio, camera stability, lens model or physical calibration.",
+                "radiusUnit": "m",
+                "uncertainty": "First-order propagation of declared independent isotropic pixel errors, conditional on exact plane correspondences and a fixed camera. Corner uncertainty, lens distortion and plane mismatch are excluded."
+              },
+              "limitations": [
+                "Angles use a caller-declared metric plane under a fixed camera with negligible lens distortion. Both points must lie in that plane; its metric aspect ratio and physical basis are not verified.",
+                "A visually plausible wrong pivot cannot be diagnosed from these coordinates alone.",
+                "A fitted path center is a conditional image reference, not a measured physical joint. Fixed-reference sigma does not include center-fit uncertainty or its correlation with the same marker observations.",
+                "No interpolation crosses a rejected measurement, time gap or excessive angular step.",
+                "Angle unwrapping assumes changes smaller than the declared limit; full hidden turns cannot be detected.",
+                "Position sigma is an assumed pixel-error propagation with an exact pivot, not calibrated tracking confidence.",
+                "Template correlation can remain high while rotation, perspective or deformation biases the tracked location."
+              ]
+            },
+            "angleSamples": "Unchanged Motion-derived times and unwrapped angles. No recentering, interpolation, torque command or physical inertia is introduced."
+          }
+        },
+        "samples": [
+          {
+            "time": 0,
+            "position": 1.05
+          },
+          {
+            "time": 0.033333,
+            "position": 1.045110952223867
+          },
+          {
+            "time": 0.1,
+            "position": 1.0277245960974253
+          },
+          {
+            "time": 0.133333,
+            "position": 1.0145991230363562
+          },
+          {
+            "time": 0.2,
+            "position": 0.9805796867789641
+          },
+          {
+            "time": 0.233333,
+            "position": 0.9586965614491131
+          },
+          {
+            "time": 0.3,
+            "position": 0.9079630798727597
+          },
+          {
+            "time": 0.333333,
+            "position": 0.8791098624376286
+          },
+          {
+            "time": 0.4,
+            "position": 0.8160397917715567
+          },
+          {
+            "time": 0.433333,
+            "position": 0.7805501649199176
+          },
+          {
+            "time": 0.5,
+            "position": 0.7014220915903687
+          },
+          {
+            "time": 0.533333,
+            "position": 0.6606628277276276
+          },
+          {
+            "time": 0.6,
+            "position": 0.573223827267734
+          },
+          {
+            "time": 0.633333,
+            "position": 0.5276816877267831
+          },
+          {
+            "time": 0.7,
+            "position": 0.43163860504213203
+          },
+          {
+            "time": 0.733333,
+            "position": 0.38022691624013905
+          },
+          {
+            "time": 0.8,
+            "position": 0.28251749396896975
+          },
+          {
+            "time": 0.833333,
+            "position": 0.22691996417434704
+          },
+          {
+            "time": 0.9,
+            "position": 0.12702211747819428
+          },
+          {
+            "time": 0.933333,
+            "position": 0.07155677202546297
+          },
+          {
+            "time": 1,
+            "position": -0.02914695937229625
+          },
+          {
+            "time": 1.033333,
+            "position": -0.08282564135093981
+          },
+          {
+            "time": 1.1,
+            "position": -0.18516195862845725
+          },
+          {
+            "time": 1.133333,
+            "position": -0.23324847632404475
+          },
+          {
+            "time": 1.2,
+            "position": -0.33116414755878093
+          },
+          {
+            "time": 1.233333,
+            "position": -0.3785902833562999
+          },
+          {
+            "time": 1.3,
+            "position": -0.46647801598905503
+          },
+          {
+            "time": 1.333333,
+            "position": -0.5087239329720942
+          },
+          {
+            "time": 1.4,
+            "position": -0.5885612400708374
+          },
+          {
+            "time": 1.433333,
+            "position": -0.6257311512747139
+          },
+          {
+            "time": 1.5,
+            "position": -0.694044665438988
+          },
+          {
+            "time": 1.533333,
+            "position": -0.7226407734230714
+          },
+          {
+            "time": 1.6,
+            "position": -0.7787935432452565
+          },
+          {
+            "time": 1.633333,
+            "position": -0.8021033876893724
+          },
+          {
+            "time": 1.7,
+            "position": -0.8416883178858635
+          },
+          {
+            "time": 1.733333,
+            "position": -0.858893450205898
+          },
+          {
+            "time": 1.8,
+            "position": -0.8831672960591102
+          },
+          {
+            "time": 1.833333,
+            "position": -0.8919275737139958
+          },
+          {
+            "time": 1.9,
+            "position": -0.9022280662719291
+          },
+          {
+            "time": 1.933333,
+            "position": -0.9032053453884039
+          },
+          {
+            "time": 2,
+            "position": -0.8978759516817689
+          },
+          {
+            "time": 2.033333,
+            "position": -0.8917234664898446
+          },
+          {
+            "time": 2.1,
+            "position": -0.8731946400880168
+          },
+          {
+            "time": 2.133333,
+            "position": -0.8586285620252277
+          },
+          {
+            "time": 2.2,
+            "position": -0.8237744508022182
+          },
+          {
+            "time": 2.233333,
+            "position": -0.8037194705368933
+          },
+          {
+            "time": 2.3,
+            "position": -0.754766207142771
+          },
+          {
+            "time": 2.333333,
+            "position": -0.7275394027141024
+          },
+          {
+            "time": 2.4,
+            "position": -0.6687572574759396
+          },
+          {
+            "time": 2.433333,
+            "position": -0.6313465755733494
+          },
+          {
+            "time": 2.466667,
+            "position": -0.5971474151173217
+          },
+          {
+            "time": 2.533333,
+            "position": -0.5246847878532719
+          },
+          {
+            "time": 2.566667,
+            "position": -0.48602369144038615
+          },
+          {
+            "time": 2.633333,
+            "position": -0.40644092333018916
+          },
+          {
+            "time": 2.666667,
+            "position": -0.3645446857706884
+          },
+          {
+            "time": 2.733333,
+            "position": -0.2784684007402797
+          },
+          {
+            "time": 2.766667,
+            "position": -0.2352436680061016
+          },
+          {
+            "time": 2.833333,
+            "position": -0.14859809820290332
+          },
+          {
+            "time": 2.866667,
+            "position": -0.10276241562326767
+          },
+          {
+            "time": 2.933333,
+            "position": -0.015807607616919864
+          },
+          {
+            "time": 2.966667,
+            "position": 0.029531229700207884
+          },
+          {
+            "time": 3.033333,
+            "position": 0.11715553789185194
+          },
+          {
+            "time": 3.066667,
+            "position": 0.16029331453228882
+          },
+          {
+            "time": 3.133333,
+            "position": 0.24524503601716272
+          },
+          {
+            "time": 3.166667,
+            "position": 0.2869017594607958
+          },
+          {
+            "time": 3.233333,
+            "position": 0.362763429128124
+          },
+          {
+            "time": 3.266667,
+            "position": 0.3973874099267128
+          },
+          {
+            "time": 3.333333,
+            "position": 0.4710563024059362
+          },
+          {
+            "time": 3.366667,
+            "position": 0.5019800737736567
+          },
+          {
+            "time": 3.433333,
+            "position": 0.5627990414030923
+          },
+          {
+            "time": 3.466667,
+            "position": 0.5920438023161907
+          },
+          {
+            "time": 3.533333,
+            "position": 0.6407292673137496
+          },
+          {
+            "time": 3.566667,
+            "position": 0.6618086415914547
+          },
+          {
+            "time": 3.633333,
+            "position": 0.7016543165151392
+          },
+          {
+            "time": 3.666667,
+            "position": 0.7171862956199985
+          },
+          {
+            "time": 3.733333,
+            "position": 0.7433144228824516
+          },
+          {
+            "time": 3.766667,
+            "position": 0.7512840705198549
+          },
+          {
+            "time": 3.833333,
+            "position": 0.7645052887076987
+          },
+          {
+            "time": 3.866667,
+            "position": 0.7672951186424521
+          },
+          {
+            "time": 3.933333,
+            "position": 0.766494341833479
+          },
+          {
+            "time": 3.966667,
+            "position": 0.7657832856133413
+          },
+          {
+            "time": 4.033333,
+            "position": 0.7521095332724648
+          },
+          {
+            "time": 4.066667,
+            "position": 0.7405065172009724
+          },
+          {
+            "time": 4.133333,
+            "position": 0.714159036192348
+          },
+          {
+            "time": 4.166667,
+            "position": 0.6985504200789262
+          },
+          {
+            "time": 4.233333,
+            "position": 0.6626932402957174
+          },
+          {
+            "time": 4.266667,
+            "position": 0.6396708908746899
+          },
+          {
+            "time": 4.333333,
+            "position": 0.5936010784587014
+          },
+          {
+            "time": 4.366667,
+            "position": 0.5645543718916183
+          },
+          {
+            "time": 4.433333,
+            "position": 0.5082252810763888
+          },
+          {
+            "time": 4.466667,
+            "position": 0.4781614274030186
+          },
+          {
+            "time": 4.533333,
+            "position": 0.41510589802253955
+          },
+          {
+            "time": 4.566667,
+            "position": 0.38025288693366616
+          },
+          {
+            "time": 4.633333,
+            "position": 0.3072920176919923
+          },
+          {
+            "time": 4.666667,
+            "position": 0.27099165276724707
+          },
+          {
+            "time": 4.733333,
+            "position": 0.20022932356613843
+          },
+          {
+            "time": 4.766667,
+            "position": 0.16012992438318105
+          },
+          {
+            "time": 4.833333,
+            "position": 0.0853457163578935
+          },
+          {
+            "time": 4.866667,
+            "position": 0.04821359320166165
+          },
+          {
+            "time": 4.933333,
+            "position": -0.026981447046348174
+          },
+          {
+            "time": 4.966667,
+            "position": -0.0668885161356266
+          },
+          {
+            "time": 5.033333,
+            "position": -0.14012784489795538
+          },
+          {
+            "time": 5.066667,
+            "position": -0.17767983619881358
+          },
+          {
+            "time": 5.133333,
+            "position": -0.24783858662770789
+          },
+          {
+            "time": 5.166667,
+            "position": -0.28168445167330436
+          },
+          {
+            "time": 5.233333,
+            "position": -0.3462094424626509
+          },
+          {
+            "time": 5.266667,
+            "position": -0.37630564482213547
+          },
+          {
+            "time": 5.333333,
+            "position": -0.435132729203687
+          },
+          {
+            "time": 5.366667,
+            "position": -0.46054475428177605
+          },
+          {
+            "time": 5.433333,
+            "position": -0.5103456374381731
+          },
+          {
+            "time": 5.466667,
+            "position": -0.5316382512037685
+          },
+          {
+            "time": 5.533333,
+            "position": -0.5710035981890771
+          },
+          {
+            "time": 5.566667,
+            "position": -0.5890970125851187
+          },
+          {
+            "time": 5.633333,
+            "position": -0.6172844913520977
+          },
+          {
+            "time": 5.666667,
+            "position": -0.6291546277997403
+          },
+          {
+            "time": 5.733333,
+            "position": -0.646954970987509
+          },
+          {
+            "time": 5.766667,
+            "position": -0.652837887351116
+          },
+          {
+            "time": 5.833333,
+            "position": -0.6596527114115301
+          },
+          {
+            "time": 5.866667,
+            "position": -0.659913958102055
+          },
+          {
+            "time": 5.933333,
+            "position": -0.656388680967337
+          },
+          {
+            "time": 5.966667,
+            "position": -0.6509496423711867
+          },
+          {
+            "time": 6.033333,
+            "position": -0.6365103588117572
+          },
+          {
+            "time": 6.066667,
+            "position": -0.624473676118061
+          },
+          {
+            "time": 6.133333,
+            "position": -0.6002303665770862
+          },
+          {
+            "time": 6.166667,
+            "position": -0.58284681613627
+          },
+          {
+            "time": 6.233333,
+            "position": -0.5473675693841055
+          },
+          {
+            "time": 6.266667,
+            "position": -0.5278955491910194
+          },
+          {
+            "time": 6.333333,
+            "position": -0.48454304372187107
+          },
+          {
+            "time": 6.366667,
+            "position": -0.45982014861620923
+          },
+          {
+            "time": 6.433333,
+            "position": -0.4075547209848187
+          },
+          {
+            "time": 6.466667,
+            "position": -0.3821729624697524
+          },
+          {
+            "time": 6.533333,
+            "position": -0.32518882729029225
+          },
+          {
+            "time": 6.566667,
+            "position": -0.29360851167547686
+          },
+          {
+            "time": 6.633333,
+            "position": -0.23231388190926264
+          },
+          {
+            "time": 6.666667,
+            "position": -0.20238291075122028
+          },
+          {
+            "time": 6.733333,
+            "position": -0.1371917648978287
+          },
+          {
+            "time": 6.766667,
+            "position": -0.10519939405837869
+          },
+          {
+            "time": 6.833333,
+            "position": -0.04023166474910758
+          },
+          {
+            "time": 6.866667,
+            "position": -0.00442921240805632
+          },
+          {
+            "time": 6.933333,
+            "position": 0.057124783518527324
+          },
+          {
+            "time": 6.966667,
+            "position": 0.0923064781410432
+          },
+          {
+            "time": 7.033333,
+            "position": 0.15159216606473683
+          },
+          {
+            "time": 7.066667,
+            "position": 0.18067278621002356
+          },
+          {
+            "time": 7.133333,
+            "position": 0.24309441661875883
+          },
+          {
+            "time": 7.166667,
+            "position": 0.2707512778896548
+          },
+          {
+            "time": 7.233333,
+            "position": 0.32105770349734375
+          },
+          {
+            "time": 7.266667,
+            "position": 0.34817954678323915
+          },
+          {
+            "time": 7.333333,
+            "position": 0.39611537274149117
+          },
+          {
+            "time": 7.366667,
+            "position": 0.4160782087295691
+          },
+          {
+            "time": 7.433333,
+            "position": 0.4532651973515381
+          },
+          {
+            "time": 7.466667,
+            "position": 0.47144097393452117
+          },
+          {
+            "time": 7.533333,
+            "position": 0.5014404513950809
+          },
+          {
+            "time": 7.566667,
+            "position": 0.5139670208094449
+          },
+          {
+            "time": 7.633333,
+            "position": 0.5362171216763698
+          },
+          {
+            "time": 7.666667,
+            "position": 0.5438339197889821
+          },
+          {
+            "time": 7.733333,
+            "position": 0.5553042564480537
+          },
+          {
+            "time": 7.766667,
+            "position": 0.5592132987469771
+          },
+          {
+            "time": 7.833333,
+            "position": 0.560454494089667
+          },
+          {
+            "time": 7.866667,
+            "position": 0.5595438365792642
+          },
+          {
+            "time": 7.933333,
+            "position": 0.5532726509986666
+          }
+        ]
+      }
+    ]
+  },
+  "options": {
+    "method": "integral",
+    "noiseSigma": 0.01,
+    "maxTerms": 4,
+    "ambiguityDelta": 6,
+    "maxStep": 0.01,
+    "rateWindowSize": 9,
+    "modelLimit": 8,
+    "windowDuration": 1,
+    "windowStride": 0.5
+  },
+  "selectedModelId": "rate+spring",
+  "selectedRunId": "challenge-2b4e1759e3b85632167d",
+  "positionTolerance": 0.05
+}

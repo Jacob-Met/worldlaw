@@ -16,6 +16,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    # Source-bound metric-plane consumer and exact authored receiving fixtures.
+    "src/motion/vendor/plane-homography.mjs", "src/motion/vendor/plane-homography-source.json",
+    "tests/helpers/metric-plane-course.mjs", "scripts/make-metric-plane-fixtures.py",
+    "examples/metric-plane/fit.mp4", "examples/metric-plane/challenge.mp4",
+    "examples/metric-plane/fit-plane.json", "examples/metric-plane/challenge-plane.json",
+    "examples/metric-plane/truth.json",
     # Maintained application routes and their exact shared-source dependencies.
     "motion-reference.html", "motion-reference.css",
     "src/motion/vendor/mechanism-core.mjs", "src/motion/vendor/mechanism-source.json",
@@ -115,6 +121,8 @@ INCLUDE = (
     'experiments/rolling-origin.mjs',
 )
 REQUIRED = (
+    "src/motion/metric-plane.mjs", "src/motion/metric-plane-panel.mjs",
+    "src/motion/vendor/plane-homography.mjs", "src/motion/vendor/plane-homography-source.json",
     "motion-reference.html", "motion-reference.css", "src/motion/reference-app.mjs",
     "src/motion/vendor/mechanism-core.mjs", "src/motion/vendor/mechanism-source.json",
     "src/motion/vendor/reference-admission.mjs", "src/motion/vendor/reference-source.json",
@@ -191,6 +199,8 @@ FORBIDDEN_NAMES = {".env", "credentials", "credentials.json", "secrets.json", "i
 # Exact tracked historical evidence archives and logs are not distributed.
 # Keep these paths explicit; other unapproved archives still fail closed.
 NON_DISTRIBUTED_TRACKED_RECEIPTS = frozenset({
+    "docs/receipts/metric-plane-4f4650/native-tests.log",
+    "docs/receipts/metric-plane-4f4650/thirty-hz-course-refused.log",
     "docs/receipts/branch-response-20261024/native-tests.txt.gz",
     "docs/receipts/prediction-contrast-195c0e2a/authored-inputs-and-notebook.tar.xz",
     "docs/receipts/shared-training-195c0e2a/retained-source-evidence.tar.xz",

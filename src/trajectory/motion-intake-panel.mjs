@@ -9,7 +9,7 @@ export function createMotionIntakePanel(host,{onLoad,isBusy=()=>false}={}){
  <p class="input-hint">Keep the original Motion files for point measurements and revisions, and the separately identified original videos for pixel reinspection. The comparison retains angles, source identities, calibration and course lineage.</p>
  <div id="motion-intake-roles"></div>
  <label class="motion-intake-check"><input id="motion-unforced" type="checkbox"> Both recordings describe unforced scalar rotation.</label>
- <label class="motion-intake-check"><input id="motion-shared-frame" type="checkbox"> Both use the same physical angle zero, direction and fixed camera orientation.</label>
+ <label class="motion-intake-check"><input id="motion-shared-frame" type="checkbox"> <span id="motion-shared-frame-label">Both use the same physical angle zero, direction and fixed camera orientation.</span></label>
  <label for="motion-assumption-basis">Basis for those declarations</label>
  <textarea id="motion-assumption-basis" rows="2" maxlength="500" placeholder="Describe the setup, shared reference and absence of applied drive."></textarea>
  <p class="input-hint">These are your declarations. Images alone do not identify physical inertia, forces or a valid common reference.</p>
@@ -22,7 +22,13 @@ export function createMotionIntakePanel(host,{onLoad,isBusy=()=>false}={}){
  let revision=0,working=false;
  const status=message=>{$('motion-intake-status').textContent=message;};
  const report=error=>{const box=$('motion-intake-error');box.textContent=error.message||String(error);box.hidden=false;box.focus();};
- const refresh=()=>{$('motion-compare').disabled=working||!records.training||!records.challenge;};
+ const refresh=()=>{
+  $('motion-compare').disabled=working||!records.training||!records.challenge;
+  const planes=records.training?.inspection.notebook.calibration.plane&&records.challenge?.inspection.notebook.calibration.plane;
+  $('motion-shared-frame-label').textContent=planes?
+   'Both declared planes use the same physical angle zero and direction; each camera remains fixed.':
+   'Both use the same physical angle zero, direction and fixed camera orientation.';
+ };
  const changed=()=>{revision++;$('motion-intake-error').hidden=true;status('Prepared inputs changed. The loaded challenge stays in place until you apply this pair.');refresh();};
  const resetAssumptions=()=>{$('motion-unforced').checked=false;$('motion-shared-frame').checked=false;$('motion-assumption-basis').value='';};
  for(const role of ['training','challenge']){

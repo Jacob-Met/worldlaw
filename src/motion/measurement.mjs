@@ -1,10 +1,13 @@
 /** Calibrated image observations. Tracking quality is not a physical uncertainty guarantee. */
 import {deriveTorqueObservations, splitTrajectoryEvidence} from '../science/trajectory-observations.mjs';
 import {validateDataset} from '../data.mjs';
+import {admitMetricPlane, metricPair, PLANE_CONVENTION} from './metric-plane.mjs';
 
 export const MOTION_SCHEMA = 'worldlaw.motion-notebook/v1';
 // Older readers must refuse a notebook whose angles require a measured pivot.
 export const MOTION_TRACKED_SCHEMA = 'worldlaw.motion-notebook/v2';
+// Old readers must never silently interpret metric-plane angles as image angles.
+export const MOTION_PLANE_SCHEMA = 'worldlaw.motion-notebook/v3';
 export const MOTION_UNITS = Object.freeze({time:'s',point:'px',position:'rad'});
 export const MAX_MEASUREMENTS = 4000;
 const VALID = new Set(['accepted','manual']);
@@ -51,10 +54,11 @@ function calibrationValue(input,source) {
     pixelSigma:finite(input.pixelSigma??1,'Assumed point error (pixels)',{min:0,max:100}),
     maxGapSeconds:finite(input.maxGapSeconds??.25,'Maximum continuous time gap (seconds)',{min:.001,max:86400}),
     maxAngularStep:finite(input.maxAngularStep??Math.PI/2,'Maximum angular step (radians)',{min:.001,max:Math.PI}),
-    convention:'image_down_zero_positive_right'};
+    convention:input.plane ? PLANE_CONVENTION : 'image_down_zero_positive_right'};
   insist(result.direction===1 || result.direction===-1,'Angle direction must be +1 or -1.');
   if(input.pivotMode!==undefined) result.pivotMode=pivotMode;
   if(pivotMode==='tracked') result.pivotPixelSigma=finite(input.pivotPixelSigma??1,'Assumed pivot error (pixels)',{min:0,max:100});
+  if(input.plane!==undefined && input.plane!==null) result.plane=admitMetricPlane(input.plane,source).input;
   if (input.convention!==undefined) insist(input.convention===result.convention,'Unsupported angular calibration convention.');
   return result;
 }
@@ -90,7 +94,7 @@ export function createNotebook({source,units:declaredUnits}={}) {
   return {schema:MOTION_SCHEMA,units:{...MOTION_UNITS},source:sourceValue(source),calibration:null,measurements:[],revisions:[]};
 }
 export function validateNotebook(input) {
-  insist(input && [MOTION_SCHEMA,MOTION_TRACKED_SCHEMA].includes(input.schema),`Expected ${MOTION_SCHEMA} or ${MOTION_TRACKED_SCHEMA}.`);
+  insist(input && [MOTION_SCHEMA,MOTION_TRACKED_SCHEMA,MOTION_PLANE_SCHEMA].includes(input.schema),`Expected ${MOTION_SCHEMA}, ${MOTION_TRACKED_SCHEMA} or ${MOTION_PLANE_SCHEMA}.`);
   units(input.units);
   const copy=cloneJSON(input);
   const source=sourceValue(input.source);
@@ -99,8 +103,10 @@ export function validateNotebook(input) {
   for(let i=1;i<measurements.length;i++) insist(measurements[i].time>measurements[i-1].time,'Measurement timestamps must increase strictly; duplicate or unordered imported times are refused.');
   insist(input.revisions===undefined || (Array.isArray(input.revisions)&&input.revisions.length<=512),'Notebook revision history exceeds 512 entries.');
   const calibration=calibrationValue(input.calibration,source);
-  insist(input.schema===MOTION_TRACKED_SCHEMA || (calibration?.pivotMode!=='tracked' && !measurements.some(row=>row.pivotMeasurement!=null)),
+  insist(input.schema!==MOTION_SCHEMA || (calibration?.pivotMode!=='tracked' && !measurements.some(row=>row.pivotMeasurement!=null)),
     'Measured pivots require the v2 motion notebook schema; v1 readers assume a fixed pivot.');
+  insist(input.schema===MOTION_PLANE_SCHEMA || !calibration?.plane,
+    'Metric-plane angles require the v3 motion notebook schema; older readers assume image coordinates.');
   return {...copy,schema:input.schema,units:{...MOTION_UNITS},source,calibration,measurements,revisions:copy.revisions??[]};
 }
 function revision(nb,event) {
@@ -111,8 +117,19 @@ function revision(nb,event) {
 export function calibrateNotebook(input,calibration) {
   const nb=validateNotebook(input);
   nb.calibration=calibrationValue(calibration,nb.source);
-  if(nb.calibration?.pivotMode==='tracked') nb.schema=MOTION_TRACKED_SCHEMA;
+  if(nb.calibration?.plane) nb.schema=MOTION_PLANE_SCHEMA;
+  else if(nb.calibration?.pivotMode==='tracked' && nb.schema!==MOTION_PLANE_SCHEMA) nb.schema=MOTION_TRACKED_SCHEMA;
   return validateNotebook(revision(nb,{type:'calibration',value:nb.calibration}));
+}
+/** Explicitly apply or remove a declared metric plane, preserving the source ledger. */
+export function calibratePlaneNotebook(input,planeInput) {
+  const nb=validateNotebook(input);
+  insist(nb.calibration,'Set a source pivot before applying a metric-plane declaration.');
+  const calibration={...nb.calibration};
+  if(planeInput===null) delete calibration.plane;
+  else calibration.plane=admitMetricPlane(planeInput,nb.source).input;
+  calibration.convention=calibration.plane?PLANE_CONVENTION:'image_down_zero_positive_right';
+  return calibrateNotebook(nb,calibration);
 }
 export function upsertMeasurement(input,measurement) {
   const nb=validateNotebook(input),row=rowValue(measurement,nb.source);
@@ -143,8 +160,10 @@ export function deriveAngles(input) {
   const nb=validateNotebook(input);
   insist(nb.calibration,'Calibrate a pivot before deriving angles.');
   const c=nb.calibration,samples=[],segments=[];
+  const plane=c.plane?admitMetricPlane(c.plane,nb.source):null;
   let previous=null,segment=null,breakReason=null;
   const warnings=new Set();
+  if(plane) warnings.add('metric_plane_is_caller_declared');
   if(c.pivotMode!=='tracked' && nb.revisions.some(event=>event?.type==='path-reference' && event.pivot?.x===c.pivot.x && event.pivot?.y===c.pivot.y)) warnings.add('fixed_reference_fitted_from_same_marker_observations');
   const reset=reason=>{previous=null;segment=null;breakReason=reason;};
   for(let i=0;i<nb.measurements.length;i++) {
@@ -163,7 +182,8 @@ export function deriveAngles(input) {
     if(radius<2) {
       samples.push({...row,status:'missing',position:null,positionSigma:null,segmentId:null,sourceIndex:i,reason:'marker_too_close_to_pivot'});reset('marker_too_close_to_pivot');continue;
     }
-    const raw=c.direction*(Math.atan2(dx,dy)-c.zeroAngle);
+    const rectified=plane?metricPair(plane,row.point,origin,c.pixelSigma,tracked?c.pivotPixelSigma:0):null;
+    const raw=c.direction*((rectified?rectified.rawAngle:Math.atan2(dx,dy))-c.zeroAngle);
     let angle=raw;
     if(previous) {
       const delta=Math.atan2(Math.sin(raw-previous.raw),Math.cos(raw-previous.raw));
@@ -176,18 +196,23 @@ export function deriveAngles(input) {
       segments.push(segment);breakReason=null;
     }
     const sigma=tracked?Math.hypot(c.pixelSigma,c.pivotPixelSigma):c.pixelSigma;
-    const sample={...row,position:angle,positionSigma:sigma/radius,radius,segmentId:segment.id,sourceIndex:i};
+    const sample={...row,position:angle,positionSigma:rectified?rectified.positionSigma:sigma/radius,radius,
+      ...(rectified?{planeMarker:rectified.marker,planePivot:rectified.pivot,planeRadius:rectified.radius}:{}),
+      segmentId:segment.id,sourceIndex:i};
     samples.push(sample);segment.endTime=row.time;segment.count++;segment.sourceIndices.push(i);
     previous={time:row.time,raw,position:angle};
     if(row.timeBasis==='requested-seek-time') warnings.add('nominal_video_timestamps');
   }
-  const good=samples.filter(row=>row.position!==null),radii=good.map(row=>row.radius);
+  const good=samples.filter(row=>row.position!==null),radii=good.map(row=>plane?row.planeRadius:row.radius);
   const radiusRatio=radii.length?Math.max(...radii)/Math.min(...radii):null;
-  if(radiusRatio!==null && radiusRatio>1.15) warnings.add('radius_varies_check_pivot_perspective_and_tracking');
+  if(radiusRatio!==null && radiusRatio>1.15) warnings.add(plane?'plane_radius_varies_check_calibration_and_tracking':'radius_varies_check_pivot_perspective_and_tracking');
   return {samples,segments,units:{time:'s',position:'rad',point:'px'},convention:c.convention,
     diagnostics:{acceptedCount:good.length,rejectedCount:samples.length-good.length,segmentCount:segments.length,radiusRatio,warnings:[...warnings],
+      ...(plane?{metricPlane:{referenceResidual:plane.referenceResidual,qualification:plane.qualification,
+        radiusUnit:plane.input.coordinateUnit,
+        uncertainty:'First-order propagation of declared independent isotropic pixel errors, conditional on exact plane correspondences and a fixed camera. Corner uncertainty, lens distortion and plane mismatch are excluded.'}}:{}),
       limitations:[
-        c.pivotMode==='tracked'?'Both image points must describe the same planar mechanism under a fixed image orientation; common translation cancels, camera rotation and perspective do not.':'A fixed pivot, front-facing camera and approximately planar motion are caller assumptions.',
+        plane?'Angles use a caller-declared metric plane under a fixed camera with negligible lens distortion. Both points must lie in that plane; its metric aspect ratio and physical basis are not verified.':c.pivotMode==='tracked'?'Both image points must describe the same planar mechanism under a fixed image orientation; common translation cancels, camera rotation and perspective do not.':'A fixed pivot, front-facing camera and approximately planar motion are caller assumptions.',
         'A visually plausible wrong pivot cannot be diagnosed from these coordinates alone.',
         'A fitted path center is a conditional image reference, not a measured physical joint. Fixed-reference sigma does not include center-fit uncertainty or its correlation with the same marker observations.',
         'No interpolation crosses a rejected measurement, time gap or excessive angular step.',

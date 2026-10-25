@@ -44,6 +44,8 @@ export function pathReferenceCourses(input, {maxGapSeconds = .25} = {}) {
 }
 export function proposePathReference(input, options = {}) {
   const nb = validateNotebook(input), request = settings(options);
+  insist(!nb.calibration?.plane,
+    'Image-circle reference fitting does not correct perspective. Keep a separately observed pivot while a metric plane is active.');
   insist(nb.calibration?.pivotMode !== 'tracked',
     'Path reference inference requires a fixed camera. Keep the independently tracked pivot, or explicitly select fixed-reference mode.');
   const courses = coursesFrom(nb, request.maxGapSeconds);
