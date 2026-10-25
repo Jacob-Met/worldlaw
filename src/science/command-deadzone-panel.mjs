@@ -26,6 +26,7 @@ export function renderCommandDeadzone(container,session,{chart,onReopen,simulati
       const baseline=report.candidates.find(c=>c.width===0);
       output.dataset.status='computed';
       output.append(el('h4',`Training-ranked half-width: ${fmt(report.selected.width)} N·m`));
+      output.append(el('p',report.options.loss==='soft_l1'?`Fitting assumption: soft-L1 at ${report.options.lossScale} N·m scale. Ranking uses that declared loss; every raw residual remains in the RMSE below. Reduced loss influence does not identify faulty readings.`:'Fitting assumption: ordinary least squares. Every original training reading contributes to the fitted objective.'));
       output.append(el('p',`Competitive declared widths: ${report.competitiveWidths.map(fmt).join(', ')} N·m. Ties use the smaller declared width. This ranking uses only training readings; no mapping replaces the Studio model.`));
       const table=el('table');table.style.width='100%';table.style.tableLayout='fixed';table.style.fontSize='.78rem';table.style.overflowWrap='anywhere';table.append(el('caption','All declared widths · torque errors in N·m'));
       const header=el('tr');for(const t of ['d (N·m)','Training RMSE (N·m)','Receiving RMSE (N·m)','Training adequacy'])header.append(el('th',t));table.append(header);
@@ -33,6 +34,7 @@ export function renderCommandDeadzone(container,session,{chart,onReopen,simulati
       for(const candidate of report.candidates){const row=el('tr');row.append(el('th',fmt(candidate.width)),el('td',short(candidate.model.metrics.rmse)),el('td',short(evaluateDeadzone(candidate,session.base.heldOut).rmse)),el('td',candidate.diagnostics.adequacy==='residual_mismatch'?'Mismatch':'Not falsified'));table.append(row);}
       const scroll=el('div');scroll.style.overflowX='auto';scroll.append(table);output.append(scroll);
       output.append(el('p',`Full comparison work reservation: ${report.work.reserved} / ${report.work.limit}. ${session.base.heldOut.length} receiving rows are excluded from fitting and ranking. Width ambiguity, a low score or a good training fit does not establish correct physics.`));
+      if(report.work.robustReserved)output.append(el('p',`Complete soft-L1 family reservation: ${report.work.robustReserved} / ${report.work.robustLimit}, including the maintained iteration and line-search limits at every width. No partial family is ranked.`));
       if(report.candidates.some(c=>c.mappedCommandSupport<2))output.append(el('p','At least one mapped command has fewer than two distinct training values. Its gain/width is unsupported; a mechanical-only fit can still rank well.'));
       const selectLabel=el('label','Inspect a declared mapping '),select=el('select');select.id='deadzone-inspect';
       for(const c of report.candidates){const option=el('option',`${fmt(c.width)} N·m`);option.value=String(c.width);select.append(option);}select.value=String(report.selected.width);selectLabel.append(select);output.append(selectLabel);

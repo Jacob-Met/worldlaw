@@ -1,5 +1,6 @@
 /** Conditional static command mappings. Original measurements never become mapped evidence. */
-import {discover, evaluate, predict, simulate, DEFAULT_TERMS, TERMS} from './torque-discovery.mjs';
+import {discover, evaluate, predict, simulate, discoveryRobustWork, DEFAULT_TERMS, TERMS} from './torque-discovery.mjs';
+import {SOFT_L1_MAX_WORK} from './robust-fit.mjs';
 import {validateRows, MAX_TEXT_LENGTH} from '../data.mjs';
 import {exportSession, restoreSession} from '../session.mjs';
 
@@ -19,8 +20,13 @@ export function mapDeadzone(command, width) {
 }
 const mapped = (rows,width) => rows.map(row=>({...row,command:mapDeadzone(row.command,width)}));
 
-export function compareCommandDeadzones(training, widths, options, {maxWork=MAX_DEADZONE_WORK}={}) {
+export function compareCommandDeadzones(training, widths, options, {maxWork=MAX_DEADZONE_WORK,maxRobustWork=SOFT_L1_MAX_WORK}={}) {
   const original=validateRows(training); widths=checkedWidths(widths);
+  // The maintained estimator owns iteration/backtracking accounting. Reserve
+  // its complete search for every width before starting even the first fit.
+  const robustReserved=widths.length*discoveryRobustWork(original.length,options);
+  if(!Number.isSafeInteger(maxRobustWork)||maxRobustWork<1||maxRobustWork>SOFT_L1_MAX_WORK||robustReserved>maxRobustWork)
+    throw Error('Complete dead-zone family exceeds the soft-L1 work limit; no partial family or least-squares fallback accepted.');
   // Reserve the complete library before invoking its fitter. Counting every
   // subset is conservative when maxTerms excludes some. Invalid options still
   // go through the maintained admission, never a second option normalizer.
@@ -46,7 +52,7 @@ export function compareCommandDeadzones(training, widths, options, {maxWork=MAX_
   const selected=ranked[0];
   const competitiveWidths=ranked.filter(c=>c.model.metrics.score-selected.model.metrics.score<=admitted.ambiguityDelta).map(c=>c.width);
   return {candidates,selected,competitiveWidths,options:admitted,training:original,
-    work:{reserved:reservedWork,limit:maxWork},
+    work:{reserved:reservedWork,limit:maxWork,robustReserved,robustLimit:maxRobustWork},
     interpretation:'Training-only finite-grid comparison of symmetric, memoryless command mappings. Width and gain may be confounded. Score differences are heuristic, not confidence or physical actuator identification. Every selected structure is conditional on its mapping; held-out observations do not choose widths or terms.'};
 }
 export function predictDeadzone(candidate,row) {

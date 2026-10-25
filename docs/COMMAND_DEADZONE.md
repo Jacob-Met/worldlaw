@@ -9,7 +9,10 @@ mapping, not a calibrated applied-torque measurement.
 
 Every width runs the maintained scalar discovery library using training readings
 only. The original feature choices, noise floor and maximum term count apply to
-each width. The same heuristic score ranks the finite width grid; ties use the
+each width, including the explicitly selected least-squares or soft-L1 loss and
+its declared scale. Raw RMSE always retains every original reading; a soft-L1
+score and reduced influence do not identify faulty readings. The same heuristic
+score ranks the finite width grid; ties use the
 smaller width. No continuous optimum, posterior or uniquely identified threshold
 is claimed. Every declared width remains visible, including training mismatch and
 rank/conditioning diagnostics. A command that never changes, a command always
@@ -52,6 +55,14 @@ when maxTerms would exclude the subset. This is a declared algorithmic work
 proxy, not a CPU-instruction or wall-time guarantee. The existing fitter remains
 bounded to its maintained row/feature limits. Exceeding the reservation refuses
 the whole family; no successful prefix is reported as complete.
+
+For soft-L1, the instrument additionally reuses the maintained
+`discoveryRobustWork` reservation, including every permitted iteration and line
+search, across **all** declared widths before fitting. The complete family must
+fit within the existing 250 million robust-work limit. A family that is too
+large refuses; there is no silent ordinary-loss fallback or width thinning.
+The original v3 soft-L1 notebook is retained inside the input-only comparison
+envelope and is recomputed on reopening.
 
 The widths are investigator declarations. Selecting them after seeing a
 receiving result turns that source into development evidence; the software does

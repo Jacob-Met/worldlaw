@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {compareCommandDeadzones,evaluateDeadzone,predictDeadzone,simulateDeadzone,checkedWidths,exportDeadzoneInputs,restoreDeadzoneInputs} from '../src/science/command-deadzone.mjs';
-import {discover,evaluate,simulate} from '../src/science/torque-discovery.mjs';
+import {discover,evaluate,simulate,discoveryRobustWork} from '../src/science/torque-discovery.mjs';
 import {createSession,exportSession} from '../src/session.mjs';
 
 // Independent oracle: separate branches, not the implementation's transform.
@@ -73,4 +73,28 @@ test('conditional predictions execute in the maintained constant-command solver'
   assert.deepEqual(trajectory,expected);
   for(const point of trajectory)assert.equal(point.jointTorque,predictDeadzone(candidate,{...point,command:.8}));
   assert.throws(()=>predictDeadzone(candidate,{command:NaN,position:0,rate:0}));
+});
+test('soft-L1 retains exact zero baseline, declared loss, original rows and receiving isolation',()=>{
+  const training=course(.419,40);training[3].jointTorque+=1.2;
+  const robust={...options,loss:'soft_l1',lossScale:.03};
+  const report=compareCommandDeadzones(training,[0,.419],robust),before=JSON.stringify(report);
+  assert.deepEqual(report.candidates[0].model,discover(training,robust).selected);
+  assert.equal(report.selected.width,.419);assert.equal(report.selected.model.fitting.loss,'soft_l1');
+  assert.deepEqual(report.training,training);
+  const receiving=course(.419,31,.31);
+  assert.ok(evaluateDeadzone(report.selected,receiving).rmse<.01);
+  evaluateDeadzone(report.selected,receiving.map(r=>({...r,jointTorque:r.jointTorque+100})));
+  assert.equal(JSON.stringify(report),before);
+});
+test('complete robust iterations are reserved across all widths before any fit',()=>{
+  const training=course(.419,40),robust={...options,loss:'soft_l1',lossScale:.03};
+  const required=2*discoveryRobustWork(training.length,robust);
+  const result=compareCommandDeadzones(training,[0,.419],robust,{maxRobustWork:required});
+  assert.equal(result.work.robustReserved,required);
+  assert.throws(()=>compareCommandDeadzones(training,[0,.419],robust,{maxRobustWork:required-1}),/soft-L1 work limit/);
+  assert.throws(()=>compareCommandDeadzones(course(.419,80),[0,.2,.419,.8],{loss:'soft_l1',lossScale:.03}),/no partial family/);
+  assert.throws(()=>compareCommandDeadzones(training,[0,.419],{...robust,lossScale:0}),/scale/);
+  const session=createSession({observations:training,heldOut:course(.419,15,.8)}, {loss:'soft_l1',lossScale:.03});
+  const saved=exportDeadzoneInputs(session,[0,.419]);assert.equal(JSON.parse(saved).notebook.schema,'worldlaw.session/v3');
+  assert.equal(restoreDeadzoneInputs(saved).session.options.loss,'soft_l1');
 });
