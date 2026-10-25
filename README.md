@@ -308,3 +308,7 @@ The coupled retrospective receiver can inspect [shared training changes across s
 ### Inspect encoder calibration dependence
 
 After comparing a closed loop in Coupling Lab, open **Does the encoder calibration act together or separately?** Compare explicitly declared shared versus independent positive gain hypotheses against the same original readings, inspect attaining mathematical witnesses, and save/reopen source-only calibration inputs. Constant per-coordinate offsets cancel; this does not infer sensor calibration or refit physical laws. See [the calibration contract](docs/COUPLED_CALIBRATION.md).
+
+### Inspect cross-channel encoder calibration
+
+After comparing a loop in Coupling Lab, open **Could the encoder channels mix the two coordinates?** Inspect an explicitly declared orientation-preserving matrix box while preserving each original torque-reading error across its matrix contributions. Retain attaining matrix/reading witnesses and source-only replay. See [the matrix calibration contract](docs/COUPLED_MATRIX_CALIBRATION.md).
