@@ -1,3 +1,5 @@
+import {mountScalarExcitation} from './science/excitation-design-panel.mjs';
+let excitationPanel=null;
 import {renderCommandDeadzone} from './science/command-deadzone-panel.mjs';
 import {mountSensorResponse} from './science/sensor-response-panel.mjs';
 import {renderConditionalRate} from './science/conditional-rate-panel.mjs';
@@ -128,6 +130,7 @@ function renderModel(){
   runSimulation(false);
 }
 function render(){
+  excitationPanel?.studioChanged();
   const d=state.discovery;set('source-name',state.base.source.label);set('source-kind',state.lab?'Virtual instrument · synthetic evidence':'Imported observations · user-supplied evidence');
   set('sample-count',String(d.observations.length));set('heldout-count',String(state.base.heldOut.length));set('candidate-count',String(d.candidates.length));
   $('undo').disabled=state.events.length===0;$('measured-field').hidden=Boolean(state.lab);$('run-experiment').textContent=state.lab?'Run virtual experiment':'Record measured outcome';
@@ -265,3 +268,6 @@ clockPanel=mountClockOffsets(document.querySelector('.main-column'),model);
 affinePanel=mountAffineClocks(document.querySelector('.main-column'),model);
 
 
+
+excitationPanel=mountScalarExcitation($('use-proposal').parentElement,{getState:()=>state,saveNotebook:()=>exportSession(state),openNotebook:(text,validateOnly=false)=>{const next=restoreSession(text);if(!validateOnly)adopt(next,'Reopened input-design source notebook.');return next;},useInput:input=>{for(const field of ['command','position','rate'])$(field).value=String(input[field]);notice('Declared input copied. Obtain a new reading before recording the outcome.');$('command').focus();}});
+excitationPanel.studioChanged();
