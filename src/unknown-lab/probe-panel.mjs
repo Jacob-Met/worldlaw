@@ -1,3 +1,4 @@
+import {mountProbeMixtureConsistency} from './probe-mixture-consistency-panel.mjs';
 import {analyzeProbeMixtures} from './probe-mixture.mjs';
 import {analyzeProbeStudy,exportProbeStudy,importProbeStudy} from './probe-response.mjs';
 import {probeExample} from './probe-fixture.mjs';
@@ -12,7 +13,7 @@ export function mountProbePanel(){
  .probe-investigation #probe-challenges p{overflow-wrap:anywhere}
  </style><p class="overline">CROSS-PROBE / TEST WHAT PREPARATION CHANGES</p><h2 id="probe-title">Does the effect reverse with motion?</h2>
  <p>Hold preparation and command fixed. Change the probe angle and rate to confront a constant torque offset, a change proportional to rate, and a change proportional to sin(angle). The same coefficient must predict every separate challenge.</p>
- <label for="probe-example-kind">Authored control <select id="probe-example-kind"><option value="ambiguous">Ambiguous small probes → reversed motion</option><option value="drag">Rate-dependent response</option><option value="offset">Constant response</option><option value="restoring">Sine-angle response</option><option value="mixed">Omitted mixed response</option></select></label>
+ <label for="probe-example-kind">Authored control <select id="probe-example-kind"><option value="ambiguous">Ambiguous small probes → reversed motion</option><option value="drag">Rate-dependent response</option><option value="offset">Constant response</option><option value="restoring">Sine-angle response</option><option value="mixed">Mixed offset + rate control</option></select></label>
  <div class="secondary-actions"><button id="probe-example" type="button">Run authored probe study</button><button id="probe-open" type="button">Open probe measurements</button><button id="probe-export" type="button" disabled>Export probe study</button></div><input id="probe-file" type="file" accept=".json,application/json" hidden>
  <p class="input-hint">Imports use worldlaw.probe-response/v1: 3 or more training runs, separate challenge runs, fixed preparation declarations and a fixed command/angle/rate within each run. Each run embeds the existing matched-pair notebook with at least four pairs per order. Source declarations are retained; no study is saved automatically.</p>
  <strong id="probe-state" role="status">NO STUDY</strong><p id="probe-summary"></p>
@@ -21,8 +22,8 @@ export function mountProbePanel(){
  <div id="probe-challenges" aria-live="polite"></div><details><summary>Challenge explicit mixed responses</summary><p>Exploratory offset/rate/sine combinations use training-only equal-weight fits. More training runs than coefficients are required. These are point predictions; failed representatives do not exclude the whole coefficient family.</p><div id="probe-mixtures" aria-live="polite"></div></details><p id="probe-error" role="alert"></p>
  <p class="annotation">Screening bounds are not calibrated confidence. Compatible rate or angle response does not prove friction, restoring forces or physical memory. Mixed responses, nonlinear instrument drift and confounding remain possible. Changing training recomputes the model; challenge values only test frozen predictions.</p>`;
  document.querySelector('.scientific-limit').before(section);
- const $=id=>section.querySelector('#'+id);let study=null,readVersion=0;
- function adopt(next){const result=analyzeProbeStudy(next);study=next;render(result);$('probe-export').disabled=false;$('probe-error').textContent='';document.dispatchEvent(new CustomEvent('worldlaw-probe-study-change'));}
+ const $=id=>section.querySelector('#'+id);let study=null,readVersion=0,consistencyConfig=null;
+ function adopt(next,config=null){const result=analyzeProbeStudy(next);study=next;consistencyConfig=config;render(result);$('probe-export').disabled=false;$('probe-error').textContent='';document.dispatchEvent(new CustomEvent('worldlaw-probe-study-change'));}
  function render(r){
   $('probe-state').textContent=r.fit.status.toUpperCase().replaceAll('-',' ');
   $('probe-summary').textContent=`${r.source??'No'} evidence · preparation ${study.preparation.id}, ${study.preparation.duration}s; recovery ${study.preparation.recovery}s. `+(r.fit.reasons.join(' ')||'Predictions below use training-only coefficients; failed alternatives remain visible.');
@@ -32,6 +33,7 @@ export function mountProbePanel(){
  function renderMixtures(){
   const target=$('probe-mixtures');target.replaceChildren();
   const result=analyzeProbeMixtures(study);
+  mountProbeMixtureConsistency(target,study,consistencyConfig,{begin:()=>++readVersion,current:version=>version===readVersion,adopt:raw=>adopt(raw.study,raw)});
   for(const candidate of result.candidates){
    const title=document.createElement('h3');title.textContent=candidate.id+' · '+candidate.status;target.append(title);
    const detail=document.createElement('p');detail.textContent=candidate.coefficients?candidate.labels.map((label,i)=>label+': '+fmt(candidate.coefficients[i])).join('; '):candidate.reason??'No admitted fit.';if(candidate.coefficients&&candidate.reason)detail.textContent+=' '+candidate.reason;target.append(detail);

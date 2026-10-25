@@ -1,0 +1,75 @@
+{
+  "claim": "https://github.com/Jacob-Met/worldlaw/issues/170",
+  "base": "7acef57eb1d00a75a62844d17f6b6f28ec4b0d41",
+  "baseTree": "08fa3d1835710a008cede8fc06fa78f564a690d8",
+  "sourceSha256": {
+    "src/unknown-lab/probe-mixture.mjs": "0bac22f75a9d839b866e6197dbe213c0743106a728a99c3c0d7abaa09a66dbd7",
+    "src/unknown-lab/probe-panel.mjs": "698d6b9957011972e5e5e9043fd92d1be682b642ea6f72d9075bf015ea4ec6e2",
+    "src/unknown-lab/probe-mixture-consistency.mjs": "f34c10755e01d45f858b48050186e74d1641abd6729beb40a8a123fb02805832",
+    "src/unknown-lab/probe-mixture-consistency-panel.mjs": "450045c88edad1071173ffc27d71fe47fd779e97041813dc7da34b2a31f2cd97",
+    "tests/probe-mixture-consistency.test.mjs": "7d9bf0fb7c787e68663796a36ae6a790ff4e305341f9695b9701810a55cada1f",
+    "scripts/probe-mixture-consistency-browser.mjs": "5520ae3901d2e456735def0801384f3cd632de6d61b1b6db80cda4b77b0694c9",
+    "docs/PROBE_MIXTURE_CONSISTENCY.md": "f5bed0a9d4edd774b30a3eb75ac34af7246620ff00b029b2640726fdc15142b3"
+  },
+  "native": {
+    "total": 749,
+    "passed": 748,
+    "skipped": 1,
+    "failed": 0,
+    "seconds": 33.365,
+    "environment": "Node22.23.4 Ubuntu",
+    "skip": "existing optional live Node/Chromium exchange"
+  },
+  "smokes": {
+    "product": "passed",
+    "trajectory": "passed"
+  },
+  "browser": {
+    "groups": 16,
+    "passed": true,
+    "sandbox": "admitted before navigation",
+    "exceptions": [],
+    "offsiteRequests": [],
+    "visualReview": "Root and WORLDLAW independently inspected current desktop and narrow captures; readable source/witness rows and scientific boundaries, no apparent horizontal clipping. Narrow capture is scrolled into witness section.",
+    "remoteDirectory": "/tmp/hamon-551724dc/worldlaw-consistency-receipts-v2",
+    "remoteLog": "/tmp/hamon-551724dc/worldlaw-consistency-final-step3.log",
+    "device": "7bbde96a-7dad-438e-a035-cc2626ef02a5",
+    "artifactRun": "Packaged captures and raw JSON are previous run; unchanged owned runtime. Final current-main course also passed16groups."
+  },
+  "independentSourceReview": "MECHANISM reviewed raw-source checking and coefficient-box support algebra, executed initial5newtests, no blocker. Six new native groups include the heterogeneous-screen counterexample.",
+  "boundaries": [
+    "training-only consistency excludes challenge values",
+    "all-evidence consistency is retrospective and forecast:false",
+    "no calibrated confidence, unique coefficient identification, physical cause or deployment claim"
+  ],
+  "publication": "not yet published or merged",
+  "artifactSha256": {
+    "desktop.png": "de63478e22ccade883efb89744f47637e676793ba693664a582917a6eebe6151",
+    "narrow.png": "32b81d93aad0f029df2a701fbd864b3666913d2d3cd1d5915b1388e2819cfe97",
+    "browser.json": "1e5aeefb3086e48bf718961d4f96d7a3e6239a07adfc08513bcfa63b9c594182",
+    "sandbox.json": "28891c1fde73543fe26eea13b93a878200dc8a146024dfe26447c6e371a1b741"
+  },
+  "freshMainQualification": {
+    "status": "passed full root receiving",
+    "localFocusedTests": {
+      "total": 15,
+      "passed": 15,
+      "failed": 0
+    },
+    "delta": "9 upstream text files exact Git blob verified; no owned-path overlap; two upstream receipt PNGs inherited in Git tree"
+  },
+  "previousReceiving": {
+    "base": "79a74acacc71e95344450ba97ca2f48ed4a711e6",
+    "baseTree": "72feb549bcded8f5c8aa56c18bc6b433ce0c7831",
+    "native": {
+      "total": 746,
+      "passed": 745,
+      "skipped": 1,
+      "failed": 0,
+      "seconds": 32.065,
+      "environment": "Node22.23.4 Ubuntu",
+      "skip": "existing optional live Node/Chromium exchange"
+    },
+    "browserArtifactNote": "Packaged browser.json, sandbox.json and screenshots are previous receiving run; same owned runtime source."
+  }
+}
