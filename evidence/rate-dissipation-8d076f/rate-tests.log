@@ -1,0 +1,16 @@
+✔ interior active pocket is retained despite negative endpoints (2.38702ms)
+✔ positive zero-speed limiting factor produces strictly positive actual-speed witness (0.307653ms)
+✔ tangent zero, zero law and zero-only domain remain nonpositive (0.422573ms)
+✔ domain expansion exposes active behavior without changing supplied law (0.251771ms)
+✔ small positive coefficient is not rounded into absence (0.212974ms)
+✔ positive rational power survives binary64 underflow in the display enclosure (0.335565ms)
+✔ conservative and command terms do not change rate-only classification (0.716246ms)
+✔ unsupported, nonfinite, negative and oversized declarations refuse (0.347012ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14.574008

@@ -1,0 +1,36 @@
+{
+  "base": "5c7362d96bfd75edc7b1a931cae3fc5cc279bdfe",
+  "issue": 212,
+  "files": [
+    {
+      "path": "src/science/rate-dissipation.mjs",
+      "base_blob": null,
+      "sha256": "7c471870dfb26454dd907f33a9a6da84ea3c1e237fc7c9f11362a767847e875f"
+    },
+    {
+      "path": "src/science/rate-dissipation-panel.mjs",
+      "base_blob": null,
+      "sha256": "03bbe3cae467353f668ed312675f4febd545287146534c577f288b73f66c69f2"
+    },
+    {
+      "path": "src/science/energy-budget-panel.mjs",
+      "base_blob": "4df0f682608aaacfc0d54b8bff156b38bcb30c01",
+      "sha256": "330c74cf5e55eb9a6a9aff4b63386a9565e0a4cbff1e7c79b0c7f6ffecd8f2bc"
+    },
+    {
+      "path": "tests/rate-dissipation.test.mjs",
+      "base_blob": null,
+      "sha256": "2eed37d7f459d9d35b8d116d67ec4db35e0a1861d5df39d61fcd988cfb86ac1d"
+    },
+    {
+      "path": "scripts/rate-dissipation-browser.mjs",
+      "base_blob": null,
+      "sha256": "b49568433ca4cf218a76032f7302d58315f2a58a45508d51dd6c905a3ba07099"
+    },
+    {
+      "path": "docs/RATE_DISSIPATION.md",
+      "base_blob": null,
+      "sha256": "a90a28ae237cba05a4b8704beb43984dd031a902a3932f0a2ff208b29a6bef0a"
+    }
+  ]
+}
