@@ -1,0 +1,287 @@
+{
+  "observedAtUTC": "2026-10-25 07:25:31 UTC",
+  "baseCommit": "1c6da7efaee0113d78bb0e27ba5a80d16962debf",
+  "implementationCommit": "acb29476d395598045d890e63543bd73c49a7bbb",
+  "team": "hamon-53ba6b8e-20261024",
+  "environment": {
+    "node": "22.23.4",
+    "os": "Linux",
+    "chromiumSandbox": true
+  },
+  "commands": [
+    {
+      "command": "node --test tests/motion-intake.test.mjs",
+      "tests": 8,
+      "pass": 8,
+      "fail": 0
+    },
+    {
+      "command": "npm run verify",
+      "tests": 956,
+      "pass": 955,
+      "fail": 0,
+      "skip": 1,
+      "smokes": [
+        "launched Discovery Studio",
+        "launched Trajectory Challenge"
+      ]
+    },
+    {
+      "command": "node scripts/motion-intake-browser.mjs",
+      "groups": 7,
+      "pass": 7,
+      "fail": 0
+    }
+  ],
+  "actualBrowser": {
+    "checks": [
+      "three separately encoded original movies reach actual tracked pixels, reference acceptance and saved Motion inputs",
+      "actual Motion intake fits its training recording and predicts a different recording better than both no-learning baselines",
+      "portable trajectory notebook reopens with source lineage, declarations and identical input-only model reconstruction",
+      "a shared original video is refused without replacing the loaded prediction",
+      "a separately tracked different-law movie retains its failed transfer while the training-selected law remains identical",
+      "narrow layout, keyboard input and reduced-motion receiving stay operable",
+      "no uncaught page exceptions"
+    ],
+    "acquisitions": [
+      {
+        "course": "fit",
+        "frames": 160,
+        "sourceSha256": "556836fd58a3d97244eca763af48983c949887bd49d0173b6dc393d78da0956d",
+        "referenceErrorPixels": 0.7912250821093548
+      },
+      {
+        "course": "challenge",
+        "frames": 160,
+        "sourceSha256": "164222f0b7b2ae4bcde7f7d73a954397926cea2e7b61e18fab9c0d65bea4167e",
+        "referenceErrorPixels": 0.2652317990105579
+      },
+      {
+        "course": "different-law",
+        "frames": 160,
+        "sourceSha256": "1eeb80337f7735cb5b1fb380129e518fe84133c156b4ec190871487165f2a251",
+        "referenceErrorPixels": 0.10094008707827012
+      }
+    ],
+    "positive": {
+      "predictionSkill": {
+        "status": "complete",
+        "modelId": "rate+spring",
+        "count": 159,
+        "runCount": 1,
+        "failedRunIds": [],
+        "modelRMSE": 0.011091379320466695,
+        "baselines": [
+          {
+            "id": "persistence",
+            "count": 159,
+            "positionRMSE": 1.270364765238267,
+            "skill": 0.9999237720505856,
+            "skillStatus": "available"
+          },
+          {
+            "id": "initial_rate",
+            "count": 159,
+            "positionRMSE": 1.270364765238267,
+            "skill": 0.9999237720505856,
+            "skillStatus": "available"
+          }
+        ],
+        "meaning": "Skill = 1 − model squared error / baseline squared error on identical non-initial samples; positive is better, negative is worse. Zero baseline error has undefined skill. No challenge-based model selection.",
+        "limitations": "No-learning references are not physical laws. Initial angle/rate are supplied; recording independence is not authenticated. Results describe these recordings, not generalization guarantees."
+      },
+      "trainingRunCount": 1,
+      "challengeRunCount": 1,
+      "trainingSampleCount": 160,
+      "challengeSampleCount": 160,
+      "fittedModelCount": 57,
+      "comparedModelCount": 8,
+      "selectedPositionRMSE": 0.011091379320466709,
+      "completedChallengeRuns": 1,
+      "failedRollouts": 0,
+      "fitResidualUnits": "rad",
+      "selectionBasis": "training_evidence_only",
+      "evidenceKinds": [
+        "synthetic"
+      ],
+      "limitations": [
+        "Finite-library angular-acceleration models; physical inertia and absolute torque remain unknown.",
+        "Unforced scalar rotation is a declared assumption; absent actuator data cannot verify it.",
+        "A supplied initial angular rate is used for prediction. Compact-window weak fitting does not use that rate.",
+        "Challenge observations do not enter fitting, ranking, or initial velocity estimation.",
+        "Inspecting challenge errors and choosing settings is exploratory reuse, not a new blind validation.",
+        "Source kinds and acquisition independence are declared by the input author, not authenticated.",
+        "Numerical step error, calibration error and missing physical structure can all affect forward error."
+      ]
+    },
+    "selectedModel": {
+      "schema": "worldlaw.angular-model/v1",
+      "id": "rate+spring",
+      "terms": [
+        {
+          "id": "rate",
+          "coefficient": -0.2295158831378061,
+          "coefficientUnit": "1/s"
+        },
+        {
+          "id": "spring",
+          "coefficient": -5.768167386813153,
+          "coefficientUnit": "1/s²"
+        }
+      ],
+      "equation": "α = -0.22952·ω + -5.7682·θ",
+      "units": {
+        "position": "rad",
+        "rate": "rad/s",
+        "angularAcceleration": "rad/s²"
+      },
+      "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+      "physicalInertia": null,
+      "absoluteTorqueIdentified": false,
+      "method": "double_integral_angular_acceleration_regression",
+      "domain": {
+        "position": {
+          "min": -0.6916491047233085,
+          "max": 0.8024091246126341
+        },
+        "rate": {
+          "min": -1.8154041174284434,
+          "max": 1.5572547108034025,
+          "source": "declared_initial_and_estimated_rates"
+        }
+      },
+      "metrics": {
+        "count": 159,
+        "rmse": 0.012025993127412286,
+        "whitenedRmse": 0.006083913503748911,
+        "maxAbsResidual": 0.02128847942427048,
+        "score": -1454.3063107397725,
+        "residualUnits": "rad",
+        "residualMeaning": "integrated_training_displacement_not_forward_prediction",
+        "conditionEstimate": 1.5344849934408327,
+        "rank": 2
+      }
+    },
+    "differentLaw": {
+      "summary": {
+        "predictionSkill": {
+          "status": "complete",
+          "modelId": "rate+spring",
+          "count": 159,
+          "runCount": 1,
+          "failedRunIds": [],
+          "modelRMSE": 0.6815198584903388,
+          "baselines": [
+            {
+              "id": "persistence",
+              "count": 159,
+              "positionRMSE": 1.127400447218657,
+              "skill": 0.6345730066956098,
+              "skillStatus": "available"
+            },
+            {
+              "id": "initial_rate",
+              "count": 159,
+              "positionRMSE": 1.127400447218657,
+              "skill": 0.6345730066956098,
+              "skillStatus": "available"
+            }
+          ],
+          "meaning": "Skill = 1 − model squared error / baseline squared error on identical non-initial samples; positive is better, negative is worse. Zero baseline error has undefined skill. No challenge-based model selection.",
+          "limitations": "No-learning references are not physical laws. Initial angle/rate are supplied; recording independence is not authenticated. Results describe these recordings, not generalization guarantees."
+        },
+        "trainingRunCount": 1,
+        "challengeRunCount": 1,
+        "trainingSampleCount": 160,
+        "challengeSampleCount": 160,
+        "fittedModelCount": 57,
+        "comparedModelCount": 8,
+        "selectedPositionRMSE": 0.6815198584903387,
+        "completedChallengeRuns": 1,
+        "failedRollouts": 0,
+        "fitResidualUnits": "rad",
+        "selectionBasis": "training_evidence_only",
+        "evidenceKinds": [
+          "synthetic"
+        ],
+        "limitations": [
+          "Finite-library angular-acceleration models; physical inertia and absolute torque remain unknown.",
+          "Unforced scalar rotation is a declared assumption; absent actuator data cannot verify it.",
+          "A supplied initial angular rate is used for prediction. Compact-window weak fitting does not use that rate.",
+          "Challenge observations do not enter fitting, ranking, or initial velocity estimation.",
+          "Inspecting challenge errors and choosing settings is exploratory reuse, not a new blind validation.",
+          "Source kinds and acquisition independence are declared by the input author, not authenticated.",
+          "Numerical step error, calibration error and missing physical structure can all affect forward error."
+        ]
+      },
+      "selectedModel": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+spring",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.2295158831378061,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "spring",
+            "coefficient": -5.768167386813153,
+            "coefficientUnit": "1/s²"
+          }
+        ],
+        "equation": "α = -0.22952·ω + -5.7682·θ",
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "method": "double_integral_angular_acceleration_regression",
+        "domain": {
+          "position": {
+            "min": -0.6916491047233085,
+            "max": 0.8024091246126341
+          },
+          "rate": {
+            "min": -1.8154041174284434,
+            "max": 1.5572547108034025,
+            "source": "declared_initial_and_estimated_rates"
+          }
+        },
+        "metrics": {
+          "count": 159,
+          "rmse": 0.012025993127412286,
+          "whitenedRmse": 0.006083913503748911,
+          "maxAbsResidual": 0.02128847942427048,
+          "score": -1454.3063107397725,
+          "residualUnits": "rad",
+          "residualMeaning": "integrated_training_displacement_not_forward_prediction",
+          "conditionEstimate": 1.5344849934408327,
+          "rank": 2
+        }
+      }
+    },
+    "errors": [],
+    "scope": "Authored synthetic pixel movies through actual video decode/tracking; no physical-mechanism or blind-validation claim.",
+    "chromiumSandbox": true
+  },
+  "independentReview": {
+    "reviewer": "/root/experimental_earth",
+    "commit": "acb29476d395598045d890e63543bd73c49a7bbb",
+    "blockingFindings": [],
+    "scope": "Intake/source/declaration boundaries, asynchronous generation ownership, maintained normalization and source-conditioned scientific limits; inspected native controls and actual receiving receipts."
+  },
+  "limits": [
+    "Authored synthetic image movies, not measured physical validation or blind external evidence.",
+    "Whole-record path-reference calibration uses later source frames; comparisons condition on that calibration.",
+    "Full pixel observations/revision history require the identified original Motion notebook.",
+    "One inherited optional native check remains skipped.",
+    "No installation, public deployment, hardware execution, spend or submission."
+  ],
+  "screenshots": {
+    "desktop": "6866fb41c0bb71c47fcb9b08a3c485a96d4a41f3",
+    "narrow": "c79b26d91451ba420a2ef210a50dbfa06c19f669"
+  }
+}
