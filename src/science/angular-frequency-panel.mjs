@@ -2,8 +2,8 @@ import {mountFrequencyOffers} from './frequency-probe-panel.mjs';
 import {frequencySettings,evaluateAngularFrequency,predictAngularFrequency,simulateAngularFrequency,exportAngularFrequencyInputs,restoreAngularFrequencyInputs} from './angular-frequency.mjs';
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
 const fmt=x=>x===null?'No rows':Number(x.toPrecision(6)).toString();
-export function renderAngularFrequency(root,session,{chart,simulationInputs,onReopen,settings=null,getSourceGeneration=()=>0,useInput=()=>{},onSettings=()=>{}}) {
-  root.frequencyDispose?.();root.replaceChildren();let worker=null,revision=0,report=null,redraw=null;
+export function renderAngularFrequency(root,session,{chart,simulationInputs,onReopen,settings=null,getSourceGeneration=()=>0,beginSourceReplacement=()=>getSourceGeneration(),useInput=()=>{},onSettings=()=>{}}) {
+  root.frequencyDispose?.();root.replaceChildren();let worker=null,revision=0,report=null,redraw=null,fileReadSerial=0;
   const stop=()=>{worker?.terminate();worker=null;};
   const resize=new ResizeObserver(()=>redraw?.());resize.observe(root);
   root.frequencyDispose=()=>{revision++;stop();resize.disconnect();};
@@ -53,9 +53,23 @@ export function renderAngularFrequency(root,session,{chart,simulationInputs,onRe
       onSettings(requested);
       worker=new Worker(new URL('./angular-frequency-worker.mjs',import.meta.url),{type:'module'});run.disabled=true;cancel.disabled=false;
       worker.onmessage=({data})=>{if(token!==revision||!details.isConnected)return;if(sourceToken!==getSourceGeneration()){invalidate('A newer Studio source operation retired this result. Recompute from the accepted source.');return;}stop();run.disabled=false;cancel.disabled=true;if(data.error)invalidate('Inference refused: '+data.error);else display(data.result);};
-      worker.onerror=()=>{if(token===revision)invalidate('Inference worker failed; no partial result accepted.');};worker.postMessage({training:session.discovery.observations,settings:requested});
+      worker.onerror=()=>{if(token!==revision||!details.isConnected)return;if(sourceToken!==getSourceGeneration()){invalidate('A newer Studio source operation retired this result. Recompute from the accepted source.');return;}invalidate('Inference worker failed; no partial result accepted.');};worker.postMessage({training:session.discovery.observations,settings:requested});
     }catch(error){invalidate('Inference refused: '+error.message);}
   };
   save.onclick=()=>{if(!report)return;const url=URL.createObjectURL(new Blob([exportAngularFrequencyInputs(session,report.settings)],{type:'application/json'})),a=el('a');a.href=url;a.download='worldlaw-angular-frequency.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
-  file.onchange=async()=>{const chosen=file.files?.[0];if(!chosen)return;invalidate('Reading source-only frequency notebook…');const token=revision,sourceToken=getSourceGeneration();try{if(chosen.size>2000000)throw Error('Inputs exceed 2 MB.');const text=await chosen.text();if(token!==revision||!details.isConnected)return;if(sourceToken!==getSourceGeneration()){invalidate('A newer Studio source operation retired this result. Recompute from the accepted source.');return;}const restored=restoreAngularFrequencyInputs(text);onReopen(restored.session,restored.settings);}catch(error){if(token===revision)invalidate('Reopen refused: '+error.message);}finally{file.value='';}};
+  file.onchange=async()=>{
+    const chosen=file.files?.[0];if(!chosen)return;
+    invalidate('Reading source-only frequency notebook…');
+    // Reopening changes source authority; inference above only observes it.
+    const token=revision,read=++fileReadSerial,sourceToken=beginSourceReplacement();
+    const ownsSource=()=>token===revision&&sourceToken===getSourceGeneration()&&details.isConnected;
+    try{
+      if(chosen.size>2000000)throw Error('Inputs exceed 2 MB.');
+      const text=await chosen.text();if(!ownsSource())return;
+      const restored=restoreAngularFrequencyInputs(text);onReopen(restored.session,restored.settings);
+    }catch(error){if(ownsSource())invalidate('Reopen refused: '+error.message);}
+    finally{
+      if(read===fileReadSerial&&file.files?.[0]===chosen&&details.isConnected)file.value='';
+    }
+  };
 }
