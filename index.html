@@ -93,7 +93,7 @@
             <div class="model-metrics"><div><span class="metric-label">Training error</span><strong id="training-error">—</strong><small>RMSE · N·m</small></div><div><span class="metric-label">Held-out error</span><strong id="heldout-error">—</strong><small>RMSE · N·m</small></div><div class="metric-explanation"><span class="metric-label">After the experiment</span><span id="heldout-change">Held-out evidence will appear here.</span></div></div>
             <div id="diagnostics" class="diagnostics"></div>
             <div id="reading-loss-result"></div>
-            <fieldset class="feature-revision"><legend>Challenge the feature library</legend><p>The additive library cannot express command effects that change with position. Explicitly admit uθ as another candidate, then compare the retained baseline with the revised predictions.</p><label for="include-command-position"><input id="include-command-position" type="checkbox"> Admit command × position (uθ)</label><button id="revise-features" class="button button-outline" type="button">Revise candidate library</button><p id="feature-library-status" class="input-hint"></p></fieldset>
+            <fieldset class="feature-revision"><legend>Challenge the feature library</legend><p>Ask the original training observations which maintained terms deserve comparison. This finite search retains the original law; held-out readings never choose the proposal.</p><button id="propose-features" class="button button-outline" type="button">Investigate missing terms</button><p id="library-proposal-status" class="input-hint" aria-live="polite"></p><div id="library-proposal-comparison"></div><label for="include-command-position"><input id="include-command-position" type="checkbox"> Admit command × position (uθ)</label><label><input id="include-cubic" type="checkbox"> Admit cubic position (θ³)</label><label><input id="include-cosine" type="checkbox"> Admit cosine position (cos θ)</label><label><input id="include-rate-squared" type="checkbox"> Admit even rate (ω²)</label><button id="revise-features" class="button button-outline" type="button">Apply candidate library</button><p id="feature-library-status" class="input-hint"></p></fieldset>
           </section>
 
           <section class="hypotheses-section" aria-labelledby="hypotheses-heading">
@@ -126,4 +126,5 @@
   <script type="module" src="/src/app.mjs"></script>
 </body>
 </html>
+
 

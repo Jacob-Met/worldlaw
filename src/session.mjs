@@ -1,4 +1,4 @@
-import {discover, refitDiscovery, evaluate, revise, planExperiment, DEFAULT_TERMS, discoveryRobustWork} from './science/torque-discovery.mjs';
+import {discover, refitDiscovery, evaluate, revise, planExperiment, DEFAULT_TERMS, TERMS, discoveryRobustWork} from './science/torque-discovery.mjs';
 import {createLab, executeLab} from './science/virtual-lab.mjs';
 import {validateDataset, validateRows, candidateGrid, FIELDS, MAX_ROWS, MAX_TEXT_LENGTH} from './data.mjs';
 import {planInputExcitation} from './science/input-excitation.mjs';
@@ -6,7 +6,9 @@ import {planInputExcitation} from './science/input-excitation.mjs';
 export const SESSION_SCHEMA='worldlaw.session/v1';
 export const INTERACTION_SESSION_SCHEMA='worldlaw.session/v2';
 export const ROBUST_SESSION_SCHEMA='worldlaw.session/v3';
+export const LIBRARY_SESSION_SCHEMA='worldlaw.session/v5';
 export const WEIGHTED_SESSION_SCHEMA='worldlaw.session/v4';
+const usesLibrary = raw => Object.hasOwn(raw.initialOptions??{},'additionalTerms') || raw.events.some(event=>event?.kind==='options' && Object.hasOwn(event.options??{},'additionalTerms'));
 const usesInteraction = raw => raw.initialOptions?.includeCommandPosition===true || raw.events.some(event=>event?.kind==='options' && event.options?.includeCommandPosition===true);
 const usesRobust = raw => raw.initialOptions?.loss==='soft_l1' || raw.events.some(event=>event?.kind==='options' && event.options?.loss==='soft_l1');
 const usesWeighted = raw => raw.base?.observations?.some(row=>row&&Object.hasOwn(row,'torqueNoiseRatio')) || raw.base?.heldOut?.some(row=>row&&Object.hasOwn(row,'torqueNoiseRatio')) || raw.initialOptions?.loss==='weighted_least_squares' || raw.events.some(event=>event?.options?.loss==='weighted_least_squares'||event?.rows?.some(row=>row&&Object.hasOwn(row,'torqueNoiseRatio')));
@@ -30,6 +32,11 @@ const cleanOptions = options => {
     if(typeof options.includeCommandPosition !== 'boolean')throw new Error('Explicit interaction choice must be boolean.');
     result.includeCommandPosition=options.includeCommandPosition;
   }
+  if(options?.additionalTerms !== undefined){
+    const allowed=TERMS.filter(term=>term.optional&&term.id!=='command_position').map(term=>term.id);
+    if(!Array.isArray(options.additionalTerms)||new Set(options.additionalTerms).size!==options.additionalTerms.length||options.additionalTerms.some(id=>!allowed.includes(id)))throw new Error('Additional terms must be unique maintained optional scalar features.');
+    result.additionalTerms=[...options.additionalTerms];
+  }
   if(options?.loss !== undefined){
     if(!['least_squares','soft_l1','weighted_least_squares'].includes(options.loss))throw new Error('Choose least squares, soft-L1, or declared-ratio weighted least squares.');
     result.loss=options.loss;
@@ -41,7 +48,7 @@ const cleanOptions = options => {
   if(result.loss==='soft_l1'&&result.lossScale===undefined)throw new Error('Declare a soft-L1 torque scale.');
   return result;
 };
-function discoveryOptions(options){return options.includeCommandPosition?{...options,terms:[...DEFAULT_TERMS,'command_position']}:options;}
+function discoveryOptions(options){return {...options,terms:[...DEFAULT_TERMS,...(options.includeCommandPosition?['command_position']:[]),...(options.additionalTerms??[])]};}
 function assertReplayWork(base,initialOptions,events){
   if(!Array.isArray(base?.observations))throw new Error('Notebook needs its original observations.');
   let count=base.observations.length,options=cleanOptions(initialOptions);
@@ -102,7 +109,7 @@ export function refitSession(state,options) {
   options=cleanOptions({...state.options,...options});
   const lossChanged=(options.loss??'least_squares')!==(state.options.loss??'least_squares') ||
     (options.loss==='soft_l1'&&options.lossScale!==state.options.lossScale);
-  const label=Boolean(options.includeCommandPosition)!==Boolean(state.options.includeCommandPosition)?'Revised scalar feature library':lossChanged?'Revised reading-loss assumption':'Revised noise assumption';
+  const label=Boolean(options.includeCommandPosition)!==Boolean(state.options.includeCommandPosition)||JSON.stringify(options.additionalTerms??[])!==JSON.stringify(state.options.additionalTerms??[])?'Revised scalar feature library':lossChanged?'Revised reading-loss assumption':'Revised noise assumption';
   const event={kind:'options',label,options};
   assertReplayWork(state.base,state.initialOptions,[...state.events,event]);
   return eventState(state,event,refitDiscovery(state.discovery,discoveryOptions(options)),options);
@@ -129,15 +136,16 @@ export function sessionPilotPlan(state) {
     originalOfferedCount:course.offeredCount,previouslyObservedCount:course.offeredCount-course.candidates.length};
 }
 export function exportSession(state) {
-  return JSON.stringify({schema:usesWeighted(state)?WEIGHTED_SESSION_SCHEMA:usesRobust(state)?ROBUST_SESSION_SCHEMA:usesInteraction(state)?INTERACTION_SESSION_SCHEMA:SESSION_SCHEMA,base:state.base,lab:state.lab,initialOptions:state.initialOptions,events:state.events},null,2);
+  return JSON.stringify({schema:usesLibrary(state)?LIBRARY_SESSION_SCHEMA:usesWeighted(state)?WEIGHTED_SESSION_SCHEMA:usesRobust(state)?ROBUST_SESSION_SCHEMA:usesInteraction(state)?INTERACTION_SESSION_SCHEMA:SESSION_SCHEMA,base:state.base,lab:state.lab,initialOptions:state.initialOptions,events:state.events},null,2);
 }
 export function restoreSession(text) {
   if(typeof text!=='string' || text.length>MAX_TEXT_LENGTH) throw new Error('Notebook must be JSON smaller than 2 MB.');
   let raw; try{raw=JSON.parse(text);}catch{throw new Error('The notebook JSON could not be read.');}
-  if(![SESSION_SCHEMA,INTERACTION_SESSION_SCHEMA,ROBUST_SESSION_SCHEMA,WEIGHTED_SESSION_SCHEMA].includes(raw?.schema) || !Array.isArray(raw.events) || raw.events.length>MAX_EVENTS) throw new Error('Unsupported or incomplete WORLDLAW notebook.');
+  if(![SESSION_SCHEMA,INTERACTION_SESSION_SCHEMA,ROBUST_SESSION_SCHEMA,WEIGHTED_SESSION_SCHEMA,LIBRARY_SESSION_SCHEMA].includes(raw?.schema) || !Array.isArray(raw.events) || raw.events.length>MAX_EVENTS) throw new Error('Unsupported or incomplete WORLDLAW notebook.');
   if(raw.schema===SESSION_SCHEMA && usesInteraction(raw))throw new Error('Interaction feature history requires the v2 notebook envelope.');
-  if(![ROBUST_SESSION_SCHEMA,WEIGHTED_SESSION_SCHEMA].includes(raw.schema) && usesRobust(raw))throw new Error('Soft-L1 fitting history requires the v3 notebook envelope.');
-  if(raw.schema!==WEIGHTED_SESSION_SCHEMA && usesWeighted(raw))throw new Error('Declared torque-noise ratios and weighted history require the v4 notebook envelope.');
+  if(![ROBUST_SESSION_SCHEMA,WEIGHTED_SESSION_SCHEMA,LIBRARY_SESSION_SCHEMA].includes(raw.schema) && usesRobust(raw))throw new Error('Soft-L1 fitting history requires the v3 notebook envelope.');
+  if(![WEIGHTED_SESSION_SCHEMA,LIBRARY_SESSION_SCHEMA].includes(raw.schema) && usesWeighted(raw))throw new Error('Declared torque-noise ratios and weighted history require the v4 notebook envelope.');
+  if(raw.schema!==LIBRARY_SESSION_SCHEMA && usesLibrary(raw))throw new Error('Expanded scalar library history requires the v5 notebook envelope.');
   assertReplayWork(raw.base,raw.initialOptions,raw.events);
   if(raw.lab) validSeed(raw.lab.seed);
   let state=createSession(raw.base,raw.initialOptions,{labSeed:raw.lab?.seed??null});
@@ -153,4 +161,5 @@ export function undoSession(state) {
   if(!state.events.length) return state;
   const raw=JSON.parse(exportSession(state)); raw.events.pop(); return restoreSession(JSON.stringify(raw));
 }
+
 
