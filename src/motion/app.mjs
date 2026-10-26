@@ -181,6 +181,10 @@ async function openVideo(file, attach) {
     source = await loadVideo(file, {signal: state.controller.signal});
     if (epoch !== state.epoch) { source.dispose(); return; }
     await installSource(source, {attach});
+  } catch (error) {
+    // A retired load must not publish decoder errors over a newer accepted video.
+    if (epoch !== state.epoch) return;
+    throw error;
   } finally { if (epoch === state.epoch) { state.controller = null; render(); } }
 }
 
