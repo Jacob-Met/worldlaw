@@ -7,11 +7,21 @@ export function advanceCoulombContact({position,rate,duration,friction,drive,adv
     if(rate===0&&Math.abs(force)<=friction) {held+=remaining;break;}
     const direction=rate===0?Math.sign(force):Math.sign(rate);
     const next=advance(position,rate,remaining,direction);
-    if(next.rate*direction>0) {position=next.position;rate=next.rate;break;}
+    // An endpoint with the original velocity sign can conceal an even number
+    // of intervening zeros. Probe the half-step under the same sliding law;
+    // this bounded, counted check catches an earlier opposing velocity without
+    // claiming that a finite sample set proves all events are resolved.
+    let firstBracket=remaining;
+    if(next.rate*direction>0) {
+      const half=remaining/2;
+      if(half>0&&half<remaining && advance(position,rate,half,direction).rate*direction<=0) {
+        firstBracket=half;
+      } else {position=next.position;rate=next.rate;break;}
+    }
     // The smooth fixed-direction branch is continued only to its first located
     // zero. This bounded bisection is a numerical event approximation, not a
     // proof that a coarse step cannot conceal multiple zero crossings.
-    let lo=0,hi=remaining;
+    let lo=0,hi=firstBracket;
     for(let j=0;j<48;j++) {
       const mid=lo+(hi-lo)/2;
       if(mid===lo||mid===hi)break;
