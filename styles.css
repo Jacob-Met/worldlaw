@@ -117,3 +117,30 @@
 .reading-influence-scroll{max-height:24rem;overflow:auto;overscroll-behavior:contain}
 .reading-influence-scroll thead{position:sticky;top:0;background:#f4f7ed;z-index:1}
 .reading-influence-scroll:focus-visible{outline:3px solid #1c7562;outline-offset:3px}
+
+/* Ordered coefficient investigation stays within the original evidence apparatus. */
+#ordered-law-change{min-width:0;max-width:100%;margin:20px 0;border-top:1px solid var(--line);padding-top:18px}
+#ordered-law-change .ordered-change-inspector>summary{font-size:15px;font-weight:650;line-height:1.45;color:var(--ink);padding:4px 0 12px}
+#ordered-law-change .ordered-change-inspector>summary::after{content:' +';color:var(--forest)}
+#ordered-law-change .ordered-change-inspector[open]>summary::after{content:' −'}
+#ordered-law-change p{font-size:12px;line-height:1.65;overflow-wrap:anywhere;margin:12px 0;color:#54634d}
+#ordered-law-change .control-grid{grid-template-columns:minmax(0,1fr);gap:14px;margin:18px 0}
+#ordered-law-change .control-grid .wide-control{grid-column:1/-1}
+#ordered-law-change label{display:block;min-width:0;font-size:12px;line-height:1.5}
+#ordered-law-change input[type=text],#ordered-law-change textarea{display:block;box-sizing:border-box;width:100%;min-width:0;max-width:100%;background:#fafaf4;border:1px solid #dadfd0;border-radius:6px;color:var(--ink);padding:10px;margin-top:6px;font:12px/1.5 var(--mono)}
+#ordered-law-change input[type=number]{max-width:180px}
+#ordered-law-change textarea{min-height:140px;resize:vertical}
+#ordered-law-change .button{max-width:100%;white-space:normal;margin:6px 0 12px}
+#ordered-law-change .ordered-reopen,#ordered-law-change .ordered-later-input{margin:16px 0}
+#ordered-law-change input[type=file]{display:block;max-width:100%;margin-top:8px;font:11px var(--sans)}
+#ordered-law-change .ordered-table-scroll{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:6px}
+#ordered-law-change table{width:100%;border-collapse:collapse;font-size:12px;line-height:1.5}
+#ordered-law-change th,#ordered-law-change td{padding:9px 7px;text-align:left;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+#ordered-law-change th{font-weight:650;color:var(--forest);background:#f0f2e7}
+#ordered-law-change .ordered-coefficients{table-layout:fixed}
+#ordered-law-change .ordered-coefficients th,#ordered-law-change .ordered-coefficients td{width:25%;overflow-wrap:anywhere}
+#ordered-law-change .ordered-table-scroll:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+#ordered-law-change .chart{width:100%;min-width:0;margin:18px 0}
+#ordered-law-change details details>summary{font-size:12px;font-weight:600;padding:10px 0;color:var(--forest);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:620px){#ordered-law-change th,#ordered-law-change td{padding:8px 4px;font-size:11px}#ordered-law-change .button{width:100%}}
+#ordered-law-change input[type=file]::file-selector-button{border:1px solid #cbd1c4;border-radius:6px;background:var(--panel);color:var(--ink);font:600 11px var(--sans);padding:8px 10px;margin-right:8px;cursor:pointer}

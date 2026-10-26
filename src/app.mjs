@@ -1,3 +1,4 @@
+import {renderOrderedLawChange} from './science/ordered-law-change-panel.mjs';
 import {mountScalarExcitation} from './science/excitation-design-panel.mjs';
 let excitationPanel=null;
 import {renderCommandDeadzone} from './science/command-deadzone-panel.mjs';
@@ -118,6 +119,8 @@ function renderModel(){
     el('p','Exact inputs are grouped without rounding. Scatter may include drift or hidden state; duplicate rows are not verified independent acquisitions. Group-mean mismatch includes noise and fitting reuse, not just systematic law error. No calibrated confidence or physical cause is established.','subtle'));
   let support=$('state-support');if(!support){support=el('div');support.id='state-support';$('replicate-diagnostics').after(support);}
   renderStateSupport(support,m,state.discovery.observations);
+  let ordered=$('ordered-law-change');if(!ordered){ordered=el('div');ordered.id='ordered-law-change';support.after(ordered);}
+  renderOrderedLawChange(ordered,m,state.discovery.observations,state.options.noiseSigma,{chart});
   let sensitivity=$('parameter-sensitivity');if(!sensitivity){sensitivity=el('div');sensitivity.id='parameter-sensitivity';support.after(sensitivity);}
   renderParameterSensitivity(sensitivity,m,state.discovery.observations);
   let readout=$('prediction-sensitivity');if(!readout){readout=el('div');readout.id='prediction-sensitivity';sensitivity.after(readout);}
