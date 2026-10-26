@@ -14,6 +14,9 @@ const usesRobust = raw => raw.initialOptions?.loss==='soft_l1' || raw.events.som
 const usesWeighted = raw => raw.base?.observations?.some(row=>row&&Object.hasOwn(row,'torqueNoiseRatio')) || raw.base?.heldOut?.some(row=>row&&Object.hasOwn(row,'torqueNoiseRatio')) || raw.initialOptions?.loss==='weighted_least_squares' || raw.events.some(event=>event?.options?.loss==='weighted_least_squares'||event?.rows?.some(row=>row&&Object.hasOwn(row,'torqueNoiseRatio')));
 export const DEFAULT_OPTIONS=Object.freeze({noiseSigma:0.01,maxTerms:4,ambiguityDelta:6});
 const MAX_EVENTS=128;
+// UTF-8 needs at most three bytes per UTF-16 code unit. The parser still
+// enforces MAX_TEXT_LENGTH after reading a notebook file.
+export const MAX_SESSION_FILE_BYTES=3*MAX_TEXT_LENGTH;
 export const MAX_ROBUST_NOTEBOOK_WORK=2_000_000_000;
 function validSeed(seed){if(!Number.isSafeInteger(seed)||Math.abs(seed)>1e9)throw new Error('Invalid virtual instrument seed. Use an integer between −1000000000 and 1000000000.');return seed;}
 function matchesVirtualSeed(rows,expected) {
@@ -136,7 +139,13 @@ export function sessionPilotPlan(state) {
     originalOfferedCount:course.offeredCount,previouslyObservedCount:course.offeredCount-course.candidates.length};
 }
 export function exportSession(state) {
-  return JSON.stringify({schema:usesLibrary(state)?LIBRARY_SESSION_SCHEMA:usesWeighted(state)?WEIGHTED_SESSION_SCHEMA:usesRobust(state)?ROBUST_SESSION_SCHEMA:usesInteraction(state)?INTERACTION_SESSION_SCHEMA:SESSION_SCHEMA,base:state.base,lab:state.lab,initialOptions:state.initialOptions,events:state.events},null,2);
+  const notebook={schema:usesLibrary(state)?LIBRARY_SESSION_SCHEMA:usesWeighted(state)?WEIGHTED_SESSION_SCHEMA:usesRobust(state)?ROBUST_SESSION_SCHEMA:usesInteraction(state)?INTERACTION_SESSION_SCHEMA:SESSION_SCHEMA,base:state.base,lab:state.lab,initialOptions:state.initialOptions,events:state.events};
+  const readable=JSON.stringify(notebook,null,2);
+  if(readable.length<=MAX_TEXT_LENGTH)return readable;
+  // Formatting must not make an otherwise supported notebook impossible to reopen.
+  const compact=JSON.stringify(notebook);
+  if(compact.length>MAX_TEXT_LENGTH)throw new Error('Notebook exceeds the supported text size and cannot be exported.');
+  return compact;
 }
 export function restoreSession(text) {
   if(typeof text!=='string' || text.length>MAX_TEXT_LENGTH) throw new Error('Notebook must be JSON smaller than 2 MB.');
