@@ -83,8 +83,11 @@
           <section class="instrument-stage" aria-label="Executable mechanism view">
             <div class="stage-header"><div><span class="stage-dot" aria-hidden="true"></span><span>THE MECHANISM</span></div><span class="stage-tag">TORQUE LAB / 01</span></div>
             <div class="canvas-wrap"><canvas id="mechanism-canvas" width="1200" height="520" role="img" aria-label="Live schematic of the current angular mechanism and experiment state">A canvas-capable browser is required to display the mechanism.</canvas></div>
-            <div class="stage-footer"><span><i class="legend-dot lime" aria-hidden="true"></i>Learned-model dynamics</span><span class="stage-coordinate">θ · ω · τ</span><span>Simulated view</span></div>
+            <div id="studio-comparison-transport-slot"></div>
+            <div class="stage-footer"><span><i class="legend-dot lime" aria-hidden="true"></i><span id="stage-prediction-label">Inspected-law prediction</span></span><span class="stage-coordinate">θ · ω · τ</span><span>Simulated view</span></div>
           </section>
+
+          <section id="studio-motion-comparison" class="motion-comparison" aria-label="Competitive scalar-law motion"></section>
 
           <section class="model-panel panel" aria-labelledby="model-heading">
             <div class="model-header"><div><p class="eyebrow">THE CURRENT EXPLANATION</p><h2 id="model-heading">A model to put to the test.</h2></div><span class="model-label">EXECUTABLE TORQUE LAW</span></div>

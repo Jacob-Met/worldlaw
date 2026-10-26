@@ -16,6 +16,8 @@ import {diagnoseReplicates} from './science/replicate-diagnostics.mjs';
 import {renderSeparability} from './science/separability-panel.mjs';
 import {evaluate,predict} from './science/torque-discovery.mjs';
 import {executeStudioDynamics} from './science/studio-dynamics.mjs';
+import {mountStudioComparison} from './science/studio-comparison-panel.mjs';
+import {drawCompetitiveMotion} from './science/studio-comparison-view.mjs';
 import {softL1Weight} from './science/robust-fit.mjs';
 import {proposeScalarLibrary} from './science/library-proposal.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
@@ -29,6 +31,7 @@ const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!=
 const set=(id,text)=>{$(id).textContent=text;};
 let clockPanel=null,affinePanel=null,deadzoneWidths=null,frequencySettings=null;
 let state,modelId,plan,trajectory=[],animationStart=0,animationHandle,restored=false,generation=0;
+let studioComparison=null;
 function alertError(error) { $('error').hidden=false;set('error',error.message||String(error));$('error').focus(); }
 function notice(text) {set('notice',text);$('error').hidden=true;}
 function action(fn) {try{fn();}catch(error){alertError(error);}}
@@ -199,6 +202,7 @@ function renderPlan(){
 }
 function useProposal(announce=true){if(!plan?.selected)return;const exact=!state.lab && Object.hasOwn(state.base,'offeredInputs');for(const f of ['position','rate','command'])$(f).value=exact?String(plan.selected.input[f]):Number(plan.selected.input[f].toPrecision(10));if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
 function runSimulation(announce=true){
+  studioComparison?.retire('The evidence or inspected law changed. Compare again to execute the current competitive set.');
   try{
     const execution=executeStudioDynamics(model(),{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')});
     trajectory=execution.trajectory;
@@ -219,6 +223,14 @@ function draw(now){
   if(rect.width>0&&rect.height>0){
     if(canvas.width!==Math.round(rect.width*ratio)||canvas.height!==Math.round(rect.height*ratio)){canvas.width=Math.round(rect.width*ratio);canvas.height=Math.round(rect.height*ratio);}
     const ctx=canvas.getContext('2d'),w=rect.width,h=rect.height;ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,w,h);
+    const comparison=studioComparison?.frame(now);
+    if(comparison){
+      drawCompetitiveMotion(ctx,w,h,comparison);
+      canvas.setAttribute('aria-label',`Synchronized numerical predictions for ${comparison.samples.length} of ${comparison.total} competitive scalar laws at ${fmt(comparison.time)} seconds. ${comparison.complete?'Complete competitive set.':'Incomplete comparison; refused laws are listed below.'}`);
+      set('stage-prediction-label','Competitive-law predictions');
+      animationHandle=requestAnimationFrame(draw);return;
+    }
+    set('stage-prediction-label','Inspected-law prediction');
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const duration=trajectory.at(-1)?.time||1;const time=reduced?0:((now-animationStart)/1000)%duration;
     const current=trajectory[Math.min(trajectory.length-1,Math.floor(time/.02))];
@@ -242,6 +254,12 @@ function draw(now){
   }
   animationHandle=requestAnimationFrame(draw);
 }
+
+studioComparison=mountStudioComparison($('studio-motion-comparison'),{
+  transportHost:$('studio-comparison-transport-slot'),getState:()=>state,
+  getInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}}),
+  chart,onClear:()=>runSimulation(false),
+});
 
 try{const saved=localStorage.getItem(storageKey);if(saved){state=restoreSession(saved);restored=true;}}catch(error){set('notice',`The stored notebook could not be reopened: ${error.message}. Its stored bytes were left intact.`);}
 state ||= newVirtualSession();modelId=state.discovery.selected.id;render();
@@ -278,6 +296,12 @@ $('session-file').addEventListener('change',async event=>{
 $('export-session').addEventListener('click',()=>action(()=>download(exportSession(state),'worldlaw-notebook.json')));
 $('export-observations').addEventListener('click',()=>action(()=>download(observationsCSV(state.discovery.observations),'worldlaw-observations.csv','text/csv')));
 $('run-simulation').addEventListener('click',()=>action(()=>runSimulation()));
+for(const id of ['initial-angle','initial-rate','inertia','duration','simulation-command'])$(id).addEventListener('input',()=>{
+  studioComparison.retire('Dynamics inputs changed. Compare again to execute every law under the new release.');
+  trajectory=[];delete $('simulation-status').dataset.method;
+  set('simulation-status','Dynamics inputs changed. Run dynamics or compare competitive laws to apply them.');
+  $('trajectory-chart').replaceChildren();$('energy-budget')?.replaceChildren();
+});
 animationHandle=requestAnimationFrame(draw);
 window.addEventListener('pagehide',()=>cancelAnimationFrame(animationHandle));
 
