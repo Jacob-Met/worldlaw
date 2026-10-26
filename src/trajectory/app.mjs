@@ -10,6 +10,7 @@ import {createInitialStatePanel} from './initial-state-panel.mjs';
 import {createPredictiveSelectionPanel} from '../predictive-selection/panel.mjs';
 import {compareTrajectorySkill} from './baselines.mjs';
 import {createChallenge} from './session.mjs';
+import {contactEventResolutionNote} from './contact-resolution-note.mjs';
 import {MAX_TEXT_LENGTH} from './data.mjs';
 import {summarizePredictionHorizon} from './horizon.mjs';
 import {createExperimentPanel} from './experiment-panel.mjs';
@@ -140,7 +141,7 @@ cycleWorkPanel.render(model,state.bundle,state.options);
   let contactNote=document.getElementById('contact-comparison');
   if(!contactNote){contactNote=el('p',undefined,'resolution-note');contactNote.id='contact-comparison';$('trajectory-chart').after(contactNote);}
   contactNote.hidden=!state.options.compareCoulombContact;
-  contactNote.textContent=contact?.status==='ok'?`Orange dotted curve · sliding/sticking hypothesis: ${fmt(contact.rollout.metrics.positionRMSE)} rad RMSE; ${fmt(contact.rollout.diagnostics.coulombContact.heldDuration)} s at rest. Original dashed sign-rate forecast is unchanged. Equal static/kinetic threshold is assumed, not identified. Step comparison: ${contact.resolution.status==='compared'?fmt(contact.resolution.positionRMSEDifference)+' rad':'unavailable'}. Finite steps can miss internal zero crossings; agreement is not an error bound.`:contact?`Sliding/sticking forecast unavailable: ${contact.error.message} Original prediction remains available.`:'';
+  contactNote.textContent=contact?.status==='ok'?`Orange dotted curve · sliding/sticking hypothesis: ${fmt(contact.rollout.metrics.positionRMSE)} rad RMSE; ${fmt(contact.rollout.diagnostics.coulombContact.heldDuration)} s at rest. Original dashed sign-rate forecast is unchanged. Equal static/kinetic threshold is assumed, not identified. Step comparison: ${contact.resolution.status==='compared'?fmt(contact.resolution.positionRMSEDifference)+' rad':'unavailable'}. ${contactEventResolutionNote(contact.resolution)} Finite steps can miss internal zero crossings; agreement is not an error bound.`:contact?`Sliding/sticking forecast unavailable: ${contact.error.message} Original prediction remains available.`:'';
   const angularReplay=angular&&rows.length,playback=document.querySelector('.playback-controls'),playbackParent=angularReplay?$('angular-context'):$('motion-panel');playbackParent.insertBefore(playback,playbackParent.querySelector(angularReplay?'.angular-assumption':'.schematic-note'));$('angular-context').classList.toggle('with-replay',Boolean(angularReplay));
   const m=result?.rollout?.metrics||{};set('position-rmse',fmt(m.positionRMSE));set('maximum-error',fmt(m.maxAbsError));set('final-error',fmt(m.finalAbsError));
   let baselineNote=document.getElementById('baseline-comparison');

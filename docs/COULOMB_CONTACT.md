@@ -53,6 +53,13 @@ consumer, a deliberately coarse 0.35-second step also reveals previously
 missed events, but its position still differs materially from a 0.01-second
 reference: locating events does not make coarse RK4 accurate.
 
+The optional two-resolution comparison also reports the detected number of
+zero-rate events at each complete resolution. Different counts expose a
+step-sensitive contact history even if both integration outputs are finite;
+matching counts do not certify full event detection. If refinement fails or
+runs out of its shared work budget, the event comparison remains unavailable.
+All records are recomputed from retained inputs, not saved forecast outputs.
+
 Finite-step event bracketing can still miss internal zeros. Two-step agreement
 is not a certified error bound, global event-resolution guarantee, physical validity check or
 proof of contact behavior. Inspect step sensitivity and original evidence.

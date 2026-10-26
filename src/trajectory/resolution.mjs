@@ -60,10 +60,20 @@ export function compareRolloutResolution(execute, model, run, options = {}) {
     differenceNorm = Math.hypot(differenceNorm, difference);
     maxAbsPositionDifference = Math.max(maxAbsPositionDifference, Math.abs(difference));
   }
+  const coarseContact = coarse.diagnostics.coulombContact;
+  const refinedContact = refined.diagnostics.coulombContact;
+  // Compare source-derived event counts only when BOTH actual contact runs
+  // finished. A missing refinement never implies unchanged contact behavior.
+  const contactEventComparison = coarseContact && refinedContact && coarseContact.frictionMagnitude > 0
+    ? { coarseZeroRateEvents: coarseContact.zeroRateEvents,
+        refinedZeroRateEvents: refinedContact.zeroRateEvents,
+        countsDiffer: coarseContact.zeroRateEvents !== refinedContact.zeroRateEvents }
+    : null;
   return {
     rollout: coarse,
     resolution: {
       ...resolution, status: 'compared', reason: null,
+      ...(contactEventComparison ? { contactEventComparison } : {}),
       positionRMSEDifference: differenceNorm / Math.sqrt(resolution.count),
       maxAbsPositionDifference, stepsRefined: refined.diagnostics.steps,
       combinedSteps: stepsCoarse + refined.diagnostics.steps,
