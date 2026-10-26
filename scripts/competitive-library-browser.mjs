@@ -1,0 +1,50 @@
+import assert from 'node:assert/strict';
+import {readFile,mkdir,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createProductServer} from '../server.mjs';
+import {restoreSession,sessionPlan} from '../src/session.mjs';
+import {requireChromiumSandbox} from './support/chromium-sandbox.mjs';
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const out=resolve(process.env.BROWSER_ARTIFACT_DIR||'.receipts/competitive-library');await mkdir(out,{recursive:true});
+const original=JSON.parse(await readFile('examples/scalar-competing-terms.json','utf8'));
+const server=createProductServer();await new Promise((yes,no)=>{server.once('error',no);server.listen(0,'127.0.0.1',yes);});
+const origin=`http://127.0.0.1:${server.address().port}`,checks=[],errors=[];let browser;
+try{
+ browser=await chromium.launch({headless:true,chromiumSandbox:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+ const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+ const cdp=await page.context().newCDPSession(page);assert.equal((await requireChromiumSandbox({send:(m,p)=>cdp.send(m,p)})).admitted,true);
+ page.on('pageerror',e=>errors.push(e.message));await page.goto(origin);
+ async function intake(source){
+  await page.locator('#observation-file').setInputFiles({name:'confounded.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(source))});
+  await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='97');
+  const settings=page.locator('.fit-settings');if(!await settings.evaluate(e=>e.open))await settings.locator('summary').click();
+  await page.locator('#noise-sigma').fill('.0001');await page.locator('#refit').click();
+  await page.locator('#propose-features').click();
+ }
+ await intake(original);
+ assert.equal(await page.locator('#include-command-position').isChecked(),true);assert.equal(await page.locator('#include-cubic').isChecked(),true);
+ await page.locator('#library-proposal-comparison summary').click();
+ assert.match(await page.locator('#library-proposal-comparison').innerText(),/uθ/);assert.match(await page.locator('#library-proposal-comparison').innerText(),/θ³/);
+ await page.locator('.feature-revision').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(out,'competitive-desktop.png')});
+ await page.locator('#revise-features').click();assert.match(await page.locator('#planner-status').innerText(),/An informative next observation/);
+ const textBefore=await page.evaluate(()=>localStorage.getItem('worldlaw.notebook.v1'));
+ const before=restoreSession(textBefore);assert.equal(before.discovery.competitive.length,2);assert.equal(sessionPlan(before).status,'proposed');
+ await page.locator('#use-proposal').click();assert.equal(Number(await page.locator('#command').inputValue()),0);assert.equal(Number(await page.locator('#position').inputValue()),1.3);
+ await page.locator('#measured-torque').fill('-3.04805');await page.locator('#run-experiment').click();
+ await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='98');
+ assert.match(await page.locator('#selected-terms').innerText(),/Cubic position/);
+ assert.ok(Number((await page.locator('#heldout-error').innerText()).replaceAll(',',''))<1e-10);
+ checks.push('automatic ambiguous library retains both explanations; ordinary offered experiment and independent entered reading resolve cubic law');
+ const download=page.waitForEvent('download');await page.locator('#export-session').click();const saved=resolve(out,'competitive-notebook.json');await(await download).saveAs(saved);
+ const native=restoreSession(await readFile(saved,'utf8'));assert.deepEqual(native.base.observations,original.observations);assert.equal(native.discovery.observations.length,98);
+ const fresh=await browser.newPage({viewport:{width:390,height:900},reducedMotion:'reduce'});fresh.on('pageerror',e=>errors.push(e.message));
+ await fresh.goto(origin);await fresh.locator('#session-file').setInputFiles(saved);await fresh.waitForFunction(()=>document.getElementById('sample-count').textContent==='98');
+ assert.match(await fresh.locator('#selected-terms').innerText(),/Cubic position/);assert.ok(await fresh.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ await fresh.locator('.model-panel').scrollIntoViewIfNeeded();await fresh.screenshot({path:resolve(out,'competitive-narrow.png')});
+ checks.push('actual downloaded input/event notebook replays independent entered reading in native and fresh narrow browser');
+ await intake({...original,offeredInputs:[original.offeredInputs[0]]});await page.locator('#revise-features').click();
+ const restricted=restoreSession(await page.evaluate(()=>localStorage.getItem('worldlaw.notebook.v1')));assert.equal(sessionPlan(restricted).status,'uninformative');
+ checks.push('offers confined to original confounding do not claim an informative experiment');
+ assert.deepEqual(errors,[]);await writeFile(resolve(out,'results.json'),JSON.stringify({checks,errors},null,2));
+ for(const check of checks)console.log('PASS '+check);
+}finally{await browser?.close();await new Promise(resolve=>server.close(resolve));}

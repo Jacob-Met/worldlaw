@@ -35,11 +35,15 @@ export function proposeScalarLibrary(observations, requestedOptions={}) {
   // substitute least squares for another declared estimator.
   const baseline=discover(observations,{...requestedOptions,terms:baseTerms,maxTerms});
   const expanded=discover(observations,{...requestedOptions,terms,maxTerms});
-  const addedTerms=expanded.selected.terms.map(term=>term.id).filter(id=>!baseTerms.includes(id));
+  const selectedAddedTerms=expanded.selected.terms.map(term=>term.id).filter(id=>!baseTerms.includes(id));
+  // A training tie must not silently discard another optional explanation
+  // before the maintained planner can ask where their predictions differ.
+  const retainedIds=new Set(expanded.competitive.flatMap(model=>model.terms.map(term=>term.id)));
+  const addedTerms=terms.filter(id=>!baseTerms.includes(id)&&retainedIds.has(id));
   const scoreImprovement=baseline.selected.metrics.score-expanded.selected.metrics.score;
-  const proposed=addedTerms.length>0&&scoreImprovement>baseline.options.ambiguityDelta;
+  const proposed=selectedAddedTerms.length>0&&scoreImprovement>baseline.options.ambiguityDelta;
   return {schema:'worldlaw.scalar-library-proposal/v1',status:proposed?'proposed':'no_clear_revision',
-    baseline,expanded,addedTerms,scoreImprovement,reservedWork,robustWork,
+    baseline,expanded,addedTerms,selectedAddedTerms,scoreImprovement,reservedWork,robustWork,
     proposedTerms:proposed?[...baseTerms,...addedTerms]:null,
     interpretation:'Training-only finite-library ranking. Added terms are hypotheses; independent prediction and physical validity remain unestablished.'};
 }
