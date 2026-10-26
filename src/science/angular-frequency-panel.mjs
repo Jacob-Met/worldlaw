@@ -1,7 +1,8 @@
+import {mountFrequencyOffers} from './frequency-probe-panel.mjs';
 import {frequencySettings,evaluateAngularFrequency,predictAngularFrequency,simulateAngularFrequency,exportAngularFrequencyInputs,restoreAngularFrequencyInputs} from './angular-frequency.mjs';
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
 const fmt=x=>x===null?'No rows':Number(x.toPrecision(6)).toString();
-export function renderAngularFrequency(root,session,{chart,simulationInputs,onReopen,settings=null,getSourceGeneration=()=>0}) {
+export function renderAngularFrequency(root,session,{chart,simulationInputs,onReopen,settings=null,getSourceGeneration=()=>0,useInput=()=>{},onSettings=()=>{}}) {
   root.frequencyDispose?.();root.replaceChildren();let worker=null,revision=0,report=null,redraw=null;
   const stop=()=>{worker?.terminate();worker=null;};
   const resize=new ResizeObserver(()=>redraw?.());resize.observe(root);
@@ -43,11 +44,13 @@ export function renderAngularFrequency(root,session,{chart,simulationInputs,onRe
     const motion=el('button','Execute selected and unit-frequency motion'),motionOutput=el('div');motion.id='frequency-motion';motion.type='button';output.append(motion,motionOutput);
     motion.onclick=()=>{motionOutput.replaceChildren();try{const {initial,settings}=simulationInputs(),series=[];for(const [name,m,color]of [['Selected',result.selected,'#bd502f'],['Unit frequency',result.baseline.selected,'#1c7562']])if(m){const execution=simulateAngularFrequency(m,initial,settings);series.push({name,color,line:true,points:execution.trajectory.map(r=>({x:r.time,y:r.position}))});}const plot=el('div');plot.id='frequency-motion-chart';motionOutput.append(plot);chart(plot.id,series,{width:Math.min(580,root.clientWidth),xLabel:'Computed time (s)',yLabel:'Original angle (rad)'});motionOutput.append(el('p',`Maintained adaptive RK4; declared inertia ${settings.inertia} kg·m², command ${settings.command} N·m, initial θ ${initial.position} rad and ω ${initial.rate} rad/s. Conditional simulation, not observed motion.`));}catch(error){motionOutput.append(el('p','Execution refused: '+error.message));}};
     const raw=el('details'),pre=el('pre');raw.append(el('summary','Original source, complete profile and frozen coefficients'),pre);pre.style.cssText='white-space:pre-wrap;overflow-wrap:anywhere';pre.textContent=JSON.stringify({source:session.base.source,...result},null,2);output.append(raw);
+    mountFrequencyOffers(output,result,session,{useInput});
     for(const note of result.limitations)output.append(el('p',note));
   }
   run.onclick=()=>{invalidate('Computing complete training-only frequency profile…');const token=revision,sourceToken=getSourceGeneration();
     try{if(session.discovery.options.loss&&session.discovery.options.loss!=='least_squares')throw Error('This investigation requires an ordinary least-squares Studio source. Change the declared loss explicitly first.');
       const requested=frequencySettings({...settings,...Object.fromEntries(Object.entries(inputs).map(([k,n])=>{if(!n.value.trim())throw Error('Every profile setting needs a number.');return [k,Number(n.value)];}))});
+      onSettings(requested);
       worker=new Worker(new URL('./angular-frequency-worker.mjs',import.meta.url),{type:'module'});run.disabled=true;cancel.disabled=false;
       worker.onmessage=({data})=>{if(token!==revision||!details.isConnected)return;if(sourceToken!==getSourceGeneration()){invalidate('A newer Studio source operation retired this result. Recompute from the accepted source.');return;}stop();run.disabled=false;cancel.disabled=true;if(data.error)invalidate('Inference refused: '+data.error);else display(data.result);};
       worker.onerror=()=>{if(token===revision)invalidate('Inference worker failed; no partial result accepted.');};worker.postMessage({training:session.discovery.observations,settings:requested});
