@@ -182,7 +182,11 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
   let resize;
   window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});
   setInputs(defaultDynamicsInputs());
-  const identification=mountInertiaIdentification($('motion-inertia-identification'),{applyParameters(parameters,label){
+  const identification=mountInertiaIdentification($('motion-inertia-identification'),{getNotebook,applyRelease(input,label){
+    generation++;setInputs(readDynamicsInputs(input),false);
+    $('motion-declaration').value=('Proposed permitted release with '+label+'. '+input.declaration).slice(0,1000);
+    invalidate('Proposed release and chosen fitted loss copied. Review and declare this motion experiment before comparing.');clearError();$('motion-position-0').focus();
+  },applyParameters(parameters,label){
     generation++;$('motion-inertia-kind').value='symmetric';
     for(let axis=0;axis<2;axis++){$('motion-inertia-'+axis).value=parameters.inertia[axis];$('motion-damping-'+axis).value=parameters.damping[axis];}
     $('motion-inertia-cross').value=parameters.inertiaCross;

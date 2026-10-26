@@ -1,0 +1,31 @@
+{
+  "base": "718cacdfa2d8eb3cb60e1f933810beab24ed5298",
+  "unchangedConsumedGitBlobs": 149,
+  "nativePassed": 54,
+  "browserPassed": 42,
+  "smokePassed": true,
+  "environment": {
+    "node": "22.23.4",
+    "sandboxedChrome": true
+  },
+  "authoredResult": {
+    "permittedReleases": 9,
+    "responseLaws": 3,
+    "lossFamilies": 2,
+    "reservedSteps": 77760,
+    "bestPosition": [
+      -1,
+      -1
+    ],
+    "minimumPeakSeparation": 0.23044117816066148,
+    "centerMinimumPeakSeparation": 0.002222587919864059
+  },
+  "independentReview": {
+    "reviewer": "earth",
+    "constantTorqueModalDriftMaximumDifference": 2.19e-15,
+    "translatedReleaseScore": 0.010462499,
+    "allThreeTied": true
+  },
+  "visualReview": "Actual desktop and390px consumer inspected. Initial narrow table required horizontal scrolling; final responsive values/actions and the table's own overflow are checked. Dark instrument background improves trace contrast.",
+  "scope": "Training-only conditional software proposal; no automatic loss adoption, continuous maximum, measurement uncertainty, physical validity or deployment claim."
+}

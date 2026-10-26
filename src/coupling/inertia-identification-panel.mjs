@@ -10,7 +10,7 @@ const fmt=n=>Number.isFinite(n)?Number(n.toPrecision(6)).toString():'—';
 const el=(tag,text,attrs={})=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);return n;};
 const svg=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;};
 
-export function mountInertiaIdentification(root,{applyParameters}){
+export function mountInertiaIdentification(root,{applyParameters,getNotebook,applyRelease}){
   root.innerHTML=`
     <details id="inertia-lab"><summary>Estimate inertia from a separate motion record</summary>
       <div class="inertia-heading"><div><p class="eyebrow">MOTION → DECLARED BALANCE → CONDITIONAL VALUES</p><h3>Can one inertia explain these motions?</h3></div><p>Fit a constant symmetric inertia and diagonal viscous loss from synchronized angles and supplied torques. The response notebook above stays separate.</p></div>
@@ -85,7 +85,7 @@ export function mountInertiaIdentification(root,{applyParameters}){
   $('inertia-save').addEventListener('click',()=>{try{if(!record)throw new Error('Open a motion record first.');const text=exportInertiaInvestigation(record,settings()),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=el('a',undefined,{href:url,download:'worldlaw-inertia-investigation.json'});link.click();setTimeout(()=>URL.revokeObjectURL(url),10000);clearError();}catch(e){error(e);}});
   const challengePanel=mountInertiaChallenge($('inertia-challenge-host'),{getTraining:()=>result?.primary.status==='candidate'?{record,settings:settings()}:null});
   const viscousHost=document.createElement('div');viscousHost.id='inertia-viscous-host';$('inertia-challenge-host').after(viscousHost);
-  const viscousPanel=mountViscousComparison(viscousHost,{applyParameters});
+  const viscousPanel=mountViscousComparison(viscousHost,{applyParameters,getNotebook,applyRelease});
   let resize;window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});$('inertia-lab').addEventListener('toggle',()=>{if($('inertia-lab').open){draw();challengePanel.redraw();}});
   return {contextChanged(){generation++;viscousPanel.contextChanged();if(pendingRead){pendingRead=false;$('inertia-status').textContent='Response notebook changed. Pending motion-file read canceled; open again or refit the displayed source.';}$('inertia-same-apparatus').checked=false;$('inertia-apply').disabled=true;}};
 }
