@@ -1,6 +1,6 @@
 import {comparePeriodicCourses,PERIODIC_COURSE_SCHEMA} from './periodic-course.mjs';
 
-export function mountPeriodicCourse(getEvidence){
+export function mountPeriodicCourse(getEvidence,{onInvalidate=()=>{}}={}){
  const root=document.createElement('section');root.id='periodic-course';root.className='periodic-investigation';
  root.innerHTML=`<h2>Can one explanation account for every pair?</h2>
  <p>The average can conceal an impossible sensor explanation. Reuse the inspected periodic evidence above, then test one shared parameter vector against every original pair.</p>
@@ -20,7 +20,7 @@ export function mountPeriodicCourse(getEvidence){
  const $=id=>root.querySelector('#'+id),out=$('course-result'),status=$('course-status'),save=$('course-save');let generation=0,retained=null;
  const fmt=n=>Number(n).toPrecision(6);
  function invalidate(message='Source or declarations changed; check the course again.'){
-  generation++;retained=null;out.replaceChildren();save.disabled=true;status.textContent=message;
+  generation++;retained=null;out.replaceChildren();save.disabled=true;status.textContent=message;onInvalidate();
  }
  for(const id of ['course-history','course-drift','course-radius','course-basis','course-iterations'])$(id).oninput=()=>invalidate();
  const numeric=id=>{if(!$(id).value.trim())throw Error('Declare every numerical bound explicitly.');return Number($(id).value);};
@@ -59,5 +59,5 @@ export function mountPeriodicCourse(getEvidence){
  $('course-run').onclick=()=>{invalidate();try{receive({schema:PERIODIC_COURSE_SCHEMA,boundUnits:{history:'N*m',drift:'N*m/acquisition_step',pair:'N*m'},evidence:getEvidence(),historyBound:numeric('course-history'),driftBound:numeric('course-drift'),pairRadius:numeric('course-radius'),discrepancyBasis:$('course-basis').value,search:{maxIterations:numeric('course-iterations'),maxProducts:16777216}},'Checked inspected snapshot');}catch(e){status.textContent=e.message;}};
  save.onclick=()=>{if(!retained)return;const url=URL.createObjectURL(new Blob([JSON.stringify(retained,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='worldlaw-periodic-course.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);};
  $('course-open').onchange=async e=>{const file=e.target.files?.[0];if(!file)return;invalidate();const token=generation;try{if(file.size>260000)throw Error('Use course JSON under 260 KB.');const text=await file.text();if(token!==generation)return;receive(JSON.parse(text),'Reopened course snapshot; original inspectors are unchanged');$('course-history').value=retained.historyBound;$('course-drift').value=retained.driftBound;$('course-radius').value=retained.pairRadius;$('course-basis').value=retained.discrepancyBasis;$('course-iterations').value=retained.search.maxIterations;}catch(err){if(token===generation){retained=null;save.disabled=true;out.replaceChildren();status.textContent=err.message;}}finally{if(token===generation)e.target.value='';}};
- return {invalidate};
+ return {invalidate,getInputs(){if(!retained)throw Error('Check the complete pair course first.');return structuredClone(retained);}};
 }
