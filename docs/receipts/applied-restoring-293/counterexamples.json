@@ -1,0 +1,124 @@
+{
+  "schema": "worldlaw.applied-restoring-counterexamples/v1",
+  "authoredOnly": true,
+  "reports": [
+    {
+      "authoredFamily": "linear",
+      "seed": 13,
+      "status": "proposed",
+      "proposedId": "linear",
+      "inertia": 0.6996030486277593,
+      "damping": 0.18810441154561428,
+      "validationRMSE": 0.0009922070425240608,
+      "challengeRMSE": 0.0017224578404632176,
+      "baselineChallengeRMSE": 0.0017224578404632176
+    },
+    {
+      "authoredFamily": "linear",
+      "seed": 293,
+      "status": "proposed",
+      "proposedId": "linear",
+      "inertia": 0.6995432730942266,
+      "damping": 0.1881899494460895,
+      "validationRMSE": 0.0009689571033945248,
+      "challengeRMSE": 0.0017000494208156164,
+      "baselineChallengeRMSE": 0.0017000494208156164
+    },
+    {
+      "authoredFamily": "linear",
+      "seed": 991,
+      "status": "proposed",
+      "proposedId": "linear",
+      "inertia": 0.6995957348031533,
+      "damping": 0.1880665808347639,
+      "validationRMSE": 0.0009495255735592425,
+      "challengeRMSE": 0.0017595520551509085,
+      "baselineChallengeRMSE": 0.0017595520551509085
+    },
+    {
+      "authoredFamily": "gravity",
+      "seed": 13,
+      "status": "proposed",
+      "proposedId": "gravity",
+      "inertia": 0.6996103453555752,
+      "damping": 0.18905868019981736,
+      "validationRMSE": 0.001924121832746799,
+      "challengeRMSE": 0.0014545746387152017,
+      "baselineChallengeRMSE": 0.1345813627501688
+    },
+    {
+      "authoredFamily": "gravity",
+      "seed": 293,
+      "status": "proposed",
+      "proposedId": "gravity",
+      "inertia": 0.6995638204965474,
+      "damping": 0.18912627325926026,
+      "validationRMSE": 0.0018997752415441235,
+      "challengeRMSE": 0.0014297503990379826,
+      "baselineChallengeRMSE": 0.13454970144463654
+    },
+    {
+      "authoredFamily": "gravity",
+      "seed": 991,
+      "status": "proposed",
+      "proposedId": "gravity",
+      "inertia": 0.6996067276086371,
+      "damping": 0.18901543974429838,
+      "validationRMSE": 0.001761906589992149,
+      "challengeRMSE": 0.001475896333072505,
+      "baselineChallengeRMSE": 0.1345086780248408
+    },
+    {
+      "authoredFamily": "cubic",
+      "seed": 13,
+      "status": "proposed",
+      "proposedId": "cubic",
+      "inertia": 0.6996012865811366,
+      "damping": 0.1856545045473554,
+      "validationRMSE": 0.0023910239138964684,
+      "challengeRMSE": 0.002818589226888141,
+      "baselineChallengeRMSE": 0.23732970434475492
+    },
+    {
+      "authoredFamily": "cubic",
+      "seed": 293,
+      "status": "proposed",
+      "proposedId": "cubic",
+      "inertia": 0.69949972899553,
+      "damping": 0.18578754879572557,
+      "validationRMSE": 0.0023165836469696164,
+      "challengeRMSE": 0.0028134510297835075,
+      "baselineChallengeRMSE": 0.23739294076037212
+    },
+    {
+      "authoredFamily": "cubic",
+      "seed": 991,
+      "status": "proposed",
+      "proposedId": "cubic",
+      "inertia": 0.699612258220404,
+      "damping": 0.18563105728795523,
+      "validationRMSE": 0.00245625726315716,
+      "challengeRMSE": 0.002835454523719158,
+      "baselineChallengeRMSE": 0.2374043046013302
+    }
+  ],
+  "wrongCalibration": {
+    "scale": 1.7,
+    "originalInertia": 0.6995638204965474,
+    "changedInertia": 1.1892584948441312,
+    "originalChallengeRMSE": 0.0014297503990379826,
+    "changedChallengeRMSE": 0.001429750399038311,
+    "meaning": "Identical prediction quality cannot authenticate supplied torque calibration."
+  },
+  "smallAngle": {
+    "status": "ambiguous",
+    "competitiveIds": [
+      "gravity",
+      "linear"
+    ]
+  },
+  "omittedLaw": {
+    "status": "no_family_within_declared_tolerance",
+    "bestValidationRMSE": 0.07262394395320841
+  }
+}
