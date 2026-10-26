@@ -93,5 +93,5 @@ export function compareVelocityStudy(input){
     'Numerical full rank and admissible matrices do not establish identification. Interpolation of one circular motion can create misleading rank and a wrong admissible candidate.',
     'Original/coarser-source agreement is a diagnostic, not an error bound; a wrong candidate can remain wrong at both samplings.',
     'Separate-source receiving holds all training fits fixed and uses observed angles. It is not a future-motion forecast or authenticated independent evidence.',
-    'Motion playback and release planning retain their existing supported families. This comparison does not silently copy skew coupling into either consumer.']}};
+    'Optional motion and release comparisons require explicit source correspondence and a separate motion declaration. This fit does not automatically select or adopt any velocity family.']}};
 }

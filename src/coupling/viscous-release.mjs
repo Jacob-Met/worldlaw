@@ -1,3 +1,4 @@
+import {compactReleaseTrajectory as compact,compareRetainedReleasePair,rankReleaseScores} from './release-common.mjs';
 /** Propose zero-rate releases across the complete explicitly permitted set.
  * Training fixes both loss fits and every response law before any course runs.
  */
@@ -49,11 +50,6 @@ export function releaseDynamicsInputs(parameters,position,settings){
   declaration:('Conditional training-fitted loss hypothesis. '+s.correspondence).slice(0,1000),
   ...Object.fromEntries(['duration','samples','maxStep','positionTolerance','rateTolerance'].map(k=>[k,s[k]]))});
 }
-function compact(run){
- return {status:run.status,screen:run.screen,failure:run.failure??null,
-  domainStatus:run.refined?.domainStatus??null,firstOutside:run.refined?.firstOutside??null,
-  steps:run.refined?run.coarse.steps+run.refined.steps:null};
-}
 /** Low-level comparison also serves independent analytic receiving controls.
  * Public study proposals obtain these arguments only from admitted training.
  */
@@ -71,25 +67,14 @@ export function compareReleaseCourses(models,families,positions,rawSettings,{ref
   const [diagonal,symmetric]=pair.map(input=>compareCoupledDynamics(models,input));
   const comparisons=models.map((model,i)=>{
    const a=diagonal.results[i],b=symmetric.results[i];
-   const curve=a.refined&&b.refined?a.refined.rows.map((row,j)=>{
-    const other=b.refined.rows[j];
-    requireThat(row.time===other.time,'Release courses lost their common output clock.','numerical_failure');
-    return {time:row.time,separation:Math.hypot(row.position[0]-other.position[0],row.position[1]-other.position[1])};
-   }):[];
-   const peak=curve.length?curve.reduce((best,row)=>row.separation>best.separation?row:best):null;
-   return {modelId:model.id,label:model.label??model.id,diagonal:compact(a),symmetric:compact(b),curve,
-    peak,screened:a.status==='screened'&&b.status==='screened'};
+   return {modelId:model.id,label:model.label??model.id,diagonal:compact(a),symmetric:compact(b),...compareRetainedReleasePair(a,b)};
   });
   const complete=comparisons.every(c=>c.screened)&&refusedModels.length===0;
   const score=complete?Math.min(...comparisons.map(c=>c.peak.separation)):null;
   return {index,position:[...positions[index]],initialRate:[0,0],status:complete?'screened':refusedModels.length?'response_incomplete':'numerically_unresolved',score,comparisons};
  });
- const ranked=releases.filter(r=>r.status==='screened').sort((a,b)=>b.score-a.score||a.index-b.index);
- const best=ranked[0]??null;
- const bestIndices=best?ranked.filter(r=>best.score-r.score<=settings.tieTolerance).map(r=>r.index):[];
- const status=!best?'unresolved':best.score<=settings.minimumSeparation?'not_separated':'proposed';
- return {status,releases,rankedIndices:ranked.map(r=>r.index),bestIndices,
-  proposedIndices:status==='proposed'?bestIndices.filter(i=>releases[i].score>settings.minimumSeparation):[],refusedModels:clone(refusedModels),
+ const {status,rankedIndices,bestIndices,proposedIndices}=rankReleaseScores(releases,settings);
+ return {status,releases,rankedIndices,bestIndices,proposedIndices,refusedModels:clone(refusedModels),
   diagnostics:{reservedSteps:reservation.requiredSteps,stepBudget:STEP_BUDGET,
    candidateCount:positions.length,lossFamilyCount:2,responseCount:models.length,trajectoryCount:positions.length*2*models.length,
    objective:'For each response law, maximum Euclidean angle separation at common output times; then minimum across every retained response law.',
