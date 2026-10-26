@@ -21,7 +21,7 @@ import {drawCompetitiveMotion} from './science/studio-comparison-view.mjs';
 import {softL1Weight} from './science/robust-fit.mjs';
 import {proposeScalarLibrary} from './science/library-proposal.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
-import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,sessionPilotPlan,exportSession,restoreSession,undoSession} from './session.mjs';
+import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,sessionPilotPlan,exportSession,restoreSession,undoSession,MAX_SESSION_FILE_BYTES} from './session.mjs';
 
 const $=id=>document.getElementById(id);
 const storageKey='worldlaw.notebook.v1';
@@ -291,7 +291,7 @@ $('observation-file').addEventListener('change',async event=>{
 $('open-session').addEventListener('click',()=>$('session-file').click());
 $('session-file').addEventListener('change',async event=>{
   const file=event.target.files?.[0];if(!file)return;const current=++generation;
-  try{if(file.size>2_000_000)throw new Error('Notebook files must be smaller than 2 MB.');const text=await file.text();if(current!==generation)return;adopt(restoreSession(text),'Reopened the notebook and recomputed its complete evidence history.');useProposal(false);}catch(error){if(current===generation)alertError(error);}finally{event.target.value='';}
+  try{if(file.size>MAX_SESSION_FILE_BYTES)throw new Error('Notebook files must be no larger than 6 MB; the notebook text limit also applies.');const text=await file.text();if(current!==generation)return;adopt(restoreSession(text),'Reopened the notebook and recomputed its complete evidence history.');useProposal(false);}catch(error){if(current===generation)alertError(error);}finally{event.target.value='';}
 });
 $('export-session').addEventListener('click',()=>action(()=>download(exportSession(state),'worldlaw-notebook.json')));
 $('export-observations').addEventListener('click',()=>action(()=>download(observationsCSV(state.discovery.observations),'worldlaw-observations.csv','text/csv')));
