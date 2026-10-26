@@ -3,7 +3,7 @@
 In the ordinary Discovery Studio, **Compare competitive laws** executes every
 current training-competitive scalar torque law under one declared release:
 initial angle, initial angular rate, constant inertia, constant command,
-duration and the maintained 20 ms output grid. The current inspected law does
+duration and a common output grid, initially 20 ms. The current inspected law does
 not replace the competitive ensemble or become a winner through this view.
 
 ## Use the apparatus
@@ -22,6 +22,38 @@ not replace the competitive ensemble or become a winner through this view.
    in the table. An incomplete comparison is explicitly labelled.
 6. **Return to inspected law** restores the existing single-law instrument.
 
+### Inspect motion between coarse samples
+
+**Sample interval** offers 20, 10, 5, 2.5, 1.25 and 0.625 ms. Changing it retires
+the previous comparison; choose **Compare competitive laws** again to execute
+every original law on the finer common grid. The actual interval and number of
+samples are shown with the result. A finer choice never silently shortens the
+duration, removes a competitor or raises the shared work limit. If the complete
+request does not fit, every original law retains an explicit refusal.
+
+Use **Playback** to select 1×, 0.25×, 0.05× or 0.01× speed. This changes only the
+presentation clock, preserving the current instant and computed results. It
+does not calculate additional states. Pause and use the prediction-time slider
+or its arrow keys to inspect one exact returned sample at a time. Reduced-motion
+preferences still start every new comparison paused. The initial 20 ms interval
+and 1× speed are restored on page reload; presentation choices are not added to
+the input-only notebook.
+
+Sampling and playback solve different inspection problems. A spring law can
+complete a whole oscillation between displayed samples. Finer samples can reveal
+the intermediate states, but fast playback can still skip those states at the
+screen's frame rate. Slow playback and deliberate scrubbing help inspect the
+returned states. Neither establishes what happens between them. Two grids that
+look alike do not certify that the motion is resolved.
+
+The angle plot scales to its returned values. A complete comparison therefore
+also states the maximum sampled angle difference and its sampled time, retaining
+scientific notation for tiny differences. This readout distinguishes a large
+physical-unit difference from a magnified small numerical drift; it is not a
+continuous-time bound. Incomplete comparisons do not produce that whole-set
+summary. Near-zero axis tick labels may round to zero at the plot's display
+precision; sample values, tick positions and plotted paths remain unchanged.
+
 The two compositions serve different questions. The shared joint makes
 divergence under one release immediately visible; its angles wrap in the
 schematic. The angle–rate view retains full rotations and the shape of the
@@ -33,7 +65,10 @@ a hidden physical trajectory between samples.
 The comparison calls the maintained `executeStudioDynamics` for each original
 law. Smooth models retain adaptive RK4 step doubling and its local estimates.
 A nonzero sign-rate term retains the labelled fixed-step RK4 route without
-local error control. The comparison does not duplicate fitting, select a law
+local error control. For that route, the selected output interval is also the
+integration step. Changing the grid therefore reruns the maintained executor
+for every law; it never interpolates or downsamples a previous trajectory.
+The comparison does not duplicate fitting, select a law
 from its dynamics, alter coefficients or treat surviving numerical runs as a
 smaller successful ensemble.
 
@@ -48,7 +83,7 @@ complete and no silent substitute solver. The numerical policy and its
 whole-request reservation are implemented in
 `src/science/studio-dynamics-comparison.mjs`.
 
-Changing the evidence, discovery, inspected law or dynamics inputs retires the
+Changing the evidence, discovery, inspected law, dynamics inputs or sample interval retires the
 derived comparison. Invalid dynamics cannot leave a successful old plot behind.
 Comparison is explicit and does not create measurement events or change the
 input-only notebook. Download/reopen replays the existing source evidence; run
@@ -57,8 +92,30 @@ the comparison again to derive paths from the current release controls.
 All motion is conditional on the declared constant scalar inertia and command.
 A path may leave the observed input range. Numerical agreement is not physical
 validation, and disagreement is not calibrated uncertainty. Local error
-estimates are not rigorous global bounds. The sampled 20 ms display can alias
+estimates are not rigorous global bounds. Any finite output grid can alias
 fast motion even when the internal integrator refines its steps.
+
+## Why the sampling control exists
+
+An independently authored numerical countercourse compares valid 50/100 Hz
+spring laws, with a separate 150/250 Hz course and a low-frequency control.
+At the initial 20 ms grid, the first pair's sampled angles nearly coincide,
+although their exact harmonic solutions differ by 2 rad at an intermediate
+instant. The held-back pair defeats both 20 ms and 10 ms grids before finer
+sampling reveals a large difference. Independent analytic solutions distinguish
+this sampling failure from integration error. These are hypothetical scalar
+models, not a claim that ordinary fitting produces two different coefficients
+for one identical spring structure.
+
+A separate source course exercises ordinary fitting. It supplies 512 authored
+torque-reading rows with command numerically correlated with angle, independently
+varying angular rate and a known linear torque response. Default fitting retains
+two training-competitive one-term explanations: command and spring. Under zero
+command and a released angle, their predicted motions differ, but a 50 Hz spring
+returns to its starting position at every 20 ms output. A held-back 100 Hz source
+also defeats 10 ms. These are synthetic receiving inputs, with no physical
+acquisition or held-out measurement claim. The ambiguity is preserved; refined
+motion does not determine which law is physically correct.
 
 ## Receiving course
 
@@ -77,6 +134,20 @@ BROWSER_EXECUTABLE_PATH=/absolute/path/to/chrome \
 BROWSER_ARTIFACT_DIR=/absolute/path/to/receipts \
 node scripts/studio-comparison-browser.mjs
 ```
+
+The sampling investigation and its ordinary fitted source can be reproduced with:
+
+```sh
+node experiments/studio-comparison-sampling-v2.mjs --out /absolute/path/to/analytic-sampling
+node experiments/studio-fitted-sampling.mjs --out /absolute/path/to/fitted-sampling
+```
+
+With the same browser environment variables, run
+`node scripts/studio-comparison-sampling-browser.mjs` for the ordinary-import
+sampling and playback course. It checks the actual fitted command/spring paths,
+finer grids, phase-preserving speed changes, keyboard scrubbing, retirement,
+complete-set refusal and desktop/narrow rendering. Run it from the extracted
+maintained package as well as the receiving source.
 
 The browser course imports an independently authored small-angle source that
 leaves competing scalar structures, executes the ordinary control, and checks

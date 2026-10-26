@@ -1,0 +1,370 @@
+{
+  "schema": "worldlaw.studio-sampling-receiving/v1",
+  "promptVersion": "2026-10-26.1",
+  "baseCommit": "ae2c799cc33c2969194fa154bf244847b3330df7",
+  "baseTree": "10dc6b393aaa16da2b196f45be41f3d017064b19",
+  "owner": "node-10dbc406f84a45113b2f175af35500f5",
+  "sourceHashes": {
+    "src/science/studio-comparison-panel.mjs": "013c07e07f5f522396536e2cda81e95cd17b244e1f27b47c390d27aa83c4cdac",
+    "styles.css": "ed2135f47f0a1619dee4e7243a301e365715beae87c6beeeb3647431ff8fbbf5",
+    "docs/COMPETITIVE_MOTION.md": "968e1da166d87b7f49350dbf1c7c3090e557014fa1f31b3edd13f1c806ca19f0",
+    "README.md": "933f60198393c81fbeab99502f14b977698717e76b01c1ffe38b81c0238d2d49",
+    "experiments/studio-comparison-sampling.mjs": "0655269c5b5f2b47a7402a781649e851f91d103a07e836a6a926c18291d1267c",
+    "experiments/studio-comparison-sampling-v2.mjs": "51beedb14887ae1f5605fed7352f5e48a39871f78c777674021d4b78e839b5a3",
+    "experiments/studio-fitted-sampling.mjs": "3ba3228ce08b07bfff129e732e806ed1c1841bad88c89124ab9e0d9e6af7f283",
+    "scripts/studio-comparison-sampling-browser.mjs": "adcdcc1f150badd0a4c7e4abe7ea768f1a2475b67b9d2f37fb2a9598e6257b33",
+    "src/app.mjs": "0af35889d0971b67934388572df6302982eebf0fb463bfa75ff4f4ed01e7120d"
+  },
+  "environment": {
+    "node": "v22.23.4",
+    "browser": "156.0.8078.47",
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-26T20:50:26.407Z",
+      "completedAt": "2026-10-26T20:50:26.508Z",
+      "durationMs": 101.15339700000004,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "ACC3A6E8B5B4EA87AA236387656BA030",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "902FAD96311441275504D916E441FB59"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    }
+  },
+  "sourceCourse": "Authored original 512-row readings, fitted through ordinary defaults; independent harmonic/zero-command oracles; no fitted-model injection.",
+  "numericalResearch": {
+    "analytic": "analytic.json",
+    "qualification": "discriminating-countercourse",
+    "conditions": 13,
+    "fitted": "fitted.json",
+    "fittedCourses": 3,
+    "gridsPerCourse": 6
+  },
+  "nativeBroad": {
+    "tests": 1267,
+    "passed": 1267,
+    "failed": 0,
+    "skipped": 0,
+    "operationId": "estate-68fdaad6-20261026-sampling-package-01",
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "scope": "Sampling controls before final presentation-only axis/readout/redraw refinements; maintained numerical source is unchanged."
+  },
+  "finalReceiving": {
+    "operationId": "estate-68fdaad6-20261026-sampling-package-03",
+    "focusedNativePassed": 31,
+    "packagePolicyPassed": 7,
+    "sourceSamplingBrowserGroups": 6,
+    "extractedBrowserGroups": 27,
+    "extractedGroups": {
+      "sampling": 6,
+      "comparisonGolden": 5,
+      "comparisonIndependent": 5,
+      "distribution": 11
+    },
+    "maintainedExtractedSmoke": true,
+    "commands": [
+      "node --test tests/studio-dynamics-comparison.test.mjs tests/studio-dynamics.test.mjs tests/torque-discovery.test.mjs",
+      "python3 scripts/package-policy-test.py",
+      "python3 scripts/package.py --source-commit ae2c799cc33c2969194fa154bf244847b3330df7 --working-tree --output /home/ubuntu/hamon-work/estate-68fdaad6-20261026/deliveries/worldlaw-sampling-candidate-03.zip",
+      "node scripts/smoke.mjs",
+      "node scripts/studio-comparison-sampling-browser.mjs",
+      "node scripts/studio-comparison-browser.mjs",
+      "node scripts/studio-comparison-receiving.mjs",
+      "node scripts/distribution-browser.mjs"
+    ],
+    "receiptsDirectory": "/home/ubuntu/hamon-work/estate-68fdaad6-20261026/receipts/sampling-package-03"
+  },
+  "package": {
+    "sourceCommitReference": "ae2c799cc33c2969194fa154bf244847b3330df7",
+    "mode": "working-tree-candidate",
+    "archive": "/home/ubuntu/hamon-work/estate-68fdaad6-20261026/deliveries/worldlaw-sampling-candidate-03.zip",
+    "archiveSHA256": "5ff0d00f0a19eec35a5368241831eefbe049165decab80f1d6e13d24838ba49a",
+    "archiveBytes": 9036478,
+    "verifiedSourceFiles": 610,
+    "received": "/home/ubuntu/hamon-work/estate-68fdaad6-20261026/received/sampling-package-03/worldlaw",
+    "sourceHashes": {
+      "src/science/studio-comparison-panel.mjs": "013c07e07f5f522396536e2cda81e95cd17b244e1f27b47c390d27aa83c4cdac",
+      "styles.css": "ed2135f47f0a1619dee4e7243a301e365715beae87c6beeeb3647431ff8fbbf5",
+      "docs/COMPETITIVE_MOTION.md": "968e1da166d87b7f49350dbf1c7c3090e557014fa1f31b3edd13f1c806ca19f0",
+      "README.md": "933f60198393c81fbeab99502f14b977698717e76b01c1ffe38b81c0238d2d49",
+      "experiments/studio-comparison-sampling.mjs": "0655269c5b5f2b47a7402a781649e851f91d103a07e836a6a926c18291d1267c",
+      "experiments/studio-comparison-sampling-v2.mjs": "51beedb14887ae1f5605fed7352f5e48a39871f78c777674021d4b78e839b5a3",
+      "experiments/studio-fitted-sampling.mjs": "3ba3228ce08b07bfff129e732e806ed1c1841bad88c89124ab9e0d9e6af7f283",
+      "scripts/studio-comparison-sampling-browser.mjs": "adcdcc1f150badd0a4c7e4abe7ea768f1a2475b67b9d2f37fb2a9598e6257b33",
+      "src/app.mjs": "0af35889d0971b67934388572df6302982eebf0fb463bfa75ff4f4ed01e7120d"
+    }
+  },
+  "browser": {
+    "schema": "worldlaw.fitted-sampling-browser/v1",
+    "browser": "156.0.8078.47",
+    "checks": [
+      "ordinary 512-row import fits command and fast spring; slower playback preserves the still-aliased 20 ms samples",
+      "explicit finer common-grid execution exposes the fitted 50 Hz intermediate motion and keyboard sample time",
+      "0.01× playback advances actual fine-grid samples; speed changes preserve paused time and ongoing phase without recomputation",
+      "output-interval changes cancel pending results and finer excessive grids visibly refuse every law under unchanged bounds",
+      "held fitted 100 Hz source defeats two agreeing grids; 5 ms reveals motion through the 390 px ordinary consumer path",
+      "1.25 ms and 0.625 ms samples retain exact keyboard times; reload restores source-only evidence with 20 ms and 1× defaults"
+    ],
+    "observed": [
+      {
+        "course": "fitted-50hz",
+        "dt": 0.02,
+        "sampleIndex": 1,
+        "time": 0.02,
+        "command": 1,
+        "spring": 1,
+        "separation": 0
+      },
+      {
+        "course": "fitted-50hz",
+        "dt": 0.01,
+        "sampleIndex": 1,
+        "time": 0.01,
+        "command": 1,
+        "spring": -1,
+        "separation": 2
+      },
+      {
+        "course": "fitted-50hz",
+        "dt": 0.005,
+        "sampleIndex": 1,
+        "time": 0.005,
+        "command": 1,
+        "spring": 0,
+        "separation": 1
+      },
+      {
+        "course": "held-fitted-100hz",
+        "dt": 0.02,
+        "sampleIndex": 1,
+        "time": 0.02,
+        "command": 0.37,
+        "spring": 0.37,
+        "separation": 0
+      },
+      {
+        "course": "held-fitted-100hz",
+        "dt": 0.01,
+        "sampleIndex": 1,
+        "time": 0.01,
+        "command": 0.37,
+        "spring": 0.37,
+        "separation": 0
+      },
+      {
+        "course": "held-fitted-100hz",
+        "dt": 0.005,
+        "sampleIndex": 1,
+        "time": 0.005,
+        "command": 0.37,
+        "spring": -0.37,
+        "separation": 0.74
+      },
+      {
+        "course": "held-fitted-100hz",
+        "dt": 0.00125,
+        "sampleIndex": 1,
+        "time": 0.00125,
+        "command": 0.37,
+        "spring": 0.26163,
+        "separation": 0.10837000000000002
+      },
+      {
+        "course": "held-fitted-100hz",
+        "dt": 0.000625,
+        "sampleIndex": 1,
+        "time": 0.000625,
+        "command": 0.37,
+        "spring": 0.34184,
+        "separation": 0.02816000000000002
+      }
+    ],
+    "spreadReadouts": [
+      {
+        "course": "fitted-50hz",
+        "dt": 0.02,
+        "value": 7.52e-8,
+        "text": "Maximum sampled angle difference: 7.52e-8 rad at 0.2 s. Plot is autoscaled; this describes returned samples only."
+      },
+      {
+        "course": "fitted-50hz",
+        "dt": 0.01,
+        "value": 2,
+        "text": "Maximum sampled angle difference: 2 rad at 0.01 s. Plot is autoscaled; this describes returned samples only."
+      },
+      {
+        "course": "held-fitted-100hz",
+        "dt": 0.02,
+        "value": 5.68e-8,
+        "text": "Maximum sampled angle difference: 5.68e-8 rad at 0.2 s. Plot is autoscaled; this describes returned samples only."
+      },
+      {
+        "course": "held-fitted-100hz",
+        "dt": 0.01,
+        "value": 5.67e-8,
+        "text": "Maximum sampled angle difference: 5.67e-8 rad at 0.2 s. Plot is autoscaled; this describes returned samples only."
+      },
+      {
+        "course": "held-fitted-100hz",
+        "dt": 0.005,
+        "value": 0.74,
+        "text": "Maximum sampled angle difference: 0.74 rad at 0.005 s. Plot is autoscaled; this describes returned samples only."
+      }
+    ],
+    "slowPlayback": {
+      "selectedSpeed": 0.01,
+      "dt": 0.005,
+      "elapsedSeconds": 1.010699999999255,
+      "sampleIndex": 2
+    },
+    "playingSpeedChange": {
+      "started": 2828.10000000149,
+      "changed": 2952,
+      "stopped": 3203.39999999851,
+      "beforeIndex": 2,
+      "immediateIndex": 2,
+      "followingIndex": 2,
+      "finalIndex": 4,
+      "expectedPhysicalTime": 0.023808999999910596
+    },
+    "fittedCandidates": [
+      [
+        {
+          "id": "command",
+          "terms": [
+            {
+              "id": "command",
+              "coefficient": -98696.04401089356
+            }
+          ]
+        },
+        {
+          "id": "spring",
+          "terms": [
+            {
+              "id": "spring",
+              "coefficient": -98696.04401089356
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "id": "command",
+          "terms": [
+            {
+              "id": "command",
+              "coefficient": -394784.17604357423
+            }
+          ]
+        },
+        {
+          "id": "spring",
+          "terms": [
+            {
+              "id": "spring",
+              "coefficient": -394784.17604357423
+            }
+          ]
+        }
+      ]
+    ],
+    "errors": [],
+    "badRequests": [],
+    "external": [],
+    "scope": "Actual browser receiving from authored original observations, refitted by ordinary application imports. Independent harmonic/zero-command formulas check visible sampled angles. No injected model, physical measurement, calibrated uncertainty, general alias-free certificate or observation change."
+  },
+  "images": [
+    {
+      "name": "fitted-50hz-coarse-curves-desktop.png",
+      "gitBlob": "29a602cf98950e93011749c98a997e5c2a887e65",
+      "sha256": "4880570fe1a5350d1e9bd42059233d64ff9b5c065ae267ca34c58728a9dd52af"
+    },
+    {
+      "name": "fitted-50hz-curves-desktop.png",
+      "gitBlob": "95c64dd35ed5088ae71d90d3b209ad7a05674e44",
+      "sha256": "270aedb818a03fa6caa89964e3dd6704ba644de28db1cee83b0edc1f5cd0c65b"
+    },
+    {
+      "name": "fitted-50hz-release-desktop.png",
+      "gitBlob": "3b6cd034381fde2284f94bfabbab83f918dec046",
+      "sha256": "617bbdc15f6fa5256b2533a3ddbd18d8f9b3b2fbb6029866da881b69e09df5a2"
+    },
+    {
+      "name": "held-100hz-curves-narrow.png",
+      "gitBlob": "5be4e5fffc1e76cbead29ceba7f18cbb6a7d0ffc",
+      "sha256": "0805bf5853bc47fdc670f3044b8924f274de053cc1f978250d0ec18e2eade3ab"
+    },
+    {
+      "name": "held-100hz-release-narrow.png",
+      "gitBlob": "13f7294a6ce82cc48a6746325c891c3b70d4990f",
+      "sha256": "e5de1c9ef41e4265dc1ada3de5a2a02369814b431241186a0ae908ca9e796d56"
+    }
+  ],
+  "reviews": {
+    "scientific": "Independent retained numerical reviewer accepted analytic and fitted-source claims, budgets and ordinary-import semantics.",
+    "source": "Independent retained integration reviewer accepted final control clock, retirement, complete-only sampled spread, scoped tick formatting and exact source hashes.",
+    "visual": "Lead inspected five final actual extracted-package images; desktop and narrow controls, sub-ms clock and corrected near-zero tick remain legible."
+  },
+  "resolvedFailures": [
+    {
+      "operationId": "estate-68fdaad6-20261026-sampling-package-01",
+      "failure": "Package-policy check ran before local receiving-index initialization and correctly refused missing Git context.",
+      "resolution": "Created a controlled source index before package-policy testing; all seven policy tests passed. This is still a working-tree candidate, not a full cloned release."
+    },
+    {
+      "operationId": "estate-68fdaad6-20261026-sampling-package-02",
+      "failure": "Extracted-browser exact chart DOM check found a redraw dropping the comparison SVG class; numerical points were identical.",
+      "resolution": "Reapply the same SVG class in renderPlot; retained the strict receiving check. Final source and extracted courses passed."
+    },
+    {
+      "experiment": "analytic predecessor",
+      "failure": "Analytic witness search metadata counted attempted instants as evaluations, including nine skipped grid instants.",
+      "resolution": "Version2 records attempted/evaluated/skipped counts separately, retains predecessor hash, and reproduces identical numerical/witness/work conclusions through Renpo."
+    }
+  ],
+  "limits": [
+    "No physical measurements, physical-law winner, calibrated uncertainty, general continuous-time bound or alias-free certificate.",
+    "Output refinement can change fixed-step sign-rate integration as well as returned grid; maintained labels and refusals remain.",
+    "Playback rate changes presentation only; neither slower playback nor agreement across two output grids proves intervening motion resolved.",
+    "Plot remains autoscaled; complete-set sampled spread readout retains scientific notation for tiny drift.",
+    "The ZIP is a controlled working-tree candidate containing610 source files, not an officially released archive; immutable publication tree is verified separately."
+  ]
+}

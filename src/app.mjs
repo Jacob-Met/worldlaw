@@ -46,7 +46,7 @@ function experimentInput(){return Object.fromEntries(['command','position','rate
 function download(text,filename,type='application/json') {
   const url=URL.createObjectURL(new Blob([text],{type}));const a=el('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);
 }
-function chart(container,series,{xLabel,yLabel,diagonal=false,width=580}={}) {
+function chart(container,series,{xLabel,yLabel,diagonal=false,width=580,zeroTickTolerance=0}={}) {
   const wrap=$(container);wrap.replaceChildren();
   const values=series.flatMap(s=>s.points).filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y));
   if(!values.length){wrap.append(el('p','No observations available for this view.','empty-state'));return;}
@@ -64,7 +64,7 @@ function chart(container,series,{xLabel,yLabel,diagonal=false,width=580}={}) {
     shape('line',{x1:X(x),x2:X(x),y1:T,y2:H-B,stroke:'#dfe6df','stroke-dasharray':'2 5'});
     shape('line',{x1:L,x2:W-R,y1:Y(y),y2:Y(y),stroke:'#dfe6df','stroke-dasharray':'2 5'});
     shape('text',{x:X(x),y:H-B+21,'text-anchor':'middle',fill:'#53655f','font-size':11},fmt(x,3));
-    shape('text',{x:L-9,y:Y(y)+4,'text-anchor':'end',fill:'#53655f','font-size':11},fmt(y,3));
+    shape('text',{x:L-9,y:Y(y)+4,'text-anchor':'end',fill:'#53655f','font-size':11},fmt(Math.abs(y)<(y1-y0)*zeroTickTolerance?0:y,3));
   }
   if(diagonal)shape('line',{x1:X(Math.max(x0,y0)),x2:X(Math.min(x1,y1)),y1:Y(Math.max(x0,y0)),y2:Y(Math.min(x1,y1)),stroke:'#a4b1a7','stroke-dasharray':'4 4'});
   if(y0<0&&y1>0)shape('line',{x1:L,x2:W-R,y1:Y(0),y2:Y(0),stroke:'#aab9b1','stroke-width':1});
