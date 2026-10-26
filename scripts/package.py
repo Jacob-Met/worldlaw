@@ -137,6 +137,8 @@ INCLUDE = (
 )
 REQUIRED = (
     "src/stiffness/design.mjs", "src/stiffness/design-panel.mjs", "docs/STIFFNESS_INPUT_DESIGN.md",
+    "src/science/studio-dynamics-comparison.mjs", "src/science/studio-comparison-panel.mjs",
+    "src/science/studio-comparison-view.mjs",
     "src/science/robust-fit.mjs",
     "src/motion/metric-plane.mjs", "src/motion/metric-plane-panel.mjs", "src/motion/plane-path-reference.mjs",
     "src/motion/vendor/plane-homography.mjs", "src/motion/vendor/plane-homography-source.json",

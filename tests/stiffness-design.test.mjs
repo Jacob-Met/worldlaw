@@ -140,3 +140,48 @@ test('inspecting another offered structure does not rewrite saved declarations o
     planStiffnessInputDesign(session.study.dataset.observations,session.study.settings,choice,session.permitted);
   assert.equal(exportStiffnessExperiment(session),saved);assert.deepEqual(session.pending,pending);
 });
+
+// Current-main integration receiving: input-design actions share the real replay limits.
+import {stiffnessAcquisitionAvailability,addStiffnessCubicRevision} from '../src/stiffness/experiment.mjs';
+function repeatedOnLineInputs(count,{rows=17,knots=null}={}){
+  const raw=JSON.parse(exportStiffnessExperiment(stiffnessExperimentCourse('confounded')));
+  const seed=raw.initial.dataset.observations;
+  raw.initial.dataset.observations=Array.from({length:rows},(_,i)=>({...seed[i%seed.length]}));
+  if(knots)raw.initial.settings.knots=knots;
+  raw.acquisitions=Array.from({length:count},(_,i)=>({id:'online-'+i,index:0,
+    source:{label:'Independent on-line capacity control',declaredKind:'authored'},
+    observation:{...raw.permitted[0],jointTorque:observeStiffnessCourse('confounded',raw.permitted[0])}}));
+  return raw;
+}
+function inspectAvailabilityUnchanged(session){
+  const before=JSON.stringify(session),result=stiffnessAcquisitionAvailability(session);
+  assert.equal(JSON.stringify(session),before,'availability must not alter source, requests, history or fitted state');
+  return result;
+}
+test('input design remains informative at 32 acquisitions but no additional reading is admitted',()=>{
+  const neighbor=replayStiffnessExperiment(repeatedOnLineInputs(31));
+  assert.deepEqual(inspectAvailabilityUnchanged(neighbor),{available:true,reason:null});
+  const full=replayStiffnessExperiment(repeatedOnLineInputs(32));
+  assert.equal(full.study.dataset.observations.length,49);
+  const plan=planStiffnessInputDesign(full.study.dataset.observations,full.study.settings,{family:'global'},full.permitted);
+  assert.equal(plan.status,'proposed');assert.equal(plan.selected.index,1);
+  assert.deepEqual(inspectAvailabilityUnchanged(full),{available:false,reason:'At most 32 sequential acquisitions are supported.'});
+  const frozen=setPendingStiffnessRequest(full,1);
+  assert.throws(()=>receiveStiffnessObservation(frozen,frozen.pending,{id:'excess',source:{label:'Independent capacity refusal',declaredKind:'authored'},
+    observation:{...full.permitted[1],jointTorque:1.4}}),{message:'Retain at most 32 sequential acquisitions.'});
+});
+test('next-reading availability shares observation and complete replay-work limits',()=>{
+  const at4095=replayStiffnessExperiment(repeatedOnLineInputs(0,{rows:4095}));
+  assert.equal(inspectAvailabilityUnchanged(at4095).available,true);
+  const at4096=replayStiffnessExperiment(repeatedOnLineInputs(0,{rows:4096}));
+  assert.match(inspectAvailabilityUnchanged(at4096).reason,/observation bound/);
+  const knots=Array.from({length:101},(_,i)=>-.5+i/100);
+  const beforeWorkLimit=replayStiffnessExperiment(repeatedOnLineInputs(16,{rows:1024,knots}));
+  assert.equal(inspectAvailabilityUnchanged(beforeWorkLimit).available,true);
+  const workFull=replayStiffnessExperiment(repeatedOnLineInputs(17,{rows:1024,knots}));
+  assert.equal(workFull.acquisitions.length,17);assert.equal(workFull.study.dataset.observations.length,1041);
+  assert.match(inspectAvailabilityUnchanged(workFull).reason,/replay exceeds its declared fit-work budget/);
+  assert.throws(()=>replayStiffnessExperiment(repeatedOnLineInputs(18,{rows:1024,knots})),/replay exceeds its declared fit-work budget/);
+  const revised=addStiffnessCubicRevision(beforeWorkLimit,0,'Explicit revision in the replay-work boundary control');
+  assert.match(inspectAvailabilityUnchanged(revised).reason,/replay exceeds its declared fit-work budget/);
+});

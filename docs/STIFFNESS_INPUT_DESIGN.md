@@ -44,24 +44,30 @@ Save/reopen preserves the pending request, original observations, acquired obser
 
 The API admits 1–4,096 input rows; maintained studies retain their existing minimum-row requirements. At most 512 distinct permitted states are admitted, with finite coordinates within ±1,000,000. Existing acquisition and replay limits remain in force.
 
-At the maintained 4,096-observation capacity, the prospective diagnostic remains visible, including any rank or support improvement. Input-design proposal and row freeze actions are disabled with an explicit capacity explanation, and their handler also refuses the action. Start a new experiment with fewer retained training rows before requesting another reading; the diagnostic does not bypass acquisition admission.
+When one more reading would exceed the maintained 32-acquisition, 4,096-observation or replay-work limit, the prospective diagnostic remains visible, including any rank or support improvement. Input-design proposal and row freeze actions are disabled with the original admission reason, and their handler also refuses the action. The read-only check reuses the existing replay-work guard with the next acquisition count; it does not fabricate an observation, fit a model or change a frozen request. Start a new experiment within those limits before requesting another reading. Existing saved-request and receiving contracts remain unchanged.
 
 Passing rank and position gates does **not** establish response adequacy, physical identifiability, confidence, physical safety, causal structure or authority to actuate. Torque observations are still needed to test the offered response. A full-rank but inadequate family may remain a training mismatch. Extrapolated states are flagged rather than declared safe or physically valid.
 
-## Qualification and reproduction
+## Reproduction and source integration
 
-Run:
+Run `node --test tests/stiffness-design.test.mjs`, `npm run verify`,
+`npm run stiffness:browser` and `npm run stiffness:experiment:browser`.
+Browser receiving uses the existing explicit Playwright and Chrome paths.
+The complete consumer course must also run against a fresh extraction from
+`python3 scripts/package.py` before this composition is described as received.
 
-```sh
-node tests/stiffness-design.test.mjs
-```
+This integration reuses the authored input-design mechanism from
+[PR #94, head 39217211e366cd087957a353e52edc08173ea68c](https://github.com/Jacob-Met/worldlaw/pull/94)
+by team `hamon-254045933ca8-20261023`. The underlying fitter, acquisition/replay
+contracts and neighboring scientific work remain maintained on current main.
+Historical component and browser results are retained on that original PR;
+they are not new receiving evidence for this composition.
 
-All **10 local controls passed**: the seven core diagnostics plus three consumer controls covering freeze/receive/save/replay without retroactive predictions, response/check-value independence, and inspection-choice nonmutation. The response-mutation control also verifies that fitted coefficients actually change while input-design results remain identical; the check-only control preserves the fit, pending request and history.
+The prior dependent package repair from PR #98 is already maintained through
+PR #111. This composition preserves the maintained packager and adds only the
+three input-design runtime/document requirements. It does not reintroduce
+older shared-training modules, receipt archives or their old allowlist.
 
-The authored course was also exercised through the existing acquisition path and actual maintained-server Chrome consumer. On maintained main `30937e84700bc268db63d5461b2f5f214abcadda` plus this change, receiving passed 546 native tests with one inherited optional notebook-exchange skip, both launched HTTP smokes, all 31 experiment browser groups and all 16 notebook browser groups. Actual checks cover confounding and no-gain states, a helpful but still-deficient proposal, offered-structure inspection, empty historical forecasts through receiving/refitting/save/reopen, delayed-import fencing, full-capacity action refusal, keyboard operation and painted 1440/390 px controls. The new screenshots were visually inspected; no uncaught page errors or outside requests were observed.
-
-Independent MICROVERSE review checked the actual basis/fitter/support gates, numerical-regression handling, work estimate, input-only claims and maintained history. Review exposed the acquisition-capacity edge; the guarded interface repair and actual browser control close it. See [the source receiving record](receipts/stiffness-input-design-254045/verification.json). Complete maintained-packager source receiving and archive identity are recorded separately on the integration PR. These checks qualify authored software workflows, without a deployment or physical-validation claim.
-
-The first complete-tree package attempt retained a useful failure: four tracked shared-contrast receipt files were absent from the maintained distribution allowlist. The packager now explicitly includes those four existing paths (the receipt README, authored input archive and two text logs). The complete final archive is received from its verified Git tree.
-
-Final composition also preserves the subsequent shared-training contribution from maintained `bee2e5354fa321cf79c40498b4d17c9a52e1cc25`. Its three tracked README/text/archive receipt paths receive the same explicit package inclusion. The integration PR records final composed-tree archive identity and fresh consumer results separately from the earlier source counts above.
+The native integration record carries the exact composed commit/tree, commands,
+actual desktop/narrow captures, archive identity and any remaining failures.
+No source-local patch alone establishes successful receiving or deployment.

@@ -1,3 +1,4 @@
+import {requireChromiumSandbox} from './support/chromium-sandbox.mjs';
 import {spawn} from 'node:child_process';
 import {mkdtemp,readFile,writeFile,rm,mkdir} from 'node:fs/promises';
 import {createProductServer} from '../server.mjs';
@@ -9,7 +10,7 @@ const server=createProductServer();
 await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
 const origin='http://127.0.0.1:'+server.address().port+'/stiffness.html';
 const dir=await mkdtemp(path.join(os.tmpdir(),'worldlaw-experiment-chrome-'));
-const chrome=spawn(process.env.BROWSER_EXECUTABLE_PATH||'/usr/local/bin/google-chrome',['--headless=new','--no-sandbox','--disable-gpu','--disable-background-networking','--hide-scrollbars','--remote-debugging-port=0','--user-data-dir='+dir,'--window-size=1440,1000','about:blank'],{stdio:'ignore'});
+const chrome=spawn(process.env.BROWSER_EXECUTABLE_PATH||'/usr/local/bin/google-chrome',['--headless=new','--disable-gpu','--disable-background-networking','--hide-scrollbars','--remote-debugging-port=0','--user-data-dir='+dir,'--window-size=1440,1000','about:blank'],{stdio:'ignore'});
 let diagnosticEval=null;
 let ws,seq=0;const pending=new Map(),events={exceptions:[],outside:[]};
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
@@ -36,7 +37,7 @@ try {
  diagnosticEval=evaljs;
  const wait=async predicate=>{for(let i=0;i<70;i++){if(await evaljs(predicate))return;await delay(70);}throw new Error('Timed out: '+predicate)};
  const check=async(name,fn)=>{await fn();out.push({name,passed:true})};
- await send('Page.enable');await send('Runtime.enable');await send('Network.enable');
+ await send('Page.enable');await send('Runtime.enable');const sandbox=await requireChromiumSandbox({send});if(outputDir)await writeFile(path.join(outputDir,'stiffness-experiment-browser-sandbox.json'),JSON.stringify(sandbox,null,2));await send('Network.enable');
  await send('Page.navigate',{url:origin});
  await wait("document.readyState==='complete' && document.querySelector('#verdict')?.textContent.length>1");
 
@@ -365,6 +366,58 @@ try {
   await evaljs("document.querySelector('#input-design-rows button[data-design-index=\"1\"]').click()");
   assert.equal(await pendingIndex(),null);assert.equal(await rowCount(),4096);assert.equal(await historyCount(),0);
  });
+
+ async function trustedCapacityClick(selector){
+  const point=await evaljs("(()=>{const element=document.querySelector("+JSON.stringify(selector)+");if(!element)throw Error('Missing capacity control');element.scrollIntoView({block:'center',inline:'center',behavior:'instant'});const r=element.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2,hit=document.elementFromPoint(x,y);if(r.width<=0||r.height<=0||x<0||y<0||x>=innerWidth||y>=innerHeight||!(hit===element||element.contains(hit)))throw Error('Capacity control is not the visible mouse target');return{x,y};})()");
+  await send('Input.dispatchMouseEvent',{type:'mouseMoved',...point,button:'none',buttons:0});
+  await send('Input.dispatchMouseEvent',{type:'mousePressed',...point,button:'left',buttons:1,clickCount:1});
+  await send('Input.dispatchMouseEvent',{type:'mouseReleased',...point,button:'left',buttons:0,clickCount:1});
+ }
+ async function receiveDesignCapacity({rows,count,workLimit,reason}){
+  const raw=JSON.parse(confoundedSaved),seed=raw.initial.dataset.observations;
+  assert.ok(seed.length>0);
+  raw.initial.dataset.observations=Array.from({length:rows},(_,i)=>({...seed[i%seed.length]}));
+  if(workLimit)raw.initial.settings.knots=Array.from({length:101},(_,i)=>-.5+i/100);
+  raw.acquisitions=Array.from({length:count},(_,i)=>({id:'capacity-'+i,index:0,
+   source:{label:'Authored capacity receiving control',declaredKind:'authored'},
+   observation:{...raw.permitted[0],jointTorque:-.1}}));
+  raw.pending=null;assert.equal(raw.revisions?.length??0,0);
+  const knotCount=raw.initial.settings.knots.length,currentWork=(count+1)*(rows+count)*(knotCount+1),nextWork=(count+2)*(rows+count+1)*(knotCount+1);
+  assert.ok(currentWork<=2_000_000);assert.ok(rows+count+1<4096);
+  if(workLimit){
+   assert.equal(count,17);assert.equal(rows,1024);assert.equal(knotCount,101);
+   assert.equal(currentWork,1_911_276);assert.equal(nextWork,2_019_396);
+   assert.ok(count+1<=32);assert.ok(nextWork>2_000_000);
+  }else{assert.equal(count,32);assert.equal(rows+count,49);assert.ok(nextWork<=2_000_000);}
+  await upload('source-file',JSON.stringify(raw),workLimit?'fit-work-capacity-confounded.json':'acquisition-capacity-confounded.json');
+  await wait("Number(document.querySelector('#experiment-history')?.dataset.acquisitionCount)==="+count);
+  await chooseDesign({family:'global'});
+  await wait("(document.querySelector('.input-design')?.textContent||'').includes("+JSON.stringify(reason)+")");
+  assert.equal(await rowCount(),rows+count);assert.equal(await historyCount(),count);assert.equal(await pendingIndex(),null);
+  const beforeDownload=JSON.parse(await save());
+  assert.equal(beforeDownload.initial.dataset.observations.length,rows);assert.equal(beforeDownload.initial.settings.knots.length,knotCount);
+  assert.equal(beforeDownload.acquisitions.length,count);assert.equal(beforeDownload.revisions?.length??0,0);assert.equal(beforeDownload.pending,null);
+  const beforeSource=await evaljs("document.querySelector('#observation-source').value"),beforeDiagnostics=await designBefore();
+  const ui=await evaljs("(()=>{const before=document.querySelector('#input-design-before'),proposal=document.querySelector('#input-design-freeze'),buttons=[...document.querySelectorAll('#input-design-rows button[data-design-index]')];return{rank:Number(before.dataset.rank),coefficientCount:Number(before.dataset.coefficientCount),text:document.querySelector('.input-design').innerText,proposalDisabled:proposal.disabled,rows:buttons.map(b=>({index:b.dataset.designIndex,disabled:b.disabled}))};})()");
+  assert.equal(ui.rank,2);assert.equal(ui.coefficientCount,3);
+  assert.match(await text('input-design-proposal'),/rank 3 \/ 3; 0 unresolved/);
+  assert.match(await text('input-design-proposal'),/Proposed state #1:/);
+  assert.ok(ui.text.includes(reason));assert.equal(ui.proposalDisabled,true);assert.equal(ui.rows.length,2);
+  assert.deepEqual(ui.rows.map(r=>r.index).sort(),['0','1']);assert.ok(ui.rows.every(r=>r.disabled));
+  for(const selector of ['#input-design-freeze','#input-design-rows button[data-design-index="1"]']){
+   await trustedCapacityClick(selector);
+   assert.equal(await pendingIndex(),null);assert.equal(await historyCount(),count);assert.equal(await rowCount(),rows+count);
+   assert.equal(await evaljs("document.querySelector('#observation-source').value"),beforeSource);
+   assert.deepEqual(await designBefore(),beforeDiagnostics);assert.deepEqual(JSON.parse(await save()),beforeDownload);
+  }
+  await evaljs("document.querySelector('#input-design-status').scrollIntoView({block:'start',behavior:'instant'})");
+  await screenshot(workLimit?'stiffness-design-work-capacity':'stiffness-design-acquisition-capacity');
+ }
+ await check('input-design preserves diagnostics and refuses all freeze controls at 32 acquisitions',async()=>receiveDesignCapacity({
+  rows:17,count:32,workLimit:false,reason:'At most 32 sequential acquisitions are supported.'}));
+ await check('input-design preserves diagnostics and refuses the next acquisition over replay-work budget',async()=>receiveDesignCapacity({
+  rows:1024,count:17,workLimit:true,reason:'The replay exceeds its declared fit-work budget; reduce the grid, initial rows or acquisitions.'}));
+
  await check('input-design request freezes no forecast then receives torque 1.4 and reopens unchanged historical absence',async()=>{
   await course('confounded');await chooseDesign({family:'global'});await click('input-design-freeze');
   assert.equal(await pendingIndex(),'1');assert.match(await text('experiment-pending'),/No executable forecast was available/);

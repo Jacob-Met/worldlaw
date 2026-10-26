@@ -1,0 +1,361 @@
+{
+  "schema": "worldlaw.studio-comparison-receiving/v1",
+  "date": "2026-10-26",
+  "promptVersion": "2026-10-26.1",
+  "issue": "https://github.com/Jacob-Met/worldlaw/issues/336",
+  "baselineCommit": "a2e82058e56bdf7ad381547ffd4eb3ff7f045afc",
+  "baselineTree": "7ed131a284d6f4b780a4e2451bca9ea8c3d35227",
+  "native": {
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "runtime": "v22.23.4",
+    "testFiles": 176,
+    "tests": 1267,
+    "passed": 1266,
+    "failed": 0,
+    "skipped": 1,
+    "skipLines": [
+      "ok 1026 - live Node and Chromium exchange pending and applied notebooks through actual modules # SKIP"
+    ],
+    "logSHA256": "37c4c1f522f370f365a9f297909e8fc25b9674889e94f4e685f9334f1d616dd6",
+    "initialReceivingFailure": "Two missing original fixtures in controlled source copy; restored by pinned Git blob hashes before complete rerun."
+  },
+  "package": {
+    "output": "/home/ubuntu/hamon-work/estate-68fdaad6-20261026/deliveries/worldlaw-comparison-candidate-02.zip",
+    "sha256": "85d09fdc77902eea8e3711a46b4833336ae4d30a0bb3506b6978400ee26fd6ab",
+    "sourceFiles": 606,
+    "bytes": 8961281,
+    "sourceCommit": "a2e82058e56bdf7ad381547ffd4eb3ff7f045afc",
+    "sourceTree": null,
+    "sourceMode": "working-tree-candidate",
+    "extractedTo": "/home/ubuntu/hamon-work/estate-68fdaad6-20261026/received/package-02/worldlaw",
+    "verifiedManifestFiles": 606,
+    "receivingWorkingDirectory": "/home/ubuntu/hamon-work/estate-68fdaad6-20261026/received/package-02/worldlaw",
+    "receivingCommands": [
+      "npm run smoke",
+      "node scripts/studio-comparison-browser.mjs",
+      "node scripts/studio-comparison-receiving.mjs",
+      "node scripts/distribution-browser.mjs"
+    ]
+  },
+  "browser": {
+    "browser": "156.0.8078.47",
+    "checks": [
+      "ordinary original-source import and keyboard comparison show every competitive law with incumbent-exact sampled curves",
+      "shared joint and angle-rate compositions use synchronized samples; pause is still, scrub is explicit and playback moves",
+      "changed dynamics retire every old path; changed release recomputes and invalid inertia cannot preserve a successful comparison",
+      "source-only download and ordinary reopen retire derived paths; explicit comparison recomputes without saving fitted answers",
+      "390px layout, reduced-motion keyboard scrubbing and return to ordinary inspected-law dynamics"
+    ],
+    "competitiveLaws": [
+      "command+rate+spring",
+      "command+rate+gravity",
+      "command+spring+quadratic",
+      "command+gravity+quadratic",
+      "command+rate+coulomb+spring",
+      "command+rate+coulomb+gravity",
+      "command+rate+spring+gravity",
+      "command+rate+spring+quadratic",
+      "command+coulomb+spring+quadratic",
+      "command+rate+gravity+quadratic",
+      "command+coulomb+gravity+quadratic",
+      "command+spring+gravity+quadratic",
+      "command+rate+spring+bias",
+      "command+rate+gravity+bias",
+      "command+spring+quadratic+bias",
+      "command+gravity+quadratic+bias"
+    ],
+    "worstRenderedPixelError": 6.693312570860144e-12,
+    "errors": [],
+    "badRequests": [],
+    "external": [],
+    "scope": "Authored finite-library ambiguity and actual maintained browser execution. No physical measurement, calibrated model uncertainty or continuous-time display guarantee."
+  },
+  "consumer": {
+    "browser": "156.0.8078.47",
+    "launchMode": "source-tree-maintained-server",
+    "checks": [
+      "ordinary original-source import retains every law and explicit numerical refusal in a genuinely incomplete ensemble",
+      "complete-set work refusal keeps all original refusal rows and cannot retain successful paths",
+      "ordinary inspected-law selection retires the prior comparison without changing evidence or competitive membership",
+      "input and inspected-law changes during the pending animation frame prevent stale publication and leave comparison usable",
+      "replacement source and browser reload discard derived paths; explicit comparison uses only the replacement source competitive set"
+    ],
+    "localOracleSourceHashes": {
+      "src/science/studio-comparison-panel.mjs": "52996bcf19e5cefadaf36a55c0b4416b9975e68a4e6b5b77fe3036e0f4c28689",
+      "src/science/studio-comparison-view.mjs": "00da0fa582cdacc0174a72b381467cf7234596084be202fa344ff9eb38660631",
+      "src/science/studio-dynamics-comparison.mjs": "94573074b0cb0af9e7ecf2d7cae3efb1d1ad2de66d287462f693508ba4383b1c",
+      "src/science/studio-dynamics.mjs": "dc6e708c0036e224cf8af8beb43b51cb9162ce0d6849d9f0b925bab60641a203"
+    },
+    "loadedModules": [
+      "/src/science/studio-comparison-panel.mjs",
+      "/src/science/studio-comparison-view.mjs",
+      "/src/science/studio-dynamics-comparison.mjs",
+      "/src/science/studio-dynamics.mjs"
+    ],
+    "originalCandidates": 16,
+    "partialResults": [
+      {
+        "id": "command+rate+spring",
+        "status": "completed"
+      },
+      {
+        "id": "command+rate+gravity",
+        "status": "completed"
+      },
+      {
+        "id": "command+spring+quadratic",
+        "status": "completed"
+      },
+      {
+        "id": "command+gravity+quadratic",
+        "status": "completed"
+      },
+      {
+        "id": "command+rate+coulomb+spring",
+        "status": "completed"
+      },
+      {
+        "id": "command+rate+coulomb+gravity",
+        "status": "completed"
+      },
+      {
+        "id": "command+rate+spring+gravity",
+        "status": "completed"
+      },
+      {
+        "id": "command+rate+spring+quadratic",
+        "status": "completed"
+      },
+      {
+        "id": "command+coulomb+spring+quadratic",
+        "status": "refused",
+        "error": {
+          "message": "rate must be a finite number with magnitude at most 1000000.",
+          "code": "invalid_input"
+        }
+      },
+      {
+        "id": "command+rate+gravity+quadratic",
+        "status": "completed"
+      },
+      {
+        "id": "command+coulomb+gravity+quadratic",
+        "status": "refused",
+        "error": {
+          "message": "rate must be a finite number with magnitude at most 1000000.",
+          "code": "invalid_input"
+        }
+      },
+      {
+        "id": "command+spring+gravity+quadratic",
+        "status": "completed"
+      },
+      {
+        "id": "command+rate+spring+bias",
+        "status": "completed"
+      },
+      {
+        "id": "command+rate+gravity+bias",
+        "status": "completed"
+      },
+      {
+        "id": "command+spring+quadratic+bias",
+        "status": "completed"
+      },
+      {
+        "id": "command+gravity+quadratic+bias",
+        "status": "completed"
+      }
+    ],
+    "replacementCandidates": 6,
+    "errors": [],
+    "badRequests": [],
+    "external": [],
+    "scope": "Software receiving from authored original observations through the maintained browser entry point. Models are fitted in the application. Refused numerical paths remain refused; no physical acquisition, accuracy or calibrated uncertainty claim. Local oracle hashes identify the comparison expectation source, not independently verified server bytes."
+  },
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-26T20:17:01.265Z",
+    "completedAt": "2026-10-26T20:17:01.349Z",
+    "durationMs": 84.52610999999996,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "F9A3D67E3D707562BE75D27D78835B2E",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "67E70A022D460E0B5E7C184F02FDE204"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "regression": {
+    "packagePolicyTests": 7,
+    "launchedStudioSmoke": "passed",
+    "launchedTrajectorySmoke": "passed",
+    "extractedStudioSmoke": "passed",
+    "maintainedDistributionBrowserGroups": 11,
+    "distributionLogSHA256": "d82e07bcffb295b59110068e445fd2e375288ab405fc92bf7b3af7ecc81a8f26"
+  },
+  "sourceScope": "Runtime, native tests, examples and maintained package prerequisites reconstructed from pinned Git blobs in a controlled receiving tree. Historical unrelated receipts not copied. This is a working-tree candidate package, not a complete cloned or released repository archive. Published integration preserves the full existing Git tree.",
+  "limits": [
+    "Finite training-competitive scalar models; declared constant inertia and command.",
+    "All motion is executed prediction, not observed physical acquisition or calibrated model probability.",
+    "Adaptive error estimates are local, not global bounds; sampled views may alias fast motion.",
+    "No physical actuation, external submission or public release."
+  ],
+  "images": [
+    {
+      "name": "angle-rate-desktop.png",
+      "course": "studio-comparison-browser",
+      "sha256": "7ae38457019c616bdfd092201df37056a15fe5909bfa9add58ea6edc64c87ab7",
+      "sha": "dcb30cc5a88908eeee861d026e44918b2f7f5b18"
+    },
+    {
+      "name": "comparison-narrow.png",
+      "course": "studio-comparison-browser",
+      "sha256": "6201ec85a6447017ce2f1f63bd09690ff87ff6862e1f74544c750bf3a40d28a2",
+      "sha": "574b93531275bcb4d58790d56a294f0f2aadc73c"
+    },
+    {
+      "name": "full-angle-desktop.png",
+      "course": "studio-comparison-browser",
+      "sha256": "fe3e563958751dc61b909e8d77c9fe5e652cceec62fc7f543883b6120a53969a",
+      "sha": "e5aa1305f9e46bdbd9f65e320d778113de64f2f4"
+    },
+    {
+      "name": "shared-joint-desktop.png",
+      "course": "studio-comparison-browser",
+      "sha256": "cf7af0e17f81c68796e7b91d274c9ba4acd7a2ba6db07c8973a2b16a885bda8f",
+      "sha": "e3b77b5093a3d779d7a127aa2c63df843eea107e"
+    },
+    {
+      "name": "shared-joint-narrow.png",
+      "course": "studio-comparison-browser",
+      "sha256": "a4c0c1358b100880c6f07ac9bf56d6d5d928260aac1812db23474bda6eec1254",
+      "sha": "fa509171682730c0281af95e5932db376803b95c"
+    },
+    {
+      "name": "partial-ensemble-refusals.png",
+      "course": "studio-comparison-receiving",
+      "sha256": "863ec9a282253d0e4ec6738a4976700397e25d943c1b0e1c0c611e56e701ac4e",
+      "sha": "80bbaf28a4be2e6b5a65b3a4195ae4052c7ee82c"
+    },
+    {
+      "name": "partial-ensemble-stage.png",
+      "course": "studio-comparison-receiving",
+      "sha256": "ed1228f3cd3c6428375a734cfea13a0b4725100a17aa0fe626f8b7a71db96110",
+      "sha": "cf6a0d0f51932aa4fe10f4f96efae6e73a17f70f"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "README.md",
+      "sha": "be2aeae0ba5b51cb5b1bed123120db8cc92d19b5",
+      "sha256": "61a95b447d98892eb6a3ce19be5632ab2c1334632088e9183dbcf8a018972587"
+    },
+    {
+      "path": "index.html",
+      "sha": "4361a4e1d4b4663ca54060faee0d53790427995f",
+      "sha256": "a768137803f52203744ea77ccc622389dad3b6993a374c87697008b56b88e737"
+    },
+    {
+      "path": "styles.css",
+      "sha": "97bef731ef5ddf121828b418c15fd348ec7ba351",
+      "sha256": "ee702a9ad3dd39dbdd66a63acfc8a05c94b8b5346ff7415e7891cd63dc59cdfb"
+    },
+    {
+      "path": "src/app.mjs",
+      "sha": "42e9f7bc89b895fc495af7bb878c0e5105af8b93",
+      "sha256": "1d98f68e611f803eb33d77715ab7e4f12258c1ffcc6bdd9dfa58eb23a48bde62"
+    },
+    {
+      "path": "scripts/package.py",
+      "sha": "0ab5141ce5928b1fcf74935d007c2269af6d7479",
+      "sha256": "ff41e0fc38cd5e1abc47c5c7f759703545be99e6d3448a1264897bbf36f6ad2f"
+    },
+    {
+      "path": "docs/COMPETITIVE_MOTION.md",
+      "sha": "6d0c1c2527c7a1ae0c26585fa26fd37e59860c2d",
+      "sha256": "9c850c4112f7a718577b50b020d764bf110d1e7f38bcf043a68efbbbb0eb63e0"
+    },
+    {
+      "path": "scripts/studio-comparison-browser.mjs",
+      "sha": "05fd8e63a945420649eb7d201888fdeca7a8a92e",
+      "sha256": "559bcb315e5f5119a5a1ae03f6b97adca2de011d8afd21d812172228f8507e17"
+    },
+    {
+      "path": "scripts/studio-comparison-receiving.mjs",
+      "sha": "ab082f4b93accc63f760e6ac9ea7d8462e0c2dda",
+      "sha256": "2dbda40ec3f3b4b789f09081a3a101dfdfaa8c7d134c453b87aaad0d5e6fab2f"
+    },
+    {
+      "path": "src/science/studio-dynamics-comparison.mjs",
+      "sha": "7d2ed4197b29578e8437101ce7c2bc5c683e18e7",
+      "sha256": "94573074b0cb0af9e7ecf2d7cae3efb1d1ad2de66d287462f693508ba4383b1c"
+    },
+    {
+      "path": "src/science/studio-comparison-panel.mjs",
+      "sha": "8129c607cc3fc9acb3e7836d637e6a1a122b141e",
+      "sha256": "52996bcf19e5cefadaf36a55c0b4416b9975e68a4e6b5b77fe3036e0f4c28689"
+    },
+    {
+      "path": "src/science/studio-comparison-view.mjs",
+      "sha": "fa3b1f0b47bd33c088bb7cc6a79ef0b8edc6ecd5",
+      "sha256": "00da0fa582cdacc0174a72b381467cf7234596084be202fa344ff9eb38660631"
+    },
+    {
+      "path": "tests/studio-dynamics-comparison.test.mjs",
+      "sha": "5bd505efab20e09eb6863dced0408dbd5bfb8581",
+      "sha256": "ec496ff940d928d22d58cd8f6624daecd44414c5b26a22bbdc47c31571e77031"
+    }
+  ],
+  "review": {
+    "numerical": {
+      "worker": "/root/estate_recovery",
+      "result": "No blocker; exact helper/test hashes and numerical claims verified against frozen source."
+    },
+    "sourceAndVisual": {
+      "worker": "/root/integration_review",
+      "result": "No blocker; all 12 source hashes and 7 PNG hashes verified. Full-angle, phase layering, accessibility, label contrast and narrow layout repairs inspected."
+    },
+    "consumer": {
+      "worker": "/root/consumer_path",
+      "result": "No blocker; 16 unique original outcomes, 14 completed and 2 finite-rate refusals verified; visible incomplete labels and retained original IDs inspected."
+    },
+    "executionBoundary": "Reviewers inspected supplied source/artifacts; parent executed and recorded Renpo host tests."
+  }
+}

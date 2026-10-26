@@ -1,4 +1,4 @@
-import {MAX_ROWS} from '../data.mjs';
+import {stiffnessAcquisitionAvailability} from './experiment.mjs';
 import {planStiffnessInputDesign} from './design.mjs';
 const $=id=>document.getElementById(id);
 const number=value=>Number(value.toPrecision(6)).toString();
@@ -10,8 +10,8 @@ function cell(tr,text,title,header){const td=document.createElement('td');td.set
 export function createInputDesignPanel({onFreeze,onActivity,onError}){
  let session=null,choiceKey=JSON.stringify({family:'global'}),plan=null;
  const select=$('input-design-structure'),button=$('input-design-freeze');
- const atCapacity=()=>session.study.dataset.observations.length>=MAX_ROWS;
- const capacityMessage=()=>`Observation capacity reached (${MAX_ROWS} rows). Input diagnostics remain inspectable, but another reading cannot be admitted. Start a new experiment with fewer retained training rows before freezing an input-design request.`;
+ const atCapacity=()=>!stiffnessAcquisitionAvailability(session).available;
+ const capacityMessage=()=>stiffnessAcquisitionAvailability(session).reason+' Input diagnostics remain inspectable, but another reading cannot be admitted. Start a new experiment within the reading-count, observation and replay-work limits before freezing an input-design request.';
  function request(index){if(atCapacity())throw Error(capacityMessage());onFreeze(index);}
  function render(){
   const settings=session.study.settings,offered=[{family:'global'},...settings.knots.map(knot=>({family:'piecewise',knot})),...(Object.hasOwn(settings,'cubicOrigin')?[{family:'cubic',origin:settings.cubicOrigin}]:[])];
