@@ -1,3 +1,4 @@
+import {renderAngularFrequency} from './science/angular-frequency-panel.mjs';
 import {renderOrderedLawChange} from './science/ordered-law-change-panel.mjs';
 import {mountScalarExcitation} from './science/excitation-design-panel.mjs';
 let excitationPanel=null;
@@ -26,7 +27,7 @@ const names={command:'Actuation',rate:'Viscous damping',coulomb:'Coulomb frictio
 const fmt=(value,digits=4)=>value===null||!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<0.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
 const set=(id,text)=>{$(id).textContent=text;};
-let clockPanel=null,affinePanel=null,deadzoneWidths=null;
+let clockPanel=null,affinePanel=null,deadzoneWidths=null,frequencySettings=null;
 let state,modelId,plan,trajectory=[],animationStart=0,animationHandle,restored=false,generation=0;
 function alertError(error) { $('error').hidden=false;set('error',error.message||String(error));$('error').focus(); }
 function notice(text) {set('notice',text);$('error').hidden=true;}
@@ -35,7 +36,7 @@ function save() {
   try{localStorage.setItem(storageKey,exportSession(state));set('storage-status','Notebook saved on this browser');}
   catch{set('storage-status','Browser storage unavailable · export to keep this notebook');}
 }
-function adopt(next,message,widths=null) {generation++;state=next;deadzoneWidths=widths;modelId=state.discovery.selected.id;render();save();notice(message);}
+function adopt(next,message,widths=null) {generation++;state=next;deadzoneWidths=widths;frequencySettings=null;modelId=state.discovery.selected.id;render();save();notice(message);}
 function model(){return state.discovery.candidates.find(m=>m.id===modelId)||state.discovery.selected;}
 function numberInput(id){const v=$(id).value.trim();if(!v||!Number.isFinite(Number(v)))throw new Error(`Enter a finite value for ${$(id).labels?.[0]?.textContent||id}.`);return Number(v);}
 function experimentInput(){return Object.fromEntries(['command','position','rate'].map(f=>[f,numberInput(f)]));}
@@ -133,6 +134,8 @@ function renderModel(){
   let deadzone=$('command-deadzone-container');if(!deadzone){deadzone=el('div');deadzone.id='command-deadzone-container';$('residual-chart').after(deadzone);}
   if(!$('sensor-response-container')){const response=el('div');response.id='sensor-response-container';deadzone.after(response);mountSensorResponse(response,{chart});}
   renderCommandDeadzone(deadzone,state,{chart,widths:deadzoneWidths,onReopen:(next,widths)=>adopt(next,'Reopened original command-map comparison inputs. Compare again to recompute.',widths),simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
+  let frequency=$('angular-frequency-container');if(!frequency){frequency=el('div');frequency.id='angular-frequency-container';deadzone.after(frequency);}
+  renderAngularFrequency(frequency,state,{chart,getSourceGeneration:()=>generation,settings:frequencySettings,onReopen:(next,settings)=>{adopt(next,'Reopened original periodic-response inputs. Infer again to recompute.');frequencySettings=settings;render();},simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
   runSimulation(false);
 }
 function render(){
