@@ -88,7 +88,7 @@ try {
       assert.equal(await stored(),portable);assert.equal(await page.locator('#sample-count').innerText(),'4096');
     };
     await refuse('invalid.json','{',/could not be read/);
-    await refuse('too-many-code-units.json',portable.padEnd(MAX_TEXT_LENGTH+1,' '),/smaller than 2 MB/);
+    await refuse('too-much-content.json',JSON.stringify({value:'x'.repeat(MAX_TEXT_LENGTH)}),/content exceeds the supported text size/);
     await page.evaluate(()=>{window.notebookReads=[];const original=File.prototype.text;File.prototype.text=function(){window.notebookReads.push(this.name);return original.call(this);};});
     await refuse('too-many-bytes.json',' '.repeat(3*MAX_TEXT_LENGTH+1),/no larger than 6 MB/);
     assert.equal(await page.evaluate(()=>window.notebookReads.includes('too-many-bytes.json')),false);
