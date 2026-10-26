@@ -16,6 +16,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    # Exact source dependencies of the maintained position-covariance course.
+    "experiments/position-covariance-oracle.py", "tests/fixtures/covariance-course.mjs",
     "docs/receipts/applied-torque-760d4cf/README.md",
     "independent-review/soft-l1-oracle.py",
     # Source-bound metric-plane consumer and exact authored receiving fixtures.

@@ -113,3 +113,10 @@ post-merge receiving belong to the linked integration PR for issue #302.
 Independent team review checked the step-doubling rule, dimensional scaling,
 failure paths and substantive controls. It did not invent a separate runtime
 pass. Final code/runtime verification remains explicitly recorded on the PR.
+
+The final composed distribution exposed two newly tracked covariance source
+dependencies missing from the maintained package allowlist. Integration adds
+only experiments/position-covariance-oracle.py and
+tests/fixtures/covariance-course.mjs; unrelated scripts, fixtures, secret-like
+files, archives and traversal paths continue to refuse. The original failure
+and fresh-package receiving are recorded on PR #304.
