@@ -1,0 +1,77 @@
+{
+  "checks": [
+    "original angular intake retains covariance-off default",
+    "legacy source notebook remains v1 with no covariance result or request",
+    "keyboard-enabled covariance converges with preserved original challenge rows and an additional prediction",
+    "raw v3 download and reopened forged-derived report recompute the same evidence",
+    "different original training trajectories change the fitted covariance coefficients",
+    "saved finite iteration boundary stays unresolved without a fabricated refined forecast",
+    "v3 missing covariance request refuses explicitly and retains the labeled prior result",
+    "measured PASCO nonsmooth selected law refuses covariance while retaining original forecasts",
+    "actual comparison and controls fit narrow viewports with keyboard focus",
+    "turning comparison off restores exact original visible rows and paths",
+    "no unexpected browser or served-asset errors"
+  ],
+  "errors": [],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-26T00:47:14.557Z",
+    "completedAt": "2026-10-26T00:47:14.639Z",
+    "durationMs": 81.25014600000003,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "46586405A068674638E85DA3A5A251BF",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "DCA7AB40F8A947737C399970ED6BAB13"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "layouts": [
+    {
+      "width": 390,
+      "document": 390
+    },
+    {
+      "width": 320,
+      "document": 320
+    }
+  ],
+  "browser": "156.0.8078.47",
+  "scope": "Actual maintained Studio with closed-form authored trajectories and measured PASCO source; no physical validity or improved prediction claim."
+}

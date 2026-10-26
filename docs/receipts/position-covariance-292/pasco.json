@@ -1,0 +1,141 @@
+{
+  "bundle": "examples/physical-pasco-92be.json",
+  "sha256": "7e42868153d3aa15fc9722f665f5ed62cc491c4445768f8db74a6e36b85cb0e6",
+  "runtime": "v24.22.1",
+  "qualification": "Existing maintained measured-data recordings, reused during development; not newly acquired, independently blind, or physical-law validation.",
+  "conclusion": "The explicit smooth comparison improves this smooth-library selection, but remains worse than the maintained nonsmooth default. No library or model is silently replaced.",
+  "results": [
+    {
+      "label": "maintained-default",
+      "options": {
+        "terms": [
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "maxTerms": 4,
+        "noiseSigma": 0.01,
+        "ambiguityDelta": 6,
+        "windowDuration": 1,
+        "windowStride": 0.5,
+        "rateWindowSize": 9,
+        "maxStep": 0.01,
+        "maxTotalSteps": 2000000,
+        "maxPredictionRows": 262144,
+        "maxNumericalDifference": 0.001
+      },
+      "selected": "rate+coulomb+gravity+bias",
+      "covarianceStatus": "refused",
+      "error": {
+        "message": "Covariance comparison supports linear rate and smooth position terms only; no term was omitted.",
+        "code": "unsupported_position_derivative"
+      },
+      "iterations": 0,
+      "reservation": null,
+      "coefficients": null,
+      "results": [
+        {
+          "model": "gravity+bias",
+          "status": "complete",
+          "numericalStatus": "screened",
+          "positionRMSE": 0.3229694757859894
+        },
+        {
+          "model": "rate+coulomb+gravity+bias",
+          "status": "complete",
+          "numericalStatus": "screened",
+          "positionRMSE": 0.08950962721962619
+        }
+      ]
+    },
+    {
+      "label": "explicit-smooth-library",
+      "options": {
+        "terms": [
+          "rate",
+          "spring",
+          "gravity",
+          "bias",
+          "cubic",
+          "cosine"
+        ],
+        "maxTerms": 3,
+        "noiseSigma": 0.01,
+        "ambiguityDelta": 6,
+        "windowDuration": 1,
+        "windowStride": 0.5,
+        "rateWindowSize": 9,
+        "maxStep": 0.01,
+        "maxTotalSteps": 2000000,
+        "maxPredictionRows": 262144,
+        "maxNumericalDifference": 0.001
+      },
+      "selected": "rate+gravity+cosine",
+      "covarianceStatus": "converged",
+      "error": null,
+      "iterations": 4,
+      "reservation": {
+        "windows": 78,
+        "gradientEntries": 31512,
+        "factorEntries": 228,
+        "maximumWork": 1222572,
+        "iterationWork": 87594,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "pasco-len1-cond1-1",
+            "windows": 39
+          },
+          {
+            "runId": "pasco-len1-cond1-2",
+            "windows": 39
+          }
+        ]
+      },
+      "coefficients": [
+        {
+          "id": "rate",
+          "coefficient": -0.00558208937389498,
+          "coefficientUnit": "1/s"
+        },
+        {
+          "id": "gravity",
+          "coefficient": -39.904033696616494,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "id": "cosine",
+          "coefficient": -0.3368922929056244,
+          "coefficientUnit": "rad/s²"
+        }
+      ],
+      "results": [
+        {
+          "model": "gravity+bias+cosine",
+          "status": "complete",
+          "numericalStatus": "screened",
+          "positionRMSE": 0.31870010983097047
+        },
+        {
+          "model": "rate+gravity+cosine",
+          "status": "complete",
+          "numericalStatus": "screened",
+          "positionRMSE": 0.22376039603615552
+        },
+        {
+          "model": "rate+gravity+cosine~position-covariance",
+          "status": "complete",
+          "numericalStatus": "screened",
+          "positionRMSE": 0.20445053796649545
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1567 @@
+{
+  "method": "Production complete residual position-covariance comparison; fixed before the forty unfamiliar oracle courses",
+  "inputSha256": "ed6aea3afe56beba4fa177b97c9b49ff9c98b892cc8aa36e08906b2208073c52",
+  "oracle": "SciPy DOP853 rtol1e-12/atol1e-13; PCG64 seed0x51A7E29",
+  "oracleEnvironment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "runtime": "v24.22.1",
+  "summary": [
+    {
+      "kind": "linear",
+      "count": 8,
+      "converged": 8,
+      "originalMeanPositionRMSE": 0.002433344233433136,
+      "comparedMeanPositionRMSE": 0.0006334854771239924,
+      "wins": 7,
+      "unresolved": []
+    },
+    {
+      "kind": "gravity",
+      "count": 8,
+      "converged": 8,
+      "originalMeanPositionRMSE": 0.0018137484647659761,
+      "comparedMeanPositionRMSE": 0.000815178868245917,
+      "wins": 7,
+      "unresolved": []
+    },
+    {
+      "kind": "cubic",
+      "count": 8,
+      "converged": 8,
+      "originalMeanPositionRMSE": 0.002949678758578512,
+      "comparedMeanPositionRMSE": 0.0032223671334552996,
+      "wins": 4,
+      "unresolved": []
+    },
+    {
+      "kind": "correlated",
+      "count": 8,
+      "converged": 8,
+      "originalMeanPositionRMSE": 0.007969674692266846,
+      "comparedMeanPositionRMSE": 0.0050550112226887215,
+      "wins": 6,
+      "unresolved": []
+    },
+    {
+      "kind": "forced",
+      "count": 8,
+      "converged": 8,
+      "originalMeanPositionRMSE": 0.03919948682407734,
+      "comparedMeanPositionRMSE": 0.0421794082242592,
+      "wins": 4,
+      "unresolved": []
+    }
+  ],
+  "derivativeCheck": {
+    "points": 1656,
+    "maximumDifference": 2.3636045898278724e-10
+  },
+  "timing": {
+    "count": 40,
+    "medianMs": 17.505212500000027,
+    "minimumMs": 10.999784999999974,
+    "maximumMs": 64.51386199999999
+  },
+  "limitations": [
+    "Authored independent numerical courses, not measured acquisition or blind physical validation.",
+    "Correlated noise violates the independence assumption; externally forced courses deliberately violate the fitted unforced model.",
+    "Every course is retained. Convergence, average improvement and coefficient accuracy are different claims."
+  ],
+  "results": [
+    {
+      "kind": "linear",
+      "index": 0,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 54.197158,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.008409304093153847,
+      "comparedPositionRMSE": 0.0007573889746458763,
+      "originalCoefficients": [
+        -0.22387039366653808,
+        -1.0462143901218428
+      ],
+      "comparedCoefficients": [
+        -0.22441496397786015,
+        -1.056600208570809
+      ],
+      "error": null
+    },
+    {
+      "kind": "linear",
+      "index": 1,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 64.51386199999999,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0011918300290491065,
+      "comparedPositionRMSE": 0.0014721156459748057,
+      "originalCoefficients": [
+        -0.27063528052824865,
+        -6.23091124404566
+      ],
+      "comparedCoefficients": [
+        -0.27093368132783424,
+        -6.227228289895517
+      ],
+      "error": null
+    },
+    {
+      "kind": "linear",
+      "index": 2,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 54.857302000000004,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0007551721464728802,
+      "comparedPositionRMSE": 0.00027040094812405595,
+      "originalCoefficients": [
+        -0.35490470070081087,
+        -11.211337705215692
+      ],
+      "comparedCoefficients": [
+        -0.3556155919754071,
+        -11.207278705905921
+      ],
+      "error": null
+    },
+    {
+      "kind": "linear",
+      "index": 3,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 34.99889000000002,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0024512633152573133,
+      "comparedPositionRMSE": 0.000704830133158257,
+      "originalCoefficients": [
+        -0.2437428325661744,
+        -11.434275195837627
+      ],
+      "comparedCoefficients": [
+        -0.24464321194988445,
+        -11.441167198334998
+      ],
+      "error": null
+    },
+    {
+      "kind": "linear",
+      "index": 4,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 43.067210999999986,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.001127327887768616,
+      "comparedPositionRMSE": 0.0008929454080723129,
+      "originalCoefficients": [
+        -0.21065778068779417,
+        -8.48747275115151
+      ],
+      "comparedCoefficients": [
+        -0.2102235597694032,
+        -8.49338309228859
+      ],
+      "error": null
+    },
+    {
+      "kind": "linear",
+      "index": 5,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 12.973304999999982,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.002778580118490159,
+      "comparedPositionRMSE": 0.0002972258179441871,
+      "originalCoefficients": [
+        -0.3679477048961518,
+        -9.447273187633122
+      ],
+      "comparedCoefficients": [
+        -0.3714316420748566,
+        -9.43233432276339
+      ],
+      "error": null
+    },
+    {
+      "kind": "linear",
+      "index": 6,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 12.218132999999966,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0020577136671421567,
+      "comparedPositionRMSE": 0.0004000015538811456,
+      "originalCoefficients": [
+        -0.3884785121811472,
+        -4.558968203025505
+      ],
+      "comparedCoefficients": [
+        -0.38666165989562534,
+        -4.565618148854102
+      ],
+      "error": null
+    },
+    {
+      "kind": "linear",
+      "index": 7,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 3,
+      "elapsedMs": 14.993970999999988,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0006955626101310098,
+      "comparedPositionRMSE": 0.00027297533519129953,
+      "originalCoefficients": [
+        -0.24879294381481948,
+        -1.035605956916989
+      ],
+      "comparedCoefficients": [
+        -0.24917607234516786,
+        -1.0359025759420886
+      ],
+      "error": null
+    },
+    {
+      "kind": "gravity",
+      "index": 0,
+      "selected": "rate+gravity",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 23.020217000000002,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0008262570324644343,
+      "comparedPositionRMSE": 0.0004834625455263618,
+      "originalCoefficients": [
+        -0.14370007423319583,
+        -12.070105147396335
+      ],
+      "comparedCoefficients": [
+        -0.14529914774191338,
+        -12.073748936328762
+      ],
+      "error": null
+    },
+    {
+      "kind": "gravity",
+      "index": 1,
+      "selected": "rate+gravity",
+      "status": "converged",
+      "iterations": 3,
+      "elapsedMs": 15.491508000000067,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0002298238844049986,
+      "comparedPositionRMSE": 0.0000540938617652815,
+      "originalCoefficients": [
+        -0.38425971138268206,
+        -3.2882936414492625
+      ],
+      "comparedCoefficients": [
+        -0.3849037178063663,
+        -3.2890848016676175
+      ],
+      "error": null
+    },
+    {
+      "kind": "gravity",
+      "index": 2,
+      "selected": "rate+gravity",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 32.476295999999934,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.00247413955200196,
+      "comparedPositionRMSE": 0.0007925923261361322,
+      "originalCoefficients": [
+        -0.15285864704952534,
+        -0.7202412088643988
+      ],
+      "comparedCoefficients": [
+        -0.15302122944413127,
+        -0.7176784042260523
+      ],
+      "error": null
+    },
+    {
+      "kind": "gravity",
+      "index": 3,
+      "selected": "rate+gravity",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 23.290599000000043,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0026265028068467107,
+      "comparedPositionRMSE": 0.00116192821915715,
+      "originalCoefficients": [
+        -0.3799841372150472,
+        -1.0949190050690973
+      ],
+      "comparedCoefficients": [
+        -0.3764590870336899,
+        -1.093552533586101
+      ],
+      "error": null
+    },
+    {
+      "kind": "gravity",
+      "index": 4,
+      "selected": "rate+gravity",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 17.37083400000006,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0029371380431517514,
+      "comparedPositionRMSE": 0.0013239592125801306,
+      "originalCoefficients": [
+        -0.133860438823594,
+        -5.315284689551323
+      ],
+      "comparedCoefficients": [
+        -0.13338191831705373,
+        -5.3110243198029945
+      ],
+      "error": null
+    },
+    {
+      "kind": "gravity",
+      "index": 5,
+      "selected": "rate+gravity",
+      "status": "converged",
+      "iterations": 3,
+      "elapsedMs": 13.594219000000066,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0007939856606767179,
+      "comparedPositionRMSE": 0.000900643370947679,
+      "originalCoefficients": [
+        -0.16272076238890262,
+        -3.849123140569181
+      ],
+      "comparedCoefficients": [
+        -0.16281304443963893,
+        -3.849045884426767
+      ],
+      "error": null
+    },
+    {
+      "kind": "gravity",
+      "index": 6,
+      "selected": "rate+gravity",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 17.529139999999984,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.002575010449779251,
+      "comparedPositionRMSE": 0.0005827746658640819,
+      "originalCoefficients": [
+        -0.2789713799041294,
+        -0.8199604135105033
+      ],
+      "comparedCoefficients": [
+        -0.27765291919969154,
+        -0.8230516278368648
+      ],
+      "error": null
+    },
+    {
+      "kind": "gravity",
+      "index": 7,
+      "selected": "rate+gravity",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 26.783209000000056,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0020471302888019826,
+      "comparedPositionRMSE": 0.0012219767439905194,
+      "originalCoefficients": [
+        -0.2795581516260652,
+        -5.315998100921778
+      ],
+      "comparedCoefficients": [
+        -0.27896658202773045,
+        -5.320357213011497
+      ],
+      "error": null
+    },
+    {
+      "kind": "cubic",
+      "index": 0,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 19.18523499999992,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0017431118102716192,
+      "comparedPositionRMSE": 0.0025774831505959374,
+      "originalCoefficients": [
+        -0.21430802098505503,
+        -10.859664892450352
+      ],
+      "comparedCoefficients": [
+        -0.2138579409294673,
+        -10.849442985568318
+      ],
+      "error": null
+    },
+    {
+      "kind": "cubic",
+      "index": 1,
+      "selected": "rate+spring+cubic",
+      "status": "converged",
+      "iterations": 5,
+      "elapsedMs": 36.53613400000006,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 56304,
+        "factorEntries": 6851,
+        "maximumWork": 9476504,
+        "iterationWork": 885716,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0016527886937056507,
+      "comparedPositionRMSE": 0.00035322692095936026,
+      "originalCoefficients": [
+        -0.2731759079248828,
+        -12.066594998893473,
+        -1.1869879463801443
+      ],
+      "comparedCoefficients": [
+        -0.27064798636224097,
+        -12.076417485725917,
+        -1.1347381481929106
+      ],
+      "error": null
+    },
+    {
+      "kind": "cubic",
+      "index": 2,
+      "selected": "rate+spring+cubic",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 19.833849999999984,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 56304,
+        "factorEntries": 6851,
+        "maximumWork": 9476504,
+        "iterationWork": 885716,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0019058608493618238,
+      "comparedPositionRMSE": 0.0005035259557655352,
+      "originalCoefficients": [
+        -0.3238740143893508,
+        -1.481344776538546,
+        -0.5782650324083889
+      ],
+      "comparedCoefficients": [
+        -0.3230424736966121,
+        -1.4757687237293537,
+        -0.5870842136153823
+      ],
+      "error": null
+    },
+    {
+      "kind": "cubic",
+      "index": 3,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 5,
+      "elapsedMs": 14.149519999999939,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.014421727089682989,
+      "comparedPositionRMSE": 0.018859681383788296,
+      "originalCoefficients": [
+        -0.12955365384144263,
+        -2.3997585725425195
+      ],
+      "comparedCoefficients": [
+        -0.1298557584131512,
+        -2.388073750872581
+      ],
+      "error": null
+    },
+    {
+      "kind": "cubic",
+      "index": 4,
+      "selected": "rate+spring+cubic",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 20.759070000000065,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 56304,
+        "factorEntries": 6851,
+        "maximumWork": 9476504,
+        "iterationWork": 885716,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.00012531002095120977,
+      "comparedPositionRMSE": 0.0006952941968801461,
+      "originalCoefficients": [
+        -0.1269638875215159,
+        -4.698438701657349,
+        -0.2689919439681161
+      ],
+      "comparedCoefficients": [
+        -0.12648471653416354,
+        -4.695623775960625,
+        -0.27216346248113055
+      ],
+      "error": null
+    },
+    {
+      "kind": "cubic",
+      "index": 5,
+      "selected": "rate+spring+cubic",
+      "status": "converged",
+      "iterations": 5,
+      "elapsedMs": 19.77744800000005,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 56304,
+        "factorEntries": 6851,
+        "maximumWork": 9476504,
+        "iterationWork": 885716,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0008406762984336699,
+      "comparedPositionRMSE": 0.0005470372179566949,
+      "originalCoefficients": [
+        -0.3407223651549054,
+        -4.260467925941397,
+        -0.9531378376155751
+      ],
+      "comparedCoefficients": [
+        -0.34166312146522826,
+        -4.26080582481081,
+        -0.9467258916621879
+      ],
+      "error": null
+    },
+    {
+      "kind": "cubic",
+      "index": 6,
+      "selected": "rate+spring+cubic",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 22.28167200000007,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 56304,
+        "factorEntries": 6851,
+        "maximumWork": 9476504,
+        "iterationWork": 885716,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0005672008627296669,
+      "comparedPositionRMSE": 0.0010159777608839545,
+      "originalCoefficients": [
+        -0.3846859202784721,
+        -3.6386891116009306,
+        -0.7345776961007561
+      ],
+      "comparedCoefficients": [
+        -0.38356136733286067,
+        -3.6306858369349087,
+        -0.748109431361962
+      ],
+      "error": null
+    },
+    {
+      "kind": "cubic",
+      "index": 7,
+      "selected": "rate+spring+cubic",
+      "status": "converged",
+      "iterations": 5,
+      "elapsedMs": 27.23890900000015,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 56304,
+        "factorEntries": 6851,
+        "maximumWork": 9476504,
+        "iterationWork": 885716,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0023407544434914706,
+      "comparedPositionRMSE": 0.0012267104808124708,
+      "originalCoefficients": [
+        -0.1791303316025819,
+        -0.8809731903626348,
+        -0.7705352888473469
+      ],
+      "comparedCoefficients": [
+        -0.1778838274252757,
+        -0.891493769187597,
+        -0.7469048571641747
+      ],
+      "error": null
+    },
+    {
+      "kind": "correlated",
+      "index": 0,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 5,
+      "elapsedMs": 25.254024999999956,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.006935855500620242,
+      "comparedPositionRMSE": 0.0008896431229790645,
+      "originalCoefficients": [
+        -0.23580263044381167,
+        -1.5969674120254882
+      ],
+      "comparedCoefficients": [
+        -0.23325725798320052,
+        -1.6085628086271615
+      ],
+      "error": null
+    },
+    {
+      "kind": "correlated",
+      "index": 1,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 17.48128500000007,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.007199870585317443,
+      "comparedPositionRMSE": 0.006851152884961522,
+      "originalCoefficients": [
+        -0.3074559533200779,
+        -10.494799030364623
+      ],
+      "comparedCoefficients": [
+        -0.30713533155983436,
+        -10.491872035454781
+      ],
+      "error": null
+    },
+    {
+      "kind": "correlated",
+      "index": 2,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 12.76838100000009,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.00479995344297787,
+      "comparedPositionRMSE": 0.006563817131403101,
+      "originalCoefficients": [
+        -0.09610627448421241,
+        -3.099363010626937
+      ],
+      "comparedCoefficients": [
+        -0.10048066889981248,
+        -3.1022007284020905
+      ],
+      "error": null
+    },
+    {
+      "kind": "correlated",
+      "index": 3,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 5,
+      "elapsedMs": 18.211596999999983,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.01338962513237713,
+      "comparedPositionRMSE": 0.009840039423608954,
+      "originalCoefficients": [
+        -0.18503787718432724,
+        -11.790261425367298
+      ],
+      "comparedCoefficients": [
+        -0.1896000151703569,
+        -11.760421768558972
+      ],
+      "error": null
+    },
+    {
+      "kind": "correlated",
+      "index": 4,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 5,
+      "elapsedMs": 15.50982399999998,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.009695407533956858,
+      "comparedPositionRMSE": 0.005330845401440385,
+      "originalCoefficients": [
+        -0.34523315068560423,
+        -0.6292537723537807
+      ],
+      "comparedCoefficients": [
+        -0.35695827979428885,
+        -0.6391377015717166
+      ],
+      "error": null
+    },
+    {
+      "kind": "correlated",
+      "index": 5,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 5,
+      "elapsedMs": 13.5092360000001,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.003694300581042669,
+      "comparedPositionRMSE": 0.00549909234620285,
+      "originalCoefficients": [
+        -0.08130652509185265,
+        -11.122513697123017
+      ],
+      "comparedCoefficients": [
+        -0.08129202598769363,
+        -11.110133599825692
+      ],
+      "error": null
+    },
+    {
+      "kind": "correlated",
+      "index": 6,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 13.138754000000063,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.005750100158444996,
+      "comparedPositionRMSE": 0.001812047439686898,
+      "originalCoefficients": [
+        -0.058477932613333304,
+        -4.901428468537546
+      ],
+      "comparedCoefficients": [
+        -0.06293807229796045,
+        -4.897665394116394
+      ],
+      "error": null
+    },
+    {
+      "kind": "correlated",
+      "index": 7,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 5,
+      "elapsedMs": 15.754061999999976,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.01229228460339756,
+      "comparedPositionRMSE": 0.003653452031227005,
+      "originalCoefficients": [
+        -0.22767070952744148,
+        -0.8286262632032511
+      ],
+      "comparedCoefficients": [
+        -0.23120651603921707,
+        -0.8217311191342445
+      ],
+      "error": null
+    },
+    {
+      "kind": "forced",
+      "index": 0,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 10.999784999999974,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.029342926520403607,
+      "comparedPositionRMSE": 0.029345236031362437,
+      "originalCoefficients": [
+        -0.1605276352533684,
+        -5.406220180438376
+      ],
+      "comparedCoefficients": [
+        -0.1573047531501869,
+        -5.413123120403169
+      ],
+      "error": null
+    },
+    {
+      "kind": "forced",
+      "index": 1,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 13.825460000000021,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.01913939542325936,
+      "comparedPositionRMSE": 0.019227494920526486,
+      "originalCoefficients": [
+        -0.2625796029293469,
+        -7.850199519398121
+      ],
+      "comparedCoefficients": [
+        -0.26444105367709725,
+        -7.864033141476757
+      ],
+      "error": null
+    },
+    {
+      "kind": "forced",
+      "index": 2,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 5,
+      "elapsedMs": 12.961473999999953,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.02049788597543726,
+      "comparedPositionRMSE": 0.018116332704679872,
+      "originalCoefficients": [
+        -0.1574506622541214,
+        -9.202533626586384
+      ],
+      "comparedCoefficients": [
+        -0.1528555058594834,
+        -9.245156064009162
+      ],
+      "error": null
+    },
+    {
+      "kind": "forced",
+      "index": 3,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 7,
+      "elapsedMs": 20.282193000000007,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0409195634161902,
+      "comparedPositionRMSE": 0.041686792857545237,
+      "originalCoefficients": [
+        -0.29168993794498727,
+        -3.872896998177889
+      ],
+      "comparedCoefficients": [
+        -0.27182149276737566,
+        -3.923417848107584
+      ],
+      "error": null
+    },
+    {
+      "kind": "forced",
+      "index": 4,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 5,
+      "elapsedMs": 14.073248000000149,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.0415808243728864,
+      "comparedPositionRMSE": 0.04117896084708606,
+      "originalCoefficients": [
+        -0.35644429616352397,
+        -3.9796020833315966
+      ],
+      "comparedCoefficients": [
+        -0.347282511572799,
+        -3.9764674588182634
+      ],
+      "error": null
+    },
+    {
+      "kind": "forced",
+      "index": 5,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 7,
+      "elapsedMs": 16.8359489999998,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.10788666414825962,
+      "comparedPositionRMSE": 0.13448099774291297,
+      "originalCoefficients": [
+        -0.17170720044443494,
+        -1.6766661825138731
+      ],
+      "comparedCoefficients": [
+        -0.11604155712872552,
+        -1.678364047960612
+      ],
+      "error": null
+    },
+    {
+      "kind": "forced",
+      "index": 6,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 11.092506999999841,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.035737310026482366,
+      "comparedPositionRMSE": 0.03573709889333588,
+      "originalCoefficients": [
+        -0.28918986147688425,
+        -4.494875024671129
+      ],
+      "comparedCoefficients": [
+        -0.2855498538189424,
+        -4.495284851059285
+      ],
+      "error": null
+    },
+    {
+      "kind": "forced",
+      "index": 7,
+      "selected": "rate+spring",
+      "status": "converged",
+      "iterations": 4,
+      "elapsedMs": 11.229485000000068,
+      "reservation": {
+        "windows": 276,
+        "gradientEntries": 42228,
+        "factorEntries": 6851,
+        "maximumWork": 8834956,
+        "iterationWork": 832822,
+        "limits": {
+          "windows": 1024,
+          "gradientEntries": 2000000,
+          "work": 40000000
+        },
+        "blocks": [
+          {
+            "runId": "earlier",
+            "windows": 276
+          }
+        ]
+      },
+      "originalPositionRMSE": 0.018491324709699934,
+      "comparedPositionRMSE": 0.01766235179662475,
+      "originalCoefficients": [
+        -0.1503814490353703,
+        -8.934474381341865
+      ],
+      "comparedCoefficients": [
+        -0.14817661570418436,
+        -8.93522137625872
+      ],
+      "error": null
+    }
+  ]
+}
