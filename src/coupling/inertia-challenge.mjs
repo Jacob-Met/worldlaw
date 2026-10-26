@@ -33,7 +33,7 @@ export function readInertiaChallengeSettings(value){
 }
 
 /** A label and repeated-value screen, not authentication of independent acquisition. */
-function distinctEvidence(training,challenge){
+export function distinctEvidence(training,challenge){
  requireThat(training.source.label.trim().toLowerCase()!==challenge.source.label.trim().toLowerCase(),'Use a distinct source label for the challenge; the training source cannot challenge itself.','reused_evidence');
  const values=rows=>rows.map(r=>[...r.position,...r.torque]);
  const completeCourses=new Set(training.courses.map(c=>JSON.stringify(values(c.rows))));
