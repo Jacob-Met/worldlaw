@@ -246,10 +246,25 @@ export function exportAngular(input,{segmentId,command}={}) {
         command:command===undefined?{status:'not_observed',requirement:'Supply synchronized applied torque before deriving net torque.'}:{status:'caller_declared_constant',value:command,unit:'N·m'}}},
     samples:rows.map(row=>({time:row.time,position:row.position,positionSigma:row.positionSigma,...(command!==undefined?{command}:{})}))};
 }
-export function exportStudio(input,{inertia,command,positionSigma,segmentId,windowSize=7,confirmKnownDynamics=false}={}) {
+function studioDynamics({inertia,command,confirmKnownDynamics}) {
   insist(confirmKnownDynamics===true,'Confirm that constant inertia is known and the applied torque command is explicitly declared. Video does not measure inertia or forces.');
   finite(inertia,'Known constant inertia (kg·m²)',{min:Number.MIN_VALUE,max:1e9});
   finite(command,'Explicit applied torque command (N·m)',{min:-1e6,max:1e6});
+}
+/** Maintained scalar derivation shared by source export and exact-input receiving. */
+export function deriveStudioAngularEvidence(samples,{inertia,command,positionSigma,windowSize=7,confirmKnownDynamics=false}={}) {
+  studioDynamics({inertia,command,confirmKnownDynamics});
+  finite(positionSigma,'Assumed position sigma (radians)',{min:0,max:1e6});
+  const derived=deriveTorqueObservations(samples.map(row=>({...row,command})),{inertia,windowSize,positionSigma});
+  const split=splitTrajectoryEvidence(derived,{trainingFraction:.7});
+  insist(split.observations.length>=8 && split.heldOut.length>=1,
+    'This segment is too short after derivative edges and the source-window guard. Track more consecutive frames (typically 24 or more).');
+  return {derived,split};
+}
+
+/** Guard and derive one original Motion course; callers choose its provenance envelope. */
+export function prepareStudioDerivation(input,{inertia,command,positionSigma,segmentId,windowSize=7,confirmKnownDynamics=false}={}) {
+  studioDynamics({inertia,command,confirmKnownDynamics});
   const {nb,rows}=selected(input,segmentId);
   insist(nb.calibration.pivotMode!=='tracked',
     'Tracked-pivot evidence is angle-only. A moving pivot can add inertial terms that this fixed-pivot torque model does not represent. Export angular evidence instead.');
@@ -257,11 +272,13 @@ export function exportStudio(input,{inertia,command,positionSigma,segmentId,wind
     'Studio derivation requires decoded media timestamps for local video. Nominal seek positions cannot qualify an acceleration estimate. Export angles for inspection instead.');
   const angular=exportAngular(nb,{segmentId,command});
   const sigma=positionSigma===undefined||positionSigma===null?Math.max(...rows.map(row=>row.positionSigma)):positionSigma;
-  finite(sigma,'Assumed position sigma (radians)',{min:0,max:1e6});
-  const derived=deriveTorqueObservations(angular.samples,{inertia,windowSize,positionSigma:sigma});
-  const split=splitTrajectoryEvidence(derived,{trainingFraction:.7});
-  insist(split.observations.length>=8 && split.heldOut.length>=1,
-    'This segment is too short after derivative edges and the source-window guard. Track more consecutive frames (typically 24 or more).');
+  const {derived,split}=deriveStudioAngularEvidence(angular.samples,{inertia,command,windowSize,positionSigma:sigma,confirmKnownDynamics});
+  return {notebook:nb,rows,angular,derived,split,inertia,command,
+    noise:{value:sigma,origin:positionSigma===undefined||positionSigma===null?'maximum_declared_angular_sigma':'caller_override'}};
+}
+
+export function exportStudio(input,options={}) {
+  const {notebook:nb,angular,derived,split,inertia,command}=prepareStudioDerivation(input,options);
   const result={schema:'worldlaw.observations/v1',source:{label:`Motion Lab derived torque — ${nb.source.label}`,kind:'derived_from_video_angular_position',
     units:{command:'N·m',position:'rad',rate:'rad/s',jointTorque:'N·m'},metadata:{...angular.source.metadata,
       dynamics:{inertia,command,confirmation:'caller_declared_constant_inertia_and_aligned_applied_torque'},
