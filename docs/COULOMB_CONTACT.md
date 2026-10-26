@@ -25,21 +25,34 @@ changes the coefficients fitted on training observations.
 ## Numerical mechanism and work
 
 Each sliding branch uses the maintained RK4 force calculation with friction
-direction fixed through the smooth stages. When an endpoint changes velocity
-sign, bounded bisection locates a zero, resets velocity to exactly zero under
-the contact hypothesis, and integrates the remaining interval or holds rest.
+direction fixed through the smooth stages. An endpoint whose velocity changes
+sign brackets a zero as before. If the endpoint retains its initial sign,
+the solver now also evaluates the half-duration sliding state: an opposing
+velocity there exposes an internal zero that the endpoint concealed. The
+first observed bracket is bisected, velocity resets to exactly zero under
+the contact hypothesis, and remaining time is integrated or held at rest.
 The original left-held command changes can initiate motion again. The first
 increment refuses combined delayed/gradual command timing rather than
 silently reinterpreting that separate apparatus.
 
-Every smooth RK4 evaluation, including at most 48 bisections per event, counts
-against the existing maximum-step budget. At most eight events are processed
-inside one nominal step. Resource excess, nonrepresentable event advancement,
+Every smooth RK4 evaluation, including an optional half-duration probe and
+at most 48 bisections per event, counts against the existing maximum-step
+budget. A continuing sliding step now normally costs two RK4 evaluations
+rather than one. At most eight events are processed inside one nominal step. Resource excess, nonrepresentable event advancement,
 runaway and nonfinite states refuse complete output. Two-resolution receiving
 shares the original combined budget and retains unavailable refinements.
 
-Finite-step event bracketing can miss multiple internal zeros even when its
-endpoints have the same velocity sign. Two-step agreement is not a certified
+A single internal midpoint check detects some same-sign endpoint reversals,
+not every possible pair of internal velocity zeros. On an independent exact
+harmonic sliding branch with stiffness 100, friction 10, unit inertia and one
+0.7-second nominal step, the original source missed two events and ended at
+q=0.778512; the new check recovers two events and q=0.476951, matching a
+separately subdivided exact-branch control. In the actual maintained RK4
+consumer, a deliberately coarse 0.35-second step also reveals previously
+missed events, but its position still differs materially from a 0.01-second
+reference: locating events does not make coarse RK4 accurate.
+
+Finite-step event bracketing can still miss internal zeros. Two-step agreement is not a certified
 error bound, global event-resolution guarantee, physical validity check or
 proof of contact behavior. Inspect step sensitivity and original evidence.
 
