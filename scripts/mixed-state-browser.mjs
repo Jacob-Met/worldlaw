@@ -1,0 +1,29 @@
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {createProductServer} from '../server.mjs';
+import {readFile,writeFile,mkdir,mkdtemp} from 'node:fs/promises';
+import {resolve,extname} from 'node:path';
+import {syntheticChallenge} from '../src/unknown-lab/paired-history.mjs';
+const require=createRequire(import.meta.url),{chromium}=require(process.env.PLACEMENT_PLAYWRIGHT_MODULE||'playwright');
+const root=resolve(new URL('..',import.meta.url).pathname),out=await mkdtemp('/tmp/worldlaw-mixed-receiving-');
+const server=createProductServer();
+await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin=`http://127.0.0.1:${server.address().port}`;
+function course(seed,coefficient=.6){const n=syntheticChallenge({seed,count:64,noiseSigma:.002,effect:0});delete n.simulation;for(let i=0;i<64;i++){const a=n.trials[i*2],b=n.trials[i*2+1];const state={command:Math.sin((i+seed)*1.327),position:1.2*Math.sin((i+seed)*2.123),rate:1.5*Math.cos((i+seed)*.731)};Object.assign(a,state);Object.assign(b,state);a.jointTorque=.123+seed*.00017+Math.sin(i*.31);b.jointTorque=a.jointTorque+coefficient*state.rate+.03*(b.sampleIndex-a.sampleIndex)+.0003*Math.sin(i*3.17+seed);}return n;}
+const upload=(value,name='original.json')=>({name,mimeType:'application/json',buffer:Buffer.from(JSON.stringify(value))});
+let browser;const errors=[],groups=[];
+try{
+ browser=await chromium.launch({executablePath:process.env.CHROME_BINARY,chromiumSandbox:true,headless:true,args:['--no-first-run','--disable-extensions','--disable-dev-shm-usage']});
+ const sandbox=await browser.newPage();await sandbox.goto('chrome://sandbox');const text=await sandbox.locator('body').innerText();assert.match(text,/Seccomp-BPF sandbox\s+Yes/);await sandbox.close();
+ const page=await browser.newPage({viewport:{width:1280,height:1000}});page.on('pageerror',e=>errors.push(String(e)));await page.route('**/*',route=>{const u=route.request().url();if(/^https?:/.test(u)&&new URL(u).origin!==origin){errors.push('External request: '+u);return route.abort();}return route.continue();});await page.goto(origin+'/unknown-lab.html');await page.locator('#mixed-fit').waitFor();
+ await page.locator('#file').setInputFiles(upload(course(811)));await page.locator('#storage').filter({hasText:'Imported'}).waitFor();await page.locator('#mixed-protocol').fill('Same fixed preparation and readout arrangement; independently authored control courses.');await page.locator('#mixed-fit').click();await page.locator('#mixed-status').filter({hasText:'selected rate.'}).waitFor();groups.push('ordinary original mixed-state import and model discovery');
+ await page.locator('#mixed-challenge').setInputFiles(upload(course(1427)));await page.locator('#mixed-status').filter({hasText:'Separate course scored'}).waitFor();const row=page.locator('#mixed-rows tr').filter({hasText:'rate · selected'});assert.ok(Number(await row.locator('td').nth(3).innerText())<.001);const law=await page.locator('#mixed-law').innerText();assert.match(await page.locator('#mixed-status').innerText(),/Separate-course RMSE: selected .* N·m; constant baseline .* N·m/);groups.push('separate original course forecasts and readable error comparison');
+ const downloadPromise=page.waitForEvent('download');await page.locator('#mixed-save').click();const download=await downloadPromise;const path=await download.path();const saved=JSON.parse(await readFile(path,'utf8'));assert.ok(!saved.fit&&!saved.tests);await writeFile(out+'/original-comparison.json',JSON.stringify(saved,null,2));
+ await page.reload();await page.locator('#mixed-open').setInputFiles(upload(saved));await page.locator('#mixed-status').filter({hasText:'Separate course scored'}).waitFor();assert.equal(await page.locator('#mixed-law').innerText(),law);groups.push('actual source-only download and fresh reopen');
+ await page.locator('#mixed-challenge').setInputFiles(upload(course(1427,-.7)));await page.waitForFunction(()=>Number([...document.querySelectorAll('#mixed-rows tr')].find(r=>r.textContent.includes('rate · selected')).children[3].textContent)>1);assert.equal(await page.locator('#mixed-law').innerText(),law);groups.push('changed mechanism loses without refitting');
+ await page.locator('#mixed-challenge').setInputFiles(upload(course(811)));await page.locator('#mixed-error').filter({hasText:'original training'}).waitFor();groups.push('reused original evidence refuses');
+ await page.locator('#mixed-open').setInputFiles(upload(saved));await page.waitForFunction(()=>document.querySelector('#mixed-error').textContent===''&&document.querySelector('#mixed-status').textContent.includes('Separate course scored'));await page.locator('#mixed-state-response').screenshot({path:out+'/desktop.png'});
+ await page.setViewportSize({width:390,height:844});await page.locator('#mixed-protocol').focus();await page.keyboard.press('Tab');assert.equal(await page.locator('#mixed-fit').evaluate(e=>e===document.activeElement),true);await page.locator('#mixed-state-response').screenshot({path:out+'/narrow.png'});groups.push('desktop/narrow render and actual Tab traversal');
+ await page.locator('#mixed-protocol').fill('Different protocol retires prior analysis.');assert.equal(await page.locator('#mixed-save').isDisabled(),true);assert.equal(await page.locator('#mixed-rows tr').count(),0);groups.push('edited protocol retires current comparison');
+ await page.locator('#mixed-open').setInputFiles(upload(saved));await page.locator('#mixed-status').filter({hasText:'Separate course scored'}).waitFor();await page.locator('#file').setInputFiles(upload(course(2391)));await page.locator('#mixed-status').filter({hasText:'Source or protocol changed'}).waitFor();assert.equal(await page.locator('#mixed-save').isDisabled(),true);groups.push('new ordinary source retires frozen comparison');
+ assert.deepEqual(errors,[]);console.log(JSON.stringify({out,groups,errors}));
+}finally{await browser?.close();server.close();}

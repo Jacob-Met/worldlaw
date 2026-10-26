@@ -1,3 +1,4 @@
+import {mountMixedStateResponse} from './mixed-state-panel.mjs';
 import {mountRecoveryTransport} from './recovery-transport-panel.mjs';
 import {mountRecoverySupport} from './recovery-support-panel.mjs';
 import {mountSaturationProfile} from './saturation-profile-panel.mjs';
@@ -24,6 +25,7 @@ const ns='http://www.w3.org/2000/svg', storageKey='worldlaw.unknown-lab.history.
 let notebook=null;
 let periodicContrastPanel=null;
 let periodicCoursePanel=null;
+let mixedStatePanel=null;
 const fmt=(v,d=3)=>Number.isFinite(v)?Number(v.toPrecision(d)).toLocaleString('en-US',{maximumFractionDigits:6}):'—';
 function clearError(){$('error').hidden=true;}
 function error(e){$('error').hidden=false;$('error').textContent=e.message||String(e);$('error').focus();}
@@ -59,6 +61,7 @@ function renderPlot(pairs){
   $('plot').replaceChildren(svg);
 }
 function render(){
+ mixedStatePanel?.invalidate();
  periodicContrastPanel?.invalidate();
  const report=evaluateHistory(notebook);
  $('source-badge').textContent=report.source==='measured'?'USER-DECLARED MEASUREMENTS':'DECLARED SIMULATION';
@@ -137,6 +140,7 @@ try {
 
 
 const durationPanel=mountDurationPanel(()=>notebook);
+mixedStatePanel=mountMixedStateResponse(()=>notebook);
 mountDurationPlanner(durationPanel);
 
 mountContinuousDuration(durationPanel);
