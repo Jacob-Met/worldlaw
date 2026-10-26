@@ -142,3 +142,6 @@ export function compareViscousStudy(input){
     'PSD admission is conditional model arithmetic, not physical passivity. An inadmissible unconstrained fit does not exclude every admissible law.',
     'Separate-motion receiving uses observed angles; it is not a future-motion forecast. Source labels/repetition checks do not authenticate independence.']}};
 }
+
+// Shared weak operators for explicitly declared additive velocity libraries.
+export {legacyRecord as viscousLegacyRecord,symmetricRows as symmetricViscousRows,predictRows as predictViscousRows,summary as summarizeViscousRows};
