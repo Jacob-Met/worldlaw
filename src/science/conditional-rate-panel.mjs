@@ -1,5 +1,6 @@
 import {conditionalRateFit} from './conditional-rate-fit.mjs';
-import {evaluate,simulate} from './torque-discovery.mjs';
+import {evaluate} from './torque-discovery.mjs';
+import {executeStudioDynamics} from './studio-dynamics.mjs';
 const el=(tag,value)=>{const e=document.createElement(tag);if(value!==undefined)e.textContent=value;return e;};
 const fmt=x=>x===null?'No held-out rows':Number(x.toPrecision(6)).toString();
 export function renderConditionalRate(container,model,training,heldOut,{trajectory,solver,chart}){
@@ -29,9 +30,10 @@ export function renderConditionalRate(container,model,training,heldOut,{trajecto
    const pre=el('pre',JSON.stringify({terms:report.model.terms,heldOut:original.rows.map((r,i)=>({index:i,observed:r.jointTorque,original:r.prediction,revised:revised.rows[i].prediction})),diagnostics:report.diagnostics},null,2));pre.style.whiteSpace='pre-wrap';pre.style.overflowWrap='anywhere';detail.append(pre);output.append(detail);
    const plot=el('div');plot.id='conditional-rate-trajectories';output.append(plot);
    try{
-    const revisedTrajectory=simulate(report.model,trajectory[0],solver);
+    const execution=executeStudioDynamics(report.model,trajectory[0],solver);
+    const revisedTrajectory=execution.trajectory;
     chart(plot.id,[{name:'Original prediction',color:'#1c7562',line:true,points:trajectory.map(r=>({x:r.time,y:r.position}))},{name:'Conditional prediction',color:'#bd502f',line:true,points:revisedTrajectory.map(r=>({x:r.time,y:r.position}))}],{xLabel:'Simulation time (s)',yLabel:'Predicted angle (rad)'});
-    output.append(el('p','Both traces use the maintained RK4 solver and the same declared initial state, inertia and fixed command. They are model predictions, not observed motion. The imposed rate-power interval does not constrain states outside that speed interval.'));
+    output.append(el('p','Both traces use the ordinary Studio executor with the same declared initial state, inertia and fixed command. Smooth laws use adaptive RK4; discontinuous sign-rate laws retain fixed-step RK4. Conditional trace: '+execution.diagnostics.interpretation+' They are model predictions, not observed motion. The imposed rate-power interval does not constrain states outside that speed interval.'));
    }catch(error){plot.append(el('p','Conditional trajectory refused: '+error.message));}
    output.append(el('p',report.interpretation));
   }catch(error){delete output.dataset.status;output.append(el('p','Conditional revision refused: '+error.message));}
