@@ -14,12 +14,13 @@ import {diagnoseReplicates} from './science/replicate-diagnostics.mjs';
 import {renderSeparability} from './science/separability-panel.mjs';
 import {evaluate,predict,simulate} from './science/torque-discovery.mjs';
 import {softL1Weight} from './science/robust-fit.mjs';
+import {proposeScalarLibrary} from './science/library-proposal.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
 import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,sessionPilotPlan,exportSession,restoreSession,undoSession} from './session.mjs';
 
 const $=id=>document.getElementById(id);
 const storageKey='worldlaw.notebook.v1';
-const names={command:'Actuation',rate:'Viscous damping',coulomb:'Coulomb friction',spring:'Linear spring',gravity:'Sinusoidal gravity',quadratic:'Quadratic drag',bias:'Bias',cubic:'Cubic position',command_position:'Command × position'};
+const names={command:'Actuation',rate:'Viscous damping',coulomb:'Coulomb friction',spring:'Linear spring',gravity:'Sinusoidal gravity',quadratic:'Quadratic drag',bias:'Bias',cubic:'Cubic position',cosine:'Cosine position',rate_squared:'Even rate',command_position:'Command × position'};
 const fmt=(value,digits=4)=>value===null||!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<0.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
 const set=(id,text)=>{$(id).textContent=text;};
@@ -146,7 +147,10 @@ function render(){
   $('loss-scale').disabled=state.options.loss!=='soft_l1';
   set('loss-choice-status',state.options.loss==='soft_l1'?`Applied soft-L1 scale ${fmt(state.options.lossScale)} N·m. Loss and scale revisions remain in the notebook.`:state.options.loss==='weighted_least_squares'?'Applied weighted least squares using the original declared noise ratios. Source and fitting history remain in the notebook.':'Applied least squares. Choose a loss and refit to compare a different assumption.');
   $('include-command-position').checked=Boolean(state.options.includeCommandPosition);
-  set('feature-library-status',state.options.includeCommandPosition?'uθ is admitted, not assumed true. Selection uses fit rows only; held-out rows remain separate. A versioned notebook preserves the complete library and fitting history.':'Additive library active. A revision retains the initial fit and evidence in notebook history.');
+  for(const id of ['cubic','cosine','rate_squared'])$('include-'+id.replaceAll('_','-')).checked=Boolean(state.options.additionalTerms?.includes(id));
+  set('library-proposal-status','Investigations use the applied noise, loss and maximum term count. A training preference is not independent predictive validation.');
+  $('library-proposal-comparison').replaceChildren();
+  set('feature-library-status',`Applied library: ${state.discovery.options.terms.map(id=>names[id]).join(', ')}. Terms are admitted, not assumed true. A revision retains the initial fit and original evidence in notebook history.`);
   const diag=d.diagnostics;
   set('diagnostics',`${diag.competitiveCount} competitive ${diag.competitiveCount===1?'structure':'structures'} at the current noise assumption. ${diag.adequacy==='residual_mismatch'?'Residual mismatch: this library does not explain the data within the assumed noise.':diag.selectionAmbiguous?'The current observations do not isolate a unique explanation.':'One structure ranks ahead within this finite library.'}${diag.identifiability==='insufficient_excitation'?' Some inputs are not independently excited; more varied observations are needed.':''}${state.options.loss==='weighted_least_squares'?' Adequacy and numerical rank use the declared weighted design; an incorrect noise declaration can conceal mismatch.':''}`);
   renderPlan();
@@ -266,7 +270,27 @@ $('run-simulation').addEventListener('click',()=>action(()=>runSimulation()));
 animationHandle=requestAnimationFrame(draw);
 window.addEventListener('pagehide',()=>cancelAnimationFrame(animationHandle));
 
-$('revise-features').addEventListener('click',()=>action(()=>adopt(refitSession(state,{includeCommandPosition:$('include-command-position').checked}),'Revised the candidate feature library. Original observations and the initial fit are retained.')));
+$('propose-features').addEventListener('click',()=>action(()=>{
+  const container=$('library-proposal-comparison');container.replaceChildren();
+  set('library-proposal-status','Investigation incomplete; no new proposal is available.');
+  $('include-command-position').checked=Boolean(state.options.includeCommandPosition);
+  for(const id of ['cubic','cosine','rate_squared'])$('include-'+id.replaceAll('_','-')).checked=Boolean(state.options.additionalTerms?.includes(id));
+  const result=proposeScalarLibrary(state.discovery.observations,state.discovery.options);
+  for(const [label,fit]of [['Original library',result.baseline],['Expanded library',result.expanded]]){
+    container.append(el('p',`${label}: ${fit.selected.equation}; training RMSE ${fmt(fit.selected.metrics.rmse)} N·m; ${fit.diagnostics.adequacy==='residual_mismatch'?'residual mismatch under the declared noise assumption':'training residuals meet the declared noise assumption'}; ${fit.diagnostics.competitiveCount} competitive structures; ${fit.diagnostics.selectionAmbiguous?'ambiguous explanation':'one training-ranked explanation'}; ${fit.candidates.length} executable candidates.`));
+  }
+  set('library-proposal-status',result.status==='proposed'?`Training proposes ${result.addedTerms.map(id=>names[id]).join(', ')}; score improvement ${fmt(result.scoreImprovement)}. ${result.expanded.diagnostics.adequacy==='residual_mismatch'?'The expanded law still fails the declared training noise screen. ':''}Review the editable terms and apply to compare the executable predictions. This does not establish a useful independent prediction gain.`:'No clear library revision under the applied ambiguity threshold. Original options remain active.');
+  if(result.proposedTerms){
+    $('include-command-position').checked=result.proposedTerms.includes('command_position');
+    for(const id of ['cubic','cosine','rate_squared'])$('include-'+id.replaceAll('_','-')).checked=result.proposedTerms.includes(id);
+  }
+}));
+$('revise-features').addEventListener('click',()=>action(()=>{
+  const additionalTerms=['cubic','cosine','rate_squared'].filter(id=>$('include-'+id.replaceAll('_','-')).checked);
+  const options={includeCommandPosition:$('include-command-position').checked};
+  if(additionalTerms.length||Object.hasOwn(state.options,'additionalTerms'))options.additionalTerms=additionalTerms;
+  adopt(refitSession(state,options),'Revised the candidate feature library. Original observations and the initial fit are retained.');
+}));
 
 clockPanel=mountClockOffsets(document.querySelector('.main-column'),model);
 
@@ -276,3 +300,4 @@ affinePanel=mountAffineClocks(document.querySelector('.main-column'),model);
 
 excitationPanel=mountScalarExcitation($('use-proposal').parentElement,{getState:()=>state,saveNotebook:()=>exportSession(state),openNotebook:(text,validateOnly=false)=>{const next=restoreSession(text);if(!validateOnly)adopt(next,'Reopened input-design source notebook.');return next;},useInput:input=>{for(const field of ['command','position','rate'])$(field).value=String(input[field]);notice('Declared input copied. Obtain a new reading before recording the outcome.');$('command').focus();}});
 excitationPanel.studioChanged();
+
