@@ -38,7 +38,8 @@ silently reinterpreting that separate apparatus.
 Every smooth RK4 evaluation, including an optional half-duration probe and
 at most 48 bisections per event, counts against the existing maximum-step
 budget. A continuing sliding step now normally costs two RK4 evaluations
-rather than one. At most eight events are processed inside one nominal step. Resource excess, nonrepresentable event advancement,
+rather than one. At most eight events are processed inside one nominal step.
+Resource excess, nonrepresentable event advancement,
 runaway and nonfinite states refuse complete output. Two-resolution receiving
 shares the original combined budget and retains unavailable refinements.
 
@@ -52,8 +53,8 @@ consumer, a deliberately coarse 0.35-second step also reveals previously
 missed events, but its position still differs materially from a 0.01-second
 reference: locating events does not make coarse RK4 accurate.
 
-Finite-step event bracketing can still miss internal zeros. Two-step agreement is not a certified
-error bound, global event-resolution guarantee, physical validity check or
+Finite-step event bracketing can still miss internal zeros. Two-step agreement
+is not a certified error bound, global event-resolution guarantee, physical validity check or
 proof of contact behavior. Inspect step sensitivity and original evidence.
 
 ## Actual consumer and persistence
