@@ -1,0 +1,134 @@
+import assert from 'node:assert/strict';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createProductServer} from '../server.mjs';
+import {createSession} from '../src/session.mjs';
+import {executeStudioDynamics} from '../src/science/studio-dynamics.mjs';
+import {requireChromiumSandbox} from './support/chromium-sandbox.mjs';
+
+const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
+const dir=process.env.BROWSER_ARTIFACT_DIR||resolve('.receipts/studio-comparison');
+await mkdir(dir,{recursive:true});
+const server=createProductServer();
+await new Promise((ok,bad)=>{server.once('error',bad);server.listen(0,'127.0.0.1',ok);});
+const checks=[],mark=name=>{checks.push(name);console.log('PASS '+name);};
+const observation=(i,range)=>{const position=range*Math.sin(i*.731+.2),rate=.35*Math.cos(i*1.117+.4),command=.4*Math.sin(i*1.331+.7);return {command,position,rate,jointTorque:command-2.8*Math.sin(position)-.15*rate};};
+const source={schema:'worldlaw.observations/v1',source:{label:'Authored small-angle ambiguity; no physical acquisition',kind:'synthetic_analytic_fixture'},observations:Array.from({length:64},(_,i)=>observation(i,.12)),heldOut:Array.from({length:35},(_,i)=>observation(i+100,1.2))};
+const original=createSession(source);
+assert.ok(original.discovery.competitive.length>=2,'The authored source must leave competing laws.');
+const initial={position:1.3,rate:.1},settings={duration:2.6,dt:.02,inertia:.8,command:0};
+const expected=original.discovery.competitive.map(model=>({model,...executeStudioDynamics(model,initial,settings)}));
+let browser;
+try{
+  browser=await chromium.launch({headless:true,chromiumSandbox:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+  const context=await browser.newContext({viewport:{width:1440,height:1050}});
+  const sandboxPage=await context.newPage(),cdp=await context.newCDPSession(sandboxPage);
+  const sandbox=await requireChromiumSandbox({send:(method,params)=>cdp.send(method,params)});
+  await writeFile(resolve(dir,'sandbox.json'),JSON.stringify(sandbox,null,2)+'\n');await sandboxPage.close();
+  const page=await context.newPage(),errors=[],badRequests=[],external=[];
+  page.on('pageerror',e=>errors.push(e.message));
+  page.on('response',response=>{if(response.status()>=400)badRequests.push({url:response.url(),status:response.status()});});
+  page.on('request',request=>{if(!/^(http:\/\/127\.0\.0\.1:|blob:|data:)/.test(request.url()))external.push(request.url());});
+  await page.goto('http://127.0.0.1:'+server.address().port);
+  await page.waitForFunction(()=>document.querySelector('#sample-count').textContent==='64');
+  await page.locator('#observation-file').setInputFiles({name:'small-angle-original.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(source))});
+  await page.waitForFunction(()=>document.querySelector('#source-name').textContent.includes('Authored small-angle'));
+  const evidenceBefore=await page.evaluate(()=>localStorage.getItem('worldlaw.notebook.v1'));
+  assert.ok(evidenceBefore,'The ordinary import must persist a source notebook before immutability checks.');
+  for(const [id,value] of Object.entries({'initial-angle':initial.position,'initial-rate':initial.rate,inertia:settings.inertia,duration:settings.duration,'simulation-command':settings.command}))await page.locator('#'+id).fill(String(value));
+  await page.locator('#compare-studio-laws').focus();await page.keyboard.press('Enter');
+  await page.waitForFunction(()=>!document.querySelector('#studio-comparison-transport').hidden);
+  assert.equal(await page.locator('#studio-comparison-outcomes tr').count(),expected.length);
+  assert.equal(await page.locator('#studio-comparison-outcomes tr[data-status="completed"]').count(),expected.length);
+  await page.locator('#studio-comparison-pause').click();
+  assert.equal(await page.locator('#studio-comparison-pause').getAttribute('data-paused'),'true');
+  await page.locator('.motion-comparison-details summary').click();
+  await page.waitForFunction(()=>document.querySelectorAll('#studio-comparison-chart polyline').length>1);
+  const rendered=await page.locator('#studio-comparison-chart svg').evaluate(svg=>({width:svg.viewBox.baseVal.width,lines:[...svg.querySelectorAll('polyline')].map(line=>line.getAttribute('points').split(' ').map(pair=>pair.split(',').map(Number)))}));
+  assert.equal(rendered.lines.length,expected.length);
+  const all=expected.flatMap(run=>run.trajectory);let q0=Infinity,q1=-Infinity;
+  for(const p of all){q0=Math.min(q0,p.position);q1=Math.max(q1,p.position);}
+  const xp=settings.duration*.07,yp=Math.max((q1-q0)*.12,1e-8);
+  let worstPixel=0;
+  for(let m=0;m<expected.length;m++){
+    assert.equal(rendered.lines[m].length,expected[m].trajectory.length);
+    for(let i=0;i<expected[m].trajectory.length;i++){
+      const p=expected[m].trajectory[i],wanted=[68+(p.time+xp)/(settings.duration+2*xp)*(rendered.width-68-18),214-(p.position-q0+yp)/(q1-q0+2*yp)*196];
+      worstPixel=Math.max(worstPixel,Math.hypot(rendered.lines[m][i][0]-wanted[0],rendered.lines[m][i][1]-wanted[1]));
+    }
+  }
+  assert.ok(worstPixel<1e-7,'Rendered actual paths differ from independent incumbent executions: '+worstPixel);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('worldlaw.notebook.v1')),evidenceBefore);
+  mark('ordinary original-source import and keyboard comparison show every competitive law with incumbent-exact sampled curves');
+
+  const sample=87;
+  await page.locator('#studio-comparison-time').evaluate((input,index)=>{input.value=String(index);input.dispatchEvent(new Event('input',{bubbles:true}));},sample);
+  assert.equal(await page.locator('#studio-comparison-pause').getAttribute('data-paused'),'true');
+  const legend=await page.locator('#studio-comparison-legend').innerText();
+  for(let i=0;i<expected.length;i++)assert.ok(legend.includes('L'+(i+1)));
+  assert.match(await page.locator('#studio-comparison-clock').innerText(),/1\.74 s/);
+  const highlight=page.locator('.motion-law-toggle').nth(1);await highlight.click();
+  assert.equal(await highlight.getAttribute('aria-pressed'),'true');
+  assert.equal(await page.locator('.motion-law-toggle').count(),expected.length);
+  await page.locator('.instrument-stage').screenshot({path:resolve(dir,'shared-joint-desktop.png')});
+  const still=await page.locator('#mechanism-canvas').evaluate(c=>c.toDataURL());
+  await page.waitForTimeout(125);assert.equal(await page.locator('#mechanism-canvas').evaluate(c=>c.toDataURL()),still);
+  await page.locator('#studio-comparison-view').selectOption('phase');
+  await page.waitForTimeout(40);
+  await page.locator('.instrument-stage').screenshot({path:resolve(dir,'angle-rate-desktop.png')});
+  assert.notEqual(await page.locator('#mechanism-canvas').evaluate(c=>c.toDataURL()),still);
+  await page.locator('#studio-comparison-view').selectOption('joint');
+  await page.locator('#studio-comparison-pause').click();
+  const movingA=await page.locator('#mechanism-canvas').evaluate(c=>c.toDataURL());await page.waitForTimeout(173);
+  assert.notEqual(await page.locator('#mechanism-canvas').evaluate(c=>c.toDataURL()),movingA);
+  mark('shared joint and angle-rate compositions use synchronized samples; pause is still, scrub is explicit and playback moves');
+
+  await page.locator('#initial-angle').fill('.9');
+  assert.equal(await page.locator('#studio-comparison-transport').isVisible(),false);
+  assert.equal(await page.locator('#studio-comparison-chart polyline').count(),0);
+  await page.waitForFunction(()=>document.querySelector('#mechanism-canvas').getAttribute('aria-label').includes('unavailable'));
+  await page.locator('#compare-studio-laws').click();await page.waitForFunction(()=>!document.querySelector('#studio-comparison-transport').hidden);
+  assert.match(await page.locator('#studio-comparison-assumptions').innerText(),/0\.9 rad/);
+  await page.locator('#inertia').fill('0');await page.locator('#compare-studio-laws').click();
+  await page.waitForFunction(()=>document.querySelector('#studio-comparison-status').textContent.includes('unavailable')||document.querySelector('#studio-comparison-status').textContent.includes('refused'));
+  assert.equal(await page.locator('#studio-comparison-transport').isVisible(),false);
+  assert.equal(await page.locator('#sample-count').innerText(),'64');
+  mark('changed dynamics retire every old path; changed release recomputes and invalid inertia cannot preserve a successful comparison');
+
+  await page.locator('#inertia').fill('.8');await page.locator('#initial-angle').fill(String(Math.PI));
+  await page.locator('#compare-studio-laws').click();await page.waitForFunction(()=>!document.querySelector('#studio-comparison-transport').hidden);
+  await page.locator('#studio-comparison-time').evaluate(input=>{input.value='0';input.dispatchEvent(new Event('input',{bubbles:true}));});
+  await page.locator('.motion-law-toggle').first().click();
+  await page.locator('.instrument-stage').screenshot({path:resolve(dir,'full-angle-desktop.png')});
+  await page.locator('#initial-angle').fill('1.3');await page.locator('#compare-studio-laws').click();
+  await page.waitForFunction(()=>!document.querySelector('#studio-comparison-transport').hidden);
+  const downloadPromise=page.waitForEvent('download');await page.locator('#export-session').click();
+  const notebookPath=resolve(dir,'original-notebook.json');await(await downloadPromise).saveAs(notebookPath);
+  const saved=JSON.parse(await readFile(notebookPath,'utf8'));assert.equal(saved.base.observations.length,64);
+  assert.equal(JSON.stringify(saved).includes('worldlaw.studio-dynamics-comparison'),false);
+  await page.locator('#session-file').setInputFiles(notebookPath);
+  await page.waitForFunction(()=>document.querySelector('#notice').textContent.includes('Reopened'));
+  assert.equal(await page.locator('#studio-comparison-transport').isVisible(),false);
+  await page.locator('#compare-studio-laws').click();await page.waitForFunction(()=>!document.querySelector('#studio-comparison-transport').hidden);
+  assert.equal(await page.locator('#studio-comparison-outcomes tr').count(),expected.length);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('worldlaw.notebook.v1')),evidenceBefore);
+  mark('source-only download and ordinary reopen retire derived paths; explicit comparison recomputes without saving fitted answers');
+
+  await page.setViewportSize({width:390,height:960});await page.emulateMedia({reducedMotion:'reduce'});
+  await page.locator('#compare-studio-laws').click();await page.waitForFunction(()=>!document.querySelector('#studio-comparison-transport').hidden);
+  assert.equal(await page.locator('#studio-comparison-pause').getAttribute('data-paused'),'true');
+  await page.locator('#studio-comparison-time').focus();await page.keyboard.press('End');
+  assert.equal(await page.locator('#studio-comparison-time').inputValue(),String(expected[0].trajectory.length-1));
+  await page.locator('.instrument-stage').scrollIntoViewIfNeeded();
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'390px document must not overflow');
+  await page.locator('.instrument-stage').screenshot({path:resolve(dir,'shared-joint-narrow.png')});
+  await page.locator('#studio-motion-comparison').screenshot({path:resolve(dir,'comparison-narrow.png')});
+  const reducedA=await page.locator('#mechanism-canvas').evaluate(c=>c.toDataURL());await page.waitForTimeout(110);
+  assert.equal(await page.locator('#mechanism-canvas').evaluate(c=>c.toDataURL()),reducedA);
+  await page.locator('#clear-studio-comparison').click();await page.waitForFunction(()=>document.querySelector('#simulation-status').dataset.method);
+  assert.equal(await page.locator('#studio-comparison-transport').isVisible(),false);
+  assert.equal(await page.locator('#trajectory-chart polyline').count(),1);
+  mark('390px layout, reduced-motion keyboard scrubbing and return to ordinary inspected-law dynamics');
+  assert.deepEqual(errors,[]);assert.deepEqual(badRequests,[]);assert.deepEqual(external,[]);
+  await writeFile(resolve(dir,'receipt.json'),JSON.stringify({browser:await browser.version(),checks,competitiveLaws:expected.map(x=>x.model.id),worstRenderedPixelError:worstPixel,errors,badRequests,external,scope:'Authored finite-library ambiguity and actual maintained browser execution. No physical measurement, calibrated model uncertainty or continuous-time display guarantee.'},null,2)+'\n');
+}finally{if(browser)await browser.close();await new Promise(ok=>server.close(ok));}
