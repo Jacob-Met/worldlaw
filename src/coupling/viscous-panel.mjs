@@ -1,11 +1,12 @@
 import {compareViscousStudy,readViscousStudy,exportViscousStudy} from './viscous-comparison.mjs';
 import {createViscousExample} from './viscous-example.mjs';
+import {mountViscousReleases} from './viscous-release-panel.mjs';
 
 const NS='http://www.w3.org/2000/svg',fmt=n=>Number.isFinite(n)?Number(n.toPrecision(6)).toString():'—';
 const el=(tag,text,attrs={})=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);return n;};
 const svg=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;};
 
-export function mountViscousComparison(root,{applyParameters}={}){
+export function mountViscousComparison(root,{applyParameters,getNotebook,applyRelease}={}){
  root.innerHTML=`<details id="viscous-lab"><summary>Can drag act across the two coordinates?</summary>
   <div class="inertia-heading"><div><p class="eyebrow">ONE MOTION. TWO LOSS HYPOTHESES.</p><h3>Follow the drag across coordinates.</h3></div><p>Estimate one additional cross-coordinate coefficient from original motion and torque readings, then confront both frozen balances with a separate motion.</p></div>
   <p class="inertia-equation">M q″ + D q′ = supplied torque</p>
@@ -27,11 +28,11 @@ export function mountViscousComparison(root,{applyParameters}={}){
   </div>
  </details>`;
  const $=id=>root.querySelector('#'+id);
- let study=null,result=null,generation=0,pending=false;
+ let study=null,result=null,generation=0,pending=false,releasePanel=null;
  function error(e){$('viscous-error').textContent=e.message||String(e);$('viscous-error').hidden=false;$('viscous-error').focus();}
  function clearError(){$('viscous-error').hidden=true;}
  function revokeCopy(){$('viscous-same-apparatus').checked=false;$('viscous-apply').disabled=true;}
- function invalidate(message){result=null;revokeCopy();$('viscous-results').hidden=true;$('viscous-status').textContent=message;}
+ function invalidate(message){result=null;revokeCopy();releasePanel?.sourceChanged();$('viscous-results').hidden=true;$('viscous-status').textContent=message;}
  function current(){
   if(!study)throw new Error('Open comparison inputs first.');
   return {...study,training:{record:study.training.record,settings:{windowSamples:$('viscous-width').valueAsNumber,stride:$('viscous-stride').valueAsNumber}}};
@@ -84,7 +85,7 @@ export function mountViscousComparison(root,{applyParameters}={}){
  }
  function load(value){
   const next=readViscousStudy(value),computed=compareViscousStudy(next); // Atomic: a refused import never replaces the prior source.
-  study=next;result=computed;pending=false;$('viscous-width').value=next.training.settings.windowSamples;$('viscous-stride').value=next.training.settings.stride;
+  study=next;result=computed;pending=false;releasePanel?.sourceChanged();$('viscous-width').value=next.training.settings.windowSamples;$('viscous-stride').value=next.training.settings.stride;
   const r=next.training.record;$('viscous-source').textContent=`${r.source.kind==='synthetic'?'Authored synthetic':'User-declared measured'} · ${r.source.label} · ${r.courses.reduce((n,c)=>n+c.rows.length,0)} original training rows${next.challenge?' · separate motion supplied':''}`;
   $('viscous-declaration').textContent=r.torqueDeclaration;$('viscous-run').disabled=false;$('viscous-save').disabled=false;clearError();render();
  }
@@ -103,5 +104,9 @@ export function mountViscousComparison(root,{applyParameters}={}){
  });
  $('viscous-save').addEventListener('click',()=>{try{const text=exportViscousStudy(current()),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=el('a',undefined,{href:url,download:'worldlaw-viscous-study.json'});link.click();setTimeout(()=>URL.revokeObjectURL(url),10000);clearError();}catch(e){error(e);}});
  let resize;window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});$('viscous-lab').addEventListener('toggle',()=>{if($('viscous-lab').open)draw();});
- return {contextChanged(){generation++;revokeCopy();if(pending){pending=false;$('viscous-status').textContent='Another notebook action canceled the pending file read. Open again or compare the retained study.';}},redraw:draw};
+ if(typeof getNotebook==='function'&&typeof applyRelease==='function'){
+  const host=document.createElement('div');host.id='viscous-release-host';$('viscous-results').after(host);
+  releasePanel=mountViscousReleases(host,{getSources:()=>({response:getNotebook(),viscous:current()}),applyRelease});
+ }
+ return {contextChanged(){generation++;revokeCopy();releasePanel?.sourceChanged();if(pending){pending=false;$('viscous-status').textContent='Another notebook action canceled the pending file read. Open again or compare the retained study.';}},redraw:draw};
 }

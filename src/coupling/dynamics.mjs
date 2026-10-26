@@ -56,13 +56,18 @@ export function readDynamicsInputs(raw) {
   requireThat(inputs.positionTolerance>=1e-12&&inputs.rateTolerance>=1e-12,'Numerical tolerances must be at least 1e-12 in their declared units.');
   return inputs;
 }
-function grid(inputs, count) {
+function grid(inputs, count, comparisons=1) {
   requireThat(Number.isInteger(count)&&count>=1&&count<=6,'Compare one to six executable models.');
+  requireThat(Number.isSafeInteger(comparisons)&&comparisons>=1&&comparisons<=1024,'Reserve one to 1024 complete comparisons.');
   const intervals=inputs.samples-1,delta=inputs.duration/intervals,substeps=Math.max(1,Math.ceil(delta/inputs.maxStep));
-  const requiredSteps=intervals*substeps*3*count;
+  const requiredSteps=intervals*substeps*3*count*comparisons;
   requireThat(Number.isSafeInteger(requiredSteps)&&requiredSteps<=STEP_BUDGET,
     'The complete coarse/refined comparison exceeds '+STEP_BUDGET+' integration steps. Shorten the duration or increase the step.','step_limit');
   return {intervals,delta,substeps,requiredSteps};
+}
+/** Share the exact solver reservation when a consumer compares many courses. */
+export function reserveDynamicsSteps(rawInputs,modelCount,comparisons=1) {
+  return grid(readDynamicsInputs(rawInputs),modelCount,comparisons);
 }
 function domainOf(model) {
   if(!Array.isArray(model.domain)||model.domain.length!==2)return null;

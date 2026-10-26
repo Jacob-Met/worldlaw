@@ -45,6 +45,24 @@
 }
 /* Motion-to-inertia apparatus: source and weak balance share an inspected window. */
 .inertia-identification{margin-top:2rem;border-top:1px solid #52667c;padding-top:1.2rem}
+#viscous-release-host{margin-top:1.5rem;border-top:1px solid var(--rule);padding-top:1rem;min-width:0}
+#release-status{border-left:3px solid #5b35bd;padding:.6rem .8rem;line-height:1.6}
+#release-error{border:2px solid #ad3025;background:#fff0ed;color:#802b20;padding:1rem;overflow-wrap:anywhere}
+#release-rows tr[data-release-proposed=true]{background:#e5f5f2}
+#release-rows button[aria-pressed=true]{box-shadow:inset 0 0 0 2px #187366}
+#release-results .release-family-choice{width:22rem;max-width:100%}
+#release-family{width:100%}
+@media(max-width:600px){
+ #release-results .table-wrap{overflow:visible}
+ #release-results table,#release-results tbody,#release-results tr,#release-results th,#release-results td{display:block;width:100%;min-width:0}
+ #release-results caption{display:block;text-align:left;white-space:normal;padding-bottom:.7rem}
+ #release-results thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ #release-results tr{border:1px solid var(--rule);padding:.7rem;margin-bottom:.6rem}
+ #release-results th{border:0;padding:.2rem 0 .6rem}
+ #release-results td{display:flex;justify-content:space-between;gap:.8rem;border:0;padding:.25rem 0;white-space:normal;text-align:right}
+ #release-results td::before{content:attr(data-label);color:#52677e;text-align:left;flex:0 0 38%}
+ #release-results td button{max-width:60%}
+}
 #inertia-viscous-host{margin-top:2rem;border-top:2px solid var(--ink);padding-top:1rem;min-width:0}
 .viscous-instrument{margin:1rem 0;padding:1rem;background:#101c2d;color:#e7edf7;border-top:2px solid #52667c}
 .viscous-instrument figcaption{font-weight:650;margin-bottom:.6rem}
