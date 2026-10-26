@@ -23,6 +23,7 @@ import {proposeScalarLibrary} from './science/library-proposal.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
 import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,sessionPilotPlan,exportSession,restoreSession,undoSession,MAX_SESSION_FILE_BYTES} from './session.mjs';
 import {restoreNotebook} from './notebook-input.mjs';
+import {renderExperimentReceipts} from './science/experiment-receipts-panel.mjs';
 
 const $=id=>document.getElementById(id);
 const storageKey='worldlaw.notebook.v1';
@@ -171,6 +172,12 @@ function render(){
   renderPlan();
   const history=$('history-list');history.replaceChildren();
   state.history.forEach((entry,i)=>{const li=el('li');li.append(el('span',String(i+1).padStart(2,'0'),'history-index'),el('strong',entry.label),el('span',`${entry.count} rows · ${entry.modelId} · held-out ${fmt(entry.heldOutRMSE)} N·m${entry.loss==='weighted_least_squares'?` · weighted fit, normalized training ${fmt(entry.relativeNoiseRmse)} N·m`:''}`,'history-detail'));history.append(li);});
+  let receipts=$('experiment-receipts');
+  if(!receipts){receipts=el('section');receipts.id='experiment-receipts';receipts.className='panel';receipts.setAttribute('aria-label','Predictions before measurement updates');history.parentElement.after(receipts);}
+  renderExperimentReceipts(receipts,state,{chart});
+  let receiptShortcut=$('inspect-last-experiment');
+  if(!receiptShortcut){receiptShortcut=el('button','Inspect predictions before this outcome','button button-outline button-full');receiptShortcut.id='inspect-last-experiment';receiptShortcut.type='button';$('run-experiment').after(receiptShortcut);receiptShortcut.addEventListener('click',()=>{const select=$('experiment-receipt-event');if(!select)return;select.value=select.options[select.options.length-1].value;select.dispatchEvent(new Event('change'));$('experiment-receipts').scrollIntoView({block:'start'});$('experiment-receipt-event').focus();});}
+  receiptShortcut.hidden=!state.history.some(entry=>entry.experiment);
   renderHypotheses();renderModel();
 }
 function renderPlan(){

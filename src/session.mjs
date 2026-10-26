@@ -2,6 +2,7 @@ import {discover, refitDiscovery, evaluate, revise, planExperiment, DEFAULT_TERM
 import {createLab, executeLab} from './science/virtual-lab.mjs';
 import {validateDataset, validateRows, candidateGrid, FIELDS, MAX_ROWS, MAX_TEXT_LENGTH} from './data.mjs';
 import {planInputExcitation} from './science/input-excitation.mjs';
+import {captureExperimentReceipt} from './science/experiment-receipts.mjs';
 
 export const SESSION_SCHEMA='worldlaw.session/v1';
 export const INTERACTION_SESSION_SCHEMA='worldlaw.session/v2';
@@ -89,7 +90,10 @@ export function newVirtualSession(seed=17) {
 }
 function eventState(state,event,discovery,options=state.options) {
   if(state.events.length>=MAX_EVENTS) throw new Error(`This notebook supports ${MAX_EVENTS} revisions. Export it before starting a new notebook.`);
-  return {...state,options,discovery,events:[...state.events,event],history:[...state.history,summary(discovery,state.base.heldOut,event.label,event.kind)]};
+  const entry=summary(discovery,state.base.heldOut,event.label,event.kind);
+  if(event.kind==='measurement'||event.kind==='virtual')
+    entry.experiment=captureExperimentReceipt(state.discovery,discovery,discovery.observations.slice(state.discovery.observations.length));
+  return {...state,options,discovery,events:[...state.events,event],history:[...state.history,entry]};
 }
 export function appendMeasurements(state,rows,label='Measured outcome') {
   if(state.lab) throw new Error('This notebook is connected to a virtual instrument. Import measured observations to start an instrument notebook.');

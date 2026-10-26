@@ -203,3 +203,20 @@
 .motion-comparison-control-row label{color:#d5e3d0}
 
 .motion-comparison thead th:first-child{white-space:nowrap}
+
+
+/* The acquired outcome confronts the earlier laws in the existing evidence trail. */
+#experiment-receipts{padding:22px;min-width:0;overflow-wrap:anywhere;border-left:4px solid #b14e31}
+#experiment-receipts h3{font-size:20px;line-height:1.3;margin:0 0 12px}
+#experiment-receipts p,#experiment-receipts label,#experiment-receipts summary{font-size:14px;line-height:1.6;margin:.7rem 0}
+#experiment-receipts label{display:block;font-weight:600}
+#experiment-receipts select{display:block;width:100%;min-width:0;max-width:100%;min-height:44px;margin-top:6px;padding:8px;font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:4px}
+#experiment-receipt-summary{padding:12px;border-left:3px solid #b14e31;background:#fbf1e9}
+#experiment-receipt-chart svg{display:block;max-width:100%;height:auto}
+#experiment-receipts .prediction-sensitivity-scroll{max-width:100%;overflow-x:auto;margin:1rem 0}
+#experiment-receipts table{border-collapse:collapse;width:100%;font-size:12px}
+#experiment-receipts th,#experiment-receipts td{padding:8px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+#experiment-receipts :focus-visible{outline:3px solid #9a5a16;outline-offset:3px}
+#inspect-last-experiment{margin-top:10px;white-space:normal}
+@media(max-width:480px){#experiment-receipts{padding:16px}#experiment-receipts h3{font-size:18px}}
+#experiment-receipt-chart .chart-legend{font-size:12px;line-height:1.5;gap:10px;flex-wrap:wrap}
