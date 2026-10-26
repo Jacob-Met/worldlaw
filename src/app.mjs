@@ -36,7 +36,7 @@ function save() {
   try{localStorage.setItem(storageKey,exportSession(state));set('storage-status','Notebook saved on this browser');}
   catch{set('storage-status','Browser storage unavailable · export to keep this notebook');}
 }
-function adopt(next,message,widths=null) {generation++;state=next;deadzoneWidths=widths;frequencySettings=null;modelId=state.discovery.selected.id;render();save();notice(message);}
+function adopt(next,message,widths=null,frequency=null) {generation++;state=next;deadzoneWidths=widths;frequencySettings=frequency;modelId=state.discovery.selected.id;render();save();notice(message);}
 function model(){return state.discovery.candidates.find(m=>m.id===modelId)||state.discovery.selected;}
 function numberInput(id){const v=$(id).value.trim();if(!v||!Number.isFinite(Number(v)))throw new Error(`Enter a finite value for ${$(id).labels?.[0]?.textContent||id}.`);return Number(v);}
 function experimentInput(){return Object.fromEntries(['command','position','rate'].map(f=>[f,numberInput(f)]));}
@@ -135,7 +135,7 @@ function renderModel(){
   if(!$('sensor-response-container')){const response=el('div');response.id='sensor-response-container';deadzone.after(response);mountSensorResponse(response,{chart});}
   renderCommandDeadzone(deadzone,state,{chart,widths:deadzoneWidths,onReopen:(next,widths)=>adopt(next,'Reopened original command-map comparison inputs. Compare again to recompute.',widths),simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
   let frequency=$('angular-frequency-container');if(!frequency){frequency=el('div');frequency.id='angular-frequency-container';deadzone.after(frequency);}
-  renderAngularFrequency(frequency,state,{chart,getSourceGeneration:()=>generation,settings:frequencySettings,onReopen:(next,settings)=>{adopt(next,'Reopened original periodic-response inputs. Infer again to recompute.');frequencySettings=settings;render();},simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
+  renderAngularFrequency(frequency,state,{chart,getSourceGeneration:()=>generation,onSettings:settings=>{frequencySettings=settings;},useInput:input=>{for(const field of ['command','position','rate'])$(field).value=String(input[field]);notice('Exact offered state copied. Obtain and enter a separate torque reading, then infer the period again.');$('measured-torque').focus();},settings:frequencySettings,onReopen:(next,settings)=>{adopt(next,'Reopened original periodic-response inputs. Infer again to recompute.');frequencySettings=settings;render();},simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
   runSimulation(false);
 }
 function render(){
@@ -252,7 +252,7 @@ $('use-proposal').addEventListener('click',()=>action(useProposal));
 $('planner-objective').addEventListener('change',()=>action(()=>{renderPlan();notice('Planning objective changed. Original observations and fitted laws are unchanged.');}));
 $('run-experiment').addEventListener('click',()=>action(()=>{
   const input=experimentInput();const next=state.lab?runVirtualExperiment(state,input):appendMeasurements(state,[{...input,jointTorque:numberInput('measured-torque'),...(state.discovery.observations[0]?.torqueNoiseRatio===undefined?{}:{torqueNoiseRatio:numberInput('measurement-noise-ratio')})}]);
-  const previous=state.discovery.selected.id;adopt(next,previous===next.discovery.selected.id?'New observation added. The leading structure is unchanged.':'New evidence changed the leading model structure.');
+  const previous=state.discovery.selected.id;adopt(next,previous===next.discovery.selected.id?'New observation added. The leading structure is unchanged.':'New evidence changed the leading model structure.',null,frequencySettings);
 }));
 $('refit').addEventListener('click',()=>action(()=>{
   const loss=$('reading-loss').value;
