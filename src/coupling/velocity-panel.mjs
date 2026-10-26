@@ -5,7 +5,7 @@ const familyNames={diagonal:'Diagonal loss',symmetric:'Symmetric loss',skew:'Sym
 const colors={diagonal:'#efb55a',symmetric:'#62c5ed',skew:'#a0dfa8'};
 function el(tag,text,attrs={}){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);return e;}
 function svg(tag,attrs={},text){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;return e;}
-export function mountVelocityComparison(host){
+export function mountVelocityComparison(host,{applyParameters,getNotebook}={}){
  const field=(id,label,value)=>'<label>'+label+'<input id="'+id+'" type="number" min="1" step="1" value="'+value+'"></label>';
  host.innerHTML=[
  '<details id="velocity-lab"><summary>Could a no-work velocity term explain the balance?</summary>',
@@ -23,11 +23,12 @@ export function mountVelocityComparison(host){
  '<svg id="velocity-plot" viewBox="0 0 720 230" role="img" aria-labelledby="velocity-plot-label"></svg><p id="velocity-legend"></p>',
  '<p>Numerical full rank and admissible matrices do not establish identification. Interpolation can make one ambiguous circular motion appear full rank. Coarser-source agreement is a diagnostic, not an error bound; the separate source can reject a wrong candidate.</p>',
  '<details id="velocity-inspect"><summary>Inspect all original-source windows and diagnostics</summary><pre id="velocity-details"></pre></details>',
- '<p>No family is automatically selected. Motion playback and release planning retain their existing admitted laws; this comparison does not copy a skew term into them.</p></div></details>',
+ '<div id="velocity-apply-controls" hidden><label><input id="velocity-same-apparatus" type="checkbox"> I declare that this motion source and the current response notebook describe the same apparatus, angle coordinates and torque conventions.</label><button id="velocity-apply" type="button" disabled>Copy candidate M, D and G to motion</button><p id="velocity-apply-note"></p></div>',
+ '<p>No family is automatically selected. Copying requires explicit source pairing and a fresh motion declaration. Release planning keeps its separately offered diagonal and symmetric loss families.</p></div></details>',
  '<style>#velocity-lab{margin-top:1rem;padding:1rem;border:1px solid #41575f;border-radius:.6rem;background:#10232b;color:#e9f0f2;min-width:0}#velocity-lab summary{font-weight:650;cursor:pointer}#velocity-lab p{line-height:1.55}.velocity-actions,.velocity-fields{display:flex;gap:.7rem;flex-wrap:wrap;align-items:end}.velocity-fields{margin:.8rem 0}.velocity-actions label,.velocity-fields label{display:grid;gap:.35rem;flex:1 1 180px;min-width:0}#velocity-lab input,#velocity-lab select{max-width:100%;min-width:0;box-sizing:border-box}#velocity-lab input[type=file]{width:100%;font-size:.9rem}.velocity-families{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:.8rem}.velocity-family{padding:.7rem;border:1px solid #48616b;border-radius:.4rem;min-width:0;background:#152e38}.velocity-family h4{margin:.1rem 0 .6rem}.velocity-family table{width:100%;table-layout:fixed;font-size:.8rem}.velocity-family th,.velocity-family td{padding:.3rem .1rem;overflow-wrap:anywhere;text-align:right}.velocity-family th{color:#d7e6eb}.velocity-family td{white-space:nowrap}.velocity-family th:first-child{text-align:left;width:10%}#velocity-legend{display:flex;flex-wrap:wrap;gap:.8rem}#velocity-plot{width:100%;height:auto;background:#0c1b21;border:1px solid #48616b}#velocity-error{color:#ffb4a5}#velocity-details{white-space:pre-wrap;overflow-wrap:anywhere;max-height:28rem;overflow:auto}@media(max-width:850px){.velocity-families{grid-template-columns:1fr}}@media(max-width:480px){#velocity-lab{padding:.65rem}.velocity-actions button,#velocity-run{width:100%}.velocity-fields label{flex-basis:130px}}</style>'
  ].join('');
- const $=id=>host.querySelector('#'+id);let study=null,result=null,generation=0,pending=false;
- function retire(message){result=null;$('velocity-results').hidden=true;$('velocity-save').disabled=true;$('velocity-inspect').open=false;$('velocity-details').textContent='';$('velocity-status').textContent=message;$('velocity-error').textContent='';}
+ const $=id=>host.querySelector('#'+id);let study=null,result=null,generation=0,pending=false,pairedResponse=null;
+ function retire(message){result=null;pairedResponse=null;$('velocity-apply-controls').hidden=true;$('velocity-same-apparatus').checked=false;$('velocity-apply').disabled=true;$('velocity-results').hidden=true;$('velocity-save').disabled=true;$('velocity-inspect').open=false;$('velocity-details').textContent='';$('velocity-status').textContent=message;$('velocity-error').textContent='';}
  function sourceInputs(){
   if(!study)throw Error('Load an original velocity study first.');
   const input=structuredClone(study);
@@ -80,6 +81,9 @@ export function mountVelocityComparison(host){
     fit.parameters.forEach((name,i)=>{const row=el('tr');row.append(el('th',name,{scope:'row'}),el('td',fmt(fit.coefficients[i])),el('td',fmt(coarse?.coefficients?.[i])),el('td',fmt(result[key].samplingComparison.absoluteCoefficientDifferences?.[i])));table.append(row);});card.append(table);
    }box.append(card);
   }
+  const copyable=!!result.skew.primary.candidateParameters&&typeof applyParameters==='function'&&typeof getNotebook==='function';
+  $('velocity-apply-controls').hidden=!copyable;$('velocity-same-apparatus').checked=false;$('velocity-apply').disabled=true;pairedResponse=null;
+  $('velocity-apply-note').textContent='Copying retains a conditional candidate, not an identified law. '+(result.challenge?.skew.status==='exceeds_declared_tolerance'?'This candidate fails the separate motion. Review that failure before using the offered law.':'Review its training, conditioning and separate-motion diagnostics before using the offered law.');
   $('velocity-work').textContent=result.diagnostics.reservedSegments+' / '+result.diagnostics.segmentBudget+' quadrature segments reserved for the complete three-family comparison. All training fits were frozen before separate-source equations were evaluated.';
   const select=$('velocity-course');select.replaceChildren();for(const c of study.challenge?.record.courses??[])select.append(el('option',c.id,{value:c.id}));select.disabled=!study.challenge;
   const legend=$('velocity-legend');legend.replaceChildren();for(const key of Object.keys(familyNames)){const part=el('span',familyNames[key]+'  ');part.style.color=colors[key];legend.append(part);}
@@ -90,6 +94,8 @@ export function mountVelocityComparison(host){
  $('velocity-form').addEventListener('submit',e=>{e.preventDefault();generation++;pending=false;run();});
  $('velocity-form').addEventListener('input',()=>{generation++;pending=false;$('velocity-run').disabled=!study;retire('Settings changed. Compare again to receive the separate source.');});
  $('velocity-course').onchange=draw;
+ $('velocity-same-apparatus').onchange=()=>{try{pairedResponse=$('velocity-same-apparatus').checked?JSON.stringify(getNotebook()):null;$('velocity-apply').disabled=!pairedResponse||!result?.skew.primary.candidateParameters;}catch(error){pairedResponse=null;$('velocity-same-apparatus').checked=false;$('velocity-apply').disabled=true;$('velocity-error').textContent=error.message;}};
+ $('velocity-apply').onclick=()=>{try{if(!pairedResponse||!$('velocity-same-apparatus').checked||!result?.skew.primary.candidateParameters)return;if(JSON.stringify(getNotebook())!==pairedResponse)throw Error('The response source changed. Declare its correspondence again.');const received=result.challenge?.skew.status?.replaceAll('_',' ')??'not supplied';applyParameters(structuredClone(result.skew.primary.candidateParameters),study.training.record.source.label+'; separate-motion result: '+received);}catch(error){$('velocity-error').textContent=error.message;}finally{pairedResponse=null;$('velocity-same-apparatus').checked=false;$('velocity-apply').disabled=true;}};
  $('velocity-file').onchange=async()=>{const file=$('velocity-file').files?.[0];$('velocity-file').value='';if(!file)return;const ticket=++generation;pending=true;retire('Opening original velocity sources…');$('velocity-run').disabled=true;
   try{if(file.size>7*1024*1024)throw Error('Velocity study exceeds 7 MiB.');const raw=await file.text();if(ticket!==generation)return;load(raw);run();}
   catch(error){if(ticket===generation){pending=false;$('velocity-run').disabled=!study;retire('The new source was refused. Any retained source must be compared again.');$('velocity-error').textContent=error.message;}}
@@ -97,5 +103,6 @@ export function mountVelocityComparison(host){
  $('velocity-save').onclick=()=>{if(!result||pending)return;const url=URL.createObjectURL(new Blob([exportVelocityStudy(study)],{type:'application/json'})),link=el('a',undefined,{href:url,download:'worldlaw-velocity-study.json'});link.click();setTimeout(()=>URL.revokeObjectURL(url),10000);};
  $('velocity-inspect').addEventListener('toggle',()=>{if($('velocity-inspect').open&&result)$('velocity-details').textContent=JSON.stringify({diagonal:result.diagonal,symmetric:result.symmetric,skew:result.skew,challenge:result.challenge,diagnostics:result.diagnostics},null,2);});
  let resize;window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});
- return {contextChanged(){if(pending){generation++;pending=false;$('velocity-run').disabled=!study;retire('Pending file read canceled by a workspace change. Open again or compare the retained source.');}}};
+ return {contextChanged(){pairedResponse=null;$('velocity-same-apparatus').checked=false;$('velocity-apply').disabled=true;if(pending){generation++;pending=false;$('velocity-run').disabled=!study;retire('Pending file read canceled by a workspace change. Open again or compare the retained source.');}}};
 }
+

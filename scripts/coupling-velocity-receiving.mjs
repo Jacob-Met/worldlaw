@@ -20,7 +20,7 @@ export async function receiveVelocityComparison({evaluate,send,check,click,text,
   assert.match(await fitText('symmetric'),/exceeds_declared_tolerance/);
   assert.equal(await evaluate("document.querySelectorAll('#velocity-plot polyline').length"),3);
   assert.match(await text('velocity-status'),/no family selected/);
-  assert.match(await text('velocity-results'),/does not copy a skew term/);
+  assert.match(await text('velocity-results'),/No family is automatically selected/);
  });
  await check('uniform rank loss and irregular false numerical identification remain different visible failures',async()=>{
   await loadExample('single-uniform');assert.match(await fitText('skew'),/unidentified.*rank 4\/7/);assert.match(await fitText('skew'),/unsupported_training/);

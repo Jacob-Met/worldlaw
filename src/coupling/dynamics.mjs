@@ -14,9 +14,13 @@ export const MATRIX_INTERPRETATION = 'position-torque-with-declared-symmetric-in
 export const LOSS_INPUT_SCHEMA = 'worldlaw.coupling-dynamics-input/v3';
 export const LOSS_NOTEBOOK_SCHEMA = 'worldlaw.coupling-dynamics-notebook/v3';
 export const LOSS_INTERPRETATION = 'position-torque-with-declared-symmetric-inertia-and-symmetric-loss';
+export const SKEW_INPUT_SCHEMA = 'worldlaw.coupling-dynamics-input/v4';
+export const SKEW_NOTEBOOK_SCHEMA = 'worldlaw.coupling-dynamics-notebook/v4';
+export const SKEW_INTERPRETATION = 'position-torque-with-declared-symmetric-inertia-loss-and-skew-velocity';
 export const STEP_BUDGET = 120000;
 const STATE_BOUND = 1e6;
 const UNITS = Object.freeze({position:'rad', rate:'rad/s', inertia:'kg·m²', damping:'N·m·s/rad', time:'s'});
+const SKEW_UNITS = Object.freeze({...UNITS,velocitySkew:'N·m·s/rad'});
 const inputKeys = ['schema','interpretation','declaration','units','inertia','damping','initialPosition','initialRate','duration','samples','maxStep','positionTolerance','rateTolerance'];
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 function exactKeys(value, keys, label) {
@@ -36,18 +40,20 @@ export function defaultDynamicsInputs() {
     duration:4,samples:241,maxStep:.01,positionTolerance:.0001,rateTolerance:.0001};
 }
 export function readDynamicsInputs(raw) {
-  const loss=raw?.schema===LOSS_INPUT_SCHEMA,matrix=loss||raw?.schema===MATRIX_INPUT_SCHEMA;
-  exactKeys(raw,loss?[...inputKeys,'inertiaCross','dampingCross']:matrix?[...inputKeys,'inertiaCross']:inputKeys,'Dynamics inputs');
-  requireThat(loss?raw.interpretation===LOSS_INTERPRETATION:matrix?raw.interpretation===MATRIX_INTERPRETATION:raw.schema===INPUT_SCHEMA && raw.interpretation==='position-torque-with-declared-inertia-and-damping',
+  const skew=raw?.schema===SKEW_INPUT_SCHEMA,loss=skew||raw?.schema===LOSS_INPUT_SCHEMA,matrix=loss||raw?.schema===MATRIX_INPUT_SCHEMA;
+  exactKeys(raw,skew?[...inputKeys,'inertiaCross','dampingCross','velocitySkew']:loss?[...inputKeys,'inertiaCross','dampingCross']:matrix?[...inputKeys,'inertiaCross']:inputKeys,'Dynamics inputs');
+  requireThat(skew?raw.interpretation===SKEW_INTERPRETATION:loss?raw.interpretation===LOSS_INTERPRETATION:matrix?raw.interpretation===MATRIX_INTERPRETATION:raw.schema===INPUT_SCHEMA && raw.interpretation==='position-torque-with-declared-inertia-and-damping',
     'Explicitly declare the position-torque dynamical interpretation.');
-  exactKeys(raw.units,Object.keys(UNITS),'Dynamics units');
-  requireThat(Object.entries(UNITS).every(([key,value])=>raw.units[key]===value),'Declare the exact dynamics units.');
+  const units=skew?SKEW_UNITS:UNITS;
+  exactKeys(raw.units,Object.keys(units),'Dynamics units');
+  requireThat(Object.entries(units).every(([key,value])=>raw.units[key]===value),'Declare the exact dynamics units.');
   const inertia=pair(raw.inertia,'inertia',1e6),damping=pair(raw.damping,'damping',1e6);
   requireThat(inertia.every(x=>x>=1e-9),'Each constant diagonal inertia must be at least 1e-9 kg·m².');
   requireThat(damping.every(x=>x>=0),'Each declared viscous damping coefficient must be nonnegative.');
   if(matrix)readSymmetricInertia(inertia,raw.inertiaCross);
   if(loss)readSymmetricDamping(damping[0],damping[1],raw.dampingCross);
-  const inputs={schema:loss?LOSS_INPUT_SCHEMA:matrix?MATRIX_INPUT_SCHEMA:INPUT_SCHEMA,...(matrix?{inertiaCross:raw.inertiaCross}:{}),...(loss?{dampingCross:raw.dampingCross}:{}),interpretation:raw.interpretation,declaration:label(raw.declaration,'Dynamics declaration'),units:{...UNITS},
+  if(skew)finite(raw.velocitySkew,'velocitySkew',1e6);
+  const inputs={schema:skew?SKEW_INPUT_SCHEMA:loss?LOSS_INPUT_SCHEMA:matrix?MATRIX_INPUT_SCHEMA:INPUT_SCHEMA,...(skew?{velocitySkew:raw.velocitySkew}:{}),...(matrix?{inertiaCross:raw.inertiaCross}:{}),...(loss?{dampingCross:raw.dampingCross}:{}),interpretation:raw.interpretation,declaration:label(raw.declaration,'Dynamics declaration'),units:{...units},
     inertia,damping,initialPosition:pair(raw.initialPosition,'initialPosition'),initialRate:pair(raw.initialRate,'initialRate'),
     duration:positive(raw.duration,'duration',100),samples:raw.samples,maxStep:positive(raw.maxStep,'maxStep',1),
     positionTolerance:positive(raw.positionTolerance,'positionTolerance',1e3),rateTolerance:positive(raw.rateTolerance,'rateTolerance',1e3)};
@@ -80,7 +86,7 @@ function checkedState(state) {
 }
 function integrate(model,inputs,setup,refinement) {
   const steps=setup.substeps*refinement,h=setup.delta/steps,domain=domainOf(model);
-  const loss=inputs.schema===LOSS_INPUT_SCHEMA;
+  const skew=inputs.schema===SKEW_INPUT_SCHEMA,loss=skew||inputs.schema===LOSS_INPUT_SCHEMA;
   const mass=loss||inputs.schema===MATRIX_INPUT_SCHEMA?readSymmetricInertia(inputs.inertia,inputs.inertiaCross):null;
   let state=[...inputs.initialPosition,...inputs.initialRate],time=0,firstOutside=null;
   const ranges=state.slice(0,2).map(v=>({min:v,max:v}));
@@ -100,6 +106,9 @@ function integrate(model,inputs,setup,refinement) {
     // Keep the original subtraction/order when cross loss is zero for exact v2 parity.
     const force=torque.map((value,axis)=>value-inputs.damping[axis]*values[axis+2]);
     if(loss&&inputs.dampingCross!==0)for(let axis=0;axis<2;axis++)force[axis]-=inputs.dampingCross*values[3-axis];
+    // G=[[0,g],[-g,0]] contributes no instantaneous work. Skip exactly zero
+    // to retain the original v3 operation order and numerical rows.
+    if(skew&&inputs.velocitySkew!==0){force[0]-=inputs.velocitySkew*values[3];force[1]+=inputs.velocitySkew*values[2];}
     const acceleration=mass?solveSymmetricInertia(mass,force)
       :torque.map((value,axis)=>(value-inputs.damping[axis]*values[axis+2])/inputs.inertia[axis]);
     requireThat(acceleration.every(Number.isFinite),'Coupled acceleration became nonfinite.','numerical_failure');
@@ -156,14 +165,15 @@ export function compareCoupledDynamics(models,rawInputs) {
   // Validate the real predictor for every model before executing a partial comparison.
   for(const model of models)predictCoupling(model,inputs.initialPosition);
   const results=models.map(model=>compareOne(model,inputs,setup));
-  const loss=inputs.schema===LOSS_INPUT_SCHEMA,matrix=loss||inputs.schema===MATRIX_INPUT_SCHEMA,mass=matrix?readSymmetricInertia(inputs.inertia,inputs.inertiaCross):null;
-  return {schema:loss?'worldlaw.coupling-dynamics-comparison/v3':matrix?'worldlaw.coupling-dynamics-comparison/v2':'worldlaw.coupling-dynamics-comparison/v1',inputs,results,
-    diagnostics:{method:'classical_RK4',equation:loss?'q′ = v; M v′ = predictedTorque(q) − D v':matrix?'q′ = v; M v′ = predictedTorque(q) − diag(damping) v':'q′ = v; v′ᵢ = (predictedTorqueᵢ(q) − dampingᵢ vᵢ) / inertiaᵢ',
+  const skew=inputs.schema===SKEW_INPUT_SCHEMA,loss=skew||inputs.schema===LOSS_INPUT_SCHEMA,matrix=loss||inputs.schema===MATRIX_INPUT_SCHEMA,mass=matrix?readSymmetricInertia(inputs.inertia,inputs.inertiaCross):null;
+  return {schema:skew?'worldlaw.coupling-dynamics-comparison/v4':loss?'worldlaw.coupling-dynamics-comparison/v3':matrix?'worldlaw.coupling-dynamics-comparison/v2':'worldlaw.coupling-dynamics-comparison/v1',inputs,results,
+    diagnostics:{method:'classical_RK4',equation:skew?'q′ = v; M v′ = predictedTorque(q) − D v − G v':loss?'q′ = v; M v′ = predictedTorque(q) − D v':matrix?'q′ = v; M v′ = predictedTorque(q) − diag(damping) v':'q′ = v; v′ᵢ = (predictedTorqueᵢ(q) − dampingᵢ vᵢ) / inertiaᵢ',
       ...(matrix?{inertia:{matrix:mass.matrix,minimumEigenvalue:mass.minimumEigenvalue,conditionInfinity:mass.conditionInfinity,qualification:mass.qualification}}:{}),
       ...(loss?{damping:readSymmetricDamping(inputs.damping[0],inputs.damping[1],inputs.dampingCross)}:{}),
+      ...(skew?{velocitySkew:{matrix:[[0,inputs.velocitySkew],[-inputs.velocitySkew,0]],units:SKEW_UNITS.velocitySkew,qualification:'Declared constant skew coupling; vᵀGv = 0 algebraically. This is not dissipative loss and does not identify its physical cause.'}}:{}),
       reservedSteps:setup.requiredSteps,stepBudget:STEP_BUDGET,observationsResetState:false,stateMagnitudeLimit:STATE_BOUND,
       physicalValidity:'not_established',limitations:['Quasi-static observations do not identify this dynamic equation, inertia, damping or physical topology.',
-        loss?'Constant symmetric positive-definite inertia and positive-semidefinite viscous loss are assumed; configuration-dependent inertia and nonlinear loss are not modeled.':matrix?'Constant symmetric positive-definite inertia and independent viscous damping are assumed; configuration-dependent inertia and its velocity terms are not modeled.':'Only constant diagonal inertia and independent viscous damping are assumed.',
+        skew?'Constant symmetric positive-definite inertia, positive-semidefinite loss and a separately declared constant skew velocity term are assumed; their physical causes and configuration dependence are not identified.':loss?'Constant symmetric positive-definite inertia and positive-semidefinite viscous loss are assumed; configuration-dependent inertia and nonlinear loss are not modeled.':matrix?'Constant symmetric positive-definite inertia and independent viscous damping are assumed; configuration-dependent inertia and its velocity terms are not modeled.':'Only constant diagonal inertia and independent viscous damping are assumed.',
         'Domain checks inspect evaluated numerical states, not every point of a continuous trajectory.',
         'Agreement of two step sizes is not a bound on numerical error; both can miss unresolved behavior.']}};
 }
@@ -183,14 +193,15 @@ export function readDynamicsNotebook(input) {
     try{input=JSON.parse(input);}catch{throw new CouplingError('Motion notebook must be valid JSON.');}
   }
   exactKeys(input,['schema','evidence','inputs'],'Motion notebook');
-  requireThat([NOTEBOOK_SCHEMA,MATRIX_NOTEBOOK_SCHEMA,LOSS_NOTEBOOK_SCHEMA].includes(input.schema),'Choose a WORLDLAW coupled motion notebook.');
-  const inputs=readDynamicsInputs(input.inputs),schema=inputs.schema===LOSS_INPUT_SCHEMA?LOSS_NOTEBOOK_SCHEMA:inputs.schema===MATRIX_INPUT_SCHEMA?MATRIX_NOTEBOOK_SCHEMA:NOTEBOOK_SCHEMA;
+  requireThat([NOTEBOOK_SCHEMA,MATRIX_NOTEBOOK_SCHEMA,LOSS_NOTEBOOK_SCHEMA,SKEW_NOTEBOOK_SCHEMA].includes(input.schema),'Choose a WORLDLAW coupled motion notebook.');
+  const inputs=readDynamicsInputs(input.inputs),schema=inputs.schema===SKEW_INPUT_SCHEMA?SKEW_NOTEBOOK_SCHEMA:inputs.schema===LOSS_INPUT_SCHEMA?LOSS_NOTEBOOK_SCHEMA:inputs.schema===MATRIX_INPUT_SCHEMA?MATRIX_NOTEBOOK_SCHEMA:NOTEBOOK_SCHEMA;
   requireThat(input.schema===schema,'Motion notebook and inertia-input versions must agree.');
   return {schema,evidence:readCouplingNotebook(input.evidence),inputs};
 }
 export function exportDynamicsNotebook(evidence,inputs) {
-  const schema=inputs?.schema===LOSS_INPUT_SCHEMA?LOSS_NOTEBOOK_SCHEMA:inputs?.schema===MATRIX_INPUT_SCHEMA?MATRIX_NOTEBOOK_SCHEMA:NOTEBOOK_SCHEMA;
+  const schema=inputs?.schema===SKEW_INPUT_SCHEMA?SKEW_NOTEBOOK_SCHEMA:inputs?.schema===LOSS_INPUT_SCHEMA?LOSS_NOTEBOOK_SCHEMA:inputs?.schema===MATRIX_INPUT_SCHEMA?MATRIX_NOTEBOOK_SCHEMA:NOTEBOOK_SCHEMA;
   const text=JSON.stringify(readDynamicsNotebook({schema,evidence,inputs}));
   requireThat(new TextEncoder().encode(text).length<=3*1024*1024,'Motion notebook exceeds 3 MB.');
   return text;
 }
+
