@@ -1,5 +1,7 @@
 import {loadVideo} from './video.mjs';
-import {createNotebook, validateNotebook, calibrateNotebook, calibratePlaneNotebook, upsertMeasurement, truncateMeasurements, deriveAngles, exportAngular, exportStudio} from './measurement.mjs';
+import {createNotebook, validateNotebook, calibrateNotebook, calibratePlaneNotebook, upsertMeasurement, truncateMeasurements, deriveAngles, exportAngular} from './measurement.mjs';
+import {MAX_MOTION_NOTEBOOK_FILE_BYTES, serializeMotionNotebook} from './notebook-output.mjs';
+import {prepareStudioExport} from './studio-export.mjs';
 import {createTemplate, trackTemplate, TRACKER_VERSION, COLOR_TRACKER_VERSION, GRID_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION, CONFIRMED_GRID_TRACKER_VERSION, COLOR_CONFIRMED_GRID_TRACKER_VERSION} from './tracker.mjs';
 import {createDemoSource, DEMO_PIVOT, demoMarkerAt} from './demo.mjs';
 import {pathReferenceCourses, proposePathReference, applyPathReference} from './path-reference.mjs';
@@ -17,7 +19,8 @@ const fmt = (value, places = 3) => Number.isFinite(value) ? value.toFixed(places
 const state = {notebook: null, source: null, frame: null, derived: null, imageDerived: null, mode: null,
   cursor: null, template: null, tracking: false, epoch: 0, seekEpoch: 0,
   pathReference: null, controller: null, attachIntent: false, selectedTime: null, segmentId: null,
-  seeking: false, seekTarget: null, seekTask: null, seekController: null};
+  seeking: false, seekTarget: null, seekTask: null, seekController: null,
+  studioExportGeneration: 0, preparingStudioExport: false, preparedStudioExport: null};
 const planePanel = createMetricPlanePanel({root: $('metric-plane-panel'),
   getNotebook: () => state.notebook, getTime: () => state.frame?.time ?? state.selectedTime,
   isBusy: () => state.tracking || state.seeking, commit: commitNotebook,
@@ -96,10 +99,18 @@ function restoreTrackingAppearance() {
 }
 function stopWork() {
   planePanel.cancelPending();
+  invalidateStudioExport();
   state.epoch++; state.seekEpoch++; state.controller?.abort(); state.controller = null; state.tracking = false;
   state.seekTarget = null; state.seekController?.abort();
 }
+function retireStudioExport() {
+  state.studioExportGeneration++;
+  state.preparingStudioExport = false;
+  state.preparedStudioExport = null;
+  $('save-studio-source').hidden = true;
+}
 function invalidateStudioExport({clearNumbers = false} = {}) {
+  retireStudioExport();
   $('confirm-physics').checked = false;
   if (clearNumbers) for (const id of ['known-inertia', 'declared-command', 'position-sigma']) $(id).value = '';
   $('studio-export-status').textContent = trackedPivot() ? 'Tracked-pivot measurements export as angular evidence. A translating pivot can add inertial terms that the fixed-pivot torque model does not represent.' : 'No export for the current evidence and assumptions. Enter known inertia and an explicit constant applied torque, then confirm them. Import the resulting JSON in the torque studio.';
@@ -116,11 +127,12 @@ function commitNotebook(notebook) {
   Object.assign(state, views);
   render();
 }
-function fileDownload(name, content) {
-  const url = URL.createObjectURL(new Blob([JSON.stringify(content, null, 2) + '\n'], {type: 'application/json'}));
+function textDownload(name, text) {
+  const url = URL.createObjectURL(new Blob([text], {type: 'application/json'}));
   const link = document.createElement('a'); link.href = url; link.download = name; document.body.append(link); link.click(); link.remove();
   setTimeout(() => URL.revokeObjectURL(url), 30_000);
 }
+function fileDownload(name, content) { textDownload(name, JSON.stringify(content, null, 2) + '\n'); }
 
 async function installSource(source, {attach = false, syntheticCalibration = false} = {}) {
   const epoch = state.epoch;
@@ -175,7 +187,7 @@ async function openVideo(file, attach) {
 async function openNotebook(file) {
   if (!file) return;
   stopWork(); const epoch = state.epoch; render();
-  if (file.size > 8 * 1024 * 1024) throw new Error('Motion notebooks must be at most 8 MB.');
+  if (file.size > MAX_MOTION_NOTEBOOK_FILE_BYTES) throw new Error('Motion notebooks must be at most 8 MB.');
   const parsed = validateNotebook(JSON.parse(await file.text()));
   if (epoch !== state.epoch) return;
   let source = null, frame = null;
@@ -631,7 +643,7 @@ function render() {
   renderCanvas(); renderChart(); renderLedger(); renderInspection(); renderSegments(); renderPathReference();
   $('export-angles').disabled = !calibrated || !valid.length || busy;
   $('confirm-physics').disabled = !calibrated || busy || trackedPivot();
-  $('export-studio').disabled = !calibrated || !valid.length || busy || trackedPivot() || !$('confirm-physics').checked;
+  $('export-studio').disabled = !calibrated || !valid.length || busy || state.preparingStudioExport || trackedPivot() || !$('confirm-physics').checked;
 }
 
 $('load-video').addEventListener('click', () => { state.attachIntent = false; $('video-file').value = ''; $('video-file').click(); });
@@ -639,7 +651,7 @@ $('attach-video').addEventListener('click', () => { state.attachIntent = true; $
 $('video-file').addEventListener('change', safe(event => { const attach = state.attachIntent; state.attachIntent = false; return openVideo(event.target.files[0], attach); }));
 $('open-notebook').addEventListener('click', () => { $('notebook-file').value = ''; $('notebook-file').click(); });
 $('notebook-file').addEventListener('change', safe(event => openNotebook(event.target.files[0])));
-$('save-notebook').addEventListener('click', safe(() => { if (state.notebook) { fileDownload('worldlaw-motion-notebook.json', validateNotebook(state.notebook)); notice('Motion notebook saved with source provenance, calibration, measurements, rejected states, and revision history. Media bytes are not included.'); } }));
+$('save-notebook').addEventListener('click', safe(() => { if (state.notebook) { textDownload('worldlaw-motion-notebook.json', serializeMotionNotebook(state.notebook)); notice('Motion notebook saved with source provenance, calibration, measurements, rejected states, and revision history. Media bytes are not included.'); } }));
 $('load-demo').addEventListener('click', safe(async () => { stopWork(); await installSource(createDemoSource({occlusion: $('demo-occlusion').checked}), {syntheticCalibration: true}); }));
 $('pick-pivot').addEventListener('click', safe(() => setMode('pivot')));
 $('appearance-mode').addEventListener('change', safe(() => {
@@ -697,18 +709,47 @@ $('track-motion').addEventListener('click', safe(track));
 $('cancel-tracking').addEventListener('click', () => { stopWork(); render(); notice('Tracking stopped. Completed measurements are retained; unprocessed frames remain unmeasured.'); });
 $('mark-missing').addEventListener('click', safe(() => { commitNotebook(upsertMeasurement(state.notebook, {time: state.frame.time, requestedTime: state.frame.requestedTime, timeBasis: state.frame.timeBasis, point: null, status: 'missing', reason: 'User marked this frame as missing or not reliably observable.', ...(currentRow()?.pivotMeasurement ? {pivotMeasurement: currentRow().pivotMeasurement} : {})})); state.template = null; notice('Frame marked missing. No angle will be interpolated across this observation.'); }));
 $('next-gap').addEventListener('click', safe(async () => { const gaps = state.notebook.measurements.filter(row => !measuredPair(row)); const row = gaps.find(row => row.time > (state.frame?.time ?? state.selectedTime) + 1e-6) || gaps[0]; if (row) { state.selectedTime = row.time; if (state.source) await seek(row.time); else render(); } }));
-$('segment-select').addEventListener('change', event => { const selected = state.derived.segments.find(segment => String(segment.id) === event.target.value); state.segmentId = selected?.id ?? null; });
-$('confirm-physics').addEventListener('change', render);
+$('segment-select').addEventListener('change', event => { const selected = state.derived.segments.find(segment => String(segment.id) === event.target.value); state.segmentId = selected?.id ?? null; invalidateStudioExport(); render(); });
+$('confirm-physics').addEventListener('change', () => {
+  retireStudioExport();
+  $('studio-export-status').textContent = 'No export for the current evidence and assumptions. Confirm the declared dynamics, then export observations for the torque studio.';
+  render();
+});
 for (const id of ['known-inertia', 'declared-command', 'position-sigma']) $(id).addEventListener('input', () => { invalidateStudioExport(); render(); });
 $('export-angles').addEventListener('click', safe(() => { fileDownload('worldlaw-angular-evidence.json', exportAngular(state.notebook, state.segmentId === null ? {} : {segmentId: state.segmentId})); notice('Angular evidence exported. Keep the Motion notebook for the full pixel ledger, gaps, calibration, and supplied provenance.'); }));
-$('export-studio').addEventListener('click', safe(() => {
-  const inertia = finiteInput('known-inertia', 'Known inertia', {min: 1e-12, max: 1e12});
-  const command = finiteInput('declared-command', 'Explicit constant applied torque', {min: -1e6, max: 1e6});
-  const positionSigma = $('position-sigma').value.trim() ? finiteInput('position-sigma', 'Angle noise assumption', {min: 0, max: 1e6}) : null;
-  const exported = exportStudio(state.notebook, {inertia, command, positionSigma, confirmKnownDynamics: $('confirm-physics').checked, ...(state.segmentId === null ? {} : {segmentId: state.segmentId})});
-  fileDownload('worldlaw-motion-studio-observations.json', exported);
-  $('studio-export-status').textContent = `Exported ${exported.observations?.length ?? 'derived'} observations from the selected continuous segment. Open the torque studio and choose “Import observations”. Inertia, command, and differentiation assumptions are retained in the export.`;
-  notice('Studio observation JSON exported. These torque values are derived estimates from measured angles and your declared dynamics.');
+$('export-studio').addEventListener('click', async () => {
+  clearError(); retireStudioExport();
+  const ticket = state.studioExportGeneration;
+  state.preparingStudioExport = true;
+  $('studio-export-status').textContent = 'Preparing observations and their matching source notebook…';
+  render();
+  try {
+    const inertia = finiteInput('known-inertia', 'Known inertia', {min: 1e-12, max: 1e12});
+    const command = finiteInput('declared-command', 'Explicit constant applied torque', {min: -1e6, max: 1e6});
+    const positionSigma = $('position-sigma').value.trim() ? finiteInput('position-sigma', 'Angle noise assumption', {min: 0, max: 1e6}) : null;
+    const prepared = await prepareStudioExport(state.notebook, {inertia, command, positionSigma, confirmKnownDynamics: $('confirm-physics').checked, ...(state.segmentId === null ? {} : {segmentId: state.segmentId})});
+    // Hashing may outlive a source, segment, or declaration change. It may not
+    // publish a download or error after that newer user operation.
+    if (ticket !== state.studioExportGeneration) return;
+    state.preparedStudioExport = prepared;
+    textDownload('worldlaw-motion-studio-observations.json', prepared.text);
+    $('save-studio-source').hidden = false;
+    $('studio-export-status').textContent = `Exported ${prepared.dataset.observations.length} fitting and ${prepared.dataset.heldOut.length} held-out observations. Import the JSON in the torque studio. It retains the exact angular inputs and differentiation assumptions; save the matching Motion notebook to keep the original point ledger, diagnostics and corrections.`;
+    notice('Studio observations exported. These torque values are derived estimates from image angles and your declared dynamics. Keep the matching Motion notebook and original video for source inspection.');
+  } catch (error) {
+    if (ticket === state.studioExportGeneration) {
+      $('studio-export-status').textContent = 'No Studio observations exported. Correct the source or declarations and try again.';
+      showError(error);
+    }
+  } finally {
+    if (ticket === state.studioExportGeneration) { state.preparingStudioExport = false; render(); }
+  }
+});
+$('save-studio-source').addEventListener('click', safe(() => {
+  const prepared = state.preparedStudioExport;
+  if (!prepared) throw new Error('Export the current Studio observations before saving their matching source notebook.');
+  textDownload('worldlaw-motion-notebook.json', prepared.notebookText);
+  notice('Saved the exact Motion notebook identified by the Studio observations. Keep the original source video separately to inspect its pixels.');
 }));
 $('path-reference-panel').addEventListener('toggle', () => { if ($('path-reference-panel').open) renderPathReference(); });
 for (const id of ['path-gap', 'path-residual', 'path-course']) for (const event of ['input', 'change'])
