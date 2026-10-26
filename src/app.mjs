@@ -22,6 +22,7 @@ import {softL1Weight} from './science/robust-fit.mjs';
 import {proposeScalarLibrary} from './science/library-proposal.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
 import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,sessionPilotPlan,exportSession,restoreSession,undoSession,MAX_SESSION_FILE_BYTES} from './session.mjs';
+import {restoreNotebook} from './notebook-input.mjs';
 
 const $=id=>document.getElementById(id);
 const storageKey='worldlaw.notebook.v1';
@@ -261,7 +262,7 @@ studioComparison=mountStudioComparison($('studio-motion-comparison'),{
   chart,onClear:()=>runSimulation(false),
 });
 
-try{const saved=localStorage.getItem(storageKey);if(saved){state=restoreSession(saved);restored=true;}}catch(error){set('notice',`The stored notebook could not be reopened: ${error.message}. Its stored bytes were left intact.`);}
+try{const saved=localStorage.getItem(storageKey);if(saved){state=restoreNotebook(saved);restored=true;}}catch(error){set('notice',`The stored notebook could not be reopened: ${error.message}. Its stored bytes were left intact.`);}
 state ||= newVirtualSession();modelId=state.discovery.selected.id;render();
 if(restored){notice('Reopened your local notebook and recomputed every model revision.');set('storage-status','Local notebook restored');}
 else set('storage-status','Export a notebook to keep a portable copy');
@@ -291,7 +292,7 @@ $('observation-file').addEventListener('change',async event=>{
 $('open-session').addEventListener('click',()=>$('session-file').click());
 $('session-file').addEventListener('change',async event=>{
   const file=event.target.files?.[0];if(!file)return;const current=++generation;
-  try{if(file.size>MAX_SESSION_FILE_BYTES)throw new Error('Notebook files must be no larger than 6 MB; the notebook text limit also applies.');const text=await file.text();if(current!==generation)return;adopt(restoreSession(text),'Reopened the notebook and recomputed its complete evidence history.');useProposal(false);}catch(error){if(current===generation)alertError(error);}finally{event.target.value='';}
+  try{if(file.size>MAX_SESSION_FILE_BYTES)throw new Error('Notebook files must be no larger than 6 MB; the notebook text limit also applies.');const text=await file.text();if(current!==generation)return;adopt(restoreNotebook(text),'Reopened the notebook and recomputed its complete evidence history.');useProposal(false);}catch(error){if(current===generation)alertError(error);}finally{event.target.value='';}
 });
 $('export-session').addEventListener('click',()=>action(()=>download(exportSession(state),'worldlaw-notebook.json')));
 $('export-observations').addEventListener('click',()=>action(()=>download(observationsCSV(state.discovery.observations),'worldlaw-observations.csv','text/csv')));
