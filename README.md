@@ -94,7 +94,11 @@ and display limits](docs/STUDIO_DYNAMICS.md).
 Choose **Compare competitive laws** to execute every current competitive law
 from one declared release. Scrub the synchronized shared joint or angle–rate
 paths, inspect every original equation and refusal, and return to the existing
-single-law instrument. Source and dynamics changes retire the comparison.
+single-law instrument. Refine **Sample interval** to investigate motion hidden
+between coarse outputs, then slow **Playback** or scrub individual samples.
+All laws use the same requested grid and existing work limits; similar grids
+do not certify continuous agreement. Source, dynamics and interval changes
+retire the comparison.
 These are conditional model predictions, not new observations or calibrated
 uncertainty. See [the motion comparison contract](docs/COMPETITIVE_MOTION.md).
 

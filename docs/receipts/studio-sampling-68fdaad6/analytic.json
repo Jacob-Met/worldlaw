@@ -1,0 +1,1341 @@
+{
+  "schema": "worldlaw.studio-comparison-sampling/v1",
+  "experimentRevision": "v2-analytic-search-counts",
+  "precedingExperimentSHA256": "0655269c5b5f2b47a7402a781649e851f91d103a07e836a6a926c18291d1267c",
+  "generatedAt": "2026-10-26T20:40:54.803Z",
+  "context": "renpo-receiving",
+  "reviewedFeature": {
+    "pr": "https://github.com/Jacob-Met/worldlaw/pull/337",
+    "head": "3af6c7a9b8cbfc4c958a6ff84fbeb29cf8666652"
+  },
+  "runtime": {
+    "node": "v22.23.4",
+    "platform": "linux",
+    "arch": "x64"
+  },
+  "policy": {
+    "maxTotalEvaluations": 240000,
+    "maxTotalSamples": 20000
+  },
+  "sourceHashes": {
+    "experiments/studio-comparison-sampling.mjs": "0655269c5b5f2b47a7402a781649e851f91d103a07e836a6a926c18291d1267c",
+    "experiments/studio-comparison-sampling-v2.mjs": "51beedb14887ae1f5605fed7352f5e48a39871f78c777674021d4b78e839b5a3",
+    "src/science/studio-dynamics-comparison.mjs": "94573074b0cb0af9e7ecf2d7cae3efb1d1ad2de66d287462f693508ba4383b1c",
+    "src/science/studio-dynamics.mjs": "dc6e708c0036e224cf8af8beb43b51cb9162ce0d6849d9f0b925bab60641a203",
+    "src/science/torque-discovery.mjs": "29612d3907c02a5818f593d8fb8bf8c231215959efdb130b28c3171f573c79fe"
+  },
+  "hypothesis": "The fixed 20 ms Studio output grid can conceal substantially different valid harmonic motions even when the adaptive integrator accurately resolves them internally.",
+  "oracle": "q(t)=q0*cos(2*pi*f*t)+(v0/(2*pi*f))*sin(2*pi*f*t); v(t)=-q0*(2*pi*f)*sin(2*pi*f*t)+v0*cos(2*pi*f*t). Scalar inertia1, zero command, spring coefficient-(2*pi*f)^2.",
+  "discriminator": {
+    "primaryCompletedAt20ms": true,
+    "primarySampledAngleNearlyEqual": true,
+    "primarySampledRateNearlyEqual": true,
+    "primaryAnalyticHiddenPositionAtLeastOneRadian": true,
+    "primaryFinerGridRevealsPositionDifference": true,
+    "heldBack20msAnd10msComplete": true,
+    "heldBack20msAnd10msPositionsNearlyEqual": true,
+    "heldBack20msAnd10msRatesNearlyEqual": true,
+    "heldBackFinerGridRevealsPositionDifference": true,
+    "allFastCoursesAgreeWithIndependentOracle": true,
+    "lowFrequencyControlAlreadySeparates": true,
+    "sampleRefusalRetainsBothOriginalLaws": true,
+    "longFastWorkRefusalRetainsBothOriginalLaws": true
+  },
+  "qualification": "discriminating-countercourse",
+  "courses": [
+    {
+      "id": "integer-cycle-alias",
+      "role": "Primary deliberately discriminating countercourse.",
+      "frequenciesHz": [
+        50,
+        100
+      ],
+      "initial": {
+        "position": 1,
+        "rate": 0
+      },
+      "duration": 0.2,
+      "witnessTimes": [
+        0.005,
+        0.01
+      ],
+      "proof": "At t=n*0.02 s, both exact laws have position 1 rad and rate 0 rad/s. At t=0.01 s their positions are -1 and +1 rad: exactly 2 rad apart, which is also the amplitude upper bound. Output equality therefore hides a real analytic intersample difference.",
+      "oracle": {
+        "referenceOutputInterval": 0.02,
+        "position": {
+          "time": 0.01,
+          "value": 2,
+          "distanceToCoarseOutput": 0.01
+        },
+        "rate": {
+          "time": 0.04724609375,
+          "value": 859.4785586459409,
+          "distanceToCoarseOutput": 0.007246093750000002
+        },
+        "analyticSearchInterval": 0.00001953125,
+        "searchEvaluations": 10230,
+        "attemptedSearchTimes": 10239,
+        "skippedCoarseGridTimes": 9,
+        "samplingGapEstimate": {
+          "position": 0.018407769454627694,
+          "rate": 9.638285547938827,
+          "interpretation": "Conservative Lipschitz search-gap estimate for the analytic witness scan, in ordinary floating point. Witness values are evaluated analytic differences, not certified global maxima or interpolated solver output."
+        },
+        "prescribedWitnesses": [
+          {
+            "time": 0.005,
+            "position": 1,
+            "rate": 314.15926535897927
+          },
+          {
+            "time": 0.01,
+            "position": 2,
+            "rate": 1.92367069372179e-13
+          }
+        ],
+        "proof": "At t=n*0.02 s, both exact laws have position 1 rad and rate 0 rad/s. At t=0.01 s their positions are -1 and +1 rad: exactly 2 rad apart, which is also the amplitude upper bound. Output equality therefore hides a real analytic intersample difference."
+      },
+      "grids": [
+        {
+          "dt": 0.02,
+          "duration": 0.2,
+          "elapsedMs": 14.058838999999999,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 7.523208944704152e-8,
+          "numericalSampledRateSeparation": 0.001846485622944094,
+          "analyticSampledPositionSeparation": 0,
+          "analyticSampledRateSeparation": 5.08082413345027e-12,
+          "maximumNumericalPositionError": 1.5041251344438678e-7,
+          "maximumNumericalRateError": 0.002461722253506799,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 22,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9999,
+            "proposedReservedEvaluations": 239998,
+            "actualEvaluations": 30142,
+            "actualEvaluationsLowerBound": 30142,
+            "actualEvaluationsUpperBound": 239998,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "integer-cycle-alias-1",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 10031,
+              "reservedEvaluations": 119999,
+              "trials": 835,
+              "acceptedSteps": 781,
+              "rejectedSteps": 54,
+              "derivativeEvaluations": 10020,
+              "outputEvaluations": 11
+            },
+            {
+              "id": "integer-cycle-alias-2",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 20111,
+              "reservedEvaluations": 119999,
+              "trials": 1675,
+              "acceptedSteps": 1564,
+              "rejectedSteps": 111,
+              "derivativeEvaluations": 20100,
+              "outputEvaluations": 11
+            }
+          ]
+        },
+        {
+          "dt": 0.01,
+          "duration": 0.2,
+          "elapsedMs": 4.801031000000002,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 1.9999999887295064,
+          "numericalSampledRateSeparation": 0.00292177490982809,
+          "analyticSampledPositionSeparation": 2,
+          "analyticSampledRateSeparation": 5.08082413345027e-12,
+          "maximumNumericalPositionError": 1.5038101908171342e-7,
+          "maximumNumericalRateError": 0.002461290889692797,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 42,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9998,
+            "proposedReservedEvaluations": 239994,
+            "actualEvaluations": 30594,
+            "actualEvaluationsLowerBound": 30594,
+            "actualEvaluationsUpperBound": 239994,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "integer-cycle-alias-1",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 10593,
+              "reservedEvaluations": 119997,
+              "trials": 881,
+              "acceptedSteps": 800,
+              "rejectedSteps": 81,
+              "derivativeEvaluations": 10572,
+              "outputEvaluations": 21
+            },
+            {
+              "id": "integer-cycle-alias-2",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 20001,
+              "reservedEvaluations": 119997,
+              "trials": 1665,
+              "acceptedSteps": 1561,
+              "rejectedSteps": 104,
+              "derivativeEvaluations": 19980,
+              "outputEvaluations": 21
+            }
+          ]
+        },
+        {
+          "dt": 0.005,
+          "duration": 0.2,
+          "elapsedMs": 4.070943,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 1.9999999887502717,
+          "numericalSampledRateSeparation": 314.16163800130425,
+          "analyticSampledPositionSeparation": 2,
+          "analyticSampledRateSeparation": 314.1592653589806,
+          "maximumNumericalPositionError": 0.0000018995208101054159,
+          "maximumNumericalRateError": 0.0024570281229166773,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 82,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9996,
+            "proposedReservedEvaluations": 239986,
+            "actualEvaluations": 31738,
+            "actualEvaluationsLowerBound": 31738,
+            "actualEvaluationsUpperBound": 239986,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "integer-cycle-alias-1",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 10565,
+              "reservedEvaluations": 119993,
+              "trials": 877,
+              "acceptedSteps": 798,
+              "rejectedSteps": 79,
+              "derivativeEvaluations": 10524,
+              "outputEvaluations": 41
+            },
+            {
+              "id": "integer-cycle-alias-2",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 21173,
+              "reservedEvaluations": 119993,
+              "trials": 1761,
+              "acceptedSteps": 1600,
+              "rejectedSteps": 161,
+              "derivativeEvaluations": 21132,
+              "outputEvaluations": 41
+            }
+          ]
+        },
+        {
+          "dt": 0.0025,
+          "duration": 0.2,
+          "elapsedMs": 3.788611000000003,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 1.9999999888449538,
+          "numericalSampledRateSeparation": 850.4629679210167,
+          "analyticSampledPositionSeparation": 2,
+          "analyticSampledRateSeparation": 850.4626776258783,
+          "maximumNumericalPositionError": 0.000003851889615268553,
+          "maximumNumericalRateError": 0.002450837306753079,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 162,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9993,
+            "proposedReservedEvaluations": 239994,
+            "actualEvaluations": 31638,
+            "actualEvaluationsLowerBound": 31638,
+            "actualEvaluationsUpperBound": 239994,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "integer-cycle-alias-1",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 10653,
+              "reservedEvaluations": 119997,
+              "trials": 881,
+              "acceptedSteps": 800,
+              "rejectedSteps": 81,
+              "derivativeEvaluations": 10572,
+              "outputEvaluations": 81
+            },
+            {
+              "id": "integer-cycle-alias-2",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 20985,
+              "reservedEvaluations": 119997,
+              "trials": 1742,
+              "acceptedSteps": 1592,
+              "rejectedSteps": 150,
+              "derivativeEvaluations": 20904,
+              "outputEvaluations": 81
+            }
+          ]
+        },
+        {
+          "dt": 0.00125,
+          "duration": 0.2,
+          "elapsedMs": 4.192906000000001,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 1.9999999888368825,
+          "numericalSampledRateSeparation": 850.462990123883,
+          "analyticSampledPositionSeparation": 2,
+          "analyticSampledRateSeparation": 850.4626776258783,
+          "maximumNumericalPositionError": 0.000003743256682612215,
+          "maximumNumericalRateError": 0.0023819223605234534,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 322,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9986,
+            "proposedReservedEvaluations": 239986,
+            "actualEvaluations": 32986,
+            "actualEvaluationsLowerBound": 32986,
+            "actualEvaluationsUpperBound": 239986,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "integer-cycle-alias-1",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 11693,
+              "reservedEvaluations": 119993,
+              "trials": 961,
+              "acceptedSteps": 840,
+              "rejectedSteps": 121,
+              "derivativeEvaluations": 11532,
+              "outputEvaluations": 161
+            },
+            {
+              "id": "integer-cycle-alias-2",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 21293,
+              "reservedEvaluations": 119993,
+              "trials": 1761,
+              "acceptedSteps": 1600,
+              "rejectedSteps": 161,
+              "derivativeEvaluations": 21132,
+              "outputEvaluations": 161
+            }
+          ]
+        },
+        {
+          "dt": 0.000625,
+          "duration": 0.2,
+          "elapsedMs": 4.9688309999999944,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 1.9999999887797388,
+          "numericalSampledRateSeparation": 850.4629556297505,
+          "analyticSampledPositionSeparation": 2,
+          "analyticSampledRateSeparation": 850.4626776258783,
+          "maximumNumericalPositionError": 0.0000039336382110431975,
+          "maximumNumericalRateError": 0.002502979179350468,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 642,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9973,
+            "proposedReservedEvaluations": 239994,
+            "actualEvaluations": 37626,
+            "actualEvaluationsLowerBound": 37626,
+            "actualEvaluationsUpperBound": 239994,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "integer-cycle-alias-1",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 14253,
+              "reservedEvaluations": 119997,
+              "trials": 1161,
+              "acceptedSteps": 920,
+              "rejectedSteps": 241,
+              "derivativeEvaluations": 13932,
+              "outputEvaluations": 321
+            },
+            {
+              "id": "integer-cycle-alias-2",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 23373,
+              "reservedEvaluations": 119997,
+              "trials": 1921,
+              "acceptedSteps": 1680,
+              "rejectedSteps": 241,
+              "derivativeEvaluations": 23052,
+              "outputEvaluations": 321
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "held-back-frequency-and-release",
+      "role": "Held-back frequency pair, amplitude and nonzero release rate; chosen before execution.",
+      "frequenciesHz": [
+        150,
+        250
+      ],
+      "initial": {
+        "position": 0.37,
+        "rate": -0.8
+      },
+      "duration": 0.2,
+      "witnessTimes": [
+        0.00375,
+        0.005
+      ],
+      "proof": "At t=n*0.02 s both exact laws return to the common release. At t=n*0.01 s they also coincide, alternating release signs. At t=0.005 s their exact rates differ by 0.37*2*pi*(150+250) rad/s, independent of the nonzero initial-rate contribution because both cosine factors vanish. Agreement of two successive output grids is therefore not an alias-free certificate.",
+      "oracle": {
+        "referenceOutputInterval": 0.02,
+        "position": {
+          "time": 0.18617187500000001,
+          "value": 0.6873359420444819,
+          "distanceToCoarseOutput": 0.006171875000000021
+        },
+        "rate": {
+          "time": 0.005,
+          "value": 929.9114254625788,
+          "distanceToCoarseOutput": 0.005
+        },
+        "analyticSearchInterval": 0.0000078125,
+        "searchEvaluations": 25590,
+        "attemptedSearchTimes": 25599,
+        "skippedCoarseGridTimes": 9,
+        "samplingGapEstimate": {
+          "position": 0.007277433011426396,
+          "rate": 9.715678538713583,
+          "interpretation": "Conservative Lipschitz search-gap estimate for the analytic witness scan, in ordinary floating point. Witness values are evaluated analytic differences, not certified global maxima or interpolated solver output."
+        },
+        "prescribedWitnesses": [
+          {
+            "time": 0.00375,
+            "position": 0.6835409213438983,
+            "rate": 87.48721677086553
+          },
+          {
+            "time": 0.005,
+            "position": 0.001358122181050659,
+            "rate": 929.9114254625788
+          }
+        ],
+        "proof": "At t=n*0.02 s both exact laws return to the common release. At t=n*0.01 s they also coincide, alternating release signs. At t=0.005 s their exact rates differ by 0.37*2*pi*(150+250) rad/s, independent of the nonzero initial-rate contribution because both cosine factors vanish. Agreement of two successive output grids is therefore not an alias-free certificate."
+      },
+      "grids": [
+        {
+          "dt": 0.02,
+          "duration": 0.2,
+          "elapsedMs": 5.685186999999999,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 5.678398223851744e-8,
+          "numericalSampledRateSeparation": 0.0037049143621974423,
+          "analyticSampledPositionSeparation": 5.551115123125783e-17,
+          "analyticSampledRateSeparation": 3.052946784265487e-11,
+          "maximumNumericalPositionError": 1.3683923982821256e-7,
+          "maximumNumericalRateError": 0.0057881911331568725,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 22,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9999,
+            "proposedReservedEvaluations": 239998,
+            "actualEvaluations": 80257,
+            "actualEvaluationsLowerBound": 80257,
+            "actualEvaluationsUpperBound": 239998,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "held-back-frequency-and-release-1",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 30142,
+              "reservedEvaluations": 119999,
+              "trials": 2511,
+              "acceptedSteps": 2336,
+              "rejectedSteps": 175,
+              "derivativeEvaluations": 30131,
+              "outputEvaluations": 11
+            },
+            {
+              "id": "held-back-frequency-and-release-2",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 50115,
+              "reservedEvaluations": 119999,
+              "trials": 4176,
+              "acceptedSteps": 3891,
+              "rejectedSteps": 285,
+              "derivativeEvaluations": 50104,
+              "outputEvaluations": 11
+            }
+          ]
+        },
+        {
+          "dt": 0.01,
+          "duration": 0.2,
+          "elapsedMs": 5.588488999999996,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 5.6740494136509056e-8,
+          "numericalSampledRateSeparation": 0.0037030113193949887,
+          "analyticSampledPositionSeparation": 5.551115123125783e-17,
+          "analyticSampledRateSeparation": 3.052946784265487e-11,
+          "maximumNumericalPositionError": 1.367980229649568e-7,
+          "maximumNumericalRateError": 0.005786608485202849,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 42,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9998,
+            "proposedReservedEvaluations": 239994,
+            "actualEvaluations": 80130,
+            "actualEvaluationsLowerBound": 80130,
+            "actualEvaluationsUpperBound": 239994,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "held-back-frequency-and-release-1",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 30033,
+              "reservedEvaluations": 119997,
+              "trials": 2501,
+              "acceptedSteps": 2333,
+              "rejectedSteps": 168,
+              "derivativeEvaluations": 30012,
+              "outputEvaluations": 21
+            },
+            {
+              "id": "held-back-frequency-and-release-2",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 50097,
+              "reservedEvaluations": 119997,
+              "trials": 4173,
+              "acceptedSteps": 3890,
+              "rejectedSteps": 283,
+              "derivativeEvaluations": 50076,
+              "outputEvaluations": 21
+            }
+          ]
+        },
+        {
+          "dt": 0.005,
+          "duration": 0.2,
+          "elapsedMs": 5.458648000000011,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 0.0013579747443083056,
+          "numericalSampledRateSeparation": 929.9114181948737,
+          "analyticSampledPositionSeparation": 0.0013581221810602707,
+          "analyticSampledRateSeparation": 929.9114254625788,
+          "maximumNumericalPositionError": 0.0000035901676765197343,
+          "maximumNumericalRateError": 0.005784145424043374,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 82,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9996,
+            "proposedReservedEvaluations": 239986,
+            "actualEvaluations": 80194,
+            "actualEvaluationsLowerBound": 80194,
+            "actualEvaluationsUpperBound": 239986,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "held-back-frequency-and-release-1",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 29897,
+              "reservedEvaluations": 119993,
+              "trials": 2488,
+              "acceptedSteps": 2329,
+              "rejectedSteps": 159,
+              "derivativeEvaluations": 29856,
+              "outputEvaluations": 41
+            },
+            {
+              "id": "held-back-frequency-and-release-2",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 50297,
+              "reservedEvaluations": 119993,
+              "trials": 4188,
+              "acceptedSteps": 3897,
+              "rejectedSteps": 291,
+              "derivativeEvaluations": 50256,
+              "outputEvaluations": 41
+            }
+          ]
+        },
+        {
+          "dt": 0.0025,
+          "duration": 0.2,
+          "elapsedMs": 5.286717999999993,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 0.001357976306382314,
+          "numericalSampledRateSeparation": 929.9114182748532,
+          "analyticSampledPositionSeparation": 0.0013581221810602707,
+          "analyticSampledRateSeparation": 929.9114254625788,
+          "maximumNumericalPositionError": 0.000003581517417948661,
+          "maximumNumericalRateError": 0.00577009886867208,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 162,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9993,
+            "proposedReservedEvaluations": 239994,
+            "actualEvaluations": 81126,
+            "actualEvaluationsLowerBound": 81126,
+            "actualEvaluationsUpperBound": 239994,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "held-back-frequency-and-release-1",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 30825,
+              "reservedEvaluations": 119997,
+              "trials": 2562,
+              "acceptedSteps": 2360,
+              "rejectedSteps": 202,
+              "derivativeEvaluations": 30744,
+              "outputEvaluations": 81
+            },
+            {
+              "id": "held-back-frequency-and-release-2",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 50301,
+              "reservedEvaluations": 119997,
+              "trials": 4185,
+              "acceptedSteps": 3901,
+              "rejectedSteps": 284,
+              "derivativeEvaluations": 50220,
+              "outputEvaluations": 81
+            }
+          ]
+        },
+        {
+          "dt": 0.00125,
+          "duration": 0.2,
+          "elapsedMs": 5.749392,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 0.6838011415164333,
+          "numericalSampledRateSeparation": 929.9114182486082,
+          "analyticSampledPositionSeparation": 0.6838007867728118,
+          "analyticSampledRateSeparation": 929.9114254625788,
+          "maximumNumericalPositionError": 0.000003521677872000105,
+          "maximumNumericalRateError": 0.005675426824670482,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 322,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9986,
+            "proposedReservedEvaluations": 239986,
+            "actualEvaluations": 83230,
+            "actualEvaluationsLowerBound": 83230,
+            "actualEvaluationsUpperBound": 239986,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "held-back-frequency-and-release-1",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 32105,
+              "reservedEvaluations": 119993,
+              "trials": 2662,
+              "acceptedSteps": 2400,
+              "rejectedSteps": 262,
+              "derivativeEvaluations": 31944,
+              "outputEvaluations": 161
+            },
+            {
+              "id": "held-back-frequency-and-release-2",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 51125,
+              "reservedEvaluations": 119993,
+              "trials": 4247,
+              "acceptedSteps": 3922,
+              "rejectedSteps": 325,
+              "derivativeEvaluations": 50964,
+              "outputEvaluations": 161
+            }
+          ]
+        },
+        {
+          "dt": 0.000625,
+          "duration": 0.2,
+          "elapsedMs": 6.265338,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 0.6838011734696612,
+          "numericalSampledRateSeparation": 929.9114182720405,
+          "analyticSampledPositionSeparation": 0.6838007867728118,
+          "analyticSampledRateSeparation": 929.9114254625788,
+          "maximumNumericalPositionError": 0.0000035526960617251677,
+          "maximumNumericalRateError": 0.005724058738146298,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 642,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9973,
+            "proposedReservedEvaluations": 239994,
+            "actualEvaluations": 89226,
+            "actualEvaluationsLowerBound": 89226,
+            "actualEvaluationsUpperBound": 239994,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "held-back-frequency-and-release-1",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 35613,
+              "reservedEvaluations": 119997,
+              "trials": 2941,
+              "acceptedSteps": 2520,
+              "rejectedSteps": 421,
+              "derivativeEvaluations": 35292,
+              "outputEvaluations": 321
+            },
+            {
+              "id": "held-back-frequency-and-release-2",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 53613,
+              "reservedEvaluations": 119997,
+              "trials": 4441,
+              "acceptedSteps": 4000,
+              "rejectedSteps": 441,
+              "derivativeEvaluations": 53292,
+              "outputEvaluations": 321
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "resolved-low-frequency-control",
+      "role": "Changed-input control: lower, noninteger-cycle frequencies should already show separation on 20 ms outputs.",
+      "frequenciesHz": [
+        3.1,
+        7.3
+      ],
+      "initial": {
+        "position": 0.6,
+        "rate": -0.2
+      },
+      "duration": 0.2,
+      "oracle": {
+        "referenceOutputInterval": 0.02,
+        "position": {
+          "time": 0.1404,
+          "value": 1.1470553594034685,
+          "distanceToCoarseOutput": 0.0003999999999999837
+        },
+        "rate": {
+          "time": 0.101,
+          "value": 38.151679002249516,
+          "distanceToCoarseOutput": 0.0010000000000000009
+        },
+        "analyticSearchInterval": 0.0002,
+        "searchEvaluations": 990,
+        "attemptedSearchTimes": 999,
+        "skippedCoarseGridTimes": 9,
+        "samplingGapEstimate": {
+          "position": 0.007921415263360123,
+          "rate": 0.30059690116547655,
+          "interpretation": "Conservative Lipschitz search-gap estimate for the analytic witness scan, in ordinary floating point. Witness values are evaluated analytic differences, not certified global maxima or interpolated solver output."
+        },
+        "prescribedWitnesses": [],
+        "proof": null
+      },
+      "grids": [
+        {
+          "dt": 0.02,
+          "duration": 0.2,
+          "elapsedMs": 0.30933900000000847,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 1.1469577966062223,
+          "numericalSampledRateSeparation": 38.12082858346339,
+          "analyticSampledPositionSeparation": 1.146957804708446,
+          "analyticSampledRateSeparation": 38.12082898544264,
+          "maximumNumericalPositionError": 1.3222799191692225e-7,
+          "maximumNumericalRateError": 0.000007240368065986047,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 22,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9999,
+            "proposedReservedEvaluations": 239998,
+            "actualEvaluations": 2410,
+            "actualEvaluationsLowerBound": 2410,
+            "actualEvaluationsUpperBound": 239998,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "resolved-low-frequency-control-1",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 791,
+              "reservedEvaluations": 119999,
+              "trials": 65,
+              "acceptedSteps": 54,
+              "rejectedSteps": 11,
+              "derivativeEvaluations": 780,
+              "outputEvaluations": 11
+            },
+            {
+              "id": "resolved-low-frequency-control-2",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 1619,
+              "reservedEvaluations": 119999,
+              "trials": 134,
+              "acceptedSteps": 118,
+              "rejectedSteps": 16,
+              "derivativeEvaluations": 1608,
+              "outputEvaluations": 11
+            }
+          ]
+        },
+        {
+          "dt": 0.01,
+          "duration": 0.2,
+          "elapsedMs": 0.1900749999999931,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 1.146957796563175,
+          "numericalSampledRateSeparation": 38.12082862252239,
+          "analyticSampledPositionSeparation": 1.146957804708446,
+          "analyticSampledRateSeparation": 38.12082898544264,
+          "maximumNumericalPositionError": 1.3183872293182075e-7,
+          "maximumNumericalRateError": 0.00000689730897907026,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 42,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9998,
+            "proposedReservedEvaluations": 239994,
+            "actualEvaluations": 2790,
+            "actualEvaluationsLowerBound": 2790,
+            "actualEvaluationsUpperBound": 239994,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "resolved-low-frequency-control-1",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 957,
+              "reservedEvaluations": 119997,
+              "trials": 78,
+              "acceptedSteps": 59,
+              "rejectedSteps": 19,
+              "derivativeEvaluations": 936,
+              "outputEvaluations": 21
+            },
+            {
+              "id": "resolved-low-frequency-control-2",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 1833,
+              "reservedEvaluations": 119997,
+              "trials": 151,
+              "acceptedSteps": 125,
+              "rejectedSteps": 26,
+              "derivativeEvaluations": 1812,
+              "outputEvaluations": 21
+            }
+          ]
+        },
+        {
+          "dt": 0.005,
+          "duration": 0.2,
+          "elapsedMs": 0.40399700000000394,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 1.1469577954901746,
+          "numericalSampledRateSeparation": 38.12082866112454,
+          "analyticSampledPositionSeparation": 1.146957804708446,
+          "analyticSampledRateSeparation": 38.12082898544264,
+          "maximumNumericalPositionError": 1.1675233302366195e-7,
+          "maximumNumericalRateError": 0.000006236661394432019,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 82,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9996,
+            "proposedReservedEvaluations": 239986,
+            "actualEvaluations": 3274,
+            "actualEvaluationsLowerBound": 3274,
+            "actualEvaluationsUpperBound": 239986,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "resolved-low-frequency-control-1",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 1157,
+              "reservedEvaluations": 119993,
+              "trials": 93,
+              "acceptedSteps": 75,
+              "rejectedSteps": 18,
+              "derivativeEvaluations": 1116,
+              "outputEvaluations": 41
+            },
+            {
+              "id": "resolved-low-frequency-control-2",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 2117,
+              "reservedEvaluations": 119993,
+              "trials": 173,
+              "acceptedSteps": 133,
+              "rejectedSteps": 40,
+              "derivativeEvaluations": 2076,
+              "outputEvaluations": 41
+            }
+          ]
+        },
+        {
+          "dt": 0.0025,
+          "duration": 0.2,
+          "elapsedMs": 0.4545929999999885,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 1.1469578070289024,
+          "numericalSampledRateSeparation": 38.12082878771948,
+          "analyticSampledPositionSeparation": 1.146957804708446,
+          "analyticSampledRateSeparation": 38.12082898544264,
+          "maximumNumericalPositionError": 4.5048125507651804e-8,
+          "maximumNumericalRateError": 0.000002504290780969143,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 162,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9993,
+            "proposedReservedEvaluations": 239994,
+            "actualEvaluations": 4686,
+            "actualEvaluationsLowerBound": 4686,
+            "actualEvaluationsUpperBound": 239994,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "resolved-low-frequency-control-1",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 1785,
+              "reservedEvaluations": 119997,
+              "trials": 142,
+              "acceptedSteps": 142,
+              "rejectedSteps": 0,
+              "derivativeEvaluations": 1704,
+              "outputEvaluations": 81
+            },
+            {
+              "id": "resolved-low-frequency-control-2",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 2901,
+              "reservedEvaluations": 119997,
+              "trials": 235,
+              "acceptedSteps": 164,
+              "rejectedSteps": 71,
+              "derivativeEvaluations": 2820,
+              "outputEvaluations": 81
+            }
+          ]
+        },
+        {
+          "dt": 0.00125,
+          "duration": 0.2,
+          "elapsedMs": 0.6431740000000019,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 1.1469578071982718,
+          "numericalSampledRateSeparation": 38.14974151450535,
+          "analyticSampledPositionSeparation": 1.146957804708446,
+          "analyticSampledRateSeparation": 38.14974157386237,
+          "maximumNumericalPositionError": 2.6599451641295957e-8,
+          "maximumNumericalRateError": 0.0000013621096028870738,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 322,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9986,
+            "proposedReservedEvaluations": 239986,
+            "actualEvaluations": 7486,
+            "actualEvaluationsLowerBound": 7486,
+            "actualEvaluationsUpperBound": 239986,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "resolved-low-frequency-control-1",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 3737,
+              "reservedEvaluations": 119993,
+              "trials": 298,
+              "acceptedSteps": 298,
+              "rejectedSteps": 0,
+              "derivativeEvaluations": 3576,
+              "outputEvaluations": 161
+            },
+            {
+              "id": "resolved-low-frequency-control-2",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 3749,
+              "reservedEvaluations": 119993,
+              "trials": 299,
+              "acceptedSteps": 298,
+              "rejectedSteps": 1,
+              "derivativeEvaluations": 3588,
+              "outputEvaluations": 161
+            }
+          ]
+        },
+        {
+          "dt": 0.000625,
+          "duration": 0.2,
+          "elapsedMs": 1.3352309999999932,
+          "sourceUnchanged": true,
+          "status": "completed",
+          "completedCount": 2,
+          "refusedCount": 0,
+          "globalRefusal": null,
+          "numericalSampledPositionSeparation": 1.1470078292607815,
+          "numericalSampledRateSeparation": 38.149741570689045,
+          "analyticSampledPositionSeparation": 1.1470078290480754,
+          "analyticSampledRateSeparation": 38.14974157386237,
+          "maximumNumericalPositionError": 1.671666430280716e-9,
+          "maximumNumericalRateError": 8.590879918557448e-8,
+          "errorScope": "Every law at every returned output time.",
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalRequestedSamples": 642,
+            "perModelEvaluationLimit": 120000,
+            "maxTrialsPerAdaptiveModel": 9973,
+            "proposedReservedEvaluations": 239994,
+            "actualEvaluations": 13938,
+            "actualEvaluationsLowerBound": 13938,
+            "actualEvaluationsUpperBound": 239994,
+            "interpretation": "Actual derivative and output evaluations from maintained diagnostics; model-preparation overhead and wall-clock duration are separate."
+          },
+          "outcomes": [
+            {
+              "id": "resolved-low-frequency-control-1",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 6969,
+              "reservedEvaluations": 119997,
+              "trials": 554,
+              "acceptedSteps": 554,
+              "rejectedSteps": 0,
+              "derivativeEvaluations": 6648,
+              "outputEvaluations": 321
+            },
+            {
+              "id": "resolved-low-frequency-control-2",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 6969,
+              "reservedEvaluations": 119997,
+              "trials": 554,
+              "acceptedSteps": 554,
+              "rejectedSteps": 0,
+              "derivativeEvaluations": 6648,
+              "outputEvaluations": 321
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "refusalCourses": [
+    {
+      "name": "aggregate-sample-ceiling",
+      "expectation": "20002 requested outputs for two laws exceed the unchanged 20000-sample ceiling; refuse the complete set before integration.",
+      "dt": 0.00002,
+      "duration": 0.2,
+      "elapsedMs": 0.11536999999999864,
+      "sourceUnchanged": true,
+      "status": "refused",
+      "completedCount": 0,
+      "refusedCount": 2,
+      "globalRefusal": {
+        "message": "The complete comparison requires 20002 samples; its limit is 20000. Reduce duration or increase the sample interval.",
+        "code": "comparison_sample_limit"
+      },
+      "numericalSampledPositionSeparation": null,
+      "numericalSampledRateSeparation": null,
+      "analyticSampledPositionSeparation": null,
+      "analyticSampledRateSeparation": null,
+      "maximumNumericalPositionError": null,
+      "maximumNumericalRateError": null,
+      "errorScope": "Completed laws only; no error or separation claim for the full set.",
+      "work": {
+        "maxTotalEvaluations": 240000,
+        "maxTotalSamples": 20000,
+        "totalRequestedSamples": 20002,
+        "perModelEvaluationLimit": 120000,
+        "maxTrialsPerAdaptiveModel": 9166,
+        "proposedReservedEvaluations": 239986,
+        "actualEvaluations": 0,
+        "actualEvaluationsLowerBound": 0,
+        "actualEvaluationsUpperBound": 0,
+        "interpretation": "Whole request refused before numerical execution. Prospective reservation is not spent work."
+      },
+      "outcomes": [
+        {
+          "id": "integer-cycle-alias-1",
+          "status": "refused",
+          "error": {
+            "message": "The complete comparison requires 20002 samples; its limit is 20000. Reduce duration or increase the sample interval.",
+            "code": "comparison_sample_limit"
+          },
+          "actualEvaluations": null,
+          "reservedEvaluations": null
+        },
+        {
+          "id": "integer-cycle-alias-2",
+          "status": "refused",
+          "error": {
+            "message": "The complete comparison requires 20002 samples; its limit is 20000. Reduce duration or increase the sample interval.",
+            "code": "comparison_sample_limit"
+          },
+          "actualEvaluations": null,
+          "reservedEvaluations": null
+        }
+      ]
+    },
+    {
+      "name": "long-fast-work-exhaustion",
+      "expectation": "A longer fast motion may exhaust the unchanged equal-share adaptive budget. Preserve every refusal and do not increase the policy.",
+      "dt": 0.02,
+      "duration": 4,
+      "elapsedMs": 16.133117,
+      "sourceUnchanged": true,
+      "status": "refused",
+      "completedCount": 0,
+      "refusedCount": 2,
+      "globalRefusal": null,
+      "numericalSampledPositionSeparation": null,
+      "numericalSampledRateSeparation": null,
+      "analyticSampledPositionSeparation": null,
+      "analyticSampledRateSeparation": null,
+      "maximumNumericalPositionError": null,
+      "maximumNumericalRateError": null,
+      "errorScope": "Completed laws only; no error or separation claim for the full set.",
+      "work": {
+        "maxTotalEvaluations": 240000,
+        "maxTotalSamples": 20000,
+        "totalRequestedSamples": 402,
+        "perModelEvaluationLimit": 120000,
+        "maxTrialsPerAdaptiveModel": 9983,
+        "proposedReservedEvaluations": 239994,
+        "actualEvaluations": null,
+        "actualEvaluationsLowerBound": 0,
+        "actualEvaluationsUpperBound": 239994,
+        "interpretation": "The maintained executor does not return partial diagnostics after failure. Only completed-path work is measured; the reservation is an upper bound, not a fabricated failure count."
+      },
+      "outcomes": [
+        {
+          "id": "held-back-frequency-and-release-1",
+          "status": "refused",
+          "error": {
+            "message": "Adaptive dynamics exhausted its complete-run work budget; no partial prediction returned.",
+            "code": "step_limit"
+          },
+          "actualEvaluations": null,
+          "reservedEvaluations": 119997
+        },
+        {
+          "id": "held-back-frequency-and-release-2",
+          "status": "refused",
+          "error": {
+            "message": "Adaptive dynamics exhausted its complete-run work budget; no partial prediction returned.",
+            "code": "step_limit"
+          },
+          "actualEvaluations": null,
+          "reservedEvaluations": 119997
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Hypothetical authored laws; no fitted observations, physical acquisition, probability or model-ranking evidence.",
+    "Analytic witnesses demonstrate actual intersample differences; the dense analytic scan does not assert a certified global maximum.",
+    "Numerical accuracy is measured against the independent formula only at returned times. No interpolation or unreported internal solver states are used.",
+    "Per-run work and sample ceilings remain unchanged. Failed-run actual evaluation counts remain unknown unless refusal occurs before execution.",
+    "Elapsed times are measurements from this specific execution environment, not performance promises.",
+    "Finer output can expose these courses but agreement across one or several grids does not certify general freedom from aliasing."
+  ]
+}

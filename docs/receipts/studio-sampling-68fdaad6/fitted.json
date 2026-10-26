@@ -1,0 +1,924 @@
+{
+  "schema": "worldlaw.fitted-output-sampling/v1",
+  "context": "renpo-receiving",
+  "runtime": "v22.23.4",
+  "policy": {
+    "maxTotalEvaluations": 240000,
+    "maxTotalSamples": 20000
+  },
+  "sourceHashes": {
+    "experiments/studio-fitted-sampling.mjs": "3ba3228ce08b07bfff129e732e806ed1c1841bad88c89124ab9e0d9e6af7f283",
+    "src/session.mjs": "fd45a1b6510c3114fb2d02efca74eacc1a92d95b1cc93e88fa3f0b0b4e8625d4",
+    "src/science/torque-discovery.mjs": "29612d3907c02a5818f593d8fb8bf8c231215959efdb130b28c3171f573c79fe",
+    "src/science/studio-dynamics.mjs": "dc6e708c0036e224cf8af8beb43b51cb9162ce0d6849d9f0b925bab60641a203",
+    "src/science/studio-dynamics-comparison.mjs": "94573074b0cb0af9e7ecf2d7cae3efb1d1ad2de66d287462f693508ba4383b1c"
+  },
+  "courses": [
+    {
+      "id": "fitted-50hz",
+      "frequencyHz": 50,
+      "position": 1,
+      "rate": 0,
+      "duration": 0.2,
+      "witnessTime": 0.01,
+      "hiddenThroughDt": 0.02,
+      "revealingDt": 0.01,
+      "originalRows": 512,
+      "fits": [
+        {
+          "id": "command",
+          "equation": "τ = -98696·u",
+          "coefficient": -98696.04401089356,
+          "relativeCoefficientError": 2.948834550402179e-16,
+          "trainingRMSE": 2.3490291936599144e-11,
+          "scoreDelta": 0
+        },
+        {
+          "id": "spring",
+          "equation": "τ = -98696·θ",
+          "coefficient": -98696.04401089356,
+          "relativeCoefficientError": 2.948834550402179e-16,
+          "trainingRMSE": 2.3490291936599144e-11,
+          "scoreDelta": 0
+        }
+      ],
+      "discoveryOptions": {
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "noiseSigma": 0.01,
+        "maxTerms": 4,
+        "ambiguityDelta": 6
+      },
+      "rank": {
+        "fullLibraryRank": 6,
+        "librarySize": 7,
+        "identifiability": "insufficient_excitation"
+      },
+      "witness": {
+        "time": 0.01,
+        "command": {
+          "position": 1,
+          "rate": 0
+        },
+        "spring": {
+          "position": -1,
+          "rate": -3.84734138744358e-14
+        },
+        "positionSeparation": 2
+      },
+      "sourceSHA256": "7bddf02fa7b139ad990a5eb2c9d9ef319725e8a733a7de9071049a1c4029cfd7",
+      "sourceUnchanged": true,
+      "sourceOnlyNotebookUnchanged": true,
+      "grids": [
+        {
+          "dt": 0.02,
+          "status": "completed",
+          "maxSampledPositionSpread": 7.518042666188052e-8,
+          "maxSampledRateSpread": 0.0006152366265261833,
+          "maxPositionError": 7.518042666188052e-8,
+          "maxRateError": 0.0006152366279889508,
+          "totalSamples": 22,
+          "actualEvaluations": 10210,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 22,
+            "samplesPerModel": 11,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9999,
+            "totalReservedEvaluations": 239998,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 11 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 179,
+              "reservedEvaluations": 119999
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 10031,
+              "reservedEvaluations": 119999
+            }
+          ]
+        },
+        {
+          "dt": 0.01,
+          "status": "completed",
+          "maxSampledPositionSpread": 1.999999996243345,
+          "maxSampledRateSpread": 0.0006142845641514683,
+          "maxPositionError": 7.505329258084004e-8,
+          "maxRateError": 0.0006142845656142358,
+          "totalSamples": 42,
+          "actualEvaluations": 10974,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 42,
+            "samplesPerModel": 21,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9998,
+            "totalReservedEvaluations": 239994,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 21 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 381,
+              "reservedEvaluations": 119997
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 10593,
+              "reservedEvaluations": 119997
+            }
+          ]
+        },
+        {
+          "dt": 0.005,
+          "status": "completed",
+          "maxSampledPositionSpread": 1.9999999962590054,
+          "maxSampledRateSpread": 314.15926477364764,
+          "maxPositionError": 0.0000018995208193723087,
+          "maxRateError": 0.0006120714855616869,
+          "totalSamples": 82,
+          "actualEvaluations": 11398,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 82,
+            "samplesPerModel": 41,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9996,
+            "totalReservedEvaluations": 239986,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 41 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 833,
+              "reservedEvaluations": 119993
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 10565,
+              "reservedEvaluations": 119993
+            }
+          ]
+        },
+        {
+          "dt": 0.0025,
+          "status": "completed",
+          "maxSampledPositionSpread": 1.999999996327472,
+          "maxSampledRateSpread": 314.15926477838497,
+          "maxPositionError": 0.0000018483932213038687,
+          "maxRateError": 0.0005956724822685986,
+          "totalSamples": 162,
+          "actualEvaluations": 12438,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 162,
+            "samplesPerModel": 81,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9993,
+            "totalReservedEvaluations": 239994,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 81 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 1785,
+              "reservedEvaluations": 119997
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 10653,
+              "reservedEvaluations": 119997
+            }
+          ]
+        },
+        {
+          "dt": 0.00125,
+          "status": "completed",
+          "maxSampledPositionSpread": 1.9999999961357897,
+          "maxSampledRateSpread": 314.1592647514494,
+          "maxPositionError": 0.0000019420610546684877,
+          "maxRateError": 0.0006258174093315903,
+          "totalSamples": 322,
+          "actualEvaluations": 15430,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 322,
+            "samplesPerModel": 161,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9986,
+            "totalReservedEvaluations": 239986,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 161 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 3737,
+              "reservedEvaluations": 119993
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 11693,
+              "reservedEvaluations": 119993
+            }
+          ]
+        },
+        {
+          "dt": 0.000625,
+          "status": "completed",
+          "maxSampledPositionSpread": 1.9999999964951571,
+          "maxSampledRateSpread": 314.15926484651095,
+          "maxPositionError": 0.0000017979192890444093,
+          "maxRateError": 0.0005800319056356516,
+          "totalSamples": 642,
+          "actualEvaluations": 21222,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 642,
+            "samplesPerModel": 321,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9973,
+            "totalReservedEvaluations": 239994,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 321 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 6969,
+              "reservedEvaluations": 119997
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 14253,
+              "reservedEvaluations": 119997
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "held-fitted-100hz",
+      "frequencyHz": 100,
+      "position": 0.37,
+      "rate": 0,
+      "duration": 0.2,
+      "witnessTime": 0.005,
+      "hiddenThroughDt": 0.01,
+      "revealingDt": 0.005,
+      "originalRows": 512,
+      "fits": [
+        {
+          "id": "command",
+          "equation": "τ = -394780·u",
+          "coefficient": -394784.17604357423,
+          "relativeCoefficientError": 2.948834550402179e-16,
+          "trainingRMSE": 9.396116774639658e-11,
+          "scoreDelta": 0
+        },
+        {
+          "id": "spring",
+          "equation": "τ = -394780·θ",
+          "coefficient": -394784.17604357423,
+          "relativeCoefficientError": 2.948834550402179e-16,
+          "trainingRMSE": 9.396116774639658e-11,
+          "scoreDelta": 0
+        }
+      ],
+      "discoveryOptions": {
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "noiseSigma": 0.01,
+        "maxTerms": 4,
+        "ambiguityDelta": 6
+      },
+      "rank": {
+        "fullLibraryRank": 6,
+        "librarySize": 7,
+        "identifiability": "insufficient_excitation"
+      },
+      "witness": {
+        "time": 0.005,
+        "command": {
+          "position": 0.37,
+          "rate": 0
+        },
+        "spring": {
+          "position": -0.37,
+          "rate": -2.847032626708249e-14
+        },
+        "positionSeparation": 0.74
+      },
+      "sourceSHA256": "a26ed4381643911dfa7557463d7b49db2e0b0b132b299a8fd4b6385f65af02fa",
+      "sourceUnchanged": true,
+      "sourceOnlyNotebookUnchanged": true,
+      "grids": [
+        {
+          "dt": 0.02,
+          "status": "completed",
+          "maxSampledPositionSpread": 5.6755102895156284e-8,
+          "maxSampledRateSpread": 0.00092611656643804,
+          "maxPositionError": 5.6755102895156284e-8,
+          "maxRateError": 0.0009261165686029359,
+          "totalSamples": 22,
+          "actualEvaluations": 20170,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 22,
+            "samplesPerModel": 11,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9999,
+            "totalReservedEvaluations": 239998,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 11 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 179,
+              "reservedEvaluations": 119999
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 19991,
+              "reservedEvaluations": 119999
+            }
+          ]
+        },
+        {
+          "dt": 0.01,
+          "status": "completed",
+          "maxSampledPositionSpread": 5.674337388850148e-8,
+          "maxSampledRateSpread": 0.0009259604817595246,
+          "maxPositionError": 5.674337388850148e-8,
+          "maxRateError": 0.0009259604839244206,
+          "totalSamples": 42,
+          "actualEvaluations": 20334,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 42,
+            "samplesPerModel": 21,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9998,
+            "totalReservedEvaluations": 239994,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 21 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 381,
+              "reservedEvaluations": 119997
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 19953,
+              "reservedEvaluations": 119997
+            }
+          ]
+        },
+        {
+          "dt": 0.005,
+          "status": "completed",
+          "maxSampledPositionSpread": 0.7399999985827603,
+          "maxSampledRateSpread": 0.0009253588099724652,
+          "maxPositionError": 5.6695361849712356e-8,
+          "maxRateError": 0.0009253588121373612,
+          "totalSamples": 82,
+          "actualEvaluations": 20770,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 82,
+            "samplesPerModel": 41,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9996,
+            "totalReservedEvaluations": 239986,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 41 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 833,
+              "reservedEvaluations": 119993
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 19937,
+              "reservedEvaluations": 119993
+            }
+          ]
+        },
+        {
+          "dt": 0.0025,
+          "status": "completed",
+          "maxSampledPositionSpread": 0.7399999985879773,
+          "maxSampledRateSpread": 232.47785592599357,
+          "maxPositionError": 0.0000014540284524395373,
+          "maxRateError": 0.0009252102205112466,
+          "totalSamples": 162,
+          "actualEvaluations": 21474,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 162,
+            "samplesPerModel": 81,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9993,
+            "totalReservedEvaluations": 239994,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 81 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 1785,
+              "reservedEvaluations": 119997
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 19689,
+              "reservedEvaluations": 119997
+            }
+          ]
+        },
+        {
+          "dt": 0.00125,
+          "status": "completed",
+          "maxSampledPositionSpread": 0.7399999985960819,
+          "maxSampledRateSpread": 232.47785592704744,
+          "maxPositionError": 0.000001425800979240399,
+          "maxRateError": 0.0009074135712236641,
+          "totalSamples": 322,
+          "actualEvaluations": 25030,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 322,
+            "samplesPerModel": 161,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9986,
+            "totalReservedEvaluations": 239986,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 161 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 3737,
+              "reservedEvaluations": 119993
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 21293,
+              "reservedEvaluations": 119993
+            }
+          ]
+        },
+        {
+          "dt": 0.000625,
+          "status": "completed",
+          "maxSampledPositionSpread": 0.7399999985977929,
+          "maxSampledRateSpread": 232.47785593431772,
+          "maxPositionError": 0.0000014294203917340735,
+          "maxRateError": 0.0009097744611569924,
+          "totalSamples": 642,
+          "actualEvaluations": 30822,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 642,
+            "samplesPerModel": 321,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9973,
+            "totalReservedEvaluations": 239994,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 321 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 6969,
+              "reservedEvaluations": 119997
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 23853,
+              "reservedEvaluations": 119997
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "resolved-fitted-3_1hz",
+      "frequencyHz": 3.1,
+      "position": 0.6,
+      "rate": 0,
+      "duration": 0.2,
+      "witnessTime": 0.16,
+      "hiddenThroughDt": null,
+      "revealingDt": 0.02,
+      "originalRows": 512,
+      "fits": [
+        {
+          "id": "command",
+          "equation": "τ = -379.39·u",
+          "coefficient": -379.3875931778747,
+          "relativeCoefficientError": 5.993176359265615e-16,
+          "trainingRMSE": 1.7657615131025297e-13,
+          "scoreDelta": 0
+        },
+        {
+          "id": "spring",
+          "equation": "τ = -379.39·θ",
+          "coefficient": -379.3875931778747,
+          "relativeCoefficientError": 5.993176359265615e-16,
+          "trainingRMSE": 1.7657615131025297e-13,
+          "scoreDelta": 0
+        }
+      ],
+      "discoveryOptions": {
+        "terms": [
+          "command",
+          "rate",
+          "coulomb",
+          "spring",
+          "gravity",
+          "quadratic",
+          "bias"
+        ],
+        "noiseSigma": 0.01,
+        "maxTerms": 4,
+        "ambiguityDelta": 6
+      },
+      "rank": {
+        "fullLibraryRank": 6,
+        "librarySize": 7,
+        "identifiability": "insufficient_excitation"
+      },
+      "witness": {
+        "time": 0.16,
+        "command": {
+          "position": 0.6,
+          "rate": 0
+        },
+        "spring": {
+          "position": -0.5998105135699799,
+          "rate": -0.2936885064111323
+        },
+        "positionSeparation": 1.19981051356998
+      },
+      "sourceSHA256": "1fdd92665c0e67dd7455e9a2dd85dc517f6fae9ac219a7af8f5f530813bf060a",
+      "sourceUnchanged": true,
+      "sourceOnlyNotebookUnchanged": true,
+      "grids": [
+        {
+          "dt": 0.02,
+          "status": "completed",
+          "maxSampledPositionSpread": 1.1998105101864867,
+          "maxSampledRateSpread": 11.685801910313256,
+          "maxPositionError": 4.242448381486241e-8,
+          "maxRateError": 0.0000010388101626679358,
+          "totalSamples": 22,
+          "actualEvaluations": 970,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 22,
+            "samplesPerModel": 11,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9999,
+            "totalReservedEvaluations": 239998,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 11 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 179,
+              "reservedEvaluations": 119999
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 11,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 791,
+              "reservedEvaluations": 119999
+            }
+          ]
+        },
+        {
+          "dt": 0.01,
+          "status": "completed",
+          "maxSampledPositionSpread": 1.199810509985446,
+          "maxSampledRateSpread": 11.685801910194334,
+          "maxPositionError": 4.304665329746271e-8,
+          "maxRateError": 0.000001093297586907127,
+          "totalSamples": 42,
+          "actualEvaluations": 1314,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 42,
+            "samplesPerModel": 21,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9998,
+            "totalReservedEvaluations": 239994,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 21 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 381,
+              "reservedEvaluations": 119997
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 21,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 933,
+              "reservedEvaluations": 119997
+            }
+          ]
+        },
+        {
+          "dt": 0.005,
+          "status": "completed",
+          "maxSampledPositionSpread": 1.199810510645865,
+          "maxSampledRateSpread": 11.685801913595146,
+          "maxPositionError": 3.752053473471406e-8,
+          "maxRateError": 8.91030905947332e-7,
+          "totalSamples": 82,
+          "actualEvaluations": 1990,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 82,
+            "samplesPerModel": 41,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9996,
+            "totalReservedEvaluations": 239986,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 41 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 833,
+              "reservedEvaluations": 119993
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 41,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 1157,
+              "reservedEvaluations": 119993
+            }
+          ]
+        },
+        {
+          "dt": 0.0025,
+          "status": "completed",
+          "maxSampledPositionSpread": 1.1998334581489987,
+          "maxSampledRateSpread": 11.685801934951032,
+          "maxPositionError": 4.583231238974861e-9,
+          "maxRateError": 1.1319292703149131e-7,
+          "totalSamples": 162,
+          "actualEvaluations": 3570,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 162,
+            "samplesPerModel": 81,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9993,
+            "totalReservedEvaluations": 239994,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 81 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 1785,
+              "reservedEvaluations": 119997
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 81,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 1785,
+              "reservedEvaluations": 119997
+            }
+          ]
+        },
+        {
+          "dt": 0.00125,
+          "status": "completed",
+          "maxSampledPositionSpread": 1.1999998149411568,
+          "maxSampledRateSpread": 11.685913672815168,
+          "maxPositionError": 2.8966290477328016e-10,
+          "maxRateError": 7.054457462629671e-9,
+          "totalSamples": 322,
+          "actualEvaluations": 7474,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 322,
+            "samplesPerModel": 161,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9986,
+            "totalReservedEvaluations": 239986,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 161 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 3737,
+              "reservedEvaluations": 119993
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 161,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 3737,
+              "reservedEvaluations": 119993
+            }
+          ]
+        },
+        {
+          "dt": 0.000625,
+          "status": "completed",
+          "maxSampledPositionSpread": 1.1999998149448,
+          "maxSampledRateSpread": 11.686723770232986,
+          "maxPositionError": 1.8204993068593467e-11,
+          "maxRateError": 4.4028558576769683e-10,
+          "totalSamples": 642,
+          "actualEvaluations": 13938,
+          "work": {
+            "maxTotalEvaluations": 240000,
+            "maxTotalSamples": 20000,
+            "totalSamples": 642,
+            "samplesPerModel": 321,
+            "perModelEvaluationLimit": 120000,
+            "adaptiveMaxTrials": 9973,
+            "totalReservedEvaluations": 239994,
+            "evaluationUnit": "One derivative evaluation or one returned-sample torque evaluation.",
+            "description": "All 2 original laws receive the same 120000-evaluation ceiling; 321 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed."
+          },
+          "outcomes": [
+            {
+              "id": "command",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 6969,
+              "reservedEvaluations": 119997
+            },
+            {
+              "id": "spring",
+              "status": "completed",
+              "samples": 321,
+              "method": "adaptive_RK4_step_doubling",
+              "actualEvaluations": 6969,
+              "reservedEvaluations": 119997
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "explanation": "Numerically equal command and angle make command-only and spring-only torque laws unidentifiable on this authored source. Independent rate excitation excludes a rate-only substitute. Both one-term laws are fitted by ordinary defaults. With 512 rows, the next-term score penalty log(512)=6.238 exceeds the default ambiguity delta 6; the full declared library is still searched.",
+  "analyticReference": "At declared inertia 1 and fixed command 0, the fitted command law gives zero acceleration. The spring law approximates q(t)=q0 cos(2πft)+(v0/(2πf))sin(2πft). The comparison oracle uses the authored frequency, not fitted trajectory samples.",
+  "limits": [
+    "Authored original observations, no physical measurement or winner claim.",
+    "Insufficient excitation is intentional and remains reported; training competition is not physical equivalence.",
+    "A 100 Hz fitted spring aliases on both 20 ms and 10 ms grids. Agreement on successive grids is not a general resolution certificate.",
+    "Slower playback cannot recover unreturned intermediate states. Finer output requires explicit bounded recomputation.",
+    "All current competitors use the unchanged shared work and sample ceilings. No models or fitted answers are injected into the application."
+  ]
+}
