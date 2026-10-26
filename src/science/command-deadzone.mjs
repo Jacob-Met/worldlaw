@@ -20,11 +20,11 @@ export function mapDeadzone(command, width) {
 }
 const mapped = (rows,width) => rows.map(row=>({...row,command:mapDeadzone(row.command,width)}));
 
-export function compareCommandDeadzones(training, widths, options, {maxWork=MAX_DEADZONE_WORK,maxRobustWork=SOFT_L1_MAX_WORK}={}) {
-  const original=validateRows(training); widths=checkedWidths(widths);
+export function reserveCommandMappingWork(original, mappingCount, options, {maxWork=MAX_DEADZONE_WORK,maxRobustWork=SOFT_L1_MAX_WORK}={}) {
+  if(!Number.isSafeInteger(mappingCount)||mappingCount<1||mappingCount>256)throw Error("Invalid complete mapping population.");
   // The maintained estimator owns iteration/backtracking accounting. Reserve
   // its complete search for every width before starting even the first fit.
-  const robustReserved=widths.length*discoveryRobustWork(original.length,options);
+  const robustReserved=mappingCount*discoveryRobustWork(original.length,options);
   if(!Number.isSafeInteger(maxRobustWork)||maxRobustWork<1||maxRobustWork>SOFT_L1_MAX_WORK||robustReserved>maxRobustWork)
     throw Error('Complete dead-zone family exceeds the soft-L1 work limit; no partial family or least-squares fallback accepted.');
   // Reserve the complete library before invoking its fitter. Counting every
@@ -37,9 +37,15 @@ export function compareCommandDeadzones(training, widths, options, {maxWork=MAX_
     let k=0;for(let bit=0;bit<n;bit++)if(mask&(1<<bit))k++;
     perRow+=1+k+k*k;
   }
-  const reservedWork=widths.length*original.length*perRow;
+  const reservedWork=mappingCount*original.length*perRow;
   if(!Number.isSafeInteger(maxWork)||maxWork<1||maxWork>MAX_DEADZONE_WORK||reservedWork>maxWork)
     throw Error('Complete dead-zone comparison exceeds the declared work limit; no partial family accepted.');
+  return {reserved:reservedWork,limit:maxWork,robustReserved,robustLimit:maxRobustWork};
+}
+
+export function compareCommandDeadzones(training, widths, options, {maxWork=MAX_DEADZONE_WORK,maxRobustWork=SOFT_L1_MAX_WORK}={}) {
+  const original=validateRows(training); widths=checkedWidths(widths);
+  const work=reserveCommandMappingWork(original,widths.length,options,{maxWork,maxRobustWork});
   const candidates=widths.map(width=>{
     const result=discover(mapped(original,width),options);
     return {width,model:result.selected,diagnostics:result.diagnostics,options:result.options,
@@ -52,7 +58,7 @@ export function compareCommandDeadzones(training, widths, options, {maxWork=MAX_
   const selected=ranked[0];
   const competitiveWidths=ranked.filter(c=>c.model.metrics.score-selected.model.metrics.score<=admitted.ambiguityDelta).map(c=>c.width);
   return {candidates,selected,competitiveWidths,options:admitted,training:original,
-    work:{reserved:reservedWork,limit:maxWork,robustReserved,robustLimit:maxRobustWork},
+    work,
     interpretation:'Training-only finite-grid comparison of symmetric, memoryless command mappings. Width and gain may be confounded. Score differences are heuristic, not confidence or physical actuator identification. Every selected structure is conditional on its mapping; held-out observations do not choose widths or terms.'};
 }
 export function predictDeadzone(candidate,row) {

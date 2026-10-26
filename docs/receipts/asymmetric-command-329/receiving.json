@@ -1,0 +1,28 @@
+{
+  "schema": "worldlaw.asymmetric-command-receiving/v1",
+  "base": "44f612a1f181058af855e8a5d6768ec6feb49019",
+  "tested_source": {
+    "src/science/command-deadzone.mjs": "2fb1ef87fc1233cbd4ab5ae310f9e2b1da85695a582e3b1d52a9bf8b83d1da03",
+    "src/science/asymmetric-command-deadzone.mjs": "162ad326344960de5e51b145c5eef7debfda8d7f2fd854f5f1d642dc315924c2",
+    "src/science/command-deadzone-panel.mjs": "9c9b826f4d6cf4d4609a8809c4e7148a020b867370f2d2310756176d1c9f2be6",
+    "tests/asymmetric-command-deadzone.test.mjs": "745397f9d202d64a22f5ffe82109149c14d6c3f524e591e9a1a001b706e78d7c",
+    "scripts/asymmetric-command-deadzone-browser.mjs": "705684f0ce8c84d5764d6749101754f8d207ba59207d49c720bfad08cac796a2"
+  },
+  "native": {
+    "original_symmetric_tests": 9,
+    "new_asymmetric_tests": 6,
+    "failures": 0
+  },
+  "browser": {
+    "asymmetric_checks": 8,
+    "existing_symmetric_checks": 10,
+    "chromium": "156.0.8078.47",
+    "sandbox": "admitted",
+    "desktop_width": 1440,
+    "narrow_width": 390,
+    "page_errors": []
+  },
+  "application_smoke": "PASS on composed source",
+  "review": "Independent MECHANISM worker accepted complete mapping reservation, model reuse and original command custody. Its inherited width-field concern was removed; symmetric predictor now refuses asymmetric candidates.",
+  "scope": "Authored numerical controls and actual local Studio browser receiving, not physical identification or a model probability."
+}
