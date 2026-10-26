@@ -1,3 +1,4 @@
+import {mountVelocityComparison} from './velocity-panel.mjs';
 import {mountInertiaChallenge} from './inertia-challenge-panel.mjs';
 import {mountViscousComparison} from './viscous-panel.mjs';
 import {identifyInertia} from './inertia-identification.mjs';
@@ -86,6 +87,7 @@ export function mountInertiaIdentification(root,{applyParameters,getNotebook,app
   const challengePanel=mountInertiaChallenge($('inertia-challenge-host'),{getTraining:()=>result?.primary.status==='candidate'?{record,settings:settings()}:null});
   const viscousHost=document.createElement('div');viscousHost.id='inertia-viscous-host';$('inertia-challenge-host').after(viscousHost);
   const viscousPanel=mountViscousComparison(viscousHost,{applyParameters,getNotebook,applyRelease});
+  const velocityHost=document.createElement('div');velocityHost.id='inertia-velocity-host';viscousHost.after(velocityHost);const velocityPanel=mountVelocityComparison(velocityHost);
   let resize;window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});$('inertia-lab').addEventListener('toggle',()=>{if($('inertia-lab').open){draw();challengePanel.redraw();}});
-  return {contextChanged(){generation++;viscousPanel.contextChanged();if(pendingRead){pendingRead=false;$('inertia-status').textContent='Response notebook changed. Pending motion-file read canceled; open again or refit the displayed source.';}$('inertia-same-apparatus').checked=false;$('inertia-apply').disabled=true;}};
+  return {contextChanged(){generation++;viscousPanel.contextChanged();velocityPanel.contextChanged();if(pendingRead){pendingRead=false;$('inertia-status').textContent='Response notebook changed. Pending motion-file read canceled; open again or refit the displayed source.';}$('inertia-same-apparatus').checked=false;$('inertia-apply').disabled=true;}};
 }

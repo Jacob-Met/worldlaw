@@ -1,0 +1,43 @@
+{
+  "base": "653ae29f89a770e2811b5ed6a6d9b0360f0bacdd",
+  "nativeGroups": 66,
+  "launchedSmoke": true,
+  "baselineCouplingBrowserGroups": 42,
+  "newVelocityBrowserGroups": 15,
+  "finalBrowser": {
+    "sandbox": "Strict requireChromiumSandbox admission: namespace, PID/network namespaces, seccomp and TSYNC all Yes; exact positive status",
+    "exceptions": 0,
+    "externalRequests": 0,
+    "widths": [
+      1440,
+      390
+    ],
+    "states": [
+      "two-frequency training",
+      "single-frequency irregular training"
+    ],
+    "coefficientCellOverflow": 0
+  },
+  "independentReview": {
+    "workshop": "Unfamiliar off-diagonal M/D and negative G recovered to 1.50e-6; held-source RMSE 2.49e-6; changed held torque retained identical primary/coarser training fits; accessor rejected before execution.",
+    "wildside": "Panel stale-source, delayed-read, enablement, source labels and accessibility source review; no blocker.",
+    "earth": "Independent continuous single-frequency ambiguity/rank analysis."
+  },
+  "separatingControls": {
+    "twoFrequency": {
+      "g": 0.30000990494,
+      "heldRmse": 0.00001120714643084848
+    },
+    "irregularSingleFrequency": {
+      "numericalRank": 7,
+      "qrPivotRatio": 1118556.918,
+      "g": -1.287200907,
+      "heldRmse": 0.54503588053
+    },
+    "uniformSingleFrequency": {
+      "rank": 4,
+      "status": "unidentified"
+    }
+  },
+  "scope": "Conditional original-source weak-balance comparison of three declared constant families. No automatic model choice, inferred physical cause, or adoption of G into motion/release planning."
+}
