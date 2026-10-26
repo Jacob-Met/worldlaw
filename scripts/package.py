@@ -136,6 +136,7 @@ INCLUDE = (
     'experiments/rolling-origin.mjs',
 )
 REQUIRED = (
+    "src/stiffness/design.mjs", "src/stiffness/design-panel.mjs", "docs/STIFFNESS_INPUT_DESIGN.md",
     "src/science/robust-fit.mjs",
     "src/motion/metric-plane.mjs", "src/motion/metric-plane-panel.mjs", "src/motion/plane-path-reference.mjs",
     "src/motion/vendor/plane-homography.mjs", "src/motion/vendor/plane-homography-source.json",
