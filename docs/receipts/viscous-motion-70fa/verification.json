@@ -1,0 +1,181 @@
+{
+  "base": "a2089215476a23b1db2ac03e4a259cd11c2e7f4b",
+  "environment": {
+    "device": "authorized RDC Linux x64",
+    "node": "v22.23.4",
+    "browser": "installed Chrome, sandbox enabled",
+    "deployment": false
+  },
+  "native": {
+    "passed": 42,
+    "failed": 0,
+    "newGroups": 8,
+    "initialFailure": "Exact equal-diagonal PSD boundary .8 rejected by rounded sqrt product; corrected with sufficient min-diagonal inequality and retained rejection beyond the boundary."
+  },
+  "smoke": {
+    "passed": true
+  },
+  "browser": {
+    "checks": [
+      {
+        "name": "actual maintained server exposes the integrated lab and exact executable modules",
+        "passed": true
+      },
+      {
+        "name": "two actual acquisition actions preserve a first-probe loss then select reciprocal coupling",
+        "passed": true
+      },
+      {
+        "name": "real browser download retains input evidence and ordered acquisitions",
+        "passed": true
+      },
+      {
+        "name": "file reopen recomputes the model and never infers a virtual instrument from a source label",
+        "passed": true
+      },
+      {
+        "name": "renamed repeated fitting evidence is rejected without replacing valid notebook",
+        "passed": true
+      },
+      {
+        "name": "declared measured import accepts a separate response and retains source boundaries",
+        "passed": true
+      },
+      {
+        "name": "late file read cannot overwrite a newer experiment or its failure evidence",
+        "passed": true
+      },
+      {
+        "name": "no-coupling, directional and insufficient-excitation controls are visible in the real consumer",
+        "passed": true
+      },
+      {
+        "name": "trusted keyboard activation selects the proposed input",
+        "passed": true
+      },
+      {
+        "name": "field composition has actual vector content and no page overflow at 1440",
+        "passed": true
+      },
+      {
+        "name": "gauge composition has actual vector content and no page overflow at 1440",
+        "passed": true
+      },
+      {
+        "name": "field composition has actual vector content and no page overflow at 390",
+        "passed": true
+      },
+      {
+        "name": "gauge composition has actual vector content and no page overflow at 390",
+        "passed": true
+      },
+      {
+        "name": "reduced-motion preference and no uncaught errors or external requests",
+        "passed": true
+      },
+      {
+        "name": "maintained scalar Studio still receives its acquisition after the shared fitter extraction",
+        "passed": true
+      },
+      {
+        "name": "viscous alternative reaches the existing lab and exposes the original separate-motion failure",
+        "passed": true
+      },
+      {
+        "name": "real comparison download contains original inputs only and reopens into recomputed balances",
+        "passed": true
+      },
+      {
+        "name": "changed separate observations change visible errors and paths without changing either training fit",
+        "passed": true
+      },
+      {
+        "name": "omitted force and rank loss remain visible without successful fallback",
+        "passed": true
+      },
+      {
+        "name": "bad source and complete-work refusal invalidate the comparison while preserving the last admitted input",
+        "passed": true
+      },
+      {
+        "name": "new source intent fences a delayed file read",
+        "passed": true
+      },
+      {
+        "name": "trusted keyboard comparison activation works after settings invalidate earlier results",
+        "passed": true
+      },
+      {
+        "name": "actual viscous instrument stays legible and within the page at 1440",
+        "passed": true
+      },
+      {
+        "name": "actual viscous instrument stays legible and within the page at 390",
+        "passed": true
+      },
+      {
+        "name": "inferred cross loss reaches the actual motion controls only after explicit source pairing",
+        "passed": true
+      },
+      {
+        "name": "declared inferred loss executes all retained response models and visibly changes a new trajectory",
+        "passed": true
+      },
+      {
+        "name": "actual v3 motion download contains source inputs and reopens with the same computed cross-loss path",
+        "passed": true
+      },
+      {
+        "name": "invalid PSD inputs and obsolete schemas retain refusals instead of a fallback path",
+        "passed": true
+      },
+      {
+        "name": "changed source context revokes pairing and failed training has no copyable law",
+        "passed": true
+      },
+      {
+        "name": "trusted keyboard motion activation and actual playback use the inferred-loss samples",
+        "passed": true
+      },
+      {
+        "name": "cross-loss motion and editable declaration remain within the actual page at 1440",
+        "passed": true
+      },
+      {
+        "name": "cross-loss motion and editable declaration remain within the actual page at 390",
+        "passed": true
+      }
+    ],
+    "pass": true,
+    "events": {
+      "exceptions": [],
+      "outside": []
+    },
+    "node": "v22.23.4"
+  },
+  "independentOracle": {
+    "method": "Taylor matrix exponential with scaling and squaring; separate from product RK4/inertia factorization",
+    "maximumAngleErrorRad": {
+      "symmetric": 1.5929265191616526e-8,
+      "diagonal": 0.07908256706260236
+    },
+    "initialPosition": [
+      -0.41,
+      0.76
+    ],
+    "initialRate": [
+      0.33,
+      -0.24
+    ],
+    "samples": 101,
+    "duration": 4
+  },
+  "initialBrowserFailure": "Receiver expected mode view before pressing maintained expand button. Corrected to actual user action; complete rerun passed.",
+  "visualCorrection": "Scoped amber equation color and padding on existing dark motion surface; final desktop/narrow inspected.",
+  "limits": [
+    "Authored conditional numerical examples, not physical acquisition.",
+    "Affected native, smoke and browser paths were run; no full-repository or distribution-build claim.",
+    "No deployment claim."
+  ]
+}
+

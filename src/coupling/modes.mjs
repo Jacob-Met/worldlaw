@@ -2,7 +2,7 @@
  * Reuses fitted laws and existing trajectories; never learns inertia from static data.
  */
 import {predictCoupling,requireThat,pair} from './science.mjs';
-import {readDynamicsInputs,MATRIX_INPUT_SCHEMA} from './dynamics.mjs';
+import {readDynamicsInputs,MATRIX_INPUT_SCHEMA,LOSS_INPUT_SCHEMA} from './dynamics.mjs';
 import {readSymmetricInertia} from './inertia.mjs';
 const dot=(a,b)=>a[0]*b[0]+a[1]*b[1];
 const mv=(a,b)=>a.map(r=>dot(r,b));
@@ -13,13 +13,14 @@ export function deriveCoupledModes(model,rawInputs){
  const inputs=readDynamicsInputs(rawInputs);predictCoupling(model,[0,0]);
  const base={modelId:model.id,label:model.label??model.id};
  if(model.matrix[0][1]!==model.matrix[1][0])return {...base,status:'asymmetric',reason:'The fitted matrix is not symmetric. This real orthogonal stiffness-mode construction does not apply; the original candidate is retained.'};
- const scale=inputs.inertia.map(Math.sqrt),mass=inputs.schema===MATRIX_INPUT_SCHEMA?readSymmetricInertia(inputs.inertia,inputs.inertiaCross):null;
+ const scale=inputs.inertia.map(Math.sqrt),loss=inputs.schema===LOSS_INPUT_SCHEMA,mass=loss||inputs.schema===MATRIX_INPUT_SCHEMA?readSymmetricInertia(inputs.inertia,inputs.inertiaCross):null;
  const matrix=mass?mm(mm(mass.forceToMass,model.matrix),mass.fromMass):model.matrix.map((r,i)=>r.map((v,j)=>v/scale[i]/scale[j]));
  // atan2 handles either diagonal order and exactly repeated isotropic matrices.
  const angle=.5*Math.atan2(2*matrix[0][1],matrix[0][0]-matrix[1][1]);
  const c=Math.cos(angle),s=Math.sin(angle),basis=[[c,-s],[s,c]],inverse=transpose(basis);
  const stiffness=mm(mm(inverse,matrix),basis),bias=mv(inverse,mass?mv(mass.forceToMass,model.bias):model.bias.map((v,i)=>v/scale[i]));
- const massDamping=mass?mm(mm(mass.forceToMass,[[inputs.damping[0],0],[0,inputs.damping[1]]]),mass.fromMass):[[inputs.damping[0]/inputs.inertia[0],0],[0,inputs.damping[1]/inputs.inertia[1]]];
+ const lossMatrix=[[inputs.damping[0],loss?inputs.dampingCross:0],[loss?inputs.dampingCross:0,inputs.damping[1]]];
+ const massDamping=mass?mm(mm(mass.forceToMass,lossMatrix),mass.fromMass):[[inputs.damping[0]/inputs.inertia[0],0],[0,inputs.damping[1]/inputs.inertia[1]]];
  const damping=mm(mm(inverse,massDamping),basis);
  const magnitude=Math.max(...matrix.flat().map(Math.abs)),resolution=64*Number.EPSILON*magnitude+Number.MIN_VALUE;
  const values=[stiffness[0][0],stiffness[1][1]],separation=Math.hypot(matrix[0][0]-matrix[1][1],2*matrix[0][1]);

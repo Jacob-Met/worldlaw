@@ -20,7 +20,7 @@ The original `coupled-inertia-observations/v1` reader and default fit stay uncha
 - Frozen training coefficients on the separately supplied motion and its coarser source. Declared tolerance is a receiving criterion, not a calibrated confidence interval.
 - A complete quadrature reservation, including both legacy and alternative calculations, before fitting.
 
-Source labels and changing-block repetition screening do not authenticate independence. Sensor mixing, missing forces, nonconstant inertia or nonlinear drag can invalidate both offered laws. Overlapping weak windows are correlated. Smaller training residual alone is not evidence for a physical cause. This increment compares executable balances using supplied angles; it does not yet propagate the learned cross loss into future-motion simulation.
+Source labels and changing-block repetition screening do not authenticate independence. Sensor mixing, missing forces, nonconstant inertia or nonlinear drag can invalidate both offered laws. Overlapping weak windows are correlated. Smaller training residual alone is not evidence for a physical cause. These balance curves use supplied angles; the separate [inference-to-motion workflow](COUPLED_VISCOUS_MOTION.md) can now copy an admitted symmetric hypothesis into the maintained forward experiment after explicit source pairing and declaration.
 
 ## Executed evidence
 

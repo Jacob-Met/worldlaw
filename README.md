@@ -377,3 +377,5 @@ If the pivot is hidden, track the visible marker first and stage the plane decla
 ### Compare cross-coordinate viscous loss
 
 Coupling Lab can now infer a symmetric cross-loss coefficient beside its original diagonal inertia balance, then confront both frozen explanations with a separate motion. Original/coarser source rows, failed hypotheses and input-only save/reopen remain inspectable. Open the motion-identification instrument and choose **Can drag act across the two coordinates?** See [the equations, workflow and receiving evidence](docs/COUPLED_VISCOUS_LOSS.md).
+
+An admitted symmetric fit can now be copied into **Let the laws move** after explicit source pairing. The existing solver executes the full loss matrix, the mode view retains its transformed coupling, and version-3 motion downloads reopen from source inputs. See [inferred-loss motion, compatibility and numerical receiving](docs/COUPLED_VISCOUS_MOTION.md).
