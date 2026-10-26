@@ -26,6 +26,8 @@ INCLUDE = (
     "examples/metric-plane/fit.mp4", "examples/metric-plane/challenge.mp4",
     "examples/metric-plane/fit-plane.json", "examples/metric-plane/challenge-plane.json",
     "examples/metric-plane/truth.json",
+    # Exact authored decoded-video notebooks used by the starting-state receiver.
+    "examples/motion-prefix/fit-plane-notebook.json", "examples/motion-prefix/challenge-plane-notebook.json",
     # Maintained application routes and their exact shared-source dependencies.
     "motion-reference.html", "motion-reference.css",
     "src/motion/vendor/mechanism-core.mjs", "src/motion/vendor/mechanism-source.json",
