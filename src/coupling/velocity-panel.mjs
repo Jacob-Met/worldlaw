@@ -1,3 +1,4 @@
+import {mountVelocityReleases} from './velocity-release-panel.mjs';
 import {compareVelocityStudy,readVelocityStudy,exportVelocityStudy} from './velocity-comparison.mjs';
 import {createVelocityExample} from './velocity-example.mjs';
 const fmt=x=>typeof x==='number'&&Number.isFinite(x)?(x===0?'0':Math.abs(x)<.01||Math.abs(x)>=1e5?x.toExponential(4):x.toPrecision(6)):'—';
@@ -5,7 +6,7 @@ const familyNames={diagonal:'Diagonal loss',symmetric:'Symmetric loss',skew:'Sym
 const colors={diagonal:'#efb55a',symmetric:'#62c5ed',skew:'#a0dfa8'};
 function el(tag,text,attrs={}){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);return e;}
 function svg(tag,attrs={},text){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;return e;}
-export function mountVelocityComparison(host,{applyParameters,getNotebook}={}){
+export function mountVelocityComparison(host,{applyParameters,getNotebook,applyRelease}={}){
  const field=(id,label,value)=>'<label>'+label+'<input id="'+id+'" type="number" min="1" step="1" value="'+value+'"></label>';
  host.innerHTML=[
  '<details id="velocity-lab"><summary>Could a no-work velocity term explain the balance?</summary>',
@@ -24,11 +25,11 @@ export function mountVelocityComparison(host,{applyParameters,getNotebook}={}){
  '<p>Numerical full rank and admissible matrices do not establish identification. Interpolation can make one ambiguous circular motion appear full rank. Coarser-source agreement is a diagnostic, not an error bound; the separate source can reject a wrong candidate.</p>',
  '<details id="velocity-inspect"><summary>Inspect all original-source windows and diagnostics</summary><pre id="velocity-details"></pre></details>',
  '<div id="velocity-apply-controls" hidden><label><input id="velocity-same-apparatus" type="checkbox"> I declare that this motion source and the current response notebook describe the same apparatus, angle coordinates and torque conventions.</label><button id="velocity-apply" type="button" disabled>Copy candidate M, D and G to motion</button><p id="velocity-apply-note"></p></div>',
- '<p>No family is automatically selected. Copying requires explicit source pairing and a fresh motion declaration. Release planning keeps its separately offered diagonal and symmetric loss families.</p></div></details>',
+ '<p>No family is automatically selected. Copying requires explicit source pairing and a fresh motion declaration. The original loss-only release comparison remains available. A separate explicit release question below compares the skew alternative against both loss-only fits.</p></div></details>',
  '<style>#velocity-lab{margin-top:1rem;padding:1rem;border:1px solid #41575f;border-radius:.6rem;background:#10232b;color:#e9f0f2;min-width:0}#velocity-lab summary{font-weight:650;cursor:pointer}#velocity-lab p{line-height:1.55}.velocity-actions,.velocity-fields{display:flex;gap:.7rem;flex-wrap:wrap;align-items:end}.velocity-fields{margin:.8rem 0}.velocity-actions label,.velocity-fields label{display:grid;gap:.35rem;flex:1 1 180px;min-width:0}#velocity-lab input,#velocity-lab select{max-width:100%;min-width:0;box-sizing:border-box}#velocity-lab input[type=file]{width:100%;font-size:.9rem}.velocity-families{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:.8rem}.velocity-family{padding:.7rem;border:1px solid #48616b;border-radius:.4rem;min-width:0;background:#152e38}.velocity-family h4{margin:.1rem 0 .6rem}.velocity-family table{width:100%;table-layout:fixed;font-size:.8rem}.velocity-family th,.velocity-family td{padding:.3rem .1rem;overflow-wrap:anywhere;text-align:right}.velocity-family th{color:#d7e6eb}.velocity-family td{white-space:nowrap}.velocity-family th:first-child{text-align:left;width:10%}#velocity-legend{display:flex;flex-wrap:wrap;gap:.8rem}#velocity-plot{width:100%;height:auto;background:#0c1b21;border:1px solid #48616b}#velocity-error{color:#ffb4a5}#velocity-details{white-space:pre-wrap;overflow-wrap:anywhere;max-height:28rem;overflow:auto}@media(max-width:850px){.velocity-families{grid-template-columns:1fr}}@media(max-width:480px){#velocity-lab{padding:.65rem}.velocity-actions button,#velocity-run{width:100%}.velocity-fields label{flex-basis:130px}}</style>'
  ].join('');
- const $=id=>host.querySelector('#'+id);let study=null,result=null,generation=0,pending=false,pairedResponse=null;
- function retire(message){result=null;pairedResponse=null;$('velocity-apply-controls').hidden=true;$('velocity-same-apparatus').checked=false;$('velocity-apply').disabled=true;$('velocity-results').hidden=true;$('velocity-save').disabled=true;$('velocity-inspect').open=false;$('velocity-details').textContent='';$('velocity-status').textContent=message;$('velocity-error').textContent='';}
+ const $=id=>host.querySelector('#'+id);let study=null,result=null,generation=0,pending=false,pairedResponse=null,releasePanel=null;
+ function retire(message){releasePanel?.sourceChanged();result=null;pairedResponse=null;$('velocity-apply-controls').hidden=true;$('velocity-same-apparatus').checked=false;$('velocity-apply').disabled=true;$('velocity-results').hidden=true;$('velocity-save').disabled=true;$('velocity-inspect').open=false;$('velocity-details').textContent='';$('velocity-status').textContent=message;$('velocity-error').textContent='';}
  function sourceInputs(){
   if(!study)throw Error('Load an original velocity study first.');
   const input=structuredClone(study);
@@ -103,6 +104,8 @@ export function mountVelocityComparison(host,{applyParameters,getNotebook}={}){
  $('velocity-save').onclick=()=>{if(!result||pending)return;const url=URL.createObjectURL(new Blob([exportVelocityStudy(study)],{type:'application/json'})),link=el('a',undefined,{href:url,download:'worldlaw-velocity-study.json'});link.click();setTimeout(()=>URL.revokeObjectURL(url),10000);};
  $('velocity-inspect').addEventListener('toggle',()=>{if($('velocity-inspect').open&&result)$('velocity-details').textContent=JSON.stringify({diagonal:result.diagonal,symmetric:result.symmetric,skew:result.skew,challenge:result.challenge,diagnostics:result.diagnostics},null,2);});
  let resize;window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});
- return {contextChanged(){pairedResponse=null;$('velocity-same-apparatus').checked=false;$('velocity-apply').disabled=true;if(pending){generation++;pending=false;$('velocity-run').disabled=!study;retire('Pending file read canceled by a workspace change. Open again or compare the retained source.');}}};
+ const releaseHost=document.createElement('div');releaseHost.id='velocity-release-host';host.append(releaseHost);
+ releasePanel=mountVelocityReleases(releaseHost,{getSources:()=>{if(pending)throw Error('Wait for the pending original velocity source.');return {response:getNotebook(),velocity:readVelocityStudy(sourceInputs())};},applyRelease});
+ return {contextChanged(){releasePanel.sourceChanged();pairedResponse=null;$('velocity-same-apparatus').checked=false;$('velocity-apply').disabled=true;if(pending){generation++;pending=false;$('velocity-run').disabled=!study;retire('Pending file read canceled by a workspace change. Open again or compare the retained source.');}}};
 }
 

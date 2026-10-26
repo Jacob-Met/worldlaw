@@ -1,3 +1,4 @@
+import {receiveVelocityReleases} from './coupling-velocity-release-receiving.mjs';
 import {spawn} from 'node:child_process';
 import {mkdtemp,readFile,writeFile,rm,mkdir,access} from 'node:fs/promises';
 import {constants} from 'node:fs';
@@ -67,6 +68,7 @@ try{
  await send('Network.enable');await send('Browser.setDownloadBehavior',{behavior:'allow',downloadPath:downloads});
  productActive=true;
  await receiveVelocityComparison({evaluate,send,check,click,text,wait,outputDir,downloads,base});
+ await receiveVelocityReleases({evaluate,send,check,click,text,wait,outputDir,downloads,base});
  await check('strictly sandboxed receiving has no uncaught product exception or external request',async()=>{
   assert.equal(sandbox.admitted,true);assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);
  });

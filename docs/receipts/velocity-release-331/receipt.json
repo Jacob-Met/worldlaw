@@ -1,0 +1,307 @@
+{
+  "schema": "worldlaw.velocity-release-receiving/v1",
+  "baseCommit": "54e26f1b998576d143399f29d5b79e18622f4fd8",
+  "source": [
+    {
+      "path": "src/coupling/release-common.mjs",
+      "bytes": 1690,
+      "sha256": "130b03b1ee060b3d1fc1a576ebb97ebca73ff75e6cdb7465cc435a2fade0612d",
+      "git_blob": "f8d3338c7a2ad26de9c75531ce41ae4063066cda"
+    },
+    {
+      "path": "src/coupling/viscous-release.mjs",
+      "bytes": 9057,
+      "sha256": "93276a5efdaf46e344a5208936de852d202a8029ce72dff97ccd24a9c235d8a1",
+      "git_blob": "4a21fcb9f843d585042c079d65621d7a8181d55e"
+    },
+    {
+      "path": "src/coupling/velocity-release.mjs",
+      "bytes": 8834,
+      "sha256": "7014639066614fabaee1a614fc90fc160ec27df70c7ccba8f540ec68d6a261a4",
+      "git_blob": "d089d6e50f7be0e68a005284ba9484b0d67f08d6"
+    },
+    {
+      "path": "src/coupling/release-panel.mjs",
+      "bytes": 13859,
+      "sha256": "bcd3c73cf292610f3d7a0e3a089007de1ee3c240b764d09ff4a05e79d0d4ffa2",
+      "git_blob": "6f43d2912249c9ff0eddd895a10bcea8a6eda2d7"
+    },
+    {
+      "path": "src/coupling/viscous-release-panel.mjs",
+      "bytes": 2798,
+      "sha256": "e50ccf6fbb7399590a1bfb2d39faf2ed4b6e4b7a1bcf15fffe562fd36f43e847",
+      "git_blob": "f1bf001885414930891916d7adaee83c276d5977"
+    },
+    {
+      "path": "src/coupling/velocity-release-panel.mjs",
+      "bytes": 3479,
+      "sha256": "adeaa1c246b33ae1bae19c9024e562d5b5ecb2ce7da8d1559ad2a09b7ac69436",
+      "git_blob": "9221017418d493a8f1736daf04d97289222cbc47"
+    },
+    {
+      "path": "src/coupling/velocity-panel.mjs",
+      "bytes": 17266,
+      "sha256": "c3177a74cb83ca3a4f382e929bb76300851387673055df0412cd21c1b0ea9c4b",
+      "git_blob": "975fe5d2875dbb34c6196d5614a8e94aad676826"
+    },
+    {
+      "path": "src/coupling/inertia-identification-panel.mjs",
+      "bytes": 16546,
+      "sha256": "030591f726090b70a05c1b7d325b290293f21f8ef44bedeb8fb84896cb39ae7a",
+      "git_blob": "eb7b04038b496c130c7db21ed34e5ef5fa96e3d4"
+    },
+    {
+      "path": "tests/velocity-release.test.mjs",
+      "bytes": 9096,
+      "sha256": "5fe553299dd86088b120ef1c8599eaecb43544d8646243b023d344e8f4c75c80",
+      "git_blob": "e539a06f67f61f91ae5a1be3c34c48647c7b27bc"
+    },
+    {
+      "path": "tests/support/velocity-release-oracle.mjs",
+      "bytes": 3442,
+      "sha256": "16f40a1a8ead1611185076d223f4ae6309eb25eb2c3e48f94fce70141b92bbb8",
+      "git_blob": "eadc5eac4a802d0269ebc582cbc19b1ca4e174e7"
+    },
+    {
+      "path": "scripts/coupling-velocity-browser.mjs",
+      "bytes": 6230,
+      "sha256": "17ef9d3a9004fdcf7efb3e8001d720c602737d5486936457e5f2a6c9bf444203",
+      "git_blob": "61a6b8a0fb43eda1d45f0f3fe8d9bd03035e2865"
+    },
+    {
+      "path": "scripts/coupling-velocity-release-receiving.mjs",
+      "bytes": 12341,
+      "sha256": "03130fd62544f9089b6451382233f96ddb68a86cb90f2090c86a64b286e94d78",
+      "git_blob": "bbb1a2ac951fdc6e0c93781891986d8471d94133",
+      "gitBlob": "e5383ef9656a16746ebba9c3d4313a0e1d4bfd18"
+    },
+    {
+      "path": "src/coupling/velocity-comparison.mjs",
+      "bytes": 8624,
+      "sha256": "928d425045ffdf4e55456c68e5ca180ca1028ed22937bb176ec8bce38a6e82ff",
+      "git_blob": "1eadf8b0398bf67735dde7d92aba8b8b34412126"
+    },
+    {
+      "path": "docs/VELOCITY_RELEASE.md",
+      "bytes": 6566,
+      "sha256": "b747fbf39114cdf43de02860c43694e97ceaa6d9e786144b0b74740880de5493",
+      "git_blob": "629ef439775b51fe6865f1a72fb0db8303fdfcdd"
+    }
+  ],
+  "scope": "Training-only comparison of complete fitted diagonal, symmetric-loss and skew-velocity explanations across every retained response law and permitted zero-rate release. Pairwise peaks can occur at different times; this proposes a whole sampled observation course. No unique gyroscopic diagnosis, physical feasibility or continuous-time error guarantee.",
+  "native": {
+    "node": "22.23.4",
+    "tests": 28,
+    "passed": 28,
+    "files": [
+      "tests/velocity-release.test.mjs",
+      "tests/viscous-release.test.mjs",
+      "tests/velocity-comparison.test.mjs",
+      "tests/asymmetric-command-deadzone.test.mjs"
+    ]
+  },
+  "browser": {
+    "pass": true,
+    "checks": [
+      {
+        "name": "velocity comparison exposes all three laws and separate receiving without adopting motion",
+        "passed": true
+      },
+      {
+        "name": "uniform rank loss and irregular false numerical identification remain different visible failures",
+        "passed": true
+      },
+      {
+        "name": "actual source-only download reopens in a fresh page and rederives identical coefficient tables",
+        "passed": true
+      },
+      {
+        "name": "independent coupled-inertia source receives reversed mixed motion and held changes never refit training",
+        "passed": true
+      },
+      {
+        "name": "zero skew remains a conditional explanation and indefinite fit retires previous successful receiving",
+        "passed": true
+      },
+      {
+        "name": "unsupported or repeated sources retire results and download until explicit retained-source recomparison",
+        "passed": true
+      },
+      {
+        "name": "complete three-family work exhaustion refuses the result and a new valid source clears the alert",
+        "passed": true
+      },
+      {
+        "name": "settings invalidate prior comparison and trusted keyboard activation recomputes it",
+        "passed": true
+      },
+      {
+        "name": "new authored source intent fences a late original-file response",
+        "passed": true
+      },
+      {
+        "name": "settings changes cancel a pending file read and re-enable explicit retained-source comparison",
+        "passed": true
+      },
+      {
+        "name": "velocity cards, coefficient tables and page stay within 1440 for two-frequency",
+        "passed": true
+      },
+      {
+        "name": "velocity cards, coefficient tables and page stay within 1440 for single-irregular",
+        "passed": true
+      },
+      {
+        "name": "velocity cards, coefficient tables and page stay within 390 for two-frequency",
+        "passed": true
+      },
+      {
+        "name": "velocity cards, coefficient tables and page stay within 390 for single-irregular",
+        "passed": true
+      },
+      {
+        "name": "loaded current source pair retains nine releases and both baselines without automatic adoption",
+        "passed": true
+      },
+      {
+        "name": "actual source-only download reopens independently without overwriting fresh workspace sources",
+        "passed": true
+      },
+      {
+        "name": "all three explicit copy choices preserve their fitted parameters and require renewed motion declaration",
+        "passed": true
+      },
+      {
+        "name": "settings and actual parent source changes retire proposal and pairing",
+        "passed": true
+      },
+      {
+        "name": "late original release file cannot overwrite a newer current-source intent",
+        "passed": true
+      },
+      {
+        "name": "unsupported training and no-separation retain all positions without an informative proposal",
+        "passed": true
+      },
+      {
+        "name": "whole-work and wrong-schema refusals retire result/download and valid reopening clears error",
+        "passed": true
+      },
+      {
+        "name": "complete velocity release table, pair curves and controls fit 1440",
+        "passed": true
+      },
+      {
+        "name": "complete velocity release table, pair curves and controls fit 390",
+        "passed": true
+      },
+      {
+        "name": "strictly sandboxed receiving has no uncaught product exception or external request",
+        "passed": true
+      }
+    ],
+    "events": {
+      "exceptions": [],
+      "outside": []
+    },
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-26T06:41:28.839Z",
+      "completedAt": "2026-10-26T06:41:28.919Z",
+      "durationMs": 79.68089100000003,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "5325E1C73D501A26BB3718D46C168925",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "06537F9C3B58D72AC472F37F314860EE"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "node": "v22.23.4"
+  },
+  "concurrentAsymmetricJourney": {
+    "checks": [
+      "actual source intake, keyboard comparison, complete family and conditional response/residual plots",
+      "completed download preserves original source and declarations, not fitted claims",
+      "inspecting zero baseline leaves training-ranked width unchanged",
+      "both conditional laws execute in maintained solver; invalid inertia removes motion prediction",
+      "desktop and narrow layout with actual source/model plots",
+      "declaration invalidation and malformed family cannot retain success",
+      "source-only reopen replaces original notebook and explicitly recomputes",
+      "late comparison read cannot replace a newer Studio source; no page exceptions"
+    ],
+    "browser": "156.0.8078.47",
+    "scope": "Authored scientific controls; no physical calibration or blind measured evidence."
+  },
+  "independentReview": {
+    "reviewer": "retained Workshop worker",
+    "finding": "No blocker in independent core, source lifecycle, admission and explicit copying review",
+    "oracle": "Independent affine matrix exponential on unfamiliar signed-skew courses",
+    "negativeSkew": {
+      "g": -0.83,
+      "best": [
+        0.8,
+        0.55
+      ],
+      "score": 0.3897661223326706,
+      "maxCurveError": 3.3874569815850464e-12
+    },
+    "positiveSkew": {
+      "g": 0.57,
+      "best": [
+        -0.45,
+        -0.65
+      ],
+      "score": 0.21834253336080267,
+      "maxCurveError": 2.2749579997594083e-12
+    },
+    "heldMutation": "25 held response and 401 held motion observations changed without altering training, releases, ranks or diagnostics"
+  },
+  "visualInspection": {
+    "viewports": [
+      1440,
+      390
+    ],
+    "screenshots": [
+      "velocity-release-1440.png",
+      "velocity-release-390.png"
+    ],
+    "result": "Actual rendered complete release table, six pair curves, source pairing and explicit family controls inspected; narrow table remains horizontally scrollable."
+  }
+}
