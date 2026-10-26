@@ -1,0 +1,31 @@
+{
+  "sourceBase": "9326de97e32730bbfb3c72ea9ce6b9f5b303f892",
+  "native": {
+    "passed": 63,
+    "failed": 0
+  },
+  "browser": {
+    "groups": 11,
+    "sandbox": "explicitly admitted",
+    "errors": 0
+  },
+  "legacy": {
+    "completeStateAndNotebookByteComparisons": 8,
+    "base": "15bb784a33355659b186cfe9632a6b67ebe25c91"
+  },
+  "independent": {
+    "finiteDifferenceChecks": 105,
+    "maximumDerivativeError": 8.128742123858501e-11,
+    "denseGLS": [
+      -0.13948818009902156,
+      -5.296873283549647
+    ],
+    "production": [
+      -0.1394881800990214,
+      -5.2968732835496475
+    ],
+    "limitedIterationStatus": "iteration_limit"
+  },
+  "review": "MECHANISM independently reviewed numeric/covariance block semantics and public session/panel replay. It found non-JSON covariance requests could change meaning on serialization; fixed through one-read finite-scalar snapshot and dedicated regression. No remaining blocker.",
+  "qualification": "Independent numerical oracle courses, actual measured-data development reuse, native consumer and actual browser. No blind physical validation, calibrated uncertainty, universal improvement or deployment."
+}

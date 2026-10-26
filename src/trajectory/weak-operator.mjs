@@ -6,6 +6,17 @@ const MAX_WINDOWS = 2048;
 const norm = values => Math.hypot(...values);
 const dot = (a, b) => a.reduce((sum, value, i) => sum + value * b[i], 0);
 const phi = x => x * x * (1 - x) * (1 - x);
+export const POSITION_DERIVATIVE_TERMS = Object.freeze(['rate', 'spring', 'gravity', 'cosine', 'cubic', 'bias']);
+function positionDerivative(id, position) {
+  switch (id) {
+    case 'spring': return 1;
+    case 'gravity': return Math.cos(position);
+    case 'cosine': return -Math.sin(position);
+    case 'cubic': return 3 * position * position;
+    case 'bias': return 0;
+    default: throw Error('Unsupported weak position derivative: ' + id);
+  }
+}
 // Integrals of phi and x*phi, evaluated over short segments using a shifted
 // polynomial to avoid cancellation near a window boundary.
 function moments(a, b) {
@@ -18,7 +29,9 @@ function moments(a, b) {
   }
   return {integral, firstOffset};
 }
-export function weakWindows(run, options, rates, insist) {
+export function weakWindows(run, options, rates, insist, {includePositionDerivatives = false, onlyWindowMetadata = false} = {}) {
+  if (includePositionDerivatives) insist(options.terms.every(id => POSITION_DERIVATIVE_TERMS.includes(id)),
+    'Position-noise covariance supports linear rate and smooth position terms only; no term was silently omitted.', 'unsupported_position_derivative');
   const samples = run.samples, result = []; let start = 0, end = 0;
   while (start < samples.length - 1) {
     const startTime = samples[start].time;
@@ -29,8 +42,12 @@ export function weakWindows(run, options, rates, insist) {
     if (end >= samples.length) break;
     insist(end - start + 1 >= 9, 'Each weak window needs at least nine raw samples; increase windowDuration or improve sampling.', 'insufficient_sampling');
     const duration = samples[end].time - samples[start].time;
+    if (onlyWindowMetadata) {
+      result.push({firstIndex: start, lastIndex: end, sampleCount: end - start + 1});
+    } else {
     const rows = samples.slice(start, end + 1), x = rows.map(row => (row.time - rows[0].time) / duration);
     const weights = x.map(() => 0), features = Object.fromEntries(options.terms.map(id => [id, 0]));
+    const gradients = includePositionDerivatives ? Object.fromEntries(options.terms.map(id => [id, x.map(() => 0)])) : null;
     const feature = (id, i) => {
       const position = rows[i].position;
       switch (id) {case 'command': return rows[i].command; case 'spring': return position; case 'cubic': return position ** 3; case 'gravity': return Math.sin(position); case 'cosine': return Math.cos(position); case 'bias': return 1;
@@ -49,10 +66,17 @@ export function weakWindows(run, options, rates, insist) {
           features[id] += duration * duration * rows[i].command *
             (rows[i].position * integral + (rows[i + 1].position - rows[i].position) / h * firstOffset);
         }
-        else if (id === 'rate') features[id] += duration * (rows[i + 1].position - rows[i].position) / h * integral;
+        else if (id === 'rate') {
+          features[id] += duration * (rows[i + 1].position - rows[i].position) / h * integral;
+          if (gradients) {const derivative = duration / h * integral; gradients[id][i] -= derivative; gradients[id][i + 1] += derivative;}
+        }
         else {
           const left = feature(id, i), right = feature(id, i + 1);
           features[id] += duration * duration * (left * integral + (right - left) / h * firstOffset);
+          if (gradients) {
+            gradients[id][i] += duration * duration * (integral - firstOffset / h) * positionDerivative(id, rows[i].position);
+            gradients[id][i + 1] += duration * duration * firstOffset / h * positionDerivative(id, rows[i + 1].position);
+          }
         }
       }
     }
@@ -66,7 +90,9 @@ export function weakWindows(run, options, rates, insist) {
     const target = dot(weights, rows.map(row => row.position)) / noiseGain;
     const columns = options.terms.map(id => features[id] / noiseGain);
     insist(Number.isFinite(target) && columns.every(Number.isFinite), 'Weak equations exceed numerical range.', 'numerical_failure');
-    result.push({target, columns, firstIndex: start, lastIndex: end, startTime: rows[0].time, endTime: rows.at(-1).time, sampleCount: rows.length, targetNoiseGain: noiseGain});
+    result.push({target, columns, firstIndex: start, lastIndex: end, startTime: rows[0].time, endTime: rows.at(-1).time, sampleCount: rows.length, targetNoiseGain: noiseGain,
+      ...(gradients ? {positionWeights: weights.map(w => w / noiseGain), featurePositionDerivatives: options.terms.map(id => gradients[id].map(w => w / noiseGain))} : {})});
+    }
     insist(result.length <= MAX_WINDOWS, 'Too many weak windows; increase windowStride.', 'resource_limit');
     const strideTolerance = 16 * Number.EPSILON * Math.max(1, options.windowStride);
     do {start++;} while (start < samples.length && samples[start].time - startTime < options.windowStride - strideTolerance);
