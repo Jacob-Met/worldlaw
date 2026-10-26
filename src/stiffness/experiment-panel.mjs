@@ -1,3 +1,4 @@
+import {createInputDesignPanel} from './design-panel.mjs';
 import {createStiffnessExperiment,experimentInputs,replayStiffnessExperiment,setPendingStiffnessRequest,setPermittedStiffnessStates,receiveStiffnessObservation,addStiffnessCubicRevision} from './experiment.mjs';
 import {importStiffnessStudy,exportStiffnessStudy,replaceStiffnessChecks} from './notebook.mjs';
 import {stiffnessExperimentCourse,observeStiffnessCourse} from './experiment-fixture.mjs';
@@ -17,6 +18,7 @@ const errorText=(entry,prediction)=>`${modelLabel(prediction)}: predicted ${numb
 /** UI owns an explicit local authored-course capability; notebook labels cannot grant it. */
 export function createExperimentPanel({onChange,onActivity,onError}) {
  let session=null,authoredCourse=null;
+ const inputDesign=createInputDesignPanel({onFreeze:index=>freeze(index),onActivity,onError});
  function install(next,{course=null,message='Experiment recomputed from its retained inputs.',preserveReadingDraft=false}={}){
   // Only evaluation-only check replacement may keep a draft for the same frozen request.
   const keepDraft=preserveReadingDraft&&session?.pending&&
@@ -30,6 +32,7 @@ export function createExperimentPanel({onChange,onActivity,onError}) {
  }
  function render(message,{preserveReadingDraft=false}={}){
   const {plan,pending,history}=session;
+  inputDesign.update(session);
   $('permitted-states').value=JSON.stringify(session.permitted,null,2);
   const status=$('experiment-status');status.dataset.planStatus=plan.status;
   status.textContent=`${plan.status.replaceAll('_',' ')} · ${session.permitted.length} explicitly permitted states · ${session.acquisitions.length} received observations. ${message}`;
