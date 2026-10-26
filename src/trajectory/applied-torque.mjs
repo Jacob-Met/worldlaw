@@ -33,13 +33,16 @@ export function normalizeAppliedTorque(raw){
  for(const role of ['trainingRuns','challengeRuns'])result[role]=admitted[role].map(run=>({id:run.id,label:run.label,kind:run.kind,source:run.source,inertia:null,initialRate:run.initialRate,samples:run.samples.map(row=>({time:row.time,position:row.position,appliedTorque:row.command}))}));
  return result;
 }
-export function identifyAppliedTorque(raw,requested={}){
- const source=normalizeAppliedTorque(raw);
+export function normalizeAppliedTorqueOptions(requested={}){
  insist(object(requested),'Identification settings must be an object.');
  const options={windowDuration:requested.windowDuration??.8,windowStride:requested.windowStride??.4,maxStep:requested.maxStep??.005};
  insist(Number.isFinite(options.windowDuration)&&options.windowDuration>=.02&&options.windowDuration<=60,'Window duration must be .02–60 seconds.');
  insist(Number.isFinite(options.windowStride)&&options.windowStride>=.01&&options.windowStride<=options.windowDuration,'Window stride must be .01 seconds through duration.');
  insist(Number.isFinite(options.maxStep)&&options.maxStep>=1e-5&&options.maxStep<=.1,'Forward step must be .00001–.1 seconds.');
+ return options;
+}
+export function identifyAppliedTorque(raw,requested={}){
+ const source=normalizeAppliedTorque(raw),options=normalizeAppliedTorqueOptions(requested);
  const blocks=source.trainingRuns.map(run=>({runId:run.id,rows:weakWindows({samples:run.samples.map(row=>({...row,command:row.appliedTorque}))},{...options,terms:['command','rate','spring']},null,insist)}));
  const rows=blocks.flatMap(b=>b.rows);insist(rows.length>=8&&rows.length<=2048,'Require8–2048 complete weak windows.');
  const columns=[rows.map(r=>r.target),rows.map(r=>r.columns[1]),rows.map(r=>r.columns[2])],target=rows.map(r=>r.columns[0]);
