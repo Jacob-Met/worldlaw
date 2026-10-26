@@ -114,7 +114,7 @@ export function refitSession(state,options) {
   assertReplayWork(state.base,state.initialOptions,[...state.events,event]);
   return eventState(state,event,refitDiscovery(state.discovery,discoveryOptions(options)),options);
 }
-function candidateCourse(state) {
+export function candidateCourse(state) {
   const explicit=!state.lab && Object.hasOwn(state.base,'offeredInputs');
   const source=state.lab ? createLab({seed:state.lab.seed}).candidateInputs : explicit?state.base.offeredInputs:candidateGrid(state.base.observations);
   const key = explicit ? p=>JSON.stringify(['command','position','rate'].map(f=>p[f]))

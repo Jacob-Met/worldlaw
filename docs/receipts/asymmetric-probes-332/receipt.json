@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "Original explicit offered states enter full mapped ensemble; observed-side offer agrees while negative original command separates predictions.",
+    "Inspecting another baseline cannot change training ensemble or offered-state ranking.",
+    "Actual source-only download and fresh reload/reopen preserve exact original offers, indices and recomputed predictions.",
+    "Desktop and narrow offered-state table and source evidence remain usable.",
+    "Changing original mapping declaration retires the prospective calculation.",
+    "An offered course with only agreed positive commands remains uninformative.",
+    "Future outcome smuggled into offered inputs is refused without replacing the accepted source or predictions.",
+    "A separately supplied new reading retires predictions and removes its now-observed original offer without renumbering the course."
+  ],
+  "browser": "156.0.8078.47",
+  "scope": "Authored original-input browser receiving; no physical acquisition."
+}

@@ -1,3 +1,4 @@
+import {rankPredictionRanges} from './prediction-range-plan.mjs';
 /**
  * Bounded structural discovery for scalar torque laws. Dependency-free browser ESM.
  * This searches a declared feature library; it does not infer mechanism topology.
@@ -296,16 +297,11 @@ export function planExperiment(discovery, candidateInputs) {
   const ranked = candidateInputs.map((row, index) => {
     const point = input(row);
     const predictions = models.map(model => ({ modelId: model.id, value: predictUnchecked(model, point) }));
-    const values = predictions.map(p => p.value);
-    const disagreement = Math.max(...values) - Math.min(...values);
     const extrapolation = fields.filter(key => discovery.selected.domain &&
       (point[key] < discovery.selected.domain[key].min || point[key] > discovery.selected.domain[key].max));
-    return { index, input: point, disagreement, predictions, extrapolation };
-  }).sort((a, b) => b.disagreement - a.disagreement || a.index - b.index);
-  return { status: models.length > 1 && ranked[0].disagreement > 2 * discovery.options.noiseSigma ? 'proposed' : 'uninformative',
-    selected: ranked[0], ranked, modelIds: models.map(model => model.id),
-    method: 'maximum_competitive_model_prediction_range',
-    interpretation: 'A heuristic among caller-permitted inputs; no physical actuation is performed.' };
+    return { index, input: point, predictions, extrapolation };
+  });
+  return rankPredictionRanges(ranked,models.map(model=>model.id),discovery.options.noiseSigma);
 }
 
 export function revise(discovery, newObservations) {

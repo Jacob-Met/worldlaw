@@ -1,3 +1,5 @@
+import {planAsymmetricCommandExperiment} from './asymmetric-command-probe.mjs';
+import {candidateCourse} from '../session.mjs';
 import * as asymmetric from './asymmetric-command-deadzone.mjs';
 import {compareCommandDeadzones,evaluateDeadzone,predictDeadzone,simulateDeadzone,exportDeadzoneInputs,restoreDeadzoneInputs,checkedWidths} from './command-deadzone.mjs';
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(tag==='p'){n.style.color='#36514b';n.style.fontSize='.875rem';n.style.lineHeight='1.5';}return n;};
@@ -82,6 +84,26 @@ export function renderCommandDeadzone(container,session,{chart,onReopen,simulati
         }catch(error){motion.replaceChildren(el('p','Conditional motion refused: '+error.message));}
       });
       output.append(el('p','The response sweep fixes θ=0 rad and ω=0 rad/s; it is a conditional model prediction and may be outside measured state support. Residual points use each original row’s actual state. Different mechanical terms may compensate for a wrong command mapping.'));
+      if(mode.checked){
+        const compareOffers=el('button','Compare original offered states'),offersOutput=el('div');compareOffers.type='button';compareOffers.id='deadzone-probe';compareOffers.className='button';offersOutput.id='deadzone-probe-result';offersOutput.setAttribute('role','status');output.append(compareOffers,offersOutput);
+        compareOffers.addEventListener('click',()=>{
+          offersOutput.replaceChildren();
+          try{
+            const course=candidateCourse(session);
+            if(!course.candidates.length){offersOutput.append(el('p','No unobserved original offered states remain.'));return;}
+            const plan=planAsymmetricCommandExperiment(report,course.candidates);
+            offersOutput.dataset.status=plan.status;
+            const selected=plan.selected,point=selected.input;
+            offersOutput.append(el('h4',plan.status==='proposed'?'A state that separates the retained mappings':'Offered states remain uninformative'));
+            offersOutput.append(el('p',`Original offered state ${course.indices[selected.index]+1}: command ${fmt(point.command)} N·m, angle ${fmt(point.position)} rad, rate ${fmt(point.rate)} rad/s. Prediction range ${fmt(selected.disagreement)} N·m across ${plan.ensemble.length} globally competitive mapping/structure models. ${course.explicit?'Explicitly offered original inputs.':'Existing bounded Studio candidate course.'} No outcome is supplied or acquired; this does not change the Studio law or its selected measurement state.`));
+            const table=el('table');table.style.width='100%';table.style.tableLayout='fixed';table.style.overflowWrap='anywhere';table.style.fontSize='.78rem';table.style.minWidth='680px';table.append(el('caption','Every unobserved original offered state · training-only prediction range'));
+            const header=el('tr');for(const t of ['Original index','Command','Angle','Rate','Range N·m','Extrapolated coordinates']){const th=el('th',t);th.style.whiteSpace='nowrap';th.scope='col';header.append(th);}table.append(header);
+            for(const row of plan.ranked){const tr=el('tr');for(const value of [String(course.indices[row.index]+1),fmt(row.input.command),fmt(row.input.position),fmt(row.input.rate),fmt(row.disagreement),row.extrapolation.join(', ')||'None'])tr.append(el('td',value));table.append(tr);}
+            const scroll=el('div');scroll.id='deadzone-probe-table';scroll.style.overflowX='auto';scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label','Complete offered-state comparison table; scroll horizontally for all coordinates');scroll.append(table);offersOutput.append(scroll);
+            const details=el('details'),pre=el('pre');pre.style.whiteSpace='pre-wrap';pre.style.overflowWrap='anywhere';pre.textContent=JSON.stringify({ensemble:plan.ensemble,originalIndices:course.indices,offeredInputs:course.candidates,predictions:plan.ranked,work:plan.work},null,2);details.append(el('summary','Inspect every frozen prediction and original offered state'),pre);offersOutput.append(details,el('p',plan.interpretation));
+          }catch(error){delete offersOutput.dataset.status;offersOutput.replaceChildren(el('p','Complete offered-state comparison refused: '+error.message));}
+        });
+      }
       output.append(el('p',report.interpretation));save.disabled=false;
     } catch(error){report=null;redraw=null;save.disabled=true;delete output.dataset.status;output.replaceChildren(el('p','Command-map comparison refused: '+error.message));}
   });
