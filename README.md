@@ -82,6 +82,17 @@ Motion Lab currently assumes a fixed camera, a declared fixed pivot, approximate
 5. Change initial angle or inertia and select **Run dynamics** to execute the learned model. The schematic and trajectory are predictions. Invalid dynamics remove the prediction instead of displaying a substitute pose.
 6. **Save session** downloads observations, supplied provenance, assumptions and revision events. Reload restores the browser notebook. **Open session** recomputes a downloaded notebook; **Undo** reverses its last revision.
 
+### Inspect the prediction before learning the outcome
+
+After recording a measurement or running the virtual instrument, choose
+**Inspect predictions before this outcome**. Compare every original competitive
+law with the newly entered readings, including the exact earlier coefficients,
+raw errors and original input ranges. The same-reading after-fit result stays
+explicitly labeled as reused evidence. Older experiments remain inspectable
+through refits, save/reopen and undo. These comparisons are recomputed from
+notebook order; they do not authenticate a pre-acquisition forecast. See
+[the experiment comparison contract](docs/EXPERIMENT_RECEIPTS.md).
+
 ### Automatic numerical refinement
 
 The Studio now refines internal RK4 steps for smooth learned laws, so fast

@@ -136,6 +136,7 @@ INCLUDE = (
     'experiments/rolling-origin.mjs',
 )
 REQUIRED = (
+    "src/science/experiment-receipts.mjs", "src/science/experiment-receipts-panel.mjs",
     "src/science/studio-dynamics-comparison.mjs", "src/science/studio-comparison-panel.mjs",
     "src/science/studio-comparison-view.mjs",
     "src/science/robust-fit.mjs",
