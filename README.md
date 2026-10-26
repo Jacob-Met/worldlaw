@@ -397,7 +397,9 @@ The probe instrument can [profile a declared continuous saturation-scale interva
 
 ### Compare separate Motion recordings as executable angular laws
 
-Trajectory Challenge can now receive two saved Motion Lab notebooks directly. Choose continuous courses and explicitly declare starting rates, common angle coordinates and unforced dynamics. The existing angular fitter and forward solver retain source identities and compare a separate recording without invented physical inertia or torque. See [Motion-to-trajectory intake](docs/MOTION_TRAJECTORY_INTAKE.md) for the actual workflow, source/calibration limits and authored positive/failed-transfer receiving.
+Trajectory Challenge can receive two saved Motion Lab notebooks directly. Choose continuous courses and explicitly declare their starting states, common angle coordinates and unforced dynamics. The existing angular fitter and forward solver retain source identities and compare a separate recording without invented physical inertia or torque. See [Motion-to-trajectory intake](docs/MOTION_TRAJECTORY_INTAKE.md) for the original supplied-rate workflow and source/calibration limits.
+
+When a starting rate is unknown, choose **Estimate from an earlier source window**, select a later starting sample and an explicit trailing window, then review and adopt the conditional rate. The original starting angle and remaining course stay unchanged; later receiving angles do not enter the rate estimate. A saved Trajectory notebook reuses that adopted input and its provenance. Rebuilding from the original Motion notebooks computes the estimate again. See [source-prefix preparation and receiving](docs/MOTION_PREFIX_START_RECEIVING_9e5183.md) for the exact source contract, actual browser course and calibration limits.
 
 
 ### Interpret planar motion through a declared camera calibration

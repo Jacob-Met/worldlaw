@@ -67,6 +67,7 @@ function fitTraining(bundle,options){
   return {...discovery,method:'local_cubic_second_derivative',residualUnits:'N·m',noiseSigmaUnits:'N·m',diagnostics:{...discovery.diagnostics,derivation:derived.map((d,i)=>({runId:bundle.trainingRuns[i].id,...d.diagnostics})),fitData:'training_runs_only'}};
 }
 function summary(discovery,results,bundle,options){
+  const sourcePrefix=angularBundle(bundle)&&[...bundle.trainingRuns,...bundle.challengeRuns].some(run=>run.source?.motion?.initialRate?.preparation?.schema==='worldlaw.motion-source-prefix/v1');
   const received=results.filter(r=>r.modelId===discovery.selected.id&&r.status==='ok');
   const count=received.reduce((s,r)=>s+r.rollout.metrics.count,0);
   const selectedRMSE=count?Math.sqrt(received.reduce((s,r)=>s+r.rollout.metrics.count*r.rollout.metrics.positionRMSE**2,0)/count):null;
@@ -80,8 +81,9 @@ function summary(discovery,results,bundle,options){
     fitResidualUnits:discovery.residualUnits??(options.method==='integral'?'rad':'N·m'),selectionBasis:'training_evidence_only',
     evidenceKinds:[...new Set([...bundle.trainingRuns,...bundle.challengeRuns].map(r=>r.kind))],
     limitations:[angularBundle(bundle)?'Finite-library angular-acceleration models; physical inertia and absolute torque remain unknown.':'Finite-library scalar models with caller-supplied constant inertia and initial velocity.',
-      ...(angularBundle(bundle)?['Unforced scalar rotation is a declared assumption; absent actuator data cannot verify it.','A supplied initial angular rate is used for prediction. Compact-window weak fitting does not use that rate.']:[]),
-      'Challenge observations do not enter fitting, ranking, or initial velocity estimation.',
+      ...(angularBundle(bundle)?['Unforced scalar rotation is a declared assumption; absent actuator data cannot verify it.',sourcePrefix?'Source-prefix runs use an adopted conditional local-cubic initial rate with the original origin angle unchanged. Compact-window weak fitting does not use that rate.':'A supplied initial angular rate is used for prediction. Compact-window weak fitting does not use that rate.']:[]),
+      sourcePrefix?'Challenge observations do not enter fitting or ranking. The selected source window includes the origin angle; later receiving angles do not enter initial rate estimation or choose its window.':'Challenge observations do not enter fitting, ranking, or initial velocity estimation.',
+      ...(sourcePrefix?['Portable reopen reuses the adopted initial rate and source provenance; it does not re-estimate the rate or reopen the Motion notebook or video.','Source-prefix estimates condition on retained calibration. A fitted Motion reference may include later recording observations; this is not an independently or prospectively calibrated physical test.']:[]),
       'Inspecting challenge errors and choosing settings is exploratory reuse, not a new blind validation.',
       'Source kinds and acquisition independence are declared by the input author, not authenticated.',
       'Numerical step error, calibration error and missing physical structure can all affect forward error.']};
