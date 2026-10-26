@@ -89,6 +89,10 @@ sign-rate laws retain their labelled fixed-step interpretation; exhausted
 numerical work removes the prediction. Read [the method, analytic controls
 and display limits](docs/STUDIO_DYNAMICS.md).
 
+### Investigate a different angular period
+
+In the Studio residual view, **Discover a different angular period** fits a bounded training-only frequency profile, retaining nonperiodic and unit-frequency alternatives. Inspect original-coordinate response, separate receiving errors and conditional motion, then save/reopen the original inputs. [Method, authored controls and limits](docs/ANGULAR_FREQUENCY.md) distinguish a useful executable response from identified gearing or sensor calibration.
+
 ## Bring observations
 
 Select **Import observations** and choose UTF-8 CSV or JSON. Supply 8–4,096 fitting rows, with each value bounded to magnitude 10⁶:
