@@ -11,6 +11,7 @@
 .motion-layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:1.5rem;align-items:start}
 .motion-instrument{background:var(--stage);color:#e7edf7;border:1px solid #23354e;min-width:0}
 .motion-instrument h3{font-size:.95rem;margin:0}.motion-controls h3{margin:0;font-size:1.15rem}
+.motion-instrument #motion-equation{color:#ffc65d;padding:0 1rem;margin:1rem 0;font-size:1.1rem}
 #motion-plot{min-height:320px}#motion-plot svg{display:block;width:100%;height:auto}
 #motion-plot text{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;fill:#d7e2f2}
 .motion-empty{font-size:1.25rem;line-height:1.7;padding:4rem 2rem;color:#aebed3;max-width:600px}

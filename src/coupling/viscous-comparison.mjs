@@ -3,6 +3,7 @@
  */
 import {fitLinearColumns,linearColumnRank} from '../science/linear-fit.mjs';
 import {readSymmetricInertia} from './inertia.mjs';
+import {readSymmetricDamping} from './damping.mjs';
 import {readInertiaRecord,INERTIA_RECORD_SCHEMA} from './inertia-record.mjs';
 import {readInertiaSettings} from './inertia-investigation.mjs';
 import {identifyInertia} from './inertia-identification.mjs';
@@ -78,21 +79,6 @@ function symmetricRows(plan){
    return {...row,features:[...row.features,crossRate]};
   })};
 }
-function readDamping(d0,d1,cross){
- requireThat([d0,d1,cross].every(x=>Number.isFinite(x)&&Math.abs(x)<=1e6)&&d0>=0&&d1>=0,
-  'Unconstrained fitted damping is outside the finite nonnegative-diagonal family.');
- requireThat(Math.abs(cross)<=Math.sqrt(d0)*Math.sqrt(d1),
-  'Unconstrained fitted symmetric damping is not positive semidefinite.');
- const scale=Math.max(d0,d1,Math.abs(cross));
- let minimumEigenvalue=0,maximumEigenvalue=0;
- if(scale){
-  const a=d0/scale,b=d1/scale,c=cross/scale;
-  maximumEigenvalue=(a+b+Math.hypot(a-b,2*c))/2*scale;
-  minimumEigenvalue=(a*b-c*c)/(maximumEigenvalue/scale)*scale;
- }
- return {matrix:[[d0,cross],[cross,d1]],minimumEigenvalue,maximumEigenvalue,
-  meaning:'Conditional symmetric viscous-loss matrix; numerical PSD admission does not establish physical passivity.'};
-}
 function predictRows(rows,coefficients,tolerances=null){
  return rows.map(row=>{
   const predictedTorque=row.features.reduce((s,x,j)=>s+x*coefficients[j],0),residual=row.observedTorque-predictedTorque;
@@ -112,10 +98,11 @@ function fitSymmetric(plan){
  if(!fit)return {...common,status:'unidentified',coefficients:null,rows};
  const [m00,m01,m11,d0,d1,cross]=fit.coefficients;
  const predicted=predictRows(rows,fit.coefficients);let inertia=null,damping=null,refusal=null;
- try{inertia=readSymmetricInertia([m00,m11],m01);damping=readDamping(d0,d1,cross);}catch(error){refusal=error.message;}
+ try{inertia=readSymmetricInertia([m00,m11],m01);damping=readSymmetricDamping(d0,d1,cross);}catch(error){refusal=error.message;}
  return {...common,status:refusal?'outside_supported_family':'candidate',coefficients:[...fit.coefficients],
   conditionEstimate:fit.conditionEstimate,meanTorqueBalanceRmse:summary(predicted).rmseNm,rows:predicted,refusal,
-  inertia:inertia?{matrix:inertia.matrix,minimumEigenvalue:inertia.minimumEigenvalue,conditionInfinity:inertia.conditionInfinity}:null,damping};
+  inertia:inertia?{matrix:inertia.matrix,minimumEigenvalue:inertia.minimumEigenvalue,conditionInfinity:inertia.conditionInfinity}:null,damping,
+  simulationParameters:refusal?null:{inertia:[m00,m11],inertiaCross:m01,damping:[d0,d1],dampingCross:cross}};
 }
 function receive(rows,fit,tolerances){
  if(fit.status!=='candidate')return {status:'unsupported_training',rows:[],reason:fit.status,rmseNm:null,outside:null};

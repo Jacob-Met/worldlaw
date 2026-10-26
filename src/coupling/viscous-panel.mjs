@@ -5,7 +5,7 @@ const NS='http://www.w3.org/2000/svg',fmt=n=>Number.isFinite(n)?Number(n.toPreci
 const el=(tag,text,attrs={})=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);return n;};
 const svg=(tag,attrs={},text)=>{const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);if(text!==undefined)n.textContent=text;return n;};
 
-export function mountViscousComparison(root){
+export function mountViscousComparison(root,{applyParameters}={}){
  root.innerHTML=`<details id="viscous-lab"><summary>Can drag act across the two coordinates?</summary>
   <div class="inertia-heading"><div><p class="eyebrow">ONE MOTION. TWO LOSS HYPOTHESES.</p><h3>Follow the drag across coordinates.</h3></div><p>Estimate one additional cross-coordinate coefficient from original motion and torque readings, then confront both frozen balances with a separate motion.</p></div>
   <p class="inertia-equation">M q″ + D q′ = supplied torque</p>
@@ -23,13 +23,15 @@ export function mountViscousComparison(root){
    <p id="viscous-receiving" class="small"></p>
    <div class="table-wrap"><table><caption>Training coefficients — no separate-motion fitting</caption><thead><tr><th>Parameter</th><th>Independent loss</th><th>Symmetric loss</th><th>Coarser symmetric fit</th></tr></thead><tbody id="viscous-coefficients"></tbody></table></div>
    <p id="viscous-sampling" class="small"></p><p id="viscous-qualification" class="inertia-qualification"></p>
+   <div id="viscous-apply-controls" hidden><label class="motion-consent"><input id="viscous-same-apparatus" type="checkbox"><span>I have checked that this training source and the response notebook describe the same apparatus, angle coordinates and torque conventions.</span></label><button id="viscous-apply" type="button" disabled>Copy symmetric loss into the motion experiment</button><p class="small">Copy the fitted numerical hypothesis, then review and declare the motion experiment. A separate-source failure remains a failure; copying values does not establish the law.</p></div>
   </div>
  </details>`;
  const $=id=>root.querySelector('#'+id);
  let study=null,result=null,generation=0,pending=false;
  function error(e){$('viscous-error').textContent=e.message||String(e);$('viscous-error').hidden=false;$('viscous-error').focus();}
  function clearError(){$('viscous-error').hidden=true;}
- function invalidate(message){result=null;$('viscous-results').hidden=true;$('viscous-status').textContent=message;}
+ function revokeCopy(){$('viscous-same-apparatus').checked=false;$('viscous-apply').disabled=true;}
+ function invalidate(message){result=null;revokeCopy();$('viscous-results').hidden=true;$('viscous-status').textContent=message;}
  function current(){
   if(!study)throw new Error('Open comparison inputs first.');
   return {...study,training:{record:study.training.record,settings:{windowSamples:$('viscous-width').valueAsNumber,stride:$('viscous-stride').valueAsNumber}}};
@@ -73,6 +75,7 @@ export function mountViscousComparison(root){
   $('viscous-sampling').textContent=`${result.diagnostics.reservedSegments} / ${result.diagnostics.segmentBudget} quadrature segments reserved for the full comparison. Coarser symmetric fit: ${result.symmetric.samplingComparison.alternate?.status??'unavailable at this width'}. Coarsening is sensitivity to the same source, not independent evidence or an uncertainty bound.`;
   $('viscous-receiving').textContent=result.study.challenge?`Separate source: ${result.study.challenge.record.source.label}. ${result.study.challenge.settings.correspondence} Declared weighted balance tolerances: [${result.study.challenge.settings.toleranceNm.map(fmt).join(', ')}] N·m. Later readings never fit either law.`:'No separate source supplied. Training fit alone cannot establish the missing mechanism.';
   $('viscous-qualification').textContent=[a.refusal,b.refusal,'Numerical candidates only. Unmeasured forces, sensor mixing or calibration errors may be absorbed into the coefficients. These curves use supplied angles; they are not a future-motion prediction.'].filter(Boolean).join(' ');
+  revokeCopy();$('viscous-apply-controls').hidden=!b.simulationParameters||typeof applyParameters!=='function';
   draw();
  }
  function run(){
@@ -89,6 +92,8 @@ export function mountViscousComparison(root){
  $('viscous-form').addEventListener('submit',event=>{event.preventDefault();generation++;pending=false;run();});
  $('viscous-form').addEventListener('input',()=>{generation++;pending=false;invalidate('Training settings changed. Compare again to inspect current balances.');clearError();});
  $('viscous-course').addEventListener('change',draw);$('viscous-axis').addEventListener('change',draw);
+ $('viscous-same-apparatus').addEventListener('change',()=>{$('viscous-apply').disabled=!$('viscous-same-apparatus').checked||!result?.symmetric.primary.simulationParameters;});
+ $('viscous-apply').addEventListener('click',()=>{const parameters=result?.symmetric.primary.simulationParameters;if(!parameters||!$('viscous-same-apparatus').checked||typeof applyParameters!=='function')return;applyParameters(structuredClone(parameters),study.training.record.source.label);revokeCopy();});
  $('viscous-open').addEventListener('click',()=>$('viscous-file').click());
  $('viscous-file').addEventListener('change',async()=>{
   const file=$('viscous-file').files?.[0];$('viscous-file').value='';if(!file)return;const ticket=++generation;pending=true;
@@ -98,5 +103,5 @@ export function mountViscousComparison(root){
  });
  $('viscous-save').addEventListener('click',()=>{try{const text=exportViscousStudy(current()),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=el('a',undefined,{href:url,download:'worldlaw-viscous-study.json'});link.click();setTimeout(()=>URL.revokeObjectURL(url),10000);clearError();}catch(e){error(e);}});
  let resize;window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});$('viscous-lab').addEventListener('toggle',()=>{if($('viscous-lab').open)draw();});
- return {contextChanged(){generation++;if(pending){pending=false;$('viscous-status').textContent='Another notebook action canceled the pending file read. Open again or compare the retained study.';}},redraw:draw};
+ return {contextChanged(){generation++;revokeCopy();if(pending){pending=false;$('viscous-status').textContent='Another notebook action canceled the pending file read. Open again or compare the retained study.';}},redraw:draw};
 }

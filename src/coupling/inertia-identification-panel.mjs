@@ -85,7 +85,7 @@ export function mountInertiaIdentification(root,{applyParameters}){
   $('inertia-save').addEventListener('click',()=>{try{if(!record)throw new Error('Open a motion record first.');const text=exportInertiaInvestigation(record,settings()),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=el('a',undefined,{href:url,download:'worldlaw-inertia-investigation.json'});link.click();setTimeout(()=>URL.revokeObjectURL(url),10000);clearError();}catch(e){error(e);}});
   const challengePanel=mountInertiaChallenge($('inertia-challenge-host'),{getTraining:()=>result?.primary.status==='candidate'?{record,settings:settings()}:null});
   const viscousHost=document.createElement('div');viscousHost.id='inertia-viscous-host';$('inertia-challenge-host').after(viscousHost);
-  const viscousPanel=mountViscousComparison(viscousHost);
+  const viscousPanel=mountViscousComparison(viscousHost,{applyParameters});
   let resize;window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});$('inertia-lab').addEventListener('toggle',()=>{if($('inertia-lab').open){draw();challengePanel.redraw();}});
   return {contextChanged(){generation++;viscousPanel.contextChanged();if(pendingRead){pendingRead=false;$('inertia-status').textContent='Response notebook changed. Pending motion-file read canceled; open again or refit the displayed source.';}$('inertia-same-apparatus').checked=false;$('inertia-apply').disabled=true;}};
 }

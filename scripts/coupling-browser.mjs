@@ -107,6 +107,7 @@ try{
   if(process.env.WORLDLAW_EXCITATION_RECEIVING==='1'){const {receiveExcitationWitness}=await import('./coupling-excitation-receiving.mjs');await receiveExcitationWitness({evaluate,send,check,click,text,wait,outputDir,downloads,base});assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);}
   if(process.env.WORLDLAW_POINT_RESPONSE_RECEIVING==='1'){const {receivePointResponse}=await import('./coupling-point-response-receiving.mjs');await receivePointResponse({evaluate,send,check,click,text,wait,outputDir,downloads,base});assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);}
   if(process.env.WORLDLAW_VISCOUS_RECEIVING==='1'){const {receiveViscousComparison}=await import('./coupling-viscous-receiving.mjs');await receiveViscousComparison({evaluate,send,check,click,text,wait,outputDir,downloads,base});assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);}
+  if(process.env.WORLDLAW_VISCOUS_MOTION_RECEIVING==='1'){const {receiveViscousMotion}=await import('./coupling-viscous-motion-receiving.mjs');await receiveViscousMotion({evaluate,send,check,click,text,wait,outputDir,downloads,base});assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);}
   const receipt={checks,pass:true,events,node:process.version};await writeFile(path.join(outputDir,'verification.json'),JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt,null,2));
 }finally{
   for(const p of pending.values()){clearTimeout(p.timer);p.reject(new Error('Receiver closing'));}pending.clear();
