@@ -1,0 +1,33 @@
+{
+  "base": "4a1d8a4610ec71342d29f8f6b3aed3fe7b5e84de",
+  "nativeTests": 72,
+  "newNativeGroups": 6,
+  "browserGroups": {
+    "baselineCoupling": 42,
+    "velocityComparison": 15,
+    "skewMotionAndStrictSandbox": 11
+  },
+  "smoke": "passed",
+  "visualInspection": {
+    "widths": [
+      1440,
+      390
+    ],
+    "panels": [
+      "actual motion and declarations",
+      "sampled loss/skew power",
+      "same retained motion in stiffness coordinates",
+      "candidate correspondence and copy"
+    ]
+  },
+  "independentControls": [
+    "signed analytic free response",
+    "independent scaled Taylor and squaring affine matrix exponential with dense M and D and signed G",
+    "exact G=0 v3 path parity",
+    "M=[[2,.3],[.3,1]], g=.7 gives transformed G01=.7/sqrt(1.91)",
+    "retained-row energy/power checks and unsupported-potential refusal",
+    "source-only v4 download/reopen and original source equality"
+  ],
+  "independentReview": "Workshop source review of all five consumer panels: no blocker. Independent numerical tests and actual browser receiver authored by Wildside worker, executed by root.",
+  "scope": "Explicit declared constant skew velocity term through the maintained solver, source notebook, stiffness representation and sampled power inspection. No automatic law adoption, full gyroscopic frequency claim or physical validation. Existing release planner remains an explicit diagonal/symmetric loss comparison."
+}

@@ -1,6 +1,7 @@
+import {appendVelocityPowerInspection} from './velocity-power-panel.mjs';
 import {appendModeInspection} from './modes-panel.mjs';
 import {mountInertiaIdentification} from './inertia-identification-panel.mjs';
-import {MATRIX_INPUT_SCHEMA,MATRIX_INTERPRETATION,LOSS_INPUT_SCHEMA,LOSS_INTERPRETATION,defaultDynamicsInputs,readDynamicsInputs,createCoupledDynamicsStudy,exportDynamicsNotebook,readDynamicsNotebook} from './dynamics.mjs';
+import {MATRIX_INPUT_SCHEMA,MATRIX_INTERPRETATION,LOSS_INPUT_SCHEMA,LOSS_INTERPRETATION,SKEW_INPUT_SCHEMA,SKEW_INTERPRETATION,defaultDynamicsInputs,readDynamicsInputs,createCoupledDynamicsStudy,exportDynamicsNotebook,readDynamicsNotebook} from './dynamics.mjs';
 
 const NS='http://www.w3.org/2000/svg',palette=['#c7a4ff','#ffc65d','#64e0ce','#fe9b9b','#80c8ff','#f1a7e4'];
 const fmt=n=>n===null||n===undefined?'—':Math.abs(n)>=1e4||Math.abs(n)>0&&Math.abs(n)<.00001?n.toExponential(3):Number(n.toFixed(5)).toString();
@@ -20,18 +21,20 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
         <p id="motion-equation" class="inertia-equation">M q″ + diag(D) q′ = τ(q)</p>
       </div>
       <form id="motion-form" class="motion-controls" novalidate>
-        <h3>Declare the experiment</h3><p class="small">τ(q) is interpreted as a net position-dependent driving torque, before the loss below. Cross inertia couples acceleration; symmetric cross loss couples velocity. Neither adds a position-torque law. No configuration-dependent inertia, nonlinear loss, constraint or external input is modeled.</p>
+        <h3>Declare the experiment</h3><p class="small">τ(q) is interpreted as a net position-dependent driving torque, before the loss below. Cross inertia couples acceleration; symmetric cross loss dissipates motion, while a skew velocity term redirects it without instantaneous work. Neither adds a position-torque law. No configuration-dependent inertia, nonlinear loss, constraint or external input is modeled.</p>
         <div class="pair-inputs"><label>Inertia 1 · kg·m²<input id="motion-inertia-0" type="number" step="any" min=".000000001"></label><label>Inertia 2 · kg·m²<input id="motion-inertia-1" type="number" step="any" min=".000000001"></label></div>
         <label for="motion-inertia-kind">Inertial relationship</label><select id="motion-inertia-kind"><option value="diagonal">Separate diagonal inertias</option><option value="symmetric">Symmetric inertia matrix</option></select>
         <div id="motion-cross-controls" hidden><label for="motion-inertia-cross">Shared cross inertia · kg·m²</label><input id="motion-inertia-cross" type="number" step="any" value="0" aria-describedby="motion-inertia-note"><p id="motion-inertia-note" class="small">M = [[inertia 1, cross], [cross, inertia 2]]. Positive-definite, numerically supported declarations only. Both signs are allowed; these values are supplied assumptions.</p></div>
         <div class="pair-inputs"><label>Damping 1 · N·m·s/rad<input id="motion-damping-0" type="number" step="any" min="0"></label><label>Damping 2 · N·m·s/rad<input id="motion-damping-1" type="number" step="any" min="0"></label></div>
         <label for="motion-loss-kind">Viscous-loss relationship</label><select id="motion-loss-kind"><option value="diagonal">Independent diagonal loss</option><option value="symmetric">Symmetric loss matrix</option></select>
         <div id="motion-loss-controls" hidden><label for="motion-damping-cross">Shared cross loss · N·m·s/rad</label><input id="motion-damping-cross" type="number" step="any" value="0" aria-describedby="motion-loss-note"><p id="motion-loss-note" class="small">D = [[damping 1, cross], [cross, damping 2]]. Either sign is allowed within the positive-semidefinite family. Admission is a conditional model check, not physical validation.</p></div>
+        <label for="motion-velocity-kind">Additional velocity coupling</label><select id="motion-velocity-kind"><option value="none">No additional skew term</option><option value="skew">Declared skew velocity term</option></select>
+        <div id="motion-velocity-controls" hidden><label for="motion-velocity-skew">Skew coefficient g · N·m·s/rad</label><input id="motion-velocity-skew" type="number" step="any" value="0" aria-describedby="motion-velocity-note"><p id="motion-velocity-note" class="small">G = [[0, g], [−g, 0]]. Either sign is permitted. This separately declared coupling does no instantaneous work; it is not viscous loss or evidence of a particular physical cause.</p></div>
         <div class="pair-inputs"><label>Initial angle 1 · rad<input id="motion-position-0" type="number" step="any"></label><label>Initial angle 2 · rad<input id="motion-position-1" type="number" step="any"></label></div>
         <div class="pair-inputs"><label>Initial rate 1 · rad/s<input id="motion-rate-0" type="number" step="any"></label><label>Initial rate 2 · rad/s<input id="motion-rate-1" type="number" step="any"></label></div>
         <div class="pair-inputs"><label>Duration · s<input id="motion-duration" type="number" step="any" min=".000001" max="100"></label><label>Maximum step · s<input id="motion-step" type="number" step="any" min=".00000001" max="1"></label></div>
         <details><summary>Numerical comparison and declaration</summary><div class="pair-inputs"><label>Angle tolerance · rad<input id="motion-angle-tolerance" type="number" step="any"></label><label>Rate tolerance · rad/s<input id="motion-rate-tolerance" type="number" step="any"></label></div><label for="motion-declaration">Source of the dynamic assumptions</label><textarea id="motion-declaration" rows="3" maxlength="1000"></textarea><p class="small">Compare two nested step sizes at 241 common output times. Agreement is not a numerical error bound or physical validation.</p></details>
-        <label class="motion-consent"><input id="motion-declared" type="checkbox"><span>I declare this dynamic interpretation and these inertia/damping values for this exploration.</span></label>
+        <label class="motion-consent"><input id="motion-declared" type="checkbox"><span>I declare this dynamic interpretation and these inertia, loss and velocity-coupling values for this exploration.</span></label>
         <button id="motion-run" type="submit" class="primary">Compare the motion</button>
       </form>
     </div>
@@ -39,6 +42,7 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
     <p id="motion-status" role="status" aria-live="polite">No dynamic comparison has been run.</p>
     <div class="table-wrap" id="motion-results" hidden><table><caption>All fitted explanations are shown. Training rank and step agreement do not establish the dynamic assumptions.</caption><thead><tr><th>Explanation</th><th>Step comparison</th><th>Max angle difference</th><th>Max rate difference</th><th>Observed position range</th></tr></thead><tbody id="motion-rows"></tbody></table></div>
     <section id="motion-modes" aria-label="Useful coordinates for the retained motion"></section>
+    <section id="motion-energy" aria-label="Velocity power and energy accounting"></section>
     <div class="motion-files"><button id="motion-save" type="button">Save motion inputs</button><button id="motion-open" type="button">Open motion inputs</button><span>Evidence and declarations only; models and trajectories are recomputed.</span></div>
     <input id="motion-file" type="file" accept=".json,application/json" hidden aria-label="Choose coupled motion notebook">
     <section id="motion-inertia-identification" class="inertia-identification" aria-label="Inertia from synchronized motion"></section>
@@ -51,21 +55,24 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
   function clearError(){$('motion-error').hidden=true;}
   const matrixDeclaration='Authored exploration: constant symmetric inertia and separately declared viscous damping; no physical calibration.';
   const lossDeclaration='Authored exploration: constant symmetric inertia and symmetric viscous loss; no physical calibration.';
+  const skewDeclaration='Authored exploration: constant symmetric inertia, symmetric viscous loss and a separately declared skew velocity term; no physical calibration.';
   function syncInertiaControls() {
     const matrix=$('motion-inertia-kind').value==='symmetric';
     $('motion-cross-controls').hidden=!matrix;$('motion-inertia-cross').disabled=!matrix;
     const loss=$('motion-loss-kind').value==='symmetric';
     $('motion-loss-controls').hidden=!loss;$('motion-damping-cross').disabled=!loss;
-    $('motion-equation').textContent=loss?'M q″ + D q′ = τ(q)':'M q″ + diag(D) q′ = τ(q)';
+    const skew=$('motion-velocity-kind').value==='skew';$('motion-velocity-controls').hidden=!skew;$('motion-velocity-skew').disabled=!skew;
+    $('motion-equation').textContent=skew?'M q″ + (D + G) q′ = τ(q)':loss?'M q″ + D q′ = τ(q)':'M q″ + diag(D) q′ = τ(q)';
   }
   function setInputs(input,declared=false) {
     for(const [name,key]of [['inertia','inertia'],['damping','damping'],['position','initialPosition'],['rate','initialRate']])for(let a=0;a<2;a++)$('motion-'+name+'-'+a).value=input[key][a];
     for(const [id,key]of [['duration','duration'],['step','maxStep'],['angle-tolerance','positionTolerance'],['rate-tolerance','rateTolerance']])$('motion-'+id).value=input[key];
     $('motion-declaration').value=input.declaration;$('motion-declared').checked=declared;
     root.dataset.samples=String(input.samples);
-    $('motion-inertia-kind').value=[MATRIX_INPUT_SCHEMA,LOSS_INPUT_SCHEMA].includes(input.schema)?'symmetric':'diagonal';
+    $('motion-inertia-kind').value=[MATRIX_INPUT_SCHEMA,LOSS_INPUT_SCHEMA,SKEW_INPUT_SCHEMA].includes(input.schema)?'symmetric':'diagonal';
     $('motion-inertia-cross').value=input.inertiaCross??0;
-    $('motion-loss-kind').value=input.schema===LOSS_INPUT_SCHEMA?'symmetric':'diagonal';
+    $('motion-loss-kind').value=[LOSS_INPUT_SCHEMA,SKEW_INPUT_SCHEMA].includes(input.schema)?'symmetric':'diagonal';
+    $('motion-velocity-kind').value=input.schema===SKEW_INPUT_SCHEMA?'skew':'none';$('motion-velocity-skew').value=input.velocitySkew??0;
     $('motion-damping-cross').value=input.dampingCross??0;syncInertiaControls();
   }
   function inputs() {
@@ -80,10 +87,14 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
     if($('motion-loss-kind').value==='symmetric'){
       result.schema=LOSS_INPUT_SCHEMA;result.interpretation=LOSS_INTERPRETATION;result.inertiaCross??=0;result.dampingCross=$('motion-damping-cross').valueAsNumber;
     }
+    if($('motion-velocity-kind').value==='skew'){
+      result.schema=SKEW_INPUT_SCHEMA;result.interpretation=SKEW_INTERPRETATION;result.inertiaCross??=0;result.dampingCross??=0;
+      result.velocitySkew=$('motion-velocity-skew').valueAsNumber;result.units.velocitySkew='N·m·s/rad';
+    }
     return readDynamicsInputs(result);
   }
   function invalidate(message) {
-    stop();study=null;retainedEvidence=null;$('motion-modes').replaceChildren();frame=0;$('motion-frame').value='0';$('motion-frame').disabled=true;$('motion-play').disabled=true;
+    stop();study=null;retainedEvidence=null;$('motion-modes').replaceChildren();$('motion-energy').replaceChildren();frame=0;$('motion-frame').value='0';$('motion-frame').disabled=true;$('motion-play').disabled=true;
     $('motion-results').hidden=true;$('motion-rows').replaceChildren();$('motion-legend').replaceChildren();
     $('motion-plot').replaceChildren(node('p',message,{class:'motion-empty'}));$('motion-time').textContent='0 s';$('motion-status').textContent=message;
   }
@@ -143,14 +154,14 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
       if(r.refined){const span=node('span'),mark=node('i');mark.style.background=palette[i%palette.length];span.append(mark,node('span',r.label+(r.status==='step_sensitive'?' · step-sensitive':'')));$('motion-legend').append(span);}
     });
     for(const r of study.refusedModels??[]){const row=node('tr');row.append(node('td',r.label),node('td','Response fit unavailable: '+r.reason),node('td','—'),node('td','—'),node('td','No executable model'));$('motion-rows').append(row);}
-    $('motion-results').hidden=false;appendModeInspection($('motion-modes'),retainedEvidence,study);draw();
+    $('motion-results').hidden=false;appendModeInspection($('motion-modes'),retainedEvidence,study);appendVelocityPowerInspection($('motion-energy'),retainedEvidence,study);draw();
   }
   function run() {invalidate('Computing the declared comparison…');try{const evidence=structuredClone(getNotebook());study=createCoupledDynamicsStudy(evidence,inputs());retainedEvidence=evidence;clearError();render();}catch(err){invalidate('No current dynamic comparison. Correct the inputs and run again.');error(err);}}
   $('motion-form').addEventListener('submit',event=>{event.preventDefault();run();});
   $('motion-form').addEventListener('input',event=>{
-    if(['motion-inertia-kind','motion-loss-kind'].includes(event.target.id)){
+    if(['motion-inertia-kind','motion-loss-kind','motion-velocity-kind'].includes(event.target.id)){
       const declaration=$('motion-declaration').value;
-      if([defaultDynamicsInputs().declaration,matrixDeclaration,lossDeclaration].includes(declaration))$('motion-declaration').value=$('motion-loss-kind').value==='symmetric'?lossDeclaration:$('motion-inertia-kind').value==='symmetric'?matrixDeclaration:defaultDynamicsInputs().declaration;
+      if([defaultDynamicsInputs().declaration,matrixDeclaration,lossDeclaration,skewDeclaration].includes(declaration))$('motion-declaration').value=$('motion-velocity-kind').value==='skew'?skewDeclaration:$('motion-loss-kind').value==='symmetric'?lossDeclaration:$('motion-inertia-kind').value==='symmetric'?matrixDeclaration:defaultDynamicsInputs().declaration;
       syncInertiaControls();
     }
     generation++;invalidate('Inputs changed. Compare again to see current predictions.');clearError();});
@@ -187,13 +198,17 @@ export function mountCoupledDynamics(root,{getNotebook,loadNotebook}) {
     $('motion-declaration').value=('Proposed permitted release with '+label+'. '+input.declaration).slice(0,1000);
     invalidate('Proposed release and chosen fitted loss copied. Review and declare this motion experiment before comparing.');clearError();$('motion-position-0').focus();
   },applyParameters(parameters,label){
+    const skew=Object.hasOwn(parameters,'velocitySkew');
+    if(skew)readDynamicsInputs({...defaultDynamicsInputs(),...parameters,schema:SKEW_INPUT_SCHEMA,interpretation:SKEW_INTERPRETATION,units:{...defaultDynamicsInputs().units,velocitySkew:'N·m·s/rad'}});
     generation++;$('motion-inertia-kind').value='symmetric';
     for(let axis=0;axis<2;axis++){$('motion-inertia-'+axis).value=parameters.inertia[axis];$('motion-damping-'+axis).value=parameters.damping[axis];}
     $('motion-inertia-cross').value=parameters.inertiaCross;
-    const loss=Object.hasOwn(parameters,'dampingCross');$('motion-loss-kind').value=loss?'symmetric':'diagonal';$('motion-damping-cross').value=parameters.dampingCross??0;syncInertiaControls();
-    $('motion-declaration').value=('Candidate weak-balance fit from '+label+'. Constant symmetric inertia and '+(loss?'symmetric':'diagonal')+' viscous loss; source pairing and physical validity remain declared assumptions.').slice(0,1000);
-    $('motion-declared').checked=false;invalidate('Candidate inertia and damping copied. Review the source pairing and declare this experiment before comparing motion.');clearError();$('motion-inertia-0').focus();
+    const loss=Object.hasOwn(parameters,'dampingCross');$('motion-loss-kind').value=loss?'symmetric':'diagonal';$('motion-damping-cross').value=parameters.dampingCross??0;
+    $('motion-velocity-kind').value=skew?'skew':'none';$('motion-velocity-skew').value=parameters.velocitySkew??0;syncInertiaControls();
+    $('motion-declaration').value=('Candidate weak-balance fit from '+label+'. Constant symmetric inertia and '+(loss?'symmetric':'diagonal')+' viscous loss'+(skew?' with a separately declared skew velocity term':'')+'; source pairing and physical validity remain declared assumptions.').slice(0,1000);
+    $('motion-declared').checked=false;invalidate(skew?'Candidate M, D and G copied. Review the source pairing and declare this experiment before comparing motion.':'Candidate inertia and damping copied. Review the source pairing and declare this experiment before comparing motion.');clearError();$('motion-inertia-0').focus();
   }});
   return {sourceChanged(){generation++;identification.contextChanged();$('motion-declared').checked=false;invalidate('Evidence changed. Declare the dynamic interpretation and compare the current fitted responses.');clearError();}};
 }
+
 

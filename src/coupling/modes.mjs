@@ -2,7 +2,7 @@
  * Reuses fitted laws and existing trajectories; never learns inertia from static data.
  */
 import {predictCoupling,requireThat,pair} from './science.mjs';
-import {readDynamicsInputs,MATRIX_INPUT_SCHEMA,LOSS_INPUT_SCHEMA} from './dynamics.mjs';
+import {readDynamicsInputs,MATRIX_INPUT_SCHEMA,LOSS_INPUT_SCHEMA,SKEW_INPUT_SCHEMA} from './dynamics.mjs';
 import {readSymmetricInertia} from './inertia.mjs';
 const dot=(a,b)=>a[0]*b[0]+a[1]*b[1];
 const mv=(a,b)=>a.map(r=>dot(r,b));
@@ -13,7 +13,7 @@ export function deriveCoupledModes(model,rawInputs){
  const inputs=readDynamicsInputs(rawInputs);predictCoupling(model,[0,0]);
  const base={modelId:model.id,label:model.label??model.id};
  if(model.matrix[0][1]!==model.matrix[1][0])return {...base,status:'asymmetric',reason:'The fitted matrix is not symmetric. This real orthogonal stiffness-mode construction does not apply; the original candidate is retained.'};
- const scale=inputs.inertia.map(Math.sqrt),loss=inputs.schema===LOSS_INPUT_SCHEMA,mass=loss||inputs.schema===MATRIX_INPUT_SCHEMA?readSymmetricInertia(inputs.inertia,inputs.inertiaCross):null;
+ const scale=inputs.inertia.map(Math.sqrt),skew=inputs.schema===SKEW_INPUT_SCHEMA,loss=skew||inputs.schema===LOSS_INPUT_SCHEMA,mass=loss||inputs.schema===MATRIX_INPUT_SCHEMA?readSymmetricInertia(inputs.inertia,inputs.inertiaCross):null;
  const matrix=mass?mm(mm(mass.forceToMass,model.matrix),mass.fromMass):model.matrix.map((r,i)=>r.map((v,j)=>v/scale[i]/scale[j]));
  // atan2 handles either diagonal order and exactly repeated isotropic matrices.
  const angle=.5*Math.atan2(2*matrix[0][1],matrix[0][0]-matrix[1][1]);
@@ -22,17 +22,20 @@ export function deriveCoupledModes(model,rawInputs){
  const lossMatrix=[[inputs.damping[0],loss?inputs.dampingCross:0],[loss?inputs.dampingCross:0,inputs.damping[1]]];
  const massDamping=mass?mm(mm(mass.forceToMass,lossMatrix),mass.fromMass):[[inputs.damping[0]/inputs.inertia[0],0],[0,inputs.damping[1]/inputs.inertia[1]]];
  const damping=mm(mm(inverse,massDamping),basis);
+ const velocitySkew=skew?mm(mm(inverse,mm(mm(mass.forceToMass,[[0,inputs.velocitySkew],[-inputs.velocitySkew,0]]),mass.fromMass)),basis):null;
+ if(skew)requireThat(finiteAll(velocitySkew),'The transformed skew coupling became nonfinite.','numerical_failure');
  const magnitude=Math.max(...matrix.flat().map(Math.abs)),resolution=64*Number.EPSILON*magnitude+Number.MIN_VALUE;
  const values=[stiffness[0][0],stiffness[1][1]],separation=Math.hypot(matrix[0][0]-matrix[1][1],2*matrix[0][1]);
  requireThat(finiteAll([scale,matrix,basis,stiffness,bias,damping,values,resolution,separation]),'The mode transformation became nonfinite.','numerical_failure');
  return {...base,status:'available',scale,basis,stiffness,bias,damping,eigenvalues:values,
+  ...(skew?{velocitySkew,frequencyQualification:'Stiffness-only reference frequencies with both D and G removed; these are not the full velocity-coupled modal frequencies.'}:{}),
   ...(mass?{inertiaKind:'symmetric',toMass:mass.toMass,fromMass:mass.fromMass,forceToMass:mass.forceToMass}:{}),
   directions:transpose(basis).map(v=>mass?mv(mass.fromMass,v):v.map((x,i)=>x/scale[i])),
   frequencies:values.map(v=>v < -resolution?Math.sqrt(-v):null),
   stability:values.map(v=>v < -resolution?'restoring':v > resolution?'anti-restoring':'near_zero'),
   axisAmbiguity:separation<=resolution,
   numerical:{resolution,offDiagonalResidual:Math.max(Math.abs(stiffness[0][1]),Math.abs(stiffness[1][0])),interpretation:'Floating-point diagnostics, not verified error bounds or coefficient uncertainty.'},
-  qualification:'Coordinates follow this fitted symmetric affine law and '+(mass?'declared constant symmetric inertia.':'declared diagonal inertia.')+' They do not identify physical bodies, inertia or topology. Generic damping may remain coupled. Frequencies describe the undamped conditional equation only.'};
+  qualification:(skew?'The transformed skew velocity matrix remains in the equation and can couple these stiffness coordinates. Stiffness-only frequencies omit both D and G. ':'')+'Coordinates follow this fitted symmetric affine law and '+(mass?'declared constant symmetric inertia.':'declared diagonal inertia.')+' They do not identify physical bodies, inertia or topology. Generic damping may remain coupled. '+(skew?'Frequency references omit both loss and skew velocity coupling.':'Frequencies describe the undamped conditional equation only.')};
 }
 export function transformModeRow(mode,row){
  requireThat(mode?.status==='available','Choose an available mode transformation.');
@@ -58,3 +61,4 @@ export function inspectModeTrajectory(model,rawInputs,trajectory){
  });
  return {...mode,trajectoryStatus:trajectory.status,rows,checks:{responseResidual,powerResidual,roundtripResidual},domainStatus:trajectory.refined.domainStatus};
 }
+
