@@ -136,6 +136,7 @@ INCLUDE = (
     'experiments/rolling-origin.mjs',
 )
 REQUIRED = (
+    "src/stiffness/design.mjs", "src/stiffness/design-panel.mjs", "docs/STIFFNESS_INPUT_DESIGN.md",
     "src/science/studio-dynamics-comparison.mjs", "src/science/studio-comparison-panel.mjs",
     "src/science/studio-comparison-view.mjs",
     "src/science/robust-fit.mjs",
