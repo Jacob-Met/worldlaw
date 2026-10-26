@@ -1,0 +1,207 @@
+{
+  "schema": "worldlaw.applied-restoring-reference-controls/v1",
+  "authoredOnly": true,
+  "cases": [
+    {
+      "datumShift": 0,
+      "baselineStatus": "proposed",
+      "expandedStatus": "proposed",
+      "automaticProposal": "gravity",
+      "phase": -0.00020325088692309777,
+      "inertia": 0.6995513248385625,
+      "tailRMSE": 0.001886814346699783,
+      "challengeRMSE": 0.0014734207862430236,
+      "retainedFamilies": [
+        {
+          "id": "linear",
+          "status": "complete",
+          "withinTolerance": false
+        },
+        {
+          "id": "gravity",
+          "status": "complete",
+          "withinTolerance": true
+        },
+        {
+          "id": "cubic",
+          "status": "complete",
+          "withinTolerance": true
+        },
+        {
+          "id": "linear-reference",
+          "status": "complete",
+          "withinTolerance": false
+        },
+        {
+          "id": "gravity-reference",
+          "status": "complete",
+          "withinTolerance": true
+        }
+      ]
+    },
+    {
+      "datumShift": 0.25,
+      "baselineStatus": "no_family_within_declared_tolerance",
+      "expandedStatus": "proposed",
+      "automaticProposal": "gravity-reference",
+      "phase": 0.24979674911307603,
+      "inertia": 0.6995513248385629,
+      "tailRMSE": 0.001886814346699462,
+      "challengeRMSE": 0.0014734207862433478,
+      "retainedFamilies": [
+        {
+          "id": "linear",
+          "status": "complete",
+          "withinTolerance": false
+        },
+        {
+          "id": "gravity",
+          "status": "complete",
+          "withinTolerance": false
+        },
+        {
+          "id": "cubic",
+          "status": "complete",
+          "withinTolerance": false
+        },
+        {
+          "id": "linear-reference",
+          "status": "complete",
+          "withinTolerance": false
+        },
+        {
+          "id": "gravity-reference",
+          "status": "complete",
+          "withinTolerance": true
+        }
+      ]
+    },
+    {
+      "datumShift": 0.6,
+      "baselineStatus": "incomplete_comparison",
+      "expandedStatus": "incomplete_comparison",
+      "automaticProposal": null,
+      "phase": 0.5997967491130761,
+      "inertia": 0.6995513248385633,
+      "tailRMSE": 0.001886814346698478,
+      "challengeRMSE": 0.0014734207862436,
+      "retainedFamilies": [
+        {
+          "id": "linear",
+          "status": "complete",
+          "withinTolerance": false
+        },
+        {
+          "id": "gravity",
+          "status": "complete",
+          "withinTolerance": false
+        },
+        {
+          "id": "cubic",
+          "status": "incomplete",
+          "withinTolerance": false
+        },
+        {
+          "id": "linear-reference",
+          "status": "complete",
+          "withinTolerance": false
+        },
+        {
+          "id": "gravity-reference",
+          "status": "complete",
+          "withinTolerance": true
+        }
+      ]
+    },
+    {
+      "datumShift": 1,
+      "baselineStatus": "no_complete_family",
+      "expandedStatus": "incomplete_comparison",
+      "automaticProposal": null,
+      "phase": 0.9997967491130754,
+      "inertia": 0.6995513248385611,
+      "tailRMSE": 0.0018868143466972034,
+      "challengeRMSE": 0.0014734207862446846,
+      "retainedFamilies": [
+        {
+          "id": "linear",
+          "status": "incomplete",
+          "withinTolerance": false
+        },
+        {
+          "id": "gravity",
+          "status": "incomplete",
+          "withinTolerance": false
+        },
+        {
+          "id": "cubic",
+          "status": "incomplete",
+          "withinTolerance": false
+        },
+        {
+          "id": "linear-reference",
+          "status": "complete",
+          "withinTolerance": false
+        },
+        {
+          "id": "gravity-reference",
+          "status": "complete",
+          "withinTolerance": true
+        }
+      ]
+    }
+  ],
+  "ambiguous": [
+    {
+      "amplitude": 0.1,
+      "status": "incomplete_comparison",
+      "competitive": [
+        "gravity-reference",
+        "linear-reference"
+      ]
+    },
+    {
+      "amplitude": 0.03,
+      "status": "incomplete_comparison",
+      "competitive": [
+        "cubic",
+        "gravity-reference",
+        "linear-reference"
+      ]
+    }
+  ],
+  "wrongTorqueZero": {
+    "addedTorqueNm": 0.1,
+    "originalReference": 0.24999252428989663,
+    "changedReference": 0.2205146286016132,
+    "challengeRMSE": 0.00012032349403341504,
+    "meaning": "Low prediction error cannot authenticate a restoring reference or torque-zero calibration."
+  },
+  "zeroRestoring": [
+    {
+      "coordinatePerturbation": 0,
+      "trueRestoringGain": 0,
+      "status": "no_family_within_declared_tolerance",
+      "fittedGain": 0.000593111510567364,
+      "fittedPhase": -1.0750565325663735,
+      "challengeRMSE": 0.002657911286517132
+    },
+    {
+      "coordinatePerturbation": 0.0001,
+      "trueRestoringGain": 0,
+      "status": "no_family_within_declared_tolerance",
+      "fittedGain": 0.0005992847554623937,
+      "fittedPhase": -1.0287737238884656,
+      "challengeRMSE": 0.0027004422359098537
+    },
+    {
+      "coordinatePerturbation": 0.001,
+      "trueRestoringGain": 0,
+      "status": "no_family_within_declared_tolerance",
+      "fittedGain": 0.0006805577357381502,
+      "fittedPhase": -0.722808090915324,
+      "challengeRMSE": 0.0032346819958454843
+    }
+  ],
+  "zeroMeaning": "A tiny fitted sine gain can have an unstable phase. No automatic proposal was supplied; these conditional parameters are not recovered physical reference measurements."
+}
