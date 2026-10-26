@@ -392,3 +392,15 @@ If the pivot is hidden, track the visible marker first and stage the plane decla
 Coupling Lab can now infer a symmetric cross-loss coefficient beside its original diagonal inertia balance, then confront both frozen explanations with a separate motion. Original/coarser source rows, failed hypotheses and input-only save/reopen remain inspectable. Open the motion-identification instrument and choose **Can drag act across the two coordinates?** See [the equations, workflow and receiving evidence](docs/COUPLED_VISCOUS_LOSS.md).
 
 An admitted symmetric fit can now be copied into **Let the laws move** after explicit source pairing. The existing solver executes the full loss matrix, the mode view retains its transformed coupling, and version-3 motion downloads reopen from source inputs. See [inferred-loss motion, compatibility and numerical receiving](docs/COUPLED_VISCOUS_MOTION.md).
+
+### Bound the preparation offset compatible with every pair
+
+In UNKNOWN LAB, after checking a complete pair course, **How much preparation
+offset remains possible?** compares the declared offset prior with a
+witness-supported inner interval and a numerical outer bracket. The same
+original readings, fixed-period sensor components, drift and reading-error
+assumptions remain in force; an incompatible course or exhausted search stays
+visible. Save/reopen retains source inputs and work settings, then recomputes
+the result. These are conditional compatibility bounds, not a confidence
+interval or a physical preparation-effect estimate. See [the model, source
+contract and receiving scope](docs/PERIODIC_HISTORY_RANGE.md).

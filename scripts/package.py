@@ -155,6 +155,7 @@ REQUIRED = (
     "src/coupling/dynamics.mjs", "src/coupling/dynamics-panel.mjs",
     "src/coupling/notebook.mjs", "src/coupling/virtual-instrument.mjs", "src/science/linear-fit.mjs",
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/app.mjs", "src/unknown-lab/paired-history.mjs",
+    "src/unknown-lab/periodic-history-range.mjs", "src/unknown-lab/periodic-history-range-panel.mjs",
     "README.md", "package.json", "index.html", "styles.css", "favicon.svg",
     "server.mjs", "src/app.mjs", "src/data.mjs", "src/session.mjs",
     "src/science/torque-discovery.mjs", "src/science/virtual-lab.mjs",
