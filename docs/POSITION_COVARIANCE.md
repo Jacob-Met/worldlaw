@@ -160,3 +160,5 @@ its own loopback product server. Legacy parity additionally requires
 ### Final composition checkpoint
 
 Incoming competitive scalar-library proposals were preserved on `ba77ab729db3558d01cfe63fbe545be5f684281e`. Root reran55 affected native groups and all11 actual strict-sandbox browser groups. The new controls/charts were visually inspected at desktop and390px, including focused panel captures. The8 exact legacy parity comparisons and independent scientific experiments above are unchanged. Final published-tree hashing precedes the ordinary merge.
+
+The final publication also preserves the incoming applied-restoring reference contract at `9326de97e32730bbfb3c72ea9ce6b9f5b303f892`. Its composed source passed 63 affected native groups and all11 actual browser groups before publication.

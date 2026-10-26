@@ -14,3 +14,13 @@ export function appliedRestoringExample({family='gravity',amplitude=1,noise=0,se
   calibrationBasis:'Authored analytic SI torque values with inertia .7 and damping .19; the original linear restoring equation is a baseline hypothesis to challenge. This course does not establish physical calibration.',
   units:{time:'s',position:'rad',appliedTorque:'N·m',initialRate:'rad/s'},trainingRuns:[run('authored-restoring-training-'+family,false)],challengeRuns:[run('authored-restoring-separate-'+family,true)]};
 }
+
+/** Authored coordinate datum only: original torque and initial rate are unchanged. */
+export function appliedRestoringReferenceExample({datumShift=.25,...options}={}){
+ if(!Number.isFinite(datumShift)||Math.abs(datumShift)>2*Math.PI)throw Error('Use a finite authored angle datum within one turn.');
+ const source=appliedRestoringExample(options);
+ for(const run of [...source.trainingRuns,...source.challengeRuns])for(const row of run.samples)row.position+=datumShift;
+ source.label+=` · recorded datum ${datumShift} rad`;
+ source.calibrationBasis+=` Recorded angle coordinates have an authored ${datumShift} rad offset; applied torque and initial rates are unchanged. This declaration is not physical reference calibration.`;
+ return source;
+}
