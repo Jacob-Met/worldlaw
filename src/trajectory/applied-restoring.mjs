@@ -11,6 +11,11 @@ export const RESTORING_FAMILIES=Object.freeze([
  Object.freeze({id:'gravity',label:'Sinusoidal restoring',terms:Object.freeze(['gravity'])}),
  Object.freeze({id:'cubic',label:'Linear + cubic restoring',terms:Object.freeze(['spring','cubic'])}),
 ]);
+export const REFERENCE_RESTORING_FAMILIES=Object.freeze([...RESTORING_FAMILIES,
+ Object.freeze({id:'linear-reference',label:'Linear restoring with reference',terms:Object.freeze(['spring','bias'])}),
+ Object.freeze({id:'gravity-reference',label:'Sinusoidal restoring with reference',terms:Object.freeze(['gravity','cosine'])}),
+]);
+export const APPLIED_REFERENCE_SCHEMA='worldlaw.applied-restoring-reference-notebook/v1';
 const TERMS=['command','rate','spring','gravity','cubic'];
 const MAX_WEAK_WORK=25000000,MAX_STEPS=2000000,MAX_ROWS=262144;
 const clone=value=>JSON.parse(JSON.stringify(value));
@@ -29,14 +34,14 @@ function settings(requested){
  return options;
 }
 const torqueRun=(run,inertia)=>({...run,inertia,samples:run.samples.map(row=>({time:row.time,position:row.position,command:row.appliedTorque}))});
-function weakRows(runs,options){
- const blocks=runs.map(run=>({runId:run.id,rows:weakWindows(torqueRun(run,1),{...options,terms:TERMS},null,insist)}));
+function weakRows(runs,options,terms=TERMS){
+ const blocks=runs.map(run=>({runId:run.id,rows:weakWindows(torqueRun(run,1),{...options,terms},null,insist)}));
  const rows=blocks.flatMap(block=>block.rows);
  insist(rows.length>=8&&rows.length<=2048,'Each fit needs 8–2048 complete weak windows across its original training recordings.');
  return {rows,blocks:blocks.map(block=>({runId:block.runId,windows:block.rows.map(({target,columns,...metadata})=>metadata)}))};
 }
-function fitFamily(rows,family){
- const columns=[rows.map(row=>row.target),rows.map(row=>row.columns[1]),...family.terms.map(id=>rows.map(row=>row.columns[TERMS.indexOf(id)]))];
+function fitFamily(rows,family,terms=TERMS){
+ const columns=[rows.map(row=>row.target),rows.map(row=>row.columns[1]),...family.terms.map(id=>rows.map(row=>row.columns[terms.indexOf(id)]))];
  const target=rows.map(row=>row.columns[0]),rank=linearColumnRank(columns),fit=fitLinearColumns(columns,target);
  const base={rank,coefficientCount:columns.length,windowCount:rows.length};
  if(!fit)return {...base,status:'unidentifiable',candidate:null};
@@ -44,11 +49,17 @@ function fitFamily(rows,family){
  if(!fit.coefficients.every(value=>Number.isFinite(value)&&Math.abs(value)<=1e12)||inertia<=1e-12||damping<0)
   return {...base,status:'inadmissible_coefficients',candidate:null,rejectedCoefficients:{inertia,damping,restoring}};
  const residuals=target.map((value,i)=>value-columns.reduce((sum,column,j)=>sum+column[i]*fit.coefficients[j],0));
- const candidate={inertia,damping,restoring:family.terms.map((id,i)=>({id,coefficient:restoring[i],unit:id==='cubic'?'N·m/rad³':id==='gravity'?'N·m':'N·m/rad'})),
+ const candidate={inertia,damping,restoring:family.terms.map((id,i)=>({id,coefficient:restoring[i],unit:id==='cubic'?'N·m/rad³':['gravity','cosine','bias'].includes(id)?'N·m':'N·m/rad'})),
   inertiaUnit:'kg·m²',dampingUnit:'N·m·s/rad',conditionEstimate:fit.conditionEstimate,
   weakRMSE:Math.hypot(...residuals)/Math.sqrt(rows.length),weakResidualUnits:'N·m·s²'};
  candidate.model={schema:'worldlaw.torque-model/v1',id:'applied-restoring-'+family.id,
   terms:[{id:'command',coefficient:1},{id:'rate',coefficient:-damping},...candidate.restoring.map(({id,coefficient})=>({id,coefficient:-coefficient}))]};
+ if(family.id==='linear-reference'){
+  const [stiffness,constant]=restoring,position=-constant/stiffness;candidate.reference={kind:'linear-zero',position:Number.isFinite(position)?position:null,period:null,gain:stiffness,status:Number.isFinite(position)?'conditional':'no_defined_reference',meaning:'Zero of the offered linear restoring torque; not an authenticated physical equilibrium or torque-zero calibration.'};
+ }
+ if(family.id==='gravity-reference'){
+  const gain=Math.hypot(...restoring),phase=Math.atan2(-restoring[1],restoring[0]);candidate.reference={kind:'sinusoidal-phase',position:gain===0?null:phase===Math.PI?-Math.PI:phase,period:2*Math.PI,gain,status:gain===0?'no_defined_reference':'conditional',meaning:'Phase of gain × sin(angle − phase), modulo 2π. This law also has an opposite zero at phase + π. Neither identifies an authenticated physical reference.'};
+ }
  return {...base,status:'fitted',candidate};
 }
 function forecasts(candidate,runs,options){
@@ -62,7 +73,8 @@ function forecasts(candidate,runs,options){
  });
 }
 
-export function proposeAppliedRestoring(raw,requested={}){
+function compareAppliedRestoring(raw,requested={},withReference=false){
+ const families=withReference?REFERENCE_RESTORING_FAMILIES:RESTORING_FAMILIES,terms=withReference?[...TERMS,'bias','cosine']:TERMS;
  const source=normalizeAppliedTorque(raw),options=settings(requested);
  // The source's original linear interpretation remains the baseline. Calling
  // this explicit revision compares a fixed catalog; it never edits that source.
@@ -75,19 +87,19 @@ export function proposeAppliedRestoring(raw,requested={}){
  const prefixes=source.trainingRuns.map((run,i)=>({...run,samples:run.samples.slice(0,partitions[i].prefixCount)}));
  // The entire training catalog is reserved before fitting. A later challenge
  // budget refusal must not revoke or change this training-only proposal.
- const trainingReservation=reservePredictionWork(source.trainingRuns,options.maxStep,RESTORING_FAMILIES.length);
- const challengeReservation=reservePredictionWork(source.challengeRuns,options.maxStep,RESTORING_FAMILIES.length);
+ const trainingReservation=reservePredictionWork(source.trainingRuns,options.maxStep,families.length);
+ const challengeReservation=reservePredictionWork(source.challengeRuns,options.maxStep,families.length);
  const reservation={training:trainingReservation,challenge:challengeReservation,stepLimit:options.maxTotalSteps,rowLimit:MAX_ROWS};
  insist(trainingReservation.steps<=options.maxTotalSteps,'The complete restoring comparison exceeds its declared forward-step reservation; no partial catalog was compared.');
  insist(trainingReservation.rows<=MAX_ROWS,'The complete restoring comparison exceeds its retained prediction-row reservation.');
  insist(source.trainingRuns.every(run=>reservePredictionWork([run],options.maxStep).steps<=1000000),'A training recording exceeds the maintained coarse/refined solver budget.');
  reservation.challengeStatus=trainingReservation.steps+challengeReservation.steps<=options.maxTotalSteps&&trainingReservation.rows+challengeReservation.rows<=MAX_ROWS&&source.challengeRuns.every(run=>reservePredictionWork([run],options.maxStep).steps<=1000000)?'reserved':'work_refused';
- reservation.weakWork=[...prefixes,...source.trainingRuns].reduce((sum,run)=>sum+run.samples.length*Math.min(2049,Math.ceil((run.samples.at(-1).time-run.samples[0].time)/options.windowStride)+1)*TERMS.length,0);
+ reservation.weakWork=[...prefixes,...source.trainingRuns].reduce((sum,run)=>sum+run.samples.length*Math.min(2049,Math.ceil((run.samples.at(-1).time-run.samples[0].time)/options.windowStride)+1)*terms.length,0);
  insist(reservation.weakWork<=MAX_WEAK_WORK,'The complete weak-window comparison exceeds its bounded work allowance; use a larger window stride.');
- const prefix=weakRows(prefixes,options),full=weakRows(source.trainingRuns,options);
+ const prefix=weakRows(prefixes,options,terms),full=weakRows(source.trainingRuns,options,terms);
  const validationCount=partitions.reduce((sum,part)=>sum+part.validationCount,0);
- const candidates=RESTORING_FAMILIES.map(family=>{
-  const initialFit=fitFamily(prefix.rows,family),finalFit=fitFamily(full.rows,family);
+ const candidates=families.map(family=>{
+  const initialFit=fitFamily(prefix.rows,family,terms),finalFit=fitFamily(full.rows,family,terms);
   const row={id:family.id,label:family.label,terms:[...family.terms],initialFit,finalFit,status:'incomplete',validation:[],validationRMSE:null,score:null,withinTolerance:false,challenges:[]};
   if(initialFit.candidate){
    row.validation=forecasts(initialFit.candidate,source.trainingRuns,options).map((receipt,i)=>{
@@ -110,15 +122,18 @@ export function proposeAppliedRestoring(raw,requested={}){
  const decision={status,preferredId:best?.id??null,proposedId:status==='proposed'?best.id:null,competitiveIds:competitive.map(candidate=>candidate.id),
   withinToleranceIds:ranked.filter(candidate=>candidate.withinTolerance).map(candidate=>candidate.id),ranking:ranked.map(candidate=>candidate.id)};
  for(const candidate of candidates)if(candidate.finalFit.candidate)candidate.challenges=reservation.challengeStatus==='reserved'?forecasts(candidate.finalFit.candidate,source.challengeRuns,options):source.challengeRuns.map(run=>({runId:run.id,status:'work_refused',error:{code:'challenge_work_limit',message:'The complete separate-challenge catalog exceeds the remaining work allowance. The training proposal is retained; no subset was forecast.'}}));
- return {schema:'worldlaw.applied-restoring-proposal/v1',source,options,revision:'Explicit alternative restoring-family hypotheses; original linear source retained.',reservation,partitions,
+ return {schema:withReference?'worldlaw.applied-restoring-reference-proposal/v1':'worldlaw.applied-restoring-proposal/v1',source,options,revision:'Explicit alternative restoring-family hypotheses; original linear source retained.',reservation,partitions,
   weakWindows:{prefix:prefix.blocks,full:full.blocks},validationCount,...decision,candidates,
-  limitations:['A fixed three-family proposal, not unrestricted mechanism discovery or a uniquely identified physical law.',
+  limitations:[withReference?'An explicitly expanded five-family comparison with a conditional restoring reference; not unrestricted discovery, authenticated equilibrium, or unique physical identification. Constant torque-zero errors can change this reference. Original angles are never shifted by the fitter.':'A fixed three-family proposal, not unrestricted mechanism discovery or a uniquely identified physical law.',
    'Only the first declared fraction of each training recording fits proposal coefficients. Later original training angles rank full free-running predictions from the original initial position/rate; supplied forcing throughout the recording remains available.',
    'The preferred family is then fitted again using all original training samples. Separate challenge positions and outcomes cannot select a family, coefficient, cutoff, or tolerance.',
    'Qualification by the declared position tolerance precedes complexity ranking; alternatives outside tolerance cannot displace a qualified family. The declared angular tolerance and complexity/ambiguity score are screening assumptions, not calibrated noise, probability, or confidence. A family outside the competitive score set is not physically excluded.',
    'Positive constant scalar inertia and nonnegative linear damping are imposed; restoring coefficients need not be passive. Wrong torque calibration can change inferred inertia without degrading motion predictions.',
    'Noisy input coordinates, timing/alignment errors, unoffered mechanisms, and changed future forcing can mislead all candidates. Two-step agreement is not numerical convergence.']};
 }
+
+export const proposeAppliedRestoring=(raw,requested={})=>compareAppliedRestoring(raw,requested,false);
+export const proposeAppliedRestoringReference=(raw,requested={})=>compareAppliedRestoring(raw,requested,true);
 
 export function exportAppliedRestoring(result,{acceptedId=null}={}){
  insist(result?.schema==='worldlaw.applied-restoring-proposal/v1','Expected a restoring proposal.');
@@ -131,6 +146,21 @@ export function reopenAppliedRestoring(text){
  const raw=JSON.parse(text);insist(object(raw)&&raw.schema===APPLIED_RESTORING_SCHEMA,'Expected an original-input restoring notebook.');
  insist(raw.acceptedId===null||RESTORING_FAMILIES.some(family=>family.id===raw.acceptedId),'Invalid explicit family choice.');
  const proposal=proposeAppliedRestoring(raw.source,raw.options);
+ if(raw.acceptedId!==null)insist(proposal.candidates.some(candidate=>candidate.id===raw.acceptedId&&candidate.status==='complete'),'The retained explicit choice is unavailable after recomputation.');
+ return {proposal,acceptedId:raw.acceptedId};
+}
+
+export function exportAppliedRestoringReference(result,{acceptedId=null}={}){
+ insist(result?.schema==='worldlaw.applied-restoring-reference-proposal/v1','Expected an explicit restoring-reference proposal.');
+ if(acceptedId!==null)insist(result.candidates.some(candidate=>candidate.id===acceptedId&&candidate.status==='complete'),'Choose an available complete family explicitly.');
+ const text=JSON.stringify({schema:APPLIED_REFERENCE_SCHEMA,source:normalizeAppliedTorque(result.source),options:settings(result.options),acceptedId},null,2);
+ insist(new TextEncoder().encode(text).length<=3000000,'Use a restoring-reference notebook below 3 MB.');return text;
+}
+export function reopenAppliedRestoringReference(text){
+ insist(typeof text==='string'&&new TextEncoder().encode(text).length<=3000000,'Use a restoring-reference notebook below 3 MB.');
+ const raw=JSON.parse(text);insist(object(raw)&&raw.schema===APPLIED_REFERENCE_SCHEMA,'Expected original-input restoring-reference notebook.');
+ insist(raw.acceptedId===null||REFERENCE_RESTORING_FAMILIES.some(family=>family.id===raw.acceptedId),'Invalid explicit family choice.');
+ const proposal=proposeAppliedRestoringReference(raw.source,raw.options);
  if(raw.acceptedId!==null)insist(proposal.candidates.some(candidate=>candidate.id===raw.acceptedId&&candidate.status==='complete'),'The retained explicit choice is unavailable after recomputation.');
  return {proposal,acceptedId:raw.acceptedId};
 }
