@@ -9,7 +9,7 @@ const end = source.indexOf('\nasync function seek(', start);
 assert.ok(start >= 0 && end > start, 'find production openNotebook implementation');
 const implementation = source.slice(start, end);
 
-function receiver() {
+function receiver({demoSource = null} = {}) {
   const errors = [], notifications = [], state = {epoch: 0, notebook: null, source: null, frame: null, selectedTime: null};
   const nodes = {'track-until': {value: '', max: ''}};
   const context = {
@@ -17,7 +17,7 @@ function receiver() {
     MAX_MOTION_NOTEBOOK_FILE_BYTES: 8 * 1024 * 1024,
     stopWork: () => { state.epoch++; }, render() {},
     validateNotebook: x => { if (!x || x.type !== 'valid') throw Error('invalid notebook'); return x; },
-    createDemoSource() { throw Error('unexpected synthetic source'); },
+    createDemoSource() { if (!demoSource) throw Error('unexpected synthetic source'); return demoSource; },
     planePanel: {reset() {}}, invalidateStudioExport() {},
     commitNotebook: notebook => {state.notebook = notebook;},
     restoreReferenceInputs() {}, restoreTrackingAppearance() {},
@@ -72,4 +72,61 @@ test('invalid current selection does not overwrite existing accepted source', as
   const r = receiver(); await r.invoke(r.valid('READY')); await r.invoke(r.malformed());
   assert.equal(r.state.notebook.label, 'READY');
   assert.equal(r.errors.length, 1);
+});
+
+function syntheticCase(rejectLater = true) {
+  let complete, fail, disposed = 0;
+  const source = {kind:'synthetic-video', width:32,height:24,duration:3,
+    metadata:{generator:'worldlaw.motion-demo/v1',framesPerSecond:30,occlusion:false,motion:'test',occlusionInterval:null}};
+  const demoSource = {source, frameAt: () => new Promise((resolve, reject) => { complete=resolve; fail=reject; }), dispose() {disposed++;}};
+  const notebook = {type:'valid',label:'OLD SYNTH',source,measurements:[{time:0}]};
+  return {demoSource, notebook, finish:() => complete({time:0,width:32,height:24}),
+    reject:() => fail(new Error('Obsolete synthetic frame decode failed')),
+    disposed:() => disposed};
+}
+
+test('older synthetic preview decoding failure must not overwrite newer accepted notebook status', async () => {
+  const s = syntheticCase(), r = receiver({demoSource:s.demoSource});
+  const older = r.invoke({size:99,text: async () => JSON.stringify(s.notebook)});
+  await new Promise(resolve => setImmediate(resolve));
+  await r.invoke(r.valid('NEWER'));
+  s.reject();
+  await older;
+  assert.equal(r.state.notebook.label, 'NEWER');
+  assert.deepEqual(r.errors, [], 'obsolete synthetic preview must not report an error');
+  assert.equal(s.disposed(), 1, 'retired preview resource must be released');
+});
+
+test('current synthetic preview decoding failure remains visible', async () => {
+  const s = syntheticCase(), r = receiver({demoSource:s.demoSource});
+  const current = r.invoke({size:99,text: async () => JSON.stringify(s.notebook)});
+  await new Promise(resolve => setImmediate(resolve));
+  s.reject();
+  await current;
+  assert.deepEqual(r.errors, ['Obsolete synthetic frame decode failed']);
+  assert.equal(s.disposed(), 1, 'failed current preview releases its candidate');
+});
+
+test('current compatible synthetic preview remains connectable and is not disposed', async () => {
+  const s = syntheticCase(), r = receiver({demoSource:s.demoSource});
+  const current = r.invoke({size:99,text: async () => JSON.stringify(s.notebook)});
+  await new Promise(resolve => setImmediate(resolve));
+  s.finish();
+  await current;
+  assert.equal(r.state.notebook.label, 'OLD SYNTH');
+  assert.equal(r.state.source, s.demoSource);
+  assert.equal(s.disposed(), 0);
+  assert.deepEqual(r.errors, []);
+});
+
+test('obsolete successful synthetic preview is disposed without replacing newer notebook', async () => {
+  const s = syntheticCase(), r = receiver({demoSource:s.demoSource});
+  const older = r.invoke({size:99,text: async () => JSON.stringify(s.notebook)});
+  await new Promise(resolve => setImmediate(resolve));
+  await r.invoke(r.valid('NEWER'));
+  s.finish();
+  await older;
+  assert.equal(r.state.notebook.label, 'NEWER');
+  assert.equal(s.disposed(), 1);
+  assert.deepEqual(r.errors, []);
 });

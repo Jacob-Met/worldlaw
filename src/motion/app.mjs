@@ -204,8 +204,16 @@ async function openNotebook(file) {
     const compatible = supplied.width === expected.width && supplied.height === expected.height
       && supplied.duration === expected.duration
       && ['framesPerSecond', 'occlusion', 'motion', 'occlusionInterval'].every(key => JSON.stringify(supplied.metadata[key]) === JSON.stringify(expected.metadata[key]));
-    if (compatible) { source = candidate; frame = await source.frameAt(parsed.measurements[0]?.time ?? 0); }
-    else candidate.dispose();
+    if (compatible) {
+      source = candidate;
+      try { frame = await source.frameAt(parsed.measurements[0]?.time ?? 0); }
+      catch (error) {
+        source.dispose();
+        // A retired synthetic preview cannot publish an error over a newer notebook.
+        if (epoch !== state.epoch) return;
+        throw error;
+      }
+    } else candidate.dispose();
   }
   if (epoch !== state.epoch) { source?.dispose(); return; }
   state.source?.dispose(); state.source = source; state.frame = frame; state.selectedTime = frame?.time ?? parsed.measurements[0]?.time ?? 0;
