@@ -2,7 +2,7 @@ import * as asymmetric from './asymmetric-command-deadzone.mjs';
 import {compareCommandDeadzones,evaluateDeadzone,predictDeadzone,simulateDeadzone,exportDeadzoneInputs,restoreDeadzoneInputs,checkedWidths} from './command-deadzone.mjs';
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(tag==='p'){n.style.color='#36514b';n.style.fontSize='.875rem';n.style.lineHeight='1.5';}return n;};
 const fmt=x=>x===null?'No receiving rows':typeof x==='string'?x:Number(x.toPrecision(6)).toString();
-export function renderCommandDeadzone(container,session,{chart,onReopen,simulationInputs,widths=null}) {
+export function renderCommandDeadzone(container,session,{chart,onReopen,simulationInputs,widths=null,getSourceGeneration=()=>0,beginSourceReplacement=()=>getSourceGeneration()}) {
   container.commandDeadzoneDispose?.();
   container.replaceChildren();
   const plotWidth=()=>Math.max(280,Math.min(580,container.clientWidth));
@@ -23,7 +23,7 @@ export function renderCommandDeadzone(container,session,{chart,onReopen,simulati
   const save=el('button','Save comparison inputs');save.type='button';save.id='deadzone-save';save.disabled=true;save.className='button';
   const openLabel=el('label','Reopen comparison inputs '),file=el('input');file.type='file';file.accept='.json';file.id='deadzone-open';openLabel.append(file);
   const output=el('div','No command-map comparison computed.');output.id='deadzone-output';output.setAttribute('role','status');
-  let report=null,revision=0;
+  let report=null,revision=0,fileReadSerial=0;
   const readWidths=()=>{const parts=input.value.split(',');if(parts.some(x=>!x.trim()))throw Error('Every width must be a number.');return checkedWidths(parts.map(Number));};
   input.addEventListener('input',()=>{revision++;report=null;redraw=null;save.disabled=true;delete output.dataset.status;output.replaceChildren(el('p','Declaration changed. Recompute before interpreting or saving a comparison.'));});
   mode.addEventListener('change',()=>input.dispatchEvent(new Event('input')));
@@ -86,8 +86,24 @@ export function renderCommandDeadzone(container,session,{chart,onReopen,simulati
     } catch(error){report=null;redraw=null;save.disabled=true;delete output.dataset.status;output.replaceChildren(el('p','Command-map comparison refused: '+error.message));}
   });
   save.addEventListener('click',()=>{try{if(!report)throw Error('Compute a complete comparison first.');const text=mode.checked?asymmetric.exportAsymmetricDeadzoneInputs(session,readWidths()):exportDeadzoneInputs(session,readWidths()),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=el('a');a.href=url;a.download='worldlaw-command-deadzone-inputs.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);}catch(error){output.append(el('p',error.message));}});
-  file.addEventListener('change',async()=>{const current=++revision,selected=file.files?.[0];if(!selected)return;report=null;redraw=null;save.disabled=true;delete output.dataset.status;output.replaceChildren(el('p','Reading replacement comparison inputs…'));
-    try{if(selected.size>2_000_000)throw Error('Comparison input exceeds 2 MB.');const text=await selected.text();if(current!==revision||!details.isConnected)return;const isAsymmetric=JSON.parse(text)?.schema===asymmetric.ASYMMETRIC_DEADZONE_SCHEMA;const restored=isAsymmetric?asymmetric.restoreAsymmetricDeadzoneInputs(text):restoreDeadzoneInputs(text);onReopen(restored.session,isAsymmetric?{asymmetric:true,widths:restored.widths}:restored.widths);}catch(error){if(current===revision&&details.isConnected)output.replaceChildren(el('p','Reopen refused: '+error.message));}finally{file.value='';}
+  file.addEventListener('change',async()=>{
+    const selected=file.files?.[0];if(!selected)return;
+    // Reopening replaces the Studio source, so ownership starts with selection,
+    // before either this panel or another source reader can finish.
+    const current=++revision,read=++fileReadSerial,sourceToken=beginSourceReplacement();
+    const ownsSource=()=>current===revision&&sourceToken===getSourceGeneration()&&details.isConnected;
+    report=null;redraw=null;save.disabled=true;delete output.dataset.status;output.replaceChildren(el('p','Reading replacement comparison inputs…'));
+    try{
+      if(selected.size>2_000_000)throw Error('Comparison input exceeds 2 MB.');
+      const text=await selected.text();if(!ownsSource())return;
+      const isAsymmetric=JSON.parse(text)?.schema===asymmetric.ASYMMETRIC_DEADZONE_SCHEMA;
+      const restored=isAsymmetric?asymmetric.restoreAsymmetricDeadzoneInputs(text):restoreDeadzoneInputs(text);
+      onReopen(restored.session,isAsymmetric?{asymmetric:true,widths:restored.widths}:restored.widths);
+    }catch(error){if(ownsSource())output.replaceChildren(el('p','Reopen refused: '+error.message));}
+    finally{
+      // A completed read must not clear a later selection in this input.
+      if(read===fileReadSerial&&file.files?.[0]===selected&&details.isConnected)file.value='';
+    }
   });
   const controls=el('div');controls.style.display='flex';controls.style.flexWrap='wrap';controls.style.gap='10px';controls.style.margin='10px 0';controls.append(run,save);
   details.append(label,modeLabel,controls,openLabel,output,el('p','Save comparison inputs retains the original portable notebook and width declarations, never fitted results. Reopening replaces the Studio source with those original inputs; explicitly compare again to recompute. Ordinary Studio saves retain their existing format.'));container.append(details);

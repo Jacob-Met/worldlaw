@@ -176,6 +176,8 @@ npm run browser
 
 This browser course checks rendering and canvas output, keyboard experiment execution, an actual download, reload/reopen/undo, a second mechanism, measurement recording, dynamics refusal, responsive layout and file-read ordering. [Product acceptance](docs/PRODUCT_ACCEPTANCE.md) records the receiving boundary. GitHub Actions is unavailable; these checks run directly.
 
+With the same environment variables, `node scripts/studio-source-import-browser.mjs` receives source replacement across the observation, notebook, command-map, input-design and frequency file pickers. The latest selected source owns the pending replacement; a refused newest file preserves the accepted notebook without reviving an older read. This sandboxed browser course checks controlled completion orders, exact downloaded evidence, same-file reopening and the ordinary discovery journey. See [source-import receiving](docs/STUDIO_SOURCE_IMPORT_RECEIVING_9e5183.md).
+
 ## Scientific interpretation
 
 Trajectory Challenge includes **Investigate the angle reference** for angular

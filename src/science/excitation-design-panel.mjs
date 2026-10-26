@@ -4,7 +4,7 @@ import {TERMS} from './torque-discovery.mjs';
 const schema='worldlaw.scalar-excitation-input/v1',responseSchema='worldlaw.scalar-excitation-input/v2';
 const display=value=>Number(value.toPrecision(5)).toString();
 const node=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
-export function mountScalarExcitation(host,{getState,saveNotebook,openNotebook,useInput}){
+export function mountScalarExcitation(host,{getState,saveNotebook,openNotebook,useInput,getSourceGeneration=()=>0,beginSourceReplacement=()=>getSourceGeneration()}){
  const box=node('details');box.id='scalar-excitation';box.style.marginTop='1rem';box.append(node('summary','Which permitted input breaks coefficient confounding?'));
  box.append(node('p','Compare the input design before requesting another torque reading. This inspect-only calculation can reveal useful excitation even when refused structures have no forecasts.'));
  const terms=node('fieldset');terms.style.display='grid';terms.style.gridTemplateColumns='repeat(2,minmax(0,1fr))';terms.append(node('legend','Explicit scalar basis to investigate'));
@@ -16,7 +16,7 @@ export function mountScalarExcitation(host,{getState,saveNotebook,openNotebook,u
  const queryLabel=node('label','Query coordinates (JSON inputs only, no torque observations)'),queryInput=node('textarea');queryInput.id='excitation-queries';queryLabel.htmlFor=queryInput.id;queryInput.rows=4;queryInput.style.width='100%';queryInput.style.boxSizing='border-box';queryInput.value='[]';
  const radiusLabel=node('label','Absolute perturbation bound on each original and future torque reading (N·m)'),radiusInput=node('input');radiusInput.id='excitation-reading-radius';radiusInput.type='number';radiusInput.min='0';radiusInput.max='1000000';radiusInput.step='any';radiusInput.value='0.01';radiusLabel.htmlFor=radiusInput.id;const sensitivityInputs=node('div');sensitivityInputs.hidden=true;sensitivityInputs.append(queryLabel,queryInput,radiusLabel,radiusInput);box.append(sensitivityInputs);sensitivity.addEventListener('change',()=>{sensitivityInputs.hidden=!sensitivity.checked;});
  const output=node('div');output.setAttribute('aria-live','polite');box.append(output);host.append(box);
- let generation=0,initialized=false;
+ let generation=0,initialized=false,fileReadSerial=0;
  const declarations=()=>({terms:checks.filter(c=>c.checked).map(c=>c.value),permitted:JSON.parse(input.value),...(sensitivity.checked?{queries:JSON.parse(queryInput.value),readingRadius:Number(radiusInput.value)}:{})});
  function run(){const source=getState(),d=declarations();if(d.terms.some(id=>!source.discovery.options.terms.includes(id)))throw new Error('Only terms in the current offered library may be investigated.');const result=inspectScalarExcitation(source.discovery.observations,d.permitted,d.terms);output.replaceChildren();
   output.append(node('p',result.status==='work-limit'?`Complete calculation refused: ${result.work} work units exceeds ${result.workLimit}. No states were scored.`:`Current design rank ${result.rank}/${result.terms.length}; ${result.unresolved} unresolved directions. ${result.selected?'A permitted input increases numerical rank.':result.status==='full-rank'?'This basis already has full numerical rank.':'None of these permitted inputs increases numerical rank.'}`));
@@ -37,7 +37,32 @@ export function mountScalarExcitation(host,{getState,saveNotebook,openNotebook,u
  inspect.addEventListener('click',()=>guarded(run));
  save.addEventListener('click',()=>guarded(()=>{const d=run(),blob=new Blob([JSON.stringify({schema:sensitivity.checked?responseSchema:schema,notebook:JSON.parse(saveNotebook()),...d},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=node('a');a.href=url;a.download='worldlaw-scalar-excitation.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}));
  open.addEventListener('click',()=>file.click());
- file.addEventListener('change',async()=>{const selected=file.files?.[0];if(!selected)return;const version=++generation;try{if(selected.size>2_000_000)throw new Error('Input-design case exceeds 2 MB.');const raw=JSON.parse(await selected.text());if(version!==generation)return;if(![schema,responseSchema].includes(raw?.schema))throw new Error('Unsupported input-design case.');const restored=openNotebook(JSON.stringify(raw.notebook),true);if(!Array.isArray(raw.terms)||raw.terms.some(id=>!restored.discovery.options.terms.includes(id)))throw new Error('Case terms must belong to its notebook library.');inspectScalarExcitation(restored.discovery.observations,raw.permitted,raw.terms);if(raw.schema===responseSchema)prospectiveResponse(restored.discovery.observations,raw.permitted,raw.queries,raw.terms,raw.readingRadius);openNotebook(JSON.stringify(raw.notebook));input.value=JSON.stringify(raw.permitted,null,2);sensitivity.checked=raw.schema===responseSchema;sensitivityInputs.hidden=!sensitivity.checked;queryInput.value=JSON.stringify(raw.queries??[],null,2);radiusInput.value=String(raw.readingRadius??.01);checks.forEach(c=>{c.checked=raw.terms.includes(c.value);});run();}catch(error){if(version===generation)output.replaceChildren(node('p',`Input-design unavailable: ${error.message}`));}finally{file.value='';}});
+ file.addEventListener('change',async()=>{
+  const selected=file.files?.[0];if(!selected)return;
+  // This case carries an entire source notebook; it shares replacement order
+  // with the main imports and the other source-reopening investigations.
+  const version=++generation,read=++fileReadSerial,sourceToken=beginSourceReplacement();
+  const ownsSource=()=>version===generation&&sourceToken===getSourceGeneration()&&box.isConnected;
+  try{
+   if(selected.size>2_000_000)throw new Error('Input-design case exceeds 2 MB.');
+   const text=await selected.text();if(!ownsSource())return;
+   const raw=JSON.parse(text);
+   if(![schema,responseSchema].includes(raw?.schema))throw new Error('Unsupported input-design case.');
+   const restored=openNotebook(JSON.stringify(raw.notebook),true);
+   if(!Array.isArray(raw.terms)||raw.terms.some(id=>!restored.discovery.options.terms.includes(id)))throw new Error('Case terms must belong to its notebook library.');
+   inspectScalarExcitation(restored.discovery.observations,raw.permitted,raw.terms);
+   if(raw.schema===responseSchema)prospectiveResponse(restored.discovery.observations,raw.permitted,raw.queries,raw.terms,raw.readingRadius);
+   openNotebook(JSON.stringify(raw.notebook));
+   input.value=JSON.stringify(raw.permitted,null,2);sensitivity.checked=raw.schema===responseSchema;sensitivityInputs.hidden=!sensitivity.checked;
+   queryInput.value=JSON.stringify(raw.queries??[],null,2);radiusInput.value=String(raw.readingRadius??.01);
+   checks.forEach(c=>{c.checked=raw.terms.includes(c.value);});run();
+  }catch(error){if(ownsSource())output.replaceChildren(node('p',`Input-design unavailable: ${error.message}`));}
+  finally{
+   // Adoption calls studioChanged() on this same mounted panel. A separate
+   // read serial allows successful same-file reopen without clearing a newer read.
+   if(read===fileReadSerial&&file.files?.[0]===selected&&box.isConnected)file.value='';
+  }
+ });
  for(const e of [input,queryInput,radiusInput,sensitivity,...checks])e.addEventListener('input',()=>{generation++;output.replaceChildren(node('p','Declarations changed. Compare again before using a result.'));});
  return {studioChanged(){generation++;const offered=getState().discovery.options.terms;for(const c of checks){c.disabled=!offered.includes(c.value);if(!initialized)c.checked=!c.disabled;else if(c.disabled)c.checked=false;}initialized=true;output.replaceChildren(node('p','Source or model assumptions changed. Compare the declared inputs again.'));}};
 }

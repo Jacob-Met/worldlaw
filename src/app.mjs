@@ -32,6 +32,7 @@ const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!=
 const set=(id,text)=>{$(id).textContent=text;};
 let clockPanel=null,affinePanel=null,deadzoneWidths=null,frequencySettings=null;
 let state,modelId,plan,trajectory=[],animationStart=0,animationHandle,restored=false,generation=0;
+let observationRead=0,sessionRead=0;
 let studioComparison=null;
 function alertError(error) { $('error').hidden=false;set('error',error.message||String(error));$('error').focus(); }
 function notice(text) {set('notice',text);$('error').hidden=true;}
@@ -41,6 +42,9 @@ function save() {
   catch{set('storage-status','Browser storage unavailable · export to keep this notebook');}
 }
 function adopt(next,message,widths=null,frequency=null) {generation++;state=next;deadzoneWidths=widths;frequencySettings=frequency;modelId=state.discovery.selected.id;render();save();notice(message);}
+// Selection owns a pending replacement across every Studio source entry point.
+// An invalid newest file leaves the accepted notebook intact without reviving an older read.
+function beginSourceReplacement(){return ++generation;}
 function model(){return state.discovery.candidates.find(m=>m.id===modelId)||state.discovery.selected;}
 function numberInput(id){const v=$(id).value.trim();if(!v||!Number.isFinite(Number(v)))throw new Error(`Enter a finite value for ${$(id).labels?.[0]?.textContent||id}.`);return Number(v);}
 function experimentInput(){return Object.fromEntries(['command','position','rate'].map(f=>[f,numberInput(f)]));}
@@ -137,9 +141,9 @@ function renderModel(){
   renderSeparability(separability,state.discovery.observations,state.base.source);
   let deadzone=$('command-deadzone-container');if(!deadzone){deadzone=el('div');deadzone.id='command-deadzone-container';$('residual-chart').after(deadzone);}
   if(!$('sensor-response-container')){const response=el('div');response.id='sensor-response-container';deadzone.after(response);mountSensorResponse(response,{chart});}
-  renderCommandDeadzone(deadzone,state,{chart,widths:deadzoneWidths,onReopen:(next,widths)=>adopt(next,'Reopened original command-map comparison inputs. Compare again to recompute.',widths),simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
+  renderCommandDeadzone(deadzone,state,{chart,beginSourceReplacement,getSourceGeneration:()=>generation,widths:deadzoneWidths,onReopen:(next,widths)=>adopt(next,'Reopened original command-map comparison inputs. Compare again to recompute.',widths),simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
   let frequency=$('angular-frequency-container');if(!frequency){frequency=el('div');frequency.id='angular-frequency-container';deadzone.after(frequency);}
-  renderAngularFrequency(frequency,state,{chart,getSourceGeneration:()=>generation,onSettings:settings=>{frequencySettings=settings;},useInput:input=>{for(const field of ['command','position','rate'])$(field).value=String(input[field]);notice('Exact offered state copied. Obtain and enter a separate torque reading, then infer the period again.');$('measured-torque').focus();},settings:frequencySettings,onReopen:(next,settings)=>{adopt(next,'Reopened original periodic-response inputs. Infer again to recompute.');frequencySettings=settings;render();},simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
+  renderAngularFrequency(frequency,state,{chart,beginSourceReplacement,getSourceGeneration:()=>generation,onSettings:settings=>{frequencySettings=settings;},useInput:input=>{for(const field of ['command','position','rate'])$(field).value=String(input[field]);notice('Exact offered state copied. Obtain and enter a separate torque reading, then infer the period again.');$('measured-torque').focus();},settings:frequencySettings,onReopen:(next,settings)=>{adopt(next,'Reopened original periodic-response inputs. Infer again to recompute.');frequencySettings=settings;render();},simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
   runSimulation(false);
 }
 function render(){
@@ -286,13 +290,13 @@ $('undo').addEventListener('click',()=>action(()=>adopt(undoSession(state),'Undi
 $('new-lab').addEventListener('click',()=>action(()=>{if(!confirm('Start a new virtual notebook? Export the current notebook first if you want to keep it.'))return;adopt(newVirtualSession(),'Started the virtual instrument with 64 initial observations.');useProposal();}));
 $('load-observations').addEventListener('click',()=>$('observation-file').click());
 $('observation-file').addEventListener('change',async event=>{
-  const file=event.target.files?.[0];if(!file)return;const current=++generation;
-  try{if(file.size>2_000_000)throw new Error('Observation files must be smaller than 2 MB.');const text=await file.text();if(current!==generation)return;const next=createSession(parseObservationText(text,file.name));adopt(next,'Imported observations. Virtual instrument execution is disabled for this notebook.');useProposal(false);}catch(error){if(current===generation)alertError(error);}finally{event.target.value='';}
+  const file=event.target.files?.[0];if(!file)return;const read=++observationRead,current=beginSourceReplacement();
+  try{if(file.size>2_000_000)throw new Error('Observation files must be smaller than 2 MB.');const text=await file.text();if(current!==generation)return;const next=createSession(parseObservationText(text,file.name));adopt(next,'Imported observations. Virtual instrument execution is disabled for this notebook.');useProposal(false);}catch(error){if(current===generation)alertError(error);}finally{if(read===observationRead)event.target.value='';}
 });
 $('open-session').addEventListener('click',()=>$('session-file').click());
 $('session-file').addEventListener('change',async event=>{
-  const file=event.target.files?.[0];if(!file)return;const current=++generation;
-  try{if(file.size>MAX_SESSION_FILE_BYTES)throw new Error('Notebook files must be no larger than 6 MB; the notebook text limit also applies.');const text=await file.text();if(current!==generation)return;adopt(restoreNotebook(text),'Reopened the notebook and recomputed its complete evidence history.');useProposal(false);}catch(error){if(current===generation)alertError(error);}finally{event.target.value='';}
+  const file=event.target.files?.[0];if(!file)return;const read=++sessionRead,current=beginSourceReplacement();
+  try{if(file.size>MAX_SESSION_FILE_BYTES)throw new Error('Notebook files must be no larger than 6 MB; the notebook text limit also applies.');const text=await file.text();if(current!==generation)return;adopt(restoreNotebook(text),'Reopened the notebook and recomputed its complete evidence history.');useProposal(false);}catch(error){if(current===generation)alertError(error);}finally{if(read===sessionRead)event.target.value='';}
 });
 $('export-session').addEventListener('click',()=>action(()=>download(exportSession(state),'worldlaw-notebook.json')));
 $('export-observations').addEventListener('click',()=>action(()=>download(observationsCSV(state.discovery.observations),'worldlaw-observations.csv','text/csv')));
@@ -337,6 +341,6 @@ affinePanel=mountAffineClocks(document.querySelector('.main-column'),model);
 
 
 
-excitationPanel=mountScalarExcitation($('use-proposal').parentElement,{getState:()=>state,saveNotebook:()=>exportSession(state),openNotebook:(text,validateOnly=false)=>{const next=restoreSession(text);if(!validateOnly)adopt(next,'Reopened input-design source notebook.');return next;},useInput:input=>{for(const field of ['command','position','rate'])$(field).value=String(input[field]);notice('Declared input copied. Obtain a new reading before recording the outcome.');$('command').focus();}});
+excitationPanel=mountScalarExcitation($('use-proposal').parentElement,{beginSourceReplacement,getSourceGeneration:()=>generation,getState:()=>state,saveNotebook:()=>exportSession(state),openNotebook:(text,validateOnly=false)=>{const next=restoreSession(text);if(!validateOnly)adopt(next,'Reopened input-design source notebook.');return next;},useInput:input=>{for(const field of ['command','position','rate'])$(field).value=String(input[field]);notice('Declared input copied. Obtain a new reading before recording the outcome.');$('command').focus();}});
 excitationPanel.studioChanged();
 
