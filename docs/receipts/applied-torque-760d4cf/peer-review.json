@@ -1,0 +1,26 @@
+{
+  "reviews": [
+    {
+      "reviewer": "/root/microverse",
+      "scope": "core equations, admission-only surrogate, calibrated source custody, training/challenge separation",
+      "execution": "Initial six native groups independently passed",
+      "result": "No correctness blocker",
+      "finding": "UTF-16 character count did not match advertised UTF-8 byte budget",
+      "repair": "TextEncoder byte length checked symmetrically on reopen/export and edited-source UI; native multibyte refusal added"
+    },
+    {
+      "reviewer": "/root/second_ground",
+      "scope": "core and consumer custody",
+      "execution": "Initial six groups independently passed; every noninitial challenge position changed without altering candidate or predicted positions; challenge initialRate changes forecasts only",
+      "findings": [
+        "Imported maxStep was omitted on later UI recomputation",
+        "Pending replacement left old source and Fit active"
+      ],
+      "repairs": [
+        "Explicit forward-step control restored, recomputed and exported",
+        "Pending replacement clears old source, disables Fit and generation-fences asynchronous reads; newer edits/examples cancel prior import"
+      ],
+      "rereview": "Both fixes inspected; no remaining blocker on those findings. Actual browser receiving remains separate."
+    }
+  ]
+}

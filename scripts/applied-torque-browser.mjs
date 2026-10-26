@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import {mkdir,mkdtemp,readFile,writeFile,readdir} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createChallengeServer} from './trajectory-server-92be.mjs';
+import {requireChromiumSandbox} from './support/chromium-sandbox.mjs';
+const {default:puppeteer}=await import(process.env.PUPPETEER_MODULE||'puppeteer');
+const base=resolve(process.env.BROWSER_ARTIFACT_DIR||'.receipts/applied-torque');await mkdir(base,{recursive:true});const dir=await mkdtemp(resolve(base,'run-'));
+const server=createChallengeServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));
+const browser=await puppeteer.launch({headless:true,executablePath:process.env.CHROME_PATH||'/opt/google/chrome/chrome'});
+const checks=[];
+try{
+ const page=await browser.newPage();await page.setViewport({width:1440,height:1000});
+ const client=await page.createCDPSession();const admission=await requireChromiumSandbox({send:(m,p)=>client.send(m,p),timeoutMs:8000});await writeFile(resolve(dir,'sandbox.json'),JSON.stringify(admission,null,2));
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const p='#applied-torque-panel',text=selector=>page.$eval(selector,e=>e.innerText);
+ await page.goto(`http://127.0.0.1:${server.address().port}/trajectory.html`);await page.waitForSelector(p);
+ await page.$eval(`${p} [data-input=step]`,e=>{e.value='0.004';e.dispatchEvent(new Event('input',{bubbles:true}));});
+ await page.focus(`${p} [data-action=example]`);await page.keyboard.press('Enter');
+ await page.waitForFunction(()=>document.querySelector('#applied-torque-panel [data-output=status]').textContent==='identified declared model');
+ const resultText=await text(`${p} [data-output=result]`);assert.match(resultText,/Conditional inertia 2\.999/);assert.match(resultText,/Position RMSE 0\.00066/);assert.equal(await page.$$eval(`${p} svg polyline`,e=>e.length),2);assert.match(await page.$eval(`${p} svg`,e=>e.textContent),/Angle \(rad\).*Elapsed time \(s\)/s);assert.ok(await page.$eval(p,e=>parseFloat(getComputedStyle(e).paddingLeft)>=16));assert.ok(await page.$eval(`${p} [data-action=fit]`,e=>e.classList.contains('button')));checks.push('keyboard authored excitation identifies physical coefficients and forecasts separate source');
+ await client.send('Page.setDownloadBehavior',{behavior:'allow',downloadPath:dir});const before=new Set(await readdir(dir));await page.click(`${p} [data-action=save]`);let file;
+ for(let i=0;i<100;i++){const found=(await readdir(dir)).find(n=>n.endsWith('.json')&&!before.has(n));if(found){file=resolve(dir,found);break;}await new Promise(r=>setTimeout(r,50));}assert.ok(file);
+ const saved=JSON.parse(await readFile(file,'utf8'));assert.equal(saved.source.trainingRuns[0].inertia,null);assert.ok(!Object.hasOwn(saved.source.trainingRuns[0].samples[0],'command'));assert.ok(!Object.hasOwn(saved,'candidate'));
+ for(const width of [1440,390]){await page.setViewport({width,height:1000});await page.$eval(p,e=>e.scrollIntoView());await page.waitForFunction(()=>{const panel=document.querySelector('#applied-torque-panel'),svg=panel.querySelector('svg');return Math.abs(svg.viewBox.baseVal.width-Math.round(panel.querySelector('[data-output=result]').clientWidth))<2;});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await(await page.$(p)).screenshot({path:resolve(dir,`applied-${width}.png`)});}checks.push('desktop and narrow plotted source/prediction inspection');
+ await page.reload();await page.waitForSelector(p);assert.equal(await page.$$eval(`${p} svg`,e=>e.length),0);
+ await(await page.$(`${p} [data-input=file]`)).uploadFile(file);await page.waitForFunction(()=>document.querySelector('#applied-torque-panel [data-output=status]').textContent==='identified declared model');assert.equal(await text(`${p} [data-output=result]`),resultText);assert.equal(await page.$eval(`${p} [data-input=step]`,e=>e.value),'0.004');await page.click(`${p} [data-action=fit]`);assert.equal(await text(`${p} [data-output=result]`),resultText);checks.push('original calibrated inputs download and fresh-document recomputation preserves nondefault forward step');
+ await page.$eval(`${p} [data-input=file]`,e=>{e.value='';});
+ await page.evaluate(()=>{const original=File.prototype.text;File.prototype.text=function(){return new Promise(resolve=>{globalThis.releaseAppliedInput=()=>{File.prototype.text=original;original.call(this).then(resolve);};});};});
+ await(await page.$(`${p} [data-input=file]`)).uploadFile(file);await page.waitForFunction(()=>document.querySelector('#applied-torque-panel [data-action=fit]').disabled);assert.equal(await page.$eval(`${p} [data-input=source]`,e=>e.value),'');assert.equal(await page.$$eval(`${p} svg`,e=>e.length),0);await page.evaluate(()=>globalThis.releaseAppliedInput());await page.waitForFunction(()=>document.querySelector('#applied-torque-panel [data-output=status]').textContent==='identified declared model');checks.push('delayed replacement retires source authority and disables stale recomputation');
+ await page.$eval(`${p} [data-input=duration]`,e=>{e.value='1';e.dispatchEvent(new Event('input',{bubbles:true}));});assert.equal(await page.$$eval(`${p} svg`,e=>e.length),0);assert.ok(await page.$eval(`${p} [data-action=save]`,e=>e.disabled));checks.push('changed settings retire previous conclusions');
+ await page.click(`${p} [data-action=single]`);await page.waitForFunction(()=>document.querySelector('#applied-torque-panel [data-output=status]').textContent==='unidentifiable');assert.equal(await page.$$eval(`${p} svg`,e=>e.length),0);assert.match(await text(`${p} [data-output=result]`),/rank 2/);checks.push('single frequency preserves confounding and supplies no inertia or forecast');
+ saved.source.units.appliedTorque='A';const invalid=resolve(dir,'invalid.json');await writeFile(invalid,JSON.stringify(saved));await(await page.$(`${p} [data-input=file]`)).uploadFile(invalid);await page.waitForFunction(()=>document.querySelector('#applied-torque-panel [data-output=status]').textContent.includes('Declare s'));assert.equal(await page.$$eval(`${p} svg`,e=>e.length),0);checks.push('wrong physical torque units refuse with stale forecast retired');
+ assert.deepEqual(errors,[]);await writeFile(resolve(dir,'receipt.json'),JSON.stringify({checks,errors,artifactDirectory:dir},null,2));console.log(JSON.stringify({checks,dir}));
+}finally{await browser.close();await new Promise(r=>server.close(r));}

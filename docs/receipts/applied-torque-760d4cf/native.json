@@ -1,0 +1,37 @@
+{
+  "issue": 194,
+  "base": "c33d454ff03e0ba03df8c29f5e64febd2b8dcf2a",
+  "sha256": {
+    "src/trajectory/applied-torque.mjs": "d76260421e539c520a49294605597998d98cf52bdba3df512f2ad1a20c79b340",
+    "src/trajectory/applied-torque-example.mjs": "6e67c37ae37c1c7535dbd8e7c78bbd2f015ad182dba9bc9f939cb8381f6ec35c",
+    "src/trajectory/applied-torque-panel.mjs": "8a24c96ca8b4b4b36a0c5aaee4024cb33b192c6909d2cdcd2c87c14ff5dc712e",
+    "src/trajectory/app.mjs": "297365b0e7730fe35688cbb9cf36c62a60169ac84d33e53a22626398fee32d33",
+    "tests/applied-torque.test.mjs": "d906d033bd21c826ed7bcd294ce99446de85a9325a6b02a77d4db953f76a4dfa",
+    "scripts/applied-torque-browser.mjs": "8a31bbeb8f923b0230148455895224ee941d7998d3720b84233edee3041930f0"
+  },
+  "runtime": "Node.js v24.19.0",
+  "executed": [
+    {
+      "command": "node tests/applied-torque.test.mjs",
+      "pass": 9,
+      "fail": 0,
+      "skip": 0,
+      "duration_ms": 902.926079
+    },
+    {
+      "command": "node --test tests/applied-torque.test.mjs tests/forced-weak*.test.mjs tests/trajectory-angular-weak-92be.test.mjs",
+      "file_groups_pass": 4,
+      "fail": 0,
+      "skip": 0,
+      "duration_ms": 1125.684852,
+      "log": "/tmp/worldlaw-194-focused.log"
+    }
+  ],
+  "browser": "Final affected seven groups passed; see visual-receiving.json/browser.json/sandbox.json; executed and visually inspected by root.",
+  "full_archive_verify": "Pre-visual exact-base overlay passed846 total/845pass/1 inherited skip/0fail plus both smokes; see receiving.json/full-verify.log.gz. Exact published final-branch full verify pending root integration gate.",
+  "physical_acquisition": false,
+  "initial_component_base": "c33d454ff03e0ba03df8c29f5e64febd2b8dcf2a",
+  "integration_base": "01a9a239a1f796e887bac51f1c3d43b0626e3279",
+  "composition": "Exactly two additive lines over canonical incoming app Git blob4552b8192745280fe12bf4cfe87876f9b2d85021; incoming command-response instrument preserved.",
+  "visual_receiving_repair": "Final presentation repair received in seven browser groups; labelled responsive axes and maintained instrument spacing/buttons inspected at1440/390. Equations/admission/custody unchanged."
+}

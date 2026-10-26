@@ -16,6 +16,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "docs/receipts/applied-torque-760d4cf/README.md",
     "independent-review/soft-l1-oracle.py",
     # Source-bound metric-plane consumer and exact authored receiving fixtures.
     "src/motion/vendor/plane-homography.mjs", "src/motion/vendor/plane-homography-source.json",
@@ -212,6 +213,7 @@ FORBIDDEN_NAMES = {".env", "credentials", "credentials.json", "secrets.json", "i
 # Exact tracked historical evidence archives and logs are not distributed.
 # Keep these paths explicit; other unapproved archives still fail closed.
 NON_DISTRIBUTED_TRACKED_RECEIPTS = frozenset({
+    "docs/receipts/applied-torque-760d4cf/full-verify.log.gz",
     "docs/receipts/sensor-response-56bd8a/native-tests.txt",
     "docs/receipts/sensor-response-56bd8a/studio-smoke.txt",
     "docs/receipts/sensor-response-56bd8a/trajectory-smoke.txt",

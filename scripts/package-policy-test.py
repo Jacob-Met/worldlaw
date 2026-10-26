@@ -24,6 +24,15 @@ class DistributionPolicyTests(unittest.TestCase):
                 self.assertIn(path, paths)
                 self.assertTrue(package.included(path))
 
+    def test_applied_torque_receipts_have_exact_distribution_policy(self):
+        readme = 'docs/receipts/applied-torque-760d4cf/README.md'
+        compressed = 'docs/receipts/applied-torque-760d4cf/full-verify.log.gz'
+        package.check_tracked([readme, compressed])
+        self.assertTrue(package.included(readme))
+        self.assertFalse(package.included(compressed))
+        with self.assertRaises(ValueError):
+            package.check_tracked([compressed.replace('full-verify', 'unreviewed')])
+
     def test_runtime_dependencies_and_test_fixtures_are_distributed(self):
         for path in (
             "motion-reference.html", "motion-reference.css", "src/motion/reference-app.mjs",
