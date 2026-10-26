@@ -1,0 +1,133 @@
+{
+  "base": "176b0827c4132f7543b91ae425ceabd87d9fe183",
+  "environment": {
+    "device": "authorized RDC Linux x64",
+    "node": "v22.23.4",
+    "browser": "installed Chrome with sandbox enabled"
+  },
+  "sourceReceiving": {
+    "candidateFiles": 121,
+    "unchangedGitBlobsVerified": 113,
+    "additionalSmokeBlobsVerified": 17
+  },
+  "native": {
+    "passed": 37,
+    "failed": 0,
+    "command": "node --test tests/inertia-identification.test.mjs tests/inertia-challenge.test.mjs tests/inertia-record.test.mjs tests/inertia-investigation.test.mjs tests/coupling-inertia.test.mjs tests/viscous-comparison.test.mjs"
+  },
+  "browser": {
+    "checks": [
+      {
+        "name": "actual maintained server exposes the integrated lab and exact executable modules",
+        "passed": true
+      },
+      {
+        "name": "two actual acquisition actions preserve a first-probe loss then select reciprocal coupling",
+        "passed": true
+      },
+      {
+        "name": "real browser download retains input evidence and ordered acquisitions",
+        "passed": true
+      },
+      {
+        "name": "file reopen recomputes the model and never infers a virtual instrument from a source label",
+        "passed": true
+      },
+      {
+        "name": "renamed repeated fitting evidence is rejected without replacing valid notebook",
+        "passed": true
+      },
+      {
+        "name": "declared measured import accepts a separate response and retains source boundaries",
+        "passed": true
+      },
+      {
+        "name": "late file read cannot overwrite a newer experiment or its failure evidence",
+        "passed": true
+      },
+      {
+        "name": "no-coupling, directional and insufficient-excitation controls are visible in the real consumer",
+        "passed": true
+      },
+      {
+        "name": "trusted keyboard activation selects the proposed input",
+        "passed": true
+      },
+      {
+        "name": "field composition has actual vector content and no page overflow at 1440",
+        "passed": true
+      },
+      {
+        "name": "gauge composition has actual vector content and no page overflow at 1440",
+        "passed": true
+      },
+      {
+        "name": "field composition has actual vector content and no page overflow at 390",
+        "passed": true
+      },
+      {
+        "name": "gauge composition has actual vector content and no page overflow at 390",
+        "passed": true
+      },
+      {
+        "name": "reduced-motion preference and no uncaught errors or external requests",
+        "passed": true
+      },
+      {
+        "name": "maintained scalar Studio still receives its acquisition after the shared fitter extraction",
+        "passed": true
+      },
+      {
+        "name": "viscous alternative reaches the existing lab and exposes the original separate-motion failure",
+        "passed": true
+      },
+      {
+        "name": "real comparison download contains original inputs only and reopens into recomputed balances",
+        "passed": true
+      },
+      {
+        "name": "changed separate observations change visible errors and paths without changing either training fit",
+        "passed": true
+      },
+      {
+        "name": "omitted force and rank loss remain visible without successful fallback",
+        "passed": true
+      },
+      {
+        "name": "bad source and complete-work refusal invalidate the comparison while preserving the last admitted input",
+        "passed": true
+      },
+      {
+        "name": "new source intent fences a delayed file read",
+        "passed": true
+      },
+      {
+        "name": "trusted keyboard comparison activation works after settings invalidate earlier results",
+        "passed": true
+      },
+      {
+        "name": "actual viscous instrument stays legible and within the page at 1440",
+        "passed": true
+      },
+      {
+        "name": "actual viscous instrument stays legible and within the page at 390",
+        "passed": true
+      }
+    ],
+    "pass": true,
+    "events": {
+      "exceptions": [],
+      "outside": []
+    },
+    "node": "v22.23.4"
+  },
+  "smoke": {
+    "passed": true,
+    "firstAttempt": "Partial receiving omitted unknown-lab.html; source asset closure was completed and maintained smoke passed."
+  },
+  "localServer": {
+    "passed": false,
+    "reason": "Scratch listen EPERM; launched-server receiving used authorized RDC."
+  },
+  "interpretation": "Authored numerical and actual browser receiving only; no physical validation, deployment or forward-motion adoption."
+}

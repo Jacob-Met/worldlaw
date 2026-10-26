@@ -1,4 +1,5 @@
 import {mountInertiaChallenge} from './inertia-challenge-panel.mjs';
+import {mountViscousComparison} from './viscous-panel.mjs';
 import {identifyInertia} from './inertia-identification.mjs';
 import {createInertiaExample} from './inertia-example.mjs';
 import {createInertiaCounterexample} from './inertia-counterexample.mjs';
@@ -83,6 +84,8 @@ export function mountInertiaIdentification(root,{applyParameters}){
   $('inertia-file').addEventListener('change',async()=>{const file=$('inertia-file').files?.[0];$('inertia-file').value='';if(!file)return;const ticket=++generation;invalidate('Opening a motion record…');pendingRead=true;try{if(file.size>3*1024*1024)throw new Error('Inertia investigation exceeds 3 MB.');const text=await file.text();if(ticket!==generation)return;load(text);fit();}catch(e){if(ticket===generation){pendingRead=false;$('inertia-status').textContent='The new motion record was refused. Any displayed source remains the previously admitted record.';error(e);}}});
   $('inertia-save').addEventListener('click',()=>{try{if(!record)throw new Error('Open a motion record first.');const text=exportInertiaInvestigation(record,settings()),url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=el('a',undefined,{href:url,download:'worldlaw-inertia-investigation.json'});link.click();setTimeout(()=>URL.revokeObjectURL(url),10000);clearError();}catch(e){error(e);}});
   const challengePanel=mountInertiaChallenge($('inertia-challenge-host'),{getTraining:()=>result?.primary.status==='candidate'?{record,settings:settings()}:null});
+  const viscousHost=document.createElement('div');viscousHost.id='inertia-viscous-host';$('inertia-challenge-host').after(viscousHost);
+  const viscousPanel=mountViscousComparison(viscousHost);
   let resize;window.addEventListener('resize',()=>{cancelAnimationFrame(resize);resize=requestAnimationFrame(draw);});$('inertia-lab').addEventListener('toggle',()=>{if($('inertia-lab').open){draw();challengePanel.redraw();}});
-  return {contextChanged(){generation++;if(pendingRead){pendingRead=false;$('inertia-status').textContent='Response notebook changed. Pending motion-file read canceled; open again or refit the displayed source.';}$('inertia-same-apparatus').checked=false;$('inertia-apply').disabled=true;}};
+  return {contextChanged(){generation++;viscousPanel.contextChanged();if(pendingRead){pendingRead=false;$('inertia-status').textContent='Response notebook changed. Pending motion-file read canceled; open again or refit the displayed source.';}$('inertia-same-apparatus').checked=false;$('inertia-apply').disabled=true;}};
 }
