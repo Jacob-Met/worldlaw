@@ -1,4 +1,5 @@
 import {identifyAppliedTorque,reopenAppliedTorque,exportAppliedTorque} from './applied-torque.mjs';
+import {createAppliedRestoringPanel} from './applied-restoring-panel.mjs';
 import {appliedTorqueExample} from './applied-torque-example.mjs';
 export function createAppliedTorquePanel(anchor){
  const panel=document.createElement('section');panel.className='panel';panel.id='applied-torque-panel';
@@ -25,8 +26,8 @@ export function createAppliedTorquePanel(anchor){
  @media(max-width:700px){#applied-torque-panel .applied-controls{grid-template-columns:1fr;gap:12px}#applied-torque-panel .applied-actions .button{flex:1 1 180px}}
  `;panel.prepend(style);
  for(const button of panel.querySelectorAll('button'))button.className='button '+(button.dataset.action==='fit'?'accent':'outline');
- anchor.after(panel);const find=s=>panel.querySelector(s),source=find('[data-input=source]'),status=find('[data-output=status]'),result=find('[data-output=result]'),save=find('[data-action=save]');let current=null,generation=0;
- const invalidate=()=>{generation++;find('[data-action=fit]').disabled=false;current=null;save.disabled=true;result.replaceChildren();status.textContent='Inputs changed. Recompute before interpreting a result.';};
+ anchor.after(panel);const find=s=>panel.querySelector(s),source=find('[data-input=source]'),status=find('[data-output=status]'),result=find('[data-output=result]'),save=find('[data-action=save]');let current=null,generation=0,restoring=null;
+ const invalidate=()=>{restoring?.invalidate();generation++;find('[data-action=fit]').disabled=false;current=null;save.disabled=true;result.replaceChildren();status.textContent='Inputs changed. Recompute before interpreting a result.';};
  for(const input of panel.querySelectorAll('textarea,input[type=number]'))input.addEventListener('input',invalidate);
  const add=(tag,text,parent=result)=>{const node=document.createElement(tag);node.textContent=text;parent.append(node);return node;};
  function render(value){
@@ -71,5 +72,10 @@ export function createAppliedTorquePanel(anchor){
  find('[data-input=file]').addEventListener('change',async event=>{invalidate();const ticket=generation,file=event.target.files[0];if(!file)return;source.value='';find('[data-action=fit]').disabled=true;status.textContent='Reading replacement input; previous source retired.';try{if(file.size>3_000_000)throw Error('Use a JSON input file below3MB.');const text=await file.text();if(ticket!==generation)return;const value=reopenAppliedTorque(text);source.value=JSON.stringify(value.source,null,2);find('[data-input=duration]').value=value.options.windowDuration;find('[data-input=stride]').value=value.options.windowStride;find('[data-input=step]').value=value.options.maxStep;render(value);}catch(error){if(ticket===generation)status.textContent=error.message;}finally{if(ticket===generation)find('[data-action=fit]').disabled=false;}});
  save.addEventListener('click',()=>{if(!current)return;try{const url=URL.createObjectURL(new Blob([exportAppliedTorque(current)],{type:'application/json'})),link=document.createElement('a');link.href=url;link.download='worldlaw-applied-torque.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(error){status.textContent=error.message;}});
  let lastWidth=0,resizeFrame;new ResizeObserver(()=>{const width=Math.round(result.clientWidth);if(width!==lastWidth){lastWidth=width;cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if(current)render(current);});}}).observe(result);
+ restoring=createAppliedRestoringPanel(panel,{
+  getSource:()=>{if(new TextEncoder().encode(source.value).length>3000000)throw Error('Use a JSON input file below 3 MB.');const raw=JSON.parse(source.value);return raw.schema==='worldlaw.applied-torque-notebook/v1'?raw.source:raw;},
+  getOptions:()=>({windowDuration:Number(find('[data-input=duration]').value),windowStride:Number(find('[data-input=stride]').value),maxStep:Number(find('[data-input=step]').value)}),
+  onSource:(raw,options)=>{invalidate();source.value=JSON.stringify(raw,null,2);find('[data-input=duration]').value=options.windowDuration;find('[data-input=stride]').value=options.windowStride;find('[data-input=step]').value=options.maxStep;compute();},
+ });
  return panel;
 }
