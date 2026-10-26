@@ -188,8 +188,15 @@ async function openNotebook(file) {
   if (!file) return;
   stopWork(); const epoch = state.epoch; render();
   if (file.size > MAX_MOTION_NOTEBOOK_FILE_BYTES) throw new Error('Motion notebooks must be at most 8 MB.');
-  const parsed = validateNotebook(JSON.parse(await file.text()));
+  let rawText;
+  try { rawText = await file.text(); }
+  catch (error) {
+    // A superseded read must not overwrite a newer accepted source's status.
+    if (epoch !== state.epoch) return;
+    throw error;
+  }
   if (epoch !== state.epoch) return;
+  const parsed = validateNotebook(JSON.parse(rawText));
   let source = null, frame = null;
   if (parsed.source.kind === 'synthetic-video' && parsed.source.metadata?.generator === 'worldlaw.motion-demo/v1') {
     const candidate = createDemoSource({occlusion: parsed.source.metadata.occlusion !== false});
