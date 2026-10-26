@@ -12,7 +12,8 @@ import {renderParameterSensitivity} from './science/parameter-sensitivity-panel.
 import {renderPredictionSensitivity} from './science/prediction-sensitivity-panel.mjs';
 import {diagnoseReplicates} from './science/replicate-diagnostics.mjs';
 import {renderSeparability} from './science/separability-panel.mjs';
-import {evaluate,predict,simulate} from './science/torque-discovery.mjs';
+import {evaluate,predict} from './science/torque-discovery.mjs';
+import {executeStudioDynamics} from './science/studio-dynamics.mjs';
 import {softL1Weight} from './science/robust-fit.mjs';
 import {proposeScalarLibrary} from './science/library-proposal.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
@@ -193,14 +194,18 @@ function renderPlan(){
 function useProposal(announce=true){if(!plan?.selected)return;const exact=!state.lab && Object.hasOwn(state.base,'offeredInputs');for(const f of ['position','rate','command'])$(f).value=exact?String(plan.selected.input[f]):Number(plan.selected.input[f].toPrecision(10));if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
 function runSimulation(announce=true){
   try{
-    trajectory=simulate(model(),{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')});
-    chart('trajectory-chart',[{name:`Selected model · fixed command ${fmt(numberInput('simulation-command'))} N·m`,color:'#1c7562',line:true,points:trajectory.map(r=>({x:r.time,y:r.position}))}],{xLabel:'Simulation time (s)',yLabel:'Predicted angle (rad)'});
+    const execution=executeStudioDynamics(model(),{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')});
+    trajectory=execution.trajectory;
+    chart('trajectory-chart',[{name:`Selected model · fixed command ${fmt(numberInput('simulation-command'))} N·m`,color:'#1c7562',line:true,points:trajectory.map(r=>({x:r.time,y:r.position}))}],{xLabel:'Simulation time (s)',yLabel:'Predicted angle (rad)',width:$('trajectory-chart').clientWidth});
     let energy=$('energy-budget');if(!energy){energy=el('section');energy.id='energy-budget';$('trajectory-chart').after(energy);}
     renderEnergyBudget(energy,model(),trajectory,{inertia:numberInput('inertia'),command:numberInput('simulation-command')});
     renderConditionalRate(energy,model(),state.discovery.observations,state.base.heldOut,{trajectory,solver:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')},chart});
-    animationStart=performance.now();set('simulation-status',`${trajectory.length} RK4 states · schematic joint · prediction only`);
-    if(announce)notice('Executed the selected torque model through the RK4 dynamics solver.');
-  }catch(error){trajectory=[];$('energy-budget')?.replaceChildren(el('p','Energy accounting unavailable because the trajectory was refused.'));set('simulation-status',`Prediction unavailable: ${error.message}`);$('trajectory-chart').replaceChildren(el('p',error.message,'empty-state'));if(announce)throw error;}
+    const numeric=execution.diagnostics;
+    const method=numeric.method==='adaptive_RK4_step_doubling'?`adaptive RK4 · ${numeric.acceptedSteps} accepted internal steps, ${numeric.rejectedSteps} refined trials · local error estimate only`:'fixed-step RK4 · discontinuous sign-rate law · no local error control';
+    animationStart=performance.now();set('simulation-status',`${trajectory.length} displayed states at 20 ms intervals · ${method} · schematic joint · prediction only`);
+    $('simulation-status').dataset.method=numeric.method;
+    if(announce)notice('Executed the selected torque model. '+numeric.interpretation);
+  }catch(error){trajectory=[];delete $('simulation-status').dataset.method;$('energy-budget')?.replaceChildren(el('p','Energy accounting unavailable because the trajectory was refused.'));set('simulation-status',`Prediction unavailable: ${error.message}`);$('trajectory-chart').replaceChildren(el('p',error.message,'empty-state'));if(announce)throw error;}
 }
 function draw(now){
   const canvas=$('mechanism-canvas');if(!canvas){animationHandle=requestAnimationFrame(draw);return;}

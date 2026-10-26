@@ -80,6 +80,15 @@ Motion Lab currently assumes a fixed camera, a declared fixed pivot, approximate
 5. Change initial angle or inertia and select **Run dynamics** to execute the learned model. The schematic and trajectory are predictions. Invalid dynamics remove the prediction instead of displaying a substitute pose.
 6. **Save session** downloads observations, supplied provenance, assumptions and revision events. Reload restores the browser notebook. **Open session** recomputes a downloaded notebook; **Undo** reverses its last revision.
 
+### Automatic numerical refinement
+
+The Studio now refines internal RK4 steps for smooth learned laws, so fast
+responses no longer depend on manually choosing an integration step. The
+existing output grid and physical assumptions remain visible. Discontinuous
+sign-rate laws retain their labelled fixed-step interpretation; exhausted
+numerical work removes the prediction. Read [the method, analytic controls
+and display limits](docs/STUDIO_DYNAMICS.md).
+
 ## Bring observations
 
 Select **Import observations** and choose UTF-8 CSV or JSON. Supply 8–4,096 fitting rows, with each value bounded to magnitude 10⁶:
