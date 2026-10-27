@@ -143,7 +143,7 @@ function renderHypotheses(){
     const button=el('button',undefined,'hypothesis'+(m.id===model().id?' is-selected':''));button.type='button';button.setAttribute('aria-pressed',String(m.id===model().id));
     const title=el('span',m.id==='zero'?'Zero torque':m.terms.map(t=>names[t.id]).join(' + '),'hypothesis-name');
     const meta=el('span',`Δ score ${fmt(m.metrics.score-state.discovery.selected.metrics.score,3)} · ${m.terms.length} terms`,'hypothesis-meta');
-    button.append(title,meta);button.addEventListener('click',()=>action(()=>{modelId=m.id;renderModel();renderHypotheses();notice(`Inspecting ${title.textContent}. The discovery ranking is unchanged.`);}));list.append(button);
+    button.append(title,meta);button.addEventListener('click',()=>action(()=>{modelId=m.id;renderModel();renderHypotheses();list.querySelector('[aria-pressed="true"]')?.focus();notice(`Inspecting ${title.textContent}. The discovery ranking is unchanged.`);}));list.append(button);
   }
 }
 function renderModel(){
