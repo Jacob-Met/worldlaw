@@ -1,0 +1,37 @@
+{
+  "schema": "worldlaw.environment-training-freeze/v1",
+  "frozenAt": "2026-10-27T09:02:36.968229+00:00",
+  "sourceCommit": "128b1206ca84f3cdedc29ede8a1ef94447f8baaf",
+  "baseCommit": "9940d2b40a140962d21f61a671ad61843657afb8",
+  "reservedRecordingsNotYetReceived": true,
+  "sourceSHA256": {
+    "docs/SHARED_ENVIRONMENT_PROTOCOL_20261027.json": "fa42f2ed9cde25bb23e97a55b78b4ec37fcfa3cc109d693bdcb6a97ae4bfb243",
+    "examples/physical-environments-03ae912a3e15/build-bundle.py": "95df96d1c29cf1f361da20e061907ad7311fc69db3c4fb6cd55907f5b7f9509e",
+    "examples/physical-environments-training-03ae912a3e15.json": "0ccaecb4258a61b1c1d9968237856cf1997c771d72ce969c2224929713cefa26",
+    "scripts/receive-shared-environments.mjs": "ba1cc034060e4acdccfdfe3b6f69e7a1ec10933bea217d58722c7961b581d5fd",
+    "src/science/linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+    "src/science/robust-fit.mjs": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1",
+    "src/science/torque-discovery.mjs": "29612d3907c02a5818f593d8fb8bf8c231215959efdb130b28c3171f573c79fe",
+    "src/trajectory/angular-discovery.mjs": "71c16bd766e045a3c28d1c34f75eeafca6f6e6a891a5af6805d055e284ce3f1b",
+    "src/trajectory/command-timeline.mjs": "b975f7f35a5834c0c9d9ae29ea2272085ae05a8c812d77487ce6df83d0d77e61",
+    "src/trajectory/coulomb-contact.mjs": "2cc8820da95ca9fc5170319c37a7e098071ec82e8e7af9b816301c45b1ea0253",
+    "src/trajectory/forward.mjs": "e7e6f26f4038b3509a7cc794a62149680eabe0332b720838c3084cbe0feda3d2",
+    "src/trajectory/integral-discovery.mjs": "187c374d2a7236862897b8f5b12f656a8fd3453cef1f7021c7c256149d9f622d",
+    "src/trajectory/shared-environment-fit.mjs": "82ef691644c4699c85c31ef6578fe7b3accd80ab8a110276498235d1a3696b16",
+    "src/trajectory/shared-environments.mjs": "84d7accc7b28b50a459048e7f99038d8de113ff0407400aa20ad1e4f06ebd583",
+    "src/trajectory/weak-operator.mjs": "ba94054a02098cbc173a7854d1d3ffc530ce5b6e7e221310486b61d6eb4503d9"
+  },
+  "trainingRawSHA256": {
+    "len2_cond1_1.csv": "cb6e54afef933c52b6b4e334a97314765da091a984f5d1d60b7b9070a5d982bc",
+    "len2_cond1_2.csv": "cfbbd517dc3d9d158aa176d8d940085ab04b28928c5c14da0b68b16fbc48133f",
+    "len2_cond2_1.csv": "87aa8d22c4fcb368c13bbe920847bbebbc84a5582486131b6c25a37b79e23a3c",
+    "len2_cond2_2.csv": "810841b259ff866c77cb3e03223d6e5af9db458666cc9d666cb0d1e5c3728e6f"
+  },
+  "artifacts": {
+    "analytic-oracle.json": "7b8bfd59dff5624bf7336ecd38a159db0b1d1fe6ac56a3bb184f6d4580f0918d",
+    "training-ledger.json": "27c94780ec2cf8128860f1fa81bce8f3bbc6df7202ffd95784efd52137291650",
+    "training-receiving.json": "18fca5d2c4dc4de6dd23c59ddb14c269095dd57f18e47832dcbe5560cdf0ba19"
+  },
+  "selection": "Frozen training-only best in each mode plus complete171ledger; no post-challenge tuning",
+  "toleranceProvenance": "Analytic regression tolerances calibrated from first independent refinement run; frozen before reserved measured recordings."
+}

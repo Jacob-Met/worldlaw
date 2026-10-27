@@ -437,3 +437,11 @@ visible. Save/reopen retains source inputs and work settings, then recomputes
 the result. These are conditional compatibility bounds, not a confidence
 interval or a physical preparation-effect estimate. See [the model, source
 contract and receiving scope](docs/PERIODIC_HISTORY_RANGE.md).
+
+## Compare angular laws across conditions
+
+Trajectory Challenge can now test complete pooling, shared restoring coefficients, and independent condition models against the same original angular recordings. Open **Compare recordings across conditions**, fit a training bundle, and receive the separate challenge through its own control. Recorded motion, signed residuals, all three assumptions, complete candidate attempts and numerical refinement remain inspectable.
+
+Try the packaged **Training bundle**, [physical-environments-training-03ae912a3e15.json](examples/physical-environments-training-03ae912a3e15.json), then the matching **Challenge bundle**, [physical-environments-challenge-03ae912a3e15.json](examples/physical-environments-challenge-03ae912a3e15.json). Export sources and reopen them to recompute the comparison. These are measured PASCO recordings from two declared conditions; the experiment does not identify inertia, absolute torque or an unseen mechanism.
+
+The reserved receiving favored independently fitted condition models in both recordings, while shared restoration had a mixed comparison against pooling. The [method, frozen protocol, measured results and scope](docs/SHARED_ENVIRONMENTS.md) preserve that outcome without claiming a shared physical law.

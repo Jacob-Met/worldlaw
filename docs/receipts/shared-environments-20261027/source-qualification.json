@@ -1,0 +1,57 @@
+{
+  "schema": "worldlaw.environment-source-qualification/v1",
+  "baseCommit": "9940d2b40a140962d21f61a671ad61843657afb8",
+  "fittingFreezeCommit": "128b1206ca84f3cdedc29ede8a1ef94447f8baaf",
+  "runtime": "Node v26.11.0",
+  "sourceSHA256": {
+    "src/trajectory/shared-environment-fit.mjs": "82ef691644c4699c85c31ef6578fe7b3accd80ab8a110276498235d1a3696b16",
+    "src/trajectory/shared-environments.mjs": "84d7accc7b28b50a459048e7f99038d8de113ff0407400aa20ad1e4f06ebd583",
+    "src/trajectory/environment-course-view.mjs": "a182f9906a685853fc6a48a23f487e86442f0e3086cbf4375bc44b18493d14c3",
+    "src/trajectory/environment-comparison-panel.mjs": "8556d62b079d39449408d06f84a9ff452776874d7d95604b92a3f8a5d53fe1b0",
+    "src/trajectory/app.mjs": "6ccfe44a81f2b9781be0cbb5284d9122f789c3f1356650605aab52ee2acdeeba",
+    "trajectory.html": "2c8fa7c2ddf1e3dc83691def3fa48524db973e07b6e6383e2b7cf7654f9a1ed0",
+    "trajectory.css": "a7c3a911e81bcc59e83a32b0bef061b949d4789f9b11cb462154a7b9d365c723",
+    "scripts/package.py": "1fb33489bcde0f5dc7b9e50754cb3e08d2826092fa356a8e341089b8b62515b2",
+    "scripts/shared-environment-browser.mjs": "6d1b84acb66e8836f8dba80faf8b84761ca2a0b7280951c15151353454ef4607"
+  },
+  "native": {
+    "tests": 1465,
+    "passed": 1464,
+    "failed": 0,
+    "skipped": 1,
+    "skip": "Inherited optional live Node and Chromium pending/applied notebook exchange",
+    "concurrency": 2,
+    "StudioSmoke": "passed",
+    "TrajectorySmoke": "passed",
+    "policyTests": 7,
+    "policyPassed": 7
+  },
+  "browser": {
+    "groups": 4,
+    "pageErrors": 0,
+    "failedRequests": 0,
+    "sandboxEnabled": true,
+    "desktop": [
+      1440,
+      1080
+    ],
+    "narrow": [
+      390,
+      980
+    ],
+    "resultSHA256": "a0d58fe8bc0a7fc233b113c69ad73f4b296936a9d278cf659a3a4567397f9b64"
+  },
+  "observedFailuresRepaired": [
+    "Inherited table nowrap concealed challenge outcomes; scoped wrapping and fonts repaired.",
+    "Overlaid trajectories concealed small differences; signed paired residual strips and visible per-run RMSE added.",
+    "New licensed dataset paths required exact package allowlist/required entries; original security negatives retained."
+  ],
+  "releaseState": "Source qualified; fresh distributable receiving follows separately.",
+  "review": {
+    "executedBy": "root through Renpo",
+    "analyticDesignAndEvidenceReview": "retained independent_review",
+    "algebraAndSourceReview": "retained source_recovery",
+    "compositionDesignAndReportedEvidenceReview": "retained consumer_review",
+    "actualPixelInspection": "root, both arrangements desktop and narrow"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schema": "worldlaw.environment-browser-receiving/v1",
+  "target": "http://127.0.0.1:55892/trajectory.html",
+  "runtime": "v26.11.0",
+  "browser": "156.0.8078.48",
+  "sandboxEnabled": true,
+  "receipts": [
+    {
+      "name": "signed residuals and readable outcome comparison",
+      "passed": true,
+      "matchedPairedResiduals": 6,
+      "tableStyle": {
+        "whiteSpace": "normal",
+        "font": "Inter, Aptos, \"Segoe UI\", Arial, sans-serif",
+        "tableWidth": 993,
+        "containerWidth": 993
+      }
+    },
+    {
+      "name": "source training and separate challenge",
+      "passed": true,
+      "candidateAttempts": 171,
+      "trainingSelectionUnchanged": true
+    },
+    {
+      "name": "two actual compositions, keyboard and reduced motion",
+      "passed": true,
+      "narrow": {
+        "width": 354,
+        "scrollWidth": 354,
+        "documentWidth": 390,
+        "viewport": 390,
+        "tickFont": "12px",
+        "active": "conditions",
+        "focusOutline": "3px",
+        "buttonTransition": "0s"
+      }
+    },
+    {
+      "name": "ordinary keyboard export and source-only fresh-session replay",
+      "passed": true,
+      "trainingAndChallengeOutcomesIdentical": true,
+      "malformedReplacementRetainedState": true
+    }
+  ],
+  "pageErrors": [],
+  "failedRequests": [],
+  "selectedArrangement": "conditions",
+  "selectionReason": "Both actual arrangements received; by-condition courses keep each original recording primary and avoid repeating observations three times."
+}

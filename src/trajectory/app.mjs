@@ -1,3 +1,4 @@
+import {createEnvironmentComparisonPanel} from './environment-comparison-panel.mjs';
 import {createAppliedTorquePanel} from './applied-torque-panel.mjs';
 import {createMotionIntakePanel} from './motion-intake-panel.mjs';
 import {createResidualStructurePanel} from './residual-structure-panel.mjs';
@@ -30,6 +31,7 @@ const commandTimingPanel=createCommandTimingPanel($('cycle-work-panel')||$('roll
   onReopen:async (report,stillCurrent)=>{const next=await perform(()=>createChallenge(report.bundle,{method:'integral',noiseSigma:report.options.noiseSigma,maxStep:report.options.maxStep}),'Timing source reopened. The instantaneous baseline and delay comparison are recomputed from the original recordings.');if(next&&stillCurrent()){commandTimingPanel.configure(report.options);commandTimingPanel.present(report);}},
 });
 createAppliedTorquePanel($('command-timing-panel')||$('cycle-work-panel')||$('rolling-origin-panel'));
+createEnvironmentComparisonPanel($('comparison-grid'));
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
 const set=(id,text)=>{$(id).textContent=text;};
 const fmt=(value,digits=4)=>!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});

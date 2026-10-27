@@ -16,6 +16,18 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    # Exact licensed source data and consumer for declared-environment comparison.
+    'examples/physical-environments-03ae912a3e15/AUTHOR-README.md',
+    'examples/physical-environments-03ae912a3e15/LICENSE',
+    'examples/physical-environments-03ae912a3e15/README.md',
+    'examples/physical-environments-03ae912a3e15/build-bundle.py',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond1_1.csv',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond1_2.csv',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond1_3.csv',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond2_1.csv',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond2_2.csv',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond2_3.csv',
+
     # Exact existing current-main receiving evidence; no recursive output admission.
     "docs/receipts/historical-training-20261027/README.md",
     "docs/receipts/historical-training-20261027/historical/browser-result.json",
@@ -212,6 +224,26 @@ INCLUDE = (
     'experiments/rolling-origin.mjs',
 )
 REQUIRED = (
+    # Exact licensed source data and consumer for declared-environment comparison.
+    'examples/physical-environments-03ae912a3e15/AUTHOR-README.md',
+    'examples/physical-environments-03ae912a3e15/LICENSE',
+    'examples/physical-environments-03ae912a3e15/README.md',
+    'examples/physical-environments-03ae912a3e15/build-bundle.py',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond1_1.csv',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond1_2.csv',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond1_3.csv',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond2_1.csv',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond2_2.csv',
+    'examples/physical-environments-03ae912a3e15/raw/len2_cond2_3.csv',
+    'src/trajectory/shared-environment-fit.mjs',
+    'src/trajectory/shared-environments.mjs',
+    'src/trajectory/environment-course-view.mjs',
+    'src/trajectory/environment-comparison-panel.mjs',
+    'examples/physical-environments-training-03ae912a3e15.json',
+    'examples/physical-environments-challenge-03ae912a3e15.json',
+    'docs/SHARED_ENVIRONMENTS.md',
+    'docs/SHARED_ENVIRONMENT_PROTOCOL_20261027.json',
+
     "src/science/experiment-receipts.mjs", "src/science/experiment-receipts-panel.mjs",
     "src/stiffness/design.mjs", "src/stiffness/design-panel.mjs", "docs/STIFFNESS_INPUT_DESIGN.md",
     "src/science/studio-dynamics-comparison.mjs", "src/science/studio-comparison-panel.mjs",
