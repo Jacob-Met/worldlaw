@@ -1,5 +1,5 @@
 import { fitLinearColumns } from '../science/linear-fit.mjs';
-import { validateRows, UNITS } from '../data.mjs';
+import { validateRows, UNITS, MAX_ROWS } from '../data.mjs';
 
 const NUISANCE = ['bias', 'command', 'rate'];
 const LIMIT = 1e6;
@@ -39,6 +39,41 @@ function feature(id, row, knot, origin) {
   if (id === 'hinge') return Math.max(0, row.position-knot);
   if (id === 'cubic') return (row.position-origin)**3;
   return row[id];
+}
+function structureTerms(settings, family) {
+  return [...settings.nuisanceTerms, 'position', ...(family === 'piecewise' ? ['hinge'] : family === 'cubic' ? ['cubic'] : [])];
+}
+/** Actual offered basis, evaluated only at input coordinates; no torque values enter. */
+export function stiffnessDesignBasis(rawInputs, requestedSettings, choice) {
+  const settings = normalizeSettings(requestedSettings);
+  need(Array.isArray(rawInputs) && rawInputs.length > 0 && rawInputs.length <= MAX_ROWS + 1,
+    'Input design needs 1–' + (MAX_ROWS + 1) + ' declared coordinate rows.');
+  need(choice && typeof choice === 'object' && !Array.isArray(choice), 'Select an offered response structure.');
+  let declaration;
+  if (choice.family === 'global') {
+    need(Object.keys(choice).length === 1, 'The global design has no knot or origin.');
+    declaration = {family: 'global'};
+  } else if (choice.family === 'piecewise') {
+    need(Object.keys(choice).length === 2 && Object.hasOwn(choice, 'knot') && settings.knots.includes(choice.knot),
+      'Select an explicitly offered change angle.');
+    declaration = {family: 'piecewise', knot: choice.knot};
+  } else {
+    need(choice.family === 'cubic' && Object.keys(choice).length === 2 && Object.hasOwn(choice, 'origin') &&
+      Object.hasOwn(settings, 'cubicOrigin') && choice.origin === settings.cubicOrigin,
+      'Select the explicitly offered cubic origin.');
+    declaration = {family: 'cubic', origin: choice.origin};
+  }
+  const inputs = rawInputs.map(checkedInput), positions = [...new Set(inputs.map(row => row.position))];
+  const left = declaration.family === 'piecewise' ? positions.filter(x => x < declaration.knot).length : null;
+  const right = declaration.family === 'piecewise' ? positions.filter(x => x > declaration.knot).length : null;
+  const missing = declaration.family === 'piecewise' ? Math.max(0, 3-left) + Math.max(0, 3-right) :
+    declaration.family === 'cubic' ? Math.max(0, 4-positions.length) : 0;
+  const terms = structureTerms(settings, declaration.family);
+  return {declaration, terms, inputs,
+    columns: terms.map(id => inputs.map(row => feature(id, row, declaration.knot, declaration.origin))),
+    support: {distinctPositions: positions.length, left, right, missing, eligible: missing === 0,
+      requiredPerSide: declaration.family === 'piecewise' ? 3 : null,
+      requiredDistinctPositions: declaration.family === 'cubic' ? 4 : null}};
 }
 function checkedInput(row) {
   need(row && typeof row === 'object' && !Array.isArray(row), 'Supply a complete input state.');
@@ -109,7 +144,7 @@ export function investigateStiffness(observations, requestedSettings) {
     if (support && (support.left<3 || support.right<3)) {
       entry.status='insufficient_side_support'; profile.push(entry); continue;
     }
-    const ids = [...settings.nuisanceTerms,'position',...(family==='piecewise'?['hinge']:family==='cubic'?['cubic']:[])];
+    const ids = structureTerms(settings, family);
     const fitted = fitLinearColumns(ids.map(id=>rows.map(row=>feature(id,row,knot,origin))),target);
     if (!fitted) { entry.status='rank_deficient'; profile.push(entry); continue; }
     if (fitted.coefficients.some(c=>!Number.isFinite(c)||Math.abs(c)>1e18)) {

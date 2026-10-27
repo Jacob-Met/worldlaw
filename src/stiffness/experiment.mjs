@@ -77,11 +77,18 @@ function normalizeAcquisition(raw,permitted){
  need(axes.every(k=>observation[k]===permitted[index][k]),'Received coordinates differ from the frozen permitted state.');
  return {id,index,source,observation};
 }
-function workLimit(initial,acquisitions,revisionCount=0){
- need(acquisitions.length<=32,'At most 32 sequential acquisitions are supported.');
- need(initial.dataset.observations.length+acquisitions.length<=MAX_ROWS,'Acquisition exceeds the maintained observation bound.');
- const work=(acquisitions.length+1+revisionCount)*(initial.dataset.observations.length+acquisitions.length)*(initial.settings.knots.length+1+revisionCount);
+function workLimit(initial,acquisitionCount,revisionCount=0){
+ need(acquisitionCount<=32,'At most 32 sequential acquisitions are supported.');
+ need(initial.dataset.observations.length+acquisitionCount<=MAX_ROWS,'Acquisition exceeds the maintained observation bound.');
+ const work=(acquisitionCount+1+revisionCount)*(initial.dataset.observations.length+acquisitionCount)*(initial.settings.knots.length+1+revisionCount);
  need(work<=2_000_000,'The replay exceeds its declared fit-work budget; reduce the grid, initial rows or acquisitions.');
+}
+/** Read-only capacity for one additional reading; reuse replay admission without inventing an outcome. */
+export function stiffnessAcquisitionAvailability(session){
+ try{
+  workLimit(session.initial,session.acquisitions.length+1,session.revisions?.length??0);
+  return {available:true,reason:null};
+ }catch(error){return {available:false,reason:error.message};}
 }
 export function createStiffnessExperiment(study,rawPermitted){
  const {cubicOrigin,...originalSettings}=study.settings;
@@ -114,7 +121,7 @@ export function replayStiffnessExperiment(raw){
  const acquisitions=raw.acquisitions.map(a=>normalizeAcquisition(a,permitted));
  need(new Set(acquisitions.map(a=>a.id)).size===acquisitions.length,'Acquisition IDs must be unique.');
  const revisions=revised?normalizeRevisions(raw.revisions,acquisitions.length):[];
- workLimit(initial,acquisitions,revisions.length);
+ workLimit(initial,acquisitions.length,revisions.length);
  let study=initialStudy;const session={schema:EXPERIMENT_SCHEMA,initial,permitted,acquisitions:[],study,history:[],pending:null};
  for(let index=0;index<=acquisitions.length;index++){
   if(revisions[0]?.at===index){
