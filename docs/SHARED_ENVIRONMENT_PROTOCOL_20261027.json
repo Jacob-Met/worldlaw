@@ -1,0 +1,105 @@
+{
+  "schema": "worldlaw.shared-environment-protocol/v1",
+  "id": "shared-environment-03ae912a3e15-20261027",
+  "originalIssue": "https://github.com/Jacob-Met/worldlaw/issues/29",
+  "originalOwner": "hamon-171b58b2f93b-20261023/mechanism",
+  "recoveryOwner": "estate-03ae912a3e15-20261027",
+  "sourceRepository": "EnzeXu/Damped_Pendulum_Dataset",
+  "sourceCommit": "cbf82673641ecd65e902ad5c38a048387649a2a0",
+  "license": "Apache-2.0",
+  "sourceConditions": [
+    {
+      "id": "air",
+      "condition": 1,
+      "label": "Air"
+    },
+    {
+      "id": "small-baffle",
+      "condition": 2,
+      "label": "Small paper baffle"
+    }
+  ],
+  "lengthIndex": 2,
+  "nominalLengthMeters": 0.33,
+  "trainingRepetitions": [
+    1,
+    2
+  ],
+  "reservedChallengeRepetitions": [
+    3
+  ],
+  "intervalSeconds": [
+    5,
+    15
+  ],
+  "expectedSamplesPerRun": 1001,
+  "extraction": "Preserve original timestamps, angles and source rows; use recorded angular velocity at the first retained sample as initialRate. No recentering, resampling, smoothing of exported observations, or time-origin shift.",
+  "terms": [
+    "rate",
+    "coulomb",
+    "spring",
+    "gravity",
+    "quadratic",
+    "bias"
+  ],
+  "maximumTerms": 4,
+  "candidateSubsets": 57,
+  "sharingModes": [
+    "pooled",
+    "shared-restoring",
+    "independent"
+  ],
+  "sharedRestoringTerms": [
+    "spring",
+    "gravity",
+    "bias"
+  ],
+  "conditionSpecificDissipativeTerms": [
+    "rate",
+    "coulomb",
+    "quadratic"
+  ],
+  "candidateAttempts": 171,
+  "windowDuration": 1,
+  "windowStride": 0.5,
+  "rateWindowSize": 9,
+  "noiseSigma": 0.01,
+  "noiseSigmaUnits": "rad",
+  "ambiguityDelta": 6,
+  "score": "n*log(max(weakRMSE^2,noiseSigma^2))+k*log(n)",
+  "scoreInterpretation": "Heuristic selection score; overlapping windows are not an independent likelihood and differences are not calibrated posterior evidence.",
+  "comparisonRows": "Every admitted complete training weak row, once, for every candidate and sharing mode. No candidate-dependent filtering or source thinning.",
+  "limits": {
+    "environments": [
+      2,
+      4
+    ],
+    "trainingRuns": 16,
+    "totalTrainingSamples": 8192,
+    "weakWindows": 2048,
+    "maximumExpandedCoefficients": 16,
+    "reservedMatrixWork": 100000000
+  },
+  "execution": {
+    "maxStep": 0.01,
+    "refinementMaxStep": 0.005,
+    "maxStepsPerRun": 200000,
+    "maximumTotalForecastSteps": 1000000,
+    "selectUsing": "training_only",
+    "evaluate": "best training candidate in every mode, on every original training and separately received challenge run; failures retained; same initial measured state"
+  },
+  "acceptance": [
+    "Independent analytic fixed-subset coefficient and nesting checks before measured interpretation",
+    "Freeze fitting source, options, training source hashes and full candidate results before fetching repetition 3",
+    "No requirement that shared-restoring win; no post-challenge tuning",
+    "Keep all 171 training attempts and all three forecast alternatives with per-condition outcomes",
+    "Reopen source-only notebook and recompute; serialized fitted results never become evidence"
+  ],
+  "claims": [
+    "Observed environments on the same declared apparatus only",
+    "Unknown physical inertia and absolute torque",
+    "Baffle may alter inertia or measurement zero; shared coefficients are a tested hypothesis",
+    "No geometric scaling, unseen-mechanism transfer, or physical gravity calibration"
+  ],
+  "baseCommit": "9940d2b40a140962d21f61a671ad61843657afb8"
+}

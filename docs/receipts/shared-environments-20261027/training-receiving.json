@@ -1,0 +1,796 @@
+{
+  "schema": "worldlaw.environment-receiving/v1",
+  "runtime": "v26.11.0",
+  "trainingSourceSHA256": "0ccaecb4258a61b1c1d9968237856cf1997c771d72ce969c2224929713cefa26",
+  "challengeSourceSHA256": null,
+  "protocol": {
+    "id": "worldlaw-shared-environments/2026-10-27.1",
+    "terms": [
+      "rate",
+      "coulomb",
+      "spring",
+      "gravity",
+      "quadratic",
+      "bias"
+    ],
+    "maxTerms": 4,
+    "modes": [
+      "pooled",
+      "shared-restoring",
+      "independent"
+    ],
+    "sharedTerms": [
+      "spring",
+      "gravity",
+      "bias"
+    ],
+    "localTerms": [
+      "rate",
+      "coulomb",
+      "quadratic"
+    ],
+    "settings": {
+      "windowDuration": 1,
+      "windowStride": 0.5,
+      "rateWindowSize": 9,
+      "noiseSigma": 0.01,
+      "maxTerms": 4,
+      "ambiguityDelta": 6
+    },
+    "score": "n*log(max(weakRMSE^2,0.01^2))+k*log(n)",
+    "weighting": "complete normalized weak rows; overlap not whitened",
+    "maxStep": 0.01,
+    "refinementMaxStep": 0.005,
+    "maxStepsPerRun": 200000,
+    "maxTotalIntegrationSteps": 1000000
+  },
+  "trainingWindows": 76,
+  "candidateCount": 171,
+  "fittedCount": 171,
+  "selectedCandidateId": "independent:42",
+  "competitiveCandidateIds": [
+    "independent:42",
+    "independent:41",
+    "independent:56"
+  ],
+  "best": [
+    {
+      "mode": "pooled",
+      "id": "pooled:56",
+      "status": "fitted",
+      "terms": [
+        "gravity",
+        "quadratic",
+        "bias"
+      ],
+      "freeParameterCount": 3,
+      "score": -582.2452603160839,
+      "weakRMSE": 0.019919902463080768,
+      "conditionEstimate": 1.000142822244506,
+      "parameters": [
+        {
+          "term": "gravity",
+          "environmentId": null,
+          "coefficient": -28.960711841606063,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "term": "quadratic",
+          "environmentId": null,
+          "coefficient": -0.013362179536547444,
+          "coefficientUnit": "1/rad"
+        },
+        {
+          "term": "bias",
+          "environmentId": null,
+          "coefficient": -0.014002085458799728,
+          "coefficientUnit": "rad/s²"
+        }
+      ]
+    },
+    {
+      "mode": "shared-restoring",
+      "id": "shared-restoring:42",
+      "status": "fitted",
+      "terms": [
+        "coulomb",
+        "gravity",
+        "bias"
+      ],
+      "freeParameterCount": 4,
+      "score": -580.7678274219211,
+      "weakRMSE": 0.019549459563752203,
+      "conditionEstimate": 1.0033484325266142,
+      "parameters": [
+        {
+          "term": "coulomb",
+          "environmentId": "air",
+          "coefficient": -0.01782705487608265,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "term": "coulomb",
+          "environmentId": "small-baffle",
+          "coefficient": -0.09451575688504188,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "term": "gravity",
+          "environmentId": null,
+          "coefficient": -28.94698811514518,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "term": "bias",
+          "environmentId": null,
+          "coefficient": -0.013255065732158018,
+          "coefficientUnit": "rad/s²"
+        }
+      ]
+    },
+    {
+      "mode": "independent",
+      "id": "independent:42",
+      "status": "fitted",
+      "terms": [
+        "coulomb",
+        "gravity",
+        "bias"
+      ],
+      "freeParameterCount": 6,
+      "score": -599.0059634964178,
+      "weakRMSE": 0.016378615834964638,
+      "conditionEstimate": 1.0064455140694026,
+      "parameters": [
+        {
+          "term": "coulomb",
+          "environmentId": "air",
+          "coefficient": -0.014264448404973129,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "term": "coulomb",
+          "environmentId": "small-baffle",
+          "coefficient": -0.09535607389486062,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "term": "gravity",
+          "environmentId": "air",
+          "coefficient": -29.017728690738576,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "term": "gravity",
+          "environmentId": "small-baffle",
+          "coefficient": -28.923536882075854,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "term": "bias",
+          "environmentId": "air",
+          "coefficient": -0.04042440353639091,
+          "coefficientUnit": "rad/s²"
+        },
+        {
+          "term": "bias",
+          "environmentId": "small-baffle",
+          "coefficient": 0.01392007495589856,
+          "coefficientUnit": "rad/s²"
+        }
+      ]
+    }
+  ],
+  "courses": [
+    {
+      "role": "training",
+      "reservedIntegrationSteps": 39744,
+      "runs": [
+        {
+          "environmentId": "air",
+          "runId": "pasco-len2-cond1-rep1",
+          "forecasts": [
+            {
+              "mode": "pooled",
+              "candidateId": "pooled:56",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.006209944519290235,
+                "maxAbsError": 0.01557977267293778,
+                "finalAbsError": 0.0044590120163540276
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.006209824485929789,
+                  "maxAbsError": 0.015579218253535976,
+                  "finalAbsError": 0.004458263884126401
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 3.1912188149324826e-7,
+                "maximumPredictionDifference": 7.481322276264857e-7
+              }
+            },
+            {
+              "mode": "shared-restoring",
+              "candidateId": "shared-restoring:42",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.006298831124207866,
+                "maxAbsError": 0.01670659750383674,
+                "finalAbsError": 0.010096315699296171
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.006292022898196503,
+                  "maxAbsError": 0.016685727753533858,
+                  "finalAbsError": 0.010079479928176954
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 0.000012170404578167799,
+                "maximumPredictionDifference": 0.000028536352031966958
+              }
+            },
+            {
+              "mode": "independent",
+              "candidateId": "independent:42",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.005848797480715689,
+                "maxAbsError": 0.014750675224185716,
+                "finalAbsError": 0.0075401846220611995
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.005847012114466252,
+                  "maxAbsError": 0.014744054341843199,
+                  "finalAbsError": 0.007545331703729695
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 0.00000558615921068694,
+                "maximumPredictionDifference": 0.00001323790035676585
+              }
+            }
+          ]
+        },
+        {
+          "environmentId": "air",
+          "runId": "pasco-len2-cond1-rep2",
+          "forecasts": [
+            {
+              "mode": "pooled",
+              "candidateId": "pooled:56",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.012305731789884632,
+                "maxAbsError": 0.03523926778836556,
+                "finalAbsError": 0.0033639564395998023
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.012305694568043814,
+                  "maxAbsError": 0.03523927626649098,
+                  "finalAbsError": 0.00336331732889783
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 3.9840489552892913e-7,
+                "maximumPredictionDifference": 9.444783317519301e-7
+              }
+            },
+            {
+              "mode": "shared-restoring",
+              "candidateId": "shared-restoring:42",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.021005531349408264,
+                "maxAbsError": 0.03837871151335981,
+                "finalAbsError": 0.031724241636987505
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.020989545482049954,
+                  "maxAbsError": 0.03837849017433592,
+                  "finalAbsError": 0.031666625768870305
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 0.000047609654200764955,
+                "maximumPredictionDifference": 0.000105967420528685
+              }
+            },
+            {
+              "mode": "independent",
+              "candidateId": "independent:42",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.020911144497505807,
+                "maxAbsError": 0.04212123763608577,
+                "finalAbsError": 0.017187321244057807
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.02091136626821643,
+                  "maxAbsError": 0.04212117312627639,
+                  "finalAbsError": 0.01719197742695361
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 0.000004974281437738277,
+                "maximumPredictionDifference": 0.000020416351056720683
+              }
+            }
+          ]
+        },
+        {
+          "environmentId": "small-baffle",
+          "runId": "pasco-len2-cond2-rep1",
+          "forecasts": [
+            {
+              "mode": "pooled",
+              "candidateId": "pooled:56",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.022132029788284827,
+                "maxAbsError": 0.04724962413092049,
+                "finalAbsError": 0.0340176558428375
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.02213228344866549,
+                  "maxAbsError": 0.04724991125630196,
+                  "finalAbsError": 0.034018567017765844
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 5.315263323540785e-7,
+                "maximumPredictionDifference": 0.0000012467384237907497
+              }
+            },
+            {
+              "mode": "shared-restoring",
+              "candidateId": "shared-restoring:42",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.016984066632539173,
+                "maxAbsError": 0.033908893116473604,
+                "finalAbsError": 0.020844127596201745
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.016900172509476383,
+                  "maxAbsError": 0.03396484119632309,
+                  "finalAbsError": 0.020660971682468665
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 0.0001145537395193526,
+                "maximumPredictionDifference": 0.0002795935768726849
+              }
+            },
+            {
+              "mode": "independent",
+              "candidateId": "independent:42",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.01385517860849737,
+                "maxAbsError": 0.03331261347265929,
+                "finalAbsError": 0.01304098140986254
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.013800421476111366,
+                  "maxAbsError": 0.03336906252854954,
+                  "finalAbsError": 0.012978822716007477
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 0.00008384179314025509,
+                "maximumPredictionDifference": 0.0001818126709581258
+              }
+            }
+          ]
+        },
+        {
+          "environmentId": "small-baffle",
+          "runId": "pasco-len2-cond2-rep2",
+          "forecasts": [
+            {
+              "mode": "pooled",
+              "candidateId": "pooled:56",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.02141211051633904,
+                "maxAbsError": 0.04696256893007869,
+                "finalAbsError": 0.00024203313550930083
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.021411773909709875,
+                  "maxAbsError": 0.04696225788849862,
+                  "finalAbsError": 0.00024130026540081229
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 6.119258132096813e-7,
+                "maximumPredictionDifference": 0.0000014206762827852215
+              }
+            },
+            {
+              "mode": "shared-restoring",
+              "candidateId": "shared-restoring:42",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.029455227056418336,
+                "maxAbsError": 0.05378339403434004,
+                "finalAbsError": 0.007109639660314138
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.029458914109649247,
+                  "maxAbsError": 0.05379238076362911,
+                  "finalAbsError": 0.007130129464836155
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 0.000032564444664866684,
+                "maximumPredictionDifference": 0.00010194036233044171
+              }
+            },
+            {
+              "mode": "independent",
+              "candidateId": "independent:42",
+              "status": "executed",
+              "metrics": {
+                "count": 1000,
+                "positionRMSE": 0.03508020994715931,
+                "maxAbsError": 0.06429162349049006,
+                "finalAbsError": 0.01409116600836502
+              },
+              "refinement": {
+                "status": "executed",
+                "maxStep": 0.005,
+                "metrics": {
+                  "count": 1000,
+                  "positionRMSE": 0.03495620831912442,
+                  "maxAbsError": 0.0640518972955988,
+                  "finalAbsError": 0.013986609703079578
+                },
+                "diagnostics": {
+                  "steps": 2156,
+                  "method": "classical_RK4",
+                  "maxStep": 0.005,
+                  "maxSteps": 200000,
+                  "initialRateSource": "run.initialRate",
+                  "observationsResetState": false,
+                  "initialSampleExcludedFromMetrics": true,
+                  "stateMagnitudeLimit": 1000000,
+                  "positionUnit": "rad",
+                  "rateUnit": "rad/s",
+                  "numericalErrorEstimate": null,
+                  "physicalValidity": "not_established_by_finite_rollout",
+                  "limitations": [
+                    "Fixed-step RK4 has no automatic local-error or stiffness estimate.",
+                    "Coulomb sign changes and other nonsmooth behavior can require smaller steps.",
+                    "A finite rollout is not evidence of physical validity, parameter identifiability, or calibrated uncertainty.",
+                    "Residuals include angular-model, sensor, initial-state, unrecorded-forcing and numerical errors.",
+                    "Physical torque and inertia remain unidentified."
+                  ],
+                  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+                  "physicalInertia": null,
+                  "absoluteTorqueIdentified": false,
+                  "forcingAssumption": "unforced_scalar_rotation_declared_not_verified_by_missing_actuator_data"
+                },
+                "predictionRMSDifference": 0.0001643057775541414,
+                "maximumPredictionDifference": 0.0004280911007953671
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "comparison": "27c94780ec2cf8128860f1fa81bce8f3bbc6df7202ffd95784efd52137291650",
+    "trainingCourse": "0336cd13e645457ec3d6db75acbb4ae3c7bffd80d4ff79aa4c84a05641c60619"
+  }
+}

@@ -1,0 +1,919 @@
+{
+  "schema": "worldlaw.independent-environment-oracle/v1",
+  "structuralAssertionsPassed": true,
+  "numericalAcceptance": "passed",
+  "receipts": [
+    {
+      "wrongSharing": false,
+      "dt": 0.02,
+      "selectedCandidateId": "shared-restoring:5",
+      "fixed": {
+        "pooled": {
+          "rss": 0.1422885218292947,
+          "weakRMSE": 0.04326912747549596,
+          "score": -468.6665485387687,
+          "n": 76,
+          "conditionEstimate": 1.015749221650953,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": null,
+              "coefficient": -0.3760553517498388,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": null,
+              "coefficient": -3.9339810396408366,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        },
+        "shared-restoring": {
+          "rss": 1.8898307314366353e-15,
+          "weakRMSE": 4.9866014313049495e-9,
+          "score": -686.9936682493309,
+          "n": 76,
+          "conditionEstimate": 1.0228174834473809,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": "env-a",
+              "coefficient": -0.24000006838428486,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "rate",
+              "environmentId": "env-b",
+              "coefficient": -0.9000002554293871,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": null,
+              "coefficient": -4.000000164150438,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        },
+        "independent": {
+          "rss": 6.250010411189292e-30,
+          "weakRMSE": 2.8676990618716594e-16,
+          "score": -682.6629349090445,
+          "n": 76,
+          "conditionEstimate": 1.0953145181729522,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": "env-a",
+              "coefficient": -0.2400000700745263,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "rate",
+              "environmentId": "env-b",
+              "coefficient": -0.9000002282870215,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": "env-a",
+              "coefficient": -4.000000194185991,
+              "coefficientUnit": "1/s²"
+            },
+            {
+              "term": "spring",
+              "environmentId": "env-b",
+              "coefficient": -4.000000024218882,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        }
+      },
+      "coefficientErrors": [
+        {
+          "environmentId": "env-a",
+          "independentSpring": -1.9418599084275456e-7,
+          "independentRate": -7.007452632046274e-8,
+          "sharedSpring": -1.6415043813111652e-7,
+          "sharedRate": -6.838428487365711e-8
+        },
+        {
+          "environmentId": "env-b",
+          "independentSpring": -2.4218882010984544e-8,
+          "independentRate": -2.282870215086774e-7,
+          "sharedSpring": -1.6415043813111652e-7,
+          "sharedRate": -2.554293870860036e-7
+        }
+      ],
+      "forecasts": [
+        {
+          "mode": "shared-restoring",
+          "environmentId": "env-a",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 8.122410345123952e-8,
+              "independentMaxAbsError": 1.386179978302149e-7,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 8.13052869832004e-8,
+                "maxAbsError": 1.386179978302149e-7,
+                "finalAbsError": 7.649004304249862e-8
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 8.265452139007143e-8,
+              "independentMaxAbsError": 1.4130684278246264e-7,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 8.273713462547641e-8,
+                "maxAbsError": 1.4130684278246264e-7,
+                "finalAbsError": 7.960178290827846e-8
+              }
+            }
+          ],
+          "integrationRMSDifference": 1.6668544515305936e-9
+        },
+        {
+          "mode": "shared-restoring",
+          "environmentId": "env-b",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 4.808731699665119e-8,
+              "independentMaxAbsError": 9.931679190167131e-8,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 4.813538029400294e-8,
+                "maxAbsError": 9.931679190167131e-8,
+                "finalAbsError": 4.351836426809419e-9
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 4.833654792876015e-8,
+              "independentMaxAbsError": 9.989246352315462e-8,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 4.8384860332552945e-8,
+                "maxAbsError": 9.989246352315462e-8,
+                "finalAbsError": 4.438727107224094e-9
+              }
+            }
+          ],
+          "integrationRMSDifference": 2.9409458335539094e-10
+        },
+        {
+          "mode": "independent",
+          "environmentId": "env-a",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 9.072082320481572e-8,
+              "independentMaxAbsError": 1.5513633264130355e-7,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 9.081149871291273e-8,
+                "maxAbsError": 1.5513633264130355e-7,
+                "finalAbsError": 9.529140774372502e-8
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 9.22076486364566e-8,
+              "independentMaxAbsError": 1.5793714724932073e-7,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 9.229981022731488e-8,
+                "maxAbsError": 1.5793714724932073e-7,
+                "finalAbsError": 9.840314717929344e-8
+              }
+            }
+          ],
+          "integrationRMSDifference": 1.6668541550748829e-9
+        },
+        {
+          "mode": "independent",
+          "environmentId": "env-b",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 4.353119638275599e-8,
+              "independentMaxAbsError": 9.084588697971796e-8,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 4.357470583527907e-8,
+                "maxAbsError": 9.084588697971796e-8,
+                "finalAbsError": 9.204388627150062e-10
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 4.37461593734392e-8,
+              "independentMaxAbsError": 9.124199046306458e-8,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 4.378988368157865e-8,
+                "maxAbsError": 9.124199046306458e-8,
+                "finalAbsError": 1.0073295205782762e-9
+              }
+            }
+          ],
+          "integrationRMSDifference": 2.940948354056662e-10
+        }
+      ]
+    },
+    {
+      "wrongSharing": false,
+      "dt": 0.01,
+      "selectedCandidateId": "shared-restoring:5",
+      "fixed": {
+        "pooled": {
+          "rss": 0.2773447671237092,
+          "weakRMSE": 0.06040921495622793,
+          "score": -417.9438035864586,
+          "n": 76,
+          "conditionEstimate": 1.0157488431016937,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": null,
+              "coefficient": -0.37605490924175466,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": null,
+              "coefficient": -3.9339828629424787,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        },
+        "shared-restoring": {
+          "rss": 1.4384631054802443e-17,
+          "weakRMSE": 4.350534004549333e-10,
+          "score": -686.9936682493309,
+          "n": 76,
+          "conditionEstimate": 1.0228166428414653,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": "env-a",
+              "coefficient": -0.24000000427479928,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "rate",
+              "environmentId": "env-b",
+              "coefficient": -0.9000000159678064,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": null,
+              "coefficient": -4.000000010269287,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        },
+        "independent": {
+          "rss": 1.5200617060483137e-29,
+          "weakRMSE": 4.472226729682691e-16,
+          "score": -682.6629349090445,
+          "n": 76,
+          "conditionEstimate": 1.0953124963669199,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": "env-a",
+              "coefficient": -0.2400000043804212,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "rate",
+              "environmentId": "env-b",
+              "coefficient": -0.9000000142716832,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": "env-a",
+              "coefficient": -4.000000012146194,
+              "coefficientUnit": "1/s²"
+            },
+            {
+              "term": "spring",
+              "environmentId": "env-b",
+              "coefficient": -4.000000001524755,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        }
+      },
+      "coefficientErrors": [
+        {
+          "environmentId": "env-a",
+          "independentSpring": -1.2146194272588673e-8,
+          "independentRate": -4.380421220195885e-9,
+          "sharedSpring": -1.0269286754294171e-8,
+          "sharedRate": -4.274799292325326e-9
+        },
+        {
+          "environmentId": "env-b",
+          "independentSpring": -1.5247554330244384e-9,
+          "independentRate": -1.4271683168587401e-8,
+          "sharedSpring": -1.0269286754294171e-8,
+          "sharedRate": -1.596780641044404e-8
+        }
+      ],
+      "forecasts": [
+        {
+          "mode": "shared-restoring",
+          "environmentId": "env-a",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 3.7228240374808884e-9,
+              "independentMaxAbsError": 6.15247830459964e-9,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 3.726545001965439e-9,
+                "maxAbsError": 6.15247830459964e-9,
+                "finalAbsError": 1.6257597421076575e-9
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 5.043599014961329e-9,
+              "independentMaxAbsError": 8.609649437829603e-9,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 5.048640094695432e-9,
+                "maxAbsError": 8.609649437829603e-9,
+                "finalAbsError": 4.737501564655577e-9
+              }
+            }
+          ],
+          "integrationRMSDifference": 1.6668550034051593e-9
+        },
+        {
+          "mode": "shared-restoring",
+          "environmentId": "env-b",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 2.753686807228742e-9,
+              "independentMaxAbsError": 5.684833881414164e-9,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 2.7564391185676907e-9,
+                "maxAbsError": 5.684833881414164e-9,
+                "finalAbsError": 1.8401131356496347e-10
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 2.998005165031521e-9,
+              "independentMaxAbsError": 6.193974999568752e-9,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 3.001001672691105e-9,
+                "maxAbsError": 6.193974999568752e-9,
+                "finalAbsError": 2.709020937262385e-10
+              }
+            }
+          ],
+          "integrationRMSDifference": 2.9409478962286055e-10
+        },
+        {
+          "mode": "independent",
+          "environmentId": "env-a",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 4.223264679299859e-9,
+              "independentMaxAbsError": 6.986220602023252e-9,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 4.2274858344558144e-9,
+                "maxAbsError": 6.986220602023252e-9,
+                "finalAbsError": 2.8006490598864175e-9
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 5.635780765051784e-9,
+              "independentMaxAbsError": 9.640038017844077e-9,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 5.641413730740822e-9,
+                "maxAbsError": 9.640038017844077e-9,
+                "finalAbsError": 5.912390244056098e-9
+              }
+            }
+          ],
+          "integrationRMSDifference": 1.6668543864302355e-9
+        },
+        {
+          "mode": "independent",
+          "environmentId": "env-b",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 2.508224164399078e-9,
+              "independentMaxAbsError": 5.2742409606398866e-9,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 2.5107311357039442e-9,
+                "maxAbsError": 5.2742409606398866e-9,
+                "finalAbsError": 3.042200909589288e-11
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 2.7142359813685383e-9,
+              "independentMaxAbsError": 5.663391700050369e-9,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 2.7169488615873444e-9,
+                "maxAbsError": 5.663391700050369e-9,
+                "finalAbsError": 5.646879708623431e-11
+              }
+            }
+          ],
+          "integrationRMSDifference": 2.9409488338542085e-10
+        }
+      ]
+    },
+    {
+      "wrongSharing": true,
+      "dt": 0.02,
+      "selectedCandidateId": "independent:5",
+      "fixed": {
+        "pooled": {
+          "rss": 0.3863167725971926,
+          "weakRMSE": 0.07129597063586714,
+          "score": -392.75768414834687,
+          "n": 76,
+          "conditionEstimate": 1.013501461255873,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": null,
+              "coefficient": -0.37695339085974966,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": null,
+              "coefficient": -4.347870202739604,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        },
+        "shared-restoring": {
+          "rss": 0.3118158341377201,
+          "weakRMSE": 0.06405341460737857,
+          "score": -404.70956693055,
+          "n": 76,
+          "conditionEstimate": 1.0156282422512692,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": "env-a",
+              "coefficient": -0.2610672446557304,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "rate",
+              "environmentId": "env-b",
+              "coefficient": -0.6725657453591611,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": null,
+              "coefficient": -4.37436339683857,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        },
+        "independent": {
+          "rss": 5.575200857941557e-30,
+          "weakRMSE": 2.708466466942997e-16,
+          "score": -682.6629349090445,
+          "n": 76,
+          "conditionEstimate": 1.0598186076928306,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": "env-a",
+              "coefficient": -0.2400000700745263,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "rate",
+              "environmentId": "env-b",
+              "coefficient": -0.9000004228482673,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": "env-a",
+              "coefficient": -4.000000194185991,
+              "coefficientUnit": "1/s²"
+            },
+            {
+              "term": "spring",
+              "environmentId": "env-b",
+              "coefficient": -6.250000733255363,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        }
+      },
+      "coefficientErrors": [
+        {
+          "environmentId": "env-a",
+          "independentSpring": -1.9418599084275456e-7,
+          "independentRate": -7.007452632046274e-8,
+          "sharedSpring": -0.3743633968385698,
+          "sharedRate": -0.0210672446557304
+        },
+        {
+          "environmentId": "env-b",
+          "independentSpring": -7.332553630945426e-7,
+          "independentRate": -4.2284826728966607e-7,
+          "sharedSpring": 1.8756366031614302,
+          "sharedRate": 0.22743425464083888
+        }
+      ],
+      "forecasts": [
+        {
+          "mode": "shared-restoring",
+          "environmentId": "env-a",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 0.13329024637563022,
+              "independentMaxAbsError": 0.22804331829843832,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 0.13342347004344476,
+                "maxAbsError": 0.22804331829843832,
+                "finalAbsError": 0.15903111779640408
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 0.1332902480571769,
+              "independentMaxAbsError": 0.22804332134506378,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 0.13342347172667202,
+                "maxAbsError": 0.22804332134506378,
+                "finalAbsError": 0.15903111855114455
+              }
+            }
+          ],
+          "integrationRMSDifference": 1.871979218300793e-9
+        },
+        {
+          "mode": "shared-restoring",
+          "environmentId": "env-b",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 0.14947604180573482,
+              "independentMaxAbsError": 0.32311161917984793,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 0.14962544318416449,
+                "maxAbsError": 0.32311161917984793,
+                "finalAbsError": 0.03866923627334191
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 0.149476041246059,
+              "independentMaxAbsError": 0.3231116181526437,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 0.14962544262392927,
+                "maxAbsError": 0.3231116181526437,
+                "finalAbsError": 0.03866923615829932
+              }
+            }
+          ],
+          "integrationRMSDifference": 6.29787160533552e-10
+        },
+        {
+          "mode": "independent",
+          "environmentId": "env-a",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 9.072082320481572e-8,
+              "independentMaxAbsError": 1.5513633264130355e-7,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 9.081149871291273e-8,
+                "maxAbsError": 1.5513633264130355e-7,
+                "finalAbsError": 9.529140774372502e-8
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 9.22076486364566e-8,
+              "independentMaxAbsError": 1.5793714724932073e-7,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 9.229981022731488e-8,
+                "maxAbsError": 1.5793714724932073e-7,
+                "finalAbsError": 9.840314717929344e-8
+              }
+            }
+          ],
+          "integrationRMSDifference": 1.6668541550748829e-9
+        },
+        {
+          "mode": "independent",
+          "environmentId": "env-b",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 8.29150601463767e-8,
+              "independentMaxAbsError": 1.8006481278254327e-7,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 8.299793379039865e-8,
+                "maxAbsError": 1.8006481278254327e-7,
+                "finalAbsError": 2.2345885386867992e-8
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 8.371910423204929e-8,
+              "independentMaxAbsError": 1.8176824695403937e-7,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 8.380278151853666e-8,
+                "maxAbsError": 1.8176824695403937e-7,
+                "finalAbsError": 2.2677384886593543e-8
+              }
+            }
+          ],
+          "integrationRMSDifference": 8.96924480581197e-10
+        }
+      ]
+    },
+    {
+      "wrongSharing": true,
+      "dt": 0.01,
+      "selectedCandidateId": "independent:5",
+      "fixed": {
+        "pooled": {
+          "rss": 0.7530590496788733,
+          "weakRMSE": 0.09954231113602378,
+          "score": -342.0287514433635,
+          "n": 76,
+          "conditionEstimate": 1.0135016274658968,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": null,
+              "coefficient": -0.3769668613428399,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": null,
+              "coefficient": -4.3478948521156395,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        },
+        "shared-restoring": {
+          "rss": 0.6078241973152229,
+          "weakRMSE": 0.08942978702188241,
+          "score": -353.9816225274004,
+          "n": 76,
+          "conditionEstimate": 1.0156282134878087,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": "env-a",
+              "coefficient": -0.2610685103036373,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "rate",
+              "environmentId": "env-b",
+              "coefficient": -0.6725784729713413,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": null,
+              "coefficient": -4.374388437376526,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        },
+        "independent": {
+          "rss": 1.4981440590438986e-29,
+          "weakRMSE": 4.4398673211623094e-16,
+          "score": -682.6629349090445,
+          "n": 76,
+          "conditionEstimate": 1.0598151126649653,
+          "parameters": [
+            {
+              "term": "rate",
+              "environmentId": "env-a",
+              "coefficient": -0.2400000043804212,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "rate",
+              "environmentId": "env-b",
+              "coefficient": -0.9000000264293745,
+              "coefficientUnit": "1/s"
+            },
+            {
+              "term": "spring",
+              "environmentId": "env-a",
+              "coefficient": -4.000000012146194,
+              "coefficientUnit": "1/s²"
+            },
+            {
+              "term": "spring",
+              "environmentId": "env-b",
+              "coefficient": -6.250000045850921,
+              "coefficientUnit": "1/s²"
+            }
+          ]
+        }
+      },
+      "coefficientErrors": [
+        {
+          "environmentId": "env-a",
+          "independentSpring": -1.2146194272588673e-8,
+          "independentRate": -4.380421220195885e-9,
+          "sharedSpring": -0.37438843737652583,
+          "sharedRate": -0.021068510303637322
+        },
+        {
+          "environmentId": "env-b",
+          "independentSpring": -4.585092128195356e-8,
+          "independentRate": -2.6429374466729882e-8,
+          "sharedSpring": 1.8756115626234742,
+          "sharedRate": 0.2274215270286587
+        }
+      ],
+      "forecasts": [
+        {
+          "mode": "shared-restoring",
+          "environmentId": "env-a",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 0.13329834996881246,
+              "independentMaxAbsError": 0.22805692846550446,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 0.13343158173617214,
+                "maxAbsError": 0.22805692846550446,
+                "finalAbsError": 0.15903610596809745
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 0.13329835165035236,
+              "independentMaxAbsError": 0.22805693151207435,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 0.13343158341939293,
+                "maxAbsError": 0.22805693151207435,
+                "finalAbsError": 0.1590361067226204
+              }
+            }
+          ],
+          "integrationRMSDifference": 1.8719901823509547e-9
+        },
+        {
+          "mode": "shared-restoring",
+          "environmentId": "env-b",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 0.1494716441317581,
+              "independentMaxAbsError": 0.32310267650992847,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 0.1496210411147104,
+                "maxAbsError": 0.32310267650992847,
+                "finalAbsError": 0.03866822920354922
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 0.14947164357208603,
+              "independentMaxAbsError": 0.32310267548273086,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 0.1496210405544792,
+                "maxAbsError": 0.32310267548273086,
+                "finalAbsError": 0.03866822908847978
+              }
+            }
+          ],
+          "integrationRMSDifference": 6.297755198472006e-10
+        },
+        {
+          "mode": "independent",
+          "environmentId": "env-a",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 4.223264679299859e-9,
+              "independentMaxAbsError": 6.986220602023252e-9,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 4.2274858344558144e-9,
+                "maxAbsError": 6.986220602023252e-9,
+                "finalAbsError": 2.8006490598864175e-9
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 5.635780765051784e-9,
+              "independentMaxAbsError": 9.640038017844077e-9,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 5.641413730740822e-9,
+                "maxAbsError": 9.640038017844077e-9,
+                "finalAbsError": 5.912390244056098e-9
+              }
+            }
+          ],
+          "integrationRMSDifference": 1.6668543864302355e-9
+        },
+        {
+          "mode": "independent",
+          "environmentId": "env-b",
+          "forecasts": [
+            {
+              "maxStep": 0.01,
+              "independentRMSE": 4.3724317781843196e-9,
+              "independentMaxAbsError": 9.521789523514457e-9,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 4.376802025930109e-9,
+                "maxAbsError": 9.521789523514457e-9,
+                "finalAbsError": 1.0597468024647894e-9
+              }
+            },
+            {
+              "maxStep": 0.005,
+              "independentRMSE": 5.156512338302477e-9,
+              "independentMaxAbsError": 1.1194155102867143e-8,
+              "reportedMetrics": {
+                "count": 500,
+                "positionRMSE": 5.161666274959644e-9,
+                "maxAbsError": 1.1194155102867143e-8,
+                "finalAbsError": 1.3912465433169041e-9
+              }
+            }
+          ],
+          "integrationRMSDifference": 8.969249862293977e-10
+        }
+      ]
+    }
+  ],
+  "degeneracy": [
+    {
+      "kind": "zero",
+      "rankFailures": 165
+    },
+    {
+      "kind": "duplicate",
+      "rankFailures": 33
+    }
+  ],
+  "sourceRoundtripPassed": true,
+  "challengeSeparationPassed": true,
+  "budgetRefusalPassed": true,
+  "sparseRowsRefused": true,
+  "regressionTolerances": {
+    "coarseCoefficient": 0.000001,
+    "fineCoefficient": 6e-8,
+    "refinementRatio": 0.075,
+    "coarseForecast": 1.25e-7,
+    "fineForecast": 1e-8,
+    "integrationRMS": 3e-9,
+    "wrongSharingForecastMinimum": 0.1
+  },
+  "toleranceProvenance": "Calibrated after first analytic refinement receipt, before reserved measured recordings; not preregistered thresholds or general solver guarantees."
+}
