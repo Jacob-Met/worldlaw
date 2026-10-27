@@ -782,7 +782,9 @@ $('next-gap').addEventListener('click', safe(async () => { const gaps = state.no
 $('segment-select').addEventListener('change', event => { const selected = state.derived.segments.find(segment => String(segment.id) === event.target.value); state.segmentId = selected?.id ?? null; invalidateStudioExport(); render(); });
 $('confirm-physics').addEventListener('change', () => {
   retireStudioExport();
-  $('studio-export-status').textContent = 'No export for the current evidence and assumptions. Confirm the declared dynamics, then export observations for the torque studio.';
+  $('studio-export-status').textContent = $('confirm-physics').checked
+    ? 'Dynamics confirmed. Review the derivative estimates or export observations for the torque studio.'
+    : 'No export for the current evidence and assumptions. Confirm the declared dynamics, then export observations for the torque studio.';
   render();
 });
 for (const id of ['known-inertia', 'declared-command', 'position-sigma']) $(id).addEventListener('input', () => { invalidateStudioExport(); render(); });

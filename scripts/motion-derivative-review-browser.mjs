@@ -56,6 +56,7 @@ async function declarations({segment=null,...settings}=options){
   await motion.locator('#derivative-window').selectOption(String(settings.windowSize));
   await motion.locator('#confirm-physics').check();
   assert.equal(await motion.locator('#export-studio').isEnabled(),true);
+  assert.match(await motion.locator('#studio-export-status').innerText(),/^Dynamics confirmed\./);
 }
 async function download(page,selector,name,{keyboard=false}={}){
   const pending=page.waitForEvent('download');
@@ -231,8 +232,13 @@ try {
   mark('changed window retires deferred hash success and error');
   await declarations({...options,windowSize:11});await motion.locator('#review-studio').click();
   for(const width of [1440,390]){
-    await motion.setViewportSize({width,height:1000});await motion.locator('#review-studio').focus();
+    await motion.setViewportSize({width,height:1000});
+    await motion.locator('#confirm-physics').focus();await motion.keyboard.press('Tab');
     assert.equal(await motion.locator('#review-studio').evaluate(node=>document.activeElement===node),true);
+    const focus=await motion.locator('#review-studio').evaluate(node=>{const style=getComputedStyle(node);return{visible:node.matches(':focus-visible'),outlineStyle:style.outlineStyle,outlineWidth:style.outlineWidth,outlineColor:style.outlineColor};});
+    assert.equal(focus.visible,true);assert.notEqual(focus.outlineStyle,'none');assert.ok(Number.parseFloat(focus.outlineWidth)>=2);
+    metrics.keyboardFocus??=[];metrics.keyboardFocus.push({width,...focus});
+    assert.ok(await motion.locator('#derivative-window').evaluate(node=>node.getBoundingClientRect().height>=40));
     assert.ok(await motion.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
     const assertScreenshotState=async()=>{
       for(const [field,value,label]of [['window',11,'11 angle samples'],['training',18,'18'],['held-out',2,'2']]){
