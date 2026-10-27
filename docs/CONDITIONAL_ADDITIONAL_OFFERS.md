@@ -1,0 +1,11 @@
+# Continue an actual investigation with newly permitted states
+
+An exhausted finite offer list does not establish physical indistinguishability. After an exact original question has been received without refitting and the investigator explicitly continues conditional fixed-law discrimination, the same card can accept additional declared single states. The original observed course, fitted coefficients, rankings, question, actual receipt and exclusion history remain unchanged.
+
+The additional source is an explicit basis plus SI command/position/rate coordinates. Files use `worldlaw.conditional-offers/v1`, `basis`, `units` and `inputs`; future torque values are rejected. Loading is only a draft; an explicit admission action creates a chronological source event. Reopening reconstructs additions at their original position in history. Altering an added input before a later frozen question causes replay to reject the mismatched question.
+
+Only conditional scalar planning and freezing see these additions. The original imported offered-input list, pilot/input-excitation mechanism and multi-input course mechanisms remain unchanged. Changing training, options or error bounds retires active conditional additions. The original events remain historical evidence. The complete original plus active additional list retains the maintained128-state limit. At most4096 additional states may be retained across the notebook; the maintained complete offered-state and planning/freezing work limits still apply. No partial thinning, hardware authorization or automatic execution is introduced.
+
+## Executed investigation
+
+Eight original command=position=rate±1 observations admit six one-term laws. The original single offered state(0,0,1) receives torque0 and leaves command/spring/gravity unexcluded. Repeating that finite offered course is uninformative. Explicitly adding permitted(1,2,1) separates all three pairs under the declared bounds; actual torque2 leaves one unexcluded law, with all eight original training rows unchanged. The previously available reload workaround discarded four chronological events and restarted six alternatives. This extension retains those events; it does not treat the surviving law as validated.

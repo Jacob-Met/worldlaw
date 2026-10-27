@@ -15,7 +15,7 @@ export function receiveScalarQuestion(state,rows,receipt){
  const originalReceipt={...receipt,models:receipt.models.filter(m=>ids.includes(m.id))};
  const originalDiscovery={...state.discovery,competitive:state.discovery.competitive.filter(m=>ids.includes(m.id))};
  if(originalReceipt.models.length!==ids.length)throw Error('Original question models differ from retained receiving models.');
- const used=state.history.reduce((n,h)=>n+(h.questionOutcome?.screen?.evaluations??0),0);
+ const used=state.history.reduce((n,h)=>n+(h.questionOutcome?.screen?.evaluations??0)+(h.retrospectiveQuestion?.screen?.evaluations??0),0);
  const screen=question.trainingRadius!=null?receiveTrainingResponse(originalDiscovery,rows,question.radii,question.trainingRadius,used):summarizeBoundedReceipt(originalReceipt,question.radii,used);
  return {...base,status:'exact-coordinate-match',screen,qualification:'Coordinates match the frozen nominal question exactly; uncertainty, source and execution remain declarations. Original bounds are reused, not estimated from outcomes. Model exclusion is conditional and separate from later adaptation.'};
 }

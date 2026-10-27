@@ -1,0 +1,15 @@
+import{extendConditionalOffers}from'../session.mjs';
+export function renderConditionalOffers(host,state,{current,adopt}){
+ if(!state.conditionedPlanning||state.conditionedPlanning.modelIds.length<2||!Object.hasOwn(state.base,'offeredInputs'))return;
+ const section=document.createElement('div'),heading=document.createElement('h3');heading.textContent='Declare newly permitted experiments';section.append(heading);
+ const note=document.createElement('p');note.textContent='Keep the earlier actual question and its conditional exclusions. Declare additional single states only when your apparatus permits them. Coordinates are command N·m, position rad, rate rad/s; no predicted or future measured torque. This does not actuate the apparatus or change the original input-design course.';section.append(note);
+ const make=(tag,id,label)=>{const l=document.createElement('label');l.textContent=label;const e=document.createElement(tag);e.id=id;e.style.width='100%';e.style.boxSizing='border-box';l.append(e);section.append(l);return e;};
+ const file=make('input','conditional-offers-file','Open additional states (JSON)');file.type='file';file.accept='.json,application/json';
+ const basis=make('input','conditional-offers-basis','Permission/source basis');basis.maxLength=500;
+ const inputs=make('textarea','conditional-offers-input','Explicit additional states');inputs.rows=4;inputs.value='[]';
+ const apply=document.createElement('button');apply.id='apply-conditional-offers';apply.className='button button-outline button-full';apply.textContent='Add permitted states to this investigation';section.append(apply);
+ const status=document.createElement('p');status.id='conditional-offers-status';status.setAttribute('role','status');section.append(status);let intent=0;
+ for(const e of[basis,inputs])e.addEventListener('input',()=>{intent++;status.textContent='Draft only; add these states explicitly to recompute.';});
+ file.addEventListener('change',async()=>{const token=++intent,f=file.files[0];if(!f)return;try{if(f.size>300000)throw Error('Additional-state source must be at most300000bytes.');const raw=JSON.parse(await f.text());if(token!==intent||current()!==state)return;if(raw.schema!=='worldlaw.conditional-offers/v1'||raw.units?.command!=='N·m'||raw.units?.position!=='rad'||raw.units?.rate!=='rad/s'||typeof raw.basis!=='string'||!Array.isArray(raw.inputs))throw Error('Choose an original additional-state file with explicit SI units, basis and inputs.');basis.value=raw.basis;inputs.value=JSON.stringify(raw.inputs,null,2);status.textContent='Source loaded as a draft. Review permission and add explicitly.';}catch(e){if(token===intent&&current()===state)status.textContent=e.message;}finally{if(token===intent)file.value='';}});
+ apply.addEventListener('click',()=>{intent++;if(current()!==state)return;try{adopt(extendConditionalOffers(state,JSON.parse(inputs.value),{label:basis.value,units:{command:'N·m',position:'rad',rate:'rad/s'}}),'Retained earlier evidence and added explicitly permitted conditional states.');}catch(e){status.textContent=e.message;}});host.append(section);
+}
