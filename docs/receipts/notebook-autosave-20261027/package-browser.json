@@ -1,0 +1,32 @@
+{
+  "product": "WORLDLAW",
+  "platform": "darwin",
+  "browser": "156.0.8078.48",
+  "node": "v26.11.0",
+  "uid": 501,
+  "checks": [
+    "completed acquisition survives an older tab refit; its unsaved work remains visible",
+    "conflict guidance remains visible at desktop and 390px with reduced motion",
+    "keyboard export preserves the older tab changes and opens through the ordinary file importer",
+    "fresh visits reopen acquired evidence; repeated stale saves refuse and the current writer can still save",
+    "a tab opened before the first stored notebook cannot overwrite its later creation"
+  ],
+  "comparison": {
+    "seedSha256": "fc285302027ca170eba82be8eb1d84ba44641501a76e5a9cac5778fd48458f9f",
+    "acquiredSha256": "701471b79188fd483906e81aaeeb953ac3437d6640dbc0ab9001efd3c17933ce",
+    "afterStaleSaveSha256": "701471b79188fd483906e81aaeeb953ac3437d6640dbc0ab9001efd3c17933ce",
+    "newEvidenceRetained": true,
+    "firstRows": 66,
+    "olderRows": 65,
+    "storageRows": 66,
+    "status": "The saved notebook changed outside this tab. Current changes are not saved. Export this notebook before reloading."
+  },
+  "layout": {
+    "width": 390,
+    "document": 390,
+    "left": 18,
+    "right": 372
+  },
+  "source": "Seed17 maintained virtual instrument; controlled synthetic observations",
+  "scope": "Sequential stale-source detection and recoverable export in the actual served Studio. No atomic multi-tab locking or physical measurement claim."
+}
