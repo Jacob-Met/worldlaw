@@ -170,12 +170,13 @@ function candidateCourse(state) {
   const indices=source.flatMap((p,i)=>observed.has(key(p))?[]:[i]);
   return {candidates:indices.map(i=>source[i]),indices,offeredCount:source.length,explicit};
 }
-export function setPlanningBounds(state,radii,trainingRadius=null){
+export function setPlanningBounds(state,radii,trainingRadius=null,tiePolicy='offered-order'){
+ if(!['offered-order','remaining-overlap'].includes(tiePolicy)||tiePolicy==='remaining-overlap'&&(radii===null||trainingRadius!==null))throw Error('Remaining-overlap ties require fixed-law declared-bound planning.');
  if(trainingRadius!==null&&(!Number.isFinite(trainingRadius)||trainingRadius<0||trainingRadius>1e6))throw Error('Declare a valid training-reading radius.');
  if(radii===null)trainingRadius=null;
  const normalized=radii===null?null:inspectInputEnclosures(state.discovery.selected,[],radii).radii;
- const next=eventState(state,{kind:'planning-bounds',label:normalized?'Declared experiment error bounds':'Restored nominal experiment planning',radii:normalized,...(trainingRadius!==null?{trainingRadius}:{})},state.discovery);
- return {...next,planningRadii:normalized,...(trainingRadius!==null?{planningTrainingRadius:trainingRadius}:{planningTrainingRadius:null})};
+ const next=eventState(state,{kind:'planning-bounds',label:normalized?'Declared experiment error bounds':'Restored nominal experiment planning',radii:normalized,...(trainingRadius!==null?{trainingRadius}:{}),...(tiePolicy==='remaining-overlap'?{tiePolicy}:{})},state.discovery);
+ const result={...next,planningRadii:normalized,...(trainingRadius!==null?{planningTrainingRadius:trainingRadius}:{planningTrainingRadius:null})};if(tiePolicy==='remaining-overlap')result.planningTiePolicy=tiePolicy;else delete result.planningTiePolicy;return result;
 }
 export function sessionPlan(state) {
   const {candidates}=candidateCourse(state);
@@ -183,12 +184,12 @@ export function sessionPlan(state) {
    const models=state.discovery.competitive.filter(m=>state.conditionedPlanning.modelIds.includes(m.id));
    if(models.length<2)return {status:models.length?'one-unexcluded-original-law':'all-original-laws-excluded',reason:models.length?'One original fixed law remains unexcluded under the declared screen; pair discrimination stops. This is not validation.':'All original fixed laws were excluded under the declared screen. Revise the hypotheses or assumptions before a new discrimination claim.',selected:null,ranked:[],modelIds:models.map(m=>m.id),conditioned:true};
    if(!candidates.length)return {status:'no_unobserved_inputs',selected:null,ranked:[],modelIds:models.map(m=>m.id),conditioned:true};
-   const result=planBoundedScalarExperiment({...state.discovery,competitive:models},candidates,state.planningRadii);
+   const result=planBoundedScalarExperiment({...state.discovery,competitive:models},candidates,state.planningRadii,{tiePolicy:state.planningTiePolicy});
    return {...result,conditioned:true,conditionedBy:state.conditionedPlanning.outcomeEvent};
   }
 
   if(!candidates.length)return {status:'no_unobserved_inputs',selected:null,ranked:[],modelIds:[]};
- if(state.planningRadii){try{return state.planningTrainingRadius!=null?planTrainingResponse(state.discovery,candidates,state.planningRadii,state.planningTrainingRadius):planBoundedScalarExperiment(state.discovery,candidates,state.planningRadii);}catch(error){return {status:'bounds-unavailable',reason:error.message,selected:null,ranked:[],modelIds:[]};}}
+ if(state.planningRadii){try{return state.planningTrainingRadius!=null?planTrainingResponse(state.discovery,candidates,state.planningRadii,state.planningTrainingRadius):planBoundedScalarExperiment(state.discovery,candidates,state.planningRadii,{tiePolicy:state.planningTiePolicy});}catch(error){return {status:'bounds-unavailable',reason:error.message,selected:null,ranked:[],modelIds:[]};}}
  return planExperiment(state.discovery,candidates);
 }
 export function freezeScalarQuestion(state){
@@ -252,7 +253,7 @@ export function restoreSession(text) {
         state=reuseScalarChallenge(state,event.reusedChallenge);
       }else state=appendMeasurements(state,event.rows,event.label,event.source??null);
     }
-    else if(event?.kind==='planning-bounds') state=setPlanningBounds(state,event.radii,event.trainingRadius??null);
+    else if(event?.kind==='planning-bounds') state=setPlanningBounds(state,event.radii,event.trainingRadius??null,event.tiePolicy??'offered-order');
     else if(event?.kind==='options') state=refitSession(state,event.options);
     else throw new Error('Notebook contains an unknown event.');
   }

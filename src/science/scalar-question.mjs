@@ -2,7 +2,7 @@ import {summarizeBoundedReceipt} from './bounded-experiment-receipts.mjs';
 import {receiveTrainingResponse} from './training-response-plan.mjs';
 export function retainScalarQuestion(plan){
  if(plan.status!=='proposed'||!plan.selected||!plan.radii)throw Error('Choose an available bounded scalar suggestion before freezing its question.');
- return {input:{...plan.selected.input},radii:{...plan.radii},method:plan.method,...(plan.trainingRadius!=null?{trainingRadius:plan.trainingRadius}:{}),intervals:structuredClone(plan.selected.intervals),pairs:structuredClone(plan.selected.pairs),evaluations:plan.evaluations,products:plan.products??0,pairComparisons:plan.pairComparisons};
+ return {...(plan.tiePolicy==='remaining-overlap'?{tiePolicy:plan.tiePolicy,remainingOverlap:structuredClone(plan.selected.remainingOverlap)}:{}),input:{...plan.selected.input},radii:{...plan.radii},method:plan.method,...(plan.trainingRadius!=null?{trainingRadius:plan.trainingRadius}:{}),intervals:structuredClone(plan.selected.intervals),pairs:structuredClone(plan.selected.pairs),evaluations:plan.evaluations,products:plan.products??0,pairComparisons:plan.pairComparisons};
 }
 export function receiveScalarQuestion(state,rows,receipt){
  const question=state.history.at(-1)?.question;if(!question)return null;
