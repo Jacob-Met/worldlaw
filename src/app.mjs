@@ -1,4 +1,4 @@
-import {reuseScalarChallenge} from './session.mjs';
+import {reuseScalarChallenge,freezeScalarQuestion} from './session.mjs';
 import {mountMeasurementBatch} from './measurement-batch-panel.mjs';
 let measurementBatchPanel=null;
 import {renderAngularFrequency} from './science/angular-frequency-panel.mjs';
@@ -235,7 +235,7 @@ function renderPlan(){
   const pilot=$('planner-objective').value==='excitation';
   plan=pilot?sessionPilotPlan(state):sessionPlan(state);
   renderPlanningBounds(pilot);
-  $('use-proposal').disabled=!plan.selected;
+  $('use-proposal').disabled=!plan.selected;if($('freeze-scalar-question'))$('freeze-scalar-question').disabled=Boolean(state.lab)||!state.planningRadii||!plan.selected||$('planner-objective').value==='excitation';
   $('pilot-explanation').hidden=!pilot;
   $('pilot-course').hidden=!pilot || !plan.outcomes?.length;
   if(pilot){
@@ -339,6 +339,7 @@ else set('storage-status','Export a notebook to keep a portable copy');
 configureNotebookRecovery();
 useProposal(false);
 $('use-proposal').addEventListener('click',()=>action(useProposal));
+const freezeQuestion=el('button','Freeze bounded question before acquisition');freezeQuestion.id='freeze-scalar-question';freezeQuestion.type='button';freezeQuestion.disabled=Boolean(state.lab)||!state.planningRadii||!plan?.selected||$('planner-objective').value==='excitation';freezeQuestion.className='button button-outline button-full';$('use-proposal').parentElement.append(freezeQuestion);freezeQuestion.addEventListener('click',()=>action(()=>{adopt(freezeScalarQuestion(state),'Question retained before acquisition. Enter actual coordinates and a separately obtained reading; no command was sent.');useProposal(false);}));
 $('planner-objective').addEventListener('change',()=>action(()=>{renderPlan();notice('Planning objective changed. Original observations and fitted laws are unchanged.');}));
 $('run-experiment').addEventListener('click',()=>action(()=>{
   const input=experimentInput();const next=state.lab?runVirtualExperiment(state,input):appendMeasurements(state,[{...input,jointTorque:numberInput('measured-torque'),...(state.discovery.observations[0]?.torqueNoiseRatio===undefined?{}:{torqueNoiseRatio:numberInput('measurement-noise-ratio')})}]);
@@ -418,7 +419,7 @@ function renderPlanningBounds(pilot){
  const mode=el('select');mode.id='scalar-plan-mode';mode.setAttribute('aria-label','Experiment planning mode');mode.style.width='100%';mode.style.minHeight='44px';
  for(const [value,label]of [['nominal','Point predictions'],['bounded','Use declared bounds'],['training','Training response']]){const o=el('option',label);o.value=value;mode.append(o);}mode.value=state.planningTrainingRadius!=null?'training':state.planningRadii?'bounded':'nominal';box.append(mode);
  const fields=el('div'),inputs={};
- const dirty=()=>{$('use-proposal').disabled=true;set('planner-status','Apply changed assumptions to recompute the suggestion.');};
+ const dirty=()=>{$('use-proposal').disabled=true;if($('freeze-scalar-question'))$('freeze-scalar-question').disabled=true;set('planner-status','Apply changed assumptions to recompute the suggestion.');};
  for(const [key,label]of [['command','Command radius (N·m)'],['position','Position radius (rad)'],['rate','Rate radius (rad/s)'],['jointTorque','Future reading radius (N·m)']]){const l=el('label',label),input=el('input');l.style.display='grid';input.type='number';input.min='0';input.max='1000000';input.step='any';input.required=true;input.dataset.planRadius=key;input.value=String(state.planningRadii?.[key]??0);input.style.width='100%';input.style.boxSizing='border-box';input.addEventListener('input',dirty);l.append(input);fields.append(l);inputs[key]=input;}const trainingLabel=el('label','Original training-reading radius (N·m)'),trainingInput=el('input');trainingInput.id='planning-training-radius';trainingInput.type='number';trainingInput.min='0';trainingInput.max='1000000';trainingInput.step='any';trainingInput.value=String(state.planningTrainingRadius??.01);trainingInput.addEventListener('input',dirty);trainingLabel.append(trainingInput);trainingLabel.hidden=mode.value!=='training';fields.append(trainingLabel);box.append(fields);fields.hidden=mode.value==='nominal';mode.addEventListener('change',()=>{fields.hidden=mode.value==='nominal';trainingLabel.hidden=mode.value!=='training';dirty();});
  const apply=el('button','Apply planning assumptions');apply.id='apply-scalar-plan';apply.type='button';apply.className='button button-outline button-full';apply.addEventListener('click',()=>action(()=>{let radii=null;if(mode.value!=='nominal'){radii={};for(const[k,i]of Object.entries(inputs)){if(!i.checkValidity()){i.reportValidity();return;}radii[k]=Number(i.value);}}if(mode.value==='training'&&!trainingInput.checkValidity()){trainingInput.reportValidity();return;}adopt(setPlanningBounds(state,radii,mode.value==='training'?Number(trainingInput.value):null),'Updated explicit experiment planning assumptions.');}));box.append(apply);
  box.append(el('p','Explicit absolute error assumptions. Declared-bounds mode freezes coefficients; training-response mode compares ordinary least-squares response envelopes and requires exact coordinates. Separation does not validate a law or authorize hardware operation. No separating offered input remains unresolved.'));
