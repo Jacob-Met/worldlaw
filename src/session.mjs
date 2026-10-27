@@ -1,3 +1,4 @@
+import {planTrainingResponse,receiveTrainingResponse} from './science/training-response-plan.mjs';
 import {summarizeBoundedReceipt} from './science/bounded-experiment-receipts.mjs';
 import {planBoundedScalarExperiment} from './science/bounded-scalar-plan.mjs';
 import {inspectInputEnclosures} from './science/input-enclosure.mjs';
@@ -101,6 +102,10 @@ function eventState(state,event,discovery,options=state.options) {
     const used=state.history.reduce((sum,h)=>sum+(h.experiment?.bounded?.evaluations??0),0);
     entry.experiment.bounded=summarizeBoundedReceipt(entry.experiment,state.planningRadii,used);
   }
+  if(entry.experiment&&state.planningTrainingRadius!=null){
+   const used=state.history.reduce((n,h)=>n+(h.experiment?.trainingResponse?.evaluations??0),0);
+   entry.experiment.trainingResponse=receiveTrainingResponse(state.discovery,entry.experiment.rows,state.planningRadii,state.planningTrainingRadius,used);
+  }
   return {...state,options,discovery,events:[...state.events,event],history:[...state.history,entry]};
 }
 export function appendMeasurements(state,rows,label='Measured outcome') {
@@ -138,15 +143,17 @@ function candidateCourse(state) {
   const indices=source.flatMap((p,i)=>observed.has(key(p))?[]:[i]);
   return {candidates:indices.map(i=>source[i]),indices,offeredCount:source.length,explicit};
 }
-export function setPlanningBounds(state,radii){
+export function setPlanningBounds(state,radii,trainingRadius=null){
+ if(trainingRadius!==null&&(!Number.isFinite(trainingRadius)||trainingRadius<0||trainingRadius>1e6))throw Error('Declare a valid training-reading radius.');
+ if(radii===null)trainingRadius=null;
  const normalized=radii===null?null:inspectInputEnclosures(state.discovery.selected,[],radii).radii;
- const next=eventState(state,{kind:'planning-bounds',label:normalized?'Declared experiment error bounds':'Restored nominal experiment planning',radii:normalized},state.discovery);
- return {...next,planningRadii:normalized};
+ const next=eventState(state,{kind:'planning-bounds',label:normalized?'Declared experiment error bounds':'Restored nominal experiment planning',radii:normalized,...(trainingRadius!==null?{trainingRadius}:{})},state.discovery);
+ return {...next,planningRadii:normalized,...(trainingRadius!==null?{planningTrainingRadius:trainingRadius}:{planningTrainingRadius:null})};
 }
 export function sessionPlan(state) {
   const {candidates}=candidateCourse(state);
   if(!candidates.length)return {status:'no_unobserved_inputs',selected:null,ranked:[],modelIds:[]};
- if(state.planningRadii){try{return planBoundedScalarExperiment(state.discovery,candidates,state.planningRadii);}catch(error){return {status:'bounds-unavailable',reason:error.message,selected:null,ranked:[],modelIds:[]};}}
+ if(state.planningRadii){try{return state.planningTrainingRadius!=null?planTrainingResponse(state.discovery,candidates,state.planningRadii,state.planningTrainingRadius):planBoundedScalarExperiment(state.discovery,candidates,state.planningRadii);}catch(error){return {status:'bounds-unavailable',reason:error.message,selected:null,ranked:[],modelIds:[]};}}
  return planExperiment(state.discovery,candidates);
 }
 export function sessionPilotPlan(state) {
@@ -180,7 +187,7 @@ export function restoreSession(text) {
   for(const event of raw.events) {
     if(event?.kind==='virtual') state=runVirtualExperiment(state,event.input);
     else if(event?.kind==='measurement') state=appendMeasurements(state,event.rows,event.label);
-    else if(event?.kind==='planning-bounds') state=setPlanningBounds(state,event.radii);
+    else if(event?.kind==='planning-bounds') state=setPlanningBounds(state,event.radii,event.trainingRadius??null);
     else if(event?.kind==='options') state=refitSession(state,event.options);
     else throw new Error('Notebook contains an unknown event.');
   }
