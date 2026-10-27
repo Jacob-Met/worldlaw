@@ -69,7 +69,7 @@ function assertReplayWork(base,initialOptions,events){
       if(!Array.isArray(event.rows))throw new Error('Measurement history needs its original rows.');
       count+=event.rows.length;
     }else if(event?.kind==='virtual')count++;
-    else if(event?.kind==='planning-bounds'||event?.kind==='challenge'||event?.kind==='scalar-question'||event?.kind==='condition-question'||event?.kind==='conditional-offers'||event?.kind==='assess-deviation')continue;
+    else if(event?.kind==='planning-bounds'||event?.kind==='challenge'||event?.kind==='scalar-question'||event?.kind==='condition-question'||event?.kind==='conditional-offers'||event?.kind==='assess-deviation'||event?.kind==='assess-achieved-bounds')continue;
     else if(event?.kind==='options')options=cleanOptions({...options,...event.options});
     else throw new Error('Notebook contains an unknown event.');
     total+=discoveryRobustWork(count,discoveryOptions(options));
@@ -201,17 +201,25 @@ export function freezeScalarQuestion(state){
  const question=retainScalarQuestion(sessionPlan(state));
  const next=eventState(state,{kind:'scalar-question',label:'Frozen scalar question',input:{...question.input},method:question.method},state.discovery);next.history.at(-1).question=question;return next;
 }
-export function assessRecordedDeviation(state){
+export function assessRecordedDeviation(state){return assessQuestionEvidence(state,null,null,'assess-deviation');}
+export function assessAchievedQuestionBounds(state,radii,source){
+ const admitted=measurementSource(source);
+ if(!radii||!['command','position','rate','jointTorque'].every(k=>typeof radii[k]==='number'&&Number.isFinite(radii[k])&&radii[k]>=0&&radii[k]<=1e6))throw Error('Declare four finite achieved absolute radii from0to1000000 in original SI units.');
+ return assessQuestionEvidence(state,Object.fromEntries(['command','position','rate','jointTorque'].map(k=>[k,radii[k]])),admitted,'assess-achieved-bounds');
+}
+function assessQuestionEvidence(state,achievedRadii,source,kind){
  const h=state.history.at(-1),outcome=h?.questionOutcome;
- if(!h?.challenge||outcome?.status!=='coordinate-deviation'||h.challenge.rows.length!==1)throw Error('Assess only the latest single off-target question received as a challenge without refitting.');
+ const allowed=kind==='assess-deviation'?['coordinate-deviation']:['coordinate-deviation','exact-coordinate-match'];
+ if(!h?.challenge||!allowed.includes(outcome?.status)||h.challenge.rows.length!==1)throw Error('Assess only the latest single off-target or exact question challenge without refitting; repeated assessment is unavailable.');
  const question=state.history[outcome.questionEvent+1]?.question;
- if(question?.method!=='declared_input_box_interval_separation'||question.trainingRadius!=null)throw Error('Retrospective deviation assessment requires original fixed-law bounds; marginal training response is unsupported.');
+ if(question?.method!=='declared_input_box_interval_separation'||question.trainingRadius!=null)throw Error('Retrospective assessment requires original fixed-law bounds; marginal training response is unsupported.');
  const ids=question.intervals.map(x=>x.id),models=h.challenge.models.filter(m=>ids.includes(m.id));
  if(models.length!==ids.length)throw Error('Original fixed-law population is incomplete.');
  const used=state.history.reduce((n,x)=>n+(x.questionOutcome?.screen?.evaluations??0)+(x.retrospectiveQuestion?.screen?.evaluations??0),0);
- const screen=summarizeBoundedReceipt({...h.challenge,models},question.radii,used);
- const event={kind:'assess-deviation',label:'Retrospective screen at recorded off-target state',questionEvent:outcome.questionEvent,challengeEvent:state.events.length-1};
- const next=eventState(state,event,state.discovery);next.history.at(-1).retrospectiveQuestion={questionEvent:event.questionEvent,challengeEvent:event.challengeEvent,screen,qualification:'Retrospective evaluation at the separately recorded actual coordinates using original fixed coefficients and declared error radii. The original prospective question remains unfulfilled; its promised separation and overlap bound are not claimed for this reading.'};return next;
+ const radii=achievedRadii??question.radii,screen=summarizeBoundedReceipt({...h.challenge,models},radii,used);
+ const event={kind,label:achievedRadii?'Retrospective screen with achieved measurement bounds':'Retrospective screen at recorded off-target state',questionEvent:outcome.questionEvent,challengeEvent:state.events.length-1,...(achievedRadii?{radii,source}:{})};
+ const requirements=achievedRadii?Object.fromEntries(['command','position','rate','jointTorque'].map(k=>[k,{promised:question.radii[k],achieved:radii[k],status:radii[k]>question.radii[k]?'wider-than-promised':radii[k]<question.radii[k]?'narrower-than-promised':'same-as-promised'}])):null;
+ const next=eventState(state,event,state.discovery);next.history.at(-1).retrospectiveQuestion={questionEvent:event.questionEvent,challengeEvent:event.challengeEvent,screen,...(achievedRadii?{achievedBounds:{source,requirements},qualification:'Retrospective evaluation at actual recorded coordinates using explicitly sourced achieved error bounds and original fixed laws. The original promised-bound screen and execution status remain unchanged. This does not establish that achieved bounds are calibrated or that the original prospective separation was achieved.'}:{qualification:'Retrospective evaluation at the separately recorded actual coordinates using original fixed coefficients and declared error radii. The original prospective question remains unfulfilled; its promised separation and overlap bound are not claimed for this reading.'})};return next;
 }
 export function conditionScalarQuestion(state){
  const retrospective=state.history.at(-1)?.retrospectiveQuestion;
@@ -277,6 +285,7 @@ export function restoreSession(text) {
         state=reuseScalarChallenge(state,event.reusedChallenge);
       }else state=appendMeasurements(state,event.rows,event.label,event.source??null);
     }
+    else if(event?.kind==='assess-achieved-bounds'){const next=assessAchievedQuestionBounds(state,event.radii,event.source),e=next.events.at(-1);if(event.questionEvent!==e.questionEvent||event.challengeEvent!==e.challengeEvent)throw Error('Achieved-bound assessment reference differs from original question/reading.');state=next;}
     else if(event?.kind==='assess-deviation'){const next=assessRecordedDeviation(state),e=next.events.at(-1);if(event.questionEvent!==e.questionEvent||event.challengeEvent!==e.challengeEvent)throw Error('Retrospective assessment source reference differs from original question/reading.');state=next;}
     else if(event?.kind==='conditional-offers') state=extendConditionalOffers(state,event.inputs,event.source);
     else if(event?.kind==='planning-bounds') state=setPlanningBounds(state,event.radii,event.trainingRadius??null,event.tiePolicy??'offered-order');
