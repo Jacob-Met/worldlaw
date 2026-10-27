@@ -47,6 +47,7 @@ function action(fn) {try{fn();}catch(error){alertError(error);}}
 function save() {
   const result=notebookStorage.saveCurrent(exportSession(state));
   if(result.ok)set('storage-status','Notebook saved on this browser');
+  else if(result.reason==='active-source-changed')set('storage-status','The saved notebook changed outside this tab. Current changes are not saved. Export this notebook before reloading.');
   else if(result.reason==='protected')set('storage-status','Unreadable saved notebook protected · current changes are not stored. Download or explicitly archive and replace the original below.');
   else if(result.reason==='read-denied')set('storage-status','Browser storage could not be read · current changes are not stored. Export this notebook and reload after storage is restored.');
   else set('storage-status','Browser storage unavailable · export to keep this notebook');

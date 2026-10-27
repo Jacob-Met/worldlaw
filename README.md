@@ -24,6 +24,8 @@ npm start
 
 Open **http://127.0.0.1:4193**. No package installation, cloud account, model download or API key is needed. The server binds to loopback and serves maintained application assets. Observations and model computation stay in your browser. Stop the server with Ctrl+C.
 
+If another Studio tab has already changed the saved notebook, autosave pauses for the older tab. Export its current work before reloading. See [notebook autosave across tabs](docs/NOTEBOOK_AUTOSAVE.md) for recovery and concurrency limits.
+
 ## Compare coupled responses
 
 Open **Coupling Lab** from the Studio header or visit `/coupling.html`. Compare
