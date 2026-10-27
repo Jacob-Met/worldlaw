@@ -1,5 +1,5 @@
 import {loadVideo} from './video.mjs';
-import {createNotebook, validateNotebook, calibrateNotebook, calibratePlaneNotebook, upsertMeasurement, truncateMeasurements, deriveAngles, exportAngular} from './measurement.mjs';
+import {createNotebook, validateNotebook, calibrateNotebook, calibratePlaneNotebook, upsertMeasurement, truncateMeasurements, deriveAngles, exportAngular, prepareStudioDerivation} from './measurement.mjs';
 import {MAX_MOTION_NOTEBOOK_FILE_BYTES, serializeMotionNotebook} from './notebook-output.mjs';
 import {prepareStudioExport} from './studio-export.mjs';
 import {createTemplate, trackTemplate, TRACKER_VERSION, COLOR_TRACKER_VERSION, GRID_TRACKER_VERSION, COLOR_GRID_TRACKER_VERSION, CONFIRMED_GRID_TRACKER_VERSION, COLOR_CONFIRMED_GRID_TRACKER_VERSION} from './tracker.mjs';
@@ -103,16 +103,66 @@ function stopWork() {
   state.epoch++; state.seekEpoch++; state.controller?.abort(); state.controller = null; state.tracking = false;
   state.seekTarget = null; state.seekController?.abort();
 }
-function retireStudioExport() {
+function clearStudioDerivativeReview() {
+  $('studio-derivative-review').hidden = true;
+  $('studio-derivative-values').replaceChildren();
+  $('studio-derivative-warnings').textContent = '';
+}
+function studioDerivationOptions() {
+  const windowSize = finiteInput('derivative-window', 'Derivative window', {min: 5, max: 31, integer: true});
+  if (windowSize % 2 !== 1) throw new Error('Derivative window must be an odd number of samples from 5 to 31.');
+  return {
+    inertia: finiteInput('known-inertia', 'Known inertia', {min: 1e-12, max: 1e12}),
+    command: finiteInput('declared-command', 'Explicit constant applied torque', {min: -1e6, max: 1e6}),
+    positionSigma: $('position-sigma').value.trim() ? finiteInput('position-sigma', 'Angle noise assumption', {min: 0, max: 1e6}) : null,
+    windowSize, confirmKnownDynamics: $('confirm-physics').checked,
+    ...(state.segmentId === null ? {} : {segmentId: state.segmentId}),
+  };
+}
+function renderStudioDerivativeReview(derived, split, noise) {
+  const {settings, diagnostics} = derived;
+  const number = value => value === 0 ? '0' : String(Number(value.toPrecision(4)));
+  const fields = [
+    ['window', 'Derivative window', settings.windowSize, `${settings.windowSize} angle samples`],
+    ['input', 'Selected angular samples', diagnostics.inputCount, String(diagnostics.inputCount)],
+    ['output', 'Derivative estimates', diagnostics.outputCount, String(diagnostics.outputCount)],
+    ['edges', 'Edges omitted', diagnostics.droppedEdges, `${diagnostics.droppedEdges} at each end`],
+    ['training', 'Fitting observations', split.observations.length, String(split.observations.length)],
+    ['held-out', 'Held-out observations', split.heldOut.length, String(split.heldOut.length)],
+    ['crossing', 'Boundary-crossing estimates omitted', split.split.excludedCrossingWindows, String(split.split.excludedCrossingWindows)],
+    ['angle-sigma', 'Assumed angle noise σ', noise.value, `${number(noise.value)} rad`],
+    ['noise-origin', 'Angle noise source', noise.origin, noise.origin === 'caller_override' ? 'Your angle-noise override' : 'Maximum from declared point noise'],
+    ['torque-sigma', 'Maximum propagated torque noise σ', diagnostics.maxTorqueSigma, `${number(diagnostics.maxTorqueSigma)} N·m`],
+    ['noise-gain', 'Maximum torque noise gain', diagnostics.maxTorqueNoiseGain, `${number(diagnostics.maxTorqueNoiseGain)} N·m/rad`],
+  ];
+  $('studio-derivative-values').replaceChildren(...fields.map(([field, label, value, display]) => {
+    const row = document.createElement('div'), term = document.createElement('dt'), detail = document.createElement('dd');
+    term.textContent = label; detail.textContent = display;
+    detail.dataset.derivativeField = field; detail.dataset.value = String(value);
+    row.append(term, detail); return row;
+  }));
+  const warnings = diagnostics.warnings.map(warning => ({
+    possible_angle_wrap_no_unwrapping_applied: 'A large adjacent angle change may indicate an unresolved wrap.',
+    highly_irregular_sampling: 'The source sampling intervals are highly irregular.',
+  }[warning] || warning));
+  $('studio-derivative-warnings').textContent = warnings.join(' ');
+  $('studio-derivative-warnings').hidden = warnings.length === 0;
+  $('studio-derivative-review').hidden = false;
+}
+function retireStudioExport({keepReview = false} = {}) {
   state.studioExportGeneration++;
   state.preparingStudioExport = false;
   state.preparedStudioExport = null;
   $('save-studio-source').hidden = true;
+  if (!keepReview) clearStudioDerivativeReview();
 }
 function invalidateStudioExport({clearNumbers = false} = {}) {
   retireStudioExport();
   $('confirm-physics').checked = false;
-  if (clearNumbers) for (const id of ['known-inertia', 'declared-command', 'position-sigma']) $(id).value = '';
+  if (clearNumbers) {
+    for (const id of ['known-inertia', 'declared-command', 'position-sigma']) $(id).value = '';
+    $('derivative-window').value = '7';
+  }
   $('studio-export-status').textContent = trackedPivot() ? 'Tracked-pivot measurements export as angular evidence. A translating pivot can add inertial terms that the fixed-pivot torque model does not represent.' : 'No export for the current evidence and assumptions. Enter known inertia and an explicit constant applied torque, then confirm them. Import the resulting JSON in the torque studio.';
 }
 function angleViews(notebook) {
@@ -662,7 +712,8 @@ function render() {
   renderCanvas(); renderChart(); renderLedger(); renderInspection(); renderSegments(); renderPathReference();
   $('export-angles').disabled = !calibrated || !valid.length || busy;
   $('confirm-physics').disabled = !calibrated || busy || trackedPivot();
-  $('export-studio').disabled = !calibrated || !valid.length || busy || state.preparingStudioExport || trackedPivot() || !$('confirm-physics').checked;
+  for (const id of ['review-studio', 'export-studio'])
+    $(id).disabled = !calibrated || !valid.length || busy || state.preparingStudioExport || trackedPivot() || !$('confirm-physics').checked;
 }
 
 $('load-video').addEventListener('click', () => { state.attachIntent = false; $('video-file').value = ''; $('video-file').click(); });
@@ -735,22 +786,27 @@ $('confirm-physics').addEventListener('change', () => {
   render();
 });
 for (const id of ['known-inertia', 'declared-command', 'position-sigma']) $(id).addEventListener('input', () => { invalidateStudioExport(); render(); });
+for (const event of ['input', 'change']) $('derivative-window').addEventListener(event, () => { invalidateStudioExport(); render(); });
+$('review-studio').addEventListener('click', safe(() => {
+  clearStudioDerivativeReview();
+  const {derived, split, noise} = prepareStudioDerivation(state.notebook, studioDerivationOptions());
+  renderStudioDerivativeReview(derived, split, noise);
+}));
 $('export-angles').addEventListener('click', safe(() => { fileDownload('worldlaw-angular-evidence.json', exportAngular(state.notebook, state.segmentId === null ? {} : {segmentId: state.segmentId})); notice('Angular evidence exported. Keep the Motion notebook for the full pixel ledger, gaps, calibration, and supplied provenance.'); }));
 $('export-studio').addEventListener('click', async () => {
-  clearError(); retireStudioExport();
+  clearError(); retireStudioExport({keepReview: true});
   const ticket = state.studioExportGeneration;
   state.preparingStudioExport = true;
   $('studio-export-status').textContent = 'Preparing observations and their matching source notebook…';
   render();
   try {
-    const inertia = finiteInput('known-inertia', 'Known inertia', {min: 1e-12, max: 1e12});
-    const command = finiteInput('declared-command', 'Explicit constant applied torque', {min: -1e6, max: 1e6});
-    const positionSigma = $('position-sigma').value.trim() ? finiteInput('position-sigma', 'Angle noise assumption', {min: 0, max: 1e6}) : null;
-    const prepared = await prepareStudioExport(state.notebook, {inertia, command, positionSigma, confirmKnownDynamics: $('confirm-physics').checked, ...(state.segmentId === null ? {} : {segmentId: state.segmentId})});
+    const prepared = await prepareStudioExport(state.notebook, studioDerivationOptions());
     // Hashing may outlive a source, segment, or declaration change. It may not
     // publish a download or error after that newer user operation.
     if (ticket !== state.studioExportGeneration) return;
     state.preparedStudioExport = prepared;
+    const {derivation, noise} = prepared.dataset.source.metadata;
+    renderStudioDerivativeReview(derivation, {...prepared.dataset, split: derivation.split}, noise);
     textDownload('worldlaw-motion-studio-observations.json', prepared.text);
     $('save-studio-source').hidden = false;
     $('studio-export-status').textContent = `Exported ${prepared.dataset.observations.length} fitting and ${prepared.dataset.heldOut.length} held-out observations. Import the JSON in the torque studio. It retains the exact angular inputs and differentiation assumptions; save the matching Motion notebook to keep the original point ledger, diagnostics and corrections.`;
