@@ -8,7 +8,8 @@ The feature reuses the existing instrument, comparison transport and plots. A se
 
 ## Tested application and distribution
 
-Application candidate: `cc53c56cf8342d0553d25d9592f8cf8d9a84b250`  
+Application candidate: `cc53c56cf8342d0553d25d9592f8cf8d9a84b250`
+
 Tree: `0ceaa04257c6fdc4607a9ac48cba2d9c90fbde8a`
 
 This candidate adds the exact recovered 54-byte file-input CSS rule to `8794c2f74c1f9b67a2b0742a08594abb0a8c97c1`. The maintained **full Studio source ZIP** is the receiving artifact:
