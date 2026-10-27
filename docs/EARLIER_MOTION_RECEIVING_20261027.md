@@ -67,3 +67,20 @@ The lead executed the ephemeral receiver with SHA-256 `515f12a0961528a9becaec8ba
 Review responsibilities: the lead executed receiving; the consumer reviewer reviewed behavior and authored receiving checks; the source reviewer independently reviewed packaging and science; the work-state reviewer inspected viewport enforcement and evidence wording.
 
 This document records candidate receiving evidence. It does not claim final documentation integration, final merge or public release. Private integration is authorized; public release remains held.
+
+## Current-main composition received on 2026-10-27
+
+The historical-motion change was composed with notebook autosave protection, challenge-specific achieved precision, recovered stiffness input design, and the complete original-family challenge inquiry. The only conflicting file was the package manifest. Its resolution retains the union of the exact admitted and omitted paths, removes duplicate entries, and preserves the new required stiffness files. The app retains the new stale-tab save refusal as well as the historical-motion callbacks and achieved-bound assessment.
+
+Application commit `fb74307fd354064b00fb58cd78f9632fbbe7a36d`, tree `c4d47c5becc61b53bfdf12b66fd4fedbd35728ee`, includes main `9940d2b40a140962d21f61a671ad61843657afb8`. The [combined receipt](receipts/earlier-motion-20261027/composed-receiving.json) retains complete command identities, result tails, raw browser reports, receiving scripts, and the captured-file hash index.
+
+- Native: **1,459 passed, one skipped, zero failed**; both smoke courses and all seven package-policy tests passed.
+- Fresh official ZIP: **1,528 files, 63,223,506 bytes**, SHA-256 `d399b124dc13465940d8fba5c493b09792cb0c8fadbdcc81ad03575fec420939`. Every manifest byte length and hash was checked before fresh extraction.
+- Actual default launch, exact served-module hashes, 404 and 405 refusals, and both packaged smoke courses passed.
+- The extracted package passed historical motion at 320 px, current-law motion, experiment receipts, two-tab notebook autosave protection, the stiffness experiment/design course, native certificate chooser/replay, challenge-specific precision, and complete original-family inquiry.
+- The challenge precision and complete-family receivers each passed three authored groups in their own browser process/context. Their scripted file uploads are qualified separately from the actual native-chooser course.
+- Root inspected the fresh desktop, 320 px and precision screenshots. The final historical320 image exactly matches the earlier accepted capture; the fresh desktop capture and all other images retain their own hashes in the combined receipt.
+
+The tests ran in Node22.22.1 on the source host and Node22.23.4 / Chrome156.0.8078.47 with verified sandbox on the receiving host. Source and consumer reviews used the same retained worker identities.
+
+The earlier sections remain evidence for their original source identities. This additional result qualifies the composed application above; subsequent documentation-only commits do not change that application closure. Later main commits and the normal merge require their own proportional integration readback and receiving, rather than relabeling these results.
