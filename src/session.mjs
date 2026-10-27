@@ -1,3 +1,4 @@
+import {captureScalarChallenge} from './science/scalar-challenge.mjs';
 import {measurementSource} from './measurement-batch.mjs';
 import {planTrainingResponse,receiveTrainingResponse} from './science/training-response-plan.mjs';
 import {summarizeBoundedReceipt} from './science/bounded-experiment-receipts.mjs';
@@ -67,7 +68,7 @@ function assertReplayWork(base,initialOptions,events){
       if(!Array.isArray(event.rows))throw new Error('Measurement history needs its original rows.');
       count+=event.rows.length;
     }else if(event?.kind==='virtual')count++;
-    else if(event?.kind==='planning-bounds')continue;
+    else if(event?.kind==='planning-bounds'||event?.kind==='challenge')continue;
     else if(event?.kind==='options')options=cleanOptions({...options,...event.options});
     else throw new Error('Notebook contains an unknown event.');
     total+=discoveryRobustWork(count,discoveryOptions(options));
@@ -118,6 +119,16 @@ export function appendMeasurements(state,rows,label='Measured outcome',source=nu
   const event={kind:'measurement',label:String(label).slice(0,160),rows,...(admittedSource?{source:admittedSource}:{})};
   assertReplayWork(state.base,state.initialOptions,[...state.events,event]);
   return eventState(state,event,revise(state.discovery,rows));
+}
+export function receiveScalarChallenge(state,rows,source){
+ if(state.lab)throw Error('Import an instrument notebook before receiving an external challenge.');
+ rows=validateRows(rows,{allowEmpty:true});if(!rows.length)throw Error('A challenge needs actual readings.');
+ const admittedSource=measurementSource(source);
+ if((rows[0].torqueNoiseRatio!==undefined)!==(admittedSource.units.torqueNoiseRatio==='1'))throw Error('Challenge source units must match its ratio declarations.');
+ const usedWork=state.history.reduce((n,h)=>n+(h.challenge?.work??0),0),usedRows=state.history.reduce((n,h)=>n+(h.challenge?.rows.length??0),0);
+ const challenge=captureScalarChallenge(state.discovery,rows,{usedWork,usedRows});
+ const event={kind:'challenge',label:'External challenge: '+admittedSource.label,rows,source:admittedSource};
+ const next=eventState(state,event,state.discovery);next.history[next.history.length-1].challenge=challenge;return next;
 }
 export function runVirtualExperiment(state,input) {
   if(!state.lab) throw new Error('Virtual experiments are available only in the virtual instrument notebook. Enter a measured outcome for your imported data.');
@@ -189,6 +200,7 @@ export function restoreSession(text) {
   let state=createSession(raw.base,raw.initialOptions,{labSeed:raw.lab?.seed??null});
   for(const event of raw.events) {
     if(event?.kind==='virtual') state=runVirtualExperiment(state,event.input);
+    else if(event?.kind==='challenge') state=receiveScalarChallenge(state,event.rows,event.source);
     else if(event?.kind==='measurement') state=appendMeasurements(state,event.rows,event.label,event.source??null);
     else if(event?.kind==='planning-bounds') state=setPlanningBounds(state,event.radii,event.trainingRadius??null);
     else if(event?.kind==='options') state=refitSession(state,event.options);
