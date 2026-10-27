@@ -1,3 +1,6 @@
+import {summarizeBoundedReceipt} from './science/bounded-experiment-receipts.mjs';
+import {planBoundedScalarExperiment} from './science/bounded-scalar-plan.mjs';
+import {inspectInputEnclosures} from './science/input-enclosure.mjs';
 import {discover, refitDiscovery, evaluate, revise, planExperiment, DEFAULT_TERMS, TERMS, discoveryRobustWork} from './science/torque-discovery.mjs';
 import {createLab, executeLab} from './science/virtual-lab.mjs';
 import {validateDataset, validateRows, candidateGrid, FIELDS, MAX_ROWS, MAX_TEXT_LENGTH} from './data.mjs';
@@ -62,6 +65,7 @@ function assertReplayWork(base,initialOptions,events){
       if(!Array.isArray(event.rows))throw new Error('Measurement history needs its original rows.');
       count+=event.rows.length;
     }else if(event?.kind==='virtual')count++;
+    else if(event?.kind==='planning-bounds')continue;
     else if(event?.kind==='options')options=cleanOptions({...options,...event.options});
     else throw new Error('Notebook contains an unknown event.');
     total+=discoveryRobustWork(count,discoveryOptions(options));
@@ -93,6 +97,10 @@ function eventState(state,event,discovery,options=state.options) {
   const entry=summary(discovery,state.base.heldOut,event.label,event.kind);
   if(event.kind==='measurement'||event.kind==='virtual')
     entry.experiment=captureExperimentReceipt(state.discovery,discovery,discovery.observations.slice(state.discovery.observations.length));
+  if(entry.experiment&&state.planningRadii){
+    const used=state.history.reduce((sum,h)=>sum+(h.experiment?.bounded?.evaluations??0),0);
+    entry.experiment.bounded=summarizeBoundedReceipt(entry.experiment,state.planningRadii,used);
+  }
   return {...state,options,discovery,events:[...state.events,event],history:[...state.history,entry]};
 }
 export function appendMeasurements(state,rows,label='Measured outcome') {
@@ -130,9 +138,16 @@ function candidateCourse(state) {
   const indices=source.flatMap((p,i)=>observed.has(key(p))?[]:[i]);
   return {candidates:indices.map(i=>source[i]),indices,offeredCount:source.length,explicit};
 }
+export function setPlanningBounds(state,radii){
+ const normalized=radii===null?null:inspectInputEnclosures(state.discovery.selected,[],radii).radii;
+ const next=eventState(state,{kind:'planning-bounds',label:normalized?'Declared experiment error bounds':'Restored nominal experiment planning',radii:normalized},state.discovery);
+ return {...next,planningRadii:normalized};
+}
 export function sessionPlan(state) {
   const {candidates}=candidateCourse(state);
-  return candidates.length ? planExperiment(state.discovery,candidates) : {status:'no_unobserved_inputs',selected:null,ranked:[],modelIds:[]};
+  if(!candidates.length)return {status:'no_unobserved_inputs',selected:null,ranked:[],modelIds:[]};
+ if(state.planningRadii){try{return planBoundedScalarExperiment(state.discovery,candidates,state.planningRadii);}catch(error){return {status:'bounds-unavailable',reason:error.message,selected:null,ranked:[],modelIds:[]};}}
+ return planExperiment(state.discovery,candidates);
 }
 export function sessionPilotPlan(state) {
   const course=candidateCourse(state);
@@ -165,6 +180,7 @@ export function restoreSession(text) {
   for(const event of raw.events) {
     if(event?.kind==='virtual') state=runVirtualExperiment(state,event.input);
     else if(event?.kind==='measurement') state=appendMeasurements(state,event.rows,event.label);
+    else if(event?.kind==='planning-bounds') state=setPlanningBounds(state,event.radii);
     else if(event?.kind==='options') state=refitSession(state,event.options);
     else throw new Error('Notebook contains an unknown event.');
   }

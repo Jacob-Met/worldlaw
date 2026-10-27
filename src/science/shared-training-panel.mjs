@@ -3,10 +3,10 @@ import {prepareSharedTraining} from './shared-training-check.mjs';
 import {serializeSharedTrainingCertificate,replaySharedTrainingCertificate} from './shared-training-replay.mjs';
 const node=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
 const display=x=>Number(x.toPrecision(7)).toLocaleString('en-US',{maximumSignificantDigits:7});
-export function renderSharedTraining(host,model,training,receiving,radiusControls){
+export function renderSharedTraining(host,model,training,receiving,radiusControls,{description}={}){
  let ticket=0,saved=null;
  const title=node('h3','Can one shared training-reading perturbation receive the whole course?');
- const explanation=node('p','Marginal and pair checks remain above. This separate action searches for one training-offset vector received by every held-out box, or a weighted separating witness for the computed envelope. Exhausting a budget remains unresolved. Coordinates and model structure remain fixed.');
+ const explanation=node('p',description??'Marginal and pair checks remain above. This separate action searches for one training-offset vector received by every held-out box, or a weighted separating witness for the computed envelope. Exhausting a budget remains unresolved. Coordinates and model structure remain fixed.');
  const budgets=[['Joint search iteration budget','maxIterations',512,SHARED_SEARCH_MAX_ITERATIONS],['Joint search matrix-term budget','maxProducts',16777216,SHARED_SEARCH_MAX_PRODUCTS]].map(([name,key,value,max])=>{const label=node('label',name+' '),input=node('input');input.type='number';input.min='0';input.max=String(max);input.step='1';input.value=String(value);input.setAttribute('aria-label',name);label.append(input);return {label,input,key};});
  const run=node('button','Search shared-training evidence');run.type='button';run.className='button button-outline';
  const save=node('button','Export checked shared-training evidence');save.type='button';save.className='button button-outline';save.disabled=true;

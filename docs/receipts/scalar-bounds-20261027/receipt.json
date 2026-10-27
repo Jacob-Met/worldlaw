@@ -1,0 +1,60 @@
+{
+  "schema": "worldlaw.scalar-bounds-receiving/v1",
+  "base": "6ea3dcb029903d51de45415c58fc6dd66c08979f",
+  "source": [
+    {
+      "path": "src/science/bounded-scalar-plan.mjs",
+      "sha256": "c25fc7db9a96a744d1e329f393f69a42c59c4671b75c034cff09e0a53e0e5d2a"
+    },
+    {
+      "path": "src/session.mjs",
+      "sha256": "2b4befd65c93ce76ee3d5af7d381ea9adfed3434885c2745e1a4984cc60a1f52"
+    },
+    {
+      "path": "src/app.mjs",
+      "sha256": "086e47cec8e7c39d0c8f5b3dbdb53a99a14bf6dc77d1612ca3e8b819ec9dc689"
+    },
+    {
+      "path": "tests/bounded-scalar-plan.test.mjs",
+      "sha256": "e114f08f87f63393495c9ed3e39526a2437dc06c7f6592fac81e7eb730905ec7"
+    },
+    {
+      "path": "scripts/bounded-scalar-plan.receiving.mjs",
+      "sha256": "322e9334e60e5a55bb6a27c452d51225a5231b08f4389c3a48a76f007f9a6463"
+    }
+  ],
+  "runtime": {
+    "node": "24.22.1",
+    "browser": "Chrome/156.0.8078.47"
+  },
+  "native": {
+    "command": "npm run verify",
+    "passed": 1332,
+    "failed": 0,
+    "skipped": 1,
+    "studioSmoke": "passed",
+    "trajectorySmoke": "passed",
+    "completeLogSha256": "33efd21b8710f2a794fd06dc2c029f37cc1ae0f6a9e3c8e663c7b9c705592974"
+  },
+  "browser": {
+    "command": "node /tmp/hamon-69d25c99168e-tools/product-receive.mjs worldlaw /tmp/hamon-69d25c99168e-worldlaw75-integration-r4",
+    "receiver": "scripts/bounded-scalar-plan.receiving.mjs",
+    "checks": [
+      "changed draft disabled; wide bounds remove proposal",
+      "keyboard-applied bounds and proposal execute actual virtual acquisition and refit",
+      "actual export/reopen retains acquisition and declarations",
+      "exact double proposal copy preserves separation",
+      "v2 interaction and separate pilot objective preserve bounded declarations"
+    ],
+    "exceptions": [],
+    "sandboxAdmitted": true,
+    "runnerExitCode": 0,
+    "cleanup": "Successful runner exit includes the maintained lifecycle assertion that its direct browser child exited; descendants not independently inventoried. Owned server closed.",
+    "screenshots": [
+      "desktop.png",
+      "narrow.png"
+    ],
+    "completedAt": "2026-10-27T01:38:21.767Z"
+  },
+  "qualification": "Served application and declared synthetic inputs; no physical validation, persistent installation or submission."
+}

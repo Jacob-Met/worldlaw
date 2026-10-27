@@ -1,0 +1,59 @@
+{
+  "schema": "hamon.chromium-session.v1",
+  "status": "course-completed",
+  "startedAt": "2026-10-27T03:44:47.146Z",
+  "executable": "/tmp/hamon-69d25c99168e-tools/chrome-namespace-wrapper.sh",
+  "runDirectory": "/dev/shm/hamon-69d25c99168e-worldlaw-browser-r3-4f2073d4-b2eb-4666-aa92-eca5b1907921",
+  "profileDirectory": "/dev/shm/hamon-69d25c99168e-worldlaw-browser-r3-4f2073d4-b2eb-4666-aa92-eca5b1907921/profile",
+  "stdoutFile": "/dev/shm/hamon-69d25c99168e-worldlaw-browser-r3-4f2073d4-b2eb-4666-aa92-eca5b1907921/stdout.bin",
+  "stderrFile": "/dev/shm/hamon-69d25c99168e-worldlaw-browser-r3-4f2073d4-b2eb-4666-aa92-eca5b1907921/stderr.bin",
+  "receiptFile": "/dev/shm/hamon-69d25c99168e-worldlaw-browser-r3-4f2073d4-b2eb-4666-aa92-eca5b1907921/session.json",
+  "sandbox": "not-assessed",
+  "limits": {
+    "startupMs": 15000,
+    "shutdownMs": 3000,
+    "courseMs": 120000
+  },
+  "cleanup": {
+    "attempted": true,
+    "directChildExited": true,
+    "scope": "launched-direct-child-only",
+    "signals": [
+      "SIGTERM"
+    ]
+  },
+  "argv": [
+    "--headless=new",
+    "--enable-automation",
+    "--allow-chrome-scheme-url",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-background-networking",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=0",
+    "--user-data-dir=/dev/shm/hamon-69d25c99168e-worldlaw-browser-r3-4f2073d4-b2eb-4666-aa92-eca5b1907921/profile",
+    "about:blank"
+  ],
+  "pid": 3033070,
+  "cdpUrl": "http://127.0.0.1:39733",
+  "browserWebSocketUrl": "ws://127.0.0.1:39733/devtools/browser/3e08a7b1-073f-4945-be8c-a689ab940505",
+  "browserVersion": "Chrome/156.0.8078.47",
+  "readyAt": "2026-10-27T03:44:47.351Z",
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "logsComplete": true,
+  "logScope": "bytes observed after direct-child close; descendants are not independently inventoried",
+  "stdout": {
+    "path": "/dev/shm/hamon-69d25c99168e-worldlaw-browser-r3-4f2073d4-b2eb-4666-aa92-eca5b1907921/stdout.bin",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "/dev/shm/hamon-69d25c99168e-worldlaw-browser-r3-4f2073d4-b2eb-4666-aa92-eca5b1907921/stderr.bin",
+    "bytes": 9611,
+    "sha256": "7d97ba4b393a89ab9145cd8d77d8d642deffeb6080e4b4ab38402269e601442d"
+  },
+  "finishedAt": "2026-10-27T03:44:51.461Z"
+}

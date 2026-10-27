@@ -21,7 +21,7 @@ import {drawCompetitiveMotion} from './science/studio-comparison-view.mjs';
 import {softL1Weight} from './science/robust-fit.mjs';
 import {proposeScalarLibrary} from './science/library-proposal.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
-import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,sessionPilotPlan,exportSession,restoreSession,undoSession,MAX_SESSION_FILE_BYTES} from './session.mjs';
+import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,setPlanningBounds,sessionPlan,sessionPilotPlan,exportSession,restoreSession,undoSession,MAX_SESSION_FILE_BYTES} from './session.mjs';
 import {restoreNotebook} from './notebook-input.mjs';
 import {createNotebookStorage} from './notebook-recovery.mjs';
 import {renderExperimentReceipts} from './science/experiment-receipts-panel.mjs';
@@ -231,6 +231,7 @@ function render(){
 function renderPlan(){
   const pilot=$('planner-objective').value==='excitation';
   plan=pilot?sessionPilotPlan(state):sessionPlan(state);
+  renderPlanningBounds(pilot);
   $('use-proposal').disabled=!plan.selected;
   $('pilot-explanation').hidden=!pilot;
   $('pilot-course').hidden=!pilot || !plan.outcomes?.length;
@@ -258,9 +259,11 @@ function renderPlan(){
     set('planner-metric-label','Model spread');
     set('model-spread',plan.selected?`${fmt(plan.selected.disagreement)} N·m model disagreement${plan.selected.extrapolation?.length?' · extends the observed input range':''}`:'Model spread is unavailable');
   }
+  if(!pilot&&state.planningRadii){set('planner-metric-label','Bounded model separation');set('model-spread',plan.selected?`${plan.selected.separated}/${plan.selected.pairs.length} model pairs separated${plan.selected.extrapolation?.length?' · coordinate box extends the observed range':''}`:'No separated proposal under declared bounds');}
+  if(!pilot&&state.planningRadii)set('planner-status',plan.status==='proposed'?(plan.separation==='full'?'All model pairs separated under declared bounds':'Some model pairs separated under declared bounds'):plan.status==='uninformative'?'No separating permitted input under declared bounds':plan.reason||'Bounded planning unavailable: '+plan.status);
   set('planned-input',plan.selected?`θ ${fmt(plan.selected.input.position)} rad · ω ${fmt(plan.selected.input.rate)} rad/s · u ${fmt(plan.selected.input.command)} N·m`:'No new state is suggested under this objective.');
 }
-function useProposal(announce=true){if(!plan?.selected)return;const exact=!state.lab && Object.hasOwn(state.base,'offeredInputs');for(const f of ['position','rate','command'])$(f).value=exact?String(plan.selected.input[f]):Number(plan.selected.input[f].toPrecision(10));if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
+function useProposal(announce=true){if(!plan?.selected)return;const exact=!state.lab && Object.hasOwn(state.base,'offeredInputs');for(const f of ['position','rate','command'])$(f).value=String(plan.selected.input[f]);if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
 function runSimulation(announce=true){
   studioComparison?.retire('The evidence or inspected law changed. Compare again to execute the current competitive set.');
   try{
@@ -406,3 +409,15 @@ excitationPanel=mountScalarExcitation($('use-proposal').parentElement,{beginSour
 excitationPanel.studioChanged();
 
 
+function renderPlanningBounds(pilot){
+ let box=$('scalar-planning-controls');if(!box){box=el('div');box.id='scalar-planning-controls';box.className='planner-objective';$('model-spread').after(box);}box.hidden=pilot;box.replaceChildren();if(pilot)return;
+ box.append(el('h3','Experiment error assumptions'));
+ const mode=el('select');mode.id='scalar-plan-mode';mode.setAttribute('aria-label','Experiment planning mode');mode.style.width='100%';mode.style.minHeight='44px';
+ for(const [value,label]of [['nominal','Point predictions'],['bounded','Use declared bounds']]){const o=el('option',label);o.value=value;mode.append(o);}mode.value=state.planningRadii?'bounded':'nominal';box.append(mode);
+ const fields=el('div'),inputs={};
+ const dirty=()=>{$('use-proposal').disabled=true;set('planner-status','Apply changed assumptions to recompute the suggestion.');};
+ for(const [key,label]of [['command','Command radius (N·m)'],['position','Position radius (rad)'],['rate','Rate radius (rad/s)'],['jointTorque','Future reading radius (N·m)']]){const l=el('label',label),input=el('input');l.style.display='grid';input.type='number';input.min='0';input.max='1000000';input.step='any';input.required=true;input.dataset.planRadius=key;input.value=String(state.planningRadii?.[key]??0);input.style.width='100%';input.style.boxSizing='border-box';input.addEventListener('input',dirty);l.append(input);fields.append(l);inputs[key]=input;}box.append(fields);fields.hidden=mode.value!=='bounded';mode.addEventListener('change',()=>{fields.hidden=mode.value!=='bounded';dirty();});
+ const apply=el('button','Apply planning assumptions');apply.id='apply-scalar-plan';apply.type='button';apply.className='button button-outline button-full';apply.addEventListener('click',()=>action(()=>{let radii=null;if(mode.value==='bounded'){radii={};for(const[k,i]of Object.entries(inputs)){if(!i.checkValidity()){i.reportValidity();return;}radii[k]=Number(i.value);}}adopt(setPlanningBounds(state,radii),'Updated explicit experiment planning assumptions.');}));box.append(apply);
+ box.append(el('p','Explicit absolute error assumptions; earlier coefficients stay fixed. Separation does not validate a law or authorize hardware operation. No separating offered input remains unresolved.'));
+ const comparison=el('p');comparison.id='nominal-plan-comparison';comparison.hidden=!state.planningRadii;comparison.textContent=plan.nominal?.selected?'Nominal-only suggestion: position '+plan.nominal.selected.input.position+' rad.':'Nominal comparison unavailable for this course.';box.append(comparison);
+}

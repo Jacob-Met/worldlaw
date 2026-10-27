@@ -1,0 +1,35 @@
+{
+  "schema": "hamon.chromium-session.v1",
+  "status": "starting",
+  "startedAt": "2026-10-27T02:08:22.080Z",
+  "executable": "/tmp/hamon-69d25c99168e-tools/chrome-namespace-wrapper.sh",
+  "runDirectory": "/tmp/hamon-69d25c99168e-worldlaw-browser-r3-c8b24f44-371d-4350-9892-42b6ced07cfe",
+  "profileDirectory": "/tmp/hamon-69d25c99168e-worldlaw-browser-r3-c8b24f44-371d-4350-9892-42b6ced07cfe/profile",
+  "stdoutFile": "/tmp/hamon-69d25c99168e-worldlaw-browser-r3-c8b24f44-371d-4350-9892-42b6ced07cfe/stdout.bin",
+  "stderrFile": "/tmp/hamon-69d25c99168e-worldlaw-browser-r3-c8b24f44-371d-4350-9892-42b6ced07cfe/stderr.bin",
+  "receiptFile": "/tmp/hamon-69d25c99168e-worldlaw-browser-r3-c8b24f44-371d-4350-9892-42b6ced07cfe/session.json",
+  "sandbox": "not-assessed",
+  "limits": {
+    "startupMs": 15000,
+    "shutdownMs": 3000,
+    "courseMs": 120000
+  },
+  "cleanup": {
+    "attempted": false,
+    "directChildExited": false,
+    "scope": "launched-direct-child-only"
+  },
+  "argv": [
+    "--headless=new",
+    "--enable-automation",
+    "--allow-chrome-scheme-url",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-background-networking",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=0",
+    "--user-data-dir=/tmp/hamon-69d25c99168e-worldlaw-browser-r3-c8b24f44-371d-4350-9892-42b6ced07cfe/profile",
+    "about:blank"
+  ],
+  "pid": 1673173
+}
