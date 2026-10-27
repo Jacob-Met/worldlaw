@@ -1,3 +1,4 @@
+import {mountReferenceChannel} from './reference-panel.mjs';
 import {mountMixedStateResponse} from './mixed-state-panel.mjs';
 import {mountRecoveryTransport} from './recovery-transport-panel.mjs';
 import {mountRecoverySupport} from './recovery-support-panel.mjs';
@@ -178,3 +179,5 @@ mountDriftConstruction();
 
 mountJointQualification();
 
+
+mountReferenceChannel();

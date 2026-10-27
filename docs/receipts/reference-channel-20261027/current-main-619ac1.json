@@ -1,0 +1,210 @@
+{
+  "schema": "worldlaw.reference-current-main/v1",
+  "baseRevision": "619ac1a51bc38b2e5392e0c4dc11cd5e7b18e46c",
+  "tree": "7c0e027a3e1f9efab3fadde7f71fce35cb8cbc1e",
+  "priorAcceptedCandidateSha256": "cc363ece68b82d78b3127e01a1a4e66cc132784cd296767a8f3023e167cd337d",
+  "delta": "Only remove Node24-only --test-isolation=none from documentation; add this exact current-main receiving receipt. Product source unchanged.",
+  "source": [
+    {
+      "path": "src/unknown-lab/app.mjs",
+      "bytes": 10337,
+      "sha256": "fa8861f08f62573f34284f912bbb4422d2ab40abed7226ae3378ba8138d6f63d",
+      "gitBlob": "eba03f39eb010f62b9db7b2482db2b9d85eab84b"
+    },
+    {
+      "path": "src/unknown-lab/reference-channel.mjs",
+      "bytes": 6481,
+      "sha256": "4399cf0b3ea97460ce71a9ad2adfda45917c1f57242c204ee493fdd6d87f9a18",
+      "gitBlob": "e07168697de9c613e0c4d952b07bbc552c3cb11d"
+    },
+    {
+      "path": "src/unknown-lab/reference-example.mjs",
+      "bytes": 1565,
+      "sha256": "19b32331c77afcb034f3b1b7fce55d9035c2354dbd0fd2bd78b043e1505966c9",
+      "gitBlob": "9d031cd40324cca29212636556d3297f1d984938"
+    },
+    {
+      "path": "src/unknown-lab/reference-panel.mjs",
+      "bytes": 12244,
+      "sha256": "16f4507288950208c2b4b13b30df62c28d14e04e22cffe46388aaf2a11a43f3e",
+      "gitBlob": "c39cb3f6b2dbe727a08ee855df66beede0e167ed"
+    },
+    {
+      "path": "tests/reference-channel.test.mjs",
+      "bytes": 4335,
+      "sha256": "226d5e13653490a5145661a266470a9995fd89a443283aecad42297ac58f5cbd",
+      "gitBlob": "05cbba97ccaacac38372f4d83db17c75b7f1352a"
+    },
+    {
+      "path": "scripts/unknown-reference-browser.mjs",
+      "bytes": 13002,
+      "sha256": "ea96e3807260444de9ed5bd47080989cb4ec94094209fc31f864709dd0186e15",
+      "gitBlob": "2d0c090bee8aa0a26b7fb70815bade5ffb494e11"
+    },
+    {
+      "path": "scripts/unknown-reference-receiving.mjs",
+      "bytes": 1842,
+      "sha256": "b582a824fa68de4f6411e758d8040de5b44b9833560dda8470f5e964ede8c4c0",
+      "gitBlob": "e807d662727333601fd87d3972b1f6655149ff8f"
+    },
+    {
+      "path": "server.mjs",
+      "bytes": 5152,
+      "sha256": "de61402967ee7de11567a9c955ea040a009d1b11ea832605c8560175ad984475",
+      "gitBlob": "0321bf1290db265495a709576c7d7408b4b01e5f"
+    }
+  ],
+  "lease": {
+    "main": "619ac1a51bc38b2e5392e0c4dc11cd5e7b18e46c",
+    "tree": "7c0e027a3e1f9efab3fadde7f71fce35cb8cbc1e",
+    "candidateSha256": "cc363ece68b82d78b3127e01a1a4e66cc132784cd296767a8f3023e167cd337d",
+    "candidatePaths": [
+      {
+        "path": "src/unknown-lab/app.mjs",
+        "baseBlob": "c0f19f114781175fa10c92dfa46a77117b6a1dcc"
+      },
+      {
+        "path": "src/unknown-lab/reference-channel.mjs",
+        "baseBlob": null
+      },
+      {
+        "path": "src/unknown-lab/reference-example.mjs",
+        "baseBlob": null
+      },
+      {
+        "path": "src/unknown-lab/reference-panel.mjs",
+        "baseBlob": null
+      },
+      {
+        "path": "tests/reference-channel.test.mjs",
+        "baseBlob": null
+      },
+      {
+        "path": "docs/REFERENCE_CHANNEL.md",
+        "baseBlob": null
+      },
+      {
+        "path": "scripts/unknown-reference-browser.mjs",
+        "baseBlob": null
+      },
+      {
+        "path": "scripts/unknown-reference-receiving.mjs",
+        "baseBlob": null
+      },
+      {
+        "path": "docs/receipts/reference-channel-20261027/receiving.json",
+        "baseBlob": null
+      },
+      {
+        "path": "docs/receipts/reference-channel-20261027/native.log",
+        "baseBlob": null
+      },
+      {
+        "path": "docs/receipts/reference-channel-20261027/smoke.log",
+        "baseBlob": null
+      },
+      {
+        "path": "docs/receipts/reference-channel-20261027/reference-verification.json",
+        "baseBlob": null
+      },
+      {
+        "path": "docs/receipts/reference-channel-20261027/sandbox-admission.json",
+        "baseBlob": null
+      },
+      {
+        "path": "docs/receipts/reference-channel-20261027/reference-cleanup.json",
+        "baseBlob": null
+      },
+      {
+        "path": "docs/receipts/reference-channel-20261027/source-manifest.json",
+        "baseBlob": null
+      }
+    ],
+    "changedMaintainedClosure": [
+      "server.mjs"
+    ]
+  },
+  "nativePasses": 9,
+  "servedResources": 82,
+  "browserGroups": 11,
+  "nativeCommand": "node --test --test-reporter=tap tests/reference-channel.test.mjs",
+  "commandId": "hamon-de5a-worldlaw-worker-20261027-current-main-receiving",
+  "evidence": {
+    "native-node22.log": "TAP version 13\n# Subtest: signed and zero gains agree with independent pointwise overlap oracle\nok 1 - signed and zero gains agree with independent pointwise overlap oracle\n  ---\n  duration_ms: 8.586097\n  type: 'test'\n  ...\n# Subtest: artifact-only raw contrast is challenged but declared correction includes zero\nok 2 - artifact-only raw contrast is challenged but declared correction includes zero\n  ---\n  duration_ms: 22.993983\n  type: 'test'\n  ...\n# Subtest: additional effect, changing gain, and absent reference reject artifact model conditionally\nok 3 - additional effect, changing gain, and absent reference reject artifact model conditionally\n  ---\n  duration_ms: 45.44632\n  type: 'test'\n  ...\n# Subtest: training fit is unchanged by challenges; known contradiction dominates unqualified challenge\nok 4 - training fit is unchanged by challenges; known contradiction dominates unqualified challenge\n  ---\n  duration_ms: 21.007988\n  type: 'test'\n  ...\n# Subtest: all challenges must share one gain, not independently refit\nok 5 - all challenges must share one gain, not independently refit\n  ---\n  duration_ms: 10.99175\n  type: 'test'\n  ...\n# Subtest: full declared range controls correction and originals round-trip unchanged\nok 6 - full declared range controls correction and originals round-trip unchanged\n  ---\n  duration_ms: 44.600758\n  type: 'test'\n  ...\n# Subtest: reuse, mixed provenance, malformed bounds/assumptions and acquisition identities refuse\nok 7 - reuse, mixed provenance, malformed bounds/assumptions and acquisition identities refuse\n  ---\n  duration_ms: 13.419202\n  type: 'test'\n  ...\n# Subtest: maximum public run ID round-trips; longer IDs refuse before flattened duration admission\nok 8 - maximum public run ID round-trips; longer IDs refuse before flattened duration admission\n  ---\n  duration_ms: 18.069327\n  type: 'test'\n  ...\n# Subtest: inadequate training and unqualified challenges retain explicit incompleteness\nok 9 - inadequate training and unqualified challenges retain explicit incompleteness\n  ---\n  duration_ms: 16.414547\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 9\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 264.668607\n",
+    "smoke-current.log": "{\"served\":82,\"health\":200,\"unknownCss\":404,\"post\":405}\n",
+    "browser-current.log": "{\"passed\":11,\"artifacts\":\"/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/receipts-current\"}\n",
+    "fresh-main-lease.json": "{\n  \"main\": \"619ac1a51bc38b2e5392e0c4dc11cd5e7b18e46c\",\n  \"tree\": \"7c0e027a3e1f9efab3fadde7f71fce35cb8cbc1e\",\n  \"candidateSha256\": \"cc363ece68b82d78b3127e01a1a4e66cc132784cd296767a8f3023e167cd337d\",\n  \"candidatePaths\": [\n    {\n      \"path\": \"src/unknown-lab/app.mjs\",\n      \"baseBlob\": \"c0f19f114781175fa10c92dfa46a77117b6a1dcc\"\n    },\n    {\n      \"path\": \"src/unknown-lab/reference-channel.mjs\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"src/unknown-lab/reference-example.mjs\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"src/unknown-lab/reference-panel.mjs\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"tests/reference-channel.test.mjs\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"docs/REFERENCE_CHANNEL.md\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"scripts/unknown-reference-browser.mjs\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"scripts/unknown-reference-receiving.mjs\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"docs/receipts/reference-channel-20261027/receiving.json\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"docs/receipts/reference-channel-20261027/native.log\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"docs/receipts/reference-channel-20261027/smoke.log\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"docs/receipts/reference-channel-20261027/reference-verification.json\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"docs/receipts/reference-channel-20261027/sandbox-admission.json\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"docs/receipts/reference-channel-20261027/reference-cleanup.json\",\n      \"baseBlob\": null\n    },\n    {\n      \"path\": \"docs/receipts/reference-channel-20261027/source-manifest.json\",\n      \"baseBlob\": null\n    }\n  ],\n  \"changedMaintainedClosure\": [\n    \"server.mjs\"\n  ]\n}",
+    "receipts-current/reference-verification.json": "{\n  \"schema\": \"worldlaw.reference-browser/v1\",\n  \"origin\": \"http://127.0.0.1:36243\",\n  \"node\": \"v22.23.4\",\n  \"checks\": [\n    {\n      \"name\": \"actual UNKNOWN LAB baseline remains, authored reference screen is explicit\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"conditional negative controls retain rejection and negative-gain positive survives\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"fresh page reopens actual exported original observations\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"invalid replacement retires result without accepting corrupted source\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"declared-gain edits retire stale inference and keyboard submits form\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"late file read cannot replace a newer authored-control action\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"independent channel notebook imports add a real run; duplicate acquisition refuses atomically\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"qualified contradiction remains visible alongside unqualified challenge\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"actual layout and focus at 1440\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"actual layout and focus at 390\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"actual layout and focus at 320\",\n      \"passed\": true\n    }\n  ],\n  \"exceptions\": [],\n  \"sandboxAdmitted\": true\n}",
+    "receipts-current/sandbox-admission.json": "{\n  \"schema\": \"hamon-chromium-sandbox/v1\",\n  \"qualification\": \"Linux Chromium status in the supplied isolated CDP page\",\n  \"moduleSha256\": \"4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead\",\n  \"startedAt\": \"2026-10-27T20:27:03.923Z\",\n  \"completedAt\": \"2026-10-27T20:27:04.042Z\",\n  \"durationMs\": 118.51664900000003,\n  \"admitted\": true,\n  \"browser\": {\n    \"protocolVersion\": \"1.3\",\n    \"product\": \"Chrome/156.0.8078.47\",\n    \"revision\": \"@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775\",\n    \"userAgent\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36\",\n    \"jsVersion\": \"15.6.75.19\"\n  },\n  \"target\": {\n    \"targetId\": \"C8E2737CDD600ACD6D2148BB76649CA5\",\n    \"type\": \"page\",\n    \"title\": \"about:blank\",\n    \"url\": \"about:blank\",\n    \"attached\": true,\n    \"canAccessOpener\": false,\n    \"browserContextId\": \"EBAEABCD82B654867052A91C42B516E7\"\n  },\n  \"url\": \"chrome://sandbox/\",\n  \"text\": \"Sandbox Status\\nLayer 1 Sandbox\\tNamespace\\nPID namespaces\\tYes\\nNetwork namespaces\\tYes\\nSeccomp-BPF sandbox\\tYes\\nSeccomp-BPF sandbox supports TSYNC\\tYes\\nPtrace Protection with Yama LSM (Broker)\\tNo\\nPtrace Protection with Yama LSM (Non-broker)\\tNo\\n\\nYou are adequately sandboxed.\",\n  \"textSha256\": \"ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3\",\n  \"observation\": {\n    \"rows\": {\n      \"layer1\": \"Namespace\",\n      \"pid\": \"Yes\",\n      \"network\": \"Yes\",\n      \"seccomp\": \"Yes\",\n      \"tsync\": \"Yes\"\n    },\n    \"checks\": {\n      \"adequate\": true,\n      \"layer1\": true,\n      \"pid\": true,\n      \"network\": true,\n      \"seccomp\": true,\n      \"tsync\": true\n    },\n    \"populated\": true,\n    \"duplicates\": [],\n    \"active\": true\n  },\n  \"failure\": null\n}",
+    "receipts-current/reference-cleanup.json": "{\n  \"schema\": \"worldlaw.reference-browser-cleanup/v1\",\n  \"profile\": \"/tmp/reference-chrome-hb0JcN\",\n  \"chromeExited\": true,\n  \"exitCode\": 0,\n  \"signalCode\": null,\n  \"primaryFailure\": null,\n  \"errors\": []\n}"
+  },
+  "artifactPins": [
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/native-node22.log",
+      "bytes": 2192,
+      "sha256": "7ef7c79b9ced7ee48879199d34b1c764edb8c870a92e54e34ff8072211d3cfea"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/smoke-current.log",
+      "bytes": 55,
+      "sha256": "326b6afa410a0f80a2c1413ee279dc1770223f7cbcabe086acca7fff783fe78e"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/browser-current.log",
+      "bytes": 113,
+      "sha256": "f480f5b2a53b2cc361bfd9d960d74d8f4a480b401e2d72d9ffc07e4ebfcb030c"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/fresh-main-lease.json",
+      "bytes": 1803,
+      "sha256": "48cdacf0f53a08037d1268f441226744d32da4a234203d94ef1d803c1e8460b2"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/receipts-current/reference-verification.json",
+      "bytes": 1409,
+      "sha256": "d534d6f8d1ecaa1bd99a1573402cf6a31b39fe969f870852a7ce8f405d2ff037"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/receipts-current/sandbox-admission.json",
+      "bytes": 1729,
+      "sha256": "53717f9cf583458f80b578246523797748dd0e6d5a14275ab186b04ecde080cd"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/receipts-current/reference-cleanup.json",
+      "bytes": 205,
+      "sha256": "8a454ed93e3b30d6640d83ea5186b78976d3dd65966094c3d1a7fc92b0d9cd2b"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/receipts-current/reference-1440.png",
+      "bytes": 246199,
+      "sha256": "c044f7cec2568497ef49f0c2a0729d815127de590dc768310b9ae9be2919538a"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/receipts-current/reference-320.png",
+      "bytes": 126330,
+      "sha256": "c2d3872d119d3910b8fb16d46b050e90476d4e73a475941467a8626202e6015d"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/receipts-current/reference-390.png",
+      "bytes": 139766,
+      "sha256": "0da985d6ff7e3b2f39d64a1a511a542aedc849533b1e1aa9e0933f86b6e44ed9"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/receipts-current/reference-plot-1440.png",
+      "bytes": 158059,
+      "sha256": "ad66d12787dd8e507e7e049a11dae00fdc34a18c582eb4ca134e1887f0dde58a"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/receipts-current/reference-plot-320.png",
+      "bytes": 68942,
+      "sha256": "026a74290d077f1474f602985a5d1339cdbd406f9e5bed6e1d5ae8a739528685"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-current-619ac1/receipts-current/reference-plot-390.png",
+      "bytes": 84525,
+      "sha256": "949ec6c34c5f7df436bfe560432f58fd0c640cd5588e84606f3c1b234a41ea23"
+    }
+  ],
+  "priorFailedCommand": "native-current.log retains Node22 rejection of --test-isolation=none before tests; not counted as passing evidence.",
+  "visualReview": "Prior exact product visual revision accepted at1440 by root and390/320 by WORLDLAW; current fresh-server screenshots retained, no additional independent visual review claimed."
+}

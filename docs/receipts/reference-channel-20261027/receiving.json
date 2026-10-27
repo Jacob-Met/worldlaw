@@ -1,0 +1,178 @@
+{
+  "schema": "worldlaw.reference-receiving/v2",
+  "baseRevision": "d6d80edf6022493441ef37865078a3ae212a00b5",
+  "sourceDirectory": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-visual-1900",
+  "nativePasses": 9,
+  "browserGroups": 11,
+  "browserExecutable": "/usr/bin/google-chrome",
+  "nodeExecutable": "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+  "strictSandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-27T19:05:40.915Z",
+    "completedAt": "2026-10-27T19:05:41.058Z",
+    "durationMs": 142.23204200000004,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.47",
+      "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "target": {
+      "targetId": "C34A363F92268EE469F83820FEFE5F49",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "6566DC9C60DC3378638C771EF508C133"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "browser": {
+    "schema": "worldlaw.reference-browser/v1",
+    "origin": "http://127.0.0.1:39321",
+    "node": "v22.23.4",
+    "checks": [
+      {
+        "name": "actual UNKNOWN LAB baseline remains, authored reference screen is explicit",
+        "passed": true
+      },
+      {
+        "name": "conditional negative controls retain rejection and negative-gain positive survives",
+        "passed": true
+      },
+      {
+        "name": "fresh page reopens actual exported original observations",
+        "passed": true
+      },
+      {
+        "name": "invalid replacement retires result without accepting corrupted source",
+        "passed": true
+      },
+      {
+        "name": "declared-gain edits retire stale inference and keyboard submits form",
+        "passed": true
+      },
+      {
+        "name": "late file read cannot replace a newer authored-control action",
+        "passed": true
+      },
+      {
+        "name": "independent channel notebook imports add a real run; duplicate acquisition refuses atomically",
+        "passed": true
+      },
+      {
+        "name": "qualified contradiction remains visible alongside unqualified challenge",
+        "passed": true
+      },
+      {
+        "name": "actual layout and focus at 1440",
+        "passed": true
+      },
+      {
+        "name": "actual layout and focus at 390",
+        "passed": true
+      },
+      {
+        "name": "actual layout and focus at 320",
+        "passed": true
+      }
+    ],
+    "exceptions": [],
+    "sandboxAdmitted": true
+  },
+  "artifactPins": [
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-visual-browser-receipts/reference-1440.png",
+      "bytes": 246199,
+      "sha256": "c044f7cec2568497ef49f0c2a0729d815127de590dc768310b9ae9be2919538a"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-visual-browser-receipts/reference-320.png",
+      "bytes": 126330,
+      "sha256": "c2d3872d119d3910b8fb16d46b050e90476d4e73a475941467a8626202e6015d"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-visual-browser-receipts/reference-390.png",
+      "bytes": 139766,
+      "sha256": "0da985d6ff7e3b2f39d64a1a511a542aedc849533b1e1aa9e0933f86b6e44ed9"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-visual-browser-receipts/reference-cleanup.json",
+      "bytes": 205,
+      "sha256": "bc48d0c3d4999de5986f7febd9ea0021fc35dd3b51a3cc9733632c049bd28706"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-visual-browser-receipts/reference-plot-1440.png",
+      "bytes": 158059,
+      "sha256": "ad66d12787dd8e507e7e049a11dae00fdc34a18c582eb4ca134e1887f0dde58a"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-visual-browser-receipts/reference-plot-320.png",
+      "bytes": 68863,
+      "sha256": "d58fc500fec33121456fb82f5d573b1c82916ad0d934c8fb4604f58075067323"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-visual-browser-receipts/reference-plot-390.png",
+      "bytes": 84525,
+      "sha256": "949ec6c34c5f7df436bfe560432f58fd0c640cd5588e84606f3c1b234a41ea23"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-visual-browser-receipts/reference-verification.json",
+      "bytes": 1409,
+      "sha256": "f59bfc4d95e0aa10f66c62920385bae6a912dd7705f9a7bfbc84f305fd92aea4"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-visual-browser-receipts/sandbox-admission.json",
+      "bytes": 1729,
+      "sha256": "4fb9cec1750888bb083d5b8c67214dae9bfc287caa3129f0486a5ea6e2dc8233"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-visual-browser-receipts/worldlaw-reference-channel.json",
+      "bytes": 259609,
+      "sha256": "be7b562dab8ecef49039ccc1e4ae42157c0c8c2e9b8a33585e3aef2d3f531a92"
+    }
+  ],
+  "visualReview": {
+    "390": "independently inspected; full caption wraps and plot labels legible",
+    "320": "independently inspected; full caption wraps and plot labels legible",
+    "1440": "Root independently viewed and accepted actual PNG ad66d12787dd8e507e7e049a11dae00fdc34a18c582eb4ca134e1887f0dde58a: full caption, legible legend and labels, aligned records, no clipping."
+  },
+  "lineage": "Original reconstructed product source4d835. Harness cleanup39306 recovered byte-exact, Enter event4ee1. New visual panel16f45072 and harness ea96e380; no inference changes. Original failed receives preserved; original package-final operation uncertainty not replayed.",
+  "independentReview": "MATERIALTRUTH independent reconstructed core/panel review accepted before browser; root actual desktop visual accepted after correction. WORLDLAW inspected 390/320/1440 plots. Scientific assumptions remain conditional.",
+  "resourceSmoke": {
+    "count": 82,
+    "byteEqual": true,
+    "health": 200,
+    "unknownCss": 404,
+    "post": 405,
+    "log": "smoke.log"
+  }
+}
