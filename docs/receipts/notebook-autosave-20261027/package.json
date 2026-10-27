@@ -1,0 +1,23 @@
+{
+  "output": "/Users/me/hamon-work/estate-03ae912a3e15-20261027/worldlaw-6e878fcf9ccf.zip",
+  "sha256": "4eff0937f5b79bdd80992e95b63744487648d00f693a7ddf84862d13b87a7e5e",
+  "sourceFiles": 1475,
+  "bytes": 61218491,
+  "sourceCommit": "6e878fcf9ccf5c334d520b928e423065da5aea9e",
+  "sourceTree": "d214e8bb061eb26c2e5ff4b88b7893051d14310b",
+  "sourceMode": "git-commit",
+  "manifestFilesVerified": 1475,
+  "archiveMembersVerified": 1476,
+  "playwrightVersion": "1.64.0-alpha-1790635538000",
+  "browserReceipt": "/Users/me/hamon-work/estate-03ae912a3e15-20261027/package-browser-6e878fcf9ccf/receipt.json",
+  "packageApplication": "/Users/me/hamon-work/estate-03ae912a3e15-20261027/package-6e878fcf9ccf/worldlaw",
+  "policyTests": 7,
+  "excludedHistoricalLogs": [
+    "docs/receipts/historical-training-20261027/historical-browser.log",
+    "docs/receipts/historical-training-20261027/native-verify.log",
+    "docs/receipts/historical-training-20261027/stack-browser.log",
+    "docs/receipts/rebase-notebook-recovery-20261027/native.log",
+    "docs/receipts/stacked-planning-20261027/browser-course.log",
+    "docs/receipts/stacked-planning-20261027/native-verify.log"
+  ]
+}
