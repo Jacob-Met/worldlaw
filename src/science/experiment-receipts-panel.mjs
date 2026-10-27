@@ -1,3 +1,5 @@
+import {renderHistoricalTraining} from './historical-training-panel.mjs';
+import {inspectBoundedReceipt} from './bounded-experiment-receipts.mjs';
 import {evaluate,TERMS} from './torque-discovery.mjs';
 import {inspectExperimentReceipt} from './experiment-receipts.mjs';
 
@@ -38,6 +40,12 @@ export function renderExperimentReceipts(host,state,{chart}) {
   host.append(control('Experiment ',events),provenance,control('Earlier competitive law (training order) ',laws),equation,coefficients,summary,plot,details,
     el('p',`Earlier fitting assumption: ${receipt.options.loss??'least_squares'}${receipt.options.loss==='soft_l1'?` at ${fmt(receipt.options.lossScale)} N·m scale`:''}; assumed noise ${fmt(receipt.options.noiseSigma)} N·m. Errors here use every raw torque reading. Laws remain in their earlier training order; receiving errors do not re-rank this comparison.`),
     el('p','The after-fit result reuses these outcomes and is not a new prediction test. Different updates may use different laws and adaptively chosen inputs; their errors are not a fixed-model held-out score. Competitive-model spread is not calibrated uncertainty.'));
+  const boundedSummary=el('p');boundedSummary.id='experiment-receipt-bounded-summary';
+  const boundedDetails=el('details');boundedDetails.id='experiment-receipt-bounded-details';boundedDetails.append(el('summary','Inspect declared-bound prediction intervals'));
+  const boundedRows=el('div');boundedDetails.append(boundedRows);host.append(boundedSummary,boundedDetails);
+  boundedSummary.hidden=boundedDetails.hidden=!receipt.bounded;
+  if(receipt.bounded){const b=receipt.bounded;boundedSummary.textContent=b.status==='unavailable'?'Bounded comparison unavailable: '+b.reason:`Before refit: ${b.remaining}/${b.modelCount} original fixed models not excluded by all acquired rows and the earlier declared bounds. ${b.status==='all-excluded'?'Every earlier prediction was incompatible; the new fit does not erase this failure.':''} Fixed coefficient error, omitted structure or incorrect bounds can cause exclusion. Non-exclusion is not identification.`;if(b.status==='unavailable')boundedDetails.hidden=true;}
+  const historical=el('div');host.append(historical);
   let plottedWidth=null,plottedBefore=null,plottedAfter=null;
   const redrawPlot=()=>{
     if(!plot.isConnected||!plottedBefore)return;
@@ -52,6 +60,14 @@ export function renderExperimentReceipts(host,state,{chart}) {
   const draw=()=>{
     const index=Number(laws.value);view.modelIndex=index;
     const inspected=inspectExperimentReceipt(receipt,index);
+    renderHistoricalTraining(historical,state,selected.index,index);
+    boundedRows.replaceChildren();
+    if(receipt.bounded&&receipt.bounded.status!=='unavailable'){
+      const bounds=inspectBoundedReceipt(receipt,index);
+      boundedRows.append(el('p',`Selected earlier law: ${bounds.excludedCount}/${bounds.count} readings excluded. Declared radii: command ${bounds.radii.command} N·m; position ${bounds.radii.position} rad; rate ${bounds.radii.rate} rad/s; reading ${bounds.radii.jointTorque} N·m.`));
+      for(const row of bounds.rows.slice(0,16))boundedRows.append(el('p',`Row ${row.index+1}: predicted [${row.prediction.join(', ')}]; observed [${row.observation.join(', ')}] N·m — ${row.status}.`));
+      if(bounds.count>16)boundedRows.append(el('p',`Showing first 16 of ${bounds.count} interval rows for the selected law. Exclusion counts cover every row; original source and all earlier laws remain retained.`));
+    }
     const after=evaluate(receipt.selectedAfter,receipt.rows);
     equation.textContent=`Before update: ${inspected.model.equation}. After learning: ${receipt.selectedAfter.equation} (${receipt.selectedAfter.id}). Exact earlier coefficients are retained in the recomputed comparison.`;
     coefficientBody.replaceChildren();

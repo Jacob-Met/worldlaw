@@ -1,0 +1,15 @@
+{"product":"worldlaw","courseName":"default","serverPid":3019984,"peerPid":null,"baseUrl":"http://127.0.0.1:46755/","runDirectory":"/dev/shm/hamon-69d25c99168e-worldlaw-browser-r3-c42b5145-6ace-4640-9862-9e973f95426d"}
+{
+  "product": "worldlaw",
+  "status": "passed",
+  "checks": [
+    "keyboard historical search explains received2.02 through earlier-reading witness without erasing fixed-prior failure",
+    "actual source notebook and historical certificate export/reopen bind original prefix",
+    "declared-radius edit retires result; edited original prefix refuses old certificate",
+    "conflicting acquired readings yield checked shared-envelope separation",
+    "undo removes acquired receipt and its evidence",
+    "nonzero coordinate declaration refuses exact-coordinate checker"
+  ],
+  "runDirectory": "/dev/shm/hamon-69d25c99168e-worldlaw-browser-r3-c42b5145-6ace-4640-9862-9e973f95426d"
+}
+{"evidenceDirectory":"/tmp/hamon-69d25c99168e-worldlaw-browser-r3-c42b5145-6ace-4640-9862-9e973f95426d-evidence"}

@@ -1,0 +1,134 @@
+{
+  "artifacts": [
+    {
+      "bytes": 3322,
+      "path": "README.md",
+      "sha256": "660220570361bc7822d5ebbc2c570710c58b1e02f34bc3d8b1f0ef27ff1523e7"
+    },
+    {
+      "bytes": 1017,
+      "path": "historical-browser.log",
+      "sha256": "fd9b09bbbb5b051b52f3e47573e70c5698c3f795defee120ca9bad57c27550ab"
+    },
+    {
+      "bytes": 2683,
+      "path": "historical/browser-result.json",
+      "sha256": "f0001931aac23dbfaa598acd46c6c1e5a1877df5a7cdecfc6245e83d30147c48"
+    },
+    {
+      "bytes": 1420,
+      "path": "historical/launch.json",
+      "sha256": "87446ac6262f1531bda7114c115d051a704e54c866e164c683a8136057b51ce8"
+    },
+    {
+      "bytes": 1730,
+      "path": "historical/sandbox.json",
+      "sha256": "ade6fe7e0d81de9cb46b7c3cc7b924d3a9696bb6556945cfc15073027fc790ad"
+    },
+    {
+      "bytes": 2372,
+      "path": "historical/session.json",
+      "sha256": "112da6c36e745408444032d9dff7197bbb4894cc43b215ecb2dc0bde313d1c6e"
+    },
+    {
+      "bytes": 146528,
+      "path": "historical/worldlaw-desktop.png",
+      "sha256": "3efb42a842c1ee2f4fb44866dc83c1483ddeda82af77b47acaa7fcde7bdb90ee"
+    },
+    {
+      "bytes": 76340,
+      "path": "historical/worldlaw-narrow.png",
+      "sha256": "8ab8991867217de7196cb2c55b9095142e4a3f16b43549d651189839a9e91698"
+    },
+    {
+      "bytes": 138214,
+      "path": "native-verify.log",
+      "sha256": "82362118041fc33e251b98ae94f87d7c67ee03e58e6687487adf8a004bb627c6"
+    },
+    {
+      "bytes": 9465,
+      "path": "qualified-publication-paths.json",
+      "sha256": "2fc2e4dd728092c05a77a47df2bd72549412fa24c8a5163df083a95824e9ca9c"
+    },
+    {
+      "bytes": 218646,
+      "path": "qualified-source-index.json",
+      "sha256": "d3f827fa4be97c7e7f91e5bafcf9a708625f85aea1b19bbfd42a63339b3fa276"
+    },
+    {
+      "bytes": 1951,
+      "path": "stack-browser.log",
+      "sha256": "9a0e0dad2b4a105e62c8596ffc8a8f3ab8a3fa7e3481288c44a5a18f039cf1b5"
+    },
+    {
+      "bytes": 3617,
+      "path": "stack/browser-result.json",
+      "sha256": "73abb15d29b61758ae9721edfce7ebc2c05ff4cd4958a5dabe5e5f51bf91c021"
+    },
+    {
+      "bytes": 1420,
+      "path": "stack/launch.json",
+      "sha256": "7dfb75c0ed8d537b3525a72b9bf4b5b5ab5dc89b15fe11ffe8b59bfbd5845024"
+    },
+    {
+      "bytes": 1730,
+      "path": "stack/sandbox.json",
+      "sha256": "00de91e5db5a38d3a4a15ebbab0f184f6d4062be154c754395d2c1a4edc9525f"
+    },
+    {
+      "bytes": 2372,
+      "path": "stack/session.json",
+      "sha256": "6b9e3a565b0f40f6befb898475278c34cfb3c91ff86e4e04a4a40e3c2abd955f"
+    },
+    {
+      "bytes": 167224,
+      "path": "stack/worldlaw-gain-clock-desktop.png",
+      "sha256": "9659b46d376d7e42c3b897c7c05cc7b1416be6e22289477a699dbca94caccc70"
+    },
+    {
+      "bytes": 85484,
+      "path": "stack/worldlaw-gain-clock-narrow.png",
+      "sha256": "7e78d31c0248cc160e938572ae3e93abc9f3353eb91169452ccd5e3b8b71e74f"
+    },
+    {
+      "bytes": 230632,
+      "path": "stack/worldlaw-receipts-desktop.png",
+      "sha256": "5acc72983776820910ddd0f4ad64ec462cb03e31b35eded248b14b87ecc10c32"
+    },
+    {
+      "bytes": 101555,
+      "path": "stack/worldlaw-receipts-narrow.png",
+      "sha256": "34dd0db87acece00c61559c713f2c70ada2e67656db7714b9d2bbf9bbdc3838a"
+    },
+    {
+      "bytes": 169717,
+      "path": "stack/worldlaw-scalar-desktop.png",
+      "sha256": "63f26723711194010d473dcafdc8f4142cc541531beacde0e6b42b8701b43481"
+    },
+    {
+      "bytes": 57137,
+      "path": "stack/worldlaw-scalar-narrow.png",
+      "sha256": "4abfe3c22dc2b7ed7b338837c23d6db83d5071969a0aaac4368ab6b70bc278bc"
+    }
+  ],
+  "baseCommit": "6ea3dcb029903d51de45415c58fc6dd66c08979f",
+  "browserCourses": [
+    {
+      "groups": 6,
+      "name": "historical"
+    },
+    {
+      "groups": 17,
+      "name": "established-stack"
+    }
+  ],
+  "native": {
+    "bothLaunchedSmokes": true,
+    "fail": 0,
+    "pass": 1351,
+    "skip": 1
+  },
+  "qualifiedPublicationPathsSha256": "2fc2e4dd728092c05a77a47df2bd72549412fa24c8a5163df083a95824e9ca9c",
+  "sameExecutableSource": true,
+  "sourceIndexSha256": "d3f827fa4be97c7e7f91e5bafcf9a708625f85aea1b19bbfd42a63339b3fa276"
+}

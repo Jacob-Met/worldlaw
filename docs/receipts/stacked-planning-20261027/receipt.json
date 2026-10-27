@@ -1,0 +1,96 @@
+{
+  "base": "6ea3dcb029903d51de45415c58fc6dd66c08979f",
+  "qualification": "Exact three-increment runtime before this evidence-only overlay",
+  "qualifiedManifestSha256": "327cc0cfc5f58e5618fc32eba3e3cafb95dec8cccefe593fede50fc01173c5d5",
+  "qualifiedSourceIndexSha256": "096e4247523321a2f71d98bf61729382fd9aa27b74b86f71931566540a3cda71",
+  "verifiedSourceFiles": 987,
+  "unchangedBaseBlobMatches": 964,
+  "native": {
+    "command": "npm run verify",
+    "pass": 1345,
+    "skip": 1,
+    "fail": 0,
+    "launchedSmokes": [
+      "Discovery Studio",
+      "Trajectory Challenge"
+    ]
+  },
+  "browser": {
+    "groups": 17,
+    "exceptions": [],
+    "sandboxAdmitted": true,
+    "directChildExited": true
+  },
+  "artifacts": [
+    {
+      "path": "browser-course.log",
+      "sha256": "66db8927ecd9cb61b1206b1ca5fc1fac8672428567d741be653ee0644f9a0622",
+      "bytes": 1920
+    },
+    {
+      "path": "browser-result.json",
+      "sha256": "5d44a20c2ae58487f2d0fdf52862002609da49cbff771221cd44ccbbe5fdea24",
+      "bytes": 3614
+    },
+    {
+      "path": "launch.json",
+      "sha256": "26b67a60f997c8f63ddc583b849c10fedb6f64de8260ce7dfa0abaee5b35c70b",
+      "bytes": 1396
+    },
+    {
+      "path": "native-verify.log",
+      "sha256": "e46ab7b9208142cfa1e7ec70559c5268da86d0731ff9a5a4fb6e3fb33cb32e02",
+      "bytes": 137919
+    },
+    {
+      "path": "qualified-source-index.json",
+      "sha256": "096e4247523321a2f71d98bf61729382fd9aa27b74b86f71931566540a3cda71",
+      "bytes": 217944
+    },
+    {
+      "path": "qualified-source-manifest.json",
+      "sha256": "327cc0cfc5f58e5618fc32eba3e3cafb95dec8cccefe593fede50fc01173c5d5",
+      "bytes": 3532
+    },
+    {
+      "path": "sandbox.json",
+      "sha256": "dfc80878e4e91d5c2b56510120cf33b841502719e592c54f9a78459cd3ed7aa8",
+      "bytes": 1730
+    },
+    {
+      "path": "session.json",
+      "sha256": "6b2a56a78b45afef8c0af2c10763cf498be7845975e0f8e6f41e5c7125fefcd5",
+      "bytes": 2341
+    },
+    {
+      "path": "worldlaw-gain-clock-desktop.png",
+      "sha256": "8ca948f82aecd5bec03a3be98efbe3c543cbf8dbfb2319aeab5c5864817d7c19",
+      "bytes": 167221
+    },
+    {
+      "path": "worldlaw-gain-clock-narrow.png",
+      "sha256": "f01af3e50a91df963814cc5e47ba288f44edefe983fc11a2255950730b7b4801",
+      "bytes": 85477
+    },
+    {
+      "path": "worldlaw-receipts-desktop.png",
+      "sha256": "f0d47db766213cb8ae88bfae712a70ffd5ee98730404511735c337fec08a1c1e",
+      "bytes": 229938
+    },
+    {
+      "path": "worldlaw-receipts-narrow.png",
+      "sha256": "34dd0db87acece00c61559c713f2c70ada2e67656db7714b9d2bbf9bbdc3838a",
+      "bytes": 101555
+    },
+    {
+      "path": "worldlaw-scalar-desktop.png",
+      "sha256": "dd9b94b0b1707e2109bdd67fc7ed978b8d83f8543494c71b9dbfef8bde8ede15",
+      "bytes": 174996
+    },
+    {
+      "path": "worldlaw-scalar-narrow.png",
+      "sha256": "4abfe3c22dc2b7ed7b338837c23d6db83d5071969a0aaac4368ab6b70bc278bc",
+      "bytes": 57137
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{"product":"worldlaw","serverPid":1673127,"peerPid":null,"baseUrl":"http://127.0.0.1:45515/","runDirectory":"/tmp/hamon-69d25c99168e-worldlaw-browser-r3-c8b24f44-371d-4350-9892-42b6ced07cfe"}
+{
+  "product": "worldlaw",
+  "status": "passed",
+  "checks": [
+    "changed draft disabled; wide bounds remove proposal",
+    "keyboard-applied bounds and proposal execute actual virtual acquisition and refit",
+    "actual export/reopen retains acquisition and declarations",
+    "exact double proposal copy preserves separation",
+    "v2 interaction and separate pilot objective preserve bounded declarations",
+    "actual acquired outcome excludes all prior models while refit proceeds",
+    "actual export/reopen reproduces earlier prediction comparison",
+    "8192comparison reservation and16row display bounds retain full counts",
+    "keyboard law selection recomputes the selected frozen-law intervals; Enter opens bound evidence",
+    "keyboard existing affine instrument screens112 pairs and selects nonlinear excitation",
+    "actual observation-file import compares frozen families to received response",
+    "both-prior-failure survives actual source-only export and reopen",
+    "changed source invalidates prior result and wide-radius declaration yields no experiment",
+    "same browser: clock-family notebook leaves scalar session and cumulative receiving reservation identical",
+    "scalar source reopen preserves independently saved clock-family investigation",
+    "natural affine-clock source notebook still round-trips between gain-family imports without scalar side effects",
+    "cross-format gain envelope refused in actual file intake; original valid gain notebook still reopens"
+  ],
+  "runDirectory": "/tmp/hamon-69d25c99168e-worldlaw-browser-r3-c8b24f44-371d-4350-9892-42b6ced07cfe"
+}
+{"evidenceDirectory":"/tmp/hamon-69d25c99168e-worldlaw-browser-r3-c8b24f44-371d-4350-9892-42b6ced07cfe-evidence"}

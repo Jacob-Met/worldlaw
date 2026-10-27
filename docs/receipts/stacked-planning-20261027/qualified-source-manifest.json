@@ -1,0 +1,97 @@
+{
+  "base": "6ea3dcb029903d51de45415c58fc6dd66c08979f",
+  "files": [
+    {
+      "path": "docs/BOUNDED_EXPERIMENT_RECEIPTS.md",
+      "sha256": "4eab46947a686268f17574efffab81bcaae2849b6f86c6f4e466186f034ec233"
+    },
+    {
+      "path": "docs/BOUNDED_SCALAR_PLANNING.md",
+      "sha256": "f1492f3b24ed8a4043d6901ce20db4e9e88c410f4a46670f2535b7fc93a7a572"
+    },
+    {
+      "path": "docs/GAIN_CLOCK_EXPERIMENT.md",
+      "sha256": "be23f9e2ba75b525af4fe7dde54e451b1600b16fc1ccf4b4328e8667ac8ef53d"
+    },
+    {
+      "path": "docs/receipts/scalar-bounds-20261027/desktop.png",
+      "sha256": "24b5d7ca17bb9673f68f1e479a8f2a6521fe8ccfdf7e3055c5d691cba3a23c07"
+    },
+    {
+      "path": "docs/receipts/scalar-bounds-20261027/narrow.png",
+      "sha256": "4abfe3c22dc2b7ed7b338837c23d6db83d5071969a0aaac4368ab6b70bc278bc"
+    },
+    {
+      "path": "docs/receipts/scalar-bounds-20261027/receipt.json",
+      "sha256": "5336357fedc916b999f1d054aae9dcea141c8dc71bcd4b2d5115b1a683694313"
+    },
+    {
+      "path": "docs/receipts/scalar-bounds-20261027/sandbox.json",
+      "sha256": "1be45771bf99245cbbb32c6a2e0afd0662122975caa2f3a17c2e99dd9b028ff6"
+    },
+    {
+      "path": "scripts/bounded-experiment-receipts.receiving.mjs",
+      "sha256": "7e8bce349853446e92a255f5eba7b2971603f2866c40b340b7d6413928ad84fe"
+    },
+    {
+      "path": "scripts/bounded-scalar-plan.receiving.mjs",
+      "sha256": "322e9334e60e5a55bb6a27c452d51225a5231b08f4389c3a48a76f007f9a6463"
+    },
+    {
+      "path": "scripts/gain-clock.receiving.mjs",
+      "sha256": "ee8bc8f5b5cbca9a1cada3a77274fce17f04f3fc860ea081aba416a06da9f43d"
+    },
+    {
+      "path": "src/app.mjs",
+      "sha256": "086e47cec8e7c39d0c8f5b3dbdb53a99a14bf6dc77d1612ca3e8b819ec9dc689"
+    },
+    {
+      "path": "src/science/bounded-experiment-receipts.mjs",
+      "sha256": "09182bdc765c4112c0c8a3a335d692c4824a680570667cd3314b7b6a97fce753"
+    },
+    {
+      "path": "src/science/bounded-scalar-plan.mjs",
+      "sha256": "c25fc7db9a96a744d1e329f393f69a42c59c4671b75c034cff09e0a53e0e5d2a"
+    },
+    {
+      "path": "src/science/clock-affine-panel.mjs",
+      "sha256": "c91882006df50649bf425b517a9c8eb4000b7c2ab7042a4e99017d6b730deda2"
+    },
+    {
+      "path": "src/science/clock-evidence.mjs",
+      "sha256": "c02722b84b0cb2c7f0957752816bf0956aa7562a6d90de3d7b1ff233ef4f8949"
+    },
+    {
+      "path": "src/science/experiment-receipts-panel.mjs",
+      "sha256": "72b8b8fe279f727f15a4fc9a65945c85bcc2ed5cc4afc6ddd43190a6f8773ba3"
+    },
+    {
+      "path": "src/science/gain-clock-experiment.mjs",
+      "sha256": "4e6c6eb0e4f8ce647cefee50c8ddde4acc85191cd595398c316e5be70422bd9e"
+    },
+    {
+      "path": "src/science/gain-clock-view.mjs",
+      "sha256": "7f5f6cded2ac327f8cabd44e23a6f9c1a0d235ad1e5247c9d85f4620356e014d"
+    },
+    {
+      "path": "src/session.mjs",
+      "sha256": "1c28d2316e5ac75788562833845f1b88f17940db51166dceb81a31513f3b1311"
+    },
+    {
+      "path": "tests/bounded-experiment-receipts.test.mjs",
+      "sha256": "1a82f047fb42338cf6a13c2a31b0fed07ee1136b7cf20eb1c29597eae7d2cb24"
+    },
+    {
+      "path": "tests/bounded-scalar-plan.test.mjs",
+      "sha256": "e114f08f87f63393495c9ed3e39526a2437dc06c7f6592fac81e7eb730905ec7"
+    },
+    {
+      "path": "tests/gain-clock-experiment.test.mjs",
+      "sha256": "3ab9cff69a6638c8a734201defcbbadfd17e8cefb2f6dc35bedcd0ca1d7ab673"
+    },
+    {
+      "path": "scripts/stacked-planning.receiving.mjs",
+      "sha256": "ea0b004020954781c64fd5e1d4f3ab87feda9d5de16963424fda6a3ac8ac9b68"
+    }
+  ]
+}
