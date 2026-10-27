@@ -27,8 +27,11 @@ export async function loadVideo(file,{signal}={}) {
   // Kept in the rendering tree so paused seeked frames can produce compositor timestamps.
   video.style.cssText='position:fixed;left:0;bottom:0;width:1px;height:1px;opacity:0;pointer-events:none;';
   video.setAttribute('aria-hidden','true');video.tabIndex=-1;
-  const url=URL.createObjectURL(file);let disposed=false,busy=false,activeCancel=null;
-  const dispose=()=>{if(disposed)return;disposed=true;activeCancel?.();video.pause();video.removeAttribute('src');video.load();video.remove();URL.revokeObjectURL(url);};
+  const url=URL.createObjectURL(file);let disposed=false,busy=false,activeCancel=null,lastDecodedFrame=null;
+  const invalidateDecodedFrame=()=>{lastDecodedFrame=null;};
+  const invalidatingEvents=['seeking','play','emptied','error'];
+  for(const event of invalidatingEvents)video.addEventListener(event,invalidateDecodedFrame);
+  const dispose=()=>{if(disposed)return;disposed=true;invalidateDecodedFrame();activeCancel?.();for(const event of invalidatingEvents)video.removeEventListener(event,invalidateDecodedFrame);video.pause();video.removeAttribute('src');video.load();video.remove();URL.revokeObjectURL(url);};
   try {
     const ready=eventOnce(video,'loadeddata',{signal});document.body.append(video);video.src=url;video.load();await ready;
     checkAbort(signal);
@@ -49,9 +52,20 @@ export async function loadVideo(file,{signal}={}) {
       if(disposed)throw new Error('This video source has been released.');
       if(busy)throw new Error('A video frame is already being decoded. Wait for it or cancel before seeking again.');
       if(typeof seconds!=='number'||!Number.isFinite(seconds)||seconds<0||seconds>source.duration)throw new Error('Seek time must lie within the selected video.');
+      const requestedTime=Math.min(seconds,Math.max(0,source.duration-1e-6));
+      // A paused repeat need not produce a new compositor callback. Reuse only
+      // the last completed decoded occurrence, never equal-looking pixels or an
+      // inferred frame interval. Ledger selections use its exact media timestamp.
+      const retained=lastDecodedFrame;
+      if(retained&&video.paused&&!video.seeking&&video.readyState>=2
+        &&video.currentTime===retained.videoTime
+        &&(requestedTime===retained.requestedTime||requestedTime===retained.frame.time)) {
+        return {...retained.frame,data:retained.frame.data.slice(),requestedTime,
+          timingNote:'Previously decoded presentation timestamp reused from this unchanged paused frame.'};
+      }
+      invalidateDecodedFrame();
       busy=true;
       let callbackId=null,timer=null,finished=false,metadata=null,capturedPixels=null,seeked=false;
-      const requestedTime=Math.min(seconds,Math.max(0,source.duration-1e-6));
       try {
         const captured=await new Promise((resolve,reject)=>{
           const readPixels=()=>{context.drawImage(video,0,0,width,height);return context.getImageData(0,0,width,height);};
@@ -101,10 +115,13 @@ export async function loadVideo(file,{signal}={}) {
         if(!captured.pixels)context.drawImage(video,0,0,width,height);
         const pixels=captured.pixels??context.getImageData(0,0,width,height);
         const exact=stamp && Number.isFinite(stamp.mediaTime);
-        return {width,height,data:pixels.data,time:exact?stamp.mediaTime:video.currentTime,requestedTime,
+        const frame={width,height,data:pixels.data,time:exact?stamp.mediaTime:video.currentTime,requestedTime,
           timeBasis:exact?'decoded-media-time':'requested-seek-time',
           ...(exact?{presentedFrames:stamp.presentedFrames}:{}),
           timingNote:exact?'Decoded presentation timestamp reported by the browser.':'Nominal seek time; decoded frame timestamp unavailable. Do not infer precise acceleration from this clock.'};
+        if(exact&&video.paused&&!video.seeking&&video.readyState>=2)
+          lastDecodedFrame={requestedTime,videoTime:video.currentTime,frame:{...frame,data:frame.data.slice()}};
+        return frame;
       } finally {busy=false;}
     }
     return {source,width,height,duration:source.duration,frameAt,dispose};
