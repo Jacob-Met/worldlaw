@@ -10,7 +10,7 @@ const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.
 const fmt=value=>Number.isFinite(value)?Number(value.toPrecision(6)).toLocaleString('en-US',{maximumFractionDigits:9}):'—';
 function control(text,node){const label=el('label',text);label.append(node);return label;}
 
-export function renderExperimentReceipts(host,state,{chart,onReuse,onCondition}) {
+export function renderExperimentReceipts(host,state,{chart,onReuse,onCondition,onAssessDeviation}) {
   const experiments=state.history.flatMap((entry,index)=>entry.experiment?[{entry,index}]:[]);
   const previous=views.get(host);
   previous?.observer?.disconnect();
@@ -19,7 +19,7 @@ export function renderExperimentReceipts(host,state,{chart,onReuse,onCondition})
   const last=experiments.at(-1)?.entry.experiment;
   const view=previous&&previous.last===last?previous:{last,eventIndex:experiments.at(-1)?.index,modelIndex:0};
   view.observer=null;
-  views.set(host,view);host.replaceChildren();renderScalarQuestion(host,state,{onCondition});renderScalarChallenges(host,state,{onReuse});
+  views.set(host,view);host.replaceChildren();renderScalarQuestion(host,state,{onCondition,onAssessDeviation});renderScalarChallenges(host,state,{onReuse});
   const title=el('h3','Predictions before learning the outcome');
   host.append(title,el('p','Inspect the laws from before each measurement update, then compare their predictions with the actual entered outcome. These comparisons are recomputed from earlier notebook evidence; they do not authenticate acquisition time or independent measurements.'));
   if(!experiments.length){host.append(el('p',state.history.some(h=>h.challenge)?'No acquired challenge rows have been added to fitting. The external challenge above retains its original prediction comparison.':'Record an instrument outcome or run a virtual experiment to compare what the earlier laws predicted. Refitting alone creates no new outcome.'));return;}
@@ -95,7 +95,7 @@ export function renderExperimentReceipts(host,state,{chart,onReuse,onCondition})
     details.ontoggle=fill;fill();
   };
   laws.addEventListener('change',draw);
-  events.addEventListener('change',()=>{view.eventIndex=Number(events.value);view.modelIndex=0;renderExperimentReceipts(host,state,{chart,onReuse,onCondition});host.querySelector('#experiment-receipt-event').focus();});
+  events.addEventListener('change',()=>{view.eventIndex=Number(events.value);view.modelIndex=0;renderExperimentReceipts(host,state,{chart,onReuse,onCondition,onAssessDeviation});host.querySelector('#experiment-receipt-event').focus();});
   draw();
   view.observer=new ResizeObserver(redrawPlot);
   view.observer.observe(plot);
