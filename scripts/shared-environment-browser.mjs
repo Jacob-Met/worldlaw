@@ -7,13 +7,14 @@ import {compareSharedEnvironments,evaluateSharedEnvironments} from '../src/traje
 const root=resolve(new URL('../',import.meta.url).pathname),output=resolve(process.env.ENVIRONMENT_BROWSER_OUTPUT||'.receipts/environment-browser');
 await mkdir(output,{recursive:true});
 const {chromium}=await import(pathToFileURL(process.env.PLAYWRIGHT_MODULE||'/Users/me/.npm/_npx/9833c18b2d85bc59/node_modules/playwright/index.mjs').href);
-const server=createProductServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));
-const base='http://127.0.0.1:'+server.address().port;
-const target=process.env.ENVIRONMENT_BROWSER_URL||base+'/trajectory.html';
+const server=process.env.ENVIRONMENT_BROWSER_URL?null:createProductServer();if(server)await new Promise(r=>server.listen(0,'127.0.0.1',r));
+const target=process.env.ENVIRONMENT_BROWSER_URL||'http://127.0.0.1:'+server.address().port+'/trajectory.html';
+const offline=target.startsWith('file:'),blockedNetwork=[];
 const browser=await chromium.launch({executablePath:process.env.BROWSER_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,chromiumSandbox:true});
 const errors=[],failedRequests=[],receipts=[];
 const sourceTraining=join(root,'examples/physical-environments-training-03ae912a3e15.json'),sourceChallenge=join(root,'examples/physical-environments-challenge-03ae912a3e15.json');
 const context=await browser.newContext({viewport:{width:1440,height:1080},reducedMotion:'reduce',acceptDownloads:true});
+if(offline)await context.route(/^https?:\/\//,route=>{blockedNetwork.push(route.request().url());return route.abort();});
 const page=await context.newPage();
 page.on('pageerror',error=>errors.push(error.message));page.on('response',r=>{if(r.status()>=400)failedRequests.push({url:r.url(),status:r.status()});});
 const wait=async(text,p=page)=>{await p.waitForFunction(t=>document.getElementById('environment-status')?.textContent.includes(t)&&document.getElementById('environment-comparison')?.getAttribute('aria-busy')==='false',text,{timeout:30000});};
@@ -63,7 +64,9 @@ try{
   const downloadPromise=page.waitForEvent('download');await page.locator('#environment-export').focus();await page.keyboard.press('Enter');
   const download=await downloadPromise,exportPath=join(output,'worldlaw-condition-comparison-sources.json');await download.saveAs(exportPath);
   const exported=JSON.parse(await readFile(exportPath,'utf8'));assert.equal(exported.schema,'worldlaw.environment-notebook/v1');assert(!('candidates' in exported));assert.equal(exported.challengeSource.environments.length,2);
-  const newContext=await browser.newContext({viewport:{width:1440,height:1080},reducedMotion:'reduce'}),reopened=await newContext.newPage();
+  const newContext=await browser.newContext({viewport:{width:1440,height:1080},reducedMotion:'reduce'});
+  if(offline)await newContext.route(/^https?:\/\//,route=>{blockedNetwork.push(route.request().url());return route.abort();});
+  const reopened=await newContext.newPage();
   reopened.on('pageerror',e=>errors.push(e.message));await reopened.goto(target,{waitUntil:'networkidle'});
   await reopened.locator('#environment-training-file').setInputFiles(exportPath);await wait('Sources restored',reopened);
   assert.equal(await reopened.locator('#environment-challenge-file').isDisabled(),true);
@@ -75,7 +78,7 @@ try{
   assert.equal(await reopened.locator('#environment-challenge-courses figure').count(),2);
   receipts.push({name:'ordinary keyboard export and source-only fresh-session replay',passed:true,trainingAndChallengeOutcomesIdentical:true,malformedReplacementRetainedState:true});
   await newContext.close();
-  assert.deepEqual(errors,[]);assert.deepEqual(failedRequests,[]);
-  const result={schema:'worldlaw.environment-browser-receiving/v1',target,runtime:process.version,browser:await browser.version(),sandboxEnabled:true,receipts,pageErrors:errors,failedRequests,selectedArrangement:'conditions',selectionReason:'Both actual arrangements received; by-condition courses keep each original recording primary and avoid repeating observations three times.'};
+  assert.deepEqual(errors,[]);assert.deepEqual(failedRequests,[]);assert.deepEqual(blockedNetwork,[]);
+  const result={schema:'worldlaw.environment-browser-receiving/v1',target,runtime:process.version,browser:await browser.version(),sandboxEnabled:true,offline,developmentServerStarted:server!==null,httpRequestsAttempted:blockedNetwork,receipts,pageErrors:errors,failedRequests,selectedArrangement:'conditions',selectionReason:'Both actual arrangements received; by-condition courses keep each original recording primary and avoid repeating observations three times.'};
   await writeFile(join(output,'browser-result.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
-}finally{await browser.close();await new Promise(r=>server.close(r));}
+}finally{await browser.close();if(server)await new Promise(r=>server.close(r));}
