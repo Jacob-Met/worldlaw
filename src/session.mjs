@@ -1,3 +1,4 @@
+import {retainScalarQuestion,receiveScalarQuestion} from './science/scalar-question.mjs';
 import {captureScalarChallenge} from './science/scalar-challenge.mjs';
 import {measurementSource} from './measurement-batch.mjs';
 import {planTrainingResponse,receiveTrainingResponse} from './science/training-response-plan.mjs';
@@ -68,7 +69,7 @@ function assertReplayWork(base,initialOptions,events){
       if(!Array.isArray(event.rows))throw new Error('Measurement history needs its original rows.');
       count+=event.rows.length;
     }else if(event?.kind==='virtual')count++;
-    else if(event?.kind==='planning-bounds'||event?.kind==='challenge')continue;
+    else if(event?.kind==='planning-bounds'||event?.kind==='challenge'||event?.kind==='scalar-question')continue;
     else if(event?.kind==='options')options=cleanOptions({...options,...event.options});
     else throw new Error('Notebook contains an unknown event.');
     total+=discoveryRobustWork(count,discoveryOptions(options));
@@ -108,15 +109,17 @@ function eventState(state,event,discovery,options=state.options) {
    const used=state.history.reduce((n,h)=>n+(h.experiment?.trainingResponse?.evaluations??0),0);
    entry.experiment.trainingResponse=receiveTrainingResponse(state.discovery,entry.experiment.rows,state.planningRadii,state.planningTrainingRadius,used);
   }
+  if(entry.experiment&&event.reusedChallenge===undefined){const outcome=receiveScalarQuestion(state,entry.experiment.rows,entry.experiment);if(outcome)entry.questionOutcome=outcome;}
   return {...state,options,discovery,events:[...state.events,event],history:[...state.history,entry]};
 }
-export function appendMeasurements(state,rows,label='Measured outcome',source=null) {
+export function appendMeasurements(state,rows,label='Measured outcome',source=null){return appendMeasurementSource(state,rows,label,source);}
+function appendMeasurementSource(state,rows,label,source,reusedChallenge=undefined) {
   if(state.lab) throw new Error('This notebook is connected to a virtual instrument. Import measured observations to start an instrument notebook.');
   rows=validateRows(rows,{allowEmpty:true});
   if(!rows.length || state.discovery.observations.length+rows.length>MAX_ROWS) throw new Error('The measurement batch is empty or exceeds the observation limit.');
   const admittedSource=source===null?null:measurementSource(source);
   if(admittedSource&&(rows[0].torqueNoiseRatio!==undefined)!==(admittedSource.units.torqueNoiseRatio==='1'))throw Error('Acquisition source units must match the complete torque-noise-ratio declaration.');
-  const event={kind:'measurement',label:String(label).slice(0,160),rows,...(admittedSource?{source:admittedSource}:{})};
+  const event={kind:'measurement',label:String(label).slice(0,160),rows,...(admittedSource?{source:admittedSource}:{}),...(reusedChallenge!==undefined?{reusedChallenge}:{})};
   assertReplayWork(state.base,state.initialOptions,[...state.events,event]);
   return eventState(state,event,revise(state.discovery,rows));
 }
@@ -128,14 +131,14 @@ export function receiveScalarChallenge(state,rows,source){
  const usedWork=state.history.reduce((n,h)=>n+(h.challenge?.work??0),0),usedRows=state.history.reduce((n,h)=>n+(h.challenge?.rows.length??0),0);
  const challenge=captureScalarChallenge(state.discovery,rows,{usedWork,usedRows});
  const event={kind:'challenge',label:'External challenge: '+admittedSource.label,rows,source:admittedSource};
- const next=eventState(state,event,state.discovery);next.history[next.history.length-1].challenge=challenge;return next;
+ const next=eventState(state,event,state.discovery);next.history[next.history.length-1].challenge=challenge;const outcome=receiveScalarQuestion(state,rows,challenge);if(outcome)next.history.at(-1).questionOutcome=outcome;return next;
 }
 export function reuseScalarChallenge(state,challengeEvent){
  if(!Number.isInteger(challengeEvent)||challengeEvent<0||challengeEvent>=state.events.length||state.events[challengeEvent].kind!=='challenge')throw Error('Choose an earlier retained external challenge.');
  if(state.events.some(e=>e.reusedChallenge===challengeEvent))throw Error('This complete challenge has already been reused for training.');
  const original=state.events[challengeEvent];
- const next=appendMeasurements(state,original.rows,'Reused challenge for training: '+original.source.label,original.source);
- next.events.at(-1).reusedChallenge=challengeEvent;
+ const next=appendMeasurementSource(state,original.rows,'Reused challenge for training: '+original.source.label,original.source,challengeEvent);
+ // Existing outcomes cannot execute a later prospective question or consume its screen work.
  return next;
 }
 export function runVirtualExperiment(state,input) {
@@ -178,6 +181,14 @@ export function sessionPlan(state) {
  if(state.planningRadii){try{return state.planningTrainingRadius!=null?planTrainingResponse(state.discovery,candidates,state.planningRadii,state.planningTrainingRadius):planBoundedScalarExperiment(state.discovery,candidates,state.planningRadii);}catch(error){return {status:'bounds-unavailable',reason:error.message,selected:null,ranked:[],modelIds:[]};}}
  return planExperiment(state.discovery,candidates);
 }
+export function freezeScalarQuestion(state){
+ if(state.lab)throw Error('Freeze actual acquisition questions only in an imported instrument notebook.');
+ const course=candidateCourse(state),models=state.discovery.competitive.length;
+ const requested={evaluations:models*course.candidates.length,products:state.planningTrainingRadius!=null?models*course.candidates.length*state.discovery.observations.length:0,pairComparisons:course.candidates.length*models*(models-1)/2};
+ for(const [key,limit]of Object.entries({evaluations:8192,products:1048576,pairComparisons:65536}))if(state.history.reduce((n,h)=>n+(h.question?.[key]??0),0)+requested[key]>limit)throw Error('Complete cumulative frozen-question planning course exceeds its work limit.');
+ const question=retainScalarQuestion(sessionPlan(state));
+ const next=eventState(state,{kind:'scalar-question',label:'Frozen scalar question',input:{...question.input},method:question.method},state.discovery);next.history.at(-1).question=question;return next;
+}
 export function sessionPilotPlan(state) {
   const course=candidateCourse(state);
   const result=planInputExcitation(state.discovery.observations,state.discovery.options.terms,course.candidates);
@@ -208,6 +219,7 @@ export function restoreSession(text) {
   let state=createSession(raw.base,raw.initialOptions,{labSeed:raw.lab?.seed??null});
   for(const event of raw.events) {
     if(event?.kind==='virtual') state=runVirtualExperiment(state,event.input);
+    else if(event?.kind==='scalar-question'){const next=freezeScalarQuestion(state),e=next.events.at(-1);if(!event.input||['command','position','rate'].some(k=>event.input[k]!==e.input[k])||event.method!==e.method)throw Error('Frozen question differs from the original source-planned suggestion.');state=next;}
     else if(event?.kind==='challenge') state=receiveScalarChallenge(state,event.rows,event.source);
     else if(event?.kind==='measurement') {
       if(Object.hasOwn(event,'reusedChallenge')){

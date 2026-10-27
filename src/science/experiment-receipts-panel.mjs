@@ -1,3 +1,4 @@
+import {renderScalarQuestion} from './scalar-question-panel.mjs';
 import {renderScalarChallenges} from './scalar-challenge-panel.mjs';
 import {renderHistoricalTraining} from './historical-training-panel.mjs';
 import {inspectBoundedReceipt} from './bounded-experiment-receipts.mjs';
@@ -18,7 +19,7 @@ export function renderExperimentReceipts(host,state,{chart,onReuse}) {
   const last=experiments.at(-1)?.entry.experiment;
   const view=previous&&previous.last===last?previous:{last,eventIndex:experiments.at(-1)?.index,modelIndex:0};
   view.observer=null;
-  views.set(host,view);host.replaceChildren();renderScalarChallenges(host,state,{onReuse});
+  views.set(host,view);host.replaceChildren();renderScalarQuestion(host,state);renderScalarChallenges(host,state,{onReuse});
   const title=el('h3','Predictions before learning the outcome');
   host.append(title,el('p','Inspect the laws from before each measurement update, then compare their predictions with the actual entered outcome. These comparisons are recomputed from earlier notebook evidence; they do not authenticate acquisition time or independent measurements.'));
   if(!experiments.length){host.append(el('p',state.history.some(h=>h.challenge)?'No acquired challenge rows have been added to fitting. The external challenge above retains its original prediction comparison.':'Record an instrument outcome or run a virtual experiment to compare what the earlier laws predicted. Refitting alone creates no new outcome.'));return;}
