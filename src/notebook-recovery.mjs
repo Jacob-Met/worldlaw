@@ -65,7 +65,11 @@ export function createNotebookStorage(getStorage, { key = NOTEBOOK_KEY, prefix =
       }
       const slot = matchingSlot ?? firstVacant;
       if (slot === null) return failure('archive-full');
-      if (matchingSlot === null) storage.setItem(prefix + slot, protectedOriginal);
+      if (matchingSlot === null) {
+        // A parallel tab may have filled a slot since the initial scan.
+        if (storage.getItem(prefix + slot) !== null) return failure('archive-slot-changed');
+        storage.setItem(prefix + slot, protectedOriginal);
+      }
       if (storage.getItem(prefix + slot) !== protectedOriginal) return failure('archive-readback-failed');
       // This is a best-effort last check, not a cross-tab atomic lock.
       if (storage.getItem(key) !== protectedOriginal) return failure('active-source-changed');
