@@ -22,7 +22,7 @@ With Node.js 20 or newer, from this directory:
 npm start
 ```
 
-Open **http://127.0.0.1:4193**. No package installation, cloud account, model download or API key is needed. The server binds to loopback and serves maintained application assets. Observations and model computation stay in your browser. Stop the server with Ctrl+C.
+Open **http://127.0.0.1:4193**. No package installation, cloud account, model download or API key is needed. The server binds to loopback and serves maintained application assets. It rejects foreign Host/Origin requests and symbolic-linked assets; native local clients may omit Origin. Observations and model computation stay in your browser. Stop the server with Ctrl+C.
 
 If another Studio tab has already changed the saved notebook, autosave pauses for the older tab. Export its current work before reloading. See [notebook autosave across tabs](docs/NOTEBOOK_AUTOSAVE.md) for recovery and concurrency limits.
 

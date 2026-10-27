@@ -1,15 +1,64 @@
 import http from 'node:http';
-import { readFile } from 'node:fs/promises';
+import { lstat, open } from 'node:fs/promises';
+import { constants } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { resolve, extname } from 'node:path';
+import { resolve, extname, join } from 'node:path';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const types = {'.html':'text/html; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml'};
+// Binding to loopback does not authenticate HTTP Host (DNS rebinding can target it).
+// Native clients without Origin are allowed, but browsers must be same origin.
+function localRequest(req) {
+  const rawHost = req.headers.host;
+  if (typeof rawHost !== 'string' || /[\x00-\x20,@]/.test(rawHost) || rawHost.includes(String.fromCharCode(92))) return false;
+  let target;
+  try { target = new URL('http://' + rawHost); } catch { return false; }
+  if (!['localhost', '127.0.0.1', '[::1]'].includes(target.hostname.toLowerCase())) return false;
+  if (target.username || target.password || target.pathname !== '/' || target.search || target.hash) return false;
+  if (target.port !== String(req.socket.localPort)) return false;
+  if (req.headers.origin !== undefined) {
+    if (typeof req.headers.origin !== 'string') return false;
+    let from;
+    try { from = new URL(req.headers.origin); } catch { return false; }
+    if (from.origin !== target.origin || req.headers.origin !== from.origin) return false;
+  }
+  return true;
+}
+
+// Check each stable filesystem component and the opened regular-file identity.
+// O_NOFOLLOW refuses final symlink swaps; directory replacement races are not
+// claimed to be fully solved across all platforms.
+async function readPublicAsset(pathname) {
+  const segments = pathname.slice(1).split('/');
+  let path = root;
+  let expected;
+  for (let i = 0; i < segments.length; i++) {
+    path = join(path, segments[i]);
+    const entry = await lstat(path);
+    if (entry.isSymbolicLink()) throw new Error('linked asset');
+    if (i < segments.length - 1 && !entry.isDirectory()) throw new Error('non-directory asset parent');
+    if (i === segments.length - 1) {
+      if (!entry.isFile()) throw new Error('nonregular asset');
+      expected = entry;
+    }
+  }
+  const file = await open(path, constants.O_RDONLY | (constants.O_NOFOLLOW || 0) | (constants.O_NONBLOCK || 0));
+  try {
+    const received = await file.stat();
+    if (!received.isFile() || received.dev !== expected.dev || received.ino !== expected.ino) throw new Error('asset changed while opening');
+    return await file.readFile();
+  } finally {
+    await file.close();
+  }
+}
 export function createProductServer() {
   return http.createServer(async (req, res) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Cache-Control', 'no-store');
     res.setHeader('Referrer-Policy', 'no-referrer');
+    if (!localRequest(req)) {
+      res.writeHead(403).end('Only same-origin loopback requests are accepted.'); return;
+    }
     if (!['GET','HEAD'].includes(req.method)) {
       res.writeHead(405, {'Allow':'GET, HEAD'}).end('This application serves local files only.'); return;
     }
@@ -26,7 +75,7 @@ export function createProductServer() {
       '/examples/correlation-band.json','/examples/period-bands.json','/examples/smooth-drift.json','/examples/trajectory-ambiguous-92be.json','/examples/physical-pasco-92be.json'].includes(pathname) || /^\/src\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+\.mjs$/.test(pathname);
     if (!allowed) { res.writeHead(404).end('File not found.'); return; }
     try {
-      const bytes = await readFile(resolve(root, '.' + pathname));
+      const bytes = await readPublicAsset(pathname);
       res.writeHead(200, {'Content-Type':types[extname(pathname)] || 'application/octet-stream','Content-Length':bytes.length});
       res.end(req.method === 'HEAD' ? undefined : bytes);
     } catch { res.writeHead(404).end('File not found.'); }

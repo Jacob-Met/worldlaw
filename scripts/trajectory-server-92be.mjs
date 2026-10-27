@@ -1,22 +1,21 @@
-/** Additive preview entrypoint; delegates the studio to its existing owner. */
+/** Local trajectory preview shares the Studio's static-asset security boundary. */
 import http from 'node:http';
-import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
-import {resolve,extname} from 'node:path';
+import {resolve} from 'node:path';
 import {createProductServer} from '../server.mjs';
-const root=fileURLToPath(new URL('../',import.meta.url));
-const publicFiles=new Set(['/trajectory.html','/trajectory.css','/examples/trajectory-pendulum-92be.json','/examples/trajectory-ambiguous-92be.json','/examples/physical-pasco-92be.json']);
-const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8'};
-export function createChallengeServer(){
-  const studio=createProductServer();
-  return http.createServer(async(req,res)=>{
-    let pathname;
-    try{pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);}catch{res.writeHead(400).end('Invalid request.');return;}
-    if(pathname==='/')pathname='/trajectory.html';
-    if(!publicFiles.has(pathname)){studio.emit('request',req,res);return;}
-    res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Cache-Control','no-store');res.setHeader('Referrer-Policy','no-referrer');
-    if(!['GET','HEAD'].includes(req.method)){res.writeHead(405,{'Allow':'GET, HEAD'}).end('This application serves local files only.');return;}
-    try{const bytes=await readFile(resolve(root,'.'+pathname));res.writeHead(200,{'Content-Type':types[extname(pathname)],'Content-Length':bytes.length});res.end(req.method==='HEAD'?undefined:bytes);}catch{res.writeHead(404).end('File not found.');}
+
+export function createChallengeServer() {
+  const studio = createProductServer();
+  return http.createServer((req,res) => {
+    // The preview's only independent route is its default trajectory page.
+    // Delegate headers, methods, paths and file handling to the maintained server.
+    try {
+      const url = new URL(req.url, 'http://localhost');
+      if (decodeURIComponent(url.pathname) === '/') req.url = '/trajectory.html' + url.search;
+    } catch {
+      // The shared server will return the ordinary malformed-URL refusal.
+    }
+    studio.emit('request',req,res);
   });
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
