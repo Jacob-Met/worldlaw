@@ -162,3 +162,41 @@ to verify that the new modules are included and served. Exact source pins,
 executed results, captured views and remaining limitations belong to the
 integration receipt for issue #336. This document describes the contract and
 reproduction commands; it does not assert an unrecorded test result.
+
+## Revisit the laws from before an outcome
+
+In **Predictions before learning the outcome**, choose an experiment and select
+**Compare all earlier laws in motion**. The existing Studio apparatus executes
+that receipt's complete earlier competitive set under the current declared
+initial angle, rate, inertia, fixed command, duration, and sample interval.
+Historical navigation starts paused; play or scrub to inspect the predicted
+motion. **Compare current laws** returns to the latest competitive ensemble.
+**Return to inspected law** restores the ordinary single-law view.
+
+The earlier models are reconstructed from the notebook's original inputs.
+Their exact coefficients and original observed ranges are used even when the
+same model ID has since changed coefficients or is no longer competitive. A
+single earlier-law inspection never filters the motion ensemble. The stage,
+transport and comparison identify the chosen outcome; the release assumptions
+remain explicit. This is a calculation made now, not an authenticated forecast
+made before acquisition or a record of observed physical motion.
+
+The maintained executor and whole-set budgets are unchanged. Every original
+law and numerical refusal stays visible, and an incomplete set has no complete
+sampled-spread claim. Observed input bounds are not silently widened; predictions
+outside those bounds remain hypotheses, as in the existing current-law view.
+Changing evidence, the inspected law, experiment selection, release inputs or
+sample interval retires the derived comparison. The notebook format and current
+fit/ranking remain unchanged. Export and reopen retain inputs and reconstruct
+earlier models; motion must be explicitly computed again.
+
+The focused actual-browser course is `node scripts/earlier-motion-browser.mjs`.
+It uses authored synthetic measurements to distinguish earlier from current
+same-ID coefficients, retains all 16 earlier laws after a reading leaves nine
+current laws, compares rendered traces with separate maintained executions,
+and checks source-only replay, refusal, focus and narrow-screen behavior.
+The narrow viewport defaults to 320 pixels. Set `BROWSER_NARROW_WIDTH=390` to
+run the additional 390-pixel receiving case; the receipt records its exact
+viewport, and each case retains the same overflow and interaction assertions.
+A passing numerical fixture is not physical validation. Runtime and current
+layout limitations belong in the execution receipt, not in the source claim.
