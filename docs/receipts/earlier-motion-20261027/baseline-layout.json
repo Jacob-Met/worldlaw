@@ -1,0 +1,34 @@
+{
+  "before": {
+    "viewport": 320,
+    "document": 349,
+    "body": 349,
+    "overflow": [
+      {
+        "tag": "INPUT",
+        "id": "",
+        "class": "",
+        "width": 315,
+        "left": 34,
+        "right": 349,
+        "overflow": "clip"
+      }
+    ]
+  },
+  "after": {
+    "viewport": 320,
+    "document": 349,
+    "body": 349,
+    "overflow": [
+      {
+        "tag": "INPUT",
+        "id": "",
+        "class": "",
+        "width": 315,
+        "left": 34,
+        "right": 349,
+        "overflow": "clip"
+      }
+    ]
+  }
+}

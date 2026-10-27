@@ -5,6 +5,7 @@ import {stiffnessExperimentCourse,observeStiffnessCourse} from './experiment-fix
 
 const $=id=>document.getElementById(id);
 const number=value=>Number(value.toPrecision(6)).toString();
+const forecastSpread=({predictions,spread})=>predictions.length?number(spread)+' N·m':'not available';
 const describeState=s=>`command ${number(s.command)} N·m; angle ${number(s.position)} rad; rate ${number(s.rate)} rad/s`;
 const modelLabel=p=>p.family==='global'?'Global':p.family==='cubic'?`Smooth cubic, origin ${number(p.origin)} rad`:`Hinge at ${number(p.knot)} rad`;
 function cell(tr,value){const td=document.createElement('td');td.textContent=value;tr.append(td);return td;}
@@ -52,7 +53,7 @@ export function createExperimentPanel({onChange,onActivity,onError}) {
   const proposed=plan.selected,proposedButton=$('experiment-freeze-proposed');proposedButton.disabled=!proposed;
   if(proposed){
    proposedButton.dataset.freezeIndex=proposed.index;
-   $('experiment-proposed-summary').textContent=`Proposed state #${proposed.index}: ${describeState(proposed.state)}. Forecast spread ${number(proposed.spread)} N·m across ${proposed.predictions.length} competitive models. Extrapolated axes: ${proposed.extrapolated.join(', ')||'none'}.`;
+   $('experiment-proposed-summary').textContent=`Proposed state #${proposed.index}: ${describeState(proposed.state)}. Forecast spread ${forecastSpread(proposed)} across ${proposed.predictions.length} competitive models. Extrapolated axes: ${proposed.extrapolated.join(', ')||'none'}.`;
   }else{
    delete proposedButton.dataset.freezeIndex;
    $('experiment-proposed-summary').textContent=`No automatic proposal: ${plan.status.replaceAll('_',' ')}. The declared alternatives remain inspectable below.`;
@@ -60,7 +61,7 @@ export function createExperimentPanel({onChange,onActivity,onError}) {
   const ranking=$('experiment-ranking');ranking.replaceChildren();
   for(const row of plan.ranked){
    const tr=document.createElement('tr');tr.dataset.stateIndex=row.index;if(plan.selected?.index===row.index)tr.className='selected';
-   cell(tr,`#${row.index}: ${describeState(row.state)}`);cell(tr,number(row.spread)+' N·m');
+   cell(tr,`#${row.index}: ${describeState(row.state)}`);cell(tr,forecastSpread(row));
    cell(tr,row.predictions.length?row.predictions.map(p=>`${modelLabel(p)}: ${number(p.torque)} N·m`).join('; '):'No executable competitive forecast');
    cell(tr,row.extrapolated.length?row.extrapolated.join(', '):'Within observed input ranges');
    const target=cell(tr,'');const button=document.createElement('button');button.type='button';button.dataset.freezeIndex=row.index;
@@ -72,7 +73,7 @@ export function createExperimentPanel({onChange,onActivity,onError}) {
   const holder=$('experiment-pending');holder.replaceChildren();holder.dataset.revision=pending?.revision??'';holder.dataset.index=pending?.index??'';
   if(pending){
    paragraph(holder,`Frozen revision ${pending.revision}, state #${pending.index}: ${describeState(pending.state)}`);
-   paragraph(holder,`Planning status when frozen: ${pending.planStatus}. Spread ${number(pending.spread)} N·m. Extrapolated axes: ${pending.extrapolated.join(', ')||'none'}.`);
+   paragraph(holder,`Planning status when frozen: ${pending.planStatus}. Forecast spread ${forecastSpread(pending)}. Extrapolated axes: ${pending.extrapolated.join(', ')||'none'}.`);
    for(const p of pending.predictions)paragraph(holder,`${modelLabel(p)} predicted ${number(p.torque)} N·m before the new observation.`);
    if(!pending.predictions.length)paragraph(holder,'No executable forecast was available. Receiving a declared observation does not manufacture a prior prediction.');
    if(!preserveReadingDraft){
@@ -94,7 +95,7 @@ export function createExperimentPanel({onChange,onActivity,onError}) {
    const details=document.createElement('details'),summary=document.createElement('summary');
    summary.textContent=`Inspect ${entry.errors.length} frozen forecasts and residuals`;details.append(summary);
    paragraph(details,`Supplied source: ${entry.acquisition.source.label}; declared kind: ${entry.acquisition.source.declaredKind}. Source identity and independence are not authenticated.`);
-   paragraph(details,`Frozen plan: ${entry.request.planStatus}; spread ${number(entry.request.spread)} N·m; extrapolated axes ${entry.request.extrapolated.join(', ')||'none'}.`);
+   paragraph(details,`Frozen plan: ${entry.request.planStatus}; forecast spread ${forecastSpread(entry.request)}; extrapolated axes ${entry.request.extrapolated.join(', ')||'none'}.`);
    for(const prediction of entry.errors)paragraph(details,errorText(entry,prediction));
    if(!entry.errors.length)paragraph(details,'No executable prior model existed, so no frozen error is reported.');
    detailsCell.append(details);rows.append(tr);

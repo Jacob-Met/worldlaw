@@ -6,7 +6,7 @@ import path from 'node:path';
 import assert from 'node:assert/strict';
 import {requireChromiumSandbox} from './support/chromium-sandbox.mjs';
 import {stiffnessExperimentCourse} from '../src/stiffness/experiment-fixture.mjs';
-import {exportStiffnessExperiment} from '../src/stiffness/experiment.mjs';
+import {exportStiffnessExperiment,replayStiffnessExperiment} from '../src/stiffness/experiment.mjs';
 
 const server=createProductServer();
 await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
@@ -107,6 +107,24 @@ try {
  const planStatus=async()=>evaljs("document.querySelector('#experiment-status').dataset.planStatus");
  const pendingIndex=async()=>evaljs("document.querySelector('#experiment-pending').dataset.index || null");
  const renderedState=async()=>evaljs("({ranking:document.querySelector('#experiment-ranking').textContent,pending:document.querySelector('#experiment-pending').textContent,history:document.querySelector('#experiment-history').textContent,status:document.querySelector('#experiment-status').dataset.planStatus})");
+
+ const spreadRows=()=>evaljs("[...document.querySelectorAll('#experiment-ranking tr[data-state-index]')].map(row=>({index:Number(row.dataset.stateIndex),spread:row.cells[1].textContent,forecasts:row.cells[2].textContent}))");
+ const historySpread=id=>evaljs("(()=>{const row=[...document.querySelectorAll('#experiment-history tr[data-acquisition-id]')].find(row=>row.dataset.acquisitionId==="+JSON.stringify(id)+");return row?.querySelectorAll('details p')[1]?.textContent})()");
+ const spreadVisibility=[];
+ const captureSpread=async(name,selector)=>{
+  const quoted=JSON.stringify(selector);
+  const saved=await evaljs("(()=>{const node=document.querySelector("+quoted+"),box=node.closest('.experiment-scroll'),saved={x:scrollX,y:scrollY,left:box?.scrollLeft,top:box?.scrollTop};node.scrollIntoView({block:'center',inline:'center',behavior:'instant'});return saved})()");
+  try{
+   await paint();
+   const evidence=await evaljs("(()=>{const node=document.querySelector("+quoted+"),box=node.closest('.experiment-scroll'),s=getComputedStyle(node),range=document.createRange();range.selectNodeContents(node);const r=box?.getBoundingClientRect(),clip={left:r?Math.max(0,r.left+box.clientLeft):0,right:r?Math.min(innerWidth,r.left+box.clientLeft+box.clientWidth):innerWidth,top:r?Math.max(0,r.top+box.clientTop):0,bottom:r?Math.min(innerHeight,r.top+box.clientTop+box.clientHeight):innerHeight};return {text:node.textContent,width:innerWidth,font:parseFloat(s.fontSize),lineHeight:s.lineHeight,zoom:getComputedStyle(document.documentElement).zoom,devicePixelRatio,display:s.display,visibility:s.visibility,clip,rects:[...range.getClientRects()].filter(r=>r.width>0&&r.height>0).map(r=>({left:r.left,right:r.right,top:r.top,bottom:r.bottom}))}})()");
+   // Review the inherited typography in captured pixels; font size alone does not test clipping.
+   assert.ok(evidence.rects.length>0,JSON.stringify(evidence));assert.notEqual(evidence.display,'none');assert.equal(evidence.visibility,'visible');
+   for(const r of evidence.rects)assert.ok(r.left>=evidence.clip.left-1&&r.right<=evidence.clip.right+1&&r.top>=evidence.clip.top-1&&r.bottom<=evidence.clip.bottom+1,JSON.stringify(evidence));
+   spreadVisibility.push({name,...evidence});await screenshot(name);
+  }finally{
+   await evaljs("(()=>{const saved="+JSON.stringify(saved)+",box=document.querySelector("+quoted+").closest('.experiment-scroll');if(box){box.scrollLeft=saved.left;box.scrollTop=saved.top;}window.scrollTo({left:saved.x,top:saved.y,behavior:'instant'})})()");
+  }
+ };
  let initialSaved,afterObservedSaved,pendingSaved,firstPendingText;
  await check('maintained studio navigation enters the actual experiment-enabled lab',async()=>{
   await send('Page.navigate',{url:new URL('/',origin).href});
@@ -124,6 +142,8 @@ try {
   assert.equal(input.schema,'worldlaw.stiffness-experiment/v1');assert.equal(input.initial.dataset.observations.length,8);
   assert.equal(input.permitted.length,8);assert.deepEqual(input.acquisitions,[]);
   assert.ok(!('fit'in input)&&!('history'in input));
+  const spreads=await spreadRows();assert.equal(spreads.find(row=>row.index===2).spread,'0.346946 N·m');assert.ok(spreads.every(row=>row.spread!=='not available'));
+  assert.equal(replayStiffnessExperiment(input).plan.ranked.find(row=>row.index===2).predictions.length,5);
  });
  await check('keyboard freezes a current proposal before authored observation and refit',async()=>{
   await evaljs("document.querySelector('#experiment-ranking button[data-freeze-index=\"2\"]').focus()");
@@ -332,6 +352,8 @@ try {
   assert.match(await evaljs("document.querySelector('#input-design-rows tr[data-design-index=\"0\"]').textContent"),/No admitted improvement.*still unsupported/);
   confoundedSaved=await save();const input=JSON.parse(confoundedSaved);
   assert.deepEqual(input.initial.settings.nuisanceTerms,['bias','command']);assert.equal(input.pending,null);
+  assert.deepEqual(replayStiffnessExperiment(input).plan.ranked.map(row=>({index:row.index,spread:row.spread,predictions:row.predictions})),[{index:0,spread:0,predictions:[]},{index:1,spread:0,predictions:[]}]);
+  assert.deepEqual(await spreadRows(),[0,1].map(index=>({index,spread:'not available',forecasts:'No executable competitive forecast'})));
  });
  await check('design target inspection follows exactly the offered global hinge and revised cubic structures',async()=>{
   const original=await save();
@@ -379,6 +401,8 @@ try {
   assert.equal(await pendingIndex(),'1');assert.match(await text('experiment-pending'),/No executable forecast was available/);
   assert.equal(await rowCount(),17);assert.equal(await historyCount(),0);
   const pending=JSON.parse(await save());assert.equal(pending.pending,1);assert.deepEqual(pending.acquisitions,[]);
+  const frozen=replayStiffnessExperiment(pending).pending;assert.deepEqual(frozen.predictions,[]);assert.equal(frozen.spread,0);
+  assert.match(await evaljs("document.querySelectorAll('#experiment-pending p')[1].textContent"),/\. Forecast spread not available\. Extrapolated axes/);
   await click('experiment-virtual-receive');assert.equal(await rowCount(),18);assert.equal(await historyCount(),1);
   assert.equal(await text('verdict'),'GLOBAL PREFERRED');assert.equal(await designStatus(),'already_supported');
   assert.deepEqual(await designBefore(),{rank:'3',coefficientCount:'3',unresolved:'0'});
@@ -388,10 +412,36 @@ try {
   emptyForecastHistory=await text('experiment-history');recoveredDesignSaved=await save();
   const saved=JSON.parse(recoveredDesignSaved);assert.equal(saved.acquisitions[0].observation.jointTorque,1.4);assert.equal(saved.acquisitions[0].index,1);assert.equal(saved.pending,null);
   assert.ok(!('history'in saved)&&!('fit'in saved));
+  const historical=replayStiffnessExperiment(saved).history[0];assert.deepEqual(historical.request.predictions,[]);assert.equal(historical.request.spread,0);
+  assert.match(await historySpread(historical.acquisition.id),/; forecast spread not available; extrapolated axes/);
+  const current=replayStiffnessExperiment(saved).plan.ranked;assert.ok(current.length>0&&current.every(row=>row.predictions.length>0));
+  assert.deepEqual((await spreadRows()).map(row=>({index:row.index,spread:row.spread})),current.map(row=>({index:row.index,spread:Number(row.spread.toPrecision(6)).toString()+' N·m'})));
   await course('kink');await upload('source-file',recoveredDesignSaved,'recovered-design.json');
   await wait("document.querySelector('#input-design-before').dataset.rank==='3'&&document.querySelector('#experiment-history').dataset.acquisitionCount==='1'");
   assert.equal(await text('experiment-history'),emptyForecastHistory);assert.equal(await text('verdict'),'GLOBAL PREFERRED');
   assert.equal(await save(),recoveredDesignSaved);assert.equal(await evaljs("document.querySelector('#experiment-virtual-receive').disabled"),true);
+  assert.match(await historySpread(historical.acquisition.id),/; forecast spread not available; extrapolated axes/);
+ });
+ await check('populated exact-zero forecasts stay numerical in ranking pending history and reopened inputs',async()=>{
+  const input=JSON.parse(exportStiffnessExperiment(stiffnessExperimentCourse('confounded')));
+  input.initial.dataset.observations.push({...input.permitted[1],jointTorque:0});
+  for(const row of input.initial.dataset.observations)row.jointTorque=0;
+  const zero=replayStiffnessExperiment(input);
+  for(const row of zero.plan.ranked){assert.equal(row.predictions.length,4);assert.ok(row.predictions.every(p=>p.torque===0));assert.equal(row.spread,0);}
+  const original=exportStiffnessExperiment(zero);await upload('source-file',original,'authored-zero-spread.json');
+  await wait("document.querySelector('#experiment-ranking tr[data-state-index=\"0\"]')?.cells[1].textContent==='0 N·m'");
+  assert.equal(await save(),original);const zeroRows=await spreadRows();assert.deepEqual(zeroRows.map(row=>row.index),[0,1]);assert.ok(zeroRows.every(row=>row.spread==='0 N·m'));
+  await freeze(1);assert.match(await evaljs("document.querySelectorAll('#experiment-pending p')[1].textContent"),/\. Forecast spread 0 N·m\. Extrapolated axes/);
+  const frozen=replayStiffnessExperiment(JSON.parse(await save())).pending;assert.equal(frozen.index,1);assert.equal(frozen.predictions.length,4);assert.ok(frozen.predictions.every(p=>p.torque===0));assert.equal(frozen.spread,0);
+  await value('observation-id','zero-spread-reading');await value('observation-source','Authored zero-response spread control');await value('observation-kind','authored');await value('observation-torque','0');
+  await click('experiment-receive');assert.equal(await historyCount(),1);
+  const saved=await save(),entry=replayStiffnessExperiment(JSON.parse(saved)).history[0];
+  assert.equal(entry.acquisition.id,'zero-spread-reading');assert.equal(entry.acquisition.index,1);assert.equal(entry.acquisition.source.declaredKind,'authored');assert.equal(entry.acquisition.source.label,'Authored zero-response spread control');
+  assert.equal(entry.request.predictions.length,4);assert.ok(entry.request.predictions.every(p=>p.torque===0));assert.equal(entry.request.spread,0);
+  assert.match(await historySpread('zero-spread-reading'),/; forecast spread 0 N·m; extrapolated axes/);
+  await course('kink');assert.equal(await rowCount(),8);assert.equal(await historyCount(),0);assert.equal(await planStatus(),'proposed');await upload('source-file',saved,'reopened-zero-spread.json');
+  await wait("Boolean(document.querySelector('#experiment-history tr[data-acquisition-id=\"zero-spread-reading\"]'))");
+  assert.equal(await save(),saved);assert.match(await historySpread('zero-spread-reading'),/; forecast spread 0 N·m; extrapolated axes/);
  });
  await check('changing an inspected design target fences a late source import without changing the experiment',async()=>{
   await course('confounded');await chooseDesign({family:'global'});
@@ -468,6 +518,8 @@ try {
    }
    assert.ok(await evaljs("document.documentElement.scrollWidth<=innerWidth+1"));
    await evaljs("document.querySelector('#input-design-before').scrollIntoView({block:'start',behavior:'instant'})");await screenshot('stiffness-input-design-'+width);
+   assert.ok((await spreadRows()).every(row=>row.spread==='not available'));
+   await captureSpread('empty-forecast-table-'+width,'#experiment-ranking tr[data-state-index="1"] td:nth-child(2)');
    const selector=await evaljs("(()=>{const s=document.querySelector('#input-design-structure');s.focus();return {focused:document.activeElement===s,before:s.value,next:s.options[s.selectedIndex+1]?.value}})()");
    assert.equal(selector.focused,true);
    assert.equal(selector.before,JSON.stringify({family:'global'}));
@@ -489,11 +541,22 @@ try {
    await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,text:'\r'});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
    assert.equal(await pendingIndex(),'1');assert.equal(await evaljs("document.activeElement.id"),'observation-source');
    assert.match(await text('experiment-pending'),/No executable forecast was available/);
+   assert.match(await evaljs("document.querySelectorAll('#experiment-pending p')[1].textContent"),/\. Forecast spread not available\. Extrapolated axes/);
+   await captureSpread('empty-forecast-pending-'+width,'#experiment-pending p:nth-child(2)');
+   await click('experiment-virtual-receive');assert.deepEqual(await designBefore(),{rank:'3',coefficientCount:'3',unresolved:'0'});
+   const saved=await save(),entry=replayStiffnessExperiment(JSON.parse(saved)).history[0];
+   assert.deepEqual(entry.request.predictions,[]);assert.equal(entry.request.spread,0);assert.equal(entry.acquisition.observation.jointTorque,1.4);
+   await course('kink');assert.equal(await rowCount(),8);assert.equal(await historyCount(),0);await upload('source-file',saved,'reopened-empty-spread-'+width+'.json');
+   await wait("document.querySelector('#input-design-before').dataset.rank==='3'&&document.querySelector('#experiment-history').dataset.acquisitionCount==='1'");
+   assert.equal(await save(),saved);assert.match(await historySpread(entry.acquisition.id),/; forecast spread not available; extrapolated axes/);
+   assert.equal(await evaljs("document.querySelector('#experiment-history tr[data-acquisition-id]').dataset.acquisitionId"),entry.acquisition.id);
+   await evaljs("document.querySelector('#experiment-history tr[data-acquisition-id] details').open=true");
+   await captureSpread('empty-forecast-history-'+width,'#experiment-history tr[data-acquisition-id] details p:nth-of-type(2)');
    designVisibility.push({width,evidence,keyboardTarget:target});
   });
  }
  await check('no uncaught page exceptions or external requests during experiment receiving',async()=>{assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);});
- const result={checks:out.length,pass:true,results:out,events,historyVisibility,proposalVisibility,revisionVisibility,designVisibility,sandboxAdmission};if(outputDir)await writeFile(path.join(outputDir,'stiffness-experiment-browser.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
+ const result={checks:out.length,pass:true,results:out,events,historyVisibility,proposalVisibility,revisionVisibility,designVisibility,spreadVisibility,sandboxAdmission};if(outputDir)await writeFile(path.join(outputDir,'stiffness-experiment-browser.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
 }catch(error){
  let page=null;try{page=await diagnosticEval?.("({state:document.querySelector('#verdict')?.textContent,error:document.querySelector('#error')?.textContent,focus:document.activeElement?.id,location:location.href,experiment:document.querySelector('#experiment-status')?.textContent,pending:document.querySelector('#experiment-pending')?.dataset.index,acquisitions:document.querySelector('#experiment-history')?.dataset.acquisitionCount})");}catch{}
  console.error(JSON.stringify({failure:error.message,completed:out,page,events},null,2));throw error;

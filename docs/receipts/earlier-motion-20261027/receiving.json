@@ -1,0 +1,114 @@
+{
+  "schema": "worldlaw.earlier-motion-receiving/v1",
+  "date": "2026-10-27",
+  "applicationSource": "cc53c56cf8342d0553d25d9592f8cf8d9a84b250",
+  "applicationTree": "0ceaa04257c6fdc4607a9ac48cba2d9c90fbde8a",
+  "nativeSource": "8794c2f74c1f9b67a2b0742a08594abb0a8c97c1",
+  "nativeResults": [
+    {
+      "check": "tests",
+      "exit_code": 0,
+      "seconds": 137.291,
+      "log": "/var/tmp/estate-48a767a1-history-motion-current/.receipts/integration-final-native/tests.txt",
+      "tail": "deridentified declarations do not gain a successful weighted fallback\n  ---\n  duration_ms: 3.407968\n  type: 'test'\n  ...\n# Subtest: private fit reuse includes every ratio and cannot cross losses or accept public metric edits\nok 1425 - private fit reuse includes every ratio and cannot cross losses or accept public metric edits\n  ---\n  duration_ms: 263.517718\n  type: 'test'\n  ...\n# Subtest: CSV and v3 JSON retain declared ratios exactly and reject partial or legacy declarations\nok 1426 - CSV and v3 JSON retain declared ratios exactly and reject partial or legacy declarations\n  ---\n  duration_ms: 10.327201\n  type: 'test'\n  ...\n# Subtest: v4 input-only replay preserves ratios, every prior assumption, append, undo and forged-answer refusal\nok 1427 - v4 input-only replay preserves ratios, every prior assumption, append, undo and forged-answer refusal\n  ---\n  duration_ms: 357.593669\n  type: 'test'\n  ...\n# Subtest: held-out ratios and outcomes cannot change fitting, ranking, planner or source assumptions\nok 1428 - held-out ratios and outcomes cannot change fitting, ranking, planner or source assumptions\n  ---\n  duration_ms: 35.651014\n  type: 'test'\n  ...\n# Subtest: weighted v3 sources preserve explicit offered-input v2 semantics through v4 notebooks\nok 1429 - weighted v3 sources preserve explicit offered-input v2 semantics through v4 notebooks\n  ---\n  duration_ms: 67.89241\n  type: 'test'\n  ...\n# Subtest: maintained command-map comparison retains the same ratio-bearing source and estimator at every width\nok 1430 - maintained command-map comparison retains the same ratio-bearing source and estimator at every width\n  ---\n  duration_ms: 78.392144\n  type: 'test'\n  ...\n1..1430\n# tests 1430\n# suites 0\n# pass 1429\n# fail 0\n# cancelled 0\n# skipped 1\n# todo 0\n# duration_ms 137044.897462\n"
+    },
+    {
+      "check": "studio-smoke",
+      "exit_code": 0,
+      "seconds": 0.799,
+      "log": "/var/tmp/estate-48a767a1-history-motion-current/.receipts/integration-final-native/studio-smoke.txt",
+      "tail": "\n> worldlaw@0.1.0 smoke\n> node scripts/smoke.mjs\n\nPASS launched product assets and refusal paths; actual discovery → virtual measurement → revision → notebook reopen.\n"
+    },
+    {
+      "check": "trajectory-smoke",
+      "exit_code": 0,
+      "seconds": 0.858,
+      "log": "/var/tmp/estate-48a767a1-history-motion-current/.receipts/integration-final-native/trajectory-smoke.txt",
+      "tail": "\n> worldlaw@0.1.0 smoke:trajectory\n> node scripts/trajectory-smoke-92be.mjs\n\n{\n  \"product\": \"worldlaw\",\n  \"route\": \"trajectory-challenge\",\n  \"runtime\": \"v22.22.1\",\n  \"inputSHA256\": \"fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e\",\n  \"received\": \"launched local HTTP server -> actual JSON input -> fitting -> forward predictions -> source notebook reopen\",\n  \"selectedModel\": \"command+rate+gravity+bias\",\n  \"selectedPositionRMSE\": 0.0006561748182990025,\n  \"comparedModels\": 8,\n  \"challengeRuns\": 2,\n  \"negativeCases\": [\n    \"missing initial rate refused\",\n    \"missing resource404\",\n    \"unsupported method405\"\n  ],\n  \"evidenceKind\": \"synthetic\"\n}\n"
+    },
+    {
+      "check": "package-policy",
+      "exit_code": 0,
+      "seconds": 0.284,
+      "log": "/var/tmp/estate-48a767a1-history-motion-current/.receipts/integration-final-native/package-policy.txt",
+      "tail": "test_applied_torque_receipts_have_exact_distribution_policy (__main__.DistributionPolicyTests.test_applied_torque_receipts_have_exact_distribution_policy) ... ok\ntest_current_tracked_tree_has_explicit_coverage (__main__.DistributionPolicyTests.test_current_tracked_tree_has_explicit_coverage) ... ok\ntest_exact_historical_outputs_are_omitted_without_reading_them (__main__.DistributionPolicyTests.test_exact_historical_outputs_are_omitted_without_reading_them) ... ok\ntest_repository_configuration_stays_outside_distribution (__main__.DistributionPolicyTests.test_repository_configuration_stays_outside_distribution) ... ok\ntest_runtime_dependencies_and_test_fixtures_are_distributed (__main__.DistributionPolicyTests.test_runtime_dependencies_and_test_fixtures_are_distributed) ... ok\ntest_unknown_outputs_secrets_and_traversal_still_refuse (__main__.DistributionPolicyTests.test_unknown_outputs_secrets_and_traversal_still_refuse) ... ok\ntest_working_tree_symlinks_refuse_at_file_and_directory (__main__.DistributionPolicyTests.test_working_tree_symlinks_refuse_at_file_and_directory) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.152s\n\nOK\n"
+    }
+  ],
+  "nativeExecution": {
+    "owner": "node-2b8c9803b6069b758adef320e07b48ed",
+    "command_id": "estate-48a767a1-final-source-native-001",
+    "request_sha256": "773d68bf974322d2eb8df4825410db79b210478f3c15923061e629f00a1e2fff",
+    "result_sha256": "9f83787c549012b80286530bd961286b9d3df27026a1cdcd4228c5203e1287e5"
+  },
+  "package": {
+    "output": "/tmp/estate-48a767a1-20261027/releases/cc53c56cf8342d0553d25d9592f8cf8d9a84b250.zip",
+    "sha256": "76ceb58c75e49cb45988e4bc176ea64f63ce1a84a465bed66ab3c344849f66d0",
+    "sourceFiles": 1473,
+    "bytes": 61221414,
+    "sourceCommit": "cc53c56cf8342d0553d25d9592f8cf8d9a84b250",
+    "sourceTree": "0ceaa04257c6fdc4607a9ac48cba2d9c90fbde8a",
+    "sourceMode": "git-commit",
+    "extracted_root": "/tmp/estate-48a767a1-20261027/received/cc53c56cf8342d0553d25d9592f8cf8d9a84b250/worldlaw",
+    "manifest_verified_files": 1473,
+    "styles_sha256": "67ad1f592837d0502dd53ebf882acd45ae65387f3813d31fcc361a2069d33018",
+    "recovered_patch_owner": "estate-2adf-20261027"
+  },
+  "consumerExecution": {
+    "owner": "node-10dbc406f84a45113b2f175af35500f5",
+    "command_id": "estate-48a767a1-recovered-package-consumer-001",
+    "result_sha256": "24b6d6841ea0c78bae5855b16c3eb862b08bf2be814d19ae838127d6fdd84666"
+  },
+  "chooserExecution": {
+    "owner": "node-10dbc406f84a45113b2f175af35500f5",
+    "command_id": "estate-48a767a1-layout-chooser-receive-001",
+    "request_sha256": "adb4b89808a0b89d2bda1c5585a38367bf41d34b8b7eeed641c40a7da937a0ab",
+    "source_sha256": "515f12a0961528a9becaec8babab610b94d75e0841bf7063d08b9939798cea4a",
+    "source_path": "/tmp/estate-48a767a1-20261027/receivers/layout-chooser-receiver.mjs"
+  },
+  "recoveredLayout": {
+    "originalOwner": "estate-2adf-20261027",
+    "originalTask": "worldlaw-320px-studio-overflow-estate-2adf-20261027",
+    "originalSourceSHA256": "67ad1f592837d0502dd53ebf882acd45ae65387f3813d31fcc361a2069d33018",
+    "reconciliationSourceSHA256": "a702782cff83901769213dd6f660bbc832ccecf7ccbfb33322419e78ac945519",
+    "integrationTask": "worldlaw-2adf-layout-integration-estate-48a767a1-20261027",
+    "originalProbeCommand": "estate-2adf-20261027-layout-probe-38",
+    "originalProbeOwner": "node-72e09d180ec675855992b3cbfb59e9e8",
+    "originalProbeTerminal": "completed exit0 2026-10-27T05:45:28.864212629Z"
+  },
+  "independentReview": [
+    {
+      "worker": "source_recovery",
+      "scope": "Saved models, coefficients/domains, complete-set numerical semantics; package explicit-path delta; preserved onAssessAchieved callbacks. Authored historical browser course. Reviewed root execution reports; did not execute final courses.",
+      "verdict": "No blocking scientific or packaging finding."
+    },
+    {
+      "worker": "consumer_review",
+      "scope": "UI state/focus, actual supplied earlier pixels, original CSS selector; authored explicit narrow selection and native chooser receiver. Root executed courses.",
+      "verdict": "Accepted exact cc53 desktop instrument, 320px instrument/comparison and native chooser pixels; all laws, provenance, numerical rows and keyboard focus remain readable and contained. No blocking issue within Chromium receiving scope."
+    },
+    {
+      "worker": "workstate",
+      "scope": "Viewport default/enforcement/receipt labeling and evidence wording; no external calls after retained read interruption.",
+      "verdict": "320 gate intact; separate output directories required and used."
+    }
+  ],
+  "qualification": "Synthetic analytic observations entered through actual UI. No physical acquisition, authenticated historical forecast, calibrated model probability or continuous-time display guarantee. Native suite identified at8794 predecessor; CSS-only cc53 has separately received package and browser evidence.",
+  "reviewedScreenshots": [
+    {
+      "name": "historical-motion-desktop.png",
+      "sha256": "15a83b2cb3ca7a0a97d94df6f13393b71da1e5847dab3c54ea1f24b93844494c"
+    },
+    {
+      "name": "historical-motion-320.png",
+      "sha256": "269e8ab0c311a86823da26e32a91d25f955bf8d44cb4a5b334ba81c822b1db52"
+    },
+    {
+      "name": "historical-comparison-320.png",
+      "sha256": "8fdbbea9c5987fda1edd708cc1218298c40d45afbef75acb728885e9c2af35eb"
+    },
+    {
+      "name": "historical-chooser-focused-320.png",
+      "sha256": "a538ea96a34be15bf11c1ac7df82a9a99c2cff8255279bc34190b82b241c8bc4"
+    }
+  ]
+}

@@ -1,0 +1,828 @@
+{
+  "schema": "worldlaw-earlier-motion-composed-receiving/v1",
+  "application_source": {
+    "commit": "fb74307fd354064b00fb58cd78f9632fbbe7a36d",
+    "tree": "c4d47c5becc61b53bfdf12b66fd4fedbd35728ee",
+    "parents": [
+      "15288e65229b40c39a26de7a0d3d972ff94978c4",
+      "9940d2b40a140962d21f61a671ad61843657afb8"
+    ],
+    "base": "9940d2b40a140962d21f61a671ad61843657afb8"
+  },
+  "package": {
+    "output": "/tmp/estate-48a767a1-20261027/releases/fb74307fd354064b00fb58cd78f9632fbbe7a36d.zip",
+    "sha256": "d399b124dc13465940d8fba5c493b09792cb0c8fadbdcc81ad03575fec420939",
+    "sourceFiles": 1528,
+    "bytes": 63223506,
+    "sourceCommit": "fb74307fd354064b00fb58cd78f9632fbbe7a36d",
+    "sourceTree": "c4d47c5becc61b53bfdf12b66fd4fedbd35728ee",
+    "sourceMode": "git-commit",
+    "extracted_root": "/tmp/estate-48a767a1-20261027/received/fb74307fd354064b00fb58cd78f9632fbbe7a36d/worldlaw",
+    "manifest_verified_files": 1528,
+    "source_tree": "c4d47c5becc61b53bfdf12b66fd4fedbd35728ee"
+  },
+  "native": {
+    "owner": "node-2b8c9803b6069b758adef320e07b48ed",
+    "command": "estate-48a767a1-final-native-001",
+    "receipt": {
+      "command_id": "estate-48a767a1-final-native-001",
+      "request_sha256": "aaf6121a551b1a04dcfb073ead3a6dafd0a7d6208b858bb834a1299a238f1a5d",
+      "state": "completed",
+      "started_at": "2026-10-27T08:59:30.160212262Z",
+      "finished_at": "2026-10-27T09:01:58.787182277Z",
+      "exit_code": 0
+    },
+    "results": [
+      {
+        "check": "tests",
+        "exit_code": 0,
+        "seconds": 144.368,
+        "log": "/var/tmp/estate-48a767a1-history-motion-current/.receipts/final-9940-native/tests.txt",
+        "tail": "on declarations can worsen prediction and are not reported as verified reliability\nok 1453 - wrong precision declarations can worsen prediction and are not reported as verified reliability\n  ---\n  duration_ms: 239.967413\n  type: 'test'\n  ...\n# Subtest: missing, partial, invalid and underidentified declarations do not gain a successful weighted fallback\nok 1454 - missing, partial, invalid and underidentified declarations do not gain a successful weighted fallback\n  ---\n  duration_ms: 11.582026\n  type: 'test'\n  ...\n# Subtest: private fit reuse includes every ratio and cannot cross losses or accept public metric edits\nok 1455 - private fit reuse includes every ratio and cannot cross losses or accept public metric edits\n  ---\n  duration_ms: 716.834808\n  type: 'test'\n  ...\n# Subtest: CSV and v3 JSON retain declared ratios exactly and reject partial or legacy declarations\nok 1456 - CSV and v3 JSON retain declared ratios exactly and reject partial or legacy declarations\n  ---\n  duration_ms: 15.528618\n  type: 'test'\n  ...\n# Subtest: v4 input-only replay preserves ratios, every prior assumption, append, undo and forged-answer refusal\nok 1457 - v4 input-only replay preserves ratios, every prior assumption, append, undo and forged-answer refusal\n  ---\n  duration_ms: 739.651893\n  type: 'test'\n  ...\n# Subtest: held-out ratios and outcomes cannot change fitting, ranking, planner or source assumptions\nok 1458 - held-out ratios and outcomes cannot change fitting, ranking, planner or source assumptions\n  ---\n  duration_ms: 67.165051\n  type: 'test'\n  ...\n# Subtest: weighted v3 sources preserve explicit offered-input v2 semantics through v4 notebooks\nok 1459 - weighted v3 sources preserve explicit offered-input v2 semantics through v4 notebooks\n  ---\n  duration_ms: 155.185861\n  type: 'test'\n  ...\n# Subtest: maintained command-map comparison retains the same ratio-bearing source and estimator at every width\nok 1460 - maintained command-map comparison retains the same ratio-bearing source and estimator at every width\n  ---\n  duration_ms: 250.26619\n  type: 'test'\n  ...\n1..1460\n# tests 1460\n# suites 0\n# pass 1459\n# fail 0\n# cancelled 0\n# skipped 1\n# todo 0\n# duration_ms 144106.878131\n"
+      },
+      {
+        "check": "studio-smoke",
+        "exit_code": 0,
+        "seconds": 1.484,
+        "log": "/var/tmp/estate-48a767a1-history-motion-current/.receipts/final-9940-native/studio-smoke.txt",
+        "tail": "\n> worldlaw@0.1.0 smoke\n> node scripts/smoke.mjs\n\nPASS launched product assets and refusal paths; actual discovery \u2192 virtual measurement \u2192 revision \u2192 notebook reopen.\n"
+      },
+      {
+        "check": "trajectory-smoke",
+        "exit_code": 0,
+        "seconds": 2.154,
+        "log": "/var/tmp/estate-48a767a1-history-motion-current/.receipts/final-9940-native/trajectory-smoke.txt",
+        "tail": "\n> worldlaw@0.1.0 smoke:trajectory\n> node scripts/trajectory-smoke-92be.mjs\n\n{\n  \"product\": \"worldlaw\",\n  \"route\": \"trajectory-challenge\",\n  \"runtime\": \"v22.22.1\",\n  \"inputSHA256\": \"fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e\",\n  \"received\": \"launched local HTTP server -> actual JSON input -> fitting -> forward predictions -> source notebook reopen\",\n  \"selectedModel\": \"command+rate+gravity+bias\",\n  \"selectedPositionRMSE\": 0.0006561748182990025,\n  \"comparedModels\": 8,\n  \"challengeRuns\": 2,\n  \"negativeCases\": [\n    \"missing initial rate refused\",\n    \"missing resource404\",\n    \"unsupported method405\"\n  ],\n  \"evidenceKind\": \"synthetic\"\n}\n"
+      },
+      {
+        "check": "package-policy",
+        "exit_code": 0,
+        "seconds": 0.546,
+        "log": "/var/tmp/estate-48a767a1-history-motion-current/.receipts/final-9940-native/package-policy.txt",
+        "tail": "test_applied_torque_receipts_have_exact_distribution_policy (__main__.DistributionPolicyTests.test_applied_torque_receipts_have_exact_distribution_policy) ... ok\ntest_current_tracked_tree_has_explicit_coverage (__main__.DistributionPolicyTests.test_current_tracked_tree_has_explicit_coverage) ... ok\ntest_exact_historical_outputs_are_omitted_without_reading_them (__main__.DistributionPolicyTests.test_exact_historical_outputs_are_omitted_without_reading_them) ... ok\ntest_repository_configuration_stays_outside_distribution (__main__.DistributionPolicyTests.test_repository_configuration_stays_outside_distribution) ... ok\ntest_runtime_dependencies_and_test_fixtures_are_distributed (__main__.DistributionPolicyTests.test_runtime_dependencies_and_test_fixtures_are_distributed) ... ok\ntest_unknown_outputs_secrets_and_traversal_still_refuse (__main__.DistributionPolicyTests.test_unknown_outputs_secrets_and_traversal_still_refuse) ... ok\ntest_working_tree_symlinks_refuse_at_file_and_directory (__main__.DistributionPolicyTests.test_working_tree_symlinks_refuse_at_file_and_directory) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.347s\n\nOK\n"
+      }
+    ],
+    "counts": {
+      "tests": 1460,
+      "pass": 1459,
+      "skip": 1,
+      "fail": 0
+    }
+  },
+  "browser": {
+    "owner": "node-10dbc406f84a45113b2f175af35500f5",
+    "command": "estate-48a767a1-final-browser-001",
+    "receipt": {
+      "command_id": "estate-48a767a1-final-browser-001",
+      "request_sha256": "085d23421b363df103aba71e08044c167da33c5accd81c54642255b446d40cf2",
+      "generation": "cbd5b417c86b6f9619e435a2eacfb36b20f1e2347e0b8591f37bfa16d06a4918",
+      "state": "completed",
+      "runner_pid": 3153079,
+      "started_at": "2026-10-27T08:59:55.918537961Z",
+      "finished_at": "2026-10-27T09:00:33.476344853Z",
+      "exit_code": 0
+    },
+    "package_command": "estate-48a767a1-final-package-001",
+    "package_command_receipt": {
+      "command_id": "estate-48a767a1-final-package-001",
+      "request_sha256": "fa5370ad23ce55bbe211f7e35fd2ec5513626155194bfb152050aec78a295ae4",
+      "generation": "95cc27ec750e789e2f2ce795345308ea7eda9a1a211e8ee7423188450c5b76a8",
+      "state": "completed",
+      "runner_pid": 3144879,
+      "started_at": "2026-10-27T08:59:14.940930096Z",
+      "finished_at": "2026-10-27T08:59:17.773594457Z",
+      "exit_code": 0
+    },
+    "courses": [
+      {
+        "check": "studio-smoke",
+        "exit_code": 0,
+        "log": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940/studio-smoke.txt",
+        "passed_controls": [
+          "PASS launched product assets and refusal paths; actual discovery \u2192 virtual measurement \u2192 revision \u2192 notebook reopen."
+        ]
+      },
+      {
+        "check": "trajectory-smoke",
+        "exit_code": 0,
+        "log": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940/trajectory-smoke.txt",
+        "passed_controls": []
+      },
+      {
+        "check": "history-320",
+        "script_sha256": "345777cdda5629e2275b34f2ad4fdff6b1babd9601a18b4055f3d0cd246e52df",
+        "viewport": "320",
+        "exit_code": 0,
+        "seconds": 5.107,
+        "source": "fb74307fd354064b00fb58cd78f9632fbbe7a36d",
+        "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940/history-320",
+        "passed_controls": [
+          "PASS qualified 16 earlier / 9 current laws, seven lost IDs, changed same-ID motion, exact immutable saved domains and coefficients",
+          "PASS actual entered measurement and keyboard historical launch render all saved laws with direct-executor exact curves",
+          "PASS current nine-law and historical sixteen-law sources switch explicitly; changed release retires derived paths without notebook mutation",
+          "PASS over-budget historical grid refuses every original law and leaves no sampled spread or surviving trace",
+          "PASS two actual outcomes preserve their distinct original sets; receipt selection retires paths before explicit rerun",
+          "PASS five-key input-only export reopens fresh; historical curves reproduce at 320px with reduced motion, keyboard scrub and clear"
+        ]
+      },
+      {
+        "check": "current-motion",
+        "script_sha256": "559bcb315e5f5119a5a1ae03f6b97adca2de011d8afd21d812172228f8507e17",
+        "viewport": null,
+        "exit_code": 0,
+        "seconds": 8.63,
+        "source": "fb74307fd354064b00fb58cd78f9632fbbe7a36d",
+        "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940/current-motion",
+        "passed_controls": [
+          "PASS ordinary original-source import and keyboard comparison show every competitive law with incumbent-exact sampled curves",
+          "PASS shared joint and angle-rate compositions use synchronized samples; pause is still, scrub is explicit and playback moves",
+          "PASS changed dynamics retire every old path; changed release recomputes and invalid inertia cannot preserve a successful comparison",
+          "PASS source-only download and ordinary reopen retire derived paths; explicit comparison recomputes without saving fitted answers",
+          "PASS 390px layout, reduced-motion keyboard scrubbing and return to ordinary inspected-law dynamics"
+        ]
+      },
+      {
+        "check": "experiment-receipts",
+        "script_sha256": "e8b2bd83feef17a4cfc4c27102cdc302be8d75a7a8e47f5c5a4a6bc915e02630",
+        "viewport": null,
+        "exit_code": 0,
+        "seconds": 3.946,
+        "source": "fb74307fd354064b00fb58cd78f9632fbbe7a36d",
+        "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940/experiment-receipts",
+        "passed_controls": [
+          "PASS Actual virtual acquisition exposes prior prediction loss and keeps its structural alternatives.",
+          "PASS Independent measured-entry controls preserve same-ID coefficients, earlier-event selection through refit, and raw failed predictions.",
+          "PASS New outcome selects its own receipt; blank entry preserves it; exact raw rows remain scrollable at desktop, 390px and 320px.",
+          "PASS Actual source-only download reopens in a fresh browser context, recomputes original predictions, and undo removes only its outcome."
+        ]
+      },
+      {
+        "check": "notebook-autosave",
+        "script_sha256": "94733e4627babd4c4406071cfdbc8c41be400aa9ccddb84cd9871515db2df403",
+        "viewport": null,
+        "exit_code": 0,
+        "seconds": 4.628,
+        "source": "fb74307fd354064b00fb58cd78f9632fbbe7a36d",
+        "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940/notebook-autosave",
+        "passed_controls": [
+          "PASS completed acquisition survives an older tab refit; its unsaved work remains visible",
+          "PASS conflict guidance remains visible at desktop and 390px with reduced motion",
+          "PASS keyboard export preserves the older tab changes and opens through the ordinary file importer",
+          "PASS fresh visits reopen acquired evidence; repeated stale saves refuse and the current writer can still save",
+          "PASS a tab opened before the first stored notebook cannot overwrite its later creation"
+        ]
+      },
+      {
+        "check": "stiffness-experiment",
+        "script_sha256": "c2f280c27402ac4baddecc9d6cb34f099d1f74d11e7f1fc5c5a6527d4a1d7a62",
+        "viewport": null,
+        "exit_code": 0,
+        "seconds": 9.577,
+        "source": "fb74307fd354064b00fb58cd78f9632fbbe7a36d",
+        "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940/stiffness-experiment",
+        "passed_controls": []
+      },
+      {
+        "check": "native-chooser",
+        "script_sha256": "515f12a0961528a9becaec8babab610b94d75e0841bf7063d08b9939798cea4a",
+        "source": "fb74307fd354064b00fb58cd78f9632fbbe7a36d",
+        "exit_code": 0,
+        "seconds": 1.333,
+        "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940/native-chooser",
+        "passed_controls": []
+      },
+      {
+        "check": "challenge-precision",
+        "script_sha256": "1e00c3155f18b903f2bce75d800b43783a3a051876c142825281d389132e79cf",
+        "source": "fb74307fd354064b00fb58cd78f9632fbbe7a36d",
+        "exit_code": 0,
+        "seconds": 1.913,
+        "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940/challenge-precision",
+        "passed_controls": []
+      },
+      {
+        "check": "challenge-families",
+        "script_sha256": "e039894390e3c5f1dedd14623b5b62eb1e7276c4a157a28e80d8f4594f10f0e4",
+        "source": "fb74307fd354064b00fb58cd78f9632fbbe7a36d",
+        "exit_code": 0,
+        "seconds": 1.54,
+        "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940/challenge-families",
+        "passed_controls": []
+      }
+    ],
+    "raw_reports": [
+      {
+        "path": "challenge-families/receipt.json",
+        "sha256": "0f3a239b0346cd5eea232b8e90a95c85d6657de73ff9a56254bfcbfe0600adb2",
+        "data": {
+          "browser": "156.0.8078.47",
+          "report": [
+            "Actual independent file produces complete three-family comparison: one checked training-compatible witness and two checked separators, without refitting or rank replacement",
+            "Complete reservation refuses before any partial result; zero-iteration inquiry preserves all three unresolved families rather than exclusions",
+            "Complete original-family course retains later contradictory reading and reports all families separated while original training remains unchanged"
+          ],
+          "errors": [],
+          "external": [],
+          "badResponses": [],
+          "scope": "Maintained challenge-families receiver against actual served package with keyboard CDP actions and 1280/390px rendering. File uploads use scripted DOM File objects and export interception; this course does not claim native file chooser interaction or physical acquisition."
+        }
+      },
+      {
+        "path": "challenge-precision/receipt.json",
+        "sha256": "b34ef5c1c93aee81db2baf12b52855f37a8aad4179943e8449accc0d05e7350f",
+        "data": {
+          "browser": "156.0.8078.47",
+          "report": [
+            "Three separately received challenges use explicit initially empty achieved precision sources; unequal boxes admit checked common witness without fitting",
+            "Raw-source unequal-precision certificate replays; changing source basis retires export and rejects old evidence",
+            "Tightening only second actual precision yields common-family separator; notebook reopens original events and requires explicit re-declaration of optional precision inquiry"
+          ],
+          "errors": [],
+          "external": [],
+          "badResponses": [],
+          "scope": "Maintained challenge-precision receiver against actual served package with keyboard CDP actions and 1280/390px rendering. File uploads use scripted DOM File objects and export interception; this course does not claim native file chooser interaction or physical acquisition."
+        }
+      },
+      {
+        "path": "current-motion/receipt.json",
+        "sha256": "85c1753c0a03e4e43ae5ebeb7c2cf95e413c3f99f75b69c9f4ab249f9f2dd2b5",
+        "data": {
+          "browser": "156.0.8078.47",
+          "checks": [
+            "ordinary original-source import and keyboard comparison show every competitive law with incumbent-exact sampled curves",
+            "shared joint and angle-rate compositions use synchronized samples; pause is still, scrub is explicit and playback moves",
+            "changed dynamics retire every old path; changed release recomputes and invalid inertia cannot preserve a successful comparison",
+            "source-only download and ordinary reopen retire derived paths; explicit comparison recomputes without saving fitted answers",
+            "390px layout, reduced-motion keyboard scrubbing and return to ordinary inspected-law dynamics"
+          ],
+          "competitiveLaws": [
+            "command+rate+spring",
+            "command+rate+gravity",
+            "command+spring+quadratic",
+            "command+gravity+quadratic",
+            "command+rate+coulomb+spring",
+            "command+rate+coulomb+gravity",
+            "command+rate+spring+gravity",
+            "command+rate+spring+quadratic",
+            "command+coulomb+spring+quadratic",
+            "command+rate+gravity+quadratic",
+            "command+coulomb+gravity+quadratic",
+            "command+spring+gravity+quadratic",
+            "command+rate+spring+bias",
+            "command+rate+gravity+bias",
+            "command+spring+quadratic+bias",
+            "command+gravity+quadratic+bias"
+          ],
+          "worstRenderedPixelError": 6.693312570860144e-12,
+          "errors": [],
+          "badRequests": [],
+          "external": [],
+          "scope": "Authored finite-library ambiguity and actual maintained browser execution. No physical measurement, calibrated model uncertainty or continuous-time display guarantee."
+        }
+      },
+      {
+        "path": "experiment-receipts/receiving.json",
+        "sha256": "f7e151e12c0aba73d6a703f3ba108a6cfa32b8d3bb606045e44e86643b016807",
+        "data": {
+          "browser": "156.0.8078.47",
+          "checks": [
+            "Actual virtual acquisition exposes prior prediction loss and keeps its structural alternatives.",
+            "Independent measured-entry controls preserve same-ID coefficients, earlier-event selection through refit, and raw failed predictions.",
+            "New outcome selects its own receipt; blank entry preserves it; exact raw rows remain scrollable at desktop, 390px and 320px.",
+            "Actual source-only download reopens in a fresh browser context, recomputes original predictions, and undo removes only its outcome."
+          ],
+          "layouts": [
+            {
+              "width": 390,
+              "scroll": 390,
+              "typography": {
+                "viewBoxWidth": 317,
+                "renderedWidth": 317,
+                "minimumTickPx": 11,
+                "legendPx": 12
+              }
+            },
+            {
+              "width": 320,
+              "scroll": 320,
+              "typography": {
+                "viewBoxWidth": 280,
+                "renderedWidth": 254.984375,
+                "minimumTickPx": 10.017243303571428,
+                "legendPx": 12
+              }
+            }
+          ],
+          "scope": "Authored synthetic measurements entered through the actual Studio; no physical acquisition, authenticated freeze or calibrated probability claim."
+        }
+      },
+      {
+        "path": "history-320/receipt.json",
+        "sha256": "6a47d16c21d97a1850258390d3a1fe2b1b9fcd605a989e5ac83fa307d705c127",
+        "data": {
+          "browser": "156.0.8078.47",
+          "narrowViewport": {
+            "width": 320,
+            "height": 960
+          },
+          "checks": [
+            "qualified 16 earlier / 9 current laws, seven lost IDs, changed same-ID motion, exact immutable saved domains and coefficients",
+            "actual entered measurement and keyboard historical launch render all saved laws with direct-executor exact curves",
+            "current nine-law and historical sixteen-law sources switch explicitly; changed release retires derived paths without notebook mutation",
+            "over-budget historical grid refuses every original law and leaves no sampled spread or surviving trace",
+            "two actual outcomes preserve their distinct original sets; receipt selection retires paths before explicit rerun",
+            "five-key input-only export reopens fresh; historical curves reproduce at 320px with reduced motion, keyboard scrub and clear"
+          ],
+          "lostIds": [
+            "command+rate+spring",
+            "command+spring+quadratic",
+            "command+rate+coulomb+spring",
+            "command+rate+spring+quadratic",
+            "command+coulomb+spring+quadratic",
+            "command+rate+spring+bias",
+            "command+spring+quadratic+bias"
+          ],
+          "sameIdMotionDifference": 0.07690118135806301,
+          "worstPixel": 7.65965069149388e-12,
+          "errors": [],
+          "badRequests": [],
+          "external": [],
+          "scope": "Authored synthetic analytic fixture entered as actual-reading UI input; no claim of physical acquisition or authenticated historical forecast."
+        }
+      },
+      {
+        "path": "history-320/sandbox.json",
+        "sha256": "79bf141bdfce5fd22fec2cc25f9a83739904fb25ccf8785cd3f998f77a423fb9",
+        "data": {
+          "schema": "hamon-chromium-sandbox/v1",
+          "qualification": "Linux Chromium status in the supplied isolated CDP page",
+          "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+          "startedAt": "2026-10-27T08:59:57.414Z",
+          "completedAt": "2026-10-27T08:59:57.515Z",
+          "durationMs": 100.62868500000002,
+          "admitted": true,
+          "browser": {
+            "protocolVersion": "1.3",
+            "product": "Chrome/156.0.8078.47",
+            "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "jsVersion": "15.6.75.19"
+          },
+          "target": {
+            "targetId": "37865AC59FB0DA51B00073A7AFCC6B4E",
+            "type": "page",
+            "title": "about:blank",
+            "url": "about:blank",
+            "attached": true,
+            "canAccessOpener": false,
+            "browserContextId": "5D7645A5129791F9901ECA74E42998BA"
+          },
+          "url": "chrome://sandbox/",
+          "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+          "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+          "observation": {
+            "rows": {
+              "layer1": "Namespace",
+              "pid": "Yes",
+              "network": "Yes",
+              "seccomp": "Yes",
+              "tsync": "Yes"
+            },
+            "checks": {
+              "adequate": true,
+              "layer1": true,
+              "pid": true,
+              "network": true,
+              "seccomp": true,
+              "tsync": true
+            },
+            "populated": true,
+            "duplicates": [],
+            "active": true
+          },
+          "failure": null
+        }
+      },
+      {
+        "path": "launch.json",
+        "sha256": "0a61d2d728c384b8c9e69b34b02695a358cf06bd49983a84b74d9ee0839dde62",
+        "data": {
+          "command": "npm start",
+          "source": "fb74307fd354064b00fb58cd78f9632fbbe7a36d",
+          "health": {
+            "product": "worldlaw",
+            "version": "0.1.0",
+            "mode": "local-discovery-studio"
+          },
+          "url": "http://127.0.0.1:42031",
+          "served_exact_files": [
+            "index.html",
+            "src/app.mjs",
+            "src/science/experiment-receipts-panel.mjs",
+            "src/science/studio-comparison-panel.mjs",
+            "src/science/challenge-course.mjs",
+            "src/notebook-recovery.mjs",
+            "src/science/shared-training-panel.mjs",
+            "src/science/challenge-precision.mjs",
+            "src/science/challenge-precision-panel.mjs",
+            "src/science/challenge-families.mjs",
+            "src/stiffness/design.mjs",
+            "styles.css"
+          ],
+          "negative_status": [
+            404,
+            405
+          ],
+          "log": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940/default-launch.txt"
+        }
+      },
+      {
+        "path": "native-chooser/receipt.json",
+        "sha256": "973a65a599eef97589594c0830cb2a851dce2fbc4a6110c9f97b455a79c4f708",
+        "data": {
+          "browser": "156.0.8078.47",
+          "viewport": {
+            "width": 320,
+            "height": 960
+          },
+          "checks": [
+            "Explicit historical command-law search verifies separation for synthetic eight-row training and one received row",
+            "Exported certificate independently replays through the public checker",
+            "At 320px keyboard Enter opens the native chooser, selected certificate replays, file input fits and notebook bytes remain unchanged"
+          ],
+          "geometry": {
+            "left": 34,
+            "right": 289,
+            "width": 255,
+            "parentLeft": 34,
+            "parentRight": 289,
+            "documentWidth": 320,
+            "viewportWidth": 320
+          },
+          "errors": [],
+          "badResponses": [],
+          "external": [],
+          "qualification": "Synthetic authored UI receiving course; certificate replay is mathematical evidence, not physical acquisition."
+        }
+      },
+      {
+        "path": "notebook-autosave/receipt.json",
+        "sha256": "c1fc15d6dea93d561f53715fab9c46ba5f8cb90add103adf4b1c3cbd4b4a95c5",
+        "data": {
+          "product": "WORLDLAW",
+          "platform": "linux",
+          "browser": "156.0.8078.47",
+          "node": "v22.23.4",
+          "uid": 1000,
+          "checks": [
+            "completed acquisition survives an older tab refit; its unsaved work remains visible",
+            "conflict guidance remains visible at desktop and 390px with reduced motion",
+            "keyboard export preserves the older tab changes and opens through the ordinary file importer",
+            "fresh visits reopen acquired evidence; repeated stale saves refuse and the current writer can still save",
+            "a tab opened before the first stored notebook cannot overwrite its later creation"
+          ],
+          "comparison": {
+            "seedSha256": "fc285302027ca170eba82be8eb1d84ba44641501a76e5a9cac5778fd48458f9f",
+            "acquiredSha256": "701471b79188fd483906e81aaeeb953ac3437d6640dbc0ab9001efd3c17933ce",
+            "afterStaleSaveSha256": "701471b79188fd483906e81aaeeb953ac3437d6640dbc0ab9001efd3c17933ce",
+            "newEvidenceRetained": true,
+            "firstRows": 66,
+            "olderRows": 65,
+            "storageRows": 66,
+            "status": "The saved notebook changed outside this tab. Current changes are not saved. Export this notebook before reloading."
+          },
+          "layout": {
+            "width": 390,
+            "document": 390,
+            "left": 18,
+            "right": 372
+          },
+          "source": "Seed17 maintained virtual instrument; controlled synthetic observations",
+          "scope": "Sequential stale-source detection and recoverable export in the actual served Studio. No atomic multi-tab locking or physical measurement claim."
+        }
+      }
+    ],
+    "artifact_root": "/tmp/estate-48a767a1-20261027/receipts/package-final-9940",
+    "artifact_index": [
+      {
+        "path": "challenge-families/challenge-families-desktop.png",
+        "bytes": 145999,
+        "sha256": "3b39c260b85da6e608adaf7aa5821b2fe26f0bab4db2caba383937e86a8abaa9"
+      },
+      {
+        "path": "challenge-families/challenge-families-narrow.png",
+        "bytes": 88903,
+        "sha256": "181116d324eff62757b17594a67a8907bce7eefb81a2dfa9b47cf7a2e40deadc"
+      },
+      {
+        "path": "challenge-families/receipt.json",
+        "bytes": 875,
+        "sha256": "0f3a239b0346cd5eea232b8e90a95c85d6657de73ff9a56254bfcbfe0600adb2"
+      },
+      {
+        "path": "challenge-families/sandbox.json",
+        "bytes": 1721,
+        "sha256": "509fa693e85fcca6cc39657b2c6506f8682fca66ee53a627071de79cb7018a90"
+      },
+      {
+        "path": "challenge-precision/challenge-precision-desktop.png",
+        "bytes": 120530,
+        "sha256": "302ec790a49ec4c02e084b57067f4f38d1b1d795a863f2ff7a4c509dbd6d0a12"
+      },
+      {
+        "path": "challenge-precision/challenge-precision-narrow.png",
+        "bytes": 62928,
+        "sha256": "67e832045e4d4d0181c27f35f6cff453f54a47ae29fb67285963b286e8181310"
+      },
+      {
+        "path": "challenge-precision/receipt.json",
+        "bytes": 853,
+        "sha256": "b34ef5c1c93aee81db2baf12b52855f37a8aad4179943e8449accc0d05e7350f"
+      },
+      {
+        "path": "challenge-precision/sandbox.json",
+        "bytes": 1729,
+        "sha256": "2fdd6a2d7b23e42b8853795a41c641bd2fc2520fe5f49275dce9c2d52d75044a"
+      },
+      {
+        "path": "current-motion/angle-rate-desktop.png",
+        "bytes": 97494,
+        "sha256": "e6ee1d2e85a85f20ebc05bd87db23c596104609d44feb238d1eaf00fbff41a71"
+      },
+      {
+        "path": "current-motion/comparison-narrow.png",
+        "bytes": 219413,
+        "sha256": "55cb5830b8a6657bdfdf1c6014dc0d8dd23e00cc78672d4c97d857b421f05ef0"
+      },
+      {
+        "path": "current-motion/full-angle-desktop.png",
+        "bytes": 55266,
+        "sha256": "b5e3393d763705f61a957f873abe1740892455b30e75d8ef6a089b35d324508b"
+      },
+      {
+        "path": "current-motion/original-notebook.json",
+        "bytes": 18227,
+        "sha256": "5f7dbd8566279e8899880650908572d45b9bdb6cce45e47abcf91105995f7797"
+      },
+      {
+        "path": "current-motion/receipt.json",
+        "bytes": 1547,
+        "sha256": "85c1753c0a03e4e43ae5ebeb7c2cf95e413c3f99f75b69c9f4ab249f9f2dd2b5"
+      },
+      {
+        "path": "current-motion/sandbox.json",
+        "bytes": 1729,
+        "sha256": "4484a2a671809f94a4840c0133c7c7b7ff5a7bc21217a781c7faca7db8802a31"
+      },
+      {
+        "path": "current-motion/shared-joint-desktop.png",
+        "bytes": 66442,
+        "sha256": "de7d28a60e4a2ec485104afb3df08b2374e76b597bfec3420a7886d6b3fa4aab"
+      },
+      {
+        "path": "current-motion/shared-joint-narrow.png",
+        "bytes": 59406,
+        "sha256": "5cfd69ecdf64725f8ea47054b7ce01a352d5d27409f6af4ef48334c85d0dc155"
+      },
+      {
+        "path": "experiment-receipts/experiment-desktop.png",
+        "bytes": 307173,
+        "sha256": "385d740ffa329e48253f5df60ee4fbf980b2dde4211945694d628124f4847641"
+      },
+      {
+        "path": "experiment-receipts/experiment-narrow.png",
+        "bytes": 275856,
+        "sha256": "b2b3b2418cc1dec4bb67ebd9769b69c8ac332603948e25945961bbbb45e4019f"
+      },
+      {
+        "path": "experiment-receipts/experiment-notebook.json",
+        "bytes": 2308,
+        "sha256": "ae617d0779ed2efcd17b1069a64994eecfdd5e4a774be15afabff36a38d90574"
+      },
+      {
+        "path": "experiment-receipts/receiving.json",
+        "bytes": 1158,
+        "sha256": "f7e151e12c0aba73d6a703f3ba108a6cfa32b8d3bb606045e44e86643b016807"
+      },
+      {
+        "path": "experiment-receipts/sandbox.json",
+        "bytes": 333,
+        "sha256": "ddd890adbb8b1467b010f47d1157158acdf4e07ffcadf1bfdccbd024f8e0f430"
+      },
+      {
+        "path": "history-320/earlier-motion-notebook.json",
+        "bytes": 12515,
+        "sha256": "b0609b83bebcd4c8182666dc0fb59cc96bf8b81103e75b486985c6595a4dbd70"
+      },
+      {
+        "path": "history-320/historical-comparison-320.png",
+        "bytes": 223273,
+        "sha256": "8fdbbea9c5987fda1edd708cc1218298c40d45afbef75acb728885e9c2af35eb"
+      },
+      {
+        "path": "history-320/historical-comparison-desktop.png",
+        "bytes": 277392,
+        "sha256": "accfc3a67253892c42afd0245eb9a650d4a4de44d8a5dd9b29974ee76a4819a2"
+      },
+      {
+        "path": "history-320/historical-motion-320.png",
+        "bytes": 53825,
+        "sha256": "269e8ab0c311a86823da26e32a91d25f955bf8d44cb4a5b334ba81c822b1db52"
+      },
+      {
+        "path": "history-320/historical-motion-desktop.png",
+        "bytes": 50508,
+        "sha256": "31905d315f7dc7ba25bbd87ca7156e1a41525f8f69c92ce6fd8cfcddb7f5bbd3"
+      },
+      {
+        "path": "history-320/receipt.json",
+        "bytes": 1430,
+        "sha256": "6a47d16c21d97a1850258390d3a1fe2b1b9fcd605a989e5ac83fa307d705c127"
+      },
+      {
+        "path": "history-320/sandbox.json",
+        "bytes": 1730,
+        "sha256": "79bf141bdfce5fd22fec2cc25f9a83739904fb25ccf8785cd3f998f77a423fb9"
+      },
+      {
+        "path": "launch.json",
+        "bytes": 826,
+        "sha256": "0a61d2d728c384b8c9e69b34b02695a358cf06bd49983a84b74d9ee0839dde62"
+      },
+      {
+        "path": "native-chooser/checked-historical-separator.json",
+        "bytes": 2363,
+        "sha256": "23d5001bc87d7f55db71b9299f1d7296da7644d7750ed3db0f7d422efd30fb71"
+      },
+      {
+        "path": "native-chooser/historical-chooser-focused-320.png",
+        "bytes": 83378,
+        "sha256": "a538ea96a34be15bf11c1ac7df82a9a99c2cff8255279bc34190b82b241c8bc4"
+      },
+      {
+        "path": "native-chooser/historical-replay-panel-320.png",
+        "bytes": 175309,
+        "sha256": "0f897aa95443295ba544845aeddafc009836f89d5a2e5103e6025ecd2ee90797"
+      },
+      {
+        "path": "native-chooser/receipt.json",
+        "bytes": 803,
+        "sha256": "973a65a599eef97589594c0830cb2a851dce2fbc4a6110c9f97b455a79c4f708"
+      },
+      {
+        "path": "native-chooser/sandbox.json",
+        "bytes": 1729,
+        "sha256": "504f3843a07db8308ef8d5cf55e0055c4c6e709999f0c0e3137b0a41b5e4c00c"
+      },
+      {
+        "path": "notebook-autosave/comparison.json",
+        "bytes": 489,
+        "sha256": "9ef5964bffb9d76f9656f1c17b48cbccf484a84803b86c81842e2a627959a090"
+      },
+      {
+        "path": "notebook-autosave/conflict-desktop.png",
+        "bytes": 181458,
+        "sha256": "d0491e1cfe9bfe2c99ede7a91ae584a5035cbcde0eb2d86b9662e318652f0898"
+      },
+      {
+        "path": "notebook-autosave/conflict-narrow.png",
+        "bytes": 62548,
+        "sha256": "e050cc07660bab561d1264938728fa51c7ebf42966bc4e0c24cd3c121283674d"
+      },
+      {
+        "path": "notebook-autosave/newer-acquired-notebook.json",
+        "bytes": 22934,
+        "sha256": "701471b79188fd483906e81aaeeb953ac3437d6640dbc0ab9001efd3c17933ce"
+      },
+      {
+        "path": "notebook-autosave/older-unsaved-notebook.json",
+        "bytes": 22983,
+        "sha256": "7c220b553959fe6495a0388433cfb77c1de6366deabec0994420fc821d67b95c"
+      },
+      {
+        "path": "notebook-autosave/receipt.json",
+        "bytes": 1471,
+        "sha256": "c1fc15d6dea93d561f53715fab9c46ba5f8cb90add103adf4b1c3cbd4b4a95c5"
+      },
+      {
+        "path": "notebook-autosave/sandbox.json",
+        "bytes": 1729,
+        "sha256": "718d4f925a9f1e0bcce17ae29b2e92b33e41cc5dea02849c39c0199c344a68da"
+      },
+      {
+        "path": "receipt.json",
+        "bytes": 586,
+        "sha256": "2506eb204671228ffa178c68b3705d0f31c4f42440dc930f24c9010a2281134d"
+      },
+      {
+        "path": "receiving-results.json",
+        "bytes": 15690,
+        "sha256": "08c876a551b58c35ae5b6630c45d253a5d1e3c315cd760c83bdd6a8600bc2d97"
+      },
+      {
+        "path": "stiffness-experiment/experiment-frozen-1440.png",
+        "bytes": 140889,
+        "sha256": "13a13959572193d49f1c7107b9f2c52b946d997d98ef34bd65faf4f8d6cdfdf0"
+      },
+      {
+        "path": "stiffness-experiment/experiment-history-1440.png",
+        "bytes": 151049,
+        "sha256": "645dd1873a21e41472e51662423572b2fe53c96afc41b54b52abfb132f09a399"
+      },
+      {
+        "path": "stiffness-experiment/experiment-history-390.png",
+        "bytes": 86023,
+        "sha256": "fe5b98b0f9fec9e9a7cf423f0176ab224358ffd6a8f68e76e3b6f128a2c8b75d"
+      },
+      {
+        "path": "stiffness-experiment/experiment-pending-1440.png",
+        "bytes": 159622,
+        "sha256": "1f055507d522a38a3ab1e7583be341ead3d635cd2354270534971d625493bf87"
+      },
+      {
+        "path": "stiffness-experiment/experiment-pending-390.png",
+        "bytes": 83481,
+        "sha256": "8d428fab5d373a4c0d6a839de113ccc9099480b3e7eacd961a784c7874e80887"
+      },
+      {
+        "path": "stiffness-experiment/experiment-proposal-1440.png",
+        "bytes": 163784,
+        "sha256": "98ccb08795b48c8bd406d7347499614412dc13d27e7888a9b169a0a4fb1e8a14"
+      },
+      {
+        "path": "stiffness-experiment/experiment-proposal-390.png",
+        "bytes": 90393,
+        "sha256": "bc57474030b633d3aa89bb93ab0c1ac8f6b55cb8cf03f792ca7d47048590134c"
+      },
+      {
+        "path": "stiffness-experiment/experiment-proposal-summary-1440.png",
+        "bytes": 159171,
+        "sha256": "9f94ed654d25d6a5896abc62534817efc66615cbc97db8008d2353cac0e08458"
+      },
+      {
+        "path": "stiffness-experiment/experiment-proposal-summary-390.png",
+        "bytes": 76817,
+        "sha256": "832923184ac57ac82e90492c3f1b20c885706b32f30a0ae2d37df41bc7c10aa3"
+      },
+      {
+        "path": "stiffness-experiment/experiment-refit-history-1440.png",
+        "bytes": 131072,
+        "sha256": "bd1f48b432be90866704ec44ba1182a1d8129b04e9d6bcd36988b93288505115"
+      },
+      {
+        "path": "stiffness-experiment/sandbox.json",
+        "bytes": 1720,
+        "sha256": "6e966076e4c4638571e982e45b703971650dcbd70d4d9e5b2323d87f94260f5f"
+      },
+      {
+        "path": "stiffness-experiment/stiffness-experiment-browser.json",
+        "bytes": 26781,
+        "sha256": "e90ba45618876cb52f263ac882cb88370a9349486aed2ceb894a3f22ad4d5254"
+      },
+      {
+        "path": "stiffness-experiment/stiffness-input-design-1440.png",
+        "bytes": 149925,
+        "sha256": "366d5a175e5183093bf034ce42edbd3c8eb3dc0d9367068b6f6e423214c93cdc"
+      },
+      {
+        "path": "stiffness-experiment/stiffness-input-design-390.png",
+        "bytes": 83320,
+        "sha256": "9926f3a73ecce0d70e45ddab56be93998add5f0cace3f4e49848c5b6bd77cd92"
+      },
+      {
+        "path": "stiffness-experiment/stiffness-input-design-capacity-32-390.png",
+        "bytes": 97554,
+        "sha256": "922a33296f33a6e6903da97da26732fedd806765458e28900153fbc863626496"
+      },
+      {
+        "path": "stiffness-experiment/stiffness-revision-1440.png",
+        "bytes": 166952,
+        "sha256": "52b9f4d69b16e981e7bdf184bc50249f53e8e71ec7df1248f196cc7228d25849"
+      },
+      {
+        "path": "stiffness-experiment/stiffness-revision-390.png",
+        "bytes": 95022,
+        "sha256": "6371cacc33230df61309935db35c276aa087aea23073cf1722729338df9fd546"
+      }
+    ]
+  },
+  "external_receiver": {
+    "precision_source": "import assert from 'node:assert/strict';\nimport {mkdir,writeFile} from 'node:fs/promises';\nimport {resolve} from 'node:path';\nimport {pathToFileURL} from 'node:url';\nassert.ok(process.env.SOURCE_ROOT,'SOURCE_ROOT is required');\nassert.ok(process.env.BROWSER_ARTIFACT_DIR,'BROWSER_ARTIFACT_DIR is required');\nconst root=resolve(process.env.SOURCE_ROOT),dir=resolve(process.env.BROWSER_ARTIFACT_DIR);\nconst moduleAt=path=>import(pathToFileURL(resolve(root,path)).href);\nconst {createProductServer}=await moduleAt('server.mjs');\nconst {requireChromiumSandbox}=await moduleAt('scripts/support/chromium-sandbox.mjs');\nconst {receiveChallengePrecision}=await moduleAt('scripts/challenge-precision.receiving.mjs');\nconst {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');\nawait mkdir(dir,{recursive:true});\nconst server=createProductServer();await new Promise((ok,bad)=>{server.once('error',bad);server.listen(0,'127.0.0.1',ok);});\nlet browser;const report=[],errors=[],external=[],badResponses=[];\ntry{\n browser=await chromium.launch({headless:true,chromiumSandbox:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});\n const context=await browser.newContext({viewport:{width:1280,height:1000},reducedMotion:'reduce'}),page=await context.newPage(),cdp=await context.newCDPSession(page);\n const send=(method,params)=>cdp.send(method,params);\n await writeFile(resolve(dir,'sandbox.json'),JSON.stringify(await requireChromiumSandbox({send}),null,2)+'\\n');\n page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(!/^(http:\\/\\/127\\.0\\.0\\.1:|blob:|data:)/.test(r.url()))external.push(r.url());});page.on('response',r=>{if(r.status()>=400)badResponses.push({url:r.url(),status:r.status()});});\n await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForFunction(()=>document.querySelector('#sample-count')?.textContent==='64');\n const evaluate=async expression=>{const response=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(response.exceptionDetails)throw new Error(JSON.stringify(response.exceptionDetails));return response.result.value;};\n const captures=await receiveChallengePrecision({evaluate,send,report});\n for(const name of ['desktop','narrow']){assert.ok(captures[name]?.data,'Missing '+name+' capture');await writeFile(resolve(dir,'challenge-precision-'+name+'.png'),Buffer.from(captures[name].data,'base64'));}\n assert.equal(report.length,3);assert.deepEqual(errors,[]);assert.deepEqual(external,[]);assert.deepEqual(badResponses,[]);\n const receipt={browser:await browser.version(),report,errors,external,badResponses,scope:'Maintained challenge-precision receiver against actual served package with keyboard CDP actions and 1280/390px rendering. File uploads use scripted DOM File objects and export interception; this course does not claim native file chooser interaction or physical acquisition.'};\n await writeFile(resolve(dir,'receipt.json'),JSON.stringify(receipt,null,2)+'\\n');console.log(JSON.stringify(receipt));\n}finally{await browser?.close();await new Promise(ok=>server.close(ok));}\n",
+    "precision_sha256": "1e00c3155f18b903f2bce75d800b43783a3a051876c142825281d389132e79cf",
+    "families_derivation": "Replace receiveChallengePrecision with receiveChallengeFamilies and challenge-precision with challenge-families in the retained precision receiver; separate process, context and artifact directory.",
+    "chooser_sha256": "515f12a0961528a9becaec8babab610b94d75e0841bf7063d08b9939798cea4a",
+    "chooser_source": "import assert from 'node:assert/strict';\nimport {mkdir,readFile,writeFile} from 'node:fs/promises';\nimport {resolve} from 'node:path';\nimport {pathToFileURL} from 'node:url';\nassert.ok(process.env.SOURCE_ROOT,'SOURCE_ROOT is required');\nassert.ok(process.env.BROWSER_ARTIFACT_DIR,'BROWSER_ARTIFACT_DIR is required');\nconst root=resolve(process.env.SOURCE_ROOT),dir=resolve(process.env.BROWSER_ARTIFACT_DIR);\nconst moduleAt=path=>import(pathToFileURL(resolve(root,path)).href);\nconst {createProductServer}=await moduleAt('server.mjs');\nconst {replaySharedTrainingCertificate}=await moduleAt('src/science/shared-training-replay.mjs');\nconst {requireChromiumSandbox}=await moduleAt('scripts/support/chromium-sandbox.mjs');\nconst {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');\nawait mkdir(dir,{recursive:true});\nconst fixture={schema:'worldlaw.observations/v1',source:{label:'Authored command-law chooser fixture; synthetic rows, not independent physical acquisitions'},observations:[-1,-.5,.5,1,-1,-.5,.5,1].map(command=>({command,position:0,rate:0,jointTorque:2*command}))};\nconst server=createProductServer();await new Promise((ok,bad)=>{server.once('error',bad);server.listen(0,'127.0.0.1',ok);});\nlet browser;const errors=[],badResponses=[],external=[],checks=[];\ntry{\n browser=await chromium.launch({headless:true,chromiumSandbox:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});\n const context=await browser.newContext({viewport:{width:320,height:960},reducedMotion:'reduce'});\n const page=await context.newPage(),cdp=await context.newCDPSession(page);\n await writeFile(resolve(dir,'sandbox.json'),JSON.stringify(await requireChromiumSandbox({send:(m,p)=>cdp.send(m,p)}),null,2)+'\\n');\n page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)badResponses.push({url:r.url(),status:r.status()});});page.on('request',r=>{if(!/^(http:\\/\\/127\\.0\\.0\\.1:|blob:|data:)/.test(r.url()))external.push(r.url());});\n await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForFunction(()=>document.querySelector('#sample-count').textContent==='64');\n await page.locator('#observation-file').setInputFiles({name:'chooser-fixture.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(fixture))});await page.waitForFunction(()=>document.querySelector('#sample-count').textContent==='8');\n for(const [id,value]of Object.entries({command:2,position:0,rate:0,'measured-torque':8}))await page.locator('#'+id).fill(String(value));\n await page.locator('#run-experiment').click();await page.waitForFunction(()=>document.querySelector('#sample-count').textContent==='9');\n const law=page.locator('#experiment-receipt-law');const options=await law.locator('option').evaluateAll(items=>items.map(x=>({value:x.value,text:x.textContent})));\n const command=options.find(x=>/^\\d+\\. command(?:\\s|$)/.test(x.text));assert.ok(command,'Earlier command-only law is required: '+JSON.stringify(options));await law.selectOption(command.value);\n const panel=page.locator('#historical-training-receipt');\n await panel.getByRole('spinbutton',{name:'Earlier training-reading radius (N\u00b7m)',exact:true}).fill('.02');await panel.getByRole('spinbutton',{name:'Acquired reading radius (N\u00b7m)',exact:true}).fill('.01');\n const notebook=await page.evaluate(()=>localStorage.getItem('worldlaw.notebook.v1'));assert.ok(notebook);\n await panel.getByRole('button',{name:'Search shared-training evidence',exact:true}).click();assert.equal(await panel.locator('.shared-training-output').getAttribute('data-status'),'verified-separation');checks.push('Explicit historical command-law search verifies separation for synthetic eight-row training and one received row');\n const downloading=page.waitForEvent('download');await panel.getByRole('button',{name:'Export checked shared-training evidence',exact:true}).click();const certificatePath=resolve(dir,'checked-historical-separator.json');await(await downloading).saveAs(certificatePath);\n const replay=replaySharedTrainingCertificate(await readFile(certificatePath,'utf8'));assert.equal(replay.check.status,'verified-separation');checks.push('Exported certificate independently replays through the public checker');\n const input=panel.getByLabel('Replay checked shared-training evidence',{exact:true});await input.scrollIntoViewIfNeeded();await input.focus();assert.equal(await input.evaluate(n=>n===document.activeElement),true);\n const choosing=page.waitForEvent('filechooser');await page.keyboard.press('Enter');const chooser=await choosing;assert.equal(chooser.isMultiple(),false);await chooser.setFiles(certificatePath);\n await page.waitForFunction(()=>document.querySelector('#historical-training-receipt .shared-training-status').textContent.includes('Replayed by public checker: verified-separation'));\n assert.equal(await panel.locator('.shared-training-output').getAttribute('data-status'),'verified-separation');assert.deepEqual(await panel.locator('.shared-training-output li').evaluateAll(items=>items.map(n=>Number(n.dataset.value))),replay.certificate.values);\n const geometry=await input.evaluate(n=>{const r=n.getBoundingClientRect(),p=n.parentElement.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width,parentLeft:p.left,parentRight:p.right,documentWidth:document.documentElement.scrollWidth,viewportWidth:innerWidth};});\n assert.equal(geometry.viewportWidth,320);assert.ok(geometry.documentWidth<=320,JSON.stringify(geometry));assert.ok(geometry.left>=0&&geometry.right<=320,JSON.stringify(geometry));assert.ok(geometry.left>=geometry.parentLeft-1&&geometry.right<=geometry.parentRight+1,JSON.stringify(geometry));\n assert.equal(await page.evaluate(()=>localStorage.getItem('worldlaw.notebook.v1')),notebook);await input.focus();await input.scrollIntoViewIfNeeded();await page.screenshot({path:resolve(dir,'historical-chooser-focused-320.png')});await panel.screenshot({path:resolve(dir,'historical-replay-panel-320.png')});\n checks.push('At 320px keyboard Enter opens the native chooser, selected certificate replays, file input fits and notebook bytes remain unchanged');\n assert.deepEqual(errors,[]);assert.deepEqual(badResponses,[]);assert.deepEqual(external,[]);\n const receipt={browser:await browser.version(),viewport:{width:320,height:960},checks,geometry,errors,badResponses,external,qualification:'Synthetic authored UI receiving course; certificate replay is mathematical evidence, not physical acquisition.'};await writeFile(resolve(dir,'receipt.json'),JSON.stringify(receipt,null,2)+'\\n');console.log(JSON.stringify(receipt));\n}finally{await browser?.close();await new Promise(ok=>server.close(ok));}\n"
+  },
+  "reviews": {
+    "source": "Retained source_recovery reviewed actual composed package AST, callback preservation, autosave baseline, precision/family source semantics and complete-budget boundaries.",
+    "consumer": "Retained consumer_review reviewed app/captured state, maintained autosave coverage and prior pixels; root viewed new desktop/320/precision captures. Historical320 pixels match prior accepted image SHA269e8ab0c311a86823da26e32a91d25f955bf8d44cb4a5b334ba81c822b1db52 exactly; final desktop hash31905d315f7dc7ba25bbd87ca7156e1a41525f8f69c92ce6fd8cfcddb7f5bbd3 matches root-viewed composition capture.",
+    "workstate": "Retained workstate reviewed exact-source evidence boundaries, required current-source gates and package-policy union; no replacement workers."
+  },
+  "qualifications": [
+    "Authored synthetic controls, not physical acquisition or authenticated earlier forecasts.",
+    "Actual Chrome156.0.8078.47 with verified namespace/PID/network/seccomp/TSYNC sandbox.",
+    "Native chooser course exercised keyboard-triggered real chooser. Precision/family courses used scripted File inputs and export interception; these scopes remain separate.",
+    "Older8794 native and cc53 browser receipts and original failures remain unchanged.",
+    "This record qualifies fb743, not later upstream commits or a future merge hash."
+  ]
+}
