@@ -69,7 +69,7 @@ function assertReplayWork(base,initialOptions,events){
       if(!Array.isArray(event.rows))throw new Error('Measurement history needs its original rows.');
       count+=event.rows.length;
     }else if(event?.kind==='virtual')count++;
-    else if(event?.kind==='planning-bounds'||event?.kind==='challenge'||event?.kind==='scalar-question')continue;
+    else if(event?.kind==='planning-bounds'||event?.kind==='challenge'||event?.kind==='scalar-question'||event?.kind==='condition-question')continue;
     else if(event?.kind==='options')options=cleanOptions({...options,...event.options});
     else throw new Error('Notebook contains an unknown event.');
     total+=discoveryRobustWork(count,discoveryOptions(options));
@@ -110,7 +110,9 @@ function eventState(state,event,discovery,options=state.options) {
    entry.experiment.trainingResponse=receiveTrainingResponse(state.discovery,entry.experiment.rows,state.planningRadii,state.planningTrainingRadius,used);
   }
   if(entry.experiment&&event.reusedChallenge===undefined){const outcome=receiveScalarQuestion(state,entry.experiment.rows,entry.experiment);if(outcome)entry.questionOutcome=outcome;}
-  return {...state,options,discovery,events:[...state.events,event],history:[...state.history,entry]};
+  const next={...state,options,discovery,events:[...state.events,event],history:[...state.history,entry]};
+  if(['measurement','virtual','options','planning-bounds'].includes(event.kind))delete next.conditionedPlanning;
+  return next;
 }
 export function appendMeasurements(state,rows,label='Measured outcome',source=null){return appendMeasurementSource(state,rows,label,source);}
 function appendMeasurementSource(state,rows,label,source,reusedChallenge=undefined) {
@@ -177,17 +179,38 @@ export function setPlanningBounds(state,radii,trainingRadius=null){
 }
 export function sessionPlan(state) {
   const {candidates}=candidateCourse(state);
+  if(state.conditionedPlanning){
+   const models=state.discovery.competitive.filter(m=>state.conditionedPlanning.modelIds.includes(m.id));
+   if(models.length<2)return {status:models.length?'one-unexcluded-original-law':'all-original-laws-excluded',reason:models.length?'One original fixed law remains unexcluded under the declared screen; pair discrimination stops. This is not validation.':'All original fixed laws were excluded under the declared screen. Revise the hypotheses or assumptions before a new discrimination claim.',selected:null,ranked:[],modelIds:models.map(m=>m.id),conditioned:true};
+   if(!candidates.length)return {status:'no_unobserved_inputs',selected:null,ranked:[],modelIds:models.map(m=>m.id),conditioned:true};
+   const result=planBoundedScalarExperiment({...state.discovery,competitive:models},candidates,state.planningRadii);
+   return {...result,conditioned:true,conditionedBy:state.conditionedPlanning.outcomeEvent};
+  }
+
   if(!candidates.length)return {status:'no_unobserved_inputs',selected:null,ranked:[],modelIds:[]};
  if(state.planningRadii){try{return state.planningTrainingRadius!=null?planTrainingResponse(state.discovery,candidates,state.planningRadii,state.planningTrainingRadius):planBoundedScalarExperiment(state.discovery,candidates,state.planningRadii);}catch(error){return {status:'bounds-unavailable',reason:error.message,selected:null,ranked:[],modelIds:[]};}}
  return planExperiment(state.discovery,candidates);
 }
 export function freezeScalarQuestion(state){
  if(state.lab)throw Error('Freeze actual acquisition questions only in an imported instrument notebook.');
- const course=candidateCourse(state),models=state.discovery.competitive.length;
+ const course=candidateCourse(state),models=state.conditionedPlanning?.modelIds.length??state.discovery.competitive.length;
  const requested={evaluations:models*course.candidates.length,products:state.planningTrainingRadius!=null?models*course.candidates.length*state.discovery.observations.length:0,pairComparisons:course.candidates.length*models*(models-1)/2};
  for(const [key,limit]of Object.entries({evaluations:8192,products:1048576,pairComparisons:65536}))if(state.history.reduce((n,h)=>n+(h.question?.[key]??0),0)+requested[key]>limit)throw Error('Complete cumulative frozen-question planning course exceeds its work limit.');
  const question=retainScalarQuestion(sessionPlan(state));
  const next=eventState(state,{kind:'scalar-question',label:'Frozen scalar question',input:{...question.input},method:question.method},state.discovery);next.history.at(-1).question=question;return next;
+}
+export function conditionScalarQuestion(state){
+ const outcome=state.history.at(-1)?.questionOutcome;
+ if(!state.history.at(-1)?.challenge||outcome?.status!=='exact-coordinate-match')throw Error('Continue only from the latest exact executed question received as a challenge without refitting.');
+ const question=state.history[outcome.questionEvent+1]?.question;
+ if(question?.method!=='declared_input_box_interval_separation'||question.trainingRadius!=null)throw Error('Only fixed-coefficient question screens support this continuation. Marginal training-response envelopes are not common training support.');
+ if(!outcome.screen||outcome.screen.status==='unavailable'||!Array.isArray(outcome.screen.models))throw Error('The complete original-question model screen must be available.');
+ const prior=state.conditionedPlanning?.modelIds??state.discovery.competitive.map(m=>m.id);
+ const tested=outcome.screen.models.map(m=>m.modelId);
+ if(tested.length!==prior.length||prior.some(id=>!tested.includes(id)))throw Error('The original question does not screen the complete active fixed-law population.');
+ const modelIds=prior.filter(id=>outcome.screen.models.find(m=>m.modelId===id).excludedCount===0);
+ const next=eventState(state,{kind:'condition-question',label:'Continue conditional fixed-law discrimination',questionEvent:outcome.questionEvent},state.discovery);
+ next.conditionedPlanning={modelIds,outcomeEvent:state.events.length-1};return next;
 }
 export function sessionPilotPlan(state) {
   const course=candidateCourse(state);
@@ -219,6 +242,7 @@ export function restoreSession(text) {
   let state=createSession(raw.base,raw.initialOptions,{labSeed:raw.lab?.seed??null});
   for(const event of raw.events) {
     if(event?.kind==='virtual') state=runVirtualExperiment(state,event.input);
+    else if(event?.kind==='condition-question'){const next=conditionScalarQuestion(state);if(event.questionEvent!==next.events.at(-1).questionEvent)throw Error('Conditioning reference differs from the latest executed question.');state=next;}
     else if(event?.kind==='scalar-question'){const next=freezeScalarQuestion(state),e=next.events.at(-1);if(!event.input||['command','position','rate'].some(k=>event.input[k]!==e.input[k])||event.method!==e.method)throw Error('Frozen question differs from the original source-planned suggestion.');state=next;}
     else if(event?.kind==='challenge') state=receiveScalarChallenge(state,event.rows,event.source);
     else if(event?.kind==='measurement') {
