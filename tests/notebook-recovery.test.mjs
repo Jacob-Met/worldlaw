@@ -8,7 +8,7 @@ function fakeStorage(seed = {}) {
   const storage = {
     getItem(key) {
       if (fail.read) throw new DOMException('Denied', 'SecurityError');
-      if (fail.mutateBackup && String(key).startsWith(RECOVERY_PREFIX)) return 'mismatch';
+      if (fail.mutateBackup && String(key).startsWith(RECOVERY_PREFIX) && data.has(key)) return 'mismatch';
       return data.has(key) ? data.get(key) : null;
     },
     setItem(key, value) {
@@ -89,7 +89,7 @@ test('backup readback failure prevents replacement', () => {
   const notebook = createNotebookStorage(() => storage);
   notebook.protectUnreadable(notebook.readInitial().text);
   fail.mutateBackup = true;
-  assert.equal(notebook.archiveAndReplace('virtual').reason, 'archive-full');
+  assert.equal(notebook.archiveAndReplace('virtual').reason, 'archive-readback-failed');
   assert.equal(data.get(NOTEBOOK_KEY), 'old corrupt');
 });
 
@@ -124,3 +124,21 @@ test('archive exhaustion refuses destruction and archive read errors are explici
   assert.equal(notebook.archives().reason,'archive-read-failed');
 });
 
+
+test('new archive slot occupied after initial scan is never knowingly overwritten', () => {
+  const { storage, data } = fakeStorage({ [NOTEBOOK_KEY]: 'corrupt original' });
+  const originalRead = storage.getItem.bind(storage);
+  let reads = 0;
+  storage.getItem = key => {
+    if (key === RECOVERY_PREFIX + '1' && ++reads === 2) {
+      data.set(key, 'another tab backup');
+      return 'another tab backup';
+    }
+    return originalRead(key);
+  };
+  const notebook = createNotebookStorage(() => storage);
+  notebook.protectUnreadable(notebook.readInitial().text);
+  assert.equal(notebook.archiveAndReplace('new valid').reason, 'archive-slot-changed');
+  assert.equal(data.get(NOTEBOOK_KEY), 'corrupt original');
+  assert.equal(data.get(RECOVERY_PREFIX + '1'), 'another tab backup');
+});
