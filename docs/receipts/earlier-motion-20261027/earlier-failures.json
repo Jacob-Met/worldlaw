@@ -1,0 +1,70 @@
+[
+  {
+    "default_launch": {
+      "command": "npm start",
+      "source": "8794c2f74c1f9b67a2b0742a08594abb0a8c97c1",
+      "health": {
+        "product": "worldlaw",
+        "version": "0.1.0",
+        "mode": "local-discovery-studio"
+      },
+      "url": "http://127.0.0.1:40725",
+      "served_exact_files": [
+        "index.html",
+        "src/app.mjs",
+        "src/science/experiment-receipts-panel.mjs",
+        "src/science/studio-comparison-panel.mjs",
+        "src/science/challenge-course.mjs"
+      ],
+      "negative_status": [
+        404,
+        405
+      ],
+      "log": "/tmp/estate-48a767a1-20261027/receipts/package-8794/default-launch.txt"
+    }
+  },
+  {
+    "check": "studio-smoke",
+    "exit_code": 0,
+    "log": "/tmp/estate-48a767a1-20261027/receipts/package-8794/studio-smoke.txt",
+    "tail": "\n> worldlaw@0.1.0 smoke\n> node scripts/smoke.mjs\n\nPASS launched product assets and refusal paths; actual discovery \u2192 virtual measurement \u2192 revision \u2192 notebook reopen.\n"
+  },
+  {
+    "check": "trajectory-smoke",
+    "exit_code": 0,
+    "log": "/tmp/estate-48a767a1-20261027/receipts/package-8794/trajectory-smoke.txt",
+    "tail": "\n> worldlaw@0.1.0 smoke:trajectory\n> node scripts/trajectory-smoke-92be.mjs\n\n{\n  \"product\": \"worldlaw\",\n  \"route\": \"trajectory-challenge\",\n  \"runtime\": \"v22.23.4\",\n  \"inputSHA256\": \"fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e\",\n  \"received\": \"launched local HTTP server -> actual JSON input -> fitting -> forward predictions -> source notebook reopen\",\n  \"selectedModel\": \"command+rate+gravity+bias\",\n  \"selectedPositionRMSE\": 0.0006561748182990025,\n  \"comparedModels\": 8,\n  \"challengeRuns\": 2,\n  \"negativeCases\": [\n    \"missing initial rate refused\",\n    \"missing resource404\",\n    \"unsupported method405\"\n  ],\n  \"evidenceKind\": \"synthetic\"\n}\n"
+  },
+  {
+    "check": "history-390",
+    "exit_code": 0,
+    "seconds": 6.354,
+    "source": "8794c2f74c1f9b67a2b0742a08594abb0a8c97c1",
+    "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-8794/history-390",
+    "tail": "PASS qualified 16 earlier / 9 current laws, seven lost IDs, changed same-ID motion, exact immutable saved domains and coefficients\nPASS actual entered measurement and keyboard historical launch render all saved laws with direct-executor exact curves\nPASS current nine-law and historical sixteen-law sources switch explicitly; changed release retires derived paths without notebook mutation\nPASS over-budget historical grid refuses every original law and leaves no sampled spread or surviving trace\nPASS two actual outcomes preserve their distinct original sets; receipt selection retires paths before explicit rerun\nPASS five-key input-only export reopens fresh; historical curves reproduce at 390px with reduced motion, keyboard scrub and clear\n"
+  },
+  {
+    "check": "current-motion",
+    "exit_code": 0,
+    "seconds": 10.119,
+    "source": "8794c2f74c1f9b67a2b0742a08594abb0a8c97c1",
+    "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-8794/current-motion",
+    "tail": "PASS ordinary original-source import and keyboard comparison show every competitive law with incumbent-exact sampled curves\nPASS shared joint and angle-rate compositions use synchronized samples; pause is still, scrub is explicit and playback moves\nPASS changed dynamics retire every old path; changed release recomputes and invalid inertia cannot preserve a successful comparison\nPASS source-only download and ordinary reopen retire derived paths; explicit comparison recomputes without saving fitted answers\nPASS 390px layout, reduced-motion keyboard scrubbing and return to ordinary inspected-law dynamics\n"
+  },
+  {
+    "check": "experiment-receipts",
+    "exit_code": 1,
+    "seconds": 2.08,
+    "source": "8794c2f74c1f9b67a2b0742a08594abb0a8c97c1",
+    "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-8794/experiment-receipts",
+    "tail": "PASS Actual virtual acquisition exposes prior prediction loss and keeps its structural alternatives.\nPASS Independent measured-entry controls preserve same-ID coefficients, earlier-event selection through refit, and raw failed predictions.\nnode:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: {\"width\":320,\"scroll\":349}\n    at file:///tmp/estate-48a767a1-20261027/received/8794c2f74c1f9b67a2b0742a08594abb0a8c97c1/worldlaw/scripts/experiment-receipts-browser.mjs:95:12 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '==',\n  diff: 'simple'\n}\n\nNode.js v22.23.4\n"
+  },
+  {
+    "check": "history-320",
+    "exit_code": 1,
+    "seconds": 6.241,
+    "source": "8794c2f74c1f9b67a2b0742a08594abb0a8c97c1",
+    "artifact_dir": "/tmp/estate-48a767a1-20261027/receipts/package-8794/history-320",
+    "tail": "PASS qualified 16 earlier / 9 current laws, seven lost IDs, changed same-ID motion, exact immutable saved domains and coefficients\nPASS actual entered measurement and keyboard historical launch render all saved laws with direct-executor exact curves\nPASS current nine-law and historical sixteen-law sources switch explicitly; changed release retires derived paths without notebook mutation\nPASS over-budget historical grid refuses every original law and leaves no sampled spread or surviving trace\nPASS two actual outcomes preserve their distinct original sets; receipt selection retires paths before explicit rerun\nnode:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: 320px overflow\n    at file:///tmp/estate-48a767a1-20261027/received/8794c2f74c1f9b67a2b0742a08594abb0a8c97c1/worldlaw/scripts/earlier-motion-browser.mjs:89:278 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: false,\n  expected: true,\n  operator: '==',\n  diff: 'simple'\n}\n\nNode.js v22.23.4\n"
+  }
+]

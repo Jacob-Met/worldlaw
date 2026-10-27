@@ -1,0 +1,30 @@
+{
+  "browser": "156.0.8078.47",
+  "narrowViewport": {
+    "width": 320,
+    "height": 960
+  },
+  "checks": [
+    "qualified 16 earlier / 9 current laws, seven lost IDs, changed same-ID motion, exact immutable saved domains and coefficients",
+    "actual entered measurement and keyboard historical launch render all saved laws with direct-executor exact curves",
+    "current nine-law and historical sixteen-law sources switch explicitly; changed release retires derived paths without notebook mutation",
+    "over-budget historical grid refuses every original law and leaves no sampled spread or surviving trace",
+    "two actual outcomes preserve their distinct original sets; receipt selection retires paths before explicit rerun",
+    "five-key input-only export reopens fresh; historical curves reproduce at 320px with reduced motion, keyboard scrub and clear"
+  ],
+  "lostIds": [
+    "command+rate+spring",
+    "command+spring+quadratic",
+    "command+rate+coulomb+spring",
+    "command+rate+spring+quadratic",
+    "command+coulomb+spring+quadratic",
+    "command+rate+spring+bias",
+    "command+spring+quadratic+bias"
+  ],
+  "sameIdMotionDifference": 0.07690118135806301,
+  "worstPixel": 7.65965069149388e-12,
+  "errors": [],
+  "badRequests": [],
+  "external": [],
+  "scope": "Authored synthetic analytic fixture entered as actual-reading UI input; no claim of physical acquisition or authenticated historical forecast."
+}

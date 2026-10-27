@@ -1,0 +1,32 @@
+{
+  "browser": "156.0.8078.47",
+  "checks": [
+    "Actual virtual acquisition exposes prior prediction loss and keeps its structural alternatives.",
+    "Independent measured-entry controls preserve same-ID coefficients, earlier-event selection through refit, and raw failed predictions.",
+    "New outcome selects its own receipt; blank entry preserves it; exact raw rows remain scrollable at desktop, 390px and 320px.",
+    "Actual source-only download reopens in a fresh browser context, recomputes original predictions, and undo removes only its outcome."
+  ],
+  "layouts": [
+    {
+      "width": 390,
+      "scroll": 390,
+      "typography": {
+        "viewBoxWidth": 317,
+        "renderedWidth": 317,
+        "minimumTickPx": 11,
+        "legendPx": 12
+      }
+    },
+    {
+      "width": 320,
+      "scroll": 320,
+      "typography": {
+        "viewBoxWidth": 280,
+        "renderedWidth": 254.984375,
+        "minimumTickPx": 10.017243303571428,
+        "legendPx": 12
+      }
+    }
+  ],
+  "scope": "Authored synthetic measurements entered through the actual Studio; no physical acquisition, authenticated freeze or calibrated probability claim."
+}
