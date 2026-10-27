@@ -1,0 +1,15 @@
+# Original training context for an independent challenge
+
+An independent challenge can disagree with fixed fitted coefficients while remaining compatible with coefficients obtained from bounded errors in the original training readings. The existing challenge receipt now offers the maintained shared-training search for its selected original law. It uses the exact pre-challenge training prefix and every row of that challenge. Later challenges, held-aside observations, adaptation and refitting do not replace this prefix or choose prior questions.
+
+The user explicitly declares training and challenge torque-reading radii. The maintained search and independent public certificate checker remain authoritative. A checked interior witness describes one common original-training perturbation; it does not validate the law. A checked separator excludes only the stated computed bounded family. Exhausted search remains unresolved. No challenge row is adopted into fitting or planning by this action.
+
+Only ordinary least-squares fits with a nonempty maintained named-term structure and exact recorded coordinates are admitted. Robust, weighted, generated-term and declared coordinate-uncertain cases remain unavailable. Original fixed-coefficient residuals, promised/achieved-bound assessments, rankings and source notebook events remain unchanged. Source/model/radius changes retire the displayed certificate and export.
+
+## Executed control and receiving
+
+With eight original training readings, command 2 and challenge torque 2.02 disagree with the fixed command law by about 0.02 N·m. Training radius 0.02 N·m and challenge radius 0.001 N·m admit a checked shared-training witness. The complete challenge containing 2.02 and 1.98 at the same input instead admits a checked separator, although either row alone admits a witness. This prevents substituting individually possible explanations for a common explanation of the whole course.
+
+On predecessor e4f505e21a843a8fe571ef0bd0f0d791a9092cac, 74 affected native tests passed, including six new controls independently rerun by SYNAPSE. Seven combined actual-browser groups passed: prior achieved-bound behavior, actual challenge intake, witness and separator, certificate export/reopen, wrong-source refusal, earlier-prefix notebook replay and radius invalidation. Desktop and narrow captures were inspected. Runtime index SHA256: 05ace23f101e71e58a8176321705f3fd52edb6c72177d0f2e90c0823d25dbb50. Documentation is outside that executed runtime closure.
+
+Receiving used maintained chromium-page SHA256 952e1f3db5b7bd766e730868f9c2d11e0f092ffb00df7ba4faa432ebee767a63. Active namespace/PID/network/seccomp/TSYNC checks passed; all 114 CDP requests completed, clean page close and direct-child exit 0 were observed. The maintained lifecycle intentionally retains the owned profile; descendants were not independently inventoried. The earlier receiver-only duplicate-identifier failure remains separate; no product failure or browser pass is inferred from it. No full repository gate, hardware experiment or physical validation is claimed.
