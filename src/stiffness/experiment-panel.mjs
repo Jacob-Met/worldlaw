@@ -17,15 +17,18 @@ const errorText=(entry,prediction)=>`${modelLabel(prediction)}: predicted ${numb
 /** UI owns an explicit local authored-course capability; notebook labels cannot grant it. */
 export function createExperimentPanel({onChange,onActivity,onError}) {
  let session=null,authoredCourse=null;
- function install(next,{course=null,message='Experiment recomputed from its retained inputs.'}={}){
-  session=next;authoredCourse=course;render(message);onChange(next);
+ function install(next,{course=null,message='Experiment recomputed from its retained inputs.',preserveReadingDraft=false}={}){
+  // Only evaluation-only check replacement may keep a draft for the same frozen request.
+  const keepDraft=preserveReadingDraft&&session?.pending&&
+   JSON.stringify(session.pending)===JSON.stringify(next.pending);
+  session=next;authoredCourse=course;render(message,{preserveReadingDraft:keepDraft});onChange(next);
  }
  function act(action){onActivity();try{action();}catch(error){onError(error);}}
  function freeze(index){
   install(setPendingStiffnessRequest(session,index),{course:authoredCourse,message:'Forecast frozen before receiving a new reading. No command was sent.'});
   $('observation-source').focus();
  }
- function render(message){
+ function render(message,{preserveReadingDraft=false}={}){
   const {plan,pending,history}=session;
   $('permitted-states').value=JSON.stringify(session.permitted,null,2);
   const status=$('experiment-status');status.dataset.planStatus=plan.status;
@@ -69,8 +72,10 @@ export function createExperimentPanel({onChange,onActivity,onError}) {
    paragraph(holder,`Planning status when frozen: ${pending.planStatus}. Spread ${number(pending.spread)} N·m. Extrapolated axes: ${pending.extrapolated.join(', ')||'none'}.`);
    for(const p of pending.predictions)paragraph(holder,`${modelLabel(p)} predicted ${number(p.torque)} N·m before the new observation.`);
    if(!pending.predictions.length)paragraph(holder,'No executable forecast was available. Receiving a declared observation does not manufacture a prior prediction.');
-   for(const axis of ['command','position','rate'])$('observation-'+axis).value=pending.state[axis];
-   $('observation-id').value='reading-'+(session.acquisitions.length+1);$('observation-torque').value='';
+   if(!preserveReadingDraft){
+    for(const axis of ['command','position','rate'])$('observation-'+axis).value=pending.state[axis];
+    $('observation-id').value='reading-'+(session.acquisitions.length+1);$('observation-torque').value='';
+   }
   }else paragraph(holder,'No pending request. Freeze one declared state before supplying a reading.');
   for(const id of ['observation-id','observation-source','observation-kind','observation-command','observation-position','observation-rate','observation-torque','experiment-receive'])$(id).disabled=!pending;
   $('experiment-virtual-receive').disabled=!pending||authoredCourse===null;
@@ -131,7 +136,7 @@ export function createExperimentPanel({onChange,onActivity,onError}) {
   replaceChecks:incoming=>{
    const input=experimentInputs(session),initialStudy=importStiffnessStudy(JSON.stringify(input.initial));
    input.initial=JSON.parse(exportStiffnessStudy(replaceStiffnessChecks(initialStudy,incoming)));
-   install(replayStiffnessExperiment(input),{course:authoredCourse,message:'Separate checks replaced only in the initial study; training, pending request and sequential acquisition history retained.'});
+   install(replayStiffnessExperiment(input),{course:authoredCourse,preserveReadingDraft:true,message:'Separate checks replaced only in the initial study; training, pending request, current reading draft and sequential acquisition history retained.'});
   },
  };
 }
