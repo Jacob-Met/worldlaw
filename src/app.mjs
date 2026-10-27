@@ -1,3 +1,5 @@
+import {mountMeasurementBatch} from './measurement-batch-panel.mjs';
+let measurementBatchPanel=null;
 import {renderAngularFrequency} from './science/angular-frequency-panel.mjs';
 import {renderOrderedLawChange} from './science/ordered-law-change-panel.mjs';
 import {mountScalarExcitation} from './science/excitation-design-panel.mjs';
@@ -196,7 +198,7 @@ function renderModel(){
   runSimulation(false);
 }
 function render(){
-  excitationPanel?.studioChanged();
+  measurementBatchPanel?.studioChanged();excitationPanel?.studioChanged();
   const d=state.discovery;set('source-name',state.base.source.label);set('source-kind',state.lab?'Virtual instrument · synthetic evidence':'Imported observations · user-supplied evidence');
   set('sample-count',String(d.observations.length));set('heldout-count',String(state.base.heldOut.length));set('candidate-count',String(d.candidates.length));
   $('undo').disabled=state.events.length===0;$('measured-field').hidden=Boolean(state.lab);$('run-experiment').textContent=state.lab?'Run virtual experiment':'Record measured outcome';
@@ -421,3 +423,5 @@ function renderPlanningBounds(pilot){
  box.append(el('p','Explicit absolute error assumptions. Declared-bounds mode freezes coefficients; training-response mode compares ordinary least-squares response envelopes and requires exact coordinates. Separation does not validate a law or authorize hardware operation. No separating offered input remains unresolved.'));
  const comparison=el('p');comparison.id='nominal-plan-comparison';comparison.hidden=!state.planningRadii;comparison.textContent=plan.nominal?.selected?'Nominal-only suggestion: position '+plan.nominal.selected.input.position+' rad.':'Nominal comparison unavailable for this course.';box.append(comparison);
 }
+
+measurementBatchPanel=mountMeasurementBatch(document.querySelector('.experiment-panel'),{getState:()=>state,getGeneration:()=>generation,beginSourceReplacement,adopt});
