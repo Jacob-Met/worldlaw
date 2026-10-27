@@ -23,10 +23,11 @@ import {proposeScalarLibrary} from './science/library-proposal.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
 import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,sessionPlan,sessionPilotPlan,exportSession,restoreSession,undoSession,MAX_SESSION_FILE_BYTES} from './session.mjs';
 import {restoreNotebook} from './notebook-input.mjs';
+import {createNotebookStorage} from './notebook-recovery.mjs';
 import {renderExperimentReceipts} from './science/experiment-receipts-panel.mjs';
 
 const $=id=>document.getElementById(id);
-const storageKey='worldlaw.notebook.v1';
+const notebookStorage=createNotebookStorage(()=>localStorage);
 const names={command:'Actuation',rate:'Viscous damping',coulomb:'Coulomb friction',spring:'Linear spring',gravity:'Sinusoidal gravity',quadratic:'Quadratic drag',bias:'Bias',cubic:'Cubic position',cosine:'Cosine position',rate_squared:'Even rate',command_position:'Command × position'};
 const fmt=(value,digits=4)=>value===null||!Number.isFinite(value)?'—':Math.abs(value)>0&&Math.abs(value)<0.0001?value.toExponential(2):Number(value.toPrecision(digits)).toLocaleString('en-US',{maximumFractionDigits:6});
 const el=(tag,text,className)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;};
@@ -39,8 +40,11 @@ function alertError(error) { $('error').hidden=false;set('error',error.message||
 function notice(text) {set('notice',text);$('error').hidden=true;}
 function action(fn) {try{fn();}catch(error){alertError(error);}}
 function save() {
-  try{localStorage.setItem(storageKey,exportSession(state));set('storage-status','Notebook saved on this browser');}
-  catch{set('storage-status','Browser storage unavailable · export to keep this notebook');}
+  const result=notebookStorage.saveCurrent(exportSession(state));
+  if(result.ok)set('storage-status','Notebook saved on this browser');
+  else if(result.reason==='protected')set('storage-status','Unreadable saved notebook protected · current changes are not stored. Download or explicitly archive and replace the original below.');
+  else if(result.reason==='read-denied')set('storage-status','Browser storage could not be read · current changes are not stored. Export this notebook and reload after storage is restored.');
+  else set('storage-status','Browser storage unavailable · export to keep this notebook');
 }
 function adopt(next,message,widths=null,frequency=null) {generation++;state=next;deadzoneWidths=widths;frequencySettings=frequency;modelId=state.discovery.selected.id;render();save();notice(message);}
 // Selection owns a pending replacement across every Studio source entry point.
@@ -51,6 +55,50 @@ function numberInput(id){const v=$(id).value.trim();if(!v||!Number.isFinite(Numb
 function experimentInput(){return Object.fromEntries(['command','position','rate'].map(f=>[f,numberInput(f)]));}
 function download(text,filename,type='application/json') {
   const url=URL.createObjectURL(new Blob([text],{type}));const a=el('a');a.href=url;a.download=filename;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);
+}
+function refreshNotebookRecovery() {
+  const original=notebookStorage.protectedOriginal, listing=notebookStorage.archives();
+  const entries=listing.ok?listing.entries:[];
+  const select=$('recovery-choice'), oldSelection=select.value;
+  select.replaceChildren();
+  for(const entry of entries){
+    const option=el('option',`Recovered original ${entry.slot}`);
+    option.value=String(entry.slot);
+    select.append(option);
+  }
+  if(entries.some(entry=>String(entry.slot)===oldSelection))select.value=oldSelection;
+  $('download-unreadable').hidden=original===null;
+  $('replace-unreadable').hidden=original===null;
+  for(const id of ['recovery-choice-label','recovery-choice','download-archived'])$(id).hidden=!entries.length;
+  $('storage-recovery').hidden=original===null&&!entries.length;
+  set('storage-recovery-message',original!==null?'An earlier saved notebook could not be opened. Its text remains in browser storage, and automatic saving is paused. This workspace is a separate fallback example until you open or import another source. Download the original; replacing it first archives and verifies the original text.': 'An earlier unreadable notebook was archived before explicit replacement. Download its original text here.');
+}
+function configureNotebookRecovery(){
+  $('download-unreadable').addEventListener('click',()=>{
+    const raw=notebookStorage.protectedOriginal;
+    if(raw!==null)download(raw,'worldlaw-unreadable-original.txt','text/plain;charset=utf-8');
+  });
+  $('download-archived').addEventListener('click',()=>action(()=>{
+    const listing=notebookStorage.archives();
+    if(!listing.ok)throw new Error('Recovery archive is not readable in this browser.');
+    const slot=Number($('recovery-choice').value);
+    const source=listing.entries.find(entry=>entry.slot===slot);
+    if(!source)throw new Error('The selected original recovery copy is no longer available.');
+    download(source.text,`worldlaw-recovered-original-${slot}.txt`,'text/plain;charset=utf-8');
+  }));
+  $('replace-unreadable').addEventListener('click',()=>action(()=>{
+    if(!confirm('Archive the exact unreadable original first, then replace the active browser notebook with the currently displayed workspace? The archive remains downloadable on later visits.'))return;
+    const outcome=notebookStorage.archiveAndReplace(exportSession(state));
+    if(!outcome.ok){
+      set('storage-status',outcome.reason==='active-source-changed'?'Saved notebook changed in another tab. No replacement was made; reload before trying again.':'Could not verify a durable recovery copy and replacement. Original saved source remains protected; export your current workspace.');
+      refreshNotebookRecovery();
+      return;
+    }
+    set('storage-status','Current notebook saved on this browser. Its earlier unreadable original remains in the downloadable recovery archive.');
+    refreshNotebookRecovery();
+    notice('Archived and read back the original saved text before replacing the active notebook.');
+  }));
+  refreshNotebookRecovery();
 }
 function chart(container,series,{xLabel,yLabel,diagonal=false,width=580,zeroTickTolerance=0}={}) {
   const wrap=$(container);wrap.replaceChildren();
@@ -273,10 +321,16 @@ studioComparison=mountStudioComparison($('studio-motion-comparison'),{
   chart,onClear:()=>runSimulation(false),
 });
 
-try{const saved=localStorage.getItem(storageKey);if(saved){state=restoreNotebook(saved);restored=true;}}catch(error){set('notice',`The stored notebook could not be reopened: ${error.message}. Its stored bytes were left intact.`);}
+const savedRead=notebookStorage.readInitial();
+if(savedRead.ok&&savedRead.text!==null){
+  try{state=restoreNotebook(savedRead.text);restored=true;}
+  catch(error){notebookStorage.protectUnreadable(savedRead.text);set('notice',`The earlier saved notebook could not be reopened: ${error.message}. The unreadable original is protected; you are seeing a separate fictional example.`);}
+}else if(!savedRead.ok)set('notice','Browser storage could not be read. The fictional example does not replace existing saved data; automatic saving is paused.');
 state ||= newVirtualSession();modelId=state.discovery.selected.id;render();
 if(restored){notice('Reopened your local notebook and recomputed every model revision.');set('storage-status','Local notebook restored');}
+else if(notebookStorage.blocked)set('storage-status',notebookStorage.readDenied?'Browser storage cannot be read · current notebook is not saved. Export it and reload after storage recovers.':'Unreadable earlier notebook protected · current notebook is not saved. Download or archive and replace the original below.');
 else set('storage-status','Export a notebook to keep a portable copy');
+configureNotebookRecovery();
 useProposal(false);
 $('use-proposal').addEventListener('click',()=>action(useProposal));
 $('planner-objective').addEventListener('change',()=>action(()=>{renderPlan();notice('Planning objective changed. Original observations and fitted laws are unchanged.');}));
@@ -350,4 +404,5 @@ affinePanel=mountAffineClocks(document.querySelector('.main-column'),model);
 
 excitationPanel=mountScalarExcitation($('use-proposal').parentElement,{beginSourceReplacement,getSourceGeneration:()=>generation,getState:()=>state,saveNotebook:()=>exportSession(state),openNotebook:(text,validateOnly=false)=>{const next=restoreSession(text);if(!validateOnly)adopt(next,'Reopened input-design source notebook.');return next;},useInput:input=>{for(const field of ['command','position','rate'])$(field).value=String(input[field]);notice('Declared input copied. Obtain a new reading before recording the outcome.');$('command').focus();}});
 excitationPanel.studioChanged();
+
 

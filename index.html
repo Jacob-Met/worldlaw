@@ -77,6 +77,15 @@
               <button id="refit" class="button button-outline button-full" type="button">Refit observations</button></div></details>
           </section>
           <p id="storage-status" class="storage-status" role="status">Session storage is initializing.</p>
+          <div id="storage-recovery" class="panel" hidden aria-labelledby="storage-recovery-heading">
+            <h3 id="storage-recovery-heading">Saved notebook recovery</h3>
+            <p id="storage-recovery-message" class="input-hint"></p>
+            <button id="download-unreadable" class="button button-outline button-full" type="button" hidden>Download unreadable original text</button>
+            <button id="replace-unreadable" class="button button-dark button-full" type="button" hidden>Archive original and save current notebook</button>
+            <label id="recovery-choice-label" for="recovery-choice" hidden>Archived original notebook</label>
+            <select id="recovery-choice" hidden></select>
+            <button id="download-archived" class="button button-outline button-full" type="button" hidden>Download archived original text</button>
+          </div>
         </aside>
 
         <div class="main-column">
@@ -129,5 +138,6 @@
   <script type="module" src="/src/app.mjs"></script>
 </body>
 </html>
+
 
 
