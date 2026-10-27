@@ -1,0 +1,16 @@
+import{parseMeasurementBatch,MEASUREMENT_BATCH_BYTES}from'./measurement-batch.mjs';import{appendMeasurements}from'./session.mjs';
+export function mountMeasurementBatch(host,{getState,getGeneration,beginSourceReplacement,adopt}){
+ const box=document.createElement('section');box.id='measurement-batch';box.innerHTML='<h3>Receive an acquired reading file</h3><p>Append actual instrument readings to this notebook. The earlier evidence and predictions are retained; these new readings then enter the refit. CSV units: command/torque N·m, position rad, rate rad/s. This is separate from replacing the starting observations.</p><label>Actual readings CSV or measurement-batch JSON<input id="measurement-batch-file" type="file" accept=".csv,.json,text/csv,application/json"></label><p id="measurement-batch-status" role="status">Choose an actual reading file to inspect before appending.</p><button id="measurement-batch-append" class="button button-outline button-full" type="button" disabled>Append acquired readings and refit</button>';
+ host.append(box);const file=box.querySelector('input'),status=box.querySelector('[role=status]'),button=box.querySelector('button');let pending=null,serial=0;
+ function retire(){serial++;pending=null;button.disabled=true;file.value='';status.textContent='Choose an actual reading file to inspect before appending.';}
+ function studioChanged(){retire();box.hidden=Boolean(getState().lab);}
+ file.addEventListener('change',async()=>{const f=file.files?.[0];if(!f)return;pending=null;button.disabled=true;const ticket=++serial,generation=beginSourceReplacement();status.textContent='Reading acquired source…';try{
+  if(getState().lab)throw Error('Import an instrument notebook before appending acquired readings.');if(f.size>MEASUREMENT_BATCH_BYTES)throw Error('Acquired file exceeds2MB.');
+  const text=await f.text();if(ticket!==serial||generation!==getGeneration())return;const batch=parseMeasurementBatch(text,f.name);
+  if(getState().discovery.observations.length+batch.rows.length>4096)throw Error('Complete notebook would exceed4096readings.');
+  const weighted=getState().discovery.observations[0]?.torqueNoiseRatio!==undefined;if(weighted!==(batch.rows[0]?.torqueNoiseRatio!==undefined))throw Error('Acquired readings must preserve the notebook’s complete torque-noise-ratio declaration.');
+  pending={batch,generation};button.disabled=false;status.textContent=`Ready: ${batch.rows.length} actual reading(s) from ${batch.source.label}. No reading has been added. Check the source and units, then append explicitly.`;
+ }catch(error){if(ticket===serial&&generation===getGeneration())status.textContent=error.message;}finally{if(ticket===serial)file.value='';}});
+ button.addEventListener('click',()=>{if(!pending)return;const p=pending;if(p.generation!==getGeneration()){retire();return;}try{const next=appendMeasurements(getState(),p.batch.rows,'Acquired file: '+p.batch.source.label,p.batch.source);retire();adopt(next,`Appended ${p.batch.rows.length} acquired readings. Earlier predictions are retained separately from the new fit.`);}catch(error){pending=null;button.disabled=true;status.textContent=error.message;}});
+ studioChanged();return{studioChanged};
+}

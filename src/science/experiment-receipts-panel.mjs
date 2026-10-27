@@ -26,6 +26,7 @@ export function renderExperimentReceipts(host,state,{chart}) {
   events.value=String(view.eventIndex);
   const selected=experiments.find(item=>item.index===view.eventIndex)??experiments.at(-1);
   const receipt=selected.entry.experiment;
+  const acquisitionSource=state.events[selected.index-1]?.source;if(acquisitionSource)host.append(el('p',`Acquired source: ${acquisitionSource.label}. User-declared actual measurements in N·m, rad and rad/s; original input values are retained. Source independence is not authenticated.`));
   const provenance=el('p',`${state.base.source.label} · ${selected.entry.kind==='virtual'?'synthetic virtual instrument':'user-entered outcomes; source not independently authenticated'}. ${receipt.beforeCount} earlier training rows; ${receipt.models.length} original competitive laws. All rows in this batch use the same earlier fit.`);
   const laws=el('select');laws.id='experiment-receipt-law';
   receipt.models.forEach((model,index)=>{const option=el('option',`${index+1}. ${model.id}${model.id===receipt.selectedBeforeId?' · earlier training choice':''} · ${model.equation}`);option.value=String(index);laws.append(option);});

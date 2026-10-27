@@ -1,3 +1,4 @@
+import {measurementSource} from './measurement-batch.mjs';
 import {planTrainingResponse,receiveTrainingResponse} from './science/training-response-plan.mjs';
 import {summarizeBoundedReceipt} from './science/bounded-experiment-receipts.mjs';
 import {planBoundedScalarExperiment} from './science/bounded-scalar-plan.mjs';
@@ -108,11 +109,13 @@ function eventState(state,event,discovery,options=state.options) {
   }
   return {...state,options,discovery,events:[...state.events,event],history:[...state.history,entry]};
 }
-export function appendMeasurements(state,rows,label='Measured outcome') {
+export function appendMeasurements(state,rows,label='Measured outcome',source=null) {
   if(state.lab) throw new Error('This notebook is connected to a virtual instrument. Import measured observations to start an instrument notebook.');
   rows=validateRows(rows,{allowEmpty:true});
   if(!rows.length || state.discovery.observations.length+rows.length>MAX_ROWS) throw new Error('The measurement batch is empty or exceeds the observation limit.');
-  const event={kind:'measurement',label:String(label).slice(0,160),rows};
+  const admittedSource=source===null?null:measurementSource(source);
+  if(admittedSource&&(rows[0].torqueNoiseRatio!==undefined)!==(admittedSource.units.torqueNoiseRatio==='1'))throw Error('Acquisition source units must match the complete torque-noise-ratio declaration.');
+  const event={kind:'measurement',label:String(label).slice(0,160),rows,...(admittedSource?{source:admittedSource}:{})};
   assertReplayWork(state.base,state.initialOptions,[...state.events,event]);
   return eventState(state,event,revise(state.discovery,rows));
 }
@@ -186,7 +189,7 @@ export function restoreSession(text) {
   let state=createSession(raw.base,raw.initialOptions,{labSeed:raw.lab?.seed??null});
   for(const event of raw.events) {
     if(event?.kind==='virtual') state=runVirtualExperiment(state,event.input);
-    else if(event?.kind==='measurement') state=appendMeasurements(state,event.rows,event.label);
+    else if(event?.kind==='measurement') state=appendMeasurements(state,event.rows,event.label,event.source??null);
     else if(event?.kind==='planning-bounds') state=setPlanningBounds(state,event.radii,event.trainingRadius??null);
     else if(event?.kind==='options') state=refitSession(state,event.options);
     else throw new Error('Notebook contains an unknown event.');
