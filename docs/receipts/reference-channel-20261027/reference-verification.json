@@ -1,0 +1,53 @@
+{
+  "schema": "worldlaw.reference-browser/v1",
+  "origin": "http://127.0.0.1:39321",
+  "node": "v22.23.4",
+  "checks": [
+    {
+      "name": "actual UNKNOWN LAB baseline remains, authored reference screen is explicit",
+      "passed": true
+    },
+    {
+      "name": "conditional negative controls retain rejection and negative-gain positive survives",
+      "passed": true
+    },
+    {
+      "name": "fresh page reopens actual exported original observations",
+      "passed": true
+    },
+    {
+      "name": "invalid replacement retires result without accepting corrupted source",
+      "passed": true
+    },
+    {
+      "name": "declared-gain edits retire stale inference and keyboard submits form",
+      "passed": true
+    },
+    {
+      "name": "late file read cannot replace a newer authored-control action",
+      "passed": true
+    },
+    {
+      "name": "independent channel notebook imports add a real run; duplicate acquisition refuses atomically",
+      "passed": true
+    },
+    {
+      "name": "qualified contradiction remains visible alongside unqualified challenge",
+      "passed": true
+    },
+    {
+      "name": "actual layout and focus at 1440",
+      "passed": true
+    },
+    {
+      "name": "actual layout and focus at 390",
+      "passed": true
+    },
+    {
+      "name": "actual layout and focus at 320",
+      "passed": true
+    }
+  ],
+  "exceptions": [],
+  "sandboxAdmitted": true
+}
