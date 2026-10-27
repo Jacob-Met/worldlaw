@@ -1,3 +1,4 @@
+import{renderChallengePrecision}from'./challenge-precision-panel.mjs';
 import{challengeCourseContext}from'./challenge-course.mjs';import{renderSharedTraining}from'./shared-training-panel.mjs';
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
 export function renderChallengeTraining(host,state,eventIndex,modelIndex,throughEvent=eventIndex){
@@ -9,4 +10,5 @@ export function renderChallengeTraining(host,state,eventIndex,modelIndex,through
  const sources=el('p',`Complete received source rows: ${c.rowSources.map(r=>`challenge ${r.eventIndex}, row ${r.rowIndex+1}`).join('; ')}. Later fixed-fit rankings do not replace this original law.`);host.append(sources);
  const controls=[['Original training-reading radius (N·m)','trainingRadius',.02],['Challenge reading radius (N·m)','receivingRadius',c.knownBounds.at(-1)?.jointTorque??.01]].map(([label,key,value])=>{const wrapper=el('label',label),input=el('input');wrapper.style.display='grid';input.type='number';input.min='0';input.max='1000000';input.step='any';input.value=String(value);input.style.minHeight='44px';input.dataset.challengeTrainingRadius=key;input.setAttribute('aria-label',label);wrapper.append(input);host.append(wrapper);return{key,input};});
  const search=el('div');host.append(search);renderSharedTraining(search,c.model,c.training,c.receiving,controls,{description:'Explicit retrospective search on the complete selected independent challenge course, using one common perturbation of original training readings. A checked witness does not validate the structure; a checked separator concerns only this computed bounded family. Budget exhaustion stays unresolved. No challenge row is adopted for fitting or question planning.'});
+ renderChallengePrecision(host,state,eventIndex,modelIndex,throughEvent,c);
 }
