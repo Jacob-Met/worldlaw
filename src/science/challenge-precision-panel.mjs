@@ -1,5 +1,6 @@
 import{renderChallengeAllowances}from'./challenge-allowance-panel.mjs';
 import{renderTrainingRowBounds}from'./training-row-bounds-panel.mjs';
+import{renderSharedCalibration}from'./shared-calibration-panel.mjs';
 import{compareChallengeFamilies,FAMILY_PRODUCTS_LIMIT}from'./challenge-families.mjs';
 import{challengePrecisionContext,searchChallengePrecision,serializeChallengePrecision,replayChallengePrecision}from'./challenge-precision.mjs';import{renderSharedTraining}from'./shared-training-panel.mjs';
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
@@ -17,4 +18,5 @@ export function renderChallengePrecision(host,state,eventIndex,modelIndex,throug
 
  renderChallengeAllowances(details,state,eventIndex,throughEvent,read,searchHost);
  renderTrainingRowBounds(details,state,eventIndex,modelIndex,throughEvent,context,read);
+ renderSharedCalibration(details,state,eventIndex,modelIndex,throughEvent,context,read);
 }
