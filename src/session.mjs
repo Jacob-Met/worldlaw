@@ -130,6 +130,14 @@ export function receiveScalarChallenge(state,rows,source){
  const event={kind:'challenge',label:'External challenge: '+admittedSource.label,rows,source:admittedSource};
  const next=eventState(state,event,state.discovery);next.history[next.history.length-1].challenge=challenge;return next;
 }
+export function reuseScalarChallenge(state,challengeEvent){
+ if(!Number.isInteger(challengeEvent)||challengeEvent<0||challengeEvent>=state.events.length||state.events[challengeEvent].kind!=='challenge')throw Error('Choose an earlier retained external challenge.');
+ if(state.events.some(e=>e.reusedChallenge===challengeEvent))throw Error('This complete challenge has already been reused for training.');
+ const original=state.events[challengeEvent];
+ const next=appendMeasurements(state,original.rows,'Reused challenge for training: '+original.source.label,original.source);
+ next.events.at(-1).reusedChallenge=challengeEvent;
+ return next;
+}
 export function runVirtualExperiment(state,input) {
   if(!state.lab) throw new Error('Virtual experiments are available only in the virtual instrument notebook. Enter a measured outcome for your imported data.');
   const experimentIndex=state.events.filter(e=>e.kind==='virtual').length;
@@ -201,7 +209,13 @@ export function restoreSession(text) {
   for(const event of raw.events) {
     if(event?.kind==='virtual') state=runVirtualExperiment(state,event.input);
     else if(event?.kind==='challenge') state=receiveScalarChallenge(state,event.rows,event.source);
-    else if(event?.kind==='measurement') state=appendMeasurements(state,event.rows,event.label,event.source??null);
+    else if(event?.kind==='measurement') {
+      if(Object.hasOwn(event,'reusedChallenge')){
+        const original=state.events[event.reusedChallenge];
+        if(!original||original.kind!=='challenge'||JSON.stringify(validateRows(event.rows,{allowEmpty:true}))!==JSON.stringify(original.rows)||JSON.stringify(measurementSource(event.source))!==JSON.stringify(original.source))throw Error('Reused challenge source differs from the retained original event.');
+        state=reuseScalarChallenge(state,event.reusedChallenge);
+      }else state=appendMeasurements(state,event.rows,event.label,event.source??null);
+    }
     else if(event?.kind==='planning-bounds') state=setPlanningBounds(state,event.radii,event.trainingRadius??null);
     else if(event?.kind==='options') state=refitSession(state,event.options);
     else throw new Error('Notebook contains an unknown event.');

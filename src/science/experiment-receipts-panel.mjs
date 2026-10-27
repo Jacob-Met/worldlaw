@@ -9,7 +9,7 @@ const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.
 const fmt=value=>Number.isFinite(value)?Number(value.toPrecision(6)).toLocaleString('en-US',{maximumFractionDigits:9}):'—';
 function control(text,node){const label=el('label',text);label.append(node);return label;}
 
-export function renderExperimentReceipts(host,state,{chart}) {
+export function renderExperimentReceipts(host,state,{chart,onReuse}) {
   const experiments=state.history.flatMap((entry,index)=>entry.experiment?[{entry,index}]:[]);
   const previous=views.get(host);
   previous?.observer?.disconnect();
@@ -18,7 +18,7 @@ export function renderExperimentReceipts(host,state,{chart}) {
   const last=experiments.at(-1)?.entry.experiment;
   const view=previous&&previous.last===last?previous:{last,eventIndex:experiments.at(-1)?.index,modelIndex:0};
   view.observer=null;
-  views.set(host,view);host.replaceChildren();renderScalarChallenges(host,state);
+  views.set(host,view);host.replaceChildren();renderScalarChallenges(host,state,{onReuse});
   const title=el('h3','Predictions before learning the outcome');
   host.append(title,el('p','Inspect the laws from before each measurement update, then compare their predictions with the actual entered outcome. These comparisons are recomputed from earlier notebook evidence; they do not authenticate acquisition time or independent measurements.'));
   if(!experiments.length){host.append(el('p',state.history.some(h=>h.challenge)?'No acquired challenge rows have been added to fitting. The external challenge above retains its original prediction comparison.':'Record an instrument outcome or run a virtual experiment to compare what the earlier laws predicted. Refitting alone creates no new outcome.'));return;}
@@ -27,6 +27,7 @@ export function renderExperimentReceipts(host,state,{chart}) {
   events.value=String(view.eventIndex);
   const selected=experiments.find(item=>item.index===view.eventIndex)??experiments.at(-1);
   const receipt=selected.entry.experiment;
+  const reusedChallenge=state.events[selected.index-1]?.reusedChallenge;if(reusedChallenge!==undefined)host.append(el('p',`Reused challenge revision ${reusedChallenge+1}: these outcomes were already available. This update adapts training; its after-fit improvement is not a fresh prediction test.`));
   const acquisitionSource=state.events[selected.index-1]?.source;if(acquisitionSource)host.append(el('p',`Acquired source: ${acquisitionSource.label}. User-declared actual measurements in N·m, rad and rad/s; original input values are retained. Source independence is not authenticated.`));
   const provenance=el('p',`${state.base.source.label} · ${selected.entry.kind==='virtual'?'synthetic virtual instrument':'user-entered outcomes; source not independently authenticated'}. ${receipt.beforeCount} earlier training rows; ${receipt.models.length} original competitive laws. All rows in this batch use the same earlier fit.`);
   const laws=el('select');laws.id='experiment-receipt-law';
@@ -93,7 +94,7 @@ export function renderExperimentReceipts(host,state,{chart}) {
     details.ontoggle=fill;fill();
   };
   laws.addEventListener('change',draw);
-  events.addEventListener('change',()=>{view.eventIndex=Number(events.value);view.modelIndex=0;renderExperimentReceipts(host,state,{chart});host.querySelector('#experiment-receipt-event').focus();});
+  events.addEventListener('change',()=>{view.eventIndex=Number(events.value);view.modelIndex=0;renderExperimentReceipts(host,state,{chart,onReuse});host.querySelector('#experiment-receipt-event').focus();});
   draw();
   view.observer=new ResizeObserver(redrawPlot);
   view.observer.observe(plot);

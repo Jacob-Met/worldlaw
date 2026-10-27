@@ -1,3 +1,4 @@
+import {reuseScalarChallenge} from './session.mjs';
 import {mountMeasurementBatch} from './measurement-batch-panel.mjs';
 let measurementBatchPanel=null;
 import {renderAngularFrequency} from './science/angular-frequency-panel.mjs';
@@ -224,7 +225,7 @@ function render(){
   state.history.forEach((entry,i)=>{const li=el('li');li.append(el('span',String(i+1).padStart(2,'0'),'history-index'),el('strong',entry.label),el('span',`${entry.count} rows · ${entry.modelId} · held-out ${fmt(entry.heldOutRMSE)} N·m${entry.loss==='weighted_least_squares'?` · weighted fit, normalized training ${fmt(entry.relativeNoiseRmse)} N·m`:''}`,'history-detail'));history.append(li);});
   let receipts=$('experiment-receipts');
   if(!receipts){receipts=el('section');receipts.id='experiment-receipts';receipts.className='panel';receipts.setAttribute('aria-label','Predictions before measurement updates');history.parentElement.after(receipts);}
-  renderExperimentReceipts(receipts,state,{chart});
+  const receiptState=state;renderExperimentReceipts(receipts,state,{chart,onReuse:index=>{if(state!==receiptState)throw Error('The notebook changed; choose the challenge again.');adopt(reuseScalarChallenge(state,index),'Reused original challenge rows for training. Earlier predictions remain; test adaptation with a separate later challenge.');}});
   let receiptShortcut=$('inspect-last-experiment');
   if(!receiptShortcut){receiptShortcut=el('button','Inspect predictions before this outcome','button button-outline button-full');receiptShortcut.id='inspect-last-experiment';receiptShortcut.type='button';$('run-experiment').after(receiptShortcut);receiptShortcut.addEventListener('click',()=>{const select=$('experiment-receipt-event');if(!select)return;select.value=select.options[select.options.length-1].value;select.dispatchEvent(new Event('change'));$('experiment-receipts').scrollIntoView({block:'start'});$('experiment-receipt-event').focus();});}
   receiptShortcut.hidden=!state.history.some(entry=>entry.experiment);
