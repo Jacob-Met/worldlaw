@@ -15,9 +15,11 @@ try{
   assert.equal(await page.locator('#prediction-chart svg').count(),1);assert.equal(await page.locator('#residual-chart svg').count(),1);assert.equal(await page.locator('#trajectory-chart svg').count(),1);
   assert.ok(await page.locator('#mechanism-canvas').evaluate(c=>c.getContext('2d').getImageData(0,0,c.width,c.height).data.some(x=>x)));
   await page.screenshot({path:resolve(dir,'worldlaw-initial.png'),fullPage:true});mark('real initial workbench, hypotheses, evidence plots and solver-driven canvas render');
+  const originalName=await page.locator('#hypothesis-list button[aria-pressed="true"] .hypothesis-name').innerText();
   const alternative=page.locator('#hypothesis-list button[aria-pressed="false"]').first();await alternative.focus();await page.keyboard.press('Enter');
   assert.equal(await page.evaluate(()=>document.activeElement?.matches('#hypothesis-list button[aria-pressed="true"]')),true);
-  await page.keyboard.press('Tab');assert.notEqual(await page.evaluate(()=>document.activeElement?.tagName),'BODY');mark('keyboard model inspection retains focus on the rebuilt selected hypothesis');
+  await page.keyboard.press('Tab');assert.notEqual(await page.evaluate(()=>document.activeElement?.tagName),'BODY');
+  await page.locator('#hypothesis-list button').filter({has:page.locator('.hypothesis-name',{hasText:originalName})}).first().click();mark('keyboard model inspection retains focus on the rebuilt selected hypothesis');
   const before=Number((await page.locator('#heldout-error').innerText()).replaceAll(',',''));
   await page.locator('#use-proposal').focus();await page.keyboard.press('Enter');assert.ok(Math.abs(Number(await page.locator('#position').inputValue()))>2);
   await page.locator('#run-experiment').click();await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='65');
