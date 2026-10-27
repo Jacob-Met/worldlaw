@@ -4,13 +4,16 @@ import {createProductServer} from '../server.mjs';
 import os from 'node:os';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import {requireChromiumSandbox} from './support/chromium-sandbox.mjs';
+import {stiffnessExperimentCourse} from '../src/stiffness/experiment-fixture.mjs';
+import {exportStiffnessExperiment} from '../src/stiffness/experiment.mjs';
 
 const server=createProductServer();
 await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
 const origin='http://127.0.0.1:'+server.address().port+'/stiffness.html';
 const dir=await mkdtemp(path.join(os.tmpdir(),'worldlaw-experiment-chrome-'));
-const chrome=spawn(process.env.BROWSER_EXECUTABLE_PATH||'/usr/local/bin/google-chrome',['--headless=new','--no-sandbox','--disable-gpu','--disable-background-networking','--hide-scrollbars','--remote-debugging-port=0','--user-data-dir='+dir,'--window-size=1440,1000','about:blank'],{stdio:'ignore'});
-let diagnosticEval=null;
+const chrome=spawn(process.env.BROWSER_EXECUTABLE_PATH||'/usr/local/bin/google-chrome',['--headless=new','--disable-gpu','--disable-background-networking','--hide-scrollbars','--remote-debugging-port=0','--user-data-dir='+dir,'--window-size=1440,1000','about:blank'],{stdio:'ignore'});
+let diagnosticEval=null,sandboxAdmission=null;
 let ws,seq=0;const pending=new Map(),events={exceptions:[],outside:[]};
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
 const out=[],historyVisibility=[],proposalVisibility=[];
@@ -36,7 +39,13 @@ try {
  diagnosticEval=evaljs;
  const wait=async predicate=>{for(let i=0;i<70;i++){if(await evaljs(predicate))return;await delay(70);}throw new Error('Timed out: '+predicate)};
  const check=async(name,fn)=>{await fn();out.push({name,passed:true})};
- await send('Page.enable');await send('Runtime.enable');await send('Network.enable');
+ await send('Page.enable');await send('Runtime.enable');
+ if(process.platform==='linux'){
+  try{sandboxAdmission=await requireChromiumSandbox({send,timeoutMs:8000});}
+  catch(error){if(outputDir&&error.receipt)await writeFile(path.join(outputDir,'sandbox.json'),JSON.stringify(error.receipt,null,2));throw error;}
+  if(outputDir)await writeFile(path.join(outputDir,'sandbox.json'),JSON.stringify(sandboxAdmission,null,2));
+ }
+ await send('Network.enable');
  await send('Page.navigate',{url:origin});
  await wait("document.readyState==='complete' && document.querySelector('#verdict')?.textContent.length>1");
 
@@ -393,6 +402,59 @@ try {
    assert.equal(await text('verdict'),'UNIDENTIFIABLE');assert.equal(await save(),confoundedSaved);
   }finally{await evaljs("File.prototype.text=window.originalFileText");}
  });
+ const capacityInput=(count,{rows=17,knots=null}={})=>{
+  const input=JSON.parse(exportStiffnessExperiment(stiffnessExperimentCourse('confounded')));
+  const originalRows=input.initial.dataset.observations;
+  input.initial.dataset.observations=Array.from({length:rows},(_,index)=>({...originalRows[index%originalRows.length]}));
+  if(knots)input.initial.settings.knots=knots;
+  const state=input.permitted[0];
+  input.acquisitions=Array.from({length:count},(_,index)=>({id:'capacity-'+index,index:0,
+   source:{label:'Authored unchanged-line capacity control',declaredKind:'authored'},
+   observation:{...state,jointTorque:.2+1.2*state.command-3*state.position}}));
+  return input;
+ };
+ await check('the 32nd supplied reading succeeds and both input-design request routes then stop',async()=>{
+  const input=capacityInput(31);
+  await upload('source-file',JSON.stringify(input),'capacity-31.json');
+  await wait("document.querySelector('#experiment-history').dataset.acquisitionCount==='31'");
+  await chooseDesign({family:'global'});
+  assert.equal(await evaljs("document.querySelector('#input-design-freeze').disabled"),false);
+  await click('input-design-freeze');assert.equal(await pendingIndex(),'1');
+  await value('observation-id','capacity-last-reading');await value('observation-source','Authored off-line capacity receiving');
+  await value('observation-kind','authored');await value('observation-torque','1.4');
+  await click('experiment-receive');
+  assert.equal(await historyCount(),32);assert.equal(await rowCount(),49);assert.equal(await pendingIndex(),null);
+  assert.deepEqual(await designBefore(),{rank:'3',coefficientCount:'3',unresolved:'0'});
+  assert.match(await text('input-design-status'),/At most 32 sequential acquisitions/);
+  assert.equal(await evaljs("document.querySelector('#input-design-freeze').disabled"),true);
+  assert.equal(await evaljs("[...document.querySelectorAll('#input-design-rows button')].every(button=>button.disabled)"),true);
+  const saved=await save();
+  await click('input-design-freeze');await evaljs("document.querySelector('#input-design-rows button').click()");
+  assert.equal(await pendingIndex(),null);assert.equal(await save(),saved);
+  await send('Emulation.setDeviceMetricsOverride',{width:390,height:1000,deviceScaleFactor:1,mobile:false});
+  await evaljs("document.querySelector('#input-design-status').scrollIntoView({block:'center',behavior:'instant'})");
+  await paint();assert.equal(await evaljs("document.documentElement.scrollWidth<=innerWidth+1"),true);
+  await screenshot('stiffness-input-design-capacity-32-390');
+  await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+ });
+ await check('prospective replay-work capacity preserves the notebook and an allowed replacement restores requests',async()=>{
+  const knots=Array.from({length:101},(_,index)=>-.5+index/100);
+  const input=capacityInput(17,{rows:1024,knots});
+  await upload('source-file',JSON.stringify(input),'capacity-work.json');
+  await wait("document.querySelector('#experiment-history').dataset.acquisitionCount==='17'");
+  await chooseDesign({family:'global'});
+  assert.equal(await rowCount(),1041);assert.equal(await designStatus(),'proposed');
+  assert.match(await text('input-design-status'),/replay exceeds its declared fit-work budget/);
+  assert.equal(await evaljs("document.querySelector('#input-design-freeze').disabled"),true);
+  assert.equal(await evaljs("[...document.querySelectorAll('#input-design-rows button')].every(button=>button.disabled)"),true);
+  const saved=await save();await click('input-design-freeze');
+  await evaljs("document.querySelector('#input-design-rows button[data-design-index=\"1\"]').click()");
+  assert.equal(await pendingIndex(),null);assert.equal(await save(),saved);
+  await upload('source-file',JSON.stringify(capacityInput(16,{rows:1024,knots})),'capacity-allowed.json');
+  await wait("document.querySelector('#experiment-history').dataset.acquisitionCount==='16'");
+  assert.equal(await evaljs("document.querySelector('#input-design-freeze').disabled"),false);
+  await click('input-design-freeze');assert.equal(await pendingIndex(),'1');assert.equal(await historyCount(),16);
+ });
  for(const width of [1440,390]){
   await send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:false});
   await check('input support and proposal remain readable with keyboard request controls at '+width+'px',async()=>{
@@ -406,10 +468,20 @@ try {
    }
    assert.ok(await evaljs("document.documentElement.scrollWidth<=innerWidth+1"));
    await evaljs("document.querySelector('#input-design-before').scrollIntoView({block:'start',behavior:'instant'})");await screenshot('stiffness-input-design-'+width);
-   const selector=await evaljs("(()=>{const s=document.querySelector('#input-design-structure');s.focus();return s.value})()");
-   await send('Input.dispatchKeyEvent',{type:'keyDown',key:'ArrowDown',code:'ArrowDown',windowsVirtualKeyCode:40});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'ArrowDown',code:'ArrowDown',windowsVirtualKeyCode:40});
-   await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
-   assert.notEqual(await evaljs("document.querySelector('#input-design-structure').value"),selector);
+   const selector=await evaljs("(()=>{const s=document.querySelector('#input-design-structure');s.focus();return {focused:document.activeElement===s,before:s.value,next:s.options[s.selectedIndex+1]?.value}})()");
+   assert.equal(selector.focused,true);
+   assert.equal(selector.before,JSON.stringify({family:'global'}));
+   assert.equal(selector.next,JSON.stringify({family:'piecewise',knot:-.3}));
+   const key=async(name,code,number)=>{
+    await send('Input.dispatchKeyEvent',{type:'keyDown',key:name,code,windowsVirtualKeyCode:number});
+    await send('Input.dispatchKeyEvent',{type:'keyUp',key:name,code,windowsVirtualKeyCode:number});
+   };
+   await key(' ','Space',32);await key('ArrowDown','ArrowDown',40);await key('Enter','Enter',13);
+   assert.equal(await evaljs("document.querySelector('#input-design-structure').value"),selector.next);
+   await key('Tab','Tab',9);
+   assert.equal(await evaljs("document.querySelector('#input-design-structure').value"),selector.next);
+   assert.deepEqual(await designBefore(),{rank:'3',coefficientCount:'4',unresolved:'1'});
+   assert.match(await text('input-design-status'),/One hinge at -0\.3 rad/);
    assert.equal(await historyCount(),0);assert.equal(await pendingIndex(),null);
    await chooseDesign({family:'global'});
    const target=width===1440?"#input-design-freeze":"#input-design-rows button[data-design-index=\"1\"]";
@@ -421,7 +493,7 @@ try {
   });
  }
  await check('no uncaught page exceptions or external requests during experiment receiving',async()=>{assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);});
- const result={checks:out.length,pass:true,results:out,events,historyVisibility,proposalVisibility,revisionVisibility,designVisibility};if(outputDir)await writeFile(path.join(outputDir,'stiffness-experiment-browser.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
+ const result={checks:out.length,pass:true,results:out,events,historyVisibility,proposalVisibility,revisionVisibility,designVisibility,sandboxAdmission};if(outputDir)await writeFile(path.join(outputDir,'stiffness-experiment-browser.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
 }catch(error){
  let page=null;try{page=await diagnosticEval?.("({state:document.querySelector('#verdict')?.textContent,error:document.querySelector('#error')?.textContent,focus:document.activeElement?.id,location:location.href,experiment:document.querySelector('#experiment-status')?.textContent,pending:document.querySelector('#experiment-pending')?.dataset.index,acquisitions:document.querySelector('#experiment-history')?.dataset.acquisitionCount})");}catch{}
  console.error(JSON.stringify({failure:error.message,completed:out,page,events},null,2));throw error;
