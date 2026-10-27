@@ -1,4 +1,4 @@
-import {reuseScalarChallenge,freezeScalarQuestion} from './session.mjs';
+import {reuseScalarChallenge,freezeScalarQuestion,conditionScalarQuestion} from './session.mjs';
 import {mountMeasurementBatch} from './measurement-batch-panel.mjs';
 let measurementBatchPanel=null;
 import {renderAngularFrequency} from './science/angular-frequency-panel.mjs';
@@ -225,7 +225,7 @@ function render(){
   state.history.forEach((entry,i)=>{const li=el('li');li.append(el('span',String(i+1).padStart(2,'0'),'history-index'),el('strong',entry.label),el('span',`${entry.count} rows · ${entry.modelId} · held-out ${fmt(entry.heldOutRMSE)} N·m${entry.loss==='weighted_least_squares'?` · weighted fit, normalized training ${fmt(entry.relativeNoiseRmse)} N·m`:''}`,'history-detail'));history.append(li);});
   let receipts=$('experiment-receipts');
   if(!receipts){receipts=el('section');receipts.id='experiment-receipts';receipts.className='panel';receipts.setAttribute('aria-label','Predictions before measurement updates');history.parentElement.after(receipts);}
-  const receiptState=state;renderExperimentReceipts(receipts,state,{chart,onReuse:index=>{if(state!==receiptState)throw Error('The notebook changed; choose the challenge again.');adopt(reuseScalarChallenge(state,index),'Reused original challenge rows for training. Earlier predictions remain; test adaptation with a separate later challenge.');}});
+  const receiptState=state;renderExperimentReceipts(receipts,state,{chart,onCondition:()=>{if(state!==receiptState)throw Error('The notebook changed; inspect its latest question again.');adopt(conditionScalarQuestion(state),'Planning now uses only original fixed laws not excluded by the declared question screen. Training and original ranking remain unchanged.');},onReuse:index=>{if(state!==receiptState)throw Error('The notebook changed; choose the challenge again.');adopt(reuseScalarChallenge(state,index),'Reused original challenge rows for training. Earlier predictions remain; test adaptation with a separate later challenge.');}});
   let receiptShortcut=$('inspect-last-experiment');
   if(!receiptShortcut){receiptShortcut=el('button','Inspect predictions before this outcome','button button-outline button-full');receiptShortcut.id='inspect-last-experiment';receiptShortcut.type='button';$('run-experiment').after(receiptShortcut);receiptShortcut.addEventListener('click',()=>{const select=$('experiment-receipt-event');if(!select)return;select.value=select.options[select.options.length-1].value;select.dispatchEvent(new Event('change'));$('experiment-receipts').scrollIntoView({block:'start'});$('experiment-receipt-event').focus();});}
   receiptShortcut.hidden=!state.history.some(entry=>entry.experiment);
@@ -264,6 +264,7 @@ function renderPlan(){
   }
   if(!pilot&&state.planningRadii){set('planner-metric-label','Bounded model separation');set('model-spread',plan.selected?`${plan.selected.separated}/${plan.selected.pairs.length} model pairs separated${plan.selected.extrapolation?.length?' · coordinate box extends the observed range':''}`:'No separated proposal under declared bounds');}
   if(!pilot&&state.planningRadii)set('planner-status',plan.status==='proposed'?(plan.separation==='full'?'All model pairs separated under declared bounds':'Some model pairs separated under declared bounds'):plan.status==='uninformative'?'No separating permitted input under declared bounds':plan.reason||'Bounded planning unavailable: '+plan.status);
+  if(!pilot&&plan.conditioned)set('planner-status',plan.selected?'Conditional next question among unexcluded original fixed laws':plan.reason||'No remaining offered input separates the unexcluded original fixed laws.');
   set('planned-input',plan.selected?`θ ${fmt(plan.selected.input.position)} rad · ω ${fmt(plan.selected.input.rate)} rad/s · u ${fmt(plan.selected.input.command)} N·m`:'No new state is suggested under this objective.');
 }
 function useProposal(announce=true){if(!plan?.selected)return;const exact=!state.lab && Object.hasOwn(state.base,'offeredInputs');for(const f of ['position','rate','command'])$(f).value=String(plan.selected.input[f]);if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
