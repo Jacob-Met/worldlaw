@@ -1,0 +1,120 @@
+{
+  "schema": "worldlaw.notebook-autosave-receiving/v1",
+  "worker": "estate-03ae912a3e15-20261027",
+  "prompt": "2026-10-27.17",
+  "sourceBaseline": "e4f505e21a843a8fe571ef0bd0f0d791a9092cac",
+  "frozenImplementation": "3f6294cfffd551d73557038458b1ccf8d1a252f2",
+  "composedMain": "a07755d701d51021344cd289f49bd0b17ee68718",
+  "composedCandidate": "a66fba03d73658cb4f55f7c7429053fa6fa496ed",
+  "packageCandidate": "6e878fcf9ccf5c334d520b928e423065da5aea9e",
+  "packageTree": "d214e8bb061eb26c2e5ff4b88b7893051d14310b",
+  "productBlobs": {
+    "src/notebook-recovery.mjs": "04305711f7dd3e1be1fad03c14d4bcab9b068cb5",
+    "src/app.mjs": "734d59265c1869ee5060aeea64598d14e327232b",
+    "scripts/notebook-autosave-browser.mjs": "eedcce3d79ea64bebbd42038a9ab2b569c0bb731"
+  },
+  "native": {
+    "host": "hamon-thinkpad",
+    "runtime": "Node22.22.1",
+    "source": "e4f505e plus the implemented storage/status and nine regression groups, subsequently frozen as 3f6294c. This full suite predates the a66 latest-main composition.",
+    "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+    "total": 1429,
+    "passed": 1428,
+    "failed": 0,
+    "skipped": 1,
+    "smokes": [
+      "npm run smoke",
+      "npm run smoke:trajectory"
+    ],
+    "owner": "node-2b8c9803b6069b758adef320e07b48ed",
+    "operation": "estate-03ae912a3e15-worldlaw-verify-status3",
+    "resultSHA256": "5f454651feb89faa9f407c5f73daa1b36491bad7ce675322c0f1b411c094a273"
+  },
+  "composition": {
+    "candidate": "a66fba03d73658cb4f55f7c7429053fa6fa496ed",
+    "focusedCommand": "node --test --test-concurrency=2 tests/notebook-recovery.test.mjs tests/notebook-autosave-conflict.test.mjs tests/challenge-course.test.mjs tests/challenge-training.test.mjs",
+    "passed": 30,
+    "failed": 0,
+    "smokesPassed": 2
+  },
+  "packageOperation": {
+    "owner": "node-2b8c9803b6069b758adef320e07b48ed",
+    "operation_id": "estate-03ae912a3e15-package-repair-receive",
+    "deviceId": "cde0cfdf-399c-46dd-b0e5-aea9439774cd",
+    "pid": 54026,
+    "exitCode": 0,
+    "terminalObservation": "estate-03ae912a3e15-package-repair-status2"
+  },
+  "review": {
+    "execution": "Lead ran all commands and inspected actual pixels.",
+    "independent": "Retained /root/independent_review reviewed brokered source transitions, exact blob identities, native and packaged receipts; accepted bounded sequential stale-save protection and literal-path package repair.",
+    "consumer": "Retained /root/consumer_review accepted source and freshly extracted package before/after acquisition, export/reopen, undo and first-save conflict evidence.",
+    "source": "Retained /root/source_recovery reviewed implementation and test design. Worker external read routes stalled; no separate native worker-execution claim."
+  },
+  "failuresPreserved": [
+    "Six of nine new regression groups failed on unpatched source.",
+    "Actual unpatched stale-tab browser course overwrote66 acquired observations with65 and reported saved-success.",
+    "ThinkPad Chrome sandbox launch blocked by existing AppArmor/user-namespace policy; installed Chromium snap launch also failed. No sandbox or security policy was weakened.",
+    "Initial Mac receiver attempt failed because Fit settings was collapsed; the v2 harness opens the ordinary disclosure and supplies the actual before/after evidence.",
+    "Official a66 source package refused42 inherited historical receipt paths before the exact allowlist repair.",
+    "Initial coordination update containing unsupported scope field failed invalid_patch with no recorded mutation; corrected progress-only operation completed at revision4."
+  ],
+  "limits": [
+    "Sequential changes completed before the save comparison only; localStorage read/write is not atomic.",
+    "An intervening change returning to identical bytes before inspection is undetectable.",
+    "No automatic notebook merge; export unsaved work before reload.",
+    "Browser receiving covers Mac Chrome156, not all browsers. Linux native tests passed but browser launch remained environment-blocked.",
+    "Synthetic maintained virtual instrument only; no physical measurement claim.",
+    "Existing small subdued status typography is unchanged; desktop/narrow wrapping and keyboard export were inspected."
+  ],
+  "logs": [
+    {
+      "path": "/tmp/estate-03ae912a3e15/worldlaw-verify-0.log",
+      "bytes": 339473,
+      "sha256": "ac17018411d0515d2fb9358579cd79b61db50ae63789ccb9d059558112d702ea",
+      "tail": "ntified declarations do not gain a successful weighted fallback\n  ---\n  duration_ms: 12.508399\n  type: 'test'\n  ...\n# Subtest: private fit reuse includes every ratio and cannot cross losses or accept public metric edits\nok 1424 - private fit reuse includes every ratio and cannot cross losses or accept public metric edits\n  ---\n  duration_ms: 747.883963\n  type: 'test'\n  ...\n# Subtest: CSV and v3 JSON retain declared ratios exactly and reject partial or legacy declarations\nok 1425 - CSV and v3 JSON retain declared ratios exactly and reject partial or legacy declarations\n  ---\n  duration_ms: 26.439168\n  type: 'test'\n  ...\n# Subtest: v4 input-only replay preserves ratios, every prior assumption, append, undo and forged-answer refusal\nok 1426 - v4 input-only replay preserves ratios, every prior assumption, append, undo and forged-answer refusal\n  ---\n  duration_ms: 1321.133507\n  type: 'test'\n  ...\n# Subtest: held-out ratios and outcomes cannot change fitting, ranking, planner or source assumptions\nok 1427 - held-out ratios and outcomes cannot change fitting, ranking, planner or source assumptions\n  ---\n  duration_ms: 106.101629\n  type: 'test'\n  ...\n# Subtest: weighted v3 sources preserve explicit offered-input v2 semantics through v4 notebooks\nok 1428 - weighted v3 sources preserve explicit offered-input v2 semantics through v4 notebooks\n  ---\n  duration_ms: 244.461603\n  type: 'test'\n  ...\n# Subtest: maintained command-map comparison retains the same ratio-bearing source and estimator at every width\nok 1429 - maintained command-map comparison retains the same ratio-bearing source and estimator at every width\n  ---\n  duration_ms: 407.020504\n  type: 'test'\n  ...\n1..1429\n# tests 1429\n# suites 0\n# pass 1428\n# fail 0\n# cancelled 0\n# skipped 1\n# todo 0\n# duration_ms 338309.573507\n"
+    },
+    {
+      "path": "/tmp/estate-03ae912a3e15/worldlaw-verify-1.log",
+      "bytes": 173,
+      "sha256": "bf0197f7671dd7a0e6bddc238490bbf082f8d06c938851d8ac5b7c5b99f18536",
+      "tail": "\n> worldlaw@0.1.0 smoke\n> node scripts/smoke.mjs\n\nPASS launched product assets and refusal paths; actual discovery \u2192 virtual measurement \u2192 revision \u2192 notebook reopen.\n"
+    },
+    {
+      "path": "/tmp/estate-03ae912a3e15/worldlaw-verify-2.log",
+      "bytes": 665,
+      "sha256": "c881dcbd194ecc3a3faa0dccca1de9616fe46a8fc447c58f9fbc9657c46c134a",
+      "tail": "\n> worldlaw@0.1.0 smoke:trajectory\n> node scripts/trajectory-smoke-92be.mjs\n\n{\n  \"product\": \"worldlaw\",\n  \"route\": \"trajectory-challenge\",\n  \"runtime\": \"v22.22.1\",\n  \"inputSHA256\": \"fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e\",\n  \"received\": \"launched local HTTP server -> actual JSON input -> fitting -> forward predictions -> source notebook reopen\",\n  \"selectedModel\": \"command+rate+gravity+bias\",\n  \"selectedPositionRMSE\": 0.0006561748182990025,\n  \"comparedModels\": 8,\n  \"challengeRuns\": 2,\n  \"negativeCases\": [\n    \"missing initial rate refused\",\n    \"missing resource404\",\n    \"unsupported method405\"\n  ],\n  \"evidenceKind\": \"synthetic\"\n}\n"
+    },
+    {
+      "path": "/tmp/estate-03ae912a3e15/notebook-conflict-before.log",
+      "bytes": 7116,
+      "sha256": "46f734da1500afc5d71471f60c0684eb89ddec502e33b1ba35e33ad42b6fba0d",
+      "tail": ")\n    Test.postRun (node:internal/test_runner/test:1173:19)\n    Test.run (node:internal/test_runner/test:1101:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: failed writes retain the baseline and later external evidence still wins\nnot ok 7 - failed writes retain the baseline and later external evidence still wins\n  ---\n  duration_ms: 0.334855\n  type: 'test'\n  location: '/tmp/estate-03ae912a3e15/worldlaw/tests/notebook-autosave-conflict.test.mjs:71:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    + actual - expected\n    \n    + undefined\n    - 'active-source-changed'\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 'active-source-changed'\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/estate-03ae912a3e15/worldlaw/tests/notebook-autosave-conflict.test.mjs:81:10)\n    Test.runInAsyncScope (node:async_hooks:214:14)\n    Test.run (node:internal/test_runner/test:1047:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:744:18)\n    Test.postRun (node:internal/test_runner/test:1173:19)\n    Test.run (node:internal/test_runner/test:1101:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)\n  ...\n# Subtest: verified unreadable-source replacement establishes the next save baseline\nok 8 - verified unreadable-source replacement establishes the next save baseline\n  ---\n  duration_ms: 0.345126\n  type: 'test'\n  ...\n# Subtest: failed explicit replacement keeps ordinary autosave protected\nok 9 - failed explicit replacement keeps ordinary autosave protected\n  ---\n  duration_ms: 0.378945\n  type: 'test'\n  ...\n1..9\n# tests 9\n# suites 0\n# pass 3\n# fail 6\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 190.606162\n"
+    },
+    {
+      "path": "/tmp/estate-03ae912a3e15/notebook-focused-after.log",
+      "bytes": 4299,
+      "sha256": "c6994c92df2d32e34b5781bec4d23fe5bb56bd440c7b57a42ac31ea59c9b7db1",
+      "tail": "e: 'test'\n  ...\n# Subtest: read denial at first visit never permits autosave or replacement\nok 13 - read denial at first visit never permits autosave or replacement\n  ---\n  duration_ms: 0.380475\n  type: 'test'\n  ...\n# Subtest: a prior different archive remains intact and new original receives the next slot\nok 14 - a prior different archive remains intact and new original receives the next slot\n  ---\n  duration_ms: 0.79727\n  type: 'test'\n  ...\n# Subtest: changed active source (such as another tab) cannot be knowingly overwritten\nok 15 - changed active source (such as another tab) cannot be knowingly overwritten\n  ---\n  duration_ms: 0.400076\n  type: 'test'\n  ...\n# Subtest: backup readback failure prevents replacement\nok 16 - backup readback failure prevents replacement\n  ---\n  duration_ms: 0.608841\n  type: 'test'\n  ...\n# Subtest: failed active write after verified archive keeps original and retained archive\nok 17 - failed active write after verified archive keeps original and retained archive\n  ---\n  duration_ms: 0.491455\n  type: 'test'\n  ...\n# Subtest: valid/empty notebooks can save and archive listing is bounded\nok 18 - valid/empty notebooks can save and archive listing is bounded\n  ---\n  duration_ms: 0.914802\n  type: 'test'\n  ...\n# Subtest: archive exhaustion refuses destruction and archive read errors are explicit\nok 19 - archive exhaustion refuses destruction and archive read errors are explicit\n  ---\n  duration_ms: 1.4836\n  type: 'test'\n  ...\n# Subtest: new archive slot occupied after initial scan is never knowingly overwritten\nok 20 - new archive slot occupied after initial scan is never knowingly overwritten\n  ---\n  duration_ms: 0.723148\n  type: 'test'\n  ...\n1..20\n# tests 20\n# suites 0\n# pass 20\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 323.542994\n"
+    },
+    {
+      "path": "/tmp/estate-03ae912a3e15/composed-focused.log",
+      "bytes": 6741,
+      "sha256": "c08e33a375f8d81a995c36144a5d7601d8f8b7f1b4338535f86f667671d12b60",
+      "tail": "e: 'test'\n  ...\n# Subtest: read denial at first visit never permits autosave or replacement\nok 23 - read denial at first visit never permits autosave or replacement\n  ---\n  duration_ms: 0.377981\n  type: 'test'\n  ...\n# Subtest: a prior different archive remains intact and new original receives the next slot\nok 24 - a prior different archive remains intact and new original receives the next slot\n  ---\n  duration_ms: 0.55199\n  type: 'test'\n  ...\n# Subtest: changed active source (such as another tab) cannot be knowingly overwritten\nok 25 - changed active source (such as another tab) cannot be knowingly overwritten\n  ---\n  duration_ms: 0.325427\n  type: 'test'\n  ...\n# Subtest: backup readback failure prevents replacement\nok 26 - backup readback failure prevents replacement\n  ---\n  duration_ms: 0.504141\n  type: 'test'\n  ...\n# Subtest: failed active write after verified archive keeps original and retained archive\nok 27 - failed active write after verified archive keeps original and retained archive\n  ---\n  duration_ms: 0.386275\n  type: 'test'\n  ...\n# Subtest: valid/empty notebooks can save and archive listing is bounded\nok 28 - valid/empty notebooks can save and archive listing is bounded\n  ---\n  duration_ms: 0.881279\n  type: 'test'\n  ...\n# Subtest: archive exhaustion refuses destruction and archive read errors are explicit\nok 29 - archive exhaustion refuses destruction and archive read errors are explicit\n  ---\n  duration_ms: 1.20802\n  type: 'test'\n  ...\n# Subtest: new archive slot occupied after initial scan is never knowingly overwritten\nok 30 - new archive slot occupied after initial scan is never knowingly overwritten\n  ---\n  duration_ms: 0.55934\n  type: 'test'\n  ...\n1..30\n# tests 30\n# suites 0\n# pass 30\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 651.903961\n"
+    },
+    {
+      "path": "/tmp/estate-03ae912a3e15/composed-smoke.log",
+      "bytes": 173,
+      "sha256": "bf0197f7671dd7a0e6bddc238490bbf082f8d06c938851d8ac5b7c5b99f18536",
+      "tail": "\n> worldlaw@0.1.0 smoke\n> node scripts/smoke.mjs\n\nPASS launched product assets and refusal paths; actual discovery \u2192 virtual measurement \u2192 revision \u2192 notebook reopen.\n"
+    },
+    {
+      "path": "/tmp/estate-03ae912a3e15/composed-trajectory.log",
+      "bytes": 665,
+      "sha256": "c881dcbd194ecc3a3faa0dccca1de9616fe46a8fc447c58f9fbc9657c46c134a",
+      "tail": "\n> worldlaw@0.1.0 smoke:trajectory\n> node scripts/trajectory-smoke-92be.mjs\n\n{\n  \"product\": \"worldlaw\",\n  \"route\": \"trajectory-challenge\",\n  \"runtime\": \"v22.22.1\",\n  \"inputSHA256\": \"fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e\",\n  \"received\": \"launched local HTTP server -> actual JSON input -> fitting -> forward predictions -> source notebook reopen\",\n  \"selectedModel\": \"command+rate+gravity+bias\",\n  \"selectedPositionRMSE\": 0.0006561748182990025,\n  \"comparedModels\": 8,\n  \"challengeRuns\": 2,\n  \"negativeCases\": [\n    \"missing initial rate refused\",\n    \"missing resource404\",\n    \"unsupported method405\"\n  ],\n  \"evidenceKind\": \"synthetic\"\n}\n"
+    }
+  ]
+}

@@ -16,7 +16,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
-    # Exact original evidence retained by the October 27 planning/recovery work.
+    # Exact existing current-main receiving evidence; no recursive output admission.
     "docs/receipts/historical-training-20261027/README.md",
     "docs/receipts/historical-training-20261027/historical/browser-result.json",
     "docs/receipts/historical-training-20261027/historical/launch.json",
@@ -176,6 +176,7 @@ INCLUDE = (
 )
 REQUIRED = (
     "src/science/experiment-receipts.mjs", "src/science/experiment-receipts-panel.mjs",
+    "src/stiffness/design.mjs", "src/stiffness/design-panel.mjs", "docs/STIFFNESS_INPUT_DESIGN.md",
     "src/science/studio-dynamics-comparison.mjs", "src/science/studio-comparison-panel.mjs",
     "src/science/studio-comparison-view.mjs",
     "src/science/robust-fit.mjs",

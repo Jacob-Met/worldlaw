@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "checks": [
+    "same request preserves exact reading strings while check metrics change",
+    "second replacement preserves latest edited draft",
+    "incomplete draft remains untouched",
+    "failed check import leaves draft intact",
+    "refreezing identical request resets draft",
+    "opening identical notebook resets draft",
+    "keyboard receive records preserved measurement through actual form",
+    "reload and notebook reopen retain received evidence"
+  ],
+  "admitted": true,
+  "viewportSizes": [
+    [
+      1440,
+      913
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "sourceCommit": "729187d097884e5d5cffdd9ae2aa8c3b504a0d87"
+}

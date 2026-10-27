@@ -1,0 +1,23 @@
+{
+  "source_commit": "729187d097884e5d5cffdd9ae2aa8c3b504a0d87",
+  "source_tree_reference": "239b23cfdee089192b03aa19f30b0867895807ff",
+  "native_source_mode": "manifest-verified-source-subset",
+  "verified_files": 1265,
+  "native_test_files": 204,
+  "runtime": "Node22.23.4",
+  "platform": "Linux x86_64",
+  "returncode": 0,
+  "timed_out": false,
+  "seconds": 53.70442843437195,
+  "stats": {
+    "tests": 1442,
+    "pass": 1441,
+    "fail": 0,
+    "skipped": 1
+  },
+  "log_sha256": "588544f96c9f0c262f9af3edf5f14bf80879236a238e5ed621a60ca54029251f",
+  "tail": "  duration_ms: 36.530542\n  type: 'test'\n  ...\n# Subtest: maintained command-map comparison retains the same ratio-bearing source and estimator at every width\nok 1442 - maintained command-map comparison retains the same ratio-bearing source and estimator at every width\n  ---\n  duration_ms: 42.350764\n  type: 'test'\n  ...\n1..1442\n# tests 1442\n# suites 0\n# pass 1441\n# fail 0\n# cancelled 0\n# skipped 1\n# todo 0\n# duration_ms 53627.385466",
+  "skip_lines": [
+    "ok 1201 - live Node and Chromium exchange pending and applied notebooks through actual modules # SKIP"
+  ]
+}

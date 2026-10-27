@@ -1,0 +1,55 @@
+{
+  "schema": "worldlaw.stiffness-design-receiving/v1",
+  "qualificationCommit": "729187d097884e5d5cffdd9ae2aa8c3b504a0d87",
+  "qualificationTree": "239b23cfdee089192b03aa19f30b0867895807ff",
+  "runtime": {
+    "nativeNode": "22.23.4",
+    "browserNode": "22.22.1",
+    "browser": "Chrome/153.0.8010.47",
+    "platform": "Linux x86_64"
+  },
+  "native": {
+    "tests": 1442,
+    "pass": 1441,
+    "fail": 0,
+    "skipped": 1
+  },
+  "nativeSource": {
+    "mode": "manifest-verified-source-subset",
+    "verifiedFiles": 1265,
+    "testFiles": 204,
+    "omittedHistoricalPNGs": 211,
+    "logSHA256": "588544f96c9f0c262f9af3edf5f14bf80879236a238e5ed621a60ca54029251f"
+  },
+  "nativeSkippedCase": [
+    "ok 1201 - live Node and Chromium exchange pending and applied notebooks through actual modules # SKIP"
+  ],
+  "package": {
+    "sha256": "68d8419ddb3489ffc2589ac3f4b1b36c8236e52f517e478f25331dce0539911b",
+    "sourceFiles": 1476,
+    "sourceMode": "git-commit",
+    "allManifestHashesVerified": true
+  },
+  "browser": {
+    "experimentGroups": 33,
+    "readingDraftGroups": 8,
+    "sameTargetSandboxAdmitted": true,
+    "exceptions": [],
+    "outsideRequests": []
+  },
+  "smokes": {
+    "studio": "passed",
+    "trajectory": "passed"
+  },
+  "limits": [
+    "Authored controls, not physical measurements",
+    "Mac not run in this recovery",
+    "Optional Playwright-dependent live trajectory interchange case skipped"
+  ],
+  "priorSource": {
+    "pr": 94,
+    "head": "39217211e366cd087957a353e52edc08173ea68c",
+    "capacityComposition": "15f24496b240b8b6b1f284d67517d18040994373",
+    "earlierWholeConsumer": "8f42913be9833bd23b68cbb104bb95363cd31d9b"
+  }
+}

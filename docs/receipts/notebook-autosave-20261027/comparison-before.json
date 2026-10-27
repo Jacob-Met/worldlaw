@@ -1,0 +1,10 @@
+{
+  "seedSha256": "fc285302027ca170eba82be8eb1d84ba44641501a76e5a9cac5778fd48458f9f",
+  "acquiredSha256": "701471b79188fd483906e81aaeeb953ac3437d6640dbc0ab9001efd3c17933ce",
+  "afterStaleSaveSha256": "7c220b553959fe6495a0388433cfb77c1de6366deabec0994420fc821d67b95c",
+  "newEvidenceRetained": false,
+  "firstRows": 66,
+  "olderRows": 65,
+  "storageRows": 65,
+  "status": "Notebook saved on this browser"
+}

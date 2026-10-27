@@ -24,6 +24,8 @@ npm start
 
 Open **http://127.0.0.1:4193**. No package installation, cloud account, model download or API key is needed. The server binds to loopback and serves maintained application assets. Observations and model computation stay in your browser. Stop the server with Ctrl+C.
 
+If another Studio tab has already changed the saved notebook, autosave pauses for the older tab. Export its current work before reloading. See [notebook autosave across tabs](docs/NOTEBOOK_AUTOSAVE.md) for recovery and concurrency limits.
+
 ## Compare coupled responses
 
 Open **Coupling Lab** from the Studio header or visit `/coupling.html`. Compare
@@ -296,6 +298,16 @@ pending request. Separate checks remain excluded from planning; input declaratio
 stay fixed after the first acquisition. Explicit authored courses demonstrate
 both narrowing ambiguity and an omitted smooth response. See [sequential stiffness
 experiments](docs/STIFFNESS_EXPERIMENTS.md).
+
+### Inspect input support before coefficients can be estimated
+
+Stiffness Lab can inspect the actual basis rank and position support of one offered
+structure using input coordinates alone. Compare every declared state, inspect
+remaining deficiencies, and freeze a proposed input through the existing request
+path. The authored confounded course demonstrates an off-line input making
+coefficients estimable while earlier unsupported forecasts and errors stay absent.
+See [input-design diagnostics and limits](docs/STIFFNESS_INPUT_DESIGN.md). This is
+not a torque prediction, adequacy test or physical-identifiability claim.
 
 ### Explicit smooth-family revision
 
