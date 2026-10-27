@@ -10,7 +10,7 @@ const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.
 const fmt=value=>Number.isFinite(value)?Number(value.toPrecision(6)).toLocaleString('en-US',{maximumFractionDigits:9}):'—';
 function control(text,node){const label=el('label',text);label.append(node);return label;}
 
-export function renderExperimentReceipts(host,state,{chart,onReuse,onCondition,onAssessDeviation,onAssessAchieved}) {
+export function renderExperimentReceipts(host,state,{onCompareMotion,onSelectExperiment,chart,onReuse,onCondition,onAssessDeviation,onAssessAchieved}) {
   const experiments=state.history.flatMap((entry,index)=>entry.experiment?[{entry,index}]:[]);
   const previous=views.get(host);
   previous?.observer?.disconnect();
@@ -31,6 +31,11 @@ export function renderExperimentReceipts(host,state,{chart,onReuse,onCondition,o
   const reusedChallenge=state.events[selected.index-1]?.reusedChallenge;if(reusedChallenge!==undefined)host.append(el('p',`Reused challenge revision ${reusedChallenge+1}: these outcomes were already available. This update adapts training; its after-fit improvement is not a fresh prediction test.`));
   const acquisitionSource=state.events[selected.index-1]?.source;if(acquisitionSource)host.append(el('p',`Acquired source: ${acquisitionSource.label}. User-declared actual measurements in N·m, rad and rad/s; original input values are retained. Source independence is not authenticated.`));
   const provenance=el('p',`${state.base.source.label} · ${selected.entry.kind==='virtual'?'synthetic virtual instrument':'user-entered outcomes; source not independently authenticated'}. ${receipt.beforeCount} earlier training rows; ${receipt.models.length} original competitive laws. All rows in this batch use the same earlier fit.`);
+  const motion=el('button','Compare all earlier laws in motion');
+  motion.id='compare-earlier-studio-laws';motion.type='button';motion.className='button button-outline';
+  motion.disabled=!onCompareMotion||!receipt.models.length;
+  motion.addEventListener('click',()=>onCompareMotion?.(selected.index));
+  const motionNote=el('p','Run every law from before this outcome together under the current initial angle, rate, inertia, command and duration in “Let the model move”. This creates no observation and does not change the current ranking.');
   const laws=el('select');laws.id='experiment-receipt-law';
   receipt.models.forEach((model,index)=>{const option=el('option',`${index+1}. ${model.id}${model.id===receipt.selectedBeforeId?' · earlier training choice':''} · ${model.equation}`);option.value=String(index);laws.append(option);});
   laws.value=String(Math.min(view.modelIndex,receipt.models.length-1));
@@ -41,7 +46,7 @@ export function renderExperimentReceipts(host,state,{chart,onReuse,onCondition,o
   const plot=el('div');plot.id='experiment-receipt-chart';
   const details=el('details');details.id='experiment-receipt-readings';details.append(el('summary','Inspect every original reading and prediction'));
   const tableHost=el('div');tableHost.className='prediction-sensitivity-scroll';tableHost.tabIndex=0;tableHost.setAttribute('role','region');tableHost.setAttribute('aria-label','Original experiment readings and pre-update predictions');details.append(tableHost);
-  host.append(control('Experiment ',events),provenance,control('Earlier competitive law (training order) ',laws),equation,coefficients,summary,plot,details,
+  host.append(control('Experiment ',events),provenance,motion,motionNote,control('Earlier competitive law (training order) ',laws),equation,coefficients,summary,plot,details,
     el('p',`Earlier fitting assumption: ${receipt.options.loss??'least_squares'}${receipt.options.loss==='soft_l1'?` at ${fmt(receipt.options.lossScale)} N·m scale`:''}; assumed noise ${fmt(receipt.options.noiseSigma)} N·m. Errors here use every raw torque reading. Laws remain in their earlier training order; receiving errors do not re-rank this comparison.`),
     el('p','The after-fit result reuses these outcomes and is not a new prediction test. Different updates may use different laws and adaptively chosen inputs; their errors are not a fixed-model held-out score. Competitive-model spread is not calibrated uncertainty.'));
   const boundedSummary=el('p');boundedSummary.id='experiment-receipt-bounded-summary';
@@ -95,7 +100,7 @@ export function renderExperimentReceipts(host,state,{chart,onReuse,onCondition,o
     details.ontoggle=fill;fill();
   };
   laws.addEventListener('change',draw);
-  events.addEventListener('change',()=>{view.eventIndex=Number(events.value);view.modelIndex=0;renderExperimentReceipts(host,state,{chart,onReuse,onCondition,onAssessDeviation,onAssessAchieved});host.querySelector('#experiment-receipt-event').focus();});
+  events.addEventListener('change',()=>{onSelectExperiment?.();view.eventIndex=Number(events.value);view.modelIndex=0;renderExperimentReceipts(host,state,{onCompareMotion,onSelectExperiment,chart,onReuse,onCondition,onAssessDeviation,onAssessAchieved});host.querySelector('#experiment-receipt-event').focus();});
   draw();
   view.observer=new ResizeObserver(redrawPlot);
   view.observer.observe(plot);

@@ -1,5 +1,5 @@
 /**
- * One declared release, all current competitive scalar laws. This is a view of
+ * One declared release, every competitive law from the explicitly chosen evidence. This is a view of
  * maintained numerical predictions, never a source of observations or ranking.
  */
 import {compareStudioDynamics} from './studio-dynamics-comparison.mjs';
@@ -20,12 +20,12 @@ const methodName = diagnostics => diagnostics?.method === 'adaptive_RK4_step_dou
     : 'Not executed';
 
 export function mountStudioComparison(container, {transportHost, getState, getInputs, chart, onClear}) {
-  let result = null, active = [], serial = 0, origin = 0, paused = true, sampleIndex = 0, lastPaintedIndex = -1;
+  let result = null, resultSource = null, active = [], serial = 0, origin = 0, paused = true, sampleIndex = 0, lastPaintedIndex = -1;
   let times = [], view = 'joint', selectedLaw = null, previewLaw = null, playbackRate = 1;
   const heading = element('div', undefined, 'motion-comparison-heading');
   const headingCopy = element('div');
   headingCopy.append(element('p','SAME RELEASE / COMPETING LAWS','eyebrow'),element('h2','Watch the explanations separate.'));
-  const run = element('button','Compare competitive laws','button button-dark');
+  const run = element('button','Compare current laws','button button-dark');
   run.id = 'compare-studio-laws'; run.type = 'button';
   heading.append(headingCopy,run);
   const sampling=element('div',undefined,'motion-comparison-sampling');
@@ -39,6 +39,8 @@ export function mountStudioComparison(container, {transportHost, getState, getIn
   sampling.append(intervalLabel,intervalSelect,samplingHint);
   const status = element('p','Execute every training-competitive law with the initial angle, rate, inertia and fixed command in “Let the model move”. No new observation is created.','motion-comparison-status');
   status.id = 'studio-comparison-status'; status.setAttribute('role','status');
+  const source = element('p',undefined,'motion-comparison-assumptions');
+  source.id='studio-comparison-source';source.tabIndex=-1;source.hidden=true;
   const assumptions = element('p',undefined,'motion-comparison-assumptions'); assumptions.hidden = true;
   assumptions.id = 'studio-comparison-assumptions';
   const details = element('details',undefined,'motion-comparison-details'); details.hidden = true;
@@ -52,7 +54,7 @@ export function mountStudioComparison(container, {transportHost, getState, getIn
   for (const label of ['Law','Executable equation','Numerical outcome']) {const cell=element('th',label);cell.scope='col';header.append(cell);}
   head.append(header);const body=element('tbody');body.id='studio-comparison-outcomes';table.append(caption,head,body);tableWrap.append(table);
   details.append(summary,spread,plot,tableWrap,element('p','These paths condition on declared inertia and command. They can leave the observed input range. Agreement is not physical validation; disagreement is not calibrated uncertainty. The shared joint wraps angles visually; the traces retain full rotations.','motion-comparison-scope'));
-  container.append(heading,sampling,status,assumptions,details);
+  container.append(heading,sampling,status,source,assumptions,details);
 
   const transport = element('div',undefined,'motion-comparison-transport'); transport.hidden = true; transport.id='studio-comparison-transport';
   const controlRow=element('div',undefined,'motion-comparison-control-row');
@@ -83,7 +85,7 @@ export function mountStudioComparison(container, {transportHost, getState, getIn
   }
   function retire(message='The comparison was retired. Compare again using the current evidence and dynamics inputs.') {
     const hadResult=Boolean(result)||run.disabled;
-    serial++; result=null;active=[];times=[];sampleIndex=0;lastPaintedIndex=-1;selectedLaw=null;previewLaw=null;
+    serial++; result=null;resultSource=null;source.hidden=true;source.textContent='';active=[];times=[];sampleIndex=0;lastPaintedIndex=-1;selectedLaw=null;previewLaw=null;
     transport.hidden=true;details.hidden=true;assumptions.hidden=true;spread.hidden=true;spread.textContent='';
     body.replaceChildren();plot.replaceChildren();legend.replaceChildren();run.disabled=false;
     delete status.dataset.state;
@@ -120,22 +122,34 @@ export function mountStudioComparison(container, {transportHost, getState, getIn
     playbackRate=Number(speedSelect.value);
     if(!paused)origin=now-phase*1000/playbackRate;
   });
-  clear.addEventListener('click',()=>{retire('Returned to the inspected law. Every competitive structure remains in the original discovery.');onClear?.();});
+  clear.addEventListener('click',()=>{retire('Returned to the inspected law. Every competitive structure remains in the original discovery.');onClear?.();run.focus();});
   const media=matchMedia('(prefers-reduced-motion: reduce)');
   media.addEventListener('change',event=>{if(event.matches&&result)setPaused(true);});
 
-  run.addEventListener('click',async()=>{
+  async function execute(eventIndex=null) {
     const token=++serial, state=getState();
-    let inputs;
-    try {inputs=getInputs();inputs={...inputs,settings:{...inputs.settings,dt:Number(intervalSelect.value)}};}
-    catch(error){retire();status.textContent='Comparison unavailable: '+error.message;status.dataset.state='refused';return;}
-    result=null;active=[];times=[];selectedLaw=null;previewLaw=null;transport.hidden=true;details.hidden=true;assumptions.hidden=true;spread.hidden=true;spread.textContent='';
-    body.replaceChildren();plot.replaceChildren();legend.replaceChildren();run.disabled=true;
-    status.textContent='Executing the complete competitive set under one declared release…';
-    await new Promise(requestAnimationFrame);
-    if(token!==serial||state!==getState())return;
+    let inputs, chosen;
     try {
-      const next=compareStudioDynamics(state.discovery,inputs.initial,inputs.settings);
+      if(eventIndex!==null){
+        const receipt=Number.isInteger(eventIndex)&&state.history[eventIndex]?.experiment;
+        if(!receipt?.models?.length)throw new Error('Choose an outcome with its original earlier competitive laws.');
+        // Receipt models are reconstructed from earlier inputs. Never look up a
+        // current model by ID: its coefficients and observed ranges may differ.
+        chosen={discovery:{competitive:receipt.models},historical:true,
+          label:'Before outcome '+eventIndex+' · recomputed motion',
+          description:'Before outcome '+eventIndex+': '+state.history[eventIndex].label+'. '+receipt.models.length+' original competitive laws fitted to '+receipt.beforeCount+' earlier rows, reconstructed from notebook inputs. Motion is computed now using the current declared release below; this is not an authenticated forecast made before acquisition.'};
+      }else chosen={discovery:state.discovery,historical:false,label:'Current competitive-law predictions',description:'Current competitive laws · motion recomputed from the current evidence and declared release.'};
+      inputs=getInputs();inputs={...inputs,settings:{...inputs.settings,dt:Number(intervalSelect.value)}};
+    }
+    catch(error){retire();status.textContent='Comparison unavailable: '+error.message;status.dataset.state='refused';return;}
+    result=null;resultSource=chosen;source.textContent=chosen.description;source.hidden=false;active=[];times=[];selectedLaw=null;previewLaw=null;transport.hidden=true;details.hidden=true;assumptions.hidden=true;spread.hidden=true;spread.textContent='';
+    body.replaceChildren();plot.replaceChildren();legend.replaceChildren();run.disabled=true;
+    status.textContent='Executing the complete '+(chosen.historical?'earlier ':'')+'competitive set under one declared release…';
+    await new Promise(requestAnimationFrame);
+    if(token!==serial)return;
+    if(state!==getState()){retire('The evidence changed. Compare again using the chosen evidence and current release.');return;}
+    try {
+      const next=compareStudioDynamics(chosen.discovery,inputs.initial,inputs.settings);
       if(token!==serial||state!==getState())return;
       result=next;
       const outcomes=next.results;
@@ -186,18 +200,25 @@ export function mountStudioComparison(container, {transportHost, getState, getIn
         chart(plot.id,active.map(row=>({name:row.label,color:row.color,line:true,points:row.trajectory.map(sample=>({x:sample.time,y:sample.position}))})),
           {xLabel:'Prediction time (s)',yLabel:'Predicted angle (rad)',width:plot.clientWidth,zeroTickTolerance:1e-6});
         plot.querySelector('svg')?.classList.add('motion-comparison-svg');
-        setPaused(media.matches);repaintClock();
+        setPaused(chosen.historical||media.matches);repaintClock();
         note.textContent=complete
           ? 'Complete competitive set · executed predictions, not observations. Highlight a law with its legend button; all laws remain visible. Space is schematic; angles and time are numerical.'
           : 'Incomplete set: '+stopped+' refused laws are not pictured. The surviving paths do not establish agreement of the complete set.';
+        note.textContent=chosen.label+'. '+note.textContent;
         note.textContent+=' Sampled states only: slow playback or scrub to inspect them. Playback speed adds no samples; fast motion may still be missed between frames or samples.';
       } else {
         plot.append(element('p','No complete predicted path is available. Inspect the refusal for every original law.','empty-state'));
       }
     }catch(error){
       retire();status.textContent='Comparison unavailable: '+error.message;status.dataset.state='refused';
-    }finally{if(token===serial)run.disabled=false;}
-  });
+     }finally{if(token===serial)run.disabled=false;}
+    if(chosen.historical&&token===serial&&state===getState()){
+      const target=active.length?pause:source;
+      target.focus({preventScroll:true});
+      (active.length?transport:container).scrollIntoView({block:'center',behavior:'instant'});
+    }
+  }
+  run.addEventListener('click',()=>execute());
 
   function frame(now) {
     if(!result||!active.length)return null;
@@ -208,9 +229,9 @@ export function mountStudioComparison(container, {transportHost, getState, getIn
       sampleIndex=lo;
     }
     if(sampleIndex!==lastPaintedIndex)repaintClock();
-    return {time:times[sampleIndex],sampleIndex,view,paused,highlightId:previewLaw||selectedLaw,complete:active.length===result.results.length,
+    return {time:times[sampleIndex],sampleIndex,view,paused,sourceLabel:resultSource.label,highlightId:previewLaw||selectedLaw,complete:active.length===result.results.length,
       total:result.results.length,paths:active,
       samples:active.map(row=>({id:row.id,label:row.label,color:row.color,...row.trajectory[sampleIndex]}))};
   }
-  return {retire,frame,get active(){return Boolean(result&&active.length);}};
+  return {retire,frame,compareHistorical:eventIndex=>execute(eventIndex),get active(){return Boolean(result&&active.length);}};
 }

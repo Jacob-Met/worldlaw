@@ -1,0 +1,25 @@
+{
+  "browser": "156.0.8078.47",
+  "viewport": {
+    "width": 320,
+    "height": 960
+  },
+  "checks": [
+    "Explicit historical command-law search verifies separation for synthetic eight-row training and one received row",
+    "Exported certificate independently replays through the public checker",
+    "At 320px keyboard Enter opens the native chooser, selected certificate replays, file input fits and notebook bytes remain unchanged"
+  ],
+  "geometry": {
+    "left": 34,
+    "right": 289,
+    "width": 255,
+    "parentLeft": 34,
+    "parentRight": 289,
+    "documentWidth": 320,
+    "viewportWidth": 320
+  },
+  "errors": [],
+  "badResponses": [],
+  "external": [],
+  "qualification": "Synthetic authored UI receiving course; certificate replay is mathematical evidence, not physical acquisition."
+}
