@@ -18,7 +18,7 @@ The panel shows:
 - **Maintained fitter rank check:** whether the actual fitting routine admits this input design. It uses a zero right-hand side solely to test rank; these diagnostic coefficients are never exposed as a torque model.
 - **Position support:** the separate observed-angle gates. A hinge requires three distinct positions on each side; a cubic requires four distinct positions. Numerical rank alone does not waive these gates.
 
-If the two rank diagnostics disagree, the panel says so; fitter admission remains necessary. Normalization and numerical conditioning matter. Rank may even decrease when an extreme new input rescales columns, and numerically regressing inputs are not promoted.
+If the two rank diagnostics disagree, the panel says so; fitter admission remains necessary. Normalization and numerical conditioning matter. Numerical rank under the stated tolerance may even decrease when an extreme new input rescales columns, and numerically regressing inputs are not promoted.
 
 Every admitted permitted state remains inspectable. Its row shows rank after adding those coordinates, rank change, unresolved coefficients, fitter admission, position support, qualification and extrapolated axes. Narrow screens present labeled state cards; a bounded scroll region retains all rows.
 
@@ -52,7 +52,7 @@ Passing rank and position gates does **not** establish response adequacy, physic
 
 Run `node --test tests/stiffness-design.test.mjs`, `npm run verify`,
 `npm run stiffness:browser` and `npm run stiffness:experiment:browser`.
-Browser receiving uses the existing explicit Playwright and Chrome paths.
+The experiment browser course uses Node.js and the explicit `BROWSER_EXECUTABLE_PATH` for Chrome; it does not require Playwright. The separate `stiffness:browser` course uses its existing Playwright configuration. On Linux the experiment course requires the same browser target to report active sandbox protections before application navigation.
 The complete consumer course must also run against a fresh extraction from
 `python3 scripts/package.py` before this composition is described as received.
 
@@ -64,9 +64,12 @@ Historical component and browser results are retained on that original PR;
 they are not new receiving evidence for this composition.
 
 The prior dependent package repair from PR #98 is already maintained through
-PR #111. This composition preserves the maintained packager and adds only the
-three input-design runtime/document requirements. It does not reintroduce
-older shared-training modules, receipt archives or their old allowlist.
+PR #111. This composition preserves the maintained packager and adds the three
+input-design runtime/document requirements. Recovery on current main also
+adds 36 exact existing receipt paths and six exact historical-log omissions
+needed for its strict distribution check; no wildcard, matcher or refusal
+rule is broadened. It does not reintroduce older shared-training modules,
+receipt archives or their old allowlist.
 
 The native integration record carries the exact composed commit/tree, commands,
 actual desktop/narrow captures, archive identity and any remaining failures.
