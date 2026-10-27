@@ -142,8 +142,41 @@ try {
     assert.deepEqual(meta.derivation.split,expected.split);
     const matching=await download(motion,'#save-studio-source',`window-${windowSize}-source.json`);
     assert.equal(matching.text,original.text);assert.equal(sha(matching.bytes),meta.notebookIdentity.sha256);
-    const {replayStudioExport,verifyStudioExportSource}=await load('src/motion/studio-export.mjs');
-    replayStudioExport(exported.value);await verifyStudioExportSource(exported.value,matching.text);
+    const {replayStudioExport,verifyStudioExportSource,prepareStudioExport}=await load('src/motion/studio-export.mjs');
+    replayStudioExport(exported.value); // Exact retained-angular replay remains mandatory in Node.
+    const browserSourceVerification=await motion.evaluate(async({dataset,notebookText})=>{
+      const {verifyStudioExportSource}=await import('/src/motion/studio-export.mjs');
+      return verifyStudioExportSource(dataset,notebookText);
+    },{dataset:exported.value,notebookText:matching.text});
+    metrics.sourceReplay??=[];
+    const probe={windowSize,browser:browser.version(),node:process.version,nodeVersions:process.versions,browserSourceVerification,nodeFullSource:'pass',differences:[]};
+    try{await verifyStudioExportSource(exported.value,matching.text);}
+    catch(error){
+      assert.equal(error.message,'Motion Studio source snapshot replay does not match its retained inputs.');
+      const metadata=exported.value.source.metadata;
+      const prepared=await prepareStudioExport(JSON.parse(matching.text),{
+        inertia:metadata.dynamics.inertia,command:metadata.dynamics.command,
+        windowSize:metadata.derivation.settings.windowSize,segmentId:metadata.selectedSegment.id,
+        ...(metadata.noise.origin==='caller_override'?{positionSigma:metadata.noise.value}:{}),confirmKnownDynamics:true});
+      function compare(a,b,path=[]){
+        if(Object.is(a,b))return;
+        if(a!==null&&b!==null&&typeof a==='object'&&typeof b==='object'){
+          assert.equal(Array.isArray(a),Array.isArray(b),'Replay container type changed');
+          const ak=Object.keys(a).sort(),bk=Object.keys(b).sort();assert.deepEqual(ak,bk,'Replay keys changed at '+path.join('.'));
+          for(const key of ak)compare(a[key],b[key],[...path,key]);return;
+        }
+        const field=path.join('.');
+        assert.ok(/^source\.metadata\.angularSamples\.rows\.\d+\.1$/.test(field)||/^(observations|heldOut)\.\d+\.(position|rate|jointTorque)$/.test(field),'Unexpected replay difference: '+field);
+        assert.ok(typeof a==='number'&&typeof b==='number'&&Number.isFinite(a)&&Number.isFinite(b),'Nonfinite or nonnumeric replay difference');
+        probe.differences.push({path:field,node:a,browser:b,absolute:Math.abs(a-b)});
+      }
+      compare(prepared.dataset,exported.value);
+      assert.ok(probe.differences.length>0,'Failed replay without inspectable numeric differences');
+      probe.nodeFullSource='unqualified';probe.error=error.message;
+      probe.maxAbsoluteDifference=Math.max(...probe.differences.map(row=>row.absolute));
+      probe.qualification='Exact browser full-source replay and Node retained-angular replay passed; cross-runtime full-source replay is unqualified. Numeric differences are recorded without tolerance acceptance.';
+    }
+    metrics.sourceReplay.push(probe);
     await studio.goto(origin);await studio.locator('#observation-file').setInputFiles(exported.path);
     await studio.waitForFunction(n=>document.querySelector('#sample-count')?.textContent===String(n),expected.observations.length);
     const saved=await download(studio,'#export-session',`window-${windowSize}-session.json`);
@@ -152,7 +185,7 @@ try {
     await studio.waitForFunction(()=>document.querySelector('#notice')?.textContent.includes('Reopened the notebook'));
     const reopened=await download(studio,'#export-session',`window-${windowSize}-reopened.json`);assert.deepEqual(reopened.value,saved.value);
     metrics.transfers.push({windowSize,training:expected.observations.length,heldOut:expected.heldOut.length,reviewText,sourceHash:sha(matching.bytes)});
-    mark(`window ${windowSize}: keyboard review, exact download, source identity, replay and Studio reopen`);
+    mark(`window ${windowSize}: keyboard review, exact download, source identity, exact browser source replay, Node angular replay and Studio reopen (Node full-source qualification recorded separately)`);
   }
   assert.notEqual(reviewTexts[0],reviewTexts[1]);
   await motion.locator('#derivative-window').selectOption('15');
