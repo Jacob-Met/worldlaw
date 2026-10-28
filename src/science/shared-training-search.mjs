@@ -39,7 +39,7 @@ export function searchPreparedLinearEnvelope(context,declared,base,checks){
   const predictions=rows.map(row=>row.refittedPrediction+row.influence.reduce((sum,value,i)=>sum+value*offsets[i],0));
   if(!predictions.every(Number.isFinite))return {...base,reason:'search-prediction-range',iterationsPerformed,matrixTermsUsed};
   // Strict original-box interior is needed; contact is not silently accepted.
-  if(predictions.every((p,j)=>(vectorRadii?rreceive[j]:rreceive)-Math.abs(rows[j].observedTorque-p)>rows[j].numericalTolerance)){
+  if(checks.mayCheckWitness?checks.mayCheckWitness(predictions,offsets):predictions.every((p,j)=>(vectorRadii?rreceive[j]:rreceive)-Math.abs(rows[j].observedTorque-p)>rows[j].numericalTolerance)){
    const certificate=checks.makeCertificate('training-offsets',offsets),check=checks.checkCandidate(certificate);
    if(check.status==='verified-interior-witness')return finish(certificate,check);
    lastWitnessReason=check.reason;
