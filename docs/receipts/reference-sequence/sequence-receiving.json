@@ -1,0 +1,46 @@
+{
+  "base": "440591a3a60719a1d356054e7da162ba252f8700",
+  "payloadSha256": "300d8cf441957d6e02c0866e284d2739e3fdaaa25657511a75de35e6515d923a",
+  "files": [
+    {
+      "path": "src/unknown-lab/reference-sequence.mjs",
+      "sha256": "455ec81624b2f455a164e586199d8a883c7021262b8af11e507f6891ce1652af"
+    },
+    {
+      "path": "src/unknown-lab/reference-sequence-panel.mjs",
+      "sha256": "d69d1ca9c4c604c1607630b336e29dfee980f4f441fd05ebd7eec0b973ef19cb"
+    },
+    {
+      "path": "src/unknown-lab/reference-request-panel.mjs",
+      "sha256": "105cdcb3794d6db4609b244bc63de26b9ef69516fa7aed11612c5d24d956754b"
+    },
+    {
+      "path": "test-sequence.mjs",
+      "sha256": "222ce52cf15bed9850cc7f24ea5020e7f834a82032a05a2f49864e4ec73e8b80"
+    },
+    {
+      "path": "scripts/reference-sequence-browser.mjs",
+      "sha256": "e3e2b852372bb44439b708be60b335fa594df283df9e77a3689d4a71c9e31c75"
+    }
+  ],
+  "steps": [
+    {
+      "label": "native",
+      "command": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "test-sequence.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "3284c086d7e23e14ce076b869763b7a5a32d2ff3b9e63a9e1d45035831d8165f"
+    },
+    {
+      "label": "browser",
+      "command": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "scripts/reference-sequence-browser.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "b6f7149ce96028d9220420d529c717b2679427c7d0424b4db2722ec0f92377c5"
+    }
+  ]
+}

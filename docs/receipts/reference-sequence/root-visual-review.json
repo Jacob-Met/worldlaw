@@ -1,0 +1,67 @@
+{
+  "reviewer": "root",
+  "reviewedAt": "2026-10-28T19:14:25.473225+00:00",
+  "decision": "accepted-actual-desktop-and-narrow-visual-review",
+  "files": {
+    "src/unknown-lab/reference-sequence.mjs": "455ec81624b2f455a164e586199d8a883c7021262b8af11e507f6891ce1652af",
+    "src/unknown-lab/reference-sequence-panel.mjs": "d69d1ca9c4c604c1607630b336e29dfee980f4f441fd05ebd7eec0b973ef19cb",
+    "src/unknown-lab/reference-request-panel.mjs": "105cdcb3794d6db4609b244bc63de26b9ef69516fa7aed11612c5d24d956754b"
+  },
+  "screenshots": [
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-sequence-v4-20261028/browser-sequence/sequence-1440.png",
+      "bytes": 574879,
+      "sha256": "975127c4af929e304fdab7a14db00bc27cfc2b70dcf3e373a0c305658f71c270"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-sequence-v4-20261028/browser-sequence/sequence-390.png",
+      "bytes": 212005,
+      "sha256": "b44bcd951c788cee640131ec9931ef03f8c173be8108587d4d0d11c2e03e8584"
+    }
+  ],
+  "findings": [
+    "Desktop capture clearly distinguishes the original training family, retained two-round/two-actual source account and stale-parent state. Save/reopen and actual-receiving actions remain visible.",
+    "The 390-pixel layout wraps the retained source identities and stale banner and stacks usable controls inside the viewport. Content continues by normal document scrolling.",
+    "The desktop native disclosure has an obvious keyboard focus outline. Original rounds remain separately inspectable.",
+    "The inherited declaration checkbox placement is visually separated from its explanatory text but legible; no new blocking clipping or overlap was observed."
+  ],
+  "limits": [
+    "This review inspects the two listed actual v4 captures; it does not independently execute the native/browser course.",
+    "Scientific and consumer lifecycle source acceptance are the separate MATERIAL reviews. No physical model validation or controlled-intervention claim is made."
+  ],
+  "currentVisualReview": {
+    "reviewer": "root",
+    "reviewedAt": "2026-10-28T19:22:42.204070+00:00",
+    "decision": "accepted-actual-current-composition-visual-review",
+    "base": "b1562c3195ed6b8e17ee336c449e0e0f5b4daf6b",
+    "baseTree": "6fdf2e112d4f02ff8c43467681ecdd65fa471203",
+    "files": {
+      "src/unknown-lab/reference-sequence.mjs": "455ec81624b2f455a164e586199d8a883c7021262b8af11e507f6891ce1652af",
+      "src/unknown-lab/reference-sequence-panel.mjs": "d69d1ca9c4c604c1607630b336e29dfee980f4f441fd05ebd7eec0b973ef19cb",
+      "src/unknown-lab/reference-request-panel.mjs": "105cdcb3794d6db4609b244bc63de26b9ef69516fa7aed11612c5d24d956754b"
+    },
+    "integrationReceiptSha256": "b556599259ff04e7acd1ae00e38140c80c3ef1967eab64ce5506153e46dcf8f4",
+    "screenshots": [
+      {
+        "file": "sequence-current-1440.png",
+        "bytes": 575328,
+        "sha256": "428699d02ed3da76bbbe03ef6d3bc952705fbeeb96eccd997f425cb52639616d"
+      },
+      {
+        "file": "sequence-current-390.png",
+        "bytes": 212754,
+        "sha256": "561ac1e2062b3caa13efb4614c405b9fd96103dafcdbb1936c6c748243b2ac16"
+      }
+    ],
+    "findings": [
+      "Both actual current-main captures were inspected after the additional history-acquisition mount and scoped CSS were received.",
+      "The desktop view retains the original source/stale banner, both frozen rounds, explicit request/actual/save/reopen controls and visible keyboard focus.",
+      "At390 pixels, source identities and controls wrap and stack within the viewport; the remaining account continues by ordinary document scrolling. No blocking overlap or horizontal clipping is visible.",
+      "The inherited declaration checkbox placement is unchanged and remains legible."
+    ],
+    "limits": [
+      "Visual acceptance is scoped to these two current captures. Actual26-group/browser and90-resource qualification is recorded in the separate integration receipt.",
+      "Root read the sequential core/consumer and found no additional source blocker; the independent scientific and lifecycle reviews remain MATERIAL records."
+    ]
+  }
+}
