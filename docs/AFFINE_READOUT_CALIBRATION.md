@@ -1,0 +1,11 @@
+# Joint sourced gain and offset correction
+
+Use an original group with `correction: "affine-readout"`, `sameAffineCorrection: true`, gain `radius` (dimensionless,0≤radius<1), gain `basis`, additive `offsetRadius` in N·m, and `offsetBasis`. The complete original row partition remains mandatory. Corrected original torque is reported torque×(1+g)+b plus any independently sourced residual. The group supplies two bounded latent components; this is an explicit rectangular feasible set, not measured statistical independence or a fitted uncertainty distribution.
+
+Actual associations use `sameAffineCorrection: true` to share both g andb. A null association retains independent actual errors. Actual bounds then mean independently sourced residuals after the shared correction. No relationship is inferred from equal labels or observed residuals.
+
+The gain column sums original influences weighted by original readouts; the offset column sums unweighted original influences. Associated actual rows subtract their readout-weighted gain contribution and unit offset contribution. Both corrections are reconstructed from certificate components before independently refitting every original reading and comparing corrected actual readouts. Residual components follow all shared components in the complete vector. Every dimension is charged, including explicitly zero-width components; exhausted search remains unresolved.
+
+The authored two-reading course in affine-calibration.test.mjs needs both corrections. Each component alone has a checked separation; jointly the maintained search finds a checked interior witness. When both corrections are shared with the actual readings, the offset cancels and the positive common gain cannot remove the discrepancy. This does not determine which calibration relationship is physically true.
+
+Original discovery/ranking/history and prior additive/fractional sources remain unchanged. Source-only replay binds both bases/radii and complete row association; edited declarations retire displayed evidence. Numerical allowances remain engineering checks rather than rigorous QR enclosures. This does not infer physical gain, change a law, or establish a prospective guarantee.
