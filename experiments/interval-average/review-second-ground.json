@@ -1,0 +1,19 @@
+{
+  "status": "accepted",
+  "scope": "Authored research only; independent formula/complete population review and exact read-only runner replay. No fitting, modelselection, browser or physical data.",
+  "checks": [
+    "Independent initial pointstate explicitly(0,1,0), never averaged output",
+    "All61original intervals complete within0..1; both timestampconventions preserve identical integration supports",
+    "Analytic endpointintegral equals midpoint*sinc independently",
+    "Composite trapezoid harmonic multiplier independently agrees within nativepointoracleerror",
+    "Workcount61*N/16 perconvention exact; preflight limits allintervals before output",
+    "Current runner deep-compares frozen fullresults withoutwriting"
+  ],
+  "hashes": {
+    "protocol.json": "c97f7a8b75a4e8de04d37223fef32aa19dbd04604b0e446bb959c7b611b3515a",
+    "results.json": "9f6e85ca341d1f188545bc10cd0d5a0da4a39ff03caf9e944f65160a0782e79a",
+    "interval-average.mjs": "2ba2687667f8afc2f9b337e0a0047697fd17531f66398a34edd3beb33ae9d176",
+    "run.mjs": "532cd142338f8fd0d056cb85a9a0e9442cfd008299ec4a5c05eab8ddc88e587d"
+  },
+  "limits": "Grid convergence is not a certified quadrature error bound. Authored ideal angle-averaging operation is not a camera model and no exposure duration is inferred from cadence."
+}

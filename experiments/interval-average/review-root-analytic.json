@@ -1,0 +1,66 @@
+{
+  "reviewer": "root",
+  "scope": "Read-only independent analytic identity and Python fsum reconstruction; not a new solver execution",
+  "protocolSHA256": "c97f7a8b75a4e8de04d37223fef32aa19dbd04604b0e446bb959c7b611b3515a",
+  "resultsSHA256": "9f6e85ca341d1f188545bc10cd0d5a0da4a39ff03caf9e944f65160a0782e79a",
+  "frequencyHz": 4,
+  "windowSeconds": 0.0625,
+  "centeredAmplitudeFactor": 0.9003163161571061,
+  "endStampPhaseLagRadians": 0.7853981633974483,
+  "checks": [
+    {
+      "gridIntervals": 256,
+      "convention": "center",
+      "rows": 61,
+      "maxIndependentAnalyticDifference": 1.6487412447952395e-15,
+      "independentPointRMSE": 0.06907741584832088,
+      "independentAverageRMSE": 0.000501738616334119,
+      "maxPointOracleError": 1.8311981800925303e-05
+    },
+    {
+      "gridIntervals": 256,
+      "convention": "end",
+      "rows": 61,
+      "maxIndependentAnalyticDifference": 1.6487412447952395e-15,
+      "independentPointRMSE": 0.5270802962428478,
+      "independentAverageRMSE": 0.000501738616334119,
+      "maxPointOracleError": 1.8311981800925303e-05
+    },
+    {
+      "gridIntervals": 1024,
+      "convention": "center",
+      "rows": 61,
+      "maxIndependentAnalyticDifference": 1.6487412447952395e-15,
+      "independentPointRMSE": 0.06907808500902303,
+      "independentAverageRMSE": 3.1319974657313865e-05,
+      "maxPointOracleError": 7.137195497108895e-08
+    },
+    {
+      "gridIntervals": 1024,
+      "convention": "end",
+      "rows": 61,
+      "maxIndependentAnalyticDifference": 1.6487412447952395e-15,
+      "independentPointRMSE": 0.5270868482641231,
+      "independentAverageRMSE": 3.1319974657313865e-05,
+      "maxPointOracleError": 7.137195497108895e-08
+    },
+    {
+      "gridIntervals": 4096,
+      "convention": "center",
+      "rows": 61,
+      "maxIndependentAnalyticDifference": 1.6487412447952395e-15,
+      "independentPointRMSE": 0.0690780860144594,
+      "independentAverageRMSE": 1.957448336067828e-06,
+      "maxPointOracleError": 2.786360239759311e-10
+    },
+    {
+      "gridIntervals": 4096,
+      "convention": "end",
+      "rows": 61,
+      "maxIndependentAnalyticDifference": 1.6487412447952395e-15,
+      "independentPointRMSE": 0.5270868730125147,
+      "independentAverageRMSE": 1.957448336067828e-06,
+      "maxPointOracleError": 2.786360239759311e-10
+    }
+  ]
+}

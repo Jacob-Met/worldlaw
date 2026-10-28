@@ -1,0 +1,35 @@
+{
+  "claim": 438,
+  "scope": "Authored ideal interval-averaging sensor research, not product integration",
+  "commands": [
+    {
+      "command": "node run.mjs",
+      "result": "all analytic/runtime assertions passed; six complete comparisons saved"
+    },
+    {
+      "command": "node --test interval-average.test.mjs",
+      "result": "one file containing four named control groups passed, zero failures"
+    }
+  ],
+  "files": {
+    "README.md": "c832c96c65726c9c03231a7ef7fd4120173265cb7c3cbe070dd44e2931a5b6e9",
+    "claim-body.md": "b2445eabdec50bf9906732c0963d344a5cc850f5524f60b3e0bbde57aa6fbe8f",
+    "claim-title.txt": "3f99e031fec5c2e07a4cbe3db4e7452a3924dfa549932644eeef34f0d16ae030",
+    "dependency-provenance.json": "624409640b8e4364057d392fbc4072c44ff706ff7d30543ff877403b8437fa51",
+    "interval-average.mjs": "2ba2687667f8afc2f9b337e0a0047697fd17531f66398a34edd3beb33ae9d176",
+    "interval-average.test.mjs": "f78a4f76a4dec8ce48a7c2d84124625a1f0ea3fd74fadf8d389f35d817ab84da",
+    "maintained/src/science/linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+    "maintained/src/science/output-grid.mjs": "e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d",
+    "maintained/src/science/robust-fit.mjs": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1",
+    "maintained/src/science/torque-discovery.mjs": "34b75f3b08606b6f3c12d87ea090b74cd5fb42e550e5a9f95b5454cc57c58d2f",
+    "maintained/src/trajectory/command-timeline.mjs": "b975f7f35a5834c0c9d9ae29ea2272085ae05a8c812d77487ce6df83d0d77e61",
+    "maintained/src/trajectory/coulomb-contact.mjs": "2cc8820da95ca9fc5170319c37a7e098071ec82e8e7af9b816301c45b1ea0253",
+    "maintained/src/trajectory/forward.mjs": "7e80824e1475b21e99c74e3f5cd058655851b5c90494086325c44ffe6fd4f705",
+    "protocol.json": "c97f7a8b75a4e8de04d37223fef32aa19dbd04604b0e446bb959c7b611b3515a",
+    "results.json": "9f6e85ca341d1f188545bc10cd0d5a0da4a39ff03caf9e944f65160a0782e79a",
+    "run.mjs": "33fa6adfa13f14074ed14a469ae4a2b724b7cda44dd526e5db84b2039156c8b1"
+  },
+  "sourcePreservation": "No fitting or owner changes; point initial state independently supplied; original61interval observations per convention retained",
+  "independentReview": "Requested from SECOND GROUND; pending",
+  "physicalMetadata": "None admitted; no camera or PASCO interpretation"
+}
