@@ -212,6 +212,8 @@ identify a sensor defect or physical cause. See [the contract and receiving](doc
 
 In Trajectory Challenge’s command-timing instrument, **Show competing predictions** overlays the pointwise span of complete training-competitive forecasts on the same original separate recording. Counts and reasons keep unavailable alternatives visible; the span is not a probability or confidence interval. See [operation and interpretation](docs/COMMAND_TIMING_COMPARISON.md).
 
+To inspect alternative fitted laws as well as timings, choose **Compute timing-and-law forecasts** in the same instrument. The optional comparison reserves the complete additional coarse/refined workload within the existing shared step budget, then lets you inspect a timing, law and equation against the original recording. Membership uses the existing global training-score threshold; the original training choice, reference prediction and source-only notebook inputs remain unchanged. Missing forecasts and refinements remain explicit. See [timing-and-law comparison and its limits](docs/COMMAND_TIMING_LAW_FAMILY.md).
+
 The program searches subsets of seven declared terms and distinguishes some alternative structures. It fits coefficients with scaled QR and ranks models with a noise-floor information criterion. Model spread is a heuristic, not calibrated probability. [Scientific details and retained counterexamples](docs/SCIENTIFIC_CORE.md) cover rank deficiency, an omitted cubic law, parameter drift and a 40-case active-versus-passive experiment.
 
 Video reconstruction, arbitrary mechanism topology, calibrated uncertainty, physical instrument receiving, broader generalization, provider/GPU qualification and contest submission remain open. This usable increment preserves the full original goal.

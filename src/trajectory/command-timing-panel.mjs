@@ -2,6 +2,7 @@
 import {compareCommandTiming, exportCommandTimingInputs, restoreCommandTimingInputs} from './command-timing-study.mjs';
 import {prepareCommandTimeline,commandAtSegment} from './command-timeline.mjs';
 import {commandTimingComparison} from './command-timing-comparison.mjs';
+import {prepareTimingLawForecasts, executeTimingLawForecasts, timingLawComparison} from './command-timing-law-family.mjs';
 import {MAX_TEXT_LENGTH} from './data.mjs';
 
 const node = (tag, text) => {const e = document.createElement(tag); if (text !== undefined) e.textContent = text; return e;};
@@ -63,6 +64,16 @@ export function createCommandTimingPanel(anchor, {onExample,onResponseExample, o
   const candidateSelect = select('Inspect a fitted delay', 'command-timing-candidate');
   const runSelect = select('Separate recording', 'command-timing-recording');
   const view = select('Instrument view', 'command-timing-view', [['response', 'Command and motion'], ['profile', 'Whole delay comparison']]);
+  const familyMode = select('Prediction family', 'command-timing-family-mode', [['representatives','Timing representatives'],['laws','Timing and law alternatives']]);
+  familyMode.closest('label').hidden = true;
+  const lawSelect = select('Inspect timing and law', 'command-timing-law'); lawSelect.closest('label').hidden = true;
+  const familyActions = node('div'); familyActions.className = 'timing-actions';
+  const familyCompute = node('button', 'Compute timing-and-law forecasts'); familyCompute.type = 'button'; familyCompute.id = 'command-timing-law-compute'; familyCompute.className = 'button outline'; familyActions.append(familyCompute);
+  const familyStatus = node('p'); familyStatus.id = 'command-timing-law-status'; familyStatus.setAttribute('role','status');
+  const familyAccounting = node('details'); familyAccounting.id='command-timing-law-accounting';
+  familyAccounting.append(node('summary','Computation and excluded fits'));
+  const familyAccountingText=node('p');familyAccounting.append(familyAccountingText);
+  const familyIdentity = node('p'); familyIdentity.id = 'command-timing-law-identity'; familyIdentity.hidden = true;
   const legend = node('div'); legend.className = 'timing-legend';
   for (const [text, color] of [['Recorded angle / command', '#174858'], ['Inspected response prediction / command', '#a24915'], ['Zero-delay prediction', '#7d7e8c']]) {const key = node('span', text); key.style.color = color; key.style.borderColor = color; legend.append(key);}
   const comparisonControl = node('label'); comparisonControl.className = 'timing-comparison-toggle';
@@ -74,15 +85,38 @@ export function createCommandTimingPanel(anchor, {onExample,onResponseExample, o
   const comparisonKey = node('span', 'Training-competitive prediction span'); comparisonKey.style.color = '#467f9c'; comparisonKey.style.borderColor = '#467f9c'; comparisonKey.hidden = true; legend.append(comparisonKey);
   const chart = node('div'); chart.id = 'command-timing-chart';
   const detail = node('p'); detail.id = 'command-timing-detail';
+  const tableLabel = node('p', 'Original timing representatives — training choice unchanged'); tableLabel.id='command-timing-representative-label'; tableLabel.hidden=true;
   const tableHost = node('div'); tableHost.className = 'timing-table-wrap'; tableHost.tabIndex = 0; tableHost.setAttribute('aria-label', 'Complete offered delay comparison');
   const limits = node('p'); limits.id = 'command-timing-limits';
-  result.append(selectors, comparisonControl, legend, chart, comparisonCaption, comparisonUnavailable, detail, tableHost, limits);
+  result.append(familyActions, familyStatus, familyAccounting, selectors, familyIdentity, comparisonControl, legend, chart, comparisonCaption, comparisonUnavailable, detail, tableLabel, tableHost, limits);
   const initialAssumption=node('p','A positive response time assumes first-order command response, initially at equilibrium with the declared pre-recording command. That initial state is a declaration, not inferred from the recorded angles.');
   host.append(style, title, intro, sourceLabel,initialAssumption, controls, actions, file, status, result);
   let bundle = null, report = null, revision = 0, userEdits = 0, lastWidth = 0;
-  function retire(message = 'Inputs changed. Recompute; the previous comparison has been cleared.') {revision++; report = null; chart.replaceChildren(); result.hidden = true; save.hidden = true; runButton.disabled = !bundle; status.textContent = message;}
+  let familyPlan = null, familyResult = null, familyPending = false;
+  function clearFamily() {familyPlan=null;familyResult=null;familyPending=false;familyMode.value='representatives';familyMode.closest('label').hidden=true;lawSelect.closest('label').hidden=true;lawSelect.replaceChildren();familyIdentity.hidden=true;tableLabel.hidden=true;familyStatus.textContent='';familyAccounting.open=false;familyAccountingText.textContent='';familyAccounting.hidden=true;familyCompute.disabled=true;}
+  function retire(message = 'Inputs changed. Recompute; the previous comparison has been cleared.') {revision++; clearFamily(); report = null; chart.replaceChildren(); result.hidden = true; save.hidden = true; runButton.disabled = !bundle; status.textContent = message;}
   for (const field of [delays,responseTimes, before, noise, library, step, budget, maxTerms, ambiguity]) field.addEventListener('input', () => {userEdits++;retire();});
-  for (const field of [candidateSelect, runSelect, view, comparisonToggle]) field.addEventListener('change', draw);
+  for (const field of [candidateSelect, runSelect, view, comparisonToggle, familyMode, lawSelect]) field.addEventListener('change', draw);
+  function familyWorkText(plan) {const w=plan.work;return `${plan.members.length} globally training-competitive timing–law alternatives. Coarse + refined RK4 reservation: ${w.originalReservedSteps} original + ${w.additionalReservedSteps} additional = ${w.totalReservedSteps} / ${w.maxTotalSteps} allowed steps. ${w.reusedMemberCount} representative laws with reused forecasts; ${w.additionalMemberCount} additional laws. Excluded fits: ${plan.excludedFitCounts.rankDeficientCandidates} rank-deficient, ${plan.excludedFitCounts.unexecutableCandidates} unexecutable; ${plan.excludedFitCounts.fitFailedTimings} timing fits failed.`;}
+  function familySummary(plan) {const w=plan.work;return `${plan.members.length} globally training-competitive alternatives; ${w.additionalReservedSteps} additional RK4 steps reserved, ${w.totalReservedSteps} / ${w.maxTotalSteps} total budget. ${w.reusedMemberCount} representative laws with reused forecasts; ${w.additionalMemberCount} additional laws.`;}
+  function familyUnknown(w) {return w.originalFailedRunStepsNotMeasured||w.originalRefinementFailuresNotMeasured||w.additionalFailedRunStepsNotMeasured?' Failed-run work is partly unmeasured; reservations remain charged.':'';}
+  familyCompute.addEventListener('click', async () => {
+    if (!familyPlan || familyPlan.status !== 'ready' || familyPending) return;
+    if (familyResult) {familyMode.value='laws';draw();return;}
+    const mine=revision, plan=familyPlan;familyPending=true;familyCompute.disabled=true;
+    familyStatus.textContent=`${familySummary(plan)} Computing the complete admitted family…${familyUnknown(plan.work)}`;
+    await new Promise(requestAnimationFrame);
+    if(mine!==revision || plan!==familyPlan)return;
+    try {
+      const received=executeTimingLawForecasts(plan);
+      if(mine!==revision || plan!==familyPlan)return;
+      familyResult=received;lawSelect.replaceChildren();
+      for(const member of received.members){const option=node('option', `${fmt(member.delaySeconds)} s delay${report.options.responseTimes?` · ${fmt(member.responseTimeSeconds)} s response`:''} · ${member.modelId} · training Δ ${fmt(member.scoreDelta)}`);option.value=member.key;lawSelect.append(option);}
+      familyMode.value='laws';familyStatus.textContent=`${familySummary(plan)} Forecasts retained.${familyUnknown(received.work)}`;
+      familyAccountingText.textContent=`${familyWorkText(plan)} Known completed RK4 steps: ${received.work.originalCompletedSteps} original; ${received.work.completedAdditionalSteps} additional.${familyUnknown(received.work)} Inspection does not change the original training choice. Coarse and refinement outcomes are reported separately below. ${received.qualification}`;draw();
+    } catch(error) {familyStatus.textContent=`${familySummary(plan)} ${error.message} Original timing comparison retained.${familyUnknown(plan.work)}`;}
+    finally{if(mine===revision&&plan===familyPlan){familyPending=false;familyCompute.disabled=false;}}
+  });
   function settings() {
     for (const field of [delays,responseTimes, before, noise, library, step, budget, maxTerms, ambiguity]) if (!field.value.trim()) throw Error('Every command-study input, including the pre-recording command, must be explicitly filled.');
     const responses=responseTimes.value.split(',').map(s=>{if(!s.trim())throw Error('No empty response-time entries are allowed.');return Number(s.trim());});
@@ -100,7 +134,7 @@ export function createCommandTimingPanel(anchor, {onExample,onResponseExample, o
   }
   function present(next) {
     if (!bundle || JSON.stringify(next.bundle) !== JSON.stringify(bundle)) throw Error('This comparison belongs to a different source notebook. Recompute against the current evidence.');
-    report = next; result.hidden = false; save.hidden = false; runButton.disabled = false;
+    clearFamily(); report = next; result.hidden = false; save.hidden = false; runButton.disabled = false;
     candidateSelect.replaceChildren(); runSelect.replaceChildren();
     const joint=Boolean(report.options.responseTimes);
     const isSelected=c=>c.delaySeconds===report.selectedDelay&&(!joint||c.responseTimeSeconds===report.selectedResponse?.responseTimeSeconds);
@@ -119,7 +153,10 @@ export function createCommandTimingPanel(anchor, {onExample,onResponseExample, o
       for (const text of [fmt(c.delaySeconds),...(joint?[fmt(c.responseTimeSeconds),fmt(c.solverMaxStep)]:[]), c.status === 'fitted' ? fmt(c.score - best) : 'failed', fmt(c.challengeRMSE), c.error?.message ?? `${c.discovery.diagnostics.adequacy}; ${resolution.every(s => s === 'compared') && resolution.length === c.receiving.length ? 'both resolutions compared' : 'incomplete execution / refinement'}`]) row.append(node('td', text));
       body.append(row);
     } table.append(body); tableHost.replaceChildren(table);
-    limits.textContent = report.qualifications.join(' '); draw();
+    limits.textContent = report.qualifications.join(' ');
+    try {familyPlan=prepareTimingLawForecasts(report);familyCompute.disabled=familyPlan.status!=='ready';familyStatus.textContent=`${familySummary(familyPlan)} ${familyPlan.status==='ready'?'Optional computation; original training selection stays unchanged.':familyPlan.reason??'No executable family is available.'}${familyUnknown(familyPlan.work)}`;familyAccountingText.textContent=`${familyWorkText(familyPlan)} ${familyPlan.qualification}`;}
+    catch(error){familyStatus.textContent=`Timing–law preparation unavailable: ${error.message}. Original comparison retained.`;familyCompute.disabled=true;}
+    draw();
   }
   function referenceCandidate(){
     if(report.options.responseTimes)return report.candidates.filter(c=>c.responseTimeSeconds===0&&c.status==='fitted').sort((a,b)=>a.score-b.score||a.delaySeconds-b.delaySeconds)[0];
@@ -128,11 +165,21 @@ export function createCommandTimingPanel(anchor, {onExample,onResponseExample, o
   function draw() {
     if (!report) return;
     const joint=Boolean(report.options.responseTimes);
-    comparisonControl.hidden = view.value === 'profile';
-    comparisonCaption.hidden = view.value === 'profile' || !comparisonToggle.checked;
+    const familyActive=Boolean(familyResult)&&familyMode.value==='laws'&&view.value!=='profile';
+    familyMode.closest('label').hidden=!familyResult||view.value==='profile';
+    lawSelect.closest('label').hidden=!familyActive;
+    candidateSelect.closest('label').hidden=familyActive;
+    familyActions.hidden=view.value==='profile';familyStatus.hidden=view.value==='profile';familyAccounting.hidden=view.value==='profile'||!familyPlan;
+    familyIdentity.hidden=!familyActive;tableLabel.hidden=!familyActive;
+    comparisonControl.hidden = view.value === 'profile' || familyActive;
+    comparisonCaption.hidden = view.value === 'profile' || (!familyActive && !comparisonToggle.checked);
     comparisonKey.hidden = true;
     comparisonUnavailable.hidden = true; comparisonUnavailable.replaceChildren();
-    const candidate = report.candidates.find(c => candidateKey(c,joint)===candidateSelect.value);
+    const member=familyActive?familyResult.members.find(m=>m.key===lawSelect.value):null;
+    const candidate = member ? {...member,status:'fitted'} : report.candidates.find(c => candidateKey(c,joint)===candidateSelect.value);
+    const familyLabel = item => `Delay ${fmt(item.delaySeconds)} s${joint?` · response ${fmt(item.responseTimeSeconds)} s`:''} · ${item.modelId}`;
+    const unavailableLabel = key => {const item=familyActive?familyResult.members.find(m=>m.key===key):null;return item?familyLabel(item):key;};
+    if(member)familyIdentity.textContent=`${familyLabel(member)} · ${member.equation}. Global training-score difference ${fmt(member.scoreDelta)}; retained threshold ${fmt(familyResult.ambiguityDelta)}. Inspection only; the original training-selected timing and law remain unchanged.${member.terms.some(term=>term.id==='command')?'':' No command term: this law’s motion prediction ignores the displayed command.'}`;
     const run = report.bundle.challengeRuns.find(r => r.id === runSelect.value), received = candidate.receiving.find(r => r.runId === run.id);
     const zero = referenceCandidate()?.receiving.find(r => r.runId === run.id);
     const W = Math.max(260, Math.round(chart.clientWidth || host.clientWidth - 50)), H = view.value === 'profile' ? (joint?340:290) : 430;
@@ -170,16 +217,18 @@ export function createCommandTimingPanel(anchor, {onExample,onResponseExample, o
     } else {
       legend.hidden = false; const elapsed = r => r.time - run.samples[0].time, duration = elapsed(run.samples.at(-1)), x = t => left + width * t / duration;
       const predictions = received?.status === 'executed' ? received.rollout.rows : [], baseline = zero?.status === 'executed' ? zero.rollout.rows : [];
-      const comparison = comparisonToggle.checked ? commandTimingComparison(report, run.id) : null;
+      const comparison = familyActive ? timingLawComparison(familyResult, run.id) : comparisonToggle.checked ? commandTimingComparison(report, run.id) : null;
       const span = comparison?.rows ?? [];
       if (comparison) {
         let maximumSpread = 0;
         for (const row of span) maximumSpread = Math.max(maximumSpread, row.high-row.low);
         comparisonCaption.textContent = `${comparison.candidateCount} training-competitive alternatives: ${comparison.availableCount} complete on this recording; ${comparison.unavailable.length} unavailable. ${comparison.availableCount > 1 && span.length ? `Blue span: pointwise range of complete predictions; maximum sampled spread ${fmt(maximumSpread)} rad. Its boundaries may switch between candidates and need not be one executable trajectory. This is not a probability or confidence interval.` : comparison.availableCount === 1 && span.length ? 'One complete prediction: its outline has no between-forecast spread and is not a probability or confidence interval.' : 'No complete prediction span is available; missing predictions are not zero error.'}`;
+        if(familyActive)comparisonCaption.textContent += ` Timing–law family: ${comparison.refinementComparedCount} refinements compared; ${comparison.refinementUnavailable.length} unavailable. The range covers retained finite laws only; rank-deficient subsets and continuous coefficient ambiguities are not represented.`;
         comparisonKey.hidden = !span.length;
         comparisonKey.textContent = comparison.availableCount === 1 ? 'Single complete competitive prediction' : 'Training-competitive prediction span';
-        for (const item of comparison.unavailable) comparisonUnavailable.append(node('li', `${item.key}: ${item.reason}`));
-        comparisonUnavailable.hidden = !comparison.unavailable.length;
+        for (const item of comparison.unavailable) comparisonUnavailable.append(node('li', `${unavailableLabel(item.key)}: ${item.reason}`));
+        if(familyActive)for(const item of comparison.refinementUnavailable)comparisonUnavailable.append(node('li', `${unavailableLabel(item.key)}: refinement unavailable — ${item.reason}`));
+        comparisonUnavailable.hidden = !comparisonUnavailable.children.length;
       }
       let low = Infinity, high = -Infinity;
       const include = value => {low = Math.min(low, value); high = Math.max(high, value);};
