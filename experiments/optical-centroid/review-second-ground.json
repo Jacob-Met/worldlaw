@@ -1,0 +1,27 @@
+{
+  "packetSHA256": "24fef282c32cc5a901347dfcd418d0d8bf35d7d4a0aec0ba7fac3e5ae59f5612",
+  "reviewer": "second-ground",
+  "finding": "No substantive mathematical, source-custody or stated-boundary blocker found.",
+  "checks": [
+    "Read all five retained trajectories and complete two-grid results, maintained atan2(dx,dy) and radius<2 refusal contract.",
+    "Verified Fresnel substitution z=sqrt(2a/pi), integral S(z)/z,C(z)/z; constant-rate mean direction and sinc radius; complete turn loses direction.",
+    "Verified translated unit-mass zero-first-moment PSF identity: full intensity centroid equals brightness-weighted projected mean. Tensor trapezoids integrate affine spatial moments exactly; temporal midpoint comparison is on the same explicit nodes, not an independent temporal-convergence proof.",
+    "Verified brightness normalization integral(1+t)=1.5; cropped uniform support [0,2.5] gives retained mass .625 and centroid1.25, shift .75.",
+    "Executed read-only run.mjs: all original rows deep-equal frozen result. Executed independent-reference.py: Fresnel, spatial, brightness and clipping controls pass.",
+    "Source uses synthetic-time/manual authored point with explicit nontracker reason; immutable notebook checked. All-five trajectories remain, no cherry-picked failure removal."
+  ],
+  "limits": [
+    "Exploratory protocol frozen after finding, not blind discovery.",
+    "One independent exposure point has no sequential unwrap test; complete-turn refusal avoids meaningless nearzero direction.",
+    "Finite ideal continuous quadrature is not camera/raster/tracker execution. No physical exposure or real sensor model admitted.",
+    "Python frozen-reference replay compares selected numerical fields; its fresh spatial identity assertion remains a direct control, not full JSON deep equality."
+  ],
+  "hashes": {
+    "protocol.json": "537d630471c0bbe6ea0015b658c39869f98921a4789071e405e53878030f9222",
+    "run.mjs": "c5e99d6b3a8454d097957dc857364f956078ad739ac80f75f929f12cff41553a",
+    "independent-reference.py": "929af5310c6be6f65408cb24ba6b263492a3d2af92fd297401046bd139a0790a",
+    "probe-results.json": "b475697911555090d1e8eca33591d7f738413f2e29f56031917fbfb9b611d08f",
+    "independent-reference.json": "c4ef5241b7f2d1d448564fc3e53ee4f7dbb143c8d1254bdbf993eb8421c732a0",
+    "maintained/src/motion/measurement.mjs": "d6485e683e88f9573dae2fe3abfd467455610e328f5afe9ff2047e39bb644320"
+  }
+}

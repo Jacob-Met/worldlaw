@@ -1,0 +1,55 @@
+{
+  "base": "f184703de05c8502bd83311321ada8059fa9f049",
+  "files": [
+    {
+      "path": "src/motion/measurement.mjs",
+      "gitBlob": "bc2679939ceeb0ba98bae235e79dea2395ff471b",
+      "sha256": "d6485e683e88f9573dae2fe3abfd467455610e328f5afe9ff2047e39bb644320"
+    },
+    {
+      "path": "src/motion/metric-plane.mjs",
+      "gitBlob": "b80a59114d207589f5d713456743481c53859e2f",
+      "sha256": "6025f49822286bcda96f39c32494e5a234259150c34455acb4a33545f644cfb5"
+    },
+    {
+      "path": "src/motion/vendor/plane-homography.mjs",
+      "gitBlob": "5f9ee62ce8e1511c882774303511a7850b535f65",
+      "sha256": "336e03f3c2121aba99375cf7e855239353a216ee3d98135dda071602d5b34d81"
+    },
+    {
+      "path": "src/data.mjs",
+      "gitBlob": "eb071484b0bb6e1baf99c7446864c73be94e73dc",
+      "sha256": "947d6798c256526cbf470c87636586b8bde56d22ce93f69bc58aa3909e4287e8"
+    },
+    {
+      "path": "src/science/trajectory-observations.mjs",
+      "gitBlob": "79cc01b3472a66b7a42f10b26cdf9e36aa0f6787",
+      "sha256": "be9ca9d82bc2cee9e106783d819aac8b558fcdf20879dc5e752aed56fd738ddd"
+    },
+    {
+      "path": "src/science/angular-kinematics.mjs",
+      "gitBlob": "233e8277669ec4404bd27991efb05c1ab63bf109",
+      "sha256": "2fa8f51114793cbe268373d3583aede3723c2f4216c509287a2f8337b346566a"
+    },
+    {
+      "path": "src/science/torque-discovery.mjs",
+      "gitBlob": "5a69e03edd21cef99e6c012f2cc2ef57edddde56",
+      "sha256": "34b75f3b08606b6f3c12d87ea090b74cd5fb42e550e5a9f95b5454cc57c58d2f"
+    },
+    {
+      "path": "src/science/robust-fit.mjs",
+      "gitBlob": "37c20230887d1d3b9f387f930ba89443ded7717b",
+      "sha256": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1"
+    },
+    {
+      "path": "src/science/linear-fit.mjs",
+      "gitBlob": "5fc92b53ed52ba96dc60b1235aea87bffc4e83ca",
+      "sha256": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da"
+    },
+    {
+      "path": "src/science/output-grid.mjs",
+      "gitBlob": "317307c13ef13d148a6bb9b24e4efb123884e227",
+      "sha256": "e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d"
+    }
+  ]
+}
