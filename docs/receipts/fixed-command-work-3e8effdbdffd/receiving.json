@@ -1,0 +1,151 @@
+{
+  "schema": "worldlaw.energy-command-work-receiving/v1",
+  "testedSourceCommit": "b674ee553bc2b6195b3d75c45e01c48410e0d631",
+  "testedSourceTree": "1cada0ea2fe3f5700df54fc1abddcc16f03fd013",
+  "sourceFileSHA256": {
+    "src/science/energy-budget.mjs": "1444b8f1a2de209c19de4a6376c78ad25bfb0eb062ea25b8ab32c8ac2f84a7e7",
+    "src/science/energy-budget-panel.mjs": "fe19f210349b22cb8e91b5ca0c8ef46c870a6b7873bb245bf83a236ef4cb2515",
+    "tests/energy-command-work.test.mjs": "27e128d24e5ed7ec265fc770f5f54a7d8dff89159358cb7a657613235ae57060",
+    "scripts/energy-command-work-browser.mjs": "c069b1f74cbcb1a6d0ee1100126b564c10e57bd11d8d26a0fa168a7eaab5fec3"
+  },
+  "baselineComparison": [
+    {
+      "label": "fast-fixed-command",
+      "sourceCommit": "34a8c486787b145b80ffcc4eb3ffc48c9caea517",
+      "modelTerms": {
+        "spring": -22500,
+        "command": 1
+      },
+      "initial": {
+        "position": 1,
+        "rate": 0
+      },
+      "settings": {
+        "duration": 0.501,
+        "dt": 0.02,
+        "inertia": 1,
+        "command": 2
+      },
+      "method": "adaptive_RK4_step_doubling",
+      "trials": 1042,
+      "samples": 27,
+      "originalMaxAbsBalanceResidual": 3.575321786665475,
+      "sameStatesDisplacementWorkMaxAbsBalanceResidual": 0.0020059039293152114,
+      "originalFinalCommandWork": 0.0783660700119191,
+      "displacementFinalCommandWork": -0.061295145080649815
+    },
+    {
+      "label": "fixed-command-position",
+      "sourceCommit": "34a8c486787b145b80ffcc4eb3ffc48c9caea517",
+      "modelTerms": {
+        "spring": -22500,
+        "command": 1.5,
+        "command_position": 7
+      },
+      "initial": {
+        "position": 1,
+        "rate": 0
+      },
+      "settings": {
+        "duration": 0.501,
+        "dt": 0.02,
+        "inertia": 2,
+        "command": -3
+      },
+      "method": "adaptive_RK4_step_doubling",
+      "trials": 748,
+      "samples": 27,
+      "originalMaxAbsBalanceResidual": 26.079109841529853,
+      "sameStatesDisplacementWorkMaxAbsBalanceResidual": 0.0014241260250997811,
+      "originalFinalCommandWork": 3.086159208764034,
+      "displacementFinalCommandWork": 9.47024626308179
+    }
+  ],
+  "correctedLibraryExecution": [
+    {
+      "label": "fast-fixed-command",
+      "samples": 27,
+      "method": "adaptive_RK4_step_doubling",
+      "maxAbsBalanceResidual": 0.0020059039293152114,
+      "finalCommandWork": -0.061295145080649815,
+      "finalEnergyChange": -0.06330104900996503
+    },
+    {
+      "label": "fixed-command-position",
+      "samples": 27,
+      "method": "adaptive_RK4_step_doubling",
+      "maxAbsBalanceResidual": 0.0014241260250997811,
+      "finalCommandWork": 9.47024626308179,
+      "finalEnergyChange": 9.46882213705669
+    }
+  ],
+  "nativeVerification": {
+    "scope": "Precomposition working candidate on34a8; source module, panel and regression test bytes retained in composed candidate. Full suite was not repeated on composed candidate.",
+    "command": "npm run verify",
+    "passed": 1529,
+    "failed": 0,
+    "skipped": 1,
+    "skippedTest": "live Node and Chromium exchange pending and applied notebooks through actual modules",
+    "studioSmoke": "pass",
+    "trajectorySmoke": "pass"
+  },
+  "package": {
+    "sourceMode": "git-commit",
+    "sha256": "2d4ed4fee0aec128913da7512afcde2c3e0d3a05844d92710d2dc99442182cff",
+    "verifiedManifestFiles": 1584,
+    "changedFilesMatched": 5,
+    "policyTestsPassed": 7,
+    "focusedTestsPassed": 33,
+    "studioSmoke": "pass",
+    "trajectorySmoke": "pass"
+  },
+  "browser": {
+    "browser": "153.0.8010.47",
+    "checks": [
+      "authored torque upload, keyboard negative-command execution and analytic work agreement distinguish old quadrature",
+      "invalid inertia clears stale energy and leaves source notebook unchanged",
+      "unaltered original observations survive portable fresh-context reopen and 390px keyboard execution"
+    ],
+    "numeric": {
+      "displayed": 0.13795,
+      "independentAnalyticWork": 0.1379509648659341,
+      "oldAnalyticTrapezoid": -0.17637367918076927,
+      "toleranceJ": 0.002
+    },
+    "errors": [],
+    "external": [],
+    "qualification": "Authored analytic control of displayed model accounting; no physical energy certification."
+  },
+  "runtime": {
+    "node": "v22.22.1",
+    "playwright": "1.55.0",
+    "chromium": "153.0.8010.47",
+    "sandboxAdmission": "sandbox.json"
+  },
+  "input": {
+    "kind": "authored synthetic analytic oscillator",
+    "originalObservations": 79,
+    "savedNotebook": "notebook.json",
+    "sha256": "5e5e4a8fd694f4fd584959e0defc48343cdb31719cc62ec8cbb400ef5a2f2100"
+  },
+  "visualReview": {
+    "reviewers": [
+      "retained lead",
+      "retained independent coordination reviewer"
+    ],
+    "desktopViewportWidth": 1440,
+    "narrowViewportWidth": 390,
+    "scope": "Actual captured energy panel. Six rows, signed values, sampled-state label and qualifications readable with no observed clipping; static visual receiving is separate from functional assertions."
+  },
+  "priorAttempts": [
+    {
+      "attempt": 1,
+      "outcome": "Node did not enter receiver because private checkout was unreadable by isolated test account."
+    },
+    {
+      "attempt": 2,
+      "outcome": "Node did not enter receiver because copied Playwright dependencies lacked node_modules hierarchy."
+    }
+  ],
+  "qualification": "Fixed-command model-work accounting only. No improved solver accuracy, global numerical error bound, measured physical energy, physical-law certification or public deployment claim."
+}
