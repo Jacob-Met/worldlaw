@@ -16,3 +16,7 @@ Run `node experiments/interval-average/run.mjs` to recompute and deep-compare th
 ## Repository composition
 
 This research depends on the optional forecast-domain increment. The repository runner changes only its maintained-module import path; the publication test changes only its operator import path. Original execution receipts retain their original paths/hashes, while publication-manifest.json outside the source packet records the composition. The frozen protocol, operator and results are unchanged. The SVG figure and its plotting source retain the actual frozen results; no private media is included.
+
+## Shared observation operator
+
+The implementation is now maintained at `../../src/trajectory/interval-average.mjs` and used by the ordinary Trajectory Challenge additional-reading comparison. This experiment’s local `interval-average.mjs` is a compatibility re-export. The frozen protocol, results and original executed-source hash remain historical provenance; the read-only reproduction and operator controls also qualify the shared implementation. This reuse does not turn the authored sensor hypothesis into physical acquisition evidence.
