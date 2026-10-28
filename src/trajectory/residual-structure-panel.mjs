@@ -1,3 +1,4 @@
+import {createTimeSupportPanel} from './time-support-panel.mjs';
 import {createResidualEpochPanel} from './residual-epochs-panel.mjs';
 import {residualStructure,physicalResidualStructure} from './residual-structure.mjs';
 const element = (tag, text) => { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; return e; };
@@ -22,6 +23,7 @@ export function createResidualStructurePanel(anchor) {
   const note = element('p', 'The imposed initial condition is excluded. All admitted pairs are shown; overlapping pairs are not independent evidence. Irregular sampling is retained as elapsed-time ranges. Physical-delay bands select original timestamp differences without interpolation. Bounds use supplied binary64 seconds; clock errors are not enclosed. Overlapping bands reuse pairs; empty and single-pair bands remain visible. Centering removes constant bias only from the correlation, so inspect the mean error too. Changing lags after inspection is exploratory reuse.');
   host.append(style, title, intro, modeLabel, label, bandsLabel, button, status, choiceLabel, pageLabel, pageNote, plot, details, note);
   const epochPanel=createResidualEpochPanel(host);
+  const timeSupportPanel=createTimeSupportPanel(host);
   let rows = null, result = null, pageIndex=0;
   function clear(message) { epochPanel.render(null,null);result = null; plot.replaceChildren(); ledger.replaceChildren(); choice.replaceChildren();pairPage.replaceChildren();pageNote.textContent='';pageIndex=0;pageLabel.hidden=true; choiceLabel.hidden = details.hidden = true; status.textContent = message; }
   function draw() {
@@ -62,5 +64,5 @@ export function createResidualStructurePanel(anchor) {
       choiceLabel.hidden=details.hidden=false;draw();if(mode.value==='seconds')epochPanel.render(rows,result.reports.map(r=>({lowerSeconds:r.lowerSeconds,upperSeconds:r.upperSeconds})));
     } catch(error) { clear(error.message); }
   });
-  return {render(nextRows) { rows = nextRows; clear('Choose sample lags to inspect the currently selected frozen prediction.');host.hidden=!Array.isArray(rows)||rows.length<4; }};
+  return {render(nextRows) { timeSupportPanel.render(nextRows); rows = nextRows; clear('Choose sample lags to inspect the currently selected frozen prediction.');host.hidden=!Array.isArray(rows)||rows.length<4; }};
 }
