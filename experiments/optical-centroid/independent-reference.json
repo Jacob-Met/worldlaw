@@ -1,0 +1,56 @@
+{
+  "protocolSHA256": "537d630471c0bbe6ea0015b658c39869f98921a4789071e405e53878030f9222",
+  "scope": "Independent SciPy Fresnel and quadrature references; no maintained source edits",
+  "quadraticFresnel": [
+    {
+      "amplitude": 1.8,
+      "meanSin": 0.4746760333096246,
+      "meanCos": 0.7211223972328809,
+      "angle": 0.5821503293602344,
+      "maintainedAngle": 0.5821503293602336,
+      "difference": -7.771561172376096e-16
+    },
+    {
+      "amplitude": 2.4,
+      "meanSin": 0.5254803892728458,
+      "meanCos": 0.5587086896764647,
+      "angle": 0.7547596861408185,
+      "maintainedAngle": 0.7547596861408152,
+      "difference": -3.219646771412954e-15
+    },
+    {
+      "amplitude": 3,
+      "meanSin": 0.5149761744855365,
+      "meanCos": 0.4059550138812731,
+      "angle": 0.9032312020211891,
+      "maintainedAngle": 0.9032312020211886,
+      "difference": -5.551115123125783e-16
+    }
+  ],
+  "spatialMoment": {
+    "mass": 1.0,
+    "centroid": [
+      308.54809518602104,
+      311.87092050161897
+    ],
+    "directMeanCoordinates": [
+      308.54809518602264,
+      311.8709205016194
+    ],
+    "temporalNodes": 512,
+    "spatialNodesPerAxis": 9
+  },
+  "brightness": {
+    "uniformAngle": 0.7547596861408185,
+    "weightedAngle": 0.9033253871713288,
+    "difference": 0.14856570103051037,
+    "brightness": "1+t"
+  },
+  "clipping": {
+    "originalCenterX": 0.5,
+    "retainedMassFraction": 0.625,
+    "centroidX": 1.25,
+    "bias": 0.75
+  },
+  "negativeInterpretation": "Uniform scalar angle averaging and uniform projected-centroid averaging cannot replace an explicitly brightness-weighted or clipped optical measurement."
+}

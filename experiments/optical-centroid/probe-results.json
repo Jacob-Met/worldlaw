@@ -1,0 +1,321 @@
+{
+  "scope": "Exploratory ideal optical centroid probe, no real metadata, raster decoding or tracker execution",
+  "exposure": {
+    "start": 0,
+    "end": 1,
+    "reportedTime": 0.5,
+    "weight": "uniform",
+    "origin": "explicit authored declaration, not cadence-derived"
+  },
+  "geometry": {
+    "projection": "front-facing circular marker path",
+    "radius": 100,
+    "pivot": {
+      "x": 256,
+      "y": 256
+    },
+    "pointFormula": "x=px+R sin(q); y=py+R cos(q)"
+  },
+  "assumptions": [
+    "Constant total brightness",
+    "Same complete zero-mean PSF at every time",
+    "No clipping, occlusion, background or perspective",
+    "Ideal full-image first-moment estimator declared separately from existing tracker"
+  ],
+  "cases": [
+    {
+      "name": "constant angular rate symmetric about mean",
+      "grids": [
+        {
+          "integrationIntervals": 1024,
+          "meanSin": 0.37911661331604446,
+          "meanCos": 0.8966951136244038,
+          "point": {
+            "x": 293.9116613316045,
+            "y": 345.6695113624404
+          },
+          "scalarAngleAverage": 0.4,
+          "centroidRadius": 97.3545855771627,
+          "received": {
+            "time": 0.5,
+            "timeBasis": "synthetic-time",
+            "status": "manual",
+            "point": {
+              "x": 293.9116613316045,
+              "y": 345.6695113624404
+            },
+            "reason": "Declared analytic ideal centroid, not an image-tracker output",
+            "position": 0.40000000000000124,
+            "positionSigma": 0,
+            "radius": 97.35458557716274,
+            "segmentId": 0,
+            "sourceIndex": 0
+          },
+          "difference": 1.2212453270876722e-15
+        },
+        {
+          "integrationIntervals": 4096,
+          "meanSin": 0.37911661331604335,
+          "meanCos": 0.8966951136244022,
+          "point": {
+            "x": 293.91166133160436,
+            "y": 345.66951136244023
+          },
+          "scalarAngleAverage": 0.4,
+          "centroidRadius": 97.35458557716251,
+          "received": {
+            "time": 0.5,
+            "timeBasis": "synthetic-time",
+            "status": "manual",
+            "point": {
+              "x": 293.91166133160436,
+              "y": 345.66951136244023
+            },
+            "reason": "Declared analytic ideal centroid, not an image-tracker output",
+            "position": 0.40000000000000085,
+            "positionSigma": 0,
+            "radius": 97.35458557716254,
+            "segmentId": 0,
+            "sourceIndex": 0
+          },
+          "difference": 8.326672684688674e-16
+        }
+      ]
+    },
+    {
+      "name": "accelerating angle quadratic 1.8",
+      "grids": [
+        {
+          "integrationIntervals": 1024,
+          "meanSin": 0.47467603330948677,
+          "meanCos": 0.7211223972331543,
+          "point": {
+            "x": 303.4676033309487,
+            "y": 328.11223972331544
+          },
+          "scalarAngleAverage": 0.6,
+          "centroidRadius": 86.33277757547941,
+          "received": {
+            "time": 0.5,
+            "timeBasis": "synthetic-time",
+            "status": "manual",
+            "point": {
+              "x": 303.4676033309487,
+              "y": 328.11223972331544
+            },
+            "reason": "Declared analytic ideal centroid, not an image-tracker output",
+            "position": 0.5821503293599268,
+            "positionSigma": 0,
+            "radius": 86.33277757547943,
+            "segmentId": 0,
+            "sourceIndex": 0
+          },
+          "difference": -0.017849670640073145
+        },
+        {
+          "integrationIntervals": 4096,
+          "meanSin": 0.4746760333096238,
+          "meanCos": 0.7211223972328812,
+          "point": {
+            "x": 303.4676033309624,
+            "y": 328.1122397232881
+          },
+          "scalarAngleAverage": 0.6,
+          "centroidRadius": 86.33277757546414,
+          "received": {
+            "time": 0.5,
+            "timeBasis": "synthetic-time",
+            "status": "manual",
+            "point": {
+              "x": 303.4676033309624,
+              "y": 328.1122397232881
+            },
+            "reason": "Declared analytic ideal centroid, not an image-tracker output",
+            "position": 0.5821503293602336,
+            "positionSigma": 0,
+            "radius": 86.33277757546412,
+            "segmentId": 0,
+            "sourceIndex": 0
+          },
+          "difference": -0.01784967063976639
+        }
+      ]
+    },
+    {
+      "name": "accelerating angle quadratic 2.4",
+      "grids": [
+        {
+          "integrationIntervals": 1024,
+          "meanSin": 0.525480389273022,
+          "meanCos": 0.5587086896770989,
+          "point": {
+            "x": 308.5480389273022,
+            "y": 311.8708689677099
+          },
+          "scalarAngleAverage": 0.7999999999999999,
+          "centroidRadius": 76.69974181385668,
+          "received": {
+            "time": 0.5,
+            "timeBasis": "synthetic-time",
+            "status": "manual",
+            "point": {
+              "x": 308.5480389273022,
+              "y": 311.8708689677099
+            },
+            "reason": "Declared analytic ideal centroid, not an image-tracker output",
+            "position": 0.754759686140419,
+            "positionSigma": 0,
+            "radius": 76.69974181385668,
+            "segmentId": 0,
+            "sourceIndex": 0
+          },
+          "difference": -0.04524031385958094
+        },
+        {
+          "integrationIntervals": 4096,
+          "meanSin": 0.5254803892728455,
+          "meanCos": 0.5587086896764681,
+          "point": {
+            "x": 308.54803892728455,
+            "y": 311.8708689676468
+          },
+          "scalarAngleAverage": 0.7999999999999999,
+          "centroidRadius": 76.69974181379864,
+          "received": {
+            "time": 0.5,
+            "timeBasis": "synthetic-time",
+            "status": "manual",
+            "point": {
+              "x": 308.54803892728455,
+              "y": 311.8708689676468
+            },
+            "reason": "Declared analytic ideal centroid, not an image-tracker output",
+            "position": 0.7547596861408152,
+            "positionSigma": 0,
+            "radius": 76.69974181379864,
+            "segmentId": 0,
+            "sourceIndex": 0
+          },
+          "difference": -0.0452403138591847
+        }
+      ]
+    },
+    {
+      "name": "accelerating angle quadratic 3",
+      "grids": [
+        {
+          "integrationIntervals": 1024,
+          "meanSin": 0.5149761744865403,
+          "meanCos": 0.4059550138819672,
+          "point": {
+            "x": 307.497617448654,
+            "y": 296.59550138819674
+          },
+          "scalarAngleAverage": 1,
+          "centroidRadius": 65.57438017890065,
+          "received": {
+            "time": 0.5,
+            "timeBasis": "synthetic-time",
+            "status": "manual",
+            "point": {
+              "x": 307.497617448654,
+              "y": 296.59550138819674
+            },
+            "reason": "Declared analytic ideal centroid, not an image-tracker output",
+            "position": 0.9032312020213052,
+            "positionSigma": 0,
+            "radius": 65.57438017890064,
+            "segmentId": 0,
+            "sourceIndex": 0
+          },
+          "difference": -0.09676879797869475
+        },
+        {
+          "integrationIntervals": 4096,
+          "meanSin": 0.5149761744855397,
+          "meanCos": 0.40595501388127603,
+          "point": {
+            "x": 307.49761744855397,
+            "y": 296.5955013881276
+          },
+          "scalarAngleAverage": 1,
+          "centroidRadius": 65.57438017877928,
+          "received": {
+            "time": 0.5,
+            "timeBasis": "synthetic-time",
+            "status": "manual",
+            "point": {
+              "x": 307.49761744855397,
+              "y": 296.5955013881276
+            },
+            "reason": "Declared analytic ideal centroid, not an image-tracker output",
+            "position": 0.9032312020211886,
+            "positionSigma": 0,
+            "radius": 65.57438017877928,
+            "segmentId": 0,
+            "sourceIndex": 0
+          },
+          "difference": -0.09676879797881144
+        }
+      ]
+    },
+    {
+      "name": "complete uniform turn",
+      "grids": [
+        {
+          "integrationIntervals": 1024,
+          "meanSin": 6.493015760472565e-17,
+          "meanCos": -5.3198186596622086e-17,
+          "point": {
+            "x": 256,
+            "y": 256
+          },
+          "scalarAngleAverage": 3.141592653589793,
+          "centroidRadius": 8.394029082474955e-15,
+          "received": {
+            "time": 0.5,
+            "timeBasis": "synthetic-time",
+            "status": "missing",
+            "point": {
+              "x": 256,
+              "y": 256
+            },
+            "reason": "marker_too_close_to_pivot",
+            "position": null,
+            "positionSigma": null,
+            "segmentId": null,
+            "sourceIndex": 0
+          },
+          "difference": null
+        },
+        {
+          "integrationIntervals": 4096,
+          "meanSin": -1.532720235272444e-17,
+          "meanCos": -4.672911363412524e-17,
+          "point": {
+            "x": 256,
+            "y": 256
+          },
+          "scalarAngleAverage": 3.141592653589793,
+          "centroidRadius": 4.917858469895561e-15,
+          "received": {
+            "time": 0.5,
+            "timeBasis": "synthetic-time",
+            "status": "missing",
+            "point": {
+              "x": 256,
+              "y": 256
+            },
+            "reason": "marker_too_close_to_pivot",
+            "position": null,
+            "positionSigma": null,
+            "segmentId": null,
+            "sourceIndex": 0
+          },
+          "difference": null
+        }
+      ]
+    }
+  ],
+  "interpretation": "atan2(mean sin q,mean cos q) can differ from mean q. Existing Motion conversion faithfully reads supplied centroid coordinates; no claim its tracker supplies such coordinates."
+}

@@ -1,0 +1,36 @@
+"""Independent Fresnel and spatial first-moment controls; uses frozen inputs only."""
+from pathlib import Path
+import json,math,hashlib
+import numpy as np
+from scipy.special import fresnel
+from scipy.integrate import quad
+b=Path(__file__).parent
+p=json.loads((b/'protocol.json').read_text());observed=json.loads((b/'probe-results.json').read_text())
+refs=[]
+for i,a in enumerate([1.8,2.4,3],1):
+    z=math.sqrt(2*a/math.pi);S,C=fresnel(z);meanSin=S/z;meanCos=C/z
+    angle=math.atan2(meanSin,meanCos);got=observed['cases'][i]['grids'][-1]['received']['position']
+    assert abs(angle-got)<p['numericalAssertions']['fresnelAngleTolerance']
+    refs.append(dict(amplitude=a,meanSin=meanSin,meanCos=meanCos,angle=angle,maintainedAngle=got,difference=got-angle))
+# Independently integrate the projected square PSF at512 time midpoints using
+# tensor trapezoidal spatial weights. This is quadrature, not image raster decoding.
+n=p['spatialMomentControl']['temporalMidpoints'];offsets=np.linspace(-2,2,9);weights=np.ones(9);weights[[0,-1]]=.5;weights/=weights.sum()
+mass=mx=my=directx=directy=0.
+for k in range(n):
+    t=(k+.5)/n;q=2.4*t*t;x=256+100*math.sin(q);y=256+100*math.cos(q)
+    directx+=x/n;directy+=y/n
+    for i,dx in enumerate(offsets):
+        for j,dy in enumerate(offsets):
+            w=weights[i]*weights[j]/n;mass+=w;mx+=w*(x+dx);my+=w*(y+dy)
+assert abs(mx/mass-directx)<1e-10 and abs(my/mass-directy)<1e-10
+# Explicit varying brightness changes the weighting of first moments.
+normal=quad(lambda t:1+t,0,1,epsabs=1e-13)[0]
+bs=quad(lambda t:(1+t)*math.sin(2.4*t*t),0,1,epsabs=1e-13)[0]/normal
+bc=quad(lambda t:(1+t)*math.cos(2.4*t*t),0,1,epsabs=1e-13)[0]/normal
+ba=math.atan2(bs,bc);uniform=refs[1]['angle'];assert abs(ba-uniform)>.05
+# Clipped top-hat: remaining uniform x support[0,2.5] has centroid1.25,
+# not the original center0.5. The independent complete-support assumption fails.
+clippedMass=2.5/4;clippedX=quad(lambda x:x,0,2.5)[0]/2.5
+assert clippedX==1.25 and clippedMass==.625
+r={'protocolSHA256':hashlib.sha256((b/'protocol.json').read_bytes()).hexdigest(),'scope':'Independent SciPy Fresnel and quadrature references; no maintained source edits','quadraticFresnel':refs,'spatialMoment':{'mass':mass,'centroid':[mx/mass,my/mass],'directMeanCoordinates':[directx,directy],'temporalNodes':n,'spatialNodesPerAxis':9},'brightness':{'uniformAngle':uniform,'weightedAngle':ba,'difference':ba-uniform,'brightness':'1+t'},'clipping':{'originalCenterX':.5,'retainedMassFraction':clippedMass,'centroidX':clippedX,'bias':clippedX-.5},'negativeInterpretation':'Uniform scalar angle averaging and uniform projected-centroid averaging cannot replace an explicitly brightness-weighted or clipped optical measurement.'}
+(b/'independent-reference.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r,indent=2))
