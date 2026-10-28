@@ -1,0 +1,49 @@
+{
+  "schema": "worldlaw.reference-browser/v1",
+  "origin": "http://127.0.0.1:35955",
+  "node": "v22.23.4",
+  "checks": [
+    {
+      "name": "original consumer and bounded nested model comparison remain live",
+      "passed": true
+    },
+    {
+      "name": "actual notebook import separates suppressed reference but not repeated proportional observations",
+      "passed": true
+    },
+    {
+      "name": "A=0 nesting and weak reference preserve overlap",
+      "passed": true
+    },
+    {
+      "name": "actual export fresh page reopen retains complete source and predictions",
+      "passed": true
+    },
+    {
+      "name": "invalid replacement retires predictions; later valid compare uses retained imported study",
+      "passed": true
+    },
+    {
+      "name": "late import cannot overwrite a newer numeric edit",
+      "passed": true
+    },
+    {
+      "name": "completed asynchronous parent source adoption retires a comparison made while pending",
+      "passed": true
+    },
+    {
+      "name": "keyboard and actual layout 1440",
+      "passed": true
+    },
+    {
+      "name": "keyboard and actual layout 390",
+      "passed": true
+    },
+    {
+      "name": "keyboard and actual layout 320",
+      "passed": true
+    }
+  ],
+  "exceptions": [],
+  "sandboxAdmitted": true
+}
