@@ -1,4 +1,5 @@
-import {cycleWorkInvestigation,replayCycleWork} from './cycle-work.mjs';
+import {cycleWorkInvestigation,replayCycleWork,HALF_CYCLE_WORK_SCHEMA,replayHalfCycleWork} from './cycle-work.mjs';
+import {createHalfCyclePanel} from './cycle-work-halves-panel.mjs';
 const node=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 const fmt=x=>Number.isFinite(x)?Number(x.toPrecision(5)).toString():'unavailable';
 const COLORS={'restoring-only':'#777b72',viscous:'#ad4a20',coulomb:'#256a8b',joint:'#72559b',quadratic:'#bd3382','viscous-quadratic':'#276b50'};
@@ -23,10 +24,11 @@ export function createCycleWorkPanel(anchor){
  const details=node('details'),summary=node('summary','Cycle coverage, refusals and interpretation'),disclosures=node('div');details.append(summary,disclosures);details.hidden=true;
  const actions=node('div');actions.className='cycle-controls';
  const download=node('button','Export cycle-work inputs');download.id='export-cycle-work';download.type='button';download.className='button outline';download.hidden=true;
- const fileLabel=node('label','Reopen cycle-work input notebook');const file=node('input');file.type='file';file.accept='.json,application/json';file.id='cycle-work-file';fileLabel.append(file);actions.append(download,fileLabel);
+ const fileLabel=node('label','Reopen cycle-work or receiving half-cycle inputs');const file=node('input');file.type='file';file.accept='.json,application/json';file.id='cycle-work-file';fileLabel.append(file);actions.append(download,fileLabel);
  host.append(style,title,intro,controls,status,recordChoice,chart,key,tables,details,actions);
+ const halves=createHalfCyclePanel(details);
  let bundle,model,solver={},result=null,ticket=0,width=0,resizeFrame;
- function invalidate(message='Declarations changed. Recompute before exporting.'){ticket++;result=null;chart.replaceChildren();tables.replaceChildren();disclosures.replaceChildren();download.hidden=details.hidden=key.hidden=recordChoice.hidden=true;run.disabled=false;status.textContent=message;}
+ function invalidate(message='Declarations changed. Recompute before exporting.'){halves.reset();ticket++;result=null;chart.replaceChildren();tables.replaceChildren();disclosures.replaceChildren();download.hidden=details.hidden=key.hidden=recordChoice.hidden=true;run.disabled=false;status.textContent=message;}
  const table=(head,rows)=>{const t=node('table'),tr=node('tr');for(const text of head)tr.append(node('th',text));t.append(tr);for(const row of rows){const r=node('tr');for(const value of row)r.append(node('td',String(value)));t.append(r);}return t;};
  function plot(){
   chart.replaceChildren();if(!result)return;const W=Math.max(240,chart.clientWidth||700),H=470,L=62,R=20,T=40;width=Math.round(chart.clientWidth);
@@ -50,6 +52,7 @@ export function createCycleWorkPanel(anchor){
   }chart.append(svg);
  }
  function show(){
+  halves.receive(result);
   tables.replaceChildren();disclosures.replaceChildren();select.replaceChildren();for(const r of result.inputs.bundle.challengeRuns){const e=node('option',r.label||r.id);e.value=r.id;select.append(e);}
   const fit=result.fit;for(const span of key.querySelectorAll('span'))span.hidden=(span.textContent==='quadratic'&&!fit.declaration.includeQuadratic)||(span.textContent==='viscous-quadratic'&&!fit.declaration.includeMixedQuadratic);status.textContent=`${result.inputs.bundle.label} · frozen ${fit.restoringModel.id}. ${fit.admittedCycleCount}/${fit.cycleCount} complete cycle pairs admitted. All ${fit.candidates.length} candidate families retained; no receiving winner selected. Reused challenge results remain exploratory.`;
   tables.append(table(['Training law','Viscous · 1/s','Coulomb · rad/s²',...(fit.declaration.includeQuadratic?['Quadratic · 1/rad']:[]),'Work RMSE','Support'],fit.candidates.map(c=>[c.id,fmt(c.coefficients?.rate),fmt(c.coefficients?.coulomb),...(fit.declaration.includeQuadratic?[fmt(c.coefficients?.quadratic)]:[]),fmt(c.lossRMSE),c.status==='refused'?c.reason:c.boundary?'Nonnegative boundary; fewer active terms':'Admitted'])));
@@ -61,7 +64,7 @@ export function createCycleWorkPanel(anchor){
  }
  for(const input of [window,crossing,quadratic,mixed])input.addEventListener('input',()=>invalidate());select.addEventListener('change',plot);
  run.addEventListener('click',async()=>{invalidate();const mine=ticket;run.disabled=true;status.textContent='Computing declared training cycles and every receiving model…';await new Promise(requestAnimationFrame);if(mine!==ticket)return;try{if(window.value.trim()===''||crossing.value.trim()==='')throw Error('Complete both cycle declarations.');result=cycleWorkInvestigation(bundle,model,{windowSize:Number(window.value),crossingAngle:Number(crossing.value),includeQuadratic:quadratic.checked,includeMixedQuadratic:mixed.checked,maxStep:solver.maxStep??.01,maxSteps:solver.maxSteps??300000});show();}catch(error){result=null;status.textContent=error.message;}finally{if(mine===ticket)run.disabled=false;}});
- file.addEventListener('change',async()=>{invalidate('Reading cycle-work inputs…');const mine=ticket;try{const source=file.files?.[0];if(!source||source.size>4*1024*1024)throw Error('Choose an input notebook of at most 4 MiB.');const inputs=JSON.parse(await source.text());if(mine!==ticket)return;result=replayCycleWork(inputs);bundle=result.inputs.bundle;model=result.inputs.restoringModel;solver=result.inputs.options;window.value=String(result.fit.declaration.windowSize);crossing.value=String(result.fit.declaration.crossingAngle);quadratic.checked=result.fit.declaration.includeQuadratic===true;mixed.checked=result.fit.declaration.includeMixedQuadratic===true;show();}catch(error){if(mine===ticket){result=null;status.textContent=error.message;}}finally{if(mine===ticket)file.value='';}});
+ file.addEventListener('change',async()=>{invalidate('Reading cycle-work inputs…');const mine=ticket;try{const source=file.files?.[0];if(!source||source.size>4*1024*1024)throw Error('Choose an input notebook of at most 4 MiB.');const inputs=JSON.parse(await source.text());if(mine!==ticket)return;const halfReport=inputs.schema===HALF_CYCLE_WORK_SCHEMA?replayHalfCycleWork(inputs):null;result=halfReport?halfReport.investigation:replayCycleWork(inputs);bundle=result.inputs.bundle;model=result.inputs.restoringModel;solver=result.inputs.options;window.value=String(result.fit.declaration.windowSize);crossing.value=String(result.fit.declaration.crossingAngle);quadratic.checked=result.fit.declaration.includeQuadratic===true;mixed.checked=result.fit.declaration.includeMixedQuadratic===true;show();if(halfReport)halves.showReport(halfReport);}catch(error){if(mine===ticket){result=null;status.textContent=error.message;}}finally{if(mine===ticket)file.value='';}});
  download.addEventListener('click',()=>{if(!result)return;const url=URL.createObjectURL(new Blob([JSON.stringify(result.inputs,null,2)],{type:'application/json'})),a=node('a');a.href=url;a.download='worldlaw-cycle-work.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
  new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{if(result&&Math.round(chart.clientWidth)!==width)plot();});}).observe(chart);
  return {render(nextModel,nextBundle,nextSolver){bundle=nextBundle;model=nextModel;solver=nextSolver??{};host.hidden=nextBundle?.schema!=='worldlaw.angular-bundle/v1';invalidate('Selected restoring law or evidence changed. Compare declared cycle work; existing drag is never silently removed.');}};
