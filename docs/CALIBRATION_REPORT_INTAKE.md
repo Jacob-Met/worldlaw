@@ -51,3 +51,10 @@ Four new plus40 preceding native controls and12 actual browser groups passed. Th
 An explicitly zero-width original check standard is verified with the maintained rational arithmetic over the supplied binary64 report and candidate latent components. This is a source equality, not measured exactness. Search may propose such a candidate without requiring calibration interior, but every actual receiving row must still pass the existing strict influence and independent refit check. Nonzero calibration bounds retain their engineering margin requirement; separators retain original bounds. A nearby floating candidate is not an equality. Source-only replay recomputes the exact expression. Search remains bounded and incomplete; nonrepresentable candidates and exhausted work remain unresolved.
 
 47 native controls and15 actual browser groups passed, including equality replay and preserved refusal for zero-width actual receiving.
+
+
+## Distinct original report cohorts
+
+The existing report intake defaults to one report for every training row. Explicit cohort mode appends a named report association to selected original row numbers and retains their exact original values. All groups must still form a complete nonoverlapping training partition before inquiry. The same instrument/report identity cannot be split into independent correction groups; use one group containing all its rows. Reports do not automatically associate actual challenge readings, adopt corrections or refit the notebook. Original values, row indices, report identity and association basis are retained in source-only public replay.
+
+Three cohort controls plus47 predecessor controls passed, with18 actual browser groups covering ordinary row selection, incomplete coverage refusal, complete two-instrument inquiry and public reopen. Desktop/narrow captures inspected; active sandbox/family retirement, profile retained.
