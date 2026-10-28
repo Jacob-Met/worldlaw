@@ -1,3 +1,4 @@
+import {createInitialEnergyControls} from './initial-energy-panel.mjs';
 /** A supplemental instrument in the existing angular challenge, never a refitter. */
 import {createPreludeControls} from './prelude-panel.mjs';
 import {comparePrelude,exportPreludeComparison} from './prelude-investigation.mjs';
@@ -41,8 +42,9 @@ export function createInitialStatePanel(anchor){
  const detail=node('p');const download=node('button','Export sensitivity inputs and results');download.className='button outline';download.hidden=true;
  host.append(style,title,intro,form,status,legend,chart,detail,download);
  let model,run,options,result,ticket=0,plotWidth=0,resizeFrame,preludeSelection=null,preludeResult=null;
+ const energy=createInitialEnergyControls(chart,()=>({model,run,positionWidth:position.value,rateWidth:rate.value,prelude:!!preludeSelection}));
  const prelude=createPreludeControls(form,()=>run,value=>{preludeSelection=value;invalidate();});
- function invalidate(){ticket++;result=null;preludeResult=null;chart.replaceChildren();legend.hidden=true;detail.textContent='';download.hidden=true;runButton.disabled=false;status.textContent='Inputs changed. Recompute the declared grid; prior paths are cleared.';}
+ function invalidate(){energy.clear();ticket++;result=null;preludeResult=null;chart.replaceChildren();legend.hidden=true;detail.textContent='';download.hidden=true;runButton.disabled=false;status.textContent='Inputs changed. Recompute the declared grid; prior paths are cleared.';}
  position.addEventListener('input',invalidate);rate.addEventListener('input',invalidate);
  function plot(report){
   const f=report.forecasts; if(!f.complete)return;
@@ -73,5 +75,5 @@ export function createInitialStatePanel(anchor){
   }catch(error){status.textContent=error.message;result=null;}finally{runButton.disabled=false;}
  });
  download.addEventListener('click',()=>{if(!result)return;const blob=new Blob([preludeResult?exportPreludeComparison(preludeResult):JSON.stringify({schema:'worldlaw.initial-state-receipt/v1',model,run,options:result.forecasts.options,result},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=node('a');a.href=url;a.download=preludeResult?'worldlaw-prelude-comparison.json':'worldlaw-initial-state-sensitivity.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
- return {render(nextModel,nextRun,nextOptions){invalidate();model=nextModel;run=nextRun;options=nextOptions;prelude.reset();host.hidden=model?.schema!=='worldlaw.angular-model/v1';status.textContent='Choose widths from measurement knowledge before comparing. Reusing this recording to choose widths is exploratory.';}};
+ return {setBusy(value){energy.setBusy(value);},render(nextModel,nextRun,nextOptions){invalidate();model=nextModel;run=nextRun;options=nextOptions;prelude.reset();host.hidden=model?.schema!=='worldlaw.angular-model/v1';status.textContent='Choose widths from measurement knowledge before comparing. Reusing this recording to choose widths is exploratory.';}};
 }
