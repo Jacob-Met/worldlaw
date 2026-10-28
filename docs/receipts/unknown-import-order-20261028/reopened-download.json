@@ -1,0 +1,296 @@
+{
+  "schema": "worldlaw.history-challenge/v1",
+  "source": "measured",
+  "sourceNote": "import-order receiver 112",
+  "noiseSigma": 0.02,
+  "trials": [
+    {
+      "pairId": "synthetic-001",
+      "history": "reference",
+      "command": -0.2425787707208656,
+      "position": -0.1127005074871704,
+      "rate": 0.008918340771924705,
+      "jointTorque": -0.08562110523459918,
+      "sampleIndex": 1
+    },
+    {
+      "pairId": "synthetic-001",
+      "history": "conditioned",
+      "command": -0.2425787707208656,
+      "position": -0.1127005074871704,
+      "rate": 0.008918340771924705,
+      "jointTorque": -0.5611137823792357,
+      "sampleIndex": 0
+    },
+    {
+      "pairId": "synthetic-002",
+      "history": "reference",
+      "command": -0.1480329388868995,
+      "position": 0.2157723818672821,
+      "rate": -0.3260824725381099,
+      "jointTorque": -0.5759213485084492,
+      "sampleIndex": 2
+    },
+    {
+      "pairId": "synthetic-002",
+      "history": "conditioned",
+      "command": -0.1480329388868995,
+      "position": 0.2157723818672821,
+      "rate": -0.3260824725381099,
+      "jointTorque": -1.0294130023759451,
+      "sampleIndex": 3
+    },
+    {
+      "pairId": "synthetic-003",
+      "history": "reference",
+      "command": 0.1253979187575169,
+      "position": -0.11424849999602885,
+      "rate": -0.6210261313826777,
+      "jointTorque": 0.6429925350483039,
+      "sampleIndex": 4
+    },
+    {
+      "pairId": "synthetic-003",
+      "history": "conditioned",
+      "command": 0.1253979187575169,
+      "position": -0.11424849999602885,
+      "rate": -0.6210261313826777,
+      "jointTorque": 0.2281943271400153,
+      "sampleIndex": 5
+    },
+    {
+      "pairId": "synthetic-004",
+      "history": "reference",
+      "command": 0.23915743989637123,
+      "position": 0.6498083842685446,
+      "rate": -0.6316568892332726,
+      "jointTorque": -0.7469849841824554,
+      "sampleIndex": 6
+    },
+    {
+      "pairId": "synthetic-004",
+      "history": "conditioned",
+      "command": 0.23915743989637123,
+      "position": 0.6498083842685446,
+      "rate": -0.6316568892332726,
+      "jointTorque": -1.1584561301336787,
+      "sampleIndex": 7
+    },
+    {
+      "pairId": "synthetic-005",
+      "history": "reference",
+      "command": 0.46925701141590254,
+      "position": 0.14136328075546772,
+      "rate": -0.043713909026701005,
+      "jointTorque": 0.3699837149499224,
+      "sampleIndex": 8
+    },
+    {
+      "pairId": "synthetic-005",
+      "history": "conditioned",
+      "command": 0.46925701141590254,
+      "position": 0.14136328075546772,
+      "rate": -0.043713909026701005,
+      "jointTorque": -0.05924673083802955,
+      "sampleIndex": 9
+    },
+    {
+      "pairId": "synthetic-006",
+      "history": "reference",
+      "command": 0.2731047653476708,
+      "position": -0.705269539472647,
+      "rate": 0.03205427794018761,
+      "jointTorque": 1.7874403942189139,
+      "sampleIndex": 11
+    },
+    {
+      "pairId": "synthetic-006",
+      "history": "conditioned",
+      "command": 0.2731047653476708,
+      "position": -0.705269539472647,
+      "rate": 0.03205427794018761,
+      "jointTorque": 1.3743934093301329,
+      "sampleIndex": 10
+    },
+    {
+      "pairId": "synthetic-007",
+      "history": "reference",
+      "command": -0.3798094195197337,
+      "position": -0.1874691297998652,
+      "rate": -0.30962140910560265,
+      "jointTorque": -0.04978682380557416,
+      "sampleIndex": 13
+    },
+    {
+      "pairId": "synthetic-007",
+      "history": "conditioned",
+      "command": -0.3798094195197337,
+      "position": -0.1874691297998652,
+      "rate": -0.30962140910560265,
+      "jointTorque": -0.4567114587371874,
+      "sampleIndex": 12
+    },
+    {
+      "pairId": "synthetic-008",
+      "history": "reference",
+      "command": 0.5205104705295526,
+      "position": 0.08250515980180353,
+      "rate": -0.34255530749214813,
+      "jointTorque": 0.69701465864389,
+      "sampleIndex": 15
+    },
+    {
+      "pairId": "synthetic-008",
+      "history": "conditioned",
+      "command": 0.5205104705295526,
+      "position": 0.08250515980180353,
+      "rate": -0.34255530749214813,
+      "jointTorque": 0.3017222299867597,
+      "sampleIndex": 14
+    },
+    {
+      "pairId": "synthetic-009",
+      "history": "reference",
+      "command": -0.2580761558725499,
+      "position": 0.40272195332217964,
+      "rate": -0.30049705459969117,
+      "jointTorque": -1.1584254289488591,
+      "sampleIndex": 17
+    },
+    {
+      "pairId": "synthetic-009",
+      "history": "conditioned",
+      "command": -0.2580761558725499,
+      "position": 0.40272195332217964,
+      "rate": -0.30049705459969117,
+      "jointTorque": -1.539928919408782,
+      "sampleIndex": 16
+    },
+    {
+      "pairId": "synthetic-010",
+      "history": "reference",
+      "command": -0.47892942168982705,
+      "position": 0.10443822077941149,
+      "rate": 0.03901184737915173,
+      "jointTorque": -0.9262985383117336,
+      "sampleIndex": 19
+    },
+    {
+      "pairId": "synthetic-010",
+      "history": "conditioned",
+      "command": -0.47892942168982705,
+      "position": 0.10443822077941149,
+      "rate": 0.03901184737915173,
+      "jointTorque": -1.380617156040282,
+      "sampleIndex": 18
+    },
+    {
+      "pairId": "synthetic-011",
+      "history": "reference",
+      "command": 0.19600504433037716,
+      "position": -0.07220350240822881,
+      "rate": 0.06480319233378395,
+      "jointTorque": 0.4550109907542485,
+      "sampleIndex": 20
+    },
+    {
+      "pairId": "synthetic-011",
+      "history": "conditioned",
+      "command": 0.19600504433037716,
+      "position": -0.07220350240822881,
+      "rate": 0.06480319233378395,
+      "jointTorque": 0.022386640034298484,
+      "sampleIndex": 21
+    },
+    {
+      "pairId": "synthetic-012",
+      "history": "reference",
+      "command": 0.17935630896827207,
+      "position": 0.03214968459215015,
+      "rate": 0.27323060763301327,
+      "jointTorque": 0.07959995924247729,
+      "sampleIndex": 23
+    },
+    {
+      "pairId": "synthetic-012",
+      "history": "conditioned",
+      "command": 0.17935630896827207,
+      "position": 0.03214968459215015,
+      "rate": 0.27323060763301327,
+      "jointTorque": -0.3078001555942586,
+      "sampleIndex": 22
+    },
+    {
+      "pairId": "synthetic-013",
+      "history": "reference",
+      "command": 0.13943632912123577,
+      "position": -0.13877649593632668,
+      "rate": -0.5216790655744262,
+      "jointTorque": 0.7083985860733061,
+      "sampleIndex": 25
+    },
+    {
+      "pairId": "synthetic-013",
+      "history": "conditioned",
+      "command": 0.13943632912123577,
+      "position": -0.13877649593632668,
+      "rate": -0.5216790655744262,
+      "jointTorque": 0.28533032285901105,
+      "sampleIndex": 24
+    },
+    {
+      "pairId": "synthetic-014",
+      "history": "reference",
+      "command": 0.5487830056692474,
+      "position": 0.31413799698930234,
+      "rate": -0.018768986442591996,
+      "jointTorque": 0.1468112930745623,
+      "sampleIndex": 26
+    },
+    {
+      "pairId": "synthetic-014",
+      "history": "conditioned",
+      "command": 0.5487830056692474,
+      "position": 0.31413799698930234,
+      "rate": -0.018768986442591996,
+      "jointTorque": -0.3151908932670927,
+      "sampleIndex": 27
+    },
+    {
+      "pairId": "synthetic-015",
+      "history": "reference",
+      "command": -0.1666068031336181,
+      "position": 0.11532375945243985,
+      "rate": 0.36492164697265256,
+      "jointTorque": -0.5968963208142646,
+      "sampleIndex": 28
+    },
+    {
+      "pairId": "synthetic-015",
+      "history": "conditioned",
+      "command": -0.1666068031336181,
+      "position": 0.11532375945243985,
+      "rate": 0.36492164697265256,
+      "jointTorque": -1.0632017506059024,
+      "sampleIndex": 29
+    },
+    {
+      "pairId": "synthetic-016",
+      "history": "reference",
+      "command": -0.1938096729689278,
+      "position": -0.7959877986693755,
+      "rate": -0.5532269802759402,
+      "jointTorque": 1.498668587608268,
+      "sampleIndex": 30
+    },
+    {
+      "pairId": "synthetic-016",
+      "history": "conditioned",
+      "command": -0.1938096729689278,
+      "position": -0.7959877986693755,
+      "rate": -0.5532269802759402,
+      "jointTorque": 1.068623335233782,
+      "sampleIndex": 31
+    }
+  ]
+}

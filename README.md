@@ -254,6 +254,45 @@ actually altered hidden state. Physical replication, authenticated observations,
 instrument drift, matched-history acquisition and held-out latent-law fitting
 remain research work.
 
+### Keep the latest experiment choice
+
+Selecting another evidence file or attempting **Execute paired virtual trials**
+supersedes an earlier file read that is still pending. A late result or error
+from that older read cannot replace the current experiment or its newer refusal.
+If the newer file or run is invalid, the last valid notebook remains available;
+the earlier pending import does not take its place. Canceling the file chooser
+leaves the current choice unchanged. The same file can be selected again while
+an earlier read is pending or after a virtual run. Saving remains explicit.
+
+To exercise import ordering through the actual `/unknown-lab.html` page, use
+Node.js 22+ with built-in `WebSocket` and an existing authorized sandboxed
+Chrome/Chromium executable or launcher:
+
+```sh
+BROWSER_EXECUTABLE_PATH=/path/to/sandboxed-chrome \
+BROWSER_ARTIFACT_DIR=/tmp/worldlaw-import-order \
+node scripts/unknown-lab-import-order-browser.mjs
+```
+
+On Linux, the receiver admits the same browser through the maintained
+`chromium-sandbox.mjs` helper before opening the product. It retains the
+admission or refusal receipt. Other platforms record browser/version/platform
+and mark that Linux-specific gate inapplicable; they do not claim Linux sandbox
+admission. A setup or admission failure is not a product regression result.
+
+A final keyboard course saves with Enter, reloads the same origin, exports with
+Enter, and compares the actual downloaded JSON file with the saved evidence.
+
+The receiver starts the maintained local server, compares its served controller
+with the selected source, and checks actual exported JSON, displayed results,
+refusals, native form validation, and explicit persistence under controlled
+file-read ordering. Set `WORLDLAW_ROOT=/absolute/source-or-package-root` to
+receive another checkout or extracted package using this script. Set `BROWSER_VIEWPORT_WIDTH=390 BROWSER_VIEWPORT_HEIGHT=844` for a narrow
+viewport; the default is 1440 × 1000. It writes a
+JSON result and, on success, a screenshot when `BROWSER_ARTIFACT_DIR` is set.
+File selections use browser `File`/`DataTransfer` events; these checks establish
+application behavior and chooser reset, not operating-system picker automation.
+
 ### UNKNOWN LAB — Counterbalance acquisition order against instrument drift
 
 The **Simulated drift per reading** control adds a known linear sensor offset in N·m at each successive virtual observation, independently of the synthetic preparation-memory effect. **Counterbalanced AB/BA** alternates which history condition is read first. Set memory coupling to zero and drift to a nonzero value to observe why a one-direction acquisition can imitate memory, and why reversing the order changes the explanation.

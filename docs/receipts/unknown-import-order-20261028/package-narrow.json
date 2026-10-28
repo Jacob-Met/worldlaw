@@ -1,0 +1,136 @@
+{
+  "pass": true,
+  "root": "/var/tmp/estate-2e09e0-worldlaw-package-candidate/worldlaw",
+  "origin": "http://127.0.0.1:41995",
+  "stage": "behavior",
+  "negativeControlEligible": false,
+  "controllerPath": "src/unknown-lab/app.mjs",
+  "sourceSha256": "2db3789e38588097307a059cd87bc2c414ca2f177a3a7b5a70c35d4af897df1b",
+  "downloadReceipt": {
+    "filename": "worldlaw-history-pairs.json",
+    "bytes": 8303,
+    "sha256": "866597917576a850121185f75dc92577cd66f3ceffce5bbe335919cc20802d10",
+    "keyboardActivation": "CDP Enter on focused Remember and Export buttons",
+    "reopened": true
+  },
+  "sandboxReceipt": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T03:10:34.009Z",
+    "completedAt": "2026-10-28T03:10:34.108Z",
+    "durationMs": 98.32720500000005,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/153.0.8010.47",
+      "revision": "@73934a44f61e6b3878d1943064c141a5a820f5f7",
+      "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "jsVersion": "15.3.76.12"
+    },
+    "target": {
+      "targetId": "F0D60226D385338CA3811A312251BE02",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "B056D2D963DD8E4E70F9EC857E6C384F"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tSUID\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tYes\nPtrace Protection with Yama LSM (Non-broker)\tYes\n\nYou are adequately sandboxed.",
+    "textSha256": "61a59ab5320860a1062d9466bbd14ddc28a3f6dc6b6c3b75f3a3ef162363f62c",
+    "observation": {
+      "rows": {
+        "layer1": "SUID",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  },
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Chrome/153.0.8010.47",
+    "revision": "@73934a44f61e6b3878d1943064c141a5a820f5f7",
+    "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "jsVersion": "15.3.76.12"
+  },
+  "browserPlatform": "Linux x86_64",
+  "actualViewport": {
+    "width": 390,
+    "height": 844
+  },
+  "checks": [
+    {
+      "name": "newest import survives older success; actual exported evidence and UI",
+      "passed": true
+    },
+    {
+      "name": "new import supersedes a virtual run queued in the same event turn",
+      "passed": true
+    },
+    {
+      "name": "stale rejection does not change newer success or focus",
+      "passed": true
+    },
+    {
+      "name": "newest malformed import owns refusal and preserves prior notebook",
+      "passed": true
+    },
+    {
+      "name": "newest oversized import supersedes old success without reading oversized file",
+      "passed": true
+    },
+    {
+      "name": "explicit valid virtual run supersedes pending import",
+      "passed": true
+    },
+    {
+      "name": "native required invalid Run supersedes pending import",
+      "passed": true
+    },
+    {
+      "name": "native range invalid Run supersedes pending import",
+      "passed": true
+    },
+    {
+      "name": "pending newer File survives stale completion and permits reselection",
+      "passed": true
+    },
+    {
+      "name": "same file can be selected after a virtual run supersedes its pending read",
+      "passed": true
+    },
+    {
+      "name": "empty picker change does not supersede pending import",
+      "passed": true
+    },
+    {
+      "name": "ordinary File.text roundtrip and same-name reselection",
+      "passed": true
+    },
+    {
+      "name": "save and forget preserve current evidence",
+      "passed": true
+    },
+    {
+      "name": "keyboard save, reload and actual downloaded file preserve evidence",
+      "passed": true
+    }
+  ],
+  "exceptions": []
+}
