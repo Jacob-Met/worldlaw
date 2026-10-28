@@ -28,3 +28,11 @@ test('changed source requires explicit fresh comparison and malformed source ref
  panel.render(Array.from({length:4},(_,i)=>({time:i,observed:1,predicted:0})));assert.equal(walk(ids.get('time-support-plot'),'svg').length,0);fire('inspect-time-support');assert.equal(walk(ids.get('time-support-plot'),'svg').length,1);
  panel.render(Array.from({length:4},()=>({time:0,observed:0,predicted:0})));fire('inspect-time-support');assert.match(ids.get('time-support-status').textContent,/strictly increase/);assert.equal(walk(ids.get('time-support-ledger'),'tr').length,0);
 });
+test('computed portions preserve original endpoints/curve and retire on cut and source edits',()=>{
+ ids.clear();const panel=createTimeSupportPanel(new Node('main'));const source=[-1,1,1,1].map((observed,time)=>({time,observed,predicted:0}));panel.render(source);fire('inspect-time-support');
+ const ledger=()=>walk(ids.get('time-support-ledger'),'td').map(n=>n.textContent),original=ledger(),curve=walk(ids.get('time-support-plot'),'path')[0].attrs.d;
+ ids.get('time-support-cuts').value='0,0.5,3';fire('partition-time-support');assert.match(ids.get('time-partition-status').textContent,/3 original intervals retained as 4 portions/);assert.deepEqual(ledger(),original);assert.equal(walk(ids.get('time-support-plot'),'path')[0].attrs.d,curve);assert.match(ids.get('time-support-interval').textContent,/end is a computed cut/);assert.equal(walk(ids.get('time-support-plot'),'circle').length,2);
+ ids.get('time-support-epoch').value='1';fire('time-support-epoch','change');assert.deepEqual(ledger(),original);assert.match(ids.get('time-support-interval').textContent,/start is a computed cut/);
+ ids.get('time-support-cuts').value='0,2';fire('time-support-cuts','input');assert.equal(walk(ids.get('time-support-plot'),'rect').length,0);fire('partition-time-support');assert.match(ids.get('time-partition-status').textContent,/exactly cover/);assert.equal(ids.get('time-support-segment').children.length,3);
+ panel.render(null);assert.equal(ids.get('time-support-epoch').children.length,0);assert.equal(walk(ids.get('time-support-plot'),'svg').length,0);
+});
