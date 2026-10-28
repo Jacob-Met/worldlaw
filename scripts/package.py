@@ -260,6 +260,7 @@ FORBIDDEN_NAMES = {".env", "credentials", "credentials.json", "secrets.json", "i
 # Exact tracked historical evidence archives and logs are not distributed.
 # Keep these paths explicit; other unapproved archives still fail closed.
 NON_DISTRIBUTED_TRACKED_RECEIPTS = frozenset({
+    "docs/receipts/reference-models-396/native.log",
     "docs/receipts/reference-channel-20261027/native.log",
     "docs/receipts/reference-channel-20261027/smoke.log",
     "docs/receipts/historical-training-20261027/historical-browser.log",
