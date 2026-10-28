@@ -1,0 +1,28 @@
+{
+  "checks": [
+    "Ordinary frozen model/point curve/metrics preserved; complete paginated additional ledger",
+    "Input-only save and fresh ordinary page reopen recompute matching source",
+    "Desktop/narrow actual consumer captures, full ledger horizontal scrolling",
+    "Refused replacement preserves and exports accepted source A",
+    "Later valid replacement commits and exports source B",
+    "Pending file-read and hash completion cannot revive retired source after context change",
+    "Selected-model replacement retires comparison and refuses old source binding"
+  ],
+  "errors": [],
+  "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+  "browser": "156.0.8078.73",
+  "scope": "Actual ordinary consumer with authored additional readings. No physical readout/exposure validation.",
+  "candidateBaseCommit": "9628cc266e7dc295a135abc6664658d2a3da87f6",
+  "candidateParentTree": "63a5688a15fddeaad10ff03848aa05b58a12dfd2",
+  "stages": "Qualified438 and449 composed atop9628; not yet a merged/deployed claim",
+  "native": "Five authored groups in interval-readout.test.mjs passed; original four operator controls and frozen full reproduction passed through compatibility re-export.",
+  "screenshots": "Original seven-group screenshots retained separately. Revised presentation is qualified by a separate targeted layout receipt.",
+  "sourceHashes": {
+    "src/trajectory/app.mjs": "a4ed658cfd9b0f6a88a08a4db195d19f452e6d51a254db7a792bce9b8310cc2a",
+    "src/trajectory/interval-readout-panel.mjs": "6faabf589ddaa2bb137d8847f05e5946650abf6b6a25f346529e73eff0db483f",
+    "src/trajectory/interval-readout.mjs": "b93efdc06512b0de645a1c88115248980d4a717db124c1234aadd69d5ed1854b",
+    "src/trajectory/interval-average.mjs": "2ba2687667f8afc2f9b337e0a0047697fd17531f66398a34edd3beb33ae9d176",
+    "scripts/interval-readout-browser.mjs": "240bb7f41ace787ca7b426c65a33faebe6bf0d7f4209eae28fc07927f3338649",
+    "tests/interval-readout.test.mjs": "e6928918afc5487c714f951d2a8c78fd119597466480b411e77cc067d0952049"
+  }
+}

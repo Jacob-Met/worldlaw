@@ -1,0 +1,15 @@
+{
+  "checks": [
+    "Ordinary frozen model/point curve/metrics preserved; complete paginated additional ledger",
+    "Bounded ledger is keyboard focusable; final row and column reachable without thinning",
+    "Actual revised desktop/narrow spacing and bounded ledger captures"
+  ],
+  "errors": [],
+  "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+  "browser": "156.0.8078.73",
+  "scope": "Targeted presentation/reachability receiving after scoped spacing and bounded-ledger patch; seven behavioral groups remain separate.",
+  "panelSHA256": "5d7183a2f893e6305c24df2ac3de5c428c07ec06676da1a43844fb3fa0112ae2",
+  "harnessSHA256": "65d9dc77950c58f0ab0e197b48672db75deef27d49dff3c2034b5c95cafc73b7",
+  "change": "Root presentation-only patch: padding, paragraph spacing, separated controls and bounded full-page ledger. No source/algorithm/lifecycle change.",
+  "rootVisualReview": "Accepted actual1440 and390 captures: readable controls/padding, visible keyboard focus, bounded ledger and intentional internal scrolling. Root performed visual review; author performed browser receiving."
+}
