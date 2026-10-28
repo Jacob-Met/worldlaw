@@ -1,3 +1,4 @@
+import {decomposeReleasePeakSamples} from './release-peak-decomposition.mjs';
 import {compareReleasePerturbations} from './release-perturbations.mjs';
 import {outputIntervalCount} from './output-grid.mjs';
 
@@ -30,7 +31,7 @@ export function investigateReleasePeaks(discovery,initial,displacement,settings,
    for(const row of law.samples){const other=byTime.get(row.time);if(!other)throw Error('Requested fine grid lost an exact earlier reporting time');for(const side of ['positive','negative']){const difference=Math.abs(row[side]-other[side]);if(difference>sharedDifference){sharedDifference=difference;sharedWitness={time:row.time,side,coarse:row[side],fine:other[side]};}}}
    const next=fine.results[j],peakDifference=Math.abs(next.maximumAmplification-law.maximumAmplification);
    sharedMaximum=Math.max(sharedMaximum,sharedDifference);peakMaximum=Math.max(peakMaximum,peakDifference);
-   return {index:j,id:law.id,sharedDifference,sharedWitness,peakDifference,
+   return {index:j,id:law.id,sharedDifference,sharedWitness,peakDifference,peakDecomposition:decomposeReleasePeakSamples(law.samples,next.samples),
     coarsePeak:{value:law.maximumAmplification,time:law.maximumTime,side:law.maximumSide},finePeak:{value:next.maximumAmplification,time:next.maximumTime,side:next.maximumSide}};
   });return {fromLevel:index,toLevel:index+1,laws};
  });

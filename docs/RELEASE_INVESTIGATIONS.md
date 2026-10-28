@@ -26,3 +26,10 @@ Native regression command:
 
 Maintained launched routes:
 `node scripts/smoke.mjs` and `node scripts/trajectory-smoke-92be.mjs`.
+
+## Explaining a changed sampled peak
+
+Each transition now separates the fine execution's peak over the original reporting times from its peak over all finer times. The signed shared-grid peak shift is the former minus the coarse execution's peak. The additional-sample gain is the fine all-times peak minus its own original-time subset peak, so it is nonnegative. These two terms sum to the total sampled-peak shift up to floating-point rounding. An unchanged total can hide equal and opposite contributions.
+
+The shared-grid shift reflects changes between numerical executions; it is not a physical error estimate. The additional-sample gain isolates the effect of including extra times in the same fine execution; it does not locate a continuous-time maximum. Both signs of the declared release are included, with exact sample-time matching and retained peak witnesses. The calculation uses existing completed samples and adds no solver evaluations, source fields or work-budget changes.
+
