@@ -1,0 +1,9 @@
+{
+  "oldExecutedRunSHA256": "33fa6adfa13f14074ed14a469ae4a2b724b7cda44dd526e5db84b2039156c8b1",
+  "oldSourcePath": "provenance/run.executed.mjs.txt",
+  "newRunSHA256": "532cd142338f8fd0d056cb85a9a0e9442cfd008299ec4a5c05eab8ddc88e587d",
+  "change": "Replace results write with deep comparison against frozen results; remove unused writeFile import. Computational body unchanged.",
+  "frozenProtocolSHA256": "c97f7a8b75a4e8de04d37223fef32aa19dbd04604b0e446bb959c7b611b3515a",
+  "frozenResultsSHA256": "9f6e85ca341d1f188545bc10cd0d5a0da4a39ff03caf9e944f65160a0782e79a",
+  "frozenOperatorSHA256": "2ba2687667f8afc2f9b337e0a0047697fd17531f66398a34edd3beb33ae9d176"
+}

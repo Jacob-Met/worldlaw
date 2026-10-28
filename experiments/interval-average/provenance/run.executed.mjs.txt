@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {rollout} from './maintained/src/trajectory/forward.mjs';
+import {averagePredictedIntervals} from './interval-average.mjs';
+const raw=await readFile(new URL('./protocol.json',import.meta.url));const p=JSON.parse(raw),w=2*Math.PI*p.frequencyHz;
+const model={schema:'worldlaw.torque-model/v1',terms:[{id:'spring',coefficient:-w*w}]};
+const point=t=>Math.cos(w*t);
+const windows=p.timestampConventions.map(timestampConvention=>({timestampConvention,rows:Array.from({length:61},(_,i)=>{
+ const center=(i+2)/64,start=center-p.windowDuration/2,end=center+p.windowDuration/2;
+ return {start,end,reportedTime:timestampConvention==='center'?center:end,timestampConvention,observedAverage:(Math.sin(w*end)-Math.sin(w*start))/(w*(end-start))};
+})}));
+const initial=structuredClone(p.initialPointState),results=[],rms=a=>Math.hypot(...a)/Math.sqrt(a.length);
+for(const n of p.predictionGridIntervals){
+ // These rows request solver output times; later positions are placeholder residual targets,
+ // never sensor observations and never used to reset the free-running forecast.
+ const run={id:'authored-output-grid',label:'Prediction queries, not measured samples',kind:'synthetic',source:{label:'Independent point initial condition plus declared numerical output times'},inertia:p.inertia,initialRate:initial.rate,samples:Array.from({length:n+1},(_,i)=>({time:i/n,position:i===0?initial.position:0,command:0}))};
+ const before=JSON.stringify(run),forecast=rollout(model,run,{maxStep:1/n,maxSteps:p.solverMaxSteps,positionDomain:[-2,2]});assert.equal(JSON.stringify(run),before);
+ const byTime=new Map(forecast.rows.map(r=>[r.time,r.predicted]));
+ for(const group of windows){
+  const inputBefore=JSON.stringify(group.rows);const averaged=averagePredictedIntervals(forecast.rows,group.rows,{maxSegments:p.maxOperatorSegmentsPerConvention});assert.equal(JSON.stringify(group.rows),inputBefore);
+  const rows=averaged.rows.map(r=>({...r,pointPrediction:byTime.get(r.reportedTime),analyticPoint:point(r.reportedTime),averagedResidual:r.observedAverage-r.averagePrediction,pointResidual:r.observedAverage-byTime.get(r.reportedTime)}));assert.ok(rows.every(r=>Number.isFinite(r.pointPrediction)));
+  results.push({gridIntervals:n,convention:group.timestampConvention,solverSteps:forecast.diagnostics.steps,operatorSegments:averaged.segments,pointRMSE:rms(rows.map(r=>r.pointResidual)),averageRMSE:rms(rows.map(r=>r.averagedResidual)),maxPointOracleError:Math.max(...forecast.rows.map(r=>Math.abs(r.predicted-point(r.time)))),rows});
+ }
+}
+for(const c of p.timestampConventions){const a=results.filter(r=>r.convention===c);assert.ok(a[2].averageRMSE<a[0].averageRMSE/100);assert.ok(a[2].averageRMSE<3e-6);assert.ok(a[2].pointRMSE>.05);assert.ok(a[2].maxPointOracleError<1e-8);}
+const receipt={protocolSHA256:createHash('sha256').update(raw).digest('hex'),source:windows,independentInitialPointState:initial,model,results,interpretation:'Unchanged authored law agrees with declared interval-average readings after applying the declared measurement operation. Point residuals alone do not isolate law error. No fit or physical/camera/PASCO claim.'};
+await writeFile(new URL('./results.json',import.meta.url),JSON.stringify(receipt,null,2)+'\n');console.log(JSON.stringify(results.map(({rows,...r})=>r),null,2));

@@ -1,0 +1,40 @@
+{
+  "base": "6db282d78bcd0aa6899d51729378be92bd6900af plus qualified forecast-domain source",
+  "files": [
+    {
+      "path": "src/trajectory/forward.mjs",
+      "sha256": "7e80824e1475b21e99c74e3f5cd058655851b5c90494086325c44ffe6fd4f705",
+      "gitBlob": "a3f7c0aafb7f1c81f4ddfbc6f7fa284fe4ab27a3"
+    },
+    {
+      "path": "src/trajectory/command-timeline.mjs",
+      "sha256": "b975f7f35a5834c0c9d9ae29ea2272085ae05a8c812d77487ce6df83d0d77e61",
+      "gitBlob": "b765686c23de07bad6233b6c8c37e9abbbab350f"
+    },
+    {
+      "path": "src/trajectory/../science/torque-discovery.mjs",
+      "sha256": "34b75f3b08606b6f3c12d87ea090b74cd5fb42e550e5a9f95b5454cc57c58d2f",
+      "gitBlob": "5a69e03edd21cef99e6c012f2cc2ef57edddde56"
+    },
+    {
+      "path": "src/trajectory/../science/robust-fit.mjs",
+      "sha256": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1",
+      "gitBlob": "37c20230887d1d3b9f387f930ba89443ded7717b"
+    },
+    {
+      "path": "src/trajectory/../science/linear-fit.mjs",
+      "sha256": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+      "gitBlob": "5fc92b53ed52ba96dc60b1235aea87bffc4e83ca"
+    },
+    {
+      "path": "src/trajectory/../science/output-grid.mjs",
+      "sha256": "e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d",
+      "gitBlob": "317307c13ef13d148a6bb9b24e4efb123884e227"
+    },
+    {
+      "path": "src/trajectory/coulomb-contact.mjs",
+      "sha256": "2cc8820da95ca9fc5170319c37a7e098071ec82e8e7af9b816301c45b1ea0253",
+      "gitBlob": "8aef8677ce613c03224bad18f45638bf54cd62f9"
+    }
+  ]
+}

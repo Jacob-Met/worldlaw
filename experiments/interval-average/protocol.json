@@ -1,0 +1,19 @@
+{
+  "schema": "hamon.authored-interval-average-research/v1",
+  "source": "Authored ideal interval-averaging scalar position sensor, not camera data or PASCO measurements",
+  "equation": "q'' = -(8*pi)^2 q",
+  "units": {"time":"s","position":"rad","rate":"rad/s","inertia":"kg m^2"},
+  "initialPointState": {"time":0,"position":1,"rate":0,"origin":"independently supplied authored point state; no averaged reading used"},
+  "inertia":1,
+  "duration":1,
+  "frequencyHz":4,
+  "windowDuration":0.0625,
+  "windowCenters": "j/64 for integer j=2 through62 inclusive",
+  "timestampConventions": ["center","end"],
+  "predictionGridIntervals": [256,1024,4096],
+  "solverMaxSteps": 20000,
+  "maxOperatorSegmentsPerConvention": 100000,
+  "fitting": false,
+  "numericalQualification": "Compare three complete grids to analytic integrals; successive differences are not certified error bounds",
+  "physicalQualification": "No real exposure metadata admitted; no inference from cadence; no camera angle-averaging assumption"
+}

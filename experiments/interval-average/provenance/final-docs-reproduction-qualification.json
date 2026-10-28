@@ -1,0 +1,10 @@
+{
+  "scope": "Documentation and safe reproduction qualification; preserves original qualification.json",
+  "README_SHA256": "bc315f8be4d573df48fdc2ec05517ae380c2874facffd60e3eb2593c30389f36",
+  "runnerSHA256": "532cd142338f8fd0d056cb85a9a0e9442cfd008299ec4a5c05eab8ddc88e587d",
+  "originalRunnerSHA256": "33fa6adfa13f14074ed14a469ae4a2b724b7cda44dd526e5db84b2039156c8b1",
+  "readOnlyReproduction": "node run.mjs passed complete deep equality; writes no files",
+  "protocolResultsOperatorUnchanged": true,
+  "documentationChange": "Spacing and reproduction instructions only; no scientific result change",
+  "testScope": "No test rerun solely for prose; actual replay executed because runner output behavior changed"
+}
