@@ -12,6 +12,10 @@ The **Take the question to your instrument** worksheet in Unknown Lab connects a
 
 A changed setup requires a new worksheet. Editing the declaration form does not rewrite an already frozen request. Replacing a worksheet with unsaved edits asks before discarding them. A failed import or application leaves the previous valid work available.
 
+## Reading on a narrow screen
+
+Each observation displays its reading and pair identifier, its reference or conditioned preparation, and four labeled actual-value fields. Tab moves through command, angle, rate and torque, then to the next observation; Shift+Tab moves back. The narrow view uses more vertical space so the observation and its inputs can be read together. Wider screens retain the comparison table.
+
 ## What completion checks
 
 The course retains deterministic pair identifiers, preparation labels and unique adjacent measurement indices. Reopening validates these against the frozen request; array order alone does not change chronology. Missing or substituted slots are refused. Every actual value must be present, finite and within the supported numerical bounds. Each actual command, angle and rate must agree with its declared target within 0.001 in the corresponding units; the unchanged paired-history validator also requires the two readings in each pair to match within its 0.001 tolerances.
