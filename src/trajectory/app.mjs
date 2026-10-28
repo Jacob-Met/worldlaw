@@ -51,7 +51,7 @@ function resolutionReason(resolution){return {combined_step_budget:'The shared s
 function errorMessage(error){return error?.message||String(error);}
 function alertError(error){set('error',errorMessage(error));$('error').hidden=false;$('error').focus();}
 function notice(text){set('notice',text);$('error').hidden=true;}
-function setBusy(value){busy=value;residualStructurePanel.render(value?null:rows);intervalReadoutPanel.render(value?null:intervalReadoutContext());$('challenge-workspace').setAttribute('aria-busy',String(value));for(const id of ['refit','export-notebook','challenge-run'])$(id).disabled=value||!state;$('refit').textContent=value?'Running the challenge…':'Fit & challenge →';}
+function setBusy(value){busy=value;initialStatePanel.setBusy(value);residualStructurePanel.render(value?null:rows);intervalReadoutPanel.render(value?null:intervalReadoutContext());$('challenge-workspace').setAttribute('aria-busy',String(value));for(const id of ['refit','export-notebook','challenge-run'])$(id).disabled=value||!state;$('refit').textContent=value?'Running the challenge…':'Fit & challenge →';}
 function save(){
   if(!state)return;
   try{localStorage.setItem(storageKey,exportExperimentSession(workflow));set('storage-status','Notebook saved in this browser. Export for a portable copy.');}
