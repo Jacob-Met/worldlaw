@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /** Package the actual trajectory application as one offline HTML file. */
 import { readFile, writeFile, mkdir, rename, access } from 'node:fs/promises';
+import { realpathSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
@@ -60,9 +61,18 @@ function safeScript(code) {
 function safeHTML(text) {
   return String(text).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 }
-function git(...args) {
-  try { return execFileSync('git', args, { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim(); }
-  catch { return null; }
+// Git walks upward from cwd. An extracted package may live inside an unrelated
+// repository, whose commit must never be attributed to this application.
+export function sourceGitState(projectRoot, sourcePaths) {
+  const unavailable = { sourceHead: null, sourceStatus: null };
+  try {
+    const git = (...args) => execFileSync('git', args, {
+      cwd: projectRoot, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'],
+    }).trim();
+    if (realpathSync(git('rev-parse', '--show-toplevel')) !== realpathSync(projectRoot)) return unavailable;
+    return { sourceHead: git('rev-parse', 'HEAD'),
+      sourceStatus: git('status', '--porcelain=v1', '--', ...sourcePaths) };
+  } catch { return unavailable; }
 }
 
 async function main() {
@@ -129,12 +139,11 @@ async function main() {
   const boot = safeScript(`globalThis.WORLDLAW_EMBEDDED_EXAMPLES = ${safeInlineJSON(examples)};\n${bundleText}`);
   const sources = [...snapshots].map(([path, bytes]) => ({ path: portablePath(path), bytes: bytes.byteLength, sha256: hash(bytes) }))
     .sort((a, b) => a.path.localeCompare(b.path));
-  const sourceHead = git('rev-parse', 'HEAD');
-  const sourceStatus = git('status', '--porcelain=v1', '--', ...sources.map(source => source.path));
+  const { sourceHead, sourceStatus } = sourceGitState(root, sources.map(source => source.path));
   const buildInfo = {
     schema: 'worldlaw.trajectory-standalone-build/v1',
     sourceHead, sourceStatus,
-    sourceMeaning: 'Source digests identify exact bytes bundled; sourceHead alone does not include uncommitted changes.',
+    sourceMeaning: 'Source digests identify exact bytes bundled; sourceHead alone does not include uncommitted changes. Git fields are null when this project is not its own readable Git worktree root.',
     tool: { name: 'esbuild', version: esbuild.version, modulePath, moduleSHA256, node: process.version, platform: process.platform, architecture: process.arch },
     entryPoint: 'src/trajectory/app.mjs', format: 'iife', target: 'es2022',
     embeddedExamples: exampleNames, sources,
@@ -191,4 +200,6 @@ async function main() {
     bytes: manifest.output.bytes, sha256: manifest.output.sha256, sourceHead, sourceCount: sources.length, esbuild: esbuild.version }, null, 2));
 }
 
-main().catch(error => { console.error(`Standalone build failed: ${error.message}`); process.exitCode = 1; });
+if (process.argv[1] && realpathSync(process.argv[1]) === realpathSync(scriptPath)) {
+  main().catch(error => { console.error(`Standalone build failed: ${error.message}`); process.exitCode = 1; });
+}
