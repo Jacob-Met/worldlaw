@@ -44,3 +44,10 @@ Grounding: endpoint correction bounds±.1 at readouts0 and2 separately admit che
 If the two defining standards alone permit a zero or negative affine factor, additional original check standards may establish positivity over their entire common correction polygon. The maintained exact rational source checker minimizes the corrected reference gap over every vertex and requires it to exceed a disclosed binary64 engineering allowance. Empty source, zero/contact, reversal or insufficient margin refuse admission. Broad defining errors remain unchanged; no tightened pseudo-measurement is substituted. Manual declarations without an original report retain their prior complete-box requirement. Every check still participates in the joint inquiry and independent witness replay; this does not authenticate calibration or establish a physical law.
 
 Four new plus40 preceding native controls and12 actual browser groups passed. The browser receipt retains the historical runner label and separately binds exact served source hashes. Active sandbox and owned-family retirement passed; the profile was retained.
+
+
+## Exact additional calibration equalities
+
+An explicitly zero-width original check standard is verified with the maintained rational arithmetic over the supplied binary64 report and candidate latent components. This is a source equality, not measured exactness. Search may propose such a candidate without requiring calibration interior, but every actual receiving row must still pass the existing strict influence and independent refit check. Nonzero calibration bounds retain their engineering margin requirement; separators retain original bounds. A nearby floating candidate is not an equality. Source-only replay recomputes the exact expression. Search remains bounded and incomplete; nonrepresentable candidates and exhausted work remain unresolved.
+
+47 native controls and15 actual browser groups passed, including equality replay and preserved refusal for zero-width actual receiving.
