@@ -1,0 +1,148 @@
+{
+  "schema": "worldlaw.unknown-import-order-receiving/v1",
+  "base_commit": "34a8c486787b145b80ffcc4eb3ffc48c9caea517",
+  "baseline_controller_sha256": "fa8861f08f62573f34284f912bbb4422d2ab40abed7226ae3378ba8138d6f63d",
+  "candidate_controller_sha256": "2db3789e38588097307a059cd87bc2c414ca2f177a3a7b5a70c35d4af897df1b",
+  "receiver_sha256": "a00fb209c9c83cbf30f2ad49733484cf05cf5c9b937cbc5f6122dac2c959bb95",
+  "packager_sha256": "3e9f1ccafafb203af962e5934e852ecf0717af42a6744b4036590e8763cb981b",
+  "sandbox_helper_sha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+  "runtime": {
+    "node": "v22.22.1",
+    "browser": "Chrome/153.0.8010.47",
+    "platform": "Linux x86_64",
+    "user": "jacob",
+    "sandbox_admitted": true
+  },
+  "native": {
+    "tests": 1524,
+    "passed": 1523,
+    "failed": 0,
+    "skipped": 1,
+    "studio_smoke": true,
+    "trajectory_smoke": true,
+    "receipt": {
+      "owner": "node-2b8c9803b6069b758adef320e07b48ed",
+      "operation_id": "estate-2e09e0-native-verify-status02",
+      "result_sha256": "f48f8f351c2bca3389d9eeaf5dc773e774895d30afe848f6e23e59fc8c7313d4",
+      "native": {
+        "command_id": "estate-2e09e0-native-verify-cmd01",
+        "request_sha256": "17ca3690ec0dff474fc247b351704178a031cc23789ba36a7b8d761ae3bc6e2a",
+        "state": "completed",
+        "started_at": "2026-10-28T02:59:06.029764526Z",
+        "finished_at": "2026-10-28T03:00:48.899106676Z",
+        "exit_code": 0
+      }
+    },
+    "logs": {
+      "native-verify.stdout.log": {
+        "bytes": 362572,
+        "sha256": "f5bda90bf07cf1d8edfd39c022803763f007cf61cd79182503c30330f7ac8917"
+      },
+      "native-verify.stderr.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "source_browser": {
+    "negative_baseline": true,
+    "desktop_checks": 14,
+    "narrow_checks": 14,
+    "receipt": {
+      "owner": "node-2b8c9803b6069b758adef320e07b48ed",
+      "operation_id": "estate-2e09e0-receiver-v2-status01",
+      "result_sha256": "1749bfaeaa91ba08b4cafdfdae9885511b0ffc1bb73dbbb998b132f66a264089",
+      "native": {
+        "command_id": "estate-2e09e0-receiver-v2-cmd01",
+        "request_sha256": "43b0b1dff03362531f363ad5b00a71da419ab51bb7e2ea5a605bb7dff97d7c59",
+        "state": "completed",
+        "started_at": "2026-10-28T03:06:05.539058033Z",
+        "finished_at": "2026-10-28T03:06:21.506889647Z",
+        "exit_code": 0
+      }
+    }
+  },
+  "package_policy": {
+    "tests": 7,
+    "passed": 7,
+    "receipt": {
+      "owner": "node-2b8c9803b6069b758adef320e07b48ed",
+      "operation_id": "estate-2e09e0-package-fix-status01",
+      "result_sha256": "27a99f323d2a3e978bf5d95b27498e96d3e7ba814dae32892564f268c569eadc",
+      "native": {
+        "command_id": "estate-2e09e0-package-fix-cmd01",
+        "request_sha256": "f94bfd6c205ac67354e4552ca0d6d02df967b1da24ad846d6237395afc4dccf9",
+        "state": "completed",
+        "started_at": "2026-10-28T03:05:00.138183301Z",
+        "finished_at": "2026-10-28T03:05:00.486756597Z",
+        "exit_code": 0
+      }
+    }
+  },
+  "candidate_package": {
+    "kind": "candidate-package-verified",
+    "build": {
+      "output": "/var/tmp/estate-2e09e0-worldlaw-receipts/worldlaw-import-order-candidate.zip",
+      "sha256": "e2d7c9445df66645a25ce21a19ff1bcec38e63fbed8e09643c33fcfbc6d9a985",
+      "sourceFiles": 1572,
+      "bytes": 63595132,
+      "sourceCommit": "34a8c486787b145b80ffcc4eb3ffc48c9caea517",
+      "sourceTree": null,
+      "sourceMode": "working-tree-candidate"
+    },
+    "manifest_files": 1572,
+    "excluded_logs_unchanged": {
+      "docs/receipts/reference-channel-20261027/native.log": "a12499e9eeb4dd70bc030a376313f937071eef09afd50bbc8c2a57729c17f2b8",
+      "docs/receipts/reference-channel-20261027/smoke.log": "326b6afa410a0f80a2c1413ee279dc1770223f7cbcabe086acca7fff783fe78e"
+    },
+    "expected_sources": {
+      "src/unknown-lab/app.mjs": "2db3789e38588097307a059cd87bc2c414ca2f177a3a7b5a70c35d4af897df1b",
+      "scripts/unknown-lab-import-order-browser.mjs": "a00fb209c9c83cbf30f2ad49733484cf05cf5c9b937cbc5f6122dac2c959bb95",
+      "scripts/package.py": "3e9f1ccafafb203af962e5934e852ecf0717af42a6744b4036590e8763cb981b",
+      "scripts/support/chromium-sandbox.mjs": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead"
+    },
+    "desktop_checks": 14,
+    "narrow_checks": 14,
+    "studio_smoke": true,
+    "trajectory_smoke": true,
+    "receipt": {
+      "owner": "node-2b8c9803b6069b758adef320e07b48ed",
+      "operation_id": "estate-2e09e0-package-receive-status01",
+      "result_sha256": "03e1b70448563c934b21651a4845670db35069f70125f02a32f4799de731f12a",
+      "native": {
+        "command_id": "estate-2e09e0-package-receive-cmd01",
+        "request_sha256": "902c6d2261fcd8d9c9d92e0c8be27147618eb27f1977079b5e0318d5ccfebe03",
+        "state": "completed",
+        "started_at": "2026-10-28T03:10:26.593958354Z",
+        "finished_at": "2026-10-28T03:10:40.536113896Z",
+        "exit_code": 0
+      }
+    },
+    "extracted_files_verified": 1572
+  },
+  "visual_review": {
+    "reviewer": "estate-2e09e0-20261028",
+    "desktop": "Readable root instrument and controls in actual scrolled viewport.",
+    "narrow": "Readable controls at390x844 and visible Export focus outline; actual scrolled viewport.",
+    "scope": "No layout change. Not an audit of every downstream panel."
+  },
+  "reviewers": [
+    "estate-2e09e0-product",
+    "estate-2e09e0-integration",
+    "estate-2e09e0-pool"
+  ],
+  "qualification": "Source and prepublication working-tree candidate received; this historical record does not claim published-commit receiving, public deployment or physical measurement.",
+  "provenance_correction": "The initial archived broker baseline had one extra final LF; an exact-source guard stopped before any change. The canonical Git baseline fa8861f... was then read and used for the genuine negative controls. A candidate extra final LF was removed before qualification; received controller identity is2db3789e... . Earlier setup failures are not counted as product failures.",
+  "fixture_limits": "Deterministic synthetic controls deliberately use declared measured labels to exercise the import path. File/DataTransfer/change events and controlled File.text promises test handlers, not OS picker generation. CDP Enter on focused controls is not a full keyboard navigation audit.",
+  "command_root": "/var/tmp/estate-2e09e0-worldlaw-receipts",
+  "files": {
+    "baseline.json": "94f0e43807dcbaec2f012edece4515933b583ac199a97e379dc6ef11d163ad28",
+    "source-desktop.json": "55ad9b2cdebfc8e1e7c1ddce0789474da1dd696b352ca798b2647eb605cbae8e",
+    "source-narrow.json": "761c70dd029a5a86c90f8957b09342ccacae6040ee1e583cd85a37d4ee05eaa8",
+    "package-desktop.json": "b5f61fdcac0ae35b9740fb718ad6aa0c61516c26a822a5288472b84c187a2507",
+    "package-desktop.png": "e6bbb212f037cc7a71bb59397021502d024370d3ae3aa3d64dd265b418c709d7",
+    "package-narrow.json": "47fc4fb2ff1c81d956c0f2394eb5aa5ff89df7ceda5aa5cfd72407cf6fb5b5db",
+    "package-narrow.png": "a109432c9bd73773d67f4d6cb1dcc52568704e10dba5363ada9dc2c8cba5ba3d",
+    "reopened-download.json": "866597917576a850121185f75dc92577cd66f3ceffce5bbe335919cc20802d10"
+  }
+}
