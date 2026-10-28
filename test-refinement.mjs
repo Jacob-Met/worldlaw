@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {account,zeroRef} from './probe-refinement-fixture.mjs';
+import {createReferenceSequence} from './src/unknown-lab/reference-sequence.mjs';
+import {screenDifferenceRefinement as score,analyzeReferenceRefinement as analyze,validateReferenceRefinement as validate,exportReferenceRefinement as save,importReferenceRefinement as open,REFINEMENT_SCHEMA as schema} from './src/unknown-lab/reference-refinement.mjs';
+const near=(a,b)=>assert(Math.abs(a-b)<1e-8,`${a} != ${b}`),rect=[[[0,0],[2,0],[2,1],[0,1]]];
+const controls=[['orthogonal',rect,[0,1],[1,0],.1,2],['gain',rect,[1,0],[1,0],.1,.2],['correlation',[[[0,0],[2,1],[2,2]]],[0,1],[1,0],.1,1.2],['disconnected',[[[-2,0],[0,2]],[[2,0]]],[1,0],[0,1],0,0],['convexified-negative',[[[-2,0],[2,0],[0,2]]],[1,0],[0,1],0,2],['singleton',[[[.3,.4]]],[1,1],[2,3],0,0],['segment',[[[0,0],[2,2]]],[1,0],[0,1],0,0],['zero-observation',rect,[0,0],[1,0],0,2]];
+for(const [name,p,u,v,e,w]of controls){const r=score(p,u,v,e);assert.equal(r.status,'computed',name+JSON.stringify(r));near(r.worstRemainingWidth,w);assert.equal(r.pairs.length,p.length**2);assert(r.witness.mainResiduals.every(x=>x<=e+r.numericalGuard));}
+assert.throws(()=>score(rect,[1,0],[1,0],-1));assert.throws(()=>score(rect,[1,0],[1,0],NaN));assert.throws(()=>score([Array(65).fill([0,0])],[1,0],[1,0],0));
+const initial=createReferenceSequence(zeroRef),target={duration:2,reference:1},offers=[{id:'zero',duration:2,reference:0,mainHalfWidth:.0001},{id:'one',duration:2,reference:1,mainHalfWidth:.0001}];
+const raw={schema,account:initial,target,offers,conditionalPointReference:true},r=analyze(raw);assert.equal(r.recommendation,'one');near(r.comparisons[1].worstRemainingWidth,.0002);assert(r.comparisons[0].worstRemainingWidth>2);assert(r.comparisons.every(c=>c.witness.sourceConstraintChecks.length===6));
+const after=analyze({...raw,account});assert.equal(after.recommendation,null);assert.deepEqual(after.nearTies,['zero','one']);assert(after.comparisons[0].worstRemainingWidth<1e-7);assert(after.comparisons.every(c=>c.witness.sourceConstraintChecks.length===8));
+const frozen=validate(raw);assert(Object.isFrozen(frozen)&&Object.isFrozen(frozen.account)&&Object.isFrozen(frozen.offers[0]));assert.throws(()=>{frozen.target.reference=3;});assert.deepEqual(open(save(raw)),frozen);assert.throws(()=>open(save(raw).replace('"conditionalPointReference":true','"conditionalPointReference":false')));
+for(const change of [{derived:r},{offers:[]},{offers:Array(33).fill(offers[0])},{target:{duration:31,reference:1}},{offers:[{...offers[0],mainHalfWidth:-1}]},{conditionalPointReference:false}])assert.throws(()=>validate({...raw,...change}));
+assert.throws(()=>open(' '.repeat(4000001)));assert.throws(()=>validate({...raw,account:{...account,rounds:account.rounds.map(x=>({...x,prefix:'tampered'}))}}));
+console.log('PASS: complete component-pair geometry, attaining controls, maintained-source witnesses, precision/conditional declaration admission, same-family/no-refit after actuals, near-tie semantics, immutable source-only replay and bounds.');
