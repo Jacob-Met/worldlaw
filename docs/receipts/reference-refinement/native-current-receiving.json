@@ -1,0 +1,71 @@
+{
+  "stage": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-refinement-current-v4-20261028",
+  "source": [
+    {
+      "path": "src/unknown-lab/reference-refinement.mjs",
+      "sha256": "4fa5a33e1eb2ec7e87d5b93dfd39a30224517c81ce44fc3dff377c07fc212187"
+    },
+    {
+      "path": "src/unknown-lab/reference-refinement-panel.mjs",
+      "sha256": "3f802796a3a4a02198d3f746fbbeb504c88f295f5425b28d344805c1482b72c0"
+    },
+    {
+      "path": "src/unknown-lab/reference-sequence-panel.mjs",
+      "sha256": "efa7648f0efa25de6412b6fecf94afd29c214f629da6bd7f3637a5db5ef94e44"
+    },
+    {
+      "path": "test-refinement.mjs",
+      "sha256": "d547c842e66e8e68abee474d4716b8e472424c01b7add3774034261e4c08954f"
+    },
+    {
+      "path": "probe-refinement-fixture.mjs",
+      "sha256": "dda31f449b7caaf6f4c5899c45682fd4b998fbf3538a29df05bd55fe2dd70832"
+    },
+    {
+      "path": "scripts/reference-refinement-browser.mjs",
+      "sha256": "574dbab5aa35a4a4ac3ce627397cd9234abdc2b391f0b763e39ba06bfafddec3"
+    },
+    {
+      "path": "CONTROL_PROTOCOL.md",
+      "sha256": "2b733378aded3cefe398017fc355e2e2efea1200c623d15287cb7dd64af6f3ac"
+    },
+    {
+      "path": "independent-material-refinement-review.json",
+      "sha256": "6c6f015e4832dfdef0666bd1e82877e8e6ad3344b5c4c7ec4d696aabfbbb4e87"
+    },
+    {
+      "path": "src/science/torque-discovery.mjs",
+      "sha256": "34b75f3b08606b6f3c12d87ea090b74cd5fb42e550e5a9f95b5454cc57c58d2f"
+    },
+    {
+      "path": "src/science/output-grid.mjs",
+      "sha256": "e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d"
+    }
+  ],
+  "results": [
+    {
+      "name": "native",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "test-refinement.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "smoke",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "scripts/unknown-reference-receiving.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "browser",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "scripts/reference-refinement-browser.mjs"
+      ],
+      "exitCode": 0
+    }
+  ]
+}

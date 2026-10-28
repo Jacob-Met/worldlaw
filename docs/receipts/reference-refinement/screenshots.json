@@ -1,0 +1,35 @@
+{
+  "stage": "worldlaw-reference-refinement-current-v10-20261028",
+  "images": [
+    {
+      "path": "browser/refinement-1440.png",
+      "bytes": 504996,
+      "sha256": "b29b8555ab7795bfeef179d158c4f05f5c2033c6e84240a23d7483f84128d64c"
+    },
+    {
+      "path": "browser/refinement-390.png",
+      "bytes": 195443,
+      "sha256": "ee3896dcac6d13a943bfb6b105225690644313b8f119948db48c2ceef2289bb8"
+    },
+    {
+      "path": "browser/refinement-320.png",
+      "bytes": 158653,
+      "sha256": "0ce200d989e8cd60d07a6b1ec48a78520c48bb58ccf51e23a82722116cf94d3b"
+    },
+    {
+      "path": "browser/refinement-result-1440.png",
+      "bytes": 514715,
+      "sha256": "372ded5b43cc4e2af167e1f26f8b9cb12b7809379bcd03ad1affe3adf622a43b"
+    },
+    {
+      "path": "browser/refinement-result-390.png",
+      "bytes": 237052,
+      "sha256": "25a6ba07eceffa6629a9bc462d81dcc7a6d522fc3b7206ebefb9a248d2367354"
+    },
+    {
+      "path": "browser/refinement-result-320.png",
+      "bytes": 202666,
+      "sha256": "c7074d5bd5d882ca75bb58d64f92f73757c220f95c23647be32233aea6ff601b"
+    }
+  ]
+}

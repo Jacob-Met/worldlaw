@@ -1,0 +1,17 @@
+{
+  "reviewer": "MATERIALTRUTH independent worker",
+  "sourceSha256": "4fa5a33e1eb2ec7e87d5b93dfd39a30224517c81ce44fc3dff377c07fc212187",
+  "result": "accepted with explicit non-certified binary64 scope",
+  "checks": [
+    "Full authored analytic course executed and passed",
+    "Four independent signed disconnected rectangle cases: dense sampled pair lower bound never exceeds computed maximum; reported pair attains returned width; component reordering preserves width",
+    "Every original component pair considered separately; no union convexification before pairing",
+    "Mixtures preserve membership in original convex components; witness rechecked against maintained original source intervals",
+    "Source account re-admitted, frozen, bounded; offers do not update training or change surviving family"
+  ],
+  "limits": [
+    "Heuristic floating-point hull/clipping and guards are not an outer interval certificate or exact maximization proof",
+    "Conditional point reference and MAIN half-width assumptions remain explicit",
+    "No UI/browser review in this report"
+  ]
+}
