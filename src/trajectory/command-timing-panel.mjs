@@ -1,6 +1,7 @@
 /** Command and motion on the same retained observation clock. */
 import {compareCommandTiming, exportCommandTimingInputs, restoreCommandTimingInputs} from './command-timing-study.mjs';
 import {prepareCommandTimeline,commandAtSegment} from './command-timeline.mjs';
+import {commandTimingComparison} from './command-timing-comparison.mjs';
 import {MAX_TEXT_LENGTH} from './data.mjs';
 
 const node = (tag, text) => {const e = document.createElement(tag); if (text !== undefined) e.textContent = text; return e;};
@@ -28,6 +29,8 @@ export function createCommandTimingPanel(anchor, {onExample,onResponseExample, o
     #command-timing-panel th,#command-timing-panel td{text-align:left;vertical-align:top;padding:10px 8px;border-bottom:1px solid #d3e0e3}
     #command-timing-panel .timing-selected{background:#edf5f8}#command-timing-panel .timing-legend{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:12px}
     #command-timing-panel .timing-legend span{border-bottom:3px solid;padding-bottom:4px}
+    #command-timing-panel .timing-comparison-toggle{display:flex;align-items:center;gap:9px;margin:12px 0}
+    #command-timing-panel .timing-comparison-toggle input{width:auto;padding:0}
     #command-timing-panel [hidden]{display:none!important}
     @media(max-width:700px){#command-timing-panel .timing-controls{grid-template-columns:1fr}#command-timing-panel th,#command-timing-panel td{padding:9px 5px}#command-timing-panel table{font-size:11px}}
   `;
@@ -62,17 +65,24 @@ export function createCommandTimingPanel(anchor, {onExample,onResponseExample, o
   const view = select('Instrument view', 'command-timing-view', [['response', 'Command and motion'], ['profile', 'Whole delay comparison']]);
   const legend = node('div'); legend.className = 'timing-legend';
   for (const [text, color] of [['Recorded angle / command', '#174858'], ['Inspected response prediction / command', '#a24915'], ['Zero-delay prediction', '#7d7e8c']]) {const key = node('span', text); key.style.color = color; key.style.borderColor = color; legend.append(key);}
+  const comparisonControl = node('label'); comparisonControl.className = 'timing-comparison-toggle';
+  const comparisonToggle = node('input'); comparisonToggle.type = 'checkbox'; comparisonToggle.id = 'command-timing-comparison';
+  comparisonToggle.setAttribute('aria-describedby', 'command-timing-comparison-caption');
+  comparisonControl.append(comparisonToggle, node('span', 'Show competing predictions'));
+  const comparisonCaption = node('p'); comparisonCaption.id = 'command-timing-comparison-caption'; comparisonCaption.hidden = true;
+  const comparisonUnavailable = node('ul'); comparisonUnavailable.id = 'command-timing-comparison-unavailable'; comparisonUnavailable.hidden = true;
+  const comparisonKey = node('span', 'Training-competitive prediction span'); comparisonKey.style.color = '#467f9c'; comparisonKey.style.borderColor = '#467f9c'; comparisonKey.hidden = true; legend.append(comparisonKey);
   const chart = node('div'); chart.id = 'command-timing-chart';
   const detail = node('p'); detail.id = 'command-timing-detail';
   const tableHost = node('div'); tableHost.className = 'timing-table-wrap'; tableHost.tabIndex = 0; tableHost.setAttribute('aria-label', 'Complete offered delay comparison');
   const limits = node('p'); limits.id = 'command-timing-limits';
-  result.append(selectors, legend, chart, detail, tableHost, limits);
+  result.append(selectors, comparisonControl, legend, chart, comparisonCaption, comparisonUnavailable, detail, tableHost, limits);
   const initialAssumption=node('p','A positive response time assumes first-order command response, initially at equilibrium with the declared pre-recording command. That initial state is a declaration, not inferred from the recorded angles.');
   host.append(style, title, intro, sourceLabel,initialAssumption, controls, actions, file, status, result);
   let bundle = null, report = null, revision = 0, userEdits = 0, lastWidth = 0;
   function retire(message = 'Inputs changed. Recompute; the previous comparison has been cleared.') {revision++; report = null; chart.replaceChildren(); result.hidden = true; save.hidden = true; runButton.disabled = !bundle; status.textContent = message;}
   for (const field of [delays,responseTimes, before, noise, library, step, budget, maxTerms, ambiguity]) field.addEventListener('input', () => {userEdits++;retire();});
-  for (const field of [candidateSelect, runSelect, view]) field.addEventListener('change', draw);
+  for (const field of [candidateSelect, runSelect, view, comparisonToggle]) field.addEventListener('change', draw);
   function settings() {
     for (const field of [delays,responseTimes, before, noise, library, step, budget, maxTerms, ambiguity]) if (!field.value.trim()) throw Error('Every command-study input, including the pre-recording command, must be explicitly filled.');
     const responses=responseTimes.value.split(',').map(s=>{if(!s.trim())throw Error('No empty response-time entries are allowed.');return Number(s.trim());});
@@ -118,6 +128,10 @@ export function createCommandTimingPanel(anchor, {onExample,onResponseExample, o
   function draw() {
     if (!report) return;
     const joint=Boolean(report.options.responseTimes);
+    comparisonControl.hidden = view.value === 'profile';
+    comparisonCaption.hidden = view.value === 'profile' || !comparisonToggle.checked;
+    comparisonKey.hidden = true;
+    comparisonUnavailable.hidden = true; comparisonUnavailable.replaceChildren();
     const candidate = report.candidates.find(c => candidateKey(c,joint)===candidateSelect.value);
     const run = report.bundle.challengeRuns.find(r => r.id === runSelect.value), received = candidate.receiving.find(r => r.runId === run.id);
     const zero = referenceCandidate()?.receiving.find(r => r.runId === run.id);
@@ -156,8 +170,30 @@ export function createCommandTimingPanel(anchor, {onExample,onResponseExample, o
     } else {
       legend.hidden = false; const elapsed = r => r.time - run.samples[0].time, duration = elapsed(run.samples.at(-1)), x = t => left + width * t / duration;
       const predictions = received?.status === 'executed' ? received.rollout.rows : [], baseline = zero?.status === 'executed' ? zero.rollout.rows : [];
-      const values = [...run.samples.map(s=>s.position), ...predictions.map(s=>s.predicted), ...baseline.map(s=>s.predicted)], low=Math.min(...values), high=Math.max(...values), pad=Math.max(.02,(high-low)*.06);
+      const comparison = comparisonToggle.checked ? commandTimingComparison(report, run.id) : null;
+      const span = comparison?.rows ?? [];
+      if (comparison) {
+        let maximumSpread = 0;
+        for (const row of span) maximumSpread = Math.max(maximumSpread, row.high-row.low);
+        comparisonCaption.textContent = `${comparison.candidateCount} training-competitive alternatives: ${comparison.availableCount} complete on this recording; ${comparison.unavailable.length} unavailable. ${comparison.availableCount > 1 && span.length ? `Blue span: pointwise range of complete predictions; maximum sampled spread ${fmt(maximumSpread)} rad. Its boundaries may switch between candidates and need not be one executable trajectory. This is not a probability or confidence interval.` : comparison.availableCount === 1 && span.length ? 'One complete prediction: its outline has no between-forecast spread and is not a probability or confidence interval.' : 'No complete prediction span is available; missing predictions are not zero error.'}`;
+        comparisonKey.hidden = !span.length;
+        comparisonKey.textContent = comparison.availableCount === 1 ? 'Single complete competitive prediction' : 'Training-competitive prediction span';
+        for (const item of comparison.unavailable) comparisonUnavailable.append(node('li', `${item.key}: ${item.reason}`));
+        comparisonUnavailable.hidden = !comparison.unavailable.length;
+      }
+      let low = Infinity, high = -Infinity;
+      const include = value => {low = Math.min(low, value); high = Math.max(high, value);};
+      for (const row of run.samples) include(row.position);
+      for (const rows of [predictions, baseline]) for (const row of rows) include(row.predicted);
+      for (const row of span) {include(row.low); include(row.high);}
+      const pad = Math.max(.02, (high-low)*.06);
       const y = axis(45, 245, low-pad, high+pad, 'Angle (rad)');
+      if (span.length) {
+        const points = [...span.map(r=>`${x(elapsed(r))},${y(r.low)}`), ...span.slice().reverse().map(r=>`${x(elapsed(r))},${y(r.high)}`)].join(' ');
+        const band = svgNode('polygon', {points, fill:'#9ac8df', 'fill-opacity':comparison.availableCount > 1 ? .35 : 0, stroke:'#467f9c', 'stroke-width':1, 'data-training-competitive-span':'true'});
+        band.append(svgNode('title', {}, comparison.availableCount === 1 ? 'Single complete competitive prediction; no between-forecast spread or probability interval.' : 'Pointwise span of complete training-competitive predictions; not a probability interval.'));
+        svg.append(band);
+      }
       trace(baseline.map(r=>({x:elapsed(r),y:r.predicted})),x,y,'#7d7e8c','5 4'); trace(run.samples.map(r=>({x:elapsed(r),y:r.position})),x,y,'#174858'); trace(predictions.map(r=>({x:elapsed(r),y:r.predicted})),x,y,'#a24915','6 4');
       const applied=prepareCommandTimeline(run.samples,{delaySeconds:candidate.delaySeconds,responseTimeSeconds:candidate.responseTimeSeconds??0,beforeStart:report.options.beforeStart});
       const commands=[...run.samples.map(s=>s.command),report.options.beforeStart],lo=Math.min(...commands)-.1,hi=Math.max(...commands)+.1,yu=axis(303,377,lo,hi,'Command (N·m)');

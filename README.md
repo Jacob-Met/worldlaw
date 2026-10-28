@@ -210,6 +210,8 @@ changing the original notebook. The measured PASCO example retains substantial
 error even when a shifted coordinate improves average error. An offset does not
 identify a sensor defect or physical cause. See [the contract and receiving](docs/ANGLE_REFERENCE.md).
 
+In Trajectory Challenge’s command-timing instrument, **Show competing predictions** overlays the pointwise span of complete training-competitive forecasts on the same original separate recording. Counts and reasons keep unavailable alternatives visible; the span is not a probability or confidence interval. See [operation and interpretation](docs/COMMAND_TIMING_COMPARISON.md).
+
 The program searches subsets of seven declared terms and distinguishes some alternative structures. It fits coefficients with scaled QR and ranks models with a noise-floor information criterion. Model spread is a heuristic, not calibrated probability. [Scientific details and retained counterexamples](docs/SCIENTIFIC_CORE.md) cover rank deficiency, an omitted cubic law, parameter drift and a 40-case active-versus-passive experiment.
 
 Video reconstruction, arbitrary mechanism topology, calibrated uncertainty, physical instrument receiving, broader generalization, provider/GPU qualification and contest submission remain open. This usable increment preserves the full original goal.
