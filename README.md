@@ -488,3 +488,7 @@ visible. Save/reopen retains source inputs and work settings, then recomputes
 the result. These are conditional compatibility bounds, not a confidence
 interval or a physical preparation-effect estimate. See [the model, source
 contract and receiving scope](docs/PERIODIC_HISTORY_RANGE.md).
+
+### Collect a separate matched-history course
+
+In Unknown Lab, **Take the question to your instrument** freezes a reproducible balanced AB/BA reading schedule from your declared preparation, common target state and noise assumption. Enter the actual command, angle, rate and torque for each reading; the worksheet leaves all measurements blank until supplied. Save and reopen partial work, then explicitly confirm the chronology and apply a complete admitted course to the existing paired comparison. Keep the worksheet as the full acquisition record. These are user-declared measurements; the app neither operates nor authenticates an instrument. See [the acquisition workflow and limits](docs/HISTORY_ACQUISITION.md).

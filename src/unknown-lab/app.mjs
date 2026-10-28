@@ -1,3 +1,4 @@
+import {mountHistoryAcquisition} from './history-acquisition-panel.mjs';
 import {mountReferenceChannel} from './reference-panel.mjs';
 import {mountMixedStateResponse} from './mixed-state-panel.mjs';
 import {mountRecoveryTransport} from './recovery-transport-panel.mjs';
@@ -155,6 +156,11 @@ try {
  else adopt(syntheticChallenge(),'Executed virtual baseline');
 }catch(e){adopt(syntheticChallenge(),'Executed virtual baseline (browser storage unavailable)');}
 
+
+mountHistoryAcquisition({onApply:next=>{
+ notebookIntent++;
+ adopt(next,'Applied declared acquired readings');
+}});
 
 const durationPanel=mountDurationPanel(()=>notebook);
 mixedStatePanel=mountMixedStateResponse(()=>notebook);
