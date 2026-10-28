@@ -329,6 +329,8 @@ studioComparison=mountStudioComparison($('studio-motion-comparison'),{
   transportHost:$('studio-comparison-transport-slot'),getState:()=>state,
   getInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}}),
   chart,onClear:()=>runSimulation(false),
+  investigation:{begin:()=>{const ticket=beginSourceReplacement();studioComparison.retire('Opening a release investigation…');return ticket;},current:()=>generation,
+    commit:staged=>{const q=staged.question;for(const [id,value]of [['initial-angle',q.initial.position],['initial-rate',q.initial.rate],['duration',q.settings.duration],['inertia',q.settings.inertia],['simulation-command',q.settings.command]])$(id).value=String(value);adopt(staged.state,'Reopened original release investigation; laws and paths recomputed from inputs.');}},
 });
 
 const savedRead=notebookStorage.readInitial();

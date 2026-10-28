@@ -1,3 +1,4 @@
+import {outputIntervalCount} from './output-grid.mjs';
 import { executeStudioDynamics } from './studio-dynamics.mjs';
 
 export const STUDIO_COMPARISON_LIMITS = Object.freeze({
@@ -134,7 +135,7 @@ export function compareStudioDynamics(discovery, initial, settings = {}, policy 
     || !Number.isInteger(requestedMaxTrials) || requestedMaxTrials < 1 || requestedMaxTrials > 100000) {
     return refuseAll(refusal('Invalid duration, sample interval, or maximum trial count.', 'invalid_input'));
   }
-  const intervals = Math.ceil(duration / dt);
+  const intervals = outputIntervalCount(duration, dt);
   if (!Number.isSafeInteger(intervals) || intervals < 1 || intervals > 10000) {
     return refuseAll(refusal('The requested grid exceeds the maintained executor interval limit.', 'step_limit'));
   }
