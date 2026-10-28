@@ -27,7 +27,7 @@ export function energyBudget(model, trajectory, {inertia, command = 0} = {}) {
       -coefficient('cubic')*d*(p+initial)*(p*p+initial*initial)/4
       -coefficient('bias')*d;
   };
-  let commandWork=0, rateWork=0, positiveRateWork=0;
+  let rateWork=0, positiveRateWork=0;
   const rows=[];
   for (let i=0;i<trajectory.length;i++) {
     const state=trajectory[i];
@@ -39,11 +39,15 @@ export function energyBudget(model, trajectory, {inertia, command = 0} = {}) {
     const kinetic=inertia*v*v/2;
     const stored=kinetic+potential(p);
     const commandPower=command*(coefficient('command')+coefficient('command_position')*p)*v;
+    // Command is fixed for this execution, so integrate its affine angle
+    // dependence analytically. Endpoint displacement retains reversals and
+    // avoids command-power quadrature error on sparsely sampled motion.
+    const commandWork=command*(p-initial)*
+      (coefficient('command')+coefficient('command_position')*(p+initial)/2);
     const ratePower=coefficient('rate')*v*v+coefficient('coulomb')*Math.abs(v)+coefficient('quadratic')*Math.abs(v)**3;
     const previous=rows.at(-1);
     if(previous) {
       const h=state.time-previous.time;
-      commandWork+=h*(previous.commandPower+commandPower)/2;
       rateWork+=h*(previous.ratePower+ratePower)/2;
       positiveRateWork+=h*(Math.max(0,previous.ratePower)+Math.max(0,ratePower))/2;
     }
@@ -56,5 +60,5 @@ export function energyBudget(model, trajectory, {inertia, command = 0} = {}) {
   }
   return {schema:'worldlaw.sampled-energy-budget/v1',units:{energy:'J',power:'W'},rows,
     final:rows.at(-1),maxAbsBalanceResidual:Math.max(...rows.map(r=>Math.abs(r.balanceResidual))),
-    interpretation:'Model-relative kinetic and potential energy; trapezoidal work on executed states. Positive rate work means modeled energy input on these samples, not physical activity or global passivity. Balance residual combines solver and sampled quadrature error; no convergence certificate.'};
+    interpretation:'Model-relative kinetic and potential energy; fixed-command work uses angular displacement, while rate work uses trapezoidal quadrature on executed states. Positive rate work means modeled energy input on these samples, not physical activity or global passivity. Balance residual retains solver and sampled rate-work quadrature error; no convergence certificate.'};
 }

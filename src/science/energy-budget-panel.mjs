@@ -16,7 +16,7 @@ export function renderEnergyBudget(container,model,trajectory,options) {
       ['Work from rate-dependent terms',last.rateWork],
       ['Positive rate-work portion',last.positiveRateWork],
       ['Remaining balance residual',last.balanceResidual],
-      ['Largest absolute residual along path',result.maxAbsBalanceResidual]]) {
+      ['Largest absolute residual at sampled states',result.maxAbsBalanceResidual]]) {
       const row=document.createElement('tr'),heading=text('th',label);heading.scope='row';
       row.append(heading,text('td',format(value)));body.append(row);
     }
