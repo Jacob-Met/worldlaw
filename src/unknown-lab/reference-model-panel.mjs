@@ -1,4 +1,5 @@
 import {MODEL_SCHEMA,compareReferenceExperiments,validateReferenceModels} from './reference-models.mjs';
+import {mountReferenceRequest} from './reference-request-panel.mjs';
 export function mountReferenceModels(host,getStudy){
  const node=document.createElement('section');node.id='reference-model-comparison';
  node.innerHTML=`<h3>What could an additional response explain?</h3><p>Compare an artifact-only explanation with a bounded additional saturation response. Every explanation keeps one gain and amplitude across all runs.</p>
@@ -10,7 +11,7 @@ export function mountReferenceModels(host,getStudy){
  <p class="ref-warning">Finite offered tau values and bounded coefficients only. Computed binary64 feasible polygons include a numerical guard; they are not certified enclosures or calibrated confidence. An additional-response family containing zero amplitude can remain indistinguishable from artifact alone.</p>`;
  host.append(node);const $=s=>node.querySelector(s);let revision=0,saved=null,nextId=0,importedStudy=null;
  function sourceBanner(){const text=importedStudy?'Source: reopened comparison study · '+importedStudy.runs.length+' paired runs · acquisition IDs: '+importedStudy.runs.map(r=>r.main.acquisitionId+' / '+r.reference.acquisitionId).join('; ')+'. The parent instrument above is unchanged; calculations continue to use these reopened originals.':'Source: current parent reference instrument.';$('#rm-source').textContent=text;}
- function retire(){sourceBanner();revision++;saved=null;$('#rm-result').replaceChildren();$('#rm-status').textContent='Inputs changed · compare again.';}
+ function retire(){sourceBanner();revision++;saved=null;node.dispatchEvent(new Event('reference-comparison-changed'));$('#rm-result').replaceChildren();$('#rm-status').textContent='Inputs changed · compare again.';}
  function add(o={duration:1,referenceInterval:[-.01,.01],radius:.02}){
   const tr=document.createElement('tr');if(!o.id){do{o.id='condition-'+(++nextId);}while([...$('#rm-offers').children].some(x=>x.dataset.id===o.id));}tr.dataset.id=o.id;
   const label=document.createElement('td');label.textContent=tr.dataset.id;tr.append(label);
@@ -40,7 +41,7 @@ export function mountReferenceModels(host,getStudy){
    for(const p of c.predictions){const row=document.createElement('p');row.textContent=p.id+': '+p.intervals.map(a=>'['+a.map(x=>Number(x.toPrecision(6))).join(', ')+']').join(' ∪ ')+' N·m';section.append(row);}
    out.append(section);
   }
-  $('#rm-error').textContent='';revision++;
+  $('#rm-error').textContent='';revision++;node.dispatchEvent(new Event('reference-comparison-changed'));
  }
  $('#rm-form').oninput=retire;$('#rm-form').onsubmit=e=>{e.preventDefault();retire();try{show(settings(),offers());}catch(x){$('#rm-error').textContent=x.message;}};
  $('#rm-add').onclick=()=>{if($('#rm-offers').children.length>=32)return;add();retire();};
@@ -56,4 +57,5 @@ export function mountReferenceModels(host,getStudy){
  }catch(x){if(token===revision)$('#rm-error').textContent=x.message;}finally{e.target.value='';}};
  host.addEventListener('reference-study-changed',()=>{importedStudy=null;retire();});
  add();add({duration:3,referenceInterval:[-.01,.01],radius:.02});
+ mountReferenceRequest(node,()=>saved);
 }

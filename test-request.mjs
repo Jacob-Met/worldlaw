@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict';
+import {syntheticChallenge} from './src/unknown-lab/paired-history.mjs';
+import {referenceExample} from './src/unknown-lab/reference-example.mjs';
+import {freezeReferenceRequest,receiveReferenceRequest,exportReferenceReceiving,importReferenceReceiving} from './src/unknown-lab/reference-model-request.mjs';
+const f=t=>-Math.expm1(-t/1.3);let nextSeed=100;
+function run(id,t,m,r,sigma=1e-8){
+ const notebook=(target,seed)=>syntheticChallenge({count:32,seed,noiseSigma:sigma,duration:t,effect:target/f(t),orderStrategy:'shuffled'});
+ return {id,role:'challenge',duration:t,main:{acquisitionId:id+'-main',notebook:notebook(m,++nextSeed)},reference:{acquisitionId:id+'-ref',notebook:notebook(r,++nextSeed)}};
+}
+const study=referenceExample();study.gainBounds=[0,2];study.runs=[.3,1,3].map((t,i)=>({...run('train'+i,t,f(t),f(t)),role:'training'}));
+const input={schema:'worldlaw.reference-models/v1',study,amplitudeBounds:[.2,.6],taus:[1.3]};
+const offer={id:'suppressed',duration:2,referenceInterval:[-.0001,.0001],radius:.0001};
+const request=freezeReferenceRequest(input,offer,{id:'request1',prospectiveDeclaration:true});
+assert.throws(()=>{request.input.amplitudeBounds=[0,.6];});assert.throws(()=>{request.offer.referenceInterval[0]=-9;});
+assert.throws(()=>freezeReferenceRequest(input,{...offer,duration:31},{id:'too-long',prospectiveDeclaration:true}));
+const frozen=JSON.stringify(receiveReferenceRequest(request).frozenComparison);
+const a=run('actual1',2,.4*f(2),0),r=receiveReferenceRequest(request,[a]);
+assert.equal(r.qualification[0].offeredConditionAchieved,true);
+assert.equal(r.analysis.models[0].joint.status,'contradicted');assert.equal(r.analysis.models[1].joint.status,'compatible');
+const miss=run('miss',2,f(2),f(2)),missed=receiveReferenceRequest(request,[miss]);
+assert.equal(missed.qualification[0].referenceAchieved,false);assert.equal(missed.analysis.models[0].joint.status,'compatible');
+const wide=receiveReferenceRequest(request,[run('wide',2,.4*f(2),0,.01)]);assert.equal(wide.qualification[0].precisionAchieved,false);assert.equal(wide.source.outcomes.length,1);
+const b=run('actual2',2,.55*f(2),0),joint=receiveReferenceRequest(request,[a,b]);assert.equal(receiveReferenceRequest(request,[b]).analysis.models[1].joint.status,'compatible');assert.equal(joint.analysis.models[1].joint.status,'contradicted');
+assert.equal(JSON.stringify(joint.frozenComparison),frozen);assert.deepEqual(importReferenceReceiving(exportReferenceReceiving(request,[a,b])),joint);
+const missing=JSON.parse(exportReferenceReceiving(request,[a]));delete missing.outcomes;assert.throws(()=>importReferenceReceiving(JSON.stringify(missing)));
+const nested=freezeReferenceRequest({...input,amplitudeBounds:[0,.6]},offer,{id:'nested',prospectiveDeclaration:true});assert.ok(receiveReferenceRequest(nested).frozenComparison.comparisons[0].pairs.every(p=>!p.separated));
+const weak=freezeReferenceRequest(input,{...offer,referenceInterval:[-1,1]},{id:'weak',prospectiveDeclaration:true});assert.ok(receiveReferenceRequest(weak).frozenComparison.comparisons[0].pairs.every(p=>!p.separated));
+const unqualified=run('oneway',2,.4*f(2),0);unqualified.main.notebook=syntheticChallenge({count:32,seed:9991,noiseSigma:1e-8,duration:2,effect:.4,orderStrategy:'oneway'});
+const mixed=receiveReferenceRequest(request,[a,b,unqualified]);assert.equal(mixed.qualification[2].orderQualified,false);assert.equal(mixed.analysis.models[1].joint.status,'contradicted');assert.equal(mixed.analysis.models[1].joint.unqualifiedCount,1);
+assert.throws(()=>receiveReferenceRequest(request,[{...a,duration:3}]));assert.throws(()=>receiveReferenceRequest(request,[a,a]));assert.throws(()=>freezeReferenceRequest({...input,study:{...study,runs:[...study.runs,a]}},offer,{id:'bad',prospectiveDeclaration:true}));
+console.log('PASS: achieved separator; missed reference; wider precision retained; same-coefficient joint contradiction; frozen/reopen invariance; A=0 nesting; mismatched/duplicate source refusals');
