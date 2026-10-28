@@ -1,0 +1,144 @@
+{
+  "schema": "worldlaw.half-rate-sensitivity-receiving/v1",
+  "stage": "isolated maintained consumer, not full-suite qualification",
+  "claim": 423,
+  "sourceManifest": {
+    "scope": "Isolated54a8 maintained runtime plus additive sensitivity; no changes in later mergedmain affect this closure",
+    "files": [
+      {
+        "path": "src/trajectory/cycle-work-half-sensitivity.mjs",
+        "sha256": "70c7a81f47718e8155843d605fbe5f5bf59fcb603479cbde9ed4b4166651b3ae"
+      },
+      {
+        "path": "src/trajectory/cycle-work-half-sensitivity-panel.mjs",
+        "sha256": "396f42cf4e4a21cbab7d394c2cd7a3aab1ffbe45ee38d0250a9f60d7bf008e4c"
+      },
+      {
+        "path": "src/trajectory/cycle-work-halves-panel.mjs",
+        "sha256": "b2f6e4a6578714e81dbd7b6b74b977ee09c211f846e91bcd486a0774cfe3a709"
+      },
+      {
+        "path": "src/trajectory/cycle-work-panel.mjs",
+        "sha256": "52ec6d9474c7eebe94a7f31650f345d495a674234a93125da262adf51484b3bc"
+      },
+      {
+        "path": "tests/angular-cycle-work-half-sensitivity.test.mjs",
+        "sha256": "3ac2540b588a8d624e7dff4be1d60b96b81b81870ddb5737f1d5069fdbf9153b"
+      },
+      {
+        "path": "scripts/angular-cycle-work-half-sensitivity-browser.mjs",
+        "sha256": "4d34424757a8f9a1232a3422992dc474e54354d5f8db936b9d05314c66aa148f"
+      },
+      {
+        "path": "examples/physical-pasco-92be.json",
+        "sha256": "7e42868153d3aa15fc9722f665f5ed62cc491c4445768f8db74a6e36b85cb0e6"
+      }
+    ]
+  },
+  "native": {
+    "tests": 7,
+    "pass": 7,
+    "fail": 0,
+    "skip": 0,
+    "logSHA256": "39fb1a13f3359b07db8a63908d73022870ad0fccaad6291dcd08dceac3b6dfcc"
+  },
+  "browser": {
+    "groups": 18,
+    "exitCode": 0,
+    "uid": 65534,
+    "fullSandbox": true,
+    "displayedSensitivityValuesChecked": 144,
+    "originalHalfValuesChecked": 816,
+    "originalTraceSamplesChecked": 1800,
+    "evidence": [
+      {
+        "name": "browser-receipt.json",
+        "sha256": "300d04fc3bf51bacd4458cf5eae6a8e3acb284aad274909fcb6b93c9adf63c77",
+        "bytes": 21189
+      },
+      {
+        "name": "sensitivity-observed-receipt.json",
+        "sha256": "82de14d2f9aae6292e9cd98a3ca9f1979f8cef2d753b96db28670a719e8ca7a9",
+        "bytes": 962374
+      },
+      {
+        "name": "sandbox.txt",
+        "sha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "bytes": 268
+      },
+      {
+        "name": "sensitivity-1440.png",
+        "sha256": "b362d546c41fdefde9ed457c55640a8f43f04f4387d7ccb931856dc54002d9c5",
+        "bytes": 180742
+      },
+      {
+        "name": "sensitivity-390.png",
+        "sha256": "6264f8ffa32e7cbc61eb39d5b2ad92166cd69eae1c9e986da661783d08ab2f9a",
+        "bytes": 90756
+      }
+    ]
+  },
+  "qualification": [
+    "Original native 5-test stage retained separately before numerical fixes.",
+    "Stage2 seven tests used original receiving receipt; portable stage3 seven tests use canonical repository example.",
+    "1440 and390 images visually inspected: supported windows and unsupported33 are clear; signed values and source selection visible.",
+    "Synchronous bounded evaluation; no latency or interruption claim.",
+    "Browser images are internal receiving evidence; not part of persistent text checkpoint."
+  ],
+  "finalDefaultCorrection": {
+    "defaultWindows": [
+      5,
+      9,
+      17,
+      31
+    ],
+    "unsupportedControl": "Browser explicitly adds33 after first verifying useful defaults.",
+    "actualGroups": 4,
+    "exitCode": 0,
+    "evidence": [
+      {
+        "name": "browser-receipt.json",
+        "sha256": "802c7c9332ef1089062ea1ad21100f9d2eb5ca100d115505aa0895514e1d467d",
+        "bytes": 457
+      },
+      {
+        "name": "sandbox.txt",
+        "sha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "bytes": 268
+      },
+      {
+        "name": "sensitivity-default-1440.png",
+        "sha256": "3302e94b7f6c04a2f2f84ee5d4f6c258595d1a63df79d85f5dc1bc85b60c09aa",
+        "bytes": 172804
+      },
+      {
+        "name": "sensitivity-default-390.png",
+        "sha256": "80e358fb1affb370156c822b083892ceb9d3114cedcebccc3b9e2a0c072f2179",
+        "bytes": 90342
+      }
+    ],
+    "panelSHA256": "df3041808df1190d769feca5a088093dd14b166f95870eea576949cf5a0f02ae",
+    "targetedHarnessSHA256": "5ac673902d306853fcde4e4e153057834ff10951ca44f408710f940f6662867d",
+    "scope": "Final panel default and supported-range copy only; prior18 groups belong to original frozen stage3 source. No repeated numerical suite."
+  },
+  "currentMainComposition": {
+    "base": "b1562c3195ed6b8e17ee336c449e0e0f5b4daf6b",
+    "tree": "6fdf2e112d4f02ff8c43467681ecdd65fa471203",
+    "incomingPaths": [
+      "docs/CALIBRATION_REPORT_INTAKE.md",
+      "docs/receipts/calibration-report-20261028/browser.json",
+      "scripts/calibration-report.receiving.mjs",
+      "src/science/calibration-report-panel.mjs",
+      "src/science/calibration-report.mjs",
+      "src/science/shared-calibration-panel.mjs",
+      "src/science/shared-calibration.mjs",
+      "tests/calibration-report.test.mjs"
+    ],
+    "candidateOverlap": [],
+    "maintainedSmokes": [
+      "studio PASS",
+      "trajectory PASS"
+    ],
+    "fullSuiteRepeated": false
+  }
+}

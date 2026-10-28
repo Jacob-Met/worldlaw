@@ -1,3 +1,4 @@
+import {createHalfSensitivityPanel} from './cycle-work-half-sensitivity-panel.mjs';
 import {inspectCycleWorkHalves} from './cycle-work.mjs';
 const node=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 const fmt=x=>Number.isFinite(x)?Number(x.toPrecision(6)).toString():'unavailable';
@@ -17,8 +18,9 @@ export function createHalfCyclePanel(anchor){
  const ledgerStyle=node('style');ledgerStyle.textContent=`#cycle-work-halves-output{isolation:isolate}#cycle-work-halves-output table{min-width:650px;table-layout:fixed}#cycle-work-halves-output th:nth-child(5){width:90px;box-sizing:border-box}#cycle-work-halves-output th:nth-child(6){width:104px;box-sizing:border-box}#cycle-work-halves-output td{overflow-wrap:anywhere}#cycle-work-halves-output th:first-child{position:sticky;left:0;background:#fffef9;z-index:1;box-sizing:border-box;min-width:96px;max-width:96px;width:96px;overflow-wrap:anywhere}#cycle-work-halves-output thead th:first-child{z-index:2}#cycle-work-halves-scroll-hint{display:none}@media(max-width:540px){#cycle-work-halves-scroll-hint:not([hidden]){display:block}}`;host.append(ledgerStyle);
  const output=node('div');output.id='cycle-work-halves-output';output.className='cycle-table';output.tabIndex=0;output.setAttribute('role','region');output.setAttribute('aria-label','Scrollable observed half-cycle comparisons');output.setAttribute('aria-describedby','cycle-work-halves-scroll-hint');host.append(output);
  const coverage=node('details');coverage.append(node('summary','All receiving coverage and support'));const body=node('div');coverage.append(body);coverage.hidden=true;host.append(coverage);
+ const sensitivity=createHalfSensitivityPanel(coverage);
  let original=null,report=null,ticket=0;
- function reset(){ticket++;original=null;report=null;host.hidden=true;save.hidden=controls.hidden=coverage.hidden=true;trace.replaceChildren();selectedSummary.textContent='';scrollHint.hidden=true;output.replaceChildren();body.replaceChildren();inspect.disabled=false;status.textContent='';}
+ function reset(){sensitivity.reset();ticket++;original=null;report=null;host.hidden=true;save.hidden=controls.hidden=coverage.hidden=true;trace.replaceChildren();selectedSummary.textContent='';scrollHint.hidden=true;output.replaceChildren();body.replaceChildren();inspect.disabled=false;status.textContent='';}
  function receive(result){reset();original=result;host.hidden=!result;status.textContent='Optional inspection; the original comparison and source export are unchanged.';}
  function chooseRun(){cycle.replaceChildren();const r=report?.records.find(r=>r.runId===run.value);for(const c of r?.cycles??[]){const o=node('option','Cycle '+c.cycleIndex+' · '+c.halfStatus);o.value=String(c.cycleIndex);cycle.append(o);}paint();}
  function drawObservedCycle(record,c){
@@ -48,6 +50,7 @@ export function createHalfCyclePanel(anchor){
  }
  function paint(){
   trace.replaceChildren();selectedSummary.textContent='';scrollHint.hidden=true;output.replaceChildren();output.scrollLeft=0;const r=report?.records.find(r=>r.runId===run.value),c=r?.cycles.find(c=>String(c.cycleIndex)===cycle.value);
+  sensitivity.receive(report,c?{runId:r.runId,cycleIndex:c.cycleIndex}:null);
   if(!c){output.append(node('p','No complete receiving cycle is available. Original prefix/suffix coverage remains below.'));return;}
   drawObservedCycle(r,c);
   selectedSummary.textContent=c.halfStatus==='compared'?'Observed max-to-min and min-to-max endpoints: '+fmt(c.start)+'–'+fmt(c.end)+' s. Two-half observed sum '+fmt(c.observedSum)+'; original full-cycle loss '+fmt(c.loss)+'; endpoint closure '+fmt(c.endpointClosure)+'.':c.halfReason;
@@ -64,8 +67,8 @@ export function createHalfCyclePanel(anchor){
   body.append(node('p',report.interpretation));body.append(node('p','Diagnostic pass: '+report.work.rateWindows+' rate windows, '+report.work.intervals+' adjacent intervals. Original source replay and extraction are additional bounded passes.'));
   status.textContent='Observed receiving half-cycles inspected. Opposite residuals can cancel; this neither identifies a missing force nor establishes a calibrated discrepancy threshold.';chooseRun();
  }
- inspect.addEventListener('click',async()=>{if(!original)return;const mine=++ticket,snapshot=original;report=null;save.hidden=true;controls.hidden=coverage.hidden=true;trace.replaceChildren();selectedSummary.textContent='';scrollHint.hidden=true;output.replaceChildren();body.replaceChildren();inspect.disabled=true;status.textContent='Replaying original source and inspecting observed receiving halves…';await new Promise(requestAnimationFrame);if(mine!==ticket)return;try{showReport(inspectCycleWorkHalves(snapshot.inputs));}catch(error){status.textContent='Half-cycle inspection refused: '+error.message;}finally{if(mine===ticket)inspect.disabled=false;}});
+ inspect.addEventListener('click',async()=>{if(!original)return;const mine=++ticket,snapshot=original;report=null;sensitivity.reset();save.hidden=true;controls.hidden=coverage.hidden=true;trace.replaceChildren();selectedSummary.textContent='';scrollHint.hidden=true;output.replaceChildren();body.replaceChildren();inspect.disabled=true;status.textContent='Replaying original source and inspecting observed receiving halves…';await new Promise(requestAnimationFrame);if(mine!==ticket)return;try{showReport(inspectCycleWorkHalves(snapshot.inputs));}catch(error){status.textContent='Half-cycle inspection refused: '+error.message;}finally{if(mine===ticket)inspect.disabled=false;}});
  run.addEventListener('change',chooseRun);cycle.addEventListener('change',paint);
  save.addEventListener('click',()=>{if(!report)return;const url=URL.createObjectURL(new Blob([JSON.stringify(report.inputs,null,2)],{type:'application/json'})),a=node('a');a.href=url;a.download='worldlaw-cycle-work-halves.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
- return {reset,receive,showReport};
+ return {reset,receive,showReport,showSensitivity(next){showReport(next.original);sensitivity.showReport(next);}};
 }
