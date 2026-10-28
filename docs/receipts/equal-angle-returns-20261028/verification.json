@@ -1,0 +1,138 @@
+{
+  "sourcePins": [
+    {
+      "path": "src/trajectory/equal-angle-returns.mjs",
+      "bytes": 7739,
+      "sha256": "7f9b03cd23aca055161adeb20a2e9f8d11fa0e31f44e03cf36ce1cfd22f9fa80"
+    },
+    {
+      "path": "src/trajectory/equal-angle-returns-panel.mjs",
+      "bytes": 7806,
+      "sha256": "29167a46691d67a50b6832b5a989bd908a1121e59f8fc9b4490540a2402325c2"
+    },
+    {
+      "path": "src/trajectory/cycle-work-halves-panel.mjs",
+      "bytes": 13548,
+      "sha256": "4211f37a64f97b65dc9d74c2c9ac50d7ccba07b337bed91f7d9941cb0c2ae29d"
+    },
+    {
+      "path": "src/trajectory/cycle-work-panel.mjs",
+      "bytes": 15171,
+      "sha256": "d5af53b8bec792b42c51f42501668f5f53857840bb59250df750370b34393eb3"
+    },
+    {
+      "path": "tests/equal-angle-returns.test.mjs",
+      "bytes": 4400,
+      "sha256": "349eb0b2506e127299f6cf8184009e20ec1c086a36ce799ebd7013d860ef3c88"
+    },
+    {
+      "path": "scripts/equal-angle-returns-browser.mjs",
+      "bytes": 48692,
+      "sha256": "b6e577f604025362ab156a24d140bed2ce4f73bb781b269f3e98ccf0771b0ef4"
+    },
+    {
+      "path": "examples/physical-pasco-92be.json",
+      "bytes": 453510,
+      "sha256": "7e42868153d3aa15fc9722f665f5ed62cc491c4445768f8db74a6e36b85cb0e6"
+    }
+  ],
+  "native": {
+    "tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "logSha256": "50727abcc5c55f6b1c55232fe536514e2585f868d7e98092943d584fe8dd2478",
+    "priorStage": {
+      "passed": 4,
+      "failed": 1,
+      "cause": "Authored analytic fixture used32 samples per half instead of intended64; unchanged tolerance and production code.",
+      "logSha256": "0a44b863df4d351e97acf434abb9df27ab50aa8d2be198d011359ff5be854781"
+    }
+  },
+  "browser": {
+    "passed": 22,
+    "checks": [
+      "active namespace and seccomp browser sandbox",
+      "original torque consumer remains usable; angular cycle instrument is hidden",
+      "maintained measured source and frozen restoring law execute cycle work by keyboard",
+      "actual downloaded input notebook recomputes scientific disagreement and reopens",
+      "quadratic opt-in invalidates, executes, downloads v2 and restores by actual file reopen",
+      "mixed loss admission compares and reopens actual v3 inputs without replacing older populations",
+      "measured frozen halves by keyboard preserve original export and scientific disagreement",
+      "wrapper reopens in fresh document with exact observed values and plotted positions",
+      "frozen numerical windows retain populations and match native selected residuals",
+      "sensitivity source reopens fresh and declarations invalidate old results",
+      "sensitivity cards support narrow layout and keyboard family selection",
+      "original equal-coordinate returns preserve every level and frozen calculation",
+      "return source reopens fresh; full refusal retains source and no invented markers",
+      "matched original passages and conditional ledger received desktop narrow and keyboard",
+      "pending return input cannot resurrect after a newer declaration",
+      "half-cycle declarations and delayed source cannot restore stale inspection",
+      "observed trace and signed ledger support desktop narrow and actual keyboard scrolling",
+      "invalid declarations clear stale claims; source replacement invalidates exported result",
+      "delayed imported notebook cannot overwrite a newer declaration",
+      "reopened refusal budget survives unchanged recompute and export",
+      "desktop and390px instrument stays in viewport and produces actual screenshots",
+      "no page exceptions or external network requests"
+    ],
+    "displayedReturnValues": 1845,
+    "originalMarkerCoordinates": 246,
+    "receiptSha256": "10d68a0d7f03ba9c2b6f0de99cea935101eed630a8a319232517022a2fe23071",
+    "observedReceiptSha256": "01a1ec9cf4734e5f550a25ff5d7a07f55531c9e5b0e1c167159a11953f286da2",
+    "sandboxSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3"
+  },
+  "work": {
+    "maximumEach": 32768,
+    "requiredIntervals": 5235,
+    "requiredRateWindows": 1993,
+    "requiredComparisons": 738,
+    "actualIntervals": 5235,
+    "actualRateWindows": 1672,
+    "actualComparisons": 738,
+    "budgetAvailable": true,
+    "scope": "Complete offered population reserved before additional calculation. Original source replay and half-cycle extraction have separate existing bounds."
+  },
+  "qualification": "Targeted native and actual consumer receiving. No new full-suite, physical-coordinate calibration, independent replicate or causal identification claim. Internal PNGs are not part of this text-only receipt.",
+  "independentReview": {
+    "sourceSHA256": "c8d87aab1095d9bd04afb7e6dc0e082a8a0203124c10bb4fb8052f333aefb41a",
+    "visualSHA256": "652bb6d609cdcd79dec362578275ab7eb8a76b813cff3c86314df4742f143479",
+    "scope": "Root independently accepted core source and actual desktop/390 trace and ledger captures; source pins and22 browser checks verified."
+  },
+  "composition": {
+    "base": "81fd35e1b2cf60eaad0246c459c48afe7dee5ca5",
+    "canonicalTree": "fdc28c78f618c7b29bc0f53fc8a2ea5349e1e7b4",
+    "requestedBrowserDependencyCount": 77,
+    "allUnmodifiedDependencyGitBlobsMatch": true,
+    "incomingSincePriorMerge": [
+      "REFERENCE_SEQUENCE.md",
+      "docs/CALIBRATION_REPORT_INTAKE.md",
+      "docs/receipts/calibration-checks-20261028/browser.json",
+      "docs/receipts/reference-sequence/browser-sequence.log",
+      "docs/receipts/reference-sequence/current-integration.json",
+      "docs/receipts/reference-sequence/independent-review.json",
+      "docs/receipts/reference-sequence/model-verification.json",
+      "docs/receipts/reference-sequence/native-sequence.log",
+      "docs/receipts/reference-sequence/reference-cleanup.json",
+      "docs/receipts/reference-sequence/root-visual-review.json",
+      "docs/receipts/reference-sequence/sandbox-admission.json",
+      "docs/receipts/reference-sequence/screenshots.json",
+      "docs/receipts/reference-sequence/sequence-receiving.json",
+      "docs/receipts/reference-sequence/source-smoke.json",
+      "scripts/calibration-checks.receiving.mjs",
+      "scripts/reference-sequence-browser.mjs",
+      "src/science/calibration-reference-check.mjs",
+      "src/science/calibration-report-panel.mjs",
+      "src/science/calibration-report.mjs",
+      "src/science/shared-calibration.mjs",
+      "src/science/shared-training-panel.mjs",
+      "src/unknown-lab/reference-request-panel.mjs",
+      "src/unknown-lab/reference-sequence-panel.mjs",
+      "src/unknown-lab/reference-sequence.mjs",
+      "test-sequence.mjs",
+      "tests/calibration-reference-check.test.mjs"
+    ],
+    "candidateOverlap": [],
+    "browserOverlap": [],
+    "maintainedSmokes": "studio and trajectory exited0 on exact unchanged relevant execution closure; unrelated incoming features not independently requalified",
+    "fullSuiteRepeated": false
+  }
+}
