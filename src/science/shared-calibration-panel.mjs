@@ -1,3 +1,4 @@
+import{mountPiecewiseCalibration}from'./piecewise-calibration-panel.mjs';
 import{mountCalibrationChallengeAssociation}from'./calibration-challenge-panel.mjs';
 import{mountCalibrationReport}from'./calibration-report-panel.mjs';
 import{sharedCalibrationContext,searchSharedCalibration,serializeSharedCalibration,replaySharedCalibration}from'./shared-calibration.mjs';
@@ -26,4 +27,6 @@ export function renderSharedCalibration(host,state,eventIndex,modelIndex,through
  // The existing achieved-challenge controls are outside this nested card.
  // Retire its result and pending replay when those source assumptions change.
  for(const control of host.querySelectorAll('input,textarea'))if(!details.contains(control))for(const kind of ['input','change'])control.addEventListener(kind,()=>input.dispatchEvent(new Event('input')));
+ mountPiecewiseCalibration(details,state,eventIndex,modelIndex,throughEvent,context,readReceiving);
+
 }
