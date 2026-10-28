@@ -173,6 +173,7 @@ INCLUDE = (
     'experiments/initial-state-sensitivity.mjs',
     'experiments/angular-prelude.mjs',
     'experiments/rolling-origin.mjs',
+    "scripts/support/trajectory-measured-units.mjs",
 )
 REQUIRED = (
     "src/science/experiment-receipts.mjs", "src/science/experiment-receipts-panel.mjs",
