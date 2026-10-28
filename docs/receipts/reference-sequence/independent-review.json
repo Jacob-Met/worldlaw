@@ -1,0 +1,23 @@
+{
+  "core": {
+    "reviewer": "MATERIALTRUTH",
+    "sha256": "455ec81624b2f455a164e586199d8a883c7021262b8af11e507f6891ce1652af",
+    "accepted": true,
+    "repair": "Canonical exact4MB source exports without extra LF; independently rerun exactlimit ownreplay and onebyteover refusal."
+  },
+  "consumer": {
+    "reviewer": "MATERIALTRUTH",
+    "parentSha256": "105cdcb3794d6db4609b244bc63de26b9ef69516fa7aed11612c5d24d956754b",
+    "sequenceSha256": "d69d1ca9c4c604c1607630b336e29dfee980f4f441fd05ebd7eec0b973ef19cb",
+    "accepted": true,
+    "repair": "Immediate parent receiving changes emit before read and after successful adoption; sequence cancels pending reads and marks stale while retaining account."
+  },
+  "visual": {
+    "reviewer": "WORLDLAW",
+    "widthsInspected": [
+      1440,
+      390
+    ],
+    "finding": "Source/stale disclosure, retained rounds and actual import/export controls legible and unclipped. Inherited checkbox alignment minor."
+  }
+}

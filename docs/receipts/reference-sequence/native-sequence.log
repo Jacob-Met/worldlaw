@@ -1,0 +1,2 @@
+PASS sequential: two-round contraction, fixed family, frozen prefix/prediction replay, stale/tampered prefix refusal, no resurrection, failed offers retained, A=0 and weak-reference negatives
+PASS canonical UTF-8 exact-limit export reopens; one byte over refuses

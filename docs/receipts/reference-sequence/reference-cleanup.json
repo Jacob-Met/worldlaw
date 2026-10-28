@@ -1,0 +1,9 @@
+{
+  "schema": "worldlaw.reference-browser-cleanup/v1",
+  "profile": "/tmp/reference-chrome-M0hPPj",
+  "chromeExited": true,
+  "exitCode": 0,
+  "signalCode": null,
+  "primaryFailure": null,
+  "errors": []
+}

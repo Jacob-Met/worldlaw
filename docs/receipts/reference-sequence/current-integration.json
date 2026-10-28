@@ -1,0 +1,166 @@
+{
+  "receiving": {
+    "base": "0bd78e8320076617a601e7a13faef114b79ec459",
+    "overlay": [
+      {
+        "path": "unknown-lab.css",
+        "bytes": 22634,
+        "sha256": "fd5bf12744c09ddc9905cf9c5c9d2f9b0c66e7f1370580e9860606db8b0dde7a",
+        "gitBlob": "b8f17cc022dab33a33b61bf23ce375d544c0523b"
+      },
+      {
+        "path": "src/unknown-lab/history-acquisition-panel.mjs",
+        "bytes": 10077,
+        "sha256": "26447981ecd71bedec5da6045efe17552c800091033ca5018aa61e67a1141696",
+        "gitBlob": "f17988d7006b1752e818938720a182af19e85eab"
+      }
+    ],
+    "steps": [
+      {
+        "label": "browser",
+        "command": [
+          "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+          "scripts/reference-sequence-browser.mjs"
+        ],
+        "exitCode": 0,
+        "output": "{\"passed\":26,\"artifacts\":\"/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-sequence-current-0bd78-20261028/browser-publication\"}\n",
+        "logSha256": "bd4aa210a578f61f4c81f85c3a23183811b3268706edba507a09544f275dc1f8"
+      },
+      {
+        "label": "smoke",
+        "command": [
+          "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+          "scripts/unknown-reference-receiving.mjs"
+        ],
+        "exitCode": 0,
+        "output": "{\"served\":90,\"health\":200,\"unknownCss\":404,\"post\":405}\n",
+        "logSha256": "c387d7ddf0b57a109eda5518967919e436306e1bf726586652eddd4f95e888c1"
+      }
+    ]
+  },
+  "artifacts": {
+    "files": [
+      {
+        "path": "browser-publication/model-verification.json",
+        "content": "{\n  \"schema\": \"worldlaw.reference-browser/v1\",\n  \"origin\": \"http://127.0.0.1:46627\",\n  \"node\": \"v22.23.4\",\n  \"checks\": [\n    {\n      \"name\": \"original consumer and bounded nested model comparison remain live\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"actual notebook import separates suppressed reference but not repeated proportional observations\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"A=0 nesting and weak reference preserve overlap\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"actual export fresh page reopen retains complete source and predictions\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"reopened source identity persists through coefficient edits and recompare\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"invalid replacement retires predictions; later valid compare uses retained imported study\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"late import cannot overwrite a newer numeric edit\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"completed asynchronous parent source adoption retires a comparison made while pending\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"freeze explicit training source and export request before outcomes\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"actual acquisition separates achieved condition from joint model outcome\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"receiving save and fresh-page reopen retains original actual source\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"missed reference and wider achieved precision remain original visible evidence\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"wrong source refuses transactionally and delayed reopen loses to parent edit\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"completed pending comparison adoption marks reopened child stale without losing outcomes\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"sequence starts from original request and actuals; next design uses narrowed family\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"separate later actual intake preserves earlier frozen round and source-only reopen\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"tampered prefix and stale acquisition reject without discarding accepted actuals\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"late parent adoption retains frozen sequence and marks reopened account stale\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"failed next freeze and delayed account import preserve accepted sequence\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"immediate receiving parent changes retain sequence and stale completed late adoption\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"sequence retained evidence keyboard and actual viewport 1440\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"sequence retained evidence keyboard and actual viewport 390\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"sequence retained evidence keyboard and actual viewport 320\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"keyboard and actual layout 1440\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"keyboard and actual layout 390\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"keyboard and actual layout 320\",\n      \"passed\": true\n    }\n  ],\n  \"exceptions\": [],\n  \"sandboxAdmitted\": true\n}",
+        "sha256": "2048e81ec56c20cf6c625be81b035bde2731a4feb3c2f82fcc78d4ce12140502"
+      },
+      {
+        "path": "browser-publication/sandbox-admission.json",
+        "content": "{\n  \"schema\": \"hamon-chromium-sandbox/v1\",\n  \"qualification\": \"Linux Chromium status in the supplied isolated CDP page\",\n  \"moduleSha256\": \"4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead\",\n  \"startedAt\": \"2026-10-28T19:28:32.984Z\",\n  \"completedAt\": \"2026-10-28T19:28:33.170Z\",\n  \"durationMs\": 186.013417,\n  \"admitted\": true,\n  \"browser\": {\n    \"protocolVersion\": \"1.3\",\n    \"product\": \"Chrome/156.0.8078.47\",\n    \"revision\": \"@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775\",\n    \"userAgent\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36\",\n    \"jsVersion\": \"15.6.75.19\"\n  },\n  \"target\": {\n    \"targetId\": \"5B7A0D84DA4183D20C910F8FE72EA158\",\n    \"type\": \"page\",\n    \"title\": \"about:blank\",\n    \"url\": \"about:blank\",\n    \"attached\": true,\n    \"canAccessOpener\": false,\n    \"browserContextId\": \"74535982CBDB6A35C05CF2BEBDF9ECCF\"\n  },\n  \"url\": \"chrome://sandbox/\",\n  \"text\": \"Sandbox Status\\nLayer 1 Sandbox\\tNamespace\\nPID namespaces\\tYes\\nNetwork namespaces\\tYes\\nSeccomp-BPF sandbox\\tYes\\nSeccomp-BPF sandbox supports TSYNC\\tYes\\nPtrace Protection with Yama LSM (Broker)\\tNo\\nPtrace Protection with Yama LSM (Non-broker)\\tNo\\n\\nYou are adequately sandboxed.\",\n  \"textSha256\": \"ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3\",\n  \"observation\": {\n    \"rows\": {\n      \"layer1\": \"Namespace\",\n      \"pid\": \"Yes\",\n      \"network\": \"Yes\",\n      \"seccomp\": \"Yes\",\n      \"tsync\": \"Yes\"\n    },\n    \"checks\": {\n      \"adequate\": true,\n      \"layer1\": true,\n      \"pid\": true,\n      \"network\": true,\n      \"seccomp\": true,\n      \"tsync\": true\n    },\n    \"populated\": true,\n    \"duplicates\": [],\n    \"active\": true\n  },\n  \"failure\": null\n}",
+        "sha256": "411ee3c4c90c7e6e6fb2eb0e885c75792a711f5581c3be236d51e2479a332f97"
+      },
+      {
+        "path": "browser-publication/reference-cleanup.json",
+        "content": "{\n  \"schema\": \"worldlaw.reference-browser-cleanup/v1\",\n  \"profile\": \"/tmp/reference-chrome-sAkfKp\",\n  \"chromeExited\": true,\n  \"exitCode\": 0,\n  \"signalCode\": null,\n  \"primaryFailure\": null,\n  \"errors\": []\n}",
+        "sha256": "3e6b16fbe16a4da1a4e50e201070d542e5b95a0e1ede864089af41e563dc82e2"
+      }
+    ],
+    "screenshots": [
+      {
+        "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-sequence-current-0bd78-20261028/browser-publication/sequence-1440.png",
+        "bytes": 575328,
+        "sha256": "428699d02ed3da76bbbe03ef6d3bc952705fbeeb96eccd997f425cb52639616d"
+      },
+      {
+        "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-sequence-current-0bd78-20261028/browser-publication/sequence-320.png",
+        "bytes": 176262,
+        "sha256": "3933a4e2aac43e942811f3db131fa7ab4d747bf4f36f972fb222faec962257b9"
+      },
+      {
+        "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-sequence-current-0bd78-20261028/browser-publication/sequence-390.png",
+        "bytes": 212754,
+        "sha256": "561ac1e2062b3caa13efb4614c405b9fd96103dafcdbb1936c6c748243b2ac16"
+      }
+    ]
+  },
+  "previousComposition": {
+    "receiving": {
+      "base": "b1562c3195ed6b8e17ee336c449e0e0f5b4daf6b",
+      "overlay": [
+        {
+          "path": "src/unknown-lab/app.mjs",
+          "bytes": 11036,
+          "sha256": "8203431184e0c23bf2b65e5a1d30914cafb48ce6a319dc27f7a13d46f20d219b",
+          "gitBlob": "399d58c1bc0ba8edd55aea97b4e7d8e5845758d3"
+        },
+        {
+          "path": "unknown-lab.css",
+          "bytes": 20809,
+          "sha256": "e2d7b8eaaab55315a5dab5b3c6c4861b42da329949e736c89564472098270139",
+          "gitBlob": "5edd08f9ee5777a8ce40d37a7fc2ae3f216427e9"
+        },
+        {
+          "path": "src/unknown-lab/history-acquisition-panel.mjs",
+          "bytes": 9332,
+          "sha256": "c8f98926dcfcb7c67f7b9de83a3b110e25e422de1cb6797b429cada68073c16c",
+          "gitBlob": "c3bc4e3b3d1565314351d4e416ac6d2378de3605"
+        },
+        {
+          "path": "src/unknown-lab/history-acquisition.mjs",
+          "bytes": 6527,
+          "sha256": "734ffecd71444cca49af846957347130c13b5e398a73c06df22622340938d508",
+          "gitBlob": "562d9fff257f56ab6027155c54271882a50c59c8"
+        }
+      ],
+      "steps": [
+        {
+          "label": "browser",
+          "command": [
+            "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+            "scripts/reference-sequence-browser.mjs"
+          ],
+          "exitCode": 0,
+          "output": "{\"passed\":26,\"artifacts\":\"/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-sequence-current-b156-20261028/browser-current\"}\n",
+          "logSha256": "b395035ac060968a79adaf942f4f44f22a16036a405423261668bba0593caeab"
+        },
+        {
+          "label": "smoke",
+          "command": [
+            "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+            "scripts/unknown-reference-receiving.mjs"
+          ],
+          "exitCode": 0,
+          "output": "{\"served\":90,\"health\":200,\"unknownCss\":404,\"post\":405}\n",
+          "logSha256": "c387d7ddf0b57a109eda5518967919e436306e1bf726586652eddd4f95e888c1"
+        }
+      ]
+    },
+    "artifacts": {
+      "files": [
+        {
+          "path": "browser-current/model-verification.json",
+          "content": "{\n  \"schema\": \"worldlaw.reference-browser/v1\",\n  \"origin\": \"http://127.0.0.1:34459\",\n  \"node\": \"v22.23.4\",\n  \"checks\": [\n    {\n      \"name\": \"original consumer and bounded nested model comparison remain live\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"actual notebook import separates suppressed reference but not repeated proportional observations\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"A=0 nesting and weak reference preserve overlap\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"actual export fresh page reopen retains complete source and predictions\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"reopened source identity persists through coefficient edits and recompare\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"invalid replacement retires predictions; later valid compare uses retained imported study\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"late import cannot overwrite a newer numeric edit\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"completed asynchronous parent source adoption retires a comparison made while pending\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"freeze explicit training source and export request before outcomes\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"actual acquisition separates achieved condition from joint model outcome\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"receiving save and fresh-page reopen retains original actual source\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"missed reference and wider achieved precision remain original visible evidence\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"wrong source refuses transactionally and delayed reopen loses to parent edit\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"completed pending comparison adoption marks reopened child stale without losing outcomes\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"sequence starts from original request and actuals; next design uses narrowed family\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"separate later actual intake preserves earlier frozen round and source-only reopen\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"tampered prefix and stale acquisition reject without discarding accepted actuals\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"late parent adoption retains frozen sequence and marks reopened account stale\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"failed next freeze and delayed account import preserve accepted sequence\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"immediate receiving parent changes retain sequence and stale completed late adoption\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"sequence retained evidence keyboard and actual viewport 1440\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"sequence retained evidence keyboard and actual viewport 390\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"sequence retained evidence keyboard and actual viewport 320\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"keyboard and actual layout 1440\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"keyboard and actual layout 390\",\n      \"passed\": true\n    },\n    {\n      \"name\": \"keyboard and actual layout 320\",\n      \"passed\": true\n    }\n  ],\n  \"exceptions\": [],\n  \"sandboxAdmitted\": true\n}",
+          "sha256": "8f588ebfe7567b86a8c72d1f40ced556b947c5638432d2cf0fee49df24008ffe"
+        },
+        {
+          "path": "browser-current/sandbox-admission.json",
+          "content": "{\n  \"schema\": \"hamon-chromium-sandbox/v1\",\n  \"qualification\": \"Linux Chromium status in the supplied isolated CDP page\",\n  \"moduleSha256\": \"4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead\",\n  \"startedAt\": \"2026-10-28T19:16:45.723Z\",\n  \"completedAt\": \"2026-10-28T19:16:45.908Z\",\n  \"durationMs\": 184.61700000000002,\n  \"admitted\": true,\n  \"browser\": {\n    \"protocolVersion\": \"1.3\",\n    \"product\": \"Chrome/156.0.8078.47\",\n    \"revision\": \"@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775\",\n    \"userAgent\": \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36\",\n    \"jsVersion\": \"15.6.75.19\"\n  },\n  \"target\": {\n    \"targetId\": \"80B2F08DEE2304E944741FAF65BD6DE4\",\n    \"type\": \"page\",\n    \"title\": \"about:blank\",\n    \"url\": \"about:blank\",\n    \"attached\": true,\n    \"canAccessOpener\": false,\n    \"browserContextId\": \"E879D4EDF8557B3D2CEA2D66D83B56FA\"\n  },\n  \"url\": \"chrome://sandbox/\",\n  \"text\": \"Sandbox Status\\nLayer 1 Sandbox\\tNamespace\\nPID namespaces\\tYes\\nNetwork namespaces\\tYes\\nSeccomp-BPF sandbox\\tYes\\nSeccomp-BPF sandbox supports TSYNC\\tYes\\nPtrace Protection with Yama LSM (Broker)\\tNo\\nPtrace Protection with Yama LSM (Non-broker)\\tNo\\n\\nYou are adequately sandboxed.\",\n  \"textSha256\": \"ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3\",\n  \"observation\": {\n    \"rows\": {\n      \"layer1\": \"Namespace\",\n      \"pid\": \"Yes\",\n      \"network\": \"Yes\",\n      \"seccomp\": \"Yes\",\n      \"tsync\": \"Yes\"\n    },\n    \"checks\": {\n      \"adequate\": true,\n      \"layer1\": true,\n      \"pid\": true,\n      \"network\": true,\n      \"seccomp\": true,\n      \"tsync\": true\n    },\n    \"populated\": true,\n    \"duplicates\": [],\n    \"active\": true\n  },\n  \"failure\": null\n}",
+          "sha256": "1fb3031d4b9ac499e3fc1e089d16cc64367469e4e50b93a08b90cdf3ec3e2d0a"
+        },
+        {
+          "path": "browser-current/reference-cleanup.json",
+          "content": "{\n  \"schema\": \"worldlaw.reference-browser-cleanup/v1\",\n  \"profile\": \"/tmp/reference-chrome-cpgGht\",\n  \"chromeExited\": true,\n  \"exitCode\": 0,\n  \"signalCode\": null,\n  \"primaryFailure\": null,\n  \"errors\": []\n}",
+          "sha256": "ab6196c2925a944c3f66fd19137d927164908238a75bb0429806ac6d31a9f717"
+        }
+      ],
+      "screenshots": [
+        {
+          "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-sequence-current-b156-20261028/browser-current/sequence-1440.png",
+          "bytes": 575328,
+          "sha256": "428699d02ed3da76bbbe03ef6d3bc952705fbeeb96eccd997f425cb52639616d"
+        },
+        {
+          "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-sequence-current-b156-20261028/browser-current/sequence-320.png",
+          "bytes": 176262,
+          "sha256": "3933a4e2aac43e942811f3db131fa7ab4d747bf4f36f972fb222faec962257b9"
+        },
+        {
+          "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-sequence-current-b156-20261028/browser-current/sequence-390.png",
+          "bytes": 212754,
+          "sha256": "561ac1e2062b3caa13efb4614c405b9fd96103dafcdbb1936c6c748243b2ac16"
+        }
+      ]
+    }
+  }
+}
