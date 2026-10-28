@@ -79,3 +79,8 @@ The later current-main composition at `440591a3a60719a1d356054e7da162ba252f8700`
 All75 paths in the recorded browser dependency proof—including the actual requested product assets, server and harness—are byte-identical in this current composition. That establishes preservation of this scoped browser course without rerunning it; it does not qualify the new UNKNOWN LAB journey. See [current receiving](receipts/cycle-work-halves-20261028/verification.json) for exact commands, counts, hashes and the dependency proof. Two interrupted c064 native attempts remain incomplete historical runs, not full-suite passes. The original historical screenshot hashes are not reused for these new captures.
 
 The final composition also preserves the six incoming affine-calibration paths on `54a8e71f36d3451de448fa6a427edcf4cf4038d5`. Three new calibration tests and20existing direct-API regression tests passed, as did both maintained smoke commands. None of the75 recorded browser dependency paths changed. The complete1,607-test run remains attributed to440591; it was not repeated or relabelled for this nonoverlapping incoming change.
+
+
+## Local-rate numerical sensitivity
+
+After the original half-cycle inspection, compare explicitly offered local-rate windows while preserving the same observed positions, cycle/minimum endpoints and trained laws. The additive sensitivity cards retain every original cycle and refusal; the original ledger is unchanged. See [Receiving half-cycle sensitivity to local-rate windows](HALF_CYCLE_RATE_SENSITIVITY.md) for the numerical contract, source-only export/reopen, controls and qualification.
