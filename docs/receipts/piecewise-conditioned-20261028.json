@@ -1,0 +1,388 @@
+{
+  "baseCommit": "4bb7a060c2289096ff80b9499e4ea361732f53b5",
+  "native": {
+    "passed": 77,
+    "failed": 0
+  },
+  "independentReview": {
+    "reviewer": "SYNAPSE",
+    "controls": 5,
+    "verdict": "accepted",
+    "browserClaim": false
+  },
+  "sources": {
+    "src/science/piecewise-conditioned.mjs": "f6ba920c5f4a8579717df273472d2781f9ff843d86f261bdf50b67dd67367755",
+    "src/science/piecewise-conditioned-panel.mjs": "e1c250179996557d8a3d4e9655cb9d46f2c1ebdc3ea3dbcad7262fe5d9e88e0a",
+    "src/science/piecewise-calibration.mjs": "c9e6c9969766f4aee885575dfcb72ea32b169f3d9ccc0ef7b5ce1d4f2df2999c",
+    "src/science/piecewise-calibration-check.mjs": "2d0022f013a64661bf60dd3012f38ef1e240f047f745c7062e2d53f2241f0a70",
+    "src/science/piecewise-calibration-check-panel.mjs": "f644612b6537b13cf31932ed2121b35fc62086567c1af6d085e2e78fd2adfc57",
+    "src/science/piecewise-calibration-panel.mjs": "6f4d2a23ab48a2e626b790d821ee3dcc832f66eac5aa8a76cabc5628b1123dcf",
+    "tests/piecewise-conditioned.test.mjs": "9ed5a23eb961138b2b74c7460b2391b61cffd7f6f2830d5ecca54c2210a371b8",
+    "scripts/piecewise-conditioned.receiving.mjs": "4581f07634ff7c686c349d006c892d010e223ea0dca2f81c57c1219d935edc2f",
+    "docs/CONDITIONED_PIECEWISE_CALIBRATION.md": "aed49776ab3beb27f20816db4e9588c252749032edd46526fe836d8593b6a112"
+  },
+  "browser": {
+    "native": {
+      "command_id": "hamon-69d25c-world-piecewise-conditioned-browser-20261028-v2",
+      "request_sha256": "6defe311a5250bd231c570a4601d0cf656a05d155740a589731576f188ba5984",
+      "generation": "35f1f53238cd73bb2f85276e8a1be95671dbf1b677af3bb1a0ecc92097a68a74",
+      "state": "completed",
+      "runner_pid": 3240618,
+      "started_at": "2026-10-28T22:26:24.135521202Z",
+      "finished_at": "2026-10-28T22:26:31.465858359Z",
+      "exit_code": 0
+    },
+    "browser": {
+      "status": "passed",
+      "startedAt": "2026-10-28T22:26:24.187Z",
+      "finishedAt": "2026-10-28T22:26:31.458Z",
+      "url": "http://127.0.0.1:32903/",
+      "sourceIdentity": {
+        "base": "c0646ad6bff0dca3962fb5e5c4b61ab7f71db30a",
+        "inquiry": 393,
+        "reconstructed": true
+      },
+      "checks": [
+        "Original report remains draft until sourced explicit same-instrument association; both references drive checked separation",
+        "Changed original report bounds restore a checked witness without refitting original observations or associating actual readings",
+        "Public certificate export/reopen retains exact original report and association",
+        "Nonpositive corrected affine factor is refused; prior inquiry evidence retires",
+        "Delayed original-file completion cannot replace an edited inquiry source",
+        "An additional original standard constrains the same calibration pair and changes law inquiry from witness to separation; physical and calibration condition counts remain explicit",
+        "Public replay retains all original additional standards and recomputes the joint separation",
+        "Individually possible but jointly contradictory calibration standards refuse report adoption without attributing failure to the law",
+        "Changed original standard restores a complete checked witness with explicit calibration margin",
+        "Complete original standard course establishes positive factor despite broad defining box; the existing joint law inquiry remains executable",
+        "Public replay retains broad defining errors and all positivity-establishing original checks",
+        "Widened original check bounds retire prior evidence and refuse the now nonpositive calibration domain",
+        "Exact original midpoint equality admits a checked candidate while actual receiving and independent refit remain strictly interior",
+        "Public source-only replay rechecks exact calibration equality without widening its zero bound",
+        "Zero-width actual receiving remains unresolved; exact calibration does not certify numerical QR equality",
+        "Selected report cohort retains only exact original rows; incomplete training partition cannot supply a witness",
+        "Two original instrument reports form one complete source-bound partition through ordinary row-number intake",
+        "Public replay retains both original reports, all exact row values and separate source associations",
+        "Actual report associations start unselected; incomplete ordinary controls do not author shared corrections",
+        "Explicit report selection on the original actual row changes original-only witness to checked separation without editing JSON or refitting",
+        "Public replay independently rechecks original report plus complete actual-row source association",
+        "Original nonlinear calibration remains a draft until explicit complete source association; all original knots yield an independently refitted witness",
+        "Public nonlinear source replay retains every original standard and independently refits original rows",
+        "Explicit same-calibration actual association changes this course to checked separation; original observations remain unadopted",
+        "Calibration-only source retains the adverse original actual reading",
+        "Complete separately sourced original reading residuals reach the same nonlinear inquiry and independently refitted witness",
+        "Public nonlinear source replay retains every original standard and independently refits original rows",
+        "Incomplete residual course refuses instead of silently retaining a subset; source edits retire prior evidence",
+        "Independent standard contradicts original interpolation without becoming another knot or rejecting the physical law",
+        "Changed independent check source preserves defining knots and admits a common corrected-knot witness only after renewed association",
+        "Separate source-only replay rechecks defining knots and complete independent standards without replacing current law inquiry",
+        "Original-source edits retire prior check evidence and export before a new explicit check",
+        "Separate law and calibration witnesses remain retained while explicit same-correction inquiry finds joint separation",
+        "Widened bound may remain unresolved under bounded joint search; no witness is invented",
+        "Changed independent source retires joint evidence; renewed complete association admits both independent rechecks",
+        "Public composite replay independently refits original law readings and rechecks every original standard without source adoption"
+      ],
+      "exceptions": [],
+      "sandbox": {
+        "schema": "hamon-chromium-sandbox/v1",
+        "qualification": "Linux Chromium status in the supplied isolated CDP page",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "startedAt": "2026-10-28T22:26:24.514Z",
+        "completedAt": "2026-10-28T22:26:24.608Z",
+        "durationMs": 94.11253399999998,
+        "admitted": true,
+        "browser": {
+          "protocolVersion": "1.3",
+          "product": "Chrome/156.0.8078.47",
+          "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "jsVersion": "15.6.75.19"
+        },
+        "target": {
+          "targetId": "8FDA14BF1D74F87D69AF50ED5A1F16D5",
+          "type": "page",
+          "title": "about:blank",
+          "url": "about:blank",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "0D58CBD25457697F29F51F9336F78ECA"
+        },
+        "url": "chrome://sandbox/",
+        "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "observation": {
+          "rows": {
+            "layer1": "Namespace",
+            "pid": "Yes",
+            "network": "Yes",
+            "seccomp": "Yes",
+            "tsync": "Yes"
+          },
+          "checks": {
+            "adequate": true,
+            "layer1": true,
+            "pid": true,
+            "network": true,
+            "seccomp": true,
+            "tsync": true
+          },
+          "populated": true,
+          "duplicates": [],
+          "active": true
+        },
+        "failure": null
+      },
+      "pageConnection": {
+        "schema": "hamon.chromium-page.v1",
+        "status": "course-completed",
+        "startedAt": "2026-10-28T22:26:24.461Z",
+        "cdpOrigin": "http://127.0.0.1:39537",
+        "targetId": "8FDA14BF1D74F87D69AF50ED5A1F16D5",
+        "limits": {
+          "startupMs": 5000,
+          "requestMs": 15000,
+          "closeMs": 1000,
+          "maxPending": 128,
+          "maxMessageBytes": 16777216,
+          "maxDiscoveryBytes": 262144
+        },
+        "requests": {
+          "sent": 625,
+          "completed": 625,
+          "methodErrors": 0,
+          "peakPending": 1,
+          "refusedBeforeSend": 0
+        },
+        "events": 109,
+        "failure": null,
+        "retirement": {
+          "closeRequested": true,
+          "closeObserved": true,
+          "closeWaitExpired": false,
+          "rejectedPending": [],
+          "closeCode": 1000,
+          "wasClean": true
+        },
+        "finishedAt": "2026-10-28T22:26:31.395Z",
+        "durationMs": 6934.063713
+      },
+      "lifecycle": {
+        "schema": "hamon.chromium-session.v1",
+        "status": "course-completed",
+        "startedAt": "2026-10-28T22:26:24.202Z",
+        "executable": "/opt/google/chrome/google-chrome",
+        "runDirectory": "/tmp/hamon-69d25c99168e-access-pg-c90eb3c1ab",
+        "profileDirectory": "/tmp/hamon-69d25c99168e-access-pg-c90eb3c1ab/profile",
+        "stdoutFile": "/tmp/hamon-69d25c99168e-access-pg-c90eb3c1ab/stdout.bin",
+        "stderrFile": "/tmp/hamon-69d25c99168e-access-pg-c90eb3c1ab/stderr.bin",
+        "receiptFile": "/tmp/hamon-69d25c99168e-access-pg-c90eb3c1ab/session.json",
+        "sandbox": "not-assessed",
+        "limits": {
+          "startupMs": 15000,
+          "shutdownMs": 3000,
+          "courseMs": 60000
+        },
+        "cleanup": {
+          "attempted": true,
+          "directChildExited": true,
+          "scope": "launched-family-receiver-and-owned-descendants",
+          "signals": [
+            "SIGTERM"
+          ],
+          "familyExited": true
+        },
+        "argv": [
+          "--headless=new",
+          "--enable-automation",
+          "--allow-chrome-scheme-url",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--remote-debugging-address=127.0.0.1",
+          "--remote-debugging-port=0",
+          "--user-data-dir=/tmp/hamon-69d25c99168e-access-pg-c90eb3c1ab/profile",
+          "about:blank"
+        ],
+        "processFamily": {
+          "python": {
+            "path": "/usr/bin/python3.12",
+            "bytes": 8020928,
+            "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+          },
+          "receiver": {
+            "path": "/tmp/hamon-69d25c99168e-access-browser-qualification-v1/chromium_family.py",
+            "bytes": 13667,
+            "sha256": "b2cc9e73a5cbcaba1820cce126ecf5f6ebbcfacb3fd65372c9e1d149a60beae6"
+          },
+          "bytes": 1234,
+          "started": {
+            "event": "started",
+            "schema": "hamon.chromium-family.v1",
+            "supervisorPid": 3240657,
+            "browserPid": 3240666,
+            "subreaper": true
+          },
+          "finished": {
+            "schema": "hamon.chromium-family.v1",
+            "supervisorPid": 3240657,
+            "parentPid": 3240625,
+            "browserPid": 3240666,
+            "status": "family-exited",
+            "subreaper": true,
+            "scope": "one-new-child-and-its-descendants",
+            "limits": {
+              "graceMs": 3000,
+              "killMs": 3000,
+              "maxChildren": 4096,
+              "maxSamples": 64,
+              "maxProcEntries": 32768
+            },
+            "stopReason": "signal-15",
+            "browserExit": {
+              "code": 0,
+              "signal": null
+            },
+            "familyExited": true,
+            "waitNoChildrenObserved": true,
+            "deadlineExpired": false,
+            "reapedCount": 9,
+            "reapedSamples": [
+              {
+                "pid": 3240673,
+                "code": null,
+                "signal": 15
+              },
+              {
+                "pid": 3240677,
+                "code": null,
+                "signal": 15
+              },
+              {
+                "pid": 3240666,
+                "code": 0,
+                "signal": null
+              },
+              {
+                "pid": 3240670,
+                "code": 0,
+                "signal": null
+              },
+              {
+                "pid": 3240671,
+                "code": 0,
+                "signal": null
+              },
+              {
+                "pid": 3240681,
+                "code": 0,
+                "signal": null
+              },
+              {
+                "pid": 3240682,
+                "code": 0,
+                "signal": null
+              },
+              {
+                "pid": 3240706,
+                "code": 0,
+                "signal": null
+              },
+              {
+                "pid": 3240713,
+                "code": 0,
+                "signal": null
+              }
+            ],
+            "signalCount": 4,
+            "signalSamples": [
+              {
+                "pid": 3240666,
+                "signal": 15
+              },
+              {
+                "pid": 3240673,
+                "signal": 15
+              },
+              {
+                "pid": 3240677,
+                "signal": 15
+              },
+              {
+                "pid": 3240713,
+                "signal": 15
+              }
+            ],
+            "signalRefusalCount": 0,
+            "signalRefusalSamples": [],
+            "childDiscovery": [
+              "task-children"
+            ],
+            "errors": [],
+            "durationMs": 7216.445654019481
+          },
+          "error": null
+        },
+        "pid": 3240657,
+        "browserPid": 3240666,
+        "cdpUrl": "http://127.0.0.1:39537",
+        "browserWebSocketUrl": "ws://127.0.0.1:39537/devtools/browser/17f174a6-7347-4834-93ea-a3085d48a2ce",
+        "browserVersion": "Chrome/156.0.8078.47",
+        "readyAt": "2026-10-28T22:26:24.460Z",
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "logsComplete": true,
+        "logScope": "owned family streams; complete only after the receiver observes no waitable or running children",
+        "stdout": {
+          "path": "/tmp/hamon-69d25c99168e-access-pg-c90eb3c1ab/stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/tmp/hamon-69d25c99168e-access-pg-c90eb3c1ab/stderr.bin",
+          "bytes": 5297,
+          "sha256": "ff80b6f10e6b96da6c2fcae3609e75a17a833452a27ef4093bfe59995775352d"
+        },
+        "finishedAt": "2026-10-28T22:26:31.458Z"
+      },
+      "hashes": {
+        "chromium-session.mjs": "1f5364c7a441f05ea2afd63bd02bc1af5e39f3d9b011d43941e6386b704e4dcb",
+        "chromium-page.mjs": "952e1f3db5b7bd766e730868f9c2d11e0f092ffb00df7ba4faa432ebee767a63",
+        "chromium-sandbox.mjs": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead"
+      },
+      "receivingModuleSha256": "225fe03edde82115dbd225d77c9002e1c12abf525e2d6d1db04badfeca3b3f5a",
+      "chromeBinarySha256": "aea09d69ce7f24d5901f6bfb15dd44d0c856e793e0a498f8d8393ec7d2c308ec",
+      "profileRetained": true,
+      "error": null,
+      "cause": null
+    }
+  },
+  "priorFailure": {
+    "command_id": "hamon-69d25c-world-piecewise-conditioned-browser-20261028-v1",
+    "state": "failed",
+    "request_sha256": "f7f95fd8940217a2d313e9448de9849576175075cc6899a117a7045c0a2b44ac",
+    "generation": "f75b244358e264ffe36f522764cb534514c3478ae83e5828f18b38edf4cf5422",
+    "created_at": "2026-10-28T22:24:26.175105889Z",
+    "receipt": {
+      "command_id": "hamon-69d25c-world-piecewise-conditioned-browser-20261028-v1",
+      "request_sha256": "f7f95fd8940217a2d313e9448de9849576175075cc6899a117a7045c0a2b44ac",
+      "generation": "f75b244358e264ffe36f522764cb534514c3478ae83e5828f18b38edf4cf5422",
+      "state": "failed",
+      "runner_pid": 3236818,
+      "started_at": "2026-10-28T22:24:26.178253457Z",
+      "finished_at": "2026-10-28T22:24:32.396512042Z",
+      "exit_code": 1,
+      "error": "exit status 1"
+    },
+    "data_base64": "ZmlsZTovLy90bXAvaGFtb24tNjlkMjVjOTkxNjhlLWFjY2Vzcy1icm93c2VyLXF1YWxpZmljYXRpb24tdjEvY2hyb21pdW0tc2Vzc2lvbi5tanM6Mzc2CiAgaWYgKGhhc0ZhaWx1cmUpIHRocm93IG5ldyBDaHJvbWl1bVNlc3Npb25FcnJvcignQ2hyb21pdW0gcmVjZWl2aW5nIHNlc3Npb24gZmFpbGVkJywgcmVjZWlwdCwgZmFpbHVyZSk7CiAgICAgICAgICAgICAgICAgICAgICAgIF4KCkNocm9taXVtU2Vzc2lvbkVycm9yOiBDaHJvbWl1bSByZWNlaXZpbmcgc2Vzc2lvbiBmYWlsZWQKICAgIGF0IHdpdGhDaHJvbWl1bVNlc3Npb24gKGZpbGU6Ly8vdG1wL2hhbW9uLTY5ZDI1Yzk5MTY4ZS1hY2Nlc3MtYnJvd3Nlci1xdWFsaWZpY2F0aW9uLXYxL2Nocm9taXVtLXNlc3Npb24ubWpzOjM3NjoyNSkKICAgIGF0IGFzeW5jIHJlY2VpdmVJbkNocm9taXVtIChmaWxlOi8vL3RtcC9oYW1vbi02OWQyNWM5OTE2OGUtYWNjZXNzLWJyb3dzZXItcXVhbGlmaWNhdGlvbi12MS9wcm9kdWN0LXJlY2VpdmUubWpzOjE4OjIzKQogICAgYXQgYXN5bmMgZmlsZTovLy90bXAvaGFtb24tNjlkMjVjOTkxNjhlLXdvcmxkLXBpZWNld2lzZS1jb25kaXRpb25lZC1yMS9yZWNlaXZlLm1qczoyOjExMCB7CiAgcmVjZWlwdDogewogICAgc2NoZW1hOiAnaGFtb24uY2hyb21pdW0tc2Vzc2lvbi52MScsCiAgICBzdGF0dXM6ICdmYWlsZWQnLAogICAgc3RhcnRlZEF0OiAnMjAyNi0xMC0yOFQyMjoyNDoyNi4yNDhaJywKICAgIGV4ZWN1dGFibGU6ICcvb3B0L2dvb2dsZS9jaHJvbWUvZ29vZ2xlLWNocm9tZScsCiAgICBydW5EaXJlY3Rvcnk6ICcvdG1wL2hhbW9uLTY5ZDI1Yzk5MTY4ZS1hY2Nlc3MtcGctYTJhZTZiY2NlYicsCiAgICBwcm9maWxlRGlyZWN0b3J5OiAnL3RtcC9oYW1vbi02OWQyNWM5OTE2OGUtYWNjZXNzLXBnLWEyYWU2YmNjZWIvcHJvZmlsZScsCiAgICBzdGRvdXRGaWxlOiAnL3RtcC9oYW1vbi02OWQyNWM5OTE2OGUtYWNjZXNzLXBnLWEyYWU2YmNjZWIvc3Rkb3V0LmJpbicsCiAgICBzdGRlcnJGaWxlOiAnL3RtcC9oYW1vbi02OWQyNWM5OTE2OGUtYWNjZXNzLXBnLWEyYWU2YmNjZWIvc3RkZXJyLmJpbicsCiAgICByZWNlaXB0RmlsZTogJy90bXAvaGFtb24tNjlkMjVjOTkxNjhlLWFjY2Vzcy1wZy1hMmFlNmJjY2ViL3Nlc3Npb24uanNvbicsCiAgICBzYW5kYm94OiAnbm90LWFzc2Vzc2VkJywKICAgIGxpbWl0czogeyBzdGFydHVwTXM6IDE1MDAwLCBzaHV0ZG93bk1zOiAzMDAwLCBjb3Vyc2VNczogNjAwMDAgfSwKICAgIGNsZWFudXA6IHsKICAgICAgYXR0ZW1wdGVkOiB0cnVlLAogICAgICBkaXJlY3RDaGlsZEV4aXRlZDogdHJ1ZSwKICAgICAgc2NvcGU6ICdsYXVuY2hlZC1mYW1pbHktcmVjZWl2ZXItYW5kLW93bmVkLWRlc2NlbmRhbnRzJywKICAgICAgc2lnbmFsczogWyAnU0lHVEVSTScgXSwKICAgICAgZmFtaWx5RXhpdGVkOiB0cnVlCiAgICB9LAogICAgYXJndjogWwogICAgICAnLS1oZWFkbGVzcz1uZXcnLAogICAgICAnLS1lbmFibGUtYXV0b21hdGlvbicsCiAgICAgICctLWFsbG93LWNocm9tZS1zY2hlbWUtdXJsJywKICAgICAgJy0tbm8tZmlyc3QtcnVuJywKICAgICAgJy0tbm8tZGVmYXVsdC1icm93c2VyLWNoZWNrJywKICAgICAgJy0tZGlzYWJsZS1iYWNrZ3JvdW5kLW5ldHdvcmtpbmcnLAogICAgICAnLS1yZW1vdGUtZGVidWdnaW5nLWFkZHJlc3M9MTI3LjAuMC4xJywKICAgICAgJy0tcmVtb3RlLWRlYnVnZ2luZy1wb3J0PTAnLAogICAgICAnLS11c2VyLWRhdGEtZGlyPS90bXAvaGFtb24tNjlkMjVjOTkxNjhlLWFjY2Vzcy1wZy1hMmFlNmJjY2ViL3Byb2ZpbGUnLAogICAgICAnYWJvdXQ6YmxhbmsnCiAgICBdLAogICAgcHJvY2Vzc0ZhbWlseTogewogICAgICBweXRob246IHsKICAgICAgICBwYXRoOiAnL3Vzci9iaW4vcHl0aG9uMy4xMicsCiAgICAgICAgYnl0ZXM6IDgwMjA5MjgsCiAgICAgICAgc2hhMjU2OiAnZTUwZDQ2OGU4YjBhZGZiMDU3MzNmNWI4N2IzY2ZmMzQ4MjljNGE4YzFhZWE1MGM4NjVhYThiZGZlNGJiMTUwZicKICAgICAgfSwKICAgICAgcmVjZWl2ZXI6IHsKICAgICAgICBwYXRoOiAnL3RtcC9oYW1vbi02OWQyNWM5OTE2OGUtYWNjZXNzLWJyb3dzZXItcXVhbGlmaWNhdGlvbi12MS9jaHJvbWl1bV9mYW1pbHkucHknLAogICAgICAgIGJ5dGVzOiAxMzY2NywKICAgICAgICBzaGEyNTY6ICdiMmNjOWU3M2E1Y2JjYWJhMTgyMGNjZTEyNmVjZjVmNmViYmNmYWNiM2ZkNjUzNzJjOWUxZDE0OWE2MGJlYWU2JwogICAgICB9LAogICAgICBieXRlczogMTM0OSwKICAgICAgc3RhcnRlZDogewogICAgICAgIGV2ZW50OiAnc3RhcnRlZCcsCiAgICAgICAgc2NoZW1hOiAnaGFtb24uY2hyb21pdW0tZmFtaWx5LnYxJywKICAgICAgICBzdXBlcnZpc29yUGlkOiAzMjM2ODM4LAogICAgICAgIGJyb3dzZXJQaWQ6IDMyMzY4MzksCiAgICAgICAgc3VicmVhcGVyOiB0cnVlCiAgICAgIH0sCiAgICAgIGZpbmlzaGVkOiB7CiAgICAgICAgc2NoZW1hOiAnaGFtb24uY2hyb21pdW0tZmFtaWx5LnYxJywKICAgICAgICBzdXBlcnZpc29yUGlkOiAzMjM2ODM4LAogICAgICAgIHBhcmVudFBpZDogMzIzNjgyNSwKICAgICAgICBicm93c2VyUGlkOiAzMjM2ODM5LAogICAgICAgIHN0YXR1czogJ2ZhbWlseS1leGl0ZWQnLAogICAgICAgIHN1YnJlYXBlcjogdHJ1ZSwKICAgICAgICBzY29wZTogJ29uZS1uZXctY2hpbGQtYW5kLWl0cy1kZXNjZW5kYW50cycsCiAgICAgICAgbGltaXRzOiB7CiAgICAgICAgICBncmFjZU1zOiAzMDAwLAogICAgICAgICAga2lsbE1zOiAzMDAwLAogICAgICAgICAgbWF4Q2hpbGRyZW46IDQwOTYsCiAgICAgICAgICBtYXhTYW1wbGVzOiA2NCwKICAgICAgICAgIG1heFByb2NFbnRyaWVzOiAzMjc2OAogICAgICAgIH0sCiAgICAgICAgc3RvcFJlYXNvbjogJ3NpZ25hbC0xNScsCiAgICAgICAgYnJvd3NlckV4aXQ6IHsgY29kZTogMCwgc2lnbmFsOiBudWxsIH0sCiAgICAgICAgZmFtaWx5RXhpdGVkOiB0cnVlLAogICAgICAgIHdhaXROb0NoaWxkcmVuT2JzZXJ2ZWQ6IHRydWUsCiAgICAgICAgZGVhZGxpbmVFeHBpcmVkOiBmYWxzZSwKICAgICAgICByZWFwZWRDb3VudDogOSwKICAgICAgICByZWFwZWRTYW1wbGVzOiBbCiAgICAgICAgICB7IHBpZDogMzIzNjg0NiwgY29kZTogbnVsbCwgc2lnbmFsOiAxNSB9LAogICAgICAgICAgeyBwaWQ6IDMyMzY4NDksIGNvZGU6IG51bGwsIHNpZ25hbDogMTUgfSwKICAgICAgICAgIHsgcGlkOiAzMjM2ODM5LCBjb2RlOiAwLCBzaWduYWw6IG51bGwgfSwKICAgICAgICAgIHsgcGlkOiAzMjM2ODU0LCBjb2RlOiAwLCBzaWduYWw6IG51bGwgfSwKICAgICAgICAgIHsgcGlkOiAzMjM2ODQzLCBjb2RlOiBudWxsLCBzaWduYWw6IDE1IH0sCiAgICAgICAgICB7IHBpZDogMzIzNjg0NCwgY29kZTogbnVsbCwgc2lnbmFsOiAxNSB9LAogICAgICAgICAgeyBwaWQ6IDMyMzY4NTUsIGNvZGU6IDAsIHNpZ25hbDogbnVsbCB9LAogICAgICAgICAgeyBwaWQ6IDMyMzY4ODMsIGNvZGU6IG51bGwsIHNpZ25hbDogMTUgfSwKICAgICAgICAgIHsgcGlkOiAzMjM2ODgwLCBjb2RlOiAwLCBzaWduYWw6IG51bGwgfQogICAgICAgIF0sCiAgICAgICAgc2lnbmFsQ291bnQ6IDgsCiAgICAgICAgc2lnbmFsU2FtcGxlczogWwogICAgICAgICAgeyBwaWQ6IDMyMzY4MzksIHNpZ25hbDogMTUgfSwKICAgICAgICAgIHsgcGlkOiAzMjM2ODQ2LCBzaWduYWw6IDE1IH0sCiAgICAgICAgICB7IHBpZDogMzIzNjg0OSwgc2lnbmFsOiAxNSB9LAogICAgICAgICAgeyBwaWQ6IDMyMzY4NDMsIHNpZ25hbDogMTUgfSwKICAgICAgICAgIHsgcGlkOiAzMjM2ODQ0LCBzaWduYWw6IDE1IH0sCiAgICAgICAgICB7IHBpZDogMzIzNjg1NSwgc2lnbmFsOiAxNSB9LAogICAgICAgICAgeyBwaWQ6IDMyMzY4ODMsIHNpZ25hbDogMTUgfSwKICAgICAgICAgIHsgcGlkOiAzMjM2ODgwLCBzaWduYWw6IDE1IH0KICAgICAgICBdLAogICAgICAgIHNpZ25hbFJlZnVzYWxDb3VudDogMCwKICAgICAgICBzaWduYWxSZWZ1c2FsU2FtcGxlczogW10sCiAgICAgICAgY2hpbGREaXNjb3Zlcnk6IFsgJ3Rhc2stY2hpbGRyZW4nIF0sCiAgICAgICAgZXJyb3JzOiBbXSwKICAgICAgICBkdXJhdGlvbk1zOiA2MTA5LjE0NzI4MDk3ODUwNQogICAgICB9LAogICAgICBlcnJvcjogbnVsbAogICAgfSwKICAgIHBpZDogMzIzNjgzOCwKICAgIGJyb3dzZXJQaWQ6IDMyMzY4MzksCiAgICBjZHBVcmw6ICdodHRwOi8vMTI3LjAuMC4xOjQwMjEzJywKICAgIGJyb3dzZXJXZWJTb2NrZXRVcmw6ICd3czovLzEyNy4wLjAuMTo0MDIxMy9kZXZ0b29scy9icm93c2VyLzJkNGQzNTJiLWEzNmItNDc5OS1hMTRhLWNjZDAxYWZkYmY4NScsCiAgICBicm93c2VyVmVyc2lvbjogJ0Nocm9tZS8xNTYuMC44MDc4LjQ3JywKICAgIHJlYWR5QXQ6ICcyMDI2LTEwLTI4VDIyOjI0OjI2LjQyNFonLAogICAgZXJyb3I6IHsgbmFtZTogJ0Nocm9taXVtUGFnZUVycm9yJywgbWVzc2FnZTogJ093bmVkIHBhZ2UgY291cnNlIGZhaWxlZCcgfSwKICAgIGV4aXQ6IHsgY29kZTogMCwgc2lnbmFsOiBudWxsIH0sCiAgICBsb2dzQ29tcGxldGU6IHRydWUsCiAgICBsb2dTY29wZTogJ293bmVkIGZhbWlseSBzdHJlYW1zOyBjb21wbGV0ZSBvbmx5IGFmdGVyIHRoZSByZWNlaXZlciBvYnNlcnZlcyBubyB3YWl0YWJsZSBvciBydW5uaW5nIGNoaWxkcmVuJywKICAgIHN0ZG91dDogewogICAgICBwYXRoOiAnL3RtcC9oYW1vbi02OWQyNWM5OTE2OGUtYWNjZXNzLXBnLWEyYWU2YmNjZWIvc3Rkb3V0LmJpbicsCiAgICAgIGJ5dGVzOiAwLAogICAgICBzaGEyNTY6ICdlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1JwogICAgfSwKICAgIHN0ZGVycjogewogICAgICBwYXRoOiAnL3RtcC9oYW1vbi02OWQyNWM5OTE2OGUtYWNjZXNzLXBnLWEyYWU2YmNjZWIvc3RkZXJyLmJpbicsCiAgICAgIGJ5dGVzOiA1Mjk3LAogICAgICBzaGEyNTY6ICdmNzM0Y2U5NjcyY2IxNDI1OWEwMzAzNzc5NjVjOTA3YmQwNzEwMWFmNTM3ODEwMmVhZTI0NjcwZDE1NzI4OWUwJwogICAgfSwKICAgIGZpbmlzaGVkQXQ6ICcyMDI2LTEwLTI4VDIyOjI0OjMyLjM4OFonCiAgfSwKICBbY2F1c2VdOiBDaHJvbWl1bVBhZ2VFcnJvcjogT3duZWQgcGFnZSBjb3Vyc2UgZmFpbGVkCiAgICAgIGF0IHN0b3AgKGZpbGU6Ly8vdG1wL2hhbW9uLTY5ZDI1Yzk5MTY4ZS1hY2Nlc3MtYnJvd3Nlci1xdWFsaWZpY2F0aW9uLXYxL2Nocm9taXVtLXBhZ2UubWpzOjY5OjE1KQogICAgICBhdCB3aXRoQ2hyb21pdW1QYWdlIChmaWxlOi8vL3RtcC9oYW1vbi02OWQyNWM5OTE2OGUtYWNjZXNzLWJyb3dzZXItcXVhbGlmaWNhdGlvbi12MS9jaHJvbWl1bS1wYWdlLm1qczoyMDk6MTkpCiAgICAgIGF0IGFzeW5jIGZpbGU6Ly8vdG1wL2hhbW9uLTY5ZDI1Yzk5MTY4ZS1hY2Nlc3MtYnJvd3Nlci1xdWFsaWZpY2F0aW9uLXYxL3Byb2R1Y3QtcmVjZWl2ZS5tanM6MjI6MjIKICAgICAgLi4uIDIgbGluZXMgbWF0Y2hpbmcgY2F1c2Ugc3RhY2sgdHJhY2UgLi4uCiAgICAgIGF0IGFzeW5jIGZpbGU6Ly8vdG1wL2hhbW9uLTY5ZDI1Yzk5MTY4ZS13b3JsZC1waWVjZXdpc2UtY29uZGl0aW9uZWQtcjEvcmVjZWl2ZS5tanM6MjoxMTAgewogICAgY29kZTogJ2NvdXJzZS1mYWlsZWQnLAogICAgcmVjZWlwdDogewogICAgICBzY2hlbWE6ICdoYW1vbi5jaHJvbWl1bS1wYWdlLnYxJywKICAgICAgc3RhdHVzOiAnZmFpbGVkJywKICAgICAgc3RhcnRlZEF0OiAnMjAyNi0xMC0yOFQyMjoyNDoyNi40MjVaJywKICAgICAgY2RwT3JpZ2luOiAnaHR0cDovLzEyNy4wLjAuMTo0MDIxMycsCiAgICAgIHRhcmdldElkOiAnNjAwM0Q4MUIzQzAzNjc0RjNFOTQ4NDQ2NzdBODUyMjAnLAogICAgICBsaW1pdHM6IHsKICAgICAgICBzdGFydHVwTXM6IDUwMDAsCiAgICAgICAgcmVxdWVzdE1zOiAxNTAwMCwKICAgICAgICBjbG9zZU1zOiAxMDAwLAogICAgICAgIG1heFBlbmRpbmc6IDEyOCwKICAgICAgICBtYXhNZXNzYWdlQnl0ZXM6IDE2Nzc3MjE2LAogICAgICAgIG1heERpc2NvdmVyeUJ5dGVzOiAyNjIxNDQKICAgICAgfSwKICAgICAgcmVxdWVzdHM6IHsKICAgICAgICBzZW50OiA1OTgsCiAgICAgICAgY29tcGxldGVkOiA1OTgsCiAgICAgICAgbWV0aG9kRXJyb3JzOiAwLAogICAgICAgIHBlYWtQZW5kaW5nOiAxLAogICAgICAgIHJlZnVzZWRCZWZvcmVTZW5kOiAwCiAgICAgIH0sCiAgICAgIGV2ZW50czogOTksCiAgICAgIGZhaWx1cmU6IHsgY29kZTogJ2NvdXJzZS1mYWlsZWQnLCBtZXNzYWdlOiAnT3duZWQgcGFnZSBjb3Vyc2UgZmFpbGVkJyB9LAogICAgICByZXRpcmVtZW50OiB7CiAgICAgICAgY2xvc2VSZXF1ZXN0ZWQ6IHRydWUsCiAgICAgICAgY2xvc2VPYnNlcnZlZDogdHJ1ZSwKICAgICAgICBjbG9zZVdhaXRFeHBpcmVkOiBmYWxzZSwKICAgICAgICByZWplY3RlZFBlbmRpbmc6IFtdLAogICAgICAgIGNsb3NlQ29kZTogMTAwMCwKICAgICAgICB3YXNDbGVhbjogdHJ1ZQogICAgICB9LAogICAgICBmaW5pc2hlZEF0OiAnMjAyNi0xMC0yOFQyMjoyNDozMi4zNDFaJywKICAgICAgZHVyYXRpb25NczogNTkxNS42OTMyNDQKICAgIH0sCiAgICBbY2F1c2VdOiBBc3NlcnRpb25FcnJvciBbRVJSX0FTU0VSVElPTl06IEV4cGVjdGVkIHZhbHVlcyB0byBiZSBzdHJpY3RseSBlcXVhbDoKICAgICsgYWN0dWFsIC0gZXhwZWN0ZWQKICAgIAogICAgKyAndW5yZXNvbHZlZCcKICAgIC0gJ3ZlcmlmaWVkLWludGVyaW9yLXdpdG5lc3MnCiAgICAKICAgICAgICBhdCByZWNlaXZlUGllY2V3aXNlQ29uZGl0aW9uZWQgKGZpbGU6Ly8vdG1wL2hhbW9uLTY5ZDI1Yzk5MTY4ZS13b3JsZC1waWVjZXdpc2UtY29uZGl0aW9uZWQtcjEvc2NyaXB0cy9waWVjZXdpc2UtY29uZGl0aW9uZWQucmVjZWl2aW5nLm1qczoxNDo0MjApCiAgICAgICAgYXQgYXN5bmMgZmlsZTovLy90bXAvaGFtb24tNjlkMjVjOTkxNjhlLWFjY2Vzcy1icm93c2VyLXF1YWxpZmljYXRpb24tdjEvcHJvZHVjdC1yZWNlaXZlLm1qczoyODoyMQogICAgICAgIGF0IGFzeW5jIHdpdGhDaHJvbWl1bVBhZ2UgKGZpbGU6Ly8vdG1wL2hhbW9uLTY5ZDI1Yzk5MTY4ZS1hY2Nlc3MtYnJvd3Nlci1xdWFsaWZpY2F0aW9uLXYxL2Nocm9taXVtLXBhZ2UubWpzOjIwNDoxMykKICAgICAgICBhdCBhc3luYyBmaWxlOi8vL3RtcC9oYW1vbi02OWQyNWM5OTE2OGUtYWNjZXNzLWJyb3dzZXItcXVhbGlmaWNhdGlvbi12MS9wcm9kdWN0LXJlY2VpdmUubWpzOjIyOjIyCiAgICAgICAgYXQgYXN5bmMgd2l0aENocm9taXVtU2Vzc2lvbiAoZmlsZTovLy90bXAvaGFtb24tNjlkMjVjOTkxNjhlLWFjY2Vzcy1icm93c2VyLXF1YWxpZmljYXRpb24tdjEvY2hyb21pdW0tc2Vzc2lvbi5tanM6Mjk4OjE1KQogICAgICAgIGF0IGFzeW5jIHJlY2VpdmVJbkNocm9taXVtIChmaWxlOi8vL3RtcC9oYW1vbi02OWQyNWM5OTE2OGUtYWNjZXNzLWJyb3dzZXItcXVhbGlmaWNhdGlvbi12MS9wcm9kdWN0LXJlY2VpdmUubWpzOjE4OjIzKQogICAgICAgIGF0IGFzeW5jIGZpbGU6Ly8vdG1wL2hhbW9uLTY5ZDI1Yzk5MTY4ZS13b3JsZC1waWVjZXdpc2UtY29uZGl0aW9uZWQtcjEvcmVjZWl2ZS5tanM6MjoxMTAgewogICAgICBnZW5lcmF0ZWRNZXNzYWdlOiB0cnVlLAogICAgICBjb2RlOiAnRVJSX0FTU0VSVElPTicsCiAgICAgIGFjdHVhbDogJ3VucmVzb2x2ZWQnLAogICAgICBleHBlY3RlZDogJ3ZlcmlmaWVkLWludGVyaW9yLXdpdG5lc3MnLAogICAgICBvcGVyYXRvcjogJ3N0cmljdEVxdWFsJywKICAgICAgZGlmZjogJ3NpbXBsZScKICAgIH0KICB9Cn0KCk5vZGUuanMgdjIyLjIzLjQK",
+    "output": "file:///tmp/hamon-69d25c99168e-access-browser-qualification-v1/chromium-session.mjs:376\n  if (hasFailure) throw new ChromiumSessionError('Chromium receiving session failed', receipt, failure);\n                        ^\n\nChromiumSessionError: Chromium receiving session failed\n    at withChromiumSession (file:///tmp/hamon-69d25c99168e-access-browser-qualification-v1/chromium-session.mjs:376:25)\n    at async receiveInChromium (file:///tmp/hamon-69d25c99168e-access-browser-qualification-v1/product-receive.mjs:18:23)\n    at async file:///tmp/hamon-69d25c99168e-world-piecewise-conditioned-r1/receive.mjs:2:110 {\n  receipt: {\n    schema: 'hamon.chromium-session.v1',\n    status: 'failed',\n    startedAt: '2026-10-28T22:24:26.248Z',\n    executable: '/opt/google/chrome/google-chrome',\n    runDirectory: '/tmp/hamon-69d25c99168e-access-pg-a2ae6bcceb',\n    profileDirectory: '/tmp/hamon-69d25c99168e-access-pg-a2ae6bcceb/profile',\n    stdoutFile: '/tmp/hamon-69d25c99168e-access-pg-a2ae6bcceb/stdout.bin',\n    stderrFile: '/tmp/hamon-69d25c99168e-access-pg-a2ae6bcceb/stderr.bin',\n    receiptFile: '/tmp/hamon-69d25c99168e-access-pg-a2ae6bcceb/session.json',\n    sandbox: 'not-assessed',\n    limits: { startupMs: 15000, shutdownMs: 3000, courseMs: 60000 },\n    cleanup: {\n      attempted: true,\n      directChildExited: true,\n      scope: 'launched-family-receiver-and-owned-descendants',\n      signals: [ 'SIGTERM' ],\n      familyExited: true\n    },\n    argv: [\n      '--headless=new',\n      '--enable-automation',\n      '--allow-chrome-scheme-url',\n      '--no-first-run',\n      '--no-default-browser-check',\n      '--disable-background-networking',\n      '--remote-debugging-address=127.0.0.1',\n      '--remote-debugging-port=0',\n      '--user-data-dir=/tmp/hamon-69d25c99168e-access-pg-a2ae6bcceb/profile',\n      'about:blank'\n    ],\n    processFamily: {\n      python: {\n        path: '/usr/bin/python3.12',\n        bytes: 8020928,\n        sha256: 'e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f'\n      },\n      receiver: {\n        path: '/tmp/hamon-69d25c99168e-access-browser-qualification-v1/chromium_family.py',\n        bytes: 13667,\n        sha256: 'b2cc9e73a5cbcaba1820cce126ecf5f6ebbcfacb3fd65372c9e1d149a60beae6'\n      },\n      bytes: 1349,\n      started: {\n        event: 'started',\n        schema: 'hamon.chromium-family.v1',\n        supervisorPid: 3236838,\n        browserPid: 3236839,\n        subreaper: true\n      },\n      finished: {\n        schema: 'hamon.chromium-family.v1',\n        supervisorPid: 3236838,\n        parentPid: 3236825,\n        browserPid: 3236839,\n        status: 'family-exited',\n        subreaper: true,\n        scope: 'one-new-child-and-its-descendants',\n        limits: {\n          graceMs: 3000,\n          killMs: 3000,\n          maxChildren: 4096,\n          maxSamples: 64,\n          maxProcEntries: 32768\n        },\n        stopReason: 'signal-15',\n        browserExit: { code: 0, signal: null },\n        familyExited: true,\n        waitNoChildrenObserved: true,\n        deadlineExpired: false,\n        reapedCount: 9,\n        reapedSamples: [\n          { pid: 3236846, code: null, signal: 15 },\n          { pid: 3236849, code: null, signal: 15 },\n          { pid: 3236839, code: 0, signal: null },\n          { pid: 3236854, code: 0, signal: null },\n          { pid: 3236843, code: null, signal: 15 },\n          { pid: 3236844, code: null, signal: 15 },\n          { pid: 3236855, code: 0, signal: null },\n          { pid: 3236883, code: null, signal: 15 },\n          { pid: 3236880, code: 0, signal: null }\n        ],\n        signalCount: 8,\n        signalSamples: [\n          { pid: 3236839, signal: 15 },\n          { pid: 3236846, signal: 15 },\n          { pid: 3236849, signal: 15 },\n          { pid: 3236843, signal: 15 },\n          { pid: 3236844, signal: 15 },\n          { pid: 3236855, signal: 15 },\n          { pid: 3236883, signal: 15 },\n          { pid: 3236880, signal: 15 }\n        ],\n        signalRefusalCount: 0,\n        signalRefusalSamples: [],\n        childDiscovery: [ 'task-children' ],\n        errors: [],\n        durationMs: 6109.147280978505\n      },\n      error: null\n    },\n    pid: 3236838,\n    browserPid: 3236839,\n    cdpUrl: 'http://127.0.0.1:40213',\n    browserWebSocketUrl: 'ws://127.0.0.1:40213/devtools/browser/2d4d352b-a36b-4799-a14a-ccd01afdbf85',\n    browserVersion: 'Chrome/156.0.8078.47',\n    readyAt: '2026-10-28T22:24:26.424Z',\n    error: { name: 'ChromiumPageError', message: 'Owned page course failed' },\n    exit: { code: 0, signal: null },\n    logsComplete: true,\n    logScope: 'owned family streams; complete only after the receiver observes no waitable or running children',\n    stdout: {\n      path: '/tmp/hamon-69d25c99168e-access-pg-a2ae6bcceb/stdout.bin',\n      bytes: 0,\n      sha256: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'\n    },\n    stderr: {\n      path: '/tmp/hamon-69d25c99168e-access-pg-a2ae6bcceb/stderr.bin',\n      bytes: 5297,\n      sha256: 'f734ce9672cb14259a030377965c907bd07101af5378102eae24670d157289e0'\n    },\n    finishedAt: '2026-10-28T22:24:32.388Z'\n  },\n  [cause]: ChromiumPageError: Owned page course failed\n      at stop (file:///tmp/hamon-69d25c99168e-access-browser-qualification-v1/chromium-page.mjs:69:15)\n      at withChromiumPage (file:///tmp/hamon-69d25c99168e-access-browser-qualification-v1/chromium-page.mjs:209:19)\n      at async file:///tmp/hamon-69d25c99168e-access-browser-qualification-v1/product-receive.mjs:22:22\n      ... 2 lines matching cause stack trace ...\n      at async file:///tmp/hamon-69d25c99168e-world-piecewise-conditioned-r1/receive.mjs:2:110 {\n    code: 'course-failed',\n    receipt: {\n      schema: 'hamon.chromium-page.v1',\n      status: 'failed',\n      startedAt: '2026-10-28T22:24:26.425Z',\n      cdpOrigin: 'http://127.0.0.1:40213',\n      targetId: '6003D81B3C03674F3E94844677A85220',\n      limits: {\n        startupMs: 5000,\n        requestMs: 15000,\n        closeMs: 1000,\n        maxPending: 128,\n        maxMessageBytes: 16777216,\n        maxDiscoveryBytes: 262144\n      },\n      requests: {\n        sent: 598,\n        completed: 598,\n        methodErrors: 0,\n        peakPending: 1,\n        refusedBeforeSend: 0\n      },\n      events: 99,\n      failure: { code: 'course-failed', message: 'Owned page course failed' },\n      retirement: {\n        closeRequested: true,\n        closeObserved: true,\n        closeWaitExpired: false,\n        rejectedPending: [],\n        closeCode: 1000,\n        wasClean: true\n      },\n      finishedAt: '2026-10-28T22:24:32.341Z',\n      durationMs: 5915.693244\n    },\n    [cause]: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n    + actual - expected\n    \n    + 'unresolved'\n    - 'verified-interior-witness'\n    \n        at receivePiecewiseConditioned (file:///tmp/hamon-69d25c99168e-world-piecewise-conditioned-r1/scripts/piecewise-conditioned.receiving.mjs:14:420)\n        at async file:///tmp/hamon-69d25c99168e-access-browser-qualification-v1/product-receive.mjs:28:21\n        at async withChromiumPage (file:///tmp/hamon-69d25c99168e-access-browser-qualification-v1/chromium-page.mjs:204:13)\n        at async file:///tmp/hamon-69d25c99168e-access-browser-qualification-v1/product-receive.mjs:22:22\n        at async withChromiumSession (file:///tmp/hamon-69d25c99168e-access-browser-qualification-v1/chromium-session.mjs:298:15)\n        at async receiveInChromium (file:///tmp/hamon-69d25c99168e-access-browser-qualification-v1/product-receive.mjs:18:23)\n        at async file:///tmp/hamon-69d25c99168e-world-piecewise-conditioned-r1/receive.mjs:2:110 {\n      generatedMessage: true,\n      code: 'ERR_ASSERTION',\n      actual: 'unresolved',\n      expected: 'verified-interior-witness',\n      operator: 'strictEqual',\n      diff: 'simple'\n    }\n  }\n}\n\nNode.js v22.23.4\n",
+    "next_offset": 7827,
+    "output_size": 7827,
+    "has_more": false
+  },
+  "captures": {
+    "desktop.png": "70274549188efa0e2737a6171a9f70a0c5bbdd3fc3c4018da144338317b87518",
+    "narrow.png": "49401d912dd7a974b79a908c19ca9f17cbab2f5070f024428dea7dbeb33b8c42"
+  },
+  "visualReview": "Desktop and narrow captures inspected; complete result and controls readable.",
+  "scope": "Changed calibration closure; inherited runner identity is historical ancestry. UnknownLab concurrent additions preserved, not independently browser-received here."
+}
