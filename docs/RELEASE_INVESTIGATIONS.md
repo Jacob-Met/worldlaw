@@ -33,3 +33,11 @@ Each transition now separates the fine execution's peak over the original report
 
 The shared-grid shift reflects changes between numerical executions; it is not a physical error estimate. The additional-sample gain isolates the effect of including extra times in the same fine execution; it does not locate a continuous-time maximum. Both signs of the declared release are included, with exact sample-time matching and retained peak witnesses. The calculation uses existing completed samples and adds no solver evaluations, source fields or work-budget changes.
 
+
+## Comparing finite release magnitudes
+
+The optional magnitude comparison executes the declared signed displacement and a second displacement divided by 2, 4, or 8. Both retain every original competitive law, identical numerical settings and exact reporting times. Each positive and negative path is normalized by its own represented starting distance. The chart overlays both magnitudes; per-law witnesses identify the largest normalized response difference at a common sampled time.
+
+This inquiry reserves at most 240,000 model evaluations across both complete three-path courses and admits at most 20,000 returned path samples in total. A failed competitor prevents a summary verdict. Both represented releases must be nonzero and resolvable before any course runs. Smaller magnitudes do not automatically give better evidence: numerical error and floating-point changes in direction can affect the comparison. Agreement does not establish an infinitesimal derivative or stability, and disagreement alone does not establish nonlinear physical behavior.
+
+Source-only investigation v4 stores the original notebook, release inputs, `release-magnitudes` mode and shrink factor; reopening recomputes original fits and all courses. It refuses derived results and incompatible mode fields. Earlier v1, v2 and v3 declarations retain their original interpretation.
