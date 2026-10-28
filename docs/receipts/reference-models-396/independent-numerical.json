@@ -1,0 +1,12 @@
+{
+  "sourceSha256": "1270300de4b614d5c54d51a53c12f19a32990ea228ab1be5d1ac71939e05ae23",
+  "checks": [
+    "singleton -2",
+    "singleton 0",
+    "singleton 2",
+    "one shared gain excludes individually compatible contradictory rows",
+    "near boundary retained; separated contradiction rejected",
+    "A0 nesting and signed gain across extreme durations"
+  ],
+  "qualification": "Independent direct polygon degeneracy/conjunction controls on exact code; not interval certification"
+}

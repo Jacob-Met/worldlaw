@@ -1,3 +1,4 @@
+import {mountReferenceModels} from './reference-model-panel.mjs';
 import {analyzeReferenceStudy,validateReferenceStudy,exportReferenceStudy,importReferenceStudy} from './reference-channel.mjs';
 import {referenceExample} from './reference-example.mjs';
 import {importNotebook} from './paired-history.mjs';
@@ -15,11 +16,11 @@ export function mountReferenceChannel(){
  <p id="ref-error" role="alert" tabindex="-1"></p><p class="ref-warning">Three-standard-error screening bounds, not calibrated confidence. A compatible artifact explanation does not establish its physical cause. Rejection can expose failed reference assumptions or unstable gain. Neither outcome proves physical memory. Export retains original observations; corrected ranges are derived, never substituted for measurements.</p>`;
  host.append(body);document.querySelector('main').append(host);
  const $=id=>host.querySelector('#'+id),range=x=>x.map(fmt).join(' to ');
- function retire(){revision++;result=null;delete $('ref-state').dataset.status;$('ref-state').textContent='CHANGED · SCREEN REQUIRED';$('ref-summary').textContent='Previous result retired. Original loaded observations remain available for export.';$('ref-plot').replaceChildren();$('ref-rows').replaceChildren();}
+ function retire(){host.dispatchEvent(new Event('reference-study-changed'));revision++;result=null;delete $('ref-state').dataset.status;$('ref-state').textContent='CHANGED · SCREEN REQUIRED';$('ref-summary').textContent='Previous result retired. Original loaded observations remain available for export.';$('ref-plot').replaceChildren();$('ref-rows').replaceChildren();}
  function error(e){$('ref-error').textContent=e.message||String(e);}
  function controls(){const next=structuredClone(study);for(const [i,key] of ['low','high'].entries()){if(!$('ref-gain-'+key).value.trim())throw Error('Enter both finite gain limits.');next.gainBounds[i]=Number($('ref-gain-'+key).value);}for(const key of Object.keys(next.assumptions))next.assumptions[key]=$('ref-'+key).value;return validateReferenceStudy(next);}
  function fill(){['low','high'].forEach((key,i)=>$('ref-gain-'+key).value=study.gainBounds[i]);for(const key of Object.keys(study.assumptions))$('ref-'+key).value=study.assumptions[key];}
- function adopt(next){const normalized=validateReferenceStudy(next),computed=analyzeReferenceStudy(normalized);revision++;study=normalized;result=computed;fill();render();$('ref-error').textContent='';}
+ function adopt(next){const normalized=validateReferenceStudy(next),computed=analyzeReferenceStudy(normalized);host.dispatchEvent(new Event('reference-study-changed'));revision++;study=normalized;result=computed;fill();render();$('ref-error').textContent='';}
  function svg(tag,attrs,text){const el=document.createElementNS(NS,tag);for(const [k,v]of Object.entries(attrs))el.setAttribute(k,v);if(text!==undefined)el.textContent=text;return el;}
  function render(){
   $('ref-state').textContent=result.joint.status.toUpperCase().replaceAll('-',' ');$('ref-state').dataset.status=result.joint.status;
@@ -41,5 +42,6 @@ export function mountReferenceChannel(){
  $('ref-save').onclick=()=>{try{const url=URL.createObjectURL(new Blob([exportReferenceStudy(study)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='worldlaw-reference-channel.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){error(e);}};
  window.addEventListener('resize',()=>{if(result)render();});
  fill();$('ref-summary').textContent='Authored independent channel observations are loaded. Screen them explicitly, acquire another authored control, or open your own study.';
+ mountReferenceModels(host,controls);
  return {getStudy:()=>validateReferenceStudy(study)};
 }

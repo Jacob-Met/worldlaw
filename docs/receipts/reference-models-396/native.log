@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: maintained notebooks retain nested artifact explanation and full predictions
+ok 1 - maintained notebooks retain nested artifact explanation and full predictions
+  ---
+  duration_ms: 53.865888
+  type: 'test'
+  ...
+# Subtest: challenge values cannot change fitted polygons or offered predictions
+ok 2 - challenge values cannot change fitted polygons or offered predictions
+  ---
+  duration_ms: 28.485236
+  type: 'test'
+  ...
+# Subtest: signed gain original consumer control remains represented
+ok 3 - signed gain original consumer control remains represented
+  ---
+  duration_ms: 18.695519
+  type: 'test'
+  ...
+# Subtest: inadequate training cannot generate a recommendation
+ok 4 - inadequate training cannot generate a recommendation
+  ---
+  duration_ms: 5.93748
+  type: 'test'
+  ...
+# Subtest: projection retains disconnected sign unions and does not bridge unsupported gap
+ok 5 - projection retains disconnected sign unions and does not bridge unsupported gap
+  ---
+  duration_ms: 0.164038
+  type: 'test'
+  ...
+# Subtest: full polygon extrema include reference-endpoint and signed gain combinations
+ok 6 - full polygon extrema include reference-endpoint and signed gain combinations
+  ---
+  duration_ms: 0.113376
+  type: 'test'
+  ...
+# Subtest: bad offered conditions refuse even without adequate training
+ok 7 - bad offered conditions refuse even without adequate training
+  ---
+  duration_ms: 1.544179
+  type: 'test'
+  ...
+# Subtest: parameter and work domains explicitly refuse unsupported grids
+ok 8 - parameter and work domains explicitly refuse unsupported grids
+  ---
+  duration_ms: 40.294989
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 206.791331
