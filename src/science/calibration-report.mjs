@@ -23,8 +23,8 @@ export function calibrationReportGroup(report,rowCount,association){
  return{id:'received-calibration',rows:Array.from({length:rowCount},(_,i)=>i),correction:'affine-readout',sameAffineCorrection:true,radius:a.absoluteError,basis:`Report ${report.reportId}, standard ${a.id}: ${a.basis}`,offsetRadius:b.absoluteError,offsetBasis:`Report ${report.reportId}, standard ${b.id}: ${b.basis}`,referenceReadout:a.reportedTorque,referenceBasis:`${report.instrumentId}, original standard ${a.id}`,sameReferenceCorrection:true,secondReferenceReadout:b.reportedTorque,secondReferenceBasis:`${report.instrumentId}, original standard ${b.id}`,sameTwoReferenceCorrection:true,...(a.referenceTorque!==a.reportedTorque||b.referenceTorque!==b.reportedTorque?{referenceCorrection:a.referenceTorque-a.reportedTorque,secondReferenceCorrection:b.referenceTorque-b.reportedTorque,correctionBasis:`Original report ${report.reportId}: reference minus reported torque`,sameCenteredCorrections:true}:{}),referenceReport:{report,association:{sameInstrument:true,basis}}};
 }
 export function validateCalibrationReportGroup(group){
- const source=group.referenceReport;if(!allowed(source,['report','association']))throw Error('Retain the original report and explicit instrument association.');
+ const source=group.referenceReport;if(!allowed(source,['report','association','trainingRows']))throw Error('Retain the original report and explicit instrument association.');
  const expected=calibrationReportGroup(source.report,group.rows?.length,source.association);
  for(const key of ['correction','sameAffineCorrection','radius','basis','offsetRadius','offsetBasis','referenceReadout','referenceBasis','sameReferenceCorrection','secondReferenceReadout','secondReferenceBasis','sameTwoReferenceCorrection','referenceCorrection','secondReferenceCorrection','correctionBasis','sameCenteredCorrections'])if(group[key]!==expected[key])throw Error('Calibration declaration differs from the retained original report.');
- return expected.referenceReport;
+ return {...expected.referenceReport,...(source.trainingRows===undefined?{}:{trainingRows:structuredClone(source.trainingRows)})};
 }
