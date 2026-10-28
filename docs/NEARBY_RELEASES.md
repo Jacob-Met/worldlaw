@@ -110,6 +110,95 @@ same factor in exact arithmetic. These are analytic reference values;
 recomputed fit coefficients, integration and floating-point arithmetic affect
 the CLI comparison and must be checked in its actual report.
 
+## Try a retained notebook: positive power with shrinking separation
+
+The source distribution includes
+`evidence/conditional-rate/conditional-notebook.json`, a Studio export
+of an **authored synthetic** example, “Authored active-law falsification of
+imposed dissipation.” Its browser-export provenance belongs to
+[issue #220](https://github.com/Jacob-Met/worldlaw/issues/220) and
+[PR #223](https://github.com/Jacob-Met/worldlaw/pull/223). This comparison
+reads those original bytes unchanged.
+
+The exact input is 11,345 bytes, schema `worldlaw.session/v1`, with SHA-256:
+
+```text
+a0828dd0ff6c40aed16bc3c6e8c6af18677c54dedf4d70736f87a68ae265a685
+```
+
+It contains 60 training observations, 20 held-out rows and no events. All
+20 held-out rows duplicate training rows exactly, so they provide no
+independent unseen-data check. The source identifies its declared kind as
+synthetic even though the exported source kind is `user-supplied`.
+
+Replaying this notebook reconstructs candidate `rate+coulomb+quadratic`,
+with torque approximately `8*v - sign(v) - 8*v*abs(v)`. Ask whether positive
+model rate power, `torque * v`, necessarily makes nearby releases separate.
+Run these commands from the source distribution:
+
+```sh
+node scripts/nearby-releases.mjs \
+  --notebook evidence/conditional-rate/conditional-notebook.json \
+  --model rate+coulomb+quadratic \
+  --position 0 --rate 0.25 --delta-position 0 --delta-rate 0.02 \
+  --command 0 --inertia 1 \
+  --duration 0.1 --interval 0.001 --time-scale 1 > nearby-low-rate.json
+
+node scripts/nearby-releases.mjs \
+  --notebook evidence/conditional-rate/conditional-notebook.json \
+  --model rate+coulomb+quadratic \
+  --position 0 --rate 0.75 --delta-position 0 --delta-rate 0.02 \
+  --command 0 --inertia 1 \
+  --duration 0.1 --interval 0.001 --time-scale 1 > nearby-high-rate.json
+```
+
+Each command compares nominal, full `+0.02 rad/s`, and half `+0.01 rad/s`
+releases. Inertia is **declared** as 1 kg*m^2, and the norm time scale is
+**declared** as 1 second. At the single chosen horizon of 0.1 seconds,
+the actual CLI results from the fresh package of published commit
+`f638f614f75de6ff798114fd7389ecde61d5bf8f` were as follows. Factors come from
+the CLI reports; power ranges are calculated from the recomputed law at the
+returned states.
+
+| Nominal rate (rad/s) | Full response factor | Half response factor | Sampled rate power across all three courses (W) |
+| --- | ---: | ---: | ---: |
+| 0.25 | 1.403456934777 | 1.416861948098 | 0.125000 to 0.267804 |
+| 0.75 | 0.644065343618 | 0.648206073117 | 0.211240 to 0.375000 |
+
+Read the final entries of `comparisons.full.rows` and
+`comparisons.half.rows` in each report. Both runs have positive sampled
+power, but the higher-rate run's selected nearby-release distance shrinks.
+**Positive power does not imply growth of this finite separation.** The
+full and half factors also differ: reducing the initial perturbation changes
+the finite response.
+
+For positive rates the ideal law obeys `v' = 8*v - 1 - 8*v*v` at the declared
+inertia. Two such courses satisfy
+`delta_v' = (8 - 8*(v_perturbed + v_nominal))*delta_v`. The coefficient is
+positive for the lower-rate courses and negative for the higher-rate courses.
+An independent closed-form solution using the exact recomputed coefficients
+(`8.000000000000004`, `-1.0000000000000004`, `-8.000000000000004`) agreed
+with the received response factors to within approximately `1.1e-12`. The
+equation above is the rounded illustration; this comparison checks these
+particular runs and is not a general numerical error bound.
+
+All returned rate samples in the six courses were positive and within the
+observed **rate** range. The courses
+used the maintained Coulomb fixed-step RK4 branch: 100 steps, 101 samples per
+course, with no adaptive error estimate or sticking interpretation. They do
+not test a zero-rate crossing. Their positions immediately leave the only
+observed position, zero. Because every source row also has command zero,
+command-dependent and restoring-position terms are unidentified here. For
+example, adding `k*position` leaves every source row unchanged but can change
+later motion; it is not another reconstructed candidate in this comparison.
+
+Keep these results conditional on the selected law, declared inertia, norm,
+direction and horizon. They do not establish physical validity, behavior at
+other positions or commands, maximum gain, global stability, or a
+variational derivative. The original notebook remains unchanged; a separate
+conditional constrained fit shown in the original browser workflow is not
+reconstructed as a candidate merely by exporting this notebook.
+
 ## Two finite amplitudes
 
 The full and half courses expose whether a finite-amplitude conclusion changes
