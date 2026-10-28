@@ -1,0 +1,14 @@
+# Independent standards challenge unchanged nonlinear calibration
+
+Open the original defining calibration in the existing nonlinear inquiry. In its independent-standard section, load a separate worldlaw.piecewise-calibration-check/v1 course with units N·m, a distinct reportId, explicit independentChecks and sameInstrument declarations, source basis and1–128 checks. Each check retains id, reportedTorque, referenceTorque, absoluteError and basis. Confirm the association before checking. Defining-source edits clear that association and retire evidence.
+
+Checks are never inserted as new knots, training rows or physical-law observations. All original knot correction components remain shared across every check. The maintained bounded latent search receives the entire course; a checked witness independently reconstructs reference-value interpolation at every original check, while a separator uses every original declared radius. Search exhaustion and numerical contact are unresolved. Complete validation occurs before work; only the first16 result details are displayed, with complete counts disclosed.
+
+Original knots0→0,1→1.2,2→2 (±.001) predict reported0.5 as0.6±.001. Independent reference0.5±.001 contradicts the original family by0.098. Inserting it as another knot would instead predict0.5 and change the model. Another control has two individually compatible checks but no common original knot correction; the whole course separates. This tests the declared instrument model, not the physical law. It does not authenticate reports or verify physical independence, and does not condition/adopt a new calibration for the law inquiry.
+
+Save/reopen retains both original roles and independently checks the original certificate. Reopening displays a separate source and does not replace the current draft. Source/certificate mutation refuses. A compatible interpolation is conditional evidence, not validation of a physical calibration.
+
+## Receiving
+71 native groups passed on current753c822 composition (67 calibration controls and4 concurrent release-direction controls).32 actual Chromium groups passed, including28 predecessor flows, explicit check association, contradiction/witness, source-only replay and renewed consent after source edits. Sandbox admission, zero exceptions and complete owned family retirement were observed; profile retained. Desktop/narrow captures inspected. The historical runner sourceIdentity is launch ancestry, not current source identity; adjacent receipt binds exact runtime/receiver hashes and preserved upstream source. This qualifies the retained Studio closure, not every unrelated repository file.
+
+Independent SYN reviewer inspected core/final panel and personally executed the four new controls, accepting without blockers. No independent browser run is attributed to the reviewer. Native full-tree reconstruction preserves all unchanged main paths.
