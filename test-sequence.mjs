@@ -1,0 +1,47 @@
+import assert from 'node:assert/strict';
+import {syntheticChallenge} from './src/unknown-lab/paired-history.mjs';
+import {referenceExample} from './src/unknown-lab/reference-example.mjs';
+import {createReferenceSequence,analyzeReferenceSequence,compareNextReferenceOffers,freezeNextReferenceRound,referenceRoundRequest,receiveReferenceSequence,exportReferenceSequence,importReferenceSequence} from './src/unknown-lab/reference-sequence.mjs';
+const f=t=>-Math.expm1(-t/1.3);let nextSeed=100;
+function run(id,t,m,r,sigma=1e-8){
+ const notebook=(target,seed)=>syntheticChallenge({count:32,seed,noiseSigma:sigma,duration:t,effect:target/f(t),orderStrategy:'shuffled'});
+ return {id,role:'challenge',duration:t,main:{acquisitionId:id+'-main',notebook:notebook(m,++nextSeed)},reference:{acquisitionId:id+'-ref',notebook:notebook(r,++nextSeed)}};
+}
+const study=referenceExample();study.gainBounds=[0,2];study.runs=[.3,1,3].map((t,i)=>({...run('train'+i,t,f(t),f(t)),role:'training'}));
+const input={schema:'worldlaw.reference-models/v1',study,amplitudeBounds:[.2,.6],taus:[1.3]};
+const offer={id:'suppressed',duration:2,referenceInterval:[-.0001,.0001],radius:.0001};
+
+let account=createReferenceSequence(input);
+const ingest=(a,rows)=>receiveReferenceSequence(a,{schema:'worldlaw.reference-sequence-acquisition/v1',request:referenceRoundRequest(a),runs:rows});
+account=freezeNextReferenceRound(account,offer,{id:'round1',prospectiveDeclaration:true});
+assert.throws(()=>{account.input.taus.push(9)});
+assert.throws(()=>freezeNextReferenceRound(account,offer,{id:'premature',prospectiveDeclaration:true}));
+const firstPrediction=JSON.stringify(analyzeReferenceSequence(account).rounds[0].planned);
+account=ingest(account,[run('actual-first',2,.4*f(2),0)]);
+const before=analyzeReferenceSequence(account),next={...offer,id:'later',duration:4};
+assert.deepEqual(compareNextReferenceOffers(account,[next]).survivingModelIds,['additional-0']);
+const predicted=compareNextReferenceOffers(account,[next]).comparisons[0].predictions[0].intervals;
+assert.ok(predicted.some(([lo,hi])=>lo<=.4*f(4)&&hi>=.4*f(4)));
+assert.ok(predicted.at(-1)[1]-predicted[0][0]<.001);
+const staleRequest=referenceRoundRequest(account);
+account=freezeNextReferenceRound(account,next,{id:'round2',prospectiveDeclaration:true});
+assert.throws(()=>receiveReferenceSequence(account,{schema:'worldlaw.reference-sequence-acquisition/v1',request:staleRequest,runs:[run('stale',2,.4*f(2),0)]}));
+account=ingest(account,[run('actual-second',4,.4*f(4),0)]);
+assert.equal(analyzeReferenceSequence(account).analysis.models[1].joint.status,'compatible');
+assert.equal(JSON.stringify(analyzeReferenceSequence(account).rounds[0].planned),firstPrediction);
+assert.deepEqual(importReferenceSequence(exportReferenceSequence(account)),account);
+const forged=JSON.parse(exportReferenceSequence(account));forged.rounds[0].outcomes[0].main.acquisitionId+='changed';assert.throws(()=>analyzeReferenceSequence(forged),/prefix/);
+const missing=JSON.parse(exportReferenceSequence(account));delete missing.rounds[0].outcomes;assert.throws(()=>analyzeReferenceSequence(missing),/array/);
+assert.throws(()=>analyzeReferenceSequence({...account,extra:'x'}));
+assert.throws(()=>importReferenceSequence(' '.repeat(4000001)));
+assert.throws(()=>analyzeReferenceSequence({...account,rounds:[...account.rounds].reverse()}),/prefix/);
+let conflict=createReferenceSequence(input);conflict=freezeNextReferenceRound(conflict,offer,{id:'one',prospectiveDeclaration:true});conflict=ingest(conflict,[run('conflict-a',2,.4*f(2),0)]);conflict=freezeNextReferenceRound(conflict,next,{id:'two',prospectiveDeclaration:true});conflict=ingest(conflict,[run('conflict-b',4,.55*f(4),0)]);
+assert.equal(analyzeReferenceSequence(conflict).analysis.models[1].joint.status,'contradicted');assert.throws(()=>compareNextReferenceOffers(conflict,[offer]),/No joint/);assert.throws(()=>freezeNextReferenceRound(conflict,offer,{id:'resurrect',prospectiveDeclaration:true}),/No joint/);
+let failed=createReferenceSequence(input);failed=freezeNextReferenceRound(failed,offer,{id:'miss',prospectiveDeclaration:true});failed=ingest(failed,[run('missed-range',2,f(2),f(2),.01)]);const q=analyzeReferenceSequence(failed).rounds[0].qualification[0];assert.equal(q.referenceAchieved,false);assert.equal(q.precisionAchieved,false);assert.equal(failed.rounds[0].outcomes.length,1);
+const nested=createReferenceSequence({...input,amplitudeBounds:[0,.6]});assert.ok(compareNextReferenceOffers(nested,[offer]).comparisons[0].pairs.every(p=>!p.separated));assert.ok(compareNextReferenceOffers(createReferenceSequence(input),[{...offer,referenceInterval:[-1,1]}]).comparisons[0].pairs.every(p=>!p.separated));
+console.log('PASS sequential: two-round contraction, fixed family, frozen prefix/prediction replay, stale/tampered prefix refusal, no resurrection, failed offers retained, A=0 and weak-reference negatives');
+const small=freezeNextReferenceRound(createReferenceSequence(input),{...offer,id:'x'},{id:'byte-boundary',prospectiveDeclaration:true});
+const exact=freezeNextReferenceRound(createReferenceSequence(input),{...offer,id:'x'.repeat(4000000-new TextEncoder().encode(JSON.stringify(small)).length+1)},{id:'byte-boundary',prospectiveDeclaration:true});
+const exactText=exportReferenceSequence(exact);assert.equal(new TextEncoder().encode(exactText).length,4000000);assert.deepEqual(importReferenceSequence(exactText),exact);
+assert.throws(()=>freezeNextReferenceRound(createReferenceSequence(input),{...offer,id:exact.rounds[0].offer.id+'x'},{id:'byte-boundary',prospectiveDeclaration:true}),/4 MB/);
+console.log('PASS canonical UTF-8 exact-limit export reopens; one byte over refuses');
