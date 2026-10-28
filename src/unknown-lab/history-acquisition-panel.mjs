@@ -19,7 +19,7 @@ export function mountHistoryAcquisition({onApply}) {
  <label>Measurement source / instrument<input name="sourceNote" required maxlength="120"></label>
  <button type="submit">Freeze a new blank worksheet</button></form></details>
  <div class="history-acquisition-actions"><button type="button" data-action="save" disabled>Save worksheet</button><label>Open worksheet<input data-action="open" type="file" accept=".json,application/json"></label></div>
- <p data-role="status" role="status" aria-live="polite">No course frozen. Declare a new acquisition or open a saved worksheet.</p>
+ <p data-role="status" role="status" aria-live="polite" tabindex="-1">No course frozen. Declare a new acquisition or open a saved worksheet.</p>
  <div data-role="course" hidden><p data-role="declaration"></p><p>Read in the displayed order. Enter the <strong>actual</strong> command, angle, rate and torque for each reading. Blank cells stay unknown. Target agreement and pair matching are checked when applying; changing your experiment does not rewrite its frozen request. Even accepted small state differences can change torque: the tolerance does not establish physical equivalence or bound torque bias.</p>
  <div class="table-wrap" tabindex="0" role="region" aria-label="Chronological acquisition worksheet"><table><caption>Declared reading sequence · actual measurements, not model predictions</caption><thead><tr><th>Reading / pair</th><th>Preparation</th><th>Command</th><th>Angle (rad)</th><th>Rate (rad/s)</th><th>Torque (N·m)</th></tr></thead><tbody></tbody></table></div>
  <label class="history-acquisition-confirm"><input data-action="confirm" type="checkbox">I declare that these readings were acquired in this order, with the stated reference and conditioned preparation.</label>
@@ -37,6 +37,8 @@ export function mountHistoryAcquisition({onApply}) {
  function render(){
   q('[data-action="save"]').disabled=!draft;q('[data-role="course"]').hidden=!draft;body.replaceChildren();
   if(!draft)return;
+  q('details').open=false;
+  q('summary').textContent='Declare another acquisition';
   const r=draft.request;
   q('[data-role="status"]').textContent=`Frozen ${r.id} · ${r.count} pairs · seed ${r.seed} · user-declared acquisition. No readings are generated.`;
   q('[data-role="declaration"]').textContent=`Target: command ${r.command}, angle ${r.position} rad, rate ${r.rate} rad/s. Noise: ${r.noiseSigma} N·m. Preparation: ${r.preparation}. Source: ${r.sourceNote}.`;
@@ -52,6 +54,7 @@ export function mountHistoryAcquisition({onApply}) {
    }
    body.append(tr);
   }
+  q('[data-role="status"]').focus({preventScroll:true});
  }
  function collect(){
   if(!draft)throw Error('Freeze or open a worksheet first.');

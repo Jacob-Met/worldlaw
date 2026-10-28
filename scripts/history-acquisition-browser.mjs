@@ -103,7 +103,16 @@ try {
    await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
    assert.equal(await evaljs("document.activeElement.dataset.field"),'position');
    const dims=await evaljs("({inner:innerWidth,scroll:document.documentElement.scrollWidth})");assert.ok(dims.scroll<=dims.inner+1,JSON.stringify(dims));
-   await evaljs(`${q}.scrollIntoView()`);const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});if(outputDir)await writeFile(path.join(outputDir,`history-acquisition-${width}.png`),Buffer.from(shot.data,'base64'));
+   await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+   const capture=async(name,selector,horizontal=false)=>{
+    await evaljs(`(async()=>{document.documentElement.style.scrollBehavior='auto';document.body.style.scrollBehavior='auto';const node=document.querySelector(${JSON.stringify(selector)});if(!node)throw Error('Missing capture target');node.scrollIntoView({behavior:'instant',block:'start'});${horizontal?"const table=document.querySelector('#history-acquisition .table-wrap');table.scrollLeft=table.scrollWidth;":''}await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));})()`);
+    const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});await writeFile(path.join(outputDir,`history-acquisition-${width}-${name}.png`),Buffer.from(shot.data,'base64'));
+   };
+   await capture('heading','#history-acquisition');
+   await capture('course','#history-acquisition [data-role=course]');
+   if(width===390)await capture('actual-readings','#history-acquisition .table-wrap',true);
+   await capture('confirmation','#history-acquisition .history-acquisition-confirm');
+   await capture('comparison','.readout');
   });
  }
  assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);
