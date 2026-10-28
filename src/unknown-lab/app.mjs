@@ -25,6 +25,7 @@ import {syntheticChallenge,evaluateHistory,importNotebook,exportNotebook} from '
 const $=id=>document.getElementById(id);
 const ns='http://www.w3.org/2000/svg', storageKey='worldlaw.unknown-lab.history.v1';
 let notebook=null;
+let notebookIntent=0;
 let periodicContrastPanel=null;
 let periodicCoursePanel=null;
 let periodicHistoryRangePanel=null;
@@ -32,7 +33,9 @@ let mixedStatePanel=null;
 const fmt=(v,d=3)=>Number.isFinite(v)?Number(v.toPrecision(d)).toLocaleString('en-US',{maximumFractionDigits:6}):'—';
 function clearError(){$('error').hidden=true;}
 function error(e){$('error').hidden=false;$('error').textContent=e.message||String(e);$('error').focus();}
-function safe(fn){Promise.resolve().then(fn).catch(error);}
+function safe(fn,isCurrent=()=>true){
+ Promise.resolve().then(()=>{if(isCurrent())return fn();}).catch(e=>{if(isCurrent())error(e);});
+}
 function svgNode(tag,attrs={},text=null) {
   const el=document.createElementNS(ns,tag);
   for(const [key,value]of Object.entries(attrs))el.setAttribute(key,String(value));
@@ -116,7 +119,13 @@ function download(text,name){
  const anchor=document.createElement('a');anchor.href=url;anchor.download=name;document.body.append(anchor);
  anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
-$('run-form').addEventListener('submit',e=>{e.preventDefault();safe(virtualRun);});
+// Native validation can refuse a run before a submit event is dispatched.
+$('run-form').addEventListener('invalid',()=>{notebookIntent++;},true);
+$('run-form').addEventListener('submit',e=>{
+ e.preventDefault();
+ const intent=++notebookIntent;
+ safe(virtualRun,()=>intent===notebookIntent);
+});
 for(const id of ['effect','duration'])$(''+id).addEventListener('input',()=>{
  $(''+id+'-out').textContent=Number($(id).value).toFixed(id==='effect'?2:1);
 });
@@ -124,10 +133,15 @@ $('export').addEventListener('click',()=>safe(()=>download(exportNotebook(notebo
 $('import').addEventListener('click',()=>$('file').click());
 $('file').addEventListener('change',async e=>{
  const file=e.target.files?.[0];if(!file)return;
+ const intent=++notebookIntent;
+ // Retain the File, but allow it to be selected again even while this read is pending.
+ e.target.value='';
  try{
    if(file.size>200000)throw new Error('Use a JSON evidence file under 200 KB.');
-   adopt(importNotebook(await file.text()),'Imported a user-declared notebook');
- }catch(err){error(err);}finally{e.target.value='';}
+   const text=await file.text();
+   if(intent!==notebookIntent)return;
+   adopt(importNotebook(text),'Imported a user-declared notebook');
+ }catch(err){if(intent===notebookIntent)error(err);}
 });
 $('remember').addEventListener('click',()=>safe(()=>{
  localStorage.setItem(storageKey,exportNotebook(notebook));$('storage').textContent='Explicitly saved to this browser · Export for a portable copy.';
