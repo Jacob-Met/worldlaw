@@ -118,3 +118,64 @@ export function cycleWorkInvestigation(bundle,model,options={}){
  return {schema:'worldlaw.cycle-work-investigation/v1',fit,receiving,solver:{maxStep,maxSteps,requiredSteps:required},inputs:{schema:fit.declaration.includeMixedQuadratic?MIXED_CYCLE_WORK_SCHEMA:fit.declaration.includeQuadratic?QUADRATIC_CYCLE_WORK_SCHEMA:CYCLE_WORK_SCHEMA,bundle:normalized,restoringModel:copy(model),options:{...fit.declaration,maxStep,maxSteps}},selected:null};
 }
 export function replayCycleWork(inputs){insist([CYCLE_WORK_SCHEMA,QUADRATIC_CYCLE_WORK_SCHEMA,MIXED_CYCLE_WORK_SCHEMA].includes(inputs?.schema),'Expected cycle-work input notebook.');insist(inputs.schema===CYCLE_WORK_SCHEMA?inputs.options?.includeQuadratic!==true:inputs.options?.includeQuadratic===true,'Quadratic admission requires its explicit v2 or v3 notebook.');insist(inputs.schema===MIXED_CYCLE_WORK_SCHEMA?inputs.options?.includeMixedQuadratic===true:inputs.options?.includeMixedQuadratic!==true,'Mixed admission requires its explicit v3 notebook.');return cycleWorkInvestigation(inputs.bundle,inputs.restoringModel,inputs.options);}
+
+export const HALF_CYCLE_WORK_SCHEMA='worldlaw.cycle-work-halves/v1';
+export function inspectCycleWorkHalves(inputs){
+ const investigation=replayCycleWork(inputs),{fit}=investigation,decl=fit.declaration;
+ const models=[{id:'restoring-only',status:'admitted',coefficients:{rate:0,coulomb:0,quadratic:0}},...fit.candidates];
+ const records=[],comparisons=[],work={rateWindows:0,intervals:0,maximumEach:8192,counterScope:'Diagnostic pass after bounded original extraction; replay and original extraction are not counted here.'};
+ for(const run of investigation.inputs.bundle.challengeRuns){
+  const potential=restoringLaw(fit.restoringModel,run),record=extract(run,potential,decl),s=run.samples,h=(decl.windowSize-1)/2,rates=new Map();
+  const rate=i=>{if(!rates.has(i)){insist(work.rateWindows<work.maximumEach,'Receiving half-cycle rate-window budget exceeded.');work.rateWindows++;rates.set(i,fitAngularWindow(s.slice(i-h,i+h+1),s[i],null).rate);}return rates.get(i);};
+  const cycles=[];
+  for(const original of record.cycles){
+   const cycle={...copy(original),halfStatus:'refused',halves:[]};
+   try{
+    insist(original.status==='admitted',original.reason??'Original receiving cycle is unavailable.');
+    const {first,last}=original;let minimum=first;
+    for(let i=first+1;i<=last;i++)if(s[i].position<s[minimum].position)minimum=i;
+    const ties=[];for(let i=first;i<=last;i++)if(s[i].position===s[minimum].position)ties.push(i);
+    insist(ties.every((v,j)=>j===0||v===ties[j-1]+1),'Separated equal minima leave the half-cycle boundary unresolved.');
+    minimum=ties[Math.floor((ties.length-1)/2)];cycle.minimumPlateau=[ties[0],ties.at(-1)];cycle.minimum=minimum;
+    insist(minimum>first&&minimum<last,'The minimum is not interior to the original cycle.');
+    insist(minimum-first>=decl.windowSize&&last-minimum>=decl.windowSize,'A half-cycle is undersampled relative to the declared derivative window.');
+    for(const [direction,a,b]of [['descending',first,minimum],['ascending',minimum,last]]){
+     let viscous=0,distance=0,quadraticWork=0;
+     for(let i=a+1;i<=b;i++){
+      insist(work.intervals<work.maximumEach,'Receiving half-cycle interval budget exceeded.');work.intervals++;
+      const dt=s[i].time-s[i-1].time,v0=rate(i-1),v1=rate(i);
+      viscous+=(v0*v0+v1*v1)*dt/2;distance+=Math.abs(s[i].position-s[i-1].position);
+      if(decl.includeQuadratic)quadraticWork+=(Math.abs(v0)**3+Math.abs(v1)**3)*dt/2;
+     }
+     const potentialLoss=potential(s[a].position)-potential(s[b].position),kineticCorrection=(rate(a)**2-rate(b)**2)/2,observedLoss=potentialLoss+kineticCorrection;
+     insist([viscous,distance,potentialLoss,kineticCorrection,observedLoss].every(finite),'Half-cycle energy or original work features exceeded finite range.');
+     cycle.halves.push({direction,first:a,last:b,start:s[a].time,end:s[b].time,potentialLoss,kineticCorrection,observedLoss,viscous,distance,...(decl.includeQuadratic?{quadraticWork:finite(quadraticWork)?quadraticWork:null}: {})});
+    }
+    const observedSum=cycle.halves.reduce((sum,x)=>sum+x.observedLoss,0),endpointClosure=observedSum-original.loss;insist([observedSum,endpointClosure].every(finite),'Half-cycle endpoint closure exceeded finite range.');Object.assign(cycle,{halfStatus:'compared',observedSum,endpointClosure});
+   }catch(error){cycle.halfReason=error.message;}
+   cycles.push(cycle);
+   for(const candidate of models){
+    const row={runId:run.id,cycleIndex:original.cycleIndex,candidateId:candidate.id,status:'refused',halves:[]};
+    if(candidate.status!=='admitted')row.reason='Training candidate refused: '+candidate.reason;
+    else if(cycle.halfStatus!=='compared')row.reason=cycle.halfReason;
+    else try{
+     const c=candidate.coefficients;
+     const needsQuadratic=candidate.id==='quadratic'||candidate.id==='viscous-quadratic';
+     insist(!needsQuadratic||cycle.halves.every(x=>x.quadraticWork!==null),'Quadratic work unavailable on an original receiving half-cycle; this dependent comparison is refused.');
+     row.halves=cycle.halves.map(x=>{
+      const predictedLoss=c.rate*x.viscous+c.coulomb*x.distance+((c.quadratic??0)>0?c.quadratic*x.quadraticWork:0),residual=x.observedLoss-predictedLoss;
+      insist([predictedLoss,residual].every(finite),'Half-cycle prediction exceeded finite range.');
+      return {direction:x.direction,start:x.start,end:x.end,observedLoss:x.observedLoss,predictedLoss,residual};
+     });
+     const residualSum=row.halves.reduce((sum,x)=>sum+x.residual,0);insist(finite(residualSum),'Half-cycle residual sum exceeded finite range.');row.residualSum=residualSum;row.status='compared';
+    }catch(error){row.reason=error.message;row.halves=[];}
+    comparisons.push(row);
+   }
+  }
+  records.push({...record,cycles});
+ }
+ return {schema:'worldlaw.cycle-work-half-cycle-report/v1',investigation,records,comparisons,work,selected:null,
+  inputs:{schema:HALF_CYCLE_WORK_SCHEMA,cycleWork:copy(investigation.inputs)},
+  interpretation:'Separately observed receiving positions, evaluated under frozen training laws. Observed loss is E_before minus E_after; predicted loss is nonnegative dissipative work; residual is observed minus predicted loss. Max-to-min and min-to-max labels name endpoints, not guaranteed monotone motion. Adjacent halves share a measured minimum and rate windows: opposite residuals can cancel. This is normalized energy, not calibrated joules, independent replication, a significance test or identified physical cause. Derivative, endpoint, quadrature and frozen restoring-law errors remain possible. Receiving observations never refit or select a law.'};
+}
+export function replayHalfCycleWork(inputs){insist(inputs?.schema===HALF_CYCLE_WORK_SCHEMA,'Expected receiving half-cycle source notebook.');return inspectCycleWorkHalves(inputs.cycleWork);}
