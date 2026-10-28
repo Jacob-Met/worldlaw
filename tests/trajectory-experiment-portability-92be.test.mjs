@@ -72,7 +72,8 @@ function highNoisePending(){
 
 // Optional real-engine receiving. Ordinary component runs need no browser package.
 // Enable with PLAYWRIGHT_MODULE=/absolute/playwright/index.mjs and, if needed,
-// BROWSER_EXECUTABLE_PATH=/absolute/chrome. No app code or output is mocked.
+// BROWSER_EXECUTABLE_PATH=/absolute/chrome. Run as a non-root account with the
+// Chromium sandbox enabled. No app code or output is mocked.
 test('live Node and Chromium exchange pending and applied notebooks through actual modules',
   {skip:!process.env.PLAYWRIGHT_MODULE},async()=>{
     const {chromium}=await import(process.env.PLAYWRIGHT_MODULE);
@@ -82,7 +83,7 @@ test('live Node and Chromium exchange pending and applied notebooks through actu
     const receipt={node:process.version,checks:[],inputSHA256:{}};
     const sha=text=>createHash('sha256').update(text).digest('hex');
     try{
-      browser=await chromium.launch({headless:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+      browser=await chromium.launch({headless:true,chromiumSandbox:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
       receipt.browser=await browser.version();
       const page=await browser.newPage();
       await page.goto(`http://127.0.0.1:${server.address().port}/health`);

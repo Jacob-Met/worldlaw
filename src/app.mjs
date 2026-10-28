@@ -11,6 +11,7 @@ import {renderCommandDeadzone} from './science/command-deadzone-panel.mjs';
 import {mountSensorResponse} from './science/sensor-response-panel.mjs';
 import {renderConditionalRate} from './science/conditional-rate-panel.mjs';
 import {renderEnergyBudget} from './science/energy-budget-panel.mjs';
+import {createLocalMotionResponsePanel} from './science/local-motion-response-panel.mjs';
 import {mountAffineClocks} from './science/clock-affine-panel.mjs';
 import {mountClockOffsets} from './science/clock-offset-panel.mjs';
 import {renderInputEnclosures} from './science/input-enclosure-panel.mjs';
@@ -41,6 +42,9 @@ let clockPanel=null,affinePanel=null,deadzoneWidths=null,frequencySettings=null;
 let state,modelId,plan,trajectory=[],animationStart=0,animationHandle,restored=false,generation=0;
 let observationRead=0,sessionRead=0;
 let studioComparison=null;
+const localResponse=createLocalMotionResponsePanel($('local-motion-response'));
+let localResponseCourse=null;
+function retireLocalResponse(message){localResponseCourse=null;localResponse.retire(message);}
 function alertError(error) { $('error').hidden=false;set('error',error.message||String(error));$('error').focus(); }
 function notice(text) {set('notice',text);$('error').hidden=true;}
 function action(fn) {try{fn();}catch(error){alertError(error);}}
@@ -52,10 +56,10 @@ function save() {
   else if(result.reason==='read-denied')set('storage-status','Browser storage could not be read · current changes are not stored. Export this notebook and reload after storage is restored.');
   else set('storage-status','Browser storage unavailable · export to keep this notebook');
 }
-function adopt(next,message,widths=null,frequency=null) {generation++;state=next;deadzoneWidths=widths;frequencySettings=frequency;modelId=state.discovery.selected.id;render();save();notice(message);}
+function adopt(next,message,widths=null,frequency=null) {retireLocalResponse('The evidence changed. Recomputing the inspected-law prediction.');generation++;state=next;deadzoneWidths=widths;frequencySettings=frequency;modelId=state.discovery.selected.id;render();save();notice(message);}
 // Selection owns a pending replacement across every Studio source entry point.
 // An invalid newest file leaves the accepted notebook intact without reviving an older read.
-function beginSourceReplacement(){return ++generation;}
+function beginSourceReplacement(){retireLocalResponse('A source replacement is pending. Run dynamics to inspect the accepted notebook again.');return ++generation;}
 function model(){return state.discovery.candidates.find(m=>m.id===modelId)||state.discovery.selected;}
 function numberInput(id){const v=$(id).value.trim();if(!v||!Number.isFinite(Number(v)))throw new Error(`Enter a finite value for ${$(id).labels?.[0]?.textContent||id}.`);return Number(v);}
 function experimentInput(){return Object.fromEntries(['command','position','rate'].map(f=>[f,numberInput(f)]));}
@@ -147,6 +151,7 @@ function renderHypotheses(){
   }
 }
 function renderModel(){
+  retireLocalResponse('The inspected law changed. Recomputing its local response.');
   clockPanel?.studioChanged();
   affinePanel?.studioChanged();
   const m=model(),train=evaluate(m,state.discovery.observations),held=evaluate(m,state.base.heldOut);
@@ -273,9 +278,11 @@ function renderPlan(){
 function useProposal(announce=true){if(!plan?.selected)return;const exact=!state.lab && Object.hasOwn(state.base,'offeredInputs');for(const f of ['position','rate','command'])$(f).value=String(plan.selected.input[f]);if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
 function runSimulation(announce=true){
   studioComparison?.retire('The evidence or inspected law changed. Compare again to execute the current competitive set.');
+  retireLocalResponse('Executing the inspected law under the current dynamics inputs.');
   try{
     const execution=executeStudioDynamics(model(),{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')});
     trajectory=execution.trajectory;
+    localResponseCourse=localResponse.setPrediction(model(),trajectory,{inertia:numberInput('inertia'),command:numberInput('simulation-command'),label:`${model().id} · ${state.discovery.observations.length} observations`});
     chart('trajectory-chart',[{name:`Selected model · fixed command ${fmt(numberInput('simulation-command'))} N·m`,color:'#1c7562',line:true,points:trajectory.map(r=>({x:r.time,y:r.position}))}],{xLabel:'Simulation time (s)',yLabel:'Predicted angle (rad)',width:$('trajectory-chart').clientWidth});
     let energy=$('energy-budget');if(!energy){energy=el('section');energy.id='energy-budget';$('trajectory-chart').after(energy);}
     renderEnergyBudget(energy,model(),trajectory,{inertia:numberInput('inertia'),command:numberInput('simulation-command')});
@@ -285,7 +292,7 @@ function runSimulation(announce=true){
     animationStart=performance.now();set('simulation-status',`${trajectory.length} displayed states at 20 ms intervals · ${method} · schematic joint · prediction only`);
     $('simulation-status').dataset.method=numeric.method;
     if(announce)notice('Executed the selected torque model. '+numeric.interpretation);
-  }catch(error){trajectory=[];delete $('simulation-status').dataset.method;$('energy-budget')?.replaceChildren(el('p','Energy accounting unavailable because the trajectory was refused.'));set('simulation-status',`Prediction unavailable: ${error.message}`);$('trajectory-chart').replaceChildren(el('p',error.message,'empty-state'));if(announce)throw error;}
+  }catch(error){retireLocalResponse('Local response unavailable because the trajectory was refused.');trajectory=[];delete $('simulation-status').dataset.method;$('energy-budget')?.replaceChildren(el('p','Energy accounting unavailable because the trajectory was refused.'));set('simulation-status',`Prediction unavailable: ${error.message}`);$('trajectory-chart').replaceChildren(el('p',error.message,'empty-state'));if(announce)throw error;}
 }
 function draw(now){
   const canvas=$('mechanism-canvas');if(!canvas){animationHandle=requestAnimationFrame(draw);return;}
@@ -295,6 +302,7 @@ function draw(now){
     const ctx=canvas.getContext('2d'),w=rect.width,h=rect.height;ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,w,h);
     const comparison=studioComparison?.frame(now);
     if(comparison){
+      if(localResponseCourse)retireLocalResponse('Competitive-law motion is displayed. Return to the inspected law for its local response.');
       drawCompetitiveMotion(ctx,w,h,comparison);
       canvas.setAttribute('aria-label',`${comparison.sourceLabel}. Synchronized numerical predictions for ${comparison.samples.length} of ${comparison.total} competitive scalar laws at ${fmt(comparison.time)} seconds. ${comparison.complete?'Complete competitive set.':'Incomplete comparison; refused laws are listed below.'}`);
       set('stage-prediction-label',comparison.sourceLabel);
@@ -303,12 +311,14 @@ function draw(now){
     set('stage-prediction-label','Inspected-law prediction');
     const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
     const duration=trajectory.at(-1)?.time||1;const time=reduced?0:((now-animationStart)/1000)%duration;
-    const current=trajectory[Math.min(trajectory.length-1,Math.floor(time/.02))];
+    const sampleIndex=Math.min(trajectory.length-1,Math.floor(time/.02));
+    const current=trajectory[sampleIndex];
     if(!current){
       ctx.fillStyle='#cfdfd0';ctx.font='17px ui-sans-serif, sans-serif';ctx.textAlign='center';ctx.fillText('Prediction unavailable',w/2,h/2-8);
       ctx.fillStyle='#9fb6a6';ctx.font='12px ui-sans-serif, sans-serif';ctx.fillText('Adjust the dynamics inputs to run the model.',w/2,h/2+19);ctx.textAlign='left';
       canvas.setAttribute('aria-label','Prediction unavailable. Dynamics inputs were refused.');animationHandle=requestAnimationFrame(draw);return;
     }
+    if(localResponseCourse)localResponse.showState(localResponseCourse,sampleIndex);
     canvas.setAttribute('aria-label','Predicted angular joint schematic from the executed selected model.');const angle=current.position;
     const cx=w*.49,cy=h*.27,len=Math.min(w*.27,h*.48),x=cx+Math.sin(angle)*len,y=cy+Math.cos(angle)*len;
     ctx.strokeStyle='rgba(217,240,219,.06)';ctx.lineWidth=1;
@@ -319,7 +329,7 @@ function draw(now){
     ctx.strokeStyle='#bed5ba';ctx.lineWidth=4;ctx.stroke();
     ctx.shadowColor='rgba(203,242,123,.5)';ctx.shadowBlur=25;ctx.fillStyle='#cbf27b';ctx.beginPath();ctx.arc(x,y,19,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
     ctx.fillStyle='#dce9d6';ctx.beginPath();ctx.arc(cx,cy,12,0,Math.PI*2);ctx.fill();ctx.fillStyle='#122e25';ctx.beginPath();ctx.arc(cx,cy,5,0,Math.PI*2);ctx.fill();
-    ctx.font='12px ui-monospace, monospace';ctx.fillStyle='#bed1c1';ctx.fillText(`θ ${fmt(angle,3)} rad`,Math.max(14,w-146),h-48);ctx.fillText(`t ${fmt(time,3)} s`,Math.max(14,w-146),h-27);
+    ctx.font='12px ui-monospace, monospace';ctx.fillStyle='#bed1c1';ctx.fillText(`θ ${fmt(angle,3)} rad`,Math.max(14,w-146),h-48);ctx.fillText(`t ${fmt(current.time,3)} s`,Math.max(14,w-146),h-27);
     ctx.fillStyle='#8fa99a';ctx.fillText('PREDICTED JOINT',20,h-28);
   }
   animationHandle=requestAnimationFrame(draw);
@@ -375,12 +385,13 @@ $('export-observations').addEventListener('click',()=>action(()=>download(observ
 $('run-simulation').addEventListener('click',()=>action(()=>runSimulation()));
 for(const id of ['initial-angle','initial-rate','inertia','duration','simulation-command'])$(id).addEventListener('input',()=>{
   studioComparison.retire('Dynamics inputs changed. Compare again to execute every law under the new release.');
+  retireLocalResponse('Dynamics inputs changed. Run dynamics to inspect their executed local response.');
   trajectory=[];delete $('simulation-status').dataset.method;
   set('simulation-status','Dynamics inputs changed. Run dynamics or compare competitive laws to apply them.');
   $('trajectory-chart').replaceChildren();$('energy-budget')?.replaceChildren();
 });
 animationHandle=requestAnimationFrame(draw);
-window.addEventListener('pagehide',()=>cancelAnimationFrame(animationHandle));
+window.addEventListener('pagehide',()=>{cancelAnimationFrame(animationHandle);retireLocalResponse('Prediction playback was retired when this page was left.');});
 
 $('propose-features').addEventListener('click',()=>action(()=>{
   const container=$('library-proposal-comparison');container.replaceChildren();

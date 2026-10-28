@@ -221,3 +221,28 @@
 #inspect-last-experiment{margin-top:10px;white-space:normal}
 @media(max-width:480px){#experiment-receipts{padding:16px}#experiment-receipts h3{font-size:18px}}
 #experiment-receipt-chart .chart-legend{font-size:12px;line-height:1.5;gap:10px;flex-wrap:wrap}
+
+/* This readout belongs to the executed mechanism, on its existing sample clock. */
+.local-response-instrument{border-top:1px solid #45634e;margin:0 22px;padding:16px 0 13px;color:#e2eddb;overflow-wrap:anywhere}
+.local-response-header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.local-response-header h3{margin:0;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.12em;color:#c9dfb6}
+.local-response-time{font-family:var(--mono);font-size:11px;color:#d9e8cc;font-variant-numeric:tabular-nums}
+.local-response-source,.local-response-status{font-size:11px;line-height:1.55;margin:7px 0 0;color:#bdcfb7}
+.local-response-source{font-family:var(--mono);font-size:10px}
+.local-response-source:empty{display:none}
+.local-response-readouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin-top:15px}
+.local-response-field{min-width:0;border-left:2px solid #698b60;padding-left:11px}
+.local-response-field h4{font:600 9px var(--sans);letter-spacing:.09em;color:#b9cdb0;margin:0 0 7px}
+.local-response-value{font:600 13px/1.4 var(--sans);margin:0;color:#e8f2df}
+.local-response-detail{font:10px/1.6 var(--mono);margin:7px 0 0;color:#c7d8bd}
+.local-response-field[data-response="amplifying"],.local-response-field[data-response="reinforces_rate_perturbation"],.local-response-field[data-response="growing"],.local-response-field[data-response="one_growing_one_decaying"]{border-left-color:#e5ae81}
+.local-response-field[data-response="amplifying"] .local-response-value,.local-response-field[data-response="reinforces_rate_perturbation"] .local-response-value,.local-response-field[data-response="growing"] .local-response-value,.local-response-field[data-response="one_growing_one_decaying"] .local-response-value{color:#f2c6a3}
+.local-response-instrument[data-state="nonsmooth"] .local-response-status,.local-response-instrument[data-state="unresolved_numeric"] .local-response-status{color:#f2c6a3}
+.local-response-explanation{margin-top:13px;font-size:11px;line-height:1.65;color:#c9d9bf}
+.local-response-explanation>summary{cursor:pointer;width:fit-content;padding:5px 0;color:#d8e9c7;font-size:11px}
+.local-response-explanation>summary:focus-visible{outline:3px solid #d4ed87;outline-offset:4px}
+.local-response-explanation p{margin:8px 0 0}
+.local-response-state,.local-response-declarations,.local-response-matrix{font-family:var(--mono);font-size:10px}
+.local-response-readouts[hidden],.local-response-explanation[hidden]{display:none}
+@media(max-width:800px){.local-response-instrument{margin:0 15px}.local-response-readouts{gap:12px}.local-response-field{padding-left:9px}.local-response-value{font-size:12px}}
+@media(max-width:600px){.local-response-instrument{margin:0 18px}.local-response-readouts{grid-template-columns:1fr;gap:13px}.local-response-field{display:grid;grid-template-columns:105px minmax(0,1fr);gap:3px 9px;padding-left:10px}.local-response-field h4{margin:2px 0;grid-row:1/3;line-height:1.6}.local-response-value{font-size:12px}.local-response-detail{margin:0}.local-response-header{gap:7px}.local-response-time{font-size:10px}.instrument-stage .stage-coordinate{display:none}}
