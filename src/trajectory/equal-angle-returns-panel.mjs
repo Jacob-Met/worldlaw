@@ -1,3 +1,4 @@
+import {createReturnBoundsPanel} from './equal-angle-bounds-panel.mjs';
 import {inspectEqualAngleReturns} from './equal-angle-returns.mjs';
 const node=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 const fmt=x=>Number.isFinite(x)?Number(x.toPrecision(6)).toString():'unavailable';
@@ -12,11 +13,12 @@ export function createEqualAnglePanel(anchor,{changed}){
  const locate=node('button','Locate both passages on the observed trace');locate.id='locate-equal-angle';locate.type='button';locate.className='button outline';locate.hidden=true;host.append(locate);
  const output=node('div');output.id='equal-angle-output';output.style.overflowWrap='anywhere';output.style.marginTop='12px';host.append(output);
  const coverage=node('details');coverage.hidden=true;coverage.append(node('summary','All original cycles, matching levels and refusals'));const body=node('div');coverage.append(body);host.append(coverage);
+ const bounds=createReturnBoundsPanel(output);
  let original=null,result=null,selection=null,ticket=0;
- function reset(){ticket++;original=null;result=null;selection=null;host.hidden=true;save.hidden=label.hidden=locate.hidden=coverage.hidden=true;inspect.disabled=false;level.replaceChildren();output.replaceChildren();body.replaceChildren();status.textContent='';}
+ function reset(){bounds.reset();ticket++;original=null;result=null;selection=null;host.hidden=true;save.hidden=label.hidden=locate.hidden=coverage.hidden=true;inspect.disabled=false;level.replaceChildren();output.replaceChildren();body.replaceChildren();status.textContent='';}
  function selected(){if(!level.options.length||level.value==='')return null;const row=result?.rows[Number(level.value)];return row?.runId===selection?.runId&&row?.cycleIndex===selection?.cycleIndex?row:null;}
  function paint(){
-  output.replaceChildren();const row=selected();locate.hidden=!row||row.status!=='compared';if(!row)return;
+  output.replaceChildren();const row=selected();bounds.receive(result,row);locate.hidden=!row||row.status!=='compared';if(!row)return;
   output.append(node('p','Original recording '+row.runId+', cycle '+row.cycleIndex+'.'));
   if(row.status!=='compared'){output.append(node('p','REFUSED · '+row.reason));return;}
   output.append(node('p','Reported angle '+fmt(row.position)+' rad at '+fmt(row.start)+' s and '+fmt(row.end)+' s. Local rates '+fmt(row.firstRate)+' and '+fmt(row.lastRate)+' rad/s, using the original '+result.windowSize+'-sample window.'));
@@ -39,9 +41,9 @@ export function createEqualAnglePanel(anchor,{changed}){
   for(const record of next.original.records)for(const c of record.cycles){const rows=next.rows.filter(r=>r.runId===record.runId&&r.cycleIndex===c.cycleIndex);body.append(node('p',record.runId+', cycle '+c.cycleIndex+': '+rows.filter(x=>x.position!==undefined).length+' exact reported matching levels; '+rows.filter(x=>x.status==='compared').length+' compared. '+rows.filter(x=>x.status!=='compared').map(x=>x.reason).join(' ')));}
   body.append(node('p',next.interpretation));body.append(node('p','Additional work: '+next.work.actualRateWindows+' / '+next.work.requiredRateWindows+' reserved rate fits; '+next.work.actualIntervals+' / '+next.work.requiredIntervals+' reserved intervals. Original replay and extraction are separate bounded passes.'));selectCycle();
  }
- inspect.addEventListener('click',async()=>{if(!original)return;const mine=++ticket,snapshot=original;result=null;save.hidden=label.hidden=locate.hidden=coverage.hidden=true;output.replaceChildren();body.replaceChildren();inspect.disabled=true;status.textContent='Replaying original source and checking exact-coordinate returns…';changed();await new Promise(requestAnimationFrame);if(mine!==ticket)return;try{showReport(inspectEqualAngleReturns(snapshot.inputs.cycleWork));changed();}catch(error){status.textContent='Return inspection refused: '+error.message;}finally{if(mine===ticket)inspect.disabled=false;}});
+ inspect.addEventListener('click',async()=>{if(!original)return;const mine=++ticket,snapshot=original;result=null;bounds.reset();save.hidden=label.hidden=locate.hidden=coverage.hidden=true;output.replaceChildren();body.replaceChildren();inspect.disabled=true;status.textContent='Replaying original source and checking exact-coordinate returns…';changed();await new Promise(requestAnimationFrame);if(mine!==ticket)return;try{showReport(inspectEqualAngleReturns(snapshot.inputs.cycleWork));changed();}catch(error){status.textContent='Return inspection refused: '+error.message;}finally{if(mine===ticket)inspect.disabled=false;}});
  level.addEventListener('change',()=>{paint();changed();});
  locate.addEventListener('click',()=>{const trace=document.getElementById('cycle-work-halves-trace');trace?.scrollIntoView({block:'center',behavior:'instant'});trace?.focus();});
  save.addEventListener('click',()=>{if(!result)return;const url=URL.createObjectURL(new Blob([JSON.stringify(result.inputs,null,2)],{type:'application/json'})),a=node('a');a.href=url;a.download='worldlaw-equal-angle-returns.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
- return {reset,receive,showReport,selected};
+ return {reset,receive,showReport,selected,showBounds(next){bounds.showReport(next);paint();}};
 }
