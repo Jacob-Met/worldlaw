@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "scope": "Independent source review and six defined synthetic native groups; no browser or observed-recording receiving claim",
+  "sourceSHA256": {
+    "src/trajectory/forward.mjs": "7e80824e1475b21e99c74e3f5cd058655851b5c90494086325c44ffe6fd4f705",
+    "src/trajectory/resolution.mjs": "54123871fb4b9355989a1d97a4da374547c694166fccd778d55c93da120910cd",
+    "tests/review-domain-skill.test.mjs": "878268184b41f3ae3919493993194839054524dbbc47d092b38374258eec7cef"
+  },
+  "command": "node --test tests/review-domain-skill.test.mjs",
+  "reporter": "One passing test file containing six defined groups",
+  "findings": [
+    "No blocking defect found",
+    "Initial state, every derivative stage, weighted RK4 final, contact drive and returned contact state checked",
+    "Domain copy prevents caller option aliasing; default output property absent unless requested",
+    "Fine-only position_domain retains coarse evidence with unavailable/refinement_execution_refused and null requested refined rollout",
+    "Combined step budget and timing/contact branch restrictions remain unchanged",
+    "Later observed targets stay incumbent-admitted residual inputs, not execution-domain constraints",
+    "Contact trial/bisection numerical states are intentionally constrained even if the ultimately located physical event could remain inside; this is a numerical-state domain, not an event reachability proof"
+  ],
+  "productEdits": false
+}

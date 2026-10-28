@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "native": "Independent rerun of source-only frozen q/v selected sine consumer; no fitting/reset, unknown absolute inertia/torque preserved, exact2001 positions/rates, .1673458079542472rad RMSE,25344combinedsteps",
+  "browserChecks": 21,
+  "browser": "156.0.8078.73",
+  "browserScope": "Maintained full harness launched before narrower focus guidance; completed once with own server/browser cleanup. No additional matrix. Resolution/failure/reopen/source controls included; no new UI qualification claim beyond actual harness.",
+  "adapter": "Original maintained harness preserved. Copy adds chromiumSandbox:true and chrome://sandbox Namespace/Seccomp verification only. Whole process UID/GID65534, clearedgroups, umask077; private images/downloads excluded.",
+  "hashes": {
+    "src/trajectory/forward.mjs": "7e80824e1475b21e99c74e3f5cd058655851b5c90494086325c44ffe6fd4f705",
+    "src/trajectory/resolution.mjs": "54123871fb4b9355989a1d97a4da374547c694166fccd778d55c93da120910cd",
+    "tools/receive-pasco-qv-sine.mjs": "a07ec2d16ef1554ae69be5f15ae37203912feb317fa953f624c09cd86f1382c9",
+    "tools/review-sg-pasco-qv-sine.mjs": "0ed5ca286b33f0e922559ad0a462fcc3cd851f91ccbc843932f5be1cc07cd51b",
+    "docs/evidence/review-sg-pasco-qv-sine.json": "14fcf9f161f88dd07f33cc9a126c4be0ff25daa3afeab3eca1dcea562bd40206",
+    "scripts/trajectory-browser-92be.mjs": "0fbfb28f3685f5fc7c1acfc9be25c36566bf2858d4b57fcae3349f9c33871a94",
+    "scripts/review-sg-trajectory-browser.mjs": "f11dbd14ff930b3f6a387c17c59318ada81d9c7bec418d51cbe3bfde53b4cce6",
+    "private-qa/sg-browser/receipt.json": "418f99a36952b18941eed4dfd950ec1c891cee895662c5a87ca12afa1f3835b5",
+    "private-qa/sg-browser/sandbox.txt": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3"
+  }
+}
