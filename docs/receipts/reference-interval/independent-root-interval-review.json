@@ -1,0 +1,27 @@
+{
+  "reviewer": "Root independent source and actual-pixel review",
+  "reviewedAt": "2026-10-28T21:43:06.139125+00:00",
+  "result": "accepted within explicitly non-certified binary64 screening scope",
+  "sources": {
+    "src/unknown-lab/reference-interval-refinement.mjs": "9038e7c2bbdfda2b8ae4a0656092ee58735d76853d72356bc9c27172b6b39e12",
+    "src/unknown-lab/reference-refinement-panel.mjs": "60483fcb4160574b0c9e9962a4a5946df127816a0582f200494b2beb0b37d466",
+    "test-interval-refinement.mjs": "fa9ee733a794fb9a88fadd6fed5b58ccbc319c9c459726e265b3ffa7b2026b5d",
+    "test-interval-oracle.mjs": "31e5269dc2834a05c5362c3eaf9df96abc1d6090d33b54bd915b4017d398021e",
+    "scripts/reference-interval-browser.mjs": "9f85eecf27a4858b99b3db001116bb004fccbcc0ca8acf454fea10d175c1c2d9"
+  },
+  "independentCoreReviewSha256": "540d366dddadd9ea05faa22e7cb5c95b55f84096353bff2c58c62baf2ecba638",
+  "independentConsumerReviewSha256": "e8be211f338a05f8861c18152c90224c3281194765fd66b6a07f5a71c0c31698",
+  "receivingReceiptSha256": "dcf899b1b886a4381040543ad43dd1875db83bdb5eb4d4c4a0373326ee9415ba",
+  "actualImagesViewed": {
+    "finite-witness-1440.png": "679cf1e30e91ecd991f4d01b144766cf2ffbf0964b41f9254f1729f6ee49f6a0",
+    "finite-witness-390.png": "9926b415144fadf8807d72bf743a2a6f8abdff9dc04575845c28bd9c7776860e"
+  },
+  "findings": [
+    "Independently checked the two signed overlap inequalities: alternative explanations may use separate latent references inside the same reported interval while sharing a possible MAIN reading. The target stays at its separately declared point reference.",
+    "The product-face argument enumerates all structural vertex types introduced by at most two extra cuts and keeps disconnected sign-component products separate. Exact dyadic predicates have a stated rank-only role; numerical geometry/feasibility and final widths remain binary64 screening.",
+    "Work is reserved before the offer computation. Unsafe pivots and nonfinite or failed witness checks withhold the whole offer instead of reporting a partial best. Gain-zero witnesses, original component membership and original source-constraint rechecks are explicit.",
+    "Compared the panel with the maintained point-refinement source. Legacy point import/export remains routed through its own validator; new interval admission, explicit compare, accepted-source retention, dirty/stale freeze prevention and delayed-read epochs remain intact.",
+    "Viewed finite-width attaining witnesses at1440 and390px. The shared reported interval, two latent references, common MAIN reading and both residuals are readable; raw numerical details remain optional. The display retains numerical guard and non-certified scope."
+  ],
+  "validationScope": "Inspected source, independent reviews, full original receiving record (native/oracle/point regression,94resources,40strict browser groups with sandbox admission), and exact-source finite-witness pixels. No new root browser run or actual merged receiving assertion."
+}

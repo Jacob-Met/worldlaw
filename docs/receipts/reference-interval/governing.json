@@ -1,0 +1,12 @@
+{
+  "base": "9628cc266e7dc295a135abc6664658d2a3da87f6",
+  "pins": {
+    "AGENTS.md": "54f254668502aaf65b1c991986a319f3de014677",
+    "docs/EXPERIENCE_DESIGN_CHARTER.md": "53f45ea9cbd8019624f7824a3305ce38734fb5e3",
+    "docs/PRODUCT_CANON.md": "12774f58a7b4af16cca097044a5d7a2ed2901580",
+    "docs/CAPABILITY_GRAPH.json": "bf0e445c6863a252082133a7501b2d6cadd3ebb3",
+    "docs/PRODUCT_ACCEPTANCE.md": "b7543b207da8b75c92f9b3b05d6d2f80f9ead0cc",
+    "README.md": "447266fd14124d1739d9727397afe2efc0ae7b06"
+  },
+  "interactionChoice": "Extend the existing UNKNOWN LAB source-to-coefficient-to-offered-observation instrument in place. Keep the target point separate from the future reference interval and MAIN precision, with human attaining explanations visible beside a frozen sequence request. No dashboard, separate fitter or app shell; existing measured-source/actual receiver remains unchanged. Actual desktop/narrow/keyboard source-bound course and finite-witness captures retained."
+}
