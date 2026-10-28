@@ -1,3 +1,4 @@
+import {mountReleasePerturbations} from './release-perturbations-panel.mjs';
 /**
  * One declared release, every competitive law from the explicitly chosen evidence. This is a view of
  * maintained numerical predictions, never a source of observations or ranking.
@@ -19,7 +20,7 @@ const methodName = diagnostics => diagnostics?.method === 'adaptive_RK4_step_dou
     ? 'Fixed-step RK4 · sign-rate law, no local error control'
     : 'Not executed';
 
-export function mountStudioComparison(container, {transportHost, getState, getInputs, chart, onClear}) {
+export function mountStudioComparison(container, {transportHost, getState, getInputs, chart, onClear, investigation}) {
   let result = null, resultSource = null, active = [], serial = 0, origin = 0, paused = true, sampleIndex = 0, lastPaintedIndex = -1;
   let times = [], view = 'joint', selectedLaw = null, previewLaw = null, playbackRate = 1;
   const heading = element('div', undefined, 'motion-comparison-heading');
@@ -78,12 +79,14 @@ export function mountStudioComparison(container, {transportHost, getState, getIn
   const note=element('p','All positions are executed predictions at the same sampled time.','motion-comparison-transport-note');
   transport.append(controlRow,optionsRow,legend,note);transportHost.append(transport);
 
+  const perturbations=mountReleasePerturbations(details,{chart,openHost:container,investigation:{...investigation,commit:async staged=>{investigation.commit(staged);intervalSelect.value=String(staged.question.settings.dt);await execute(staged.question.eventIndex,staged);return getState()===staged.state&&result===staged.result.baseline;}},getContext:()=>result?.status==='completed'?{discovery:resultSource.discovery,initial:result.initial,settings:result.settings,label:resultSource.label,state:getState(),eventIndex:resultSource.eventIndex}:null});
   function setPaused(value) {
     paused=value;pause.textContent=paused?'Play predictions':'Pause predictions';
     pause.dataset.paused=String(paused);
     if(!paused) origin=performance.now()-(times[sampleIndex]||0)*1000/playbackRate;
   }
   function retire(message='The comparison was retired. Compare again using the current evidence and dynamics inputs.') {
+    perturbations.retire();
     const hadResult=Boolean(result)||run.disabled;
     serial++; result=null;resultSource=null;source.hidden=true;source.textContent='';active=[];times=[];sampleIndex=0;lastPaintedIndex=-1;selectedLaw=null;previewLaw=null;
     transport.hidden=true;details.hidden=true;assumptions.hidden=true;spread.hidden=true;spread.textContent='';
@@ -126,8 +129,9 @@ export function mountStudioComparison(container, {transportHost, getState, getIn
   const media=matchMedia('(prefers-reduced-motion: reduce)');
   media.addEventListener('change',event=>{if(event.matches&&result)setPaused(true);});
 
-  async function execute(eventIndex=null) {
-    const token=++serial, state=getState();
+  async function execute(eventIndex=null,staged=null) {
+    perturbations.retire();
+    const token=++serial, state=getState(),stageGeneration=staged?investigation.current():null;
     let inputs, chosen;
     try {
       if(eventIndex!==null){
@@ -135,11 +139,11 @@ export function mountStudioComparison(container, {transportHost, getState, getIn
         if(!receipt?.models?.length)throw new Error('Choose an outcome with its original earlier competitive laws.');
         // Receipt models are reconstructed from earlier inputs. Never look up a
         // current model by ID: its coefficients and observed ranges may differ.
-        chosen={discovery:{competitive:receipt.models},historical:true,
+        chosen={discovery:{competitive:receipt.models},historical:true,eventIndex,
           label:'Before outcome '+eventIndex+' · recomputed motion',
           description:'Before outcome '+eventIndex+': '+state.history[eventIndex].label+'. '+receipt.models.length+' original competitive laws fitted to '+receipt.beforeCount+' earlier rows, reconstructed from notebook inputs. Motion is computed now using the current declared release below; this is not an authenticated forecast made before acquisition.'};
-      }else chosen={discovery:state.discovery,historical:false,label:'Current competitive-law predictions',description:'Current competitive laws · motion recomputed from the current evidence and declared release.'};
-      inputs=getInputs();inputs={...inputs,settings:{...inputs.settings,dt:Number(intervalSelect.value)}};
+      }else chosen={discovery:state.discovery,historical:false,eventIndex:null,label:'Current competitive-law predictions',description:'Current competitive laws · motion recomputed from the current evidence and declared release.'};
+      inputs=staged?{initial:staged.question.initial,settings:staged.question.settings}:getInputs();if(!staged)inputs={...inputs,settings:{...inputs.settings,dt:Number(intervalSelect.value)}};
     }
     catch(error){retire();status.textContent='Comparison unavailable: '+error.message;status.dataset.state='refused';return;}
     result=null;resultSource=chosen;source.textContent=chosen.description;source.hidden=false;active=[];times=[];selectedLaw=null;previewLaw=null;transport.hidden=true;details.hidden=true;assumptions.hidden=true;spread.hidden=true;spread.textContent='';
@@ -147,9 +151,10 @@ export function mountStudioComparison(container, {transportHost, getState, getIn
     status.textContent='Executing the complete '+(chosen.historical?'earlier ':'')+'competitive set under one declared release…';
     await new Promise(requestAnimationFrame);
     if(token!==serial)return;
+    if(staged&&stageGeneration!==investigation.current()){retire('A newer source opening retired the release investigation.');return;}
     if(state!==getState()){retire('The evidence changed. Compare again using the chosen evidence and current release.');return;}
     try {
-      const next=compareStudioDynamics(chosen.discovery,inputs.initial,inputs.settings);
+      const next=staged?staged.result.baseline:compareStudioDynamics(chosen.discovery,inputs.initial,inputs.settings);
       if(token!==serial||state!==getState())return;
       result=next;
       const outcomes=next.results;
@@ -235,3 +240,4 @@ export function mountStudioComparison(container, {transportHost, getState, getIn
   }
   return {retire,frame,compareHistorical:eventIndex=>execute(eventIndex),get active(){return Boolean(result&&active.length);}};
 }
+

@@ -1,3 +1,4 @@
+import {outputIntervalCount} from './output-grid.mjs';
 /**
  * Studio numerical execution. Uses the maintained torque evaluator; never fits
  * observations or resets a predicted state from observed positions.
@@ -24,7 +25,7 @@ function settings(options) {
   const out = Object.fromEntries(Object.entries(DEFAULTS).map(([key, fallback]) => [key, options[key] === undefined ? fallback : options[key]]));
   finite(out.duration, 'duration', 1000); finite(out.dt, 'dt', 1);
   finite(out.inertia, 'inertia', 1e12); finite(out.command, 'command', 1e6);
-  requireThat(out.duration > 0 && out.dt > 0 && out.inertia > 0 && Math.ceil(out.duration / out.dt) <= 10000,
+  requireThat(out.duration > 0 && out.dt > 0 && out.inertia > 0 && outputIntervalCount(out.duration, out.dt) <= 10000,
     'Dynamics needs positive duration, display interval and inertia, with at most 10000 output intervals.');
   for (const key of ['relativeTolerance', 'positionTolerance', 'rateTolerance']) {
     finite(out[key], key, 0.01);
@@ -76,7 +77,7 @@ export function simulateAdaptiveDynamics(model, initial, options = {}) {
   };
   const sample = time => ({time, position, rate, jointTorque: torque(s.command, position, rate)});
   const trajectory = [sample(0)];
-  const outputIntervals = Math.ceil(s.duration / s.dt);
+  const outputIntervals = outputIntervalCount(s.duration, s.dt);
   let nextStep = s.dt;
   for (let i = 1; i <= outputIntervals; i++) {
     const targetTime = i === outputIntervals ? s.duration : i * s.dt;
@@ -155,3 +156,4 @@ export function executeStudioDynamics(model, initial, options = {}) {
     },
   };
 }
+
