@@ -1,0 +1,51 @@
+{
+  "status": "accepted final source and actual desktop/mobile visual gate",
+  "at": "2026-10-28T22:25:59.222023+00:00",
+  "reviewer": "root",
+  "payloadSHA256": "4529232c2122d47d23c55534af10490db70283d8a4a3897ec625ef97b3f40814",
+  "sourceRead": [
+    {
+      "path": "src/unknown-lab/reference-family-refinement.mjs",
+      "sha256": "b6de59ffa5746f278b485b475b61140b7f21e6b930bf75ecec43630a49086553"
+    },
+    {
+      "path": "src/unknown-lab/reference-family-worker.mjs",
+      "sha256": "993160f9d840b3f0056780fbbc2e117ea1594045b19b94e32fdd069112f1ea18"
+    },
+    {
+      "path": "src/unknown-lab/reference-refinement-panel.mjs",
+      "sha256": "e2c2612318ff67359d81e6cf343e4a2520a9ef9fc4a2ed32f5e056176537a844"
+    },
+    {
+      "path": "docs/REFERENCE_FAMILY_REFINEMENT.md",
+      "sha256": "c839b2022ab92d174ce94b9cb3e35f674301a044c1fde81f92a90c05de5ca2f3"
+    }
+  ],
+  "images": [
+    {
+      "file": "family-result-1440.png",
+      "bytes": 601646,
+      "sha256": "63aa231022c2babb192c2b0ef64fd2801adca1b0395cb546260448fe63ac513f",
+      "personallyInspected": true
+    },
+    {
+      "file": "family-result-390.png",
+      "bytes": 296955,
+      "sha256": "223502195fa78f80197e4360c1f8bafbf76df0c2f783d2f5f147ea5dd7fc29b2",
+      "personallyInspected": true
+    }
+  ],
+  "actualBrowserGroups": 49,
+  "strictSandbox": true,
+  "independentCompositionReviewSHA256": "b8a6f6088d2d03183bff1e98833c3a3b892e4e68743269b73fed4704cc03ba68",
+  "findings": [
+    "All original finite model IDs and original sign components remain separate, with model-specific future and target bases. Complete original sequence is re-admitted and all-offer work reserved before any scoring.",
+    "Actual desktop/mobile pixels show original source identities, conditional recommendation, every retained family, reserved work, two distinct attaining family IDs, separate latent reference witnesses and a common MAIN reading. Long evidence is readable at390px; numerical detail is collapsed beneath the answer.",
+    "Worker cancellation and epoch checks retain the last accepted evidence on edits, parent changes, reopen races and failures. Stale or changed source cannot freeze an offer. Complete source-only exports recompute derived results.",
+    "Native, near-limit,42 prior oracle,legacy point/interval and97-resource HTTP evidence are bound to unchanged runtime;49 strict-browser groups are bound to final harness. Both earlier harness-only failures remain retained."
+  ],
+  "limits": [
+    "Guarded binary64 screen, not certified arithmetic or physical identification. Conditional reported reference assumptions do not establish control of physical reference values.",
+    "Final publication after adding review records requires fresh complete-tree and candidate/dependency lease verification. Actual merged receiving remains a later effect."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "verdict": "accepted scoped consumer source review; no material blocker",
+  "files": {
+    "src/unknown-lab/reference-refinement-panel.mjs": "e2c2612318ff67359d81e6cf343e4a2520a9ef9fc4a2ed32f5e056176537a844",
+    "src/unknown-lab/reference-family-worker.mjs": "993160f9d840b3f0056780fbbc2e117ea1594045b19b94e32fdd069112f1ea18"
+  },
+  "checks": [
+    "All-family worker invokes maintained complete original-source analyzer; UI adopts only after full successful result and epoch equality.",
+    "New activity terminates pending worker/rejects promise; stale catches do not replace accepted source or errors.",
+    "Parent sequence edits retire pending reads/work and mark retained accepted account stale; user drafts retained.",
+    "Point/interval source imports/exports continue respective maintained analyzers; all-family schema is explicit.",
+    "Freeze requires clean/current exact account and computed offer; passes same declared interval to unchanged receiver.",
+    "Model-specific identities and separate latent reference/common MAIN semantics are visible."
+  ],
+  "limits": [
+    "No new actual browser execution in this review; worker cancellation/stale lifecycle requires author/root actual receiving.",
+    "Source validation before worker reopen still runs maintained bounded admission on main thread; no all-work-off-thread performance claim."
+  ]
+}

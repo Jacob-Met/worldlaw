@@ -1,0 +1,9 @@
+{
+  "schema": "worldlaw.reference-browser-cleanup/v1",
+  "profile": "/tmp/reference-chrome-9xjsbL",
+  "chromeExited": true,
+  "exitCode": 0,
+  "signalCode": null,
+  "primaryFailure": "Expected values to be strictly equal:\n\nfalse !== true\n",
+  "errors": []
+}

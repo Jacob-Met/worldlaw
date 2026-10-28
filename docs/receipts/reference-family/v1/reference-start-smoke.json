@@ -1,0 +1,495 @@
+{
+  "schema": "worldlaw.reference-smoke/v1",
+  "baseRevision": "d6d80edf6022493441ef37865078a3ae212a00b5",
+  "node": "v22.23.4",
+  "resources": [
+    {
+      "path": "favicon.svg",
+      "bytes": 262,
+      "sha256": "23c01b64eb46d40f255893a6cc35cfc1b409bd1627840d676ae4e56e6c80b630"
+    },
+    {
+      "path": "src/experiment-design/interval-separation.mjs",
+      "bytes": 897,
+      "sha256": "ee9c3b3ecc36c7707ef0c680c41cff35068fae8d0be1927e80e19be277217496"
+    },
+    {
+      "path": "src/science/linear-fit.mjs",
+      "bytes": 2722,
+      "sha256": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da"
+    },
+    {
+      "path": "src/science/linear-reading-influences.mjs",
+      "bytes": 637,
+      "sha256": "190884787d18ee265f4b6b549f1fd5a2832f58d5aeb36561058e442fff3ab623"
+    },
+    {
+      "path": "src/science/output-grid.mjs",
+      "bytes": 445,
+      "sha256": "e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d"
+    },
+    {
+      "path": "src/science/parameter-sensitivity.mjs",
+      "bytes": 2914,
+      "sha256": "8427b254df705afa64cb6834452a26036d33b7081a90a263129fc3e894951781"
+    },
+    {
+      "path": "src/science/prediction-sensitivity.mjs",
+      "bytes": 4440,
+      "sha256": "f6922003443fa247372f2703bb8d156f80dd9307d506cc2246a74b05da03eb49"
+    },
+    {
+      "path": "src/science/robust-fit.mjs",
+      "bytes": 5720,
+      "sha256": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1"
+    },
+    {
+      "path": "src/science/shared-training-check.mjs",
+      "bytes": 9757,
+      "sha256": "f0c2032b3e39261f237bbd38edec5dd89cf6f517d4218eabe832dfc0206f870c"
+    },
+    {
+      "path": "src/science/shared-training-search.mjs",
+      "bytes": 6661,
+      "sha256": "ab02452c660861370b38b8ca9495c42afa7050af583d89130335b684aa39df4e"
+    },
+    {
+      "path": "src/science/tanh-enclosure.mjs",
+      "bytes": 1520,
+      "sha256": "499b6952d3b33ed452335c07b5cb88644787ed9eb5a9c40a80e3290b28c69bf6"
+    },
+    {
+      "path": "src/science/torque-discovery.mjs",
+      "bytes": 22230,
+      "sha256": "34b75f3b08606b6f3c12d87ea090b74cd5fb42e550e5a9f95b5454cc57c58d2f"
+    },
+    {
+      "path": "src/unknown-lab/app.mjs",
+      "bytes": 11036,
+      "sha256": "8203431184e0c23bf2b65e5a1d30914cafb48ce6a319dc27f7a13d46f20d219b"
+    },
+    {
+      "path": "src/unknown-lab/chronos-exact-halfplanes.mjs",
+      "bytes": 3863,
+      "sha256": "3f2020d8adac92ac1b82331dd5b30964a889a85d249e81cd16bb9dbba99b1150"
+    },
+    {
+      "path": "src/unknown-lab/continuous-duration-example.mjs",
+      "bytes": 1389,
+      "sha256": "d65908d87fdf204c027e9daaab8a4997b6dbe1d89a5946c1d2d97edd2dbe082e"
+    },
+    {
+      "path": "src/unknown-lab/continuous-duration-panel.mjs",
+      "bytes": 7229,
+      "sha256": "b8f1a0240d940379560a6b17079a2afd2a7a469cc6487ae4f3883af3320f88e0"
+    },
+    {
+      "path": "src/unknown-lab/continuous-duration.mjs",
+      "bytes": 8180,
+      "sha256": "f825b00d2e8c8e89945bf651bad2081f344c11b6b251866a5828d86dc2f88819"
+    },
+    {
+      "path": "src/unknown-lab/correlation-band-panel.mjs",
+      "bytes": 15109,
+      "sha256": "75d27165f09b86d513950814244ac9a7b9d91daf2b10a67af6f1bcd8ca1f432d"
+    },
+    {
+      "path": "src/unknown-lab/drift-construction-panel.mjs",
+      "bytes": 8411,
+      "sha256": "97030f437b9479291f3b4d0d5d0e8f5323493bda0da9ba28cd55edb8f8ba77eb"
+    },
+    {
+      "path": "src/unknown-lab/drift-construction.mjs",
+      "bytes": 3815,
+      "sha256": "37192622904060a08236498eeac36ae9d8a7c99db3520ac4adfe8791e9e840f5"
+    },
+    {
+      "path": "src/unknown-lab/duration-acquisition-panel.mjs",
+      "bytes": 3670,
+      "sha256": "08350182e0a5f6cfc01e379b801e5d589edba666e27ab238a9a45846bda14b94"
+    },
+    {
+      "path": "src/unknown-lab/duration-acquisition.mjs",
+      "bytes": 4433,
+      "sha256": "3a8a86dfcf119255f9a226314731a238c313b796266e26af3468e4fc77e28845"
+    },
+    {
+      "path": "src/unknown-lab/duration-panel.mjs",
+      "bytes": 6307,
+      "sha256": "00dacad051c0a39dcb0fed71a715faa80c58aaec9b4707d7a7251bfaed1dc9b4"
+    },
+    {
+      "path": "src/unknown-lab/duration-planner-panel.mjs",
+      "bytes": 4540,
+      "sha256": "50f4f6f1c61d8ac811d9323fdb27b5e53107d5f56a0b6cb06d828ca39b14d6a4"
+    },
+    {
+      "path": "src/unknown-lab/duration-planner.mjs",
+      "bytes": 3568,
+      "sha256": "8d62448c9c53436a51fc196c4ef8bb4ecfa8f1f7cb12b31ff1ef06e0c12265fb"
+    },
+    {
+      "path": "src/unknown-lab/duration-response.mjs",
+      "bytes": 6218,
+      "sha256": "181db40575b3f99227fcb4b62eb9e38be2b79ff57c2d0d1400b15496287e82ee"
+    },
+    {
+      "path": "src/unknown-lab/history-acquisition-panel.mjs",
+      "bytes": 10077,
+      "sha256": "26447981ecd71bedec5da6045efe17552c800091033ca5018aa61e67a1141696"
+    },
+    {
+      "path": "src/unknown-lab/history-acquisition.mjs",
+      "bytes": 6527,
+      "sha256": "734ffecd71444cca49af846957347130c13b5e398a73c06df22622340938d508"
+    },
+    {
+      "path": "src/unknown-lab/joint-qualification-panel.mjs",
+      "bytes": 11820,
+      "sha256": "f0ed8f9513462c0ea28b107e8646ba71d73c1d315cf72e9eaa89c4cfa7219984"
+    },
+    {
+      "path": "src/unknown-lab/mixed-state-panel.mjs",
+      "bytes": 7366,
+      "sha256": "16fa0ff3ee79b6aa9a6040d87dd0bdd861d521f9eb5f12e107c5fc0d8126d53a"
+    },
+    {
+      "path": "src/unknown-lab/mixed-state-response.mjs",
+      "bytes": 6722,
+      "sha256": "f91a63a076e485433725ead0862ad4f8d71a63d32383b6526e838f8aeb61d1ff"
+    },
+    {
+      "path": "src/unknown-lab/order-construction-panel.mjs",
+      "bytes": 4170,
+      "sha256": "440acedb92c521a077475f82e8fbda696beb5d2a75b16de865d3d51813fb72cd"
+    },
+    {
+      "path": "src/unknown-lab/order-construction.mjs",
+      "bytes": 2995,
+      "sha256": "4a896a10923df7f80048d735f300d8f1e57534f50ff2374e27cc23d697eff931"
+    },
+    {
+      "path": "src/unknown-lab/paired-history.mjs",
+      "bytes": 12651,
+      "sha256": "0f41108cc93c8b6855cad77c1fc670464475d9d558039a837f15b0ed48b8089b"
+    },
+    {
+      "path": "src/unknown-lab/period-band-panel.mjs",
+      "bytes": 9973,
+      "sha256": "6f9ee24d229e02425d07b56466e462c91394d71afb5a1f54ed734aa5b382f76b"
+    },
+    {
+      "path": "src/unknown-lab/period-band.mjs",
+      "bytes": 4815,
+      "sha256": "7c242eac6648d295f97f5abfaf11d2dec5aef0c2ad4132bf86881f89194cb7fd"
+    },
+    {
+      "path": "src/unknown-lab/periodic-contrast-panel.mjs",
+      "bytes": 6692,
+      "sha256": "8317a375c96bb47145f983da86fbc7cf130fd23b068b6e876c774e1daab7e0b9"
+    },
+    {
+      "path": "src/unknown-lab/periodic-contrast.mjs",
+      "bytes": 4425,
+      "sha256": "32dafdc15ccaf7a6d966fad2a0698aeb45b4772fa148c7ea2363e4e3fce49441"
+    },
+    {
+      "path": "src/unknown-lab/periodic-course-panel.mjs",
+      "bytes": 9278,
+      "sha256": "49753fafeeb3c4eed65bcf3af229e7fb4bd440757387d6b7b187748c71a7acf1"
+    },
+    {
+      "path": "src/unknown-lab/periodic-course.mjs",
+      "bytes": 11742,
+      "sha256": "765ffe25440698c2b7a44bdda46da22fedc77458622fc6e84aed971b0c9e23ab"
+    },
+    {
+      "path": "src/unknown-lab/periodic-history-range-panel.mjs",
+      "bytes": 10180,
+      "sha256": "62e0984d505520a285de4d5169ace86fbbbfe11490794fb17b78feed858a51ba"
+    },
+    {
+      "path": "src/unknown-lab/periodic-history-range.mjs",
+      "bytes": 5325,
+      "sha256": "728c4a5b70604c4f706e9692f8eed4f4985365a06fa7242e48363bc610a338dc"
+    },
+    {
+      "path": "src/unknown-lab/periodic-order.mjs",
+      "bytes": 2407,
+      "sha256": "59f8917cf77b115cd5de6480001ad6ccbf7791889255e99b083d0844cc6afb94"
+    },
+    {
+      "path": "src/unknown-lab/probe-course.mjs",
+      "bytes": 4721,
+      "sha256": "07b2c01b747bcde32f94d84ffe4d94ba1af189fe70f87e3161c9ab7cf34e80f7"
+    },
+    {
+      "path": "src/unknown-lab/probe-fixture.mjs",
+      "bytes": 1617,
+      "sha256": "f92ce7da603667ce260e6e54582aea347e9877a230c79be06fd757fd05d4ffa1"
+    },
+    {
+      "path": "src/unknown-lab/probe-mixture-consistency-panel.mjs",
+      "bytes": 5255,
+      "sha256": "450045c88edad1071173ffc27d71fe47fd779e97041813dc7da34b2a31f2cd97"
+    },
+    {
+      "path": "src/unknown-lab/probe-mixture-consistency.mjs",
+      "bytes": 5691,
+      "sha256": "f34c10755e01d45f858b48050186e74d1641abd6729beb40a8a123fb02805832"
+    },
+    {
+      "path": "src/unknown-lab/probe-mixture.mjs",
+      "bytes": 3269,
+      "sha256": "0bac22f75a9d839b866e6197dbe213c0743106a728a99c3c0d7abaa09a66dbd7"
+    },
+    {
+      "path": "src/unknown-lab/probe-panel.mjs",
+      "bytes": 11772,
+      "sha256": "851344981a80a1ceb023669f8cd6f46b72f577f15528ac9adf00c8dda69f1de1"
+    },
+    {
+      "path": "src/unknown-lab/probe-planner-panel.mjs",
+      "bytes": 11816,
+      "sha256": "a7c5ccb0119f3e2c0c30d86a2e3c4c118e5eea76fd07a644b1f1df3499c162d8"
+    },
+    {
+      "path": "src/unknown-lab/probe-planner.mjs",
+      "bytes": 5415,
+      "sha256": "21d8a332b5f770ad4793174c86d498876eb1f66c9a9e5137b17f472e20de9834"
+    },
+    {
+      "path": "src/unknown-lab/probe-response.mjs",
+      "bytes": 8869,
+      "sha256": "2fc38c06f56307eacfd7b50daa53573d28b29d4273f0c3d3c0c99d29810a793f"
+    },
+    {
+      "path": "src/unknown-lab/probe-saturation-fixture.mjs",
+      "bytes": 885,
+      "sha256": "5816e7c128e055d4563d38959c87d17d262b54281cdcbf96a6c232f0840c4182"
+    },
+    {
+      "path": "src/unknown-lab/readout-transport.mjs",
+      "bytes": 2238,
+      "sha256": "715c7191b8b7ba95a94993ee3a343e4dc88e9118b6b130dce6809e9aa554d7e4"
+    },
+    {
+      "path": "src/unknown-lab/recovery-fixture.mjs",
+      "bytes": 1807,
+      "sha256": "8a21d5586989e248758ca33f789e52de9cc07cfa5f4e16065de30a3e93e0f003"
+    },
+    {
+      "path": "src/unknown-lab/recovery-panel.mjs",
+      "bytes": 10094,
+      "sha256": "045dff74f49aa670d24aee709362c68cb630d5db271859887a68d10842dab369"
+    },
+    {
+      "path": "src/unknown-lab/recovery-planner-panel.mjs",
+      "bytes": 8191,
+      "sha256": "f573024148970231eddbe03c9273906bdbf1f29308b5c5159d9a262b3295f111"
+    },
+    {
+      "path": "src/unknown-lab/recovery-planner.mjs",
+      "bytes": 5683,
+      "sha256": "f7a0d2f069316dbf6165185b75ac8b7d7f2184c57e54cf2352b4d14d55a6e223"
+    },
+    {
+      "path": "src/unknown-lab/recovery-planning-example.mjs",
+      "bytes": 2192,
+      "sha256": "27fef633b88cb329ded5a2fc8dc899830c16f0ecc73fce4c5587f48b9d828d95"
+    },
+    {
+      "path": "src/unknown-lab/recovery-population-planner-panel.mjs",
+      "bytes": 6911,
+      "sha256": "9f12e9381b26552c5a5512c38b3888e17768ecbc09f7f3e52baddbd8d900e2e8"
+    },
+    {
+      "path": "src/unknown-lab/recovery-population-planner.mjs",
+      "bytes": 4117,
+      "sha256": "a78a60bfb88a15d3ed260107d7b01e4a2f2ee201f8111034a3cec4b1f5153d79"
+    },
+    {
+      "path": "src/unknown-lab/recovery-response.mjs",
+      "bytes": 11345,
+      "sha256": "ba0857f4f515494270e4eeee50ef225c303d38715474fdee63e63165a7a88cac"
+    },
+    {
+      "path": "src/unknown-lab/recovery-support-example.mjs",
+      "bytes": 958,
+      "sha256": "e5886d370acb01150edffb96e9a44d0f15b38c7922ed793c8cfd5705a6bb892f"
+    },
+    {
+      "path": "src/unknown-lab/recovery-support-panel.mjs",
+      "bytes": 6430,
+      "sha256": "7629e09bd8844d2876738ba74e4e27da9dd43485da6eba00ccf51fd120d03f83"
+    },
+    {
+      "path": "src/unknown-lab/recovery-support.mjs",
+      "bytes": 3620,
+      "sha256": "2132125a647ebc0e96893714031f5e261bd394a7032581a73e1a6cfc9876ad85"
+    },
+    {
+      "path": "src/unknown-lab/recovery-transport-panel.mjs",
+      "bytes": 8995,
+      "sha256": "e6e594dc9b8fd0a593f359c5cb97900ece08ff128ce50e2890128b167e3d12d8"
+    },
+    {
+      "path": "src/unknown-lab/recovery-transport.mjs",
+      "bytes": 5192,
+      "sha256": "c947d47d047dbbe130d6bb13f3dfd339ed8cf85a4579f09761979888aa09fa38"
+    },
+    {
+      "path": "src/unknown-lab/reference-channel.mjs",
+      "bytes": 6481,
+      "sha256": "4399cf0b3ea97460ce71a9ad2adfda45917c1f57242c204ee493fdd6d87f9a18"
+    },
+    {
+      "path": "src/unknown-lab/reference-example.mjs",
+      "bytes": 1565,
+      "sha256": "19b32331c77afcb034f3b1b7fce55d9035c2354dbd0fd2bd78b043e1505966c9"
+    },
+    {
+      "path": "src/unknown-lab/reference-family-refinement.mjs",
+      "bytes": 5796,
+      "sha256": "b6de59ffa5746f278b485b475b61140b7f21e6b930bf75ecec43630a49086553"
+    },
+    {
+      "path": "src/unknown-lab/reference-family-worker.mjs",
+      "bytes": 435,
+      "sha256": "993160f9d840b3f0056780fbbc2e117ea1594045b19b94e32fdd069112f1ea18"
+    },
+    {
+      "path": "src/unknown-lab/reference-interval-refinement.mjs",
+      "bytes": 5713,
+      "sha256": "b3dcd0ce714f58a9755338508656b2194ad17650103de7666322bd1e08fd9570"
+    },
+    {
+      "path": "src/unknown-lab/reference-model-panel.mjs",
+      "bytes": 9096,
+      "sha256": "22b20e401b11ad72fc9be7eca01dcd3975cdde1914f8769cc629da458e6eb63f"
+    },
+    {
+      "path": "src/unknown-lab/reference-model-request.mjs",
+      "bytes": 4592,
+      "sha256": "7de5c03d5c4b765a0bffd55bd1b330308e5888dbca167c3068089063294199cf"
+    },
+    {
+      "path": "src/unknown-lab/reference-models.mjs",
+      "bytes": 6592,
+      "sha256": "1270300de4b614d5c54d51a53c12f19a32990ea228ab1be5d1ac71939e05ae23"
+    },
+    {
+      "path": "src/unknown-lab/reference-panel.mjs",
+      "bytes": 12462,
+      "sha256": "0372b535bf8e822fd8e190c1718bcb5836d87d48213c49dab0eaaaf1f35cacfb"
+    },
+    {
+      "path": "src/unknown-lab/reference-product-faces.mjs",
+      "bytes": 10740,
+      "sha256": "025bae5b28cae224582fd026fa55f63899079ef367ded43e179ba0ad37d50a72"
+    },
+    {
+      "path": "src/unknown-lab/reference-refinement-panel.mjs",
+      "bytes": 13194,
+      "sha256": "e2c2612318ff67359d81e6cf343e4a2520a9ef9fc4a2ed32f5e056176537a844"
+    },
+    {
+      "path": "src/unknown-lab/reference-refinement.mjs",
+      "bytes": 9329,
+      "sha256": "4fa5a33e1eb2ec7e87d5b93dfd39a30224517c81ce44fc3dff377c07fc212187"
+    },
+    {
+      "path": "src/unknown-lab/reference-request-panel.mjs",
+      "bytes": 6342,
+      "sha256": "105cdcb3794d6db4609b244bc63de26b9ef69516fa7aed11612c5d24d956754b"
+    },
+    {
+      "path": "src/unknown-lab/reference-sequence-panel.mjs",
+      "bytes": 8299,
+      "sha256": "6afab468dea2ef9c5ab4ac2ac50fef43fe03997a176cd75e4fc7c39b5f9b751c"
+    },
+    {
+      "path": "src/unknown-lab/reference-sequence.mjs",
+      "bytes": 7549,
+      "sha256": "455ec81624b2f455a164e586199d8a883c7021262b8af11e507f6891ce1652af"
+    },
+    {
+      "path": "src/unknown-lab/saturation-joint-fixture.mjs",
+      "bytes": 850,
+      "sha256": "762ec03ef50a5ad72e80fa0e4b649790ff33f0dc4d92e6dce0a3a51971e60cab"
+    },
+    {
+      "path": "src/unknown-lab/saturation-profile-panel.mjs",
+      "bytes": 12624,
+      "sha256": "2f615b3c6059bb99e8a2e2b87785ac6d9a869da710047f22fc3992d465a1fb24"
+    },
+    {
+      "path": "src/unknown-lab/saturation-profile.mjs",
+      "bytes": 19080,
+      "sha256": "34490b226404998d072ae94d575d2fcdc5738280afe4c4cb2e9aa8227b672ad8"
+    },
+    {
+      "path": "src/unknown-lab/saturation-rate-acquisition.mjs",
+      "bytes": 5792,
+      "sha256": "b3ec406e4adf16530100aae7ee16c32e1a68afcbf2728cc06e1c78cd5be063cd"
+    },
+    {
+      "path": "src/unknown-lab/saturation-rate-fixture.mjs",
+      "bytes": 2008,
+      "sha256": "0f818efb796519adbd1ffabedf3b1f7978786012a78e012e02d5540683cba50a"
+    },
+    {
+      "path": "src/unknown-lab/saturation-rate-panel.mjs",
+      "bytes": 15524,
+      "sha256": "26aa0fa2dcf6cfc980c9f4f9d409773e5962942bae44d9eebc31a861122b5dd6"
+    },
+    {
+      "path": "src/unknown-lab/serial-covariance.mjs",
+      "bytes": 459,
+      "sha256": "b8309711ce409dbcc358eb02ff1f998d931cbfd85b8e5b38a0ced68d9ef7bc19"
+    },
+    {
+      "path": "src/unknown-lab/serial-noise-panel.mjs",
+      "bytes": 3109,
+      "sha256": "ac73f6a81f0863669744354855f84c041b2f18b1686725d02ceeb3fe77ae4af5"
+    },
+    {
+      "path": "src/unknown-lab/serial-noise.mjs",
+      "bytes": 1628,
+      "sha256": "183012d311710ab0452bbea958a9326563928ec91bf45fa6df4d0babdc9d43c8"
+    },
+    {
+      "path": "src/unknown-lab/serial-order-panel.mjs",
+      "bytes": 3434,
+      "sha256": "e4833dafe5a7573bc5fc56acbb6b59ddaaf92196dff9aa309ac89061ef67d9a8"
+    },
+    {
+      "path": "src/unknown-lab/serial-order.mjs",
+      "bytes": 3682,
+      "sha256": "1c670886513311c93feb94d41f3eb4daa05b6b7ab979577825250d9a7f06fbbc"
+    },
+    {
+      "path": "src/unknown-lab/smooth-drift-panel.mjs",
+      "bytes": 11777,
+      "sha256": "085132ec7a9c996d4197b9496966b6ac999357ad45258dc62afbf432ad31b9f9"
+    },
+    {
+      "path": "src/unknown-lab/smooth-drift.mjs",
+      "bytes": 5586,
+      "sha256": "277ffb32d0d231bd9ca46c8af5259886ddb6d6d461c1a749619f3b936930fbe9"
+    },
+    {
+      "path": "unknown-lab.css",
+      "bytes": 22634,
+      "sha256": "fd5bf12744c09ddc9905cf9c5c9d2f9b0c66e7f1370580e9860606db8b0dde7a"
+    },
+    {
+      "path": "unknown-lab.html",
+      "bytes": 18569,
+      "sha256": "269d5412a14b62d12aa246657d813469547fa9712c48fd37a08952065f919c89"
+    }
+  ],
+  "health": 200,
+  "unknownCss": 404,
+  "post": 405
+}
