@@ -1,0 +1,48 @@
+{
+  "reportedTime": 0.5,
+  "meaning": "Authored exposure midpoint, not a cadence-inferred shutter or physical timestamp",
+  "rows": [
+    {
+      "name": "stationary",
+      "trackerStatus": "accepted",
+      "maintainedAngle": 0,
+      "centroidAngle": 0,
+      "scalarAverage": 0,
+      "instantaneousAtDeclaredMidpoint": null,
+      "scope": "Independent authored exposure notebook, no cross-case velocity or law fitting"
+    },
+    {
+      "name": "quadratic0.2",
+      "trackerStatus": "accepted",
+      "maintainedAngle": 0.06285945698076434,
+      "centroidAngle": 0.06664400667425695,
+      "scalarAverage": 0.06666666666666667,
+      "instantaneousAtDeclaredMidpoint": 0.05,
+      "scope": "Independent authored exposure notebook, no cross-case velocity or law fitting"
+    },
+    {
+      "name": "quadratic0.8",
+      "trackerStatus": "accepted",
+      "maintainedAngle": 0.0966148778324866,
+      "centroidAngle": 0.26519890195829854,
+      "scalarAverage": 0.26666666666666666,
+      "instantaneousAtDeclaredMidpoint": 0.2,
+      "scope": "Independent authored exposure notebook, no cross-case velocity or law fitting"
+    },
+    {
+      "name": "quadratic2.4",
+      "trackerStatus": "accepted",
+      "maintainedAngle": 0.09674391328771058,
+      "centroidAngle": 0.7547597601210917,
+      "scalarAverage": 0.7999999999999999,
+      "instantaneousAtDeclaredMidpoint": 0.6,
+      "scope": "Independent authored exposure notebook, no cross-case velocity or law fitting"
+    },
+    {
+      "name": "complete-turn",
+      "trackerStatus": "low-texture",
+      "angle": null,
+      "reason": "Tracker supplied no accepted point; no candidate point promoted"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "reviewer": "WORLDLAW retained teammate",
+  "actualIndependentNativeCases": 5,
+  "files": {
+    "protocol.json": "1997800109b9c7a1bcc9b170ce612597c9cf9686ed103f03d235c25a3f87d2e0",
+    "render.mjs": "594fd09b4812f7164ffc2813ac2edab5cdc363e042cd02b5aeee2a87c490bb9b",
+    "sensitivity.mjs": "a446f01d8ea8ae03be0e17fd7784cb8eecbc3eb05f2c3ca821f8ee6f1dc3b93c",
+    "sensitivity.json": "c5f85455f456d1705017d0c80b5de506be38b45d593044c431a3b4b300970f53",
+    "receive-angle.mjs": "79b99cfe1f43a4e89261714d9825e8aed21af8b0355a78b77ba4adfd3d777ecb",
+    "angle-receiving.json": "001a861209b46b2240e3c37a717194579ad8167f30ec7f51478872baf66d7124",
+    "png-receiving.json": "b87bfa3bbd9f46e27c1d84e8bebf6c776c733a8cf30b90afcd9e1c4b33f1edbc"
+  },
+  "scope": "Native rereceiving128midpoint render/tracker and independent angle/scalar midpoint formula checks; source/provenance review. No independent browser rerun.",
+  "findings": "No blocker. All five exposures retained, full-turn refusal stays no-angle, stationary zero exact, PNG source hashes remain tied to original authored RGBA. Finite-midpoint ideal centroid is a numerical approximation and differs from both quantized raster centroid and estimator point. Manual measurement adapter is explicit, not Motion acquisition. Protocol is openly postexploratory.",
+  "limits": "No real camera, video acquisition, physical exposure metadata, calibrated tracker accuracy or model fitting claim. Equality after quantization across three grids is observed finite-case evidence, not temporal convergence proof."
+}

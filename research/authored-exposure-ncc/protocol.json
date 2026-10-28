@@ -1,0 +1,62 @@
+{
+  "scope": "Authored exposure raster and actual NCC estimator receiving, not camera/tracker accuracy qualification",
+  "frozenAfter": "Five exploratory512midpoint cases exposed accepted-point/centroid mismatch; this is not blind discovery",
+  "sourceMain": "753c82265d7fb291053af3e1363a0e40ca32d25b",
+  "trackerBlob": "bf30e5ff61a6d608fa883c2aae9e96b3f84d2e90",
+  "measurementBlob": "bc2679939ceeb0ba98bae235e79dea2395ff471b",
+  "cases": [
+    "stationary",
+    "quadratic0.2",
+    "quadratic0.8",
+    "quadratic2.4",
+    "complete-turn"
+  ],
+  "timeMidpoints": [
+    128,
+    512,
+    2048
+  ],
+  "image": {
+    "width": 128,
+    "height": 128,
+    "pivot": [
+      64,
+      64
+    ],
+    "radius": 20,
+    "gaussianSigma": 2,
+    "peak": 220,
+    "background": 0,
+    "alpha": 255,
+    "pixelSample": "integer pixel-center coordinates; no pixel-area integration",
+    "quantization": "Uint8ClampedArray once after uniform temporal average"
+  },
+  "exposure": {
+    "start": 0,
+    "end": 1,
+    "reportedTime": 0.5,
+    "weight": "constant brightness/uniform time",
+    "cadence": "none; independent authored exposures; no video or cadence-derived shutter"
+  },
+  "tracker": {
+    "patchRadius": 7,
+    "minTextureStd": 5,
+    "appearance": "luminance",
+    "sampleStep": 1,
+    "searchRadius": 48,
+    "minScore": 0.75,
+    "minMargin": 0.06,
+    "subpixel": true,
+    "prediction": [
+      64,
+      84
+    ]
+  },
+  "pngReceiving": "Encode512midpoint RGBA to lossless PNG; browser createImageBitmap then canvas drawImage/getImageData; unchanged maintained gray/NCC. Motion video acquisition is not exercised.",
+  "failurePolicy": "Retain every status/reason/candidate; only accepted point may enter angle conversion. Ideal centroid radius below2 has no admitted angle.",
+  "limits": [
+    "Finite raster/quantization differs from ideal continuous PSF",
+    "No actual camera, video timestamp, physical acquisition, new sensor model or law fit",
+    "Current Motion UI already says match score is correlation, not probability or position-error bound; no UI repair presumed"
+  ]
+}
