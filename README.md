@@ -88,6 +88,10 @@ Motion Lab currently assumes a fixed camera, a declared fixed pivot, approximate
 
 After **Save session**, run `node scripts/balance-candidates.mjs --notebook notebook.json --command 0 --minimum -2 --maximum 2` to inspect zero-rate torque candidates over an explicit angle range. The reader replays the original evidence and reports numerical brackets and residuals. Changing the fixed command can change the candidates; a finite scan can miss tangencies or close roots. See [usage, source identity and limits](docs/BALANCE_CANDIDATES.md).
 
+### Compare nearby releases from a saved notebook
+
+After **Save session**, run `node scripts/nearby-releases.mjs --help` to compare a nominal release with one declared full and half initial-state perturbation. The command replays the original notebook, executes its recomputed law with the maintained Studio solver, and retains raw trajectory differences, numerical failures and a declared position/rate norm. This is a finite response in one chosen direction; see [usage, interpretation and receiving controls](docs/NEARBY_RELEASES.md).
+
 ### Inspect the prediction before learning the outcome
 
 After recording a measurement or running the virtual instrument, choose
