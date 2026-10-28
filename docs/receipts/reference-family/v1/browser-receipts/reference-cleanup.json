@@ -1,0 +1,9 @@
+{
+  "schema": "worldlaw.reference-browser-cleanup/v1",
+  "profile": "/tmp/reference-chrome-W6U9Ka",
+  "chromeExited": true,
+  "exitCode": 0,
+  "signalCode": null,
+  "primaryFailure": "{\"exceptionId\":1,\"text\":\"Uncaught\",\"lineNumber\":0,\"columnNumber\":0,\"scriptId\":\"692\",\"exception\":{\"type\":\"object\",\"subtype\":\"error\",\"className\":\"SyntaxError\",\"description\":\"SyntaxError: Identifier 'e' has already been declared\",\"objectId\":\"7080800587409833493.6.2\"}}",
+  "errors": []
+}

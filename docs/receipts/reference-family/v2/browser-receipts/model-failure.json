@@ -1,0 +1,187 @@
+{
+  "message": "Expected values to be strictly equal:\n\nfalse !== true\n",
+  "checks": [
+    {
+      "name": "original consumer and bounded nested model comparison remain live",
+      "passed": true
+    },
+    {
+      "name": "actual notebook import separates suppressed reference but not repeated proportional observations",
+      "passed": true
+    },
+    {
+      "name": "A=0 nesting and weak reference preserve overlap",
+      "passed": true
+    },
+    {
+      "name": "actual export fresh page reopen retains complete source and predictions",
+      "passed": true
+    },
+    {
+      "name": "reopened source identity persists through coefficient edits and recompare",
+      "passed": true
+    },
+    {
+      "name": "invalid replacement retires predictions; later valid compare uses retained imported study",
+      "passed": true
+    },
+    {
+      "name": "late import cannot overwrite a newer numeric edit",
+      "passed": true
+    },
+    {
+      "name": "completed asynchronous parent source adoption retires a comparison made while pending",
+      "passed": true
+    },
+    {
+      "name": "freeze explicit training source and export request before outcomes",
+      "passed": true
+    },
+    {
+      "name": "actual acquisition separates achieved condition from joint model outcome",
+      "passed": true
+    },
+    {
+      "name": "receiving save and fresh-page reopen retains original actual source",
+      "passed": true
+    },
+    {
+      "name": "missed reference and wider achieved precision remain original visible evidence",
+      "passed": true
+    },
+    {
+      "name": "wrong source refuses transactionally and delayed reopen loses to parent edit",
+      "passed": true
+    },
+    {
+      "name": "completed pending comparison adoption marks reopened child stale without losing outcomes",
+      "passed": true
+    },
+    {
+      "name": "sequence starts from original request and actuals; next design uses narrowed family",
+      "passed": true
+    },
+    {
+      "name": "separate later actual intake preserves earlier frozen round and source-only reopen",
+      "passed": true
+    },
+    {
+      "name": "tampered prefix and stale acquisition reject without discarding accepted actuals",
+      "passed": true
+    },
+    {
+      "name": "late parent adoption retains frozen sequence and marks reopened account stale",
+      "passed": true
+    },
+    {
+      "name": "failed next freeze and delayed account import preserve accepted sequence",
+      "passed": true
+    },
+    {
+      "name": "immediate receiving parent changes retain sequence and stale completed late adoption",
+      "passed": true
+    },
+    {
+      "name": "sequence retained evidence keyboard and actual viewport 1440",
+      "passed": true
+    },
+    {
+      "name": "sequence retained evidence keyboard and actual viewport 390",
+      "passed": true
+    },
+    {
+      "name": "sequence retained evidence keyboard and actual viewport 320",
+      "passed": true
+    },
+    {
+      "name": "keyboard and actual layout 1440",
+      "passed": true
+    },
+    {
+      "name": "keyboard and actual layout 390",
+      "passed": true
+    },
+    {
+      "name": "keyboard and actual layout 320",
+      "passed": true
+    },
+    {
+      "name": "target refinement compares complete remaining family with conditional MAIN precision",
+      "passed": true
+    },
+    {
+      "name": "refinement failed compare and malformed import retain complete accepted account",
+      "passed": true
+    },
+    {
+      "name": "blank reference and MAIN precision never become zero assumptions",
+      "passed": true
+    },
+    {
+      "name": "refinement source-only fresh-page replay and freeze through unchanged sequence receiver",
+      "passed": true
+    },
+    {
+      "name": "late sequence completion marks reopened refinement stale while retaining originals",
+      "passed": true
+    },
+    {
+      "name": "late refinement import cannot replace newer controls",
+      "passed": true
+    },
+    {
+      "name": "new parent draft cancels delayed refinement replacement and reciprocal child edit cancels parent read",
+      "passed": true
+    },
+    {
+      "name": "raw numerical witness disclosure and declarations remain keyboard adjacent",
+      "passed": true
+    },
+    {
+      "name": "legacy exact point source reopens unchanged and interval controls are explicit",
+      "passed": true
+    },
+    {
+      "name": "finite reported reference width weakens contraction with separate latent witnesses",
+      "passed": true
+    },
+    {
+      "name": "selected finite interval passes unchanged into original sequence request",
+      "passed": true
+    },
+    {
+      "name": "refinement attaining explanations keyboard and viewport 1440",
+      "passed": true
+    },
+    {
+      "name": "refinement attaining explanations keyboard and viewport 390",
+      "passed": true
+    },
+    {
+      "name": "refinement attaining explanations keyboard and viewport 320",
+      "passed": true
+    },
+    {
+      "name": "all original family worker imports and exports complete source with distinct attaining identities",
+      "passed": true
+    },
+    {
+      "name": "all-family worker cancellation retains accepted source and newer trusted draft",
+      "passed": true
+    },
+    {
+      "name": "parent draft cancels all-family worker and preserves stale accepted evidence",
+      "passed": true
+    },
+    {
+      "name": "invalid all-family replacement cannot discard accepted source",
+      "passed": true
+    },
+    {
+      "name": "all-family selected interval uses unchanged original sequence receiver",
+      "passed": true
+    }
+  ],
+  "stderr": "[3202333:3202360:1028/221744.561841:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: Connection refused\n[3202333:3202360:1028/221744.561890:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[3202333:3202360:1028/221744.568916:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: Connection refused\n[3202333:3202360:1028/221744.568990:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: Connection refused\n[3202333:3202360:1028/221744.569002:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: Connection refused\n[3202333:3202360:1028/221744.569010:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[3202333:3202360:1028/221744.569017:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[3202333:3202360:1028/221744.571815:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[3202333:3202360:1028/221744.595228:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n\nDevTools listening on ws://127.0.0.1:36503/devtools/browser/7e562e11-4b4a-48c0-9095-9c9d5893f86c\n[3202333:3202333:1028/221744.644123:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[3202333:3202333:1028/221744.644211:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[3202333:3202333:1028/221744.644342:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[3202333:3202360:1028/221744.644349:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[3202333:3202360:1028/221744.644360:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[3202333:3202333:1028/221744.645942:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[3202333:3202360:1028/221744.646871:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[3202333:3202333:1028/221744.658022:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[3202333:3202360:1028/221744.658075:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: Connection refused\n[3202333:3202360:1028/221744.658089:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Failed to connect to socket /run/dbus/system_bus_socket: Connection refused\n[3202333:3202333:1028/221744.658146:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[3202333:3202360:1028/221744.661192:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[3202333:3202333:1028/221744.666051:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[3202333:3202333:1028/221744.673614:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.Properties.GetAll: object_path= /org/freedesktop/UPower/devices/DisplayDevice: unknown error type: \n[3202333:3202333:1028/221744.674096:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[3202333:3202360:1028/221744.674156:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[3202333:3202333:1028/221744.684611:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \n[3202333:3202360:1028/221744.684856:ERROR:dbus/bus.cc:405] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are \"tcp\" and on UNIX \"unix\")\n[3202333:3202333:1028/221744.696920:ERROR:dbus/object_proxy.cc:572] Failed to call method: org.freedesktop.DBus.NameHasOwner: object_path= /org/freedesktop/DBus: unknown error type: \nCreated TensorFlow Lite XNNPACK delegate for CPU.\n",
+  "exceptions": []
+}

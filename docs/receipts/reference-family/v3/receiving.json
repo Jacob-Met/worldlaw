@@ -1,0 +1,287 @@
+{
+  "baseMain": {
+    "name": "main",
+    "commit": {
+      "sha": "b154b8d9f379fd2f2720b3ade7f32d4fb8ec744c",
+      "node_id": "C_kwDOVPBZK9oAKGIxNTRiOGQ5ZjM3OWZkMmYyNzIwYjNhZGU3ZjMyZDRmYjhlYzc0NGM",
+      "commit": {
+        "author": {
+          "name": "Jacob Metoyer",
+          "email": "150724801+Jacob-Met@users.noreply.github.com",
+          "date": "2026-10-28T21:53:31Z"
+        },
+        "committer": {
+          "name": "GitHub",
+          "email": "noreply@github.com",
+          "date": "2026-10-28T21:53:31Z"
+        },
+        "message": "Merge pull request #459 from Jacob-Met/work/piecewise-calibration-69d25c-20261028\n\nTest a declared nonlinear calibration against original law evidence",
+        "tree": {
+          "sha": "6cf902b08127311da52db5902a069585d6adc869",
+          "url": "https://api.github.com/repos/Jacob-Met/worldlaw/git/trees/6cf902b08127311da52db5902a069585d6adc869"
+        },
+        "url": "https://api.github.com/repos/Jacob-Met/worldlaw/git/commits/b154b8d9f379fd2f2720b3ade7f32d4fb8ec744c",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJq4m7bCRC1aQ7uu5UhlAAAlhwQABI/pCUiRW1qOhmQBi/LPLzn\nnxDkv8QaXPvcaSlcVAFqE3XNKB3Vq0S0Cxat1lgV34sb2URb4vJuBK31HUbeWNO9\n/0B0vHSNnlqSko+vB+t8Pv56oK8cwFsLG+x9yiCVHfvo4BJ0z5bO27ambKVz9+uG\nXmJQG983oVnaM5/P56NTobJmeps+I1ykaUpq7FJ3U8wdFD+o3JxcXGOchczM7ldq\n+NEdt/AZeNk34cKiLdBuTOFnMQz5sq1AKKC44ee/JJoRHyuud3DYp2yavcZU3mtq\nPVpRoe32DWzd6MKuY+gD/bH9NCIZkdFmPZcuhb/1tgQ20g+affLSE2jNbvbjh+v8\nPZkjlUQkH5EFKGiSl2bcZSrbebI5cKfFb/EJZC4KadYurSKlAAzPDgR0zE45ha+Q\n/ARuzjsCSEwXdYIJo9uIPg4C5AAsJZGRyq6h3r7T0zfgwbTfPuV5/ttORnAYJYh2\nD2agIZqYrh0OCUiEqlStMTO2sTfAzJj1qnx+I4KzkAJi7rTHUuHolZ6Vyxbf+YzC\nVdhTrwaJxWmkh9WIlKmINPKjiywzQQOPUn8sVw4VbZENkDN+QJc88Rh+z7k5x+Er\neii+gZw/OSUs+riOc8gXrXwcGRkLtcoPcZSk+V4Bp6q9Zp9V+fPgO5ZRBm6utNW4\nawwwg8y/FfyfaklSi+Jn\n=J3RO\n-----END PGP SIGNATURE-----\n",
+          "payload": "tree 6cf902b08127311da52db5902a069585d6adc869\nparent 4ed80ae62ee167b78a6a5adb7e743cbfc03f508d\nparent 741e807ed1ecfb0e9dfc96efe83b5144cb4c66cb\nauthor Jacob Metoyer <150724801+Jacob-Met@users.noreply.github.com> 1793224411 -0700\ncommitter GitHub <noreply@github.com> 1793224411 -0700\n\nMerge pull request #459 from Jacob-Met/work/piecewise-calibration-69d25c-20261028\n\nTest a declared nonlinear calibration against original law evidence",
+          "verified_at": "2026-10-28T21:53:32Z"
+        }
+      },
+      "url": "https://api.github.com/repos/Jacob-Met/worldlaw/commits/b154b8d9f379fd2f2720b3ade7f32d4fb8ec744c",
+      "html_url": "https://github.com/Jacob-Met/worldlaw/commit/b154b8d9f379fd2f2720b3ade7f32d4fb8ec744c",
+      "comments_url": "https://api.github.com/repos/Jacob-Met/worldlaw/commits/b154b8d9f379fd2f2720b3ade7f32d4fb8ec744c/comments",
+      "author": {
+        "login": "Jacob-Met",
+        "id": 150724801,
+        "node_id": "U_kgDOCPvgwQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/150724801?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Jacob-Met",
+        "html_url": "https://github.com/Jacob-Met",
+        "followers_url": "https://api.github.com/users/Jacob-Met/followers",
+        "following_url": "https://api.github.com/users/Jacob-Met/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Jacob-Met/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Jacob-Met/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Jacob-Met/subscriptions",
+        "organizations_url": "https://api.github.com/users/Jacob-Met/orgs",
+        "repos_url": "https://api.github.com/users/Jacob-Met/repos",
+        "events_url": "https://api.github.com/users/Jacob-Met/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Jacob-Met/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "web-flow",
+        "id": 19864447,
+        "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/web-flow",
+        "html_url": "https://github.com/web-flow",
+        "followers_url": "https://api.github.com/users/web-flow/followers",
+        "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+        "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+        "organizations_url": "https://api.github.com/users/web-flow/orgs",
+        "repos_url": "https://api.github.com/users/web-flow/repos",
+        "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/web-flow/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "4ed80ae62ee167b78a6a5adb7e743cbfc03f508d",
+          "url": "https://api.github.com/repos/Jacob-Met/worldlaw/commits/4ed80ae62ee167b78a6a5adb7e743cbfc03f508d",
+          "html_url": "https://github.com/Jacob-Met/worldlaw/commit/4ed80ae62ee167b78a6a5adb7e743cbfc03f508d"
+        },
+        {
+          "sha": "741e807ed1ecfb0e9dfc96efe83b5144cb4c66cb",
+          "url": "https://api.github.com/repos/Jacob-Met/worldlaw/commits/741e807ed1ecfb0e9dfc96efe83b5144cb4c66cb",
+          "html_url": "https://github.com/Jacob-Met/worldlaw/commit/741e807ed1ecfb0e9dfc96efe83b5144cb4c66cb"
+        }
+      ]
+    },
+    "_links": {
+      "self": "https://api.github.com/repos/Jacob-Met/worldlaw/branches/main",
+      "html": "https://github.com/Jacob-Met/worldlaw/tree/main"
+    },
+    "protected": false,
+    "protection": {
+      "enabled": false,
+      "required_status_checks": {
+        "enforcement_level": "off",
+        "contexts": [],
+        "checks": []
+      }
+    },
+    "protection_url": "https://api.github.com/repos/Jacob-Met/worldlaw/branches/main/protection"
+  },
+  "files": [
+    {
+      "path": "src/unknown-lab/reference-product-faces.mjs",
+      "bytes": 10740,
+      "sha256": "025bae5b28cae224582fd026fa55f63899079ef367ded43e179ba0ad37d50a72",
+      "gitBlob": "bbda78335b09ffa6cc716fac66652e0d3ceba8a2"
+    },
+    {
+      "path": "src/unknown-lab/reference-family-refinement.mjs",
+      "bytes": 5796,
+      "sha256": "b6de59ffa5746f278b485b475b61140b7f21e6b930bf75ecec43630a49086553",
+      "gitBlob": "54547502ca0f1962ae874baeda3dadaef8ec2589"
+    },
+    {
+      "path": "src/unknown-lab/reference-interval-refinement.mjs",
+      "bytes": 5713,
+      "sha256": "b3dcd0ce714f58a9755338508656b2194ad17650103de7666322bd1e08fd9570",
+      "gitBlob": "78a0757f25c9023db16b1a10402509425df01a6b"
+    },
+    {
+      "path": "src/unknown-lab/reference-family-worker.mjs",
+      "bytes": 435,
+      "sha256": "993160f9d840b3f0056780fbbc2e117ea1594045b19b94e32fdd069112f1ea18",
+      "gitBlob": "8196ce5e6382a7428eafe6e66dce77e6c830cc60"
+    },
+    {
+      "path": "src/unknown-lab/reference-refinement-panel.mjs",
+      "bytes": 13194,
+      "sha256": "e2c2612318ff67359d81e6cf343e4a2520a9ef9fc4a2ed32f5e056176537a844",
+      "gitBlob": "c27e0b5a659570925e18270336c76395f8dbcd0c"
+    },
+    {
+      "path": "test-family-refinement.mjs",
+      "bytes": 4187,
+      "sha256": "52b4b5b43392130f3c6d4c08c8b82c1a4e7bb6f47592464ba91ddd9523d1a861",
+      "gitBlob": "e95b26e29ab5cd4bd1fdb54862568eff858a352c"
+    },
+    {
+      "path": "family-source-control.json",
+      "bytes": 319642,
+      "sha256": "f4c0cde70233e4cc4673c4ec3400724a63824cc9fa83e34f119dce7a98e3641f",
+      "gitBlob": "7407d44fae23d160bfcdedc03102e3ef50ef78b8"
+    },
+    {
+      "path": "benchmark-family.mjs",
+      "bytes": 897,
+      "sha256": "f1adbddb46b76fa948bc43deffc857c2a7cb0e0b3dfad6874c0f43ecaeaf923c",
+      "gitBlob": "d7e965648b62ac477aa8bf17c344754929182926"
+    },
+    {
+      "path": "scripts/reference-family-browser.mjs",
+      "bytes": 46976,
+      "sha256": "46f88a36a11e2fdc72d5d63cfb0c82c7eae2e45a8925bf90bab97c86b9deee50",
+      "gitBlob": "3f8a9d7d286369d58f107994df3f7c301362ca35"
+    }
+  ],
+  "commands": [
+    {
+      "name": "browser",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "scripts/reference-family-browser.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "8f9868224fb3dea3ee83fa61cc362966b7a4352d3fab409672b5c03580fa22c9"
+    }
+  ],
+  "nativeAndSmokeReuse": "Exact runtime unchanged from v1 successful native/oracle/point/near-bound/smoke",
+  "browserGroups": 49,
+  "artifacts": [
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/model-1440.png",
+      "bytes": 647181,
+      "sha256": "c878eaa0b602d66e457feeac3ed7b187c199f2cf0b0be2fa9607e47470f41129"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/sandbox-admission.json",
+      "bytes": 1729,
+      "sha256": "3e0c0d91403bd6a5e9e65dbdb387b498a8a3a946a5816de2b0c867d4c926c3e4"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/interval-refinement-source.json",
+      "bytes": 75975,
+      "sha256": "6a8e03df74df81ed402aa7c98a4419faea3b0b09b55405aebfd5637d43c34418"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/sequence-1440.png",
+      "bytes": 602536,
+      "sha256": "b4593e05cc7c417b0b70de64e344856a91a6cf2a79ad84edabdf92863d74bf72"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/refinement-1440.png",
+      "bytes": 568076,
+      "sha256": "aea20e16e4c92723a5696f83624183f1ca0f77ea1879e55f01ed79e204abd709"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/model-390.png",
+      "bytes": 215344,
+      "sha256": "a47e12fd0d72088e2978894484525e124a2039dbcc5028b5d5468792b4e72fe9"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/refinement-result-1440.png",
+      "bytes": 558829,
+      "sha256": "5bbe22a6ab21bd6abdfa03bb3d4b769b4083bb8a01ca207e685d106867082458"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/sequence-source.json",
+      "bytes": 318868,
+      "sha256": "2b09cb8c9cb271f7b154d8fea51bb983d0fecb31dea0d87a2b84a9baa37b13df"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/refinement-result-390.png",
+      "bytes": 269873,
+      "sha256": "b86e6a67cd3f1c301525625206d6aef9ab8d32fefe451d901c382f67551a99c3"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/sequence-320.png",
+      "bytes": 176262,
+      "sha256": "3933a4e2aac43e942811f3db131fa7ab4d747bf4f36f972fb222faec962257b9"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/family-result-320.png",
+      "bytes": 234845,
+      "sha256": "5906bd9c062f6bb60b87614b71cadacb6244cbeb0a82af609098c045da6df3ec"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/model-320.png",
+      "bytes": 171287,
+      "sha256": "6ea967f68d1945e19ffcc83c8a3f37e496b8e9eab64258acc2acaf4b4b3bbb71"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/sequence-390.png",
+      "bytes": 212754,
+      "sha256": "561ac1e2062b3caa13efb4614c405b9fd96103dafcdbb1936c6c748243b2ac16"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/refinement-390.png",
+      "bytes": 212046,
+      "sha256": "df002781958e25fcb01f6aec2493af5dc8df88b3db9a71ef73afdf384f631428"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/family-result-1440.png",
+      "bytes": 601646,
+      "sha256": "63aa231022c2babb192c2b0ef64fd2801adca1b0395cb546260448fe63ac513f"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/family-result-390.png",
+      "bytes": 296955,
+      "sha256": "223502195fa78f80197e4360c1f8bafbf76df0c2f783d2f5f147ea5dd7fc29b2"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/refinement-result-320.png",
+      "bytes": 230794,
+      "sha256": "6e0d9a545550c7a7a1ab7ba56010125456d2224aecf2e6cf3e3e2283f2ba9fcd"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/comparison-source.json",
+      "bytes": 144933,
+      "sha256": "1e4c648c0b3aea0461eeb60fea189e1b59ff8d443780731a3b2633f5710667c0"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/reference-cleanup.json",
+      "bytes": 205,
+      "sha256": "7f862067d90c8601ffbbc3bcaea9f68b58753421c9b49191dffdca1cd795fe54"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/request-received-source.json",
+      "bytes": 195275,
+      "sha256": "70b61ab6c1a947e9816ad9f6ab18c267abd59b50852269b1ec90eb05b1b106fe"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/model-verification.json",
+      "bytes": 6125,
+      "sha256": "3f5968a157c4308935e61b61638ce0b083a15926c657be9656c3c8426a6e8dd3"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-family-v3-20261028/browser-receipts/refinement-320.png",
+      "bytes": 178265,
+      "sha256": "0a1801ced006e445865943a29bed687c0f3826ea0030bb3b4b73b6b131dd1bfa"
+    }
+  ]
+}

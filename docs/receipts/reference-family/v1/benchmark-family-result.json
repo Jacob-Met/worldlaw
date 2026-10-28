@@ -1,0 +1,277 @@
+{
+  "runtime": "v22.23.4",
+  "platform": "linux",
+  "work": {
+    "status": "reserved",
+    "perOffer": 8424,
+    "total": 244296,
+    "limit": 250000,
+    "offers": 29,
+    "components": 9
+  },
+  "elapsedMs": 887.560169,
+  "computed": 29,
+  "results": [
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    },
+    {
+      "status": "computed",
+      "work": {
+        "reservedCandidateBound": 8424,
+        "checkedCandidates": 3452,
+        "limit": 250000
+      },
+      "width": 0.6527777777777778
+    }
+  ]
+}

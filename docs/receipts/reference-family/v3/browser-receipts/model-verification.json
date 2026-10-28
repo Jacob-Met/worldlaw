@@ -1,0 +1,205 @@
+{
+  "schema": "worldlaw.reference-browser/v1",
+  "origin": "http://127.0.0.1:41767",
+  "node": "v22.23.4",
+  "checks": [
+    {
+      "name": "original consumer and bounded nested model comparison remain live",
+      "passed": true
+    },
+    {
+      "name": "actual notebook import separates suppressed reference but not repeated proportional observations",
+      "passed": true
+    },
+    {
+      "name": "A=0 nesting and weak reference preserve overlap",
+      "passed": true
+    },
+    {
+      "name": "actual export fresh page reopen retains complete source and predictions",
+      "passed": true
+    },
+    {
+      "name": "reopened source identity persists through coefficient edits and recompare",
+      "passed": true
+    },
+    {
+      "name": "invalid replacement retires predictions; later valid compare uses retained imported study",
+      "passed": true
+    },
+    {
+      "name": "late import cannot overwrite a newer numeric edit",
+      "passed": true
+    },
+    {
+      "name": "completed asynchronous parent source adoption retires a comparison made while pending",
+      "passed": true
+    },
+    {
+      "name": "freeze explicit training source and export request before outcomes",
+      "passed": true
+    },
+    {
+      "name": "actual acquisition separates achieved condition from joint model outcome",
+      "passed": true
+    },
+    {
+      "name": "receiving save and fresh-page reopen retains original actual source",
+      "passed": true
+    },
+    {
+      "name": "missed reference and wider achieved precision remain original visible evidence",
+      "passed": true
+    },
+    {
+      "name": "wrong source refuses transactionally and delayed reopen loses to parent edit",
+      "passed": true
+    },
+    {
+      "name": "completed pending comparison adoption marks reopened child stale without losing outcomes",
+      "passed": true
+    },
+    {
+      "name": "sequence starts from original request and actuals; next design uses narrowed family",
+      "passed": true
+    },
+    {
+      "name": "separate later actual intake preserves earlier frozen round and source-only reopen",
+      "passed": true
+    },
+    {
+      "name": "tampered prefix and stale acquisition reject without discarding accepted actuals",
+      "passed": true
+    },
+    {
+      "name": "late parent adoption retains frozen sequence and marks reopened account stale",
+      "passed": true
+    },
+    {
+      "name": "failed next freeze and delayed account import preserve accepted sequence",
+      "passed": true
+    },
+    {
+      "name": "immediate receiving parent changes retain sequence and stale completed late adoption",
+      "passed": true
+    },
+    {
+      "name": "sequence retained evidence keyboard and actual viewport 1440",
+      "passed": true
+    },
+    {
+      "name": "sequence retained evidence keyboard and actual viewport 390",
+      "passed": true
+    },
+    {
+      "name": "sequence retained evidence keyboard and actual viewport 320",
+      "passed": true
+    },
+    {
+      "name": "keyboard and actual layout 1440",
+      "passed": true
+    },
+    {
+      "name": "keyboard and actual layout 390",
+      "passed": true
+    },
+    {
+      "name": "keyboard and actual layout 320",
+      "passed": true
+    },
+    {
+      "name": "target refinement compares complete remaining family with conditional MAIN precision",
+      "passed": true
+    },
+    {
+      "name": "refinement failed compare and malformed import retain complete accepted account",
+      "passed": true
+    },
+    {
+      "name": "blank reference and MAIN precision never become zero assumptions",
+      "passed": true
+    },
+    {
+      "name": "refinement source-only fresh-page replay and freeze through unchanged sequence receiver",
+      "passed": true
+    },
+    {
+      "name": "late sequence completion marks reopened refinement stale while retaining originals",
+      "passed": true
+    },
+    {
+      "name": "late refinement import cannot replace newer controls",
+      "passed": true
+    },
+    {
+      "name": "new parent draft cancels delayed refinement replacement and reciprocal child edit cancels parent read",
+      "passed": true
+    },
+    {
+      "name": "raw numerical witness disclosure and declarations remain keyboard adjacent",
+      "passed": true
+    },
+    {
+      "name": "legacy exact point source reopens unchanged and interval controls are explicit",
+      "passed": true
+    },
+    {
+      "name": "finite reported reference width weakens contraction with separate latent witnesses",
+      "passed": true
+    },
+    {
+      "name": "selected finite interval passes unchanged into original sequence request",
+      "passed": true
+    },
+    {
+      "name": "refinement attaining explanations keyboard and viewport 1440",
+      "passed": true
+    },
+    {
+      "name": "refinement attaining explanations keyboard and viewport 390",
+      "passed": true
+    },
+    {
+      "name": "refinement attaining explanations keyboard and viewport 320",
+      "passed": true
+    },
+    {
+      "name": "all original family worker imports and exports complete source with distinct attaining identities",
+      "passed": true
+    },
+    {
+      "name": "all-family worker cancellation retains accepted source and newer trusted draft",
+      "passed": true
+    },
+    {
+      "name": "parent draft cancels all-family worker and preserves stale accepted evidence",
+      "passed": true
+    },
+    {
+      "name": "invalid all-family replacement cannot discard accepted source",
+      "passed": true
+    },
+    {
+      "name": "all-family selected interval uses unchanged original sequence receiver",
+      "passed": true
+    },
+    {
+      "name": "family source fresh-page reopen and late-file intent fence",
+      "passed": true
+    },
+    {
+      "name": "family witnesses numerical disclosure and viewport 1440",
+      "passed": true
+    },
+    {
+      "name": "family witnesses numerical disclosure and viewport 390",
+      "passed": true
+    },
+    {
+      "name": "family witnesses numerical disclosure and viewport 320",
+      "passed": true
+    }
+  ],
+  "exceptions": [],
+  "sandboxAdmitted": true
+}

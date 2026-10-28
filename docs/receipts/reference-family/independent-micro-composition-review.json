@@ -1,0 +1,19 @@
+{
+  "status": "accepted scoped composition and lifecycle review",
+  "payloadSha256": "4529232c2122d47d23c55534af10490db70283d8a4a3897ec625ef97b3f40814",
+  "candidateFiles": 32,
+  "dependencyGitBlobsVerified": 102,
+  "expectedTree": "781cce86cea9a1c0bb9442b47d279de3329e6830",
+  "unrelatedLeaves": 1899,
+  "receiving": "v1 successful native/near-bound/oracle/point/smoke retained; v1/v2 browser failures retained; v3 all49 browser groups pass with final product/harness pins",
+  "findings": [
+    "All32 content byte counts/SHA256/Git blobs valid; base leases and full deterministic tree verified. All102 dependency blobs match saved authoritative current tree.",
+    "Final product/test source pins match v1 and v3 receiving; only browser harness changed between successful native and final browser receiving.",
+    "Epoch equality gates asynchronous adoption; newer edits/cancel/parent sequence change retire pending worker or file reads; accepted evidence retained, freeze refuses stale/dirty/current-account mismatch.",
+    "Source-only imports recompute; family identity, conditional interval semantics and binary64 numerical limits remain explicit."
+  ],
+  "limits": [
+    "No duplicate pixel review or browser rerun; root owns actual visual review. rootVisualReviewIncluded=false is honest for this package.",
+    "Only19 dependencies have local source bytes; all102 verified against stored Git tree identities. Fresh live publication leases remain required."
+  ]
+}

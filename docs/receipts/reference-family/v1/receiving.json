@@ -1,0 +1,227 @@
+{
+  "baseMain": {
+    "name": "main",
+    "commit": {
+      "sha": "b154b8d9f379fd2f2720b3ade7f32d4fb8ec744c",
+      "node_id": "C_kwDOVPBZK9oAKGIxNTRiOGQ5ZjM3OWZkMmYyNzIwYjNhZGU3ZjMyZDRmYjhlYzc0NGM",
+      "commit": {
+        "author": {
+          "name": "Jacob Metoyer",
+          "email": "150724801+Jacob-Met@users.noreply.github.com",
+          "date": "2026-10-28T21:53:31Z"
+        },
+        "committer": {
+          "name": "GitHub",
+          "email": "noreply@github.com",
+          "date": "2026-10-28T21:53:31Z"
+        },
+        "message": "Merge pull request #459 from Jacob-Met/work/piecewise-calibration-69d25c-20261028\n\nTest a declared nonlinear calibration against original law evidence",
+        "tree": {
+          "sha": "6cf902b08127311da52db5902a069585d6adc869",
+          "url": "https://api.github.com/repos/Jacob-Met/worldlaw/git/trees/6cf902b08127311da52db5902a069585d6adc869"
+        },
+        "url": "https://api.github.com/repos/Jacob-Met/worldlaw/git/commits/b154b8d9f379fd2f2720b3ade7f32d4fb8ec744c",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJq4m7bCRC1aQ7uu5UhlAAAlhwQABI/pCUiRW1qOhmQBi/LPLzn\nnxDkv8QaXPvcaSlcVAFqE3XNKB3Vq0S0Cxat1lgV34sb2URb4vJuBK31HUbeWNO9\n/0B0vHSNnlqSko+vB+t8Pv56oK8cwFsLG+x9yiCVHfvo4BJ0z5bO27ambKVz9+uG\nXmJQG983oVnaM5/P56NTobJmeps+I1ykaUpq7FJ3U8wdFD+o3JxcXGOchczM7ldq\n+NEdt/AZeNk34cKiLdBuTOFnMQz5sq1AKKC44ee/JJoRHyuud3DYp2yavcZU3mtq\nPVpRoe32DWzd6MKuY+gD/bH9NCIZkdFmPZcuhb/1tgQ20g+affLSE2jNbvbjh+v8\nPZkjlUQkH5EFKGiSl2bcZSrbebI5cKfFb/EJZC4KadYurSKlAAzPDgR0zE45ha+Q\n/ARuzjsCSEwXdYIJo9uIPg4C5AAsJZGRyq6h3r7T0zfgwbTfPuV5/ttORnAYJYh2\nD2agIZqYrh0OCUiEqlStMTO2sTfAzJj1qnx+I4KzkAJi7rTHUuHolZ6Vyxbf+YzC\nVdhTrwaJxWmkh9WIlKmINPKjiywzQQOPUn8sVw4VbZENkDN+QJc88Rh+z7k5x+Er\neii+gZw/OSUs+riOc8gXrXwcGRkLtcoPcZSk+V4Bp6q9Zp9V+fPgO5ZRBm6utNW4\nawwwg8y/FfyfaklSi+Jn\n=J3RO\n-----END PGP SIGNATURE-----\n",
+          "payload": "tree 6cf902b08127311da52db5902a069585d6adc869\nparent 4ed80ae62ee167b78a6a5adb7e743cbfc03f508d\nparent 741e807ed1ecfb0e9dfc96efe83b5144cb4c66cb\nauthor Jacob Metoyer <150724801+Jacob-Met@users.noreply.github.com> 1793224411 -0700\ncommitter GitHub <noreply@github.com> 1793224411 -0700\n\nMerge pull request #459 from Jacob-Met/work/piecewise-calibration-69d25c-20261028\n\nTest a declared nonlinear calibration against original law evidence",
+          "verified_at": "2026-10-28T21:53:32Z"
+        }
+      },
+      "url": "https://api.github.com/repos/Jacob-Met/worldlaw/commits/b154b8d9f379fd2f2720b3ade7f32d4fb8ec744c",
+      "html_url": "https://github.com/Jacob-Met/worldlaw/commit/b154b8d9f379fd2f2720b3ade7f32d4fb8ec744c",
+      "comments_url": "https://api.github.com/repos/Jacob-Met/worldlaw/commits/b154b8d9f379fd2f2720b3ade7f32d4fb8ec744c/comments",
+      "author": {
+        "login": "Jacob-Met",
+        "id": 150724801,
+        "node_id": "U_kgDOCPvgwQ",
+        "avatar_url": "https://avatars.githubusercontent.com/u/150724801?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/Jacob-Met",
+        "html_url": "https://github.com/Jacob-Met",
+        "followers_url": "https://api.github.com/users/Jacob-Met/followers",
+        "following_url": "https://api.github.com/users/Jacob-Met/following{/other_user}",
+        "gists_url": "https://api.github.com/users/Jacob-Met/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/Jacob-Met/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/Jacob-Met/subscriptions",
+        "organizations_url": "https://api.github.com/users/Jacob-Met/orgs",
+        "repos_url": "https://api.github.com/users/Jacob-Met/repos",
+        "events_url": "https://api.github.com/users/Jacob-Met/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/Jacob-Met/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "web-flow",
+        "id": 19864447,
+        "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/web-flow",
+        "html_url": "https://github.com/web-flow",
+        "followers_url": "https://api.github.com/users/web-flow/followers",
+        "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+        "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+        "organizations_url": "https://api.github.com/users/web-flow/orgs",
+        "repos_url": "https://api.github.com/users/web-flow/repos",
+        "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/web-flow/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "4ed80ae62ee167b78a6a5adb7e743cbfc03f508d",
+          "url": "https://api.github.com/repos/Jacob-Met/worldlaw/commits/4ed80ae62ee167b78a6a5adb7e743cbfc03f508d",
+          "html_url": "https://github.com/Jacob-Met/worldlaw/commit/4ed80ae62ee167b78a6a5adb7e743cbfc03f508d"
+        },
+        {
+          "sha": "741e807ed1ecfb0e9dfc96efe83b5144cb4c66cb",
+          "url": "https://api.github.com/repos/Jacob-Met/worldlaw/commits/741e807ed1ecfb0e9dfc96efe83b5144cb4c66cb",
+          "html_url": "https://github.com/Jacob-Met/worldlaw/commit/741e807ed1ecfb0e9dfc96efe83b5144cb4c66cb"
+        }
+      ]
+    },
+    "_links": {
+      "self": "https://api.github.com/repos/Jacob-Met/worldlaw/branches/main",
+      "html": "https://github.com/Jacob-Met/worldlaw/tree/main"
+    },
+    "protected": false,
+    "protection": {
+      "enabled": false,
+      "required_status_checks": {
+        "enforcement_level": "off",
+        "contexts": [],
+        "checks": []
+      }
+    },
+    "protection_url": "https://api.github.com/repos/Jacob-Met/worldlaw/branches/main/protection"
+  },
+  "files": [
+    {
+      "path": "src/unknown-lab/reference-product-faces.mjs",
+      "bytes": 10740,
+      "sha256": "025bae5b28cae224582fd026fa55f63899079ef367ded43e179ba0ad37d50a72",
+      "gitBlob": "bbda78335b09ffa6cc716fac66652e0d3ceba8a2"
+    },
+    {
+      "path": "src/unknown-lab/reference-family-refinement.mjs",
+      "bytes": 5796,
+      "sha256": "b6de59ffa5746f278b485b475b61140b7f21e6b930bf75ecec43630a49086553",
+      "gitBlob": "54547502ca0f1962ae874baeda3dadaef8ec2589"
+    },
+    {
+      "path": "src/unknown-lab/reference-interval-refinement.mjs",
+      "bytes": 5713,
+      "sha256": "b3dcd0ce714f58a9755338508656b2194ad17650103de7666322bd1e08fd9570",
+      "gitBlob": "78a0757f25c9023db16b1a10402509425df01a6b"
+    },
+    {
+      "path": "src/unknown-lab/reference-family-worker.mjs",
+      "bytes": 435,
+      "sha256": "993160f9d840b3f0056780fbbc2e117ea1594045b19b94e32fdd069112f1ea18",
+      "gitBlob": "8196ce5e6382a7428eafe6e66dce77e6c830cc60"
+    },
+    {
+      "path": "src/unknown-lab/reference-refinement-panel.mjs",
+      "bytes": 13194,
+      "sha256": "e2c2612318ff67359d81e6cf343e4a2520a9ef9fc4a2ed32f5e056176537a844",
+      "gitBlob": "c27e0b5a659570925e18270336c76395f8dbcd0c"
+    },
+    {
+      "path": "test-family-refinement.mjs",
+      "bytes": 4187,
+      "sha256": "52b4b5b43392130f3c6d4c08c8b82c1a4e7bb6f47592464ba91ddd9523d1a861",
+      "gitBlob": "e95b26e29ab5cd4bd1fdb54862568eff858a352c"
+    },
+    {
+      "path": "family-source-control.json",
+      "bytes": 319642,
+      "sha256": "f4c0cde70233e4cc4673c4ec3400724a63824cc9fa83e34f119dce7a98e3641f",
+      "gitBlob": "7407d44fae23d160bfcdedc03102e3ef50ef78b8"
+    },
+    {
+      "path": "benchmark-family.mjs",
+      "bytes": 897,
+      "sha256": "f1adbddb46b76fa948bc43deffc857c2a7cb0e0b3dfad6874c0f43ecaeaf923c",
+      "gitBlob": "d7e965648b62ac477aa8bf17c344754929182926"
+    },
+    {
+      "path": "scripts/reference-family-browser.mjs",
+      "bytes": 45687,
+      "sha256": "9682bf09a9b907c25f10a49d1e3e6026aa7762f57901e26158331e11facd6a61",
+      "gitBlob": "8baaa80d36ffefbdadf35c2501b6e8fe98318be4"
+    }
+  ],
+  "commands": [
+    {
+      "name": "family",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "test-family-refinement.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "ee503bc0d57c051de138527683038c137f1a0b836cefbd460e7d0960622a584e"
+    },
+    {
+      "name": "near-bound",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "benchmark-family.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "0eac5447089e66ebe09c448e1108625dd9e794eb47c2dcff73b877bf091d4462"
+    },
+    {
+      "name": "native",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "test-interval-refinement.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "44db11740568529421adcc60820127900957d0a16e46a6281374e65e2caf0f1e"
+    },
+    {
+      "name": "oracle",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "test-interval-oracle.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "b5bfa8b81fd90d5557f0a21ede7fdc0ad15f6508016b9f9e3102537bcca92825"
+    },
+    {
+      "name": "point-regression",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "test-refinement.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "1bf122409ea1088c26e94cc8d8d939448e616b72dbcabd210a85ddba8149343b"
+    },
+    {
+      "name": "smoke",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "scripts/unknown-reference-receiving.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "845072cffa17e03485c0601b9f0ae13facfb3aa618e8ef41f9439282824351e6"
+    },
+    {
+      "name": "browser",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "scripts/reference-family-browser.mjs"
+      ],
+      "exitCode": 1,
+      "logSha256": "9bd2a7f285b3e6a3968dabac6bd82f6a8a7e7b0f533535f80c93021d8b457d15"
+    }
+  ]
+}
