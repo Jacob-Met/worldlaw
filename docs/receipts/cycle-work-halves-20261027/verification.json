@@ -1,0 +1,711 @@
+{
+  "schema": "worldlaw.half-cycle-work-qualification/v1",
+  "qualificationBase": "32a85d73021356f62fb963ac26d2fa3c814c8fea",
+  "qualificationBaseTree": "a45a02b1b7499f88e82455583ffea670e4a9ed61",
+  "scope": "Executed local candidate qualification. Publication and merge are separate, unclaimed steps.",
+  "environment": {
+    "node": "v24.22.1",
+    "chrome": "156.0.8078.73",
+    "browserUser": "existing nobody (uid65534)",
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed."
+  },
+  "sourceSHA256": {
+    "src/trajectory/cycle-work.mjs": "bdd9adc69816c3122e334978157acefc5394cd7cc7753d4f24b14baaa9afcfca",
+    "src/trajectory/cycle-work-panel.mjs": "82fd066fa44f1156ab44d28afb0b3d75f53fed3a7966ab6139cdc71294f577be",
+    "src/trajectory/cycle-work-halves-panel.mjs": "ebb23c79f4465ea564838e0d87b87dd13926338e9e2cd8d4ddfe0b3e5ac9e305",
+    "tests/angular-cycle-work-halves.test.mjs": "a870ea1a964868d24b75b127bbfbbb00adff04908703152363fa7103ced7afb5",
+    "scripts/angular-cycle-work-halves-browser.mjs": "f082f0fd5b3d0b353b38926d66a81e94711b634323552c9ebb4f726bdd4cfea2",
+    "docs/ANGULAR_CYCLE_WORK.md": "0483b521c3dfbd1606e5e62fb1d302c75b5d05a4bd7439a428d22769deccd3ea",
+    "docs/CYCLE_WORK_HALVES.md": "250993d74f9722af46b3d6ea84216fcec373a8b668c915e31f4f578ba9719c67"
+  },
+  "sourceInput": {
+    "path": "examples/physical-pasco-92be.json",
+    "sha256": "7e42868153d3aa15fc9722f665f5ed62cc491c4445768f8db74a6e36b85cb0e6",
+    "character": "Reused exploratory measured PASCO positions; neither blind receiving nor a fresh apparatus."
+  },
+  "nativeAndSmoke": {
+    "base": "32a85d73021356f62fb963ac26d2fa3c814c8fea",
+    "tree": "a45a02b1b7499f88e82455583ffea670e4a9ed61",
+    "native": {
+      "command": "node --test --test-concurrency=2 tests/*.test.mjs",
+      "exitCode": 0,
+      "counts": {
+        "tests": 1520,
+        "pass": 1519,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 1
+      },
+      "skips": [
+        "﹣ live Node and Chromium exchange pending and applied notebooks through actual modules (0.185354ms) # SKIP"
+      ],
+      "logSHA256": "f59a7ec5d1f5eb44daf4edd2edd3272480fd32a123fee84aa8504bbb4f0c096c",
+      "scientificSourceSHA256": {
+        "src/trajectory/cycle-work.mjs": "bdd9adc69816c3122e334978157acefc5394cd7cc7753d4f24b14baaa9afcfca",
+        "src/trajectory/cycle-work-panel.mjs": "82fd066fa44f1156ab44d28afb0b3d75f53fed3a7966ab6139cdc71294f577be",
+        "tests/angular-cycle-work-halves.test.mjs": "a870ea1a964868d24b75b127bbfbbb00adff04908703152363fa7103ced7afb5"
+      },
+      "note": "Full suite preceded final narrow ledger column-width repair; scientific code, integration and native tests were unchanged. Final rendering is qualified by the subsequent actual browser course."
+    },
+    "smokes": {
+      "worldlaw-smoke-reconstructed.log": {
+        "command": "node scripts/smoke.mjs",
+        "exitCode": 0,
+        "output": "PASS launched product assets and refusal paths; actual discovery → virtual measurement → revision → notebook reopen.\n"
+      },
+      "worldlaw-trajectory-smoke-reconstructed.log": {
+        "command": "node scripts/trajectory-smoke-92be.mjs",
+        "exitCode": 0,
+        "output": "{\n  \"product\": \"worldlaw\",\n  \"route\": \"trajectory-challenge\",\n  \"runtime\": \"v24.22.1\",\n  \"inputSHA256\": \"fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e\",\n  \"received\": \"launched local HTTP server -> actual JSON input -> fitting -> forward predictions -> source notebook reopen\",\n  \"selectedModel\": \"command+rate+gravity+bias\",\n  \"selectedPositionRMSE\": 0.0006561748182990025,\n  \"comparedModels\": 8,\n  \"challengeRuns\": 2,\n  \"negativeCases\": [\n    \"missing initial rate refused\",\n    \"missing resource404\",\n    \"unsupported method405\"\n  ],\n  \"evidenceKind\": \"synthetic\"\n}\n"
+      }
+    }
+  },
+  "browser": {
+    "checks": [
+      "active namespace and seccomp browser sandbox",
+      "original torque consumer remains usable; angular cycle instrument is hidden",
+      "maintained measured source and frozen restoring law execute cycle work by keyboard",
+      "actual downloaded input notebook recomputes scientific disagreement and reopens",
+      "quadratic opt-in invalidates, executes, downloads v2 and restores by actual file reopen",
+      "mixed loss admission compares and reopens actual v3 inputs without replacing older populations",
+      "measured frozen halves by keyboard preserve original export and scientific disagreement",
+      "wrapper reopens in fresh document with exact observed values and plotted positions",
+      "half-cycle declarations and delayed source cannot restore stale inspection",
+      "observed trace and signed ledger support desktop narrow and actual keyboard scrolling",
+      "invalid declarations clear stale claims; source replacement invalidates exported result",
+      "delayed imported notebook cannot overwrite a newer declaration",
+      "reopened refusal budget survives unchanged recompute and export",
+      "desktop and390px instrument stays in viewport and produces actual screenshots",
+      "no page exceptions or external network requests"
+    ],
+    "receivingChecks": {
+      "numericValues": 816,
+      "plottedPositions": 1800,
+      "keyboard": {
+        "overflow": true,
+        "position": 0,
+        "focused": true,
+        "after": 2,
+        "keys": 12
+      },
+      "sticky": {
+        "scroll": 345,
+        "position": "sticky",
+        "left": 35,
+        "width": 96,
+        "containerLeft": 35,
+        "containerRight": 340,
+        "label": "restoring-only",
+        "summaryOutside": true,
+        "hintVisible": true,
+        "columns": [
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "Residual"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "Pair residual sum"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "0.87491"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "0.301451"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "-0.573459"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "0.301451"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "0.684158"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "-0.0754151"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "-0.759574"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "-0.0754151"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "0.718996"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "-0.00966013"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "-0.728656"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "-0.00966013"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "0.684158"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "-0.0754151"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "-0.759574"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "-0.0754151"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "0.64972"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "-0.139569"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "-0.789289"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "-0.139569"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "0.664236"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "-0.112581"
+          },
+          {
+            "index": 4,
+            "left": 146,
+            "right": 236,
+            "width": 90,
+            "text": "-0.776817"
+          },
+          {
+            "index": 5,
+            "left": 236,
+            "right": 340,
+            "width": 104,
+            "text": "-0.112581"
+          }
+        ]
+      }
+    },
+    "exceptions": [],
+    "requests": [
+      "chrome://sandbox/",
+      "chrome://resources/css/text_defaults.css",
+      "chrome://sandbox/sandbox_internals.js",
+      "chrome://sandbox/strings.m.js",
+      "chrome://resources/js/load_time_data.js",
+      "chrome://resources/js/util.js",
+      "chrome://resources/js/assert.js",
+      "http://127.0.0.1:41493/trajectory.html",
+      "http://127.0.0.1:41493/trajectory.css",
+      "http://127.0.0.1:41493/src/trajectory/app.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-torque-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/motion-intake-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/residual-structure-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/cycle-work-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/command-timing-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/command-timing-example.mjs",
+      "http://127.0.0.1:41493/src/trajectory/command-response-example.mjs",
+      "http://127.0.0.1:41493/src/trajectory/rolling-origin-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/initial-state-panel.mjs",
+      "http://127.0.0.1:41493/src/predictive-selection/panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/baselines.mjs",
+      "http://127.0.0.1:41493/src/trajectory/session.mjs",
+      "http://127.0.0.1:41493/src/trajectory/contact-resolution-note.mjs",
+      "http://127.0.0.1:41493/src/trajectory/data.mjs",
+      "http://127.0.0.1:41493/src/trajectory/horizon.mjs",
+      "http://127.0.0.1:41493/src/trajectory/experiment-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/experiment-session.mjs",
+      "http://127.0.0.1:41493/src/experiment-design/screened-controller.mjs",
+      "http://127.0.0.1:41493/src/representation/reference-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-torque.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-restoring-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-torque-example.mjs",
+      "http://127.0.0.1:41493/src/trajectory/cycle-work.mjs",
+      "http://127.0.0.1:41493/src/trajectory/cycle-work-halves-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/residual-epochs-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/residual-structure.mjs",
+      "http://127.0.0.1:41493/src/trajectory/motion-intake.mjs",
+      "http://127.0.0.1:41493/src/trajectory/command-timing-study.mjs",
+      "http://127.0.0.1:41493/src/trajectory/command-timeline.mjs",
+      "http://127.0.0.1:41493/src/trajectory/rolling-origin.mjs",
+      "http://127.0.0.1:41493/src/trajectory/prelude-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/prelude-investigation.mjs",
+      "http://127.0.0.1:41493/src/trajectory/initial-state-sensitivity.mjs",
+      "http://127.0.0.1:41493/src/trajectory/angular-discovery.mjs",
+      "http://127.0.0.1:41493/src/predictive-selection/session.mjs",
+      "http://127.0.0.1:41493/src/trajectory/weak-discovery.mjs",
+      "http://127.0.0.1:41493/src/science/torque-discovery.mjs",
+      "http://127.0.0.1:41493/src/science/trajectory-observations.mjs",
+      "http://127.0.0.1:41493/src/trajectory/integral-discovery.mjs",
+      "http://127.0.0.1:41493/src/trajectory/resolution.mjs",
+      "http://127.0.0.1:41493/src/trajectory/angular-weak.mjs",
+      "http://127.0.0.1:41493/src/trajectory/angular-resolution.mjs",
+      "http://127.0.0.1:41493/src/trajectory/planner.mjs",
+      "http://127.0.0.1:41493/src/trajectory/virtual-experiment.mjs",
+      "http://127.0.0.1:41493/src/experiment-design/qualify-trajectory-plan.mjs",
+      "http://127.0.0.1:41493/src/representation/angle-reference.mjs",
+      "http://127.0.0.1:41493/src/trajectory/weak-operator.mjs",
+      "http://127.0.0.1:41493/src/science/linear-fit.mjs",
+      "http://127.0.0.1:41493/src/science/angular-kinematics.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-restoring.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-restoring-example.mjs",
+      "http://127.0.0.1:41493/src/trajectory/residual-epochs.mjs",
+      "http://127.0.0.1:41493/src/motion/measurement.mjs",
+      "http://127.0.0.1:41493/src/science/angular-prelude.mjs",
+      "http://127.0.0.1:41493/src/trajectory/residual-pair-statistics.mjs",
+      "http://127.0.0.1:41493/src/trajectory/physical-delay.mjs",
+      "http://127.0.0.1:41493/src/trajectory/forward.mjs",
+      "http://127.0.0.1:41493/src/predictive-selection/select.mjs",
+      "http://127.0.0.1:41493/src/predictive-selection/refine.mjs",
+      "http://127.0.0.1:41493/src/predictive-selection/covariance.mjs",
+      "http://127.0.0.1:41493/src/science/robust-fit.mjs",
+      "http://127.0.0.1:41493/src/data.mjs",
+      "http://127.0.0.1:41493/src/motion/metric-plane.mjs",
+      "http://127.0.0.1:41493/src/trajectory/coulomb-contact.mjs",
+      "http://127.0.0.1:41493/src/motion/vendor/plane-homography.mjs",
+      "http://127.0.0.1:41493/examples/trajectory-pendulum-92be.json",
+      "http://127.0.0.1:41493/favicon.svg",
+      "http://127.0.0.1:41493/examples/physical-pasco-92be.json",
+      "http://127.0.0.1:41493/trajectory.html",
+      "http://127.0.0.1:41493/trajectory.css",
+      "http://127.0.0.1:41493/src/trajectory/app.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-torque-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/motion-intake-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/residual-structure-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/cycle-work-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/command-timing-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/command-timing-example.mjs",
+      "http://127.0.0.1:41493/src/trajectory/command-response-example.mjs",
+      "http://127.0.0.1:41493/src/trajectory/rolling-origin-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/initial-state-panel.mjs",
+      "http://127.0.0.1:41493/src/predictive-selection/panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/baselines.mjs",
+      "http://127.0.0.1:41493/src/trajectory/session.mjs",
+      "http://127.0.0.1:41493/src/trajectory/contact-resolution-note.mjs",
+      "http://127.0.0.1:41493/src/trajectory/data.mjs",
+      "http://127.0.0.1:41493/src/trajectory/horizon.mjs",
+      "http://127.0.0.1:41493/src/trajectory/experiment-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/experiment-session.mjs",
+      "http://127.0.0.1:41493/src/experiment-design/screened-controller.mjs",
+      "http://127.0.0.1:41493/src/representation/reference-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-torque.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-restoring-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-torque-example.mjs",
+      "http://127.0.0.1:41493/src/trajectory/motion-intake.mjs",
+      "http://127.0.0.1:41493/src/trajectory/cycle-work.mjs",
+      "http://127.0.0.1:41493/src/trajectory/cycle-work-halves-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/residual-epochs-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/residual-structure.mjs",
+      "http://127.0.0.1:41493/src/trajectory/rolling-origin.mjs",
+      "http://127.0.0.1:41493/src/trajectory/command-timing-study.mjs",
+      "http://127.0.0.1:41493/src/trajectory/command-timeline.mjs",
+      "http://127.0.0.1:41493/src/trajectory/prelude-panel.mjs",
+      "http://127.0.0.1:41493/src/trajectory/prelude-investigation.mjs",
+      "http://127.0.0.1:41493/src/trajectory/initial-state-sensitivity.mjs",
+      "http://127.0.0.1:41493/src/trajectory/weak-discovery.mjs",
+      "http://127.0.0.1:41493/src/science/torque-discovery.mjs",
+      "http://127.0.0.1:41493/src/science/trajectory-observations.mjs",
+      "http://127.0.0.1:41493/src/trajectory/integral-discovery.mjs",
+      "http://127.0.0.1:41493/src/trajectory/resolution.mjs",
+      "http://127.0.0.1:41493/src/trajectory/angular-discovery.mjs",
+      "http://127.0.0.1:41493/src/trajectory/angular-weak.mjs",
+      "http://127.0.0.1:41493/src/trajectory/angular-resolution.mjs",
+      "http://127.0.0.1:41493/src/predictive-selection/session.mjs",
+      "http://127.0.0.1:41493/src/trajectory/planner.mjs",
+      "http://127.0.0.1:41493/src/trajectory/virtual-experiment.mjs",
+      "http://127.0.0.1:41493/src/experiment-design/qualify-trajectory-plan.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-restoring.mjs",
+      "http://127.0.0.1:41493/src/trajectory/applied-restoring-example.mjs",
+      "http://127.0.0.1:41493/src/trajectory/weak-operator.mjs",
+      "http://127.0.0.1:41493/src/science/linear-fit.mjs",
+      "http://127.0.0.1:41493/src/representation/angle-reference.mjs",
+      "http://127.0.0.1:41493/src/trajectory/residual-pair-statistics.mjs",
+      "http://127.0.0.1:41493/src/trajectory/physical-delay.mjs",
+      "http://127.0.0.1:41493/src/motion/measurement.mjs",
+      "http://127.0.0.1:41493/src/science/angular-prelude.mjs",
+      "http://127.0.0.1:41493/src/science/angular-kinematics.mjs",
+      "http://127.0.0.1:41493/src/trajectory/residual-epochs.mjs",
+      "http://127.0.0.1:41493/src/science/robust-fit.mjs",
+      "http://127.0.0.1:41493/src/trajectory/forward.mjs",
+      "http://127.0.0.1:41493/src/predictive-selection/select.mjs",
+      "http://127.0.0.1:41493/src/predictive-selection/refine.mjs",
+      "http://127.0.0.1:41493/src/predictive-selection/covariance.mjs",
+      "http://127.0.0.1:41493/src/trajectory/coulomb-contact.mjs",
+      "http://127.0.0.1:41493/src/data.mjs",
+      "http://127.0.0.1:41493/src/motion/metric-plane.mjs",
+      "http://127.0.0.1:41493/src/motion/vendor/plane-homography.mjs",
+      "http://127.0.0.1:41493/examples/physical-pasco-92be.json",
+      "http://127.0.0.1:41493/examples/trajectory-pendulum-92be.json",
+      "http://127.0.0.1:41493/examples/physical-pasco-92be.json",
+      "http://127.0.0.1:41493/examples/trajectory-pendulum-92be.json",
+      "http://127.0.0.1:41493/examples/physical-pasco-92be.json"
+    ],
+    "inputSchema": "worldlaw.cycle-work-inputs/v1",
+    "screenshots": [
+      "halves-1440.png",
+      "halves-390.png",
+      "halves-table-390.png",
+      "cycle-work-1440.png",
+      "cycle-work-390.png",
+      "quadratic-1440.png",
+      "quadratic-390.png",
+      "mixed-1440.png",
+      "mixed-390.png",
+      "mixed-chart-390.png"
+    ]
+  },
+  "scientificObservation": {
+    "records": 1,
+    "cycles": 17,
+    "supported": 17,
+    "firstCycle": {
+      "runId": "pasco-len1-cond1-3",
+      "cycleIndex": 0,
+      "first": 49,
+      "last": 155,
+      "start": 5.49,
+      "end": 6.55,
+      "status": "admitted",
+      "endpointPlateaus": [
+        [
+          48,
+          51
+        ],
+        [
+          154,
+          157
+        ]
+      ],
+      "loss": 0.30145064869898064,
+      "potentialLoss": 0.3006127983945923,
+      "kineticCorrection": 0.0008378503043883012,
+      "startRate": 0.11094276094274928,
+      "endRate": 0.10311447811448891,
+      "viscous": 19.03114022360955,
+      "distance": 3.905000000000001,
+      "quadraticWork": 100.43450811270064,
+      "halfStatus": "compared",
+      "halves": [
+        {
+          "direction": "descending",
+          "first": 49,
+          "last": 102,
+          "start": 5.49,
+          "end": 6.02,
+          "potentialLoss": 0.8691204354877122,
+          "kineticCorrection": 0.005789102444193486,
+          "observedLoss": 0.8749095379319057,
+          "viscous": 9.632638120507822,
+          "distance": 1.9570000000000007,
+          "quadraticWork": 51.28301746802333
+        },
+        {
+          "direction": "ascending",
+          "first": 102,
+          "last": 155,
+          "start": 6.02,
+          "end": 6.55,
+          "potentialLoss": -0.5685076370931199,
+          "kineticCorrection": -0.0049512521398051845,
+          "observedLoss": -0.5734588892329251,
+          "viscous": 9.398502103101723,
+          "distance": 1.948,
+          "quadraticWork": 49.151490644677324
+        }
+      ],
+      "minimumPlateau": [
+        101,
+        104
+      ],
+      "minimum": 102,
+      "observedSum": 0.30145064869898064,
+      "endpointClosure": 0
+    },
+    "firstCycleComparisons": [
+      {
+        "runId": "pasco-len1-cond1-3",
+        "cycleIndex": 0,
+        "candidateId": "restoring-only",
+        "status": "compared",
+        "halves": [
+          {
+            "direction": "descending",
+            "start": 5.49,
+            "end": 6.02,
+            "observedLoss": 0.8749095379319057,
+            "predictedLoss": 0,
+            "residual": 0.8749095379319057
+          },
+          {
+            "direction": "ascending",
+            "start": 6.02,
+            "end": 6.55,
+            "observedLoss": -0.5734588892329251,
+            "predictedLoss": 0,
+            "residual": -0.5734588892329251
+          }
+        ],
+        "residualSum": 0.30145064869898064
+      },
+      {
+        "runId": "pasco-len1-cond1-3",
+        "cycleIndex": 0,
+        "candidateId": "viscous",
+        "status": "compared",
+        "halves": [
+          {
+            "direction": "descending",
+            "start": 5.49,
+            "end": 6.02,
+            "observedLoss": 0.8749095379319057,
+            "predictedLoss": 0.1907511371660773,
+            "residual": 0.6841584007658285
+          },
+          {
+            "direction": "ascending",
+            "start": 6.02,
+            "end": 6.55,
+            "observedLoss": -0.5734588892329251,
+            "predictedLoss": 0.18611463873096373,
+            "residual": -0.7595735279638889
+          }
+        ],
+        "residualSum": -0.07541512719806043
+      },
+      {
+        "runId": "pasco-len1-cond1-3",
+        "cycleIndex": 0,
+        "candidateId": "coulomb",
+        "status": "compared",
+        "halves": [
+          {
+            "direction": "descending",
+            "start": 5.49,
+            "end": 6.02,
+            "observedLoss": 0.8749095379319057,
+            "predictedLoss": 0.15591390504755445,
+            "residual": 0.7189956328843513
+          },
+          {
+            "direction": "ascending",
+            "start": 6.02,
+            "end": 6.55,
+            "observedLoss": -0.5734588892329251,
+            "predictedLoss": 0.15519687635801532,
+            "residual": -0.7286557655909405
+          }
+        ],
+        "residualSum": -0.009660132706589164
+      },
+      {
+        "runId": "pasco-len1-cond1-3",
+        "cycleIndex": 0,
+        "candidateId": "joint",
+        "status": "compared",
+        "halves": [
+          {
+            "direction": "descending",
+            "start": 5.49,
+            "end": 6.02,
+            "observedLoss": 0.8749095379319057,
+            "predictedLoss": 0.1907511371660773,
+            "residual": 0.6841584007658285
+          },
+          {
+            "direction": "ascending",
+            "start": 6.02,
+            "end": 6.55,
+            "observedLoss": -0.5734588892329251,
+            "predictedLoss": 0.18611463873096373,
+            "residual": -0.7595735279638889
+          }
+        ],
+        "residualSum": -0.07541512719806043
+      },
+      {
+        "runId": "pasco-len1-cond1-3",
+        "cycleIndex": 0,
+        "candidateId": "quadratic",
+        "status": "compared",
+        "halves": [
+          {
+            "direction": "descending",
+            "start": 5.49,
+            "end": 6.02,
+            "observedLoss": 0.8749095379319057,
+            "predictedLoss": 0.22518975448557732,
+            "residual": 0.6497197834463284
+          },
+          {
+            "direction": "ascending",
+            "start": 6.02,
+            "end": 6.55,
+            "observedLoss": -0.5734588892329251,
+            "predictedLoss": 0.21582996979022462,
+            "residual": -0.7892888590231497
+          }
+        ],
+        "residualSum": -0.1395690755768213
+      },
+      {
+        "runId": "pasco-len1-cond1-3",
+        "cycleIndex": 0,
+        "candidateId": "viscous-quadratic",
+        "status": "compared",
+        "halves": [
+          {
+            "direction": "descending",
+            "start": 5.49,
+            "end": 6.02,
+            "observedLoss": 0.8749095379319057,
+            "predictedLoss": 0.2106737066624679,
+            "residual": 0.6642358312694379
+          },
+          {
+            "direction": "ascending",
+            "start": 6.02,
+            "end": 6.55,
+            "observedLoss": -0.5734588892329251,
+            "predictedLoss": 0.2033583365777887,
+            "residual": -0.7768172258107138
+          }
+        ],
+        "residualSum": -0.11258139454127591
+      }
+    ],
+    "work": {
+      "rateWindows": 1784,
+      "intervals": 1783,
+      "maximumEach": 8192,
+      "counterScope": "Diagnostic pass after bounded original extraction; replay and original extraction are not counted here."
+    }
+  },
+  "images": [
+    {
+      "path": "docs/receipts/cycle-work-halves-20261027/desktop.png",
+      "bytes": 129795,
+      "sha256": "0a4a6e02836acb7da8406338e54849419a0fc23158a60e5c7f3821207b8fa1ec"
+    },
+    {
+      "path": "docs/receipts/cycle-work-halves-20261027/narrow.png",
+      "bytes": 90296,
+      "sha256": "aa7f2b4be7478644cbdb8191695a68c747004297a6cee2d36f1f12b5f9cb359b"
+    },
+    {
+      "path": "docs/receipts/cycle-work-halves-20261027/narrow-ledger.png",
+      "bytes": 76219,
+      "sha256": "c59ee8205e70ee92ef2fece517df8801c9e54690e17c8fe0285c8baf791e2831"
+    }
+  ],
+  "visualReview": {
+    "root": "Final desktop/narrow trace inspected, and final far-right narrow ledger inspected after repairing clipped residual signs.",
+    "independentWorker": "Final narrow trace and far-right ledger inspected; full signed residual columns readable."
+  },
+  "limits": [
+    "No refit or law selection uses receiving values.",
+    "The two halves share a minimum and derivative windows; they are not independent replications.",
+    "Observed/predicted losses are normalized angular energy, not calibrated joules.",
+    "Derivative, endpoint, quadrature and frozen restoring-law error remain possible.",
+    "The diagnostic budgets exclude original bounded replay and extraction.",
+    "Native suite preceded the final width-only ledger repair; final browser receiving validates that repair.",
+    "Earlier weaker browser passes do not establish final complete-column visibility; the final course does."
+  ]
+}
