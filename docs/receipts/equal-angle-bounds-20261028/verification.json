@@ -1,0 +1,142 @@
+{
+  "claim": 435,
+  "native": {
+    "tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "tapSHA256": "d492dbfc3c340d86b2ce00a50cafe7617ff8aa9d840d3eacaeb0aa512b652739",
+    "frozenStage": "reviewed-native-stage1"
+  },
+  "browser": {
+    "passed": 27,
+    "displayedBoundValues": 861,
+    "receiptSHA256": "da30aebd8e9e54e20c351e7f160adef4fb2005475b3d3742b83b2d4feabde97d",
+    "sourceManifest": [
+      {
+        "path": "scripts/equal-angle-bounds-browser.mjs",
+        "sha256": "5b696bcdf607b9dfe731da50f19dc39fe9af72486720fc4eb056a5f6ad498cca",
+        "bytes": 55214
+      },
+      {
+        "path": "tests/equal-angle-bounds.test.mjs",
+        "sha256": "760ef3accf7675ef4c110a35ca864c608c48cb1fe6858e1e7c165d00b5c71118",
+        "bytes": 3560
+      },
+      {
+        "path": "src/trajectory/equal-angle-bounds-worker.mjs",
+        "sha256": "af6d693cb3accad0f0e4660e6463e33c38631df5f5d347e3ca8c22a062d32833",
+        "bytes": 204
+      },
+      {
+        "path": "src/trajectory/equal-angle-returns-panel.mjs",
+        "sha256": "8dc46da5ab12ca06c5f3dce9d14398aa4898d0dff2d5f3ca3b026488d8c76895",
+        "bytes": 8033
+      },
+      {
+        "path": "src/trajectory/equal-angle-bounds-job.mjs",
+        "sha256": "f7481c178d239d4ae3e3703ad075a2d2368d3ce5fd9874c927e1683fcf5b4d04",
+        "bytes": 786
+      },
+      {
+        "path": "src/trajectory/cycle-work-panel.mjs",
+        "sha256": "2dd6b4e4832fa93159084c7c96aaa402ac3ac497dfbd7743c65188e3f8208ca8",
+        "bytes": 15646
+      },
+      {
+        "path": "src/trajectory/equal-angle-bounds.mjs",
+        "sha256": "bc0c168c592bcd8bf2b64c59788f98f21836a6e97d0b9ac79b9de9bfcdd2f75f",
+        "bytes": 8239
+      },
+      {
+        "path": "src/trajectory/equal-angle-bounds-panel.mjs",
+        "sha256": "e98f9bd01b50ba84ca13fb8bd4989f26c8824b9e396727ffa6c2e7305e2e4382",
+        "bytes": 6898
+      },
+      {
+        "path": "src/trajectory/cycle-work-halves-panel.mjs",
+        "sha256": "ff89e2fb98eff6ac0cdf96d8b7a1ec20458bc2d5c15999e8dfcf440f7e9230f1",
+        "bytes": 13685
+      }
+    ],
+    "visualLimitation": "New bound captures caught smooth scrolling and are not accepted as final new-control visual evidence."
+  },
+  "finalVisual": {
+    "passed": 3,
+    "receiptSHA256": "06e3c26a74932e3ad18de9af8df210ba00c3f3c1a114bf83881525c117b69100",
+    "runtimeChanged": false,
+    "captureCorrection": "Instant scroll and actual visible rectangle checks; final full harness contains corrected capture but27-group earlier run is separately pinned."
+  },
+  "work": {
+    "reserved": 1746600,
+    "actual": 181329,
+    "limit": 4000000,
+    "windows": 246,
+    "rows": 123,
+    "available": true,
+    "scope": "Complete additional exact calculation reserved before execution. Existing raw source replay has its own bounds; at most512 unique windows and2048 retained rows can be calculated."
+  },
+  "independentProbe": {
+    "sourceSHA256": "8bb1a001050a7dfc5a77985fad420657bcb55df39c01c54d3b29100e0ca9b5d5",
+    "resultSHA256": "87c1977d1513bf6a6b893a7d60956dd9767b5acdf920f70c295a46d1deb5055b",
+    "interpretationSHA256": "2d44be22015f04fd764eab13c9d3a92a84325145d4924dc9c1060d5e69856f3e"
+  },
+  "limits": [
+    "Hypothetical reading radius is not calibrated by resolution.",
+    "Exact local polynomial sensitivity does not bound physical derivative without separately declared model error.",
+    "Potential allowance belongs only to frozen family.",
+    "Shared dependencies overbounded; unresolved is not constructive feasibility.",
+    "Original intervals overlap; no independent replicate, physical cause or probability claim.",
+    "No new full-suite or complete distribution-package claim."
+  ],
+  "workerClosureRepair": {
+    "helperSHA256": "95267fc5e783b6d8490f3f7b86c10ccae4005e5043479400de91eca9cf169f3c",
+    "baselineControl": {
+      "passed": 0,
+      "failed": 1,
+      "tapSHA256": "fbe709c1d5c1e8429defb0047ab7ef4599e2518ba8e63968ab1c74d9df132282"
+    },
+    "finalTargetedControls": {
+      "passed": 3,
+      "failed": 0,
+      "tapSHA256": "0ef7f3d53ef76f18158fa5cc45d32bd2639af743ddadfde03edb1f742f5e862e"
+    },
+    "actualFinalSourceReopenVisual": {
+      "passed": 3,
+      "receiptSHA256": "06ea747e92714ea156742a926e9cea6a3c5e5cf1fcb23b1d8cc66ad6b7d04137"
+    },
+    "scope": "Synchronous postMessage exception now terminates new worker before rejecting; original27 source retained; exact scientific core unchanged."
+  },
+  "independentConsumerReviews": {
+    "independent-skill-consumer-review.json": "da1384cb2f1d9faee0e2c519c4fbf4d500a5c89b679f352b9598c3a32adf26b5",
+    "independent-skill-closure-review.json": "1f1844f05130e5c52e85155f6b6903bf41846a167c61f5b4ba9131bd150d87d7"
+  },
+  "independentCoreReviewSHA256": "1413a7d34397d8b4d81bf02804d9100792886116cdd40a9e8eb5413e55bd2026",
+  "currentComposition": {
+    "base": "9e1cf9d69bf84685e247b37296e66694a48fd170",
+    "baseTree": "f2646eb1d629e1e9ad5271d2aadf852eba362171",
+    "browserAndWorkerDependencyCount": 83,
+    "allUnmodifiedDependenciesMatchCanonicalGitBlobs": true,
+    "incomingPaths": [
+      "docs/CALIBRATION_REPORT_INTAKE.md",
+      "docs/receipts/calibration-domain-20261028/browser.json",
+      "scripts/calibration-domain.receiving.mjs",
+      "src/science/calibration-reference-check.mjs",
+      "src/science/calibration-report-panel.mjs",
+      "src/science/calibration-report.mjs",
+      "src/science/shared-calibration.mjs",
+      "tests/calibration-domain.test.mjs"
+    ],
+    "incomingOverlap": [],
+    "knownCanonicalPackagingLimitation": "Unchanged prior reference-sequence root guide/test and two log receipts remain disallowed by canonical package policy; no unchanged whole-package retry or success claim.",
+    "maintainedSmokes": {
+      "smoke-current-studio.log": {
+        "exit": 0,
+        "sha256": "394a530a39691e1911e51ae91e4a5dc56a1e2b77812957a3a1e0a7880317f3c6"
+      },
+      "smoke-current-trajectory.log": {
+        "exit": 0,
+        "sha256": "9f47ea566432d63cfabc12e260511ce7e8210eb07ce34f030cb83f015c599e31"
+      }
+    }
+  }
+}
