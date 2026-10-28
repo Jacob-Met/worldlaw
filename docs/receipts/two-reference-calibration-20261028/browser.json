@@ -1,0 +1,331 @@
+{
+  "browser": {
+    "status": "passed",
+    "startedAt": "2026-10-28T18:31:43.411Z",
+    "finishedAt": "2026-10-28T18:31:45.071Z",
+    "url": "http://127.0.0.1:35121/",
+    "sourceIdentity": {
+      "base": "c0646ad6bff0dca3962fb5e5c4b61ab7f71db30a",
+      "inquiry": 393,
+      "reconstructed": true
+    },
+    "checks": [
+      "Both original reference corrections jointly exclude the actual midpoint; explicit widening restores a checked witness without shifting original readouts",
+      "Actual file challenge changes independent-source witness to cross-source separation only after explicit complete calibration association and separately sourced residual bound; original8training rows preserved",
+      "Independent original residuals can still supply a complete common witness; source-only export and replay retain original/actual calibration association and component bounds",
+      "Source-association edits retire prior evidence, stale certificate source is refused, and incomplete actual-row association refuses the entire inquiry"
+    ],
+    "exceptions": [],
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-28T18:31:43.734Z",
+      "completedAt": "2026-10-28T18:31:43.825Z",
+      "durationMs": 90.52038700000003,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "878A4C108F53E2457C4F1B248518476C",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "642DC52F41C79A6E834DBA0FA50B2518"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "pageConnection": {
+      "schema": "hamon.chromium-page.v1",
+      "status": "course-completed",
+      "startedAt": "2026-10-28T18:31:43.687Z",
+      "cdpOrigin": "http://127.0.0.1:37937",
+      "targetId": "878A4C108F53E2457C4F1B248518476C",
+      "limits": {
+        "startupMs": 5000,
+        "requestMs": 15000,
+        "closeMs": 1000,
+        "maxPending": 128,
+        "maxMessageBytes": 16777216,
+        "maxDiscoveryBytes": 262144
+      },
+      "requests": {
+        "sent": 95,
+        "completed": 95,
+        "methodErrors": 0,
+        "peakPending": 1,
+        "refusedBeforeSend": 0
+      },
+      "events": 29,
+      "failure": null,
+      "retirement": {
+        "closeRequested": true,
+        "closeObserved": true,
+        "closeWaitExpired": false,
+        "rejectedPending": [],
+        "closeCode": 1000,
+        "wasClean": true
+      },
+      "finishedAt": "2026-10-28T18:31:44.993Z",
+      "durationMs": 1305.251896
+    },
+    "lifecycle": {
+      "schema": "hamon.chromium-session.v1",
+      "status": "course-completed",
+      "startedAt": "2026-10-28T18:31:43.442Z",
+      "executable": "/opt/google/chrome/google-chrome",
+      "runDirectory": "/tmp/hamon-69d25c99168e-access-pg-c2d12d49e1",
+      "profileDirectory": "/tmp/hamon-69d25c99168e-access-pg-c2d12d49e1/profile",
+      "stdoutFile": "/tmp/hamon-69d25c99168e-access-pg-c2d12d49e1/stdout.bin",
+      "stderrFile": "/tmp/hamon-69d25c99168e-access-pg-c2d12d49e1/stderr.bin",
+      "receiptFile": "/tmp/hamon-69d25c99168e-access-pg-c2d12d49e1/session.json",
+      "sandbox": "not-assessed",
+      "limits": {
+        "startupMs": 15000,
+        "shutdownMs": 3000,
+        "courseMs": 60000
+      },
+      "cleanup": {
+        "attempted": true,
+        "directChildExited": true,
+        "scope": "launched-family-receiver-and-owned-descendants",
+        "signals": [
+          "SIGTERM"
+        ],
+        "familyExited": true
+      },
+      "argv": [
+        "--headless=new",
+        "--enable-automation",
+        "--allow-chrome-scheme-url",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--remote-debugging-address=127.0.0.1",
+        "--remote-debugging-port=0",
+        "--user-data-dir=/tmp/hamon-69d25c99168e-access-pg-c2d12d49e1/profile",
+        "about:blank"
+      ],
+      "processFamily": {
+        "python": {
+          "path": "/usr/bin/python3.12",
+          "bytes": 8020928,
+          "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+        },
+        "receiver": {
+          "path": "/tmp/hamon-69d25c99168e-access-browser-qualification-v1/chromium_family.py",
+          "bytes": 13667,
+          "sha256": "b2cc9e73a5cbcaba1820cce126ecf5f6ebbcfacb3fd65372c9e1d149a60beae6"
+        },
+        "bytes": 1347,
+        "started": {
+          "event": "started",
+          "schema": "hamon.chromium-family.v1",
+          "supervisorPid": 1977450,
+          "browserPid": 1977459,
+          "subreaper": true
+        },
+        "finished": {
+          "schema": "hamon.chromium-family.v1",
+          "supervisorPid": 1977450,
+          "parentPid": 1977413,
+          "browserPid": 1977459,
+          "status": "family-exited",
+          "subreaper": true,
+          "scope": "one-new-child-and-its-descendants",
+          "limits": {
+            "graceMs": 3000,
+            "killMs": 3000,
+            "maxChildren": 4096,
+            "maxSamples": 64,
+            "maxProcEntries": 32768
+          },
+          "stopReason": "signal-15",
+          "browserExit": {
+            "code": 0,
+            "signal": null
+          },
+          "familyExited": true,
+          "waitNoChildrenObserved": true,
+          "deadlineExpired": false,
+          "reapedCount": 9,
+          "reapedSamples": [
+            {
+              "pid": 1977466,
+              "code": null,
+              "signal": 15
+            },
+            {
+              "pid": 1977469,
+              "code": null,
+              "signal": 15
+            },
+            {
+              "pid": 1977459,
+              "code": 0,
+              "signal": null
+            },
+            {
+              "pid": 1977463,
+              "code": null,
+              "signal": 15
+            },
+            {
+              "pid": 1977464,
+              "code": null,
+              "signal": 15
+            },
+            {
+              "pid": 1977474,
+              "code": 0,
+              "signal": null
+            },
+            {
+              "pid": 1977501,
+              "code": 0,
+              "signal": null
+            },
+            {
+              "pid": 1977475,
+              "code": 0,
+              "signal": null
+            },
+            {
+              "pid": 1977502,
+              "code": 0,
+              "signal": null
+            }
+          ],
+          "signalCount": 8,
+          "signalSamples": [
+            {
+              "pid": 1977459,
+              "signal": 15
+            },
+            {
+              "pid": 1977466,
+              "signal": 15
+            },
+            {
+              "pid": 1977469,
+              "signal": 15
+            },
+            {
+              "pid": 1977463,
+              "signal": 15
+            },
+            {
+              "pid": 1977464,
+              "signal": 15
+            },
+            {
+              "pid": 1977474,
+              "signal": 15
+            },
+            {
+              "pid": 1977475,
+              "signal": 15
+            },
+            {
+              "pid": 1977502,
+              "signal": 15
+            }
+          ],
+          "signalRefusalCount": 0,
+          "signalRefusalSamples": [],
+          "childDiscovery": [
+            "task-children"
+          ],
+          "errors": [],
+          "durationMs": 1585.19449699088
+        },
+        "error": null
+      },
+      "pid": 1977450,
+      "browserPid": 1977459,
+      "cdpUrl": "http://127.0.0.1:37937",
+      "browserWebSocketUrl": "ws://127.0.0.1:37937/devtools/browser/85cd013f-8101-4e55-9aa2-1c8b4e61fad5",
+      "browserVersion": "Chrome/156.0.8078.47",
+      "readyAt": "2026-10-28T18:31:43.687Z",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "logsComplete": true,
+      "logScope": "owned family streams; complete only after the receiver observes no waitable or running children",
+      "stdout": {
+        "path": "/tmp/hamon-69d25c99168e-access-pg-c2d12d49e1/stdout.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/tmp/hamon-69d25c99168e-access-pg-c2d12d49e1/stderr.bin",
+        "bytes": 5297,
+        "sha256": "e7fd1d3643d91110917eac0dc6748ccc4d0db142e2ba685e8ba1bb9bd0de4345"
+      },
+      "finishedAt": "2026-10-28T18:31:45.070Z"
+    },
+    "hashes": {
+      "chromium-session.mjs": "1f5364c7a441f05ea2afd63bd02bc1af5e39f3d9b011d43941e6386b704e4dcb",
+      "chromium-page.mjs": "952e1f3db5b7bd766e730868f9c2d11e0f092ffb00df7ba4faa432ebee767a63",
+      "chromium-sandbox.mjs": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead"
+    },
+    "receivingModuleSha256": "225fe03edde82115dbd225d77c9002e1c12abf525e2d6d1db04badfeca3b3f5a",
+    "chromeBinarySha256": "aea09d69ce7f24d5901f6bfb15dd44d0c856e793e0a498f8d8393ec7d2c308ec",
+    "profileRetained": true,
+    "error": null,
+    "cause": null
+  },
+  "native": {
+    "command_id": "hamon-69d25c-world-two-reference-browser-20261028-v1",
+    "request_sha256": "3d914ff771570df08624e5155b9e4e199c44490e9fcd30699bd5001fde75c0ec",
+    "generation": "905481ffbaa62ca9884902fe4e361a470ad6c77b2df017813bd15fc0c254a85e",
+    "state": "completed",
+    "runner_pid": 1977407,
+    "started_at": "2026-10-28T18:31:43.334925062Z",
+    "finished_at": "2026-10-28T18:31:45.106308042Z",
+    "exit_code": 0
+  },
+  "sourceBinding": {
+    "claim": 416,
+    "predecessor": "54a8e71f36d3451de448fa6a427edcf4cf4038d5",
+    "files": {
+      "src/science/shared-calibration.mjs": "95a1f4a4a2237f341d9d7abc413c508781b832c6ed9a91eeed1669b0ca8e6a7c",
+      "src/science/shared-calibration-panel.mjs": "5a7d119f9cb5007213e476a291e8b4e80014745c926975e7f83b312418d2104f",
+      "tests/two-reference-calibration.test.mjs": "f4d323888b13c4537644b44e145064fc4f74d4778af864f904ab489fea6033bd",
+      "scripts/two-reference-calibration.receiving.mjs": "5d6fa0ed0416abf1ac8ebc51b159b2abc68d17b28ab1c8a3e5b1d165c75565ba",
+      "docs/TWO_REFERENCE_CALIBRATION.md": "5e2c3edf2435a421f7d3fe29ad8cfab085e722abad8edc5c45d4742a8b7cc863"
+    },
+    "note": "Final test adds executed both-sided extrapolation control after browser; product and receiver unchanged. Runner inherited393label. SYN independent source review accepted."
+  }
+}
