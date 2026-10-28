@@ -15,6 +15,9 @@ const chrome=spawn(process.env.BROWSER_EXECUTABLE_PATH||'/usr/local/bin/google-c
 let ws,seq=0;const pending=new Map(),events={exceptions:[],outside:[]};
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
 const out=[];
+const courseId='abcdefghijklmnopqrstuvwx';
+let completedData;
+const keyboardGeometry=[];
 const outputDir=process.env.BROWSER_ARTIFACT_DIR;
 
 const downloads=path.join(dir,'downloads');await mkdir(downloads);
@@ -48,7 +51,7 @@ try {
  const click=selector=>evaljs(`${q}.querySelector(${JSON.stringify(selector)}).click()`);
  const open=async(text,slow=false)=>evaljs(`(()=>{const f=new File([${JSON.stringify(text)}],'worksheet.json',{type:'application/json'});${slow?"f.text=()=>new Promise(resolve=>{window.releaseWorksheetRead=()=>resolve("+JSON.stringify(text)+")});":""}const d=new DataTransfer();d.items.add(f);const input=${q}.querySelector('[data-action=open]');input.files=d.files;input.dispatchEvent(new Event('change',{bubbles:true}));})()`);
  await check('freeze blank chronological worksheet through real form',async()=>{
-  await evaljs(`(()=>{const f=${q}.querySelector('form');f.closest('details').open=true;for(const [key,value] of Object.entries({id:'receiver',count:8,seed:71,noiseSigma:.01,command:.2,position:.3,rate:-.1,preparation:'AB BA analytic receiver',sourceNote:'Authored control, not physical observations'}))f.elements[key].value=value;f.requestSubmit();})()`);
+  await evaljs(`(()=>{const f=${q}.querySelector('form');f.closest('details').open=true;for(const [key,value] of Object.entries({id:${JSON.stringify(courseId)},count:8,seed:71,noiseSigma:.01,command:.2,position:.3,rate:-.1,preparation:'AB BA analytic receiver',sourceNote:'Authored control, not physical observations'}))f.elements[key].value=value;f.requestSubmit();})()`);
   await wait(`${q}.querySelectorAll('tbody tr').length===16`);
   assert.equal(await evaljs(`[...${q}.querySelectorAll('tbody input')].every(x=>x.value==='')`),true);
   await click('[data-action=apply]');assert.ok(await evaljs(`${q}.querySelector('[data-role=error]').textContent.length>0`));
@@ -58,7 +61,7 @@ try {
  await check('actual downloaded partial worksheet distinguishes zero from missing and reopens',async()=>{
   await evaljs(`(()=>{const x=${q}.querySelector('tbody input[data-field=jointTorque]');x.value='0';x.dispatchEvent(new Event('input',{bubbles:true}));})()`);
   await click('[data-action=save]');
-  for(let i=0;i<80;i++){try{partial=await readFile(path.join(downloads,'worldlaw-history-acquisition-receiver.json'),'utf8');break;}catch{await delay(100);}}
+  for(let i=0;i<80;i++){try{partial=await readFile(path.join(downloads,`worldlaw-history-acquisition-${courseId}.json`),'utf8');break;}catch{await delay(100);}}
   assert.ok(partial,'Actual downloaded JSON missing');const data=JSON.parse(partial);
   assert.equal(data.readings[0].jointTorque,0);assert.equal(data.readings[1].jointTorque,null);assert.equal(data.orderConfirmed,false);
   await open(partial);await wait(`${q}.querySelector('tbody input[data-field=jointTorque]').value==='0'`);
@@ -89,32 +92,64 @@ try {
   await click('[data-action=confirm]');await click('[data-action=apply]');
  });
  await check('completed worksheet actual download and reopen retain confirmation and supplied readings',async()=>{
-  await rm(path.join(downloads,'worldlaw-history-acquisition-receiver.json'));await click('[data-action=save]');
-  let text;for(let i=0;i<80;i++){try{text=await readFile(path.join(downloads,'worldlaw-history-acquisition-receiver.json'),'utf8');break;}catch{await delay(100);}}
-  assert.ok(text);const data=JSON.parse(text);assert.equal(data.orderConfirmed,true);assert.ok(data.readings.every(r=>typeof r.jointTorque==='number'));
+  await rm(path.join(downloads,`worldlaw-history-acquisition-${courseId}.json`));await click('[data-action=save]');
+  let text;for(let i=0;i<80;i++){try{text=await readFile(path.join(downloads,`worldlaw-history-acquisition-${courseId}.json`),'utf8');break;}catch{await delay(100);}}
+  assert.ok(text);const data=JSON.parse(text);completedData=data;assert.equal(data.orderConfirmed,true);assert.ok(data.readings.every(r=>typeof r.jointTorque==='number'));
   await open(text);await wait(`${q}.querySelector('[data-action=confirm]').checked`);
   const observed=await evaljs(`[...${q}.querySelectorAll('tbody input[data-field=jointTorque]')].map(x=>Number(x.value))`);
   assert.deepEqual(observed,data.readings.map(r=>r.jointTorque));
  });
- for(const width of [1440,390]){
-  await send('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width===390});await delay(150);
-  await check(`worksheet keyboard and page containment at ${width}px`,async()=>{
-   await evaljs(`${q}.querySelector('tbody input').focus()`);
-   await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Tab',code:'Tab',windowsVirtualKeyCode:9});
-   assert.equal(await evaljs("document.activeElement.dataset.field"),'position');
-   const dims=await evaljs("({inner:innerWidth,scroll:document.documentElement.scrollWidth})");assert.ok(dims.scroll<=dims.inner+1,JSON.stringify(dims));
-   await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
-   const capture=async(name,selector,horizontal=false)=>{
-    await evaljs(`(async()=>{document.documentElement.style.scrollBehavior='auto';document.body.style.scrollBehavior='auto';const node=document.querySelector(${JSON.stringify(selector)});if(!node)throw Error('Missing capture target');node.scrollIntoView({behavior:'instant',block:'start'});${horizontal?"const table=document.querySelector('#history-acquisition .table-wrap');table.scrollLeft=table.scrollWidth;":''}await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));})()`);
-    const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});await writeFile(path.join(outputDir,`history-acquisition-${width}-${name}.png`),Buffer.from(shot.data,'base64'));
-   };
-   await capture('heading','#history-acquisition');
-   await capture('course','#history-acquisition [data-role=course]');
-   if(width===390)await capture('actual-readings','#history-acquisition .table-wrap',true);
-   await capture('confirmation','#history-acquisition .history-acquisition-confirm');
-   await capture('comparison','.readout');
-  });
+ const pressTab=async(reverse=false)=>{
+  const params={key:'Tab',code:'Tab',windowsVirtualKeyCode:9,modifiers:reverse?8:0};
+  await send('Input.dispatchKeyEvent',{type:'keyDown',...params});await send('Input.dispatchKeyEvent',{type:'keyUp',...params});
+  await delay(50);
+ };
+ const visibleReading=async()=>evaljs(`(()=>{
+  const input=document.activeElement,row=input.closest('tbody tr'),wrap=${q}.querySelector('.table-wrap');
+  if(!row||!input.matches('input[data-field]'))return {invalidFocus:true,active:input.tagName};
+  const header=row.querySelector('th[scope=row]');
+  const detail=header.querySelector('.history-reading-preparation');
+  const visible=node=>{if(!node||getComputedStyle(node).display==='none')return false;const r=node.getBoundingClientRect();return r.width>0&&r.height>0&&r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight&&(()=>{const hit=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);return hit===node||node.contains(hit)})();};
+  const preparation=detail&&visible(detail)?detail:row.children[1];
+  const rect=node=>{const r=node.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
+  const r=input.getBoundingClientRect(),w=wrap.getBoundingClientRect();
+  const corners=[[r.left+2,r.top+2],[r.right-2,r.top+2],[r.left+2,r.bottom-2],[r.right-2,r.bottom-2]];
+  return {index:Number(input.dataset.index),field:input.dataset.field,value:input.value,label:input.getAttribute('aria-label'),identity:header.textContent,preparation:preparation.textContent,identityVisible:visible(header),preparationVisible:visible(preparation),input:rect(input),identityRect:rect(header),wrap:rect(wrap),viewport:{width:innerWidth,height:innerHeight,scroll:document.documentElement.scrollWidth},scrollLeft:wrap.scrollLeft,inputVisible:r.left>=Math.max(0,w.left)&&r.right<=Math.min(innerWidth,w.right)&&r.top>=0&&r.bottom<=innerHeight,unoccluded:corners.every(([x,y])=>document.elementFromPoint(x,y)===input)};
+ })()`);
+ const capture=async(name)=>{await evaljs('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))');const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});await writeFile(path.join(outputDir,name+'.png'),Buffer.from(shot.data,'base64'));};
+ for(const width of [1440,390,320]){
+  await send('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<=390});
+  await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+  await evaljs("document.documentElement.style.scrollBehavior='auto';document.body.style.scrollBehavior='auto'");await delay(150);
+  await evaljs(`${q}.querySelector('tbody input').focus()`);await delay(70);
+  const observations=[],failures=[];
+  assert.notEqual(completedData.readings[0].history,completedData.readings[1].history,'Both preparations must be exercised');
+  const receive=async(index,field,direction)=>{
+   const g=await visibleReading();g.direction=direction;observations.push(g);
+   const wanted=completedData.readings[index];
+   if(g.index!==index||g.field!==field)failures.push(`focus ${index}/${field}: ${JSON.stringify(g)}`);
+   if(g.value!==String(wanted[field]))failures.push(`reading value changed ${index}/${field}`);
+   if(!g.identity?.includes(wanted.pairId)||g.preparation?.trim()!==wanted.history)failures.push(`wrong visible source identity ${index}/${field}`);
+   if(!g.identityVisible||!g.preparationVisible||!g.inputVisible||!g.unoccluded)failures.push(`clipped or occluded source/value ${index}/${field} ${direction}`);
+   if(g.viewport?.scroll>width+1)failures.push(`page width ${g.viewport.scroll} exceeds ${width}`);
+  };
+  const fields=['command','position','rate','jointTorque'];
+  for(let i=0;i<8;i++){
+   if(i)await pressTab();await receive(Math.floor(i/4),fields[i%4],'forward');
+   if(i===3)await capture(`history-acquisition-${width}-entry`);
+  }
+  for(let i=6;i>=0;i--){await pressTab(true);await receive(Math.floor(i/4),fields[i%4],'reverse');}
+  await capture(`history-acquisition-${width}-first-field`);
+  const visibleState={width,observations,failures};keyboardGeometry.push(visibleState);
+  out.push({name:`complete reading identity and all fields through Tab/ShiftTab at ${width}px`,passed:failures.length===0,failures});
  }
+ await writeFile(path.join(outputDir,'keyboard-geometry.json'),JSON.stringify(keyboardGeometry,null,2));
+ await check('keyboard traversal preserves the exact completed portable acquisition',async()=>{
+  await rm(path.join(downloads,`worldlaw-history-acquisition-${courseId}.json`));await click('[data-action=save]');
+  let text;for(let i=0;i<80;i++){try{text=await readFile(path.join(downloads,`worldlaw-history-acquisition-${courseId}.json`),'utf8');break;}catch{await delay(100);}}
+  assert.ok(text);assert.deepEqual(JSON.parse(text),completedData);
+ });
+ assert.ok(out.every(x=>x.passed),'Reading identity or complete input visibility failed; inspect keyboard-geometry.json and actual captures.');
  assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);
  const receipt={pass:true,checks:out,events};await writeFile(path.join(outputDir,'browser-result.json'),JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt,null,2));
-}finally{try{ws?.close();}catch{}chrome.kill('SIGTERM');await delay(400);await rm(dir,{recursive:true,force:true}).catch(()=>{});await new Promise(resolve=>server.close(resolve));}
+}catch(error){const receipt={pass:false,checks:out,events,error:error.message,keyboardGeometry};await writeFile(path.join(outputDir,'browser-result.json'),JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt,null,2));process.exitCode=1;}finally{try{ws?.close();}catch{}chrome.kill('SIGTERM');await delay(400);await rm(dir,{recursive:true,force:true}).catch(()=>{});await new Promise(resolve=>server.close(resolve));}

@@ -21,7 +21,7 @@ export function mountHistoryAcquisition({onApply}) {
  <div class="history-acquisition-actions"><button type="button" data-action="save" disabled>Save worksheet</button><label>Open worksheet<input data-action="open" type="file" accept=".json,application/json"></label></div>
  <p data-role="status" role="status" aria-live="polite" tabindex="-1">No course frozen. Declare a new acquisition or open a saved worksheet.</p>
  <div data-role="course" hidden><p data-role="declaration"></p><p>Read in the displayed order. Enter the <strong>actual</strong> command, angle, rate and torque for each reading. Blank cells stay unknown. Target agreement and pair matching are checked when applying; changing your experiment does not rewrite its frozen request. Even accepted small state differences can change torque: the tolerance does not establish physical equivalence or bound torque bias.</p>
- <div class="table-wrap" tabindex="0" role="region" aria-label="Chronological acquisition worksheet"><table><caption>Declared reading sequence · actual measurements, not model predictions</caption><thead><tr><th>Reading / pair</th><th>Preparation</th><th>Command</th><th>Angle (rad)</th><th>Rate (rad/s)</th><th>Torque (N·m)</th></tr></thead><tbody></tbody></table></div>
+ <div class="table-wrap" tabindex="0" role="region" aria-label="Chronological acquisition worksheet"><table role="table"><caption>Declared reading sequence · actual measurements, not model predictions</caption><thead><tr><th>Reading / pair</th><th>Preparation</th><th>Command</th><th>Angle (rad)</th><th>Rate (rad/s)</th><th>Torque (N·m)</th></tr></thead><tbody role="rowgroup"></tbody></table></div>
  <label class="history-acquisition-confirm"><input data-action="confirm" type="checkbox">I declare that these readings were acquired in this order, with the stated reference and conditioned preparation.</label>
  <button type="button" data-action="apply">Apply complete measurements to the comparison</button>
  <p>Application replaces the current paired comparison only. Save the completed worksheet to retain its full preparation and schedule. The paired notebook retains only your source note and worksheet identifier; it is not the complete acquisition record. Nothing is saved automatically.</p></div>
@@ -44,13 +44,17 @@ export function mountHistoryAcquisition({onApply}) {
   q('[data-role="declaration"]').textContent=`Target: command ${r.command}, angle ${r.position} rad, rate ${r.rate} rad/s. Noise: ${r.noiseSigma} N·m. Preparation: ${r.preparation}. Source: ${r.sourceNote}.`;
   q('[data-action="confirm"]').checked=draft.orderConfirmed;
   for(const [index,reading] of draft.readings.entries()){
-   const tr=document.createElement('tr');tr.dataset.history=reading.history;
-   const identity=document.createElement('th');identity.scope='row';identity.textContent=`${reading.sampleIndex+1} / ${reading.pairId}`;tr.append(identity);
-   const history=document.createElement('td');history.textContent=reading.history;tr.append(history);
+   const tr=document.createElement('tr');tr.dataset.history=reading.history;tr.setAttribute('role','row');
+   const identity=document.createElement('th');identity.scope='row';identity.setAttribute('role','rowheader');identity.className='history-reading-identity';
+   const identityText=document.createElement('span');identityText.textContent=`${reading.sampleIndex+1} / ${reading.pairId}`;
+   const preparation=document.createElement('span');preparation.className='history-reading-preparation';preparation.textContent=reading.history;
+   identity.append(identityText,preparation);tr.append(identity);
+   const history=document.createElement('td');history.setAttribute('role','cell');history.textContent=reading.history;tr.append(history);
    for(const field of fields){
-    const td=document.createElement('td'),input=document.createElement('input');input.type='number';input.step='any';input.min='-1000000';input.max='1000000';input.value=reading[field]===null?'':String(reading[field]);
+    const td=document.createElement('td'),input=document.createElement('input');td.setAttribute('role','cell');input.type='number';input.step='any';input.min='-1000000';input.max='1000000';input.value=reading[field]===null?'':String(reading[field]);
     input.setAttribute('aria-label',`Reading ${reading.sampleIndex+1}, ${reading.history}, actual ${field}`);input.dataset.index=index;input.dataset.field=field;
-    td.append(input);tr.append(td);
+    const fieldLabel=document.createElement('span');fieldLabel.className='history-reading-field-label';fieldLabel.setAttribute('aria-hidden','true');fieldLabel.textContent={command:'Command',position:'Angle (rad)',rate:'Rate (rad/s)',jointTorque:'Torque (N·m)'}[field];
+    td.append(fieldLabel,input);tr.append(td);
    }
    body.append(tr);
   }
