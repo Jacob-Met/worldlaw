@@ -1,0 +1,20 @@
+import {parseCalibrationReport,calibrationReportGroup} from './calibration-report.mjs';
+export function mountCalibrationReport(host,groupsInput,rowCount){
+ const node=(tag,text)=>{const e=document.createElement(tag);if(text)e.textContent=text;return e;};
+ const section=node('fieldset'),legend=node('legend','Receive an original calibration report');section.append(legend,node('p','Open a two-standard torque report, inspect its original values, then explicitly associate its instrument with all original training rows. This supplies a draft calibration inquiry; it does not refit the law or associate actual challenge readings. Nonzero nominal corrections are not supported here and are never silently replaced by symmetric bounds.'));
+ const file=node('input');file.type='file';file.accept='.json,application/json';file.id='calibration-report-file';file.setAttribute('aria-label','Original two-standard calibration report');
+ const preview=node('pre');preview.id='calibration-report-preview';preview.style.whiteSpace='pre-wrap';preview.style.overflowWrap='anywhere';
+ const basisLabel=node('label','Basis for associating this instrument with every original training row'),basis=node('input');basis.id='calibration-report-basis';basis.maxLength=500;basisLabel.append(basis);
+ const declaration=node('label'),same=node('input');same.type='checkbox';same.id='calibration-report-same';declaration.append(same,document.createTextNode(' I declare that this report applies to the instrument used for all original training rows.'));
+ const apply=node('button','Use these original calibration references');apply.id='calibration-report-apply';apply.type='button';apply.disabled=true;
+ const status=node('p');status.id='calibration-report-status';status.setAttribute('role','status');status.textContent='No report received.';section.append(file,preview,basisLabel,declaration,apply,status);host.append(section);
+ let draft=null,intent=0,ownEdit=false;
+ const ready=()=>{apply.disabled=!draft||!same.checked||!basis.value.trim();};
+ function retire(){intent++;draft=null;same.checked=false;apply.disabled=true;preview.textContent='';}
+ function invalidate(){ownEdit=true;groupsInput.dispatchEvent(new Event('input'));ownEdit=false;}
+ groupsInput.addEventListener('input',()=>{if(!ownEdit){retire();status.textContent='Inquiry source changed; reopen the report before receiving it again.';}});
+ basis.addEventListener('input',()=>{intent++;same.checked=false;invalidate();ready();});same.addEventListener('change',()=>{intent++;invalidate();ready();});
+ file.addEventListener('change',async()=>{const selected=file.files[0];file.value='';retire();basis.value='';invalidate();const token=intent;if(!selected)return;status.textContent='Reading original calibration report…';try{if(selected.size>65536)throw Error('Choose a calibration report up to64KiB.');const raw=await selected.text();if(token!==intent||!section.isConnected)return;draft=parseCalibrationReport(raw);preview.textContent=JSON.stringify(draft,null,2);status.textContent=`Report ${draft.reportId}, instrument ${draft.instrumentId}: both original standards retained as a draft.`;ready();}catch(error){if(token===intent&&section.isConnected){retire();status.textContent=error.message;}}});
+ apply.addEventListener('click',()=>{if(!draft||!same.checked||!section.isConnected)return;try{const group=calibrationReportGroup(draft,rowCount,{sameInstrument:true,basis:basis.value});groupsInput.value=JSON.stringify([group],null,2);groupsInput.dispatchEvent(new Event('input'));status.textContent='Original report and association retained in the calibration declaration. Search explicitly; original observations, actual-row associations and fitting remain unchanged.';}catch(error){status.textContent=error.message;}});
+ return{retire};
+}
