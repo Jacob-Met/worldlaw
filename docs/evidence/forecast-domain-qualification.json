@@ -1,0 +1,41 @@
+{
+  "createdUtc": "2026-10-28T20:15:13.969784+00:00",
+  "baseCommit": "81fd35e1b2cf60eaad0246c459c48afe7dee5ca5",
+  "nativeMaintained": {
+    "files": [
+      "tests/trajectory-forward-92be.test.mjs",
+      "tests/trajectory-resolution-92be.test.mjs",
+      "tests/trajectory-angular-92be.test.mjs",
+      "tests/trajectory-angular-resolution-92be.test.mjs",
+      "tests/coulomb-resolution-events.test.mjs",
+      "tests/forward-refinement.test.mjs"
+    ],
+    "runner": "Node --test --test-reporter=spec",
+    "passingFileGroups": 6,
+    "failedFileGroups": 0,
+    "logSHA256": "6745d7673ee1064d46c9ef67d47ba940c9abef58b2fd3e3d8c571ba0bae94b04"
+  },
+  "independentNewControls": {
+    "definedGroups": 6,
+    "executedPath": "tests/review-domain-skill.test.mjs",
+    "publicationPath": "tests/trajectory-position-domain.test.mjs",
+    "byteIdentical": true,
+    "reviewReceipt": "docs/evidence/forecast-domain-independent-review.json"
+  },
+  "nativeRealConsumer": {
+    "receipt": "docs/evidence/pasco-qv-sine-ordinary-forward.json",
+    "independentReceipt": "docs/evidence/review-sg-pasco-qv-sine.json"
+  },
+  "browser": {
+    "checks": 21,
+    "receipt": "docs/evidence/review-sg-ordinary-receiving.json",
+    "scope": "Maintained ordinary consumer regression; no new graphical q/v fit-selection controls."
+  },
+  "rootVisualReview": [
+    "desktop ordinary trajectory",
+    "narrow measured-source refusal plot",
+    "retained coarse trajectory with numerical refinement unavailable"
+  ],
+  "publication": "Unconfirmed; no external commit/branch/PR/merge or installed release is claimed.",
+  "privatePayloadIncluded": false
+}

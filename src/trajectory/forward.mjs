@@ -87,14 +87,26 @@ function checkedOptions(options) {
   requireThat(maxStep > 0, 'maxStep must be positive in seconds.', 'invalid_options');
   requireThat(Number.isSafeInteger(maxSteps) && maxSteps >= 1 && maxSteps <= STEP_LIMIT,
     `maxSteps must be an integer between 1 and ${STEP_LIMIT}.`, 'invalid_options');
-  return { maxStep, maxSteps };
+  let positionDomain;
+  if (options.positionDomain !== undefined) {
+    requireThat(Array.isArray(options.positionDomain) && options.positionDomain.length === 2,
+      'positionDomain must contain finite lower and upper position bounds.', 'invalid_options');
+    positionDomain = Array.from(options.positionDomain, (value, index) =>
+      finite(value, `positionDomain[${index}]`, 'invalid_options', STATE_BOUND));
+    requireThat(positionDomain[0] < positionDomain[1],
+      'positionDomain lower bound must be strictly below its upper bound.', 'invalid_options');
+  }
+  return { maxStep, maxSteps, positionDomain };
 }
 
-function checkedState(position, rate) {
+function checkedState(position, rate, positionDomain) {
   requireThat(Number.isFinite(position) && Number.isFinite(rate),
     'Trajectory state became nonfinite.', 'numerical_failure');
   requireThat(Math.abs(position) <= STATE_BOUND && Math.abs(rate) <= STATE_BOUND,
     `Trajectory exceeded the executable state bound of ±${STATE_BOUND}.`, 'runaway_state');
+  if (positionDomain) requireThat(position >= positionDomain[0] && position <= positionDomain[1],
+    `A numerical rollout state is outside the declared position domain [${positionDomain[0]}, ${positionDomain[1]}].`,
+    'position_domain');
 }
 
 /**
@@ -105,7 +117,7 @@ function checkedState(position, rate) {
 export function rollout(model, run, options = {}) {
   const executable = copyModel(model);
   const evidence = copyRun(run);
-  const { maxStep, maxSteps } = checkedOptions(options);
+  const { maxStep, maxSteps, positionDomain } = checkedOptions(options);
   const contact = options.coulombContact ?? false;
   requireThat(typeof contact === 'boolean', 'coulombContact must be boolean.', 'invalid_options');
   const coulomb = executable.terms.find(term => term.id === 'coulomb');
@@ -135,7 +147,7 @@ export function rollout(model, run, options = {}) {
   });
 
   const derivative = (position, rate, command, direction) => {
-    checkedState(position, rate);
+    checkedState(position, rate, positionDomain);
     let acceleration;
     try {
       acceleration = (torque(command, position, rate) - (contact ? friction * direction : 0)) / evidence.inertia;
@@ -152,6 +164,7 @@ export function rollout(model, run, options = {}) {
   let residualNorm = 0;
   let maxAbsError = 0;
   const initial = evidence.samples[0];
+  checkedState(position, rate, positionDomain);
   const rows = [{ time: initial.time, observed: initial.position, predicted: position, rate, residual: 0, command: initial.command }];
   for (let i = 0; i < intervals.length; i++) {
     for (const segment of intervals[i]) {
@@ -172,13 +185,13 @@ export function rollout(model, run, options = {}) {
           position: q + ((duration * a.position) / 6 + (duration * b.position) / 3 + (duration * c.position) / 3 + (duration * d.position) / 6),
           rate: v + ((duration * a.rate) / 6 + (duration * b.rate) / 3 + (duration * c.rate) / 3 + (duration * d.rate) / 6),
         };
-        checkedState(next.position, next.rate);return next;
+        checkedState(next.position, next.rate, positionDomain);return next;
       };
       if(contact && friction > 0) {
         const result = advanceCoulombContact({position,rate,duration:h,friction,advance,
-          drive: q => torque(command,q,0),
+          drive: q => {checkedState(q, 0, positionDomain);return torque(command,q,0);},
           fail: (message,code) => {throw new TrajectoryRolloutError(message,code);}});
-        position=result.position;rate=result.rate;contactEvents+=result.events;heldDuration+=result.held;
+        position=result.position;rate=result.rate;checkedState(position, rate, positionDomain);contactEvents+=result.events;heldDuration+=result.held;
       } else {
         const next=advance(position,rate,h,0);position=next.position;rate=next.rate;
       }
@@ -208,6 +221,7 @@ export function rollout(model, run, options = {}) {
         terminalCommandConvention:'left_limit_at_final_observation',...(commandTiming.responseTimeSeconds>0?{commandStageEvaluation:'exact_exponential_at_every_RK4_stage',maximumResponseStep:commandTiming.responseTimeSeconds/4}:{})} : {}),
       initialRateSource: 'run.initialRate', observationsResetState: false, initialSampleExcludedFromMetrics: true,
       stateMagnitudeLimit: STATE_BOUND, positionUnit: 'rad', rateUnit: 'rad/s',
+      ...(positionDomain ? {positionDomain: [...positionDomain], positionDomainConvention: 'closed interval for initial, intermediate and final numerical execution states; later observed positions are residual targets only'} : {}),
       numericalErrorEstimate: null, physicalValidity: 'not_established_by_finite_rollout',
       limitations: [
         'Fixed-step RK4 has no automatic local-error or stiffness estimate.',

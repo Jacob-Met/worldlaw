@@ -20,7 +20,10 @@ export function rolloutWithResolution(model, run, options = {}) {
 
 /** Internal composition helper shared by torque and angular rollout wrappers. */
 export function compareRolloutResolution(execute, model, run, options = {}) {
-  // Forward owns all model/run/options validation and the dynamics implementation.
+  const includeRefinedRollout = options?.includeRefinedRollout === undefined ? false : options.includeRefinedRollout;
+  if (typeof includeRefinedRollout !== 'boolean') throw new TrajectoryRolloutError(
+    'includeRefinedRollout must be boolean.', 'invalid_options');
+  // Forward owns model/run/execution-option validation and the dynamics implementation.
   const coarse = execute(model, run, options);
   const { maxStep, maxSteps, steps: stepsCoarse } = coarse.diagnostics;
   const refinedMaxStep = maxStep / 2;
@@ -35,6 +38,7 @@ export function compareRolloutResolution(execute, model, run, options = {}) {
   };
   const unavailable = (reason, failure) => ({
     rollout: coarse,
+    ...(includeRefinedRollout ? {refinedRollout: null} : {}),
     resolution: { ...resolution, reason, ...(failure ? { failure } : {}) },
   });
   if (!(refinedMaxStep > 0)) return unavailable('half_step_not_representable');
@@ -48,7 +52,7 @@ export function compareRolloutResolution(execute, model, run, options = {}) {
     if (error.code === 'step_limit') return unavailable('combined_step_budget');
     // A refinement can expose a runaway trajectory hidden by the coarser method.
     // Keep the completed coarse evidence, but make the missing comparison explicit.
-    if (error.code === 'runaway_state' || error.code === 'numerical_failure') {
+    if (error.code === 'runaway_state' || error.code === 'numerical_failure' || error.code === 'position_domain') {
       return unavailable('refinement_execution_refused', { name: error.name, code: error.code, message: error.message });
     }
     throw error;
@@ -71,6 +75,7 @@ export function compareRolloutResolution(execute, model, run, options = {}) {
     : null;
   return {
     rollout: coarse,
+    ...(includeRefinedRollout ? {refinedRollout: refined} : {}),
     resolution: {
       ...resolution, status: 'compared', reason: null,
       ...(contactEventComparison ? { contactEventComparison } : {}),

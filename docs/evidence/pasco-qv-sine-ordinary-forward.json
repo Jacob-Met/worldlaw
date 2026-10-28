@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "scope": "Native real-input source admission and frozen q/v sine-model receiving through the existing angular model and shared forward/resolution route; no new fit, UI or publication claim.",
+  "protocolSHA256": "c8094b917a1eddd0cc05408b918768be935ffb2733045c33954a5c27358f3114",
+  "selectionSHA256": "8df6ff1109cb98296e50ebced6fe257212496233df29d5a31e825ce4e659dff3",
+  "sourceHashes": {
+    "public-source/raw_data/len1_cond1_1.csv": "3d407510fd2c0fcbca7f7b3a223f34f0788821f3a21b6b94ccd24a087b6a19be",
+    "public-source/raw_data/len1_cond1_2.csv": "7004af991027cf58c2eb59b924e344a203277fb47c453ecbd026e06e8cf71824",
+    "public-source/raw_data/len1_cond1_3.csv": "f034b8900c7b78f0dbe46805c2d5faa41bb1e238558302156d4965cfc1b4603c"
+  },
+  "sourceRows": {
+    "training": 4002,
+    "challenge": 2001,
+    "challengeScored": 2000
+  },
+  "model": {
+    "schema": "worldlaw.angular-model/v1",
+    "id": "pasco-qv-frozen-sine",
+    "terms": [
+      {
+        "id": "rate",
+        "coefficient": -0.012072356224549554,
+        "coefficientUnit": "1/s"
+      },
+      {
+        "id": "gravity",
+        "coefficient": -39.816236778201294,
+        "coefficientUnit": "rad/s²"
+      }
+    ],
+    "units": {
+      "position": "rad",
+      "rate": "rad/s",
+      "angularAcceleration": "rad/s²"
+    },
+    "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+    "physicalInertia": null,
+    "absoluteTorqueIdentified": false
+  },
+  "options": {
+    "maxStep": 0.0025,
+    "maxSteps": 199999,
+    "positionDomain": [
+      -2,
+      2
+    ],
+    "includeRefinedRollout": true
+  },
+  "maximumPositionDifferenceFromFrozenResearch": 0,
+  "maximumRateDifferenceFromFrozenResearch": 0,
+  "challengePositionRMSE": 0.1673458079542472,
+  "maximumCoarseFinePositionDifference": 2.6992587638142995e-8,
+  "stepsCoarse": 8672,
+  "stepsRefined": 16672,
+  "combinedSteps": 25344,
+  "inputJSONReplay": true,
+  "futureTargetPoisoningPreservesPrediction": true,
+  "outOfDomainInitialStateRefused": true,
+  "sourceAndInputsUnchanged": true,
+  "productSourceSHA256": {
+    "forward.mjs": "7e80824e1475b21e99c74e3f5cd058655851b5c90494086325c44ffe6fd4f705",
+    "resolution.mjs": "54123871fb4b9355989a1d97a4da374547c694166fccd778d55c93da120910cd",
+    "angular-discovery.mjs": "71c16bd766e045a3c28d1c34f75eeafca6f6e6a891a5af6805d055e284ce3f1b",
+    "angular-resolution.mjs": "81b54f874e121b5b3161752bcc94f46d9292f003097a33726de806b83f2e686c"
+  },
+  "limitations": [
+    "Publisher-declared acquisition independence and angular-zero/rate calibration remain unresolved.",
+    "Unforced rotation is an explicit experiment assumption.",
+    "Execution bounds concern numerical states, not proof of physical reachability.",
+    "Native model receiving is not a browser workflow, maintained merge, deployment or physical-law identification."
+  ]
+}
