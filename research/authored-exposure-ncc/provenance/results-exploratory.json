@@ -1,0 +1,251 @@
+{
+  "scope": "Exploratory authored RGBA pixel arrays; unchanged maintained tracker; no camera or decoding claim",
+  "pixels": {
+    "width": 128,
+    "height": 128,
+    "sigma": 2,
+    "peak": 220,
+    "background": 0,
+    "quantization": "Uint8ClampedArray after temporal average",
+    "pixelSample": "integer x,y, no spatial pixel-area integration"
+  },
+  "exposure": {
+    "start": 0,
+    "end": 1,
+    "temporalMidpoints": 512,
+    "brightness": "constant",
+    "cadence": "none; independently authored target exposures, no video cadence or shutter inferred"
+  },
+  "pivot": {
+    "x": 64,
+    "y": 64
+  },
+  "radius": 20,
+  "sourceHash": "42cc9c0e5c395c97c58d35dd6976b85bfd65c173db908ec1f0296cdd4c1e9bd1",
+  "rows": [
+    {
+      "name": "stationary",
+      "exposureSHA256": "42cc9c0e5c395c97c58d35dd6976b85bfd65c173db908ec1f0296cdd4c1e9bd1",
+      "scalarMean": 0,
+      "idealCentroid": {
+        "x": 64,
+        "y": 84
+      },
+      "rasterCentroid": {
+        "x": 64,
+        "y": 84
+      },
+      "idealAngle": 0,
+      "actual": {
+        "version": "worldlaw.patch-ncc/v1",
+        "status": "accepted",
+        "point": {
+          "x": 64,
+          "y": 84
+        },
+        "candidatePoint": {
+          "x": 64,
+          "y": 84
+        },
+        "score": 1,
+        "runnerUpScore": 0.4043526998105594,
+        "ambiguityMargin": 0.5956473001894407,
+        "textureStd": 45.82226188165112,
+        "searchClipped": true,
+        "searchBoundary": false,
+        "subpixelRefined": false,
+        "settings": {
+          "searchRadius": 48,
+          "exclusionRadius": 3,
+          "subpixel": true,
+          "appearance": "luminance",
+          "sampleStep": 1,
+          "minScore": 0.75,
+          "minMargin": 0.06,
+          "minTextureStd": 5
+        },
+        "reason": null,
+        "candidateCount": 8245
+      },
+      "acceptedAngle": 0
+    },
+    {
+      "name": "quadratic0.2",
+      "exposureSHA256": "8bfd359f1f6686d80a98cb1743ff330adacb7c5d6bf2d53c088394772aae64ca",
+      "scalarMean": 0.0666666030883789,
+      "idealCentroid": {
+        "x": 65.32952740840473,
+        "y": 83.9201482640916
+      },
+      "rasterCentroid": {
+        "x": 65.32571635836054,
+        "y": 83.92002176278564
+      },
+      "idealAngle": 0.06664400667425695,
+      "actual": {
+        "version": "worldlaw.patch-ncc/v1",
+        "status": "accepted",
+        "point": {
+          "x": 65.25469066692855,
+          "y": 83.93395638166783
+        },
+        "candidatePoint": {
+          "x": 65.25469066692855,
+          "y": 83.93395638166783
+        },
+        "score": 0.9913633870272933,
+        "runnerUpScore": 0.5297490362321401,
+        "ambiguityMargin": 0.4616143507951532,
+        "textureStd": 40.719232189505625,
+        "searchClipped": true,
+        "searchBoundary": false,
+        "subpixelRefined": true,
+        "settings": {
+          "searchRadius": 48,
+          "exclusionRadius": 3,
+          "subpixel": true,
+          "appearance": "luminance",
+          "sampleStep": 1,
+          "minScore": 0.75,
+          "minMargin": 0.06,
+          "minTextureStd": 5
+        },
+        "reason": null,
+        "candidateCount": 8245
+      },
+      "acceptedAngle": 0.06285945698076434
+    },
+    {
+      "name": "quadratic0.8",
+      "exposureSHA256": "49b05f911048b460e0418d0613d35ab7a3d7ce34d6687c486aba1118f90c35cc",
+      "scalarMean": 0.2666664123535156,
+      "idealCentroid": {
+        "x": 69.09443002163063,
+        "y": 82.75737430508151
+      },
+      "rasterCentroid": {
+        "x": 69.08612873980054,
+        "y": 82.76536718041704
+      },
+      "idealAngle": 0.26519890195829854,
+      "actual": {
+        "version": "worldlaw.patch-ncc/v1",
+        "status": "accepted",
+        "point": {
+          "x": 65.91903200613862,
+          "y": 83.80085576614258
+        },
+        "candidatePoint": {
+          "x": 65.91903200613862,
+          "y": 83.80085576614258
+        },
+        "score": 0.8697490101179838,
+        "runnerUpScore": 0.5980412643208328,
+        "ambiguityMargin": 0.27170774579715096,
+        "textureStd": 24.267650189909727,
+        "searchClipped": true,
+        "searchBoundary": false,
+        "subpixelRefined": true,
+        "settings": {
+          "searchRadius": 48,
+          "exclusionRadius": 3,
+          "subpixel": true,
+          "appearance": "luminance",
+          "sampleStep": 1,
+          "minScore": 0.75,
+          "minMargin": 0.06,
+          "minTextureStd": 5
+        },
+        "reason": null,
+        "candidateCount": 8245
+      },
+      "acceptedAngle": 0.0966148778324866
+    },
+    {
+      "name": "quadratic2.4",
+      "exposureSHA256": "42d31e8e88b85ae7d593aaf0f3bb1c5bcb41d82708b4e93c602273f8df847111",
+      "scalarMean": 0.7999992370605469,
+      "idealCentroid": {
+        "x": 74.50961903720439,
+        "y": 75.17418410032394
+      },
+      "rasterCentroid": {
+        "x": 74.5078153398764,
+        "y": 75.19120319883679
+      },
+      "idealAngle": 0.7547597601210917,
+      "actual": {
+        "version": "worldlaw.patch-ncc/v1",
+        "status": "accepted",
+        "point": {
+          "x": 65.9212207986988,
+          "y": 83.79683450352893
+        },
+        "candidatePoint": {
+          "x": 65.9212207986988,
+          "y": 83.79683450352893
+        },
+        "score": 0.868938516963273,
+        "runnerUpScore": 0.5961306899218622,
+        "ambiguityMargin": 0.2728078270414107,
+        "textureStd": 14.010980799243766,
+        "searchClipped": true,
+        "searchBoundary": false,
+        "subpixelRefined": true,
+        "settings": {
+          "searchRadius": 48,
+          "exclusionRadius": 3,
+          "subpixel": true,
+          "appearance": "luminance",
+          "sampleStep": 1,
+          "minScore": 0.75,
+          "minMargin": 0.06,
+          "minTextureStd": 5
+        },
+        "reason": null,
+        "candidateCount": 8245
+      },
+      "acceptedAngle": 0.09674391328771058
+    },
+    {
+      "name": "complete-turn",
+      "exposureSHA256": "79acb4ad8a89730b25f43f34eebd0bcdc3480ba98905f5ca1e84f7f82b2a70a4",
+      "scalarMean": 3.141592653589793,
+      "idealCentroid": {
+        "x": 64,
+        "y": 64
+      },
+      "rasterCentroid": {
+        "x": 64,
+        "y": 64
+      },
+      "idealAngle": 0,
+      "actual": {
+        "version": "worldlaw.patch-ncc/v1",
+        "status": "low-texture",
+        "point": null,
+        "candidatePoint": null,
+        "score": null,
+        "runnerUpScore": null,
+        "ambiguityMargin": null,
+        "textureStd": 3.3771519888147696,
+        "searchClipped": true,
+        "searchBoundary": false,
+        "subpixelRefined": false,
+        "settings": {
+          "searchRadius": 48,
+          "exclusionRadius": 3,
+          "subpixel": true,
+          "appearance": "luminance",
+          "sampleStep": 1,
+          "minScore": 0.75,
+          "minMargin": 0.06,
+          "minTextureStd": 5
+        },
+        "reason": "search-has-no-texture",
+        "candidateCount": 8245
+      },
+      "acceptedAngle": null
+    }
+  ]
+}

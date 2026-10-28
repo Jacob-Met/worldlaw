@@ -1,0 +1,181 @@
+{
+  "browser": "156.0.8078.73",
+  "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+  "rows": [
+    {
+      "name": "complete-turn",
+      "pngSHA256": "943af2ca688fdf3212701bb87200d62eb28cf244aa7bcfbe4d25340851f269df",
+      "decodedSHA256": "79acb4ad8a89730b25f43f34eebd0bcdc3480ba98905f5ca1e84f7f82b2a70a4",
+      "result": {
+        "version": "worldlaw.patch-ncc/v1",
+        "status": "low-texture",
+        "point": null,
+        "candidatePoint": null,
+        "score": null,
+        "runnerUpScore": null,
+        "ambiguityMargin": null,
+        "textureStd": 3.3771519888147696,
+        "searchClipped": true,
+        "searchBoundary": false,
+        "subpixelRefined": false,
+        "settings": {
+          "searchRadius": 48,
+          "exclusionRadius": 3,
+          "subpixel": true,
+          "appearance": "luminance",
+          "sampleStep": 1,
+          "minScore": 0.75,
+          "minMargin": 0.06,
+          "minTextureStd": 5
+        },
+        "reason": "search-has-no-texture",
+        "candidateCount": 8245
+      }
+    },
+    {
+      "name": "quadratic0.2",
+      "pngSHA256": "0cede62b947f141bd8c3699204705cc6011560e874aa35c154febdd2619fcbd7",
+      "decodedSHA256": "8bfd359f1f6686d80a98cb1743ff330adacb7c5d6bf2d53c088394772aae64ca",
+      "result": {
+        "version": "worldlaw.patch-ncc/v1",
+        "status": "accepted",
+        "point": {
+          "x": 65.25469066692855,
+          "y": 83.93395638166783
+        },
+        "candidatePoint": {
+          "x": 65.25469066692855,
+          "y": 83.93395638166783
+        },
+        "score": 0.9913633870272933,
+        "runnerUpScore": 0.5297490362321401,
+        "ambiguityMargin": 0.4616143507951532,
+        "textureStd": 40.719232189505625,
+        "searchClipped": true,
+        "searchBoundary": false,
+        "subpixelRefined": true,
+        "settings": {
+          "searchRadius": 48,
+          "exclusionRadius": 3,
+          "subpixel": true,
+          "appearance": "luminance",
+          "sampleStep": 1,
+          "minScore": 0.75,
+          "minMargin": 0.06,
+          "minTextureStd": 5
+        },
+        "reason": null,
+        "candidateCount": 8245
+      }
+    },
+    {
+      "name": "quadratic0.8",
+      "pngSHA256": "269b905aa83816d0003734ac87468794f433d51ee72b324ee3c0d7eeff29ea8b",
+      "decodedSHA256": "49b05f911048b460e0418d0613d35ab7a3d7ce34d6687c486aba1118f90c35cc",
+      "result": {
+        "version": "worldlaw.patch-ncc/v1",
+        "status": "accepted",
+        "point": {
+          "x": 65.91903200613862,
+          "y": 83.80085576614258
+        },
+        "candidatePoint": {
+          "x": 65.91903200613862,
+          "y": 83.80085576614258
+        },
+        "score": 0.8697490101179838,
+        "runnerUpScore": 0.5980412643208328,
+        "ambiguityMargin": 0.27170774579715096,
+        "textureStd": 24.267650189909727,
+        "searchClipped": true,
+        "searchBoundary": false,
+        "subpixelRefined": true,
+        "settings": {
+          "searchRadius": 48,
+          "exclusionRadius": 3,
+          "subpixel": true,
+          "appearance": "luminance",
+          "sampleStep": 1,
+          "minScore": 0.75,
+          "minMargin": 0.06,
+          "minTextureStd": 5
+        },
+        "reason": null,
+        "candidateCount": 8245
+      }
+    },
+    {
+      "name": "quadratic2.4",
+      "pngSHA256": "8645aa2ed434ba139d4c4713635a289cf150cfea501aeaaf3bbed2012fc7b5ae",
+      "decodedSHA256": "42d31e8e88b85ae7d593aaf0f3bb1c5bcb41d82708b4e93c602273f8df847111",
+      "result": {
+        "version": "worldlaw.patch-ncc/v1",
+        "status": "accepted",
+        "point": {
+          "x": 65.9212207986988,
+          "y": 83.79683450352893
+        },
+        "candidatePoint": {
+          "x": 65.9212207986988,
+          "y": 83.79683450352893
+        },
+        "score": 0.868938516963273,
+        "runnerUpScore": 0.5961306899218622,
+        "ambiguityMargin": 0.2728078270414107,
+        "textureStd": 14.010980799243766,
+        "searchClipped": true,
+        "searchBoundary": false,
+        "subpixelRefined": true,
+        "settings": {
+          "searchRadius": 48,
+          "exclusionRadius": 3,
+          "subpixel": true,
+          "appearance": "luminance",
+          "sampleStep": 1,
+          "minScore": 0.75,
+          "minMargin": 0.06,
+          "minTextureStd": 5
+        },
+        "reason": null,
+        "candidateCount": 8245
+      }
+    },
+    {
+      "name": "stationary",
+      "pngSHA256": "7922e67ce4dcf91ffb82fc795cbbcd8791089e2ffadb00c30302e0801a8a760f",
+      "decodedSHA256": "42cc9c0e5c395c97c58d35dd6976b85bfd65c173db908ec1f0296cdd4c1e9bd1",
+      "result": {
+        "version": "worldlaw.patch-ncc/v1",
+        "status": "accepted",
+        "point": {
+          "x": 64,
+          "y": 84
+        },
+        "candidatePoint": {
+          "x": 64,
+          "y": 84
+        },
+        "score": 1,
+        "runnerUpScore": 0.4043526998105594,
+        "ambiguityMargin": 0.5956473001894407,
+        "textureStd": 45.82226188165112,
+        "searchClipped": true,
+        "searchBoundary": false,
+        "subpixelRefined": false,
+        "settings": {
+          "searchRadius": 48,
+          "exclusionRadius": 3,
+          "subpixel": true,
+          "appearance": "luminance",
+          "sampleStep": 1,
+          "minScore": 0.75,
+          "minMargin": 0.06,
+          "minTextureStd": 5
+        },
+        "reason": null,
+        "candidateCount": 8245
+      }
+    }
+  ],
+  "scope": "Actual encoded PNG browser decode/canvas→unchanged maintained grayscale/NCC; not Motion video decoder or camera acquisition"
+}
