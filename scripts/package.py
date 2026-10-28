@@ -16,6 +16,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "REFERENCE_REQUEST.md", "test-request.mjs",
     # Exact existing current-main receiving evidence; no recursive output admission.
     "docs/receipts/historical-training-20261027/README.md",
     "docs/receipts/historical-training-20261027/historical/browser-result.json",
@@ -260,6 +261,9 @@ FORBIDDEN_NAMES = {".env", "credentials", "credentials.json", "secrets.json", "i
 # Exact tracked historical evidence archives and logs are not distributed.
 # Keep these paths explicit; other unapproved archives still fail closed.
 NON_DISTRIBUTED_TRACKED_RECEIPTS = frozenset({
+    "docs/receipts/reference-request/native-request.log",
+    "docs/receipts/reference-request/browser-request.log",
+    "docs/receipts/reference-models-396/native.log",
     "docs/receipts/reference-channel-20261027/native.log",
     "docs/receipts/reference-channel-20261027/smoke.log",
     "docs/receipts/historical-training-20261027/historical-browser.log",

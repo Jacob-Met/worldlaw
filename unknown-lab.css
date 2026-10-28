@@ -87,3 +87,27 @@ input[type=range]{display:block;width:100%;height:32px;accent-color:var(--cyan);
 #periodic-history-range #range-result>p{font-size:14px}
 #periodic-history-range #range-result>p:first-child{font-size:18px}
 #periodic-history-range svg{width:100%;background:#081f29;border-bottom:1px solid var(--line);margin:15px 0}
+/* Scoped paired-acquisition instrument; append to unknown-lab.css. */
+.history-acquisition{border-top:2px solid var(--cyan);padding:32px 0;min-width:0}
+.history-acquisition h2{font-size:clamp(26px,3vw,42px);line-height:1.1;margin:0 0 16px}
+.history-acquisition>p,.history-acquisition [data-role=course]>p{max-width:90ch;color:var(--muted);font-size:14px}
+.history-acquisition summary{cursor:pointer;color:var(--cyan);padding:12px 0;font-weight:700}
+.history-acquisition-settings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.history-acquisition label{display:block;min-width:0;font-size:12px;margin:12px 0}
+.history-acquisition input,.history-acquisition textarea{font:inherit;width:100%;min-width:0;max-width:100%;display:block;background:#05171e;color:var(--ink);border:1px solid #356776;padding:10px;margin:8px 0}
+.history-acquisition button{min-height:44px;max-width:100%;white-space:normal;padding:12px 16px;background:#10343f;color:var(--ink);border:1px solid #356776;font-weight:700;cursor:pointer}
+.history-acquisition button[type=submit],.history-acquisition [data-action=apply]{background:var(--cyan);color:#07161d}
+.history-acquisition-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.history-acquisition-actions>label{flex:1 1 220px;max-width:36rem}
+.history-acquisition table{min-width:760px}
+.history-acquisition td input{width:110px;font-variant-numeric:tabular-nums}
+.history-acquisition tr[data-history=reference]>th{border-left:3px solid var(--cyan)}
+.history-acquisition tr[data-history=conditioned]>th{border-left:3px solid var(--amber)}
+.history-acquisition .history-acquisition-confirm{display:flex;gap:12px;align-items:flex-start;max-width:85ch;line-height:1.6}
+.history-acquisition .history-acquisition-confirm input{width:20px;flex:none;margin:2px 0}
+.history-acquisition [data-role=error]{color:var(--amber);overflow-wrap:anywhere}
+.history-acquisition [data-role=declaration],.history-acquisition [data-role=status]{overflow-wrap:anywhere}
+.history-acquisition :focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.history-acquisition :disabled{opacity:.5;cursor:default}
+@media(max-width:760px){.history-acquisition-settings{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:390px){.history-acquisition-settings{grid-template-columns:minmax(0,1fr)}}
