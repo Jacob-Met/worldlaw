@@ -1,0 +1,22 @@
+{
+  "reviewer": "MATERIALTRUTH independent worker",
+  "result": "accepted with non-certified binary64 scope retained",
+  "coreSha256": "9038e7c2bbdfda2b8ae4a0656092ee58735d76853d72356bc9c27172b6b39e12",
+  "findings": [
+    "One common MAIN reading, with each explanation separately allowed a latent reference in the same declared interval, is represented by the two signed product-space cuts",
+    "Complete vertex/product-edge/product-two-face enumeration covers up to two new active cuts without convexifying disconnected original components",
+    "Gain-zero witness branch avoids division and original component/source constraints are rechecked",
+    "Declared work bound reserves all candidate work before optimization; no partial best is reported on refusal",
+    "Source-only import/export re-admits immutable bounded original account and explicit reference-half-width condition"
+  ],
+  "executed": [
+    "11 authored analytic controls and source/replay checks passed",
+    "Independent signed positive/negative 2D rectangles: dense pair feasibility lower bounds at rho0,.2,.8 never exceeded computed5.533333333333333,6,13; increasing uncertainty monotone; component order invariant",
+    "Near-collinear triangle boundary returns numerically-unresolved"
+  ],
+  "limits": [
+    "Exact dyadic rank tests do not certify binary64 geometry, affine transforms, feasibility guards or final widths",
+    "Target remains a declared point reference; future interval is a conditional reported-reference assumption",
+    "No actual browser/consumer review claimed"
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "baseMain": "0e68007e725266130c144efd4bf69f3e17307ba2",
+  "baseTree": "5ba724c9d57ac4a33f40d2b34621bdf6747ae709",
+  "files": [
+    {
+      "path": "src/unknown-lab/reference-interval-refinement.mjs",
+      "bytes": 13400,
+      "sha256": "9038e7c2bbdfda2b8ae4a0656092ee58735d76853d72356bc9c27172b6b39e12",
+      "gitBlob": "8467e48e00bb20cd52595f56340b7e5507740d2c"
+    },
+    {
+      "path": "src/unknown-lab/reference-refinement-panel.mjs",
+      "bytes": 10823,
+      "sha256": "60483fcb4160574b0c9e9962a4a5946df127816a0582f200494b2beb0b37d466",
+      "gitBlob": "bbbbc60e21603d1ac7988c7de488ff4f32d3d666"
+    },
+    {
+      "path": "test-interval-refinement.mjs",
+      "bytes": 3707,
+      "sha256": "fa9ee733a794fb9a88fadd6fed5b58ccbc319c9c459726e265b3ffa7b2026b5d",
+      "gitBlob": "d7cca5960dac9cf7fcb0c7982edbf933b9771663"
+    },
+    {
+      "path": "scripts/reference-interval-browser.mjs",
+      "bytes": 40899,
+      "sha256": "9f85eecf27a4858b99b3db001116bb004fccbcc0ca8acf454fea10d175c1c2d9",
+      "gitBlob": "6c9abd1912a81fd487af89f71cff1f70aef3ce36"
+    },
+    {
+      "path": "test-interval-oracle.mjs",
+      "bytes": 631,
+      "sha256": "31e5269dc2834a05c5362c3eaf9df96abc1d6090d33b54bd915b4017d398021e",
+      "gitBlob": "3cb210a700ad13f8ecb735b3e1c5b7f4323aa015"
+    },
+    {
+      "path": "interval-oracle-controls.json",
+      "bytes": 25784,
+      "sha256": "9f837ca0f22edc65e50a6326a3b48df2d5d521f4256ca9f44f5a610e964efcd6",
+      "gitBlob": "c72e9649bd72f33c8a93a5ad6fe165a9b5e35bbb"
+    }
+  ],
+  "commands": [
+    {
+      "name": "native",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "test-interval-refinement.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "44db11740568529421adcc60820127900957d0a16e46a6281374e65e2caf0f1e"
+    },
+    {
+      "name": "oracle",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "test-interval-oracle.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "b5bfa8b81fd90d5557f0a21ede7fdc0ad15f6508016b9f9e3102537bcca92825"
+    },
+    {
+      "name": "point-regression",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "test-refinement.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "1bf122409ea1088c26e94cc8d8d939448e616b72dbcabd210a85ddba8149343b"
+    },
+    {
+      "name": "smoke",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "scripts/unknown-reference-receiving.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "43a5b661676e24d048a12ea813fd250367cdf3e26b8de962a29215477e6cffe9"
+    },
+    {
+      "name": "browser",
+      "args": [
+        "/home/ubuntu/.nvm/versions/node/v22.23.4/bin/node",
+        "scripts/reference-interval-browser.mjs"
+      ],
+      "exitCode": 0,
+      "logSha256": "2e4f2f36e547f4bf8087e80e58098f2751ce0def73eb549dffb5827e2dec9445"
+    }
+  ],
+  "smokeResources": 94,
+  "browserGroups": 40,
+  "artifacts": [
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/model-1440.png",
+      "bytes": 647462,
+      "sha256": "21225e7a3e3fcc50e8457e57ee6dc4af88bc768955fca840cfbb291d6d496185"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/sandbox-admission.json",
+      "bytes": 1728,
+      "sha256": "8077708cf3776543fe947e000ab2283860b3ad69ef9f4da1fc7ec9d76af040b9"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/interval-refinement-source.json",
+      "bytes": 75975,
+      "sha256": "6a8e03df74df81ed402aa7c98a4419faea3b0b09b55405aebfd5637d43c34418"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/sequence-1440.png",
+      "bytes": 602334,
+      "sha256": "cb488104011cc918deece0a1d9a0b25d3bcea886f6ffc216ae22fa7ba782bdff"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/refinement-1440.png",
+      "bytes": 598338,
+      "sha256": "fe9416aea33d82fddea09f7e39fd2969065d000e771f7ee5c98d7af47172068d"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/model-390.png",
+      "bytes": 215344,
+      "sha256": "a47e12fd0d72088e2978894484525e124a2039dbcc5028b5d5468792b4e72fe9"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/refinement-result-1440.png",
+      "bytes": 558976,
+      "sha256": "0a0ba3f028d227d66b7a4e0dafd31d0e67ae01251cd4d8c79f5d1b376b516bc8"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/sequence-source.json",
+      "bytes": 318868,
+      "sha256": "2b09cb8c9cb271f7b154d8fea51bb983d0fecb31dea0d87a2b84a9baa37b13df"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/refinement-result-390.png",
+      "bytes": 271238,
+      "sha256": "7705fc9b836dae8ad79702543ed066c8790caf025963254a9273bb8064a97b24"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/sequence-320.png",
+      "bytes": 176262,
+      "sha256": "3933a4e2aac43e942811f3db131fa7ab4d747bf4f36f972fb222faec962257b9"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/model-320.png",
+      "bytes": 171287,
+      "sha256": "6ea967f68d1945e19ffcc83c8a3f37e496b8e9eab64258acc2acaf4b4b3bbb71"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/sequence-390.png",
+      "bytes": 212754,
+      "sha256": "561ac1e2062b3caa13efb4614c405b9fd96103dafcdbb1936c6c748243b2ac16"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/refinement-390.png",
+      "bytes": 212759,
+      "sha256": "e7c87fec56d6f2185fa298c249dba5d8f05fc72d990c5957502f87ddc647c465"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/refinement-result-320.png",
+      "bytes": 230024,
+      "sha256": "1921850a474d10a195678a66fca06fbc1aa6509342d958b9d4f26b6a0ceecdd2"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/comparison-source.json",
+      "bytes": 144933,
+      "sha256": "1e4c648c0b3aea0461eeb60fea189e1b59ff8d443780731a3b2633f5710667c0"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/reference-cleanup.json",
+      "bytes": 205,
+      "sha256": "6b5f8ef35a2f6e5fa921ced7a4d06111b9fffa4a4a8e27e1dd6bb8abb649c012"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/request-received-source.json",
+      "bytes": 195275,
+      "sha256": "70b61ab6c1a947e9816ad9f6ab18c267abd59b50852269b1ec90eb05b1b106fe"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/model-verification.json",
+      "bytes": 5054,
+      "sha256": "55c2d4ab5f5708458f28a7ce7aa90ba48403ef0e4e6a04c07b2187197ffd6889"
+    },
+    {
+      "path": "/home/ubuntu/hamon-work/hamon-de5a-20261027/worldlaw-reference-interval-v3-20261028/browser-receipts/refinement-320.png",
+      "bytes": 176027,
+      "sha256": "57706ee863c45a22995045826e341c68b15a5ecccc6c027596d7f32c13d82c5b"
+    }
+  ]
+}
