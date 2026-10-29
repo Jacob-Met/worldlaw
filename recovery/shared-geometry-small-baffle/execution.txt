@@ -1,0 +1,47 @@
+{
+  "reservation": {
+    "steps": 104640,
+    "rows": 46548
+  },
+  "results": [
+    {
+      "label": "shared_selected_offset",
+      "forecast": [
+        {
+          "status": "screened",
+          "rmse": 0.030114166231353996
+        },
+        {
+          "status": "screened",
+          "rmse": 0.024175011662050487
+        }
+      ]
+    },
+    {
+      "label": "shared_pooled_zero",
+      "forecast": [
+        {
+          "status": "screened",
+          "rmse": 0.06539972454481094
+        },
+        {
+          "status": "screened",
+          "rmse": 0.06751301639425605
+        }
+      ]
+    },
+    {
+      "label": "single_setup_inverse_length",
+      "forecast": [
+        {
+          "status": "screened",
+          "rmse": 0.04138624317603137
+        },
+        {
+          "status": "screened",
+          "rmse": 0.042005841904413706
+        }
+      ]
+    }
+  ]
+}

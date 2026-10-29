@@ -1,0 +1,16 @@
+{"joint":0.002017932502278256,"positionOnly":0.011391788898302781}
+{"biasedRateJoint":0.013031790484484263,"positionOnly":1.4327591123354203e-9}
+✔ source-only original rate replay and both challenge channels excluded from training (872.553105ms)
+✔ missing added channel refuses joint branch while original comparison remains (256.065459ms)
+✔ additional supplied rate improves independent release under explicit angle-only artifact (85.57073ms)
+✔ explicit original rate provenance, forbidden channels and complete doubled residual budget (1.454865ms)
+✔ rate numerical screen independently refuses a position-screened seed (2.212188ms)
+✔ biased supplied channel can worsen independent release despite adding observations (101.564337ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1357.096992

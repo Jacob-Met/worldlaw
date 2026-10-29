@@ -1,0 +1,37 @@
+{
+  "meaning": "Frozen models evaluated against an added supplied rate channel, consumed data only. No model refit; no channel-independence claim. Separate rate numerical screen declared .001rad/s.",
+  "reservation": {
+    "steps": 18688,
+    "rows": 8004
+  },
+  "rows": [
+    {
+      "label": "weak_full_six",
+      "positionRMSE": 0.6424659288983915,
+      "suppliedRateRMSE": 3.745418914615665,
+      "maxRateDifference": 0.908332812471711,
+      "rateScreen": "unresolved"
+    },
+    {
+      "label": "predictive_full_six",
+      "positionRMSE": 0.04814518748237855,
+      "suppliedRateRMSE": 0.3495709323420772,
+      "maxRateDifference": 0.00001301086164320897,
+      "rateScreen": "screened"
+    },
+    {
+      "label": "maintained_coordinate",
+      "positionRMSE": 0.035967330111061534,
+      "suppliedRateRMSE": 0.28351203186948604,
+      "maxRateDifference": 0.000012524574205696748,
+      "rateScreen": "screened"
+    },
+    {
+      "label": "trajectory_lm",
+      "positionRMSE": 0.06786744376219675,
+      "suppliedRateRMSE": 0.4511266241149635,
+      "maxRateDifference": 0.000013162980267308888,
+      "rateScreen": "screened"
+    }
+  ]
+}

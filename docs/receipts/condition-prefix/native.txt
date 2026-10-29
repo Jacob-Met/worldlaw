@@ -1,0 +1,25 @@
+✔ original-backed replay and unchanged training/prefix fits under suffix mutation (1256.976161ms)
+✔ source identity and fixed-restoring declaration gate (337.933917ms)
+✔ independent prefix identifies new conditional damping without changing restoring law or starts (5.9277ms)
+✔ later measurements cannot choose rate, original source retained (13.772283ms)
+✔ flat prefix, whole budget and out-of-bound damping preserve limits (9.092709ms)
+✔ source-only replay preserves all incumbents and challenge values cannot choose condition coefficients (1126.871939ms)
+✔ unknown condition or missing declaration refuses rather than predicting its damping (960.218283ms)
+✔ independent same-condition releases transfer through explicit associations; swapped association retains loss (770.175605ms)
+✔ joint original-course fit recovers common stiffness and different damping without shared-rate compromise (99.138308ms)
+✔ full reservation and source-role refusals precede fitting (0.777905ms)
+✔ different restoring law remains a shared-law mismatch, no implicit condition transfer (56.904499ms)
+✔ independent analytic recovery with fixed original rows and bounded complete work (32.124851ms)
+✔ resource and nonsmooth scope refusals precede supported fitting (0.385042ms)
+✔ first row cannot be optimized away (31.15692ms)
+✔ separate law drift retains real transfer loss despite training gain (33.377584ms)
+✔ source-only replay, full-six incumbent preservation and challenge exclusion (839.89331ms)
+✔ optional fitter refusal retains completed original comparison (242.016506ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5903.153459

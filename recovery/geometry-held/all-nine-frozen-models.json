@@ -1,0 +1,365 @@
+{
+  "frozenUTC": "2026-10-28T21:44:51.611Z",
+  "protocolSHA256": "b2f5b2423a5faf00356f1daa3bfedf5305a12b00f6d642b1872a2f99733e1555",
+  "localModelsSHA256": "5da0eb6e6124fb5d9f6b38f3f1c9b6f9e33885157a50b863816486454e95a22e",
+  "models": [
+    {
+      "label": "unchanged_source_law",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.012568801811307857,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -22.753996873648013,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "shared_law_and_per_course_model_initialization",
+        "metrics": {
+          "meaning": "Seed metrics do not apply"
+        }
+      }
+    },
+    {
+      "label": "conditional_inverse_length",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.012568801811307857,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -15.96903240226368,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "conditional_inverse_length_gravity_transfer",
+        "metrics": {
+          "meaning": "Training metrics do not apply to geometry-transferred coefficients"
+        },
+        "transfer": {
+          "sourceLengthM": 0.426,
+          "targetLengthM": 0.607,
+          "hypothesis": "same-effective-pendulum-gravity; inverse-declared-length; unchanged-angular-damping",
+          "basis": "Author nominal length3 and length5, air-only; effective pendulum scaling and unchanged angular damping explicitly assumed, not established by these nominal lengths.",
+          "meaning": "Nominal lengths and ideal effective-pendulum scaling are assumptions. Distributed inertia, bob/sensor geometry and damping changes can invalidate this map. No inertia, absolute torque, gravitational acceleration or transferable damping is identified."
+        }
+      }
+    },
+    {
+      "label": "weak_full_six",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "spring",
+        "terms": [
+          {
+            "id": "spring",
+            "coefficient": -15.595197062358512,
+            "coefficientUnit": "1/s²"
+          }
+        ],
+        "equation": "α = -15.595·θ",
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "compact_window_weak_angular_acceleration_regression",
+        "domain": {
+          "position": {
+            "min": -0.55,
+            "max": 0.55
+          },
+          "rate": {
+            "min": -2.294696969696969,
+            "max": 2.327020202020199,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "count": 394,
+          "rmse": 0.01980950638619043,
+          "maxAbsResidual": 0.0431460258636355,
+          "score": -3076.6977773680815,
+          "residualUnits": "rad",
+          "residualMeaning": "noise_normalized_weak_equation_not_forward_prediction",
+          "conditionEstimate": 1,
+          "rank": 1
+        }
+      }
+    },
+    {
+      "label": "predictive_full_six",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.008048764022972454,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -16.076448614516085,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "equation": "α = -0.0080488·ω + -16.076·sin(θ)",
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "compact_window_weak_angular_acceleration_regression",
+        "domain": {
+          "position": {
+            "min": -0.55,
+            "max": 0.55
+          },
+          "rate": {
+            "min": -2.294696969696969,
+            "max": 2.327020202020199,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "count": 394,
+          "rmse": 0.01941186351787416,
+          "maxAbsResidual": 0.043594269152510634,
+          "score": -3070.7214264587833,
+          "residualUnits": "rad",
+          "residualMeaning": "noise_normalized_weak_equation_not_forward_prediction",
+          "conditionEstimate": 1.0000015008736638,
+          "rank": 2
+        }
+      }
+    },
+    {
+      "label": "maintained_coordinate",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity~forward-refined",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.0036737640229724537,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -16.076448614516085,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "equation": "α = -0.00367376·rate + -16.0764·gravity",
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "bounded_local_complete_training_trajectory_refinement",
+        "domain": {
+          "position": {
+            "min": -0.55,
+            "max": 0.55
+          },
+          "rate": {
+            "min": -2.294696969696969,
+            "max": 2.327020202020199,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "count": 4000,
+          "rmse": 0.01935817873716662,
+          "residualUnits": "rad",
+          "residualMeaning": "complete_training_forward_position_error",
+          "originalWeakMetricsNotApplicable": true
+        }
+      }
+    },
+    {
+      "label": "position_only",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.006982844412374793,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -16.046721889929806,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "compact_window_weak_angular_acceleration_regression",
+        "domain": {
+          "position": {
+            "min": -0.55,
+            "max": 0.55
+          },
+          "rate": {
+            "min": -2.294696969696969,
+            "max": 2.327020202020199,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "meaning": "Seed metrics do not apply"
+        }
+      }
+    },
+    {
+      "label": "joint_channels",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.0070997212775072305,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -16.046887155230046,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "joint_supplied_position_rate_trajectory_fit",
+        "metrics": {
+          "meaning": "Seed metrics do not apply"
+        }
+      }
+    },
+    {
+      "label": "joint_shared_law_training_starts",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.009053592399583595,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -16.049006750531415,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "shared_law_and_per_course_model_initialization",
+        "metrics": {
+          "meaning": "Seed metrics do not apply"
+        }
+      }
+    },
+    {
+      "label": "coordinate_training_starts",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity~bounded-starts",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.008048764022972454,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -16.076448614516085,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "equation": "α = -0.0080488·ω + -16.076·sin(θ)",
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "conditional_shared_law_bounded_training_starts",
+        "domain": {
+          "position": {
+            "min": -0.55,
+            "max": 0.55
+          },
+          "rate": {
+            "min": -2.294696969696969,
+            "max": 2.327020202020199,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "meaning": "Original fit metrics do not apply to modified coefficients"
+        }
+      }
+    }
+  ]
+}

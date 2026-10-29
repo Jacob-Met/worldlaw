@@ -1,0 +1,44 @@
+{
+  "frozenUTC": "2026-10-28T23:05:00.886723+00:00",
+  "revision": "cbf82673641ecd65e902ad5c38a048387649a2a0",
+  "training": [
+    "len2_cond2_1.csv",
+    "len3_cond2_1.csv",
+    "len4_cond2_1.csv"
+  ],
+  "held": "len5_cond2_1.csv",
+  "meaning": "Unused by this worker per retained acquisition/source scan. New small-paper-baffle condition. Fit empirical shared restoring relation only original training lengths2/3/4. Transfer angular damping from length3 under explicit conditional unchanged-damping hypothesis; no assertion baffle mechanics are invariant. Held length5 never selects law/options. All three alternatives and observed/prefix outcomes retained. No air-only damping reused.",
+  "selection": "Original5\u201325s rows and supplied rate, no smoothing, resampling or recentering. Prefix5\u20136s estimates starts only, suffix6\u201325s scores.",
+  "weakOptions": {
+    "offsetBounds": [
+      -0.05,
+      0.05
+    ],
+    "gridCount": 21,
+    "sweeps": 12,
+    "windowDuration": 0.4,
+    "windowStride": 0.1
+  },
+  "prefixOptions": {
+    "prefixDuration": 1,
+    "positionWidth": 0.1,
+    "rateWidth": 0.5,
+    "gridCount": 9,
+    "sweeps": 8,
+    "maxStep": 0.02,
+    "screen": 0.001,
+    "maxTotalSteps": 4000000
+  },
+  "alternatives": [
+    "shared_selected_offset",
+    "shared_pooled_zero",
+    "single_setup_inverse_length"
+  ],
+  "primary": "Selected offset versus pooledzero prefix suffix RMSE; preserve observed-start alternatives and all numerical refusals. No winner retuning.",
+  "sourceHashes": {
+    "src/shared-geometry-law/weak.mjs": "2b9ca93ebc3108f3b3c214743b3713302aeac8fa8c0bd90e564d26a55493af70",
+    "src/shared-geometry-law/fit.mjs": "df62fe531de8e63fb314ead31b352791c6707f176bd0ca0b6ff23d79a07fc12b",
+    "src/prefix-starts/fit.mjs": "2ab2151e88d177de24adc131968e0c763cee3505a30e8439832fd0527aa87d06",
+    "src/trajectory/weak-operator.mjs": "ba94054a02098cbc173a7854d1d3ffc530ce5b6e7e221310486b61d6eb4503d9"
+  }
+}

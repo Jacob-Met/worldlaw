@@ -1,0 +1,22 @@
+{
+  "frozenUTC": "2026-10-28T23:37:12.692346+00:00",
+  "revision": "cbf82673641ecd65e902ad5c38a048387649a2a0",
+  "heldFiles": [
+    "len5_cond2_2.csv",
+    "len5_cond2_3.csv"
+  ],
+  "frozenModelsSHA256": "732a10b40152efed650f40c710f3b8bec7538ea7f1c34815ad05b6349e78ffea",
+  "meaning": "Both remaining author length5 condition2 repetitions selected before acquisition. Same nominal setup/condition is author association, not proof of unchanged physical damping. Original three training courses/model choices/settings unchanged. No replacement/tuning/receiving law selection. First receiving result retained separately and now consumed.",
+  "primary": "Mean suffix position RMSE over both new repetitions: selected empirical offset versus pooledzero using fixed1s prefix estimator. Retain every course, all3models and observed-start outcomes, allrefusals. No selection by observed errors.",
+  "options": {
+    "prefixDuration": 1,
+    "positionWidth": 0.1,
+    "rateWidth": 0.5,
+    "gridCount": 9,
+    "sweeps": 8,
+    "maxStep": 0.02,
+    "screen": 0.001,
+    "maxTotalSteps": 4000000
+  },
+  "preprocessing": "Original5\u201325s rows and supplied rate, no smoothing, resampling or recentering. Prefix5\u20136s estimates starts only, suffix6\u201325s scores."
+}

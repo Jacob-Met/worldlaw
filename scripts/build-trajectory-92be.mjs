@@ -79,17 +79,18 @@ async function main() {
   const { api: esbuild, modulePath, moduleSHA256 } = await installedEsbuild();
   const assetPaths = ['trajectory.html', 'trajectory.css', 'favicon.svg',
     'examples/trajectory-pendulum-92be.json', 'examples/trajectory-ambiguous-92be.json',
-    'examples/physical-pasco-92be.json', 'examples/physical-pasco-92be/LICENSE'];
+    'examples/physical-pasco-92be.json', 'examples/physical-pasco-92be/LICENSE',
+    'examples/physical-giessler-28271405/state-observations.json'];
   const assets = new Map(await Promise.all(assetPaths.map(async name => [name, await snapshot(join(root, name))])));
   await snapshot(scriptPath);
   const htmlTemplate = assets.get('trajectory.html').toString('utf8');
   const css = assets.get('trajectory.css').toString('utf8');
   if (/@import\b|url\s*\(/i.test(css)) throw new Error('The standalone stylesheet now contains asset references; embed them explicitly before rebuilding.');
   if (/<\/style/i.test(css)) throw new Error('The standalone stylesheet contains an HTML closing-style sequence.');
-  const exampleNames = ['trajectory-pendulum-92be.json', 'trajectory-ambiguous-92be.json', 'physical-pasco-92be.json'];
+  const exampleNames = ['trajectory-pendulum-92be.json', 'trajectory-ambiguous-92be.json', 'physical-pasco-92be.json', 'physical-giessler-28271405/state-observations.json'];
   const examples = Object.fromEntries(exampleNames.map(name => [name, JSON.parse(assets.get(`examples/${name}`).toString('utf8'))]));
   for (const [name, value] of Object.entries(examples)) {
-    const expectedSchema = name === 'physical-pasco-92be.json' ? 'worldlaw.angular-bundle/v1' : 'worldlaw.trajectory-bundle/v1';
+    const expectedSchema = name === 'physical-giessler-28271405/state-observations.json' ? 'worldlaw.angular-state-study/v1' : name === 'physical-pasco-92be.json' ? 'worldlaw.angular-bundle/v1' : 'worldlaw.trajectory-bundle/v1';
     if (!value || Array.isArray(value) || value.schema !== expectedSchema) throw new Error(`Unexpected embedded example schema: ${name}`);
   }
   const measured = examples['physical-pasco-92be.json'];
@@ -111,7 +112,8 @@ async function main() {
 <div class="standalone-license-body"><p>The measured PASCO pendulum recordings are from the <a href="${safeHTML(datasetSource.repository)}">Damped Pendulum Dataset</a>, provided by Enze Xu and collaborators for <em>Identifying Invariant Physical Dynamics Across Multiple Environments</em>. Source revision: <code>${safeHTML(datasetSource.revision)}</code>.</p>
 <p>WORLDLAW modified the source into a JSON selection of original seconds 5–25 from recordings 1, 2, and 3 of length group 1, air condition 1. Recorded positions and timestamps remain unchanged. Recordings 1 and 2 train the model; recording 3 supplies a separate prediction comparison. The supplied starting rates come from the original sensor channel. This benchmark has been reused during method development; it is not new blind validation. Physical inertia and absolute torque remain unknown.</p>
 <p>The original CSV files, extraction script, and complete provenance remain in the source repository. This standalone file embeds the selected JSON, its per-run source metadata, and the complete original dataset license below. The license applies to the dataset; it does not claim ownership of the WORLDLAW application.</p>
-<pre class="standalone-license-text" tabindex="0" aria-label="Complete Apache License 2.0 dataset license">${safeHTML(datasetLicense)}</pre></div></details>`;
+<pre class="standalone-license-text" tabindex="0" aria-label="Complete Apache License 2.0 dataset license">${safeHTML(datasetLicense)}</pre></div></details>
+<details class="standalone-license"><summary>Giessler angular-state data · CC BY 4.0</summary><p>Maximilian Giessler, Kinematic data of a pendulum serving as an angular acceleration reference (2025), <a href="https://doi.org/10.6084/m9.figshare.28271405">Figshare version 1</a>, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. WORLDLAW selects all648 original synchronized rows of MOCAP angle, IMC mean rate and IMC acceleration into an attributed state document, without interpolation. This single course has no separate challenge; fitted model-prediction columns are excluded. Original source hashes and adaptation details remain embedded in the source document.</p></details>`;
   const licenseCSS = '\n.standalone-license{margin:1.25rem 0;padding:1rem 0;border-top:1px solid #d9dece;font-size:.85rem;color:#425b4b}.standalone-license summary{cursor:pointer;font-weight:650}.standalone-license-body{max-width:65rem;line-height:1.65}.standalone-license-body a{text-decoration:underline}.standalone-license-body code{overflow-wrap:anywhere}.standalone-license-text{white-space:pre-wrap;overflow-wrap:anywhere;max-height:28rem;overflow:auto;padding:1rem;background:#f7f8f1;border:1px solid #d9dece;border-radius:.4rem;font-size:.75rem;line-height:1.5}.standalone-license-text:focus-visible,.standalone-license summary:focus-visible{outline:2px solid #315b48;outline-offset:4px}\n';
 
   const build = await esbuild.build({

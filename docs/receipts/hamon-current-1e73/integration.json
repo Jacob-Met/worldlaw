@@ -1,0 +1,13 @@
+{
+  "base": "1e73d28ea8a29b4335bfac6523640b641da654b1",
+  "priorPacketSha256": "51675f68fd096e045ecdc54bded4dbe982ac3c3c3c6c1bf3ee277df9abf4e0dc",
+  "composition": "Only src/trajectory/app.mjs overlaps; retain incoming initialStatePanel.setBusy(value).",
+  "native": "25 owned files:69/71 initially, two baseline floating point strict-equality failures ~7e-18; only assertions changed to abs<1e-14; affected11 controls pass. Incoming4 initial-energy suites pass. No runtime numerical screen changed.",
+  "browser": "served34/offline34 full sandbox, zero errors; narrow CSV screenshot inspected.",
+  "standalone": {
+    "sha256": "881cccc111d5565033e9d596e980ffb82b2d601765896be9c17065c4ce6bd628",
+    "bytes": 1500946,
+    "inputs": 142
+  },
+  "publication": "Not yet published."
+}

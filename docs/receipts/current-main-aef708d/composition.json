@@ -1,0 +1,61 @@
+{
+  "base": "aef708dcee436c7657c3be338821a20b405dd2e1",
+  "previous": "54a8e71f36d3451de448fa6a427edcf4cf4038d5",
+  "files": [
+    {
+      "path": "src/science/output-grid.mjs",
+      "sha": "317307c13ef13d148a6bb9b24e4efb123884e227"
+    },
+    {
+      "path": "src/science/torque-discovery.mjs",
+      "sha": "5a69e03edd21cef99e6c012f2cc2ef57edddde56"
+    },
+    {
+      "path": "src/trajectory/cycle-work-half-sensitivity-panel.mjs",
+      "sha": "90f22c6bc98217d6b23a628f4fd023645abc5659"
+    },
+    {
+      "path": "src/trajectory/cycle-work-half-sensitivity.mjs",
+      "sha": "f2a5cbed9179c15db3a539c92cd0bf4d6d124678"
+    },
+    {
+      "path": "src/trajectory/cycle-work-halves-panel.mjs",
+      "sha": "b395498410e1161163cad73310e433c84de3ef7a"
+    },
+    {
+      "path": "src/trajectory/cycle-work-panel.mjs",
+      "sha": "c32d1fc853b25aff7e7c68855f751aa3c36aeadf"
+    },
+    {
+      "path": "src/trajectory/cycle-work.mjs",
+      "sha": "44943b24443bf3d9d2cb66fe56c5a7514007a123"
+    },
+    {
+      "path": "src/trajectory/equal-angle-bounds-job.mjs",
+      "sha": "6af94c30d6d3b12ec2bb641de9ac1e1d9f161565"
+    },
+    {
+      "path": "src/trajectory/equal-angle-bounds-panel.mjs",
+      "sha": "f23bda2898a06ff77df080ebf1394a459683c363"
+    },
+    {
+      "path": "src/trajectory/equal-angle-bounds-worker.mjs",
+      "sha": "fcdbbd86398b15e3ffd0ebee302f9ff55935d3ae"
+    },
+    {
+      "path": "src/trajectory/equal-angle-bounds.mjs",
+      "sha": "b0851b2cf73992c7f778e9b54ff175ff37449c5c"
+    },
+    {
+      "path": "src/trajectory/equal-angle-returns-panel.mjs",
+      "sha": "f514e25babf44724b5f06a3e21d9948bb8f4a512"
+    },
+    {
+      "path": "src/trajectory/equal-angle-returns.mjs",
+      "sha": "3943d383c8cf49157c769645e6d6397685306a4b"
+    }
+  ],
+  "readme": "\n### Collect a separate matched-history course\n\nIn Unknown Lab, **Take the question to your instrument** freezes a reproducible balanced AB/BA reading schedule from your declared preparation, common target state and noise assumption. Enter the actual command, angle, rate and torque for each reading; the worksheet leaves all measurements blank until supplied. Save and reopen partial work, then explicitly confirm the chronology and apply a complete admitted course to the existing paired comparison. Keep the worksheet as the full acquisition record. These are user-declared measurements; the app neither operates nor authenticates an instrument. See [the acquisition workflow and limits](docs/HISTORY_ACQUISITION.md).\n",
+  "additionalDependency": "src/unknown-lab/chronos-exact-halfplanes.mjs",
+  "qualification": "32native inclincoming cycle/equal-angle controls;served27/offline27;120buildinputs; own scientific predictions unchanged. Earlier missingdependency startupfailure retained in transient receipt, corrected by exact immutable read."
+}

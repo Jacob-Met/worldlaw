@@ -1,0 +1,41 @@
+[
+  {
+    "name": "angle.csv",
+    "size": 31407,
+    "md5": "216fcf2a54dea4641ad406296fda0483",
+    "sha256": "dde9ee9df4a5a0a1f58f36ad242e4f81b701fe7eafa753041131c6f33f39de16",
+    "lines": 649,
+    "head": [
+      "time,MOCAP,MOCAP (BLPF),IMU (XKF3) ,IMC (XKF3 mean),model prediction",
+      "0,-1.0295,-1.0301,-1.0261,-1.0245,-1.0236",
+      "0.005,-1.0317,-1.03,-1.0264,-1.0246,-1.0235",
+      "0.01,-1.0294,-1.0292,-1.0255,-1.0238,-1.0229"
+    ]
+  },
+  {
+    "name": "angular_acceleration.csv",
+    "size": 33078,
+    "md5": "507baa81f18dd1138d238143038cfc99",
+    "sha256": "dfc5176be78e9a49df219c2c496beb85ec6eb176d580775ff7ca2fc0944cc30e",
+    "lines": 649,
+    "head": [
+      "time,MOCAP (BLPF BD),MOCAP (BLPF CD)  ,IMU (BD) ,IMU (CD) ,IMC ,model prediction  ",
+      "0,31.543,31.543,22.204,23.73,23.193,23.158",
+      "0.005,31.425,31.425,22.085,23.612,23.112,23.096",
+      "0.01,31.405,32.025,25.134,23.675,23.177,23.086"
+    ]
+  },
+  {
+    "name": "angular_velocity.csv",
+    "size": 33161,
+    "md5": "b96008be6eaee52932b80b5bf0a13f04",
+    "sha256": "508ea738c8f73ef60c5c0308885a54042f2eaad74124d375587069ff46003de7",
+    "lines": 649,
+    "head": [
+      "time,MOCAP (BD),MOCAP (BLPF BD),MOCAP (BLPF CD) ,IMU ,IMC (mean),model prediction  ",
+      "0,-0.55973,-0.097662,-0.12893,-0.070988,-0.044079,-0.043585",
+      "0.005,-0.33984,0.12222,0.090955,0.039423,0.068999,0.072018",
+      "0.01,0.58075,0.2793,0.24959,0.16586,0.18311,0.18748"
+    ]
+  }
+]

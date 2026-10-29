@@ -1,0 +1,14 @@
+✔ independent analytic recovery with fixed original rows and bounded complete work (70.72219ms)
+✔ resource and nonsmooth scope refusals precede supported fitting (0.388446ms)
+✔ first row cannot be optimized away (46.871239ms)
+✔ separate law drift retains real transfer loss despite training gain (47.687958ms)
+✔ source-only replay, full-six incumbent preservation and challenge exclusion (746.032718ms)
+✔ optional fitter refusal retains completed original comparison (218.703079ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1187.01258

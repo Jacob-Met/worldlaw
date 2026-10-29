@@ -1,0 +1,14 @@
+✔ source-only replay preserves all incumbents and challenge values cannot choose condition coefficients (969.967552ms)
+✔ unknown condition or missing declaration refuses rather than predicting its damping (811.750101ms)
+✔ independent same-condition releases transfer through explicit associations; swapped association retains loss (617.078922ms)
+✔ joint original-course fit recovers common stiffness and different damping without shared-rate compromise (108.054025ms)
+✔ full reservation and source-role refusals precede fitting (0.943494ms)
+✔ different restoring law remains a shared-law mismatch, no implicit condition transfer (59.531578ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2623.803761

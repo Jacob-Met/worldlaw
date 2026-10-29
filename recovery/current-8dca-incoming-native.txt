@@ -1,0 +1,63 @@
+✔ receiving shared-law incumbent is recomputed and tied to identical receiving originals (13703.665909ms)
+✔ conditional length map predicts independent elliptic pendulum; false association can worsen (12.067593ms)
+✔ undeclared physical hypothesis, unknown basis or incompatible model refuses (0.26498ms)
+✔ mapping preserves maintained angular units and unknown physical scale admission (0.246011ms)
+✔ independent constant and affine integrals on irregular prediction nodes (0.586926ms)
+✔ exact endpoint support, timestamp semantics and full population budget refuse (0.628309ms)
+✔ observation values never enter the averaging operation (0.835812ms)
+✔ analytic centered small-window limit and trapezoid refinement are distinct controls (0.64298ms)
+✔ exact affine average, all original point data and source-only output retained (10.898267ms)
+✔ origin provenance, model/source binding and derived-data injection refuse (9.65379ms)
+✔ weighting, exact support, reporting convention and whole population refuse (3.659163ms)
+✔ additional observation poisoning changes only scores, not predictions or point baseline (1.037035ms)
+✔ complete interval-population work reservation refuses without partial report (6.707293ms)
+✔ 100 dyadic courses independently integrate each original polynomial on every cut portion (11.353776ms)
+✔ midpoint cut does not replace original squared interpolant with synthetic zero residual (0.246081ms)
+✔ extreme endpoint contribution survives rounding of normalized position to one (0.117157ms)
+✔ complete boundaries refuse incomplete, repeated and excessive cuts (0.300514ms)
+✔ linear zero and spring laws preserve normalized finite-release response (13.929332ms)
+✔ same-settings nonlinear gravity courses expose finite-amplitude dependence with independent reducer (8.406407ms)
+✔ whole-set work and failures cannot produce a magnitude verdict; unresolved shrink refuses (1.793737ms)
+✔ quadratic drag matches an independent finite-amplitude solution on both sides (1.472763ms)
+✖ typed v4 recomputes both magnitudes from original notebook and rejects mode/result injection (9.325174ms)
+✔ independent exact polynomial integrals on irregular source and full endpoint custody (0.379312ms)
+✔ linear-residual integral invariant to exact subdivision; squared convention changes honestly (0.156847ms)
+✔ zero and subnormal-scale squared values avoid direct-square underflow (0.122044ms)
+✔ identical observed zero endpoints cannot certify an unsampled oscillation (0.172931ms)
+✔ representable RMS contribution survives an underflowing duration fraction (0.130557ms)
+✔ actual handlers show every original interval and exact raw endpoint identity (3.980528ms)
+✔ changed source requires explicit fresh comparison and malformed source refuses (0.568659ms)
+✔ computed portions preserve original endpoints/curve and retire on cut and source edits (0.901981ms)
+✔ hidden RK4 stage leaves domain although completed coarse state returns inside (0.641268ms)
+✔ final state must be checked separately from all internal stages (0.201164ms)
+✔ fine-only stage refusal preserves coarse evidence and explicit unavailable result (0.413013ms)
+✔ actual refined output shares remaining budget and observed targets never constrain forecast (0.727097ms)
+✔ domain initial admission, malformed options and refinement budget refuse explicitly (0.492263ms)
+✔ inclusive domain boundaries and default omission retain coarse outputs (1.666154ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 35
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13860.777945
+
+✖ failing tests:
+
+test at tests/release-amplitudes.test.mjs:26:1
+✖ typed v4 recomputes both magnitudes from original notebook and rejects mode/result injection (9.325174ms)
+  Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/tmp/hamon-a755e25-worldlaw-20261028/src/notebook-input.mjs' imported from /tmp/hamon-a755e25-worldlaw-20261028/src/science/release-investigation.mjs
+      at finalizeResolution (node:internal/modules/esm/resolve:272:11)
+      at moduleResolve (node:internal/modules/esm/resolve:879:10)
+      at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+      at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+      at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+      at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+      at #resolve (node:internal/modules/esm/loader:687:17)
+      at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+      at ModuleJob.syncLink (node:internal/modules/esm/module_job:276:33)
+      at ModuleJob.link (node:internal/modules/esm/module_job:381:17) {
+    code: 'ERR_MODULE_NOT_FOUND',
+    url: 'file:///tmp/hamon-a755e25-worldlaw-20261028/src/notebook-input.mjs'
+  }

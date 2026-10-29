@@ -1,0 +1,384 @@
+{
+  "meaning": "Consumed cross-geometry experiment. Length3 law frozen from its originaltraining; map never uses targetobservations. Bothobserved/prefix starts compared. Ideal inverse-length and unchanged angular damping are explicit hypotheses, not inferred physical facts.",
+  "declaration": {
+    "sourceLengthM": 0.426,
+    "targetLengthM": 0.518,
+    "hypothesis": "same-effective-pendulum-gravity; inverse-declared-length; unchanged-angular-damping",
+    "basis": "Author nominal length3 and length4, air-only; physical scaling unverified",
+    "meaning": "Nominal lengths and ideal effective-pendulum scaling are assumptions. Distributed inertia, bob/sensor geometry and damping changes can invalidate this map. No inertia, absolute torque, gravitational acceleration or transferable damping is identified."
+  },
+  "rows": [
+    {
+      "label": "unchanged-length3-law",
+      "terms": [
+        {
+          "id": "rate",
+          "coefficient": -0.012568801811307857,
+          "coefficientUnit": "1/s"
+        },
+        {
+          "id": "gravity",
+          "coefficient": -22.753996873648013,
+          "coefficientUnit": "rad/s²"
+        }
+      ],
+      "fit": {
+        "status": "screened_local_candidate",
+        "best": {
+          "offsets": [
+            -0.01669921875,
+            -0.5
+          ],
+          "status": "screened",
+          "rmse": 0.06207978776953505,
+          "resolution": {
+            "status": "compared",
+            "coarseMaxStep": 0.02,
+            "refinedMaxStep": 0.01,
+            "positionRMSEDifference": 1.0341990278374097e-8,
+            "maxAbsPositionDifference": 2.5020848004597696e-8,
+            "stepsCoarse": 100,
+            "stepsRefined": 124,
+            "maxSteps": 224,
+            "availableRefinementSteps": 124,
+            "count": 100,
+            "initialSampleExcluded": true,
+            "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+            "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+            "limitations": [
+              "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+              "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+              "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+              "The comparison does not alter the model, observations, initial conditions, or training ranking."
+            ],
+            "reason": null,
+            "combinedSteps": 224,
+            "maxAbsRateDifference": 9.623417085435904e-8,
+            "rateDifferenceUnit": "rad/s",
+            "rateMeaning": "Two resolutions agree within a declared screen; not a calibrated error bound."
+          }
+        }
+      },
+      "forecast": [
+        {
+          "label": "original_observed_start",
+          "offsets": [
+            0,
+            0
+          ],
+          "status": "screened",
+          "laterRMSE": 0.6931401040922252,
+          "resolution": {
+            "status": "compared",
+            "coarseMaxStep": 0.02,
+            "refinedMaxStep": 0.01,
+            "positionRMSEDifference": 2.097089648550765e-7,
+            "maxAbsPositionDifference": 6.230750648206218e-7,
+            "stepsCoarse": 2000,
+            "stepsRefined": 2672,
+            "maxSteps": 4672,
+            "availableRefinementSteps": 2672,
+            "count": 2000,
+            "initialSampleExcluded": true,
+            "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+            "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+            "limitations": [
+              "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+              "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+              "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+              "The comparison does not alter the model, observations, initial conditions, or training ranking."
+            ],
+            "reason": null,
+            "combinedSteps": 4672,
+            "maxAbsRateDifference": 0.000002817120975717735,
+            "rateDifferenceUnit": "rad/s",
+            "rateMeaning": "Two resolutions agree within a declared screen; not a calibrated error bound."
+          }
+        },
+        {
+          "label": "prefix_estimated_model_start",
+          "offsets": [
+            -0.01669921875,
+            -0.5
+          ],
+          "status": "screened",
+          "laterRMSE": 0.6915747808904752,
+          "resolution": {
+            "status": "compared",
+            "coarseMaxStep": 0.02,
+            "refinedMaxStep": 0.01,
+            "positionRMSEDifference": 2.116533119750218e-7,
+            "maxAbsPositionDifference": 6.205414498638984e-7,
+            "stepsCoarse": 2000,
+            "stepsRefined": 2672,
+            "maxSteps": 4672,
+            "availableRefinementSteps": 2672,
+            "count": 2000,
+            "initialSampleExcluded": true,
+            "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+            "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+            "limitations": [
+              "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+              "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+              "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+              "The comparison does not alter the model, observations, initial conditions, or training ranking."
+            ],
+            "reason": null,
+            "combinedSteps": 4672,
+            "maxAbsRateDifference": 0.0000028673173326776435,
+            "rateDifferenceUnit": "rad/s",
+            "rateMeaning": "Two resolutions agree within a declared screen; not a calibrated error bound."
+          }
+        }
+      ]
+    },
+    {
+      "label": "inverse-length-hypothesis",
+      "terms": [
+        {
+          "id": "rate",
+          "coefficient": -0.012568801811307857,
+          "coefficientUnit": "1/s"
+        },
+        {
+          "id": "gravity",
+          "coefficient": -18.712746463656472,
+          "coefficientUnit": "rad/s²"
+        }
+      ],
+      "fit": {
+        "status": "screened_local_candidate",
+        "best": {
+          "offsets": [
+            -0.029296875,
+            0.13671875
+          ],
+          "status": "screened",
+          "rmse": 0.01432339243648216,
+          "resolution": {
+            "status": "compared",
+            "coarseMaxStep": 0.02,
+            "refinedMaxStep": 0.01,
+            "positionRMSEDifference": 5.751768864900841e-9,
+            "maxAbsPositionDifference": 1.3171567392333827e-8,
+            "stepsCoarse": 100,
+            "stepsRefined": 124,
+            "maxSteps": 224,
+            "availableRefinementSteps": 124,
+            "count": 100,
+            "initialSampleExcluded": true,
+            "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+            "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+            "limitations": [
+              "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+              "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+              "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+              "The comparison does not alter the model, observations, initial conditions, or training ranking."
+            ],
+            "reason": null,
+            "combinedSteps": 224,
+            "maxAbsRateDifference": 5.5767692019870196e-8,
+            "rateDifferenceUnit": "rad/s",
+            "rateMeaning": "Two resolutions agree within a declared screen; not a calibrated error bound."
+          }
+        }
+      },
+      "forecast": [
+        {
+          "label": "original_observed_start",
+          "offsets": [
+            0,
+            0
+          ],
+          "status": "screened",
+          "laterRMSE": 0.035684171923806185,
+          "resolution": {
+            "status": "compared",
+            "coarseMaxStep": 0.02,
+            "refinedMaxStep": 0.01,
+            "positionRMSEDifference": 1.3259824794742544e-7,
+            "maxAbsPositionDifference": 3.923757063012401e-7,
+            "stepsCoarse": 2000,
+            "stepsRefined": 2672,
+            "maxSteps": 4672,
+            "availableRefinementSteps": 2672,
+            "count": 2000,
+            "initialSampleExcluded": true,
+            "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+            "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+            "limitations": [
+              "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+              "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+              "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+              "The comparison does not alter the model, observations, initial conditions, or training ranking."
+            ],
+            "reason": null,
+            "combinedSteps": 4672,
+            "maxAbsRateDifference": 0.0000015616117349792624,
+            "rateDifferenceUnit": "rad/s",
+            "rateMeaning": "Two resolutions agree within a declared screen; not a calibrated error bound."
+          }
+        },
+        {
+          "label": "prefix_estimated_model_start",
+          "offsets": [
+            -0.029296875,
+            0.13671875
+          ],
+          "status": "screened",
+          "laterRMSE": 0.021417971391920816,
+          "resolution": {
+            "status": "compared",
+            "coarseMaxStep": 0.02,
+            "refinedMaxStep": 0.01,
+            "positionRMSEDifference": 1.3451008413241393e-7,
+            "maxAbsPositionDifference": 3.9985481831150693e-7,
+            "stepsCoarse": 2000,
+            "stepsRefined": 2672,
+            "maxSteps": 4672,
+            "availableRefinementSteps": 2672,
+            "count": 2000,
+            "initialSampleExcluded": true,
+            "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+            "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+            "limitations": [
+              "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+              "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+              "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+              "The comparison does not alter the model, observations, initial conditions, or training ranking."
+            ],
+            "reason": null,
+            "combinedSteps": 4672,
+            "maxAbsRateDifference": 0.0000015871343508055968,
+            "rateDifferenceUnit": "rad/s",
+            "rateMeaning": "Two resolutions agree within a declared screen; not a calibrated error bound."
+          }
+        }
+      ]
+    },
+    {
+      "label": "local-length4-training",
+      "terms": [
+        {
+          "id": "rate",
+          "coefficient": -0.013268576589859271,
+          "coefficientUnit": "1/s"
+        },
+        {
+          "id": "gravity",
+          "coefficient": -18.729830273169696,
+          "coefficientUnit": "rad/s²"
+        }
+      ],
+      "fit": {
+        "status": "screened_local_candidate",
+        "best": {
+          "offsets": [
+            -0.0294921875,
+            0.13427734375
+          ],
+          "status": "screened",
+          "rmse": 0.014441854151302256,
+          "resolution": {
+            "status": "compared",
+            "coarseMaxStep": 0.02,
+            "refinedMaxStep": 0.01,
+            "positionRMSEDifference": 5.7676373580847055e-9,
+            "maxAbsPositionDifference": 1.3215284699885643e-8,
+            "stepsCoarse": 100,
+            "stepsRefined": 124,
+            "maxSteps": 224,
+            "availableRefinementSteps": 124,
+            "count": 100,
+            "initialSampleExcluded": true,
+            "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+            "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+            "limitations": [
+              "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+              "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+              "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+              "The comparison does not alter the model, observations, initial conditions, or training ranking."
+            ],
+            "reason": null,
+            "combinedSteps": 224,
+            "maxAbsRateDifference": 5.589526774762987e-8,
+            "rateDifferenceUnit": "rad/s",
+            "rateMeaning": "Two resolutions agree within a declared screen; not a calibrated error bound."
+          }
+        }
+      },
+      "forecast": [
+        {
+          "label": "original_observed_start",
+          "offsets": [
+            0,
+            0
+          ],
+          "status": "screened",
+          "laterRMSE": 0.04792898639666759,
+          "resolution": {
+            "status": "compared",
+            "coarseMaxStep": 0.02,
+            "refinedMaxStep": 0.01,
+            "positionRMSEDifference": 1.3253054586404203e-7,
+            "maxAbsPositionDifference": 3.9163632059580067e-7,
+            "stepsCoarse": 2000,
+            "stepsRefined": 2672,
+            "maxSteps": 4672,
+            "availableRefinementSteps": 2672,
+            "count": 2000,
+            "initialSampleExcluded": true,
+            "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+            "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+            "limitations": [
+              "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+              "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+              "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+              "The comparison does not alter the model, observations, initial conditions, or training ranking."
+            ],
+            "reason": null,
+            "combinedSteps": 4672,
+            "maxAbsRateDifference": 0.0000015607256991789775,
+            "rateDifferenceUnit": "rad/s",
+            "rateMeaning": "Two resolutions agree within a declared screen; not a calibrated error bound."
+          }
+        },
+        {
+          "label": "prefix_estimated_model_start",
+          "offsets": [
+            -0.0294921875,
+            0.13427734375
+          ],
+          "status": "screened",
+          "laterRMSE": 0.016349219702073658,
+          "resolution": {
+            "status": "compared",
+            "coarseMaxStep": 0.02,
+            "refinedMaxStep": 0.01,
+            "positionRMSEDifference": 1.3454363254619377e-7,
+            "maxAbsPositionDifference": 3.9912098363098503e-7,
+            "stepsCoarse": 2000,
+            "stepsRefined": 2672,
+            "maxSteps": 4672,
+            "availableRefinementSteps": 2672,
+            "count": 2000,
+            "initialSampleExcluded": true,
+            "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+            "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+            "limitations": [
+              "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+              "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+              "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+              "The comparison does not alter the model, observations, initial conditions, or training ranking."
+            ],
+            "reason": null,
+            "combinedSteps": 4672,
+            "maxAbsRateDifference": 0.0000015861271450701153,
+            "rateDifferenceUnit": "rad/s",
+            "rateMeaning": "Two resolutions agree within a declared screen; not a calibrated error bound."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+✔ linear zero and spring laws preserve normalized finite-release response (39.586864ms)
+✔ same-settings nonlinear gravity courses expose finite-amplitude dependence with independent reducer (14.525976ms)
+✔ whole-set work and failures cannot produce a magnitude verdict; unresolved shrink refuses (2.108062ms)
+✔ quadratic drag matches an independent finite-amplitude solution on both sides (6.41274ms)
+✔ typed v4 recomputes both magnitudes from original notebook and rejects mode/result injection (94.473974ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 179.041905

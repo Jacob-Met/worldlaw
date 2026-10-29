@@ -1,0 +1,10 @@
+[
+  {
+    "file": "len4_cond1_3.csv",
+    "url": "https://raw.githubusercontent.com/EnzeXu/Damped_Pendulum_Dataset/cbf82673641ecd65e902ad5c38a048387649a2a0/raw_data/len4_cond1_3.csv",
+    "bytes": 321020,
+    "sha256": "d06c7b1bd56494efac13d3a6a77af7bf23afada7ded07ba555bbfde27627d8b9",
+    "gitBlob": "9dc25698d197e9a5b5b6886e8ae404cd7598c8b7",
+    "acquiredUTC": "2026-10-28T21:24:59.352986+00:00"
+  }
+]

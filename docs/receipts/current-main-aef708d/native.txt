@@ -1,0 +1,44 @@
+✔ PASCO preserved population, baseline residuals and actual sensitivity (217.597916ms)
+✔ analytic offset cosine retains exact signed potential cancellation (62.182575ms)
+✔ authored unresolved harmonic makes finite sizeable sign reversal, not roundoff (52.483773ms)
+✔ whole population reservation refusal performs zero additional work (41.589135ms)
+✔ source-only replay recomputes and immutable frozen default investigation remains identical (81.170921ms)
+✔ finite opposite residuals retain sign when their product underflows (54.379005ms)
+✔ offered rate-work overflow preserves finite restoring and Coulomb comparisons (128.005381ms)
+{"cancellation":{"runId":"biased-receiving","cycleIndex":0,"candidateId":"restoring-only","status":"compared","halves":[{"direction":"descending","start":3.141592653589793,"end":4.71238898038469,"observedLoss":0.6399999999999999,"predictedLoss":0,"residual":0.6399999999999999},{"direction":"ascending","start":4.71238898038469,"end":6.283185307179586,"observedLoss":-0.6399999999999999,"predictedLoss":0,"residual":-0.6399999999999999}],"residualSum":0},"work":{"rateWindows":513,"intervals":512,"maximumEach":8192,"counterScope":"Diagnostic pass after bounded original extraction; replay and original extraction are not counted here."}}
+✔ opposing observed half-cycle losses expose cancellation hidden by complete cycles (79.100565ms)
+{"frozenRate":0.0800000355392064,"dampedHalfMaximumResiduals":[0.000011198378749147087,7.084512658045439e-7]}
+✔ analytic damped positions support the frozen loss at refined sampling (101.709547ms)
+✔ ambiguous minima and unavailable cubic features retain original cycles and all laws (103.491768ms)
+✔ source wrapper recomputes; receiving changes never alter frozen fitting or original versions (356.553357ms)
+{"measuredReceivingHalves":[{"run":"pasco-len1-cond1-3","cycles":17,"supported":17,"coverage":{"firstCycleIndex":49,"lastCycleIndex":1832,"excludedPrefixSamples":49,"excludedSuffixSamples":168}}],"firstComparisons":[{"law":"restoring-only","status":"compared","halves":[{"direction":"descending","start":5.49,"end":6.02,"observedLoss":0.8749095379319057,"predictedLoss":0,"residual":0.8749095379319057},{"direction":"ascending","start":6.02,"end":6.55,"observedLoss":-0.5734588892329251,"predictedLoss":0,"residual":-0.5734588892329251}],"residualSum":0.30145064869898064},{"law":"viscous","status":"compared","halves":[{"direction":"descending","start":5.49,"end":6.02,"observedLoss":0.8749095379319057,"predictedLoss":0.1907511371660773,"residual":0.6841584007658285},{"direction":"ascending","start":6.02,"end":6.55,"observedLoss":-0.5734588892329251,"predictedLoss":0.18611463873096373,"residual":-0.7595735279638889}],"residualSum":-0.07541512719806043},{"law":"coulomb","status":"compared","halves":[{"direction":"descending","start":5.49,"end":6.02,"observedLoss":0.8749095379319057,"predictedLoss":0.15591390504755445,"residual":0.7189956328843513},{"direction":"ascending","start":6.02,"end":6.55,"observedLoss":-0.5734588892329251,"predictedLoss":0.15519687635801532,"residual":-0.7286557655909405}],"residualSum":-0.009660132706589164},{"law":"joint","status":"compared","halves":[{"direction":"descending","start":5.49,"end":6.02,"observedLoss":0.8749095379319057,"predictedLoss":0.1907511371660773,"residual":0.6841584007658285},{"direction":"ascending","start":6.02,"end":6.55,"observedLoss":-0.5734588892329251,"predictedLoss":0.18611463873096373,"residual":-0.7595735279638889}],"residualSum":-0.07541512719806043},{"law":"quadratic","status":"compared","halves":[{"direction":"descending","start":5.49,"end":6.02,"observedLoss":0.8749095379319057,"predictedLoss":0.22518975448557732,"residual":0.6497197834463284},{"direction":"ascending","start":6.02,"end":6.55,"observedLoss":-0.5734588892329251,"predictedLoss":0.21582996979022462,"residual":-0.7892888590231497}],"residualSum":-0.1395690755768213},{"law":"viscous-quadratic","status":"compared","halves":[{"direction":"descending","start":5.49,"end":6.02,"observedLoss":0.8749095379319057,"predictedLoss":0.2106737066624679,"residual":0.6642358312694379},{"direction":"ascending","start":6.02,"end":6.55,"observedLoss":-0.5734588892329251,"predictedLoss":0.2033583365777887,"residual":-0.7768172258107138}],"residualSum":-0.11258139454127591}],"work":{"rateWindows":1784,"intervals":1783,"maximumEach":8192,"counterScope":"Diagnostic pass after bounded original extraction; replay and original extraction are not counted here."}}
+✔ retained measured receiving positions expose every frozen half-cycle comparison (279.84588ms)
+✔ independent Fraction probe reproduced on complete original measured population (2181.308445ms)
+✔ zero-radius exact result retains tiny floating sign distinction, not a physical threshold (2364.720796ms)
+✔ larger independent reading and derivative assumptions widen every retained energy enclosure (4413.969312ms)
+✔ frozen polynomial potential slope bound includes endpoint reading uncertainty only for that model (2111.072182ms)
+✔ whole-population reservation refusal and raw-only replay preserve every row (4465.380387ms)
+✔ measured exact-coordinate population and direct source kinetic arithmetic retained (259.930572ms)
+✔ authored passive/growing returns distinguish sign without selecting restoring potential (194.614837ms)
+✔ no near-equality tolerance and separated repeated plateaus remain explicit (83.911909ms)
+✔ complete reservation failure retains all levels and comparisons with zero work (58.162395ms)
+✔ source-only replay recomputes and ignores claimed derived values (63.045257ms)
+✔ source-only original receiving course recomputes all five retained laws, prefix fits and adverse outcomes (4308.05324ms)
+✔ changed suffix never changes original training laws or estimated prefix starts; complete budget refusal retains incumbents (5392.77935ms)
+{ fixed: 0.10402906054880885, estimated: 0.00006774358956692973 }
+✔ frozen law with wrong initialization improves independent authored suffix without replacing first observation (24.886674ms)
+✔ later changes cannot alter fitted starts and first-row/source/budget refusals hold (42.820514ms)
+✔ correct initialization can remain incumbent and unresolved integration never wins (39.494461ms)
+✔ identical numeric prefix from a different original cannot masquerade as continuation (23.690149ms)
+✔ source replay ignores forged witnesses, retains originals and refuses foreign identity (5339.808798ms)
+✔ original suffix values cannot choose prefix witnesses; missing future observations stay missing (3228.726817ms)
+✔ short original prefix admits distinct initialization witnesses without any future readings (12.150629ms)
+✔ future observations and incomplete all-trial budget refuse, strict screen gives no invented span (3.449686ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37128.959228

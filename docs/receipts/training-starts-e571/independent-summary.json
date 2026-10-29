@@ -1,0 +1,40 @@
+{
+  "error": null,
+  "ranking": [
+    "rate+gravity",
+    "rate+spring"
+  ],
+  "reservation": {
+    "steps": 580000,
+    "rows": 116580
+  },
+  "results": [
+    {
+      "id": "rate+spring",
+      "status": "screened",
+      "rmse": 0.46510998314856505
+    },
+    {
+      "id": "rate+gravity",
+      "status": "screened",
+      "rmse": 0.021406790395265253
+    }
+  ],
+  "incumbents": [
+    {
+      "id": "spring",
+      "status": "complete",
+      "rmse": 0.6855516897724693
+    },
+    {
+      "id": "rate+coulomb+gravity+bias",
+      "status": "complete",
+      "rmse": 0.025408616725279477
+    },
+    {
+      "id": "rate+coulomb+gravity+bias~forward-refined",
+      "status": "complete",
+      "rmse": 0.10621943770682893
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+✔ source replay ignores forged witnesses, retains originals and refuses foreign identity (4512.263299ms)
+✔ original suffix values cannot choose prefix witnesses; missing future observations stay missing (2775.426716ms)
+✔ short original prefix admits distinct initialization witnesses without any future readings (14.315385ms)
+✔ future observations and incomplete all-trial budget refuse, strict screen gives no invented span (3.53193ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7346.522543
