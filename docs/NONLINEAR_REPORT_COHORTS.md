@@ -12,7 +12,7 @@ An authored two-instrument course uses identity reference knots [0, 1, 2] for th
 
 The complete original training partition contains at most 4096 rows, 16 reports and 16 knots per report. The complete actual course contains at most 128 rows. Missing, overlapping, changed-value or duplicate-report cohorts refuse; one report cannot be split into independent latent blocks. Source preparation, independent checks and refits are additional bounded work outside the displayed candidate matrix-term budget. Search exhaustion, numerical contact and unsupported original fits remain unresolved/unavailable rather than successful evidence.
 
-This separate inquiry refuses existing declared original residual additions rather than silently dropping them. Explicit actual report associations are available; independently measured physical interpolation validation is not supplied here. The source condition is a declared model, and the numerical allowance is an engineering screen rather than a formal QR error proof.
+Complete independently sourced original-row residual additions are now retained as described in NONLINEAR_COHORT_RESIDUALS.md; partial declarations still refuse. Explicit actual report associations are available; independently measured physical interpolation validation is not supplied here. The source condition is a declared model, and the numerical allowance is an engineering screen rather than a formal QR error proof.
 
 ## Receiving
 

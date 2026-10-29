@@ -12,7 +12,7 @@ Three original command/readout pairs are1/1 under report A and one0/0 under repo
 
 Every actual association retains its original index, complete row values, exact retained report identity (or explicit independent alternative) and source basis. Missing, reordered, changed-value, unknown-report and conflicting declarations refuse the complete inquiry. Public source replay re-admits those originals and independently refits again. Existing independent-source certificates retain their original shape. Original observations, ranking and session history are unchanged.
 
-Existing complete4096-training/128-actual/16-report bounds and candidate-search budgets remain. No new latent correction is introduced for an actual reading. Independent original-row residual additions still refuse in this separate cohort inquiry; numerical contact and exhausted search remain unresolved. No extrapolation is enabled.
+Existing complete4096-training/128-actual/16-report bounds and candidate-search budgets remain. No new latent correction is introduced for an actual reading. Complete independent original-row residual additions are now supported as described in NONLINEAR_COHORT_RESIDUALS.md; numerical contact and exhausted search remain unresolved. No extrapolation is enabled.
 
 ## Qualification
 
