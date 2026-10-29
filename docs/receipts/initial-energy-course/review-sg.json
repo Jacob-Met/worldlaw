@@ -1,0 +1,18 @@
+{
+  "status": "accepted",
+  "scope": "Independent bounded source review only; no repeat native/browser execution",
+  "hashes": {
+    "initial-energy-course.mjs": "4002bacbe3b29871a3b11a59c51cc75fb885784fa58772e4506c78dc7ea6289f",
+    "initial-energy-readings.mjs": "585692927c53fa5103728c913f41f2b2aafd93337e362566a25ef1dd957f1201",
+    "initial-energy-panel.mjs": "31cd5b039a39c6d0041fc67cdba69d5a0f859ea6b73476a9d190321dd6484e41"
+  },
+  "findings": [
+    "Exact max(lower+Vt)/min(upper\u2212Vt) propagation and attaining-source certificate remain valid; first contradiction is permanently retained.",
+    "Full starting interval and all original rows admitted before returning results; initial box and first reading share time intentionally. Original readings strictly increase under maintained source admission.",
+    "All intervals clipped to full all-time bound; symmetric certified speed checked exactly. Certificate independently recomputes elapsed/required/allowed/gap and requires positive strict excess.",
+    "Bounded integer strings,4096bit cap,positive denominators,exact two endpoints and source row identities address prior raw research admission limitation.",
+    "Reservation34*(N+1)+16 precedes complete arithmetic and caps4096original rows; arithmetic-count scope explicitly excludes bit cost/upstream preparation.",
+    "Source entry recomputes invariant; ticket/current source/read-bound retirement clears course with existing reading output. Jump controls retain exact original row identity, not inferred event.",
+    "No new source or lifecycle blocker found."
+  ]
+}

@@ -61,6 +61,36 @@ export function createInitialEnergyControls(anchor,context){
   function page(){table.replaceChildren();const head=node('tr');for(const t of ['Original row','Time (s)','Angle (rad)','Exact reading interval (rad)','Account','Exact separation (rad)']){const th=node('th',t);th.scope='col';th.style.fontSize='.8rem';head.append(th);}table.append(head);
    for(const row of report.rows.slice(Number(pages.value)*size,(Number(pages.value)+1)*size)){const tr=node('tr');tr.dataset.originalIndex=String(row.index);for(const value of [String(row.index),String(row.time),String(row.position),`${fraction(row.interval[0])} to ${fraction(row.interval[1])}`,row.status==='separated'?`Separated ${row.side}`:'Overlaps — inconclusive',fraction(row.gap)]){const td=node('td',value);td.style.cssText='white-space:nowrap;max-width:none';tr.append(td);}table.append(tr);}}
   pages.addEventListener('change',page);page();
+  const course=report.course;
+  if(course){
+   const region=node('section');region.id='initial-energy-course';region.dataset.state=course.status;region.style.cssText='margin:12px 0;padding:10px 0;border-top:1px solid #c4cfb9;overflow-wrap:anywhere';
+   region.append(node('h4',course.status==='conjunction_rejected'?'No common bounded-speed course under these assumptions':'No bounded-speed contradiction found — inconclusive'));
+   region.append(node('p','This additional necessary check uses the complete original starting-angle box, every original reading interval, exact original time gaps and the certified outer speed limit. It does not fit a path or change your reading radius. Survival does not establish an ODE trajectory, phase, sensor accuracy or physical validity.'));
+   const first=course.first;
+   if(first?.kind==='speed-limit'){
+    region.append(node('p',`The first strict contradiction is retained: ${first.earlier.kind==='original-initial-box'?'the original starting-angle box':'original row '+first.earlier.index} at ${first.earlier.time} s and original row ${first.later.index} at ${first.later.time} s cannot both be reached within this speed limit.`));
+    const summary=node('div');summary.id='initial-energy-course-travel';
+    for(const [name,value] of [['Required travel',first.requiredTravel],['Allowed travel',first.allowedTravel],['Positive excess',first.gap]]){
+     let text;
+     try{const range=formatReadingThreshold(value);text=`${name}: ${range.lower===range.upper?range.lower:range.lower+' to '+range.upper} rad (rounded outwards).`;}
+     catch{text=`${name}: decimal display unavailable; the complete exact value remains in the certificate below.`;}
+     summary.append(node('p',text));
+    }
+    summary.append(node('p','The strict contradiction is decided using exact arithmetic, not these rounded display values.'));region.append(summary);
+    const exact=node('details');exact.append(node('summary','Exact speed and travel certificate'));
+    for(const [name,value,unit] of [['Certified outer speed',first.speed,'rad/s'],['Original elapsed time',first.elapsed,'s'],['Required travel',first.requiredTravel,'rad'],['Allowed travel',first.allowedTravel,'rad'],['Strict excess',first.gap,'rad']])exact.append(node('p',`${name}: ${fraction(value)} ${unit}`));region.append(exact);
+    const selected=node('p');selected.id='initial-energy-course-selected';selected.setAttribute('role','status');
+    for(const [name,witness] of [['earlier',first.earlier],['later',first.later]]){
+     if(witness.index===null)continue;
+     const jump=node('button',`Inspect ${name} original row ${witness.index}`);jump.type='button';jump.className='button outline';jump.id='initial-energy-course-'+name;jump.style.margin='4px';
+     jump.addEventListener('click',()=>{pages.value=String(Math.floor(witness.index/size));page();const tr=table.querySelector(`tr[data-original-index="${witness.index}"]`);tr.tabIndex=-1;tr.style.outline='2px solid #3b6978';tr.focus({preventScroll:true});tr.scrollIntoView({block:'nearest',inline:'nearest'});selected.textContent=`${name==='earlier'?'Earlier':'Later'} original row ${witness.index}, time ${witness.time} s, angle ${witness.position} rad. This is an original reading, not an inferred event.`;});region.append(jump);
+    }
+    region.append(selected);
+   }else if(first?.kind==='position-limit')region.append(node('p',`Original row ${first.source.index} already has no overlap with the outer angle limit. The position account above retains the exact separation; no additional speed-only explanation is asserted.`));
+   region.append(node('p',`${report.rows.length} original rows checked, together with the starting box. A contradiction rejects the conjunction of the frozen law, starting box, original coordinate/time interpretation and declared reading bound; it does not identify which assumption failed. Later rows cannot erase the first contradiction.`));
+   readingOutput.insertBefore(region,label);
+  }
+
   if(threshold&&!threshold.zero){
    const witnesses=threshold.attainingRows;
    thresholdBox.append(node('p',`${witnesses.length} original ${witnesses.length===1?'row determines':'rows tie for'} this threshold. These are retained row identities, not inferred event times.`));

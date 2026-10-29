@@ -79,3 +79,43 @@ Native controls for this explanation:
 ```sh
 node --test tests/initial-energy-threshold.test.mjs tests/initial-energy-readings.test.mjs
 ```
+
+## One bounded-speed course through the original readings (#592)
+
+The existing reading comparison additionally checks a necessary common-course
+condition. It starts with the complete admitted original starting-angle box,
+clips every declared reading interval to the unchanged outer angle bound, and
+propagates reachability using the invariant's certified outer speed. Every time
+gap is obtained by exact subtraction of the original binary64 timestamps.
+The original admission still requires strictly increasing recording times; the
+starting box and first reading share the same original time and permit zero
+travel between them.
+
+The first strict contradiction remains permanent while the complete original
+population is processed. A speed certificate retains both original identities,
+clipped intervals, exact elapsed time, required and allowed travel, and a
+strictly positive excess. The ordinary page links each reading witness into the
+existing ledger, including witnesses on different pages. A reading already
+outside the angle bound keeps its position explanation.
+
+Survival is **inconclusive**: it admits only a bounded-speed course relaxation,
+not a trajectory of the frozen differential equation. A contradiction rejects
+the conjunction of the model, original starting box, original coordinate/time
+interpretation and declared reading bound. It neither identifies the failed
+assumption nor establishes physical-law falsification. No fitting, rate
+inference, automatic radius adoption or change to starting widths occurs.
+
+The existing source-only receipt is unchanged. Reopening recomputes both the
+invariant and this check; cached answers are never an input. The course helper
+is an internal admitted-data seam, not a new public rational wire format.
+
+Complete work is reserved before processing: for N original rows, N+1 entries
+include the starting box, with a conservative 34(N+1)+16 arithmetic/comparison
+call reservation and a 140,000-call ceiling. N is bounded by the maintained
+4,096-row admission. This accounting does not count BigInt/GCD cost, bounded
+input decoding, or upstream invariant preparation as unit arithmetic calls.
+Internal rational endpoint strings have explicit character and 4,096-bit
+bounds, positive denominators and fixed two-endpoint shape. Failure returns no
+partial course result. Zero certified speed permits exactly zero travel;
+negative/asymmetric speed bounds or an initial box outside the certified domain
+are refused rather than interpreted as contradictory readings.
