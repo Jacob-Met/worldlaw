@@ -1,0 +1,49 @@
+{
+  "inquiry": 525,
+  "nativeGroups": 150,
+  "browserGroups": 114,
+  "checks": [
+    "Every original structure is retained under explicit positive affine observing source with separate per-law corrections and unsupported outcome",
+    "Gain-source edits retire complete-family results and recompute all original laws",
+    "Zero iterations retain unresolved and unsupported original structures without universal exclusion",
+    "Complete original population and extra gain dimension are reserved before any per-law search; insufficient work returns no subset"
+  ],
+  "operation": "hamon-69d25c-world-affine-observer-families-browser-20261029-v2",
+  "receipt": {
+    "command_id": "hamon-69d25c-world-affine-observer-families-browser-20261029-v2",
+    "request_sha256": "a2c3d1edfb9a307b6b0298391cd43b3a7824448eb39a7796aafe544a0def7f9d",
+    "generation": "1fb7cf03e50dce81a41b812169fb454fd193b26e4dc54f035df3d54fb5a1890e",
+    "state": "completed",
+    "runner_pid": 951164,
+    "started_at": "2026-10-29T04:21:04.590890898Z",
+    "finished_at": "2026-10-29T04:21:21.74281082Z",
+    "exit_code": 0
+  },
+  "sandbox": {
+    "adequate": true,
+    "layer1": true,
+    "pid": true,
+    "network": true,
+    "seccomp": true,
+    "tsync": true
+  },
+  "familyExited": true,
+  "profileRetained": true,
+  "exceptions": [],
+  "priorFailure": {
+    "operation": "hamon-69d25c-world-affine-observer-families-browser-20261029-v1",
+    "receipt": {
+      "command_id": "hamon-69d25c-world-affine-observer-families-browser-20261029-v1",
+      "request_sha256": "b0d56a8a44110b164b8da86805e0ecdb31e365c95b081ac4f9b8c6738d07a56e",
+      "generation": "f14f4689bb085c9d4ef0eac5f0c8a216ec62ba1b5717d86dd9fbb108296f2b8b",
+      "state": "failed",
+      "runner_pid": 937696,
+      "started_at": "2026-10-29T04:18:13.253762763Z",
+      "finished_at": "2026-10-29T04:18:29.851548762Z",
+      "exit_code": 1,
+      "error": "exit status 1"
+    },
+    "reason": "Receiver renewed consent but did not reimport observation draft retired by budget edit; corrected receiving course, product unchanged."
+  },
+  "review": "SYN6 personally executed controls plus complete consumer source scan accepted"
+}

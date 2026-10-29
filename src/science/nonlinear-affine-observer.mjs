@@ -3,8 +3,11 @@ import{checkNonlinearCommonReference}from'./nonlinear-common-reference.mjs';
 import{checkLinearEnvelopeSeparator,checkLinearEnvelopeOffsets}from'./shared-training-check.mjs';
 import{searchPreparedLinearEnvelope}from'./shared-training-search.mjs';
 const SCHEMA='worldlaw.nonlinear-affine-observer/v1',CERT='worldlaw.nonlinear-affine-observer-certificate/v1';
-export function prepareAffineObserver(raw){
+export function admitAffineObserverDeclaration(raw){
  if(raw?.schema!==SCHEMA||raw.sameAffineObserver!==true||raw.correctedUnitResiduals!==true||typeof raw.basis!=='string'||!raw.basis.trim()||raw.basis.length>1000||!Number.isFinite(raw.gainCenter)||!Number.isFinite(raw.gainRadius)||raw.gainRadius<0||Math.abs(raw.gainCenter)>1e6||raw.gainRadius>1e6||!(1+raw.gainCenter-raw.gainRadius>1024*Number.EPSILON*(1+Math.abs(raw.gainCenter)+raw.gainRadius)))throw Error('Declare one strictly positive bounded affine observing correction and corrected-unit residual bounds.');
+ if(raw.original?.schema!=='worldlaw.nonlinear-reference-observer/v1')throw Error('One complete original observing instrument is required.');return{gainCenter:raw.gainCenter,gainRadius:raw.gainRadius,basis:raw.basis.trim()};
+}
+export function prepareAffineObserver(raw){admitAffineObserverDeclaration(raw);
  const p=prepareReferenceObserver(raw.original);if(p.partitioned)throw Error('This explicit affine declaration requires one complete original observing instrument.');
  const gainCenter=raw.gainCenter,gainRadius=raw.gainRadius,extra=p.extra.map((r,i)=>{const value=p.p.source.observations[i].value,center=value*gainCenter,radius=value*gainRadius;if(!Number.isFinite(center)||!Number.isFinite(radius))throw Error('Finite original readout-weighted gain terms required.');return{...r,refittedPrediction:r.refittedPrediction-center,influence:[...r.influence,-radius],independentCoefficientBoxRadius:r.independentCoefficientBoxRadius+Math.abs(radius),numericalTolerance:r.numericalTolerance+1024*Number.EPSILON*(Math.abs(center)+Math.abs(radius)+Math.abs(value))};});
  const source={schema:SCHEMA,sameAffineObserver:true,correctedUnitResiduals:true,basis:raw.basis.trim(),gainCenter,gainRadius,original:p.source};
