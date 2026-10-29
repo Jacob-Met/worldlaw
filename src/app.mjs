@@ -19,6 +19,7 @@ import {renderParameterSensitivity} from './science/parameter-sensitivity-panel.
 import {renderPredictionSensitivity} from './science/prediction-sensitivity-panel.mjs';
 import {diagnoseReplicates} from './science/replicate-diagnostics.mjs';
 import {renderSeparability} from './science/separability-panel.mjs';
+import {renderReflectionCompatibility} from './science/reflection-panel.mjs';
 import {evaluate,predict} from './science/torque-discovery.mjs';
 import {executeStudioDynamics} from './science/studio-dynamics.mjs';
 import {mountStudioComparison} from './science/studio-comparison-panel.mjs';
@@ -194,6 +195,8 @@ function renderModel(){
   renderInputEnclosures(enclosure,m,state.discovery.observations);
   let separability=$('separability');if(!separability){separability=el('div');separability.id='separability';$('replicate-diagnostics').after(separability);}
   renderSeparability(separability,state.discovery.observations,state.base.source);
+  let reflection=$('reflection-compatibility');if(!reflection){reflection=el('div');reflection.id='reflection-compatibility';separability.after(reflection);}
+  renderReflectionCompatibility(reflection,state.discovery.observations,state.base.source);
   let deadzone=$('command-deadzone-container');if(!deadzone){deadzone=el('div');deadzone.id='command-deadzone-container';$('residual-chart').after(deadzone);}
   if(!$('sensor-response-container')){const response=el('div');response.id='sensor-response-container';deadzone.after(response);mountSensorResponse(response,{chart});}
   renderCommandDeadzone(deadzone,state,{chart,beginSourceReplacement,getSourceGeneration:()=>generation,widths:deadzoneWidths,onReopen:(next,widths)=>adopt(next,'Reopened original command-map comparison inputs. Compare again to recompute.',widths),simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
