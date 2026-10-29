@@ -1,0 +1,51 @@
+{
+  "ordinary": {
+    "checks": [
+      "Ordinary source: exact positive/negative contact and separation, all201 original rows accessible; original forecast and limit unchanged",
+      "Ordinary save retains explicit radius and original source only",
+      "Dirty radius survives refused replacement; stale comparison remains hidden and save disabled",
+      "Valid replacement recomputes saved comparison, ignores forged answer and retains current-context binding",
+      "Source mismatch refuses while accepted comparison/source survive",
+      "Actual desktop/narrow result and keyboard-scrollable complete ledger",
+      "Delayed original file cannot revive comparison after starting-width change",
+      "Late source-binding hashes cannot overwrite a changed original run"
+    ],
+    "errors": [],
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "browser": "156.0.8078.73",
+    "scope": "Actual ordinary authored source-to-comparison/replay; no real sensor validation"
+  },
+  "ordinaryPanelSHA256": "34beae1ea97305bc36b165ab76882a1e876a0ad706693372f1eaccaf23fd62d4",
+  "finalLayout": {
+    "checks": [
+      "Ordinary source: exact positive/negative contact and separation, all201 original rows accessible; original forecast and limit unchanged",
+      "Final 1440px: every header/cell text inside its own box; exact full ledger horizontally/vertically reachable, keyboard focus and outer containment",
+      "Final 390px: every header/cell text inside its own box; exact full ledger horizontally/vertically reachable, keyboard focus and outer containment"
+    ],
+    "errors": [],
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "browser": "156.0.8078.73",
+    "scope": "Focused final exact-cell layout receiving plus ordinary authored source setup; prior eight behavioral groups remain separately attributed"
+  },
+  "finalPanelSHA256": "aad101518b9b24538d4e5fcebeb170f20fc328ae6bf2d4906359a49aef500c4b",
+  "visualReview": "Root accepted final desktop and narrow pixels after exact-cell width repair. Private QA screenshots excluded from source packet.",
+  "negativeStages": [
+    {
+      "scope": "Actual first ordinary browser attempt; incomplete, not a passing receipt",
+      "panelSHA256": "c3860b7933b3759cd419bbcd71960494c61e728b8420520d0b344e035880c4b6",
+      "failure": "energy-readings-browser.mjs layout assertion initial-energy.scrollWidth <= clientWidth failed after the five preceding behavioral checks",
+      "cause": "New reading-output div was a grid item with auto minimum width, retaining table intrinsic width despite inner scroll container",
+      "repair": "Set readingOutput.style.minWidth=0; no core, source, receipt or lifecycle change",
+      "browserClosed": true
+    },
+    {
+      "panelSHA256": "34beae1ea97305bc36b165ab76882a1e876a0ad706693372f1eaccaf23fd62d4",
+      "evidence": "qa/browser/readings-1440.png and readings-390.png, with eight behavioral groups in qa/browser/receipt.json",
+      "finding": "Root actual image review found full exact intervals superimposed on Account cells; narrow angle text leaked across adjacent columns despite outer containment passing.",
+      "sourceCause": "Maintained global table cells use white-space:nowrap; new td max-width:24rem conflicted with long exact values, while width:100% constrained table.",
+      "scope": "Behavioral receipt remains valid for its source; visual qualification failed.",
+      "preservedSource": "before-ledger-width.mjs",
+      "repair": "Scoped table width:max-content/min-width:100%/table-layout:auto, remove cell max-width, retain nowrap and exact full values, readable header size and explicit horizontal/vertical scrolling instruction. No source/comparison/persistence/lifecycle change."
+    }
+  ]
+}

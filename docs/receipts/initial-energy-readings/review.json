@@ -1,0 +1,38 @@
+{
+  "independentSkillReview": {
+    "reviewer": "skill_translator",
+    "status": "accepted_after_draft_refusal_repair",
+    "scope": "Independent source review and six authored native bodies; no browser/physical-data claim",
+    "hashes": {
+      "src/trajectory/initial-energy-readings.mjs": "830ec4050dd40be3df03a9395f4b717d3ce8a351083b4fbca6d88ea140e1c000",
+      "src/trajectory/initial-energy-receipt.mjs": "bfa6dd912448b2f87a24eeaba4c33323dd2f65884173d07d4efea65ef6ba79a2",
+      "src/trajectory/initial-energy-panel.mjs": "c3860b7933b3759cd419bbcd71960494c61e728b8420520d0b344e035880c4b6",
+      "tests/initial-energy-readings.test.mjs": "9918b632e72763c253e26d6976b7dec682b8e59e08df0f03b8622703a20799b2"
+    },
+    "execution": {
+      "command": "node --test tests/initial-energy-readings.test.mjs",
+      "definedBodies": 6,
+      "reportedFileGroups": 1,
+      "failures": 0
+    },
+    "findings": [
+      "Public preparer recomputes maintained invariant from normalized original model/run/widths; no cached-bound argument or stored finding is trusted.",
+      "Strict single-field reading declaration, bounded uniform radius, every original normalized row and exact rational contact/separation arithmetic retain reviewed conditional meaning.",
+      "Source-only optional declaration extends existing receipt admission explicitly; complete model/run binding and original supplied-state guard remain. No origin conversion, unwrap, clock change or initial-box enlargement.",
+      "Pending file/hash work retains prior accepted question but hides derived output/save; ticket/context retirement prevents late replacement. Successful adoption and parent width updates remain synchronous.",
+      "Concrete refusal bug found and repaired: a dirty reading-radius draft previously disappeared on invalid replacement. Final entry snapshots draft; current refusal restores accepted limits then draft/dirty flag, hides outdated comparison and keeps save disabled. Successful replacement intentionally adopts its own declaration.",
+      "New reading-bound edit retires only reading comparison and save, preserving accepted base invariant; original context/width changes still clear both."
+    ],
+    "limits": [
+      "Dirty-refusal fix inspected in source; author will execute its actual-browser regression.",
+      "No duplicate browser or retained replay suite run by this reviewer."
+    ]
+  },
+  "finalPresentationReview": {
+    "reviewer": "root",
+    "panelSHA256": "aad101518b9b24538d4e5fcebeb170f20fc328ae6bf2d4906359a49aef500c4b",
+    "scope": "Actual final1440/390 pixels and exact34be-to-aad scoped layout diff; earlier source review remains for unchanged mechanism",
+    "assessment": "accepted"
+  },
+  "unchangedCoreAndReceipt": true
+}
