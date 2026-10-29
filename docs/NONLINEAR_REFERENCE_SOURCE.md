@@ -1,0 +1,9 @@
+# Separate original calibration/reference source inquiry
+
+The common-reference card now checks original nonlinear reports and all declared readings of unchanged physical references without applying physical-law or actual-receiving equations. It preserves the full original physical context for source binding and reuses maintained source admission, bounded linear-envelope search/separator and the original independently reconstructed corrected-reading checker.
+
+A source separation challenges the combined report/reference declarations; it does not reject the physical law. A source witness does not establish that the law and actual observations can share it. The separate result and source-only certificate replay leave the retained joint result visible. Source and consent changes retire both.
+
+Executed controls distinguish source contradiction (gap .096), compatible sources plus joint-law separation (gap .0379948), and combined compatibility. Changing only actual torque leaves source-only candidate values unchanged, while replay still binds the complete original source. Zero residual contact and bounded exhaustion remain unresolved.
+
+Qualification:113 composed native controls,7 independently executed core controls and independent consumer scan.76 actual Chromium groups passed, desktop/narrow inspected, sandbox active and owned family retired; profile retained. First actual browser expected a witness for broad reference error .4 and near-edge instrument reading1.1; bounded search correctly remained unresolved. That negative is retained as a native regression. Final receiver uses independently checked interior reading1.08/reference error .1; product rules unchanged. No solver, ranking, calibration or observation adoption; no authenticated sources or certified floating-point bounds.
