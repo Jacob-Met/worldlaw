@@ -1,0 +1,52 @@
+{
+  "frozenUTC": "2026-10-29T00:28:26.109239+00:00",
+  "revision": "cbf82673641ecd65e902ad5c38a048387649a2a0",
+  "training": [
+    "len2_cond3_1.csv",
+    "len3_cond3_1.csv",
+    "len4_cond3_1.csv"
+  ],
+  "meaning": "Author-declared air+large-paper-baffle condition3. These six originals were absent from this worker retained acquisition/source scan before freeze. Reuse unchanged small-baffle method and all alternatives, but derive every coefficient only from these original condition3 training courses. No condition2 damping reused. Delta remains empirical, not physical length correction. All three receiving repetitions are selected now, no replacement or outcome tuning.",
+  "selection": "Original5\u201325s rows and supplied rate, no smoothing, resampling or recentering. Prefix5\u20136s estimates starts only, suffix6\u201325s scores.",
+  "weakOptions": {
+    "offsetBounds": [
+      -0.05,
+      0.05
+    ],
+    "gridCount": 21,
+    "sweeps": 12,
+    "windowDuration": 0.4,
+    "windowStride": 0.1
+  },
+  "prefixOptions": {
+    "prefixDuration": 1,
+    "positionWidth": 0.1,
+    "rateWidth": 0.5,
+    "gridCount": 9,
+    "sweeps": 8,
+    "maxStep": 0.02,
+    "screen": 0.001,
+    "maxTotalSteps": 4000000
+  },
+  "alternatives": [
+    "shared_selected_offset",
+    "shared_pooled_zero",
+    "single_setup_inverse_length"
+  ],
+  "primary": "Mean prefix-suffix RMSE across all three predeclared length5 repetitions, selected-offset versus pooled-zero; all individual outcomes and observed-start/single-inverse alternatives retained, refusals never dropped.",
+  "sourceHashes": {
+    "src/shared-geometry-law/weak.mjs": "2b9ca93ebc3108f3b3c214743b3713302aeac8fa8c0bd90e564d26a55493af70",
+    "src/shared-geometry-law/fit.mjs": "df62fe531de8e63fb314ead31b352791c6707f176bd0ca0b6ff23d79a07fc12b",
+    "src/prefix-starts/fit.mjs": "2ab2151e88d177de24adc131968e0c763cee3505a30e8439832fd0527aa87d06",
+    "src/trajectory/weak-operator.mjs": "ba94054a02098cbc173a7854d1d3ffc530ce5b6e7e221310486b61d6eb4503d9",
+    "src/shared-geometry-law/direct-session.mjs": "aaf35d9cea2af2e047ecec3291fcecca1171f9f816b4bf515dfdf02546355fc3",
+    "src/shared-geometry-law/csv-intake.mjs": "121f523704d0495ba5b5fb2a4b662b4a4525ce36b0ec1ce365d33d8cbf23c01e"
+  },
+  "heldFiles": [
+    "len5_cond3_1.csv",
+    "len5_cond3_2.csv",
+    "len5_cond3_3.csv"
+  ],
+  "qualification": "New condition qualification; past air-only and small-baffle courses remain consumed. Shared angular damping is an explicit conditional hypothesis, not established by condition label.",
+  "mergedMethod": "c9ce9edc4733cfa2df9f083b0e4f9bc96684da29"
+}

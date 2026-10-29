@@ -1,0 +1,37 @@
+{
+  "scope": "Consumed-course mechanism experiment, not independent qualification",
+  "basis": "Author large paper baffle adds resistance; a rate times absolute rate term is a conditional dissipative candidate already executable in maintained library, not identified fluid mechanics.",
+  "training": "Original condition3 lengths2/3/4 first repetitions, same original5\u201325s rows; all receiving courses now consumed",
+  "families": [
+    [
+      "rate"
+    ],
+    [
+      "quadratic"
+    ],
+    [
+      "rate",
+      "quadratic"
+    ]
+  ],
+  "geometry": "Same bounded empirical A/(L+delta), shared scale/offset and course-specific drag coefficients",
+  "options": {
+    "offsetBounds": [
+      -0.05,
+      0.05
+    ],
+    "gridCount": 21,
+    "sweeps": 12,
+    "windowDuration": 0.4,
+    "windowStride": 0.1
+  },
+  "work": "Complete3family fit construction admitted before execution; maximum46fits/family,8\u20132048windows,1Msegments,4Mmatrix terms per family,12M aggregate; existing numerical/prefix screens unchanged",
+  "dampingTransfer": "Original length3 coefficients transferred unchanged for each family, conditional association only",
+  "receiving": "All3original length5 repetitions and every fixed/prefix outcome retained; no choice based on these consumed outcomes",
+  "constraint": "Report dissipativity separately: every offered damping coefficient<=0; do not clip/refit positive coefficients into compliance",
+  "resolvedDependency": {
+    "rateWindowSize": 9,
+    "source": "maintained weakLocalRates default, position-derived local cubic derivative",
+    "timing": "Resolved after pre-result TypeError, before quadratic result evaluation; all data consumed regardless."
+  }
+}

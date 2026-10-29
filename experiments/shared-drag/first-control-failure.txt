@@ -1,0 +1,33 @@
+PASS independent authored nonlinear ODE shared geometry/drag recovery {"offsetM":0.015,"status":"fitted","scale":9.800001077176262,"rmse":2.9724098849978746e-8,"damping":[{"runId":"one","terms":[{"id":"rate","coefficient":-0.02999973398068009},{"id":"quadratic","coefficient":-0.04000057474810361}]},{"runId":"two","terms":[{"id":"rate","coefficient":-0.02999977591847325},{"id":"quadratic","coefficient":-0.040000315899067156}]}],"dissipative":true,"conditionEstimate":4.77654076619963}
+PASS absent excitation refuses every family
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /work/. Input:
+
+'Error: Each weak window needs at least nine raw samples; increase windowDuration or improve sampling.'
+
+    at file:///dev/shm/worldlaw-shared-drag-755/controls.mjs:5:8
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: Error: Each weak window needs at least nine raw samples; increase windowDuration or improve sampling.
+      at need (file:///dev/shm/worldlaw-shared-drag-755/shared-drag.mjs:4:32)
+      at weakWindows (file:///dev/shm/worldlaw-current-1e73-755/src/trajectory/weak-operator.mjs:43:5)
+      at file:///dev/shm/worldlaw-shared-drag-755/shared-drag.mjs:15:158
+      at Array.map (<anonymous>)
+      at file:///dev/shm/worldlaw-shared-drag-755/shared-drag.mjs:15:151
+      at Array.map (<anonymous>)
+      at fitSharedDrag (file:///dev/shm/worldlaw-shared-drag-755/shared-drag.mjs:15:23)
+      at file:///dev/shm/worldlaw-shared-drag-755/controls.mjs:5:19
+      at getActual (node:assert:611:5)
+      at strict.throws (node:assert:759:24),
+  expected: /work/,
+  operator: 'throws',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

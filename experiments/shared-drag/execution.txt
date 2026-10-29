@@ -1,0 +1,307 @@
+{
+  "families": [
+    {
+      "drag": [
+        "rate"
+      ],
+      "best": {
+        "offsetM": 0.01927368164062499,
+        "status": "fitted",
+        "scale": 10.067573481272705,
+        "rmse": 0.015479605412786132,
+        "damping": [
+          {
+            "runId": "len2_cond3_1",
+            "terms": [
+              {
+                "id": "rate",
+                "coefficient": -0.05707985573412771
+              }
+            ]
+          },
+          {
+            "runId": "len3_cond3_1",
+            "terms": [
+              {
+                "id": "rate",
+                "coefficient": -0.08112764613289242
+              }
+            ]
+          },
+          {
+            "runId": "len4_cond3_1",
+            "terms": [
+              {
+                "id": "rate",
+                "coefficient": -0.04805402369605218
+              }
+            ]
+          }
+        ],
+        "dissipative": true,
+        "conditionEstimate": 1.0000190881813442
+      },
+      "reservation": {
+        "windows": 591,
+        "segments": 23640,
+        "maximumFits": 46,
+        "dimension": 4,
+        "matrixTerms": 434976
+      }
+    },
+    {
+      "drag": [
+        "quadratic"
+      ],
+      "best": {
+        "offsetM": 0.01958129882812499,
+        "status": "fitted",
+        "scale": 10.080094025833814,
+        "rmse": 0.015202397951908093,
+        "damping": [
+          {
+            "runId": "len2_cond3_1",
+            "terms": [
+              {
+                "id": "quadratic",
+                "coefficient": -0.05126628872736984
+              }
+            ]
+          },
+          {
+            "runId": "len3_cond3_1",
+            "terms": [
+              {
+                "id": "quadratic",
+                "coefficient": -0.05397587812753921
+              }
+            ]
+          },
+          {
+            "runId": "len4_cond3_1",
+            "terms": [
+              {
+                "id": "quadratic",
+                "coefficient": -0.057748717814224644
+              }
+            ]
+          }
+        ],
+        "dissipative": true,
+        "conditionEstimate": 1.0002002014116917
+      },
+      "reservation": {
+        "windows": 591,
+        "segments": 23640,
+        "maximumFits": 46,
+        "dimension": 4,
+        "matrixTerms": 434976
+      }
+    },
+    {
+      "drag": [
+        "rate",
+        "quadratic"
+      ],
+      "best": {
+        "offsetM": 0.022961425781250006,
+        "status": "fitted",
+        "scale": 10.194479622925236,
+        "rmse": 0.01403022054048739,
+        "damping": [
+          {
+            "runId": "len2_cond3_1",
+            "terms": [
+              {
+                "id": "rate",
+                "coefficient": 0.5914091491107175
+              },
+              {
+                "id": "quadratic",
+                "coefficient": -0.4335333506730069
+              }
+            ]
+          },
+          {
+            "runId": "len3_cond3_1",
+            "terms": [
+              {
+                "id": "rate",
+                "coefficient": 0.4134322721424528
+              },
+              {
+                "id": "quadratic",
+                "coefficient": -0.2609546303432373
+              }
+            ]
+          },
+          {
+            "runId": "len4_cond3_1",
+            "terms": [
+              {
+                "id": "rate",
+                "coefficient": 0.9990572491668214
+              },
+              {
+                "id": "quadratic",
+                "coefficient": -0.7411220302658064
+              }
+            ]
+          }
+        ],
+        "dissipative": false,
+        "conditionEstimate": 5.480984614532541
+      },
+      "reservation": {
+        "windows": 591,
+        "segments": 23640,
+        "maximumFits": 46,
+        "dimension": 7,
+        "matrixTerms": 1332114
+      }
+    }
+  ],
+  "courses": [
+    {
+      "recording": "len5_cond3_1.csv",
+      "results": [
+        {
+          "label": "rate",
+          "dissipative": true,
+          "forecasts": [
+            {
+              "status": "screened",
+              "rmse": 0.06407713337320876
+            },
+            {
+              "status": "screened",
+              "rmse": 0.03786046527060494
+            }
+          ]
+        },
+        {
+          "label": "quadratic",
+          "dissipative": true,
+          "forecasts": [
+            {
+              "status": "screened",
+              "rmse": 0.06577753972948197
+            },
+            {
+              "status": "screened",
+              "rmse": 0.04102747519340122
+            }
+          ]
+        },
+        {
+          "label": "rate+quadratic",
+          "dissipative": false,
+          "forecasts": [
+            {
+              "status": "screened",
+              "rmse": 0.11350145885541889
+            },
+            {
+              "status": "screened",
+              "rmse": 0.10190432624272729
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "recording": "len5_cond3_2.csv",
+      "results": [
+        {
+          "label": "rate",
+          "dissipative": true,
+          "forecasts": [
+            {
+              "status": "screened",
+              "rmse": 0.0658757136952312
+            },
+            {
+              "status": "screened",
+              "rmse": 0.03269442216439687
+            }
+          ]
+        },
+        {
+          "label": "quadratic",
+          "dissipative": true,
+          "forecasts": [
+            {
+              "status": "screened",
+              "rmse": 0.0785545478025996
+            },
+            {
+              "status": "screened",
+              "rmse": 0.049210239234885246
+            }
+          ]
+        },
+        {
+          "label": "rate+quadratic",
+          "dissipative": false,
+          "forecasts": [
+            {
+              "status": "screened",
+              "rmse": 0.08882105527911754
+            },
+            {
+              "status": "screened",
+              "rmse": 0.0695958582361136
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "recording": "len5_cond3_3.csv",
+      "results": [
+        {
+          "label": "rate",
+          "dissipative": true,
+          "forecasts": [
+            {
+              "status": "screened",
+              "rmse": 0.03788257671860794
+            },
+            {
+              "status": "screened",
+              "rmse": 0.039771876634216836
+            }
+          ]
+        },
+        {
+          "label": "quadratic",
+          "dissipative": true,
+          "forecasts": [
+            {
+              "status": "screened",
+              "rmse": 0.03219965637577423
+            },
+            {
+              "status": "screened",
+              "rmse": 0.035675239159897405
+            }
+          ]
+        },
+        {
+          "label": "rate+quadratic",
+          "dissipative": false,
+          "forecasts": [
+            {
+              "status": "screened",
+              "rmse": 0.0797323484428011
+            },
+            {
+              "status": "screened",
+              "rmse": 0.08037343026718408
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

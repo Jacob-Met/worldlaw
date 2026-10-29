@@ -1,0 +1,4 @@
+PASS independent authored nonlinear ODE shared geometry/drag recovery {"offsetM":0.015,"status":"fitted","scale":9.800001077176262,"rmse":2.9724098849978746e-8,"damping":[{"runId":"one","terms":[{"id":"rate","coefficient":-0.02999973398068009},{"id":"quadratic","coefficient":-0.04000057474810361}]},{"runId":"two","terms":[{"id":"rate","coefficient":-0.02999977591847325},{"id":"quadratic","coefficient":-0.040000315899067156}]}],"dissipative":true,"conditionEstimate":4.77654076619963}
+PASS absent excitation refuses every family
+PASS complete budget and forbidden force channel refusal
+PASS exact declared grid endpoints
