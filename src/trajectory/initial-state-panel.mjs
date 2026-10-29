@@ -42,7 +42,7 @@ export function createInitialStatePanel(anchor){
  const detail=node('p');const download=node('button','Export sensitivity inputs and results');download.className='button outline';download.hidden=true;
  host.append(style,title,intro,form,status,legend,chart,detail,download);
  let model,run,options,result,ticket=0,plotWidth=0,resizeFrame,preludeSelection=null,preludeResult=null;
- const energy=createInitialEnergyControls(chart,()=>({model,run,positionWidth:position.value,rateWidth:rate.value,prelude:!!preludeSelection}));
+ const energy=createInitialEnergyControls(chart,()=>({model,run,positionWidth:position.value,rateWidth:rate.value,prelude:!!preludeSelection,setWidths(widths){position.value=String(widths.positionHalfWidth);rate.value=String(widths.rateHalfWidth);invalidate();}}));
  const prelude=createPreludeControls(form,()=>run,value=>{preludeSelection=value;invalidate();});
  function invalidate(){energy.clear();ticket++;result=null;preludeResult=null;chart.replaceChildren();legend.hidden=true;detail.textContent='';download.hidden=true;runButton.disabled=false;status.textContent='Inputs changed. Recompute the declared grid; prior paths are cleared.';}
  position.addEventListener('input',invalidate);rate.addEventListener('input',invalidate);
