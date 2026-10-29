@@ -1,4 +1,4 @@
-import{prepareReferenceObserver}from'./nonlinear-reference-observer.mjs';
+import{prepareReferenceObserver,admitOriginalObserverGroups}from'./nonlinear-reference-observer.mjs';
 import{checkNonlinearCommonReference}from'./nonlinear-common-reference.mjs';
 import{checkLinearEnvelopeSeparator,checkLinearEnvelopeOffsets}from'./shared-training-check.mjs';
 import{searchPreparedLinearEnvelope}from'./shared-training-search.mjs';
@@ -7,12 +7,15 @@ export function admitAffineObserverDeclaration(raw){
  if(raw?.schema!==SCHEMA||raw.sameAffineObserver!==true||raw.correctedUnitResiduals!==true||typeof raw.basis!=='string'||!raw.basis.trim()||raw.basis.length>1000||!Number.isFinite(raw.gainCenter)||!Number.isFinite(raw.gainRadius)||raw.gainRadius<0||Math.abs(raw.gainCenter)>1e6||raw.gainRadius>1e6||!(1+raw.gainCenter-raw.gainRadius>1024*Number.EPSILON*(1+Math.abs(raw.gainCenter)+raw.gainRadius)))throw Error('Declare one strictly positive bounded affine observing correction and corrected-unit residual bounds.');
  if(raw.original?.schema!=='worldlaw.nonlinear-reference-observer/v1')throw Error('One complete original observing instrument is required.');return{gainCenter:raw.gainCenter,gainRadius:raw.gainRadius,basis:raw.basis.trim()};
 }
-export function prepareAffineObserver(raw){
+export function admitAffineObserverGroups(raw){
  const partitioned=raw?.schema==='worldlaw.nonlinear-affine-observer-partitions/v1';
  if(partitioned){if(raw.sameAssignedAffineObservers!==true||raw.correctedUnitResiduals!==true||typeof raw.basis!=='string'||!raw.basis.trim()||raw.basis.length>1000||raw.original?.schema!=='worldlaw.nonlinear-reference-observer-partitions/v1'||!Array.isArray(raw.gains)||raw.gains.length<2||raw.gains.length>16)throw Error('Retain complete original affine instrument assignments and corrected-unit declaration.');}
  else admitAffineObserverDeclaration(raw);
- const p=prepareReferenceObserver(raw.original);if(p.partitioned!==partitioned)throw Error('Retain exact original affine assignment scope.');
+ const p=admitOriginalObserverGroups(raw.original,raw.original.inquiry?.observations);if(p.partitioned!==partitioned)throw Error('Retain exact original affine assignment scope.');
  const gains=partitioned?p.groups.map((g,i)=>{if(raw.gains.length!==p.groups.length||raw.gains[i]?.instrumentId!==g.instrumentId)throw Error('Gain sources must match every original instrument in original order.');const x=raw.gains[i];admitAffineObserverDeclaration({schema:SCHEMA,sameAffineObserver:true,correctedUnitResiduals:true,basis:x.basis,gainCenter:x.gainCenter,gainRadius:x.gainRadius,original:{schema:'worldlaw.nonlinear-reference-observer/v1'}});return{instrumentId:g.instrumentId,basis:x.basis.trim(),gainCenter:x.gainCenter,gainRadius:x.gainRadius};}):[{gainCenter:raw.gainCenter,gainRadius:raw.gainRadius,basis:raw.basis.trim()}];
+ return{partitioned,gains};
+}
+export function prepareAffineObserver(raw){const{partitioned,gains}=admitAffineObserverGroups(raw);const p=prepareReferenceObserver(raw.original);
  const gainCenter=raw.gainCenter,gainRadius=raw.gainRadius,extra=p.extra.map((r,i)=>{const value=p.p.source.observations[i].value,g=gains[p.assignment[i]],center=value*g.gainCenter,radius=value*g.gainRadius;if(!Number.isFinite(center)||!Number.isFinite(radius))throw Error('Finite original readout-weighted gain terms required.');return{...r,refittedPrediction:r.refittedPrediction-center,influence:[...r.influence,...gains.map((_,j)=>j===p.assignment[i]?-radius:0)],independentCoefficientBoxRadius:r.independentCoefficientBoxRadius+Math.abs(radius),numericalTolerance:r.numericalTolerance+1024*Number.EPSILON*(Math.abs(center)+Math.abs(radius)+Math.abs(value))};});
  const source=partitioned?{schema:raw.schema,sameAssignedAffineObservers:true,correctedUnitResiduals:true,basis:raw.basis.trim(),gains,original:p.source}:{schema:SCHEMA,sameAffineObserver:true,correctedUnitResiduals:true,basis:raw.basis.trim(),gainCenter,gainRadius,original:p.source};
  return{p,partitioned,gains,source,sourceKey:JSON.stringify(source),extra,rows:[...p.rows.slice(0,p.c.rows.length).map(r=>({...r,influence:[...r.influence,...gains.map(()=>0)]})),...extra],radii:p.radii,latentCount:p.latentCount+gains.length};
