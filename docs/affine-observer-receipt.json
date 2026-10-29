@@ -1,0 +1,34 @@
+{
+  "inquiry": 523,
+  "nativeGroups": 147,
+  "browserGroups": 110,
+  "checks": [
+    "Two original reference levels separate additive correction but admit explicit positive affine observer under complete independent law/source checks",
+    "Public affine evidence rechecks complete original sources and corrected-unit residual declaration without changing additive findings",
+    "A source box allowing nonpositive factor refuses before search and retires previous export",
+    "Changed original observer source retires affine consent and fences late evidence replay"
+  ],
+  "operation": "hamon-69d25c-world-affine-observer-browser-20261029-v2",
+  "receipt": {
+    "command_id": "hamon-69d25c-world-affine-observer-browser-20261029-v2",
+    "request_sha256": "6647a3da0ed3ac90b72bac985525ed130dfbbb2ffc229b366aceafcb77b91229",
+    "generation": "ee331731ea9fdcab8b8d7fbc1d2ccdd51576bee7732a0388465f44b3a12badb7",
+    "state": "completed",
+    "runner_pid": 878195,
+    "started_at": "2026-10-29T04:08:18.841325955Z",
+    "finished_at": "2026-10-29T04:08:34.973794652Z",
+    "exit_code": 0
+  },
+  "sandbox": {
+    "adequate": true,
+    "layer1": true,
+    "pid": true,
+    "network": true,
+    "seccomp": true,
+    "tsync": true
+  },
+  "familyExited": true,
+  "profileRetained": true,
+  "exceptions": [],
+  "review": "SYN3 personally executed plus consumer and visible-label source scans accepted"
+}
