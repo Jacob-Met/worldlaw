@@ -1,0 +1,19 @@
+{
+  "claim": 519,
+  "nativeGroups": 141,
+  "independentReview": {
+    "reviewer": "SYNAPSE",
+    "groups": 7,
+    "accepted": true
+  },
+  "browser": {
+    "groups": 102,
+    "exceptions": [],
+    "sandboxActive": true,
+    "familyExited": true,
+    "profileRetained": true,
+    "operation": "hamon-69d25c-world-observer-partition-families-browser-20261029-v2",
+    "finishedAt": "2026-10-29T03:42:53.748Z",
+    "visualInspection": "First passing same-layout captures inspected; final reason-only conditional wording independently scanned and second exact-source browser passed."
+  }
+}
