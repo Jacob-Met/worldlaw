@@ -72,7 +72,13 @@ This checks the current Git index against the explicit policy, required runtime 
 
 Every included source file appears in `worldlaw/SOURCE_MANIFEST.json` with its relative path, byte length, and SHA-256. The manifest records the source commit, verification method, and Git tree when verified. The generated manifest cannot recursively hash itself; the archive SHA-256 printed by the command binds the complete archive, including the manifest.
 
-ZIP entries are sorted, use a fixed 1980 timestamp and normalized regular-file permissions, and are stored without compression. The same source bytes, source pin, and verification mode produce the same ZIP bytes without depending on a compression-library version. Host paths and build time are not embedded. No symlinks are packaged.
+ZIP entries are sorted, use a fixed 1980 timestamp and normalized regular-file permissions, and are stored without compression. The same source bytes, source pin, and verification mode produce the same ZIP bytes without depending on a compression-library version. The packager does not add its build-host paths or build time to generated ZIP metadata; retained source and evidence may contain their original paths and timestamps. No symlinks are packaged.
+
+## Retained research sources and evidence
+
+The package retains the reviewed recovery sources, original inputs, acquisition records and historical results under `recovery/` and `docs/receipts/`. These preserve earlier calculations, failed trials and source identities. Some historical programs refer to their original `/tmp` or `/dev/shm` locations or neighboring files from those runs. Their inclusion does not make every historical program a portable reproduction command. Use the maintained application launch and receiving commands in this document; a retained result is not a newly executed scientific result.
+
+The Giessler angular-state example includes its three original CSV files, article metadata, download receipt, derived input and attribution in `examples/physical-giessler-28271405/`. Its README records the CC BY 4.0 source and selected channels. The additional Damped Pendulum Dataset recordings retain their pinned acquisition URLs and hashes; the full Apache 2.0 license and original author README are retained in `recovery/held-condition/`. Derived notebooks preserve their source declarations. Repeated nested representations of a recording do not create additional independent observations.
 
 ## Receive the extracted application
 
