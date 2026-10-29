@@ -1,0 +1,7 @@
+# Frozen large-paper-baffle transfer qualification
+
+Base: merged WORLDLAW c9ce9edc4733cfa2df9f083b0e4f9bc96684da29. This is evidence for the unchanged original-CSV consumer, not a new fitting method. Protocol and training-model hashes were frozen before acquiring three receiving repetitions at nominal length .607 m. Training used original length .330/.426/.518 m condition-3 recordings. The author identifies condition 3 as a large paper baffle. No physical end correction or damping invariance is identified.
+
+All three predeclared receiving repetitions retain selected-offset, pooled-zero, and single-setup inverse-length alternatives, each with observed and prefix-fitted starts. Mean suffix position RMSE (radians), observed / prefix: selected .0559523662155 / .0367835078590; pooled zero .0504511968447 / .0562459106655; single inverse .0383450159140 / .0388413298342. Selected prefix improves the mean, but single inverse is substantially better on repetition 1; selected observed-start mean loses to both alternatives, and selected prefix worsens repetition 3. This is mixed conditional transfer, not universal superiority.
+
+All 18 forecast numerical screens passed. Actual maintained served and offline consumers each passed 15 checks with full Chromium sandbox and zero browser errors, including all displayed outcomes, exact original-CSV source download/reopen, repeated Compare and narrow layout. Original bytes and acquisition receipts are retained. All six courses are now consumed; no subsequent experiment may call them fresh qualification.

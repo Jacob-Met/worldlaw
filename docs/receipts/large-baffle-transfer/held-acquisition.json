@@ -1,0 +1,26 @@
+[
+  {
+    "file": "len5_cond3_1.csv",
+    "url": "https://raw.githubusercontent.com/EnzeXu/Damped_Pendulum_Dataset/cbf82673641ecd65e902ad5c38a048387649a2a0/raw_data/len5_cond3_1.csv",
+    "bytes": 324722,
+    "sha256": "b89aae6d6d6747660f2378ab732b9691cee9a3541eebc6f4f46d3202d12d9c50",
+    "acquiredUTC": "2026-10-29T00:29:20.502118+00:00",
+    "frozenModelsSha256": "5af1de7e7b0be9154e5eab54320db0cf0fb94131a5ccf9a16498221666d3cc00"
+  },
+  {
+    "file": "len5_cond3_2.csv",
+    "url": "https://raw.githubusercontent.com/EnzeXu/Damped_Pendulum_Dataset/cbf82673641ecd65e902ad5c38a048387649a2a0/raw_data/len5_cond3_2.csv",
+    "bytes": 323704,
+    "sha256": "22479997bad4f0101b4641b07379f32b175e4f389736a402128bcc1614a699b4",
+    "acquiredUTC": "2026-10-29T00:29:20.865319+00:00",
+    "frozenModelsSha256": "5af1de7e7b0be9154e5eab54320db0cf0fb94131a5ccf9a16498221666d3cc00"
+  },
+  {
+    "file": "len5_cond3_3.csv",
+    "url": "https://raw.githubusercontent.com/EnzeXu/Damped_Pendulum_Dataset/cbf82673641ecd65e902ad5c38a048387649a2a0/raw_data/len5_cond3_3.csv",
+    "bytes": 319714,
+    "sha256": "28e2ace369b54adfc0593ede831865a65bf3db53b326c4f77401c206464cd107",
+    "acquiredUTC": "2026-10-29T00:29:21.087978+00:00",
+    "frozenModelsSha256": "5af1de7e7b0be9154e5eab54320db0cf0fb94131a5ccf9a16498221666d3cc00"
+  }
+]

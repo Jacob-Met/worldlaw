@@ -1,0 +1,183 @@
+{
+  "summary": [
+    {
+      "recording": "len5_cond3_1.csv",
+      "reservation": {
+        "steps": 104640,
+        "rows": 46548
+      },
+      "results": [
+        {
+          "label": "shared_selected_offset",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.06408098675608924
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.03786495820508352
+            }
+          ]
+        },
+        {
+          "label": "shared_pooled_zero",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.027401134249077464
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.038768293341266115
+            }
+          ]
+        },
+        {
+          "label": "single_setup_inverse_length",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.02243009588860424
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.02225461328005272
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "recording": "len5_cond3_2.csv",
+      "reservation": {
+        "steps": 104640,
+        "rows": 46548
+      },
+      "results": [
+        {
+          "label": "shared_selected_offset",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.06588494692720766
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.03270529176210256
+            }
+          ]
+        },
+        {
+          "label": "shared_pooled_zero",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.05269178299484947
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.0698671285334377
+            }
+          ]
+        },
+        {
+          "label": "single_setup_inverse_length",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.03748161232849301
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.04926865748700716
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "recording": "len5_cond3_3.csv",
+      "reservation": {
+        "steps": 104640,
+        "rows": 46548
+      },
+      "results": [
+        {
+          "label": "shared_selected_offset",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.03789116496318172
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.03978027360979576
+            }
+          ]
+        },
+        {
+          "label": "shared_pooled_zero",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.07126067329004114
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.06010231012194185
+            }
+          ]
+        },
+        {
+          "label": "single_setup_inverse_length",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.05512333952476642
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.045000718735525774
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "means": [
+    {
+      "label": "shared_selected_offset",
+      "prefixMean": 0.036783507858993945,
+      "observedMean": 0.05595236621549288
+    },
+    {
+      "label": "shared_pooled_zero",
+      "prefixMean": 0.05624591066554855,
+      "observedMean": 0.05045119684465602
+    },
+    {
+      "label": "single_setup_inverse_length",
+      "prefixMean": 0.038841329834195214,
+      "observedMean": 0.038345015913954554
+    }
+  ]
+}
