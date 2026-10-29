@@ -1,0 +1,11 @@
+# Independently observed physical references
+
+The original common-reference inquiry retains one physical value per explicitly unchanged standard. A separate observation file can now challenge that same value without replacing original report knots, bounds or findings. The same-card action requires both the original common-reference association and a separate independent-observation declaration.
+
+The original declaration file uses schema `worldlaw.reference-observation-declaration/v1`, units `N·m`, a source `basis`, and complete `observations`. Each observation retains `id`, an original `referenceId`, physical `value`, `absoluteError`, and its own `basis`. Files remain drafts until explicit confirmation. They are not calibration-report readings and do not automatically inherit an instrument correction.
+
+Every new row constrains the already existing physical-reference latent value. Original instrument readouts are independently reconstructed and checked, then every physical-reference observation is checked against that same candidate value. The maintained search/separator remains unchanged; no physical-law equation participates in this separate source challenge. Original source-only and joint-law results remain visible. Combined contradiction does not identify which source assumption failed.
+
+The complete original and independent reference course is bounded to128 rows. Duplicate/foreign identities, wrong units, nonfinite values and incomplete source admission refuse. Zero-width observation contact and bounded exhaustion remain unresolved. Public save/reopen binds the full original source and certificate; source edits and delayed file completion are generation fenced.
+
+Executed controls: original joint witness remains unchanged while independent reference1±.005 contradicts instrument reading1.04±.001 at gap.033; independent1.04 supports it. Two independent observations cannot use different values for the same unchanged reference.117 composed native and80 actual Chromium groups passed; desktop/narrow captures inspected, maintained sandbox and owned family retirement observed, profile retained. No physical acquisition, source authentication or statistical independence inference.
