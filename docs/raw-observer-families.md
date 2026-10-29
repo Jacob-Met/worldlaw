@@ -1,0 +1,7 @@
+# Complete original-law comparison with raw-readout observing intervals
+
+The explicit raw-unit observing model can now be evaluated for every original law in the frozen challenge population. It reuses the same original report/reference course and the maintained raw observer search and independent checker for each structure. Each structure can use a different gain/offset and source-component witness; the result does not assert a common correction across competing laws or replace ranking/fitting.
+
+Complete admission reserves two interval conditions for every original raw observation, plus the original physical and standard conditions, and both observing gain/offset dimensions before the model loop. It also retains the original complete population preparation bound. The complete131-row control refuses without any searched subset even with zero iterations. Every original index and unsupported or exhausted result remains visible; all-family separation requires every original structure to separate.
+
+The native five-structure control returns one witness, one separation, two unresolved and one unavailable. The consumer uses the same current source and raw-unit consent, original family budgets, and source retirement. First16 details are displayed with complete counts; source/consent/budget edits clear the aggregate. Separate corrected-unit, raw selected-model and family outputs remain distinct.

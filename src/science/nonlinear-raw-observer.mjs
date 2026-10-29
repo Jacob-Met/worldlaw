@@ -1,9 +1,14 @@
-import{prepareAffineObserver}from'./nonlinear-affine-observer.mjs';
+import{prepareAffineObserver,admitAffineObserverDeclaration}from'./nonlinear-affine-observer.mjs';
 import{checkNonlinearCommonReference}from'./nonlinear-common-reference.mjs';
 import{checkLinearEnvelopeSeparator,checkLinearEnvelopeOffsets}from'./shared-training-check.mjs';
 import{searchPreparedLinearEnvelope}from'./shared-training-search.mjs';
 const SCHEMA='worldlaw.nonlinear-raw-observer/v1',CERT='worldlaw.nonlinear-raw-observer-certificate/v1';
+export function admitRawObserverDeclaration(raw){
+ if(raw?.schema!==SCHEMA||raw.rawReadoutResiduals!==true||raw.correctedUnitResiduals!==undefined)throw Error('Explicitly declare residual intervals in original raw readout units.');
+ admitAffineObserverDeclaration({...raw,schema:'worldlaw.nonlinear-affine-observer/v1',correctedUnitResiduals:true});
+}
 export function prepareRawObserver(raw){
+ admitRawObserverDeclaration(raw);
  if(raw?.schema!==SCHEMA||raw.rawReadoutResiduals!==true||raw.correctedUnitResiduals!==undefined)throw Error('Explicitly declare residual intervals in original raw readout units.');
  // Reuse original source/positive-factor admission and latent layout only.
  // The corrected-unit observation rows are replaced in full below.
