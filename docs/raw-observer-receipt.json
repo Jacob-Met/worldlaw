@@ -1,0 +1,25 @@
+{
+  "native": {
+    "passed": 154,
+    "command": "node --test --test-isolation=none tests/*calibration*.test.mjs tests/nonlinear*.test.mjs tests/piecewise*.test.mjs"
+  },
+  "browser": {
+    "passed": 118,
+    "checks": [
+      "Explicit raw-readout interval scales with the declared positive gain and admits a checked complete correction while corrected-unit inquiry remains separately separated",
+      "Raw-unit checked evidence saves and publicly rechecks the complete original source without adopting current drafts",
+      "Changed sourced gain retires raw consent and evidence before a distinct complete original inquiry",
+      "Original affine source edits fence delayed raw evidence completion and disable stale export"
+    ],
+    "finishedAt": "2026-10-29T04:36:57.421Z",
+    "exceptions": [],
+    "sandboxAdmitted": true,
+    "familyExited": true,
+    "noChildren": true,
+    "profileRetained": true,
+    "helperSha256": "225fe03edde82115dbd225d77c9002e1c12abf525e2d6d1db04badfeca3b3f5a",
+    "sourceIdentityQualification": "Inherited closure metadata retains 50ee4cb; exact staged changed-file hashes and current-base tree bind this composition.",
+    "visualInspection": "Desktop1280 and narrow390 screenshots personally inspected; result and unit distinction readable, no horizontal overflow."
+  },
+  "independentReview": "SYN four focused native controls and separate consumer source acceptance; no independent browser claim."
+}
