@@ -1,0 +1,35 @@
+{
+  "claim": 507,
+  "native": {
+    "groups": 120,
+    "pass": 120
+  },
+  "browser": {
+    "groups": 84,
+    "status": "passed",
+    "exceptions": [],
+    "finishedAt": "2026-10-29T02:29:58.380Z",
+    "sandboxActive": true,
+    "familyExited": true,
+    "profileRetained": true,
+    "originalOperation": "hamon-69d25c-world-reference-conditioned-browser-20261029-v1",
+    "sourceIdentity": {
+      "base": "50ee4cb8b825893b1720bbeb57c192c8de7446ff",
+      "inquiry": 507,
+      "composition": "five exact changed source files over qualified residual closure"
+    }
+  },
+  "independentReview": {
+    "reviewer": "SYNAPSE",
+    "personallyRun": 3,
+    "consumerSourceAccepted": true
+  },
+  "sourceHashes": {
+    "src/science/nonlinear-reference-conditioned.mjs": "b5e58fb9e7455c2acea98f92920a47dfda7d7c7a8245fe0403efe5046d3d131e",
+    "src/science/nonlinear-reference-conditioned-panel.mjs": "10c61c2834ac7e3ec444e690329a320f96930c2cb7581a540917cf70417a1c52",
+    "src/science/nonlinear-reference-observations-panel.mjs": "a11cc205ae507852c3f144dbf5fd2bb169b3533eaae76e3ec453c1b61f0f0afd",
+    "tests/nonlinear-reference-conditioned.test.mjs": "4b684d94a6cde9e63b42348bf50c0b692c9cd028c91f9e2c8570baf5f7452c70",
+    "scripts/nonlinear-reference-conditioned.receiving.mjs": "c46014590f67f571deef4120c9a924430129ba22d7728503c238ac37a8ec20a3"
+  },
+  "limits": "Combined separation does not attribute failure; separate witnesses do not establish a common explanation."
+}
