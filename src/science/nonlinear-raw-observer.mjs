@@ -5,7 +5,7 @@ import{searchPreparedLinearEnvelope}from'./shared-training-search.mjs';
 const SCHEMA='worldlaw.nonlinear-raw-observer/v1',PARTITIONS='worldlaw.nonlinear-raw-observer-partitions/v1',CERT='worldlaw.nonlinear-raw-observer-certificate/v1';
 export function admitRawObserverDeclaration(raw){
  if(![SCHEMA,PARTITIONS].includes(raw?.schema)||raw.rawReadoutResiduals!==true||raw.correctedUnitResiduals!==undefined)throw Error('Explicitly declare residual intervals in original raw readout units.');
- admitAffineObserverGroups({...raw,schema:raw.schema===PARTITIONS?'worldlaw.nonlinear-affine-observer-partitions/v1':'worldlaw.nonlinear-affine-observer/v1',correctedUnitResiduals:true});
+ return admitAffineObserverGroups({...raw,schema:raw.schema===PARTITIONS?'worldlaw.nonlinear-affine-observer-partitions/v1':'worldlaw.nonlinear-affine-observer/v1',correctedUnitResiduals:true});
 }
 export function prepareRawObserver(raw){
  admitRawObserverDeclaration(raw);
