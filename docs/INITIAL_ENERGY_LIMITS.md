@@ -65,3 +65,17 @@ The complete original row ledger retains index, time, angle, exact reading inter
 Saving a comparison retains the optional source-only root declaration `readingComparison: {angleReadingHalfWidth: number}` in the existing `worldlaw.initial-state-receipt/v1` family. Only that field is admitted, with a finite numeric radius from 0 through 100 rad; initial `options` remain unchanged. Reopen checks the same complete original run and law, recomputes the invariant and comparisons, and ignores saved answers. Old questions without this field remain compatible. **Older readers explicitly refuse questions containing the new field**; they do not silently discard the reading declaration. The compact 3 MB UTF-8 export/open limit remains unchanged.
 
 Qualification for this increment is recorded separately from the prior replay/browser evidence above. Six new native groups cover exact signed contact/separation, all 4,096 retained rows, invalid declarations, unchanged invariant/source, forged results and original-source mismatch; the six retained replay groups also pass. Separate execution against the actual older reader verifies refusal of the new declaration and byte-identical legacy export. Eight ordinary authored-source browser groups cover comparison, complete ledger pages, save/reopen, dirty-draft refused replacement and delayed-source retirement. Three final focused groups qualify source setup and desktop/narrow cell containment after a ledger-only layout repair. Independent source/native review and root visual review are attributed in [the qualification receipt](receipts/initial-energy-readings/qualification.json). These are authored software controls, not real-sensor validity.
+
+### Explain the smallest uniform half-width for overlap
+
+The same reading result also explains the least uniform half-width that would make every original reading interval overlap the **unchanged outer model bound**. If that bound is `[L,U]`, the exact diagnostic is `max_i(max(L-q_i, q_i-U, 0))`, over every admitted original row. It does not change the declared radius, initial-state widths, law or source. It is neither calibrated sensor uncertainty nor proof that one model trajectory can explain all readings. An outer enclosure can include positions that a particular trajectory never reaches.
+
+The exact rational value remains accessible in its disclosure; the compact decimal display uses integer floor/ceiling to enclose it outwards. Every tied attaining row retains its original index, time and angle. A bounded witness-number control navigates directly into the existing ledger page and focuses that original row. At zero, all rows already overlap and no enlargement is needed for this necessary check; those rows are not described as conflicts. A value above 100 rad remains diagnostic and does not relax the input limit.
+
+This is derived output, not a new saved declaration. The unchanged source-only save/reopen path recomputes it. Replacing the original source or changing widths/radius retires the associated result and witness navigation. Complete admission still limits the run to 4,096 rows. The additional pass work is bounded by three rational comparisons and one subtraction per row, two final comparisons and one directed binary64 projection; the retained witness list is at most the original row count. Decimal presentation is separately bounded to the admitted rational sizes.
+
+Native controls for this explanation:
+
+```sh
+node --test tests/initial-energy-threshold.test.mjs tests/initial-energy-readings.test.mjs
+```

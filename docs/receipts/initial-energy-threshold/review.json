@@ -1,0 +1,40 @@
+{
+  "reviewedAt": "2026-10-29T18:13:23.245499+00:00",
+  "result": "accepted; no concrete source-attribution or fresh visual blocker found",
+  "scope": "Exact recovered source attribution plus root inspection of four actual current175d browser captures; no additional root native/browser execution",
+  "base": "175d2fd7be638ceaac4cec30a51b8a06f5ba3526",
+  "sourceHashes": {
+    "src/trajectory/initial-energy-readings.mjs": "90e27cb0d7af235fe15385741fa8b8a732e525bf53693cd185bb3bd26936bbf7",
+    "src/trajectory/initial-energy-panel.mjs": "798ff0abfb57bc4280cdd7f6b6237c52fec945ca6c4d2ba9bca57bcbe642e92f"
+  },
+  "historicalSourceReviewSHA256": "e5be31c30f6b9f066d9e0f0a8ff84821ed7e921926c4d97240cf42773ad76897",
+  "attribution": "Both product hashes exactly match the prior root arithmetic/lifecycle review. Its original receipt bytes and old screenshots were not recovered; its identity/findings remain retained in conversation. Fresh native/browser qualification uses a newly authored source, not the absent original fixture.",
+  "findings": [
+    "Current1440/390 views keep threshold enclosure, unchanged0.25 declared radius, limits and witness controls legible without overlap.",
+    "The explicit row200/time4/angle-1.8 announcement remains visible alongside page201-201of201. Wide exact intervals, account and gap cells remain separated in a contained horizontal scroll region.",
+    "The new source has two separated rows, unlike the earlier four-row authored fixture; this difference is visible and not presented as identical input evidence. Both attaining witness identities199/200 remain retained.",
+    "The exact positive diagnostic remains0.40000000000000013 to0.40000000000000014 with no radius adoption or calibration claim."
+  ],
+  "captures": [
+    {
+      "path": "qa/browser/threshold-1440.png",
+      "sha256": "7ee0a8f30c152ab17fde37112b476a7ef7d81e5f431929a0b12e369a45447480"
+    },
+    {
+      "path": "qa/browser/threshold-390.png",
+      "sha256": "6b28dd41feecf05050bcf7e1a4eed5294a0f364a1341c7f949983eefd0ad1247"
+    },
+    {
+      "path": "qa/browser/threshold-witness-1440.png",
+      "sha256": "3e20862235c9d860b9e155c3f9f3cd775541bf1a777a0ddfe2f2d244d5cb667e"
+    },
+    {
+      "path": "qa/browser/threshold-witness-390.png",
+      "sha256": "54b0788e92641be00a1362b3418d0a859298dc04a70c65001267bd629ec15bd1"
+    }
+  ],
+  "limits": [
+    "New screenshots are private QA and excluded from repository and persistent checkpoint.",
+    "Fresh worker execution and root visual inspection remain separate; no installation or physical-law qualification follows."
+  ]
+}
