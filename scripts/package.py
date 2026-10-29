@@ -16,6 +16,9 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    # Exact concurrent family-comparison evidence and its maintained test fixture.
+    "docs/receipts/piecewise-families-20261028.json",
+    "tests/piecewise-family-fixture.mjs",
     # Exact retained source/evidence from main 805f85c; no recursive admission.
     "REFERENCE_SEQUENCE.md",
     "benchmark-family.mjs",
@@ -205,6 +208,7 @@ INCLUDE = (
     "independent-review/interaction-oracle-cases.json", "docs/receipts/interaction-9e01d4dd/*.txt",
     "separability.css", "examples/separability/*.json",
     "independent-review/separability-oracle.py", "docs/receipts/separability-9e01d4dd/*.txt",
+    "independent-review/reflection-oracle.py",
     "cycle-work.html", "src/cycle-work/*.mjs",
     "stiffness.html", "stiffness.css", "src/stiffness/*.mjs",
     "docs/receipts/stiffness-20261024/*.json", "docs/receipts/stiffness-20261024/*.png",
@@ -268,6 +272,7 @@ REQUIRED = (
     "src/motion/vendor/mechanism-core.mjs", "src/motion/vendor/mechanism-source.json",
     "src/motion/vendor/reference-admission.mjs", "src/motion/vendor/reference-source.json",
     "separability.css", "src/science/separability.mjs", "src/science/separability-panel.mjs",
+    "src/science/reflection-compatibility.mjs", "src/science/reflection-panel.mjs",
     "cycle-work.html", "src/cycle-work/app.mjs", "src/cycle-work/core.mjs",
     "src/cycle-work/refinement.mjs", "src/cycle-work/refinement-panel.mjs", "src/cycle-work/refinement-example.mjs",
     "src/cycle-work/curvature-witness.mjs",
