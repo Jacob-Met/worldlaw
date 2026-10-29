@@ -1,0 +1,400 @@
+{
+  "base": "c9ce9edc4733cfa2df9f083b0e4f9bc96684da29",
+  "source": [
+    {
+      "path": "src/science/nonlinear-cohorts.mjs",
+      "sha256": "ca56926d3dd44656350ec7d0a8b21abee28513e04c668979af8a26ffa95d7845",
+      "gitBlob": "29967aa69c0ad526dba16f71d231f83008f9750c"
+    },
+    {
+      "path": "src/science/nonlinear-cohorts-panel.mjs",
+      "sha256": "ef528524a1967b1d3fea090e4b42abeff47ded4fdb06b2ad851662532c18ee89",
+      "gitBlob": "d3ea316eb895fa39a722aa56226a8200f43a26db"
+    },
+    {
+      "path": "tests/nonlinear-cohort-actual.test.mjs",
+      "sha256": "1fb3a2ab5eaf5aee055009e55e4acefb8c6667736e2e3c5041db6193fc819a33",
+      "gitBlob": "34a04bf0ef972a8f9eb9f39accd1e32dc73a4c57"
+    },
+    {
+      "path": "scripts/nonlinear-cohort-actual.receiving.mjs",
+      "sha256": "25d10eb3c192ab862cc58d384978c3ffee69d4f04eda05b0b2b6334076a7f2d7",
+      "gitBlob": "02a5bb3b516b05257a0b3324a3e8cac9f6f06781"
+    },
+    {
+      "path": "docs/NONLINEAR_ACTUAL_ASSOCIATIONS.md",
+      "sha256": "a5f40150e1fd8a1823e0f49e4453de870828b5d70d230eee48ed7ab15ad16b9d",
+      "gitBlob": "8b61bca4671622c5c60ac712a4296d1e53989aab"
+    }
+  ],
+  "native": {
+    "passed": 89,
+    "command": "node --test --test-isolation=none tests/*calibration*.test.mjs tests/piecewise-*.test.mjs tests/nonlinear-cohort*.test.mjs tests/release-directions.test.mjs"
+  },
+  "actual": {
+    "native": {
+      "command_id": "hamon-69d25c-world-cohort-actual-browser-20261029-v1",
+      "request_sha256": "3b1c73ae27583acd5f683f44f668cd4528dc7dedb1db9b1c0bc6fe129be5dba5",
+      "generation": "282e8bd9fcb15239f071cdc762e57ca846f27b785e2201a6751e495be83d4849",
+      "state": "completed",
+      "runner_pid": 3848006,
+      "started_at": "2026-10-29T00:24:41.414411475Z",
+      "finished_at": "2026-10-29T00:24:49.849111147Z",
+      "exit_code": 0
+    },
+    "browser": {
+      "status": "passed",
+      "startedAt": "2026-10-29T00:24:41.467Z",
+      "finishedAt": "2026-10-29T00:24:49.841Z",
+      "url": "http://127.0.0.1:39957/",
+      "sourceIdentity": {
+        "base": "c0646ad6bff0dca3962fb5e5c4b61ab7f71db30a",
+        "inquiry": 393,
+        "reconstructed": true
+      },
+      "checks": [
+        "Original report remains draft until sourced explicit same-instrument association; both references drive checked separation",
+        "Changed original report bounds restore a checked witness without refitting original observations or associating actual readings",
+        "Public certificate export/reopen retains exact original report and association",
+        "Nonpositive corrected affine factor is refused; prior inquiry evidence retires",
+        "Delayed original-file completion cannot replace an edited inquiry source",
+        "An additional original standard constrains the same calibration pair and changes law inquiry from witness to separation; physical and calibration condition counts remain explicit",
+        "Public replay retains all original additional standards and recomputes the joint separation",
+        "Individually possible but jointly contradictory calibration standards refuse report adoption without attributing failure to the law",
+        "Changed original standard restores a complete checked witness with explicit calibration margin",
+        "Complete original standard course establishes positive factor despite broad defining box; the existing joint law inquiry remains executable",
+        "Public replay retains broad defining errors and all positivity-establishing original checks",
+        "Widened original check bounds retire prior evidence and refuse the now nonpositive calibration domain",
+        "Exact original midpoint equality admits a checked candidate while actual receiving and independent refit remain strictly interior",
+        "Public source-only replay rechecks exact calibration equality without widening its zero bound",
+        "Zero-width actual receiving remains unresolved; exact calibration does not certify numerical QR equality",
+        "Selected report cohort retains only exact original rows; incomplete training partition cannot supply a witness",
+        "Two original instrument reports form one complete source-bound partition through ordinary row-number intake",
+        "Public replay retains both original reports, all exact row values and separate source associations",
+        "Actual report associations start unselected; incomplete ordinary controls do not author shared corrections",
+        "Explicit report selection on the original actual row changes original-only witness to checked separation without editing JSON or refitting",
+        "Public replay independently rechecks original report plus complete actual-row source association",
+        "Original nonlinear calibration remains a draft until explicit complete source association; all original knots yield an independently refitted witness",
+        "Public nonlinear source replay retains every original standard and independently refits original rows",
+        "Explicit same-calibration actual association changes this course to checked separation; original observations remain unadopted",
+        "Calibration-only source retains the adverse original actual reading",
+        "Complete separately sourced original reading residuals reach the same nonlinear inquiry and independently refitted witness",
+        "Public nonlinear source replay retains every original standard and independently refits original rows",
+        "Incomplete residual course refuses instead of silently retaining a subset; source edits retire prior evidence",
+        "Independent standard contradicts original interpolation without becoming another knot or rejecting the physical law",
+        "Changed independent check source preserves defining knots and admits a common corrected-knot witness only after renewed association",
+        "Separate source-only replay rechecks defining knots and complete independent standards without replacing current law inquiry",
+        "Original-source edits retire prior check evidence and export before a new explicit check",
+        "Separate law and calibration witnesses remain retained while explicit same-correction inquiry finds joint separation",
+        "Widened bound may remain unresolved under bounded joint search; no witness is invented",
+        "Changed independent source retires joint evidence; renewed complete association admits both independent rechecks",
+        "Public composite replay independently refits original law readings and rechecks every original standard without source adoption",
+        "Keyboard complete-population action retains both original structures and distinct checked witness/separation outcomes",
+        "Insufficient complete work refuses every model before searching a subset",
+        "Zero-iteration original-family comparison preserves unresolved outcomes rather than excluding laws",
+        "Original-source edits retire whole-population evidence and require renewed explicit conditioning",
+        "Incomplete nonlinear instrument partition refuses before any source subset supplies evidence",
+        "Explicit original row cohorts produce independently refitted common-law evidence from distinct nonlinear instruments",
+        "Public nonlinear-cohort replay revalidates every original report row and independently refits the complete original training source",
+        "Changed actual-source basis retires evidence and refuses a certificate from the prior source",
+        "Independent actual-source alternative retains its complete original-cohort witness",
+        "Explicit original actual instrument A shares only its own knot block and changes witness to checked separation",
+        "Public actual-instrument replay retains exact original row values, report selection and source basis",
+        "Selecting the other retained instrument retires prior evidence and requires a new complete-source check"
+      ],
+      "exceptions": [],
+      "sandbox": {
+        "schema": "hamon-chromium-sandbox/v1",
+        "qualification": "Linux Chromium status in the supplied isolated CDP page",
+        "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+        "startedAt": "2026-10-29T00:24:41.716Z",
+        "completedAt": "2026-10-29T00:24:41.810Z",
+        "durationMs": 94.164175,
+        "admitted": true,
+        "browser": {
+          "protocolVersion": "1.3",
+          "product": "Chrome/156.0.8078.47",
+          "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "jsVersion": "15.6.75.19"
+        },
+        "target": {
+          "targetId": "8412F57F2FD34C903A61AE44E72263E3",
+          "type": "page",
+          "title": "about:blank",
+          "url": "about:blank",
+          "attached": true,
+          "canAccessOpener": false,
+          "browserContextId": "67E257BBB7DFD94A9B89105DB7F1FB3B"
+        },
+        "url": "chrome://sandbox/",
+        "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+        "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+        "observation": {
+          "rows": {
+            "layer1": "Namespace",
+            "pid": "Yes",
+            "network": "Yes",
+            "seccomp": "Yes",
+            "tsync": "Yes"
+          },
+          "checks": {
+            "adequate": true,
+            "layer1": true,
+            "pid": true,
+            "network": true,
+            "seccomp": true,
+            "tsync": true
+          },
+          "populated": true,
+          "duplicates": [],
+          "active": true
+        },
+        "failure": null
+      },
+      "pageConnection": {
+        "schema": "hamon.chromium-page.v1",
+        "status": "course-completed",
+        "startedAt": "2026-10-29T00:24:41.661Z",
+        "cdpOrigin": "http://127.0.0.1:45001",
+        "targetId": "8412F57F2FD34C903A61AE44E72263E3",
+        "limits": {
+          "startupMs": 5000,
+          "requestMs": 15000,
+          "closeMs": 1000,
+          "maxPending": 128,
+          "maxMessageBytes": 16777216,
+          "maxDiscoveryBytes": 262144
+        },
+        "requests": {
+          "sent": 832,
+          "completed": 832,
+          "methodErrors": 0,
+          "peakPending": 1,
+          "refusedBeforeSend": 0
+        },
+        "events": 131,
+        "failure": null,
+        "retirement": {
+          "closeRequested": true,
+          "closeObserved": true,
+          "closeWaitExpired": false,
+          "rejectedPending": [],
+          "closeCode": 1000,
+          "wasClean": true
+        },
+        "finishedAt": "2026-10-29T00:24:49.791Z",
+        "durationMs": 8130.540268000001
+      },
+      "lifecycle": {
+        "schema": "hamon.chromium-session.v1",
+        "status": "course-completed",
+        "startedAt": "2026-10-29T00:24:41.479Z",
+        "executable": "/opt/google/chrome/google-chrome",
+        "runDirectory": "/tmp/hamon-69d25c99168e-access-pg-99c1f973c9",
+        "profileDirectory": "/tmp/hamon-69d25c99168e-access-pg-99c1f973c9/profile",
+        "stdoutFile": "/tmp/hamon-69d25c99168e-access-pg-99c1f973c9/stdout.bin",
+        "stderrFile": "/tmp/hamon-69d25c99168e-access-pg-99c1f973c9/stderr.bin",
+        "receiptFile": "/tmp/hamon-69d25c99168e-access-pg-99c1f973c9/session.json",
+        "sandbox": "not-assessed",
+        "limits": {
+          "startupMs": 15000,
+          "shutdownMs": 3000,
+          "courseMs": 60000
+        },
+        "cleanup": {
+          "attempted": true,
+          "directChildExited": true,
+          "scope": "launched-family-receiver-and-owned-descendants",
+          "signals": [
+            "SIGTERM"
+          ],
+          "familyExited": true
+        },
+        "argv": [
+          "--headless=new",
+          "--enable-automation",
+          "--allow-chrome-scheme-url",
+          "--no-first-run",
+          "--no-default-browser-check",
+          "--disable-background-networking",
+          "--remote-debugging-address=127.0.0.1",
+          "--remote-debugging-port=0",
+          "--user-data-dir=/tmp/hamon-69d25c99168e-access-pg-99c1f973c9/profile",
+          "about:blank"
+        ],
+        "processFamily": {
+          "python": {
+            "path": "/usr/bin/python3.12",
+            "bytes": 8020928,
+            "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+          },
+          "receiver": {
+            "path": "/tmp/hamon-69d25c99168e-access-browser-qualification-v1/chromium_family.py",
+            "bytes": 13667,
+            "sha256": "b2cc9e73a5cbcaba1820cce126ecf5f6ebbcfacb3fd65372c9e1d149a60beae6"
+          },
+          "bytes": 1320,
+          "started": {
+            "event": "started",
+            "schema": "hamon.chromium-family.v1",
+            "supervisorPid": 3848024,
+            "browserPid": 3848025,
+            "subreaper": true
+          },
+          "finished": {
+            "schema": "hamon.chromium-family.v1",
+            "supervisorPid": 3848024,
+            "parentPid": 3848012,
+            "browserPid": 3848025,
+            "status": "family-exited",
+            "subreaper": true,
+            "scope": "one-new-child-and-its-descendants",
+            "limits": {
+              "graceMs": 3000,
+              "killMs": 3000,
+              "maxChildren": 4096,
+              "maxSamples": 64,
+              "maxProcEntries": 32768
+            },
+            "stopReason": "signal-15",
+            "browserExit": {
+              "code": 0,
+              "signal": null
+            },
+            "familyExited": true,
+            "waitNoChildrenObserved": true,
+            "deadlineExpired": false,
+            "reapedCount": 9,
+            "reapedSamples": [
+              {
+                "pid": 3848032,
+                "code": null,
+                "signal": 15
+              },
+              {
+                "pid": 3848034,
+                "code": null,
+                "signal": 15
+              },
+              {
+                "pid": 3848025,
+                "code": 0,
+                "signal": null
+              },
+              {
+                "pid": 3848068,
+                "code": 0,
+                "signal": null
+              },
+              {
+                "pid": 3848029,
+                "code": null,
+                "signal": 15
+              },
+              {
+                "pid": 3848030,
+                "code": null,
+                "signal": 15
+              },
+              {
+                "pid": 3848040,
+                "code": 0,
+                "signal": null
+              },
+              {
+                "pid": 3848041,
+                "code": 0,
+                "signal": null
+              },
+              {
+                "pid": 3848067,
+                "code": 0,
+                "signal": null
+              }
+            ],
+            "signalCount": 7,
+            "signalSamples": [
+              {
+                "pid": 3848025,
+                "signal": 15
+              },
+              {
+                "pid": 3848032,
+                "signal": 15
+              },
+              {
+                "pid": 3848034,
+                "signal": 15
+              },
+              {
+                "pid": 3848029,
+                "signal": 15
+              },
+              {
+                "pid": 3848030,
+                "signal": 15
+              },
+              {
+                "pid": 3848040,
+                "signal": 15
+              },
+              {
+                "pid": 3848041,
+                "signal": 15
+              }
+            ],
+            "signalRefusalCount": 0,
+            "signalRefusalSamples": [],
+            "childDiscovery": [
+              "task-children"
+            ],
+            "errors": [],
+            "durationMs": 8331.694833002985
+          },
+          "error": null
+        },
+        "pid": 3848024,
+        "browserPid": 3848025,
+        "cdpUrl": "http://127.0.0.1:45001",
+        "browserWebSocketUrl": "ws://127.0.0.1:45001/devtools/browser/0bbc0d00-3d03-4694-bc4a-f6ccbe823612",
+        "browserVersion": "Chrome/156.0.8078.47",
+        "readyAt": "2026-10-29T00:24:41.660Z",
+        "exit": {
+          "code": 0,
+          "signal": null
+        },
+        "logsComplete": true,
+        "logScope": "owned family streams; complete only after the receiver observes no waitable or running children",
+        "stdout": {
+          "path": "/tmp/hamon-69d25c99168e-access-pg-99c1f973c9/stdout.bin",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stderr": {
+          "path": "/tmp/hamon-69d25c99168e-access-pg-99c1f973c9/stderr.bin",
+          "bytes": 5297,
+          "sha256": "ee20e15ed1bb8bb2d0118570d940925d443bafdd3362f94fc83784551971643c"
+        },
+        "finishedAt": "2026-10-29T00:24:49.840Z"
+      },
+      "hashes": {
+        "chromium-session.mjs": "1f5364c7a441f05ea2afd63bd02bc1af5e39f3d9b011d43941e6386b704e4dcb",
+        "chromium-page.mjs": "952e1f3db5b7bd766e730868f9c2d11e0f092ffb00df7ba4faa432ebee767a63",
+        "chromium-sandbox.mjs": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead"
+      },
+      "receivingModuleSha256": "225fe03edde82115dbd225d77c9002e1c12abf525e2d6d1db04badfeca3b3f5a",
+      "chromeBinarySha256": "aea09d69ce7f24d5901f6bfb15dd44d0c856e793e0a498f8d8393ec7d2c308ec",
+      "profileRetained": true,
+      "error": null,
+      "cause": null
+    }
+  },
+  "captures": {
+    "desktop.png": "cf381072c92ad8fa42c3dc97f8883a41c4f65d5d29e70fdf1c861c2f187227d0",
+    "narrow.png": "213e19b18d1b92b05156d3eb4ee9e918652810949835220cd25b85e70b2ce2c6"
+  },
+  "visualInspection": "Desktop/narrow conditional result and horizontal comparison table inspected.",
+  "currentComposition": "388 upstream paths retained. No changed scientific/consumer path overlaps this served scalar closure. Only server.mjs is present: additive whitelist for one Giessler example; existing scalar dispatch unchanged. Source browser executed prior whitelist; no rerun attributed to current full repository.",
+  "scope": "Exact changed scalar closure. Inherited browser sourceIdentity records old fixture lineage; changed hashes above authoritative; no deployment/whole-repo claim."
+}
