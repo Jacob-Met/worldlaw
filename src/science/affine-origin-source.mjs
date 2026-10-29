@@ -1,4 +1,4 @@
-import{compareNearCriticalAffine}from'./affine-critical-comparison.mjs';
+import{compareFreeAffine}from'./affine-free-comparison.mjs';
 import {openInputOriginTorqueSource,INPUT_ORIGIN_SOURCE_SCHEMA} from './input-origin-torque-source.mjs';
 import {executeAffineOrigin} from './affine-origin-dynamics.mjs';
 import {inputOriginWork} from './input-origin-fit.mjs';
@@ -27,7 +27,7 @@ export function openAffineOriginSource(raw){
  const response=openInputOriginTorqueSource(source.original);
  if(response.status!=='converged')return {status:'fit-unresolved',reason:response.status,reservedWork,source};
  const execution=executeAffineOrigin(response.model,source.initial,source.settings);
- const comparison=compareNearCriticalAffine(response.model,source.initial,source.settings,execution.trajectory);
+ const comparison=compareFreeAffine(response.model,source.initial,source.settings,execution.trajectory);
  return {status:'executed',source,reservedWork,response,execution,comparison,meaning:'The original response is refitted before interpreting its torque as the complete right-hand side of declared inertia times acceleration. No additional force, damping, physical calibration or acquisition is inferred. Initial state and constant command are declarations. Held-aside readings do not fit or reset the trajectory. Origin plus displacement is retained; the summed physical coordinate is rounded. This does not replace the selected workbench law.'};
 }
 export function serializeAffineOriginSource(raw){return JSON.stringify(openAffineOriginSource(raw).source);}
