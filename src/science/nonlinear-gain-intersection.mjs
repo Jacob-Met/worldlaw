@@ -3,9 +3,12 @@ import{prepareAffineObserver}from'./nonlinear-affine-observer.mjs';
 import{rational as q,add,sub,div,cmp,enclosure}from'../unknown-lab/chronos-exact-halfplanes.mjs';
 const SCHEMA='worldlaw.nonlinear-gain-intersection/v1',CERT='worldlaw.nonlinear-gain-intersection-certificate/v1';
 const exactNumber=x=>{const e=enclosure(x);if(e.lower!==e.upper||!Number.isFinite(e.lower)||cmp(q(e.lower),x)!==0)throw Error('The exact complete gain intersection is not representable by the maintained center/radius engine; no bounds are widened or narrowed.');return e.lower;};
-export function prepareGainIntersection(raw){
- const admitted=admitGainIntersectionMembership(raw),original=prepareAffineObserver(raw.original).source;
+export function admitGainIntersectionDeclaration(raw){
+ const admitted=admitGainIntersectionMembership(raw);
  const ranges=admitted.groups.map((group,j)=>{const members=admitted.gains.filter((_,i)=>admitted.assignment[i]===j),bounds=members.map(g=>[sub(q(g.gainCenter),q(g.gainRadius)),add(q(g.gainCenter),q(g.gainRadius))]);let lo=bounds[0][0],hi=bounds[0][1];for(const b of bounds){if(cmp(b[0],lo)>0)lo=b[0];if(cmp(b[1],hi)<0)hi=b[1];}if(cmp(lo,hi)>0)throw Error('The complete original gain bounds contradict the declared same-gain relationship; no physical-law verdict.');return{gainCenter:exactNumber(div(add(lo,hi),q(2))),gainRadius:exactNumber(div(sub(hi,lo),q(2)))};});
+ return{...admitted,ranges};
+}
+export function prepareGainIntersection(raw){const admitted=admitGainIntersectionDeclaration(raw),ranges=admitted.ranges,original=prepareAffineObserver(raw.original).source;
  const source={schema:SCHEMA,sameGainGroups:true,basis:raw.basis.trim(),groups:admitted.groups,original},derived={schema:'worldlaw.nonlinear-gain-groups/v1',sameGainGroups:true,basis:source.basis,groups:source.groups,original:{...original,gains:original.gains.map((g,i)=>({...g,...ranges[admitted.assignment[i]]}))}},prepared=prepareGainGroups(derived);
  return{source,sourceKey:JSON.stringify(source),derived:prepared.source,prepared,ranges,assignment:admitted.assignment};
 }
