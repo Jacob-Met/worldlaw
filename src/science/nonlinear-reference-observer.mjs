@@ -5,10 +5,11 @@ import{searchPreparedLinearEnvelope}from'./shared-training-search.mjs';
 const SCHEMA='worldlaw.nonlinear-reference-observer/v1',CERT='worldlaw.nonlinear-reference-observer-certificate/v1',text=x=>typeof x==='string'&&x.trim()&&x.length<=1000;
 export function prepareReferenceObserver(raw){
  if(raw?.schema!==SCHEMA||raw.sameObserver!==true||!text(raw.instrumentId)||!text(raw.basis)||!Number.isFinite(raw.offsetRadius)||raw.offsetRadius<0||raw.offsetRadius>1e6)throw Error('Declare one unchanged original observing instrument, additive offset bound and source basis.');
+ const center=raw.offsetCenter===undefined?0:raw.offsetCenter;if(!Number.isFinite(center)||Math.abs(center)>1e6)throw Error('Retain a finite bounded original observing correction center.');
  const p=prepareReferenceObservations(raw.inquiry),c=p.c;
  if(c.rows.length+p.extra.length>128)throw Error('Complete original law and reference course exceeds128 rows.');
- const radius=raw.offsetRadius,rows=c.rows.map(r=>({...r,influence:[...r.influence,0]})),extra=p.extra.map(r=>({...r,influence:[...r.influence,-radius],independentCoefficientBoxRadius:r.independentCoefficientBoxRadius+radius,numericalTolerance:r.numericalTolerance+512*Number.EPSILON*radius}));
- const source={schema:SCHEMA,sameObserver:true,instrumentId:raw.instrumentId.trim(),basis:raw.basis.trim(),offsetRadius:radius,inquiry:p.source};
+ const radius=raw.offsetRadius,rows=c.rows.map(r=>({...r,influence:[...r.influence,0]})),extra=p.extra.map(r=>({...r,refittedPrediction:r.refittedPrediction-center,influence:[...r.influence,-radius],independentCoefficientBoxRadius:r.independentCoefficientBoxRadius+radius,numericalTolerance:r.numericalTolerance+512*Number.EPSILON*(radius+Math.abs(center))}));
+ const source={schema:SCHEMA,sameObserver:true,instrumentId:raw.instrumentId.trim(),basis:raw.basis.trim(),offsetRadius:radius,...(raw.offsetCenter===undefined?{}:{offsetCenter:center}),inquiry:p.source};
  return{p,c,source,sourceKey:JSON.stringify(source),rows:[...rows,...extra],extra,radii:[...c.radii,...p.source.observations.map(x=>x.absoluteError)],latentCount:c.latentCount+1};
 }
 export function checkReferenceObserver(raw,certificate){
@@ -18,7 +19,7 @@ export function checkReferenceObserver(raw,certificate){
  if(!witness)result=checkLinearEnvelopeSeparator(p.rows,z,1,p.radii);
  else{
   const original=z.slice(0,p.c.latentCount),physical=checkNonlinearCommonReference(p.c.source,{schema:'worldlaw.nonlinear-common-reference-certificate/v1',sourceKey:p.c.sourceKey,kind:'components',values:original});
-  const offset=z.at(-1)*p.source.offsetRadius,referenceValues=p.c.source.references.map((r,i)=>r.nominalTorque+r.absoluteError*original[p.c.p.latentCount+i]);
+  const offset=(p.source.offsetCenter??0)+z.at(-1)*p.source.offsetRadius,referenceValues=p.c.source.references.map((r,i)=>r.nominalTorque+r.absoluteError*original[p.c.p.latentCount+i]);
   const predicted=p.p.source.observations.map(x=>referenceValues[p.c.referenceIndex.get(x.referenceId)]-offset);
   const observed=checkLinearEnvelopeOffsets(p.extra,z,p.p.source.observations.map(x=>x.absoluteError),predicted,referenceValues);
   const ok=physical.status==='verified-interior-witness'&&observed.status==='verified-interior-witness';result={status:ok?'verified-interior-witness':'unresolved',reason:ok?'one-original-observer-offset-passes-law-and-all-reference-observations':'complete-original-recheck-not-interior',physical,observed,observerOffset:offset,referenceValues};
