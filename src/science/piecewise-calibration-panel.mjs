@@ -1,3 +1,4 @@
+import{comparePiecewiseFamilies}from'./piecewise-families.mjs';
 import{mountConditionedPiecewise}from'./piecewise-conditioned-panel.mjs';
 import{mountPiecewiseCalibrationCheck}from'./piecewise-calibration-check-panel.mjs';
 import{admitPiecewiseCalibration}from'./piecewise-calibration-source.mjs';
@@ -13,6 +14,6 @@ export function mountPiecewiseCalibration(host,state,eventIndex,modelIndex,throu
  const engine={certificateLabel:cert=>cert.kind==='calibration-knots'?'Every original calibration-knot and declared independent reading component':'Every actual receiving-row weight',prepare:()=>{const x=read();return piecewiseCalibrationContext(state,eventIndex,modelIndex,throughEvent,x.report,x.association,readReceiving(),readResiduals());},search:(_m,_t,_r,options)=>{const x=read();return searchPiecewiseCalibration(state,eventIndex,modelIndex,throughEvent,x.report,x.association,readReceiving(),{maxIterations:options.maxIterations,maxProducts:options.maxProducts},readResiduals());},serialize:serializePiecewiseCalibration,replay:replayPiecewiseCalibration};
  renderSharedTraining(search,context.model,context.training,context.receiving,[{key:'piecewiseSource',input:invalidator}],{engine,description:'Keep the original fitted structure and complete original rows. Search bounded shared calibration-knot corrections; optional complete original-row residual bounds above are added independently and charged as separate components; each witness independently refits all corrected original rows and checks every actual reading. A nominal correction is not sufficient evidence. This is a declared calibration alternative, not physical validation or certified QR arithmetic.'});
  const checks=mountPiecewiseCalibrationCheck(details,()=>{if(!source)throw Error('Open the original defining calibration source first.');return source;});
- mountConditionedPiecewise(details,()=>engine.prepare().source,()=>checks.read(),host);
+ mountConditionedPiecewise(details,()=>engine.prepare().source,()=>checks.read(),host,(basis,budgets)=>{const x=read();return comparePiecewiseFamilies(state,eventIndex,throughEvent,x.report,x.association,readReceiving(),checks.read(),basis,readResiduals(),budgets);});
  for(const control of host.querySelectorAll('input,textarea'))if(!details.contains(control))for(const kind of['input','change'])control.addEventListener(kind,invalidate);
 }
