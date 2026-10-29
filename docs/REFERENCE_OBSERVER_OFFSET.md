@@ -1,0 +1,11 @@
+# One original observing-instrument offset
+
+Independent observations of physical references can share a measuring-instrument calibration offset. Treating that offset as a separate enlargement of every row allows incompatible corrections. This additional, explicitly declared inquiry retains one additive component across all independent observations while their original residual bounds remain unchanged.
+
+The complete original law, instrument reports, physical references and observing rows are admitted before bounded search (128 rows). One latent coordinate is appended; original physical/report rows have zero influence from it, while observing rows subtract the shared offset. The witness independently refits the original law and checks every actual reference prediction minus the same offset against the original observed reading and residual. Separation covers the combined explanation, not a uniquely identified failed source.
+
+Executed control: observations1.06 and1.08±.005 of one unchanged physical reference cannot share one additive offset. Independently widening each bound to.055 admits a supplied candidate through the original checker, while bounded search remains unresolved. The first farther1.08/1.12 probe correctly separated even under widening; both negative results are retained. One1.08 observation admits a negative common correction, and a1.00 observation admits a positive correction. Zero offset retains the original restriction; zero residual stays numerically unresolved.
+
+The consumer requires an original instrument identity, explicit offset bound, source basis and same-instrument confirmation. No source is authenticated or adopted. Original source edits retire evidence and pending replay; public certificates bind every original field.
+
+Validation:128 composed native groups and90 actual Chromium groups passed. An independent review identified missing consumer argument wiring before browser execution; the action now supplies sameObserver, instrumentId and a nonblank offsetRadius. Actual ordinary keyboard flow, contradictory whole course, public replay and delayed-retirement controls passed. Sandbox active and owned process family exited; profile retained. Browser sourceIdentity is inherited closure lineage and exact changed hashes bind the final composition.

@@ -1,0 +1,33 @@
+{
+  "claim": 511,
+  "nativeGroups": 128,
+  "browserGroups": 90,
+  "status": "passed",
+  "exceptions": [],
+  "finishedAt": "2026-10-29T02:51:25.554Z",
+  "sandboxActive": true,
+  "familyExited": true,
+  "profileRetained": true,
+  "sourceIdentity": {
+    "base": "50ee4cb8b825893b1720bbeb57c192c8de7446ff",
+    "inquiry": 511,
+    "composition": "five exact changed source files over qualified residual closure"
+  },
+  "sourceHashes": {
+    "src/science/nonlinear-reference-observer.mjs": "2b1fab3970bb243250e58980136b701d6f210b19af635cb6c755d91fb191c23b",
+    "src/science/nonlinear-reference-observer-panel.mjs": "26dd46b05a6625425227d0d6c801f56e50477fadc1464502643c4172c7889490",
+    "src/science/nonlinear-reference-observations-panel.mjs": "f7cd1b043b13983b8d5c080168df4dfae6df559bd43f3061b07be296635bfa80",
+    "tests/nonlinear-reference-observer.test.mjs": "663873d191cd13bbff9c82180d94006c95e91ba27d9d8df31c4c3a76f83c6968",
+    "scripts/nonlinear-reference-observer.receiving.mjs": "e05e552d30ecde621d02d1eb4128c2ef39f648a737b2c0a07d52004875a8ce93"
+  },
+  "independentReview": {
+    "reviewer": "SYNAPSE",
+    "personallyRun": 5,
+    "correctedConsumerAccepted": true
+  },
+  "retainedLimitations": [
+    "Initial farther independent-widening control separated; closer bounded search unresolved while supplied witness checked.",
+    "Reviewer found missing observer argument fields; fixed before actual browser.",
+    "One declared unchanged additive offset is conditional, not authenticated or adopted."
+  ]
+}
