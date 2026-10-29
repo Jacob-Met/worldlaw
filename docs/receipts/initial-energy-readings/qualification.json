@@ -1,0 +1,63 @@
+{
+  "base": "aeb4c07917868d00f59b9e338f3bf47f103b9ba4",
+  "sourceHashes": {
+    "src/trajectory/initial-energy-readings.mjs": "830ec4050dd40be3df03a9395f4b717d3ce8a351083b4fbca6d88ea140e1c000",
+    "src/trajectory/initial-energy-receipt.mjs": "bfa6dd912448b2f87a24eeaba4c33323dd2f65884173d07d4efea65ef6ba79a2",
+    "src/trajectory/initial-energy-panel.mjs": "aad101518b9b24538d4e5fcebeb170f20fc328ae6bf2d4906359a49aef500c4b",
+    "tests/initial-energy-readings.test.mjs": "9918b632e72763c253e26d6976b7dec682b8e59e08df0f03b8622703a20799b2",
+    "docs/INITIAL_ENERGY_LIMITS.md": "c5f1d5e386c6f24abdbc1a66f572f27231490a85959c0c6747bdfbeca9d37e29"
+  },
+  "native": {
+    "newGroups": 6,
+    "retainedReplayGroups": 6,
+    "status": "passed",
+    "commands": [
+      "node tests/initial-energy-readings.test.mjs",
+      "node tests/initial-energy-receipt.test.mjs"
+    ],
+    "scope": "Pure source/receipt modules unchanged since these executions; later panel-only draft and containment changes reviewed/received separately."
+  },
+  "oldReader": {
+    "status": "passed",
+    "checks": [
+      "Complete legacy prepared question deep equality",
+      "Legacy compact exported bytes exact equality",
+      "Actual old strict reader refuses new optional declaration"
+    ],
+    "hashes": {
+      "../hamon-7bb49db0-energy-replay/receiving/src/trajectory/initial-energy-receipt.mjs": "299c60b2a711bb0c90a54a5c1b5536c769b981ffc67d2ef1c49810d6d4253e68",
+      "./receiving/src/trajectory/initial-energy-receipt.mjs": "bfa6dd912448b2f87a24eeaba4c33323dd2f65884173d07d4efea65ef6ba79a2"
+    }
+  },
+  "browser": {
+    "receiptSHA256": "f563e7191b41c71b4582eb755e3dce052981630a519bd37f7ad6be83543c7d26",
+    "groups": 8,
+    "panelSHA256": "34beae1ea97305bc36b165ab76882a1e876a0ad706693372f1eaccaf23fd62d4",
+    "harnessSHA256": "0831a1cb14f08cd8edd26966dfd0e3b8c3a092aacb95b9aa053636f148ab3256",
+    "authoredSourceSHA256": "71a36d16a04d828ba29bfd4c6d6e0949d70607fcf6e6feef2d1e865b43737d35",
+    "browser": "156.0.8078.73",
+    "sandbox": "Namespace/PID/network/Seccomp asserted in same browser",
+    "scope": "Actual ordinary source receiving, no physical source claim"
+  },
+  "negative": "browser-first-failure.json plus exact before-ledger-containment.mjs preserve c386 narrow overflow before minWidth=0 repair",
+  "review": {
+    "skill": "review-skill.json",
+    "root": "root-source-review.json; root-draft-refusal-review.json",
+    "finalVisual": "Root independently inspected final1440-right and390-left/right captures; accepted readable exact cells and scoped layout diff."
+  },
+  "layout": {
+    "groups": 3,
+    "receiptSHA256": "e9ee56811c310afb52572c787963577074d49dab8b8f86315cae301e51ce9edd",
+    "panelSHA256": "aad101518b9b24538d4e5fcebeb170f20fc328ae6bf2d4906359a49aef500c4b",
+    "harnessSHA256": "daddb9f68a02c654c53084009520b3c42b7c26686397543a193743df73aea032",
+    "scope": "One ordinary source setup and two final desktop/narrow exact-cell layout groups; no repeated behavioral matrix",
+    "screens": {
+      "readings-layout-1440-left.png": "cfd169f0f805a6071be89785dcecd364f5fdfe8d8bb81d0744e68976ffbe5f5a",
+      "readings-layout-1440-right.png": "9128e5044f92d751f1b4f2f98fbd72539abec65be03e3161bab6920a8ae72265",
+      "readings-layout-390-left.png": "e7ee2a8fedb8d986ab6faf4ee8fc83dadc6604ea1d0ee14cc11b0077089a355d",
+      "readings-layout-390-right.png": "6d0ff80b094d8f4c64889300f8543813ea0f44a5a710ad149f4fa6e308423b24"
+    }
+  },
+  "negativeLedger": "ledger-width-negative.json and before-ledger-width.mjs preserve34be exact source and original screenshots showing text overlap",
+  "artifactScope": "References to qa/, historical source snapshots, local harnesses and local review filenames identify retained private receiving artifacts, not additional files distributed with this source packet."
+}
