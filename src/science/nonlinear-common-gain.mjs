@@ -1,11 +1,14 @@
-import{prepareAffineObserver,checkAffineObserver}from'./nonlinear-affine-observer.mjs';
+import{prepareAffineObserver,checkAffineObserver,admitAffineObserverGroups}from'./nonlinear-affine-observer.mjs';
 import{checkLinearEnvelopeSeparator}from'./shared-training-check.mjs';
 import{searchPreparedLinearEnvelope}from'./shared-training-search.mjs';
 const SCHEMA='worldlaw.nonlinear-common-gain/v1',CERT='worldlaw.nonlinear-common-gain-certificate/v1';
-export function prepareCommonGain(raw){
+export function admitCommonGainDeclaration(raw){
  if(raw?.schema!==SCHEMA||raw.sameGain!==true||typeof raw.basis!=='string'||!raw.basis.trim()||raw.basis.length>1000||raw.original?.schema!=='worldlaw.nonlinear-affine-observer-partitions/v1'||!Array.isArray(raw.instrumentIds)||raw.instrumentIds.length<2||raw.instrumentIds.length>16)throw Error('Explicitly declare one common gain across the complete original instrument assignment, preserving separate offsets.');
- const q=prepareAffineObserver(raw.original),first=q.gains[0];
+ const q=admitAffineObserverGroups(raw.original),first=q.gains[0];
  if(raw.instrumentIds.length!==q.gains.length||q.gains.some((g,i)=>raw.instrumentIds[i]!==g.instrumentId||g.gainCenter!==first.gainCenter||g.gainRadius!==first.gainRadius))throw Error('Retain every original instrument in order and identical original gain centers and bounds; no gain range is silently replaced.');
+ return q;
+}
+export function prepareCommonGain(raw){admitCommonGainDeclaration(raw);const q=prepareAffineObserver(raw.original);
  const prefix=q.p.latentCount,rows=q.rows.map(r=>({...r,influence:[...r.influence.slice(0,prefix),r.influence.slice(prefix).reduce((a,b)=>a+b,0)]}));
  const source={schema:SCHEMA,sameGain:true,basis:raw.basis.trim(),instrumentIds:q.gains.map(g=>g.instrumentId),original:q.source};
  return{q,prefix,rows,radii:q.radii,latentCount:prefix+1,source,sourceKey:JSON.stringify(source)};
