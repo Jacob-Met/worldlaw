@@ -23,6 +23,7 @@ export function compareConditionedReferenceFamilies(state,eventIndex,throughEven
  return compareOriginalFamilies(state,eventIndex,throughEvent,original.physical,options,{mode:'reference-conditioned',source,original});
 }
 export function compareReferenceObserverFamilies(state,eventIndex,throughEvent,source,options={}){
+ if(source?.schema!=='worldlaw.nonlinear-reference-observer/v1')throw Error('Complete-family comparison currently requires the original single-observer source.');
  const inquiry=source?.inquiry,original=inquiry?.original;
  if(!Array.isArray(original?.references)||!original.references.length||original.references.length>16||!Array.isArray(original.readings)||!original.readings.length||original.readings.length>128||!Array.isArray(inquiry.observations)||!inquiry.observations.length||inquiry.observations.length>128)throw Error('Retain complete original observing-instrument and physical-reference courses.');
  return compareOriginalFamilies(state,eventIndex,throughEvent,original.physical,options,{mode:'reference-observer',source,original});
