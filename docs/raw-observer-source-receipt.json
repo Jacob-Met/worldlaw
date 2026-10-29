@@ -1,0 +1,25 @@
+{
+  "native": {
+    "passed": 161,
+    "command": "node --test --test-isolation=none tests/*calibration*.test.mjs tests/nonlinear*.test.mjs tests/piecewise*.test.mjs"
+  },
+  "browser": {
+    "passed": 126,
+    "checks": [
+      "Complete original raw observing and report/reference sources contradict before applying any physical receiving equation",
+      "Original raw source witness remains separate from the retained unresolved physical-law inquiry and cannot upgrade it",
+      "Public raw source-only replay independently rechecks original standards and raw values without adopting drafts or replacing joint evidence",
+      "Original raw source retirement fences delayed source-only evidence completion and clears export"
+    ],
+    "finishedAt": "2026-10-29T04:57:19.158Z",
+    "exceptions": [],
+    "sandboxAdmitted": true,
+    "familyExited": true,
+    "profileRetained": true,
+    "helperSha256": "225fe03edde82115dbd225d77c9002e1c12abf525e2d6d1db04badfeca3b3f5a",
+    "sourceIdentityQualification": "Inherited closure metadata50ee4cb retained; exact changed executable hashes and current-base publication bind composition.",
+    "visualInspection": "Desktop1280/narrow390 personally inspected, source-only versus joint result readable without horizontal overflow."
+  },
+  "independentReview": "SYN3new+4prior personally passed and core/consumer source accepted; no independent browser claim.",
+  "groundingLimit": "Native physical1.03\u21921.8 has identical source witness and joint separation. Browser uses different original source with unresolved joint and supported source; no browser joint separation claimed. Isolated authored UI probe initially duplicate variable, then two bounded numerical trials unresolved; all retained locally, no product weakening."
+}
