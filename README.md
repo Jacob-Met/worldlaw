@@ -489,6 +489,28 @@ the result. These are conditional compatibility bounds, not a confidence
 interval or a physical preparation-effect estimate. See [the model, source
 contract and receiving scope](docs/PERIODIC_HISTORY_RANGE.md).
 
+### Explicit angular-state observations and coherent windows
+
+Trajectory Challenge accepts sourced position/rate/acceleration documents without inventing torque or physical inertia. The original Giessler example retains one648-row course and the measured loss against position-only fitting. An additive coherent-window comparison preserves direct/weak incumbents, explicit uncovered fit tails, complete-work refusals and source-only replay. See [scientific assumptions and fresh qualification](docs/INTEGRATED_STATE_WINDOWS.md).
+
+### Declared damping conditions
+
+Motion also offers an optional [shared restoring-law comparison](docs/CONDITION_TRAJECTORIES.md): fit separate linear damping coefficients for original training courses, then forecast only explicitly associated repeat conditions. The original full-six and trajectory-refined comparisons remain visible. An authored example demonstrates the mechanism; measured condition-transfer losses remain preserved, and new-condition damping is not inferred.
+
+A separate [condition-prefix calibration](docs/CONDITION_PREFIX_CALIBRATION.md) can hold that original restoring law fixed while fitting only damping from a declared new-course prefix. Later observations never choose the rate. Boundary results, failed assumptions and the measured deterioration remain visible; this does not predict a condition without calibration.
+
+The optional [joint position/supplied-rate comparison](docs/JOINT_STATE_TRAJECTORIES.md) uses explicit channel scales and requires both forward numerical screens. It retains position-only incumbents and a biased-rate negative; channel weighting is not a likelihood or independence claim.
+
+A [frozen unused measured repetition](docs/JOINT_STATE_MEASURED_HOLDOUT.md) did not show a joint-channel advantage over the retained stronger incumbents. Original source bytes, the pre-acquisition protocol and coefficients, both numerical screens, and actual consumer replay are retained; no settings were retuned against that result.
+
+The existing joint-channel study also reports a bounded [original-channel consistency diagnostic](docs/MEASURED_MISMATCH_DIAGNOSTICS.md). It compares angle increments with integrated supplied rate without correcting observations or changing model selection; local optimizer and already-offered family checks retain the measured mismatch rather than claiming a new gain.
+
+Original receiving prefixes can condition model initialization while preserving frozen laws and every first-row observation: see [Prefix initialization](docs/PREFIX_INITIALIZATION.md).
+
+[Remaining initialization alternatives](docs/PREFIX_INITIALIZATION_WITNESSES.md) compares finite prefix-admitted starts without treating their predictions as confidence intervals or continuum bounds.
+
 ### Collect a separate matched-history course
 
 In Unknown Lab, **Take the question to your instrument** freezes a reproducible balanced AB/BA reading schedule from your declared preparation, common target state and noise assumption. Enter the actual command, angle, rate and torque for each reading; the worksheet leaves all measurements blank until supplied. Save and reopen partial work, then explicitly confirm the chronology and apply a complete admitted course to the existing paired comparison. Keep the worksheet as the full acquisition record. These are user-declared measurements; the app neither operates nor authenticates an instrument. See [the acquisition workflow and limits](docs/HISTORY_ACQUISITION.md).
+
+[Shared law with private training starts](docs/SHARED_LAW_TRAINING_STARTS.md) retains original first-row observations, all incumbents and both receiving initialization treatments.

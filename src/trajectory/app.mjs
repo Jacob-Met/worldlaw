@@ -1,4 +1,5 @@
 import {createIntervalReadoutPanel} from './interval-readout-panel.mjs';
+import {mountAngularStatePanel} from '../angular-state/panel.mjs';
 import {createAppliedTorquePanel} from './applied-torque-panel.mjs';
 import {createMotionIntakePanel} from './motion-intake-panel.mjs';
 import {createResidualStructurePanel} from './residual-structure-panel.mjs';
@@ -76,7 +77,7 @@ function updateMethodDescription(){
 
 function settings(){const raw=$('noise-sigma').value.trim(),noiseSigma=Number(raw);if(!raw||!Number.isFinite(noiseSigma)||noiseSigma<=0)throw new Error('Enter an assumed residual noise greater than zero.');return {...state?.options,commandPositionInteraction:$('command-position-interaction').checked,directionalQuadraticLoss:$('directional-quadratic-loss').checked,compareCoulombContact:$('compare-coulomb-contact').checked,method:document.querySelector('input[name="method"]:checked').value,noiseSigma};}
 async function perform(getNext,message,{persist=true,propagate=false}={}){
-  commandTimingPanel.suspend();
+  commandTimingPanel.suspend();predictivePanel.suspendStarts();
   const ticket=++generation;setBusy(true);
   try{
     await new Promise(resolve=>requestAnimationFrame(resolve));
@@ -90,7 +91,7 @@ async function perform(getNext,message,{persist=true,propagate=false}={}){
     $('noise-sigma').value=state.options.noiseSigma;$('command-position-interaction').checked=!!state.options.commandPositionInteraction;$('directional-quadratic-loss').checked=!!state.options.directionalQuadraticLoss;$('compare-coulomb-contact').checked=!!state.options.compareCoulombContact;updateMethodDescription();render();
     if(persist)save();notice(message);return workflow;
   }catch(error){if(ticket===generation){if(propagate)throw error;alertError(error);if(!state)set('notice','No challenge is loaded. Import paired runs or load the synthetic example.');}}
-  finally{if(ticket===generation){setBusy(false);commandTimingPanel.setBundle(state?.bundle);}}
+  finally{if(ticket===generation){setBusy(false);commandTimingPanel.setBundle(state?.bundle);predictivePanel.resumeStarts();}}
 }
 async function exampleBundle(choice){
   if(choice==='command-delay')return commandTimingExample().bundle;
@@ -259,6 +260,7 @@ createMotionIntakePanel(document.querySelector('.evidence-panel'),{
 
 const predictiveHost=el('section');$('challenge-workspace').append(predictiveHost);
 const predictivePanel=createPredictiveSelectionPanel(predictiveHost);
+const angularStateHost=el('section');$('challenge-workspace').append(angularStateHost);mountAngularStatePanel(angularStateHost);
 
 experimentPanel=createExperimentPanel($('experiment-panel'),{
   onPlan:settings=>advanceExperiment(session=>planNextExperiment(session,settings),'A release plan and its numerical check were computed from training-compatible forecasts. No new recording has been acquired.'),

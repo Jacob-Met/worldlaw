@@ -1,0 +1,13 @@
+✔ original first row remains in every bounded-trial objective (20.015641ms)
+✔ complete family budget and declared bounds refuse (1.035102ms)
+✔ independent nonlinear release confronts offered families and both incumbents (2537.275379ms)
+✔ held-aside values cannot change bounded training or incumbent selection/refinement (5139.566147ms)
+✔ source-only replay ignores cached fit and explicit missing/budget refusal retains incumbent (8783.360617ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16644.04515

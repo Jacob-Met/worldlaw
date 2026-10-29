@@ -1,0 +1,13 @@
+{
+  status: 'training_improved',
+  trainingRMSE: 0.010528302045794942,
+  relation: {
+    scale: 9.659082975183372,
+    offsetM: -0.0017543389614382285,
+    trainingDamping: [ [Object], [Object] ]
+  },
+  forecast: [
+    [ 'screened', 0.030385439949035475 ],
+    [ 'screened', 0.04686634428942151 ]
+  ]
+}

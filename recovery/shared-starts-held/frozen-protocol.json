@@ -1,0 +1,104 @@
+{
+  "frozenUTC": "2026-10-28T21:24:31.462840+00:00",
+  "revision": "cbf82673641ecd65e902ad5c38a048387649a2a0",
+  "trainingFiles": [
+    "len4_cond1_1.csv",
+    "len4_cond1_2.csv"
+  ],
+  "heldFile": "len4_cond1_3.csv",
+  "selection": "Previously unused author length4(.518m), air-only, original repetitions1/2 train allsharedlaws;3 held. Priorlength2/3 entirely consumed.",
+  "windowSeconds": [
+    5,
+    25
+  ],
+  "preprocessing": "Original timestamps and angle/rate columns; no smoothing/recentering/resampling. Initial rate is first retained supplied rate. No rate-angle independence assumed.",
+  "family": "rate+gravity",
+  "fit": {
+    "windowDuration": 0.4,
+    "windowStride": 0.1,
+    "noiseSigma": 0.02,
+    "maxStep": 0.02
+  },
+  "originalOptions": {
+    "iterations": 3,
+    "maxStep": 0.02,
+    "screen": 0.001,
+    "bounds": [
+      [
+        -5,
+        1
+      ],
+      [
+        -100,
+        -1
+      ]
+    ],
+    "maxTotalSteps": 4000000
+  },
+  "jointOptions": {
+    "iterations": 3,
+    "maxStep": 0.02,
+    "screen": 0.001,
+    "rateScreen": 0.001,
+    "bounds": [
+      [
+        -5,
+        1
+      ],
+      [
+        -100,
+        -1
+      ]
+    ],
+    "maxTotalSteps": 4000000,
+    "channelScales": {
+      "positionRad": 0.1,
+      "rateRadPerSecond": 0.1,
+      "basis": "Fixed authored-method scales before acquiring this measured setup; objective weights only, not independent sensor standard deviations"
+    }
+  },
+  "sourceHashes": {
+    "src/prefix-starts/fit.mjs": "2ab2151e88d177de24adc131968e0c763cee3505a30e8439832fd0527aa87d06",
+    "src/prefix-starts/session.mjs": "dd189f14d6e90e6cc3f74a1d08c7545159d0ef65298cb10ac7e861c96b47307c",
+    "src/joint-state/fit.mjs": "52629bd0b4edaed3dde1970f41700d2fbd95a9524683b6fb0e2b9f0e2fed6fb0",
+    "src/joint-state/session.mjs": "6b92e1afb8d7ba6652ae75eec09e0c20977cfa473db6864850f6ba3ce7314386",
+    "src/joint-state/receiver.mjs": "ee5b62379fcb951aada730eb834d20cd0203918a9e7d014e09a4bf2d722af9ec",
+    "src/trajectory-lm/fit.mjs": "cee50e4156185d601161d5f1cf57432b3bc9320eeff0a7bfb28b36f8c980879f",
+    "src/trajectory-lm/session.mjs": "32002e250a7baf2c6d3f889dac3db8cd4c65662a32c4bd966435bfa18b1d9d1a",
+    "src/predictive-selection/select.mjs": "0473f2f8bfdcf19530d15ef44e592d449f6c1b7dbb4447564202b6aa4432bd4a",
+    "src/predictive-selection/refine.mjs": "7b31c760ad1045a767bf567b471ec8c1172a4a06f4a6e462ad551da91dfb6ef6",
+    "src/shared-law-starts/fit.mjs": "916651ff9a99e613791a6e1604bd957d490205d0a193a0e425054f3cc7c33049",
+    "src/shared-law-starts/session.mjs": "1cc4a6db0198d7274ca4328300fd96275e170766e2c9d32a3f474bc7658b909b"
+  },
+  "meaning": "New method choices frozen before newsetupacquisition. Original sharedlaws and newtrainingstartslaw frozen before heldacquisition. Receiving first1s originalpositions estimate starts only; suffix onlyscores. Bounds must match trainingselectedfamily; otherwise explicit optionalrefusal, noadaptation. Not externally administered blind validation.",
+  "prefixOptions": {
+    "prefixDuration": 1,
+    "positionWidth": 0.1,
+    "rateWidth": 0.5,
+    "gridCount": 9,
+    "sweeps": 8,
+    "maxStep": 0.02,
+    "screen": 0.001,
+    "maxTotalSteps": 4000000
+  },
+  "primaryComparison": "Shared-law/private-training-start LM followed by receiving-prefix initialization versus original training-selected predictive law followed by identical prefix initialization. Suffix original position RMS after6s through25s. Retain all5incumbents, oldcoordinate-start alternative and observed-start forecasts; no receiving winner selection.",
+  "sharedStartOptions": {
+    "iterations": 3,
+    "coordinateSweeps": 4,
+    "positionWidth": 0.1,
+    "rateWidth": 0.5,
+    "maxStep": 0.02,
+    "screen": 0.001,
+    "bounds": [
+      [
+        -5,
+        1
+      ],
+      [
+        -100,
+        -1
+      ]
+    ],
+    "maxTotalSteps": 4000000
+  }
+}

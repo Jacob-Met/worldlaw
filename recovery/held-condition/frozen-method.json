@@ -1,0 +1,270 @@
+{
+  "frozenAtUTC": "2026-10-28T18:00:41.379394+00:00",
+  "target": "raw_data/len1_cond2_1.csv",
+  "targetRevision": "cbf82673641ecd65e902ad5c38a048387649a2a0",
+  "selectionRule": "First repetition of author length1 condition2, not previously consumed in this worker; if missing or incompatible report refusal, no target replacement selected by error. Primary metadata must establish condition meaning.",
+  "window": {
+    "startSeconds": 5,
+    "endSecondsInclusive": 25,
+    "selection": "Original timestamps in fixed existing20second window, no interpolation or recentering; supplied initial rate at first retained row"
+  },
+  "evaluation": {
+    "maxStep": 0.02,
+    "maxAbsNumericalScreen": 0.001,
+    "maxTotalSteps": 1000000,
+    "maxRows": 65536,
+    "allowRefit": false
+  },
+  "models": [
+    {
+      "label": "weak_full_six",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+coulomb+gravity+quadratic",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -10.174624907084146,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "coulomb",
+            "coefficient": 20.328846108084484,
+            "coefficientUnit": "rad/s²"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -41.11238945545149,
+            "coefficientUnit": "rad/s²"
+          },
+          {
+            "id": "quadratic",
+            "coefficient": 1.132029292414238,
+            "coefficientUnit": "1/rad"
+          }
+        ],
+        "equation": "α = -10.175·ω + 20.329·sign(ω) + -41.112·sin(θ) + 1.132·ω|ω|",
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "compact_window_weak_angular_acceleration_regression",
+        "domain": {
+          "position": {
+            "min": -0.952,
+            "max": 0.961
+          },
+          "rate": {
+            "min": -6.023905723905716,
+            "max": 6.25589225589225,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "count": 394,
+          "rmse": 0.0338499911078838,
+          "maxAbsResidual": 0.09563274006212619,
+          "score": -2644.1180317075414,
+          "residualUnits": "rad",
+          "residualMeaning": "noise_normalized_weak_equation_not_forward_prediction",
+          "conditionEstimate": 19.423221148204426,
+          "rank": 4
+        }
+      }
+    },
+    {
+      "label": "predictive_full_six",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.013576223713669762,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -39.9163020099921,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "equation": "α = -0.013576·ω + -39.916·sin(θ)",
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "compact_window_weak_angular_acceleration_regression",
+        "domain": {
+          "position": {
+            "min": -0.952,
+            "max": 0.961
+          },
+          "rate": {
+            "min": -6.023905723905716,
+            "max": 6.25589225589225,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "count": 394,
+          "rmse": 0.06307241222811574,
+          "maxAbsResidual": 0.11436363884512228,
+          "score": -2165.6630861944413,
+          "residualUnits": "rad",
+          "residualMeaning": "noise_normalized_weak_equation_not_forward_prediction",
+          "conditionEstimate": 1.0000143472009102,
+          "rank": 2
+        }
+      }
+    },
+    {
+      "label": "maintained_coordinate",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity~forward-refined",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.01982622371366976,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -39.9163020099921,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "equation": "α = -0.0198262·rate + -39.9163·gravity",
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "bounded_local_complete_training_trajectory_refinement",
+        "domain": {
+          "position": {
+            "min": -0.952,
+            "max": 0.961
+          },
+          "rate": {
+            "min": -6.023905723905716,
+            "max": 6.25589225589225,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "count": 4000,
+          "rmse": 0.05028000840129274,
+          "residualUnits": "rad",
+          "residualMeaning": "complete_training_forward_position_error",
+          "originalWeakMetricsNotApplicable": true
+        }
+      }
+    },
+    {
+      "label": "trajectory_lm",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.013755245478650808,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -40.10666817003497,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "compact_window_weak_angular_acceleration_regression",
+        "domain": {
+          "position": {
+            "min": -0.952,
+            "max": 0.961
+          },
+          "rate": {
+            "min": -6.023905723905716,
+            "max": 6.25589225589225,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "meaning": "Seed metrics do not apply"
+        }
+      }
+    }
+  ],
+  "sourceSHA256": "7e42868153d3aa15fc9722f665f5ed62cc491c4445768f8db74a6e36b85cb0e6",
+  "implementationSHA256": {
+    "src/trajectory-lm/fit.mjs": "cee50e4156185d601161d5f1cf57432b3bc9320eeff0a7bfb28b36f8c980879f",
+    "src/trajectory-lm/session.mjs": "32002e250a7baf2c6d3f889dac3db8cd4c65662a32c4bd966435bfa18b1d9d1a",
+    "src/trajectory/angular-discovery.mjs": "71c16bd766e045a3c28d1c34f75eeafca6f6e6a891a5af6805d055e284ce3f1b",
+    "src/trajectory/angular-resolution.mjs": "81b54f874e121b5b3161752bcc94f46d9292f003097a33726de806b83f2e686c",
+    "src/trajectory/forward.mjs": "e7e6f26f4038b3509a7cc794a62149680eabe0332b720838c3084cbe0feda3d2",
+    "src/trajectory/resolution.mjs": "b95c13a4c9ad06d99963a99119bc64b41c2daf838522fe25824a59726fdf6475",
+    "src/science/linear-fit.mjs": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da"
+  },
+  "trainingOptions": {
+    "iterations": 8,
+    "maxStep": 0.02,
+    "screen": 0.001,
+    "bounds": [
+      [
+        -5,
+        1
+      ],
+      [
+        -100,
+        -1
+      ]
+    ],
+    "maxTotalSteps": 4000000
+  },
+  "incumbentFitOptions": {
+    "terms": [
+      "rate",
+      "coulomb",
+      "spring",
+      "gravity",
+      "quadratic",
+      "bias"
+    ],
+    "maxTerms": 4,
+    "noiseSigma": 0.02,
+    "ambiguityDelta": 6,
+    "windowDuration": 0.4,
+    "windowStride": 0.1,
+    "rateWindowSize": 9,
+    "maxStep": 0.02,
+    "maxTotalSteps": 2000000,
+    "maxPredictionRows": 262144,
+    "maxNumericalDifference": 0.001
+  },
+  "incumbentRefinementOptions": {
+    "sweeps": 8,
+    "maxStep": 0.02
+  },
+  "meaning": "Newly held-back relative to this worker method development, not independently administered blind validation. Prior PASCO condition1 challenge was reused."
+}

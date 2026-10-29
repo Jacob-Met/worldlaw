@@ -1,0 +1,128 @@
+[
+  {
+    "label": "unchanged_source_law",
+    "status": "screened",
+    "rmse": [
+      {
+        "status": "screened",
+        "rmse": 0.8494885322336593
+      },
+      {
+        "status": "screened",
+        "rmse": 0.8439337883281335
+      }
+    ]
+  },
+  {
+    "label": "conditional_inverse_length",
+    "status": "screened",
+    "rmse": [
+      {
+        "status": "screened",
+        "rmse": 0.023437839316506788
+      },
+      {
+        "status": "screened",
+        "rmse": 0.03970478748768208
+      }
+    ]
+  },
+  {
+    "label": "weak_full_six",
+    "status": "screened",
+    "rmse": [
+      {
+        "status": "screened",
+        "rmse": 0.8773816571896939
+      },
+      {
+        "status": "screened",
+        "rmse": 0.8905624429747785
+      }
+    ]
+  },
+  {
+    "label": "predictive_full_six",
+    "status": "screened",
+    "rmse": [
+      {
+        "status": "screened",
+        "rmse": 0.038454849811029285
+      },
+      {
+        "status": "screened",
+        "rmse": 0.02887827366173248
+      }
+    ]
+  },
+  {
+    "label": "maintained_coordinate",
+    "status": "screened",
+    "rmse": [
+      {
+        "status": "screened",
+        "rmse": 0.04553003370423792
+      },
+      {
+        "status": "screened",
+        "rmse": 0.06816228595396533
+      }
+    ]
+  },
+  {
+    "label": "position_only",
+    "status": "screened",
+    "rmse": [
+      {
+        "status": "screened",
+        "rmse": 0.027722256129091984
+      },
+      {
+        "status": "screened",
+        "rmse": 0.04769208880631145
+      }
+    ]
+  },
+  {
+    "label": "joint_channels",
+    "status": "screened",
+    "rmse": [
+      {
+        "status": "screened",
+        "rmse": 0.026883519926918627
+      },
+      {
+        "status": "screened",
+        "rmse": 0.04621628541229309
+      }
+    ]
+  },
+  {
+    "label": "joint_shared_law_training_starts",
+    "status": "screened",
+    "rmse": [
+      {
+        "status": "screened",
+        "rmse": 0.026285093583298072
+      },
+      {
+        "status": "screened",
+        "rmse": 0.02661602721897012
+      }
+    ]
+  },
+  {
+    "label": "coordinate_training_starts",
+    "status": "screened",
+    "rmse": [
+      {
+        "status": "screened",
+        "rmse": 0.038454849811029285
+      },
+      {
+        "status": "screened",
+        "rmse": 0.02887827366173248
+      }
+    ]
+  }
+]

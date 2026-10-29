@@ -1,0 +1,671 @@
+{
+  "schema": "worldlaw.trajectory-standalone-build/v1",
+  "sourceHead": null,
+  "sourceStatus": null,
+  "sourceMeaning": "Source digests identify exact bytes bundled; sourceHead alone does not include uncommitted changes. Git fields are null when this project is not its own readable Git worktree root.",
+  "tool": {
+    "name": "esbuild",
+    "version": "0.25.12",
+    "modulePath": "/tmp/hamon-a755e25-worldlaw-build-runtime/node_modules/esbuild/lib/main.js",
+    "moduleSHA256": "0d1241812c443111d39475dfc66836003e9ef8b87e54d990dd67df29d20010e1",
+    "node": "v24.22.1",
+    "platform": "linux",
+    "architecture": "x64"
+  },
+  "entryPoint": "src/trajectory/app.mjs",
+  "format": "iife",
+  "target": "es2022",
+  "embeddedExamples": [
+    "trajectory-pendulum-92be.json",
+    "trajectory-ambiguous-92be.json",
+    "physical-pasco-92be.json",
+    "physical-giessler-28271405/state-observations.json"
+  ],
+  "sources": [
+    {
+      "path": "examples/physical-giessler-28271405/state-observations.json",
+      "bytes": 94656,
+      "sha256": "0e6e4c74786958a7bfdd6146e21823752cd2338fd8acac169defa086b5984c04"
+    },
+    {
+      "path": "examples/physical-pasco-92be.json",
+      "bytes": 453510,
+      "sha256": "7e42868153d3aa15fc9722f665f5ed62cc491c4445768f8db74a6e36b85cb0e6"
+    },
+    {
+      "path": "examples/physical-pasco-92be/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "examples/trajectory-ambiguous-92be.json",
+      "bytes": 57411,
+      "sha256": "dd3a43b09b669fa062850d8d6e0980199ea176da9e67d15cfe3f98a38d69941e"
+    },
+    {
+      "path": "examples/trajectory-pendulum-92be.json",
+      "bytes": 87534,
+      "sha256": "fdd21c54935b274c6e007e2ed3e9356c36c5ef90f8bed266052b5af78170701e"
+    },
+    {
+      "path": "favicon.svg",
+      "bytes": 262,
+      "sha256": "23c01b64eb46d40f255893a6cc35cfc1b409bd1627840d676ae4e56e6c80b630"
+    },
+    {
+      "path": "scripts/build-trajectory-92be.mjs",
+      "bytes": 17752,
+      "sha256": "0817f54a8f07c949b487f9a24a49ebe155b1f91ee7ffbb01e2853fc1982ad60e"
+    },
+    {
+      "path": "src/angular-state/integrated-panel.mjs",
+      "bytes": 6784,
+      "sha256": "2ced3acbcabb238b7b5f778959021c1fba40e69ac09cbc69188e92db1b4011cb"
+    },
+    {
+      "path": "src/angular-state/integrated-session.mjs",
+      "bytes": 2848,
+      "sha256": "b09f90dcdc67fabc7a1a2b9bb6a562aa06a089732975fbfdb1b6f171305c3f8c"
+    },
+    {
+      "path": "src/angular-state/integrated-state.mjs",
+      "bytes": 5387,
+      "sha256": "28132d2c9af9a98f64393db8616c113c25ad71baecb0b13b6fd51cc3eb9eaa95"
+    },
+    {
+      "path": "src/angular-state/panel.mjs",
+      "bytes": 10437,
+      "sha256": "ffc81ac4f39ce230053ee66a9ac36e16b760b8348e24ae4d6aef165f4e69e9ce"
+    },
+    {
+      "path": "src/angular-state/study.mjs",
+      "bytes": 10440,
+      "sha256": "b9cca4df550ea6ca5850e80d1899c06a4d9785889145231f61354035f3e7f612"
+    },
+    {
+      "path": "src/condition-prefix/example.mjs",
+      "bytes": 1208,
+      "sha256": "063c958adfaa8f9f30032bbdc63139d34b1d2a58c2b0cc6a72ce383f7c914560"
+    },
+    {
+      "path": "src/condition-prefix/fit.mjs",
+      "bytes": 5040,
+      "sha256": "6d4ae0ce6f40fec416453bc599f9a65b714ff9612b3af210ed27170802724912"
+    },
+    {
+      "path": "src/condition-prefix/panel.mjs",
+      "bytes": 6409,
+      "sha256": "7de44d631e0965f606a022bdd61f8c83bdf688bda51b8f8d68d4cfde1765fccb"
+    },
+    {
+      "path": "src/condition-prefix/session.mjs",
+      "bytes": 3489,
+      "sha256": "3d18aae5da4c3e39dead497992b746209ec953e9c2d9df0b49898f458f0f3413"
+    },
+    {
+      "path": "src/condition-trajectories/example.mjs",
+      "bytes": 1318,
+      "sha256": "94346f0327985c7b21ca92c4b7545b1a440f309d8e4592669b8c5663ae771171"
+    },
+    {
+      "path": "src/condition-trajectories/fit.mjs",
+      "bytes": 5454,
+      "sha256": "7ed8c2f4afbc882fae3bfa917fcf14ccb0a9116be3857000ee5df4841d013460"
+    },
+    {
+      "path": "src/condition-trajectories/panel.mjs",
+      "bytes": 6916,
+      "sha256": "30cc31498313ad21a049cb8b8a3b0ce0590c3108022a98cadcdfc19cc749897b"
+    },
+    {
+      "path": "src/condition-trajectories/session.mjs",
+      "bytes": 3467,
+      "sha256": "c29485e50e5fb9f3a44298e3fc23abdc95a48943c89ae893286d3cf81876fb20"
+    },
+    {
+      "path": "src/data.mjs",
+      "bytes": 8566,
+      "sha256": "947d6798c256526cbf470c87636586b8bde56d22ce93f69bc58aa3909e4287e8"
+    },
+    {
+      "path": "src/experiment-design/qualify-trajectory-plan.mjs",
+      "bytes": 15649,
+      "sha256": "66142781fee541a5a55fdff9bf15bda140bce27c5949e2f36e7f31a35c812614"
+    },
+    {
+      "path": "src/experiment-design/screened-controller.mjs",
+      "bytes": 6118,
+      "sha256": "1ea7e35a5ec53536efc3bfc460637306ae04217ffeea183e74d160b1d67882f7"
+    },
+    {
+      "path": "src/joint-state/channel-consistency.mjs",
+      "bytes": 2958,
+      "sha256": "28b5a55f2437cf525795ff2acebe72a70542a5876e532cf093976d5d36b2650d"
+    },
+    {
+      "path": "src/joint-state/example.mjs",
+      "bytes": 1575,
+      "sha256": "024b76d1527d85b783710d98183b8a258c612699ea6e5cdfb5d1745bdaaf1e30"
+    },
+    {
+      "path": "src/joint-state/fit.mjs",
+      "bytes": 5947,
+      "sha256": "52629bd0b4edaed3dde1970f41700d2fbd95a9524683b6fb0e2b9f0e2fed6fb0"
+    },
+    {
+      "path": "src/joint-state/panel.mjs",
+      "bytes": 7832,
+      "sha256": "6bee3e9e302c8399bf92ad34182df9eba86cf0fba8ca0c57c40f512306c0f14d"
+    },
+    {
+      "path": "src/joint-state/receiver.mjs",
+      "bytes": 816,
+      "sha256": "ee5b62379fcb951aada730eb834d20cd0203918a9e7d014e09a4bf2d722af9ec"
+    },
+    {
+      "path": "src/joint-state/session.mjs",
+      "bytes": 3074,
+      "sha256": "6b92e1afb8d7ba6652ae75eec09e0c20977cfa473db6864850f6ba3ce7314386"
+    },
+    {
+      "path": "src/motion/measurement.mjs",
+      "bytes": 22733,
+      "sha256": "d6485e683e88f9573dae2fe3abfd467455610e328f5afe9ff2047e39bb644320"
+    },
+    {
+      "path": "src/motion/metric-plane.mjs",
+      "bytes": 6405,
+      "sha256": "6025f49822286bcda96f39c32494e5a234259150c34455acb4a33545f644cfb5"
+    },
+    {
+      "path": "src/motion/vendor/plane-homography.mjs",
+      "bytes": 5975,
+      "sha256": "336e03f3c2121aba99375cf7e855239353a216ee3d98135dda071602d5b34d81"
+    },
+    {
+      "path": "src/predictive-selection/covariance.mjs",
+      "bytes": 11756,
+      "sha256": "5bbb40572a1229cf7a0f9dcfd1db64690353d9d48c2d798d6dfe080585f3b6e0"
+    },
+    {
+      "path": "src/predictive-selection/panel.mjs",
+      "bytes": 16192,
+      "sha256": "92ba65c5e301e18768acab34d68354effbdbccedf78161aecd162ead8d1a1979"
+    },
+    {
+      "path": "src/predictive-selection/refine.mjs",
+      "bytes": 5611,
+      "sha256": "7b31c760ad1045a767bf567b471ec8c1172a4a06f4a6e462ad551da91dfb6ef6"
+    },
+    {
+      "path": "src/predictive-selection/select.mjs",
+      "bytes": 6858,
+      "sha256": "0473f2f8bfdcf19530d15ef44e592d449f6c1b7dbb4447564202b6aa4432bd4a"
+    },
+    {
+      "path": "src/predictive-selection/session.mjs",
+      "bytes": 7207,
+      "sha256": "b6875e1de1f2b04dca0266dcdf7d271c8f2bd959e37f96bcf0cbe3f85ca45e02"
+    },
+    {
+      "path": "src/predictive-selection/training-starts-panel.mjs",
+      "bytes": 6491,
+      "sha256": "84b87f1889c78541bcbbbcbf89903e4d86fcdf365b7c0721691325237c8e075d"
+    },
+    {
+      "path": "src/predictive-selection/training-starts-session.mjs",
+      "bytes": 3237,
+      "sha256": "91fb200c4913f71694e532bbeb226a316b862eeab14a9c744b5c5536a3c188a3"
+    },
+    {
+      "path": "src/predictive-selection/training-starts.mjs",
+      "bytes": 4486,
+      "sha256": "996ae55882ef61f8f6cfec6bb5cbe6c75c9f798464dfb583e63c22b90a7ef218"
+    },
+    {
+      "path": "src/predictive-selection/trajectory-witness-panel.mjs",
+      "bytes": 6538,
+      "sha256": "ca8e5aecc4dab8e15b01fcecf22aa08b850f0eda18331666ac6551badcbc6073"
+    },
+    {
+      "path": "src/predictive-selection/trajectory-witness-session.mjs",
+      "bytes": 1686,
+      "sha256": "c796a8caba0ea981500033a444572be3d050eba7cee8202c722424b0c4a5801b"
+    },
+    {
+      "path": "src/predictive-selection/trajectory-witness.mjs",
+      "bytes": 6097,
+      "sha256": "ba56494fa564ebba8dce6786f1b161ffeb696a6b6147d3aab988399eafc3ce3c"
+    },
+    {
+      "path": "src/prefix-starts/fit.mjs",
+      "bytes": 5860,
+      "sha256": "2ab2151e88d177de24adc131968e0c763cee3505a30e8439832fd0527aa87d06"
+    },
+    {
+      "path": "src/prefix-starts/panel.mjs",
+      "bytes": 5317,
+      "sha256": "6828562acdefb8793f2b983951f863f0914a39ac4ab5762d130c5c7802613de4"
+    },
+    {
+      "path": "src/prefix-starts/session.mjs",
+      "bytes": 3648,
+      "sha256": "dd189f14d6e90e6cc3f74a1d08c7545159d0ef65298cb10ac7e861c96b47307c"
+    },
+    {
+      "path": "src/prefix-starts/witness-panel.mjs",
+      "bytes": 6385,
+      "sha256": "ee6163b5bed6ecafb8249288364414e33bb86f945563e56a28c40f439a4af5b9"
+    },
+    {
+      "path": "src/prefix-starts/witness-session.mjs",
+      "bytes": 1669,
+      "sha256": "094baab84dece7d9ccac2f37cc82041a16a933c3837d98f5abd5e43a9d8d05fe"
+    },
+    {
+      "path": "src/prefix-starts/witnesses.mjs",
+      "bytes": 4272,
+      "sha256": "aee3551b483a8fcca5873123f87d791b07e4b2524618a9857b20b34cf74484f0"
+    },
+    {
+      "path": "src/representation/angle-reference.mjs",
+      "bytes": 16197,
+      "sha256": "ac5e777a0910bd73f72c4f4045ea469048615bd62d47ede284bbe0cfd2d0ed20"
+    },
+    {
+      "path": "src/representation/reference-panel.mjs",
+      "bytes": 16875,
+      "sha256": "7ce6dc28a76b89d957c53516a783fc7b818588571412769486080def14756d0b"
+    },
+    {
+      "path": "src/science/angular-kinematics.mjs",
+      "bytes": 3541,
+      "sha256": "2fa8f51114793cbe268373d3583aede3723c2f4216c509287a2f8337b346566a"
+    },
+    {
+      "path": "src/science/angular-prelude.mjs",
+      "bytes": 3466,
+      "sha256": "8993294fe084b892fb7b1d9a30d55844e49b30e661268fdbaf6b37d2a800b2d7"
+    },
+    {
+      "path": "src/science/linear-fit.mjs",
+      "bytes": 2722,
+      "sha256": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da"
+    },
+    {
+      "path": "src/science/output-grid.mjs",
+      "bytes": 445,
+      "sha256": "e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d"
+    },
+    {
+      "path": "src/science/robust-fit.mjs",
+      "bytes": 5720,
+      "sha256": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1"
+    },
+    {
+      "path": "src/science/torque-discovery.mjs",
+      "bytes": 22230,
+      "sha256": "34b75f3b08606b6f3c12d87ea090b74cd5fb42e550e5a9f95b5454cc57c58d2f"
+    },
+    {
+      "path": "src/science/trajectory-observations.mjs",
+      "bytes": 5578,
+      "sha256": "be9ca9d82bc2cee9e106783d819aac8b558fcdf20879dc5e752aed56fd738ddd"
+    },
+    {
+      "path": "src/shared-law-starts/fit.mjs",
+      "bytes": 5550,
+      "sha256": "916651ff9a99e613791a6e1604bd957d490205d0a193a0e425054f3cc7c33049"
+    },
+    {
+      "path": "src/shared-law-starts/panel.mjs",
+      "bytes": 4978,
+      "sha256": "38418219e17edc1a96fa79b200b8926e70c5514dbb2539e05e4b52d3a2786578"
+    },
+    {
+      "path": "src/shared-law-starts/session.mjs",
+      "bytes": 3746,
+      "sha256": "1cc4a6db0198d7274ca4328300fd96275e170766e2c9d32a3f474bc7658b909b"
+    },
+    {
+      "path": "src/trajectory-lm/fit.mjs",
+      "bytes": 4307,
+      "sha256": "cee50e4156185d601161d5f1cf57432b3bc9320eeff0a7bfb28b36f8c980879f"
+    },
+    {
+      "path": "src/trajectory-lm/panel.mjs",
+      "bytes": 7467,
+      "sha256": "4cc9869b731795af8d3392f877da94cd7c48ac95fdcaf8a1b1c562f27c248049"
+    },
+    {
+      "path": "src/trajectory-lm/session.mjs",
+      "bytes": 2507,
+      "sha256": "32002e250a7baf2c6d3f889dac3db8cd4c65662a32c4bd966435bfa18b1d9d1a"
+    },
+    {
+      "path": "src/trajectory/angular-discovery.mjs",
+      "bytes": 14991,
+      "sha256": "71c16bd766e045a3c28d1c34f75eeafca6f6e6a891a5af6805d055e284ce3f1b"
+    },
+    {
+      "path": "src/trajectory/angular-resolution.mjs",
+      "bytes": 355,
+      "sha256": "81b54f874e121b5b3161752bcc94f46d9292f003097a33726de806b83f2e686c"
+    },
+    {
+      "path": "src/trajectory/angular-weak.mjs",
+      "bytes": 12154,
+      "sha256": "75d1bf75ff23f29d3ec95ea3b2bc2c4d9ee6c8ca04a7ccd8f2f215b65aaf6a59"
+    },
+    {
+      "path": "src/trajectory/app.mjs",
+      "bytes": 42574,
+      "sha256": "6c2f2a3aacc7670e8271317bfde5ee0429034fa616d55ada2716d36352474443"
+    },
+    {
+      "path": "src/trajectory/applied-restoring-example.mjs",
+      "bytes": 2395,
+      "sha256": "35048192d0b46d95eb93ef7a9887610fe24eed90e01921177af48cb439de7b3c"
+    },
+    {
+      "path": "src/trajectory/applied-restoring-panel.mjs",
+      "bytes": 14290,
+      "sha256": "ef32b35517040536797a1a8eb6f3699b593bf7bdb9905f75e792f63486fb066a"
+    },
+    {
+      "path": "src/trajectory/applied-restoring.mjs",
+      "bytes": 17123,
+      "sha256": "183174f1fa327cd17fcef954cc2167a03560083d9779e696dfac6a8c6ca82e16"
+    },
+    {
+      "path": "src/trajectory/applied-torque-example.mjs",
+      "bytes": 1149,
+      "sha256": "6e67c37ae37c1c7535dbd8e7c78bbd2f015ad182dba9bc9f939cb8381f6ec35c"
+    },
+    {
+      "path": "src/trajectory/applied-torque-panel.mjs",
+      "bytes": 12306,
+      "sha256": "23e7f7c5bc6c3d58d8e3acefaf5ae2f5feab58e3e7603585a343158541f7b282"
+    },
+    {
+      "path": "src/trajectory/applied-torque.mjs",
+      "bytes": 7485,
+      "sha256": "f6fb1c3821af5e4421dc2670c05a63e32345fbc8f1ac416c230147414f87f7df"
+    },
+    {
+      "path": "src/trajectory/baselines.mjs",
+      "bytes": 4049,
+      "sha256": "3025038502fbc548befc3b519a848752ae7de48a263b0e7f701bb7daf734d5d9"
+    },
+    {
+      "path": "src/trajectory/command-response-example.mjs",
+      "bytes": 2631,
+      "sha256": "949b4a1926f29e6fbed3f6cf00bdceca21cb6d1172b5f836232cce4e03d1be52"
+    },
+    {
+      "path": "src/trajectory/command-timeline.mjs",
+      "bytes": 7585,
+      "sha256": "b975f7f35a5834c0c9d9ae29ea2272085ae05a8c812d77487ce6df83d0d77e61"
+    },
+    {
+      "path": "src/trajectory/command-timing-comparison.mjs",
+      "bytes": 2812,
+      "sha256": "c80f197da04947cb5c9f1f4a6f517a0a3378d430315cadec01ca0c30628cad33"
+    },
+    {
+      "path": "src/trajectory/command-timing-example.mjs",
+      "bytes": 2664,
+      "sha256": "f4b37100e6bebd0864c06117edf287f3a81a2dbe3f56e99ee911ed8b5fc31884"
+    },
+    {
+      "path": "src/trajectory/command-timing-law-family.mjs",
+      "bytes": 16839,
+      "sha256": "f3cd100828611e80d32adf7376ba4f1083d4e2f2c0f0b312df02e5e8ca48576d"
+    },
+    {
+      "path": "src/trajectory/command-timing-panel.mjs",
+      "bytes": 34704,
+      "sha256": "bd4c3356c98a0d41a1e17573fd35426df7c40dfac94f20a04cc82e85fb911738"
+    },
+    {
+      "path": "src/trajectory/command-timing-study.mjs",
+      "bytes": 12259,
+      "sha256": "76b7d68b3a7c1cb7515c9afbf6ef12a1a51e6373a6f8fd629ef95bd1a8c361a7"
+    },
+    {
+      "path": "src/trajectory/contact-resolution-note.mjs",
+      "bytes": 758,
+      "sha256": "432879a33b50fc92aa15b5ae0bdd5f63af214dd0f6d647eff249e1adf68a1937"
+    },
+    {
+      "path": "src/trajectory/coulomb-contact.mjs",
+      "bytes": 1909,
+      "sha256": "2cc8820da95ca9fc5170319c37a7e098071ec82e8e7af9b816301c45b1ea0253"
+    },
+    {
+      "path": "src/trajectory/cycle-work-half-sensitivity-panel.mjs",
+      "bytes": 7116,
+      "sha256": "df3041808df1190d769feca5a088093dd14b166f95870eea576949cf5a0f02ae"
+    },
+    {
+      "path": "src/trajectory/cycle-work-half-sensitivity.mjs",
+      "bytes": 7332,
+      "sha256": "70c7a81f47718e8155843d605fbe5f5bf59fcb603479cbde9ed4b4166651b3ae"
+    },
+    {
+      "path": "src/trajectory/cycle-work-halves-panel.mjs",
+      "bytes": 13685,
+      "sha256": "ff89e2fb98eff6ac0cdf96d8b7a1ec20458bc2d5c15999e8dfcf440f7e9230f1"
+    },
+    {
+      "path": "src/trajectory/cycle-work-panel.mjs",
+      "bytes": 15646,
+      "sha256": "2dd6b4e4832fa93159084c7c96aaa402ac3ac497dfbd7743c65188e3f8208ca8"
+    },
+    {
+      "path": "src/trajectory/cycle-work.mjs",
+      "bytes": 18836,
+      "sha256": "bdd9adc69816c3122e334978157acefc5394cd7cc7753d4f24b14baaa9afcfca"
+    },
+    {
+      "path": "src/trajectory/data.mjs",
+      "bytes": 7787,
+      "sha256": "4f1fcdb7b03ad94ecf0a154ae3d5e91bc2c0189c8fd847e99c50349f33ca71d3"
+    },
+    {
+      "path": "src/trajectory/equal-angle-bounds-job.mjs",
+      "bytes": 851,
+      "sha256": "95267fc5e783b6d8490f3f7b86c10ccae4005e5043479400de91eca9cf169f3c"
+    },
+    {
+      "path": "src/trajectory/equal-angle-bounds-panel.mjs",
+      "bytes": 6898,
+      "sha256": "e98f9bd01b50ba84ca13fb8bd4989f26c8824b9e396727ffa6c2e7305e2e4382"
+    },
+    {
+      "path": "src/trajectory/equal-angle-bounds.mjs",
+      "bytes": 8239,
+      "sha256": "bc0c168c592bcd8bf2b64c59788f98f21836a6e97d0b9ac79b9de9bfcdd2f75f"
+    },
+    {
+      "path": "src/trajectory/equal-angle-returns-panel.mjs",
+      "bytes": 8033,
+      "sha256": "8dc46da5ab12ca06c5f3dce9d14398aa4898d0dff2d5f3ca3b026488d8c76895"
+    },
+    {
+      "path": "src/trajectory/equal-angle-returns.mjs",
+      "bytes": 7739,
+      "sha256": "7f9b03cd23aca055161adeb20a2e9f8d11fa0e31f44e03cf36ce1cfd22f9fa80"
+    },
+    {
+      "path": "src/trajectory/experiment-panel.mjs",
+      "bytes": 29744,
+      "sha256": "08aaaca7488d6711d2df03eab29fe77fabd336019fcd3cd1d92f4385dc734df8"
+    },
+    {
+      "path": "src/trajectory/experiment-session.mjs",
+      "bytes": 15857,
+      "sha256": "d8ab25de7b9755ea5b075361216e47ab3a800d7ea9390f0525c39b38cf19a039"
+    },
+    {
+      "path": "src/trajectory/forward.mjs",
+      "bytes": 13059,
+      "sha256": "e7e6f26f4038b3509a7cc794a62149680eabe0332b720838c3084cbe0feda3d2"
+    },
+    {
+      "path": "src/trajectory/horizon.mjs",
+      "bytes": 5600,
+      "sha256": "2c1605c1815cb211aae7a0d72da5c9712d66d3e6d9829a3b5226842f9f60e4a3"
+    },
+    {
+      "path": "src/trajectory/initial-state-panel.mjs",
+      "bytes": 9502,
+      "sha256": "50cd720a91bb9119336cbf671431a3a56a1de0ff5ee5dcd92b8edf8121f5a041"
+    },
+    {
+      "path": "src/trajectory/initial-state-sensitivity.mjs",
+      "bytes": 5874,
+      "sha256": "44129ee7db008433d1acefae9f20309f9df63bf195301a12791599acaf90c914"
+    },
+    {
+      "path": "src/trajectory/integral-discovery.mjs",
+      "bytes": 19112,
+      "sha256": "187c374d2a7236862897b8f5b12f656a8fd3453cef1f7021c7c256149d9f622d"
+    },
+    {
+      "path": "src/trajectory/motion-intake-panel.mjs",
+      "bytes": 18718,
+      "sha256": "649dd6bb0a5ca72e968fd43916c28b4de92ab05a0357c0f74d0ce488e387305f"
+    },
+    {
+      "path": "src/trajectory/motion-intake.mjs",
+      "bytes": 13620,
+      "sha256": "9653a94ffa108015bba09dad0ecebb4a0a156c560448ef80256bb11306853602"
+    },
+    {
+      "path": "src/trajectory/physical-delay.mjs",
+      "bytes": 2914,
+      "sha256": "0cc8966b47e0c05e844286c3ee429c04eac9d181fe8e7ba321a5940731bac8a9"
+    },
+    {
+      "path": "src/trajectory/planner.mjs",
+      "bytes": 15671,
+      "sha256": "63d5161e39fa592d90f4b06efe8569879cf5b2b66db309d0e9acc65ec0300f10"
+    },
+    {
+      "path": "src/trajectory/prelude-investigation.mjs",
+      "bytes": 4907,
+      "sha256": "08d1b055e14a4615dcb7f61b8714851726272684b7ece784199057b526319489"
+    },
+    {
+      "path": "src/trajectory/prelude-panel.mjs",
+      "bytes": 7150,
+      "sha256": "bab4b936f69d3f3d7f90c59e880c7a9ec4928b7038d7ffa626e15baef42fa82d"
+    },
+    {
+      "path": "src/trajectory/residual-epochs-panel.mjs",
+      "bytes": 9822,
+      "sha256": "c466911a2ec6f38fd4c53294b4bbf73eb09783eaf298d47c7dbd391c0f52ad49"
+    },
+    {
+      "path": "src/trajectory/residual-epochs.mjs",
+      "bytes": 4190,
+      "sha256": "dc535b113a2db4c01feac2fd07798f3327f3e2df533f1db2533c6551cbe48102"
+    },
+    {
+      "path": "src/trajectory/residual-pair-statistics.mjs",
+      "bytes": 943,
+      "sha256": "5e770f59743e856c01476421463f5d5a593b65504bce43863f70c5e8b8e1ce53"
+    },
+    {
+      "path": "src/trajectory/residual-structure-panel.mjs",
+      "bytes": 10477,
+      "sha256": "245fba912eaa0a4044ade391cfa89b20e885aaeffc54aafa3b42bdd8a69628e6"
+    },
+    {
+      "path": "src/trajectory/residual-structure.mjs",
+      "bytes": 3815,
+      "sha256": "03a9e8133dc9199b571e6d1ff9d35125fa02763572ac1b61a0cc53390c1b268e"
+    },
+    {
+      "path": "src/trajectory/resolution.mjs",
+      "bytes": 4336,
+      "sha256": "b95c13a4c9ad06d99963a99119bc64b41c2daf838522fe25824a59726fdf6475"
+    },
+    {
+      "path": "src/trajectory/rolling-origin-panel.mjs",
+      "bytes": 10088,
+      "sha256": "b41a36199f78cac276bcb2a7b0725f758994d4c8d7e476b8b3498c30cf05b57e"
+    },
+    {
+      "path": "src/trajectory/rolling-origin.mjs",
+      "bytes": 7252,
+      "sha256": "3f912478648f4ad970184e6494312e6edc92abab9d803135284b7748f0375947"
+    },
+    {
+      "path": "src/trajectory/session.mjs",
+      "bytes": 15109,
+      "sha256": "11f1c755a3f19ceddcaff0670df28da71464f3e8b04ade08dd4e31e1ded79941"
+    },
+    {
+      "path": "src/trajectory/virtual-experiment.mjs",
+      "bytes": 10489,
+      "sha256": "78147d6640414e2e824b5ed0794f28d1ba52b96fea6d3c50b82ec86cb8b2b053"
+    },
+    {
+      "path": "src/trajectory/weak-discovery.mjs",
+      "bytes": 6709,
+      "sha256": "413b989af0ce263e8c77452ed31aedc5f55d74fd0ac664de73a0f5eddf1bf587"
+    },
+    {
+      "path": "src/trajectory/weak-operator.mjs",
+      "bytes": 7685,
+      "sha256": "ba94054a02098cbc173a7854d1d3ffc530ce5b6e7e221310486b61d6eb4503d9"
+    },
+    {
+      "path": "src/unknown-lab/chronos-exact-halfplanes.mjs",
+      "bytes": 3863,
+      "sha256": "3f2020d8adac92ac1b82331dd5b30964a889a85d249e81cd16bb9dbba99b1150"
+    },
+    {
+      "path": "trajectory.css",
+      "bytes": 29601,
+      "sha256": "be46ea50a3d95ff5f6898b8a38441d8bbf33f0001127571326b966812d425b91"
+    },
+    {
+      "path": "trajectory.html",
+      "bytes": 15759,
+      "sha256": "16ddb8c1127607e5d2764cd889812d58a07867ec896b236dcb8a3df38dc2a703"
+    }
+  ],
+  "datasetAttribution": {
+    "repository": "https://github.com/EnzeXu/Damped_Pendulum_Dataset",
+    "revision": "cbf82673641ecd65e902ad5c38a048387649a2a0",
+    "license": "Apache-2.0",
+    "licensePath": "examples/physical-pasco-92be/LICENSE",
+    "licenseSHA256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "disclosureId": "dataset-license",
+    "fullLicenseEmbedded": true,
+    "originalCSVFilesEmbedded": false
+  },
+  "experiment": {
+    "instrumentId": "worldlaw.virtual-pendulum/v1",
+    "kind": "synthetic",
+    "planning": "Training-ranked competitive predictions only; RMS pairwise position disagreement, sampled state limits.",
+    "numericalScreen": "Shared PR7 qualifier checks retained designs/models at the stated step and half step before new acquisition. Existing recorded evidence remains usable. The 750,000-step screen allowance is separate from the 250,000-step planner allowance; two-step agreement is not convergence or an accuracy bound.",
+    "acquisition": "Separate fixed-equation fine-step virtual instrument; explicit application before training changes.",
+    "reopening": "Input-based replay with exact protocol/source identity, position-only 64-epsilon roundoff allowance, and preserved supplied observations.",
+    "evaluation": "The same reserved recording is compared before and after refitting; exploratory reuse is not fresh blind validation."
+  },
+  "scope": "Actual finite-library trajectory and angular-acceleration discovery, independent synthetic experiment planning/acquisition/refitting, free forward prediction, numerical sensitivity and sampled error comparison; two synthetic examples plus separately recorded PASCO measurements with unknown physical torque scale. Acquisitions are synthetic, not physical measurements. Reused evaluation, finite-library alternatives and retained refit failures do not establish unique structure or general physical-law discovery.",
+  "output": {
+    "path": ".receipts/trajectory-experiment-screened-standalone-92be.html",
+    "bytes": 1391507,
+    "sha256": "d9fd8c54ebed22e77bad0b14ac95f37a5687196d5d846d0bbb10ac1d301e0be1"
+  },
+  "integrityMeaning": "Output SHA-256 is recorded only in this separate manifest; the HTML does not contain or claim its own hash.",
+  "buildCommand": "ESBUILD_MODULE=/absolute/path/to/esbuild/lib/main.js node scripts/build-trajectory-92be.mjs",
+  "warnings": [
+    "\"import.meta\" is not available with the \"iife\" output format and will be empty"
+  ]
+}

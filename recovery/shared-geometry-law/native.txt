@@ -1,0 +1,11 @@
+✔ independent elliptic courses recover a shared relation from original positions alone (38.375601ms)
+✔ unforced source roles, complete work and independent geometry admission refuse (7.096466ms)
+✔ training relation executes on independently authored third geometry without fitting it (33.220526ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.964707

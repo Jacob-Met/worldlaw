@@ -1,0 +1,305 @@
+{
+  "meaning": "Exploratory kinematic consistency, not law fitting or independent sensor calibration. Original angle increments vs integral of supplied rate over fixed0.4second windows every0.1s; linear interpolation only for explicit offset hypotheses. Shared affine rate and finite offset chosen on two original trainingcourses; consumed heldcourse reported separately. No source or model changed; no differentiation of angle.",
+  "rows": [
+    {
+      "rateTimeOffsetSeconds": -0.05,
+      "gain": 0.9642154169939733,
+      "biasRadPerSecond": -0.004788960295905904,
+      "original": {
+        "count": 390,
+        "rmseRad": 0.10642257466020995,
+        "maxAbsRad": 0.18390499999999876
+      },
+      "affineTraining": {
+        "count": 390,
+        "rmseRad": 0.10545068077494157,
+        "maxAbsRad": 0.17902565764251868
+      },
+      "originalHeld": {
+        "count": 195,
+        "rmseRad": 0.130440433698535,
+        "maxAbsRad": 0.20118500000000075
+      },
+      "affineHeld": {
+        "count": 195,
+        "rmseRad": 0.12942271677999984,
+        "maxAbsRad": 0.19400467988697617
+      }
+    },
+    {
+      "rateTimeOffsetSeconds": -0.04,
+      "gain": 0.9774006326787379,
+      "biasRadPerSecond": -0.0036446001617207657,
+      "original": {
+        "count": 390,
+        "rmseRad": 0.08524671155248498,
+        "maxAbsRad": 0.14751499999999954
+      },
+      "affineTraining": {
+        "count": 390,
+        "rmseRad": 0.08476068900984332,
+        "maxAbsRad": 0.14520970641518788
+      },
+      "originalHeld": {
+        "count": 195,
+        "rmseRad": 0.10448279639460024,
+        "maxAbsRad": 0.1616549999999987
+      },
+      "affineHeld": {
+        "count": 195,
+        "rmseRad": 0.10400013656220271,
+        "maxAbsRad": 0.1582617728723415
+      }
+    },
+    {
+      "rateTimeOffsetSeconds": -0.03,
+      "gain": 0.9877591359574962,
+      "biasRadPerSecond": -0.0025852883759745664,
+      "original": {
+        "count": 390,
+        "rmseRad": 0.06404881500885505,
+        "maxAbsRad": 0.11060000000000031
+      },
+      "affineTraining": {
+        "count": 390,
+        "rmseRad": 0.06385633772787802,
+        "maxAbsRad": 0.11004769937048164
+      },
+      "originalHeld": {
+        "count": 195,
+        "rmseRad": 0.07844008836898016,
+        "maxAbsRad": 0.12209500000000029
+      },
+      "affineHeld": {
+        "count": 195,
+        "rmseRad": 0.07827365972509912,
+        "maxAbsRad": 0.12075861665959695
+      }
+    },
+    {
+      "rateTimeOffsetSeconds": -0.02,
+      "gain": 0.9952486246678812,
+      "biasRadPerSecond": -0.001624489524548288,
+      "original": {
+        "count": 390,
+        "rmseRad": 0.042792927965331864,
+        "maxAbsRad": 0.07496999999999815
+      },
+      "affineTraining": {
+        "count": 390,
+        "rmseRad": 0.042746765010440224,
+        "maxAbsRad": 0.07394406041152793
+      },
+      "originalHeld": {
+        "count": 195,
+        "rmseRad": 0.052293669790215346,
+        "maxAbsRad": 0.08255999999999752
+      },
+      "affineHeld": {
+        "count": 195,
+        "rmseRad": 0.05227535507835222,
+        "maxAbsRad": 0.08217608659256107
+      }
+    },
+    {
+      "rateTimeOffsetSeconds": -0.01,
+      "gain": 0.9998727672096408,
+      "biasRadPerSecond": -0.0007555513838267204,
+      "original": {
+        "count": 390,
+        "rmseRad": 0.021462791965967773,
+        "maxAbsRad": 0.038844999999998936
+      },
+      "affineTraining": {
+        "count": 390,
+        "rmseRad": 0.02146061868154744,
+        "maxAbsRad": 0.038529058026191956
+      },
+      "originalHeld": {
+        "count": 195,
+        "rmseRad": 0.026109736829538512,
+        "maxAbsRad": 0.04171499999999831
+      },
+      "affineHeld": {
+        "count": 195,
+        "rmseRad": 0.026119998248607168,
+        "maxAbsRad": 0.04199473661098066
+      }
+    },
+    {
+      "rateTimeOffsetSeconds": 0.0,
+      "gain": 1.0015817612897795,
+      "biasRadPerSecond": 1.984557452438837e-05,
+      "original": {
+        "count": 390,
+        "rmseRad": 0.0012554410809321713,
+        "maxAbsRad": 0.003929999999999323
+      },
+      "affineTraining": {
+        "count": 390,
+        "rmseRad": 0.0010865583650376564,
+        "maxAbsRad": 0.0031120892665321698
+      },
+      "originalHeld": {
+        "count": 195,
+        "rmseRad": 0.0013571716441905736,
+        "maxAbsRad": 0.003964999999999552
+      },
+      "affineHeld": {
+        "count": 195,
+        "rmseRad": 0.001082378485817861,
+        "maxAbsRad": 0.0033867069362070873
+      }
+    },
+    {
+      "rateTimeOffsetSeconds": 0.01,
+      "gain": 1.0003378304871742,
+      "biasRadPerSecond": 0.000684082461504639,
+      "original": {
+        "count": 390,
+        "rmseRad": 0.02139678707908589,
+        "maxAbsRad": 0.038669999999999025
+      },
+      "affineTraining": {
+        "count": 390,
+        "rmseRad": 0.021394652637365914,
+        "maxAbsRad": 0.038920549027412266
+      },
+      "originalHeld": {
+        "count": 195,
+        "rmseRad": 0.026314109657204033,
+        "maxAbsRad": 0.04182999999999898
+      },
+      "affineHeld": {
+        "count": 195,
+        "rmseRad": 0.02632271569905043,
+        "maxAbsRad": 0.042042428235239515
+      }
+    },
+    {
+      "rateTimeOffsetSeconds": 0.02,
+      "gain": 0.99620004389365,
+      "biasRadPerSecond": 0.0012192232031901246,
+      "original": {
+        "count": 390,
+        "rmseRad": 0.04273758757049898,
+        "maxAbsRad": 0.07662999999999823
+      },
+      "affineTraining": {
+        "count": 390,
+        "rmseRad": 0.04270771660956523,
+        "maxAbsRad": 0.07723309394822414
+      },
+      "originalHeld": {
+        "count": 195,
+        "rmseRad": 0.05245852188719801,
+        "maxAbsRad": 0.08266999999999816
+      },
+      "affineHeld": {
+        "count": 195,
+        "rmseRad": 0.05244014393474667,
+        "maxAbsRad": 0.0836909371216783
+      }
+    },
+    {
+      "rateTimeOffsetSeconds": 0.03,
+      "gain": 0.9891734877632246,
+      "biasRadPerSecond": 0.0016157934761982084,
+      "original": {
+        "count": 390,
+        "rmseRad": 0.06410901320837296,
+        "maxAbsRad": 0.1138050000000008
+      },
+      "affineTraining": {
+        "count": 390,
+        "rmseRad": 0.06396018868315985,
+        "maxAbsRad": 0.1143776429747088
+      },
+      "originalHeld": {
+        "count": 195,
+        "rmseRad": 0.07864131469885412,
+        "maxAbsRad": 0.12377000000000095
+      },
+      "affineHeld": {
+        "count": 195,
+        "rmseRad": 0.07848396532244328,
+        "maxAbsRad": 0.12549063219973544
+      }
+    },
+    {
+      "rateTimeOffsetSeconds": 0.04,
+      "gain": 0.9792387077527849,
+      "biasRadPerSecond": 0.0018763988683552293,
+      "original": {
+        "count": 390,
+        "rmseRad": 0.08548684771572479,
+        "maxAbsRad": 0.149935
+      },
+      "affineTraining": {
+        "count": 390,
+        "rmseRad": 0.08508282718267846,
+        "maxAbsRad": 0.1497941734647079
+      },
+      "originalHeld": {
+        "count": 195,
+        "rmseRad": 0.1047994720473814,
+        "maxAbsRad": 0.16513500000000006
+      },
+      "affineHeld": {
+        "count": 195,
+        "rmseRad": 0.10434071228489064,
+        "maxAbsRad": 0.16708691172322726
+      }
+    },
+    {
+      "rateTimeOffsetSeconds": 0.05,
+      "gain": 0.9664775971972708,
+      "biasRadPerSecond": 0.001998886464800742,
+      "original": {
+        "count": 390,
+        "rmseRad": 0.10676450646435437,
+        "maxAbsRad": 0.18527999999999928
+      },
+      "affineTraining": {
+        "count": 390,
+        "rmseRad": 0.10592516284093453,
+        "maxAbsRad": 0.18418154430671332
+      },
+      "originalHeld": {
+        "count": 195,
+        "rmseRad": 0.13082573908222592,
+        "maxAbsRad": 0.2059799999999992
+      },
+      "affineHeld": {
+        "count": 195,
+        "rmseRad": 0.12984895925845144,
+        "maxAbsRad": 0.20735010588162198
+      }
+    }
+  ],
+  "trainingSelected": {
+    "rateTimeOffsetSeconds": 0.0,
+    "gain": 1.0015817612897795,
+    "biasRadPerSecond": 1.984557452438837e-05,
+    "original": {
+      "count": 390,
+      "rmseRad": 0.0012554410809321713,
+      "maxAbsRad": 0.003929999999999323
+    },
+    "affineTraining": {
+      "count": 390,
+      "rmseRad": 0.0010865583650376564,
+      "maxAbsRad": 0.0031120892665321698
+    },
+    "originalHeld": {
+      "count": 195,
+      "rmseRad": 0.0013571716441905736,
+      "maxAbsRad": 0.003964999999999552
+    },
+    "affineHeld": {
+      "count": 195,
+      "rmseRad": 0.001082378485817861,
+      "maxAbsRad": 0.0033867069362070873
+    }
+  }
+}

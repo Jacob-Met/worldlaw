@@ -1,0 +1,29 @@
+import {normalizeAngularRuns} from '../trajectory/angular-discovery.mjs';
+import {reservePredictionWork} from '../predictive-selection/select.mjs';
+import {receiveJointState} from '../joint-state/receiver.mjs';
+const copy=x=>JSON.parse(JSON.stringify(x)),need=(ok,m)=>{if(!ok)throw Error(m);};
+export function fitPrefixInitialState(model,rawPrefix,o){
+ const run=normalizeAngularRuns([rawPrefix])[0];
+ need(model?.schema==='worldlaw.angular-model/v1'&&model.terms?.length<=8&&model.terms.every(t=>Number.isFinite(t.coefficient)),'Finite frozen angular model required');
+ need(run.samples.length>=8,'At least eight original prefix observations required');
+ for(const k of ['positionWidth','rateWidth'])need(Number.isFinite(o[k])&&o[k]>=0&&o[k]<=1,'Declare initial-state parameter widths within0–1, not measurement uncertainty');
+ need(Number.isInteger(o.gridCount)&&o.gridCount>=3&&o.gridCount<=17&&o.gridCount%2===1&&Number.isInteger(o.sweeps)&&o.sweeps>=0&&o.sweeps<=16,'Bound odd grid and local sweeps');
+ need(Number.isFinite(o.maxStep)&&o.maxStep>=1e-5&&o.maxStep<=.1&&Number.isFinite(o.screen)&&o.screen>0&&o.screen<=.001,'Bound solver and both numerical screens');
+ const maximumEvaluations=1+o.gridCount**2+4*o.sweeps,reservation=reservePredictionWork([run],o.maxStep,maximumEvaluations);
+ need(Number.isSafeInteger(o.maxTotalSteps)&&o.maxTotalSteps>0&&o.maxTotalSteps<=4000000&&reservation.steps<=o.maxTotalSteps&&reservation.rows<=262144,'Complete prefix initial-state search exceeds budget');
+ const trials=[],seen=new Set();
+ function evaluate(offsets){const key=JSON.stringify(offsets);if(seen.has(key))return null;seen.add(key);const input=copy(run);input.samples[0].position+=offsets[0];input.initialRate+=offsets[1];let trial;
+  try{const r=receiveJointState(model,input,{maxStep:o.maxStep,maxSteps:reservePredictionWork([run],o.maxStep).steps});need(r.rollout.rows.length===run.samples.length,'Complete prefix required');const screened=r.resolution.status==='compared'&&r.resolution.maxAbsPositionDifference<=o.screen&&r.resolution.maxAbsRateDifference<=o.screen;let sum=0;for(let i=0;i<run.samples.length;i++)sum+=(r.rollout.rows[i].predicted-run.samples[i].position)**2;trial={offsets:[...offsets],status:screened?'screened':'unresolved',rmse:screened?Math.sqrt(sum/run.samples.length):null,resolution:r.resolution};}
+  catch(e){trial={offsets:[...offsets],status:'failed',rmse:null,error:e.message};}trials.push(trial);return trial;
+ }
+ let best=null;const consider=t=>{if(t?.status==='screened'&&(!best||t.rmse<best.rmse))best=t;};consider(evaluate([0,0]));const observedStart=trials[0];
+ for(let i=0;i<o.gridCount;i++)for(let j=0;j<o.gridCount;j++)consider(evaluate([(2*i/(o.gridCount-1)-1)*o.positionWidth,(2*j/(o.gridCount-1)-1)*o.rateWidth]));
+ let steps=[2*o.positionWidth/(o.gridCount-1),2*o.rateWidth/(o.gridCount-1)];for(let k=0;k<o.sweeps&&best;k++){steps=steps.map(x=>x/2);const center=[...best.offsets];for(let axis=0;axis<2;axis++)for(const sign of[-1,1]){const v=[...center];v[axis]+=sign*steps[axis];if(Math.abs(v[axis])<=[o.positionWidth,o.rateWidth][axis])consider(evaluate(v));}}
+ return{schema:'worldlaw.prefix-initial-state-fit/v1',model:copy(model),originalPrefix:copy(rawPrefix),options:copy(o),reservation,maximumEvaluations,observedStart,best,trials,status:best?'screened_local_candidate':'no_screened_candidate',meaning:'Frozen law; only model initial-state parameters fit original prefix positions, including first observation. Widths are search bounds, not sensor uncertainty. Local search is not identification or a global optimum.'};
+}
+export function forecastPrefixInitialState(fit,rawCourse,o){
+ need(fit.best?.status==='screened','Screened prefix initialization required');const run=normalizeAngularRuns([rawCourse])[0],prefix=normalizeAngularRuns([fit.originalPrefix])[0];need(JSON.stringify({...prefix,samples:[]})===JSON.stringify({...run,samples:[]}),'Forecast must continue the same original course identity and provenance');need(prefix.samples.length<run.samples.length&&prefix.initialRate===run.initialRate&&prefix.samples.every((x,i)=>x.time===run.samples[i].time&&x.position===run.samples[i].position),'Forecast must preserve every original prefix row and start');
+ const reservation=reservePredictionWork([run],fit.options.maxStep,2);need(Number.isSafeInteger(o.maxTotalSteps)&&o.maxTotalSteps>0&&o.maxTotalSteps<=4000000&&reservation.steps<=o.maxTotalSteps&&reservation.rows<=262144,'Complete fixed/estimated forecast budget exceeded');
+ const results=[[0,0],fit.best.offsets].map((offsets,index)=>{const input=copy(run);input.samples[0].position+=offsets[0];input.initialRate+=offsets[1];try{const r=receiveJointState(fit.model,input,{maxStep:fit.options.maxStep,maxSteps:reservePredictionWork([run],fit.options.maxStep).steps});need(r.rollout.rows.length===run.samples.length,'Complete course required');const screened=r.resolution.status==='compared'&&r.resolution.maxAbsPositionDifference<=fit.options.screen&&r.resolution.maxAbsRateDifference<=fit.options.screen;const later=r.rollout.rows.slice(prefix.samples.length);let sum=0;later.forEach((x,i)=>sum+=(x.predicted-run.samples[i+prefix.samples.length].position)**2);return{label:index?'prefix_estimated_model_start':'original_observed_start',offsets,status:screened?'screened':'unresolved',laterRMSE:Math.sqrt(sum/later.length),resolution:r.resolution,rows:r.rollout.rows.map((x,i)=>({...x,observed:run.samples[i].position,residual:run.samples[i].position-x.predicted}))};}catch(e){return{label:index?'prefix_estimated_model_start':'original_observed_start',status:'failed',error:e.message};}});
+ return{reservation,prefixCount:prefix.samples.length,laterCount:run.samples.length-prefix.samples.length,results,meaning:'Continuous original-time forecast without a reset; later observations only score frozen initial-state parameters.'};
+}

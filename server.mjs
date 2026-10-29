@@ -72,7 +72,7 @@ export function createProductServer() {
     if (pathname === '/') pathname = '/index.html';
     const allowed = ['/cycle-work.html','/index.html','/stiffness.html','/stiffness.css','/styles.css','/separability.css','/favicon.svg','/motion.html','/motion.css','/motion-reference.html','/motion-reference.css',
       '/coupling.html','/coupling.css','/trajectory.html','/trajectory.css','/unknown-lab.html','/unknown-lab.css','/examples/trajectory-pendulum-92be.json',
-      '/examples/correlation-band.json','/examples/period-bands.json','/examples/smooth-drift.json','/examples/trajectory-ambiguous-92be.json','/examples/physical-pasco-92be.json'].includes(pathname) || /^\/src\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+\.mjs$/.test(pathname);
+      '/examples/correlation-band.json','/examples/period-bands.json','/examples/smooth-drift.json','/examples/trajectory-ambiguous-92be.json','/examples/physical-pasco-92be.json','/examples/physical-giessler-28271405/state-observations.json'].includes(pathname) || /^\/src\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+\.mjs$/.test(pathname);
     if (!allowed) { res.writeHead(404).end('File not found.'); return; }
     try {
       const bytes = await readPublicAsset(pathname);

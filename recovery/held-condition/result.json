@@ -1,0 +1,336 @@
+{
+  "evaluatedAtUTC": "2026-10-28T18:02:09.079Z",
+  "freezeSHA256": "93bfb8ec0f2d7853c24bbb1f105b6d94e52313957038ebf809fb299235ea9c01",
+  "heldRunSHA256": "48f9793faefe3d40de224d5528b144727dda6035387ee691721eb26512173941",
+  "originalCSV": "66fbcd1cf50c3778e836a2479319e4f3192548a8989f7e1b398cb21ee1be7082",
+  "rowCount": 2001,
+  "firstTime": 5,
+  "lastTime": 25,
+  "initialRate": -3.508,
+  "reservation": {
+    "steps": 18688,
+    "rows": 8004
+  },
+  "results": [
+    {
+      "label": "weak_full_six",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+coulomb+gravity+quadratic",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -10.174624907084146,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "coulomb",
+            "coefficient": 20.328846108084484,
+            "coefficientUnit": "rad/s²"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -41.11238945545149,
+            "coefficientUnit": "rad/s²"
+          },
+          {
+            "id": "quadratic",
+            "coefficient": 1.132029292414238,
+            "coefficientUnit": "1/rad"
+          }
+        ],
+        "equation": "α = -10.175·ω + 20.329·sign(ω) + -41.112·sin(θ) + 1.132·ω|ω|",
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "compact_window_weak_angular_acceleration_regression",
+        "domain": {
+          "position": {
+            "min": -0.952,
+            "max": 0.961
+          },
+          "rate": {
+            "min": -6.023905723905716,
+            "max": 6.25589225589225,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "count": 394,
+          "rmse": 0.0338499911078838,
+          "maxAbsResidual": 0.09563274006212619,
+          "score": -2644.1180317075414,
+          "residualUnits": "rad",
+          "residualMeaning": "noise_normalized_weak_equation_not_forward_prediction",
+          "conditionEstimate": 19.423221148204426,
+          "rank": 4
+        }
+      },
+      "status": "numerically_unresolved",
+      "metrics": {
+        "count": 2000,
+        "positionRMSE": 0.6424659288983915,
+        "maxAbsError": 1.2654401039518186,
+        "finalAbsError": 0.3486593269469701
+      },
+      "resolution": {
+        "status": "compared",
+        "coarseMaxStep": 0.02,
+        "refinedMaxStep": 0.01,
+        "positionRMSEDifference": 0.02766075481200759,
+        "maxAbsPositionDifference": 0.09910540743817031,
+        "stepsCoarse": 2000,
+        "stepsRefined": 2672,
+        "maxSteps": 4672,
+        "availableRefinementSteps": 2672,
+        "count": 2000,
+        "initialSampleExcluded": true,
+        "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+        "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+        "limitations": [
+          "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+          "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+          "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+          "The comparison does not alter the model, observations, initial conditions, or training ranking."
+        ],
+        "reason": null,
+        "combinedSteps": 4672
+      }
+    },
+    {
+      "label": "predictive_full_six",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.013576223713669762,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -39.9163020099921,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "equation": "α = -0.013576·ω + -39.916·sin(θ)",
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "compact_window_weak_angular_acceleration_regression",
+        "domain": {
+          "position": {
+            "min": -0.952,
+            "max": 0.961
+          },
+          "rate": {
+            "min": -6.023905723905716,
+            "max": 6.25589225589225,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "count": 394,
+          "rmse": 0.06307241222811574,
+          "maxAbsResidual": 0.11436363884512228,
+          "score": -2165.6630861944413,
+          "residualUnits": "rad",
+          "residualMeaning": "noise_normalized_weak_equation_not_forward_prediction",
+          "conditionEstimate": 1.0000143472009102,
+          "rank": 2
+        }
+      },
+      "status": "screened",
+      "metrics": {
+        "count": 2000,
+        "positionRMSE": 0.04814518748237855,
+        "maxAbsError": 0.13118868926148627,
+        "finalAbsError": 0.11209049332639431
+      },
+      "resolution": {
+        "status": "compared",
+        "coarseMaxStep": 0.02,
+        "refinedMaxStep": 0.01,
+        "positionRMSEDifference": 7.099922045660924e-7,
+        "maxAbsPositionDifference": 0.000002093609673362029,
+        "stepsCoarse": 2000,
+        "stepsRefined": 2672,
+        "maxSteps": 4672,
+        "availableRefinementSteps": 2672,
+        "count": 2000,
+        "initialSampleExcluded": true,
+        "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+        "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+        "limitations": [
+          "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+          "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+          "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+          "The comparison does not alter the model, observations, initial conditions, or training ranking."
+        ],
+        "reason": null,
+        "combinedSteps": 4672
+      }
+    },
+    {
+      "label": "maintained_coordinate",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity~forward-refined",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.01982622371366976,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -39.9163020099921,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "equation": "α = -0.0198262·rate + -39.9163·gravity",
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "bounded_local_complete_training_trajectory_refinement",
+        "domain": {
+          "position": {
+            "min": -0.952,
+            "max": 0.961
+          },
+          "rate": {
+            "min": -6.023905723905716,
+            "max": 6.25589225589225,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "count": 4000,
+          "rmse": 0.05028000840129274,
+          "residualUnits": "rad",
+          "residualMeaning": "complete_training_forward_position_error",
+          "originalWeakMetricsNotApplicable": true
+        }
+      },
+      "status": "screened",
+      "metrics": {
+        "count": 2000,
+        "positionRMSE": 0.035967330111061534,
+        "maxAbsError": 0.08442238224906645,
+        "finalAbsError": 0.07945819920394248
+      },
+      "resolution": {
+        "status": "compared",
+        "coarseMaxStep": 0.02,
+        "refinedMaxStep": 0.01,
+        "positionRMSEDifference": 6.83783489825135e-7,
+        "maxAbsPositionDifference": 0.000001999490831367662,
+        "stepsCoarse": 2000,
+        "stepsRefined": 2672,
+        "maxSteps": 4672,
+        "availableRefinementSteps": 2672,
+        "count": 2000,
+        "initialSampleExcluded": true,
+        "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+        "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+        "limitations": [
+          "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+          "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+          "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+          "The comparison does not alter the model, observations, initial conditions, or training ranking."
+        ],
+        "reason": null,
+        "combinedSteps": 4672
+      }
+    },
+    {
+      "label": "trajectory_lm",
+      "model": {
+        "schema": "worldlaw.angular-model/v1",
+        "id": "rate+gravity",
+        "terms": [
+          {
+            "id": "rate",
+            "coefficient": -0.013755245478650808,
+            "coefficientUnit": "1/s"
+          },
+          {
+            "id": "gravity",
+            "coefficient": -40.10666817003497,
+            "coefficientUnit": "rad/s²"
+          }
+        ],
+        "units": {
+          "position": "rad",
+          "rate": "rad/s",
+          "angularAcceleration": "rad/s²"
+        },
+        "physicalInertia": null,
+        "absoluteTorqueIdentified": false,
+        "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+        "method": "compact_window_weak_angular_acceleration_regression",
+        "domain": {
+          "position": {
+            "min": -0.952,
+            "max": 0.961
+          },
+          "rate": {
+            "min": -6.023905723905716,
+            "max": 6.25589225589225,
+            "source": "training_local_cubic_first_derivative"
+          }
+        },
+        "metrics": {
+          "meaning": "Seed metrics do not apply"
+        }
+      },
+      "status": "screened",
+      "metrics": {
+        "count": 2000,
+        "positionRMSE": 0.06786744376219675,
+        "maxAbsError": 0.1225130968141187,
+        "finalAbsError": 0.09012719165044586
+      },
+      "resolution": {
+        "status": "compared",
+        "coarseMaxStep": 0.02,
+        "refinedMaxStep": 0.01,
+        "positionRMSEDifference": 7.126125159185733e-7,
+        "maxAbsPositionDifference": 0.000002103452099569414,
+        "stepsCoarse": 2000,
+        "stepsRefined": 2672,
+        "maxSteps": 4672,
+        "availableRefinementSteps": 2672,
+        "count": 2000,
+        "initialSampleExcluded": true,
+        "differenceDefinition": "refined.predicted - coarse.predicted at the same sample timestamps",
+        "meaning": "Difference between free-running predictions at two step resolutions; not a calibrated error bound or evidence of physical validity.",
+        "limitations": [
+          "Agreement between two resolutions can miss shared numerical bias or unresolved dynamics.",
+          "Discontinuous Coulomb sign changes can invalidate smooth-law RK4 convergence assumptions.",
+          "Stiff dynamics can remain inaccurate or unstable at both resolutions.",
+          "The comparison does not alter the model, observations, initial conditions, or training ranking."
+        ],
+        "reason": null,
+        "combinedSteps": 4672
+      }
+    }
+  ],
+  "meaning": "One predeclared newly held-back changed damping condition. No fitting module imported, no model or settings changed after acquisition. Not independently administered blind validation."
+}

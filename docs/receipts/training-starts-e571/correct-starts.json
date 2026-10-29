@@ -1,0 +1,39 @@
+{
+  "meaning": "Independent sine instrument with already-correct starts and clean readings. Same declared family/sweeps, only bounded-start widths differ.",
+  "bounded": [
+    {
+      "id": "rate+spring",
+      "status": "screened",
+      "rmse": 0.48041904958642534
+    },
+    {
+      "id": "rate+gravity",
+      "status": "screened",
+      "rmse": 0.000028777085007068678
+    }
+  ],
+  "zeroWidth": [
+    {
+      "id": "rate+spring",
+      "status": "screened",
+      "rmse": 0.44816556904911997
+    },
+    {
+      "id": "rate+gravity",
+      "status": "screened",
+      "rmse": 0.000028777085007068678
+    }
+  ],
+  "incumbents": [
+    {
+      "id": "spring",
+      "status": "complete",
+      "rmse": 0.7003496944974855
+    },
+    {
+      "id": "rate+gravity+bias",
+      "status": "complete",
+      "rmse": 0.00002878145887342482
+    }
+  ]
+}

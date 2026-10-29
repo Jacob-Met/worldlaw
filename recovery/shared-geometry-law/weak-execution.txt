@@ -1,0 +1,13 @@
+{
+  relation: {
+    scale: 9.791966152304443,
+    offsetM: 0.004072265625000003,
+    trainingDamping: [ [Object], [Object], [Object], [Object] ]
+  },
+  weakRMSE: 0.03173613613772068,
+  reservation: { windows: 788, segments: 31520, maximumFits: 45 },
+  forecast: [
+    [ 'screened', 0.03733227113890236 ],
+    [ 'screened', 0.016443018160783526 ]
+  ]
+}

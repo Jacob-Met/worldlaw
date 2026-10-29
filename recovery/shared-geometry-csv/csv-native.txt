@@ -1,0 +1,1 @@
+PASS six frozen forecasts, four exact original byte hashes, forged cache, unit/duplicate/blank-channel refusals and posthash retirement

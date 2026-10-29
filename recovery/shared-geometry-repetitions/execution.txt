@@ -1,0 +1,129 @@
+{
+  "summary": [
+    {
+      "recording": "len5_cond2_2.csv",
+      "reservation": {
+        "steps": 104640,
+        "rows": 46548
+      },
+      "results": [
+        {
+          "label": "shared_selected_offset",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.038268960793121316
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.02635088994022384
+            }
+          ]
+        },
+        {
+          "label": "shared_pooled_zero",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.11205449423832975
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.09278023225178567
+            }
+          ]
+        },
+        {
+          "label": "single_setup_inverse_length",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.07495978334823962
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.05924816011933428
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "recording": "len5_cond2_3.csv",
+      "reservation": {
+        "steps": 104640,
+        "rows": 46548
+      },
+      "results": [
+        {
+          "label": "shared_selected_offset",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.06767552306652715
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.025921862472963176
+            }
+          ]
+        },
+        {
+          "label": "shared_pooled_zero",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.14451357435451007
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.10161971003216752
+            }
+          ]
+        },
+        {
+          "label": "single_setup_inverse_length",
+          "forecasts": [
+            {
+              "label": "original_observed_start",
+              "status": "screened",
+              "rmse": 0.1058453749642707
+            },
+            {
+              "label": "prefix_estimated_model_start",
+              "status": "screened",
+              "rmse": 0.06351025234624576
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "means": [
+    {
+      "label": "shared_selected_offset",
+      "prefixMean": 0.02613637620659351,
+      "observedMean": 0.052972241929824235
+    },
+    {
+      "label": "shared_pooled_zero",
+      "prefixMean": 0.0971999711419766,
+      "observedMean": 0.1282840342964199
+    },
+    {
+      "label": "single_setup_inverse_length",
+      "prefixMean": 0.061379206232790015,
+      "observedMean": 0.09040257915625516
+    }
+  ]
+}

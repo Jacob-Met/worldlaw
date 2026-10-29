@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "out": "/dev/shm/worldlaw-joint-browser-pK240t",
+  "checks": [
+    "Sandbox active",
+    "Actual authored joint-channel gain and two channel plots",
+    "Source-only actual download",
+    "Nested cache cannot replace recomputed prior and joint fit",
+    "Narrow contained",
+    "Biased rate loss and dependence assumptions visible",
+    "Original channel consistency described separately from fitting",
+    "Unused measured repetition adverse result and incumbents visible",
+    "Actual measured source download retains original held bytes identity",
+    "Frozen-law prefix improvement and weak-law loss both visible",
+    "Prefix download contains original inputs only",
+    "Prefix replay recomputes every retained law",
+    "New predeclared measured prefix gain and weak unresolved retained",
+    "New held original identity survives actual source-only download",
+    "Prefix narrow contained",
+    "Duration intent retires old saving",
+    "Parent original-source intent retires pending prefix replay",
+    "Separate rate screen refuses optional fit and retains incumbent",
+    "Parent intent retires pending source before replay",
+    "No browser errors"
+  ],
+  "errors": [],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T20:53:15.611Z",
+    "completedAt": "2026-10-28T20:53:15.725Z",
+    "durationMs": 114.01965499999994,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "F2503896499B4985CB9898C13E69040B",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "4E71F0DF4190AB8CD93EC84CC2FEBBA6"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  }
+}

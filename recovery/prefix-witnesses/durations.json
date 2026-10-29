@@ -1,0 +1,65 @@
+{
+  "meaning": "Consumed exploratory prefix-duration comparison under fixed explicitlydeclared .01rad RMS condition; no calibrated uncertainty/globalbounds/futurevalues.",
+  "rows": [
+    {
+      "duration": 0.1,
+      "admitted": 33,
+      "status": "distinct_admitted_start_witnesses",
+      "disagreement": {
+        "time": 25,
+        "positionDifference": 0.175180115304785,
+        "lowTrial": 0,
+        "highTrial": 39
+      },
+      "reservation": {
+        "steps": 535116,
+        "rows": 229368
+      }
+    },
+    {
+      "duration": 0.25,
+      "admitted": 30,
+      "status": "distinct_admitted_start_witnesses",
+      "disagreement": {
+        "time": 25,
+        "positionDifference": 0.06188990585068552,
+        "lowTrial": 88,
+        "highTrial": 39
+      },
+      "reservation": {
+        "steps": 538992,
+        "rows": 231078
+      }
+    },
+    {
+      "duration": 0.5,
+      "admitted": 27,
+      "status": "distinct_admitted_start_witnesses",
+      "disagreement": {
+        "time": 25,
+        "positionDifference": 0.04245734806824933,
+        "lowTrial": 88,
+        "highTrial": 85
+      },
+      "reservation": {
+        "steps": 545376,
+        "rows": 233928
+      }
+    },
+    {
+      "duration": 1,
+      "admitted": 16,
+      "status": "distinct_admitted_start_witnesses",
+      "disagreement": {
+        "time": 25,
+        "positionDifference": 0.005178819456448797,
+        "lowTrial": 94,
+        "highTrial": 111
+      },
+      "reservation": {
+        "steps": 558144,
+        "rows": 239628
+      }
+    }
+  ]
+}

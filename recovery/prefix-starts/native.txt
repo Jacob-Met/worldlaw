@@ -1,0 +1,13 @@
+{ fixed: 0.10402906054880885, estimated: 0.00006774358956692973 }
+✔ frozen law with wrong initialization improves independent authored suffix without replacing first observation (52.748677ms)
+✔ later changes cannot alter fitted starts and first-row/source/budget refusals hold (52.953249ms)
+✔ correct initialization can remain incumbent and unresolved integration never wins (46.219459ms)
+✔ identical numeric prefix from a different original cannot masquerade as continuation (19.601907ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 196.415983

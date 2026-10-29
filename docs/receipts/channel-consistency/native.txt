@@ -1,0 +1,20 @@
+{"joint":0.002017932502278256,"positionOnly":0.011391788898302781}
+{"biasedRateJoint":0.013031790484484263,"positionOnly":1.4327591123354203e-9}
+✔ exact linear rate on irregular original clock, no mutation (1.707328ms)
+✔ added rate bias is visible without correcting original channels (0.326502ms)
+✔ missing channels and complete-window exhaustion refuse rather than partial results (1.813969ms)
+✔ descriptive window admission preserves maintained31–60second source support (0.482188ms)
+✔ source-only original rate replay and both challenge channels excluded from training (1077.248225ms)
+✔ missing added channel refuses joint branch while original comparison remains (271.31934ms)
+✔ additional supplied rate improves independent release under explicit angle-only artifact (89.281134ms)
+✔ explicit original rate provenance, forbidden channels and complete doubled residual budget (1.197257ms)
+✔ rate numerical screen independently refuses a position-screened seed (2.906267ms)
+✔ biased supplied channel can worsen independent release despite adding observations (82.709164ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1558.264809

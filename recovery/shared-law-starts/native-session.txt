@@ -1,0 +1,12 @@
+✔ canonical original replay retains coefficient-only bounds, all incumbents and adverse fixed-start outcome (5184.687329ms)
+✔ receiving values cannot fit shared coefficients and optional refusal preserves original results (6116.685849ms)
+✔ shared coefficients and private model starts recover analytic law while original first rows stay in residuals (90.716078ms)
+✔ complete enlarged budget and unresolved derivatives cannot produce accepted parameters (2.068485ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11430.183163

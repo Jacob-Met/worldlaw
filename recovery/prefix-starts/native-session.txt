@@ -1,0 +1,15 @@
+{ fixed: 0.10402906054880885, estimated: 0.00006774358956692973 }
+✔ source-only original receiving course recomputes all five retained laws, prefix fits and adverse outcomes (3461.544194ms)
+✔ changed suffix never changes original training laws or estimated prefix starts; complete budget refusal retains incumbents (4864.586356ms)
+✔ frozen law with wrong initialization improves independent authored suffix without replacing first observation (21.5897ms)
+✔ later changes cannot alter fitted starts and first-row/source/budget refusals hold (39.0326ms)
+✔ correct initialization can remain incumbent and unresolved integration never wins (38.055096ms)
+✔ identical numeric prefix from a different original cannot masquerade as continuation (20.794819ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8490.073383

@@ -1,0 +1,10 @@
+✔ shared coefficients and private model starts recover analytic law while original first rows stay in residuals (150.167205ms)
+✔ complete enlarged budget and unresolved derivatives cannot produce accepted parameters (1.84581ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 173.964548

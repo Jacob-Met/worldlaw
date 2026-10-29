@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "out": "/dev/shm/worldlaw-joint-browser-U4Gb4C",
+  "checks": [
+    "Sandbox active",
+    "Actual authored joint-channel gain and two channel plots",
+    "Mapped gain, unchanged loss, stronger local shared-law and original incumbents visible",
+    "Conditional assumptions explicit",
+    "Source-only download retains both original studies and local shared fit source",
+    "Reopen ignores cached results",
+    "Compare after reopen retains canonical source and declaration",
+    "Narrow contained",
+    "New held geometry gain and adverse prefix/local comparisons retained",
+    "New held original identity preserved in actual source download",
+    "Shared relation gain and observed-start loss with allincumbents visible",
+    "Shared relation download contains canonical original setups only",
+    "Shared relation source replay ignores cached coefficients",
+    "Shared relation Compare retains reopened canonical setups/options",
+    "Ordinary original-notebook intake and explicit length declarations reproduce relation",
+    "New original held small-baffle course reproduces all frozen alternatives",
+    "Direct source damping identity and no invented local baseline visible",
+    "Downloaded original receiving identity and all training preserved",
+    "Direct reopen Compare ignores cache and retains exact frozen source",
+    "Leaving direct mode restores editable original calibration declarations",
+    "Original notebook mode recomputes after direct mode",
+    "Rejected calibration replacement leaves previous setup unavailable",
+    "Geometry parent intent retires pending empirical source replay",
+    "Undeclared hypothesis cannot produce saved result",
+    "Rejected receiving replacement cannot rerun previous course",
+    "Parent intent retires delayed notebook before recomputation",
+    "No browser errors"
+  ],
+  "errors": [],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T23:15:09.037Z",
+    "completedAt": "2026-10-28T23:15:09.130Z",
+    "durationMs": 92.87136299999997,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "11393FA0E01C10CD5D31D3240ED77148",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "2A820356C263C003983F49DCFBA862FD"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  }
+}

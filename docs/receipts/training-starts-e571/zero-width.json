@@ -1,0 +1,19 @@
+{
+  "meaning": "Same independently authored training and release, samefamily/sweeps, zero start widths. This isolates coordinate-start freedom from family choice.",
+  "results": [
+    {
+      "id": "rate+spring",
+      "status": "screened",
+      "rmse": 0.44288015691008586
+    },
+    {
+      "id": "rate+gravity",
+      "status": "screened",
+      "rmse": 0.08877118105650149
+    }
+  ],
+  "ranking": [
+    "rate+spring",
+    "rate+gravity"
+  ]
+}

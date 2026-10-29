@@ -1,0 +1,96 @@
+{
+  "meaning": "Already reused PASCO comparison, not fresh blind validation. Every2001-row recording retained; same family/sweep alternatives isolate start freedom.",
+  "sourceSHA256": "7e42868153d3aa15fc9722f665f5ed62cc491c4445768f8db74a6e36b85cb0e6",
+  "results": [
+    {
+      "widths": {
+        "position": 0,
+        "rate": 0
+      },
+      "error": null,
+      "reservation": {
+        "steps": 93440,
+        "rows": 40020
+      },
+      "ranking": [
+        "rate+gravity",
+        "rate+spring"
+      ],
+      "results": [
+        {
+          "id": "rate+spring",
+          "status": "screened",
+          "rmse": 0.4358259736481085
+        },
+        {
+          "id": "rate+gravity",
+          "status": "screened",
+          "rmse": 0.05424002084591618
+        }
+      ],
+      "incumbents": [
+        {
+          "id": "rate+coulomb+gravity+quadratic",
+          "status": "complete",
+          "rmse": 0.8058218329589004
+        },
+        {
+          "id": "rate+gravity+bias",
+          "status": "complete",
+          "rmse": 0.07347155699057158
+        },
+        {
+          "id": "rate+gravity+bias~forward-refined",
+          "status": "complete",
+          "rmse": 0.07048751174825926
+        }
+      ],
+      "fixedStatus": "training_improved"
+    },
+    {
+      "widths": {
+        "position": 0.1,
+        "rate": 0.2
+      },
+      "error": null,
+      "reservation": {
+        "steps": 242944,
+        "rows": 104052
+      },
+      "ranking": [
+        "rate+gravity",
+        "rate+spring"
+      ],
+      "results": [
+        {
+          "id": "rate+spring",
+          "status": "screened",
+          "rmse": 0.4358259736481085
+        },
+        {
+          "id": "rate+gravity",
+          "status": "screened",
+          "rmse": 0.05424002084591618
+        }
+      ],
+      "incumbents": [
+        {
+          "id": "rate+coulomb+gravity+quadratic",
+          "status": "complete",
+          "rmse": 0.8058218329589004
+        },
+        {
+          "id": "rate+gravity+bias",
+          "status": "complete",
+          "rmse": 0.07347155699057158
+        },
+        {
+          "id": "rate+gravity+bias~forward-refined",
+          "status": "complete",
+          "rmse": 0.07048751174825926
+        }
+      ],
+      "fixedStatus": "training_improved"
+    }
+  ]
+}

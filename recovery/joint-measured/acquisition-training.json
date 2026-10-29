@@ -1,0 +1,18 @@
+[
+  {
+    "file": "len2_cond1_1.csv",
+    "url": "https://raw.githubusercontent.com/EnzeXu/Damped_Pendulum_Dataset/cbf82673641ecd65e902ad5c38a048387649a2a0/raw_data/len2_cond1_1.csv",
+    "bytes": 312575,
+    "sha256": "cb6e54afef933c52b6b4e334a97314765da091a984f5d1d60b7b9070a5d982bc",
+    "gitBlob": "a5b7d203705413d933a8de44160963b6ce10cd7e",
+    "acquiredUTC": "2026-10-28T20:11:07.865435+00:00"
+  },
+  {
+    "file": "len2_cond1_2.csv",
+    "url": "https://raw.githubusercontent.com/EnzeXu/Damped_Pendulum_Dataset/cbf82673641ecd65e902ad5c38a048387649a2a0/raw_data/len2_cond1_2.csv",
+    "bytes": 314217,
+    "sha256": "cfbbd517dc3d9d158aa176d8d940085ab04b28928c5c14da0b68b16fbc48133f",
+    "gitBlob": "ac690ee33aa57094696c2f6dcf33215fd46f1e35",
+    "acquiredUTC": "2026-10-28T20:11:08.105229+00:00"
+  }
+]

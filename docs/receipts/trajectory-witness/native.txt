@@ -1,0 +1,14 @@
+{"shortSpan":1.5243398555627907,"longSpan":0.023187606350085876,"reservation":{"steps":31160,"rows":5002}}
+✔ independent analytic short course admits divergent executable laws; longer course contracts found span (64.231505ms)
+✔ forged equation removed from every trial and cannot affect maintained receiver (46.473799ms)
+✔ inadmissible seed is not zero uncertainty (1.080144ms)
+✔ source-only replay excludes forged cached comparisons and leaves original untouched (58.580672ms)
+✔ source role, prospective outcomes, whole reservation and schema refusal (1.059292ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 200.759711

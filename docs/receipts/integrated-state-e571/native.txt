@@ -1,0 +1,14 @@
+✔ mixed noise separate release and frozen training preserve incumbents (452.609227ms)
+✔ systematic acceleration bias is not repaired (138.695205ms)
+✔ 648 measured rows retain stronger incumbent loss and explicit uncovered tail (236.713312ms)
+✔ source replay ignores forged results and complete budget refuses additions (199.798758ms)
+✔ wrong channels and insufficient windows refuse explicitly (92.643559ms)
+✔ coherent operator preserves affine feature identity and exact epoch shift (6.861476ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1202.140936

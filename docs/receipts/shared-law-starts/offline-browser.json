@@ -1,0 +1,90 @@
+{
+  "status": "PASS",
+  "out": "/dev/shm/worldlaw-joint-browser-16U87g",
+  "checks": [
+    "Sandbox active",
+    "Actual authored joint-channel gain and two channel plots",
+    "Source-only actual download",
+    "Nested cache cannot replace recomputed prior and joint fit",
+    "Narrow contained",
+    "Biased rate loss and dependence assumptions visible",
+    "Original channel consistency described separately from fitting",
+    "Unused measured repetition adverse result and incumbents visible",
+    "Actual measured source download retains original held bytes identity",
+    "Frozen-law prefix improvement and weak-law loss both visible",
+    "Prefix download contains original inputs only",
+    "Prefix replay recomputes every retained law",
+    "New predeclared measured prefix gain and weak unresolved retained",
+    "New held original identity survives actual source-only download",
+    "Compare after reopen retains reopened original and settings",
+    "Joint training-law alternative retains fixed-start loss and conditional gain",
+    "Shared-law original source keeps coefficient-only bounds",
+    "Joint training replay ignores cached fit",
+    "New predeclared measured joint-law gain and alloriginalrefusals visible",
+    "New shared-law original held identity retained",
+    "Optional joint training refusal retains existing prefix comparisons",
+    "Parent prefix edit retires pending joint training replay",
+    "Finite initialization ambiguity visible without continuum claim",
+    "Witness source-only download retains original prefix and time-only request",
+    "Forged witness result ignored on actual reopen",
+    "No admitted witnesses remains unavailable, not zero uncertainty",
+    "Prefix intent retires pending witness file before replay",
+    "Prefix narrow contained",
+    "Reopened nondefault prefix and search options remain visible and govern rerun",
+    "Duration intent retires old saving",
+    "Parent original-source intent retires pending prefix replay",
+    "Separate rate screen refuses optional fit and retains incumbent",
+    "Parent intent retires pending source before replay",
+    "No browser errors"
+  ],
+  "errors": [],
+  "sandbox": {
+    "schema": "hamon-chromium-sandbox/v1",
+    "qualification": "Linux Chromium status in the supplied isolated CDP page",
+    "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+    "startedAt": "2026-10-28T21:26:41.003Z",
+    "completedAt": "2026-10-28T21:26:41.099Z",
+    "durationMs": 96.01663399999995,
+    "admitted": true,
+    "browser": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.73",
+      "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.25"
+    },
+    "target": {
+      "targetId": "82517AD6EDD70848795CFBAF05CD1BA9",
+      "type": "page",
+      "title": "about:blank",
+      "url": "about:blank",
+      "attached": true,
+      "canAccessOpener": false,
+      "browserContextId": "AC8D669C6D80B957B7312FC30876B1C3"
+    },
+    "url": "chrome://sandbox/",
+    "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+    "observation": {
+      "rows": {
+        "layer1": "Namespace",
+        "pid": "Yes",
+        "network": "Yes",
+        "seccomp": "Yes",
+        "tsync": "Yes"
+      },
+      "checks": {
+        "adequate": true,
+        "layer1": true,
+        "pid": true,
+        "network": true,
+        "seccomp": true,
+        "tsync": true
+      },
+      "populated": true,
+      "duplicates": [],
+      "active": true
+    },
+    "failure": null
+  }
+}

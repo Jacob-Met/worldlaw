@@ -1,0 +1,25 @@
+import {normalizeAngularRuns} from '../trajectory/angular-discovery.mjs';
+import {rolloutAngularWithResolution} from '../trajectory/angular-resolution.mjs';
+import {reservePredictionWork} from '../predictive-selection/select.mjs';
+const copy=x=>JSON.parse(JSON.stringify(x)),check=(x,m)=>{if(!x)throw Error(m);};
+export function calibrateConditionRate(seed,rawCourse,options){
+ const run=normalizeAngularRuns([rawCourse])[0],o=copy(options),rate=seed.terms.filter(t=>t.id==='rate');
+ check(rate.length===1&&Number.isFinite(rate[0].coefficient)&&seed.terms.length<=4&&seed.terms.every(t=>['rate','spring','gravity','bias','cosine','cubic'].includes(t.id)&&Number.isFinite(t.coefficient)),'One linear rate and at most four smooth finite terms required');
+ check(Array.isArray(o.rateBounds)&&o.rateBounds.length===2&&o.rateBounds.every(Number.isFinite)&&o.rateBounds[0]<rate[0].coefficient&&rate[0].coefficient<o.rateBounds[1],'Declared rate bounds must contain original rate');
+ check(Number.isFinite(o.prefixEnd)&&o.prefixEnd>run.samples[0].time&&o.prefixEnd<run.samples.at(-1).time,'Explicit prefix ends before course end');
+ check(Number.isInteger(o.gridCount)&&o.gridCount>=3&&o.gridCount<=65&&Number.isInteger(o.refinements)&&o.refinements>=0&&o.refinements<=8,'Bound complete grid and refinement count');
+ check(Number.isFinite(o.maxStep)&&o.maxStep>=1e-5&&o.maxStep<=.1&&Number.isFinite(o.screen)&&o.screen>0&&o.screen<=.001,'Bound forward solver and strict screen');
+ const prefix={...run,samples:run.samples.filter(x=>x.time<=o.prefixEnd)};check(prefix.samples.length>=8&&prefix.samples.length<run.samples.length,'At least eight original prefix rows and one later row required');
+ const maximumEvaluations=o.gridCount+1+2*o.refinements,prefixWork=reservePredictionWork([prefix],o.maxStep,maximumEvaluations),forecastWork=reservePredictionWork([run],o.maxStep),reservation={steps:prefixWork.steps+forecastWork.steps,rows:prefixWork.rows+forecastWork.rows,maximumEvaluations};
+ check(Number.isSafeInteger(o.maxTotalSteps)&&o.maxTotalSteps>0&&o.maxTotalSteps<=4000000&&reservation.steps<=o.maxTotalSteps&&reservation.rows<=262144,'Complete prefix search plus full forecast exceeds budget');
+ const trials=[],seen=new Set();const modelFor=value=>{const m=copy(seed);m.terms.find(t=>t.id==='rate').coefficient=value;delete m.equation;delete m.domain;m.method='fixed_restoring_law_prefix_rate_calibration';m.metrics={meaning:'Original seed metrics do not apply'};return m;};
+ function evaluate(value){if(seen.has(value))return null;seen.add(value);try{const r=rolloutAngularWithResolution(modelFor(value),prefix,{maxStep:o.maxStep,maxSteps:reservePredictionWork([prefix],o.maxStep).steps}),ok=r.resolution.status==='compared'&&r.resolution.maxAbsPositionDifference<=o.screen;const residuals=r.rollout.rows.map((x,i)=>x.predicted-prefix.samples[i].position),t={index:trials.length,value,status:ok?'screened':'unresolved',rmse:ok?Math.hypot(...residuals)/Math.sqrt(residuals.length):null,resolution:r.resolution};trials.push(t);return t;}catch(e){const t={index:trials.length,value,status:'failed',rmse:null,error:e.message};trials.push(t);return t;}}
+ let best=null;const consider=t=>{if(t?.status==='screened'&&(!best||t.rmse<best.rmse))best=t;};
+ consider(evaluate(rate[0].coefficient));let step=(o.rateBounds[1]-o.rateBounds[0])/(o.gridCount-1);for(let i=0;i<o.gridCount;i++)consider(evaluate(i===o.gridCount-1?o.rateBounds[1]:o.rateBounds[0]+i*step));
+ for(let k=0;k<o.refinements&&best;k++){step/=2;const center=best.value;for(const value of [center-step,center+step])if(value>=o.rateBounds[0]&&value<=o.rateBounds[1])consider(evaluate(value));}
+ const base={source:copy(rawCourse),options:o,prefixCount:prefix.samples.length,laterCount:run.samples.length-prefix.samples.length,reservation,trials,best,meaning:'Finite conditional damping calibration from an explicit original prefix, fixed restoring coefficients and original start. Later values do not fit damping. Grid/local refinement is not a global optimizer or uncertainty interval; consumed data remains exploratory.'};
+ if(!best)return{...base,status:'no_screened_prefix_candidate',model:null,forecast:null};
+ const complete=trials.filter(t=>t.status==='screened');if(complete.length>1&&complete.every(t=>t.rmse===complete[0].rmse))return{...base,status:'flat_prefix_unidentified',model:null,forecast:null};
+ const model=modelFor(best.value);let forecast;try{const r=rolloutAngularWithResolution(model,run,{maxStep:o.maxStep,maxSteps:forecastWork.steps}),residuals=r.rollout.rows.slice(prefix.samples.length).map((x,i)=>x.predicted-run.samples[i+prefix.samples.length].position);forecast={...r,status:r.resolution.status==='compared'&&r.resolution.maxAbsPositionDifference<=o.screen?'screened':'unresolved',laterRMSE:Math.hypot(...residuals)/Math.sqrt(residuals.length)};}catch(e){forecast={status:'failed',error:e.message};}
+ return{...base,status:best.value===o.rateBounds[0]||best.value===o.rateBounds[1]?'boundary_candidate':'interior_sampled_candidate',model,forecast};
+}

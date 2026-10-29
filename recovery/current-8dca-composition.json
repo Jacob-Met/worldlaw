@@ -1,0 +1,96 @@
+{
+  "base": "8dca4dcdc7ca10d0c1d4e61a463632891d4e24ac",
+  "previousBase": "aef708dcee436c7657c3be338821a20b405dd2e1",
+  "meaning": "Incoming16runtime Gitblobs verified; app4incominghunks composed with owned lifecycle.7missing immutable snapshot dependencies restored for native incomingrelease suite. Frozen298 unchanged.35/36 initialnative pass, sole remaining missing notebook module restored then release5/5 pass; all36unique controls now passed. Served14/offline14 sandbox,132exactbuildinputs.",
+  "runtime": [
+    {
+      "path": "src/science/release-amplitudes.mjs",
+      "upstreamBlob": "14db5f167b63a873f843aa3280528defb31f46f8",
+      "actualSHA256": "6ec695dfe4b983186c57b26a32306c4963c369a741d1afe5276849de689f71f5"
+    },
+    {
+      "path": "src/science/release-investigation.mjs",
+      "upstreamBlob": "a29443e6c72b8740a21bcab020c2cfe7c362ad37",
+      "actualSHA256": "27ab9a935d9ea63367f8bee5c1c1d4be8e42b5df8c467a90a50d018b1cdcade1"
+    },
+    {
+      "path": "src/science/release-perturbations-panel.mjs",
+      "upstreamBlob": "6a5c75a7045226b63df0ed56b2ef26220aba1914",
+      "actualSHA256": "26db016842bd5902b0a4bdbfa493e6f17a3d024755a370ceada266aab292aab9"
+    },
+    {
+      "path": "src/trajectory/app.mjs",
+      "upstreamBlob": "d8f83abed8f4b4370bf74b02fb834883f3c62cf9",
+      "actualSHA256": "dbb48f58367f5849d027034707a3e3b5419a1adb529c17f5de4e3b85220be713"
+    },
+    {
+      "path": "src/trajectory/forward.mjs",
+      "upstreamBlob": "a3f7c0aafb7f1c81f4ddfbc6f7fa284fe4ab27a3",
+      "actualSHA256": "7e80824e1475b21e99c74e3f5cd058655851b5c90494086325c44ffe6fd4f705"
+    },
+    {
+      "path": "src/trajectory/interval-average.mjs",
+      "upstreamBlob": "2cbc194dab8941d3c14221bb62dcd0ff9ec77f8e",
+      "actualSHA256": "2ba2687667f8afc2f9b337e0a0047697fd17531f66398a34edd3beb33ae9d176"
+    },
+    {
+      "path": "src/trajectory/interval-readout-panel.mjs",
+      "upstreamBlob": "e58c2954ad92db9a9242a7462dbfa274ae6b7a1d",
+      "actualSHA256": "5d7183a2f893e6305c24df2ac3de5c428c07ec06676da1a43844fb3fa0112ae2"
+    },
+    {
+      "path": "src/trajectory/interval-readout.mjs",
+      "upstreamBlob": "d147b0be6fc198b4a9f2aee18113d27359363a3f",
+      "actualSHA256": "b93efdc06512b0de645a1c88115248980d4a717db124c1234aadd69d5ed1854b"
+    },
+    {
+      "path": "src/trajectory/partition-audit.mjs",
+      "upstreamBlob": "a564014ec8de5ef9a5cf0975bd024b8fe4095e28",
+      "actualSHA256": "5efebfe0eef42a31581a7289515be0ed2e9e417bcfe53962189aa3f3a4f5f49f"
+    },
+    {
+      "path": "src/trajectory/residual-structure-panel.mjs",
+      "upstreamBlob": "ae871b921860060ea28a2b29004df1878a307c03",
+      "actualSHA256": "6e0b8bcde784e4778a4af10d4fb5604beb57eecea47c46cb156bcf81125189ad"
+    },
+    {
+      "path": "src/trajectory/resolution.mjs",
+      "upstreamBlob": "7112dfccd8ea1e8ce266af2b2a4b326ac7c32772",
+      "actualSHA256": "54123871fb4b9355989a1d97a4da374547c694166fccd778d55c93da120910cd"
+    },
+    {
+      "path": "src/trajectory/segment-audit.mjs",
+      "upstreamBlob": "9d0c807c31b331c5ee8c0aec1c05f0db15b2acbc",
+      "actualSHA256": "55e9e12f4c34e5e9a0644e2621f93d98296dd45799edb935edf6548303ff2e37"
+    },
+    {
+      "path": "src/trajectory/time-support-panel.mjs",
+      "upstreamBlob": "2dbb3a02ede4af6414579e3c562de80501fc76ef",
+      "actualSHA256": "09df4f321da4f1a92c415cb5f5760029631f52354cef353d4a85cf789c68601d"
+    },
+    {
+      "path": "src/unknown-lab/reference-refinement-panel.mjs",
+      "upstreamBlob": "3396a4522ee836544ce4f93becacd8af7d6bff46",
+      "actualSHA256": "8203c34e7fdc0b339486599e26a4d5e54661807f823e503b5de223957ab88f4b"
+    },
+    {
+      "path": "src/unknown-lab/reference-refinement.mjs",
+      "upstreamBlob": "c97266242acb63665242e547d3c2cc6f79daa489",
+      "actualSHA256": "4fa5a33e1eb2ec7e87d5b93dfd39a30224517c81ce44fc3dff377c07fc212187"
+    },
+    {
+      "path": "src/unknown-lab/reference-sequence-panel.mjs",
+      "upstreamBlob": "4f6f86797eaf041fcd8df4de36e67545168c7e00",
+      "actualSHA256": "6afab468dea2ef9c5ab4ac2ac50fef43fe03997a176cd75e4fc7c39b5f9b751c"
+    }
+  ],
+  "restoredImmutableDependencies": [
+    "src/science/release-perturbations.mjs",
+    "src/science/release-peak-resolution.mjs",
+    "src/science/release-resolution.mjs",
+    "src/science/release-discretization.mjs",
+    "src/science/release-peak-decomposition.mjs",
+    "src/notebook-input.mjs",
+    "experiments/interval-average/interval-average.mjs"
+  ]
+}
