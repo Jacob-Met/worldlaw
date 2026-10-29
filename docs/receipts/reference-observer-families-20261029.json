@@ -1,0 +1,26 @@
+{
+  "claim": 513,
+  "nativeGroups": 131,
+  "browserGroups": 92,
+  "status": "passed",
+  "exceptions": [],
+  "finishedAt": "2026-10-29T02:59:15.857Z",
+  "sandboxActive": true,
+  "familyExited": true,
+  "profileRetained": true,
+  "sourceIdentity": {
+    "base": "50ee4cb8b825893b1720bbeb57c192c8de7446ff",
+    "inquiry": 513,
+    "composition": "five exact changed source files over qualified residual closure"
+  },
+  "sourceHashes": {
+    "src/science/nonlinear-cohort-families.mjs": "1ed0fe54fdf44addb64039fcdd75018de617d4d59b267cf36b6f832fcbc755dc",
+    "src/science/nonlinear-cohorts-panel.mjs": "5558b0cdfa18a1d68aef505e437c67d38065de071c6e70a4205febec78b7ec80",
+    "src/science/nonlinear-common-reference-panel.mjs": "8cc0c98182a5d6a89f2ed2d69b0641ad3e9399f52f3b45880ed92017486c4c7a",
+    "src/science/nonlinear-reference-observations-panel.mjs": "86a0642ceb858cab23530b5f3be279e528a5b686b59326d53b22882be641f274",
+    "src/science/nonlinear-reference-observer-panel.mjs": "3d99f5c222df27fb4d1b848a07e55a0bad6522ae8d84aabbef48b401a7b6f3b2",
+    "tests/nonlinear-reference-observer-families.test.mjs": "4dffc3cfcfd540b842d34ad4a74ce80e8beb82f0d925f21a37bca93cfcedded1",
+    "scripts/nonlinear-reference-observer-families.receiving.mjs": "2c8aad9a0b2311afa0d8fd28d8f3d490e7b814fcaf0c900386898aa0c68c09e1"
+  },
+  "qualification": "Different original laws can use different candidate observing offsets. Unsupported outcomes prevent universal exclusion; no original fit/rank/source adoption."
+}
