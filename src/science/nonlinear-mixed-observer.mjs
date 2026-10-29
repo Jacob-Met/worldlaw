@@ -1,13 +1,16 @@
-import{prepareRawObserver}from'./nonlinear-raw-observer.mjs';
+import{prepareRawObserver,admitRawObserverDeclaration}from'./nonlinear-raw-observer.mjs';
 import{checkNonlinearCommonReference}from'./nonlinear-common-reference.mjs';
 import{checkLinearEnvelopeSeparator,checkLinearEnvelopeOffsets}from'./shared-training-check.mjs';
 import{searchPreparedLinearEnvelope}from'./shared-training-search.mjs';
 const SCHEMA='worldlaw.nonlinear-mixed-observer/v1',CERT='worldlaw.nonlinear-mixed-observer-certificate/v1';
-export function prepareMixedObserver(raw){
+export function admitMixedObserverDeclaration(raw){
  if(raw?.schema!==SCHEMA||raw.sameAssignedAffineObservers!==true||raw.explicitResidualUnits!==true||raw.original?.schema!=='worldlaw.nonlinear-affine-observer-partitions/v1'||!Array.isArray(raw.units))throw Error('Retain one complete original affine instrument assignment and explicit residual units for every instrument.');
- const r=prepareRawObserver({...raw.original,schema:'worldlaw.nonlinear-raw-observer-partitions/v1',rawReadoutResiduals:true,correctedUnitResiduals:undefined}),q=r.q,p=r.p;
- if(raw.units.length!==p.groups.length)throw Error('Declare every original instrument unit in original order.');
- const units=raw.units.map((u,i)=>{if(u?.instrumentId!==p.groups[i].instrumentId||!['raw','corrected'].includes(u.unit)||typeof u.basis!=='string'||!u.basis.trim()||u.basis.length>1000)throw Error('Retain exact instrument identity, raw/corrected unit and explicit source basis.');return{instrumentId:u.instrumentId,unit:u.unit,basis:u.basis.trim()};});
+ const admitted=admitRawObserverDeclaration({...raw.original,schema:'worldlaw.nonlinear-raw-observer-partitions/v1',rawReadoutResiduals:true,correctedUnitResiduals:undefined}),groups=admitted.gains;
+ if(raw.units.length!==groups.length)throw Error('Declare every original instrument unit in original order.');
+ const units=raw.units.map((u,i)=>{if(u?.instrumentId!==groups[i].instrumentId||!['raw','corrected'].includes(u.unit)||typeof u.basis!=='string'||!u.basis.trim()||u.basis.length>1000)throw Error('Retain exact instrument identity, raw/corrected unit and explicit source basis.');return{instrumentId:u.instrumentId,unit:u.unit,basis:u.basis.trim()};});
+ return{units,gains:admitted.gains};
+}
+export function prepareMixedObserver(raw){const{units}=admitMixedObserverDeclaration(raw),r=prepareRawObserver({...raw.original,schema:'worldlaw.nonlinear-raw-observer-partitions/v1',rawReadoutResiduals:true,correctedUnitResiduals:undefined}),q=r.q,p=r.p;
  const extra=[],extraRadii=[],ranges=[];
  for(let i=0;i<q.extra.length;i++){const start=extra.length,unit=units[p.assignment[i]].unit;if(unit==='raw'){extra.push(...r.extra.slice(2*i,2*i+2));extraRadii.push(...r.extraRadii.slice(2*i,2*i+2));}else{extra.push(q.extra[i]);extraRadii.push(p.p.source.observations[i].absoluteError);}ranges.push({start,end:extra.length,unit});}
  const source={schema:SCHEMA,sameAssignedAffineObservers:true,explicitResidualUnits:true,original:q.source,units};

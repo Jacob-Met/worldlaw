@@ -1,0 +1,9 @@
+# Complete original-law comparison with mixed instrument units — WORLD545
+
+Every original retained law structure now receives the complete original instrument assignment and explicit per-instrument raw/corrected error units. The maintained mixed-unit search and independent physical-refit/reading checker run separately per original model. No common numerical correction vector is asserted across competing laws.
+
+The complete population reserves all assigned gain and offset dimensions and a conservative two-inequality upper bound per observation before the first model search. Thus corrected-unit rows cannot make unreserved work available. Original order, unsupported outcomes and unresolved searches are retained; no partial population is returned on admission/work refusal and unsupported outcomes prevent universal exclusion.
+
+The existing same-card consumer rechecks the current original unit declarations and consent, uses declared whole-family budgets, and retires aggregate results on source/consent/unit/budget edits. First16 details are bounded while full counts remain visible. Existing selected-law results remain separate; no fitting, ranking or source adoption.
+
+Native qualification:186 composed groups passed. Independent SYN review personally ran six groups (three inherited mixed-source and three new family controls), accepted complete reservation and source/consumer custody. Actual Chromium receiving passed154 inherited/new groups at2026-10-29 05:58:41 UTC: zero exceptions, sandbox admitted, complete owned-family retirement. Ordinary all-model action, original-unit retirement, zero iterations and complete-work refusal passed. Captures retained remotely; no manual visual claim. Receiver source restoration after budget edits was corrected before its first browser launch. Inherited runner sourceIdentity prose remains stale; exact staged manifests/current-base native tree bind this composition.
