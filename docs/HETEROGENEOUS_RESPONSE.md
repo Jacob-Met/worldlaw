@@ -1,0 +1,13 @@
+# Explicit unequal-noise robust response
+
+The existing Studio response comparison offers an explicit unequal-noise fixed-structure method. Every original training and challenge row must supply `torqueNoiseRatio`; the existing observations/v3 envelope admits these declarations. Neither discovery ranking nor the selected workbench law changes.
+
+The objective is soft-L1 of each original physical residual divided by its supplied dimensionless noise ratio, at the declared reference scale. The solver retains physical coefficient pairs. Corrective QR uses a divided design, but compensated original physical residuals are formed before division for every correction and final stationarity check. Dividing original readings first is not the same numerical operation: twelve tiny-scale controls passed that normalized solver but failed the original-physical-residual Decimal70 check. The new mechanism passes all twelve. Physical residuals and normalized residuals are reported separately; ordinary torque prediction remains rounded binary64.
+
+Twelve authored mixed-precision courses with one gross error give held-aside RMSE 0.00089–0.00117, versus weighted least squares 2.71–3.50 and equal-noise robust 0.00117–12.69. Ratios are caller assumptions, not inferred reliability. Incorrect ratios can privilege inaccurate readings; these results do not calibrate instruments or identify physical causes. Independent review recomputed 48 original/reversed fits with zero false stationarity successes.
+
+The mechanism reserves the complete existing 96 native iterations, at most 3 curvature corrections and all additional normalization work before optimization under 250 million work units. It refuses unsupported normalized ranges, invalid or missing ratios, sparse input, rank loss and work exhaustion. Unit ratios retain exact coefficient parity with the corresponding equal-noise curvature solver.
+
+The original-only schema `worldlaw.heterogeneous-torque-source/v1` contains exactly schema, training, challenge, terms and scale. It clones and recomputes originals, rejects supplied answers, and validates challenge ratios even if fitting fails. Downloads remain within 4 MiB by using compact JSON when indentation would exceed the cap. Reopen restores the declared method and original rows without adopting the result as the selected law. Editing declarations retires accepted results and pending reads.
+
+Actual Studio receiving passes seven groups: original v3 observation import, physical and normalized metrics, actual download and native reopen, selected-law isolation, stale reads, malformed replacement and work refusal. The earlier v1 observation harness was correctly refused and remains negative evidence. No remote publication or deployment is confirmed.

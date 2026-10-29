@@ -1,3 +1,5 @@
+import {renderSplitDiscovery} from './science/split-discovery-panel.mjs';
+import {renderCenteredTorque} from './science/centered-torque-panel.mjs';
 import{assessRecordedDeviation,assessAchievedQuestionBounds}from'./session.mjs';
 import{renderConditionalOffers}from'./science/conditional-offers-panel.mjs';
 import {reuseScalarChallenge,freezeScalarQuestion,conditionScalarQuestion} from './session.mjs';
@@ -182,6 +184,10 @@ function renderModel(){
   box.replaceChildren(el('h3','Repeated-state diagnosis'),
     el('p',rd.pureErrorDF?`${rd.replicatedRows} rows in ${rd.replicatedGroups} repeated states; ${rd.singletonRows} singleton rows. Within-state scatter: ${fmt(rd.repeatabilityRMS)} N·m (${rd.pureErrorDF} degrees of freedom). Group-mean mismatch: ${fmt(rd.meanMismatchRMS)} N·m over all ${rd.count} rows.`:'No exact repeated states: within-state scatter is unavailable. Repeat the same declared command, angle and rate to examine variability.'),
     el('p','Exact inputs are grouped without rounding. Scatter may include drift or hidden state; duplicate rows are not verified independent acquisitions. Group-mean mismatch includes noise and fitting reuse, not just systematic law error. No calibrated confidence or physical cause is established.','subtle'));
+  let centered=$('centered-torque-comparison');if(!centered){centered=el('section');centered.id='centered-torque-comparison';$('residual-chart').after(centered);}
+  renderCenteredTorque(centered,m,state.discovery.observations,state.base.heldOut);
+  let complete=$('split-discovery-comparison');if(!complete){complete=el('section');complete.id='split-discovery-comparison';centered.after(complete);}
+  renderSplitDiscovery(complete,state.discovery.observations,state.base.heldOut,state.discovery.options);
   let support=$('state-support');if(!support){support=el('div');support.id='state-support';$('replicate-diagnostics').after(support);}
   renderStateSupport(support,m,state.discovery.observations);
   let ordered=$('ordered-law-change');if(!ordered){ordered=el('div');ordered.id='ordered-law-change';support.after(ordered);}
