@@ -1,0 +1,11 @@
+# Complete original affine observing instruments
+
+Retain the complete original observing assignment, then import `worldlaw.affine-instrument-gains/v1` with a source basis and an ordered `gains` array. Each gain has `instrumentId`, `basis`, `gainCenter`, and nonnegative `gainRadius`. Every original assigned instrument must appear exactly once in original order. Confirm that the same gain and offset apply to each assigned reading and that residual bounds are in corrected physical units.
+
+The maintained search appends one gain component per instrument after the original offset components. Original physical/report/reference rows receive zero gain coefficients; each observing row receives only its assigned readout-weighted gain. Every candidate independently refits original rows and reconstructs corrected readings using the original shared reference components. A strictly positive factor is required over every complete gain source box. Separate law/source outcomes and original fitted models are retained.
+
+The two-reading control has reference values1 and2 and both readouts1. One common gain is excluded, while explicitly separate original meters admit gains0 and1. Additional controls refuse incomplete assignments, changed order, nonpositive factors and certificate/source tampering, preserve same-instrument contradictions, and charge all dimensions. Four new native controls plus the complete165-control source suite pass. Independent reviewer personally ran eleven new/prior affine/raw controls and inspected the consumer lifecycle.
+
+The consumer does not infer instrument identities, residual units or cross-instrument correlation. Source changes retire declarations and delayed replay. Saved evidence carries all original sources and is rechecked without adopting current drafts. This increment covers selected-law corrected-unit inference; complete-family and raw-unit multiple-instrument inquiries are separate capabilities.
+
+Actual Chromium receiving passed130 groups, including126 inherited controls and four complete affine assignment groups. Zero exceptions, active sandbox and full owned-family retirement. Source identity in the inherited runner names an older closure; exact staged source hashes and the current-base publication tree bind this composition. Captures retained remotely; no visual inspection claim.

@@ -1,0 +1,12 @@
+import assert from'node:assert/strict';import test from'node:test';
+import{fixture}from'./nonlinear-cohort-family-fixture.mjs';
+import{searchObserverSource}from'../src/science/nonlinear-observer-source.mjs';
+const{state,source:physical}=fixture(1,false);
+const refs=[1,2].map((nominalTorque,i)=>({id:'r'+i,nominalTorque,absoluteError:.001,basis:'Original bounded standard'}));
+const source={schema:'worldlaw.nonlinear-reference-observer/v1',sameObserver:true,instrumentId:'observing-meter',basis:'Unchanged observing meter across both levels',offsetRadius:.1,inquiry:{schema:'worldlaw.nonlinear-reference-observations/v1',units:'N·m',independentSource:true,basis:'Original two-level observing course',original:{schema:'worldlaw.nonlinear-common-reference/v1',units:'N·m',unchangedReferences:true,basis:'Original shared standards',physical,references:refs,readings:refs.map((r,i)=>({id:'original'+i,reportId:'a',referenceId:r.id,reportedTorque:r.nominalTorque,residualRadius:.001,basis:'Original source residual'}))},observations:refs.map((r,i)=>({id:'observed'+i,referenceId:r.id,value:1.02*r.nominalTorque,absoluteError:.001,basis:'Original corrected-unit residual'}))}};
+
+import{searchAffineObserver,checkAffineObserver,serializeAffineObserver,replayAffineObserver,prepareAffineObserver}from'../src/science/nonlinear-affine-observer.mjs';
+function sample(){return{schema:'worldlaw.nonlinear-affine-observer/v1',sameAffineObserver:true,correctedUnitResiduals:true,basis:'Same original meter gain and offset across both levels',gainCenter:0,gainRadius:.03,original:structuredClone(source)}}
+
+export function single(){const a=sample();a.original.offsetRadius=0;a.gainCenter=.5;a.gainRadius=.6;a.original.inquiry.observations.forEach(x=>x.value=1);return a;}
+export function partition(){const a=single();return{schema:'worldlaw.nonlinear-affine-observer-partitions/v1',sameAssignedAffineObservers:true,correctedUnitResiduals:true,basis:'Explicit original two-instrument affine course',original:{schema:'worldlaw.nonlinear-reference-observer-partitions/v1',sameAssignedObservers:true,basis:'Original complete assignment',inquiry:a.original.inquiry,observers:a.original.inquiry.observations.map((x,i)=>({instrumentId:'meter-'+i,basis:'Original instrument offset bound',offsetRadius:0,observationIds:[x.id]}))},gains:[0,1].map((gainCenter,i)=>({instrumentId:'meter-'+i,basis:'Original independent gain bound',gainCenter,gainRadius:.01}))};}
