@@ -31,3 +31,25 @@ node --test tests/initial-energy.test.mjs tests/initial-energy-input.test.mjs te
 ```
 
 The isolated native prototype was independently compared with the preserved Python implementation: nine statuses match, and all successful position/rate outputs and raw energy/barrier/potential evidence match exactly. Separate Python controls used a high-precision cosine oracle. Actual candidate browser receiving used an explicitly authored angular source through ordinary file import and model selection, not an injected result. Seven behavior groups covered supported/unsupported laws, nonzero rate, barrier refusal, width retirement and stale completion, with desktop/narrow captures. A separate final typography check preserves attribution to the final panel bytes. No real-sensor, deployment or universal physical safety claim follows from this receiving.
+
+## Retain and reopen the same starting question
+
+**Save starting question** writes only the existing `worldlaw.initial-state-receipt/v1` source fields: frozen model, complete original run and declared angle/rate half-widths. **Reopen starting question** accepts those source-only questions and the existing sampled-sensitivity receipts in the same family. Any saved `result` is ignored. Limits and exact endpoint hulls are recomputed through the maintained admission and invariant functions.
+
+Reopening requires the same currently selected frozen law and complete original recording. Matching names alone are insufficient: the maintained canonical model/run binding checks coefficient values, original initial rate, timestamps, positions and source metadata. A mismatch does not replace the current law or run. Select the original context first. The ordinary trajectory notebook continues to refit its original training source on reopen; this local question path does not change that contract.
+
+A prelude notebook is not an original supplied-state question and is refused. A sensitivity receipt with a changed derived starting rate cannot match the original run even when its ID is unchanged. Explicit derived-state fields/options also refuse. Source metadata is still a caller declaration: an indistinguishable forged copy cannot authenticate the physical origin of a rate. No new independence or acquisition claim is made.
+
+Export, pure reader and browser file admission share a 3,000,000-byte UTF-8 limit. During replacement the old question is retained but its output and save action are unavailable. A refused replacement restores the last accepted question and limits; a successful replacement updates the shared width controls only after complete admission and binding. Width/source/model/prelude changes invalidate the transaction, so late file reads or hashes cannot overwrite the new context. High-energy questions can be retained and reopen as unresolved; a saved answer cannot turn one into a confinement result.
+
+Native replay controls:
+
+```sh
+node --test tests/initial-energy-receipt.test.mjs
+```
+
+These cover source-only and legacy roundtrips, saved-answer poisoning, full-source mismatch despite identical IDs, explicit prelude ambiguity, malformed/multibyte bounded input, immutability and retained high-energy refusal. The numerical invariant is unchanged.
+
+Source-only export uses compact JSON so valid deeply nested source metadata cannot exceed the reopen limit merely because indentation expands it. A depth-1300 admitted metadata control roundtrips successfully. Oversized export produces a visible refusal while retaining the accepted question and limits; it does not throw an uncaught UI error.
+
+The replay increment received six native control groups and nine browser groups: eight ordinary source-to-save/reopen/mismatch/replacement/race/layout controls, plus a separately labeled isolated actual-component save-refusal control. The latter is not an ordinary source-import or physical-data claim. The original invariant implementation and its earlier proof receiving remain unchanged.
