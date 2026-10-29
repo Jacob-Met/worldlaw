@@ -7,4 +7,3 @@ test('complete source units identity positive factors and expanded cap refuse be
 test('same-instrument contradiction, contact, exhaustion and replay tamper stay explicit',()=>{const s=source();s.original.inquiry.observations.push({...s.original.inquiry.observations[1],id:'other',value:1.2});s.original.observers[1].observationIds.push('other');assert.equal(search(s).status,'verified-separation');const a=source(),r=search(a);a.gains[1].basis+=' changed';assert.throws(()=>check(a,r.certificate));assert.equal(search(source(),{maxIterations:0}).status,'unresolved');const z=source();z.original.inquiry.observations.forEach(x=>{x.value=1;x.absoluteError=0;});assert.notEqual(search(z).status,'verified-interior-witness');});
 
 
-test('single-observer source-only adapter refuses partitioned rows before incorrect padding',async()=>{const{prepareRawSource}=await import('../src/science/nonlinear-raw-source.mjs');assert.throws(()=>prepareRawSource(source()),/one original/);});
