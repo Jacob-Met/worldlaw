@@ -1,0 +1,24 @@
+{
+  "native": {
+    "passed": 158,
+    "command": "node --test --test-isolation=none tests/*calibration*.test.mjs tests/nonlinear*.test.mjs tests/piecewise*.test.mjs"
+  },
+  "browser": {
+    "passed": 122,
+    "checks": [
+      "Every original structure is retained under explicit raw-unit positive affine observing source with separate per-law corrections and unsupported outcome",
+      "Gain-source edits retire complete-family results and recompute all original laws",
+      "Zero iterations retain unresolved and unsupported original structures without universal exclusion",
+      "Complete original population and paired raw inequalities and gain dimension are reserved before any per-law search; insufficient work returns no subset"
+    ],
+    "finishedAt": "2026-10-29T04:44:26.681Z",
+    "exceptions": [],
+    "sandboxAdmitted": true,
+    "familyExited": true,
+    "profileRetained": true,
+    "helperSha256": "225fe03edde82115dbd225d77c9002e1c12abf525e2d6d1db04badfeca3b3f5a",
+    "sourceIdentityQualification": "Inherited closure label retains50ee4cb; exact staged product hashes and current-base tree bind this composition. Test-only131-row refusal added after staging; product unchanged.",
+    "visualInspection": "Desktop1280/narrow390 personally inspected; complete counts/outcomes readable without horizontal overflow."
+  },
+  "independentReview": "SYN personally ran3family+4maintained raw controls and accepted core/consumer source; fourth family cap control added separately and passed."
+}
