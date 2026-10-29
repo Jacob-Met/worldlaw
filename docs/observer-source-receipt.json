@@ -1,0 +1,35 @@
+{
+  "inquiry": 521,
+  "nativeGroups": 144,
+  "browserGroups": 106,
+  "checks": [
+    "Complete original assigned sources admit a checked witness while retained joint physical-law explanation is separated; neither result replaces the other",
+    "Public source-only evidence rechecks complete original instruments and reference constraints without adopting joint-law results",
+    "Contradictory complete instrument/reference sources separate before applying the law, without attributing fault or rejecting a law",
+    "Retiring original instrument association fences delayed source-only evidence replay and export"
+  ],
+  "browserOperation": "hamon-69d25c-world-observer-source-browser-20261029-v1",
+  "nativeReceipt": {
+    "command_id": "hamon-69d25c-world-observer-source-browser-20261029-v1",
+    "request_sha256": "9516410e92c0b722a5afb267e1c6d279f94f58185b9f797c03048cc52ab64f69",
+    "generation": "5bd57fd68937614733f02236147b94d27f461dcd55813bc065f524ebaaa467ca",
+    "state": "completed",
+    "runner_pid": 814229,
+    "started_at": "2026-10-29T03:55:49.803212147Z",
+    "finished_at": "2026-10-29T03:56:05.437024745Z",
+    "exit_code": 0
+  },
+  "sandbox": {
+    "adequate": true,
+    "layer1": true,
+    "pid": true,
+    "network": true,
+    "seccomp": true,
+    "tsync": true
+  },
+  "familyExited": true,
+  "profileRetained": true,
+  "exceptions": [],
+  "independentReview": "SYN core10 personally executed and separate consumer source scan accepted",
+  "sourceIdentityQualification": "Inherited browser metadata describes earlier closure lineage; exact six staged files are independently SHA256-bound in source checkpoint."
+}

@@ -27,6 +27,11 @@ export function prepareReferenceObserver(raw){
  const source=partitioned?{schema:raw.schema,sameAssignedObservers:true,basis:raw.basis.trim(),observers:groups,inquiry:p.source}:{schema:SCHEMA,sameObserver:true,...groups[0],inquiry:p.source};
  return{p,c,source,sourceKey:JSON.stringify(source),groups,assignment,partitioned,rows:[...rows,...extra],extra,radii:[...c.radii,...p.source.observations.map(x=>x.absoluteError)],latentCount:c.latentCount+groups.length};
 }
+export function checkPreparedObserverReadings(p,z){const original=z.slice(0,p.c.latentCount);
+  const offsets=p.groups.map((g,i)=>(g.offsetCenter??0)+z[p.c.latentCount+i]*g.offsetRadius),referenceValues=p.c.source.references.map((r,i)=>r.nominalTorque+r.absoluteError*original[p.c.p.latentCount+i]);
+  const predicted=p.p.source.observations.map((x,i)=>referenceValues[p.c.referenceIndex.get(x.referenceId)]-offsets[p.assignment[i]]);
+  const observed=checkLinearEnvelopeOffsets(p.extra,z,p.p.source.observations.map(x=>x.absoluteError),predicted,referenceValues);
+return{observed,referenceValues,...(p.partitioned?{observerOffsets:p.groups.map((g,i)=>({instrumentId:g.instrumentId,offset:offsets[i]}))}:{observerOffset:offsets[0]})};}
 export function checkReferenceObserver(raw,certificate){
  const p=prepareReferenceObserver(raw),z=certificate?.values,witness=certificate?.kind==='components';
  if(certificate?.schema!==CERT||certificate.sourceKey!==p.sourceKey||!['components','separator'].includes(certificate.kind)||!Array.isArray(z)||z.length!==(witness?p.latentCount:p.rows.length)||z.some(x=>!Number.isFinite(x)||Math.abs(x)>1)||!witness&&!z.some(x=>x!==0))throw Error('Retain the complete original observing source and bounded certificate.');
@@ -34,10 +39,8 @@ export function checkReferenceObserver(raw,certificate){
  if(!witness)result=checkLinearEnvelopeSeparator(p.rows,z,1,p.radii);
  else{
   const original=z.slice(0,p.c.latentCount),physical=checkNonlinearCommonReference(p.c.source,{schema:'worldlaw.nonlinear-common-reference-certificate/v1',sourceKey:p.c.sourceKey,kind:'components',values:original});
-  const offsets=p.groups.map((g,i)=>(g.offsetCenter??0)+z[p.c.latentCount+i]*g.offsetRadius),referenceValues=p.c.source.references.map((r,i)=>r.nominalTorque+r.absoluteError*original[p.c.p.latentCount+i]);
-  const predicted=p.p.source.observations.map((x,i)=>referenceValues[p.c.referenceIndex.get(x.referenceId)]-offsets[p.assignment[i]]);
-  const observed=checkLinearEnvelopeOffsets(p.extra,z,p.p.source.observations.map(x=>x.absoluteError),predicted,referenceValues);
-  const ok=physical.status==='verified-interior-witness'&&observed.status==='verified-interior-witness';result={status:ok?'verified-interior-witness':'unresolved',reason:ok?(p.partitioned?'complete-original-instrument-assignment-passes-law-and-all-reference-observations':'one-original-observer-offset-passes-law-and-all-reference-observations'):'complete-original-recheck-not-interior',physical,observed,...(p.partitioned?{observerOffsets:p.groups.map((g,i)=>({instrumentId:g.instrumentId,offset:offsets[i]}))}:{observerOffset:offsets[0]}),referenceValues};
+  const readings=checkPreparedObserverReadings(p,z),{observed,referenceValues}=readings;
+  const ok=physical.status==='verified-interior-witness'&&observed.status==='verified-interior-witness';result={status:ok?'verified-interior-witness':'unresolved',reason:ok?(p.partitioned?'complete-original-instrument-assignment-passes-law-and-all-reference-observations':'one-original-observer-offset-passes-law-and-all-reference-observations'):'complete-original-recheck-not-interior',physical,...readings};
  }
  return{...result,qualification:p.partitioned?'Conditional on the complete explicit original instrument-to-reading partition. One correction per instrument is shared only by its assigned original readings; all original law/report/reference components are jointly checked, residual bounds unchanged. No cross-instrument correlation, authentication, failure attribution or adoption is inferred.':'Conditional on one explicitly unchanged additive correction shared by every independent reference observation from the declared instrument. Each observation retains its own original residual bound. Original law/report/reference components are jointly checked; no independent row widening, source authentication, failure attribution or adoption is inferred.'};
 }
