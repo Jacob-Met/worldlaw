@@ -1,0 +1,28 @@
+{
+  "claim": 515,
+  "native": {
+    "groups": 134,
+    "exitCode": 0
+  },
+  "independentReview": {
+    "reviewer": "SYNAPSE",
+    "groups": 11,
+    "accepted": true,
+    "browserClaim": false
+  },
+  "browser": {
+    "groups": 96,
+    "exceptions": [],
+    "sandboxActive": true,
+    "familyExited": true,
+    "profileRetained": true,
+    "operation": "hamon-69d25c-world-observer-centered-browser-20261029-v2",
+    "finishedAt": "2026-10-29T03:16:40.008Z",
+    "moduleSha256": "225fe03edde82115dbd225d77c9002e1c12abf525e2d6d1db04badfeca3b3f5a"
+  },
+  "negative": {
+    "operation": "hamon-69d25c-world-observer-centered-browser-20261029-v1",
+    "exitCode": 1,
+    "reason": "Inherited common-reference family expected5 rows, observed0; unexplained, diagnostic assertion only before unchanged-product passing run."
+  }
+}
