@@ -1,0 +1,15 @@
+# One unchanged physical reference across original instruments
+
+The existing nonlinear cohort card now has an explicit **Require instruments to share an unchanged physical reference** inquiry. Different instrument reports retain separate calibration corrections, while readings associated with one physical reference must use one common true value. This is an additional declared source relationship, not inferred correlation or instrument authentication.
+
+Open an original declaration file, inspect its complete reference and reading list, then confirm the unchanged-reference condition. The file uses schema `worldlaw.nonlinear-reference-declaration/v1`, units `N·m`, a source `basis`, `references`, and `readings`. Each reference contains `id`, `nominalTorque`, `absoluteError`, and `basis`. Each reading contains `id`, existing `reportId`, `referenceId`, `reportedTorque`, separately sourced `residualRadius`, and `basis`. All numerical bounds are in N·m. Original report IDs must match the retained complete cohort partition. At most16 references and128 combined physical/reference-reading rows are admitted.
+
+A reference's absolute error bounds its single shared true value. A reading's residual radius is a separate uncertainty after the original nonlinear correction. Do not put the whole reference uncertainty into each reading residual: that would state a different source model. Original training residuals remain separate; physical law rows do not receive the reference correction.
+
+The maintained bounded linear-envelope search uses original report knot columns, original reading-residual columns, then one common-reference column per declared reference. Witness checking independently refits the original law, reconstructs every corrected instrument readout from its original report knots, and compares those readouts with the same candidate reference value. The complete source is rechecked on public save/reopen within2MB. Reopened evidence remains separate from current drafts and never replaces notebook data.
+
+An authored control fits each separate1.05±.101 interval but cannot fit one unchanged1.05±.1 reference plus separate±.001 residuals: the joint separator gap is.096. Its reversed separator is unresolved. Consistent instrument readings produce one independently checked common value. These are software controls, not real calibration validity. Exact reference bounds are supported; zero reading residual/contact remains numerically unresolved.
+
+Joint separation rejects the combined law/report/reference explanation, not a law or instrument alone. No fit, ranking, report or calibration knot is adopted. Source edits retire consent, draft, output and export; delayed files cannot revive an edited source.
+
+Qualification:105 composed native groups,68 actual browser groups with active sandbox and owned-family retirement/profile retained, desktop/narrow inspection, and SYNAPSE independent four-control/source acceptance. The receipt records exact source hashes and evidence attribution.
