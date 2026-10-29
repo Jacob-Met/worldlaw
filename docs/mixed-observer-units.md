@@ -1,0 +1,9 @@
+# Explicit residual units for every original instrument — WORLD543
+
+One complete original observing course may contain error bounds reported in different units. Each instrument now has an explicit raw-readout or corrected-physical-unit declaration and source basis. The unchanged complete affine assignment, gains, offsets, reports and physical reference course remain required. No unit is inferred or source adopted.
+
+Maintained corrected rows and raw paired inequalities are selected per original assigned instrument into one common latent vector. Original physical-law refit and independent direct reconstructed reading checks remain required. Conservative full raw-row admission occurs before row selection; contact and bounded exhaustion remain unresolved. Existing global-unit inquiries remain separate.
+
+Executed counterexample: reference values1/2, positive factors0.5/2 and readouts1.97/.985 each have declared discrepancy.015 under corrected/raw units respectively. Mixed source supports a complete checked witness while global corrected-unit source separates. Tests preserve complete order/identity/basis, source replay, physical-law exclusion, contact and exhausted budget.
+
+182 native groups passed. SYN independently executed three focused controls and accepted core and consumer custody. The exact staged five-file composition passed150 actual Chromium groups at2026-10-29 05:47:53 UTC, zero exceptions, sandbox admitted and complete owned-family retirement. Ordinary blank selectors, explicit per-instrument basis/consent, changed units, save/reopen and delayed replay after parent retirement passed. Captures retained on host; no manual visual inspection claimed. The inherited receiver sourceIdentity prose is stale; exact staged SHA256 manifest and native full publication tree identify current source.
