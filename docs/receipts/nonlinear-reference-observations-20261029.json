@@ -1,0 +1,390 @@
+{
+  "claim": 505,
+  "native": 117,
+  "actualBrowserGroups": 80,
+  "browser": {
+    "status": "passed",
+    "startedAt": "2026-10-29T02:12:58.231Z",
+    "finishedAt": "2026-10-29T02:13:11.212Z",
+    "url": "http://127.0.0.1:46883/",
+    "sourceIdentity": {
+      "base": "50ee4cb8b825893b1720bbeb57c192c8de7446ff",
+      "inquiry": 505,
+      "composition": "five exact changed source files over qualified residual closure"
+    },
+    "checks": [
+      "Original report remains draft until sourced explicit same-instrument association; both references drive checked separation",
+      "Changed original report bounds restore a checked witness without refitting original observations or associating actual readings",
+      "Public certificate export/reopen retains exact original report and association",
+      "Nonpositive corrected affine factor is refused; prior inquiry evidence retires",
+      "Delayed original-file completion cannot replace an edited inquiry source",
+      "An additional original standard constrains the same calibration pair and changes law inquiry from witness to separation; physical and calibration condition counts remain explicit",
+      "Public replay retains all original additional standards and recomputes the joint separation",
+      "Individually possible but jointly contradictory calibration standards refuse report adoption without attributing failure to the law",
+      "Changed original standard restores a complete checked witness with explicit calibration margin",
+      "Complete original standard course establishes positive factor despite broad defining box; the existing joint law inquiry remains executable",
+      "Public replay retains broad defining errors and all positivity-establishing original checks",
+      "Widened original check bounds retire prior evidence and refuse the now nonpositive calibration domain",
+      "Exact original midpoint equality admits a checked candidate while actual receiving and independent refit remain strictly interior",
+      "Public source-only replay rechecks exact calibration equality without widening its zero bound",
+      "Zero-width actual receiving remains unresolved; exact calibration does not certify numerical QR equality",
+      "Selected report cohort retains only exact original rows; incomplete training partition cannot supply a witness",
+      "Two original instrument reports form one complete source-bound partition through ordinary row-number intake",
+      "Public replay retains both original reports, all exact row values and separate source associations",
+      "Actual report associations start unselected; incomplete ordinary controls do not author shared corrections",
+      "Explicit report selection on the original actual row changes original-only witness to checked separation without editing JSON or refitting",
+      "Public replay independently rechecks original report plus complete actual-row source association",
+      "Original nonlinear calibration remains a draft until explicit complete source association; all original knots yield an independently refitted witness",
+      "Public nonlinear source replay retains every original standard and independently refits original rows",
+      "Explicit same-calibration actual association changes this course to checked separation; original observations remain unadopted",
+      "Calibration-only source retains the adverse original actual reading",
+      "Complete separately sourced original reading residuals reach the same nonlinear inquiry and independently refitted witness",
+      "Public nonlinear source replay retains every original standard and independently refits original rows",
+      "Incomplete residual course refuses instead of silently retaining a subset; source edits retire prior evidence",
+      "Independent standard contradicts original interpolation without becoming another knot or rejecting the physical law",
+      "Changed independent check source preserves defining knots and admits a common corrected-knot witness only after renewed association",
+      "Separate source-only replay rechecks defining knots and complete independent standards without replacing current law inquiry",
+      "Original-source edits retire prior check evidence and export before a new explicit check",
+      "Separate law and calibration witnesses remain retained while explicit same-correction inquiry finds joint separation",
+      "Widened bound may remain unresolved under bounded joint search; no witness is invented",
+      "Changed independent source retires joint evidence; renewed complete association admits both independent rechecks",
+      "Public composite replay independently refits original law readings and rechecks every original standard without source adoption",
+      "Keyboard complete-population action retains both original structures and distinct checked witness/separation outcomes",
+      "Insufficient complete work refuses every model before searching a subset",
+      "Zero-iteration original-family comparison preserves unresolved outcomes rather than excluding laws",
+      "Original-source edits retire whole-population evidence and require renewed explicit conditioning",
+      "Incomplete nonlinear instrument partition refuses before any source subset supplies evidence",
+      "Explicit original row cohorts produce independently refitted common-law evidence from distinct nonlinear instruments",
+      "Public nonlinear-cohort replay revalidates every original report row and independently refits the complete original training source",
+      "Changed actual-source basis retires evidence and refuses a certificate from the prior source",
+      "Independent actual-source alternative retains its complete original-cohort witness",
+      "Explicit original actual instrument A shares only its own knot block and changes witness to checked separation",
+      "Public actual-instrument replay retains exact original row values, report selection and source basis",
+      "Selecting the other retained instrument retires prior evidence and requires a new complete-source check",
+      "Same original instrument inquiry compares every retained original law with explicit separate status and no common correction claim",
+      "Actual instrument source edit retires full population output and recomputes conditional separation",
+      "Insufficient complete-family work refuses the entire population without partial rows",
+      "Five actual original structures remain complete: one checked witness, three separations and one unavailable explanation prevents all-family exclusion",
+      "Complete independently sourced original residuals restore a checked original-law witness while actual report correction remains shared knots only",
+      "Public replay retains every original reading residual and independently refits the complete corrected source",
+      "Complete original family comparison admits all original residual dimensions under the same whole-population reservation",
+      "Incomplete original residual course refuses instead of silently omitting a reading",
+      "Actual same-card independent standard intake rejects only the combined law and report explanation under one complete correction",
+      "Changed original independent standard permits one component vector independently checked against the original law and complete calibration course",
+      "Source-only public reopening rechecks the same complete components without replacing original notebook or current drafts",
+      "Original physical-source edits retire complete joint evidence, export and explicit report associations",
+      "Every actual original law is checked with the same independent standards: one witness, three separations and one unsupported original structure, with original order retained",
+      "Insufficient combined standard/physical population budget refuses before any partial original-law rows",
+      "Zero-iteration joint family comparison retains unresolved and unavailable outcomes separately",
+      "Original joint source edits retire the complete-family result without changing original fits or ranking",
+      "Explicit unchanged-reference condition rejects a combined explanation that would require two physical values for the same original standard",
+      "Changed original instrument reading admits one shared reference value and independently refitted original law, without adopting either",
+      "Public common-reference save/reopen retains every original reading and separately checks corrected readouts against the same original value",
+      "Delayed original declaration cannot revive a changed physical source; prior evidence/export and association remain retired",
+      "Every original law is compared against the complete common-reference source; unsupported original explanation prevents universal exclusion",
+      "Complete population reservation refuses before any partial family; budget edits retire prior evidence",
+      "Zero candidate iterations retain all unresolved and unavailable original structures",
+      "Original physical-source edit retires complete-family evidence and requires renewed explicit reference association",
+      "Original reports and common-reference readings contradict before any physical-law equation is applied",
+      "Source-only witness remains separate from retained joint-law separation; neither result overwrites the other",
+      "Public source-only replay independently rechecks all original readings without replacing the joint law result",
+      "Original source edits retire source-only and joint evidence and export together",
+      "Explicit independent physical-reference observation contradicts combined source while original joint witness remains unchanged",
+      "Changed original independent reference value admits one candidate across every instrument and physical-reference observation",
+      "Public independent-reference replay retains complete original sources without adopting observations or replacing original law evidence",
+      "Retired original reference association fences late independent-file completion and all derived exports"
+    ],
+    "exceptions": [],
+    "sandbox": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-29T02:12:58.700Z",
+      "completedAt": "2026-10-29T02:12:58.817Z",
+      "durationMs": 116.99721700000009,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.47",
+        "revision": "@1d17a2e2ee147bb7d6ae2ab6abdb3a2510c17775",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.19"
+      },
+      "target": {
+        "targetId": "D3F94C73123994E045DB01594D847678",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "8F6EA6C01082D28F34989F4B1A0B02BE"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "pageConnection": {
+      "schema": "hamon.chromium-page.v1",
+      "status": "course-completed",
+      "startedAt": "2026-10-29T02:12:58.612Z",
+      "cdpOrigin": "http://127.0.0.1:39453",
+      "targetId": "D3F94C73123994E045DB01594D847678",
+      "limits": {
+        "startupMs": 5000,
+        "requestMs": 15000,
+        "closeMs": 1000,
+        "maxPending": 128,
+        "maxMessageBytes": 16777216,
+        "maxDiscoveryBytes": 262144
+      },
+      "requests": {
+        "sent": 1252,
+        "completed": 1252,
+        "methodErrors": 0,
+        "peakPending": 1,
+        "refusedBeforeSend": 0
+      },
+      "events": 187,
+      "failure": null,
+      "retirement": {
+        "closeRequested": true,
+        "closeObserved": true,
+        "closeWaitExpired": false,
+        "rejectedPending": [],
+        "closeCode": 1000,
+        "wasClean": true
+      },
+      "finishedAt": "2026-10-29T02:13:11.140Z",
+      "durationMs": 12527.603298
+    },
+    "lifecycle": {
+      "schema": "hamon.chromium-session.v1",
+      "status": "course-completed",
+      "startedAt": "2026-10-29T02:12:58.266Z",
+      "executable": "/opt/google/chrome/google-chrome",
+      "runDirectory": "/tmp/hamon-69d25c99168e-access-pg-1a0e5e0559",
+      "profileDirectory": "/tmp/hamon-69d25c99168e-access-pg-1a0e5e0559/profile",
+      "stdoutFile": "/tmp/hamon-69d25c99168e-access-pg-1a0e5e0559/stdout.bin",
+      "stderrFile": "/tmp/hamon-69d25c99168e-access-pg-1a0e5e0559/stderr.bin",
+      "receiptFile": "/tmp/hamon-69d25c99168e-access-pg-1a0e5e0559/session.json",
+      "sandbox": "not-assessed",
+      "limits": {
+        "startupMs": 15000,
+        "shutdownMs": 3000,
+        "courseMs": 60000
+      },
+      "cleanup": {
+        "attempted": true,
+        "directChildExited": true,
+        "scope": "launched-family-receiver-and-owned-descendants",
+        "signals": [
+          "SIGTERM"
+        ],
+        "familyExited": true
+      },
+      "argv": [
+        "--headless=new",
+        "--enable-automation",
+        "--allow-chrome-scheme-url",
+        "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-background-networking",
+        "--remote-debugging-address=127.0.0.1",
+        "--remote-debugging-port=0",
+        "--user-data-dir=/tmp/hamon-69d25c99168e-access-pg-1a0e5e0559/profile",
+        "about:blank"
+      ],
+      "processFamily": {
+        "python": {
+          "path": "/usr/bin/python3.12",
+          "bytes": 8020928,
+          "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f"
+        },
+        "receiver": {
+          "path": "/tmp/hamon-69d25c99168e-access-browser-qualification-v1/chromium_family.py",
+          "bytes": 13667,
+          "sha256": "b2cc9e73a5cbcaba1820cce126ecf5f6ebbcfacb3fd65372c9e1d149a60beae6"
+        },
+        "bytes": 1217,
+        "started": {
+          "event": "started",
+          "schema": "hamon.chromium-family.v1",
+          "supervisorPid": 208648,
+          "browserPid": 208650,
+          "subreaper": true
+        },
+        "finished": {
+          "schema": "hamon.chromium-family.v1",
+          "supervisorPid": 208648,
+          "parentPid": 208635,
+          "browserPid": 208650,
+          "status": "family-exited",
+          "subreaper": true,
+          "scope": "one-new-child-and-its-descendants",
+          "limits": {
+            "graceMs": 3000,
+            "killMs": 3000,
+            "maxChildren": 4096,
+            "maxSamples": 64,
+            "maxProcEntries": 32768
+          },
+          "stopReason": "signal-15",
+          "browserExit": {
+            "code": 0,
+            "signal": null
+          },
+          "familyExited": true,
+          "waitNoChildrenObserved": true,
+          "deadlineExpired": false,
+          "reapedCount": 9,
+          "reapedSamples": [
+            {
+              "pid": 208666,
+              "code": null,
+              "signal": 15
+            },
+            {
+              "pid": 208670,
+              "code": null,
+              "signal": 15
+            },
+            {
+              "pid": 208650,
+              "code": 0,
+              "signal": null
+            },
+            {
+              "pid": 208662,
+              "code": 0,
+              "signal": null
+            },
+            {
+              "pid": 208663,
+              "code": 0,
+              "signal": null
+            },
+            {
+              "pid": 208671,
+              "code": 0,
+              "signal": null
+            },
+            {
+              "pid": 208672,
+              "code": 0,
+              "signal": null
+            },
+            {
+              "pid": 208702,
+              "code": 0,
+              "signal": null
+            },
+            {
+              "pid": 208703,
+              "code": 0,
+              "signal": null
+            }
+          ],
+          "signalCount": 4,
+          "signalSamples": [
+            {
+              "pid": 208650,
+              "signal": 15
+            },
+            {
+              "pid": 208666,
+              "signal": 15
+            },
+            {
+              "pid": 208670,
+              "signal": 15
+            },
+            {
+              "pid": 208703,
+              "signal": 15
+            }
+          ],
+          "signalRefusalCount": 0,
+          "signalRefusalSamples": [],
+          "childDiscovery": [
+            "task-children"
+          ],
+          "errors": [],
+          "durationMs": 12907.097276998684
+        },
+        "error": null
+      },
+      "pid": 208648,
+      "browserPid": 208650,
+      "cdpUrl": "http://127.0.0.1:39453",
+      "browserWebSocketUrl": "ws://127.0.0.1:39453/devtools/browser/5ec36978-8cb4-4578-b429-5b4aa1aa5d80",
+      "browserVersion": "Chrome/156.0.8078.47",
+      "readyAt": "2026-10-29T02:12:58.612Z",
+      "exit": {
+        "code": 0,
+        "signal": null
+      },
+      "logsComplete": true,
+      "logScope": "owned family streams; complete only after the receiver observes no waitable or running children",
+      "stdout": {
+        "path": "/tmp/hamon-69d25c99168e-access-pg-1a0e5e0559/stdout.bin",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "path": "/tmp/hamon-69d25c99168e-access-pg-1a0e5e0559/stderr.bin",
+        "bytes": 5291,
+        "sha256": "69ed330a523ee355d72465fdf538937c68588542509365f5102509d3d771bda1"
+      },
+      "finishedAt": "2026-10-29T02:13:11.211Z"
+    },
+    "hashes": {
+      "chromium-session.mjs": "1f5364c7a441f05ea2afd63bd02bc1af5e39f3d9b011d43941e6386b704e4dcb",
+      "chromium-page.mjs": "952e1f3db5b7bd766e730868f9c2d11e0f092ffb00df7ba4faa432ebee767a63",
+      "chromium-sandbox.mjs": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead"
+    },
+    "receivingModuleSha256": "225fe03edde82115dbd225d77c9002e1c12abf525e2d6d1db04badfeca3b3f5a",
+    "chromeBinarySha256": "aea09d69ce7f24d5901f6bfb15dd44d0c856e793e0a498f8d8393ec7d2c308ec",
+    "profileRetained": true,
+    "error": null,
+    "cause": null
+  },
+  "nativeBrowser": {
+    "command_id": "hamon-69d25c-world-reference-observation-browser-20261029-v1",
+    "request_sha256": "886d471d8baec1a5ab0537d39981dd57b239e0798b1b04486e968510a527b9bb",
+    "generation": "1dbfb38b0d2476929e16bff7d8de6e7ccc9762951300edda64afd65de9b1c338",
+    "state": "completed",
+    "runner_pid": 208630,
+    "started_at": "2026-10-29T02:12:58.131571208Z",
+    "finished_at": "2026-10-29T02:13:11.220395466Z",
+    "exit_code": 0
+  },
+  "sourceSha256": {
+    "src/science/nonlinear-reference-observations.mjs": "bde10fded737f605043b234ee6ef870f68ed5a30c8350877f0975bc5c6ea795d",
+    "src/science/nonlinear-reference-observations-panel.mjs": "80eedfa2620f4735a464ec0632c28037d0e4bba067d5864fe59136742fa44930",
+    "src/science/nonlinear-common-reference-panel.mjs": "5cd61146925adeeba46ee4673c94605f095cc77fb14dfcec51c24f4ba3c06e58",
+    "tests/nonlinear-reference-observations.test.mjs": "2bfcf00fbd68f742403ef8bfd253dd27beb3cb0c8244e4a8c3e8e54c219ee992",
+    "scripts/nonlinear-reference-observations.receiving.mjs": "dfe55c1299deaa2bcac05154821215e7372549f0ec18599d8d92ee5b2c01bd5b"
+  },
+  "lineage": "Browser sourceIdentity retains earlier qualified closure lineage. These exact source hashes and final native base/tree bind current composition. Profile retained."
+}
