@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-29T21:26:37.860915+00:00",
+  "result": "accepted",
+  "scope": "Root independent source/arithmetic review plus actual1440/390 original and final focused decimal captures; no root repeat of author native/browser suites",
+  "hashes": {
+    "src/trajectory/initial-energy-course.mjs": "4002bacbe3b29871a3b11a59c51cc75fb885784fa58772e4506c78dc7ea6289f",
+    "src/trajectory/initial-energy-readings.mjs": "585692927c53fa5103728c913f41f2b2aafd93337e362566a25ef1dd957f1201",
+    "src/trajectory/initial-energy-panel.mjs": "150e68e65f5349558c835a272776046a6bb539f41095c66def15e7956fc91441",
+    "tests/initial-energy-course.test.mjs": "29caac4bf507dd9b0a69f7024dab008e56bc2221a5faf7557b625755d3ea29af"
+  },
+  "findings": [
+    "Complete original starting box and all admitted original rows are processed; source entry recomputes the invariant and constructs intervals, rather than trusting saved bounds.",
+    "Transformed endpoint propagation is a complete scalar Lipschitz feasibility relaxation; retained attaining endpoints replay strict nonadjacent/initial-box certificates with exact rational time differences. It does not establish an ODE solution.",
+    "Bounded endpoint strings/arrays, positive denominators,4096-bit capacity and complete work reservation precede reported results. First contradiction remains permanent. Production strict-time admission matches maintained normalization; repeated-time research controls do not assert public acceptance.",
+    "New course output uses existing source/ticket/dirty-replacement retirement and ledger navigation without a source-schema change.",
+    "Final desktop390 views make required~2.6rad, allowed~0.0515395744 and excess~2.5484604 readable. Exact arithmetic remains decisive; exact fractions and controls survive decimal formatting refusal. Original0.5rad declaration is unchanged."
+  ],
+  "evidenceAttribution": {
+    "native": "Author5new+6readings+5threshold bodies",
+    "browser": "Author6ordinarygroups on prior31cd panel,2focusedgroups on final150e panel; root visually inspected both generations",
+    "peer": "review-sg-production.json,1c183df777edead5f92bc46fee24fe9976295c8e2e7618384ea2fe08b6df6a91"
+  },
+  "captures": [
+    {
+      "path": "qa/browser/course-1440.png",
+      "sha256": "7c2d4ec01375a4f16e7231a5431bfd26d373ad9967293d5e85831307acffb779"
+    },
+    {
+      "path": "qa/browser/course-390.png",
+      "sha256": "b93d70bf37ea8c7099342a2b9d282b39aa77e2f69d123823e2de9e5877b5a625"
+    },
+    {
+      "path": "qa/decimal/course-decimal-1440.png",
+      "sha256": "d906760f45a13be8be88b99fcac5389f9d80fa5de3bc0bb009398ce1679c9ed6"
+    },
+    {
+      "path": "qa/decimal/course-decimal-390.png",
+      "sha256": "6fa3bb368c0ae64c21d6a18e13c407ca9e14823339ab371a0c8a04b9b2b57ff3"
+    }
+  ],
+  "limits": "Authored sources and source/browser receiving only; no installation, calibration or physical-law qualification. Private captures excluded from publication."
+}

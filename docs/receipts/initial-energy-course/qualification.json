@@ -1,0 +1,91 @@
+{
+  "scope": "Authored native and ordinary consumer receiving; no physical sensor validation or installed deployment claim",
+  "base": "3741bda5f50bba9a197b731fefdc82e24e16adf4",
+  "native": {
+    "base": "3741bda5f50bba9a197b731fefdc82e24e16adf4",
+    "scope": "Native execution and panel syntax only; no browser or visual qualification",
+    "files": {
+      "src/trajectory/initial-energy-course.mjs": "4002bacbe3b29871a3b11a59c51cc75fb885784fa58772e4506c78dc7ea6289f",
+      "src/trajectory/initial-energy-readings.mjs": "585692927c53fa5103728c913f41f2b2aafd93337e362566a25ef1dd957f1201",
+      "src/trajectory/initial-energy-panel.mjs": "31cd5b039a39c6d0041fc67cdba69d5a0f859ea6b73476a9d190321dd6484e41",
+      "tests/initial-energy-course.test.mjs": "29caac4bf507dd9b0a69f7024dab008e56bc2221a5faf7557b625755d3ea29af",
+      "docs/INITIAL_ENERGY_LIMITS.md": "6148f69ae230dace641d36789ade0f9853469d7d09db0cb1287e480167e31e94"
+    },
+    "native": {
+      "newBodies": 5,
+      "retainedReadingBodies": 6,
+      "retainedThresholdBodies": 5,
+      "exitCode": 0,
+      "logSha256": "07bd5404f96bef3699761741fbaa1df99829bce230d4a6bb387f074dd284dcaa"
+    },
+    "browser": "unrun",
+    "publication": "none"
+  },
+  "functionalBrowser": {
+    "panelSha256": "31cd5b039a39c6d0041fc67cdba69d5a0f859ea6b73476a9d190321dd6484e41",
+    "checks": [
+      "All201 position intervals overlap while late199/200 speed certificate rejects without changing forecast or bound",
+      "Both original certificate rows navigate across existing ledger pages",
+      "Source-only reopen recomputes complete speed certificate and ignores cached answers",
+      "Desktop390 exact certificate and ledger remain readable, bounded and keyboard reachable",
+      "Radius and starting-width changes retire course; refused replacement preserves dirty draft and save gate",
+      "Replacement source retires prior certificate; constant authored course is explicitly inconclusive"
+    ],
+    "errors": [],
+    "browser": "156.0.8078.73",
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "receiptSha256": "08fed6e6cf02a1de4bef9004ad6e0966e1febdaf6744362cd68761327999f9bb"
+  },
+  "focusedFinalPresentation": {
+    "panelSha256": "150e68e65f5349558c835a272776046a6bb539f41095c66def15e7956fc91441",
+    "checks": [
+      "Three outward decimal ranges independently enclose exact native certificate; exact fractions and strict result retained",
+      "Desktop390 readable quantitative summary with unchanged exact details and witness navigation"
+    ],
+    "errors": [],
+    "browser": "156.0.8078.73",
+    "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+    "receiptSha256": "b671b60b3c73463b7410dfde76b9b861b5c1a96341e8716fbc4df001817a73bc",
+    "oldPanelPreserved": true,
+    "formatFailureBehavior": "Caught locally; exact certificate and navigation retained"
+  },
+  "nativeAdditionalDomainRefusal": {
+    "scope": "Single additional admission control, not a repeated suite",
+    "sourceSha256": "4002bacbe3b29871a3b11a59c51cc75fb885784fa58772e4506c78dc7ea6289f",
+    "initialBox": [
+      0,
+      2
+    ],
+    "certifiedPosition": [
+      -1,
+      1
+    ],
+    "certifiedRate": [
+      -1,
+      1
+    ],
+    "originalRows": 2,
+    "assertedRefusal": "Starting box must lie inside certified position bounds",
+    "outcome": "passed",
+    "productOrFrozenTestsChanged": false
+  },
+  "closure": {
+    "verifiedInheritedFiles": 150,
+    "mismatches": [],
+    "receiptSha256": "82c5c7b883b2580b50142f0152ff26b0287f0c9be5ca51fefe0731057994c92b"
+  },
+  "privateQa": "Original authored fixture bundles and captures excluded from publication",
+  "rootVisualReview": {
+    "accepted": true,
+    "reviewer": "root",
+    "scope": "Actual final1440/390 decimal captures inspected; outward travel summary readable, exact-only decision explicit, original radius and witness controls retained",
+    "sourcePanelSha256": "150e68e65f5349558c835a272776046a6bb539f41095c66def15e7956fc91441"
+  },
+  "finalSourceHashes": {
+    "src/trajectory/initial-energy-course.mjs": "4002bacbe3b29871a3b11a59c51cc75fb885784fa58772e4506c78dc7ea6289f",
+    "src/trajectory/initial-energy-readings.mjs": "585692927c53fa5103728c913f41f2b2aafd93337e362566a25ef1dd957f1201",
+    "src/trajectory/initial-energy-panel.mjs": "150e68e65f5349558c835a272776046a6bb539f41095c66def15e7956fc91441",
+    "tests/initial-energy-course.test.mjs": "29caac4bf507dd9b0a69f7024dab008e56bc2221a5faf7557b625755d3ea29af",
+    "docs/INITIAL_ENERGY_LIMITS.md": "6148f69ae230dace641d36789ade0f9853469d7d09db0cb1287e480167e31e94"
+  }
+}

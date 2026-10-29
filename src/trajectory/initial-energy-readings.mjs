@@ -1,4 +1,5 @@
 /** Original-row necessary-condition comparison, not physical-law identification. */
+import {compareOwnedEnergyCourse} from './initial-energy-course.mjs';
 import {normalizeAngularForecastRun} from './angular-discovery.mjs';
 import {prepareInvariantInput} from './initial-energy-input.mjs';
 import {confineDampedSine} from './initial-energy.mjs';
@@ -36,5 +37,5 @@ export function prepareInitialEnergyReadingQuestion(model,rawRun,widths,declarat
   return {index,time:row.time,position:row.position,interval:[serial(lo),serial(hi)],status:above||below?'separated':'inconclusive',side:above?'above':below?'below':null,gap:serial(gap)};
  });
  const overlapThreshold={exact:serial(required),binary64Enclosure:enclosure(required),zero:cmp(required,rational(0))===0,withinDeclaredRadiusLimit:cmp(required,rational(100))<=0,attainingRows:attainingIndexes.map(index=>({index,time:rows[index].time,position:rows[index].position})),meaning:'Smallest uniform reading half-width for every interval to overlap this unchanged outer model bound; not calibrated uncertainty or proof of a common trajectory.'};
- return {source,input,result,readingResult:{status:rows.some(row=>row.status==='separated')?'conjunction_rejected':'inconclusive',rows,separatedCount:rows.filter(row=>row.status==='separated').length,overlapThreshold,work:{rowCount:rows.length,maxEndpointAndGapOperations:3*rows.length,boundaryComparisons:2*rows.length,maxThresholdSubtractions:rows.length,maxThresholdRowComparisons:3*rows.length,thresholdFinalComparisons:2,thresholdDirectedProjections:1}}};
+ return {source,input,result,readingResult:{status:rows.some(row=>row.status==='separated')?'conjunction_rejected':'inconclusive',rows,separatedCount:rows.filter(row=>row.status==='separated').length,overlapThreshold,course:compareOwnedEnergyCourse(input.box.position.covered,result.positionRaw,result.rateRaw,rows),work:{rowCount:rows.length,maxEndpointAndGapOperations:3*rows.length,boundaryComparisons:2*rows.length,maxThresholdSubtractions:rows.length,maxThresholdRowComparisons:3*rows.length,thresholdFinalComparisons:2,thresholdDirectedProjections:1}}};
 }
