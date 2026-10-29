@@ -1,0 +1,19 @@
+# Experimental complete named-feature discovery
+
+`discoverSplit` searches the same explicitly declared named features, maximum term count, original training rows, soft-L1 loss and native complexity/noise-floor score as the ordinary discovery path. It is a separate experimental result schema. It does not change ordinary `discover`, generated polynomial libraries, the current selected Studio law, or fixed-law source fitting.
+
+Every structure is reserved before fitting under the 250,000,000 work cap. The complete-search solver permits at most 96 native reweighted optimizer iterations per structure, including intermediate scales and final original-scale corrections, followed when necessary by at most three separately counted damped exact-curvature corrections. It preserves split coefficient pairs and verifies the final declared-scale normalized gradient. A single unresolved estimable structure refuses the entire ranking. Rank-deficient and bounded-representation exclusions remain explicit. The zero structure has no optimizer. QR conditioning diagnostics come from the actual initial scaled QR fit.
+
+The work reservation includes initial/iterative QR, bounded line searches, compensated correction and gradient passes, and both compensated residual/prediction passes used to score every training row. The standard 64-row, seven-feature, maximum-four-term course examines 99 structures (including zero) and reserves 216,465,380 work units with the curvature fallback included. The earlier continuation-only candidate reserved 182,190,272. Fixed-law fitting still uses the separately qualified 64-iteration solver.
+
+## Evidence and limits
+
+A large-origin contaminated damping course that the original optimizer refuses now completes all structures and selects rate+bias at the explicitly declared scale 1e-7 and noise floor 1e-6. Its 43 shifted held-aside coordinates have stable RMSE 8.6051e-9. With the declared noise floor .01, the unchanged score selects bias and held-aside error exceeds 1. That negative is retained.
+
+Ten additional authored courses vary command, damping, spring, gravity and quadratic drag with positive/negative origins and unseen challenge coordinates. The 64-iteration solver completes 971/980 structures; 80 completes 978; 96 and 112 complete 980. The independent Decimal70 oracle checks 980 accepted fits with zero false stationarity successes. This demonstrates numerical optimization, not physical identification. A small command contribution still loses to bias under the native score. Results record actual selections and challenge errors rather than asserting every converged ranking recovers the authored structure.
+
+Studio exposes this comparison beside the existing response comparison. The scale, score floor and maximum-term declaration fields retire prior output on edit. Parent rerender replaces the closure and original row basis. Training rows alone fit and rank; held-aside rows evaluate the selected candidate. The original optimizer comparison is separately labeled. All retained structures are inspectable. No candidate automatically replaces the selected workbench law, source identity, or session discovery object. Ordinary physical predictions remain binary64 rounded, while stable residuals use split products.
+
+This experimental source is local and unpublished. Browser and native receipts refer to exact isolated source; frozen earlier candidates remain intact.
+
+The integration passes the normalized admitted feature list from `state.discovery.options`. In the all-eleven-feature authored course, 32 rows and an explicitly declared three-term maximum admit all 232 structures within 229,593,650 work units. The actual Studio browser course includes the existing optional-feature controls, so those terms cannot silently fall back to the seven defaults. See `CURVATURE_DISCOVERY.md` for final-scale corrections and matched acquisition controls.

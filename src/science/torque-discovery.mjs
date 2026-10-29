@@ -1,3 +1,10 @@
+import {fitInputOriginColumns,inputOriginWork} from './input-origin-fit.mjs';
+import {splitResidual} from './split-multicolumn.mjs';
+import {fitHeterogeneousColumns,heterogeneousWork} from './heterogeneous-fit.mjs';
+import {fitSharedIterationColumns as fitContinuationColumns} from './shared-iteration-fit.mjs';
+import {fitSharedIterationColumns as fitCompleteColumns,sharedIterationWork} from './curvature-fit.mjs';
+import {prepareContinuationPredictor} from './continuation-fit.mjs';
+import {fitCenteredResponse} from './centered-response.mjs';
 import {outputIntervalCount} from './output-grid.mjs';
 /**
  * Bounded structural discovery for scalar torque laws. Dependency-free browser ESM.
@@ -22,7 +29,7 @@ export const UNITS = Object.freeze({command:'N·m', position:'rad', rate:'rad/s'
 const ids = TERMS.map(t => t.id);
 const LIMIT = 4096;
 import {fitLinearColumns as fit, linearColumnRank as libraryRank, RANK_TOLERANCE} from './linear-fit.mjs';
-import {fitSoftL1Columns, softL1Work, SOFT_L1_MAX_WORK} from './robust-fit.mjs';
+import {fitSoftL1Columns, softL1Loss, softL1Weight, softL1Work, SOFT_L1_MAX_WORK} from './robust-fit.mjs';
 const fields = ['command', 'position', 'rate'];
 const observedFields = [...fields, 'jointTorque', 'torqueNoiseRatio'];
 // Only private, freshly computed least-squares fits are reused. Robust fits
@@ -117,7 +124,45 @@ function predictUnchecked(model, row) {
   requireThat(Number.isFinite(value), 'Model prediction overflowed.', 'numerical_failure');
   return value;
 }
-export function predict(model, values) { checkedTerms(model); return predictUnchecked(model, input(values)); }
+export function predict(model, values) {
+  if(model?.schema==='worldlaw.split-torque-experiment/v1')return prepareSplitTorquePoint(model)(values).roundedPrediction;
+  if(model?.schema==='worldlaw.centered-torque-experiment/v1')return evaluateCenteredTorquePoint(model,values).rounded;
+  checkedTerms(model); return predictUnchecked(model, input(values));
+}
+export function fitSplitTorque(observations,termIds,scale,limits){
+  requireThat(Array.isArray(observations)&&Array.from(observations).every(row=>row!==undefined),'Original observations must be dense.');
+  const samples=rows(observations,8);
+  requireThat(samples.every(row=>row.torqueNoiseRatio===undefined),'Split soft-L1 does not support declared per-reading weights.');
+  requireThat(Array.isArray(termIds)&&termIds.length>0&&termIds.length<=9&&new Set(termIds).size===termIds.length&&Array.from(termIds).every(id=>ids.includes(id)),'Choose 1–9 distinct maintained terms.');
+  const fit=fitContinuationColumns(termIds.map(id=>samples.map(row=>feature(id,row))),samples.map(row=>row.jointTorque),scale,limits);
+  if(fit.status!=='converged')return {status:fit.status,reservedWork:fit.reservedWork};
+  return {status:'converged',schema:'worldlaw.split-torque-experiment/v1',terms:[...termIds],fit};
+}
+function prepareSplitTorquePoint(model){
+  const selected=Array.isArray(model.terms)?model.terms.map(t=>typeof t==='string'?t:t?.id):model.terms;
+  requireThat(model.status==='converged'&&Array.isArray(selected)&&selected.length>0&&selected.length<=9&&new Set(selected).size===selected.length&&Array.from(selected).every(id=>ids.includes(id))&&model.fit?.pairs?.length===selected.length,'Explicit split torque coefficients must match declared terms.');
+  const snapshot=[...selected],point=prepareContinuationPredictor(model.fit);
+  return (values,reading=0)=>{const row=input(values);return point(snapshot.map(id=>feature(id,row)),reading);};
+}
+export function fitCenteredTorque(observations, termIds, scale) {
+  requireThat(Array.isArray(observations)&&Array.from(observations).every(row=>row!==undefined),'Original observations must be dense.');
+  const samples=rows(observations,8);
+  requireThat(samples.every(row=>row.torqueNoiseRatio===undefined),'Centered soft-L1 does not support declared per-reading weights.');
+  requireThat(Array.isArray(termIds)&&termIds.length<=9&&termIds.includes('bias')&&new Set(termIds).size===termIds.length&&Array.from(termIds).every(id=>ids.includes(id)),'Choose up to nine maintained terms including bias.');
+  const fit=fitCenteredResponse(termIds.map(id=>samples.map(row=>feature(id,row))),samples.map(row=>row.jointTorque),scale);
+  if(fit.status!=='converged')return {status:fit.status};
+  const delta={schema:'worldlaw.torque-model/v1',terms:termIds.map((id,i)=>({id,coefficient:fit.coefficients[i]}))};
+  checkedTerms(delta);
+  return {status:'converged',schema:'worldlaw.centered-torque-experiment/v1',origin:fit.origin,delta,fit:fit.fit};
+}
+export function evaluateCenteredTorquePoint(model,values,reading) {
+  requireThat(model?.schema==='worldlaw.centered-torque-experiment/v1','Expected centered torque');
+  finite(model.origin,'origin');checkedTerms(model.delta);
+  const delta=predictUnchecked(model.delta,input(values)),rounded=model.origin+delta;
+  requireThat(Number.isFinite(rounded),'Nonfinite rounded response');
+  if(reading!==undefined)finite(reading,'reading');
+  return {origin:model.origin,delta,rounded,...(reading===undefined?{}:{residual:(reading-model.origin)-delta,roundedResidual:reading-rounded})};
+}
 
 /**
  * Snapshot one model for repeated numerical evaluation. Every point still uses
@@ -125,6 +170,11 @@ export function predict(model, values) { checkedTerms(model); return predictUnch
  * prevents a caller's later edits from changing a running solver's equation.
  */
 export function prepareTorquePredictor(model) {
+  if(model?.schema==='worldlaw.split-torque-experiment/v1'){const point=prepareSplitTorquePoint(model);return (command,position,rate)=>point({command,position,rate}).roundedPrediction;}
+  if(model?.schema==='worldlaw.centered-torque-experiment/v1'){
+    const snapshot=structuredClone(model);evaluateCenteredTorquePoint(snapshot,{command:0,position:0,rate:0});
+    return (command,position,rate)=>evaluateCenteredTorquePoint(snapshot,{command,position,rate}).rounded;
+  }
   checkedTerms(model);
   const snapshot = {schema: 'worldlaw.torque-model/v1',
     terms: model.terms.map(({id, coefficient}) => ({id, coefficient}))};
@@ -138,6 +188,18 @@ export function prepareTorquePredictor(model) {
 }
 
 export function evaluate(model, observations) {
+  if(model?.schema==='worldlaw.split-torque-experiment/v1'){
+    requireThat(Array.isArray(observations)&&Array.from(observations).every(row=>row!==undefined),'Original observations must be dense.');
+    const point=prepareSplitTorquePoint(model),samples=rows(observations),result=samples.map(row=>{const value=point(row,row.jointTorque);return {...row,...value,prediction:value.roundedPrediction};});
+    const residuals=result.map(r=>r.residual),rounded=result.map(r=>r.roundedResidual);
+    return {count:result.length,rmse:result.length?norm(residuals)/Math.sqrt(result.length):null,roundedRmse:result.length?norm(rounded)/Math.sqrt(result.length):null,maxAbsResidual:result.length?Math.max(...residuals.map(Math.abs)):null,rows:result,representation:'split_coefficients; solver predictions remain rounded'};
+  }
+  if(model?.schema==='worldlaw.centered-torque-experiment/v1'){
+    requireThat(Array.isArray(observations)&&Array.from(observations).every(row=>row!==undefined),'Original observations must be dense.');
+    const samples=rows(observations),result=samples.map(row=>{const value=evaluateCenteredTorquePoint(model,row,row.jointTorque);return {...row,...value,prediction:value.rounded};});
+    const residuals=result.map(row=>row.residual),roundedResiduals=result.map(row=>row.roundedResidual);
+    return {count:result.length,rmse:result.length?norm(residuals)/Math.sqrt(result.length):null,roundedRmse:result.length?norm(roundedResiduals)/Math.sqrt(result.length):null,maxAbsResidual:result.length?Math.max(...residuals.map(Math.abs)):null,rows:result,representation:'origin_plus_delta; solver predictions remain rounded'};
+  }
   checkedTerms(model);
   const samples = rows(observations);
   const result = samples.map(row => {
@@ -212,6 +274,115 @@ export function discover(observations, requestedOptions = {}) {
     unexecutableCandidates, fullLibraryRank, robustWork}, options);
 }
 
+/** Complete incumbent-library experimental soft-L1 search. Training only. */
+export function discoverSplit(observations,requestedOptions={}){
+ requireThat(Array.isArray(observations)&&Array.from(observations).every(r=>r!==undefined),'Original observations must be dense.');
+ requireThat(requestedOptions.loss===undefined||requestedOptions.loss==='soft_l1','Split discovery supports only explicit soft-L1.');
+ const samples=rows(observations,8),options=normalizeOptions({...requestedOptions,loss:'soft_l1'});
+ requireThat(samples.every(r=>r.torqueNoiseRatio===undefined),'Split discovery does not support per-reading weights.');
+ requireThat(options.maxTerms<=9,'Split discovery admits at most nine terms per structure.');
+ const columns=options.terms.map(id=>samples.map(r=>feature(id,r))),target=samples.map(r=>r.jointTorque),n=samples.length;
+ requireThat(columns.every(c=>c.every(v=>Number.isFinite(v)&&Math.abs(v)<=1e6)),'Complete split feature course exceeds the bounded coordinate representation.');
+ const max=Math.max(...target.map(Math.abs)),schedule=[];
+ let robustWork=n*(options.terms.length**2+options.terms.length+1);
+ for(let mask=0;mask<(1<<options.terms.length);mask++){
+  const indices=options.terms.flatMap((_,i)=>mask&(1<<i)?[i]:[]);if(indices.length>options.maxTerms||indices.length>=n)continue;
+  // Ranking needs one compensated original-residual pass (62p); public prediction remains unchanged.
+  schedule.push(indices);robustWork+=(indices.length?sharedIterationWork(n,indices.length,max,options.lossScale):0)+n*(64*indices.length+32);
+ }
+ requireThat(robustWork<=SOFT_L1_MAX_WORK,`Complete split search needs ${robustWork} work units; limit ${SOFT_L1_MAX_WORK}. No prefix fitted.`,'work_limit');
+ const candidates=[];let rankDeficientCandidates=0,unexecutableCandidates=0;
+ const domain=Object.fromEntries(fields.map(k=>[k,{min:Math.min(...samples.map(r=>r[k])),max:Math.max(...samples.map(r=>r[k]))}]));
+ for(const indices of schedule){
+  const fitted=indices.length?fitCompleteColumns(indices.map(i=>columns[i]),target,options.lossScale):null;
+  if(fitted?.status==='rank-unavailable'){rankDeficientCandidates++;continue;}
+  requireThat(!fitted||fitted.status==='converged',`Complete split optimization unresolved for ${indices.map(i=>options.terms[i]).join('+')} (${fitted?.status}); no partial ranking.`,'robust_fit_incomplete');
+  if(fitted?.pairs.some(p=>p.some(x=>Math.abs(x)>1e18))){unexecutableCandidates++;continue;}
+  const terms=indices.map((i,j)=>({id:options.terms[i],coefficient:fitted.pairs[j][0]+fitted.pairs[j][1]}));
+  const model={schema:fitted?'worldlaw.split-torque-experiment/v1':'worldlaw.torque-model/v1',status:'converged',id:terms.map(t=>t.id).join('+')||'zero',terms,units:UNITS,domain,...(fitted?{fit:fitted}:{}),equation:'τ = '+(terms.map(t=>`${Number(t.coefficient.toPrecision(5))}·${TERMS.find(x=>x.id===t.id).label}`).join(' + ')||'0')};
+  const residuals=splitResidual(indices.map(i=>columns[i]),target,fitted?.pairs??[]),evaluation={rmse:Math.hypot(...residuals)/Math.sqrt(n),maxAbsResidual:Math.max(...residuals.map(Math.abs))},meanLoss=residuals.reduce((sum,r)=>sum+softL1Loss(r,options.lossScale),0)/n,weights=residuals.map(r=>softL1Weight(r,options.lossScale));
+  model.fitting={loss:'soft_l1',scale:options.lossScale,representation:fitted?'split_coefficients':'zero'};
+  model.metrics={count:n,rmse:evaluation.rmse,maxAbsResidual:evaluation.maxAbsResidual,score:n*Math.log(Math.max(meanLoss,options.noiseSigma**2))+terms.length*Math.log(n),conditionEstimate:fitted?fitted.conditionEstimate:1,rank:terms.length,robust:{meanLoss,iterations:fitted?.iterations??0,scaledGradient:fitted?.gradient??0,stationarityTolerance:1e-8*options.lossScale,minWeight:Math.min(...weights),halfWeightCount:weights.filter(w=>w<.5).length}};
+  candidates.push(model);
+ }
+ requireThat(candidates.length,'No estimable split candidate.','unidentifiable');
+ const result=rankFittedSource({samples,options,candidates,examined:schedule.length,rankDeficientCandidates,unexecutableCandidates,fullLibraryRank:libraryRank(columns),robustWork},options);
+ result.schema='worldlaw.split-discovery-experiment/v1';result.diagnostics.representation='Split coefficients; ordinary physical predictions remain rounded. Original-scale robust ranking uses stable training residuals.';
+ return result;
+}
+
+export function discoverHeterogeneous(observations,requestedOptions={}){
+ requireThat(Array.isArray(observations)&&Array.from(observations).every(r=>r!==undefined),'Original observations must be dense.');
+ requireThat(requestedOptions.loss===undefined||requestedOptions.loss==='soft_l1','Split discovery supports only explicit soft-L1.');
+ const samples=rows(observations,8),options=normalizeOptions({...requestedOptions,loss:'soft_l1'});
+ requireThat(samples.every(r=>r.torqueNoiseRatio!==undefined),'Every original training row must declare its noise ratio.');
+ requireThat(options.maxTerms<=9,'Split discovery admits at most nine terms per structure.');
+ const columns=options.terms.map(id=>samples.map(r=>feature(id,r))),target=samples.map(r=>r.jointTorque),n=samples.length;
+ requireThat(columns.every(c=>c.every(v=>Number.isFinite(v)&&Math.abs(v)<=1e6)),'Complete split feature course exceeds the bounded coordinate representation.');
+ const ratios=samples.map(r=>r.torqueNoiseRatio);requireThat(target.every((v,i)=>Math.abs(v/ratios[i])<=1e6)&&columns.every(c=>c.every((v,i)=>Math.abs(v/ratios[i])<=1e6)),'Declared normalized coordinates exceed bounded range.');const max=Math.max(...target.map((v,i)=>Math.abs(v/ratios[i]))),schedule=[];
+ let robustWork=n*(options.terms.length**2+options.terms.length+1);
+ for(let mask=0;mask<(1<<options.terms.length);mask++){
+  const indices=options.terms.flatMap((_,i)=>mask&(1<<i)?[i]:[]);if(indices.length>options.maxTerms||indices.length>=n)continue;
+  // Ranking needs one compensated original-residual pass (62p); public prediction remains unchanged.
+  schedule.push(indices);robustWork+=(indices.length?heterogeneousWork(n,indices.length,max,options.lossScale):0)+n*(64*indices.length+40);
+ }
+ requireThat(robustWork<=SOFT_L1_MAX_WORK,`Complete split search needs ${robustWork} work units; limit ${SOFT_L1_MAX_WORK}. No prefix fitted.`,'work_limit');
+ const candidates=[];let rankDeficientCandidates=0,unexecutableCandidates=0;
+ const domain=Object.fromEntries(fields.map(k=>[k,{min:Math.min(...samples.map(r=>r[k])),max:Math.max(...samples.map(r=>r[k]))}]));
+ for(const indices of schedule){
+  const fitted=indices.length?fitHeterogeneousColumns(indices.map(i=>columns[i]),target,ratios,options.lossScale):null;
+  if(fitted?.status==='rank-unavailable'){rankDeficientCandidates++;continue;}
+  requireThat(!fitted||fitted.status==='converged',`Complete split optimization unresolved for ${indices.map(i=>options.terms[i]).join('+')} (${fitted?.status}); no partial ranking.`,'robust_fit_incomplete');
+  if(fitted?.pairs.some(p=>p.some(x=>Math.abs(x)>1e18))){unexecutableCandidates++;continue;}
+  const terms=indices.map((i,j)=>({id:options.terms[i],coefficient:fitted.pairs[j][0]+fitted.pairs[j][1]}));
+  const model={schema:fitted?'worldlaw.split-torque-experiment/v1':'worldlaw.torque-model/v1',status:'converged',id:terms.map(t=>t.id).join('+')||'zero',terms,units:UNITS,domain,...(fitted?{fit:fitted}:{}),equation:'τ = '+(terms.map(t=>`${Number(t.coefficient.toPrecision(5))}·${TERMS.find(x=>x.id===t.id).label}`).join(' + ')||'0')};
+  const physicalResiduals=splitResidual(indices.map(i=>columns[i]),target,fitted?.pairs??[]),evaluation={rmse:Math.hypot(...physicalResiduals)/Math.sqrt(n),maxAbsResidual:Math.max(...physicalResiduals.map(Math.abs))},residuals=physicalResiduals.map((r,i)=>r/ratios[i]),meanLoss=residuals.reduce((sum,r)=>sum+softL1Loss(r,options.lossScale),0)/n,weights=residuals.map(r=>softL1Weight(r,options.lossScale));
+  model.fitting={loss:'soft_l1',scale:options.lossScale,representation:fitted?'split_coefficients':'zero',noise:'declared_per_reading_ratio'};
+  model.metrics={normalizedRmse:Math.hypot(...residuals)/Math.sqrt(n),count:n,rmse:evaluation.rmse,maxAbsResidual:evaluation.maxAbsResidual,score:n*Math.log(Math.max(meanLoss,options.noiseSigma**2))+terms.length*Math.log(n),conditionEstimate:fitted?fitted.conditionEstimate:1,rank:terms.length,robust:{meanLoss,iterations:fitted?.iterations??0,scaledGradient:fitted?.gradient??0,stationarityTolerance:1e-8*options.lossScale,minWeight:Math.min(...weights),halfWeightCount:weights.filter(w=>w<.5).length}};
+  candidates.push(model);
+ }
+ requireThat(candidates.length,'No estimable split candidate.','unidentifiable');
+ const result=rankFittedSource({samples,options,candidates,examined:schedule.length,rankDeficientCandidates,unexecutableCandidates,fullLibraryRank:libraryRank(columns),robustWork},options);
+ result.schema='worldlaw.heterogeneous-discovery-experiment/v1';result.diagnostics.scoreMeaning='Native complexity heuristic applied to declared-ratio soft-L1 residuals; not likelihood or confidence';result.diagnostics.adequacyMetric='declared_ratio_rmse';result.diagnostics.trainingRmseInNoiseUnits=result.selected.metrics.normalizedRmse/options.noiseSigma;result.diagnostics.adequacy=result.selected.metrics.normalizedRmse>3*options.noiseSigma?'residual_mismatch':'not_falsified_on_training';result.diagnostics.representation='Split coefficients; ordinary physical predictions remain rounded. Ranking uses original physical training residuals divided by declared ratios.';
+ return result;
+}
+
+export function discoverInputOrigin(observations,requestedOptions={}){
+ requireThat(Array.isArray(observations)&&Array.from(observations).every(r=>r!==undefined),'Original observations must be dense.');
+ requireThat(requestedOptions.loss===undefined||requestedOptions.loss==='soft_l1','Split discovery supports only explicit soft-L1.');
+ const samples=rows(observations,8),options=normalizeOptions({...requestedOptions,loss:'soft_l1'});
+ requireThat(samples.every(r=>r.torqueNoiseRatio!==undefined),'Every original training row must declare its noise ratio.');
+ requireThat(options.maxTerms<=9,'Split discovery admits at most nine terms per structure.');
+ const columns=options.terms.map(id=>samples.map(r=>feature(id,r))),target=samples.map(r=>r.jointTorque),n=samples.length;
+ requireThat(columns.every(c=>c.every(v=>Number.isFinite(v)&&Math.abs(v)<=1e6)),'Complete split feature course exceeds the bounded coordinate representation.');
+ const ratios=samples.map(r=>r.torqueNoiseRatio);requireThat(target.every((v,i)=>Math.abs(v/ratios[i])<=1e6)&&columns.every(c=>c.every((v,i)=>Math.abs(v/ratios[i])<=1e6)),'Declared normalized coordinates exceed bounded range.');const max=Math.max(...target.map((v,i)=>Math.abs(v/ratios[i]))),schedule=[];
+ let robustWork=n*(options.terms.length**2+options.terms.length+1);
+ for(let mask=0;mask<(1<<options.terms.length);mask++){
+  const indices=options.terms.flatMap((_,i)=>mask&(1<<i)?[i]:[]);if(indices.length>options.maxTerms||indices.length>=n)continue;
+  // Ranking needs one compensated original-residual pass (62p); public prediction remains unchanged.
+  schedule.push(indices);robustWork+=(indices.length?(indices.some(i=>options.terms[i]==='bias')?inputOriginWork:heterogeneousWork)(n,indices.length,max,options.lossScale):0)+n*(64*indices.length+40);
+ }
+ requireThat(robustWork<=SOFT_L1_MAX_WORK,`Complete split search needs ${robustWork} work units; limit ${SOFT_L1_MAX_WORK}. No prefix fitted.`,'work_limit');
+ const candidates=[];let rankDeficientCandidates=0,unexecutableCandidates=0;
+ const domain=Object.fromEntries(fields.map(k=>[k,{min:Math.min(...samples.map(r=>r[k])),max:Math.max(...samples.map(r=>r[k]))}]));
+ for(const indices of schedule){
+  const fitted=indices.length?(indices.some(i=>options.terms[i]==='bias')?fitInputOriginColumns:fitHeterogeneousColumns)(indices.map(i=>columns[i]),target,ratios,options.lossScale):null;
+  if(fitted?.status==='rank-unavailable'){rankDeficientCandidates++;continue;}
+  requireThat(!fitted||fitted.status==='converged',`Complete split optimization unresolved for ${indices.map(i=>options.terms[i]).join('+')} (${fitted?.status}); no partial ranking.`,'robust_fit_incomplete');
+  if(fitted?.pairs.some(p=>p.some(x=>Math.abs(x)>1e18))){unexecutableCandidates++;continue;}
+  const terms=indices.map((i,j)=>({id:options.terms[i],coefficient:fitted.pairs[j][0]+fitted.pairs[j][1]}));
+  const model={schema:fitted?'worldlaw.split-torque-experiment/v1':'worldlaw.torque-model/v1',status:'converged',id:terms.map(t=>t.id).join('+')||'zero',terms,units:UNITS,domain,...(fitted?{fit:fitted}:{}),equation:'τ = '+(terms.map(t=>`${Number(t.coefficient.toPrecision(5))}·${TERMS.find(x=>x.id===t.id).label}`).join(' + ')||'0')};
+  const physicalResiduals=splitResidual(indices.map(i=>columns[i]),target,fitted?.pairs??[]),evaluation={rmse:Math.hypot(...physicalResiduals)/Math.sqrt(n),maxAbsResidual:Math.max(...physicalResiduals.map(Math.abs))},residuals=physicalResiduals.map((r,i)=>r/ratios[i]),meanLoss=residuals.reduce((sum,r)=>sum+softL1Loss(r,options.lossScale),0)/n,weights=residuals.map(r=>softL1Weight(r,options.lossScale));
+  model.fitting={loss:'soft_l1',scale:options.lossScale,representation:fitted?'split_coefficients':'zero',noise:'declared_per_reading_ratio'};
+  model.metrics={normalizedRmse:Math.hypot(...residuals)/Math.sqrt(n),count:n,rmse:evaluation.rmse,maxAbsResidual:evaluation.maxAbsResidual,score:n*Math.log(Math.max(meanLoss,options.noiseSigma**2))+terms.length*Math.log(n),conditionEstimate:fitted?fitted.conditionEstimate:1,rank:terms.length,robust:{meanLoss,iterations:fitted?.iterations??0,scaledGradient:fitted?.gradient??0,stationarityTolerance:1e-8*options.lossScale,minWeight:Math.min(...weights),halfWeightCount:weights.filter(w=>w<.5).length}};
+  candidates.push(model);
+ }
+ requireThat(candidates.length,'No estimable split candidate.','unidentifiable');
+ const result=rankFittedSource({samples,options,candidates,examined:schedule.length,rankDeficientCandidates,unexecutableCandidates,fullLibraryRank:libraryRank(columns),robustWork},options);
+ result.schema='worldlaw.input-origin-discovery-experiment/v1';result.diagnostics.scoreMeaning='Native complexity heuristic applied to declared-ratio soft-L1 residuals; not likelihood or confidence';result.diagnostics.adequacyMetric='declared_ratio_rmse';result.diagnostics.trainingRmseInNoiseUnits=result.selected.metrics.normalizedRmse/options.noiseSigma;result.diagnostics.adequacy=result.selected.metrics.normalizedRmse>3*options.noiseSigma?'residual_mismatch':'not_falsified_on_training';result.diagnostics.representation='Split coefficients; ordinary physical predictions remain rounded. Ranking uses original physical training residuals divided by declared ratios.';
+ return result;
+}
+
 function rankFittedSource(source, options) {
   const {samples, examined, rankDeficientCandidates, unexecutableCandidates, fullLibraryRank, robustWork} = source;
   // Keep the private fits in their original enumeration order. Sorting a prior
@@ -272,6 +443,9 @@ function rankFittedSource(source, options) {
 
 /** Reuse only private least-squares fits with identical source and library. */
 export function refitDiscovery(discovery, requestedOptions = {}) {
+  if(discovery?.schema==='worldlaw.input-origin-discovery-experiment/v1')return discoverInputOrigin(discovery.observations,requestedOptions);
+  if(discovery?.schema==='worldlaw.heterogeneous-discovery-experiment/v1')return discoverHeterogeneous(discovery.observations,requestedOptions);
+  if(discovery?.schema==='worldlaw.split-discovery-experiment/v1')return discoverSplit(discovery.observations,requestedOptions);
   requireThat(discovery?.schema === 'worldlaw.discovery/v1', 'Expected a discovery result.');
   const samples = rows(discovery.observations, 8), options = normalizeOptions(requestedOptions);
   const source = fittedSources.get(discovery);
@@ -288,15 +462,16 @@ export function refitDiscovery(discovery, requestedOptions = {}) {
 }
 
 export function planExperiment(discovery, candidateInputs) {
-  requireThat(discovery?.schema === 'worldlaw.discovery/v1' && Array.isArray(discovery.competitive) && discovery.competitive.length,
+  requireThat(['worldlaw.discovery/v1','worldlaw.split-discovery-experiment/v1','worldlaw.heterogeneous-discovery-experiment/v1','worldlaw.input-origin-discovery-experiment/v1'].includes(discovery?.schema) && Array.isArray(discovery.competitive) && discovery.competitive.length,
     'Expected a discovery result.');
   requireThat(Array.isArray(candidateInputs) && candidateInputs.length > 0 && candidateInputs.length <= LIMIT,
     `Provide one to ${LIMIT} candidate inputs.`);
+  if(['worldlaw.heterogeneous-discovery-experiment/v1','worldlaw.input-origin-discovery-experiment/v1'].includes(discovery.schema))requireThat(candidateInputs.every(r=>!Object.hasOwn(r,'torqueNoiseRatio')||r.torqueNoiseRatio===1),'This nominal planner assumes prospective noise ratio one; unequal prospective ratios are unsupported.');
   const models = discovery.competitive;
-  models.forEach(checkedTerms);
+  models.forEach(prepareTorquePredictor);
   const ranked = candidateInputs.map((row, index) => {
     const point = input(row);
-    const predictions = models.map(model => ({ modelId: model.id, value: predictUnchecked(model, point) }));
+    const predictions = models.map(model => ({ modelId: model.id, value: predict(model, point) }));
     const values = predictions.map(p => p.value);
     const disagreement = Math.max(...values) - Math.min(...values);
     const extrapolation = fields.filter(key => discovery.selected.domain &&
@@ -306,14 +481,15 @@ export function planExperiment(discovery, candidateInputs) {
   return { status: models.length > 1 && ranked[0].disagreement > 2 * discovery.options.noiseSigma ? 'proposed' : 'uninformative',
     selected: ranked[0], ranked, modelIds: models.map(model => model.id),
     method: 'maximum_competitive_model_prediction_range',
-    interpretation: 'A heuristic among caller-permitted inputs; no physical actuation is performed.' };
+    ...(['worldlaw.heterogeneous-discovery-experiment/v1','worldlaw.input-origin-discovery-experiment/v1'].includes(discovery.schema)?{prospectiveNoiseRatio:1}:{}),
+    interpretation: ['worldlaw.heterogeneous-discovery-experiment/v1','worldlaw.input-origin-discovery-experiment/v1'].includes(discovery.schema)?'Nominal physical prediction-spread heuristic assuming prospective noise ratio one. Unequal prospective ratios are unsupported; no physical actuation is performed.':'A heuristic among caller-permitted inputs; no physical actuation is performed.' };
 }
 
 export function revise(discovery, newObservations) {
-  requireThat(discovery?.schema === 'worldlaw.discovery/v1', 'Expected a discovery result.');
+  requireThat(['worldlaw.discovery/v1','worldlaw.split-discovery-experiment/v1','worldlaw.heterogeneous-discovery-experiment/v1','worldlaw.input-origin-discovery-experiment/v1'].includes(discovery?.schema), 'Expected a discovery result.');
   const added = rows(newObservations, 1);
   const before = evaluate(discovery.selected, added);
-  const next = discover([...discovery.observations, ...added], discovery.options);
+  const next = (discovery.schema==='worldlaw.input-origin-discovery-experiment/v1'?discoverInputOrigin:discovery.schema==='worldlaw.heterogeneous-discovery-experiment/v1'?discoverHeterogeneous:discovery.schema==='worldlaw.split-discovery-experiment/v1'?discoverSplit:discover)([...discovery.observations, ...added], discovery.options);
   return { ...next, revision: { previousModelId: discovery.selected.id, addedCount: added.length, before } };
 }
 
@@ -341,3 +517,32 @@ export function simulate(model, initial, { duration = 4, dt = 0.01, inertia = 1,
 
 
 
+
+/** Explicit unequal-noise fixed-law fit; no default or selected-law replacement. */
+export function fitHeterogeneousTorque(observations,termIds,scale,limits={}){
+ requireThat(Array.isArray(observations)&&Array.from(observations).every(r=>r!==undefined),'Original observations must be dense.');
+ const samples=rows(observations,8);
+ requireThat(samples.every(r=>r.torqueNoiseRatio!==undefined),'Every original training row must declare its noise ratio.');
+ requireThat(Array.isArray(termIds)&&termIds.length>0&&termIds.length<=9&&new Set(termIds).size===termIds.length&&Array.from(termIds).every(id=>ids.includes(id)),'Choose 1–9 distinct maintained terms.');
+ const fit=fitHeterogeneousColumns(termIds.map(id=>samples.map(r=>feature(id,r))),samples.map(r=>r.jointTorque),samples.map(r=>r.torqueNoiseRatio),scale,limits);
+ if(fit.status!=='converged')return {status:fit.status,reservedWork:fit.reservedWork};
+ return {schema:'worldlaw.split-torque-experiment/v1',status:'converged',terms:[...termIds],fit,fitting:{loss:'declared_ratio_soft_l1',scale}};
+}
+export function evaluateHeterogeneousTorque(model,observations){
+ requireThat(model?.fitting?.loss==='declared_ratio_soft_l1','Explicit unequal-noise model required.');
+ requireThat(Array.isArray(observations)&&Array.from(observations).every(r=>r!==undefined),'Original readings must be dense.');
+ const samples=rows(observations,0);requireThat(samples.every(r=>r.torqueNoiseRatio!==undefined),'Every evaluated original reading must declare its noise ratio.');
+ const physical=evaluate(model,samples),normalized=physical.rows.map((row,i)=>row.residual/samples[i].torqueNoiseRatio);
+ return {physical,normalizedRmse:normalized.length?Math.hypot(...normalized)/Math.sqrt(normalized.length):null,normalizedResiduals:normalized,meaning:'Physical torque residuals and declared-ratio residuals are separate. Ratios are supplied assumptions, not inferred reliability or calibrated uncertainty.'};
+}
+
+/** Explicit equivalent-input-basis experiment; original terms and pairs retained. */
+export function fitInputOriginTorque(observations,termIds,scale,limits={}){
+ requireThat(Array.isArray(observations)&&Array.from(observations).every(r=>r!==undefined),'Original observations must be dense.');
+ const samples=rows(observations,8);
+ requireThat(samples.every(r=>r.torqueNoiseRatio!==undefined),'Every original training row must declare its noise ratio.');
+ requireThat(Array.isArray(termIds)&&termIds.length>0&&termIds.length<=9&&new Set(termIds).size===termIds.length&&Array.from(termIds).every(id=>ids.includes(id)),'Choose 1–9 distinct maintained terms.');
+ const fit=fitInputOriginColumns(termIds.map(id=>samples.map(r=>feature(id,r))),samples.map(r=>r.jointTorque),samples.map(r=>r.torqueNoiseRatio),scale,limits);
+ if(fit.status!=='converged')return {status:fit.status,reservedWork:fit.reservedWork};
+ return {schema:'worldlaw.split-torque-experiment/v1',status:'converged',terms:[...termIds],fit,fitting:{loss:'declared_ratio_soft_l1',scale}};
+}

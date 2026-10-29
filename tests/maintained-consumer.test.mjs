@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';import {fitSplitTorque,evaluate,predict,prepareTorquePredictor,simulate} from '../src/science/torque-discovery.mjs';
+const make=i=>({command:0,position:Math.sin(i*.73)*2,rate:(i+.5)/32-1});
+const train=Array.from({length:64},(_,i)=>{const r=make(i);return {...r,jointTorque:1e4+2*Math.sin(r.position)-.5*r.rate+(i%16===0?100:0)};});
+const m=fitSplitTorque(train,['gravity','rate','bias'],1e-7);assert.equal(m.status,'converged');
+const hold=Array.from({length:21},(_,i)=>{const r=make(i+.39);return {...r,jointTorque:1e4+2*Math.sin(r.position)-.5*r.rate};});
+assert.ok(evaluate(m,hold).rmse<1e-6);const prepared=prepareTorquePredictor(m);assert.equal(prepared(0,hold[0].position,hold[0].rate),predict(m,hold[0]));
+const exact={schema:'worldlaw.split-torque-experiment/v1',status:'converged',terms:['bias'],fit:{schema:'worldlaw.split-continuation-research/v1',status:'converged',pairs:[[1e4,1e-13]]}};
+const original={schema:'worldlaw.torque-model/v1',terms:[{id:'bias',coefficient:1e4}]};
+assert.deepEqual(simulate(exact,{position:0,rate:0},{duration:.01,dt:.001}),simulate(original,{position:0,rate:0},{duration:.01,dt:.001}));
+const scores=evaluate(exact,[{command:0,position:0,rate:0,jointTorque:1e4}]);assert.equal(scores.rows[0].residual,-1e-13);assert.equal(scores.rows[0].roundedResidual,0);
+const snap=prepared(0,1,2);m.fit.pairs[0][0]=999;assert.equal(prepared(0,1,2),snap);
+assert.equal(fitSplitTorque(train,['gravity','rate','bias'],1e-7,{maxWork:0}).status,'work-limit');
+console.log('maintained evaluate/predict/prepared/RK4 receiving pass; explicit rounded dynamics and stable residual remain distinct');
+assert.equal(fitSplitTorque(train,['bias'],1e-7,{maxSolves:0}).status,'refused');
+assert.equal(fitSplitTorque(train,['bias'],1e-7,{maxIterations:0}).status,'work-limit');
