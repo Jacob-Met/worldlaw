@@ -1,0 +1,149 @@
+{
+  "schema": "worldlaw.affine-origin-execution-source/v1",
+  "original": {
+    "schema": "worldlaw.input-origin-torque-source/v1",
+    "training": [
+      {
+        "position": 234566.999985,
+        "rate": -0.0015,
+        "command": -1.5,
+        "jointTorque": -2.0000000000000004e-08,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234566.999995,
+        "rate": -0.0015,
+        "command": -0.5,
+        "jointTorque": 0.0,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234567.000005,
+        "rate": -0.0015,
+        "command": 0.5,
+        "jointTorque": 2e-08,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234567.000015,
+        "rate": -0.0015,
+        "command": 1.5,
+        "jointTorque": 4e-08,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234566.999985,
+        "rate": -0.0005,
+        "command": -1.5,
+        "jointTorque": -2.0000000000000004e-08,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234566.999995,
+        "rate": -0.0005,
+        "command": -0.5,
+        "jointTorque": 0.0,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234567.000005,
+        "rate": -0.0005,
+        "command": 0.5,
+        "jointTorque": 2e-08,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234567.000015,
+        "rate": -0.0005,
+        "command": 1.5,
+        "jointTorque": 4e-08,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234566.999985,
+        "rate": 0.0005,
+        "command": -1.5,
+        "jointTorque": -2.0000000000000004e-08,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234566.999995,
+        "rate": 0.0005,
+        "command": -0.5,
+        "jointTorque": 0.0,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234567.000005,
+        "rate": 0.0005,
+        "command": 0.5,
+        "jointTorque": 2e-08,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234567.000015,
+        "rate": 0.0005,
+        "command": 1.5,
+        "jointTorque": 4e-08,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234566.999985,
+        "rate": 0.0015,
+        "command": -1.5,
+        "jointTorque": -2.0000000000000004e-08,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234566.999995,
+        "rate": 0.0015,
+        "command": -0.5,
+        "jointTorque": 0.0,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234567.000005,
+        "rate": 0.0015,
+        "command": 0.5,
+        "jointTorque": 2e-08,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "position": 234567.000015,
+        "rate": 0.0015,
+        "command": 1.5,
+        "jointTorque": 4e-08,
+        "torqueNoiseRatio": 1
+      }
+    ],
+    "challenge": [
+      {
+        "position": 234567.01,
+        "rate": 0.04,
+        "command": 0.7,
+        "jointTorque": 2.4e-08,
+        "torqueNoiseRatio": 1
+      }
+    ],
+    "terms": [
+      "command",
+      "bias"
+    ],
+    "scale": 1e-07
+  },
+  "initial": {
+    "position": 234567,
+    "rate": -1e-08
+  },
+  "settings": {
+    "duration": 0.53,
+    "dt": 0.001,
+    "inertia": 1,
+    "command": 0.3,
+    "relativeTolerance": 1e-14,
+    "positionTolerance": 1e-14,
+    "rateTolerance": 1e-14,
+    "maxTrials": 30000
+  },
+  "basis": "Authored complete constant affine torque without a restoring or viscous term"
+}
