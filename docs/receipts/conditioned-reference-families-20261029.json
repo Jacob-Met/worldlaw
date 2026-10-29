@@ -1,0 +1,32 @@
+{
+  "claim": 509,
+  "nativeGroups": 123,
+  "browserGroups": 86,
+  "browserStatus": "passed",
+  "exceptions": [],
+  "finishedAt": "2026-10-29T02:40:33.097Z",
+  "sandboxActive": true,
+  "familyExited": true,
+  "profileRetained": true,
+  "sourceIdentity": {
+    "base": "50ee4cb8b825893b1720bbeb57c192c8de7446ff",
+    "inquiry": 509,
+    "composition": "five exact changed source files over qualified residual closure"
+  },
+  "originalOperation": "hamon-69d25c-world-conditioned-families-browser-20261029-v2",
+  "independentReview": {
+    "reviewer": "SYNAPSE",
+    "focusedGroups": 10,
+    "sourceAccepted": true
+  },
+  "sourceHashes": {
+    "src/science/nonlinear-cohort-families.mjs": "2a8e4c0fbd2da5bec075bbfceb6a21b9f7a1d6e6848c911713db1643f5e6d3bf",
+    "src/science/nonlinear-cohorts-panel.mjs": "f4852bd95191099043ee272054d2dbe187dbc56d6aa2b984d8999f06765de4c0",
+    "src/science/nonlinear-common-reference-panel.mjs": "6ab8f0d1f0cf0e4f40965c626f720b5c49a1af4c5e7be4fc3659201516d67d14",
+    "src/science/nonlinear-reference-observations-panel.mjs": "51578a37c28a7aae679dad1358f6d4e637c13c982459ccd2bb30fc3386f3ce28",
+    "src/science/nonlinear-reference-conditioned-panel.mjs": "0ee3768f12227b5dbd75b50d3b7f399ca1db100979ece45771d4248c0ff728d8",
+    "tests/nonlinear-conditioned-reference-families.test.mjs": "078b505d12f28ab2fde08b537ec7eb1c2888a5b5f277f8bd835aceaa7a9a7fa1",
+    "scripts/nonlinear-conditioned-reference-families.receiving.mjs": "2720e87eeefa41823f387f90bfa57cc83b5b132826d0c426db1923dd3b997aaa"
+  },
+  "qualification": "Inherited browser closure lineage; exact seven changed source hashes bind final composition. Both browser runs passed; final receiver captures result before retirement. Competing structures have separate candidate corrections."
+}
