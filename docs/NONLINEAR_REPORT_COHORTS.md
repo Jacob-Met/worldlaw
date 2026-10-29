@@ -1,6 +1,6 @@
 # Original nonlinear instrument cohorts
 
-The original-law inquiry can now retain distinct original piecewise calibration reports for disjoint groups of training readings. Open the nonlinear inquiry, select each report file, name its exact original row numbers and source basis, and explicitly retain that cohort. Every original row must occur exactly once before search. The actual readings must have separately declared independent bounds and source basis.
+The original-law inquiry can now retain distinct original piecewise calibration reports for disjoint groups of training readings. Open the nonlinear inquiry, select each report file, name its exact original row numbers and source basis, and explicitly retain that cohort. Every original row must occur exactly once before search. The actual readings require separately declared residual bounds and source basis; they may now explicitly share a retained report through the complete row-source choices described in NONLINEAR_ACTUAL_ASSOCIATIONS.md.
 
 Each report supplies its own shared knot corrections. The inquiry uses the maintained original-law influence preparation and bounded candidate search, then independently refits every corrected original training row and rechecks the complete actual course. Public evidence contains the original reports, complete row/value associations and actual declarations; reopening recomputes the result. Original observations, fitted-law ranking and notebook history are not replaced.
 
@@ -12,7 +12,7 @@ An authored two-instrument course uses identity reference knots [0, 1, 2] for th
 
 The complete original training partition contains at most 4096 rows, 16 reports and 16 knots per report. The complete actual course contains at most 128 rows. Missing, overlapping, changed-value or duplicate-report cohorts refuse; one report cannot be split into independent latent blocks. Source preparation, independent checks and refits are additional bounded work outside the displayed candidate matrix-term budget. Search exhaustion, numerical contact and unsupported original fits remain unresolved/unavailable rather than successful evidence.
 
-This separate inquiry currently requires independent actual sources. It refuses existing declared original residual additions rather than silently dropping them. Cross-instrument actual associations and independently measured physical interpolation validation are not supplied here. The source condition is a declared model, and the numerical allowance is an engineering screen rather than a formal QR error proof.
+This separate inquiry refuses existing declared original residual additions rather than silently dropping them. Explicit actual report associations are available; independently measured physical interpolation validation is not supplied here. The source condition is a declared model, and the numerical allowance is an engineering screen rather than a formal QR error proof.
 
 ## Receiving
 
