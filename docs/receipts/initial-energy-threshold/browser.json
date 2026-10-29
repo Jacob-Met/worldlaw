@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "Ordinary original source yields exact complete threshold without changing radius, initial box, law or forecast",
+    "Every tied witness navigates to its exact original row and page; invalid witness choice refused",
+    "Ordinary source-only reopen recomputes threshold and witnesses; cached answer ignored",
+    "Desktop and390 threshold and witness ledger readable, contained and keyboard reachable",
+    "Radius and starting-width edits retire derived results; zero threshold says no enlargement and creates no false conflicts",
+    "Original-run replacement retires threshold and witness navigation"
+  ],
+  "errors": [],
+  "sandbox": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+  "browser": "156.0.8078.73",
+  "scope": "Actual authored ordinary source, unchanged source-only replay, exact threshold/tie navigation and retirement"
+}

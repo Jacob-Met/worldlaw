@@ -7,6 +7,17 @@ export function formatEnergyBound(raw,upper,digits=5){
  const q=upper?-floor(-v,d):floor(v,d),negative=q<0n,a=negative?-q:q;
  const text=a.toString().padStart(digits+1,'0');return (negative?'-':'')+text.slice(0,-digits)+'.'+text.slice(-digits);
 }
+/** Directed decimal enclosure of the nonnegative exact threshold, 17 significant digits. */
+export function formatReadingThreshold(raw){
+ for(const key of ['numerator','denominator'])if(typeof raw?.[key]!=='string'||raw[key].length>1250||!/^\d+$/.test(raw[key]))throw Error('Bounded exact threshold required');
+ const n=BigInt(raw.numerator),d=BigInt(raw.denominator);if(n<0n||d<=0n)throw Error('Nonnegative exact threshold required');
+ if(n===0n)return {lower:'0',upper:'0'};
+ let exponent=n.toString().length-d.toString().length;
+ if(exponent>=0?n<d*10n**BigInt(exponent):n*10n**BigInt(-exponent)<d)exponent--;
+ const scale=16-exponent,a=scale>=0?n*10n**BigInt(scale):n,b=scale>=0?d:d*10n**BigInt(-scale),floor=a/b,ceil=floor+(a%b?1n:0n);
+ const text=value=>{const s=value.toString(),e=s.length-1-scale;if(e < -4||e > 6)return s[0]+(s.length>1?'.'+s.slice(1):'')+'e'+e;const point=s.length-scale;return point<=0?'0.'+'0'.repeat(-point)+s:point>=s.length?s+'0'.repeat(point-s.length):s.slice(0,point)+'.'+s.slice(point);};
+ return {lower:text(floor),upper:text(ceil)};
+}
 export function createInitialEnergyControls(anchor,context){
  const host=node('section');host.id='initial-energy';host.style.cssText='border-left:3px solid #3b6978;padding:12px 16px;display:grid;gap:10px;background:#f3f7f6;min-width:0';
  const title=node('h3','Limits for every declared start');title.style.margin='0';
@@ -34,14 +45,31 @@ export function createInitialEnergyControls(anchor,context){
   if(report.status==='unavailable'){readingOutput.append(node('p','Reading comparison unavailable because no complete model limit was established.'));return;}
   readingOutput.append(node('h4',report.status==='conjunction_rejected'?'Declared assumptions incompatible with these readings':'No separated reading found — inconclusive'));
   readingOutput.append(node('p',`${report.separatedCount} of ${report.rows.length} original reading intervals are strictly outside the model limit. Contact with the boundary overlaps. Separation rejects the conjunction of law, starting box, original coordinate/course interpretation and reading bound; it does not identify which assumption failed. Overlap does not establish that one trajectory explains the recording.`));
+  const threshold=report.overlapThreshold,thresholdBox=node('section');thresholdBox.id='initial-energy-threshold';thresholdBox.style.cssText='margin:12px 0;padding:10px 0;border-top:1px solid #c4cfb9;overflow-wrap:anywhere';
+  const fraction=x=>x.denominator==='1'?x.numerator:`${x.numerator}/${x.denominator}`;
+  if(threshold){
+   const display=formatReadingThreshold(threshold.exact);thresholdBox.append(node('h4','Smallest uniform half-width for overlap with this bound'));
+   const value=node('p',threshold.zero?'0 rad — all original readings already overlap; no enlargement is needed for this necessary check.':`${display.lower===display.upper?display.lower:display.lower+' to '+display.upper} rad (rounded outwards).`);value.id='initial-energy-threshold-value';value.dataset.numerator=threshold.exact.numerator;value.dataset.denominator=threshold.exact.denominator;thresholdBox.append(value);
+   const exact=node('details');exact.append(node('summary','Exact overlap threshold'),node('p',fraction(threshold.exact)+' rad'));thresholdBox.append(exact,node('p','This only concerns overlap with the unchanged outer bound. It is not calibrated uncertainty or evidence that one trajectory explains the readings. Your declared radius and starting widths are unchanged.'));
+   if(!threshold.withinDeclaredRadiusLimit)thresholdBox.append(node('p','This diagnostic exceeds the 100 rad reading-declaration limit; the input limit is unchanged.'));
+   readingOutput.append(thresholdBox);
+  }
   const label=node('label','Original rows page '),pages=node('select');pages.id='initial-energy-reading-page';label.append(pages);
   const size=100;for(let i=0;i<Math.ceil(report.rows.length/size);i++){const option=node('option',`${i*size+1}–${Math.min((i+1)*size,report.rows.length)} of ${report.rows.length}`);option.value=String(i);pages.append(option);}
   const scroll=node('div');scroll.tabIndex=0;scroll.setAttribute('role','region');scroll.setAttribute('aria-label','Original reading intervals; scroll horizontally and vertically');scroll.style.cssText='overflow:auto;max-height:28rem;max-width:100%;margin-top:10px';
   const table=node('table');table.style.cssText='font-size:.875rem;width:max-content;min-width:100%;table-layout:auto';scroll.append(table);readingOutput.append(label,node('p','Scroll the ledger horizontally for complete exact intervals and gaps, and vertically for every row on this page.'),scroll);
-  const fraction=x=>x.denominator==='1'?x.numerator:`${x.numerator}/${x.denominator}`;
   function page(){table.replaceChildren();const head=node('tr');for(const t of ['Original row','Time (s)','Angle (rad)','Exact reading interval (rad)','Account','Exact separation (rad)']){const th=node('th',t);th.scope='col';th.style.fontSize='.8rem';head.append(th);}table.append(head);
    for(const row of report.rows.slice(Number(pages.value)*size,(Number(pages.value)+1)*size)){const tr=node('tr');tr.dataset.originalIndex=String(row.index);for(const value of [String(row.index),String(row.time),String(row.position),`${fraction(row.interval[0])} to ${fraction(row.interval[1])}`,row.status==='separated'?`Separated ${row.side}`:'Overlaps — inconclusive',fraction(row.gap)]){const td=node('td',value);td.style.cssText='white-space:nowrap;max-width:none';tr.append(td);}table.append(tr);}}
   pages.addEventListener('change',page);page();
+  if(threshold&&!threshold.zero){
+   const witnesses=threshold.attainingRows;
+   thresholdBox.append(node('p',`${witnesses.length} original ${witnesses.length===1?'row determines':'rows tie for'} this threshold. These are retained row identities, not inferred event times.`));
+   const label=node('label','Attaining row number in this witness list '),choice=node('input');choice.type='number';choice.min='1';choice.max=String(witnesses.length);choice.step='1';choice.value='1';choice.id='initial-energy-witness-choice';choice.style.cssText='max-width:100%;box-sizing:border-box';label.append(choice);
+   const jump=node('button','Inspect attaining original row');jump.type='button';jump.className='button outline';jump.id='initial-energy-witness-jump';
+   const selected=node('p');selected.id='initial-energy-witness-selected';selected.setAttribute('role','status');
+   jump.addEventListener('click',()=>{const number=choice.valueAsNumber;if(!Number.isInteger(number)||number<1||number>witnesses.length){choice.setCustomValidity(`Choose a whole witness number from 1 to ${witnesses.length}.`);choice.reportValidity();return;}choice.setCustomValidity('');const row=witnesses[number-1];pages.value=String(Math.floor(row.index/size));page();const tr=table.querySelector(`tr[data-original-index="${row.index}"]`);tr.tabIndex=-1;tr.style.outline='2px solid #3b6978';tr.focus({preventScroll:true});tr.scrollIntoView({block:'nearest',inline:'nearest'});selected.textContent=`Original row ${row.index}, time ${row.time} s, angle ${row.position} rad. Witness ${number} of ${witnesses.length}.`;});
+   choice.addEventListener('input',()=>choice.setCustomValidity(''));thresholdBox.append(label,jump,selected);
+  }
  }
  function draw(question){
   readingDirty=false;readingRadius.value=question.source.readingComparison?String(question.source.readingComparison.angleReadingHalfWidth):'';readingTools.hidden=question.result.status!=='confined';drawReadings(question);

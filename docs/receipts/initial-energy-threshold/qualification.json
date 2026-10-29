@@ -1,0 +1,67 @@
+{
+  "issue": 496,
+  "base": "175d2fd7be638ceaac4cec30a51b8a06f5ba3526",
+  "tree": "a6daf04e9a46a04b1ada1279c854be6438cca136",
+  "sourceHashes": {
+    "src/trajectory/initial-energy-readings.mjs": "90e27cb0d7af235fe15385741fa8b8a732e525bf53693cd185bb3bd26936bbf7",
+    "src/trajectory/initial-energy-panel.mjs": "798ff0abfb57bc4280cdd7f6b6237c52fec945ca6c4d2ba9bca57bcbe642e92f",
+    "tests/initial-energy-threshold.test.mjs": "53ce1d5f29c2221f75fdb6cb05708b74fd48bbcc1f3db8800f8f68d571795104",
+    "docs/INITIAL_ENERGY_LIMITS.md": "0292ebd75503639d46bb71e8dbdda30f7eaf5ed33fc2028df782f3e45618e3be"
+  },
+  "recovery": "Four product/test/documentation files exactly match their historical qualified hashes. Original a0e6 packet and historical receipt/screenshot bytes were lost; they are not recreated by this receipt.",
+  "native": {
+    "newGroups": 5,
+    "retainedGroups": 6,
+    "commands": [
+      "node tests/initial-energy-threshold.test.mjs",
+      "node tests/initial-energy-readings.test.mjs"
+    ],
+    "checks": [
+      {
+        "test": "initial-energy-threshold",
+        "exitCode": 0,
+        "stdoutSHA256": "751a78a8abf4da431e29804053df6315c5a2daad6a1ca2015c9364885644526b"
+      },
+      {
+        "test": "initial-energy-readings",
+        "exitCode": 0,
+        "stdoutSHA256": "464bb09cd2f0cec6c9aebbacd593bd48ebc66ed8e267290748d84adf6a16ccf2"
+      }
+    ],
+    "scope": "Fresh execution on current pinned closure, not inherited historical logs"
+  },
+  "browser": {
+    "receipt": "browser.json",
+    "sha256": "a851595637c835cbfbab8ccee940e0acbf9550a341685c864e177de7048009ee",
+    "groups": 6,
+    "harnessSHA256": "5f0e6ef1d43c98f3e1f6ed9ff154ec41add82c2006c839355ca791ea3a4538f6",
+    "fixtureSHA256": "02c93294fc169760589d0d3ac4fd15f221940526088de80997d43cb3bb37e67a",
+    "browser": "156.0.8078.73",
+    "browserSHA256": "8ea0ecbfc1ac0dc0e957de722babf9b72f8e86cb8643308ff17a491d59bdaa80",
+    "cleanup": "Process7978 exited0 after awaited browser.close and server.close",
+    "source": "Fresh authored independent RK4 training and original201-row challenge; last rows199/200 explicitly set to+1.8/-1.8. Not the lost historical fixture or physical acquisition.",
+    "sourceDifference": "Fresh source has2separatedrows at declared0.25rad, while previous fixture had4. Exactthreshold and199/200witnesses agree.",
+    "freshFailures": []
+  },
+  "independentReview": {
+    "receipt": "review.json",
+    "sha256": "2b2faafb0ae9a93f00cfda2fae08f8d4c87e80709dc65f80def0656df62e1517",
+    "scope": "Root prior exact-source mathematical/lifecycle review identity plus fresh four-capture visual review; no additional root native/browser execution"
+  },
+  "composition": {
+    "maintainedFilesVerifiedAfterBrowser": 151,
+    "postBrowserReceiptSHA256": "4a2d633ce1c14680c7132d3dd4b17a27d4a77968b204b1cb90648d46baef5656",
+    "advance": "86commits from prior7f53 base; no overlap with owned files or fetchedtrajectoryclosure; all currentmaintained bytes Gitblobverified."
+  },
+  "historicalNegative": {
+    "kind": "Literal radius assertion expected .25 but accepted numeric field normalized0.25",
+    "correction": "Compare numeric radius; no product change",
+    "preCorrectionHarnessSHA256": "bef40c7c8db75b0d42be3030c938fa26efa3679413a90bf01f2748471241ba80",
+    "attribution": "Preserved in conversation; exact pre-correction harness reproduced by reverting one assertion. Original negative receipt bytes unavailable."
+  },
+  "limitations": [
+    "Necessary overlap with an outer invariant is not calibrated uncertainty or proof of a sharedODEtrajectory.",
+    "Declared readingradius, startingwidths, law, source and receipt schema are unchanged.",
+    "No physical validity, installation or deployment claim; privateQAinputs/screens are excluded."
+  ]
+}
