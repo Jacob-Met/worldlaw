@@ -16,10 +16,10 @@ import {contactEventResolutionNote} from './contact-resolution-note.mjs';
 import {MAX_TEXT_LENGTH} from './data.mjs';
 import {summarizePredictionHorizon} from './horizon.mjs';
 import {createExperimentPanel} from './experiment-panel.mjs';
-import * as experimentController from './experiment-session.mjs';
-import {withNumericalScreen} from '../experiment-design/screened-controller.mjs';
+import {createRecordedExperimentPanel} from './recorded-experiment-panel.mjs';
+import {createExperimentSession,planNextExperiment,acquireNextExperiment,applyNextExperiment,experimentView,exportExperimentSession,restoreExperimentSession,
+  isRecordedExperiment,beginRecordedExperiment,recordedWorkflowView,refitExperimentWorkflow,planRecordedExperiment,receiveRecordedOutcome,applyRecordedOutcome,discardRecordedOutcome,exportRecordedRequest} from './experiment-workflow.mjs';
 import {createReferencePanel} from '../representation/reference-panel.mjs';
-const {createExperimentSession,planNextExperiment,acquireNextExperiment,applyNextExperiment,experimentView,exportExperimentSession,restoreExperimentSession}=withNumericalScreen(experimentController);
 
 const $=id=>document.getElementById(id);
 const initialStatePanel=createInitialStatePanel($('comparison-grid'));
@@ -41,7 +41,7 @@ const axisFmt=value=>Math.abs(value)>=1000||(Math.abs(value)>0&&Math.abs(value)<
 const termNames={command:'Actuation',rate:'Linear rate',coulomb:'Rate sign',spring:'Linear position',gravity:'Sinusoidal position',quadratic:'Odd quadratic rate',rate_squared:'Even quadratic rate',bias:'Constant torque',cubic:'Cubic position',cosine:'Cosine position'};
 const storageKey='worldlaw.trajectory-challenge.v1';
 const exampleURLs={pendulum:'/examples/trajectory-pendulum-92be.json',ambiguous:'/examples/trajectory-ambiguous-92be.json',measured:'/examples/physical-pasco-92be.json'};
-let state,workflow,experimentPanel,selectedRunId,generation=0,busy=false,rows=[],contactRows=[],playing=false,playStarted=0,playFrom=0,animationHandle=0,viewIndex=0,chartX=null,positionTolerance=.05,horizon=null;
+let state,workflow,experimentPanel,recordedPanel,selectedRunId,generation=0,busy=false,rows=[],contactRows=[],playing=false,playStarted=0,playFrom=0,animationHandle=0,viewIndex=0,chartX=null,positionTolerance=.05,horizon=null;
 const referencePanel=createReferencePanel($('experiment-panel'));
 
 function angularMode(){return state?.bundle?.schema==='worldlaw.angular-bundle/v1';}
@@ -111,8 +111,14 @@ function experimentPanelView(){
   if(view.acquisition&&['numerically_unresolved','unavailable'].includes(view.numericalQualification?.status))return {...view,error:undefined,notice:'The existing recording is retained and can be learned from. This numerical check limits new acquisition; it does not discard evidence already acquired.'};
   return view;
 }
-function renderExperiment(){if(workflow&&experimentPanel)experimentPanel.render(experimentPanelView());}
+function renderExperiment(){
+  if(!workflow)return;
+  const recorded=isRecordedExperiment(workflow);$('experiment-panel').hidden=recorded;
+  if(experimentPanel&&!recorded)experimentPanel.render(experimentPanelView());
+  if(recordedPanel)recordedPanel.render(recordedWorkflowView(workflow));
+}
 async function advanceExperiment(action,message){const previous=workflow;await perform(()=>action(previous),message,{propagate:true});return experimentPanelView();}
+async function advanceRecordedExperiment(action,message){const previous=workflow;await perform(()=>action(previous),message,{propagate:true});return recordedWorkflowView(workflow);}
 function render(){
   commandTimingPanel.setBundle(state.bundle);
   referencePanel.update(state.bundle);
@@ -269,10 +275,31 @@ experimentPanel=createExperimentPanel($('experiment-panel'),{
   onLoadExample:async()=>{$('example-choice').value='ambiguous';$('example-choice').dispatchEvent(new Event('change'));await loadExample();return experimentPanelView();},
 });
 
+const recordedHost=el('section');recordedHost.id='recorded-experiment-panel';$('experiment-panel').after(recordedHost);
+recordedPanel=createRecordedExperimentPanel(recordedHost,{
+  onStart:()=>advanceRecordedExperiment(session=>beginRecordedExperiment(session),'Recorded experiment started from the retained source. Its original notebook and experiment history are preserved.'),
+  onPlan:options=>advanceRecordedExperiment(session=>planRecordedExperiment(session,options),'The original proposal and its numerical check are retained. A separately supplied recording can differ from the requested conditions; those differences remain visible.'),
+  onAcceptFile:file=>{
+    const previous=workflow,view=recordedWorkflowView(previous);
+    return perform(async()=>{
+      if(file.size>MAX_TEXT_LENGTH)throw new Error('Choose a recorded-run JSON file smaller than 3 MB.');
+      const text=await file.text();
+      return receiveRecordedOutcome(previous,text,{contextKey:view.contextKey,planId:view.plan?.id});
+    },'Recording retained without changing training. The original proposal and frozen-law replays under recorded conditions are distinct.',{propagate:true}).then(()=>recordedWorkflowView(workflow));
+  },
+  onApply:()=>advanceRecordedExperiment(session=>applyRecordedOutcome(session),'The supplied recording joined training explicitly. The revised law is compared on the same reserved recording; worse or failed outcomes remain visible.'),
+  onDiscard:()=>advanceRecordedExperiment(session=>discardRecordedOutcome(session),'The pending recording was discarded explicitly. The current fitted evidence remains unchanged.'),
+  onExportRequest:()=>{
+    const request=exportRecordedRequest(workflow),text=typeof request==='string'?request:JSON.stringify(request,null,2);
+    const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),anchor=el('a');anchor.href=url;anchor.download='worldlaw-recorded-experiment-request.json';document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);
+    return recordedWorkflowView(workflow);
+  },
+});
+
 $('import-bundle').addEventListener('click',()=>$('bundle-file').click());$('open-notebook').addEventListener('click',()=>$('notebook-file').click());$('bundle-file').addEventListener('change',event=>readInput(event,'bundle'));$('notebook-file').addEventListener('change',event=>readInput(event,'notebook'));
 $('example-choice').addEventListener('change',()=>set('example-description',$('example-choice').value==='measured'?'Real sensor recordings with unknown inertia. The current fit may mismatch or fail its challenge.':$('example-choice').value==='ambiguous'?'Fit gentle motion, then challenge the law with a wide-angle release.':'Learn from driven motion, then test two separate releases.'));
 $('load-example').addEventListener('click',()=>loadExample());$('export-notebook').addEventListener('click',()=>{try{download();}catch(error){alertError(error);}});
-$('refit').addEventListener('click',()=>perform(()=>{const next=createChallenge(state.bundle,settings());next.positionTolerance=positionTolerance;return next;},'Refitted the training runs and recomputed free forward predictions on the separate challenge runs.'));
+$('refit').addEventListener('click',()=>perform(()=>{const next=refitExperimentWorkflow(workflow,settings());next.current.positionTolerance=positionTolerance;return next;},'Refitted the training runs and recomputed free forward predictions on the separate challenge runs. Recorded experiment history is retained; an earlier proposal must be recomputed.'));
 for(const radio of document.querySelectorAll('input[name="method"]'))radio.addEventListener('change',()=>{$('noise-sigma').value='.01';updateMethodDescription();notice('Method ready. Fit & challenge will apply it to the training runs and refresh the predictions.');});
 $('challenge-run').addEventListener('change',()=>{selectedRunId=$('challenge-run').value;state.selectedRunId=selectedRunId;renderModel();save();notice('Viewing another challenge run. The learned models and training ranking are unchanged.');});
 $('apply-tolerance').addEventListener('click',()=>{try{const raw=$('position-tolerance').value.trim(),value=Number(raw);if(!raw||!Number.isFinite(value)||value<=0||value>1e6)throw new Error('Enter an angle tolerance greater than zero and at most 1000000 radians.');const next=summarizePredictionHorizon(currentResult().rollout,{positionTolerance:value});positionTolerance=value;horizon=next;state.positionTolerance=value;updateHorizon();renderCharts();save();notice('Updated the sampled deviation check. The learned laws and forward predictions are unchanged.');}catch(error){alertError(error);}});
