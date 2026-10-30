@@ -142,11 +142,14 @@ function chart(container,series,{xLabel,yLabel,diagonal=false,width=580,zeroTick
 }
 function renderHypotheses(){
   const list=$('hypothesis-list');list.replaceChildren();
-  for(const m of state.discovery.candidates.slice(0,8)){
+  const shown=state.discovery.candidates.slice(0,8),best=Math.min(...shown.map(c=>c.metrics.score));
+  for(const m of shown){
     const button=el('button',undefined,'hypothesis'+(m.id===model().id?' is-selected':''));button.type='button';button.setAttribute('aria-pressed',String(m.id===model().id));
     const title=el('span',m.id==='zero'?'Zero torque':m.terms.map(t=>names[t.id]).join(' + '),'hypothesis-name');
     const meta=el('span',`Δ score ${fmt(m.metrics.score-state.discovery.selected.metrics.score,3)} · ${m.terms.length} terms`,'hypothesis-meta');
-    button.append(title,meta);button.addEventListener('click',()=>action(()=>{modelId=m.id;renderModel();renderHypotheses();notice(`Inspecting ${title.textContent}. The discovery ranking is unchanged.`);}));list.append(button);
+    // Relative support exp(-Δ/2) against the best shown score; a display aid, not a calibrated probability.
+    const bar=el('span',undefined,'hypothesis-bar');bar.setAttribute('aria-hidden','true');const track=el('span',undefined,'hypothesis-track');const fill=el('i');fill.style.width=`${Math.max(2,Math.round(100*Math.exp(-(m.metrics.score-best)/2)))}%`;track.append(fill);bar.append(track);
+    button.append(title,bar,meta);button.addEventListener('click',()=>action(()=>{modelId=m.id;renderModel();renderHypotheses();notice(`Inspecting ${title.textContent}. The discovery ranking is unchanged.`);}));list.append(button);
   }
 }
 function renderModel(){
@@ -210,10 +213,12 @@ function renderModel(){
   renderAngularFrequency(frequency,state,{chart,beginSourceReplacement,getSourceGeneration:()=>generation,onSettings:settings=>{frequencySettings=settings;},useInput:input=>{for(const field of ['command','position','rate'])$(field).value=String(input[field]);notice('Exact offered state copied. Obtain and enter a separate torque reading, then infer the period again.');$('measured-torque').focus();},settings:frequencySettings,onReopen:(next,settings)=>{adopt(next,'Reopened original periodic-response inputs. Infer again to recompute.');frequencySettings=settings;render();},simulationInputs:()=>({initial:{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},settings:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')}})});
   runSimulation(false);
 }
+function updateHud(){const v=id=>$(id)?.value??"—",t=id=>$(id)?.textContent??"—";set("hud-theta",v("position")+" rad");set("hud-omega",v("rate")+" rad/s");set("hud-tau",v("command")+" N·m");set("hud-fit",t("sample-count"));set("hud-held",t("heldout-count"));set("hud-source",t("source-name"));}
+document.addEventListener("input",e=>{if(["position","rate","command"].includes(e.target.id))updateHud();});
 function render(){
   measurementBatchPanel?.studioChanged();excitationPanel?.studioChanged();
   const d=state.discovery;set('source-name',state.base.source.label);set('source-kind',state.lab?'Virtual instrument · synthetic evidence':'Imported observations · user-supplied evidence');
-  set('sample-count',String(d.observations.length));set('heldout-count',String(state.base.heldOut.length));set('candidate-count',String(d.candidates.length));
+  set('sample-count',String(d.observations.length));set('heldout-count',String(state.base.heldOut.length));updateHud();set('candidate-count',String(d.candidates.length));
   $('undo').disabled=state.events.length===0;$('measured-field').hidden=Boolean(state.lab);$('run-experiment').textContent=state.lab?'Run virtual experiment':'Record measured outcome';
   set('experiment-mode',state.lab?'Execute the virtual torque instrument at these inputs.':'Use your instrument, then enter its measured net torque. No hardware is controlled.');
   $('noise-sigma').value=state.options.noiseSigma;
@@ -314,22 +319,22 @@ function draw(now){
     const duration=trajectory.at(-1)?.time||1;const time=reduced?0:((now-animationStart)/1000)%duration;
     const current=trajectory[Math.min(trajectory.length-1,Math.floor(time/.02))];
     if(!current){
-      ctx.fillStyle='#cfdfd0';ctx.font='17px ui-sans-serif, sans-serif';ctx.textAlign='center';ctx.fillText('Prediction unavailable',w/2,h/2-8);
-      ctx.fillStyle='#9fb6a6';ctx.font='12px ui-sans-serif, sans-serif';ctx.fillText('Adjust the dynamics inputs to run the model.',w/2,h/2+19);ctx.textAlign='left';
+      ctx.fillStyle='#d6ddd8';ctx.font='17px ui-sans-serif, sans-serif';ctx.textAlign='center';ctx.fillText('Prediction unavailable',w/2,h/2-8);
+      ctx.fillStyle='#8b9690';ctx.font='12px ui-sans-serif, sans-serif';ctx.fillText('Adjust the dynamics inputs to run the model.',w/2,h/2+19);ctx.textAlign='left';
       canvas.setAttribute('aria-label','Prediction unavailable. Dynamics inputs were refused.');animationHandle=requestAnimationFrame(draw);return;
     }
     canvas.setAttribute('aria-label','Predicted angular joint schematic from the executed selected model.');const angle=current.position;
     const cx=w*.49,cy=h*.27,len=Math.min(w*.27,h*.48),x=cx+Math.sin(angle)*len,y=cy+Math.cos(angle)*len;
-    ctx.strokeStyle='rgba(217,240,219,.06)';ctx.lineWidth=1;
+    ctx.strokeStyle='rgba(124,245,168,.06)';ctx.lineWidth=1;
     for(let gx=20;gx<w;gx+=30){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,h);ctx.stroke();}for(let gy=20;gy<h;gy+=30){ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(w,gy);ctx.stroke();}
-    ctx.save();ctx.setLineDash([3,6]);ctx.strokeStyle='rgba(199,230,209,.25)';ctx.beginPath();ctx.arc(cx,cy,len,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx,cy+len+20);ctx.stroke();ctx.restore();
-    ctx.fillStyle='#2d443b';ctx.beginPath();ctx.roundRect(cx-54,cy-37,108,38,8);ctx.fill();
-    ctx.lineCap='round';ctx.strokeStyle='#5d7869';ctx.lineWidth=16;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(x,y);ctx.stroke();
-    ctx.strokeStyle='#bed5ba';ctx.lineWidth=4;ctx.stroke();
-    ctx.shadowColor='rgba(203,242,123,.5)';ctx.shadowBlur=25;ctx.fillStyle='#cbf27b';ctx.beginPath();ctx.arc(x,y,19,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
-    ctx.fillStyle='#dce9d6';ctx.beginPath();ctx.arc(cx,cy,12,0,Math.PI*2);ctx.fill();ctx.fillStyle='#122e25';ctx.beginPath();ctx.arc(cx,cy,5,0,Math.PI*2);ctx.fill();
-    ctx.font='12px ui-monospace, monospace';ctx.fillStyle='#bed1c1';ctx.fillText(`θ ${fmt(angle,3)} rad`,Math.max(14,w-146),h-48);ctx.fillText(`t ${fmt(time,3)} s`,Math.max(14,w-146),h-27);
-    ctx.fillStyle='#8fa99a';ctx.fillText('PREDICTED JOINT',20,h-28);
+    ctx.save();ctx.setLineDash([3,6]);ctx.strokeStyle='rgba(124,245,168,.22)';ctx.beginPath();ctx.arc(cx,cy,len,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx,cy+len+20);ctx.stroke();ctx.restore();
+    ctx.fillStyle='#18231f';ctx.beginPath();ctx.roundRect(cx-54,cy-37,108,38,8);ctx.fill();
+    ctx.lineCap='round';ctx.strokeStyle='#3f5a4e';ctx.lineWidth=16;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(x,y);ctx.stroke();
+    ctx.strokeStyle='#9ff5c0';ctx.lineWidth=4;ctx.stroke();
+    ctx.shadowColor='rgba(124,245,168,.45)';ctx.shadowBlur=25;ctx.fillStyle='#7cf5a8';ctx.beginPath();ctx.arc(x,y,19,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+    ctx.fillStyle='#dfe7e2';ctx.beginPath();ctx.arc(cx,cy,12,0,Math.PI*2);ctx.fill();ctx.fillStyle='#0b0d0c';ctx.beginPath();ctx.arc(cx,cy,5,0,Math.PI*2);ctx.fill();
+    ctx.font='12px ui-monospace, monospace';ctx.fillStyle='#c5d6cc';ctx.fillText(`θ ${fmt(angle,3)} rad`,Math.max(14,w-146),h-48);ctx.fillText(`t ${fmt(time,3)} s`,Math.max(14,w-146),h-27);
+    ctx.fillStyle='#8b9690';ctx.fillText('PREDICTED JOINT',20,h-28);
   }
   animationHandle=requestAnimationFrame(draw);
 }
