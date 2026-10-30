@@ -3,6 +3,9 @@ import { lstat, open } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { resolve, extname, join } from 'node:path';
+import { requestLawCandidates, summarizeTraining, MAX_PROPOSED_CANDIDATES } from './src/science/nemotron-law-candidates.mjs';
+
+const MAX_PROPOSAL_BODY_BYTES = 1_500_000;
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const types = {'.html':'text/html; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml'};
@@ -51,6 +54,33 @@ async function readPublicAsset(pathname) {
     await file.close();
   }
 }
+// Server-side Nemotron proposal. The browser never sees NEBIUS_API_KEY; errors
+// are returned as plain JSON without echoing the key or upstream bodies.
+async function handleLawCandidates(req, res) {
+  const json = (status, body) => { res.writeHead(status, {'Content-Type': 'application/json; charset=utf-8'}); res.end(JSON.stringify(body)); };
+  if (req.method !== 'POST') { res.writeHead(405, {'Allow': 'POST'}).end('Use POST.'); return; }
+  if (!String(req.headers['content-type'] ?? '').startsWith('application/json')) { json(415, {error: 'Send application/json.'}); return; }
+  const chunks = []; let size = 0;
+  for await (const chunk of req) {
+    size += chunk.length;
+    if (size > MAX_PROPOSAL_BODY_BYTES) { json(413, {error: 'Request is too large.'}); req.destroy(); return; }
+    chunks.push(chunk);
+  }
+  const apiKey = process.env.NEBIUS_API_KEY;
+  if (!apiKey) { json(503, {error: 'NEBIUS_API_KEY is not set on this server. Nemotron proposals are unavailable; every other workbench function still works.', code: 'no_key'}); return; }
+  let payload;
+  try { payload = JSON.parse(Buffer.concat(chunks).toString('utf8')); }
+  catch { json(400, {error: 'Request body is not valid JSON.'}); return; }
+  try {
+    const summary = summarizeTraining(payload.observations);
+    const baseTerms = Array.isArray(payload.baseTerms) ? payload.baseTerms.map(String) : [];
+    const result = await requestLawCandidates({summary, baseTerms, apiKey, model: process.env.NEBIUS_MODEL || undefined});
+    json(200, {model: result.model, latencyMs: result.latencyMs, candidates: result.candidates, rejected: result.rejected, maxCandidates: MAX_PROPOSED_CANDIDATES});
+  } catch (error) {
+    const code = error?.code === 'model_reply' || error?.code === 'upstream' ? error.code : 'invalid_input';
+    json(code === 'invalid_input' ? 400 : 502, {error: code === 'invalid_input' ? error.message : 'Nemotron proposal failed: ' + error.message, code});
+  }
+}
 export function createProductServer() {
   return http.createServer(async (req, res) => {
     res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -58,6 +88,9 @@ export function createProductServer() {
     res.setHeader('Referrer-Policy', 'no-referrer');
     if (!localRequest(req)) {
       res.writeHead(403).end('Only same-origin loopback requests are accepted.'); return;
+    }
+    if (new URL(req.url, 'http://localhost').pathname === '/api/nemotron/law-candidates') {
+      await handleLawCandidates(req, res); return;
     }
     if (!['GET','HEAD'].includes(req.method)) {
       res.writeHead(405, {'Allow':'GET, HEAD'}).end('This application serves local files only.'); return;

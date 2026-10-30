@@ -3,61 +3,434 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f3f2eb">
+  <meta name="theme-color" content="#0b0d0c">
   <meta name="description" content="WORLDLAW is an experimental workbench for learning executable torque models, comparing their predictions, and designing discriminating experiments.">
-  <title>WORLDLAW — The experimental workbench</title>
+  <title>WORLDLAW — Torque bench</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/separability.css">
-</head>
-<body>
-  <a class="skip-link" href="#workbench">Skip to workbench</a>
-  <div class="page-shell">
-    <header class="masthead">
-      <a class="wordmark" href="/" aria-label="WORLDLAW home"><span class="brand-mark" aria-hidden="true">W<span>∴</span></span><span>WORLDLAW<small>THE EXPERIMENTAL WORKBENCH</small></span></a>
-      <div class="session-tools" aria-label="Session controls">
-        <span class="local-indicator"><i aria-hidden="true"></i>Local workspace</span>
-        <a class="button button-quiet" href="/motion.html">Motion Lab</a>
-        <a class="button button-quiet" href="/trajectory.html">Trajectory Challenge</a>
-        <a class="button button-quiet" href="/unknown-lab.html">Unknown Lab</a>
-        <a class="button button-quiet" href="/cycle-work.html">Cycle Work</a>
-        <a class="button button-quiet" href="/coupling.html">Coupling Lab</a>
-        <a class="button button-quiet" href="/stiffness.html">Stiffness Lab</a>
-        <button id="open-session" class="button button-quiet" type="button">Open session</button>
-        <button id="export-session" class="button button-outline" type="button">Save session <span aria-hidden="true">↗</span></button>
-      </div>
-    </header>
+  <style>
+:root {
+  color-scheme: dark;
+  --paper: #0b0d0c;          /* graphite, near-black bench */
+  --panel: #111412;
+  --panel-raised: #171b19;
+  --ink: #d6ddd8;
+  --muted: #8b9690;          /* 6:1+ on --paper */
+  --line: #262d29;
+  --line-strong: #3a4540;
+  --accent: #7cf5a8;         /* phosphor trace */
+  --accent-deep: #4fd583;
+  --accent-ink: #06140c;
+  --warn: #f5b041;           /* the one disagreement colour */
+  --forest: #0a0c0b;
+  --radius: 4px;
+  --ui: "Avenir Next Condensed", "Arial Narrow", "Roboto Condensed", "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: var(--ui);
+  --serif: var(--ui);
+}
 
-    <main id="workbench">
-      <section class="intro" aria-labelledby="page-title">
-        <div><p class="eyebrow"><span class="tiny-rule" aria-hidden="true"></span>OBSERVE. QUESTION. TEST.</p><h1 id="page-title">Let the experiment<br><em>change your mind.</em></h1></div>
-        <div class="intro-copy"><p>Turn torque observations into competing explanations. Find the state that separates them, then see what the evidence changes.</p><a href="#scope" class="scope-link">A finite-library discovery experiment <span aria-hidden="true">↘</span></a></div>
+body.workbench {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--ui);
+  font-stretch: condensed;
+  font-size: 15px;
+  line-height: 1.45;
+  background-image: linear-gradient(rgba(124, 245, 168, 0.018) 1px, transparent 1px);
+  background-size: 100% 4px;
+}
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip-link:focus { color: var(--accent-ink); background: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Top bar: wordmark, compact lab nav, small toolbar actions. */
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 22px; flex-wrap: wrap;
+  padding: 10px 24px; min-height: 56px;
+  background: rgba(11, 13, 12, 0.94); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.wordmark { display: flex; align-items: baseline; gap: 10px; color: var(--ink); text-decoration: none; }
+.brand-glyph { color: var(--accent); font-size: 17px; line-height: 1; }
+.wordmark-name { font-weight: 700; letter-spacing: 0.16em; font-size: 15px; }
+.wordmark-sub { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.04em; }
+.lab-nav { display: flex; gap: 2px; flex-wrap: wrap; }
+.lab-nav a { color: var(--muted); text-decoration: none; font-size: 13px; padding: 5px 9px; border-radius: 3px; }
+.lab-nav a:hover { color: var(--ink); background: var(--panel-raised); }
+.toolbar { margin-left: auto; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.local-indicator { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--muted); margin-right: 6px; }
+.local-indicator i { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.tool {
+  min-height: 30px; padding: 4px 10px; font: inherit; font-size: 13px; color: var(--ink);
+  background: transparent; border: 1px solid var(--line-strong); border-radius: 3px; cursor: pointer;
+}
+.tool:hover { border-color: var(--accent); color: var(--accent); }
+.tool-strong { border-color: var(--accent); color: var(--accent); }
+
+.page-shell { max-width: 1440px; margin: 0 auto; padding: 0 24px 40px; }
+.notice { margin: 14px 0 0; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.error { margin: 14px 0 0; padding: 10px 12px; border: 1px solid var(--warn); color: var(--warn); border-radius: 3px; }
+.bench { padding-top: 18px; }
+
+/* Hero: the mechanism, full width, dark, vector-crisp. */
+.instrument-stage {
+  position: relative; overflow: hidden; border-radius: var(--radius);
+  background: var(--forest); border: 1px solid var(--line-strong); color: var(--ink);
+}
+.stage-header { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; }
+.stage-title { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.stage-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.stage-source { color: var(--muted); letter-spacing: 0.02em; text-transform: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stage-tag { color: var(--muted); }
+.canvas-wrap {
+  position: relative; height: 380px;
+  background-image: linear-gradient(rgba(124, 245, 168, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 245, 168, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px; background-position: center;
+}
+.canvas-wrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hud { position: absolute; margin: 0; display: flex; gap: 22px; font-family: var(--mono); font-variant-numeric: tabular-nums; pointer-events: none; }
+.hud div { display: grid; gap: 2px; }
+.hud dt { font-size: 10px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+.hud dd { margin: 0; font-size: 17px; color: var(--accent); text-shadow: 0 0 10px rgba(124, 245, 168, 0.35); }
+.hud-tl { top: 14px; left: 16px; }
+.hud-tr { top: 14px; right: 16px; text-align: right; }
+.hud-tr div { justify-items: end; }
+.stage-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 9px 14px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.stage-footer span { display: inline-flex; align-items: center; gap: 7px; }
+.legend-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; }
+.stage-coordinate { letter-spacing: 0.2em; }
+#studio-comparison-transport-slot { padding: 0 14px; }
+
+/* One recommended action, directly under the mechanism. */
+.next-action {
+  display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 18px 36px; align-items: start;
+  padding: 16px 0; border-bottom: 1px solid var(--line);
+}
+.next-copy { min-width: 0; }
+.kicker, .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; font-weight: 400; }
+.next-copy h2 { margin: 0; font-size: 20px; font-weight: 650; letter-spacing: 0.01em; }
+.planner-status { margin: 4px 0 8px; font-size: 14px; color: var(--muted); }
+.planner-objective { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
+.planner-objective select { font: inherit; font-size: 13px; color: var(--ink); background: var(--panel); border: 1px solid var(--line-strong); border-radius: 3px; min-height: 30px; padding: 2px 6px; }
+.proposal-card { display: flex; flex-direction: column; gap: 10px; min-width: 0; background: none; border: 0; padding: 0; margin: 0; }
+.proposal-card > #use-proposal { order: -1; }
+.proposal-card > * { max-width: 100%; }
+.proposal-card .eyebrow { display: none; }
+.planned-line { font-family: var(--mono); font-size: 20px; color: var(--accent); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.planned-input { font-family: var(--mono); }
+.spread-line { font-size: 12px; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.spread-line strong { font-family: var(--mono); font-weight: 400; color: var(--ink); }
+.spread-line strong { font-size: 13px; }
+.next-action .button-proposal { min-height: 50px; font-size: 16px; letter-spacing: 0.02em; }
+.pilot-explanation { grid-column: 1 / -1; margin: 0; font-size: 14px; color: var(--muted); }
+.pilot-course { grid-column: 1 / -1; font-size: 14px; color: var(--muted); }
+.pilot-course summary { cursor: pointer; font-family: var(--mono); font-size: 12px; }
+.pilot-table-wrap { overflow: auto; margin-top: 8px; }
+.pilot-course table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 12px; color: var(--ink); }
+.pilot-course th, .pilot-course td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+.pilot-course caption { text-align: left; padding-bottom: 6px; }
+
+/* Two columns: the evidence bench, and the notebook margin on the right. */
+.bench-grid { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 40px; align-items: start; margin-top: 26px; }
+.main-column { display: flex; flex-direction: column; gap: 30px; min-width: 0; }
+.margin { display: flex; flex-direction: column; gap: 0; min-width: 0; position: sticky; top: 72px; }
+.margin > section, .margin > .storage-status, .margin > #storage-recovery { border: 0; border-top: 1px solid var(--line); background: none; padding: 18px 0 20px; border-radius: 0; }
+.margin > .storage-status { border-top: 0; padding: 14px 0 0; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
+.section-heading { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+.section-heading h2, .section-title-row h2, .model-header h2, .chart-panel h2, .dynamics-panel h2, .history-section h2, .hypotheses-section h2, .margin h2 {
+  font-size: 18px; font-weight: 650; letter-spacing: 0.01em; margin: 0; color: var(--ink);
+}
+.section-title-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 12px; }
+.section-title-row .eyebrow { margin-bottom: 2px; }
+.count-label { font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+.count-label strong { font-weight: 400; color: var(--accent); }
+
+/* Competing laws: a ranked notebook list with a relative-support bar. */
+.hypothesis-list { display: flex; flex-direction: column; gap: 0; }
+.hypothesis {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px 0; width: 100%; text-align: left;
+  padding: 10px 10px 10px 12px; margin: 0; border: 0; border-bottom: 1px solid var(--line);
+  background: none; color: var(--ink); font: inherit; border-radius: 0; cursor: pointer; position: relative;
+}
+.hypothesis:hover { background: var(--panel-raised); }
+.hypothesis.is-selected { background: rgba(124, 245, 168, 0.07); }
+.hypothesis.is-selected::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--accent); }
+.hypothesis-name { display: block; font-size: 15px; font-weight: 550; line-height: 1.3; overflow-wrap: anywhere; }
+.hypothesis-bar { display: block; }
+.hypothesis-track { display: block; height: 4px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.hypothesis-track i { display: block; height: 100%; background: var(--accent); box-shadow: 0 0 6px rgba(124, 245, 168, 0.5); }
+.hypothesis.is-selected .hypothesis-track i { background: var(--accent); }
+.hypothesis-meta { display: block; font-family: var(--mono); font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.hypothesis-list .hypothesis:nth-child(n+2) .hypothesis-track i { background: var(--line-strong); box-shadow: none; }
+
+.source-kind { display: inline-block; font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.04em; margin-bottom: 6px; }
+.source-name { font-size: 18px; font-weight: 650; margin: 0 0 6px; }
+.sample-counts { display: flex; gap: 22px; margin: 12px 0 10px; }
+.sample-counts > div { display: grid; gap: 0; }
+.sample-counts strong { font-family: var(--mono); font-weight: 400; font-size: 26px; font-variant-numeric: tabular-nums; color: var(--ink); }
+.sample-counts span { font-size: 12px; color: var(--muted); }
+.experiment-mode { font-family: var(--mono); font-size: 11px; color: var(--muted); margin: 0 0 10px; }
+.control-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.control-grid label, .fit-settings label, .dynamics-controls label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.control-grid label span, .fit-settings label span, .dynamics-controls label span { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+input, select, textarea { font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line-strong); border-radius: 3px; }
+input[type="number"] { min-height: 36px; padding: 4px 8px; font-family: var(--mono); font-size: 15px; font-variant-numeric: tabular-nums; }
+input[type="checkbox"] { accent-color: var(--accent); }
+.control-grid .wide-control { grid-column: 1 / -1; }
+.input-hint { font-size: 12px; color: var(--muted); margin: 8px 0 0; line-height: 1.5; }
+.fit-settings { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+.fit-settings summary { cursor: pointer; font-size: 13px; color: var(--muted); min-height: 32px; }
+.fit-settings-body { display: grid; gap: 10px; padding-top: 8px; }
+.fit-settings-body .button { justify-self: start; }
+.storage-status { margin: 0; }
+
+/* Buttons: flat, instrument-like; one accent for the action that matters. */
+.button {
+  min-height: 38px; padding: 6px 14px; font: inherit; font-size: 14px; font-weight: 600; letter-spacing: 0.02em;
+  border-radius: 3px; border: 1px solid var(--line-strong); background: transparent; color: var(--ink); cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none;
+}
+.button:hover { border-color: var(--accent); color: var(--accent); }
+.button:disabled { opacity: 0.4; cursor: not-allowed; }
+.button-full { width: 100%; }
+.button-accent, .button-proposal { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.button-accent:hover, .button-proposal:hover { background: #a6ffc7; border-color: #a6ffc7; color: var(--accent-ink); }
+.button-dark { background: var(--panel-raised); border-color: var(--line-strong); }
+.button-outline { background: transparent; }
+.text-button { background: none; border: 0; color: var(--muted); font-size: 13px; padding: 4px 0; text-decoration: underline; text-underline-offset: 3px; }
+.text-button:hover { color: var(--accent); }
+
+/* Model and evidence panels: tabular mono numbers, no soft cards. */
+.model-panel { background: none; border: 0; border-radius: 0; padding: 0; }
+.model-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+.model-header h2 { font-size: 24px; }
+.model-label { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; white-space: nowrap; padding-top: 4px; }
+.equation { font-family: var(--mono); font-size: 22px; color: var(--accent); padding: 16px 0 6px; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.selected-terms { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.model-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 16px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.model-metrics > div { padding: 12px 14px; }
+.model-metrics > div + div { border-left: 1px solid var(--line); }
+.metric-label { display: block; font-size: 12px; color: var(--muted); }
+.model-metrics strong { display: block; font-family: var(--mono); font-weight: 400; font-size: 24px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.model-metrics small { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+.model-metrics .metric-explanation span:last-child { font-size: 14px; color: var(--ink); }
+.diagnostics { font-size: 14px; color: var(--ink); padding: 12px 0 0; }
+.feature-revision { margin-top: 18px; border: 1px solid var(--line); border-radius: 3px; padding: 14px 16px 16px; }
+.feature-revision legend { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; padding: 0 6px; }
+.feature-revision p { font-size: 14px; color: var(--muted); }
+.feature-revision label { display: flex; gap: 8px; align-items: center; font-size: 14px; color: var(--ink); margin: 6px 0; }
+.feature-revision .button { margin-right: 8px; margin-top: 6px; }
+
+/* Charts: a scope face. */
+.chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.chart-panel { background: none; border: 0; border-radius: 0; padding: 0; }
+.chart-panel figcaption { margin-bottom: 8px; }
+.chart-panel p { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
+.chart { min-height: 230px; border: 1px solid var(--line); border-radius: 3px; background: var(--forest); padding: 4px; }
+.chart svg { display: block; width: 100%; height: auto; }
+.chart-legend { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.chart-legend i { width: 6px; height: 6px; }
+
+.dynamics-panel { background: none; border: 0; border-radius: 0; padding: 0; }
+.dynamics-details summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; cursor: pointer; padding: 10px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.dynamics-details summary::-webkit-details-marker { display: none; }
+.dynamics-details summary h2 { font-size: 20px; }
+.details-toggle { font-family: var(--mono); color: var(--muted); font-size: 18px; }
+.dynamics-body { padding-top: 14px; }
+.dynamics-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; align-items: end; margin: 12px 0; }
+.dynamics-controls .button { grid-column: auto; }
+.simulation-status { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+.history-section .section-title-row { margin-bottom: 4px; }
+.history-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.history-list > li { display: grid; grid-template-columns: 44px minmax(0, 1fr); column-gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.history-index { grid-row: 1 / 3; font-family: var(--mono); font-size: 12px; color: var(--muted); padding-top: 2px; }
+.history-list strong { font-size: 14px; color: var(--ink); font-weight: 600; }
+.history-detail { grid-column: 2; font-size: 13px; line-height: 1.5; color: var(--muted); }
+
+.scope-note { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; margin: 44px 0 20px; padding-top: 18px; border-top: 1px solid var(--line); }
+.scope-symbol { font-size: 26px; color: var(--muted); line-height: 1; }
+.scope-note h2 { font-size: 15px; font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; font-weight: 400; }
+.scope-note p { margin: 0; font-size: 14px; color: var(--muted); max-width: 90ch; }
+.page-footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 11px; color: var(--muted); padding: 16px 0 28px; border-top: 1px solid var(--line); }
+.footer-dot { color: var(--accent); }
+
+/* Responsive: the bench stacks; the margin follows the evidence it annotates. */
+@media (max-width: 1180px) {
+  .bench-grid { grid-template-columns: minmax(0, 1fr) 300px; gap: 28px; }
+  .chart-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .bench-grid { grid-template-columns: 1fr; }
+  .margin { position: static; }
+  .lab-nav { display: none; }
+  .local-indicator { display: none; }
+  .toolbar { margin-left: 0; width: 100%; }
+  .next-action { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .page-shell { padding: 0 16px 32px; }
+  .topbar { padding: 10px 16px; }
+  .wordmark-sub { display: none; }
+  .canvas-wrap { height: 300px; }
+  .hud { gap: 12px; }
+  .hud dt { font-size: 9px; }
+  .hud dd { font-size: 14px; }
+  .hud-tl { top: 10px; left: 10px; }
+  .hud-tr { top: 10px; right: 10px; gap: 10px; }
+  .toolbar { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 6px; }
+  .toolbar .tool { min-height: 36px; }
+  .stage-footer { font-size: 10px; gap: 8px; }
+  .stage-footer span { white-space: nowrap; }
+  .stage-footer > span:last-child { display: none; }
+  .stage-tag, .stage-coordinate { display: none; }
+  .stage-source { display: none; }
+  .control-grid { grid-template-columns: 1fr 1fr; }
+  .model-header { flex-direction: column; }
+  .model-metrics { grid-template-columns: 1fr 1fr; }
+  .model-metrics .metric-explanation { grid-column: 1 / -1; border-left: 0 !important; border-top: 1px solid var(--line); }
+  .model-header h2 { font-size: 21px; }
+  .equation { font-size: 18px; }
+  .scope-note { grid-template-columns: 1fr; }
+}
+@media (max-width: 380px) {
+  .control-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+/* Shared panels inherit the bench tokens; remove pale fills from the older stylesheets. */
+body.workbench input, body.workbench select, body.workbench textarea { background: var(--paper) !important; color: var(--ink) !important; }
+body.workbench .diagnostics, body.workbench #replicate-diagnostics, body.workbench #state-support, body.workbench #input-enclosures, body.workbench .separability, body.workbench .separability details, body.workbench .chart-legend { background: transparent !important; color: var(--ink); }
+body.workbench .separability p, body.workbench #state-support p, body.workbench #replicate-diagnostics p { color: var(--ink) !important; }
+body.workbench .pilot-course table, body.workbench .pilot-table-wrap { background: transparent !important; }
+/* Notice line: a quiet accent rule on the bench, not a pale slab from the older sheets. */
+body.workbench #notice { background: transparent !important; border: 0 !important; border-left: 2px solid var(--accent) !important; color: var(--ink) !important; font-family: var(--mono) !important; font-size: 12px !important; line-height: 1.5 !important; padding: 6px 12px !important; margin: 0 0 14px !important; }
+body.workbench #notice:empty { display: none; }
+body.workbench .button:focus-visible, body.workbench .tool:focus-visible, body.workbench .hypothesis:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+body.workbench .button:active, body.workbench .tool:active { transform: translateY(1px); }
+@media (prefers-reduced-motion: no-preference) { body.workbench .button, body.workbench .tool, body.workbench .hypothesis { transition: background-color .15s ease, border-color .15s ease, color .15s ease; } }
+body.workbench .diagnostics { margin: 0 !important; padding: 12px 0 0 !important; }
+  </style>
+</head>
+<body class="workbench">
+  <a class="skip-link" href="#workbench">Skip to bench</a>
+  <header class="topbar">
+    <a class="wordmark" href="/" aria-label="WORLDLAW home"><span class="brand-glyph" aria-hidden="true">◎</span><span class="wordmark-name">WORLDLAW</span><span class="wordmark-sub">torque bench</span></a>
+    <nav class="lab-nav" aria-label="Other labs">
+      <a href="/motion.html">Motion</a>
+      <a href="/trajectory.html">Trajectory</a>
+      <a href="/unknown-lab.html">Unknown</a>
+      <a href="/cycle-work.html">Cycle</a>
+      <a href="/coupling.html">Coupling</a>
+      <a href="/stiffness.html">Stiffness</a>
+    </nav>
+    <div class="toolbar" aria-label="Observations and session">
+      <span class="local-indicator"><i aria-hidden="true"></i>Local</span>
+      <button id="load-observations" class="tool" type="button">Import</button>
+      <button id="export-observations" class="tool" type="button">Export data</button>
+      <button id="new-lab" class="tool" type="button">New lab</button>
+      <button id="open-session" class="tool" type="button">Open session</button>
+      <button id="export-session" class="tool tool-strong" type="button">Save session</button>
+    </div>
+  </header>
+
+  <h1 id="page-title" class="visually-hidden">WORLDLAW torque bench</h1>
+
+  <div class="page-shell">
+    <div id="notice" class="notice" role="status" aria-live="polite"></div>
+    <div id="error" class="error" role="alert" tabindex="-1" hidden></div>
+
+    <main id="workbench" class="bench">
+      <section class="instrument-stage" aria-label="Executable mechanism view">
+        <div class="stage-header">
+          <div class="stage-title"><span class="stage-dot" aria-hidden="true"></span><span>MECHANISM</span><span class="stage-source" id="hud-source">Virtual geared pendulum</span></div>
+          <span class="stage-tag">TORQUE LAB / 01</span>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="mechanism-canvas" width="1200" height="520" role="img" aria-label="Live schematic of the current angular mechanism and experiment state">A canvas-capable browser is required to display the mechanism.</canvas>
+          <dl class="hud hud-tl" aria-label="Commanded state">
+            <div><dt>θ set</dt><dd id="hud-theta">—</dd></div>
+            <div><dt>ω set</dt><dd id="hud-omega">—</dd></div>
+          </dl>
+          <dl class="hud hud-tr" aria-label="Evidence counts">
+            <div><dt>τ cmd</dt><dd id="hud-tau">—</dd></div>
+            <div><dt>fit obs</dt><dd id="hud-fit">—</dd></div>
+            <div><dt>held-out</dt><dd id="hud-held">—</dd></div>
+          </dl>
+        </div>
+        <div id="studio-comparison-transport-slot"></div>
+        <div class="stage-footer"><span><i class="legend-dot" aria-hidden="true"></i><span id="stage-prediction-label">Inspected-law prediction</span></span><span class="stage-coordinate">θ · ω · τ</span><span>Simulated view</span></div>
       </section>
 
-      <div id="notice" class="notice" role="status" aria-live="polite"></div>
-      <div id="error" class="error" role="alert" tabindex="-1" hidden></div>
+      <section class="next-action" aria-labelledby="experiment-heading">
+        <div class="next-copy">
+          <p class="kicker">Next experiment</p>
+          <h2 id="experiment-heading">Ask a better question</h2>
+          <p id="planner-status" class="planner-status" aria-live="polite">Compare the current hypotheses.</p>
+          <label class="planner-objective" for="planner-objective">Plan by
+            <select id="planner-objective"><option value="prediction">Separation between fitted models</option><option value="excitation">Missing input excitation</option></select>
+          </label>
+        </div>
+        <div class="proposal-card">
+          <div class="planned-line"><span id="planned-input" class="planned-input">—</span></div>
+          <div class="spread-line"><span id="planner-metric-label">Model spread</span><strong id="model-spread">—</strong></div>
+          <button id="use-proposal" class="button button-proposal button-full" type="button">Use suggested state <span aria-hidden="true">↓</span></button>
+        </div>
+        <p id="pilot-explanation" class="pilot-explanation" hidden></p>
+        <details id="pilot-course" class="pilot-course" hidden><summary id="pilot-course-summary">Inspect offered states</summary><div class="pilot-table-wrap" tabindex="0" role="region" aria-label="Complete offered-state rank comparison"><table><caption>Prospective numerical rank, with the offered library fixed. Inputs: u in N·m, θ in rad, ω in rad/s.</caption><thead><tr><th scope="col">Offer</th><th scope="col">State</th><th scope="col">Rank</th><th scope="col">Effect</th></tr></thead><tbody id="pilot-course-rows"></tbody></table></div><p>One row adds at most one independent direction. Rank loss or a larger jump remains numerically unresolved. No new torque reading is used.</p></details>
+      </section>
 
-      <div class="workbench-grid">
-        <aside class="sidebar" aria-label="Observations and experiment controls">
-          <section class="panel source-panel" aria-labelledby="source-heading">
-            <div class="section-heading"><span class="section-number">01</span><h2 id="source-heading">Start with evidence</h2></div>
-            <span id="source-kind" class="source-kind">Virtual instrument</span>
-            <h3 id="source-name" class="source-name">Virtual geared pendulum</h3>
-            <p class="muted small">Begin with the simulated mechanism or bring your own torque observations.</p>
-            <div class="sample-counts"><div><strong id="sample-count">—</strong><span>fit observations</span></div><div><strong id="heldout-count">—</strong><span>held-out rows</span></div></div>
-            <button id="load-observations" class="button button-dark button-full" type="button"><span aria-hidden="true">↑</span> Import observations</button>
-            <p class="input-hint">CSV or JSON · N·m, radians, rad/s<br>Imported observations stay local.</p>
-            <div class="source-actions"><button id="export-observations" class="text-button" type="button">Export data <span aria-hidden="true">↗</span></button><button id="new-lab" class="text-button" type="button">New virtual lab</button></div>
+      <div class="bench-grid">
+        <div class="main-column">
+          <section id="studio-motion-comparison" class="motion-comparison" aria-label="Competitive scalar-law motion"></section>
+
+          <section class="model-panel panel" aria-labelledby="model-heading">
+            <div class="model-header"><div><p class="eyebrow">Current explanation</p><h2 id="model-heading">A model to put to the test.</h2></div><span class="model-label">Executable torque law</span></div>
+            <div id="selected-equation" class="equation" aria-live="polite">τ = …</div>
+            <div id="selected-terms" class="selected-terms"></div>
+            <div class="model-metrics"><div><span class="metric-label">Training error</span><strong id="training-error">—</strong><small>RMSE · N·m</small></div><div><span class="metric-label">Held-out error</span><strong id="heldout-error">—</strong><small>RMSE · N·m</small></div><div class="metric-explanation"><span class="metric-label">After the experiment</span><span id="heldout-change">Held-out evidence will appear here.</span></div></div>
+            <div id="diagnostics" class="diagnostics"></div>
+            <div id="reading-loss-result"></div>
+            <fieldset class="feature-revision"><legend>Challenge the feature library</legend><p>Ask the original training observations which maintained terms deserve comparison. This finite search retains the original law; held-out readings never choose the proposal.</p><button id="propose-features" class="button button-outline" type="button">Investigate missing terms</button><p id="library-proposal-status" class="input-hint" aria-live="polite"></p><div id="library-proposal-comparison"></div><button id="ask-nemotron-laws" class="button button-outline" type="button">Ask Nemotron for candidate laws</button><p id="nemotron-law-status" class="input-hint" aria-live="polite">Nemotron 3 on Nebius Token Factory proposes term sets from the maintained library. Requires NEBIUS_API_KEY on the server.</p><div id="nemotron-law-results"></div><label for="include-command-position"><input id="include-command-position" type="checkbox"> Admit command × position (uθ)</label><label><input id="include-cubic" type="checkbox"> Admit cubic position (θ³)</label><label><input id="include-cosine" type="checkbox"> Admit cosine position (cos θ)</label><label><input id="include-rate-squared" type="checkbox"> Admit even rate (ω²)</label><button id="revise-features" class="button button-outline" type="button">Apply candidate library</button><p id="feature-library-status" class="input-hint"></p></fieldset>
           </section>
 
-          <section class="panel experiment-panel" aria-labelledby="experiment-heading">
-            <div class="section-heading"><span class="section-number">02</span><h2 id="experiment-heading">Ask a better question</h2></div>
-            <div class="proposal-card"><span class="eyebrow">SUGGESTED NEXT STATE</span>
-              <label class="planner-objective" for="planner-objective">Plan by<select id="planner-objective"><option value="prediction">Separation between fitted models</option><option value="excitation">Missing input excitation</option></select></label>
-              <p id="planner-status" class="planner-status" aria-live="polite">Compare the current hypotheses.</p><div id="planned-input" class="planned-input">—</div><div class="spread-line"><span id="planner-metric-label">Model spread</span><strong id="model-spread">—</strong></div>
-              <p id="pilot-explanation" class="pilot-explanation" hidden></p>
-              <details id="pilot-course" class="pilot-course" hidden><summary id="pilot-course-summary">Inspect offered states</summary><div class="pilot-table-wrap" tabindex="0" role="region" aria-label="Complete offered-state rank comparison"><table><caption>Prospective numerical rank, with the offered library fixed. Inputs: u in N·m, θ in rad, ω in rad/s.</caption><thead><tr><th scope="col">Offer</th><th scope="col">State</th><th scope="col">Rank</th><th scope="col">Effect</th></tr></thead><tbody id="pilot-course-rows"></tbody></table></div><p>One row adds at most one independent direction. Rank loss or a larger jump remains numerically unresolved. No new torque reading is used.</p></details>
-              <button id="use-proposal" class="button button-proposal button-full" type="button">Use suggested state <span aria-hidden="true">↙</span></button></div>
+          <section class="chart-grid" aria-label="Prediction and residual evidence">
+            <figure class="panel chart-panel"><figcaption><span class="eyebrow">Predict &amp; compare</span><h2>Do the predictions hold?</h2><p>Predicted torque against observed torque.</p></figcaption><div id="prediction-chart" class="chart" role="img" aria-label="Predicted torque compared with observed torque for fitting and held-out observations"></div></figure>
+            <figure class="panel chart-panel"><figcaption><span class="eyebrow">Look for the mismatch</span><h2>What the model misses</h2><p>Residual = observation − prediction.</p></figcaption><div id="residual-chart" class="chart" role="img" aria-label="Observation residuals for the selected model"></div></figure>
+          </section>
+
+          <section class="panel dynamics-panel" aria-labelledby="dynamics-heading">
+            <details class="dynamics-details" open>
+              <summary><div><span class="eyebrow">Execute the learned law</span><h2 id="dynamics-heading">Let the model move.</h2></div><span class="details-toggle" aria-hidden="true">+</span></summary>
+              <div class="dynamics-body"><p class="muted small">Run rotational dynamics with a declared inertia and starting state. Predictions outside the observed range remain a hypothesis.</p><div class="dynamics-controls"><label for="initial-angle">Initial angle <span>rad</span><input id="initial-angle" type="number" step="0.05" value="0.8" inputmode="decimal"></label><label for="initial-rate">Initial rate <span>rad/s</span><input id="initial-rate" type="number" step="0.05" value="0" inputmode="decimal"></label><label for="inertia">Inertia <span>kg·m²</span><input id="inertia" type="number" min="0.000001" step="0.1" value="1" inputmode="decimal"></label><label for="duration">Duration <span>s</span><input id="duration" type="number" min="0.01" max="100" step="0.5" value="5" inputmode="decimal"></label><label for="simulation-command">Fixed command <span>N·m</span><input id="simulation-command" type="number" step="0.05" value="0" inputmode="decimal"></label><button id="run-simulation" class="button button-dark" type="button">Run dynamics <span aria-hidden="true">→</span></button></div><p id="simulation-status" class="simulation-status" role="status">The solver uses the selected torque model.</p><div id="trajectory-chart" class="chart trajectory-chart" role="img" aria-label="Simulated angular trajectory under the learned torque model"></div></div>
+            </details>
+          </section>
+
+          <section class="history-section" aria-labelledby="history-heading"><div class="section-title-row"><div><p class="eyebrow">Evidence trail</p><h2 id="history-heading">How the explanation changed</h2></div><button id="undo" class="button button-outline" type="button"><span aria-hidden="true">↶</span> Undo last observation</button></div><ol id="history-list" class="history-list" aria-label="Experiment and model revision history"></ol></section>
+        </div>
+
+        <aside class="margin" aria-label="Competing laws, evidence and controls">
+          <section class="hypotheses-section panel" aria-labelledby="hypotheses-heading">
+            <div class="section-title-row"><div><p class="eyebrow">Ranked · live likelihood</p><h2 id="hypotheses-heading">Competing laws</h2></div><span class="count-label"><strong id="candidate-count">—</strong> candidates</span></div>
+            <div id="hypothesis-list" class="hypothesis-list" aria-label="Candidate model comparison"></div>
+          </section>
+
+          <section class="panel source-panel" aria-labelledby="source-heading">
+            <div class="section-heading"><h2 id="source-heading">Evidence</h2></div>
+            <span id="source-kind" class="source-kind">Virtual instrument</span>
+            <h3 id="source-name" class="source-name">Virtual geared pendulum</h3>
+            <div class="sample-counts"><div><strong id="sample-count">—</strong><span>fit observations</span></div><div><strong id="heldout-count">—</strong><span>held-out rows</span></div></div>
+            <p class="input-hint">CSV or JSON · N·m, radians, rad/s. Imported observations stay local.</p>
+          </section>
+
+          <section class="panel experiment-panel" aria-labelledby="run-heading">
+            <div class="section-heading"><h2 id="run-heading">Run a state</h2></div>
             <p id="experiment-mode" class="experiment-mode">Virtual instrument</p>
             <div class="control-grid">
               <label for="position">Position <span>rad</span><input id="position" name="position" type="number" step="0.05" value="0.8" inputmode="decimal"></label>
@@ -87,49 +460,9 @@
             <button id="download-archived" class="button button-outline button-full" type="button" hidden>Download archived original text</button>
           </div>
         </aside>
-
-        <div class="main-column">
-          <section class="instrument-stage" aria-label="Executable mechanism view">
-            <div class="stage-header"><div><span class="stage-dot" aria-hidden="true"></span><span>THE MECHANISM</span></div><span class="stage-tag">TORQUE LAB / 01</span></div>
-            <div class="canvas-wrap"><canvas id="mechanism-canvas" width="1200" height="520" role="img" aria-label="Live schematic of the current angular mechanism and experiment state">A canvas-capable browser is required to display the mechanism.</canvas></div>
-            <div id="studio-comparison-transport-slot"></div>
-            <div class="stage-footer"><span><i class="legend-dot lime" aria-hidden="true"></i><span id="stage-prediction-label">Inspected-law prediction</span></span><span class="stage-coordinate">θ · ω · τ</span><span>Simulated view</span></div>
-          </section>
-
-          <section id="studio-motion-comparison" class="motion-comparison" aria-label="Competitive scalar-law motion"></section>
-
-          <section class="model-panel panel" aria-labelledby="model-heading">
-            <div class="model-header"><div><p class="eyebrow">THE CURRENT EXPLANATION</p><h2 id="model-heading">A model to put to the test.</h2></div><span class="model-label">EXECUTABLE TORQUE LAW</span></div>
-            <div id="selected-equation" class="equation" aria-live="polite">τ = …</div>
-            <div id="selected-terms" class="selected-terms"></div>
-            <div class="model-metrics"><div><span class="metric-label">Training error</span><strong id="training-error">—</strong><small>RMSE · N·m</small></div><div><span class="metric-label">Held-out error</span><strong id="heldout-error">—</strong><small>RMSE · N·m</small></div><div class="metric-explanation"><span class="metric-label">After the experiment</span><span id="heldout-change">Held-out evidence will appear here.</span></div></div>
-            <div id="diagnostics" class="diagnostics"></div>
-            <div id="reading-loss-result"></div>
-            <fieldset class="feature-revision"><legend>Challenge the feature library</legend><p>Ask the original training observations which maintained terms deserve comparison. This finite search retains the original law; held-out readings never choose the proposal.</p><button id="propose-features" class="button button-outline" type="button">Investigate missing terms</button><p id="library-proposal-status" class="input-hint" aria-live="polite"></p><div id="library-proposal-comparison"></div><label for="include-command-position"><input id="include-command-position" type="checkbox"> Admit command × position (uθ)</label><label><input id="include-cubic" type="checkbox"> Admit cubic position (θ³)</label><label><input id="include-cosine" type="checkbox"> Admit cosine position (cos θ)</label><label><input id="include-rate-squared" type="checkbox"> Admit even rate (ω²)</label><button id="revise-features" class="button button-outline" type="button">Apply candidate library</button><p id="feature-library-status" class="input-hint"></p></fieldset>
-          </section>
-
-          <section class="hypotheses-section" aria-labelledby="hypotheses-heading">
-            <div class="section-title-row"><div><p class="eyebrow">KEEP THE ALTERNATIVES VISIBLE</p><h2 id="hypotheses-heading">Competing hypotheses</h2></div><span class="count-label"><strong id="candidate-count">—</strong> candidates</span></div>
-            <div id="hypothesis-list" class="hypothesis-list" aria-label="Candidate model comparison"></div>
-          </section>
-
-          <section class="chart-grid" aria-label="Prediction and residual evidence">
-            <figure class="panel chart-panel"><figcaption><span class="eyebrow">PREDICT & COMPARE</span><h2>Do the predictions hold?</h2><p>Predicted torque against observed torque.</p></figcaption><div id="prediction-chart" class="chart" role="img" aria-label="Predicted torque compared with observed torque for fitting and held-out observations"></div></figure>
-            <figure class="panel chart-panel"><figcaption><span class="eyebrow">LOOK FOR THE MISMATCH</span><h2>What the model misses</h2><p>Residual = observation − prediction.</p></figcaption><div id="residual-chart" class="chart" role="img" aria-label="Observation residuals for the selected model"></div></figure>
-          </section>
-
-          <section class="panel dynamics-panel" aria-labelledby="dynamics-heading">
-            <details class="dynamics-details" open>
-              <summary><div><span class="eyebrow">EXECUTE THE LEARNED LAW</span><h2 id="dynamics-heading">Let the model move.</h2></div><span class="details-toggle" aria-hidden="true">↗</span></summary>
-              <div class="dynamics-body"><p class="muted small">Run rotational dynamics with a declared inertia and starting state. Predictions outside the observed range remain a hypothesis.</p><div class="dynamics-controls"><label for="initial-angle">Initial angle <span>rad</span><input id="initial-angle" type="number" step="0.05" value="0.8" inputmode="decimal"></label><label for="initial-rate">Initial rate <span>rad/s</span><input id="initial-rate" type="number" step="0.05" value="0" inputmode="decimal"></label><label for="inertia">Inertia <span>kg·m²</span><input id="inertia" type="number" min="0.000001" step="0.1" value="1" inputmode="decimal"></label><label for="duration">Duration <span>s</span><input id="duration" type="number" min="0.01" max="100" step="0.5" value="5" inputmode="decimal"></label><label for="simulation-command">Fixed command <span>N·m</span><input id="simulation-command" type="number" step="0.05" value="0" inputmode="decimal"></label><button id="run-simulation" class="button button-dark" type="button">Run dynamics <span aria-hidden="true">→</span></button></div><p id="simulation-status" class="simulation-status" role="status">The solver uses the selected torque model.</p><div id="trajectory-chart" class="chart trajectory-chart" role="img" aria-label="Simulated angular trajectory under the learned torque model"></div></div>
-            </details>
-          </section>
-
-          <section class="history-section" aria-labelledby="history-heading"><div class="section-title-row"><div><p class="eyebrow">AN EVIDENCE TRAIL</p><h2 id="history-heading">How the explanation changed</h2></div><button id="undo" class="button button-outline" type="button"><span aria-hidden="true">↶</span> Undo last observation</button></div><ol id="history-list" class="history-list" aria-label="Experiment and model revision history"></ol></section>
-        </div>
       </div>
 
-      <section id="scope" class="scope-note" aria-label="Scope and limitations"><span class="scope-symbol" aria-hidden="true">∴</span><div><h2>One carefully bounded step toward discovering physical laws.</h2><p>WORLDLAW searches a finite library of scalar torque terms. The default mechanism and its observations are virtual. Model comparisons depend on the supplied evidence and noise assumption; model spread is not calibrated probability. This workbench does not infer mechanism topology or operate physical hardware.</p></div></section>
+      <section class="scope-note" id="scope" aria-label="Scope and limitations"><span class="scope-symbol" aria-hidden="true">∴</span><div><h2>Scope</h2><p>WORLDLAW searches a finite library of scalar torque terms. The default mechanism and its observations are virtual. Model comparisons depend on the supplied evidence and noise assumption; model spread is not calibrated probability. This workbench does not infer mechanism topology or operate physical hardware.</p></div></section>
     </main>
     <footer class="page-footer"><span>WORLDLAW <span class="footer-dot">·</span> An open question, made executable.</span><span>Observations → hypotheses → experiments</span></footer>
   </div>
@@ -138,6 +471,3 @@
   <script type="module" src="/src/app.mjs"></script>
 </body>
 </html>
-
-
-

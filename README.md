@@ -22,9 +22,35 @@ With Node.js 20 or newer, from this directory:
 npm start
 ```
 
-Open **http://127.0.0.1:4193**. No package installation, cloud account, model download or API key is needed. The server binds to loopback and serves maintained application assets. It rejects foreign Host/Origin requests and symbolic-linked assets; native local clients may omit Origin. Observations and model computation stay in your browser. Stop the server with Ctrl+C.
+Open **http://127.0.0.1:4193**. No package installation, cloud account, model download or API key is needed. The server binds to loopback and serves maintained application assets. It rejects foreign Host/Origin requests and symbolic-linked assets; native local clients may omit Origin. Observations and model computation stay in your browser, except when you press **Ask Nemotron for candidate laws** (see below). Stop the server with Ctrl+C.
 
 If another Studio tab has already changed the saved notebook, autosave pauses for the older tab. Export its current work before reloading. See [notebook autosave across tabs](docs/NOTEBOOK_AUTOSAVE.md) for recovery and concurrency limits.
+
+## Ask NVIDIA Nemotron for candidate laws (optional)
+
+Quick start with the model feature:
+
+1. Create a key in [Nebius Token Factory](https://tokenfactory.nebius.com) and store it outside this repository, for example in `~/.config/nebius/key`.
+2. Start the server with the key in its environment. The key is read only by the server process:
+
+   ```sh
+   export NEBIUS_API_KEY=$(tr -d ' \n' < ~/.config/nebius/key)
+   npm start
+   ```
+
+3. Open **http://127.0.0.1:4193**, go to **Challenge the feature library**, and press **Ask Nemotron for candidate laws**.
+
+Without `NEBIUS_API_KEY`, that button reports that the feature is unavailable on this server. Every other function works unchanged.
+
+### How it uses NVIDIA Nemotron on Nebius Token Factory
+
+- **Model.** `nvidia/nemotron-3-super-120b-a12b` (120B total, 12B active), served through the OpenAI-compatible endpoint `https://api.tokenfactory.nebius.com/v1/chat/completions`. We picked this mid-size Nemotron 3 model for a fast, reasoning-capable call; we did not benchmark the other sizes, so this is a practical choice, not a measured comparison. Set `NEBIUS_MODEL` to try another Token Factory model.
+- **Input.** The browser sends the original training readings (command, position, rate, torque) to the local server. The server sends Nemotron a compact summary: row count, field ranges, a sample of up to 40 rows, the maintained feature catalog and the current baseline terms. Held-out readings are never sent.
+- **Output.** Nemotron returns at most six proposed term sets. Each set may contain 1 to 4 IDs from the maintained feature catalog. Anything else (unknown IDs, duplicates, malformed JSON) is rejected and reported; nothing the model writes is executed.
+- **Checks.** The app fits every accepted set itself on the training readings and lists them by training RMSE. The held-out error is shown beside each set as a check. It does not choose a candidate, which is the same rule the rest of the feature-library tool follows. Nemotron never supplies coefficients, predictions or claims about physics.
+- **What the model adds.** The app already enumerates every subset of up to four library terms, so Nemotron does not find a fit the app could not find alone on this catalog. Its contribution is a short rationale for each set, shown beside the app's own fitted result. The app lists sets by its training RMSE, not in Nemotron's order. We have not measured whether the rationales help users.
+
+Limits: the proposal is one reasoning call per press, so its answer varies with the model and its temperature; a proposal that fits well on training data is a hypothesis for the next measurement, not an identified physical law. The live path has been checked against Token Factory with one synthetic course; the automated tests do not use the network.
 
 ## Compare coupled responses
 
