@@ -7,3 +7,4 @@ dist/
 .receipts/
 __pycache__/
 *.pyc
+demo/*.mp4

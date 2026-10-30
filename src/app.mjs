@@ -28,6 +28,7 @@ import {mountStudioComparison} from './science/studio-comparison-panel.mjs';
 import {drawCompetitiveMotion} from './science/studio-comparison-view.mjs';
 import {softL1Weight} from './science/robust-fit.mjs';
 import {proposeScalarLibrary} from './science/library-proposal.mjs';
+import {scoreLawCandidates} from './science/nemotron-law-candidates.mjs';
 import {parseObservationText,observationsCSV} from './data.mjs';
 import {createSession,newVirtualSession,appendMeasurements,runVirtualExperiment,refitSession,setPlanningBounds,sessionPlan,sessionPilotPlan,exportSession,restoreSession,undoSession,MAX_SESSION_FILE_BYTES} from './session.mjs';
 import {restoreNotebook} from './notebook-input.mjs';
@@ -284,7 +285,9 @@ function renderPlan(){
   if(!pilot&&plan.conditioned)set('planner-status',plan.selected?'Conditional next question among unexcluded original fixed laws':plan.reason||'No remaining offered input separates the unexcluded original fixed laws.');
   set('planned-input',plan.selected?`θ ${fmt(plan.selected.input.position)} rad · ω ${fmt(plan.selected.input.rate)} rad/s · u ${fmt(plan.selected.input.command)} N·m`:'No new state is suggested under this objective.');
 }
-function useProposal(announce=true){if(!plan?.selected)return;const exact=!state.lab && Object.hasOwn(state.base,'offeredInputs');for(const f of ['position','rate','command'])$(f).value=String(plan.selected.input[f]);if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
+// Display the proposal at 12 significant digits so float noise (2.400000000000001) never reaches the form.
+const formatInput=value=>String(Number(Number(value).toPrecision(12)));
+function useProposal(announce=true){if(!plan?.selected)return;const exact=!state.lab && Object.hasOwn(state.base,'offeredInputs');for(const f of ['position','rate','command'])$(f).value=formatInput(plan.selected.input[f]);if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
 function runSimulation(announce=true){
   studioComparison?.retire('The evidence or inspected law changed. Compare again to execute the current competitive set.');
   try{
@@ -416,6 +419,43 @@ $('propose-features').addEventListener('click',()=>action(()=>{
     for(const id of ['cubic','cosine','rate_squared'])$('include-'+id.replaceAll('_','-')).checked=result.proposedTerms.includes(id);
   }
 }));
+// Nemotron proposes term sets; the app fits and scores each one on the original training rows.
+// Held-out rows are displayed as a check and never choose a candidate.
+async function askNemotronLaws(){
+  const status=$('nemotron-law-status'),results=$('nemotron-law-results'),button=$('ask-nemotron-laws');
+  const notebook=state,training=notebook.discovery.observations;
+  results.replaceChildren();button.disabled=true;
+  set('nemotron-law-status','Asking NVIDIA Nemotron on Nebius Token Factory for candidate term sets. The local server forwards the original training rows; held-out rows are not sent.');
+  try{
+    const response=await fetch('/api/nemotron/law-candidates',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({observations:training.map(row=>({command:row.command,position:row.position,rate:row.rate,jointTorque:row.jointTorque})),baseTerms:notebook.discovery.options.terms})});
+    const body=await response.json().catch(()=>({}));
+    if(!response.ok)throw new Error(body.error||'Nemotron proposal failed.');
+    if(notebook!==state){set('nemotron-law-status','The notebook changed while Nemotron was answering. Ask again for the current evidence.');return;}
+    const {candidates,rejected,model,latencyMs}=body;
+    const heldOut=notebook.base.heldOut??[];
+    const selectedHeldOut=heldOut.length?evaluate(notebook.discovery.selected,heldOut).rmse:null;
+    const scored=scoreLawCandidates(training,heldOut,candidates,selectedHeldOut,notebook.discovery.options);
+    for(const item of scored){
+      const label=item.terms.map(id=>names[id]??id).join(' + ');
+      const row=el('div',undefined,'nemotron-candidate');
+      row.append(el('p',label,'nemotron-candidate-terms'));
+      if(item.status!=='fitted'){row.append(el('p',`Not estimable on these rows: ${item.reason??'no executable fit'}.`,'input-hint'));}
+      else{
+        const delta=item.heldOutDeltaVsSelected;
+        row.append(el('p',`${item.equation}`,'nemotron-candidate-equation'));
+        row.append(el('p',`Training RMSE ${fmt(item.trainingRmse)} N·m · held-out check ${item.heldOutRmse===null?'not available':fmt(item.heldOutRmse)+' N·m'}${delta===null?'':` (${delta>=0?'+':''}${fmt(delta)} vs selected law)`}`,'input-hint'));
+      }
+      row.append(el('p',item.rationale,'input-hint'));
+      results.append(row);
+    }
+    if(rejected.length)results.append(el('p',`${rejected.length} proposal${rejected.length===1?'':'s'} rejected: not a set of catalog terms.`,'input-hint'));
+    set('nemotron-law-status',`${model} proposed ${candidates.length} term set${candidates.length===1?'':'s'} in ${(latencyMs/1000).toFixed(1)} s. The app fitted each one itself and lists them by training RMSE. Held-out error is a displayed check; it did not choose any candidate. Proposals are hypotheses, not identified physics.`);
+  }catch(error){
+    set('nemotron-law-status',`${error.message||error} The rest of the workbench works without Nemotron.`);
+  }finally{button.disabled=false;}
+}
+$('ask-nemotron-laws').addEventListener('click',()=>{askNemotronLaws().catch(alertError);});
 $('revise-features').addEventListener('click',()=>action(()=>{
   const additionalTerms=['cubic','cosine','rate_squared'].filter(id=>$('include-'+id.replaceAll('_','-')).checked);
   const options={includeCommandPosition:$('include-command-position').checked};

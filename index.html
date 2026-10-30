@@ -278,10 +278,15 @@ input[type="checkbox"] { accent-color: var(--accent); }
   .wordmark-sub { display: none; }
   .canvas-wrap { height: 300px; }
   .hud { gap: 12px; }
+  .hud dt { font-size: 9px; }
   .hud dd { font-size: 14px; }
   .hud-tl { top: 10px; left: 10px; }
-  .hud-tr { top: 10px; right: 10px; }
-  .hud-tr div:last-child { display: none; }
+  .hud-tr { top: 10px; right: 10px; gap: 10px; }
+  .toolbar { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 6px; }
+  .toolbar .tool { min-height: 36px; }
+  .stage-footer { font-size: 10px; gap: 8px; }
+  .stage-footer span { white-space: nowrap; }
+  .stage-footer > span:last-child { display: none; }
   .stage-tag, .stage-coordinate { display: none; }
   .stage-source { display: none; }
   .control-grid { grid-template-columns: 1fr 1fr; }
@@ -304,6 +309,12 @@ body.workbench input, body.workbench select, body.workbench textarea { backgroun
 body.workbench .diagnostics, body.workbench #replicate-diagnostics, body.workbench #state-support, body.workbench #input-enclosures, body.workbench .separability, body.workbench .separability details, body.workbench .chart-legend { background: transparent !important; color: var(--ink); }
 body.workbench .separability p, body.workbench #state-support p, body.workbench #replicate-diagnostics p { color: var(--ink) !important; }
 body.workbench .pilot-course table, body.workbench .pilot-table-wrap { background: transparent !important; }
+/* Notice line: a quiet accent rule on the bench, not a pale slab from the older sheets. */
+body.workbench #notice { background: transparent !important; border: 0 !important; border-left: 2px solid var(--accent) !important; color: var(--ink) !important; font-family: var(--mono) !important; font-size: 12px !important; line-height: 1.5 !important; padding: 6px 12px !important; margin: 0 0 14px !important; }
+body.workbench #notice:empty { display: none; }
+body.workbench .button:focus-visible, body.workbench .tool:focus-visible, body.workbench .hypothesis:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+body.workbench .button:active, body.workbench .tool:active { transform: translateY(1px); }
+@media (prefers-reduced-motion: no-preference) { body.workbench .button, body.workbench .tool, body.workbench .hypothesis { transition: background-color .15s ease, border-color .15s ease, color .15s ease; } }
 body.workbench .diagnostics { margin: 0 !important; padding: 12px 0 0 !important; }
   </style>
 </head>
@@ -386,7 +397,7 @@ body.workbench .diagnostics { margin: 0 !important; padding: 12px 0 0 !important
             <div class="model-metrics"><div><span class="metric-label">Training error</span><strong id="training-error">—</strong><small>RMSE · N·m</small></div><div><span class="metric-label">Held-out error</span><strong id="heldout-error">—</strong><small>RMSE · N·m</small></div><div class="metric-explanation"><span class="metric-label">After the experiment</span><span id="heldout-change">Held-out evidence will appear here.</span></div></div>
             <div id="diagnostics" class="diagnostics"></div>
             <div id="reading-loss-result"></div>
-            <fieldset class="feature-revision"><legend>Challenge the feature library</legend><p>Ask the original training observations which maintained terms deserve comparison. This finite search retains the original law; held-out readings never choose the proposal.</p><button id="propose-features" class="button button-outline" type="button">Investigate missing terms</button><p id="library-proposal-status" class="input-hint" aria-live="polite"></p><div id="library-proposal-comparison"></div><label for="include-command-position"><input id="include-command-position" type="checkbox"> Admit command × position (uθ)</label><label><input id="include-cubic" type="checkbox"> Admit cubic position (θ³)</label><label><input id="include-cosine" type="checkbox"> Admit cosine position (cos θ)</label><label><input id="include-rate-squared" type="checkbox"> Admit even rate (ω²)</label><button id="revise-features" class="button button-outline" type="button">Apply candidate library</button><p id="feature-library-status" class="input-hint"></p></fieldset>
+            <fieldset class="feature-revision"><legend>Challenge the feature library</legend><p>Ask the original training observations which maintained terms deserve comparison. This finite search retains the original law; held-out readings never choose the proposal.</p><button id="propose-features" class="button button-outline" type="button">Investigate missing terms</button><p id="library-proposal-status" class="input-hint" aria-live="polite"></p><div id="library-proposal-comparison"></div><button id="ask-nemotron-laws" class="button button-outline" type="button">Ask Nemotron for candidate laws</button><p id="nemotron-law-status" class="input-hint" aria-live="polite">Nemotron 3 on Nebius Token Factory proposes term sets from the maintained library. Requires NEBIUS_API_KEY on the server.</p><div id="nemotron-law-results"></div><label for="include-command-position"><input id="include-command-position" type="checkbox"> Admit command × position (uθ)</label><label><input id="include-cubic" type="checkbox"> Admit cubic position (θ³)</label><label><input id="include-cosine" type="checkbox"> Admit cosine position (cos θ)</label><label><input id="include-rate-squared" type="checkbox"> Admit even rate (ω²)</label><button id="revise-features" class="button button-outline" type="button">Apply candidate library</button><p id="feature-library-status" class="input-hint"></p></fieldset>
           </section>
 
           <section class="chart-grid" aria-label="Prediction and residual evidence">

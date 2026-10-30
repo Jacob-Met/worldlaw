@@ -1,0 +1,105 @@
+{
+  "url": "http://127.0.0.1:4405/",
+  "width": 1440,
+  "height": 900,
+  "steps": [
+    {
+      "say": "WORLDLAW finds the rule behind a moving machine from measurements alone. This demo uses a virtual pendulum, so no hardware is needed.",
+      "do": []
+    },
+    {
+      "say": "The notebook holds 64 readings of angle, speed, command and torque. Competing explanations are ranked by how well each one fits those readings.",
+      "do": [
+        {
+          "scroll": "#hypothesis-list"
+        },
+        {
+          "wait": 1500
+        }
+      ]
+    },
+    {
+      "say": "Use suggested state loads the next experiment into the form.",
+      "do": [
+        {
+          "click": "#use-proposal"
+        },
+        {
+          "wait": 800
+        }
+      ]
+    },
+    {
+      "say": "Run the virtual experiment adds one new reading to the notebook.",
+      "do": [
+        {
+          "click": "#run-experiment"
+        },
+        {
+          "wait": 1500
+        }
+      ]
+    },
+    {
+      "say": "Next, the feature library. Ask Nemotron opens a request to NVIDIA Nemotron 3 on Nebius Token Factory. The server sends the training readings, not the held-out ones, and keeps the API key.",
+      "do": [
+        {
+          "scroll": "#ask-nemotron-laws"
+        },
+        {
+          "wait": 1200
+        },
+        {
+          "click": "#ask-nemotron-laws"
+        },
+        {
+          "wait": 300
+        }
+      ]
+    },
+    {
+      "say": "Nemotron may only name terms from the maintained library. Each proposed term set is fitted by the app itself, on the training readings.",
+      "do": [
+        {
+          "eval": "new Promise(r=>{const t=Date.now();const i=setInterval(()=>{if(document.querySelector('#nemotron-law-results .nemotron-candidate')||document.querySelector('#error:not([hidden])')||Date.now()-t>60000){clearInterval(i);r();}},250);})"
+        },
+        {
+          "scroll": "#nemotron-law-results"
+        },
+        {
+          "wait": 1500
+        }
+      ]
+    },
+    {
+      "say": "Each proposal shows its equation, its training error, and a held-out check. The held-out check is displayed, but it does not choose the winner.",
+      "do": [
+        {
+          "wait": 1500
+        }
+      ]
+    },
+    {
+      "say": "The explanation the app selected is unchanged. A proposal is a hypothesis until a new reading agrees with it.",
+      "do": [
+        {
+          "scroll": "#heldout-error"
+        },
+        {
+          "wait": 1500
+        }
+      ]
+    },
+    {
+      "say": "That is the loop: measure, compare the explanations, then test again.",
+      "do": [
+        {
+          "scroll": 0
+        },
+        {
+          "wait": 800
+        }
+      ]
+    }
+  ]
+}
