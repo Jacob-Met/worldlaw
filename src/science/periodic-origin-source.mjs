@@ -18,9 +18,10 @@ export function openPeriodicOriginSource(raw){
  if(!exact(raw.initial,['position','rate'])||!Object.values(raw.initial).every(x=>number(x,-1e6,1e6)))throw Error('Declare finite original initial position and rate.');
  if(!exact(o,['duration','dt','inertia','command','relativeTolerance','positionTolerance','rateTolerance','maxTrials'])||!number(o.duration,Number.MIN_VALUE,1000)||!number(o.dt,Number.MIN_VALUE,1)||!number(o.inertia,Number.MIN_VALUE,1e12)||!number(o.command,-1e6,1e6)||!['relativeTolerance','positionTolerance','rateTolerance'].every(k=>number(o[k],1e-14,.01))||!Number.isSafeInteger(o.maxTrials)||o.maxTrials<1||o.maxTrials>100000||outputIntervalCount(o.duration,o.dt)>10000)throw Error('Declare bounded complete dynamics settings.');
  const source=structuredClone(raw);if(new TextEncoder().encode(JSON.stringify(source)).length>limit)throw Error('At most4MiB original execution inputs.');
- // Reserve both complete maintained numerical courses and final retained outputs.
+ // Reserve both complete maintained numerical courses, two anchor preparations,
+ // final retained outputs and the explicit initial-point admission.
  const evaluations=12*o.maxTrials+2*(outputIntervalCount(o.duration,o.dt)+1)+1;
- const reservedWork=inputOriginWork(s.training.length,s.terms.length,1e6,s.scale)+(s.training.length+s.challenge.length)*(256*s.terms.length+128)+evaluations*(32768+576);
+ const reservedWork=inputOriginWork(s.training.length,s.terms.length,1e6,s.scale)+(s.training.length+s.challenge.length)*(256*s.terms.length+128)+65536+evaluations*(8192+576);
  if(reservedWork>250000000)return {status:'work-limit',reservedWork,source};
  const response=openInputOriginTorqueSource(source.original);
  if(response.status!=='converged')return {status:'fit-unresolved',reason:response.status,reservedWork,source};
