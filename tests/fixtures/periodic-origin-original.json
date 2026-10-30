@@ -1,0 +1,479 @@
+{
+  "schema": "worldlaw.periodic-origin-execution-source/v1",
+  "original": {
+    "schema": "worldlaw.input-origin-torque-source/v1",
+    "training": [
+      {
+        "command": 0,
+        "position": 234565.5,
+        "rate": 0,
+        "jointTorque": 9974.949866040544,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234565.54761904763,
+        "rate": 0,
+        "jointTorque": 9929.97088309504,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234565.59523809524,
+        "rate": 0,
+        "jointTorque": 9862.47921398683,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234565.64285714287,
+        "rate": 0,
+        "jointTorque": 9772.627872049721,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234565.69047619047,
+        "rate": 0,
+        "jointTorque": 9660.620563435361,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234565.7380952381,
+        "rate": 0,
+        "jointTorque": 9526.711224843319,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234565.7857142857,
+        "rate": 0,
+        "jointTorque": 9371.203448356318,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234565.83333333334,
+        "rate": 0,
+        "jointTorque": 9194.449792499403,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234565.88095238095,
+        "rate": 0,
+        "jointTorque": 8996.850983697443,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234565.92857142858,
+        "rate": 0,
+        "jointTorque": 8778.85500690755,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234565.97619047618,
+        "rate": 0,
+        "jointTorque": 8540.956090936435,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.02380952382,
+        "rate": 0,
+        "jointTorque": 8283.693586888057,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.07142857142,
+        "rate": 0,
+        "jointTorque": 8007.650746537335,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.11904761905,
+        "rate": 0,
+        "jointTorque": 7713.453398758159,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.16666666666,
+        "rate": 0,
+        "jointTorque": 7401.768532025603,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.2142857143,
+        "rate": 0,
+        "jointTorque": 7073.302780820421,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.2619047619,
+        "rate": 0,
+        "jointTorque": 6728.800825107143,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.30952380953,
+        "rate": 0,
+        "jointTorque": 6369.043700433456,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.35714285713,
+        "rate": 0,
+        "jointTorque": 5994.847028890427,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.40476190476,
+        "rate": 0,
+        "jointTorque": 5607.059168223068,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.45238095237,
+        "rate": 0,
+        "jointTorque": 5206.559290306281,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.5,
+        "rate": 0,
+        "jointTorque": 4794.25538604203,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.54761904763,
+        "rate": 0,
+        "jointTorque": 4371.082208504866,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.59523809524,
+        "rate": 0,
+        "jointTorque": 3937.999153017027,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.64285714287,
+        "rate": 0,
+        "jointTorque": 3495.9880812365604,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.69047619047,
+        "rate": 0,
+        "jointTorque": 3046.0510969993998,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.7380952381,
+        "rate": 0,
+        "jointTorque": 2589.208272247317,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.7857142857,
+        "rate": 0,
+        "jointTorque": 2126.495336572467,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.83333333334,
+        "rate": 0,
+        "jointTorque": 1658.961326838482,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.88095238095,
+        "rate": 0,
+        "jointTorque": 1187.6662111196836,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.92857142858,
+        "rate": 0,
+        "jointTorque": 713.6784833178441,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234566.97619047618,
+        "rate": 0,
+        "jointTorque": 238.07274303134486,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.02380952382,
+        "rate": 0,
+        "jointTorque": -238.0727430313448,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.07142857142,
+        "rate": 0,
+        "jointTorque": -713.6784833178442,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.11904761905,
+        "rate": 0,
+        "jointTorque": -1187.6662111196838,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.16666666666,
+        "rate": 0,
+        "jointTorque": -1658.961326838482,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.2142857143,
+        "rate": 0,
+        "jointTorque": -2126.495336572467,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.2619047619,
+        "rate": 0,
+        "jointTorque": -2589.2082722473174,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.30952380953,
+        "rate": 0,
+        "jointTorque": -3046.0510969993998,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.35714285713,
+        "rate": 0,
+        "jointTorque": -3495.9880812365604,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.40476190476,
+        "rate": 0,
+        "jointTorque": -3937.999153017027,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.45238095237,
+        "rate": 0,
+        "jointTorque": -4371.082208504867,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.5,
+        "rate": 0,
+        "jointTorque": -4794.255386042029,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.54761904763,
+        "rate": 0,
+        "jointTorque": -5206.55929030628,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.59523809524,
+        "rate": 0,
+        "jointTorque": -5607.05916822307,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.64285714287,
+        "rate": 0,
+        "jointTorque": -5994.847028890427,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.69047619047,
+        "rate": 0,
+        "jointTorque": -6369.043700433454,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.7380952381,
+        "rate": 0,
+        "jointTorque": -6728.800825107142,
+        "torqueNoiseRatio": 1
+      }
+    ],
+    "challenge": [
+      {
+        "command": 0,
+        "position": 234567.7857142857,
+        "rate": 0,
+        "jointTorque": -7073.302780820421,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.83333333334,
+        "rate": 0,
+        "jointTorque": -7401.768532025604,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.88095238095,
+        "rate": 0,
+        "jointTorque": -7713.453398758159,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.92857142858,
+        "rate": 0,
+        "jointTorque": -8007.650746537335,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234567.97619047618,
+        "rate": 0,
+        "jointTorque": -8283.693586888057,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234568.02380952382,
+        "rate": 0,
+        "jointTorque": -8540.956090936435,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234568.07142857142,
+        "rate": 0,
+        "jointTorque": -8778.85500690755,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234568.11904761905,
+        "rate": 0,
+        "jointTorque": -8996.850983697443,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234568.16666666666,
+        "rate": 0,
+        "jointTorque": -9194.449792499405,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234568.2142857143,
+        "rate": 0,
+        "jointTorque": -9371.20344835632,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234568.2619047619,
+        "rate": 0,
+        "jointTorque": -9526.711224843317,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234568.30952380953,
+        "rate": 0,
+        "jointTorque": -9660.620563435361,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234568.35714285713,
+        "rate": 0,
+        "jointTorque": -9772.627872049721,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234568.40476190476,
+        "rate": 0,
+        "jointTorque": -9862.479213986831,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234568.45238095237,
+        "rate": 0,
+        "jointTorque": -9929.97088309504,
+        "torqueNoiseRatio": 1
+      },
+      {
+        "command": 0,
+        "position": 234568.5,
+        "rate": 0,
+        "jointTorque": -9974.949866040544,
+        "torqueNoiseRatio": 1
+      }
+    ],
+    "terms": [
+      "gravity",
+      "cosine",
+      "bias"
+    ],
+    "scale": 0.00001
+  },
+  "initial": {
+    "position": 234567,
+    "rate": 1e-9
+  },
+  "settings": {
+    "duration": 0.1,
+    "dt": 0.001,
+    "inertia": 1,
+    "command": 0,
+    "relativeTolerance": 1e-8,
+    "positionTolerance": 1e-14,
+    "rateTolerance": 1e-14,
+    "maxTrials": 500
+  },
+  "basis": "Authored original response readings; complete inferred torque interpreted as inertia times acceleration, retained coordinate course"
+}

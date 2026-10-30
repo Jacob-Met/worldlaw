@@ -1,3 +1,4 @@
+import {preparePeriodicOrigin} from './periodic-origin-model.mjs';
 import {fitInputOriginColumns,inputOriginWork} from './input-origin-fit.mjs';
 import {splitResidual} from './split-multicolumn.mjs';
 import {fitHeterogeneousColumns,heterogeneousWork} from './heterogeneous-fit.mjs';
@@ -170,6 +171,7 @@ export function evaluateCenteredTorquePoint(model,values,reading) {
  * prevents a caller's later edits from changing a running solver's equation.
  */
 export function prepareTorquePredictor(model) {
+  if(model?.schema==='worldlaw.periodic-origin-experiment/v1'){const point=preparePeriodicOrigin(model.originalModel,model.positionOrigin);return(command,delta,rate)=>{const pair=point(command,delta,rate).response;return pair[0]+pair[1];};}
   if(model?.schema==='worldlaw.split-torque-experiment/v1'){const point=prepareSplitTorquePoint(model);return (command,position,rate)=>point({command,position,rate}).roundedPrediction;}
   if(model?.schema==='worldlaw.centered-torque-experiment/v1'){
     const snapshot=structuredClone(model);evaluateCenteredTorquePoint(snapshot,{command:0,position:0,rate:0});
