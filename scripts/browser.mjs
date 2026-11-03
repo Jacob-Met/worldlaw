@@ -2,13 +2,21 @@ import assert from 'node:assert/strict';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {createProductServer} from '../server.mjs';
+import {requireChromiumSandbox} from './support/chromium-sandbox.mjs';
 import {restoreSession} from '../src/session.mjs';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const dir=process.env.BROWSER_ARTIFACT_DIR||resolve('.receipts');await mkdir(dir,{recursive:true});
 const server=createProductServer();await new Promise((res,rej)=>{server.once('error',rej);server.listen(0,'127.0.0.1',res);});
-let browser;const checks=[];const mark=name=>{checks.push(name);console.log('PASS '+name);};
+let browser, sandbox;const checks=[];const mark=name=>{checks.push(name);console.log('PASS '+name);};
 try{
-  browser=await chromium.launch({headless:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+  browser=await chromium.launch({headless:true,chromiumSandbox:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
+  if (process.platform === 'linux') {
+    const preflight = await browser.newPage();
+    const cdp = await preflight.context().newCDPSession(preflight);
+    sandbox = await requireChromiumSandbox({send: (method, params) => cdp.send(method, params)});
+    // A refused preflight is closed with the browser in the outer cleanup.
+    await preflight.close();
+  }
   const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(`http://127.0.0.1:${server.address().port}`);await page.waitForFunction(()=>document.getElementById('sample-count').textContent==='64');
   assert.match(await page.locator('#source-kind').innerText(),/synthetic/);assert.match(await page.locator('#selected-terms').innerText(),/Linear spring/);
@@ -41,5 +49,16 @@ try{
   await page.locator('#observation-file').setInputFiles({name:'delayed.csv',mimeType:'text/csv',buffer:await readFile(resolve('examples/synthetic-quadratic-drag.json'))});
   await page.locator('#session-file').setInputFiles(saved);await page.waitForFunction(()=>document.getElementById('source-kind').textContent.includes('synthetic'));await page.evaluate(()=>window.releaseRead());await page.waitForTimeout(100);
   assert.match(await page.locator('#source-kind').innerText(),/synthetic/);assert.deepEqual(errors,[]);mark('late input read cannot replace a newer notebook; no JavaScript page errors');
-  await writeFile(resolve(dir,'receipt.json'),JSON.stringify({product:'worldlaw',browser:await browser.version(),checks,metrics:{beforeHeldOutRMSE:before,afterHeldOutRMSE:after},layouts,scope:'Real Chrome product receiving with declared synthetic observations; no physical mechanism or human acceptance claim.'},null,2)+'\n');
-}finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}
+  await writeFile(resolve(dir,'receipt.json'),JSON.stringify({product:'worldlaw',browser:await browser.version(),sandbox:sandbox ?? {platform:process.platform,admitted:null},checks,metrics:{beforeHeldOutRMSE:before,afterHeldOutRMSE:after},layouts,scope:'Real Chrome product receiving with declared synthetic observations; no physical mechanism or human acceptance claim.'},null,2)+'\n');
+} catch (error) {
+  await writeFile(resolve(dir,'receipt.json'),JSON.stringify({
+    product:'worldlaw',status:'failed',checks,sandbox:error.receipt ?? sandbox ?? null,error:String(error),
+  },null,2)+'\n');
+  throw error;
+} finally {
+  try {
+    await browser?.close();
+  } finally {
+    await new Promise(resolveClose => server.close(resolveClose));
+  }
+}
