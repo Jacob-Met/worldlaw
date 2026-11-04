@@ -158,7 +158,14 @@ async function main() {
       acquisition:'Separate fixed-equation fine-step virtual instrument; explicit application before training changes.',
       reopening:'Input-based replay with exact protocol/source identity, position-only 64-epsilon roundoff allowance, and preserved supplied observations.',
       evaluation:'The same reserved recording is compared before and after refitting; exploratory reuse is not fresh blind validation.'},
-    scope: 'Actual finite-library trajectory and angular-acceleration discovery, independent synthetic experiment planning/acquisition/refitting, free forward prediction, numerical sensitivity and sampled error comparison; two synthetic examples plus separately recorded PASCO measurements with unknown physical torque scale. Acquisitions are synthetic, not physical measurements. Reused evaluation, finite-library alternatives and retained refit failures do not establish unique structure or general physical-law discovery.',
+    recordedExperiment: {schema:'worldlaw.recorded-trajectory-experiment/v1',
+      scope:'Explicitly known-inertia recordings in the original supported torque family; angular-only inputs and extended model families keep their existing workflows.',
+      receiving:'Separately supplied source recording with declared provenance, matching known inertia and constant command; no instrument is operated and source declarations are not authenticated.',
+      predictions:'Original planned forecasts remain separate from frozen-model replays at supplied initial conditions and original timestamps. Observed later positions do not fit those forecasts or gate admission by agreement.',
+      application:'Receipt remains pending until explicit application; worse and failed revisions remain retained against the same reserved evaluation recording.',
+      reopening:'Input-only recorded history retains the exact original virtual notebook, source observations and explicit refit events; predictions are recomputed, not trusted from saved answers.',
+      limits:'The complete actual-clock forecast comparison has a separate 750,000-step budget. A refused forecast does not discard supplied evidence. User-declared measurements and reused evaluation are not authenticated acquisition or fresh blind validation.'},
+    scope: 'Actual finite-library trajectory and angular-acceleration discovery, independent synthetic experiment planning/acquisition/refitting, separately supplied known-inertia recorded outcomes, free forward prediction, numerical sensitivity and sampled error comparison; two synthetic examples plus separately recorded PASCO measurements with unknown physical torque scale. Virtual acquisitions are synthetic. The recorded workflow imports user-supplied evidence without operating or authenticating a physical instrument, and does not add known inertia to the PASCO angular recordings. Reused evaluation, finite-library alternatives and retained refit failures do not establish unique structure or general physical-law discovery.',
   };
 
   let html = replaceExactlyOnce(htmlTemplate, /<link\b[^>]*\brel="stylesheet"[^>]*>/gi,
