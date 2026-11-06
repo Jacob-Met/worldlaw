@@ -1,0 +1,196 @@
+{
+  "runtime": "v22.23.4",
+  "platform": "linux",
+  "architecture": "x64",
+  "baselineCommit": "bdb71f4cd017b4e9bb77c13a3d845fb0b1e6b224",
+  "inputSha256": "11447a6d8019c23334585e3f9d317525962ffc8c34ab3f465baef6ce490add8d",
+  "cases": {
+    "baseline": {
+      "trajectory": {
+        "rmse": 0.05438782705306061,
+        "values": [
+          -0.2552865772015643,
+          -3.9
+        ],
+        "evaluations": 8,
+        "maximumEvaluations": 65,
+        "reservation": {
+          "steps": 131040,
+          "rows": 15730
+        },
+        "iterations": [
+          {
+            "iteration": 0,
+            "status": "improved",
+            "lambda": 0.0003333333333333333,
+            "bestTrial": 5
+          },
+          {
+            "iteration": 1,
+            "status": "jacobian_unresolved"
+          }
+        ],
+        "allCompleteScreened": true
+      },
+      "condition": {
+        "rmse": 0.05041383765869642,
+        "values": [
+          -3.9,
+          -0.24494372580228838,
+          -0.6785234148544849
+        ],
+        "evaluations": 8,
+        "maximumEvaluations": 81,
+        "reservation": {
+          "steps": 163296,
+          "rows": 19602
+        },
+        "iterations": [
+          {
+            "iteration": 0,
+            "status": "improved",
+            "lambda": 0.0003333333333333333,
+            "bestTrial": 7
+          },
+          {
+            "iteration": 1,
+            "status": "jacobian_unresolved"
+          }
+        ],
+        "allCompleteScreened": true
+      }
+    },
+    "candidate": {
+      "trajectory": {
+        "rmse": 0.03658603075982225,
+        "values": [
+          -0.19148150806029482,
+          -3.9
+        ],
+        "evaluations": 47,
+        "maximumEvaluations": 65,
+        "reservation": {
+          "steps": 131040,
+          "rows": 15730
+        },
+        "iterations": [
+          {
+            "iteration": 0,
+            "status": "improved",
+            "lambda": 0.0003333333333333333,
+            "bestTrial": 5
+          },
+          {
+            "iteration": 1,
+            "status": "improved",
+            "lambda": 0.0001111111111111111,
+            "bestTrial": 10
+          },
+          {
+            "iteration": 2,
+            "status": "improved",
+            "lambda": 0.000037037037037037037,
+            "bestTrial": 15
+          },
+          {
+            "iteration": 3,
+            "status": "improved",
+            "lambda": 0.000012345679012345678,
+            "bestTrial": 20
+          },
+          {
+            "iteration": 4,
+            "status": "improved",
+            "lambda": 0.000004115226337448559,
+            "bestTrial": 25
+          },
+          {
+            "iteration": 5,
+            "status": "improved",
+            "lambda": 0.000001371742112482853,
+            "bestTrial": 30
+          },
+          {
+            "iteration": 6,
+            "status": "improved",
+            "lambda": 0.0004572473708276176,
+            "bestTrial": 38
+          },
+          {
+            "iteration": 7,
+            "status": "no_improvement",
+            "lambda": 4.572473708276176,
+            "bestTrial": 38
+          }
+        ],
+        "allCompleteScreened": true
+      },
+      "condition": {
+        "rmse": 0.030647183607347587,
+        "values": [
+          -3.9,
+          -0.19156676305679643,
+          -0.8779397938181841
+        ],
+        "evaluations": 63,
+        "maximumEvaluations": 81,
+        "reservation": {
+          "steps": 163296,
+          "rows": 19602
+        },
+        "iterations": [
+          {
+            "iteration": 0,
+            "status": "improved",
+            "lambda": 0.0003333333333333333,
+            "bestTrial": 7
+          },
+          {
+            "iteration": 1,
+            "status": "improved",
+            "lambda": 0.0001111111111111111,
+            "bestTrial": 14
+          },
+          {
+            "iteration": 2,
+            "status": "improved",
+            "lambda": 0.000037037037037037037,
+            "bestTrial": 21
+          },
+          {
+            "iteration": 3,
+            "status": "improved",
+            "lambda": 0.000012345679012345678,
+            "bestTrial": 28
+          },
+          {
+            "iteration": 4,
+            "status": "improved",
+            "lambda": 0.000004115226337448559,
+            "bestTrial": 35
+          },
+          {
+            "iteration": 5,
+            "status": "improved",
+            "lambda": 0.000001371742112482853,
+            "bestTrial": 42
+          },
+          {
+            "iteration": 6,
+            "status": "no_improvement",
+            "lambda": 0.01371742112482853,
+            "bestTrial": 42
+          },
+          {
+            "iteration": 7,
+            "status": "no_improvement",
+            "lambda": 137.1742112482853,
+            "bestTrial": 42
+          }
+        ],
+        "allCompleteScreened": true
+      }
+    }
+  },
+  "meaning": "Authored analytic constrained training fits. The allowed stiffness excludes the generating value. Not measured physical validation, generalization or speedup."
+}
