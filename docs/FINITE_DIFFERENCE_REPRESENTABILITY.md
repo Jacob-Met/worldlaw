@@ -46,6 +46,27 @@ A declared synthetic constant-acceleration course contains five original rows at
 
 Both arms report `training_improved`; the original inputs are unchanged. This is a deterministic accepted-consumer difference, but the demonstrated absolute error is at rounding scale. It does not establish practical scientific harm, a physically meaningful improvement or greater solver accuracy. Agreement between two integration resolutions cannot certify accuracy beyond rounding.
 
+## A wide interval exposes finite-budget sensitivity
+
+The tiny-box witness bounds every possible coefficient change to a few ULPs. A second experiment keeps the same five timestamps, seed $1+E$, integration settings and source handling, but uses positions $1.5t^2/2$ and bounds $[1,2]$. The problematic initial central stencil remains; meaningful coefficient movement is now feasible.
+
+Native Node 24.22.1 corroboration gives:
+
+| Iteration budget | Production RMS, radians | Diagnostic RMS, radians | Evaluations, production / diagnostic |
+| ---: | ---: | ---: | ---: |
+| 1 | 0.0040770489300693226 | 0.00006296618984674732 | 4 / 4 |
+| 2 | 0.0000013585634577187904 | 2.0981736029277847e-8 | 7 / 7 |
+| 4 | 5.597002190937326e-15 | 9.469191127342783e-17 | 13 / 13 |
+| 8 | 0 | 0 | 24 / 21 |
+
+With one iteration, the production helper selects coefficient 1.2519157143434603; the diagnostic selects 1.50383142868692. The authored target is 1.5. Both arms pass the same numerical screen, consume four evaluations, and retain the seven-evaluation cap with 84 reserved integration steps and 35 prediction rows.
+
+Moving the seed to the ordinary interior value 1.1 largely removes the difference. At one iteration both arms give approximately 6.56708415e-6 radians RMS; at eight iterations both reach coefficient 1.5, zero RMS and 18 evaluations. Every paired budget retains identical reservation and cap, and the original inputs remain unchanged.
+
+This establishes ordinary-scale sensitivity of an early accepted result to the near-bound stencil under a valid finite iteration budget. Additional iterations recover the same optimum in this authored case. The observation is not a general speedup or a persistent accuracy failure, and no wall-clock performance claim is made.
+
+The corrected first proposal still overshoots to 1.50383142868692. Consequently, using the actual spacing does not make tiny-probe residual differences exact. Derivative-expression correction and better probe selection remain separate questions.
+
 ## Derivative through the actual three nodes
 
 Let the incumbent be $x$, and let the actual representable probe offsets be
@@ -86,7 +107,7 @@ $$
 D=\alpha s_1-\beta s_2.
 $$
 
-Assume the incumbent and both rounded probes lie on one uniform spacing lattice $\Delta$, rounding is to nearest with ties to even, and doubling the requested step is finite and exact. Write $d_1=n\Delta,d_2=m\Delta$. The accepted distinctness checks imply $n\ge1$ and $m>n$; rounding gives $2n-1\le m\le2n+1$.
+Assume the incumbent and both probes are rounded in a region with uniform rounding cells of spacing $\Delta$, rounding is to nearest with ties to even, and doubling the requested step is finite and exact. Write $d_1=n\Delta,d_2=m\Delta$. The accepted distinctness checks imply $n\ge1$ and $m>n$; rounding gives $2n-1\le m\le2n+1$.
 
 For $n=1$, distinctness forces $m\ge2$. For $n\ge2$, $m-n\ge n-1$. Hence
 
@@ -112,5 +133,5 @@ From a repository checkout that contains the pinned source commit:
 node --experimental-vm-modules scripts/diagnose-bounded-lm-spacing.mjs
 ```
 
-The script prints a JSON receipt and makes no product-file changes. `WORLDLAW_RESEARCH_ROOT` can point to another readable checkout containing the same Git object. The native receipt was generated from the same script body with that explicit root. It records source digests, all eleven controls, the actual consumer inputs and both results.
+The script prints a JSON receipt and makes no product-file changes. `WORLDLAW_RESEARCH_ROOT` can point to another readable checkout containing the same Git object. The native receipt was generated from the same script body with that explicit root. It records source digests, all eleven derivative/refusal controls, the tiny-box consumer witness, and the wide-interval experiment at four budgets with its interior-seed control.
 

@@ -7,7 +7,7 @@ import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
 import {pathToFileURL,fileURLToPath} from 'node:url';
 import {execFileSync} from 'node:child_process';
-const root=process.env.WORLDLAW_RESEARCH_ROOT ?? fileURLToPath(new URL('..',import.meta.url));
+const root=path.resolve(process.env.WORLDLAW_RESEARCH_ROOT ?? fileURLToPath(new URL('..',import.meta.url)));
 const SOURCE_BASE='0a7ba12e58d714a52fd8f5385b87a1a8600c927e';
 const closure=new Map();
 function sourceAt(file) {
@@ -96,5 +96,27 @@ for(const [file,digest] of closure) assert.equal(sha(execFileSync('git',['show',
 assert.equal(baseline.trials.length,4);assert.equal(diagnostic.trials.length,4);
 assert.equal(baseline.best.values[0],1+2*E);assert.equal(diagnostic.best.values[0],1+4*E);
 assert.equal(diagnostic.best.rmse,0);
-const receipt={sourceBase:'0a7ba12e58d714a52fd8f5385b87a1a8600c927e',allSourcesReadFromGitBase:true,schema:'worldlaw.representable-probe-investigation/v1',runtime:process.version,helperSHA256:sha(src),diagnosticHelperSHA256:sha(diagnosticSrc),sourceClosure:[...closure].map(([file,sha256])=>({path:file,sha256})),helperCases,consumer:{inputs:{seed,rawRuns,options},inputSHA256:sha(originalJSON),inputUnchanged:true,baseline:compact(baseline),actualNodeDiagnostic:compact(diagnostic)},limits:['No product source file changed. Diagnostic actual-node expression only, not a proposed complete production implementation.','Refusals from collapsed nominal probes remain unchanged.','The demonstrated actual-consumer error is rounding-scale; no practical scientific-impact claim.','The diagonal/control comparisons do not certify derivative accuracy for numerically unresolved residuals.']};
+
+const wideRuns=structuredClone(rawRuns);
+for(const row of wideRuns[0].samples)row.position=1.5*row.time*row.time/2;
+wideRuns[0].source.label='Analytic constant acceleration in a wide coefficient interval';
+const wideInputsJSON=JSON.stringify(wideRuns),wideCases=[];
+for(const initialCoefficient of [1+E,1.1]) {
+ for(const iterationBudget of [1,2,4,8]) {
+  const selectedSeed=structuredClone(seed);
+  selectedSeed.terms[0].coefficient=initialCoefficient;
+  const selectedOptions={...options,iterations:iterationBudget,bounds:[[1,2]]};
+  const before=JSON.stringify({seed:selectedSeed,rawRuns:wideRuns,options:selectedOptions});
+  const base=baselineModule.fitTrajectoryLM(selectedSeed,wideRuns,selectedOptions);
+  const actual=diagnosticModule.fitTrajectoryLM(selectedSeed,wideRuns,selectedOptions);
+  assert.equal(JSON.stringify({seed:selectedSeed,rawRuns:wideRuns,options:selectedOptions}),before);
+  assert.equal(JSON.stringify(base.reservation),JSON.stringify(actual.reservation));
+  assert.equal(base.maximumEvaluations,actual.maximumEvaluations);
+  assert.ok(base.trials.length<=base.maximumEvaluations && actual.trials.length<=actual.maximumEvaluations);
+  wideCases.push({initialCoefficient,iterationBudget,baseline:compact(base),actualNodeDiagnostic:compact(actual)});
+ }
+}
+assert.equal(JSON.stringify(wideRuns),wideInputsJSON);
+
+const receipt={sourceBase:'0a7ba12e58d714a52fd8f5385b87a1a8600c927e',allSourcesReadFromGitBase:true,schema:'worldlaw.representable-probe-investigation/v1',runtime:process.version,helperSHA256:sha(src),diagnosticHelperSHA256:sha(diagnosticSrc),sourceClosure:[...closure].map(([file,sha256])=>({path:file,sha256})),helperCases,wideIntervalExperiment:{inputs:{rawRuns:wideRuns,baseSeed:seed,baseOptions:{...options,bounds:[[1,2]]},initialCoefficients:[1+E,1.1],iterationBudgets:[1,2,4,8]},inputUnchanged:true,cases:wideCases,interpretation:'Early finite-budget sensitivity on an authored wide interval. Additional iterations can recover the same optimum; not a general speed or physical-accuracy claim.'},consumer:{inputs:{seed,rawRuns,options},inputSHA256:sha(originalJSON),inputUnchanged:true,baseline:compact(baseline),actualNodeDiagnostic:compact(diagnostic)},limits:['No product source file changed. Diagnostic actual-node expression only, not a proposed complete production implementation.','Refusals from collapsed nominal probes remain unchanged.','The tiny-box consumer witness is rounding-scale. The separate wide-interval witness tests finite iteration budgets; no general practical scientific-impact claim.','The diagonal/control comparisons do not certify derivative accuracy for numerically unresolved residuals.']};
 console.log(JSON.stringify(receipt));
