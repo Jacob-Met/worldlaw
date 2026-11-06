@@ -32,3 +32,9 @@
 .motion-start-axis{stroke:#aebda1;stroke-width:1}.motion-start-axis-label,.motion-start-empty{font:11px var(--sans, sans-serif);fill:#4a5e42}
 .motion-start-original{stroke:#a5b0a0;stroke-width:1.5;stroke-dasharray:3 3}.motion-start-window{fill:#90b09b;fill-opacity:.2}.motion-start-prefix{stroke:#315d47;stroke-width:2.7}.motion-start-retained{stroke:#a35d29;stroke-width:2}.motion-start-origin{stroke:#315d47;stroke-width:1;stroke-dasharray:3 2}.motion-start-point{fill:#315d47;stroke:#fffef8;stroke-width:1}
 .motion-start-rate{display:block;margin-top:4px;font-size:19px;font-weight:650;color:#254438;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+
+/* Keep geometry notebook choosers inside their narrow containing column. */
+#geometry-receiving,
+#geometry-open,
+#shared-geometry-calibrations,
+#shared-geometry-open{max-width:100%}
