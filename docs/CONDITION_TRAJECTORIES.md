@@ -8,6 +8,8 @@ The source-only `worldlaw.condition-trajectories/v1` notebook retains the origin
 
 For n shared-plus-course parameters and s sweeps the reservation is `1+s*(2*n+4)` complete all-course coarse/fine evaluations. At most four training courses are admitted, with distinct original identities, 1–12 sweeps, no more than 4 million integration steps and 262144 forecast rows. Failure or unresolved perturbations prevent a Jacobian or update. Bound projection is explicit local optimization. Separate challenge forecasts are fully reserved before the first new forecast, with 1 million steps and 65536 rows. Original, joint, and challenge budgets are separate stages, not a claimed combined session cap. Missing seeds and optional-stage refusals retain original comparisons.
 
+The [shared bounded trajectory routine](BOUNDED_TRAJECTORY_LM.md) continues useful free-coefficient updates after another coefficient reaches its declared limit. The existing strict-interior seed admission, complete screens and reservation remain in force; an estimated local stationary condition is not a physical or global-optimum certificate.
+
 ## Independent controls and measured limitation
 
 Two independent closed-form damped oscillators share stiffness −4 with damping −0.2 and −0.9. The new joint fit recovers them; ordinary pooled damping leaves more than 0.05 rad training error. Independent new releases under correct associations predict to below 1e−5 rad; swapped associations exceed 0.05 rad. A deliberately different restoring law retains more than 0.03 rad mismatch. These are authored controls, not measured validation.
