@@ -87,7 +87,7 @@ The reference never estimates the rate derivative from sampled positions. It kee
 
 The Python reference uses standard-library Decimal arithmetic at **80 and 120 decimal digits**, converting each original floating input with `Decimal.from_float`. A byte-level digest verifies that Node and Python use the same original numeric values. Observed data are not regenerated at higher precision.
 
-An independent 181-term ODE power-series recurrence checks the closed-form positions, rates and both sensitivity pairs for 36 selected state/time cases at each precision. Maximum discrepancies are **5.2112e−76** at 80 digits and **5.2482e−116** at 120 digits. The largest difference across the two precision calculations is **1.3135e−70**. This is precision-convergence and independent-formula evidence, not an interval-certified bound.
+An independent 181-term ODE power-series recurrence checks the closed-form positions, rates and both sensitivity pairs for 36 selected state/time cases at each precision. Maximum discrepancies are **5.2112e−76** at 80 digits and **5.2482e−116** at 120 digits. The largest difference across the two precision calculations is **1.3134e−70**. This is precision-convergence and independent-formula evidence, not an interval-certified bound.
 
 For error separation, the reference computes both analytic derivative columns and the helper's finite-difference formula applied at the **same represented nodes** in high precision. The latter retains the helper's actual `da`, `db` and weight. This distinguishes same-node stencil error from disagreement introduced by numerical rollout and binary64 evaluation. Summary comparisons convert 40-significant-digit reference vectors to binary64 once; scalar objective/order receipts retain 70 significant digits.
 
