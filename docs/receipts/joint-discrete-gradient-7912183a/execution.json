@@ -1,0 +1,19 @@
+{
+  "observedAtUTC": "2026-11-06 15:00:03 UTC",
+  "nativeSession": 36489,
+  "nativeExitCode": 0,
+  "entrypoint": "Python -B -c with exact script body, stdin from in-memory quoted here-document",
+  "gridEntry": "Node --input-type=module -e with exact final stdin-consuming capture body",
+  "gridInputMatchesFrozenCapsuleExactly": true,
+  "pythonSHA256": "80a018dc8f8ed5ebc5c3e702b174b2cbcb7ded2fe8273be5a04de98d6d016d0b",
+  "gridCaptureSHA256": "d947e185f860b3062b46c75703b06644855dd6d77386c315cc149dc307b6d5cd",
+  "baseInputSHA256": "bf904dfef40ab5da51544887f8b678507b2bc5de2692ca65b472ab636012488f",
+  "frozenInputSHA256": "3eab939ce04637ffa858521efc568d179f01b36d5b1e851cd1621bf9e098aba3",
+  "compactNativeResultSHA256": "54e801119196d402913b29b0c626b49dfac6b69eefa62da902b58ef1234db2b1",
+  "resultSerialization": "SHA-256 of UTF-8 JSON.stringify(parsed native result), no trailing newline; displayed file is pretty-printed separately.",
+  "stepCountsAreReferenceTransitionsNotNativeReceiverBudget": true,
+  "originalBUnknownsPreserved": true,
+  "noNativeReceiverOrOptimizerRerun": true,
+  "noCompiledPayloadExport": true,
+  "noDefaultFileEntrypointQualification": true
+}
