@@ -1,0 +1,26 @@
+{
+  "status": "COPY_REFUSED_BEFORE_WRITES",
+  "observation": {
+    "command": "ls -la /dev/shm/b93164ce-worldlaw-local-comparison-01; ls -la /dev/shm/b93164ce-worldlaw-local-comparison-ui-01; df -B1 /dev/shm",
+    "tool_envelope": {
+      "chunk_id": "fe4212",
+      "wall_time_seconds": 0.000044807,
+      "exit_code": 0,
+      "original_token_count": 668
+    },
+    "capacity_stdout_excerpt": "Filesystem      1B-blocks       Used Available Use% Mounted on\nshm            5225713664 5225713664         0 100% /dev/shm\n",
+    "excerpt_qualification": "Capacity-bearing final lines forwarded from the retained original response by engine_source; directory-listing lines are not reproduced here. No command rerun.",
+    "read_succeeded": true
+  },
+  "decision": {
+    "available_bytes": 0,
+    "original_files": 49,
+    "original_logical_bytes": 350153,
+    "allocated_file_copy_estimate": 454656,
+    "directory_and_manifest_overhead_additional": true,
+    "reserve_bytes": 8388608,
+    "copy_started": false,
+    "symlinks_created": false
+  },
+  "later_course": "Separate artifact-free component receiving uses only already-existing files and a declared one-edge resolver. It neither performs nor waives the refused full-copy preparation."
+}

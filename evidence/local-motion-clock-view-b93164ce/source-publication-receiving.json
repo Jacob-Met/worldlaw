@@ -1,0 +1,32 @@
+{
+  "schema": "hamon.worldlaw.ui-source-receiving/v1",
+  "receiver": "/root/engine_source",
+  "accepted": true,
+  "pr": "https://github.com/Jacob-Met/worldlaw/pull/612",
+  "state": "open_draft",
+  "commit": "d560abc8086c41ff018f7bab3e50d4b72866135d",
+  "tree": "333d6986848b7be1cb27f19c48f111f16b9db840",
+  "sole_parent": "674712f9f35adfab32f79bf791cf3e73774fea8e",
+  "files": [
+    {
+      "path": "src/science/local-motion-comparison-panel.mjs",
+      "bytes": 6033,
+      "sha256": "5efb0e44426d2ef06490cb56f7b4ffc78e509793464fd9af43808b110ba1a94c",
+      "git_blob": "31a67cc1520e9f321464765f960e5846eff6b7de",
+      "mode": "100644",
+      "full_remote_body_equals_local": true
+    },
+    {
+      "path": "tests/local-motion-comparison-panel.test.mjs",
+      "bytes": 11869,
+      "sha256": "332eae6c9f560306dafe3e72b79173a7aa208604a3e2b8b72121d23c49e6847f",
+      "git_blob": "e42dd3ba272f153802f4ba72035159b3b1b02383",
+      "mode": "100644",
+      "full_remote_body_equals_local": true
+    }
+  ],
+  "exact_two_additions": true,
+  "other_changes": 0,
+  "source_execution": false,
+  "metadata_hash_correction": "An initial metadata-only Git hash calculation used a literal backslash-zero header. The corrected actual NUL-header calculation matched the canonical IDs. Source bytes and tests were not changed or executed by that calculation."
+}

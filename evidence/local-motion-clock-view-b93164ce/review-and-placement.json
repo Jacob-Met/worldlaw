@@ -1,0 +1,51 @@
+{
+  "source_commit": "d560abc8086c41ff018f7bab3e50d4b72866135d",
+  "review": {
+    "workers": [
+      "/root/research_source",
+      "/root/engine_source"
+    ],
+    "superseded_panel_sha256": "07b517d538ba23bbde0e57099b4f92d412366611feb10282b61f873425a035a0",
+    "superseded_tests_sha256": "77d4d5033f4618915d02b1023f0b749b68534bc70a7ce333c42750db3cf83391",
+    "finding": "A later-row exception inside paint could append fallback rows after already-rendered rows. Clear partial rows first; the eighth regression observes a first row before the injected second-row failure, then requires only the full fallback population.",
+    "outer_lifecycle": "Maintained parent makes details visible before the active-trajectory branch; its execute catch retires the view through the proposed hook. This is source-level reasoning only.",
+    "authored_fixture_qualification": "These tests exercise actual exported panel and registered handler with a small authored DOM fixture; they do not establish browser behavior, physics, shared-hook integration or installed packaging."
+  },
+  "placement": {
+    "checkpoints": [
+      "2acd4d",
+      "3d619a"
+    ],
+    "original_files": 49,
+    "ui_files": 2,
+    "regular_only": true,
+    "no_symlink_entries": true,
+    "original_bytes": 350153,
+    "planned_total_files": 51,
+    "composed_checkout": false,
+    "new_execution": false,
+    "resolution_edge": {
+      "parent": "file:///dev/shm/b93164ce-worldlaw-local-comparison-ui-01/source/src/science/local-motion-comparison-panel.mjs",
+      "specifier": "./local-motion-comparison.mjs",
+      "target": "file:///dev/shm/b93164ce-worldlaw-local-comparison-01/source/src/science/local-motion-comparison.mjs",
+      "target_sha256": "df5c7abeeb5941ffc5ff97f60d5841a140254fcf47e7c6976e0146e175396790"
+    }
+  },
+  "documentation": {
+    "version": "v24.22.1",
+    "sources": [
+      "https://github.com/nodejs/node/blob/v24.22.1/doc/api/module.md",
+      "https://github.com/nodejs/node/blob/v24.22.1/doc/api/test.md",
+      "https://github.com/nodejs/node/blob/v24.22.1/doc/api/cli.md"
+    ],
+    "qualified_behavior": "Official exact-version docs support registerHooks before application entry via an inline data-URL --import. Default process-isolated test children inherit that option and register independently. The hook routes only the exact panel import edge and preserves nextResolve for all others.",
+    "api_stability": "registerHooks release candidate; --import experimental"
+  },
+  "shared_hooks_applied": false,
+  "shared_hook_patch_sha256": "bed40340f96f09184fa4710d57ab7e7ec576bcd3ddda4244dc598c690a303a29",
+  "coordination": "https://github.com/Jacob-Met/worldlaw/issues/395#issuecomment-6685636805",
+  "holds": {
+    "release_peak": "Retained52d shared-panel/staged-baseline boundary awaits coordination; original baseline identity and work accounting preserved.",
+    "producer": "PR421 original UNKNOWN merge hamon-366053231788-worldlaw421-merge-20261028-01 on owner node-e3ef2400feba3208c45a0de7da66184d remains held; no replay."
+  }
+}

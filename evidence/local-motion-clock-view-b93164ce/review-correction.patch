@@ -1,0 +1,40 @@
+--- a/src/science/local-motion-comparison-panel.mjs
++++ b/src/science/local-motion-comparison-panel.mjs
+@@ -69,6 +69,7 @@
+       clock.textContent='Exact sample '+index+' · t '+number(sample.time)+' s · inertia '+number(sample.execution.settings.inertia)+' kg·m² · fixed command '+number(sample.execution.settings.command)+' N·m';
+       for(const outcome of sample.results)rowFor(outcome,outcome.state,outcome.response);
+     } catch(error) {
++      clearRows();
+       clock.textContent='Local readout unavailable: '+error.message;
+       for(const outcome of report.results) {
+         const row=node('tr');row.dataset.originalIndex=String(outcome.index);
+--- a/tests/local-motion-comparison-panel.test.mjs
++++ b/tests/local-motion-comparison-panel.test.mjs
+@@ -149,3 +149,27 @@
+     assert.equal(modelReads,0);assert.equal(clones,0);
+   } finally {globalThis.structuredClone=clone;}
+ });
++
++
++test('a later-row rendering exception leaves only the complete fallback population',t=>{
++  const {panel,open,rows}=setup(t);
++  panel.setReport(freeze(fixture()),'Current source');
++  const create=globalThis.document.createElement;
++  let rowAttempts=0,priorRowsAtFault=null;
++  globalThis.document.createElement=tag=>{
++    if(tag==='tr'&&++rowAttempts===2){
++      priorRowsAtFault=rows().length;
++      throw new Error('One-shot second-law rendering failure');
++    }
++    return create(tag);
++  };
++  try {open(true);} finally {globalThis.document.createElement=create;}
++  assert.equal(priorRowsAtFault,1,'first law was already appended before the injected failure');
++  assert.deepEqual(rows().map(row=>row.dataset.originalIndex),['0','1']);
++  assert.equal(rows().length,2,'no partial row survives alongside the complete fallback');
++  for(const row of rows()){
++    assert.equal(row.children.length,2);
++    assert.equal(row.children[1].textContent,'No value substituted for the unavailable exact sample.');
++    assert.doesNotMatch(row.textContent,/θ|rad\/s|N·m/,'no prior own-state or derivative value survives');
++  }
++});
