@@ -1,0 +1,154 @@
+{
+  "baselineCommit": "0a7ba12e58d714a52fd8f5385b87a1a8600c927e",
+  "combinedCommit": "3f70a51626e31b70751271d3bbf8d7ee5456cc5d",
+  "pins": [
+    {
+      "path": "src/joint-state/fit.mjs",
+      "bytes": 5947,
+      "sha256": "52629bd0b4edaed3dde1970f41700d2fbd95a9524683b6fb0e2b9f0e2fed6fb0"
+    },
+    {
+      "path": "src/joint-state/receiver.mjs",
+      "bytes": 816,
+      "sha256": "ee5b62379fcb951aada730eb834d20cd0203918a9e7d014e09a4bf2d722af9ec"
+    },
+    {
+      "path": "src/predictive-selection/select.mjs",
+      "bytes": 6858,
+      "sha256": "0473f2f8bfdcf19530d15ef44e592d449f6c1b7dbb4447564202b6aa4432bd4a"
+    },
+    {
+      "path": "src/science/bounded-lm.mjs",
+      "bytes": 4173,
+      "sha256": "26536292d6fbdfc5bb26d7fa557fc01c6e80138c42d6b32b4d6cc947e9618a92"
+    },
+    {
+      "path": "src/science/centered-response.mjs",
+      "bytes": 2043,
+      "sha256": "452a2f54a6f518ea3c90752713ec37719c18dd512232987f80af95a7481ee140"
+    },
+    {
+      "path": "src/science/continuation-fit.mjs",
+      "bytes": 4023,
+      "sha256": "adbd6e23c4dd540630136e61477aa8eb50ff68b8dcb34039737ace79fad148f9"
+    },
+    {
+      "path": "src/science/curvature-fit.mjs",
+      "bytes": 5579,
+      "sha256": "073d1ad35528ba7fbf1787d4a89b4e41cc05ade9829443682780bcef5f6223dc"
+    },
+    {
+      "path": "src/science/heterogeneous-fit.mjs",
+      "bytes": 6319,
+      "sha256": "b603bd80e5362265460096ebb4026b29994741dfc6a2f6a90715d549ec1ebc61"
+    },
+    {
+      "path": "src/science/input-origin-fit.mjs",
+      "bytes": 3691,
+      "sha256": "962e49a33a83c64eb189bd787fbbfc947e76d5fb62418aacca050bad1558a794"
+    },
+    {
+      "path": "src/science/linear-fit.mjs",
+      "bytes": 2722,
+      "sha256": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da"
+    },
+    {
+      "path": "src/science/output-grid.mjs",
+      "bytes": 445,
+      "sha256": "e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d"
+    },
+    {
+      "path": "src/science/periodic-origin-model.mjs",
+      "bytes": 2697,
+      "sha256": "bae5062b42be21533038876305e255c4d7857f6a447b49a734db4ccec85ec667"
+    },
+    {
+      "path": "src/science/periodic-trig.mjs",
+      "bytes": 1783,
+      "sha256": "53233d010e52c47f31ef4b2ef1f40921a27c8008ab59f47772e7208c1141b39e"
+    },
+    {
+      "path": "src/science/robust-budget-probe.mjs",
+      "bytes": 5829,
+      "sha256": "01085e832ac647c2836a03f0287f7ee056ed7f5d31073d7021975a7f5475c5f2"
+    },
+    {
+      "path": "src/science/robust-fit-research.mjs",
+      "bytes": 5808,
+      "sha256": "fa1737ec744c993f5206453e9ee004a6a21ec25ada1a98655b94f79c9813b39a"
+    },
+    {
+      "path": "src/science/robust-fit.mjs",
+      "bytes": 5720,
+      "sha256": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1"
+    },
+    {
+      "path": "src/science/shared-iteration-fit.mjs",
+      "bytes": 3661,
+      "sha256": "fb8cd447cfdbaf9c9d413814300a0824a8a3658e55d9c3a0529fd1df379447f2"
+    },
+    {
+      "path": "src/science/split-column.mjs",
+      "bytes": 416,
+      "sha256": "42da6cbad9534b616a32920e0381425a487c1cd18a16ce9159d78964f54df148"
+    },
+    {
+      "path": "src/science/split-multicolumn.mjs",
+      "bytes": 511,
+      "sha256": "f722c70391cb2d31fd6ff5596fe7933eb1fd58ee1a5f93813f675f4a16023998"
+    },
+    {
+      "path": "src/science/torque-discovery.mjs",
+      "bytes": 48143,
+      "sha256": "c50f0fe60bb315b894b5060e01706b49c5ef671da59a6515b01507f9c236f518"
+    },
+    {
+      "path": "src/trajectory/angular-discovery.mjs",
+      "bytes": 14991,
+      "sha256": "71c16bd766e045a3c28d1c34f75eeafca6f6e6a891a5af6805d055e284ce3f1b"
+    },
+    {
+      "path": "src/trajectory/angular-resolution.mjs",
+      "bytes": 355,
+      "sha256": "81b54f874e121b5b3161752bcc94f46d9292f003097a33726de806b83f2e686c"
+    },
+    {
+      "path": "src/trajectory/angular-weak.mjs",
+      "bytes": 12154,
+      "sha256": "75d1bf75ff23f29d3ec95ea3b2bc2c4d9ee6c8ca04a7ccd8f2f215b65aaf6a59"
+    },
+    {
+      "path": "src/trajectory/command-timeline.mjs",
+      "bytes": 7585,
+      "sha256": "b975f7f35a5834c0c9d9ae29ea2272085ae05a8c812d77487ce6df83d0d77e61"
+    },
+    {
+      "path": "src/trajectory/coulomb-contact.mjs",
+      "bytes": 1909,
+      "sha256": "2cc8820da95ca9fc5170319c37a7e098071ec82e8e7af9b816301c45b1ea0253"
+    },
+    {
+      "path": "src/trajectory/forward.mjs",
+      "bytes": 14320,
+      "sha256": "7e80824e1475b21e99c74e3f5cd058655851b5c90494086325c44ffe6fd4f705"
+    },
+    {
+      "path": "src/trajectory/integral-discovery.mjs",
+      "bytes": 19112,
+      "sha256": "187c374d2a7236862897b8f5b12f656a8fd3453cef1f7021c7c256149d9f622d"
+    },
+    {
+      "path": "src/trajectory/resolution.mjs",
+      "bytes": 4772,
+      "sha256": "54123871fb4b9355989a1d97a4da374547c694166fccd778d55c93da120910cd"
+    },
+    {
+      "path": "src/trajectory/weak-operator.mjs",
+      "bytes": 7685,
+      "sha256": "ba94054a02098cbc173a7854d1d3ffc530ce5b6e7e221310486b61d6eb4503d9"
+    }
+  ],
+  "candidateFit": "import{normalizeAngularRuns}from'../trajectory/angular-discovery.mjs';import{receiveJointState as rolloutAngularWithResolution}from'./receiver.mjs';import{reservePredictionWork}from'../predictive-selection/select.mjs';import{fitBoundedLM}from'../science/bounded-lm.mjs';\nconst copy=x=>JSON.parse(JSON.stringify(x)),check=(v,m)=>{if(!v)throw Error(m)};\nexport function fitJointState(seed,rawRuns,options){const runs=normalizeAngularRuns(rawRuns),o=copy(options),n=seed.terms.length;check(o.channelScales&&Number.isFinite(o.channelScales.positionRad)&&o.channelScales.positionRad>0&&Number.isFinite(o.channelScales.rateRadPerSecond)&&o.channelScales.rateRadPerSecond>0&&typeof o.channelScales.basis==='string'&&o.channelScales.basis.trim(),'Declare positive finite channel scales and their basis');check(Number.isFinite(o.rateScreen)&&o.rateScreen>0&&o.rateScreen<=.001,'Declare rate numerical screen at most .001rad/s');for(const raw of rawRuns){check(raw.rateObservation?.unit==='rad/s'&&typeof raw.rateObservation.basis==='string'&&raw.rateObservation.basis.trim()&&raw.rateObservation.dependence==='not-assumed-independent','Declare supplied rate provenance and dependence');check(raw.samples.every(r=>Number.isFinite(r.rate)),'Every original row needs a finite supplied rate');}check(n>=1&&n<=4&&new Set(seed.terms.map(t=>t.id)).size===n&&seed.terms.every(t=>Number.isFinite(t.coefficient))&&seed.terms.every(t=>['rate','spring','gravity','bias','cosine','cubic'].includes(t.id)),'1–4 smooth declared terms required');check(Number.isInteger(o.iterations)&&o.iterations>=1&&o.iterations<=12,'Bound iterations1–12');check(Number.isFinite(o.maxStep)&&Number.isFinite(o.screen)&&o.maxStep>=1e-5&&o.maxStep<=.1&&o.screen>0&&o.screen<=.001,'Bound solver and strict screen');check(o.bounds?.length===n&&o.bounds.every((b,i)=>b.length===2&&b.every(Number.isFinite)&&b[0]<seed.terms[i].coefficient&&seed.terms[i].coefficient<b[1]),'Finite bounds must strictly contain seed');const maximumEvaluations=1+o.iterations*(2*n+4),reservation=reservePredictionWork(runs,o.maxStep,maximumEvaluations);check(Number.isSafeInteger(o.maxTotalSteps)&&o.maxTotalSteps>=1&&o.maxTotalSteps<=4000000&&reservation.steps<=o.maxTotalSteps&&reservation.rows*2<=262144,'Complete LM reservation exceeds budget');const trials=[];\nconst modelFor=v=>{const m=copy(seed);m.terms.forEach((t,i)=>t.coefficient=v[i]);delete m.equation;delete m.domain;m.method='joint_supplied_position_rate_trajectory_fit';m.metrics={meaning:'Seed metrics do not apply'};return m;};\nfunction evaluate(v){const model=modelFor(v),residuals=[],receipts=[];let complete=true;for(const run of runs){try{const r=rolloutAngularWithResolution(model,run,{maxStep:o.maxStep,maxSteps:reservePredictionWork([run],o.maxStep).steps}),ok=r.resolution.status==='compared'&&r.resolution.maxAbsPositionDifference<=o.screen&&r.resolution.maxAbsRateDifference!==null&&r.resolution.maxAbsRateDifference<=o.rateScreen;complete&&=ok;const supplied=rawRuns.find(x=>x.id===run.id),positionErrors=[],rateErrors=[];for(let j=0;j<run.samples.length;j++){const pe=r.rollout.rows[j].predicted-run.samples[j].position,re=r.rollout.rows[j].rate-supplied.samples[j].rate;positionErrors.push(pe);rateErrors.push(re);residuals.push(pe/o.channelScales.positionRad,re/o.channelScales.rateRadPerSecond);}receipts.push({id:run.id,status:ok?'screened':'unresolved',positionRMSE:Math.hypot(...positionErrors)/Math.sqrt(positionErrors.length),suppliedRateRMSE:Math.hypot(...rateErrors)/Math.sqrt(rateErrors.length),resolution:r.resolution});}catch(e){complete=false;receipts.push({id:run.id,status:'failed',error:e.message});}}complete&&=residuals.every(Number.isFinite)&&Number.isFinite(Math.hypot(...residuals));const t={index:trials.length,values:[...v],status:complete?'complete':'incomplete',rmse:complete?Math.hypot(...residuals)/Math.sqrt(residuals.length):null,runs:receipts};trials.push(t);return{...t,residuals};}\nconst {best,iterations}=fitBoundedLM(seed.terms.map(t=>t.coefficient),o.bounds,o.iterations,evaluate);\nreturn{runs:copy(rawRuns),residualMeaning:'Dimensionless row-weighted RMS of position/positionScale and suppliedRate/rateScale. Scales are explicit objective weights, not independent noise or likelihood.',options:o,model:best.status==='complete'?modelFor(best.values):null,status:best.status==='complete'?(best.index?'training_improved':'no_training_improvement'):'seed_unresolved',best:{...best,residuals:undefined},trials,iterations,reservation,maximumEvaluations,meaning:'Bounded damped finite-difference Gauss–Newton on complete original training trajectories. Fixed starts, no challenge input, local result only.'};}\n",
+  "correctedHelper": "import {fitLinearColumns} from './linear-fit.mjs';\n\n/**\n * Local bounded LM with a numerically estimated active set.\n * The caller owns domain validation, complete work reservation and screened\n * residuals. This is not a global optimum or physical-identifiability certificate.\n * Each iteration uses at most two probes per coordinate and four proposals.\n */\nexport function fitBoundedLM(initial, bounds, iterationLimit, evaluate) {\n  let best = evaluate(initial);\n  let lambda = .001;\n  const iterations = [];\n  if (best.status !== 'complete') return {best, iterations};\n\n  for (let iteration = 0; iteration < iterationLimit; iteration++) {\n    const columns = [];\n    let valid = true;\n    for (let j = 0; j < initial.length; j++) {\n      const x = best.values[j];\n      const [lo, hi] = bounds[j];\n      const nominal = Math.max(1e-5, Math.abs(x) * 1e-4);\n      const central = x > lo && x < hi;\n      // Keep the second inward probe away from the opposite endpoint: using\n      // half the interval can round x + 2*h outside the declared bounds.\n      const h = central\n        ? Math.min(nominal, (x - lo) / 2, (hi - x) / 2)\n        : x === lo\n          ? Math.min(nominal, (hi - x) / 4)\n          : x === hi\n            ? -Math.min(nominal, (x - lo) / 4)\n            : 0;\n      if (!Number.isFinite(h) || h === 0 || x + h === x ||\n          (central ? x - h === x : x + 2 * h === x + h)) {\n        valid = false;\n        break;\n      }\n      const a = [...best.values], b = [...best.values];\n      a[j] += h;\n      b[j] += central ? -h : 2 * h;\n      if (a[j] < lo || a[j] > hi || b[j] < lo || b[j] > hi) {\n        valid = false;\n        break;\n      }\n      // Use the locations actually represented after addition. A requested h\n      // need not equal either displacement, even when both probes are distinct.\n      const da = a[j] - x, db = b[j] - x;\n      const geometryValid = Number.isFinite(da) && Number.isFinite(db) &&\n        da !== 0 && db !== 0 && da !== db && (central\n          ? da > 0 && db < 0\n          : x === lo ? da > 0 && db > da\n          : x === hi ? da < 0 && db < da : false);\n      if (!geometryValid) {\n        valid = false;\n        break;\n      }\n      const symmetric = central && da === -db;\n      const denominator = da - db;\n      let weight = 0;\n      if (symmetric) {\n        if (!Number.isFinite(denominator) || denominator === 0) {\n          valid = false;\n          break;\n        }\n      } else {\n        const magnitude = Math.max(Math.abs(da), Math.abs(db));\n        const ua = da / magnitude, ub = db / magnitude, delta = ub - ua;\n        weight = -ua / delta;\n        if (!Number.isFinite(magnitude) || magnitude <= 0 ||\n            !Number.isFinite(ua) || !Number.isFinite(ub) ||\n            ua === 0 || ub === 0 || !Number.isFinite(delta) || delta === 0 ||\n            !Number.isFinite(weight)) {\n          valid = false;\n          break;\n        }\n      }\n      const plus = evaluate(a), other = evaluate(b);\n      if (plus.status !== 'complete' || other.status !== 'complete') {\n        valid = false;\n        break;\n      }\n      // The quadratic through the actual three nodes has derivative\n      // first + weight * (second - first). Equal secants stay exactly equal.\n      // Finite geometry does not certify resolved or accurate residuals.\n      const column = plus.residuals.map((v, k) => {\n        if (symmetric) return (v - other.residuals[k]) / denominator;\n        const first = (v - best.residuals[k]) / da;\n        const second = (other.residuals[k] - best.residuals[k]) / db;\n        const difference = second - first;\n        return Number.isFinite(first) && Number.isFinite(second) &&\n          Number.isFinite(difference) ? first + weight * difference : NaN;\n      });\n      if (!column.every(Number.isFinite)) {\n        valid = false;\n        break;\n      }\n      columns.push(column);\n    }\n    if (!valid) {\n      iterations.push({iteration, status: 'jacobian_unresolved'});\n      break;\n    }\n\n    const gradients = columns.map(column =>\n      column.reduce((sum, v, k) => sum + v * best.residuals[k], 0));\n    if (!gradients.every(Number.isFinite)) {\n      iterations.push({iteration, status: 'jacobian_unresolved'});\n      break;\n    }\n    // Recompute the set every iteration. A bound coordinate must be released\n    // when changes in the other coordinates turn its descent direction inward.\n    const free = gradients.map((_, j) => j).filter(j => !(\n      (best.values[j] === bounds[j][0] && gradients[j] > 0) ||\n      (best.values[j] === bounds[j][1] && gradients[j] < 0)));\n    if (!free.length || free.every(j => gradients[j] === 0)) {\n      iterations.push({\n        iteration, status: 'projected_stationary', lambda, bestTrial: best.index,\n      });\n      break;\n    }\n\n    const scales = columns.map(column => Math.max(1e-12, Math.hypot(...column)));\n    let improved = false;\n    for (let attempt = 0; attempt < 4; attempt++) {\n      const augmented = free.map((j, k) => columns[j].concat(\n        Array.from({length: free.length}, (_, i) =>\n          i === k ? Math.sqrt(lambda) * scales[j] : 0)));\n      const fit = fitLinearColumns(\n        augmented, best.residuals.map(x => -x).concat(Array(free.length).fill(0)));\n      if (!fit) {\n        lambda *= 10;\n        continue;\n      }\n      const values = [...best.values];\n      free.forEach((j, k) => {\n        values[j] = Math.max(bounds[j][0],\n          Math.min(bounds[j][1], values[j] + fit.coefficients[k]));\n      });\n      const next = evaluate(values);\n      if (next.status === 'complete' && next.rmse < best.rmse) {\n        best = next;\n        lambda = Math.max(1e-9, lambda / 3);\n        improved = true;\n        break;\n      }\n      lambda *= 10;\n    }\n    iterations.push({\n      iteration, status: improved ? 'improved' : 'no_improvement',\n      lambda, bestTrial: best.index,\n    });\n  }\n  return {best, iterations};\n}\n",
+  "testSource": "import {test} from 'node:test';\nimport assert from 'node:assert/strict';\nimport {fitJointState} from '../src/joint-state/fit.mjs';\n\nfunction fixture() {\n  const seed = {\n    schema: 'worldlaw.angular-model/v1', id: 'rate+spring',\n    terms: [\n      {id: 'rate', coefficient: -.3, coefficientUnit: '1/s'},\n      {id: 'spring', coefficient: -3.6, coefficientUnit: '1/s²'},\n    ],\n    units: {position: 'rad', rate: 'rad/s', angularAcceleration: 'rad/s²'},\n    physicalInertia: null, absoluteTorqueIdentified: false,\n    scaleMeaning: 'angular_acceleration_only_absolute_torque_unknown',\n  };\n  const runs = [[1, .2], [-.7, -.1], [.5, 0]].map(([A, v], index) => {\n    const d = .1, w = Math.sqrt(4 - d * d), B = (v + d * A) / w;\n    return {\n      id: `independent-root-three-course-${'abc'[index]}`,\n      kind: 'synthetic', dynamics: 'unforced_scalar_rotation', inertia: null,\n      initialRate: v,\n      source: {label: 'Independent three-course analytic damped oscillator corroboration'},\n      rateObservation: {\n        unit: 'rad/s',\n        basis: 'Exact analytic derivative of the same authored trajectory',\n        dependence: 'not-assumed-independent',\n      },\n      samples: Array.from({length: 126}, (_, i) => {\n        const time = i * .04, c = A * Math.cos(w * time) + B * Math.sin(w * time);\n        return {\n          time,\n          position: Math.exp(-d * time) * c,\n          rate: Math.exp(-d * time) * (-d * c + w * (-A * Math.sin(w * time) + B * Math.cos(w * time))),\n        };\n      }),\n    };\n  });\n  const options = {\n    iterations: 8, maxStep: .02, screen: .001, rateScreen: .001,\n    bounds: [[-1, 0], [-3.85, -2]], maxTotalSteps: 4000000,\n    channelScales: {\n      positionRad: .1, rateRadPerSecond: .1,\n      basis: 'Declared equal numerical objective weights; not independent errors',\n    },\n  };\n  return {seed, runs, options};\n}\n\nfunction assertScreened(run, options) {\n  assert.equal(run.status, 'screened');\n  assert.equal(run.resolution.status, 'compared');\n  for (const [value, limit] of [\n    [run.resolution.maxAbsPositionDifference, options.screen],\n    [run.resolution.maxAbsRateDifference, options.rateScreen],\n  ]) {\n    assert.ok(Number.isFinite(value) && value >= 0 && value <= limit);\n  }\n}\n\ntest('joint supplied-position/rate fitting continues after a constrained spring hits its bound', () => {\n  const {seed, runs, options} = fixture();\n  const before = JSON.stringify({seed, runs, options});\n  const result = fitJointState(seed, runs, options);\n  assert.equal(JSON.stringify({seed, runs, options}), before);\n  assert.deepEqual(result.runs, runs);\n  assert.deepEqual(result.options, options);\n  assert.equal(result.maximumEvaluations, 65);\n  assert.deepEqual(result.reservation, {steps: 186810, rows: 24570});\n  assert.ok(result.trials.length <= result.maximumEvaluations);\n  for (const trial of result.trials) {\n    assert.equal(trial.values.length, options.bounds.length);\n    trial.values.forEach((value, j) => {\n      assert.ok(Number.isFinite(value) && value >= options.bounds[j][0] && value <= options.bounds[j][1]);\n    });\n  }\n  // The true spring coefficient is -4, outside this deliberately constrained box.\n  // Compare accepted fits, not finite-difference probes or a cached expected model.\n  const boundaryIteration = result.iterations.find(row =>\n    row.status === 'improved' && result.trials[row.bestTrial].values[1] === options.bounds[1][0]);\n  assert.ok(boundaryIteration, 'an accepted proposal must reach the declared spring bound');\n  const firstBoundary = result.trials[boundaryIteration.bestTrial];\n  assert.equal(firstBoundary.status, 'complete');\n  assert.equal(result.best.status, 'complete');\n  assert.ok(result.best.index > firstBoundary.index, 'the free rate coefficient must improve after bound entry');\n  assert.ok(result.iterations.some(row => row.iteration > boundaryIteration.iteration && row.status === 'improved'));\n  assert.equal(result.best.values[1], options.bounds[1][0]);\n  assert.ok(result.best.rmse < .9 * firstBoundary.rmse, 'continued fitting must materially reduce the declared weighted objective');\n  assert.equal(result.best.runs.length, runs.length);\n  for (const run of result.best.runs) {\n    const prior = firstBoundary.runs.find(row => row.id === run.id);\n    assert.ok(prior);\n    assertScreened(run, options);\n    assert.ok(run.positionRMSE < prior.positionRMSE, `${run.id}: position improves`);\n    assert.ok(run.suppliedRateRMSE < prior.suppliedRateRMSE, `${run.id}: supplied rate improves`);\n  }\n});\n\ntest('a passing position screen cannot admit a joint-state seed whose supplied-rate screen fails', () => {\n  const {seed, runs, options} = fixture();\n  options.rateScreen = 1e-16;\n  const before = JSON.stringify({seed, runs, options});\n  const result = fitJointState(seed, runs, options);\n  assert.equal(JSON.stringify({seed, runs, options}), before);\n  assert.deepEqual(result.runs, runs);\n  assert.equal(result.status, 'seed_unresolved');\n  assert.equal(result.model, null);\n  assert.equal(result.trials.length, 1);\n  assert.equal(result.best.status, 'incomplete');\n  assert.deepEqual(result.iterations, []);\n  assert.equal(result.maximumEvaluations, 65);\n  assert.deepEqual(result.reservation, {steps: 186810, rows: 24570});\n  assert.equal(result.trials[0].runs.length, runs.length);\n  for (const run of result.trials[0].runs) {\n    assert.equal(run.status, 'unresolved');\n    assert.equal(run.resolution.status, 'compared');\n    const position = run.resolution.maxAbsPositionDifference;\n    const rate = run.resolution.maxAbsRateDifference;\n    assert.ok(Number.isFinite(position) && position >= 0 && position <= options.screen);\n    assert.ok(Number.isFinite(rate) && rate > options.rateScreen);\n  }\n});\n"
+}
