@@ -1,0 +1,62 @@
+{
+  "schema": "hamon.worldlaw.clock-view-evidence/v1",
+  "source_commit": "d560abc8086c41ff018f7bab3e50d4b72866135d",
+  "entries": [
+    {
+      "path": "receipt.json",
+      "bytes": 21516,
+      "sha256": "ea367f78f95cb95f9cf9eecf76da656550855642f93f2472fdd509ad63e3e9ae",
+      "git_blob": "3c61e4a1d761fff86c021ce6430df7671f707653",
+      "mode": "100644"
+    },
+    {
+      "path": "command.sh",
+      "bytes": 9740,
+      "sha256": "dcb71191c66d0923b5846a969cbf4d5eb08ec3729b41450ae251b83331c70124",
+      "git_blob": "3bb5b6cf3123b7b4fcdec6ebb757b8f632c77b6a",
+      "mode": "100644"
+    },
+    {
+      "path": "resolve-original-core.mjs",
+      "bytes": 550,
+      "sha256": "3839f078b34fa505b325138831de337919032c3c07f6003a671e9fe54c7a30ab",
+      "git_blob": "edefcfacc38a4e7297a7f10280c9241b2ad69993",
+      "mode": "100644"
+    },
+    {
+      "path": "copy-admission-refusal.json",
+      "bytes": 1245,
+      "sha256": "f2d5fe2a640b4e44707b05ed78236da9a4abf1d0dc35e31d4f3048b317390d2a",
+      "git_blob": "653f6b73c4b27a95869e668c7932a353a815284d",
+      "mode": "100644"
+    },
+    {
+      "path": "source-publication-receiving.json",
+      "bytes": 1349,
+      "sha256": "8fe9df352e14a9a7a98d5f06934ce63f392cbb7023ce1ef77581d509abccb50a",
+      "git_blob": "4c3f2f843f2c17722948a6f6905f76d6a323ab5e",
+      "mode": "100644"
+    },
+    {
+      "path": "review-correction.patch",
+      "bytes": 2040,
+      "sha256": "f1c8a047d79ca4c5aa2e8d69d0f6d14db4d1a05f58121643d9aa7b5fd98366e0",
+      "git_blob": "198589d58d6c677b5144be8ee52cc17f272d8967",
+      "mode": "100644"
+    },
+    {
+      "path": "review-and-placement.json",
+      "bytes": 3043,
+      "sha256": "7e9e9152d953d2773ade267a67b1219f52a0211d1fcc9075475596f331bee649",
+      "git_blob": "99db82e4773c62d51c2e63f0de8d94caf6b91eb2",
+      "mode": "100644"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3847,
+      "sha256": "e15ec73f05fdbf7882e967b0e550f8068a84cabc75d97cc5da57350294500e14",
+      "git_blob": "f70c8b46ed9a753e0a4c692a37cd0da9b5a986c9",
+      "mode": "100644"
+    }
+  ]
+}

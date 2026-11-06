@@ -47,6 +47,16 @@ INCLUDE = (
     "evidence/local-motion-comparison-b93164ce/receipts/rejected_initial_history.json",
     "evidence/local-motion-comparison-b93164ce/receipts/source-publication.json",
     "evidence/local-motion-comparison-b93164ce/source-origins.json",
+    # Exact received PR612 shared-clock component evidence; no recursive admission.
+    "evidence/local-motion-clock-view-b93164ce/MANIFEST.json",
+    "evidence/local-motion-clock-view-b93164ce/README.md",
+    "evidence/local-motion-clock-view-b93164ce/command.sh",
+    "evidence/local-motion-clock-view-b93164ce/copy-admission-refusal.json",
+    "evidence/local-motion-clock-view-b93164ce/receipt.json",
+    "evidence/local-motion-clock-view-b93164ce/resolve-original-core.mjs",
+    "evidence/local-motion-clock-view-b93164ce/review-and-placement.json",
+    "evidence/local-motion-clock-view-b93164ce/review-correction.patch",
+    "evidence/local-motion-clock-view-b93164ce/source-publication-receiving.json",
     # Exact concurrent family-comparison evidence and its maintained test fixture.
     "docs/receipts/piecewise-families-20261028.json",
     "tests/piecewise-family-fixture.mjs",
