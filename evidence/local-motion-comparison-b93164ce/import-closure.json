@@ -1,0 +1,741 @@
+{
+  "status": "CORRECTED_STATIC_LITERAL_CLOSURE_VERIFIED_NO_EXECUTION",
+  "entry": "scripts/local-motion-comparison.mjs",
+  "module_count": 38,
+  "node_builtins": [
+    "node:crypto",
+    "node:fs",
+    "node:fs/promises"
+  ],
+  "files": [
+    {
+      "path": "scripts/local-motion-comparison.mjs",
+      "bytes": 5986,
+      "sha256": "12b1fb1070bb83bfdf4d6462f595145823571a602f0759b1e396f61dd4aabea2",
+      "git_blob": "9d175ae09ccd9a43a9e5a42d9fcbe0ffa7296192",
+      "mode": "0o644",
+      "origin": "authored"
+    },
+    {
+      "path": "src/data.mjs",
+      "bytes": 8566,
+      "sha256": "947d6798c256526cbf470c87636586b8bde56d22ce93f69bc58aa3909e4287e8",
+      "git_blob": "eb071484b0bb6e1baf99c7446864c73be94e73dc",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/experiment-design/interval-separation.mjs",
+      "bytes": 897,
+      "sha256": "ee9c3b3ecc36c7707ef0c680c41cff35068fae8d0be1927e80e19be277217496",
+      "git_blob": "2ec7ca13ca7d332aa03d92fabf4a1cf55d1d03f5",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/measurement-batch.mjs",
+      "bytes": 2906,
+      "sha256": "50d375b3e386d3e011e678c1ef558f5a2472a173834c4db902ea92632af0c5e1",
+      "git_blob": "00f26e4a9440644124399e7b675e7dd43c4c33a4",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/bounded-experiment-receipts.mjs",
+      "bytes": 1843,
+      "sha256": "09182bdc765c4112c0c8a3a335d692c4824a680570667cd3314b7b6a97fce753",
+      "git_blob": "d69d7d997523e50a0dffd2b6d5a96e80424849cc",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/bounded-scalar-plan.mjs",
+      "bytes": 3176,
+      "sha256": "e2551913ddc730fc642218258083c78b9a134f831547d273382da1f317ff6730",
+      "git_blob": "c22e534637b6fe907996ebccd31a83fb5536be02",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/centered-response.mjs",
+      "bytes": 2043,
+      "sha256": "452a2f54a6f518ea3c90752713ec37719c18dd512232987f80af95a7481ee140",
+      "git_blob": "4d087ec903143d8ce3f809700896a26ed0873772",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/continuation-fit.mjs",
+      "bytes": 4023,
+      "sha256": "adbd6e23c4dd540630136e61477aa8eb50ff68b8dcb34039737ace79fad148f9",
+      "git_blob": "bed254050f189a7800d54f8358b4ca28945899b5",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/curvature-fit.mjs",
+      "bytes": 5579,
+      "sha256": "073d1ad35528ba7fbf1787d4a89b4e41cc05ade9829443682780bcef5f6223dc",
+      "git_blob": "02f69d491473592f320ad5af93b138687673ecd3",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/experiment-receipts.mjs",
+      "bytes": 3232,
+      "sha256": "40b161bd9993c459ac0d2f387d9cc9ea10467fe4e7d17fc78553bb77a41f38f0",
+      "git_blob": "b1394ccd9d8f8eaf6f1e3ad0b7f229b79ac92808",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/heterogeneous-fit.mjs",
+      "bytes": 6319,
+      "sha256": "b603bd80e5362265460096ebb4026b29994741dfc6a2f6a90715d549ec1ebc61",
+      "git_blob": "9a1eb2c9abd3cd7e31bfd6ad779190d9fbd94fc8",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/input-enclosure.mjs",
+      "bytes": 6815,
+      "sha256": "91e4ee1624ddce208d47c1ed37ea12a93193e385d96c75c9d942eb22e582a3c8",
+      "git_blob": "630bb2e2b681823783a8f662aa3752eb9d13987d",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/input-excitation.mjs",
+      "bytes": 3465,
+      "sha256": "3afa62b28caf43708d9e664df5921eabcc5e9f8cb1f7b57a5949a48ce5b11dc5",
+      "git_blob": "ab6fe22bf0a239eb9f44da0889bdc519a716f46a",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/input-origin-fit.mjs",
+      "bytes": 3691,
+      "sha256": "962e49a33a83c64eb189bd787fbbfc947e76d5fb62418aacca050bad1558a794",
+      "git_blob": "bccef7dae4da8f97ee8ac46944d38e4985eab421",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/linear-fit.mjs",
+      "bytes": 2722,
+      "sha256": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+      "git_blob": "5fc92b53ed52ba96dc60b1235aea87bffc4e83ca",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/linear-reading-influences.mjs",
+      "bytes": 637,
+      "sha256": "190884787d18ee265f4b6b549f1fd5a2832f58d5aeb36561058e442fff3ab623",
+      "git_blob": "749671d8de2730caea27e54f346531390752d2d2",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/local-motion-comparison.mjs",
+      "bytes": 4629,
+      "sha256": "df5c7abeeb5941ffc5ff97f60d5841a140254fcf47e7c6976e0146e175396790",
+      "git_blob": "3d75f206d3d81af638554e45240f82334d9d2506",
+      "mode": "0o644",
+      "origin": "authored"
+    },
+    {
+      "path": "src/science/local-motion-response.mjs",
+      "bytes": 8267,
+      "sha256": "2b53c3c298652ad4279d6a473b7643a9c741a876e027f803dd0d51975834b057",
+      "git_blob": "57eca07e0c0906c2926740f1f327c18836dca05d",
+      "mode": "0o644",
+      "origin": "producer-f54aa52035a420c9516d38a0ed78c4b9628e82ca"
+    },
+    {
+      "path": "src/science/output-grid.mjs",
+      "bytes": 445,
+      "sha256": "e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d",
+      "git_blob": "317307c13ef13d148a6bb9b24e4efb123884e227",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/parameter-sensitivity.mjs",
+      "bytes": 2914,
+      "sha256": "8427b254df705afa64cb6834452a26036d33b7081a90a263129fc3e894951781",
+      "git_blob": "384e1837a6d5560b8ff148160b30691a40c1b9fb",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/periodic-origin-model.mjs",
+      "bytes": 2697,
+      "sha256": "bae5062b42be21533038876305e255c4d7857f6a447b49a734db4ccec85ec667",
+      "git_blob": "75031db36771e7b08e8e4c09db59bfca1239399d",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/periodic-trig.mjs",
+      "bytes": 1783,
+      "sha256": "53233d010e52c47f31ef4b2ef1f40921a27c8008ab59f47772e7208c1141b39e",
+      "git_blob": "60feb4f8ebc85615e2ee76190ae259a58d3cda22",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/prediction-sensitivity.mjs",
+      "bytes": 4440,
+      "sha256": "f6922003443fa247372f2703bb8d156f80dd9307d506cc2246a74b05da03eb49",
+      "git_blob": "fc593d94dc58f7ff88a6d915c7028c9f213b5e14",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/remaining-overlap.mjs",
+      "bytes": 1787,
+      "sha256": "6b81ebfea58ed2da97ac0667e8ccaeb63c1209d655d5ed85a5b2da8bdd7456c5",
+      "git_blob": "61be192ccbb2207b36a7237fa664adcb053d9f6a",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/robust-budget-probe.mjs",
+      "bytes": 5829,
+      "sha256": "01085e832ac647c2836a03f0287f7ee056ed7f5d31073d7021975a7f5475c5f2",
+      "git_blob": "7b990502a8172c3a4ae861c2087352e159c9ee43",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/robust-fit-research.mjs",
+      "bytes": 5808,
+      "sha256": "fa1737ec744c993f5206453e9ee004a6a21ec25ada1a98655b94f79c9813b39a",
+      "git_blob": "d0901bccef6d05660dfd82e179837dd5e4b7a1ce",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/robust-fit.mjs",
+      "bytes": 5720,
+      "sha256": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1",
+      "git_blob": "37c20230887d1d3b9f387f930ba89443ded7717b",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/scalar-challenge.mjs",
+      "bytes": 1088,
+      "sha256": "bf267c9b5718ce49af108798d6a20c4a1b34a10cce93447273b68a7dbf13c8b7",
+      "git_blob": "cbe7f92ed2072a7199d46daaa4e30bd39ecd0cbf",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/scalar-question.mjs",
+      "bytes": 2760,
+      "sha256": "f4c44f24866415287fe10d234a4ec41e2b8626d2b0fdede38ffc0ef7a902a11f",
+      "git_blob": "a8161a0708ea6c3cea408ebb7f9bc5aa5a46d9f0",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/shared-iteration-fit.mjs",
+      "bytes": 3661,
+      "sha256": "fb8cd447cfdbaf9c9d413814300a0824a8a3658e55d9c3a0529fd1df379447f2",
+      "git_blob": "8fb77d1899286c4d6b1a20115c5f15d16d297f36",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/split-column.mjs",
+      "bytes": 416,
+      "sha256": "42da6cbad9534b616a32920e0381425a487c1cd18a16ce9159d78964f54df148",
+      "git_blob": "b9ae21874ed8deb50608deb6f4c147f5dc2e1cda",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/split-multicolumn.mjs",
+      "bytes": 511,
+      "sha256": "f722c70391cb2d31fd6ff5596fe7933eb1fd58ee1a5f93813f675f4a16023998",
+      "git_blob": "24d765fe79ed75e77c57a58c5d4903c2cd6affde",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/studio-dynamics-comparison.mjs",
+      "bytes": 9210,
+      "sha256": "4ded80f10fd7ed0c1deb91f35125d1432e69f9f2fc8b1dbf5ccf29aa31c7976f",
+      "git_blob": "75d30c89f27a4c308be5c75f91dee1f89c3d5cdc",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/studio-dynamics.mjs",
+      "bytes": 8563,
+      "sha256": "4b56436f4f7c359e226a99cb60e90d2a0c320a7c2909139e75aa221a6d7cbe00",
+      "git_blob": "ae974e953292bfca6720c350e1ba604f315442b5",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/torque-discovery.mjs",
+      "bytes": 48143,
+      "sha256": "c50f0fe60bb315b894b5060e01706b49c5ef671da59a6515b01507f9c236f518",
+      "git_blob": "ad2762938cf96bc986a6db2e6d670924a5233795",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/training-response-plan.mjs",
+      "bytes": 4628,
+      "sha256": "61bfb3606278edd5dad2f2c9145d5450aefa384c843c2c7244673ac2e21d1dd7",
+      "git_blob": "44dfdb3d0d636c4dbf05f0bdbe7b64659f993193",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/virtual-lab.mjs",
+      "bytes": 2557,
+      "sha256": "6cb1149de3a7f9e7c752fc3ae4849c92462987148d4875d8e58e41ad2656a9d2",
+      "git_blob": "00eff869a58ebb96c4a4ecb91bd5fac33d76c12d",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/session.mjs",
+      "bytes": 31020,
+      "sha256": "47cb5facf3ebf614ab617d3d9cc99ed97f6be831c1a9b925790c1bcfd9282237",
+      "git_blob": "a6c689803ff7a518e095bc6c414eea1e964ec974",
+      "mode": "0o644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    }
+  ],
+  "edges": [
+    {
+      "from": "scripts/local-motion-comparison.mjs",
+      "specifier": "../src/science/local-motion-comparison.mjs",
+      "to": "src/science/local-motion-comparison.mjs"
+    },
+    {
+      "from": "scripts/local-motion-comparison.mjs",
+      "specifier": "../src/science/output-grid.mjs",
+      "to": "src/science/output-grid.mjs"
+    },
+    {
+      "from": "scripts/local-motion-comparison.mjs",
+      "specifier": "../src/session.mjs",
+      "to": "src/session.mjs"
+    },
+    {
+      "from": "src/measurement-batch.mjs",
+      "specifier": "./data.mjs",
+      "to": "src/data.mjs"
+    },
+    {
+      "from": "src/science/bounded-experiment-receipts.mjs",
+      "specifier": "./input-enclosure.mjs",
+      "to": "src/science/input-enclosure.mjs"
+    },
+    {
+      "from": "src/science/bounded-scalar-plan.mjs",
+      "specifier": "../experiment-design/interval-separation.mjs",
+      "to": "src/experiment-design/interval-separation.mjs"
+    },
+    {
+      "from": "src/science/bounded-scalar-plan.mjs",
+      "specifier": "./input-enclosure.mjs",
+      "to": "src/science/input-enclosure.mjs"
+    },
+    {
+      "from": "src/science/bounded-scalar-plan.mjs",
+      "specifier": "./remaining-overlap.mjs",
+      "to": "src/science/remaining-overlap.mjs"
+    },
+    {
+      "from": "src/science/bounded-scalar-plan.mjs",
+      "specifier": "./torque-discovery.mjs",
+      "to": "src/science/torque-discovery.mjs"
+    },
+    {
+      "from": "src/science/centered-response.mjs",
+      "specifier": "./robust-fit.mjs",
+      "to": "src/science/robust-fit.mjs"
+    },
+    {
+      "from": "src/science/continuation-fit.mjs",
+      "specifier": "./linear-fit.mjs",
+      "to": "src/science/linear-fit.mjs"
+    },
+    {
+      "from": "src/science/continuation-fit.mjs",
+      "specifier": "./robust-fit-research.mjs",
+      "to": "src/science/robust-fit-research.mjs"
+    },
+    {
+      "from": "src/science/continuation-fit.mjs",
+      "specifier": "./split-multicolumn.mjs",
+      "to": "src/science/split-multicolumn.mjs"
+    },
+    {
+      "from": "src/science/curvature-fit.mjs",
+      "specifier": "./linear-fit.mjs",
+      "to": "src/science/linear-fit.mjs"
+    },
+    {
+      "from": "src/science/curvature-fit.mjs",
+      "specifier": "./robust-budget-probe.mjs",
+      "to": "src/science/robust-budget-probe.mjs"
+    },
+    {
+      "from": "src/science/curvature-fit.mjs",
+      "specifier": "./split-multicolumn.mjs",
+      "to": "src/science/split-multicolumn.mjs"
+    },
+    {
+      "from": "src/science/experiment-receipts.mjs",
+      "specifier": "./torque-discovery.mjs",
+      "to": "src/science/torque-discovery.mjs"
+    },
+    {
+      "from": "src/science/heterogeneous-fit.mjs",
+      "specifier": "./linear-fit.mjs",
+      "to": "src/science/linear-fit.mjs"
+    },
+    {
+      "from": "src/science/heterogeneous-fit.mjs",
+      "specifier": "./robust-budget-probe.mjs",
+      "to": "src/science/robust-budget-probe.mjs"
+    },
+    {
+      "from": "src/science/heterogeneous-fit.mjs",
+      "specifier": "./split-multicolumn.mjs",
+      "to": "src/science/split-multicolumn.mjs"
+    },
+    {
+      "from": "src/science/input-enclosure.mjs",
+      "specifier": "./torque-discovery.mjs",
+      "to": "src/science/torque-discovery.mjs"
+    },
+    {
+      "from": "src/science/input-excitation.mjs",
+      "specifier": "../data.mjs",
+      "to": "src/data.mjs"
+    },
+    {
+      "from": "src/science/input-excitation.mjs",
+      "specifier": "./linear-fit.mjs",
+      "to": "src/science/linear-fit.mjs"
+    },
+    {
+      "from": "src/science/input-excitation.mjs",
+      "specifier": "./torque-discovery.mjs",
+      "to": "src/science/torque-discovery.mjs"
+    },
+    {
+      "from": "src/science/input-origin-fit.mjs",
+      "specifier": "./heterogeneous-fit.mjs",
+      "to": "src/science/heterogeneous-fit.mjs"
+    },
+    {
+      "from": "src/science/input-origin-fit.mjs",
+      "specifier": "./robust-budget-probe.mjs",
+      "to": "src/science/robust-budget-probe.mjs"
+    },
+    {
+      "from": "src/science/input-origin-fit.mjs",
+      "specifier": "./split-column.mjs",
+      "to": "src/science/split-column.mjs"
+    },
+    {
+      "from": "src/science/input-origin-fit.mjs",
+      "specifier": "./split-multicolumn.mjs",
+      "to": "src/science/split-multicolumn.mjs"
+    },
+    {
+      "from": "src/science/linear-reading-influences.mjs",
+      "specifier": "./linear-fit.mjs",
+      "to": "src/science/linear-fit.mjs"
+    },
+    {
+      "from": "src/science/local-motion-comparison.mjs",
+      "specifier": "./local-motion-response.mjs",
+      "to": "src/science/local-motion-response.mjs"
+    },
+    {
+      "from": "src/science/local-motion-comparison.mjs",
+      "specifier": "./studio-dynamics-comparison.mjs",
+      "to": "src/science/studio-dynamics-comparison.mjs"
+    },
+    {
+      "from": "src/science/local-motion-response.mjs",
+      "specifier": "./torque-discovery.mjs",
+      "to": "src/science/torque-discovery.mjs"
+    },
+    {
+      "from": "src/science/parameter-sensitivity.mjs",
+      "specifier": "./linear-fit.mjs",
+      "to": "src/science/linear-fit.mjs"
+    },
+    {
+      "from": "src/science/parameter-sensitivity.mjs",
+      "specifier": "./linear-reading-influences.mjs",
+      "to": "src/science/linear-reading-influences.mjs"
+    },
+    {
+      "from": "src/science/parameter-sensitivity.mjs",
+      "specifier": "./torque-discovery.mjs",
+      "to": "src/science/torque-discovery.mjs"
+    },
+    {
+      "from": "src/science/periodic-origin-model.mjs",
+      "specifier": "./periodic-trig.mjs",
+      "to": "src/science/periodic-trig.mjs"
+    },
+    {
+      "from": "src/science/periodic-origin-model.mjs",
+      "specifier": "./split-column.mjs",
+      "to": "src/science/split-column.mjs"
+    },
+    {
+      "from": "src/science/periodic-origin-model.mjs",
+      "specifier": "./torque-discovery.mjs",
+      "to": "src/science/torque-discovery.mjs"
+    },
+    {
+      "from": "src/science/periodic-trig.mjs",
+      "specifier": "./split-column.mjs",
+      "to": "src/science/split-column.mjs"
+    },
+    {
+      "from": "src/science/prediction-sensitivity.mjs",
+      "specifier": "./parameter-sensitivity.mjs",
+      "to": "src/science/parameter-sensitivity.mjs"
+    },
+    {
+      "from": "src/science/prediction-sensitivity.mjs",
+      "specifier": "./torque-discovery.mjs",
+      "to": "src/science/torque-discovery.mjs"
+    },
+    {
+      "from": "src/science/robust-budget-probe.mjs",
+      "specifier": "./linear-fit.mjs",
+      "to": "src/science/linear-fit.mjs"
+    },
+    {
+      "from": "src/science/robust-fit-research.mjs",
+      "specifier": "./linear-fit.mjs",
+      "to": "src/science/linear-fit.mjs"
+    },
+    {
+      "from": "src/science/robust-fit.mjs",
+      "specifier": "./linear-fit.mjs",
+      "to": "src/science/linear-fit.mjs"
+    },
+    {
+      "from": "src/science/scalar-challenge.mjs",
+      "specifier": "./experiment-receipts.mjs",
+      "to": "src/science/experiment-receipts.mjs"
+    },
+    {
+      "from": "src/science/scalar-question.mjs",
+      "specifier": "./bounded-experiment-receipts.mjs",
+      "to": "src/science/bounded-experiment-receipts.mjs"
+    },
+    {
+      "from": "src/science/scalar-question.mjs",
+      "specifier": "./training-response-plan.mjs",
+      "to": "src/science/training-response-plan.mjs"
+    },
+    {
+      "from": "src/science/shared-iteration-fit.mjs",
+      "specifier": "./linear-fit.mjs",
+      "to": "src/science/linear-fit.mjs"
+    },
+    {
+      "from": "src/science/shared-iteration-fit.mjs",
+      "specifier": "./robust-budget-probe.mjs",
+      "to": "src/science/robust-budget-probe.mjs"
+    },
+    {
+      "from": "src/science/shared-iteration-fit.mjs",
+      "specifier": "./split-multicolumn.mjs",
+      "to": "src/science/split-multicolumn.mjs"
+    },
+    {
+      "from": "src/science/split-multicolumn.mjs",
+      "specifier": "./split-column.mjs",
+      "to": "src/science/split-column.mjs"
+    },
+    {
+      "from": "src/science/studio-dynamics-comparison.mjs",
+      "specifier": "./output-grid.mjs",
+      "to": "src/science/output-grid.mjs"
+    },
+    {
+      "from": "src/science/studio-dynamics-comparison.mjs",
+      "specifier": "./studio-dynamics.mjs",
+      "to": "src/science/studio-dynamics.mjs"
+    },
+    {
+      "from": "src/science/studio-dynamics.mjs",
+      "specifier": "./output-grid.mjs",
+      "to": "src/science/output-grid.mjs"
+    },
+    {
+      "from": "src/science/studio-dynamics.mjs",
+      "specifier": "./torque-discovery.mjs",
+      "to": "src/science/torque-discovery.mjs"
+    },
+    {
+      "from": "src/science/torque-discovery.mjs",
+      "specifier": "./centered-response.mjs",
+      "to": "src/science/centered-response.mjs"
+    },
+    {
+      "from": "src/science/torque-discovery.mjs",
+      "specifier": "./continuation-fit.mjs",
+      "to": "src/science/continuation-fit.mjs"
+    },
+    {
+      "from": "src/science/torque-discovery.mjs",
+      "specifier": "./curvature-fit.mjs",
+      "to": "src/science/curvature-fit.mjs"
+    },
+    {
+      "from": "src/science/torque-discovery.mjs",
+      "specifier": "./heterogeneous-fit.mjs",
+      "to": "src/science/heterogeneous-fit.mjs"
+    },
+    {
+      "from": "src/science/torque-discovery.mjs",
+      "specifier": "./input-origin-fit.mjs",
+      "to": "src/science/input-origin-fit.mjs"
+    },
+    {
+      "from": "src/science/torque-discovery.mjs",
+      "specifier": "./linear-fit.mjs",
+      "to": "src/science/linear-fit.mjs"
+    },
+    {
+      "from": "src/science/torque-discovery.mjs",
+      "specifier": "./output-grid.mjs",
+      "to": "src/science/output-grid.mjs"
+    },
+    {
+      "from": "src/science/torque-discovery.mjs",
+      "specifier": "./periodic-origin-model.mjs",
+      "to": "src/science/periodic-origin-model.mjs"
+    },
+    {
+      "from": "src/science/torque-discovery.mjs",
+      "specifier": "./robust-fit.mjs",
+      "to": "src/science/robust-fit.mjs"
+    },
+    {
+      "from": "src/science/torque-discovery.mjs",
+      "specifier": "./shared-iteration-fit.mjs",
+      "to": "src/science/shared-iteration-fit.mjs"
+    },
+    {
+      "from": "src/science/torque-discovery.mjs",
+      "specifier": "./split-multicolumn.mjs",
+      "to": "src/science/split-multicolumn.mjs"
+    },
+    {
+      "from": "src/science/training-response-plan.mjs",
+      "specifier": "../experiment-design/interval-separation.mjs",
+      "to": "src/experiment-design/interval-separation.mjs"
+    },
+    {
+      "from": "src/science/training-response-plan.mjs",
+      "specifier": "./prediction-sensitivity.mjs",
+      "to": "src/science/prediction-sensitivity.mjs"
+    },
+    {
+      "from": "src/science/training-response-plan.mjs",
+      "specifier": "./torque-discovery.mjs",
+      "to": "src/science/torque-discovery.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./data.mjs",
+      "to": "src/data.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./measurement-batch.mjs",
+      "to": "src/measurement-batch.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./science/bounded-experiment-receipts.mjs",
+      "to": "src/science/bounded-experiment-receipts.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./science/bounded-scalar-plan.mjs",
+      "to": "src/science/bounded-scalar-plan.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./science/experiment-receipts.mjs",
+      "to": "src/science/experiment-receipts.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./science/input-enclosure.mjs",
+      "to": "src/science/input-enclosure.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./science/input-excitation.mjs",
+      "to": "src/science/input-excitation.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./science/scalar-challenge.mjs",
+      "to": "src/science/scalar-challenge.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./science/scalar-question.mjs",
+      "to": "src/science/scalar-question.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./science/torque-discovery.mjs",
+      "to": "src/science/torque-discovery.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./science/training-response-plan.mjs",
+      "to": "src/science/training-response-plan.mjs"
+    },
+    {
+      "from": "src/session.mjs",
+      "specifier": "./science/virtual-lab.mjs",
+      "to": "src/science/virtual-lab.mjs"
+    }
+  ],
+  "scanner": "literal static import/export-from with optional whitespace; literal dynamic imports; not a general JavaScript parser",
+  "correction": {
+    "prior_report": "/dev/shm/b93164ce-worldlaw-local-comparison-01/import-closure.superseded-37.json",
+    "prior_sha256": "e73624b7707d2737d1183fc2582489e68c867dceb351f226e750a3dfe6871244",
+    "prior_module_count": 37,
+    "corrected_module_count": 38,
+    "reason": "Old scanner required whitespace in static import/from syntax and omitted a CLI-reachable literal edge.",
+    "missed_edge": {
+      "from": "src/science/periodic-origin-model.mjs",
+      "line": 4,
+      "text": "import{add,mul,neg,trigPair}from'./periodic-trig.mjs';",
+      "to": "src/science/periodic-trig.mjs"
+    },
+    "recovered_by": "research_source exact main blob",
+    "core_cli_test_unchanged": true,
+    "execution": false
+  },
+  "producer_adoption_or_merge_claim": false
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "worldlaw.comparison-inputs/v1",
+  "sourceCommit": "553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9",
+  "recipeGitBlob": "8b7f7f3f9debeeef10caac270a859ba46e7c3ef8",
+  "generatorSha256": "483668bb45b983a5be8ca411ea556eccb3e747c0a86e4afbfcb573f25791b5f6",
+  "sourceRoot": "/dev/shm/b93164ce-worldlaw-local-comparison-01/source",
+  "sourcePins": [
+    {
+      "path": "src/session.mjs",
+      "gitBlob": "a6c689803ff7a518e095bc6c414eea1e964ec974",
+      "bytes": 31020,
+      "sha256": "47cb5facf3ebf614ab617d3d9cc99ed97f6be831c1a9b925790c1bcfd9282237"
+    },
+    {
+      "path": "src/science/library-proposal.mjs",
+      "gitBlob": "d74813f24186fc525bbf8949678169a0f31ca386",
+      "bytes": 3559,
+      "sha256": "e17d6af1b888506d9ba289df49c5f6811d273c7237a947cfd39f90b6b31e1ec4"
+    }
+  ],
+  "files": [
+    {
+      "path": "current-two-laws.json",
+      "bytes": 18127,
+      "sha256": "5d700e314b54c90677ada8e74a84556634934cb21f99dbaa1f8fc518a6c6c0a1"
+    },
+    {
+      "path": "after-measurement.json",
+      "bytes": 18356,
+      "sha256": "dab70f9c454efee38175d1f96dd7dcea8bbf2c00000ad87500eb79d7a9867050"
+    }
+  ],
+  "initialObservations": 97,
+  "afterObservations": 98,
+  "currentCompetitiveCount": 2,
+  "afterCurrentCompetitiveCount": 1,
+  "historicalCompetitiveCount": 2,
+  "eventArrayIndex": 1,
+  "historyIndex": 2,
+  "negativeHistoryIndex": 0,
+  "sourcePinsUnchanged": true,
+  "cliExecuted": false,
+  "interpretation": "Maintained authored synthetic control, not physical acquisition."
+}

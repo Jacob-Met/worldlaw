@@ -1,0 +1,209 @@
+{
+  "schema": "hamon.worldlaw.local-motion-evidence/v1",
+  "source_commit": "1293d3b30cad9b285e04fe51e2c5815144b3079d",
+  "entries": [
+    {
+      "path": "receipts/component.json",
+      "mode": "100644",
+      "bytes": 19125,
+      "sha256": "6ccb4d286ed906f56c7757f3051bdd45373614ad239e2d3ebea4345b9b124200",
+      "git_blob": "424fa9c868923c33d0ad00d773fb3041f4c63d02"
+    },
+    {
+      "path": "commands/component.sh",
+      "mode": "100644",
+      "bytes": 5732,
+      "sha256": "b8b1fc4b4f208886ab213406ddad998da2aefaea7da38993b4f37318762939af",
+      "git_blob": "f5472fbeaa388178dab064e0e7cb483529645db2"
+    },
+    {
+      "path": "receipts/existing-notebook.json",
+      "mode": "100644",
+      "bytes": 39029,
+      "sha256": "e8cc74760a0a16152e9e5c11def1c046033d404e9b32fd390aa8c7f922a1d71a",
+      "git_blob": "cc5ebe9af8b563deda993b664e29a66a2b84e5e2"
+    },
+    {
+      "path": "commands/existing-notebook.sh",
+      "mode": "100644",
+      "bytes": 7707,
+      "sha256": "7cf18d1fca97e534c5b37155d65e0eb4439ea26ca60134220021e7dd1e0bb2ad",
+      "git_blob": "4ea5ed2fe350859ceb92a1879e4bb09d095f2770"
+    },
+    {
+      "path": "receipts/generator.json",
+      "mode": "100644",
+      "bytes": 20864,
+      "sha256": "21a11bec5f0c2f225cb1761788be105d7238bcd311a349ea000004abe635f1aa",
+      "git_blob": "d6c86ce09a6c102d7c0a9755352c9f2ac69af25c"
+    },
+    {
+      "path": "commands/generator.sh",
+      "mode": "100644",
+      "bytes": 6990,
+      "sha256": "5ac48be2349ac1db10b1edd844d9e7a65cf052ed84b3e2a74855c9c5599c5262",
+      "git_blob": "917abc6ef2213cca85ae9fc611cc41634cf52380"
+    },
+    {
+      "path": "receipts/current_two_laws.json",
+      "mode": "100644",
+      "bytes": 49124,
+      "sha256": "9ea186159393052890876128fa24d39bb030ab0ee59274a63a344259c33e19f9",
+      "git_blob": "f50cd1cd503ec63af00fbed58fef2e2df091294c"
+    },
+    {
+      "path": "commands/current_two_laws.sh",
+      "mode": "100644",
+      "bytes": 9829,
+      "sha256": "aa80a4fdbd173756e289f763d0f6b7a3b10eb9c2a04fb9cdb018e70e48cfe09a",
+      "git_blob": "21c3485a33dc438ef0b029eeb1468e79e44ebb52"
+    },
+    {
+      "path": "receipts/historical_two_laws.json",
+      "mode": "100644",
+      "bytes": 12053,
+      "sha256": "636885ce1efab8285db14d8dc6bb4bc1284e621c061b16260ee9661aeea70ab9",
+      "git_blob": "cd7f479562a85d86485444b7ea8d3ddc09eb0f75"
+    },
+    {
+      "path": "commands/historical_two_laws.sh",
+      "mode": "100644",
+      "bytes": 9886,
+      "sha256": "473480804a71b9d17511befa0c402ab374e0fc4d815fec6462a61cdde78edc29",
+      "git_blob": "d56131431a55e9a088ddfe0aa7369f1c7c3d1a08"
+    },
+    {
+      "path": "receipts/rejected_initial_history.json",
+      "mode": "100644",
+      "bytes": 2659,
+      "sha256": "dd24ca53780a23eaba26ea6bf2c47d62ab86b568d241ffe349da26289546d427",
+      "git_blob": "456d96adb176b5f1f84eb5425749b30c4f0cdbb7"
+    },
+    {
+      "path": "commands/rejected_initial_history.sh",
+      "mode": "100644",
+      "bytes": 9871,
+      "sha256": "a041296e75a3dfea6ff7dde774bb8efa17c6880ef9f0384b3680b5a6d20b9c2e",
+      "git_blob": "ff0305a816cecff96d73efb3e078c2849498cb6c"
+    },
+    {
+      "path": "receipts/rejected_fractional_index.json",
+      "mode": "100644",
+      "bytes": 2761,
+      "sha256": "a428fd4a0fc906f272f7f8f480b2edfd88ec02520be65e4e0a3c47b1662261b1",
+      "git_blob": "016e35bf327697ba7c7056ed235b71e115a05221"
+    },
+    {
+      "path": "commands/rejected_fractional_index.sh",
+      "mode": "100644",
+      "bytes": 9918,
+      "sha256": "35a229886e2fb58ed013ab61029cc9e7c1c1fcb5e5c1602f48ac4d9f3bf06ef8",
+      "git_blob": "3c32b5eb3b38f1285562b68937bdc46314934910"
+    },
+    {
+      "path": "receipts/cross-notebook-comparison.json",
+      "mode": "100644",
+      "bytes": 2446,
+      "sha256": "8ed97a891ef624b1de57c509920e36dbd20144e2e9cbc6a351624e6dcad19aa2",
+      "git_blob": "ed31f057ce73980bf49455aaf3b73caf277eb903"
+    },
+    {
+      "path": "receipts/prelaunch-refusals.json",
+      "mode": "100644",
+      "bytes": 20020,
+      "sha256": "a59da5aaf658896ead6ad68f3d3c1289b34bf70530843a897593ace5f9f52af6",
+      "git_blob": "0383994740f94a239109fd77e4155abce06c5d81"
+    },
+    {
+      "path": "source-origins.json",
+      "mode": "100644",
+      "bytes": 14327,
+      "sha256": "905362d8099b2cf7d8c6c9cf3f5180c634e53aa415c756748de5a734dca082f1",
+      "git_blob": "9f27c79e3f87b752f294d95027f948e5d9523f83"
+    },
+    {
+      "path": "candidate-pins.json",
+      "mode": "100644",
+      "bytes": 1059,
+      "sha256": "307b39c6115e06a739379c0624465ac7b021c89f4e6eaeb4941797e862e6c5e6",
+      "git_blob": "af4ebbf4d528cbf8b24d594db336d306c2367376"
+    },
+    {
+      "path": "import-closure.json",
+      "mode": "100644",
+      "bytes": 25683,
+      "sha256": "106a5bb167266ff98c9b386de85a13f54aca6bc8b91fa58afc75be441108f2b2",
+      "git_blob": "4cb82e688ed957829f53f1d7c3113d45ac63883a"
+    },
+    {
+      "path": "closure-correction.json",
+      "mode": "100644",
+      "bytes": 683,
+      "sha256": "f4c25692123040cbc31a5ff4a5c0168104313d91edbe222c6ba9ccdb52c779f4",
+      "git_blob": "36a16afd342f1853d519e47cf6bb1a77cb30f9eb"
+    },
+    {
+      "path": "generator-closure-receipt.json",
+      "mode": "100644",
+      "bytes": 7491,
+      "sha256": "1c79b7bb34721fdcf18e0f449186a8292d57fb88dca43e222656a1fdd06edd0f",
+      "git_blob": "cdc7fb83eaa3205c6773fa19b00031d411403c2a"
+    },
+    {
+      "path": "receipts/source-publication.json",
+      "mode": "100644",
+      "bytes": 2233,
+      "sha256": "c6e30745819462cb4f1f4e4f0c9b9ec47b9cb3f2ba89734418cf6aafcbad41f8",
+      "git_blob": "1aa5ee53d1cabf98a299730e48414a393cca9acc"
+    },
+    {
+      "path": "fixture/generate-inputs.mjs",
+      "mode": "100644",
+      "bytes": 4480,
+      "sha256": "483668bb45b983a5be8ca411ea556eccb3e747c0a86e4afbfcb573f25791b5f6",
+      "git_blob": "41e157f72209a0e9673664dfce8ead9f35d0a0d5"
+    },
+    {
+      "path": "fixture/maintained-competitive-library.test.mjs",
+      "mode": "100644",
+      "bytes": 3941,
+      "sha256": "4e45131ae50faae0ac044db5d82db3e65814c5febbaa81ffec74a8cd492acdfb",
+      "git_blob": "8b7f7f3f9debeeef10caac270a859ba46e7c3ef8"
+    },
+    {
+      "path": "inputs/current-two-laws.json",
+      "mode": "100644",
+      "bytes": 18127,
+      "sha256": "5d700e314b54c90677ada8e74a84556634934cb21f99dbaa1f8fc518a6c6c0a1",
+      "git_blob": "5dde3b4c1180bf1a9f571517c9619d73be11ab19"
+    },
+    {
+      "path": "inputs/after-measurement.json",
+      "mode": "100644",
+      "bytes": 18356,
+      "sha256": "dab70f9c454efee38175d1f96dd7dcea8bbf2c00000ad87500eb79d7a9867050",
+      "git_blob": "d3531c5470c213725530cdeefd94def91c1cfa0d"
+    },
+    {
+      "path": "inputs/generator-manifest.json",
+      "mode": "100644",
+      "bytes": 1506,
+      "sha256": "17101a8383b1b828f3cf28346b6077baecc4716c380a0fd662982451a5f3cc0c",
+      "git_blob": "af0bd876f58d4c001d5d604c8afca2a4e765e316"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "bytes": 6707,
+      "sha256": "8eb7ebd2ae06218a0cf49440add68c6d5c3d278ae4ccc51cf7f24b9fa5dd01cb",
+      "git_blob": "1ff8df27cc0927929a491c022dd0ab18dc080453"
+    },
+    {
+      "path": "receipts/evidence-storage.json",
+      "mode": "100644",
+      "bytes": 740,
+      "sha256": "a5986a629ba1535c18d0c2631feca258405272ed4f5bb43f8ad5caa712f044a5",
+      "git_blob": "890afde0bedb8ae09659ff2e36e3824238c04e15"
+    }
+  ]
+}
