@@ -1,0 +1,33 @@
+{
+  "status": "SOURCE_ONLY_NOT_EXECUTED",
+  "files": [
+    {
+      "path": "src/science/local-motion-comparison.mjs",
+      "bytes": 4629,
+      "sha256": "df5c7abeeb5941ffc5ff97f60d5841a140254fcf47e7c6976e0146e175396790",
+      "git_blob": "3d75f206d3d81af638554e45240f82334d9d2506",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/local-motion-comparison.mjs",
+      "bytes": 5986,
+      "sha256": "12b1fb1070bb83bfdf4d6462f595145823571a602f0759b1e396f61dd4aabea2",
+      "git_blob": "9d175ae09ccd9a43a9e5a42d9fcbe0ffa7296192",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/LOCAL_MOTION_COMPARISON.md",
+      "bytes": 5205,
+      "sha256": "c11aadbb7a7dca805b686ce91425f94e2d2671fb6e786a471c2cb839bba1370e",
+      "git_blob": "7b130907904a814c1e9f6e057ddd1cfc9a82030e",
+      "mode": "100644"
+    },
+    {
+      "path": "README.md",
+      "bytes": 52786,
+      "sha256": "01a54b7402f08ae1f0e1ec41799cd89c8f3d8329aba97619ed264f311eba4b3e",
+      "git_blob": "1d5235523b0dc26b99ac19c49ef3b9940f52d0ec",
+      "mode": "100644"
+    }
+  ]
+}

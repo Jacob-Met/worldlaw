@@ -1,0 +1,18 @@
+{
+  "first_attempt": {
+    "stage": "before_process_creation",
+    "error": "exec-server rejected request (-32603): Argument list too long (os error 7)",
+    "execution_started": false,
+    "filesystem_effects": false,
+    "next_action": "Split exact payload into bounded sequential requests without changing receiving evidence."
+  },
+  "bounded_attempt": {
+    "chunk_id": "98066a",
+    "wall_time_seconds": 0.000026159,
+    "exit_code": 1,
+    "original_token_count": 19,
+    "output": "{\"status\": \"REFUSED_BEFORE_WRITE\", \"free\": 8966144, \"required\": 10120665}\n"
+  },
+  "root_created": false,
+  "chosen_storage": "Direct Git tree from retained original memory receipts and read-only existing local inputs; no numerical rerun."
+}

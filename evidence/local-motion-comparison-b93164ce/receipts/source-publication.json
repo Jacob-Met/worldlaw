@@ -1,0 +1,65 @@
+{
+  "pr": 611,
+  "draft": true,
+  "head": "1293d3b30cad9b285e04fe51e2c5815144b3079d",
+  "tree": "9c831bf0247c7287fb321beffae9f12f759ddb7d",
+  "sole_parent": "553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9",
+  "files": [
+    {
+      "path": "README.md",
+      "status": "modified",
+      "git": "1d5235523b0dc26b99ac19c49ef3b9940f52d0ec",
+      "mode": "100644",
+      "bytes": 52786,
+      "sha256": "01a54b7402f08ae1f0e1ec41799cd89c8f3d8329aba97619ed264f311eba4b3e",
+      "remote_local_equal": true
+    },
+    {
+      "path": "docs/LOCAL_MOTION_COMPARISON.md",
+      "status": "added",
+      "git": "7b130907904a814c1e9f6e057ddd1cfc9a82030e",
+      "mode": "100644",
+      "bytes": 5205,
+      "sha256": "c11aadbb7a7dca805b686ce91425f94e2d2671fb6e786a471c2cb839bba1370e",
+      "remote_local_equal": true
+    },
+    {
+      "path": "scripts/local-motion-comparison.mjs",
+      "status": "added",
+      "git": "9d175ae09ccd9a43a9e5a42d9fcbe0ffa7296192",
+      "mode": "100644",
+      "bytes": 5986,
+      "sha256": "12b1fb1070bb83bfdf4d6462f595145823571a602f0759b1e396f61dd4aabea2",
+      "remote_local_equal": true
+    },
+    {
+      "path": "src/science/local-motion-comparison.mjs",
+      "status": "added",
+      "git": "3d75f206d3d81af638554e45240f82334d9d2506",
+      "mode": "100644",
+      "bytes": 4629,
+      "sha256": "df5c7abeeb5941ffc5ff97f60d5841a140254fcf47e7c6976e0146e175396790",
+      "remote_local_equal": true
+    },
+    {
+      "path": "src/science/local-motion-response.mjs",
+      "status": "added",
+      "git": "57eca07e0c0906c2926740f1f327c18836dca05d",
+      "mode": "100644",
+      "bytes": 8267,
+      "sha256": "2b53c3c298652ad4279d6a473b7643a9c741a876e027f803dd0d51975834b057",
+      "remote_local_equal": true
+    },
+    {
+      "path": "tests/local-motion-comparison.test.mjs",
+      "status": "added",
+      "git": "0ee779054f84f5fc37bcc546b23c408717b63433",
+      "mode": "100644",
+      "bytes": 8065,
+      "sha256": "1b5ff02f8c8fe3ecc64a341c82c0a52859c16696775b81229114a6bdf99b7750",
+      "remote_local_equal": true
+    }
+  ],
+  "body_qualifications": "No tests/generator/CLI executed at publication; producer unchanged; original PR421 merge UNKNOWN hold explicit",
+  "execution_performed": false
+}

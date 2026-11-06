@@ -1,0 +1,470 @@
+{
+  "mode": "bounded in-memory logs; actual CLI reading an unchanged maintained saved notebook",
+  "started_utc": "2026-11-06T12:06:00.633387+00:00",
+  "source_before": {
+    "files": 49,
+    "all_bytes_modes_membership_equal": true,
+    "node_sha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d"
+  },
+  "pins": [
+    {
+      "path": "src/session.mjs",
+      "git_blob": "a6c689803ff7a518e095bc6c414eea1e964ec974",
+      "sha256": "47cb5facf3ebf614ab617d3d9cc99ed97f6be831c1a9b925790c1bcfd9282237",
+      "bytes": 31020,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/studio-dynamics-comparison.mjs",
+      "git_blob": "75d30c89f27a4c308be5c75f91dee1f89c3d5cdc",
+      "sha256": "4ded80f10fd7ed0c1deb91f35125d1432e69f9f2fc8b1dbf5ccf29aa31c7976f",
+      "bytes": 9210,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/studio-dynamics.mjs",
+      "git_blob": "ae974e953292bfca6720c350e1ba604f315442b5",
+      "sha256": "4b56436f4f7c359e226a99cb60e90d2a0c320a7c2909139e75aa221a6d7cbe00",
+      "bytes": 8563,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/torque-discovery.mjs",
+      "git_blob": "ad2762938cf96bc986a6db2e6d670924a5233795",
+      "sha256": "c50f0fe60bb315b894b5060e01706b49c5ef671da59a6515b01507f9c236f518",
+      "bytes": 48143,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/scalar-question.mjs",
+      "git_blob": "a8161a0708ea6c3cea408ebb7f9bc5aa5a46d9f0",
+      "sha256": "f4c44f24866415287fe10d234a4ec41e2b8626d2b0fdede38ffc0ef7a902a11f",
+      "bytes": 2760,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/measurement-batch.mjs",
+      "git_blob": "00f26e4a9440644124399e7b675e7dd43c4c33a4",
+      "sha256": "50d375b3e386d3e011e678c1ef558f5a2472a173834c4db902ea92632af0c5e1",
+      "bytes": 2906,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/bounded-scalar-plan.mjs",
+      "git_blob": "c22e534637b6fe907996ebccd31a83fb5536be02",
+      "sha256": "e2551913ddc730fc642218258083c78b9a134f831547d273382da1f317ff6730",
+      "bytes": 3176,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/scalar-challenge.mjs",
+      "git_blob": "cbe7f92ed2072a7199d46daaa4e30bd39ecd0cbf",
+      "sha256": "bf267c9b5718ce49af108798d6a20c4a1b34a10cce93447273b68a7dbf13c8b7",
+      "bytes": 1088,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/training-response-plan.mjs",
+      "git_blob": "44dfdb3d0d636c4dbf05f0bdbe7b64659f993193",
+      "sha256": "61bfb3606278edd5dad2f2c9145d5450aefa384c843c2c7244673ac2e21d1dd7",
+      "bytes": 4628,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/bounded-experiment-receipts.mjs",
+      "git_blob": "d69d7d997523e50a0dffd2b6d5a96e80424849cc",
+      "sha256": "09182bdc765c4112c0c8a3a335d692c4824a680570667cd3314b7b6a97fce753",
+      "bytes": 1843,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/input-enclosure.mjs",
+      "git_blob": "630bb2e2b681823783a8f662aa3752eb9d13987d",
+      "sha256": "91e4ee1624ddce208d47c1ed37ea12a93193e385d96c75c9d942eb22e582a3c8",
+      "bytes": 6815,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/output-grid.mjs",
+      "git_blob": "317307c13ef13d148a6bb9b24e4efb123884e227",
+      "sha256": "e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d",
+      "bytes": 445,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/periodic-origin-model.mjs",
+      "git_blob": "75031db36771e7b08e8e4c09db59bfca1239399d",
+      "sha256": "bae5062b42be21533038876305e255c4d7857f6a447b49a734db4ccec85ec667",
+      "bytes": 2697,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/input-excitation.mjs",
+      "git_blob": "ab6fe22bf0a239eb9f44da0889bdc519a716f46a",
+      "sha256": "3afa62b28caf43708d9e664df5921eabcc5e9f8cb1f7b57a5949a48ce5b11dc5",
+      "bytes": 3465,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/input-origin-fit.mjs",
+      "git_blob": "bccef7dae4da8f97ee8ac46944d38e4985eab421",
+      "sha256": "962e49a33a83c64eb189bd787fbbfc947e76d5fb62418aacca050bad1558a794",
+      "bytes": 3691,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/data.mjs",
+      "git_blob": "eb071484b0bb6e1baf99c7446864c73be94e73dc",
+      "sha256": "947d6798c256526cbf470c87636586b8bde56d22ce93f69bc58aa3909e4287e8",
+      "bytes": 8566,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/virtual-lab.mjs",
+      "git_blob": "00eff869a58ebb96c4a4ecb91bd5fac33d76c12d",
+      "sha256": "6cb1149de3a7f9e7c752fc3ae4849c92462987148d4875d8e58e41ad2656a9d2",
+      "bytes": 2557,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/experiment-receipts.mjs",
+      "git_blob": "b1394ccd9d8f8eaf6f1e3ad0b7f229b79ac92808",
+      "sha256": "40b161bd9993c459ac0d2f387d9cc9ea10467fe4e7d17fc78553bb77a41f38f0",
+      "bytes": 3232,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/linear-fit.mjs",
+      "git_blob": "5fc92b53ed52ba96dc60b1235aea87bffc4e83ca",
+      "sha256": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da",
+      "bytes": 2722,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/heterogeneous-fit.mjs",
+      "git_blob": "9a1eb2c9abd3cd7e31bfd6ad779190d9fbd94fc8",
+      "sha256": "b603bd80e5362265460096ebb4026b29994741dfc6a2f6a90715d549ec1ebc61",
+      "bytes": 6319,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/centered-response.mjs",
+      "git_blob": "4d087ec903143d8ce3f809700896a26ed0873772",
+      "sha256": "452a2f54a6f518ea3c90752713ec37719c18dd512232987f80af95a7481ee140",
+      "bytes": 2043,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/robust-fit.mjs",
+      "git_blob": "37c20230887d1d3b9f387f930ba89443ded7717b",
+      "sha256": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1",
+      "bytes": 5720,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/split-multicolumn.mjs",
+      "git_blob": "24d765fe79ed75e77c57a58c5d4903c2cd6affde",
+      "sha256": "f722c70391cb2d31fd6ff5596fe7933eb1fd58ee1a5f93813f675f4a16023998",
+      "bytes": 511,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/shared-iteration-fit.mjs",
+      "git_blob": "8fb77d1899286c4d6b1a20115c5f15d16d297f36",
+      "sha256": "fb8cd447cfdbaf9c9d413814300a0824a8a3658e55d9c3a0529fd1df379447f2",
+      "bytes": 3661,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/curvature-fit.mjs",
+      "git_blob": "02f69d491473592f320ad5af93b138687673ecd3",
+      "sha256": "073d1ad35528ba7fbf1787d4a89b4e41cc05ade9829443682780bcef5f6223dc",
+      "bytes": 5579,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/continuation-fit.mjs",
+      "git_blob": "bed254050f189a7800d54f8358b4ca28945899b5",
+      "sha256": "adbd6e23c4dd540630136e61477aa8eb50ff68b8dcb34039737ace79fad148f9",
+      "bytes": 4023,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/remaining-overlap.mjs",
+      "git_blob": "61be192ccbb2207b36a7237fa664adcb053d9f6a",
+      "sha256": "6b81ebfea58ed2da97ac0667e8ccaeb63c1209d655d5ed85a5b2da8bdd7456c5",
+      "bytes": 1787,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/experiment-design/interval-separation.mjs",
+      "git_blob": "2ec7ca13ca7d332aa03d92fabf4a1cf55d1d03f5",
+      "sha256": "ee9c3b3ecc36c7707ef0c680c41cff35068fae8d0be1927e80e19be277217496",
+      "bytes": 897,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/prediction-sensitivity.mjs",
+      "git_blob": "fc593d94dc58f7ff88a6d915c7028c9f213b5e14",
+      "sha256": "f6922003443fa247372f2703bb8d156f80dd9307d506cc2246a74b05da03eb49",
+      "bytes": 4440,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/robust-budget-probe.mjs",
+      "git_blob": "7b990502a8172c3a4ae861c2087352e159c9ee43",
+      "sha256": "01085e832ac647c2836a03f0287f7ee056ed7f5d31073d7021975a7f5475c5f2",
+      "bytes": 5829,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/split-column.mjs",
+      "git_blob": "b9ae21874ed8deb50608deb6f4c147f5dc2e1cda",
+      "sha256": "42da6cbad9534b616a32920e0381425a487c1cd18a16ce9159d78964f54df148",
+      "bytes": 416,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/robust-fit-research.mjs",
+      "git_blob": "d0901bccef6d05660dfd82e179837dd5e4b7a1ce",
+      "sha256": "fa1737ec744c993f5206453e9ee004a6a21ec25ada1a98655b94f79c9813b39a",
+      "bytes": 5808,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/parameter-sensitivity.mjs",
+      "git_blob": "384e1837a6d5560b8ff148160b30691a40c1b9fb",
+      "sha256": "8427b254df705afa64cb6834452a26036d33b7081a90a263129fc3e894951781",
+      "bytes": 2914,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/linear-reading-influences.mjs",
+      "git_blob": "749671d8de2730caea27e54f346531390752d2d2",
+      "sha256": "190884787d18ee265f4b6b549f1fd5a2832f58d5aeb36561058e442fff3ab623",
+      "bytes": 637,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "AGENTS.md",
+      "git_blob": "54f254668502aaf65b1c991986a319f3de014677",
+      "sha256": "099ccc10e875e5631fc12b4ad27f0df7a3b3624f73a47cbda903de10e7cd60e6",
+      "bytes": 9809,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "README.md",
+      "bytes": 52786,
+      "sha256": "01a54b7402f08ae1f0e1ec41799cd89c8f3d8329aba97619ed264f311eba4b3e",
+      "git_blob": "1d5235523b0dc26b99ac19c49ef3b9940f52d0ec",
+      "mode": "100644"
+    },
+    {
+      "path": "package.json",
+      "git_blob": "52467ff92dafc9da1512e4beec6d2927021f1c0f",
+      "sha256": "6a371815f00f9001f216e6534d1263a6735f851e49734a80c8055412de338b58",
+      "bytes": 1025,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "docs/PRODUCT_CANON.md",
+      "git_blob": "12774f58a7b4af16cca097044a5d7a2ed2901580",
+      "sha256": "e88be065280643ec752bda2bae088bdde04de856df0cec36a03c64191feddda8",
+      "bytes": 9077,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "docs/CAPABILITY_GRAPH.json",
+      "git_blob": "bf0e445c6863a252082133a7501b2d6cadd3ebb3",
+      "sha256": "b29edd34e57b5b793a3d3d21eaf5f59f4998aa82691db3541b97e8004692148d",
+      "bytes": 15539,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "docs/EXPERIENCE_DESIGN_CHARTER.md",
+      "git_blob": "53f45ea9cbd8019624f7824a3305ce38734fb5e3",
+      "sha256": "9d825dffa86fa996c27c4b6ee3f8eb4cb3b65f3660d0d5aeb2c3f530917946af",
+      "bytes": 2828,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "docs/PRODUCT_ACCEPTANCE.md",
+      "git_blob": "b7543b207da8b75c92f9b3b05d6d2f80f9ead0cc",
+      "sha256": "01b84a5cd46eef68e1e003ea2a7cfa19ad61c75eb3299876abe84a87e56c5995",
+      "bytes": 12644,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "tests/studio-dynamics-comparison.test.mjs",
+      "git_blob": "5bd505efab20e09eb6863dced0408dbd5bfb8581",
+      "sha256": "ec496ff940d928d22d58cd8f6624daecd44414c5b26a22bbdc47c31571e77031",
+      "bytes": 10840,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/local-motion-response.mjs",
+      "git_blob": "57eca07e0c0906c2926740f1f327c18836dca05d",
+      "sha256": "2b53c3c298652ad4279d6a473b7643a9c741a876e027f803dd0d51975834b057",
+      "bytes": 8267,
+      "mode": "100644",
+      "origin": "producer-f54aa52035a420c9516d38a0ed78c4b9628e82ca"
+    },
+    {
+      "path": "src/science/library-proposal.mjs",
+      "git_blob": "d74813f24186fc525bbf8949678169a0f31ca386",
+      "sha256": "e17d6af1b888506d9ba289df49c5f6811d273c7237a947cfd39f90b6b31e1ec4",
+      "bytes": 3559,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/periodic-trig.mjs",
+      "git_blob": "60feb4f8ebc85615e2ee76190ae259a58d3cda22",
+      "sha256": "53233d010e52c47f31ef4b2ef1f40921a27c8008ab59f47772e7208c1141b39e",
+      "bytes": 1783,
+      "mode": "100644",
+      "origin": "main-553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9"
+    },
+    {
+      "path": "src/science/local-motion-comparison.mjs",
+      "bytes": 4629,
+      "sha256": "df5c7abeeb5941ffc5ff97f60d5841a140254fcf47e7c6976e0146e175396790",
+      "git_blob": "3d75f206d3d81af638554e45240f82334d9d2506",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/local-motion-comparison.mjs",
+      "bytes": 5986,
+      "sha256": "12b1fb1070bb83bfdf4d6462f595145823571a602f0759b1e396f61dd4aabea2",
+      "git_blob": "9d175ae09ccd9a43a9e5a42d9fcbe0ffa7296192",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/LOCAL_MOTION_COMPARISON.md",
+      "bytes": 5205,
+      "sha256": "c11aadbb7a7dca805b686ce91425f94e2d2671fb6e786a471c2cb839bba1370e",
+      "git_blob": "7b130907904a814c1e9f6e057ddd1cfc9a82030e",
+      "mode": "100644"
+    },
+    {
+      "path": "tests/local-motion-comparison.test.mjs",
+      "sha256": "1b5ff02f8c8fe3ecc64a341c82c0a52859c16696775b81229114a6bdf99b7750",
+      "mode": "100644",
+      "bytes": 8065
+    }
+  ],
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--max-old-space-size=128",
+    "scripts/local-motion-comparison.mjs",
+    "--notebook",
+    "/dev/shm/b93164ce-worldlaw-comparison-source-01/inputs/reversal-notebook.json",
+    "--position",
+    "1.3",
+    "--rate",
+    ".2",
+    "--inertia",
+    "1",
+    "--command",
+    "0",
+    "--duration",
+    ".1",
+    "--interval",
+    ".01",
+    "--sample-index",
+    "2"
+  ],
+  "cwd": "/dev/shm/b93164ce-worldlaw-local-comparison-01/source",
+  "mem_available_before": 3910074368,
+  "limits": {
+    "affinity": [
+      0
+    ],
+    "nice": 10,
+    "wall_seconds": 25,
+    "cleanup_seconds": 2,
+    "cpu_seconds_per_process": 10,
+    "node_heap_mib": 128,
+    "each_stream_bytes": 262144,
+    "memory_floor_bytes": 536870912
+  },
+  "status": "PASS",
+  "cleanup_signals": [],
+  "pid": 6,
+  "child_exit": 0,
+  "owned_group_absent": true,
+  "wall_seconds": 0.2271005610091379,
+  "source_after": {
+    "files": 49,
+    "all_bytes_modes_membership_equal": true,
+    "node_sha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d"
+  },
+  "source_unchanged": true,
+  "stdout": {
+    "bytes": 19635,
+    "sha256": "da89a81e6c00624d74beb0d5fb7cf0d17cbf76bf89f9bdc9ef5afc189d0d638a",
+    "text": "{\n  \"schema\": \"worldlaw.local-motion-comparison-sample/v1\",\n  \"status\": \"completed\",\n  \"candidateCount\": 5,\n  \"sampleIndex\": 2,\n  \"time\": 0.02,\n  \"execution\": {\n    \"status\": \"completed\",\n    \"initial\": {\n      \"position\": 1.3,\n      \"rate\": 0.2\n    },\n    \"settings\": {\n      \"inertia\": 1,\n      \"command\": 0,\n      \"duration\": 0.1,\n      \"dt\": 0.01,\n      \"maxTrials\": 3999\n    },\n    \"work\": {\n      \"maxTotalEvaluations\": 240000,\n      \"maxTotalSamples\": 20000,\n      \"totalSamples\": 55,\n      \"samplesPerModel\": 11,\n      \"perModelEvaluationLimit\": 48000,\n      \"adaptiveMaxTrials\": 3999,\n      \"totalReservedEvaluations\": 192047,\n      \"evaluationUnit\": \"One derivative evaluation or one returned-sample torque evaluation.\",\n      \"description\": \"All 5 original laws receive the same 48000-evaluation ceiling; 11 common output samples per law. Adaptive trials reserve 12 derivative evaluations each, including rejected trials; fixed RK4 reserves 4 per interval. Output torque evaluations are included. Unused shares are not borrowed.\"\n    },\n    \"candidateCount\": 5,\n    \"completedCount\": 5,\n    \"refusedCount\": 0\n  },\n  \"results\": [\n    {\n      \"index\": 0,\n      \"id\": \"command+rate+spring\",\n      \"equation\": \"τ = 1·u + -0.2·ω + -2·θ\",\n      \"model\": {\n        \"schema\": \"worldlaw.torque-model/v1\",\n        \"id\": \"command+rate+spring\",\n        \"terms\": [\n          {\n            \"id\": \"command\",\n            \"coefficient\": 1.0000000000000002\n          },\n          {\n            \"id\": \"rate\",\n            \"coefficient\": -0.20000000000000004\n          },\n          {\n            \"id\": \"spring\",\n            \"coefficient\": -2.0000000000000004\n          }\n        ],\n        \"units\": {\n          \"command\": \"N·m\",\n          \"position\": \"rad\",\n          \"rate\": \"rad/s\",\n          \"jointTorque\": \"N·m\"\n        },\n        \"domain\": {\n          \"command\": {\n            \"min\": -0.9961646088358406,\n            \"max\": 0.9995736030415051\n          },\n          \"position\": {\n            \"min\": -0.9579148059017156,\n            \"max\": 1\n          },\n          \"rate\": {\n            \"min\": -0.9984950306638145,\n            \"max\": 0.9985908724117705\n          }\n        },\n        \"equation\": \"τ = 1·u + -0.2·ω + -2·θ\",\n        \"metrics\": {\n          \"count\": 40,\n          \"rmse\": 2.9880781820727555e-16,\n          \"maxAbsResidual\": 8.881784197001252e-16,\n          \"score\": -357.34697651670547,\n          \"conditionEstimate\": 1.1264719911679248,\n          \"rank\": 3\n        }\n      },\n      \"executionStatus\": \"completed\",\n      \"state\": {\n        \"time\": 0.02,\n        \"position\": 1.3034722056603933,\n        \"rate\": 0.14723259688234763,\n        \"jointTorque\": -2.6363909306972566\n      },\n      \"response\": {\n        \"status\": \"computed\",\n        \"source\": {\n          \"model\": {\n            \"schema\": \"worldlaw.torque-model/v1\",\n            \"terms\": [\n              {\n                \"id\": \"command\",\n                \"coefficient\": 1.0000000000000002\n              },\n              {\n                \"id\": \"rate\",\n                \"coefficient\": -0.20000000000000004\n              },\n              {\n                \"id\": \"spring\",\n                \"coefficient\": -2.0000000000000004\n              }\n            ]\n          },\n          \"inertia\": 1,\n          \"command\": 0\n        },\n        \"row\": {\n          \"index\": 2,\n          \"time\": 0.02,\n          \"position\": 1.3034722056603933,\n          \"rate\": 0.14723259688234763,\n          \"jointTorque\": -2.6363909306972566,\n          \"stationaryEquation\": false,\n          \"torqueByPosition\": -2.0000000000000004,\n          \"torqueByRate\": -0.20000000000000004,\n          \"positionResponse\": \"restoring\",\n          \"rateResponse\": \"opposes_rate_perturbation\",\n          \"status\": \"available\",\n          \"jacobian\": [\n            [\n              0,\n              1\n            ],\n            [\n              -2.0000000000000004,\n              -0.20000000000000004\n            ]\n          ],\n          \"modes\": {\n            \"status\": \"available\",\n            \"eigenvalues\": [\n              {\n                \"real\": -0.10000000000000002,\n                \"imaginary\": 1.4106735979665885\n              },\n              {\n                \"real\": -0.10000000000000002,\n                \"imaginary\": -1.4106735979665885\n              }\n            ],\n            \"kind\": \"complex-conjugate\",\n            \"pattern\": \"decaying\",\n            \"nearRepeated\": false\n          }\n        }\n      }\n    },\n    {\n      \"index\": 1,\n      \"id\": \"command+rate+coulomb+spring\",\n      \"equation\": \"τ = 1·u + -0.2·ω + 5.3486e-17·sign(ω) + -2·θ\",\n      \"model\": {\n        \"schema\": \"worldlaw.torque-model/v1\",\n        \"id\": \"command+rate+coulomb+spring\",\n        \"terms\": [\n          {\n            \"id\": \"command\",\n            \"coefficient\": 1\n          },\n          {\n            \"id\": \"rate\",\n            \"coefficient\": -0.20000000000000004\n          },\n          {\n            \"id\": \"coulomb\",\n            \"coefficient\": 5.348570148856505e-17\n          },\n          {\n            \"id\": \"spring\",\n            \"coefficient\": -2\n          }\n        ],\n        \"units\": {\n          \"command\": \"N·m\",\n          \"position\": \"rad\",\n          \"rate\": \"rad/s\",\n          \"jointTorque\": \"N·m\"\n        },\n        \"domain\": {\n          \"command\": {\n            \"min\": -0.9961646088358406,\n            \"max\": 0.9995736030415051\n          },\n          \"position\": {\n            \"min\": -0.9579148059017156,\n            \"max\": 1\n          },\n          \"rate\": {\n            \"min\": -0.9984950306638145,\n            \"max\": 0.9985908724117705\n          }\n        },\n        \"equation\": \"τ = 1·u + -0.2·ω + 5.3486e-17·sign(ω) + -2·θ\",\n        \"metrics\": {\n          \"count\": 40,\n          \"rmse\": 1.3106981004004752e-16,\n          \"maxAbsResidual\": 4.440892098500626e-16,\n          \"score\": -353.65809706259154,\n          \"conditionEstimate\": 2.406854056025705,\n          \"rank\": 4\n        }\n      },\n      \"executionStatus\": \"completed\",\n      \"state\": {\n        \"time\": 0.02,\n        \"position\": 1.3034722056626171,\n        \"rate\": 0.14723259689827428,\n        \"jointTorque\": -2.636390930704889\n      },\n      \"response\": {\n        \"status\": \"computed\",\n        \"source\": {\n          \"model\": {\n            \"schema\": \"worldlaw.torque-model/v1\",\n            \"terms\": [\n              {\n                \"id\": \"command\",\n                \"coefficient\": 1\n              },\n              {\n                \"id\": \"rate\",\n                \"coefficient\": -0.20000000000000004\n              },\n              {\n                \"id\": \"coulomb\",\n                \"coefficient\": 5.348570148856505e-17\n              },\n              {\n                \"id\": \"spring\",\n                \"coefficient\": -2\n              }\n            ]\n          },\n          \"inertia\": 1,\n          \"command\": 0\n        },\n        \"row\": {\n          \"index\": 2,\n          \"time\": 0.02,\n          \"position\": 1.3034722056626171,\n          \"rate\": 0.14723259689827428,\n          \"jointTorque\": -2.636390930704889,\n          \"stationaryEquation\": false,\n          \"torqueByPosition\": -2,\n          \"torqueByRate\": -0.20000000000000004,\n          \"positionResponse\": \"restoring\",\n          \"rateResponse\": \"opposes_rate_perturbation\",\n          \"status\": \"available\",\n          \"jacobian\": [\n            [\n              0,\n              1\n            ],\n            [\n              -2,\n              -0.20000000000000004\n            ]\n          ],\n          \"modes\": {\n            \"status\": \"available\",\n            \"eigenvalues\": [\n              {\n                \"real\": -0.10000000000000002,\n                \"imaginary\": 1.4106735979665885\n              },\n              {\n                \"real\": -0.10000000000000002,\n                \"imaginary\": -1.4106735979665885\n              }\n            ],\n            \"kind\": \"complex-conjugate\",\n            \"pattern\": \"decaying\",\n            \"nearRepeated\": false\n          }\n        }\n      }\n    },\n    {\n      \"index\": 2,\n      \"id\": \"command+rate+spring+gravity\",\n      \"equation\": \"τ = 1·u + -0.2·ω + -2·θ + -2.1992e-15·sin(θ)\",\n      \"model\": {\n        \"schema\": \"worldlaw.torque-model/v1\",\n        \"id\": \"command+rate+spring+gravity\",\n        \"terms\": [\n          {\n            \"id\": \"command\",\n            \"coefficient\": 1\n          },\n          {\n            \"id\": \"rate\",\n            \"coefficient\": -0.20000000000000004\n          },\n          {\n            \"id\": \"spring\",\n            \"coefficient\": -1.9999999999999984\n          },\n          {\n            \"id\": \"gravity\",\n            \"coefficient\": -2.199175715649533e-15\n          }\n        ],\n        \"units\": {\n          \"command\": \"N·m\",\n          \"position\": \"rad\",\n          \"rate\": \"rad/s\",\n          \"jointTorque\": \"N·m\"\n        },\n        \"domain\": {\n          \"command\": {\n            \"min\": -0.9961646088358406,\n            \"max\": 0.9995736030415051\n          },\n          \"position\": {\n            \"min\": -0.9579148059017156,\n            \"max\": 1\n          },\n          \"rate\": {\n            \"min\": -0.9984950306638145,\n            \"max\": 0.9985908724117705\n          }\n        },\n        \"equation\": \"τ = 1·u + -0.2·ω + -2·θ + -2.1992e-15·sin(θ)\",\n        \"metrics\": {\n          \"count\": 40,\n          \"rmse\": 3.03952446657612e-16,\n          \"maxAbsResidual\": 8.881784197001252e-16,\n          \"score\": -353.65809706259154,\n          \"conditionEstimate\": 22.233561420431418,\n          \"rank\": 4\n        }\n      },\n      \"executionStatus\": \"completed\",\n      \"state\": {\n        \"time\": 0.02,\n        \"position\": 1.3034722056603933,\n        \"rate\": 0.14723259688234766,\n        \"jointTorque\": -2.636390930697256\n      },\n      \"response\": {\n        \"status\": \"computed\",\n        \"source\": {\n          \"model\": {\n            \"schema\": \"worldlaw.torque-model/v1\",\n            \"terms\": [\n              {\n                \"id\": \"command\",\n                \"coefficient\": 1\n              },\n              {\n                \"id\": \"rate\",\n                \"coefficient\": -0.20000000000000004\n              },\n              {\n                \"id\": \"spring\",\n                \"coefficient\": -1.9999999999999984\n              },\n              {\n                \"id\": \"gravity\",\n                \"coefficient\": -2.199175715649533e-15\n              }\n            ]\n          },\n          \"inertia\": 1,\n          \"command\": 0\n        },\n        \"row\": {\n          \"index\": 2,\n          \"time\": 0.02,\n          \"position\": 1.3034722056603933,\n          \"rate\": 0.14723259688234766,\n          \"jointTorque\": -2.636390930697256,\n          \"stationaryEquation\": false,\n          \"torqueByPosition\": -1.9999999999999991,\n          \"torqueByRate\": -0.20000000000000004,\n          \"positionResponse\": \"restoring\",\n          \"rateResponse\": \"opposes_rate_perturbation\",\n          \"status\": \"available\",\n          \"jacobian\": [\n            [\n              0,\n              1\n            ],\n            [\n              -1.9999999999999991,\n              -0.20000000000000004\n            ]\n          ],\n          \"modes\": {\n            \"status\": \"available\",\n            \"eigenvalues\": [\n              {\n                \"real\": -0.10000000000000002,\n                \"imaginary\": 1.410673597966588\n              },\n              {\n                \"real\": -0.10000000000000002,\n                \"imaginary\": -1.410673597966588\n              }\n            ],\n            \"kind\": \"complex-conjugate\",\n            \"pattern\": \"decaying\",\n            \"nearRepeated\": false\n          }\n        }\n      }\n    },\n    {\n      \"index\": 3,\n      \"id\": \"command+rate+spring+quadratic\",\n      \"equation\": \"τ = 1·u + -0.2·ω + -2·θ + 4.3441e-16·ω|ω|\",\n      \"model\": {\n        \"schema\": \"worldlaw.torque-model/v1\",\n        \"id\": \"command+rate+spring+quadratic\",\n        \"terms\": [\n          {\n            \"id\": \"command\",\n            \"coefficient\": 1.0000000000000002\n          },\n          {\n            \"id\": \"rate\",\n            \"coefficient\": -0.2000000000000004\n          },\n          {\n            \"id\": \"spring\",\n            \"coefficient\": -2.0000000000000004\n          },\n          {\n            \"id\": \"quadratic\",\n            \"coefficient\": 4.344072437094929e-16\n          }\n        ],\n        \"units\": {\n          \"command\": \"N·m\",\n          \"position\": \"rad\",\n          \"rate\": \"rad/s\",\n          \"jointTorque\": \"N·m\"\n        },\n        \"domain\": {\n          \"command\": {\n            \"min\": -0.9961646088358406,\n            \"max\": 0.9995736030415051\n          },\n          \"position\": {\n            \"min\": -0.9579148059017156,\n            \"max\": 1\n          },\n          \"rate\": {\n            \"min\": -0.9984950306638145,\n            \"max\": 0.9985908724117705\n          }\n        },\n        \"equation\": \"τ = 1·u + -0.2·ω + -2·θ + 4.3441e-16·ω|ω|\",\n        \"metrics\": {\n          \"count\": 40,\n          \"rmse\": 3.135429604548546e-16,\n          \"maxAbsResidual\": 8.881784197001252e-16,\n          \"score\": -353.65809706259154,\n          \"conditionEstimate\": 4.963964912080086,\n          \"rank\": 4\n        }\n      },\n      \"executionStatus\": \"completed\",\n      \"state\": {\n        \"time\": 0.02,\n        \"position\": 1.3034722056603933,\n        \"rate\": 0.14723259688234763,\n        \"jointTorque\": -2.6363909306972566\n      },\n      \"response\": {\n        \"status\": \"computed\",\n        \"source\": {\n          \"model\": {\n            \"schema\": \"worldlaw.torque-model/v1\",\n            \"terms\": [\n              {\n                \"id\": \"command\",\n                \"coefficient\": 1.0000000000000002\n              },\n              {\n                \"id\": \"rate\",\n                \"coefficient\": -0.2000000000000004\n              },\n              {\n                \"id\": \"spring\",\n                \"coefficient\": -2.0000000000000004\n              },\n              {\n                \"id\": \"quadratic\",\n                \"coefficient\": 4.344072437094929e-16\n              }\n            ]\n          },\n          \"inertia\": 1,\n          \"command\": 0\n        },\n        \"row\": {\n          \"index\": 2,\n          \"time\": 0.02,\n          \"position\": 1.3034722056603933,\n          \"rate\": 0.14723259688234763,\n          \"jointTorque\": -2.6363909306972566,\n          \"stationaryEquation\": false,\n          \"torqueByPosition\": -2.0000000000000004,\n          \"torqueByRate\": -0.20000000000000026,\n          \"positionResponse\": \"restoring\",\n          \"rateResponse\": \"opposes_rate_perturbation\",\n          \"status\": \"available\",\n          \"jacobian\": [\n            [\n              0,\n              1\n            ],\n            [\n              -2.0000000000000004,\n              -0.20000000000000026\n            ]\n          ],\n          \"modes\": {\n            \"status\": \"available\",\n            \"eigenvalues\": [\n              {\n                \"real\": -0.10000000000000013,\n                \"imaginary\": 1.4106735979665885\n              },\n              {\n                \"real\": -0.10000000000000013,\n                \"imaginary\": -1.4106735979665885\n              }\n            ],\n            \"kind\": \"complex-conjugate\",\n            \"pattern\": \"decaying\",\n            \"nearRepeated\": false\n          }\n        }\n      }\n    },\n    {\n      \"index\": 4,\n      \"id\": \"command+rate+spring+bias\",\n      \"equation\": \"τ = 1·u + -0.2·ω + -2·θ + -4.3954e-18·1\",\n      \"model\": {\n        \"schema\": \"worldlaw.torque-model/v1\",\n        \"id\": \"command+rate+spring+bias\",\n        \"terms\": [\n          {\n            \"id\": \"command\",\n            \"coefficient\": 1.0000000000000002\n          },\n          {\n            \"id\": \"rate\",\n            \"coefficient\": -0.20000000000000004\n          },\n          {\n            \"id\": \"spring\",\n            \"coefficient\": -2.0000000000000004\n          },\n          {\n            \"id\": \"bias\",\n            \"coefficient\": -4.395422759409117e-18\n          }\n        ],\n        \"units\": {\n          \"command\": \"N·m\",\n          \"position\": \"rad\",\n          \"rate\": \"rad/s\",\n          \"jointTorque\": \"N·m\"\n        },\n        \"domain\": {\n          \"command\": {\n            \"min\": -0.9961646088358406,\n            \"max\": 0.9995736030415051\n          },\n          \"position\": {\n            \"min\": -0.9579148059017156,\n            \"max\": 1\n          },\n          \"rate\": {\n            \"min\": -0.9984950306638145,\n            \"max\": 0.9985908724117705\n          }\n        },\n        \"equation\": \"τ = 1·u + -0.2·ω + -2·θ + -4.3954e-18·1\",\n        \"metrics\": {\n          \"count\": 40,\n          \"rmse\": 2.987895956055469e-16,\n          \"maxAbsResidual\": 8.881784197001252e-16,\n          \"score\": -353.65809706259154,\n          \"conditionEstimate\": 1.1264719911679248,\n          \"rank\": 4\n        }\n      },\n      \"executionStatus\": \"completed\",\n      \"state\": {\n        \"time\": 0.02,\n        \"position\": 1.3034722056603933,\n        \"rate\": 0.14723259688234763,\n        \"jointTorque\": -2.6363909306972566\n      },\n      \"response\": {\n        \"status\": \"computed\",\n        \"source\": {\n          \"model\": {\n            \"schema\": \"worldlaw.torque-model/v1\",\n            \"terms\": [\n              {\n                \"id\": \"command\",\n                \"coefficient\": 1.0000000000000002\n              },\n              {\n                \"id\": \"rate\",\n                \"coefficient\": -0.20000000000000004\n              },\n              {\n                \"id\": \"spring\",\n                \"coefficient\": -2.0000000000000004\n              },\n              {\n                \"id\": \"bias\",\n                \"coefficient\": -4.395422759409117e-18\n              }\n            ]\n          },\n          \"inertia\": 1,\n          \"command\": 0\n        },\n        \"row\": {\n          \"index\": 2,\n          \"time\": 0.02,\n          \"position\": 1.3034722056603933,\n          \"rate\": 0.14723259688234763,\n          \"jointTorque\": -2.6363909306972566,\n          \"stationaryEquation\": false,\n          \"torqueByPosition\": -2.0000000000000004,\n          \"torqueByRate\": -0.20000000000000004,\n          \"positionResponse\": \"restoring\",\n          \"rateResponse\": \"opposes_rate_perturbation\",\n          \"status\": \"available\",\n          \"jacobian\": [\n            [\n              0,\n              1\n            ],\n            [\n              -2.0000000000000004,\n              -0.20000000000000004\n            ]\n          ],\n          \"modes\": {\n            \"status\": \"available\",\n            \"eigenvalues\": [\n              {\n                \"real\": -0.10000000000000002,\n                \"imaginary\": 1.4106735979665885\n              },\n              {\n                \"real\": -0.10000000000000002,\n                \"imaginary\": -1.4106735979665885\n              }\n            ],\n            \"kind\": \"complex-conjugate\",\n            \"pattern\": \"decaying\",\n            \"nearRepeated\": false\n          }\n        }\n      }\n    }\n  ],\n  \"responseCounts\": {\n    \"computedLaws\": 5,\n    \"refusedLaws\": 0,\n    \"available\": 55,\n    \"nonsmooth\": 0,\n    \"unresolvedNumeric\": 0,\n    \"stationaryEquation\": 0,\n    \"executedStates\": 55\n  },\n  \"interpretation\": \"Local floating-point response at each law’s own executed states on the shared output grid. Frozen modes are not finite-time growth, nonlinear stability, physical truth, calibrated uncertainty or a between-sample enclosure.\",\n  \"notebook\": {\n    \"sha256\": \"185e5e43b50f0a5620ffcb1d7f2cf4cf04fcd7da8f4803fc0a0971e7c26c8b61\",\n    \"bytes\": 7789,\n    \"originalEvents\": 0,\n    \"selection\": {\n      \"kind\": \"current\",\n      \"historyIndex\": null,\n      \"label\": \"Current competitive laws\"\n    },\n    \"originalCandidateCount\": 5,\n    \"interpretation\": \"Models reconstructed from original notebook inputs and events; historical motion is computed now, not an authenticated earlier forecast. No evidence or ranking is changed.\"\n  }\n}\n",
+    "complete": true
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "text": "",
+    "complete": true
+  },
+  "input": {
+    "path": "/dev/shm/b93164ce-worldlaw-comparison-source-01/inputs/reversal-notebook.json",
+    "bytes": 7789,
+    "sha256": "185e5e43b50f0a5620ffcb1d7f2cf4cf04fcd7da8f4803fc0a0971e7c26c8b61",
+    "unchanged": true,
+    "qualification": "maintained authored synthetic saved notebook, not physical evidence"
+  },
+  "consumer_assertions": {
+    "raw_notebook_identity": true,
+    "exact_shared_sample": true,
+    "original_population": 5,
+    "own_model_state_and_response": true,
+    "declarations_retained": true
+  }
+}

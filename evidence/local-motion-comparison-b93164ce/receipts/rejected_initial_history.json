@@ -1,0 +1,89 @@
+{
+  "mode": "bounded in-memory logs; ordinary CLI from generated source-bound notebook file",
+  "started_utc": "2026-11-06T12:14:46.016439+00:00",
+  "source_before": {
+    "files": 49,
+    "all_bytes_modes_membership_equal": true,
+    "node_sha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d"
+  },
+  "source_origins_sha256": "905362d8099b2cf7d8c6c9cf3f5180c634e53aa415c756748de5a734dca082f1",
+  "candidate_pins_sha256": "307b39c6115e06a739379c0624465ac7b021c89f4e6eaeb4941797e862e6c5e6",
+  "same_source_pin_set_as": "ff3b6d actual ten-test course",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "--max-old-space-size=128",
+    "scripts/local-motion-comparison.mjs",
+    "--notebook",
+    "/dev/shm/b93164ce-worldlaw-local-comparison-01/receiving-inputs-01/after-measurement.json",
+    "--position",
+    "1.3",
+    "--rate",
+    ".2",
+    "--inertia",
+    "1",
+    "--command",
+    "0",
+    "--duration",
+    ".1",
+    "--interval",
+    ".01",
+    "--history-index",
+    "0"
+  ],
+  "cwd": "/dev/shm/b93164ce-worldlaw-local-comparison-01/source",
+  "mem_available_before": 3565322240,
+  "limits": {
+    "affinity": [
+      0
+    ],
+    "nice": 10,
+    "wall_seconds": 25,
+    "cleanup_seconds": 2,
+    "cpu_seconds_per_process": 10,
+    "node_heap_mib": 128,
+    "each_stream_bytes": 262144,
+    "memory_floor_bytes": 536870912
+  },
+  "status": "PASS",
+  "cleanup_signals": [],
+  "pid": 6,
+  "child_exit": 1,
+  "owned_group_absent": true,
+  "wall_seconds": 1.209382632994675,
+  "source_after": {
+    "files": 49,
+    "all_bytes_modes_membership_equal": true,
+    "node_sha256": "61ab14cd750fc24d5db53490ec5fc40f756e4b6e136b78cf7004265471d9bd1d"
+  },
+  "source_unchanged": true,
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "text": "",
+    "complete": true
+  },
+  "stderr": {
+    "bytes": 110,
+    "sha256": "0bf735538becf325c21a385f2749d27ad7c7363f16780ead6c821db6d1a43dad",
+    "text": "Local-motion comparison unavailable: Select a history event containing its original earlier competitive laws.\n",
+    "complete": true
+  },
+  "case": {
+    "name": "rejected_initial_history",
+    "file": "after-measurement.json",
+    "sha": "dab70f9c454efee38175d1f96dd7dcea8bbf2c00000ad87500eb79d7a9867050",
+    "bytes": 18356,
+    "expected_exit": 1,
+    "extra": [
+      "--history-index",
+      "0"
+    ],
+    "kind": "invalid_history"
+  },
+  "input_unchanged": true,
+  "consumer_assertions": {
+    "expected_refusal": true,
+    "no_stdout_or_fallback": true,
+    "refusal_message": "original earlier competitive laws"
+  }
+}
