@@ -41,15 +41,54 @@ export function fitBoundedLM(initial, bounds, iterationLimit, evaluate) {
         valid = false;
         break;
       }
+      // Use the locations actually represented after addition. A requested h
+      // need not equal either displacement, even when both probes are distinct.
+      const da = a[j] - x, db = b[j] - x;
+      const geometryValid = Number.isFinite(da) && Number.isFinite(db) &&
+        da !== 0 && db !== 0 && da !== db && (central
+          ? da > 0 && db < 0
+          : x === lo ? da > 0 && db > da
+          : x === hi ? da < 0 && db < da : false);
+      if (!geometryValid) {
+        valid = false;
+        break;
+      }
+      const symmetric = central && da === -db;
+      const denominator = da - db;
+      let weight = 0;
+      if (symmetric) {
+        if (!Number.isFinite(denominator) || denominator === 0) {
+          valid = false;
+          break;
+        }
+      } else {
+        const magnitude = Math.max(Math.abs(da), Math.abs(db));
+        const ua = da / magnitude, ub = db / magnitude, delta = ub - ua;
+        weight = -ua / delta;
+        if (!Number.isFinite(magnitude) || magnitude <= 0 ||
+            !Number.isFinite(ua) || !Number.isFinite(ub) ||
+            ua === 0 || ub === 0 || !Number.isFinite(delta) || delta === 0 ||
+            !Number.isFinite(weight)) {
+          valid = false;
+          break;
+        }
+      }
       const plus = evaluate(a), other = evaluate(b);
       if (plus.status !== 'complete' || other.status !== 'complete') {
         valid = false;
         break;
       }
-      const column = plus.residuals.map((v, k) => central
-        ? (v - other.residuals[k]) / (2 * h)
-        : (4 * (v - best.residuals[k]) -
-           (other.residuals[k] - best.residuals[k])) / (2 * h));
+      // The quadratic through the actual three nodes has derivative
+      // first + weight * (second - first). Equal secants stay exactly equal.
+      // Finite geometry does not certify resolved or accurate residuals.
+      const column = plus.residuals.map((v, k) => {
+        if (symmetric) return (v - other.residuals[k]) / denominator;
+        const first = (v - best.residuals[k]) / da;
+        const second = (other.residuals[k] - best.residuals[k]) / db;
+        const difference = second - first;
+        return Number.isFinite(first) && Number.isFinite(second) &&
+          Number.isFinite(difference) ? first + weight * difference : NaN;
+      });
       if (!column.every(Number.isFinite)) {
         valid = false;
         break;
