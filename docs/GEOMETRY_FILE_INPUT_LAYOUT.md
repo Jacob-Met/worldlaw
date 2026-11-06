@@ -23,3 +23,15 @@ An Enter-only harness attempt opened the first chooser but timed out on a later 
 An initial browser launch hit a temporary-directory socket-path limit; the maintained short temporary location resolved it without changing product code or sandbox settings. Original receiving failures were retained.
 
 The numerical fitting receipt's original inherited failure remains valid historical evidence. This subsequent change repairs that receiving defect without changing the optimizer or any scientific model.
+
+## Subsequent shared-geometry chooser label
+
+A separate correction associates the existing visible reopening sentence with `#shared-geometry-open` using a native label inside the original paragraph. The wording, paragraph wrapper, input position, handlers and scientific processing remain the same. The visible text now activates its corresponding native chooser and supplies the control's accessible name.
+
+The correction was received on base `23cff1bdd97a7be95a0c8b72fba108b9da178b91`. Its `src/shared-geometry-law/panel.mjs` is 8,559 bytes, SHA-256 `d703d177231ba7c088b3a7b27cf3701a38d1bc88ff7106d9a088a04fbce59a02`.
+
+The focused course passed the same 34 assertions in both served and standalone forms. Actual Chrome accessibility-tree inspection confirmed the exact name and native label association. Activating the visible label opened the intended chooser; supported original input reproduced the canonical comparison. Space activation and cached-result refusal also passed. All four enabled file controls remained contained at 320, 390 and 1440px, with the browser sandbox active and no browser errors.
+
+A local comparison decoded section screenshots with the label and with the original plain text in the same enabled state. It found zero different pixels at all three widths: 763,308 pixels at 320px, 852,510 at 390px and 1,555,672 at 1440px. This is automated pixel comparison, not a claim of human visual inspection. An initial missing optional image-library dependency was retained as a receiving failure; the comparison completed using standard-library PNG decoding without changing product code.
+
+This qualifies the specific control's name, activation, reopening and rendering. It does not establish complete accessibility coverage or resolve the separate full-source distribution intake.
