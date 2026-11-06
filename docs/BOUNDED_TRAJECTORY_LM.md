@@ -53,6 +53,8 @@ The first standalone build could not find esbuild. Provisioning the existing doc
 
 The complete standalone browser course exposed a separate inherited 320px layout failure: four geometry-study file controls make the document 335px wide. The same assertion failed on a pristine baseline package built with the same toolchain, after the same four successful groups. That full course is not claimed passed by this numerical increment. Its geometry layout repair is separate.
 
+Subsequent receiving: [Geometry notebook controls on narrow screens](GEOMETRY_FILE_INPUT_LAYOUT.md) records a separate four-selector stylesheet repair and complete source/offline receiving. The earlier failure remains the original numerical candidate's historical receipt; this later layout correction does not change the optimizer.
+
 Reproduce the native receiving with:
 
 ```sh
