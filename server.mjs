@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {MIMEType} from 'node:util';
 import { lstat, open } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -59,7 +60,9 @@ async function readPublicAsset(pathname) {
 async function handleLawCandidates(req, res) {
   const json = (status, body) => { res.writeHead(status, {'Content-Type': 'application/json; charset=utf-8'}); res.end(JSON.stringify(body)); };
   if (req.method !== 'POST') { res.writeHead(405, {'Allow': 'POST'}).end('Use POST.'); return; }
-  if (!String(req.headers['content-type'] ?? '').startsWith('application/json')) { json(415, {error: 'Send application/json.'}); return; }
+  let mediaType;
+  try { mediaType = new MIMEType(String(req.headers['content-type'] ?? '')).essence; } catch { mediaType = null; }
+  if (mediaType !== 'application/json') { json(415, {error: 'Send application/json.'}); return; }
   const chunks = []; let size = 0;
   for await (const chunk of req) {
     size += chunk.length;
