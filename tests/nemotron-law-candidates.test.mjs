@@ -65,8 +65,13 @@ test('server refuses without a key and rejects wrong media types before any upst
     const post=(body,type='application/json')=>new Promise((resolve,reject)=>{const req=http.request({host:'127.0.0.1',port,path:'/api/nemotron/law-candidates',method:'POST',headers:{'Content-Type':type,Host:`127.0.0.1:${port}`}},res=>{let d='';res.on('data',c=>d+=c);res.on('end',()=>resolve({status:res.statusCode,body:d}));});req.on('error',reject);req.end(body);});
     const noKey=await post(JSON.stringify({observations:course(20,0,cubic),baseTerms:['command']}));
     assert.equal(noKey.status,503);assert.equal(JSON.parse(noKey.body).code,'no_key');
-    const wrongType=await post('{}','text/plain');
-    assert.equal(wrongType.status,415);
+    for (const type of ['text/plain','application/jsonp','application/json-seq','application/json nonsense']) {
+      const wrongType=await post('{}',type);
+      assert.equal(wrongType.status,415, type);
+    }
+    const mixedCase=await post('{}','Application/JSON; charset=utf-8');
+    assert.equal(mixedCase.status,503);
+    assert.equal(JSON.parse(mixedCase.body).code,'no_key');
     const get=await new Promise((resolve,reject)=>http.get({host:'127.0.0.1',port,path:'/api/nemotron/law-candidates',headers:{Host:`127.0.0.1:${port}`}},res=>{res.resume();resolve(res.statusCode);}).on('error',reject));
     assert.equal(get,405);
   }finally{
