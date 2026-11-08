@@ -13,3 +13,26 @@ This is **not** a guaranteed nonlinear enclosure, evidence for actual physical m
 
 Current work is an isolated private owner-review candidate; no existing UI, production service or model/provider credential is changed. The scientific receiving owner must separately qualify comparisons with real source data, uncertainty interpretations, step resolution, and any browser consumer.
 
+
+
+## Use an original measured or authored angular bundle directly
+
+The additional read-only bundle command applies WORLDLAW's **maintained training-only**
+weak/integral model selection before computing the finite-time transition for the
+chosen original challenge. It does not ask the user to export intermediate model
+and run files.
+
+```bash
+node scripts/inspect-finite-time-bundle.mjs examples/physical-pasco-92be.json --method weak > /tmp/finite-time-pasco-study.json
+```
+
+The repository's historical PASCO example contains two prior measured training
+recordings and one separate measured challenge recording. Its original bundle
+file SHA-256, source label, chosen law and input kind remain visible. They are
+not independently authenticated by this code, and the existing source has
+been reused for exploratory studies: this is not fresh blind validation.
+The path is local and read-only; the command does not upload recordings or
+request tokens. With multiple challenge recordings, supply `--challenge-id ID`
+explicitly; an unknown ID refuses without silently switching recordings.
+Only bounded smooth laws can produce the transition.
+
