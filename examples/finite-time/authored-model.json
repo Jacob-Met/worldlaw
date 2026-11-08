@@ -1,0 +1,24 @@
+{
+  "schema": "worldlaw.angular-model/v1",
+  "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown",
+  "physicalInertia": null,
+  "absoluteTorqueIdentified": false,
+  "units": {
+    "position": "rad",
+    "rate": "rad/s",
+    "angularAcceleration": "rad/s²"
+  },
+  "terms": [
+    {
+      "id": "spring",
+      "coefficient": -4,
+      "coefficientUnit": "1/s²"
+    },
+    {
+      "id": "rate",
+      "coefficient": -0.2,
+      "coefficientUnit": "1/s"
+    }
+  ],
+  "id": "authored-harmonic-damped"
+}
