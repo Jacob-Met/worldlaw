@@ -1,0 +1,16 @@
+{
+  "prior_report": "/dev/shm/b93164ce-worldlaw-local-comparison-01/import-closure.superseded-37.json",
+  "prior_sha256": "e73624b7707d2737d1183fc2582489e68c867dceb351f226e750a3dfe6871244",
+  "prior_module_count": 37,
+  "corrected_module_count": 38,
+  "reason": "Old scanner required whitespace in static import/from syntax and omitted a CLI-reachable literal edge.",
+  "missed_edge": {
+    "from": "src/science/periodic-origin-model.mjs",
+    "line": 4,
+    "text": "import{add,mul,neg,trigPair}from'./periodic-trig.mjs';",
+    "to": "src/science/periodic-trig.mjs"
+  },
+  "recovered_by": "research_source exact main blob",
+  "core_cli_test_unchanged": true,
+  "execution": false
+}

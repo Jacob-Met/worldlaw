@@ -1,0 +1,66 @@
+{
+  "schema": "hamon.worldlaw.receipt-comparison/v1",
+  "status": "PASS",
+  "source_commit": "1293d3b30cad9b285e04fe51e2c5815144b3079d",
+  "current_stdout_sha256": "72e8a628dfab2a61b9e18e6db715b7c258551b9dfdc9e0f3059fd59693de17fd",
+  "historical_stdout_sha256": "e9048eb220a8d2233f64500dee2299df6fae4823b3c91d596d0ba9f59a608e6c",
+  "sample_index": 2,
+  "time": 0.02,
+  "assertions": [
+    "population",
+    "whole_course_response_counts",
+    "execution.status",
+    "execution.initial",
+    "execution.settings",
+    "execution.work",
+    "execution.candidateCount",
+    "execution.completedCount",
+    "execution.refusedCount"
+  ],
+  "laws": [
+    {
+      "index": 0,
+      "id": "command+rate+spring+command_position",
+      "time": 0.02,
+      "state": {
+        "time": 0.02,
+        "position": 1.3036763404450826,
+        "rate": 0.16765168783895282,
+        "jointTorque": -1.6147071148857848
+      },
+      "torqueByPosition": -1.1999999999999997,
+      "torqueByRate": -0.29999999999999977,
+      "identical": [
+        "ordered identity",
+        "model schema/terms/domain",
+        "executed trajectory at index 2",
+        "local-response row at index 2",
+        "source inertia/command/model"
+      ],
+      "metadata_qualification": "Current discovery includes metrics/units; restored historical snapshot carries trainingScore. These metadata containers are not asserted identical."
+    },
+    {
+      "index": 1,
+      "id": "command+rate+spring+cubic",
+      "time": 0.02,
+      "state": {
+        "time": 0.02,
+        "position": 1.3033905005065478,
+        "rate": 0.1390600852821558,
+        "jointTorque": -3.0450391870223834
+      },
+      "torqueByPosition": -4.512712253780882,
+      "torqueByRate": -0.2999999999999997,
+      "identical": [
+        "ordered identity",
+        "model schema/terms/domain",
+        "executed trajectory at index 2",
+        "local-response row at index 2",
+        "source inertia/command/model"
+      ],
+      "metadata_qualification": "Current discovery includes metrics/units; restored historical snapshot carries trainingScore. These metadata containers are not asserted identical."
+    }
+  ],
+  "meaning": "An unchanged earlier two-law population is reconstructed from a later saved notebook; its newly executed states and local responses equal the current-notebook course at the selected shared time. This is not authenticated historical forecasting.",
+  "new_execution": false
+}
