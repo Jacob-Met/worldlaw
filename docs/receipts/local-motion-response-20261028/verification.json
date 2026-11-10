@@ -1,0 +1,346 @@
+{
+  "schema": "worldlaw.local-motion-response-receiving/v2",
+  "base_commit": "440591a3a60719a1d356054e7da162ba252f8700",
+  "base_tree": "6d7cb592719a4c2f33cc6ccffe426b297b31d8e0",
+  "received_at": "2026-10-28T18:44:23.246364+00:00",
+  "node": "v24.22.1",
+  "npm": "11.9.0",
+  "browser": "156.0.8078.73",
+  "source": [
+    {
+      "path": "index.html",
+      "git_blob": "87375ccbaa542e0210db4d59e0c64fa59e7fe138",
+      "sha256": "d03e7c01284dd07db7184df641463bfaa6aa8f90cf165ba2134edc9d1bdededc",
+      "bytes": 17618
+    },
+    {
+      "path": "scripts/local-motion-response-browser.mjs",
+      "git_blob": "1c5a8a69a087db3a6ca606391082ab7c8a45ad30",
+      "sha256": "1089344c2f582a2d4f721af8bf88166114c8f4c145d2d0ab4cb12a7a4420cbb5",
+      "bytes": 15865
+    },
+    {
+      "path": "src/app.mjs",
+      "git_blob": "4bb4c9cc912f35ed6d0ab2c48905056bb8f93bf7",
+      "sha256": "14d1f3816964a3f9a9dcc897a4c81744b3a74eb90ef4cc03e75dc686a5f9b8a7",
+      "bytes": 54974
+    },
+    {
+      "path": "src/science/local-motion-response-panel.mjs",
+      "git_blob": "e727e29b4fe29e34d6e4baac57a41c291057461d",
+      "sha256": "6e36eeae3f4e4f4936b2c582e0c567b7a029ee40315be9d0ad361f155707f39f",
+      "bytes": 9515
+    },
+    {
+      "path": "src/science/local-motion-response.mjs",
+      "git_blob": "57eca07e0c0906c2926740f1f327c18836dca05d",
+      "sha256": "2b53c3c298652ad4279d6a473b7643a9c741a876e027f803dd0d51975834b057",
+      "bytes": 8267
+    },
+    {
+      "path": "styles.css",
+      "git_blob": "9369e732c9120ee831c38fde9eb97857e1d119ff",
+      "sha256": "116b173a0637bd1b44f53382ac4bc33e680181132698f9de0fb4fdaa4f641269",
+      "bytes": 43444
+    },
+    {
+      "path": "tests/local-motion-response-app-lifetime.test.mjs",
+      "git_blob": "aaf8a16b54f7cf58a769f6e415c6269a74b46a1a",
+      "sha256": "44ea959b38524b4bd1b207b09c4c40d13f3ba35bfe8aaaedcb465fa6652adc8f",
+      "bytes": 1955
+    },
+    {
+      "path": "tests/local-motion-response-panel.test.mjs",
+      "git_blob": "a6fd228ae8b007aeea478483555c71713fa917be",
+      "sha256": "d764f428722563293a502bd8b70a975d8645d7c5689d17fe414563b71243c658",
+      "bytes": 6794
+    },
+    {
+      "path": "tests/local-motion-response.test.mjs",
+      "git_blob": "ee7e0b597aedaac070b3beba779ec9096b97f8d2",
+      "sha256": "99ea9e93251e1b85d70f4c5e97c40c4adf349c2e74588ad67e7f868b34114178",
+      "bytes": 9969
+    },
+    {
+      "path": "tests/trajectory-experiment-portability-92be.test.mjs",
+      "git_blob": "dbc2a56b42c55272398627a409e149cbd95b96d9",
+      "sha256": "6acade9fdfbe16cb9ea8fc365e98c105c22c11646abf0143f498546ed051d88d",
+      "bytes": 12929
+    }
+  ],
+  "canonical_native_test_files": 227,
+  "composed_native_test_files": 230,
+  "native_verify": {
+    "name": "verify",
+    "command": [
+      "runuser",
+      "-u",
+      "oai",
+      "--",
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/npm",
+      "run",
+      "verify"
+    ],
+    "cwd": "/tmp/hamon-366053231788-worldlaw-current-20261028/candidate-latest-receiving",
+    "exit_code": 0,
+    "seconds": 39.19206927299092,
+    "log_bytes": 164896,
+    "log_sha256": "1342ca544ddf8c7df95b85ce520b4729b1c571c526763aa4c45e387bd012e09a",
+    "counts": {
+      "tests": 1622,
+      "suites": 0,
+      "pass": 1622,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    }
+  },
+  "reference_request": {
+    "name": "reference-request",
+    "command": [
+      "runuser",
+      "-u",
+      "oai",
+      "--",
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "test-request.mjs"
+    ],
+    "cwd": "/tmp/hamon-366053231788-worldlaw-current-20261028/candidate-latest-receiving",
+    "exit_code": 0,
+    "seconds": 0.8233730810025008,
+    "log_bytes": 184,
+    "log_sha256": "87ff2a6b2828c19379e2fb4e66d06c8cefd18b921a15a2426a0587f7023da744",
+    "counts": {}
+  },
+  "browser_receiving": {
+    "name": "browser",
+    "args": [
+      "runuser",
+      "-u",
+      "oai",
+      "--",
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "scripts/local-motion-response-browser.mjs"
+    ],
+    "cwd": "/tmp/hamon-366053231788-worldlaw-current-20261028/candidate-latest",
+    "exit_code": 0,
+    "seconds": 5.324214297012077,
+    "log_bytes": 950,
+    "log_sha256": "fd25fdf15bb83b92025acfd7fa6604208e7aa9af8541c55a0ec5a7cce2d34f4d"
+  },
+  "browser_checks": [
+    "actual default notebook, executed mechanism and reduced-motion row zero share the same law and state",
+    "new evidence changes the readout; ordinary animation uses the canvas sample without repeated live announcements",
+    "edited declarations retire old values; refused dynamics remain empty; a new accepted release recomputes the course",
+    "current and earlier competing-law views retire the inspected-law readout and returning executes it again",
+    "pending replacement clears the old readout and a late superseded source cannot replace the accepted notebook",
+    "actual imported sign-torque observations produce an explicit nonsmooth zero-rate readout without invented frozen modes",
+    "refused clock and affine DOM updates cannot retain the previous law response; a subsequent accepted selection recomputes it",
+    "keyboard calculation disclosure, two rendered compositions and 320\u20131440 px layouts preserve source labels without overflow"
+  ],
+  "layouts": [
+    {
+      "viewport": 1440,
+      "document": 1440,
+      "readout": 1028
+    },
+    {
+      "viewport": 768,
+      "document": 768,
+      "readout": 487
+    },
+    {
+      "viewport": 390,
+      "document": 390,
+      "readout": 352
+    },
+    {
+      "viewport": 320,
+      "document": 320,
+      "readout": 290
+    }
+  ],
+  "notebook_source_hashes": [
+    {
+      "filename": "initial-notebook.json",
+      "sha256": "189ec74186298b6ef501dd0ba9caf749363efdc0ae710b77c43922f6eca02652"
+    },
+    {
+      "filename": "revised-notebook.json",
+      "sha256": "fc285302027ca170eba82be8eb1d84ba44641501a76e5a9cac5778fd48458f9f"
+    },
+    {
+      "filename": "sign-torque-notebook.json",
+      "sha256": "957155d57ba8f465b323747d9725c5aaec71e0182b9a1374c92ba430da8b2478"
+    }
+  ],
+  "portability": {
+    "node": "v24.22.1",
+    "checks": [
+      "Chromium pending to Node preserves all recorded samples",
+      "Node applied history returns to Chromium with identical evidence",
+      "Node high-noise pending to Chromium preserves samples and retains the failed refit"
+    ],
+    "inputSHA256": {
+      "browserPending": "6d278141169093213ff2da00e7d204477c34dfd1b99c16444fefe7a2d508e586",
+      "nodeHighNoisePending": "2aeee6aa1b4ea34d854ea3a804deb5ee5c76a136a95aa56ab4af0fad271a9793"
+    },
+    "browser": "156.0.8078.73",
+    "highNoiseAfter": "failed",
+    "highNoiseError": "runaway_state",
+    "sources": {
+      "src/trajectory/experiment-session.mjs": "d8ab25de7b9755ea5b075361216e47ab3a800d7ea9390f0525c39b38cf19a039",
+      "src/trajectory/virtual-experiment.mjs": "78147d6640414e2e824b5ed0794f28d1ba52b96fea6d3c50b82ec86cb8b2b053",
+      "src/trajectory/planner.mjs": "63d5161e39fa592d90f4b06efe8569879cf5b2b66db309d0e9acc65ec0300f10",
+      "tests/trajectory-experiment-portability-92be.test.mjs": "6acade9fdfbe16cb9ea8fc365e98c105c22c11646abf0143f498546ed051d88d"
+    }
+  },
+  "sandbox": {
+    "full_verify": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-28T18:37:41.030Z",
+      "completedAt": "2026-10-28T18:37:41.196Z",
+      "durationMs": 165.81075799999962,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.73",
+        "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.25"
+      },
+      "target": {
+        "targetId": "AA3B5B5AFFE243A374FE51514BE551C3",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "5E2FE9339FB748ABDA783FE550EEE8D9"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    },
+    "final_browser": {
+      "schema": "hamon-chromium-sandbox/v1",
+      "qualification": "Linux Chromium status in the supplied isolated CDP page",
+      "moduleSha256": "4607c67b360596ee06b36e41a6b5d3a8a6da70defb04292d955f609dcef05ead",
+      "startedAt": "2026-10-28T18:40:38.253Z",
+      "completedAt": "2026-10-28T18:40:38.349Z",
+      "durationMs": 95.52969500000006,
+      "admitted": true,
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "Chrome/156.0.8078.73",
+        "revision": "@2f9a11097447f226133bc1a31c787291a5eeab98",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "jsVersion": "15.6.75.25"
+      },
+      "target": {
+        "targetId": "1CB0671320A211E5717F654D2B46AC4E",
+        "type": "page",
+        "title": "about:blank",
+        "url": "about:blank",
+        "attached": true,
+        "canAccessOpener": false,
+        "browserContextId": "D08C233235BC12A6BC6B30D3466A1BAF"
+      },
+      "url": "chrome://sandbox/",
+      "text": "Sandbox Status\nLayer 1 Sandbox\tNamespace\nPID namespaces\tYes\nNetwork namespaces\tYes\nSeccomp-BPF sandbox\tYes\nSeccomp-BPF sandbox supports TSYNC\tYes\nPtrace Protection with Yama LSM (Broker)\tNo\nPtrace Protection with Yama LSM (Non-broker)\tNo\n\nYou are adequately sandboxed.",
+      "textSha256": "ce79ff14c85761b6be5adc93e04e1af54bf0558f95d59d60d329775a9699a6b3",
+      "observation": {
+        "rows": {
+          "layer1": "Namespace",
+          "pid": "Yes",
+          "network": "Yes",
+          "seccomp": "Yes",
+          "tsync": "Yes"
+        },
+        "checks": {
+          "adequate": true,
+          "layer1": true,
+          "pid": true,
+          "network": true,
+          "seccomp": true,
+          "tsync": true
+        },
+        "populated": true,
+        "duplicates": [],
+        "active": true
+      },
+      "failure": null
+    }
+  },
+  "post_run_source_mismatches": [],
+  "images": [
+    {
+      "path": "docs/receipts/local-motion-response-20261028/concept-a-separate-readout.png",
+      "sha256": "e04526fa106dce6b8b43e560658010bf1533e6e90f60d0e81dd478d0987874f4",
+      "bytes": 61743
+    },
+    {
+      "path": "docs/receipts/local-motion-response-20261028/concept-b-integrated.png",
+      "sha256": "882209b62adc27df1be42702bcef0bcc00012190b787a9231993efb132d40964",
+      "bytes": 57491
+    },
+    {
+      "path": "docs/receipts/local-motion-response-20261028/desktop-keyboard.png",
+      "sha256": "41ef760049f0cdcf13517fa89dfd3731f87f66c38c0a833023c283b7bd2a10f6",
+      "bytes": 90522
+    },
+    {
+      "path": "docs/receipts/local-motion-response-20261028/narrow-instrument.png",
+      "sha256": "a3c68b834d0f95b9e18f593f8eadfaad80e56d93ca83ff897e0e7e6e1000676b",
+      "bytes": 51993
+    }
+  ],
+  "review": {
+    "scope": "Independent numerical and lifetime review retained from the original source. Fresh consumer review verified all nine then-reviewed source hashes, the DOM-refusal control and desktop, narrow and keyboard captures. The lead inspected the final complete alternate composition.",
+    "change_after_full_native": "Only the browser capture script gained fullPage:true for a complete alternate-concept image. The complete browser course with eight groups passed again. Production and native-test bytes remained identical to the full run with 1,622 passing tests.",
+    "remaining_experience_gap": "The inspected-law response intentionally retires during competitive-law playback; a per-law response comparison is a separate queued outcome."
+  },
+  "retained_failures": [
+    {
+      "run": "full-receiving-20261028-01",
+      "base": "e1e0935bb7078b02a6e0595dee027c403b2ac35b",
+      "tests": 1613,
+      "pass": 1612,
+      "fail": 1,
+      "skip": 0,
+      "log_sha256": "551a5a9ee91a73cb23f2d3380d1d4246f3a37cdf844b5d95340d74d9b3b0c517",
+      "cause": "Existing optional portability test did not request Chromium sandbox. It failed admission before app content was loaded. The final test explicitly enables sandbox and runs as non-root; no assertion was removed."
+    }
+  ],
+  "qualification": "Actual launched Studio and stock sandboxed Chromium with declared synthetic observations. No physical validation, nonlinear stability, finite-time perturbation growth, between-sample enclosure or installed remote-service claim.",
+  "prior_unresolved_operation": {
+    "operation_id": "hamon-366053231788-worldlaw-final-qualified-tree-20261027-01",
+    "expected_tree": "64c0a6a339bb8f2eac9093863fe73ca0965d9f67",
+    "status": "Unknown. HTTP 404 from the original owner does not establish non-dispatch. The request has not been replayed.",
+    "new_artifact": "This current-base composition has new receiving source/evidence and is a distinct publication artifact."
+  }
+}
