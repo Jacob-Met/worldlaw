@@ -47,7 +47,7 @@ let clockPanel=null,affinePanel=null,deadzoneWidths=null,frequencySettings=null;
 let state,modelId,plan,trajectory=[],animationStart=0,animationHandle,restored=false,generation=0;
 let observationRead=0,sessionRead=0;
 let studioComparison=null;
-const balanceInspection=mountBalanceInspection($('balance-inspection-root'),{getModel:model,getCommand:()=>numberInput('simulation-command'),onRelease:(position,command)=>{
+const balanceInspection=mountBalanceInspection($('balance-inspection-root'),{getModel:model,getObservations:()=>state.discovery.observations,getCommand:()=>numberInput('simulation-command'),onRelease:(position,command)=>{
   $('initial-angle').value=String(position);$('initial-rate').value='0';$('simulation-command').value=String(command);
   runSimulation();$('run-simulation').focus();
 }});

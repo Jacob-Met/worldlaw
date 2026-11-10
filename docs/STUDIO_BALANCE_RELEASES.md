@@ -36,3 +36,7 @@ Rendered desktop and phone captures and an actual interaction WebM are published
 with the release. The main remaining experience limitation is that the Studio's
 large set of existing investigations makes the dynamics section far down the
 page; this increment does not reorganize the whole product.
+
+## Observed-coordinate context
+
+Each scan shows the current fitting observations’ angle, command and rate ranges. A candidate explicitly identifies angle, fixed command or zero-rate values outside those ranges before release. Values inside each separate range do not establish that their combination was observed or that the prediction is physically valid. Held-out readings do not extend the fitting-support bounds. Changing source or command retires the old context.

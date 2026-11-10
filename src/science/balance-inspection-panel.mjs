@@ -4,7 +4,7 @@ const element=(tag,text)=>{const node=document.createElement(tag);if(text!==unde
 const numeric=value=>Number(value.toPrecision(8)).toString();
 
 /** Derived inspection only: evidence and notebook history are never edited. */
-export function mountBalanceInspection(root,{getModel,getCommand,onRelease}) {
+export function mountBalanceInspection(root,{getModel,getObservations,getCommand,onRelease}) {
   const details=element('details');details.id='balance-inspection';
   details.append(element('summary','Find a zero-torque release'));
   const explanation=element('p','Inspect the current law at zero rate and the dynamics fixed command. Choose an angle to run the existing mechanism from rest. These are model predictions, not measured equilibrium.');
@@ -16,12 +16,13 @@ export function mountBalanceInspection(root,{getModel,getCommand,onRelease}) {
   const scan=element('button','Inspect balance angles');scan.id='balance-scan';scan.type='button';scan.className='button button-outline';controls.append(scan);
   const status=element('p');status.id='balance-status';status.setAttribute('role','status');
   const source=element('p');source.id='balance-source';source.className='small';
+  const support=element('p');support.id='balance-support';
   const results=element('div');results.id='balance-results';
   const limits=element('p','Finite scan: tangent roots, close pairs and unsampled oscillations can be missed. Numerical zeros and sign changes do not establish physical equilibrium, stability or sticking/contact.');limits.className='muted small';
-  details.append(explanation,controls,status,source,results,limits);root.append(details);
+  details.append(explanation,controls,status,source,support,results,limits);root.append(details);
   let current=null;
   function retire(message='Inspect again for the current law and fixed command.'){
-    current=null;results.replaceChildren();source.textContent='';status.textContent=message;details.dataset.state='retired';
+    current=null;results.replaceChildren();source.textContent='';support.textContent='';status.textContent=message;details.dataset.state='retired';
   }
   for(const input of Object.values(inputs))input.addEventListener('input',()=>retire('Scan range or resolution changed. Inspect again.'));
   scan.addEventListener('click',()=>{
@@ -34,6 +35,10 @@ export function mountBalanceInspection(root,{getModel,getCommand,onRelease}) {
       }
       const law=getModel(),command=getCommand();
       const report=scanBalanceCandidates(law,{command,minPosition:values.minimum,maxPosition:values.maximum,cells:values.cells});
+      const observations=getObservations();
+      const bounds=Object.fromEntries(['position','command','rate'].map(key=>[key,[Math.min(...observations.map(row=>row[key])),Math.max(...observations.map(row=>row[key]))]]));
+      const outside=(key,value)=>value<bounds[key][0]||value>bounds[key][1];
+      support.textContent=observations.length+' fitting observations span angle ['+bounds.position.map(numeric).join(', ')+'] rad, command ['+bounds.command.map(numeric).join(', ')+'] N·m and rate ['+bounds.rate.map(numeric).join(', ')+'] rad/s. These separate coordinate ranges do not establish joint coverage or validate a release.';
       current=report;
       details.dataset.state='available';
       source.textContent=law.equation+' · fixed command '+numeric(command)+' N·m · rate 0 rad/s';
@@ -50,7 +55,12 @@ export function mountBalanceInspection(root,{getModel,getCommand,onRelease}) {
         text.append(element('p','Residual '+candidate.residual.toExponential(3)+' N·m · '+(candidate.kind==='sampled_zero'?'sampled floating-point zero':'refined sign change')));
         const more=element('details');more.append(element('summary','Numerical bracket'));
         more.append(element('p','Initial ['+candidate.initialBracket.join(', ')+']; final ['+candidate.finalBracket.join(', ')+'] rad. Termination: '+candidate.termination+'.'));
-        text.append(more);
+        const extrapolated=[];
+        if(outside('position',candidate.position))extrapolated.push('angle');
+        if(outside('command',command))extrapolated.push('fixed command');
+        if(outside('rate',0))extrapolated.push('zero rate');
+        const context=element('p',extrapolated.length?'Outside observed coordinate range: '+extrapolated.join(', ')+'. This release extrapolates the fitted law.':'Within each observed coordinate range; this combination may still be unobserved.');
+        context.className='balance-support-context';text.append(context,more);
         const release=element('button','Release from '+numeric(candidate.position)+' rad');release.type='button';release.className='button button-outline';release.dataset.candidate=String(index);
         release.addEventListener('click',()=>{
           if(current!==report)return;
