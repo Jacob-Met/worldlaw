@@ -32,6 +32,8 @@ try{
   await page.locator('#balance-scan').click();
   assert.equal(await page.locator('.balance-candidate').count(),1);
   assert.match(await page.locator('.balance-candidate').innerText(),/0.725 rad/);
+  assert.match(await page.locator('.balance-support-context').innerText(),/Outside observed coordinate range: angle/);
+  assert.match(await page.locator('#balance-support').innerText(),/45 fitting observations/);
   const beforeCount=await page.locator('#sample-count').innerText();
   await page.locator('[data-candidate="0"]').click();
   assert.ok(Math.abs(Number(await page.locator('#initial-angle').inputValue())-.725)<1e-10);
@@ -54,6 +56,7 @@ try{
   assert.equal(await page.locator('.balance-candidate').count(),0);
   await page.locator('#balance-scan').click();
   assert.match(await page.locator('.balance-candidate').innerText(),/0.425 rad/);
+  assert.match(await page.locator('.balance-support-context').innerText(),/Within each observed coordinate range/);
   await page.locator('#balance-minimum').fill('1');await page.locator('#balance-maximum').fill('2');
   assert.equal(await page.locator('.balance-candidate').count(),0);
   await page.locator('#balance-scan').click();assert.match(await page.locator('#balance-status').innerText(),/No candidates found/);
@@ -70,6 +73,13 @@ try{
   await page.locator('.hypothesis[aria-pressed="false"]').first().click();
   assert.equal(await page.locator('.balance-candidate').count(),0);
   mark('command edits, changed range, no roots, invalid scan, refused dynamics and alternative-law selection remain explicit');
+
+  const positiveRates={...source,source:{...source.source,label:'Positive-rate source control'},observations:observations.map(r=>{const rate=r.rate+2;return {...r,rate,jointTorque:1.2*r.command-.4*rate-.8*r.position+.1};})};
+  await page.locator('#observation-file').setInputFiles({name:'positive-rates.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(positiveRates))});
+  await page.waitForFunction(()=>document.getElementById('source-name').textContent==='Positive-rate source control');
+  await page.locator('#simulation-command').fill('1.2');await page.locator('#balance-scan').click();
+  assert.match(await page.locator('.balance-support-context').innerText(),/angle, fixed command, zero rate/);
+  mark('changed source and command reveal extrapolation in all three coordinates without claiming joint support');
 
   const zero={...source,source:{...source.source,label:'Zero torque receiving control'},observations:observations.map(r=>({...r,jointTorque:0}))};
   await page.locator('#observation-file').setInputFiles({name:'zero.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(zero))});
