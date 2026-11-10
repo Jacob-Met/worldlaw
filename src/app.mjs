@@ -1,3 +1,4 @@
+import {mountBalanceInspection} from './science/balance-inspection-panel.mjs';
 import {renderSplitDiscovery} from './science/split-discovery-panel.mjs';
 import {renderCenteredTorque} from './science/centered-torque-panel.mjs';
 import{assessRecordedDeviation,assessAchievedQuestionBounds}from'./session.mjs';
@@ -46,6 +47,10 @@ let clockPanel=null,affinePanel=null,deadzoneWidths=null,frequencySettings=null;
 let state,modelId,plan,trajectory=[],animationStart=0,animationHandle,restored=false,generation=0;
 let observationRead=0,sessionRead=0;
 let studioComparison=null;
+const balanceInspection=mountBalanceInspection($('balance-inspection-root'),{getModel:model,getCommand:()=>numberInput('simulation-command'),onRelease:(position,command)=>{
+  $('initial-angle').value=String(position);$('initial-rate').value='0';$('simulation-command').value=String(command);
+  runSimulation();$('run-simulation').focus();
+}});
 const localResponse=createLocalMotionResponsePanel($('local-motion-response'));
 let localResponseCourse=null;
 function retireLocalResponse(message){localResponseCourse=null;localResponse.retire(message);}
@@ -63,7 +68,7 @@ function save() {
 function adopt(next,message,widths=null,frequency=null) {retireLocalResponse('The evidence changed. Recomputing the inspected-law prediction.');generation++;state=next;deadzoneWidths=widths;frequencySettings=frequency;modelId=state.discovery.selected.id;render();save();notice(message);}
 // Selection owns a pending replacement across every Studio source entry point.
 // An invalid newest file leaves the accepted notebook intact without reviving an older read.
-function beginSourceReplacement(){retireLocalResponse('A source replacement is pending. Run dynamics to inspect the accepted notebook again.');return ++generation;}
+function beginSourceReplacement(){balanceInspection.retire('Source replacement pending. Inspect the accepted notebook again.');retireLocalResponse('A source replacement is pending. Run dynamics to inspect the accepted notebook again.');return ++generation;}
 function model(){return state.discovery.candidates.find(m=>m.id===modelId)||state.discovery.selected;}
 function numberInput(id){const v=$(id).value.trim();if(!v||!Number.isFinite(Number(v)))throw new Error(`Enter a finite value for ${$(id).labels?.[0]?.textContent||id}.`);return Number(v);}
 function experimentInput(){return Object.fromEntries(['command','position','rate'].map(f=>[f,numberInput(f)]));}
@@ -158,6 +163,7 @@ function renderHypotheses(){
   }
 }
 function renderModel(){
+  balanceInspection.retire('The inspected law or evidence changed. Inspect balance angles again.');
   retireLocalResponse('The inspected law changed. Recomputing its local response.');
   clockPanel?.studioChanged();
   affinePanel?.studioChanged();
@@ -402,6 +408,7 @@ $('session-file').addEventListener('change',async event=>{
 $('export-session').addEventListener('click',()=>action(()=>download(exportSession(state),'worldlaw-notebook.json')));
 $('export-observations').addEventListener('click',()=>action(()=>download(observationsCSV(state.discovery.observations),'worldlaw-observations.csv','text/csv')));
 $('run-simulation').addEventListener('click',()=>action(()=>runSimulation()));
+$('simulation-command').addEventListener('input',()=>balanceInspection.retire('Fixed command changed. Inspect balance angles again.'));
 for(const id of ['initial-angle','initial-rate','inertia','duration','simulation-command'])$(id).addEventListener('input',()=>{
   studioComparison.retire('Dynamics inputs changed. Compare again to execute every law under the new release.');
   retireLocalResponse('Dynamics inputs changed. Run dynamics to inspect their executed local response.');

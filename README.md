@@ -116,6 +116,10 @@ Motion Lab currently assumes a fixed camera, a declared fixed pivot, approximate
 
 The mechanism's **LOCAL MOTION RESPONSE** readout follows the inspected law's actual solver sample. Inspect angle and rate derivatives, frozen modes, and the current inertia/command declarations; open the calculation with the keyboard. Edited inputs, refused dynamics, source replacement and competing-law views retire old values. These are local derivatives of a fitted law, with explicit nonsmooth and numerical limits; they do not establish nonlinear stability or physical equilibrium. See [the method, interpretation and rendered receiving](docs/LOCAL_MOTION_RESPONSE.md).
 
+### Find a zero-torque release in the Studio
+
+Expand **Find a zero-torque release** inside **Let the model move**. Inspect a declared angle range at the dynamics fixed command, review numerical candidates and residuals, then release the actual mechanism from one candidate at zero rate. This is a model prediction, not measured equilibrium. [Interaction, receiving and limits](docs/STUDIO_BALANCE_RELEASES.md).
+
 ### Inspect numerical balance candidates from a saved notebook
 
 After **Save session**, run `node scripts/balance-candidates.mjs --notebook notebook.json --command 0 --minimum -2 --maximum 2` to inspect zero-rate torque candidates over an explicit angle range. The reader replays the original evidence and reports numerical brackets and residuals. Changing the fixed command can change the candidates; a finite scan can miss tangencies or close roots. See [usage, source identity and limits](docs/BALANCE_CANDIDATES.md).

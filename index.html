@@ -316,7 +316,16 @@ body.workbench .button:focus-visible, body.workbench .tool:focus-visible, body.w
 body.workbench .button:active, body.workbench .tool:active { transform: translateY(1px); }
 @media (prefers-reduced-motion: no-preference) { body.workbench .button, body.workbench .tool, body.workbench .hypothesis { transition: background-color .15s ease, border-color .15s ease, color .15s ease; } }
 body.workbench .diagnostics { margin: 0 !important; padding: 12px 0 0 !important; }
-  </style>
+
+#balance-inspection { border-block: 1px solid var(--line); padding: 12px 0; margin: 12px 0; }
+#balance-inspection summary { cursor: pointer; }
+.balance-candidate { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; border-top: 1px solid var(--line); }
+.balance-candidate p { margin: 4px 0; }
+.balance-candidate details { overflow-wrap: anywhere; font-size: 12px; }
+#balance-source { overflow-wrap: anywhere; }
+#balance-inspection .button:hover, #balance-inspection .button:focus-visible { background: #a3ffc0; color: #08110c; border-color: #a3ffc0; }
+@media(max-width:600px) { .balance-candidate { flex-direction: column; align-items: stretch; } }
+</style>
 </head>
 <body class="workbench">
   <a class="skip-link" href="#workbench">Skip to bench</a>
@@ -409,7 +418,7 @@ body.workbench .diagnostics { margin: 0 !important; padding: 12px 0 0 !important
           <section class="panel dynamics-panel" aria-labelledby="dynamics-heading">
             <details class="dynamics-details" open>
               <summary><div><span class="eyebrow">Execute the learned law</span><h2 id="dynamics-heading">Let the model move.</h2></div><span class="details-toggle" aria-hidden="true">+</span></summary>
-              <div class="dynamics-body"><p class="muted small">Run rotational dynamics with a declared inertia and starting state. Predictions outside the observed range remain a hypothesis.</p><div class="dynamics-controls"><label for="initial-angle">Initial angle <span>rad</span><input id="initial-angle" type="number" step="0.05" value="0.8" inputmode="decimal"></label><label for="initial-rate">Initial rate <span>rad/s</span><input id="initial-rate" type="number" step="0.05" value="0" inputmode="decimal"></label><label for="inertia">Inertia <span>kg·m²</span><input id="inertia" type="number" min="0.000001" step="0.1" value="1" inputmode="decimal"></label><label for="duration">Duration <span>s</span><input id="duration" type="number" min="0.01" max="100" step="0.5" value="5" inputmode="decimal"></label><label for="simulation-command">Fixed command <span>N·m</span><input id="simulation-command" type="number" step="0.05" value="0" inputmode="decimal"></label><button id="run-simulation" class="button button-dark" type="button">Run dynamics <span aria-hidden="true">→</span></button></div><p id="simulation-status" class="simulation-status" role="status">The solver uses the selected torque model.</p><div id="trajectory-chart" class="chart trajectory-chart" role="img" aria-label="Simulated angular trajectory under the learned torque model"></div></div>
+              <div class="dynamics-body"><p class="muted small">Run rotational dynamics with a declared inertia and starting state. Predictions outside the observed range remain a hypothesis.</p><div class="dynamics-controls"><label for="initial-angle">Initial angle <span>rad</span><input id="initial-angle" type="number" step="0.05" value="0.8" inputmode="decimal"></label><label for="initial-rate">Initial rate <span>rad/s</span><input id="initial-rate" type="number" step="0.05" value="0" inputmode="decimal"></label><label for="inertia">Inertia <span>kg·m²</span><input id="inertia" type="number" min="0.000001" step="0.1" value="1" inputmode="decimal"></label><label for="duration">Duration <span>s</span><input id="duration" type="number" min="0.01" max="100" step="0.5" value="5" inputmode="decimal"></label><label for="simulation-command">Fixed command <span>N·m</span><input id="simulation-command" type="number" step="0.05" value="0" inputmode="decimal"></label><button id="run-simulation" class="button button-dark" type="button">Run dynamics <span aria-hidden="true">→</span></button></div><p id="simulation-status" class="simulation-status" role="status">The solver uses the selected torque model.</p><div id="balance-inspection-root"></div><div id="trajectory-chart" class="chart trajectory-chart" role="img" aria-label="Simulated angular trajectory under the learned torque model"></div></div>
             </details>
           </section>
 

@@ -35,6 +35,7 @@ for (const failingView of ['clock', 'affine']) {
     const calls = [];
     let visibleResponse = 'previous law';
     const context = {
+      balanceInspection:{retire() {calls.push('balance-retire');}},
       modelId:'newly selected law', localResponseCourse:{previous:true},
       localResponse:{retire() {calls.push('retire'); visibleResponse = null;}},
       clockPanel:{studioChanged() {calls.push('clock'); if (failingView === 'clock') throw Error('controlled clock refusal');}},
@@ -44,6 +45,6 @@ for (const failingView of ['clock', 'affine']) {
       new RegExp('controlled ' + failingView + ' refusal'));
     assert.equal(context.localResponseCourse, null);
     assert.equal(visibleResponse, null);
-    assert.deepEqual(calls, failingView === 'clock' ? ['retire', 'clock'] : ['retire', 'clock', 'affine']);
+    assert.deepEqual(calls, failingView === 'clock' ? ['balance-retire', 'retire', 'clock'] : ['balance-retire', 'retire', 'clock', 'affine']);
   });
 }
