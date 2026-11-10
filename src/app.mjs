@@ -300,7 +300,7 @@ function runSimulation(announce=true){
     const execution=executeStudioDynamics(model(),{position:numberInput('initial-angle'),rate:numberInput('initial-rate')},{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')});
     trajectory=execution.trajectory;
     localResponseCourse=localResponse.setPrediction(model(),trajectory,{inertia:numberInput('inertia'),command:numberInput('simulation-command'),label:`${model().id} · ${state.discovery.observations.length} observations`});
-    chart('trajectory-chart',[{name:`Selected model · fixed command ${fmt(numberInput('simulation-command'))} N·m`,color:'#1c7562',line:true,points:trajectory.map(r=>({x:r.time,y:r.position}))}],{xLabel:'Simulation time (s)',yLabel:'Predicted angle (rad)',width:$('trajectory-chart').clientWidth});
+    chart('trajectory-chart',[{name:`Inspected law ${model().id} · fixed command ${fmt(numberInput('simulation-command'))} N·m`,color:'#1c7562',line:true,points:trajectory.map(r=>({x:r.time,y:r.position}))}],{xLabel:'Simulation time (s)',yLabel:'Predicted angle (rad)',width:$('trajectory-chart').clientWidth});
     let energy=$('energy-budget');if(!energy){energy=el('section');energy.id='energy-budget';$('trajectory-chart').after(energy);}
     renderEnergyBudget(energy,model(),trajectory,{inertia:numberInput('inertia'),command:numberInput('simulation-command')});
     renderConditionalRate(energy,model(),state.discovery.observations,state.base.heldOut,{trajectory,solver:{duration:numberInput('duration'),dt:.02,inertia:numberInput('inertia'),command:numberInput('simulation-command')},chart});
@@ -308,7 +308,7 @@ function runSimulation(announce=true){
     const method=numeric.method==='adaptive_RK4_step_doubling'?`adaptive RK4 · ${numeric.acceptedSteps} accepted internal steps, ${numeric.rejectedSteps} refined trials · local error estimate only`:'fixed-step RK4 · discontinuous sign-rate law · no local error control';
     animationStart=performance.now();set('simulation-status',`${trajectory.length} displayed states at 20 ms intervals · ${method} · schematic joint · prediction only`);
     $('simulation-status').dataset.method=numeric.method;
-    if(announce)notice('Executed the selected torque model. '+numeric.interpretation);
+    if(announce)notice(`Executed inspected law ${model().id}. Discovery ranking unchanged. ${numeric.interpretation}`);
   }catch(error){retireLocalResponse('Local response unavailable because the trajectory was refused.');trajectory=[];delete $('simulation-status').dataset.method;$('energy-budget')?.replaceChildren(el('p','Energy accounting unavailable because the trajectory was refused.'));set('simulation-status',`Prediction unavailable: ${error.message}`);$('trajectory-chart').replaceChildren(el('p',error.message,'empty-state'));if(announce)throw error;}
 }
 function draw(now){
