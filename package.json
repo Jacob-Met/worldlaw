@@ -14,6 +14,7 @@
     "verify": "npm test && npm run smoke && npm run smoke:trajectory",
     "browser": "node scripts/browser.mjs",
     "unknown:browser": "node scripts/unknown-lab-browser.mjs",
+    "probe:browser": "node scripts/probe-choice-browser.mjs",
     "motion:browser": "node scripts/motion-browser-15cc.mjs",
     "trajectory": "node scripts/trajectory-server-92be.mjs",
     "smoke:trajectory": "node scripts/trajectory-smoke-92be.mjs",
