@@ -229,6 +229,7 @@ function updateHud(){const v=id=>$(id)?.value??"—",t=id=>$(id)?.textContent??"
 document.addEventListener("input",e=>{if(["position","rate","command"].includes(e.target.id))updateHud();});
 function render(){
   measurementBatchPanel?.studioChanged();excitationPanel?.studioChanged();
+  $('review-experiment-result').hidden=true;set('experiment-result','Choose the state, obtain a reading, then compare the revised law.');
   const d=state.discovery;set('source-name',state.base.source.label);set('source-kind',state.lab?'Virtual instrument · synthetic evidence':'Imported observations · user-supplied evidence');
   set('sample-count',String(d.observations.length));set('heldout-count',String(state.base.heldOut.length));updateHud();set('candidate-count',String(d.candidates.length));
   $('undo').disabled=state.events.length===0;$('measured-field').hidden=Boolean(state.lab);$('run-experiment').textContent=state.lab?'Run virtual experiment':'Record measured outcome';
@@ -298,7 +299,7 @@ function renderPlan(){
 }
 // Display the proposal at 12 significant digits so float noise (2.400000000000001) never reaches the form.
 const formatInput=value=>String(Number(Number(value).toPrecision(12)));
-function useProposal(announce=true){if(!plan?.selected)return;const exact=!state.lab && Object.hasOwn(state.base,'offeredInputs');for(const f of ['position','rate','command'])$(f).value=formatInput(plan.selected.input[f]);if(announce)notice('Proposed inputs are ready. Run the instrument to obtain a new observation.');}
+function useProposal(announce=true){if(!plan?.selected)return;const exact=!state.lab && Object.hasOwn(state.base,'offeredInputs');for(const f of ['position','rate','command'])$(f).value=formatInput(plan.selected.input[f]);if(announce){notice('Proposed inputs are ready. Obtain a new observation at the selected state.');$('experiment-workspace').scrollIntoView({block:'start'});$('position').focus({preventScroll:true});}}
 function runSimulation(announce=true){
   studioComparison?.retire('The evidence or inspected law changed. Compare again to execute the current competitive set.');
   retireLocalResponse('Executing the inspected law under the current dynamics inputs.');
@@ -383,7 +384,11 @@ $('planner-objective').addEventListener('change',()=>action(()=>{renderPlan();no
 $('run-experiment').addEventListener('click',()=>action(()=>{
   const input=experimentInput();const next=state.lab?runVirtualExperiment(state,input):appendMeasurements(state,[{...input,jointTorque:numberInput('measured-torque'),...(state.discovery.observations[0]?.torqueNoiseRatio===undefined?{}:{torqueNoiseRatio:numberInput('measurement-noise-ratio')})}]);
   const previous=state.discovery.selected.id;adopt(next,previous===next.discovery.selected.id?'New observation added. The leading structure is unchanged.':'New evidence changed the leading model structure.',null,frequencySettings);
+  set('experiment-result',previous===next.discovery.selected.id?'Observation recorded. The leading structure is unchanged; inspect its errors and competing laws.':'Observation recorded. New evidence changed the leading structure; inspect the revised law and errors.');
+  $('review-experiment-result').hidden=false;
+
 }));
+$('review-experiment-result').addEventListener('click',()=>{const heading=$('model-heading');heading.setAttribute('tabindex','-1');heading.scrollIntoView({block:'start'});heading.focus({preventScroll:true});});
 $('refit').addEventListener('click',()=>action(()=>{
   const loss=$('reading-loss').value;
   const options={noiseSigma:numberInput('noise-sigma'),loss,...(loss==='soft_l1'?{lossScale:numberInput('loss-scale')}:{})};
