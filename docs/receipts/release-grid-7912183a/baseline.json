@@ -1,0 +1,161 @@
+{
+  "schema": "worldlaw.release-grid-baseline/v1",
+  "sourceCommit": "553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9",
+  "node": "v24.22.1",
+  "began": "2026-11-06T15:57:47.115Z",
+  "ended": "2026-11-06T15:57:47.184Z",
+  "sourceFilesGuarded": 21,
+  "loaded": [
+    "src/science/centered-response.mjs",
+    "src/science/continuation-fit.mjs",
+    "src/science/curvature-fit.mjs",
+    "src/science/heterogeneous-fit.mjs",
+    "src/science/input-origin-fit.mjs",
+    "src/science/linear-fit.mjs",
+    "src/science/output-grid.mjs",
+    "src/science/periodic-origin-model.mjs",
+    "src/science/periodic-trig.mjs",
+    "src/science/release-separation.mjs",
+    "src/science/robust-budget-probe.mjs",
+    "src/science/robust-fit-research.mjs",
+    "src/science/robust-fit.mjs",
+    "src/science/shared-iteration-fit.mjs",
+    "src/science/split-column.mjs",
+    "src/science/split-multicolumn.mjs",
+    "src/science/studio-dynamics.mjs",
+    "src/science/torque-discovery.mjs"
+  ],
+  "inputsUnchanged": true,
+  "sourceUnchanged": true,
+  "witness": {
+    "duration": 0.13,
+    "dt": 0.000013,
+    "ratio": 10000.000000000002,
+    "rawCeil": 10001,
+    "maintainedCount": 10000,
+    "direct": {
+      "samples": 10001,
+      "last": {
+        "time": 0.13,
+        "position": 0.25999999999985574,
+        "rate": 2,
+        "jointTorque": 0
+      },
+      "gridSha256": "611b7df070389e418ac1024c03587f9554af8e0ba17137e024c816ebdcc3537a",
+      "diagnostics": {
+        "method": "adaptive_RK4_step_doubling",
+        "acceptedSteps": 11442,
+        "rejectedSteps": 0,
+        "trials": 11442,
+        "derivativeEvaluations": 137304,
+        "outputEvaluations": 10001,
+        "maxTrials": 50000,
+        "outputInterval": 0.000013,
+        "smallestStep": 1.6940658945086007e-21,
+        "largestStep": 0.000013,
+        "largestAcceptedErrorRatio": 1.4231329613751166e-9,
+        "relativeTolerance": 1e-8,
+        "positionToleranceRad": 1e-10,
+        "rateToleranceRadPerSecond": 1e-10,
+        "localErrorEstimate": "full_step_vs_two_half_steps_divided_by_15",
+        "globalErrorBound": null,
+        "observationsResetState": false,
+        "interpretation": "Local numerical error estimate for smooth resolved dynamics, not a global error bound, stiffness certificate or physical validation."
+      }
+    },
+    "wrapper": {
+      "name": "DiscoveryError",
+      "code": "invalid_input",
+      "message": "Use positive duration, output interval and inertia with at most 10000 output intervals."
+    }
+  },
+  "reservation": {
+    "duration": 0.07,
+    "dt": 0.01,
+    "rawCeil": 8,
+    "maintainedCount": 7,
+    "courses": [
+      {
+        "name": "nominal",
+        "samples": 8,
+        "last": {
+          "time": 0.07,
+          "position": 0.13877500000000004,
+          "rate": 1.9650000000000007,
+          "jointTorque": -0.5
+        },
+        "gridSha256": "a02f8cd191f5ae3218aea6827f2233cc59a8266a466f57e7ad5e6889deeb7e2c",
+        "diagnostics": {
+          "method": "classical_RK4",
+          "acceptedSteps": 7,
+          "rejectedSteps": 0,
+          "outputInterval": 0.01,
+          "globalErrorBound": null,
+          "interpretation": "Fixed-step RK4 retained for the discontinuous sign-rate law. No local error control or sticking interpretation is claimed."
+        }
+      },
+      {
+        "name": "full",
+        "samples": 8,
+        "last": {
+          "time": 0.07,
+          "position": 0.388775,
+          "rate": 1.9650000000000007,
+          "jointTorque": -0.5
+        },
+        "gridSha256": "a02f8cd191f5ae3218aea6827f2233cc59a8266a466f57e7ad5e6889deeb7e2c",
+        "diagnostics": {
+          "method": "classical_RK4",
+          "acceptedSteps": 7,
+          "rejectedSteps": 0,
+          "outputInterval": 0.01,
+          "globalErrorBound": null,
+          "interpretation": "Fixed-step RK4 retained for the discontinuous sign-rate law. No local error control or sticking interpretation is claimed."
+        }
+      },
+      {
+        "name": "half",
+        "samples": 8,
+        "last": {
+          "time": 0.07,
+          "position": 0.26377500000000004,
+          "rate": 1.9650000000000007,
+          "jointTorque": -0.5
+        },
+        "gridSha256": "a02f8cd191f5ae3218aea6827f2233cc59a8266a466f57e7ad5e6889deeb7e2c",
+        "diagnostics": {
+          "method": "classical_RK4",
+          "acceptedSteps": 7,
+          "rejectedSteps": 0,
+          "outputInterval": 0.01,
+          "globalErrorBound": null,
+          "interpretation": "Fixed-step RK4 retained for the discontinuous sign-rate law. No local error control or sticking interpretation is claimed."
+        }
+      }
+    ],
+    "actualFixedSteps": 21,
+    "work": {
+      "courseCount": 3,
+      "reservedMaximumAdaptiveTrials": 150000,
+      "reservedMaximumFixedSteps": 24,
+      "completedAdaptiveTrials": 0,
+      "failedCourseWorkUnknown": false
+    },
+    "resultSha256": "8624e02d3a202ae31083b7c92a457f145fc415d751416403433cdd64a64df21f"
+  },
+  "trueExtraInterval": {
+    "duration": 0.13000000000000003,
+    "precedingEndpoint": 0.13,
+    "maintainedCount": 10001,
+    "direct": {
+      "name": "DiscoveryError",
+      "code": "invalid_input",
+      "message": "Dynamics needs positive duration, display interval and inertia, with at most 10000 output intervals."
+    },
+    "wrapper": {
+      "name": "DiscoveryError",
+      "code": "invalid_input",
+      "message": "Use positive duration, output interval and inertia with at most 10000 output intervals."
+    }
+  }
+}
