@@ -108,6 +108,8 @@ try {
   await wait("document.querySelector('#source-badge')?.textContent==='DECLARED SIMULATION'");
   assert.equal(await evaljs("localStorage.getItem('worldlaw.unknown-lab.history.v1')"),null);
  });
+ // Navigation and chart rendering settle independently after a reload.
+ await wait("!!document.querySelector('#plot svg')");
  await check('desktop 1440px contains all content',async()=>{
   const dims=await evaljs("({width:window.innerWidth,scroll:document.documentElement.scrollWidth,svg:document.querySelector('#plot svg').getBoundingClientRect().width})");
   assert.ok(dims.scroll<=dims.width+1,JSON.stringify(dims));assert.ok(dims.svg>500);
