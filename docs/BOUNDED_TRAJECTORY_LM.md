@@ -10,7 +10,7 @@ Replacing that derivative alone is insufficient. An unconstrained coupled step c
 
 ## Method and preserved contract
 
-Interior coefficients retain central differences. At a bound, the routine uses the current residual plus two inward probes for a second-order one-sided derivative. The second probe stays inside one half of the available interval, with explicit exact-bound and representability checks. This avoids a demonstrated floating-point escape when a nominal endpoint rounded beyond its bound.
+Interior coefficients retain central probes. At a bound, the routine uses the current residual plus two inward probes for a second-order one-sided derivative. The requested step limits the second probe to half the available interval; exact-bound and representability checks apply after rounding. This avoids a demonstrated floating-point escape when a nominal endpoint rounded beyond its bound.
 
 For the local gradient estimate `Jᵀr`, a lower-bound coefficient is held only when its gradient is positive; an upper-bound coefficient is held only when its gradient is negative. The damped QR step uses the remaining columns and their corresponding damping rows. The active set is recomputed after every accepted change, allowing a bound coefficient to move inward later.
 
@@ -21,6 +21,28 @@ The two consumers retain their existing validation, strict-interior seed admissi
 `1 + iterations * (2 * parameterCount + 4)`
 
 No new model family, external inference, physical parameter meaning or uncertainty claim is introduced. Floating-point roundoff, local minima, finite-difference accuracy and model mismatch remain limits.
+
+## Derivatives at represented probe locations
+
+A requested finite-difference step need not equal the displacement produced by floating-point addition. The helper now uses the actual probe offsets from the incumbent. Symmetric central probes use their actual separation; other accepted central or inward probes use the derivative at the incumbent of the quadratic through the three actual nodes. Equal secants remain exactly equal in the secant-difference expression.
+
+Explicit checks preserve the intended opposite-side or ordered inward geometry and refuse nonfinite offsets, weights, secants or derivative arithmetic. These checks add no conditioning cutoff and do not certify derivative accuracy. The current probe-selection rule is unchanged, including refusals when its requested probes collapse or its step underflows. Two probes per coordinate, complete screened evaluations, active-set recomputation and the existing work reservation are preserved.
+
+[The source-pinned spacing investigation](FINITE_DIFFERENCE_REPRESENTABILITY.md) records identity-function counterexamples, a real finite-budget trajectory witness, and the limited domain of an amplification proof. The wider-interval witness exposes a meaningful early-result difference; additional iterations recover the same authored optimum. Residual cancellation, integration error and probe-selection quality remain limits.
+
+### Qualification of the spacing correction
+
+The candidate helper has SHA-256 `f9a86ac2529a38d83a9e039c5b43912bf493b681d0464dd299503c4e9e67632b`. Native Node 24.22.1 checks passed:
+
+- Thirteen new helper behavior/refusal checks, covering central and inward affine optima in both directions, collapsed probes, incomplete evaluations, nonfinite secant arithmetic and the exact non-improving work ceiling.
+- Three new actual-trajectory consumer checks: an ordinary first step from a near-bound seed, an interior-seed control and recovery with a longer declared budget.
+- Twenty-three maintained checks across the existing helper, both actual consumers and their notebook sessions.
+
+The unchanged helper fails seven of the sixteen new checks; the other nine preservation/control checks pass. All thirty-nine unique candidate checks pass. The nine existing helper checks are included in the twenty-three maintained checks and are not counted twice.
+
+Because the workspace could not allocate new files, these native checks loaded the exact candidate helper in memory. New test bodies used environment-specific import adaptation; the maintained test files ran unchanged with a scoped Node module-load hook that reported the same helper hash in all six test workers. This qualifies the exercised module behavior. A clean candidate checkout, full suite, launched application and exact standalone browser receiving remain pending; these are not replaced by the module checks.
+
+The following comparison and receiving sections retain the earlier boundary-continuation increment's historical evidence. They do not describe completed application receiving of this spacing correction.
 
 ## Controlled actual-consumer comparison
 
