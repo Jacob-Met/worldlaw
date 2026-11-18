@@ -88,6 +88,28 @@ export function mountProspectivePort(root) {
   $(root,'save').addEventListener('click',()=>{
     if(plan)download(plan,'worldlaw-prospective-port-plan.json');
   });
+  $(root,'open').addEventListener('click',()=>$(root,'file').click());
+  $(root,'file').addEventListener('change',async e=>{
+    const file=e.target.files?.[0],intent=++version;e.target.value='';
+    if(!file)return;
+    try{
+      if(file.size>200000)throw Error('Use a saved proposal below 200 KB.');
+      const raw=JSON.parse(await file.text());
+      if(intent!==version)return;
+      const fresh=planProspectivePortIntervention(raw?.source);
+      if(JSON.stringify(raw)!==JSON.stringify(fresh))throw Error('Saved plan is changed or stale; only source-recomputable proposals can reopen.');
+      for(const [field,value] of Object.entries({
+        q1:fresh.source.initial[0],q2:fresh.source.initial[1],
+        v1:fresh.source.initial[2],v2:fresh.source.initial[3],
+        amplitude:fresh.source.settings.amplitudeCapNm,impulse:fresh.source.settings.impulseCapNms,
+        slew:fresh.source.settings.maxSlewNmPerSecond,radius:fresh.source.settings.contrastRadiusRad,
+        duration:fresh.source.settings.durationSeconds,step:fresh.source.settings.stepSeconds
+      }))$(root,field).value=String(value);
+      planNow();
+      if(JSON.stringify(plan)!==JSON.stringify(raw))throw Error('Reopened source produced a different plan.');
+      $(root,'result').textContent+=' Reopened from source and independently recomputed; no previously observed data was imported.';
+    }catch(error){if(intent===version)$(root,'error').textContent=error.message;}
+  });
   $(root,'sample').addEventListener('click',()=>{
     if(!plan?.selected?.predicted)return;
     const p=plan.selected.predicted;
