@@ -30,6 +30,21 @@ test('two competing laws: exact minimum reading cardinality on original finite s
   assert.deepEqual(one.readings.map(x=>x.sampleIndex),[2]);
 });
 
+test('one-reading budget reverses the legacy full-trajectory RMS ranking on authored controls',()=>{
+  const distributed=[p('zero',[0,0,0,0]),p('distributed',[2,2,2,2])];
+  const concentrated=[p('zero',[0,0,0,0]),p('concentrated',[0,0,0,3])];
+  const rms=x=>Math.hypot(...x[1].rows.slice(1).map((r,i)=>r.position-x[0].rows[i+1].position))/2;
+  assert.ok(rms(distributed)>rms(concentrated));
+  const options={sigma:1,targetZ:2.5,maxReadings:1};
+  const priorChoice=designGaussianReadings(distributed,options);
+  const informedChoice=designGaussianReadings(concentrated,options);
+  assert.equal(priorChoice.status,'budget_insufficient');
+  assert.equal(priorChoice.lowerBoundReadings,2);
+  assert.equal(informedChoice.status,'distinguishable');
+  assert.equal(informedChoice.certifiedMinimumReadings,1);
+  assert.deepEqual(informedChoice.readings.map(r=>r.time),[4]);
+});
+
 test('budget and observational equivalence are not mislabeled successes',()=>{
   const ab=[p('A',[0,0,0]),p('B',[1,3,2])];
   const budget=designGaussianReadings(ab,{sigma:1,targetZ:Math.sqrt(12),maxReadings:1});
