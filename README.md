@@ -560,3 +560,10 @@ Run `node scripts/sequential-probe.mjs request.json` with an object containing t
 The method intersects each law’s coefficient interval with every readout under the declared absolute noise radius. It ranks future states by the largest number of models compatible with any single readout, the number of fully separated pairs, and the sum of pairwise shared readout widths divided by each interval’s width. A lower shared fraction breaks ties before effort and identifier order. This geometric ranking does not assume a calibrated probability distribution. Results are conditional on the finite law family and declared noise bound.
 
 `node scripts/evaluate-sequential-probes.mjs` replays 100 seeded synthetic studies against the existing fixed two-state chooser, using the first offered pair when the chooser abstains. The fallback-inclusive comparison identified 73 versus 95 of 100 in-family cases. The strict chooser recommended 38 pairs; both policies identified all 38, using 56 versus 42 readings. On a separate unoffered mixed-law cohort, the adaptive policy left an incorrect singleton in 72/100 cases versus 45/100 for the fixed course with fallback. See [the model-adequacy report](docs/SEQUENTIAL_PROBE_ADEQUACY.md). Both policies can stop once one law remains. All scheduled outcomes are shared between policies, with two unit-cost measurements available per study.
+
+## Identify a hardware drive port
+
+Open **Hardware replay** in Coupling Lab. Load a pinned DFKI double-pendulum recording, or import a numeric RealAIGym trajectory CSV. The replay hides the two original controller ports, executes both mechanical hypotheses using their summed torque, and locks the measurement time before revealing encoder angles. Compare the first 0.12-radian separation with the 100 ms clock. The source details retain all 50 physical outcomes, including ten early errors on one controller/system.
+
+The parameter convention and original real-system recordings are published by DFKI.
+https://dfki-ric-underactuated-lab.github.io/real_ai_gym_leaderboard/acrobot_real_system_leaderboard_v1.html

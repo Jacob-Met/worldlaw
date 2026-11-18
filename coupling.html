@@ -7,7 +7,7 @@
 </head>
 <body>
   <a class="skip" href="#apparatus">Skip to apparatus</a>
-  <header><a class="wordmark" href="/">WORLDLAW <span>COUPLING LAB</span></a><nav aria-label="Notebook"><a href="/">Discovery Studio</a><button id="open" type="button">Open evidence</button><button id="save" type="button">Save notebook</button></nav></header>
+  <header><a class="wordmark" href="/">WORLDLAW <span>COUPLING LAB</span></a><nav aria-label="Notebook"><a href="/">Discovery Studio</a><a href="#hardware-port-replay">Hardware replay</a><button id="open" type="button">Open evidence</button><button id="save" type="button">Save notebook</button></nav></header>
   <main>
     <section class="opening"><div><p class="eyebrow">TWO COORDINATES. COMPETING EXPLANATIONS.</p><h1>Find the coupling.</h1><p class="lede">A response at one coordinate can depend on the other. Choose a state that separates the explanations, observe its torque, and let the new evidence change the model.</p></div><div class="course-controls"><label for="course">Authored instrument</label><select id="course"><option value="reciprocal">Reciprocal response</option><option value="independent">Independent response</option><option value="directional">Directional response</option><option value="collinear">Insufficient excitation</option><option value="nonlinear">Outside the linear families</option></select><button id="restart" type="button">Start this instrument</button><p>These controls generate synthetic evidence. Imported measurements remain user declared.</p></div></section>
     <div id="error" role="alert" tabindex="-1" hidden></div>
@@ -33,7 +33,38 @@
     <section id="coupled-dynamics" class="coupled-motion" aria-labelledby="motion-title"></section>
     <section class="evidence" aria-labelledby="evidence-title"><div class="section-heading"><div><p class="eyebrow">KEEP EACH EXPLANATION TESTABLE</p><h2 id="evidence-title">Which response survives?</h2></div><p id="diagnostics"></p></div><div class="table-wrap"><table><caption>Training ranks models. Separate checks never enter fitting or proposal selection.</caption><thead><tr><th>Explanation</th><th>Training RMSE</th><th>Separate check RMSE</th><th>Evidence status</th></tr></thead><tbody id="models"></tbody></table></div><p id="comparison" class="comparison"></p><p class="small">Errors pool the two torque coordinates in N·m. The score uses a declared noise floor; model spread and reciprocity are not probabilities or evidence of passivity.</p></section>
     <section class="revisions" aria-labelledby="revision-title"><p class="eyebrow">FREEZE. OBSERVE. REVISE.</p><h2 id="revision-title">The evidence changes the explanation.</h2><p>Each entry compares the new response with predictions frozen before that observation was added. Earlier mistakes stay visible.</p><ol id="history"></ol></section>
-    <section class="scope"><h2>A local response hypothesis.</h2><p>This lab compares three affine two-coordinate laws under a supplied quasi-static assumption. Both coordinates must use radians and conjugate torque signs in N·m. Hidden rates, changing loads, drift and nonlinear behavior can invalidate every offered explanation. Neither a fitted matrix nor the virtual instrument establishes mechanism topology, causal direction, physical safety or scientific validity.</p><details><summary>Source declaration and acquisition assumptions</summary><dl><dt>Source reference</dt><dd id="reference"></dd><dt>Coordinate convention</dt><dd id="convention"></dd><dt>Assumed torque noise</dt><dd id="noise"></dd></dl><p>Exact repeated numerical evidence is conservatively refused across fitting, separate checks and revisions. Repeated quantized readings can be genuine, but they do not establish fresh evidence here. Original acquisition references remain the operator's responsibility.</p></details></section>
+        <section id="hardware-port-replay" class="hardware-replay" aria-labelledby="hardware-title">
+      <h2 id="hardware-title">Which joint received the torque?</h2>
+      <p>Replay a recorded double-pendulum experiment. Shoulder and elbow drive receive the same anonymous command. Choose when to observe the encoders, then compare both forecasts with one measurement.</p>
+      <div class="hardware-workbench">
+        <div class="hardware-controls">
+          <label for="hardware-recording">Published hardware recording</label>
+          <select id="hardware-recording" data-port="recording"><option value="mc">MC-PILCO · run 01</option><option value="shoulder">iLQR · run 10</option><option value="elbow">iLQR · run 03</option></select>
+          <button type="button" data-port="example">Load recording</button>
+          <label for="hardware-file">Or import a RealAIGym CSV</label>
+          <input id="hardware-file" type="file" data-port="file" accept=".csv,text/csv">
+          <label for="hardware-clock">Observation clock</label>
+          <select id="hardware-clock" data-port="clock"><option value="active">First separation of 0.12 rad</option><option value="fixed100">Fixed 100 ms</option></select>
+          <button type="button" class="primary" data-port="reveal" disabled>Reveal encoder snapshot</button>
+        </div>
+        <div class="hardware-instrument">
+          <strong data-port="status" role="status" aria-live="polite">Load a recording to freeze both predictions.</strong>
+          <div data-port="facts" hidden><p><span data-port="time"></span> · <span data-port="separation"></span></p>
+            <svg data-port="plot" viewBox="0 0 410 280" role="img" aria-label="Predicted shoulder and elbow angle changes, relative to the initial encoder state" hidden></svg>
+            <p class="hardware-key"><span>Shoulder drive · dashed</span><span>Elbow drive · solid</span><span>Encoder · ring</span></p>
+            <p data-port="reading"></p>
+          </div>
+        </div>
+      </div>
+      <details><summary>Acquisition and measured accuracy</summary>
+        <p>The two clocks were frozen before scoring 50 DFKI hardware runs. The separation clock identified the port in 40 runs at a median of 30.3 ms. The fixed clock identified all 50 at a median of 101.9 ms. All ten early errors came from elbow-driven MC-PILCO runs.</p>
+        <p>The replay uses the publisher’s common rigid-body parameters. It sums both controller channels before inference. Each clock uses the same initial encoder state and one subsequent snapshot. The recorded feedback controller generated the command history.</p>
+        <a href="https://github.com/dfki-ric-underactuated-lab/real_ai_gym_leaderboard/tree/81ea5bc877d4371d6d938b711a27e0c3fbb923f2/data">Pinned DFKI acquisition archive</a>
+        <p data-port="source" class="hardware-source"></p>
+      </details>
+    </section>
+
+<section class="scope"><h2>A local response hypothesis.</h2><p>This lab compares three affine two-coordinate laws under a supplied quasi-static assumption. Both coordinates must use radians and conjugate torque signs in N·m. Hidden rates, changing loads, drift and nonlinear behavior can invalidate every offered explanation. Neither a fitted matrix nor the virtual instrument establishes mechanism topology, causal direction, physical safety or scientific validity.</p><details><summary>Source declaration and acquisition assumptions</summary><dl><dt>Source reference</dt><dd id="reference"></dd><dt>Coordinate convention</dt><dd id="convention"></dd><dt>Assumed torque noise</dt><dd id="noise"></dd></dl><p>Exact repeated numerical evidence is conservatively refused across fitting, separate checks and revisions. Repeated quantized readings can be genuine, but they do not establish fresh evidence here. Original acquisition references remain the operator's responsibility.</p></details></section>
   </main>
   <footer><a href="/">WORLDLAW</a><span>Local computation · Explicit evidence · Recomputed on reopen</span></footer>
   <input type="file" id="notebook-file" accept=".json,application/json" hidden aria-label="Choose coupling evidence notebook">
