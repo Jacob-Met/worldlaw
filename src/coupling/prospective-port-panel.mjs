@@ -65,7 +65,7 @@ export function mountProspectivePort(root) {
     $(root,'plot').hidden=true;$(root,'evidence').hidden=true;
     $(root,'result').textContent='A changed initial state or constraint invalidates the previous command and clock.';
   };
-  root.querySelectorAll('input[data-prospective]').forEach(i=>i.addEventListener('input',invalidate));
+  root.querySelectorAll('input[data-prospective-source]').forEach(i=>i.addEventListener('input',invalidate));
   function planNow(){
     try{
       const next=planProspectivePortIntervention(source());plan=next;
