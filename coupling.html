@@ -7,7 +7,7 @@
 </head>
 <body>
   <a class="skip" href="#apparatus">Skip to apparatus</a>
-  <header><a class="wordmark" href="/">WORLDLAW <span>COUPLING LAB</span></a><nav aria-label="Notebook"><a href="/">Discovery Studio</a><a href="#hardware-port-replay">Hardware replay</a><button id="open" type="button">Open evidence</button><button id="save" type="button">Save notebook</button></nav></header>
+  <header><a class="wordmark" href="/">WORLDLAW <span>COUPLING LAB</span></a><nav aria-label="Notebook"><a href="/">Discovery Studio</a><a href="#hardware-port-replay">Hardware replay</a><a href="#prospective-port">Prospective test</a><button id="open" type="button">Open evidence</button><button id="save" type="button">Save notebook</button></nav></header>
   <main>
     <section class="opening"><div><p class="eyebrow">TWO COORDINATES. COMPETING EXPLANATIONS.</p><h1>Find the coupling.</h1><p class="lede">A response at one coordinate can depend on the other. Choose a state that separates the explanations, observe its torque, and let the new evidence change the model.</p></div><div class="course-controls"><label for="course">Authored instrument</label><select id="course"><option value="reciprocal">Reciprocal response</option><option value="independent">Independent response</option><option value="directional">Directional response</option><option value="collinear">Insufficient excitation</option><option value="nonlinear">Outside the linear families</option></select><button id="restart" type="button">Start this instrument</button><p>These controls generate synthetic evidence. Imported measurements remain user declared.</p></div></section>
     <div id="error" role="alert" tabindex="-1" hidden></div>
@@ -62,6 +62,59 @@
         <a href="https://github.com/dfki-ric-underactuated-lab/real_ai_gym_leaderboard/tree/81ea5bc877d4371d6d938b711a27e0c3fbb923f2/data">Pinned DFKI acquisition archive</a>
         <p data-port="source" class="hardware-source"></p>
       </details>
+    </section>
+
+    <section id="prospective-port" class="prospective-port" aria-labelledby="prospective-port-title">
+      <div class="prospective-heading">
+        <div><p class="eyebrow">BEFORE THE MOTOR MOVES / TWO LAWS. ONE MEASUREMENT.</p>
+          <h2 id="prospective-port-title">Design the command, not just the clock.</h2>
+          <p>Freeze an entire bounded torque waveform from only the starting encoder state. Then choose one future instant that should distinguish shoulder from elbow drive. No future encoder values enter the plan.</p></div>
+        <p class="prospective-provenance">OFFLINE PLANNER<br><strong>No motor is controlled</strong><span> · DFKI two-link model · N·m / rad / s</span></p>
+      </div>
+      <div class="prospective-grid">
+        <form data-prospective="form" class="prospective-controls">
+          <h3>The known starting state</h3>
+          <div class="prospective-inputs">
+            <label>Shoulder angle · rad<input data-prospective="q1" data-prospective-source type="number" step="any" value="0" required></label>
+            <label>Elbow angle · rad<input data-prospective="q2" data-prospective-source type="number" step="any" value="0" required></label>
+            <label>Shoulder rate · rad/s<input data-prospective="v1" data-prospective-source type="number" step="any" value="0" required></label>
+            <label>Elbow rate · rad/s<input data-prospective="v2" data-prospective-source type="number" step="any" value="0" required></label>
+          </div>
+          <details class="prospective-limits"><summary>Set stimulus, sampling and sensor constraints</summary>
+            <div class="prospective-inputs">
+              <label>Torque cap · N·m<input data-prospective="amplitude" data-prospective-source type="number" step="any" value="2" required></label>
+              <label>Absolute impulse cap · N·m·s<input data-prospective="impulse" data-prospective-source type="number" step="any" value="0.38" required></label>
+              <label>Max slew · N·m/s<input data-prospective="slew" data-prospective-source type="number" step="any" value="120" required></label>
+              <label>Encoder acceptance radius · rad<input data-prospective="radius" data-prospective-source type="number" step="any" value="0.02" required></label>
+              <label>Observation horizon · s<input data-prospective="duration" data-prospective-source type="number" step="any" value="0.3" required></label>
+              <label>Time grid · s<input data-prospective="step" data-prospective-source type="number" step="any" value="0.01" required></label>
+            </div><p>Constraints bound a virtual command, not a certified hardware safety envelope. The radius is assumed, not calibrated; 24 offline waveform candidates are sampled.</p>
+          </details>
+          <button type="submit" class="primary">Recompute and lock intervention</button>
+          <button data-prospective="save" type="button" disabled>Export command and frozen forecasts</button>
+          <p class="prospective-small">Export a proposal before collecting any encoder result. If initial conditions or constraints change, the prior proposal is retired.</p>
+        </form>
+        <div class="prospective-instrument">
+          <div class="prospective-instrument-head"><h3>Prospective trace</h3><span>AMBER: commanded torque / TWO PORT HYPOTHESES</span></div>
+          <svg data-prospective="plot" viewBox="0 0 640 340" role="img" aria-label="Frozen command waveform and contrasting simulated shoulder and elbow angle trajectories"></svg>
+          <div class="prospective-key"><span>Shoulder-driven</span><span>Elbow-driven</span><span>Locked measurement clock</span></div>
+          <p data-prospective="result" role="status" aria-live="polite"></p>
+          <p data-prospective="torque" class="prospective-small"></p>
+          <p data-prospective="error" class="prospective-error" role="alert"></p>
+        </div>
+      </div>
+      <div data-prospective="evidence" class="prospective-acquisition" hidden>
+        <div><p class="eyebrow">LOCKED RECEIVING GATE</p><h3>Only one encoder readout may adjudicate these forecasts.</h3>
+        <p>Precommitted clock: <strong data-prospective="clock"></strong>. To classify an actual trial, provide the separately logged <em>delivered</em> time/torque array (JSON) and both measured encoder angles. Planned torque does not prove a motor executed it.</p></div>
+        <form data-prospective="evidence-form">
+          <label>Delivered command trace · JSON<input data-prospective="trace" type="file" accept=".json,application/json" required></label>
+          <div class="prospective-inputs">
+            <label>Measured shoulder angle · rad<input data-prospective="angle1" type="number" step="any" required></label>
+            <label>Measured elbow angle · rad<input data-prospective="angle2" type="number" step="any" required></label>
+          </div><button type="submit">Compare logged observation</button>
+        </form>
+        <div class="prospective-demo"><button data-prospective="sample" type="button" disabled>Insert shoulder forecast as a simulation illustration</button><p class="prospective-small">Illustrated values are not an experiment. The receiver refuses altered commands, changed clocks and observations that fit neither port.</p></div>
+      </div>
     </section>
 
 <section class="scope"><h2>A local response hypothesis.</h2><p>This lab compares three affine two-coordinate laws under a supplied quasi-static assumption. Both coordinates must use radians and conjugate torque signs in N·m. Hidden rates, changing loads, drift and nonlinear behavior can invalidate every offered explanation. Neither a fitted matrix nor the virtual instrument establishes mechanism topology, causal direction, physical safety or scientific validity.</p><details><summary>Source declaration and acquisition assumptions</summary><dl><dt>Source reference</dt><dd id="reference"></dd><dt>Coordinate convention</dt><dd id="convention"></dd><dt>Assumed torque noise</dt><dd id="noise"></dd></dl><p>Exact repeated numerical evidence is conservatively refused across fitting, separate checks and revisions. Repeated quantized readings can be genuine, but they do not establish fresh evidence here. Original acquisition references remain the operator's responsibility.</p></details></section>
