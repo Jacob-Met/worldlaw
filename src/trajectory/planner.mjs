@@ -1,5 +1,6 @@
 /** Training-only trajectory experiment design. No observation or instrument acquisition. */
 import {rollout} from './forward.mjs';
+import {designGaussianReadings} from './gaussian-discriminator.mjs';
 import {TERMS, UNITS} from '../science/torque-discovery.mjs';
 const TERM_IDS = new Set(TERMS.map(term => term.id));
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -23,7 +24,7 @@ function range(value, label, bound = 1e4) {
 }
 function settings(raw) {
   insist(record(raw), 'Supply an explicit design with known inertia and permitted release bounds.');
-  const allowed = ['inertia', 'bounds', 'duration', 'sampleInterval', 'command', 'positionCount', 'rateCount', 'maxModels', 'maxStep', 'maxTotalSteps', 'predictionBounds', 'minDisagreement'];
+  const allowed = ['inertia', 'bounds', 'duration', 'sampleInterval', 'command', 'positionCount', 'rateCount', 'maxModels', 'maxStep', 'maxTotalSteps', 'predictionBounds', 'minDisagreement', 'noiseSigma', 'noiseTargetZ', 'noiseMaxReadings', 'maxPowerProducts'];
   insist(Object.keys(raw).every(key => allowed.includes(key)), 'Unsupported design field; challenge observations and instrument truth are not planner inputs.');
   insist(record(raw.bounds), 'Supply initialPosition and initialRate bounds.');
   const result = {inertia: finite(raw.inertia, 'Known inertia (kg·m²)', 1e-12, 1e12),
@@ -37,6 +38,13 @@ function settings(raw) {
   const ratio = result.duration / result.sampleInterval, intervals = Math.round(ratio);
   insist(Math.abs(ratio - intervals) <= 32 * Number.EPSILON * Math.max(1, ratio), 'duration must contain a whole number of sample intervals.');
   insist(intervals >= 1 && intervals <= 2000, 'Each design needs 2–2001 scheduled samples.', 'resource_limit');
+  if (raw.noiseSigma !== undefined) {
+    result.noiseSigma = finite(raw.noiseSigma, 'Declared position noise sigma (rad)', 1e-12, 1e6);
+    result.noiseTargetZ = finite(raw.noiseTargetZ ?? 3.29, 'Minimum separation (z)', 1e-6, 100);
+    result.noiseMaxReadings = integer(raw.noiseMaxReadings ?? Math.min(8, intervals), 'Maximum independent readings', 1, Math.min(128, intervals));
+    result.maxPowerProducts = integer(raw.maxPowerProducts ?? 20000000, 'Prospective score work budget', 1, 100000000);
+  } else insist(raw.noiseTargetZ === undefined && raw.noiseMaxReadings === undefined && raw.maxPowerProducts === undefined,
+    'Noise-aware reading settings require an explicit positive noiseSigma.');
   if (raw.predictionBounds !== undefined) {
     insist(record(raw.predictionBounds), 'predictionBounds must contain position and rate ranges.');
     result.predictionBounds = {position: range(raw.predictionBounds.position, 'predicted position', 1e6), rate: range(raw.predictionBounds.rate, 'predicted rate', 1e6)};
@@ -105,6 +113,8 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
   const options = settings(requestedDesign), {models, trainingRunIds, competitiveCount} = ensemble(discovery, options.maxModels);
   const positions = grid(options.bounds.initialPosition, options.positionCount), rates = grid(options.bounds.initialRate, options.rateCount);
   const designCount = positions.length * rates.length;
+  const noiseMode = options.noiseSigma !== undefined;
+  insist(!noiseMode || models.length >= 2, 'Noise-aware discrimination needs at least two training-competitive models.', 'invalid_discovery');
   insist(designCount <= 81, 'At most 81 distinct release designs are supported.', 'resource_limit');
   const intervals = Math.round(options.duration / options.sampleInterval);
   const times = Array.from({length: intervals + 1}, (_, i) => i === intervals ? options.duration : Number((i * options.sampleInterval).toFixed(12)));
@@ -114,9 +124,19 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
     insist(Number.isSafeInteger(steps), 'Scheduled integration steps exceed numerical range.', 'resource_limit'); stepsPerRollout += steps;
   }
   const reservedSteps = stepsPerRollout * designCount * models.length;
+  const reservedPowerProducts = noiseMode ? designCount * intervals * (models.length * (models.length - 1) / 2) * options.noiseMaxReadings : 0;
+  insist(!noiseMode || (Number.isSafeInteger(reservedPowerProducts) && reservedPowerProducts <= options.maxPowerProducts),
+    'Noise-aware comparisons exceed the declared complete-grid score budget.', 'resource_limit');
   insist(Number.isSafeInteger(reservedSteps) && reservedSteps <= options.maxTotalSteps,
     `The complete design comparison needs ${reservedSteps} RK4 steps; increase maxTotalSteps or reduce designs/models/duration.`, 'resource_limit');
   const ranked = []; let selected = null, bestScore = -1, attemptedRollouts = 0, completedRollouts = 0;
+  const betterPower = (a,b) => {
+    if (!b) return true;
+    const ad=a.status==='distinguishable',bd=b.status==='distinguishable';
+    if (ad!==bd) return ad;
+    if (ad && a.measurementCount!==b.measurementCount) return a.measurementCount<b.measurementCount;
+    return a.minPairwiseZ>b.minPairwiseZ;
+  };
   for (const initialPosition of positions) for (const initialRate of rates) {
     const index = ranked.length;
     const design = {index, initialPosition, initialRate, duration: options.duration, sampleInterval: options.sampleInterval, inertia: options.inertia, command: options.command};
@@ -141,17 +161,26 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
     if (failures.length) {ranked.push({...design, status: 'ineligible', disagreementRad: null, maxPositionRangeRad: null, failures}); continue;}
     const score = spread(predictions);
     insist(Number.isFinite(score.disagreementRad) && Number.isFinite(score.maxPositionRangeRad), 'Candidate spread exceeds numerical range.', 'numerical_failure');
-    const item = {...design, status: 'evaluated', ...score, failures: []}; ranked.push(item);
+    const power = noiseMode ? designGaussianReadings(predictions, {
+      sigma: options.noiseSigma, targetZ: options.noiseTargetZ, maxReadings: options.noiseMaxReadings}) : null;
+    const item = {...design, status: 'evaluated', ...score, failures: [], ...(noiseMode ? {power} : {})}; ranked.push(item);
     // Strict improvement preserves the original angle-major/rate-minor grid order on exact ties.
-    if (score.disagreementRad > bestScore) {
+    if ((noiseMode && betterPower(power, selected?.power)) || (!noiseMode && score.disagreementRad > bestScore)) {
       bestScore = score.disagreementRad;
       selected = {...item, acquisitionRequest: {initialPosition, initialRate, duration: options.duration, sampleInterval: options.sampleInterval}, predictions};
     }
   }
   ranked.sort((a, b) => (a.status === 'evaluated' ? 0 : 1) - (b.status === 'evaluated' ? 0 : 1) ||
-    (a.status === 'evaluated' && b.status === 'evaluated' ? b.disagreementRad - a.disagreementRad : 0) || a.index - b.index);
-  const status = selected === null ? 'no_feasible_design' : models.length >= 2 && selected.disagreementRad > options.minDisagreement ? 'proposed' : 'uninformative';
-  return {schema: 'worldlaw.trajectory-plan/v1', status, method: 'rms_pairwise_position_disagreement', scoreUnits: 'rad',
+    (a.status === 'evaluated' && b.status === 'evaluated' ? (noiseMode ?
+      (Number(b.power.status==='distinguishable')-Number(a.power.status==='distinguishable')) ||
+      (a.power.status==='distinguishable' ? a.power.measurementCount-b.power.measurementCount : 0) ||
+      b.power.minPairwiseZ-a.power.minPairwiseZ : b.disagreementRad - a.disagreementRad) : 0) || a.index - b.index);
+  const status = selected === null ? 'no_feasible_design' : noiseMode ?
+    (selected.power.status === 'distinguishable' ? 'proposed' : 'uninformative') :
+    models.length >= 2 && selected.disagreementRad > options.minDisagreement ? 'proposed' : 'uninformative';
+  return {schema: 'worldlaw.trajectory-plan/v1', status,
+    method: noiseMode ? 'finite-grid_minimax_independent_gaussian_discrimination' : 'rms_pairwise_position_disagreement',
+    scoreUnits: noiseMode ? 'standard_deviations' : 'rad',
     selectionBasis: 'training_competitive_models_only', options, selected, ranked,
     provenance: {trainingRunIds, modelIds: models.map(model => model.id), modelFingerprint: fingerprint(models),
       evidenceRevision: fingerprint({trainingRunIds, models}), fingerprintMeaning: 'Deterministic model-and-declared-ID change detector, not cryptographic provenance or source authentication.'},
@@ -160,6 +189,9 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
       consideredModelCount: models.length, omittedCompetitiveCount: competitiveCount - models.length,
       modelSelection: 'first_competitive_models_in_original_training_candidate_order', attemptedRollouts, completedRollouts,
       scheduledSamplesPerRollout: times.length, stepsPerRollout, reservedSteps, maxTotalSteps: options.maxTotalSteps,
+      ...(noiseMode ? {reservedPowerProducts, maxPowerProducts: options.maxPowerProducts,
+        noiseDecisionBasis: 'finite-training-model predictions and declared independent Gaussian position noise only',
+        measurementCountMeaning: 'Distinct post-initial timestamps, not whole physical interventions or calibrated sensor power'} : {}),
       budgetMeaning: 'Preflight reserves the complete scheduled workload including potentially failing rollouts; actual early-failure work can be lower.',
       integrationMethod: 'fixed_step_RK4_without_error_bound', initialSampleExcludedFromScore: true,
       predictionBoundsEvaluation: 'scheduled_sample_timestamps_only_no_between_sample_guarantee',
@@ -174,5 +206,8 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
         'Any considered model failure or caller envelope violation makes the design ineligible; model failure is not an infinite-information observation.',
         'Release/prediction limits are caller-declared computational or design bounds, not authorization or safety limits for physical hardware.',
         'The planner neither observes future outcomes nor acquires evidence. An independent instrument must supply the subsequent complete run.',
-        'A new run can improve, preserve, or worsen fitted structure and reserved prediction; more disagreement does not guarantee improvement.']}};
+        'A new run can improve, preserve, or worsen fitted structure and reserved prediction; more disagreement does not guarantee improvement.',
+        ...(noiseMode ? ['Gaussian separation is conditional on independent fixed-variance measurement noise and a correct finite ensemble, neither physically established.',
+          'Two-model reading cardinality is optimal only on this finite sample grid; for larger ensembles a lower bound is returned and greedy minimality is not asserted without a matching certificate.',
+          'Reading timestamps are virtual prospective design, not observations, actuation authorization, causal proof or a guarantee of improved refitting.'] : [])]}};
 }

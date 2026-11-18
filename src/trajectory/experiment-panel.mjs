@@ -58,7 +58,7 @@ h2{font:400 30px/1.15 var(--serif,Georgia,serif);letter-spacing:-.7px}h3{font-si
 .message{margin:0 24px 16px;font-size:11px;line-height:1.7;padding:10px 12px;border-radius:6px;background:#edf2e2;color:#526741}
 .message.error{background:#fff0e7;color:#8a4633;border:1px solid #dfbcab}
 .example-action{margin:0 24px 21px}
-.body{padding:0 24px 23px}.controls{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17px}
+.body{padding:0 24px 23px}.controls{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:17px}.controls .noise-option{display:flex;align-items:center;gap:8px;cursor:pointer;max-width:250px}.controls .noise-option input{flex:none}
 button{min-height:41px;border:1px solid #c9d9ab;border-radius:6px;padding:10px 15px;font-size:11px;font-weight:600;background:#d4ed87;color:#213f2b}
 button.secondary{background:#fffefa;border-color:#c9d4bc}button:hover:not(:disabled){filter:brightness(.97)}
 details{font-size:10px;color:#68795a}summary{cursor:pointer;line-height:1.8}details[open] summary{margin-bottom:10px}
@@ -102,10 +102,15 @@ export function createExperimentPanel(host, callbacks = {}) {
       <label for="duration">Observation time<span>s</span><input id="duration" type="number" min="0.01" step="0.4" inputmode="decimal"></label>
       <label for="solver-step">Maximum solver step<span>s</span><input id="solver-step" type="number" min="0.0001" max="0.1" step="0.001" inputmode="decimal"></label>
       <label for="minimum-spread">Minimum model spread<span>rad · proposal threshold</span><input id="minimum-spread" type="number" min="0" step="0.01" inputmode="decimal"></label>
-      </div><p class="small">The planner compares executable forecasts from the training-compatible models within these limits.</p></details>
-      <div class="controls"><p id="plan-status" class="small">No future recording has been acquired.</p><button id="plan" type="button">Plan a release →</button></div>
+      <label for="power-sigma">Position noise σ<span>rad · independent sensor</span><input id="power-sigma" type="number" min="0.000000000001" step="0.001" value="0.01" inputmode="decimal"></label>
+      <label for="power-z">Minimum pair separation<span>z · standard deviations</span><input id="power-z" type="number" min="0.000001" max="100" step="0.01" value="3.29" inputmode="decimal"></label>
+      <label for="power-readings">Reading budget<span>distinct timestamps</span><input id="power-readings" type="number" min="1" max="128" step="1" value="8" inputmode="numeric"></label>
+      </div><p class="small">With noise-aware decision enabled, compare the candidate motions against your declared independent Gaussian sensor noise and minimize informative reading count on the offered time grid. This assumption is not calibrated, not an authorization to operate hardware, and not physical validation.</p></details>
+      <div class="controls"><p id="plan-status" class="small">No future recording has been acquired.</p>
+        <label class="noise-option" for="power-enable"><input id="power-enable" type="checkbox" style="width:18px;min-height:22px" aria-label="Plan against declared Gaussian sensor noise">Noise-aware reading plan</label>
+        <button id="plan" type="button">Plan a release →</button></div>
       <section id="numerical-screen" class="numerical-screen" aria-labelledby="screen-heading" hidden><div class="screen-copy"><p class="eyebrow">SOLVER-STEP CHECK</p><h3 id="screen-heading"></h3><p id="screen-detail" class="small"></p><p class="footnote">A sensitivity check at sampled times; not an error bound or physical validation.</p></div><div id="screen-metric" class="screen-metric"><strong id="screen-sensitivity"></strong><span>rad · two-step score sensitivity</span></div></section>
-      <div id="design" class="design"><div class="release"><p class="eyebrow">RECOMMENDED RELEASE</p><h3 id="release-heading">Let the models suggest a test.</h3><div id="release-stats" class="release-stats" hidden><div class="stat"><span>Initial angle</span><strong id="release-angle"></strong><small>rad</small></div><div class="stat"><span>Initial rate</span><strong id="release-rate"></strong><small>rad/s</small></div><div class="stat"><span>Model disagreement</span><strong id="disagreement"></strong><small>rad · pairwise RMS</small></div></div><p id="design-meaning" class="small">A proposal uses competing predictions. It contains no future observation.</p><ol id="design-list" class="design-list"></ol></div>
+      <div id="design" class="design"><div class="release"><p class="eyebrow">RECOMMENDED RELEASE</p><h3 id="release-heading">Let the models suggest a test.</h3><div id="release-stats" class="release-stats" hidden><div class="stat"><span>Initial angle</span><strong id="release-angle"></strong><small>rad</small></div><div class="stat"><span>Initial rate</span><strong id="release-rate"></strong><small>rad/s</small></div><div class="stat"><span>Model disagreement</span><strong id="disagreement"></strong><small>rad · pairwise RMS</small></div></div><p id="design-meaning" class="small">A proposal uses competing predictions. It contains no future observation.</p><p id="power-readout" class="small" hidden></p><ol id="design-list" class="design-list"></ol></div>
       <div class="preview"><p id="preview-title" class="preview-title">Predicted motion at the proposed release</p><div id="preview-chart" class="chart"></div><div id="preview-legend" class="legend"></div></div></div>
       <div id="acquire-controls" class="acquire"><p id="acquire-description" class="small">The virtual instrument generates a separate synthetic recording from its own fixed dynamics.</p><button id="acquire" type="button" class="secondary" disabled>Acquire virtual run ↗</button></div>
       <div id="acquisition" class="acquisition" hidden><strong id="acquisition-heading"></strong><p id="acquisition-detail" class="small"></p><div class="acquire"><p class="small">Add this recording to the training evidence, then compare the revised law on the existing evaluation run.</p><button id="apply" type="button" disabled>Learn from this run →</button></div></div>
@@ -123,6 +128,13 @@ export function createExperimentPanel(host, callbacks = {}) {
       return value;
     };
     const next = {...structuredClone(settings), bounds: {initialPosition: {min: read('position-min'), max: read('position-max')}, initialRate: {min: read('rate-min'), max: read('rate-max')}}, duration: read('duration'), maxStep: read('solver-step'), minDisagreement: read('minimum-spread')};
+    if ($('power-enable').checked) {
+      next.noiseSigma = read('power-sigma');
+      next.noiseTargetZ = read('power-z');
+      next.noiseMaxReadings = read('power-readings');
+    } else {
+      delete next.noiseSigma;delete next.noiseTargetZ;delete next.noiseMaxReadings;delete next.maxPowerProducts;
+    }
     if (next.bounds.initialPosition.min > next.bounds.initialPosition.max || next.bounds.initialRate.min > next.bounds.initialRate.max) throw new Error('Each minimum must be at most its maximum.');
     if (next.duration <= 0) throw new Error('Observation time must be greater than zero.');
     return next;
@@ -202,7 +214,15 @@ export function createExperimentPanel(host, callbacks = {}) {
     $('release-stats').hidden = !selected;
     $('release-heading').textContent = plan?.status === 'no_feasible_design' ? 'No executable release in these limits.' : plan?.status === 'uninformative' ? 'These models do not separate here.' : selected ? `Release and observe for ${format(selected.duration, 3)} s.` : 'Let the models suggest a test.';
     $('release-angle').textContent = format(selected?.initialPosition); $('release-rate').textContent = format(selected?.initialRate); $('disagreement').textContent = format(selected?.disagreementRad);
-    $('design-meaning').textContent = plan?.status === 'no_feasible_design' ? 'Every candidate release was refused by a prediction or sampled prediction limit. Inspect the model scope or choose other limits.' : plan?.status === 'uninformative' ? `Compared model spread does not exceed the ${format(plan.options?.minDisagreement)} rad design threshold. Try a different release range.` : selected ? 'The chosen release maximizes pairwise position disagreement among the compared training-compatible models on this grid.' : 'A proposal uses competing predictions. It contains no future observation.';
+    const power = selected?.power, usingPower = Boolean(plan?.options?.noiseSigma);
+    $('power-readout').hidden = !power;
+    if (power) {
+      const timestamps=power.readings.map(r=>format(r.time,5)).join(', ');
+      $('power-readout').textContent = `Noise-aware design: worst pair separation ${format(power.minPairwiseZ,5)} z at σ=${format(power.sigmaRad,5)} rad; ${power.measurementCount} independent reading(s) at t=[${timestamps}] s. ${power.optimality}. No evidence acquired.`;
+    }
+    $('design-meaning').textContent = plan?.status === 'no_feasible_design' ? 'Every candidate release was refused by a prediction or sampled prediction limit. Inspect the model scope or choose other limits.' :
+      usingPower ? (plan?.status === 'uninformative' ? 'This greedy reading schedule did not establish the requested pairwise separation under the declared noise. Its certificate distinguishes a proven budget limit from an inconclusive search; neither proves physical equivalence.' : 'This release separates the competing predicted trajectories under the declared independent Gaussian noise model. Verify the sensor and model assumptions before acquiring.') :
+      plan?.status === 'uninformative' ? `Compared model spread does not exceed the ${format(plan.options?.minDisagreement)} rad design threshold. Try a different release range.` : selected ? 'The chosen release maximizes pairwise position disagreement among the compared training-compatible models on this grid.' : 'A proposal uses competing predictions. It contains no future observation.';
     $('design-list').replaceChildren();
     for (const design of (plan?.ranked || []).slice(0, 3)) {const row = element('li'); row.append(element('span', `${format(design.initialPosition, 3)} rad · ${format(design.initialRate, 3)} rad/s`), element('strong', Number.isFinite(design.disagreementRad) ? `${format(design.disagreementRad, 3)} rad spread` : 'prediction refused')); $('design-list').append(row);}
     $('preview-title').textContent = run ? 'Forecasts meet a separate synthetic recording' : 'Predicted motion at the proposed release';
@@ -229,6 +249,10 @@ export function createExperimentPanel(host, callbacks = {}) {
     view = nextView;
     if (view.settings) settings = structuredClone(view.settings);
     for (const [id, value] of [['position-min', settings.bounds.initialPosition.min], ['position-max', settings.bounds.initialPosition.max], ['rate-min', settings.bounds.initialRate.min], ['rate-max', settings.bounds.initialRate.max], ['duration', settings.duration], ['solver-step', settings.maxStep ?? .01], ['minimum-spread', settings.minDisagreement ?? .01]]) $(id).value = value;
+    $('power-enable').checked=Number.isFinite(settings.noiseSigma);
+    $('power-sigma').value=settings.noiseSigma??.01;
+    $('power-z').value=settings.noiseTargetZ??3.29;
+    $('power-readings').value=settings.noiseMaxReadings??8;
     paint();
   }
 
