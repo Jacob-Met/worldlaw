@@ -1,4 +1,5 @@
 /** Plan a complete permitted course against both frozen loss-only alternatives. */
+import {singleReadingForRelease,rankSingleReadings} from './single-reading.mjs';
 import {readCouplingNotebook} from './notebook.mjs';
 import {readVelocityStudy,compareVelocityStudy} from './velocity-comparison.mjs';
 import {readReleaseSettings} from './viscous-release.mjs';
@@ -68,9 +69,10 @@ export function compareVelocityReleaseCourses(models,families,positions,rawSetti
   const complete=comparisons.every(c=>c.screened)&&refusedModels.length===0;
   return {index,position:[...positions[index]],initialRate:[0,0],
    status:complete?'screened':refusedModels.length?'response_incomplete':'numerically_unresolved',
+   singleReading:complete?singleReadingForRelease(comparisons,settings.tieTolerance):null,
    score:complete?Math.min(...comparisons.map(c=>c.peak.separation)):null,comparisons};
  });
- return {...rankReleaseScores(releases,settings),releases,refusedModels:clone(refusedModels),
+ return {...rankReleaseScores(releases,settings),singleReading:rankSingleReadings(releases,settings),releases,refusedModels:clone(refusedModels),
   diagnostics:{reservedSteps:reservation.requiredSteps,stepBudget:STEP_BUDGET,
    candidateCount:positions.length,velocityFamilyCount:3,responseCount:models.length,
    trajectoryCount:positions.length*3*models.length,pairCountPerRelease:2*models.length,
@@ -101,7 +103,7 @@ export function proposeVelocityReleases(input){
  if(FAMILY_KEYS.some(k=>!families[k])||!discovery.candidates.length)return {
   schema:'worldlaw.velocity-release-comparison/v1',source,training,status:'unsupported_training',
   releases:source.response.permitted.map((position,index)=>({index,position:[...position],initialRate:[0,0],status:'unsupported_training',score:null,comparisons:[]})),
-  rankedIndices:[],bestIndices:[],proposedIndices:[],refusedModels:discovery.refused,
+  rankedIndices:[],bestIndices:[],proposedIndices:[],singleReading:{status:'unsupported_training',selected:null,tiedIndices:[]},refusedModels:discovery.refused,
   diagnostics:{reservedSteps:0,stepBudget:STEP_BUDGET,selectedVelocityFamily:null,physicalValidity:'not_established'}};
  return {schema:'worldlaw.velocity-release-comparison/v1',source,training,
   ...compareVelocityReleaseCourses(discovery.candidates,families,source.response.permitted,source.settings,{refusedModels:discovery.refused})};

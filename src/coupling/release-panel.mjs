@@ -20,6 +20,7 @@ export function mountReleasePanel(root,{getSources,applyRelease},cfg){
  </form>
  <p id="${prefix}-error" role="alert" tabindex="-1" hidden></p><p id="${prefix}-status" role="status" aria-live="polite">No release comparison has been run.</p>
  <div id="${prefix}-results" hidden><div class="table-wrap"><table><caption>Complete permitted set, with every numerical refusal retained</caption><thead><tr><th>Initial angles · rad</th><th>Smallest peak separation</th><th>Receiving result</th><th>Inspect</th></tr></thead><tbody id="${prefix}-rows"></tbody></table></div>
+ ${prefix==='velocity-release'?'<p id="velocity-release-one-reading" role="status"></p><button id="velocity-release-inspect-reading" type="button" hidden>Inspect the single-reading release</button>':''}
  <figure class="viscous-instrument"><figcaption id="${prefix}-caption"></figcaption><div id="${prefix}-plot" role="img" aria-label="${cfg.plotLabel}"></div></figure><div id="${prefix}-legend" class="legend"></div>
  <p id="${prefix}-detail" class="small"></p><p id="${prefix}-work" class="small"></p>
  <div class="inertia-settings"><label class="release-family-choice">${cfg.familyChoice}<select id="${prefix}-family"><option value="">${cfg.familyPrompt}</option>${Object.entries(cfg.familyNames).map(([key,label])=>'<option value="'+key+'">'+label+'</option>').join('')}</select></label><button id="${prefix}-apply" type="button" disabled>Copy this release into the motion experiment</button></div>
@@ -56,6 +57,10 @@ export function mountReleasePanel(root,{getSources,applyRelease},cfg){
   $('legend').replaceChildren();
   curves.forEach((c,i)=>{picture.append(svg('path',{d:c.curve.map((r,j)=>(j?'L':'M')+x(r.time)+' '+y(r.separation)).join(' '),fill:'none',stroke:colors[(c.colorIndex??i)%3],'stroke-width':2.7,'stroke-dasharray':c.screened?(c.dash??''):'2 4','data-release-trace':c.traceId??c.modelId}));const span=el('span'),mark=el('i');mark.style.background=colors[(c.colorIndex??i)%3];span.append(mark,el('span',c.label+(c.screened?'':' · unresolved')));$('legend').append(span);});
   picture.append(svg('text',{x:(left+W-right)/2,y:H-8,'text-anchor':'middle',fill:'currentColor','font-size':13},'Common output time · s'),svg('text',{x:15,y:(top+H-bottom)/2,transform:`rotate(-90 15 ${(top+H-bottom)/2})`,'text-anchor':'middle',fill:'currentColor','font-size':13},'Angle separation · rad'));
+  const reading=release.singleReading;
+  if(reading&&reading.separation>result.source.settings.minimumSeparation){
+   picture.append(svg('line',{x1:x(reading.time),x2:x(reading.time),y1:top,y2:H-bottom,stroke:'currentColor','stroke-dasharray':'4 5','data-single-reading-time':reading.time}),svg('circle',{cx:x(reading.time),cy:y(reading.separation),r:4,fill:'currentColor'}));
+  }
   $('plot').replaceChildren(curves.length?picture:el('p','No complete pair of trajectories is available for this release.'));
   $('detail').textContent=comparisons.map(c=>`${c.label}: ${c.a.status} / ${c.b.status}; sampled peak ${fmt(c.peak?.separation)} rad at ${fmt(c.peak?.time)} s. ${[c.a,c.b].some(r=>r.domainStatus==='outside_observed_range')?'Leaves the observed position range. ':''}${[c.a,c.b].filter(r=>r.failure).map(r=>r.failure.message).join(' ')}`).join(' ');
   for(const button of $('rows').querySelectorAll('button'))button.setAttribute('aria-pressed',String(Number(button.dataset.index)===selected));
@@ -66,6 +71,12 @@ export function mountReleasePanel(root,{getSources,applyRelease},cfg){
   for(const r of result.releases){const row=el('tr',undefined,{'data-release-index':r.index,'data-release-status':r.status,'data-release-proposed':String(result.proposedIndices.includes(r.index))}),button=el('button','Inspect',{type:'button','data-index':r.index});button.addEventListener('click',()=>{selected=r.index;draw();});
    row.append(el('th',r.position.map(fmt).join(', '),{scope:'row'}),el('td',r.score===null?'—':fmt(r.score)+' rad',{'data-label':'Smallest peak'}),el('td',r.status==='screened'?(result.proposedIndices.includes(r.index)?'Proposed'+(result.proposedIndices.length>1?' · tied':''):'Screened'):r.status.replaceAll('_',' '),{'data-label':'Receiving'}),el('td',undefined,{'data-label':'Inspect'}));row.lastChild.append(button);$('rows').append(row);}
   const text={proposed:`${result.proposedIndices.length} proposed release${result.proposedIndices.length===1?'':'s'}; ${result.releases.length} permitted starts retained.`,not_separated:'No screened release exceeds the declared minimum separation. No informative release is proposed.',unresolved:'No release passed the complete response and numerical comparison. No proposal.',unsupported_training:cfg.unsupported};
+  if(result.singleReading){
+   const plan=result.singleReading,pick=plan.selected;
+   $('one-reading').textContent=pick?`For one angle reading, release [${pick.position.map(fmt).join(', ')}] rad and measure both angles at ${fmt(pick.time)} s. Every compared pair separates by at least ${fmt(pick.separation)} rad at this sampled time. ${plan.tiedIndices.length} release(s) within the declared tie tolerance.`:'The screened predictions yield no single reading above the declared separation threshold.';
+   $('inspect-reading').hidden=!pick;
+   $('inspect-reading').onclick=pick?()=>{selected=pick.index;draw();}:null;
+  }
   $('status').textContent=text[result.status]+' '+cfg.noAdoption;
   $('source').textContent=`${owned?'Own reopened sources':'Current source pair'} · response: ${result.source.response.source.label} · motion training: ${result.source[cfg.key].training.record.source.label}. Separate checks are preserved and ignored by the proposal.`;
   $('correspondence').textContent=result.source.settings.correspondence;
