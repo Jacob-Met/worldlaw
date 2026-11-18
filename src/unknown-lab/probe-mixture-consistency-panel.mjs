@@ -1,15 +1,20 @@
-import {inspectProbeMixtureConsistency,exportProbeMixtureConsistency,importProbeMixtureConsistency,MIXTURE_CONSISTENCY_SCHEMA} from './probe-mixture-consistency.mjs';
+import {inspectRateSineBounds,inspectProbeMixtureConsistency,exportProbeMixtureConsistency,importProbeMixtureConsistency,MIXTURE_CONSISTENCY_SCHEMA} from './probe-mixture-consistency.mjs';
 import {PROBE_MIXTURE_FAMILIES} from './probe-mixture.mjs';
 const fmt=x=>Number(x.toPrecision(6)).toString();
 export function mountProbeMixtureConsistency(host,study,config,owner){
  const section=document.createElement('section');section.className='probe-consistency';
- section.innerHTML=`<style>.probe-consistency p{overflow-wrap:anywhere}.probe-consistency select:focus-visible{outline:3px solid #ffad5c;outline-offset:3px}.probe-consistency{border-bottom:1px solid #315460;padding-bottom:24px;margin-bottom:24px}</style><h3>Can one coefficient vector satisfy every screen?</h3><p>Search the whole declared coefficient box, independently of the representative fit. This is a bounded numerical consistency investigation, not a forecast or a physical identification.</p><label>Mixed family <select class="family"></select></label><label>Evidence scope <select class="scope"><option value="training-only">Training observations only</option><option value="all-evidence">All observations · retrospective consistency</option></select></label><label>Iteration budget <input class="iterations" type="number" min="0" max="4096" step="1" value="512"></label><label>Matrix-product budget <input class="products" type="number" min="0" max="1000000" step="1" value="1000000"></label><div class="secondary-actions"><button class="inspect" type="button">Inspect coefficient consistency</button><button class="save" type="button" disabled>Save consistency inputs</button><button class="open" type="button">Reopen consistency inputs</button></div><input class="file" type="file" accept="application/json,.json" hidden><p class="status" role="status">Not inspected</p><div class="result"></div><p class="error" role="alert"></p>`;
+ section.innerHTML=`<style>.probe-consistency p{overflow-wrap:anywhere}.probe-consistency select:focus-visible{outline:3px solid #ffad5c;outline-offset:3px}.probe-consistency{border-bottom:1px solid #315460;padding-bottom:24px;margin-bottom:24px}</style><h3>Can one coefficient vector satisfy every screen?</h3><p>Search the whole declared coefficient box, independently of the representative fit. This is a bounded numerical consistency investigation, not a forecast or a physical identification.</p><label>Mixed family <select class="family"></select></label><label>Evidence scope <select class="scope"><option value="training-only">Training observations only</option><option value="all-evidence">All observations · retrospective consistency</option></select></label><label>Iteration budget <input class="iterations" type="number" min="0" max="4096" step="1" value="512"></label><label>Matrix-product budget <input class="products" type="number" min="0" max="1000000" step="1" value="1000000"></label><div class="secondary-actions"><button class="inspect" type="button">Inspect coefficient consistency</button><button class="save" type="button" disabled>Save consistency inputs</button><button class="open" type="button">Reopen consistency inputs</button></div><input class="file" type="file" accept="application/json,.json" hidden><p class="status" role="status">Not inspected</p><div class="result"></div><div class="bounds-controls" hidden><button class="bounds" type="button">Measure feasible coefficient ranges</button><div class="bounds-output" role="status"></div></div><p class="error" role="alert"></p>`;
  host.append(section);const $=name=>section.querySelector('.'+name);
  for(const family of PROBE_MIXTURE_FAMILIES){const option=document.createElement('option');option.value=family.id;option.textContent=family.id;$('family').append(option);}
  if(config){$('family').value=config.family;$('scope').value=config.scope;$('iterations').value=config.maxIterations;$('products').value=config.maxProducts;}
+ function resetBounds(){
+  $('bounds-controls').hidden=$('family').value!=='rate-sine';
+  $('bounds-output').replaceChildren();
+ }
+ resetBounds();
  let accepted=null;
  function request(){if(!$('iterations').value.trim()||!$('products').value.trim())throw Error('Declare both nonnegative work budgets.');return {schema:MIXTURE_CONSISTENCY_SCHEMA,study,family:$('family').value,scope:$('scope').value,maxIterations:Number($('iterations').value),maxProducts:Number($('products').value)};}
- const invalidate=()=>{accepted=null;$('save').disabled=true;$('status').textContent='Changed inputs · inspect again';$('result').replaceChildren();};
+ const invalidate=()=>{resetBounds();accepted=null;$('save').disabled=true;$('status').textContent='Changed inputs · inspect again';$('result').replaceChildren();};
  for(const key of ['family','scope','iterations','products'])$(key).oninput=()=>{owner.begin();invalidate();};
  $('inspect').onclick=()=>{owner.begin();try{
   const raw=request(),result=inspectProbeMixtureConsistency(raw);accepted=raw;$('save').disabled=false;$('error').textContent='';$('status').textContent=(raw.scope==='training-only'?'TRAINING ONLY':'RETROSPECTIVE ALL EVIDENCE')+' · '+result.status;
@@ -24,6 +29,22 @@ export function mountProbeMixtureConsistency(host,study,config,owner){
    for(const [i,row]of result.sourceRuns.entries())line(row.id+' ['+row.role+']: separating weight '+fmt(cert.values[i])+'.');
   }
  }catch(e){invalidate();$('error').textContent=e.message;}};
+ $('bounds').onclick=()=>{
+  owner.begin();
+  const target=$('bounds-output');target.replaceChildren();
+  try{
+   const raw=request(),result=inspectRateSineBounds(raw);
+   $('error').textContent='';
+   const line=text=>{const p=document.createElement('p');p.textContent=text;target.append(p);};
+   line(raw.scope==='training-only'?'Training observations only':'All observations, retrospective');
+   if(result.status==='order-confounded'){line('Acquisition order prevents coefficient screening.');return;}
+   if(result.status==='inconsistent'){line('No rate–sine coefficient pair fits every selected screen in the declared box.');return;}
+   for(const [label,axis] of [['Rate (N·m·s/rad)',result.rate],['Restoring sine (N·m)',result.restoring]]){
+    line(label+' from '+axis.outward[0]+' to '+axis.outward[1]+'. Zero '+(axis.zeroPossible?'is compatible.':'is excluded.'));
+   }
+   line('Ranges are projections of one shared feasible set. Zero compatibility leaves small nonzero terms possible whenever the range extends away from zero.');
+  }catch(e){$('error').textContent=e.message;}
+ };
  $('save').onclick=()=>{if(!accepted)return;const url=URL.createObjectURL(new Blob([exportProbeMixtureConsistency(accepted)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='worldlaw-probe-mixture-consistency.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
  $('open').onclick=()=>$('file').click();
  $('file').onchange=async event=>{const version=owner.begin(),file=event.target.files?.[0];if(!file)return;try{if(file.size>5000000)throw Error('Use a request below 5 MB.');const raw=importProbeMixtureConsistency(await file.text());if(owner.current(version))owner.adopt(raw);}catch(e){if(owner.current(version))$('error').textContent=e.message;}finally{event.target.value='';}};

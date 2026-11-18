@@ -1,3 +1,4 @@
+import {coefficientBounds} from './probe-coefficient-bounds.mjs';
 import {validateProbeStudy} from './probe-response.mjs';
 import {evaluateHistory} from './paired-history.mjs';
 import {PROBE_MIXTURE_FAMILIES} from './probe-mixture.mjs';
@@ -40,6 +41,16 @@ function checkPrepared(p,certificate){
  }
  return checkLinearEnvelopeSeparator(p.rows,certificate.values,100,p.radii);
 }
+export function inspectRateSineBounds(raw) {
+ const prepared = prepare(raw);
+ if (prepared.family.id !== 'rate-sine') throw Error('Choose the rate-sine response family.');
+ if (!prepared.qualified) return {status:'order-confounded'};
+ return coefficientBounds(prepared.runs.map((run, i) => ({
+  rate:run.probe.rate, position:run.probe.position,
+  contrast:prepared.observations[i].decisionDifference, radius:prepared.radii[i]
+ })));
+}
+
 export function checkProbeMixtureCertificate(raw,certificate){return checkPrepared(prepare(raw),certificate);}
 export function inspectProbeMixtureConsistency(raw){
  const p=prepare(raw),base={schema:'worldlaw.probe-mixture-consistency-result/v1',source:p.source,scope:p.source.scope,family:p.family.id,labels:p.family.labels,coefficientBound:100,status:'unresolved',certificate:null,forecast:false,interpretation:'Numerical consistency of one declared coefficient family with inherited observation screens. All-evidence mode is retrospective; it is not a frozen forecast or an independently selected model. A witness does not establish unique coefficients or identify physical causes; screens are not calibrated confidence. Search exhaustion or numerical boundary contact stays unresolved.'};

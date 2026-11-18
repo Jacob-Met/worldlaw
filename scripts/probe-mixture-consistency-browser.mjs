@@ -111,6 +111,27 @@ try {
  await check('consistency controls and source witness remain readable at desktop and narrow widths',async()=>{
   for(const width of [1440,390]){await send('Emulation.setDeviceMetricsOverride',{width,height:950,deviceScaleFactor:1,mobile:width<500});await evaljs("document.querySelector('#probe-mixtures').closest('details').open=true;document.querySelector('.probe-consistency .inspect').click();document.querySelector('.probe-consistency').scrollIntoView({behavior:'instant'})");assert.ok(await evaljs('document.documentElement.scrollWidth<=innerWidth+1'));if(outputDir){const shot=await send('Page.captureScreenshot',{format:'png'});await writeFile(path.join(outputDir,'consistency-'+width+'.png'),Buffer.from(shot.data,'base64'));await evaljs("document.querySelector('.probe-consistency .result').scrollIntoView({behavior:'instant'})");const detail=await send('Page.captureScreenshot',{format:'png'});await writeFile(path.join(outputDir,'consistency-witness-'+width+'.png'),Buffer.from(detail.data,'base64'));}}
  });
+ await check('rate–sine coefficient ranges retain zero ambiguity at desktop and narrow widths',async()=>{
+  await evaljs("const family=document.querySelector('.probe-consistency .family');family.value='rate-sine';family.dispatchEvent(new Event('input'));document.querySelector('.probe-consistency .bounds').focus()");
+  await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,nativeVirtualKeyCode:13,text:'\r',unmodifiedText:'\r'});
+  await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,nativeVirtualKeyCode:13});
+  const controls=await evaljs("(()=>{const p=document.querySelector('.probe-consistency');return {focus:document.activeElement.className,family:p.querySelector('.family').value,hidden:p.querySelector('.bounds-controls').hidden,status:p.querySelector('.bounds-output').textContent,error:p.querySelector('.error').textContent};})()");
+  assert.equal(controls.focus,'bounds',JSON.stringify(controls));
+  assert.equal(controls.family,'rate-sine',JSON.stringify(controls));
+  assert.equal(controls.hidden,false,JSON.stringify(controls));
+  assert.equal(controls.error,'',JSON.stringify(controls));
+  await wait("document.querySelector('.bounds-output').textContent.includes('Zero is compatible.')");
+  assert.ok(await evaljs("document.querySelector('.bounds-output').textContent.includes('Zero is excluded.')"));
+  for(const width of [1440,390]){
+   await send('Emulation.setDeviceMetricsOverride',{width,height:950,deviceScaleFactor:1,mobile:width<500});
+   await evaljs("document.querySelector('.bounds-output').scrollIntoView({block:'center',behavior:'instant'})");
+   assert.ok(await evaljs('document.documentElement.scrollWidth<=innerWidth+1'));
+   if(outputDir){const shot=await send('Page.captureScreenshot',{format:'png'});await writeFile(path.join(outputDir,'coefficient-bounds-'+width+'.png'),Buffer.from(shot.data,'base64'));}
+  }
+  await evaljs("const field=document.querySelector('.probe-consistency .family');field.value='offset-rate';field.dispatchEvent(new Event('input'))");
+  assert.equal(await evaljs("document.querySelector('.bounds-controls').hidden"),true);
+  assert.equal(await evaljs("document.querySelector('.bounds-output').textContent"),'');
+ });
  await check('no script exceptions or external requests',async()=>{assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);});
  console.log(JSON.stringify({checks:out.length,pass:true,results:out,events},null,2));
 }catch(error){
