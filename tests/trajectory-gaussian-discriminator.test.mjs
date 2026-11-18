@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {designGaussianReadings,GAUSSIAN_DESIGN_SCHEMA} from '../src/trajectory/gaussian-discriminator.mjs';
 import {planTrajectoryExperiment,TrajectoryPlanningError} from '../src/trajectory/planner.mjs';
 import {UNITS} from '../src/science/torque-discovery.mjs';
