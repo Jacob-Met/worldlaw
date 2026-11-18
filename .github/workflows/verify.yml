@@ -21,6 +21,19 @@ jobs:
         run: node --test tests/trajectory-gaussian-discriminator.test.mjs
       - name: Scientific components and package smoke
         run: npm run verify
+      - name: Cold-receive sparse Studio in real 1920px and 390px Chrome
+        run: |
+          npm install --no-save --no-package-lock playwright-core@1.56.1
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -x "$BROWSER"
+          TRAJECTORY_BROWSER_FOCUS=sparse PLAYWRIGHT_MODULE=playwright-core BROWSER_EXECUTABLE_PATH="$BROWSER" node scripts/trajectory-browser-92be.mjs
+      - name: Retain native-resolution sparse acquisition pixels and portable notebook
+        uses: actions/upload-artifact@v4
+        with:
+          name: sparse-sensor-cold-${{ github.run_id }}
+          path: .receipts/trajectory-92be/
+          retention-days: 7
+          if-no-files-found: error
       - name: Freeze prospective policy versus held-out synthetic outcomes
         run: |
           mkdir -p .receipts
