@@ -19,7 +19,7 @@ import {createExperimentPanel} from './experiment-panel.mjs';
 import * as experimentController from './experiment-session.mjs';
 import {withNumericalScreen} from '../experiment-design/screened-controller.mjs';
 import {createReferencePanel} from '../representation/reference-panel.mjs';
-const {createExperimentSession,planNextExperiment,acquireNextExperiment,applyNextExperiment,experimentView,exportExperimentSession,restoreExperimentSession}=withNumericalScreen(experimentController);
+const {createExperimentSession,planNextExperiment,acquireNextExperiment,acquireSelectedReadings,applyNextExperiment,experimentView,exportExperimentSession,restoreExperimentSession}=withNumericalScreen(experimentController);
 
 const $=id=>document.getElementById(id);
 const initialStatePanel=createInitialStatePanel($('comparison-grid'));
@@ -264,7 +264,9 @@ const angularStateHost=el('section');$('challenge-workspace').append(angularStat
 
 experimentPanel=createExperimentPanel($('experiment-panel'),{
   onPlan:settings=>advanceExperiment(session=>planNextExperiment(session,settings),'A release plan and its numerical check were computed from training-compatible forecasts. No new recording has been acquired.'),
-  onAcquire:()=>advanceExperiment(session=>acquireNextExperiment(session,{}),'A separate synthetic recording was acquired from the virtual instrument. It has not yet joined the training evidence.'),
+  onAcquire:()=>advanceExperiment(session=>acquireNextExperiment(session,{}),'A separate complete synthetic recording was acquired from the virtual instrument. It has not yet joined the training evidence.'),
+  onAcquireSparse:()=>advanceExperiment(session=>acquireSelectedReadings(session,{}),
+    'Only the prospectively selected sensor positions were measured. Conditional model likelihoods were recomputed from those observations, without full-trajectory recording or coefficient refitting.'),
   onApplyEvidence:()=>advanceExperiment(session=>applyNextExperiment(session),'The acquired recording joined the training evidence. The revised law is compared on the same evaluation recording.'),
   onLoadExample:async()=>{$('example-choice').value='ambiguous';$('example-choice').dispatchEvent(new Event('change'));await loadExample();return experimentPanelView();},
 });

@@ -112,8 +112,13 @@ export function createExperimentPanel(host, callbacks = {}) {
       <section id="numerical-screen" class="numerical-screen" aria-labelledby="screen-heading" hidden><div class="screen-copy"><p class="eyebrow">SOLVER-STEP CHECK</p><h3 id="screen-heading"></h3><p id="screen-detail" class="small"></p><p class="footnote">A sensitivity check at sampled times; not an error bound or physical validation.</p></div><div id="screen-metric" class="screen-metric"><strong id="screen-sensitivity"></strong><span>rad · two-step score sensitivity</span></div></section>
       <div id="design" class="design"><div class="release"><p class="eyebrow">RECOMMENDED RELEASE</p><h3 id="release-heading">Let the models suggest a test.</h3><div id="release-stats" class="release-stats" hidden><div class="stat"><span>Initial angle</span><strong id="release-angle"></strong><small>rad</small></div><div class="stat"><span>Initial rate</span><strong id="release-rate"></strong><small>rad/s</small></div><div class="stat"><span>Model disagreement</span><strong id="disagreement"></strong><small>rad · pairwise RMS</small></div></div><p id="design-meaning" class="small">A proposal uses competing predictions. It contains no future observation.</p><p id="power-readout" class="small" hidden></p><ol id="design-list" class="design-list"></ol></div>
       <div class="preview"><p id="preview-title" class="preview-title">Predicted motion at the proposed release</p><div id="preview-chart" class="chart"></div><div id="preview-legend" class="legend"></div></div></div>
-      <div id="acquire-controls" class="acquire"><p id="acquire-description" class="small">The virtual instrument generates a separate synthetic recording from its own fixed dynamics.</p><button id="acquire" type="button" class="secondary" disabled>Acquire virtual run ↗</button></div>
+      <div id="acquire-controls" class="acquire"><p id="acquire-description" class="small">The virtual instrument generates a separate synthetic recording from its own fixed dynamics. A noise-aware plan can instead measure only the selected sensor timestamps.</p><button id="acquire-sparse" type="button" class="secondary" hidden disabled>Measure selected readings ↗</button><button id="acquire" type="button" class="secondary" disabled>Acquire full virtual run ↗</button></div>
       <div id="acquisition" class="acquisition" hidden><strong id="acquisition-heading"></strong><p id="acquisition-detail" class="small"></p><div class="acquire"><p class="small">Add this recording to the training evidence, then compare the revised law on the existing evaluation run.</p><button id="apply" type="button" disabled>Learn from this run →</button></div></div>
+      <section id="sparse-evidence" class="acquisition" aria-labelledby="sparse-heading" hidden>
+        <p class="eyebrow">SPARSE SENSOR EVIDENCE</p><strong id="sparse-heading"></strong>
+        <p id="sparse-detail" class="small"></p><ol id="sparse-ranking" class="design-list"></ol>
+        <p class="footnote">Equal-prior Gaussian likelihood only among the original offered laws; the instrument does not collect unrequested positions. This is neither a coefficient refit nor physical truth. Export this notebook to preserve the source-bound result.</p>
+      </section>
       <section id="revision" class="revision" aria-labelledby="revision-title" hidden><div class="revision-heading"><div><p class="eyebrow">WHAT THE NEW EVIDENCE CHANGED</p><h3 id="revision-title">Same evaluation run. Revised explanation.</h3></div><p id="evaluation-label" class="small"></p></div><div id="revision-cards" class="revision-cards"></div><div class="preview revision-preview"><p class="preview-title">Observed motion and predictions before and after learning</p><div id="revision-chart" class="chart"></div><div id="revision-legend" class="legend"></div></div><p class="footnote">This comparison reuses an existing evaluation recording. It is exploratory evidence, not a fresh blind validation.</p></section>
       <p class="footnote">Model disagreement is a design score, not an error bound. A virtual recording is synthetic evidence and does not establish performance on physical hardware.</p>
     </div></section>`;
@@ -143,7 +148,7 @@ export function createExperimentPanel(host, callbacks = {}) {
   function chart(id, legendId, series, description, emptyText = 'Plan a release to compare the models’ predicted motion.') {
     const container = $(id), legend = $(legendId);
     container.replaceChildren(); legend.replaceChildren();
-    const valid = series.map(item => ({...item, rows: (item.rows || []).filter(row => Number.isFinite(row.time) && Number.isFinite(row.position))})).filter(item => item.rows.length > 1);
+    const valid = series.map(item => ({...item, rows: (item.rows || []).filter(row => Number.isFinite(row.time) && Number.isFinite(row.position))})).filter(item => item.rows.length > 1 || (item.sparse && item.rows.length === 1));
     if (!valid.length) {container.append(element('p', emptyText, 'chart-empty')); return;}
     const width = Math.max(245, Math.round(container.clientWidth)), height = width > 520 ? 260 : 220, left = 43, right = 15, top = 20, bottom = 35;
     let t0 = Infinity, t1 = -Infinity, y0 = Infinity, y1 = -Infinity;
@@ -159,7 +164,10 @@ export function createExperimentPanel(host, callbacks = {}) {
     }
     for (const item of valid) {
       const stride = Math.max(1, Math.ceil(item.rows.length / 1200)), rows = item.rows.filter((_, i) => i % stride === 0 || i === item.rows.length - 1);
-      svg.append(svgElement('polyline', {points: rows.map(row => `${x(row.time).toFixed(2)},${y(row.position).toFixed(2)}`).join(' '), fill: 'none', stroke: item.color, 'stroke-width': item.observed ? 2.6 : 1.8, 'stroke-dasharray': item.observed ? 'none' : '6 4', 'stroke-linejoin': 'round', 'data-series': item.id}));
+      if(item.sparse){
+        for(const r of rows)svg.append(svgElement('circle',{cx:x(r.time),cy:y(r.position),r:4.6,
+          fill:item.color,stroke:'#213f2b','stroke-width':.8,'data-series':item.id,'data-sparse-index':r.sampleIndex}));
+      }else svg.append(svgElement('polyline', {points: rows.map(row => `${x(row.time).toFixed(2)},${y(row.position).toFixed(2)}`).join(' '), fill: 'none', stroke: item.color, 'stroke-width': item.observed ? 2.6 : 1.8, 'stroke-dasharray': item.observed ? 'none' : '6 4', 'stroke-linejoin': 'round', 'data-series': item.id}));
       const key = element('span'), swatch = element('i'); swatch.style.borderColor = item.color; key.append(swatch, document.createTextNode(item.label)); legend.append(key);
     }
     svg.append(svgElement('text', {x: left, y: 10, fill: '#b4c7a1', 'font-size': 8}, 'angle / rad'), svgElement('text', {x: width - right, y: height - 3, fill: '#b4c7a1', 'font-size': 8, 'text-anchor': 'end'}, 'elapsed time / s'));
@@ -171,7 +179,12 @@ export function createExperimentPanel(host, callbacks = {}) {
     const forecast = predictions.map((prediction, index) => ({id: prediction.modelId, label: prediction.label || modelLabel(prediction.modelId), color: COLORS[index % COLORS.length], rows: prediction.rows}));
     const run = view.acquisition?.run;
     if (run?.samples) forecast.push({id: 'acquired', label: 'Acquired synthetic recording', color: '#fffefa', observed: true, rows: run.samples});
-    chart('preview-chart', 'preview-legend', forecast, run ? 'Model forecasts and an independently acquired synthetic recording at the proposed release.' : 'Model forecasts at the proposed release; no future observations.');
+    const sparse=view.sparseAcquisition?.evidence;
+    if(sparse?.readings)forecast.push({id:'sparse-acquired',label:`Measured only ${sparse.readings.length} positions`,
+      color:'#fffefa',observed:true,sparse:true,rows:sparse.readings});
+    chart('preview-chart', 'preview-legend', forecast, run ? 'Model forecasts and a complete synthetic recording at the proposed release.' :
+      sparse ? 'Model forecasts and only the selected, actually measured sensor positions. The other times are unobserved.' :
+      'Model forecasts at the proposed release; no future observations.');
     if (view.comparison) {
       const comparison = view.comparison, observed = comparison.evaluationRun?.samples || [comparison.after?.rows, comparison.before?.rows].find(rows => rows?.length)?.map(row => ({time: row.time, position: row.observed})) || [];
       chart('revision-chart', 'revision-legend', [
@@ -183,19 +196,23 @@ export function createExperimentPanel(host, callbacks = {}) {
 
   function paint() {
     if (destroyed) return;
-    const plan = view.plan, selected = plan?.selected, run = view.acquisition?.run;
+    const plan = view.plan, selected = plan?.selected, run = view.acquisition?.run, sparse=view.sparseAcquisition;
     shadow.querySelector('.body').hidden = !view.available;
     $('instrument').textContent = !view.available ? 'No compatible virtual instrument' : view.instrument?.label || 'Virtual instrument · synthetic evidence';
     const message = view.error || view.notice || (!view.available ? view.unavailableReason || 'Connect controlled evidence and a virtual instrument to plan the next run.' : '');
     $('message').hidden = !message; $('message').textContent = message; $('message').classList.toggle('error', Boolean(view.error)); $('message').setAttribute('role', view.error ? 'alert' : 'status');
     $('open-example').hidden = Boolean(view.available) || typeof callbacks.onLoadExample !== 'function'; $('open-example').disabled = Boolean(pending);
-    $('plan').disabled = Boolean(pending) || Boolean(run) || !view.available || typeof callbacks.onPlan !== 'function';
-    $('acquire').disabled = Boolean(pending) || !view.available || view.acquisitionAllowed === false || plan?.status !== 'proposed' || !selected || Boolean(run) || typeof callbacks.onAcquire !== 'function';
+    $('plan').disabled = Boolean(pending) || Boolean(run) || Boolean(sparse) || !view.available || typeof callbacks.onPlan !== 'function';
+    $('acquire').disabled = Boolean(pending) || !view.available || view.acquisitionAllowed === false || plan?.status !== 'proposed' || !selected || Boolean(run) || Boolean(sparse) || typeof callbacks.onAcquire !== 'function';
+    $('acquire-sparse').hidden = plan?.method !== 'finite-grid_minimax_independent_gaussian_discrimination';
+    $('acquire-sparse').disabled = Boolean(pending) || !view.available || view.acquisitionAllowed === false ||
+      plan?.status !== 'proposed' || !selected || Boolean(run) || Boolean(sparse) || typeof callbacks.onAcquireSparse !== 'function';
     $('apply').disabled = Boolean(pending) || !run || typeof callbacks.onApplyEvidence !== 'function';
     $('plan').textContent = pending === 'plan' ? 'Comparing releases…' : 'Plan a release →';
-    $('acquire').textContent = pending === 'acquire' ? 'Acquiring virtual run…' : 'Acquire virtual run ↗';
+    $('acquire').textContent = pending === 'acquire' ? 'Acquiring full virtual run…' : 'Acquire full virtual run ↗';
+    $('acquire-sparse').textContent = pending === 'sparse' ? 'Measuring selected readings…' : 'Measure selected readings ↗';
     $('apply').textContent = pending === 'apply' ? 'Learning from new evidence…' : 'Learn from this run →';
-    for (const input of shadow.querySelectorAll('input')) input.disabled = Boolean(pending) || Boolean(run) || !view.available;
+    for (const input of shadow.querySelectorAll('input')) input.disabled = Boolean(pending) || Boolean(run) || Boolean(sparse) || !view.available;
     const consideredModels = plan?.diagnostics?.consideredModelCount ?? plan?.provenance?.modelIds?.length ?? selected?.predictions?.length ?? 0;
     const totalModels = plan?.diagnostics?.competitiveModelCount ?? consideredModels;
     $('plan-status').textContent = pending ? 'Working with the current training evidence…' : plan ? `${consideredModels} of ${totalModels} training-compatible models · ${plan.ranked?.length || 0} releases compared` : view.comparison ? 'New evidence applied. Review the change or plan another release.' : 'No future recording has been acquired.';
@@ -227,6 +244,15 @@ export function createExperimentPanel(host, callbacks = {}) {
     for (const design of (plan?.ranked || []).slice(0, 3)) {const row = element('li'); row.append(element('span', `${format(design.initialPosition, 3)} rad · ${format(design.initialRate, 3)} rad/s`), element('strong', Number.isFinite(design.disagreementRad) ? `${format(design.disagreementRad, 3)} rad spread` : 'prediction refused')); $('design-list').append(row);}
     $('preview-title').textContent = run ? 'Forecasts meet a separate synthetic recording' : 'Predicted motion at the proposed release';
     $('acquisition').hidden = !run;
+    $('sparse-evidence').hidden = !sparse;
+    $('sparse-ranking').replaceChildren();
+    $('sparse-heading').textContent=sparse?`Measured ${sparse.evidence.readings.length} of ${sparse.evidence.source.fullGridSampleCount-1} possible post-initial positions`:'';
+    $('sparse-detail').textContent=sparse?`A separate synthetic sensor record now prefers ${modelLabel(sparse.receiving.selectedModelId)} among ${sparse.receiving.candidates.length} offered laws. The internally simulated trajectory is not a measured full recording.`:'';
+    if(sparse)for(const law of sparse.receiving.candidates){
+      const row=element('li');
+      row.append(element('span',modelLabel(law.modelId)),element('strong',`${format(100*law.conditionalEqualPriorWeight,3)}% conditional weight`));
+      $('sparse-ranking').append(row);
+    }
     $('acquisition-heading').textContent = run ? `Synthetic recording acquired · ${run.samples?.length || 0} samples` : '';
     $('acquisition-detail').textContent = run ? `${run.label || run.id}. Source ${run.source?.instrumentId || 'virtual instrument'}${Number.isFinite(run.source?.positionNoiseSigma) ? ` · position noise ${format(run.source.positionNoiseSigma)} rad` : ''}. The recording is retained independently of the candidate predictions.` : '';
     $('revision').hidden = !view.comparison;
@@ -268,6 +294,8 @@ export function createExperimentPanel(host, callbacks = {}) {
     catch (error) {view = {...view, error: error.message}; paint();}
   });
   $('acquire').addEventListener('click', () => act('acquire', callbacks.onAcquire, {contextKey: view.contextKey, plan: view.plan, proposal: view.plan?.selected}));
+  $('acquire-sparse').addEventListener('click', () => act('sparse',callbacks.onAcquireSparse,
+    {contextKey:view.contextKey,plan:view.plan,proposal:view.plan?.selected}));
   $('apply').addEventListener('click', () => act('apply', callbacks.onApplyEvidence, {contextKey: view.contextKey, acquisitionId: view.acquisition?.id || view.acquisition?.run?.id}));
   $('open-example').addEventListener('click', () => act('example', callbacks.onLoadExample, {}));
   let frame;

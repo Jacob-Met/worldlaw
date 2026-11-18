@@ -2,7 +2,9 @@
 import {createChallenge,exportChallenge,restoreChallenge,CHALLENGE_SCHEMA,NOTEBOOK_SCHEMA,INTERACTION_NOTEBOOK_SCHEMA,DIRECTIONAL_NOTEBOOK_SCHEMA,CONTACT_NOTEBOOK_SCHEMA} from './session.mjs';
 import {validateRun,RUN_UNITS,MAX_TEXT_LENGTH,TrajectoryDataError} from './data.mjs';
 import {planTrajectoryExperiment} from './planner.mjs';
-import {acquireVirtualPendulum,VIRTUAL_PENDULUM_INSTRUMENT as INSTRUMENT} from './virtual-experiment.mjs';
+import {qualifyTrajectoryPlan} from '../experiment-design/qualify-trajectory-plan.mjs';
+import {receiveSparseReadings} from './sparse-discrimination.mjs';
+import {acquireVirtualPendulum,acquireVirtualPendulumReadings,VIRTUAL_PENDULUM_INSTRUMENT as INSTRUMENT} from './virtual-experiment.mjs';
 
 export const EXPERIMENT_SCHEMA='worldlaw.trajectory-experiment/v1';
 export const EXPERIMENT_HISTORY_SCHEMA='worldlaw.trajectory-experiment-history/v1';
@@ -32,7 +34,7 @@ function trainingContext(current){
 function contextKey(current){return fingerprint(trainingContext(current));}
 function fitInput(current){return canonical({bundle:current.bundle,options:current.options});}
 function ledger(session){return canonical({base:session.base,history:session.history,plan:session.plan,
-  acquisition:session.acquisition,evaluationRunId:session.evaluationRunId,comparison:session.comparison});}
+  acquisition:session.acquisition,sparseAcquisition:session.sparseAcquisition,evaluationRunId:session.evaluationRunId,comparison:session.comparison});}
 function snapshot(current,runId){
   const model=current.discovery.selected,result=current.results.find(r=>r.modelId===model.id&&r.runId===runId);
   return {modelId:model.id,equation:model.equation,trainingRunCount:current.bundle.trainingRuns.length,
@@ -71,13 +73,13 @@ export function createExperimentSession(challenge){
   insist(challenge?.schema===CHALLENGE_SCHEMA,'Start from an evaluated trajectory challenge.');
   // Recompute public input objects; a caller's cached model/receiving claim is not evidence.
   const base=JSON.parse(exportChallenge(challenge)),current=restoreChallenge(JSON.stringify(base));
-  return register({schema:EXPERIMENT_SCHEMA,current,base,history:[],plan:null,acquisition:null,comparison:null,
+  return register({schema:EXPERIMENT_SCHEMA,current,base,history:[],plan:null,acquisition:null,sparseAcquisition:null,comparison:null,
     settings:copy(DEFAULT_SETTINGS),evaluationRunId:current.bundle.challengeRuns[0].id});
 }
 export function planNextExperiment(session,requestedSettings={}){
   checkSession(session);requireInstrument(session);
   insist(object(requestedSettings),'Run-design settings must be an object.','invalid_options');
-  insist(!session.acquisition,'Apply the acquired evidence before planning another run, or start a new notebook.','pending_evidence');
+  insist(!session.acquisition&&!session.sparseAcquisition,'Preserve this acquired evidence in the exported notebook; start a new notebook for another experiment. Sparse readings cannot yet refit a law.','pending_evidence');
   insist(session.current.bundle.trainingRuns.length<4,'This notebook already contains four training runs. Start a new explicitly selected evidence set for another experiment.','resource_limit');
   const settings={...copy(DEFAULT_SETTINGS),...copy(requestedSettings)};
   if(settings.noiseSigma!==undefined)insist(Number.isFinite(settings.noiseSigma)&&settings.noiseSigma>0&&settings.noiseSigma<=.05,
@@ -98,7 +100,8 @@ function matchingProtocol(plan){
     'The recommended release exceeds this virtual instrument\'s supported protocol. Narrow the design settings.','instrument_mismatch');
 }
 function retainedRuns(session){return [...session.current.bundle.trainingRuns,...session.current.bundle.challengeRuns,
-  ...session.history.map(event=>event.run),...(session.acquisition?[session.acquisition.run]:[])];}
+  ...session.history.map(event=>event.run),...(session.acquisition?[session.acquisition.run]:[]),
+  ...(session.sparseAcquisition?[session.sparseAcquisition.evidence]:[])];}
 function freshSeed(runs){
   const used=new Set(runs.map(run=>run.source?.seed).filter(Number.isInteger));
   let seed=73001;
@@ -108,7 +111,7 @@ function freshSeed(runs){
 export function acquireNextExperiment(session,options={}){
   checkSession(session);requireInstrument(session);
   insist(object(options)&&Object.keys(options).every(k=>['seed','noiseSigma','contextKey'].includes(k)),'Acquisition options contain an unsupported field.','invalid_options');
-  insist(!session.acquisition,'This planned run has already been acquired; apply its evidence before another acquisition.','repeated_evidence');
+  insist(!session.acquisition&&!session.sparseAcquisition,'This planned release already has retained evidence; create a new notebook before remeasuring.','repeated_evidence');
   insist(session.plan?.selected&&session.plan.status==='proposed','The planner has no informative executable recommendation.','no_proposal');
   insist(session.plan.contextKey===contextKey(session.current)&&(!options.contextKey||options.contextKey===session.plan.contextKey),'This recommendation belongs to another fitted revision.','stale_plan');
   matchingProtocol(session.plan);
@@ -121,6 +124,43 @@ export function acquireNextExperiment(session,options={}){
   const acquisition={id:run.id,run,request,planSettings:copy(session.plan.options),planId:session.plan.id,contextKey:session.plan.contextKey};
   return register({...session,acquisition});
 }
+/** Acquires only the prospectively scored post-initial sensor samples. It does
+ * not inject sparse evidence into a full-grid integral coefficient refit.
+ * Independent numerical qualification remains compulsory even when callers
+ * bypass the UI wrapper.
+ */
+export function acquireSelectedReadings(session,options={}){
+  checkSession(session);requireInstrument(session);
+  insist(object(options)&&Object.keys(options).every(k=>['seed','noiseSigma','contextKey'].includes(k)),
+    'Selected-reading acquisition options contain an unsupported field.','invalid_options');
+  insist(!session.acquisition&&!session.sparseAcquisition,
+    'This notebook already has recorded evidence; a second acquisition requires a new notebook.','repeated_evidence');
+  insist(session.plan?.selected&&session.plan?.status==='proposed'&&
+    session.plan.method==='finite-grid_minimax_independent_gaussian_discrimination'&&
+    session.plan.selected.power?.status==='distinguishable',
+    'Only a distinguishing prospective Gaussian reading plan can acquire a sparse sensor record.','no_proposal');
+  insist(session.plan.contextKey===contextKey(session.current)&&
+    (!options.contextKey||options.contextKey===session.plan.contextKey),
+    'Sparse reading selection belongs to a different fitted revision.','stale_plan');
+  matchingProtocol(session.plan);
+  const numerical=qualifyTrajectoryPlan(session.current.discovery,session.plan);
+  insist(numerical.status==='screen_passed',
+    'The selected timestamps failed the independent solver-step acquisition screen. Plan another release.','numerically_unresolved');
+  const noiseSigma=session.plan.options.noiseSigma;
+  insist(options.noiseSigma===undefined||options.noiseSigma===noiseSigma,
+    'Sparse acquisition must use the prospectively declared sensor noise.','instrument_mismatch');
+  const runs=retainedRuns(session);
+  const request={...session.plan.selected.acquisitionRequest,noiseSigma,
+    seed:options.seed??freshSeed(runs),
+    sampleIndices:session.plan.selected.power.readings.map(row=>row.sampleIndex)};
+  const evidence=acquireVirtualPendulumReadings(request,{existingRuns:runs});
+  const receiving=receiveSparseReadings(session.plan,evidence);
+  const sparseAcquisition={id:evidence.id,request,evidence,receiving,
+    planSettings:copy(session.plan.options),planId:session.plan.id,contextKey:session.plan.contextKey,
+    provenance:'Independent virtual sparse sensor record, not a training refit or a full run.'};
+  return register({...session,sparseAcquisition});
+}
+
 export function applyNextExperiment(session,options={}){
   const proof=checkSession(session);requireInstrument(session);
   insist(object(options),'Apply options must be an object.','invalid_options');
@@ -142,15 +182,17 @@ export function experimentView(session){
   checkSession(session);const c=capability(session.current);
   return {contextKey:contextKey(session.current),available:c.available,unavailableReason:c.reason,
     instrument:{id:INSTRUMENT.id,label:'Independent virtual pendulum · synthetic',kind:'synthetic'},settings:session.settings,
-    plan:session.plan,acquisition:session.acquisition,comparison:session.comparison,
+    plan:session.plan,acquisition:session.acquisition,sparseAcquisition:session.sparseAcquisition,comparison:session.comparison,
     notice:session.comparison?.after.status==='failed'?'The revised training leader failed its reserved challenge. The acquired evidence and failed revision remain applied.':null};
 }
 export function exportExperimentSession(session){
   checkSession(session);const raw=JSON.parse(exportChallenge(session.current));
-  if(session.history.length||session.plan||session.acquisition){
+  if(session.history.length||session.plan||session.acquisition||session.sparseAcquisition){
     raw.experiment={schema:EXPERIMENT_HISTORY_SCHEMA,base:copy(session.base),history:copy(session.history),
       pending:session.acquisition?{planSettings:copy(session.acquisition.planSettings),request:copy(session.acquisition.request),run:copy(session.acquisition.run)}:null,
-      planSettings:session.plan?copy(session.plan.options):null};
+      planSettings:session.plan?copy(session.plan.options):null,
+      sparse:session.sparseAcquisition?{planSettings:copy(session.sparseAcquisition.planSettings),
+        request:copy(session.sparseAcquisition.request),evidence:copy(session.sparseAcquisition.evidence)}:null};
   }
   const text=JSON.stringify(raw,null,2);insist(text.length<=MAX_TEXT_LENGTH,'The evidence and experiment history exceed the 3 MB notebook limit.','resource_limit');return text;
 }
@@ -173,6 +215,26 @@ function replayAcquisition(session,event,apply){
   next=register({...next,acquisition:{...next.acquisition,run:normalized}});
   return apply?applyNextExperiment(next):next;
 }
+function replaySparseAcquisition(session,recorded){
+  insist(object(recorded)&&object(recorded.request)&&object(recorded.evidence)&&object(recorded.planSettings),
+    'A sparse evidence receipt requires its original frozen plan and instrument request.','invalid_history');
+  insist(canonical(recorded.planSettings)===canonical(session.plan?.options),
+    'Sparse acquisition cannot replay a changed prospective planner.','invalid_history');
+  const next=acquireSelectedReadings(session,{seed:recorded.request.seed,noiseSigma:recorded.request.noiseSigma});
+  const known=next.sparseAcquisition;
+  const expected=known.evidence,received=recorded.evidence;
+  const neutral=x=>({...x,readings:x.readings.map(r=>({...r,position:0}))});
+  const positionsMatch=Array.isArray(received.readings)&&
+    expected.readings.length===received.readings.length&&
+    expected.readings.every((row,i)=>Number.isFinite(received.readings[i]?.position)&&
+      Math.abs(row.position-received.readings[i].position)<=
+        64*Number.EPSILON*Math.max(1,Math.abs(row.position),Math.abs(received.readings[i].position)));
+  insist(canonical(known.request)===canonical(recorded.request)&&
+    positionsMatch&&canonical(neutral(expected))===canonical(neutral(received)),
+    'The sparse sensor observation or its source no longer matches the frozen instrument replay.','invalid_history');
+  const evidence=copy(received);
+  return register({...next,sparseAcquisition:{...known,evidence,receiving:receiveSparseReadings(next.plan,evidence)}});
+}
 export function restoreExperimentSession(text){
   insist(typeof text==='string'&&text.length<=MAX_TEXT_LENGTH,'Notebook files must be JSON smaller than 3 MB.','resource_limit');
   let raw;try{raw=JSON.parse(text.replace(/^\uFEFF/,''));}catch{fail('The notebook JSON could not be read.');}
@@ -183,8 +245,10 @@ export function restoreExperimentSession(text){
     'Experiment history needs one nonrecursive base and at most four acquisitions.','invalid_history');
   let session=createExperimentSession(restoreChallenge(JSON.stringify(recipe.base)));
   for(const event of Array.from(recipe.history))session=replayAcquisition(session,event,true);
+  insist(!(recipe.pending&&recipe.sparse),'A notebook cannot have both a full and sparse pending acquisition.','invalid_history');
   if(recipe.pending)session=replayAcquisition(session,recipe.pending,false);
   else if(recipe.planSettings)session=planNextExperiment(session,recipe.planSettings);
+  if(recipe.sparse)session=replaySparseAcquisition(session,recipe.sparse);
   const outer=restoreChallenge(text);
   insist(fitInput(session.current)===fitInput(outer),'Current notebook evidence does not match its recomputed experiment history.','invalid_history');
   session.current.selectedModelId=outer.selectedModelId;session.current.selectedRunId=outer.selectedRunId;session.current.positionTolerance=outer.positionTolerance;

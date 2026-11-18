@@ -8,7 +8,7 @@ import {createChallengeServer} from './trajectory-server-92be.mjs';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE||'playwright');
 const dir=process.env.BROWSER_ARTIFACT_DIR||resolve('.receipts/trajectory-92be');
 const focus=process.env.TRAJECTORY_BROWSER_FOCUS||'';
-const focused=['resolution','angular','experiment','screen'].includes(focus);
+const focused=['resolution','angular','experiment','screen','sparse'].includes(focus);
 const offlineFile=process.env.TRAJECTORY_OFFLINE_FILE?resolve(process.env.TRAJECTORY_OFFLINE_FILE):null;
 await mkdir(dir,{recursive:true});
 const server=offlineFile?null:createChallengeServer();if(server)await new Promise((res,rej)=>{server.once('error',rej);server.listen(0,'127.0.0.1',res);});
@@ -149,6 +149,75 @@ async function receiveNumericalScreen(page){
   return {fixtureMeaning:'Threshold-boundary regression: explicit threshold chosen near the ordinary training-only disagreement, not a coarse-error catastrophe or challenge-tuned fit.',status:qualification.status,reason:qualification.selectedQualification.reason,disagreementRad:qualification.selectedQualification.disagreementRad,pairwiseSensitivityRad:qualification.selectedQualification.pairwiseSensitivityRad,thresholdMarginRad:qualification.selectedQualification.thresholdMarginRad,legacyAcquisitionId:legacy.acquisition.run.id};
 }
 
+async function receiveSparseExperimentSurface(page){
+  const panel=page.locator('#experiment-panel'),p=id=>panel.locator('#'+id);
+  const owner=await import('../src/trajectory/experiment-session.mjs');
+  const {createChallenge}=await import('../src/trajectory/session.mjs');
+  const {qualifyTrajectoryPlan}=await import('../src/experiment-design/qualify-trajectory-plan.mjs');
+  const bundle=JSON.parse(await readFile(resolve('examples/trajectory-ambiguous-92be.json'),'utf8'));
+  const planned=owner.planNextExperiment(owner.createExperimentSession(createChallenge(bundle)),
+    {noiseSigma:.012,noiseTargetZ:.000001,noiseMaxReadings:1,maxModels:2,maxTotalSteps:250000});
+  assert.equal(planned.plan.status,'proposed');
+  assert.equal(qualifyTrajectoryPlan(planned.current.discovery,planned.plan).status,'screen_passed');
+  const planPath=resolve(dir,'sparse-original-prospective-plan.json');
+  await writeFile(planPath,owner.exportExperimentSession(planned));
+  await page.locator('#notebook-file').setInputFiles(planPath);
+  await page.waitForFunction(()=>document.getElementById('challenge-workspace').getAttribute('aria-busy')==='false');
+  await p('release-stats').waitFor({state:'visible'});
+  assert.equal(await p('acquire-sparse').isVisible(),true);
+  assert.equal(await p('acquire-sparse').isEnabled(),true);
+  assert.equal(await p('power-enable').isChecked(),true);
+  assert.equal(await p('acquisition').isVisible(),false);
+  assert.equal(await p('sparse-evidence').isVisible(),false);
+  const before=await page.locator('#training-count').innerText();
+  await p('acquire-sparse').click();
+  await p('sparse-evidence').waitFor({state:'visible'});
+  assert.match(await p('sparse-heading').innerText(),/Measured 1 of 200 possible/);
+  assert.equal(await p('sparse-ranking li').count(),2);
+  assert.equal(await p('preview-chart [data-series="sparse-acquired"]').count(),1);
+  assert.equal(await p('acquisition').isVisible(),false);
+  assert.equal(await p('apply').isDisabled(),true);
+  assert.equal(await p('plan').isDisabled(),true);
+  assert.equal(await page.locator('#training-count').innerText(),before);
+  const saving=page.waitForEvent('download');
+  await page.locator('#export-notebook').click();
+  const savedPath=resolve(dir,'sparse-only-evidence-notebook.json');
+  await(await saving).saveAs(savedPath);
+  const saved=JSON.parse(await readFile(savedPath,'utf8'));
+  assert.ok(saved.experiment?.sparse);
+  assert.equal(saved.experiment.sparse.evidence.measurementCount,1);
+  assert.equal(saved.experiment.sparse.evidence.source.fullGridSampleCount,201);
+  assert.equal(saved.experiment.sparse.evidence.source.noise.measurementDrawCount,1);
+  assert.equal(saved.experiment.sparse.evidence.readings.length,1);
+  assert.equal(Object.hasOwn(saved.experiment.sparse.evidence,'samples'),false);
+  const recordingId=saved.experiment.sparse.evidence.source.recordingId;
+  await page.setViewportSize({width:1920,height:1080});
+  await p('sparse-evidence').screenshot({path:resolve(dir,'sparse-evidence-desktop-1920.png')});
+  await page.locator('#experiment-panel').screenshot({path:resolve(dir,'sparse-studio-desktop-1920.png')});
+  await page.setViewportSize({width:390,height:844});
+  await p('sparse-evidence').screenshot({path:resolve(dir,'sparse-evidence-mobile-390.png')});
+  assert.ok((await page.evaluate(()=>document.documentElement.scrollWidth))<=390,
+    'Sparse result must not overflow the real 390 px mobile viewport.');
+  await page.reload();
+  await p('sparse-evidence').waitFor({state:'visible'});
+  assert.equal(await p('sparse-ranking li').count(),2);
+  assert.equal(await p('preview-chart [data-series="sparse-acquired"]').count(),1);
+  assert.equal(await page.locator('#training-count').innerText(),before);
+  await page.locator('#notebook-file').setInputFiles(savedPath);
+  await p('sparse-evidence').waitFor({state:'visible'});
+  const savingAgain=page.waitForEvent('download');
+  await page.locator('#export-notebook').click();
+  const reopenedPath=resolve(dir,'sparse-only-evidence-notebook-reopened.json');
+  await(await savingAgain).saveAs(reopenedPath);
+  const reopened=JSON.parse(await readFile(reopenedPath,'utf8'));
+  assert.equal(reopened.experiment.sparse.evidence.source.recordingId,recordingId);
+  assert.deepEqual(reopened.experiment.sparse.evidence.readings,saved.experiment.sparse.evidence.readings);
+  return {measuredSamples:1,fullScheduledPostInitialSamples:200,
+    conditionalLawCount:2,trainingSamplesBefore:before,trainingSamplesAfter:before,
+    portableRecordingId:recordingId,desktop:1920,mobile:390,
+    claim:'Actual browser-controlled sparse virtual sensor acquisition and source-bound reopen, not hardware or a sparse coefficient refit.'};
+}
+
 let browser;
 try{
   browser=await chromium.launch({headless:true,...(process.env.BROWSER_EXECUTABLE_PATH?{executablePath:process.env.BROWSER_EXECUTABLE_PATH}:{})});
@@ -166,8 +235,9 @@ try{
   mark('actual paired-run discovery renders observed/predicted trajectories, residuals, metrics and competing executable models');
   const embeddedAngular=offlineFile&&await page.evaluate(()=>Object.hasOwn(globalThis.WORLDLAW_EMBEDDED_EXAMPLES||{},'physical-pasco-92be.json'));
   const hasExperiments=await page.locator('#experiment-panel').count()===1;
-  const featureMetrics={};if(!['angular','experiment','screen'].includes(focus))Object.assign(featureMetrics,await receiveNewSurfaces(page));if((!offlineFile||embeddedAngular)&&!['resolution','experiment','screen'].includes(focus))featureMetrics.angular=await receiveAngularSurface(page);if(hasExperiments&&!['resolution','angular'].includes(focus))featureMetrics.experiment=await receiveExperimentSurface(page);if(['experiment','screen'].includes(focus))assert.equal(hasExperiments,true,'Experiment receiving requires the integrated panel.');
-  const hasNumericalScreen=await page.locator('#experiment-panel #numerical-screen').count()===1;if(hasNumericalScreen&&!['resolution','angular'].includes(focus))featureMetrics.numericalScreen=await receiveNumericalScreen(page);if(focus==='screen')assert.equal(hasNumericalScreen,true,'Numerical screen receiving requires the integrated screened controller.');
+  const featureMetrics={};if(!['angular','experiment','screen','sparse'].includes(focus))Object.assign(featureMetrics,await receiveNewSurfaces(page));if((!offlineFile||embeddedAngular)&&!['resolution','experiment','screen','sparse'].includes(focus))featureMetrics.angular=await receiveAngularSurface(page);if(hasExperiments&&!['resolution','angular','sparse'].includes(focus))featureMetrics.experiment=await receiveExperimentSurface(page);if(['experiment','screen','sparse'].includes(focus))assert.equal(hasExperiments,true,'Experiment receiving requires the integrated panel.');
+  if(focus==='sparse')featureMetrics.sparse=await receiveSparseExperimentSurface(page);
+  const hasNumericalScreen=await page.locator('#experiment-panel #numerical-screen').count()===1;if(hasNumericalScreen&&!['resolution','angular','sparse'].includes(focus))featureMetrics.numericalScreen=await receiveNumericalScreen(page);if(focus==='screen')assert.equal(hasNumericalScreen,true,'Numerical screen receiving requires the integrated screened controller.');
   let secondModel,saved,altered;const layouts=[];
   if(!focused){
   await page.locator('#playback-time').focus();await page.keyboard.press('End');
@@ -212,5 +282,5 @@ try{
   if(embeddedAngular){const license=await readFile(resolve('examples/physical-pasco-92be/LICENSE'),'utf8');assert.equal(await page.locator('.standalone-license-text').textContent(),license);await page.setViewportSize({width:320,height:1000});await page.locator('#dataset-license summary').click();assert.equal(await page.locator('#dataset-license').getAttribute('open'),'');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),320);await page.locator('#dataset-license').screenshot({path:resolve(dir,'trajectory-measured-license-320.png')});await page.locator('#dataset-license summary').click();mark('measured offline delivery preserves the complete Apache 2.0 license and source attribution in an accessible mobile disclosure');}
   if(offlineFile){assert.equal(await page.evaluate(()=>Object.hasOwn(globalThis.WORLDLAW_EMBEDDED_EXAMPLES,'trajectory-pendulum-92be.json')&&Object.hasOwn(globalThis.WORLDLAW_EMBEDDED_EXAMPLES,'trajectory-ambiguous-92be.json')),true);mark('standalone file executes embedded evidence and identical scientific modules with external network blocked and no external requests');}
   const standalone=offlineFile?{path:offlineFile,sha256:createHash('sha256').update(await readFile(offlineFile)).digest('hex'),externalNetworkBlocked:true,externalRequests}:null;
-  await writeFile(resolve(dir,offlineFile?'receipt-offline.json':focus==='screen'?'receipt-screen.json':focus==='experiment'?'receipt-experiment.json':focus==='angular'?'receipt-angular.json':focused?'receipt-resolution.json':'receipt.json'),JSON.stringify({product:'WORLDLAW Trajectory Challenge',browser:await browser.version(),fixture:{path:'examples/trajectory-pendulum-92be.json',sha256:createHash('sha256').update(fixtureBytes).digest('hex')},checks,mode:offlineFile?'offline-file-full-product':focus==='screen'?'targeted-numerical-screen':focus==='experiment'?'targeted-active-experiment':focus==='angular'?'targeted-measured-angular':focused?'targeted-resolution-horizon-scenarios':'full-product',standalone,featureMetrics,initialEquation,initialPositionRMSE:initialError,layouts,scope:featureMetrics.angular?'Actual Chromium product receiving using controlled synthetic trajectories and separately recorded PASCO measurements with unknown physical torque scale. The measured benchmark was reused during method development; this is not new blind validation or unique mechanism discovery.':'Actual Chromium product receiving using declared synthetic paired trajectories. This receipt does not claim physical hardware validation or unique mechanism discovery.'},null,2)+'\n');
+  await writeFile(resolve(dir,offlineFile?'receipt-offline.json':focus==='sparse'?'receipt-sparse.json':focus==='screen'?'receipt-screen.json':focus==='experiment'?'receipt-experiment.json':focus==='angular'?'receipt-angular.json':focused?'receipt-resolution.json':'receipt.json'),JSON.stringify({product:'WORLDLAW Trajectory Challenge',browser:await browser.version(),fixture:{path:'examples/trajectory-pendulum-92be.json',sha256:createHash('sha256').update(fixtureBytes).digest('hex')},checks,mode:offlineFile?'offline-file-full-product':focus==='sparse'?'targeted-sparse-sensor-receiving':focus==='screen'?'targeted-numerical-screen':focus==='experiment'?'targeted-active-experiment':focus==='angular'?'targeted-measured-angular':focused?'targeted-resolution-horizon-scenarios':'full-product',standalone,featureMetrics,initialEquation,initialPositionRMSE:initialError,layouts,scope:featureMetrics.angular?'Actual Chromium product receiving using controlled synthetic trajectories and separately recorded PASCO measurements with unknown physical torque scale. The measured benchmark was reused during method development; this is not new blind validation or unique mechanism discovery.':'Actual Chromium product receiving using declared synthetic paired trajectories. This receipt does not claim physical hardware validation or unique mechanism discovery.'},null,2)+'\n');
 }finally{if(browser)await browser.close();if(server)await new Promise(resolve=>server.close(resolve));}

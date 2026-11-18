@@ -80,8 +80,10 @@ function checkHistory(options, recordingId, raw) {
       const own = run.source.instrumentId === ID;
       const compatibleFixture = run.source.oracle?.inertia === .8 && run.source.oracle?.rate === -.24 &&
         run.source.oracle?.gravity === -2.2 && run.source.oracle?.bias === 0;
-      const first = run.samples?.[0];
-      if (own || compatibleFixture) insist(!(first?.position === options.initialPosition && run.initialRate === options.initialRate),
+      const first=run.samples?.[0];
+      const priorInitial=run.source.instrumentId===ID&&run.source.sampleIndices ?
+        run.source.initialPosition : first?.position;
+      if (own || compatibleFixture) insist(!(priorInitial === options.initialPosition && run.initialRate === options.initialRate),
         'A new seed or sampling grid does not make the same noiseless release independent evidence.', 'repeated_evidence');
     }
   }
@@ -93,7 +95,34 @@ function checkHistory(options, recordingId, raw) {
  * Fresh pure calls with existingRuns:[] reproduce the same evidence and identity.
  */
 export function acquireVirtualPendulum(request, context) {
-  const options = requestOptions(request), recordingId = identity(options);
+  return acquireCore(request, context, null);
+}
+
+/** Only these post-initial scheduled indices are ever presented to the sensor.
+ * The physical RK4 dynamics still integrate every intervening step. The
+ * already-controlled initial state is not counted as a noisy measurement.
+ * This evidence is deliberately not a full training run.
+ */
+export function acquireVirtualPendulumReadings(request, context) {
+  insist(record(request) && Object.hasOwn(request, 'sampleIndices'),
+    'Sparse acquisition needs an explicit list of prospective reading sampleIndices.', 'invalid_request');
+  const {sampleIndices, ...base} = request;
+  return acquireCore(base, context, sampleIndices);
+}
+function acquireCore(request, context, selectedIndices) {
+  const options = requestOptions(request);
+  if (selectedIndices !== null) {
+    insist(Array.isArray(selectedIndices) && selectedIndices.length >= 1 && selectedIndices.length <= 128,
+      'Sparse sensor readings require 1–128 distinct post-initial sample indices.', 'invalid_request');
+    selectedIndices = Array.from(selectedIndices, (value,i) => {
+      insist(Number.isSafeInteger(value) && value >= 1 && value <= options.intervalCount &&
+        (i===0 || value > selectedIndices[i-1]),
+        'Sparse sample indices must be strictly increasing integers on the existing non-initial schedule.', 'invalid_request');
+      return value;
+    });
+  }
+  const recordingId = selectedIndices === null ? identity(options) :
+    `${ID}:sparse:${JSON.stringify([identity(options), selectedIndices])}`;
   checkHistory(options, recordingId, context);
   const noise = random(options.seed), samples = [];
   const {initialPosition, initialRate, duration, sampleInterval, noiseSigma, seed, intervalCount, substeps} = options;
@@ -101,11 +130,17 @@ export function acquireVirtualPendulum(request, context) {
   // Independent explicit physical equation, matching the unforced fixture instrument.
   const acceleration = (theta, omega) => (-.24 * omega - 2.2 * Math.sin(theta)) / .8;
   const step = sampleInterval / substeps;
+  let nextReading=0;
   for (let index = 0; index <= intervalCount; index++) {
-    const error = index === 0 ? 0 : noiseSigma * (Math.sqrt(-2 * Math.log(noise())) * Math.cos(2 * Math.PI * noise()));
-    const time = index === intervalCount ? duration : Number((index * sampleInterval).toFixed(12));
-    insist(Number.isFinite(position + error) && Math.abs(position + error) <= 1e6, 'Sensor output exceeded the finite instrument range.', 'numerical_failure');
-    samples.push({time, position: position + error, command: 0});
+    const observed=selectedIndices===null || selectedIndices[nextReading]===index;
+    // An unrequested timestamp never invokes the sensor or consumes RNG noise.
+    if(observed){
+      const error = index === 0 ? 0 : noiseSigma * (Math.sqrt(-2 * Math.log(noise())) * Math.cos(2 * Math.PI * noise()));
+      const time = index === intervalCount ? duration : Number((index * sampleInterval).toFixed(12));
+      insist(Number.isFinite(position + error) && Math.abs(position + error) <= 1e6, 'Sensor output exceeded the finite instrument range.', 'numerical_failure');
+      samples.push({...((selectedIndices===null)?{}:{sampleIndex:index}),time, position: position + error, command: 0});
+      if(selectedIndices!==null)nextReading++;
+    }
     if (index === intervalCount) break;
     for (let j = 0; j < substeps; j++) {
       const ap = rate, av = acceleration(position, rate);
@@ -118,7 +153,7 @@ export function acquireVirtualPendulum(request, context) {
         'Synthetic integration exceeded its finite execution range.', 'numerical_failure');
     }
   }
-  return {
+  const result = {
     id: shortId(recordingId), label: `Virtual pendulum release · θ₀=${initialPosition} rad · ω₀=${initialRate} rad/s`,
     kind: 'synthetic', units: {...UNITS}, inertia: .8, initialRate, samples,
     source: {
@@ -136,6 +171,23 @@ export function acquireVirtualPendulum(request, context) {
         meaning: 'High-resolution numerical reference, not exact physical truth or a calibrated error bound.'},
       independence: 'Canonical recording identity and supplied-history checks prevent ordinary replay/reused-seed counting; they do not authenticate edited provenance or establish transfer to another apparatus.',
       rights: 'Generated for this repository; no external media or personal information.',
+    },
+  };
+  if (selectedIndices === null) return result;
+  return {
+    schema: 'worldlaw.virtual-pendulum-sparse/v1',
+    id: result.id, label: result.label, kind: 'synthetic', units: {...UNITS},
+    inertia: result.inertia, initialPosition, initialRate,
+    readings: samples, measurementCount: samples.length,
+    source: {
+      ...result.source,
+      acquisition: 'Genuine sparse virtual sensor observations at only the declared selected timestamps. All intervening physical RK4 simulation steps still execute; no unrequested position is read or serialized.',
+      sampleIndices: selectedIndices, fullGridSampleCount: intervalCount+1,
+      measuredSampleCount: samples.length, sampleSelection: 'declared-before-acquisition; fixed time grid; initial state externally controlled, not sensor measured',
+      noise: {...result.source.noise, noiseStreamId: `${ID}:sparse-position-noise:${seed}`,
+        algorithm: 'lcg32_1664525_1013904223_selected_samples_box_muller_cosine_v1',
+        measurementDrawCount: samples.length,
+        selectedOnly: true},
     },
   };
 }

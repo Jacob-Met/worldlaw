@@ -84,9 +84,10 @@ when noise mode is off. The default Z target is 3.29 and the default reading
 budget is up to eight post-initial timestamps. The virtual pendulum accepts
 sigma in (0,.05] rad, so the experiment controller refuses an incompatible
 noise plan before acquisition. A later acquisition of a noise-aware plan uses
-the *same* declared sigma (and refuses a conflicting override). The seed,
-full independent instrument run and existing evidence/replay rules remain
-owned by the maintained experiment controller.
+the *same* declared sigma (and refuses a conflicting override). The independent instrument, seed provenance and source-replayed evidence remain
+owned by the maintained experiment controller. For a completed Gaussian proposal,
+the Studio now offers either a **full** training recording (the legacy refit path)
+or **selected sensor readings** (conditional model discrimination without coefficient refitting).
 
 The independent numerical gate recomputes the full existing grid at the
 original and half RK4 step, recalculates all Gaussian reading schedules and
@@ -98,15 +99,19 @@ two step sizes and triangle inequality; it is not a numerical error bound
 on the underlying physical dynamics. Existing RMS numerical checks and
 controller behavior are unchanged when noise is not declared.
 
-The current virtual instrument **still records its entire scheduled run**.
-Thus the reported reading budget is a prospective discrimination subset,
-not a claim that the instrument or the downstream estimator already saves
-sampling, bandwidth, compute or lab time. Physical sparse acquisition and a
-sparse-evidence-compatible refitter remain a separate unsolved end-to-end
-bottleneck. This capability does not directly address unobserved/latent
-state, posterior uncertainty, correlated or heteroscedastic sensor noise,
-multi-step decisions, arbitrary PDEs, or hypotheses missing from the learned
-library.
+The original **full-run** instrument path remains unchanged and records every
+scheduled position. The new [selected-only acquisition protocol](SPARSE_SENSOR_EXPERIMENT.md)
+invokes the independent Gaussian sensor **only at the selected post-initial
+timestamps** and emits no measured positions for unrequested times, while
+retaining the complete intervening RK4 dynamics on the simulated apparatus.
+It therefore actually reduces virtual sensor readings and stored observation
+count; it does **not** reduce simulation integration steps, become a physical
+sensor, or train a new symbolic coefficient fit from 1–8 irregular readings.
+The conditional Gaussian receiver compares *only* previously offered, frozen
+training-derived model predictions, with an explicit source-replayed notebook.
+Physical hardware acquisition, sparse-evidence coefficient learning, correlation/
+heteroscedastic noise, latent states, multi-step policy optimization and unseen
+model classes remain open challenges.
 
 ## Locked falsification controls
 
