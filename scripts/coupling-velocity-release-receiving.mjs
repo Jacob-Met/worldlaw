@@ -69,6 +69,7 @@ export async function receiveVelocityReleases({evaluate,send,check,click,text,wa
  await check('unsupported training and no-separation retain all positions without an informative proposal',async()=>{
   const unsupported=structuredClone(saved);unsupported.velocity=createVelocityExample('single-uniform');await importValue(id('file'),unsupported);await visible();
   assert.match(await text(id('status')),/Unsupported training/);assert.equal(await evaluate("document.querySelectorAll('#velocity-release-rows tr').length"),9);assert.equal(await evaluate("document.querySelectorAll('#velocity-release-rows [data-release-proposed=true]').length"),0);assert.equal(await evaluate("document.getElementById('velocity-release-apply').disabled"),true);
+  assert.equal(await evaluate("document.getElementById('velocity-release-inspect-reading').hidden"),true);
   const noSeparation=structuredClone(saved);noSeparation.settings.minimumSeparation=1000;await importValue(id('file'),noSeparation);await visible();assert.match(await text(id('status')),/No informative release is proposed/);
   assert.equal(await evaluate("document.querySelectorAll('#velocity-release-rows tr[data-release-proposed=true]').length"),0);
  });
@@ -81,6 +82,14 @@ export async function receiveVelocityReleases({evaluate,send,check,click,text,wa
  });
  for(const width of [1440,390]){
   await send('Emulation.setDeviceMetricsOverride',{width,height:1050,deviceScaleFactor:1,mobile:width===390});await open(id('run'));await delay(80);
+  await check('single-reading plan reopens its release and common clock at '+width,async()=>{
+   assert.match(await text(id('one-reading')),/measure both angles at/);
+   await evaluate("document.getElementById('velocity-release-inspect-reading').focus()");
+   await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+   await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+   const marker=await evaluate("Number(document.querySelector('#velocity-release-plot [data-single-reading-time]').dataset.singleReadingTime)");
+   assert.ok(marker>0);assert.ok((await text(id('one-reading'))).includes(Number(marker.toPrecision(6)).toString()+' s'));
+  });
   await check('complete velocity release table, pair curves and controls fit '+width,async()=>{
    const layout=await evaluate("({width:innerWidth,scroll:document.documentElement.scrollWidth,rows:document.querySelectorAll('#velocity-release-rows tr').length,traces:document.querySelectorAll('#velocity-release-plot [data-release-trace]').length,plot:document.getElementById('velocity-release-plot').getBoundingClientRect().width,cells:[...document.querySelectorAll('#velocity-release-rows td,#velocity-release-rows th')].filter(e=>e.getClientRects().length).map(e=>({scroll:e.scrollWidth,width:e.clientWidth})),controls:[...document.querySelectorAll('#velocity-release-lab input:not([type=file]),#velocity-release-lab select')].filter(e=>e.getClientRects().length).map(e=>({left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right}))})");
    assert.ok(layout.scroll<=layout.width+1,JSON.stringify(layout));assert.equal(layout.rows,9);assert.equal(layout.traces,6);assert.ok(layout.plot>220);
