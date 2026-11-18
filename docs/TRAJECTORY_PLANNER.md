@@ -1,5 +1,7 @@
 # Trajectory-level informative release planning
 
+**Optional noise-aware path:** The legacy RMS ranking described below remains the default. The Studio now offers a *Noise-aware reading plan* toggle with externally declared independent Gaussian position noise, target pairwise Z, a distinct-timestamp reading budget and an independently screened prospective read schedule. The design and its exactness/uncertainty limits are specified in [GAUSSIAN_INTERVENTION_DESIGN.md](GAUSSIAN_INTERVENTION_DESIGN.md). The virtual instrument still collects its full run; the proposed subset is not an actual sample-volume reduction.
+
 V3 increment after frozen v2 `f7c94fa1e788bc4dbabd348d01221e8e6727cb12`. The planner proposes a bounded synthetic experiment from training-model predictions; the application screens its numerical sensitivity before a separate instrument supplies the actual new synthetic run. Explicit application then refits the evidence and compares the revised law on the same reserved recording. It does not operate physical hardware or establish general mechanism discovery. Component, controller, browser and packaged-artifact receiving are distinct gates; exact publication and distribution pins belong in the release record.
 
 ## API
