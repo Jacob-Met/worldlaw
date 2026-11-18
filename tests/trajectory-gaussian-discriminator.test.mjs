@@ -54,6 +54,58 @@ test('three laws expose unproved global optimality rather than claiming an exact
   assert.equal(multi.pairwise.length,3);
 });
 
+test('independent exhaustive subset oracle verifies claimed minimal reading counts on unfamiliar pairs',()=>{
+  let state=0x6a09e667;
+  const rand=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296;};
+  for(let trial=0;trial<250;trial++){
+    const n=3+Math.floor(rand()*5),sigma=.1+rand()*2,targetZ=.5+rand()*4;
+    const a=Array.from({length:n},()=>rand()*4-2),b=Array.from({length:n},()=>rand()*4-2);
+    const maxReadings=1+Math.floor(rand()*n);
+    const got=designGaussianReadings([p('A',a),p('B',b)],{sigma,targetZ,maxReadings});
+    const threshold2=targetZ*targetZ;
+    let least=Infinity,ever=false;
+    for(let mask=1;mask<(1<<n);mask++){
+      let count=0,squared=0;
+      for(let j=0;j<n;j++)if(mask&(1<<j)){count++;squared+=((a[j]-b[j])/sigma)**2;}
+      if(squared>=threshold2){least=Math.min(least,count);ever=true;}
+    }
+    const selectedScore=got.readings.reduce((total,r)=>total+((a[r.sampleIndex-1]-b[r.sampleIndex-1])/sigma)**2,0);
+    assert.ok(got.measurementCount<=maxReadings);
+    if(ever&&least<=maxReadings){
+      assert.equal(got.status,'distinguishable',`trial ${trial}`);
+      assert.equal(got.certifiedMinimumReadings,least,`trial ${trial}`);
+      assert.ok(selectedScore>=threshold2,`trial ${trial}`);
+    }else{
+      assert.equal(got.certifiedMinimumReadings,null,`trial ${trial}`);
+      assert.equal(got.status,ever?'budget_insufficient':'threshold_unreachable_on_grid',`trial ${trial}`);
+    }
+  }
+});
+
+test('multi-law cardinality certificates never beat an exhaustive independent oracle',()=>{
+  let state=0x3c6ef372;
+  const rand=()=>{state=(Math.imul(state,22695477)+1)>>>0;return state/4294967296;};
+  for(let trial=0;trial<100;trial++){
+    const m=3,n=5,sigma=.2+rand(),targetZ=.6+rand()*2;
+    const paths=Array.from({length:m},(_,i)=>p('law-'+i,Array.from({length:n},()=>rand()*3-1.5)));
+    const got=designGaussianReadings(paths,{sigma,targetZ,maxReadings:n});
+    let best=Infinity;
+    for(let mask=1;mask<(1<<n);mask++){
+      let count=0,min=Infinity;
+      for(let i=0;i<n;i++)if(mask&(1<<i))count++;
+      for(let a=0;a<m;a++)for(let b=a+1;b<m;b++){
+        let energy=0;
+        for(let i=0;i<n;i++)if(mask&(1<<i))energy+=((paths[a].rows[i+1].position-paths[b].rows[i+1].position)/sigma)**2;
+        min=Math.min(min,energy);
+      }
+      if(min>=targetZ*targetZ)best=Math.min(best,count);
+    }
+    if(got.certifiedMinimumReadings!==null)assert.equal(got.certifiedMinimumReadings,best,`trial ${trial}`);
+    if(got.status==='distinguishable')assert.ok(got.measurementCount>=best);
+    else assert.equal(best,Infinity);
+  }
+});
+
 test('trajectory planner uses declared noise rather than uncalibrated RMS spread when opted in',()=>{
   const d=discovery([law('free'),law('bias',[{id:'bias',coefficient:2}])]);
   const low=planTrajectoryExperiment(d,{...design,noiseSigma:.05,noiseTargetZ:3,noiseMaxReadings:4});
