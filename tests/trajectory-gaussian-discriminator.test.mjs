@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {designGaussianReadings,GAUSSIAN_DESIGN_SCHEMA} from '../src/trajectory/gaussian-discriminator.mjs';
 import {planTrajectoryExperiment,TrajectoryPlanningError} from '../src/trajectory/planner.mjs';
 import {UNITS} from '../src/science/torque-discovery.mjs';
+import {qualifyTrajectoryPlan} from '../src/experiment-design/qualify-trajectory-plan.mjs';
 
 const p=(id,x)=>({modelId:id,rows:[{time:0,position:0},...x.map((position,i)=>({time:i+1,position}))]});
 const law=(id,terms=[])=>({schema:'worldlaw.torque-model/v1',id,terms,units:{...UNITS}});
@@ -71,6 +72,21 @@ test('trajectory planner uses declared noise rather than uncalibrated RMS spread
   assert.equal(incumbent.method,'rms_pairwise_position_disagreement');
   assert.equal(incumbent.scoreUnits,'rad');
   assert.equal(incumbent.status,'proposed');
+});
+
+test('the independent controller numerical gate actually admits stable Gaussian proposals',()=>{
+  const d=discovery([law('free'),law('bias',[{id:'bias',coefficient:2}])]);
+  const plan=planTrajectoryExperiment(d,{...design,noiseSigma:.05,noiseTargetZ:3,noiseMaxReadings:4});
+  const qualified=qualifyTrajectoryPlan(d,plan);
+  assert.equal(qualified.status,'screen_passed',JSON.stringify(qualified.selectedQualification));
+  assert.equal(qualified.selectedQualification.status,'screen_passed');
+  assert.ok(qualified.selectedQualification.powerMarginZ>qualified.selectedQualification.powerSensitivityZ);
+  assert.ok(qualified.selectedQualification.refinedPower.minPairwiseZ>=plan.options.noiseTargetZ);
+  const forged=structuredClone(plan);forged.selected.power.minPairwiseZ+=5;
+  forged.ranked[0].power.minPairwiseZ+=5;
+  const refused=qualifyTrajectoryPlan(d,forged);
+  assert.equal(refused.status,'numerically_unresolved');
+  assert.equal(refused.selectedQualification.reason,'plan_power_mismatch');
 });
 
 test('work preflight and invalid noise contracts fail before comparing a partial grid',()=>{
