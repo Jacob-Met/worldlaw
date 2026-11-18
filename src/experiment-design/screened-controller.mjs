@@ -87,7 +87,7 @@ export function withNumericalScreen(controller, screeningOptions = {}) {
       plan: blocked ? {...view.plan, status: 'numerically_unresolved'} : view.plan,
       numericalQualification: clone(qualification),
       acquisitionAllowed: Boolean(view.available && view.plan?.status === 'proposed' &&
-        qualification?.status === 'screen_passed' && !view.acquisition),
+        qualification?.status === 'screen_passed' && !view.acquisition && !view.sparseAcquisition),
       error: blocked ? [view.error, message].filter(Boolean).join(' ') : view.error,
       notice: !blocked && message ? [view.notice, message].filter(Boolean).join(' ') : view.notice,
     };
@@ -113,6 +113,20 @@ export function withNumericalScreen(controller, screeningOptions = {}) {
     return next;
   }
 
+  function acquireSelectedReadings(session, requestedOptions = {}) {
+    if(typeof controller.acquireSelectedReadings!=='function')
+      throw new TypeError('The current experiment controller does not support source-backed sparse acquisitions.');
+    const {view,qualification}=inspect(session);
+    if(view.plan?.status==='proposed'&&!view.acquisition&&!view.sparseAcquisition&&
+      qualification?.status!=='screen_passed'){
+      throw new TrajectoryPlanQualificationError(explanation(qualification),
+        qualification?.status==='unavailable'?'numerical_screen_unavailable':'numerically_unresolved');
+    }
+    const next=controller.acquireSelectedReadings(session,requestedOptions);
+    if(qualification&&next.plan===session.plan&&next.current===session.current)cache.set(next,qualification);
+    return next;
+  }
+
   function restoreExperimentSession(text) {
     const session = controller.restoreExperimentSession(text);
     // Previously acquired evidence remains intact. Only the current pending
@@ -122,6 +136,6 @@ export function withNumericalScreen(controller, screeningOptions = {}) {
   }
 
   return Object.freeze({
-    ...controller, planNextExperiment, acquireNextExperiment, experimentView, restoreExperimentSession,
+    ...controller, planNextExperiment, acquireNextExperiment, acquireSelectedReadings, experimentView, restoreExperimentSession,
   });
 }
