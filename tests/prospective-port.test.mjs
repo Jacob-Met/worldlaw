@@ -70,10 +70,43 @@ test('tight effort and low-excitation conditions abstain rather than fabricate a
  ]) assert.throws(()=>planProspectivePortIntervention({...source(),settings:{...settings(),...mutation}}));
 });
 
+// Independent experimental forward integrator: the actuator can energize either
+// motor or both. Held-out observation code shares no rollout functions with the
+// planner; it independently implements the published two-link equations.
+function oracleReadout(drive, initial, observedIndex, shoulderFraction) {
+ const mass1=.5234602302310271,mass2=.6255677234174437,length=.2;
+ const center1=.2,center2=.25569305436052964;
+ const inertia1=.031887199591513114,inertia2=.05086984812807257;
+ const rotor=6.287203962819607e-5,gear=6,g=9.81;
+ const half=(s,t)=>{
+  const [q1,q2,v1,v2]=s,c=mass2*length*center2*Math.cos(q2),sn=mass2*length*center2*Math.sin(q2);
+  const m11=inertia1+inertia2+mass2*length*length+2*c+(gear*gear+1)*rotor;
+  const m12=inertia2+c-gear*rotor,m22=inertia2+gear*gear*rotor;
+  const grav=m2=>g*mass2*center2*Math.sin(q1+q2);
+  const r1=shoulderFraction*t+sn*(2*v1*v2+v2*v2)-g*(mass1*center1+mass2*length)*Math.sin(q1)-grav()-.001*v1-.16*Math.atan(100*v1);
+  const r2=(1-shoulderFraction)*t-sn*v1*v1-grav()-.001*v2-.12*Math.atan(100*v2);
+  const det=m11*m22-m12*m12;
+  return [v1,v2,(r1*m22-r2*m12)/det,(r2*m11-r1*m12)/det];
+ };
+ let state=[...initial];
+ const add=(s,k,h)=>s.map((x,j)=>x+h*k[j]);
+ for(let i=0;i<observedIndex;i++){
+  const span=drive[i+1].time-drive[i].time, count=Math.ceil(span/.0005),h=span/count;
+  for(let j=0;j<count;j++){
+   const k1=half(state,drive[i].torque);
+   const k2=half(add(state,k1,h/2),drive[i].torque);
+   const k3=half(add(state,k2,h/2),drive[i].torque);
+   const k4=half(add(state,k3,h),drive[i].torque);
+   state=state.map((x,z)=>x+h*(k1[z]+2*k2[z]+2*k3[z]+k4[z])/6);
+  }
+ }
+ return state.slice(0,2);
+}
+
 test('frozen independent high-resolution held-out simulator: classifications conditional on the offered family',()=>{
  // 48 seeds and both latent actuators are fixed before inspecting any result.
  // The generating simulator is half the finest planning step; readout perturbations are fixed.
- const counts={seeds:48,proposed:0,unresolved:0,classified:0,correct:0,otherModelRejected:0};
+ const counts={seeds:48,proposed:0,unresolved:0,classified:0,correct:0,splitPortRefused:0,randomLabelMatches:0};
  for(let seed=70001;seed<=70048;seed++){
   const random=rng(seed);
   const initial=[(random()-.5)*.6,(random()-.5)*.6,(random()-.5)*.4,(random()-.5)*.4];
@@ -81,18 +114,24 @@ test('frozen independent high-resolution held-out simulator: classifications con
   if(plan.status!=='prospective-witness'){counts.unresolved++;continue;}
   counts.proposed++;
   const {drive,observationIndex,observationTime}=plan.selected;
-  const independent=schedulePortObservations(drive,0,initial,.5,.0005).predictions[observationIndex-1];
+  const independent={shoulder:oracleReadout(drive,initial,observationIndex,1),elbow:oracleReadout(drive,initial,observationIndex,0)};
   for(const port of ['shoulder','elbow']){
    const encoder=independent[port].map(angle=>angle+(.5-random())*.006);
    const result=receiveProspectivePortObservation(plan,clone(drive),{time:observationTime,position:encoder});
    counts.classified++;if(result.status===port)counts.correct++;
+   // Shuffled labels are fixed from a separate random sequence; positive
+   // correlation with them would indicate outcome leakage or a broken null.
+   const shuffledLabel=rng(seed*29+(port==='shoulder'?19:71))()>.5?'shoulder':'elbow';
+   if(result.status===shuffledLabel)counts.randomLabelMatches++;
    if(result.status!==port)throw Error('Accepted in-family high-resolution witness classified incorrectly seed '+seed+' port '+port+': '+result.status);
   }
-  const wrong={time:observationTime,position:[3.1,2.8]};
-  if(receiveProspectivePortObservation(plan,drive,wrong).status==='model-inadequate')counts.otherModelRejected++;
+  const mixture={time:observationTime,position:oracleReadout(drive,initial,observationIndex,.5)};
+  if(receiveProspectivePortObservation(plan,drive,mixture).status==='model-inadequate')counts.splitPortRefused++;
  }
  assert.equal(counts.correct,counts.classified);
  assert.ok(counts.proposed>=1,'The frozen cohort must admit at least one actual experiment');
+ assert.ok(counts.splitPortRefused>=20,'A broad out-of-family split-drive null should often reject the two-port catalog');
+ assert.ok(counts.randomLabelMatches>counts.classified*.25 && counts.randomLabelMatches<counts.classified*.75,'Shuffled labels should stay near chance');
  console.log('FROZEN PROSPECTIVE SYNTHETIC HOLDOUT '+JSON.stringify(counts));
 });
 
