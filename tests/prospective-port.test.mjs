@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {schedulePortObservations} from '../src/coupling/actuator-port.mjs';
 import {planProspectivePortIntervention, receiveProspectivePortObservation, PROSPECTIVE_PORT_SCHEMA} from '../src/coupling/prospective-port.mjs';
 
@@ -121,7 +122,8 @@ test('frozen independent high-resolution held-out simulator: classifications con
    counts.classified++;if(result.status===port)counts.correct++;
    // Shuffled labels are fixed from a separate random sequence; positive
    // correlation with them would indicate outcome leakage or a broken null.
-   const shuffledLabel=rng(seed*29+(port==='shoulder'?19:71))()>.5?'shoulder':'elbow';
+   const nullByte=createHash('sha256').update('heldout-null-label-v1/'+seed+'/'+port).digest()[0];
+   const shuffledLabel=(nullByte&1)?'shoulder':'elbow';
    if(result.status===shuffledLabel)counts.randomLabelMatches++;
    if(result.status!==port)throw Error('Accepted in-family high-resolution witness classified incorrectly seed '+seed+' port '+port+': '+result.status);
   }
