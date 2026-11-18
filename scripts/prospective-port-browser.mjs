@@ -17,7 +17,7 @@ const server=createProductServer();
 await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
 const url='http://127.0.0.1:'+server.address().port+'/coupling.html';
 const chrome=spawn(process.env.BROWSER_EXECUTABLE_PATH||'/usr/bin/google-chrome-stable',
- ['--headless=new','--disable-background-networking','--disable-dev-shm-usage','--remote-debugging-port=0',
+ ['--headless=new','--enable-automation','--disable-background-networking','--disable-dev-shm-usage','--remote-debugging-port=0',
  '--window-size=1440,1000','--user-data-dir='+profile,url],{stdio:['ignore','ignore','pipe']});
 let chromeError='',ws,seq=0;const pending=new Map();
 const errors=[],unexpected=[],checks=[];
