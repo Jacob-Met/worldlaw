@@ -80,6 +80,8 @@ export function planNextExperiment(session,requestedSettings={}){
   insist(!session.acquisition,'Apply the acquired evidence before planning another run, or start a new notebook.','pending_evidence');
   insist(session.current.bundle.trainingRuns.length<4,'This notebook already contains four training runs. Start a new explicitly selected evidence set for another experiment.','resource_limit');
   const settings={...copy(DEFAULT_SETTINGS),...copy(requestedSettings)};
+  if(settings.noiseSigma!==undefined)insist(Number.isFinite(settings.noiseSigma)&&settings.noiseSigma>0&&settings.noiseSigma<=.05,
+    'The independent virtual instrument supports declared position noise sigma in (0, 0.05] radians.','instrument_mismatch');
   insist(Number.isInteger(settings.maxTotalSteps)&&settings.maxTotalSteps>0&&settings.maxTotalSteps<=250000,'The interactive planner supports a complete budget of at most 250,000 steps.','resource_limit');
   const planned=planTrajectoryExperiment(session.current.discovery,settings),key=contextKey(session.current);
   const plan={...planned,id:fingerprint({key,options:planned.options}),contextKey:key};
@@ -110,7 +112,10 @@ export function acquireNextExperiment(session,options={}){
   insist(session.plan?.selected&&session.plan.status==='proposed','The planner has no informative executable recommendation.','no_proposal');
   insist(session.plan.contextKey===contextKey(session.current)&&(!options.contextKey||options.contextKey===session.plan.contextKey),'This recommendation belongs to another fitted revision.','stale_plan');
   matchingProtocol(session.plan);
-  const runs=retainedRuns(session),request={...session.plan.selected.acquisitionRequest,seed:options.seed??freshSeed(runs),noiseSigma:options.noiseSigma??.00002};
+  const declaredSigma=session.plan.options.noiseSigma;
+  insist(declaredSigma===undefined||options.noiseSigma===undefined||options.noiseSigma===declaredSigma,
+    'Noise-aware experimental plans must be acquired at their declared sensor noise, not a changed noise scale. Plan again to compare another sensor.','instrument_mismatch');
+  const runs=retainedRuns(session),request={...session.plan.selected.acquisitionRequest,seed:options.seed??freshSeed(runs),noiseSigma:options.noiseSigma??declaredSigma??.00002};
   const rawRun=acquireVirtualPendulum(request,{existingRuns:runs});
   const run=validateRun(rawRun,{role:'training',inheritedUnits:RUN_UNITS});
   const acquisition={id:run.id,run,request,planSettings:copy(session.plan.options),planId:session.plan.id,contextKey:session.plan.contextKey};
