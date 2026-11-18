@@ -137,3 +137,11 @@ noise; model inadequacy/out-of-library laws; hidden states; adaptive
 multi-run interventions; conservation laws and unknown PDE systems;
 and held-out independent physical or simulated environments spanning
 different dynamics.
+
+### Measure a common torque multiplier
+
+With the small-angle ambiguity example loaded, select a candidate torque law and open **Measure a common torque multiplier**. The instrument measures four angles on each of two separate zero-command releases. Their starting angle and rate are (1.15 rad, 0 rad/s) and (−0.90 rad, 0.35 rad/s). Before acquisition, the planner chooses the four times with the largest predicted range among five strength multipliers on each release. Only those eight noisy positions enter the fit. The original training and challenge recordings keep their roles.
+
+The score is the sum of squared position residuals divided by the declared Gaussian variance. The display lists all five scores and their normalized likelihoods under equal grid weights. The compatibility screen uses a conservative chi-square upper-tail bound for a fixed offered law with independent Gaussian noise. The source readings, executable revised candidate (when available), numerical forecasts and profile travel together in **Save strength receipt**. Reopen the receipt with the same selected law to replay both acquisitions and verify its contents.
+
+The registered independent synthetic check runs with `node experiments/sparse-strength-transfer.mjs`. On the 40 on-grid trials, the paired design, eight uniformly spaced readings and the first four selected readings each recovered 40/40 scales. All three produced the same median unseen-release RMSE (1.63 × 10⁻¹² rad versus 0.08057 rad for the nominal coefficients). Reversing the reading order caused 40/40 abstentions. On 16 off-grid trials the paired design rejected every offered scale in 14 cases and selected a neighboring scale in two. This experiment found no improvement from dispersion-based timing or a second release over the registered controls. Exact on-grid recovery depends on the offered finite family and the shared scalar oscillator assumptions.

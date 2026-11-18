@@ -1,3 +1,4 @@
+import {mountStrengthStudy} from './sparse-strength-panel.mjs';
 import {createIntervalReadoutPanel} from './interval-readout-panel.mjs';
 import {mountAngularStatePanel} from '../angular-state/panel.mjs';
 import {createAppliedTorquePanel} from './applied-torque-panel.mjs';
@@ -42,6 +43,7 @@ const termNames={command:'Actuation',rate:'Linear rate',coulomb:'Rate sign',spri
 const storageKey='worldlaw.trajectory-challenge.v1';
 const exampleURLs={pendulum:'/examples/trajectory-pendulum-92be.json',ambiguous:'/examples/trajectory-ambiguous-92be.json',measured:'/examples/physical-pasco-92be.json'};
 let state,workflow,experimentPanel,selectedRunId,generation=0,busy=false,rows=[],contactRows=[],playing=false,playStarted=0,playFrom=0,animationHandle=0,viewIndex=0,chartX=null,positionTolerance=.05,horizon=null;
+const updateStrengthStudy=mountStrengthStudy($('strength-study'));
 const referencePanel=createReferencePanel($('experiment-panel'));
 
 function angularMode(){return state?.bundle?.schema==='worldlaw.angular-bundle/v1';}
@@ -111,7 +113,14 @@ function experimentPanelView(){
   if(view.acquisition&&['numerically_unresolved','unavailable'].includes(view.numericalQualification?.status))return {...view,error:undefined,notice:'The existing recording is retained and can be learned from. This numerical check limits new acquisition; it does not discard evidence already acquired.'};
   return view;
 }
-function renderExperiment(){if(workflow&&experimentPanel)experimentPanel.render(experimentPanelView());}
+function renderExperiment(){
+  if(!workflow||!experimentPanel)return;
+  const view=experimentPanelView();
+  experimentPanel.render(view);
+  const model=view.available?currentModel():null;
+  const runs=[...state.bundle.trainingRuns,...state.bundle.challengeRuns,workflow.acquisition?.run,workflow.sparseAcquisition?.evidence].filter(Boolean);
+  updateStrengthStudy(model,runs,view.available?JSON.stringify([view.contextKey,model.id,model.terms,runs.map(run=>run.id)]):null);
+}
 async function advanceExperiment(action,message){const previous=workflow;await perform(()=>action(previous),message,{propagate:true});return experimentPanelView();}
 function render(){
   commandTimingPanel.setBundle(state.bundle);
