@@ -81,13 +81,15 @@ export function designGaussianReadings(predictions, {sigma, targetZ, maxReadings
     if(achieved2>=target2) break;
   }
   const achieved=achieved2>=target2;
+  const provedBudgetInsufficient=!achieved&&!equivalentPair&&!thresholdUnreachable&&lowerBound>maxReadings;
   const ordered=chosen.slice().sort((a,b)=>a-b);
   const pairwise=pairs.map((pair,p)=>({firstModelId:predictions[pair.a].modelId,
     secondModelId:predictions[pair.b].modelId, separationZ:Math.sqrt(current[p])}));
   const exact=(achieved && (pairs.length===1 || chosen.length===lowerBound));
   return {schema:GAUSSIAN_DESIGN_SCHEMA,
     status:equivalentPair?'observationally_equivalent_on_grid':
-      thresholdUnreachable?'threshold_unreachable_on_grid':achieved?'distinguishable':'budget_insufficient',
+      thresholdUnreachable?'threshold_unreachable_on_grid':achieved?'distinguishable':
+      provedBudgetInsufficient?'budget_insufficient':'search_inconclusive',
     sigmaRad:sigma,targetZ,maxReadings,scheduledPostInitialSamples:n,
     pairCount:pairs.length,minPairwiseZ:Math.sqrt(achieved2),
     measurementCount:chosen.length,
@@ -98,7 +100,9 @@ export function designGaussianReadings(predictions, {sigma, targetZ, maxReadings
     optimality:exact?'finite-grid cardinality optimum proved':
       equivalentPair?'at least one offered law pair has identical sampled predictions':
       thresholdUnreachable?'even all scheduled independent readings miss the declared z threshold':
-      'bounded maximin greedy witness; lower bound only, global minimum unproved',
+      provedBudgetInsufficient?'pairwise lower bound proves this reading budget insufficient':
+      achieved?'bounded maximin greedy witness; lower bound only, global minimum unproved':
+      'bounded greedy search failed; a feasible subset within budget is not ruled out',
     noiseAssumptions:'Independent, homoscedastic Gaussian position errors with externally declared sigma; no calibration, confidence claim, hardware safety or unknown truth.',
     interpretation:'For two equally likely Gaussian hypotheses with equal known variance, observed means separated by z have equal-prior Bayes classification error Phi(-z/2). Multi-model z is only the worst pairwise separation.'};
 }
