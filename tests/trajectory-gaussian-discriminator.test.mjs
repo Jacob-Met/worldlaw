@@ -66,7 +66,7 @@ test('trajectory planner uses declared noise rather than uncalibrated RMS spread
   assert.equal(low.diagnostics.reservedPowerProducts,16);
   const noisy=planTrajectoryExperiment(d,{...design,noiseSigma:1,noiseTargetZ:3,noiseMaxReadings:4});
   assert.equal(noisy.status,'uninformative');
-  assert.equal(noisy.selected.power.status,'observationally_equivalent_on_grid');
+  assert.equal(noisy.selected.power.status,'threshold_unreachable_on_grid');
   const incumbent=planTrajectoryExperiment(d,design);
   assert.equal(incumbent.method,'rms_pairwise_position_disagreement');
   assert.equal(incumbent.scoreUnits,'rad');
