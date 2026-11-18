@@ -4,6 +4,8 @@ import {designGaussianReadings,GAUSSIAN_DESIGN_SCHEMA} from '../src/trajectory/g
 import {planTrajectoryExperiment,TrajectoryPlanningError} from '../src/trajectory/planner.mjs';
 import {UNITS} from '../src/science/torque-discovery.mjs';
 import {qualifyTrajectoryPlan} from '../src/experiment-design/qualify-trajectory-plan.mjs';
+import {createChallenge} from '../src/trajectory/session.mjs';
+import {createExperimentSession,planNextExperiment,acquireNextExperiment,exportExperimentSession,restoreExperimentSession} from '../src/trajectory/experiment-session.mjs';
 
 const p=(id,x)=>({modelId:id,rows:[{time:0,position:0},...x.map((position,i)=>({time:i+1,position}))]});
 const law=(id,terms=[])=>({schema:'worldlaw.torque-model/v1',id,terms,units:{...UNITS}});
@@ -164,6 +166,24 @@ test('work preflight and invalid noise contracts fail before comparing a partial
   }
   assert.throws(()=>planTrajectoryExperiment(d,{...design,noiseSigma:.05,noiseMaxReadings:4,maxPowerProducts:15}),
     e=>e instanceof TrajectoryPlanningError && e.code==='resource_limit');
+});
+
+test('actual independent virtual acquisition uses the same prospective noise contract and survives replay',()=>{
+  const bundle=JSON.parse(readFileSync(new URL('../examples/trajectory-ambiguous-92be.json',import.meta.url)));
+  const initial=createExperimentSession(createChallenge(bundle));
+  assert.throws(()=>planNextExperiment(initial,{noiseSigma:.06}),
+    e=>e.code==='instrument_mismatch');
+  const planned=planNextExperiment(initial,{noiseSigma:.012,noiseTargetZ:.000001,noiseMaxReadings:1,maxModels:2});
+  assert.equal(planned.plan.status,'proposed');
+  assert.equal(planned.plan.selected.power.certifiedMinimumReadings,1);
+  assert.throws(()=>acquireNextExperiment(planned,{seed:92501,noiseSigma:.02}),
+    e=>e.code==='instrument_mismatch');
+  const pending=acquireNextExperiment(planned,{seed:92501});
+  assert.equal(pending.acquisition.request.noiseSigma,.012);
+  assert.equal(pending.acquisition.run.source.positionNoiseSigma,.012);
+  const reopened=restoreExperimentSession(exportExperimentSession(pending));
+  assert.equal(reopened.plan.options.noiseSigma,.012);
+  assert.deepEqual(reopened.acquisition.run,pending.acquisition.run);
 });
 
 test('held-out Gaussian reading and independent randomized-label negative control',()=>{
