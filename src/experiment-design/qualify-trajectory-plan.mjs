@@ -5,6 +5,7 @@
  */
 import {rolloutWithResolution} from '../trajectory/resolution.mjs';
 import {UNITS} from '../science/torque-discovery.mjs';
+import {designGaussianReadings} from '../trajectory/gaussian-discriminator.mjs';
 
 export const QUALIFICATION_SCHEMA = 'worldlaw.trajectory-plan-qualification/v1';
 export class TrajectoryPlanQualificationError extends Error {
@@ -114,12 +115,18 @@ function pairwiseSensitivity(checks) {
  */
 export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
   const settings = options(requestedOptions);
-  requireThat(object(plan) && plan.schema === 'worldlaw.trajectory-plan/v1' && plan.method === 'rms_pairwise_position_disagreement' &&
+  requireThat(object(plan) && plan.schema === 'worldlaw.trajectory-plan/v1' && ['rms_pairwise_position_disagreement','finite-grid_minimax_independent_gaussian_discrimination'].includes(plan.method) &&
     object(plan.options) && Array.isArray(plan.ranked) && plan.ranked.length >= 1 && plan.ranked.length <= 81,
     'Supply a computed finite trajectory plan.');
   requireThat(['proposed', 'uninformative', 'no_feasible_design'].includes(plan.status), 'Unsupported planner status.');
   finite(plan.options.inertia, 'inertia', 1e-12, 1e12); finite(plan.options.command, 'command', -1e4, 1e4);
+  const noiseMode=plan.method==='finite-grid_minimax_independent_gaussian_discrimination';
   const threshold = finite(plan.options.minDisagreement, 'minDisagreement', 0, 1e6);
+  if(noiseMode){
+    finite(plan.options.noiseSigma,'noiseSigma',1e-12,1e6);
+    finite(plan.options.noiseTargetZ,'noiseTargetZ',1e-6,100);
+    integer(plan.options.noiseMaxReadings,'noiseMaxReadings',1,128);
+  }
   const {models, trainingRunIds} = ensemble(discovery, plan), scheduled = schedule(plan);
   const designs = Array.from(plan.ranked, row => {validateDesign(row, plan); return row;});
   requireThat(new Set(designs.map(row => row.index)).size === designs.length, 'Design indices must be unique.');
@@ -129,7 +136,8 @@ export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
       .every(key => plan.selected[key] === selectedRow[key]), 'The selected design does not match its ranked plan row.', 'stale_plan');
   } else requireThat(plan.status === 'no_feasible_design', 'Only a no-feasible-design plan may omit its selection.');
   const evaluatedCount = designs.filter(row => row.status === 'evaluated').length;
-  const informativeSelection = models.length >= 2 && plan.selected !== null && plan.selected.disagreementRad > threshold;
+  const informativeSelection = models.length >= 2 && plan.selected !== null && (noiseMode ?
+    plan.selected.power?.status==='distinguishable' : plan.selected.disagreementRad > threshold);
   requireThat(plan.status === 'proposed' ? informativeSelection : plan.status === 'uninformative' ?
     plan.selected !== null && !informativeSelection : plan.selected === null && evaluatedCount === 0,
     'Planner status does not match its model count, selected score, threshold, or eligible designs.', 'invalid_plan');
@@ -143,16 +151,21 @@ export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
     const run = {id: `unobserved-screen-${design.index}`, label: 'Unobserved numerical screening schedule', kind: 'synthetic',
       source: {label: 'Private prediction placeholders; no acquired observations'}, inertia: design.inertia, initialRate: design.initialRate,
       samples: scheduled.times.map(time => ({time, position: design.initialPosition, command: design.command}))};
-    const predictions = [], modelChecks = [];
+    const predictions = [], modelChecks = [], coarseNoisePredictions=[],refinedNoisePredictions=[];
     for (const model of models) {
       attemptedComparisons++;
       try {
-        const received = rolloutWithResolution(model, run, {maxStep: scheduled.maxStep, maxSteps: scheduled.combinedSteps});
+        const received = rolloutWithResolution(model, run, {maxStep: scheduled.maxStep, maxSteps: scheduled.combinedSteps,
+          ...(noiseMode?{includeRefinedRollout:true}:{})});
         const resolution = received.resolution;
         if (resolution.status !== 'compared') {
           modelChecks.push({modelId: model.id, status: 'unavailable', reason: resolution.reason, failure: resolution.failure ?? null});
         } else {
           completedComparisons++; predictions.push(received.rollout.rows);
+          if(noiseMode){
+            coarseNoisePredictions.push({modelId:model.id,rows:received.rollout.rows.map(r=>({time:r.time,position:r.predicted}))});
+            refinedNoisePredictions.push({modelId:model.id,rows:received.refinedRollout.rows.map(r=>({time:r.time,position:r.predicted}))});
+          }
           modelChecks.push({modelId: model.id, status: 'compared', positionRMSEDifference: resolution.positionRMSEDifference,
             maxAbsPositionDifference: resolution.maxAbsPositionDifference, combinedSteps: resolution.combinedSteps});
         }
@@ -167,6 +180,26 @@ export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
       return {...common, status: 'numerically_unresolved', reason: 'plan_prediction_mismatch', recomputedDisagreementRad};
     }
     const sensitivity = pairwiseSensitivity(modelChecks);
+    if(noiseMode){
+      const args={sigma:plan.options.noiseSigma,targetZ:plan.options.noiseTargetZ,maxReadings:plan.options.noiseMaxReadings};
+      const coarse=designGaussianReadings(coarseNoisePredictions,args);
+      const refined=designGaussianReadings(refinedNoisePredictions,args);
+      const readKey=power=>power.readings.map(r=>r.sampleIndex).join(',');
+      if(coarse.status!==design.power?.status || readKey(coarse)!==readKey(design.power) ||
+        Math.abs(coarse.minPairwiseZ-design.power.minPairwiseZ)>1e-9*Math.max(1,coarse.minPairwiseZ)){
+        return {...common,status:'numerically_unresolved',reason:'plan_power_mismatch',
+          recomputedPower:coarse};
+      }
+      const errors=modelChecks.map(c=>c.maxAbsPositionDifference).sort((a,b)=>b-a);
+      const powerSensitivityZ=Math.sqrt(coarse.measurementCount)*(errors[0]+(errors[1]??0))/args.sigma;
+      const powerMarginZ=coarse.minPairwiseZ-args.targetZ;
+      const sameDecision=coarse.status===refined.status&&readKey(coarse)===readKey(refined);
+      const thresholdStable=coarse.status!=='distinguishable'||powerMarginZ>powerSensitivityZ;
+      const passes=sameDecision&&thresholdStable&&Number.isFinite(powerSensitivityZ);
+      return {...common,status:passes?'screen_passed':'numerically_unresolved',reason:passes?null:!sameDecision?'power_reading_instability':'power_threshold_sensitive',
+        powerSensitivityZ,powerMarginZ,recomputedPower:coarse,refinedPower:refined,
+        pairwiseSensitivityRad:sensitivity,allowanceRad:settings.absoluteToleranceRad+settings.relativeTolerance*design.disagreementRad};
+    }
     const allowanceRad = settings.absoluteToleranceRad + settings.relativeTolerance * design.disagreementRad;
     const thresholdMarginRad = design.disagreementRad - threshold;
     const thresholdStable = thresholdMarginRad <= 0 || thresholdMarginRad > sensitivity;
@@ -183,7 +216,7 @@ export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
     diagnostics: {evaluatedDesignCount: evaluatedCount, comparedModelCount: models.length, attemptedComparisons, completedComparisons,
       reservedSteps, maxTotalSteps: settings.maxTotalSteps, coarseMaxStep: scheduled.maxStep, refinedMaxStep: scheduled.maxStep / 2,
       originalPlanStatus: plan.status, predictionsAreObservations: false, acquisitionPerformed: false,
-      criterion: 'Pairwise RMS two-step sensitivity <= absolute allowance + relative allowance * score, and a proposed score clears its threshold by more than that sensitivity.',
+      criterion:noiseMode?'Prospective Gaussian score and selected sample timestamps are reproduced at both RK4 resolutions; selected z margin exceeds the triangle-inequality sensitivity bound. No physical coverage claim.':'Pairwise RMS two-step sensitivity <= absolute allowance + relative allowance * score, and a proposed score clears its threshold by more than that sensitivity.',
       sensitivityMeaning: 'Upper bound on change of the sampled pairwise RMS disagreement between these two executions; not a bound on true integration error.',
       limitations: ['Passing two step sizes is a numerical sensitivity screen, not convergence, physical validity, calibrated uncertainty or detection power.',
         'Both steps can share numerical bias or miss stiff dynamics and discontinuities.',
