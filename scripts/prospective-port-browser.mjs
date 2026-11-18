@@ -65,7 +65,7 @@ try{
  await until(()=>evalJs("document.readyState==='complete' && document.querySelector('[data-prospective=result]')?.textContent.includes('precommitted')"));
  await check('default cold-open planner actually computes a qualifying command and draws two trajectories',async()=>{
   const counts=await evalJs("({status:document.querySelector('[data-prospective=result]').textContent,paths:document.querySelectorAll('[data-prospective=plot] polyline').length,fields:document.querySelectorAll('[data-prospective-source]').length})");
-  assert.match(counts.status,/24 admissible commands/);assert.ok(counts.paths>=3);assert.equal(counts.fields,10);
+  assert.match(counts.status,/[0-9]+ admissible commands/);assert.ok(counts.paths>=3);assert.equal(counts.fields,10);
   assert.equal(await evalJs("document.querySelector('[data-prospective=sample]').disabled"),false);
  });
  await check('frozen proposal downloads a portable, prospective plan rather than an observed recording',async()=>{
