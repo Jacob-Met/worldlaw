@@ -8,7 +8,6 @@
 export const GAUSSIAN_DESIGN_SCHEMA = 'worldlaw.gaussian-discriminator/v1';
 const finite = x => typeof x === 'number' && Number.isFinite(x);
 const requireInput = (ok, why) => {if (!ok) throw Error(why);};
-const EPS = 1e-12;
 
 export function designGaussianReadings(predictions, {sigma, targetZ, maxReadings}) {
   requireInput(Array.isArray(predictions) && predictions.length >= 2 && predictions.length <= 16,
@@ -44,13 +43,14 @@ export function designGaussianReadings(predictions, {sigma, targetZ, maxReadings
     pairs.push({a,b,weights});
   }
   const target2=targetZ*targetZ;
-  let lowerBound=0, permanentlyIndistinguishable=false;
+  let lowerBound=0, thresholdUnreachable=false, equivalentPair=false;
   for(const pair of pairs){
     const decreasing=Array.from(pair.weights).sort((a,b)=>b-a);
     let sum=0, k=0;
-    while(k<decreasing.length && sum+EPS*Math.max(1,target2)<target2) sum+=decreasing[k++];
-    if(sum+EPS*Math.max(1,target2)<target2) {
-      permanentlyIndistinguishable=true;
+    while(k<decreasing.length && sum<target2) sum+=decreasing[k++];
+    if(decreasing[0]===0) equivalentPair=true;
+    if(sum<target2) {
+      thresholdUnreachable=true;
     } else {
       lowerBound=Math.max(lowerBound,k);
     }
@@ -78,24 +78,26 @@ export function designGaussianReadings(predictions, {sigma, targetZ, maxReadings
     used[best]=1;chosen.push(best);
     for(let p=0;p<pairs.length;p++) current[p]+=pairs[p].weights[best];
     achieved2=bestMin;
-    if(achieved2+EPS*Math.max(1,target2)>=target2) break;
+    if(achieved2>=target2) break;
   }
-  const achieved=achieved2+EPS*Math.max(1,target2)>=target2;
+  const achieved=achieved2>=target2;
   const ordered=chosen.slice().sort((a,b)=>a-b);
   const pairwise=pairs.map((pair,p)=>({firstModelId:predictions[pair.a].modelId,
     secondModelId:predictions[pair.b].modelId, separationZ:Math.sqrt(current[p])}));
   const exact=(achieved && (pairs.length===1 || chosen.length===lowerBound));
   return {schema:GAUSSIAN_DESIGN_SCHEMA,
-    status:permanentlyIndistinguishable?'observationally_equivalent_on_grid':achieved?'distinguishable':'budget_insufficient',
+    status:equivalentPair?'observationally_equivalent_on_grid':
+      thresholdUnreachable?'threshold_unreachable_on_grid':achieved?'distinguishable':'budget_insufficient',
     sigmaRad:sigma,targetZ,maxReadings,scheduledPostInitialSamples:n,
     pairCount:pairs.length,minPairwiseZ:Math.sqrt(achieved2),
     measurementCount:chosen.length,
     readings:ordered.map(index=>({sampleIndex:index+1,time:times[index+1]})),
     greedyOrder:chosen.map(index=>index+1),pairwise,
-    lowerBoundReadings:permanentlyIndistinguishable?null:lowerBound,
+    lowerBoundReadings:thresholdUnreachable?null:lowerBound,
     certifiedMinimumReadings:exact?chosen.length:null,
     optimality:exact?'finite-grid cardinality optimum proved':
-      permanentlyIndistinguishable?'no finite subset of scheduled samples separates every offered pair':
+      equivalentPair?'at least one offered law pair has identical sampled predictions':
+      thresholdUnreachable?'even all scheduled independent readings miss the declared z threshold':
       'bounded maximin greedy witness; lower bound only, global minimum unproved',
     noiseAssumptions:'Independent, homoscedastic Gaussian position errors with externally declared sigma; no calibration, confidence claim, hardware safety or unknown truth.',
     interpretation:'For two equally likely Gaussian hypotheses with equal known variance, observed means separated by z have equal-prior Bayes classification error Phi(-z/2). Multi-model z is only the worst pairwise separation.'};
