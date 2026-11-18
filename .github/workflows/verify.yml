@@ -21,3 +21,15 @@ jobs:
         run: node --test tests/trajectory-gaussian-discriminator.test.mjs
       - name: Scientific components and package smoke
         run: npm run verify
+      - name: Freeze prospective policy versus held-out synthetic outcomes
+        run: |
+          mkdir -p .receipts
+          node experiments/gaussian-intervention-comparison.mjs > .receipts/gaussian-intervention-comparison.json
+          node -e 'const r=JSON.parse(require("node:fs").readFileSync(".receipts/gaussian-intervention-comparison.json")); console.log(JSON.stringify(r.grouped));'
+      - name: Retain source-pinned evidence (not committed)
+        uses: actions/upload-artifact@v4
+        with:
+          name: gaussian-intervention-heldout-${{ github.run_id }}
+          path: .receipts/gaussian-intervention-comparison.json
+          retention-days: 7
+          if-no-files-found: error
