@@ -74,6 +74,11 @@ try{
  });
  const original=JSON.parse(await readFile(path.join(downloads,'worldlaw-prospective-port-plan.json'),'utf8'));
  assert.equal(original.status,'prospective-witness');assert.ok(original.selected.drive.length>20);
+ await check('saved proposal reopens through source recomputation without importing measurements',async()=>{
+  await upload('[data-prospective=file]',path.join(downloads,'worldlaw-prospective-port-plan.json'));
+  await until(()=>evalJs("document.querySelector('[data-prospective=result]').textContent.includes('Reopened from source')"));
+  assert.equal(await evalJs("document.querySelector('[data-prospective=error]').textContent"),'');
+ });
  await check('independently supplied matching command and one encoder snapshot produce a conditional classification',async()=>{
   const file=path.join(dir,'delivered.json');
   await writeFile(file,JSON.stringify(original.selected.drive));
