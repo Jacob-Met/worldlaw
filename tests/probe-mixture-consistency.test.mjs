@@ -47,3 +47,21 @@ test('input-only replay recomputes and ignores forged result fields',()=>{
  const raw=request(),first=inspect(raw);const text=exportProbeMixtureConsistency({...raw,result:'forged'});
  assert.ok(!text.includes('forged'));assert.deepEqual(inspect(importProbeMixtureConsistency(text)),first);
 });
+
+test('exact rate–sine projections enclose the authored law and retain small alternatives to zero', async () => {
+ const {inspectRateSineBounds} = await import('../src/unknown-lab/probe-mixture-consistency.mjs');
+ const raw = {...request(),family:'rate-sine',study:probeExample('drag')};
+ const training = inspectRateSineBounds(raw);
+ assert.equal(training.status,'feasible');
+ assert.ok(training.rate.outward[0] <= -.7 && -.7 <= training.rate.outward[1]);
+ assert.equal(training.rate.zeroPossible,false);
+ assert.ok(training.restoring.outward[0] < 0 && training.restoring.outward[1] > 0);
+ assert.equal(training.restoring.zeroPossible,true);
+ for(const run of raw.study.runs.filter(r=>r.role==='challenge'))
+  for(const row of run.notebook.trials) if(row.history==='conditioned') row.jointTorque+=20;
+ assert.deepEqual(inspectRateSineBounds(raw),training);
+ assert.equal(inspectRateSineBounds({...raw,scope:'all-evidence'}).status,'inconsistent');
+ assert.throws(()=>inspectRateSineBounds({...raw,family:'offset-rate-sine'}),/rate-sine/);
+ for(const row of raw.study.runs[0].notebook.trials) delete row.sampleIndex;
+ assert.equal(inspectRateSineBounds(raw).status,'order-confounded');
+});
