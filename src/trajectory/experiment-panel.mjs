@@ -148,7 +148,7 @@ export function createExperimentPanel(host, callbacks = {}) {
   function chart(id, legendId, series, description, emptyText = 'Plan a release to compare the models’ predicted motion.') {
     const container = $(id), legend = $(legendId);
     container.replaceChildren(); legend.replaceChildren();
-    const valid = series.map(item => ({...item, rows: (item.rows || []).filter(row => Number.isFinite(row.time) && Number.isFinite(row.position))})).filter(item => item.rows.length > 1);
+    const valid = series.map(item => ({...item, rows: (item.rows || []).filter(row => Number.isFinite(row.time) && Number.isFinite(row.position))})).filter(item => item.rows.length > 1 || (item.sparse && item.rows.length === 1));
     if (!valid.length) {container.append(element('p', emptyText, 'chart-empty')); return;}
     const width = Math.max(245, Math.round(container.clientWidth)), height = width > 520 ? 260 : 220, left = 43, right = 15, top = 20, bottom = 35;
     let t0 = Infinity, t1 = -Infinity, y0 = Infinity, y1 = -Infinity;
