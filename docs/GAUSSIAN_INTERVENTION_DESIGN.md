@@ -56,8 +56,14 @@ The result separates four distinct states:
 
 - `distinguishable`: a concrete set of timestamps satisfies the declared
   worst-pair Z threshold within the reading budget.
-- `budget_insufficient`: a larger subset of the existing time grid could
-  meet the target, but the declared count cannot.
+- `budget_insufficient`: the pairwise cardinality lower bound **proves** the
+  declared count is insufficient, even though more scheduled times could
+  distinguish the offered laws.
+- `search_inconclusive`: a bounded greedy search did not find a satisfying
+  reading subset, but the lower bound does not rule out a different subset
+  satisfying the target *within the very same budget*. For example, two
+  complementary time samples distinguish three hypotheses where a greedy
+  maximin first step chooses an attractive decoy and fails with its second.
 - `threshold_unreachable_on_grid`: even all scheduled post-initial readings
   cannot meet the target under the declared noise.
 - `observationally_equivalent_on_grid`: at least one offered pair has
@@ -112,8 +118,10 @@ library.
 2. Another 100 three-law instances: every emitted cardinality certificate
    must match the independently enumerated global optimum.
 3. The authored RMS-versus-single-reading counterexample above.
-4. Identical predictions, insufficient count, finite-noise ceiling, immutable
-   inputs, and full-grid work preflight/refusal.
+4. A three-law counterexample where greedy fails *despite* a feasible
+   two-reading schedule; this must produce `search_inconclusive` rather than a
+   false impossibility claim. Also identical predictions, insufficient count,
+   finite-noise ceiling, immutable inputs, and full-grid work preflight/refusal.
 5. The actual maintained trajectory planner and independent numerical gate,
    including negative control with a tampered cached power score.
 6. A separately seeded, unobserved Gaussian measurement classification
