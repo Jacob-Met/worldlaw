@@ -80,8 +80,10 @@ function checkHistory(options, recordingId, raw) {
       const own = run.source.instrumentId === ID;
       const compatibleFixture = run.source.oracle?.inertia === .8 && run.source.oracle?.rate === -.24 &&
         run.source.oracle?.gravity === -2.2 && run.source.oracle?.bias === 0;
-      const first = run.samples?.[0];
-      if (own || compatibleFixture) insist(!(first?.position === options.initialPosition && run.initialRate === options.initialRate),
+      const first=run.samples?.[0];
+      const priorInitial=run.source.instrumentId===ID&&run.source.sampleIndices ?
+        run.source.initialPosition : first?.position;
+      if (own || compatibleFixture) insist(!(priorInitial === options.initialPosition && run.initialRate === options.initialRate),
         'A new seed or sampling grid does not make the same noiseless release independent evidence.', 'repeated_evidence');
     }
   }
