@@ -102,7 +102,7 @@ try{
   await evalJs("document.querySelector('[data-prospective=form]').requestSubmit()");
   await until(()=>evalJs("!document.querySelector('[data-prospective=save]').disabled"));
  });
- for(const width of [1440,390,320])await check('full product desktop/mobile viewport '+width+' and native instrument pixels',async()=>{
+ for(const width of [1920,1440,390,320])await check('full product desktop/mobile viewport '+width+' and native instrument pixels',async()=>{
   await send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<500});
   await evalJs("document.getElementById('prospective-port').scrollIntoView({block:'start'})");
   const dims=await evalJs("(()=>{const e=document.getElementById('prospective-port');const r=e.getBoundingClientRect();return {screen:innerWidth,body:document.documentElement.scrollWidth,section:e.scrollWidth,width:r.width,x:r.x}})()");
