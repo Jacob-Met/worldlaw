@@ -55,6 +55,9 @@ test('the sparse acquisition rejects missing, duplicate, unsorted, initial or be
     e=>e.code==='reused_noise_stream');
   assert.throws(()=>acquireVirtualPendulum({...request},{existingRuns:[sparse]}),
     e=>e.code==='reused_noise_stream');
+  const noiseless=acquireVirtualPendulumReadings({...request,noiseSigma:0,sampleIndices:[1,25]},{existingRuns:[]});
+  assert.throws(()=>acquireVirtualPendulumReadings({...request,noiseSigma:0,sampleIndices:[2,26]},
+    {existingRuns:[noiseless]}),e=>e.code==='repeated_evidence');
 });
 
 test('guarded real sparse pipeline screens all original models before creating sensor evidence',()=>{
