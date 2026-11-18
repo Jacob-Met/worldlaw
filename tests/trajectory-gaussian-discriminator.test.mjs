@@ -123,6 +123,25 @@ test('multi-law cardinality certificates never beat an exhaustive independent or
   }
 });
 
+test('nonoptimal maximin greedy failure does not assert the available reading budget is impossible',()=>{
+  // Three hypotheses, three timestamps: a single all-pair decoy point lures
+  // greedy, whereas the first two complementary points would succeed jointly.
+  const trajectories=[p('A',[0,0,0]),p('B',[4,0,2]),p('C',[4,4,4])];
+  const targetZ=Math.sqrt(12);
+  const got=designGaussianReadings(trajectories,{sigma:1,targetZ,maxReadings:2});
+  assert.equal(got.status,'search_inconclusive');
+  assert.deepEqual(got.greedyOrder,[3,1]);
+  assert.equal(got.lowerBoundReadings,1);
+  assert.equal(got.certifiedMinimumReadings,null);
+  // Held-out exact witness, not shared with the greedy search.
+  const subset=[0,1];
+  for(let a=0;a<3;a++)for(let b=a+1;b<3;b++){
+    const z=Math.sqrt(subset.reduce((sum,j)=>sum+
+      (trajectories[a].rows[j+1].position-trajectories[b].rows[j+1].position)**2,0));
+    assert.ok(z>=targetZ);
+  }
+});
+
 test('trajectory planner uses declared noise rather than uncalibrated RMS spread when opted in',()=>{
   const d=discovery([law('free'),law('bias',[{id:'bias',coefficient:2}])]);
   const low=planTrajectoryExperiment(d,{...design,noiseSigma:.05,noiseTargetZ:3,noiseMaxReadings:4});
