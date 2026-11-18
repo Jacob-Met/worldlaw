@@ -24,8 +24,8 @@ function rate(state, torque, port) {
   return [v1, v2, (m22*first-m12*second)/det, (m11*second-m12*first)/det];
 }
 
-function integrate(state, torque, interval, port) {
-  const steps = Math.ceil(interval / .005);
+function integrate(state, torque, interval, port, maxStep=.005) {
+  const steps = Math.ceil(interval / maxStep);
   const dt = interval/steps;
   const add = (x, dx, h) => x.map((value, i) => value + h*dx[i]);
   for (let i = 0; i < steps; i++) {
@@ -67,17 +67,18 @@ export function readRealAIGymCsv(text) {
 
 // Only one encoder state is visible to the planner. Future encoder observations
 // are absent from this interface, as are the commanded joint IDs and filenames.
-export function schedulePortObservations(drive, start, initial, randomFraction=.5) {
+export function schedulePortObservations(drive, start, initial, randomFraction=.5, maxIntegrationStep=.005) {
   if (!Number.isInteger(start) || start<0 || start>=drive.length) throw new Error('Invalid acquisition anchor.');
   if (!Array.isArray(initial) || initial.length!==4 || !initial.every(Number.isFinite)) throw new Error('Invalid initial state.');
   if (!(randomFraction>=0 && randomFraction<1)) throw new Error('Invalid random-clock fraction.');
+  if (!(Number.isFinite(maxIntegrationStep) && maxIntegrationStep>=.0005 && maxIntegrationStep<=.005)) throw new Error('Invalid numerical integration step limit.');
   const anchor=drive[start].time, predictions=[];
   let a=initial.slice(), b=initial.slice();
   for (let i=start+1;i<drive.length && drive[i].time-anchor<=criteria.horizonSeconds+1e-12;i++){
     const dt=drive[i].time-drive[i-1].time;
     if (!(dt>0) || !Number.isFinite(drive[i-1].torque)) throw new Error('Invalid acquisition drive.');
-    a=integrate(a,drive[i-1].torque,dt,0);
-    b=integrate(b,drive[i-1].torque,dt,1);
+    a=integrate(a,drive[i-1].torque,dt,0,maxIntegrationStep);
+    b=integrate(b,drive[i-1].torque,dt,1,maxIntegrationStep);
     if (![...a,...b].every(Number.isFinite)) throw new Error('Mechanical prediction diverged.');
     predictions.push({index:i,elapsed:drive[i].time-anchor,shoulder:a.slice(0,2),elbow:b.slice(0,2),separation:angularDistance(a,b)});
   }
