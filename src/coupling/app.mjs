@@ -1,3 +1,4 @@
+import {mountHardwareReplay} from './actuator-port-panel.mjs';
 import {mountExcitationWitness} from './excitation-witness-panel.mjs';
 import {mountCirculation} from './circulation-panel.mjs';
 import {mountCoupledDynamics} from './dynamics-panel.mjs';
@@ -134,3 +135,5 @@ circulationPanel=mountCirculation(circulationHost,{getNotebook:()=>notebook});
 const excitationHost=document.createElement('section');excitationHost.id='coupled-excitation';excitationHost.className='panel';circulationHost.after(excitationHost);
 excitationPanel=mountExcitationWitness(excitationHost,{getNotebook:()=>notebook});
 commit(notebook,{course:activeCourse,index:0});
+
+mountHardwareReplay(document.getElementById('hardware-port-replay'));

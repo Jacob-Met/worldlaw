@@ -131,3 +131,18 @@
 .challenge-instruments[data-composition=split]{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .challenge-instruments[data-composition=split] .challenge-residual{grid-column:1/-1}
 @media(max-width:760px){.challenge-instruments[data-composition=split]{grid-template-columns:minmax(0,1fr)}.challenge-instruments figure{padding:.7rem .3rem}.challenge-instruments figcaption{padding:0 .5rem}.challenge-instruments svg{max-height:none}#challenge-coefficients{font-size:.76rem}.inertia-challenge .inertia-settings{gap:.7rem}}
+
+.hardware-replay{scroll-margin-top:1rem;border-top:2px solid var(--ink);padding:1.7rem 0;margin:2rem 0}
+.hardware-replay>p{max-width:74ch;line-height:1.5}
+.hardware-workbench{display:grid;grid-template-columns:minmax(200px,290px) minmax(0,1fr);gap:1.2rem;align-items:start}
+.hardware-controls>button{margin-top:.6rem}
+.hardware-instrument{background:var(--stage);color:#eef4fb;padding:1.2rem;min-height:9rem}
+.hardware-instrument [hidden]{display:none}
+.hardware-instrument svg{display:block;margin:auto;width:min(100%,530px);height:auto}
+.hardware-instrument svg text{fill:#c6d5e6;font:11px system-ui}
+.hardware-axis{stroke:#718399;stroke-dasharray:2 3}
+.hardware-key{display:flex;flex-wrap:wrap;gap:.5rem 1rem;font-size:.8rem}
+.hardware-key span:first-child{color:#ffbf68}.hardware-key span:nth-child(2){color:#79dfdb}
+.hardware-source{overflow-wrap:anywhere;font-size:.8rem}
+.hardware-replay details{margin-top:1rem}
+@media(max-width:760px){.hardware-workbench{grid-template-columns:minmax(0,1fr)}header nav{flex-wrap:wrap}}
