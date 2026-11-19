@@ -163,6 +163,16 @@ def evaluate_original(original,frozen_path,receipt_path):
     enough=(nonlinear<=.9*baseline and controls["hydraulic"]["shift97"]>nonlinear
             and controls["hydraulic"]["zeroInput"]>nonlinear
             and bool(phys.get("converged")))
+    # Explicitly posthoc: original official test is ALREADY consumed; this
+    # diagnoses latent-state saturation without changing the selected model,
+    # the test predictions, the preregistered score, or the promotion gate.
+    model_diagnostics={
+        "testPredictedStatesAndCapacity":hyd.inspect_physical_excitation(
+            phys,u_test,y_test[:PREFIX]),
+        "fitPredictedStatesAndCapacity":hyd.inspect_physical_excitation(
+            phys,source_est[0][:FIT_N],source_est[1][:PREFIX]),
+        "scope":"Predicted water state, not independent measured overflow evidence; first50 observed output only for hidden-state start."
+    }
     verdict={"promoted":bool(enough),"baselineArxVolts":baseline,
         "physicalVolts":nonlinear,"relativeImprovement":1.-nonlinear/baseline if baseline>0 else None,
         "criterion":"original full 974-step free-run physically signed hydraulic >=10% better than development-tuned ARX; both shifted and zero-input controls worsen; numerical solver converged.",
@@ -178,7 +188,8 @@ def evaluate_original(original,frozen_path,receipt_path):
         "officialTest":{"name":"original disjoint uVal/yVal multisine, sample period 4s",
                         "length":TOTAL_N,"observedInitialization":PREFIX,
                         "scored":TOTAL_N-PREFIX,"models":model_results,
-                        "controls":controls,"gate":verdict},
+                        "controls":controls,"gate":verdict,
+                        "posthocObservability":model_diagnostics},
         "evaluation":{"wallSeconds":time.perf_counter()-start,
                       "python":sys.version.split()[0],"numpy":np.__version__},
         "limitations":"Source instrument voltage not calibrated depth; latent first-tank state and overflow stochastic; no test refitting, no causal uniqueness or randomized trials beyond published multisine."}
