@@ -1,0 +1,387 @@
+{
+  "schema": "worldlaw.joint-state-boundary-comparison/v1",
+  "experiment": "independent-root-three-course-boundary",
+  "runtime": "v24.22.1",
+  "sourceBase": "0a7ba12e58d714a52fd8f5385b87a1a8600c927e",
+  "sourceClosureFiles": 29,
+  "baselineFitSHA256": "52629bd0b4edaed3dde1970f41700d2fbd95a9524683b6fb0e2b9f0e2fed6fb0",
+  "candidateFitSHA256": "2915796fe51f98401461f2f084cc5e0836f1ec149a7c9288166f9c6e28a992a9",
+  "sharedHelperSHA256": "26536292d6fbdfc5bb26d7fa557fc01c6e80138c42d6b32b4d6cc947e9618a92",
+  "regressionSHA256": "a9856cab403b5c7408eab293135957d2e197c8fd37f2bde0d392e10c008e4ccd",
+  "inputSHA256": "86efee448961acd995afe70ef052837d071a00ab39392f738d30281bd6d60a89",
+  "originalNativeResultSHA256": "62cdcb2b023ff9dc93ce2cc763a3e3d19b95ce2ba35a9075285fd71fc7c6198c",
+  "fixture": {
+    "courses": [
+      {
+        "id": "independent-root-three-course-a",
+        "rows": 126,
+        "initialPosition": 1,
+        "initialRate": 0.2,
+        "rateObservation": {
+          "unit": "rad/s",
+          "basis": "Exact analytic derivative of the same authored trajectory",
+          "dependence": "not-assumed-independent"
+        }
+      },
+      {
+        "id": "independent-root-three-course-b",
+        "rows": 126,
+        "initialPosition": -0.7,
+        "initialRate": -0.1,
+        "rateObservation": {
+          "unit": "rad/s",
+          "basis": "Exact analytic derivative of the same authored trajectory",
+          "dependence": "not-assumed-independent"
+        }
+      },
+      {
+        "id": "independent-root-three-course-c",
+        "rows": 126,
+        "initialPosition": 0.5,
+        "initialRate": 0,
+        "rateObservation": {
+          "unit": "rad/s",
+          "basis": "Exact analytic derivative of the same authored trajectory",
+          "dependence": "not-assumed-independent"
+        }
+      }
+    ],
+    "time": {
+      "start": 0,
+      "end": 5,
+      "step": 0.04
+    },
+    "trueCoefficients": [
+      -0.2,
+      -4
+    ],
+    "seed": {
+      "schema": "worldlaw.angular-model/v1",
+      "id": "rate+spring",
+      "terms": [
+        {
+          "id": "rate",
+          "coefficient": -0.3,
+          "coefficientUnit": "1/s"
+        },
+        {
+          "id": "spring",
+          "coefficient": -3.6,
+          "coefficientUnit": "1/s²"
+        }
+      ],
+      "units": {
+        "position": "rad",
+        "rate": "rad/s",
+        "angularAcceleration": "rad/s²"
+      },
+      "physicalInertia": null,
+      "absoluteTorqueIdentified": false,
+      "scaleMeaning": "angular_acceleration_only_absolute_torque_unknown"
+    },
+    "options": {
+      "iterations": 8,
+      "maxStep": 0.02,
+      "screen": 0.001,
+      "rateScreen": 0.001,
+      "bounds": [
+        [
+          -1,
+          0
+        ],
+        [
+          -3.85,
+          -2
+        ]
+      ],
+      "maxTotalSteps": 4000000,
+      "channelScales": {
+        "positionRad": 0.1,
+        "rateRadPerSecond": 0.1,
+        "basis": "Declared equal numerical objective weights; not independent errors"
+      }
+    },
+    "formula": "d=0.1; w=sqrt(4-d*d); B=(initialRate+d*initialPosition)/w; c=initialPosition*cos(w*t)+B*sin(w*t); position=exp(-d*t)*c; rate=exp(-d*t)*(-d*c+w*(-initialPosition*sin(w*t)+B*cos(w*t)))"
+  },
+  "checks": {
+    "originalInputUnchanged": true,
+    "originalRowsPreserved": true,
+    "actualTrainingImprovement": true,
+    "bothChannelsImprove": true,
+    "sameReservation": true,
+    "sameMaximum": true,
+    "boundedEvaluations": true,
+    "allCandidateTrialsInBounds": true,
+    "allBestScreensPass": true,
+    "retainedRateRefusal": true
+  },
+  "baseline": {
+    "status": "training_improved",
+    "best": {
+      "index": 5,
+      "values": [
+        -0.24604286839902634,
+        -3.85
+      ],
+      "status": "complete",
+      "rmse": 0.7996830295007916,
+      "runs": [
+        {
+          "id": "independent-root-three-course-a",
+          "status": "screened",
+          "positionRMSE": 0.06899631584973576,
+          "suppliedRateRMSE": 0.13184367900115915,
+          "maxAbsPositionDifference": 3.1277623435688184e-08,
+          "maxAbsRateDifference": 6.28768861976603e-08
+        },
+        {
+          "id": "independent-root-three-course-b",
+          "status": "screened",
+          "positionRMSE": 0.04791350402022948,
+          "suppliedRateRMSE": 0.09212295230633977,
+          "maxAbsPositionDifference": 2.1788302745351373e-08,
+          "maxAbsRateDifference": 4.380454460273242e-08
+        },
+        {
+          "id": "independent-root-three-course-c",
+          "status": "screened",
+          "positionRMSE": 0.033621813450411125,
+          "suppliedRateRMSE": 0.06567770563950677,
+          "maxAbsPositionDifference": 1.544299607636468e-08,
+          "maxAbsRateDifference": 3.1076648171479704e-08
+        }
+      ]
+    },
+    "evaluations": 8,
+    "maximumEvaluations": 65,
+    "reservation": {
+      "steps": 186810,
+      "rows": 24570
+    },
+    "iterations": [
+      {
+        "iteration": 0,
+        "status": "improved",
+        "lambda": 0.0003333333333333333,
+        "bestTrial": 5
+      },
+      {
+        "iteration": 1,
+        "status": "jacobian_unresolved"
+      }
+    ]
+  },
+  "candidate": {
+    "status": "training_improved",
+    "best": {
+      "index": 40,
+      "values": [
+        -0.19259937352738096,
+        -3.85
+      ],
+      "status": "complete",
+      "rmse": 0.6772447091845787,
+      "runs": [
+        {
+          "id": "independent-root-three-course-a",
+          "status": "screened",
+          "positionRMSE": 0.0524635812291636,
+          "suppliedRateRMSE": 0.11500324319795742,
+          "maxAbsPositionDifference": 3.4694076112007366e-08,
+          "maxAbsRateDifference": 7.119813236200478e-08
+        },
+        {
+          "id": "independent-root-three-course-b",
+          "status": "screened",
+          "positionRMSE": 0.0363303739247092,
+          "suppliedRateRMSE": 0.07999368868763046,
+          "maxAbsPositionDifference": 2.418787475866324e-08,
+          "maxAbsRateDifference": 4.959623012279479e-08
+        },
+        {
+          "id": "independent-root-three-course-c",
+          "status": "screened",
+          "positionRMSE": 0.025358248325349886,
+          "suppliedRateRMSE": 0.05638726281865299,
+          "maxAbsPositionDifference": 1.7145000252849485e-08,
+          "maxAbsRateDifference": 3.518669859647883e-08
+        }
+      ]
+    },
+    "evaluations": 41,
+    "maximumEvaluations": 65,
+    "reservation": {
+      "steps": 186810,
+      "rows": 24570
+    },
+    "iterations": [
+      {
+        "iteration": 0,
+        "status": "improved",
+        "lambda": 0.0003333333333333333,
+        "bestTrial": 5
+      },
+      {
+        "iteration": 1,
+        "status": "improved",
+        "lambda": 0.0001111111111111111,
+        "bestTrial": 10
+      },
+      {
+        "iteration": 2,
+        "status": "improved",
+        "lambda": 3.7037037037037037e-05,
+        "bestTrial": 15
+      },
+      {
+        "iteration": 3,
+        "status": "improved",
+        "lambda": 1.2345679012345678e-05,
+        "bestTrial": 20
+      },
+      {
+        "iteration": 4,
+        "status": "improved",
+        "lambda": 4.115226337448559e-06,
+        "bestTrial": 25
+      },
+      {
+        "iteration": 5,
+        "status": "improved",
+        "lambda": 1.371742112482853e-06,
+        "bestTrial": 30
+      },
+      {
+        "iteration": 6,
+        "status": "improved",
+        "lambda": 4.5724737082761767e-07,
+        "bestTrial": 35
+      },
+      {
+        "iteration": 7,
+        "status": "improved",
+        "lambda": 1.5241579027587256e-07,
+        "bestTrial": 40
+      }
+    ]
+  },
+  "strictRate": {
+    "screen": 1e-16,
+    "baseline": {
+      "status": "seed_unresolved",
+      "best": {
+        "index": 0,
+        "values": [
+          -0.3,
+          -3.6
+        ],
+        "status": "incomplete",
+        "rmse": null,
+        "runs": [
+          {
+            "id": "independent-root-three-course-a",
+            "status": "unresolved",
+            "positionRMSE": 0.17010837242832452,
+            "suppliedRateRMSE": 0.3158369343409273,
+            "maxAbsPositionDifference": 2.381825636721402e-08,
+            "maxAbsRateDifference": 4.525412594658107e-08
+          },
+          {
+            "id": "independent-root-three-course-b",
+            "status": "unresolved",
+            "positionRMSE": 0.11803426238725934,
+            "suppliedRateRMSE": 0.22043142955767397,
+            "maxAbsPositionDifference": 1.659633316886122e-08,
+            "maxAbsRateDifference": 3.1519287568837484e-08
+          },
+          {
+            "id": "independent-root-three-course-c",
+            "status": "unresolved",
+            "positionRMSE": 0.08265721271969634,
+            "suppliedRateRMSE": 0.15672902121658125,
+            "maxAbsPositionDifference": 1.1760268828209242e-08,
+            "maxAbsRateDifference": 2.23462838511157e-08
+          }
+        ]
+      },
+      "evaluations": 1,
+      "maximumEvaluations": 65,
+      "reservation": {
+        "steps": 186810,
+        "rows": 24570
+      },
+      "iterations": []
+    },
+    "candidate": {
+      "status": "seed_unresolved",
+      "best": {
+        "index": 0,
+        "values": [
+          -0.3,
+          -3.6
+        ],
+        "status": "incomplete",
+        "rmse": null,
+        "runs": [
+          {
+            "id": "independent-root-three-course-a",
+            "status": "unresolved",
+            "positionRMSE": 0.17010837242832452,
+            "suppliedRateRMSE": 0.3158369343409273,
+            "maxAbsPositionDifference": 2.381825636721402e-08,
+            "maxAbsRateDifference": 4.525412594658107e-08
+          },
+          {
+            "id": "independent-root-three-course-b",
+            "status": "unresolved",
+            "positionRMSE": 0.11803426238725934,
+            "suppliedRateRMSE": 0.22043142955767397,
+            "maxAbsPositionDifference": 1.659633316886122e-08,
+            "maxAbsRateDifference": 3.1519287568837484e-08
+          },
+          {
+            "id": "independent-root-three-course-c",
+            "status": "unresolved",
+            "positionRMSE": 0.08265721271969634,
+            "suppliedRateRMSE": 0.15672902121658125,
+            "maxAbsPositionDifference": 1.1760268828209242e-08,
+            "maxAbsRateDifference": 2.23462838511157e-08
+          }
+        ]
+      },
+      "evaluations": 1,
+      "maximumEvaluations": 65,
+      "reservation": {
+        "steps": 186810,
+        "rows": 24570
+      },
+      "iterations": []
+    }
+  },
+  "qualification": {
+    "meaning": "Local constrained training comparison on authored original rows; no physical validation, independent held-out gain, global optimum or speed claim.",
+    "channelScales": "Declared objective weights; not independent noise estimates or a likelihood.",
+    "numericalScreens": "Agreement between two integration resolutions; not calibrated error bounds.",
+    "fitterVsSession": "This regression calls the actual fitter with an authored admissible seed. The notebook session derives its seed from the preceding position-only study; this fixture is not an end-to-end notebook reproduction.",
+    "verification": {
+      "focused": {
+        "total": 8,
+        "pass": 8,
+        "fail": 0
+      },
+      "fullSerial": {
+        "total": 2222,
+        "pass": 2221,
+        "fail": 0,
+        "skip": 1,
+        "durationMs": 337071.404661
+      },
+      "smokes": [
+        "scripts/smoke.mjs",
+        "scripts/trajectory-smoke-92be.mjs"
+      ],
+      "baselineConcurrencyFour": "One worker-file failure in tests/geometry-law-transfer-consumer-source.test.mjs; same file passed in isolation; cause unexplained.",
+      "browser": "pending"
+    }
+  }
+}
