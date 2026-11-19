@@ -567,3 +567,9 @@ Open **Hardware replay** in Coupling Lab. Load a pinned DFKI double-pendulum rec
 
 The parameter convention and original real-system recordings are published by DFKI.
 https://dfki-ric-underactuated-lab.github.io/real_ai_gym_leaderboard/acrobot_real_system_leaderboard_v1.html
+
+## UNKNOWN LAB — Prospective minimax rate–sine experiments
+
+Open `/unknown-lab.html`, load an original cross-probe study, expand **Challenge explicit mixed responses**, and select **rate-sine**. The **Find the next two measurements that make competing laws disagree** apparatus accepts distinct hypothetical rate/angle states, declared future noise radii and effort budgets. It computes the worst possible coefficient ambiguity left by each one- or two-reading course over **all future outcomes**, ranks all affordable courses, and downloads an auditable complete request. There is no physical actuator command or unmeasured outcome generated.
+
+The engine computes the exact rational convex difference of the original shared feasible coefficient polygon, then intersects future noise-consistency slabs. It compares against parallel-state negative controls and preserves ambiguous small secondary terms rather than claiming absence. A fixed seeded 200-trial withheld-outcome test verifies the worst-case posterior width bound; the stock UNKNOWN LAB browser checks keyboard interaction and two viewport sizes. See [the theorem, source assumptions, retained limitations and reproducibility](docs/RATE_SINE_MINIMAX.md). This is conditional on the finite rate+sine family and investigator-declared bounded noise, not calibrated physical identification.
