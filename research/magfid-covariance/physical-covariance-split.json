@@ -1,0 +1,590 @@
+{
+  "member_hashes": {
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Double LM 1.csv": {
+      "bytes": 3569284,
+      "crc32": "8598f9f1",
+      "local_name": "DOT 10 Bloom Double LM 1.csv",
+      "sha256": "bb6e61657a5e6c592640524c00be0b5ea41059b046ecb617e6bf5643b5d67b14"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Double LM 2.csv": {
+      "bytes": 2825366,
+      "crc32": "b3980478",
+      "local_name": "DOT 10 Bloom Double LM 2.csv",
+      "sha256": "b678e18f868213e7e08cdc8fad02c429f26c782e710001753262cbd78a3b47a3"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Double LM 3.csv": {
+      "bytes": 3870680,
+      "crc32": "5d44353c",
+      "local_name": "DOT 10 Bloom Double LM 3.csv",
+      "sha256": "3472a1e9942b5ca7c8b00595d5127342c4845dad56d2ea11a0cb93502a7fd7ac"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom LM 1.csv": {
+      "bytes": 3199334,
+      "crc32": "e026f104",
+      "local_name": "DOT 10 Bloom LM 1.csv",
+      "sha256": "590974d4a40b6c13f40b3eb6dddbe5b3c0d66af4bf44cfd16b53df561af3f377"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom LM 2.csv": {
+      "bytes": 3248046,
+      "crc32": "bc6b2645",
+      "local_name": "DOT 10 Bloom LM 2.csv",
+      "sha256": "220f74cfd10e88cc57d1f433dff7c058362fa94c92b67e395c736920f6b3a14f"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom LM 3.csv": {
+      "bytes": 3114749,
+      "crc32": "c7ef642a",
+      "local_name": "DOT 10 Bloom LM 3.csv",
+      "sha256": "571da5284cad21396818d729397ba99661e8e224bd4337261cd1354dd12aa2b2"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Square 1.csv": {
+      "bytes": 3139695,
+      "crc32": "1b2b61ff",
+      "local_name": "DOT 10 Bloom Square 1.csv",
+      "sha256": "ee2c15d3016ce1044b61784b6e0c1c1a4bc4a40602a3d016812de9ebbedc6869"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Square 2.csv": {
+      "bytes": 2949179,
+      "crc32": "bf081431",
+      "local_name": "DOT 10 Bloom Square 2.csv",
+      "sha256": "27828cb156ff1bcf21370a0456e261e3cbd832a7f1ea9285cd8606125a997a06"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Square 3.csv": {
+      "bytes": 2982517,
+      "crc32": "c07824ec",
+      "local_name": "DOT 10 Bloom Square 3.csv",
+      "sha256": "24b05ff93d57325f5824d0a6717d22a53ddf813b9992bbc9fe566172a872b073"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom to MP 1.csv": {
+      "bytes": 4216076,
+      "crc32": "b2e3aef7",
+      "local_name": "DOT 10 Bloom to MP 1.csv",
+      "sha256": "9afa75fc680baa0747b264b0523cd378323fc2544b19b3a01ae41672c3b7e3da"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom to MP 2.csv": {
+      "bytes": 4579549,
+      "crc32": "8488c5b3",
+      "local_name": "DOT 10 Bloom to MP 2.csv",
+      "sha256": "b0195b0109afc1ab4df022e67149338226d25bea944065a691b9a9ec4303362a"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP LM 1.csv": {
+      "bytes": 2699534,
+      "crc32": "9c7b75f2",
+      "local_name": "DOT 10 MP LM 1.csv",
+      "sha256": "7ef997fcdf1c3d8f8ee3f4eb0830ff59450718b907b95fa01b5fa66fffe86f98"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP LM 2.csv": {
+      "bytes": 4561442,
+      "crc32": "e8347f50",
+      "local_name": "DOT 10 MP LM 2.csv",
+      "sha256": "572cf0bcef02e2a14fea345f86f460ed7838995a9b1389bab78b516d28ee30b0"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP Square 1.csv": {
+      "bytes": 3487348,
+      "crc32": "88b36cf3",
+      "local_name": "DOT 10 MP Square 1.csv",
+      "sha256": "2480296367eeee3f712ab9a39943f2cd92df4c944a47631a1e7c3c538c2f1416"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP Square 2.csv": {
+      "bytes": 3385217,
+      "crc32": "91ec4488",
+      "local_name": "DOT 10 MP Square 2.csv",
+      "sha256": "72f25406d10b431fed28e3fd944318cc5f95e5e579f95e238827ea52ab117713"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP to Bloom 1.csv": {
+      "bytes": 4824768,
+      "crc32": "a4bd8c50",
+      "local_name": "DOT 10 MP to Bloom 1.csv",
+      "sha256": "7cfd34ed3fd4795722fe66d50e53081aa9f3c8da3503909e3627f52df00b4bac"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP to Bloom 2.csv": {
+      "bytes": 4085120,
+      "crc32": "2003d20d",
+      "local_name": "DOT 10 MP to Bloom 2.csv",
+      "sha256": "27b9d7af557d1e852e30b442a3a632f81fceb595d7a9eae22d9ae4d96207eb73"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Double LM 1.csv": {
+      "bytes": 3519339,
+      "crc32": "40cbfb5a",
+      "local_name": "DOT 11 Bloom Double LM 1.csv",
+      "sha256": "e14efda64a149cb247e3f16f06934b00195aebded1403581053ed59e48930a57"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Double LM 2.csv": {
+      "bytes": 2793736,
+      "crc32": "05975325",
+      "local_name": "DOT 11 Bloom Double LM 2.csv",
+      "sha256": "07645e59aa926d2f1ccfda0036896700a8733d653b1c369d7a205357492fef58"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Double LM 3.csv": {
+      "bytes": 3813322,
+      "crc32": "fc5f5adb",
+      "local_name": "DOT 11 Bloom Double LM 3.csv",
+      "sha256": "283cc2e77080b86ce3dd9b5ecade30dcbc9ad8abee18a8071cfb59652f4e4506"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom LM 1.csv": {
+      "bytes": 3152774,
+      "crc32": "97cd6764",
+      "local_name": "DOT 11 Bloom LM 1.csv",
+      "sha256": "2d2579758449f312be2c1cabe7165e0d4e6db27a689e97b9b82530c9676b4a6a"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom LM 2.csv": {
+      "bytes": 3199381,
+      "crc32": "2cb2ce57",
+      "local_name": "DOT 11 Bloom LM 2.csv",
+      "sha256": "49f885daa88e59416753fb4b99eb3116417c577e47360837c43c363cdcc40d37"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom LM 3.csv": {
+      "bytes": 3069217,
+      "crc32": "21e79dcc",
+      "local_name": "DOT 11 Bloom LM 3.csv",
+      "sha256": "b948948d46ce05848e5a34ec075be3f99ad8ad83beb73e337a1fc49d7e74aed2"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Square 1.csv": {
+      "bytes": 3093850,
+      "crc32": "8700d7e9",
+      "local_name": "DOT 11 Bloom Square 1.csv",
+      "sha256": "070eea738791943aec6d7a92b7abb427669cc506de45d87f9b1912b7dd813d68"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Square 2.csv": {
+      "bytes": 2905634,
+      "crc32": "e814a78e",
+      "local_name": "DOT 11 Bloom Square 2.csv",
+      "sha256": "6d62e15bd4c09e3b3fd91d307b6f19b541529847439ecc8541ca09c5b1d45297"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Square 3.csv": {
+      "bytes": 2936683,
+      "crc32": "ade4d822",
+      "local_name": "DOT 11 Bloom Square 3.csv",
+      "sha256": "ce377000b1d7efee6e212a349c98cb42e7a7ad328a5e45ddd2fc3ed925615d8f"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom to MP 1.csv": {
+      "bytes": 4166597,
+      "crc32": "77866108",
+      "local_name": "DOT 11 Bloom to MP 1.csv",
+      "sha256": "dd0430653ec07ce2c728b624b5277d77b5b1a756e1a1310af86051ce8cae2847"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom to MP 2.csv": {
+      "bytes": 4523688,
+      "crc32": "1132b79b",
+      "local_name": "DOT 11 Bloom to MP 2.csv",
+      "sha256": "f226b7c03c1fbfcd88bf0db5fe123352180cc4f26d8788b7d33ce0da20e2e44b"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP LM 1.csv": {
+      "bytes": 2668543,
+      "crc32": "6830b3c1",
+      "local_name": "DOT 11 MP LM 1.csv",
+      "sha256": "d8407e12987d69981e3c95c2aaae6424fb2926ca0cc590c23533a35657ccf5c3"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP LM 2.csv": {
+      "bytes": 4511037,
+      "crc32": "9ccee329",
+      "local_name": "DOT 11 MP LM 2.csv",
+      "sha256": "05682b351e756faa95d2489b317f7e8a047d2c7a2c4a205e1764b9be12fd9b06"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP Square 1.csv": {
+      "bytes": 3449245,
+      "crc32": "dcbcfcad",
+      "local_name": "DOT 11 MP Square 1.csv",
+      "sha256": "1270ca75832673b4aa34184422b0c3569ca0f3e918b731b88f24ed6d271615b8"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP Square 2.csv": {
+      "bytes": 3348077,
+      "crc32": "8f1ffb2d",
+      "local_name": "DOT 11 MP Square 2.csv",
+      "sha256": "6d4f3046cd61206117381a66147581c4a5fe96ca18e251028bcbe51d357a1ce2"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP to Bloom 1.csv": {
+      "bytes": 4769627,
+      "crc32": "176b4585",
+      "local_name": "DOT 11 MP to Bloom 1.csv",
+      "sha256": "70ad6f70570b16a0ef6553cb5039793983904ec39128f264cdddf5040f682d26"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP to Bloom 2.csv": {
+      "bytes": 4038762,
+      "crc32": "778ce163",
+      "local_name": "DOT 11 MP to Bloom 2.csv",
+      "sha256": "f473bee2874c20d13e74d355f3a6e47ce9d775113590f7aa78ea91ff436267e3"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Double LM 1.csv": {
+      "bytes": 3510818,
+      "crc32": "20a29516",
+      "local_name": "DOT 15 Bloom Double LM 1.csv",
+      "sha256": "08d421e7b464dc3a920dead47595c8575ed480f75c0cec741c35c1956fa8e1a6"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Double LM 2.csv": {
+      "bytes": 2786972,
+      "crc32": "7a3ce912",
+      "local_name": "DOT 15 Bloom Double LM 2.csv",
+      "sha256": "883b7898bf64637008790eb035ad7d3f302fb0ce2352e640dd4c1db754aa18fa"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Double LM 3.csv": {
+      "bytes": 3807492,
+      "crc32": "083207fd",
+      "local_name": "DOT 15 Bloom Double LM 3.csv",
+      "sha256": "658cf47f2496b01648ae86f08884ae0c71895a9d2cad231f3a080cffaf93d8eb"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom LM 1.csv": {
+      "bytes": 3142278,
+      "crc32": "f96dc617",
+      "local_name": "DOT 15 Bloom LM 1.csv",
+      "sha256": "ee5f689647fda29dc759bc2e99ab40dc66cccf178cfd805985c96859e72e7b20"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom LM 2.csv": {
+      "bytes": 3189157,
+      "crc32": "ca4db9a6",
+      "local_name": "DOT 15 Bloom LM 2.csv",
+      "sha256": "cfc3e1efed17c071915195843fd9e745f150a08173af135a9597a064aea9d04e"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom LM 3.csv": {
+      "bytes": 3060721,
+      "crc32": "cca9bf15",
+      "local_name": "DOT 15 Bloom LM 3.csv",
+      "sha256": "ed9e5fd41f10aadb3587dcbe0cd2d419f67d6cc9d57159e187048e187a72e40c"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Square 1.csv": {
+      "bytes": 3081499,
+      "crc32": "f12e0de6",
+      "local_name": "DOT 15 Bloom Square 1.csv",
+      "sha256": "da0faab82881ab506c6e6f24e738ede47f34c0caa234733f9effe49c7d823e14"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Square 2.csv": {
+      "bytes": 2892862,
+      "crc32": "12c068a5",
+      "local_name": "DOT 15 Bloom Square 2.csv",
+      "sha256": "09a3149c9f30e5b6b64ea65a65f5cfa11d4e8dcfaf8bbe6c50af89326efcaa36"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Square 3.csv": {
+      "bytes": 2924489,
+      "crc32": "0f0d2a9b",
+      "local_name": "DOT 15 Bloom Square 3.csv",
+      "sha256": "b1e6561170af2772b8ed9276da5e79b769cd8197ede8eb1875718ab46865af47"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom to MP 1.csv": {
+      "bytes": 4150709,
+      "crc32": "9ab5a800",
+      "local_name": "DOT 15 Bloom to MP 1.csv",
+      "sha256": "fc346d13a3b71afc08a528b0a67294b7a75a05ed8aa8c53dafa143e0d524773f"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom to MP 2.csv": {
+      "bytes": 4505173,
+      "crc32": "3305b8d3",
+      "local_name": "DOT 15 Bloom to MP 2.csv",
+      "sha256": "36ca9316431eb45b27a33c993c67ca79423211af5a465582cc9f6690195c3963"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP LM 1.csv": {
+      "bytes": 2661174,
+      "crc32": "cd59c2a2",
+      "local_name": "DOT 15 MP LM 1.csv",
+      "sha256": "b3c118120758c86253df5fcffbc904a709d6b2f475f660ca700a47382534a120"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP LM 2.csv": {
+      "bytes": 4500478,
+      "crc32": "e09dda31",
+      "local_name": "DOT 15 MP LM 2.csv",
+      "sha256": "7b795936b5e2dab01bdc19bba438281f58dba8b5f20dc5be2b1923c164e4700b"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP Square 1.csv": {
+      "bytes": 3438957,
+      "crc32": "54205480",
+      "local_name": "DOT 15 MP Square 1.csv",
+      "sha256": "818967d5124dc18eab5212b5f00fb42a4569461ffba3cf98e8d01fbd632e5ca6"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP Square 2.csv": {
+      "bytes": 3338451,
+      "crc32": "b476b07b",
+      "local_name": "DOT 15 MP Square 2.csv",
+      "sha256": "06fe57e7304f910d071ded4918a658d303612bcda290ed0d88476a4339c41333"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP to Bloom 1.csv": {
+      "bytes": 4750988,
+      "crc32": "4af1c547",
+      "local_name": "DOT 15 MP to Bloom 1.csv",
+      "sha256": "e77b07f85da2d435b1f85d2993baf1def672e9fc2e1e7f71adac5fd4a72a7328"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP to Bloom 2.csv": {
+      "bytes": 4027356,
+      "crc32": "48b77100",
+      "local_name": "DOT 15 MP to Bloom 2.csv",
+      "sha256": "9e343f85957d6334f2317444b3804f5c3f6dd72f53fd1f243ee374f043a3a950"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Double LM 1.csv": {
+      "bytes": 3510590,
+      "crc32": "5545f6b1",
+      "local_name": "DOT 9 Bloom Double LM 1.csv",
+      "sha256": "d0c5d8ed6092cc2a8ef7b09393bc52089f4629508c63c45a8065abdf66a06b40"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Double LM 2.csv": {
+      "bytes": 2787853,
+      "crc32": "a7d70df7",
+      "local_name": "DOT 9 Bloom Double LM 2.csv",
+      "sha256": "fcee9b8f9cdb6c79a22455ee2efc62d10f9bb6c371ce67ec78286d2e88764873"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Double LM 3.csv": {
+      "bytes": 3806347,
+      "crc32": "c1b0c1ac",
+      "local_name": "DOT 9 Bloom Double LM 3.csv",
+      "sha256": "f397c6c4f73c2dca5db2a449324ceca1ce4d48851fd49dcc3080438900e5c661"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom LM 1.csv": {
+      "bytes": 3143555,
+      "crc32": "fb95a9aa",
+      "local_name": "DOT 9 Bloom LM 1.csv",
+      "sha256": "07bdf9261732503ecb8fee70c4ed1a5549157ee39c056d6305c252455891aee9"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom LM 2.csv": {
+      "bytes": 3191023,
+      "crc32": "645398c2",
+      "local_name": "DOT 9 Bloom LM 2.csv",
+      "sha256": "582892af287cd719d94a68d9fb717a1fc5b5a0884c6471db6fc951f3de902ba6"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom LM 3.csv": {
+      "bytes": 3060653,
+      "crc32": "441e71ab",
+      "local_name": "DOT 9 Bloom LM 3.csv",
+      "sha256": "9a65dd3332565705c6d75ae1a51357235aa4da9f3def06539485b116c0749779"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Square 1.csv": {
+      "bytes": 3084370,
+      "crc32": "12b78821",
+      "local_name": "DOT 9 Bloom Square 1.csv",
+      "sha256": "6a92042d10ad0be0ed8227876a8be44489cf1788aca9a0f156f69974154fbd2c"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Square 2.csv": {
+      "bytes": 2896692,
+      "crc32": "81357fe5",
+      "local_name": "DOT 9 Bloom Square 2.csv",
+      "sha256": "2005169e730e66fdf1d91a42e3149582218a116da9d6819d41c42b43b3bc85fa"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Square 3.csv": {
+      "bytes": 2928507,
+      "crc32": "5fe448e0",
+      "local_name": "DOT 9 Bloom Square 3.csv",
+      "sha256": "1852a216769608cae75cefa6f50a42a8023688822a278ec8df1ccde68d7f4958"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom to MP 1.csv": {
+      "bytes": 4155322,
+      "crc32": "6d331806",
+      "local_name": "DOT 9 Bloom to MP 1.csv",
+      "sha256": "b0a7589b2d0febc2fe6b6c74c710c7d5841e52f2f86e32b40799cad467b1ac9a"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom to MP 2.csv": {
+      "bytes": 4510711,
+      "crc32": "300dbcd3",
+      "local_name": "DOT 9 Bloom to MP 2.csv",
+      "sha256": "f2014f9aaf355ee962500b4089604a0dfe2b2ee8c080071b8f699e0c09c3828d"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP LM 1.csv": {
+      "bytes": 2661126,
+      "crc32": "abbdf1c2",
+      "local_name": "DOT 9 MP LM 1.csv",
+      "sha256": "0f61275307d92c2b600ac2a5b8bdad6aa48319bb03d0de1b299c1646fd63dfc7"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP LM 2.csv": {
+      "bytes": 4501380,
+      "crc32": "31f1ad78",
+      "local_name": "DOT 9 MP LM 2.csv",
+      "sha256": "4559b7c06616715424b08f2b8d380e2ac072e5a2071c91ffd97479aec174ea41"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP Square 1.csv": {
+      "bytes": 3441360,
+      "crc32": "93d4bb3f",
+      "local_name": "DOT 9 MP Square 1.csv",
+      "sha256": "abd03d364deaba84843f530da357f97697e9255f36a44c69da3a9bb5089ffff0"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP Square 2.csv": {
+      "bytes": 3340571,
+      "crc32": "837f4721",
+      "local_name": "DOT 9 MP Square 2.csv",
+      "sha256": "6fc59f613d9fab239135cff4206283454c03b5f39ce932b778cd226fce79baf1"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP to Bloom 1.csv": {
+      "bytes": 4756317,
+      "crc32": "e8aafce2",
+      "local_name": "DOT 9 MP to Bloom 1.csv",
+      "sha256": "92f90c43e866e21e40710cea4131cb6b586baf1175f8f91ab6f90889c8275514"
+    },
+    "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP to Bloom 2.csv": {
+      "bytes": 4030601,
+      "crc32": "4d01a65a",
+      "local_name": "DOT 9 MP to Bloom 2.csv",
+      "sha256": "0514f21417cc0e2932854a1b7b5e06dbf90086bd4ae8f1497d01d29cf1ab7b38"
+    }
+  },
+  "numeric_rows_opened": false,
+  "protocol_sha256": "97042f722cd3d8d044d23dda782b3c4bf227bbf4bde3d84f42c993ed0d14aa59",
+  "test": [
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP LM 1.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP LM 1.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP LM 1.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP LM 1.csv"
+      },
+      "name": "MP LM 1",
+      "sha256": "e2c57d0b73e9ab33ca24c963317f40db38cdf258a190fa75058550d451742975"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom to MP 1.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom to MP 1.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom to MP 1.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom to MP 1.csv"
+      },
+      "name": "Bloom to MP 1",
+      "sha256": "eda29c31beb8d6008e2f21e4a3b77192f272f8e041394ff4137f92d3406cd579"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP to Bloom 1.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP to Bloom 1.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP to Bloom 1.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP to Bloom 1.csv"
+      },
+      "name": "MP to Bloom 1",
+      "sha256": "ef0107e01d82d0da52e529028233a57376aed60d7906d565d3a4a5beb95eccdb"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Double LM 2.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Double LM 2.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Double LM 2.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Double LM 2.csv"
+      },
+      "name": "Bloom Double LM 2",
+      "sha256": "fe061509a1848e55ce75d3cd4fc15b7c81205071c665ca0b1fab88d91f40212f"
+    }
+  ],
+  "train": [
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP to Bloom 2.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP to Bloom 2.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP to Bloom 2.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP to Bloom 2.csv"
+      },
+      "name": "MP to Bloom 2",
+      "sha256": "1639ba97c9a057b614a94cd4ba12315f7b35622c0c67b3deae6bef16f0034210"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Double LM 3.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Double LM 3.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Double LM 3.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Double LM 3.csv"
+      },
+      "name": "Bloom Double LM 3",
+      "sha256": "173936bf58886319e8d0d616c5d6bbd63f53596315f2653c0b4bf63c36513855"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Square 1.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Square 1.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Square 1.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Square 1.csv"
+      },
+      "name": "Bloom Square 1",
+      "sha256": "1d9c27539aef710e08575423f178991924b83763fbcb8a47af6b39690d8f49ef"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Square 3.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Square 3.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Square 3.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Square 3.csv"
+      },
+      "name": "Bloom Square 3",
+      "sha256": "57ecd5dd4ed84f5a0c3875fa0b6be68ca361622e7a67ff5a66cf7b471d84c4e9"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP LM 2.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP LM 2.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP LM 2.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP LM 2.csv"
+      },
+      "name": "MP LM 2",
+      "sha256": "592e09246428bb35c99d58ebf53dd585bb976a68d1e67b401681adaa5068bf05"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom LM 3.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom LM 3.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom LM 3.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom LM 3.csv"
+      },
+      "name": "Bloom LM 3",
+      "sha256": "7729f662f8815c356c19bafe847b869c2d8b7bda2d730c50f31ced48471618e0"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom to MP 2.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom to MP 2.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom to MP 2.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom to MP 2.csv"
+      },
+      "name": "Bloom to MP 2",
+      "sha256": "ad10b0e905ff4238f6660b5e52f48b6a39a9f486793cdf7b27317650cb72d2e5"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Square 2.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Square 2.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Square 2.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Square 2.csv"
+      },
+      "name": "Bloom Square 2",
+      "sha256": "b34145d5766df4eaaa5fb6ec165c009d5820366950acb1615d4a7426c0baa6b8"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP Square 1.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP Square 1.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP Square 1.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP Square 1.csv"
+      },
+      "name": "MP Square 1",
+      "sha256": "c1a629090302edee685a34582ddcc31c1c2073130ab1754bf7be4f2b7b6ca966"
+    }
+  ],
+  "validation": [
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom Double LM 1.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom Double LM 1.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom Double LM 1.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom Double LM 1.csv"
+      },
+      "name": "Bloom Double LM 1",
+      "sha256": "c26dd30d98ddf60e3f7d4ab239aa60ebfb2342ff7fc959b76964b13d7318a507"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom LM 1.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom LM 1.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom LM 1.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom LM 1.csv"
+      },
+      "name": "Bloom LM 1",
+      "sha256": "c604bbc6d6a7d2f331060f8455e4b95f8fd8705f7c28dff29a513aa516476109"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 MP Square 2.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 MP Square 2.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 MP Square 2.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 MP Square 2.csv"
+      },
+      "name": "MP Square 2",
+      "sha256": "d00f5b358411b20e888eb012aa0e63ae3ba752c8f970dc8a0deada5268991c15"
+    },
+    {
+      "members": {
+        "10": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 10 Bloom LM 2.csv",
+        "11": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 11 Bloom LM 2.csv",
+        "15": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 15 Bloom LM 2.csv",
+        "9": "Data/Car_Exp/Conf_1/DOTs/Bottom/DOT 9 Bloom LM 2.csv"
+      },
+      "name": "Bloom LM 2",
+      "sha256": "e2a351572475d3455e02079deb1c2e31743c5940261405e7bd1e7e8cd21c516b"
+    }
+  ]
+}
