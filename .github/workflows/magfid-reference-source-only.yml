@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'experiments/magfid_reference.py'
+      - 'experiments/magfid_reference_controls.py'
+      - 'experiments/magfid_reference_tests.py'
       - 'research/magfid-reference/**'
       - '.github/workflows/magfid-reference-source-only.yml'
       - 'Makefile'
@@ -26,6 +28,7 @@ jobs:
         run: |
           export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
           python experiments/magfid_reference.py selftest
+          python experiments/magfid_reference_tests.py
           python experiments/magfid_reference.py prepare --workdir "${RUNNER_TEMP}/magfid-conf2"
           python - <<'PY'
           import json, pathlib
