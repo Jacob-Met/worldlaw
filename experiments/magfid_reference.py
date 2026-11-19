@@ -473,8 +473,8 @@ def selftest():
     # Even the independent MRU cannot distinguish a shared nuisance when it
     # is injected into MRU too: it is observationally equivalent to true rate.
     ref=rng.normal(scale=.04,size=n)
-    if not np.array_equal(mutated-ref[:,None]-injected[:,None],
-                          stationary-ref[:,None]):
+    if not np.allclose(mutated-ref[:,None]-injected[:,None],
+                       stationary-ref[:,None],atol=1e-12,rtol=0):
         raise AssertionError("five-sensor common motion nullspace disappeared")
     duplicated=stationary.copy();duplicated[:,3]=duplicated[:,2]
     if np.var(duplicated[:,3]-duplicated[:,2])!=0:
