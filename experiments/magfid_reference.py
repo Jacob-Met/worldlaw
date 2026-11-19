@@ -482,7 +482,6 @@ def selftest():
     shaken=np.tile(np.array([0.,3.0,-3.0,2.0,-2.0]),1800)
     if float(np.sqrt(np.mean(shaken**2)))<=.5:
         raise AssertionError("imposed shake not refused as false stationary")
-    a=np.stack([source["train"],source["validation"],source["test"]])
     return {"passed":True,"actual_source_metadata_rows":len(source["source_entries"]),
             "frozen_train_val_test":[len(source[k]) for k in ("train","validation","test")],
             "contrast_common_mode_max_error":float(np.max(abs(paired-(mutated[:,0]-mutated[:,1])))),
