@@ -108,6 +108,48 @@ try {
   await wait("document.querySelector('#source-badge')?.textContent==='DECLARED SIMULATION'");
   assert.equal(await evaljs("localStorage.getItem('worldlaw.unknown-lab.history.v1')"),null);
  });
+ async function checkAffineCourse(width) {
+  const key = async (name, code, virtualKey) => {
+   for (const type of ['keyDown','keyUp']) {
+    const text = name==='Enter' && type==='keyDown' ? '\r' : '';
+    await send('Input.dispatchKeyEvent',{type,key:name,code,text,unmodifiedText:text,windowsVirtualKeyCode:virtualKey,nativeVirtualKeyCode:virtualKey});
+   }
+  };
+  for (const [course, expectation] of [
+   ['two-mode-affine','The five readings exclude one positive relaxing mode'],
+   ['one-mode-affine','One relaxing mode with linear drift remains unresolved'],
+  ]) {
+   const index=await evaljs("Array.from(document.querySelector('#recovery-demo').options).findIndex(option=>option.value==="+JSON.stringify(course)+")");
+   assert.ok(index>=0,'Missing authored course '+course);
+   await evaljs("document.querySelector('#recovery-demo').focus()");
+   await key('Home','Home',36);
+   for(let i=0;i<index;i++)await key('ArrowDown','ArrowDown',40);
+   assert.equal(await evaljs("document.querySelector('#recovery-demo').value"),course);
+   await key('Tab','Tab',9);
+   assert.equal(await evaljs('document.activeElement.id'),'recovery-load');
+   await key('Enter','Enter',13);
+   await wait("document.querySelector('#recovery-affine-result').textContent.includes("+JSON.stringify(expectation)+")");
+   const receipt=await evaljs("({state:document.querySelector('#recovery-state').textContent,result:document.querySelector('#recovery-affine-result').textContent,kind:document.querySelector('#recovery-source').textContent,hidden:document.querySelector('#recovery-error').hidden})");
+   assert.match(receipt.state,/5 training recordings/);
+   assert.match(receipt.kind,/VIRTUAL COURSE/);
+   assert.ok(receipt.hidden);
+   assert.match(receipt.result,/0, 2, 4, 6, 8 s/);
+   if(!await evaljs("document.querySelector('#recovery-order').open")){
+    await evaljs("document.querySelector('#recovery-order summary').focus()");
+    await key('Enter','Enter',13);
+   }
+   await evaljs("document.querySelector('#recovery-affine-result').scrollIntoView({block:'center',behavior:'instant'})");
+   await wait("(()=>{const r=document.querySelector('#recovery-affine-result').getBoundingClientRect();return r.height>0&&r.top>=0&&r.bottom<=window.innerHeight})()");
+   await evaljs("new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))");
+   const dims=await evaljs("({inner:window.innerWidth,scroll:document.documentElement.scrollWidth})");
+   assert.ok(dims.scroll<=dims.inner+1,JSON.stringify(dims));
+   if(outputDir){
+    const screenshot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
+    await writeFile(path.join(outputDir,'recovery-'+course+'-'+width+'.png'),Buffer.from(screenshot.data,'base64'));
+   }
+   console.log(JSON.stringify({width,course,...receipt}));
+  }
+ }
  // Navigation and chart rendering settle independently after a reload.
  await wait("!!document.querySelector('#plot svg')");
  await check('desktop 1440px contains all content',async()=>{
@@ -122,6 +164,10 @@ try {
  });
  const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
  if(outputDir)await writeFile(path.join(outputDir,'worldlaw-unknown-lab-mobile.png'),Buffer.from(shot.data,'base64'));
+ await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+ await check('five-delay linear-drift controls with desktop keyboard input',()=>checkAffineCourse(1440));
+ await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ await check('five-delay linear-drift controls with phone viewport',()=>checkAffineCourse(390));
  await check('browser isolation and script errors',async()=>{assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);});
  await send('Page.navigate',{url:new URL('/',origin).href});
  await wait("document.querySelector('#sample-count')?.textContent!=='—' && !!document.querySelector('a[href=\"/unknown-lab.html\"]')");
