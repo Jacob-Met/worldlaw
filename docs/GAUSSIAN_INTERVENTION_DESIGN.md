@@ -42,12 +42,24 @@ argument: no k-element subset can have more squared separation than the k
 largest nonnegative weights. The implementation returns the exact certified
 minimum only if the constructed witness reaches target.
 
-For **three or more models**, the greedy schedule is not advertised as
-globally optimal. Independently sorting each pair yields a valid lower bound
-on the number of readings needed simultaneously for *all* model pairs.
-The implementation certifies optimality only when the witness matches this
-bound. It exposes both the bound and the actual selected count; otherwise
-`certifiedMinimumReadings` is null. The exactness contract is for a fixed
+For **three or more models**, a new exact shared-subset stage complements
+greedy selection on small prospective grids: at most 24 distinct post-initial
+timestamps and at most eight allowed readings. The exact solver tries common
+reading subsets in ascending cardinality, and each candidate must separate
+*every* frozen model pair. An independent per-pair top-k suffix bound prunes
+only provably impossible partial subsets; the fixed search ceiling of 200,000
+nodes preserves `search_inconclusive` instead of inventing an exhaustive result.
+A completed search either supplies a globally minimum-cardinality witness on
+that grid or proves the declared budget insufficient. For larger grids or
+incomplete searches, the original greedy schedule remains the fallback.
+
+Independently sorting each pair gives a sound lower bound on the number of
+readings needed simultaneously for all model pairs; this bound alone may be
+non-tight. The implementation also certifies optimality when the greedy
+witness meets that bound. It exposes the bound, any exhaustive search status
+and node count, and the selected measurement count. A certificate is only
+emitted after either a matching lower bound or complete common-subset proof.
+The exactness contract is for a fixed
 discretized time grid, fixed offered hypotheses and stated noise model,
 **not** a globally optimal physical intervention, posterior-optimal design,
 adaptive sequential design, or unique symbolic/PDE discovery.
@@ -60,10 +72,11 @@ The result separates four distinct states:
   declared count is insufficient, even though more scheduled times could
   distinguish the offered laws.
 - `search_inconclusive`: a bounded greedy search did not find a satisfying
-  reading subset, but the lower bound does not rule out a different subset
-  satisfying the target *within the very same budget*. For example, two
-  complementary time samples distinguish three hypotheses where a greedy
-  maximin first step chooses an attractive decoy and fails with its second.
+  reading subset, and an exact small-grid enumeration was either skipped or
+  stopped at its resource ceiling. A different subset may still work. In the
+  retained three-law decoy control, two complementary readings distinguish
+  every pair where greedy alone fails; the exact small-grid solver now recovers
+  that witness while the original greedy order remains visible for diagnosis.
 - `threshold_unreachable_on_grid`: even all scheduled post-initial readings
   cannot meet the target under the declared noise.
 - `observationally_equivalent_on_grid`: at least one offered pair has
@@ -124,9 +137,12 @@ model classes remain open challenges.
    must match the independently enumerated global optimum.
 3. The authored RMS-versus-single-reading counterexample above.
 4. A three-law counterexample where greedy fails *despite* a feasible
-   two-reading schedule; this must produce `search_inconclusive` rather than a
-   false impossibility claim. Also identical predictions, insufficient count,
-   finite-noise ceiling, immutable inputs, and full-grid work preflight/refusal.
+   two-reading schedule; the exact stage must find and certify the two-reading
+   witness, while a larger-grid fallback must preserve `search_inconclusive`.
+   A 210-trial independent exhaustive-subset oracle independently checks global
+   minima, witness scores and nonexistence on unfamiliar three- and four-law
+   instances. Also identical predictions, insufficient count, finite-noise
+   ceiling, immutable inputs, and full-grid work preflight/refusal.
 5. The actual maintained trajectory planner and independent numerical gate,
    including negative control with a tampered cached power score.
 6. A separately seeded, unobserved Gaussian measurement classification
