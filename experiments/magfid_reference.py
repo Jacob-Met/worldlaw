@@ -585,8 +585,8 @@ def main():
     if args.stage=="validate":
         result=scoring(work,"validation",m)
         save(work/"validation.json",result)
-        print(json.dumps({"stage":"validation","sha256":sha((work/"validation.json").read_bytes()),
-                          "scores":result["scores"]},sort_keys=True));return
+        print(json.dumps(original.json_ready({"stage":"validation","sha256":sha((work/"validation.json").read_bytes()),
+                          "scores":result["scores"]}),sort_keys=True));return
     if args.stage=="freeze":
         val=load(work/"validation.json")
         if val["partition"]!="validation" or val["train_model_sha256"]!=sha((work/"train-model.json").read_bytes()):
@@ -613,9 +613,9 @@ def main():
         result["test_freeze_sha256"]=sha((work/"test-freeze.json").read_bytes())
         result["promotion"]=final_gates(result,m)
         save(work/"test.json",result)
-        print(json.dumps({"stage":"test","sha256":sha((work/"test.json").read_bytes()),
+        print(json.dumps(original.json_ready({"stage":"test","sha256":sha((work/"test.json").read_bytes()),
                           "promotion":result["promotion"],
-                          "scores":result["scores"]},sort_keys=True))
+                          "scores":result["scores"]}),sort_keys=True))
 
 
 if __name__=="__main__":
