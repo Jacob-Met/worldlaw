@@ -1,0 +1,44 @@
+name: MAGF-ID Conf2 prospective source-only mechanics
+on:
+  pull_request:
+    paths:
+      - 'experiments/magfid_reference.py'
+      - 'experiments/magfid_reference_controls.py'
+      - 'experiments/magfid_reference_tests.py'
+      - 'research/magfid-reference/**'
+      - '.github/workflows/magfid-reference-source-only.yml'
+      - 'Makefile'
+  workflow_dispatch:
+jobs:
+  source-metadata-and-falsifiers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pinned numerical dependency
+        run: python -m pip install --disable-pip-version-check numpy==1.26.4
+      - name: Source-only real directory selection and algebraic negatives
+        run: |
+          export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+          python experiments/magfid_reference.py selftest
+          python experiments/magfid_reference_tests.py
+          python experiments/magfid_reference.py prepare --workdir "${RUNNER_TEMP}/magfid-conf2"
+          python - <<'PY'
+          import json, pathlib
+          p = pathlib.Path(__import__('os').environ['RUNNER_TEMP']) / 'magfid-conf2/selection.json'
+          s = json.loads(p.read_text())
+          assert s['numeric_rows_opened_before_freeze'] is False
+          assert len(s['source_entries']) == 85
+          assert [len(s[x]) for x in ['train','validation','test']] == [9,4,4]
+          assert len(set(r['recording'] for x in ['train','validation','test'] for r in s[x])) == 17
+          print('original source manifest selections verified without any numeric source reads')
+          PY
+      - name: Existing Worldlaw complete application acceptance
+        run: npm run verify
