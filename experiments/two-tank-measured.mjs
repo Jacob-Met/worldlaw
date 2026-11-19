@@ -19,6 +19,7 @@ import {
   partitionTwoTankRuns,trainSelectTwoTank,fitTwoTankCandidate,
   evaluateTwoTankModel,TWO_TANK_SCHEMA
 } from '../src/science/two-tank-identification.mjs';
+import {summarizeTwoTankExcitation,comparePairedPhysicalRuns} from '../src/science/two-tank-observability.mjs';
 
 const PINNED_ZIP_MD5='3a70e0b3b9d14b4c0520110963c3d33e';
 const SOURCE_REV='10.5281/zenodo.23529910';
@@ -137,6 +138,14 @@ export function runPhysicalStudy(original,{archive=null}={}){
       models.arx.spec,{targetShuffle:true}),runs.test).macro
   };
   const verdict=assessGate(results);
+  // Posthoc explanatory diagnostics are computed only AFTER all frozen models
+  // have been trained, selected and independently scored; never used to tune.
+  const posthocDiagnostics={
+    excitation:{train:summarizeTwoTankExcitation(runs.train),development:summarizeTwoTankExcitation(runs.development),
+      heldout:summarizeTwoTankExcitation(runs.test)},
+    hydraulicVsAr2:comparePairedPhysicalRuns(results.hydraulic,results.ar2,120),
+    qualification:'Added AFTER first full heldout observation; descriptive only, cannot be used as a prospective promotion gate.'
+  };
   const peak=process.memoryUsage();
   return {schema:'worldlaw.measured-two-tank-study/v1',
     source:{doi:SOURCE_REV,articleDoi:'10.1038/s41597-026-07686-2',datasetLicense:'CC BY 4.0',
@@ -150,7 +159,7 @@ export function runPhysicalStudy(original,{archive=null}={}){
       forbiddenFeatures:['online RLS a1/a2/b1','PID gains','setpoint','error','future level']},
     split,modelSelection:{frozenSha256:frozen,development:fitted.development},
     models:Object.fromEntries(Object.entries(models).map(([k,v])=>[k,{...v}])),
-    heldout:results,controls,physicalGate:verdict,
+    heldout:results,controls,physicalGate:verdict,posthocDiagnostics,
     runtime:{node:process.version,wallSeconds:(performance.now()-start)/1000,
       memoryRssBytes:peak.rss,heapUsedBytes:peak.heapUsed},
     qualification:'Measured hardware observations; controls are closed-loop real commands. No independently randomized interventions, no absolute physical parameter identification, no causal claim. Test is immutable after selection.'};
