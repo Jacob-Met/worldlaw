@@ -1,0 +1,66 @@
+name: MAGF-ID Conf2 original physical reference receiving
+on:
+  pull_request:
+    paths:
+      - 'experiments/magfid_reference.py'
+      - 'experiments/magfid_reference_controls.py'
+      - 'experiments/magfid_reference_tests.py'
+      - 'research/magfid-reference/**'
+      - '.github/workflows/magfid-reference-physical-once.yml'
+  workflow_dispatch:
+jobs:
+  original-independent-receiving:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    permissions:
+      contents: read
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install locked numerical engine
+        run: python -m pip install --disable-pip-version-check numpy==1.26.4
+      - name: Independent source-only falsifiers before raw acquisition
+        run: |
+          python experiments/magfid_reference.py selftest
+          python experiments/magfid_reference_tests.py
+      - name: Freeze complete 17-recording source selection without numeric reads
+        run: python experiments/magfid_reference.py prepare --workdir "${RUNNER_TEMP}/magfid-reference"
+      - name: Receive all 85 original Conf2 source files by exact ZIP CRC and SHA
+        run: python experiments/magfid_reference.py intake --workdir "${RUNNER_TEMP}/magfid-reference"
+      - name: Train strictly nine original source recordings
+        run: python experiments/magfid_reference.py train --workdir "${RUNNER_TEMP}/magfid-reference"
+      - name: Receive strictly four original validation recordings
+        run: python experiments/magfid_reference.py validate --workdir "${RUNNER_TEMP}/magfid-reference"
+      - name: Lock exact estimator, validation and negative source reader before test
+        run: python experiments/magfid_reference.py freeze --workdir "${RUNNER_TEMP}/magfid-reference"
+      - name: Open untouched final four source recordings exactly once and run controls
+        run: python experiments/magfid_reference.py test --workdir "${RUNNER_TEMP}/magfid-reference"
+      - name: Verify every small receipt and original file selection without reopening numeric rows
+        if: always()
+        run: |
+          D="${RUNNER_TEMP}/magfid-reference"
+          mkdir -p "${RUNNER_TEMP}/magfid-retained"
+          for f in selection.json verified-raw.json train-model.json validation.json test-freeze.json test.json; do
+            if test -f "$D/$f"; then cp "$D/$f" "${RUNNER_TEMP}/magfid-retained/$f"; fi
+          done
+          cd "${RUNNER_TEMP}/magfid-retained"
+          sha256sum *.json > receipt-SHA256SUMS.txt || :
+          printf 'SOURCE_COMMIT=%s\n' "$GITHUB_SHA" > original-source.txt
+          printf 'SOURCE_PR=%s\n' "$GITHUB_REF" >> original-source.txt
+          cat receipt-SHA256SUMS.txt || :
+      - name: Retain original-small-source scientific evidence, never bulk raw files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: worldlaw-conf2-original-reference-${{ github.run_id }}
+          path: ${{ runner.temp }}/magfid-retained/
+          if-no-files-found: warn
+          retention-days: 30
