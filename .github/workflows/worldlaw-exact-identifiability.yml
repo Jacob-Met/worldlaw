@@ -4,6 +4,7 @@ on:
     paths:
       - 'src/science/physical-identifiability.mjs'
       - 'tests/physical-identifiability.test.mjs'
+      - 'tests/physical-identifiability-oracle.test.mjs'
       - 'scripts/physical-identifiability.mjs'
       - 'examples/physical-gyro-identifiability.json'
       - 'docs/PHYSICAL_IDENTIFIABILITY.md'
@@ -23,7 +24,7 @@ jobs:
         with:
           node-version: '22'
       - name: Independent exact algebraic negative and positive tests
-        run: node --test tests/physical-identifiability.test.mjs
+        run: node --test tests/physical-identifiability*.test.mjs
       - name: Cold zero-setup canonical physical reference
         run: |
           npm run physical:identifiability -- --output "${RUNNER_TEMP}/physical-exact-certificate.json"
