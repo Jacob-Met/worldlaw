@@ -523,11 +523,17 @@ def scoring(work,part,m):
     sel,intake=checked(work)
     dbias=np.array(m["dot_bias_dps"]);rbias=np.array(m["mrup_bias_dps"])
     recs=source_cohort(work,sel,intake,part,dbias,rbias)
+    scores=evaluate({k:np.asarray(v) for k,v in m["models"].items()},recs)
+    if part=="test":
+        # Scientific controls receive genuine source rows but cannot alter the
+        # prospectively frozen training/validation model or test partition.
+        import magfid_reference_controls as controls
+        scores["original_controls"]=controls.run(work,sel,intake,m)
     return {"schema":STUDY+"."+part,"partition":part,
       "train_model_sha256":sha((work/"train-model.json").read_bytes()),
       "source_selection_sha256":sha((work/"selection.json").read_bytes()),
       "source_script_sha256":source_code_sha(),
-      "scores":evaluate({k:np.asarray(v) for k,v in m["models"].items()},recs)}
+      "scores":scores}
 
 
 def final_gates(report,m):
@@ -544,7 +550,8 @@ def final_gates(report,m):
            "vs_contrast_gain_10pct":bool(valid_baseline and
              score["candidate_vs_contrast_relative_gain"] is not None and
              score["candidate_vs_contrast_relative_gain"]>=.10),
-           "negative_controls":False}
+           "negative_controls":bool(score["original_controls"]["all_controls_pass"]),
+           "independent_nullgarden_receipt":False}
     return {"gates":gates,"all_gates_passed":False,
             "claim":"No unconditional sensor or Worldlaw planner calibration. "
                     "The negative-control physical run must be independently received "
@@ -587,6 +594,7 @@ def main():
         receipt={"schema":STUDY+".test-freeze","source_script_sha256":source_code_sha(),
                  "train_model_sha256":sha((work/"train-model.json").read_bytes()),
                  "validation_sha256":sha((work/"validation.json").read_bytes()),
+                 "source_controls_sha256":sha((Path(__file__).parent/"magfid_reference_controls.py").read_bytes()),
                  "selection_sha256":sha((work/"selection.json").read_bytes()),
                  "original_source_control":"taskboard:161657",
                  "heldout_rows_opened_before_freeze":False}
@@ -597,6 +605,7 @@ def main():
         if (freeze["schema"]!=STUDY+".test-freeze" or
             freeze["source_script_sha256"]!=source_code_sha() or
             freeze["selection_sha256"]!=sha((work/"selection.json").read_bytes()) or
+            freeze["source_controls_sha256"]!=sha((Path(__file__).parent/"magfid_reference_controls.py").read_bytes()) or
             freeze["train_model_sha256"]!=sha((work/"train-model.json").read_bytes()) or
             freeze["validation_sha256"]!=sha((work/"validation.json").read_bytes())):
             raise RuntimeError("untouched test blocked: frozen original changed")
