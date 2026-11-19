@@ -4,7 +4,7 @@ WORLDLAW's UNKNOWN LAB now asks a different question from fitting another coeffi
 
 ## Actual product path
 
-Open \`/unknown-lab.html\` → **Does the effect reverse with motion?** → load authored or imported cross-probe evidence → **Challenge explicit mixed responses** → choose **rate-sine** → **Find the next two measurements that make competing laws disagree**.
+Open `/unknown-lab.html` → **Does the effect reverse with motion?** → load authored or imported cross-probe evidence → **Challenge explicit mixed responses** → choose **rate-sine** → **Find the next two measurements that make competing laws disagree**.
 
 The resulting apparatus exposes six editable hypothetical rate/angle states, individual future contrast-error radii, effort costs, a budget, and a one- or two-reading limit. It presents the best course, before/after worst coefficient diameters, every affordable alternative, and complete JSON with the actual current readout screens and prospective offers. Recomputing after edits invalidates the prior result. This is a virtual *request design*, not command dispatch or a source-verified physical measurement.
 
@@ -18,7 +18,7 @@ Write the model for a single preconditioning contrast as
 y = a\,\omega + b\,\sin(\theta) + \varepsilon,\qquad |\varepsilon|\le \rho.
 \]
 
-The original bounded observations, interpreted as their exact parsed binary64 numbers (including computed sine values), and the coefficient box \([-100,100]^2\) define a closed convex feasible polygon \(P\) in coordinates \((a,b)\). Existing \`coefficientBounds\` computes it using exact rational half-plane clipping.
+The original bounded observations, interpreted as their exact parsed binary64 numbers (including computed sine values), and the coefficient box \([-100,100]^2\) define a closed convex feasible polygon \(P\) in coordinates \((a,b)\). Existing `coefficientBounds` computes it using exact rational half-plane clipping.
 
 For a candidate ordered course with feature vectors \(f_j=(\omega_j,\sin\theta_j)\), future absolute error radii \(r_j\), and *unknown* outcomes \(z_j\), the posterior feasible polygon is
 
