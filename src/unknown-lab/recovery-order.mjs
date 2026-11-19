@@ -1,6 +1,7 @@
 import { inspectRelaxationReads, planRelaxationReads } from './relaxation-order.mjs';
 import { inspectOffsetReads, planOffsetReads } from './offset-order.mjs';
 import { inspectAffineReads, planAffineReads } from './affine-order.mjs';
+import { inspectRecordedAffineReads } from './recorded-affine-order.mjs';
 import { fitRecovery } from './recovery-response.mjs';
 
 export const recoveryOrderDomain = Object.freeze({
@@ -15,11 +16,13 @@ const offsetDomain = Object.freeze({
   amplitude: Object.freeze([0.55,1.05]), error: 0.0002, maxStride: 8,
 });
 
-function inspectPlannedOrder(notebook, domain, plan, read) {
+function inspectPlannedOrder(notebook, domain, plan, read, recordedWindow = 0) {
   if (plan.status !== 'separating-plan') return {plan,status:'unresolved',reason:'no-guaranteed-plan'};
   if (notebook.training.length < 2) return {plan,status:'unresolved',reason:'await-training'};
   const {training} = fitRecovery(notebook);
-  const groups = plan.waits.map(wait => training.filter(row => row.delaySeconds === wait));
+  const groups = plan.waits.map(wait => training.filter(row => recordedWindow === 0
+    ? row.delaySeconds === wait
+    : Math.abs(row.delaySeconds-wait) <= recordedWindow+8*Number.EPSILON*Math.max(1,wait)));
   if (groups.some(rows => rows.length > 1)) return {plan,status:'unresolved',reason:'duplicate-delay'};
   if (groups.some(rows => rows.length === 0)) return {plan,status:'unresolved',reason:'await-training'};
   const observations = [];
@@ -27,6 +30,10 @@ function inspectPlannedOrder(notebook, domain, plan, read) {
     if (!row.qualified) return {plan,status:'unresolved',reason:'order-confounded'};
     if (row.boundary > domain.error) return {plan,status:'unresolved',reason:'screen-exceeds-budget'};
     observations.push({wait:row.delaySeconds, difference:row.estimate,recordingId:row.recordingId});
+  }
+  if (recordedWindow && observations.some((row,i)=>row.wait!==plan.waits[i])) {
+    return {plan, observations, actualWaits:observations.map(row=>row.wait),
+      ...inspectRecordedAffineReads(observations,domain.error)};
   }
   return {plan, observations, ...read(observations,domain.error)};
 }
@@ -45,5 +52,5 @@ export const affineDomain = Object.freeze({
 });
 
 export function inspectAffineRecoveryOrder(notebook, domain = affineDomain) {
-  return inspectPlannedOrder(notebook, domain, planAffineReads(domain), inspectAffineReads);
+  return inspectPlannedOrder(notebook, domain, planAffineReads(domain), inspectAffineReads, 0.2);
 }

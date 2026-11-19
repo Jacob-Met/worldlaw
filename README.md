@@ -557,6 +557,8 @@ In Unknown Lab, **Take the question to your instrument** freezes a reproducible 
 
 In Unknown Lab, choose **Two modes with linear drift** or **One mode with linear drift**, execute the virtual course, and open **Can one relaxing mode explain these readings?** The five readings use the same preparation at waits of 0, 2, 4, 6 and 8 seconds. Taking second differences removes a constant baseline and slope. Under the displayed error bound, the five-read result can exclude a single positive relaxing mode. Four readings can still fit a single mode with a different baseline and slope. A changing drift rate can mimic additional dynamics.
 
+For a recorded experiment, include exactly one counterbalanced training recording within 0.2 seconds of each planned wait. If the times differ, WORLDLAW uses the logged waits directly. It compares adjacent chord deficits and checks the whole range of positive relaxation rates. Overlapping numerical or measurement bounds leave the single-mode model unresolved. This calculation assumes the recorded timestamps themselves are accurate.
+
 ### Sequential torque probes with manual readouts
 
 Run `node scripts/sequential-probe.mjs request.json` with an object containing the existing training-only probe study in `training`, the offered probe plan in `settings`, and an ordered `readouts` array. Each readout supplies the offered state `id` and the observed torque `contrast` in N·m from the same preparation and command. Start with an empty array, then append each measurement and rerun. The output includes surviving model coefficients, effort already used, and the next affordable state. A missing model family leaves zero survivors.
