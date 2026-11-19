@@ -90,6 +90,25 @@ function checkHistory(options, recordingId, raw) {
   }
 }
 
+
+// One fixed-parameter physical RK4 step is shared by full, static sparse and
+// online adaptive instruments; every legacy arithmetic operation is retained.
+function integrateOneInterval(position,rate,step,substeps){
+  const acceleration=(theta,omega)=>(-.24*omega-2.2*Math.sin(theta))/.8;
+  for(let j=0;j<substeps;j++){
+    const ap=rate,av=acceleration(position,rate);
+    const bp=rate+step*av/2,bv=acceleration(position+step*ap/2,bp);
+    const cp=rate+step*bv/2,cv=acceleration(position+step*bp/2,cp);
+    const dp=rate+step*cv,dv=acceleration(position+step*cp,dp);
+    position+=step*(ap+2*bp+2*cp+dp)/6;
+    rate+=step*(av+2*bv+2*cv+dv)/6;
+    insist(Number.isFinite(position)&&Number.isFinite(rate)&&
+      Math.abs(position)<=1e6&&Math.abs(rate)<=1e6,
+      'Synthetic integration exceeded its finite execution range.','numerical_failure');
+  }
+  return {position,rate};
+}
+
 /**
  * Acquire one whole synthetic release. Pass all retained evidence explicitly so
  * replayed recordings/noise streams cannot silently count as independent runs.
@@ -128,8 +147,6 @@ function acquireCore(request, context, selectedIndices) {
   const noise = random(options.seed), samples = [];
   const {initialPosition, initialRate, duration, sampleInterval, noiseSigma, seed, intervalCount, substeps} = options;
   let position = initialPosition, rate = initialRate, previousSensorTime=null, previousSensorError=0;
-  // Independent explicit physical equation, matching the unforced fixture instrument.
-  const acceleration = (theta, omega) => (-.24 * omega - 2.2 * Math.sin(theta)) / .8;
   const step = sampleInterval / substeps;
   let nextReading=0;
   for (let index = 0; index <= intervalCount; index++) {
@@ -150,16 +167,7 @@ function acquireCore(request, context, selectedIndices) {
       if(selectedIndices!==null)nextReading++;
     }
     if (index === intervalCount) break;
-    for (let j = 0; j < substeps; j++) {
-      const ap = rate, av = acceleration(position, rate);
-      const bp = rate + step * av / 2, bv = acceleration(position + step * ap / 2, bp);
-      const cp = rate + step * bv / 2, cv = acceleration(position + step * bp / 2, cp);
-      const dp = rate + step * cv, dv = acceleration(position + step * cp, dp);
-      position += step * (ap + 2 * bp + 2 * cp + dp) / 6;
-      rate += step * (av + 2 * bv + 2 * cv + dv) / 6;
-      insist(Number.isFinite(position) && Number.isFinite(rate) && Math.abs(position) <= 1e6 && Math.abs(rate) <= 1e6,
-        'Synthetic integration exceeded its finite execution range.', 'numerical_failure');
-    }
+    ({position,rate}=integrateOneInterval(position,rate,step,substeps));
   }
   const result = {
     id: shortId(recordingId), label: `Virtual pendulum release · θ₀=${initialPosition} rad · ω₀=${initialRate} rad/s`,
@@ -201,3 +209,95 @@ function acquireCore(request, context, selectedIndices) {
   };
 }
 
+
+
+/** Online virtual sensor: advances the same RK4 apparatus only to requested
+ * future timestamps, and draws exactly one observation then. The prior
+ * unmeasured plant state, noise, and equation never enter the law planner.
+ * No physical hardware is actuated or represented by this capability.
+ */
+export function openVirtualPendulumSensorStream(request,context){
+  const options=requestOptions(request);
+  const recordingId=ID+':adaptive:'+identity(options);
+  checkHistory(options,recordingId,context);
+  const {initialPosition,initialRate,noiseSigma,seed,duration,sampleInterval,
+    intervalCount,substeps}=options;
+  const step=sampleInterval/substeps,noise=random(seed),selected=[],readings=[];
+  let position=initialPosition,rate=initialRate,currentIndex=0;
+  let previousSensorTime=null,previousSensorError=0,closed=false;
+  const timestamp=index=>index===intervalCount?duration:
+    Number((index*sampleInterval).toFixed(12));
+  function readAt(index){
+    insist(!closed,'This streaming virtual sensor has been closed.','closed_session');
+    insist(Number.isSafeInteger(index)&&index>currentIndex&&index<=intervalCount,
+      'An adaptive sensor reading must request one strictly future scheduled post-initial index.','invalid_request');
+    insist(selected.length<128,'At most 128 actual selected measurements.','resource_limit');
+    while(currentIndex<index){
+      ({position,rate}=integrateOneInterval(position,rate,step,substeps));
+      currentIndex++;
+    }
+    const time=timestamp(index);
+    let error=noiseSigma*(Math.sqrt(-2*Math.log(noise()))*
+      Math.cos(2*Math.PI*noise()));
+    if(options.noiseCorrelationTime>0){
+      if(previousSensorTime!==null){
+        const gap=(time-previousSensorTime)/options.noiseCorrelationTime;
+        error=Math.exp(-gap)*previousSensorError+
+          Math.sqrt(-Math.expm1(-2*gap))*error;
+      }
+      previousSensorTime=time;previousSensorError=error;
+    }
+    insist(Number.isFinite(position+error)&&Math.abs(position+error)<=1e6,
+      'Sensor output exceeded the finite instrument range.','numerical_failure');
+    const measurement=Object.freeze({sampleIndex:index,time,position:position+error,command:0});
+    selected.push(index);readings.push(measurement);
+    return measurement;
+  }
+  function evidence(){
+    insist(readings.length>0,'Acquire a selected reading before exporting evidence.','no_evidence');
+    return {
+      schema:'worldlaw.virtual-pendulum-sparse/v1',
+      id:shortId(recordingId),
+      label:'Virtual pendulum release · θ₀='+initialPosition+' rad · ω₀='+initialRate+' rad/s',
+      kind:'synthetic',units:{...UNITS},inertia:.8,initialPosition,initialRate,
+      readings:readings.map(r=>({...r})),measurementCount:readings.length,
+      source:{
+        label:'Independent explicit-equation synthetic pendulum instrument',
+        instrumentId:ID,recordingId,
+        generator:'src/trajectory/virtual-experiment.mjs',
+        seed,positionNoiseSigma:noiseSigma,
+        ...(options.noiseCorrelationTime>0?
+          {positionNoiseCorrelationTime:options.noiseCorrelationTime}:{}),
+        initialPosition,duration,sampleInterval,
+        provenance:'synthetic_virtual_instrument_not_physical_measurement',
+        acquisition:'On-demand strictly forward fine-step RK4; sensor values generated only for actually requested indices.',
+        sampleIndices:[...selected],fullGridSampleCount:intervalCount+1,
+        measuredSampleCount:readings.length,
+        sampleSelection:'one-at-a-time from previous source-labeled sensor readings and frozen law candidates',
+        commandConvention:'Zero N·m applied on every integration interval.',
+        initialState:'Initial angle and rate externally controlled; t0 not measured.',
+        noise:{
+          algorithm:options.noiseCorrelationTime>0?
+            'lcg32_box_muller_selected_stationary_ou_v1':
+            'lcg32_1664525_1013904223_selected_samples_box_muller_cosine_v1',
+          distribution:options.noiseCorrelationTime>0?
+            'seeded_stationary_exponential_gaussian_angle_perturbations':
+            'seeded_iid_gaussian_angle_perturbations',
+          initialNoise:0,
+          noiseStreamId:ID+':adaptive-position-noise:'+seed,
+          seedMeaning:'Reusing this seed reuses a deterministic stream, not independent experimental evidence.',
+          measurementDrawCount:readings.length,selectedOnly:true
+        },
+        oracle:{inertia:.8,command:0,rate:-.24,gravity:-2.2,bias:0},
+        numerical:{
+          method:'independent_explicit_equation_RK4',maxStep:step,
+          steps:currentIndex*substeps,
+          meaning:'High-resolution numerical reference, not physical calibration.'
+        },
+        independence:'Canonical recording identity and history checks reject ordinary replay and reused seeds, not edited evidence or physical dependence.',
+        rights:'Generated for this repository; no external media or personal information.'
+      }
+    };
+  }
+  return Object.freeze({readAt,evidence,close(){closed=true;}});
+}
