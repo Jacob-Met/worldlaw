@@ -1,4 +1,4 @@
-import {exactGaussianSubsetSchedule} from './exact-gaussian-subset.mjs';
+import {exactGaussianSubsetSchedule,repairGaussianGreedySchedule} from './exact-gaussian-subset.mjs';
 /** Prospective independent-Gaussian measurement design.
  * No unknown-system reading or training refit is accepted here.
  * For two candidates, the maximum-information k-sample schedule and minimum
@@ -98,6 +98,22 @@ export function designGaussianReadings(predictions, {sigma, targetZ, maxReadings
       achieved2=Math.min(...current);
     }
   }
+  // For long sensor grids where exact subset enumeration would be
+  // prohibitively expensive, recheck every complete one-time exchange under
+  // a fixed pair-product ceiling. A recovered full-ensemble witness is valid;
+  // a failed local search proves nothing about unvisited schedules.
+  let localRepair={status:'not_attempted',selection:null,passes:0,pairProducts:0};
+  if(achieved2<target2&&!equivalentPair&&!thresholdUnreachable&&
+      lowerBound<=maxReadings&&exactSearch.status!=='proved_budget_insufficient'){
+    localRepair=repairGaussianGreedySchedule(pairs.map(p=>p.weights),chosen,target2);
+    if(localRepair.selection){
+      chosen.splice(0,chosen.length,...localRepair.selection);
+      current.fill(0);
+      for(let p=0;p<pairs.length;p++)
+        for(const index of chosen)current[p]+=pairs[p].weights[index];
+      achieved2=Math.min(...current);
+    }
+  }
   const achieved=achieved2>=target2;
   const provedBudgetInsufficient=!achieved&&!equivalentPair&&!thresholdUnreachable&&
     (lowerBound>maxReadings||exactSearch.status==='proved_budget_insufficient');
@@ -116,6 +132,8 @@ export function designGaussianReadings(predictions, {sigma, targetZ, maxReadings
     readings:ordered.map(index=>({sampleIndex:index+1,time:times[index+1]})),
     greedyOrder,pairwise,
     exactSubsetSearch:{status:exactSearch.status,nodes:exactSearch.visited},
+    wideGridRepair:{status:localRepair.status,passes:localRepair.passes,
+      pairProducts:localRepair.pairProducts},
     lowerBoundReadings:thresholdUnreachable?null:lowerBound,
     certifiedMinimumReadings:exact?chosen.length:null,
     optimality:exact?'finite-grid cardinality optimum proved':
