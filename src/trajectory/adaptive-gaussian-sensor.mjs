@@ -126,6 +126,7 @@ function validate(predictions,options,observations){
   const timeCost=options.timeCostPerSecond??0;
   const minimumInformation=options.minimumInformationNats??1e-7;
   const workLimit=options.workLimit??LIMIT;
+  const modelMismatchAlpha=options.modelMismatchAlpha??.001;
   requireThat(Number.isSafeInteger(budget)&&budget>=1&&budget<=Math.min(32,first.length-1),
     'Sequential reading budget must be between one and 32 and fit the clock.');
   requireThat(finite(decisionThreshold)&&decisionThreshold>.5&&decisionThreshold<1,
@@ -133,6 +134,8 @@ function validate(predictions,options,observations){
   requireThat(finite(timeCost)&&timeCost>=0&&timeCost<=1e6&&
     finite(minimumInformation)&&minimumInformation>=0&&minimumInformation<=1,
     'Declare finite nonnegative time cost and minimum useful information.');
+  requireThat(finite(modelMismatchAlpha)&&modelMismatchAlpha>=1e-6&&modelMismatchAlpha<=.1,
+    'Model-mismatch Gaussian screen false-alarm bound must lie between 1e-6 and .1.');
   requireThat(Number.isSafeInteger(workLimit)&&workLimit>=1&&workLimit<=LIMIT,
     'Sequential quadrature work budget must be a positive integer at most 20 million.');
   const priors=options.priors??predictions.map(()=>1/predictions.length);
@@ -157,7 +160,8 @@ function validate(predictions,options,observations){
     }
     last=observed.sampleIndex;
   }
-  return {tau,budget,decisionThreshold,timeCost,minimumInformation,workLimit,normalized};
+  return {tau,budget,decisionThreshold,timeCost,minimumInformation,
+    workLimit,normalized,modelMismatchAlpha};
 }
 
 function covarianceStep(tau,previousTime,now,sigma){
@@ -178,6 +182,7 @@ export function planAdaptiveGaussianReading(predictions,options,observations=[])
   const settings=validate(predictions,options,observations),first=predictions[0].rows;
   let weights=settings.normalized;
   let last=null,logw=weights.map(Math.log),used=0;
+  const squaredResidual=predictions.map(()=>0);
   const sigma=options.sigma;
   for(const observation of observations){
     const state=covarianceStep(settings.tau,last?.time??null,observation.time,sigma);
@@ -187,7 +192,9 @@ export function planAdaptiveGaussianReading(predictions,options,observations=[])
       const standardized=(observation.position-mean)/Math.sqrt(state.variance);
       requireThat(finite(standardized)&&finite(standardized*standardized),
         'Acquired residual exceeds representable Gaussian likelihood range.');
-      logw[h]-=.5*standardized*standardized;
+      const energy=standardized*standardized;
+      squaredResidual[h]+=energy;
+      logw[h]-=.5*energy;
     }
     weights=normalizeLogs(logw);
     // Log normalization after each measurement prevents underflow during
@@ -197,6 +204,18 @@ export function planAdaptiveGaussianReading(predictions,options,observations=[])
   }
   const currentEntropy=entropy(weights);
   const winning=Math.max(...weights),winner=weights.indexOf(winning);
+  // The posterior always selects somebody even if every offered law is false.
+  // An explicit absolute-likelihood screen stops that overclaim. Under ANY
+  // correctly specified fixed model with known Gaussian noise, its squared
+  // whitened residual sum follows chi-square(k). Laurent-Massart gives the
+  // conservative one-sided tail bound P(X>k+2 sqrt(k*x)+2*x)<=exp(-x).
+  // Taking a minimum over models cannot increase the false-alarm probability
+  // when at least one offered fixed model is true. No refitting is done.
+  const rejectionX=-Math.log(settings.modelMismatchAlpha);
+  const mismatchThreshold=observations.length+
+    2*Math.sqrt(observations.length*rejectionX)+2*rejectionX;
+  const leastResidualChi2=Math.min(...squaredResidual);
+  const allModelsMisspecified=observations.length>0&&leastResidualChi2>mismatchThreshold;
   const base={schema:ADAPTIVE_SENSOR_SCHEMA,method:'sequential_conditional_ou_expected_information_gain',
     decisionBasis:'only_retained_acquired_readings_and_frozen_prospective_laws',
     covarianceModel:settings.tau>0?'stationary_exponential':'independent_gaussian',
@@ -204,10 +223,19 @@ export function planAdaptiveGaussianReading(predictions,options,observations=[])
     models:predictions.map((m,i)=>({modelId:m.modelId,conditionalWeight:weights[i]})),
     selectedModelId:predictions[winner].modelId,maximumConditionalWeight:winning,
     posteriorEntropyNats:currentEntropy,priorEntropyNats:entropy(settings.normalized),
+    modelMismatchScreen:{basis:'conservative_Laurent_Massart_chi_square_tail',
+      alphaUpperBound:settings.modelMismatchAlpha,observationCount:observations.length,
+      minimumWhitenedSquaredResidual:leastResidualChi2,
+      rejectionThresholdChi2:mismatchThreshold,
+      allOfferedModelsRejected:allModelsMisspecified,
+      meaning:'Statistical screen conditional on known Gaussian covariance and frozen means; not proof of an unknown physical law.'},
     actualReadingCount:observations.length,maximumReadingCount:settings.budget,
     consumedSampleIndices:observations.map(r=>r.sampleIndex),
     unobservedSensorValuesConsumed:0,proposed:null,
     limitations:'Posterior mass is conditional on a finite offered law family, fixed means and declared Gaussian covariance. No physical calibration, model completeness, causal identification or actuator authorization.'};
+  if(allModelsMisspecified)
+    return {...base,status:'all_offered_models_mismatch',ranking:[],
+      work:{quadratureTerms:0,limit:settings.workLimit}};
   if(winning>=settings.decisionThreshold)
     return {...base,status:'conditional_decision_ready',ranking:[],work:{quadratureTerms:0,limit:settings.workLimit}};
   if(observations.length>=settings.budget)
