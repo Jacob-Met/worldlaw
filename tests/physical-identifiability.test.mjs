@@ -169,6 +169,21 @@ test('full-union feasibility is not confused with bounded search exhaustion',()=
   assert.ok(p.selection.length===2,'a witness may exist even if all minimum candidates were not exhausted');
 });
 
+test('equal-cost anchor ties after decimal index 9 retain original numerical source order',()=>{
+  const actions=Array.from({length:12},(_,i)=>row('candidate'+i,
+    i===2||i===10?[0,1]:[1,0],1));
+  const input={variables:['x','y'],
+    observations:[row('read_x',[1,0])],
+    anchors:actions,
+    targets:[row('want_y',[0,1])],
+    maxAnchors:1};
+  const r=designPhysicalAnchors(input);
+  assert.equal(r.status,'optimal_structural_design');
+  assert.equal(r.exactMinimalAnchors,1);
+  assert.equal(r.totalCost,1);
+  assert.deepEqual(r.selection.map(x=>x.id),['candidate2']);
+});
+
 test('refuse malformed or imprecisely represented physical source inputs',()=>{
   const bad=[
     {...base,variables:['s','s']},
