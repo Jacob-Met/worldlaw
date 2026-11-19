@@ -1,0 +1,62 @@
+name: Measured hydraulic dynamics falsification
+on:
+  pull_request:
+    paths:
+      - 'src/science/two-tank-identification.mjs'
+      - 'src/science/two-tank-observability.mjs'
+      - 'experiments/two-tank-measured.mjs'
+      - 'tests/two-tank-identification.test.mjs'
+      - 'tests/two-tank-observability.test.mjs'
+      - '.github/workflows/two-tank-measured.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  measured-two-tank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Independent parser, split, negative controls and source-free structural tests
+        run: node --test tests/two-tank-identification.test.mjs tests/two-tank-observability.test.mjs
+      - name: Download unchanged v2 original experiment archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 5 --retry-all-errors \
+            --connect-timeout 30 --max-time 360 \
+            'https://zenodo.org/records/23529910/files/Dataset_v2.zip?download=1' \
+            --output "$RUNNER_TEMP/Dataset_v2.zip"
+          echo "3a70e0b3b9d14b4c0520110963c3d33e  $RUNNER_TEMP/Dataset_v2.zip" | md5sum --check
+      - name: Run original 25-run, wholly source-disjoint real physical course
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .receipts
+          TMPDIR="$RUNNER_TEMP" node experiments/two-tank-measured.mjs \
+            "$RUNNER_TEMP/Dataset_v2.zip" .receipts/two-tank-measured.json \
+            > .receipts/two-tank-measured-summary.json
+          node --input-type=module -e '
+            import fs from "node:fs";
+            import assert from "node:assert/strict";
+            const r=JSON.parse(fs.readFileSync(".receipts/two-tank-measured.json"));
+            assert.equal(r.source.originalFiles.length,25);
+            assert.equal(r.source.archive.md5,"3a70e0b3b9d14b4c0520110963c3d33e");
+            assert.ok(r.split.train.length>0&&r.split.development.length>0&&r.split.test.length>0);
+            assert.ok(r.split.test.every(id=>id.startsWith("Disturbance/")));
+            assert.ok(Object.values(r.heldout).every(s=>Number.isFinite(s.macro[120])));
+            assert.ok(Object.values(r.controls).every(s=>Number.isFinite(s[120])));
+            console.log(JSON.stringify({gate:r.physicalGate,macro:Object.fromEntries(Object.entries(r.heldout).map(([k,v])=>[k,v.macro]))}));
+          '
+      - name: Preserve complete scientific report without committing licensed raw CSVs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: two-tank-measured-receipt
+          path: .receipts/two-tank-measured*.json
+          retention-days: 15
+          if-no-files-found: error
+          include-hidden-files: true
