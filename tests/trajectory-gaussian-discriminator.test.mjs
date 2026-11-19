@@ -61,13 +61,14 @@ test('budget and observational equivalence are not mislabeled successes',()=>{
   assert.equal(equivalent.minPairwiseZ,0);
 });
 
-test('three laws expose unproved global optimality rather than claiming an exact greedy certificate',()=>{
+test('three laws recover and certify a global minimum beyond the per-pair lower bound',()=>{
   const multi=designGaussianReadings([p('A',[0,0,0]),p('B',[2,0,0]),p('C',[0,2,0])],
     {sigma:1,targetZ:2,maxReadings:3});
   assert.equal(multi.status,'distinguishable');
   assert.equal(multi.measurementCount,2);
   assert.equal(multi.lowerBoundReadings,1);
-  assert.equal(multi.certifiedMinimumReadings,null);
+  assert.equal(multi.certifiedMinimumReadings,2);
+  assert.equal(multi.exactSubsetSearch.status,'minimum_found');
   assert.deepEqual(multi.readings.map(x=>x.sampleIndex),[1,2]);
   assert.equal(multi.pairwise.length,3);
 });
@@ -124,16 +125,18 @@ test('multi-law cardinality certificates never beat an exhaustive independent or
   }
 });
 
-test('nonoptimal maximin greedy failure does not assert the available reading budget is impossible',()=>{
+test('exact shared-subset search repairs a greedy decoy failure without changing its diagnostic trace',()=>{
   // Three hypotheses, three timestamps: a single all-pair decoy point lures
   // greedy, whereas the first two complementary points would succeed jointly.
   const trajectories=[p('A',[0,0,0]),p('B',[4,0,2]),p('C',[4,4,4])];
   const targetZ=Math.sqrt(12);
   const got=designGaussianReadings(trajectories,{sigma:1,targetZ,maxReadings:2});
-  assert.equal(got.status,'search_inconclusive');
+  assert.equal(got.status,'distinguishable');
   assert.deepEqual(got.greedyOrder,[3,1]);
+  assert.deepEqual(got.readings.map(x=>x.sampleIndex),[1,2]);
   assert.equal(got.lowerBoundReadings,1);
-  assert.equal(got.certifiedMinimumReadings,null);
+  assert.equal(got.certifiedMinimumReadings,2);
+  assert.equal(got.exactSubsetSearch.status,'minimum_found');
   // Held-out exact witness, not shared with the greedy search.
   const subset=[0,1];
   for(let a=0;a<3;a++)for(let b=a+1;b<3;b++){
@@ -227,4 +230,68 @@ test('held-out Gaussian reading and independent randomized-label negative contro
   assert.ok(errors/N<.09, `Unexpected held-out measurement error ${errors}/${N}`);
   assert.ok(negativeControlErrors/N>.44 && negativeControlErrors/N<.56,
     `Label-permutation negative control unexpectedly predictive: ${negativeControlErrors}/${N}`);
+});
+
+
+test('full common-subset search proves a budget impossible even when every separate pair admits one reading',()=>{
+  const models=[p('A',[0,0,0]),p('B',[4,0,0]),p('C',[0,4,0])];
+  const impossible=designGaussianReadings(models,{sigma:1,targetZ:2,maxReadings:1});
+  assert.equal(impossible.lowerBoundReadings,1);
+  assert.equal(impossible.status,'budget_insufficient');
+  assert.equal(impossible.exactSubsetSearch.status,'proved_budget_insufficient');
+  assert.equal(impossible.certifiedMinimumReadings,null);
+  const possible=designGaussianReadings(models,{sigma:1,targetZ:2,maxReadings:2});
+  assert.equal(possible.certifiedMinimumReadings,2);
+  assert.deepEqual(possible.readings.map(x=>x.sampleIndex),[1,2]);
+});
+
+test('frozen independent exhaustive subset oracle verifies minimum or nonexistence across 210 unfamiliar multi-law designs',()=>{
+  let state=0x7f4a7c15;
+  const rand=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state/4294967296;};
+  for(let trial=0;trial<210;trial++){
+    const modelCount=3+(trial%2),n=5+(trial%3),sigma=.15+rand()*2,targetZ=.5+rand()*5;
+    const paths=Array.from({length:modelCount},(_,i)=>p('unknown'+i,
+      Array.from({length:n},()=>Math.round((rand()*5-2.5)*1000)/1000)));
+    const budget=1+Math.floor(rand()*n);
+    const result=designGaussianReadings(paths,{sigma,targetZ,maxReadings:budget});
+    let minCount=Infinity;
+    for(let mask=1;mask<(1<<n);mask++){
+      let count=0,worst=Infinity;
+      for(let k=0;k<n;k++)if(mask&(1<<k))count++;
+      for(let a=0;a<modelCount;a++)for(let b=a+1;b<modelCount;b++){
+        let squared=0;
+        for(let k=0;k<n;k++)if(mask&(1<<k))
+          squared+=((paths[a].rows[k+1].position-paths[b].rows[k+1].position)/sigma)**2;
+        worst=Math.min(worst,squared);
+      }
+      if(worst>=targetZ**2)minCount=Math.min(minCount,count);
+    }
+    if(minCount<=budget){
+      assert.equal(result.status,'distinguishable',`trial ${trial}`);
+      assert.equal(result.certifiedMinimumReadings,minCount,`trial ${trial}`);
+      const selected=result.readings.map(r=>r.sampleIndex-1);
+      assert.equal(selected.length,minCount);
+      for(let a=0;a<modelCount;a++)for(let b=a+1;b<modelCount;b++){
+        let squared=0;
+        for(const k of selected)
+          squared+=((paths[a].rows[k+1].position-paths[b].rows[k+1].position)/sigma)**2;
+        assert.ok(squared>=targetZ**2,`witness trial ${trial} pair ${a}/${b}`);
+      }
+    }else{
+      assert.equal(result.certifiedMinimumReadings,null,`trial ${trial}`);
+      assert.equal(result.status,minCount===Infinity?'threshold_unreachable_on_grid':'budget_insufficient',
+        `trial ${trial}`);
+    }
+  }
+});
+
+test('large schedules retain the incumbent bounded greedy behavior with explicit unproved search status',()=>{
+  const n=25;
+  const models=[p('A',Array(n).fill(0)),
+    p('B',Array.from({length:n},(_,i)=>i===0?4:0)),
+    p('C',Array.from({length:n},(_,i)=>i===1?4:0))];
+  const result=designGaussianReadings(models,{sigma:1,targetZ:2,maxReadings:2});
+  assert.equal(result.exactSubsetSearch.status,'skipped');
+  assert.equal(result.certifiedMinimumReadings,null);
+  assert.equal(result.status,'distinguishable');
 });
