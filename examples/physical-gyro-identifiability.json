@@ -1,0 +1,83 @@
+{
+  "schema": "worldlaw.physical-identifiability-input/v1",
+  "variables": [
+    "physicalAngularRate",
+    "sharedDOTDisturbance",
+    "privateDOT9",
+    "privateDOT10",
+    "privateDOT11",
+    "privateDOT15",
+    "privateMRUP"
+  ],
+  "observations": [
+    {
+      "id": "DOT9_measurement",
+      "coefficients": [1,1,1,0,0,0,0],
+      "source": "One original DOT gyro output, not a calibrated physical-rate observation"
+    },
+    {
+      "id": "DOT10_measurement",
+      "coefficients": [1,1,0,1,0,0,0],
+      "source": "Second original DOT gyro output"
+    },
+    {
+      "id": "DOT11_measurement",
+      "coefficients": [1,1,0,0,1,0,0],
+      "source": "Third original DOT gyro output"
+    },
+    {
+      "id": "DOT15_measurement",
+      "coefficients": [1,1,0,0,0,1,0],
+      "source": "Fourth original DOT gyro output"
+    },
+    {
+      "id": "MRUP_measurement",
+      "coefficients": [1,0,0,0,0,0,1],
+      "source": "Independent fifth gyro, but unknown private reference error"
+    }
+  ],
+  "anchors": [
+    {
+      "id": "external_verified_zero_rate",
+      "coefficients": [1,0,0,0,0,0,0],
+      "cost": 1,
+      "source": "REQUIRES new, independently authenticated physical stillness/rigid apparatus protocol; no such observation provided"
+    },
+    {
+      "id": "independently_calibrated_DOT9_private_error",
+      "coefficients": [0,0,1,0,0,0,0],
+      "cost": 2,
+      "source": "REQUIRES independent error calibration evidence; not inferred from MAGF-ID measured covariance"
+    },
+    {
+      "id": "independently_calibrated_MRUP_private_error",
+      "coefficients": [0,0,0,0,0,0,1],
+      "cost": 5,
+      "source": "REQUIRES independent MRUP calibration uncertainty, not available in the first Conf2 receiver"
+    },
+    {
+      "id": "read_DOT9_again",
+      "coefficients": [1,1,1,0,0,0,0],
+      "cost": 1,
+      "source": "Repeating a correlated observation channel cannot reveal a missing structural direction"
+    },
+    {
+      "id": "independently_calibrated_DOT10_private_error",
+      "coefficients": [0,0,0,1,0,0,0],
+      "cost": 4,
+      "source": "Alternative independent error measurement, not existing physical evidence"
+    }
+  ],
+  "targets": [
+    {
+      "id": "instantaneous_true_rate",
+      "coefficients": [1,0,0,0,0,0,0]
+    },
+    {
+      "id": "instantaneous_common_error",
+      "coefficients": [0,1,0,0,0,0,0]
+    }
+  ],
+  "maxAnchors": 4,
+  "workLimit": 50000
+}

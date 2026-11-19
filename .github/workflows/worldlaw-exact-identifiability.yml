@@ -1,0 +1,52 @@
+name: WORLDLAW exact physical-identifiability cold receiver
+on:
+  pull_request:
+    paths:
+      - 'src/science/physical-identifiability.mjs'
+      - 'tests/physical-identifiability.test.mjs'
+      - 'tests/physical-identifiability-oracle.test.mjs'
+      - 'scripts/physical-identifiability.mjs'
+      - 'examples/physical-gyro-identifiability.json'
+      - 'docs/PHYSICAL_IDENTIFIABILITY.md'
+      - '.github/workflows/worldlaw-exact-identifiability.yml'
+      - 'package.json'
+jobs:
+  exact-source-and-cold-use:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Independent exact algebraic negative and positive tests
+        run: node --test tests/physical-identifiability*.test.mjs
+      - name: Cold zero-setup canonical physical reference
+        run: |
+          npm run physical:identifiability -- --output "${RUNNER_TEMP}/physical-exact-certificate.json"
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict';
+          import {readFileSync} from 'node:fs';
+          const source=JSON.parse(readFileSync(process.env.RUNNER_TEMP+'/physical-exact-certificate.json'));
+          assert.equal(source.status,'optimal_structural_design');
+          assert.deepEqual(source.selection.map(x=>x.id),
+            ['external_verified_zero_rate','independently_calibrated_DOT9_private_error']);
+          assert.equal(source.exactMinimalAnchors,2);
+          assert.equal(source.initial.equationRank,5);
+          assert.equal(source.initial.unresolvedDimensions,2);
+          assert.equal(source.achieved.allTargetsIdentifiable,true);
+          JS
+          npm run physical:identifiability -- --replay "${RUNNER_TEMP}/physical-exact-certificate.json" > /dev/null
+      - name: Complete existing WORLDLAW application and science regression
+        run: npm run verify
+      - name: Preserve source-only exact output; never claim sensors were acquired
+        uses: actions/upload-artifact@v4
+        with:
+          name: worldlaw-exact-physical-source-${{ github.run_id }}
+          path: ${{ runner.temp }}/physical-exact-certificate.json
+          if-no-files-found: error
+          retention-days: 30
