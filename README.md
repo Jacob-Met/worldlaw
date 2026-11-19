@@ -21,10 +21,30 @@ The same probe instrument can explicitly compare [declared saturated-rate altern
 The browser workbench's default source remains synthetic. Separately, the source-pinned scientific CLI now has two **original measured hardware** falsification courses. They must not be presented as a live camera, physical actuator, or general-purpose autonomous lab.
 
 - [Closed-loop 25-run two-tank physical falsification](docs/MEASURED_TWO_TANK_RECEIVING.md): original 2026 author dataset, 19/2/4 recording-level split, AR2 120-second RMSE **3.416** versus constrained hydraulic **4.029** level percentage points. The physical mechanism **failed** its prospective 10% benchmark and each of 25 real recordings held the valve opening constant within run; causal valve identification is unsupported.
-- [Independent MRU-P physical reference on fresh MAGF-ID Conf_2](research/magfid-reference/CONF2_RESULTS.md): original 85-file, five-gyro 9/4/4 source-frozen receiver; four untouched recordings reject transfer by lag-zero covariance calibration (predicted/observed ~0.0005) and less than 0.012% held-out MSE gain. The unchanged independent Nullgarden receiver also fails to discriminate the candidate (exact conditional tail fraction 0.875). No real sensor calibration or planner eligibility follows.\n- [Measured MAGF-ID sensor covariance](docs/PHYSICAL_SENSOR_COVARIANCE.md): 68 publisher-verified gyroscope files, nine training/four validation/four untouched test recordings. White noise plus OU lowers contrast-covariance error by 60.61% versus IID, but every frozen covariance qualification fails and a shared colored disturbance remains invisible. The reproducible course refuses absolute calibration and planner eligibility.
+- [Independent MRU-P physical reference on fresh MAGF-ID Conf_2](research/magfid-reference/CONF2_RESULTS.md): original 85-file, five-gyro 9/4/4 source-frozen receiver; four untouched recordings reject transfer by lag-zero covariance calibration (predicted/observed ~0.0005) and less than 0.012% held-out MSE gain. The unchanged independent Nullgarden receiver also fails to discriminate the candidate (exact conditional tail fraction 0.875). No real sensor calibration or planner eligibility follows.
+- [Measured MAGF-ID sensor covariance](docs/PHYSICAL_SENSOR_COVARIANCE.md): 68 publisher-verified gyroscope files, nine training/four validation/four untouched test recordings. White noise plus OU lowers contrast-covariance error by 60.61% versus IID, but every frozen covariance qualification fails and a shared colored disturbance remains invisible. The reproducible course refuses absolute calibration and planner eligibility.
 - [Exogenously excited original Cascaded Tanks With Overflow](docs/CASCADED_TANKS_ORIGINAL_RECEIVING.md): original Schoukens et al. 4TU multisine with separate official test, hidden upper tank, source-locked 716/308 training/development and 974 future test predictions. Prospective full-run lower-tank sensor-voltage RMSE **0.5796 V** for a constrained latent hydraulic model versus **0.6908 V** for selected order-8 ARX (**16.1% better**). Short-horizon forecasting is not uniformly better, no unique SI parameters/actuator-safety or independent-hardware transfer is proven. [Run the exact original-data two-process receiver](docs/CASCADED_TANKS_REPRO.md), which freezes the estimator before opening the independent test output.
 
 The real measured observations, model families, rejected candidates, controls, test provenance and physical limits remain independently reproducible. Neither outcome upgrades an unsupported browser-synthetic measurement into an authenticated physical instrument.
+
+## Exact source-only structural experiment design
+
+A separate [exact physical-identifiability compiler](docs/PHYSICAL_IDENTIFIABILITY.md)
+now checks whether any offered sensors or anchors *can in principle*
+distinguish competing latent physical quantities **before** expensive
+data collection. `npm run physical:identifiability` cold-runs the five-gyro
+physical measurement topology from the failed original MAGF-ID Conf2
+experiment: five recorded channel equations constrain seven latent
+quantities, leaving two rigorously witnessed invisible directions.
+It proves a cheapest **two-anchor** identifying subset from an explicitly
+declared hypothetical menu (independently authenticated stillness plus
+one independently calibrated private sensor error). Proposed measurements
+are not actually acquired; no physically validated calibration or
+sensor-transfer claim follows. The solver uses exact integer/rational
+arithmetic, finite-cardinality/cost search with explicit bounded
+inconclusive states, and replayable original-source certificates.
+Its default no-key CLI works on unfamiliar linear measurement models
+without re-reading outcomes or relying on a large-language-model guess.
 
 ## Run locally
 
