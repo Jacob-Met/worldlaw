@@ -23,7 +23,7 @@ function validateSensorOptions(config){
   fail(object(config),'Supply an explicit prospective Gaussian sensor configuration.');
   const keys=new Set(['sigma','correlationTime','maxReadings','decisionThreshold',
     'timeCostPerSecond','minimumInformationNats','quadratureToleranceNats',
-    'workLimit','priors']);
+    'workLimit','priors','modelMismatchAlpha']);
   fail(Object.keys(config).every(key=>keys.has(key)),
     'Unsupported adaptive sensor field; physical truth and posthoc observations are not planner settings.');
   fail(finite(config.sigma)&&config.sigma>=1e-12&&config.sigma<=.05,
