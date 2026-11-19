@@ -1,6 +1,6 @@
 # Declared sensor memory in prospective reading design
 
-Candidate integration; full release receiving is outstanding.
+Received through GitHub Actions `Worldlaw scientific verification` run `44574508172` on source `fe97826e024ac65e96a33263a158a711fa6a5690` (PR #641): 2/2 jobs green, 2317 test passes, zero failures, one existing skip; independent sampled-covariance oracle, launched product and real 1920×1080 / 390×844 browser, keyboard plan/acquire/export/reopen and changed-provenance refusal. These checks qualify a simulated instrument and browser experience, **not** an experimentally calibrated physical sensor. The product release to `main` is gated on merging that PR.
 
 Trajectory Challenge's existing noise-aware release planner accepts a sensor
 memory time in seconds. Zero preserves the independent Gaussian planner. A
@@ -52,3 +52,13 @@ chronological and spread schedules under the same maximum reading budget.
 Report counts, conditional accuracy, true-covariance separation and abstention
 separately. No physical-law, sensor-calibration or confidence-coverage claim
 follows from these controlled synthetic experiments.
+
+## Frozen receiving findings (2026-11-19)
+
+The held-out 128 originally authored ensembles and 4,096 paired Gaussian realizations used the same four-reading maximum; no sensor outcomes were available to the prospective planners. In 100 ensembles, the covariance-aware planner proved the target separation unreachable **even if all scheduled readings were observed**. It certified 24 separations without violating the independent true-covariance oracle; four additional ensembles exhausted the four-reading budget without certifying the target. The diagonal-independence incumbent claimed 16 separations, but 14 of those claims failed the true-covariance separation threshold. This makes false confidence, abstention and coverage the primary outcome, not just the accuracy of successful measurements.
+
+Across its 28 actually measured ensembles, the covariance-aware planner produced 838/896 correct equal-prior classifications (93.53% conditional accuracy), mean 0.602 readings across **all** 128 ensembles. The diagonal incumbent produced 2983/4096 correct (72.83%) with mean 3.883 readings across all 128, spread produced 3223/4096 (78.69%) with four readings, chronological 2500/4096 (61.04%). **These aggregate accuracies are not matched-coverage comparisons.** Exploratory post-outcome stratification within the 24 certified, mutually measured ensembles yields 94.40% covariance-aware versus 85.29% diagonal and 95.18% spread; the covariance-aware selector used on average 2.542 readings there versus 3.5 diagonal and 4 spread. These post-hoc subsets are descriptive, not preregistered superiority claims. Frozen output is artifact `correlated-sensor-cold-44574508172` from Actions run `44574508172`.
+
+The independently pinned Nullgarden consumer at commit `75527fb3934f65310b63d6ac9880394c5b98dc29` completed 64 exact within-pair label assignments across six prespecified matched pairs. The acquired opposed-sign design obtained AUC 1, exact p=0.03125 and leave-pair-out AUC 1; no-effect sham obtained exact p=0.9375 and constant negative p=1. Artifact `correlated-nullgarden-44574508172` preserves the source, CSVs, and full reports. All three are **authored** cohorts and do not establish measured real-world causal identification or sensor covariance calibration.
+
+Cold visual review identified inherited sub-11px measurement labels and legends as the main remaining accessibility defect on narrow screens; this update raises the shared experiment panel typography and control touch sizes for both desktop and mobile. Recheck the changed native screenshots in the next CI course before promoting that visual acceptance.
