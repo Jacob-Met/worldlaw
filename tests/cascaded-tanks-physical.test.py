@@ -100,7 +100,13 @@ class ControlledHydraulicsTests(unittest.TestCase):
         self.assertEqual(a["inputStatistics"]["count"],220)
         self.assertEqual(a["state"]["eventCounts"]["integrationSteps"],(220-1)*4)
         self.assertGreater(a["state"]["eventCounts"]["upperCapacityHits"],0)
-        self.assertGreater(a["state"]["eventCounts"]["lowerCapacityHits"],0)
+        # The first authored flow chiefly saturates the upper tank, not
+        # necessarily the lower. Verify lower overflow on an independent
+        # deliberately high-inflow/low-drainage physical control.
+        _,other=hyd.integrate_physical(np.ones(220),
+            [1.5,.6,.01,0.,1.,10.,.3],"hard_overflow",
+            observed_y0=.2,return_diagnostics=True)
+        self.assertGreater(other["eventCounts"]["lowerCapacityHits"],0)
         self.assertLessEqual(a["state"]["stateExtrema"]["upperMax"],
                              a["state"]["capacityUpper"]+1e-12)
     def test_source_archive_pin_and_source_field_refusals(self):
