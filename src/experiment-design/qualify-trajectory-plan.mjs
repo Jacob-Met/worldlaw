@@ -6,6 +6,7 @@
 import {rolloutWithResolution} from '../trajectory/resolution.mjs';
 import {UNITS} from '../science/torque-discovery.mjs';
 import {designGaussianReadings} from '../trajectory/gaussian-discriminator.mjs';
+import {designCorrelatedReadings,CORRELATED_WORK_LIMIT} from '../trajectory/correlated-gaussian-discriminator.mjs';
 
 export const QUALIFICATION_SCHEMA = 'worldlaw.trajectory-plan-qualification/v1';
 export class TrajectoryPlanQualificationError extends Error {
@@ -115,12 +116,14 @@ function pairwiseSensitivity(checks) {
  */
 export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
   const settings = options(requestedOptions);
-  requireThat(object(plan) && plan.schema === 'worldlaw.trajectory-plan/v1' && ['rms_pairwise_position_disagreement','finite-grid_minimax_independent_gaussian_discrimination'].includes(plan.method) &&
+  requireThat(object(plan) && plan.schema === 'worldlaw.trajectory-plan/v1' && ['rms_pairwise_position_disagreement','finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination'].includes(plan.method) &&
     object(plan.options) && Array.isArray(plan.ranked) && plan.ranked.length >= 1 && plan.ranked.length <= 81,
     'Supply a computed finite trajectory plan.');
   requireThat(['proposed', 'uninformative', 'no_feasible_design'].includes(plan.status), 'Unsupported planner status.');
   finite(plan.options.inertia, 'inertia', 1e-12, 1e12); finite(plan.options.command, 'command', -1e4, 1e4);
-  const noiseMode=plan.method==='finite-grid_minimax_independent_gaussian_discrimination';
+  const correlated=plan.method==='finite-grid_minimax_correlated_gaussian_discrimination';
+  const noiseMode=correlated||plan.method==='finite-grid_minimax_independent_gaussian_discrimination';
+  requireThat(correlated===(plan.options.noiseCorrelationTime>0),'Declared covariance differs from the planned method.');
   const threshold = finite(plan.options.minDisagreement, 'minDisagreement', 0, 1e6);
   if(noiseMode){
     finite(plan.options.noiseSigma,'noiseSigma',1e-12,1e6);
@@ -181,9 +184,11 @@ export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
     }
     const sensitivity = pairwiseSensitivity(modelChecks);
     if(noiseMode){
-      const args={sigma:plan.options.noiseSigma,targetZ:plan.options.noiseTargetZ,maxReadings:plan.options.noiseMaxReadings};
-      const coarse=designGaussianReadings(coarseNoisePredictions,args);
-      const refined=designGaussianReadings(refinedNoisePredictions,args);
+      const args={sigma:plan.options.noiseSigma,targetZ:plan.options.noiseTargetZ,maxReadings:plan.options.noiseMaxReadings,correlationTime:plan.options.noiseCorrelationTime,
+        ...(correlated?{maxInnovationTerms:Math.min(CORRELATED_WORK_LIMIT,Math.floor(plan.options.maxPowerProducts/designs.length))}:{})};
+      const designer=correlated?designCorrelatedReadings:designGaussianReadings;
+      const coarse=designer(coarseNoisePredictions,args);
+      const refined=designer(refinedNoisePredictions,args);
       const readKey=power=>power.readings.map(r=>r.sampleIndex).join(',');
       if(coarse.status!==design.power?.status || readKey(coarse)!==readKey(design.power) ||
         Math.abs(coarse.minPairwiseZ-design.power.minPairwiseZ)>1e-9*Math.max(1,coarse.minPairwiseZ)){
@@ -191,7 +196,18 @@ export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
           recomputedPower:coarse};
       }
       const errors=modelChecks.map(c=>c.maxAbsPositionDifference).sort((a,b)=>b-a);
-      const powerSensitivityZ=Math.sqrt(coarse.measurementCount)*(errors[0]+(errors[1]??0))/args.sigma;
+      // For bounded per-coordinate pair error b, innovations have magnitude
+      // at most b(1+rho). This retains the original triangle inequality in
+      // the declared covariance norm; sqrt(k)*b is invalid when correlated.
+      let sensitivityFactor=coarse.measurementCount;
+      if(correlated&&coarse.measurementCount){
+        sensitivityFactor=1;
+        for(let i=1;i<coarse.readings.length;i++){
+          const gap=(coarse.readings[i].time-coarse.readings[i-1].time)/args.correlationTime;
+          sensitivityFactor+=(1+Math.exp(-gap))**2/(-Math.expm1(-2*gap));
+        }
+      }
+      const powerSensitivityZ=Math.sqrt(sensitivityFactor)*(errors[0]+(errors[1]??0))/args.sigma;
       const powerMarginZ=coarse.minPairwiseZ-args.targetZ;
       const sameDecision=coarse.status===refined.status&&readKey(coarse)===readKey(refined);
       const thresholdStable=coarse.status!=='distinguishable'||powerMarginZ>powerSensitivityZ;
@@ -226,3 +242,4 @@ export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
         'No failed or unchecked model is dropped to form a survivor-only disagreement score.',
         'The original plan and ranking are unchanged; an unresolved recommendation needs a new plan with a smaller step or a different declared design.']}};
 }
+

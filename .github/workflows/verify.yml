@@ -39,10 +39,55 @@ jobs:
           mkdir -p .receipts
           node experiments/gaussian-intervention-comparison.mjs > .receipts/gaussian-intervention-comparison.json
           node -e 'const r=JSON.parse(require("node:fs").readFileSync(".receipts/gaussian-intervention-comparison.json")); console.log(JSON.stringify(r.grouped));'
+      - name: Receive declared correlated sensor design and unchanged held-out controls
+        run: |
+          node experiments/correlated-intervention-comparison.mjs > .receipts/correlated-intervention-comparison.json
+          node -e 'const r=JSON.parse(require("node:fs").readFileSync(".receipts/correlated-intervention-comparison.json")); console.log(JSON.stringify({scope:r.scope,grouped:r.grouped}));'
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -x "$BROWSER"
+          PLAYWRIGHT_MODULE=playwright-core BROWSER_EXECUTABLE_PATH="$BROWSER" node scripts/correlated-reading-browser.mjs
+      - name: Retain correlated source-bound receiving
+        uses: actions/upload-artifact@v4
+        with:
+          name: correlated-sensor-cold-${{ github.run_id }}
+          path: |
+            .receipts/correlated-reading/
+            .receipts/correlated-intervention-comparison.json
+          retention-days: 7
+          if-no-files-found: error
       - name: Retain source-pinned evidence (not committed)
         uses: actions/upload-artifact@v4
         with:
           name: gaussian-intervention-heldout-${{ github.run_id }}
           path: .receipts/gaussian-intervention-comparison.json
+          retention-days: 7
+          if-no-files-found: error
+
+
+  correlated-nullgarden:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover independently pinned Nullgarden receiver
+        uses: actions/checkout@v4
+        with:
+          repository: Jacob-Met/nullgarden
+          ref: 75527fb3934f65310b63d6ac9880394c5b98dc29
+          path: .independent-nullgarden
+          persist-credentials: false
+      - name: Run predeclared 64 exact pair assignments and three no-effect controls
+        env:
+          NULLGARDEN_SOURCE: ${{ github.workspace }}/.independent-nullgarden
+          NULLGARDEN_ARTIFACT_DIR: ${{ github.workspace }}/.receipts/correlated-nullgarden
+        run: node scripts/correlated-nullgarden-receiving.mjs
+      - name: Retain independently received exact-permutation outcomes
+        uses: actions/upload-artifact@v4
+        with:
+          name: correlated-nullgarden-${{ github.run_id }}
+          path: .receipts/correlated-nullgarden/
           retention-days: 7
           if-no-files-found: error

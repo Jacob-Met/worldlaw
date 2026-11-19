@@ -51,37 +51,37 @@ button{cursor:pointer}button:disabled,input:disabled{opacity:.5;cursor:not-allow
 button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #95ad5d;outline-offset:3px}
 .panel{border:1px solid #d9dfcf;border-radius:13px;background:#fffefa;overflow:hidden}
 .heading{padding:23px 24px 18px;display:flex;gap:20px;justify-content:space-between;align-items:start}
-.eyebrow{font-size:9px;letter-spacing:.12em;color:#738263;font-weight:650;margin-bottom:7px}
+.eyebrow{font-size:11px;letter-spacing:.12em;color:#738263;font-weight:650;margin-bottom:7px}
 h2{font:400 30px/1.15 var(--serif,Georgia,serif);letter-spacing:-.7px}h3{font-size:14px;font-weight:600}
-.intro{font-size:11px;color:#687665;max-width:540px;margin-top:10px;line-height:1.8}
-.instrument{font-size:9px;color:#5b7045;background:#edf2e1;border:1px solid #d6e1c4;border-radius:5px;padding:7px 9px;max-width:190px;line-height:1.6}
-.message{margin:0 24px 16px;font-size:11px;line-height:1.7;padding:10px 12px;border-radius:6px;background:#edf2e2;color:#526741}
+.intro{font-size:14px;color:#687665;max-width:540px;margin-top:10px;line-height:1.8}
+.instrument{font-size:12px;color:#5b7045;background:#edf2e1;border:1px solid #d6e1c4;border-radius:5px;padding:7px 9px;max-width:190px;line-height:1.6}
+.message{margin:0 24px 16px;font-size:13px;line-height:1.7;padding:10px 12px;border-radius:6px;background:#edf2e2;color:#526741}
 .message.error{background:#fff0e7;color:#8a4633;border:1px solid #dfbcab}
 .example-action{margin:0 24px 21px}
 .body{padding:0 24px 23px}.controls{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:17px}.controls .noise-option{display:flex;align-items:center;gap:8px;cursor:pointer;max-width:250px}.controls .noise-option input{flex:none}
-button{min-height:41px;border:1px solid #c9d9ab;border-radius:6px;padding:10px 15px;font-size:11px;font-weight:600;background:#d4ed87;color:#213f2b}
+button{min-height:44px;border:1px solid #c9d9ab;border-radius:6px;padding:10px 15px;font-size:13px;font-weight:600;background:#d4ed87;color:#213f2b}
 button.secondary{background:#fffefa;border-color:#c9d4bc}button:hover:not(:disabled){filter:brightness(.97)}
-details{font-size:10px;color:#68795a}summary{cursor:pointer;line-height:1.8}details[open] summary{margin-bottom:10px}
+details{font-size:13px;color:#68795a}summary{cursor:pointer;line-height:1.8}details[open] summary{margin-bottom:10px}
 .settings{margin-bottom:18px;border:1px solid #dfe4d5;border-radius:7px;padding:10px 13px;background:#fafbf5}
 .settings-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-label{display:block;font-size:9px;color:#68785b}label span{display:block;font-size:8px;color:#86937a;margin-bottom:4px}
-input{width:100%;min-width:0;border:1px solid #d6dfc9;border-radius:5px;background:#fffefa;min-height:37px;padding:7px 8px;color:#304b30;font:11px var(--mono,monospace)}
-.small{font-size:10px;line-height:1.8;color:#6e7f5d}.settings .small{margin-top:9px}
-.numerical-screen{display:flex;gap:16px;justify-content:space-between;align-items:start;margin:0 0 18px;padding:13px 15px;border:1px solid #cfddba;border-radius:7px;background:#f2f6e9}.numerical-screen.blocked{background:#fff6ec;border-color:#e4c9aa}.numerical-screen h3{font-size:12px;margin-bottom:5px}.screen-copy{max-width:590px}.screen-metric{flex:none;max-width:155px;text-align:right}.screen-metric strong{font:20px var(--serif,Georgia,serif);color:#415d32;display:block}.screen-metric span{font-size:8px;color:#71815e}.numerical-screen .footnote{margin-top:6px}
+label{display:block;font-size:12px;color:#68785b}label span{display:block;font-size:11px;color:#86937a;margin-bottom:4px}
+input{width:100%;min-width:0;border:1px solid #d6dfc9;border-radius:5px;background:#fffefa;min-height:43px;padding:9px 10px;color:#304b30;font:14px var(--mono,monospace)}
+.small{font-size:13px;line-height:1.7;color:#6e7f5d}.settings .small{margin-top:9px}
+.numerical-screen{display:flex;gap:16px;justify-content:space-between;align-items:start;margin:0 0 18px;padding:13px 15px;border:1px solid #cfddba;border-radius:7px;background:#f2f6e9}.numerical-screen.blocked{background:#fff6ec;border-color:#e4c9aa} .numerical-screen h3{font-size:14px;margin-bottom:5px}.screen-copy{max-width:590px}.screen-metric{flex:none;max-width:155px;text-align:right}.screen-metric strong{font:20px var(--serif,Georgia,serif);color:#415d32;display:block}.screen-metric span{font-size:11px;color:#71815e}.numerical-screen .footnote{margin-top:6px}
 .design{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:start}
 .release{background:#f0f3e7;border:1px solid #dce4cf;border-radius:8px;padding:17px}
 .release-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:15px 0 12px}
-.stat span{display:block;font-size:8px;color:#6e7f5b}.stat strong{display:block;font:23px var(--serif,Georgia,serif);margin:4px 0;color:#344f2c}.stat small{display:block;font-size:8px;color:#859373}
-.design-list{list-style:none;margin:12px 0 0;padding:0}.design-list li{display:flex;justify-content:space-between;gap:9px;border-top:1px solid #dbe4cd;padding:9px 0;font-size:9px;color:#60734e}.design-list strong{font-weight:600;white-space:nowrap}
-.preview{background:#14372a;border-radius:8px;overflow:hidden;min-width:0}.preview-title{padding:13px 15px 0;font-size:10px;color:#e5ecda}.chart{min-height:220px;overflow:hidden}.chart svg{display:block;width:100%;height:auto}.chart-empty{font-size:11px;line-height:1.8;padding:49px 20px;color:#bccba9;min-height:220px}
-.legend{display:flex;flex-wrap:wrap;gap:6px 12px;padding:0 15px 13px}.legend span{display:flex;align-items:center;gap:6px;font-size:8px;color:#c5d3b4;overflow-wrap:anywhere}.legend i{width:15px;border-top:2px solid;flex:none}
-.acquire{display:flex;align-items:center;justify-content:space-between;gap:17px;margin-top:18px;padding-top:17px;border-top:1px solid #e0e5d6}.acquire p{max-width:490px}.acquisition{border:1px solid #d9e3ca;border-radius:7px;background:#f5f8ed;padding:13px 15px;margin-top:15px}.acquisition strong{font-size:11px;font-weight:600}.acquisition p{margin-top:5px}
+.stat span{display:block;font-size:11px;color:#6e7f5b}.stat strong{display:block;font:23px var(--serif,Georgia,serif);margin:4px 0;color:#344f2c}.stat small{display:block;font-size:11px;color:#859373}
+.design-list{list-style:none;margin:12px 0 0;padding:0}.design-list li{display:flex;justify-content:space-between;gap:9px;border-top:1px solid #dbe4cd;padding:9px 0;font-size:12px;color:#60734e}.design-list strong{font-weight:600;white-space:nowrap}
+.preview{background:#14372a;border-radius:8px;overflow:hidden;min-width:0}.preview-title{padding:13px 15px 0;font-size:12px;color:#e5ecda}.chart{min-height:220px;overflow:hidden}.chart svg{display:block;width:100%;height:auto}.chart-empty{font-size:11px;line-height:1.8;padding:49px 20px;color:#bccba9;min-height:220px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 12px;padding:0 15px 13px}.legend span{display:flex;align-items:center;gap:6px;font-size:11px;color:#c5d3b4;overflow-wrap:anywhere}.legend i{width:15px;border-top:2px solid;flex:none}
+.acquire{display:flex;align-items:center;justify-content:space-between;gap:17px;margin-top:18px;padding-top:17px;border-top:1px solid #e0e5d6}.acquire p{max-width:490px}.acquisition{border:1px solid #d9e3ca;border-radius:7px;background:#f5f8ed;padding:13px 15px;margin-top:15px}.acquisition strong{font-size:13px;font-weight:600}.acquisition p{margin-top:5px}
 .revision{margin-top:20px;border-top:1px solid #dde4d2;padding-top:18px}.revision-heading{display:flex;align-items:start;justify-content:space-between;gap:15px;margin-bottom:13px}
 .revision-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}.revision-card{border:1px solid #dde5d2;border-radius:7px;padding:14px 16px;background:#fafbf5}.revision-card.after{background:#edf3df;border-color:#cdddb6}
-.revision-card .equation{font:18px/1.5 var(--serif,Georgia,serif);overflow-wrap:anywhere;margin:7px 0}.revision-card .score{font-size:12px;font-weight:600;color:#476037;margin-top:7px}.revision-card .small{font-size:9px}
-.revision-preview{margin-top:13px}.footnote{font-size:9px;color:#839172;line-height:1.8;margin-top:12px}
+.revision-card .equation{font:18px/1.5 var(--serif,Georgia,serif);overflow-wrap:anywhere;margin:7px 0}.revision-card .score{font-size:12px;font-weight:600;color:#476037;margin-top:7px}.revision-card .small{font-size:12px}
+.revision-preview{margin-top:13px}.footnote{font-size:12px;color:#839172;line-height:1.8;margin-top:12px}
 @media(max-width:900px){.design{grid-template-columns:1fr}.settings-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.heading{flex-wrap:wrap;gap:11px}.instrument{max-width:none}.chart{min-height:200px}}
-@media(max-width:420px){.heading{padding:20px 17px 15px}.body{padding:0 17px 19px}.message{margin-left:17px;margin-right:17px}h2{font-size:27px}.controls,.acquire,.revision-heading,.numerical-screen{align-items:stretch;flex-direction:column;gap:10px}.screen-metric{text-align:left;max-width:none}.settings-grid{grid-template-columns:1fr 1fr}.release{padding:15px}.release-stats{gap:9px}.stat strong{font-size:21px}.stat span{font-size:7px}.revision-cards{grid-template-columns:1fr}.intro{font-size:10px}.chart-empty{padding:34px 16px}.design-list li{font-size:8px}}
+@media(max-width:420px){.heading{padding:20px 17px 15px}.body{padding:0 17px 19px}.message{margin-left:17px;margin-right:17px}h2{font-size:27px}.controls,.acquire,.revision-heading,.numerical-screen{align-items:stretch;flex-direction:column;gap:10px}.screen-metric{text-align:left;max-width:none}.settings-grid{grid-template-columns:1fr 1fr}.release{padding:15px}.release-stats{gap:9px}.stat strong{font-size:21px}.stat span{font-size:11px}.revision-cards{grid-template-columns:1fr}.intro{font-size:13px}.chart-empty{padding:34px 16px}.design-list li{font-size:12px;flex-wrap:wrap;align-items:baseline}.design-list strong{white-space:normal;text-align:right}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 `;
 
@@ -102,10 +102,11 @@ export function createExperimentPanel(host, callbacks = {}) {
       <label for="duration">Observation time<span>s</span><input id="duration" type="number" min="0.01" step="0.4" inputmode="decimal"></label>
       <label for="solver-step">Maximum solver step<span>s</span><input id="solver-step" type="number" min="0.0001" max="0.1" step="0.001" inputmode="decimal"></label>
       <label for="minimum-spread">Minimum model spread<span>rad · proposal threshold</span><input id="minimum-spread" type="number" min="0" step="0.01" inputmode="decimal"></label>
-      <label for="power-sigma">Position noise σ<span>rad · independent sensor</span><input id="power-sigma" type="number" min="0.000000000001" step="0.001" value="0.01" inputmode="decimal"></label>
+      <label for="power-sigma">Position noise σ<span>rad · declared sensor</span><input id="power-sigma" type="number" min="0.000000000001" step="0.001" value="0.01" inputmode="decimal"></label>
+      <label for="power-correlation">Sensor memory τ<span>seconds · 0 means independent</span><input id="power-correlation" type="number" min="0" max="100000000" step="0.1" value="0" inputmode="decimal"></label>
       <label for="power-z">Minimum pair separation<span>z · standard deviations</span><input id="power-z" type="number" min="0.000001" max="100" step="0.01" value="3.29" inputmode="decimal"></label>
       <label for="power-readings">Reading budget<span>distinct timestamps</span><input id="power-readings" type="number" min="1" max="128" step="1" value="8" inputmode="numeric"></label>
-      </div><p class="small">With noise-aware decision enabled, compare the candidate motions against your declared independent Gaussian sensor noise and minimize informative reading count on the offered time grid. This assumption is not calibrated, not an authorization to operate hardware, and not physical validation.</p></details>
+      </div><p class="small">Compare candidate motions against declared Gaussian sensor noise. A positive sensor memory uses covariance σ² exp(−|t−s|/τ), so nearby readings share error; zero preserves independent readings. Memory is externally declared, never estimated from the new observations. This is not calibrated sensor performance, hardware authorization or physical validation.</p></details>
       <div class="controls"><p id="plan-status" class="small">No future recording has been acquired.</p>
         <label class="noise-option" for="power-enable"><input id="power-enable" type="checkbox" style="width:18px;min-height:22px" aria-label="Plan against declared Gaussian sensor noise">Noise-aware reading plan</label>
         <button id="plan" type="button">Plan a release →</button></div>
@@ -137,8 +138,10 @@ export function createExperimentPanel(host, callbacks = {}) {
       next.noiseSigma = read('power-sigma');
       next.noiseTargetZ = read('power-z');
       next.noiseMaxReadings = read('power-readings');
+      const correlation=read('power-correlation');
+      if(correlation>0)next.noiseCorrelationTime=correlation;else {if(correlation<0)throw new Error('Sensor memory must be nonnegative.');delete next.noiseCorrelationTime;}
     } else {
-      delete next.noiseSigma;delete next.noiseTargetZ;delete next.noiseMaxReadings;delete next.maxPowerProducts;
+      delete next.noiseSigma;delete next.noiseTargetZ;delete next.noiseMaxReadings;delete next.maxPowerProducts;delete next.noiseCorrelationTime;
     }
     if (next.bounds.initialPosition.min > next.bounds.initialPosition.max || next.bounds.initialRate.min > next.bounds.initialRate.max) throw new Error('Each minimum must be at most its maximum.');
     if (next.duration <= 0) throw new Error('Observation time must be greater than zero.');
@@ -204,7 +207,7 @@ export function createExperimentPanel(host, callbacks = {}) {
     $('open-example').hidden = Boolean(view.available) || typeof callbacks.onLoadExample !== 'function'; $('open-example').disabled = Boolean(pending);
     $('plan').disabled = Boolean(pending) || Boolean(run) || Boolean(sparse) || !view.available || typeof callbacks.onPlan !== 'function';
     $('acquire').disabled = Boolean(pending) || !view.available || view.acquisitionAllowed === false || plan?.status !== 'proposed' || !selected || Boolean(run) || Boolean(sparse) || typeof callbacks.onAcquire !== 'function';
-    $('acquire-sparse').hidden = plan?.method !== 'finite-grid_minimax_independent_gaussian_discrimination';
+    $('acquire-sparse').hidden = !['finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination'].includes(plan?.method);
     $('acquire-sparse').disabled = Boolean(pending) || !view.available || view.acquisitionAllowed === false ||
       plan?.status !== 'proposed' || !selected || Boolean(run) || Boolean(sparse) || typeof callbacks.onAcquireSparse !== 'function';
     $('apply').disabled = Boolean(pending) || !run || typeof callbacks.onApplyEvidence !== 'function';
@@ -235,10 +238,11 @@ export function createExperimentPanel(host, callbacks = {}) {
     $('power-readout').hidden = !power;
     if (power) {
       const timestamps=power.readings.map(r=>format(r.time,5)).join(', ');
-      $('power-readout').textContent = `Noise-aware design: worst pair separation ${format(power.minPairwiseZ,5)} z at σ=${format(power.sigmaRad,5)} rad; ${power.measurementCount} independent reading(s) at t=[${timestamps}] s. ${power.optimality}. No evidence acquired.`;
+      const covariance=power.correlationTimeSeconds>0?`correlated (τ=${format(power.correlationTimeSeconds,5)} s)`:'independent';
+      $('power-readout').textContent = `Noise-aware design: worst pair separation ${format(power.minPairwiseZ,5)} z at σ=${format(power.sigmaRad,5)} rad; ${power.measurementCount} ${covariance} reading(s) at t=[${timestamps}] s. ${power.optimality}. No evidence acquired.`;
     }
     $('design-meaning').textContent = plan?.status === 'no_feasible_design' ? 'Every candidate release was refused by a prediction or sampled prediction limit. Inspect the model scope or choose other limits.' :
-      usingPower ? (plan?.status === 'uninformative' ? 'This greedy reading schedule did not establish the requested pairwise separation under the declared noise. Its certificate distinguishes a proven budget limit from an inconclusive search; neither proves physical equivalence.' : 'This release separates the competing predicted trajectories under the declared independent Gaussian noise model. Verify the sensor and model assumptions before acquiring.') :
+      usingPower ? (plan?.status === 'uninformative' ? 'This reading search did not establish the requested pairwise separation under the declared noise. Its certificate distinguishes a proven budget limit from an inconclusive search; neither proves physical equivalence.' : 'This release separates the competing predicted trajectories under the declared Gaussian sensor covariance. Verify the sensor and model assumptions before acquiring.') :
       plan?.status === 'uninformative' ? `Compared model spread does not exceed the ${format(plan.options?.minDisagreement)} rad design threshold. Try a different release range.` : selected ? 'The chosen release maximizes pairwise position disagreement among the compared training-compatible models on this grid.' : 'A proposal uses competing predictions. It contains no future observation.';
     $('design-list').replaceChildren();
     for (const design of (plan?.ranked || []).slice(0, 3)) {const row = element('li'); row.append(element('span', `${format(design.initialPosition, 3)} rad · ${format(design.initialRate, 3)} rad/s`), element('strong', Number.isFinite(design.disagreementRad) ? `${format(design.disagreementRad, 3)} rad spread` : 'prediction refused')); $('design-list').append(row);}
@@ -277,6 +281,7 @@ export function createExperimentPanel(host, callbacks = {}) {
     for (const [id, value] of [['position-min', settings.bounds.initialPosition.min], ['position-max', settings.bounds.initialPosition.max], ['rate-min', settings.bounds.initialRate.min], ['rate-max', settings.bounds.initialRate.max], ['duration', settings.duration], ['solver-step', settings.maxStep ?? .01], ['minimum-spread', settings.minDisagreement ?? .01]]) $(id).value = value;
     $('power-enable').checked=Number.isFinite(settings.noiseSigma);
     $('power-sigma').value=settings.noiseSigma??.01;
+    $('power-correlation').value=settings.noiseCorrelationTime??0;
     $('power-z').value=settings.noiseTargetZ??3.29;
     $('power-readings').value=settings.noiseMaxReadings??8;
     paint();
@@ -304,3 +309,4 @@ export function createExperimentPanel(host, callbacks = {}) {
   render(view);
   return {render, destroy() {destroyed = true; generation++; observer.disconnect(); cancelAnimationFrame(frame); shadow.replaceChildren();}};
 }
+

@@ -118,7 +118,7 @@ export function acquireNextExperiment(session,options={}){
   const declaredSigma=session.plan.options.noiseSigma;
   insist(declaredSigma===undefined||options.noiseSigma===undefined||options.noiseSigma===declaredSigma,
     'Noise-aware experimental plans must be acquired at their declared sensor noise, not a changed noise scale. Plan again to compare another sensor.','instrument_mismatch');
-  const runs=retainedRuns(session),request={...session.plan.selected.acquisitionRequest,seed:options.seed??freshSeed(runs),noiseSigma:options.noiseSigma??declaredSigma??.00002};
+  const runs=retainedRuns(session),request={...session.plan.selected.acquisitionRequest,seed:options.seed??freshSeed(runs),noiseSigma:options.noiseSigma??declaredSigma??.00002,...(session.plan.options.noiseCorrelationTime>0?{noiseCorrelationTime:session.plan.options.noiseCorrelationTime}:{})};
   const rawRun=acquireVirtualPendulum(request,{existingRuns:runs});
   const run=validateRun(rawRun,{role:'training',inheritedUnits:RUN_UNITS});
   const acquisition={id:run.id,run,request,planSettings:copy(session.plan.options),planId:session.plan.id,contextKey:session.plan.contextKey};
@@ -136,7 +136,7 @@ export function acquireSelectedReadings(session,options={}){
   insist(!session.acquisition&&!session.sparseAcquisition,
     'This notebook already has recorded evidence; a second acquisition requires a new notebook.','repeated_evidence');
   insist(session.plan?.selected&&session.plan?.status==='proposed'&&
-    session.plan.method==='finite-grid_minimax_independent_gaussian_discrimination'&&
+    ['finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination'].includes(session.plan.method)&&
     session.plan.selected.power?.status==='distinguishable',
     'Only a distinguishing prospective Gaussian reading plan can acquire a sparse sensor record.','no_proposal');
   insist(session.plan.contextKey===contextKey(session.current)&&
@@ -151,6 +151,7 @@ export function acquireSelectedReadings(session,options={}){
     'Sparse acquisition must use the prospectively declared sensor noise.','instrument_mismatch');
   const runs=retainedRuns(session);
   const request={...session.plan.selected.acquisitionRequest,noiseSigma,
+    ...(session.plan.options.noiseCorrelationTime>0?{noiseCorrelationTime:session.plan.options.noiseCorrelationTime}:{}),
     seed:options.seed??freshSeed(runs),
     sampleIndices:session.plan.selected.power.readings.map(row=>row.sampleIndex)};
   const evidence=acquireVirtualPendulumReadings(request,{existingRuns:runs});
@@ -254,4 +255,5 @@ export function restoreExperimentSession(text){
   session.current.selectedModelId=outer.selectedModelId;session.current.selectedRunId=outer.selectedRunId;session.current.positionTolerance=outer.positionTolerance;
   return register(session);
 }
+
 
