@@ -21,6 +21,7 @@
     "trajectory:browser": "node scripts/trajectory-browser-92be.mjs",
     "trajectory:build": "node scripts/build-trajectory-92be.mjs",
     "stiffness:browser": "node scripts/stiffness-browser.mjs",
-    "stiffness:experiment:browser": "node scripts/stiffness-experiment-browser.mjs"
+    "stiffness:experiment:browser": "node scripts/stiffness-experiment-browser.mjs",
+    "physical:identifiability": "node scripts/physical-identifiability.mjs"
   }
 }
