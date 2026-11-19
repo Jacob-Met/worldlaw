@@ -1,6 +1,7 @@
 /** Finite nearby releases through the maintained Studio solver; no new integrator. */
 import {prepareTorquePredictor, DiscoveryError} from './torque-discovery.mjs';
 import {executeStudioDynamics} from './studio-dynamics.mjs';
+import {outputIntervalCount} from './output-grid.mjs';
 
 const fail = (message, code='invalid_input') => {throw new DiscoveryError(message, code);};
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -18,7 +19,7 @@ function settings(options) {
   const result=Object.fromEntries(Object.entries(DEFAULTS).map(([key,value])=>[key,options[key]===undefined?value:options[key]]));
   finite(result.duration,'duration',1000);finite(result.dt,'dt',1);
   finite(result.inertia,'inertia',1e12);finite(result.command,'command');
-  if (result.duration<=0 || result.dt<=0 || result.inertia<=0 || Math.ceil(result.duration/result.dt)>10000)
+  if (result.duration<=0 || result.dt<=0 || result.inertia<=0 || outputIntervalCount(result.duration,result.dt)>10000)
     fail('Use positive duration, output interval and inertia with at most 10000 output intervals.');
   for (const key of ['relativeTolerance','positionTolerance','rateTolerance']) {
     finite(result[key],key,0.01);
@@ -135,7 +136,7 @@ export function compareNearbyReleases(model,initial,perturbation,options={}) {
     norm:{formula:'hypot(delta_position, timeScale * delta_rate)',timeScaleSeconds:timeScale,distanceUnit:'rad',responseFactorUnit:'1'},
     initialPerturbations:{full,half},courses,comparisons,sizeComparison,
     work:{courseCount:3,reservedMaximumAdaptiveTrials:3*solver.maxTrials,
-      reservedMaximumFixedSteps:3*Math.ceil(solver.duration/solver.dt),
+      reservedMaximumFixedSteps:3*outputIntervalCount(solver.duration,solver.dt),
       completedAdaptiveTrials:Object.values(courses).reduce((sum,course)=>sum+(course.diagnostics?.trials??0),0),
       failedCourseWorkUnknown:Object.values(courses).some(course=>course.status==='failed')},
     interpretation:'Conditional predictions for one declared finite initial-state direction, using the maintained Studio solver. The sampled maximum is not maximum gain over directions or times, an instantaneous spectrum, physical validation, a Lyapunov exponent or a global stability claim. All courses retain their original numerical method and failures.'};

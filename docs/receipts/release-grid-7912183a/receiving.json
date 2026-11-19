@@ -1,0 +1,977 @@
+{
+  "schema": "worldlaw.release-grid-receiving/v1",
+  "sourceCommit": "553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9",
+  "candidateSourceSha256": "f2a521cfcaac27b94a1af9554dc054d574b68b5ba8e005f3f48d350f5e18736c",
+  "regressionSourceSha256": "0eb55e326b50b2031f6394aff4c5f1a44c93dd14c8900201d08c663ed05e2bb5",
+  "executionMode": "Native Node v24.22.1 in a controlled existing checkout. Every loaded project module was checked against current-main source pins. The candidate wrapper and new test were supplied through an explicit module-load hook; physical checkout files were not edited. This is not a clean checkout, complete suite, packaged build or browser qualification.",
+  "task": {
+    "task_id": "worldlaw-release-grid-alignment-7912183a",
+    "owner": "estate-astra-7912183a-d09a-4e98-80c2-402b8678126d",
+    "observedRevision": 2,
+    "preservedConsumerTask": "worldlaw-nearby-release-response-690141946887",
+    "preservedConsumerOwner": "estate-690141946887-20261028",
+    "preservedConsumerRevision": 5,
+    "coordination": "https://github.com/Jacob-Met/worldlaw/pull/399#issuecomment-6689335528"
+  },
+  "focused": {
+    "baseline": {
+      "exit": 1,
+      "total": 6,
+      "passed": 2,
+      "failed": 4,
+      "skipped": 0,
+      "scope": "New regression file against unchanged main wrapper; expected failures in both boundary admissions, small fixed reservation and exposed-invalid-budget precedence.",
+      "output": "✖ smooth release comparison admits the maintained 10000-interval endpoint grid (2.014199ms)\n✖ fixed Coulomb release comparison admits the maintained 10000-interval endpoint grid (0.314104ms)\n✔ a genuine final interval is retained and a genuine 10001st interval is refused (4.026104ms)\n✖ already-admitted rounded endpoint reports the actual fixed-course reservation (1.788909ms)\n✔ output-grid alignment does not relax adaptive complete-run work refusal (1.065237ms)\n✖ true interval-limit refusal retains precedence while corrected admission exposes invalid trial budgets (0.363178ms)\nℹ tests 6\nℹ suites 0\nℹ pass 2\nℹ fail 4\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 19.958642\n\n✖ failing tests:\n\ntest at tests/release-output-grid.test.mjs:47:3\n✖ smooth release comparison admits the maintained 10000-interval endpoint grid (2.014199ms)\n  DiscoveryError: Use positive duration, output interval and inertia with at most 10000 output intervals.\n      at fail (file://<checkout>/src/science/release-separation.mjs:5:56)\n      at settings (file://<checkout>/src/science/release-separation.mjs:22:5)\n      at compareNearbyReleases (file://<checkout>/src/science/release-separation.mjs:91:28)\n      at run (file://<checkout>/tests/release-output-grid.test.mjs:12:12)\n      at TestContext.<anonymous> (file://<checkout>/tests/release-output-grid.test.mjs:49:20)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.start (node:internal/test_runner/test:1262:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    code: 'invalid_input'\n  }\n\ntest at tests/release-output-grid.test.mjs:47:3\n✖ fixed Coulomb release comparison admits the maintained 10000-interval endpoint grid (0.314104ms)\n  DiscoveryError: Use positive duration, output interval and inertia with at most 10000 output intervals.\n      at fail (file://<checkout>/src/science/release-separation.mjs:5:56)\n      at settings (file://<checkout>/src/science/release-separation.mjs:22:5)\n      at compareNearbyReleases (file://<checkout>/src/science/release-separation.mjs:91:28)\n      at run (file://<checkout>/tests/release-output-grid.test.mjs:12:12)\n      at TestContext.<anonymous> (file://<checkout>/tests/release-output-grid.test.mjs:49:20)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12) {\n    code: 'invalid_input'\n  }\n\ntest at tests/release-output-grid.test.mjs:79:1\n✖ already-admitted rounded endpoint reports the actual fixed-course reservation (1.788909ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  24 !== 21\n  \n      at completeGrid (file://<checkout>/tests/release-output-grid.test.mjs:38:10)\n      at TestContext.<anonymous> (file://<checkout>/tests/release-output-grid.test.mjs:81:19)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 24,\n    expected: 21,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\ntest at tests/release-output-grid.test.mjs:104:1\n✖ true interval-limit refusal retains precedence while corrected admission exposes invalid trial budgets (0.363178ms)\n  AssertionError [ERR_ASSERTION]: The validation function is expected to return \"true\". Received false\n  \n  Caught error:\n  \n  DiscoveryError: Use positive duration, output interval and inertia with at most 10000 output intervals.\n      at TestContext.<anonymous> (file://<checkout>/tests/release-output-grid.test.mjs:107:10)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1402:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n      at Test.postRun (node:internal/test_runner/test:1542:19)\n      at Test.run (node:internal/test_runner/test:1467:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: [DiscoveryError],\n    expected: [Function (anonymous)],\n    operator: 'throws',\n    diff: 'simple'\n  }\nRELEASE_GRID_SOURCE_RECEIPT {\"mode\":\"baseline\",\"node\":\"v24.22.1\",\"began\":\"2026-11-06T16:09:42.780Z\",\"ended\":\"2026-11-06T16:09:42.833Z\",\"code\":1,\"sourceFilesGuarded\":21,\"loaded\":{\"tests/release-output-grid.test.mjs\":\"0eb55e326b50b2031f6394aff4c5f1a44c93dd14c8900201d08c663ed05e2bb5\",\"src/science/release-separation.mjs\":\"5f55af09595a273afccdff2d99ed431c77675dc836a01d3d16b429e9065e3aff\",\"src/science/torque-discovery.mjs\":\"c50f0fe60bb315b894b5060e01706b49c5ef671da59a6515b01507f9c236f518\",\"src/science/periodic-origin-model.mjs\":\"bae5062b42be21533038876305e255c4d7857f6a447b49a734db4ccec85ec667\",\"src/science/split-column.mjs\":\"42da6cbad9534b616a32920e0381425a487c1cd18a16ce9159d78964f54df148\",\"src/science/periodic-trig.mjs\":\"53233d010e52c47f31ef4b2ef1f40921a27c8008ab59f47772e7208c1141b39e\",\"src/science/input-origin-fit.mjs\":\"962e49a33a83c64eb189bd787fbbfc947e76d5fb62418aacca050bad1558a794\",\"src/science/heterogeneous-fit.mjs\":\"b603bd80e5362265460096ebb4026b29994741dfc6a2f6a90715d549ec1ebc61\",\"src/science/robust-budget-probe.mjs\":\"01085e832ac647c2836a03f0287f7ee056ed7f5d31073d7021975a7f5475c5f2\",\"src/science/linear-fit.mjs\":\"da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da\",\"src/science/split-multicolumn.mjs\":\"f722c70391cb2d31fd6ff5596fe7933eb1fd58ee1a5f93813f675f4a16023998\",\"src/science/shared-iteration-fit.mjs\":\"fb8cd447cfdbaf9c9d413814300a0824a8a3658e55d9c3a0529fd1df379447f2\",\"src/science/curvature-fit.mjs\":\"073d1ad35528ba7fbf1787d4a89b4e41cc05ade9829443682780bcef5f6223dc\",\"src/science/continuation-fit.mjs\":\"adbd6e23c4dd540630136e61477aa8eb50ff68b8dcb34039737ace79fad148f9\",\"src/science/robust-fit-research.mjs\":\"fa1737ec744c993f5206453e9ee004a6a21ec25ada1a98655b94f79c9813b39a\",\"src/science/centered-response.mjs\":\"452a2f54a6f518ea3c90752713ec37719c18dd512232987f80af95a7481ee140\",\"src/science/robust-fit.mjs\":\"7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1\",\"src/science/output-grid.mjs\":\"e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d\",\"src/science/studio-dynamics.mjs\":\"4b56436f4f7c359e226a99cb60e90d2a0c320a7c2909139e75aa221a6d7cbe00\"},\"physicalSourceUnchanged\":true}\n"
+    },
+    "candidate": {
+      "exit": 0,
+      "total": 26,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "scope": "Six new regressions plus thirteen maintained release-separation and seven maintained Studio endpoint tests.",
+      "output": "✔ smooth release comparison admits the maintained 10000-interval endpoint grid (180.583135ms)\n✔ fixed Coulomb release comparison admits the maintained 10000-interval endpoint grid (57.486906ms)\n✔ a genuine final interval is retained and a genuine 10001st interval is refused (2.872203ms)\n✔ already-admitted rounded endpoint reports the actual fixed-course reservation (2.293971ms)\n✔ output-grid alignment does not relax adaptive complete-run work refusal (0.798906ms)\n✔ true interval-limit refusal retains precedence while corrected admission exposes invalid trial budgets (0.430911ms)\n✔ independent free-particle shear has finite growth with zero instantaneous eigenvalues (5.355719ms)\n✔ independent critically damped solution matches displacement and velocity (8.416133ms)\n✔ independent oscillator preserves the correctly weighted norm (5.281958ms)\n✔ independent unstable spring follows its growing eigenvector (1.928941ms)\n✔ independent time scale changes only reported norm, not solver courses (2.614304ms)\n✔ independent decaying selected direction can miss an unstable mode (1.336787ms)\n✔ independent Coulomb release retains fixed execution away from zero rate (0.904835ms)\n✔ independent nonlinear cubic law shows finite amplitude dependence (0.64346ms)\n✔ independent actual rounded initial differences are retained (0.26501ms)\n✔ independent half perturbation rounding away is explicitly refused (0.25213ms)\n✔ independent exhausted solver budget cannot become combined success (0.397449ms)\n✔ independent boundary failure retains the other completed courses (0.509669ms)\n✔ independent selected-direction result makes no convergence or maximum-gain claim (1.356507ms)\n✔ complete strictly advancing shared grid 0.07/0.01 (1.251157ms)\n✔ complete strictly advancing shared grid 0.14/0.01 (0.328636ms)\n✔ complete strictly advancing shared grid 0.28/0.02 (0.354665ms)\n✔ complete strictly advancing shared grid 0.3/0.1 (0.284789ms)\n✔ complete strictly advancing shared grid 0.071/0.01 (0.194573ms)\n✔ complete strictly advancing shared grid 0.125/0.03125 (0.237848ms)\n✔ real final partial interval retained (0.125169ms)\nℹ tests 26\nℹ suites 0\nℹ pass 26\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 286.887817\nRELEASE_GRID_SOURCE_RECEIPT {\"mode\":\"candidate\",\"node\":\"v24.22.1\",\"began\":\"2026-11-06T16:09:43.243Z\",\"ended\":\"2026-11-06T16:09:43.557Z\",\"code\":0,\"sourceFilesGuarded\":21,\"loaded\":{\"tests/release-output-grid.test.mjs\":\"0eb55e326b50b2031f6394aff4c5f1a44c93dd14c8900201d08c663ed05e2bb5\",\"src/science/release-separation.mjs\":\"f2a521cfcaac27b94a1af9554dc054d574b68b5ba8e005f3f48d350f5e18736c\",\"src/science/torque-discovery.mjs\":\"c50f0fe60bb315b894b5060e01706b49c5ef671da59a6515b01507f9c236f518\",\"src/science/periodic-origin-model.mjs\":\"bae5062b42be21533038876305e255c4d7857f6a447b49a734db4ccec85ec667\",\"src/science/split-column.mjs\":\"42da6cbad9534b616a32920e0381425a487c1cd18a16ce9159d78964f54df148\",\"src/science/periodic-trig.mjs\":\"53233d010e52c47f31ef4b2ef1f40921a27c8008ab59f47772e7208c1141b39e\",\"src/science/input-origin-fit.mjs\":\"962e49a33a83c64eb189bd787fbbfc947e76d5fb62418aacca050bad1558a794\",\"src/science/heterogeneous-fit.mjs\":\"b603bd80e5362265460096ebb4026b29994741dfc6a2f6a90715d549ec1ebc61\",\"src/science/robust-budget-probe.mjs\":\"01085e832ac647c2836a03f0287f7ee056ed7f5d31073d7021975a7f5475c5f2\",\"src/science/linear-fit.mjs\":\"da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da\",\"src/science/split-multicolumn.mjs\":\"f722c70391cb2d31fd6ff5596fe7933eb1fd58ee1a5f93813f675f4a16023998\",\"src/science/shared-iteration-fit.mjs\":\"fb8cd447cfdbaf9c9d413814300a0824a8a3658e55d9c3a0529fd1df379447f2\",\"src/science/curvature-fit.mjs\":\"073d1ad35528ba7fbf1787d4a89b4e41cc05ade9829443682780bcef5f6223dc\",\"src/science/continuation-fit.mjs\":\"adbd6e23c4dd540630136e61477aa8eb50ff68b8dcb34039737ace79fad148f9\",\"src/science/robust-fit-research.mjs\":\"fa1737ec744c993f5206453e9ee004a6a21ec25ada1a98655b94f79c9813b39a\",\"src/science/centered-response.mjs\":\"452a2f54a6f518ea3c90752713ec37719c18dd512232987f80af95a7481ee140\",\"src/science/robust-fit.mjs\":\"7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1\",\"src/science/output-grid.mjs\":\"e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d\",\"src/science/studio-dynamics.mjs\":\"4b56436f4f7c359e226a99cb60e90d2a0c320a7c2909139e75aa221a6d7cbe00\",\"tests/release-separation.test.mjs\":\"867dac114efad0a47c1636c237f92cb43b4f525ee468cf1a0efffc7172ff5976\",\"tests/studio-endpoint.test.mjs\":\"96b3330c5b52359055d3a13083fefedb7ffffb7164974642791b831019eec7a9\",\"src/science/studio-dynamics-comparison.mjs\":\"4ded80f10fd7ed0c1deb91f35125d1432e69f9f2fc8b1dbf5ccf29aa31c7976f\"},\"physicalSourceUnchanged\":true}\n"
+    },
+    "pins": [
+      {
+        "path": "src/science/release-separation.mjs",
+        "bytes": 9304,
+        "blob": "0be5ef8866acaf678b3157bf29498a974c4acf2b",
+        "sha256": "5f55af09595a273afccdff2d99ed431c77675dc836a01d3d16b429e9065e3aff"
+      },
+      {
+        "path": "src/science/torque-discovery.mjs",
+        "bytes": 48143,
+        "blob": "ad2762938cf96bc986a6db2e6d670924a5233795",
+        "sha256": "c50f0fe60bb315b894b5060e01706b49c5ef671da59a6515b01507f9c236f518"
+      },
+      {
+        "path": "src/science/periodic-origin-model.mjs",
+        "bytes": 2697,
+        "blob": "75031db36771e7b08e8e4c09db59bfca1239399d",
+        "sha256": "bae5062b42be21533038876305e255c4d7857f6a447b49a734db4ccec85ec667"
+      },
+      {
+        "path": "src/science/split-column.mjs",
+        "bytes": 416,
+        "blob": "b9ae21874ed8deb50608deb6f4c147f5dc2e1cda",
+        "sha256": "42da6cbad9534b616a32920e0381425a487c1cd18a16ce9159d78964f54df148"
+      },
+      {
+        "path": "src/science/periodic-trig.mjs",
+        "bytes": 1783,
+        "blob": "60feb4f8ebc85615e2ee76190ae259a58d3cda22",
+        "sha256": "53233d010e52c47f31ef4b2ef1f40921a27c8008ab59f47772e7208c1141b39e"
+      },
+      {
+        "path": "src/science/input-origin-fit.mjs",
+        "bytes": 3691,
+        "blob": "bccef7dae4da8f97ee8ac46944d38e4985eab421",
+        "sha256": "962e49a33a83c64eb189bd787fbbfc947e76d5fb62418aacca050bad1558a794"
+      },
+      {
+        "path": "src/science/heterogeneous-fit.mjs",
+        "bytes": 6319,
+        "blob": "9a1eb2c9abd3cd7e31bfd6ad779190d9fbd94fc8",
+        "sha256": "b603bd80e5362265460096ebb4026b29994741dfc6a2f6a90715d549ec1ebc61"
+      },
+      {
+        "path": "src/science/robust-budget-probe.mjs",
+        "bytes": 5829,
+        "blob": "7b990502a8172c3a4ae861c2087352e159c9ee43",
+        "sha256": "01085e832ac647c2836a03f0287f7ee056ed7f5d31073d7021975a7f5475c5f2"
+      },
+      {
+        "path": "src/science/linear-fit.mjs",
+        "bytes": 2722,
+        "blob": "5fc92b53ed52ba96dc60b1235aea87bffc4e83ca",
+        "sha256": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da"
+      },
+      {
+        "path": "src/science/split-multicolumn.mjs",
+        "bytes": 511,
+        "blob": "24d765fe79ed75e77c57a58c5d4903c2cd6affde",
+        "sha256": "f722c70391cb2d31fd6ff5596fe7933eb1fd58ee1a5f93813f675f4a16023998"
+      },
+      {
+        "path": "src/science/shared-iteration-fit.mjs",
+        "bytes": 3661,
+        "blob": "8fb77d1899286c4d6b1a20115c5f15d16d297f36",
+        "sha256": "fb8cd447cfdbaf9c9d413814300a0824a8a3658e55d9c3a0529fd1df379447f2"
+      },
+      {
+        "path": "src/science/curvature-fit.mjs",
+        "bytes": 5579,
+        "blob": "02f69d491473592f320ad5af93b138687673ecd3",
+        "sha256": "073d1ad35528ba7fbf1787d4a89b4e41cc05ade9829443682780bcef5f6223dc"
+      },
+      {
+        "path": "src/science/continuation-fit.mjs",
+        "bytes": 4023,
+        "blob": "bed254050f189a7800d54f8358b4ca28945899b5",
+        "sha256": "adbd6e23c4dd540630136e61477aa8eb50ff68b8dcb34039737ace79fad148f9"
+      },
+      {
+        "path": "src/science/robust-fit-research.mjs",
+        "bytes": 5808,
+        "blob": "d0901bccef6d05660dfd82e179837dd5e4b7a1ce",
+        "sha256": "fa1737ec744c993f5206453e9ee004a6a21ec25ada1a98655b94f79c9813b39a"
+      },
+      {
+        "path": "src/science/centered-response.mjs",
+        "bytes": 2043,
+        "blob": "4d087ec903143d8ce3f809700896a26ed0873772",
+        "sha256": "452a2f54a6f518ea3c90752713ec37719c18dd512232987f80af95a7481ee140"
+      },
+      {
+        "path": "src/science/robust-fit.mjs",
+        "bytes": 5720,
+        "blob": "37c20230887d1d3b9f387f930ba89443ded7717b",
+        "sha256": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1"
+      },
+      {
+        "path": "src/science/output-grid.mjs",
+        "bytes": 445,
+        "blob": "317307c13ef13d148a6bb9b24e4efb123884e227",
+        "sha256": "e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d"
+      },
+      {
+        "path": "src/science/studio-dynamics.mjs",
+        "bytes": 8563,
+        "blob": "ae974e953292bfca6720c350e1ba604f315442b5",
+        "sha256": "4b56436f4f7c359e226a99cb60e90d2a0c320a7c2909139e75aa221a6d7cbe00"
+      },
+      {
+        "path": "tests/release-separation.test.mjs",
+        "bytes": 9446,
+        "blob": "6b3084081a303ce296ee97360defb1f6b5bf8db7",
+        "sha256": "867dac114efad0a47c1636c237f92cb43b4f525ee468cf1a0efffc7172ff5976"
+      },
+      {
+        "path": "tests/studio-endpoint.test.mjs",
+        "bytes": 1445,
+        "blob": "1fcec50b1a1658ccf36193c9e6b692dce69ed8db",
+        "sha256": "96b3330c5b52359055d3a13083fefedb7ffffb7164974642791b831019eec7a9"
+      },
+      {
+        "path": "src/science/studio-dynamics-comparison.mjs",
+        "bytes": 9210,
+        "blob": "75d30c89f27a4c308be5c75f91dee1f89c3d5cdc",
+        "sha256": "4ded80f10fd7ed0c1deb91f35125d1432e69f9f2fc8b1dbf5ccf29aa31c7976f"
+      }
+    ],
+    "driver": "import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {pathToFileURL,fileURLToPath} from 'node:url';import {registerHooks} from 'node:module';\nconst input=JSON.parse(process.argv[1]),root=process.cwd(),began=new Date().toISOString();\nconst sha=s=>crypto.createHash('sha256').update(s).digest('hex');\nconst pins=new Map(input.pins.map(p=>[path.join(root,p.path),p])),loaded={};\nconst testPath=path.join(root,'tests/release-output-grid.test.mjs'),testURL=pathToFileURL(testPath).href;\nconst candidatePath=path.join(root,'src/science/release-separation.mjs');\nfor(const [p,pin]of pins)assert.equal(sha(fs.readFileSync(p)),pin.sha256,p);\nregisterHooks({\n resolve(specifier,context,nextResolve){if(specifier===testURL)return{url:testURL,format:'module',shortCircuit:true};return nextResolve(specifier,context);},\n load(url,context,nextLoad){\n  if(url===testURL){loaded['tests/release-output-grid.test.mjs']=sha(input.tests);return{format:'module',source:input.tests,shortCircuit:true};}\n  if(url.startsWith('file:')){const p=fileURLToPath(url),pin=pins.get(p);assert.ok(pin,'Unpinned module '+p);const out=nextLoad(url,context);assert.equal(sha(out.source),pin.sha256,p);\n   if(input.mode==='candidate'&&p===candidatePath){loaded[pin.path]=sha(input.candidate);return{format:'module',source:input.candidate,shortCircuit:true};}\n   loaded[pin.path]=pin.sha256;return out;\n  }return nextLoad(url,context);\n }});\nawait import(testURL);\nif(input.mode==='candidate')for(const rel of ['tests/release-separation.test.mjs','tests/studio-endpoint.test.mjs'])await import(pathToFileURL(path.join(root,rel)));\nprocess.on('exit',code=>{for(const[p,pin]of pins)assert.equal(sha(fs.readFileSync(p)),pin.sha256,p);console.log('RELEASE_GRID_SOURCE_RECEIPT '+JSON.stringify({mode:input.mode,node:process.version,began,ended:new Date().toISOString(),code,sourceFilesGuarded:pins.size,loaded,physicalSourceUnchanged:true}));});\n",
+    "invocation": "node --input-type=module -e <driver> <JSON {mode,pins,candidate,tests}>; candidate and tests are the exact source files published with this receipt; pins are the recorded unchanged baseline files.",
+    "outputNormalization": "Only the physical checkout prefix in failure stacks is replaced with <checkout>; numerical/test output and source hashes are retained."
+  },
+  "cli": {
+    "receipt": {
+      "schema": "worldlaw.release-grid-cli-receiving/v1",
+      "sourceCommit": "553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9",
+      "node": "v24.22.1",
+      "began": "2026-11-06T16:12:55.391Z",
+      "ended": "2026-11-06T16:12:56.449Z",
+      "candidateSha256": "f2a521cfcaac27b94a1af9554dc054d574b68b5ba8e005f3f48d350f5e18736c",
+      "notebook": {
+        "path": "evidence/rate-reversal/reversal-notebook.json",
+        "isFile": true,
+        "bytes": 7789,
+        "blob": "a022c4da8f07fd0d4ad398e30ccee4d1bee24992",
+        "sha256": "185e5e43b50f0a5620ffcb1d7f2cf4cf04fcd7da8f4803fc0a0971e7c26c8b61"
+      },
+      "sourceFilesGuarded": 36,
+      "physicalSourceUnchanged": true,
+      "notebookUnchanged": true,
+      "smallWholeReportEqualExceptReservation": true,
+      "execution": "Actual maintained CLI top-level with declared module-load source substitution; original regular notebook file and complete maintained replay/discovery imports; no filesystem mocks or stdin substitution; not a clean checkout/package qualification.",
+      "runs": [
+        {
+          "name": "smallBaseline",
+          "mode": "baseline",
+          "args": [
+            "--notebook",
+            "evidence/rate-reversal/reversal-notebook.json",
+            "--position",
+            "0",
+            "--rate",
+            "0",
+            "--delta-position",
+            "0.01",
+            "--delta-rate",
+            "0.02",
+            "--command",
+            "0",
+            "--inertia",
+            "1",
+            "--duration",
+            ".07",
+            "--interval",
+            ".01"
+          ],
+          "started": "2026-11-06T16:12:55.401Z",
+          "ended": "2026-11-06T16:12:55.598Z",
+          "exit": 0,
+          "stdoutBytes": 15552,
+          "stdoutSha256": "99c6e5b0e83e7dfc102ba98fad03973c89d3446e3c4da9c8fe8c51e432ad0421",
+          "stderr": "",
+          "result": {
+            "schema": "worldlaw.nearby-releases/v1",
+            "status": "completed",
+            "notebook": {
+              "sha256": "185e5e43b50f0a5620ffcb1d7f2cf4cf04fcd7da8f4803fc0a0971e7c26c8b61",
+              "bytes": 7789,
+              "originalEvents": 0,
+              "observations": 40,
+              "candidateId": "command+rate+spring",
+              "selectedId": "command+rate+spring",
+              "candidateCount": 99,
+              "explicitlySelected": false,
+              "interpretation": "Recomputed from original notebook source and events. Release conditions and inertia are declarations, not acquired measurements; no source evidence is added."
+            },
+            "work": {
+              "courseCount": 3,
+              "reservedMaximumAdaptiveTrials": 150000,
+              "reservedMaximumFixedSteps": 24,
+              "completedAdaptiveTrials": 30,
+              "failedCourseWorkUnknown": false
+            },
+            "courses": [
+              {
+                "name": "nominal",
+                "samples": 8,
+                "gridSha256": "a02f8cd191f5ae3218aea6827f2233cc59a8266a466f57e7ad5e6889deeb7e2c",
+                "diagnostics": {
+                  "method": "adaptive_RK4_step_doubling",
+                  "acceptedSteps": 10,
+                  "rejectedSteps": 0,
+                  "trials": 10,
+                  "derivativeEvaluations": 120,
+                  "outputEvaluations": 8,
+                  "maxTrials": 50000,
+                  "outputInterval": 0.01,
+                  "smallestStep": 1.734723475976807e-18,
+                  "largestStep": 0.01,
+                  "largestAcceptedErrorRatio": 0,
+                  "relativeTolerance": 1e-8,
+                  "positionToleranceRad": 1e-10,
+                  "rateToleranceRadPerSecond": 1e-10,
+                  "localErrorEstimate": "full_step_vs_two_half_steps_divided_by_15",
+                  "globalErrorBound": null,
+                  "observationsResetState": false,
+                  "interpretation": "Local numerical error estimate for smooth resolved dynamics, not a global error bound, stiffness certificate or physical validation."
+                },
+                "last": {
+                  "time": 0.07,
+                  "position": 0,
+                  "rate": 0,
+                  "jointTorque": 0
+                }
+              },
+              {
+                "name": "full",
+                "samples": 8,
+                "gridSha256": "a02f8cd191f5ae3218aea6827f2233cc59a8266a466f57e7ad5e6889deeb7e2c",
+                "diagnostics": {
+                  "method": "adaptive_RK4_step_doubling",
+                  "acceptedSteps": 10,
+                  "rejectedSteps": 0,
+                  "trials": 10,
+                  "derivativeEvaluations": 120,
+                  "outputEvaluations": 8,
+                  "maxTrials": 50000,
+                  "outputInterval": 0.01,
+                  "smallestStep": 1.734723475976807e-18,
+                  "largestStep": 0.01,
+                  "largestAcceptedErrorRatio": 0.000023256538569465323,
+                  "relativeTolerance": 1e-8,
+                  "positionToleranceRad": 1e-10,
+                  "rateToleranceRadPerSecond": 1e-10,
+                  "localErrorEstimate": "full_step_vs_two_half_steps_divided_by_15",
+                  "globalErrorBound": null,
+                  "observationsResetState": false,
+                  "interpretation": "Local numerical error estimate for smooth resolved dynamics, not a global error bound, stiffness certificate or physical validation."
+                },
+                "last": {
+                  "time": 0.07,
+                  "position": 0.011339243608003825,
+                  "rate": 0.01823696414700496,
+                  "jointTorque": -0.026325880045408645
+                }
+              },
+              {
+                "name": "half",
+                "samples": 8,
+                "gridSha256": "a02f8cd191f5ae3218aea6827f2233cc59a8266a466f57e7ad5e6889deeb7e2c",
+                "diagnostics": {
+                  "method": "adaptive_RK4_step_doubling",
+                  "acceptedSteps": 10,
+                  "rejectedSteps": 0,
+                  "trials": 10,
+                  "derivativeEvaluations": 120,
+                  "outputEvaluations": 8,
+                  "maxTrials": 50000,
+                  "outputInterval": 0.01,
+                  "smallestStep": 1.734723475976807e-18,
+                  "largestStep": 0.01,
+                  "largestAcceptedErrorRatio": 0.00001721566780410301,
+                  "relativeTolerance": 1e-8,
+                  "positionToleranceRad": 1e-10,
+                  "rateToleranceRadPerSecond": 1e-10,
+                  "localErrorEstimate": "full_step_vs_two_half_steps_divided_by_15",
+                  "globalErrorBound": null,
+                  "observationsResetState": false,
+                  "interpretation": "Local numerical error estimate for smooth resolved dynamics, not a global error bound, stiffness certificate or physical validation."
+                },
+                "last": {
+                  "time": 0.07,
+                  "position": 0.0056696218040019125,
+                  "rate": 0.00911848207350248,
+                  "jointTorque": -0.013162940022704323
+                }
+              }
+            ],
+            "lastFull": {
+              "time": 0.07,
+              "positionDifference": 0.011339243608003825,
+              "rateDifference": 0.01823696414700496,
+              "distance": 0.021474759763517728,
+              "responseFactor": 0.9603804526340589
+            },
+            "lastHalf": {
+              "time": 0.07,
+              "positionDifference": 0.0056696218040019125,
+              "rateDifference": 0.00911848207350248,
+              "distance": 0.010737379881758864,
+              "responseFactor": 0.9603804526340589
+            }
+          },
+          "loadedModuleCount": 36,
+          "loadedSourcesSha256": "586ff69b976819297fccb4946f8add7f4de71015509b95e15f136c71bbca4dde"
+        },
+        {
+          "name": "smallCandidate",
+          "mode": "candidate",
+          "args": [
+            "--notebook",
+            "evidence/rate-reversal/reversal-notebook.json",
+            "--position",
+            "0",
+            "--rate",
+            "0",
+            "--delta-position",
+            "0.01",
+            "--delta-rate",
+            "0.02",
+            "--command",
+            "0",
+            "--inertia",
+            "1",
+            "--duration",
+            ".07",
+            "--interval",
+            ".01"
+          ],
+          "started": "2026-11-06T16:12:55.599Z",
+          "ended": "2026-11-06T16:12:55.734Z",
+          "exit": 0,
+          "stdoutBytes": 15552,
+          "stdoutSha256": "cfc24f981e6b66116291169f5be51c41ac31d07f1c3e9fe0eeaef9352c44cce9",
+          "stderr": "",
+          "result": {
+            "schema": "worldlaw.nearby-releases/v1",
+            "status": "completed",
+            "notebook": {
+              "sha256": "185e5e43b50f0a5620ffcb1d7f2cf4cf04fcd7da8f4803fc0a0971e7c26c8b61",
+              "bytes": 7789,
+              "originalEvents": 0,
+              "observations": 40,
+              "candidateId": "command+rate+spring",
+              "selectedId": "command+rate+spring",
+              "candidateCount": 99,
+              "explicitlySelected": false,
+              "interpretation": "Recomputed from original notebook source and events. Release conditions and inertia are declarations, not acquired measurements; no source evidence is added."
+            },
+            "work": {
+              "courseCount": 3,
+              "reservedMaximumAdaptiveTrials": 150000,
+              "reservedMaximumFixedSteps": 21,
+              "completedAdaptiveTrials": 30,
+              "failedCourseWorkUnknown": false
+            },
+            "courses": [
+              {
+                "name": "nominal",
+                "samples": 8,
+                "gridSha256": "a02f8cd191f5ae3218aea6827f2233cc59a8266a466f57e7ad5e6889deeb7e2c",
+                "diagnostics": {
+                  "method": "adaptive_RK4_step_doubling",
+                  "acceptedSteps": 10,
+                  "rejectedSteps": 0,
+                  "trials": 10,
+                  "derivativeEvaluations": 120,
+                  "outputEvaluations": 8,
+                  "maxTrials": 50000,
+                  "outputInterval": 0.01,
+                  "smallestStep": 1.734723475976807e-18,
+                  "largestStep": 0.01,
+                  "largestAcceptedErrorRatio": 0,
+                  "relativeTolerance": 1e-8,
+                  "positionToleranceRad": 1e-10,
+                  "rateToleranceRadPerSecond": 1e-10,
+                  "localErrorEstimate": "full_step_vs_two_half_steps_divided_by_15",
+                  "globalErrorBound": null,
+                  "observationsResetState": false,
+                  "interpretation": "Local numerical error estimate for smooth resolved dynamics, not a global error bound, stiffness certificate or physical validation."
+                },
+                "last": {
+                  "time": 0.07,
+                  "position": 0,
+                  "rate": 0,
+                  "jointTorque": 0
+                }
+              },
+              {
+                "name": "full",
+                "samples": 8,
+                "gridSha256": "a02f8cd191f5ae3218aea6827f2233cc59a8266a466f57e7ad5e6889deeb7e2c",
+                "diagnostics": {
+                  "method": "adaptive_RK4_step_doubling",
+                  "acceptedSteps": 10,
+                  "rejectedSteps": 0,
+                  "trials": 10,
+                  "derivativeEvaluations": 120,
+                  "outputEvaluations": 8,
+                  "maxTrials": 50000,
+                  "outputInterval": 0.01,
+                  "smallestStep": 1.734723475976807e-18,
+                  "largestStep": 0.01,
+                  "largestAcceptedErrorRatio": 0.000023256538569465323,
+                  "relativeTolerance": 1e-8,
+                  "positionToleranceRad": 1e-10,
+                  "rateToleranceRadPerSecond": 1e-10,
+                  "localErrorEstimate": "full_step_vs_two_half_steps_divided_by_15",
+                  "globalErrorBound": null,
+                  "observationsResetState": false,
+                  "interpretation": "Local numerical error estimate for smooth resolved dynamics, not a global error bound, stiffness certificate or physical validation."
+                },
+                "last": {
+                  "time": 0.07,
+                  "position": 0.011339243608003825,
+                  "rate": 0.01823696414700496,
+                  "jointTorque": -0.026325880045408645
+                }
+              },
+              {
+                "name": "half",
+                "samples": 8,
+                "gridSha256": "a02f8cd191f5ae3218aea6827f2233cc59a8266a466f57e7ad5e6889deeb7e2c",
+                "diagnostics": {
+                  "method": "adaptive_RK4_step_doubling",
+                  "acceptedSteps": 10,
+                  "rejectedSteps": 0,
+                  "trials": 10,
+                  "derivativeEvaluations": 120,
+                  "outputEvaluations": 8,
+                  "maxTrials": 50000,
+                  "outputInterval": 0.01,
+                  "smallestStep": 1.734723475976807e-18,
+                  "largestStep": 0.01,
+                  "largestAcceptedErrorRatio": 0.00001721566780410301,
+                  "relativeTolerance": 1e-8,
+                  "positionToleranceRad": 1e-10,
+                  "rateToleranceRadPerSecond": 1e-10,
+                  "localErrorEstimate": "full_step_vs_two_half_steps_divided_by_15",
+                  "globalErrorBound": null,
+                  "observationsResetState": false,
+                  "interpretation": "Local numerical error estimate for smooth resolved dynamics, not a global error bound, stiffness certificate or physical validation."
+                },
+                "last": {
+                  "time": 0.07,
+                  "position": 0.0056696218040019125,
+                  "rate": 0.00911848207350248,
+                  "jointTorque": -0.013162940022704323
+                }
+              }
+            ],
+            "lastFull": {
+              "time": 0.07,
+              "positionDifference": 0.011339243608003825,
+              "rateDifference": 0.01823696414700496,
+              "distance": 0.021474759763517728,
+              "responseFactor": 0.9603804526340589
+            },
+            "lastHalf": {
+              "time": 0.07,
+              "positionDifference": 0.0056696218040019125,
+              "rateDifference": 0.00911848207350248,
+              "distance": 0.010737379881758864,
+              "responseFactor": 0.9603804526340589
+            }
+          },
+          "loadedModuleCount": 36,
+          "loadedSourcesSha256": "a41d05b28cdeded555a5fa512733e7b325a31452971566452a642b5217390a11"
+        },
+        {
+          "name": "boundaryBaseline",
+          "mode": "baseline",
+          "args": [
+            "--notebook",
+            "evidence/rate-reversal/reversal-notebook.json",
+            "--position",
+            "0",
+            "--rate",
+            "0",
+            "--delta-position",
+            "0.01",
+            "--delta-rate",
+            "0.02",
+            "--command",
+            "0",
+            "--inertia",
+            "1",
+            "--duration",
+            ".13",
+            "--interval",
+            ".000013"
+          ],
+          "started": "2026-11-06T16:12:55.734Z",
+          "ended": "2026-11-06T16:12:55.886Z",
+          "exit": 1,
+          "stdoutBytes": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Nearby-release comparison unavailable: Use positive duration, output interval and inertia with at most 10000 output intervals.",
+          "loadedModuleCount": 36,
+          "loadedSourcesSha256": "586ff69b976819297fccb4946f8add7f4de71015509b95e15f136c71bbca4dde"
+        },
+        {
+          "name": "boundaryCandidate",
+          "mode": "candidate",
+          "args": [
+            "--notebook",
+            "evidence/rate-reversal/reversal-notebook.json",
+            "--position",
+            "0",
+            "--rate",
+            "0",
+            "--delta-position",
+            "0.01",
+            "--delta-rate",
+            "0.02",
+            "--command",
+            "0",
+            "--inertia",
+            "1",
+            "--duration",
+            ".13",
+            "--interval",
+            ".000013"
+          ],
+          "started": "2026-11-06T16:12:55.886Z",
+          "ended": "2026-11-06T16:12:56.219Z",
+          "exit": 0,
+          "stdoutBytes": 11817692,
+          "stdoutSha256": "11726297663b8c265053f28413b57a4d20a94f41b20bfd4a9e3cae5c5d36e24c",
+          "stderr": "",
+          "result": {
+            "schema": "worldlaw.nearby-releases/v1",
+            "status": "completed",
+            "notebook": {
+              "sha256": "185e5e43b50f0a5620ffcb1d7f2cf4cf04fcd7da8f4803fc0a0971e7c26c8b61",
+              "bytes": 7789,
+              "originalEvents": 0,
+              "observations": 40,
+              "candidateId": "command+rate+spring",
+              "selectedId": "command+rate+spring",
+              "candidateCount": 99,
+              "explicitlySelected": false,
+              "interpretation": "Recomputed from original notebook source and events. Release conditions and inertia are declarations, not acquired measurements; no source evidence is added."
+            },
+            "work": {
+              "courseCount": 3,
+              "reservedMaximumAdaptiveTrials": 150000,
+              "reservedMaximumFixedSteps": 30000,
+              "completedAdaptiveTrials": 34326,
+              "failedCourseWorkUnknown": false
+            },
+            "courses": [
+              {
+                "name": "nominal",
+                "samples": 10001,
+                "gridSha256": "611b7df070389e418ac1024c03587f9554af8e0ba17137e024c816ebdcc3537a",
+                "diagnostics": {
+                  "method": "adaptive_RK4_step_doubling",
+                  "acceptedSteps": 11442,
+                  "rejectedSteps": 0,
+                  "trials": 11442,
+                  "derivativeEvaluations": 137304,
+                  "outputEvaluations": 10001,
+                  "maxTrials": 50000,
+                  "outputInterval": 0.000013,
+                  "smallestStep": 1.6940658945086007e-21,
+                  "largestStep": 0.000013,
+                  "largestAcceptedErrorRatio": 0,
+                  "relativeTolerance": 1e-8,
+                  "positionToleranceRad": 1e-10,
+                  "rateToleranceRadPerSecond": 1e-10,
+                  "localErrorEstimate": "full_step_vs_two_half_steps_divided_by_15",
+                  "globalErrorBound": null,
+                  "observationsResetState": false,
+                  "interpretation": "Local numerical error estimate for smooth resolved dynamics, not a global error bound, stiffness certificate or physical validation."
+                },
+                "last": {
+                  "time": 0.13,
+                  "position": 0,
+                  "rate": 0,
+                  "jointTorque": 0
+                }
+              },
+              {
+                "name": "full",
+                "samples": 10001,
+                "gridSha256": "611b7df070389e418ac1024c03587f9554af8e0ba17137e024c816ebdcc3537a",
+                "diagnostics": {
+                  "method": "adaptive_RK4_step_doubling",
+                  "acceptedSteps": 11442,
+                  "rejectedSteps": 0,
+                  "trials": 11442,
+                  "derivativeEvaluations": 137304,
+                  "outputEvaluations": 10001,
+                  "maxTrials": 50000,
+                  "outputInterval": 0.000013,
+                  "smallestStep": 1.6940658945086007e-21,
+                  "largestStep": 0.000013,
+                  "largestAcceptedErrorRatio": 8.694011591700226e-10,
+                  "relativeTolerance": 1e-8,
+                  "positionToleranceRad": 1e-10,
+                  "rateToleranceRadPerSecond": 1e-10,
+                  "localErrorEstimate": "full_step_vs_two_half_steps_divided_by_15",
+                  "globalErrorBound": null,
+                  "observationsResetState": false,
+                  "interpretation": "Local numerical error estimate for smooth resolved dynamics, not a global error bound, stiffness certificate or physical validation."
+                },
+                "last": {
+                  "time": 0.13,
+                  "position": 0.012384983479981232,
+                  "rate": 0.016603382267811027,
+                  "jointTorque": -0.028090643413524678
+                }
+              },
+              {
+                "name": "half",
+                "samples": 10001,
+                "gridSha256": "611b7df070389e418ac1024c03587f9554af8e0ba17137e024c816ebdcc3537a",
+                "diagnostics": {
+                  "method": "adaptive_RK4_step_doubling",
+                  "acceptedSteps": 11442,
+                  "rejectedSteps": 0,
+                  "trials": 11442,
+                  "derivativeEvaluations": 137304,
+                  "outputEvaluations": 10001,
+                  "maxTrials": 50000,
+                  "outputInterval": 0.000013,
+                  "smallestStep": 1.6940658945086007e-21,
+                  "largestStep": 0.000013,
+                  "largestAcceptedErrorRatio": 6.318865475444828e-10,
+                  "relativeTolerance": 1e-8,
+                  "positionToleranceRad": 1e-10,
+                  "rateToleranceRadPerSecond": 1e-10,
+                  "localErrorEstimate": "full_step_vs_two_half_steps_divided_by_15",
+                  "globalErrorBound": null,
+                  "observationsResetState": false,
+                  "interpretation": "Local numerical error estimate for smooth resolved dynamics, not a global error bound, stiffness certificate or physical validation."
+                },
+                "last": {
+                  "time": 0.13,
+                  "position": 0.006192491739990616,
+                  "rate": 0.008301691133905513,
+                  "jointTorque": -0.014045321706762339
+                }
+              }
+            ],
+            "lastFull": {
+              "time": 0.13,
+              "positionDifference": 0.012384983479981232,
+              "rateDifference": 0.016603382267811027,
+              "distance": 0.020713766401368672,
+              "responseFactor": 0.9263477948702309
+            },
+            "lastHalf": {
+              "time": 0.13,
+              "positionDifference": 0.006192491739990616,
+              "rateDifference": 0.008301691133905513,
+              "distance": 0.010356883200684336,
+              "responseFactor": 0.9263477948702309
+            }
+          },
+          "loadedModuleCount": 36,
+          "loadedSourcesSha256": "a41d05b28cdeded555a5fa512733e7b325a31452971566452a642b5217390a11"
+        },
+        {
+          "name": "realExtraInterval",
+          "mode": "candidate",
+          "args": [
+            "--notebook",
+            "evidence/rate-reversal/reversal-notebook.json",
+            "--position",
+            "0",
+            "--rate",
+            "0",
+            "--delta-position",
+            "0.01",
+            "--delta-rate",
+            "0.02",
+            "--command",
+            "0",
+            "--inertia",
+            "1",
+            "--duration",
+            ".13000000000000003",
+            "--interval",
+            ".000013"
+          ],
+          "started": "2026-11-06T16:12:56.296Z",
+          "ended": "2026-11-06T16:12:56.440Z",
+          "exit": 1,
+          "stdoutBytes": 0,
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "Nearby-release comparison unavailable: Use positive duration, output interval and inertia with at most 10000 output intervals.",
+          "loadedModuleCount": 36,
+          "loadedSourcesSha256": "a41d05b28cdeded555a5fa512733e7b325a31452971566452a642b5217390a11"
+        }
+      ]
+    },
+    "pins": [
+      {
+        "path": "scripts/nearby-releases.mjs",
+        "bytes": 5765,
+        "blob": "664dae5b4de85eef70a12f950f624610734b6fa4",
+        "sha256": "f2258bc109568e9e9761a852779802d7ddb5bcf4c297a8038e44173a959ea021"
+      },
+      {
+        "path": "src/session.mjs",
+        "bytes": 31020,
+        "blob": "a6c689803ff7a518e095bc6c414eea1e964ec974",
+        "sha256": "47cb5facf3ebf614ab617d3d9cc99ed97f6be831c1a9b925790c1bcfd9282237"
+      },
+      {
+        "path": "src/science/scalar-question.mjs",
+        "bytes": 2760,
+        "blob": "a8161a0708ea6c3cea408ebb7f9bc5aa5a46d9f0",
+        "sha256": "f4c44f24866415287fe10d234a4ec41e2b8626d2b0fdede38ffc0ef7a902a11f"
+      },
+      {
+        "path": "src/science/bounded-experiment-receipts.mjs",
+        "bytes": 1843,
+        "blob": "d69d7d997523e50a0dffd2b6d5a96e80424849cc",
+        "sha256": "09182bdc765c4112c0c8a3a335d692c4824a680570667cd3314b7b6a97fce753"
+      },
+      {
+        "path": "src/science/input-enclosure.mjs",
+        "bytes": 6815,
+        "blob": "630bb2e2b681823783a8f662aa3752eb9d13987d",
+        "sha256": "91e4ee1624ddce208d47c1ed37ea12a93193e385d96c75c9d942eb22e582a3c8"
+      },
+      {
+        "path": "src/science/torque-discovery.mjs",
+        "bytes": 48143,
+        "blob": "ad2762938cf96bc986a6db2e6d670924a5233795",
+        "sha256": "c50f0fe60bb315b894b5060e01706b49c5ef671da59a6515b01507f9c236f518"
+      },
+      {
+        "path": "src/science/periodic-origin-model.mjs",
+        "bytes": 2697,
+        "blob": "75031db36771e7b08e8e4c09db59bfca1239399d",
+        "sha256": "bae5062b42be21533038876305e255c4d7857f6a447b49a734db4ccec85ec667"
+      },
+      {
+        "path": "src/science/split-column.mjs",
+        "bytes": 416,
+        "blob": "b9ae21874ed8deb50608deb6f4c147f5dc2e1cda",
+        "sha256": "42da6cbad9534b616a32920e0381425a487c1cd18a16ce9159d78964f54df148"
+      },
+      {
+        "path": "src/science/periodic-trig.mjs",
+        "bytes": 1783,
+        "blob": "60feb4f8ebc85615e2ee76190ae259a58d3cda22",
+        "sha256": "53233d010e52c47f31ef4b2ef1f40921a27c8008ab59f47772e7208c1141b39e"
+      },
+      {
+        "path": "src/science/input-origin-fit.mjs",
+        "bytes": 3691,
+        "blob": "bccef7dae4da8f97ee8ac46944d38e4985eab421",
+        "sha256": "962e49a33a83c64eb189bd787fbbfc947e76d5fb62418aacca050bad1558a794"
+      },
+      {
+        "path": "src/science/heterogeneous-fit.mjs",
+        "bytes": 6319,
+        "blob": "9a1eb2c9abd3cd7e31bfd6ad779190d9fbd94fc8",
+        "sha256": "b603bd80e5362265460096ebb4026b29994741dfc6a2f6a90715d549ec1ebc61"
+      },
+      {
+        "path": "src/science/robust-budget-probe.mjs",
+        "bytes": 5829,
+        "blob": "7b990502a8172c3a4ae861c2087352e159c9ee43",
+        "sha256": "01085e832ac647c2836a03f0287f7ee056ed7f5d31073d7021975a7f5475c5f2"
+      },
+      {
+        "path": "src/science/linear-fit.mjs",
+        "bytes": 2722,
+        "blob": "5fc92b53ed52ba96dc60b1235aea87bffc4e83ca",
+        "sha256": "da9014bbdde66fbc78f1e43f2e93cfdb60ef708b571dd61367e3b1bb261538da"
+      },
+      {
+        "path": "src/science/split-multicolumn.mjs",
+        "bytes": 511,
+        "blob": "24d765fe79ed75e77c57a58c5d4903c2cd6affde",
+        "sha256": "f722c70391cb2d31fd6ff5596fe7933eb1fd58ee1a5f93813f675f4a16023998"
+      },
+      {
+        "path": "src/science/shared-iteration-fit.mjs",
+        "bytes": 3661,
+        "blob": "8fb77d1899286c4d6b1a20115c5f15d16d297f36",
+        "sha256": "fb8cd447cfdbaf9c9d413814300a0824a8a3658e55d9c3a0529fd1df379447f2"
+      },
+      {
+        "path": "src/science/curvature-fit.mjs",
+        "bytes": 5579,
+        "blob": "02f69d491473592f320ad5af93b138687673ecd3",
+        "sha256": "073d1ad35528ba7fbf1787d4a89b4e41cc05ade9829443682780bcef5f6223dc"
+      },
+      {
+        "path": "src/science/continuation-fit.mjs",
+        "bytes": 4023,
+        "blob": "bed254050f189a7800d54f8358b4ca28945899b5",
+        "sha256": "adbd6e23c4dd540630136e61477aa8eb50ff68b8dcb34039737ace79fad148f9"
+      },
+      {
+        "path": "src/science/robust-fit-research.mjs",
+        "bytes": 5808,
+        "blob": "d0901bccef6d05660dfd82e179837dd5e4b7a1ce",
+        "sha256": "fa1737ec744c993f5206453e9ee004a6a21ec25ada1a98655b94f79c9813b39a"
+      },
+      {
+        "path": "src/science/centered-response.mjs",
+        "bytes": 2043,
+        "blob": "4d087ec903143d8ce3f809700896a26ed0873772",
+        "sha256": "452a2f54a6f518ea3c90752713ec37719c18dd512232987f80af95a7481ee140"
+      },
+      {
+        "path": "src/science/robust-fit.mjs",
+        "bytes": 5720,
+        "blob": "37c20230887d1d3b9f387f930ba89443ded7717b",
+        "sha256": "7dc298a0390625c863192a7aec105b35e6a3601aeb1e3ebc1766d4af053fdec1"
+      },
+      {
+        "path": "src/science/output-grid.mjs",
+        "bytes": 445,
+        "blob": "317307c13ef13d148a6bb9b24e4efb123884e227",
+        "sha256": "e368ff0231b0e7c35ded07bd63bf787586acc98cb8082ff47d2bc8abae78f29d"
+      },
+      {
+        "path": "src/science/training-response-plan.mjs",
+        "bytes": 4628,
+        "blob": "44dfdb3d0d636c4dbf05f0bdbe7b64659f993193",
+        "sha256": "61bfb3606278edd5dad2f2c9145d5450aefa384c843c2c7244673ac2e21d1dd7"
+      },
+      {
+        "path": "src/science/prediction-sensitivity.mjs",
+        "bytes": 4440,
+        "blob": "fc593d94dc58f7ff88a6d915c7028c9f213b5e14",
+        "sha256": "f6922003443fa247372f2703bb8d156f80dd9307d506cc2246a74b05da03eb49"
+      },
+      {
+        "path": "src/science/parameter-sensitivity.mjs",
+        "bytes": 2914,
+        "blob": "384e1837a6d5560b8ff148160b30691a40c1b9fb",
+        "sha256": "8427b254df705afa64cb6834452a26036d33b7081a90a263129fc3e894951781"
+      },
+      {
+        "path": "src/science/linear-reading-influences.mjs",
+        "bytes": 637,
+        "blob": "749671d8de2730caea27e54f346531390752d2d2",
+        "sha256": "190884787d18ee265f4b6b549f1fd5a2832f58d5aeb36561058e442fff3ab623"
+      },
+      {
+        "path": "src/experiment-design/interval-separation.mjs",
+        "bytes": 897,
+        "blob": "2ec7ca13ca7d332aa03d92fabf4a1cf55d1d03f5",
+        "sha256": "ee9c3b3ecc36c7707ef0c680c41cff35068fae8d0be1927e80e19be277217496"
+      },
+      {
+        "path": "src/science/scalar-challenge.mjs",
+        "bytes": 1088,
+        "blob": "cbe7f92ed2072a7199d46daaa4e30bd39ecd0cbf",
+        "sha256": "bf267c9b5718ce49af108798d6a20c4a1b34a10cce93447273b68a7dbf13c8b7"
+      },
+      {
+        "path": "src/science/experiment-receipts.mjs",
+        "bytes": 3232,
+        "blob": "b1394ccd9d8f8eaf6f1e3ad0b7f229b79ac92808",
+        "sha256": "40b161bd9993c459ac0d2f387d9cc9ea10467fe4e7d17fc78553bb77a41f38f0"
+      },
+      {
+        "path": "src/measurement-batch.mjs",
+        "bytes": 2906,
+        "blob": "00f26e4a9440644124399e7b675e7dd43c4c33a4",
+        "sha256": "50d375b3e386d3e011e678c1ef558f5a2472a173834c4db902ea92632af0c5e1"
+      },
+      {
+        "path": "src/data.mjs",
+        "bytes": 8566,
+        "blob": "eb071484b0bb6e1baf99c7446864c73be94e73dc",
+        "sha256": "947d6798c256526cbf470c87636586b8bde56d22ce93f69bc58aa3909e4287e8"
+      },
+      {
+        "path": "src/science/bounded-scalar-plan.mjs",
+        "bytes": 3176,
+        "blob": "c22e534637b6fe907996ebccd31a83fb5536be02",
+        "sha256": "e2551913ddc730fc642218258083c78b9a134f831547d273382da1f317ff6730"
+      },
+      {
+        "path": "src/science/remaining-overlap.mjs",
+        "bytes": 1787,
+        "blob": "61be192ccbb2207b36a7237fa664adcb053d9f6a",
+        "sha256": "6b81ebfea58ed2da97ac0667e8ccaeb63c1209d655d5ed85a5b2da8bdd7456c5"
+      },
+      {
+        "path": "src/science/virtual-lab.mjs",
+        "bytes": 2557,
+        "blob": "00eff869a58ebb96c4a4ecb91bd5fac33d76c12d",
+        "sha256": "6cb1149de3a7f9e7c752fc3ae4849c92462987148d4875d8e58e41ad2656a9d2"
+      },
+      {
+        "path": "src/science/input-excitation.mjs",
+        "bytes": 3465,
+        "blob": "ab6fe22bf0a239eb9f44da0889bdc519a716f46a",
+        "sha256": "3afa62b28caf43708d9e664df5921eabcc5e9f8cb1f7b57a5949a48ce5b11dc5"
+      },
+      {
+        "path": "src/science/release-separation.mjs",
+        "bytes": 9304,
+        "blob": "0be5ef8866acaf678b3157bf29498a974c4acf2b",
+        "sha256": "5f55af09595a273afccdff2d99ed431c77675dc836a01d3d16b429e9065e3aff"
+      },
+      {
+        "path": "src/science/studio-dynamics.mjs",
+        "bytes": 8563,
+        "blob": "ae974e953292bfca6720c350e1ba604f315442b5",
+        "sha256": "4b56436f4f7c359e226a99cb60e90d2a0c320a7c2909139e75aa221a6d7cbe00"
+      }
+    ],
+    "driver": "import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {spawnSync} from 'node:child_process';\nconst input=JSON.parse(process.argv[1]),root=process.cwd(),began=new Date().toISOString();\nconst sha=s=>crypto.createHash('sha256').update(s).digest('hex');\nconst notebook=path.join(root,input.notebook.path),original=fs.readFileSync(notebook);\nassert.equal(sha(original),input.notebook.sha256);assert.ok(fs.statSync(notebook).isFile());\nfor(const p of input.pins)assert.equal(sha(fs.readFileSync(path.join(root,p.path))),p.sha256);\nconst child=String.raw`import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {pathToFileURL,fileURLToPath} from 'node:url';import {registerHooks} from 'node:module';\nconst c=JSON.parse(process.argv[1]),root=process.cwd(),sha=s=>crypto.createHash('sha256').update(s).digest('hex'),pins=new Map(c.pins.map(p=>[path.join(root,p.path),p])),loaded={};\nregisterHooks({load(url,ctx,next){const out=next(url,ctx);if(!url.startsWith('file:'))return out;const p=fileURLToPath(url),pin=pins.get(p);assert.ok(pin,'Unpinned '+p);assert.equal(sha(out.source),pin.sha256,p);if(c.mode==='candidate'&&pin.path==='src/science/release-separation.mjs'){loaded[pin.path]=sha(c.candidate);return{format:'module',source:c.candidate,shortCircuit:true};}loaded[pin.path]=pin.sha256;return out;}});\nprocess.argv=[process.execPath,path.join(root,'scripts/nearby-releases.mjs'),...c.args];\nprocess.on('exit',code=>process.stderr.write('CLI_SOURCE_RECEIPT '+JSON.stringify({code,node:process.version,loaded})+'\\n'));\nawait import(pathToFileURL(process.argv[1]));\n`;\nconst base=['--notebook',input.notebook.path,'--position','0','--rate','0','--delta-position','0.01','--delta-rate','0.02','--command','0','--inertia','1'];\nconst runs=[],reports=new Map();\nfor(const [name,mode,duration,dt,expected]of [\n ['smallBaseline','baseline','.07','.01',0],['smallCandidate','candidate','.07','.01',0],\n ['boundaryBaseline','baseline','.13','.000013',1],['boundaryCandidate','candidate','.13','.000013',0],\n ['realExtraInterval','candidate','.13000000000000003','.000013',1]\n]){\n const args=[...base,'--duration',duration,'--interval',dt];\n const started=new Date().toISOString();\n const r=spawnSync(process.execPath,['--input-type=module','-e',child,JSON.stringify({mode,args,pins:input.pins,candidate:input.candidate})],{cwd:root,encoding:'utf8',maxBuffer:32*1024*1024,timeout:30000});\n assert.equal(r.error,undefined);assert.equal(r.signal,null);\n const marker=r.stderr.split('\\n').find(line=>line.startsWith('CLI_SOURCE_RECEIPT '));assert.ok(marker);\n const receipt=JSON.parse(marker.slice('CLI_SOURCE_RECEIPT '.length)),stderr=r.stderr.split('\\n').filter(line=>!line.startsWith('CLI_SOURCE_RECEIPT ')).join('\\n').trim();\n assert.equal(r.status,expected,name+': '+stderr);assert.equal(receipt.code,expected);\n assert.equal(receipt.loaded['src/science/release-separation.mjs'],mode==='candidate'?sha(input.candidate):input.pins.find(p=>p.path==='src/science/release-separation.mjs').sha256);\n const summary={name,mode,args,started,ended:new Date().toISOString(),exit:r.status,stdoutBytes:Buffer.byteLength(r.stdout),stdoutSha256:sha(r.stdout),stderr,loaded:receipt.loaded};\n if(expected===0){\n  const report=JSON.parse(r.stdout);reports.set(name,report);\n  assert.equal(report.status,'completed');assert.equal(report.notebook.sha256,input.notebook.sha256);assert.equal(report.notebook.bytes,input.notebook.bytes);\n  const n=name==='boundaryCandidate'?10000:7;\n  const grids=Object.values(report.courses).map(course=>{assert.equal(course.status,'completed');const times=course.trajectory.map(x=>x.time);assert.equal(times.length,n+1);assert.equal(times.at(-1),Number(duration));assert.equal(times.filter(x=>x===Number(duration)).length,1);assert.ok(times.every((t,i)=>!i||t>times[i-1]));return {name:course.name,samples:times.length,gridSha256:sha(JSON.stringify(times)),diagnostics:course.diagnostics,last:course.trajectory.at(-1)};});\n  assert.ok(grids.every(g=>g.gridSha256===grids[0].gridSha256));\n  assert.equal(report.comparisons.full.status,'completed');assert.equal(report.comparisons.half.status,'completed');assert.equal(report.sizeComparison.status,'completed');\n  summary.result={schema:report.schema,status:report.status,notebook:report.notebook,work:report.work,courses:grids,lastFull:report.comparisons.full.rows.at(-1),lastHalf:report.comparisons.half.rows.at(-1)};\n }else{assert.equal(r.stdout,'');assert.match(stderr,/10000 output intervals/);}\n assert.equal(sha(fs.readFileSync(notebook)),input.notebook.sha256);\n runs.push(summary);\n}\nconst smallBase=reports.get('smallBaseline'),smallCandidate=reports.get('smallCandidate');\nassert.equal(smallBase.work.reservedMaximumFixedSteps,24);assert.equal(smallCandidate.work.reservedMaximumFixedSteps,21);\nconst normalized=structuredClone(smallBase);normalized.work.reservedMaximumFixedSteps=21;assert.deepEqual(normalized,smallCandidate);\nfor(const p of input.pins)assert.equal(sha(fs.readFileSync(path.join(root,p.path))),p.sha256);\nfor(const r of runs){r.loadedModuleCount=Object.keys(r.loaded).length;r.loadedSourcesSha256=sha(JSON.stringify(Object.entries(r.loaded).sort(([a],[b])=>a.localeCompare(b))));delete r.loaded;}\nconsole.log(JSON.stringify({schema:'worldlaw.release-grid-cli-receiving/v1',sourceCommit:'553c0cc5a8cd7ea84d1e197a30fb1bdcdc6445c9',node:process.version,began,ended:new Date().toISOString(),candidateSha256:sha(input.candidate),notebook:input.notebook,sourceFilesGuarded:input.pins.length,physicalSourceUnchanged:true,notebookUnchanged:true,smallWholeReportEqualExceptReservation:true,execution:'Actual maintained CLI top-level with declared module-load source substitution; original regular notebook file and complete maintained replay/discovery imports; no filesystem mocks or stdin substitution; not a clean checkout/package qualification.',runs}));\n",
+    "invocation": "node --input-type=module -e <driver> <JSON {pins,notebook,candidate}>. notebook is the exact receipt.notebook record; candidate is this commit's src/science/release-separation.mjs. The driver launches actual maintained CLI children with explicit module-load source substitution.",
+    "priorCapture": {
+      "exit": 0,
+      "fullToolOutputTruncated": true,
+      "originalReportedTokens": 8181,
+      "reasonForRepeat": "The first five-case CLI execution completed its assertions and exited 0, but the 2,500-token tool response truncated its JSON. The corrected driver emits module-count and source-map digests; the complete second receipt is retained above. These are separate executions, not pooled statistics."
+    }
+  },
+  "pending": {
+    "maintainedLaunchedSmoke": "Not started: local execution service became unavailable before the read-only smoke inspection could create a process; no native command/session handle returned.",
+    "exactObservedFailure": "exec_command failed: CreateProcess rejected; exec-server transport disconnected; failed to resume exec-server session; recovery timed out after 45s.",
+    "route": "Bounded recovery found current Renpo A provides taskboard/admin only, with no ordinary product command_start. No fleet capacity or usable binding was newly verified; original B/worker UNKNOWNs remain untouched.",
+    "package": "Existing complete-source allowlist gate is independently owned and remains unresolved. The new direct helper import was already transitive and src/science/*.mjs is admitted, but no new complete package was built.",
+    "production": "No merge, deployment or release is implied by these receipts."
+  }
+}
