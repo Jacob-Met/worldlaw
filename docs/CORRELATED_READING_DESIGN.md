@@ -99,3 +99,16 @@ The original Worldlaw Studio remains one cohesive experience: same finite-law pr
 Full receiving in run **44582238284**: 2323 component tests passed, zero failed, one inherited skipped; 2/2 CI jobs succeeded. Real 1920×1080 and 390×844 Chrome exercised keyboard planning, actual selected-read acquisition, export/reload, forged nominal covariance refusal, forged upper-bound refusal, and native screenshots, with no externally fetched UI dependencies. Artifacts include **correlated-sensor-cold-44582238284** with the untouched 96-case JSON, source-bound portable notebook and both viewport images; the independently pinned Nullgarden 64-permutation receiving remained green in **correlated-nullgarden-44582238284**. The confirmed limits are an authored stationary Gaussian simulator, numerical rather than formal interval arithmetic, and a declared finite law shortlist. Unmeasured sensor drift, correlated *model error* mistaken for measurement error, uncertain sigma, hardware source custody and true physical causal identification remain open problems; none is passed off as qualified.
 
 Implementation: **src/trajectory/bounded-correlated-discriminator.mjs**, **tests/trajectory-bounded-correlated.test.mjs**, **tests/trajectory-bounded-session.test.mjs**, **experiments/bounded-ou-comparison.mjs** and the existing planner, numerical qualification, sparse receiver, virtual instrument, UI and real Chrome acceptance harness in [PR #642](https://github.com/Jacob-Met/worldlaw/pull/642). Merge provenance must name the verified final head and CI, not infer authority from a staged branch.
+
+
+## Physical covariance identification boundary
+
+The [MAGF-ID physical receiving course](PHYSICAL_SENSOR_COVARIANCE.md) tests the
+missing calibration premise on 17 real four-gyroscope recordings with a frozen
+9/4/4 split. White-plus-OU predicts unseen contrast covariances better than IID
+and single OU, yet every simultaneous covariance qualification fails. Identical
+colored error added to all sensors cancels in every contrast. These measured
+findings keep `absolute_sensor_calibration` and `planner_input_eligible` false;
+no fitted angular-rate parameter is imported into this synthetic position
+instrument. The complete source receiver, negative controls and exact external
+Nullgarden receiving path are documented with their failures.

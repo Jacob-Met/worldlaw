@@ -1,0 +1,19 @@
+{
+  "cohorts": [
+    "unmodified vs desync_0.1_seconds",
+    "unmodified vs shared_colored_error"
+  ],
+  "estimator_sha256": "31fba3d40243bf7b47695a507e9bf807a194216f0518e440a23485615b480755",
+  "feature": "native_axes white_ou normalized covariance error for that recording, serialized to 12 significant decimal digits to eliminate last-bit arithmetic differences under exact contrast invariance",
+  "folds": 2,
+  "frozen_before_final_test": true,
+  "model_budget_k": 1,
+  "null": "complete 16 within-recording label assignments if the native consumer admits this design; otherwise report its explicit testability refusal without adding pseudo-independent batches",
+  "nullgarden_commit": "75527fb3934f65310b63d6ac9880394c5b98dc29",
+  "permutations": 199,
+  "purpose": "External negative-control consumer; engineered transformations, not biological cohorts or a claim of randomized physical interventions. Subject grouping prevents invented independence from technical repeats.",
+  "schema": "worldlaw.magfid-nullgarden-control-plan.v1",
+  "seed": 1850743665,
+  "source_split_sha256": "47579b7ed9fd9664c940d77e2a094b49b7534266a51503d2c6dca1b0bf30844f",
+  "unit": "one recording is one matched batch, each branch is a subject with two identical technical rows; 4 recording batches and 8 branch subjects, never 16 independent recordings"
+}
