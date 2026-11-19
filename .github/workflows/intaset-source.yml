@@ -55,6 +55,32 @@ jobs:
                     w=x.read('xl/workbook.xml').decode('utf8',errors='replace')
                     import re
                     print('XLSX_SHEETS_ONLY',repr(name),re.findall(r'<sheet name="([^"]+)"',w)[:70])
+                    # Only string labels from the FIRST row are exposed:
+                    # no numerical observation cell is decoded, returned,
+                    # logged, fitted or made available to scientific models.
+                    import xml.etree.ElementTree as ET
+                    ns='{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'
+                    strings=[]
+                    if 'xl/sharedStrings.xml' in x.namelist():
+                      root=ET.fromstring(x.read('xl/sharedStrings.xml'))
+                      for si in root.findall(ns+'si'):
+                        strings.append(''.join(t.text or '' for t in si.iter(ns+'t')))
+                    with x.open('xl/worksheets/sheet1.xml') as xml:
+                      for _,row in ET.iterparse(xml,events=('end',)):
+                        if row.tag!=ns+'row':continue
+                        if row.get('r')=='1':
+                          headers=[]
+                          for c in row.findall(ns+'c'):
+                            if c.get('t')=='s':
+                              v=c.find(ns+'v')
+                              if v is not None:
+                                idx=int(v.text)
+                                if 0<=idx<len(strings):
+                                  headers.append((c.get('r'),strings[idx]))
+                            elif c.get('t')=='inlineStr':
+                              headers.append((c.get('r'),''.join(t.text or '' for t in c.iter(ns+'t'))))
+                          print('XLSX_FIRST_ROW_STRING_LABELS_ONLY',repr(name),repr(headers))
+                        break
             print('ORIGINAL_SOURCE_ZIP_SHA256',hashlib.sha256(open(p,'rb').read()).hexdigest())
           PY
       - name: Check original Zenodo rights metadata without accessing sensor observations
