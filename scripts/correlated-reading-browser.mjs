@@ -70,6 +70,7 @@ try{
   await page.setViewportSize({width:1920,height:1080});
   await page.locator('#notebook-file').setInputFiles({
     name:'original-independent-input.json',mimeType:'application/json',buffer:Buffer.from(input)});
+  await p('sparse-evidence').waitFor({state:'hidden'});
   await p('release-stats').waitFor({state:'visible'});
   if((await panel.locator('details').getAttribute('open'))===null)await panel.locator('summary').click();
   await p('power-correlation').fill('.2');
@@ -100,6 +101,7 @@ try{
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),390);
   await page.screenshot({path:resolve(dir,'bounded-reopened-390x844.png')});
   checks.push('real 390px reload retains bounded tau and source-faithful nominal acquisition');
+  await page.locator('#error').waitFor({state:'hidden'});
   const forged=structuredClone(robust);
   forged.experiment.sparse.planSettings.noiseCorrelationTimeMax=.9;
   await page.locator('#notebook-file').setInputFiles({name:'forged-upper-memory.json',

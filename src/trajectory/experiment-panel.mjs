@@ -244,9 +244,10 @@ export function createExperimentPanel(host, callbacks = {}) {
       const timestamps=power.readings.map(r=>format(r.time,5)).join(', ');
       const range=power.correlationTimeRangeSeconds;
       const covariance=range&&range.max>range.min?
-        `robust across declared τ∈[${format(range.min,5)}, ${format(range.max,5)}] s (synthetic instrument τ=${format(power.nominalCorrelationTimeSeconds,5)} s; not calibrated)`:
-        power.correlationTimeSeconds>0?`correlated (τ=${format(power.correlationTimeSeconds,5)} s)`:'independent';
-      $('power-readout').textContent = `Noise-aware design: worst pair separation ${format(power.minPairwiseZ,5)} z at σ=${format(power.sigmaRad,5)} rad; ${power.measurementCount} ${covariance} reading(s) at t=[${timestamps}] s. ${power.optimality}. No evidence acquired.`;
+        `Bounded sensor memory τ∈[${format(range.min,5)}, ${format(range.max,5)}] s; synthetic instrument τ=${format(power.nominalCorrelationTimeSeconds,5)} s, not physically calibrated`:
+        power.correlationTimeSeconds>0?`Declared point sensor memory τ=${format(power.correlationTimeSeconds,5)} s`:'Independent sensor noise';
+      const count=power.measurementCount;
+      $('power-readout').textContent = `Noise-aware design: worst pair separation ${format(power.minPairwiseZ,5)} z at σ=${format(power.sigmaRad,5)} rad. ${count} prospective sensor reading${count===1?'':'s'} at t=[${timestamps}] s. ${covariance}. ${power.optimality}. No evidence acquired.`;
     }
     $('design-meaning').textContent = plan?.status === 'no_feasible_design' ? 'Every candidate release was refused by a prediction or sampled prediction limit. Inspect the model scope or choose other limits.' :
       usingPower ? (plan?.status === 'uninformative' ? 'This reading search did not establish the requested pairwise separation under the declared noise. Its certificate distinguishes a proven budget limit from an inconclusive search; neither proves physical equivalence.' : 'This release separates the competing predicted trajectories under the declared Gaussian sensor covariance. Verify the sensor and model assumptions before acquiring.') :
@@ -258,7 +259,7 @@ export function createExperimentPanel(host, callbacks = {}) {
     $('sparse-evidence').hidden = !sparse;
     $('sparse-ranking').replaceChildren();
     $('sparse-heading').textContent=sparse?`Measured ${sparse.evidence.readings.length} of ${sparse.evidence.source.fullGridSampleCount-1} possible post-initial positions`:'';
-    $('sparse-detail').textContent=sparse?`A separate synthetic sensor record now prefers ${modelLabel(sparse.receiving.selectedModelId)} among ${sparse.receiving.candidates.length} offered laws. The internally simulated trajectory is not a measured full recording.`:'';
+    $('sparse-detail').textContent=sparse?`A separate synthetic sensor record now prefers ${modelLabel(sparse.receiving.selectedModelId)} among ${sparse.receiving.candidates.length} offered laws. ${sparse.receiving.correlationTimeRangeSeconds?'Robust reading timestamps were planned across a declared sensor-memory interval, but these model likelihood weights are conditional on the nominal simulated sensor memory, not averaged over the uncertainty range. ':''}The internally simulated trajectory is not a measured full recording.`:'';
     if(sparse)for(const law of sparse.receiving.candidates){
       const row=element('li');
       row.append(element('span',modelLabel(law.modelId)),element('strong',`${format(100*law.conditionalEqualPriorWeight,3)}% conditional weight`));
