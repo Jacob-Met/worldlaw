@@ -47,7 +47,7 @@ export function compareCorrelatedInterventions(){
     for(let realization=0;realization<32;realization++){
       const truth=Math.floor(r()*3),noise=[];
       for(let i=0;i<12;i++){
-        const fresh=gaussian(r());
+        const fresh=gaussian(r);
         noise.push(i?Math.exp(-.12/tau)*noise[i-1]+Math.sqrt(-Math.expm1(-.24/tau))*fresh:fresh);
       }
       for(const [policy,indices]of Object.entries(selections)){

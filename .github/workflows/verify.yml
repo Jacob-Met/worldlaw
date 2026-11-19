@@ -62,3 +62,31 @@ jobs:
           retention-days: 7
           if-no-files-found: error
 
+
+  correlated-nullgarden:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover independently pinned Nullgarden receiver
+        uses: actions/checkout@v4
+        with:
+          repository: Jacob-Met/nullgarden
+          ref: 75527fb3934f65310b63d6ac9880394c5b98dc29
+          path: .independent-nullgarden
+          persist-credentials: false
+      - name: Run predeclared 64 exact pair assignments and three no-effect controls
+        env:
+          NULLGARDEN_SOURCE: ${{ github.workspace }}/.independent-nullgarden
+          NULLGARDEN_ARTIFACT_DIR: ${{ github.workspace }}/.receipts/correlated-nullgarden
+        run: node scripts/correlated-nullgarden-receiving.mjs
+      - name: Retain independently received exact-permutation outcomes
+        uses: actions/upload-artifact@v4
+        with:
+          name: correlated-nullgarden-${{ github.run_id }}
+          path: .receipts/correlated-nullgarden/
+          retention-days: 7
+          if-no-files-found: error
