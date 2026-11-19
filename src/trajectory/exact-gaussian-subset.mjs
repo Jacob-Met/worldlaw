@@ -75,3 +75,66 @@ export function exactGaussianSubsetSchedule(weights,target2,lowerBound,maxReadin
   return {status:incumbentCount===null?'proved_budget_insufficient':'optimal_incumbent',
     selection:null,visited};
 }
+
+/**
+ * Wide-grid deterministic one-exchange repair, without a global-optimum claim.
+ * Finds a *real* witness whenever the original greedy set can be made feasible
+ * by a bounded sequence of single-time replacements. Complete alternative
+ * schedules are never called impossible when this local search fails.
+ *
+ * The budget counts evaluated (model-pair, candidate-time, removed-time)
+ * products, not merely outer iterations. Oversized passes are skipped in
+ * their entirety so no arbitrary partial candidate order is confused with
+ * an exhaustive neighborhood search.
+ */
+export const REPAIR_MAX_PAIR_PRODUCTS = 2_000_000;
+export const REPAIR_MAX_PASSES = 4;
+
+export function repairGaussianGreedySchedule(weights,greedyIndices,target2){
+  const pairCount=weights.length,n=weights[0]?.length||0,k=greedyIndices.length;
+  if(pairCount<2||k<2||n<k||new Set(greedyIndices).size!==k||
+     greedyIndices.some(i=>!Number.isInteger(i)||i<0||i>=n)||
+     weights.some(w=>w.length!==n))
+    return {status:'not_applicable',selection:null,passes:0,pairProducts:0};
+  const perPass=pairCount*k*(n-k);
+  if(perPass>REPAIR_MAX_PAIR_PRODUCTS)
+    return {status:'work_limit',selection:null,passes:0,pairProducts:0};
+  const chosen=greedyIndices.slice();
+  const current=new Float64Array(pairCount);
+  const recalc=()=>{
+    current.fill(0);
+    for(const index of chosen)for(let p=0;p<pairCount;p++)current[p]+=weights[p][index];
+    return Math.min(...current);
+  };
+  let worst=recalc(),work=0,passes=0;
+  if(!Number.isFinite(worst))
+    return {status:'numerical_unresolved',selection:null,passes:0,pairProducts:0};
+  while(passes<REPAIR_MAX_PASSES && work+perPass<=REPAIR_MAX_PAIR_PRODUCTS && worst<target2){
+    passes++;
+    const occupied=new Uint8Array(n);
+    for(const index of chosen)occupied[index]=1;
+    let bestWorst=worst,bestTotal=-Infinity,bestSlot=-1,bestCandidate=-1;
+    for(let slot=0;slot<k;slot++) {
+      const removed=chosen[slot];
+      for(let candidate=0;candidate<n;candidate++)if(!occupied[candidate]){
+        let score=Infinity,total=0;
+        for(let p=0;p<pairCount;p++){
+          const projected=current[p]-weights[p][removed]+weights[p][candidate];
+          score=Math.min(score,projected);total+=projected;
+        }
+        work+=pairCount;
+        if(score>bestWorst ||
+          (score===bestWorst && bestSlot!==-1 && total>bestTotal)){
+          bestWorst=score;bestTotal=total;
+          bestSlot=slot;bestCandidate=candidate;
+        }
+      }
+    }
+    if(bestSlot<0)break;
+    chosen[bestSlot]=bestCandidate;
+    worst=recalc();
+  }
+  return {status:worst>=target2?'repaired_witness':
+      work>=REPAIR_MAX_PAIR_PRODUCTS?'work_limit':'no_one_exchange_witness',
+    selection:worst>=target2?chosen:null,passes,pairProducts:work};
+}
