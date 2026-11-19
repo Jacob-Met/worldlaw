@@ -42,6 +42,8 @@ jobs:
       - name: Receive declared correlated sensor design and unchanged held-out controls
         run: |
           node experiments/correlated-intervention-comparison.mjs > .receipts/correlated-intervention-comparison.json
+          node experiments/bounded-ou-comparison.mjs > .receipts/bounded-ou-comparison.json
+          node -e 'const r=JSON.parse(require("node:fs").readFileSync(".receipts/bounded-ou-comparison.json")); console.log(JSON.stringify({seed:r.seed,scope:r.scope,grouped:Object.fromEntries(Object.entries(r.grouped).map(([name,v])=>[name,{claimed:v.claimedRobustSeparations,falseRobust:v.falseRobustClaims,meanReadingCountAll:v.meanReadingCountAll}]))}));'
           node -e 'const r=JSON.parse(require("node:fs").readFileSync(".receipts/correlated-intervention-comparison.json")); console.log(JSON.stringify({scope:r.scope,grouped:r.grouped}));'
           BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           test -x "$BROWSER"
@@ -53,6 +55,7 @@ jobs:
           path: |
             .receipts/correlated-reading/
             .receipts/correlated-intervention-comparison.json
+            .receipts/bounded-ou-comparison.json
           retention-days: 7
           if-no-files-found: error
       - name: Retain source-pinned evidence (not committed)
