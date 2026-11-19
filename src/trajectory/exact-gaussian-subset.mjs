@@ -106,7 +106,7 @@ export function repairGaussianGreedySchedule(weights,greedyIndices,target2){
     for(const index of chosen)for(let p=0;p<pairCount;p++)current[p]+=weights[p][index];
     return Math.min(...current);
   };
-  let worst=recalc(),work=0,passes=0;
+  let worst=recalc(),work=0,passes=0,atLocalOptimum=false;
   if(!Number.isFinite(worst))
     return {status:'numerical_unresolved',selection:null,passes:0,pairProducts:0};
   while(passes<REPAIR_MAX_PASSES && work+perPass<=REPAIR_MAX_PAIR_PRODUCTS && worst<target2){
@@ -130,11 +130,12 @@ export function repairGaussianGreedySchedule(weights,greedyIndices,target2){
         }
       }
     }
-    if(bestSlot<0)break;
+    if(bestSlot<0){atLocalOptimum=true;break;}
     chosen[bestSlot]=bestCandidate;
     worst=recalc();
   }
   return {status:worst>=target2?'repaired_witness':
-      work>=REPAIR_MAX_PAIR_PRODUCTS?'work_limit':'no_one_exchange_witness',
+      atLocalOptimum?'one_exchange_local_optimum':
+      work+perPass>REPAIR_MAX_PAIR_PRODUCTS?'work_limit':'pass_limit',
     selection:worst>=target2?chosen:null,passes,pairProducts:work};
 }
