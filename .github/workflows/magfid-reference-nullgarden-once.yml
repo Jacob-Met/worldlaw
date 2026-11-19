@@ -1,0 +1,56 @@
+name: MAGF-ID Conf2 independent frozen Nullgarden receiving
+on:
+  pull_request:
+    paths:
+      - 'experiments/magfid_reference_nullgarden.mjs'
+      - '.github/workflows/magfid-reference-nullgarden-once.yml'
+  workflow_dispatch:
+jobs:
+  independently-locked-original-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Receive frozen original physical test evidence from first untouched source opening
+        uses: actions/download-artifact@v4
+        with:
+          name: worldlaw-conf2-original-reference-44616271658
+          path: ${{ runner.temp }}/frozen-source
+          repository: Jacob-Met/worldlaw
+          run-id: 44616271658
+          github-token: ${{ github.token }}
+      - name: Independently pin original Nullgarden source, without modifying it
+        uses: actions/checkout@v4
+        with:
+          repository: Jacob-Met/nullgarden
+          ref: 75527fb3934f65310b63d6ac9880394c5b98dc29
+          path: nullgarden-original
+          persist-credentials: false
+      - name: Verify frozen Conf2 source receipt and original Nullgarden integrity
+        run: |
+          test -f "${RUNNER_TEMP}/frozen-source/test.json"
+          sha256sum "${RUNNER_TEMP}/frozen-source/test.json" | grep -q '^8f1898f2e5d7395582f65d8be5e24ff5a6d46e1cb4d060c1d4e36e9dae2f17a2 '
+          test "$(git -C nullgarden-original rev-parse HEAD)" = 75527fb3934f65310b63d6ac9880394c5b98dc29
+          test -z "$(git -C nullgarden-original status --porcelain --untracked-files=all)"
+          node --version
+      - name: Run original unchanged Nullgarden HTTP and conditional exact-orbit receiver
+        env:
+          NULLGARDEN_SOURCE: ${{ github.workspace }}/nullgarden-original
+        run: |
+          node experiments/magfid_reference_nullgarden.mjs "${RUNNER_TEMP}/frozen-source/test.json" "${RUNNER_TEMP}/external-controls"
+      - name: Preserve receiving results and exact independent evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: worldlaw-conf2-nullgarden-original-${{ github.run_id }}
+          path: ${{ runner.temp }}/external-controls/
+          if-no-files-found: warn
+          retention-days: 30
