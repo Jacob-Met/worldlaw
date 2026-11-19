@@ -171,6 +171,7 @@ test('work exhaustion and close-spaced covariance cannot masquerade as confirmed
   assert.throws(()=>planAdaptiveGaussianReading(
     [{modelId:'a',rows:[{time:0,position:0},{time:1,position:0},{time:1+1e-14,position:0}]},
      {modelId:'b',rows:[{time:0,position:0},{time:1,position:1},{time:1+1e-14,position:2}]}],
-    {sigma:1,maxReadings:2,correlationTime:1e8}),
+    {sigma:1,maxReadings:2,correlationTime:1e8},
+    [{sampleIndex:1,time:1,position:.5}]),
     /covariance|unresolved/);
 });
