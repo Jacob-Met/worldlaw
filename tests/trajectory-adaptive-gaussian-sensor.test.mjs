@@ -175,3 +175,51 @@ test('work exhaustion and close-spaced covariance cannot masquerade as confirmed
     [{sampleIndex:1,time:1,position:.5}]),
     /covariance|unresolved/);
 });
+
+
+test('absolute Gaussian goodness-of-fit prevents confident false law after every candidate fails',()=>{
+  const models=laws([[0,-100,-100],[0,-120,-120]]);
+  const run=planAdaptiveGaussianReading(models,
+    {sigma:1,maxReadings:2,decisionThreshold:.98},[
+      {sampleIndex:1,time:1,position:0}
+    ]);
+  assert.equal(run.status,'all_offered_models_mismatch');
+  assert.equal(run.proposed,null);
+  assert.ok(run.maximumConditionalWeight>.999);
+  assert.equal(run.modelMismatchScreen.allOfferedModelsRejected,true);
+  assert.ok(run.modelMismatchScreen.minimumWhitenedSquaredResidual>
+    run.modelMismatchScreen.rejectionThresholdChi2);
+  assert.equal(run.modelMismatchScreen.alphaUpperBound,.001);
+  const matching=planAdaptiveGaussianReading(laws([[0,0,0],[0,120,120]]),
+    {sigma:1,maxReadings:2,decisionThreshold:.98},[
+      {sampleIndex:1,time:1,position:0}
+    ]);
+  assert.equal(matching.status,'conditional_decision_ready');
+  assert.equal(matching.modelMismatchScreen.allOfferedModelsRejected,false);
+});
+
+test('correct Gaussian model has conservative one-sided false-alarm control',()=>{
+  const models=laws([[0,0,0],[0,12,12]]);
+  let state=0x37b501cd;
+  const random=()=>((state=Math.imul(state,1664525)+1013904223>>>0)+.5)/4294967296;
+  let falseAlarms=0;
+  for(let i=0;i<512;i++){
+    const z=Math.sqrt(-2*Math.log(random()))*Math.cos(2*Math.PI*random());
+    const result=planAdaptiveGaussianReading(models,
+      {sigma:1,maxReadings:2,decisionThreshold:.98},[
+        {sampleIndex:1,time:1,position:z}
+      ]);
+    falseAlarms+=Number(result.status==='all_offered_models_mismatch');
+  }
+  assert.ok(falseAlarms<=3,'Realization-specific conservative Gaussian null rejected '+falseAlarms+'/512.');
+});
+
+test('negative-control false reading violates source-gated absolute model fit',()=>{
+  const p=laws([[0,0,0],[0,1,1]]);
+  const config={sigma:.25,maxReadings:2,decisionThreshold:.98};
+  const normal=planAdaptiveGaussianReading(p,config,[{sampleIndex:1,time:1,position:0}]);
+  const tampered=planAdaptiveGaussianReading(p,config,[{sampleIndex:1,time:1,position:4}]);
+  assert.notEqual(normal.status,'all_offered_models_mismatch');
+  assert.equal(tampered.status,'all_offered_models_mismatch');
+  assert.equal(tampered.unobservedSensorValuesConsumed,0);
+});
