@@ -185,8 +185,10 @@ export function designPhysicalAnchors(request){
       if(nodes>workLimit){exhausted=true;return;}
       if(depth===size){
         if(objective(basis)){
-          if(!winner||cost<winner.cost||(cost===winner.cost&&
-            chosen.join(',')<winner.indices.join(',')))
+          const earlier=()=>{for(let j=0;j<chosen.length;j++){
+            if(chosen[j]!==winner.indices[j])return chosen[j]<winner.indices[j];
+          }return false;};
+          if(!winner||cost<winner.cost||(cost===winner.cost&&earlier()))
             winner={indices:chosen.slice(),cost,basis};
         }
         return;
