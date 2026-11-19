@@ -3,8 +3,10 @@ on:
   pull_request:
     paths:
       - 'src/science/two-tank-identification.mjs'
+      - 'src/science/two-tank-observability.mjs'
       - 'experiments/two-tank-measured.mjs'
       - 'tests/two-tank-identification.test.mjs'
+      - 'tests/two-tank-observability.test.mjs'
       - '.github/workflows/two-tank-measured.yml'
   workflow_dispatch:
 permissions:
@@ -19,7 +21,7 @@ jobs:
         with:
           node-version: '22'
       - name: Independent parser, split, negative controls and source-free structural tests
-        run: node --test tests/two-tank-identification.test.mjs
+        run: node --test tests/two-tank-identification.test.mjs tests/two-tank-observability.test.mjs
       - name: Download unchanged v2 original experiment archive
         shell: bash
         run: |
