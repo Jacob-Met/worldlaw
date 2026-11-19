@@ -56,4 +56,5 @@ jobs:
           name: two-tank-measured-receipt
           path: .receipts/two-tank-measured*.json
           retention-days: 15
-          if-no-files-found: warn
+          if-no-files-found: error
+          include-hidden-files: true
