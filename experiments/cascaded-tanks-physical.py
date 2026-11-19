@@ -140,7 +140,15 @@ def evaluate_original(original,frozen_path,receipt_path):
     for family,model in [("persistence",frozen["baseline"]),*frozen["selected"].items()]:
         applied=hyd.free_run(model,u_test,y_test,init=PREFIX)
         pred=applied.pop("prediction")
+        # Preregistered secondary fixed-start short-horizon scores. These use
+        # the SAME 50-sample-only initialization and the SAME already-computed
+        # autonomous forecast, never reset on future observed y or select the
+        # model on official test performance.
+        horizons={str(h):float(np.sqrt(np.mean((pred[PREFIX:PREFIX+h]-
+                                            y_test[PREFIX:PREFIX+h])**2)))
+                  for h in (1,30,120)}
         model_results[family]={"rmseVolts":applied["rmse"],"count":applied["count"],
+            "fixedStartHorizonRmseVolts":horizons,
             "calibration":applied["calibration"],"predictionSha256":sha(pred.astype("<f8").tobytes())}
     controls={}
     for family in ("arx","hydraulic"):
