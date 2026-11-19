@@ -197,7 +197,9 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
       predictionBoundsEvaluation: 'scheduled_sample_timestamps_only_no_between_sample_guarantee',
       thresholdMeaning: 'Caller-selected model-spread threshold; not calibrated detection power or sensor uncertainty.',
       rankingReason: selected ? (noiseMode ?
-        'Fewest independently noisy prospective readings among distinguishable fully evaluable releases, then highest worst-pair separation; finite ensemble only.' :
+        (selected.power.status==='distinguishable' ?
+          'Fewest independently noisy prospective readings among distinguishable releases, then highest worst-pair separation; finite ensemble only.' :
+          'No release reached the declared noise separation threshold; this was the greatest worst-pair separation among unresolved, fully evaluable releases.') :
         'Highest finite pairwise position spread among fully evaluable bounded grid designs.') :
         'Every design has at least one refused candidate prediction.',
       predictionsAreObservations: false, acquisitionPerformed: false,
