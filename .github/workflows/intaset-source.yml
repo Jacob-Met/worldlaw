@@ -1,0 +1,168 @@
+name: InTaSet original quadruple-tank source metadata preflight
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/intaset-source.yml'
+      - 'experiments/intaset-quadruple-physical.py'
+      - 'src/science/quadruple_tank_hydraulics.py'
+      - 'tests/intaset-quadruple-physical.test.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-metadata-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install source-free scientific model and original workbook reader
+        run: python3 -m pip install --disable-pip-version-check --quiet numpy==2.1.3 scipy==1.15.3 openpyxl==3.1.5
+      - name: Falsify original four-sensor no-leak, model registration and source-read contracts without original measurement values
+        run: python3 tests/intaset-quadruple-physical.test.py
+      - name: Acquire author-mirrored original ZIP and verify Zenodo published MD5
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 5 --retry-all-errors \
+            --connect-timeout 20 --max-time 240 \
+            'https://raw.githubusercontent.com/Moazeni-s-Concise-Lab/InTaSet/main/InTaSet.zip' \
+            --output "$RUNNER_TEMP/InTaSet.zip"
+          test "$(stat -c %s "$RUNNER_TEMP/InTaSet.zip")" -eq 6107043
+          echo '0fe80940a3c9520e665b769f4b8d5ab8  '"$RUNNER_TEMP/InTaSet.zip" | md5sum --check
+          sha256sum "$RUNNER_TEMP/InTaSet.zip"
+          unzip -t "$RUNNER_TEMP/InTaSet.zip" | tail -1
+      - name: SOURCE METADATA ONLY, enumerate names/CSV headers but NEVER numerical rows
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - "$RUNNER_TEMP/InTaSet.zip" <<'PY'
+          import sys,zipfile,hashlib,io,csv
+          p=sys.argv[1]
+          with zipfile.ZipFile(p) as z:
+            files=z.infolist()
+            assert len(files)<3000,'unexpectedly huge source file index'
+            print('SOURCE-ONLY INVENTORY -- NAMES, EXTENSIONS, BYTE LENGTHS, CSV HEADERS; ZERO OBSERVATION VALUES')
+            for entry in files:
+              name=entry.filename
+              assert not (name.startswith('/') or '..' in name.split('/') or chr(92) in name),'unsafe source path'
+              if entry.is_dir():continue
+              print('FILE',repr(name),'bytes',entry.file_size,'compressed',entry.compress_size)
+              if name.lower().endswith('.csv'):
+                with z.open(entry) as f:
+                  header=f.readline(16000).decode('utf-8-sig',errors='replace').strip()
+                  print('CSV_HEADER_ONLY',repr(name),repr(header[:2000]))
+              if name.lower().endswith('.xlsx'):
+                with z.open(entry) as f:
+                  data=f.read()
+                if len(data)<4000000:
+                  with zipfile.ZipFile(io.BytesIO(data)) as x:
+                    w=x.read('xl/workbook.xml').decode('utf8',errors='replace')
+                    import re
+                    print('XLSX_SHEETS_ONLY',repr(name),re.findall(r'<sheet name="([^"]+)"',w)[:70])
+                    # Only string labels from the FIRST row are exposed:
+                    # no numerical observation cell is decoded, returned,
+                    # logged, fitted or made available to scientific models.
+                    import xml.etree.ElementTree as ET
+                    ns='{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'
+                    strings=[]
+                    if 'xl/sharedStrings.xml' in x.namelist():
+                      root=ET.fromstring(x.read('xl/sharedStrings.xml'))
+                      for si in root.findall(ns+'si'):
+                        strings.append(''.join(t.text or '' for t in si.iter(ns+'t')))
+                    with x.open('xl/worksheets/sheet1.xml') as xml:
+                      for _,row in ET.iterparse(xml,events=('end',)):
+                        if row.tag!=ns+'row':continue
+                        if row.get('r')=='1':
+                          headers=[]
+                          for c in row.findall(ns+'c'):
+                            if c.get('t')=='s':
+                              v=c.find(ns+'v')
+                              if v is not None:
+                                idx=int(v.text)
+                                if 0<=idx<len(strings):
+                                  headers.append((c.get('r'),strings[idx]))
+                            elif c.get('t')=='inlineStr':
+                              headers.append((c.get('r'),''.join(t.text or '' for t in c.iter(ns+'t'))))
+                          print('XLSX_FIRST_ROW_STRING_LABELS_ONLY',repr(name),repr(headers))
+                        break
+            print('ORIGINAL_SOURCE_ZIP_SHA256',hashlib.sha256(open(p,'rb').read()).hexdigest())
+          PY
+      - name: Check original Zenodo rights metadata without accessing sensor observations
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import urllib.request,json
+          u='https://zenodo.org/api/records/17652851'
+          try:
+            req=urllib.request.Request(u,headers={'User-Agent':'Worldlaw physical source licence provenance/1.0'})
+            with urllib.request.urlopen(req,timeout=18) as r: d=json.load(r)
+            m=d.get('metadata',{})
+            print('ZENODO_METADATA_LICENSE',json.dumps(m.get('rights',m.get('license',None))))
+            print('ZENODO_METADATA_DOI',m.get('doi',d.get('doi',None)))
+            print('ZENODO_LICENSE_FIELDS',json.dumps({k:v for k,v in m.items() if 'licen' in k.lower() or 'rights' in k.lower()}))
+          except Exception as exc:
+            print('ZENODO_METADATA_UNAVAILABLE_REQUIRE_MANUAL_LICENSE_CHECK',type(exc).__name__,str(exc)[:300])
+          PY
+
+      - name: ORIGINAL TRAINING ONLY, freeze M1 and M2 models before test workbook reads
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .receipts
+          python3 experiments/intaset-quadruple-physical.py fit \
+            "$RUNNER_TEMP/InTaSet.zip" .receipts/intaset-frozen.json \
+            | tee .receipts/intaset-fit-summary.json
+          python3 - <<'PY'
+          import json
+          f=json.load(open('.receipts/intaset-frozen.json'))
+          assert f['prospective']['noTestNumericReadInFit'] is True
+          assert f['source']['sourceArchiveSha256']=='a0aac3b0985bec232afa8f9e95cd87612515904f5e574bc483777e4d532e8c85'
+          for mode in ('4T-M1','4T-M2'):
+              m=f['frozen'][mode]
+              assert len(m['allCandidates'])==30
+              assert m['split']['trainRows']>127 and m['split']['devRows']>127
+              assert m['selected']['best_reference']['family'] in ('arx','narx')
+          print('TRAIN-ONLY FROZEN: no original Testing workbook numeric cells loaded')
+          PY
+          sha256sum .receipts/intaset-frozen.json
+      - name: ORIGINAL SEPARATE RECEIVER, both M1/M2 heldout and no-refit cross-mode transfer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 experiments/intaset-quadruple-physical.py evaluate \
+            "$RUNNER_TEMP/InTaSet.zip" \
+            .receipts/intaset-frozen.json \
+            .receipts/intaset-receiver.json \
+            | tee .receipts/intaset-evaluation-summary.json
+          python3 - <<'PY'
+          import json,math
+          r=json.load(open('.receipts/intaset-receiver.json'))
+          assert r['source']['sourceArchiveSha256']=='a0aac3b0985bec232afa8f9e95cd87612515904f5e574bc483777e4d532e8c85'
+          assert sorted(r['originalFourReceiverScenarios'])==['4T-M1','4T-M2']
+          for original in ('4T-M1','4T-M2'):
+              assert sorted(r['originalFourReceiverScenarios'][original])==['4T-M1','4T-M2']
+              for target in ('4T-M1','4T-M2'):
+                  cases=r['originalFourReceiverScenarios'][original][target]
+                  for family in ('persistence','arx','narx','best_reference','physical'):
+                      assert family in cases
+                      value=cases[family].get('macroNormalizedRmse')
+                      assert value is None or (math.isfinite(value) and value>=0)
+                  assert r['originalTestMetadata'][target]['keptRows']>=128
+          print(json.dumps({'gate':r['physicalTransferProspectiveGate'],
+              'withinAndCross':{s:{t:{m:d.get('macroNormalizedRmse') for m,d in results.items()}
+                    for t,results in targets.items()}
+                    for s,targets in r['originalFourReceiverScenarios'].items()}}))
+          PY
+          sha256sum .receipts/intaset-frozen.json .receipts/intaset-receiver.json
+      - name: Preserve every original source-file SHA, candidate, negative control and refused physical transfer
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-intaset-quadruple-tank-study
+          path: .receipts/intaset-*.json
+          retention-days: 20
+          include-hidden-files: true
+          if-no-files-found: warn
