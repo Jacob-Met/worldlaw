@@ -1,4 +1,5 @@
 import {coefficientBounds} from './probe-coefficient-bounds.mjs';
+import {planRateSineMinimax} from './rate-sine-minimax.mjs';
 import {validateProbeStudy} from './probe-response.mjs';
 import {evaluateHistory} from './paired-history.mjs';
 import {PROBE_MIXTURE_FAMILIES} from './probe-mixture.mjs';
@@ -49,6 +50,17 @@ export function inspectRateSineBounds(raw) {
   rate:run.probe.rate, position:run.probe.position,
   contrast:prepared.observations[i].decisionDifference, radius:prepared.radii[i]
  })));
+}
+
+export function planRateSineFollowups(raw,offers,settings) {
+ const prepared=prepare(raw);
+ if(prepared.family.id!=='rate-sine')throw Error('Choose rate-sine for minimax follow-up.');
+ if(!prepared.qualified)return {schema:'worldlaw.rate-sine-minimax/v1',status:'order-confounded',selected:null,courses:[]};
+ return planRateSineMinimax(prepared.runs.map((run,i)=>({
+  rate:run.probe.rate,position:run.probe.position,
+  contrast:prepared.observations[i].decisionDifference,
+  radius:prepared.radii[i]
+ })),offers,settings);
 }
 
 export function checkProbeMixtureCertificate(raw,certificate){return checkPrepared(prepare(raw),certificate);}
