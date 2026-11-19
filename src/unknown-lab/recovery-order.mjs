@@ -1,5 +1,6 @@
 import { inspectRelaxationReads, planRelaxationReads } from './relaxation-order.mjs';
 import { inspectOffsetReads, planOffsetReads } from './offset-order.mjs';
+import { inspectAffineReads, planAffineReads } from './affine-order.mjs';
 import { fitRecovery } from './recovery-response.mjs';
 
 export const recoveryOrderDomain = Object.freeze({
@@ -36,4 +37,13 @@ export function inspectRecoveryOrder(notebook, domain = recoveryOrderDomain) {
 
 export function inspectOffsetRecoveryOrder(notebook, domain = offsetDomain) {
   return inspectPlannedOrder(notebook, domain, planOffsetReads(domain), inspectOffsetReads);
+}
+
+export const affineDomain = Object.freeze({
+  fast: Object.freeze([0.36,0.50]), slow: Object.freeze([0.79,0.87]),
+  amplitude: Object.freeze([0.8,1.4]), error: 0.00002, maxStride: 2,
+});
+
+export function inspectAffineRecoveryOrder(notebook, domain = affineDomain) {
+  return inspectPlannedOrder(notebook, domain, planAffineReads(domain), inspectAffineReads);
 }
