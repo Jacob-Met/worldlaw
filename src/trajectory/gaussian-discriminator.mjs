@@ -1,3 +1,4 @@
+import {exactGaussianSubsetSchedule} from './exact-gaussian-subset.mjs';
 /** Prospective independent-Gaussian measurement design.
  * No unknown-system reading or training refit is accepted here.
  * For two candidates, the maximum-information k-sample schedule and minimum
@@ -80,12 +81,31 @@ export function designGaussianReadings(predictions, {sigma, targetZ, maxReadings
     achieved2=bestMin;
     if(achieved2>=target2) break;
   }
+  // The greedy receiver is cheap and remains the full-grid fallback. On
+  // small ambiguous multi-law grids, a bounded complete shared-subset oracle
+  // resolves decoy selections instead of calling a feasible budget impossible.
+  const greedyOrder=chosen.map(index=>index+1);
+  const greedyAchieved=achieved2>=target2;
+  let exactSearch={status:'skipped',selection:null,visited:0};
+  if(pairs.length>1&&!equivalentPair&&!thresholdUnreachable){
+    exactSearch=exactGaussianSubsetSchedule(pairs.map(p=>p.weights),target2,lowerBound,
+      maxReadings,greedyAchieved?chosen.length:null);
+    if(exactSearch.selection){
+      chosen.splice(0,chosen.length,...exactSearch.selection);
+      current.fill(0);
+      for(let p=0;p<pairs.length;p++)
+        for(const index of chosen)current[p]+=pairs[p].weights[index];
+      achieved2=Math.min(...current);
+    }
+  }
   const achieved=achieved2>=target2;
-  const provedBudgetInsufficient=!achieved&&!equivalentPair&&!thresholdUnreachable&&lowerBound>maxReadings;
+  const provedBudgetInsufficient=!achieved&&!equivalentPair&&!thresholdUnreachable&&
+    (lowerBound>maxReadings||exactSearch.status==='proved_budget_insufficient');
   const ordered=chosen.slice().sort((a,b)=>a-b);
   const pairwise=pairs.map((pair,p)=>({firstModelId:predictions[pair.a].modelId,
     secondModelId:predictions[pair.b].modelId, separationZ:Math.sqrt(current[p])}));
-  const exact=(achieved && (pairs.length===1 || chosen.length===lowerBound));
+  const exact=(achieved && (pairs.length===1 || chosen.length===lowerBound ||
+    exactSearch.status==='minimum_found'||exactSearch.status==='optimal_incumbent'));
   return {schema:GAUSSIAN_DESIGN_SCHEMA,
     status:equivalentPair?'observationally_equivalent_on_grid':
       thresholdUnreachable?'threshold_unreachable_on_grid':achieved?'distinguishable':
@@ -94,13 +114,16 @@ export function designGaussianReadings(predictions, {sigma, targetZ, maxReadings
     pairCount:pairs.length,minPairwiseZ:Math.sqrt(achieved2),
     measurementCount:chosen.length,
     readings:ordered.map(index=>({sampleIndex:index+1,time:times[index+1]})),
-    greedyOrder:chosen.map(index=>index+1),pairwise,
+    greedyOrder,pairwise,
+    exactSubsetSearch:{status:exactSearch.status,nodes:exactSearch.visited},
     lowerBoundReadings:thresholdUnreachable?null:lowerBound,
     certifiedMinimumReadings:exact?chosen.length:null,
     optimality:exact?'finite-grid cardinality optimum proved':
       equivalentPair?'at least one offered law pair has identical sampled predictions':
       thresholdUnreachable?'even all scheduled independent readings miss the declared z threshold':
-      provedBudgetInsufficient?'pairwise lower bound proves this reading budget insufficient':
+      provedBudgetInsufficient?(exactSearch.status==='proved_budget_insufficient'
+        ?'exhaustive shared-subset search proves this reading budget insufficient'
+        :'pairwise lower bound proves this reading budget insufficient'):
       achieved?'bounded maximin greedy witness; lower bound only, global minimum unproved':
       'bounded greedy search failed; a feasible subset within budget is not ruled out',
     noiseAssumptions:'Independent, homoscedastic Gaussian position errors with externally declared sigma; no calibration, confidence claim, hardware safety or unknown truth.',
