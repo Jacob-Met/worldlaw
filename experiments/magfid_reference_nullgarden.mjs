@@ -68,7 +68,7 @@ try{
     const csv=lines.join('\n')+'\n';
     await writeFile(resolve(output,kind+'.csv'),csv,{flag:'wx'});
     const ds=parseCsv(csv);
-    assert.equal(ds.n,16);
+    assert.equal(ds.X.length,16);
     const intake=await post('/api/dataset',{name:'MAGF-ID Conf2: '+kind,csv});
     assert.equal(intake.n,16);
     assert.equal(intake.nSubjects,8);
