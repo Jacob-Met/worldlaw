@@ -122,6 +122,37 @@ try {
  });
  const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
  if(outputDir)await writeFile(path.join(outputDir,'worldlaw-unknown-lab-mobile.png'),Buffer.from(shot.data,'base64'));
+ await check('source-conditioned minimax plans run through the actual keyboard instrument',async()=>{
+  await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+  await evaljs("(()=>{document.querySelector('#probe-example-kind').value='drag';document.querySelector('#probe-example').click();document.querySelector('#probe-mixtures').closest('details').open=true;const family=document.querySelector('.probe-consistency .family');family.value='rate-sine';family.dispatchEvent(new Event('input',{bubbles:true}));document.querySelector('.rate-sine-minimax .plan').focus();})()");
+  assert.equal(await evaljs("document.activeElement.className"),'plan');
+  await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Enter',code:'Enter',windowsVirtualKeyCode:13,nativeVirtualKeyCode:13,text:'\r',unmodifiedText:'\r'});
+  await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Enter',code:'Enter',windowsVirtualKeyCode:13});
+  await wait("document.querySelector('.rate-sine-minimax .results h4')?.textContent.includes('Best conditional course')");
+  const source=JSON.parse(await evaljs("(async()=>{let blob;const old=URL.createObjectURL;URL.createObjectURL=x=>{blob=x;return old.call(URL,x)};try{document.querySelector('.rate-sine-minimax .download').click();return await blob.text()}finally{URL.createObjectURL=old}})()"));
+  assert.equal(source.schema,'worldlaw.rate-sine-minimax/v1');
+  assert.equal(source.source.readouts.length,3);
+  assert.equal(source.source.offers.length,6);
+  assert.equal(source.courses.length,21);
+  assert.ok(source.selected?.offers?.length===2);
+  assert.ok(source.selected.worstFraction<1);
+  assert.equal(source.structuralExclusionGuaranteed,false);
+  assert.ok(source.source.offers.every(o=>!Object.hasOwn(o,'contrast')&&!Object.hasOwn(o,'jointTorque')));
+  for(const width of [1440,390]){
+   await send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<500});
+   await evaljs("document.querySelector('.rate-sine-minimax').scrollIntoView({block:'start',behavior:'instant'})");
+   const dims=await evaljs("(()=>{const el=document.querySelector('.rate-sine-minimax');return {screen:innerWidth,page:document.documentElement.scrollWidth,client:el.clientWidth,scroll:el.scrollWidth}})()");
+   assert.ok(dims.page<=dims.screen+1,JSON.stringify(dims));
+   assert.ok(dims.scroll<=dims.client+1,JSON.stringify(dims));
+   if(outputDir){const png=await send('Page.captureScreenshot',{format:'png'});await writeFile(path.join(outputDir,'rate-sine-minimax-'+width+'.png'),Buffer.from(png.data,'base64'));}
+  }
+  await evaljs("(()=>{const i=document.querySelector('.rate-sine-minimax .state input[data-key=radius]');i.value='-1';i.dispatchEvent(new Event('input',{bubbles:true}));document.querySelector('.rate-sine-minimax .plan').click()})()");
+  assert.match(await evaljs("document.querySelector('.rate-sine-minimax .status').textContent"),/Cannot calculate/);
+  assert.equal(await evaljs("document.querySelector('.rate-sine-minimax .download').disabled"),true);
+  assert.equal(await evaljs("document.querySelector('.rate-sine-minimax .results h4')===null"),true);
+  await evaljs("(()=>{const fam=document.querySelector('.probe-consistency .family');fam.value='offset-rate';fam.dispatchEvent(new Event('input',{bubbles:true}))})()");
+  assert.equal(await evaljs("document.querySelector('.rate-sine-minimax').hidden"),true);
+ });
  await check('browser isolation and script errors',async()=>{assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);});
  await send('Page.navigate',{url:new URL('/',origin).href});
  await wait("document.querySelector('#sample-count')?.textContent!=='—' && !!document.querySelector('a[href=\"/unknown-lab.html\"]')");
