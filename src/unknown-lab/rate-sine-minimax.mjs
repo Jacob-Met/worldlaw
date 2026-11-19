@@ -43,6 +43,8 @@ function extent(polygon,axis){
 const ratio=(width,base)=>cmp(base,ZERO)>0?div(width,base):ZERO;
 const max=(a,b)=>cmp(a,b)>0?a:b;
 const upper=x=>enclosure(x).upper;
+const approximate=x=>{const p=enclosure(x);return p.lower+(p.upper-p.lower)/2;};
+const displayPolygon=p=>p.map(pair=>pair.map(approximate));
 function offersChecked(offers){
  if(!Array.isArray(offers)||offers.length<2||offers.length>16)
   fail('Offer 2–16 candidate future states with declared noise radii and costs.');
@@ -70,7 +72,7 @@ function scoreCourse(difference,sequence,baseline,work){
  }
  const widths=[extent(polygon,0),extent(polygon,1)];
  const fractions=widths.map((w,i)=>ratio(w.width,baseline[i].width));
- return {widths,fractions,worst:max(fractions[0],fractions[1]),sum:add(fractions[0],fractions[1])};
+ return {polygon,widths,fractions,worst:max(fractions[0],fractions[1]),sum:add(fractions[0],fractions[1])};
 }
 function compare(a,b){
  if(!b)return -1;
@@ -108,6 +110,7 @@ export function planRateSineMinimax(readouts,offers,{budget=2,maxReadings=2}={})
   status:best?'computed':'no-affordable-course',selected:best?show(best):null,
   courses:candidates.map(show),originalWidths:baseline.map(w=>upper(w.width)),
   originalBounds:{rate:prior.rate.outward,restoring:prior.restoring.outward},
+  differenceGeometry:{current:displayPolygon(difference),projectedFuture:best?displayPolygon(best.polygon):null,axisLabels:['Δ rate-law coefficient','Δ sine-law coefficient'],meaning:'Difference of two mechanisms jointly consistent with the original readouts; future silhouette preserves differences that some common bounded-noise future outcomes cannot separate.'},
   source:{readouts:readouts.map(x=>({...x})),offers:states.map(({feature,...p})=>p),budget,maxReadings},
   structuralExclusionGuaranteed:false,
   exactArithmetic:'Exact rational half-plane clipping of the Minkowski difference of the feasible coefficient polygon.',
