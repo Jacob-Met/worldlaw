@@ -1,5 +1,6 @@
 import {inspectRateSineBounds,inspectProbeMixtureConsistency,exportProbeMixtureConsistency,importProbeMixtureConsistency,MIXTURE_CONSISTENCY_SCHEMA} from './probe-mixture-consistency.mjs';
 import {PROBE_MIXTURE_FAMILIES} from './probe-mixture.mjs';
+import {mountRateSineMinimax} from './rate-sine-minimax-panel.mjs';
 const fmt=x=>Number(x.toPrecision(6)).toString();
 export function mountProbeMixtureConsistency(host,study,config,owner){
  const section=document.createElement('section');section.className='probe-consistency';
@@ -7,9 +8,11 @@ export function mountProbeMixtureConsistency(host,study,config,owner){
  host.append(section);const $=name=>section.querySelector('.'+name);
  for(const family of PROBE_MIXTURE_FAMILIES){const option=document.createElement('option');option.value=family.id;option.textContent=family.id;$('family').append(option);}
  if(config){$('family').value=config.family;$('scope').value=config.scope;$('iterations').value=config.maxIterations;$('products').value=config.maxProducts;}
+ let followup=null;
  function resetBounds(){
   $('bounds-controls').hidden=$('family').value!=='rate-sine';
   $('bounds-output').replaceChildren();
+  followup?.visible($('family').value==='rate-sine');
  }
  resetBounds();
  let accepted=null;
@@ -48,5 +51,7 @@ export function mountProbeMixtureConsistency(host,study,config,owner){
  $('save').onclick=()=>{if(!accepted)return;const url=URL.createObjectURL(new Blob([exportProbeMixtureConsistency(accepted)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download='worldlaw-probe-mixture-consistency.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
  $('open').onclick=()=>$('file').click();
  $('file').onchange=async event=>{const version=owner.begin(),file=event.target.files?.[0];if(!file)return;try{if(file.size>5000000)throw Error('Use a request below 5 MB.');const raw=importProbeMixtureConsistency(await file.text());if(owner.current(version))owner.adopt(raw);}catch(e){if(owner.current(version))$('error').textContent=e.message;}finally{event.target.value='';}};
+ followup=mountRateSineMinimax(section,request,owner);
+ followup.visible($('family').value==='rate-sine');
  if(config)$('inspect').click();
 }
