@@ -286,6 +286,15 @@ test('frozen independent exhaustive subset oracle verifies minimum or nonexisten
   }
 });
 
+test('no greedy witness cannot be mislabeled an optimal incumbent when pairwise lower bound exceeds budget',()=>{
+  const models=[p('A',[0,0,0]),p('B',[1,1,0]),p('C',[0,1,1])];
+  const got=designGaussianReadings(models,{sigma:1,targetZ:1.4,maxReadings:1});
+  assert.equal(got.status,'budget_insufficient');
+  assert.equal(got.lowerBoundReadings,2);
+  assert.equal(got.certifiedMinimumReadings,null);
+  assert.equal(got.exactSubsetSearch.status,'pairwise_bound_insufficient');
+});
+
 test('large schedules retain the incumbent bounded greedy behavior with explicit unproved search status',()=>{
   const n=25;
   const models=[p('A',Array(n).fill(0)),
