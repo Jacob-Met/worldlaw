@@ -114,7 +114,15 @@ test('128 source-blind randomized geometric cases agree with independent integer
   }
   assert.ok(counts.optimal_structural_design>0,'blind oracle did not exercise optimization');
   assert.ok(counts.fundamentally_unidentifiable_with_offered_anchors>0,'blind oracle did not exercise no-go');
-  assert.ok(counts.insufficient_anchor_budget>0,'blind oracle did not exercise cardinality refusal');
+  const explicitBudget={variables:['x','y','z'],
+    observations:[{id:'known_x',coefficients:[1,0,0]}],
+    anchors:[{id:'new_y',coefficients:[0,1,0],cost:1},
+             {id:'new_z',coefficients:[0,0,1],cost:2}],
+    targets:[{id:'target_y',coefficients:[0,1,0]},
+             {id:'target_z',coefficients:[0,0,1]}],
+    maxAnchors:1};
+  assert.equal(brute(explicitBudget).status,'insufficient_anchor_budget');
+  assert.equal(designPhysicalAnchors(explicitBudget).status,'insufficient_anchor_budget');
   console.log(JSON.stringify({oracle_seed:20261119,cases:128,counts,
     max_exact_nodes:Math.max(0,...Object.values(sample))}));
 });
