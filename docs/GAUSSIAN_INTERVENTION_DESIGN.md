@@ -51,7 +51,15 @@ only provably impossible partial subsets; the fixed search ceiling of 200,000
 nodes preserves `search_inconclusive` instead of inventing an exhaustive result.
 A completed search either supplies a globally minimum-cardinality witness on
 that grid or proves the declared budget insufficient. For larger grids or
-incomplete searches, the original greedy schedule remains the fallback.
+incomplete searches, the original greedy schedule is the starting point for a
+bounded **one-reading exchange repair**. A deterministic search examines every
+complete replacement of one selected time by one unselected time, improving
+the worst model-pair separation. It repeats at most four full passes, and
+executes no pass that would exceed the 2,000,000 model-pair/candidate/removed
+time-product budget. If it recovers a fully separating schedule, that is a
+valid full-ensemble measurement witness. If it cannot, the result remains
+inconclusive unless an independent impossibility certificate exists; local
+failure does not imply a global lower bound or global optimality.
 
 Independently sorting each pair gives a sound lower bound on the number of
 readings needed simultaneously for all model pairs; this bound alone may be
@@ -71,9 +79,10 @@ The result separates four distinct states:
 - `budget_insufficient`: the pairwise cardinality lower bound **proves** the
   declared count is insufficient, even though more scheduled times could
   distinguish the offered laws.
-- `search_inconclusive`: a bounded greedy search did not find a satisfying
-  reading subset, and an exact small-grid enumeration was either skipped or
-  stopped at its resource ceiling. A different subset may still work. In the
+- `search_inconclusive`: neither bounded greedy nor bounded local
+  exchange recovered a satisfying subset, and an exact small-grid enumeration
+  was either skipped or stopped at its resource ceiling. A different subset
+  may still work. In the
   retained three-law decoy control, two complementary readings distinguish
   every pair where greedy alone fails; the exact small-grid solver now recovers
   that witness while the original greedy order remains visible for diagnosis.
@@ -141,7 +150,11 @@ model classes remain open challenges.
    witness, while a larger-grid fallback must preserve `search_inconclusive`.
    A 210-trial independent exhaustive-subset oracle independently checks global
    minima, witness scores and nonexistence on unfamiliar three- and four-law
-   instances. Also identical predictions, insufficient count, finite-noise
+   instances. The default-scale 200-reading control plus 64 frozen permuted
+   placements recover true two-reading witnesses that the original wide-grid
+   greedy failed to find; a one-reading infeasibility control remains
+   inconclusive without exhaustive proof. Also identical predictions,
+   insufficient count, finite-noise
    ceiling, immutable inputs, and full-grid work preflight/refusal.
 5. The actual maintained trajectory planner and independent numerical gate,
    including negative control with a tampered cached power score.
