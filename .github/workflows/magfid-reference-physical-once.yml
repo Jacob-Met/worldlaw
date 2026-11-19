@@ -1,12 +1,7 @@
 name: MAGF-ID Conf2 original physical reference receiving
+# Untouched final rows first opened in the original successful run 44616271658.
+# Manual repeats only reproduce a known test, never furnish new held-out evidence.
 on:
-  pull_request:
-    paths:
-      - 'experiments/magfid_reference.py'
-      - 'experiments/magfid_reference_controls.py'
-      - 'experiments/magfid_reference_tests.py'
-      - 'research/magfid-reference/**'
-      - '.github/workflows/magfid-reference-physical-once.yml'
   workflow_dispatch:
 jobs:
   original-independent-receiving:
