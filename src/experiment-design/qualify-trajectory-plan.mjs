@@ -141,6 +141,13 @@ export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
   }
   const {models, trainingRunIds} = ensemble(discovery, plan), scheduled = schedule(plan);
   const designs = Array.from(plan.ranked, row => {validateDesign(row, plan); return row;});
+  if(bounded)for(const design of designs){
+    if(design.status!=='evaluated')continue;
+    requireThat(design.power?.correlationTimeRangeSeconds?.min===(plan.options.noiseCorrelationTime??0)&&
+      design.power?.correlationTimeRangeSeconds?.max===plan.options.noiseCorrelationTimeMax&&
+      design.power?.nominalCorrelationTimeSeconds===(plan.options.noiseCorrelationTime??0),
+      'The frozen robust covariance interval differs from its prospective source declaration.','stale_plan');
+  }
   requireThat(new Set(designs.map(row => row.index)).size === designs.length, 'Design indices must be unique.');
   if (plan.selected !== null) {
     const selectedRow = designs.find(row => row.index === plan.selected?.index);
