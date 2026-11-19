@@ -88,6 +88,21 @@ class ControlledHydraulicsTests(unittest.TestCase):
         self.assertEqual(a[2],4.)
         changed=receiver.load_named_original(encode(y2+100),"evaluate")
         self.assertTrue(np.array_equal(changed[1],y2+100))
+    def test_predicted_upper_saturation_proof_does_not_refit_or_access_future_y(self):
+        u,y=original_synthetic(220)
+        model={"family":"hydraulic","variant":"hard_overflow",
+            "parameters":[.9,.05,.2,0.,1.8,2.2,1.5],"converged":True}
+        a=hyd.inspect_physical_excitation(model,u,y[:50])
+        yy=y.copy()
+        yy[50:]+=999.
+        b=hyd.inspect_physical_excitation(model,u,yy[:50])
+        self.assertEqual(a,b)
+        self.assertEqual(a["inputStatistics"]["count"],220)
+        self.assertEqual(a["state"]["eventCounts"]["integrationSteps"],(220-1)*4)
+        self.assertGreater(a["state"]["eventCounts"]["upperCapacityHits"],0)
+        self.assertGreater(a["state"]["eventCounts"]["lowerCapacityHits"],0)
+        self.assertLessEqual(a["state"]["stateExtrema"]["upperMax"],
+                             a["state"]["capacityUpper"]+1e-12)
     def test_source_archive_pin_and_source_field_refusals(self):
         with self.assertRaisesRegex(ValueError,"author original archive size changed"):
             receiver.authenticate.__wrapped__(b"bad") if hasattr(receiver.authenticate,"__wrapped__") else receiver.authenticate.__call__("/dev/null")
