@@ -1,5 +1,6 @@
 import {evaluateRecovery,predictRecovery,exportRecovery,importRecovery,RECOVERY_SCHEMA} from './recovery-response.mjs';
 import {recoveryFixture} from './recovery-fixture.mjs';
+import {inspectRecoveryOrder} from './recovery-order.mjs';
 const fmt=x=>Number.isFinite(x)?x.toPrecision(3):'—';
 const colors=['#bac6ce','#ffad5c','#e38be9','#8eacff','#5df5df','#e2df83','#ed7898','#a5cbd0'];
 export function mountRecoveryPanel(currentEvidence){
@@ -8,14 +9,14 @@ export function mountRecoveryPanel(currentEvidence){
  #recovery-lab{display:block;border-top:2px solid #5df5df;margin-top:2rem;padding-top:2rem}#recovery-lab h2{margin-bottom:.6rem}#recovery-lab .recovery-controls{display:flex;gap:.8rem;align-items:end;flex-wrap:wrap;margin:1rem 0}#recovery-lab label{display:grid;gap:.4rem;max-width:100%}#recovery-lab input,#recovery-lab select,#recovery-lab textarea{font:inherit;color:inherit;background:#102831;border:1px solid #50717c;padding:.6rem;max-width:100%;box-sizing:border-box}#recovery-lab textarea{width:100%;min-height:4rem}#recovery-lab button{border:1px solid #5df5df;background:#153c42;color:#e7fffa;padding:.7rem;cursor:pointer}#recovery-lab :focus-visible{outline:3px solid #ffad5c;outline-offset:3px}#recovery-lab svg{width:100%;height:auto;max-height:420px}#recovery-lab .recovery-error{color:#ffad5c}#recovery-lab .recovery-scroll{overflow:auto}#recovery-lab table{width:100%;min-width:550px}#recovery-lab p{max-width:90ch}#recovery-lab .recovery-source{color:#5df5df;font-weight:bold}
  </style><p class="overline">04 / AFTER PREPARATION, WAIT</p><h2>Does the response recover?</h2>
  <p>Keep the preparation fixed. Change only the waiting delay before matched readout. Compare a persistent offset with relaxing executable responses, then confront frozen forecasts with separate recordings.</p>
- <div class="recovery-controls"><label>Authored experiment<select id="recovery-demo"><option value="decay">Relaxing response</option><option value="persistent">Persistent offset control</option><option value="mismatch">Changed response challenge</option></select></label><button id="recovery-load" type="button">Execute virtual course</button><button id="recovery-reset" type="button">Start from current paired evidence</button></div>
+ <div class="recovery-controls"><label>Authored experiment<select id="recovery-demo"><option value="decay">Relaxing response</option><option value="two-mode">Two relaxing modes</option><option value="persistent">Persistent offset control</option><option value="mismatch">Changed response challenge</option></select></label><button id="recovery-load" type="button">Execute virtual course</button><button id="recovery-reset" type="button">Start from current paired evidence</button></div>
  <p class="recovery-source" id="recovery-source"></p>
  <label>Fixed preparation / matched readout protocol<textarea id="recovery-protocol" maxlength="500"></textarea></label>
  <div class="recovery-controls"><label>Recording identity<input id="recovery-recording" value="recording-1" maxlength="80"></label><label>Wait after preparation (s)<input id="recovery-delay" type="number" min="0" max="60" step=".1" value="0"></label><label>Evidence role<select id="recovery-role"><option value="training">Training</option><option value="challenge">Separate challenge</option></select></label><button id="recovery-add" type="button">Add current paired readings</button></div>
  <p>For imports, declare the same physical preparation and matched readout conditions for every run. Identity labels cannot authenticate acquisition. The default candidate times are 0.5, 1, 2, 4 and 8 s, amplitude bounded to ±1 N·m; an imported recovery notebook may declare another bounded grid.</p>
  <p id="recovery-state" role="status" aria-live="polite"></p><div id="recovery-error" class="recovery-error" role="alert" hidden></div>
  <div id="recovery-plot"></div><div class="recovery-scroll" tabindex="0" aria-label="Recovery model results"><table><thead><tr><th>Executable response</th><th>Amplitude N·m</th><th>Training screen</th><th>Separate challenge</th></tr></thead><tbody id="recovery-models"></tbody></table></div>
- <p id="recovery-qualification"></p><div class="recovery-controls"><button id="recovery-export" type="button">Export recovery evidence</button><button id="recovery-import" type="button">Import recovery evidence</button><input id="recovery-file" type="file" accept=".json,application/json" hidden></div>`;
+ <details id="recovery-order"><summary>Can one relaxing mode explain these readings?</summary><p>Compare paired torque after a fixed preparation. The planned waits maximize a conservative separation bound over eight integer strides. Each virtual mode starts at 0.45–1.1 N·m and retains either 12–27% or 74–88% per second. The assumed absolute error in each paired difference is 0.003 N·m. Imported training screens must also fit this budget.</p><p id="recovery-order-result" aria-live="polite"></p></details><p id="recovery-qualification"></p><div class="recovery-controls"><button id="recovery-export" type="button">Export recovery evidence</button><button id="recovery-import" type="button">Import recovery evidence</button><input id="recovery-file" type="file" accept=".json,application/json" hidden></div>`;
  document.querySelector('.scientific-limit').before(host);
  const $=id=>host.querySelector('#'+id);let notebook=recoveryFixture();const listeners=new Set();
  const handle=fn=>{try{fn();$('recovery-error').hidden=true;}catch(e){$('recovery-error').hidden=false;$('recovery-error').textContent=e.message;}};
@@ -36,6 +37,10 @@ export function mountRecoveryPanel(currentEvidence){
   $('recovery-plot').replaceChildren(svg);
  }
  function render(){
+  const order=inspectRecoveryOrder(notebook);
+  const reasons={'await-training':'Add one counterbalanced training recording at each planned delay.','duplicate-delay':'Multiple training recordings occupy a planned delay.','order-confounded':'Measurement order is confounded.','screen-exceeds-budget':'A training screen exceeds the declared error budget.','outside-positive-model-domain':'A difference falls outside the positive-response domain.'};
+  const interpretation=order.status==='positive-curvature'?'Positive curvature excludes one positive exponential under the stated error bound. Other dynamics can produce this pattern.':(reasons[order.reason]??'The three differences leave single-mode relaxation unresolved.');
+  $('recovery-order-result').textContent='Planned delays '+order.plan.waits.join(', ')+' s. '+interpretation;
   $('recovery-protocol').value=notebook.protocolNote;
   $('recovery-source').textContent=notebook.source==='synthetic'?'DECLARED VIRTUAL COURSE · NOT PHYSICAL OBSERVATIONS':'USER-DECLARED MEASUREMENTS · CUSTODY UNVERIFIED';
   $('recovery-state').textContent=notebook.training.length+' training recordings / '+notebook.challenges.length+' separate challenges';
