@@ -196,7 +196,10 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
       integrationMethod: 'fixed_step_RK4_without_error_bound', initialSampleExcludedFromScore: true,
       predictionBoundsEvaluation: 'scheduled_sample_timestamps_only_no_between_sample_guarantee',
       thresholdMeaning: 'Caller-selected model-spread threshold; not calibrated detection power or sensor uncertainty.',
-      rankingReason: selected ? 'Highest finite pairwise position spread among fully evaluable bounded grid designs.' : 'Every design has at least one refused candidate prediction.',
+      rankingReason: selected ? (noiseMode ?
+        'Fewest independently noisy prospective readings among distinguishable fully evaluable releases, then highest worst-pair separation; finite ensemble only.' :
+        'Highest finite pairwise position spread among fully evaluable bounded grid designs.') :
+        'Every design has at least one refused candidate prediction.',
       predictionsAreObservations: false, acquisitionPerformed: false,
       limitations: ['Disagreement is an equal-weight finite-ensemble heuristic, not calibrated entropy, information gain, uncertainty, or an optimal-design guarantee.',
         'Only the declared grid and bounded prefix of training-competitive models are compared; omitted hypotheses may change the ranking.',
@@ -208,6 +211,6 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
         'The planner neither observes future outcomes nor acquires evidence. An independent instrument must supply the subsequent complete run.',
         'A new run can improve, preserve, or worsen fitted structure and reserved prediction; more disagreement does not guarantee improvement.',
         ...(noiseMode ? ['Gaussian separation is conditional on independent fixed-variance measurement noise and a correct finite ensemble, neither physically established.',
-          'Two-model reading cardinality is optimal only on this finite sample grid; for larger ensembles a lower bound is returned and greedy minimality is not asserted without a matching certificate.',
+          'Reading cardinality is optimal only on the declared finite grid: two models admit the exact sorted-pair proof; multi-model designs need a matching pairwise lower bound or a completed bounded shared-subset proof (up to 24 timestamps/eight readings). Incomplete and larger-grid searches carry no optimality certificate.',
           'Reading timestamps are virtual prospective design, not observations, actuation authorization, causal proof or a guarantee of improved refitting.'] : [])]}};
 }
