@@ -183,7 +183,7 @@ function receiveCohort(models,cohort,selection,final){
     heldoutSeedRange:final,
     selectionCriterion:'lowest mean negative log mass on independent selection sensor seeds, frozen before heldout',
     selectedFixedSchedule:selected.split(',').map(Number),
-    selectedFixedSchedule: selected,
+    selectedFixedScheduleKey:selected,
     selectedFixed:fixed,
     adaptive:complete(adaptive),
     allFixed:all,
