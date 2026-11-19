@@ -305,3 +305,58 @@ test('large schedules retain the incumbent bounded greedy behavior with explicit
   assert.equal(result.certifiedMinimumReadings,null);
   assert.equal(result.status,'distinguishable');
 });
+
+test('200-sample default-scale prospective course repairs greedy decoy without a false cardinality certificate',()=>{
+  const n=200;const make=x=>Array.from({length:n},(_,i)=>x[i]??0);
+  const a=make({}),b=make({9:4,89:2}),c=make({9:4,52:4,89:4});
+  const result=designGaussianReadings([p('A',a),p('B',b),p('C',c)],
+    {sigma:1,targetZ:Math.sqrt(12),maxReadings:2});
+  assert.equal(result.exactSubsetSearch.status,'skipped');
+  assert.equal(result.wideGridRepair.status,'repaired_witness');
+  assert.equal(result.status,'distinguishable');
+  assert.equal(result.certifiedMinimumReadings,null);
+  assert.deepEqual(result.readings.map(r=>r.sampleIndex),[10,53]);
+  assert.deepEqual(result.greedyOrder,[90,10]);
+  assert.ok(result.minPairwiseZ>Math.sqrt(12));
+});
+
+test('held-out wide-grid decoy permutations: 64 independent placements recover both complementary readings',()=>{
+  const n=200,N=64,target2=12;
+  let seed=0xd12eadc5;
+  const rng=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
+  for(let trial=0;trial<N;trial++){
+    const chosen=new Set();
+    while(chosen.size<3)chosen.add(Math.floor(rng()*n));
+    const [first,second,decoy]=[...chosen];
+    const a=Array(n).fill(0),b=Array(n).fill(0),c=Array(n).fill(0);
+    b[first]=4;b[decoy]=2;
+    c[first]=4;c[second]=4;c[decoy]=4;
+    const paths=[p('A',a),p('B',b),p('C',c)];
+    const got=designGaussianReadings(paths,{sigma:1,targetZ:Math.sqrt(target2),maxReadings:2});
+    assert.equal(got.exactSubsetSearch.status,'skipped');
+    assert.equal(got.wideGridRepair.status,'repaired_witness',`trial ${trial}`);
+    assert.equal(got.status,'distinguishable',`trial ${trial}`);
+    assert.equal(got.certifiedMinimumReadings,null,`trial ${trial}`);
+    assert.deepEqual(got.readings.map(r=>r.sampleIndex).sort((a,b)=>a-b),
+      [first+1,second+1].sort((a,b)=>a-b),`trial ${trial}`);
+    const greedy=got.greedyOrder.map(i=>i-1);
+    let worst=Infinity;
+    for(let x=0;x<3;x++)for(let y=x+1;y<3;y++){
+      const energy=greedy.reduce((sum,j)=>sum+
+        (paths[x].rows[j+1].position-paths[y].rows[j+1].position)**2,0);
+      worst=Math.min(worst,energy);
+    }
+    assert.ok(worst<target2,`original greedy unexpectedly succeeded in trial ${trial}`);
+  }
+});
+
+test('wide-grid local repair refuses false success when one sensor reading cannot separate all pairs',()=>{
+  const n=200,a=Array(n).fill(0),b=Array(n).fill(0),c=Array(n).fill(0);
+  b[7]=4;c[77]=4;
+  const got=designGaussianReadings([p('A',a),p('B',b),p('C',c)],
+    {sigma:1,targetZ:2,maxReadings:1});
+  assert.equal(got.status,'search_inconclusive');
+  assert.equal(got.certifiedMinimumReadings,null);
+  assert.equal(got.wideGridRepair.status,'not_applicable');
+  assert.equal(got.exactSubsetSearch.status,'skipped');
+});
