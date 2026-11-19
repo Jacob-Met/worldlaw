@@ -16,6 +16,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "Makefile",
     # Exact current application modules, reproducible study inputs and source attribution.
     'docs/receipts/conditioned-reference-families-20261029.json',
     'docs/receipts/large-baffle-transfer/FINDINGS.md',
