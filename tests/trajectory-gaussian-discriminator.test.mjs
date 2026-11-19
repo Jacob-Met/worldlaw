@@ -154,6 +154,7 @@ test('trajectory planner uses declared noise rather than uncalibrated RMS spread
   assert.equal(low.status,'proposed');
   assert.equal(low.selected.power.status,'distinguishable');
   assert.equal(low.selected.power.certifiedMinimumReadings,1);
+  assert.match(low.diagnostics.rankingReason,/Fewest independently noisy prospective readings/);
   assert.equal(low.selected.power.readings[0].time,2);
   assert.ok(low.selected.predictions.every(x=>x.rows.every(noFuture)));
   assert.deepEqual(low.provenance.trainingRunIds,['training-only']);
@@ -161,6 +162,7 @@ test('trajectory planner uses declared noise rather than uncalibrated RMS spread
   const noisy=planTrajectoryExperiment(d,{...design,noiseSigma:1,noiseTargetZ:3,noiseMaxReadings:4});
   assert.equal(noisy.status,'uninformative');
   assert.equal(noisy.selected.power.status,'threshold_unreachable_on_grid');
+  assert.match(noisy.diagnostics.rankingReason,/No release reached the declared noise separation threshold/);
   const incumbent=planTrajectoryExperiment(d,design);
   assert.equal(incumbent.method,'rms_pairwise_position_disagreement');
   assert.equal(incumbent.scoreUnits,'rad');
