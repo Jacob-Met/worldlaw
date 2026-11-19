@@ -39,6 +39,21 @@ jobs:
           mkdir -p .receipts
           node experiments/gaussian-intervention-comparison.mjs > .receipts/gaussian-intervention-comparison.json
           node -e 'const r=JSON.parse(require("node:fs").readFileSync(".receipts/gaussian-intervention-comparison.json")); console.log(JSON.stringify(r.grouped));'
+      - name: Receive declared correlated sensor design and unchanged held-out controls
+        run: |
+          node experiments/correlated-intervention-comparison.mjs > .receipts/correlated-intervention-comparison.json
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -x "$BROWSER"
+          PLAYWRIGHT_MODULE=playwright-core BROWSER_EXECUTABLE_PATH="$BROWSER" node scripts/correlated-reading-browser.mjs
+      - name: Retain correlated source-bound receiving
+        uses: actions/upload-artifact@v4
+        with:
+          name: correlated-sensor-cold-${{ github.run_id }}
+          path: |
+            .receipts/correlated-reading/
+            .receipts/correlated-intervention-comparison.json
+          retention-days: 7
+          if-no-files-found: error
       - name: Retain source-pinned evidence (not committed)
         uses: actions/upload-artifact@v4
         with:
@@ -46,3 +61,4 @@ jobs:
           path: .receipts/gaussian-intervention-comparison.json
           retention-days: 7
           if-no-files-found: error
+

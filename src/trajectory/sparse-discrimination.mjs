@@ -10,6 +10,7 @@
 import {planTrajectoryExperiment} from './planner.mjs';
 import {qualifyTrajectoryPlan} from '../experiment-design/qualify-trajectory-plan.mjs';
 import {acquireVirtualPendulumReadings} from './virtual-experiment.mjs';
+import {correlatedEnergy} from './correlated-gaussian-discriminator.mjs';
 
 export const SPARSE_RECEIVING_SCHEMA='worldlaw.sparse-discrimination/v1';
 export const SPARSE_EXPERIMENT_SCHEMA='worldlaw.sparse-experiment/v1';
@@ -26,10 +27,14 @@ const object=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
  */
 export function receiveSparseReadings(plan,evidence){
   requireThat(object(plan)&&plan.schema==='worldlaw.trajectory-plan/v1'&&
-    plan.method==='finite-grid_minimax_independent_gaussian_discrimination'&&
+    ['finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination'].includes(plan.method)&&
     plan.status==='proposed'&&object(plan.selected)&&object(plan.selected.power),
     'Use an informative noise-aware prospective trajectory plan.', 'invalid_plan');
   const {selected}=plan, sigma=plan.options.noiseSigma, requested=selected.power.readings;
+  const correlationTime=plan.options.noiseCorrelationTime??0;
+  requireThat(Number.isFinite(correlationTime)&&correlationTime>=0&&
+    (correlationTime>0)===(plan.method==='finite-grid_minimax_correlated_gaussian_discrimination'),
+    'Plan covariance declaration differs from its method.','invalid_plan');
   requireThat(finite(sigma)&&sigma>0&&sigma<=.05&&
     selected.power.status==='distinguishable'&&Array.isArray(requested)&&requested.length>=1&&
     requested.length<=128,'Plan must have a finite positive noise scale and a concrete distinguishing reading subset.','invalid_plan');
@@ -38,7 +43,7 @@ export function receiveSparseReadings(plan,evidence){
     object(evidence.source)&&typeof evidence.source.recordingId==='string'&&
     evidence.source.instrumentId==='worldlaw.virtual-pendulum/v1',
     'Supply real source-labeled sparse virtual-instrument measurements.', 'invalid_sparse_evidence');
-  requireThat(evidence.source.positionNoiseSigma===sigma&&
+  requireThat(evidence.source.positionNoiseSigma===sigma&&(evidence.source.positionNoiseCorrelationTime??0)===correlationTime&&
     evidence.initialPosition===selected.initialPosition&&evidence.initialRate===selected.initialRate&&
     evidence.source.duration===selected.duration&&evidence.source.sampleInterval===selected.sampleInterval,
     'The acquired sensor noise or physical release differs from the prospectively selected experiment.',
@@ -62,15 +67,16 @@ export function receiveSparseReadings(plan,evidence){
     requireThat(object(model)&&typeof model.modelId==='string'&&!modelIds.has(model.modelId)&&
       Array.isArray(model.rows),'Models and predictions must be uniquely identified.', 'invalid_plan');
     modelIds.add(model.modelId);
-    let energy=0,maxAbsResidualRad=0;
+    let energy=0,maxAbsResidualRad=0;const residuals=[];
     for(let i=0;i<requested.length;i++){
       const expected=model.rows[requested[i].sampleIndex];
       requireThat(object(expected)&&expected.time===requested[i].time&&finite(expected.position),
         'Candidate predictions do not cover the exact acquired timestamps.', 'invalid_plan');
       const residual=evidence.readings[i].position-expected.position;
-      energy+=(residual/sigma)**2;
+      residuals.push(residual/sigma);
       maxAbsResidualRad=Math.max(maxAbsResidualRad,Math.abs(residual));
     }
+    energy=correlationTime>0?correlatedEnergy(residuals,requested.map(r=>r.time),requested.map((_,i)=>i),correlationTime):residuals.reduce((sum,r)=>sum+r*r,0);
     requireThat(finite(energy),'Sparse prediction likelihood exceeded the finite scoring range.','numerical_failure');
     return {modelId:model.modelId,normalizedSquaredResidual:energy,maxAbsResidualRad};
   });
@@ -91,10 +97,10 @@ export function receiveSparseReadings(plan,evidence){
     sampleIndices:requested.map(r=>r.sampleIndex),
     sampleTimesSeconds:requested.map(r=>r.time),
     measuredReadingCount:requested.length,unmeasuredPositionsConsumed:0,
-    sigmaRad:sigma,candidates,decisionMarginChi2,
+    sigmaRad:sigma,...(correlationTime>0?{correlationTimeSeconds:correlationTime,covarianceModel:'stationary_exponential'}:{}),candidates,decisionMarginChi2,
     bestResidualNormZ:Math.sqrt(best),
     modelScope:'Only the original training-competitive hypotheses that the planner evaluated; an omitted or wrong law cannot be ruled out.',
-    inferenceMeaning:'Equal-prior relative Gaussian likelihood among offered frozen predictions with independently declared homoscedastic sensor sigma. This does not refit coefficients, authenticate the source, establish physical causal truth, or calibrate confidence.',
+    inferenceMeaning:correlationTime>0?'Equal-prior relative Gaussian likelihood with externally declared stationary exponential sensor covariance; no covariance fitting, physical validation or confidence calibration.':'Equal-prior relative Gaussian likelihood among offered frozen predictions with independently declared homoscedastic sensor sigma. This does not refit coefficients, authenticate the source, establish physical causal truth, or calibrate confidence.',
     limitations:['The virtual apparatus still integrates intervening physical dynamics, but measures only the selected positions.',
       'An initial condition supplied to the apparatus is not counted as a noisy sensor measurement.',
       'Unobserved timestamps are not synthesized as evidence or used in the receiver.',
@@ -122,9 +128,10 @@ export function runSparseExperiment(discovery,settings,{seed,existingRuns}={}){
     'Pass complete retained source evidence as existingRuns for replay protection.', 'invalid_history');
   const indices=plan.selected.power.readings.map(r=>r.sampleIndex);
   const evidence=acquireVirtualPendulumReadings({...plan.selected.acquisitionRequest,
-    noiseSigma:plan.options.noiseSigma,seed,sampleIndices:indices},
+    noiseSigma:plan.options.noiseSigma,...(plan.options.noiseCorrelationTime>0?{noiseCorrelationTime:plan.options.noiseCorrelationTime}:{}),seed,sampleIndices:indices},
     {existingRuns});
   const receiving=receiveSparseReadings(plan,evidence);
   return {schema:SPARSE_EXPERIMENT_SCHEMA,status:'acquired_sparse_evidence',
     plan,numericalQualification:numerical,evidence,receiving,acquisitionPerformed:true};
 }
+

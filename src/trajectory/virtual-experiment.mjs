@@ -22,7 +22,7 @@ function bounded(value, name, min, max) {
 }
 function requestOptions(raw) {
   insist(record(raw), 'Supply an explicit virtual acquisition request.');
-  const keys = ['initialPosition', 'initialRate', 'seed', 'duration', 'sampleInterval', 'noiseSigma'];
+  const keys = ['initialPosition', 'initialRate', 'seed', 'duration', 'sampleInterval', 'noiseSigma','noiseCorrelationTime'];
   insist(Object.keys(raw).every(key => keys.includes(key)), 'The instrument accepts only initialPosition, initialRate, seed, duration, sampleInterval and noiseSigma; learned laws or physical parameter overrides are not inputs.');
   const result = {
     initialPosition: bounded(raw.initialPosition, 'initialPosition (rad)', -2.4, 2.4),
@@ -32,6 +32,7 @@ function requestOptions(raw) {
     sampleInterval: bounded(raw.sampleInterval ?? .04, 'sampleInterval (s)', .01, .1),
     noiseSigma: bounded(raw.noiseSigma ?? .00002, 'noiseSigma (rad)', 0, .05),
   };
+  if(raw.noiseCorrelationTime!==undefined)result.noiseCorrelationTime=bounded(raw.noiseCorrelationTime,'noiseCorrelationTime (s)',0,1e8);
   insist(Number.isInteger(result.seed), 'seed must be an explicitly supplied unsigned 32-bit integer.');
   const ratio = result.duration / result.sampleInterval, count = Math.round(ratio);
   insist(Math.abs(ratio - count) <= 32 * Number.EPSILON * Math.max(1, ratio), 'duration must contain a whole number of sample intervals; no silent duration rounding.');
@@ -55,7 +56,7 @@ function shortId(text) {
 function identity(options) {
   const {initialPosition, initialRate, seed, noiseSigma, duration, sampleInterval} = options;
   // Zero-noise outputs do not acquire an independent identity from a changed seed.
-  return `${ID}:${JSON.stringify([initialPosition, initialRate, noiseSigma ? seed : null, noiseSigma, duration, sampleInterval])}`;
+  return `${ID}:${JSON.stringify([initialPosition, initialRate, noiseSigma ? seed : null, noiseSigma, duration, sampleInterval,...(options.noiseCorrelationTime>0?[options.noiseCorrelationTime]:[])])}`;
 }
 function recognized(run) {
   return run.source.instrumentId === ID || run.source.generator === 'scripts/generate-trajectory-fixtures-92be.mjs';
@@ -126,7 +127,7 @@ function acquireCore(request, context, selectedIndices) {
   checkHistory(options, recordingId, context);
   const noise = random(options.seed), samples = [];
   const {initialPosition, initialRate, duration, sampleInterval, noiseSigma, seed, intervalCount, substeps} = options;
-  let position = initialPosition, rate = initialRate;
+  let position = initialPosition, rate = initialRate, previousSensorTime=null, previousSensorError=0;
   // Independent explicit physical equation, matching the unforced fixture instrument.
   const acceleration = (theta, omega) => (-.24 * omega - 2.2 * Math.sin(theta)) / .8;
   const step = sampleInterval / substeps;
@@ -135,8 +136,15 @@ function acquireCore(request, context, selectedIndices) {
     const observed=selectedIndices===null || selectedIndices[nextReading]===index;
     // An unrequested timestamp never invokes the sensor or consumes RNG noise.
     if(observed){
-      const error = index === 0 ? 0 : noiseSigma * (Math.sqrt(-2 * Math.log(noise())) * Math.cos(2 * Math.PI * noise()));
+      let error = index === 0 ? 0 : noiseSigma * (Math.sqrt(-2 * Math.log(noise())) * Math.cos(2 * Math.PI * noise()));
       const time = index === intervalCount ? duration : Number((index * sampleInterval).toFixed(12));
+      if(index>0&&options.noiseCorrelationTime>0){
+        if(previousSensorTime!==null){
+          const gap=(time-previousSensorTime)/options.noiseCorrelationTime;
+          error=Math.exp(-gap)*previousSensorError+Math.sqrt(-Math.expm1(-2*gap))*error;
+        }
+        previousSensorTime=time;previousSensorError=error;
+      }
       insist(Number.isFinite(position + error) && Math.abs(position + error) <= 1e6, 'Sensor output exceeded the finite instrument range.', 'numerical_failure');
       samples.push({...((selectedIndices===null)?{}:{sampleIndex:index}),time, position: position + error, command: 0});
       if(selectedIndices!==null)nextReading++;
@@ -159,12 +167,13 @@ function acquireCore(request, context, selectedIndices) {
     source: {
       label: 'Independent explicit-equation synthetic pendulum instrument', instrumentId: ID, recordingId,
       generator: 'src/trajectory/virtual-experiment.mjs', seed, positionNoiseSigma: noiseSigma,
+      ...(options.noiseCorrelationTime>0?{positionNoiseCorrelationTime:options.noiseCorrelationTime}:{}),
       initialPosition, duration, sampleInterval,
       provenance: 'synthetic_virtual_instrument_not_physical_measurement',
       acquisition: 'Complete fine-step RK4 release with fixed instrument coefficients; no learned candidate is evaluated as truth.',
       commandConvention: 'samples[i].command=0 N·m held on [time_i,time_i+1); final command does not drive a completed interval.',
       initialState: 'Initial angle and rate are supplied by the controlled instrument; t0 has exactly zero position noise.',
-      noise: {algorithm: 'lcg32_1664525_1013904223_box_muller_cosine_v1', distribution: 'seeded_iid_gaussian_angle_perturbations',
+      noise: {algorithm: options.noiseCorrelationTime>0?'lcg32_box_muller_stationary_ou_v1':'lcg32_1664525_1013904223_box_muller_cosine_v1', distribution: options.noiseCorrelationTime>0?'seeded_stationary_exponential_gaussian_angle_perturbations':'seeded_iid_gaussian_angle_perturbations',
         initialNoise: 0, noiseStreamId: `${ID}:position-noise:${seed}`, seedMeaning: 'Reusing a seed reuses a deterministic noise stream; distinct seeds are controlled pseudorandom realizations, not physical independence.'},
       oracle: {inertia: .8, command: 0, rate: -.24, gravity: -2.2, bias: 0},
       numerical: {method: 'independent_explicit_equation_RK4', maxStep: step, steps: intervalCount * substeps,
@@ -185,9 +194,10 @@ function acquireCore(request, context, selectedIndices) {
       sampleIndices: selectedIndices, fullGridSampleCount: intervalCount+1,
       measuredSampleCount: samples.length, sampleSelection: 'declared-before-acquisition; fixed time grid; initial state externally controlled, not sensor measured',
       noise: {...result.source.noise, noiseStreamId: `${ID}:sparse-position-noise:${seed}`,
-        algorithm: 'lcg32_1664525_1013904223_selected_samples_box_muller_cosine_v1',
+        algorithm: options.noiseCorrelationTime>0?'lcg32_box_muller_selected_stationary_ou_v1':'lcg32_1664525_1013904223_selected_samples_box_muller_cosine_v1',
         measurementDrawCount: samples.length,
         selectedOnly: true},
     },
   };
 }
+

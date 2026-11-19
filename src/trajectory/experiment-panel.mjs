@@ -102,10 +102,11 @@ export function createExperimentPanel(host, callbacks = {}) {
       <label for="duration">Observation time<span>s</span><input id="duration" type="number" min="0.01" step="0.4" inputmode="decimal"></label>
       <label for="solver-step">Maximum solver step<span>s</span><input id="solver-step" type="number" min="0.0001" max="0.1" step="0.001" inputmode="decimal"></label>
       <label for="minimum-spread">Minimum model spread<span>rad · proposal threshold</span><input id="minimum-spread" type="number" min="0" step="0.01" inputmode="decimal"></label>
-      <label for="power-sigma">Position noise σ<span>rad · independent sensor</span><input id="power-sigma" type="number" min="0.000000000001" step="0.001" value="0.01" inputmode="decimal"></label>
+      <label for="power-sigma">Position noise σ<span>rad · declared sensor</span><input id="power-sigma" type="number" min="0.000000000001" step="0.001" value="0.01" inputmode="decimal"></label>
+      <label for="power-correlation">Sensor memory τ<span>seconds · 0 means independent</span><input id="power-correlation" type="number" min="0" max="100000000" step="0.1" value="0" inputmode="decimal"></label>
       <label for="power-z">Minimum pair separation<span>z · standard deviations</span><input id="power-z" type="number" min="0.000001" max="100" step="0.01" value="3.29" inputmode="decimal"></label>
       <label for="power-readings">Reading budget<span>distinct timestamps</span><input id="power-readings" type="number" min="1" max="128" step="1" value="8" inputmode="numeric"></label>
-      </div><p class="small">With noise-aware decision enabled, compare the candidate motions against your declared independent Gaussian sensor noise and minimize informative reading count on the offered time grid. This assumption is not calibrated, not an authorization to operate hardware, and not physical validation.</p></details>
+      </div><p class="small">Compare candidate motions against declared Gaussian sensor noise. A positive sensor memory uses covariance σ² exp(−|t−s|/τ), so nearby readings share error; zero preserves independent readings. Memory is externally declared, never estimated from the new observations. This is not calibrated sensor performance, hardware authorization or physical validation.</p></details>
       <div class="controls"><p id="plan-status" class="small">No future recording has been acquired.</p>
         <label class="noise-option" for="power-enable"><input id="power-enable" type="checkbox" style="width:18px;min-height:22px" aria-label="Plan against declared Gaussian sensor noise">Noise-aware reading plan</label>
         <button id="plan" type="button">Plan a release →</button></div>
@@ -137,8 +138,10 @@ export function createExperimentPanel(host, callbacks = {}) {
       next.noiseSigma = read('power-sigma');
       next.noiseTargetZ = read('power-z');
       next.noiseMaxReadings = read('power-readings');
+      const correlation=read('power-correlation');
+      if(correlation>0)next.noiseCorrelationTime=correlation;else {if(correlation<0)throw new Error('Sensor memory must be nonnegative.');delete next.noiseCorrelationTime;}
     } else {
-      delete next.noiseSigma;delete next.noiseTargetZ;delete next.noiseMaxReadings;delete next.maxPowerProducts;
+      delete next.noiseSigma;delete next.noiseTargetZ;delete next.noiseMaxReadings;delete next.maxPowerProducts;delete next.noiseCorrelationTime;
     }
     if (next.bounds.initialPosition.min > next.bounds.initialPosition.max || next.bounds.initialRate.min > next.bounds.initialRate.max) throw new Error('Each minimum must be at most its maximum.');
     if (next.duration <= 0) throw new Error('Observation time must be greater than zero.');
@@ -204,7 +207,7 @@ export function createExperimentPanel(host, callbacks = {}) {
     $('open-example').hidden = Boolean(view.available) || typeof callbacks.onLoadExample !== 'function'; $('open-example').disabled = Boolean(pending);
     $('plan').disabled = Boolean(pending) || Boolean(run) || Boolean(sparse) || !view.available || typeof callbacks.onPlan !== 'function';
     $('acquire').disabled = Boolean(pending) || !view.available || view.acquisitionAllowed === false || plan?.status !== 'proposed' || !selected || Boolean(run) || Boolean(sparse) || typeof callbacks.onAcquire !== 'function';
-    $('acquire-sparse').hidden = plan?.method !== 'finite-grid_minimax_independent_gaussian_discrimination';
+    $('acquire-sparse').hidden = !['finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination'].includes(plan?.method);
     $('acquire-sparse').disabled = Boolean(pending) || !view.available || view.acquisitionAllowed === false ||
       plan?.status !== 'proposed' || !selected || Boolean(run) || Boolean(sparse) || typeof callbacks.onAcquireSparse !== 'function';
     $('apply').disabled = Boolean(pending) || !run || typeof callbacks.onApplyEvidence !== 'function';
@@ -235,10 +238,11 @@ export function createExperimentPanel(host, callbacks = {}) {
     $('power-readout').hidden = !power;
     if (power) {
       const timestamps=power.readings.map(r=>format(r.time,5)).join(', ');
-      $('power-readout').textContent = `Noise-aware design: worst pair separation ${format(power.minPairwiseZ,5)} z at σ=${format(power.sigmaRad,5)} rad; ${power.measurementCount} independent reading(s) at t=[${timestamps}] s. ${power.optimality}. No evidence acquired.`;
+      const covariance=power.correlationTimeSeconds>0?`correlated (τ=${format(power.correlationTimeSeconds,5)} s)`:'independent';
+      $('power-readout').textContent = `Noise-aware design: worst pair separation ${format(power.minPairwiseZ,5)} z at σ=${format(power.sigmaRad,5)} rad; ${power.measurementCount} ${covariance} reading(s) at t=[${timestamps}] s. ${power.optimality}. No evidence acquired.`;
     }
     $('design-meaning').textContent = plan?.status === 'no_feasible_design' ? 'Every candidate release was refused by a prediction or sampled prediction limit. Inspect the model scope or choose other limits.' :
-      usingPower ? (plan?.status === 'uninformative' ? 'This greedy reading schedule did not establish the requested pairwise separation under the declared noise. Its certificate distinguishes a proven budget limit from an inconclusive search; neither proves physical equivalence.' : 'This release separates the competing predicted trajectories under the declared independent Gaussian noise model. Verify the sensor and model assumptions before acquiring.') :
+      usingPower ? (plan?.status === 'uninformative' ? 'This reading search did not establish the requested pairwise separation under the declared noise. Its certificate distinguishes a proven budget limit from an inconclusive search; neither proves physical equivalence.' : 'This release separates the competing predicted trajectories under the declared Gaussian sensor covariance. Verify the sensor and model assumptions before acquiring.') :
       plan?.status === 'uninformative' ? `Compared model spread does not exceed the ${format(plan.options?.minDisagreement)} rad design threshold. Try a different release range.` : selected ? 'The chosen release maximizes pairwise position disagreement among the compared training-compatible models on this grid.' : 'A proposal uses competing predictions. It contains no future observation.';
     $('design-list').replaceChildren();
     for (const design of (plan?.ranked || []).slice(0, 3)) {const row = element('li'); row.append(element('span', `${format(design.initialPosition, 3)} rad · ${format(design.initialRate, 3)} rad/s`), element('strong', Number.isFinite(design.disagreementRad) ? `${format(design.disagreementRad, 3)} rad spread` : 'prediction refused')); $('design-list').append(row);}
@@ -277,6 +281,7 @@ export function createExperimentPanel(host, callbacks = {}) {
     for (const [id, value] of [['position-min', settings.bounds.initialPosition.min], ['position-max', settings.bounds.initialPosition.max], ['rate-min', settings.bounds.initialRate.min], ['rate-max', settings.bounds.initialRate.max], ['duration', settings.duration], ['solver-step', settings.maxStep ?? .01], ['minimum-spread', settings.minDisagreement ?? .01]]) $(id).value = value;
     $('power-enable').checked=Number.isFinite(settings.noiseSigma);
     $('power-sigma').value=settings.noiseSigma??.01;
+    $('power-correlation').value=settings.noiseCorrelationTime??0;
     $('power-z').value=settings.noiseTargetZ??3.29;
     $('power-readings').value=settings.noiseMaxReadings??8;
     paint();
@@ -304,3 +309,4 @@ export function createExperimentPanel(host, callbacks = {}) {
   render(view);
   return {render, destroy() {destroyed = true; generation++; observer.disconnect(); cancelAnimationFrame(frame); shadow.replaceChildren();}};
 }
+
