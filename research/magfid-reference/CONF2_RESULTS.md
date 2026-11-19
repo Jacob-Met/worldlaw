@@ -133,6 +133,14 @@ artifact ZIP SHA256
 | Conditional shared candidate vs frozen contrast-only | **0.25** | **0.875** |
 | Same candidate vs identical candidate no-effect sham | 0.333333 | **1** |
 
+This two-fold comparator was specified only after the original test outcomes
+had been received. It is therefore **exploratory post-outcome receiving**,
+even though the source inputs, external software commit, grouping and
+enumeration are immutable. It cannot serve as a newly preregistered
+confirmatory test. The unchanged Nullgarden consumer is genuinely
+independent of our statistical model and code, but its grouping
+and end-point comparison are not evidence of a randomized intervention.
+
 The existing original Nullgarden HTTP product independently reports
 **`unavailable`** because five-fold training loses a class
 with the four-recording design. The custom two-fold conditional
