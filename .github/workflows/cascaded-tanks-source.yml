@@ -1,0 +1,29 @@
+name: Cascaded Tanks physical source pin
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/cascaded-tanks-source.yml'
+      - 'experiments/cascaded-tanks-physical.py'
+      - 'tests/cascaded-tanks-physical.test.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-pin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify original 4TU physical source archive identity WITHOUT reading experimental sample values
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 5 --retry-all-errors \
+            --connect-timeout 20 --max-time 240 \
+            'https://data.4tu.nl/file/d4810b78-6cdd-48fe-8950-9bd601e5f47f/3b697e42-01a4-4979-a370-813a456c36f5' \
+            --output "$RUNNER_TEMP/CascadedTanksFiles.zip"
+          test "$(stat -c %s "$RUNNER_TEMP/CascadedTanksFiles.zip")" -eq 7520592
+          sha256sum "$RUNNER_TEMP/CascadedTanksFiles.zip"
+          unzip -t "$RUNNER_TEMP/CascadedTanksFiles.zip" | tail -1
+          unzip -Z1 "$RUNNER_TEMP/CascadedTanksFiles.zip" | sed -n '1,35p'
+          echo 'PROTOCOL: no source MAT, estimation or test numerical values were opened in this preflight'
