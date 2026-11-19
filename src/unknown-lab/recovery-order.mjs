@@ -1,4 +1,5 @@
 import { inspectRelaxationReads, planRelaxationReads } from './relaxation-order.mjs';
+import { inspectOffsetReads, planOffsetReads } from './offset-order.mjs';
 import { fitRecovery } from './recovery-response.mjs';
 
 export const recoveryOrderDomain = Object.freeze({
@@ -8,8 +9,12 @@ export const recoveryOrderDomain = Object.freeze({
 
 // The delay schedule is selected before examining any notebook values.
 // Challenges remain sealed, and duplicate independent recordings are never cherry-picked.
-export function inspectRecoveryOrder(notebook, domain = recoveryOrderDomain) {
-  const plan = planRelaxationReads(domain);
+const offsetDomain = Object.freeze({
+  fast: Object.freeze([0.08,0.23]), slow: Object.freeze([0.63,0.81]),
+  amplitude: Object.freeze([0.55,1.05]), error: 0.0002, maxStride: 8,
+});
+
+function inspectPlannedOrder(notebook, domain, plan, read) {
   if (plan.status !== 'separating-plan') return {plan,status:'unresolved',reason:'no-guaranteed-plan'};
   if (notebook.training.length < 2) return {plan,status:'unresolved',reason:'await-training'};
   const {training} = fitRecovery(notebook);
@@ -22,5 +27,13 @@ export function inspectRecoveryOrder(notebook, domain = recoveryOrderDomain) {
     if (row.boundary > domain.error) return {plan,status:'unresolved',reason:'screen-exceeds-budget'};
     observations.push({wait:row.delaySeconds, difference:row.estimate,recordingId:row.recordingId});
   }
-  return {plan, observations, ...inspectRelaxationReads(observations,domain.error)};
+  return {plan, observations, ...read(observations,domain.error)};
+}
+
+export function inspectRecoveryOrder(notebook, domain = recoveryOrderDomain) {
+  return inspectPlannedOrder(notebook, domain, planRelaxationReads(domain), inspectRelaxationReads);
+}
+
+export function inspectOffsetRecoveryOrder(notebook, domain = offsetDomain) {
+  return inspectPlannedOrder(notebook, domain, planOffsetReads(domain), inspectOffsetReads);
 }
