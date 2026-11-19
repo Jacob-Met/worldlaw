@@ -1,6 +1,8 @@
 import {spawn} from 'node:child_process';
 import {mkdtemp,readFile,writeFile,rm,mkdir} from 'node:fs/promises';
 import {createProductServer} from '../server.mjs';
+import {recoveryFixture,recoveryRecording} from '../src/unknown-lab/recovery-fixture.mjs';
+import {exportRecovery} from '../src/unknown-lab/recovery-response.mjs';
 import os from 'node:os';
 import path from 'node:path';
 import assert from 'node:assert/strict';
@@ -108,6 +110,30 @@ try {
   await wait("document.querySelector('#source-badge')?.textContent==='DECLARED SIMULATION'");
   assert.equal(await evaljs("localStorage.getItem('worldlaw.unknown-lab.history.v1')"),null);
  });
+ async function checkRecordedTimes(width) {
+  const documentNode=await send('DOM.getDocument');
+  const input=await send('DOM.querySelector',{nodeId:documentNode.root.nodeId,selector:'#recovery-file'});
+  const times=[.07,1.91,4.13,5.85,8.12];
+  for(const kind of ['two-mode-affine','one-mode-affine']){
+   const notebook=recoveryFixture(kind);
+   notebook.training=times.map((t,i)=>recoveryRecording(kind,20+i,t,{noiseSigma:.000005}));
+   const file=path.join(dir,'logged-'+kind+'-'+width+'.json');
+   await writeFile(file,exportRecovery(notebook));
+   await send('DOM.setFileInputFiles',{nodeId:input.nodeId,files:[file]});
+   const expected=kind==='two-mode-affine'?'no single positive relaxing mode':'remains unresolved';
+   await wait("(()=>{const t=document.querySelector('#recovery-affine-result').textContent;return t.includes("+JSON.stringify(times.join(', '))+")&&t.includes("+JSON.stringify(expected)+")})()");
+   assert.equal(await evaljs("document.querySelector('#recovery-error').hidden"),true);
+   await evaljs("document.querySelector('#recovery-affine-result').scrollIntoView({block:'center',behavior:'instant'})");
+   await wait("(()=>{const r=document.querySelector('#recovery-affine-result').getBoundingClientRect();return r.height>0&&r.top>=0&&r.bottom<=window.innerHeight})()");
+   await evaljs("new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))");
+   const result=await evaljs("document.querySelector('#recovery-affine-result').textContent");
+   console.log(JSON.stringify({width,imported:kind,result}));
+   if(outputDir){
+    const shot=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});
+    await writeFile(path.join(outputDir,'recorded-'+kind+'-'+width+'.png'),Buffer.from(shot.data,'base64'));
+   }
+  }
+ }
  async function checkAffineCourse(width) {
   const key = async (name, code, virtualKey) => {
    for (const type of ['keyDown','keyUp']) {
@@ -166,8 +192,10 @@ try {
  if(outputDir)await writeFile(path.join(outputDir,'worldlaw-unknown-lab-mobile.png'),Buffer.from(shot.data,'base64'));
  await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
  await check('five-delay linear-drift controls with desktop keyboard input',()=>checkAffineCourse(1440));
+ await check('recorded-time JSON imports on desktop',()=>checkRecordedTimes(1440));
  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
  await check('five-delay linear-drift controls with phone viewport',()=>checkAffineCourse(390));
+ await check('recorded-time JSON imports on phone',()=>checkRecordedTimes(390));
  await check('browser isolation and script errors',async()=>{assert.deepEqual(events.exceptions,[]);assert.deepEqual(events.outside,[]);});
  await send('Page.navigate',{url:new URL('/',origin).href});
  await wait("document.querySelector('#sample-count')?.textContent!=='—' && !!document.querySelector('a[href=\"/unknown-lab.html\"]')");
