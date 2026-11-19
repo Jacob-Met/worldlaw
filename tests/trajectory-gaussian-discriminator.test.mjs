@@ -68,7 +68,8 @@ test('three laws recover and certify a global minimum beyond the per-pair lower 
   assert.equal(multi.measurementCount,2);
   assert.equal(multi.lowerBoundReadings,1);
   assert.equal(multi.certifiedMinimumReadings,2);
-  assert.equal(multi.exactSubsetSearch.status,'minimum_found');
+  assert.equal(multi.exactSubsetSearch.status,'optimal_incumbent',
+    'complete enumeration proves greedy two-reading incumbent minimal even though per-pair bound is one');
   assert.deepEqual(multi.readings.map(x=>x.sampleIndex),[1,2]);
   assert.equal(multi.pairwise.length,3);
 });
