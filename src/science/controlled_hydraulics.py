@@ -104,7 +104,12 @@ def physical_caps(params,variant):
     return (float(params[5]),float(params[6])) if variant=="hard_overflow" else (80.,80.)
 
 def integrate_physical(u,params,variant,*,upper0=None,observed_y0=None,substeps=4):
-    u=numeric_series(u)
+    # This solver also evaluates the original 50-sample state-initialization
+    # prefix. Full dataset/fit functions require >=60; integration accepts
+    # any finite two-sample horizon, without relaxing the fitting boundary.
+    u=np.asarray(u,dtype=np.float64).reshape(-1)
+    require(len(u)>=2 and np.all(np.isfinite(u)),
+            "finite controlled input of two or more samples required")
     pars=np.asarray(params,dtype=float)
     require((len(pars)==7 if variant=="hard_overflow" else len(pars)==5),
             "wrong physical parameter count")
