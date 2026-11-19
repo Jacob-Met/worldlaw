@@ -71,7 +71,7 @@ try{
   await page.locator('#notebook-file').setInputFiles({
     name:'original-independent-input.json',mimeType:'application/json',buffer:Buffer.from(input)});
   await p('release-stats').waitFor({state:'visible'});
-  if(!(await panel.locator('details').getAttribute('open')))await panel.locator('summary').click();
+  if((await panel.locator('details').getAttribute('open'))===null)await panel.locator('summary').click();
   await p('power-correlation').fill('.2');
   await p('power-correlation-max').fill('.8');
   await p('plan').focus();await page.keyboard.press('Enter');
