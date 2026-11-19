@@ -7,6 +7,7 @@ import {rolloutWithResolution} from '../trajectory/resolution.mjs';
 import {UNITS} from '../science/torque-discovery.mjs';
 import {designGaussianReadings} from '../trajectory/gaussian-discriminator.mjs';
 import {designCorrelatedReadings,CORRELATED_WORK_LIMIT} from '../trajectory/correlated-gaussian-discriminator.mjs';
+import {designBoundedCorrelatedReadings} from '../trajectory/bounded-correlated-discriminator.mjs';
 
 export const QUALIFICATION_SCHEMA = 'worldlaw.trajectory-plan-qualification/v1';
 export class TrajectoryPlanQualificationError extends Error {
@@ -116,14 +117,22 @@ function pairwiseSensitivity(checks) {
  */
 export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
   const settings = options(requestedOptions);
-  requireThat(object(plan) && plan.schema === 'worldlaw.trajectory-plan/v1' && ['rms_pairwise_position_disagreement','finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination'].includes(plan.method) &&
+  requireThat(object(plan) && plan.schema === 'worldlaw.trajectory-plan/v1' && ['rms_pairwise_position_disagreement','finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination','finite-grid_minimax_bounded_correlated_gaussian_discrimination'].includes(plan.method) &&
     object(plan.options) && Array.isArray(plan.ranked) && plan.ranked.length >= 1 && plan.ranked.length <= 81,
     'Supply a computed finite trajectory plan.');
   requireThat(['proposed', 'uninformative', 'no_feasible_design'].includes(plan.status), 'Unsupported planner status.');
   finite(plan.options.inertia, 'inertia', 1e-12, 1e12); finite(plan.options.command, 'command', -1e4, 1e4);
-  const correlated=plan.method==='finite-grid_minimax_correlated_gaussian_discrimination';
+  const bounded=plan.method==='finite-grid_minimax_bounded_correlated_gaussian_discrimination';
+  const correlated=bounded||plan.method==='finite-grid_minimax_correlated_gaussian_discrimination';
   const noiseMode=correlated||plan.method==='finite-grid_minimax_independent_gaussian_discrimination';
-  requireThat(correlated===(plan.options.noiseCorrelationTime>0),'Declared covariance differs from the planned method.');
+  requireThat((bounded||plan.method==='finite-grid_minimax_correlated_gaussian_discrimination')===(bounded||plan.options.noiseCorrelationTime>0)&&
+    bounded===(plan.options.noiseCorrelationTimeMax!==undefined),
+    'Declared covariance interval differs from the planned method.');
+  if(bounded){
+    finite(plan.options.noiseCorrelationTimeMax,'sensor memory upper tau',0,1e8);
+    requireThat(plan.options.noiseCorrelationTimeMax>=(plan.options.noiseCorrelationTime??0),
+      'Declared upper sensor memory is below its nominal lower bound.');
+  }
   const threshold = finite(plan.options.minDisagreement, 'minDisagreement', 0, 1e6);
   if(noiseMode){
     finite(plan.options.noiseSigma,'noiseSigma',1e-12,1e6);
@@ -132,6 +141,13 @@ export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
   }
   const {models, trainingRunIds} = ensemble(discovery, plan), scheduled = schedule(plan);
   const designs = Array.from(plan.ranked, row => {validateDesign(row, plan); return row;});
+  if(bounded)for(const design of designs){
+    if(design.status!=='evaluated')continue;
+    requireThat(design.power?.correlationTimeRangeSeconds?.min===(plan.options.noiseCorrelationTime??0)&&
+      design.power?.correlationTimeRangeSeconds?.max===plan.options.noiseCorrelationTimeMax&&
+      design.power?.nominalCorrelationTimeSeconds===(plan.options.noiseCorrelationTime??0),
+      'The frozen robust covariance interval differs from its prospective source declaration.','stale_plan');
+  }
   requireThat(new Set(designs.map(row => row.index)).size === designs.length, 'Design indices must be unique.');
   if (plan.selected !== null) {
     const selectedRow = designs.find(row => row.index === plan.selected?.index);
@@ -185,8 +201,10 @@ export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
     const sensitivity = pairwiseSensitivity(modelChecks);
     if(noiseMode){
       const args={sigma:plan.options.noiseSigma,targetZ:plan.options.noiseTargetZ,maxReadings:plan.options.noiseMaxReadings,correlationTime:plan.options.noiseCorrelationTime,
-        ...(correlated?{maxInnovationTerms:Math.min(CORRELATED_WORK_LIMIT,Math.floor(plan.options.maxPowerProducts/designs.length))}:{})};
-      const designer=correlated?designCorrelatedReadings:designGaussianReadings;
+        ...(correlated?{maxInnovationTerms:Math.min(CORRELATED_WORK_LIMIT,Math.floor(plan.options.maxPowerProducts/designs.length))}:{}),
+        ...(bounded?{tauMin:plan.options.noiseCorrelationTime??0,tauMax:plan.options.noiseCorrelationTimeMax,
+          nominalCorrelationTime:plan.options.noiseCorrelationTime??0}:{})};
+      const designer=bounded?designBoundedCorrelatedReadings:correlated?designCorrelatedReadings:designGaussianReadings;
       const coarse=designer(coarseNoisePredictions,args);
       const refined=designer(refinedNoisePredictions,args);
       const readKey=power=>power.readings.map(r=>r.sampleIndex).join(',');
@@ -203,7 +221,8 @@ export function qualifyTrajectoryPlan(discovery, plan, requestedOptions = {}) {
       if(correlated&&coarse.measurementCount){
         sensitivityFactor=1;
         for(let i=1;i<coarse.readings.length;i++){
-          const gap=(coarse.readings[i].time-coarse.readings[i-1].time)/args.correlationTime;
+          const worstTau=bounded?args.tauMax:args.correlationTime;
+          const gap=(coarse.readings[i].time-coarse.readings[i-1].time)/worstTau;
           sensitivityFactor+=(1+Math.exp(-gap))**2/(-Math.expm1(-2*gap));
         }
       }

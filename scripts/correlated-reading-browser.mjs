@@ -65,8 +65,52 @@ try{
   await page.locator('#error').waitFor({state:'visible'});
   assert.equal(await p('sparse-evidence').isVisible(),true);
   checks.push('changed-memory import refuses while retaining current acquired record');
+  // A distinct cold notebook is essential: source acquisition is single-use.
+  // Re-enter the actual public controls, never patch document state or cache.
+  await page.setViewportSize({width:1920,height:1080});
+  await page.locator('#notebook-file').setInputFiles({
+    name:'original-independent-input.json',mimeType:'application/json',buffer:Buffer.from(input)});
+  await p('sparse-evidence').waitFor({state:'hidden'});
+  await p('release-stats').waitFor({state:'visible'});
+  if((await panel.locator('details').getAttribute('open'))===null)await panel.locator('summary').click();
+  await p('power-correlation').fill('.2');
+  await p('power-correlation-max').fill('.8');
+  await p('plan').focus();await page.keyboard.press('Enter');
+  await p('power-readout').filter({hasText:'Bounded sensor memory'}).waitFor();
+  assert.equal(await p('acquire-sparse').isEnabled(),true);
+  await panel.scrollIntoViewIfNeeded();
+  await page.screenshot({path:resolve(dir,'bounded-plan-1920x1080.png')});
+  checks.push('actual uncertainty instrument plans across declared memory interval via keyboard');
+  await p('acquire-sparse').focus();await page.keyboard.press('Enter');
+  await p('sparse-evidence').waitFor({state:'visible'});
+  const robustDownload=page.waitForEvent('download');
+  await page.locator('#export-notebook').click();
+  const robustPath=resolve(dir,'bounded-acquired-notebook.json');
+  await(await robustDownload).saveAs(robustPath);
+  const robust=JSON.parse(await readFile(robustPath,'utf8'));
+  assert.equal(robust.experiment.sparse.planSettings.noiseCorrelationTime,.2);
+  assert.equal(robust.experiment.sparse.planSettings.noiseCorrelationTimeMax,.8);
+  assert.equal(robust.experiment.sparse.evidence.source.positionNoiseCorrelationTime,.2);
+  assert.equal(robust.experiment.sparse.evidence.measurementCount,1);
+  await page.reload();
+  await p('sparse-evidence').waitFor({state:'visible'});
+  assert.equal(await p('power-correlation-max').inputValue(),'0.8');
+  assert.equal(await p('acquire-sparse').isDisabled(),true);
+  await page.setViewportSize({width:390,height:844});
+  await panel.scrollIntoViewIfNeeded();
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),390);
+  await page.screenshot({path:resolve(dir,'bounded-reopened-390x844.png')});
+  checks.push('real 390px reload retains bounded tau and source-faithful nominal acquisition');
+  await page.locator('#error').waitFor({state:'hidden'});
+  const forged=structuredClone(robust);
+  forged.experiment.sparse.planSettings.noiseCorrelationTimeMax=.9;
+  await page.locator('#notebook-file').setInputFiles({name:'forged-upper-memory.json',
+    mimeType:'application/json',buffer:Buffer.from(JSON.stringify(forged))});
+  await page.locator('#error').waitFor({state:'visible'});
+  assert.equal(await p('sparse-evidence').isVisible(),true);
+  checks.push('forged uncertainty interval refuses import without replacing acquired source');
   assert.deepEqual(errors,[]);
   assert.deepEqual(external,[],'Standalone receiving must not request external assets');
-  await writeFile(resolve(dir,'receipt.json'),JSON.stringify({checks,scope:'real browser controls and one-reading persistence; not a statistical power experiment',screens:['correlated-plan-1920x1080.png','correlated-reopened-390x844.png']},null,2));
+  await writeFile(resolve(dir,'receipt.json'),JSON.stringify({checks,scope:'real browser controls and one-reading persistence; not a statistical power experiment',screens:['correlated-plan-1920x1080.png','correlated-reopened-390x844.png','bounded-plan-1920x1080.png','bounded-reopened-390x844.png']},null,2));
   console.log(JSON.stringify({checks,output:dir}));
 }finally{if(browser)await browser.close();if(server)await new Promise(yes=>server.close(yes));}

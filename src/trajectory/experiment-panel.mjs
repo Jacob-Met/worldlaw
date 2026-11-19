@@ -103,10 +103,11 @@ export function createExperimentPanel(host, callbacks = {}) {
       <label for="solver-step">Maximum solver step<span>s</span><input id="solver-step" type="number" min="0.0001" max="0.1" step="0.001" inputmode="decimal"></label>
       <label for="minimum-spread">Minimum model spread<span>rad · proposal threshold</span><input id="minimum-spread" type="number" min="0" step="0.01" inputmode="decimal"></label>
       <label for="power-sigma">Position noise σ<span>rad · declared sensor</span><input id="power-sigma" type="number" min="0.000000000001" step="0.001" value="0.01" inputmode="decimal"></label>
-      <label for="power-correlation">Sensor memory τ<span>seconds · 0 means independent</span><input id="power-correlation" type="number" min="0" max="100000000" step="0.1" value="0" inputmode="decimal"></label>
+      <label for="power-correlation">Nominal sensor memory τ<span>seconds · 0 means independent</span><input id="power-correlation" type="number" min="0" max="100000000" step="0.1" value="0" inputmode="decimal"></label>
+      <label for="power-correlation-max">Uncertain memory upper τ<span>seconds · 0 means exact nominal τ</span><input id="power-correlation-max" type="number" min="0" max="100000000" step="0.1" value="0" inputmode="decimal"></label>
       <label for="power-z">Minimum pair separation<span>z · standard deviations</span><input id="power-z" type="number" min="0.000001" max="100" step="0.01" value="3.29" inputmode="decimal"></label>
       <label for="power-readings">Reading budget<span>distinct timestamps</span><input id="power-readings" type="number" min="1" max="128" step="1" value="8" inputmode="numeric"></label>
-      </div><p class="small">Compare candidate motions against declared Gaussian sensor noise. A positive sensor memory uses covariance σ² exp(−|t−s|/τ), so nearby readings share error; zero preserves independent readings. Memory is externally declared, never estimated from the new observations. This is not calibrated sensor performance, hardware authorization or physical validation.</p></details>
+      </div><p class="small">Compare candidate motions against declared Gaussian sensor noise. A positive sensor memory uses covariance σ² exp(−|t−s|/τ), so nearby readings share error; zero preserves independent readings. Memory is externally declared, never estimated from the new observations. Set upper τ to explore a declared uncertainty interval; the independent synthetic instrument retains only the nominal τ. This is not calibrated sensor performance, hardware authorization or physical validation.</p></details>
       <div class="controls"><p id="plan-status" class="small">No future recording has been acquired.</p>
         <label class="noise-option" for="power-enable"><input id="power-enable" type="checkbox" style="width:18px;min-height:22px" aria-label="Plan against declared Gaussian sensor noise">Noise-aware reading plan</label>
         <button id="plan" type="button">Plan a release →</button></div>
@@ -140,8 +141,11 @@ export function createExperimentPanel(host, callbacks = {}) {
       next.noiseMaxReadings = read('power-readings');
       const correlation=read('power-correlation');
       if(correlation>0)next.noiseCorrelationTime=correlation;else {if(correlation<0)throw new Error('Sensor memory must be nonnegative.');delete next.noiseCorrelationTime;}
+      const upper=read('power-correlation-max');
+      if(upper>0){if(upper<correlation)throw new Error('Uncertain memory upper τ must be at least nominal τ.');next.noiseCorrelationTimeMax=upper;}
+      else {if(upper<0)throw new Error('Sensor memory upper τ must be nonnegative.');delete next.noiseCorrelationTimeMax;}
     } else {
-      delete next.noiseSigma;delete next.noiseTargetZ;delete next.noiseMaxReadings;delete next.maxPowerProducts;delete next.noiseCorrelationTime;
+      delete next.noiseSigma;delete next.noiseTargetZ;delete next.noiseMaxReadings;delete next.maxPowerProducts;delete next.noiseCorrelationTime;delete next.noiseCorrelationTimeMax;
     }
     if (next.bounds.initialPosition.min > next.bounds.initialPosition.max || next.bounds.initialRate.min > next.bounds.initialRate.max) throw new Error('Each minimum must be at most its maximum.');
     if (next.duration <= 0) throw new Error('Observation time must be greater than zero.');
@@ -207,7 +211,7 @@ export function createExperimentPanel(host, callbacks = {}) {
     $('open-example').hidden = Boolean(view.available) || typeof callbacks.onLoadExample !== 'function'; $('open-example').disabled = Boolean(pending);
     $('plan').disabled = Boolean(pending) || Boolean(run) || Boolean(sparse) || !view.available || typeof callbacks.onPlan !== 'function';
     $('acquire').disabled = Boolean(pending) || !view.available || view.acquisitionAllowed === false || plan?.status !== 'proposed' || !selected || Boolean(run) || Boolean(sparse) || typeof callbacks.onAcquire !== 'function';
-    $('acquire-sparse').hidden = !['finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination'].includes(plan?.method);
+    $('acquire-sparse').hidden = !['finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination','finite-grid_minimax_bounded_correlated_gaussian_discrimination'].includes(plan?.method);
     $('acquire-sparse').disabled = Boolean(pending) || !view.available || view.acquisitionAllowed === false ||
       plan?.status !== 'proposed' || !selected || Boolean(run) || Boolean(sparse) || typeof callbacks.onAcquireSparse !== 'function';
     $('apply').disabled = Boolean(pending) || !run || typeof callbacks.onApplyEvidence !== 'function';
@@ -238,8 +242,12 @@ export function createExperimentPanel(host, callbacks = {}) {
     $('power-readout').hidden = !power;
     if (power) {
       const timestamps=power.readings.map(r=>format(r.time,5)).join(', ');
-      const covariance=power.correlationTimeSeconds>0?`correlated (τ=${format(power.correlationTimeSeconds,5)} s)`:'independent';
-      $('power-readout').textContent = `Noise-aware design: worst pair separation ${format(power.minPairwiseZ,5)} z at σ=${format(power.sigmaRad,5)} rad; ${power.measurementCount} ${covariance} reading(s) at t=[${timestamps}] s. ${power.optimality}. No evidence acquired.`;
+      const range=power.correlationTimeRangeSeconds;
+      const covariance=range&&range.max>range.min?
+        `Bounded sensor memory τ∈[${format(range.min,5)}, ${format(range.max,5)}] s; synthetic instrument τ=${format(power.nominalCorrelationTimeSeconds,5)} s, not physically calibrated`:
+        power.correlationTimeSeconds>0?`Declared point sensor memory τ=${format(power.correlationTimeSeconds,5)} s`:'Independent sensor noise';
+      const count=power.measurementCount;
+      $('power-readout').textContent = `Noise-aware design: worst pair separation ${format(power.minPairwiseZ,5)} z at σ=${format(power.sigmaRad,5)} rad. ${count} prospective sensor reading${count===1?'':'s'} at t=[${timestamps}] s. ${covariance}. ${power.optimality}. No evidence acquired.`;
     }
     $('design-meaning').textContent = plan?.status === 'no_feasible_design' ? 'Every candidate release was refused by a prediction or sampled prediction limit. Inspect the model scope or choose other limits.' :
       usingPower ? (plan?.status === 'uninformative' ? 'This reading search did not establish the requested pairwise separation under the declared noise. Its certificate distinguishes a proven budget limit from an inconclusive search; neither proves physical equivalence.' : 'This release separates the competing predicted trajectories under the declared Gaussian sensor covariance. Verify the sensor and model assumptions before acquiring.') :
@@ -251,7 +259,7 @@ export function createExperimentPanel(host, callbacks = {}) {
     $('sparse-evidence').hidden = !sparse;
     $('sparse-ranking').replaceChildren();
     $('sparse-heading').textContent=sparse?`Measured ${sparse.evidence.readings.length} of ${sparse.evidence.source.fullGridSampleCount-1} possible post-initial positions`:'';
-    $('sparse-detail').textContent=sparse?`A separate synthetic sensor record now prefers ${modelLabel(sparse.receiving.selectedModelId)} among ${sparse.receiving.candidates.length} offered laws. The internally simulated trajectory is not a measured full recording.`:'';
+    $('sparse-detail').textContent=sparse?`A separate synthetic sensor record now prefers ${modelLabel(sparse.receiving.selectedModelId)} among ${sparse.receiving.candidates.length} offered laws. ${sparse.receiving.correlationTimeRangeSeconds?'Robust reading timestamps were planned across a declared sensor-memory interval, but these model likelihood weights are conditional on the nominal simulated sensor memory, not averaged over the uncertainty range. ':''}The internally simulated trajectory is not a measured full recording.`:'';
     if(sparse)for(const law of sparse.receiving.candidates){
       const row=element('li');
       row.append(element('span',modelLabel(law.modelId)),element('strong',`${format(100*law.conditionalEqualPriorWeight,3)}% conditional weight`));
@@ -282,6 +290,7 @@ export function createExperimentPanel(host, callbacks = {}) {
     $('power-enable').checked=Number.isFinite(settings.noiseSigma);
     $('power-sigma').value=settings.noiseSigma??.01;
     $('power-correlation').value=settings.noiseCorrelationTime??0;
+    $('power-correlation-max').value=settings.noiseCorrelationTimeMax??0;
     $('power-z').value=settings.noiseTargetZ??3.29;
     $('power-readings').value=settings.noiseMaxReadings??8;
     paint();

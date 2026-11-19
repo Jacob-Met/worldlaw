@@ -136,7 +136,7 @@ export function acquireSelectedReadings(session,options={}){
   insist(!session.acquisition&&!session.sparseAcquisition,
     'This notebook already has recorded evidence; a second acquisition requires a new notebook.','repeated_evidence');
   insist(session.plan?.selected&&session.plan?.status==='proposed'&&
-    ['finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination'].includes(session.plan.method)&&
+    ['finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination','finite-grid_minimax_bounded_correlated_gaussian_discrimination'].includes(session.plan.method)&&
     session.plan.selected.power?.status==='distinguishable',
     'Only a distinguishing prospective Gaussian reading plan can acquire a sparse sensor record.','no_proposal');
   insist(session.plan.contextKey===contextKey(session.current)&&

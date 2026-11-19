@@ -27,14 +27,19 @@ const object=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
  */
 export function receiveSparseReadings(plan,evidence){
   requireThat(object(plan)&&plan.schema==='worldlaw.trajectory-plan/v1'&&
-    ['finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination'].includes(plan.method)&&
+    ['finite-grid_minimax_independent_gaussian_discrimination','finite-grid_minimax_correlated_gaussian_discrimination','finite-grid_minimax_bounded_correlated_gaussian_discrimination'].includes(plan.method)&&
     plan.status==='proposed'&&object(plan.selected)&&object(plan.selected.power),
     'Use an informative noise-aware prospective trajectory plan.', 'invalid_plan');
   const {selected}=plan, sigma=plan.options.noiseSigma, requested=selected.power.readings;
   const correlationTime=plan.options.noiseCorrelationTime??0;
+  const bounded=plan.method==='finite-grid_minimax_bounded_correlated_gaussian_discrimination';
+  const tauMax=plan.options.noiseCorrelationTimeMax;
   requireThat(Number.isFinite(correlationTime)&&correlationTime>=0&&
-    (correlationTime>0)===(plan.method==='finite-grid_minimax_correlated_gaussian_discrimination'),
-    'Plan covariance declaration differs from its method.','invalid_plan');
+    (bounded?Number.isFinite(tauMax)&&tauMax>=correlationTime&&
+       selected.power?.correlationTimeRangeSeconds?.min===correlationTime&&
+       selected.power?.correlationTimeRangeSeconds?.max===tauMax:
+     tauMax===undefined&&(correlationTime>0)===(plan.method==='finite-grid_minimax_correlated_gaussian_discrimination')),
+    'Plan covariance interval differs from its method or frozen reading source.','invalid_plan');
   requireThat(finite(sigma)&&sigma>0&&sigma<=.05&&
     selected.power.status==='distinguishable'&&Array.isArray(requested)&&requested.length>=1&&
     requested.length<=128,'Plan must have a finite positive noise scale and a concrete distinguishing reading subset.','invalid_plan');
@@ -97,10 +102,14 @@ export function receiveSparseReadings(plan,evidence){
     sampleIndices:requested.map(r=>r.sampleIndex),
     sampleTimesSeconds:requested.map(r=>r.time),
     measuredReadingCount:requested.length,unmeasuredPositionsConsumed:0,
-    sigmaRad:sigma,...(correlationTime>0?{correlationTimeSeconds:correlationTime,covarianceModel:'stationary_exponential'}:{}),candidates,decisionMarginChi2,
+    sigmaRad:sigma,...(correlationTime>0?{correlationTimeSeconds:correlationTime,covarianceModel:'stationary_exponential'}:{}),
+    ...(bounded?{correlationTimeRangeSeconds:{min:correlationTime,max:tauMax},
+      nominalSimulationTimeSeconds:correlationTime,
+      uncertaintyReceiverMeaning:'Robust selected timestamps were planned over every declared tau, but these equal-prior likelihood weights are conditional only on the synthetic source nominal tau; they are NOT tau-marginalized probabilities or physically calibrated confidence.'}:{}),
+    candidates,decisionMarginChi2,
     bestResidualNormZ:Math.sqrt(best),
     modelScope:'Only the original training-competitive hypotheses that the planner evaluated; an omitted or wrong law cannot be ruled out.',
-    inferenceMeaning:correlationTime>0?'Equal-prior relative Gaussian likelihood with externally declared stationary exponential sensor covariance; no covariance fitting, physical validation or confidence calibration.':'Equal-prior relative Gaussian likelihood among offered frozen predictions with independently declared homoscedastic sensor sigma. This does not refit coefficients, authenticate the source, establish physical causal truth, or calibrate confidence.',
+    inferenceMeaning:bounded?'Equal-prior relative Gaussian likelihood conditional on the virtual instrument nominal source tau inside the prospectively robust interval; not marginal confidence across uncertain tau, not physical calibration.':correlationTime>0?'Equal-prior relative Gaussian likelihood with externally declared stationary exponential sensor covariance; no covariance fitting, physical validation or confidence calibration.':'Equal-prior relative Gaussian likelihood among offered frozen predictions with independently declared homoscedastic sensor sigma. This does not refit coefficients, authenticate the source, establish physical causal truth, or calibrate confidence.',
     limitations:['The virtual apparatus still integrates intervening physical dynamics, but measures only the selected positions.',
       'An initial condition supplied to the apparatus is not counted as a noisy sensor measurement.',
       'Unobserved timestamps are not synthesized as evidence or used in the receiver.',

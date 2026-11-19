@@ -2,6 +2,7 @@
 import {rollout} from './forward.mjs';
 import {designGaussianReadings} from './gaussian-discriminator.mjs';
 import {designCorrelatedReadings,CORRELATED_WORK_LIMIT} from './correlated-gaussian-discriminator.mjs';
+import {designBoundedCorrelatedReadings} from './bounded-correlated-discriminator.mjs';
 import {TERMS, UNITS} from '../science/torque-discovery.mjs';
 const TERM_IDS = new Set(TERMS.map(term => term.id));
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -25,7 +26,7 @@ function range(value, label, bound = 1e4) {
 }
 function settings(raw) {
   insist(record(raw), 'Supply an explicit design with known inertia and permitted release bounds.');
-  const allowed = ['inertia', 'bounds', 'duration', 'sampleInterval', 'command', 'positionCount', 'rateCount', 'maxModels', 'maxStep', 'maxTotalSteps', 'predictionBounds', 'minDisagreement', 'noiseSigma', 'noiseTargetZ', 'noiseMaxReadings', 'maxPowerProducts', 'noiseCorrelationTime'];
+  const allowed = ['inertia', 'bounds', 'duration', 'sampleInterval', 'command', 'positionCount', 'rateCount', 'maxModels', 'maxStep', 'maxTotalSteps', 'predictionBounds', 'minDisagreement', 'noiseSigma', 'noiseTargetZ', 'noiseMaxReadings', 'maxPowerProducts', 'noiseCorrelationTime', 'noiseCorrelationTimeMax'];
   insist(Object.keys(raw).every(key => allowed.includes(key)), 'Unsupported design field; challenge observations and instrument truth are not planner inputs.');
   insist(record(raw.bounds), 'Supply initialPosition and initialRate bounds.');
   const result = {inertia: finite(raw.inertia, 'Known inertia (kg·m²)', 1e-12, 1e12),
@@ -44,9 +45,15 @@ function settings(raw) {
     result.noiseTargetZ = finite(raw.noiseTargetZ ?? 3.29, 'Minimum separation (z)', 1e-6, 100);
     result.noiseMaxReadings = integer(raw.noiseMaxReadings ?? Math.min(8, intervals), 'Maximum independent readings', 1, Math.min(128, intervals));
     result.maxPowerProducts = integer(raw.maxPowerProducts ?? 20000000, 'Prospective score work budget', 1, 100000000);
-    if(raw.noiseCorrelationTime !== undefined) result.noiseCorrelationTime=finite(raw.noiseCorrelationTime,'Sensor correlation time (s)',0,1e8);
-    if(result.noiseCorrelationTime>0) insist(intervals<=256&&result.noiseMaxReadings<=32,'Correlated design supports at most256 scheduled readings and32 selected readings.','resource_limit');
-  } else insist(raw.noiseCorrelationTime === undefined && raw.noiseTargetZ === undefined && raw.noiseMaxReadings === undefined && raw.maxPowerProducts === undefined,
+    if(raw.noiseCorrelationTime !== undefined) result.noiseCorrelationTime=finite(raw.noiseCorrelationTime,'Nominal sensor correlation time (s)',0,1e8);
+    if(raw.noiseCorrelationTimeMax!==undefined){
+      result.noiseCorrelationTimeMax=finite(raw.noiseCorrelationTimeMax,'Sensor correlation upper time (s)',0,1e8);
+      insist(result.noiseCorrelationTimeMax >= (result.noiseCorrelationTime??0),
+        'The sensor memory upper bound must be at least the nominal/lower bound.');
+    }
+    if((result.noiseCorrelationTime>0)||result.noiseCorrelationTimeMax!==undefined)
+      insist(intervals<=256&&result.noiseMaxReadings<=32,'Correlated design supports at most256 scheduled readings and32 selected readings.','resource_limit');
+  } else insist(raw.noiseCorrelationTime === undefined && raw.noiseTargetZ === undefined && raw.noiseMaxReadings === undefined && raw.maxPowerProducts === undefined && raw.noiseCorrelationTimeMax === undefined,
     'Noise-aware reading settings require an explicit positive noiseSigma.');
   if (raw.predictionBounds !== undefined) {
     insist(record(raw.predictionBounds), 'predictionBounds must contain position and rate ranges.');
@@ -127,9 +134,10 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
     insist(Number.isSafeInteger(steps), 'Scheduled integration steps exceed numerical range.', 'resource_limit'); stepsPerRollout += steps;
   }
   const reservedSteps = stepsPerRollout * designCount * models.length;
-  const correlated=options.noiseCorrelationTime>0;
+  const bounded=options.noiseCorrelationTimeMax!==undefined;
+  const correlated=bounded||options.noiseCorrelationTime>0;
   const correlatedWorkPerDesign=correlated?Math.min(CORRELATED_WORK_LIMIT,Math.floor(options.maxPowerProducts/designCount)):null;
-  insist(!correlated||correlatedWorkPerDesign>=intervals*models.length*(models.length-1)/2,
+  insist(!correlated||correlatedWorkPerDesign>=(bounded?4:1)*intervals*models.length*(models.length-1)/2,
     'Declared score budget cannot cover the complete covariance grid for every release.','resource_limit');
   const reservedPowerProducts = noiseMode ? designCount * (correlated ? correlatedWorkPerDesign : intervals * (models.length * (models.length - 1) / 2) * options.noiseMaxReadings) : 0;
   insist(!noiseMode || (Number.isSafeInteger(reservedPowerProducts) && reservedPowerProducts <= options.maxPowerProducts),
@@ -168,8 +176,11 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
     if (failures.length) {ranked.push({...design, status: 'ineligible', disagreementRad: null, maxPositionRangeRad: null, failures}); continue;}
     const score = spread(predictions);
     insist(Number.isFinite(score.disagreementRad) && Number.isFinite(score.maxPositionRangeRad), 'Candidate spread exceeds numerical range.', 'numerical_failure');
-    const power = noiseMode ? (correlated?designCorrelatedReadings:designGaussianReadings)(predictions, {
-      sigma: options.noiseSigma, targetZ: options.noiseTargetZ, maxReadings: options.noiseMaxReadings,correlationTime:options.noiseCorrelationTime,maxInnovationTerms:correlatedWorkPerDesign}) : null;
+    const power = noiseMode ? (bounded?designBoundedCorrelatedReadings:correlated?designCorrelatedReadings:designGaussianReadings)(predictions, {
+      sigma:options.noiseSigma,targetZ:options.noiseTargetZ,maxReadings:options.noiseMaxReadings,
+      correlationTime:options.noiseCorrelationTime,maxInnovationTerms:correlatedWorkPerDesign,
+      ...(bounded?{tauMin:options.noiseCorrelationTime??0,tauMax:options.noiseCorrelationTimeMax,
+        nominalCorrelationTime:options.noiseCorrelationTime??0}:{})}) : null;
     const item = {...design, status: 'evaluated', ...score, failures: [], ...(noiseMode ? {power} : {})}; ranked.push(item);
     // Strict improvement preserves the original angle-major/rate-minor grid order on exact ties.
     if ((noiseMode && betterPower(power, selected?.power)) || (!noiseMode && score.disagreementRad > bestScore)) {
@@ -186,7 +197,7 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
     (selected.power.status === 'distinguishable' ? 'proposed' : 'uninformative') :
     models.length >= 2 && selected.disagreementRad > options.minDisagreement ? 'proposed' : 'uninformative';
   return {schema: 'worldlaw.trajectory-plan/v1', status,
-    method: correlated?'finite-grid_minimax_correlated_gaussian_discrimination':noiseMode ? 'finite-grid_minimax_independent_gaussian_discrimination' : 'rms_pairwise_position_disagreement',
+    method: bounded?'finite-grid_minimax_bounded_correlated_gaussian_discrimination':correlated?'finite-grid_minimax_correlated_gaussian_discrimination':noiseMode ? 'finite-grid_minimax_independent_gaussian_discrimination' : 'rms_pairwise_position_disagreement',
     scoreUnits: noiseMode ? 'standard_deviations' : 'rad',
     selectionBasis: 'training_competitive_models_only', options, selected, ranked,
     provenance: {trainingRunIds, modelIds: models.map(model => model.id), modelFingerprint: fingerprint(models),
@@ -198,7 +209,7 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
       scheduledSamplesPerRollout: times.length, stepsPerRollout, reservedSteps, maxTotalSteps: options.maxTotalSteps,
       ...(noiseMode ? {reservedPowerProducts, maxPowerProducts: options.maxPowerProducts,
         ...(correlated?{correlatedWorkPerDesign}:{}),
-        noiseDecisionBasis: correlated?'finite-training-model predictions and externally declared stationary exponential Gaussian covariance only':'finite-training-model predictions and declared independent Gaussian position noise only',
+        noiseDecisionBasis: bounded?'finite-training-model predictions and externally declared stationary exponential covariance with unknown tau in a closed interval only':correlated?'finite-training-model predictions and externally declared stationary exponential Gaussian covariance only':'finite-training-model predictions and declared independent Gaussian position noise only',
         measurementCountMeaning: 'Distinct post-initial timestamps, not whole physical interventions or calibrated sensor power'} : {}),
       budgetMeaning: 'Preflight reserves the complete scheduled workload including potentially failing rollouts; actual early-failure work can be lower.',
       integrationMethod: 'fixed_step_RK4_without_error_bound', initialSampleExcludedFromScore: true,
@@ -206,7 +217,7 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
       thresholdMeaning: 'Caller-selected model-spread threshold; not calibrated detection power or sensor uncertainty.',
       rankingReason: selected ? (noiseMode ?
         (selected.power.status==='distinguishable' ?
-          (correlated?'Fewest prospectively selected correlated readings among distinguishable releases, then highest Mahalanobis worst-pair separation; finite ensemble only.':'Fewest independently noisy prospective readings among distinguishable releases, then highest worst-pair separation; finite ensemble only.') :
+          (bounded?'Fewest prospectively selected robust readings separating every declared sensor-memory time, with bounded numerical enclosures; no physical confidence certificate.':correlated?'Fewest prospectively selected correlated readings among distinguishable releases, then highest Mahalanobis worst-pair separation; finite ensemble only.':'Fewest independently noisy prospective readings among distinguishable releases, then highest worst-pair separation; finite ensemble only.') :
           'No release reached the declared noise separation threshold; this was the greatest worst-pair separation among unresolved, fully evaluable releases.') :
         'Highest finite pairwise position spread among fully evaluable bounded grid designs.') :
         'Every design has at least one refused candidate prediction.',
@@ -220,7 +231,7 @@ export function planTrajectoryExperiment(discovery, requestedDesign) {
         'Release/prediction limits are caller-declared computational or design bounds, not authorization or safety limits for physical hardware.',
         'The planner neither observes future outcomes nor acquires evidence. An independent instrument must supply the subsequent complete run.',
         'A new run can improve, preserve, or worsen fitted structure and reserved prediction; more disagreement does not guarantee improvement.',
-        ...(noiseMode ? [correlated?'Gaussian separation is conditional on known stationary exponential covariance and a correct finite ensemble; neither is physically established.':'Gaussian separation is conditional on independent fixed-variance measurement noise and a correct finite ensemble, neither physically established.',
+        ...(noiseMode ? [bounded?'Separation holds over a declared sensor-memory interval only subject to guarded floating-point enclosure and model correctness; this is not a formal exact-arithmetic, physically calibrated or causal certificate.':correlated?'Gaussian separation is conditional on known stationary exponential covariance and a correct finite ensemble; neither is physically established.':'Gaussian separation is conditional on independent fixed-variance measurement noise and a correct finite ensemble, neither physically established.',
           'Reading cardinality is optimal only on the declared finite grid: two models admit the exact sorted-pair proof; multi-model designs need a matching pairwise lower bound or a completed bounded shared-subset proof (up to 24 timestamps/eight readings). Incomplete and larger-grid searches carry no optimality certificate.',
           'Reading timestamps are virtual prospective design, not observations, actuation authorization, causal proof or a guarantee of improved refitting.'] : [])]}};
 }

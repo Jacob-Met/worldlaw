@@ -223,6 +223,10 @@ When current observations never vary an input independently, fitted models can a
 A `worldlaw.observations/v2` source supplies up to128 unique `offeredInputs`, each containing only `command`, `position`, and `rate`. The complete course and original precision survive save/reopen. Try [the authored unexcited-command example](examples/scalar-unexcited-command.json) and read [the method, source contract and negative controls](docs/INPUT_EXCITATION.md). Numerical rank does not establish an adequate physical law.
 
 
+## Robust design under uncertain sensor memory
+
+Trajectory Challenge's **Plan the next run** instrument supports declared stationary OU sensor memory plus an optional **Uncertain memory upper τ**. Its prospective finite-model planner searches reading times that separate predictions across the entire user-declared τ interval, rather than pretending one point-τ estimate is physically calibrated. Successful robust subsets carry a guarded numerical covariance lower bound, while actual sparse virtual readings, export/reopen and equal-prior likelihood weights retain the **nominal simulated τ** and refuse changed source declarations. No hardware calibration or real-world causal confidence is implied. The [derivation, falsifying tests, 96-case independent dense-covariance receiver, real screenshots and observed baseline failures](docs/CORRELATED_READING_DESIGN.md) distinguish robust certificates from falsely confident point estimates.
+
 ## Verify
 
 ```sh
