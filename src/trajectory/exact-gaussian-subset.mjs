@@ -26,7 +26,8 @@ export function exactGaussianSubsetSchedule(weights,target2,lowerBound,maxReadin
     return {status:'skipped',selection:null,visited:0};
   const upper=incumbentCount===null?maxReadings:Math.min(maxReadings,incumbentCount-1);
   if(upper<lowerBound)
-    return {status:'optimal_incumbent',selection:null,visited:0};
+    return {status:incumbentCount===null?'pairwise_bound_insufficient':'optimal_incumbent',
+      selection:null,visited:0};
   // Exact top-j sums from each suffix provide a VALID optimistic bound for
   // every pair independently. If even that is insufficient, no common subset
   // of j points can succeed. The converse is deliberately not assumed.
