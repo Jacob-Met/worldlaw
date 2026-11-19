@@ -76,7 +76,7 @@ try{
   await p('power-correlation').fill('.2');
   await p('power-correlation-max').fill('.8');
   await p('plan').focus();await page.keyboard.press('Enter');
-  await p('power-readout').filter({hasText:'robust across declared'}).waitFor();
+  await p('power-readout').filter({hasText:'Bounded sensor memory'}).waitFor();
   assert.equal(await p('acquire-sparse').isEnabled(),true);
   await panel.scrollIntoViewIfNeeded();
   await page.screenshot({path:resolve(dir,'bounded-plan-1920x1080.png')});
