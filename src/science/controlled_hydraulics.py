@@ -103,7 +103,7 @@ def physical_bounds(y,variant):
 def physical_caps(params,variant):
     return (float(params[5]),float(params[6])) if variant=="hard_overflow" else (80.,80.)
 
-def integrate_physical(u,params,variant,*,upper0=None,observed_y0=None,substeps=4):
+def integrate_physical(u,params,variant,*,upper0=None,observed_y0=None,substeps=4,return_diagnostics=False):
     # This solver also evaluates the original 50-sample state-initialization
     # prefix. Full dataset/fit functions require >=60; integration accepts
     # any finite two-sample horizon, without relaxing the fitting boundary.
@@ -121,17 +121,53 @@ def integrate_physical(u,params,variant,*,upper0=None,observed_y0=None,substeps=
     lower=min(caplower,lower)
     out=np.empty(len(u),dtype=float)
     stride=1./substeps
+    # Observational diagnostics describe exactly this forecast trajectory;
+    # they never estimate a new parameter or feed back to candidate selection.
+    counts={"upperCapacityHits":0,"lowerCapacityHits":0,
+            "upperEmptyHits":0,"lowerEmptyHits":0,"integrationSteps":0}
+    extrema={"upperMin":upper,"upperMax":upper,"lowerMin":lower,"lowerMax":lower}
     for k in range(len(u)):
         out[k]=bias+lower
         for _ in range(substeps if k<len(u)-1 else 0):
             flux=ktransfer*math.sqrt(max(upper,0.))
             discharge=kout*math.sqrt(max(lower,0.))
             inflow=kin*max(0.,float(u[k]))
-            upper=min(capupper,max(0.,upper+stride*(inflow-flux)))
-            lower=min(caplower,max(0.,lower+stride*(flux-discharge)))
+            upper_new=upper+stride*(inflow-flux)
+            lower_new=lower+stride*(flux-discharge)
+            if return_diagnostics:
+                counts["upperCapacityHits"]+=int(upper_new>=capupper)
+                counts["lowerCapacityHits"]+=int(lower_new>=caplower)
+                counts["upperEmptyHits"]+=int(upper_new<=0)
+                counts["lowerEmptyHits"]+=int(lower_new<=0)
+                counts["integrationSteps"]+=1
+            upper=min(capupper,max(0.,upper_new))
+            lower=min(caplower,max(0.,lower_new))
+            if return_diagnostics:
+                extrema["upperMin"]=min(extrema["upperMin"],upper)
+                extrema["upperMax"]=max(extrema["upperMax"],upper)
+                extrema["lowerMin"]=min(extrema["lowerMin"],lower)
+                extrema["lowerMax"]=max(extrema["lowerMax"],lower)
         if not (math.isfinite(upper) and math.isfinite(lower)):
             raise ValueError("nonfinite hydraulic state at "+str(k))
-    return out
+    if not return_diagnostics:return out
+    return out,{"capacityUpper":capupper,"capacityLower":caplower,
+        "parameters":{"pumpInflow":float(kin),"upperTransfer":float(ktransfer),
+                      "lowerOutflow":float(kout),"sensorBias":float(bias)},
+        "eventCounts":counts,"stateExtrema":extrema,
+        "interpretation":"Posthoc saturation events on a predicted latent-state trajectory, not direct physical overflow observations or independently calibrated tank depths."}
+
+def inspect_physical_excitation(model,u,y_prefix):
+    u=numeric_series(u)
+    p=np.asarray(y_prefix,dtype=float).reshape(-1)
+    calibration=calibrate_upper_prefix(u,p,model)
+    _,diagnostics=integrate_physical(u,model["parameters"],model["variant"],
+        upper0=calibration["upper0"],observed_y0=float(p[0]),
+        return_diagnostics=True)
+    return {"state":diagnostics,"calibration":calibration,
+        "inputStatistics":{"count":int(len(u)),"min":float(np.min(u)),
+                           "max":float(np.max(u)),"std":float(np.std(u)),
+                           "inputChangedSamples":int(np.count_nonzero(np.abs(np.diff(u))>1e-12))},
+        "qualification":"Descriptive model-only after frozen test. No observation of true upper-tank state and no parameter retuning."}
 
 def fit_physical(u,y,variant,max_nfev=190):
     u,y=numeric_series(u,y)
