@@ -112,7 +112,7 @@ test('when only target physical rate is requested a known rate anchor wins in on
 
 test('fixed, exact decimal and fractional source coefficients preserve rank and reproducibility',()=>{
   const row1=row('mix',['1/3','2/6']);
-  const row2=row('match',[1,1]);
+  const row2=row('separating_anchor',[1,0]);
   const request={variables:['x','y'],observations:[row1],
     anchors:[row2],targets:[row('contrast',[1,-1])],maxAnchors:1};
   const p=designPhysicalAnchors(request);
@@ -163,10 +163,10 @@ test('full-union feasibility is not confused with bounded search exhaustion',()=
     maxAnchors:3,workLimit:100};
   const p=designPhysicalAnchors(request);
   assert.equal(p.potential.allTargetsIdentifiable,true);
-  assert.equal(p.status,'search_inconclusive');
+  assert.equal(p.status,'valid_design_uncertified');
   assert.equal(p.exactMinimalAnchors,null);
   assert.equal(p.work.exhausted,true);
-  assert.equal(p.selection,null);
+  assert.ok(p.selection.length===2,'a witness may exist even if all minimum candidates were not exhausted');
 });
 
 test('refuse malformed or imprecisely represented physical source inputs',()=>{
