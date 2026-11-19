@@ -32,6 +32,9 @@ try{
   await page.locator('#notebook-file').setInputFiles({name:'original-independent-input.json',mimeType:'application/json',buffer:Buffer.from(input)});
   const panel=page.locator('#experiment-panel'),p=id=>panel.locator('#'+id);
   await p('release-stats').waitFor({state:'visible'});
+  // Controls are deliberately inside an accessible collapsed disclosure; open it
+  // through the public UI before modifying sensor assumptions.
+  await panel.locator('summary').click();
   await p('power-correlation').fill('.4');
   await p('plan').focus();await page.keyboard.press('Enter');
   await p('power-readout').filter({hasText:'correlated'}).waitFor();

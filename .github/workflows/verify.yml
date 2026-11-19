@@ -42,6 +42,7 @@ jobs:
       - name: Receive declared correlated sensor design and unchanged held-out controls
         run: |
           node experiments/correlated-intervention-comparison.mjs > .receipts/correlated-intervention-comparison.json
+          node -e 'const r=JSON.parse(require("node:fs").readFileSync(".receipts/correlated-intervention-comparison.json")); console.log(JSON.stringify({scope:r.scope,grouped:r.grouped}));'
           BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
           test -x "$BROWSER"
           PLAYWRIGHT_MODULE=playwright-core BROWSER_EXECUTABLE_PATH="$BROWSER" node scripts/correlated-reading-browser.mjs
