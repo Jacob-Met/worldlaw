@@ -155,7 +155,7 @@ class OriginalQuadrupleTankTests(unittest.TestCase):
             source_test,mt=recv.load_workbook_segments(z,"4T-M2","test")
             self.assertEqual(mt["sourceSheet"],"Testing")
             self.assertEqual(len(source_test),2)
-        with self.assertRaisesRegex(ValueError,"ZIP byte length"):
+        with self.assertRaisesRegex(ValueError,"original author ZIP source does not exist"):
             recv.authenticate("/dev/null")
 
     def test_fitting_development_strong_reference_has_bounded_negatives(self):
