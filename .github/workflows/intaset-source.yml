@@ -15,6 +15,13 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install source-free scientific model and original workbook reader
+        run: python3 -m pip install --disable-pip-version-check --quiet numpy==2.1.3 scipy==1.15.3 openpyxl==3.1.5
+      - name: Falsify original four-sensor no-leak, model registration and source-read contracts without original measurement values
+        run: python3 tests/intaset-quadruple-physical.test.py
       - name: Acquire author-mirrored original ZIP and verify Zenodo published MD5
         shell: bash
         run: |
@@ -99,3 +106,63 @@ jobs:
           except Exception as exc:
             print('ZENODO_METADATA_UNAVAILABLE_REQUIRE_MANUAL_LICENSE_CHECK',type(exc).__name__,str(exc)[:300])
           PY
+
+      - name: ORIGINAL TRAINING ONLY, freeze M1 and M2 models before test workbook reads
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .receipts
+          python3 experiments/intaset-quadruple-physical.py fit \
+            "$RUNNER_TEMP/InTaSet.zip" .receipts/intaset-frozen.json \
+            | tee .receipts/intaset-fit-summary.json
+          python3 - <<'PY'
+          import json
+          f=json.load(open('.receipts/intaset-frozen.json'))
+          assert f['prospective']['noTestNumericReadInFit'] is True
+          assert f['source']['sourceArchiveSha256']=='a0aac3b0985bec232afa8f9e95cd87612515904f5e574bc483777e4d532e8c85'
+          for mode in ('4T-M1','4T-M2'):
+              m=f['frozen'][mode]
+              assert len(m['allCandidates'])==30
+              assert m['split']['trainRows']>127 and m['split']['devRows']>127
+              assert m['selected']['best_reference']['family'] in ('arx','narx')
+          print('TRAIN-ONLY FROZEN: no original Testing workbook numeric cells loaded')
+          PY
+          sha256sum .receipts/intaset-frozen.json
+      - name: ORIGINAL SEPARATE RECEIVER, both M1/M2 heldout and no-refit cross-mode transfer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 experiments/intaset-quadruple-physical.py evaluate \
+            "$RUNNER_TEMP/InTaSet.zip" \
+            .receipts/intaset-frozen.json \
+            .receipts/intaset-receiver.json \
+            | tee .receipts/intaset-evaluation-summary.json
+          python3 - <<'PY'
+          import json,math
+          r=json.load(open('.receipts/intaset-receiver.json'))
+          assert r['source']['sourceArchiveSha256']=='a0aac3b0985bec232afa8f9e95cd87612515904f5e574bc483777e4d532e8c85'
+          assert sorted(r['originalFourReceiverScenarios'])==['4T-M1','4T-M2']
+          for original in ('4T-M1','4T-M2'):
+              assert sorted(r['originalFourReceiverScenarios'][original])==['4T-M1','4T-M2']
+              for target in ('4T-M1','4T-M2'):
+                  cases=r['originalFourReceiverScenarios'][original][target]
+                  for family in ('persistence','arx','narx','best_reference','physical'):
+                      assert family in cases
+                      value=cases[family].get('macroNormalizedRmse')
+                      assert value is None or (math.isfinite(value) and value>=0)
+                  assert r['originalTestMetadata'][target]['keptRows']>=128
+          print(json.dumps({'gate':r['physicalTransferProspectiveGate'],
+              'withinAndCross':{s:{t:{m:d.get('macroNormalizedRmse') for m,d in results.items()}
+                    for t,results in targets.items()}
+                    for s,targets in r['originalFourReceiverScenarios'].items()}}))
+          PY
+          sha256sum .receipts/intaset-frozen.json .receipts/intaset-receiver.json
+      - name: Preserve every original source-file SHA, candidate, negative control and refused physical transfer
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-intaset-quadruple-tank-study
+          path: .receipts/intaset-*.json
+          retention-days: 20
+          include-hidden-files: true
+          if-no-files-found: warn
