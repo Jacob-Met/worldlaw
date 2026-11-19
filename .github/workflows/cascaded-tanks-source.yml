@@ -1,20 +1,28 @@
-name: Cascaded Tanks physical source pin
+name: Cascaded Tanks original physical source and blind receiver
 on:
   pull_request:
     paths:
       - '.github/workflows/cascaded-tanks-source.yml'
       - 'experiments/cascaded-tanks-physical.py'
+      - 'src/science/controlled_hydraulics.py'
       - 'tests/cascaded-tanks-physical.test.py'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  source-pin:
+  original-cascaded-physical:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-      - name: Verify original 4TU physical source archive identity WITHOUT reading experimental sample values
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install source-independent numerical solvers
+        run: python3 -m pip install --disable-pip-version-check --quiet numpy==2.1.3 scipy==1.15.3
+      - name: Run independent causal/no-leak and hidden-tank numerical controls
+        run: python3 tests/cascaded-tanks-physical.test.py
+      - name: Download and pin unchanged original 4TU exogenous physical measurements
         shell: bash
         run: |
           set -euo pipefail
@@ -23,7 +31,46 @@ jobs:
             'https://data.4tu.nl/file/d4810b78-6cdd-48fe-8950-9bd601e5f47f/3b697e42-01a4-4979-a370-813a456c36f5' \
             --output "$RUNNER_TEMP/CascadedTanksFiles.zip"
           test "$(stat -c %s "$RUNNER_TEMP/CascadedTanksFiles.zip")" -eq 7520592
-          sha256sum "$RUNNER_TEMP/CascadedTanksFiles.zip"
+          echo 'eb0fa05851e8a7136846c2e3b61fbef87def78d0852c86ab91b02ac5db541b51  '"$RUNNER_TEMP/CascadedTanksFiles.zip" | sha256sum --check
           unzip -t "$RUNNER_TEMP/CascadedTanksFiles.zip" | tail -1
-          unzip -Z1 "$RUNNER_TEMP/CascadedTanksFiles.zip" | sed -n '1,35p'
-          echo 'PROTOCOL: no source MAT, estimation or test numerical values were opened in this preflight'
+      - name: Fit only original 1024-point estimation input/output, freeze before test fields
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .receipts
+          python3 experiments/cascaded-tanks-physical.py fit \
+            "$RUNNER_TEMP/CascadedTanksFiles.zip" \
+            .receipts/cascaded-frozen.json | tee .receipts/cascaded-fit-summary.json
+          test -s .receipts/cascaded-frozen.json
+          sha256sum .receipts/cascaded-frozen.json
+      - name: In separate process receive original untouched test, first 50 observed y only
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 experiments/cascaded-tanks-physical.py evaluate \
+            "$RUNNER_TEMP/CascadedTanksFiles.zip" \
+            .receipts/cascaded-frozen.json \
+            .receipts/cascaded-receiving.json | tee .receipts/cascaded-evaluation-summary.json
+          python3 - <<'PY'
+          import json,math
+          r=json.load(open('.receipts/cascaded-receiving.json'))
+          assert r['officialTest']['length']==1024
+          assert r['officialTest']['observedInitialization']==50
+          assert r['officialTest']['scored']==974
+          assert r['source']['archiveSha256']=='eb0fa05851e8a7136846c2e3b61fbef87def78d0852c86ab91b02ac5db541b51'
+          assert len(r['fitSummary']['developmentCandidates'])==17
+          assert all(math.isfinite(v['rmseVolts']) for v in r['officialTest']['models'].values())
+          assert all(math.isfinite(v[x]) for v in r['officialTest']['controls'].values() if isinstance(v,dict) for x in ('shift97','zeroInput','unshifted'))
+          print(json.dumps({'source':r['source']['matSha256'],'score':{k:v['rmseVolts'] for k,v in r['officialTest']['models'].items()},
+            'gate':r['officialTest']['gate']}))
+          PY
+          sha256sum .receipts/cascaded-frozen.json .receipts/cascaded-receiving.json
+      - name: Retain frozen fit, original source identity, every scientific failure and blind receiver
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cascaded-tanks-original-study
+          path: .receipts/cascaded-*.json
+          retention-days: 20
+          include-hidden-files: true
+          if-no-files-found: warn
