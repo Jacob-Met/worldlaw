@@ -89,7 +89,7 @@ class ControlledHydraulicsTests(unittest.TestCase):
         changed=receiver.load_named_original(encode(y2+100),"evaluate")
         self.assertTrue(np.array_equal(changed[1],y2+100))
     def test_source_archive_pin_and_source_field_refusals(self):
-        with self.assertRaisesRegex(ValueError,"source archive size changed"):
+        with self.assertRaisesRegex(ValueError,"author original archive size changed"):
             receiver.authenticate.__wrapped__(b"bad") if hasattr(receiver.authenticate,"__wrapped__") else receiver.authenticate.__call__("/dev/null")
         with self.assertRaisesRegex(ValueError,"official 50 sample prefix policy"):
             u,y=original_synthetic()
