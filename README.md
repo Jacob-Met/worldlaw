@@ -16,6 +16,15 @@ The optional [combined one- or two-state choice](docs/PROBE_CHOICES.md) compares
 
 The same probe instrument can explicitly compare [declared saturated-rate alternatives](docs/PROBE_SATURATION.md). It retains the original four-law failure, the entire offered scale grid and separate future-readout challenges; choosing a larger family does not establish a physical mechanism.
 
+## Independently measured physical dynamics — scientific receiving, not browser instrumentation
+
+The browser workbench's default source remains synthetic. Separately, the source-pinned scientific CLI now has two **original measured hardware** falsification courses. They must not be presented as a live camera, physical actuator, or general-purpose autonomous lab.
+
+- [Closed-loop 25-run two-tank physical falsification](docs/MEASURED_TWO_TANK_RECEIVING.md): original 2026 author dataset, 19/2/4 recording-level split, AR2 120-second RMSE **3.416** versus constrained hydraulic **4.029** level percentage points. The physical mechanism **failed** its prospective 10% benchmark and each of 25 real recordings held the valve opening constant within run; causal valve identification is unsupported.
+- [Exogenously excited original Cascaded Tanks With Overflow](docs/CASCADED_TANKS_ORIGINAL_RECEIVING.md): original Schoukens et al. 4TU multisine with separate official test, hidden upper tank, source-locked 716/308 training/development and 974 future test predictions. Prospective full-run lower-tank sensor-voltage RMSE **0.5796 V** for a constrained latent hydraulic model versus **0.6908 V** for selected order-8 ARX (**16.1% better**). Short-horizon forecasting is not uniformly better, no unique SI parameters/actuator-safety or independent-hardware transfer is proven. [Run the exact original-data two-process receiver](docs/CASCADED_TANKS_REPRO.md), which freezes the estimator before opening the independent test output.
+
+The real measured observations, model families, rejected candidates, controls, test provenance and physical limits remain independently reproducible. Neither outcome upgrades an unsupported browser-synthetic measurement into an authenticated physical instrument.
+
 ## Run locally
 
 With Node.js 20 or newer, from this directory:
