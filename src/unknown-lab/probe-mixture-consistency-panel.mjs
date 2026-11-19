@@ -17,7 +17,7 @@ export function mountProbeMixtureConsistency(host,study,config,owner){
  resetBounds();
  let accepted=null;
  function request(){if(!$('iterations').value.trim()||!$('products').value.trim())throw Error('Declare both nonnegative work budgets.');return {schema:MIXTURE_CONSISTENCY_SCHEMA,study,family:$('family').value,scope:$('scope').value,maxIterations:Number($('iterations').value),maxProducts:Number($('products').value)};}
- const invalidate=()=>{resetBounds();followup?.invalidate();accepted=null;$('save').disabled=true;$('status').textContent='Changed inputs · inspect again';$('result').replaceChildren();};
+ const invalidate=()=>{resetBounds();accepted=null;$('save').disabled=true;$('status').textContent='Changed inputs · inspect again';$('result').replaceChildren();};
  for(const key of ['family','scope','iterations','products'])$(key).oninput=()=>{owner.begin();invalidate();};
  $('inspect').onclick=()=>{owner.begin();try{
   const raw=request(),result=inspectProbeMixtureConsistency(raw);accepted=raw;$('save').disabled=false;$('error').textContent='';$('status').textContent=(raw.scope==='training-only'?'TRAINING ONLY':'RETROSPECTIVE ALL EVIDENCE')+' · '+result.status;
