@@ -42,6 +42,28 @@ jobs:
           test -x "$BROWSER"
           PLAYWRIGHT_MODULE=playwright-core BROWSER_EXECUTABLE_PATH="$BROWSER" BROWSER_ARTIFACT_DIR=.receipts/active-existing-studio node scripts/browser.mjs
           PLAYWRIGHT_MODULE=playwright-core BROWSER_EXECUTABLE_PATH="$BROWSER" node scripts/active-experiment-browser.mjs
+      - name: Receive the actual apparatus from the official fresh source distribution
+        run: |
+          python3 scripts/package.py --source-commit "$(git rev-parse HEAD)" --output "$RUNNER_TEMP/active-worldlaw-source.zip"
+          python3 - "$RUNNER_TEMP/active-worldlaw-source.zip" "$RUNNER_TEMP/active-worldlaw-extracted" "$(git rev-parse HEAD)" <<'PY'
+          import hashlib,json,sys,zipfile
+          from pathlib import Path
+          archive=Path(sys.argv[1]);out=Path(sys.argv[2]);out.mkdir()
+          with zipfile.ZipFile(archive) as z:
+              for name in z.namelist():
+                  assert (out/name).resolve().is_relative_to(out.resolve())
+              z.extractall(out)
+          root=out/'worldlaw';manifest=json.loads((root/'SOURCE_MANIFEST.json').read_text())
+          assert manifest['sourceCommit']==sys.argv[3] and manifest['sourceMode']=='git-commit'
+          for item in manifest['files']:
+              content=(root/item['path']).read_bytes()
+              assert len(content)==item['bytes'] and hashlib.sha256(content).hexdigest()==item['sha256']
+          print(json.dumps({'verifiedFiles':len(manifest['files']),'sourceCommit':manifest['sourceCommit'],
+              'archiveSHA256':hashlib.sha256(archive.read_bytes()).hexdigest(),'archiveBytes':archive.stat().st_size}))
+          PY
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          cd "$RUNNER_TEMP/active-worldlaw-extracted/worldlaw"
+          PLAYWRIGHT_MODULE="$GITHUB_WORKSPACE/node_modules/playwright-core/index.mjs" BROWSER_EXECUTABLE_PATH="$BROWSER" BROWSER_ARTIFACT_DIR="$GITHUB_WORKSPACE/.receipts/active-packaged" node scripts/active-experiment-browser.mjs
       - name: Retain actual pixels and independent browser receipts
         if: always()
         uses: actions/upload-artifact@v4
@@ -50,5 +72,6 @@ jobs:
           path: |
             .receipts/active-existing-studio/
             .receipts/active-experiment/
+            .receipts/active-packaged/
           if-no-files-found: error
           retention-days: 14
