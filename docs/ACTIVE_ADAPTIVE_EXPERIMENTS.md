@@ -8,7 +8,7 @@ may change independently between experiments.
 
 Open `/active.html`, expand **Inspect the source and design another experiment**,
 and choose **Successive experiments with fresh unknown starts**. The coupled
-track example has four candidate couplings and three two-tick input courses.
+track example has four candidate couplings and three fixed input courses.
 The best fixed set needs nine readings. The exact adaptive policy guarantees
 identification within six readings, conditional on the offered family and error
 bound. A separate authored synthetic apparatus completes two three-reading

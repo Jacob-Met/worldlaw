@@ -381,7 +381,7 @@ try{
   assert.match(await page.locator('#course-label').textContent(),/Round 2.*cross impulse.*preview/);
   assert.equal(await page.locator('#apparatus .scene-measurement').count(),0);
   assert.equal(await page.locator('#apparatus .model-marker').count(),2);
-  assert.deepEqual(await page.locator('#control-table .chosen-control').allTextContents(),['0','0','1','0','0','0']);
+  assert.deepEqual(await page.locator('#control-table .chosen-control').allTextContents(),['0','0','1','0','0','0','0','0','0']);
   assert.match(await page.locator('#illustration-note').textContent(),/Earlier rounds excluded: uncoupled, side coupling/);
   assert.deepEqual(await accepted(),adaptiveFirst);
   await page.emulateMedia({reducedMotion:'reduce'});
@@ -404,7 +404,7 @@ try{
   assert.match(await page.locator('#course-label').textContent(),/Round 1.*main impulse.*received/);
   assert.equal(await page.locator('#apparatus .scene-measurement').count(),1);
   assert.equal(await page.locator('#apparatus .model-marker').count(),4);
-  assert.deepEqual(await page.locator('#control-table .chosen-control').allTextContents(),['1','0','0','0','0','0']);
+  assert.deepEqual(await page.locator('#control-table .chosen-control').allTextContents(),['1','0','0','0','0','0','0','0','0']);
   mark('adaptive pending and historical inputs stay separate with stable lanes, keyboard stepping and narrow pixels');
 
   await page.locator('#acquire-adaptive').click();await idle();
