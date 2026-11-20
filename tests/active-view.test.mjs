@@ -54,3 +54,16 @@ test('bounded input illustrations use the frozen chosen course and label uncerti
   assert.deepEqual(reference.traces.map(row=>row.values),[[0,0,-1,-3,-6],[0,0,-2,-6,-12]]);
   assert.equal(witnessProjection(refused,-1),null);
 });
+
+test('all joint response views use the same certified interior input and preserve each pair',async()=>{
+  const text=await readFile(new URL('../examples/active-joint-control-three-responses.json',import.meta.url),'utf8');
+  const joint=await createActiveNotebook(text),view=illustrateModels(joint);
+  assert.equal(view.joint,true);assert.equal(view.bounded,true);assert.equal(view.referenceControls,false);
+  assert.deepEqual(view.controls,[['1','-1/3'],['0','0']]);
+  for(const [i,value] of [0,2/3,4/3].entries())assert.ok(Math.abs(view.traces[i].values[1]-value)<=2*Number.EPSILON);
+  assert.deepEqual([0,1,2].map(i=>witnessProjection(joint,-1,i).proof.marginLowerBound),['2/3','4/3','2/3']);
+  const request=JSON.parse(text);request.workLimit=100;
+  const unfinished=await createActiveNotebook(JSON.stringify(request));
+  assert.equal(illustrateModels(unfinished).referenceControls,true);
+  assert.equal(unfinished.plan.chosenControls,null);assert.equal(witnessProjection(unfinished,-1),null);
+});

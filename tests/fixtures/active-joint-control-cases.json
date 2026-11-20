@@ -1,0 +1,5170 @@
+[
+  {
+    "name": "interior_three_laws",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            -1
+          ],
+          "max": [
+            1,
+            1
+          ]
+        },
+        {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "2/3",
+      "ticks": [
+        1
+      ],
+      "margin": "2/3"
+    }
+  },
+  {
+    "name": "closed_contact",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            -1
+          ],
+          "max": [
+            1,
+            1
+          ]
+        },
+        {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/3",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "2/3",
+      "ticks": null
+    }
+  },
+  {
+    "name": "strictly_below_contact",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            -1
+          ],
+          "max": [
+            1,
+            1
+          ]
+        },
+        {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "333333/1000000",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "2/3",
+      "ticks": [
+        1
+      ]
+    }
+  },
+  {
+    "name": "large_error",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            -1
+          ],
+          "max": [
+            1,
+            1
+          ]
+        },
+        {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/2",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "2/3",
+      "ticks": null
+    }
+  },
+  {
+    "name": "incompatible_pairwise_maxima",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            0
+          ],
+          "max": [
+            1,
+            1
+          ]
+        },
+        {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "3/10",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "1/2",
+      "ticks": null
+    }
+  },
+  {
+    "name": "positive_half",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            0
+          ],
+          "max": [
+            1,
+            1
+          ]
+        },
+        {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "2/3",
+      "ticks": [
+        1
+      ]
+    }
+  },
+  {
+    "name": "negative_half",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            -1
+          ],
+          "max": [
+            1,
+            0
+          ]
+        },
+        {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "2/3",
+      "ticks": [
+        1
+      ]
+    }
+  },
+  {
+    "name": "fixed_collapse",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            0
+          ],
+          "max": [
+            1,
+            0
+          ]
+        },
+        {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "0",
+      "ticks": null
+    }
+  },
+  {
+    "name": "duplicate_law_null",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            -1
+          ],
+          "max": [
+            1,
+            1
+          ]
+        },
+        {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "0",
+      "ticks": null
+    }
+  },
+  {
+    "name": "integrator_cost_schedule",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "gain0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "gain1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "gain2",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/8",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 8,
+        "1": 3,
+        "2": 1
+      }
+    },
+    "analytic": {
+      "potential": "1/2",
+      "ticks": [
+        0,
+        2
+      ]
+    }
+  },
+  {
+    "name": "coupled_minimum_union",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "gain0",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "gain1",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "gain2",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 4,
+      "noiseBound": "1/20",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "coupled_insufficient_budget",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "gain0",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "gain1",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "gain2",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 2,
+      "noiseBound": "1/20",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "ticks": null
+    }
+  },
+  {
+    "name": "five_laws_ten_pairs",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law3",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law4",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              4
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "1",
+      "ticks": [
+        1
+      ],
+      "margin": "1"
+    }
+  },
+  {
+    "name": "different_latent_dynamics",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "dynamics0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "dynamics1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "dynamics2",
+          "A": [
+            [
+              -1
+            ]
+          ],
+          "B": [
+            [
+              3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            1
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/20",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "blind_sensor_law",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            0
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            -1
+          ],
+          "max": [
+            1,
+            1
+          ]
+        },
+        {
+          "min": [
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "2/3",
+      "ticks": [
+        1
+      ]
+    }
+  },
+  {
+    "name": "numeric_tick_tie",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        }
+      ],
+      "offeredTicks": [
+        10,
+        2
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/8",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "1",
+      "ticks": [
+        2
+      ],
+      "margin": "1"
+    }
+  },
+  {
+    "name": "no_actuation_null",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "null0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "null1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "null2",
+          "A": [
+            [
+              -1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -2
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            3
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "0",
+      "ticks": null
+    }
+  },
+  {
+    "name": "rational_negative_interval",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              "1/2"
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              "3/2"
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-4/3"
+          ],
+          "max": [
+            "-1/3"
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    },
+    "analytic": {
+      "potential": "2/3",
+      "ticks": [
+        1
+      ],
+      "margin": "2/3"
+    }
+  },
+  {
+    "name": "heldout_00",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              -1,
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              3,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              3,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            "0",
+            "0"
+          ],
+          "max": [
+            1,
+            "3/2",
+            "2/3"
+          ]
+        },
+        {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/8",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "heldout_01",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "random0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random2",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              4
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -3
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 2,
+      "noiseBound": "1/3",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 8,
+        "1": 9,
+        "2": 8,
+        "3": 5
+      }
+    }
+  },
+  {
+    "name": "heldout_02",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "osc0",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc1",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc2",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 2,
+        "1": 5,
+        "2": 2,
+        "3": 3,
+        "4": 5
+      }
+    }
+  },
+  {
+    "name": "heldout_03",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -3,
+              1,
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              1,
+              3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -3,
+              -1,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law3",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              3,
+              3,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            "-1",
+            "-1/2"
+          ],
+          "max": [
+            1,
+            "3",
+            "9/2"
+          ]
+        },
+        {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "heldout_04",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "random0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random2",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            3
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/3",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 2,
+        "1": 2,
+        "2": 9,
+        "3": 8
+      }
+    }
+  },
+  {
+    "name": "heldout_05",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "osc0",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc1",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc2",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/7",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 3,
+        "1": 5,
+        "2": 6,
+        "3": 3,
+        "4": 1
+      }
+    }
+  },
+  {
+    "name": "heldout_06",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              2,
+              -1,
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              3,
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -2,
+              2,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            "-1",
+            "-1/2"
+          ],
+          "max": [
+            1,
+            "-1/3",
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "heldout_07",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "random0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              4
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random2",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -4
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -3
+          ],
+          "max": [
+            -1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 2,
+      "noiseBound": "2/3",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 6,
+        "2": 5,
+        "3": 5
+      }
+    }
+  },
+  {
+    "name": "heldout_08",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "osc0",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc1",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc2",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 2,
+        "1": 4,
+        "2": 4,
+        "3": 6,
+        "4": 6
+      }
+    }
+  },
+  {
+    "name": "heldout_09",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              3,
+              -1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              -2,
+              3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -2,
+              0,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law3",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -2,
+              0,
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            "0",
+            "-3/2"
+          ],
+          "max": [
+            1,
+            "2",
+            "-5/6"
+          ]
+        },
+        {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "3/8",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "heldout_10",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "random0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random2",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -4
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            3
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/6",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 4,
+        "1": 6,
+        "2": 5,
+        "3": 2
+      }
+    }
+  },
+  {
+    "name": "heldout_11",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "osc0",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc1",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc2",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 2,
+        "1": 5,
+        "2": 4,
+        "3": 6,
+        "4": 5
+      }
+    }
+  },
+  {
+    "name": "heldout_12",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -1,
+              -3,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              3,
+              3,
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -1,
+              3,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            "-3/2",
+            "0"
+          ],
+          "max": [
+            1,
+            "1/2",
+            "1"
+          ]
+        },
+        {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "3/8",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "heldout_13",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "random0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -4
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random2",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              4
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            3
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 2,
+      "noiseBound": "1/3",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 3,
+        "1": 1,
+        "2": 8,
+        "3": 2
+      }
+    }
+  },
+  {
+    "name": "heldout_14",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "osc0",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc1",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc2",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "3/7",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 4,
+        "1": 4,
+        "2": 5,
+        "3": 4,
+        "4": 2
+      }
+    }
+  },
+  {
+    "name": "heldout_15",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              -1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              -2,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -3,
+              0,
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law3",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              3,
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            "-4/3",
+            "-1"
+          ],
+          "max": [
+            1,
+            "2/3",
+            "0"
+          ]
+        },
+        {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "3/8",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "heldout_16",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "random0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random2",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            4
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/3",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 8,
+        "1": 2,
+        "2": 8,
+        "3": 4
+      }
+    }
+  },
+  {
+    "name": "heldout_17",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "osc0",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc1",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc2",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 5,
+        "1": 1,
+        "2": 1,
+        "3": 6,
+        "4": 1
+      }
+    }
+  },
+  {
+    "name": "heldout_18",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              3,
+              -2,
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              0,
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -2,
+              -2,
+              3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            "-2/3",
+            "0"
+          ],
+          "max": [
+            1,
+            "-1/3",
+            "3/2"
+          ]
+        },
+        {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "0",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "heldout_19",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "random0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random2",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -2
+          ],
+          "max": [
+            2
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 2,
+      "noiseBound": "1/3",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 4,
+        "1": 8,
+        "2": 9,
+        "3": 1
+      }
+    }
+  },
+  {
+    "name": "heldout_20",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "osc0",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc1",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc2",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "3/7",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 6,
+        "1": 1,
+        "2": 3,
+        "3": 3,
+        "4": 2
+      }
+    }
+  },
+  {
+    "name": "heldout_21",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              2,
+              2,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              0,
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              3,
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law3",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0,
+              0,
+              3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            "-1",
+            "-4"
+          ],
+          "max": [
+            1,
+            "2",
+            "-2"
+          ]
+        },
+        {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/2",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "heldout_22",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "random0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random2",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -4
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            2
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 1,
+        "1": 2,
+        "2": 9,
+        "3": 9
+      }
+    }
+  },
+  {
+    "name": "heldout_23",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "osc0",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc1",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc2",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/7",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 4,
+        "1": 3,
+        "2": 2,
+        "3": 2,
+        "4": 1
+      }
+    }
+  },
+  {
+    "name": "heldout_24",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -1,
+              1,
+              -2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              3,
+              -2,
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -2,
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            "-2",
+            "0"
+          ],
+          "max": [
+            1,
+            "-1",
+            "3"
+          ]
+        },
+        {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "heldout_25",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "random0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -4
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              4
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random2",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -2
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 2,
+      "noiseBound": "2/3",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 5,
+        "1": 8,
+        "2": 3,
+        "3": 7
+      }
+    }
+  },
+  {
+    "name": "heldout_26",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "osc0",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc1",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc2",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 3,
+        "1": 1,
+        "2": 4,
+        "3": 3,
+        "4": 6
+      }
+    }
+  },
+  {
+    "name": "heldout_27",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "law0",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -3,
+              -3,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law1",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -3,
+              1,
+              3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law2",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -1,
+              -1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "law3",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              -3,
+              -3,
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1,
+            "0",
+            "0"
+          ],
+          "max": [
+            1,
+            "2",
+            "5"
+          ]
+        },
+        {
+          "min": [
+            0,
+            0,
+            0
+          ],
+          "max": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "heldout_28",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "random0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -3
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -4
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "random2",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -2
+          ],
+          "max": [
+            2
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/3",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 4,
+        "1": 9,
+        "2": 2,
+        "3": 1
+      }
+    }
+  },
+  {
+    "name": "heldout_29",
+    "request": {
+      "schema": "worldlaw.active-linear-joint-control/v1",
+      "source": "Prospectively frozen hypothetical dynamics; synthetic hidden initial states and independently evaluated outcomes, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "osc0",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc1",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "osc2",
+          "A": [
+            [
+              0,
+              1
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              3
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "3/7",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 4,
+        "1": 4,
+        "2": 6,
+        "3": 2,
+        "4": 5
+      }
+    }
+  }
+]

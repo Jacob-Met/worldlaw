@@ -7,6 +7,7 @@ const $=id=>document.getElementById(id);
 const PREFIX='worldlaw-active-notebook-v1:',POINTER='worldlaw-active-current-v1';
 const examplePaths={coupled:'/examples/active-intervention-coupled-kinematics.json',
   bounded:'/examples/active-control-box-coupled-kinematics.json',
+  joint:'/examples/active-joint-control-three-responses.json',
   cycles:'/examples/active-linear-family-signed-cycles.json',decays:'/examples/active-linear-family-decays.json'};
 const worker=new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'});
 const pending=new Map();let messageId=0,generation=0,busy=false;
@@ -147,11 +148,22 @@ function render(){
   $('control-course').hidden=!data.bounded;
   $('control-heading').textContent=plan.chosenControls?'The designed input':'Declared input bounds';
   $('control-explanation').textContent=plan.chosenControls?
-    'This input gives the greatest separation on the selected reading schedule. Read at tick t, then apply that tick’s input before the next state. No input has been applied.':
+    (data.joint?'One common input maximizes the smallest distance among all candidate pairs on these readings. ':'This input gives the greatest separation on the selected reading schedule. ')+
+    'Read at tick t, then apply that tick’s input before the next state. No input has been applied.':
     'No input was certified. The model illustrations use the lower bounds only as a reference; no input has been applied.';
   $('control-table').innerHTML=data.bounded?'<table><caption>Exact source-declared control intervals and selected values</caption><thead><tr><th scope="col">Input tick</th><th scope="col">Channel</th><th scope="col">Allowed interval</th><th scope="col">Chosen value</th></tr></thead><tbody>'+plan.controlBounds.flatMap((row,t)=>row.min.map((lower,c)=>`<tr data-input-tick="${t}" ${t===tick?'data-current':''}><th scope="row">${t}</th><td>${c+1}</td><td>[${html(lower)}, ${html(row.max[c])}]</td><td class="chosen-control">${plan.chosenControls?html(plan.chosenControls[t][c]):'—'}</td></tr>`)).join('')+'</tbody></table>':'';
   $('reading-timeline').innerHTML=Array.from({length:data.horizon+1},(_,i)=>`<button type="button" data-tick="${i}" ${ticks.includes(i)?'data-selected':''} ${i===tick?'data-current':''} aria-label="Inspect tick ${i}${ticks.includes(i)?', planned reading':''}">${i}<small>${ticks.includes(i)?'READ':'—'}</small></button>`).join('');
   const proofs=plan.pairProof??plan.proof??[];
+  $('joint-comparison').hidden=!data.joint;
+  if(data.joint){
+    $('joint-margin').textContent=plan.jointProof?.margin??'—';
+    $('joint-explanation').textContent=plan.jointProof?
+      'Every pair below uses the same input and the same reading schedule. The smallest exact distance is '+plan.jointProof.margin+
+      ', strictly above twice the declared error ('+plan.noiseBound+'). Choose a pair to inspect its invariant above.':
+      (plan.jointPotential.exact?'The greatest jointly attainable distance with every offered reading is ':
+        'The unfinished search has found a full-menu distance lower bound of ')+plan.jointPotential.margin+'. '+plan.interpretation;
+    $('joint-pairs').innerHTML=proofs.map((proof,i)=>`<button type="button" data-joint-pair="${i}" aria-pressed="${i===pairIndex}"><span>${html(proof.pair.replaceAll('__',' ↔ ').replaceAll('_',' '))}</span><strong>${html(proof.marginLowerBound)}</strong></button>`).join('');
+  }
   $('witness-pair').replaceChildren(...proofs.map((proof,i)=>new Option(proof.pair,String(i))));$('witness-pair').value=String(pairIndex);
   $('pair-label').hidden=proofs.length<=1;
   $('demo-controls').hidden=!data.isDemo;
@@ -244,7 +256,18 @@ $('open-local').addEventListener('click',()=>{
   'Local notebook reopened after full exact replay.');
 });
 $('reading-set').addEventListener('change',()=>{readingIndex=Number($('reading-set').value);render();announce('Showing a separately retained reading set. The frozen plan is unchanged.');});
-$('witness-pair').addEventListener('change',()=>{pairIndex=Number($('witness-pair').value);renderWitness();});
+function chooseWitnessPair(index){
+  if(!Number.isSafeInteger(index)||index<0||index>=$('witness-pair').options.length)return;
+  pairIndex=index;$('witness-pair').value=String(index);
+  for(const button of $('joint-pairs').querySelectorAll('button'))
+    button.setAttribute('aria-pressed',String(Number(button.dataset.jointPair)===index));
+  renderWitness();
+}
+$('witness-pair').addEventListener('change',()=>chooseWitnessPair(Number($('witness-pair').value)));
+$('joint-pairs').addEventListener('click',event=>{
+  const button=event.target.closest('button[data-joint-pair]');
+  if(button)chooseWitnessPair(Number(button.dataset.jointPair));
+});
 $('reading-timeline').addEventListener('click',event=>{const button=event.target.closest('button[data-tick]');if(button){stopPlayback();setTick(Number(button.dataset.tick));}});
 $('tick').addEventListener('input',()=>{stopPlayback();setTick(Number($('tick').value));});
 $('play').addEventListener('click',()=>{

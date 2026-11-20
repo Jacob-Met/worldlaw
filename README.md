@@ -92,6 +92,10 @@ then run the same input with `--replay plan.json --readings readings.json`.
 The reading file must carry the plan's source and plan digests. See the
 [readout contract and complete runnable example](docs/ACTIVE_LINEAR_FAMILY.md#receive-readings-against-the-frozen-plan).
 
+### One continuous input for several laws
+
+The same Hidden-state apparatus now [designs a joint bounded input](docs/ACTIVE_JOINT_CONTROL.md) for three to five declared linear laws. It minimizes optional reading count and cost, then maximizes the smallest pairwise distance at one common input. The three-response example needs an interior control of −1/3: every box corner and the midpoint confound a pair. Exact closed-noise checks, a hard work limit, independent unknown initial states, separate readouts and byte-bound notebook replay remain explicit. Choose **One interior input for three response laws** in the source section of `/active.html`. This source-only experiment design does not perform a physical acquisition or establish the declared laws.
+
 ## Run locally
 
 With Node.js 20 or newer, from this directory:

@@ -282,6 +282,71 @@ try{
   assert.deepEqual(await accepted(),boundedBook);
   mark('closed control-box noise contact refuses acquisition and keeps the earlier original notebook replayable');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('joint');
+  await page.locator('#load-example').click();await idle();
+  const jointPreview=JSON.parse(await page.locator('#certificate').textContent());
+  assert.equal(jointPreview.status,'optimal_certified_joint_control');
+  assert.deepEqual(jointPreview.chosenControls,[['1','-1/3'],['0','0']]);
+  assert.deepEqual(jointPreview.selection.map(row=>row.tick),[1]);
+  assert.equal(await page.locator('#joint-margin').textContent(),'2/3');
+  assert.equal(await page.locator('#joint-pairs button').count(),3);
+  await page.locator('#joint-pairs button').nth(1).focus();await page.keyboard.press('Enter');
+  assert.equal(await page.locator('#witness-pair').inputValue(),'1');
+  assert.equal(await page.locator('#exact-margin').textContent(),'4/3');
+  assert.equal(await page.locator('#joint-pairs button').nth(1).getAttribute('aria-pressed'),'true');
+  assert.equal(await page.locator('#joint-pairs button').nth(0).getAttribute('aria-pressed'),'false');
+  await page.locator('#witness-pair').selectOption('2');
+  assert.equal(await page.locator('#exact-margin').textContent(),'2/3');
+  assert.equal(await page.locator('#joint-pairs button').nth(2).getAttribute('aria-pressed'),'true');
+  await page.locator('#freeze-plan').focus();await page.keyboard.press('Enter');
+  assert.equal(await page.evaluate(()=>document.activeElement.id),'readout-source');
+  await page.locator('#readout-source').fill('Independent analytic three-response acquisition: zero response at tick one.');
+  await page.locator('#acquisition-kind').selectOption('synthetic');await page.locator('#reading-1').fill('0');
+  await page.locator('#evaluate-readings').click();await idle();
+  assert.deepEqual((await accepted()).readouts[0].result.consistentHypothesisIds,['zero_response']);
+  await page.locator('#source-details').evaluate(element=>{element.open=false;});
+  await page.locator('#supplied-details').evaluate(element=>{element.open=false;});
+  for(const width of [1920,390,320]){
+    await page.setViewportSize({width,height:width===1920?1080:844});
+    await page.locator('#joint-comparison').scrollIntoViewIfNeeded();
+    const layout=await page.locator('#joint-comparison').evaluate(host=>({
+      width:innerWidth,pageWidth:document.documentElement.scrollWidth,
+      children:[...host.querySelectorAll('button,strong')].map(element=>({client:element.clientWidth,scroll:element.scrollWidth}))}));
+    assert.ok(layout.pageWidth<=width);assert.ok(layout.children.every(element=>element.scroll<=element.client+1));
+    layouts.push({kind:'joint-control',...layout});
+    await page.screenshot({path:resolve(dir,'active-joint-'+width+'.png'),fullPage:true});
+  }
+  await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Independent deliberate mismatch: output ten is outside every offered response.');
+  await page.locator('#reading-1').fill('10');await page.locator('#evaluate-readings').click();await idle();
+  const jointBook=await accepted();assert.equal(jointBook.readouts.at(-1).result.status,'all_hypotheses_falsified');
+  const jointPath=await download('export-notebook','active-joint-notebook.json');
+  const jointReplay=cli(['--notebook',jointPath]);assert.equal(jointReplay.status,0,jointReplay.stderr);
+  assert.deepEqual(JSON.parse(jointReplay.stdout),jointBook);
+  const forgedJoint=clone(jointBook);forgedJoint.plan.jointProof.certificate.mixtureWeights[0]='7';
+  await refuse('changed-joint-certificate.json',forgedJoint,jointBook);
+  await page.reload();await idle();assert.deepEqual(await accepted(),jointBook);
+  mark('joint interior input, every common-input pair, keyboard projections, narrow pixels and separate notebook outcomes');
+  await openDetails('source-details');await page.locator('#new-draft').click();await idle();
+  await page.locator('#noise-bound').fill('1/3');await page.locator('#replan').click();await idle();
+  assert.equal(JSON.parse(await page.locator('#certificate').textContent()).status,'noise_separation_not_certified');
+  assert.equal(await page.locator('#joint-margin').textContent(),'—');
+  assert.match(await page.locator('#joint-explanation').textContent(),/greatest jointly attainable distance.*2\/3/);
+  await page.locator('#freeze-plan').click();assert.equal(await page.locator('#evaluate-readings').isDisabled(),true);
+  const jointCases=JSON.parse(await readFile('tests/fixtures/active-joint-control-cases.json','utf8'));
+  const jointCoupled=jointCases.find(row=>row.name==='coupled_minimum_union').request;
+  await setFile('source-file','separate-three-law-coupled-source.json',JSON.stringify(jointCoupled));await idle();
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Independent partial coupled response: only initial position three was supplied.');
+  await page.locator('#acquisition-kind').selectOption('synthetic');await page.locator('#reading-0').fill('3');
+  await page.locator('#evaluate-readings').click();await idle();
+  const jointPartial=await accepted();assert.equal(jointPartial.readouts[0].result.status,'multiple_hypotheses_consistent');
+  assert.equal(jointPartial.readouts[0].result.consistentHypothesisIds.length,3);
+  const jointPartialPath=await download('export-notebook','active-joint-partial-notebook.json');
+  const jointPartialReplay=cli(['--notebook',jointPartialPath]);assert.equal(jointPartialReplay.status,0,jointPartialReplay.stderr);
+  assert.deepEqual(JSON.parse(jointPartialReplay.stdout),jointPartial);
+  mark('joint closed contact and independently supplied partial coupled readings preserve honest uncertainty');
+
   const legacy=JSON.parse(await readFile('tests/fixtures/active-linear-certificates-v1.json','utf8')).cases[0];
   await setFile('source-file','historical-source.json',legacy.sourceText);await idle();
   await setFile('plan-file','historical-plan.json',JSON.stringify(legacy.plan));await idle();
