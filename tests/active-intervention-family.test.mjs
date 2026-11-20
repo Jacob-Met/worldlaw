@@ -81,3 +81,43 @@ test('rejects unsafe or unconstrained source representations before arithmetic',
     assert.throws(()=>designActiveInterventionFamily(req),/Active linear family:/);
   }
 });
+
+test('coupled 2D position/hidden-velocity laws require active input and a source-only three-tick dual witness',()=>{
+  const req={
+    schema:ACTIVE_INTERVENTION_SCHEMA,
+    source:'Hypothetical two-mode coupled position and hidden-velocity system, no lab action',
+    hypotheses:[
+      {id:'unit',A:[[1,1],[0,1]],B:[[0],[1]],C:[1,0]},
+      {id:'double',A:[[1,2],[0,1]],B:[[0],[1]],C:[1,0]},
+    ],
+    interventions:[
+      {id:'idle',actionCost:0,controls:[[0],[0],[0],[0]]},
+      {id:'pulse',actionCost:2,controls:[[1],[0],[0],[0]]},
+    ],
+    offeredTicks:[0,1,2,3,4],
+    maxReadings:5,noiseBound:'1/100',workLimitPerCourse:50000,
+  };
+  const received=designActiveInterventionFamily(req);
+  assert.equal(received.status,'optimal_certified_intervention');
+  assert.equal(received.chosenIntervention,'pulse');
+  assert.deepEqual(received.chosenReadings.map(v=>v.tick),[0,1,2]);
+  assert.equal(received.numReadings,3);
+  assert.equal(received.interventionMenu[0].status,
+    'structurally_indistinguishable_on_offered_course');
+  assert.equal(received.pairProof[0].marginLowerBound,'1/4');
+  const read=(coupling,position,velocity,input)=>{
+    const y0=position,y1=position+coupling*velocity;
+    const y2=position+2*coupling*velocity+coupling*input;
+    return [y0,y1,y2];
+  };
+  // Independent physical kinematics oracle: the discrete second difference
+  // cancels BOTH independently unknown initial position and hidden velocity.
+  for(const p of [-9,-1,0,7,19])for(const v of [-7,-2,0,3,23]){
+    const y1=read(1,p,v,1),y2=read(2,p+10,v-4,1);
+    assert.equal(y1[0]-2*y1[1]+y1[2],1);
+    assert.equal(y2[0]-2*y2[1]+y2[2],2);
+    const noInput=read(1,p,v,0);
+    assert.equal(noInput[0]-2*noInput[1]+noInput[2],0);
+  }
+  assert.equal(replayActiveInterventionFamily(req,received).valid,true);
+});
