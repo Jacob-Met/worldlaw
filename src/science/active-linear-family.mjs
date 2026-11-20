@@ -16,6 +16,7 @@ import {maximizeSignedBoxEnvelope} from './exact-box-envelope.mjs';
 
 export const ACTIVE_LINEAR_FAMILY_SCHEMA='worldlaw.active-linear-family/v1';
 export const ACTIVE_LINEAR_ERASURE_SCHEMA='worldlaw.active-linear-one-erasure/v1';
+export const ACTIVE_LINEAR_REPLACEMENT_SCHEMA='worldlaw.active-linear-one-replacement/v1';
 const err=s=>{throw Error('Active linear family: '+s);};
 const need=(ok,s)=>{if(!ok)err(s);};
 const abs=x=>x<0n?-x:x;
@@ -188,7 +189,7 @@ function pairProof(pair,indices,epsilon){
 function compileFamily(request,parseControl=number){
   need(request&&typeof request==='object'&&!Array.isArray(request),
     'provide a source-declared linear hypothesis family');
-  need(request.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA,
+  need(request.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA,
     'explicit worldlaw.active-linear-family/v1 schema is required');
   need(typeof request.source==='string'&&request.source.trim().length>=12&&request.source.length<=2048,
     'declare an independent source or explicitly hypothetical excitation contract');
@@ -370,8 +371,10 @@ function designLinearFamily(request,enumeration){
   const potential=evaluate(offered);
   const impossible=potential.filter(p=>p.structural===false);
   const oneErasure=request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA;
+  const oneReplacement=request.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA;
   const base={schema:request.schema,source:request.source,
     ...(oneErasure?{maxMissingReadings:1,costIncludesMissing:true}:{}),
+    ...(oneReplacement?{maxReplacedReadings:1,replacementTickKnown:false}:{}),
     hypothesisIds:laws.map(l=>l.id),offeredTicks:offered,
     observationUnits:'Declared scalar output units; unknown initial states are independent for each hypothesis',
     noiseBound:fmt(eps),sourceOnly:true,physicalActionsPerformed:false,
@@ -390,7 +393,9 @@ function designLinearFamily(request,enumeration){
     nodes:budget.nodes,exhausted:false,
     interpretation:'Exact affine distance is at most twice the declared error bound for at least one pair, even with every offered reading. Their closed error tubes overlap; no subset can guarantee separation.'};
   let best=null,structuralCandidates=0;
-  for(let size=1;size<=maxReadings;size++){
+  // Two readings can always be spliced by changing one value per explanation.
+  const minimumSize=oneReplacement?3:1;
+  for(let size=minimumSize;size<=maxReadings;size++){
     let winner=null;
     const walk=(next,chosen,expense)=>{
       if(!budget.take())return;
@@ -407,11 +412,24 @@ function designLinearFamily(request,enumeration){
             deletions.push({missingTick,receivedTicks,pairs:pairsAfterDeletion});
           }
         }
+        if(oneReplacement){
+          // The two explanations may each disagree with a different observed
+          // tick. Their closed tubes overlap after one substitution apiece iff
+          // their ordinary projections overlap outside the union of those ticks.
+          for(let i=0;i<chosen.length;i++){
+            for(let j=i+1;j<chosen.length;j++){
+              if(!budget.take())return;
+              const excludedTicks=[chosen[i],chosen[j]];
+              const receivedTicks=chosen.filter(tick=>!excludedTicks.includes(tick));
+              deletions.push({excludedTicks,receivedTicks,pairs:evaluate(receivedTicks)});
+            }
+          }
+        }
         if(cases.every(p=>p.structural)&&deletions.every(d=>d.pairs.every(p=>p.structural)))structuralCandidates++;
         if(cases.every(p=>p.robustCertified)&&deletions.every(d=>d.pairs.every(p=>p.robustCertified))){
           if(!winner||expense<winner.expense||
             (expense===winner.expense&&chosen.join(',')<winner.chosen.join(',')))
-            winner={chosen:chosen.slice(),expense,proof:cases,...(oneErasure?{deletions}:{})};
+            winner={chosen:chosen.slice(),expense,proof:cases,...((oneErasure||oneReplacement)?{deletions}:{})};
         }
         return;
       }
@@ -432,6 +450,7 @@ function designLinearFamily(request,enumeration){
     selection:best?best.chosen.map(t=>({tick:t,cost:cost[t]??1})):null,
     proof:best?.proof??null,
     ...(oneErasure?{singleDeletionProofs:best?.deletions??null}:{}),
+    ...(oneReplacement?{doubleDeletionProofs:best?.deletions??null}:{}),
     numReadings:best?.chosen.length??null,totalCost:best?.expense??null,
     nodes:budget.nodes,exhausted:budget.exhausted,
     interpretation:best?
@@ -910,17 +929,35 @@ export function evaluateActiveLinearReadings(request,plan,readout){
   // coefficient budget. Only these already verified plan values use this parser.
   const parseGenerated=value=>{const [n,d='1']=value.split('/');return Q(BigInt(n),BigInt(d));};
   const {laws,eps,workLimit}=compileFamily(course,joint?parseGenerated:number),budget=workBudget(workLimit);
-  const checks=laws.map(law=>{
-    if(request.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA)return calibratedReadingCheck(law,ticks,values,eps,gainInterval(request),budget);
-    const rows=ticks.map(t=>law.schedule[t].observable);
-    const delta=ticks.map(t=>sub(values.get(t),law.schedule[t].forced));
+  const checkKnownUnits=(law,kept)=>{
+    const rows=kept.map(t=>law.schedule[t].observable);
+    const delta=kept.map(t=>sub(values.get(t),law.schedule[t].forced));
     const inventory=affineCircuits(rows,delta,budget,enumeration);
-    const result=affineDistance(inventory,ticks.map((_,i)=>i));
+    const result=affineDistance(inventory,kept.map((_,i)=>i));
     const falsified=sub(result.margin,eps).n>0n;
     return {hypothesis:law.id,status:falsified?'falsified':result.exact?'consistent':'inconclusive',
       minimumNoiseRequired:result.exact?fmt(result.margin):null,
       noiseLowerBound:fmt(result.margin),noiseMarginExact:result.exact,
       ...(result.witness?{witness:result.witness}:{})};
+  };
+  const checks=laws.map(law=>{
+    if(request.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA)return calibratedReadingCheck(law,ticks,values,eps,gainInterval(request),budget);
+    if(request.schema!==ACTIVE_LINEAR_REPLACEMENT_SCHEMA)return checkKnownUnits(law,ticks);
+    const full=checkKnownUnits(law,ticks);
+    // An unchanged trace is itself admissible. Otherwise a single exclusion
+    // must restore one shared latent state across all the remaining readings.
+    if(full.status==='consistent')return {...full,consistentWithoutReplacement:true};
+    const omissions=[];
+    for(const ignoredTick of ticks){
+      if(!budget.take())break;
+      const kept=ticks.filter(tick=>tick!==ignoredTick);
+      const status=kept.length?checkKnownUnits(law,kept).status:'consistent';
+      omissions.push({ignoredTick,status});
+    }
+    const compatible=omissions.some(row=>row.status==='consistent');
+    const exhausted=omissions.length<ticks.length||omissions.some(row=>row.status==='inconclusive');
+    return {hypothesis:law.id,status:compatible?'consistent':exhausted?'inconclusive':'falsified',
+      unchangedTraceStatus:full.status,omissions};
   });
   const consistent=checks.filter(row=>row.status==='consistent').map(row=>row.hypothesis);
   const unresolved=checks.filter(row=>row.status==='inconclusive').map(row=>row.hypothesis);
@@ -933,6 +970,8 @@ export function evaluateActiveLinearReadings(request,plan,readout){
     missingTicks:plannedTicks.filter(t=>!values.has(t)),
     ...(request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA?
       {withinDesignedErasureBudget:plannedTicks.length-ticks.length<=1}:{}),
+    ...(request.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA?
+      {allPlannedReadingsReceived:ticks.length===plannedTicks.length,maxReplacedReadings:1}:{}),
     noiseBound:fmt(eps),checks,consistentHypothesisIds:consistent,unresolvedHypothesisIds:unresolved,
     status,nodes:budget.nodes,workLimit,exhausted:budget.exhausted,
     interpretation:status==='all_hypotheses_falsified'?
