@@ -16,6 +16,10 @@ test('one shared calibration and one unmarked reading survive sealed replay',asy
   }));
   const result=received.readouts[0].result;
   assert.deepEqual(result.consistentHypothesisIds,['right']);
+  assert.equal(result.allPlannedReadingsReceived,true);
+  const partial=await receiveActiveNotebook(book,JSON.stringify({schema:'worldlaw.active-linear-readings/v1',source:'Partial synthetic receiving control.',acquisition:'synthetic',sourceSHA256:book.plan.sourceSHA256,planSHA256:book.plan.planSHA256,readings:readings.slice(1)}));
+  assert.equal(partial.readouts[0].result.allPlannedReadingsReceived,false);
+  assert.deepEqual(partial.readouts[0].result.missingTicks,[0]);
   const compatible=result.checks.find(row=>row.hypothesis==='right').omissions.filter(row=>row.status==='consistent');
   assert.deepEqual(compatible.map(row=>row.ignoredTick),[2]);
   assert.deepEqual(await replayActiveNotebook(JSON.stringify(received)),received);

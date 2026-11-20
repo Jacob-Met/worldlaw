@@ -993,7 +993,7 @@ export function evaluateActiveLinearReadings(request,plan,readout){
     missingTicks:plannedTicks.filter(t=>!values.has(t)),
     ...(request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA?
       {withinDesignedErasureBudget:plannedTicks.length-ticks.length<=1}:{}),
-    ...(request.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA?
+    ...(request.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA?
       {allPlannedReadingsReceived:ticks.length===plannedTicks.length,maxReplacedReadings:1}:{}),
     noiseBound:fmt(eps),checks,consistentHypothesisIds:consistent,unresolvedHypothesisIds:unresolved,
     status,nodes:budget.nodes,workLimit,exhausted:budget.exhausted,
