@@ -1,0 +1,67 @@
+{
+  "schema": "worldlaw.bounded-control-receiving-protocol/v1",
+  "lockedBeforeProductionEdits": true,
+  "baselineCommit": "c4705c1bea8604150101e0119b5afee2baf38622",
+  "seed": 3520711,
+  "files": {
+    "generate.py": "f38ae740fe6a2b5164e77ed4b37e9c454b2c19f9d27b21fcc357653319701a69",
+    "cases.json": "3bd2c6493fa1f9064895211a0225337c4c5f1deec490284e085f2cc45d07eefb",
+    "receive.py": "f38d4025cddc73d38b54141a196f94e6fce58d965e18f8dbf47fe6dd2834ba0e",
+    "benchmark.mjs": "2ee2e5a6aa344ffcf45e5517c8cfa797656664ef7b934feecd2eddb0426f02f8",
+    "baseline-active-linear-family.mjs": "976f389bff6a2353425b48e99922de95954a7fd1872675682daf5fc5209e4bfc"
+  },
+  "caseCount": 64,
+  "independentChecker": {
+    "scriptSHA256": "0d83abd8164ce75a55787597f0f0eacc0f1bffa1cc512a0cf53985346d5ac1b8",
+    "dependencySHA256": "19f67520c29eac014ec0c5c994ebc5f3258ae3cae203917b0142bf3a15e097a3",
+    "cases": 50,
+    "cornerChecks": 166,
+    "selectedCorners": 99,
+    "failures": 0
+  },
+  "primalOracle": {
+    "command": "python3 scripts/active-control-box-receiving.py --module src/science/active-linear-family.mjs --cases tests/fixtures/active-control-box-cases.json --output OUTPUT.json",
+    "numpy": "1.26.4",
+    "scipy": "1.14.1",
+    "absoluteTolerance": 1e-09,
+    "LPPrimalDualTolerance": 1e-09,
+    "zeroFalseSeparationOrOptimalityClaims": true,
+    "checks": [
+      "all offered box corners",
+      "all subsets up to minimum certified cardinality",
+      "numeric tick order after reading count and cost",
+      "complete menu maximum margin",
+      "chosen controls within each closed interval",
+      "primal distance at selected controls",
+      "three independent readout courses for each certified case"
+    ]
+  },
+  "benchmark": {
+    "command": "node --max-old-space-size=1536 scripts/active-control-box-benchmark.mjs MODULE before|after tests/fixtures/active-control-box-cases.json anchor|cohort 5",
+    "rounds": 3,
+    "order": [
+      "before",
+      "after",
+      "after",
+      "before"
+    ],
+    "sameWorkerSameNode": true,
+    "warmup": 0,
+    "separateFreshNodeProcessPerRun": true,
+    "cohort": "all 62 cases with control horizon at most four",
+    "anchor": "coupled_minimum_support",
+    "claimOnlyMeasuredResults": true
+  },
+  "acceptance": [
+    "preserve all old source/plan/readout bytes and counters including historical certificates",
+    "exact Fraction anchors including negative-only intervals and closed noise contact",
+    "three or more hypotheses refused",
+    "malformed and ambiguous source declarations refused",
+    "hard work limit yields inconclusive without optimum claim",
+    "full maintained test suite and both launched HTTP smokes",
+    "real repository and fresh official package browser receives new control source, exact chosen input table, separate supplied readout, source-bound notebook reopen, export and tamper refusal",
+    "desktop 1920x1080 and narrow 390/320 layouts; keyboard and reduced motion",
+    "official package from merged exact main with every manifest digest and exported notebook CLI replay"
+  ],
+  "scope": "Two source-declared linear laws, independent arbitrary initial states, one scalar output, optional distinct integer reading ticks, independent rational control intervals. No physical actuation, calibrated noise, arbitrary hidden mechanism discovery, multi-hypothesis max-min, coupled latent constraints or actuator safety claim."
+}

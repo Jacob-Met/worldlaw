@@ -4,6 +4,8 @@ on:
     paths:
       - 'src/active/**'
       - 'src/science/active-experiment-record.mjs'
+      - 'src/science/active-linear-family.mjs'
+      - 'examples/active-*.json'
       - 'src/notebook-recovery.mjs'
       - 'scripts/active-*.mjs'
       - 'tests/active-*.test.mjs'
@@ -17,6 +19,8 @@ on:
     paths:
       - 'src/active/**'
       - 'src/science/active-experiment-record.mjs'
+      - 'src/science/active-linear-family.mjs'
+      - 'examples/active-*.json'
       - 'src/notebook-recovery.mjs'
       - 'scripts/active-*.mjs'
       - 'active.html'
@@ -34,7 +38,7 @@ jobs:
         with:
           node-version: '22'
       - name: Verify shared records and exact historical replay
-        run: node --test tests/active-experiment-record.test.mjs tests/active-instrument.test.mjs tests/active-view.test.mjs tests/active-linear-replay.test.mjs tests/notebook-autosave-conflict.test.mjs
+        run: node --test tests/active-control-box.test.mjs tests/active-experiment-record.test.mjs tests/active-instrument.test.mjs tests/active-view.test.mjs tests/active-linear-replay.test.mjs tests/notebook-autosave-conflict.test.mjs
       - name: Receive existing workbench and the complete active experiment
         run: |
           npm install --no-save --no-package-lock playwright-core@1.65.1

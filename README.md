@@ -68,6 +68,12 @@ synthetic or supplied readings, and export a notebook for independent CLI
 replay. Source declarations, reading origins, missing ticks and every separately
 received outcome remain explicit.
 
+For two laws, [continuous bounded input design](docs/ACTIVE_CONTROL_BOX.md)
+also chooses the control values inside declared independent intervals. It
+finds the smallest robust reading schedule directly from circuit supports,
+then maximizes the separation on that schedule. The visible input course
+is frozen before separate readings arrive; no physical actuation occurs.
+
 The source-only [active linear-law experiment compiler](docs/ACTIVE_LINEAR_FAMILY.md)
 now distinguishes competing time-evolving models **without pretending the
 initial state is known**. It propagates exact rational dynamics under a declared

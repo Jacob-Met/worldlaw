@@ -121,6 +121,17 @@ function affineCircuits(rows,delta,budget,enumeration=rankCompleteCircuits){
   const basis=nullBasis(rows);
   const structural=basis.some(w=>dot(w,delta).n!==0n);
   if(!structural)return {complete:true,structural:false,circuits:[]};
+  return enumerateCircuitSupports(rows,basis,budget,enumeration,(weights,mask)=>{
+    const gap=dot(weights,delta);
+    if(gap.n===0n)return null;
+    const norm=l1(weights),margin=div(Q(abs(gap.n),gap.d),norm);
+    return {mask,weights,gap,norm,margin};
+  });
+}
+/** Shared exact support enumeration. The measure callback determines the
+ * forcing objective; old fixed-course certificate order and work counts stay
+ * unchanged. A callback may consume the same hard work budget. */
+function enumerateCircuitSupports(rows,basis,budget,enumeration,measure){
   const circuits=new Map(),count=rows.length,rank=count-basis.length;
   const inventory=complete=>({complete,structural:true,
     circuits:[...circuits.values()].sort((a,b)=>a.mask-b.mask)});
@@ -138,12 +149,12 @@ function affineCircuits(rows,delta,budget,enumeration=rankCompleteCircuits){
     const scale=kernel[0].findLast(value=>value.n!==0n);
     const weights=zero(count);
     support.forEach((index,i)=>{weights[index]=div(kernel[0][i],scale);});
-    const gap=dot(weights,delta);
-    if(gap.n===0n)continue;
+    const circuit=measure(weights,minimalMask);
+    if(budget.exhausted)return inventory(false);
+    if(!circuit)continue;
     need(rows[0].every((_,col)=>dot(weights,rows.map(row=>row[col])).n===0n),
       'internal circuit annihilation failure');
-    const norm=l1(weights),margin=div(Q(abs(gap.n),gap.d),norm);
-    circuits.set(minimalMask,{mask:minimalMask,weights,gap,norm,margin});
+    circuits.set(minimalMask,circuit);
   }
   return inventory(true);
 }
@@ -410,6 +421,180 @@ export function replayActiveInterventionFamily(request,prior){
   return {valid:true,sourceOnly:true,physicalActionsPerformed:false};
 }
 
+export const ACTIVE_LINEAR_CONTROL_BOX_SCHEMA='worldlaw.active-linear-control-box/v1';
+const controlBoxFields=new Set(['schema','source','hypotheses','controlBounds','offeredTicks',
+  'maxReadings','noiseBound','costByTick','workLimit']);
+function compileControlBox(request){
+  need(request&&typeof request==='object'&&!Array.isArray(request)&&
+    request.schema===ACTIVE_LINEAR_CONTROL_BOX_SCHEMA,
+    'explicit worldlaw.active-linear-control-box/v1 schema is required');
+  need(Object.keys(request).every(key=>controlBoxFields.has(key)),
+    'control-box sources accept only declared dynamics, independent bounds, scalar reading ticks, costs, noise and work limit; remove unknown or competing control fields');
+  need(Array.isArray(request.hypotheses)&&request.hypotheses.length===2,
+    'bounded-control synthesis requires exactly two competing hypotheses');
+  need(request.hypotheses.every(law=>law&&typeof law==='object'&&!Array.isArray(law)&&
+    Object.keys(law).every(key=>['id','A','B','C'].includes(key))),
+    'bounded-control laws accept only id, A, B and C; initial states must remain independent and unconstrained');
+  need(Object.keys(request.costByTick??{}).every(tick=>String(Number(tick))===tick),
+    'costByTick keys must be canonical integer tick strings');
+  const raw=request.controlBounds;
+  need(Array.isArray(raw)&&raw.length>=2&&raw.length<=10,
+    'declare 2–10 time-ordered independent control bounds');
+  const channels=raw[0]?.min?.length;
+  need(Number.isSafeInteger(channels)&&channels>=1&&channels<=4,
+    'bounded control input dimension must be 1–4');
+  const bounds=raw.map(row=>{
+    need(row&&typeof row==='object'&&!Array.isArray(row)&&
+      Object.keys(row).sort().join(',')==='max,min'&&
+      Array.isArray(row.min)&&Array.isArray(row.max)&&
+      row.min.length===channels&&row.max.length===channels,
+      'each control bound needs only same-dimension min and max vectors');
+    return row.min.map((lo,i)=>{
+      const lower=number(lo),upper=number(row.max[i]);
+      need(sub(upper,lower).n>=0n,'each closed control interval needs min <= max');
+      return {lower,upper};
+    });
+  });
+  const family=compileFamily({...request,schema:ACTIVE_LINEAR_FAMILY_SCHEMA,
+    controls:raw.map(row=>row.min)});
+  const Bs=request.hypotheses.map(law=>law.B.map(row=>row.map(number)));
+  const rows=family.offered.map(t=>[...family.laws[0].schedule[t].observable,
+    ...family.laws[1].schedule[t].observable.map(neg)]);
+  // The coefficient of u[k,c] at output t is C A^(t-k-1) B[:,c].
+  // These rows do not depend on observations or on a guessed initial state.
+  const response=family.offered.map(t=>bounds.flatMap((_,k)=>
+    Array.from({length:channels},(_,c)=>{
+      if(k>=t)return Z();
+      const effect=index=>dot(family.laws[index].schedule[t-k-1].observable,
+        Bs[index].map(row=>row[c]));
+      return sub(effect(1),effect(0));
+    })));
+  return {...family,rows,response,bounds:bounds.flat(),channels};
+}
+const closestToZero=bound=>bound.lower.n>0n?bound.lower:
+  bound.upper.n<0n?bound.upper:Z();
+/** A linear functional reaches its maximum and minimum at box endpoints.
+ * Both orientations matter for noncentered boxes. Zero coefficients choose
+ * the admissible value nearest zero, without asserting an actuation cost. */
+function extremizeBox(weights,response,bounds,budget){
+  const coefficients=bounds.map((_,column)=>dot(weights,response.map(row=>row[column])));
+  const choices=[];
+  for(const orientation of [1,-1]){
+    if(!budget.take())return null;
+    const controls=coefficients.map((value,i)=>value.n===0n?closestToZero(bounds[i]):
+      (value.n>0n)===(orientation===1)?bounds[i].upper:bounds[i].lower);
+    choices.push({controls,gap:dot(coefficients,controls)});
+  }
+  const magnitude=gap=>Q(abs(gap.n),gap.d);
+  const winner=sub(magnitude(choices[0].gap),magnitude(choices[1].gap)).n>=0n?choices[0]:choices[1];
+  return {...winner,coefficients};
+}
+function controlBoxCircuits(rows,response,bounds,budget){
+  const empty=(complete,structural)=>({complete,structural,circuits:[]});
+  if(!budget.take())return empty(false,null);
+  const basis=nullBasis(rows);
+  let structural=false;
+  for(const weights of basis){
+    const extremum=extremizeBox(weights,response,bounds,budget);
+    if(!extremum)return empty(false,null);
+    if(extremum.gap.n!==0n){structural=true;break;}
+  }
+  if(!structural)return empty(true,false);
+  return enumerateCircuitSupports(rows,basis,budget,rankCompleteCircuits,(weights,mask)=>{
+    const extremum=extremizeBox(weights,response,bounds,budget);
+    if(!extremum||extremum.gap.n===0n)return null;
+    const norm=l1(weights),margin=div(Q(abs(extremum.gap.n),extremum.gap.d),norm);
+    return {mask,weights,...extremum,norm,margin};
+  });
+}
+const controlVectors=(flat,channels)=>Array.from({length:flat.length/channels},
+  (_,t)=>flat.slice(t*channels,(t+1)*channels).map(fmt));
+function controlBoxProof(id,circuit,indices,eps,complete,channels){
+  const margin=circuit?.margin??Z();
+  return {pair:id,structural:margin.n!==0n?true:complete?false:null,
+    robustCertified:sub(margin,mul(Q(2n),eps)).n>0n,
+    marginLowerBound:fmt(margin),noiseMarginExact:complete,
+    ...(circuit?{witness:{weights:indices.map(i=>fmt(circuit.weights[i])),
+      signedGap:fmt(circuit.gap),l1Norm:fmt(circuit.norm),
+      controlCoefficients:controlVectors(circuit.coefficients,channels),
+      extremizingControls:controlVectors(circuit.controls,channels),
+      meaning:complete?
+        'Exact initial-state annihilator with both signed box extrema; maximum |gap|/||weights||1 is the greatest attainable affine l-infinity distance on these readings.':
+        'Exact initial-state annihilator and an admissible box input; |gap|/||weights||1 is an attainable separation lower bound. The greatest attainable distance remains unknown.'}}:
+      complete?{counterexample:'Every admissible control response is absorbable by independent unknown initial states.'}:
+      {inconclusive:'Circuit or signed endpoint enumeration reached the declared work limit.'})};
+}
+const numericTickOrder=(a,b)=>{
+  for(let i=0;i<a.length;i++)if(a[i]!==b[i])return a[i]-b[i];
+  return 0;
+};
+/** Exact prospective binary experiment synthesis over a continuous box.
+ *
+ * max_u min_z ||Fz+Du||inf = max_u max_w w^T Du over the l1-bounded
+ * annihilator, hence max_w max_u. Its nonzero vertices are signed circuits.
+ * A separating optional reading schedule contains a separating circuit;
+ * deleting other readings preserves this circuit and the common control box.
+ * Thus minimum reading count is attained by a qualifying circuit support.
+ * This argument does not solve the multi-hypothesis max-min problem, coupled
+ * initial-state constraints, or reading-dependent dynamics/control bounds.
+ */
+export function designActiveLinearControlBox(request){
+  const {laws,offered,maxReadings,workLimit,eps,cost,rows,response,bounds,channels}=compileControlBox(request);
+  const budget=workBudget(workLimit),inventory=controlBoxCircuits(rows,response,bounds,budget);
+  const pair=laws[0].id+'__'+laws[1].id,indices=offered.map((_,i)=>i);
+  let maximum=null;
+  for(const circuit of inventory.circuits)
+    if(!maximum||sub(circuit.margin,maximum.margin).n>0n)maximum=circuit;
+  const potential=[controlBoxProof(pair,maximum,indices,eps,inventory.complete,channels)];
+  const base={schema:ACTIVE_LINEAR_CONTROL_BOX_SCHEMA,source:request.source,
+    hypothesisIds:laws.map(law=>law.id),offeredTicks:offered,
+    controlBounds:Array.from({length:bounds.length/channels},(_,t)=>({
+      min:bounds.slice(t*channels,(t+1)*channels).map(b=>fmt(b.lower)),
+      max:bounds.slice(t*channels,(t+1)*channels).map(b=>fmt(b.upper))})),
+    observationUnits:'Declared scalar output units; unknown initial states are independent for each hypothesis',
+    noiseBound:fmt(eps),sourceOnly:true,physicalActionsPerformed:false,outcomeValuesUsed:false,
+    potential,pairCount:1,maxReadings,workLimit,noiseMethod:'exact-box-affine-linf-circuits/v1',
+    objective:'Minimum reading count, then declared reading cost, then numeric tick order; maximum box margin for the selected support.',
+    workAccounting:'Full affine kernel, rank-complete circuit extensions and each signed box endpoint share one hard limit.'};
+  const refused=(status,interpretation,extra={})=>({...base,status,selection:null,
+    chosenControls:null,proof:null,numReadings:null,totalCost:null,nodes:budget.nodes,
+    exhausted:budget.exhausted,interpretation,...extra});
+  if(!inventory.complete)return refused('search_inconclusive',
+    'Circuit or box endpoint search interrupted; partial lower bounds do not prove impossibility or optimality.');
+  if(!potential[0].structural)return refused('structurally_indistinguishable_on_control_box',
+    'For every admissible input, independent unknown initial states can make both laws agree on every offered reading.');
+  if(!potential[0].robustCertified)return refused('noise_separation_not_certified',
+    'Even the greatest attainable affine distance is at most twice the declared error bound. For every admissible control the closed error tubes overlap.',
+    {noiseOverlapProven:true});
+  const candidates=[];
+  for(const circuit of inventory.circuits){
+    if(sub(circuit.margin,mul(Q(2n),eps)).n<=0n)continue;
+    const selected=indices.filter(i=>circuit.mask&(1<<i)),ticks=selected.map(i=>offered[i]);
+    if(ticks.length<=maxReadings)candidates.push({circuit,indices:selected,ticks,
+      expense:ticks.reduce((sum,t)=>sum+(cost[t]??1),0)});
+  }
+  candidates.sort((a,b)=>a.ticks.length-b.ticks.length||a.expense-b.expense||numericTickOrder(a.ticks,b.ticks));
+  const best=candidates[0];
+  if(!best)return refused('insufficient_reading_budget',
+    'Every qualifying circuit needs more readings than the declared budget; no admissible input can separate the laws within that budget.');
+  return {...base,status:'optimal_certified_control_box',
+    selection:best.ticks.map(tick=>({tick,cost:cost[tick]??1})),
+    chosenControls:controlVectors(best.circuit.controls,channels),
+    proof:[controlBoxProof(pair,best.circuit,best.indices,eps,true,channels)],
+    numReadings:best.ticks.length,totalCost:best.expense,nodes:budget.nodes,exhausted:false,
+    interpretation:'Exact continuous-box actuation and minimum optional reading schedule for two source-declared laws. The chosen input maximizes separation on that support. No actuator, measurement or physical calibration was performed.'};
+}
+function verifyControlBoxCertificate(request,prior){
+  const fresh=designActiveLinearControlBox(request);
+  need(prior?.schema===ACTIVE_LINEAR_CONTROL_BOX_SCHEMA&&JSON.stringify(prior)===JSON.stringify(fresh),
+    'bounded-control certificate or source changed; exact prospective replay refused');
+  return rankCompleteCircuits;
+}
+export function replayActiveLinearControlBox(request,prior){
+  verifyControlBoxCertificate(request,prior);
+  return {valid:true,sourceOnly:true,physicalActionsPerformed:false};
+}
+
 export const ACTIVE_LINEAR_READINGS_SCHEMA='worldlaw.active-linear-readings/v1';
 export const ACTIVE_LINEAR_READOUT_RESULT_SCHEMA='worldlaw.active-linear-readout-result/v1';
 
@@ -418,8 +603,10 @@ export const ACTIVE_LINEAR_READOUT_RESULT_SCHEMA='worldlaw.active-linear-readout
  * are refused. A surviving model is conditional compatibility, never truth. */
 export function evaluateActiveLinearReadings(request,plan,readout){
   const multiple=request?.schema===ACTIVE_INTERVENTION_SCHEMA;
-  const enumeration=multiple?verifyInterventionCertificate(request,plan):verifyLinearCertificate(request,plan);
-  need(plan.status===(multiple?'optimal_certified_intervention':'optimal_certified_schedule'),
+  const bounded=request?.schema===ACTIVE_LINEAR_CONTROL_BOX_SCHEMA;
+  const enumeration=multiple?verifyInterventionCertificate(request,plan):
+    bounded?verifyControlBoxCertificate(request,plan):verifyLinearCertificate(request,plan);
+  need(plan.status===(multiple?'optimal_certified_intervention':bounded?'optimal_certified_control_box':'optimal_certified_schedule'),
     'readout evaluation requires a replayed certified prospective plan');
   need(readout&&readout.schema===ACTIVE_LINEAR_READINGS_SCHEMA,
     'explicit worldlaw.active-linear-readings/v1 schema is required');
@@ -443,7 +630,8 @@ export function evaluateActiveLinearReadings(request,plan,readout){
   const ticks=plannedTicks.filter(t=>values.has(t));
   const intervention=multiple?request.interventions.find(item=>item.id===plan.chosenIntervention):null;
   const course=multiple?{...request,schema:ACTIVE_LINEAR_FAMILY_SCHEMA,controls:intervention.controls,
-    workLimit:request.workLimitPerCourse??request.workLimit??50000}:request;
+    workLimit:request.workLimitPerCourse??request.workLimit??50000}:
+    bounded?{...request,schema:ACTIVE_LINEAR_FAMILY_SCHEMA,controls:plan.chosenControls}:request;
   const {laws,eps,workLimit}=compileFamily(course),budget=workBudget(workLimit);
   const checks=laws.map(law=>{
     const rows=ticks.map(t=>law.schedule[t].observable);

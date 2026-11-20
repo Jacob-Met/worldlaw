@@ -1,0 +1,6693 @@
+[
+  {
+    "name": "rational_00",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_00; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "-1"
+            ]
+          ],
+          "B": [
+            [
+              0,
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-2/3"
+            ]
+          ],
+          "B": [
+            [
+              1,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "0",
+            "0"
+          ],
+          "max": [
+            "0",
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "1/2",
+            "0"
+          ],
+          "max": [
+            "1/2",
+            "1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        2,
+        1,
+        0
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/100",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 2,
+        "1": 3,
+        "2": 1
+      }
+    }
+  },
+  {
+    "name": "rational_01",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_01; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "-1",
+              0
+            ],
+            [
+              0,
+              "-2/3"
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1",
+              0
+            ],
+            [
+              0,
+              "-2/3"
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "-1"
+          ]
+        },
+        {
+          "min": [
+            "-1/2"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "1/2"
+          ],
+          "max": [
+            "2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 2,
+      "noiseBound": "1/100",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 3,
+        "1": 6,
+        "2": 5,
+        "3": 6
+      }
+    }
+  },
+  {
+    "name": "rational_02",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_02; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "-2/3",
+              0,
+              0
+            ],
+            [
+              0,
+              "1/3",
+              0
+            ],
+            [
+              0,
+              0,
+              "2"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -2
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "0",
+              0,
+              0
+            ],
+            [
+              0,
+              "1/3",
+              0
+            ],
+            [
+              0,
+              0,
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              2
+            ],
+            [
+              -1
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "3/2"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "-1/2"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "-1"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/4",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 3,
+        "1": 7,
+        "2": 3,
+        "3": 6,
+        "4": 4
+      }
+    }
+  },
+  {
+    "name": "rational_03",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_03; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 6,
+        "1": 6,
+        "2": 4
+      }
+    }
+  },
+  {
+    "name": "rational_04",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_04; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "-2",
+              0
+            ],
+            [
+              0,
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "0",
+              0
+            ],
+            [
+              0,
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            -1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "1/2",
+            "-1"
+          ],
+          "max": [
+            "3/2",
+            "-1"
+          ]
+        },
+        {
+          "min": [
+            "-2",
+            "-2"
+          ],
+          "max": [
+            "-2",
+            "-2"
+          ]
+        },
+        {
+          "min": [
+            "0",
+            "-2"
+          ],
+          "max": [
+            "0",
+            "-2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 4,
+      "noiseBound": "1/2",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 6,
+        "1": 2,
+        "2": 6,
+        "3": 6
+      }
+    }
+  },
+  {
+    "name": "rational_05",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_05; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "-1/3",
+              0,
+              0
+            ],
+            [
+              0,
+              "-1",
+              0
+            ],
+            [
+              0,
+              0,
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -2
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "1",
+              0,
+              0
+            ],
+            [
+              0,
+              "0",
+              0
+            ],
+            [
+              0,
+              0,
+              "-2"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            -1,
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "3/2"
+          ]
+        },
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "1"
+          ],
+          "max": [
+            "1"
+          ]
+        },
+        {
+          "min": [
+            "-2"
+          ],
+          "max": [
+            "-2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 3,
+        "2": 3,
+        "3": 1,
+        "4": 7
+      }
+    }
+  },
+  {
+    "name": "rational_06",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_06; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "1"
+            ]
+          ],
+          "B": [
+            [
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-2"
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "-2"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 2,
+      "noiseBound": "1/10",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 5,
+        "2": 1
+      }
+    }
+  },
+  {
+    "name": "rational_07",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_07; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "-1",
+              0
+            ],
+            [
+              0,
+              "1/3"
+            ]
+          ],
+          "B": [
+            [
+              2
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "0",
+              0
+            ],
+            [
+              0,
+              "-1/3"
+            ]
+          ],
+          "B": [
+            [
+              1
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1/2"
+          ],
+          "max": [
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "1"
+          ],
+          "max": [
+            "2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/10",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 1,
+        "1": 7,
+        "2": 3,
+        "3": 3
+      }
+    }
+  },
+  {
+    "name": "rational_08",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_08; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "2",
+              0,
+              0
+            ],
+            [
+              0,
+              "-1/2",
+              0
+            ],
+            [
+              0,
+              0,
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              -2
+            ],
+            [
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "2/3",
+              0,
+              0
+            ],
+            [
+              0,
+              "1/2",
+              0
+            ],
+            [
+              0,
+              0,
+              "-1"
+            ]
+          ],
+          "B": [
+            [
+              2,
+              -2
+            ],
+            [
+              -1,
+              -2
+            ],
+            [
+              -2,
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            -1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1/2",
+            "-1/2"
+          ],
+          "max": [
+            "-1/2",
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "1",
+            "-1"
+          ],
+          "max": [
+            "1",
+            "-1"
+          ]
+        },
+        {
+          "min": [
+            "0",
+            "0"
+          ],
+          "max": [
+            "0",
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "0",
+            "1/2"
+          ],
+          "max": [
+            "0",
+            "1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 4,
+      "noiseBound": "1/2",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 3,
+        "1": 5,
+        "2": 6,
+        "3": 3,
+        "4": 2
+      }
+    }
+  },
+  {
+    "name": "rational_09",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_09; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-3"
+          ],
+          "max": [
+            "-5/2"
+          ]
+        },
+        {
+          "min": [
+            "-1/2"
+          ],
+          "max": [
+            "1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/10",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 6,
+        "1": 4,
+        "2": 4
+      }
+    }
+  },
+  {
+    "name": "rational_10",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_10; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "-2",
+              0
+            ],
+            [
+              0,
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              2
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1/2",
+              0
+            ],
+            [
+              0,
+              "2/3"
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "-3"
+          ],
+          "max": [
+            "-3/2"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/2",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 2,
+        "2": 3,
+        "3": 3
+      }
+    }
+  },
+  {
+    "name": "rational_11",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_11; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "1",
+              0,
+              0
+            ],
+            [
+              0,
+              "1/3",
+              0
+            ],
+            [
+              0,
+              0,
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              1
+            ],
+            [
+              -1
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "1",
+              0,
+              0
+            ],
+            [
+              0,
+              "1/2",
+              0
+            ],
+            [
+              0,
+              0,
+              "1/3"
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ],
+            [
+              2
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1"
+          ]
+        },
+        {
+          "min": [
+            "-2"
+          ],
+          "max": [
+            "-3/2"
+          ]
+        },
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "1/2"
+          ],
+          "max": [
+            "2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 2,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 4,
+        "1": 1,
+        "2": 1,
+        "3": 7,
+        "4": 7
+      }
+    }
+  },
+  {
+    "name": "rational_12",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_12; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "1"
+            ]
+          ],
+          "B": [
+            [
+              -1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              2,
+              -2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-3",
+            "-3/2"
+          ],
+          "max": [
+            "-3",
+            "-3/2"
+          ]
+        },
+        {
+          "min": [
+            "1",
+            "-1/2"
+          ],
+          "max": [
+            "3/2",
+            "-1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 4,
+        "1": 1,
+        "2": 3
+      }
+    }
+  },
+  {
+    "name": "rational_13",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_13; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "0",
+              0
+            ],
+            [
+              0,
+              "1"
+            ]
+          ],
+          "B": [
+            [
+              1
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1/2",
+              0
+            ],
+            [
+              0,
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            -1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1/2"
+          ],
+          "max": [
+            "1"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "1/2"
+          ],
+          "max": [
+            "1"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 4,
+      "noiseBound": "1/4",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 2,
+        "1": 6,
+        "2": 4,
+        "3": 2
+      }
+    }
+  },
+  {
+    "name": "rational_14",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_14; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "0",
+              0,
+              0
+            ],
+            [
+              0,
+              "0",
+              0
+            ],
+            [
+              0,
+              0,
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -2
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "0",
+              0,
+              0
+            ],
+            [
+              0,
+              "0",
+              0
+            ],
+            [
+              0,
+              0,
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              2
+            ],
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "1"
+          ],
+          "max": [
+            "2"
+          ]
+        },
+        {
+          "min": [
+            "-3"
+          ],
+          "max": [
+            "-3/2"
+          ]
+        },
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "-3/2"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "3/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "maxReadings": 5,
+      "noiseBound": "1/10",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 4,
+        "2": 3,
+        "3": 7,
+        "4": 3
+      }
+    }
+  },
+  {
+    "name": "rational_15",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_15; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "2"
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-2"
+          ],
+          "max": [
+            "-1"
+          ]
+        },
+        {
+          "min": [
+            "1/2"
+          ],
+          "max": [
+            "3/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/4",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 2,
+        "2": 5
+      }
+    }
+  },
+  {
+    "name": "rational_16",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_16; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              -1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1,
+              -1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              1,
+              2
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1",
+            "1"
+          ],
+          "max": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "min": [
+            "0",
+            "-2"
+          ],
+          "max": [
+            "0",
+            "-2"
+          ]
+        },
+        {
+          "min": [
+            "-1",
+            "0"
+          ],
+          "max": [
+            "-1",
+            "0"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 2,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 4,
+        "2": 5,
+        "3": 3
+      }
+    }
+  },
+  {
+    "name": "rational_17",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_17; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              2
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1,
+              -1,
+              0
+            ],
+            [
+              0,
+              1,
+              -1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              2
+            ],
+            [
+              1
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            -1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "-1"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "-3"
+          ],
+          "max": [
+            "-2"
+          ]
+        },
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "0"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/100",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 1,
+        "1": 5,
+        "2": 1,
+        "3": 5,
+        "4": 1
+      }
+    }
+  },
+  {
+    "name": "rational_18",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_18; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/10",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 6,
+        "2": 3
+      }
+    }
+  },
+  {
+    "name": "rational_19",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_19; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "3/2"
+          ]
+        },
+        {
+          "min": [
+            "-2"
+          ],
+          "max": [
+            "-3/2"
+          ]
+        },
+        {
+          "min": [
+            "-2"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 4,
+      "noiseBound": "1/10",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 1,
+        "1": 1,
+        "2": 4,
+        "3": 5
+      }
+    }
+  },
+  {
+    "name": "rational_20",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_20; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1,
+              -1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0,
+              -2
+            ],
+            [
+              -1,
+              2
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0,
+              -2
+            ],
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "0",
+            "1"
+          ],
+          "max": [
+            "3/2",
+            "1"
+          ]
+        },
+        {
+          "min": [
+            "-1/2",
+            "-2"
+          ],
+          "max": [
+            "-1/2",
+            "-2"
+          ]
+        },
+        {
+          "min": [
+            "0",
+            "0"
+          ],
+          "max": [
+            "0",
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "-3",
+            "-1"
+          ],
+          "max": [
+            "-3",
+            "-1"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 1,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 6,
+        "1": 5,
+        "2": 1,
+        "3": 1,
+        "4": 7
+      }
+    }
+  },
+  {
+    "name": "rational_21",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_21; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "3/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        2,
+        1,
+        0
+      ],
+      "maxReadings": 2,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 2,
+        "1": 2,
+        "2": 2
+      }
+    }
+  },
+  {
+    "name": "rational_22",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_22; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1,
+              -1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              1
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            -1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1,
+              -1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "-3"
+          ],
+          "max": [
+            "-3/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/100",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 1,
+        "1": 3,
+        "2": 5,
+        "3": 3
+      }
+    }
+  },
+  {
+    "name": "rational_23",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_23; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              -1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              2
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            -1,
+            -1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ],
+            [
+              -1
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "-1"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "1/2"
+          ],
+          "max": [
+            "3/2"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 4,
+      "noiseBound": "1/2",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 5,
+        "1": 2,
+        "2": 4,
+        "3": 7,
+        "4": 4
+      }
+    }
+  },
+  {
+    "name": "rational_24",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_24; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              0,
+              -2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -1,
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "0",
+            "-1/2"
+          ],
+          "max": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "min": [
+            "0",
+            "-1"
+          ],
+          "max": [
+            "0",
+            "-1"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 3,
+        "1": 2,
+        "2": 7
+      }
+    }
+  },
+  {
+    "name": "rational_25",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_25; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1,
+              -1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            -1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "1"
+          ],
+          "max": [
+            "2"
+          ]
+        },
+        {
+          "min": [
+            "1/2"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/100",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 6,
+        "1": 5,
+        "2": 4,
+        "3": 7
+      }
+    }
+  },
+  {
+    "name": "rational_26",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_26; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ],
+            [
+              -1
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            1,
+            -1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1,
+              -1,
+              0
+            ],
+            [
+              0,
+              1,
+              -1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              2
+            ],
+            [
+              2
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            -1,
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "1"
+          ],
+          "max": [
+            "5/2"
+          ]
+        },
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "-1"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1"
+          ]
+        },
+        {
+          "min": [
+            "-2"
+          ],
+          "max": [
+            "-2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 2,
+      "noiseBound": "1/4",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 3,
+        "1": 5,
+        "2": 1,
+        "3": 7,
+        "4": 2
+      }
+    }
+  },
+  {
+    "name": "rational_27",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_27; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-3"
+          ],
+          "max": [
+            "-2"
+          ]
+        },
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/4",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 6,
+        "2": 3
+      }
+    }
+  },
+  {
+    "name": "rational_28",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_28; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1,
+              -1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1,
+              -1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0,
+              -1
+            ],
+            [
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "1/2",
+            "-1/2"
+          ],
+          "max": [
+            "1/2",
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "-3/2",
+            "1"
+          ],
+          "max": [
+            "-3/2",
+            "5/2"
+          ]
+        },
+        {
+          "min": [
+            "-1/2",
+            "-3/2"
+          ],
+          "max": [
+            "-1/2",
+            "-3/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        3,
+        2,
+        1,
+        0
+      ],
+      "maxReadings": 4,
+      "noiseBound": "1/2",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 2,
+        "2": 7,
+        "3": 1
+      }
+    }
+  },
+  {
+    "name": "rational_29",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_29; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              2
+            ],
+            [
+              2
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              1
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ],
+            [
+              -2
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            -1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "-3"
+          ],
+          "max": [
+            "-3"
+          ]
+        },
+        {
+          "min": [
+            "-1/2"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 5,
+      "noiseBound": "1/10",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 2,
+        "1": 7,
+        "2": 4,
+        "3": 1,
+        "4": 3
+      }
+    }
+  },
+  {
+    "name": "rational_30",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_30; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "1/2"
+          ],
+          "max": [
+            "2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/100",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 5,
+        "1": 5,
+        "2": 4
+      }
+    }
+  },
+  {
+    "name": "rational_31",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_31; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1"
+          ]
+        },
+        {
+          "min": [
+            "-2"
+          ],
+          "max": [
+            "-3/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 2,
+      "noiseBound": "1/100",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 3,
+        "1": 2,
+        "2": 4,
+        "3": 4
+      }
+    }
+  },
+  {
+    "name": "rational_32",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_32; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "0",
+              "-1/2",
+              "-1/2"
+            ],
+            [
+              "0",
+              "-1/2",
+              "-1/2"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              -2,
+              -1
+            ],
+            [
+              -2,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "C": [
+            1,
+            -1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1/2",
+              "-1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "1/2",
+              "-1/2"
+            ],
+            [
+              "0",
+              "-1/2",
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ],
+            [
+              -2,
+              1
+            ],
+            [
+              -2,
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            -1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1",
+            "1/2"
+          ],
+          "max": [
+            "1/2",
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "-3",
+            "-1/2"
+          ],
+          "max": [
+            "-3",
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "-1",
+            "-3"
+          ],
+          "max": [
+            "-1",
+            "-3"
+          ]
+        },
+        {
+          "min": [
+            "1/2",
+            "-1"
+          ],
+          "max": [
+            "1/2",
+            "-1"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 6,
+        "1": 6,
+        "2": 4,
+        "3": 5,
+        "4": 3
+      }
+    }
+  },
+  {
+    "name": "rational_33",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_33; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "1/2"
+          ],
+          "max": [
+            "3/2"
+          ]
+        },
+        {
+          "min": [
+            "-1/2"
+          ],
+          "max": [
+            "0"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/4",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 4,
+        "1": 2,
+        "2": 5
+      }
+    }
+  },
+  {
+    "name": "rational_34",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_34; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "0",
+              "-1/2"
+            ],
+            [
+              "-1/2",
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              2
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            -1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-3"
+          ],
+          "max": [
+            "-2"
+          ]
+        },
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 4,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 1,
+        "1": 4,
+        "2": 4,
+        "3": 7
+      }
+    }
+  },
+  {
+    "name": "rational_35",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_35; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "0",
+              "0",
+              "-1/2"
+            ],
+            [
+              "1/2",
+              "-1/2",
+              "-1/2"
+            ],
+            [
+              "0",
+              "-1/2",
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              2
+            ],
+            [
+              -1
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            -1,
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "1/2",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "-1/2",
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              1
+            ],
+            [
+              1
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "3/2"
+          ]
+        },
+        {
+          "min": [
+            "-1/2"
+          ],
+          "max": [
+            "1"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/10",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 4,
+        "1": 4,
+        "2": 3,
+        "3": 3,
+        "4": 5
+      }
+    }
+  },
+  {
+    "name": "rational_36",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_36; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              2,
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              1,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "1",
+            "0"
+          ],
+          "max": [
+            "1",
+            "3/2"
+          ]
+        },
+        {
+          "min": [
+            "0",
+            "0"
+          ],
+          "max": [
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 2,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 1,
+        "1": 5,
+        "2": 2
+      }
+    }
+  },
+  {
+    "name": "rational_37",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_37; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "1/2",
+              "-1/2"
+            ],
+            [
+              "0",
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              1
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1/2",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "1/2"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "-1"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/2",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 5,
+        "1": 7,
+        "2": 2,
+        "3": 7
+      }
+    }
+  },
+  {
+    "name": "rational_38",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_38; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "1/2",
+              "-1/2",
+              "-1/2"
+            ],
+            [
+              "1/2",
+              "0",
+              "0"
+            ],
+            [
+              "-1/2",
+              "1/2",
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ],
+            [
+              -2
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            -1,
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "0",
+              "0",
+              "-1/2"
+            ],
+            [
+              "0",
+              "1/2",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -2
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "-1"
+          ]
+        },
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "-2"
+          ],
+          "max": [
+            "-3/2"
+          ]
+        },
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "-3/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 4,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 1,
+        "1": 1,
+        "2": 7,
+        "3": 6,
+        "4": 1
+      }
+    }
+  },
+  {
+    "name": "rational_39",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_39; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/4",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 1,
+        "1": 1,
+        "2": 5
+      }
+    }
+  },
+  {
+    "name": "rational_40",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_40; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "0",
+              "-1/2"
+            ],
+            [
+              "-1/2",
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              -2,
+              1
+            ],
+            [
+              1,
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              1,
+              2
+            ],
+            [
+              -1,
+              0
+            ]
+          ],
+          "C": [
+            1,
+            -1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1",
+            "0"
+          ],
+          "max": [
+            "-1",
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "1",
+            "-1/2"
+          ],
+          "max": [
+            "1",
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "-1",
+            "-3/2"
+          ],
+          "max": [
+            "-1",
+            "-3/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 1,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 3,
+        "1": 4,
+        "2": 3,
+        "3": 1
+      }
+    }
+  },
+  {
+    "name": "rational_41",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_41; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "-1/2",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "-1/2",
+              "-1/2"
+            ],
+            [
+              "0",
+              "-1/2",
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ],
+            [
+              -2
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            -1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1/2",
+              "0",
+              "-1/2"
+            ],
+            [
+              "-1/2",
+              "1/2",
+              "-1/2"
+            ],
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -1
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            1,
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "1"
+          ],
+          "max": [
+            "5/2"
+          ]
+        },
+        {
+          "min": [
+            "-1/2"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "-3"
+          ],
+          "max": [
+            "-2"
+          ]
+        },
+        {
+          "min": [
+            "-3"
+          ],
+          "max": [
+            "-3"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 2,
+      "noiseBound": "1/100",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 3,
+        "1": 6,
+        "2": 4,
+        "3": 3,
+        "4": 2
+      }
+    }
+  },
+  {
+    "name": "rational_42",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_42; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "1"
+          ],
+          "max": [
+            "5/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        2,
+        1,
+        0
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/4",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 7,
+        "2": 4
+      }
+    }
+  },
+  {
+    "name": "rational_43",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_43; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "0",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            -1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "1/2",
+              "-1/2"
+            ],
+            [
+              "1/2",
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            -1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "1/2"
+          ]
+        },
+        {
+          "min": [
+            "-1"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 4,
+      "noiseBound": "1/100",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 6,
+        "1": 6,
+        "2": 6,
+        "3": 4
+      }
+    }
+  },
+  {
+    "name": "rational_44",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_44; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "1/2",
+              "-1/2",
+              "1/2"
+            ],
+            [
+              "-1/2",
+              "-1/2",
+              "0"
+            ],
+            [
+              "-1/2",
+              "1/2",
+              "1/2"
+            ]
+          ],
+          "B": [
+            [
+              0,
+              -1
+            ],
+            [
+              -2,
+              -2
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "C": [
+            1,
+            -1,
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "0",
+              "-1/2",
+              "-1/2"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "0"
+            ],
+            [
+              "-1/2",
+              "-1/2",
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              -2,
+              1
+            ],
+            [
+              -1,
+              1
+            ],
+            [
+              -1,
+              2
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-1/2",
+            "-1/2"
+          ],
+          "max": [
+            "-1/2",
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "-1/2",
+            "1/2"
+          ],
+          "max": [
+            "-1/2",
+            "3/2"
+          ]
+        },
+        {
+          "min": [
+            "1/2",
+            "-1"
+          ],
+          "max": [
+            "1/2",
+            "-1"
+          ]
+        },
+        {
+          "min": [
+            "-3",
+            "-3"
+          ],
+          "max": [
+            "-3",
+            "-3"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 5,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 1,
+        "1": 4,
+        "2": 6,
+        "3": 1,
+        "4": 2
+      }
+    }
+  },
+  {
+    "name": "rational_45",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_45; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 1,
+      "noiseBound": "1/10",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 6,
+        "1": 5,
+        "2": 1
+      }
+    }
+  },
+  {
+    "name": "rational_46",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_46; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "0",
+              "-1/2"
+            ],
+            [
+              "0",
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "-1/2",
+              "-1/2"
+            ],
+            [
+              "0",
+              "-1/2"
+            ]
+          ],
+          "B": [
+            [
+              -2
+            ],
+            [
+              -2
+            ]
+          ],
+          "C": [
+            1,
+            -1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "1"
+          ],
+          "max": [
+            "3/2"
+          ]
+        },
+        {
+          "min": [
+            "-2"
+          ],
+          "max": [
+            "-1/2"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "3/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "maxReadings": 2,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 6,
+        "1": 6,
+        "2": 6,
+        "3": 7
+      }
+    }
+  },
+  {
+    "name": "rational_47",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_47; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "h0",
+          "A": [
+            [
+              "-1/2",
+              "-1/2",
+              "1/2"
+            ],
+            [
+              "-1/2",
+              "0",
+              "0"
+            ],
+            [
+              "-1/2",
+              "0",
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ],
+            [
+              2
+            ]
+          ],
+          "C": [
+            1,
+            -1,
+            -1
+          ]
+        },
+        {
+          "id": "h1",
+          "A": [
+            [
+              "1/2",
+              "0",
+              "1/2"
+            ],
+            [
+              "1/2",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "-1/2",
+              "-1/2",
+              "0"
+            ]
+          ],
+          "B": [
+            [
+              -1
+            ],
+            [
+              2
+            ],
+            [
+              -1
+            ]
+          ],
+          "C": [
+            1,
+            -1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            "-3/2"
+          ],
+          "max": [
+            "0"
+          ]
+        },
+        {
+          "min": [
+            "1/2"
+          ],
+          "max": [
+            "2"
+          ]
+        },
+        {
+          "min": [
+            "1/2"
+          ],
+          "max": [
+            "2"
+          ]
+        },
+        {
+          "min": [
+            "0"
+          ],
+          "max": [
+            "1/2"
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/10",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 7,
+        "1": 3,
+        "2": 6,
+        "3": 6,
+        "4": 4
+      }
+    }
+  },
+  {
+    "name": "coupled_minimum_support",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course coupled_minimum_support; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "double_coupling",
+          "A": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 5,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "fixed_course",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course fixed_course; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "double_coupling",
+          "A": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 5,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "closed_noise_contact",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course closed_noise_contact; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "double_coupling",
+          "A": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "1/8",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "below_contact",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course below_contact; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "double_coupling",
+          "A": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "124999/1000000",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "negative_only_orientation",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course negative_only_orientation; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "no_gain",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "unit_gain",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -3
+          ],
+          "max": [
+            -1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        1
+      ],
+      "maxReadings": 1,
+      "noiseBound": "0",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "zero_controls",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course zero_controls; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "double_coupling",
+          "A": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 5,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "zero_sensor",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course zero_sensor; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "double_coupling",
+          "A": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            0,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 5,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "equivalent_laws",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course equivalent_laws; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "equivalent",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 5,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "signed_cycle_negative_box",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course signed_cycle_negative_box; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "positive",
+          "A": [
+            [
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "B": [
+            [
+              1
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "id": "negative",
+          "A": [
+            [
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            [
+              -1,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "B": [
+            [
+              1
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "maxReadings": 8,
+      "noiseBound": "1",
+      "workLimit": 50000,
+      "controlBounds": [
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            -3
+          ],
+          "max": [
+            -1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "numeric_tick_tie",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course numeric_tick_tie; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "no_gain",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              0
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "unit_gain",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "offeredTicks": [
+        10,
+        2
+      ],
+      "maxReadings": 2,
+      "noiseBound": "0",
+      "workLimit": 50000,
+      "controlBounds": [
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            1
+          ],
+          "max": [
+            1
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "reading_budget_refusal",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course reading_budget_refusal; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "double_coupling",
+          "A": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 2,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "cost_precedes_tick_order",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course cost_precedes_tick_order; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "double_coupling",
+          "A": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 5,
+      "noiseBound": "1/4",
+      "workLimit": 50000,
+      "costByTick": {
+        "0": 8,
+        "1": 4,
+        "2": 1,
+        "3": 1,
+        "4": 1
+      }
+    }
+  },
+  {
+    "name": "two_channel_noncentered",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course two_channel_noncentered; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "a",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              1,
+              -1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        },
+        {
+          "id": "b",
+          "A": [
+            [
+              0
+            ]
+          ],
+          "B": [
+            [
+              2,
+              1
+            ]
+          ],
+          "C": [
+            1
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -3,
+            1
+          ],
+          "max": [
+            -1,
+            2
+          ]
+        },
+        {
+          "min": [
+            0,
+            -1
+          ],
+          "max": [
+            0,
+            1
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2
+      ],
+      "maxReadings": 3,
+      "noiseBound": "0",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "no_annihilator",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course no_annihilator; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "double_coupling",
+          "A": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1
+      ],
+      "maxReadings": 2,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "zero_input_response",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course zero_input_response; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        },
+        {
+          "id": "double_coupling",
+          "A": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              0
+            ]
+          ],
+          "C": [
+            1,
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 5,
+      "noiseBound": "1/4",
+      "workLimit": 50000
+    }
+  },
+  {
+    "name": "rational_units",
+    "request": {
+      "schema": "worldlaw.active-linear-control-box/v1",
+      "source": "Frozen independent bounded-control course rational_units; hypothetical, no physical acquisition",
+      "hypotheses": [
+        {
+          "id": "unit_coupling",
+          "A": [
+            [
+              1,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            "1/3",
+            0
+          ]
+        },
+        {
+          "id": "double_coupling",
+          "A": [
+            [
+              1,
+              2
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "B": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "C": [
+            "1/3",
+            0
+          ]
+        }
+      ],
+      "controlBounds": [
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            -1
+          ],
+          "max": [
+            1
+          ]
+        },
+        {
+          "min": [
+            0
+          ],
+          "max": [
+            0
+          ]
+        }
+      ],
+      "offeredTicks": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "maxReadings": 5,
+      "noiseBound": "1/12",
+      "workLimit": 50000
+    }
+  }
+]

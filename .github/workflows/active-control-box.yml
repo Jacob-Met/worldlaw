@@ -1,0 +1,104 @@
+name: Worldlaw bounded control receiving
+on:
+  pull_request:
+    paths:
+      - 'src/science/active-linear-family.mjs'
+      - 'src/science/active-experiment-record.mjs'
+      - 'scripts/active-control-box-*'
+      - 'tests/active-control-box.test.mjs'
+      - 'tests/fixtures/active-control-box-*'
+      - '.github/workflows/active-control-box.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/science/active-linear-family.mjs'
+      - 'scripts/active-control-box-*'
+      - '.github/workflows/active-control-box.yml'
+permissions:
+  contents: read
+jobs:
+  independent-control-box:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      NODE_OPTIONS: '--max-old-space-size=1536'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify frozen evaluator and source baseline
+        run: |
+          mkdir -p .receipts/active-control-box
+          git show c4705c1bea8604150101e0119b5afee2baf38622:src/science/active-linear-family.mjs > "$RUNNER_TEMP/active-control-baseline.mjs"
+          python3 - "$RUNNER_TEMP/active-control-baseline.mjs" <<'PY'
+          import hashlib,json,sys
+          from pathlib import Path
+          expected={
+            sys.argv[1]:'976f389bff6a2353425b48e99922de95954a7fd1872675682daf5fc5209e4bfc',
+            'tests/fixtures/active-control-box-cases.json':'3bd2c6493fa1f9064895211a0225337c4c5f1deec490284e085f2cc45d07eefb',
+            'tests/fixtures/active-control-box-protocol.json':'004bff6f050ef16c416cb458817a4e057e9665aa2b83bc9969b0745b923ab090',
+            'scripts/active-control-box-receiving.py':'f38d4025cddc73d38b54141a196f94e6fce58d965e18f8dbf47fe6dd2834ba0e',
+            'scripts/active-control-box-benchmark.mjs':'2ee2e5a6aa344ffcf45e5517c8cfa797656664ef7b934feecd2eddb0426f02f8',
+          }
+          for path,wanted in expected.items():
+              actual=hashlib.sha256(Path(path).read_bytes()).hexdigest()
+              assert actual==wanted,(path,actual,wanted)
+          print(json.dumps({'frozenInputsVerified':len(expected)}))
+          PY
+      - name: Independent all-corners and all-subsets primal LP receiving
+        run: |
+          python3 -m pip install numpy==1.26.4 scipy==1.14.1
+          python3 scripts/active-control-box-receiving.py --module src/science/active-linear-family.mjs --cases tests/fixtures/active-control-box-cases.json --output .receipts/active-control-box/primal-receiving.json
+      - name: Cold identical-flags ABBA against the actual prior planner
+        run: |
+          python3 - "$RUNNER_TEMP/active-control-baseline.mjs" <<'PY'
+          import json,statistics,subprocess,sys
+          from pathlib import Path
+          root=Path.cwd();out=root/'.receipts/active-control-box';measurements=[]
+          baseline=Path(sys.argv[1]);candidate=root/'src/science/active-linear-family.mjs'
+          script=root/'scripts/active-control-box-benchmark.mjs';cases=root/'tests/fixtures/active-control-box-cases.json'
+          reference={}
+          for cohort in ['anchor','cohort']:
+              for round_number in range(3):
+                  for index,mode in enumerate(['before','after','after','before']):
+                      module=baseline if mode=='before' else candidate
+                      command=['node','--max-old-space-size=1536',str(script),str(module),mode,str(cases),cohort,'5']
+                      result=subprocess.run(command,capture_output=True,text=True,check=True,timeout=180)
+                      row=json.loads(result.stdout)
+                      for item in row['results']:
+                          key=(cohort,item['name']);previous=reference.setdefault(key,item)
+                          assert abs(item['potential']-previous['potential'])<=1e-9,(key,item,previous)
+                          assert (item['winner'] is None)==(previous['winner'] is None),(key,item,previous)
+                          if item['winner']:
+                              a,b=item['winner'],previous['winner']
+                              assert a['ticks']==b['ticks'] and a['cost']==b['cost'] and abs(a['margin']-b['margin'])<=1e-9,(key,a,b)
+                      row.update(round=round_number,index=index)
+                      (out/f'{cohort}-{round_number}-{index}-{mode}.json').write_text(json.dumps(row,indent=2)+'\n')
+                      measurements.append(row)
+          summary={}
+          for cohort in ['anchor','cohort']:
+              paired={mode:[r for r in measurements if r['cohort']==cohort and r['mode']==mode] for mode in ['before','after']}
+              ms={mode:statistics.median(r['millisecondsPerRepetition'] for r in rows) for mode,rows in paired.items()}
+              rss={mode:statistics.median(r['maxRSSKiB'] for r in rows) for mode,rows in paired.items()}
+              nodes={mode:sum(r['nodes'] for r in rows[0]['results']) for mode,rows in paired.items()}
+              summary[cohort]={'medianMillisecondsPerRepetition':ms,'speedup':ms['before']/ms['after'],'medianMaxRSSKiB':rss,'workNodes':nodes}
+          receipt={'node':subprocess.check_output(['node','--version'],text=True).strip(),'rounds':3,'order':'ABBA','freshProcesses':len(measurements),'summary':summary}
+          (out/'abba-receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+          print(json.dumps(receipt,sort_keys=True))
+          PY
+      - name: Retain independent receiving and benchmark receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: active-control-box-${{ github.run_id }}
+          path: .receipts/active-control-box/
+          if-no-files-found: error
+          retention-days: 14
