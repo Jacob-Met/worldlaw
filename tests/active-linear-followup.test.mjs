@@ -47,3 +47,14 @@ test('a less informative history needs two future readings and a resolved one ne
   const exhausted=await history([5,5],{workLimit:100});
   assert.equal((await recommendActiveFollowup(exhausted,0)).status,'search_inconclusive');
 });
+
+test('future schedule enumeration respects the shared work ceiling before expanding combinations',async()=>{
+  const controls=Array.from({length:10},()=>[1]);
+  const input={...source,controls,offeredTicks:Array.from({length:11},(_,i)=>i),
+    maxReadings:7,workLimit:100};
+  const book=await history([5],input);
+  const result=await recommendActiveFollowup(book,0);
+  assert.equal(result.status,'search_inconclusive');
+  assert.equal(result.exhausted,true);
+  assert.ok(result.nodes<=100);
+});
