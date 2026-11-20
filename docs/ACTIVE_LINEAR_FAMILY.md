@@ -45,3 +45,20 @@ The unit tests independently compare 64 held-out law/input cases with a dense nu
 The exact finite enumeration accepts 2–5 named hypotheses, 1–5 latent variables per hypothesis, 1–4 input channels, 2–10 control ticks, at most 12 candidate reading ticks and up to eight selected measurements. Costs are positive integer declarations. The 50,000-node default hard ceiling cannot be waived into a claim of optimality. Rational input coefficients must be literal exact integers or fractions; there is no approximate decimal parser.
 
 **What this does not establish:** a real experimental channel exists, input actuation is safe or achievable, a model's A/B/C is correct, noise is actually bounded by ε, or the world fits these linear laws. Actual physical qualification requires independently acquired source measurements, calibrated error bounds and a prospective unseen-source intervention. Evidence-level labels in the CLI are intentional; the source-only proof cannot be promoted to empirical causal identification.
+
+
+## Joint active choice: change the physical input before choosing readings
+
+The higher-order source schema **worldlaw.active-linear-interventions/v1** accepts a finite prospective intervention menu. Each item supplies a named, ordered control-vector sequence and a nonnegative declared action cost. Every model receives exactly that same control sequence, but retains its own independent unconstrained initial state. The optimizer compares pairwise law-separating rank under each control course and searches minimum observation times with exact dual witnesses. Ties among certified courses use action cost plus sensor reading cost. It neither reads outcomes nor performs actions.
+
+Cold source-only example:
+
+    npm run active:family -- --input examples/active-intervention-family-decays.json --output /workspace/active-intervention-source-certificate.json
+    node scripts/active-linear-family.mjs --input examples/active-intervention-family-decays.json --replay /workspace/active-intervention-source-certificate.json
+    node --test tests/active-intervention-family.test.mjs
+
+The original and dynamic source-identifiability compilers address the row space of a single declared law. Joint intervention design instead separates **two independent unknown-state latent laws**. A no-actuation option is retained as a negative control: in the two-decay example its whole trajectory remains observationally ambiguous, while an early declared impulse permits an exact three-reading certificate. Later excitation is an independently priced alternative, not a strawman.
+
+The optimum is explicitly finite: up to eight named interventions, each with up to ten control ticks, five-dimensional latent laws, up to twelve candidate readout ticks, and 50,000 exact search nodes per intervention. Each offered intervention is evaluated; exhaustion prevents globally certified optimality. Bounded noise uses sufficient canonical nullspace witnesses rather than an unsupported claim of maximum statistical power.
+
+This is **not** an automated physical laboratory. Actual actuation requires source-bound hardware calibration, verified noise, actuator safety, and independent held-out real-world interventions. No certificate on the offered menu is never a proof that no different physical action could separate models.
