@@ -257,3 +257,103 @@ export function propagatePhysicalObservation(row,matrix){
   }
   return out;
 }
+
+/** Exact affine-output pair test with an arbitrary shared unknown initial state.
+ *
+ * Given Delta y = rows * x0 + offsets (outputs in rows, latent x0 in columns),
+ * offset not in colspace(rows) iff no possible x0 makes the models agree.
+ * An exact left-kernel witness also supplies a checkable projected output
+ * separation under an investigator-DECLARED hard L2 error radius per model.
+ *
+ * This is structural algebra, not a physical measurement, instrument
+ * calibration, likelihood, model fit, or permission to actuate.
+ */
+export function certifyAffineOutputDifference(rows,offsets,noiseRadius=0){
+  requireThat(Array.isArray(rows)&&rows.length>=1&&rows.length<=16,
+    'affine output matrix requires 1–16 measured-time rows');
+  const k=rows.length,n=rows[0]?.length;
+  requireThat(Number.isSafeInteger(n)&&n>=2&&n<=16&&
+    rows.every(r=>Array.isArray(r)&&r.length===n),
+    'affine output matrix must have 2–16 shared initial-state columns');
+  requireThat(Array.isArray(offsets)&&offsets.length===k,
+    'affine output offset must match every measured-time row');
+  const a=rows.map(r=>r.map(scalar)),b=offsets.map(scalar),eps=scalar(noiseRadius);
+  requireThat(eps.n>=0n,'affine output error radius must be nonnegative');
+  const integerVector=fractions=>{
+    let lcm=1n;
+    for(const q of fractions)lcm=lcm/gcd(lcm,q.d)*q.d;
+    return primitive(fractions.map(q=>q.n*(lcm/q.d)));
+  };
+  const columns=Array.from({length:n},(_,j)=>integerVector(a.map(r=>r[j])));
+  const basis=rankBasis(columns),target=integerVector(b);
+  const base={schema:'worldlaw.affine-output-separation/v1',
+    rows:k,unknownStateDimension:n,modelDifferenceRank:basis.length,
+    sourceOnly:true,physicalActionPerformed:false,
+    acceptedErrorRadius:str(eps),
+    interpretation:'Exact source-declared comparison for any shared unknown initial state. Neither declared dynamics, clock, error radius nor physical excitation is authenticated by this structural proof.'};
+  if(inSpan(basis,target)){
+    // A constructive equality witness: solve A*x0 = -b, fixing free state
+    // coordinates at zero. This is NOT an observed or estimated state.
+    const augmented=a.map((r,i)=>[...r,ratio(-b[i].n,b[i].d)]);
+    let rank=0;const pivots=[];
+    for(let j=0;j<n&&rank<k;j++){
+      let p=rank;
+      while(p<k&&augmented[p][j].n===0n)p++;
+      if(p===k)continue;
+      [augmented[rank],augmented[p]]=[augmented[p],augmented[rank]];
+      const pivot=augmented[rank][j];
+      for(let c=j;c<=n;c++)augmented[rank][c]=divide(augmented[rank][c],pivot);
+      for(let i=0;i<k;i++)if(i!==rank&&augmented[i][j].n!==0n){
+        const scale=augmented[i][j];
+        for(let c=j;c<=n;c++)
+          augmented[i][c]=minus(augmented[i][c],multiply(scale,augmented[rank][c]));
+      }
+      pivots.push(j);rank++;
+    }
+    for(let i=rank;i<k;i++)
+      requireThat(augmented[i][n].n===0n,
+        'internal error: exact affine consistency contradicts row-space proof');
+    const state=Array.from({length:n},()=>ratio(0n));
+    for(let i=0;i<rank;i++)state[pivots[i]]=augmented[i][n];
+    // Recheck against the ORIGINAL rational coefficients, not cached rows.
+    for(let i=0;i<k;i++){
+      let residual=b[i];
+      for(let j=0;j<n;j++)residual=plus(residual,multiply(a[i][j],state[j]));
+      requireThat(residual.n===0n,
+        'internal error: affine equality counterexample does not satisfy source');
+    }
+    return {...base,status:'some_initial_state_makes_equal',
+      structurallyDistinct:false,guaranteedUnderDeclaredNoise:false,
+      equalityCounterexample:{initialState:state.map(str),
+        outputDifference:Array.from({length:k},()=> '0')},
+      interpretation:base.interpretation+
+        ' The returned exact shared initial state produces identical outputs under both mechanisms; a passive equality cannot identify the correct law.'};
+  }
+  const result=witness(basis,target,k);
+  const weight=result.direction.map(scalar);
+  let signal=ratio(0n),weightSq=ratio(0n);
+  for(let i=0;i<k;i++){
+    signal=plus(signal,multiply(weight[i],b[i]));
+    weightSq=plus(weightSq,multiply(weight[i],weight[i]));
+  }
+  requireThat(signal.n!==0n,'internal error: nonzero affine witness has zero projected signal');
+  for(let j=0;j<n;j++){
+    let annihilate=ratio(0n);
+    for(let i=0;i<k;i++)annihilate=plus(annihilate,multiply(weight[i],a[i][j]));
+    requireThat(annihilate.n===0n,'internal error: affine witness sees unknown initial state');
+  }
+  const squaredSignal=multiply(signal,signal);
+  const boundedNoise= multiply(ratio(4n),multiply(multiply(eps,eps),weightSq));
+  const guaranteed=squaredSignal.n*boundedNoise.d>boundedNoise.n*squaredSignal.d;
+  return {...base,status:guaranteed?
+    'guaranteed_structural_separation':'structural_separation_noise_unresolved',
+    structurallyDistinct:true,guaranteedUnderDeclaredNoise:guaranteed,
+    witness:{weights:result.direction,projectedDifference:str(signal),
+      weightsSquaredNorm:str(weightSq),
+      projectedSignalSquared:str(squaredSignal),
+      maximumAdversarialNoiseSquared:str(boundedNoise),
+      strictBoundPassed:guaranteed},
+    interpretation:base.interpretation+
+      (guaranteed?' Exact left-kernel witness rejects every possible shared initial state and every pair of output error vectors within the declared hard L2 radii.':
+        ' The models differ structurally, but this witness cannot certify separation against the declared output error radius; do not promote this schedule.')};
+}
