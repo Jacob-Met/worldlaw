@@ -190,10 +190,11 @@ export function designActiveLinearFamily(request){
   if(impossible.length)return {...base,status:'structurally_indistinguishable_on_offered_course',
     selection:null,proof:null,nodes:0,
     interpretation:'Exact row-space no-go for at least one pair even with every proposed measurement; control or sensors must change.'};
-  const robustPotential=potential.every(p=>p.robustCertified);
-  if(!robustPotential)return {...base,status:'noise_separation_not_certified',
-    selection:null,proof:null,nodes:0,
-    interpretation:'The finite witness family does not certify separation at the declared noise bound. This is NOT proof that no discriminating experiment exists.'};
+  // A basis-only robust witness criterion is deliberately one-sided and
+  // NOT monotone under adding observations: a subset can expose a better
+  // canonical null vector than the union. Never prune the finite search
+  // from a failed full-menu witness. Structural impossibility above *is*
+  // monotone and remains a valid early no-go.
   let nodes=0,exhausted=false,best=null;
   for(let size=1;size<=maxReadings;size++){
     let winner=null;
