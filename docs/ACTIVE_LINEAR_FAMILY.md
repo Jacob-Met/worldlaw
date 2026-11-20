@@ -306,3 +306,23 @@ node scripts/active-linear-family.mjs --input examples/active-linear-one-erasure
 ```
 
 The ordinary readout command accepts the surviving scheduled ticks and reports `withinDesignedErasureBudget`. If more than one reading is missing, its per-law consistency checks still describe the supplied readings, but the prospective one-loss guarantee no longer applies. All certificates describe the specified model family and error bound. Physical origin and calibration require separate evidence.
+
+### An unknown sensor gain and offset
+
+Use `examples/active-linear-affine-sensor.json` with the ordinary active-family
+CLI or import it into the active experiment notebook. The
+`worldlaw.active-linear-affine-sensor/v1` schema requires a closed, strictly
+positive `sensorGain` interval. Each hypothetical law can choose its own
+initial state, gain and offset. Its gain and offset stay fixed over the whole
+reading sequence. The error bound applies to each measured reading.
+
+    node scripts/active-linear-family.mjs --input examples/active-linear-affine-sensor.json --output plan.json
+    node scripts/active-linear-family.mjs --input examples/active-linear-affine-sensor.json --replay plan.json
+
+The planner minimizes the number of readings, then their declared cost. It
+eliminates the unbounded initial states and constant offset and intersects the
+remaining exact rational constraints on the two gains. Contact at an interval
+endpoint counts as overlap. With an unrestricted offset, a single reading
+always fits every law. Separate reading files use the standard source and plan
+digests. A surviving law is compatible with the supplied values under the
+declared calibration model. The example is synthetic.

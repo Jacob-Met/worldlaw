@@ -1,0 +1,64 @@
+{
+  "schema": "worldlaw.active-linear-affine-sensor/v1",
+  "source": "Synthetic scalar response with one unknown fixed gain and offset over the entire course. No physical measurements.",
+  "hypotheses": [
+    {
+      "id": "left",
+      "A": [
+        [
+          0
+        ]
+      ],
+      "B": [
+        [
+          5
+        ]
+      ],
+      "C": [
+        1
+      ]
+    },
+    {
+      "id": "right",
+      "A": [
+        [
+          0
+        ]
+      ],
+      "B": [
+        [
+          1
+        ]
+      ],
+      "C": [
+        1
+      ]
+    }
+  ],
+  "controls": [
+    [
+      0
+    ],
+    [
+      1
+    ],
+    [
+      2
+    ],
+    [
+      1
+    ]
+  ],
+  "offeredTicks": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "maxReadings": 4,
+  "noiseBound": "0",
+  "sensorGain": [
+    "1/2",
+    2
+  ]
+}
