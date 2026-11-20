@@ -195,13 +195,14 @@ export function designActiveLinearFamily(request){
   // canonical null vector than the union. Never prune the finite search
   // from a failed full-menu witness. Structural impossibility above *is*
   // monotone and remains a valid early no-go.
-  let nodes=0,exhausted=false,best=null;
+  let nodes=0,exhausted=false,best=null,structuralCandidates=0;
   for(let size=1;size<=maxReadings;size++){
     let winner=null;
     const walk=(next,chosen,expense)=>{
       nodes++;if(nodes>workLimit){exhausted=true;return;}
       if(chosen.length===size){
         const cases=evaluate(chosen);
+        if(cases.every(p=>p.structural))structuralCandidates++;
         if(cases.every(p=>p.robustCertified)){
           if(!winner||expense<winner.expense||
             (expense===winner.expense&&chosen.join(',')<winner.chosen.join(',')))
@@ -220,7 +221,8 @@ export function designActiveLinearFamily(request){
     if(exhausted)break;
   }
   const status=best?(exhausted?'candidate_uncertified':'optimal_certified_schedule'):
-    exhausted?'search_inconclusive':'insufficient_reading_budget';
+    exhausted?'search_inconclusive':
+    structuralCandidates>0?'noise_separation_not_certified':'insufficient_reading_budget';
   return {...base,status,
     selection:best?best.chosen.map(t=>({tick:t,cost:cost[t]??1})):null,
     proof:best?.proof??null,
