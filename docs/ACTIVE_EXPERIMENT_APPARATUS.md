@@ -74,6 +74,12 @@ earlier notebooks and the other labs' storage. An unreadable earlier original
 is retained. Local storage failures are visible and the current accepted state
 remains exportable.
 
+Autosave reuses the Studio's established original-text comparison. If another
+tab has already changed the same notebook, the older tab pauses saving and
+keeps its current state exportable. Reopen the stored notebook or import an
+export as a separate notebook to continue saving. This detects completed
+external changes; localStorage does not provide an atomic cross-tab lock.
+
 All controls support keyboard input. Reduced-motion mode advances a single
 discrete prediction step. The measured lane draws only supplied ticks; gaps are
 not interpolated. Generic linear sources use output markers rather than a

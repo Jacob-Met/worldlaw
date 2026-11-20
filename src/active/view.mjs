@@ -12,6 +12,7 @@ export function finiteDisplayRange(values,padding=.12){
   const span=hi-lo||Math.max(1,Math.abs(lo)*.1);lo-=span*padding;hi+=span*padding;
   return [lo,hi,hi-lo].every(Number.isFinite)&&hi>lo?{lo,hi}:null;
 }
+const shortLabel=(text,length)=>text.length>length?text.slice(0,Math.max(1,length-1))+'…':text;
 const dot=(a,b)=>a.reduce((sum,v,i)=>sum+approximate(v)*b[i],0);
 
 /** Numerical display only. Exact decisions always come from the sealed core.
@@ -71,12 +72,12 @@ export function drawApparatus(host,book,tick,readingIndex){
     const stateLabel=status?` · ${status==='consistent'?'conditionally consistent':status}`:'';
     const ghosts=trace.values.map((v,t)=>tickSet.has(t)?`<circle cx="${x(v)}" cy="${y+30}" r="3" fill="${trace.color}" opacity=".45"><title>Forecast at planned tick ${t}: ${escapeHTML(displayNumber(v))}</title></circle>`:'').join('');
     const marker=data.isDemo?'<path d="M-25 -18H17L29 -5V6H-29V-8Z" fill="currentColor" fill-opacity=".22" stroke="currentColor" stroke-width="1.8"/><circle cx="-17" cy="10" r="5" fill="currentColor"/><circle cx="18" cy="10" r="5" fill="currentColor"/>':'<path d="M0 -20L18 0L0 20L-18 0Z" fill="currentColor" fill-opacity=".2" stroke="currentColor" stroke-width="2"/>';
-    return `<g style="color:${trace.color}"><text x="${left}" y="${y-12}" class="scene-label">${escapeHTML(trace.id.replaceAll('_',' '))}</text><text x="${right}" y="${y-12}" text-anchor="end" class="scene-value">${escapeHTML(displayNumber(value))}</text><path d="M${left} ${y+32}H${right}M${left} ${y+36}H${right}" class="scene-rail"/>${ghosts}<g class="model-marker" transform="translate(${x(value)} ${y+22})">${marker}</g>${stateLabel?`<text x="${left}" y="${y+64}" class="scene-condition">${escapeHTML(stateLabel.slice(3))}</text>`:''}</g>`;
+    return `<g style="color:${trace.color}"><text x="${left}" y="${y-12}" class="scene-label"><title>${escapeHTML(trace.id.replaceAll('_',' '))}</title>${escapeHTML(shortLabel(trace.id.replaceAll('_',' '),Math.floor((right-left-65)/7.3)))}</text><text x="${right}" y="${y-12}" text-anchor="end" class="scene-value">${escapeHTML(displayNumber(value))}</text><path d="M${left} ${y+32}H${right}M${left} ${y+36}H${right}" class="scene-rail"/>${ghosts}<g class="model-marker" transform="translate(${x(value)} ${y+22})">${marker}</g>${stateLabel?`<text x="${left}" y="${y+64}" class="scene-condition">${escapeHTML(stateLabel.slice(3))}</text>`:''}</g>`;
   }).join('');
   let measurement='';
   if(observed){
     const y=65+data.traces.length*rowHeight,reading=observed.readings.find(row=>row.tick===tick);
-    measurement=`<g class="scene-measurement"><text x="${left}" y="${y-12}" class="scene-label">${observed.acquisition==='synthetic'?'Synthetic reading':'Supplied reading · origin unverified'}</text><path d="M${left} ${y+32}H${right}" class="scene-rail"/>${reading?`<circle cx="${x(approximate(reading.value))}" cy="${y+27}" r="8" fill="currentColor"/><text x="${right}" y="${y-12}" text-anchor="end" class="scene-value">${escapeHTML(reading.value)}</text>`:`<text x="${left}" y="${y+24}" class="scene-condition">No reading at tick ${tick}</text>`}</g>`;
+    measurement=`<g class="scene-measurement"><text x="${left}" y="${y-12}" class="scene-label">${observed.acquisition==='synthetic'?'Synthetic reading':'Supplied reading'}</text><path d="M${left} ${y+32}H${right}" class="scene-rail"/>${reading?`<circle cx="${x(approximate(reading.value))}" cy="${y+27}" r="8" fill="currentColor"/><text x="${right}" y="${y-12}" text-anchor="end" class="scene-value">${escapeHTML(String(reading.value)===displayNumber(approximate(reading.value))?String(reading.value):'≈ '+displayNumber(approximate(reading.value)))}</text>`:`<text x="${left}" y="${y+24}" class="scene-condition">No reading at tick ${tick}</text>`}${observed.acquisition==='synthetic'?'':`<text x="${left}" y="${y+64}" class="scene-condition">Origin unverified</text>`}</g>`;
   }
   host.innerHTML=`<svg id="mechanism-view" viewBox="0 0 ${width} ${height}" role="img" aria-label="Illustrative candidate output at tick ${tick}. ${record?'Only separately supplied reading points are drawn.':'No readings acquired.'} The exact test permits independent unknown initial states.">${axis}${lanes}${measurement}</svg>`;
 }

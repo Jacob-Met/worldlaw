@@ -1,4 +1,5 @@
 import {COUPLED_DEMO_SOURCE_SHA256} from './instrument.mjs';
+import {createNotebookStorage} from '../notebook-recovery.mjs';
 import {escapeHTML as html,approximate,displayNumber,plannedTicks,certified,
   illustrateModels,witnessProjection,drawApparatus,drawProjection} from './view.mjs';
 
@@ -10,6 +11,7 @@ const worker=new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})
 const pending=new Map();let messageId=0,generation=0,busy=false;
 let book=null,mode='preview',activeKey=null,readingIndex=-1,pairIndex=0,tick=0,dirty=false,playback=null;
 let storageMessage='',storageWarning=false;
+let custody=null;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 worker.addEventListener('message',event=>{
   const message=event.data,waiter=pending.get(message.id);if(!waiter)return;
@@ -68,15 +70,32 @@ function refreshLocalChoices(){
 }
 function persist(){
   if(!book||mode!=='frozen')return;
-  activeKey??=PREFIX+crypto.randomUUID();
   try{
+    if(!activeKey){
+      activeKey=PREFIX+crypto.randomUUID();custody=createNotebookStorage(()=>localStorage,{key:activeKey});
+      const initial=custody.readInitial();
+      if(!initial.ok||initial.text!==null){activeKey=null;custody=null;throw Error('A new local notebook could not be created safely.');}
+    }
     const title=book.plan.source.slice(0,72)+' · '+book.readouts.length+' reading set'+(book.readouts.length===1?'':'s');
-    localStorage.setItem(activeKey,JSON.stringify({title,savedAt:Date.now(),book}));
-    localStorage.setItem(POINTER,activeKey);storageMessage='Saved locally';storageWarning=false;
+    const saved=custody?.saveCurrent(JSON.stringify({title,savedAt:Date.now(),book}));
+    if(!saved?.ok){
+      storageMessage=saved?.reason==='active-source-changed'?
+        'Another tab changed this notebook · current changes are unsaved; export or reopen':
+        'Latest state is not saved locally · export it';
+      storageWarning=true;refreshLocalChoices();return;
+    }
+    try{localStorage.setItem(POINTER,activeKey);storageMessage='Saved locally';storageWarning=false;}
+    catch{storageMessage='Notebook saved; active selection unavailable · export it';storageWarning=true;}
   }catch{storageMessage='Latest state is not saved locally · export it';storageWarning=true;}
   refreshLocalChoices();
 }
-function adopt(next,newMode,key=null,save=true){
+function readStored(key){
+  const guard=createNotebookStorage(()=>localStorage,{key}),initial=guard.readInitial();
+  if(!initial.ok)throw Error('Local notebook storage cannot be read.');
+  return {guard,entry:JSON.parse(initial.text)};
+}
+function adopt(next,newMode,key=null,save=true,guard=null){
+  custody=guard??(key&&key===activeKey?custody:null);
   book=next;mode=newMode;activeKey=key;readingIndex=book.readouts.length-1;pairIndex=0;tick=0;dirty=false;
   $('source-text').value=book.sourceText;
   $('noise-bound').value=String(JSON.parse(book.sourceText).noiseBound??0);
@@ -207,7 +226,12 @@ $('replan').addEventListener('click',()=>{
 for(const id of ['source-text','noise-bound'])$(id).addEventListener('input',()=>{if(mode==='preview'){dirty=true;$('phase').textContent='Unapplied source edits';announce('Displayed forecasts still belong to the last accepted source. Recompute the draft to apply these edits.');updateControls();}});
 $('open-local').addEventListener('click',()=>{
   const key=$('local-notebook').value;if(!key)return;
-  transact(()=>{if(!key.startsWith(PREFIX))throw Error('Choose a notebook saved by this lab.');const entry=JSON.parse(localStorage.getItem(key));return ask({action:'open',text:JSON.stringify(entry.book)});},next=>adopt(next,'frozen',key),'Local notebook reopened after full exact replay.');
+  transact(async()=>{
+    if(!key.startsWith(PREFIX))throw Error('Choose a notebook saved by this lab.');
+    const {guard,entry}=readStored(key);
+    return {guard,next:await ask({action:'open',text:JSON.stringify(entry.book)})};
+  },({next,guard})=>{adopt(next,'frozen',key,false,guard);storageMessage='Reopened local notebook';storageWarning=false;},
+  'Local notebook reopened after full exact replay.');
 });
 $('reading-set').addEventListener('change',()=>{readingIndex=Number($('reading-set').value);render();announce('Showing a separately retained reading set. The frozen plan is unchanged.');});
 $('witness-pair').addEventListener('change',()=>{pairIndex=Number($('witness-pair').value);renderWitness();});
@@ -232,9 +256,9 @@ async function initialize(){
       const key=localStorage.getItem(POINTER);
       if(key){
         if(!key.startsWith(PREFIX))throw Error('The stored notebook pointer is invalid.');
-        const entry=JSON.parse(localStorage.getItem(key));const next=await ask({action:'open',text:JSON.stringify(entry.book)});
+        const {guard,entry}=readStored(key);const next=await ask({action:'open',text:JSON.stringify(entry.book)});
         if(token!==generation)return;
-        adopt(next,'frozen',key,false);storageMessage='Reopened local notebook';render();announce('Reopened the original source, prospective plan and retained reading sets.');recovered=true;
+        adopt(next,'frozen',key,false,guard);storageMessage='Reopened local notebook';render();announce('Reopened the original source, prospective plan and retained reading sets.');recovered=true;
       }
     }catch(error){if(token!==generation)return;storageWarning=true;storageMessage='Earlier original retained · automatic replacement avoided';showError(Error('The earlier notebook could not be reopened: '+error.message));}
     if(!recovered){

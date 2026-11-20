@@ -145,6 +145,34 @@ try{
   assert.deepEqual((await accepted()).readouts[4].result.consistentHypothesisIds,['double_coupling']);
   mark('later accepted notebook wins a delayed original-file race; back navigation keeps acquisition usable');
 
+  const primary=page,older=await context.newPage();
+  older.on('pageerror',error=>errors.push(error.message));
+  page=older;await page.goto(origin+'/active.html');await idle();page=primary;
+  await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Primary tab independent follow-up, retained before the older tab saves.');
+  for(const [tick,value] of [[0,'3'],[1,'1'],[2,'0']])await page.locator('#reading-'+tick).fill(value);
+  await page.locator('#evaluate-readings').click();await idle();
+  const newest=await accepted(),newestBytes=await page.evaluate(()=>localStorage.getItem(localStorage.getItem('worldlaw-active-current-v1')));
+  assert.equal(newest.readouts.length,6);
+  page=older;await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Older tab separate follow-up; this version must remain exportable.');
+  for(const [tick,value] of [[0,'3'],[1,'1'],[2,'0.001']])await page.locator('#reading-'+tick).fill(value);
+  await page.locator('#evaluate-readings').click();await idle();
+  assert.match(await page.locator('#storage-status').textContent(),/Another tab changed/);
+  assert.equal(await page.evaluate(()=>localStorage.getItem(localStorage.getItem('worldlaw-active-current-v1'))),newestBytes);
+  const conflictPath=await download('export-notebook','active-older-tab-unsaved.json');
+  const conflict=JSON.parse(await readFile(conflictPath,'utf8'));
+  assert.equal(conflict.readouts.length,6);
+  assert.equal(JSON.parse(conflict.readouts[5].readingsText).readings[2].value,'1/1000');
+  assert.equal(cli(['--notebook',conflictPath]).status,0);
+  await page.setViewportSize({width:390,height:844});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await page.screenshot({path:resolve(dir,'active-storage-conflict-390.png'),fullPage:true});
+  await older.close();page=primary;
+  assert.deepEqual(await accepted(),newest);
+  await page.locator('#reading-timeline button[data-tick="2"]').click();
+  mark('shared custody guard retains newer saved readings and exports the older tab without overwriting');
+
   for(const width of [1920,1440,768,390,320]){
     await page.setViewportSize({width,height:width===1920?1080:844});
     await page.evaluate(()=>new Promise(requestAnimationFrame));
@@ -188,6 +216,11 @@ try{
   assert.equal((await accepted()).readouts.at(-1).result.status,'one_hypothesis_consistent');
   assert.deepEqual((await accepted()).readouts.at(-1).result.consistentHypothesisIds,['positive']);
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  const croppedText=await page.locator('#apparatus svg').evaluate(svg=>[...svg.querySelectorAll('text')].map(text=>{
+    const box=text.getBBox();return {text:text.textContent,x:box.x,end:box.x+box.width,width:svg.viewBox.baseVal.width};
+  }).filter(row=>row.x<0||row.end>row.width));
+  assert.deepEqual(croppedText,[],'Every mechanism label must fit the actual narrow viewport.');
+  assert.match(await page.locator('.intro>p').textContent(),/read\. The starting/);
   await page.screenshot({path:resolve(dir,'active-cyclic-320.png'),fullPage:true});
   mark('noise defeats separation without erasing history; a distinct five-state source uses only supplied readings');
 
