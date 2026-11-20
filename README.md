@@ -59,6 +59,19 @@ controls remain provably unidentifiable; every certificate carries the
 original structural assumptions and no measured calibration claim.
 The original static physical-source CLI continues to work unchanged.
 
+## Exact active model discrimination under unknown initial state
+
+The source-only [active linear-law experiment compiler](docs/ACTIVE_LINEAR_FAMILY.md)
+now distinguishes competing time-evolving models **without pretending the
+initial state is known**. It propagates exact rational dynamics under a declared
+excitation, searches minimum-cost observation times, and provides a left-nullspace
+witness that cancels every hypothesized initial state. A conservative robust
+certificate also handles explicitly bounded measurement noise. It reads no
+physical sensor, performs no actuation, and makes no real-world law claim.
+
+Cold run: `npm run active:family` or pass an unfamiliar exact hypothesis JSON
+to `node scripts/active-linear-family.mjs --input your-course.json`.
+
 ## Run locally
 
 With Node.js 20 or newer, from this directory:
