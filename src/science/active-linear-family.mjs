@@ -432,6 +432,11 @@ function compileControlBox(request){
     'control-box sources accept only declared dynamics, independent bounds, scalar reading ticks, costs, noise and work limit; remove unknown or competing control fields');
   need(Array.isArray(request.hypotheses)&&request.hypotheses.length===2,
     'bounded-control synthesis requires exactly two competing hypotheses');
+  need(request.hypotheses.every(law=>law&&typeof law==='object'&&!Array.isArray(law)&&
+    Object.keys(law).every(key=>['id','A','B','C'].includes(key))),
+    'bounded-control laws accept only id, A, B and C; initial states must remain independent and unconstrained');
+  need(Object.keys(request.costByTick??{}).every(tick=>String(Number(tick))===tick),
+    'costByTick keys must be canonical integer tick strings');
   const raw=request.controlBounds;
   need(Array.isArray(raw)&&raw.length>=2&&raw.length<=10,
     'declare 2–10 time-ordered independent control bounds');

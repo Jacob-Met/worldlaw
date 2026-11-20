@@ -27,6 +27,9 @@ Numbers must be safe integers or exact integer/rational strings. The same
 state, horizon, channel and coefficient limits apply. Unknown fields,
 competing `controls` or `interventions` declarations, reversed intervals,
 and families with more than two hypotheses are refused.
+Each hypothesis accepts only `id`, `A`, `B` and `C`; an additional initial-state
+constraint cannot silently disappear. Reading-cost keys must be canonical
+integer tick strings, so a key such as `"01"` is refused rather than ignored.
 
 The objective is, in order:
 

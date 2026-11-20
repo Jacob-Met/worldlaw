@@ -86,6 +86,9 @@ test('ambiguous, coupled and multi-hypothesis declarations are refused before de
   for(const extra of [{controls:[[1],[1]]},{interventions:[]},{jointBudget:1},{readings:[1]}])
     assert.throws(()=>designActiveLinearControlBox({...source,...extra}),/remove unknown or competing control fields/);
   assert.throws(()=>designActiveLinearControlBox({...source,hypotheses:[...source.hypotheses,{...source.hypotheses[0],id:'third'}]}),/exactly two/);
+  assert.throws(()=>designActiveLinearControlBox({...source,costByTick:{'01':5}}),/canonical integer tick/);
+  const constrained=structuredClone(source);constrained.hypotheses[0].initialState=[0,0];
+  assert.throws(()=>designActiveLinearControlBox(constrained),/initial states must remain independent and unconstrained/);
   const reversed=structuredClone(source);reversed.controlBounds[0]={min:[1],max:[-1]};
   assert.throws(()=>designActiveLinearControlBox(reversed),/min <= max/);
   const wrong=structuredClone(source);wrong.controlBounds[0]={min:[0,1],max:[1]};
