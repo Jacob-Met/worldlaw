@@ -1,0 +1,52 @@
+name: Worldlaw active experiment receiving
+on:
+  pull_request:
+    paths:
+      - 'src/active/**'
+      - 'src/science/active-experiment-record.mjs'
+      - 'scripts/active-*.mjs'
+      - 'tests/active-*.test.mjs'
+      - 'active.html'
+      - 'active.css'
+      - 'index.html'
+      - 'server.mjs'
+      - '.github/workflows/active-experiment-ui.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/active/**'
+      - 'src/science/active-experiment-record.mjs'
+      - 'scripts/active-*.mjs'
+      - 'active.html'
+      - 'active.css'
+      - '.github/workflows/active-experiment-ui.yml'
+permissions:
+  contents: read
+jobs:
+  active-experiment-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify shared records and exact historical replay
+        run: node --test tests/active-experiment-record.test.mjs tests/active-instrument.test.mjs tests/active-linear-replay.test.mjs
+      - name: Receive existing workbench and compare two actual apparatus compositions
+        run: |
+          npm install --no-save --no-package-lock playwright-core@1.65.1
+          BROWSER="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -x "$BROWSER"
+          PLAYWRIGHT_MODULE=playwright-core BROWSER_EXECUTABLE_PATH="$BROWSER" BROWSER_ARTIFACT_DIR=.receipts/active-existing-studio node scripts/browser.mjs
+          PLAYWRIGHT_MODULE=playwright-core BROWSER_EXECUTABLE_PATH="$BROWSER" node scripts/active-composition-receiving.mjs
+      - name: Retain actual pixels and independent browser receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: active-experiment-browser-${{ github.run_id }}
+          path: |
+            .receipts/active-existing-studio/
+            .receipts/active-composition/
+          if-no-files-found: error
+          retention-days: 14
