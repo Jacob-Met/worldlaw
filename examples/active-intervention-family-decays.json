@@ -1,0 +1,104 @@
+{
+  "schema": "worldlaw.active-linear-interventions/v1",
+  "source": "Hypothetical controlled scalar decay law competition with independent unknown initial states, no measurements acquired",
+  "hypotheses": [
+    {
+      "id": "half",
+      "A": [
+        [
+          "1/2"
+        ]
+      ],
+      "B": [
+        [
+          "1"
+        ]
+      ],
+      "C": [
+        "1"
+      ]
+    },
+    {
+      "id": "third",
+      "A": [
+        [
+          "1/3"
+        ]
+      ],
+      "B": [
+        [
+          "1"
+        ]
+      ],
+      "C": [
+        "1"
+      ]
+    }
+  ],
+  "interventions": [
+    {
+      "id": "no_actuation",
+      "actionCost": 0,
+      "controls": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
+    },
+    {
+      "id": "late_impulse",
+      "actionCost": 5,
+      "controls": [
+        [
+          0
+        ],
+        [
+          1
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
+    },
+    {
+      "id": "early_impulse",
+      "actionCost": 1,
+      "controls": [
+        [
+          1
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
+    }
+  ],
+  "offeredTicks": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "maxReadings": 5,
+  "workLimitPerCourse": 50000,
+  "noiseBound": "1/1000"
+}
