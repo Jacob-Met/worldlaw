@@ -1,0 +1,104 @@
+{
+  "schema": "worldlaw.active-linear-interventions/v1",
+  "source": "Hypothetical coupled position and hidden velocity with two possible coupling gains; no physical measurement or actuator",
+  "hypotheses": [
+    {
+      "id": "unit_coupling",
+      "A": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "B": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "C": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "double_coupling",
+      "A": [
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "B": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "C": [
+        1,
+        0
+      ]
+    }
+  ],
+  "interventions": [
+    {
+      "id": "idle_velocity",
+      "actionCost": 0,
+      "controls": [
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
+    },
+    {
+      "id": "velocity_pulse",
+      "actionCost": 2,
+      "controls": [
+        [
+          1
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ],
+        [
+          0
+        ]
+      ]
+    }
+  ],
+  "offeredTicks": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "noiseBound": "1/100",
+  "maxReadings": 5,
+  "workLimitPerCourse": 50000
+}
