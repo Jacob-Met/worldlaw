@@ -1,0 +1,62 @@
+{
+  "schema": "worldlaw.active-linear-one-erasure/v1",
+  "source": "Hypothetical scalar decay laws with two separated unit impulses and one scheduled reading lost; no physical measurement.",
+  "hypotheses": [
+    {
+      "id": "half",
+      "A": [
+        [
+          "1/2"
+        ]
+      ],
+      "B": [
+        [
+          "1"
+        ]
+      ],
+      "C": [
+        "1"
+      ]
+    },
+    {
+      "id": "third",
+      "A": [
+        [
+          "1/3"
+        ]
+      ],
+      "B": [
+        [
+          "1"
+        ]
+      ],
+      "C": [
+        "1"
+      ]
+    }
+  ],
+  "controls": [
+    [
+      1
+    ],
+    [
+      0
+    ],
+    [
+      1
+    ],
+    [
+      0
+    ]
+  ],
+  "offeredTicks": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "maxReadings": 5,
+  "workLimit": 50000,
+  "noiseBound": "1/1000"
+}

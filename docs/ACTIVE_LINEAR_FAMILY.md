@@ -293,3 +293,16 @@ python scripts/active-rank-extension-receiving.py \
   --candidate src/science/active-linear-family.mjs \
   --output /workspace/active-rank-receiving.json
 ```
+
+## Planning for one missing reading
+
+Use `worldlaw.active-linear-one-erasure/v1` in a fixed-input linear-family source to require separation after **any one scheduled reading is missing**. The planner charges for every scheduled tick, including the lost one. Each entry in `singleDeletionProofs` identifies the missing tick, the retained ticks, and the exact pairwise noise margins on that projected schedule. The per-reading error bound and the unknown initial states still apply.
+
+To run the example from the repository root:
+
+```sh
+node scripts/active-linear-family.mjs --input examples/active-linear-one-erasure.json --output /tmp/one-erasure-plan.json
+node scripts/active-linear-family.mjs --input examples/active-linear-one-erasure.json --replay /tmp/one-erasure-plan.json
+```
+
+The ordinary readout command accepts the surviving scheduled ticks and reports `withinDesignedErasureBudget`. If more than one reading is missing, its per-law consistency checks still describe the supplied readings, but the prospective one-loss guarantee no longer applies. All certificates describe the specified model family and error bound. Physical origin and calibration require separate evidence.
