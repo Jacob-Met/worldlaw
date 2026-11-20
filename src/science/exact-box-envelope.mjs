@@ -11,31 +11,21 @@
  * prevents cycling, including degenerate and zero-width source courses.
  * https://doi.org/10.1287/moor.2.2.103
  */
-export function maximizeSignedBoxEnvelope(lines,bounds,budget,ops){
+export function maximizeFeasibleRationalProgram(A,b,c,budget,ops){
   const {Q,Z,add,sub,mul,div,neg,dot}=ops;
-  const ensure=(ok,message)=>{if(!ok)throw Error('Exact box envelope: '+message);};
+  const ensure=(ok,message)=>{if(!ok)throw Error('Exact feasible linear program: '+message);};
   const zeros=n=>Array.from({length:n},Z);
   const same=(a,b)=>sub(a,b).n===0n;
-  ensure(lines.length>0&&bounds.length>0&&lines.every(line=>line.length===bounds.length),
-    'nonempty, matching line and box dimensions are required');
-  ensure(bounds.every(b=>sub(b.upper,b.lower).n>=0n),'reversed box');
+  const variableCount=c.length;
+  ensure(variableCount>0&&A.length>0&&A.length===b.length&&A.every(row=>row.length===variableCount),
+    'nonempty matching constraint and objective dimensions are required');
+  ensure(b.every(value=>value.n>=0n),'the origin must be a known feasible point');
   let pivots=0;
   const incomplete=()=>({complete:false,pivots});
   if(!budget.take())return incomplete();
-  const free=bounds.flatMap((bound,i)=>sub(bound.upper,bound.lower).n!==0n&&
-    lines.some(line=>line[i].n!==0n)?[i]:[]);
-  const lower=bounds.map(b=>b.lower),width=free.map(i=>sub(bounds[i].upper,bounds[i].lower));
-  const offsets=lines.map(line=>dot(line,lower));
-  const floor=offsets.reduce((a,b)=>sub(a,b).n<=0n?a:b);
-  const variableCount=free.length+1,marginColumn=free.length;
-  const A=lines.map(line=>[...free.map((i,j)=>neg(mul(line[i],width[j]))),Q(1n)]);
-  const b=offsets.map(value=>sub(value,floor));
-  for(let j=0;j<free.length;j++){
-    const row=zeros(variableCount);row[j]=Q(1n);A.push(row);b.push(Q(1n));
-  }
   const constraintCount=A.length,totalVariables=variableCount+constraintCount;
   const table=A.map((row,i)=>[...row,...Array.from({length:constraintCount},(_,j)=>Q(BigInt(i===j))),b[i]]);
-  const objective=zeros(totalVariables+1);objective[marginColumn]=Q(-1n);table.push(objective);
+  const objective=[...c.map(neg),...zeros(constraintCount+1)];table.push(objective);
   const basic=Array.from({length:constraintCount},(_,i)=>variableCount+i);
   while(true){
     const entering=table[constraintCount].findIndex((v,j)=>j<totalVariables&&v.n<0n);
@@ -49,7 +39,7 @@ export function maximizeSignedBoxEnvelope(lines,bounds,budget,ops){
         leaving=i;ratio=candidate;
       }
     }
-    ensure(leaving>=0,'bounded box LP unexpectedly unbounded');
+    ensure(leaving>=0,'caller-declared bounded program is unbounded');
     const affected=table.flatMap((row,i)=>i!==leaving&&row[entering].n!==0n?[i]:[]);
     // Reserve all work before changing a tableau. Interrupted LPs never return
     // an unchecked point or an infeasibility/optimality claim.
@@ -64,7 +54,6 @@ export function maximizeSignedBoxEnvelope(lines,bounds,budget,ops){
   const primal=zeros(variableCount);
   basic.forEach((variable,i)=>{if(variable<variableCount)primal[variable]=table[i][totalVariables];});
   const dual=table[constraintCount].slice(variableCount,totalVariables);
-  const c=zeros(variableCount);c[marginColumn]=Q(1n);
   ensure(primal.every(v=>v.n>=0n)&&A.every((row,i)=>sub(b[i],dot(row,primal)).n>=0n),
     'primal certificate failed');
   ensure(dual.every(v=>v.n>=0n)&&c.every((value,j)=>
@@ -72,6 +61,35 @@ export function maximizeSignedBoxEnvelope(lines,bounds,budget,ops){
   const optimum=dot(c,primal);
   ensure(same(optimum,dot(b,dual))&&same(optimum,table[constraintCount][totalVariables]),
     'exact primal/dual equality failed');
+  return {complete:true,maximum:optimum,primal,dual,pivots};
+}
+
+/** Box envelope and common-tube radii share one exact, known-feasible tableau.
+ * The caller's hard budget counts its start and every affected tableau row.
+ * No artificial feasibility phase or approximate rank test is introduced. */
+export function maximizeSignedBoxEnvelope(lines,bounds,budget,ops){
+  const {Q,Z,add,sub,mul,div,neg,dot}=ops;
+  const ensure=(ok,message)=>{if(!ok)throw Error('Exact box envelope: '+message);};
+  const zeros=n=>Array.from({length:n},Z);
+  const same=(a,b)=>sub(a,b).n===0n;
+  ensure(lines.length>0&&bounds.length>0&&lines.every(line=>line.length===bounds.length),
+    'nonempty, matching line and box dimensions are required');
+  ensure(bounds.every(b=>sub(b.upper,b.lower).n>=0n),'reversed box');
+  const free=bounds.flatMap((bound,i)=>sub(bound.upper,bound.lower).n!==0n&&
+    lines.some(line=>line[i].n!==0n)?[i]:[]);
+  const lower=bounds.map(b=>b.lower),width=free.map(i=>sub(bounds[i].upper,bounds[i].lower));
+  const offsets=lines.map(line=>dot(line,lower));
+  const floor=offsets.reduce((a,b)=>sub(a,b).n<=0n?a:b);
+  const variableCount=free.length+1,marginColumn=free.length;
+  const A=lines.map(line=>[...free.map((i,j)=>neg(mul(line[i],width[j]))),Q(1n)]);
+  const b=offsets.map(value=>sub(value,floor));
+  for(let j=0;j<free.length;j++){
+    const row=zeros(variableCount);row[j]=Q(1n);A.push(row);b.push(Q(1n));
+  }
+  const c=zeros(variableCount);c[marginColumn]=Q(1n);
+  const result=maximizeFeasibleRationalProgram(A,b,c,budget,ops);
+  if(!result.complete)return result;
+  const {maximum:optimum,primal,dual,pivots}=result;
   const controls=bounds.map(bound=>bound.lower.n>0n?bound.lower:bound.upper.n<0n?bound.upper:Z());
   free.forEach((index,j)=>{controls[index]=add(bounds[index].lower,mul(width[j],primal[j]));});
   const value=add(floor,optimum),pairDual=dual.slice(0,lines.length);

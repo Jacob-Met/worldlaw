@@ -245,6 +245,18 @@ function compileFamily(request,parseControl=number){
   });
   return {laws,offered,maxReadings,workLimit,eps,cost};
 }
+/** Shared exact image compiler. Consumers receive freshly compiled rational
+ * rows, never fitted or supplied latent states. The established planner and
+ * historical replay retain their existing arithmetic and enumeration. */
+export const ACTIVE_LINEAR_EXACT_ARITHMETIC=Object.freeze({
+  Q,Z,add,sub,mul,div,neg,dot,fmt,parseSource:number
+});
+export function compileActiveLinearImages(request){
+  const {laws,offered,eps}=compileFamily(request);
+  return {ticks:offered,epsilon:eps,images:laws.map(law=>({id:law.id,
+    observable:offered.map(tick=>law.schedule[tick].observable),
+    forced:offered.map(tick=>law.schedule[tick].forced)}))};
+}
 export function designActiveLinearFamily(request){
   return designLinearFamily(request,rankCompleteCircuits);
 }
