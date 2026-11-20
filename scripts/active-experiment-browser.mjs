@@ -288,6 +288,8 @@ try{
   assert.equal(jointPreview.status,'optimal_certified_joint_control');
   assert.deepEqual(jointPreview.chosenControls,[['1','-1/3'],['0','0']]);
   assert.deepEqual(jointPreview.selection.map(row=>row.tick),[1]);
+  assert.equal(await page.locator('#tick').inputValue(),'1');
+  assert.equal(await page.locator('#plan-heading').textContent(),'1 reading separates the offered laws.');
   assert.equal(await page.locator('#joint-margin').textContent(),'2/3');
   assert.equal(await page.locator('#joint-pairs button').count(),3);
   await page.locator('#joint-pairs button').nth(1).focus();await page.keyboard.press('Enter');
@@ -304,6 +306,8 @@ try{
   await page.locator('#acquisition-kind').selectOption('synthetic');await page.locator('#reading-1').fill('0');
   await page.locator('#evaluate-readings').click();await idle();
   assert.deepEqual((await accepted()).readouts[0].result.consistentHypothesisIds,['zero_response']);
+  assert.equal(await page.locator('#tick').inputValue(),'1');
+  assert.match(await page.locator('#mechanism-view').getAttribute('aria-label'),/at tick 1/);
   await page.locator('#source-details').evaluate(element=>{element.open=false;});
   await page.locator('#supplied-details').evaluate(element=>{element.open=false;});
   for(const width of [1920,390,320]){

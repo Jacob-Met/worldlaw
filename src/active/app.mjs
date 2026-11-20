@@ -98,7 +98,8 @@ function readStored(key){
 }
 function adopt(next,newMode,key=null,save=true,guard=null){
   custody=guard??(key&&key===activeKey?custody:null);
-  book=next;mode=newMode;activeKey=key;readingIndex=book.readouts.length-1;pairIndex=0;tick=0;dirty=false;
+  book=next;mode=newMode;activeKey=key;readingIndex=book.readouts.length-1;pairIndex=0;dirty=false;
+  tick=book.plan.schema==='worldlaw.active-linear-joint-control/v1'?(plannedTicks(book.plan)[0]??0):0;
   $('source-text').value=book.sourceText;
   $('noise-bound').value=String(JSON.parse(book.sourceText).noiseBound??0);
   if(newMode==='frozen'&&save)persist();
@@ -134,7 +135,7 @@ function render(){
   const data=illustrateModels(book),plan=book.plan,ticks=plannedTicks(plan),frozen=mode==='frozen';
   const record=book.readouts[readingIndex];
   $('phase').textContent=dirty?'Unapplied source edits':frozen?'Frozen experiment':'Prospective preview';
-  $('source-kind').textContent=data.isDemo?'Hypothetical coupled-track example':'User-supplied source declaration · origin unverified';
+  $('source-kind').textContent=data.isDemo?'Hypothetical coupled-track example':'Source-declared hypotheses · origin unverified';
   $('course-label').textContent=data.bounded?(plan.chosenControls?'Designed bounded input':'No bounded input certified'):
     plan.chosenIntervention?plan.chosenIntervention.replaceAll('_',' '):plan.schema.includes('interventions')?'No offered course certified':'Source-declared fixed input';
   $('illustration-note').textContent=data.isDemo?
@@ -143,7 +144,7 @@ function render(){
     'Illustrative forecasts start with zero latent state in each model. They are not fitted states or uncertainty envelopes. The exact test permits independent arbitrary starting states.';
   $('tick').max=String(data.horizon);tick=Math.min(tick,data.horizon);$('tick').value=String(tick);$('tick-value').textContent=String(tick);
   $('plan-kicker').textContent=frozen?'FROZEN PROSPECTIVE PLAN · NO OUTCOMES USED':'PROSPECTIVE PREVIEW · NO OUTCOMES USED';
-  $('plan-heading').textContent=certified(plan)?ticks.length+' reading'+(ticks.length===1?'':'s')+' separate the offered laws.':({search_inconclusive:'The search limit was reached.',candidate_uncertified:'A candidate remains uncertified.',noise_separation_not_certified:'The declared error leaves overlapping possibilities.',no_offered_intervention_certified:'No offered intervention is certified.',structurally_indistinguishable_on_offered_course:'These controls cannot distinguish the laws.',structurally_indistinguishable_on_control_box:'No allowed input can distinguish the laws.',insufficient_reading_budget:'The reading budget cannot separate the laws.'}[plan.status]||'No certified experiment yet.');
+  $('plan-heading').textContent=certified(plan)?ticks.length+' reading'+(ticks.length===1?' separates':'s separate')+' the offered laws.':({search_inconclusive:'The search limit was reached.',candidate_uncertified:'A candidate remains uncertified.',noise_separation_not_certified:'The declared error leaves overlapping possibilities.',no_offered_intervention_certified:'No offered intervention is certified.',structurally_indistinguishable_on_offered_course:'These controls cannot distinguish the laws.',structurally_indistinguishable_on_control_box:'No allowed input can distinguish the laws.',insufficient_reading_budget:'The reading budget cannot separate the laws.'}[plan.status]||'No certified experiment yet.');
   $('plan-summary').textContent=certified(plan)?'Read at ticks '+ticks.join(', ')+'. '+(data.bounded?'Use the designed input below. ':plan.chosenIntervention?'Use '+plan.chosenIntervention.replaceAll('_',' ')+'. ':'')+'Declared '+(data.bounded?'reading':'total')+' cost '+(plan.totalDeclaredCost??plan.totalCost)+'.':plan.interpretation;
   $('control-course').hidden=!data.bounded;
   $('control-heading').textContent=plan.chosenControls?'The designed input':'Declared input bounds';
