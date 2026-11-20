@@ -128,11 +128,11 @@ test('proves any real-valued control impossible for an exact pair whose forced r
 });
 test('a bounded search does not transform one successful guess into false global optimality',()=>{
   const x=threeLaw();
-  x.maxCourses=1;
+  x.maxCourses=2;
   const r=synthesizeSparseExcitation(x);
   assert.equal(r.status,'candidate_uncertified');
   assert.equal(r.exhausted,true);
-  assert.equal(r.coursesEvaluated,1);
+  assert.equal(r.coursesEvaluated,2);
   assert.ok(r.chosenControls);
   const y=threeLaw();y.maxCombinations=1;
   const stopped=synthesizeSparseExcitation(y);
