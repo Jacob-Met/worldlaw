@@ -5,16 +5,22 @@
  */
 import {readFile,writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
-import {sealActivePlan,sealActiveReadout,replayActiveNotebook,receiveActiveNotebook,createActiveNotebook} from '../src/science/active-experiment-record.mjs';
-const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE] [--output NEW_FILE] | --input FILE --create-notebook --output NEW_FILE';
+import {recommendActiveFollowup,sealActivePlan,sealActiveReadout,replayActiveNotebook,receiveActiveNotebook,createActiveNotebook} from '../src/science/active-experiment-record.mjs';
+const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE | --recommend INDEX] [--output NEW_FILE] | --input FILE --create-notebook --output NEW_FILE';
+let recommend=null;
 let input='examples/active-linear-family-decays.json',output=null,replay=null,readings=null,replayReadings=null,notebook=null,inputChosen=false,createNotebook=false;
 const argv=process.argv.slice(2);
 for(let i=0;i<argv.length;i++){
   if(argv[i]==='--help'){console.log(usage);process.exit(0);}
   if(argv[i]==='--create-notebook'){createNotebook=true;continue;}
-  if(!['--input','--output','--replay','--readings','--replay-readings','--notebook'].includes(argv[i])||i+1>=argv.length)
+  if(!['--input','--output','--replay','--readings','--replay-readings','--notebook','--recommend'].includes(argv[i])||i+1>=argv.length)
     throw Error(usage);
-  const flag=argv[i],value=resolve(argv[++i]);
+  const flag=argv[i],raw=argv[++i];
+  if(flag==='--recommend'){
+    if(!/^(0|[1-9][0-9]*)$/.test(raw))throw Error('Recommendation index must be a nonnegative integer.');
+    recommend=Number(raw);continue;
+  }
+  const value=resolve(raw);
   if(flag==='--input'){input=value;inputChosen=true;}
   else if(flag==='--output')output=value;
   else if(flag==='--replay')replay=value;
@@ -22,6 +28,7 @@ for(let i=0;i<argv.length;i++){
   else if(flag==='--replay-readings')replayReadings=value;
   else notebook=value;
 }
+if(recommend!==null&&(!notebook||readings||createNotebook))throw Error('--recommend requires a preceding --notebook only.');
 if(readings&&!replay&&!notebook)throw Error('Readouts require --replay PLAN or the preceding portable --notebook.');
 if(replayReadings&&!readings)throw Error('--replay-readings requires --readings and --replay PLAN.');
 if(notebook&&(inputChosen||replay||replayReadings||createNotebook))
@@ -31,7 +38,7 @@ if(createNotebook&&(!inputChosen||!output||replay||readings||replayReadings))
 let report;
 if(notebook){
   const original=await readFile(notebook,'utf8');
-  report=readings?await receiveActiveNotebook(original,await readFile(readings,'utf8')):
+  report=recommend!==null?await recommendActiveFollowup(original,recommend):readings?await receiveActiveNotebook(original,await readFile(readings,'utf8')):
     await replayActiveNotebook(original);
   console.error('Notebook source, frozen plan and every original reading set verified; physical origin is not authenticated.');
 }else if(createNotebook){

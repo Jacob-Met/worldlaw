@@ -1,4 +1,4 @@
-import {createActiveNotebook,replayActiveNotebook,receiveActiveNotebook} from '../science/active-experiment-record.mjs';
+import {recommendActiveFollowup,createActiveNotebook,replayActiveNotebook,receiveActiveNotebook} from '../science/active-experiment-record.mjs';
 import {coupledDemoReadings} from './instrument.mjs';
 import {adaptiveTrackReadings} from './adaptive-instrument.mjs';
 
@@ -7,6 +7,7 @@ self.addEventListener('message',async event=>{
   try{
     let result;
     if(action==='plan')result=await createActiveNotebook(sourceText,{plan:plan??null});
+    else if(action==='recommend')result=await recommendActiveFollowup(book,event.data.readingIndex);
     else if(action==='open')result=await replayActiveNotebook(text);
     else if(action==='read')result=await receiveActiveNotebook(book,text);
     else if(action==='adaptive-demo'){
