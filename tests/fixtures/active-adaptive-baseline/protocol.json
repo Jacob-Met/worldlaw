@@ -1,0 +1,41 @@
+{
+  "schema": "worldlaw.adaptive-protocol/v1",
+  "baseCommit": "1b531254dfd4a86f9c4b0a3d2650f38597879181",
+  "sourceSchema": "worldlaw.active-linear-adaptive/v1",
+  "courseSeed": 6094353,
+  "courseCount": 50,
+  "objective": "Minimum worst-case total readings; then minimum worst-case declared acquisition cost among all finite adaptive policies within that reading bound. Action source order breaks exact cost ties. No prior probabilities or expected-cost claim.",
+  "assumptions": {
+    "hypotheses": "2–5 finite declared scalar-output linear dynamical laws with 1–5 latent coordinates and 1–4 input channels",
+    "experimentCatalogue": "1–8 repeatable, independently prescribed complete control/readout bundles, 2–10 control ticks and 1–8 distinct sorted reading ticks per experiment",
+    "nuisance": "One persistent true law; independently arbitrary unknown initial state and any componentwise bounded error vector in each experiment. No hidden cross-round constraints or action-availability changes.",
+    "cost": "Nonnegative integer actuation cost and positive integer reading cost, each at most 1000000000; no measured monetary or actuation-cost calibration.",
+    "maxTotalReadings": "1–32; every guaranteed policy can be made strictly reduce the surviving subset, so at most four positive-length rounds are needed.",
+    "workLimit": "100–50000, shared exact-LP starts, tableau row updates, mask traversal, static subsets and adaptive-state action checks. Exhaustion returns no chosen optimal policy. No assertion or budget will be relaxed after observing qualification results.",
+    "closedErrors": "A common tube radius equal to epsilon is feasible overlap. Strictly greater radius rules out a joint survivor set."
+  },
+  "mathematicalAcceptance": [
+    "Every common-tube radius supplies exact primal initial states and common readings, plus a dual annihilator with total L1 norm at most1 and equal forcing lower bound.",
+    "All feasible survivor intersections are evaluated, including the three-line counterexample where pairwise overlaps do not imply a common intersection.",
+    "Maximal feasible intersections are possible exact survivor sets; monotonicity under subset inclusion permits their use in the Bellman worst branch.",
+    "Whole-current-set overlap permits an adversary to retain all candidates; nonnegative cost makes such actions unnecessary for any finite worst-case optimum.",
+    "C(S,B)=min_a cost(a)+max_T C(T,B-readings(a)); singleton cost0, infeasible state infinity. The remaining budget is retained, including the five-law slack counterexample.",
+    "The exact minimal static subset comparator and the independent Fraction/SciPy-derived policy agree with all14 analytic anchors and all36 prospectively generated source courses.",
+    "SciPy1.14.1 with NumPy1.26.4 proposes bases at1e-9 feasibility tolerances; Fraction primal/dual equality, rather than numerical tolerance, certifies every independent radius and closed intersection decision.",
+    "Outcomes are evaluated only after exact frozen policy replay, never supplied to policy synthesis. Every source, policy, action, preceding round and original observation byte identity is bound.",
+    "Missing complete-bundle readings, changed outcomes, reordered rounds, altered branches, wrong controls, cross-source reuse, ambiguous and zero-survivor outcomes are handled explicitly. No fabricated winner or silent replan."
+  ],
+  "baseline": {
+    "algorithm": "Frozen exhaustive best-static catalogue subset reference using shipped1b53125 exact pairwise geometry. This is a newly frozen comparator, not an earlier shipped adaptive solver.",
+    "purpose": "Measure guaranteed acquisition budgets and the computation tradeoff of adaptive planning on identical source catalogues; no semantic-output identity or unconditional speedup is presumed.",
+    "coldABBA": "3rounds×ABBA, fresh Node22.23.4 processes, --max-old-space-size=1536, 3repetitions, both anchor and fixed12-case cohort, wall and maxRSS. No warm/debug comparison."
+  },
+  "receiving": {
+    "syntheticAcquisition": "Independent recurrence, unknown initial states and bounded errors; persistent law hidden from planner. An independent peer freezes a separate private challenge before candidate code. Every episode's action/readout transcript and total cost is retained.",
+    "negativeControls": "No actuation, identical hypotheses, exact noise contact, nonlinear/out-of-family supplied readings, forged bindings, work exhaustion. Existing pinned Nullgarden negative controls continue to run.",
+    "product": "Same actual Hidden-state entry point, plan/readout separation, inspectable current and potential next experiments, original bytes, restart/reopen/CLI notebook replay, source-only labels, keyboard, reduced motion, desktop1920 and narrow320/390 pixels.",
+    "regression": "All existing scientific and actual-browser gates, and literal prior fixed/menu/binary/joint notebook replay. Full existing obligations remain.",
+    "release": "Self-merge qualified source; existing official package script; fresh merged-main archive file hashes and browser/CLI replay receiving. Do not commit media, logs or STATUS.md."
+  },
+  "scope": "Finite declared linear-family adaptive identification under the stated fresh-nuisance model. It does not learn the law family, calibrate errors, actuate hardware or establish unfamiliar real-world/ARC mechanism discovery. The broad research task stays open."
+}

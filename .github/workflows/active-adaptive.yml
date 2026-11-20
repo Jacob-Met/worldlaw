@@ -1,0 +1,94 @@
+name: Worldlaw adaptive experiment receiving
+on:
+  pull_request:
+    paths:
+      - 'src/science/active-linear-*'
+      - 'src/science/exact-box-envelope.mjs'
+      - 'src/science/active-experiment-record.mjs'
+      - 'scripts/active-adaptive-*'
+      - 'tests/active-adaptive-*'
+      - 'tests/fixtures/active-adaptive-baseline/**'
+      - '.github/workflows/active-adaptive.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/science/active-linear-*'
+      - 'src/science/exact-box-envelope.mjs'
+      - 'src/science/active-experiment-record.mjs'
+      - 'scripts/active-adaptive-*'
+      - 'tests/fixtures/active-adaptive-baseline/**'
+      - '.github/workflows/active-adaptive.yml'
+permissions:
+  contents: read
+jobs:
+  frozen-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        lane: [oracle, static]
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      NODE_OPTIONS: '--max-old-space-size=1536'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify prospectively frozen inputs and shipped geometry
+        run: |
+          mkdir -p .receipts/active-adaptive-reference
+          python3 - <<'PY'
+          import json,hashlib,subprocess
+          from pathlib import Path
+          root=Path('tests/fixtures/active-adaptive-baseline')
+          assert hashlib.sha256((root/'lock-manifest.json').read_bytes()).hexdigest()=='5402f3c2259977ca0dc947c7925a48e7cba9085aefe381499dbfa9ac1000bc8b'
+          manifest=json.loads((root/'lock-manifest.json').read_text())
+          assert manifest['baseCommit']=='1b531254dfd4a86f9c4b0a3d2650f38597879181'
+          for row in manifest['files']:
+              path=root/row['path']
+              assert path.stat().st_size==row['bytes']
+              assert hashlib.sha256(path.read_bytes()).hexdigest()==row['sha256'],row['path']
+          for old,new in [('src/science/active-linear-family.mjs','prior-active-linear-family.mjs'),('src/science/exact-box-envelope.mjs','exact-box-envelope.mjs')]:
+              original=subprocess.check_output(['git','show',manifest['baseCommit']+':'+old])
+              assert original==(root/new).read_bytes()
+          print(json.dumps({'frozenFiles':len(manifest['files']),'privateAcquisitionSHA256':manifest['privatePeerAcquisitionSHA256']}))
+          PY
+      - name: Independent exact-certified common intersections and adaptive reference
+        if: matrix.lane == 'oracle'
+        run: |
+          python3 -m pip install numpy==1.26.4 scipy==1.14.1
+          python3 tests/fixtures/active-adaptive-baseline/reference.py --output .receipts/active-adaptive-reference/independent-reference.json
+      - name: Exhaustive static catalogue and original cold baseline
+        if: matrix.lane == 'static'
+        run: |
+          node --max-old-space-size=1536 --input-type=module <<'JS'
+          import {readFileSync,writeFileSync} from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {designStaticExperimentCatalogue} from './tests/fixtures/active-adaptive-baseline/static-reference.mjs';
+          const rows=JSON.parse(readFileSync('tests/fixtures/active-adaptive-baseline/cases.json','utf8')).cases,results=[];
+          for(const row of rows){
+            const result=designStaticExperimentCatalogue(row.request);
+            if(row.analytic?.staticReadings!==undefined)assert.equal(result.selection?.readings,row.analytic.staticReadings,row.id);
+            if(row.analytic?.possible===false)assert.equal(result.possible,false,row.id);
+            results.push({id:row.id,...result});console.log(JSON.stringify({id:row.id,selection:result.selection}));
+          }
+          writeFileSync('.receipts/active-adaptive-reference/static-reference.json',JSON.stringify({source:'1b53125 frozen geometry; exhaustive static subsets',results},null,2)+'\n');
+          JS
+          node --max-old-space-size=1536 tests/fixtures/active-adaptive-baseline/benchmark.mjs tests/fixtures/active-adaptive-baseline/static-reference.mjs before tests/fixtures/active-adaptive-baseline/cases.json anchor 3 > .receipts/active-adaptive-reference/static-anchor.json
+          node --max-old-space-size=1536 tests/fixtures/active-adaptive-baseline/benchmark.mjs tests/fixtures/active-adaptive-baseline/static-reference.mjs before tests/fixtures/active-adaptive-baseline/cases.json cohort 3 > .receipts/active-adaptive-reference/static-cohort.json
+      - name: Retain original frozen-reference evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: active-adaptive-reference-${{ matrix.lane }}-${{ github.run_id }}
+          path: .receipts/active-adaptive-reference/
+          if-no-files-found: error
+          retention-days: 14
