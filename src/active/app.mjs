@@ -393,7 +393,19 @@ function fileAction(inputId,maximum,work,commit,message,focus){
 }
 fileAction('notebook-file',8388608,text=>ask({action:'open',text}),next=>adopt(next,'frozen'),'Notebook reopened. Every scientific claim was recomputed from its original bytes.');
 fileAction('source-file',524288,text=>ask({action:'plan',sourceText:text}),next=>adopt(next,'preview'),'Original source accepted as a separate prospective draft. Earlier saved notebooks remain available.');
-fileAction('readings-file',524288,(text,snapshot)=>{if(snapshot.mode!=='frozen'||!snapshot.book)throw Error('Freeze a source course before receiving readings.');return ask({action:'read',book:snapshot.book,text}).then(next=>({next,key:snapshot.key}));},received=>adopt(received.next,'frozen',received.key),'Original readout bytes received and checked against the frozen plan.','result-heading');
+fileAction('readings-file',524288,(text,snapshot)=>{
+  const plan=snapshot.book?.plan;
+  const refusal='Freeze a certified prospective plan before receiving readings.';
+  if(snapshot.mode!=='frozen'||!plan)throw Error(refusal);
+  if(!certified(plan)){
+    if(!calibratedOutlierPlan(plan))throw Error(refusal);
+    let schema;
+    try{schema=JSON.parse(text)?.schema;}catch{throw Error(refusal);}
+    if(schema!=='worldlaw.active-linear-historical-readings/v1'&&
+      schema!=='worldlaw.active-linear-followup-readings/v1')throw Error(refusal);
+  }
+  return ask({action:'read',book:snapshot.book,text}).then(next=>({next,key:snapshot.key}));
+},received=>adopt(received.next,'frozen',received.key),'Original readout bytes received and checked against the frozen plan.','result-heading');
 fileAction('plan-file',2097152,(text,snapshot)=>{if(!snapshot.book||snapshot.mode!=='preview'||snapshot.dirty)throw Error('Open a CLI plan against an accepted prospective draft.');return ask({action:'plan',sourceText:snapshot.book.sourceText,plan:JSON.parse(text)});},next=>adopt(next,'frozen'),'The original CLI plan reopened with its original digest, counters and decision.');
 for(const [button,input] of [['open-notebook','notebook-file'],['import-source','source-file'],['import-readings','readings-file'],['import-history','readings-file'],['import-plan','plan-file']])$(button).addEventListener('click',()=>$(input).click());
 $('export-notebook').addEventListener('click',()=>{if(book&&mode==='frozen'){exportJSON(book,'worldlaw-active-experiment.json');announce('Portable notebook exported with original source, frozen plan and every separate reading set.');}});
