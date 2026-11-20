@@ -239,3 +239,86 @@ export function replayActiveLinearFamily(request,prior){
     'certificate or source changed; exact prospective replay refused');
   return {valid:true,sourceOnly:true,physicalActionsPerformed:false};
 }
+
+
+/**
+ * Search real proposed intervention choices, not merely readout times.
+ *
+ * The menu is source-declared and finite. Ineligible/no-op interventions
+ * remain as explicit negative controls; no selected course is executed.
+ * Each course inherits the same independently frozen hypothesis family,
+ * sensor menu and noise bound. Minimum reading cardinality takes priority;
+ * declared intervention + reading costs break ties.
+ */
+export const ACTIVE_INTERVENTION_SCHEMA='worldlaw.active-linear-interventions/v1';
+export function designActiveInterventionFamily(request){
+  need(request&&typeof request==='object'&&!Array.isArray(request)&&
+    request.schema===ACTIVE_INTERVENTION_SCHEMA,
+    'explicit worldlaw.active-linear-interventions/v1 schema is required');
+  const menu=request.interventions;
+  need(Array.isArray(menu)&&menu.length>=2&&menu.length<=8,
+    'declare 2–8 independently specified intervention choices');
+  const ids=new Set();
+  const runs=[];
+  let totalNodes=0;
+  for(const intervention of menu){
+    need(intervention&&typeof intervention==='object'&&!Array.isArray(intervention)&&
+      typeof intervention.id==='string'&&/^[a-zA-Z_][a-zA-Z0-9_-]{0,63}$/.test(intervention.id)&&
+      !ids.has(intervention.id),
+      'interventions require unique stable IDs');
+    ids.add(intervention.id);
+    need(Number.isSafeInteger(intervention.actionCost)&&
+      intervention.actionCost>=0&&intervention.actionCost<=1000000000,
+      'each intervention needs a nonnegative declared integer actionCost');
+    const course={...request,schema:ACTIVE_LINEAR_FAMILY_SCHEMA,
+      controls:intervention.controls,
+      workLimit:request.workLimitPerCourse??request.workLimit??50000};
+    delete course.interventions;
+    delete course.workLimitPerCourse;
+    const proof=designActiveLinearFamily(course);
+    totalNodes+=proof.nodes;
+    runs.push({id:intervention.id,actionCost:intervention.actionCost,
+      status:proof.status,selection:proof.selection,
+      numReadings:proof.numReadings??null,readingCost:proof.totalCost??null,
+      totalDeclaredCost:proof.totalCost==null?null:
+        proof.totalCost+intervention.actionCost,
+      proof:proof.proof,potential:proof.potential,
+      workNodes:proof.nodes,workExhausted:proof.exhausted??false});
+  }
+  const successes=runs.filter(r=>r.selection!=null);
+  successes.sort((a,b)=>a.numReadings-b.numReadings||
+    a.totalDeclaredCost-b.totalDeclaredCost||a.id.localeCompare(b.id));
+  const selected=successes[0]??null;
+  const anyExhausted=runs.some(r=>r.workExhausted);
+  const status=selected?
+    (anyExhausted?'candidate_uncertified':'optimal_certified_intervention'):
+    anyExhausted?'search_inconclusive':
+    runs.some(r=>r.status==='noise_separation_not_certified')?
+      'noise_separation_not_certified':
+    'no_offered_intervention_certified';
+  return {
+    schema:ACTIVE_INTERVENTION_SCHEMA,
+    source:request.source,
+    sourceOnly:true,physicalActionsPerformed:false,outcomeValuesUsed:false,
+    hypothesisIds:runs[0]?.potential?.length===undefined?[]:
+      request.hypotheses.map(h=>h.id),
+    noiseBound:runs[0]?.potential?String(request.noiseBound??0):null,
+    interventionMenu:runs,
+    chosenIntervention:selected?.id??null,
+    chosenReadings:selected?.selection??null,
+    numReadings:selected?.numReadings??null,
+    totalDeclaredCost:selected?.totalDeclaredCost??null,
+    pairProof:selected?.proof??null,
+    status,totalNodes,exhausted:anyExhausted,
+    interpretation:selected?
+      'Exhaustive finite-menu minimum number of readings, with declared action and sensor cost tie-breaking, under an exact conservative dual noise witness. No intervention, measurement or physical calibration occurred.':
+      'No offered source-declared intervention achieves pairwise robust separation under the current finite menu and proof method. This is not a global impossibility statement beyond offered controls and witnesses.'
+  };
+}
+export function replayActiveInterventionFamily(request,prior){
+  const fresh=designActiveInterventionFamily(request);
+  need(prior?.schema===ACTIVE_INTERVENTION_SCHEMA&&
+    JSON.stringify(prior)===JSON.stringify(fresh),
+    'intervention certificate or source changed; exact replay refused');
+  return {valid:true,sourceOnly:true,physicalActionsPerformed:false};
+}
