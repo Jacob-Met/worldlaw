@@ -1,0 +1,87 @@
+{
+  "schema": "worldlaw.active-affine-preregistration/v1",
+  "frozen_utc": "2026-11-20T01:02:00Z",
+  "claim_boundary": "This is a synthetic source-declared mechanical linear two-law intervention proof, not physical measured causal identification, real actuator, safety approval, or sensor calibration.",
+  "question": "Can a precommitted active input distinguish two linear mechanisms for all unknown shared initial states despite passive observational equivalence and bounded per-model output error?",
+  "null_hypothesis": "Passive readings or a one-tick-late pulse cannot force any nonzero separating residual, and any candidate with an unknown-state confound in the output difference must abstain.",
+  "models": [
+    {
+      "id": "coupled",
+      "A": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "B": [
+        0,
+        1
+      ],
+      "C": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "uncoupled",
+      "A": [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "B": [
+        0,
+        1
+      ],
+      "C": [
+        1,
+        0
+      ]
+    }
+  ],
+  "horizon": 2,
+  "allowed_actions": [
+    {
+      "id": "off",
+      "value": 0,
+      "cost": 0
+    },
+    {
+      "id": "positive",
+      "value": 1,
+      "cost": 1
+    },
+    {
+      "id": "negative",
+      "value": -1,
+      "cost": 1
+    }
+  ],
+  "budget": {
+    "maximum_nonzero_inputs": 1,
+    "maximum_cost": 1
+  },
+  "per_model_l2_output_error_radius": "1/10",
+  "selection_rule": "Among exactly certified all-law-pair separating inputs, choose least nonzero actions, then minimum declared cost, then source order. Refuse entire search when any pair remains structurally ambiguous or its exact bounded-noise witness does not clear the margin.",
+  "proof": "For pair models with common unknown x0, output delta = Delta O x0 + Delta b. Guaranteed nonzero under all x0 iff Delta b is not in colspace Delta O. A rational left-null witness w obeying w.T Delta O=0 and w.T Delta b != 0 certifies it. Against separate measurement L2 error <= epsilon, |w.T Delta b| > 2 epsilon ||w|| guarantees separation. If witness cannot clear declared error radius, abstain; do not claim impossibility.",
+  "source_frozen_oracles": [
+    "Independent floating dense 2-state unrolled simulator, 100 predeclared seed 20261120 heldout x0 pairs; no candidate library imports",
+    "Passive off-off and late only off-positive are structurally indistinguishable with a suitable x0",
+    "Earliest input positive-off and negative-off create exact known witness contrast for all x0",
+    "Equal-transition/equal-input models and action B confined to unobservable subspace remain no-go",
+    "Changing model A/B/C, source action costs, sensor error radius or time horizon invalidates exact replay",
+    "Adversarial bounded-noise inequality and at least 4 seeded source-disjoint input/state perturbations; never relabel authored synthetic as physical"
+  ],
+  "work_limit": 10000,
+  "untrusted_measured_fields": "Ignored for selection; any measured value fields supplied as extras are not used for prospective input choice.",
+  "promotion_gate": "No physical rollout or planner promotion without independently measured, source-disjoint system with source-authenticated command delivery, timestamps, reference clock and prospective quantitative test."
+}
