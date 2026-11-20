@@ -72,7 +72,7 @@ test('rejects unsafe or unconstrained source representations before arithmetic',
   for(const mutate of [
     q=>q.interventions[1].id='early_impulse',
     q=>q.interventions[1].actionCost=-1,
-    q=>q.interventions.pop(),
+    q=>{q.interventions.pop();q.interventions.pop();},
     q=>q.interventions[0].controls=[['0.1'],[0],[0],[0]],
     q=>q.interventions[1].controls=[[1,2],[0],[0],[0]],
     q=>q.workLimitPerCourse=1,
