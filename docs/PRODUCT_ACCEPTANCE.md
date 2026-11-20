@@ -123,3 +123,7 @@ Producer astra-tern-7c2e exercised actual Chrome at 1440,390,320px including key
 Open the Active Experiment Lab and choose **Identify a law with one wrong reading** in the example selector. The prospective plan chooses four ticks to distinguish a constant level from a forced ramp even if one supplied value is arbitrary. For the same example the ordinary model needs two readings, and a known missing value needs three. The result names each law consistent with the received values and, when necessary, the ticks that could explain the discrepancy. Missing readings can make a previously certified plan ambiguous.
 
 Run `npm run active:family -- --input examples/active-linear-one-replacement.json --output plan.json` to create the equivalent sealed CLI plan. The example uses a synthetic scalar sensor with declared units and an unknown initial state.
+
+### One wrong reading with unknown gain and offset
+
+Choose **One wrong reading with unknown gain and offset** in the Active Experiment Lab. The plan allows a different fixed calibration for each proposed law and independently allows each law to explain one reading as wrong. The supplied synthetic example selects ticks 0, 1, 2 and 4. At those ticks, values 5, 7, −17 and 13 remain compatible with the ramp when tick 2 is set aside. The CLI accepts the same source at `examples/active-linear-calibrated-replacement.json`. In this example the sensor gain is declared between 1/2 and 2 and the inlier error bound is 1/16.
