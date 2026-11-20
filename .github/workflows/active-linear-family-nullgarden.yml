@@ -6,9 +6,11 @@ on:
       - 'scripts/active-linear-family.mjs'
       - 'scripts/active-family-nullgarden-receiving.mjs'
       - 'scripts/active-noise-primal-receiving.py'
+      - 'scripts/active-rank-extension-receiving.py'
       - 'tests/active-linear-family.test.mjs'
       - 'tests/active-intervention-family.test.mjs'
       - 'tests/active-linear-noise.test.mjs'
+      - 'tests/active-linear-rank.test.mjs'
       - 'examples/active-*.json'
       - '.github/workflows/active-linear-family-nullgarden.yml'
   push:
@@ -18,9 +20,11 @@ on:
       - 'scripts/active-linear-family.mjs'
       - 'scripts/active-family-nullgarden-receiving.mjs'
       - 'scripts/active-noise-primal-receiving.py'
+      - 'scripts/active-rank-extension-receiving.py'
       - 'tests/active-linear-family.test.mjs'
       - 'tests/active-intervention-family.test.mjs'
       - 'tests/active-linear-noise.test.mjs'
+      - 'tests/active-linear-rank.test.mjs'
       - 'examples/active-*.json'
       - '.github/workflows/active-linear-family-nullgarden.yml'
 permissions:
@@ -35,7 +39,7 @@ jobs:
         with:
           node-version: '22'
       - name: Verify exact arithmetic, source isolation and held-out rank oracle
-        run: node --test tests/active-linear-family.test.mjs tests/active-intervention-family.test.mjs tests/active-linear-noise.test.mjs
+        run: node --test tests/active-linear-family.test.mjs tests/active-intervention-family.test.mjs tests/active-linear-noise.test.mjs tests/active-linear-rank.test.mjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -73,3 +77,35 @@ jobs:
             .receipts/active-noise-primal/
           if-no-files-found: error
           retention-days: 14
+
+  rank-extension-independent-receiving:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the unchanged independent primal optimizer
+        run: python -m pip install numpy==1.26.4 scipy==1.14.1
+      - name: Receive frozen high-dimensional courses and matched ABBA timings
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+        run: |
+          mkdir -p .receipts/active-rank-extension
+          echo '9e80bf63e7434f53056009180ca71d7502ef228761540874ea806a9e1f519fe5  scripts/active-rank-extension-receiving.py' | sha256sum --check -
+          git fetch --depth=1 --no-tags origin 9924453de132d02f0589369454b9f08676c45ff3
+          git show 9924453de132d02f0589369454b9f08676c45ff3:src/science/active-linear-family.mjs > "$RUNNER_TEMP/worldlaw-rank-baseline.mjs"
+          python scripts/active-rank-extension-receiving.py --oracle scripts/active-noise-primal-receiving.py --baseline "$RUNNER_TEMP/worldlaw-rank-baseline.mjs" --candidate src/science/active-linear-family.mjs --output .receipts/active-rank-extension/receiving.json
+      - name: Retain the original full oracle course, outcomes and ABBA receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: active-rank-extension-${{ github.run_id }}
+          path: .receipts/active-rank-extension/
+          retention-days: 14
+          if-no-files-found: error

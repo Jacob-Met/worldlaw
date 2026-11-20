@@ -94,7 +94,10 @@ function workBudget(limit){
  * its support has a one-dimensional left kernel with no zero coordinates.
  * Otherwise a kernel perturbation preserving the active l1 face would
  * express it as a nontrivial convex combination. Circuit size is at most
- * rank(rows)+1. Exhaustive support enumeration therefore proves the optimum.
+ * rank(rows)+1. Every circuit can be extended by independent rows to a set
+ * of rank+1 rows with a one-dimensional kernel. Enumerate those extensions,
+ * remove zero coordinates and deduplicate their minimal supports. This
+ * recovers every circuit without solving all the smaller row subsets.
  *
  * Cache full-menu circuits once. Restricting to circuits supported on a
  * selected schedule gives its exact optimum, including zero. No floating
@@ -105,25 +108,31 @@ function affineCircuits(rows,delta,budget){
   const basis=nullBasis(rows);
   const structural=basis.some(w=>dot(w,delta).n!==0n);
   if(!structural)return {complete:true,structural:false,circuits:[]};
-  const circuits=[],count=rows.length,rank=count-basis.length;
+  const circuits=new Map(),count=rows.length,rank=count-basis.length;
+  const inventory=complete=>({complete,structural:true,
+    circuits:[...circuits.values()].sort((a,b)=>a.mask-b.mask)});
   for(let mask=1;mask<2**count;mask++){
     const support=[];
     for(let i=0;i<count;i++)if(mask&(1<<i))support.push(i);
-    if(support.length>rank+1)continue;
-    if(!budget.take())return {complete:false,structural:true,circuits};
+    if(support.length!==rank+1)continue;
+    if(!budget.take())return inventory(false);
     const subrows=support.map(i=>rows[i]);
     const kernel=nullBasis(subrows);
-    if(kernel.length!==1||kernel[0].some(value=>value.n===0n))continue;
+    if(kernel.length!==1)continue;
+    const minimalMask=support.reduce((bits,index,i)=>
+      kernel[0][i].n===0n?bits:bits|(1<<index),0);
+    if(circuits.has(minimalMask))continue;
+    const scale=kernel[0].findLast(value=>value.n!==0n);
     const weights=zero(count);
-    support.forEach((index,i)=>{weights[index]=kernel[0][i];});
+    support.forEach((index,i)=>{weights[index]=div(kernel[0][i],scale);});
     const gap=dot(weights,delta);
     if(gap.n===0n)continue;
     need(rows[0].every((_,col)=>dot(weights,rows.map(row=>row[col])).n===0n),
       'internal circuit annihilation failure');
     const norm=l1(weights),margin=div(Q(abs(gap.n),gap.d),norm);
-    circuits.push({mask,weights,gap,norm,margin});
+    circuits.set(minimalMask,{mask:minimalMask,weights,gap,norm,margin});
   }
-  return {complete:true,structural:true,circuits};
+  return inventory(true);
 }
 function affineDistance(inventory,indices){
   const mask=indices.reduce((bits,index)=>bits|(1<<index),0);
@@ -228,7 +237,7 @@ export function designActiveLinearFamily(request){
     outcomeValuesUsed:false,
     potential,pairCount:pairs.length,maxReadings,workLimit,
     noiseMethod:'exact-affine-linf-circuits/v1',
-    workAccounting:'Affine rank checks, candidate circuit supports and schedule traversal nodes share one hard limit.'};
+    workAccounting:'Affine rank checks, rank-complete circuit extensions and schedule traversal nodes share one hard limit.'};
   if(impossible.length)return {...base,status:'structurally_indistinguishable_on_offered_course',
     selection:null,proof:null,nodes:budget.nodes,exhausted:budget.exhausted,
     interpretation:'Exact row-space no-go for at least one pair even with every proposed measurement; control or sensors must change.'};

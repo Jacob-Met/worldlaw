@@ -32,6 +32,7 @@ INCLUDE = (
     "research/magfid-reference/CONF2_PROSPECTIVE.md",
     "research/magfid-reference/CONF2_RESULTS.md",
     "scripts/active-noise-primal-receiving.py",
+    "scripts/active-rank-extension-receiving.py",
     "src/science/controlled_hydraulics.py",
     "src/science/quadruple_tank_hydraulics.py",
     "tests/cascaded-tanks-physical.test.py",
@@ -519,6 +520,8 @@ INCLUDE = (
 REQUIRED = (
     "src/science/active-linear-family.mjs", "scripts/active-linear-family.mjs",
     "scripts/active-noise-primal-receiving.py", "tests/active-linear-noise.test.mjs",
+    "scripts/active-rank-extension-receiving.py", "tests/active-linear-rank.test.mjs",
+    "examples/active-linear-family-signed-cycles.json",
     "docs/ACTIVE_LINEAR_FAMILY.md",
     "src/science/experiment-receipts.mjs", "src/science/experiment-receipts-panel.mjs",
     "src/stiffness/design.mjs", "src/stiffness/design-panel.mjs", "docs/STIFFNESS_INPUT_DESIGN.md",
