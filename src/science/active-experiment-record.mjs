@@ -199,6 +199,8 @@ export async function recommendActiveFollowup(raw,index){
 async function sealFollowup(book,text,prior){
   const supplied=JSON.parse(text),request=conditionalSource(book);
   const keys=['schema','source','acquisition','sourceSHA256','planSHA256','historySHA256','followupSHA256','readings'];
+  const declaresErasure=Object.hasOwn(supplied,'erasedTicks');
+  if(declaresErasure)keys.push('erasedTicks');
   need(Object.keys(supplied).sort().join(',')===keys.sort().join(',')&&
     supplied.schema===FOLLOWUP_READINGS&&typeof supplied.source==='string'&&supplied.source.trim().length>=12&&
     supplied.source.length<=2048&&['synthetic','supplied'].includes(supplied.acquisition),
@@ -208,11 +210,22 @@ async function sealFollowup(book,text,prior){
   need(supplied.sourceSHA256===plan.sourceSHA256&&supplied.planSHA256===plan.planSHA256&&
     supplied.followupSHA256===plan.followupSHA256&&plan.status==='certified_future_acquisitions',
     'The follow-up does not match the recomputed recommendation and original history.');
-  const ticks=plan.selection.ticks;
-  need(Array.isArray(supplied.readings)&&supplied.readings.length===ticks.length&&supplied.readings.every(row=>
-    row&&Object.keys(row).sort().join(',')==='tick,value'&&ticks.includes(row.tick))&&
-    new Set(supplied.readings.map(row=>row.tick)).size===ticks.length,'Supply exactly the distinct recommended future ticks.');
-  const parent=book.readouts[index],rows=[...historicalRows(parent),...supplied.readings].sort((a,b)=>a.tick-b.tick);
+  const ticks=plan.selection.ticks,parent=book.readouts[index],erased=supplied.erasedTicks??[];
+  if(declaresErasure){
+    need(book.plan.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA&&
+      Array.isArray(erased)&&erased.length===1&&ticks.includes(erased[0]),
+      'A mixed-loss follow-up can acknowledge one missing recommended tick.');
+    // Older complete follow-ups recorded only their received ticks. Inspect the
+    // bound history as well so a previously spent erasure cannot be spent again.
+    for(let ancestor=parent;ancestor;ancestor=book.readouts.find(row=>row.result.readingsSHA256===ancestor.result.historySHA256))
+      need(!ancestor.result.missingTicks.length,'The preceding trajectory already used its one missing tick.');
+  }
+  const expected=ticks.filter(t=>!erased.includes(t));
+  need(Array.isArray(supplied.readings)&&supplied.readings.length===expected.length&&supplied.readings.every(row=>
+    row&&Object.keys(row).sort().join(',')==='tick,value'&&expected.includes(row.tick))&&
+    new Set(supplied.readings.map(row=>row.tick)).size===expected.length,'Account for every distinct recommended future tick.');
+  const rows=[...historicalRows(parent),...supplied.readings].sort((a,b)=>a.tick-b.tick);
+  const missing=declaresErasure?erased:(parent.result.futureTicks?parent.result.missingTicks:[]);
   const checked=classifyAccumulatedReadings(request,rows);
   const status=readingStatus(checked);
   const result={schema:'worldlaw.active-linear-followup-result/v1',sourceSHA256:plan.sourceSHA256,
@@ -220,7 +233,7 @@ async function sealFollowup(book,text,prior){
     readingsSHA256:await activeBytesSHA256(text),readoutSource:supplied.source,
     acquisition:parent.result.acquisition==='synthetic'&&supplied.acquisition==='synthetic'?'synthetic':'supplied',
     extensionAcquisition:supplied.acquisition,noiseBound:plan.noiseBound,status,...checked,
-    plannedTicks:rows.map(r=>r.tick),receivedTicks:rows.map(r=>r.tick),missingTicks:[],accumulatedReadings:rows,
+    plannedTicks:[...rows.map(r=>r.tick),...missing].sort((a,b)=>a-b),receivedTicks:rows.map(r=>r.tick),missingTicks:missing,accumulatedReadings:rows,
     futureTicks:ticks,physicalProvenanceVerified:false,
     interpretation:'The accumulated readings use one fixed gain and offset per law and at most one wrong value across both stages.'};
   if(prior)need(JSON.stringify(result)===JSON.stringify(prior),'Follow-up history, readings or decision changed; replay refused.');
