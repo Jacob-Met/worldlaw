@@ -28,8 +28,19 @@ The maximum is attained by a minimal dependent set of rows, called a circuit.
 On that support, the left kernel has dimension one and its vector has no zero
 entries. Otherwise a nonzero kernel perturbation preserving the active L1 face
 would make the point a convex combination rather than an extreme point.
-Enumerating every support of size at most rank(B)+1 therefore proves the optimum;
-the implementation also checks every retained annihilator exactly.
+Every circuit has at most rank(B)+1 rows. The implementation recovers all of
+them by enumerating only sets of exactly rank(B)+1 rows. To see why this is
+complete, remove one row from a circuit and extend the remaining independent
+rows to a basis of the full row space. Restoring the removed row gives a
+rank(B)+1-row set with a one-dimensional kernel. Its unique relation is the
+original circuit, with zeros on the extra basis rows. Conversely, the nonzero
+support of a one-dimensional kernel cannot contain a smaller nonzero relation.
+
+Zero coordinates must therefore be stripped, not rejected. The implementation
+deduplicates these minimal supports, normalizes the final nonzero coefficient
+to one and restores increasing support order. It checks each retained
+annihilator exactly. This preserves the canonical scientific witnesses while
+avoiding the redundant algebra on every smaller subset.
 
 Full-menu circuits are computed once per model pair. Restricting to circuits
 supported on a selected schedule gives that schedule's exact distance. The
@@ -73,7 +84,37 @@ The replay checks the **exact original input byte digest** and recomputes the fu
 
 The unit tests independently compare 64 held-out law/input cases with a dense numerical augmented-rank oracle, verify a genuinely zero-input negative control, same-law equivalence, mutated inputs and certificates, a high-noise refusal, and an insufficient-budget outcome.
 
-The exact finite enumeration accepts 2–5 named hypotheses, 1–5 latent variables per hypothesis, 1–4 input channels, 2–10 control ticks, at most 12 candidate reading ticks and up to eight selected measurements. Costs are positive integer declarations. The 50,000-node default hard ceiling now counts affine rank checks, candidate circuit supports and schedule traversal together; it cannot be waived into a claim of optimality. Rational input coefficients must be literal exact integers or fractions; there is no approximate decimal parser.
+The exact finite enumeration accepts 2–5 named hypotheses, 1–5 latent variables per hypothesis, 1–4 input channels, 2–10 control ticks, at most 12 candidate reading ticks and up to eight selected measurements. Costs are positive integer declarations. The 50,000-node default hard ceiling counts affine rank checks, rank-complete circuit extensions and schedule traversal together; it cannot be waived into a claim of optimality. Rational input coefficients must be literal exact integers or fractions; there is no approximate decimal parser.
+
+### Five hidden coordinates and two sufficient readings
+
+`examples/active-linear-family-signed-cycles.json` declares two hypothetical
+five-state cycles. One returns the state unchanged after five ticks; the other
+reverses its sign after five ticks. A unit input at control tick 4 gives
+`y(10)-y(0) = 1` or `-1`, regardless of all five unknown initial coordinates.
+Readings at ticks 0 and 10 therefore separate the laws. Their normalized
+affine distance is exactly 1, sufficient for the declared error bound 1/4.
+At error bound 1/2 the closed error tubes touch and the compiler refuses robust
+separation.
+
+The full pair matrix has rank ten, but its only circuit uses two rows. The
+rank-complete eleven-row extension exposes this circuit through nine zero
+coefficients. The exact designer can certify the two-reading optimum with a
+100-node work limit; it does not assume or estimate the hidden initial state.
+
+```sh
+npm run active:family -- --input examples/active-linear-family-signed-cycles.json
+node --test tests/active-linear-rank.test.mjs
+```
+
+Certificates include actual search-work accounting. Saved v1 exact-circuit plans
+and readouts remain replayable: the verifier recognizes their historical
+enumeration and reproduces the complete original result through the shared
+rational core, including counters and exhaustion. New planning always uses the
+rank-complete search; there is no user-facing algorithm switch. An older
+inconclusive certificate stays inconclusive on replay even when a new plan can
+now finish within the same budget. The original source, plan and readout digests
+remain bound, and forged historical counters still fail verification.
 
 **What this does not establish:** a real experimental channel exists, input actuation is safe or achievable, a model's A/B/C is correct, noise is actually bounded by ε, or the world fits these linear laws. Actual physical qualification requires independently acquired source measurements, calibrated error bounds and a prospective unseen-source intervention. Evidence-level labels in the CLI are intentional; the source-only proof cannot be promoted to empirical causal identification.
 
@@ -223,3 +264,32 @@ npm run verify
 SciPy is a receiving dependency only; the product and exact solver still require
 only Node.js. The workflow retains the full oracle inputs, comparisons and
 failures as artifacts alongside the unchanged pinned Nullgarden receiver.
+
+The rank-extension receiver adds 64 prospectively frozen signed-cycle courses
+with seed 3540113, one to five latent dimensions, two or three hypotheses and
+eleven offered ticks. Zero-input, zero-sensor and identical-law controls remain
+in the cohort. It compares exact margins, optimal reading count/cost and supplied
+readout decisions to the unchanged primal LP, with the same 1e-8 tolerance.
+Scientific fields, including canonical witnesses, must also match source-pinned
+main `9924453de132d02f0589369454b9f08676c45ff3`; only work counts and their
+description may differ. Additional 100-node courses cannot assert false
+optimality. Fresh-process ABBA runs use the same Node flags, one common warmup
+and eight repetitions of the analytic anchor per process.
+
+The saved-record receiving fixture was generated by the actual CLI from pinned
+main `9924453de132d02f0589369454b9f08676c45ff3` before compatibility edits. Its
+SHA-256 is `ef2a62a2d4d9ec6f630a4b0e833420bab21a572e9f2ac97f7b2b982fbff35f30`.
+It retains fixed-course, intervention-menu, inconclusive and idle plans plus
+six positive, all-falsified and partial readouts. Separate fresh CLI processes
+must reproduce every original scientific field, digest and work count. These
+records are labeled synthetic; their preservation is a persistence check, not
+new physical evidence.
+
+```sh
+git show 9924453de132d02f0589369454b9f08676c45ff3:src/science/active-linear-family.mjs > /workspace/worldlaw-rank-baseline.mjs
+python scripts/active-rank-extension-receiving.py \
+  --oracle scripts/active-noise-primal-receiving.py \
+  --baseline /workspace/worldlaw-rank-baseline.mjs \
+  --candidate src/science/active-linear-family.mjs \
+  --output /workspace/active-rank-receiving.json
+```

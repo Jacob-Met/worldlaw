@@ -80,6 +80,19 @@ function nullBasis(m){
   return out;
 }
 const l1=vector=>vector.reduce((sum,value)=>add(sum,Q(abs(value.n),value.d)),Z());
+const rankCompleteCircuits=Object.freeze({
+  acceptsSupport:(size,rank)=>size===rank+1,
+  acceptsKernel:()=>true,
+  workAccounting:'Affine rank checks, rank-complete circuit extensions and schedule traversal nodes share one hard limit.'
+});
+// Saved v1 certificates include their exact work count and exhaustion boundary.
+// Replay that historical enumeration through the same rational core; new plans
+// always use rankCompleteCircuits. This is not an input-selectable solver mode.
+const historicalCircuitsV1=Object.freeze({
+  acceptsSupport:(size,rank)=>size<=rank+1,
+  acceptsKernel:kernel=>kernel.every(value=>value.n!==0n),
+  workAccounting:'Affine rank checks, candidate circuit supports and schedule traversal nodes share one hard limit.'
+});
 function workBudget(limit){
   return {limit,nodes:0,exhausted:false,take(){
     if(this.nodes>=this.limit){this.exhausted=true;return false;}
@@ -94,36 +107,45 @@ function workBudget(limit){
  * its support has a one-dimensional left kernel with no zero coordinates.
  * Otherwise a kernel perturbation preserving the active l1 face would
  * express it as a nontrivial convex combination. Circuit size is at most
- * rank(rows)+1. Exhaustive support enumeration therefore proves the optimum.
+ * rank(rows)+1. Every circuit can be extended by independent rows to a set
+ * of rank+1 rows with a one-dimensional kernel. Enumerate those extensions,
+ * remove zero coordinates and deduplicate their minimal supports. This
+ * recovers every circuit without solving all the smaller row subsets.
  *
  * Cache full-menu circuits once. Restricting to circuits supported on a
  * selected schedule gives its exact optimum, including zero. No floating
  * rank tolerance, statistical noise assumption, or basis-dependent pruning.
  */
-function affineCircuits(rows,delta,budget){
+function affineCircuits(rows,delta,budget,enumeration=rankCompleteCircuits){
   if(!budget.take())return {complete:false,structural:null,circuits:[]};
   const basis=nullBasis(rows);
   const structural=basis.some(w=>dot(w,delta).n!==0n);
   if(!structural)return {complete:true,structural:false,circuits:[]};
-  const circuits=[],count=rows.length,rank=count-basis.length;
+  const circuits=new Map(),count=rows.length,rank=count-basis.length;
+  const inventory=complete=>({complete,structural:true,
+    circuits:[...circuits.values()].sort((a,b)=>a.mask-b.mask)});
   for(let mask=1;mask<2**count;mask++){
     const support=[];
     for(let i=0;i<count;i++)if(mask&(1<<i))support.push(i);
-    if(support.length>rank+1)continue;
-    if(!budget.take())return {complete:false,structural:true,circuits};
+    if(!enumeration.acceptsSupport(support.length,rank))continue;
+    if(!budget.take())return inventory(false);
     const subrows=support.map(i=>rows[i]);
     const kernel=nullBasis(subrows);
-    if(kernel.length!==1||kernel[0].some(value=>value.n===0n))continue;
+    if(kernel.length!==1||!enumeration.acceptsKernel(kernel[0]))continue;
+    const minimalMask=support.reduce((bits,index,i)=>
+      kernel[0][i].n===0n?bits:bits|(1<<index),0);
+    if(circuits.has(minimalMask))continue;
+    const scale=kernel[0].findLast(value=>value.n!==0n);
     const weights=zero(count);
-    support.forEach((index,i)=>{weights[index]=kernel[0][i];});
+    support.forEach((index,i)=>{weights[index]=div(kernel[0][i],scale);});
     const gap=dot(weights,delta);
     if(gap.n===0n)continue;
     need(rows[0].every((_,col)=>dot(weights,rows.map(row=>row[col])).n===0n),
       'internal circuit annihilation failure');
     const norm=l1(weights),margin=div(Q(abs(gap.n),gap.d),norm);
-    circuits.push({mask,weights,gap,norm,margin});
+    circuits.set(minimalMask,{mask:minimalMask,weights,gap,norm,margin});
   }
-  return {complete:true,structural:true,circuits};
+  return inventory(true);
 }
 function affineDistance(inventory,indices){
   const mask=indices.reduce((bits,index)=>bits|(1<<index),0);
@@ -211,13 +233,16 @@ function compileFamily(request){
   return {laws,offered,maxReadings,workLimit,eps,cost};
 }
 export function designActiveLinearFamily(request){
+  return designLinearFamily(request,rankCompleteCircuits);
+}
+function designLinearFamily(request,enumeration){
   const {laws,offered,maxReadings,workLimit,eps,cost}=compileFamily(request);
   const budget=workBudget(workLimit),pairs=[];
   for(let i=0;i<laws.length;i++)for(let j=i+1;j<laws.length;j++)
     pairs.push({id:laws[i].id+'__'+laws[j].id,
       inventory:affineCircuits(offered.map(t=>[
         ...laws[i].schedule[t].observable,...laws[j].schedule[t].observable.map(neg)]),
-      offered.map(t=>sub(laws[j].schedule[t].forced,laws[i].schedule[t].forced)),budget)});
+      offered.map(t=>sub(laws[j].schedule[t].forced,laws[i].schedule[t].forced)),budget,enumeration)});
   const evaluate=ticks=>pairs.map(pair=>pairProof(pair,ticks.map(t=>offered.indexOf(t)),eps));
   const potential=evaluate(offered);
   const impossible=potential.filter(p=>p.structural===false);
@@ -228,7 +253,7 @@ export function designActiveLinearFamily(request){
     outcomeValuesUsed:false,
     potential,pairCount:pairs.length,maxReadings,workLimit,
     noiseMethod:'exact-affine-linf-circuits/v1',
-    workAccounting:'Affine rank checks, candidate circuit supports and schedule traversal nodes share one hard limit.'};
+    workAccounting:enumeration.workAccounting};
   if(impossible.length)return {...base,status:'structurally_indistinguishable_on_offered_course',
     selection:null,proof:null,nodes:budget.nodes,exhausted:budget.exhausted,
     interpretation:'Exact row-space no-go for at least one pair even with every proposed measurement; control or sensors must change.'};
@@ -279,10 +304,16 @@ export function designActiveLinearFamily(request){
       budget.exhausted?'Finite search interrupted before exhaustive optimality; no optimal claim.':
       'No pairwise separating schedule exists within the declared reading budget and bounded-error model.'};
 }
-export function replayActiveLinearFamily(request,prior){
-  const fresh=designActiveLinearFamily(request);
+function verifyLinearCertificate(request,prior){
+  const enumeration=prior?.workAccounting===historicalCircuitsV1.workAccounting?
+    historicalCircuitsV1:rankCompleteCircuits;
+  const fresh=designLinearFamily(request,enumeration);
   need(prior?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA&&JSON.stringify(prior)===JSON.stringify(fresh),
     'certificate or source changed; exact prospective replay refused');
+  return enumeration;
+}
+export function replayActiveLinearFamily(request,prior){
+  verifyLinearCertificate(request,prior);
   return {valid:true,sourceOnly:true,physicalActionsPerformed:false};
 }
 
@@ -298,6 +329,9 @@ export function replayActiveLinearFamily(request,prior){
  */
 export const ACTIVE_INTERVENTION_SCHEMA='worldlaw.active-linear-interventions/v1';
 export function designActiveInterventionFamily(request){
+  return designInterventionFamily(request,rankCompleteCircuits);
+}
+function designInterventionFamily(request,enumeration){
   need(request&&typeof request==='object'&&!Array.isArray(request)&&
     request.schema===ACTIVE_INTERVENTION_SCHEMA,
     'explicit worldlaw.active-linear-interventions/v1 schema is required');
@@ -321,7 +355,7 @@ export function designActiveInterventionFamily(request){
       workLimit:request.workLimitPerCourse??request.workLimit??50000};
     delete course.interventions;
     delete course.workLimitPerCourse;
-    const proof=designActiveLinearFamily(course);
+    const proof=designLinearFamily(course,enumeration);
     totalNodes+=proof.nodes;
     runs.push({id:intervention.id,actionCost:intervention.actionCost,
       status:proof.status,selection:proof.selection,
@@ -362,11 +396,17 @@ export function designActiveInterventionFamily(request){
       'No offered source-declared intervention achieves certified pairwise separation within the current menu and work budget. No claim is made about unoffered physical controls.'
   };
 }
-export function replayActiveInterventionFamily(request,prior){
-  const fresh=designActiveInterventionFamily(request);
-  need(prior?.schema===ACTIVE_INTERVENTION_SCHEMA&&
-    JSON.stringify(prior)===JSON.stringify(fresh),
+function verifyInterventionCertificate(request,prior){
+  need(prior?.schema===ACTIVE_INTERVENTION_SCHEMA,
     'intervention certificate or source changed; exact replay refused');
+  for(const enumeration of [rankCompleteCircuits,historicalCircuitsV1]){
+    const fresh=designInterventionFamily(request,enumeration);
+    if(JSON.stringify(prior)===JSON.stringify(fresh))return enumeration;
+  }
+  err('intervention certificate or source changed; exact replay refused');
+}
+export function replayActiveInterventionFamily(request,prior){
+  verifyInterventionCertificate(request,prior);
   return {valid:true,sourceOnly:true,physicalActionsPerformed:false};
 }
 
@@ -378,8 +418,7 @@ export const ACTIVE_LINEAR_READOUT_RESULT_SCHEMA='worldlaw.active-linear-readout
  * are refused. A surviving model is conditional compatibility, never truth. */
 export function evaluateActiveLinearReadings(request,plan,readout){
   const multiple=request?.schema===ACTIVE_INTERVENTION_SCHEMA;
-  if(multiple)replayActiveInterventionFamily(request,plan);
-  else replayActiveLinearFamily(request,plan);
+  const enumeration=multiple?verifyInterventionCertificate(request,plan):verifyLinearCertificate(request,plan);
   need(plan.status===(multiple?'optimal_certified_intervention':'optimal_certified_schedule'),
     'readout evaluation requires a replayed certified prospective plan');
   need(readout&&readout.schema===ACTIVE_LINEAR_READINGS_SCHEMA,
@@ -409,7 +448,7 @@ export function evaluateActiveLinearReadings(request,plan,readout){
   const checks=laws.map(law=>{
     const rows=ticks.map(t=>law.schedule[t].observable);
     const delta=ticks.map(t=>sub(values.get(t),law.schedule[t].forced));
-    const inventory=affineCircuits(rows,delta,budget);
+    const inventory=affineCircuits(rows,delta,budget,enumeration);
     const result=affineDistance(inventory,ticks.map((_,i)=>i));
     const falsified=sub(result.margin,eps).n>0n;
     return {hypothesis:law.id,status:falsified?'falsified':result.exact?'consistent':'inconclusive',

@@ -33,29 +33,31 @@ if(!multiple&&request.schema!==ACTIVE_LINEAR_FAMILY_SCHEMA)
   throw Error('Unrecognized active experiment source schema; choose linear family or intervention family v1');
 const core=multiple?designActiveInterventionFamily(request):designActiveLinearFamily(request);
 const hash=value=>createHash('sha256').update(value).digest('hex');
-const sourceSHA256=hash(bytes),planSHA256=hash(JSON.stringify(core));
+const sourceSHA256=hash(bytes);
+let frozen=core,planSHA256=hash(JSON.stringify(core));
+if(replay){
+  const old=JSON.parse(await readFile(replay,'utf8'));
+  if(old.sourceSHA256!==sourceSHA256)
+    throw Error('Original source bytes changed; cannot replay experiment certificate');
+  const prior=Object.fromEntries(Object.keys(core).map(k=>[k,old[k]]));
+  if(old.planSHA256!==hash(JSON.stringify(prior)))
+    throw Error('Prospective plan digest changed; cannot replay experiment certificate');
+  if(multiple)replayActiveInterventionFamily(request,prior);
+  else replayActiveLinearFamily(request,prior);
+  frozen=prior;planSHA256=old.planSHA256;
+  console.error('Exact source and prospective schedule verified; no physical action replayed.');
+}
 let report={
   sourceSHA256,planSHA256,
   sourcePath:input,
-  ...core,
+  ...frozen,
   evidenceLevel:'source-conditional exact rational proof; no physical observation, acquisition, calibration or identified law',
 };
-if(replay){
-  const old=JSON.parse(await readFile(replay,'utf8'));
-  if(old.sourceSHA256!==report.sourceSHA256)
-    throw Error('Original source bytes changed; cannot replay experiment certificate');
-  if(old.planSHA256!==planSHA256)
-    throw Error('Prospective plan digest changed; cannot replay experiment certificate');
-  const prior=Object.fromEntries(Object.keys(core).map(k=>[k,old[k]]));
-  if(multiple)replayActiveInterventionFamily(request,prior);
-  else replayActiveLinearFamily(request,prior);
-  console.error('Exact source and prospective schedule verified; no physical action replayed.');
-}
 if(readings){
   const readingBytes=await readFile(readings),supplied=JSON.parse(readingBytes.toString('utf8'));
   if(supplied.sourceSHA256!==sourceSHA256||supplied.planSHA256!==planSHA256)
     throw Error('Readout source or plan digest does not match the frozen prospective certificate.');
-  const result=evaluateActiveLinearReadings(request,core,supplied);
+  const result=evaluateActiveLinearReadings(request,frozen,supplied);
   report={sourceSHA256,planSHA256,readingsSHA256:hash(readingBytes),sourcePath:input,
     planPath:replay,readingsPath:readings,...result,
     evidenceLevel:'Conditional exact consistency of supplied readings; physical origin, actuation and error calibration are not verified'};

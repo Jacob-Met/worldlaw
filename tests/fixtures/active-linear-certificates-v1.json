@@ -1,0 +1,757 @@
+{
+  "sourceCommit": "9924453de132d02f0589369454b9f08676c45ff3",
+  "sourceModuleSHA256": "88a0c6fed029e0f6c4803c9b6952c7fdbddce3f35dfec88719c1d960ff4bbe4e",
+  "cases": [
+    {
+      "id": "cycle",
+      "sourceText": "{\n  \"schema\": \"worldlaw.active-linear-family/v1\",\n  \"source\": \"Analytic five-state signed-cycle anchor; hypothetical, no physical measurement\",\n  \"hypotheses\": [\n    {\n      \"id\": \"positive\",\n      \"A\": [\n        [\n          0,\n          1,\n          0,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          1,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          1,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          0,\n          1\n        ],\n        [\n          1,\n          0,\n          0,\n          0,\n          0\n        ]\n      ],\n      \"B\": [\n        [\n          1\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ]\n      ],\n      \"C\": [\n        1,\n        0,\n        0,\n        0,\n        0\n      ]\n    },\n    {\n      \"id\": \"negative\",\n      \"A\": [\n        [\n          0,\n          1,\n          0,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          1,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          1,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          0,\n          1\n        ],\n        [\n          -1,\n          0,\n          0,\n          0,\n          0\n        ]\n      ],\n      \"B\": [\n        [\n          1\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ]\n      ],\n      \"C\": [\n        1,\n        0,\n        0,\n        0,\n        0\n      ]\n    }\n  ],\n  \"controls\": [\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      1\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ]\n  ],\n  \"offeredTicks\": [\n    0,\n    1,\n    2,\n    3,\n    4,\n    5,\n    6,\n    7,\n    8,\n    9,\n    10\n  ],\n  \"maxReadings\": 8,\n  \"noiseBound\": \"1/4\",\n  \"workLimit\": 50000\n}\n",
+      "plan": {
+        "sourceSHA256": "8c275fac00b1d540423ff328131495e29f7b1abab60f16cd4270858b68f07fc3",
+        "planSHA256": "66555aafde7a2a350ac6241d443bcc762215a19ef44ce59a2911e2bd8534d408",
+        "schema": "worldlaw.active-linear-family/v1",
+        "source": "Analytic five-state signed-cycle anchor; hypothetical, no physical measurement",
+        "hypothesisIds": [
+          "positive",
+          "negative"
+        ],
+        "offeredTicks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "observationUnits": "Declared scalar output units; unknown initial states are independent for each hypothesis",
+        "noiseBound": "1/4",
+        "sourceOnly": true,
+        "physicalActionsPerformed": false,
+        "outcomeValuesUsed": false,
+        "potential": [
+          {
+            "pair": "positive__negative",
+            "structural": true,
+            "robustCertified": true,
+            "marginLowerBound": "1",
+            "noiseMarginExact": true,
+            "witness": {
+              "weights": [
+                "-1",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "1"
+              ],
+              "signedGap": "-2",
+              "l1Norm": "2",
+              "meaning": "Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance."
+            }
+          }
+        ],
+        "pairCount": 1,
+        "maxReadings": 8,
+        "workLimit": 50000,
+        "noiseMethod": "exact-affine-linf-circuits/v1",
+        "workAccounting": "Affine rank checks, candidate circuit supports and schedule traversal nodes share one hard limit.",
+        "status": "optimal_certified_schedule",
+        "selection": [
+          {
+            "tick": 0,
+            "cost": 1
+          },
+          {
+            "tick": 10,
+            "cost": 1
+          }
+        ],
+        "proof": [
+          {
+            "pair": "positive__negative",
+            "structural": true,
+            "robustCertified": true,
+            "marginLowerBound": "1",
+            "noiseMarginExact": true,
+            "witness": {
+              "weights": [
+                "-1",
+                "1"
+              ],
+              "signedGap": "-2",
+              "l1Norm": "2",
+              "meaning": "Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance."
+            }
+          }
+        ],
+        "numReadings": 2,
+        "totalCost": 2,
+        "nodes": 2126,
+        "exhausted": false,
+        "interpretation": "Exact finite-choice minimum number and declared cost under the optimal adversarial noise margin; source-only design, not a performed experiment.",
+        "evidenceLevel": "source-conditional exact rational proof; no physical observation, acquisition, calibration or identified law"
+      },
+      "planExit": 0,
+      "readouts": [
+        {
+          "id": "positive",
+          "readoutText": "{\n  \"schema\": \"worldlaw.active-linear-readings/v1\",\n  \"source\": \"Saved synthetic cycle positive from original source9924453; no physical acquisition\",\n  \"acquisition\": \"synthetic\",\n  \"sourceSHA256\": \"8c275fac00b1d540423ff328131495e29f7b1abab60f16cd4270858b68f07fc3\",\n  \"planSHA256\": \"66555aafde7a2a350ac6241d443bcc762215a19ef44ce59a2911e2bd8534d408\",\n  \"readings\": [\n    {\n      \"tick\": 0,\n      \"value\": 3\n    },\n    {\n      \"tick\": 10,\n      \"value\": 4\n    }\n  ]\n}\n",
+          "result": {
+            "sourceSHA256": "8c275fac00b1d540423ff328131495e29f7b1abab60f16cd4270858b68f07fc3",
+            "planSHA256": "66555aafde7a2a350ac6241d443bcc762215a19ef44ce59a2911e2bd8534d408",
+            "readingsSHA256": "2656ceda6d6af7d3c93a1953e20f77848915848242fd55bb5f4963cdd712e32e",
+            "schema": "worldlaw.active-linear-readout-result/v1",
+            "source": "Analytic five-state signed-cycle anchor; hypothetical, no physical measurement",
+            "readoutSource": "Saved synthetic cycle positive from original source9924453; no physical acquisition",
+            "acquisition": "synthetic",
+            "sourceOnly": false,
+            "outcomeValuesUsed": true,
+            "physicalActionsPerformed": false,
+            "physicalProvenanceVerified": false,
+            "chosenIntervention": null,
+            "plannedTicks": [
+              0,
+              10
+            ],
+            "receivedTicks": [
+              0,
+              10
+            ],
+            "missingTicks": [],
+            "noiseBound": "1/4",
+            "checks": [
+              {
+                "hypothesis": "positive",
+                "status": "consistent",
+                "minimumNoiseRequired": "0",
+                "noiseLowerBound": "0",
+                "noiseMarginExact": true
+              },
+              {
+                "hypothesis": "negative",
+                "status": "falsified",
+                "minimumNoiseRequired": "1",
+                "noiseLowerBound": "1",
+                "noiseMarginExact": true,
+                "witness": {
+                  "weights": [
+                    "-1",
+                    "1"
+                  ],
+                  "signedGap": "2",
+                  "l1Norm": "2",
+                  "meaning": "Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance."
+                }
+              }
+            ],
+            "consistentHypothesisIds": [
+              "positive"
+            ],
+            "unresolvedHypothesisIds": [],
+            "status": "one_hypothesis_consistent",
+            "nodes": 5,
+            "workLimit": 50000,
+            "exhausted": false,
+            "interpretation": "Compatibility is conditional on the frozen controls, reading identity and declared error bound. A remaining candidate is not empirical identification or verified physical truth.",
+            "evidenceLevel": "Conditional exact consistency of supplied readings; physical origin, actuation and error calibration are not verified"
+          }
+        },
+        {
+          "id": "outside",
+          "readoutText": "{\n  \"schema\": \"worldlaw.active-linear-readings/v1\",\n  \"source\": \"Saved synthetic cycle outside from original source9924453; no physical acquisition\",\n  \"acquisition\": \"synthetic\",\n  \"sourceSHA256\": \"8c275fac00b1d540423ff328131495e29f7b1abab60f16cd4270858b68f07fc3\",\n  \"planSHA256\": \"66555aafde7a2a350ac6241d443bcc762215a19ef44ce59a2911e2bd8534d408\",\n  \"readings\": [\n    {\n      \"tick\": 0,\n      \"value\": 0\n    },\n    {\n      \"tick\": 10,\n      \"value\": 100\n    }\n  ]\n}\n",
+          "result": {
+            "sourceSHA256": "8c275fac00b1d540423ff328131495e29f7b1abab60f16cd4270858b68f07fc3",
+            "planSHA256": "66555aafde7a2a350ac6241d443bcc762215a19ef44ce59a2911e2bd8534d408",
+            "readingsSHA256": "81d6ea78b5c758e2eb5ba539812fb9ad3c9cfdda54cd4fe8df3344ff177682a2",
+            "schema": "worldlaw.active-linear-readout-result/v1",
+            "source": "Analytic five-state signed-cycle anchor; hypothetical, no physical measurement",
+            "readoutSource": "Saved synthetic cycle outside from original source9924453; no physical acquisition",
+            "acquisition": "synthetic",
+            "sourceOnly": false,
+            "outcomeValuesUsed": true,
+            "physicalActionsPerformed": false,
+            "physicalProvenanceVerified": false,
+            "chosenIntervention": null,
+            "plannedTicks": [
+              0,
+              10
+            ],
+            "receivedTicks": [
+              0,
+              10
+            ],
+            "missingTicks": [],
+            "noiseBound": "1/4",
+            "checks": [
+              {
+                "hypothesis": "positive",
+                "status": "falsified",
+                "minimumNoiseRequired": "99/2",
+                "noiseLowerBound": "99/2",
+                "noiseMarginExact": true,
+                "witness": {
+                  "weights": [
+                    "-1",
+                    "1"
+                  ],
+                  "signedGap": "99",
+                  "l1Norm": "2",
+                  "meaning": "Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance."
+                }
+              },
+              {
+                "hypothesis": "negative",
+                "status": "falsified",
+                "minimumNoiseRequired": "101/2",
+                "noiseLowerBound": "101/2",
+                "noiseMarginExact": true,
+                "witness": {
+                  "weights": [
+                    "-1",
+                    "1"
+                  ],
+                  "signedGap": "101",
+                  "l1Norm": "2",
+                  "meaning": "Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance."
+                }
+              }
+            ],
+            "consistentHypothesisIds": [],
+            "unresolvedHypothesisIds": [],
+            "status": "all_hypotheses_falsified",
+            "nodes": 8,
+            "workLimit": 50000,
+            "exhausted": false,
+            "interpretation": "Every offered law contradicts the supplied readings under the declared error bound. Revise the model family or investigate the input, timing, calibration and bound; do not force a winning law.",
+            "evidenceLevel": "Conditional exact consistency of supplied readings; physical origin, actuation and error calibration are not verified"
+          }
+        },
+        {
+          "id": "partial",
+          "readoutText": "{\n  \"schema\": \"worldlaw.active-linear-readings/v1\",\n  \"source\": \"Saved synthetic cycle partial from original source9924453; no physical acquisition\",\n  \"acquisition\": \"synthetic\",\n  \"sourceSHA256\": \"8c275fac00b1d540423ff328131495e29f7b1abab60f16cd4270858b68f07fc3\",\n  \"planSHA256\": \"66555aafde7a2a350ac6241d443bcc762215a19ef44ce59a2911e2bd8534d408\",\n  \"readings\": [\n    {\n      \"tick\": 0,\n      \"value\": 3\n    }\n  ]\n}\n",
+          "result": {
+            "sourceSHA256": "8c275fac00b1d540423ff328131495e29f7b1abab60f16cd4270858b68f07fc3",
+            "planSHA256": "66555aafde7a2a350ac6241d443bcc762215a19ef44ce59a2911e2bd8534d408",
+            "readingsSHA256": "9cf26fc588a4bedadecfcb4cf7a8004fd13bc98700061eed0db7165863bef013",
+            "schema": "worldlaw.active-linear-readout-result/v1",
+            "source": "Analytic five-state signed-cycle anchor; hypothetical, no physical measurement",
+            "readoutSource": "Saved synthetic cycle partial from original source9924453; no physical acquisition",
+            "acquisition": "synthetic",
+            "sourceOnly": false,
+            "outcomeValuesUsed": true,
+            "physicalActionsPerformed": false,
+            "physicalProvenanceVerified": false,
+            "chosenIntervention": null,
+            "plannedTicks": [
+              0,
+              10
+            ],
+            "receivedTicks": [
+              0
+            ],
+            "missingTicks": [
+              10
+            ],
+            "noiseBound": "1/4",
+            "checks": [
+              {
+                "hypothesis": "positive",
+                "status": "consistent",
+                "minimumNoiseRequired": "0",
+                "noiseLowerBound": "0",
+                "noiseMarginExact": true
+              },
+              {
+                "hypothesis": "negative",
+                "status": "consistent",
+                "minimumNoiseRequired": "0",
+                "noiseLowerBound": "0",
+                "noiseMarginExact": true
+              }
+            ],
+            "consistentHypothesisIds": [
+              "positive",
+              "negative"
+            ],
+            "unresolvedHypothesisIds": [],
+            "status": "multiple_hypotheses_consistent",
+            "nodes": 2,
+            "workLimit": 50000,
+            "exhausted": false,
+            "interpretation": "Compatibility is conditional on the frozen controls, reading identity and declared error bound. A remaining candidate is not empirical identification or verified physical truth.",
+            "evidenceLevel": "Conditional exact consistency of supplied readings; physical origin, actuation and error calibration are not verified"
+          }
+        }
+      ]
+    },
+    {
+      "id": "menu",
+      "sourceText": "{\n  \"schema\": \"worldlaw.active-linear-interventions/v1\",\n  \"source\": \"Hypothetical coupled position and hidden velocity with two possible coupling gains; no physical measurement or actuator\",\n  \"hypotheses\": [\n    {\n      \"id\": \"unit_coupling\",\n      \"A\": [\n        [\n          1,\n          1\n        ],\n        [\n          0,\n          1\n        ]\n      ],\n      \"B\": [\n        [\n          0\n        ],\n        [\n          1\n        ]\n      ],\n      \"C\": [\n        1,\n        0\n      ]\n    },\n    {\n      \"id\": \"double_coupling\",\n      \"A\": [\n        [\n          1,\n          2\n        ],\n        [\n          0,\n          1\n        ]\n      ],\n      \"B\": [\n        [\n          0\n        ],\n        [\n          1\n        ]\n      ],\n      \"C\": [\n        1,\n        0\n      ]\n    }\n  ],\n  \"interventions\": [\n    {\n      \"id\": \"idle_velocity\",\n      \"actionCost\": 0,\n      \"controls\": [\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ]\n      ]\n    },\n    {\n      \"id\": \"velocity_pulse\",\n      \"actionCost\": 2,\n      \"controls\": [\n        [\n          1\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ]\n      ]\n    }\n  ],\n  \"offeredTicks\": [\n    0,\n    1,\n    2,\n    3,\n    4\n  ],\n  \"noiseBound\": \"1/100\",\n  \"maxReadings\": 5,\n  \"workLimitPerCourse\": 50000\n}\n",
+      "plan": {
+        "sourceSHA256": "f7f996c569a07cf9b2a3230c12519bd80536cc0a2082f857b3ca671c1e4ffe19",
+        "planSHA256": "414446250978d4566b165d80e6c0fa9152220f86a76fca81ce4b34d1e88b8cbe",
+        "schema": "worldlaw.active-linear-interventions/v1",
+        "source": "Hypothetical coupled position and hidden velocity with two possible coupling gains; no physical measurement or actuator",
+        "sourceOnly": true,
+        "physicalActionsPerformed": false,
+        "outcomeValuesUsed": false,
+        "hypothesisIds": [
+          "unit_coupling",
+          "double_coupling"
+        ],
+        "noiseBound": "1/100",
+        "interventionMenu": [
+          {
+            "id": "idle_velocity",
+            "actionCost": 0,
+            "status": "structurally_indistinguishable_on_offered_course",
+            "selection": null,
+            "numReadings": null,
+            "readingCost": null,
+            "totalDeclaredCost": null,
+            "proof": null,
+            "potential": [
+              {
+                "pair": "unit_coupling__double_coupling",
+                "structural": false,
+                "robustCertified": false,
+                "marginLowerBound": "0",
+                "noiseMarginExact": true,
+                "counterexample": "Known forcing is absorbable by independent unknown initial states."
+              }
+            ],
+            "workNodes": 1,
+            "workExhausted": false
+          },
+          {
+            "id": "velocity_pulse",
+            "actionCost": 2,
+            "status": "optimal_certified_schedule",
+            "selection": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "numReadings": 3,
+            "readingCost": 3,
+            "totalDeclaredCost": 5,
+            "proof": [
+              {
+                "pair": "unit_coupling__double_coupling",
+                "structural": true,
+                "robustCertified": true,
+                "marginLowerBound": "1/4",
+                "noiseMarginExact": true,
+                "witness": {
+                  "weights": [
+                    "1",
+                    "-2",
+                    "1"
+                  ],
+                  "signedGap": "1",
+                  "l1Norm": "4",
+                  "meaning": "Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance."
+                }
+              }
+            ],
+            "potential": [
+              {
+                "pair": "unit_coupling__double_coupling",
+                "structural": true,
+                "robustCertified": true,
+                "marginLowerBound": "3/8",
+                "noiseMarginExact": true,
+                "witness": {
+                  "weights": [
+                    "3",
+                    "-4",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "signedGap": "3",
+                  "l1Norm": "8",
+                  "meaning": "Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance."
+                }
+              }
+            ],
+            "workNodes": 67,
+            "workExhausted": false
+          }
+        ],
+        "chosenIntervention": "velocity_pulse",
+        "chosenReadings": [
+          {
+            "tick": 0,
+            "cost": 1
+          },
+          {
+            "tick": 1,
+            "cost": 1
+          },
+          {
+            "tick": 2,
+            "cost": 1
+          }
+        ],
+        "numReadings": 3,
+        "totalDeclaredCost": 5,
+        "pairProof": [
+          {
+            "pair": "unit_coupling__double_coupling",
+            "structural": true,
+            "robustCertified": true,
+            "marginLowerBound": "1/4",
+            "noiseMarginExact": true,
+            "witness": {
+              "weights": [
+                "1",
+                "-2",
+                "1"
+              ],
+              "signedGap": "1",
+              "l1Norm": "4",
+              "meaning": "Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance."
+            }
+          }
+        ],
+        "status": "optimal_certified_intervention",
+        "totalNodes": 68,
+        "exhausted": false,
+        "interpretation": "Exhaustive finite-menu minimum number of readings, with declared action and sensor cost tie-breaking, under exact affine bounded-error separation. No intervention, measurement or physical calibration occurred.",
+        "evidenceLevel": "source-conditional exact rational proof; no physical observation, acquisition, calibration or identified law"
+      },
+      "planExit": 0,
+      "readouts": [
+        {
+          "id": "positive",
+          "readoutText": "{\n  \"schema\": \"worldlaw.active-linear-readings/v1\",\n  \"source\": \"Saved synthetic menu positive from original source9924453; no physical acquisition\",\n  \"acquisition\": \"synthetic\",\n  \"sourceSHA256\": \"f7f996c569a07cf9b2a3230c12519bd80536cc0a2082f857b3ca671c1e4ffe19\",\n  \"planSHA256\": \"414446250978d4566b165d80e6c0fa9152220f86a76fca81ce4b34d1e88b8cbe\",\n  \"readings\": [\n    {\n      \"tick\": 0,\n      \"value\": 0\n    },\n    {\n      \"tick\": 1,\n      \"value\": 0\n    },\n    {\n      \"tick\": 2,\n      \"value\": 1\n    }\n  ],\n  \"interventionId\": \"velocity_pulse\"\n}\n",
+          "result": {
+            "sourceSHA256": "f7f996c569a07cf9b2a3230c12519bd80536cc0a2082f857b3ca671c1e4ffe19",
+            "planSHA256": "414446250978d4566b165d80e6c0fa9152220f86a76fca81ce4b34d1e88b8cbe",
+            "readingsSHA256": "05815598ebf556797b99e2a0783b05288f8dd14a5b5b962bc862e0150212f0f1",
+            "schema": "worldlaw.active-linear-readout-result/v1",
+            "source": "Hypothetical coupled position and hidden velocity with two possible coupling gains; no physical measurement or actuator",
+            "readoutSource": "Saved synthetic menu positive from original source9924453; no physical acquisition",
+            "acquisition": "synthetic",
+            "sourceOnly": false,
+            "outcomeValuesUsed": true,
+            "physicalActionsPerformed": false,
+            "physicalProvenanceVerified": false,
+            "chosenIntervention": "velocity_pulse",
+            "plannedTicks": [
+              0,
+              1,
+              2
+            ],
+            "receivedTicks": [
+              0,
+              1,
+              2
+            ],
+            "missingTicks": [],
+            "noiseBound": "1/100",
+            "checks": [
+              {
+                "hypothesis": "unit_coupling",
+                "status": "consistent",
+                "minimumNoiseRequired": "0",
+                "noiseLowerBound": "0",
+                "noiseMarginExact": true
+              },
+              {
+                "hypothesis": "double_coupling",
+                "status": "falsified",
+                "minimumNoiseRequired": "1/4",
+                "noiseLowerBound": "1/4",
+                "noiseMarginExact": true,
+                "witness": {
+                  "weights": [
+                    "1",
+                    "-2",
+                    "1"
+                  ],
+                  "signedGap": "-1",
+                  "l1Norm": "4",
+                  "meaning": "Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance."
+                }
+              }
+            ],
+            "consistentHypothesisIds": [
+              "unit_coupling"
+            ],
+            "unresolvedHypothesisIds": [],
+            "status": "one_hypothesis_consistent",
+            "nodes": 9,
+            "workLimit": 50000,
+            "exhausted": false,
+            "interpretation": "Compatibility is conditional on the frozen controls, reading identity and declared error bound. A remaining candidate is not empirical identification or verified physical truth.",
+            "evidenceLevel": "Conditional exact consistency of supplied readings; physical origin, actuation and error calibration are not verified"
+          }
+        },
+        {
+          "id": "outside",
+          "readoutText": "{\n  \"schema\": \"worldlaw.active-linear-readings/v1\",\n  \"source\": \"Saved synthetic menu outside from original source9924453; no physical acquisition\",\n  \"acquisition\": \"synthetic\",\n  \"sourceSHA256\": \"f7f996c569a07cf9b2a3230c12519bd80536cc0a2082f857b3ca671c1e4ffe19\",\n  \"planSHA256\": \"414446250978d4566b165d80e6c0fa9152220f86a76fca81ce4b34d1e88b8cbe\",\n  \"readings\": [\n    {\n      \"tick\": 0,\n      \"value\": 0\n    },\n    {\n      \"tick\": 1,\n      \"value\": 0\n    },\n    {\n      \"tick\": 2,\n      \"value\": 10\n    }\n  ],\n  \"interventionId\": \"velocity_pulse\"\n}\n",
+          "result": {
+            "sourceSHA256": "f7f996c569a07cf9b2a3230c12519bd80536cc0a2082f857b3ca671c1e4ffe19",
+            "planSHA256": "414446250978d4566b165d80e6c0fa9152220f86a76fca81ce4b34d1e88b8cbe",
+            "readingsSHA256": "ec828bb971df95779ab78bf3fe309e4ead0473ecc801061fc6ac650baec8e919",
+            "schema": "worldlaw.active-linear-readout-result/v1",
+            "source": "Hypothetical coupled position and hidden velocity with two possible coupling gains; no physical measurement or actuator",
+            "readoutSource": "Saved synthetic menu outside from original source9924453; no physical acquisition",
+            "acquisition": "synthetic",
+            "sourceOnly": false,
+            "outcomeValuesUsed": true,
+            "physicalActionsPerformed": false,
+            "physicalProvenanceVerified": false,
+            "chosenIntervention": "velocity_pulse",
+            "plannedTicks": [
+              0,
+              1,
+              2
+            ],
+            "receivedTicks": [
+              0,
+              1,
+              2
+            ],
+            "missingTicks": [],
+            "noiseBound": "1/100",
+            "checks": [
+              {
+                "hypothesis": "unit_coupling",
+                "status": "falsified",
+                "minimumNoiseRequired": "9/4",
+                "noiseLowerBound": "9/4",
+                "noiseMarginExact": true,
+                "witness": {
+                  "weights": [
+                    "1",
+                    "-2",
+                    "1"
+                  ],
+                  "signedGap": "9",
+                  "l1Norm": "4",
+                  "meaning": "Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance."
+                }
+              },
+              {
+                "hypothesis": "double_coupling",
+                "status": "falsified",
+                "minimumNoiseRequired": "2",
+                "noiseLowerBound": "2",
+                "noiseMarginExact": true,
+                "witness": {
+                  "weights": [
+                    "1",
+                    "-2",
+                    "1"
+                  ],
+                  "signedGap": "8",
+                  "l1Norm": "4",
+                  "meaning": "Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance."
+                }
+              }
+            ],
+            "consistentHypothesisIds": [],
+            "unresolvedHypothesisIds": [],
+            "status": "all_hypotheses_falsified",
+            "nodes": 16,
+            "workLimit": 50000,
+            "exhausted": false,
+            "interpretation": "Every offered law contradicts the supplied readings under the declared error bound. Revise the model family or investigate the input, timing, calibration and bound; do not force a winning law.",
+            "evidenceLevel": "Conditional exact consistency of supplied readings; physical origin, actuation and error calibration are not verified"
+          }
+        },
+        {
+          "id": "partial",
+          "readoutText": "{\n  \"schema\": \"worldlaw.active-linear-readings/v1\",\n  \"source\": \"Saved synthetic menu partial from original source9924453; no physical acquisition\",\n  \"acquisition\": \"synthetic\",\n  \"sourceSHA256\": \"f7f996c569a07cf9b2a3230c12519bd80536cc0a2082f857b3ca671c1e4ffe19\",\n  \"planSHA256\": \"414446250978d4566b165d80e6c0fa9152220f86a76fca81ce4b34d1e88b8cbe\",\n  \"readings\": [\n    {\n      \"tick\": 0,\n      \"value\": 0\n    }\n  ],\n  \"interventionId\": \"velocity_pulse\"\n}\n",
+          "result": {
+            "sourceSHA256": "f7f996c569a07cf9b2a3230c12519bd80536cc0a2082f857b3ca671c1e4ffe19",
+            "planSHA256": "414446250978d4566b165d80e6c0fa9152220f86a76fca81ce4b34d1e88b8cbe",
+            "readingsSHA256": "d5446d94c095edf56f44ce32a26f1a33c1767093ad2742032e33049466280969",
+            "schema": "worldlaw.active-linear-readout-result/v1",
+            "source": "Hypothetical coupled position and hidden velocity with two possible coupling gains; no physical measurement or actuator",
+            "readoutSource": "Saved synthetic menu partial from original source9924453; no physical acquisition",
+            "acquisition": "synthetic",
+            "sourceOnly": false,
+            "outcomeValuesUsed": true,
+            "physicalActionsPerformed": false,
+            "physicalProvenanceVerified": false,
+            "chosenIntervention": "velocity_pulse",
+            "plannedTicks": [
+              0,
+              1,
+              2
+            ],
+            "receivedTicks": [
+              0
+            ],
+            "missingTicks": [
+              1,
+              2
+            ],
+            "noiseBound": "1/100",
+            "checks": [
+              {
+                "hypothesis": "unit_coupling",
+                "status": "consistent",
+                "minimumNoiseRequired": "0",
+                "noiseLowerBound": "0",
+                "noiseMarginExact": true
+              },
+              {
+                "hypothesis": "double_coupling",
+                "status": "consistent",
+                "minimumNoiseRequired": "0",
+                "noiseLowerBound": "0",
+                "noiseMarginExact": true
+              }
+            ],
+            "consistentHypothesisIds": [
+              "unit_coupling",
+              "double_coupling"
+            ],
+            "unresolvedHypothesisIds": [],
+            "status": "multiple_hypotheses_consistent",
+            "nodes": 2,
+            "workLimit": 50000,
+            "exhausted": false,
+            "interpretation": "Compatibility is conditional on the frozen controls, reading identity and declared error bound. A remaining candidate is not empirical identification or verified physical truth.",
+            "evidenceLevel": "Conditional exact consistency of supplied readings; physical origin, actuation and error calibration are not verified"
+          }
+        }
+      ]
+    },
+    {
+      "id": "limited",
+      "sourceText": "{\n  \"schema\": \"worldlaw.active-linear-family/v1\",\n  \"source\": \"Analytic five-state signed-cycle anchor; hypothetical, no physical measurement\",\n  \"hypotheses\": [\n    {\n      \"id\": \"positive\",\n      \"A\": [\n        [\n          0,\n          1,\n          0,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          1,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          1,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          0,\n          1\n        ],\n        [\n          1,\n          0,\n          0,\n          0,\n          0\n        ]\n      ],\n      \"B\": [\n        [\n          1\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ]\n      ],\n      \"C\": [\n        1,\n        0,\n        0,\n        0,\n        0\n      ]\n    },\n    {\n      \"id\": \"negative\",\n      \"A\": [\n        [\n          0,\n          1,\n          0,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          1,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          1,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          0,\n          1\n        ],\n        [\n          -1,\n          0,\n          0,\n          0,\n          0\n        ]\n      ],\n      \"B\": [\n        [\n          1\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ]\n      ],\n      \"C\": [\n        1,\n        0,\n        0,\n        0,\n        0\n      ]\n    }\n  ],\n  \"controls\": [\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      1\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ]\n  ],\n  \"offeredTicks\": [\n    0,\n    1,\n    2,\n    3,\n    4,\n    5,\n    6,\n    7,\n    8,\n    9,\n    10\n  ],\n  \"maxReadings\": 8,\n  \"noiseBound\": \"1/4\",\n  \"workLimit\": 100\n}\n",
+      "plan": {
+        "sourceSHA256": "3ae152b11bd8bd2370c7bbc9295a24a0fe956c4f8143a62ddbd2896a92d65cce",
+        "planSHA256": "eedcf169354a048a2ce6e2d96bf70f7bf1b0c176f28f73ca15376ad126aca22a",
+        "schema": "worldlaw.active-linear-family/v1",
+        "source": "Analytic five-state signed-cycle anchor; hypothetical, no physical measurement",
+        "hypothesisIds": [
+          "positive",
+          "negative"
+        ],
+        "offeredTicks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "observationUnits": "Declared scalar output units; unknown initial states are independent for each hypothesis",
+        "noiseBound": "1/4",
+        "sourceOnly": true,
+        "physicalActionsPerformed": false,
+        "outcomeValuesUsed": false,
+        "potential": [
+          {
+            "pair": "positive__negative",
+            "structural": null,
+            "robustCertified": false,
+            "marginLowerBound": "0",
+            "noiseMarginExact": false,
+            "inconclusive": "Circuit enumeration reached the declared work limit."
+          }
+        ],
+        "pairCount": 1,
+        "maxReadings": 8,
+        "workLimit": 100,
+        "noiseMethod": "exact-affine-linf-circuits/v1",
+        "workAccounting": "Affine rank checks, candidate circuit supports and schedule traversal nodes share one hard limit.",
+        "status": "search_inconclusive",
+        "selection": null,
+        "proof": null,
+        "nodes": 100,
+        "exhausted": true,
+        "interpretation": "Circuit enumeration interrupted at the declared limit; partial lower bounds do not prove impossibility or optimality.",
+        "evidenceLevel": "source-conditional exact rational proof; no physical observation, acquisition, calibration or identified law"
+      },
+      "planExit": 2,
+      "readouts": []
+    },
+    {
+      "id": "idle",
+      "sourceText": "{\n  \"schema\": \"worldlaw.active-linear-family/v1\",\n  \"source\": \"Analytic five-state signed-cycle anchor; hypothetical, no physical measurement\",\n  \"hypotheses\": [\n    {\n      \"id\": \"positive\",\n      \"A\": [\n        [\n          0,\n          1,\n          0,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          1,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          1,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          0,\n          1\n        ],\n        [\n          1,\n          0,\n          0,\n          0,\n          0\n        ]\n      ],\n      \"B\": [\n        [\n          1\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ]\n      ],\n      \"C\": [\n        1,\n        0,\n        0,\n        0,\n        0\n      ]\n    },\n    {\n      \"id\": \"negative\",\n      \"A\": [\n        [\n          0,\n          1,\n          0,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          1,\n          0,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          1,\n          0\n        ],\n        [\n          0,\n          0,\n          0,\n          0,\n          1\n        ],\n        [\n          -1,\n          0,\n          0,\n          0,\n          0\n        ]\n      ],\n      \"B\": [\n        [\n          1\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ],\n        [\n          0\n        ]\n      ],\n      \"C\": [\n        1,\n        0,\n        0,\n        0,\n        0\n      ]\n    }\n  ],\n  \"controls\": [\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ],\n    [\n      0\n    ]\n  ],\n  \"offeredTicks\": [\n    0,\n    1,\n    2,\n    3,\n    4,\n    5,\n    6,\n    7,\n    8,\n    9,\n    10\n  ],\n  \"maxReadings\": 8,\n  \"noiseBound\": \"1/4\",\n  \"workLimit\": 50000\n}\n",
+      "plan": {
+        "sourceSHA256": "186c9e1e521a19f5196e79695c7345732dc19fc88ece078f29ffa0293c306598",
+        "planSHA256": "92c6bc2ddab3c477eb3efdbb16d55ad2416e33da7e611f107d49ded8b09e537a",
+        "schema": "worldlaw.active-linear-family/v1",
+        "source": "Analytic five-state signed-cycle anchor; hypothetical, no physical measurement",
+        "hypothesisIds": [
+          "positive",
+          "negative"
+        ],
+        "offeredTicks": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "observationUnits": "Declared scalar output units; unknown initial states are independent for each hypothesis",
+        "noiseBound": "1/4",
+        "sourceOnly": true,
+        "physicalActionsPerformed": false,
+        "outcomeValuesUsed": false,
+        "potential": [
+          {
+            "pair": "positive__negative",
+            "structural": false,
+            "robustCertified": false,
+            "marginLowerBound": "0",
+            "noiseMarginExact": true,
+            "counterexample": "Known forcing is absorbable by independent unknown initial states."
+          }
+        ],
+        "pairCount": 1,
+        "maxReadings": 8,
+        "workLimit": 50000,
+        "noiseMethod": "exact-affine-linf-circuits/v1",
+        "workAccounting": "Affine rank checks, candidate circuit supports and schedule traversal nodes share one hard limit.",
+        "status": "structurally_indistinguishable_on_offered_course",
+        "selection": null,
+        "proof": null,
+        "nodes": 1,
+        "exhausted": false,
+        "interpretation": "Exact row-space no-go for at least one pair even with every proposed measurement; control or sensors must change.",
+        "evidenceLevel": "source-conditional exact rational proof; no physical observation, acquisition, calibration or identified law"
+      },
+      "planExit": 0,
+      "readouts": []
+    }
+  ]
+}
