@@ -23,13 +23,15 @@ const abs=x=>x<0n?-x:x;
 const gcd=(aa,bb)=>{let a=abs(aa),b=abs(bb);while(b)[a,b]=[b,a%b];return a;};
 const Q=(n,d=1n)=>{
   need(d!==0n,'zero denominator');
+  if(d===1n)return {n,d};
+  if(n===0n)return {n,d:1n};
   if(d<0n){n=-n;d=-d;}
-  const g=gcd(n,d)||1n;return {n:n/g,d:d/g};
+  const g=gcd(n,d);return {n:n/g,d:d/g};
 };
 const Z=()=>Q(0n);
 const add=(a,b)=>Q(a.n*b.d+b.n*a.d,a.d*b.d);
 const neg=a=>Q(-a.n,a.d);
-const sub=(a,b)=>add(a,neg(b));
+const sub=(a,b)=>Q(a.n*b.d-b.n*a.d,a.d*b.d);
 const mul=(a,b)=>Q(a.n*b.n,a.d*b.d);
 const div=(a,b)=>{need(b.n!==0n,'singular rational pivot');return Q(a.n*b.d,a.d*b.n);};
 const fmt=a=>a.d===1n?String(a.n):String(a.n)+'/'+String(a.d);
