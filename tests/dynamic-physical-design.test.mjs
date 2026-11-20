@@ -97,7 +97,7 @@ test('exact fractional time propagation agrees with independently multiplied rat
   assert.deepEqual(twice.slice(0,2),['1/4','1/9']);
   assert.deepEqual(propagatePhysicalObservation([1,0,0,0,0,0,0],m).slice(0,2),['1/2','0']);
 });
-test('heldout 64 transition pairs match independent dense complete-row rank oracle',()=>{
+test('heldout 25 transition pairs match independent dense complete-row rank oracle',()=>{
   const candidates=['0','1','1/2','1/3','2'];
   let checked=0;
   for(const a of candidates)for(const b of candidates){
