@@ -12,6 +12,7 @@ const examplePaths={coupled:'/examples/active-intervention-coupled-kinematics.js
   joint:'/examples/active-joint-control-three-responses.json',
   adaptive:'/examples/active-adaptive-coupled-track.json',
   replacement:'/examples/active-linear-one-replacement.json',
+  calibratedReplacement:'/examples/active-linear-calibrated-replacement.json',
   cycles:'/examples/active-linear-family-signed-cycles.json',decays:'/examples/active-linear-family-decays.json'};
 const worker=new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'});
 const pending=new Map();let messageId=0,generation=0,busy=false;
@@ -151,6 +152,15 @@ function replacementReadoutEvidence(check){
 function renderWitness(){
   const projection=witnessProjection(book,readingIndex,pairIndex);
   $('exact-noise').textContent='± '+book.plan.noiseBound;
+  if(book.plan.schema==='worldlaw.active-linear-affine-sensor-one-replacement/v1'){
+    const sealed=book.plan.status==='optimal_certified_schedule';
+    $('witness-equation').textContent=sealed?'One wrong reading with unknown gain':'No certified schedule';
+    $('exact-margin').textContent='—';
+    $('witness-explanation').textContent=sealed?
+      'All '+book.plan.proof.length+' pairs of excluded ticks still separate '+book.plan.proof[0].pairs[pairIndex].hypotheses.join(' and ')+'. Each law may choose one fixed gain from '+book.plan.sensorGain.join(' to ')+' and one fixed offset.':
+      'The offered readings and declared calibration do not certify a separating schedule under this budget.';
+    $('projection').replaceChildren();return;
+  }
   if(book.plan.schema==='worldlaw.active-linear-one-replacement/v1'){
     renderReplacementWitness(book.plan,pairIndex);return;
   }
@@ -245,7 +255,8 @@ function render(){
   $('control-table').innerHTML=data.bounded?'<table><caption>Exact source-declared control intervals and selected values</caption><thead><tr><th scope="col">Input tick</th><th scope="col">Channel</th><th scope="col">Allowed interval</th><th scope="col">Chosen value</th></tr></thead><tbody>'+plan.controlBounds.flatMap((row,t)=>row.min.map((lower,c)=>`<tr data-input-tick="${t}" ${t===tick?'data-current':''}><th scope="row">${t}</th><td>${c+1}</td><td>[${html(lower)}, ${html(row.max[c])}]</td><td class="chosen-control">${plan.chosenControls?html(plan.chosenControls[t][c]):'—'}</td></tr>`)).join('')+'</tbody></table>':'';
   if(data.adaptive)$('control-table').innerHTML='<table><caption>Exact fixed input for '+html(data.display.experiment.id.replaceAll('_',' '))+'</caption><thead><tr><th scope="col">Input tick</th><th scope="col">Channel</th><th scope="col">Fixed value</th></tr></thead><tbody>'+data.controls.flatMap((row,t)=>row.map((value,c)=>`<tr data-input-tick="${t}" ${t===tick?'data-current':''}><th scope="row">${t}</th><td>${c+1}</td><td class="chosen-control">${html(value)}</td></tr>`)).join('')+'</tbody></table>';
   $('reading-timeline').innerHTML=Array.from({length:data.horizon+1},(_,i)=>`<button type="button" data-tick="${i}" ${ticks.includes(i)?'data-selected':''} ${i===tick?'data-current':''} aria-label="Inspect tick ${i}${ticks.includes(i)?', planned reading':''}">${i}<small>${ticks.includes(i)?'READ':'—'}</small></button>`).join('');
-  const proofs=shown.plan.pairProof??shown.plan.proof??[];
+  const proofs=shown.plan.schema==='worldlaw.active-linear-affine-sensor-one-replacement/v1'
+    ?(shown.plan.proof?.[0]?.pairs??[]):(shown.plan.pairProof??shown.plan.proof??[]);
   $('joint-comparison').hidden=!data.joint;
   if(data.joint){
     $('joint-margin').textContent=plan.jointProof?.margin??'—';
@@ -276,7 +287,7 @@ function render(){
     $('result-origin').textContent=result.acquisition==='synthetic'?'SEPARATE SYNTHETIC READINGS':'SUPPLIED READINGS · PHYSICAL ORIGIN UNVERIFIED';
     $('result-heading').textContent=({one_hypothesis_consistent:'One candidate remains compatible.',all_hypotheses_falsified:'No offered law fits these readings.',all_remaining_hypotheses_falsified:'No remaining law fits these readings.',continue_frozen_policy:'Two or more candidates remain. Follow the frozen branch.',multiple_hypotheses_consistent:'Multiple explanations remain compatible.',readout_inconclusive:'The readout test is inconclusive.'})[result.status];
     $('result-summary').textContent='Checked '+result.receivedTicks.length+' of '+result.plannedTicks.length+' planned readings under ±'+result.noiseBound+' error per reading. The candidate family and control course stayed frozen.';
-    $('candidate-results').innerHTML=result.checks.map(row=>`<div class="candidate-result"><h3>${html(row.hypothesis.replaceAll('_',' '))}</h3><p class="${row.status==='consistent'?'conditional':row.status==='falsified'?'falsified':'muted'}">${row.status==='consistent'?'Conditionally consistent':row.status==='falsified'?'Falsified within the declared bound':'Inconclusive'}</p><small>${book.plan.schema==='worldlaw.active-linear-one-replacement/v1'?html(replacementReadoutEvidence(row)):book.plan.schema==='worldlaw.active-linear-affine-sensor/v1'?(row.gainWitness?'Compatible gain: '+html(row.gainWitness):'No compatible gain established'):row.noiseMarginExact?'Exact minimum error required: '+html(row.minimumNoiseRequired):'Error lower bound: '+html(row.noiseLowerBound)}</small></div>`).join('');
+    $('candidate-results').innerHTML=result.checks.map(row=>`<div class="candidate-result"><h3>${html(row.hypothesis.replaceAll('_',' '))}</h3><p class="${row.status==='consistent'?'conditional':row.status==='falsified'?'falsified':'muted'}">${row.status==='consistent'?'Conditionally consistent':row.status==='falsified'?'Falsified within the declared bound':'Inconclusive'}</p><small>${['worldlaw.active-linear-one-replacement/v1','worldlaw.active-linear-affine-sensor-one-replacement/v1'].includes(book.plan.schema)?html(replacementReadoutEvidence(row)):book.plan.schema==='worldlaw.active-linear-affine-sensor/v1'?(row.gainWitness?'Compatible gain: '+html(row.gainWitness):'No compatible gain established'):row.noiseMarginExact?'Exact minimum error required: '+html(row.minimumNoiseRequired):'Error lower bound: '+html(row.noiseLowerBound)}</small></div>`).join('');
     $('missing-readings').textContent=result.missingTicks.length?'Missing planned ticks: '+result.missingTicks.join(', ')+'. No value was invented.':'Every selected tick is present in this reading set.';
     $('result-interpretation').textContent=result.interpretation;
     $('reading-set').replaceChildren(...book.readouts.map((row,i)=>new Option('Set '+(i+1)+' · '+row.result.acquisition,String(i))));$('reading-set').value=String(readingIndex);

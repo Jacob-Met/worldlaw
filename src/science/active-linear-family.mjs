@@ -189,7 +189,7 @@ function pairProof(pair,indices,epsilon){
 function compileFamily(request,parseControl=number){
   need(request&&typeof request==='object'&&!Array.isArray(request),
     'provide a source-declared linear hypothesis family');
-  need(request.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA,
+  need(request.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||isCalibrated(request)||request.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA,
     'explicit worldlaw.active-linear-family/v1 schema is required');
   need(typeof request.source==='string'&&request.source.trim().length>=12&&request.source.length<=2048,
     'declare an independent source or explicitly hypothetical excitation contract');
@@ -261,6 +261,11 @@ export function compileActiveLinearImages(request){
 }
 export const ACTIVE_LINEAR_CALIBRATION_SCHEMA='worldlaw.active-linear-affine-sensor/v1';
 
+export const ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA='worldlaw.active-linear-affine-sensor-one-replacement/v1';
+function isCalibrated(request){
+  return request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA;
+}
+
 function gainInterval(request){
   const source=request.sensorGain;
   need(Array.isArray(source)&&source.length===2,'supply a closed positive gain interval');
@@ -329,7 +334,23 @@ function designCalibratedFamily(request){
     numReadings:selection?.length??null,totalCost:selection?.reduce((s,v)=>s+v.cost,0)??null,
     nodes:budget.nodes,exhausted:budget.exhausted});
   const evaluate=mask=>pairs.map(p=>({hypotheses:p.ids,...gainIntersection(p.inventory,mask,bounds,bounds,mul(Q(2n),eps),budget)}));
-  const all=evaluate(2**offered.length-1);
+  const replacement=request.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA;
+  function evaluateSchedule(mask){
+    if(!replacement)return evaluate(mask);
+    const positions=offered.map((tick,i)=>({tick,bit:2**i})).filter(p=>mask&p.bit);
+    if(positions.length<3)return [{status:'overlap',excludedTicks:positions.map(p=>p.tick)}];
+    const cases=[];
+    for(let i=0;i<positions.length;i++)for(let j=i+1;j<positions.length;j++){
+      const first=positions[i],second=positions[j];
+      const proof=evaluate(mask-first.bit-second.bit);
+      const status=proof.some(row=>row.status==='overlap')?'overlap':
+        proof.every(row=>row.status==='separated')?'separated':'inconclusive';
+      cases.push({excludedTicks:[first.tick,second.tick],status,pairs:proof});
+      if(status!=='separated')return cases;
+    }
+    return cases;
+  }
+  const all=evaluateSchedule(2**offered.length-1);
   if(budget.exhausted)return result('search_inconclusive',null,null);
   if(all.some(p=>p.status==='overlap'))return result('calibration_overlap_on_offered_course',null,all);
   const candidates=[];
@@ -341,7 +362,7 @@ function designCalibratedFamily(request){
     (a.mask===b.mask?0:a.selection.map(v=>v.tick).join(',')<b.selection.map(v=>v.tick).join(',')?-1:1));
   for(const c of candidates){
     if(!budget.take())break;
-    const checks=evaluate(c.mask);
+    const checks=evaluateSchedule(c.mask);
     if(budget.exhausted)break;
     if(checks.every(p=>p.status==='separated'))return result('optimal_certified_schedule',c.selection,checks);
   }
@@ -356,7 +377,7 @@ function calibratedReadingCheck(law,ticks,values,eps,bounds,budget){
 }
 
 export function designActiveLinearFamily(request){
-  if(request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA)return designCalibratedFamily(request);
+  if(isCalibrated(request))return designCalibratedFamily(request);
   return designLinearFamily(request,rankCompleteCircuits);
 }
 function designLinearFamily(request,enumeration){
@@ -463,7 +484,7 @@ function designLinearFamily(request,enumeration){
 function verifyLinearCertificate(request,prior){
   const enumeration=prior?.workAccounting===historicalCircuitsV1.workAccounting?
     historicalCircuitsV1:rankCompleteCircuits;
-  const fresh=request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA?designCalibratedFamily(request):designLinearFamily(request,enumeration);
+  const fresh=isCalibrated(request)?designCalibratedFamily(request):designLinearFamily(request,enumeration);
   need(prior?.schema===request.schema&&JSON.stringify(prior)===JSON.stringify(fresh),
     'certificate or source changed; exact prospective replay refused');
   return enumeration;
@@ -942,8 +963,10 @@ export function evaluateActiveLinearReadings(request,plan,readout){
   };
   const checks=laws.map(law=>{
     if(request.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA)return calibratedReadingCheck(law,ticks,values,eps,gainInterval(request),budget);
-    if(request.schema!==ACTIVE_LINEAR_REPLACEMENT_SCHEMA)return checkKnownUnits(law,ticks);
-    const full=checkKnownUnits(law,ticks);
+    const joint=request.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA;
+    if(!joint&&request.schema!==ACTIVE_LINEAR_REPLACEMENT_SCHEMA)return checkKnownUnits(law,ticks);
+    const check=kept=>joint?calibratedReadingCheck(law,kept,values,eps,gainInterval(request),budget):checkKnownUnits(law,kept);
+    const full=check(ticks);
     // An unchanged trace is itself admissible. Otherwise a single exclusion
     // must restore one shared latent state across all the remaining readings.
     if(full.status==='consistent')return {...full,consistentWithoutReplacement:true};
@@ -951,7 +974,7 @@ export function evaluateActiveLinearReadings(request,plan,readout){
     for(const ignoredTick of ticks){
       if(!budget.take())break;
       const kept=ticks.filter(tick=>tick!==ignoredTick);
-      const status=kept.length?checkKnownUnits(law,kept).status:'consistent';
+      const status=kept.length?check(kept).status:'consistent';
       omissions.push({ignoredTick,status});
     }
     const compatible=omissions.some(row=>row.status==='consistent');
@@ -970,7 +993,7 @@ export function evaluateActiveLinearReadings(request,plan,readout){
     missingTicks:plannedTicks.filter(t=>!values.has(t)),
     ...(request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA?
       {withinDesignedErasureBudget:plannedTicks.length-ticks.length<=1}:{}),
-    ...(request.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA?
+    ...(request.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA?
       {allPlannedReadingsReceived:ticks.length===plannedTicks.length,maxReplacedReadings:1}:{}),
     noiseBound:fmt(eps),checks,consistentHypothesisIds:consistent,unresolvedHypothesisIds:unresolved,
     status,nodes:budget.nodes,workLimit,exhausted:budget.exhausted,
