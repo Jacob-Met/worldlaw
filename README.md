@@ -65,12 +65,19 @@ The source-only [active linear-law experiment compiler](docs/ACTIVE_LINEAR_FAMIL
 now distinguishes competing time-evolving models **without pretending the
 initial state is known**. It propagates exact rational dynamics under a declared
 excitation, searches minimum-cost observation times, and provides a left-nullspace
-witness that cancels every hypothesized initial state. A conservative robust
-certificate also handles explicitly bounded measurement noise. It reads no
-physical sensor, performs no actuation, and makes no real-world law claim.
+witness that cancels every hypothesized initial state. Exact bounded-error
+geometry now computes the strongest adversarial noise margin on each offered
+schedule. A separate readout command checks supplied measurements against the
+frozen plan, retaining missing readings and allowing every proposed law to fail.
+It reads no physical sensor, performs no actuation, and makes no real-world law claim.
 
 Cold run: `npm run active:family` or pass an unfamiliar exact hypothesis JSON
 to `node scripts/active-linear-family.mjs --input your-course.json`.
+
+To receive outcomes, first save the prospective plan with `--output plan.json`,
+then run the same input with `--replay plan.json --readings readings.json`.
+The reading file must carry the plan's source and plan digests. See the
+[readout contract and complete runnable example](docs/ACTIVE_LINEAR_FAMILY.md#receive-readings-against-the-frozen-plan).
 
 ## Run locally
 

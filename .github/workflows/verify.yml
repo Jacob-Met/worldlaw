@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify explicit source distribution coverage
+        run: python3 scripts/package-policy-test.py
       - name: Fast fail on prospective intervention contracts
         run: node --test tests/trajectory-gaussian-discriminator.test.mjs
       - name: Scientific components and package smoke
@@ -92,5 +94,32 @@ jobs:
         with:
           name: correlated-nullgarden-${{ github.run_id }}
           path: .receipts/correlated-nullgarden/
+          retention-days: 7
+          if-no-files-found: error
+
+  source-distribution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build the official source package from the checked-out commit
+        run: |
+          python3 scripts/package-policy-test.py
+          python3 scripts/package.py --source-commit "$GITHUB_SHA" --output "$RUNNER_TEMP/worldlaw-source.zip"
+      - name: Receive the application and source-bound CLI from a fresh extraction
+        run: |
+          python3 -m zipfile -e "$RUNNER_TEMP/worldlaw-source.zip" "$RUNNER_TEMP/worldlaw-received"
+          cd "$RUNNER_TEMP/worldlaw-received/worldlaw"
+          node --test tests/active-linear-family.test.mjs tests/active-intervention-family.test.mjs tests/active-linear-noise.test.mjs
+          npm run smoke
+          npm run smoke:trajectory
+      - name: Retain the commit-bound source distribution
+        uses: actions/upload-artifact@v4
+        with:
+          name: worldlaw-source-${{ github.run_id }}
+          path: ${{ runner.temp }}/worldlaw-source.zip
           retention-days: 7
           if-no-files-found: error
