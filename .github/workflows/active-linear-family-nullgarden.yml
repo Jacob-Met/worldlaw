@@ -7,7 +7,7 @@ on:
       - 'scripts/active-family-nullgarden-receiving.mjs'
       - 'tests/active-linear-family.test.mjs'
       - 'tests/active-intervention-family.test.mjs'
-      - 'examples/active-*-decays.json'
+      - 'examples/active-*.json'
       - '.github/workflows/active-linear-family-nullgarden.yml'
   push:
     branches: [main]
@@ -17,7 +17,7 @@ on:
       - 'scripts/active-family-nullgarden-receiving.mjs'
       - 'tests/active-linear-family.test.mjs'
       - 'tests/active-intervention-family.test.mjs'
-      - 'examples/active-*-decays.json'
+      - 'examples/active-*.json'
       - '.github/workflows/active-linear-family-nullgarden.yml'
 permissions:
   contents: read
