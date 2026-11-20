@@ -1,0 +1,53 @@
+name: WORLDLAW active intervention independent source receiver
+on:
+  pull_request:
+    paths:
+      - 'src/science/active-linear-family.mjs'
+      - 'scripts/active-linear-family.mjs'
+      - 'scripts/active-family-nullgarden-receiving.mjs'
+      - 'tests/active-linear-family.test.mjs'
+      - 'tests/active-intervention-family.test.mjs'
+      - 'examples/active-*-decays.json'
+      - '.github/workflows/active-linear-family-nullgarden.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/science/active-linear-family.mjs'
+      - 'scripts/active-linear-family.mjs'
+      - 'scripts/active-family-nullgarden-receiving.mjs'
+      - 'tests/active-linear-family.test.mjs'
+      - 'tests/active-intervention-family.test.mjs'
+      - 'examples/active-*-decays.json'
+      - '.github/workflows/active-linear-family-nullgarden.yml'
+permissions:
+  contents: read
+jobs:
+  exact-independent-receiving:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify exact arithmetic, source isolation and held-out rank oracle
+        run: node --test tests/active-linear-family.test.mjs tests/active-intervention-family.test.mjs
+      - name: Independently pin unchanged Nullgarden source
+        uses: actions/checkout@v4
+        with:
+          repository: Jacob-Met/nullgarden
+          ref: 75527fb3934f65310b63d6ac9880394c5b98dc29
+          path: .independent-nullgarden
+          persist-credentials: false
+      - name: Receive frozen changed-initial-state synthetic experiment and three independent controls
+        env:
+          NULLGARDEN_SOURCE: ${{ github.workspace }}/.independent-nullgarden
+          NULLGARDEN_ARTIFACT_DIR: ${{ github.workspace }}/.receipts/active-family-nullgarden
+        run: node scripts/active-family-nullgarden-receiving.mjs
+      - name: Retain exact source and independent evidence, not generated build outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: active-family-source-receiver-${{ github.run_id }}
+          path: .receipts/active-family-nullgarden/
+          if-no-files-found: error
+          retention-days: 14
