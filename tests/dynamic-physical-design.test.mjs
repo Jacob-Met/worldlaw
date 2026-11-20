@@ -43,8 +43,9 @@ test('original five observed gyros require exactly two future readings if two in
   assert.equal(r.proof.initial.equationRank,5);
   assert.equal(r.proof.achieved.equationRank,7);
   assert.equal(r.proof.achieved.allTargetsIdentifiable,true);
-  assert.ok(r.schedule.some(s=>s.sensorId==='MRUP'));
-  assert.ok(r.schedule.some(s=>s.sensorId.startsWith('DOT')));
+  assert.ok(r.schedule.every(s=>s.sensorId.startsWith('DOT')),
+    'two distinct temporal readings of a DOT channel can isolate both decay modes');
+  assert.deepEqual([...new Set(r.schedule.map(s=>s.tick))],[1,2]);
   assert.equal(r.actualPhysicalActionsPerformed,false);
   assert.equal(r.scientificStatus,'conditional_structural_design_only');
   assert.equal(replayDynamicPhysicalReadings(original(),r).valid,true);
