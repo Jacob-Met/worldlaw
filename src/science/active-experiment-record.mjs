@@ -12,6 +12,8 @@ import {ACTIVE_LINEAR_ADAPTIVE_SCHEMA,ACTIVE_ADAPTIVE_READINGS_SCHEMA,
   designActiveLinearAdaptive,replayActiveLinearAdaptive,evaluateActiveAdaptiveReadings}
   from './active-linear-adaptive.mjs';
 
+import {designConditionalFuture,classifyAccumulatedReadings,FOLLOWUP_READINGS} from './active-linear-followup.mjs';
+
 export const ACTIVE_EXPERIMENT_NOTEBOOK_SCHEMA='worldlaw.active-experiment-notebook/v1';
 const encoder=new TextEncoder();
 const decoder=new TextDecoder('utf-8',{ignoreBOM:true});
@@ -171,15 +173,102 @@ async function sealAdaptiveRound(book,originalReadings,{prior=null}={}){
   }
   return report;
 }
+function historicalRows(row){
+  return row.result.accumulatedReadings??JSON.parse(row.readingsText).readings;
+}
+
+function conditionalSource(book){
+  need([ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA,ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA].includes(book.plan.schema),
+    'Future acquisition requires a calibrated experiment with one possible wrong reading.');
+  return JSON.parse(book.sourceText);
+}
+
+async function recommendVerified(book,index){
+  const request=conditionalSource(book),row=book.readouts[index];
+  need(Number.isSafeInteger(index)&&row,'Select an existing received reading set.');
+  const core={sourceSHA256:book.plan.sourceSHA256,planSHA256:book.plan.planSHA256,
+    historySHA256:row.result.readingsSHA256,...designConditionalFuture(request,historicalRows(row),row.result)};
+  return {...core,followupSHA256:await activeBytesSHA256(JSON.stringify(core))};
+}
+
+/** Choose future readings only after replaying the selected historical dataset. */
+export async function recommendActiveFollowup(raw,index){
+  return recommendVerified(await replayActiveNotebook(raw),index);
+}
+
+async function sealFollowup(book,text,prior){
+  const supplied=JSON.parse(text),request=conditionalSource(book);
+  const keys=['schema','source','acquisition','sourceSHA256','planSHA256','historySHA256','followupSHA256','readings'];
+  need(Object.keys(supplied).sort().join(',')===keys.sort().join(',')&&
+    supplied.schema===FOLLOWUP_READINGS&&typeof supplied.source==='string'&&supplied.source.trim().length>=12&&
+    supplied.source.length<=2048&&['synthetic','supplied'].includes(supplied.acquisition),
+    'A future dataset needs its original source, acquisition kind and bound identifiers.');
+  const index=book.readouts.findIndex(row=>row.result.readingsSHA256===supplied.historySHA256);
+  const plan=await recommendVerified(book,index);
+  need(supplied.sourceSHA256===plan.sourceSHA256&&supplied.planSHA256===plan.planSHA256&&
+    supplied.followupSHA256===plan.followupSHA256&&plan.status==='certified_future_acquisitions',
+    'The follow-up does not match the recomputed recommendation and original history.');
+  const ticks=plan.selection.ticks;
+  need(Array.isArray(supplied.readings)&&supplied.readings.length===ticks.length&&supplied.readings.every(row=>
+    row&&Object.keys(row).sort().join(',')==='tick,value'&&ticks.includes(row.tick))&&
+    new Set(supplied.readings.map(row=>row.tick)).size===ticks.length,'Supply exactly the distinct recommended future ticks.');
+  const parent=book.readouts[index],rows=[...historicalRows(parent),...supplied.readings].sort((a,b)=>a.tick-b.tick);
+  const checked=classifyAccumulatedReadings(request,rows);
+  const status=readingStatus(checked);
+  const result={schema:'worldlaw.active-linear-followup-result/v1',sourceSHA256:plan.sourceSHA256,
+    planSHA256:plan.planSHA256,historySHA256:plan.historySHA256,followupSHA256:plan.followupSHA256,
+    readingsSHA256:await activeBytesSHA256(text),readoutSource:supplied.source,
+    acquisition:parent.result.acquisition==='synthetic'&&supplied.acquisition==='synthetic'?'synthetic':'supplied',
+    extensionAcquisition:supplied.acquisition,noiseBound:plan.noiseBound,status,...checked,
+    plannedTicks:rows.map(r=>r.tick),receivedTicks:rows.map(r=>r.tick),missingTicks:[],accumulatedReadings:rows,
+    futureTicks:ticks,physicalProvenanceVerified:false,
+    interpretation:'The accumulated readings use one fixed gain and offset per law and at most one wrong value across both stages.'};
+  if(prior)need(JSON.stringify(result)===JSON.stringify(prior),'Follow-up history, readings or decision changed; replay refused.');
+  return result;
+}
+
+async function sealHistoricalReadings(book,text,prior){
+  const request=conditionalSource(book),raw=JSON.parse(text);
+  const keys=['schema','source','acquisition','sourceSHA256','planSHA256','readings'];
+  need(Object.keys(raw).sort().join(',')===keys.sort().join(',')&&
+    typeof raw.source==='string'&&raw.source.trim().length>=12&&raw.source.length<=2048&&
+    ['synthetic','supplied'].includes(raw.acquisition)&&raw.sourceSHA256===book.plan.sourceSHA256&&
+    raw.planSHA256===book.plan.planSHA256,'Historical readings need a valid source, acquisition and matching frozen source identifiers.');
+  const menu=book.plan.offeredTicks;
+  need(Array.isArray(raw.readings)&&raw.readings.length>0&&raw.readings.length<=menu.length&&
+    raw.readings.every(row=>row&&Object.keys(row).sort().join(',')==='tick,value'&&menu.includes(row.tick))&&
+    new Set(raw.readings.map(row=>row.tick)).size===raw.readings.length,'Supply distinct historical ticks from the offered source course.');
+  const rows=raw.readings.slice().sort((a,b)=>a.tick-b.tick),checked=classifyAccumulatedReadings(request,rows);
+  const result={schema:'worldlaw.active-linear-historical-result/v1',sourceSHA256:book.plan.sourceSHA256,
+    planSHA256:book.plan.planSHA256,readingsSHA256:await activeBytesSHA256(text),readoutSource:raw.source,
+    acquisition:raw.acquisition,noiseBound:book.plan.noiseBound,status:readingStatus(checked),...checked,
+    plannedTicks:[],receivedTicks:rows.map(row=>row.tick),missingTicks:[],accumulatedReadings:rows,
+    physicalProvenanceVerified:false,interpretation:'These independently supplied historical measurements precede any conditional follow-up.'};
+  if(prior)need(JSON.stringify(result)===JSON.stringify(prior),'Historical bytes or conditional result changed; replay refused.');
+  return result;
+}
+
+function readingStatus(checked){
+  if(checked.unresolvedHypothesisIds.length)return 'readout_inconclusive';
+  const count=checked.consistentHypothesisIds.length;
+  return count===0?'all_hypotheses_falsified':count===1?'one_hypothesis_consistent':'multiple_hypotheses_consistent';
+}
+
+function sealNotebookRow(book,text,prior=null){
+  const schema=JSON.parse(text)?.schema;
+  if(schema==='worldlaw.active-linear-historical-readings/v1')return sealHistoricalReadings(book,text,prior);
+  if(schema===FOLLOWUP_READINGS)return sealFollowup(book,text,prior);
+  return book.plan.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA?sealAdaptiveRound(book,text,{prior}):
+    sealActiveReadout(book.sourceText,book.plan,text,{prior});
+}
+
 /** Recompute every scientific claim before a caller replaces its current state. */
 export async function replayActiveNotebook(raw){
   const book=notebookObject(raw);
   const plan=await sealActivePlan(book.sourceText,{prior:book.plan});
   const readouts=[];
   for(const row of book.readouts){
-    const result=plan.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA?
-      await sealAdaptiveRound({...book,plan,readouts},row.readingsText,{prior:row.result}):
-      await sealActiveReadout(book.sourceText,plan,row.readingsText,{prior:row.result});
+    const result=await sealNotebookRow({...book,plan,readouts},row.readingsText,row.result);
     readouts.push({readingsText:row.readingsText,result});
   }
   return {schema:book.schema,sourceText:book.sourceText,plan,readouts};
@@ -188,8 +277,7 @@ export async function replayActiveNotebook(raw){
 export async function receiveActiveNotebook(raw,originalReadings){
   const text=sourceText(originalReadings),book=await replayActiveNotebook(raw);
   need(book.readouts.length<16,'This notebook already contains 16 reading sets; save it and start a separate notebook.');
-  const result=book.plan.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA?await sealAdaptiveRound(book,text):
-    await sealActiveReadout(book.sourceText,book.plan,text);
+  const result=await sealNotebookRow(book,text);
   need(!book.readouts.some(row=>row.result.readingsSHA256===result.readingsSHA256),
     'These exact reading bytes are already recorded.');
   return {...book,readouts:[...book.readouts,{readingsText:text,result}]};

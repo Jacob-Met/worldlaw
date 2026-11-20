@@ -12,6 +12,7 @@ const examplePaths={coupled:'/examples/active-intervention-coupled-kinematics.js
   joint:'/examples/active-joint-control-three-responses.json',
   adaptive:'/examples/active-adaptive-coupled-track.json',
   replacement:'/examples/active-linear-one-replacement.json',
+  conditional:'/examples/active-linear-conditional-future.json',
   calibratedMixedLoss:'/examples/active-linear-calibrated-mixed-loss.json',
   calibratedReplacement:'/examples/active-linear-calibrated-replacement.json',
   cycles:'/examples/active-linear-family-signed-cycles.json',decays:'/examples/active-linear-family-decays.json'};
@@ -19,7 +20,7 @@ const worker=new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'})
 const pending=new Map();let messageId=0,generation=0,busy=false;
 let book=null,mode='preview',activeKey=null,readingIndex=-1,pairIndex=0,tick=0,dirty=false,playback=null;
 let storageMessage='',storageWarning=false;
-let custody=null;
+let custody=null,followup=null;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 worker.addEventListener('message',event=>{
   const message=event.data,waiter=pending.get(message.id);if(!waiter)return;
@@ -44,9 +45,15 @@ function updateControls(){
   $('download-source').disabled=!book||busy;
   $('demo-controls').disabled=!ready||book?.plan.sourceSHA256!==COUPLED_DEMO_SOURCE_SHA256;
   $('adaptive-controls').disabled=!ready||book?.plan.sourceSHA256!==ADAPTIVE_DEMO_SOURCE_SHA256;
+  $('choose-future').disabled=busy;
+  $('receive-future').disabled=busy;
+  $('save-future').disabled=busy;
+  $('reading-set').disabled=busy;
   $('inspect-next').disabled=!current?.action||busy;
   $('adaptive-history').disabled=busy;
   $('supplied-controls').disabled=!ready;
+  $('history-controls').hidden=!book||!frozen||!calibratedOutlierPlan(book.plan);
+  $('import-history').disabled=busy;
   $('play').disabled=!book||busy;$('tick').disabled=!book||busy;
   $('source-text').readOnly=frozen;$('noise-bound').readOnly=frozen;
   $('replan').disabled=!book||busy||frozen;
@@ -228,11 +235,39 @@ function renderAdaptive(current){
   $('adaptive-controls').hidden=plan.sourceSHA256!==ADAPTIVE_DEMO_SOURCE_SHA256;
   $('acquire-adaptive').textContent=current.action?'Acquire round '+current.round+' synthetic readings →':'No pending experiment';
 }
+function renderFollowup(record){
+  const available=Boolean(record&&calibratedOutlierPlan(book.plan));
+  $('future-region').hidden=!available;
+  if(!available||followup?.historySHA256!==record.result.readingsSHA256||
+    followup?.sourceSHA256!==book.plan.sourceSHA256)followup=null;
+  const selection=followup?.selection;
+  $('future-actions').hidden=!selection;
+  $('future-choice').textContent=selection?
+    'Measure tick'+(selection.ticks.length===1?' ':'s ')+selection.ticks.join(', ')+
+    ' next. Declared additional cost: '+selection.cost+
+    '. Every remaining pair separates while keeping its original calibration and one wrong reading across both stages.':
+    ({already_resolved:'One law already fits. No further reading is required.',
+      no_surviving_hypothesis:'No offered law fits this history.',
+      search_inconclusive:'The exact search was inconclusive. No future acquisition is certified.',
+      no_separating_future_schedule:'No eligible future schedule within the declared budget guarantees separation.'
+    })[followup?.status]??'';
+  const fields=$('future-values');
+  const identity=followup?.followupSHA256??'';
+  if(fields.dataset.bound!==identity){
+    fields.dataset.bound=identity;fields.replaceChildren();$('future-source').value='';
+    for(const t of selection?.ticks??[]){
+      const label=document.createElement('label'),input=document.createElement('input');
+      label.textContent='Reading at tick '+t;input.dataset.tick=String(t);input.type='text';
+      label.append(input);fields.append(label);
+    }
+  }
+}
 function render(){
   if(!book){updateControls();return;}
   const shown=displayActiveNotebook(book,readingIndex),data=illustrateModels(shown),plan=book.plan,
     ticks=plannedTicks(shown.plan),frozen=mode==='frozen',current=adaptiveNotebookState(book);
   const record=book.readouts[readingIndex];
+  renderFollowup(record);
   $('phase').textContent=dirty?'Unapplied source edits':frozen?'Frozen experiment':'Prospective preview';
   $('source-kind').textContent=data.isDemo||data.adaptiveDemo?'Hypothetical coupled-track example':'Source-declared hypotheses · origin unverified';
   $('course-label').textContent=data.adaptive?'Round '+data.display.round+' · '+data.display.experiment.id.replaceAll('_',' ')+' · '+(data.display.historical?'received':'preview'):
@@ -300,6 +335,14 @@ function render(){
         ' The design covers this missing acquisition.':
         ' More than one acquisition is missing. Only the supplied readings support this result.';
     }
+    if(result.schema==='worldlaw.active-linear-historical-result/v1'){
+      $('result-summary').textContent='Checked '+result.receivedTicks.length+' independently supplied historical readings.';
+      $('missing-readings').textContent='Historical ticks: '+result.receivedTicks.join(', ')+'.';
+    }
+    if(result.futureTicks){
+      $('result-summary').textContent='History and new readings checked together. Newly acquired ticks: '+result.futureTicks.join(', ')+'.';
+      $('missing-readings').textContent='Every recommended future reading is present.';
+    }
     $('result-interpretation').textContent=result.interpretation;
     $('reading-set').replaceChildren(...book.readouts.map((row,i)=>new Option('Set '+(i+1)+' · '+row.result.acquisition,String(i))));$('reading-set').value=String(readingIndex);
   }
@@ -350,14 +393,33 @@ function fileAction(inputId,maximum,work,commit,message,focus){
 }
 fileAction('notebook-file',8388608,text=>ask({action:'open',text}),next=>adopt(next,'frozen'),'Notebook reopened. Every scientific claim was recomputed from its original bytes.');
 fileAction('source-file',524288,text=>ask({action:'plan',sourceText:text}),next=>adopt(next,'preview'),'Original source accepted as a separate prospective draft. Earlier saved notebooks remain available.');
-fileAction('readings-file',524288,(text,snapshot)=>{if(snapshot.mode!=='frozen'||!snapshot.book||!certified(snapshot.book.plan))throw Error('Freeze a certified prospective plan before receiving readings.');return ask({action:'read',book:snapshot.book,text}).then(next=>({next,key:snapshot.key}));},received=>adopt(received.next,'frozen',received.key),'Original readout bytes received and checked against the frozen plan.','result-heading');
+fileAction('readings-file',524288,(text,snapshot)=>{if(snapshot.mode!=='frozen'||!snapshot.book)throw Error('Freeze a source course before receiving readings.');return ask({action:'read',book:snapshot.book,text}).then(next=>({next,key:snapshot.key}));},received=>adopt(received.next,'frozen',received.key),'Original readout bytes received and checked against the frozen plan.','result-heading');
 fileAction('plan-file',2097152,(text,snapshot)=>{if(!snapshot.book||snapshot.mode!=='preview'||snapshot.dirty)throw Error('Open a CLI plan against an accepted prospective draft.');return ask({action:'plan',sourceText:snapshot.book.sourceText,plan:JSON.parse(text)});},next=>adopt(next,'frozen'),'The original CLI plan reopened with its original digest, counters and decision.');
-for(const [button,input] of [['open-notebook','notebook-file'],['import-source','source-file'],['import-readings','readings-file'],['import-plan','plan-file']])$(button).addEventListener('click',()=>$(input).click());
+for(const [button,input] of [['open-notebook','notebook-file'],['import-source','source-file'],['import-readings','readings-file'],['import-history','readings-file'],['import-plan','plan-file']])$(button).addEventListener('click',()=>$(input).click());
 $('export-notebook').addEventListener('click',()=>{if(book&&mode==='frozen'){exportJSON(book,'worldlaw-active-experiment.json');announce('Portable notebook exported with original source, frozen plan and every separate reading set.');}});
 $('download-source').addEventListener('click',()=>book&&download(book.sourceText,'worldlaw-active-source.json'));
 $('download-plan').addEventListener('click',()=>book&&exportJSON(book.plan,'worldlaw-active-plan.json'));
 $('download-readings').addEventListener('click',()=>book?.readouts[readingIndex]&&download(book.readouts[readingIndex].readingsText,'worldlaw-active-readings.json'));
 $('download-result').addEventListener('click',()=>book?.readouts[readingIndex]&&exportJSON(book.readouts[readingIndex].result,'worldlaw-active-result.json'));
+$('choose-future').addEventListener('click',()=>{
+  if(!book||busy)return;
+  transact(()=>ask({action:'recommend',book,readingIndex}),next=>{followup=next;},
+    'Future acquisition checked against this historical reading set.','future-choice');
+});
+$('save-future').addEventListener('click',()=>followup&&exportJSON(followup,'worldlaw-future-recommendation.json'));
+$('receive-future').addEventListener('click',()=>{
+  if(!book||busy||!followup?.selection)return;
+  const original=book,key=activeKey,decision=followup;
+  transact(()=>{
+    const readings=[...$('future-values').querySelectorAll('input')].map(input=>({
+      tick:Number(input.dataset.tick),value:exactInput(input.value)
+    }));
+    const raw={schema:'worldlaw.active-linear-followup-readings/v1',source:$('future-source').value,
+      acquisition:$('future-kind').value,sourceSHA256:decision.sourceSHA256,planSHA256:decision.planSHA256,
+      historySHA256:decision.historySHA256,followupSHA256:decision.followupSHA256,readings};
+    return ask({action:'read',book:original,text:JSON.stringify(raw,null,2)+'\n'});
+  },next=>adopt(next,'frozen',key),'The original history and new readings were checked together.','result-heading');
+});
 $('load-example').addEventListener('click',()=>transact(async()=>ask({action:'plan',sourceText:await fetchSource(examplePaths[$('example').value])}),next=>adopt(next,'preview'),'A separate example draft is ready. No readings acquired.'));
 $('new-draft').addEventListener('click',()=>book&&planDraft(book.sourceText));
 $('replan').addEventListener('click',()=>{
