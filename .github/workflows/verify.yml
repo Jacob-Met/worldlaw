@@ -113,7 +113,7 @@ jobs:
         run: |
           python3 -m zipfile -e "$RUNNER_TEMP/worldlaw-source.zip" "$RUNNER_TEMP/worldlaw-received"
           cd "$RUNNER_TEMP/worldlaw-received/worldlaw"
-          node --test tests/active-linear-family.test.mjs tests/active-intervention-family.test.mjs tests/active-linear-noise.test.mjs tests/active-linear-rank.test.mjs
+          node --test tests/active-linear-family.test.mjs tests/active-intervention-family.test.mjs tests/active-linear-noise.test.mjs tests/active-linear-rank.test.mjs tests/active-linear-replay.test.mjs
           npm run smoke
           npm run smoke:trajectory
       - name: Retain the commit-bound source distribution

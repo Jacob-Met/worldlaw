@@ -11,6 +11,8 @@ on:
       - 'tests/active-intervention-family.test.mjs'
       - 'tests/active-linear-noise.test.mjs'
       - 'tests/active-linear-rank.test.mjs'
+      - 'tests/active-linear-replay.test.mjs'
+      - 'tests/fixtures/active-linear-certificates-v1.json'
       - 'examples/active-*.json'
       - '.github/workflows/active-linear-family-nullgarden.yml'
   push:
@@ -25,6 +27,8 @@ on:
       - 'tests/active-intervention-family.test.mjs'
       - 'tests/active-linear-noise.test.mjs'
       - 'tests/active-linear-rank.test.mjs'
+      - 'tests/active-linear-replay.test.mjs'
+      - 'tests/fixtures/active-linear-certificates-v1.json'
       - 'examples/active-*.json'
       - '.github/workflows/active-linear-family-nullgarden.yml'
 permissions:
@@ -39,7 +43,7 @@ jobs:
         with:
           node-version: '22'
       - name: Verify exact arithmetic, source isolation and held-out rank oracle
-        run: node --test tests/active-linear-family.test.mjs tests/active-intervention-family.test.mjs tests/active-linear-noise.test.mjs tests/active-linear-rank.test.mjs
+        run: node --test tests/active-linear-family.test.mjs tests/active-intervention-family.test.mjs tests/active-linear-noise.test.mjs tests/active-linear-rank.test.mjs tests/active-linear-replay.test.mjs
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
