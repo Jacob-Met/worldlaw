@@ -357,3 +357,14 @@ export function certifyAffineOutputDifference(rows,offsets,noiseRadius=0){
       (guaranteed?' Exact left-kernel witness rejects every possible shared initial state and every pair of output error vectors within the declared hard L2 radii.':
         ' The models differ structurally, but this witness cannot certify separation against the declared output error radius; do not promote this schedule.')};
 }
+
+/** Tiny exact scalar ring shared by structural source-only compilers.
+ * Use rational strings for noninteger inputs; JSON floats are refused.
+ */
+export function exactPhysicalRational(op,left,right){
+  const a=scalar(left),b=scalar(right);
+  if(op==='add')return str(plus(a,b));
+  if(op==='subtract')return str(minus(a,b));
+  if(op==='multiply')return str(multiply(a,b));
+  fail('unknown exact rational operation '+String(op));
+}
