@@ -300,9 +300,8 @@ export function designActiveInterventionFamily(request){
     schema:ACTIVE_INTERVENTION_SCHEMA,
     source:request.source,
     sourceOnly:true,physicalActionsPerformed:false,outcomeValuesUsed:false,
-    hypothesisIds:runs[0]?.potential?.length===undefined?[]:
-      request.hypotheses.map(h=>h.id),
-    noiseBound:runs[0]?.potential?String(request.noiseBound??0):null,
+    hypothesisIds:request.hypotheses.map(h=>h.id),
+    noiseBound:fmt(number(request.noiseBound??0)),
     interventionMenu:runs,
     chosenIntervention:selected?.id??null,
     chosenReadings:selected?.selection??null,
