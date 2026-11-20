@@ -112,7 +112,14 @@ export function designConditionalFuture(request,rows,prior){
   if(live.length<=1)return result(live.length?'already_resolved':'no_surviving_hypothesis');
   let lastOverlap=null;
   for(let size=1;size<=Math.min(menu.length,request.maxReadings??7);size++){
-    const sets=[...choices(menu,size)].map(ticks=>({ticks,cost:ticks.reduce((sum,t)=>sum+cost(t),0)}));
+    // The work ceiling covers candidate enumeration as well as LP solves.
+    // Collecting C(128, 7) schedules before the first LP would otherwise
+    // exhaust memory without ever touching the rational solver's budget.
+    const sets=[];
+    for(const ticks of choices(menu,size)){
+      if(!c.budget.take())return result('search_inconclusive',{reason:'candidate_enumeration_budget_exhausted'});
+      sets.push({ticks,cost:ticks.reduce((sum,t)=>sum+cost(t),0)});
+    }
     sets.sort((a,b)=>a.cost-b.cost); // Generation is already in numeric source order.
     for(const selection of sets){
       const check=compareFuture(c,live,selection.ticks);
