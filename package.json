@@ -23,6 +23,7 @@
     "stiffness:browser": "node scripts/stiffness-browser.mjs",
     "stiffness:experiment:browser": "node scripts/stiffness-experiment-browser.mjs",
     "physical:identifiability": "node scripts/physical-identifiability.mjs",
-    "active:family": "node scripts/active-linear-family.mjs"
+    "active:family": "node scripts/active-linear-family.mjs",
+    "active:sparse": "node scripts/synthesize-sparse-excitation.mjs"
   }
 }
