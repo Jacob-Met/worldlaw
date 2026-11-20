@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10151d">
+  <meta name="description" content="Design a discriminating experiment despite unknown initial states, then test separately supplied readings against the frozen candidate laws.">
+  <title>Hidden-state experiment — WORLDLAW</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/active.css">
+</head>
+<body>
+  <a class="skip-link" href="#experiment">Skip to experiment</a>
+  <header class="masthead">
+    <a class="wordmark" href="/" aria-label="WORLDLAW torque studio">◎ <span>WORLDLAW</span></a>
+    <nav aria-label="Worldlaw labs"><a href="/">Torque</a><a href="/trajectory.html">Trajectory</a><a href="/motion.html">Motion</a><a href="/active.html" aria-current="page">Hidden state</a></nav>
+    <div class="file-tools"><button id="open-notebook" type="button">Open notebook</button><button id="export-notebook" type="button" disabled>Export notebook ↗</button></div>
+  </header>
+  <main id="experiment">
+    <div class="intro"><div><p class="eyebrow">THE HIDDEN-STATE EXPERIMENT</p><h1>Make the laws disagree.</h1></div><p>Choose what to do and when to read.<br>The starting state can be unknown.<br>Keep every outcome tied to its original plan.</p></div>
+    <div class="source-line"><span id="phase" class="phase">Opening source…</span><span id="source-kind">No source accepted yet.</span><span id="storage-status" class="storage-state"></span></div>
+    <p id="error" role="alert" hidden></p><p id="notice" role="status" aria-live="polite">Loading the declared coupled-track example.</p>
+
+    <section class="instrument" aria-labelledby="apparatus-heading">
+      <div class="instrument-heading"><h2 id="apparatus-heading">Competing model forecasts</h2><span id="course-label">No input course yet</span></div>
+      <div class="instrument-grid">
+        <div class="mechanism-column"><div id="apparatus" class="apparatus"><p class="muted">Preparing the executable models…</p></div><p id="illustration-note" class="instrument-note"></p>
+          <div class="transport"><button id="play" type="button" disabled>Play predictions</button><label for="tick">Tick <input id="tick" type="range" min="0" max="4" step="1" value="0" disabled><output id="tick-value" for="tick">0</output></label><span id="motion-note">Discrete model states; motion between ticks is schematic.</span></div>
+        </div>
+        <aside class="invariant" aria-labelledby="invariant-heading"><p class="eyebrow">WHAT SURVIVES THE UNKNOWN START</p><h2 id="invariant-heading">A combination of readings</h2><label id="pair-label" for="witness-pair" hidden>Compare a candidate pair<select id="witness-pair"></select></label><p id="witness-equation" class="equation">—</p><div id="projection"></div><p id="witness-explanation" class="muted"></p><dl class="exact-proof"><div><dt>Exact separation distance</dt><dd id="exact-margin">—</dd></div><div><dt>Declared error per reading</dt><dd id="exact-noise">—</dd></div></dl><p class="fine-print">Projection graphics are approximate. The decision uses exact rational arithmetic and independent unknown initial states.</p></aside>
+      </div>
+    </section>
+
+    <section class="plan-strip" aria-labelledby="plan-heading"><div><p class="eyebrow" id="plan-kicker">PROSPECTIVE PLAN · NO OUTCOMES USED</p><h2 id="plan-heading">Choose the experiment before seeing readings.</h2><p id="plan-summary" class="muted"></p></div><div id="reading-timeline" class="reading-timeline" aria-label="Observation schedule"></div><button id="freeze-plan" class="primary" type="button" disabled>Freeze this plan →</button></section>
+
+    <section id="receive-region" class="receive-region" aria-labelledby="receive-heading">
+      <div><p class="eyebrow">SEPARATE READINGS</p><h2 id="receive-heading">Let a reading challenge the plan.</h2><p id="receive-note" class="muted">Freeze the prospective plan to receive values. No instrument has run.</p></div>
+      <fieldset id="demo-controls" disabled><legend>Attached synthetic instrument</legend><label for="demo-profile">Instrument response<select id="demo-profile"><option value="unit">Unit coupling</option><option value="double">Double coupling</option><option value="outside">Outside the offered family</option><option value="partial">Only the first planned reading</option></select></label><button id="acquire" class="primary" type="button">Acquire synthetic readings →</button><p class="fine-print">A separate hypothetical mechanism. No physical sensor or actuator is connected.</p></fieldset>
+    </section>
+
+    <section id="result-region" class="result-region" aria-labelledby="result-heading" hidden><div class="result-title"><div><p class="eyebrow" id="result-origin"></p><h2 id="result-heading" tabindex="-1"></h2></div><label for="reading-set">Received set<select id="reading-set"></select></label></div><p id="result-summary"></p><div id="candidate-results" class="candidate-results"></div><p id="missing-readings" class="muted"></p><p id="result-interpretation" class="fine-print"></p><div class="actions"><button id="download-readings" type="button">Export original readings</button><button id="download-result" type="button">Export checked result</button></div></section>
+
+    <details id="supplied-details" class="work-section"><summary>Supply readings from another source</summary><p>Enter a nonempty subset of the selected ticks or import the original readout JSON. Missing values stay missing. Each received set is retained separately.</p><fieldset id="supplied-controls" disabled><legend class="visually-hidden">Supplied reading set</legend><div class="form-row"><label for="readout-source">Reading source<input id="readout-source" type="text" maxlength="2048" placeholder="Describe the original run, instrument and timing"></label><label for="acquisition-kind">Origin declaration<select id="acquisition-kind"><option value="supplied">Supplied values · origin unverified</option><option value="synthetic">Declared synthetic values</option></select></label></div><div id="reading-fields" class="reading-fields"></div><p class="fine-print">Use an integer, decimal or fraction. Decimals are converted exactly; no missing value is filled automatically.</p><div class="actions"><button id="evaluate-readings" class="primary" type="button">Evaluate supplied readings</button><button id="import-readings" type="button">Import readout JSON</button></div></fieldset></details>
+
+    <details id="source-details" class="work-section"><summary>Inspect the source and design another experiment</summary><p id="source-description"></p><div class="form-row"><label for="example">Declared example<select id="example"><option value="coupled">Coupled position and hidden velocity</option><option value="cycles">Five hidden cyclic states</option><option value="decays">Competing scalar decay laws</option></select></label><button id="load-example" type="button">Load as a new draft</button><button id="import-source" type="button">Import original source JSON</button></div><div class="form-row"><label for="noise-bound">Absolute error per reading<input id="noise-bound" type="text" value="1/100" inputmode="text" aria-describedby="bound-note"></label><p id="bound-note" class="fine-print">A declared bound, not a measured calibration. Closed error intervals that merely touch cannot certify separation.</p></div><label for="source-text">Original source JSON<textarea id="source-text" spellcheck="false" rows="10"></textarea></label><div class="actions"><button id="replan" type="button">Recompute draft</button><button id="new-draft" type="button">Make a separate draft</button><button id="import-plan" type="button">Open a CLI plan for this source</button><button id="download-source" type="button">Export original source</button><button id="download-plan" type="button" disabled>Export frozen plan</button></div><div id="course-comparison"></div></details>
+
+    <details class="work-section"><summary>Reopen local notebooks and inspect provenance</summary><div class="form-row"><label for="local-notebook">Notebooks saved by this lab<select id="local-notebook"><option value="">Choose a saved notebook</option></select></label><button id="open-local" type="button">Reopen selected notebook</button></div><p id="custody-summary" class="fine-print"></p><dl class="digests"><div><dt>Original source SHA-256</dt><dd id="source-digest">—</dd></div><div><dt>Frozen plan SHA-256</dt><dd id="plan-digest">—</dd></div><div><dt>Selected reading bytes SHA-256</dt><dd id="reading-digest">—</dd></div></dl><p class="fine-print">Hashes and replay detect mismatched records. They do not authenticate the instrument, planning time, actuation, physical origin or the error bound. To check an exported notebook independently: <code>npm run active:family -- --notebook FILE</code>.</p><details><summary>Full exact certificate</summary><pre id="certificate"></pre></details></details>
+    <footer>WORLDLAW · finite declared linear hypotheses · source-conditional experiment design. A remaining candidate is compatible with these readings; it is not an established physical law.</footer>
+  </main>
+  <input id="notebook-file" type="file" accept=".json,application/json" hidden aria-label="Choose an active experiment notebook"><input id="source-file" type="file" accept=".json,application/json" hidden aria-label="Choose an original linear source"><input id="readings-file" type="file" accept=".json,application/json" hidden aria-label="Choose original readout JSON"><input id="plan-file" type="file" accept=".json,application/json" hidden aria-label="Choose a frozen CLI plan">
+  <script type="module" src="/src/active/app.mjs"></script>
+</body>
+</html>
