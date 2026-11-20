@@ -46,6 +46,19 @@ inconclusive states, and replayable original-source certificates.
 Its default no-key CLI works on unfamiliar linear measurement models
 without re-reading outcomes or relying on a large-language-model guess.
 
+## Dynamic source-only physical observability
+
+The [time-indexed exact physical-source compiler](docs/DYNAMIC_PHYSICAL_IDENTIFIABILITY.md)
+can now prove when **independently validated latent dynamics**, not mere repeated
+readings, could distinguish previously invisible physical quantities.
+Run `node scripts/physical-identifiability.mjs --input examples/dynamic-gyro-identifiability.json`
+for the explicitly **hypothetical** original five-gyro geometry. It chooses
+two source-declared future channel/tick observations and proves rank 5 to 7
+under separately *unvalidated* decay factors. Identity and single-mode
+controls remain provably unidentifiable; every certificate carries the
+original structural assumptions and no measured calibration claim.
+The original static physical-source CLI continues to work unchanged.
+
 ## Run locally
 
 With Node.js 20 or newer, from this directory:

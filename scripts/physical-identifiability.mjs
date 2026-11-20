@@ -11,6 +11,8 @@ import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
 import {designPhysicalAnchors,replayPhysicalAnchorCertificate}
   from '../src/science/physical-identifiability.mjs';
+import {designDynamicPhysicalReadings,replayDynamicPhysicalReadings,DYNAMIC_PHYSICAL_SCHEMA}
+  from '../src/science/dynamic-physical-design.mjs';
 
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const args=process.argv.slice(2);
@@ -29,7 +31,8 @@ for(let i=0;i<args.length;i++){
 }
 const inputBytes=await readFile(input);
 const source=JSON.parse(inputBytes.toString('utf8'));
-const original=designPhysicalAnchors(source);
+const dynamic=source.schema===DYNAMIC_PHYSICAL_SCHEMA;
+const original=dynamic?designDynamicPhysicalReadings(source):designPhysicalAnchors(source);
 const payload={
   ...original,
   exactInputSHA256:sha(inputBytes),
@@ -41,13 +44,15 @@ if(replay){
   const old=JSON.parse(await readFile(replay,'utf8'));
   if(old.exactInputSHA256!==payload.exactInputSHA256)
     throw Error('Source input checksum changed since certificate. Reopen the source before claiming replay.');
-  replayPhysicalAnchorCertificate(source,
+  if(dynamic)replayDynamicPhysicalReadings(source,
+    Object.fromEntries(Object.keys(original).map(k=>[k,old[k]])));
+  else replayPhysicalAnchorCertificate(source,
     Object.fromEntries(Object.keys(original).map(k=>[k,old[k]])));
   console.error('Exact replay reproduced full structural certificate; no physical measurement was replayed.');
 }
 const data=JSON.stringify(payload,null,2)+'\n';
 if(output)await writeFile(output,data,{flag:'wx'});
 else process.stdout.write(data);
-if(!original.initial.allTargetsIdentifiable)
+if(!(dynamic?original.proof.initial:original.initial).allTargetsIdentifiable)
   console.error('Original observation geometry is structurally insufficient. Selected physical anchors are PROPOSED, not authenticated or acquired. No physical calibration or law change.');
 if(original.status==='search_inconclusive')process.exitCode=2;

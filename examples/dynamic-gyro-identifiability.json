@@ -1,0 +1,253 @@
+{
+  "schema": "worldlaw.dynamic-physical-design/v1",
+  "variables": [
+    "physicalAngularRate",
+    "sharedDOTDisturbance",
+    "privateDOT9",
+    "privateDOT10",
+    "privateDOT11",
+    "privateDOT15",
+    "privateMRUP"
+  ],
+  "observations": [
+    {
+      "id": "DOT9",
+      "coefficients": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "cost": 1,
+      "source": "Original MAGF-ID five-gyro channel geometry only; dynamic transition below is a hypothetical contrast, not fitted from any physical recording"
+    },
+    {
+      "id": "DOT10",
+      "coefficients": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "cost": 1,
+      "source": "Original MAGF-ID five-gyro channel geometry only; dynamic transition below is a hypothetical contrast, not fitted from any physical recording"
+    },
+    {
+      "id": "DOT11",
+      "coefficients": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "cost": 1,
+      "source": "Original MAGF-ID five-gyro channel geometry only; dynamic transition below is a hypothetical contrast, not fitted from any physical recording"
+    },
+    {
+      "id": "DOT15",
+      "coefficients": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "cost": 1,
+      "source": "Original MAGF-ID five-gyro channel geometry only; dynamic transition below is a hypothetical contrast, not fitted from any physical recording"
+    },
+    {
+      "id": "MRUP",
+      "coefficients": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "cost": 1,
+      "source": "Original MAGF-ID five-gyro channel geometry only; dynamic transition below is a hypothetical contrast, not fitted from any physical recording"
+    }
+  ],
+  "futureSensors": [
+    {
+      "id": "DOT9",
+      "coefficients": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "cost": 1,
+      "source": "Original MAGF-ID five-gyro channel geometry only; dynamic transition below is a hypothetical contrast, not fitted from any physical recording"
+    },
+    {
+      "id": "DOT10",
+      "coefficients": [
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "cost": 1,
+      "source": "Original MAGF-ID five-gyro channel geometry only; dynamic transition below is a hypothetical contrast, not fitted from any physical recording"
+    },
+    {
+      "id": "DOT11",
+      "coefficients": [
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "cost": 1,
+      "source": "Original MAGF-ID five-gyro channel geometry only; dynamic transition below is a hypothetical contrast, not fitted from any physical recording"
+    },
+    {
+      "id": "DOT15",
+      "coefficients": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "cost": 1,
+      "source": "Original MAGF-ID five-gyro channel geometry only; dynamic transition below is a hypothetical contrast, not fitted from any physical recording"
+    },
+    {
+      "id": "MRUP",
+      "coefficients": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "cost": 1,
+      "source": "Original MAGF-ID five-gyro channel geometry only; dynamic transition below is a hypothetical contrast, not fitted from any physical recording"
+    }
+  ],
+  "evolution": {
+    "matrix": [
+      [
+        "1/2",
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        "1/3",
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "source": "HYPOTHETICAL known linear mode rates: rate(t+1)=rate(t)/2, sharedDOT(t+1)=sharedDOT(t)/3, private errors constant. Not measured or validated from MAGF-ID."
+  },
+  "targets": [
+    {
+      "id": "initial_true_rate",
+      "coefficients": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "initial_shared_error",
+      "coefficients": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "horizon": 2,
+  "maxReadings": 2,
+  "workLimit": 50000
+}

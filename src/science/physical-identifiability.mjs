@@ -236,3 +236,24 @@ export function replayPhysicalAnchorCertificate(request,prior){
   return {valid:true,status:fresh.status,work:fresh.work,
     interpretation:'Deterministic source-only proof, not authenticated physical readings.'};
 }
+
+/** Exact covector propagation r -> rA, reusable by time-indexed observability.
+ * Arithmetic is rational BigInt throughout. No observation values are fitted.
+ * The input matrix must be an explicitly declared square linear transition,
+ * not an unverified claim that a measured physical process obeys it.
+ */
+export function propagatePhysicalObservation(row,matrix){
+  requireThat(Array.isArray(row)&&row.length>=2&&row.length<=16,
+    'propagation covector length must be 2–16');
+  const n=row.length;
+  requireThat(Array.isArray(matrix)&&matrix.length===n&&matrix.every(r=>Array.isArray(r)&&r.length===n),
+    'propagation transition must be square with covector dimension');
+  const a=row.map(scalar),m=matrix.map(r=>r.map(scalar));
+  const out=[];
+  for(let j=0;j<n;j++){
+    let value=ratio(0n);
+    for(let i=0;i<n;i++)value=plus(value,multiply(a[i],m[i][j]));
+    out.push(str(value));
+  }
+  return out;
+}
