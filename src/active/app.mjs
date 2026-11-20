@@ -245,7 +245,7 @@ function renderFollowup(record){
   $('future-choice').textContent=selection?
     'Measure tick'+(selection.ticks.length===1?' ':'s ')+selection.ticks.join(', ')+
     ' next. Declared additional cost: '+selection.cost+
-    '. Every remaining pair separates while keeping its original calibration and one wrong reading across both stages.':
+    '. With all recommended readings, every remaining pair separates under the original calibration and one wrong reading across both stages.':
     ({already_resolved:'One law already fits. No further reading is required.',
       no_surviving_hypothesis:'No offered law fits this history.',
       search_inconclusive:'The exact search was inconclusive. No future acquisition is certified.',
@@ -258,6 +258,8 @@ function renderFollowup(record){
     for(const t of selection?.ticks??[]){
       const label=document.createElement('label'),input=document.createElement('input');
       label.textContent='Reading at tick '+t;input.dataset.tick=String(t);input.type='text';
+      if(book.plan.schema==='worldlaw.active-linear-affine-sensor-one-erasure-one-replacement/v1')
+        input.placeholder='Value or “missing”';
       label.append(input);fields.append(label);
     }
   }
@@ -340,8 +342,10 @@ function render(){
       $('missing-readings').textContent='Historical ticks: '+result.receivedTicks.join(', ')+'.';
     }
     if(result.futureTicks){
-      $('result-summary').textContent='History and new readings checked together. Newly acquired ticks: '+result.futureTicks.join(', ')+'.';
-      $('missing-readings').textContent='Every recommended future reading is present.';
+      $('result-summary').textContent='History and new readings checked together. Recommended ticks: '+result.futureTicks.join(', ')+'.';
+      $('missing-readings').textContent=result.missingTicks.length?
+        'Missing acquisition at tick '+result.missingTicks.join(', ')+'. The comparison uses only received values.':
+        'Every recommended future reading is present.';
     }
     $('result-interpretation').textContent=result.interpretation;
     $('reading-set').replaceChildren(...book.readouts.map((row,i)=>new Option('Set '+(i+1)+' · '+row.result.acquisition,String(i))));$('reading-set').value=String(readingIndex);
@@ -423,12 +427,15 @@ $('receive-future').addEventListener('click',()=>{
   if(!book||busy||!followup?.selection)return;
   const original=book,key=activeKey,decision=followup;
   transact(()=>{
-    const readings=[...$('future-values').querySelectorAll('input')].map(input=>({
-      tick:Number(input.dataset.tick),value:exactInput(input.value)
-    }));
+    const readings=[],erasedTicks=[];
+    for(const input of $('future-values').querySelectorAll('input')){
+      const tick=Number(input.dataset.tick);
+      if(input.value.trim().toLowerCase()==='missing')erasedTicks.push(tick);
+      else readings.push({tick,value:exactInput(input.value)});
+    }
     const raw={schema:'worldlaw.active-linear-followup-readings/v1',source:$('future-source').value,
       acquisition:$('future-kind').value,sourceSHA256:decision.sourceSHA256,planSHA256:decision.planSHA256,
-      historySHA256:decision.historySHA256,followupSHA256:decision.followupSHA256,readings};
+      historySHA256:decision.historySHA256,followupSHA256:decision.followupSHA256,readings,...(erasedTicks.length?{erasedTicks}:{})};
     return ask({action:'read',book:original,text:JSON.stringify(raw,null,2)+'\n'});
   },next=>adopt(next,'frozen',key),'The original history and new readings were checked together.','result-heading');
 });

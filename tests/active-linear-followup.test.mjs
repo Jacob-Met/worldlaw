@@ -100,3 +100,26 @@ test('64 seeded trajectories agree with separate exact interval projection at ev
   }
   assert.equal(checked,192);
 });
+
+test('a lost future clock leaves its value unknown and cannot be reacquired in the past',async()=>{
+  const book=await history([5,5]),plan=await recommendActiveFollowup(book,0);
+  assert.deepEqual(plan.selection.ticks,[2,4]);
+  for(const lost of [2,4]){
+    const tick=lost===2?4:2;
+    const input={schema:'worldlaw.active-linear-followup-readings/v1',source:'Synthetic interrupted sensor run.',
+      acquisition:'synthetic',sourceSHA256:plan.sourceSHA256,planSHA256:plan.planSHA256,
+      historySHA256:plan.historySHA256,followupSHA256:plan.followupSHA256,erasedTicks:[lost]};
+    for(const [value,ids] of [[5,['left']],[5+tick,['left','right']]]){
+      const next=await receiveActiveNotebook(book,JSON.stringify({...input,readings:[{tick,value}]}));
+      const r=next.readouts[1].result;
+      assert.deepEqual(r.consistentHypothesisIds,ids);
+      assert.deepEqual(r.missingTicks,[lost]);
+      assert.deepEqual(r.receivedTicks,[0,1,tick]);
+      assert.deepEqual(r.plannedTicks,[0,1,2,4]);
+      assert.deepEqual((await recommendActiveFollowup(next,1)).eligibleTicks,[]);
+      assert.deepEqual(await replayActiveNotebook(next),next);
+    }
+    for(const erasedTicks of [[],[tick],[2,4],[3]])
+      await assert.rejects(receiveActiveNotebook(book,JSON.stringify({...input,readings:[{tick,value:5}],erasedTicks})));
+  }
+});
