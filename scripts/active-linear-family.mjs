@@ -6,7 +6,8 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {createHash} from 'node:crypto';
-import {designActiveLinearFamily,replayActiveLinearFamily}
+import {designActiveLinearFamily,replayActiveLinearFamily,ACTIVE_LINEAR_FAMILY_SCHEMA,
+  designActiveInterventionFamily,replayActiveInterventionFamily,ACTIVE_INTERVENTION_SCHEMA}
   from '../src/science/active-linear-family.mjs';
 const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PRIOR_CERTIFICATE]';
 let input='examples/active-linear-family-decays.json',output=null,replay=null;
@@ -22,7 +23,10 @@ for(let i=0;i<argv.length;i++){
 }
 const bytes=await readFile(input);
 const request=JSON.parse(bytes.toString('utf8'));
-const core=designActiveLinearFamily(request);
+const multiple=request.schema===ACTIVE_INTERVENTION_SCHEMA;
+if(!multiple&&request.schema!==ACTIVE_LINEAR_FAMILY_SCHEMA)
+  throw Error('Unrecognized active experiment source schema; choose linear family or intervention family v1');
+const core=multiple?designActiveInterventionFamily(request):designActiveLinearFamily(request);
 const report={
   sourceSHA256:createHash('sha256').update(bytes).digest('hex'),
   sourcePath:input,
@@ -34,7 +38,8 @@ if(replay){
   if(old.sourceSHA256!==report.sourceSHA256)
     throw Error('Original source bytes changed; cannot replay experiment certificate');
   const prior=Object.fromEntries(Object.keys(core).map(k=>[k,old[k]]));
-  replayActiveLinearFamily(request,prior);
+  if(multiple)replayActiveInterventionFamily(request,prior);
+  else replayActiveLinearFamily(request,prior);
   console.error('Exact source and prospective schedule verified; no physical action replayed.');
 }
 if(output)await writeFile(output,JSON.stringify(report,null,2)+'\n',{flag:'wx'});
