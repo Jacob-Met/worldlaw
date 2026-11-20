@@ -17,6 +17,25 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
     "Makefile",
+    # Maintained physical-source receivers, frozen protocols and independent evaluators.
+    "experiments/cascaded-tanks-physical.py",
+    "experiments/intaset-quadruple-physical.py",
+    "experiments/magfid_covariance.py",
+    "experiments/magfid_intake.py",
+    "experiments/magfid_reference.py",
+    "experiments/magfid_reference_controls.py",
+    "experiments/magfid_reference_tests.py",
+    "research/magfid-covariance/magfid-v1-zip-manifest.json",
+    "research/magfid-covariance/nullgarden-control-plan.json",
+    "research/magfid-covariance/physical-covariance-protocol.json",
+    "research/magfid-covariance/physical-covariance-split.json",
+    "research/magfid-reference/CONF2_PROSPECTIVE.md",
+    "research/magfid-reference/CONF2_RESULTS.md",
+    "scripts/active-noise-primal-receiving.py",
+    "src/science/controlled_hydraulics.py",
+    "src/science/quadruple_tank_hydraulics.py",
+    "tests/cascaded-tanks-physical.test.py",
+    "tests/intaset-quadruple-physical.test.py",
     # Exact current application modules, reproducible study inputs and source attribution.
     'docs/receipts/conditioned-reference-families-20261029.json',
     'docs/receipts/large-baffle-transfer/FINDINGS.md',
@@ -498,6 +517,9 @@ INCLUDE = (
     "scripts/support/trajectory-measured-units.mjs",
 )
 REQUIRED = (
+    "src/science/active-linear-family.mjs", "scripts/active-linear-family.mjs",
+    "scripts/active-noise-primal-receiving.py", "tests/active-linear-noise.test.mjs",
+    "docs/ACTIVE_LINEAR_FAMILY.md",
     "src/science/experiment-receipts.mjs", "src/science/experiment-receipts-panel.mjs",
     "src/stiffness/design.mjs", "src/stiffness/design-panel.mjs", "docs/STIFFNESS_INPUT_DESIGN.md",
     "src/science/studio-dynamics-comparison.mjs", "src/science/studio-comparison-panel.mjs",
