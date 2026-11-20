@@ -225,9 +225,11 @@ function compileFamily(request,parseControl=number){
   need(eps.n>=0n,'noiseBound must be nonnegative');
   const cost=request.costByTick??{};
   need(cost&&typeof cost==='object'&&!Array.isArray(cost),'costByTick must map ticks to positive integer costs');
-  for(const [tick,c] of Object.entries(cost))
+  for(const [tick,c] of Object.entries(cost)){
+    need(String(Number(tick))===tick,'costByTick keys must be canonical integer tick strings');
     need(offered.includes(Number(tick))&&Number.isSafeInteger(c)&&c>=1&&c<=1000000000,
       'costByTick has unknown tick or invalid positive integer cost');
+  }
   const laws=hs.map((h,i)=>{
     need(h&&typeof h==='object'&&typeof h.id==='string'&&
       /^[a-zA-Z_][a-zA-Z0-9_-]{0,63}$/.test(h.id)&&!ids.has(h.id),
@@ -616,8 +618,6 @@ function compileBoundedFamily(request,schema=ACTIVE_LINEAR_CONTROL_BOX_SCHEMA,jo
   need(request.hypotheses.every(law=>law&&typeof law==='object'&&!Array.isArray(law)&&
     Object.keys(law).every(key=>['id','A','B','C'].includes(key))),
     'bounded-control laws accept only id, A, B and C; initial states must remain independent and unconstrained');
-  need(Object.keys(request.costByTick??{}).every(tick=>String(Number(tick))===tick),
-    'costByTick keys must be canonical integer tick strings');
   const raw=request.controlBounds;
   need(Array.isArray(raw)&&raw.length>=2&&raw.length<=10,
     'declare 2–10 time-ordered independent control bounds');
