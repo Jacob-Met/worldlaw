@@ -188,7 +188,7 @@ function pairProof(pair,indices,epsilon){
 function compileFamily(request,parseControl=number){
   need(request&&typeof request==='object'&&!Array.isArray(request),
     'provide a source-declared linear hypothesis family');
-  need(request.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA,
+  need(request.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA,
     'explicit worldlaw.active-linear-family/v1 schema is required');
   need(typeof request.source==='string'&&request.source.trim().length>=12&&request.source.length<=2048,
     'declare an independent source or explicitly hypothetical excitation contract');
@@ -258,7 +258,104 @@ export function compileActiveLinearImages(request){
     observable:offered.map(tick=>law.schedule[tick].observable),
     forced:offered.map(tick=>law.schedule[tick].forced)}))};
 }
+export const ACTIVE_LINEAR_CALIBRATION_SCHEMA='worldlaw.active-linear-affine-sensor/v1';
+
+function gainInterval(request){
+  const source=request.sensorGain;
+  need(Array.isArray(source)&&source.length===2,'supply a closed positive gain interval');
+  const bounds=source.map(number);
+  need(bounds[0].n>0n&&sub(bounds[1],bounds[0]).n>=0n,'require 0 < lower gain <= upper gain');
+  return bounds;
+}
+
+/** Unknown initial state multiplied by a positive gain is still unrestricted.
+ * A constant offset adds one column to the state matrix. All support circuits
+ * must therefore obey |a*g1+b*g2| <= epsilon*||w||1 *at the same gains*.
+ * The intersection of those closed halfplanes and the gain box is exact.
+ */
+function gainInventory(rows,left,right,budget){
+  if(!budget.take())return {complete:false,circuits:[]};
+  const basis=nullBasis(rows);
+  if(!basis.length)return {complete:true,circuits:[]};
+  return enumerateCircuitSupports(rows,basis,budget,rankCompleteCircuits,(weights,mask)=>{
+    const a=dot(weights,left),b=neg(dot(weights,right));
+    return a.n||b.n?{mask,a,b,norm:l1(weights)}:null;
+  });
+}
+function clipGainPolygon(polygon,a,b,bound){
+  if(!polygon.length)return polygon;
+  const value=([u,v])=>sub(add(mul(a,u),mul(b,v)),bound);
+  const out=[];
+  let p=polygon[polygon.length-1],dp=value(p);
+  for(const q of polygon){
+    const dq=value(q);
+    if((dp.n<0n&&dq.n>0n)||(dp.n>0n&&dq.n<0n)){
+      const t=div(dp,sub(dp,dq));
+      out.push(p.map((v,i)=>add(v,mul(t,sub(q[i],v)))));
+    }
+    if(dq.n<=0n)out.push(q);
+    p=q;dp=dq;
+  }
+  return out;
+}
+function gainIntersection(inventory,mask,x,y,radius,budget){
+  if(!inventory.complete)return {status:'inconclusive'};
+  let polygon=[[x[0],y[0]],[x[1],y[0]],[x[1],y[1]],[x[0],y[1]]];
+  for(const c of inventory.circuits){
+    if((c.mask&mask)!==c.mask)continue;
+    if(!budget.take())return {status:'inconclusive'};
+    const limit=mul(radius,c.norm);
+    polygon=clipGainPolygon(polygon,c.a,c.b,limit);
+    polygon=clipGainPolygon(polygon,neg(c.a),neg(c.b),limit);
+    if(!polygon.length)return {status:'separated'};
+  }
+  return {status:'overlap',gainWitness:polygon[0].map(fmt)};
+}
+function designCalibratedFamily(request){
+  const bounds=gainInterval(request);
+  const {laws,offered,eps,maxReadings,cost,workLimit}=compileFamily(request);
+  const budget=workBudget(workLimit),pairs=[];
+  for(let i=0;i<laws.length;i++)for(let j=i+1;j<laws.length;j++){
+    const left=offered.map(t=>laws[i].schedule[t]),right=offered.map(t=>laws[j].schedule[t]);
+    const rows=left.map((v,k)=>[...v.observable,...right[k].observable.map(neg),Q(1n)]);
+    pairs.push({ids:[laws[i].id,laws[j].id],inventory:gainInventory(rows,left.map(v=>v.forced),right.map(v=>v.forced),budget)});
+  }
+  const base={schema:request.schema,source:request.source,hypothesisIds:laws.map(l=>l.id),
+    offeredTicks:offered,maxReadings,noiseBound:fmt(eps),sensorGain:bounds.map(fmt),workLimit,
+    calibration:'One gain and offset per hypothetical world, constant across its readings; offset and initial state are unrestricted.',
+    sourceOnly:true,outcomeValuesUsed:false,physicalActionsPerformed:false};
+  const result=(status,selection,proof)=>({...base,status,selection,proof,
+    numReadings:selection?.length??null,totalCost:selection?.reduce((s,v)=>s+v.cost,0)??null,
+    nodes:budget.nodes,exhausted:budget.exhausted});
+  const evaluate=mask=>pairs.map(p=>({hypotheses:p.ids,...gainIntersection(p.inventory,mask,bounds,bounds,mul(Q(2n),eps),budget)}));
+  const all=evaluate(2**offered.length-1);
+  if(budget.exhausted)return result('search_inconclusive',null,null);
+  if(all.some(p=>p.status==='overlap'))return result('calibration_overlap_on_offered_course',null,all);
+  const candidates=[];
+  for(let mask=1;mask<2**offered.length;mask++){
+    const selection=offered.filter((_,i)=>mask&(1<<i)).map(tick=>({tick,cost:cost[tick]??1}));
+    if(selection.length<=maxReadings)candidates.push({mask,selection,cost:selection.reduce((s,v)=>s+v.cost,0)});
+  }
+  candidates.sort((a,b)=>a.selection.length-b.selection.length||a.cost-b.cost||
+    (a.mask===b.mask?0:a.selection.map(v=>v.tick).join(',')<b.selection.map(v=>v.tick).join(',')?-1:1));
+  for(const c of candidates){
+    if(!budget.take())break;
+    const checks=evaluate(c.mask);
+    if(budget.exhausted)break;
+    if(checks.every(p=>p.status==='separated'))return result('optimal_certified_schedule',c.selection,checks);
+  }
+  return result(budget.exhausted?'search_inconclusive':'insufficient_reading_budget',null,null);
+}
+function calibratedReadingCheck(law,ticks,values,eps,bounds,budget){
+  const seq=ticks.map(t=>law.schedule[t]),obs=ticks.map(t=>values.get(t));
+  const inventory=gainInventory(seq.map(x=>[...x.observable,Q(1n)]),seq.map(x=>x.forced),obs,budget);
+  const check=gainIntersection(inventory,2**seq.length-1,bounds,[Q(1n),Q(1n)],eps,budget);
+  return {hypothesis:law.id,status:{overlap:'consistent',separated:'falsified',inconclusive:'inconclusive'}[check.status],
+    ...(check.gainWitness?{gainWitness:check.gainWitness[0]}:{})};
+}
+
 export function designActiveLinearFamily(request){
+  if(request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA)return designCalibratedFamily(request);
   return designLinearFamily(request,rankCompleteCircuits);
 }
 function designLinearFamily(request,enumeration){
@@ -347,7 +444,7 @@ function designLinearFamily(request,enumeration){
 function verifyLinearCertificate(request,prior){
   const enumeration=prior?.workAccounting===historicalCircuitsV1.workAccounting?
     historicalCircuitsV1:rankCompleteCircuits;
-  const fresh=designLinearFamily(request,enumeration);
+  const fresh=request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA?designCalibratedFamily(request):designLinearFamily(request,enumeration);
   need(prior?.schema===request.schema&&JSON.stringify(prior)===JSON.stringify(fresh),
     'certificate or source changed; exact prospective replay refused');
   return enumeration;
@@ -814,6 +911,7 @@ export function evaluateActiveLinearReadings(request,plan,readout){
   const parseGenerated=value=>{const [n,d='1']=value.split('/');return Q(BigInt(n),BigInt(d));};
   const {laws,eps,workLimit}=compileFamily(course,joint?parseGenerated:number),budget=workBudget(workLimit);
   const checks=laws.map(law=>{
+    if(request.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA)return calibratedReadingCheck(law,ticks,values,eps,gainInterval(request),budget);
     const rows=ticks.map(t=>law.schedule[t].observable);
     const delta=ticks.map(t=>sub(values.get(t),law.schedule[t].forced));
     const inventory=affineCircuits(rows,delta,budget,enumeration);
