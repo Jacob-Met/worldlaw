@@ -267,7 +267,7 @@ input[type="checkbox"] { accent-color: var(--accent); }
 @media (max-width: 900px) {
   .bench-grid { grid-template-columns: 1fr; }
   .margin { position: static; }
-  .lab-nav { display: none; }
+  .lab-nav { display: flex; width: 100%; order: 3; }
   .local-indicator { display: none; }
   .toolbar { margin-left: 0; width: 100%; }
   .next-action { grid-template-columns: 1fr; }
@@ -347,6 +347,7 @@ body.workbench .diagnostics { margin: 0 !important; padding: 12px 0 0 !important
   <header class="topbar">
     <a class="wordmark" href="/" aria-label="WORLDLAW home"><span class="brand-glyph" aria-hidden="true">◎</span><span class="wordmark-name">WORLDLAW</span><span class="wordmark-sub">torque bench</span></a>
     <nav class="lab-nav" aria-label="Other labs">
+      <a href="/active.html">Hidden state</a>
       <a href="/motion.html">Motion</a>
       <a href="/trajectory.html">Trajectory</a>
       <a href="/unknown-lab.html">Unknown</a>

@@ -61,6 +61,13 @@ The original static physical-source CLI continues to work unchanged.
 
 ## Exact active model discrimination under unknown initial state
 
+The [Hidden-state experiment](docs/ACTIVE_EXPERIMENT_APPARATUS.md) now exposes
+this exact compiler through the main workbench's **Hidden state** link. Inspect
+competing executable models, freeze a prospective plan, receive separate
+synthetic or supplied readings, and export a notebook for independent CLI
+replay. Source declarations, reading origins, missing ticks and every separately
+received outcome remain explicit.
+
 The source-only [active linear-law experiment compiler](docs/ACTIVE_LINEAR_FAMILY.md)
 now distinguishes competing time-evolving models **without pretending the
 initial state is known**. It propagates exact rational dynamics under a declared

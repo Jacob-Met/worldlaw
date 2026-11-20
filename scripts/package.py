@@ -17,6 +17,8 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
     "Makefile",
+    "src/active/*.mjs",
+    "active.html", "active.css",
     # Maintained physical-source receivers, frozen protocols and independent evaluators.
     "experiments/cascaded-tanks-physical.py",
     "experiments/intaset-quadruple-physical.py",
@@ -519,6 +521,11 @@ INCLUDE = (
     "scripts/support/trajectory-measured-units.mjs",
 )
 REQUIRED = (
+    "active.html", "active.css", "src/active/app.mjs", "src/active/view.mjs",
+    "src/science/active-experiment-record.mjs", "src/active/instrument.mjs", "src/active/worker.mjs",
+    "tests/active-experiment-record.test.mjs", "tests/active-instrument.test.mjs",
+    "tests/active-view.test.mjs", "scripts/active-experiment-browser.mjs",
+    "docs/ACTIVE_EXPERIMENT_APPARATUS.md",
     "src/science/active-linear-family.mjs", "scripts/active-linear-family.mjs",
     "scripts/active-noise-primal-receiving.py", "tests/active-linear-noise.test.mjs",
     "scripts/active-rank-extension-receiving.py", "tests/active-linear-rank.test.mjs",
