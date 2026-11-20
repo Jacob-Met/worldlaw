@@ -62,3 +62,15 @@ The original and dynamic source-identifiability compilers address the row space 
 The optimum is explicitly finite: up to eight named interventions, each with up to ten control ticks, five-dimensional latent laws, up to twelve candidate readout ticks, and 50,000 exact search nodes per intervention. Each offered intervention is evaluated; exhaustion prevents globally certified optimality. Bounded noise uses sufficient canonical nullspace witnesses rather than an unsupported claim of maximum statistical power.
 
 This is **not** an automated physical laboratory. Actual actuation requires source-bound hardware calibration, verified noise, actuator safety, and independent held-out real-world interventions. No certificate on the offered menu is never a proof that no different physical action could separate models.
+
+
+### Coupled hidden-state source example
+
+The same exact compiler handles an actual multi-coordinate law family, not merely scalar decays. The source-only example **examples/active-intervention-coupled-kinematics.json** declares latent position and velocity, measured position alone, and competing coupling gains k=1 versus k=2. Its transition is A = [[1,k],[0,1]], with B = [[0],[1]], C = [1,0]. Initial position and hidden velocity may independently differ under either model.
+
+With idle input, any finite trajectory can be attributed to a suitable latent position/velocity, and the mechanisms remain observationally equivalent. After a declared velocity pulse at tick 0, three prospective position readings at ticks 0,1,2 give an exact integer certificate: y(0) - 2 y(1) + y(2) = k times the input. The second difference cancels **both** nuisance initial coordinates and separates the two coupling laws without the planner seeing future outcomes. The exact projected normalized gap is 1/4 position units, sufficient against the declared 1/100 per-readout adversarial error bound. This is conditional kinematics, not an authenticated actuator or physical experiment.
+
+    npm run active:family -- --input examples/active-intervention-coupled-kinematics.json
+    node --test tests/active-intervention-family.test.mjs
+
+The test independently varies initial position and hidden velocity over 25 held-out pairs and checks both source models and the zero-input negative. This couples the algebraic certificate to a reproducible dynamical interpretation instead of a synthetic rank-only claim.
