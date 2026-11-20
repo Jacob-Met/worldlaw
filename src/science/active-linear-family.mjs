@@ -262,8 +262,12 @@ export function compileActiveLinearImages(request){
 export const ACTIVE_LINEAR_CALIBRATION_SCHEMA='worldlaw.active-linear-affine-sensor/v1';
 
 export const ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA='worldlaw.active-linear-affine-sensor-one-replacement/v1';
+export const ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA='worldlaw.active-linear-affine-sensor-one-erasure-one-replacement/v1';
+function hasCalibratedReplacement(request){
+  return request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA;
+}
 function isCalibrated(request){
-  return request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA;
+  return request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||hasCalibratedReplacement(request);
 }
 
 function gainInterval(request){
@@ -334,18 +338,26 @@ function designCalibratedFamily(request){
     numReadings:selection?.length??null,totalCost:selection?.reduce((s,v)=>s+v.cost,0)??null,
     nodes:budget.nodes,exhausted:budget.exhausted});
   const evaluate=mask=>pairs.map(p=>({hypotheses:p.ids,...gainIntersection(p.inventory,mask,bounds,bounds,mul(Q(2n),eps),budget)}));
-  const replacement=request.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA;
+  const replacement=hasCalibratedReplacement(request);
+  const exclusionCount=request.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA?3:2;
+  function* excludedSets(positions, count, start=0, selected=[]){
+    if(count===0){yield selected;return;}
+    for(let i=start;i<=positions.length-count;i++){
+      yield* excludedSets(positions,count-1,i+1,[...selected,positions[i]]);
+    }
+  }
   function evaluateSchedule(mask){
     if(!replacement)return evaluate(mask);
     const positions=offered.map((tick,i)=>({tick,bit:2**i})).filter(p=>mask&p.bit);
-    if(positions.length<3)return [{status:'overlap',excludedTicks:positions.map(p=>p.tick)}];
+    if(positions.length<=exclusionCount)return [{status:'overlap',excludedTicks:positions.map(p=>p.tick)}];
     const cases=[];
-    for(let i=0;i<positions.length;i++)for(let j=i+1;j<positions.length;j++){
-      const first=positions[i],second=positions[j];
-      const proof=evaluate(mask-first.bit-second.bit);
+    // A common erasure and the two laws' distinct possible substitutions can
+    // remove three clocks. Smaller unions are covered by monotonicity.
+    for(const excluded of excludedSets(positions,exclusionCount)){
+      const proof=evaluate(excluded.reduce((kept,p)=>kept-p.bit,mask));
       const status=proof.some(row=>row.status==='overlap')?'overlap':
         proof.every(row=>row.status==='separated')?'separated':'inconclusive';
-      cases.push({excludedTicks:[first.tick,second.tick],status,pairs:proof});
+      cases.push({excludedTicks:excluded.map(p=>p.tick),status,pairs:proof});
       if(status!=='separated')return cases;
     }
     return cases;
@@ -963,7 +975,7 @@ export function evaluateActiveLinearReadings(request,plan,readout){
   };
   const checks=laws.map(law=>{
     if(request.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA)return calibratedReadingCheck(law,ticks,values,eps,gainInterval(request),budget);
-    const joint=request.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA;
+    const joint=hasCalibratedReplacement(request);
     if(!joint&&request.schema!==ACTIVE_LINEAR_REPLACEMENT_SCHEMA)return checkKnownUnits(law,ticks);
     const check=kept=>joint?calibratedReadingCheck(law,kept,values,eps,gainInterval(request),budget):checkKnownUnits(law,kept);
     const full=check(ticks);
@@ -991,9 +1003,9 @@ export function evaluateActiveLinearReadings(request,plan,readout){
     sourceOnly:false,outcomeValuesUsed:true,physicalActionsPerformed:false,physicalProvenanceVerified:false,
     chosenIntervention:multiple?plan.chosenIntervention:null,plannedTicks,receivedTicks:ticks,
     missingTicks:plannedTicks.filter(t=>!values.has(t)),
-    ...(request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA?
+    ...(request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA?
       {withinDesignedErasureBudget:plannedTicks.length-ticks.length<=1}:{}),
-    ...(request.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA?
+    ...(request.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||hasCalibratedReplacement(request)?
       {allPlannedReadingsReceived:ticks.length===plannedTicks.length,maxReplacedReadings:1}:{}),
     noiseBound:fmt(eps),checks,consistentHypothesisIds:consistent,unresolvedHypothesisIds:unresolved,
     status,nodes:budget.nodes,workLimit,exhausted:budget.exhausted,

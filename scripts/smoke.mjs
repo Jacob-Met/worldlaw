@@ -10,7 +10,7 @@ try{
     '/motion.html','/motion.css','/src/motion/app.mjs','/trajectory.html','/trajectory.css',
     '/src/trajectory/app.mjs','/src/trajectory/angular-discovery.mjs','/src/trajectory/angular-weak.mjs',
     '/src/representation/angle-reference.mjs','/src/representation/reference-panel.mjs',
-    '/examples/active-linear-one-replacement.json','/examples/active-linear-calibrated-replacement.json','/examples/trajectory-pendulum-92be.json','/examples/trajectory-ambiguous-92be.json','/examples/physical-pasco-92be.json']){
+    '/examples/active-linear-one-replacement.json','/examples/active-linear-calibrated-replacement.json','/examples/active-linear-calibrated-mixed-loss.json','/examples/trajectory-pendulum-92be.json','/examples/trajectory-ambiguous-92be.json','/examples/physical-pasco-92be.json']){
     const response=await fetch(base+path);assert.equal(response.status,200,path);assert.ok((await response.text()).length>10,path);
   }
   assert.equal((await(await fetch(base+'/health')).json()).product,'worldlaw');
