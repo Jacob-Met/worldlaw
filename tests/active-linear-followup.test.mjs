@@ -58,3 +58,45 @@ test('future schedule enumeration respects the shared work ceiling before expand
   assert.equal(result.exhausted,true);
   assert.ok(result.nodes<=100);
 });
+
+test('64 seeded trajectories agree with separate exact interval projection at every acquisition stage',async()=>{
+  // For these two one-state laws, eliminating the unrestricted initial state
+  // and sensor offset leaves an unknown constant intercept. The driven law
+  // also has one persistent slope in [1/2, 2]. Pairwise interval intersection
+  // is an independent exact projection of that small rational feasibility
+  // problem, without calling the production LP or sharing its tableau.
+  const {classifyAccumulatedReadings}=await import('../src/science/active-linear-followup.mjs');
+  const oracle=(rows,driven)=>{
+    for(const omit of [null,...rows.map(row=>row.tick)]){
+      const keep=rows.filter(row=>row.tick!==omit);
+      let lower=driven?8:0,upper=driven?32:0; // slope in sixteenths
+      for(let i=0;i<keep.length;i++)for(let j=i+1;j<keep.length;j++){
+        const a=keep[i],b=keep[j],dt=b.tick-a.tick;
+        const dy=16*(b.value-a.value);
+        lower=Math.max(lower,(dy-2)/dt);
+        upper=Math.min(upper,(dy+2)/dt);
+      }
+      if(lower<=upper)return true;
+    }
+    return false;
+  };
+  let checked=0;
+  for(let seed=0;seed<64;seed++){
+    const base=2+seed%11;
+    const slope=seed%2?(seed%3===0?2:1):0;
+    const wrongTick=seed%5;
+    const perturbation=seed%3===0?0:(seed%4===0?-7:7);
+    const complete=Array.from({length:5},(_,tick)=>({
+      tick,value:base+slope*tick+(tick===wrongTick?perturbation:0)}));
+    for(let count=3;count<=5;count++){
+      const rows=complete.slice(0,count);
+      const actual=classifyAccumulatedReadings(source,rows);
+      const expected=['left','right'].filter(id=>oracle(rows,id==='right'));
+      assert.deepEqual(actual.consistentHypothesisIds,expected,
+        'seed '+seed+', accumulated readings '+count);
+      assert.deepEqual(actual.unresolvedHypothesisIds,[]);
+      checked++;
+    }
+  }
+  assert.equal(checked,192);
+});
