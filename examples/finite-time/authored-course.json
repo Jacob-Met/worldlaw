@@ -1,0 +1,37 @@
+{
+  "id": "authored-harmonic-course",
+  "label": "Authored damped model course",
+  "kind": "synthetic",
+  "dynamics": "unforced_scalar_rotation",
+  "inertia": null,
+  "initialRate": 0.2,
+  "source": {
+    "label": "Authored demonstration; not a physical measurement"
+  },
+  "samples": [
+    {
+      "time": 0,
+      "position": 1
+    },
+    {
+      "time": 0.25,
+      "position": 1
+    },
+    {
+      "time": 0.5,
+      "position": 1
+    },
+    {
+      "time": 1,
+      "position": 1
+    },
+    {
+      "time": 2,
+      "position": 1
+    },
+    {
+      "time": 4,
+      "position": 1
+    }
+  ]
+}
