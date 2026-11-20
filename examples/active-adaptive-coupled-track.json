@@ -1,0 +1,233 @@
+{
+  "schema": "worldlaw.active-linear-adaptive/v1",
+  "source": "Hypothetical coupled track: observe position, leave initial position and velocity unknown, and probe three input channels. The four declared couplings differ in which velocity impulses act. This is a synthetic experiment catalogue, not measured mechanism evidence.",
+  "resetSemantics": "independent-unknown-state-per-experiment",
+  "hypotheses": [
+    {
+      "id": "uncoupled",
+      "A": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "B": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "C": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "side_coupling",
+      "A": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "B": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ]
+      ],
+      "C": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "main_coupling",
+      "A": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "B": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "C": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "cross_coupling",
+      "A": [
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "B": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          1
+        ]
+      ],
+      "C": [
+        1,
+        0
+      ]
+    }
+  ],
+  "experiments": [
+    {
+      "id": "main_impulse",
+      "controls": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "readings": [
+        {
+          "tick": 0,
+          "cost": 1
+        },
+        {
+          "tick": 1,
+          "cost": 1
+        },
+        {
+          "tick": 2,
+          "cost": 1
+        }
+      ],
+      "actuationCost": 0
+    },
+    {
+      "id": "side_impulse",
+      "controls": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "readings": [
+        {
+          "tick": 0,
+          "cost": 1
+        },
+        {
+          "tick": 1,
+          "cost": 1
+        },
+        {
+          "tick": 2,
+          "cost": 1
+        }
+      ],
+      "actuationCost": 0
+    },
+    {
+      "id": "cross_impulse",
+      "controls": [
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "readings": [
+        {
+          "tick": 0,
+          "cost": 1
+        },
+        {
+          "tick": 1,
+          "cost": 1
+        },
+        {
+          "tick": 2,
+          "cost": 1
+        }
+      ],
+      "actuationCost": 0
+    }
+  ],
+  "noiseBound": "1/100",
+  "maxTotalReadings": 6,
+  "workLimit": 50000
+}
