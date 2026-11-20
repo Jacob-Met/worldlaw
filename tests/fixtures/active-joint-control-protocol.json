@@ -1,0 +1,77 @@
+{
+  "schema": "worldlaw.joint-control-receiving-protocol/v1",
+  "lockedBeforeProductionEdits": true,
+  "baselineCommit": "e594f01ef511aee2ad26607fe5b086abbd72068d",
+  "seed": 6094352,
+  "caseCount": 48,
+  "files": {
+    "generate.py": "47b454fc5e287d414dc3f819b2749b94598c3c3d1e4039a9ee34d409c7895f85",
+    "cases.json": "595fb5111c37e2b72b540b57d6af1f4304759ffc5b28f43f77496ed739002a34",
+    "baseline.mjs": "83b1d822dc8b31aeaa9017eae670724f8369b24795a4203bae3f0991e7dab78c",
+    "benchmark.mjs": "42a8c77a29930bc83977469826ef898ed35eecfc38392161f736702d2bd83b48",
+    "receive.py": "5a7e869dfaa354d477de4e7e20918649b5586e0efb7e9b3b6dd338dc890eb491",
+    "prior-active-linear-family.mjs": "d434733f237711cf316ffc1a5667d5765f19a6423d11902705616df0a5c17156"
+  },
+  "independentExactChecks": {
+    "oneControl": {
+      "cases": 100,
+      "sha256": "3bb42a8a4732c01bbd016b2f4f867a05487ebaad6b78217f8bfeb14a466e6d3f"
+    },
+    "twoControls": {
+      "cases": 20,
+      "sha256": "611a2d12d3940086e583f8e4b71b5de73be96b939f2f4bfa94e2749dce578587"
+    },
+    "method": "Full signed-line arrangement envelope versus all per-tuple LP vertices; exact Fraction arithmetic"
+  },
+  "oracle": {
+    "command": "python3 scripts/active-joint-control-receiving.py --module src/science/active-linear-family.mjs --cases tests/fixtures/active-joint-control-cases.json --output OUTPUT.json",
+    "numpy": "1.26.4",
+    "scipy": "1.14.1",
+    "absoluteTolerance": 1e-09,
+    "LPPrimalDualTolerance": 1e-09,
+    "freeMarginVariable": true,
+    "checks": [
+      "independent Fraction impulse-response dynamics",
+      "every optional reading schedule up to the winning cardinality",
+      "every signed pairwise circuit tuple",
+      "numeric tick tie order after cardinality and cost",
+      "full-menu joint maximum",
+      "chosen controls and exact primal/dual box certificates",
+      "independent primal affine distance for every chosen pair",
+      "three separately generated readout courses per certified case"
+    ]
+  },
+  "benchmark": {
+    "baseline": "Frozen exact exhaustive schedule and LP-vertex reference, not an earlier shipped continuous solver",
+    "command": "node --max-old-space-size=1536 scripts/active-joint-control-benchmark.mjs MODULE before|after tests/fixtures/active-joint-control-cases.json anchor|cohort 3",
+    "rounds": 3,
+    "order": [
+      "before",
+      "after",
+      "after",
+      "before"
+    ],
+    "sameWorkerSameNode": true,
+    "warmup": 0,
+    "separateFreshNodeProcessPerRun": true,
+    "anchor": "coupled_minimum_union",
+    "cohortCases": 12,
+    "repetitions": 3,
+    "semanticDigestMustMatch": true,
+    "claimOnlyMeasuredResults": true
+  },
+  "acceptance": [
+    "preserve old fixed, intervention and binary-box sources, plans, counters and historical replay",
+    "new explicit schema requires 3\u20135 laws; no silent reinterpretation of binary v1",
+    "strict independent rational control bounds and optional reading schedule, at most eight nonfixed scalar inputs",
+    "finite signed-tuple search uses one common input for every pair",
+    "exact primal simplex and independently recomputed weighted box upper certificate on every LP",
+    "strict separation greater than twice noise; exact contact refused",
+    "incomplete circuit or tuple or LP search is inconclusive and publishes no chosen optimal experiment",
+    "full maintained tests, both HTTP smokes and prior locked independent receiving",
+    "actual browser and fresh official package: interior controls, exact joint margin, separate readings, all outcomes, notebook byte custody and replay",
+    "1920x1080 and 390/320 layouts, keyboard and reduced motion",
+    "official exact merged-main package, every source digest verified, actual exported notebook replayed by separate CLI"
+  ],
+  "scope": "Source-declared 3\u20135 linear laws, independent arbitrary initial states, scalar observations, common independent bounded controls, optional readings. Synthetic hidden-environment checks do not establish a physical law or calibrated noise. No actuation, empirical acquisition, coupled input constraints, adaptive control, Bayesian posterior or arbitrary nonlinear-mechanism discovery."
+}

@@ -1,0 +1,85 @@
+{
+  "schema": "worldlaw.active-linear-joint-control/v1",
+  "source": "Hypothetical impulse response alternatives: outputs 0, 1+v and 1-v at tick1; arbitrary independent initial states vanish under A=0. No physical acquisition.",
+  "hypotheses": [
+    {
+      "id": "zero_response",
+      "A": [
+        [
+          0
+        ]
+      ],
+      "B": [
+        [
+          0,
+          0
+        ]
+      ],
+      "C": [
+        1
+      ]
+    },
+    {
+      "id": "added_response",
+      "A": [
+        [
+          0
+        ]
+      ],
+      "B": [
+        [
+          1,
+          1
+        ]
+      ],
+      "C": [
+        1
+      ]
+    },
+    {
+      "id": "opposed_response",
+      "A": [
+        [
+          0
+        ]
+      ],
+      "B": [
+        [
+          1,
+          -1
+        ]
+      ],
+      "C": [
+        1
+      ]
+    }
+  ],
+  "controlBounds": [
+    {
+      "min": [
+        1,
+        -1
+      ],
+      "max": [
+        1,
+        1
+      ]
+    },
+    {
+      "min": [
+        0,
+        0
+      ],
+      "max": [
+        0,
+        0
+      ]
+    }
+  ],
+  "offeredTicks": [
+    1
+  ],
+  "maxReadings": 1,
+  "noiseBound": "1/4",
+  "workLimit": 50000
+}

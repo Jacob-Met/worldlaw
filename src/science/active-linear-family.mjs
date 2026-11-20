@@ -12,6 +12,8 @@
  * The prospective designer never reads outcomes; the separate readout
  * evaluator checks supplied values against a replayed, frozen design.
  */
+import {maximizeSignedBoxEnvelope} from './exact-box-envelope.mjs';
+
 export const ACTIVE_LINEAR_FAMILY_SCHEMA='worldlaw.active-linear-family/v1';
 const err=s=>{throw Error('Active linear family: '+s);};
 const need=(ok,s)=>{if(!ok)err(s);};
@@ -182,7 +184,7 @@ function pairProof(pair,indices,epsilon){
       {counterexample:'Known forcing is absorbable by independent unknown initial states.'}:
       {inconclusive:'Circuit enumeration reached the declared work limit.'})};
 }
-function compileFamily(request){
+function compileFamily(request,parseControl=number){
   need(request&&typeof request==='object'&&!Array.isArray(request),
     'provide a source-declared linear hypothesis family');
   need(request.schema===ACTIVE_LINEAR_FAMILY_SCHEMA,
@@ -200,7 +202,7 @@ function compileFamily(request){
   const u=controls.map(r=>{
     need(Array.isArray(r)&&r.length===controls[0].length,
       'all control vectors must use the same dimension');
-    return r.map(number);
+    return r.map(parseControl);
   });
   const length=controls.length,cols=u[0].length;
   const tickMenu=request.offeredTicks??Array.from({length:length+1},(_,i)=>i);
@@ -424,14 +426,15 @@ export function replayActiveInterventionFamily(request,prior){
 export const ACTIVE_LINEAR_CONTROL_BOX_SCHEMA='worldlaw.active-linear-control-box/v1';
 const controlBoxFields=new Set(['schema','source','hypotheses','controlBounds','offeredTicks',
   'maxReadings','noiseBound','costByTick','workLimit']);
-function compileControlBox(request){
+function compileBoundedFamily(request,schema=ACTIVE_LINEAR_CONTROL_BOX_SCHEMA,joint=false){
   need(request&&typeof request==='object'&&!Array.isArray(request)&&
-    request.schema===ACTIVE_LINEAR_CONTROL_BOX_SCHEMA,
-    'explicit worldlaw.active-linear-control-box/v1 schema is required');
+    request.schema===schema,'explicit '+schema+' schema is required');
   need(Object.keys(request).every(key=>controlBoxFields.has(key)),
     'control-box sources accept only declared dynamics, independent bounds, scalar reading ticks, costs, noise and work limit; remove unknown or competing control fields');
-  need(Array.isArray(request.hypotheses)&&request.hypotheses.length===2,
-    'bounded-control synthesis requires exactly two competing hypotheses');
+  need(Array.isArray(request.hypotheses)&&(joint?
+    request.hypotheses.length>=3&&request.hypotheses.length<=5:request.hypotheses.length===2),
+    joint?'joint bounded-control synthesis requires 3–5 competing hypotheses':
+      'bounded-control synthesis requires exactly two competing hypotheses');
   need(request.hypotheses.every(law=>law&&typeof law==='object'&&!Array.isArray(law)&&
     Object.keys(law).every(key=>['id','A','B','C'].includes(key))),
     'bounded-control laws accept only id, A, B and C; initial states must remain independent and unconstrained');
@@ -458,18 +461,26 @@ function compileControlBox(request){
   const family=compileFamily({...request,schema:ACTIVE_LINEAR_FAMILY_SCHEMA,
     controls:raw.map(row=>row.min)});
   const Bs=request.hypotheses.map(law=>law.B.map(row=>row.map(number)));
-  const rows=family.offered.map(t=>[...family.laws[0].schedule[t].observable,
-    ...family.laws[1].schedule[t].observable.map(neg)]);
+  return {...family,Bs,bounds:bounds.flat(),channels};
+}
+function compileControlPair(family,first,second){
+  const {laws,Bs,bounds,channels,offered}=family;
+  const rows=offered.map(t=>[...laws[first].schedule[t].observable,
+    ...laws[second].schedule[t].observable.map(neg)]);
   // The coefficient of u[k,c] at output t is C A^(t-k-1) B[:,c].
   // These rows do not depend on observations or on a guessed initial state.
-  const response=family.offered.map(t=>bounds.flatMap((_,k)=>
+  const response=offered.map(t=>Array.from({length:bounds.length/channels},(_,k)=>
     Array.from({length:channels},(_,c)=>{
       if(k>=t)return Z();
-      const effect=index=>dot(family.laws[index].schedule[t-k-1].observable,
+      const effect=index=>dot(laws[index].schedule[t-k-1].observable,
         Bs[index].map(row=>row[c]));
-      return sub(effect(1),effect(0));
-    })));
-  return {...family,rows,response,bounds:bounds.flat(),channels};
+      return sub(effect(second),effect(first));
+    })).flat());
+  return {rows,response};
+}
+function compileControlBox(request){
+  const family=compileBoundedFamily(request);
+  return {...family,...compileControlPair(family,0,1)};
 }
 const closestToZero=bound=>bound.lower.n>0n?bound.lower:
   bound.upper.n<0n?bound.upper:Z();
@@ -595,6 +606,143 @@ export function replayActiveLinearControlBox(request,prior){
   return {valid:true,sourceOnly:true,physicalActionsPerformed:false};
 }
 
+export const ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA='worldlaw.active-linear-joint-control/v1';
+const rationalOperations=Object.freeze({Q,Z,add,sub,mul,div,neg,dot});
+
+/** For each pair p, distance d_p(u)=max_c f_pc(u), where c ranges over
+ * signed, l1-normalized annihilating circuits. Finite independent choices give
+ * min_p max_c f_pc(u) = max_(c_p for every p) min_p f_p,c_p(u).
+ * Maximize both sides over the SAME box input. Each tuple is one rational LP.
+ *
+ * Every robust optional schedule contains one qualifying witness per pair.
+ * Their support union is a no-larger robust schedule at that common input.
+ * Thus complete tuple enumeration certifies minimum union cardinality, cost
+ * and numeric tick order. Comparing all tuples on the winning union also
+ * certifies its greatest worst-pair margin. We still visit larger unions to
+ * certify the distinct full-menu maximum. Pairwise box maxima are never used
+ * as a jointly attainable guarantee.
+ */
+export function designActiveLinearJointControl(request){
+  const family=compileBoundedFamily(request,ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA,true);
+  const {laws,offered,maxReadings,workLimit,eps,cost,bounds,channels}=family;
+  need(bounds.filter(b=>sub(b.upper,b.lower).n!==0n).length<=8,
+    'joint bounded-control synthesis accepts at most eight nonfixed scalar input intervals');
+  const budget=workBudget(workLimit),pairs=[],indices=offered.map((_,i)=>i);
+  for(let i=0;i<laws.length;i++)for(let j=i+1;j<laws.length;j++){
+    const {rows,response}=compileControlPair(family,i,j);
+    pairs.push({id:laws[i].id+'__'+laws[j].id,
+      inventory:controlBoxCircuits(rows,response,bounds,budget)});
+  }
+  const statistics={pairCircuitCounts:pairs.map(pair=>pair.inventory.circuits.length),
+    tuplesVisited:0,lpSolved:0,lpPivots:0,lpCertificatesChecked:0};
+  const potential=pairs.map(pair=>{
+    let maximum=null;
+    for(const circuit of pair.inventory.circuits)
+      if(!maximum||sub(circuit.margin,maximum.margin).n>0n)maximum=circuit;
+    return controlBoxProof(pair.id,maximum,indices,eps,pair.inventory.complete,channels);
+  });
+  const base={schema:ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA,source:request.source,
+    hypothesisIds:laws.map(law=>law.id),offeredTicks:offered,
+    controlBounds:Array.from({length:bounds.length/channels},(_,t)=>({
+      min:bounds.slice(t*channels,(t+1)*channels).map(b=>fmt(b.lower)),
+      max:bounds.slice(t*channels,(t+1)*channels).map(b=>fmt(b.upper))})),
+    observationUnits:'Declared scalar output units; unknown initial states are independent for each hypothesis',
+    noiseBound:fmt(eps),sourceOnly:true,physicalActionsPerformed:false,outcomeValuesUsed:false,
+    potential,potentialMeaning:'These are independent pairwise box maxima and may require conflicting inputs; only jointPotential certifies one common input.',
+    pairCount:pairs.length,maxReadings,workLimit,noiseMethod:'exact-joint-box-affine-linf-circuits/v1',
+    objective:'Minimum reading count, then declared reading cost, then numeric tick order; maximum worst-pair distance at one common input on the selected schedule.',
+    workAccounting:'Affine kernels, rank-complete circuit extensions, signed endpoints, tuple traversal, LP starts, pivots and affected tableau row updates share one hard limit.'};
+  const summary=(record,selected,exact)=>{
+    if(!record||record.result.value.n<0n)return {margin:'0',exact,controls:null,certificate:null};
+    return {margin:fmt(record.result.value),exact,controls:controlVectors(record.result.controls,channels),
+      certificate:{signedWitnesses:record.choices.map((choice,i)=>({pair:pairs[i].id,
+        weights:selected.map(index=>fmt(choice.weights[index])),
+        controlCoefficients:controlVectors(choice.coefficients,channels)})),
+      mixtureWeights:record.result.mixtureWeights.map(fmt),upperBound:fmt(record.result.upperBound),
+      scope:'One signed-witness tuple. Global optimality additionally requires complete circuit and tuple enumeration.',
+      meaning:'Every pair distance dominates its signed normalized witness. A nonnegative mixture of total weight one bounds this tuple from above by its exact linear maximum on the input box.'}};
+  };
+  let maximum=null,best=null;
+  const refused=(status,interpretation,exact,extra={})=>({...base,status,
+    jointPotential:summary(maximum,indices,exact),jointProof:null,selection:null,chosenControls:null,
+    proof:null,numReadings:null,totalCost:null,nodes:budget.nodes,exhausted:budget.exhausted,
+    statistics,interpretation,...extra});
+  if(pairs.some(pair=>!pair.inventory.complete))return refused('search_inconclusive',
+    'Circuit enumeration reached the declared limit. Independent pair maxima and partial lower bounds do not establish a joint optimum.',false);
+  if(pairs.some(pair=>pair.inventory.structural===false))return refused('structurally_indistinguishable_on_control_box',
+    'At least one pair can agree for every allowed input, even with all offered readings; a jointly separating experiment does not exist on this box.',true);
+  const options=pairs.map(pair=>pair.inventory.circuits.flatMap(circuit=>[1,-1].map(sign=>({
+    mask:circuit.mask,weights:circuit.weights.map(w=>div(mul(Q(BigInt(sign)),w),circuit.norm)),
+    coefficients:circuit.coefficients.map(v=>div(mul(Q(BigInt(sign)),v),circuit.norm))}))));
+  const schedules=new Map(),threshold=mul(Q(2n),eps);
+  const schedule=mask=>{
+    if(!schedules.has(mask)){
+      const selected=indices.filter(i=>mask&(1<<i)),ticks=selected.map(i=>offered[i]);
+      schedules.set(mask,{indices:selected,ticks,expense:ticks.reduce((sum,t)=>sum+(cost[t]??1),0)});
+    }
+    return schedules.get(mask);
+  };
+  const visit=(depth,choices,mask)=>{
+    if(!budget.take())return;
+    if(depth<options.length){
+      for(const choice of options[depth]){
+        visit(depth+1,[...choices,choice],mask|choice.mask);
+        if(budget.exhausted)return;
+      }
+      return;
+    }
+    statistics.tuplesVisited++;
+    const result=maximizeSignedBoxEnvelope(choices.map(choice=>choice.coefficients),bounds,budget,rationalOperations);
+    statistics.lpPivots+=result.pivots;
+    if(!result.complete)return;
+    statistics.lpSolved++;statistics.lpCertificatesChecked++;
+    const record={choices,result,mask};
+    if(!maximum||sub(result.value,maximum.result.value).n>0n)maximum=record;
+    if(sub(result.value,threshold).n<=0n)return;
+    const current=schedule(mask);if(current.ticks.length>maxReadings)return;
+    const priority=!best?-1:current.ticks.length-best.schedule.ticks.length||
+      current.expense-best.schedule.expense||numericTickOrder(current.ticks,best.schedule.ticks);
+    if(priority<0||(priority===0&&sub(result.value,best.result.value).n>0n))best={...record,schedule:current};
+  };
+  visit(0,[],0);
+  if(budget.exhausted)return refused('search_inconclusive',
+    'The joint tuple or LP search reached its declared limit. Attainable lower bounds remain conditional witnesses; no chosen experiment, impossibility or optimality is certified.',false);
+  need(maximum&&maximum.result.value.n>=0n,'internal complete joint search lost the nonnegative distance bound');
+  if(maximum.result.value.n===0n)return refused('structurally_indistinguishable_on_control_box',
+    'For every allowed input, at least one pair can agree on all offered readings. The complete joint maximum is zero.',true);
+  if(sub(maximum.result.value,threshold).n<=0n)return refused('noise_separation_not_certified',
+    'For every allowed input, at least one pair has touching or overlapping closed error tubes, even with all offered readings. The blocking pair may change with the input.',true,{noiseOverlapProven:true});
+  if(!best)return refused('insufficient_reading_budget',
+    'A joint experiment exists on the full menu, but every robust witness union needs more than the allowed number of readings.',true);
+  const fixedPairs=pairs.map(pair=>({id:pair.id,inventory:{complete:true,circuits:
+    pair.inventory.circuits.map(circuit=>{
+      const gap=dot(circuit.coefficients,best.result.controls);
+      return {...circuit,gap,margin:div(Q(abs(gap.n),gap.d),circuit.norm)};
+    })}}));
+  const proof=fixedPairs.map(pair=>pairProof(pair,best.schedule.indices,eps));
+  const actualMinimum=fixedPairs.map(pair=>affineDistance(pair.inventory,best.schedule.indices).margin)
+    .reduce((a,b)=>sub(a,b).n<=0n?a:b);
+  need(sub(actualMinimum,best.result.value).n===0n&&proof.every(row=>row.robustCertified),
+    'internal common-input witness union did not reproduce the exact joint optimum');
+  return {...base,status:'optimal_certified_joint_control',
+    jointPotential:summary(maximum,indices,true),jointProof:summary(best,best.schedule.indices,true),
+    selection:best.schedule.ticks.map(tick=>({tick,cost:cost[tick]??1})),
+    chosenControls:controlVectors(best.result.controls,channels),proof,
+    numReadings:best.schedule.ticks.length,totalCost:best.schedule.expense,
+    nodes:budget.nodes,exhausted:false,statistics,
+    interpretation:'One bounded input jointly separates every declared pair and maximizes the worst-pair distance on the certified minimum optional schedule. All initial states remain independent and arbitrary. No actuation or physical calibration was performed.'};
+}
+function verifyJointControlCertificate(request,prior){
+  const fresh=designActiveLinearJointControl(request);
+  need(prior?.schema===ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA&&JSON.stringify(prior)===JSON.stringify(fresh),
+    'joint-control certificate or source changed; exact prospective replay refused');
+  return rankCompleteCircuits;
+}
+export function replayActiveLinearJointControl(request,prior){
+  verifyJointControlCertificate(request,prior);
+  return {valid:true,sourceOnly:true,physicalActionsPerformed:false};
+}
+
 export const ACTIVE_LINEAR_READINGS_SCHEMA='worldlaw.active-linear-readings/v1';
 export const ACTIVE_LINEAR_READOUT_RESULT_SCHEMA='worldlaw.active-linear-readout-result/v1';
 
@@ -604,9 +752,11 @@ export const ACTIVE_LINEAR_READOUT_RESULT_SCHEMA='worldlaw.active-linear-readout
 export function evaluateActiveLinearReadings(request,plan,readout){
   const multiple=request?.schema===ACTIVE_INTERVENTION_SCHEMA;
   const bounded=request?.schema===ACTIVE_LINEAR_CONTROL_BOX_SCHEMA;
+  const joint=request?.schema===ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA;
   const enumeration=multiple?verifyInterventionCertificate(request,plan):
-    bounded?verifyControlBoxCertificate(request,plan):verifyLinearCertificate(request,plan);
-  need(plan.status===(multiple?'optimal_certified_intervention':bounded?'optimal_certified_control_box':'optimal_certified_schedule'),
+    bounded?verifyControlBoxCertificate(request,plan):joint?verifyJointControlCertificate(request,plan):verifyLinearCertificate(request,plan);
+  need(plan.status===(multiple?'optimal_certified_intervention':bounded?'optimal_certified_control_box':
+    joint?'optimal_certified_joint_control':'optimal_certified_schedule'),
     'readout evaluation requires a replayed certified prospective plan');
   need(readout&&readout.schema===ACTIVE_LINEAR_READINGS_SCHEMA,
     'explicit worldlaw.active-linear-readings/v1 schema is required');
@@ -631,8 +781,11 @@ export function evaluateActiveLinearReadings(request,plan,readout){
   const intervention=multiple?request.interventions.find(item=>item.id===plan.chosenIntervention):null;
   const course=multiple?{...request,schema:ACTIVE_LINEAR_FAMILY_SCHEMA,controls:intervention.controls,
     workLimit:request.workLimitPerCourse??request.workLimit??50000}:
-    bounded?{...request,schema:ACTIVE_LINEAR_FAMILY_SCHEMA,controls:plan.chosenControls}:request;
-  const {laws,eps,workLimit}=compileFamily(course),budget=workBudget(workLimit);
+    (bounded||joint)?{...request,schema:ACTIVE_LINEAR_FAMILY_SCHEMA,controls:plan.chosenControls}:request;
+  // Replayed solver-generated interior fractions may be wider than the source
+  // coefficient budget. Only these already verified plan values use this parser.
+  const parseGenerated=value=>{const [n,d='1']=value.split('/');return Q(BigInt(n),BigInt(d));};
+  const {laws,eps,workLimit}=compileFamily(course,joint?parseGenerated:number),budget=workBudget(workLimit);
   const checks=laws.map(law=>{
     const rows=ticks.map(t=>law.schedule[t].observable);
     const delta=ticks.map(t=>sub(values.get(t),law.schedule[t].forced));

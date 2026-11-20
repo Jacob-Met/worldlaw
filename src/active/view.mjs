@@ -4,7 +4,7 @@ export const escapeHTML=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;'
 export const approximate=value=>{const [n,d='1']=String(value).split('/');return Number(n)/Number(d);};
 export const displayNumber=value=>Number.isFinite(value)?Number(value.toPrecision(5)).toString():'outside display range';
 export const plannedTicks=plan=>(plan.chosenReadings??plan.selection??[]).map(row=>row.tick);
-export const certified=plan=>['optimal_certified_intervention','optimal_certified_schedule','optimal_certified_control_box'].includes(plan?.status);
+export const certified=plan=>['optimal_certified_intervention','optimal_certified_schedule','optimal_certified_control_box','optimal_certified_joint_control'].includes(plan?.status);
 const colors=['#6ce4f2','#ffbf69','#c7adff','#9cdea7','#ff9eb0'];
 export function finiteDisplayRange(values,padding=.12){
   if(!values.length||!values.every(Number.isFinite))return null;
@@ -35,7 +35,8 @@ export function illustrateModels(book){
     return {id:law.id,color:colors[index%colors.length],initial,values,response};
   });
   return {request,controls,traces,isDemo,horizon:controls.length,
-    bounded:request.schema==='worldlaw.active-linear-control-box/v1',
+    bounded:['worldlaw.active-linear-control-box/v1','worldlaw.active-linear-joint-control/v1'].includes(request.schema),
+    joint:request.schema==='worldlaw.active-linear-joint-control/v1',
     referenceControls:Boolean(request.controlBounds&&!book.plan.chosenControls)};
 }
 
