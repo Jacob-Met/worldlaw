@@ -4,7 +4,7 @@ export const escapeHTML=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;'
 export const approximate=value=>{const [n,d='1']=String(value).split('/');return Number(n)/Number(d);};
 export const displayNumber=value=>Number.isFinite(value)?Number(value.toPrecision(5)).toString():'outside display range';
 export const plannedTicks=plan=>(plan.chosenReadings??plan.selection??[]).map(row=>row.tick);
-export const certified=plan=>['optimal_certified_intervention','optimal_certified_schedule'].includes(plan?.status);
+export const certified=plan=>['optimal_certified_intervention','optimal_certified_schedule','optimal_certified_control_box'].includes(plan?.status);
 const colors=['#6ce4f2','#ffbf69','#c7adff','#9cdea7','#ff9eb0'];
 export function finiteDisplayRange(values,padding=.12){
   if(!values.length||!values.every(Number.isFinite))return null;
@@ -19,7 +19,9 @@ const dot=(a,b)=>a.reduce((sum,v,i)=>sum+approximate(v)*b[i],0);
  * These illustrative starts are not fitted states or uncertainty envelopes. */
 export function illustrateModels(book){
   const request=JSON.parse(book.sourceText),isDemo=book.plan.sourceSHA256===COUPLED_DEMO_SOURCE_SHA256;
-  const controls=request.controls??request.interventions.find(row=>row.id===book.plan.chosenIntervention)?.controls??request.interventions[0].controls;
+  const controls=request.controls??book.plan.chosenControls??
+    request.interventions?.find(row=>row.id===book.plan.chosenIntervention)?.controls??
+    request.interventions?.[0]?.controls??request.controlBounds?.map(row=>row.min);
   const traces=request.hypotheses.map((law,index)=>{
     const initial=isDemo?[3,-2]:law.A.map(()=>0);
     let state=initial.slice(),forced=law.A.map(()=>0);const values=[],response=[];
@@ -32,7 +34,9 @@ export function illustrateModels(book){
     }
     return {id:law.id,color:colors[index%colors.length],initial,values,response};
   });
-  return {request,controls,traces,isDemo,horizon:controls.length};
+  return {request,controls,traces,isDemo,horizon:controls.length,
+    bounded:request.schema==='worldlaw.active-linear-control-box/v1',
+    referenceControls:Boolean(request.controlBounds&&!book.plan.chosenControls)};
 }
 
 export function witnessProjection(book,readingIndex,pairIndex=0){

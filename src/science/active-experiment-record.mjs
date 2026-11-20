@@ -3,9 +3,9 @@
  * a sensor, actuation, calibration, the time of planning or physical origin.
  */
 import {
-  ACTIVE_LINEAR_FAMILY_SCHEMA, ACTIVE_INTERVENTION_SCHEMA,
-  designActiveLinearFamily, designActiveInterventionFamily,
-  replayActiveLinearFamily, replayActiveInterventionFamily,
+  ACTIVE_LINEAR_FAMILY_SCHEMA, ACTIVE_INTERVENTION_SCHEMA, ACTIVE_LINEAR_CONTROL_BOX_SCHEMA,
+  designActiveLinearFamily, designActiveInterventionFamily, designActiveLinearControlBox,
+  replayActiveLinearFamily, replayActiveInterventionFamily, replayActiveLinearControlBox,
   evaluateActiveLinearReadings,
 } from './active-linear-family.mjs';
 
@@ -27,17 +27,19 @@ export async function activeBytesSHA256(value){
 function source(bytes){
   const request=JSON.parse(decoder.decode(bytes));
   const multiple=request?.schema===ACTIVE_INTERVENTION_SCHEMA;
-  need(multiple||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA,
-    'Unrecognized active experiment source schema; choose linear family or intervention family v1');
-  return {request,multiple};
+  const bounded=request?.schema===ACTIVE_LINEAR_CONTROL_BOX_SCHEMA;
+  need(multiple||bounded||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA,
+    'Unrecognized active experiment source schema; choose linear family, intervention family or control box v1');
+  return {request,multiple,bounded};
 }
 function pick(value,keys){return Object.fromEntries(keys.map(key=>[key,value?.[key]]));}
 
 /** Create a new prospective plan, or reproduce a saved plan exactly. */
 export async function sealActivePlan(original,{prior=null,sourcePath}={}){
-  const bytes=bytesOf(original),{request,multiple}=source(bytes);
+  const bytes=bytesOf(original),{request,multiple,bounded}=source(bytes);
   const saved=prior==null?null:clone(prior);
-  const core=multiple?designActiveInterventionFamily(request):designActiveLinearFamily(request);
+  const core=multiple?designActiveInterventionFamily(request):bounded?
+    designActiveLinearControlBox(request):designActiveLinearFamily(request);
   const sourceSHA256=await activeBytesSHA256(bytes);
   let frozen=core,planSHA256=await activeBytesSHA256(JSON.stringify(core));
   if(saved){
@@ -47,6 +49,7 @@ export async function sealActivePlan(original,{prior=null,sourcePath}={}){
     need(saved.planSHA256===await activeBytesSHA256(JSON.stringify(previous)),
       'Prospective plan digest changed; cannot replay experiment certificate');
     if(multiple)replayActiveInterventionFamily(request,previous);
+    else if(bounded)replayActiveLinearControlBox(request,previous);
     else replayActiveLinearFamily(request,previous);
     frozen=previous;planSHA256=saved.planSHA256;
   }

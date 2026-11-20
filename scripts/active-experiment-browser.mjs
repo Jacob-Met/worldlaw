@@ -224,6 +224,64 @@ try{
   await page.screenshot({path:resolve(dir,'active-cyclic-320.png'),fullPage:true});
   mark('noise defeats separation without erasing history; a distinct five-state source uses only supplied readings');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('bounded');
+  await page.locator('#load-example').click();await idle();
+  const boundedPreview=JSON.parse(await page.locator('#certificate').textContent());
+  assert.equal(boundedPreview.status,'optimal_certified_control_box');
+  assert.deepEqual(boundedPreview.selection.map(row=>row.tick),[0,1,4]);
+  assert.deepEqual(boundedPreview.chosenControls,[['1'],['1'],['1'],['0']]);
+  assert.equal(await page.locator('#exact-margin').textContent(),'3/4');
+  assert.equal(await page.locator('#control-course').isVisible(),true);
+  assert.deepEqual(await page.locator('#control-table .chosen-control').allTextContents(),['1','1','1','0']);
+  assert.equal(await page.locator('#demo-controls').isVisible(),false);
+  await page.locator('#freeze-plan').focus();await page.keyboard.press('Enter');
+  assert.equal(await page.evaluate(()=>document.activeElement.id),'readout-source');
+  await page.locator('#readout-source').fill('Separate hand calculation: p0=3, v0=-2, unit coupling, velocity inputs 1,1,1,0.');
+  await page.locator('#acquisition-kind').selectOption('synthetic');
+  for(const [t,v] of [[0,'3'],[1,'1'],[4,'1']])await page.locator('#reading-'+t).fill(v);
+  await page.locator('#evaluate-readings').click();await idle();
+  const boundedOne=await accepted();assert.deepEqual(boundedOne.readouts[0].result.consistentHypothesisIds,['unit_coupling']);
+  assert.equal(boundedOne.plan.planSHA256,boundedPreview.planSHA256);
+  await page.locator('#source-details').evaluate(element=>{element.open=false;});
+  await page.locator('#supplied-details').evaluate(element=>{element.open=false;});
+  for(const width of [1920,390,320]){
+    await page.setViewportSize({width,height:width===1920?1080:844});
+    await page.locator('#control-course').scrollIntoViewIfNeeded();
+    const layout=await page.locator('#control-table').evaluate(host=>({
+      width:innerWidth,pageWidth:document.documentElement.scrollWidth,tableWidth:host.getBoundingClientRect().width,
+      cells:[...host.querySelectorAll('th,td')].map(cell=>({client:cell.clientWidth,scroll:cell.scrollWidth}))}));
+    assert.ok(layout.pageWidth<=width);assert.ok(layout.cells.every(cell=>cell.scroll<=cell.client+1));
+    layouts.push({kind:'bounded-control',...layout});
+    await page.screenshot({path:resolve(dir,'active-bounded-'+width+'.png'),fullPage:true});
+  }
+  await page.locator('#tick').focus();await page.keyboard.press('Home');await page.keyboard.press('ArrowRight');
+  assert.equal(await page.locator('#control-table tr[data-current]').getAttribute('data-input-tick'),'1');
+  await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Independent deliberately mismatched synthetic position values.');
+  for(const [t,v] of [[0,'3'],[1,'1'],[4,'20']])await page.locator('#reading-'+t).fill(v);
+  await page.locator('#evaluate-readings').click();await idle();
+  assert.equal((await accepted()).readouts.at(-1).result.status,'all_hypotheses_falsified');
+  await page.locator('#readout-source').fill('Independent partial synthetic reading; later readings remain missing.');
+  await page.locator('#reading-0').fill('3');
+  await page.locator('#evaluate-readings').click();await idle();
+  const boundedBook=await accepted();assert.equal(boundedBook.readouts.at(-1).result.status,'multiple_hypotheses_consistent');
+  const boundedPath=await download('export-notebook','active-bounded-notebook.json');
+  const boundedReplay=cli(['--notebook',boundedPath]);assert.equal(boundedReplay.status,0,boundedReplay.stderr);
+  assert.deepEqual(JSON.parse(boundedReplay.stdout),boundedBook);
+  const forged=clone(boundedBook);forged.plan.chosenControls[0][0]='-1';
+  await refuse('changed-bounded-control.json',forged,boundedBook);
+  await page.reload();await idle();assert.deepEqual(await accepted(),boundedBook);
+  mark('continuous bounded input, exact visible control course, keyboard, narrow pixels, separate outcomes and portable replay');
+  await openDetails('source-details');await page.locator('#new-draft').click();await idle();
+  await page.locator('#noise-bound').fill('1/2');await page.locator('#replan').click();await idle();
+  assert.equal(JSON.parse(await page.locator('#certificate').textContent()).status,'noise_separation_not_certified');
+  assert.deepEqual(await page.locator('#control-table .chosen-control').allTextContents(),['—','—','—','—']);
+  assert.match(await page.locator('#illustration-note').textContent(),/reference forecasts use the lower bound/);
+  await page.locator('#freeze-plan').click();assert.equal(await page.locator('#evaluate-readings').isDisabled(),true);
+  await setFile('notebook-file','original-bounded-book.json',await readFile(boundedPath));await idle();
+  assert.deepEqual(await accepted(),boundedBook);
+  mark('closed control-box noise contact refuses acquisition and keeps the earlier original notebook replayable');
+
   const legacy=JSON.parse(await readFile('tests/fixtures/active-linear-certificates-v1.json','utf8')).cases[0];
   await setFile('source-file','historical-source.json',legacy.sourceText);await idle();
   await setFile('plan-file','historical-plan.json',JSON.stringify(legacy.plan));await idle();

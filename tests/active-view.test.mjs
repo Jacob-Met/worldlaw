@@ -39,3 +39,18 @@ test('numeric graphics refuse overflow while the exact scientific record stays a
   assert.match(host.innerHTML,/finite display range/);assert.doesNotMatch(host.innerHTML,/<svg|NaN|Infinity/);
   assert.equal(JSON.stringify(book),before);
 });
+
+test('bounded input illustrations use the frozen chosen course and label uncertified reference controls',async()=>{
+  const text=await readFile(new URL('../examples/active-control-box-coupled-kinematics.json',import.meta.url),'utf8');
+  const designed=await createActiveNotebook(text),view=illustrateModels(designed);
+  assert.equal(view.bounded,true);assert.equal(view.referenceControls,false);
+  assert.deepEqual(view.controls,[['1'],['1'],['1'],['0']]);
+  assert.deepEqual(view.traces.map(row=>row.values),[[0,0,1,3,6],[0,0,2,6,12]]);
+  const projection=witnessProjection(designed,-1);
+  assert.deepEqual(projection.centers,[6,12]);assert.equal(projection.radius,2);
+  const request=JSON.parse(text);request.noiseBound='1';
+  const refused=await createActiveNotebook(JSON.stringify(request)),reference=illustrateModels(refused);
+  assert.equal(reference.referenceControls,true);assert.equal(refused.plan.chosenControls,null);
+  assert.deepEqual(reference.traces.map(row=>row.values),[[0,0,-1,-3,-6],[0,0,-2,-6,-12]]);
+  assert.equal(witnessProjection(refused,-1),null);
+});
