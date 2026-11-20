@@ -5,8 +5,10 @@ on:
       - 'src/science/active-linear-family.mjs'
       - 'scripts/active-linear-family.mjs'
       - 'scripts/active-family-nullgarden-receiving.mjs'
+      - 'scripts/active-noise-primal-receiving.py'
       - 'tests/active-linear-family.test.mjs'
       - 'tests/active-intervention-family.test.mjs'
+      - 'tests/active-linear-noise.test.mjs'
       - 'examples/active-*.json'
       - '.github/workflows/active-linear-family-nullgarden.yml'
   push:
@@ -15,8 +17,10 @@ on:
       - 'src/science/active-linear-family.mjs'
       - 'scripts/active-linear-family.mjs'
       - 'scripts/active-family-nullgarden-receiving.mjs'
+      - 'scripts/active-noise-primal-receiving.py'
       - 'tests/active-linear-family.test.mjs'
       - 'tests/active-intervention-family.test.mjs'
+      - 'tests/active-linear-noise.test.mjs'
       - 'examples/active-*.json'
       - '.github/workflows/active-linear-family-nullgarden.yml'
 permissions:
@@ -31,7 +35,22 @@ jobs:
         with:
           node-version: '22'
       - name: Verify exact arithmetic, source isolation and held-out rank oracle
-        run: node --test tests/active-linear-family.test.mjs tests/active-intervention-family.test.mjs
+        run: node --test tests/active-linear-family.test.mjs tests/active-intervention-family.test.mjs tests/active-linear-noise.test.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned independent primal optimizer
+        run: python -m pip install numpy==1.26.4 scipy==1.14.1
+      - name: Receive frozen baseline and candidate against the independent primal LP
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+        run: |
+          mkdir -p .receipts/active-noise-primal
+          git fetch --depth=1 --no-tags origin a1e14d5ef766940bd1a1ad1bf4a2e104a11f41b2
+          git show a1e14d5ef766940bd1a1ad1bf4a2e104a11f41b2:src/science/active-linear-family.mjs > "$RUNNER_TEMP/worldlaw-noise-baseline.mjs"
+          python scripts/active-noise-primal-receiving.py --module "$RUNNER_TEMP/worldlaw-noise-baseline.mjs" --output .receipts/active-noise-primal/baseline.json --baseline
+          python scripts/active-noise-primal-receiving.py --module src/science/active-linear-family.mjs --output .receipts/active-noise-primal/candidate.json
       - name: Independently pin unchanged Nullgarden source
         uses: actions/checkout@v4
         with:
@@ -45,9 +64,12 @@ jobs:
           NULLGARDEN_ARTIFACT_DIR: ${{ github.workspace }}/.receipts/active-family-nullgarden
         run: node scripts/active-family-nullgarden-receiving.mjs
       - name: Retain exact source and independent evidence, not generated build outputs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: active-family-source-receiver-${{ github.run_id }}
-          path: .receipts/active-family-nullgarden/
+          path: |
+            .receipts/active-family-nullgarden/
+            .receipts/active-noise-primal/
           if-no-files-found: error
           retention-days: 14

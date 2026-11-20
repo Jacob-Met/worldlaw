@@ -6,11 +6,11 @@
  * schedule, pair i/j can be separated for every possible initial state only
  * when the known-input response difference is outside col([O_i,-O_j]).
  *
- * Exact left-nullspace witnesses prove this and, when sensor noise is
- * bounded by epsilon in absolute output units, a certificate
- * |w.d| > 2 epsilon ||w||_1 proves separation even under adversarial noise
- * on both hypothetical models. Failure to find that witness is NOT a
- * proof of impossibility under noise. No real measurements are read.
+ * Minimal-support left-nullspace circuits compute the EXACT l-infinity
+ * distance between these affine output families. Their bounded-error
+ * tubes are disjoint iff this distance is strictly greater than 2 epsilon.
+ * The prospective designer never reads outcomes; the separate readout
+ * evaluator checks supplied values against a replayed, frozen design.
  */
 export const ACTIVE_LINEAR_FAMILY_SCHEMA='worldlaw.active-linear-family/v1';
 const err=s=>{throw Error('Active linear family: '+s);};
@@ -42,7 +42,6 @@ const zero=n=>Array.from({length:n},Z);
 const rowTimes=(r,m)=>m[0].map((_,j)=>dot(r,m.map(t=>t[j])));
 const matTimes=(m,v)=>m.map(r=>dot(r,v));
 const sumVectors=(a,b)=>a.map((v,i)=>add(v,b[i]));
-const copy=x=>JSON.parse(JSON.stringify(x));
 function matrix(raw,n,col,label){
   need(Array.isArray(raw)&&raw.length===n&&raw.every(r=>Array.isArray(r)&&r.length===col),
     label+' must be '+n+'x'+col);
@@ -80,41 +79,77 @@ function nullBasis(m){
   }
   return out;
 }
-function proofForPair(a,b,indices,epsilon){
-  const rows=indices.map(t=>[
-    ...a[t].observable,
-    ...b[t].observable.map(neg)
-  ]);
-  const delta=indices.map(t=>sub(b[t].forced,a[t].forced));
-  const bases=nullBasis(rows);
-  let witness=null,margin=Z();
-  for(const w of bases){
-    const gap=dot(w,delta);
-    if(gap.n===0n)continue;
-    const norm=w.reduce((s,v)=>add(s,Q(abs(v.n),v.d)),Z());
-    const candidate=div(Q(abs(gap.n),gap.d),norm);
-    if(!witness||sub(candidate,margin).n>0n){margin=candidate;witness=w;}
-  }
-  const structural=!!witness;
-  const robust=structural&&sub(margin,mul(Q(2n),epsilon)).n>0n;
-  if(witness){
-    need(witness.every((_,idx)=>true)&&rows[0].every((_,col)=>
-      dot(witness,rows.map(row=>row[col])).n===0n),
-      'internal nullspace certificate failure');
-  }
-  return {
-    structural,
-    robustCertified:robust,
-    marginLowerBound:fmt(margin),
-    ...(witness?{witness:{
-      weights:witness.map(fmt),
-      signedGap:fmt(dot(witness,delta)),
-      l1Norm:fmt(witness.reduce((s,v)=>add(s,Q(abs(v.n),v.d)),Z())),
-      meaning:'Exact unknown-state annihilator; |gap|/||weights||1 is a sufficient noise-separation margin.'
-    }}:{counterexample:'Known forcing is absorbable by independent unknown initial states.'})
-  };
+const l1=vector=>vector.reduce((sum,value)=>add(sum,Q(abs(value.n),value.d)),Z());
+function workBudget(limit){
+  return {limit,nodes:0,exhausted:false,take(){
+    if(this.nodes>=this.limit){this.exhausted=true;return false;}
+    this.nodes++;return true;
+  }};
 }
-export function designActiveLinearFamily(request){
+
+/**
+ * min_x ||delta - rows*x||_infinity equals
+ * max_{rows^T*w=0, ||w||_1<=1} |w^T*delta| by finite LP duality.
+ * Every nonzero extreme point of this section of the l1 ball is a circuit:
+ * its support has a one-dimensional left kernel with no zero coordinates.
+ * Otherwise a kernel perturbation preserving the active l1 face would
+ * express it as a nontrivial convex combination. Circuit size is at most
+ * rank(rows)+1. Exhaustive support enumeration therefore proves the optimum.
+ *
+ * Cache full-menu circuits once. Restricting to circuits supported on a
+ * selected schedule gives its exact optimum, including zero. No floating
+ * rank tolerance, statistical noise assumption, or basis-dependent pruning.
+ */
+function affineCircuits(rows,delta,budget){
+  if(!budget.take())return {complete:false,structural:null,circuits:[]};
+  const basis=nullBasis(rows);
+  const structural=basis.some(w=>dot(w,delta).n!==0n);
+  if(!structural)return {complete:true,structural:false,circuits:[]};
+  const circuits=[],count=rows.length,rank=count-basis.length;
+  for(let mask=1;mask<2**count;mask++){
+    const support=[];
+    for(let i=0;i<count;i++)if(mask&(1<<i))support.push(i);
+    if(support.length>rank+1)continue;
+    if(!budget.take())return {complete:false,structural:true,circuits};
+    const subrows=support.map(i=>rows[i]);
+    const kernel=nullBasis(subrows);
+    if(kernel.length!==1||kernel[0].some(value=>value.n===0n))continue;
+    const weights=zero(count);
+    support.forEach((index,i)=>{weights[index]=kernel[0][i];});
+    const gap=dot(weights,delta);
+    if(gap.n===0n)continue;
+    need(rows[0].every((_,col)=>dot(weights,rows.map(row=>row[col])).n===0n),
+      'internal circuit annihilation failure');
+    const norm=l1(weights),margin=div(Q(abs(gap.n),gap.d),norm);
+    circuits.push({mask,weights,gap,norm,margin});
+  }
+  return {complete:true,structural:true,circuits};
+}
+function affineDistance(inventory,indices){
+  const mask=indices.reduce((bits,index)=>bits|(1<<index),0);
+  let winner=null;
+  for(const circuit of inventory.circuits){
+    if((circuit.mask&mask)!==circuit.mask)continue;
+    if(!winner||sub(circuit.margin,winner.margin).n>0n)winner=circuit;
+  }
+  return {margin:winner?.margin??Z(),exact:inventory.complete,
+    witness:winner?{
+      weights:indices.map(index=>fmt(winner.weights[index])),
+      signedGap:fmt(winner.gap),l1Norm:fmt(winner.norm),
+      meaning:'Exact unknown-state annihilator; maximum |gap|/||weights||1 over all circuits is the affine l-infinity distance.'
+    }:null};
+}
+function pairProof(pair,indices,epsilon){
+  const result=affineDistance(pair.inventory,indices);
+  const structural=result.margin.n!==0n?true:result.exact?false:null;
+  return {pair:pair.id,structural,
+    robustCertified:sub(result.margin,mul(Q(2n),epsilon)).n>0n,
+    marginLowerBound:fmt(result.margin),noiseMarginExact:result.exact,
+    ...(result.witness?{witness:result.witness}:result.exact?
+      {counterexample:'Known forcing is absorbable by independent unknown initial states.'}:
+      {inconclusive:'Circuit enumeration reached the declared work limit.'})};
+}
+function compileFamily(request){
   need(request&&typeof request==='object'&&!Array.isArray(request),
     'provide a source-declared linear hypothesis family');
   need(request.schema===ACTIVE_LINEAR_FAMILY_SCHEMA,
@@ -173,33 +208,42 @@ export function designActiveLinearFamily(request){
     }
     return {id:h.id,schedule};
   });
-  const pairs=[];
+  return {laws,offered,maxReadings,workLimit,eps,cost};
+}
+export function designActiveLinearFamily(request){
+  const {laws,offered,maxReadings,workLimit,eps,cost}=compileFamily(request);
+  const budget=workBudget(workLimit),pairs=[];
   for(let i=0;i<laws.length;i++)for(let j=i+1;j<laws.length;j++)
-    pairs.push({id:laws[i].id+'__'+laws[j].id,a:laws[i].schedule,b:laws[j].schedule});
-  const evaluate=indices=>pairs.map(p=>({
-    pair:p.id,...proofForPair(p.a,p.b,indices,eps)
-  }));
+    pairs.push({id:laws[i].id+'__'+laws[j].id,
+      inventory:affineCircuits(offered.map(t=>[
+        ...laws[i].schedule[t].observable,...laws[j].schedule[t].observable.map(neg)]),
+      offered.map(t=>sub(laws[j].schedule[t].forced,laws[i].schedule[t].forced)),budget)});
+  const evaluate=ticks=>pairs.map(pair=>pairProof(pair,ticks.map(t=>offered.indexOf(t)),eps));
   const potential=evaluate(offered);
-  const impossible=potential.filter(p=>!p.structural);
+  const impossible=potential.filter(p=>p.structural===false);
   const base={schema:ACTIVE_LINEAR_FAMILY_SCHEMA,source:request.source,
     hypothesisIds:laws.map(l=>l.id),offeredTicks:offered,
     observationUnits:'Declared scalar output units; unknown initial states are independent for each hypothesis',
     noiseBound:fmt(eps),sourceOnly:true,physicalActionsPerformed:false,
     outcomeValuesUsed:false,
-    potential,pairCount:pairs.length,maxReadings,workLimit};
+    potential,pairCount:pairs.length,maxReadings,workLimit,
+    noiseMethod:'exact-affine-linf-circuits/v1',
+    workAccounting:'Affine rank checks, candidate circuit supports and schedule traversal nodes share one hard limit.'};
   if(impossible.length)return {...base,status:'structurally_indistinguishable_on_offered_course',
-    selection:null,proof:null,nodes:0,
+    selection:null,proof:null,nodes:budget.nodes,exhausted:budget.exhausted,
     interpretation:'Exact row-space no-go for at least one pair even with every proposed measurement; control or sensors must change.'};
-  // A basis-only robust witness criterion is deliberately one-sided and
-  // NOT monotone under adding observations: a subset can expose a better
-  // canonical null vector than the union. Never prune the finite search
-  // from a failed full-menu witness. Structural impossibility above *is*
-  // monotone and remains a valid early no-go.
-  let nodes=0,exhausted=false,best=null,structuralCandidates=0;
+  if(budget.exhausted)return {...base,status:'search_inconclusive',selection:null,proof:null,
+    nodes:budget.nodes,exhausted:true,
+    interpretation:'Circuit enumeration interrupted at the declared limit; partial lower bounds do not prove impossibility or optimality.'};
+  if(potential.some(p=>!p.robustCertified))return {...base,
+    status:'noise_separation_not_certified',noiseOverlapProven:true,selection:null,proof:null,
+    nodes:budget.nodes,exhausted:false,
+    interpretation:'Exact affine distance is at most twice the declared error bound for at least one pair, even with every offered reading. Their closed error tubes overlap; no subset can guarantee separation.'};
+  let best=null,structuralCandidates=0;
   for(let size=1;size<=maxReadings;size++){
     let winner=null;
     const walk=(next,chosen,expense)=>{
-      nodes++;if(nodes>workLimit){exhausted=true;return;}
+      if(!budget.take())return;
       if(chosen.length===size){
         const cases=evaluate(chosen);
         if(cases.every(p=>p.structural))structuralCandidates++;
@@ -213,25 +257,27 @@ export function designActiveLinearFamily(request){
       const remaining=size-chosen.length;
       for(let i=next;i<=offered.length-remaining;i++){
         walk(i+1,[...chosen,offered[i]],expense+(cost[offered[i]]??1));
-        if(exhausted)return;
+        if(budget.exhausted)return;
       }
     };
     walk(0,[],0);
     if(winner){best=winner;break;}
-    if(exhausted)break;
+    if(budget.exhausted)break;
   }
-  const status=best?(exhausted?'candidate_uncertified':'optimal_certified_schedule'):
-    exhausted?'search_inconclusive':
+  const status=best?(budget.exhausted?'candidate_uncertified':'optimal_certified_schedule'):
+    budget.exhausted?'search_inconclusive':
     structuralCandidates>0?'noise_separation_not_certified':'insufficient_reading_budget';
   return {...base,status,
     selection:best?best.chosen.map(t=>({tick:t,cost:cost[t]??1})):null,
     proof:best?.proof??null,
     numReadings:best?.chosen.length??null,totalCost:best?.expense??null,
-    nodes,exhausted,
+    nodes:budget.nodes,exhausted:budget.exhausted,
     interpretation:best?
-      'Exact finite-choice minimum number and declared cost for the stated sufficient witness criterion; source-only design, not a performed experiment. The noise certificate is conservative, not an optimal adversarial margin.':
-      exhausted?'Finite search interrupted before exhaustive optimality; no optimal claim.':
-      'No witness-certified pairwise separating schedule found within the declared reading budget.'};
+      (budget.exhausted?
+        'Pairwise robust schedule found, but search stopped before cost or cardinality optimality could be certified.':
+        'Exact finite-choice minimum number and declared cost under the optimal adversarial noise margin; source-only design, not a performed experiment.'):
+      budget.exhausted?'Finite search interrupted before exhaustive optimality; no optimal claim.':
+      'No pairwise separating schedule exists within the declared reading budget and bounded-error model.'};
 }
 export function replayActiveLinearFamily(request,prior){
   const fresh=designActiveLinearFamily(request);
@@ -310,8 +356,10 @@ export function designActiveInterventionFamily(request){
     pairProof:selected?.proof??null,
     status,totalNodes,exhausted:anyExhausted,
     interpretation:selected?
-      'Exhaustive finite-menu minimum number of readings, with declared action and sensor cost tie-breaking, under an exact conservative dual noise witness. No intervention, measurement or physical calibration occurred.':
-      'No offered source-declared intervention achieves pairwise robust separation under the current finite menu and proof method. This is not a global impossibility statement beyond offered controls and witnesses.'
+      (anyExhausted?
+        'Robust finite-menu candidate; at least one course exhausted its work budget, so global optimality is not certified.':
+        'Exhaustive finite-menu minimum number of readings, with declared action and sensor cost tie-breaking, under exact affine bounded-error separation. No intervention, measurement or physical calibration occurred.'):
+      'No offered source-declared intervention achieves certified pairwise separation within the current menu and work budget. No claim is made about unoffered physical controls.'
   };
 }
 export function replayActiveInterventionFamily(request,prior){
@@ -320,4 +368,67 @@ export function replayActiveInterventionFamily(request,prior){
     JSON.stringify(prior)===JSON.stringify(fresh),
     'intervention certificate or source changed; exact replay refused');
   return {valid:true,sourceOnly:true,physicalActionsPerformed:false};
+}
+
+export const ACTIVE_LINEAR_READINGS_SCHEMA='worldlaw.active-linear-readings/v1';
+export const ACTIVE_LINEAR_READOUT_RESULT_SCHEMA='worldlaw.active-linear-readout-result/v1';
+
+/** Test supplied outcomes only after replaying the prospective plan. Missing
+ * planned readings remain explicit; extra, duplicate and wrong-course values
+ * are refused. A surviving model is conditional compatibility, never truth. */
+export function evaluateActiveLinearReadings(request,plan,readout){
+  const multiple=request?.schema===ACTIVE_INTERVENTION_SCHEMA;
+  if(multiple)replayActiveInterventionFamily(request,plan);
+  else replayActiveLinearFamily(request,plan);
+  need(plan.status===(multiple?'optimal_certified_intervention':'optimal_certified_schedule'),
+    'readout evaluation requires a replayed certified prospective plan');
+  need(readout&&readout.schema===ACTIVE_LINEAR_READINGS_SCHEMA,
+    'explicit worldlaw.active-linear-readings/v1 schema is required');
+  need(typeof readout.source==='string'&&readout.source.trim().length>=12&&readout.source.length<=2048,
+    'declare the readout source separately from the prospective hypotheses');
+  need(['synthetic','supplied'].includes(readout.acquisition),
+    'readout acquisition must be synthetic or supplied; physical provenance is not verified');
+  if(multiple)need(readout.interventionId===plan.chosenIntervention,
+    'readouts must name the frozen chosen intervention');
+  else need(readout.interventionId==null,'fixed-course readouts cannot name a different intervention');
+  const selected=multiple?plan.chosenReadings:plan.selection;
+  const plannedTicks=selected.map(row=>row.tick);
+  need(Array.isArray(readout.readings)&&readout.readings.length>=1&&
+    readout.readings.length<=plannedTicks.length,'supply a nonempty subset of planned readings');
+  const values=new Map();
+  for(const row of readout.readings){
+    need(row&&Number.isSafeInteger(row.tick)&&plannedTicks.includes(row.tick)&&!values.has(row.tick),
+      'readouts must use distinct ticks from the frozen selected schedule');
+    values.set(row.tick,number(row.value));
+  }
+  const ticks=plannedTicks.filter(t=>values.has(t));
+  const intervention=multiple?request.interventions.find(item=>item.id===plan.chosenIntervention):null;
+  const course=multiple?{...request,schema:ACTIVE_LINEAR_FAMILY_SCHEMA,controls:intervention.controls,
+    workLimit:request.workLimitPerCourse??request.workLimit??50000}:request;
+  const {laws,eps,workLimit}=compileFamily(course),budget=workBudget(workLimit);
+  const checks=laws.map(law=>{
+    const rows=ticks.map(t=>law.schedule[t].observable);
+    const delta=ticks.map(t=>sub(values.get(t),law.schedule[t].forced));
+    const inventory=affineCircuits(rows,delta,budget);
+    const result=affineDistance(inventory,ticks.map((_,i)=>i));
+    const falsified=sub(result.margin,eps).n>0n;
+    return {hypothesis:law.id,status:falsified?'falsified':result.exact?'consistent':'inconclusive',
+      minimumNoiseRequired:result.exact?fmt(result.margin):null,
+      noiseLowerBound:fmt(result.margin),noiseMarginExact:result.exact,
+      ...(result.witness?{witness:result.witness}:{})};
+  });
+  const consistent=checks.filter(row=>row.status==='consistent').map(row=>row.hypothesis);
+  const unresolved=checks.filter(row=>row.status==='inconclusive').map(row=>row.hypothesis);
+  const status=unresolved.length?'readout_inconclusive':consistent.length===0?
+    'all_hypotheses_falsified':consistent.length===1?'one_hypothesis_consistent':'multiple_hypotheses_consistent';
+  return {schema:ACTIVE_LINEAR_READOUT_RESULT_SCHEMA,source:request.source,
+    readoutSource:readout.source,acquisition:readout.acquisition,
+    sourceOnly:false,outcomeValuesUsed:true,physicalActionsPerformed:false,physicalProvenanceVerified:false,
+    chosenIntervention:multiple?plan.chosenIntervention:null,plannedTicks,receivedTicks:ticks,
+    missingTicks:plannedTicks.filter(t=>!values.has(t)),
+    noiseBound:fmt(eps),checks,consistentHypothesisIds:consistent,unresolvedHypothesisIds:unresolved,
+    status,nodes:budget.nodes,workLimit,exhausted:budget.exhausted,
+    interpretation:status==='all_hypotheses_falsified'?
+      'Every offered law contradicts the supplied readings under the declared error bound. Revise the model family or investigate the input, timing, calibration and bound; do not force a winning law.':
+      'Compatibility is conditional on the frozen controls, reading identity and declared error bound. A remaining candidate is not empirical identification or verified physical truth.'};
 }

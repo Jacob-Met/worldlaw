@@ -19,7 +19,38 @@ When each prospective reading has independent-or-correlated but **componentwise 
 
     |wᵀ(f_j-f_i)| / ||w||₁ > 2 ε.
 
-This is a rigorous sufficient condition in declared scalar output units, not an optimal margin. If no searched left-nullspace basis witness passes it, Worldlaw says **not certified** rather than falsely proving impossibility under noise. Exact structural no-go certificates use the complete offered schedule and do prove impossibility within that model/menu.
+The compiler now maximizes this ratio **exactly**, using rational arithmetic. For
+B = [O_i(S), -O_j(S)] and d = f_j(S)-f_i(S), finite linear-programming duality gives
+
+    min_x ||d - Bx||_infinity = max_(B^T w=0, ||w||_1<=1) |w^T d|.
+
+The maximum is attained by a minimal dependent set of rows, called a circuit.
+On that support, the left kernel has dimension one and its vector has no zero
+entries. Otherwise a nonzero kernel perturbation preserving the active L1 face
+would make the point a convex combination rather than an extreme point.
+Enumerating every support of size at most rank(B)+1 therefore proves the optimum;
+the implementation also checks every retained annihilator exactly.
+
+Full-menu circuits are computed once per model pair. Restricting to circuits
+supported on a selected schedule gives that schedule's exact distance. The
+distance cannot decrease when readings are added. A full-menu distance at most
+2ε proves overlap of the two closed error tubes and prevents a smaller schedule
+from guaranteeing separation. **Equality is overlap**, not success.
+
+The field `marginLowerBound` remains for callers and contains the exact distance
+when `noiseMarginExact` is true. The existing status
+`noise_separation_not_certified` is accompanied by `noiseOverlapProven: true`
+when a complete full-menu calculation proves overlap. Exhausted circuit searches
+report incomplete lower bounds and `search_inconclusive`; they never turn a
+missing witness into an impossibility claim.
+
+This replaces the earlier canonical-basis lower bound. For a late velocity pulse
+and the two coupling gains 1 and 2, the full schedule 0,1,2,3,4 has exact distance
+3/8, whereas the earlier basis reported 1/8. The forcing difference is
+[0,0,0,0,1]; the affine fit -3/8+t/4 attains a maximum residual of 3/8, matching
+the circuit supported at ticks 0,3,4. The earlier subset search already found
+those three readings; this example establishes the improved full-menu margin,
+not a previously failed three-reading design.
 
 ## A falsifiable cold case
 
@@ -42,7 +73,7 @@ The replay checks the **exact original input byte digest** and recomputes the fu
 
 The unit tests independently compare 64 held-out law/input cases with a dense numerical augmented-rank oracle, verify a genuinely zero-input negative control, same-law equivalence, mutated inputs and certificates, a high-noise refusal, and an insufficient-budget outcome.
 
-The exact finite enumeration accepts 2–5 named hypotheses, 1–5 latent variables per hypothesis, 1–4 input channels, 2–10 control ticks, at most 12 candidate reading ticks and up to eight selected measurements. Costs are positive integer declarations. The 50,000-node default hard ceiling cannot be waived into a claim of optimality. Rational input coefficients must be literal exact integers or fractions; there is no approximate decimal parser.
+The exact finite enumeration accepts 2–5 named hypotheses, 1–5 latent variables per hypothesis, 1–4 input channels, 2–10 control ticks, at most 12 candidate reading ticks and up to eight selected measurements. Costs are positive integer declarations. The 50,000-node default hard ceiling now counts affine rank checks, candidate circuit supports and schedule traversal together; it cannot be waived into a claim of optimality. Rational input coefficients must be literal exact integers or fractions; there is no approximate decimal parser.
 
 **What this does not establish:** a real experimental channel exists, input actuation is safe or achievable, a model's A/B/C is correct, noise is actually bounded by ε, or the world fits these linear laws. Actual physical qualification requires independently acquired source measurements, calibrated error bounds and a prospective unseen-source intervention. Evidence-level labels in the CLI are intentional; the source-only proof cannot be promoted to empirical causal identification.
 
@@ -59,7 +90,7 @@ Cold source-only example:
 
 The original and dynamic source-identifiability compilers address the row space of a single declared law. Joint intervention design instead separates **two independent unknown-state latent laws**. A no-actuation option is retained as a negative control: in the two-decay example its whole trajectory remains observationally ambiguous, while an early declared impulse permits an exact three-reading certificate. Later excitation is an independently priced alternative, not a strawman.
 
-The optimum is explicitly finite: up to eight named interventions, each with up to ten control ticks, five-dimensional latent laws, up to twelve candidate readout ticks, and 50,000 exact search nodes per intervention. Each offered intervention is evaluated; exhaustion prevents globally certified optimality. Bounded noise uses sufficient canonical nullspace witnesses rather than an unsupported claim of maximum statistical power.
+The optimum is explicitly finite: up to eight named interventions, each with up to ten control ticks, five-dimensional latent laws, up to twelve candidate readout ticks, and 50,000 exact work nodes per intervention. Each offered intervention is evaluated; exhaustion prevents globally certified optimality. Bounded noise uses exact affine-set distance. This deterministic set separation is not statistical power or a probability of discovering the true law.
 
 This is **not** an automated physical laboratory. Actual actuation requires source-bound hardware calibration, verified noise, actuator safety, and independent held-out real-world interventions. No certificate on the offered menu is never a proof that no different physical action could separate models.
 
@@ -74,3 +105,121 @@ With idle input, any finite trajectory can be attributed to a suitable latent po
     node --test tests/active-intervention-family.test.mjs
 
 The test independently varies initial position and hidden velocity over 25 held-out pairs and checks both source models and the zero-input negative. This couples the algebraic certificate to a reproducible dynamical interpretation instead of a synthetic rank-only claim.
+
+## Receive readings against the frozen plan
+
+Keep planning and outcomes in separate files. The prospective command writes
+both the exact source-byte SHA-256 and a digest of its deterministic plan.
+`--readings` requires `--replay` of that earlier plan; it will not silently plan
+another intervention after seeing outcomes.
+
+The readout document has this shape (copy both digests from your saved plan):
+
+```json
+{
+  "schema": "worldlaw.active-linear-readings/v1",
+  "source": "Identify the separate recording or declared synthetic generator here",
+  "acquisition": "supplied",
+  "sourceSHA256": "COPY_SOURCE_DIGEST_FROM_PLAN",
+  "planSHA256": "COPY_PLAN_DIGEST_FROM_PLAN",
+  "interventionId": "COPY_CHOSEN_INTERVENTION_FOR_MENU_PLANS",
+  "readings": [{"tick": 0, "value": "3/2"}]
+}
+```
+
+For a fixed control course, omit `interventionId`. For a finite menu it must name
+the chosen intervention. `acquisition` is `synthetic` or `supplied`; neither
+label verifies physical origin. Values are exact integer or fraction literals.
+Readings can arrive in any order and may be a nonempty subset of planned ticks.
+Missing ticks remain visible. Duplicate ticks, unselected ticks, the wrong
+intervention and mismatching digests are refused. Outcomes never alter the plan.
+
+For each law, the receiver computes
+
+    min_x ||y(S) - f_h(S) - O_h(S)x||_infinity.
+
+The law is compatible iff this value is at most ε. A strict excess supplies an
+exact annihilator explaining its rejection. Complete circuit enumeration is
+required to declare compatibility; an exhausted search remains inconclusive.
+There may be one, several or **zero** compatible laws. Zero means the supplied
+readings contradict the entire offered family under the declared conditions.
+It calls for investigating the model, input, timing, calibration or error bound;
+the receiver does not invent a winner. One compatible law is still a conditional
+candidate, not authenticated physical truth.
+
+### Complete cold synthetic example
+
+First create a prospective coupled-kinematics plan:
+
+```sh
+node scripts/active-linear-family.mjs \
+  --input examples/active-intervention-coupled-kinematics.json \
+  --output /workspace/coupled-plan.json
+```
+
+The selected pulse and ticks 0,1,2 have an independently hand-calculated trace
+[0,0,1] for coupling 1 and zero initial position/velocity. Create its separately
+labeled synthetic readout after saving the plan:
+
+```sh
+node --input-type=module - <<'JS'
+import {readFileSync,writeFileSync} from 'node:fs';
+const plan=JSON.parse(readFileSync('/workspace/coupled-plan.json','utf8'));
+const readings={
+  schema:'worldlaw.active-linear-readings/v1',
+  source:'Hand-calculated synthetic pulse: coupling 1, zero initial position and velocity',
+  acquisition:'synthetic',sourceSHA256:plan.sourceSHA256,planSHA256:plan.planSHA256,
+  interventionId:plan.chosenIntervention,
+  readings:[{tick:0,value:0},{tick:1,value:0},{tick:2,value:1}]
+};
+writeFileSync('/workspace/coupled-readings.json',JSON.stringify(readings,null,2)+'\n',{flag:'wx'});
+JS
+node scripts/active-linear-family.mjs \
+  --input examples/active-intervention-coupled-kinematics.json \
+  --replay /workspace/coupled-plan.json --readings /workspace/coupled-readings.json \
+  --output /workspace/coupled-result.json
+```
+
+The result retains only `unit_coupling`. With the same frozen plan, a separate
+synthetic readout [0,0,10] rejects both laws. With only tick 0 supplied, both remain
+compatible and the missing planned ticks are reported. Neither synthetic outcome
+is a physical acquisition. Keep the first result rather than overwriting it.
+
+Replay after restarting the process:
+
+```sh
+node scripts/active-linear-family.mjs \
+  --input examples/active-intervention-coupled-kinematics.json \
+  --replay /workspace/coupled-plan.json --readings /workspace/coupled-readings.json \
+  --replay-readings /workspace/coupled-result.json
+```
+
+The receiver recomputes all decisions and checks the source, plan and original
+readout-byte digests. Editing a value, certificate or selected intervention
+invalidates replay. Output files are created exclusively; an existing receipt is
+never overwritten by the CLI. These hashes establish byte identity and numerical
+reproducibility, not trusted acquisition time, chronology or physical provenance.
+
+## Independent numerical receiving
+
+The unchanged original 13 active-family tests remain part of acceptance. The
+additional exact controls and cold CLI process course are in
+`tests/active-linear-noise.test.mjs`. An independent receiver freezes 48 generated
+two/three-law courses with seed 3511609 and compares all affordable schedules
+against the primal minimax linear program in SciPy HiGHS. It does not import the
+production nullspace or circuit code. Absolute margin tolerance is fixed at 1e-8;
+false certified schedules and inconsistent readout decisions are not allowed.
+
+```sh
+python -m pip install numpy==1.26.4 scipy==1.14.1
+python scripts/active-noise-primal-receiving.py \
+  --module src/science/active-linear-family.mjs \
+  --output /workspace/active-noise-oracle.json
+node --test tests/active-linear-family.test.mjs \
+  tests/active-intervention-family.test.mjs tests/active-linear-noise.test.mjs
+npm run verify
+```
+
+SciPy is a receiving dependency only; the product and exact solver still require
+only Node.js. The workflow retains the full oracle inputs, comparisons and
+failures as artifacts alongside the unchanged pinned Nullgarden receiver.
