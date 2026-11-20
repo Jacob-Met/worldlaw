@@ -104,6 +104,7 @@ function readStored(key){
   return {guard,entry:JSON.parse(initial.text)};
 }
 function adopt(next,newMode,key=null,save=true,guard=null){
+  const newSource=book?.plan?.sourceSHA256!==next.plan.sourceSHA256;
   custody=guard??(key&&key===activeKey?custody:null);
   book=next;mode=newMode;activeKey=key;readingIndex=book.readouts.length-1;pairIndex=0;dirty=false;
   const shown=displayActiveNotebook(book,readingIndex);
@@ -112,6 +113,7 @@ function adopt(next,newMode,key=null,save=true,guard=null){
     book.plan.schema==='worldlaw.active-linear-joint-control/v1'?(plannedTicks(book.plan)[0]??0):0;
   $('source-text').value=book.sourceText;
   $('noise-bound').value=String(JSON.parse(book.sourceText).noiseBound??0);
+  if(newSource||newMode==='preview'){$('readout-source').value='';$('acquisition-kind').value='supplied';}
   if(newMode==='frozen'&&save)persist();
   else if(newMode==='preview'&&!storageWarning)storageMessage='Draft · not saved';
 }

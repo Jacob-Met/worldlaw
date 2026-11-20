@@ -355,6 +355,8 @@ try{
   await openDetails('source-details');await page.locator('#example').selectOption('adaptive');
   await page.locator('#load-example').click();await idle();
   const adaptivePreview=JSON.parse(await page.locator('#certificate').textContent());
+  assert.equal(await page.locator('#readout-source').inputValue(),'');
+  assert.equal(await page.locator('#acquisition-kind').inputValue(),'supplied');
   assert.equal(adaptivePreview.sourceSHA256,'6d4c8ce6d1503a2de318e50f0da1d9462156e773f3882be384c0502517dd63c3');
   assert.equal(adaptivePreview.status,'optimal_certified_adaptive_policy');
   assert.equal(adaptivePreview.worstReadings,6);assert.equal(adaptivePreview.staticPlan.readings,9);
