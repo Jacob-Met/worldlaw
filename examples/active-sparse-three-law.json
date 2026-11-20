@@ -1,0 +1,75 @@
+{
+  "schema": "worldlaw.active-sparse-excitation/v1",
+  "source": "Predeclared synthetic three-law independent unknown initial-state actuator gains; no physical intervention conducted.",
+  "hypotheses": [
+    {
+      "id": "baseline",
+      "A": [
+        [
+          0
+        ]
+      ],
+      "B": [
+        [
+          0,
+          0
+        ]
+      ],
+      "C": [
+        1
+      ]
+    },
+    {
+      "id": "channel_red",
+      "A": [
+        [
+          0
+        ]
+      ],
+      "B": [
+        [
+          1,
+          0
+        ]
+      ],
+      "C": [
+        1
+      ]
+    },
+    {
+      "id": "channel_blue",
+      "A": [
+        [
+          0
+        ]
+      ],
+      "B": [
+        [
+          0,
+          1
+        ]
+      ],
+      "C": [
+        1
+      ]
+    }
+  ],
+  "controlHorizon": 2,
+  "inputChannels": 2,
+  "amplitudes": [
+    "1",
+    "-1"
+  ],
+  "offeredTicks": [
+    0,
+    1,
+    2
+  ],
+  "maxReadings": 3,
+  "maxPulses": 2,
+  "noiseBound": "1/100",
+  "pulseCost": 2,
+  "maxCourses": 500,
+  "maxCombinations": 2000,
+  "maxWorkNodes": 100000
+}
