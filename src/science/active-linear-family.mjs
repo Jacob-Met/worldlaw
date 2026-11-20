@@ -15,6 +15,7 @@
 import {maximizeSignedBoxEnvelope} from './exact-box-envelope.mjs';
 
 export const ACTIVE_LINEAR_FAMILY_SCHEMA='worldlaw.active-linear-family/v1';
+export const ACTIVE_LINEAR_ERASURE_SCHEMA='worldlaw.active-linear-one-erasure/v1';
 const err=s=>{throw Error('Active linear family: '+s);};
 const need=(ok,s)=>{if(!ok)err(s);};
 const abs=x=>x<0n?-x:x;
@@ -187,7 +188,7 @@ function pairProof(pair,indices,epsilon){
 function compileFamily(request,parseControl=number){
   need(request&&typeof request==='object'&&!Array.isArray(request),
     'provide a source-declared linear hypothesis family');
-  need(request.schema===ACTIVE_LINEAR_FAMILY_SCHEMA,
+  need(request.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA,
     'explicit worldlaw.active-linear-family/v1 schema is required');
   need(typeof request.source==='string'&&request.source.trim().length>=12&&request.source.length<=2048,
     'declare an independent source or explicitly hypothetical excitation contract');
@@ -271,7 +272,9 @@ function designLinearFamily(request,enumeration){
   const evaluate=ticks=>pairs.map(pair=>pairProof(pair,ticks.map(t=>offered.indexOf(t)),eps));
   const potential=evaluate(offered);
   const impossible=potential.filter(p=>p.structural===false);
-  const base={schema:ACTIVE_LINEAR_FAMILY_SCHEMA,source:request.source,
+  const oneErasure=request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA;
+  const base={schema:request.schema,source:request.source,
+    ...(oneErasure?{maxMissingReadings:1,costIncludesMissing:true}:{}),
     hypothesisIds:laws.map(l=>l.id),offeredTicks:offered,
     observationUnits:'Declared scalar output units; unknown initial states are independent for each hypothesis',
     noiseBound:fmt(eps),sourceOnly:true,physicalActionsPerformed:false,
@@ -296,11 +299,22 @@ function designLinearFamily(request,enumeration){
       if(!budget.take())return;
       if(chosen.length===size){
         const cases=evaluate(chosen);
-        if(cases.every(p=>p.structural))structuralCandidates++;
-        if(cases.every(p=>p.robustCertified)){
+        const deletions=[];
+        if(oneErasure){
+          // A full schedule's tubes are separated after any single erasure iff all
+          // single-deletion projections separate them. The no-loss case follows.
+          for(const missingTick of chosen){
+            if(!budget.take())return;
+            const receivedTicks=chosen.filter(tick=>tick!==missingTick);
+            const pairsAfterDeletion=evaluate(receivedTicks);
+            deletions.push({missingTick,receivedTicks,pairs:pairsAfterDeletion});
+          }
+        }
+        if(cases.every(p=>p.structural)&&deletions.every(d=>d.pairs.every(p=>p.structural)))structuralCandidates++;
+        if(cases.every(p=>p.robustCertified)&&deletions.every(d=>d.pairs.every(p=>p.robustCertified))){
           if(!winner||expense<winner.expense||
             (expense===winner.expense&&chosen.join(',')<winner.chosen.join(',')))
-            winner={chosen:chosen.slice(),expense,proof:cases};
+            winner={chosen:chosen.slice(),expense,proof:cases,...(oneErasure?{deletions}:{})};
         }
         return;
       }
@@ -320,6 +334,7 @@ function designLinearFamily(request,enumeration){
   return {...base,status,
     selection:best?best.chosen.map(t=>({tick:t,cost:cost[t]??1})):null,
     proof:best?.proof??null,
+    ...(oneErasure?{singleDeletionProofs:best?.deletions??null}:{}),
     numReadings:best?.chosen.length??null,totalCost:best?.expense??null,
     nodes:budget.nodes,exhausted:budget.exhausted,
     interpretation:best?
@@ -333,7 +348,7 @@ function verifyLinearCertificate(request,prior){
   const enumeration=prior?.workAccounting===historicalCircuitsV1.workAccounting?
     historicalCircuitsV1:rankCompleteCircuits;
   const fresh=designLinearFamily(request,enumeration);
-  need(prior?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA&&JSON.stringify(prior)===JSON.stringify(fresh),
+  need(prior?.schema===request.schema&&JSON.stringify(prior)===JSON.stringify(fresh),
     'certificate or source changed; exact prospective replay refused');
   return enumeration;
 }
@@ -818,6 +833,8 @@ export function evaluateActiveLinearReadings(request,plan,readout){
     sourceOnly:false,outcomeValuesUsed:true,physicalActionsPerformed:false,physicalProvenanceVerified:false,
     chosenIntervention:multiple?plan.chosenIntervention:null,plannedTicks,receivedTicks:ticks,
     missingTicks:plannedTicks.filter(t=>!values.has(t)),
+    ...(request.schema===ACTIVE_LINEAR_ERASURE_SCHEMA?
+      {withinDesignedErasureBudget:plannedTicks.length-ticks.length<=1}:{}),
     noiseBound:fmt(eps),checks,consistentHypothesisIds:consistent,unresolvedHypothesisIds:unresolved,
     status,nodes:budget.nodes,workLimit,exhausted:budget.exhausted,
     interpretation:status==='all_hypotheses_falsified'?
