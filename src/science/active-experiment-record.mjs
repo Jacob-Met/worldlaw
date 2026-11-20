@@ -3,7 +3,7 @@
  * a sensor, actuation, calibration, the time of planning or physical origin.
  */
 import {
-  ACTIVE_LINEAR_FAMILY_SCHEMA, ACTIVE_LINEAR_ERASURE_SCHEMA, ACTIVE_LINEAR_CALIBRATION_SCHEMA, ACTIVE_INTERVENTION_SCHEMA, ACTIVE_LINEAR_CONTROL_BOX_SCHEMA, ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA,
+  ACTIVE_LINEAR_FAMILY_SCHEMA, ACTIVE_LINEAR_ERASURE_SCHEMA, ACTIVE_LINEAR_REPLACEMENT_SCHEMA, ACTIVE_LINEAR_CALIBRATION_SCHEMA, ACTIVE_INTERVENTION_SCHEMA, ACTIVE_LINEAR_CONTROL_BOX_SCHEMA, ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA,
   designActiveLinearFamily, designActiveInterventionFamily, designActiveLinearControlBox, designActiveLinearJointControl,
   replayActiveLinearFamily, replayActiveInterventionFamily, replayActiveLinearControlBox, replayActiveLinearJointControl,
   evaluateActiveLinearReadings,
@@ -33,8 +33,8 @@ function source(bytes){
   const bounded=request?.schema===ACTIVE_LINEAR_CONTROL_BOX_SCHEMA;
   const joint=request?.schema===ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA;
   const adaptive=request?.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA;
-  need(multiple||bounded||joint||adaptive||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request?.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA,
-    'Unrecognized active experiment source schema; choose linear family, intervention family, control box, joint control, one erasure, affine sensor or adaptive v1');
+  need(multiple||bounded||joint||adaptive||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request?.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request?.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA,
+    'Unrecognized active experiment source schema; choose linear family, intervention family, control box, joint control, one erasure, one replaced reading, affine sensor or adaptive v1');
   return {request,multiple,bounded,joint,adaptive};
 }
 function pick(value,keys){return Object.fromEntries(keys.map(key=>[key,value?.[key]]));}

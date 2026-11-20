@@ -11,6 +11,7 @@ const examplePaths={coupled:'/examples/active-intervention-coupled-kinematics.js
   bounded:'/examples/active-control-box-coupled-kinematics.json',
   joint:'/examples/active-joint-control-three-responses.json',
   adaptive:'/examples/active-adaptive-coupled-track.json',
+  replacement:'/examples/active-linear-one-replacement.json',
   cycles:'/examples/active-linear-family-signed-cycles.json',decays:'/examples/active-linear-family-decays.json'};
 const worker=new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'});
 const pending=new Map();let messageId=0,generation=0,busy=false;
@@ -117,9 +118,42 @@ function adopt(next,newMode,key=null,save=true,guard=null){
   if(newMode==='frozen'&&save)persist();
   else if(newMode==='preview'&&!storageWarning)storageMessage='Draft · not saved';
 }
+function renderReplacementWitness(plan,pair){
+  const proofs=plan.doubleDeletionProofs??[];
+  if(!proofs.length){
+    $('witness-equation').textContent='No certified schedule';
+    $('exact-margin').textContent='—';
+    $('witness-explanation').textContent='The offered readings and design budget do not certify separation when one value can be wrong.';
+  }else{
+    let weakest=proofs[0];
+    const fraction=proof=>proof.pairs[pair].marginLowerBound.split('/');
+    for(const proof of proofs.slice(1)){
+      const [a,b='1']=fraction(proof),[c,d='1']=fraction(weakest);
+      if(BigInt(a)*BigInt(d)<BigInt(c)*BigInt(b))weakest=proof;
+    }
+    $('witness-equation').textContent='One reading may be wrong';
+    $('exact-margin').textContent=weakest.pairs[pair].marginLowerBound;
+    $('witness-explanation').textContent='Each law may identify a different reading as wrong. All '+proofs.length+
+      ' pairs of excluded ticks still leave distinguishable histories. The smallest separation occurs when ticks '+
+      weakest.excludedTicks.join(' and ')+' are excluded.';
+  }
+  $('projection').replaceChildren();
+}
+
+function replacementReadoutEvidence(check){
+  if(check.consistentWithoutReplacement)return 'All received values fit within the declared noise bound.';
+  const possible=check.omissions.filter(row=>row.status==='consistent').map(row=>row.ignoredTick);
+  if(possible.length)return 'The received values fit if tick '+possible.join(' or ')+' is ignored.';
+  return check.status==='falsified'?'The values still conflict after ignoring any one received tick.':
+    'The search limit left the possible bad tick unresolved.';
+}
+
 function renderWitness(){
   const projection=witnessProjection(book,readingIndex,pairIndex);
   $('exact-noise').textContent='± '+book.plan.noiseBound;
+  if(book.plan.schema==='worldlaw.active-linear-one-replacement/v1'){
+    renderReplacementWitness(book.plan,pairIndex);return;
+  }
   if(book.plan.schema==='worldlaw.active-linear-affine-sensor/v1'){
     const pair=book.plan.proof?.[pairIndex];
     $('witness-equation').textContent=pair?.status==='separated'?'No common measured history':pair?.status==='overlap'?'A common history is possible':'No separating schedule';
@@ -242,7 +276,7 @@ function render(){
     $('result-origin').textContent=result.acquisition==='synthetic'?'SEPARATE SYNTHETIC READINGS':'SUPPLIED READINGS · PHYSICAL ORIGIN UNVERIFIED';
     $('result-heading').textContent=({one_hypothesis_consistent:'One candidate remains compatible.',all_hypotheses_falsified:'No offered law fits these readings.',all_remaining_hypotheses_falsified:'No remaining law fits these readings.',continue_frozen_policy:'Two or more candidates remain. Follow the frozen branch.',multiple_hypotheses_consistent:'Multiple explanations remain compatible.',readout_inconclusive:'The readout test is inconclusive.'})[result.status];
     $('result-summary').textContent='Checked '+result.receivedTicks.length+' of '+result.plannedTicks.length+' planned readings under ±'+result.noiseBound+' error per reading. The candidate family and control course stayed frozen.';
-    $('candidate-results').innerHTML=result.checks.map(row=>`<div class="candidate-result"><h3>${html(row.hypothesis.replaceAll('_',' '))}</h3><p class="${row.status==='consistent'?'conditional':row.status==='falsified'?'falsified':'muted'}">${row.status==='consistent'?'Conditionally consistent':row.status==='falsified'?'Falsified within the declared bound':'Inconclusive'}</p><small>${book.plan.schema==='worldlaw.active-linear-affine-sensor/v1'?(row.gainWitness?'Compatible gain: '+html(row.gainWitness):'No compatible gain established'):row.noiseMarginExact?'Exact minimum error required: '+html(row.minimumNoiseRequired):'Error lower bound: '+html(row.noiseLowerBound)}</small></div>`).join('');
+    $('candidate-results').innerHTML=result.checks.map(row=>`<div class="candidate-result"><h3>${html(row.hypothesis.replaceAll('_',' '))}</h3><p class="${row.status==='consistent'?'conditional':row.status==='falsified'?'falsified':'muted'}">${row.status==='consistent'?'Conditionally consistent':row.status==='falsified'?'Falsified within the declared bound':'Inconclusive'}</p><small>${book.plan.schema==='worldlaw.active-linear-one-replacement/v1'?html(replacementReadoutEvidence(row)):book.plan.schema==='worldlaw.active-linear-affine-sensor/v1'?(row.gainWitness?'Compatible gain: '+html(row.gainWitness):'No compatible gain established'):row.noiseMarginExact?'Exact minimum error required: '+html(row.minimumNoiseRequired):'Error lower bound: '+html(row.noiseLowerBound)}</small></div>`).join('');
     $('missing-readings').textContent=result.missingTicks.length?'Missing planned ticks: '+result.missingTicks.join(', ')+'. No value was invented.':'Every selected tick is present in this reading set.';
     $('result-interpretation').textContent=result.interpretation;
     $('reading-set').replaceChildren(...book.readouts.map((row,i)=>new Option('Set '+(i+1)+' · '+row.result.acquisition,String(i))));$('reading-set').value=String(readingIndex);
