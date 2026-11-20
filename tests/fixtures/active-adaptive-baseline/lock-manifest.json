@@ -1,0 +1,47 @@
+{
+  "frozenAt": "2026-11-20T06:52:46.400849+00:00",
+  "baseCommit": "1b531254dfd4a86f9c4b0a3d2650f38597879181",
+  "privatePeerAcquisitionSHA256": "5bd937e28a3184d6ed1a352099d7e9ae97dde03561c0ec2ab5540426638d302e",
+  "files": [
+    {
+      "path": "generate.py",
+      "bytes": 7481,
+      "sha256": "2c70699974217d5cb7e0742ce98cdc3dbbc19bcbe0698073ae925824889fedd2"
+    },
+    {
+      "path": "cases.json",
+      "bytes": 173378,
+      "sha256": "2720864c40e6c726644b43c152c05918015cf21139fc777a6e596d6821ca3770"
+    },
+    {
+      "path": "reference.py",
+      "bytes": 11396,
+      "sha256": "a2ba072398ac4b9dcbbf1179ce3f2456e0245a5fce09277f1315f78598736a41"
+    },
+    {
+      "path": "static-reference.mjs",
+      "bytes": 2239,
+      "sha256": "728b1c81afc389a5dcc38feeb9f650c712adac0a21544c270d69720889559c85"
+    },
+    {
+      "path": "benchmark.mjs",
+      "bytes": 2018,
+      "sha256": "efe88914c5589a458813f5401fcb77d56c706cdee10a13586b144d6ea7ce4c2c"
+    },
+    {
+      "path": "protocol.json",
+      "bytes": 5474,
+      "sha256": "b309ed96dc319df87fc4f33c4ad4148e6eb51ff02f4646b4db76c12fb6e3b981"
+    },
+    {
+      "path": "prior-active-linear-family.mjs",
+      "bytes": 48002,
+      "sha256": "d433916068c6405812d15e54011393295aa7c219988a1e05835231ba84c7e2df"
+    },
+    {
+      "path": "exact-box-envelope.mjs",
+      "bytes": 5364,
+      "sha256": "5fa6d02079ca29cc622b6e0d3bd192fc36f25d9540d65ac798f6f76699800071"
+    }
+  ]
+}

@@ -8,6 +8,9 @@ import {
   replayActiveLinearFamily, replayActiveInterventionFamily, replayActiveLinearControlBox, replayActiveLinearJointControl,
   evaluateActiveLinearReadings,
 } from './active-linear-family.mjs';
+import {ACTIVE_LINEAR_ADAPTIVE_SCHEMA,ACTIVE_ADAPTIVE_READINGS_SCHEMA,
+  designActiveLinearAdaptive,replayActiveLinearAdaptive,evaluateActiveAdaptiveReadings}
+  from './active-linear-adaptive.mjs';
 
 export const ACTIVE_EXPERIMENT_NOTEBOOK_SCHEMA='worldlaw.active-experiment-notebook/v1';
 const encoder=new TextEncoder();
@@ -29,18 +32,20 @@ function source(bytes){
   const multiple=request?.schema===ACTIVE_INTERVENTION_SCHEMA;
   const bounded=request?.schema===ACTIVE_LINEAR_CONTROL_BOX_SCHEMA;
   const joint=request?.schema===ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA;
-  need(multiple||bounded||joint||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA,
-    'Unrecognized active experiment source schema; choose linear family, intervention family, control box or joint control v1');
-  return {request,multiple,bounded,joint};
+  const adaptive=request?.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA;
+  need(multiple||bounded||joint||adaptive||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA,
+    'Unrecognized active experiment source schema; choose linear family, intervention family, control box, joint control or adaptive v1');
+  return {request,multiple,bounded,joint,adaptive};
 }
 function pick(value,keys){return Object.fromEntries(keys.map(key=>[key,value?.[key]]));}
 
 /** Create a new prospective plan, or reproduce a saved plan exactly. */
 export async function sealActivePlan(original,{prior=null,sourcePath}={}){
-  const bytes=bytesOf(original),{request,multiple,bounded,joint}=source(bytes);
+  const bytes=bytesOf(original),{request,multiple,bounded,joint,adaptive}=source(bytes);
   const saved=prior==null?null:clone(prior);
   const core=multiple?designActiveInterventionFamily(request):bounded?
-    designActiveLinearControlBox(request):joint?designActiveLinearJointControl(request):designActiveLinearFamily(request);
+    designActiveLinearControlBox(request):joint?designActiveLinearJointControl(request):
+    adaptive?designActiveLinearAdaptive(request):designActiveLinearFamily(request);
   const sourceSHA256=await activeBytesSHA256(bytes);
   let frozen=core,planSHA256=await activeBytesSHA256(JSON.stringify(core));
   if(saved){
@@ -52,6 +57,7 @@ export async function sealActivePlan(original,{prior=null,sourcePath}={}){
     if(multiple)replayActiveInterventionFamily(request,previous);
     else if(bounded)replayActiveLinearControlBox(request,previous);
     else if(joint)replayActiveLinearJointControl(request,previous);
+    else if(adaptive)replayActiveLinearAdaptive(request,previous);
     else replayActiveLinearFamily(request,previous);
     frozen=previous;planSHA256=saved.planSHA256;
   }
@@ -65,6 +71,8 @@ export async function sealActiveReadout(original,plan,readings,{prior=null,sourc
   const saved=prior==null?null:clone(prior);
   const frozen=await sealActivePlan(sourceBytes,{prior:plan});
   const {request}=source(sourceBytes);
+  need(request.schema!==ACTIVE_LINEAR_ADAPTIVE_SCHEMA,
+    'Adaptive readings require the original portable notebook and its complete preceding transcript.');
   const supplied=JSON.parse(decoder.decode(readingBytes));
   need(supplied.sourceSHA256===frozen.sourceSHA256&&supplied.planSHA256===frozen.planSHA256,
     'Readout source or plan digest does not match the frozen prospective certificate.');
@@ -114,13 +122,64 @@ export async function createActiveNotebook(original,{plan=null}={}){
   return {schema:ACTIVE_EXPERIMENT_NOTEBOOK_SCHEMA,sourceText:text,
     plan:await sealActivePlan(text,{prior:plan}),readouts:[]};
 }
+
+/** Display/custody metadata from an already verified notebook. It never solves
+ * or chooses a new policy. Public receiving always replays the book first. */
+export function adaptiveNotebookState(book){
+  if(book?.plan?.schema!==ACTIVE_LINEAR_ADAPTIVE_SCHEMA)return null;
+  const plan=book.plan,last=book.readouts.at(-1)?.result;
+  const started=plan.status==='optimal_certified_adaptive_policy';
+  const stopped=Boolean(last&&last.status!=='continue_frozen_policy');
+  const mask=last?last.nextMask:plan.policy?.initialMask??null;
+  const budget=last?last.nextBudget:plan.worstReadings;
+  const node=started&&!stopped?plan.policy.states.find(row=>row.key===mask+':'+budget):null;
+  const action=node?plan.experiments.find(row=>row.id===node.action):null;
+  return {status:!started?plan.status:stopped?last.status:'awaiting_readings',
+    mask,budget,node,action,round:book.readouts.length+1,
+    previousReadingsSHA256:last?.readingsSHA256??null,
+    spentReadings:book.readouts.reduce((sum,row)=>sum+row.result.readingCount,0),
+    spentCost:book.readouts.reduce((sum,row)=>sum+row.result.declaredCost,0),
+    consistentHypothesisIds:last?.consistentHypothesisIds??plan.hypothesisIds};
+}
+
+/** Seal exactly one continuation against the complete already replayed prefix. */
+async function sealAdaptiveRound(book,originalReadings,{prior=null}={}){
+  const current=adaptiveNotebookState(book),supplied=JSON.parse(originalReadings);
+  need(current?.node&&current.action,'This notebook has no pending frozen experiment; retain its terminal outcome.');
+  const fields=['schema','source','acquisition','sourceSHA256','planSHA256','round',
+    'previousReadingsSHA256','stateKey','experimentId','readings'];
+  need(supplied&&typeof supplied==='object'&&!Array.isArray(supplied)&&
+    Object.keys(supplied).sort().join(',')===fields.sort().join(','),'Adaptive reading document has missing or unexpected fields.');
+  need(supplied.schema===ACTIVE_ADAPTIVE_READINGS_SCHEMA,'Choose an adaptive reading document v1.');
+  need(supplied.sourceSHA256===book.plan.sourceSHA256&&supplied.planSHA256===book.plan.planSHA256,
+    'Adaptive readout source or policy digest does not match the frozen notebook.');
+  need(supplied.round===current.round&&supplied.previousReadingsSHA256===current.previousReadingsSHA256&&
+    supplied.stateKey===current.node.key,'Adaptive readout round, preceding original or frozen state does not match this transcript.');
+  const metadata=new Set(['sourceSHA256','planSHA256','sourcePath','evidenceLevel']);
+  const core=Object.fromEntries(Object.entries(book.plan).filter(([key])=>!metadata.has(key)));
+  const result=evaluateActiveAdaptiveReadings(JSON.parse(book.sourceText),core,supplied,
+    {mask:current.mask,budget:current.budget});
+  const report={sourceSHA256:book.plan.sourceSHA256,planSHA256:book.plan.planSHA256,
+    readingsSHA256:await activeBytesSHA256(originalReadings),round:current.round,
+    previousReadingsSHA256:current.previousReadingsSHA256,stateKey:current.node.key,
+    ...result,evidenceLevel:readingEvidence};
+  if(prior){
+    const keys=Object.keys(report);
+    need(Object.keys(prior).sort().join(',')===[...keys].sort().join(',')&&
+      JSON.stringify(pick(prior,keys))===JSON.stringify(report),
+      'Adaptive original readings, chain, decision or result changed; exact replay refused.');
+  }
+  return report;
+}
 /** Recompute every scientific claim before a caller replaces its current state. */
 export async function replayActiveNotebook(raw){
   const book=notebookObject(raw);
   const plan=await sealActivePlan(book.sourceText,{prior:book.plan});
   const readouts=[];
   for(const row of book.readouts){
-    const result=await sealActiveReadout(book.sourceText,plan,row.readingsText,{prior:row.result});
+    const result=plan.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA?
+      await sealAdaptiveRound({...book,plan,readouts},row.readingsText,{prior:row.result}):
+      await sealActiveReadout(book.sourceText,plan,row.readingsText,{prior:row.result});
     readouts.push({readingsText:row.readingsText,result});
   }
   return {schema:book.schema,sourceText:book.sourceText,plan,readouts};
@@ -129,7 +188,8 @@ export async function replayActiveNotebook(raw){
 export async function receiveActiveNotebook(raw,originalReadings){
   const text=sourceText(originalReadings),book=await replayActiveNotebook(raw);
   need(book.readouts.length<16,'This notebook already contains 16 reading sets; save it and start a separate notebook.');
-  const result=await sealActiveReadout(book.sourceText,book.plan,text);
+  const result=book.plan.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA?await sealAdaptiveRound(book,text):
+    await sealActiveReadout(book.sourceText,book.plan,text);
   need(!book.readouts.some(row=>row.result.readingsSHA256===result.readingsSHA256),
     'These exact reading bytes are already recorded.');
   return {...book,readouts:[...book.readouts,{readingsText:text,result}]};

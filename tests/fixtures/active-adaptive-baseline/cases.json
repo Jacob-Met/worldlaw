@@ -1,0 +1,8765 @@
+{
+  "schema": "worldlaw.adaptive-prospective-course/v1",
+  "seed": 6094353,
+  "scope": "14 analytic and 36 prospectively authored synthetic courses. Not physical or unseen-real-mechanism evidence.",
+  "cases": [
+    {
+      "id": "four_laws_point",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: four laws point. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "adaptiveReadings": 2,
+        "adaptiveCost": 2,
+        "staticReadings": 3
+      }
+    },
+    {
+      "id": "four_laws_integrator",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: four laws integrator. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "adaptiveReadings": 4,
+        "adaptiveCost": 4,
+        "staticReadings": 6
+      }
+    },
+    {
+      "id": "four_laws_coupled",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: four laws coupled. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "adaptiveReadings": 6,
+        "adaptiveCost": 6,
+        "staticReadings": 9
+      }
+    },
+    {
+      "id": "five_laws_budget_slack",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: remaining budget matters. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_4",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_3",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 99
+          },
+          {
+            "id": "slow_cheap",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "adaptiveReadings": 3,
+        "adaptiveCost": 3,
+        "staticReadings": 4
+      }
+    },
+    {
+      "id": "closed_contact",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: closed interval contact. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/2",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "possible": false
+      }
+    },
+    {
+      "id": "zero_input",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: no actuation. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "possible": false
+      }
+    },
+    {
+      "id": "equivalent_laws",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: equivalent offered laws. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "possible": false
+      }
+    },
+    {
+      "id": "non_helly_pair_graph",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospective synthetic three-line tube intersection; all nuisance starts remain arbitrary.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "line_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "line_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "line_2",
+            "A": [
+              [
+                2
+              ]
+            ],
+            "B": [
+              [
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "triangle",
+            "controls": [
+              [
+                1
+              ],
+              [
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "possible": false,
+        "fullIntersectionRadius": "1/8",
+        "maximalMasks": [
+          3,
+          5,
+          6
+        ]
+      }
+    },
+    {
+      "id": "three_tube_closed_contact",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospective synthetic three-line tube intersection; all nuisance starts remain arbitrary.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "line_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "line_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "line_2",
+            "A": [
+              [
+                2
+              ]
+            ],
+            "B": [
+              [
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "triangle",
+            "controls": [
+              [
+                1
+              ],
+              [
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/8",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "possible": false,
+        "fullIntersectionRadius": "1/8",
+        "maximalMasks": [
+          7
+        ]
+      }
+    },
+    {
+      "id": "one_bundle_suffices",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: one bundle suffices. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                2
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                3
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_4",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                4
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1
+              ],
+              [
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "adaptiveReadings": 1,
+        "adaptiveCost": 1,
+        "staticReadings": 1
+      }
+    },
+    {
+      "id": "tiny_exact_forcing",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: tiny exact forcing. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                "0",
+                "1/999999999997",
+                "0"
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                "1/999999999997",
+                "0",
+                "0"
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                "1/999999999997",
+                "0",
+                "1/999999999997"
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "0",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "adaptiveReadings": 2,
+        "adaptiveCost": 2,
+        "staticReadings": 3
+      }
+    },
+    {
+      "id": "signed_forcing",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: signed forcing. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                "0",
+                "-7",
+                "0"
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                "-7",
+                "0",
+                "0"
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                "-7",
+                "0",
+                "-7"
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "adaptiveReadings": 2,
+        "adaptiveCost": 2,
+        "staticReadings": 3
+      }
+    },
+    {
+      "id": "insufficient_total_budget",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: one reading budget. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 1,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "withinBudget": false,
+        "possible": true,
+        "staticReadings": 3
+      }
+    },
+    {
+      "id": "permuted_family",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: permuted law names. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      },
+      "analytic": {
+        "adaptiveReadings": 2,
+        "adaptiveCost": 2,
+        "staticReadings": 3
+      }
+    },
+    {
+      "id": "prospective_point_00",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 0. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_point_01",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 1. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_4",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_point_02",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 2. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_4",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_point_03",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 3. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_point_04",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 4. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_4",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_point_05",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 5. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_point_06",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 6. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_point_07",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 7. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1,
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_3",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_point_08",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 8. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_point_09",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 9. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_4",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_point_10",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 10. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_point_11",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 point course 11. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                0
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          }
+        ],
+        "noiseBound": "1/10",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_00",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 0. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_01",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 1. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_02",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 2. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_03",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 3. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_04",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 4. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_05",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 5. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_3",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_06",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 6. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                -1,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0,
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_3",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_07",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 7. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_08",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 8. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_3",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_09",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 9. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_10",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 10. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_integrator_11",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 integrator course 11. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1
+              ]
+            ],
+            "B": [
+              [
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/20",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_coupled_00",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 coupled course 0. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                -1,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_coupled_01",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 coupled course 1. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_4",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                -1,
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_coupled_02",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 coupled course 2. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                -1,
+                0,
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                -1,
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_3",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_coupled_03",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 coupled course 3. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                -1,
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                -1,
+                0,
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_3",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_coupled_04",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 coupled course 4. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                -1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_3",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_coupled_05",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 coupled course 5. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                1,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                -1,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1,
+              0
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_different_decay_00",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 different_decay course 0. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                "-1"
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                "1/2"
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                "0"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                "1/2"
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_different_decay_01",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 different_decay course 1. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                "2"
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                "2"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                "1"
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                "1/2"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_4",
+            "A": [
+              [
+                "0"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_different_decay_02",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 different_decay course 2. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                "0"
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                0,
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                "0"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1,
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                "0"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0,
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_2",
+            "controls": [
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 3
+          },
+          {
+            "id": "probe_3",
+            "controls": [
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_different_decay_03",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 different_decay course 3. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                "2"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                "1"
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                "0"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                "1/2"
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_4",
+            "A": [
+              [
+                "-1"
+              ]
+            ],
+            "B": [
+              [
+                0,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 2
+          },
+          {
+            "id": "idle",
+            "controls": [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_different_decay_04",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 different_decay course 4. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                "1"
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                "1/2"
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                "1/2"
+              ]
+            ],
+            "B": [
+              [
+                0,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                "1/2"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_4",
+            "A": [
+              [
+                "1"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    },
+    {
+      "id": "prospective_different_decay_05",
+      "request": {
+        "schema": "worldlaw.active-linear-adaptive/v1",
+        "source": "Prospectively authored synthetic adaptive experiment course: seed 6094353 different_decay course 5. No measured provenance.",
+        "resetSemantics": "independent-unknown-state-per-experiment",
+        "hypotheses": [
+          {
+            "id": "law_0",
+            "A": [
+              [
+                "2"
+              ]
+            ],
+            "B": [
+              [
+                0,
+                0
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_1",
+            "A": [
+              [
+                "-1"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                -1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_2",
+            "A": [
+              [
+                "1/2"
+              ]
+            ],
+            "B": [
+              [
+                1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          },
+          {
+            "id": "law_3",
+            "A": [
+              [
+                "1"
+              ]
+            ],
+            "B": [
+              [
+                -1,
+                1
+              ]
+            ],
+            "C": [
+              1
+            ]
+          }
+        ],
+        "experiments": [
+          {
+            "id": "probe_0",
+            "controls": [
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 0
+          },
+          {
+            "id": "probe_1",
+            "controls": [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                0
+              ]
+            ],
+            "readings": [
+              {
+                "tick": 0,
+                "cost": 1
+              },
+              {
+                "tick": 1,
+                "cost": 1
+              },
+              {
+                "tick": 2,
+                "cost": 1
+              },
+              {
+                "tick": 3,
+                "cost": 1
+              }
+            ],
+            "actuationCost": 1
+          }
+        ],
+        "noiseBound": "1/100",
+        "maxTotalReadings": 32,
+        "workLimit": 50000
+      }
+    }
+  ]
+}

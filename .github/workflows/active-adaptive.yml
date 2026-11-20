@@ -1,0 +1,168 @@
+name: Worldlaw adaptive experiment receiving
+on:
+  pull_request:
+    paths:
+      - 'src/science/active-linear-*'
+      - 'src/science/exact-box-envelope.mjs'
+      - 'src/science/active-experiment-record.mjs'
+      - 'scripts/active-adaptive-*'
+      - 'tests/active-adaptive-*'
+      - 'tests/fixtures/active-adaptive-baseline/**'
+      - '.github/workflows/active-adaptive.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/science/active-linear-*'
+      - 'src/science/exact-box-envelope.mjs'
+      - 'src/science/active-experiment-record.mjs'
+      - 'scripts/active-adaptive-*'
+      - 'tests/fixtures/active-adaptive-baseline/**'
+      - '.github/workflows/active-adaptive.yml'
+permissions:
+  contents: read
+jobs:
+  frozen-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        lane: [oracle, static]
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      NODE_OPTIONS: '--max-old-space-size=1536'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.4'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify prospectively frozen inputs and shipped geometry
+        run: |
+          mkdir -p .receipts/active-adaptive-reference
+          python3 - <<'PY'
+          import json,hashlib,subprocess
+          from pathlib import Path
+          root=Path('tests/fixtures/active-adaptive-baseline')
+          assert hashlib.sha256((root/'lock-manifest.json').read_bytes()).hexdigest()=='5402f3c2259977ca0dc947c7925a48e7cba9085aefe381499dbfa9ac1000bc8b'
+          manifest=json.loads((root/'lock-manifest.json').read_text())
+          assert manifest['baseCommit']=='1b531254dfd4a86f9c4b0a3d2650f38597879181'
+          for row in manifest['files']:
+              path=root/row['path']
+              assert path.stat().st_size==row['bytes']
+              assert hashlib.sha256(path.read_bytes()).hexdigest()==row['sha256'],row['path']
+          for old,new in [('src/science/active-linear-family.mjs','prior-active-linear-family.mjs'),('src/science/exact-box-envelope.mjs','exact-box-envelope.mjs')]:
+              original=subprocess.check_output(['git','show',manifest['baseCommit']+':'+old])
+              assert original==(root/new).read_bytes()
+          print(json.dumps({'frozenFiles':len(manifest['files']),'privateAcquisitionSHA256':manifest['privatePeerAcquisitionSHA256']}))
+          PY
+      - name: Independent exact-certified common intersections and adaptive reference
+        if: matrix.lane == 'oracle'
+        run: |
+          python3 -m pip install numpy==1.26.4 scipy==1.14.1
+          python3 tests/fixtures/active-adaptive-baseline/reference.py --output .receipts/active-adaptive-reference/independent-reference.json
+      - name: Exhaustive static catalogue and original cold baseline
+        if: matrix.lane == 'static'
+        run: |
+          node --max-old-space-size=1536 --input-type=module <<'JS'
+          import {readFileSync,writeFileSync} from 'node:fs';
+          import assert from 'node:assert/strict';
+          import {designStaticExperimentCatalogue} from './tests/fixtures/active-adaptive-baseline/static-reference.mjs';
+          const rows=JSON.parse(readFileSync('tests/fixtures/active-adaptive-baseline/cases.json','utf8')).cases,results=[];
+          for(const row of rows){
+            const result=designStaticExperimentCatalogue(row.request);
+            if(row.analytic?.staticReadings!==undefined)assert.equal(result.selection?.readings,row.analytic.staticReadings,row.id);
+            if(row.analytic?.possible===false)assert.equal(result.possible,false,row.id);
+            results.push({id:row.id,...result});console.log(JSON.stringify({id:row.id,selection:result.selection}));
+          }
+          writeFileSync('.receipts/active-adaptive-reference/static-reference.json',JSON.stringify({source:'1b53125 frozen geometry; exhaustive static subsets',results},null,2)+'\n');
+          JS
+          node --max-old-space-size=1536 tests/fixtures/active-adaptive-baseline/benchmark.mjs tests/fixtures/active-adaptive-baseline/static-reference.mjs before tests/fixtures/active-adaptive-baseline/cases.json anchor 3 > .receipts/active-adaptive-reference/static-anchor.json
+          node --max-old-space-size=1536 tests/fixtures/active-adaptive-baseline/benchmark.mjs tests/fixtures/active-adaptive-baseline/static-reference.mjs before tests/fixtures/active-adaptive-baseline/cases.json cohort 3 > .receipts/active-adaptive-reference/static-cohort.json
+      - name: Retain original frozen-reference evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: active-adaptive-reference-${{ matrix.lane }}-${{ github.run_id }}
+          path: .receipts/active-adaptive-reference/
+          if-no-files-found: error
+          retention-days: 14
+  exact-adaptive-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      NODE_OPTIONS: '--max-old-space-size=1536'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.23.4'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact custody, branches, contact and hard-budget checks
+        run: node --test tests/active-adaptive.test.mjs tests/active-experiment-record.test.mjs tests/active-joint-control.test.mjs tests/active-linear-replay.test.mjs
+      - name: Preserve every prior binary and joint plan byte-for-byte
+        run: |
+          node --input-type=module <<'JS'
+          import {readFileSync} from 'node:fs';import assert from 'node:assert/strict';
+          import * as prior from './tests/fixtures/active-adaptive-baseline/prior-active-linear-family.mjs';
+          import * as current from './src/science/active-linear-family.mjs';
+          for(const [path,method] of [['tests/fixtures/active-control-box-cases.json','designActiveLinearControlBox'],['tests/fixtures/active-joint-control-cases.json','designActiveLinearJointControl']]){
+            const rows=JSON.parse(readFileSync(path,'utf8'));
+            for(const row of rows)assert.equal(JSON.stringify(current[method](row.request)),JSON.stringify(prior[method](row.request)),row.name);
+            console.log(JSON.stringify({literalPriorPlansUnchanged:rows.length,method}));
+          }
+          JS
+      - name: Independent common-tube certificates and complete adaptive policy states
+        run: |
+          python3 -m pip install numpy==1.26.4 scipy==1.14.1
+          python3 scripts/active-adaptive-receiving.py --output .receipts/active-adaptive-candidate/independent-receiving.json
+      - name: Cold ABBA computation and acquisition-budget tradeoff
+        run: |
+          python3 - <<'PY'
+          import json,statistics,subprocess
+          from pathlib import Path
+          root=Path.cwd();fixture=root/'tests/fixtures/active-adaptive-baseline';out=root/'.receipts/active-adaptive-candidate'
+          receiving=json.loads((out/'independent-receiving.json').read_text())['receipts']
+          expected={r['id']:{'before':[r['static']['readings'],r['static']['cost']] if r['static'] else [None,None],
+              'after':[r['adaptiveReadings'],r['adaptiveWorstCost']]} for r in receiving}
+          samples=[]
+          for cohort in ['anchor','cohort']:
+              for round_number in range(3):
+                  for index,mode in enumerate(['before','after','after','before']):
+                      module=fixture/'static-reference.mjs' if mode=='before' else root/'src/science/active-linear-adaptive.mjs'
+                      command=['node','--max-old-space-size=1536',str(fixture/'benchmark.mjs'),str(module),mode,str(fixture/'cases.json'),cohort,'3']
+                      completed=subprocess.run(command,text=True,capture_output=True,check=True,timeout=240)
+                      row=json.loads(completed.stdout)
+                      assert row['node']=='v22.23.4'
+                      for case_id,readings,cost in row['outcomes']:
+                          assert [readings,cost]==expected[case_id][mode],(case_id,mode)
+                      row.update(round=round_number,index=index);samples.append(row)
+                      (out/f'{cohort}-{round_number}-{index}-{mode}.json').write_text(json.dumps(row,indent=2)+'\n')
+          summary={}
+          for cohort in ['anchor','cohort']:
+              selected={mode:[r for r in samples if r['cohort']==cohort and r['mode']==mode] for mode in ['before','after']}
+              summary[cohort]={'medianMillisecondsPerRepetition':{mode:statistics.median(r['perRepetitionMs'] for r in rows) for mode,rows in selected.items()},
+                  'medianMaxRSSKiB':{mode:statistics.median(r['maxRSSKiB'] for r in rows) for mode,rows in selected.items()}}
+          result={'scope':'Best static catalogue versus exact adaptive policy, different capability classes; report computation tradeoff with acquisition guarantees.',
+              'node':'v22.23.4','rounds':3,'order':'ABBA','freshProcesses':len(samples),'summary':summary}
+          (out/'abba-receipt.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
+          PY
+      - name: Retain exact candidate and timing receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: active-adaptive-candidate-${{ github.run_id }}
+          path: .receipts/active-adaptive-candidate/
+          if-no-files-found: error
+          retention-days: 14

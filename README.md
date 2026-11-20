@@ -96,6 +96,19 @@ The reading file must carry the plan's source and plan digests. See the
 
 The same Hidden-state apparatus now [designs a joint bounded input](docs/ACTIVE_JOINT_CONTROL.md) for three to five declared linear laws. It minimizes optional reading count and cost, then maximizes the smallest pairwise distance at one common input. The three-response example needs an interior control of −1/3: every box corner and the midpoint confound a pair. Exact closed-noise checks, a hard work limit, independent unknown initial states, separate readouts and byte-bound notebook replay remain explicit. Choose **One interior input for three response laws** in the source section of `/active.html`. This source-only experiment design does not perform a physical acquisition or establish the declared laws.
 
+### Successive experiments with fresh unknown starts
+
+The same apparatus can [freeze an adaptive policy](docs/ACTIVE_ADAPTIVE_EXPERIMENTS.md)
+for a persistent law across separate experiments. Each experiment has a fresh
+arbitrary hidden initial state. The four-coupling track example guarantees at
+most six readings, while the best fixed experiment set needs nine. Choose
+**Successive experiments with fresh unknown starts** in `/active.html`, freeze
+the policy, and receive separate synthetic or supplied rounds. Each recorded
+round retains its own controls and readings; the pending input has its own
+preview. Complete chained notebooks replay through the existing CLI. These
+are exact guarantees over the declared finite catalogue and error bound;
+physical evidence and discovery of the candidate family remain separate.
+
 ## Run locally
 
 With Node.js 20 or newer, from this directory:

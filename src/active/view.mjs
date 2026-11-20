@@ -1,10 +1,13 @@
 import {COUPLED_DEMO_SOURCE_SHA256} from './instrument.mjs';
+import {ADAPTIVE_DEMO_SOURCE_SHA256} from './adaptive-instrument.mjs';
+import {adaptiveNotebookState} from '../science/active-experiment-record.mjs';
+import {ACTIVE_LINEAR_EXACT_ARITHMETIC as exact} from '../science/active-linear-family.mjs';
 
 export const escapeHTML=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const approximate=value=>{const [n,d='1']=String(value).split('/');return Number(n)/Number(d);};
 export const displayNumber=value=>Number.isFinite(value)?Number(value.toPrecision(5)).toString():'outside display range';
 export const plannedTicks=plan=>(plan.chosenReadings??plan.selection??[]).map(row=>row.tick);
-export const certified=plan=>['optimal_certified_intervention','optimal_certified_schedule','optimal_certified_control_box','optimal_certified_joint_control'].includes(plan?.status);
+export const certified=plan=>['optimal_certified_intervention','optimal_certified_schedule','optimal_certified_control_box','optimal_certified_joint_control','optimal_certified_adaptive_policy'].includes(plan?.status);
 const colors=['#6ce4f2','#ffbf69','#c7adff','#9cdea7','#ff9eb0'];
 export function finiteDisplayRange(values,padding=.12){
   if(!values.length||!values.every(Number.isFinite))return null;
@@ -15,15 +18,47 @@ export function finiteDisplayRange(values,padding=.12){
 const shortLabel=(text,length)=>text.length>length?text.slice(0,Math.max(1,length-1))+'…':text;
 const dot=(a,b)=>a.reduce((sum,v,i)=>sum+approximate(v)*b[i],0);
 
+/** Display one frozen adaptive input. Never export this projection or draw a
+ * previous reading against the next experiment's controls. */
+export function displayActiveNotebook(book,readingIndex=-1){
+  if(book.plan.schema!=='worldlaw.active-linear-adaptive/v1'||book.display)return book;
+  const request=JSON.parse(book.sourceText),current=adaptiveNotebookState(book),record=book.readouts[readingIndex];
+  const action=record?book.plan.experiments.find(row=>row.id===record.result.experimentId):
+    current.action??book.plan.experiments[0];
+  const mask=record?record.result.priorMask:current.mask??((1<<request.hypotheses.length)-1);
+  const indices=request.hypotheses.flatMap((_,i)=>mask&(1<<i)?[i]:[]);
+  const hypotheses=indices.map(i=>request.hypotheses[i]),geometry=book.plan.geometry.find(row=>row.experimentId===action.id);
+  const parse=value=>{const [n,d='1']=value.split('/');return exact.Q(BigInt(n),BigInt(d));};
+  const proof=[];
+  for(let i=0;i<indices.length;i++)for(let j=i+1;j<indices.length;j++){
+    const pairMask=(1<<indices[i])|(1<<indices[j]);
+    const row=geometry?.intersections.find(entry=>entry.mask===pairMask);
+    if(!row)continue;
+    const radius=parse(row.radius),weights=row.certificate.weights[1].values;
+    const norm=weights.map(parse).map(value=>value.n<0n?exact.neg(value):value).reduce(exact.add,exact.Z());
+    proof.push({pair:hypotheses[i].id+'__'+hypotheses[j].id,
+      structural:radius.n!==0n,noiseMarginExact:true,
+      marginLowerBound:exact.fmt(exact.mul(exact.Q(2n),radius)),robustCertified:!row.feasible,
+      ...(radius.n!==0n?{witness:{weights,signedGap:row.radius,l1Norm:exact.fmt(norm)}}:{})});
+  }
+  return {sourceText:JSON.stringify({...request,hypotheses,controls:action.controls}),
+    plan:{...book.plan,selection:action.readings,proof},readouts:record?[record]:[],
+    display:{adaptive:true,experiment:action,round:record?record.result.round:current.round,
+      historical:Boolean(record),hypothesisColorIndices:indices,remainingHypothesisIds:hypotheses.map(h=>h.id),
+      excludedHypothesisIds:request.hypotheses.filter((_,i)=>!(mask&(1<<i))).map(h=>h.id)}};
+}
+
 /** Numerical display only. Exact decisions always come from the sealed core.
  * These illustrative starts are not fitted states or uncertainty envelopes. */
-export function illustrateModels(book){
+export function illustrateModels(book,readingIndex=-1){
+  book=displayActiveNotebook(book,readingIndex);
   const request=JSON.parse(book.sourceText),isDemo=book.plan.sourceSHA256===COUPLED_DEMO_SOURCE_SHA256;
+  const adaptiveDemo=book.plan.sourceSHA256===ADAPTIVE_DEMO_SOURCE_SHA256;
   const controls=request.controls??book.plan.chosenControls??
     request.interventions?.find(row=>row.id===book.plan.chosenIntervention)?.controls??
     request.interventions?.[0]?.controls??request.controlBounds?.map(row=>row.min);
   const traces=request.hypotheses.map((law,index)=>{
-    const initial=isDemo?[3,-2]:law.A.map(()=>0);
+    const initial=isDemo||adaptiveDemo?[3,-2]:law.A.map(()=>0);
     let state=initial.slice(),forced=law.A.map(()=>0);const values=[],response=[];
     for(let tick=0;tick<=controls.length;tick++){
       values.push(dot(law.C,state));response.push(dot(law.C,forced));
@@ -32,15 +67,17 @@ export function illustrateModels(book){
         state=next(state);forced=next(forced);
       }
     }
-    return {id:law.id,color:colors[index%colors.length],initial,values,response};
+    return {id:law.id,color:colors[(book.display?.hypothesisColorIndices[index]??index)%colors.length],initial,values,response};
   });
-  return {request,controls,traces,isDemo,horizon:controls.length,
+  return {request,controls,traces,isDemo,adaptiveDemo,adaptive:Boolean(book.display?.adaptive),display:book.display??null,horizon:controls.length,
     bounded:['worldlaw.active-linear-control-box/v1','worldlaw.active-linear-joint-control/v1'].includes(request.schema),
     joint:request.schema==='worldlaw.active-linear-joint-control/v1',
     referenceControls:Boolean(request.controlBounds&&!book.plan.chosenControls)};
 }
 
 export function witnessProjection(book,readingIndex,pairIndex=0){
+  const original=book;book=displayActiveNotebook(book,readingIndex);
+  if(book!==original)readingIndex=book.readouts.length?0:-1;
   const proof=(book.plan.pairProof??book.plan.proof??[])[pairIndex];
   if(!proof?.witness)return null;
   const data=illustrateModels(book),pairs=[];
@@ -57,6 +94,8 @@ export function witnessProjection(book,readingIndex,pairIndex=0){
 }
 
 export function drawApparatus(host,book,tick,readingIndex){
+  const original=book;book=displayActiveNotebook(book,readingIndex);
+  if(book!==original)readingIndex=book.readouts.length?0:-1;
   const data=illustrateModels(book),record=book.readouts[readingIndex];
   const observed=record?JSON.parse(record.readingsText):null;
   const width=Math.max(270,Math.round(host.getBoundingClientRect().width)),narrow=width<600;
@@ -76,7 +115,7 @@ export function drawApparatus(host,book,tick,readingIndex){
     const status=record?.result.checks.find(row=>row.hypothesis===trace.id)?.status;
     const stateLabel=status?` · ${status==='consistent'?'conditionally consistent':status}`:'';
     const ghosts=trace.values.map((v,t)=>tickSet.has(t)?`<circle cx="${x(v)}" cy="${y+30}" r="3" fill="${trace.color}" opacity=".45"><title>Forecast at planned tick ${t}: ${escapeHTML(displayNumber(v))}</title></circle>`:'').join('');
-    const marker=data.isDemo?'<path d="M-25 -18H17L29 -5V6H-29V-8Z" fill="currentColor" fill-opacity=".22" stroke="currentColor" stroke-width="1.8"/><circle cx="-17" cy="10" r="5" fill="currentColor"/><circle cx="18" cy="10" r="5" fill="currentColor"/>':'<path d="M0 -20L18 0L0 20L-18 0Z" fill="currentColor" fill-opacity=".2" stroke="currentColor" stroke-width="2"/>';
+    const marker=data.isDemo||data.adaptiveDemo?'<path d="M-25 -18H17L29 -5V6H-29V-8Z" fill="currentColor" fill-opacity=".22" stroke="currentColor" stroke-width="1.8"/><circle cx="-17" cy="10" r="5" fill="currentColor"/><circle cx="18" cy="10" r="5" fill="currentColor"/>':'<path d="M0 -20L18 0L0 20L-18 0Z" fill="currentColor" fill-opacity=".2" stroke="currentColor" stroke-width="2"/>';
     return `<g style="color:${trace.color}"><text x="${left}" y="${y-12}" class="scene-label"><title>${escapeHTML(trace.id.replaceAll('_',' '))}</title>${escapeHTML(shortLabel(trace.id.replaceAll('_',' '),Math.floor((right-left-65)/7.3)))}</text><text x="${right}" y="${y-12}" text-anchor="end" class="scene-value">${escapeHTML(displayNumber(value))}</text><path d="M${left} ${y+32}H${right}M${left} ${y+36}H${right}" class="scene-rail"/>${ghosts}<g class="model-marker" transform="translate(${x(value)} ${y+22})">${marker}</g>${stateLabel?`<text x="${left}" y="${y+64}" class="scene-condition">${escapeHTML(stateLabel.slice(3))}</text>`:''}</g>`;
   }).join('');
   let measurement='';

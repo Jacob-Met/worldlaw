@@ -5,12 +5,13 @@
  */
 import {readFile,writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
-import {sealActivePlan,sealActiveReadout,replayActiveNotebook} from '../src/science/active-experiment-record.mjs';
-const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--output NEW_FILE]';
-let input='examples/active-linear-family-decays.json',output=null,replay=null,readings=null,replayReadings=null,notebook=null,inputChosen=false;
+import {sealActivePlan,sealActiveReadout,replayActiveNotebook,receiveActiveNotebook,createActiveNotebook} from '../src/science/active-experiment-record.mjs';
+const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE] [--output NEW_FILE] | --input FILE --create-notebook --output NEW_FILE';
+let input='examples/active-linear-family-decays.json',output=null,replay=null,readings=null,replayReadings=null,notebook=null,inputChosen=false,createNotebook=false;
 const argv=process.argv.slice(2);
 for(let i=0;i<argv.length;i++){
   if(argv[i]==='--help'){console.log(usage);process.exit(0);}
+  if(argv[i]==='--create-notebook'){createNotebook=true;continue;}
   if(!['--input','--output','--replay','--readings','--replay-readings','--notebook'].includes(argv[i])||i+1>=argv.length)
     throw Error(usage);
   const flag=argv[i],value=resolve(argv[++i]);
@@ -21,14 +22,20 @@ for(let i=0;i<argv.length;i++){
   else if(flag==='--replay-readings')replayReadings=value;
   else notebook=value;
 }
-if(readings&&!replay)throw Error('Readouts require --replay PLAN from the prospective design.');
+if(readings&&!replay&&!notebook)throw Error('Readouts require --replay PLAN or the preceding portable --notebook.');
 if(replayReadings&&!readings)throw Error('--replay-readings requires --readings and --replay PLAN.');
-if(notebook&&(inputChosen||replay||readings||replayReadings))
+if(notebook&&(inputChosen||replay||replayReadings||createNotebook))
   throw Error('--notebook replays its own original source, frozen plan and reading sets; do not mix input modes.');
+if(createNotebook&&(!inputChosen||!output||replay||readings||replayReadings))
+  throw Error('--create-notebook requires --input and --output and no separate plan or readings.');
 let report;
 if(notebook){
-  report=await replayActiveNotebook(await readFile(notebook,'utf8'));
+  const original=await readFile(notebook,'utf8');
+  report=readings?await receiveActiveNotebook(original,await readFile(readings,'utf8')):
+    await replayActiveNotebook(original);
   console.error('Notebook source, frozen plan and every original reading set verified; physical origin is not authenticated.');
+}else if(createNotebook){
+  report=await createActiveNotebook(await readFile(input,'utf8'));
 }else{
 const bytes=await readFile(input);
 const prior=replay?JSON.parse(await readFile(replay,'utf8')):null;
