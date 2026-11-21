@@ -178,3 +178,8 @@ frozen exhaustive reference, **not a previously shipped continuous solver**.
 Measured times, memory, precise source hashes and official release results
 belong in the PR and retained workflow receipts. No speedup or scientific
 receiving result is claimed merely from authored tests.
+
+For each signed witness the planner finds its exact maximum over the actuator
+box. A strictly negative maximum rules out that sign for a nonnegative joint
+distance. A maximum of zero remains eligible, preserving boundary contact.
+Previously saved plans replay with their original search accounting.

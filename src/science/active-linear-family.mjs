@@ -676,7 +676,8 @@ function extremizeBox(weights,response,bounds,budget){
   }
   const magnitude=gap=>Q(abs(gap.n),gap.d);
   const winner=sub(magnitude(choices[0].gap),magnitude(choices[1].gap)).n>=0n?choices[0]:choices[1];
-  return {...winner,coefficients};
+  return {...winner,coefficients,nonnegativeSigns:[1,-1].filter((sign,i)=>
+    sign===1?choices[i].gap.n>=0n:choices[i].gap.n<=0n)};
 }
 function controlBoxCircuits(rows,response,bounds,budget){
   const empty=(complete,structural)=>({complete,structural,circuits:[]});
@@ -786,6 +787,7 @@ export function replayActiveLinearControlBox(request,prior){
 
 export const ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA='worldlaw.active-linear-joint-control/v1';
 const rationalOperations=Object.freeze({Q,Z,add,sub,mul,div,neg,dot});
+const originalJointWorkAccounting='Affine kernels, rank-complete circuit extensions, signed endpoints, tuple traversal, LP starts, pivots and affected tableau row updates share one hard limit.';
 
 /** For each pair p, distance d_p(u)=max_c f_pc(u), where c ranges over
  * signed, l1-normalized annihilating circuits. Finite independent choices give
@@ -801,6 +803,9 @@ const rationalOperations=Object.freeze({Q,Z,add,sub,mul,div,neg,dot});
  * as a jointly attainable guarantee.
  */
 export function designActiveLinearJointControl(request){
+  return designJointControl(request,false);
+}
+function designJointControl(request,replayAllSigns){
   const family=compileBoundedFamily(request,ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA,true);
   const {laws,offered,maxReadings,workLimit,eps,cost,bounds,channels}=family;
   need(bounds.filter(b=>sub(b.upper,b.lower).n!==0n).length<=8,
@@ -829,7 +834,8 @@ export function designActiveLinearJointControl(request){
     potential,potentialMeaning:'These are independent pairwise box maxima and may require conflicting inputs; only jointPotential certifies one common input.',
     pairCount:pairs.length,maxReadings,workLimit,noiseMethod:'exact-joint-box-affine-linf-circuits/v1',
     objective:'Minimum reading count, then declared reading cost, then numeric tick order; maximum worst-pair distance at one common input on the selected schedule.',
-    workAccounting:'Affine kernels, rank-complete circuit extensions, signed endpoints, tuple traversal, LP starts, pivots and affected tableau row updates share one hard limit.'};
+    workAccounting:replayAllSigns?originalJointWorkAccounting:
+      originalJointWorkAccounting+' Signed witnesses with a strictly negative box supremum are omitted.'};
   const summary=(record,selected,exact)=>{
     if(!record||record.result.value.n<0n)return {margin:'0',exact,controls:null,certificate:null};
     return {margin:fmt(record.result.value),exact,controls:controlVectors(record.result.controls,channels),
@@ -849,7 +855,10 @@ export function designActiveLinearJointControl(request){
     'Circuit enumeration reached the declared limit. Independent pair maxima and partial lower bounds do not establish a joint optimum.',false);
   if(pairs.some(pair=>pair.inventory.structural===false))return refused('structurally_indistinguishable_on_control_box',
     'At least one pair can agree for every allowed input, even with all offered readings; a jointly separating experiment does not exist on this box.',true);
-  const options=pairs.map(pair=>pair.inventory.circuits.flatMap(circuit=>[1,-1].map(sign=>({
+  // A joint distance is nonnegative. One strictly negative witness makes its
+  // entire tuple inferior for every input. Keep zero endpoints for exact contact.
+  const options=pairs.map(pair=>pair.inventory.circuits.flatMap(circuit=>
+    (replayAllSigns?[1,-1]:circuit.nonnegativeSigns).map(sign=>({
     mask:circuit.mask,weights:circuit.weights.map(w=>div(mul(Q(BigInt(sign)),w),circuit.norm)),
     coefficients:circuit.coefficients.map(v=>div(mul(Q(BigInt(sign)),v),circuit.norm))}))));
   const schedules=new Map(),threshold=mul(Q(2n),eps);
@@ -911,7 +920,7 @@ export function designActiveLinearJointControl(request){
     interpretation:'One bounded input jointly separates every declared pair and maximizes the worst-pair distance on the certified minimum optional schedule. All initial states remain independent and arbitrary. No actuation or physical calibration was performed.'};
 }
 function verifyJointControlCertificate(request,prior){
-  const fresh=designActiveLinearJointControl(request);
+  const fresh=designJointControl(request,prior?.workAccounting===originalJointWorkAccounting);
   need(prior?.schema===ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA&&JSON.stringify(prior)===JSON.stringify(fresh),
     'joint-control certificate or source changed; exact prospective replay refused');
   return rankCompleteCircuits;
