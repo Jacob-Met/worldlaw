@@ -109,3 +109,20 @@ test('portable joint notebooks preserve original bytes and refuse altered contro
   const changed=structuredClone(book.plan);changed.chosenControls[0][1]='0';
   assert.throws(()=>replayActiveLinearJointControl(JSON.parse(text),changed),/exact prospective replay refused/);
 });
+
+test('one-sided five-law controls finish within the same bounded search budget',()=>{
+  const request={schema:'worldlaw.active-linear-joint-control/v1',
+    source:'Synthetic scalar impulse responses with independent unknown initial states.',
+    hypotheses:[1,2,3,4,5].map(slope=>({id:'law_'+slope,A:[[0]],B:[[slope]],C:[1]})),
+    offeredTicks:[1],maxReadings:1,noiseBound:'1/4',workLimit:1000};
+  for(const [lo,hi,u] of [[1,2,'2'],[-2,-1,'-2']]){
+    const source={...request,controlBounds:[{min:[lo],max:[hi]},{min:[0],max:[0]}]};
+    const plan=designActiveLinearJointControl(source);
+    assert.equal(plan.status,'optimal_certified_joint_control');
+    assert.deepEqual(chosen(plan),[1]);
+    assert.equal(plan.chosenControls[0][0],u);
+    assert.equal(plan.jointPotential.margin,'2');
+    assert.equal(designActiveLinearJointControl({...source,noiseBound:'1'}).status,
+      'noise_separation_not_certified');
+  }
+});

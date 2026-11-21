@@ -178,3 +178,9 @@ frozen exhaustive reference, **not a previously shipped continuous solver**.
 Measured times, memory, precise source hashes and official release results
 belong in the PR and retained workflow receipts. No speedup or scientific
 receiving result is claimed merely from authored tests.
+
+The planner first counts the visits required by the full signed-witness tree.
+If those visits alone exceed the remaining work budget, it omits signs whose
+exact maximum over the actuator box is strictly negative. A maximum of zero
+remains eligible. Other searches preserve their original traversal and saved
+plans replay with their original accounting.
