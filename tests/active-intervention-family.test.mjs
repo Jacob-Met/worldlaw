@@ -121,3 +121,15 @@ test('coupled 2D position/hidden-velocity laws require active input and a source
   }
   assert.equal(replayActiveInterventionFamily(req,received).valid,true);
 });
+
+test('aliased tick prices cannot certify an intervention at the default price',()=>{
+  const request=source();
+  const original=designActiveInterventionFamily(request);
+  for(const costByTick of [{'01':1000},{'1':2,'01':1000},{'-0':1000},{'2e0':1000},{' 3':1000},{'0x2':1000}]){
+    const mispriced={...request,costByTick};
+    assert.throws(()=>designActiveInterventionFamily(mispriced),/canonical integer tick/);
+    assert.throws(()=>replayActiveInterventionFamily(mispriced,original),/canonical integer tick/);
+  }
+  const priced=designActiveInterventionFamily({...request,costByTick:{0:19,1:19,2:19,3:19,4:19}});
+  assert.equal(priced.totalDeclaredCost,1+19*priced.numReadings);
+});
