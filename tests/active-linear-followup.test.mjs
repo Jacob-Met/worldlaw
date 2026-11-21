@@ -123,3 +123,26 @@ test('a lost future clock leaves its value unknown and cannot be reacquired in t
       await assert.rejects(receiveActiveNotebook(book,JSON.stringify({...input,readings:[{tick,value:5}],erasedTicks})));
   }
 });
+
+test('a completed initial schedule cannot reacquire elapsed missing samples',async()=>{
+  let book=await createActiveNotebook(JSON.stringify(source));
+  const readings=[{tick:0,value:5},{tick:1,value:5}];
+  const input={schema:'worldlaw.active-linear-readings/v1',source:'Synthetic closed acquisition course.',
+    acquisition:'synthetic',sourceSHA256:book.plan.sourceSHA256,planSHA256:book.plan.planSHA256,readings};
+  book=await receiveActiveNotebook(book,JSON.stringify(input));
+  assert.deepEqual(book.readouts[0].result.missingTicks,[2,3,4]);
+  const followup=await recommendActiveFollowup(book,0);
+  assert.deepEqual(followup.eligibleTicks,[]);
+  assert.equal(followup.status,'no_separating_future_schedule');
+});
+
+test('historical follow-up with a genuinely future selection replays under its original digest',async()=>{
+  const saved=JSON.parse(await readFile(new URL('fixtures/active-linear-legacy-valid-followup.json',import.meta.url),'utf8'));
+  const history={...saved,readouts:saved.readouts.slice(0,1)};
+  const current=await recommendActiveFollowup(history,0);
+  assert.deepEqual(current.eligibleTicks,[6]);
+  assert.deepEqual(current.selection.ticks,[6]);
+  assert.notEqual(current.followupSHA256,saved.readouts[1].result.followupSHA256);
+  assert.deepEqual(await replayActiveNotebook(saved),saved);
+  await assert.rejects(receiveActiveNotebook(history,saved.readouts[1].readingsText));
+});

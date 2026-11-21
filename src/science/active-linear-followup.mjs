@@ -101,7 +101,9 @@ function compareFuture(c,checks,future){
 
 export function designConditionalFuture(request,rows,prior){
   const c=setup(request,rows);
-  const last=Math.max(...c.observed.keys(),...(prior.futureTicks??[])),menu=c.ticks.filter(t=>t>last);
+  // A completed scheduled readout advances the clock even when samples are lost.
+  const last=Math.max(...c.observed.keys(),...(prior.plannedTicks??[]),...(prior.futureTicks??[]));
+  const menu=c.ticks.filter(t=>t>last);
   const cost=t=>request.costByTick?.[t]??1;
   const result=(status,extra={})=>({schema:'worldlaw.active-linear-followup-plan/v1',status,
     historicalTicks:[...c.observed.keys()].sort((a,b)=>a-b),eligibleTicks:menu,

@@ -183,11 +183,11 @@ function conditionalSource(book){
   return JSON.parse(book.sourceText);
 }
 
-async function recommendVerified(book,index){
+async function recommendVerified(book,index,{legacyInitialHorizon=false}={}){
   const request=conditionalSource(book),row=book.readouts[index];
   need(Number.isSafeInteger(index)&&row,'Select an existing received reading set.');
   const core={sourceSHA256:book.plan.sourceSHA256,planSHA256:book.plan.planSHA256,
-    historySHA256:row.result.readingsSHA256,...designConditionalFuture(request,historicalRows(row),row.result)};
+    historySHA256:row.result.readingsSHA256,...designConditionalFuture(request,historicalRows(row),legacyInitialHorizon?{...row.result,plannedTicks:[]}:row.result)};
   return {...core,followupSHA256:await activeBytesSHA256(JSON.stringify(core))};
 }
 
@@ -206,7 +206,15 @@ async function sealFollowup(book,text,prior){
     supplied.source.length<=2048&&['synthetic','supplied'].includes(supplied.acquisition),
     'A future dataset needs its original source, acquisition kind and bound identifiers.');
   const index=book.readouts.findIndex(row=>row.result.readingsSHA256===supplied.historySHA256);
-  const plan=await recommendVerified(book,index);
+  let plan=await recommendVerified(book,index);
+  // Older notebook hashes include clocks now known to have elapsed. Recompute
+  // their original proof only on replay, and only accept the same selection
+  // independently certified by today's physical horizon.
+  if(prior && plan.status==='certified_future_acquisitions' && supplied.followupSHA256!==plan.followupSHA256){
+    const historical=await recommendVerified(book,index,{legacyInitialHorizon:true});
+    if(historical.followupSHA256===supplied.followupSHA256 &&
+      JSON.stringify(historical.selection)===JSON.stringify(plan.selection))plan=historical;
+  }
   need(supplied.sourceSHA256===plan.sourceSHA256&&supplied.planSHA256===plan.planSHA256&&
     supplied.followupSHA256===plan.followupSHA256&&plan.status==='certified_future_acquisitions',
     'The follow-up does not match the recomputed recommendation and original history.');
