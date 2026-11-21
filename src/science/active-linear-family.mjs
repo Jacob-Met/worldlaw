@@ -834,8 +834,7 @@ function designJointControl(request,replayAllSigns){
     potential,potentialMeaning:'These are independent pairwise box maxima and may require conflicting inputs; only jointPotential certifies one common input.',
     pairCount:pairs.length,maxReadings,workLimit,noiseMethod:'exact-joint-box-affine-linf-circuits/v1',
     objective:'Minimum reading count, then declared reading cost, then numeric tick order; maximum worst-pair distance at one common input on the selected schedule.',
-    workAccounting:replayAllSigns?originalJointWorkAccounting:
-      originalJointWorkAccounting+' Signed witnesses with a strictly negative box supremum are omitted.'};
+    workAccounting:originalJointWorkAccounting};
   const summary=(record,selected,exact)=>{
     if(!record||record.result.value.n<0n)return {margin:'0',exact,controls:null,certificate:null};
     return {margin:fmt(record.result.value),exact,controls:controlVectors(record.result.controls,channels),
@@ -857,8 +856,14 @@ function designJointControl(request,replayAllSigns){
     'At least one pair can agree for every allowed input, even with all offered readings; a jointly separating experiment does not exist on this box.',true);
   // A joint distance is nonnegative. One strictly negative witness makes its
   // entire tuple inferior for every input. Keep zero endpoints for exact contact.
+  // Preserve the original traversal when it might finish. The full choice tree
+  // must visit its root and every signed branch before any LP work is counted.
+  const minimumVisits=pairs.reduceRight((visits,pair)=>
+    1+2*pair.inventory.circuits.length*visits,1);
+  const pruneSigns=!replayAllSigns&&minimumVisits>workLimit-budget.nodes;
+  if(pruneSigns)base.workAccounting+=' Signed witnesses with a strictly negative box supremum are omitted.';
   const options=pairs.map(pair=>pair.inventory.circuits.flatMap(circuit=>
-    (replayAllSigns?[1,-1]:circuit.nonnegativeSigns).map(sign=>({
+    (pruneSigns?circuit.nonnegativeSigns:[1,-1]).map(sign=>({
     mask:circuit.mask,weights:circuit.weights.map(w=>div(mul(Q(BigInt(sign)),w),circuit.norm)),
     coefficients:circuit.coefficients.map(v=>div(mul(Q(BigInt(sign)),v),circuit.norm))}))));
   const schedules=new Map(),threshold=mul(Q(2n),eps);

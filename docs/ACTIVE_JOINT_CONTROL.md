@@ -179,7 +179,8 @@ Measured times, memory, precise source hashes and official release results
 belong in the PR and retained workflow receipts. No speedup or scientific
 receiving result is claimed merely from authored tests.
 
-For each signed witness the planner finds its exact maximum over the actuator
-box. A strictly negative maximum rules out that sign for a nonnegative joint
-distance. A maximum of zero remains eligible, preserving boundary contact.
-Previously saved plans replay with their original search accounting.
+The planner first counts the visits required by the full signed-witness tree.
+If those visits alone exceed the remaining work budget, it omits signs whose
+exact maximum over the actuator box is strictly negative. A maximum of zero
+remains eligible. Other searches preserve their original traversal and saved
+plans replay with their original accounting.
