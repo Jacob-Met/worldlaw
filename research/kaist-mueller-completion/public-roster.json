@@ -1,0 +1,1202 @@
+[
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/1_spectralon_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1272540584",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1272540562-1272540583/1272540584"
+      ],
+      [
+        206,
+        "320",
+        "bytes 1272540242-1272540561/1272540584"
+      ]
+    ],
+    "archive_bytes": 1272540584,
+    "directory_sha256": "55640a38e4e3389e100e1c0af2352f09364f6dab57084bbd376e3bc328b05bc6",
+    "members": [
+      {
+        "name": "1_spectralon_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 672527476,
+        "bytes": 956623530,
+        "crc32": "0xe6e053ab",
+        "local_header_offset": 0
+      },
+      {
+        "name": "1_spectralon_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3131,
+        "bytes": 5428,
+        "crc32": "0xe2a7fe7c",
+        "local_header_offset": 672527534
+      },
+      {
+        "name": "1_spectralon_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 600009471,
+        "bytes": 956623530,
+        "crc32": "0x30c9e068",
+        "local_header_offset": 672530719
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/2_white_billiard_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1278752462",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1278752440-1278752461/1278752462"
+      ],
+      [
+        206,
+        "332",
+        "bytes 1278752108-1278752439/1278752462"
+      ]
+    ],
+    "archive_bytes": 1278752462,
+    "directory_sha256": "c885f4a4d3a08b09bc9b01f7abe138596704ca995e75ffb3ed55da3715dd3aa2",
+    "members": [
+      {
+        "name": "2_white_billiard_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 680921103,
+        "bytes": 956623530,
+        "crc32": "0x7eb79078",
+        "local_header_offset": 0
+      },
+      {
+        "name": "2_white_billiard_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3132,
+        "bytes": 5428,
+        "crc32": "0xf194e591",
+        "local_header_offset": 680921165
+      },
+      {
+        "name": "2_white_billiard_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 597827697,
+        "bytes": 956623530,
+        "crc32": "0xdf5eac66",
+        "local_header_offset": 680924355
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/3_chrome_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1265528928",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1265528906-1265528927/1265528928"
+      ],
+      [
+        206,
+        "308",
+        "bytes 1265528598-1265528905/1265528928"
+      ]
+    ],
+    "archive_bytes": 1265528928,
+    "directory_sha256": "dab8ff661cebf4a0f0fb709d6fdc210bbc1b6f829a716bf5973d1726375562d6",
+    "members": [
+      {
+        "name": "3_chrome_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 682970427,
+        "bytes": 956623530,
+        "crc32": "0x6deaf6d3",
+        "local_header_offset": 0
+      },
+      {
+        "name": "3_chrome_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3130,
+        "bytes": 5428,
+        "crc32": "0xedaadaf0",
+        "local_header_offset": 682970481
+      },
+      {
+        "name": "3_chrome_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 582554889,
+        "bytes": 956623530,
+        "crc32": "0x1e824120",
+        "local_header_offset": 682973661
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/4_black_billiard_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1278782171",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1278782149-1278782170/1278782171"
+      ],
+      [
+        206,
+        "332",
+        "bytes 1278781817-1278782148/1278782171"
+      ]
+    ],
+    "archive_bytes": 1278782171,
+    "directory_sha256": "2ff40af8c8681eb18360e2be8a321099be8f6fc0ba01a1ad4757892dc905620c",
+    "members": [
+      {
+        "name": "4_black_billiard_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 684950143,
+        "bytes": 956623530,
+        "crc32": "0xdc716b95",
+        "local_header_offset": 0
+      },
+      {
+        "name": "4_black_billiard_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3130,
+        "bytes": 5428,
+        "crc32": "0xd475ba3f",
+        "local_header_offset": 684950205
+      },
+      {
+        "name": "4_black_billiard_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 593828368,
+        "bytes": 956623530,
+        "crc32": "0xf640ae47",
+        "local_header_offset": 684953393
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/5_brass_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1276044349",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1276044327-1276044348/1276044349"
+      ],
+      [
+        206,
+        "305",
+        "bytes 1276044022-1276044326/1276044349"
+      ]
+    ],
+    "archive_bytes": 1276044349,
+    "directory_sha256": "38f11baa663357ad780ea1fd9108a18f2b72208a6ed7f26041729f6f9a99efa1",
+    "members": [
+      {
+        "name": "5_brass_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 682067578,
+        "bytes": 956623530,
+        "crc32": "0xb9162b95",
+        "local_header_offset": 0
+      },
+      {
+        "name": "5_brass_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3129,
+        "bytes": 5428,
+        "crc32": "0xfaf19b3a",
+        "local_header_offset": 682067631
+      },
+      {
+        "name": "5_brass_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 593973166,
+        "bytes": 956623530,
+        "crc32": "0xd0bcc1e",
+        "local_header_offset": 682070809
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/6_gold_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1260777996",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1260777974-1260777995/1260777996"
+      ],
+      [
+        206,
+        "302",
+        "bytes 1260777672-1260777973/1260777996"
+      ]
+    ],
+    "archive_bytes": 1260777996,
+    "directory_sha256": "3657062603223019808d101d8081aac34da385a16c57c7147b15c065a039eaf4",
+    "members": [
+      {
+        "name": "6_gold_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 682091471,
+        "bytes": 956623530,
+        "crc32": "0xbe52acd0",
+        "local_header_offset": 0
+      },
+      {
+        "name": "6_gold_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3129,
+        "bytes": 5428,
+        "crc32": "0xb17039e3",
+        "local_header_offset": 682091523
+      },
+      {
+        "name": "6_gold_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 578682926,
+        "bytes": 956623530,
+        "crc32": "0xd5407527",
+        "local_header_offset": 682094700
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/7_fake_gold_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1271728199",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1271728177-1271728198/1271728199"
+      ],
+      [
+        206,
+        "317",
+        "bytes 1271727860-1271728176/1271728199"
+      ]
+    ],
+    "archive_bytes": 1271728199,
+    "directory_sha256": "f2efb55abba84251e6c44537ae5bff176376b8b2da09c552533ab15b6183ec2a",
+    "members": [
+      {
+        "name": "7_fake_gold_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 681389643,
+        "bytes": 956623530,
+        "crc32": "0xf0e2275f",
+        "local_header_offset": 0
+      },
+      {
+        "name": "7_fake_gold_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 4194,
+        "bytes": 5428,
+        "crc32": "0xe8636156",
+        "local_header_offset": 681389700
+      },
+      {
+        "name": "7_fake_gold_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 590333862,
+        "bytes": 956623530,
+        "crc32": "0x422d2744",
+        "local_header_offset": 681393947
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/8_red_billiard_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1280568722",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1280568700-1280568721/1280568722"
+      ],
+      [
+        206,
+        "326",
+        "bytes 1280568374-1280568699/1280568722"
+      ]
+    ],
+    "archive_bytes": 1280568722,
+    "directory_sha256": "b580e737a748878adfcec8c47b830ce3891cfcf014fbff0e968f1565bdf02b30",
+    "members": [
+      {
+        "name": "8_red_billiard_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 684518202,
+        "bytes": 956623530,
+        "crc32": "0xd1c2f26e",
+        "local_header_offset": 0
+      },
+      {
+        "name": "8_red_billiard_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3130,
+        "bytes": 5428,
+        "crc32": "0x2f2d40df",
+        "local_header_offset": 684518262
+      },
+      {
+        "name": "8_red_billiard_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 596046872,
+        "bytes": 956623530,
+        "crc32": "0x96391de9",
+        "local_header_offset": 684521448
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/9_blue_billiard_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1279617473",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1279617451-1279617472/1279617473"
+      ],
+      [
+        206,
+        "329",
+        "bytes 1279617122-1279617450/1279617473"
+      ]
+    ],
+    "archive_bytes": 1279617473,
+    "directory_sha256": "fe06c8e9f45d2760f25f50d0b3e8291dfbf25fe09037559c281abc892ac06705",
+    "members": [
+      {
+        "name": "9_blue_billiard_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 684373428,
+        "bytes": 956623530,
+        "crc32": "0xad2fa7b2",
+        "local_header_offset": 0
+      },
+      {
+        "name": "9_blue_billiard_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3129,
+        "bytes": 5428,
+        "crc32": "0xfff8e73",
+        "local_header_offset": 684373489
+      },
+      {
+        "name": "9_blue_billiard_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 595240392,
+        "bytes": 956623530,
+        "crc32": "0x99b41e0b",
+        "local_header_offset": 684376675
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/10_green_billiard_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1281584014",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1281583992-1281584013/1281584014"
+      ],
+      [
+        206,
+        "335",
+        "bytes 1281583657-1281583991/1281584014"
+      ]
+    ],
+    "archive_bytes": 1281584014,
+    "directory_sha256": "84a976d1f6dc5501a012558d7ae2830ecc3a8e8702bb52fcae8b5f159efe856c",
+    "members": [
+      {
+        "name": "10_green_billiard_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 685077052,
+        "bytes": 956623530,
+        "crc32": "0x772b749b",
+        "local_header_offset": 0
+      },
+      {
+        "name": "10_green_billiard_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3129,
+        "bytes": 5428,
+        "crc32": "0x7e35e1c0",
+        "local_header_offset": 685077115
+      },
+      {
+        "name": "10_green_billiard_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 596503297,
+        "bytes": 956623530,
+        "crc32": "0xcdb452d0",
+        "local_header_offset": 685080303
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/11_zro2_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1271087386",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1271087364-1271087385/1271087386"
+      ],
+      [
+        206,
+        "305",
+        "bytes 1271087059-1271087363/1271087386"
+      ]
+    ],
+    "archive_bytes": 1271087386,
+    "directory_sha256": "fac0f080c543f381a3044cdfefb242f97f775e71868b82cece06da244c8f6be2",
+    "members": [
+      {
+        "name": "11_zro2_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 681380391,
+        "bytes": 956623530,
+        "crc32": "0x7cfb8793",
+        "local_header_offset": 0
+      },
+      {
+        "name": "11_zro2_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3131,
+        "bytes": 5428,
+        "crc32": "0x8216665",
+        "local_header_offset": 681380444
+      },
+      {
+        "name": "11_zro2_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 589703388,
+        "bytes": 956623530,
+        "crc32": "0x4062c873",
+        "local_header_offset": 681383624
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/12_fake_pearl_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1269334074",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1269334052-1269334073/1269334074"
+      ],
+      [
+        206,
+        "323",
+        "bytes 1269333729-1269334051/1269334074"
+      ]
+    ],
+    "archive_bytes": 1269334074,
+    "directory_sha256": "70193c49d447f90407032ba9eecd1b53fedd12c0a06da166d3421a5ceb13c6c3",
+    "members": [
+      {
+        "name": "12_fake_pearl_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 680885596,
+        "bytes": 956623530,
+        "crc32": "0xc354e3",
+        "local_header_offset": 0
+      },
+      {
+        "name": "12_fake_pearl_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3131,
+        "bytes": 5428,
+        "crc32": "0xe58bce2c",
+        "local_header_offset": 680885655
+      },
+      {
+        "name": "12_fake_pearl_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 588444835,
+        "bytes": 956623530,
+        "crc32": "0x38041d09",
+        "local_header_offset": 680888841
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/13_yellow_silicone_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1262063451",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1262063429-1262063450/1262063451"
+      ],
+      [
+        206,
+        "335",
+        "bytes 1262063094-1262063428/1262063451"
+      ]
+    ],
+    "archive_bytes": 1262063451,
+    "directory_sha256": "29fc9b3be282e8567da3290a56a3462fac162feb14b0969d4831b5d3078f3b5e",
+    "members": [
+      {
+        "name": "13_yellow_silicon_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 675963839,
+        "bytes": 956623530,
+        "crc32": "0xa418bca5",
+        "local_header_offset": 0
+      },
+      {
+        "name": "13_yellow_silicon_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3137,
+        "bytes": 5428,
+        "crc32": "0xecabf225",
+        "local_header_offset": 675963902
+      },
+      {
+        "name": "13_yellow_silicon_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 586095939,
+        "bytes": 956623530,
+        "crc32": "0xa7bea14e",
+        "local_header_offset": 675967098
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/14_ceramic_alumina_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1266090633",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1266090611-1266090632/1266090633"
+      ],
+      [
+        206,
+        "338",
+        "bytes 1266090273-1266090610/1266090633"
+      ]
+    ],
+    "archive_bytes": 1266090633,
+    "directory_sha256": "110defa2190831e5a03dab0aa69b53321826f38f0ddfd188c47593afc58cc38d",
+    "members": [
+      {
+        "name": "14_ceramic_alumina_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 678663252,
+        "bytes": 956623530,
+        "crc32": "0x91f5489c",
+        "local_header_offset": 0
+      },
+      {
+        "name": "14_ceramic_alumina_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3134,
+        "bytes": 5428,
+        "crc32": "0xe48f366d",
+        "local_header_offset": 678663316
+      },
+      {
+        "name": "14_ceramic_alumina_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 587423705,
+        "bytes": 956623530,
+        "crc32": "0x1440bd15",
+        "local_header_offset": 678666510
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/15_white_silicone_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1249936627",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1249936605-1249936626/1249936627"
+      ],
+      [
+        206,
+        "332",
+        "bytes 1249936273-1249936604/1249936627"
+      ]
+    ],
+    "archive_bytes": 1249936627,
+    "directory_sha256": "2d87f9b916ce57b13b7e68d9c37a92d05c981f76718474025d3ab6ef7f04fc76",
+    "members": [
+      {
+        "name": "15_white_silicon_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 673739713,
+        "bytes": 956623530,
+        "crc32": "0xe0338f13",
+        "local_header_offset": 0
+      },
+      {
+        "name": "15_white_silicon_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3139,
+        "bytes": 5428,
+        "crc32": "0xb518f872",
+        "local_header_offset": 673739775
+      },
+      {
+        "name": "15_white_silicon_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 576193245,
+        "bytes": 956623530,
+        "crc32": "0xa372ddea",
+        "local_header_offset": 673742972
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/16_pink_silicone_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1252685596",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1252685574-1252685595/1252685596"
+      ],
+      [
+        206,
+        "329",
+        "bytes 1252685245-1252685573/1252685596"
+      ]
+    ],
+    "archive_bytes": 1252685596,
+    "directory_sha256": "3a92b2b79616d380316edb5d876b072b172d890745c8a92c10563c8fb342f1bb",
+    "members": [
+      {
+        "name": "16_pink_silicon_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 675555308,
+        "bytes": 956623530,
+        "crc32": "0x8fb1e695",
+        "local_header_offset": 0
+      },
+      {
+        "name": "16_pink_silicon_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3134,
+        "bytes": 5428,
+        "crc32": "0x324e904e",
+        "local_header_offset": 675555369
+      },
+      {
+        "name": "16_pink_silicon_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 577126630,
+        "bytes": 956623530,
+        "crc32": "0x2ed6bad0",
+        "local_header_offset": 675558560
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/17_peek_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1260374735",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1260374713-1260374734/1260374735"
+      ],
+      [
+        206,
+        "305",
+        "bytes 1260374408-1260374712/1260374735"
+      ]
+    ],
+    "archive_bytes": 1260374735,
+    "directory_sha256": "6e77942bf807cf5b5701f4e0629153bc5466b66fa0f193aa7592d4c88017d6b1",
+    "members": [
+      {
+        "name": "17_peek_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 679204163,
+        "bytes": 956623530,
+        "crc32": "0x7dd3112a",
+        "local_header_offset": 0
+      },
+      {
+        "name": "17_peek_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3129,
+        "bytes": 5428,
+        "crc32": "0x323c30de",
+        "local_header_offset": 679204216
+      },
+      {
+        "name": "17_peek_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 581166967,
+        "bytes": 956623530,
+        "crc32": "0x648fdbf4",
+        "local_header_offset": 679207394
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/18_suj2_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1258281818",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1258281796-1258281817/1258281818"
+      ],
+      [
+        206,
+        "305",
+        "bytes 1258281491-1258281795/1258281818"
+      ]
+    ],
+    "archive_bytes": 1258281818,
+    "directory_sha256": "886184b3c1393b9e6b03298b483932378e54e1865b17a3498013eba08fcb9d01",
+    "members": [
+      {
+        "name": "18_suj2_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 682267834,
+        "bytes": 956623530,
+        "crc32": "0x9bd08068",
+        "local_header_offset": 0
+      },
+      {
+        "name": "18_suj2_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 4313,
+        "bytes": 5588,
+        "crc32": "0xa537774",
+        "local_header_offset": 682267887
+      },
+      {
+        "name": "18_suj2_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 576009195,
+        "bytes": 956623530,
+        "crc32": "0xdf322d8d",
+        "local_header_offset": 682272249
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/19_mint_silicone_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1241491208",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1241491186-1241491207/1241491208"
+      ],
+      [
+        206,
+        "329",
+        "bytes 1241490857-1241491185/1241491208"
+      ]
+    ],
+    "archive_bytes": 1241491208,
+    "directory_sha256": "60baddc497bf08706aa476f5fa5da7cb4ac071b9400eb6966281a85d604a4ae4",
+    "members": [
+      {
+        "name": "19_mint_silicon_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 675713859,
+        "bytes": 956623530,
+        "crc32": "0x65d2709",
+        "local_header_offset": 0
+      },
+      {
+        "name": "19_mint_silicon_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3140,
+        "bytes": 5428,
+        "crc32": "0x704076ef",
+        "local_header_offset": 675713920
+      },
+      {
+        "name": "19_mint_silicon_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 565773685,
+        "bytes": 956623530,
+        "crc32": "0x93693421",
+        "local_header_offset": 675717117
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/20_ocher_silicone_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1256845086",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1256845064-1256845085/1256845086"
+      ],
+      [
+        206,
+        "332",
+        "bytes 1256844732-1256845063/1256845086"
+      ]
+    ],
+    "archive_bytes": 1256845086,
+    "directory_sha256": "14941edfe7caa813d85df0138f40dd37eaa2e8dce9c6b7b746b109f01f42c253",
+    "members": [
+      {
+        "name": "20_ocher_silicon_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 676259278,
+        "bytes": 956623530,
+        "crc32": "0x2150cde2",
+        "local_header_offset": 0
+      },
+      {
+        "name": "20_ocher_silicon_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3135,
+        "bytes": 5428,
+        "crc32": "0xb5cd4773",
+        "local_header_offset": 676259340
+      },
+      {
+        "name": "20_ocher_silicon_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 580582143,
+        "bytes": 956623530,
+        "crc32": "0x29bb8fcf",
+        "local_header_offset": 676262533
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/21_pom_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1264173034",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1264173012-1264173033/1264173034"
+      ],
+      [
+        206,
+        "302",
+        "bytes 1264172710-1264173011/1264173034"
+      ]
+    ],
+    "archive_bytes": 1264173034,
+    "directory_sha256": "62240ea413a71ccf0b0812335be360be598c5eddd7be50e84cdd1a86e8eed85b",
+    "members": [
+      {
+        "name": "21_pom_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 680217510,
+        "bytes": 956623530,
+        "crc32": "0xf4a512b4",
+        "local_header_offset": 0
+      },
+      {
+        "name": "21_pom_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 4314,
+        "bytes": 5588,
+        "crc32": "0xfb0160db",
+        "local_header_offset": 680217562
+      },
+      {
+        "name": "21_pom_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 583950740,
+        "bytes": 956623530,
+        "crc32": "0x8675cb3a",
+        "local_header_offset": 680221924
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/22_lightgreen_silicone_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1254156578",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1254156556-1254156577/1254156578"
+      ],
+      [
+        206,
+        "347",
+        "bytes 1254156209-1254156555/1254156578"
+      ]
+    ],
+    "archive_bytes": 1254156578,
+    "directory_sha256": "e8d6a17214c560a7491bb14c4b247d7870b5799066e5c4a789c703819eb59aff",
+    "members": [
+      {
+        "name": "22_lightgreen_silicon_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 677035235,
+        "bytes": 956623530,
+        "crc32": "0xc8b0c140",
+        "local_header_offset": 0
+      },
+      {
+        "name": "22_lightgreen_silicon_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3134,
+        "bytes": 5428,
+        "crc32": "0x4f436715",
+        "local_header_offset": 677035302
+      },
+      {
+        "name": "22_lightgreen_silicon_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 577117649,
+        "bytes": 956623530,
+        "crc32": "0x56165899",
+        "local_header_offset": 677038499
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/23_purple_silicone_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1254164682",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1254164660-1254164681/1254164682"
+      ],
+      [
+        206,
+        "335",
+        "bytes 1254164325-1254164659/1254164682"
+      ]
+    ],
+    "archive_bytes": 1254164682,
+    "directory_sha256": "39776d27e38fe56c1a1a28cb6db766412cbc05221326a8a1504c37849746d9aa",
+    "members": [
+      {
+        "name": "23_purple_silicon_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 675818568,
+        "bytes": 956623530,
+        "crc32": "0x458ae44e",
+        "local_header_offset": 0
+      },
+      {
+        "name": "23_purple_silicon_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3134,
+        "bytes": 5428,
+        "crc32": "0xa4f8987f",
+        "local_header_offset": 675818631
+      },
+      {
+        "name": "23_purple_silicon_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 578342444,
+        "bytes": 956623530,
+        "crc32": "0x866f3390",
+        "local_header_offset": 675821824
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/24_blue_silicone_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1253474361",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1253474339-1253474360/1253474361"
+      ],
+      [
+        206,
+        "329",
+        "bytes 1253474010-1253474338/1253474361"
+      ]
+    ],
+    "archive_bytes": 1253474361,
+    "directory_sha256": "ff10beeb07ec4914c47d2a45447b314cd024c080962a23c4679508b4b7c8ad58",
+    "members": [
+      {
+        "name": "24_blue_silicon_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 676666160,
+        "bytes": 956623530,
+        "crc32": "0xe20d6e6e",
+        "local_header_offset": 0
+      },
+      {
+        "name": "24_blue_silicon_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3135,
+        "bytes": 5428,
+        "crc32": "0xc629afd7",
+        "local_header_offset": 676666221
+      },
+      {
+        "name": "24_blue_silicon_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 576804542,
+        "bytes": 956623530,
+        "crc32": "0x8079529e",
+        "local_header_offset": 676669413
+      }
+    ]
+  },
+  {
+    "url": "https://vclab.kaist.ac.kr/siggraph2020/pbrdfdataset/25_orange_silicone_mitsuba.zip",
+    "requests": [
+      [
+        200,
+        "1256855668",
+        null
+      ],
+      [
+        206,
+        "22",
+        "bytes 1256855646-1256855667/1256855668"
+      ],
+      [
+        206,
+        "335",
+        "bytes 1256855311-1256855645/1256855668"
+      ]
+    ],
+    "archive_bytes": 1256855668,
+    "directory_sha256": "f71467d61b9e51a9bc22b4cd49fee27e7d853e2f0666c9ef75b8efff1e9678ff",
+    "members": [
+      {
+        "name": "25_orange_silicon_inpainted.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 677148371,
+        "bytes": 956623530,
+        "crc32": "0xa345a3b4",
+        "local_header_offset": 0
+      },
+      {
+        "name": "25_orange_silicon_pbrdf.calib",
+        "compression": 8,
+        "compressed_bytes": 3134,
+        "bytes": 5428,
+        "crc32": "0x3c0b3398",
+        "local_header_offset": 677148434
+      },
+      {
+        "name": "25_orange_silicon_raw.pbsdf",
+        "compression": 8,
+        "compressed_bytes": 579703627,
+        "bytes": 956623530,
+        "crc32": "0xd571d47f",
+        "local_header_offset": 677151627
+      }
+    ]
+  }
+]

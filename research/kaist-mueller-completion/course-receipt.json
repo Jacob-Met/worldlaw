@@ -1,0 +1,245 @@
+{
+  "source": "Baek et al. (2020) original KAIST raw Mueller material spheres",
+  "registration": {
+    "post": 181427,
+    "sequence": 1659225,
+    "stage": "before development measurements"
+  },
+  "claim": {
+    "sequence": 1657829,
+    "notice": 181266
+  },
+  "input": {
+    "specimens_development": 13,
+    "materials_held_unopened": 12,
+    "source_compressed_bytes": 7666572592,
+    "raw_verified_bytes": 12436105890,
+    "geometry_rows": 49920,
+    "finite_target_rows": 25991,
+    "missing_target_rows": 23929
+  },
+  "originals": [
+    {
+      "id": "p2-f747-kaist-frozen-13-full-raw-members-streamed-shard-0-json-79fe",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "request_sha256": "097d6958dc187cc90a1147cf26b685b49369f1bbb0720d55a5f8a77ff1be7d6d",
+      "started": "2026-11-22T17:12:58.607203093Z",
+      "finished": "2026-11-22T17:19:21.380456189Z",
+      "exit_code": 0,
+      "usage": {
+        "max_rss_bytes": 74231808,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 7.063936,
+        "user_cpu_seconds": 29.240084
+      }
+    },
+    {
+      "id": "p2-f747-kaist-frozen-13-full-raw-members-streamed-shard-1-json",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "request_sha256": "c286b9084fd598f9c07126515702933a87b046896b1256654416d4b95d886447",
+      "started": "2026-11-22T17:09:13.195476222Z",
+      "finished": "2026-11-22T17:13:06.78446729Z",
+      "exit_code": 0,
+      "usage": {
+        "source": "linux_rusage",
+        "user_cpu_seconds": 22.748009,
+        "system_cpu_seconds": 5.494961,
+        "max_rss_bytes": 74149888,
+        "max_rss_scope": "largest_waited_process"
+      }
+    },
+    {
+      "id": "p2-f747-kaist-frozen-13-full-raw-members-streamed-shard-2-json",
+      "owner": "node-49e1f179692dbb161a06c2914300be22",
+      "request_sha256": "b1fe7ee17f202ca4ceba26d916cde295e16400a74de67f25f7b18535860e687a",
+      "started": "2026-11-22T17:09:13.251789758Z",
+      "finished": "2026-11-22T17:16:52.120522483Z",
+      "exit_code": 0,
+      "usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "other": 0.8600000000000004,
+            "python": 22.640000000000118,
+            "shell": 0
+          },
+          "snapshots": 4589,
+          "nonempty_snapshots": 4589,
+          "distinct_processes": 62,
+          "read_errors": 1,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 20.638437,
+        "system_cpu_seconds": 4.495804,
+        "max_rss_bytes": 72495104,
+        "max_rss_scope": "largest_waited_process"
+      }
+    },
+    {
+      "id": "p2-f747-kaist-13-raw-materials-frozen-three-source-family-out-all-11-arms",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "request_sha256": "d2eb864508a90d0270d5cc096dc551ac5fd640f94345beffb639c2694db13696",
+      "started": "2026-11-22T17:20:10.950800086Z",
+      "finished": "2026-11-22T17:20:44.251141008Z",
+      "exit_code": 0,
+      "usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "other": 1.0700000000000005,
+            "python": 12.429999999999973,
+            "shell": 0
+          },
+          "snapshots": 333,
+          "nonempty_snapshots": 333,
+          "distinct_processes": 51,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 14.881675,
+        "system_cpu_seconds": 1.225914,
+        "max_rss_bytes": 181309440,
+        "max_rss_scope": "largest_waited_process"
+      }
+    },
+    {
+      "id": "p2-f747-kaist-independent-13-raw-family-full-row-worst-wavelength-verdict",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "request_sha256": "1a923a2b4896276fe59bbea4b9220a4abda67285efa48646ea774a5bf89ecaf1",
+      "started": "2026-11-22T17:21:13.050502029Z",
+      "finished": "2026-11-22T17:21:33.003036135Z",
+      "exit_code": 0,
+      "usage": {
+        "source": "linux_rusage",
+        "user_cpu_seconds": 3.106062,
+        "system_cpu_seconds": 1.032178,
+        "max_rss_bytes": 73830400,
+        "max_rss_scope": "largest_waited_process"
+      }
+    },
+    {
+      "id": "p2-f747-kaist-frozen-branch-error-accounting-no-fit",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "request_sha256": "d0cbcffba0617c9ecee6716a4bd77fe1cdfd6e3365ce26062eac078ec760346e",
+      "started": "2026-11-22T17:22:53.120489358Z",
+      "finished": "2026-11-22T17:22:56.183150658Z",
+      "exit_code": 0,
+      "usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 71413760,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "other": 0.1,
+            "python": 1.5100000000000005,
+            "shell": 0
+          },
+          "distinct_processes": 7,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 31,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 31
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.074425,
+        "user_cpu_seconds": 1.846058
+      }
+    },
+    {
+      "id": "p2-f747-kaist-cold-independent-exact-rational-worst-minor",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "request_sha256": "56d86d6e05255446f9225bb9259b68d6caf1193012a044cf02c6c6f398b8e624",
+      "started": "2026-11-22T17:24:03.485528414Z",
+      "finished": "2026-11-22T17:24:05.033679203Z",
+      "exit_code": 0,
+      "usage": {
+        "max_rss_bytes": 73035776,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.097711,
+        "user_cpu_seconds": 0.294258
+      }
+    },
+    {
+      "id": "p2-f747-kaist-pure-and-depolarizing-native-runtime-blind-controls",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "request_sha256": "90c5002130e4a09e17314e0b41efe75486a87cb9fdd4afd94e8b5db9f917d527",
+      "started": "2026-11-22T17:10:56.59138627Z",
+      "finished": "2026-11-22T17:11:06.462704982Z",
+      "exit_code": 0,
+      "usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 8.839999999999991
+          },
+          "snapshots": 99,
+          "nonempty_snapshots": 99,
+          "distinct_processes": 7,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 8.30278,
+        "system_cpu_seconds": 0.901144,
+        "max_rss_bytes": 127524864,
+        "max_rss_scope": "largest_waited_process"
+      }
+    }
+  ],
+  "premeasurement_failures": {
+    "three_roster_carriers": [
+      "p2-f747-kaist-frozen-13-full-raw-members-streamed-shard-0",
+      "p2-f747-kaist-frozen-13-full-raw-members-streamed-shard-1",
+      "p2-f747-kaist-frozen-13-full-raw-members-streamed-shard-2"
+    ],
+    "phase": "roster JSON null parsed as Python literal before data fetch",
+    "correction_post": 181442,
+    "first_repaired_shard0": "p2-f747-kaist-frozen-13-full-raw-members-streamed-shard-0-json",
+    "dns": "DNS failed before the initial 30-byte ZIP header returned",
+    "cancelled_before_execution": "78df placement cancelled before admission after disk qualification",
+    "corrected_science": "identical registered source and material IDs, no alternative samples"
+  },
+  "runtime": {
+    "python": "3.12",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "sklearn": "1.8.0",
+    "frozen_models": "9 fits, three models per fold, plus analytical controls"
+  },
+  "artifacts": {
+    "development-predictions.npz": "8fe27c5c5cea8f26a7a18fe7828ec417be2625ca87f5df9de6eba57907f259a2",
+    "development.json": "6fa6257d74d6e3f54bf1345dd24afd2af6f8f413cc97c823e4908e108e72fd5d",
+    "development-independent.json": "728f000ea39510e39ed202eaa96b069820e7d7a812cf562ee1659616e7dabd24",
+    "projection-branches.json": "55a1e28da98e6ea7206717fddd0674b96d76eec2ad2d42d1070ebb10af7adde4",
+    "worst-certificate.json": "35133215493041d72d9067b010fad099eb739a4dbd646ee287623ac8980de76b"
+  },
+  "outcome": {
+    "primary_development_joint": false,
+    "held_evaluation": false,
+    "reason": "unconstrained residual wins both metrics; the registered candidate fails development admission"
+  }
+}
