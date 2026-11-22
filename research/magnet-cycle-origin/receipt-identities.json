@@ -1,0 +1,14 @@
+{
+  "archive-parity.json": "f1794dcbf093087cea5803ab425937f41133de3d0488850ecba64686c454b0e2",
+  "forecast-A.json": "ae567a00d34c410449cd4b46e80e1408e3ba575cc200fce5922d0d883df6ade3",
+  "forecast-B.json": "51e1a2739cf1fe02f2ea2418c0f5f1a436e37702535eb6652037750e2ba2a84c",
+  "forecast-C.json": "69f9491fee36ccc71924d18fd1fa12e418d6bf8fa30f3ff34ae49f024f5a794d",
+  "forecast-D.json": "525b8bd2ec8eed1b415b533ccd63b598b3492ee97c317f4618a8e639f2120010",
+  "forecast-E.json": "882002104048762bfda854f102c88cc5b46d4f46a7f56c896e524aa014644508",
+  "model-source-ledger.json": "eb9075d341a89e4406ac1dbb95c764921ababd45f72cff7dd34e6ee7c7b4fa5c",
+  "official-gate.json": "24c0b5e8e6fa60dede930790ee727d61f5e2750f0ca16fa3212ff91cf279187c",
+  "prediction-lock.json": "d5de3d195f58a94a484ea3668c4a1358a2b0f0479d3dca3151b9d7bd605a396f",
+  "recount.json": "23fee6e098e302c559a915d2497524a0bca09ca151cce61af23ee3b775ecdad1",
+  "score.json": "af2fa7c15d1c6b803511e9e99a493b4939adc42b0b479464c933b3a8aa057f9f",
+  "training-native-qualification.json": "ca3744e73242c7e0d0f9daf747cbb510c0423d44fcd9529e59d556b547fffb0e"
+}

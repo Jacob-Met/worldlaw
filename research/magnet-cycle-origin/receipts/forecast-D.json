@@ -1,0 +1,102 @@
+{
+  "material": "D",
+  "rows": 7299,
+  "phase_input_byte_equality_verified": {
+    "voltage": 7299,
+    "field": 7299
+  },
+  "archive_sha": "f110f3917004154624cf820af5fc74d9657fe0e3759fe928835da567e475c0b7",
+  "hash": "e705ce68a8b8023f6ff79dbff13a86b19d0d828521cfda486633b7d49fc83a7f",
+  "input_hashes": {
+    "B": "841331733b562a26001cdae9d7da86e1609921c87064fa1f415ab787864a8892",
+    "F": "851ed1be21387cebb0bfffbcba69d2040d0ea0b0f570aa78a4e349b153d71db9",
+    "T": "69543a8e9afa36e7227471eb366d94634cbbbdddc43be412538a4744bacc6165"
+  },
+  "array_hashes": {
+    "descriptor": "742fc798c4f645a5bfbb2acb4606b5c068c86a8339785a206437dcddbb1018bb",
+    "origin_r": "ff65288e3a674e739da5e3e6e976a2ad65cb3a95ff659421291ba956d053b8da",
+    "origin_voltage": "e8309e729b502cc0eb79108d0987f14ac7788103f1b9c5924b38e379c19d333a",
+    "origin_field": "c731403d1852557788ad4875da4aa539530be1df50ac4a5f9db5be9a405a4d78",
+    "winner_original": "3e2afb2d8014b0d46fb35b3b56333dd47f2f8be2ab89ca7bc128b9220674b7a9",
+    "winner_rotated": "63fe41e23051c9b9cefa13358d01c6b55a2bc4c81bfe2854817fc82607b06bc6",
+    "winner_voltage": "be128bdae4a36fdf9d9460e9fa161de98de87c2f1fe6d48eadd802077a8b709c",
+    "winner_field": "62e8e5a09b9c835590cce6188c34b173634fbcd52221ec3b6466161e883ad764",
+    "maintained_original": "12f59705008a14ddb4f9bd3dcf557d184b842a2beed8cf63574c85944ce6d4b5",
+    "maintained_rotated": "3dd7b5e526198f6b5139a21897899bce890bd2203af59834a4cf89647d9b4bc3",
+    "sydney_original": "c9709dabdebd7fa0802ab2922509e1ff818496710c8e1a12d69cf55163db868f",
+    "sydney_rotated": "a7f2766609be48362f01702198fd2e9be0a0b98e4c4584ceb910180e16251094"
+  },
+  "logged": {
+    "winner_original": {
+      "missing_native_columns": [],
+      "waveform_counts": {
+        "wav_other": 4286,
+        "wav_square": 1049,
+        "wav_triangular": 1903,
+        "wav_sine": 61
+      },
+      "forward_chunk": 7299,
+      "rows": 7299,
+      "elapsed_s": 4.021860135020688
+    },
+    "winner_rotated": {
+      "missing_native_columns": [],
+      "waveform_counts": {
+        "wav_other": 4361,
+        "wav_square": 768,
+        "wav_triangular": 2104,
+        "wav_sine": 66
+      },
+      "forward_chunk": 7299,
+      "rows": 7299,
+      "elapsed_s": 3.0814494049409404
+    },
+    "winner_voltage": {
+      "missing_native_columns": [],
+      "waveform_counts": {
+        "wav_other": 4286,
+        "wav_square": 1049,
+        "wav_triangular": 1903,
+        "wav_sine": 61
+      },
+      "forward_chunk": 7299,
+      "rows": 7299,
+      "elapsed_s": 3.2590465639950708
+    },
+    "winner_field": {
+      "missing_native_columns": [],
+      "waveform_counts": {
+        "wav_other": 4370,
+        "wav_square": 719,
+        "wav_triangular": 2149,
+        "wav_sine": 61
+      },
+      "forward_chunk": 7299,
+      "rows": 7299,
+      "elapsed_s": 2.748941699974239
+    },
+    "maintained_original": {
+      "elapsed_s": 1.8249222210142761,
+      "rows": 7299
+    },
+    "maintained_rotated": {
+      "elapsed_s": 1.9026393489912152,
+      "rows": 7299
+    },
+    "sydney_original": {
+      "elapsed_s": 3.0980020549613982,
+      "rows": 7299
+    },
+    "sydney_rotated": {
+      "elapsed_s": 3.1773129049688578,
+      "rows": 7299
+    }
+  },
+  "scientific_fields": [
+    "B_Field",
+    "Frequency",
+    "Temperature"
+  ],
+  "test_H_loss_opened": false,
+  "n_rows": 7299
+}

@@ -1,0 +1,202 @@
+{
+  "A": {
+    "Paderborn": {
+      "archived_git_blob": "ed619e14e4c9acb65a99a844b602f13d31feecf8",
+      "i": 4490,
+      "f_Hz": 316450.0,
+      "T_C": 70.0,
+      "truth_Wm3": 10295.2568018669,
+      "archive_Wm3": 10309.7236328125,
+      "cpu_Wm3": 10299.76953125,
+      "max_relative_delta": 0.0009655061490513023,
+      "count_over_point_two_percent": 0
+    },
+    "Sydney": {
+      "archived_git_blob": "bae63852f915dbffbfa16b85901c7277b6c248d6",
+      "i": 3603,
+      "f_Hz": 99980.0,
+      "T_C": 70.0,
+      "truth_Wm3": 474.330021108025,
+      "archive_Wm3": 387.94244384765625,
+      "cpu_Wm3": 387.95147705078125,
+      "max_relative_delta": 2.3284905449910784e-05,
+      "count_over_point_two_percent": 0
+    },
+    "phase": {
+      "native_zero_anchor_count": 5741,
+      "all_n": 7651,
+      "median_unsigned_distance_samples": 0.0,
+      "max_unsigned_distance_samples": 17
+    },
+    "worst_canonical_regression": {
+      "i": 5837,
+      "error_increase_pp": 0.6827848029702748,
+      "truth_Wm3": 1145.10508751985,
+      "original_Wm3": 1146.5899658203125,
+      "candidate_Wm3": 1154.4085693359375,
+      "f_Hz": 63120.0,
+      "T_C": 70.0,
+      "candidate_anchor": 1
+    }
+  },
+  "B": {
+    "Paderborn": {
+      "archived_git_blob": "2394d1a364d4e556c00a2334baea245a0b22d809",
+      "i": 12,
+      "f_Hz": 125860.0,
+      "T_C": 25.0,
+      "truth_Wm3": 910.059846558391,
+      "archive_Wm3": 897.13623046875,
+      "cpu_Wm3": 897.4605102539062,
+      "max_relative_delta": 0.0003614610291536383,
+      "count_over_point_two_percent": 0
+    },
+    "Sydney": {
+      "archived_git_blob": "af2ead4b71fc607aa2b169262a1eddcf90b5d7fe",
+      "i": 0,
+      "f_Hz": 63000.0,
+      "T_C": 25.0,
+      "truth_Wm3": 547.60252777491,
+      "archive_Wm3": 533.0791625976562,
+      "cpu_Wm3": 533.0732421875,
+      "max_relative_delta": 1.110606186030658e-05,
+      "count_over_point_two_percent": 0
+    },
+    "phase": {
+      "native_zero_anchor_count": 2064,
+      "all_n": 3172,
+      "median_unsigned_distance_samples": 0.0,
+      "max_unsigned_distance_samples": 15
+    },
+    "worst_canonical_regression": {
+      "i": 1633,
+      "error_increase_pp": 0.15768479611733502,
+      "truth_Wm3": 19311.4191252408,
+      "original_Wm3": 19454.8125,
+      "candidate_Wm3": 19485.263671875,
+      "f_Hz": 158760.0,
+      "T_C": 70.0,
+      "candidate_anchor": 1
+    }
+  },
+  "C": {
+    "Paderborn": {
+      "archived_git_blob": "e93578e4b54e4a7e9cae45c181bfda84bde4d491",
+      "i": 20,
+      "f_Hz": 125910.0,
+      "T_C": 25.0,
+      "truth_Wm3": 300.387479802051,
+      "archive_Wm3": 296.42181396484375,
+      "cpu_Wm3": 297.4246520996094,
+      "max_relative_delta": 0.0033831455295141124,
+      "count_over_point_two_percent": 1
+    },
+    "Sydney": {
+      "archived_git_blob": "762732164246ca4029b91138699be2dbc80b6e3b",
+      "i": 2701,
+      "f_Hz": 158480.0,
+      "T_C": 70.0,
+      "truth_Wm3": 348.645422074641,
+      "archive_Wm3": 361.4112854003906,
+      "cpu_Wm3": 361.40460205078125,
+      "max_relative_delta": 1.8492365566202037e-05,
+      "count_over_point_two_percent": 0
+    },
+    "phase": {
+      "native_zero_anchor_count": 3888,
+      "all_n": 5357,
+      "median_unsigned_distance_samples": 0.0,
+      "max_unsigned_distance_samples": 13
+    },
+    "worst_canonical_regression": {
+      "i": 985,
+      "error_increase_pp": 5.166481066309607,
+      "truth_Wm3": 696969.795066353,
+      "original_Wm3": 701960.0,
+      "candidate_Wm3": 737968.8125,
+      "f_Hz": 63140.0,
+      "T_C": 25.0,
+      "candidate_anchor": 1
+    }
+  },
+  "D": {
+    "Paderborn": {
+      "archived_git_blob": "878d53ef893761bea04f98ffa79e747da05a0721",
+      "i": 7255,
+      "f_Hz": 50110.0,
+      "T_C": 90.0,
+      "truth_Wm3": 165342.321042588,
+      "archive_Wm3": 755.6531372070312,
+      "cpu_Wm3": 759.6318359375,
+      "max_relative_delta": 0.005265244772455275,
+      "count_over_point_two_percent": 21
+    },
+    "Sydney": {
+      "archived_git_blob": "3133d70a84e17b232d4816b38013409f231673b9",
+      "i": 6138,
+      "f_Hz": 396810.0,
+      "T_C": 90.0,
+      "truth_Wm3": 3087.68038670547,
+      "archive_Wm3": 260.1933898925781,
+      "cpu_Wm3": 260.1990966796875,
+      "max_relative_delta": 2.193286736350631e-05,
+      "count_over_point_two_percent": 0
+    },
+    "phase": {
+      "native_zero_anchor_count": 4427,
+      "all_n": 7299,
+      "median_unsigned_distance_samples": 0.0,
+      "max_unsigned_distance_samples": 12
+    },
+    "worst_canonical_regression": {
+      "i": 6921,
+      "error_increase_pp": 35.161637953897774,
+      "truth_Wm3": 61288.9155638385,
+      "original_Wm3": 67475.328125,
+      "candidate_Wm3": 33552.31640625,
+      "f_Hz": 63110.0,
+      "T_C": 90.0,
+      "candidate_anchor": 1
+    }
+  },
+  "E": {
+    "Paderborn": {
+      "archived_git_blob": "05575ab01506b3aa34bed0d1d62b35fa38e27c99",
+      "i": 631,
+      "f_Hz": 396820.0,
+      "T_C": 25.0,
+      "truth_Wm3": 3396.12523317932,
+      "archive_Wm3": 3582.90234375,
+      "cpu_Wm3": 3572.874267578125,
+      "max_relative_delta": 0.002798869522460732,
+      "count_over_point_two_percent": 1
+    },
+    "Sydney": {
+      "archived_git_blob": "36ae34a87081e00c31751aa23d9f8d8bba1450e9",
+      "i": 3101,
+      "f_Hz": 63080.0,
+      "T_C": 90.0,
+      "truth_Wm3": 20487.458526146,
+      "archive_Wm3": -615.4456787109375,
+      "cpu_Wm3": -615.4066772460938,
+      "max_relative_delta": 6.337109219036081e-05,
+      "count_over_point_two_percent": 0
+    },
+    "phase": {
+      "native_zero_anchor_count": 2151,
+      "all_n": 3738,
+      "median_unsigned_distance_samples": 0.0,
+      "max_unsigned_distance_samples": 443
+    },
+    "worst_canonical_regression": {
+      "i": 1320,
+      "error_increase_pp": 1.6830813859224223,
+      "truth_Wm3": 9442.08462402453,
+      "original_Wm3": 9541.8955078125,
+      "candidate_Wm3": 9700.8134765625,
+      "f_Hz": 158710.0,
+      "T_C": 50.0,
+      "candidate_anchor": 1
+    }
+  }
+}
