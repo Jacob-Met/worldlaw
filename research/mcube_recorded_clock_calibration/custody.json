@@ -1,0 +1,106 @@
+{
+  "registration": 183927,
+  "scientific_scope": "Separate dated robot/marker calibration motion only. No 2017 push data.",
+  "source_policy_attachment": "att-mwsaqmun87vvlm",
+  "algorithm_attachment": "att-mwsb43m5cxzf3l",
+  "calibration": {
+    "job_id": "p3-f747-mcube-separate-tcpvicon-metrology-half-record-source-gate",
+    "exit_code": 0,
+    "output_bytes": 1596,
+    "next_offset": 1596,
+    "has_more": false,
+    "started_at": "2026-11-22T20:47:59.370558715Z",
+    "finished_at": "2026-11-22T20:48:00.775394521Z",
+    "request_sha256": "a8188641391b7460f350464371ecacbc642327dfc1d9e45bcb591c77c1a82979",
+    "resource_usage": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 46637056,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "python": 0.8999999999999999
+        },
+        "distinct_processes": 1,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 14,
+        "read_errors": 0,
+        "saturated_snapshots": 0,
+        "snapshots": 14
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.020042,
+      "user_cpu_seconds": 0.910304
+    }
+  },
+  "recount": {
+    "job_id": "p3-f747-mcube-independent-tcpvicon-two-half-linear-scan",
+    "exit_code": 0,
+    "output_bytes": 196,
+    "next_offset": 196,
+    "has_more": false,
+    "started_at": "2026-11-22T20:49:55.398736684Z",
+    "finished_at": "2026-11-22T20:49:56.003230261Z",
+    "request_sha256": "297dba52c8530b3d2441cddffbd4a8f16f55fd82672353e370f30da4e26485af",
+    "resource_usage": {
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "interval_milliseconds": 100,
+        "cpu_seconds": {
+          "python": 0.43999999999999995
+        },
+        "snapshots": 6,
+        "nonempty_snapshots": 6,
+        "distinct_processes": 1,
+        "read_errors": 0,
+        "saturated_snapshots": 0
+      },
+      "source": "linux_rusage",
+      "user_cpu_seconds": 0.503398,
+      "system_cpu_seconds": 0.007927,
+      "max_rss_bytes": 25047040,
+      "max_rss_scope": "largest_waited_process"
+    }
+  },
+  "vhgpr": {
+    "job_id": "p3-f747-mcube-genuine-vhgpr-double-sentinel-source-only",
+    "exit_code": 0,
+    "output_bytes": 587,
+    "next_offset": 587,
+    "has_more": false,
+    "started_at": "2026-11-22T20:44:15.219883882Z",
+    "finished_at": "2026-11-22T20:44:19.219471977Z",
+    "request_sha256": "c99c6c6f4e8e0fa5fb4058c61528433d445feac6c03a20e3675c17b01972bed7",
+    "resource_usage": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 48091136,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "other": 1.11,
+          "python": 0.11999999999999998
+        },
+        "distinct_processes": 2,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 40,
+        "read_errors": 0,
+        "saturated_snapshots": 0,
+        "snapshots": 40
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.103603,
+      "user_cpu_seconds": 1.1902949999999999
+    }
+  }
+}
