@@ -1,0 +1,21 @@
+{
+  "all_15_run_source_scales_reconstructed": true,
+  "arrays_verified": 40,
+  "gate": false,
+  "macro": {
+    "author_fir": 0.42099868839468924,
+    "author_refit": 0.9596098360248942,
+    "author_refit_actual_speed": 0.4714404783354669,
+    "author_start": 1.155926608554931,
+    "balance": 0.415740884600546,
+    "sham": 0.42390828830730853,
+    "smooth": 0.41558077907527075,
+    "zero": 0.9943622300165958
+  },
+  "predictions": "1c82e2e30651df8354b624eacf2e2c68d8153184e59666b10337400c0664a3e8",
+  "primary_and_supplemental_mean_coordinates_verified": 32,
+  "raw_worst_run_verified": 192,
+  "run_coordinate_rows_verified": 80,
+  "score": "1a597511650996155ba03983662f53f357157542bf691ad84d67abcc4440f3a3",
+  "source": "ed27649e51a4132fc24a799bef2d3e0cec6a5b15980b17e19fb392a126da0a51"
+}

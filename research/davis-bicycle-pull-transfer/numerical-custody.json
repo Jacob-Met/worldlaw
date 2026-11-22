@@ -1,0 +1,129 @@
+{
+  "complete_held_worst_episode": {
+    "file": "worst-held-complete-run.npz",
+    "run": 192,
+    "sha256": "b548b0d23f3b8b624bde433f362ed64ea758d58b5e518e2ffb6ef81195d5847d"
+  },
+  "first_score_admission_refusal": {
+    "disposition": "artifact_storage_pressure / not_attempted",
+    "id": "p3-f747-davis-sealed-1c82e2e3-score-and-independent-80-row-receiver"
+  },
+  "first_source_archive_receipt": {
+    "has_more": false,
+    "job_id": "p3-f747-davis-bicycle-public-mat-schema-author-archive-1430",
+    "next_offset": 30079,
+    "offset": 0,
+    "sha256": "550a96674c20b889eeed50031e92f3c0893d845e65151ed100fc499003d4ee2e",
+    "source": {
+      "command_id": "p3-f747-davis-bicycle-public-mat-schema-author-archive-1430",
+      "generation": "3c4e180fbddda545e7f83f2d9cef35e3578e5731a8d2f348ca8135dd6b192501",
+      "output_bytes": 30079,
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "receipt_sha256": "d069911535b0f9a7bed89ab989274d1c910e2bb6818b1fa1945a74b6e0689ddd",
+      "request_sha256": "2c263a6d8c439e7ebbaab76165f624b9763b9d18a7ba6ad593d4d5f63e010816"
+    },
+    "state": "captured",
+    "total_bytes": 30079
+  },
+  "held_score_original": {
+    "has_more": false,
+    "job_id": "p3-f747-davis-locked-1c82e2e3-fresh-score-and-longdouble-independent",
+    "next_offset": 19545,
+    "offset": 0,
+    "sha256": "adc82097757570371fca1cf03101212bcc8d3c1a1983ff4ff7c8f2a654bcfa14",
+    "source": {
+      "command_id": "p3-f747-davis-locked-1c82e2e3-fresh-score-and-longdouble-independent",
+      "generation": "6c478e113bbfe926ccb064bf56bb73816224d2d9c52bcb5ba721175115105397",
+      "output_bytes": 19545,
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "receipt_sha256": "def08c1db5152516e7f7d799ff39c4061c4994106e0911c6924a2c212de52706",
+      "request_sha256": "e798bd174a5c060bf5b4e9dba17c69daa495c7e488ca66aa980e3eafb51ae2b3"
+    },
+    "state": "captured",
+    "total_bytes": 19545
+  },
+  "immutable_prediction_receiver": {
+    "bytes": 7819170,
+    "original": {
+      "has_more": false,
+      "job_id": "p3-f747-davis-forecast-only-cold-archive-after-verified-reclamation",
+      "next_offset": 338,
+      "offset": 0,
+      "sha256": "751d47819cc2a87ef103ef87ab0623fd2a9ac501354b918075fc2500d21af796",
+      "source": {
+        "command_id": "p3-f747-davis-forecast-only-cold-archive-after-verified-reclamation",
+        "generation": "d03430cdd57651b8fb007fe14586f24bf3da65cbfd3e84709dc2799f334c6a2a",
+        "output_bytes": 338,
+        "owner": "node-c0da1eb7402af862460cccd552698bb4",
+        "receipt_sha256": "f764df9d0cf6dec8fcba8ad9df9c06fd4a7eed3d26764568533e461e9bca1fb9",
+        "request_sha256": "ce1f37583cbcce8f4a233050ec78df67af43084c0c28cfaeed01be744687ce8c"
+      },
+      "state": "captured",
+      "total_bytes": 338
+    },
+    "remote": "r2-estate:hamon-build-cache/research/astra62-p3-f747f5728172/davis-bicycle/1c82e2e30651df8354b624eacf2e2c68d8153184e59666b10337400c0664a3e8/predictions.zip",
+    "runtime": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0] 2.5.5 1.18.1",
+    "sha256": "1c82e2e30651df8354b624eacf2e2c68d8153184e59666b10337400c0664a3e8"
+  },
+  "locked_forecast": {
+    "has_more": false,
+    "job_id": "p3-f747-davis-r190-history-and-five-held-forecast-after-archive",
+    "next_offset": 6817,
+    "offset": 0,
+    "sha256": "6cc45d8f1540bf1be0a6ac866b34b770bc72fab77aaf3f0dc2786fa5b217b4ec",
+    "source": {
+      "command_id": "p3-f747-davis-r190-history-and-five-held-forecast-after-archive",
+      "generation": "b62dc1099b21e3dd1fdf58e04b5940f45def59235fd64a305f3c6b3b2e5e880b",
+      "output_bytes": 6817,
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "receipt_sha256": "b599ae47704f75d33654613ec05a0a2611826f71bd1b95bd2e901f9d32d85287",
+      "request_sha256": "f0e205948d477cc664d725ada701a02247348f8365e8910f491ec29fb1e9200e"
+    },
+    "state": "captured",
+    "total_bytes": 6817
+  },
+  "original_directory": "/var/tmp/p3-f747-davis-prediction-2chiemp2",
+  "original_prediction_copy_pre_dispatch_refusal": {
+    "job": "p3-f747-davis-immutable-prediction-only-receive-1c82e2e3",
+    "state": "artifact_storage_pressure/not_attempted"
+  },
+  "post_freeze_source_sha256": {
+    "development.json": "cd765a4c291be8131adf167efb1a4f206cb0debb964ca95ab79a629559a716e6",
+    "frozen-protocol.json": "cd3d1c3f700679b181c1504d03d47f12331983f2073552cdcf7bea07aa0f4157",
+    "independent_recount.py": "8de042417329f066312d0bfa0de83b1e477c5985326b2b800a68b61bd715f7b8",
+    "predict_locked.py": "3b9583adc45858266c8be299f470d1d94f74feaeb4efe83686b37e28b4288387",
+    "prediction-receipt.json": "5f1b34a7ce6a49b1e15709f262a7cf4461ada9ce8cfacecc25ea1f67da0a73ab",
+    "score_locked.py": "13be446a4de273151f4884780ec34f676c439f58dab679c1d063337d8f7d6ccc",
+    "source-episode-receipt.json": "f9804803b2a848e38397880c0aea536ccbe8fd8de35a7a93b27c64147a8a0a80",
+    "source_episode.py": "3922d82522f7da4ca40012b00b8596f170d00216ac4bc53ff5aa553dd8cd700b"
+  },
+  "pre_score_forecast_archive": {
+    "archive_bytes": 7819170,
+    "archive_sha256": "1c82e2e30651df8354b624eacf2e2c68d8153184e59666b10337400c0664a3e8",
+    "lock_sha256": "df0712753fd8fef161950bf1b8353b02253465c977b6c25469947670eeaad6c4"
+  },
+  "source_development": {
+    "has_more": false,
+    "job_id": "p3-f747-davis-frozen-cd3d1c3f-ten-source-cross-receiver",
+    "next_offset": 8112,
+    "offset": 0,
+    "sha256": "22d84a5cee29a001ae1167708555309443547f26286d667a2e670eb946eece80",
+    "source": {
+      "command_id": "p3-f747-davis-frozen-cd3d1c3f-ten-source-cross-receiver",
+      "generation": "39e51bac3a39297dfd8078f4f1fcf93e07780d7df95f7e984c6422010b066f32",
+      "output_bytes": 8112,
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "receipt_sha256": "c15491a3f0fa37d53b8a279a768216c722eb06d54544f5a105a51a0f8c0236e1",
+      "request_sha256": "d5ec46345007f1af14d662679beff3423e8ba6d8ed9a62935b94649b8c68fbdb"
+    },
+    "state": "captured",
+    "total_bytes": 8112
+  },
+  "source_episode": {
+    "filename": "source-run190-full-episode.npz",
+    "native_owner": "node-c0da1eb7402af862460cccd552698bb4",
+    "rows": 11286,
+    "sha256": "bce4affb360ec6e979fc24e54931146df012f5bd405dceaf8b80b4c292b67117"
+  },
+  "source_measurement_sha256": "ed27649e51a4132fc24a799bef2d3e0cec6a5b15980b17e19fb392a126da0a51"
+}

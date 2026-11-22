@@ -1,0 +1,34 @@
+{
+  "clocks": "200 Hz NI; model pinned to desired trial Speed; source model5 fit uses mean independent ForwardSpeed just as author davisdat. Nominal roles do not use held speed time series.",
+  "code_sha256": {
+    "author_controller.py": "3164ac617fd000d956e4ae4c8983f04c107c2ac143750cc1393760dc5b5738d8",
+    "author_fir.py": "02c1585bbb3308063258ccf7005c01c11d879c7afc3f3a506efeed02daae7857",
+    "design.json": "a5e9a44ab7dc6034e51fa6ac837d98395a0a0f2c2ec3f1d430b424717d421f27",
+    "development.py": "725f8e0a3c3ada70a77eaf059fce7a2f8261e3b00fc9100eb2bba8ed5dcffa17",
+    "exposure.json": "e0ca116c95753da71f703d2b4389dca5af27248e68a167ad9b5cb96e49dca4ad",
+    "joint_fir.py": "660dc99787b7c4060d134162cd12ef36d60475104fe61f161e481206271f8f1a",
+    "prospective_split.py": "e6c1caec70f72e824796ca8ca39d695fefd14ffbd114626f1bcf798463c4691d",
+    "provenance.json": "201e64cb9b68dd7650aeccb58ef3ee90655348d600e00350e8f9f329b583c8a2",
+    "source-controller-starts.json": "9886ef819cd0c55f93668c3394349e34c9b6fad9d926ca9b46fa7755047ed50c",
+    "split.json": "c23616d5daae7102e614c5c3eb957f2e90e6d73be9c15e35ea5df97501f40ad3",
+    "trial_io.py": "f105eb5cd30034d337f327763fd5702226632993cc26d2c743d40c5cf20a950c",
+    "weak_balance.py": "475e17abed5b9d0f41be0ca7e9f1f013a1a93db4e899545c073b612ddf6b6205"
+  },
+  "coverage": "All 15 published trials, five cells x3 each, 1 rider/2 dates/no speed crossed across dates, author force sign reversal for run184 only.",
+  "dates": "Article source protocols and first-run scientific-data boundaries fixed before measured array reading; see exposure.json for two already visible archived initialization rows.",
+  "development": "Two-way transfer between the two source runs at each of 5 speeds. Choose each spline-role hyperparameters by lowest mean donor-standardized roll and steer MSE over these ten source-only receiver folds. Equal run and channel weighting. No held-selection.",
+  "hypothesis": "M first row with Hfw[0]=0.91 should couple the two unknown impulse responses at fixed speed if rider acts on steering only. Unknown roll actions, rider lean, off-axis force and speed errors can defeat that model.",
+  "primary_metric": "Per-run mean of roll and steer squared prediction errors on centered held angles divided by equal-source-run mean centered angle variance for that speed. Equal five runs, lower better. All cropped samples. True row must beat zero, the two author feedback, author FIR, unconstrained smooth and strongest independently tuned sham on this macro loss; separate coordinate and run wins reported. Affine truth centering only occurs in scoring. Raw error versus uncentered truth reported separately.",
+  "primary_roles": [
+    "zero angle anomaly",
+    "two G kernels from released source Markov FIR, averaged",
+    "source-only archived model5 start, averaged at target nominal speed",
+    "refitted source-only model5, averaged at target nominal speed",
+    "equally smooth uncoupled two-output spline FIR",
+    "true projected mechanical row",
+    "flipped roll-steer coupling sham"
+  ],
+  "release_time": "Offline conditioned on recorded force: author >50 N force-trigger cropping and first/last force drift. Full held force allowed, no held orientation in prediction.",
+  "scope": "Within-rider transfer across independent matched-speed treadmill repetitions, five held runs. Roll and steer sealed together.",
+  "supplemental": "Author refit using the independent measured whole-run mean rear-wheel speed, privileged relative to nominal-speed primary. Fully unseen-initializer subset [192,250,253] descriptive only. No cross-rider or general plant-law claim."
+}

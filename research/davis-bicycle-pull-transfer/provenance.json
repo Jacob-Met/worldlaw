@@ -1,0 +1,36 @@
+{
+  "article_doi": "10.1177/1464419313492317",
+  "processed_subset_doi": "10.6084/m9.figshare.659465.v4",
+  "raw_manifest_doi": "10.6084/m9.figshare.1164632.v1",
+  "measurements_sha256": "ed27649e51a4132fc24a799bef2d3e0cec6a5b15980b17e19fb392a126da0a51",
+  "organizer_or_author": "Author experiment and author analysis rather than a hosted contest.",
+  "author_source_archive_sha256": "8d88394373f9b9a0e86f17d4de5003d5c36ac88b9044746b2bcd4de875608ba3",
+  "source_pins": {
+    "RiderID": "694a4252585a88dcc3c83a459ad1b76e6fec0864",
+    "CanonicalBicycleID": "d0eaf45a279d52173a46934faeee30585d88ae43",
+    "BicycleDataProcessor": "fafe2e2c7a7caf5d6bdbd2698a8a91a1a2223cd8"
+  },
+  "force_map": {
+    "body": "rear-frame seat attachment; inline Interface SSM-100 load cell, later ball joint and push/pull stick",
+    "observation": "axial force; mostly lateral application; full world-coordinate force unobserved",
+    "source_code": "RiderID/functions/davisbike.m, state=[roll rate, steer rate, roll, steer]; force map B_force=[M^-1 Hfw;0;0]",
+    "Hfw": [0.91, 0.014408],
+    "force_input": "calibrated PullForce converted to newtons, multiply by -1 for run 184 exactly as davisdat.m",
+    "target_units": "roll and steer in radians",
+    "limitation": "unmeasured rider lean, seat and foot reactions, departures from linear fixed-rider geometry, and off-axis load can violate first-row cancellation"
+  },
+  "speed": {
+    "primary": "scalar desired trial speed, not true instantaneous speed",
+    "author_offline": "mean of measured ForwardSpeed from the rear-wheel angular speed times negative wheel radius",
+    "primary_excludes": ["ForwardSpeed", "SteerTorque", "RollRate", "SteerRate", "RollAngle", "SteerAngle"]
+  },
+  "scope": "force-conditioned response on released synchronized channels; the author uses both accelerometers for alignment and evaluates a full-run force drift. No real-time acquisition claim.",
+  "direct_observed_defect": {
+    "source_archive_member": "functions/nonparametricmod.m",
+    "line_45": "dat.y-y; % Remnant",
+    "line_48": "npm.v = v;",
+    "scope": "no local assignment to v. The output estimate y is complete before this point. A one-line residual assignment is a separate repair."
+  },
+  "split_script_sha256_before_design_values": "e6c1caec70f72e824796ca8ca39d695fefd14ffbd114626f1bcf798463c4691d",
+  "native_source_receipt": "550a96674c20b889eeed50031e92f3c0893d845e65151ed100fc499003d4ee2e"
+}

@@ -1,0 +1,1096 @@
+{
+  "result": {
+    "archive_sha256": "1c82e2e30651df8354b624eacf2e2c68d8153184e59666b10337400c0664a3e8",
+    "complete_worst_run_sha256": "b548b0d23f3b8b624bde433f362ed64ea758d58b5e518e2ffb6ef81195d5847d",
+    "gate": false,
+    "lock_sha256": "df0712753fd8fef161950bf1b8353b02253465c977b6c25469947670eeaad6c4",
+    "per_run": {
+      "186": {
+        "author_fir": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 2.892165151436086,
+          "max_sample": 11,
+          "rmse_rad": [
+            0.012570081172781475,
+            0.04487704309068578
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.012561769419644571,
+            0.04493276465084399
+          ],
+          "source_normalized_mse": [
+            0.4069195699304899,
+            0.4304708850624551
+          ]
+        },
+        "author_refit": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.228436697372189,
+          "max_sample": 5384,
+          "rmse_rad": [
+            0.025920081788996987,
+            0.08938433357613176
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.025874918822766227,
+            0.08941460303894369
+          ],
+          "source_normalized_mse": [
+            1.730235217964958,
+            1.7077257557687369
+          ]
+        },
+        "author_refit_actual_speed": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 3.2502723728982983,
+          "max_sample": 6560,
+          "rmse_rad": [
+            0.01456973099103821,
+            0.050548294029412494
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.014484676972272794,
+            0.05061953735955825
+          ],
+          "source_normalized_mse": [
+            0.5466828865389006,
+            0.5461454520608364
+          ]
+        },
+        "author_start": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.228535969109089,
+          "max_sample": 5384,
+          "rmse_rad": [
+            0.02592005995861672,
+            0.08938574904205403
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.02587489670239955,
+            0.08941601768265937
+          ],
+          "source_normalized_mse": [
+            1.7302323034929155,
+            1.7077798423553774
+          ]
+        },
+        "balance": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 2.8919840393977756,
+          "max_sample": 11,
+          "rmse_rad": [
+            0.012226507000098344,
+            0.04508520481475076
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.012227706185538315,
+            0.04514015811644388
+          ],
+          "source_normalized_mse": [
+            0.3849791542682262,
+            0.43447361685164715
+          ]
+        },
+        "sham": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 2.8917795253203886,
+          "max_sample": 11,
+          "rmse_rad": [
+            0.012217094776072477,
+            0.04447923465713279
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.012219632403863635,
+            0.04455672570886556
+          ],
+          "source_normalized_mse": [
+            0.38438665220400686,
+            0.4228729711107506
+          ]
+        },
+        "smooth": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 2.892106795197027,
+          "max_sample": 11,
+          "rmse_rad": [
+            0.012426324149524066,
+            0.04475181673709379
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.012429646984262927,
+            0.04482389478560847
+          ],
+          "source_normalized_mse": [
+            0.397665366502796,
+            0.4280718371477352
+          ]
+        },
+        "zero": {
+          "max_coordinate": 1,
+          "max_normalized_abs": 5.011401074466609,
+          "max_sample": 6334,
+          "rmse_rad": [
+            0.01866580739710287,
+            0.07068242506192879
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.018692104106319125,
+            0.07073332383892117
+          ],
+          "source_normalized_mse": [
+            0.8972758375334319,
+            1.0678695385680996
+          ]
+        }
+      },
+      "192": {
+        "author_fir": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 6.025099636384297,
+          "max_sample": 0,
+          "rmse_rad": [
+            0.012755203222611193,
+            0.017262880433290936
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.012752426607897743,
+            0.017494491845594592
+          ],
+          "source_normalized_mse": [
+            0.3191194568971348,
+            0.3429570366206394
+          ]
+        },
+        "author_refit": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 6.025099636384297,
+          "max_sample": 0,
+          "rmse_rad": [
+            0.019597710278648976,
+            0.022773906575765838
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.019583508974840156,
+            0.02294206954686921
+          ],
+          "source_normalized_mse": [
+            0.7533368042609074,
+            0.5968816978477564
+          ]
+        },
+        "author_refit_actual_speed": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 6.025099636384297,
+          "max_sample": 0,
+          "rmse_rad": [
+            0.014081878646145138,
+            0.018367399862505136
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.014062465899942847,
+            0.018574848682891342
+          ],
+          "source_normalized_mse": [
+            0.38895531829618385,
+            0.38824739857751633
+          ]
+        },
+        "author_start": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 6.025099636384297,
+          "max_sample": 0,
+          "rmse_rad": [
+            0.019597964504742868,
+            0.022773904996754767
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.019583763415892318,
+            0.022942067880776247
+          ],
+          "source_normalized_mse": [
+            0.7533563493110809,
+            0.5968816150791042
+          ]
+        },
+        "balance": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 6.025099636384297,
+          "max_sample": 0,
+          "rmse_rad": [
+            0.013021895834440321,
+            0.017424279113114168
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.013041759499260957,
+            0.01762869317865485
+          ],
+          "source_normalized_mse": [
+            0.33260360594736343,
+            0.3493999443067135
+          ]
+        },
+        "sham": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 6.025099636384297,
+          "max_sample": 0,
+          "rmse_rad": [
+            0.013386801788276762,
+            0.01792580716095904
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.013406267866130812,
+            0.018128591390163564
+          ],
+          "source_normalized_mse": [
+            0.35150554910213966,
+            0.36980317296868226
+          ]
+        },
+        "smooth": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 6.025099636384297,
+          "max_sample": 0,
+          "rmse_rad": [
+            0.012863498046859335,
+            0.01752620964008154
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.012883771937391882,
+            0.017733511677252928
+          ],
+          "source_normalized_mse": [
+            0.32456126633793797,
+            0.3534998202495904
+          ]
+        },
+        "zero": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 6.025099636384297,
+          "max_sample": 0,
+          "rmse_rad": [
+            0.021943486666325767,
+            0.02896979168088893
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.021976556617980373,
+            0.02910163796655904
+          ],
+          "source_normalized_mse": [
+            0.944473527186477,
+            0.9658372195197585
+          ]
+        }
+      },
+      "250": {
+        "author_fir": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.0441213543339005,
+          "max_sample": 15116,
+          "rmse_rad": [
+            0.011089954238467469,
+            0.06553465318447396
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.015871919102626728,
+            0.06565973393233333
+          ],
+          "source_normalized_mse": [
+            0.4521614850526045,
+            0.4329430978326608
+          ]
+        },
+        "author_refit": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.155675552170872,
+          "max_sample": 12709,
+          "rmse_rad": [
+            0.015535918326454082,
+            0.09984465180369079
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.019495696828646807,
+            0.09993870895998772
+          ],
+          "source_normalized_mse": [
+            0.8873764876853407,
+            1.0049360431822034
+          ]
+        },
+        "author_refit_actual_speed": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 3.5092963864523767,
+          "max_sample": 12709,
+          "rmse_rad": [
+            0.01070126545192787,
+            0.06764549327868197
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.015904556344924596,
+            0.06777675597053823
+          ],
+          "source_normalized_mse": [
+            0.421021556690467,
+            0.46128203983295507
+          ]
+        },
+        "author_start": {
+          "max_coordinate": 1,
+          "max_normalized_abs": 4.70800850423406,
+          "max_sample": 10747,
+          "rmse_rad": [
+            0.0228343420722892,
+            0.1386848254051737
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.025695308803604083,
+            0.13875533312578378
+          ],
+          "source_normalized_mse": [
+            1.9169512298228066,
+            1.9388611013768104
+          ]
+        },
+        "balance": {
+          "max_coordinate": 1,
+          "max_normalized_abs": 3.7651554670115965,
+          "max_sample": 12832,
+          "rmse_rad": [
+            0.010596918524067647,
+            0.06390323823278293
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.015576537669936118,
+            0.06401060418032448
+          ],
+          "source_normalized_mse": [
+            0.4128509124757774,
+            0.41165608719391833
+          ]
+        },
+        "sham": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 3.8764475159093026,
+          "max_sample": 15102,
+          "rmse_rad": [
+            0.010661028441150336,
+            0.06368431272238909
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.015614920037197746,
+            0.06380060593502757
+          ],
+          "source_normalized_mse": [
+            0.41786140701095,
+            0.40884034115694984
+          ]
+        },
+        "smooth": {
+          "max_coordinate": 1,
+          "max_normalized_abs": 3.7583641667893763,
+          "max_sample": 12832,
+          "rmse_rad": [
+            0.010594782051538658,
+            0.06390807854737274
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.015570151171921584,
+            0.06402292109015004
+          ],
+          "source_normalized_mse": [
+            0.41268445734725984,
+            0.41171845087006453
+          ]
+        },
+        "zero": {
+          "max_coordinate": 1,
+          "max_normalized_abs": 5.257611304678299,
+          "max_sample": 15125,
+          "rmse_rad": [
+            0.014706471362154253,
+            0.0979538839333701
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.01863914882046612,
+            0.09804358810026906
+          ],
+          "source_normalized_mse": [
+            0.795153585379422,
+            0.9672352840202458
+          ]
+        }
+      },
+      "253": {
+        "author_fir": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.122850285789077,
+          "max_sample": 6212,
+          "rmse_rad": [
+            0.013007254780646332,
+            0.033541064979627305
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.017322024753158926,
+            0.03381253752617303
+          ],
+          "source_normalized_mse": [
+            0.44441460532325916,
+            0.2983595366888839
+          ]
+        },
+        "author_refit": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 5.729818599566034,
+          "max_sample": 6232,
+          "rmse_rad": [
+            0.018798243325412117,
+            0.04792220884498057
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.022070105099942488,
+            0.04812626112753498
+          ],
+          "source_normalized_mse": [
+            0.9282213698602557,
+            0.6090597263610419
+          ]
+        },
+        "author_refit_actual_speed": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.166744969471117,
+          "max_sample": 6212,
+          "rmse_rad": [
+            0.013721413338561288,
+            0.03353971328638948
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.0179227183424152,
+            0.033820493730105164
+          ],
+          "source_normalized_mse": [
+            0.49455514364842174,
+            0.2983354896025917
+          ]
+        },
+        "author_start": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 5.730003314375444,
+          "max_sample": 6232,
+          "rmse_rad": [
+            0.01879572313135767,
+            0.047918801654308965
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.022067965798795476,
+            0.04812288219097916
+          ],
+          "source_normalized_mse": [
+            0.9279725018008761,
+            0.6089731231389836
+          ]
+        },
+        "balance": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.003630744356632,
+          "max_sample": 6212,
+          "rmse_rad": [
+            0.012937556130253658,
+            0.03311260582602376
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.017229999370605795,
+            0.0333815604027139
+          ],
+          "source_normalized_mse": [
+            0.4396646239386563,
+            0.29078563391382967
+          ]
+        },
+        "sham": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 3.994867500829291,
+          "max_sample": 6232,
+          "rmse_rad": [
+            0.0128139403400528,
+            0.03246495657845424
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.017135059350043853,
+            0.03272873109810455
+          ],
+          "source_normalized_mse": [
+            0.4313029457278427,
+            0.27952192644607565
+          ]
+        },
+        "smooth": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.07253727302103,
+          "max_sample": 6232,
+          "rmse_rad": [
+            0.012888531294882676,
+            0.03331427211709949
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.017195155265835257,
+            0.033580486007490695
+          ],
+          "source_normalized_mse": [
+            0.4363388571674865,
+            0.2943383735424101
+          ]
+        },
+        "zero": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 6.545592971145102,
+          "max_sample": 16234,
+          "rmse_rad": [
+            0.018823857943633164,
+            0.05449511541952443
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.021917650894886904,
+            0.05466818735186259
+          ],
+          "source_normalized_mse": [
+            0.9307526951866123,
+            0.7875921549749934
+          ]
+        }
+      },
+      "257": {
+        "author_fir": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.369088057991669,
+          "max_sample": 13295,
+          "rmse_rad": [
+            0.016362003220341148,
+            0.019688814661685768
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.01968538336372772,
+            0.019990783905225764
+          ],
+          "source_normalized_mse": [
+            0.5858811128742669,
+            0.49676009766448176
+          ]
+        },
+        "author_refit": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 5.5380704911235,
+          "max_sample": 7398,
+          "rmse_rad": [
+            0.018046230851589407,
+            0.022790802189102895
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.021193338507201703,
+            0.023057669070560016
+          ],
+          "source_normalized_mse": [
+            0.7127046093215638,
+            0.6656206479961473
+          ]
+        },
+        "author_refit_actual_speed": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.1882476965291735,
+          "max_sample": 13295,
+          "rmse_rad": [
+            0.01684829178021962,
+            0.020678489945211483
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.02018267334403095,
+            0.020972296706267116
+          ],
+          "source_normalized_mse": [
+            0.6212241068217368,
+            0.5479553912850508
+          ]
+        },
+        "author_start": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 5.537725768389989,
+          "max_sample": 7398,
+          "rmse_rad": [
+            0.018045280840197464,
+            0.022790935689932092
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.021192529349608847,
+            0.02305780099185941
+          ],
+          "source_normalized_mse": [
+            0.7126295731900029,
+            0.6656284459813133
+          ]
+        },
+        "balance": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.354770520663997,
+          "max_sample": 13295,
+          "rmse_rad": [
+            0.01646957820675383,
+            0.019898254094527265
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.019757399111293213,
+            0.020196167322022285
+          ],
+          "source_normalized_mse": [
+            0.5936104037681433,
+            0.5073848633411724
+          ]
+        },
+        "sham": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 5.07254156347822,
+          "max_sample": 13186,
+          "rmse_rad": [
+            0.01716558313655597,
+            0.020301258652083088
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.020339908461362476,
+            0.020592208383442844
+          ],
+          "source_normalized_mse": [
+            0.6448425301082557,
+            0.5281453872374202
+          ]
+        },
+        "smooth": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 4.324630248820456,
+          "max_sample": 13295,
+          "rmse_rad": [
+            0.01643826107584737,
+            0.019862720236543993
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.019731482261079472,
+            0.020162340153798915
+          ],
+          "source_normalized_mse": [
+            0.5913550333206644,
+            0.5055743282667581
+          ]
+        },
+        "zero": {
+          "max_coordinate": 0,
+          "max_normalized_abs": 7.645679229826049,
+          "max_sample": 9218,
+          "rmse_rad": [
+            0.024054078376609687,
+            0.03210925557585179
+          ],
+          "rmse_rad_uncentered_measured_angle": [
+            0.026403616613467663,
+            0.03229915010480107
+          ],
+          "source_normalized_mse": [
+            1.2662340669339667,
+            1.3211983908629388
+          ]
+        }
+      }
+    },
+    "primary_means": {
+      "author_fir": [
+        0.44169924601555105,
+        0.4002981307738242
+      ],
+      "author_refit": [
+        1.0023748978186051,
+        0.9168447742311772
+      ],
+      "author_refit_actual_speed": [
+        0.494487802399142,
+        0.4483931542717901
+      ],
+      "author_start": [
+        1.2082283915235363,
+        1.1036248255863177
+      ],
+      "balance": [
+        0.43274174007963334,
+        0.39874002912145623
+      ],
+      "sham": [
+        0.44597981683063903,
+        0.4018367597839757
+      ],
+      "smooth": [
+        0.43252099613522893,
+        0.3986405620153117
+      ],
+      "zero": [
+        0.966777942443982,
+        1.0219465175892073
+      ]
+    },
+    "roles": [
+      "zero",
+      "author_fir",
+      "author_start",
+      "author_refit",
+      "smooth",
+      "balance",
+      "sham",
+      "author_refit_actual_speed"
+    ],
+    "scored_rows": 72719,
+    "unseen_initializer_supplemental_means": {
+      "author_fir": [
+        0.40523184909099946,
+        0.3580865570473947
+      ],
+      "author_refit": [
+        0.8563115539355013,
+        0.7369591557970004
+      ],
+      "author_refit_actual_speed": [
+        0.4348440062116909,
+        0.382621642671021
+      ],
+      "author_start": [
+        1.1994266936449212,
+        1.0482386131982995
+      ],
+      "balance": [
+        0.395039714120599,
+        0.35061388847148717
+      ],
+      "sham": [
+        0.40022330061364414,
+        0.3527218135239026
+      ],
+      "smooth": [
+        0.3911948602842281,
+        0.3531855482206883
+      ],
+      "zero": [
+        0.8901266025841705,
+        0.9068882195049993
+      ]
+    },
+    "wins_vs_each": {
+      "author_fir": 3,
+      "author_refit": 5,
+      "author_start": 5,
+      "sham": 3,
+      "smooth": 2,
+      "zero": 5
+    },
+    "worst_by_held_run": {
+      "186": {
+        "centered_angles_rad": [
+          0.057008410677195025,
+          0.02308583089052897
+        ],
+        "coordinate": "roll",
+        "detrended_force_N": 0.5753563811365181,
+        "estimates_rad": {
+          "author_fir": [
+            1.733125704723182e-05,
+            3.3618470674668954e-05
+          ],
+          "author_refit": [
+            5.896842164284836e-06,
+            -7.584602958194211e-06
+          ],
+          "author_refit_actual_speed": [
+            5.901099849767719e-06,
+            -7.511805352337963e-06
+          ],
+          "author_start": [
+            5.896841721610974e-06,
+            -7.58458757329127e-06
+          ],
+          "balance": [
+            2.0900130198951365e-05,
+            6.0502286353295965e-05
+          ],
+          "sham": [
+            2.4930148339895702e-05,
+            6.201816383992897e-05
+          ],
+          "smooth": [
+            1.8481186211282496e-05,
+            6.0567260278219805e-05
+          ],
+          "zero": [
+            0.0,
+            0.0
+          ]
+        },
+        "held_measured_mean_rad": [
+          0.0009911559593386873,
+          -0.0026828881203878573
+        ],
+        "max_normalized_abs": 2.8919840393977756,
+        "preceding_769_force_range_N": [
+          0.31278148059766187,
+          0.9552924512862007
+        ],
+        "raw_angles_rad": [
+          0.05799956663653371,
+          0.020402942770141114
+        ],
+        "raw_force_N": 0.18286112720169165,
+        "sample": 11,
+        "source_scale_rad": [
+          0.019705333698474735,
+          0.06839940790384295
+        ]
+      },
+      "192": {
+        "centered_angles_rad": [
+          0.13604261568510284,
+          0.006461847663189845
+        ],
+        "coordinate": "roll",
+        "detrended_force_N": 1.7646538764414577,
+        "estimates_rad": {
+          "author_fir": [
+            5.178882913703354e-18,
+            3.021015032993623e-18
+          ],
+          "author_refit": [
+            1.5680498912698222e-18,
+            2.7479336995705605e-18
+          ],
+          "author_refit_actual_speed": [
+            -1.548250496127753e-19,
+            5.977226958642879e-18
+          ],
+          "author_start": [
+            2.5072903157666337e-18,
+            2.6364429878882132e-18
+          ],
+          "balance": [
+            -5.178882913703354e-18,
+            6.9051772182711385e-18
+          ],
+          "sham": [
+            5.178882913703354e-18,
+            4.315735761419462e-18
+          ],
+          "smooth": [
+            4.315735761419462e-18,
+            -4.3157357614194615e-19
+          ],
+          "zero": [
+            0.0,
+            0.0
+          ]
+        },
+        "held_measured_mean_rad": [
+          0.0012051695764814753,
+          -0.002767038543745151
+        ],
+        "max_normalized_abs": 6.025099636384297,
+        "preceding_769_force_range_N": [
+          1.7646538764414577,
+          1.7646538764414577
+        ],
+        "raw_angles_rad": [
+          0.13724778526158432,
+          0.003694809119444693
+        ],
+        "raw_force_N": 0.15843693204469497,
+        "sample": 0,
+        "source_scale_rad": [
+          0.022579313852931222,
+          0.029477687030075795
+        ]
+      },
+      "250": {
+        "centered_angles_rad": [
+          0.009414626325912572,
+          0.2804293485987752
+        ],
+        "coordinate": "steer",
+        "detrended_force_N": 1.391141169327844,
+        "estimates_rad": {
+          "author_fir": [
+            -0.02868720367584712,
+            -0.12231322431504746
+          ],
+          "author_refit": [
+            -0.0273384951906203,
+            0.1199310000196834
+          ],
+          "author_refit_actual_speed": [
+            -0.016901520906552184,
+            -0.06320511541140633
+          ],
+          "author_start": [
+            -0.03853353952449325,
+            0.1263306065439883
+          ],
+          "balance": [
+            -0.02451324750621987,
+            -0.09457690376008888
+          ],
+          "sham": [
+            -0.02250400743778082,
+            -0.08228333250316908
+          ],
+          "smooth": [
+            -0.024798570649281888,
+            -0.09390049608787127
+          ],
+          "zero": [
+            0.0,
+            0.0
+          ]
+        },
+        "held_measured_mean_rad": [
+          0.011451531287370255,
+          0.004193064504999435
+        ],
+        "max_normalized_abs": 3.7651554670115965,
+        "preceding_769_force_range_N": [
+          -253.2739938375615,
+          22.866964458403537
+        ],
+        "raw_angles_rad": [
+          0.020866157613282827,
+          0.2846224131037747
+        ],
+        "raw_force_N": -0.4402227145471659,
+        "sample": 12832,
+        "source_scale_rad": [
+          0.016492366253467443,
+          0.09959914156121327
+        ]
+      },
+      "253": {
+        "centered_angles_rad": [
+          -0.06208304924781613,
+          -0.08935376949966493
+        ],
+        "coordinate": "roll",
+        "detrended_force_N": -4.1453798551953085,
+        "estimates_rad": {
+          "author_fir": [
+            0.01836009732898797,
+            0.07094144390622727
+          ],
+          "author_refit": [
+            0.028871714713799245,
+            0.001180470863562464
+          ],
+          "author_refit_actual_speed": [
+            0.01921655008099494,
+            0.07096213072817689
+          ],
+          "author_start": [
+            0.028876984732507882,
+            0.0011591813138872586
+          ],
+          "balance": [
+            0.016033940815537443,
+            0.06523868829492964
+          ],
+          "sham": [
+            0.013021760388252056,
+            0.054735812797901094
+          ],
+          "smooth": [
+            0.017276630816910627,
+            0.06772145948085272
+          ],
+          "zero": [
+            0.0,
+            0.0
+          ]
+        },
+        "held_measured_mean_rad": [
+          0.011227011751488374,
+          0.004346619807512334
+        ],
+        "max_normalized_abs": 4.003630744356632,
+        "preceding_769_force_range_N": [
+          -23.718022945171942,
+          287.593558057959
+        ],
+        "raw_angles_rad": [
+          -0.050856037496327756,
+          -0.0850071496921526
+        ],
+        "raw_force_N": -5.179520834629899,
+        "sample": 6212,
+        "source_scale_rad": [
+          0.019511537164975657,
+          0.06140544541688499
+        ]
+      },
+      "257": {
+        "centered_angles_rad": [
+          0.09524137469529494,
+          0.10468383893995462
+        ],
+        "coordinate": "roll",
+        "detrended_force_N": 8.242877907973114,
+        "estimates_rad": {
+          "author_fir": [
+            0.0018466120333496974,
+            0.011813278358059839
+          ],
+          "author_refit": [
+            0.03241892566367917,
+            0.0390110325451739
+          ],
+          "author_refit_actual_speed": [
+            0.005712302633839386,
+            0.01756435920728176
+          ],
+          "author_start": [
+            0.03241241377187235,
+            0.03900632627788333
+          ],
+          "balance": [
+            0.0021526674350428746,
+            0.012507859643064445
+          ],
+          "sham": [
+            -0.00015016365680372716,
+            0.009627094769213074
+          ],
+          "smooth": [
+            0.0027969537250033226,
+            0.01202545815224738
+          ],
+          "zero": [
+            0.0,
+            0.0
+          ]
+        },
+        "held_measured_mean_rad": [
+          0.010888171734634544,
+          0.0034972566187095547
+        ],
+        "max_normalized_abs": 4.354770520663997,
+        "preceding_769_force_range_N": [
+          -15.87500024710901,
+          380.72730374626195
+        ],
+        "raw_angles_rad": [
+          0.10612954642992949,
+          0.10818109555866418
+        ],
+        "raw_force_N": 6.308202319435834,
+        "sample": 13295,
+        "source_scale_rad": [
+          0.021376260085010933,
+          0.02793484197387155
+        ]
+      }
+    },
+    "worst_held_run": 192
+  },
+  "score_sha256": "1a597511650996155ba03983662f53f357157542bf691ad84d67abcc4440f3a3"
+}
