@@ -1,0 +1,547 @@
+{
+  "freeze": {
+    "post": 181017,
+    "seq": 1655663,
+    "see": "Public timing witness. Forecast hash was fixed before the axial source was scored."
+  },
+  "sources": {
+    "2490": "cd9be21769bf7174cb9f651cc503c5a1c7ac0201a863e3f33d5c9b12e8a9f2a6",
+    "2491": "df923ee46cc8d427df152c35e04956426c2ad9ea4198e808fa84ce63da489726"
+  },
+  "forecast_sha256": "79f8b00d5fe394b318c368ffe26d381f739a8b160b7a5065590792509934dc66",
+  "observed_sha256": "8fa135cd2f12981a63da419d16e14ef0b49c3e2290f3819afa9ac110135b7080",
+  "jobs": {
+    "srm-normal-receipt": {
+      "job": "p2-f747-nist-srm2490-2491-two-official-certification-reports-metadata-no-N1",
+      "source_request": "e49767770ba43850e208f14f0f88ed3fef25ce8f9e8025a76abdb0da7189b240",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:21:55.78467826Z",
+      "finish": "2026-11-22T16:21:59.428508293Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 31580160,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "other": 1.0999999999999999,
+            "python": 0.08
+          },
+          "distinct_processes": 3,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 36,
+          "read_errors": 1,
+          "saturated_snapshots": 0,
+          "snapshots": 37
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.035002,
+        "user_cpu_seconds": 1.3132489999999999
+      },
+      "worker": "node-9198bc15530634050cdb2d65145320ca"
+    },
+    "srm-mth-result": {
+      "job": "p2-f747-srm2490-2491-procedural-force-limit-and-independent-table-provenance",
+      "source_request": "9e52c980d8d45b432ee0f8e80da016413c6f34b7517e5a047414de0d6cf22224",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:23:51.76992106Z",
+      "finish": "2026-11-22T16:23:52.558496407Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 20496384,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.03
+          },
+          "distinct_processes": 7,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 8,
+          "read_errors": 1,
+          "saturated_snapshots": 0,
+          "snapshots": 8
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.162267,
+        "user_cpu_seconds": 0.581392
+      },
+      "worker": "node-9198bc15530634050cdb2d65145320ca"
+    },
+    "srm-xschema-receipt": {
+      "job": "p2-f747-nist-measured-table-input-projection-and-certified-column-crosswalk",
+      "source_request": "eb004b1a5c5f1260fbeb5ba54e60369886defe39f435442c1b49ad2c1333f677",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:28:56.02598301Z",
+      "finish": "2026-11-22T16:29:01.260794426Z",
+      "resources": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "other": 1.0999999999999999,
+            "python": 0.09999999999999999
+          },
+          "snapshots": 52,
+          "nonempty_snapshots": 52,
+          "distinct_processes": 3,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 1.433967,
+        "system_cpu_seconds": 0.046643,
+        "max_rss_bytes": 31076352,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "worker": "node-b4c8cadf0feda78776c212a02c585fca"
+    },
+    "srm-layout-receipt": {
+      "job": "p2-f747-independent-archives-two-certificates-target-masked-column-layout",
+      "source_request": "9a9261c3ff28d2920d63ea4f8061622fa58afe9fb1b183c53eec6ce09d197428",
+      "state": "failed",
+      "exit": 1,
+      "start": "2026-11-22T16:27:09.140707872Z",
+      "finish": "2026-11-22T16:27:09.319203102Z",
+      "resources": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 0.04
+          },
+          "snapshots": 2,
+          "nonempty_snapshots": 2,
+          "distinct_processes": 1,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.056029,
+        "system_cpu_seconds": 0.012006,
+        "max_rss_bytes": 23638016,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "worker": "node-ed6d75e73315250d137bef37f2e21b18"
+    },
+    "srm-left-receipt": {
+      "job": "p2-f747-nist-table8-9-spatial-column-projection-no-normal-values",
+      "source_request": "91e24845fe5ce6fce2b343113d9272587bafa8ae91ff34f314869ea5bc80fdb7",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:29:53.943065539Z",
+      "finish": "2026-11-22T16:29:54.273948289Z",
+      "resources": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 0.01
+          },
+          "snapshots": 3,
+          "nonempty_snapshots": 3,
+          "distinct_processes": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.205287,
+        "system_cpu_seconds": 0.068815,
+        "max_rss_bytes": 20881408,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "worker": "node-b4c8cadf0feda78776c212a02c585fca"
+    },
+    "srm-input-receipt": {
+      "job": "p2-f747-nist-table-eight-nine-all-six-cohort-target-blind-input-v1",
+      "source_request": "8c3d9159aa3d73d31ce9cd0fb999a4632eea460ec648ca57cbecad6cc5b27d80",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:30:58.513955346Z",
+      "finish": "2026-11-22T16:30:58.901561015Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 22687744,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.03
+          },
+          "distinct_processes": 4,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 4,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 4
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.083814,
+        "user_cpu_seconds": 0.22717
+      },
+      "worker": "node-b4c8cadf0feda78776c212a02c585fca"
+    },
+    "srm-optical-rr": {
+      "job": "p2-f747-nist-independent-optical-input-corrections-missing-two-frequency-rows",
+      "source_request": "f680625354e1c0df39e59e319a67ac54415186a2a54ae20bca390275fb7281b0",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:31:43.663888888Z",
+      "finish": "2026-11-22T16:31:43.803798191Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 21274624,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {},
+          "distinct_processes": 1,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 1,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 1
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.014972,
+        "user_cpu_seconds": 0.070478
+      },
+      "worker": "node-b4c8cadf0feda78776c212a02c585fca"
+    },
+    "srm-raster-receipt": {
+      "job": "p2-f747-nist-three-literal-raster-input-witnesses",
+      "source_request": "f488af01df0829fbd1b57a2f71923d26fc526ab065f6e3fa50818040d9b7191c",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:32:49.863656768Z",
+      "finish": "2026-11-22T16:32:51.737270479Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 161329152,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "other": 1.4000000000000001,
+            "python": 0.02
+          },
+          "distinct_processes": 5,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 19,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 19
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.263488,
+        "user_cpu_seconds": 1.545115
+      },
+      "worker": "node-b4c8cadf0feda78776c212a02c585fca"
+    },
+    "srm-dwell-receipt": {
+      "job": "p2-f747-nist-axial-measurement-time-window-controls-source-only",
+      "source_request": "7631831cbef300c93077f0c29d5c0e19124f98ddbc75c0fdb5dfd37152adb256",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:34:17.33055199Z",
+      "finish": "2026-11-22T16:34:17.583398694Z",
+      "resources": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 0.01
+          },
+          "snapshots": 2,
+          "nonempty_snapshots": 2,
+          "distinct_processes": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.146374,
+        "system_cpu_seconds": 0.04283,
+        "max_rss_bytes": 19976192,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "worker": "node-b4c8cadf0feda78776c212a02c585fca"
+    },
+    "srm-forecast-receipt": {
+      "job": "p2-f747-nist-frozen-SRM-all-six-modal-steller-laun-predictions-before-axial",
+      "source_request": "d2a6db018e646e32f679fb4138c27af2183727e6b7fde276234d12a67d186632",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:36:06.854300443Z",
+      "finish": "2026-11-22T16:36:10.770244967Z",
+      "resources": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 3.710000000000002
+          },
+          "snapshots": 39,
+          "nonempty_snapshots": 39,
+          "distinct_processes": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 3.743709,
+        "system_cpu_seconds": 0.119521,
+        "max_rss_bytes": 92745728,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "worker": "node-4e105730de5e78651a704e31c3991a3e"
+    },
+    "srm-open-receipt": {
+      "job": "p2-f747-nist-all70-actual-axial-observations-frozen-full-course",
+      "source_request": "8a938817d8f7e293ee5fe7aeac76f40fac73878b23ffc4c77f5df85702fd6c61",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:36:55.727245025Z",
+      "finish": "2026-11-22T16:36:58.235272719Z",
+      "resources": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 0.16
+          },
+          "snapshots": 25,
+          "nonempty_snapshots": 25,
+          "distinct_processes": 4,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.241465,
+        "system_cpu_seconds": 0.065495,
+        "max_rss_bytes": 38354944,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "worker": "node-4e105730de5e78651a704e31c3991a3e"
+    },
+    "srm-coord-receipt": {
+      "job": "p2-f747-srm-independent-physical-word-coordinates-and-worst-basis",
+      "source_request": "696295c429a67c9e2328a8e92537c7ba59cadc2c3e2db3e2ab7e1925b114aca2",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:37:54.452769369Z",
+      "finish": "2026-11-22T16:37:54.634187851Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 20811776,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.02
+          },
+          "distinct_processes": 2,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 2
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.014846,
+        "user_cpu_seconds": 0.103738
+      },
+      "worker": "node-b4c8cadf0feda78776c212a02c585fca"
+    },
+    "srm-independent-rr": {
+      "job": "p2-f747-srm-independent-physical-pdf-138-row-nine-arm-recount",
+      "source_request": "7fdad4821f20ace459842302575885d2d842553f7d0154c2b1e79b8811a6c001",
+      "state": "failed",
+      "exit": 1,
+      "start": "2026-11-22T16:38:56.880256962Z",
+      "finish": "2026-11-22T16:38:57.092737859Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 21012480,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.02
+          },
+          "distinct_processes": 3,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 2
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.03583,
+        "user_cpu_seconds": 0.091385
+      },
+      "worker": "node-b4c8cadf0feda78776c212a02c585fca"
+    },
+    "srm-independent2-rr": {
+      "job": "p2-f747-srm-independent-recount-excludes-unit-superscript-row",
+      "source_request": "2bb6023c419186db634c121dfabd77fe0b32bc536921d9b526f3a0ec75f76f0e",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:40:10.004631434Z",
+      "finish": "2026-11-22T16:40:10.221273138Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 20238336,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.01
+          },
+          "distinct_processes": 3,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 2
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.033354,
+        "user_cpu_seconds": 0.119791
+      },
+      "worker": "node-b4c8cadf0feda78776c212a02c585fca"
+    },
+    "srm-mode-rr": {
+      "job": "p2-f747-srm-minimax-physical-mode-contributions-and-primal-feasibility",
+      "source_request": "388bdd6e86f8cc51c483ec35f679da1cb5a8b6ab3779b08237483271084ae70c",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:39:56.161886485Z",
+      "finish": "2026-11-22T16:39:56.622916211Z",
+      "resources": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 0.54
+          },
+          "snapshots": 4,
+          "nonempty_snapshots": 4,
+          "distinct_processes": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.798572,
+        "system_cpu_seconds": 0.071539,
+        "max_rss_bytes": 86929408,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "worker": "node-4e105730de5e78651a704e31c3991a3e"
+    },
+    "srm-cert-row-rr": {
+      "job": "p2-f747-srm-raw-certificate-versus-measured-high-rate-row-witness",
+      "source_request": "a5626a770716149c9ac9e417a05f64da0fe36c0f2f870eff6f4565e0b8786c77",
+      "state": "completed",
+      "exit": 0,
+      "start": "2026-11-22T16:40:19.305314622Z",
+      "finish": "2026-11-22T16:40:20.534464917Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 162033664,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "other": 0.8999999999999999,
+            "python": 0.02
+          },
+          "distinct_processes": 3,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 12,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 12
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.167544,
+        "user_cpu_seconds": 1.009067
+      },
+      "worker": "node-b4c8cadf0feda78776c212a02c585fca"
+    }
+  },
+  "reader_history": [
+    "An archive URL returned HTTP 403. The two primary report addresses were independently checked instead.",
+    "The first secondary physical-coordinate reader included a units-row superscript as a candidate for the numerical rate 1. It refused before a complete recount. The corrected reader restricts the table body to start at the physically located first 0.001/s row and recounts every rate."
+  ],
+  "raster_sha256": [
+    {
+      "physical_page": 72,
+      "crop_sha256": "fd498ad9347e425e61231efbe95d19e591f02bd002ecd0d4f8cbc4e14a78c1ab"
+    },
+    {
+      "physical_page": 77,
+      "crop_sha256": "7d719b9a60f8aa286a5f433361e72765484dbd9e6ec002158079064bbd42fb56"
+    },
+    {
+      "physical_page": 79,
+      "crop_sha256": "fb8f0fd30ec4bab79db668a8c4ad185b4606bd914786d459f048d822e077f266"
+    }
+  ]
+}
