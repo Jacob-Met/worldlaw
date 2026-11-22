@@ -1,0 +1,139 @@
+{
+  "question": "Do incoming measured positions support a physically pre-contact issuance and identify the spin scale needed for contact transfer?",
+  "eligibility": "Physical issuance unavailable from published source and accessible metadata",
+  "source_filter": "Unknown for measured 3D export",
+  "simulation_response": "Author operator 0.506 m/s tangential speed separation for an uncalibrated lift scale",
+  "measured_forecasts": 0,
+  "measured_numeric_position_values_decoded": 0,
+  "media_frames_decoded": 0,
+  "synthetic_view_values_decoded": 0,
+  "source_commit": "f079b7918f94db42956367c806b2f1ae25b7150e",
+  "clock_projection_sha256": "79a5c25ca4ea69781ee2c8e964a8c680c5a58c2eb5a48f4b6ffcccd7901cf6c0",
+  "clock_graph_sha256": "5b7882d126563b89b69be302eb87b9be4ca4eeb91468cd2c6dded6181a61ff03",
+  "clock_intersection_columns": [
+    "left_ID",
+    "right_ID",
+    "intersection_seconds",
+    "exactly_shared_timestamp_values"
+  ],
+  "clock_intersections": [
+    [
+      "048",
+      "119",
+      0.1059215068816286,
+      0
+    ],
+    [
+      "049",
+      "119",
+      0.15580821037269743,
+      0
+    ],
+    [
+      "049",
+      "120",
+      0.2664055824279785,
+      0
+    ],
+    [
+      "050",
+      "121",
+      0.15545320510861416,
+      0
+    ],
+    [
+      "062",
+      "125",
+      0.0664670467376709,
+      0
+    ],
+    [
+      "063",
+      "125",
+      0.47840404510498047,
+      0
+    ],
+    [
+      "076",
+      "131",
+      0.10121870040916292,
+      0
+    ],
+    [
+      "076",
+      "132",
+      0.04406118392961389,
+      0
+    ],
+    [
+      "077",
+      "132",
+      0.5779664516447269,
+      0
+    ],
+    [
+      "079",
+      "133",
+      0.2996647357941242,
+      0
+    ],
+    [
+      "090",
+      "135",
+      0.42794346809398576,
+      0
+    ]
+  ],
+  "clock_components": 128,
+  "first_adjacent_end_minus_start_screen": "The negative previous-end gap for 135/090 has absolute value .577954 s. The exhaustive intersection uses min(end)-max(start) and gives .42794346809398576 s for this nested pair.",
+  "originals": [
+    {
+      "job": "p2-f747-TT3D-139-authenticated-timestamp-only-source-lines",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "state": "completed",
+      "exit": 0,
+      "output": [
+        "CLOCK_SUMMARY {\"earliest_latest\": [12.056292057037354, 544.30868268013], \"headers\": [[\"Timestamp\", \"X\", \"Y\", \"Z\"]], \"ids\": 139, \"median_dt_range\": [0.005520224571228027, 0.005626916885987043], \"nonincreasing\": 0, \"range_largest_gaps\": [[0.06679511070251465, \"data/evaluation/3D_gt/074.csv\"], [0.03331398963928223, \"data/evaluation/3D_gt/108.csv\"], [0.03325319290159712, \"data/evaluation/3D_gt/110.csv\"], [0.028269052505493164, \"data/evaluation/3D_gt/025.csv\"], [0.02795529365539906, \"data/evaluation/3D_gt/012.csv\"], [0.027777910232543945, \"data/evaluation/3D_gt/123.csv\"], [0.022511720657348633, \"data/evaluation/3D_gt/093.csv\"], [0.022473096847491547, \"data/evaluation/3D_gt/018.csv\"]], \"record_length_ranges\": [53, 200], \"sample_count\": 14287}"
+      ]
+    },
+    {
+      "job": "p2-f747-TT3D-published-raw-share-and-export-provenance-only",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "state": "completed",
+      "exit": 0,
+      "output": [
+        "SOURCE_ACCESS URLError <urlopen error _ssl.c:983: The handshake operation timed out>",
+        "SOURCE_METHOD 200 Hz 40100 e tennis match between two club-level players using a multi-camera system capable of tracking the ball’s 3D position at 200 Hz. However, the system requires orange balls, which BlurBall was not trained to detect, rendering the ball detector inapplicable. Despite this limitation, the recorded 3D trajectories are accurate and can be used to generate simulated 2D observations at 25 fps using the pinhole camera model. To achieve t"
+      ]
+    },
+    {
+      "job": "p2-f747-TT3D-authentic-CasADi-source-gauge-impact-counterexample",
+      "worker": "node-ed6d75e73315250d137bef37f2e21b18",
+      "state": "completed",
+      "exit": 0,
+      "output": [
+        "SYMBOLIC_EXACT 96/25 1667/500 253/500 flight pointwise invariant at all p and v with proportional inverse spin, fixed-coefficient parent model itself chooses a scale",
+        "NATIVE_POINTWISE_CONTROL 0.0 measured_xyz_decoded=0"
+      ]
+    },
+    {
+      "job": "p2-f747-TT3D-independent-all139-clock-and-exact-impulse-law",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "state": "completed",
+      "exit": 0,
+      "output": [
+        "COMPLETE 139 14287 fields_recounted 973 worst (0.06679511070251465, 'data/evaluation/3D_gt/074.csv') overlap_adjacent 11 nearest_pairs [(-0.5779664516447269, 'data/evaluation/3D_gt/132.csv', 'data/evaluation/3D_gt/077.csv'), (-0.5779540538790684, 'data/evaluation/3D_gt/135.csv', 'data/evaluation/3D_gt/090.csv'), (-0.47840404510498047, 'data/evaluation/3D_gt/125.csv', 'data/evaluation/3D_gt/063.csv')]",
+        "INDEPENDENT_EXACT_IMPULSES ['4/25', '333/500'] post ['96/25', '1667/500'] separation 253/500 numeric_xyz_count 0 media_decoded 0"
+      ]
+    },
+    {
+      "job": "p2-f747-TT3D-exhaustive-all139-clock-overlap-component-witness",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "state": "completed",
+      "exit": 0,
+      "output": [
+        "CLOCK_COMPONENTS 4640 5b7882d126563b89b69be302eb87b9be4ca4eeb91468cd2c6dded6181a61ff03 r2-estate:hamon-build-cache/research/astra62-p2-f747f5728172/tt3d/5b7882d126563b89b69be302eb87b9be4ca4eeb91468cd2c6dded6181a61ff03/clock-components.json"
+      ]
+    }
+  ]
+}
