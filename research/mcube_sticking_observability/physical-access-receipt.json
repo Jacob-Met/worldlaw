@@ -1,0 +1,15 @@
+{
+  "original": "p3-f747-mcube-rect1-source-only-qualified-kernel-budget-owner",
+  "owner": "node-073191d4e546e2d3538de4d600167836",
+  "admission_state": "expired",
+  "created_at": "2026-11-22T20:27:10.807051648Z",
+  "deadline": "2026-11-22T21:30:00Z",
+  "arguments_sha256": "1c28813340d17a8a9a5af073a3a7eba9c812486937780b2d8b7fc6e0ca2ecfaa",
+  "placement_observation": "Original owner capability observation HTTP507, storage reported no space left on device",
+  "poll_receipt": "Original queue entry is retained; no worker contacted and no output bytes returned. Observe waiting details with execution_queue_status, then use execution_poll after admission.",
+  "first_original": "p3-f747-mcube-rect1-archive-exclusions-sensor-clock-qualification",
+  "first_native_result": "queue not created: kernel job budgets unavailable on node-c0da1eb7402af862460cccd552698bb4; provision and upgrade the original host provider",
+  "public_link_screen": "Both organizer-linked preview URLs identified themselves as Dropbox error pages. No complete archive or exclusion list was authenticated. The native queue expiry alone does not establish a permanent data access failure.",
+  "push_arrays_opened": 0,
+  "attempt_to_clone_after_deadline": false
+}

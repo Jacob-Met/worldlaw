@@ -1,0 +1,6 @@
+Normal compatibility, direction, compression, unit scaling and off-center twist verified analytically.
+81 complete-sticking cases matched the direct-force model; normal-only compatibility admitted two different twists.
+100 exact-rational cases passed, including anisotropy, cross-coupling, common-scale invariance and centered non-identification.
+{'one_face_exact_matches': 33, 'one_face_rank': 4, 'symmetric_parameters': 6, 'different_virtual_force_directions': 33, 'max_abs_tangential_to_normal_force': '733/1344', 'other_face_scaled_twist_1': ['1351/940500', '12094/705375', '4027/470250'], 'other_face_scaled_twist_2': ['767/2025860', '1701/101293', '48729/5064650']}
+{'training_pose_only': 27, 'held_mirror_twists_exact': 6, 'observable_coefficients': ['1', '-14/47', '21/94', '5369/4512', '3353/3384'], 'sensor_wrenches_passed_to_estimator': 0, 'full_resistance_recovered': False}
+SOURCE 7521894e9f3f50371f5b3f484ca1a1175afaf965a209c4c857bc03bee773ab98 PUSH_RECORDS 0

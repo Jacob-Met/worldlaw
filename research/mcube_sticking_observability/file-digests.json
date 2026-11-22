@@ -1,0 +1,15 @@
+{
+  "README.md": "2745fc2be7fe705c606a1aca7fe892440570f43cdcf3e7a16cb2bfd4a938d9e1",
+  "conditional_contact.py": "54455ebbf0bbce7351e9d3870b00f2539de7269c22f7113e9fa121c4fe7efbb2",
+  "face_stability.py": "161190d82c5163e6a13b54a3a98b375fa95a5a2d6fba32cf8016ba5c7127001c",
+  "one-face-native-original.txt": "253345634919719505ccf568bd03e65f47a5c44636a6f3e78ab5e9f06fe7dd10",
+  "one_face_control.py": "acf940ef6f21522c82411159d0f7c96dfa0cdefe6887c9e1d520d6695d4c8e1c",
+  "one_face_observability.py": "0fdad504664a497d655c2cc211fa1403a8861c8c9379f6d136661a6abab73625",
+  "physical-access-receipt.json": "c383c7cfb4afdb5646fe6cad00187ef505010fe9a0fc2ddb94358342bde55de3",
+  "source-stability-gate.md": "6f8f06ee31189b03c1ec1ee3f464a78d7e1f0cb2280b9f86736ca3763fe13bef",
+  "sticking-identification.md": "c7fa40202286f7254383009d6b7001fd0f7b0d2c746af05f76040388192aa6da",
+  "sticking_control.py": "0f2a843da9244ba51e5490b0b0ba4e691a161eee9ab8e61c59f9ea0f1d8e2d51",
+  "sticking_operator.py": "989148a06f97723c77dd310b85fbe3dd9ebba2fee207e0e2f308ecd2821d7a7c",
+  "synthetic-stability-original.json": "c38d85a190c3b93b3e9c6525ef5f7529e7a121eb55a4b2d3babe0592ec7d5771",
+  "within-face-prediction.md": "f5b088f0b431766d9d0eef4ef6c8e0b7852300bfc13aae90152a9de065a1fbd6"
+}
