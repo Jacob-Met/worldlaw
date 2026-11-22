@@ -16,6 +16,18 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/polymer-normal-stress/README.md",
+    "research/polymer-normal-stress/project_input.py",
+    "research/polymer-normal-stress/modal_response.py",
+    "research/polymer-normal-stress/freeze_predictions.py",
+    "research/polymer-normal-stress/score_course.py",
+    "research/polymer-normal-stress/independent_recount.py",
+    "research/polymer-normal-stress/mode_witness.py",
+    "research/polymer-normal-stress/replay.py",
+    "research/polymer-normal-stress/frozen-predictions.json",
+    "research/polymer-normal-stress/observed.json",
+    "research/polymer-normal-stress/mode-receipt.json",
+    "research/polymer-normal-stress/course-receipt.json",
     "research/low-field-phantom-power/README.md",
     "research/low-field-phantom-power/raw-afi-qualification.md",
     "research/low-field-phantom-power/power-admission.md",
