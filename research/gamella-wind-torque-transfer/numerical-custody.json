@@ -1,0 +1,108 @@
+{
+  "first_recount": {
+    "command": "p3-f747-gamella-e87829e3-independent-raw-csv-and-locked-array-receipt",
+    "output_bytes": 606,
+    "request_sha256": "eaa8d4585e04ca88b66ccbb4ae21a3846459255f0f63f7cf5a6b32f571325bce",
+    "state": "failed"
+  },
+  "numeric_forecasts": {
+    "0.01": {
+      "bytes": 12889547,
+      "path": "r2-estate:hamon-build-cache/research/astra62-p3-f747f5728172/gamella-wind-torque/44f4aa3412f4d829b3f5e5bc898fa11e48b76bddfe1a9f51acf5bf986b08a380/forecasts-0.01.npz",
+      "sha256": "44f4aa3412f4d829b3f5e5bc898fa11e48b76bddfe1a9f51acf5bf986b08a380"
+    },
+    "1": {
+      "bytes": 10532342,
+      "path": "r2-estate:hamon-build-cache/research/astra62-p3-f747f5728172/gamella-wind-torque/1f7c784dfd881b9b10c0381f6f695bbb5d44c6b363e70b4eb3725df0b439488f/forecasts-1.npz",
+      "sha256": "1f7c784dfd881b9b10c0381f6f695bbb5d44c6b363e70b4eb3725df0b439488f"
+    }
+  },
+  "numerical_archive": {
+    "command_id": "p3-f747-gamella-933584d3-preserve-original-numeric-forecasts",
+    "full_output_sha256": "067545abc935f79284242ff8d5e25a451dd8dc97f6bbd01a622b12a090b09ed1",
+    "generation": "932042c5829cad41a86966ec9fd830dde5cf49909a99290abb5e20d6001c281a",
+    "output_bytes": 711,
+    "owner": "node-c0da1eb7402af862460cccd552698bb4",
+    "receipt_sha256": "987d97dd763da0fde00812b1d0c39503dc0e002e1d8ca28c59b123bd4c7e40a9",
+    "request_sha256": "d8d41df812be109710a258ed78fc7f35ffea0d8dae89c4fe1d22aa5293d2bb10"
+  },
+  "pre_dispatch_refusals": [
+    {
+      "code": "effect_owner_required",
+      "id": "p3-f747-gamella-0b0021ca-held-prefix-forecast-lock",
+      "owner": "",
+      "provider_dispatch": "not_attempted"
+    },
+    {
+      "bytes": {
+        "free_bytes": 2147467264,
+        "required_bytes": 2147483648
+      },
+      "code": "artifact_storage_pressure",
+      "id": "capacity-e7b39475930df4b27f58c2254d463e5e94c5de2f46b2494c",
+      "owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "provider_dispatch": "not_attempted"
+    },
+    {
+      "bytes": {
+        "free_bytes": 2147471360,
+        "required_bytes": 2147483648
+      },
+      "code": "artifact_storage_pressure",
+      "id": "p3-f747-gamella-0b0021ca-held-prefix-forecast-lock-after-archive32995",
+      "owner": "node-a40c385311b84ababe7de5dff0828d83",
+      "provider_dispatch": "not_attempted"
+    },
+    {
+      "bytes": {
+        "free_bytes": 2147471360,
+        "required_bytes": 2147483648
+      },
+      "code": "artifact_storage_pressure",
+      "id": "p3-f747-gamella-6a5a607b-exact-flow-two-session-held-prefix-lock",
+      "owner": "node-a40c385311b84ababe7de5dff0828d83",
+      "provider_dispatch": "not_attempted"
+    },
+    {
+      "bytes": {
+        "free_bytes": 2147459072,
+        "required_bytes": 2147483648
+      },
+      "code": "artifact_storage_pressure",
+      "id": "p3-f747-gamella-60a2ef44-independent-exact-decimal-flag-recount",
+      "owner": "node-a40c385311b84ababe7de5dff0828d83",
+      "provider_dispatch": "not_attempted"
+    }
+  ],
+  "predict": {
+    "command_id": "p3-f747-gamella-6a5a607b-native-source-pinned-prefix-lock",
+    "full_output_sha256": "e61468ea324d03059e01553a5b6ec5bc66ad05edbadfc00b6a733a46afc122ee",
+    "generation": "08ee68ff67c86a5dff7dae09887b3de7a5c0470ca337e6ee2bc3ffd72b66faef",
+    "output_bytes": 4189,
+    "owner": "node-c0da1eb7402af862460cccd552698bb4",
+    "receipt_sha256": "a02714514d4b9efd7b27f83134bf713069310b0347252ff89052b907a6bb8369",
+    "request_sha256": "e1865aca78308f530267755b6f9b9197d74f19bca9711402ec2b8d2ac834f0a2"
+  },
+  "raw_measurement_archives_uploaded": 0,
+  "recount": {
+    "command_id": "p3-f747-gamella-60a2ef44-independent-exact-decimal-flag-recount-archive34861",
+    "full_output_sha256": "067c26c5a5a0075c505b5e5870c0770923f5b99d76ba189fe4c833e1d837aee5",
+    "generation": "b45a02a058598e00bda25090dc42d557a808fcede913be9e4fbc50ebe08f4c6c",
+    "output_bytes": 1628,
+    "owner": "node-c0da1eb7402af862460cccd552698bb4",
+    "receipt_sha256": "3992952c7e7d79a0704e54cebf2d83bae51bfd71ce3e16430523bb015a45db4d",
+    "request_sha256": "ae82cf37e7d0a5d74b045f662f309718df978cbf40d8031e8ab39ef6deb9f8ac"
+  },
+  "registry_commit": "0e7c851874d1955b87b69729fff9a9e857dbcd7f",
+  "registry_sha256": "933584d35e8989676c78c2b87ebc5e08be9cbef27b173ff40007bf61acefa33e",
+  "score": {
+    "command_id": "p3-f747-gamella-933584d3-sealed-two-session-physical-score",
+    "full_output_sha256": "0c87343d6c3741831915f77bb6faaa3a3b2fd5802731a9a962a8d1020dc9188f",
+    "generation": "7abd354f2a04547da861c613d2522d4c9d4f7cf81d094dbb25fe99f3cb432520",
+    "output_bytes": 10174,
+    "owner": "node-c0da1eb7402af862460cccd552698bb4",
+    "receipt_sha256": "5fdd89a01faae8df6c170276d2027f297def0a3a95b95fbc7e83ffb9ed103cb6",
+    "request_sha256": "1157db792b8e6790c0075201077584294e2063a474435ee12f0b663698d0b534"
+  },
+  "source_commit": "6a5a607b5e540f04f01470e0d9036d9f38f18720"
+}

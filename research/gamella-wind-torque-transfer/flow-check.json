@@ -1,0 +1,107 @@
+{
+  "analytic_tests": [
+    {
+      "case": "positive_accelerating",
+      "end_rad_s": 35.131982010831074,
+      "composition_error": 7.105427357601002e-15,
+      "ode_error": 1.2789769243681803e-13,
+      "recovered_drive": 11.999999999999986
+    },
+    {
+      "case": "positive_decelerating",
+      "end_rad_s": 174.9885393232978,
+      "composition_error": 0.0,
+      "ode_error": 1.9610979506978765e-12,
+      "recovered_drive": 12.000000000000181
+    },
+    {
+      "case": "positive_from_rest",
+      "end_rad_s": 16.60344440938829,
+      "composition_error": 0.0,
+      "ode_error": 2.3803181647963356e-13,
+      "recovered_drive": null
+    },
+    {
+      "case": "unforced",
+      "end_rad_s": 82.51517015788613,
+      "composition_error": 0.0,
+      "ode_error": 2.5579538487363607e-13,
+      "recovered_drive": -5.127301392100114e-14
+    },
+    {
+      "case": "unforced_rest",
+      "end_rad_s": 0.0,
+      "composition_error": 0.0,
+      "ode_error": 0.0,
+      "recovered_drive": null
+    },
+    {
+      "case": "negative_active",
+      "end_rad_s": 68.3419029976843,
+      "composition_error": 1.4210854715202004e-14,
+      "ode_error": 5.684341886080802e-14,
+      "recovered_drive": -12.000000000000068
+    },
+    {
+      "case": "negative_hits_stop",
+      "end_rad_s": 0.0,
+      "composition_error": 0.0,
+      "ode_error": 0.0,
+      "recovered_drive": null
+    },
+    {
+      "case": "negative_at_stop",
+      "end_rad_s": 0.0,
+      "composition_error": 0.0,
+      "ode_error": 0.0,
+      "recovered_drive": null
+    },
+    {
+      "case": "equilibrium",
+      "end_rad_s": 100.00000000000001,
+      "composition_error": 2.842170943040401e-14,
+      "ode_error": 1.4210854715202004e-14,
+      "recovered_drive": 15.13559767136331
+    },
+    {
+      "case": "near_equilibrium",
+      "end_rad_s": 100.00000000001728,
+      "composition_error": 0.0,
+      "ode_error": 0.0,
+      "recovered_drive": 15.135597671378427
+    },
+    {
+      "case": "tiny_positive",
+      "end_rad_s": 82.51517015788613,
+      "composition_error": 0.0,
+      "ode_error": 2.5579538487363607e-13,
+      "recovered_drive": -5.127301392100114e-14
+    },
+    {
+      "case": "tiny_negative",
+      "end_rad_s": 82.51517015788613,
+      "composition_error": 0.0,
+      "ode_error": 2.5579538487363607e-13,
+      "recovered_drive": -5.127301392100114e-14
+    },
+    {
+      "case": "zero_time",
+      "end_rad_s": 100.0,
+      "composition_error": 0.0,
+      "ode_error": 0.0,
+      "recovered_drive": null
+    }
+  ],
+  "source": {
+    "distinct_training_hatch_positions": 401,
+    "source_intervals": 18045,
+    "max_original_row4_deviation_from_declared_initial_mean_rpm": 3.325058855329215,
+    "first_high_step_reconstruction_max_rpm": 2.714073328182201e-13,
+    "full_trajectory_max_error_rad_s": 3.694822225952521e-13,
+    "full_trajectory_max_error_rpm": 3.5282953266368615e-12,
+    "interval_drive_range_rad_s2": [
+      39.15280146627504,
+      59.77035227936503
+    ]
+  }
+}

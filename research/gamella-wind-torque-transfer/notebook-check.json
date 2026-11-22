@@ -1,0 +1,31 @@
+{
+  "literal_tau": "def tau(L, C_min=C_MIN, C_max=C_MAX, L_min=L_MIN, T=T):\n    L = np.atleast_1d(L)\n    torques = T * (C_min + np.maximum(L_min, L) ** 3 * (C_max - C_min) - C_min)\n    torques[L == 0] = 0\n    return torques if len(L) > 1 else torques[0]",
+  "checks": [
+    {
+      "flag": 0,
+      "double_max_abs_in_rpm_out_rpm_pa": [
+        2.2737367544323206e-13,
+        4.547473508864641e-13,
+        1.4551915228366852e-11
+      ],
+      "stored_equal": [
+        true,
+        true,
+        true
+      ]
+    },
+    {
+      "flag": 422,
+      "double_max_abs_in_rpm_out_rpm_pa": [
+        4.547473508864641e-13,
+        4.547473508864641e-13,
+        1.4551915228366852e-11
+      ],
+      "stored_equal": [
+        true,
+        true,
+        true
+      ]
+    }
+  ]
+}
