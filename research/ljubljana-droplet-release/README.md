@@ -18,7 +18,7 @@ The table shows root-mean-square error on the recorded values. Mean gives each o
 
 The primary rule required the zero-force arm to beat each of the four controls on all four measures. It passed 4 of 16 comparisons, all against the elementary clock and mean energy. It passed 2 of 16 comparisons on the two development surfaces. The independent reader recomputed 14,980 residual terms, 120 surface errors and all 48 split-specific comparison decisions. The largest numeric discrepancy was $1.39\times10^{-17}$.
 
-Both largest absolute misses for zero force occurred on the deep 600 μm grid. CSV line 1103 records **35.6 ms**, compared with **14.157 ms** predicted by zero force and **17.917 ms** by the seven-input GP. Line 920 records energy **.04719**, compared with **.16743** and **.15802**. These are different drops. The original archive retains each input vector, prediction, recorded outcome and worst-error identity by geometry and model.
+Both largest absolute misses for zero force occurred on the deep 600 μm grid. CSV line 1103 records **35.6 ms**, compared with **14.157 ms** predicted by zero force and **17.917 ms** by the seven-input GP. Line 920 records energy **.04719**, compared with **.16743** and **.15802**. These are different drops. The original evidence files retain each input vector, prediction, recorded outcome and worst-error identity by geometry and model.
 
 ## What the instrument measured
 
@@ -44,7 +44,7 @@ If the paper excluded exactly 132 of these 1,498 rows, there could be 368–500 
 
 ## Running the original comparison
 
-The archive contains the two byte-exact original organizer CSVs, the complete pre-opening prediction archive, all surface scores and the independent recount. The first command uses the Python standard library. The second also reruns the training-only fits and compares every predicted value with the frozen archive. The original fitting run used NumPy 2.2.6 and SciPy 1.15.3. The full original forecast hash and numerical refit agreement are reported separately.
+The two organizer CSVs, complete pre-opening forecasts, all surface scores and independent recount are distributed as their original CSV and JSON files. Each file is SHA-256 verified before replay. The first command uses the Python standard library. The second also reruns the training-only fits and compares every predicted value with the frozen archive. The original fitting run used NumPy 2.2.6 and SciPy 1.15.3. The full original forecast hash and numerical refit agreement are reported separately.
 
 ```sh
 python replay.py

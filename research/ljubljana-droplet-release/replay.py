@@ -3,13 +3,11 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-import zipfile
 
 import recount
 import score
 
 ROOT = Path(__file__).resolve().parent
-ARCHIVE = "31c138fa6d8580d89d8729d3a2cd3380b4cf17ff331003d83c917f8b25da8b2a"
 FILES = {"main": "organizer.csv", "reference": "reference.csv",
          "forecasts": "five-arm-locked-forecasts.json", "result": "five-arm-all-surfaces.json",
          "independent": "independent.json"}
@@ -42,7 +40,8 @@ def training_projection(m,ref):
 def refit(m,ref,frozen):
     import forecast
     inputs,targets=training_projection(m,ref)
-    for item,expected in ((inputs,forecast.INPUT_SHA),(targets,forecast.FIT_SHA)):
+    numeric_line_targets = {int(line): pair for line, pair in targets.items()}
+    for item,expected in ((inputs,forecast.INPUT_SHA),(numeric_line_targets,forecast.FIT_SHA)):
         b=(json.dumps(item,sort_keys=True,separators=(",",":"))+"\n").encode()
         if digest(b)!=expected:
             raise ValueError("Training or input-only projection differs")
@@ -64,13 +63,7 @@ def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--refit",action="store_true",help="Recompute the five locked arms from the original seven inputs")
     args=ap.parse_args()
-    archive=ROOT/"original-course.zip"
-    if digest(archive.read_bytes())!=ARCHIVE:
-        raise ValueError("Original archive mismatch")
-    with zipfile.ZipFile(archive) as z:
-        if sorted(z.namelist())!=sorted(FILES.values()):
-            raise ValueError("Archive roster mismatch")
-        data={k:z.read(n) for k,n in FILES.items()}
+    data={key:(ROOT/name).read_bytes() for key,name in FILES.items()}
     for k,v in data.items():
         if digest(v)!=PINS[k]:
             raise ValueError(k+" member mismatch")
@@ -83,7 +76,7 @@ def main():
     independent=json.loads(json.dumps(independent))
     if independent!=json.loads(data["independent"]):
         raise ValueError("Independent residual or mask sensitivity mismatch")
-    print(json.dumps({"archive_sha256":ARCHIVE,"final":official["final"]["summary"],
+    print(json.dumps({"member_sha256":PINS,"final":official["final"]["summary"],
                       "joint":official["final"]["joint"],"raw_worst":official["final"]["worst_force"],
                       "recount":independent,"refit":refit_receipt},indent=2))
 

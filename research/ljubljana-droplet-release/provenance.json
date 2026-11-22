@@ -126,5 +126,9 @@
     "sha": "31c138fa6d8580d89d8729d3a2cd3380b4cf17ff331003d83c917f8b25da8b2a",
     "git": "b26c08061c265b0ecf699ed8c8d1c040a98181d9",
     "key": "r2-estate:hamon-build-cache/research/astra62-p2-f747f5728172/ljubljana-drop/31c138fa6d8580d89d8729d3a2cd3380b4cf17ff331003d83c917f8b25da8b2a/original-course.zip"
-  }
+  },
+  "publication_corrections": [
+    "Initial clean science read reproduced all scores but refused training projection SHA when line-number string keys sorted lexicographically. Restored original numeric sort for serialization only; no original forecast, data, scorer or gate changed.",
+    "Initial ordinary package policy refused tracked ZIP suffix. Distributed the same five original members as their native CSV/JSON files. The external original archive and its digest remain unchanged."
+  ]
 }

@@ -1,0 +1,1459 @@
+{
+  "development": {
+    "availability": {
+      "both": 250,
+      "duration_only": 0,
+      "energy_only": 0,
+      "neither": 0
+    },
+    "checks": {
+      "duration_s": {
+        "max_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": false,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        },
+        "mean_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": false,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        }
+      },
+      "height_energy": {
+        "max_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": true,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        },
+        "mean_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": true,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        }
+      }
+    },
+    "joint": false,
+    "n": 250,
+    "paired_field_brier": 4.45632004221037e-07,
+    "summary": {
+      "duration_s": {
+        "author_ie_gp": {
+          "max_rmse": 0.0028880092993514156,
+          "mean_rmse": 0.0023211310872040467
+        },
+        "capillary_clock_mean_energy": {
+          "max_rmse": 0.0032874544729322676,
+          "mean_rmse": 0.00249584967592821
+        },
+        "deformation": {
+          "max_rmse": 0.0033557434634456217,
+          "mean_rmse": 0.002929348458054014
+        },
+        "dimensionless_ie_gp": {
+          "max_rmse": 0.003216071280509522,
+          "mean_rmse": 0.002809309635600467
+        },
+        "force": {
+          "max_rmse": 0.004170820185254562,
+          "mean_rmse": 0.0034405709376493605
+        }
+      },
+      "height_energy": {
+        "author_ie_gp": {
+          "max_rmse": 0.028393214985611114,
+          "mean_rmse": 0.024493133005559005
+        },
+        "capillary_clock_mean_energy": {
+          "max_rmse": 0.10938947859088492,
+          "mean_rmse": 0.10863296630095481
+        },
+        "deformation": {
+          "max_rmse": 0.04354703728747316,
+          "mean_rmse": 0.04162594466997861
+        },
+        "dimensionless_ie_gp": {
+          "max_rmse": 0.03569245142124884,
+          "mean_rmse": 0.03174237596107098
+        },
+        "force": {
+          "max_rmse": 0.04657255797872139,
+          "mean_rmse": 0.043845361429765854
+        }
+      }
+    },
+    "surfaces": {
+      "D400": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.011,
+            "predicted": 0.014548709122093653,
+            "rmse": 0.0017542528750566781,
+            "worst_line": 1035
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.0104,
+            "predicted": 0.013348655459800676,
+            "rmse": 0.0017042448789241526,
+            "worst_line": 499
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.0114,
+            "predicted": 0.0155516121171735,
+            "rmse": 0.0025029534526624063,
+            "worst_line": 1155
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.011,
+            "predicted": 0.015766601400941473,
+            "rmse": 0.0024025479906914123,
+            "worst_line": 1035
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.0114,
+            "predicted": 0.016064887748687244,
+            "rmse": 0.002710321690044159,
+            "worst_line": 319
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.26275508,
+            "predicted": 0.20799570706619358,
+            "rmse": 0.020593051025506893,
+            "worst_line": 915
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.431688447,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.10787645401102469,
+            "worst_line": 17
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.26275508,
+            "predicted": 0.17115889861693778,
+            "rmse": 0.039704852052484065,
+            "worst_line": 915
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.26275508,
+            "predicted": 0.1835682615121019,
+            "rmse": 0.027792300500893128,
+            "worst_line": 915
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.26275508,
+            "predicted": 0.17548504674953866,
+            "rmse": 0.04111816488081032,
+            "worst_line": 915
+          }
+        },
+        "n": 125
+      },
+      "S400": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.0304,
+            "predicted": 0.018376596980939817,
+            "rmse": 0.0028880092993514156,
+            "worst_line": 1487
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.0304,
+            "predicted": 0.014065969035791449,
+            "rmse": 0.0032874544729322676,
+            "worst_line": 1487
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.0304,
+            "predicted": 0.01730171049703415,
+            "rmse": 0.0033557434634456217,
+            "worst_line": 1487
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.0304,
+            "predicted": 0.01849335779838495,
+            "rmse": 0.003216071280509522,
+            "worst_line": 1487
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.0304,
+            "predicted": 0.013948644034361673,
+            "rmse": 0.004170820185254562,
+            "worst_line": 1487
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.27169137,
+            "predicted": 0.19593092637476334,
+            "rmse": 0.028393214985611114,
+            "worst_line": 948
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.416370282,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.10938947859088492,
+            "worst_line": 48
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.27169137,
+            "predicted": 0.16738965096445457,
+            "rmse": 0.04354703728747316,
+            "worst_line": 948
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.27169137,
+            "predicted": 0.17305458100514845,
+            "rmse": 0.03569245142124884,
+            "worst_line": 948
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.27169137,
+            "predicted": 0.17091365655837137,
+            "rmse": 0.04657255797872139,
+            "worst_line": 948
+          }
+        },
+        "n": 125
+      }
+    },
+    "worst_force": {
+      "duration_s": {
+        "forecast": {
+          "author_ie_gp": [
+            0.018376596980939817,
+            0.004541414048527648
+          ],
+          "capillary_clock_mean_energy": [
+            0.014065969035791449,
+            0.11847541422994652
+          ],
+          "deformation": [
+            0.01730171049703415,
+            0.012525787982730725
+          ],
+          "dimensionless_ie_gp": [
+            0.01849335779838495,
+            0.006452109117519783
+          ],
+          "force": [
+            0.013948644034361673,
+            0.03936699164243969
+          ]
+        },
+        "inputs": [
+          0.002347412,
+          1.583331693,
+          1230.1775,
+          0.06569099,
+          0.1463243,
+          400.0,
+          6.0
+        ],
+        "line": 1487,
+        "split": "development",
+        "surface": "S400",
+        "target": [
+          0.0304,
+          0.006703364
+        ]
+      },
+      "height_energy": {
+        "forecast": {
+          "author_ie_gp": [
+            0.014286426760895641,
+            0.19593092637476334
+          ],
+          "capillary_clock_mean_energy": [
+            0.013418280331901438,
+            0.11847541422994652
+          ],
+          "deformation": [
+            0.014077130888660215,
+            0.16738965096445457
+          ],
+          "dimensionless_ie_gp": [
+            0.014727535232358988,
+            0.17305458100514845
+          ],
+          "force": [
+            0.015771996444396443,
+            0.17091365655837137
+          ]
+        },
+        "inputs": [
+          0.002308333,
+          0.537795313,
+          1199.4826,
+          0.06692756,
+          0.037049434,
+          400.0,
+          6.0
+        ],
+        "line": 948,
+        "split": "development",
+        "surface": "S400",
+        "target": [
+          0.0114,
+          0.27169137
+        ]
+      }
+    }
+  },
+  "final": {
+    "availability": {
+      "both": 500,
+      "duration_only": 0,
+      "energy_only": 0,
+      "neither": 0
+    },
+    "checks": {
+      "duration_s": {
+        "max_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": true,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        },
+        "mean_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": true,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        }
+      },
+      "height_energy": {
+        "max_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": true,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        },
+        "mean_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": true,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        }
+      }
+    },
+    "joint": false,
+    "n": 500,
+    "paired_field_brier": 4.45632004221037e-07,
+    "summary": {
+      "duration_s": {
+        "author_ie_gp": {
+          "max_rmse": 0.004547500755896521,
+          "mean_rmse": 0.0024996423319502367
+        },
+        "capillary_clock_mean_energy": {
+          "max_rmse": 0.005339649671910901,
+          "mean_rmse": 0.0030589947484067482
+        },
+        "deformation": {
+          "max_rmse": 0.0046392600296578795,
+          "mean_rmse": 0.002529410582858027
+        },
+        "dimensionless_ie_gp": {
+          "max_rmse": 0.004421904521001788,
+          "mean_rmse": 0.0025639101904146658
+        },
+        "force": {
+          "max_rmse": 0.00522046680299204,
+          "mean_rmse": 0.00291657858126049
+        }
+      },
+      "height_energy": {
+        "author_ie_gp": {
+          "max_rmse": 0.0380270856973046,
+          "mean_rmse": 0.024321970646557774
+        },
+        "capillary_clock_mean_energy": {
+          "max_rmse": 0.108396191032892,
+          "mean_rmse": 0.10602753394913736
+        },
+        "deformation": {
+          "max_rmse": 0.041661797898417376,
+          "mean_rmse": 0.03165484931632276
+        },
+        "dimensionless_ie_gp": {
+          "max_rmse": 0.0417285554112286,
+          "mean_rmse": 0.02540689174105393
+        },
+        "force": {
+          "max_rmse": 0.04770600296817006,
+          "mean_rmse": 0.035699111183266755
+        }
+      }
+    },
+    "surfaces": {
+      "D100": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.015,
+            "predicted": 0.011932575042849938,
+            "rmse": 0.0009152914167692394,
+            "worst_line": 1387
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.01,
+            "predicted": 0.012847844702819352,
+            "rmse": 0.0017273095006191757,
+            "worst_line": 188
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.015,
+            "predicted": 0.012428156739227035,
+            "rmse": 0.0008514029211395959,
+            "worst_line": 1387
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.015,
+            "predicted": 0.010879474451483562,
+            "rmse": 0.0011464941456422564,
+            "worst_line": 1387
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.015,
+            "predicted": 0.010553571055844337,
+            "rmse": 0.0010913540327356158,
+            "worst_line": 1387
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.101912906,
+            "predicted": 0.06431378321388964,
+            "rmse": 0.013607958992428889,
+            "worst_line": 250
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.396497871,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.10323942105327778,
+            "worst_line": 7
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.254274448,
+            "predicted": 0.20287855072647645,
+            "rmse": 0.02001346598633511,
+            "worst_line": 907
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.123176893,
+            "predicted": 0.1742304510339263,
+            "rmse": 0.01543445106213997,
+            "worst_line": 1206
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.123176893,
+            "predicted": 0.1796184634756298,
+            "rmse": 0.023577469109259837,
+            "worst_line": 1206
+          }
+        },
+        "n": 125
+      },
+      "D600": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.0348,
+            "predicted": 0.01681919130963274,
+            "rmse": 0.004547500755896521,
+            "worst_line": 681
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.0356,
+            "predicted": 0.01338228003159949,
+            "rmse": 0.005339649671910901,
+            "worst_line": 1103
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.0348,
+            "predicted": 0.0148710552096882,
+            "rmse": 0.0046392600296578795,
+            "worst_line": 681
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.0348,
+            "predicted": 0.017160945905736597,
+            "rmse": 0.004421904521001788,
+            "worst_line": 681
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.0356,
+            "predicted": 0.014156907325685204,
+            "rmse": 0.00522046680299204,
+            "worst_line": 1103
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.047186542,
+            "predicted": 0.1580179978705481,
+            "rmse": 0.03270003734428481,
+            "worst_line": 920
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.416156028,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.10573513256455654,
+            "worst_line": 322
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.047186542,
+            "predicted": 0.16293996383429832,
+            "rmse": 0.036618243009499285,
+            "worst_line": 920
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.416156028,
+            "predicted": 0.3025669291822677,
+            "rmse": 0.0308438700055127,
+            "worst_line": 322
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.047186542,
+            "predicted": 0.16742593290570104,
+            "rmse": 0.04310084117953559,
+            "worst_line": 920
+          }
+        },
+        "n": 125
+      },
+      "S100": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.0154,
+            "predicted": 0.01143412511294564,
+            "rmse": 0.001149894664307434,
+            "worst_line": 281
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.0102,
+            "predicted": 0.013724515345829165,
+            "rmse": 0.0020200072287452145,
+            "worst_line": 278
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.0154,
+            "predicted": 0.012472508738328269,
+            "rmse": 0.0012512039199741836,
+            "worst_line": 281
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.0154,
+            "predicted": 0.011459535061420407,
+            "rmse": 0.0012458616644923921,
+            "worst_line": 281
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.0162,
+            "predicted": 0.011732990541424895,
+            "rmse": 0.0014222930068511894,
+            "worst_line": 1355
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.05550546,
+            "predicted": 0.09981971439196352,
+            "rmse": 0.012952800552212802,
+            "worst_line": 219
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.401188651,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.108396191032892,
+            "worst_line": 41
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.05550546,
+            "predicted": 0.1313035100437115,
+            "rmse": 0.028325890371039258,
+            "worst_line": 219
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.05550546,
+            "predicted": 0.10114906090515238,
+            "rmse": 0.013620690485334451,
+            "worst_line": 219
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.05550546,
+            "predicted": 0.12030010032645658,
+            "rmse": 0.02841213147610153,
+            "worst_line": 219
+          }
+        },
+        "n": 125
+      },
+      "S600": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.0254,
+            "predicted": 0.015595000915528864,
+            "rmse": 0.003385882490827753,
+            "worst_line": 1253
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.0254,
+            "predicted": 0.013618169815363129,
+            "rmse": 0.003149012592351701,
+            "worst_line": 1253
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.0254,
+            "predicted": 0.015234030167270056,
+            "rmse": 0.0033757754606604496,
+            "worst_line": 1253
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.0254,
+            "predicted": 0.01614711751009913,
+            "rmse": 0.0034413804305222268,
+            "worst_line": 1253
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.0246,
+            "predicted": 0.01466678143333331,
+            "rmse": 0.003932200482463113,
+            "worst_line": 1491
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.305078083,
+            "predicted": 0.18686541907528392,
+            "rmse": 0.0380270856973046,
+            "worst_line": 650
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.409815903,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.10673939114582309,
+            "worst_line": 56
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.305078083,
+            "predicted": 0.20791428935365447,
+            "rmse": 0.041661797898417376,
+            "worst_line": 650
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.305078083,
+            "predicted": 0.17781598838109677,
+            "rmse": 0.0417285554112286,
+            "worst_line": 650
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.392192991,
+            "predicted": 0.2836990007329229,
+            "rmse": 0.04770600296817006,
+            "worst_line": 352
+          }
+        },
+        "n": 125
+      }
+    },
+    "worst_force": {
+      "duration_s": {
+        "forecast": {
+          "author_ie_gp": [
+            0.017917354679632916,
+            0.027148067497298867
+          ],
+          "capillary_clock_mean_energy": [
+            0.01338228003159949,
+            0.11847541422994652
+          ],
+          "deformation": [
+            0.01598002629830994,
+            0.028347718621402673
+          ],
+          "dimensionless_ie_gp": [
+            0.018025035261679184,
+            0.02447377918628299
+          ],
+          "force": [
+            0.014156907325685204,
+            0.05133440508735098
+          ]
+        },
+        "inputs": [
+          0.002303618,
+          1.425666061,
+          1198.74835,
+          0.06683571,
+          0.035343155,
+          600.0,
+          25.0
+        ],
+        "line": 1103,
+        "split": "final",
+        "surface": "D600",
+        "target": [
+          0.0356,
+          0.009016745
+        ]
+      },
+      "height_energy": {
+        "forecast": {
+          "author_ie_gp": [
+            0.016827188137939028,
+            0.1580179978705481
+          ],
+          "capillary_clock_mean_energy": [
+            0.013411249012826384,
+            0.11847541422994652
+          ],
+          "deformation": [
+            0.014499645853561418,
+            0.16293996383429832
+          ],
+          "dimensionless_ie_gp": [
+            0.017319944786198124,
+            0.13129748411035533
+          ],
+          "force": [
+            0.016254342740811,
+            0.16742593290570104
+          ]
+        },
+        "inputs": [
+          0.002307424,
+          0.542438672,
+          1199.3464,
+          0.06691104,
+          0.036733188,
+          600.0,
+          25.0
+        ],
+        "line": 920,
+        "split": "final",
+        "surface": "D600",
+        "target": [
+          0.0198,
+          0.047186542
+        ]
+      }
+    }
+  },
+  "n": 1498,
+  "nondefinitive_132_linkage": {
+    "missing_pairs_in_archive": 0,
+    "published_count": 132,
+    "rowwise_identity_verified": false
+  },
+  "physical_event_status": "No independently released event label",
+  "reference_header": [
+    "Sample",
+    "Droplet diameter [m]",
+    "Impact velocity [m/s]",
+    "Density [kg/m3]",
+    "Surface tension [N/m]",
+    "Dynamic viscosity [Pa s]",
+    "Reynolds number",
+    "Weber number",
+    "Speading coefficient",
+    "Lamella velocity [m/s]"
+  ],
+  "reference_n_unavailable": 125,
+  "train": {
+    "availability": {
+      "both": 748,
+      "duration_only": 0,
+      "energy_only": 0,
+      "neither": 0
+    },
+    "checks": {
+      "duration_s": {
+        "max_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": true,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        },
+        "mean_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": true,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        }
+      },
+      "height_energy": {
+        "max_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": true,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        },
+        "mean_rmse": {
+          "author_ie_gp": false,
+          "capillary_clock_mean_energy": true,
+          "deformation": false,
+          "dimensionless_ie_gp": false
+        }
+      }
+    },
+    "joint": false,
+    "n": 748,
+    "paired_field_brier": 4.45632004221037e-07,
+    "summary": {
+      "duration_s": {
+        "author_ie_gp": {
+          "max_rmse": 0.004040373757300275,
+          "mean_rmse": 0.0018844448757395652
+        },
+        "capillary_clock_mean_energy": {
+          "max_rmse": 0.006101720250959479,
+          "mean_rmse": 0.003508933634265451
+        },
+        "deformation": {
+          "max_rmse": 0.005311860676507446,
+          "mean_rmse": 0.002788828445453546
+        },
+        "dimensionless_ie_gp": {
+          "max_rmse": 0.0039613808147603985,
+          "mean_rmse": 0.0018040781825032918
+        },
+        "force": {
+          "max_rmse": 0.005558720719817048,
+          "mean_rmse": 0.003039954284962519
+        }
+      },
+      "height_energy": {
+        "author_ie_gp": {
+          "max_rmse": 0.028508579998783267,
+          "mean_rmse": 0.01340953939294475
+        },
+        "capillary_clock_mean_energy": {
+          "max_rmse": 0.10939080779072889,
+          "mean_rmse": 0.10054408992995224
+        },
+        "deformation": {
+          "max_rmse": 0.04259433853475521,
+          "mean_rmse": 0.0315616180329557
+        },
+        "dimensionless_ie_gp": {
+          "max_rmse": 0.026797857592549382,
+          "mean_rmse": 0.012849391240303003
+        },
+        "force": {
+          "max_rmse": 0.04542929654721467,
+          "mean_rmse": 0.03421302971408063
+        }
+      }
+    },
+    "surfaces": {
+      "D200": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.0234,
+            "predicted": 0.014334186314787173,
+            "rmse": 0.0010131682995650844,
+            "worst_line": 1391
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.0234,
+            "predicted": 0.013698643390854824,
+            "rmse": 0.002272304158092673,
+            "worst_line": 1391
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.0234,
+            "predicted": 0.014297239137001693,
+            "rmse": 0.001953723170959904,
+            "worst_line": 1391
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.0234,
+            "predicted": 0.01489384472747077,
+            "rmse": 0.0009609372705991439,
+            "worst_line": 1391
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.0234,
+            "predicted": 0.012040897503217093,
+            "rmse": 0.0020641961884654207,
+            "worst_line": 1391
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.128152287,
+            "predicted": 0.14944773655591975,
+            "rmse": 0.005669909511168687,
+            "worst_line": 431
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.414280563,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.10512359451585314,
+            "worst_line": 13
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.271329661,
+            "predicted": 0.19041737470437647,
+            "rmse": 0.033042125734418365,
+            "worst_line": 914
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.080043547,
+            "predicted": 0.1015174406415644,
+            "rmse": 0.005792204871199873,
+            "worst_line": 194
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.271329661,
+            "predicted": 0.1946716826541887,
+            "rmse": 0.03376635644325211,
+            "worst_line": 914
+          }
+        },
+        "n": 125
+      },
+      "D50": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.0118,
+            "predicted": 0.011002810380636994,
+            "rmse": 0.00021687429055175354,
+            "worst_line": 1203
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.01,
+            "predicted": 0.013248497081412937,
+            "rmse": 0.0019437409164262613,
+            "worst_line": 1261
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.0118,
+            "predicted": 0.00935779711212238,
+            "rmse": 0.0012110859887996992,
+            "worst_line": 362
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.0102,
+            "predicted": 0.010759369104534676,
+            "rmse": 0.0001610964911899913,
+            "worst_line": 541
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.0104,
+            "predicted": 0.008831376201462973,
+            "rmse": 0.0009927850501891694,
+            "worst_line": 1381
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.162246402,
+            "predicted": 0.13807877763153537,
+            "rmse": 0.0057241365196057745,
+            "worst_line": 123
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.410315507,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.09692883533014574,
+            "worst_line": 5
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.115932685,
+            "predicted": 0.1816140256684626,
+            "rmse": 0.0241773399546143,
+            "worst_line": 125
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.162246402,
+            "predicted": 0.13817585613941483,
+            "rmse": 0.005443762113732685,
+            "worst_line": 123
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.113049249,
+            "predicted": 0.1737854753930315,
+            "rmse": 0.02380300601825156,
+            "worst_line": 1202
+          }
+        },
+        "n": 125
+      },
+      "D800": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.0306,
+            "predicted": 0.020015061408478724,
+            "rmse": 0.00309052842724221,
+            "worst_line": 689
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.034,
+            "predicted": 0.013803653880148998,
+            "rmse": 0.005414204240659517,
+            "worst_line": 1045
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.034,
+            "predicted": 0.016768979696456923,
+            "rmse": 0.004457093273145705,
+            "worst_line": 1045
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.0324,
+            "predicted": 0.02171689337398835,
+            "rmse": 0.003020499233547321,
+            "worst_line": 1107
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.034,
+            "predicted": 0.015596743018270983,
+            "rmse": 0.004750309994190254,
+            "worst_line": 1045
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.163722384,
+            "predicted": 0.27554041320994754,
+            "rmse": 0.026038245517127707,
+            "worst_line": 330
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.412790156,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.09692210956396069,
+            "worst_line": 29
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.163722384,
+            "predicted": 0.29909254671244,
+            "rmse": 0.03648015855767822,
+            "worst_line": 330
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.163722384,
+            "predicted": 0.27473146679934146,
+            "rmse": 0.024814753727113194,
+            "worst_line": 330
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.163722384,
+            "predicted": 0.28391963719319924,
+            "rmse": 0.04404679762577922,
+            "worst_line": 330
+          }
+        },
+        "n": 125
+      },
+      "S200": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 124,
+            "observed": 0.0372,
+            "predicted": 0.01790716382494964,
+            "rmse": 0.002312763996010977,
+            "worst_line": 1481
+          },
+          "capillary_clock_mean_energy": {
+            "n": 124,
+            "observed": 0.0372,
+            "predicted": 0.013831443265230252,
+            "rmse": 0.003234585814378919,
+            "worst_line": 1481
+          },
+          "deformation": {
+            "n": 124,
+            "observed": 0.0372,
+            "predicted": 0.015475621570944178,
+            "rmse": 0.0029517788348940714,
+            "worst_line": 1481
+          },
+          "dimensionless_ie_gp": {
+            "n": 124,
+            "observed": 0.0372,
+            "predicted": 0.018884914585911697,
+            "rmse": 0.0022229404354814223,
+            "worst_line": 1481
+          },
+          "force": {
+            "n": 124,
+            "observed": 0.0372,
+            "predicted": 0.012510626473285847,
+            "rmse": 0.0037058532538711874,
+            "worst_line": 1481
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 124,
+            "observed": 0.099430956,
+            "predicted": 0.14399183108072494,
+            "rmse": 0.009189814416837692,
+            "worst_line": 1242
+          },
+          "capillary_clock_mean_energy": {
+            "n": 124,
+            "observed": 0.42819376,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.10939080779072889,
+            "worst_line": 43
+          },
+          "deformation": {
+            "n": 124,
+            "observed": 0.261744538,
+            "predicted": 0.1825179889976285,
+            "rmse": 0.029716698785870528,
+            "worst_line": 942
+          },
+          "dimensionless_ie_gp": {
+            "n": 124,
+            "observed": 0.099430956,
+            "predicted": 0.1448339822926936,
+            "rmse": 0.00875915921948382,
+            "worst_line": 1242
+          },
+          "force": {
+            "n": 124,
+            "observed": 0.261744538,
+            "predicted": 0.18716343808615604,
+            "rmse": 0.03413100897013046,
+            "worst_line": 942
+          }
+        },
+        "n": 124
+      },
+      "S50": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.0118,
+            "predicted": 0.013979576939379719,
+            "rmse": 0.0006329604837670902,
+            "worst_line": 1473
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.01,
+            "predicted": 0.013727295281438966,
+            "rmse": 0.0020870464250758573,
+            "worst_line": 574
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.0146,
+            "predicted": 0.012205020679295823,
+            "rmse": 0.0008474287284144513,
+            "worst_line": 1352
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.0146,
+            "predicted": 0.012541146011498413,
+            "rmse": 0.0004976148494414728,
+            "worst_line": 1352
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.0142,
+            "predicted": 0.010366252354874919,
+            "rmse": 0.0011678605032420344,
+            "worst_line": 1470
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 125,
+            "observed": 0.466101876,
+            "predicted": 0.445533462347461,
+            "rmse": 0.00532655039414537,
+            "worst_line": 32
+          },
+          "capillary_clock_mean_energy": {
+            "n": 125,
+            "observed": 0.466101876,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.10852274147909334,
+            "worst_line": 32
+          },
+          "deformation": {
+            "n": 125,
+            "observed": 0.043760133,
+            "predicted": 0.12087581149533445,
+            "rmse": 0.023359046630397572,
+            "worst_line": 273
+          },
+          "dimensionless_ie_gp": {
+            "n": 125,
+            "observed": 0.043760133,
+            "predicted": 0.06399842985018453,
+            "rmse": 0.005488609917739059,
+            "worst_line": 273
+          },
+          "force": {
+            "n": 125,
+            "observed": 0.043760133,
+            "predicted": 0.11273142506967276,
+            "rmse": 0.024101712679855756,
+            "worst_line": 273
+          }
+        },
+        "n": 125
+      },
+      "S800": {
+        "duration_s": {
+          "author_ie_gp": {
+            "n": 124,
+            "observed": 0.0414,
+            "predicted": 0.019286587138537134,
+            "rmse": 0.004040373757300275,
+            "worst_line": 417
+          },
+          "capillary_clock_mean_energy": {
+            "n": 124,
+            "observed": 0.0414,
+            "predicted": 0.013505510901976265,
+            "rmse": 0.006101720250959479,
+            "worst_line": 417
+          },
+          "deformation": {
+            "n": 124,
+            "observed": 0.0414,
+            "predicted": 0.015460514409632054,
+            "rmse": 0.005311860676507446,
+            "worst_line": 417
+          },
+          "dimensionless_ie_gp": {
+            "n": 124,
+            "observed": 0.0414,
+            "predicted": 0.019626686310128934,
+            "rmse": 0.0039613808147603985,
+            "worst_line": 417
+          },
+          "force": {
+            "n": 124,
+            "observed": 0.0414,
+            "predicted": 0.01697101183390807,
+            "rmse": 0.005558720719817048,
+            "worst_line": 417
+          }
+        },
+        "height_energy": {
+          "author_ie_gp": {
+            "n": 124,
+            "observed": 0.014473399,
+            "predicted": 0.12294725442357729,
+            "rmse": 0.028508579998783267,
+            "worst_line": 417
+          },
+          "capillary_clock_mean_energy": {
+            "n": 124,
+            "observed": 0.390106422,
+            "predicted": 0.11847541422994652,
+            "rmse": 0.08637645089993164,
+            "worst_line": 57
+          },
+          "deformation": {
+            "n": 124,
+            "observed": 0.038274332,
+            "predicted": 0.19602225317367764,
+            "rmse": 0.04259433853475521,
+            "worst_line": 656
+          },
+          "dimensionless_ie_gp": {
+            "n": 124,
+            "observed": 0.014473399,
+            "predicted": 0.11846854723981257,
+            "rmse": 0.026797857592549382,
+            "worst_line": 417
+          },
+          "force": {
+            "n": 124,
+            "observed": 0.038274332,
+            "predicted": 0.18822272650133043,
+            "rmse": 0.04542929654721467,
+            "worst_line": 656
+          }
+        },
+        "n": 124
+      }
+    },
+    "worst_force": {
+      "duration_s": {
+        "forecast": {
+          "author_ie_gp": [
+            0.01790716382494964,
+            0.010995168065619565
+          ],
+          "capillary_clock_mean_energy": [
+            0.013831443265230252,
+            0.11847541422994652
+          ],
+          "deformation": [
+            0.015475621570944178,
+            0.015476876281137834
+          ],
+          "dimensionless_ie_gp": [
+            0.018884914585911697,
+            0.010868782913309588
+          ],
+          "force": [
+            0.012510626473285847,
+            0.042321537449506584
+          ]
+        },
+        "inputs": [
+          0.002321333,
+          1.601480524,
+          1230.239625,
+          0.065701673,
+          0.147132715,
+          200.0,
+          6.0
+        ],
+        "line": 1481,
+        "split": "train",
+        "surface": "S200",
+        "target": [
+          0.0372,
+          0.007881385
+        ]
+      },
+      "height_energy": {
+        "forecast": {
+          "author_ie_gp": [
+            0.017624427826573474,
+            0.12468268385666731
+          ],
+          "capillary_clock_mean_energy": [
+            0.013378741852087947,
+            0.11847541422994652
+          ],
+          "deformation": [
+            0.015094148541840437,
+            0.19602225317367764
+          ],
+          "dimensionless_ie_gp": [
+            0.017548431336191484,
+            0.12558302321604484
+          ],
+          "force": [
+            0.017578527760380488,
+            0.18822272650133043
+          ]
+        },
+        "inputs": [
+          0.002342706,
+          0.544369406,
+          1152.158,
+          0.067599618,
+          0.009047234,
+          800.0,
+          6.0
+        ],
+        "line": 656,
+        "split": "train",
+        "surface": "S800",
+        "target": [
+          0.0166,
+          0.038274332
+        ]
+      }
+    }
+  }
+}
