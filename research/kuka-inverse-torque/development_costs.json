@@ -1,0 +1,76 @@
+{
+  "robot-dev-jobs": {
+    "seconds": 59.043276219046675,
+    "records": [
+      {
+        "job": "p2-f747-kuka-dev-filter-and-position-structured",
+        "line": "DEV filter-structural ddc2c728fd33d76b70cd34727ed38ae237d71a40ff29bb0c220f065d8c6418ec 0f55552ef6ce82e8e64fa8e175457b3086b287b30cc4906a0690f976f6890c48 0.72373 [0.443, 1.0877, 0.5855, 0.6623, 0.7488, 0.8151] {'train_s': 12.582129910006188, 'inference_s': 0.019201350049115717, 'weights': 27434, 'torch': '2.2.2+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'filter-structural'}"
+      },
+      {
+        "job": "p2-f747-kuka-dev-filter-and-position-structured",
+        "line": "DEV position-structural 69cd6f2ba4e426accf44439712647ab1b65144a1c58dfee85b485172e2961190 2f7f9dacb26c79f4d022959a4ba66dd4c4dc3b8bf31b57fcfcc978dbdcb3a7a4 0.72517 [0.4418, 1.0927, 0.5874, 0.6644, 0.7482, 0.8166] {'train_s': 12.324753282009624, 'inference_s': 0.006582263042218983, 'weights': 27434, 'torch': '2.2.2+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'position-structural'}"
+      },
+      {
+        "job": "p2-f747-kuka-dev-snapshot-and-raw-history-mlp",
+        "line": "DEV snapshot 271fb4fe033910ddefbcb734b2072d7a1302d6056412c4f81406bd1dc6a6ef49 cf46f3f29d9e618c62267bbab8b34bc74c00d098d74b3c916982448d9d8aaad5 0.75635 [np.float64(0.5393), np.float64(1.0305), np.float64(0.6837), np.float64(0.754), np.float64(0.6894), np.float64(0.8411)] {'train_s': 4.704635499045253, 'inference_s': 0.007176646962761879, 'weights': 19718, 'torch': '2.5.1+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'snapshot'}"
+      },
+      {
+        "job": "p2-f747-kuka-dev-snapshot-and-raw-history-mlp",
+        "line": "DEV history 2184f3e2dcbe79d9fe6c1551c22e664b8e86cb18a0a461f7b9577b8d203db54f b071ae672c9370b82ebd6ebb1449890a0e55bbd8b5071cc99eff54ef99617cd5 0.85641 [np.float64(0.5078), np.float64(1.5481), np.float64(0.6406), np.float64(0.9029), np.float64(0.6389), np.float64(0.9002)] {'train_s': 4.554403158952482, 'inference_s': 0.006186721962876618, 'weights': 26630, 'torch': '2.5.1+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'history'}"
+      },
+      {
+        "job": "p2-f747-kuka-dev-difference-coordinates-and-filter-mlp",
+        "line": "DEV history-differences 66f870cd3b4dfda58a945f6f25e247a07612dcad9b5768c9e1f46fd9d25f5f9c c3e77879cd3ed5c0b1f9aba4e3ede027571e08a2ad6911de8f1ce05c2da59e1e 0.78199 [0.4757, 0.9923, 0.6679, 0.7361, 0.8282, 0.9918] {'train_s': 9.019605685025454, 'inference_s': 0.009235203033313155, 'weights': 26630, 'torch': '2.2.2+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'history-differences'}"
+      },
+      {
+        "job": "p2-f747-kuka-dev-difference-coordinates-and-filter-mlp",
+        "line": "DEV filter-mlp ff00c584eae70dff306b14b95e5ae221c108a2391f2a21300c51c936676c7508 04e22776b25bd597919f53c6b0d265120429dc05e615b9d0028c320996dcfb8a 0.66874 [0.4169, 1.1063, 0.6501, 0.5703, 0.6159, 0.653] {'train_s': 8.824551856028847, 'inference_s': 0.024396330001764, 'weights': 21254, 'torch': '2.2.2+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'filter-mlp'}"
+      },
+      {
+        "job": "p2-f747-kuka-dev-released-structure-and-two-author-baselines",
+        "line": "DEV author-v2 9fa0b2e275ba34c35ac95e28eff2dfdf9c34fac1985edba86eb0b250c4637794 c1267c699905b9322e2d330ada8fcdec92c36ef1a2cdd69663b40e04fa762085 0.60735 [np.float64(0.4442), np.float64(0.6437), np.float64(0.6312), np.float64(0.7053), np.float64(0.6702), np.float64(0.5495)] {'mathematical_estimator': 'normalized least squares with training-only intercept; current report v2'}"
+      },
+      {
+        "job": "p2-f747-kuka-dev-released-structure-and-two-author-baselines",
+        "line": "DEV author-v1-weight 93c437f83d6f963fd1c9b33ff484e699c59f3f4c63d3dd50896acbc0c13fd6cc 6e321ea3da3e25ad49289007ae0350ad3b7faa4195f2851f618d432d273a3058 1.10604 [np.float64(0.4405), np.float64(1.7597), np.float64(2.1666), np.float64(0.6907), np.float64(1.0374), np.float64(0.5414)] {'note': 'Previously fitted to all 11 training recordings, including the two development files. Descriptive only.'}"
+      },
+      {
+        "job": "p2-f747-kuka-dev-released-structure-and-two-author-baselines",
+        "line": "DEV released-structural 0acd36510107de89e0a502b2dd36e7133c739b1b2ca3e25db2831ae95d717298 f7097b8c142e5a6a6f0b98ec19454530cd318e294a1bb068f7c40cf6e9b36b15 0.88686 [np.float64(0.6072), np.float64(1.4216), np.float64(0.7515), np.float64(0.8211), np.float64(0.7632), np.float64(0.9566)] {'train_s': 7.033196827978827, 'inference_s': 0.010949856019578874, 'weights': 27434, 'torch': '2.5.1+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'released-structural'}"
+      }
+    ]
+  },
+  "robot-masked-jobs": {
+    "seconds": 183.93663686304353,
+    "records": [
+      {
+        "job": "p2-f747-kuka-masked-modern-history-and-filter-controls",
+        "line": "DEV snapshot 61e85fcc8602d91a1de1692c4a3809775c738ea7b2e94b92c1897302abe87a6d 6509784c3080bd0282ded8cf42bf0018f0a6e0f89c2f7a772475b5204c92695b 0.76499 [0.5353, 0.9889, 0.6643, 0.7629, 0.7362, 0.9024] {'fit_rows': 32556, 'fallback_rows': 36, 'train_s': 21.730106157949194, 'inference_s': 0.062208425952121615, 'weights': 19718, 'torch': '2.2.2+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'snapshot'}"
+      },
+      {
+        "job": "p2-f747-kuka-masked-modern-history-and-filter-controls",
+        "line": "DEV history a00cad160d44b9e52c474800a99a7d1350f9b7d0894a5e938e4d14e429841630 80bca4523d6c06ab9404cd43cc68a0f2512a5c184e6fa004b24500c048c729f8 0.90712 [0.5549, 1.3732, 0.8846, 0.9733, 0.6556, 1.0012] {'fit_rows': 32556, 'fallback_rows': 36, 'train_s': 21.68464671901893, 'inference_s': 0.0232707200339064, 'weights': 26630, 'torch': '2.2.2+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'history'}"
+      },
+      {
+        "job": "p2-f747-kuka-masked-modern-history-and-filter-controls",
+        "line": "DEV history-differences b46292816535ba49d7297d3d102e4ae42fc65522a5dea1c067c741129c7f48ee f13ce4fafaea91e0a26d9bbf6689162cf9639e7256eeb2ccac3e7a516e38e74a 0.81716 [0.4429, 1.2155, 0.6394, 0.6935, 0.86, 1.0518] {'fit_rows': 32556, 'fallback_rows': 36, 'train_s': 24.114415290998295, 'inference_s': 0.027527856989763677, 'weights': 26630, 'torch': '2.2.2+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'history-differences'}"
+      },
+      {
+        "job": "p2-f747-kuka-masked-modern-history-and-filter-controls",
+        "line": "DEV filter-mlp 7d87f43cb3750cc2727c3f5a8e89f3b2cf793d807fe54aa672122c7d4ade7fe7 e5fb01e06cd9a442212ac63001e7381e7597352afde28d6e6526e128db96fa0c 0.68248 [0.4104, 1.1598, 0.6597, 0.5678, 0.6328, 0.6643] {'fit_rows': 32556, 'fallback_rows': 36, 'train_s': 22.583135602995753, 'inference_s': 0.04419043997768313, 'weights': 21254, 'torch': '2.2.2+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'filter-mlp'}"
+      },
+      {
+        "job": "p2-f747-kuka-masked-bilinear-head-all-kinematic-controls",
+        "line": "DEV released-structural be2027c9d931660261e9fde4747984079b0d3996dcf5bef802d729ac2571eb6b 3753831ab21dd6fea3f333055134c258628df641b20191c840e4adb97df18da4 0.80829 [0.5496, 1.2278, 0.7227, 0.7143, 0.7757, 0.8597] {'fit_rows': 32556, 'fallback_rows': 36, 'train_s': 32.934727028012276, 'inference_s': 0.011811850010417402, 'weights': 27434, 'torch': '2.2.2+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'released-structural'}"
+      },
+      {
+        "job": "p2-f747-kuka-masked-bilinear-head-all-kinematic-controls",
+        "line": "DEV position-structural 774f3f0f8aafe8f02aa1895821d17873e866ccf358a271996beb0e5de2c97a2e dc4fc273954a7b9b6097a32c6d12e0a266df640f56a73d5b4c78f7f035019fee 0.71285 [0.4581, 1.0503, 0.5877, 0.6664, 0.7276, 0.7872] {'fit_rows': 32556, 'fallback_rows': 36, 'train_s': 31.413581104017794, 'inference_s': 0.04285333305597305, 'weights': 27434, 'torch': '2.2.2+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'position-structural'}"
+      },
+      {
+        "job": "p2-f747-kuka-masked-bilinear-head-all-kinematic-controls",
+        "line": "DEV filter-structural c2c6674e41404bf91b2d6e23319809911a057ee59d8a5e445ce2c09e4a82028f 2192f0189d2bf2dbca1c03175268234727d151677b9ecba95ae5ec058639373a 0.7101 [0.4575, 1.0421, 0.5868, 0.6631, 0.7266, 0.7845] {'fit_rows': 32556, 'fallback_rows': 36, 'train_s': 29.47602496005129, 'inference_s': 0.06186369399074465, 'weights': 27434, 'torch': '2.2.2+cpu', 'train_rows': 32718, 'evaluate_rows': 7270, 'epochs': 60, 'arm': 'filter-structural'}"
+      }
+    ]
+  }
+}
