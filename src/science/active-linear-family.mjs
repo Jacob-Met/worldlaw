@@ -164,6 +164,24 @@ function enumerateCircuitSupports(rows,basis,budget,enumeration,measure){
   }
   return inventory(true);
 }
+
+/** Complete constraints on a small exact affine image. Unlike an arbitrary
+ * nullspace basis, these circuits retain every face of a bounded-error box.
+ * This internal rational API is shared with nonlinear readout receiving;
+ * it does not change any existing planner traversal or certificate bytes. */
+export function compileExactAffineCircuits(rows){
+  need(Array.isArray(rows)&&rows.length>=1&&rows.length<=16&&
+    Array.isArray(rows[0])&&rows[0].length>=1&&rows[0].length<=8&&
+    rows.every(row=>Array.isArray(row)&&row.length===rows[0].length&&
+      row.every(q=>typeof q?.n==='bigint'&&typeof q?.d==='bigint'&&q.d>0n)),
+    'exact affine circuit input must be a 1–16 by 1–8 rational matrix');
+  const budget=workBudget(50000);
+  budget.take();
+  const result=enumerateCircuitSupports(rows,nullBasis(rows),budget,
+    rankCompleteCircuits,(weights,mask)=>({weights,mask}));
+  need(result.complete,'exact affine circuit work limit reached');
+  return result.circuits;
+}
 function affineDistance(inventory,indices){
   const mask=indices.reduce((bits,index)=>bits|(1<<index),0);
   let winner=null;
