@@ -1,0 +1,266 @@
+{
+  "paper_doi": "10.1038/s43588-026-01017-6",
+  "paper_license": "CC-BY-4.0",
+  "github": {
+    "repo": "schwallergroup/bh-hte-ood",
+    "commit": "3a44e398d9fed3f08cf396f1153be2960193f581",
+    "tree": "6393a24fa57c0c15ba5626fd698c6fb2fd10f162",
+    "csv_headers": [
+      {
+        "source_path": "data/BH_HTE_Curated_Dataset_v20260219.csv",
+        "header_names_only": [
+          "",
+          "Source",
+          "Aryl SMILES",
+          "Amine SMILES",
+          "Catalyst Name",
+          "Catalyst SMILES",
+          "Base SMILES",
+          "Base Name",
+          "Solvent Name",
+          "Solvent SMILES",
+          "Product SMILES",
+          "DRFP",
+          "DRFP_subst_prod",
+          "QM",
+          "Yield",
+          "labels",
+          "iteration_0 cluster",
+          "iteration_0 train_test",
+          "iteration_1 cluster",
+          "iteration_1 train_test",
+          "iteration_2 cluster",
+          "iteration_2 train_test",
+          "iteration_3 cluster",
+          "iteration_3 train_test",
+          "iteration_4 cluster",
+          "iteration_4 train_test",
+          "iteration_5 cluster",
+          "iteration_5 train_test",
+          "iteration_6 cluster",
+          "iteration_6 train_test",
+          "iteration_7 cluster",
+          "iteration_7 train_test",
+          "iteration_8 cluster",
+          "iteration_8 train_test",
+          "iteration_9 cluster",
+          "iteration_9 train_test",
+          "Additive_present",
+          "Additive_aromatic_rings",
+          "Additive_heteroatom_count",
+          "Additive_coordination_flag",
+          "Additive_steric_bulk_flag",
+          "Additive_pi_rich_flag",
+          "Additive_Pd_poisoning",
+          "Additive_competes_with_amine"
+        ]
+      },
+      {
+        "source_path": "data/BH_Manu_NewConditions_20250310_result.csv",
+        "header_names_only": [
+          "Transformation ID",
+          "Pred Rank",
+          "Aryl Halide SMILES",
+          "Amine SMILES",
+          "Catalyst SMILES",
+          "Base SMILES",
+          "Solvent SMILES",
+          "Product SMILES",
+          "Catalyst Name",
+          "Base Name",
+          "Solvent Name",
+          "Trans SMILES",
+          "Reaction SMILES",
+          "Tested Condition",
+          "Prior Fail Count",
+          "pred_probability",
+          ""
+        ]
+      },
+      {
+        "source_path": "data/Case1_selections_20250408_result.csv",
+        "header_names_only": [
+          "Aryl Halide SMILES",
+          "Amine SMILES",
+          "Product SMILES",
+          "Catalyst",
+          "Base",
+          "Solvent",
+          "Catalyst Name",
+          "Base Name",
+          "Solvent Name",
+          "Reaction SMILES",
+          "pred_probability",
+          "Aryl Halide ID",
+          "Aryl Halide Source",
+          "Aryl Halide Compound Set",
+          "Aryl Halide Informer Set",
+          "Aryl Halide Kmeans Cluster",
+          "Aryl Halide Kmeans Distance to Center",
+          "Aryl Halide Kmeans Centroid",
+          "Aryl Halide BitBirch Cluster",
+          "Aryl Halide Butina Cluster",
+          "Amine ID",
+          "Amine Source",
+          "Amine Compound Set",
+          "Amine Kmeans Cluster",
+          "Amine Kmeans Distance to Center",
+          "Amine Kmeans Centroid",
+          "Amine BitBirch Cluster",
+          "Amine Butina Cluster",
+          "ID",
+          "Trans SMILES",
+          "Yield"
+        ]
+      },
+      {
+        "source_path": "data/dataset_summary.csv",
+        "header_names_only": [
+          "Unique Reactant Pairs",
+          "Unique Reagent Sets",
+          "Reaction Samples",
+          "Dataset Name"
+        ]
+      },
+      {
+        "source_path": "data/reagent_dictionary.csv",
+        "header_names_only": [
+          "Role",
+          "Name",
+          "SMILES",
+          "QM",
+          "Count"
+        ]
+      }
+    ]
+  },
+  "data_doi": "10.5281/zenodo.19636649",
+  "data": {
+    "versioned_file": "2026-02-21_df_HTE_BH_QM_10iter_9-3clustertest.pkl",
+    "bytes": 1405922485,
+    "md5": "c088ab8b56c78ceb381910a05265791c",
+    "rights": "CC-BY-4.0",
+    "deserialized": false
+  },
+  "code_doi": "10.5281/zenodo.19635488",
+  "code_license": "Apache-2.0",
+  "source_dataset_histogram": {
+    "AZ ELN 2023": 750,
+    "Dreher 2014": 768,
+    "Dreher 2016": 144,
+    "Dreher Doyle 2018": 4312,
+    "HiTEA 2024": 2632,
+    "JNJ HTE 2024": 11328,
+    "Merck 2025": 4204,
+    "Roche 2023": 3359
+  },
+  "supplement": {
+    "public_object": "PMC13593570.1/43588_2026_1017_MOESM1_ESM.pdf",
+    "pdf_sha256": "3a212bd126ebef0cd9bf4ae0102eb605eb95e09ff4c5cc83c3923b37e38e54d4",
+    "bytes": 29571432,
+    "page": 3,
+    "layout_png_sha256": "136ffa633653c7ae88b69f4da132663cfad88b44a9243383a7f6d4bf7594a273",
+    "display_png_sha256": "76341cde06a59ed550b66fcd1bcef7ff1e3dee2af869bb4a3a722309f9379aae",
+    "figure5_zip_sha256": "fb324c1590fb2891d43c34aa37d68ac64f944a2cc2003e59038eb3b3c884abf6",
+    "figure5_workbooks": [
+      [
+        "5a",
+        "A1:P45",
+        "validation yield"
+      ],
+      [
+        "5b",
+        "A1:S301",
+        "Reaction Yield"
+      ]
+    ]
+  },
+  "protocol": {
+    "eligibility_post": 178444,
+    "display_freeze_post": 178481,
+    "prediction_source_sha256": "92a2466cbb5b4bd524eef6540e4e000e50cd84570bb1f69807036d0c5e529272",
+    "two_process_original_rgb_score_sha256": "f9e9f44563d636c9568f359c4c695c631079f714f6c190738cf4db22633b45ae",
+    "all_rgb_predictions_sha256": "55d26897fab4006c27faf1de0f1a2bcd3d7ba8c09beee1eed97d835281115e1c",
+    "numeric_assay_rows_scored": 0
+  },
+  "native_originals": [
+    {
+      "id": "p3-f747-bh-2026-paired-platform-source-and-schema-only",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "da382bdd01217a756edf40248cf2d21436cd05601a4694751f87f1219c0f1153",
+      "started": "2026-11-22T12:15:08.73723772Z",
+      "finished": "2026-11-22T12:15:11.211902584Z",
+      "drained": "drained"
+    },
+    {
+      "id": "p3-f747-bh-2026-publisher-zenodo-supplement-schema",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "4d12b4f0a52b501ecb733aed61694015859acf146e12a5abfe674450837fceb4",
+      "started": "2026-11-22T12:17:08.470574621Z",
+      "finished": "2026-11-22T12:17:10.752734479Z",
+      "drained": "drained"
+    },
+    {
+      "id": "p3-f747-bh-2026-europepmc-author-supplement-headings-only",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "d63a46f118de0ade88cca4009ecde732bc7eca2f124bf8530c2df59e4b81873f",
+      "started": "2026-11-22T12:18:04.256231348Z",
+      "finished": "2026-11-22T12:18:28.825517692Z",
+      "drained": "drained"
+    },
+    {
+      "id": "p3-f747-bh-2026-si-figure-and-workbook-observability",
+      "state": "failed",
+      "exit_code": 1,
+      "request_sha256": "2924ee507b6442da7eb8e09be93043909f2f852080806275f20226b5830bde5c",
+      "started": "2026-11-22T12:20:01.376088929Z",
+      "finished": "2026-11-22T12:20:42.681661499Z",
+      "drained": "drained"
+    },
+    {
+      "id": "p3-f747-bh-2026-authenticated-supplement-member-reader",
+      "state": "failed",
+      "exit_code": 1,
+      "request_sha256": "e34da2c6fd65483eab9aca5fbed3c72444e5723ff63356d69d076ce2aa7b4772",
+      "started": "2026-11-22T12:21:19.101413117Z",
+      "finished": "2026-11-22T12:21:37.886028269Z",
+      "drained": "drained"
+    },
+    {
+      "id": "p3-f747-bh-2026-nlm-official-archive-crosscheck",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "36e207594fc0f551a87809942e75082e7909e9ef971aa671ba0a54333b8a5250",
+      "started": "2026-11-22T12:22:59.919242192Z",
+      "finished": "2026-11-22T12:23:01.091121946Z",
+      "drained": "drained"
+    },
+    {
+      "id": "p3-f747-bh-2026-layout-legend-and-source-provenance",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "f565dc8fb81d93d03b1b2e8b79a93f472787a8474acc99b6da79dc621b30087d",
+      "started": "2026-11-22T12:24:16.60019893Z",
+      "finished": "2026-11-22T12:24:17.049094476Z",
+      "drained": "drained"
+    },
+    {
+      "id": "p3-f747-bh-2026-registered-full-figure-receiver",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "2273f3e802b11ca8069d609be182d40e31c5065613b36b54d3d57d03bfd6278b",
+      "started": "2026-11-22T12:28:56.537214093Z",
+      "finished": "2026-11-22T12:28:57.227095669Z",
+      "drained": "drained"
+    }
+  ],
+  "source_failures": [
+    "Original publisher/Zenodo job completed metadata but Springer CDN DNS failed (two files).",
+    "First Europe PMC response provided both correct original file hashes. A subsequent request supplied a non-ZIP body and the next returned 200 application/xml (292 bytes). Both failed jobs retained.",
+    "Public NLM acquisition verified the original two SHA256 values. One optional encoded-image queue request returned INVALID_ARGUMENT; poll binding_not_found/original_outcome unresolved. It was not replayed. The published PDF was independently retrieved and checked locally."
+  ],
+  "methods_pdf_sha256": "7f912ca5160aa3fba94f49832ef27a70a3f53277a46bdef177e971191e412f7c"
+}
