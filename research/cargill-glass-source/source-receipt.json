@@ -1,0 +1,201 @@
+{
+  "information": {
+    "shape": [
+      18,
+      60
+    ],
+    "text": [
+      "This data set consists of 80 samples of corn measured on",
+      "3 different NIR spectrometers. The wavelength range is",
+      "1100-2498nm at 2 nm intervals (700 channels). The moisture,",
+      "oil, protein and starch values for each of the samples is",
+      "also included. A number of NBS glass standards were also",
+      "measured on each instrument. The data was originally taken",
+      "at Cargill. Many thanks for Mike Blackburn for letting us",
+      "distribute it.",
+      "",
+      "The variables in this data set are described below:",
+      "information: [20x59  char  ] This field",
+      "m5spec: [80x700 dataset] Spectra on instrument m5",
+      "mp5spec: [80x700 dataset] Spectra on instrument mp5",
+      "mp6spec: [80x700 dataset] Spectra on instrument mp6",
+      "propvals: [80x4   dataset] Property values for samples",
+      "m5nbs: [ 3x700 dataset] NBS glass stds on m5",
+      "mp5nbs: [ 4x700 dataset] NBS glass stds on mp5",
+      "mp6nbs: [ 4x700 dataset] NBS glass stds on mp6"
+    ]
+  },
+  "m5nbs": {
+    "array_shape": [
+      3,
+      700
+    ],
+    "axis_coordinates": [
+      {
+        "all_2nm": true,
+        "first": 1100,
+        "last": 2498,
+        "sha256": "ce3d5f38147aac8e95847ffab420cd50ed7a4c15862f70403ea24596f6992a11"
+      }
+    ],
+    "case_axis": [
+      0,
+      0
+    ],
+    "description": [],
+    "embedded_signal_values_decoded": 0,
+    "history": [
+      "m5nbs.axisscale{2,1}=freqs;   %class double 1x700"
+    ],
+    "labels": [],
+    "titles": []
+  },
+  "m5spec": {
+    "array_shape": [
+      80,
+      700
+    ],
+    "axis_coordinates": [
+      {
+        "all_2nm": true,
+        "first": 1100,
+        "last": 2498,
+        "sha256": "ce3d5f38147aac8e95847ffab420cd50ed7a4c15862f70403ea24596f6992a11"
+      }
+    ],
+    "case_axis": [
+      0,
+      0
+    ],
+    "description": [],
+    "embedded_signal_values_decoded": 0,
+    "history": [
+      "m5spec.axisscale{2,1}=freqs;   %class double 1x700"
+    ],
+    "labels": [],
+    "titles": []
+  },
+  "mp5nbs": {
+    "array_shape": [
+      4,
+      700
+    ],
+    "axis_coordinates": [
+      {
+        "all_2nm": true,
+        "first": 1100,
+        "last": 2498,
+        "sha256": "ce3d5f38147aac8e95847ffab420cd50ed7a4c15862f70403ea24596f6992a11"
+      }
+    ],
+    "case_axis": [
+      0,
+      0
+    ],
+    "description": [],
+    "embedded_signal_values_decoded": 0,
+    "history": [
+      "mp5nbs.axisscale{2,1}=freqs;   %class double 1x700"
+    ],
+    "labels": [],
+    "titles": []
+  },
+  "mp5spec": {
+    "array_shape": [
+      80,
+      700
+    ],
+    "axis_coordinates": [
+      {
+        "all_2nm": true,
+        "first": 1100,
+        "last": 2498,
+        "sha256": "ce3d5f38147aac8e95847ffab420cd50ed7a4c15862f70403ea24596f6992a11"
+      }
+    ],
+    "case_axis": [
+      0,
+      0
+    ],
+    "description": [],
+    "embedded_signal_values_decoded": 0,
+    "history": [
+      "mp5spec.axisscale{2,1}=freqs;   %class double 1x700"
+    ],
+    "labels": [],
+    "titles": []
+  },
+  "mp6nbs": {
+    "array_shape": [
+      4,
+      700
+    ],
+    "axis_coordinates": [
+      {
+        "all_2nm": true,
+        "first": 1100,
+        "last": 2498,
+        "sha256": "ce3d5f38147aac8e95847ffab420cd50ed7a4c15862f70403ea24596f6992a11"
+      }
+    ],
+    "case_axis": [
+      0,
+      0
+    ],
+    "description": [],
+    "embedded_signal_values_decoded": 0,
+    "history": [
+      "mp6nbs.axisscale{2,1}=freqs;   %class double 1x700"
+    ],
+    "labels": [],
+    "titles": []
+  },
+  "mp6spec": {
+    "array_shape": [
+      80,
+      700
+    ],
+    "axis_coordinates": [
+      {
+        "all_2nm": true,
+        "first": 1100,
+        "last": 2498,
+        "sha256": "ce3d5f38147aac8e95847ffab420cd50ed7a4c15862f70403ea24596f6992a11"
+      }
+    ],
+    "case_axis": [
+      0,
+      0
+    ],
+    "description": [],
+    "embedded_signal_values_decoded": 0,
+    "history": [
+      "mp6spec.axisscale{2,1}=freqs;   %class double 1x700"
+    ],
+    "labels": [],
+    "titles": []
+  },
+  "propvals": {
+    "array_shape": [
+      80,
+      4
+    ],
+    "axis_coordinates": [],
+    "case_axis": [
+      0,
+      0
+    ],
+    "description": [],
+    "embedded_signal_values_decoded": 0,
+    "history": [
+      "propvals.label{2,1}=proplbls;   %class char 4x8"
+    ],
+    "labels": [
+      "Moisture",
+      "Oil",
+      "Protein",
+      "Starch"
+    ],
+    "titles": []
+  }
+}
