@@ -1,0 +1,7 @@
+PRIVATE_DISTRIBUTION /var/tmp/p3-f747-kat-octave-signed-debs-y1o45k78 112 114292050 20372f05d8c8196887dc683baa7c0f8e6575ea5c5dceec2eaf2f069a527408ad
+{"peak_row_freq_Hz":320,"frequency_pair_Hz":[320,512],"symmetric_carrier_Hz":416,"positive_alpha_Hz":192,"sideband_gain_expected":0.37269461059736116,"observed_gain":0.4506803226225062,"carrier_only_gain":0.37833020907516159,"peak_magnitude":0.005059622249044539,"shape":[129,241],"all_near_peak_rows":[[304,0.0025444653437695864,0.001146744782620248],[320,0.005059622249044539,0.002280272187547403],[336,0.002544555227733596,0.0011467841473785552]],"absolute_error":0.07798571202514504,"version":"8.4.0"}
+error: assert (abs (actual - expected) < .0001) failed
+error: called from
+    assert at line 107 column 11
+    fixture at line 3 column 424
+
