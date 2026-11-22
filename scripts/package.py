@@ -16,6 +16,13 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/nantes-rubber-observability/README.md",
+    "research/nantes-rubber-observability/incident.py",
+    "research/nantes-rubber-observability/project.py",
+    "research/nantes-rubber-observability/receive.py",
+    "research/nantes-rubber-observability/replay.py",
+    "research/nantes-rubber-observability/results.json",
+    "research/nantes-rubber-observability/witness.py",
     "research/g1-helix-load-transfer/README.md",
     "research/g1-helix-load-transfer/compare_helix.py",
     "research/g1-helix-load-transfer/gates.py",

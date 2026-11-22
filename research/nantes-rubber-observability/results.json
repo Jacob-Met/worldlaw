@@ -1,0 +1,285 @@
+{
+  "source_design_sha256": "cd091912d874373bcd0fe35cce447d1d8802e7deca496aa3f0a62676d1fd96af",
+  "designs": [
+    {
+      "source": "ANR_1-2_v0066_experimental_data.mat",
+      "frames": 499,
+      "elements": 3370,
+      "nodes": 1814,
+      "force_nodes": 57,
+      "has_F_table": false,
+      "element_frames": 1681630,
+      "active": 30912,
+      "min_spectral_distance": 0.16029175824798397,
+      "maximum_active_area_frame": 487,
+      "maximum_active_area_fraction": 0.05885156960102581,
+      "minimum_det": 0.9591844369829814,
+      "H_max_eigen_error": 2.911559882079473e-14,
+      "projection_peaks": [
+        {
+          "i": 0,
+          "base": [
+            0.007450399693569696,
+            -0.07824221633089015
+          ],
+          "change": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "rms_change_over_rms_base": 0,
+          "nonzero_frames": 0
+        },
+        {
+          "i": 493,
+          "base": [
+            -122.10691864335453,
+            -983.0724900603386
+          ],
+          "change": [
+            0.6252355154654443,
+            -1.8849773885893255
+          ],
+          "magnitude": 1.9859655599461872,
+          "rms_change_over_rms_base": 0.0013830546074030375,
+          "nonzero_frames": 403
+        }
+      ]
+    },
+    {
+      "source": "ANR_2-1_v066_experimental_data.mat",
+      "frames": 500,
+      "elements": 4176,
+      "nodes": 2271,
+      "force_nodes": 53,
+      "has_F_table": true,
+      "element_frames": 2088000,
+      "active": 44466,
+      "min_spectral_distance": 0.2221244490662703,
+      "maximum_active_area_frame": 499,
+      "maximum_active_area_fraction": 0.059677485356682984,
+      "minimum_det": 0.9447281108858347,
+      "H_max_eigen_error": 7.116529587847253e-14,
+      "projection_peaks": [
+        {
+          "i": 0,
+          "base": [
+            -0.0012147500889942455,
+            -0.006639385610573532
+          ],
+          "change": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "rms_change_over_rms_base": 0,
+          "nonzero_frames": 0
+        },
+        {
+          "i": 498,
+          "base": [
+            -9.373120730785637,
+            -83.88070320276647
+          ],
+          "change": [
+            0.07191614649379217,
+            -0.199629980141762
+          ],
+          "magnitude": 0.2121887393287327,
+          "rms_change_over_rms_base": 0.0015264718813759865,
+          "nonzero_frames": 366
+        }
+      ]
+    },
+    {
+      "source": "ANR_2-2_v005_experimental_data.mat",
+      "frames": 999,
+      "elements": 3549,
+      "nodes": 1912,
+      "force_nodes": 58,
+      "has_F_table": true,
+      "element_frames": 3545451,
+      "active": 67823,
+      "min_spectral_distance": 0.15575299958036867,
+      "maximum_active_area_frame": 995,
+      "maximum_active_area_fraction": 0.061639470472982814,
+      "minimum_det": 0.858949621261183,
+      "H_max_eigen_error": 7.349676423018536e-14,
+      "projection_peaks": [
+        {
+          "i": 0,
+          "base": [
+            0.002931765591172856,
+            0.0064573986643697645
+          ],
+          "change": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "rms_change_over_rms_base": 0,
+          "nonzero_frames": 0
+        },
+        {
+          "i": 981,
+          "base": [
+            -122.5243177713662,
+            -1009.622329775223
+          ],
+          "change": [
+            0.6317671265026491,
+            -2.1360208038761934
+          ],
+          "magnitude": 2.2274906457090484,
+          "rms_change_over_rms_base": 0.0014419016408799494,
+          "nonzero_frames": 792
+        }
+      ]
+    },
+    {
+      "source": "ANR_3-1_v00066_experimental_data.mat",
+      "frames": 1001,
+      "elements": 3424,
+      "nodes": 1844,
+      "force_nodes": 58,
+      "has_F_table": true,
+      "element_frames": 3427424,
+      "active": 51121,
+      "min_spectral_distance": 0.17033795455241163,
+      "maximum_active_area_frame": 989,
+      "maximum_active_area_fraction": 0.051135558067729944,
+      "minimum_det": 0.9545748959672139,
+      "H_max_eigen_error": 3.9496184101039944e-14,
+      "projection_peaks": [
+        {
+          "i": 0,
+          "base": [
+            -0.019225430603521436,
+            -0.0823862108310205
+          ],
+          "change": [
+            0,
+            0
+          ],
+          "magnitude": 0,
+          "rms_change_over_rms_base": 0,
+          "nonzero_frames": 0
+        },
+        {
+          "i": 989,
+          "base": [
+            -125.76259634633628,
+            -1005.442314479949
+          ],
+          "change": [
+            1.2180042939167233,
+            -2.1007451506996015
+          ],
+          "magnitude": 2.428304891933356,
+          "rms_change_over_rms_base": 0.001535535194897543,
+          "nonzero_frames": 757
+        }
+      ]
+    }
+  ],
+  "independent_control": {
+    "matrix_derivative_max_error": 5.639373412691384e-10,
+    "inactive_transition_full": [
+      128,
+      18,
+      154
+    ]
+  },
+  "boundary_incidence": {
+    "ANR_1-2_v0066": {
+      "source": "ANR_1-2_v0066_experimental_data.mat",
+      "x_min": [
+        1.38,
+        1.38
+      ],
+      "x_max": [
+        1036.1499999999999,
+        615.9399999999999
+      ],
+      "incident_cells": 111,
+      "incident_observations": 55389,
+      "incident_active": 0,
+      "all_active": 30912,
+      "closest_squared_distance": 0.17756993554869846,
+      "closest_frame": 429,
+      "closest_element": 3364
+    },
+    "ANR_2-1_v066": {
+      "source": "ANR_2-1_v066_experimental_data.mat",
+      "x_min": [
+        0.11939998009999779,
+        0.11939998010000231
+      ],
+      "x_max": [
+        87.2615,
+        50.745000000000005
+      ],
+      "incident_cells": 107,
+      "incident_observations": 53500,
+      "incident_active": 0,
+      "all_active": 44466,
+      "closest_squared_distance": 0.17675168006255176,
+      "closest_frame": 369,
+      "closest_element": 250
+    },
+    "ANR_2-2_v005": {
+      "source": "ANR_2-2_v005_experimental_data.mat",
+      "x_min": [
+        1.38,
+        1.38
+      ],
+      "x_max": [
+        1052.9399999999998,
+        623.3
+      ],
+      "incident_cells": 113,
+      "incident_observations": 112887,
+      "incident_active": 0,
+      "all_active": 67823,
+      "closest_squared_distance": 0.14957082522544257,
+      "closest_frame": 850,
+      "closest_element": 3541
+    },
+    "ANR_3-1_v00066": {
+      "source": "ANR_3-1_v00066_experimental_data.mat",
+      "x_min": [
+        1.38,
+        1.38
+      ],
+      "x_max": [
+        1046.04,
+        620.77
+      ],
+      "incident_cells": 113,
+      "incident_observations": 113113,
+      "incident_active": 0,
+      "all_active": 51121,
+      "closest_squared_distance": 0.11867529838254534,
+      "closest_frame": 855,
+      "closest_element": 3390
+    }
+  },
+  "first_alternate": {
+    "fields": [
+      "Connectivity",
+      "Dirichlet",
+      "Force_sets",
+      "H",
+      "Hencky_K1",
+      "Hencky_K2",
+      "Hencky_K3",
+      "U",
+      "X"
+    ],
+    "frames": 499
+  },
+  "first_body_sha256_after_512": {
+    "ascii": "83dea98f0d5b93d3fc8ed713bf4324104aad536516a627095cb5f9612af75feb",
+    "mat": "7e4a744ef68b6be7ee1b9d3f18197d574bbc19a9f96fe8f5895740fafaaf0a56"
+  }
+}
