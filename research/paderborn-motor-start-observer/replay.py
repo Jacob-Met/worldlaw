@@ -29,6 +29,8 @@ def main():
     observer.main(source,training,dev)
     result=independent.receive(dev)
     expected=json.loads(Path(__file__).with_name('observed.json').read_text())['receiver']
+    # Archive JSON stores witness coordinates as arrays; compare using the same representation.
+    result=json.loads(json.dumps(result))
     for key in ('forecasts','profile_rows','scores','locked_forecasts','gate','witnesses'):
         assert result[key]==expected[key],key
     print(json.dumps(result,sort_keys=True))
