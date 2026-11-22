@@ -1,0 +1,15 @@
+SOURCE_BOUND_K001 /var/tmp/p3-f747-kat-physical-86a79d99 127786676224
+Installed 3 packages in 43ms
+Traceback (most recent call last):
+  File "/var/tmp/p3-f747-kat-physical-86a79d99/source/collect_surfaces.py", line 210, in <module>
+    main()
+  File "/var/tmp/p3-f747-kat-physical-86a79d99/source/collect_surfaces.py", line 191, in main
+    data,count,elapsed=read_surface(archive,ident,conditions)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/tmp/p3-f747-kat-physical-86a79d99/source/collect_surfaces.py", line 143, in read_surface
+    clocks={k:channel_clock(record,channels[k],rate) for k,rate in [('speed',4000.),('vibration_1',64000.)]}
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/var/tmp/p3-f747-kat-physical-86a79d99/source/collect_surfaces.py", line 89, in channel_clock
+    raise ValueError(f'Timestamps differ from a resolvable uniform grid: {report}')
+ValueError: Timestamps differ from a resolvable uniform grid: {'x_index': 1, 'time_unit': 'unreported', 'native_time_dtype': '<f8', 'uniform_grid_tolerance': 2.6645352591003757e-15, 'uniform_grid_max_abs_deviation': 2.5286607083922807e-07, 'uniform_grid_worst_index': 828, 'uniform_grid_worst_timestamp': 0.20680867663148783, 'uniform_grid_worst_affine': 0.206808423765417, 'raster': 'Mech_4kHz', 'samples': 16006, 'first': -0.00012489531462933634, 'last': 3.999836181830469, 'mean_rate': 4001.288935397163, 'median_rate': 4003.3527397236426, 'minimum_dt': 0.0002497906292582286, 'maximum_dt': 0.0002502183529395907, 'time_sha256': '1c41d08732cf17119aeb317c8cacdfa7cf6c446a79f5fe65a9c6aa1545a589da'}
+RC 1
