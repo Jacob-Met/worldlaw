@@ -1,0 +1,5 @@
+# Source-supported native clock
+
+The original 6.08 s course stopped at its first lower-release time vector. The independent eight-vector diagnosis found identical 3214 rows at exactly 500 Hz, from −0.378 s to 6.048 s, including t=0; all pass monotonicity. The approximate published period of 0.76 s, multiplied by eight, reaches 0.032 s past the recordings. Calling the entire interval eight exact periods would attribute a precision the rounded source does not have.
+
+With no high-release member opened, the source-supported successor keeps every released nonnegative timestamp, 3025 measurements from 0.000 through 6.048 s at 0.002 s intervals. The fixed early subset ends at 4.56 s. No extrapolated tails, padded records, interpolated scores or dropped physical timestamps in the primary motion-conditioned course. A high-release timebase discrepancy stops this course. The released entrant forecasts may have different grids or shorter support and the distinct release-only comparisons preserve exact overlap and durations. The source hypothesis, two-kernel control, input budgets, all gauges/repetitions and prior aggregate exposure are unchanged.
