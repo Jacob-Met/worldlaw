@@ -1,0 +1,27 @@
+{
+  "association_sha256": [
+    "58cd9d2f956f76c07bb4ec91f67b848d08bfad13e76269e88aa14cc1982437fb",
+    "0878d714a78722c03273b2fe767ba73b8779734050cba15c5c41db9e167a4b89",
+    "5d2c79cdb65d031afc8ba7ca798915f16395abbd44b54166c05afd6a20af40ec"
+  ],
+  "decision": "A later prediction/outcome gate needs a separate pre-read lock with the full 16h information contract, physical exposure/ramp unit conversion, an authentic accessible comparator, treatment and controls. This source census alone cannot open a dark array.",
+  "exclusions": "All dark-image arrays, model-map pixels, fitted dark curves, externally calibrated clinical files, and unlisted exposures excluded from stimulus support. Historical articles studied this campaign. No new held experiment inferred from publication age.",
+  "history_receiving_sha256": "91c1be13400a4b062d499b5567e23b708e4a9e598126822db706595fd1114183",
+  "input": "15 named FLT stellar files in published association member order. Read SCI and DQ after literal SCI BUNIT ELECTRONS/S. Convert to estimated integrated electrons by member exposure duration; reject any identity, shape or unit mismatch.",
+  "interpretation": "Empty support makes the specified conditional repeated-exposure endpoint undefined on that visit. For nonempty support, report size and spatial concentration before any score. Multiple pixels do not create independent visits. This audit does not select model parameters or establish a trap mechanism.",
+  "kind": "stimulus-only design-support freeze; no dark-image score or predictor admission",
+  "member_counts": [
+    7,
+    5,
+    3
+  ],
+  "program": 14016,
+  "source_calibration_archive_sha256": "3dbb9f2c2f923d0f4a1d9e5909935fc57b508f22000625b5cf696dc2670b003e",
+  "source_sha256": "6e0d3fecea6acc0d39bf1e93fd96a5384f36579b9f39d2f809cf9b2e8677abe3",
+  "support": "Per visit and threshold, complete 0..n histogram of the per-detector-coordinate number of qualifying exposures. Primary support requires every stellar sample finite and DQ==0 at that coordinate, and at least two estimated fluences >=40000 e. Explicit >=70000 e, per-exposure DQ and all-finite alternatives. Spatial coverage in 32x32 pixel tiles clipped at edges, all 1014x1014 coordinates. Report first maximum-count detector coordinate in row-major order and full local input history.",
+  "visits": [
+    "01",
+    "02",
+    "03"
+  ]
+}

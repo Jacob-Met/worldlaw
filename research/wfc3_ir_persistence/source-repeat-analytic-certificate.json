@@ -1,0 +1,47 @@
+{
+  "above_by_repeat_visit": {
+    "13": 24,
+    "15": 24,
+    "22": 24,
+    "24": 24,
+    "26": 24,
+    "33": 24,
+    "35": 24
+  },
+  "cells": 216,
+  "exact_minimum_mean_per_visit_log_rmse_for_all_C_ge1": 0.40483047650472614,
+  "five_methods_recounted": 1080,
+  "mean_per_visit_log_rmse": {
+    "capacity": 0.40483047650472614,
+    "maximum": 0.2215076118854015,
+    "published_repeat_shape": 0.0485024772848071,
+    "shrunken_sum": 0.07610244060807125,
+    "sum": 0.5551565557437882
+  },
+  "mean_per_visit_log_rmse_lower_bound_all_C_ge1": 0.4045979614801429,
+  "n_repeat_cells_above_observed_already_at_C1": 168,
+  "per_visit_lower_bounds": {
+    "11": 0.00195826636399765,
+    "13": 0.4950605188885199,
+    "15": 0.5992617849107675,
+    "22": 0.2537950346916602,
+    "24": 0.6310478807965163,
+    "26": 0.6554077231171923,
+    "31": 0.002826840356868696,
+    "33": 0.4629819498068934,
+    "35": 0.5390416543888698
+  },
+  "repeat_cells": 168,
+  "worst_absolute_log_cell": {
+    "C1_lower_bound_ratio": 4.714342672677851,
+    "age_s": 6000.0,
+    "capacity": 4.714342672677851,
+    "fluence_e": 70000.0,
+    "maximum": 1.0,
+    "published_ratio": 1.8724328800782755,
+    "published_repeat_shape": 1.926197159028976,
+    "shrunken_sum": 1.7519130805882834,
+    "sum": 5.095526566608522,
+    "visit": "26"
+  }
+}

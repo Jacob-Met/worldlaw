@@ -1,0 +1,322 @@
+{
+  "01": {
+    "all_dark_receivers": {
+      "icrr01ykq": {
+        "first": "icm503usq",
+        "held_dark_inputs": 0,
+        "last": "icrr01yiq",
+        "n": 39
+      },
+      "icrr01ymq": {
+        "first": "icm503usq",
+        "held_dark_inputs": 1,
+        "last": "icrr01ykq",
+        "n": 40
+      },
+      "icrr01yoq": {
+        "first": "icm503usq",
+        "held_dark_inputs": 2,
+        "last": "icrr01ymq",
+        "n": 41
+      },
+      "icrr01yqq": {
+        "first": "icm503usq",
+        "held_dark_inputs": 3,
+        "last": "icrr01yoq",
+        "n": 42
+      },
+      "icrr01ysq": {
+        "first": "icm503usq",
+        "held_dark_inputs": 4,
+        "last": "icrr01yqq",
+        "n": 43
+      },
+      "icrr01yuq": {
+        "first": "icm503usq",
+        "held_dark_inputs": 5,
+        "last": "icrr01ysq",
+        "n": 44
+      },
+      "icrr01ywq": {
+        "first": "icm503usq",
+        "held_dark_inputs": 6,
+        "last": "icrr01yuq",
+        "n": 45
+      },
+      "icrr01yyq": {
+        "first": "icm503uuq",
+        "held_dark_inputs": 7,
+        "last": "icrr01ywq",
+        "n": 45
+      },
+      "icrr01z0q": {
+        "first": "icm503uuq",
+        "held_dark_inputs": 8,
+        "last": "icrr01yyq",
+        "n": 46
+      },
+      "icrr01z2q": {
+        "first": "icm503uwq",
+        "held_dark_inputs": 9,
+        "last": "icrr01z0q",
+        "n": 46
+      },
+      "icrr01z4q": {
+        "first": "icm503uwq",
+        "held_dark_inputs": 10,
+        "last": "icrr01z2q",
+        "n": 47
+      },
+      "icrr01z6q": {
+        "first": "icm503uwq",
+        "held_dark_inputs": 11,
+        "last": "icrr01z4q",
+        "n": 48
+      },
+      "icrr01z8q": {
+        "first": "icm503uxq",
+        "held_dark_inputs": 12,
+        "last": "icrr01z6q",
+        "n": 48
+      },
+      "icrr01zaq": {
+        "first": "icm503uxq",
+        "held_dark_inputs": 13,
+        "last": "icrr01z8q",
+        "n": 49
+      },
+      "icrr01zcq": {
+        "first": "icm503uxq",
+        "held_dark_inputs": 14,
+        "last": "icrr01zaq",
+        "n": 50
+      },
+      "icrr01zeq": {
+        "first": "icm503uxq",
+        "held_dark_inputs": 15,
+        "last": "icrr01zcq",
+        "n": 51
+      }
+    },
+    "frozen_source_exposures": 7,
+    "legacy_not_in_native": {},
+    "legacy_records_in_window": 23,
+    "native_groups": 24,
+    "native_only_inside_window": [],
+    "native_only_outside_window": [
+      "icm503020"
+    ]
+  },
+  "02": {
+    "all_dark_receivers": {
+      "icrr02p6q": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 0,
+        "last": "icrr02p5q",
+        "n": 33
+      },
+      "icrr02p8q": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 1,
+        "last": "icrr02p6q",
+        "n": 34
+      },
+      "icrr02paq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 2,
+        "last": "icrr02p8q",
+        "n": 35
+      },
+      "icrr02pcq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 3,
+        "last": "icrr02paq",
+        "n": 36
+      },
+      "icrr02peq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 4,
+        "last": "icrr02pcq",
+        "n": 37
+      },
+      "icrr02pgq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 5,
+        "last": "icrr02peq",
+        "n": 38
+      },
+      "icrr02piq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 6,
+        "last": "icrr02pgq",
+        "n": 39
+      },
+      "icrr02pkq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 7,
+        "last": "icrr02piq",
+        "n": 40
+      },
+      "icrr02pmq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 8,
+        "last": "icrr02pkq",
+        "n": 41
+      },
+      "icrr02poq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 9,
+        "last": "icrr02pmq",
+        "n": 42
+      },
+      "icrr02pqq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 10,
+        "last": "icrr02poq",
+        "n": 43
+      },
+      "icrr02psq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 11,
+        "last": "icrr02pqq",
+        "n": 44
+      },
+      "icrr02puq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 12,
+        "last": "icrr02psq",
+        "n": 45
+      },
+      "icrr02pwq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 13,
+        "last": "icrr02puq",
+        "n": 46
+      },
+      "icrr02pyq": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 14,
+        "last": "icrr02pwq",
+        "n": 47
+      },
+      "icrr02q0q": {
+        "first": "ick541lzq",
+        "held_dark_inputs": 15,
+        "last": "icrr02pyq",
+        "n": 48
+      }
+    },
+    "frozen_source_exposures": 5,
+    "legacy_not_in_native": {},
+    "legacy_records_in_window": 21,
+    "native_groups": 21,
+    "native_only_inside_window": [],
+    "native_only_outside_window": []
+  },
+  "03": {
+    "all_dark_receivers": {
+      "icrr03ruq": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 0,
+        "last": "icrr03rtq",
+        "n": 9
+      },
+      "icrr03rwq": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 1,
+        "last": "icrr03ruq",
+        "n": 10
+      },
+      "icrr03ryq": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 2,
+        "last": "icrr03rwq",
+        "n": 11
+      },
+      "icrr03s0q": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 3,
+        "last": "icrr03ryq",
+        "n": 12
+      },
+      "icrr03s2q": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 4,
+        "last": "icrr03s0q",
+        "n": 13
+      },
+      "icrr03s4q": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 5,
+        "last": "icrr03s2q",
+        "n": 14
+      },
+      "icrr03s6q": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 6,
+        "last": "icrr03s4q",
+        "n": 15
+      },
+      "icrr03s8q": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 7,
+        "last": "icrr03s6q",
+        "n": 16
+      },
+      "icrr03saq": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 8,
+        "last": "icrr03s8q",
+        "n": 17
+      },
+      "icrr03scq": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 9,
+        "last": "icrr03saq",
+        "n": 18
+      },
+      "icrr03seq": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 10,
+        "last": "icrr03scq",
+        "n": 19
+      },
+      "icrr03sgq": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 11,
+        "last": "icrr03seq",
+        "n": 20
+      },
+      "icrr03siq": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 12,
+        "last": "icrr03sgq",
+        "n": 21
+      },
+      "icrr03skq": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 13,
+        "last": "icrr03siq",
+        "n": 22
+      },
+      "icrr03smq": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 14,
+        "last": "icrr03skq",
+        "n": 23
+      },
+      "icrr03soq": {
+        "first": "icqo49qaq",
+        "held_dark_inputs": 15,
+        "last": "icrr03smq",
+        "n": 24
+      }
+    },
+    "frozen_source_exposures": 3,
+    "legacy_not_in_native": {},
+    "legacy_records_in_window": 20,
+    "native_groups": 20,
+    "native_only_inside_window": [],
+    "native_only_outside_window": []
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "nonidentifiability": "Effective finite-window quadrature only. Neither individual time constants nor capacities constitute measured microscopic traps. Equal history for all later controls; source-only 12694 fits not yet performed.",
+  "rate_support": "48 fixed log-midpoint exponential rates from inverse 7 days to inverse 8 s. One slow mode at inverse 14 days carries the analytic zero-to-inverse-7-days integral of the release-rate density. Its finite time constant gives finite integral; no extrapolated infinite power-law charge.",
+  "scope": "Numerical and charge qualification of only the four positive scheduled exposure durations, no detector responses and no capacity calibration outcomes. Signed short-duration calibration rows and the original whole-history model are preserved separately.",
+  "sources": {
+    "qualify_reservoir.py": "995667fd79cdefa8c64857a8ea97371c82d726ca203a9eb0ff553143ce44802b",
+    "reservoir.py": "836bcf71981aea3c8902f63157d3b3a42935411ca300156d98603f1f72ff6a82"
+  },
+  "stimulus_durations_s": [
+    349.232727,
+    352.939514,
+    499.231873,
+    799.232788
+  ],
+  "table_sha256": "4fb2c770d8d7eba4f09bb61a3466d1442af9f765b7b72e8d76141f4ec74df27d",
+  "test": "129 log ages, all table fluence knots and geometric midpoints, all four actual historical/scheduled durations. Single exposure maximum relative error <=0.005 versus native A-gamma algebra and total stored charge no greater than estimated delivered fluence. Charge conservation within 1e-12; zero/new-pulse and nonnegative finite-capacity gates. User source PerCal is authoritative. No dark data.",
+  "units": "State release rate e-/s, rate constants s^-1, mode charge=state/rate in e-. Cap is e-/s per mode; convert to charge by dividing by the mode rate. Apply duration and fluence interpolation to full rate vector after constructing source-table kernels.",
+  "window_s": [
+    100,
+    60000
+  ]
+}
