@@ -1,0 +1,15 @@
+{
+  "candidate": "49 fixed nonnegative finite modes from source qualification 876b641d; initial source reservoir empty. C multiplier on fixed per-mode maximum rate across all four registered positive duration kernels and all table knots. Fit C on 257 geometric points from1 to32. Source-assumed equal fluence repeated; cap limits charges per mode.",
+  "controls": "Author single maximum ratio1, unrestricted sum, fitted linear residual shrink with 257 evenly spaced factors [0,1], published repeat-dependent amplitude/shape from held-repeat-index interpolation in log output across training pointings, constant edge continuation.",
+  "files": {
+    "reservoir.py": "836bcf71981aea3c8902f63157d3b3a42935411ca300156d98603f1f72ff6a82",
+    "source-12694-actual-members.json": "0b73d7bce1c38b0137a7d171fc4c828bcf1b67f21a8a8e29d8884ab0efac7c11",
+    "source_repeat_calibration.py": "c51d5471bb2f6cf1109bc5339a1960e49229b47fae9852ee847049800b01ae9a"
+  },
+  "fixed_qualification": "Training visits have constant assumed per-pulse fluence on the published idealized nondithered curve. Compare 4 fluences [70000,100000,150000,200000] electrons and 6 ages [200,500,1000,2000,4000,6000] s, 24 published fitted response ratios per visit. Training coordinates are equal-weight in squared log-ratio. Aggregate endpoint arithmetic mean of nine per-visit log RMSE.",
+  "scope": "Published 2012 repeat-response calibration from all nine nondithered 12694 visits. No 14016 dark payload permitted.",
+  "source": "WFC3 ISR 2013-07 Table 1, normalized to the geometric mean of its two single exposures; this common reference is used in every fold, so no wholly blinded source fold claim. All nine source sequences, actual pulse ends and matched STEP50 F125W members; all three pointings leave-one-out for fitted parameters.",
+  "source_gate": "Require capacity to improve on both operational maximum and source-fitted residual addition in mean leave-one-pointing-out log RMSE. Report count-conditioned published shape interpolation on exactly the same source folds, plus free sum and raw worst. Source-stage failure retains all 14016 dark measurements sealed.",
+  "table_sha256": "4fb2c770d8d7eba4f09bb61a3466d1442af9f765b7b72e8d76141f4ec74df27d",
+  "work": "Exactly 9*24 source ratios, no new hyperparameter/model selection after this calibration. Distinct prospective predictions would require historical prior coverage and a new 14016 gate."
+}

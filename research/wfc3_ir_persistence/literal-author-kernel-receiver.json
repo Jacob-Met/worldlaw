@@ -1,0 +1,1 @@
+{"comparisons": 1032516, "passed": true, "receiver": "Unchanged get_persistence and make_persistence_image, separately loaded authenticated source coefficients.", "worst": {"age_s": 42288.385407844806, "author_e_s": 2.44739271824826e-06, "double_precision_e_s": 2.4473934186403676e-06, "duration_s": 349.232727, "fluence_e": 16604.287109375, "relative": 2.861788802511302e-07}}

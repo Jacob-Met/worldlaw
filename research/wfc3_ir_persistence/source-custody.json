@@ -1,0 +1,133 @@
+{
+  "acquisition": {
+    "catalog_and_header_metadata_beyond_these_counts": true,
+    "forecast_arrays_for_14016": 0,
+    "history_coverage": "Public catalog membership and original FITS clocks. No external antecedent intensity model constructed. Pulses of preceding response darks are unmodeled.",
+    "public_dataset": "NASA HST WFC3, programs 12694, 13572, 14015, 14016, 14017",
+    "score_rows_for_14016": 0,
+    "second_stellar_audit_bytes": {
+      "flt_bytes": 249583680,
+      "ima_prefix_bytes": 188743680,
+      "raw_bytes": 461522880
+    },
+    "stellar_flt_first_audit_bytes": 249583680,
+    "target_dark_image_arrays_opened": 0
+  },
+  "association members and catalog": {
+    "native_job": "p3-f747-hst-stellar-association-member-and-official-model-catalog-lineage",
+    "whole_output_bytes": 4378,
+    "whole_output_sha256": "2c53df589961cc20355a80828f65a8d1be34f621744f8bd2befe1c0160173923"
+  },
+  "correct literal unit": {
+    "native_job": "p3-f747-hst-literal-fits-rate-unit-and-dither-treatment-design",
+    "whole_output_bytes": 12800,
+    "whole_output_sha256": "62393887931d1bf511e357d759d19e6babd539c9e5a15c1d4aff1ad654285dea"
+  },
+  "correct original table domains": {
+    "native_job": "p3-f747-wfc3-author-fits-lowercase-tform-domain-receiver",
+    "whole_output_bytes": 6101,
+    "whole_output_sha256": "fb3d60b5a1c73c9eb2173fde02e982e3247b947764447e287c1aab069a6fd423"
+  },
+  "finite release qualification": {
+    "native_job": "p3-f747-hst-finite-kernel-charge-native-876b641d",
+    "whole_output_bytes": 2381,
+    "whole_output_sha256": "c60f3f9876818641ad9c0eb65142716b7f7f54a00a4da3d01dc07b4fb53bd6c9"
+  },
+  "independent history recount and all response exposure names": {
+    "native_job": "p3-f747-hst-cross-receive-science-calibration-and-dedup-all-48-lookbacks",
+    "whole_output_bytes": 23401,
+    "whole_output_sha256": "687b00c6bc7a8c9e2044b8ebc3301f727f3259adfc9033f5cfcc48ee382d247e"
+  },
+  "independent saved-table receiver": {
+    "native_job": "p3-f747-hst-16hour-original-table-receiver-no-new-query",
+    "whole_output_bytes": 12251,
+    "whole_output_sha256": "4be4ea85366e17759027fc0b32b994c871817f643c36b258c970284a2bebdc70"
+  },
+  "independent science/calibration catalogs": {
+    "native_job": "p3-f747-wfc3-detector-qualified-legacy-parallel-science-calibration-check",
+    "whole_output_bytes": 2837,
+    "whole_output_sha256": "32d915c0f0a737368466d6787e2e99efa2c30a31943958ba6a829da3d85844d8"
+  },
+  "initial clipped quoted unit": {
+    "native_job": "p3-f747-hst-raw-calibration-header-units-and-shorttime-fit-exposure",
+    "whole_output_bytes": 7743,
+    "whole_output_sha256": "1988692b38240363fbb80c1c8c951fa12a67cff214d6365962ae139bc359c645"
+  },
+  "initial null proposal serialisation failure": {
+    "native_job": "p3-f747-hst-wfc3-all-proposal-16-hour-lookback-archive-census",
+    "whole_output_bytes": 582,
+    "whole_output_sha256": "09b650593f5b33fd9a14ee66d74c22a52d39263b9c1560ddcae25968b1cb1a59"
+  },
+  "initial public source census": {
+    "native_job": "p3-f747-wfc3-open-program-source-metadata-bounded64k-no-pixel-reads",
+    "whole_output_bytes": 16286,
+    "whole_output_sha256": "5452534b2ce28e97c720d6e9184118ee986d05fa6eccec73084a3649ed1e08d5"
+  },
+  "lowercase FITS type refusal": {
+    "native_job": "p3-f747-hst-official-coefficient-and-interpolation-domain-before-responses",
+    "whole_output_bytes": 129,
+    "whole_output_sha256": "f01da2ef403b43677d39c3660afe73d02975061bad6700da54e3fbb3ce30959e"
+  },
+  "native raw and calibrated final-read saturation check": {
+    "native_job": "p3-f747-wfc3-source-raw-reads-and-final-ima-saturation-e88b246b",
+    "whole_output_bytes": 23140,
+    "whole_output_sha256": "a3d31afa50e5be588e0dc1cbccac076ad4bf2533d24f05050a9f70a26812181f"
+  },
+  "physical access 2880-byte headers and whole program census": {
+    "native_job": "p3-f747-hst-full-campaign-clock-and-public-ramp-primary-header-14016",
+    "whole_output_bytes": 11419,
+    "whole_output_sha256": "e3fbc8f1ba5aa360680471451d8a6e71f17ed1b7285b6352ec43793ee66f753f"
+  },
+  "physical-history membership": {
+    "native_job": "p3-f747-hst-physical-history-overlap-associations-and-header-lookback",
+    "whole_output_bytes": 2530,
+    "whole_output_sha256": "fa98e2d981998f149e138b4c10fb4d46fa6e03dcd96c9a0166be3b0d2134e4ca"
+  },
+  "prior non-dithered source response membership": {
+    "native_job": "p3-f747-hst-published-12694-all-nine-repeat-calibration-source-clocks",
+    "whole_output_bytes": 9113,
+    "whole_output_sha256": "0b73d7bce1c38b0137a7d171fc4c828bcf1b67f21a8a8e29d8884ab0efac7c11"
+  },
+  "released calibration archive vs unavailable ready-made maps": {
+    "native_job": "p3-f747-hst-author-percal-parameter-inventory-and-prior-design-12694-13572",
+    "whole_output_bytes": 2616,
+    "whole_output_sha256": "7fd87b20699dac3d1a6448f503dc275ad80640ff3896577400bf851d55705d3f"
+  },
+  "source fit, actual split by pointing (the handle name contains odd-even)": {
+    "native_job": "p3-f747-wfc3-native-published-12694-odd-even-history-capacity-course",
+    "whole_output_bytes": 5394,
+    "whole_output_sha256": "687fb6e74e6d6911420a447f1cdb3ee5dbed403b158b2fb81cceee5c7ef4fb00"
+  },
+  "source-domain refusals": [
+    "Initial native 130000-byte retained-output request exceeded the 65536-byte connector limit, before command admission; distinct bounded source job executed.",
+    "Direct precomputed model visit archive HEAD for both source and target returned HTTP403; no access via another endpoint. Released public author coefficient archive was available via documentation.",
+    "Quoted slash in original header parser truncated physical unit; corrected literal-card read preserved separately.",
+    "Two skycell products have null proposal IDs; initial JSON sorting failed after saving three original source tables, which were received without requery.",
+    "Original uppercase-only FITS table parser rejected lowercase e. Corrected receiver preserves and reads that type literally as float32.",
+    "First single-envelope source-parameter receiving emitted size and no payload because compressed table exceeded its retained-output budget. Two bounded chunks reassembled to the exact authenticated FITS member.",
+    "The first local author-function check supplied NumPy rather than Python scalar times; the retained independent report uses Python floats and a Python list of exposure times."
+  ],
+  "source-only pre-read contracts": {
+    "raw_dq": [
+      "att-mws5jo2lzufa63",
+      "e88b246bc7dd5365e3172d0a150b204ff5251828c52312dc51caf7fe7a431165"
+    ],
+    "single_pulse": [
+      "att-mws5vh3h7grj67",
+      "876b641d18924a1850c3cad86f6f0922f3e941a23fd1568c15ed8851b32135f4"
+    ],
+    "source_calibration": [
+      "att-mws5zlx6bscjwi",
+      "9fb4a08616f85b7c725ea1df53346b0f6a312373e7f87cefe731569b2d8958cf"
+    ],
+    "stimulus_support": [
+      "att-mws5566zutsqck",
+      "5d150de9712bcd734faecfe6d0aeea88bc2127da94c378d9d2c63bfdbab787df"
+    ]
+  },
+  "stimulus-only support": {
+    "native_job": "p3-f747-wfc3-locked-14016-stellar-input-support-6e0d3fec-no-dark",
+    "whole_output_bytes": 10355,
+    "whole_output_sha256": "f3b4040364dd44cc42ddf207582528ced06149f5ad907c5a6c9a18a34c8b24b1"
+  }
+}

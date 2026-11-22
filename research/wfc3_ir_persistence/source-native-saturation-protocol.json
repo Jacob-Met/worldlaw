@@ -1,0 +1,20 @@
+{
+  "caps": "Per ordered member full public stellar RAW <=40000000 bytes, exactly first 12582912 bytes of stellar IMA, and exact SHA-locked stellar FLT <=19000000 bytes. Full original costs and failed qualifications retained. No dark pixels.",
+  "held_response_arrays_opened": 0,
+  "membership": "15 previously locked full-frame source stellar member names and three original visits.",
+  "outputs": "For all 15, all read times and raw native codes at those sites, IMA final DQ words at sites and all-cell saturation cardinalities. Per visit, all-coordinate and jointly-good FLT histograms plus contingency of nominal FLT >=70000 crossings versus native final-read saturation counts.",
+  "physical_tag": "The IMA final-read DQ 256 full-well saturation bit is a calibration pipeline flag for the final read. Count it separately from hard ADC clipping, direct trap occupancy and nominal >=70000 extrapolated FLT electrons.",
+  "prior_output_sha256": "f3b4040364dd44cc42ddf207582528ced06149f5ad907c5a6c9a18a34c8b24b1",
+  "prior_visit_summaries": {
+    "01": "ae3b0c945976e198d49be2b5695b082158d52fdbb5f6a6b1099b4c7c925f3158",
+    "02": "a27eb622685d3421a8bbc60b775d6918df5042cc14fd961198fa973182265c05",
+    "03": "d8bd59dab44a2a9532f0180c92725da2c23c3c7f2566d653be2443d89aef1528"
+  },
+  "purpose": "Physical input saturation support only; contains no dark frames or detector response forecast.",
+  "selection": "Full 1024x1024 RAW and IMA spatial coordinates are trimmed five pixels per side to match all 1014x1014 science pixels, as specified by the WFC3 Data Handbook section 2.2. Frozen sites 01:(1,845),(53,893); 02:(0,841); 03:(0,810),(0,838), zero-based row/column in FLT. No data-dependent replacement.",
+  "source_sha256": {
+    "native_read_support.py": "e342491e4d2d90b9ee2dee523e5e5f42370c3f31b37d884189d30bb7750157e9",
+    "stimulus_support.py": "6e0d3fecea6acc0d39bf1e93fd96a5384f36579b9f39d2f809cf9b2e8677abe3"
+  },
+  "unit": "Raw detector counts from all native RAW SCI reads at previously reported row-major threshold exemplars. Numerical ADC values differ from calibrated incident-electron extrapolations. No cross-unit inversion. Embedded per-read SAMPTIME and EXTVER retained."
+}
