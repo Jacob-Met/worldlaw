@@ -1,0 +1,142 @@
+{
+  "source_roster": "att-mws8pwjddz5mbi",
+  "measurement": "att-mws907wh5jpthf",
+  "gate": "att-mws9724u9yyr0m",
+  "prediction_lock_post": 183254,
+  "forecast_sha": "7e55ad13f0bd702fdf210bc847879adcc5441694398a743c889c597c9369cfec",
+  "original_bundle": "70fdae61d6f522032358ae5f9b0f459ab864a3499e26d28dad97a15fe6da9483",
+  "native_receipts": {
+    "initial": {
+      "id": "p3-f747-worldlaw-guitar-240-lfs-pointers-one-source-header-only",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "request": "e8c6f01775cde5195d53c9ee897b50eb44725a2c6654bf05ff6b016279071539",
+      "exit": 1,
+      "drain": "drained",
+      "bytes": 24299,
+      "finished": "2026-11-22T19:36:09.54385167Z",
+      "user_cpu_seconds": 0.304935,
+      "system_cpu_seconds": 0.042941,
+      "max_rss_bytes": 24027136
+    },
+    "header": {
+      "id": "p3-f747-worldlaw-guitar-source-precise-riff-chunk-offsets",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "request": "99eb3605a3aebce70c88fcbc6a8b96aad5e44bf798e245c19eee17a227063988",
+      "exit": 0,
+      "drain": "drained",
+      "bytes": 529,
+      "finished": "2026-11-22T19:37:58.859043211Z",
+      "user_cpu_seconds": 0.083311,
+      "system_cpu_seconds": 0.015868,
+      "max_rss_bytes": 23281664
+    },
+    "early_source": {
+      "id": "p3-f747-worldlaw-guitar-144-singles-48-calibration-mixes",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "request": "af7413d00d5f470f017ab178793f1db9f57cde9fa21706de26c94765d55167ac",
+      "exit": 0,
+      "drain": "drained",
+      "bytes": 1104,
+      "finished": "2026-11-22T19:42:30.464188007Z",
+      "user_cpu_seconds": 4.179006,
+      "system_cpu_seconds": 1.9181840000000001,
+      "max_rss_bytes": 197898240
+    },
+    "development_simple": {
+      "id": "p3-f747-guitar-48-odd-takes-raw-failure-and-author-control",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "request": "4b3c076bd7cf2386e67238f52a492c79c3d40f834e0c8652647ba413309fecf5",
+      "exit": 0,
+      "drain": "drained",
+      "bytes": 39294,
+      "finished": "2026-11-22T19:43:12.647565995Z",
+      "user_cpu_seconds": 0.114852,
+      "system_cpu_seconds": 0.028796,
+      "max_rss_bytes": 36200448
+    },
+    "transient": {
+      "id": "p3-f747-guitar-raw-development-transient-versus-mode-null",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "request": "655050abdb36fb15f6bee2a06d8fcdf6c5a563a898d2b7010dca996b87b2f03e",
+      "exit": 0,
+      "drain": "drained",
+      "bytes": 36593,
+      "finished": "2026-11-22T19:44:55.029093911Z",
+      "user_cpu_seconds": 0.575004,
+      "system_cpu_seconds": 0.127002,
+      "max_rss_bytes": 119865344
+    },
+    "stable_source": {
+      "id": "p3-f747-guitar-registered-dominant-periodic-source-features",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "request": "e0d218bed87db56cdad44d4230ddfcc5053720adc42d7d83f9e27908107d50b9",
+      "exit": 0,
+      "drain": "drained",
+      "bytes": 1106,
+      "finished": "2026-11-22T19:49:23.729639194Z",
+      "user_cpu_seconds": 5.611008,
+      "system_cpu_seconds": 2.46639,
+      "max_rss_bytes": 267382784
+    },
+    "calibration": {
+      "id": "p3-f747-guitar-shared-circuit-source-whole-position-qualification",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "request": "1a7c9ea3d6a3c274437a89e30944b94db8ad0e3965c2f888c9a3b1e8b712b0e8",
+      "exit": 0,
+      "drain": "drained",
+      "bytes": 35858,
+      "finished": "2026-11-22T19:50:56.146497325Z",
+      "user_cpu_seconds": 1.455884,
+      "system_cpu_seconds": 0.068495,
+      "max_rss_bytes": 78745600
+    },
+    "forecasts": {
+      "id": "p3-f747-guitar-native-1344-per-take-spectral-forecast-lock",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "request": "18de6d0ae6d8c25d846b656beecbcd345ed8382411a670de725b414b1153018c",
+      "exit": 0,
+      "drain": "drained",
+      "bytes": 3118,
+      "finished": "2026-11-22T19:52:56.716129478Z",
+      "user_cpu_seconds": 0.774337,
+      "system_cpu_seconds": 0.060482,
+      "max_rss_bytes": 80990208
+    },
+    "measurements": {
+      "id": "p3-f747-guitar-48-real-mixed-takes-frozen-optical-free-receiver",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "request": "8d365c9f9fb2918e9d282e3e1a0d9579e8cf53b6e8fa08984c491462f6a3f3e4",
+      "exit": 0,
+      "drain": "drained",
+      "bytes": 10986,
+      "finished": "2026-11-22T20:14:18.32981132Z",
+      "user_cpu_seconds": 2.57035,
+      "system_cpu_seconds": 1.26827,
+      "max_rss_bytes": 171302912
+    },
+    "independent": {
+      "id": "p3-f747-guitar-independent-full-recount-and-worst-gain-bound",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "request": "26435adf826072fcab644bd432a5f70218e1bc15d468e1f3b82dde58c06139d6",
+      "exit": 0,
+      "drain": "drained",
+      "bytes": 4827,
+      "finished": "2026-11-22T20:15:08.369407295Z",
+      "user_cpu_seconds": 0.333567,
+      "system_cpu_seconds": 0.079822,
+      "max_rss_bytes": 77340672
+    },
+    "complete_bytes": {
+      "id": "p3-f747-guitar-complete-derived-capsule-native-paged-read",
+      "worker": "node-c0da1eb7402af862460cccd552698bb4",
+      "request": "56bddf60576721a67caef4ceb8729cee016c7a6a1fd94a688156cb6eabdeba05",
+      "exit": 0,
+      "drain": "drained",
+      "bytes": 807876,
+      "finished": "2026-11-22T20:15:07.716680374Z",
+      "user_cpu_seconds": 0.008474,
+      "system_cpu_seconds": 0.012711,
+      "max_rss_bytes": 20623360
+    }
+  }
+}

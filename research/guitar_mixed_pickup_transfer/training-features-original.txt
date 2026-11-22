@@ -1,0 +1,8 @@
+OWNER_PATH /var/tmp/p3-f747-guitar-solo-and-odd-mdnygi3s/features
+{"string_complete": 1, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"string_complete": 2, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"string_complete": 3, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"string_complete": 4, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"string_complete": 5, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"string_complete": 6, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"shape_singles": [6, 8, 3, 25], "shape_training": [6, 4, 2, 25], "inputs": {"metadata.json": [70070, "ad8b171f9b19af35ff64da660f5d601e93388b35aaeb972567f946c9bfb25479"], "singles.npy": [57728, "0fb67f4efd93e828a0e912127684c38692efc01d6bf22b5bb2638d51f12a5548"], "training-mixed.npy": [9728, "f682bd668a7fba3b048ffdcbf60df80b816d100eca9faa1c55c2b9a31c00b335"]}, "owner_path": "/var/tmp/p3-f747-guitar-solo-and-odd-mdnygi3s/features", "held_mixed_wavs": 0}
