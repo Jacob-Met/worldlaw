@@ -5,6 +5,7 @@ import hashlib
 import json
 import math
 import zipfile
+from decimal import Decimal
 from pathlib import Path
 
 import numpy as np
@@ -27,7 +28,8 @@ def read_panel(source, duty):
         count=0
         for n,row in enumerate(rows):
             flag,offset=divmod(n,50)
-            if flag!=int(row['flag']) or flag>=5000:raise ValueError('wrong flag')
+            declared=Decimal(row['flag'])
+            if not declared.is_finite() or declared!=flag or flag>=5000:raise ValueError('wrong flag')
             truth[flag,offset]=float(row['rpm_out']),float(row['pressure_downwind'])
             commands[flag,offset]=[float(row[k]) for k in ('timestamp','load_in','load_out','hatch')]
             count+=1
