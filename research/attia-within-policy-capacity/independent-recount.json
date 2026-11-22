@@ -1,0 +1,22 @@
+{
+  "bounded": 0,
+  "crossproduct": -57203.415106949884,
+  "development_cells": 42,
+  "fit_cells": 41,
+  "penalty_losses": {
+    "0.1": 2765.083514651238,
+    "1.0": 2404.1415174533154,
+    "10.0": 1100.5106007795614,
+    "100.0": 208.09182972389237
+  },
+  "replicated_df": 4,
+  "restricted_source_file_count": 8,
+  "sum_squares": 102269.86114303999,
+  "unconstrained": -0.5593379561446963,
+  "validation_requests": 0,
+  "worst": [
+    7,
+    691,
+    1777.3257288428936
+  ]
+}
