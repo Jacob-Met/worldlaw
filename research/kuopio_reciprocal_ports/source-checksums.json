@@ -1,0 +1,23 @@
+{
+  "geometry-native-original.json": "879d76471a3350fc82db0db4edf5547ec577f22199f8e5e751224a93a9a321a2",
+  "independent_voltage_receipt.py": "893746f1247ac841fd255418c64bc33f361859250612800fa51013c105173eca",
+  "locked-array-manifest.json": "69f20a3a277e823adf45e827a9c7afc7359bb91cb9cba720d7379e5732f3fbdc",
+  "locked-forecast-owner-receipt.jsonl": "931c0973e117418bc6ac5a2e0eaa8117cef2b43dd0d667d55fa3602010504b80",
+  "locked-training-phantom-2.csv": "427b6e8c5a038caf07c93e5d0f32816e7f3214830f910eaaa36f79550fe052bb",
+  "locked-training-phantom-3.csv": "7f522fe66c19d5e5ef75fe58a25fd7321b2d41f1e76b88ae0a1b3a01430036f5",
+  "locked-training-phantom-4.csv": "96ed28a64720769dc595faa627ccfd9c4266f3c9c536d1f7e043d119673d1e79",
+  "locked_course.py": "4f6dcafe907b85cd355c1230619b0ef6080505749014217b483bf572193a5dd3",
+  "orientation-postscore-native.json": "7487953dd4bbbaafe9ca9edb47229854c98f38e3c67bf6af3801b996e9d9d031",
+  "port_forecast.py": "6f79f0376803ee7cfbeed3167ad756600d1691272f765683081d73be3491ac23",
+  "postscore_worst.py": "e2d4a731abb56845ae2dd2b37b90df7e460e61d6bdc0c19d2fd6228c51451626",
+  "qualify_geometry.py": "479206538fe2731a093c1d57545b8e6d098814ba2ab7f2c4abb0b38f0391c4a3",
+  "row_witness.py": "171d0b2339184716b4ea249569ce8a2ec7e08482910359fa9d911e5d07d7fcf7",
+  "source-custody.json": "0b51d5f719b124ecdae660b11dc4d96e41d4a6d66bb560fa6605027d95cfbdf4",
+  "source1-pilot-native-original.jsonl": "909751bd8a3858757ba0713f5c1a97524fa04d3153485cbd08ad9573ddfdb24a",
+  "source_pilot.py": "fab5fa20a3392bc9c0afb392984cd277da09998f30c7c23c5a7af116742fd7e6",
+  "training-electrical-protocol.json": "a5f3f053db822d176c2a176e54b55f0c2f5faae620cba51e90ab06e71a7f9dab",
+  "training_qualification.py": "c4deb522c59f2eed5ab97a7f60212c361db80426712f959cf506d0e4ff3ea46e",
+  "two-receivers-native-original.txt": "033b9160820c25ce7229bf4bdca24ebf6409813a6cda5266de45eaf5077669db",
+  "water-phantom1-training-original.jsonl": "e0c78e5158fb4a647b8086e37033dbf20a7fad8a3f2275bc5f3420e5fe840b70",
+  "worst-and-witness-native.jsonl": "d282dbc3b37429fca7f5637fff7e2978ad54cb5ed98e65bf55c05ed1afe566e4"
+}
