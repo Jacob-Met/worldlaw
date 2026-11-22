@@ -1,0 +1,10 @@
+{
+  "source_revision": "b187315443eb269c95d2b1d6ce9e1ef047facf1b",
+  "source_path": "scripts/preprocess.py",
+  "preprocessing": [
+    "_correct_orientation can look ahead through following timestamps to decide whether and how to alter current yaw; any published preprocessed pose prefix can thus leak suffix data even if interpolated rows are later truncated.",
+    "Single-trial event or endpoint value leakage is excluded by applying any required preprocessing to a physically isolated prefix of raw original channels only.",
+    "For a rotating cylindrical probe, tangential velocity at its contact point includes omega_probe cross r_probe, and body material velocity includes omega_object cross r_object. Raw center-relative velocity alone is not a stick/slip label.",
+    "The 2016 apparatus paper gives pusher diameter 9.5 mm, pusher position accuracy 0.1 mm, and object tracking accuracy below 0.5 mm and 0.5 degrees. A nominal 20 mm/s at 250 Hz advances 0.08 mm per sample, so a single nominal step cannot classify the contact regime at those resolutions."
+  ]
+}

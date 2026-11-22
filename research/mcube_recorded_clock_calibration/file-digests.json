@@ -1,0 +1,16 @@
+{
+  "README.md": "a600f04f926333bd10c876ed8e887ffd18dfe130b472744341f363d76192cb6d",
+  "author_vhgpr.py": "5c33ab4761b374913667719a2edc81e30a28510f7b90cfb02ae82e2da5dfa847",
+  "calibrate_logtime.py": "5527d554a60f6ced73a3dbb9aa57f5afd3eb3cb5ff42178bf182356b4e0c6398",
+  "comparator-contract.md": "74b56780d3e542bcc880e7c240e19ce14bec6cbe0bec96ec3e1a2e0e24b9cc6e",
+  "conditional_contact.py": "54455ebbf0bbce7351e9d3870b00f2539de7269c22f7113e9fa121c4fe7efbb2",
+  "custody.json": "ba6ee9d75ce9a61cc7b997e29250d14e54842adcc07a7cbe2d5d43e69c5da3c5",
+  "metrology-independent-receipt.json": "feb001b4b6c6b0c74773f63f136c618db3850d86fcacf22b6ae94a300e9150f7",
+  "metrology-native-original.jsonl": "7bb479b6e698e5945b310500d2b239cdfef9a9a5fdedd0cd101faa3ca5d1911d",
+  "metrology_recount.py": "aa88d046900d45053d814b73d9d53967241dc57830c8838d1ccc7920674ab28c",
+  "prefix_clock.py": "388774f63def1589a3903c3bc4b1a7cfa768bc6ace88c552c86a2ae6bd693ad1",
+  "prospective-input-contract.md": "71497b69e27aac17725202313d228ca127930d2ee3479cb9131fafa370b1e547",
+  "source-observability.json": "dbbe7dd3aa414723d01f0ad7471a7bed2bdd5cb32f4c69bdad9453c4d56071b4",
+  "source_qualification.py": "5d262e6625954dafad0587de6514966fcf1260300446624cb495947370f5bad5",
+  "vhgpr-native-original.txt": "5c21061d9ba8b4864480e9c12344a61701674ec9316386cd095c4601d03b6a65"
+}
