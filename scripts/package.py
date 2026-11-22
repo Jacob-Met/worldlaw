@@ -16,6 +16,14 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/ogw-temperature-phase/README.md",
+    "research/ogw-temperature-phase/archive_access.py",
+    "research/ogw-temperature-phase/baseline-freeze.txt",
+    "research/ogw-temperature-phase/baseline.py",
+    "research/ogw-temperature-phase/frozen-results.json",
+    "research/ogw-temperature-phase/replay.py",
+    "research/ogw-temperature-phase/transport-freeze.txt",
+    "research/ogw-temperature-phase/transport.py",
     "research/paderborn_order_frequency/DEPLOYMENT-QUALIFICATION.md",
     "research/paderborn_order_frequency/K001-first-clock-native.txt",
     "research/paderborn_order_frequency/K001-first-clock.json",
