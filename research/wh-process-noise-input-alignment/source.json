@@ -1,0 +1,714 @@
+{
+  "mat": [
+    {
+      "name": "WH_Triangle_meas",
+      "sha256": "7d8ccc56ac0c33d84050cbcdbd65c88736b4f23c0b16f45564c84fd5f8701dcb",
+      "shape": [
+        65536,
+        50
+      ],
+      "commands": 50,
+      "fs": {
+        "dataMeas.fs": [
+          78125
+        ]
+      }
+    },
+    {
+      "name": "WH_Triangle2_meas",
+      "sha256": "7f34d853ed80f984acf32e36f19552a00a3e75c70df2bb505c41e8f074e1d04f",
+      "shape": [
+        65536,
+        32
+      ],
+      "commands": 32,
+      "fs": {
+        "dataMeas.fs": [
+          78125
+        ]
+      }
+    },
+    {
+      "name": "WH_SineSweepInput_meas",
+      "sha256": "39f80a05216154dbb43a0b4f02adf5be284dc7873bef09e58ad48142ee40b903",
+      "shape": [
+        64161,
+        100
+      ],
+      "commands": 1,
+      "fs": {
+        "dataMeas.fs": [
+          78125
+        ]
+      }
+    },
+    {
+      "name": "WH_SineInput_meas",
+      "sha256": "09056e3b3c35a76d380a02810867da63f93204951daa456fa569ac92bdc89ec6",
+      "shape": [
+        65536,
+        100
+      ],
+      "commands": 100,
+      "fs": {
+        "dataMeas.fs": [
+          78125
+        ]
+      }
+    },
+    {
+      "name": "WH_CombinedZeroMultisineSinesweep",
+      "sha256": "e0e26134086a20f593a76bd7714bd71879d838bec3281e7df5306aea9c9d3337",
+      "shape": [
+        57346,
+        5
+      ],
+      "commands": 5,
+      "fs": {
+        "dataMeas.fs": [
+          78125
+        ]
+      }
+    },
+    {
+      "name": "WH_EstimationExample",
+      "sha256": "288177d863d03b87e56257764b7ac1772d8b0036b111b2a85700a4b3bbd54782",
+      "shape": [
+        8192,
+        10
+      ],
+      "commands": 10,
+      "fs": {
+        "dataMeas.fs": [
+          78125
+        ]
+      }
+    },
+    {
+      "name": "WH_MultisineFadeOut",
+      "sha256": "ae97baac751139ccb0876a8df60a57c5b4cf26dd7404368da09bbd20ef3176a6",
+      "shape": [
+        8192,
+        2
+      ],
+      "commands": 2,
+      "fs": {
+        "dataMeas.fs": [
+          78125
+        ]
+      }
+    },
+    {
+      "name": "WH_ZeroMeas",
+      "sha256": "4cb8886b3fc1436da082dc7ba85cf852ea9a471cf23290bed777a73218640ea3",
+      "shape": [
+        4096,
+        2
+      ],
+      "commands": 1,
+      "fs": {
+        "dataMeas.fs": [
+          78125
+        ]
+      }
+    }
+  ],
+  "csv_sha": "956b457620abcd7bd9cfc526aebfc9956846498e644304a331989bae00b1f727",
+  "csv99": [
+    {
+      "column": 1,
+      "lag": 1,
+      "rms_aligned": 0.0002419935560253463,
+      "rms_unshifted": 0.9105529951254119
+    },
+    {
+      "column": 2,
+      "lag": 1,
+      "rms_aligned": 0.00022448754761594697,
+      "rms_unshifted": 0.9105448801922572
+    },
+    {
+      "column": 3,
+      "lag": 0,
+      "rms_aligned": 0.0002011523628787526,
+      "rms_unshifted": 0.0002011523628787526
+    },
+    {
+      "column": 4,
+      "lag": 1,
+      "rms_aligned": 0.0002572708628123377,
+      "rms_unshifted": 0.9105385019668084
+    },
+    {
+      "column": 5,
+      "lag": 0,
+      "rms_aligned": 0.0001924681165341353,
+      "rms_unshifted": 0.0001924681165341353
+    },
+    {
+      "column": 6,
+      "lag": 1,
+      "rms_aligned": 0.0001917222949681824,
+      "rms_unshifted": 0.9105478177597565
+    },
+    {
+      "column": 7,
+      "lag": 0,
+      "rms_aligned": 0.00019325329988479777,
+      "rms_unshifted": 0.00019325329988479777
+    },
+    {
+      "column": 8,
+      "lag": 1,
+      "rms_aligned": 0.00019464255704509074,
+      "rms_unshifted": 0.9105483496265951
+    },
+    {
+      "column": 9,
+      "lag": 1,
+      "rms_aligned": 0.00018508250285608583,
+      "rms_unshifted": 0.9105401348194809
+    },
+    {
+      "column": 10,
+      "lag": 0,
+      "rms_aligned": 0.00017909568749512487,
+      "rms_unshifted": 0.00017909568749512487
+    },
+    {
+      "column": 11,
+      "lag": 0,
+      "rms_aligned": 0.00019309430259262326,
+      "rms_unshifted": 0.00019309430259262326
+    },
+    {
+      "column": 12,
+      "lag": 1,
+      "rms_aligned": 0.00020095779072669404,
+      "rms_unshifted": 0.9105208156422308
+    },
+    {
+      "column": 13,
+      "lag": 0,
+      "rms_aligned": 0.0001877655989081195,
+      "rms_unshifted": 0.0001877655989081195
+    },
+    {
+      "column": 14,
+      "lag": 0,
+      "rms_aligned": 0.00021337698101726765,
+      "rms_unshifted": 0.00021337698101726765
+    },
+    {
+      "column": 15,
+      "lag": 1,
+      "rms_aligned": 0.00020239054250138804,
+      "rms_unshifted": 0.910511442818274
+    },
+    {
+      "column": 16,
+      "lag": 0,
+      "rms_aligned": 0.0002094099866649068,
+      "rms_unshifted": 0.0002094099866649068
+    },
+    {
+      "column": 17,
+      "lag": 1,
+      "rms_aligned": 0.00023497286982340106,
+      "rms_unshifted": 0.9105054471500823
+    },
+    {
+      "column": 18,
+      "lag": 1,
+      "rms_aligned": 0.00022312235106763926,
+      "rms_unshifted": 0.9105056590707048
+    },
+    {
+      "column": 19,
+      "lag": 1,
+      "rms_aligned": 0.0002301253547659561,
+      "rms_unshifted": 0.9105040732477732
+    },
+    {
+      "column": 20,
+      "lag": 0,
+      "rms_aligned": 0.0002506217373288434,
+      "rms_unshifted": 0.0002506217373288434
+    },
+    {
+      "column": 21,
+      "lag": 1,
+      "rms_aligned": 0.00022998954916665288,
+      "rms_unshifted": 0.9104948152919496
+    },
+    {
+      "column": 22,
+      "lag": 1,
+      "rms_aligned": 0.0002653700739653757,
+      "rms_unshifted": 0.9104917910752266
+    },
+    {
+      "column": 23,
+      "lag": 0,
+      "rms_aligned": 0.000264796341997836,
+      "rms_unshifted": 0.000264796341997836
+    },
+    {
+      "column": 24,
+      "lag": 0,
+      "rms_aligned": 0.0002527481886173855,
+      "rms_unshifted": 0.0002527481886173855
+    },
+    {
+      "column": 25,
+      "lag": 1,
+      "rms_aligned": 0.0002932965700071141,
+      "rms_unshifted": 0.9104740657448072
+    },
+    {
+      "column": 26,
+      "lag": 1,
+      "rms_aligned": 0.0003220200108964906,
+      "rms_unshifted": 0.9104666752381713
+    },
+    {
+      "column": 27,
+      "lag": 1,
+      "rms_aligned": 0.00028567509135125934,
+      "rms_unshifted": 0.9104680818431276
+    },
+    {
+      "column": 28,
+      "lag": 0,
+      "rms_aligned": 0.00034298974934642896,
+      "rms_unshifted": 0.00034298974934642896
+    },
+    {
+      "column": 29,
+      "lag": 1,
+      "rms_aligned": 0.00031767058780295647,
+      "rms_unshifted": 0.9104609992957238
+    },
+    {
+      "column": 30,
+      "lag": 0,
+      "rms_aligned": 0.00035749064680284167,
+      "rms_unshifted": 0.00035749064680284167
+    },
+    {
+      "column": 31,
+      "lag": 0,
+      "rms_aligned": 0.0003456987440101909,
+      "rms_unshifted": 0.0003456987440101909
+    },
+    {
+      "column": 32,
+      "lag": 0,
+      "rms_aligned": 0.00035701387523869884,
+      "rms_unshifted": 0.00035701387523869884
+    },
+    {
+      "column": 33,
+      "lag": 0,
+      "rms_aligned": 0.0003090058510600877,
+      "rms_unshifted": 0.0003090058510600877
+    },
+    {
+      "column": 34,
+      "lag": 1,
+      "rms_aligned": 0.0003456924604761308,
+      "rms_unshifted": 0.9104473842114351
+    },
+    {
+      "column": 35,
+      "lag": 0,
+      "rms_aligned": 0.00030352723466779246,
+      "rms_unshifted": 0.00030352723466779246
+    },
+    {
+      "column": 36,
+      "lag": 1,
+      "rms_aligned": 0.00032608561108412947,
+      "rms_unshifted": 0.910450802674789
+    },
+    {
+      "column": 37,
+      "lag": 1,
+      "rms_aligned": 0.0003594952146059385,
+      "rms_unshifted": 0.910446183044828
+    },
+    {
+      "column": 38,
+      "lag": 1,
+      "rms_aligned": 0.00038355176342045255,
+      "rms_unshifted": 0.9104379627131215
+    },
+    {
+      "column": 39,
+      "lag": 0,
+      "rms_aligned": 0.00032831734724401025,
+      "rms_unshifted": 0.00032831734724401025
+    },
+    {
+      "column": 40,
+      "lag": 1,
+      "rms_aligned": 0.0003771932319965466,
+      "rms_unshifted": 0.9104386657680538
+    },
+    {
+      "column": 41,
+      "lag": 1,
+      "rms_aligned": 0.0004307030117019865,
+      "rms_unshifted": 0.910428619776271
+    },
+    {
+      "column": 42,
+      "lag": 1,
+      "rms_aligned": 0.0003925696389178077,
+      "rms_unshifted": 0.9104354049504394
+    },
+    {
+      "column": 43,
+      "lag": 0,
+      "rms_aligned": 0.00042060340177833843,
+      "rms_unshifted": 0.00042060340177833843
+    },
+    {
+      "column": 44,
+      "lag": 0,
+      "rms_aligned": 0.00046462076147958003,
+      "rms_unshifted": 0.00046462076147958003
+    },
+    {
+      "column": 45,
+      "lag": 1,
+      "rms_aligned": 0.0004686020052309566,
+      "rms_unshifted": 0.910419016250214
+    },
+    {
+      "column": 46,
+      "lag": 0,
+      "rms_aligned": 0.00046107939537221054,
+      "rms_unshifted": 0.00046107939537221054
+    },
+    {
+      "column": 47,
+      "lag": 0,
+      "rms_aligned": 0.0005075162925743088,
+      "rms_unshifted": 0.0005075162925743088
+    },
+    {
+      "column": 48,
+      "lag": 1,
+      "rms_aligned": 0.0005085644135587005,
+      "rms_unshifted": 0.910410019108064
+    },
+    {
+      "column": 49,
+      "lag": 0,
+      "rms_aligned": 0.00044675519355890704,
+      "rms_unshifted": 0.00044675519355890704
+    },
+    {
+      "column": 50,
+      "lag": 1,
+      "rms_aligned": 0.0003578307972148622,
+      "rms_unshifted": 0.9104389729668404
+    },
+    {
+      "column": 51,
+      "lag": 1,
+      "rms_aligned": 0.00035352818189387706,
+      "rms_unshifted": 0.9104386795905319
+    },
+    {
+      "column": 52,
+      "lag": 0,
+      "rms_aligned": 0.0004044426740132321,
+      "rms_unshifted": 0.0004044426740132321
+    },
+    {
+      "column": 53,
+      "lag": 0,
+      "rms_aligned": 0.000405788599732175,
+      "rms_unshifted": 0.000405788599732175
+    },
+    {
+      "column": 54,
+      "lag": 1,
+      "rms_aligned": 0.0004696011031308468,
+      "rms_unshifted": 0.9104156120997661
+    },
+    {
+      "column": 55,
+      "lag": 1,
+      "rms_aligned": 0.0003844142705377914,
+      "rms_unshifted": 0.9104305393452001
+    },
+    {
+      "column": 56,
+      "lag": 1,
+      "rms_aligned": 0.0004190304930915879,
+      "rms_unshifted": 0.9104241579078634
+    },
+    {
+      "column": 57,
+      "lag": 1,
+      "rms_aligned": 0.0004382920546534126,
+      "rms_unshifted": 0.9104189230397711
+    },
+    {
+      "column": 58,
+      "lag": 0,
+      "rms_aligned": 0.0003868373882606161,
+      "rms_unshifted": 0.0003868373882606161
+    },
+    {
+      "column": 59,
+      "lag": 0,
+      "rms_aligned": 0.0004306635612895247,
+      "rms_unshifted": 0.0004306635612895247
+    },
+    {
+      "column": 60,
+      "lag": 1,
+      "rms_aligned": 0.0003759684048662399,
+      "rms_unshifted": 0.9104288147427866
+    },
+    {
+      "column": 61,
+      "lag": 0,
+      "rms_aligned": 0.0003220533639182865,
+      "rms_unshifted": 0.0003220533639182865
+    },
+    {
+      "column": 62,
+      "lag": 0,
+      "rms_aligned": 0.0003233394513389027,
+      "rms_unshifted": 0.0003233394513389027
+    },
+    {
+      "column": 63,
+      "lag": 1,
+      "rms_aligned": 0.000361348137602166,
+      "rms_unshifted": 0.910431674226264
+    },
+    {
+      "column": 64,
+      "lag": 0,
+      "rms_aligned": 0.00042077832544644894,
+      "rms_unshifted": 0.00042077832544644894
+    },
+    {
+      "column": 65,
+      "lag": 0,
+      "rms_aligned": 0.0003765777375643634,
+      "rms_unshifted": 0.0003765777375643634
+    },
+    {
+      "column": 66,
+      "lag": 0,
+      "rms_aligned": 0.00038389997126328594,
+      "rms_unshifted": 0.00038389997126328594
+    },
+    {
+      "column": 67,
+      "lag": 0,
+      "rms_aligned": 0.00040748739246444955,
+      "rms_unshifted": 0.00040748739246444955
+    },
+    {
+      "column": 68,
+      "lag": 1,
+      "rms_aligned": 0.0003229018200210192,
+      "rms_unshifted": 0.9104438162650774
+    },
+    {
+      "column": 69,
+      "lag": 0,
+      "rms_aligned": 0.00035791595674172436,
+      "rms_unshifted": 0.00035791595674172436
+    },
+    {
+      "column": 70,
+      "lag": 1,
+      "rms_aligned": 0.00025071180280265387,
+      "rms_unshifted": 0.9104538983798707
+    },
+    {
+      "column": 71,
+      "lag": 1,
+      "rms_aligned": 0.0002898719356132842,
+      "rms_unshifted": 0.9104449863028675
+    },
+    {
+      "column": 72,
+      "lag": 0,
+      "rms_aligned": 0.00036672327193172156,
+      "rms_unshifted": 0.00036672327193172156
+    },
+    {
+      "column": 73,
+      "lag": 1,
+      "rms_aligned": 0.00037802203982126217,
+      "rms_unshifted": 0.9104375868880493
+    },
+    {
+      "column": 74,
+      "lag": 0,
+      "rms_aligned": 0.000332512410672049,
+      "rms_unshifted": 0.000332512410672049
+    },
+    {
+      "column": 75,
+      "lag": 0,
+      "rms_aligned": 0.00032267230122696056,
+      "rms_unshifted": 0.00032267230122696056
+    },
+    {
+      "column": 76,
+      "lag": 1,
+      "rms_aligned": 0.0002878692116430786,
+      "rms_unshifted": 0.9104685897418069
+    },
+    {
+      "column": 77,
+      "lag": 1,
+      "rms_aligned": 0.0003433970860732323,
+      "rms_unshifted": 0.9104462427583434
+    },
+    {
+      "column": 78,
+      "lag": 0,
+      "rms_aligned": 0.00030048019381524786,
+      "rms_unshifted": 0.00030048019381524786
+    },
+    {
+      "column": 79,
+      "lag": 0,
+      "rms_aligned": 0.00031116291811635657,
+      "rms_unshifted": 0.00031116291811635657
+    },
+    {
+      "column": 80,
+      "lag": 0,
+      "rms_aligned": 0.0003166037871046493,
+      "rms_unshifted": 0.0003166037871046493
+    },
+    {
+      "column": 81,
+      "lag": 1,
+      "rms_aligned": 0.0003966711057023922,
+      "rms_unshifted": 0.9104314518334485
+    },
+    {
+      "column": 82,
+      "lag": 1,
+      "rms_aligned": 0.00034715211916106734,
+      "rms_unshifted": 0.9104210799403973
+    },
+    {
+      "column": 83,
+      "lag": 1,
+      "rms_aligned": 0.00031539170290791556,
+      "rms_unshifted": 0.910422284718893
+    },
+    {
+      "column": 84,
+      "lag": 1,
+      "rms_aligned": 0.00041572718471732234,
+      "rms_unshifted": 0.9104052392022549
+    },
+    {
+      "column": 85,
+      "lag": 1,
+      "rms_aligned": 0.00040082707228333977,
+      "rms_unshifted": 0.9104061634678384
+    },
+    {
+      "column": 86,
+      "lag": 0,
+      "rms_aligned": 0.000406751430045047,
+      "rms_unshifted": 0.000406751430045047
+    },
+    {
+      "column": 87,
+      "lag": 0,
+      "rms_aligned": 0.0003813043639623472,
+      "rms_unshifted": 0.0003813043639623472
+    },
+    {
+      "column": 88,
+      "lag": 0,
+      "rms_aligned": 0.00038084210035056526,
+      "rms_unshifted": 0.00038084210035056526
+    },
+    {
+      "column": 89,
+      "lag": 1,
+      "rms_aligned": 0.0003933151262339011,
+      "rms_unshifted": 0.9103842419722593
+    },
+    {
+      "column": 90,
+      "lag": 0,
+      "rms_aligned": 0.00045566324572697504,
+      "rms_unshifted": 0.00045566324572697504
+    },
+    {
+      "column": 91,
+      "lag": 1,
+      "rms_aligned": 0.00044139550250376275,
+      "rms_unshifted": 0.9103739573232639
+    },
+    {
+      "column": 92,
+      "lag": 1,
+      "rms_aligned": 0.0004262659711396474,
+      "rms_unshifted": 0.9103679341306399
+    },
+    {
+      "column": 93,
+      "lag": 1,
+      "rms_aligned": 0.0004141413969961044,
+      "rms_unshifted": 0.9103714954244368
+    },
+    {
+      "column": 94,
+      "lag": 0,
+      "rms_aligned": 0.0004266416229158081,
+      "rms_unshifted": 0.0004266416229158081
+    },
+    {
+      "column": 95,
+      "lag": 0,
+      "rms_aligned": 0.00040779935840412076,
+      "rms_unshifted": 0.00040779935840412076
+    },
+    {
+      "column": 96,
+      "lag": 0,
+      "rms_aligned": 0.0004302875756561973,
+      "rms_unshifted": 0.0004302875756561973
+    },
+    {
+      "column": 97,
+      "lag": 0,
+      "rms_aligned": 0.0004150737117278565,
+      "rms_unshifted": 0.0004150737117278565
+    },
+    {
+      "column": 98,
+      "lag": 0,
+      "rms_aligned": 0.0004977999426115578,
+      "rms_unshifted": 0.0004977999426115578
+    },
+    {
+      "column": 99,
+      "lag": 0,
+      "rms_aligned": 0.00044830697726543165,
+      "rms_unshifted": 0.00044830697726543165
+    }
+  ],
+  "archive_sha256": "8f3aa4d96784567cbd62598c5456d52263899e392d0cfd54a4e37abe369fbf25"
+}
