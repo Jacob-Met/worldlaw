@@ -16,6 +16,15 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/post-spice-paired-gauges/README.md",
+    "research/post-spice-paired-gauges/clock_audit.py",
+    "research/post-spice-paired-gauges/diagnostic.py",
+    "research/post-spice-paired-gauges/observed.json",
+    "research/post-spice-paired-gauges/primary.py",
+    "research/post-spice-paired-gauges/receive.py",
+    "research/post-spice-paired-gauges/replay.py",
+    "research/post-spice-paired-gauges/schema.py",
+    "research/post-spice-paired-gauges/support.py",
     "research/aeolian-two-second-detections/README.md",
     "research/aeolian-two-second-detections/archive_reader.py",
     "research/aeolian-two-second-detections/author_receiver.py",
