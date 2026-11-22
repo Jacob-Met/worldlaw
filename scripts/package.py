@@ -16,6 +16,10 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/ghent-shield-temperature/README.md",
+    "research/ghent-shield-temperature/replay.py",
+    "research/ghent-shield-temperature/verify_scores.py",
+    "research/ghent-shield-temperature/original-forecasts.json.gz",
     "research/bridge-cross-speed-strain/README.md",
     "research/bridge-cross-speed-strain/bridge_source.py",
     "research/bridge-cross-speed-strain/clock_registration.py",
