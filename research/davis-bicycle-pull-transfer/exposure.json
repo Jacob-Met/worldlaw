@@ -1,0 +1,50 @@
+{
+  "accepted_source_starts": [
+    184,
+    185,
+    190,
+    191,
+    248,
+    249,
+    251,
+    252,
+    255,
+    256
+  ],
+  "excluded_from_every_fit_and_forecast": "All held-ID initializers including these two.",
+  "exposed": [
+    {
+      "case_line": 25,
+      "file": "Figshare source archive parameters.m",
+      "initializer_line": 26,
+      "published_initialization_previously_visible": "mod(05).X0 = [ 31.1207         0   28.4613         0         0   71.2588   -2.9451         0];",
+      "run": 186
+    },
+    {
+      "case_line": 94,
+      "file": "Figshare source archive parameters.m",
+      "initializer_line": 95,
+      "published_initialization_previously_visible": "mod(05).X0 = [ 45.5772         0   26.9687         0         0  617.1019   -4.6363         0];",
+      "run": 257
+    }
+  ],
+  "nature": "An excerpt of public model-initialization code was visible after the split and candidate definitions. Measured held kinematics and held scores were unopened.",
+  "no_initializer_value_visible": [
+    192,
+    250,
+    253
+  ],
+  "predating_hashes": {
+    "author_fir.py": "02c1585bbb3308063258ccf7005c01c11d879c7afc3f3a506efeed02daae7857",
+    "joint_fir.py": "660dc99787b7c4060d134162cd12ef36d60475104fe61f161e481206271f8f1a",
+    "prospective_split.py": "e6c1caec70f72e824796ca8ca39d695fefd14ffbd114626f1bcf798463c4691d",
+    "weak_balance.py": "475e17abed5b9d0f41be0ca7e9f1f013a1a93db4e899545c073b612ddf6b6205"
+  },
+  "primary_unchanged": [
+    186,
+    192,
+    250,
+    253,
+    257
+  ]
+}

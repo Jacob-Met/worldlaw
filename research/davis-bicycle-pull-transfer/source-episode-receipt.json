@@ -1,0 +1,59 @@
+{
+  "centered_roll_steer_rad": [
+    -0.011084891245376694,
+    -0.7694285545682921
+  ],
+  "detrended_force_at_sample": -0.03580629929235335,
+  "dt_s": 0.005,
+  "file": "/var/tmp/p3-f747-davis-prediction-2chiemp2/source-run190-full-episode.npz",
+  "held_angles_read": 0,
+  "peak_abs_769_seconds_before": 2.815,
+  "preceding_51_force_range_N": [
+    -0.39421558281530855,
+    0.35003305319840544
+  ],
+  "preceding_769_force_range_N": [
+    -336.6873187267393,
+    1.3350964311986417
+  ],
+  "prediction_at_sample": {
+    "author_fir": [
+      -0.0016447409923522976,
+      -0.0011662732357927363
+    ],
+    "author_refit": [
+      -0.046896183089377944,
+      -0.04155417595957973
+    ],
+    "author_start": [
+      -0.0468962943590759,
+      -0.041553037424408704
+    ],
+    "balance": [
+      -0.001912782785878214,
+      -0.001066375824418122
+    ],
+    "sham": [
+      -0.0018111627148391185,
+      -0.0006536787954964398
+    ],
+    "smooth": [
+      -0.0019137309020043855,
+      -0.0010380725803869376
+    ],
+    "zero": [
+      0.0,
+      0.0
+    ]
+  },
+  "raw_force_at_sample": -0.20023682484650962,
+  "raw_roll_steer_rad": [
+    -0.0096494475199774,
+    -0.77229756145404
+  ],
+  "raw_rows": 11286,
+  "sample": 8666,
+  "scored_rows": 11286,
+  "sha256": "bce4affb360ec6e979fc24e54931146df012f5bd405dceaf8b80b4c292b67117",
+  "whole_source_arrays_retained": true
+}

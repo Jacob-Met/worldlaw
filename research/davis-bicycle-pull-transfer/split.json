@@ -1,0 +1,71 @@
+{
+  "held_ids": [
+    186,
+    192,
+    250,
+    253,
+    257
+  ],
+  "matched_cells": {
+    "('rider-1', 'Horse Treadmill', 'Balance With Disturbance', 2.0)": {
+      "held": [
+        250
+      ],
+      "source": [
+        248,
+        249
+      ]
+    },
+    "('rider-1', 'Horse Treadmill', 'Balance With Disturbance', 3.0)": {
+      "held": [
+        186
+      ],
+      "source": [
+        184,
+        185
+      ]
+    },
+    "('rider-1', 'Horse Treadmill', 'Balance With Disturbance', 4.0)": {
+      "held": [
+        253
+      ],
+      "source": [
+        251,
+        252
+      ]
+    },
+    "('rider-1', 'Horse Treadmill', 'Balance With Disturbance', 5.800000190734863)": {
+      "held": [
+        192
+      ],
+      "source": [
+        190,
+        191
+      ]
+    },
+    "('rider-1', 'Horse Treadmill', 'Balance With Disturbance', 7.0)": {
+      "held": [
+        257
+      ],
+      "source": [
+        255,
+        256
+      ]
+    }
+  },
+  "membership_basis": "15 prepublished runs; flags retained, no measurement-based removal",
+  "outside_matched_comparison": [],
+  "scope": "new run within rider at matched nominal speed, environment and maneuver",
+  "source_ids": [
+    184,
+    185,
+    190,
+    191,
+    248,
+    249,
+    251,
+    252,
+    255,
+    256
+  ]
+}
