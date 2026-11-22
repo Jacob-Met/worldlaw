@@ -1,0 +1,64 @@
+{
+  "preceding_broad_scope_closure": 177632,
+  "cohort_freeze": 177519,
+  "archive_sha256": "24128aad2ee45eea7e6b63ebbd9992cdf25d0483a2cebefbfc13bc69079af1f2",
+  "training_source": "3a383170ceb69e508354f4f03b5e88b93fc4ee94edd7430a9baafd899a760449",
+  "physical_dev_receipt": "586004c9006a0ff5b9a2b3463e3fccf35a55eef07ea0ce6092742dedac7d734c",
+  "all_row_dev_receipt": "1ec36cc6d662b92d55d9f521b08e5bbbcc39e2bcdcf491c0899ba458b1d7b404",
+  "prediction_lock": "7f31c8fea1d1fe3b1c5f39b5e0b93c381cd4dfd33f1902ff513f886b7a147fb5",
+  "scope": "Prospective 100→115 bar switched specimen transfer. Dimensioned lower-anchor interval for 155→180 bar, V0=.6 L, n=1.4, nominal net flow .125 L/s, absolute pressures plus1.01325 bar; add .0368424415447 s to each nuisance-specific 100-bar reference span.",
+  "endpoint": "Observed first-passage span on 151 samples, 0..1.50s incl. Interpolate first threshold crossing linearly; first sample already at/above threshold assigns 0; never reached assigns1.50s. Upper minus lower. Every 399 cycle included; no row/filter or tuning. Both interior crossings only secondary; all flags and10 full waveform forecasts diagnostic.",
+  "population": "All399 115bar rows, 36 full nuisance cells. Equal-cell absolute error of predicted vs observed cell-mean spans. Matched24 have own 100bar training comparator. Novel12 anchors extrapolated from other 24 at100 by the frozen nuisance model; no matched-contrast claim in novel. Report max across all36, 24/12 splits, worst trial/cell, no physiological or transfer-to-new-specimens identification.",
+  "comparators": "Seven frozen: lower-anchor physics vs lower-only, 100/130 affine, three-level PCHIP, three-level quadratic, three-level functional condition kernel(96,.3,.01), gas-coordinate interpolation fitted between100/130. All seven receive same permitted training records/conditions. Physical source receives no held pressure prefix or flow; q nominal not measured.",
+  "gates": "Scoped PASS iff matched24 physics equal-cell abs mean bias strictly lower than every other arm, ≤.010s (one sampling period as engineering tolerance), and all24 observed 115-vs-known100 mean span contrasts positive. Broad transfer additionally needs novel12 mean strictly lower than every comparator AND worst36 cell abs bias strictly lower than every comparator. All components reported. Previous waveform generalization remains failed independently of this result.",
+  "source_sha256": [
+    [
+      "e9f1bdb6b37983351e40df1213a25bb3139e28f92b7959b201de4c90b5a6bc45",
+      "development.py"
+    ],
+    [
+      "a3638c612ab2d00d628d34e80425fa4eb3b98511ef4b77808f139718c672bacf",
+      "freeze_transit.py"
+    ],
+    [
+      "601512f79e45499794ea15c3a31dc52f735d46879a6cc900a93244a0ccb388ed",
+      "functional_kernel.py"
+    ],
+    [
+      "106bb210e2e4de29465d9e01ed7b7e2c7eb9ffc41f9a930fd70553a277633f5b",
+      "independent.py"
+    ],
+    [
+      "f0a0152b26b9c6c24717d4f735b3cf189dba950236e38835b0500da7fa8c03f2",
+      "intake.py"
+    ],
+    [
+      "1195e9f4d6ad3aa844b169fd2d43f7893e6e852a4a457c1a30fa9333949e5ade",
+      "lock_predict.py"
+    ],
+    [
+      "55a265c38ff48fb36b397f7e86361bc317b2ca906804a4fc303c990cef99100d",
+      "paired_kernel.py"
+    ],
+    [
+      "65871ff937091bee10a008d8a3a9c5c499162457508b45126e6936c151996ebc",
+      "project_development.py"
+    ],
+    [
+      "f93fab0ff5f84508b5cfc8bc74773a7a85d074d70f385c8e3aba58f672d839b1",
+      "score_intervention.py"
+    ],
+    [
+      "6c86610a3f06a325a0d699a6b0e411abce7b69baf06aee54e91ac4425cef6b46",
+      "span_model.py"
+    ],
+    [
+      "3ad99280caee783bf87e0fbb94418dfac4b4bfbec4b1902e56a25bde28d857c9",
+      "storage.py"
+    ],
+    [
+      "ab9f8cefbb863b7994e889ef5d926ea604fa7c4db5d130d642511464137f5656",
+      "transit.py"
+    ]
+  ]
+}
