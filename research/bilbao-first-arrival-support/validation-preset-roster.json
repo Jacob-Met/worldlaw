@@ -1,0 +1,296 @@
+{
+  "all_direct": 46,
+  "development_csvs": 390,
+  "direct_pairs": {
+    "Val_h200T1.0H50x10": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h200T1.0H80x12": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h200T1.5H50x12": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h200T1.5H80x10": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h200T1.5H80x12": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h200T2.0H100x10": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h200T2.0H100x16": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h200T2.0H50x12": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h350T1.0H100x12": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h350T1.0H50x12": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h350T1.5H80x10": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h350T1.5H80x16": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h350T2.0H100x10": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h350T2.0H100x12": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h350T2.0H100x16": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h500T1.0H100x12": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h500T1.0H50x10": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h500T1.0H50x16": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h500T1.5H50x12": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h500T1.5H50x16": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h500T2.0H100x12": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h500T2.0H80x10": [
+      "Cor",
+      "Unc"
+    ],
+    "Val_h500T2.0H80x16": [
+      "Cor",
+      "Unc"
+    ]
+  },
+  "headers": {
+    "A": "Case",
+    "B": "x (m)",
+    "C": "h (m)",
+    "D": "T (s)",
+    "E": "H (cm)",
+    "F": "wavelength (m)",
+    "G": "Wave Type",
+    "H": "Hawasys (cm)"
+  },
+  "nested_names": [
+    "Validation/data/nose/Val_h200T1.5H80x10_Cor.csv",
+    "Validation/data/nose/Val_h200T1.5H80x10_Unc.csv",
+    "Validation/data/nose/Val_h500T1.5H50x12_Cor.csv",
+    "Validation/data/nose/Val_h500T1.5H50x12_Unc.csv"
+  ],
+  "preset_values": [
+    {
+      "H (cm)": "5",
+      "Hawasys (cm)": "5.6569739513032564",
+      "T (s)": "1",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.2",
+      "wavelength (m)": "1.2123690665891131",
+      "x (m)": "10"
+    },
+    {
+      "H (cm)": "5",
+      "Hawasys (cm)": "5.6165459029886327",
+      "T (s)": "1.5",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.2",
+      "wavelength (m)": "1.9752967804732982",
+      "x (m)": "12"
+    },
+    {
+      "H (cm)": "8",
+      "Hawasys (cm)": "8.9864734447818115",
+      "T (s)": "1.5",
+      "Wave Type": "Cnoidal 3 wave",
+      "h (m)": "0.2",
+      "wavelength (m)": "1.9752967804732982",
+      "x (m)": "12"
+    },
+    {
+      "H (cm)": "10",
+      "Hawasys (cm)": "11.092687404238642",
+      "T (s)": "2",
+      "Wave Type": "Cnoidal 5 wave",
+      "h (m)": "0.2",
+      "wavelength (m)": "2.7072181730804918",
+      "x (m)": "10"
+    },
+    {
+      "H (cm)": "10",
+      "Hawasys (cm)": "11.379193059040395",
+      "T (s)": "2",
+      "Wave Type": "Cnoidal 5 wave",
+      "h (m)": "0.2",
+      "wavelength (m)": "2.7072181730804918",
+      "x (m)": "16"
+    },
+    {
+      "H (cm)": "5",
+      "Hawasys (cm)": "5.5936893348082917",
+      "T (s)": "2",
+      "Wave Type": "Cnoidal 3 wave",
+      "h (m)": "0.2",
+      "wavelength (m)": "2.7072181730804918",
+      "x (m)": "12"
+    },
+    {
+      "H (cm)": "10",
+      "Hawasys (cm)": "11.188140569009523",
+      "T (s)": "1",
+      "Wave Type": "Stokes 3rd order wave",
+      "h (m)": "0.35",
+      "wavelength (m)": "1.4249608427860139",
+      "x (m)": "12"
+    },
+    {
+      "H (cm)": "5",
+      "Hawasys (cm)": "5.5940702845047614",
+      "T (s)": "1",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.35",
+      "wavelength (m)": "1.4249608427860139",
+      "x (m)": "12"
+    },
+    {
+      "H (cm)": "8",
+      "Hawasys (cm)": "8.7215699290349225",
+      "T (s)": "1.5",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.35",
+      "wavelength (m)": "2.4882705101480229",
+      "x (m)": "10"
+    },
+    {
+      "H (cm)": "8",
+      "Hawasys (cm)": "8.8837640047699473",
+      "T (s)": "1.5",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.35",
+      "wavelength (m)": "2.4882705101480229",
+      "x (m)": "16"
+    },
+    {
+      "H (cm)": "10",
+      "Hawasys (cm)": "10.877549161436306",
+      "T (s)": "2",
+      "Wave Type": "Cnoidal 3 wave",
+      "h (m)": "0.35",
+      "wavelength (m)": "3.4875691340274515",
+      "x (m)": "10"
+    },
+    {
+      "H (cm)": "10",
+      "Hawasys (cm)": "10.932279231753776",
+      "T (s)": "2",
+      "Wave Type": "Cnoidal 3 wave",
+      "h (m)": "0.35",
+      "wavelength (m)": "3.4875691340274515",
+      "x (m)": "12"
+    },
+    {
+      "H (cm)": "10",
+      "Hawasys (cm)": "10.995248030528277",
+      "T (s)": "1",
+      "Wave Type": "Stokes 3rd order wave",
+      "h (m)": "0.5",
+      "wavelength (m)": "1.5129832502292955",
+      "x (m)": "12"
+    },
+    {
+      "H (cm)": "5",
+      "Hawasys (cm)": "5.4520606340304933",
+      "T (s)": "1",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.5",
+      "wavelength (m)": "1.5129832502292955",
+      "x (m)": "10"
+    },
+    {
+      "H (cm)": "5",
+      "Hawasys (cm)": "5.5898962922543527",
+      "T (s)": "1",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.5",
+      "wavelength (m)": "1.5129832502292955",
+      "x (m)": "16"
+    },
+    {
+      "H (cm)": "5",
+      "Hawasys (cm)": "5.3856019584510042",
+      "T (s)": "1.5",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.5",
+      "wavelength (m)": "2.8264745460960472",
+      "x (m)": "12"
+    },
+    {
+      "H (cm)": "5",
+      "Hawasys (cm)": "5.4394111133363996",
+      "T (s)": "1.5",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.5",
+      "wavelength (m)": "2.8264745460960472",
+      "x (m)": "16"
+    },
+    {
+      "H (cm)": "10",
+      "Hawasys (cm)": "10.735286082300696",
+      "T (s)": "2",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.5",
+      "wavelength (m)": "4.0564263434230572",
+      "x (m)": "12"
+    },
+    {
+      "H (cm)": "8",
+      "Hawasys (cm)": "8.5552165869711985",
+      "T (s)": "2",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.5",
+      "wavelength (m)": "4.0564263434230572",
+      "x (m)": "10"
+    },
+    {
+      "H (cm)": "8",
+      "Hawasys (cm)": "8.6546360716304207",
+      "T (s)": "2",
+      "Wave Type": "Stokes 2nd order wave",
+      "h (m)": "0.5",
+      "wavelength (m)": "4.0564263434230572",
+      "x (m)": "16"
+    }
+  ]
+}
