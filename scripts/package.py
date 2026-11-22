@@ -16,6 +16,14 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/aeolian-two-second-detections/README.md",
+    "research/aeolian-two-second-detections/archive_reader.py",
+    "research/aeolian-two-second-detections/author_receiver.py",
+    "research/aeolian-two-second-detections/course.py",
+    "research/aeolian-two-second-detections/extract.py",
+    "research/aeolian-two-second-detections/observed.json",
+    "research/aeolian-two-second-detections/receive.py",
+    "research/aeolian-two-second-detections/replay.py",
     "research/pv-series-remainder/README.md",
     "research/pv-series-remainder/protocol.md",
     "research/pv-series-remainder/forecast.py",
