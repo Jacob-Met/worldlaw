@@ -16,6 +16,16 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/roughness-reverse-transmission/README.md",
+    "research/roughness-reverse-transmission/replay_transmission.py",
+    "research/roughness-reverse-transmission/spectra.py",
+    "research/roughness-reverse-transmission/heo_course.py",
+    "research/roughness-reverse-transmission/port_network.py",
+    "research/roughness-reverse-transmission/independent_score.py",
+    "research/roughness-reverse-transmission/original-result.json",
+    "research/roughness-reverse-transmission/independent-receipt.json",
+    "research/roughness-reverse-transmission/locked-vector-registry.json",
+    "research/roughness-reverse-transmission/locked-predictions.npz",
     "research/nantes-rubber-observability/README.md",
     "research/nantes-rubber-observability/incident.py",
     "research/nantes-rubber-observability/project.py",
