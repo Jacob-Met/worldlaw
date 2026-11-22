@@ -528,7 +528,8 @@
   },
   "reader_history": [
     "An archive URL returned HTTP 403. The two primary report addresses were independently checked instead.",
-    "The first secondary physical-coordinate reader included a units-row superscript as a candidate for the numerical rate 1. It refused before a complete recount. The corrected reader restricts the table body to start at the physically located first 0.001/s row and recounts every rate."
+    "The first secondary physical-coordinate reader included a units-row superscript as a candidate for the numerical rate 1. It refused before a complete recount. The corrected reader restricts the table body to start at the physically located first 0.001/s row and recounts every rate.",
+    "First clean checkout 5c5fa95e passed ordinary project and packaging gates, then refused a direct JSON digest before scoring. Fresh Poppler encoded integral coordinates as float tokens. The original forecast carrier encoded those coordinates as integer tokens. The complete normalized digests matched 006407da on both sides. Replay checks both the direct source projection 86bf5df4 and original carrier 006407da before forecasting. Every forecast, observation and science gate is unchanged."
   ],
   "raster_sha256": [
     {

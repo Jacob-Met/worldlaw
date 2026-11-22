@@ -59,7 +59,15 @@ def main():
     receive(args.source_dir)
     inputs=project_input.project(args.source_dir)
     encoded=(json.dumps(inputs,separators=(",",":"))+"\n").encode()
-    assert hashlib.sha256(encoded).hexdigest()=="006407dab8fbd78626aa977331722e2cf06b2fa5554287b7764f9ebda23bf267"
+    # The original carrier encoded integral floating-point coordinates as integers.
+    # Check both the direct Poppler projection and the source-frozen carrier bytes.
+    assert hashlib.sha256(encoded).hexdigest()=="86bf5df4b0c289193b6862566d7e498d7322e85bcc203a7cf16e8d0efb5d3149"
+    def original_number(token):
+        value=float(token)
+        return int(value) if value.is_integer() else value
+    carrier=json.loads(encoded,parse_float=original_number)
+    canonical=(json.dumps(carrier,separators=(",",":"))+"\n").encode()
+    assert hashlib.sha256(canonical).hexdigest()=="006407dab8fbd78626aa977331722e2cf06b2fa5554287b7764f9ebda23bf267"
     present=freeze_predictions.run(inputs)
     frozen=json.loads(fp.read_bytes())
     check_numeric(present,frozen)
