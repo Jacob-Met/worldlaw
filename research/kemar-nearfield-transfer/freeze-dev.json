@@ -1,0 +1,57 @@
+{
+  "arms": [
+    "author_fem",
+    "neighbor_measured",
+    "neighbor_fem_residual",
+    "ear_local",
+    "head_centered",
+    "head_inverse_radius",
+    "global_ear_gain"
+  ],
+  "bytes": 12415142,
+  "fit_and_forecast_s": 30.244395675021224,
+  "measured_target_rows": 0,
+  "measured_training_rows": 5616,
+  "selected_lambda": {
+    "ear_local": {
+      "loss": [
+        0.031303598400783124,
+        0.024023217932418683,
+        0.01364088881331288,
+        0.014594753990031857
+      ],
+      "selected": 0.01
+    },
+    "global_ear_gain": {
+      "loss": [
+        0.016103850707934922,
+        0.016103219013164728,
+        0.016103113449229434,
+        0.016341543323126262
+      ],
+      "selected": 0.01
+    },
+    "head_centered": {
+      "loss": [
+        0.031653443962578506,
+        0.024045522983290078,
+        0.013663831341167427,
+        0.014622489529962562
+      ],
+      "selected": 0.01
+    },
+    "head_inverse_radius": {
+      "loss": [
+        0.0329336008844268,
+        0.02332240136051986,
+        0.01355494307997622,
+        0.014608203205164755
+      ],
+      "selected": 0.01
+    }
+  },
+  "sha256": "c3b1d74250830bc0c9735db17fe1d549c734d9947a13f67248e6c16da5826296",
+  "simulated_forecast_rows": 1638,
+  "simulated_training_rows": 5616,
+  "synthetic_crop_witness": 0.16666666666666666
+}

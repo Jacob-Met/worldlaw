@@ -1,0 +1,289 @@
+{
+  "arms": {
+    "author_fem": {
+      "max_bin_disagreement": 2.275957200481571e-14,
+      "max_sweep_disagreement": 4.787836793695988e-16,
+      "max_sweep_mean": 0.11900967518972738,
+      "mean": 0.01578298087701201,
+      "worst_coordinate": [
+        45,
+        -20,
+        540
+      ],
+      "worst_frequency": 7875.0,
+      "worst_vector_witness": {
+        "observed": [
+          [
+            -0.00011744850008348052,
+            0.03819824009845711
+          ],
+          [
+            -0.07728737291055769,
+            0.09265274821320614
+          ]
+        ],
+        "observed_LR_phase_rad": -0.6921522425028409,
+        "observed_norm_squared": 0.016016989103644932,
+        "predicted": [
+          [
+            0.9498166110605402,
+            2.830552052099253
+          ],
+          [
+            0.16998016098726332,
+            -0.7902650421703223
+          ]
+        ],
+        "predicted_LR_phase_rad": 2.6059758654895,
+        "predicted_norm_squared": 9.56758860629554,
+        "squared_coherence": 0.0035550964908055314,
+        "squared_norm_product": 0.15324396245519306
+      }
+    },
+    "ear_local": {
+      "max_bin_disagreement": 2.3869795029440866e-14,
+      "max_sweep_disagreement": 4.996003610813204e-16,
+      "max_sweep_mean": 0.11281016412783247,
+      "mean": 0.012200401242734277,
+      "worst_coordinate": [
+        45,
+        -20,
+        540
+      ],
+      "worst_frequency": 7875.0,
+      "worst_vector_witness": {
+        "observed": [
+          [
+            -0.00011744850008348052,
+            0.03819824009845711
+          ],
+          [
+            -0.07728737291055769,
+            0.09265274821320614
+          ]
+        ],
+        "observed_LR_phase_rad": -0.6921522425028409,
+        "observed_norm_squared": 0.016016989103644932,
+        "predicted": [
+          [
+            0.12786599931517337,
+            0.5407350160168202
+          ],
+          [
+            0.03968313075690209,
+            -0.16950317212589494
+          ]
+        ],
+        "predicted_LR_phase_rad": 2.679418374032961,
+        "predicted_norm_squared": 0.3390501475549889,
+        "squared_coherence": 0.004331795237655031,
+        "squared_norm_product": 0.005430562518977463
+      }
+    },
+    "global_ear_gain": {
+      "max_bin_disagreement": 2.1760371282653068e-14,
+      "max_sweep_disagreement": 4.787836793695988e-16,
+      "max_sweep_mean": 0.12620206895741753,
+      "mean": 0.013759806332365955,
+      "worst_coordinate": [
+        65,
+        -25,
+        690
+      ],
+      "worst_frequency": 7875.0,
+      "worst_vector_witness": {
+        "observed": [
+          [
+            0.0031656741741744676,
+            0.01358894127615334
+          ],
+          [
+            0.04570197468782744,
+            0.03713429282275888
+          ]
+        ],
+        "observed_LR_phase_rad": 0.6595833569555614,
+        "observed_norm_squared": 0.0036623070117970005,
+        "predicted": [
+          [
+            0.7476860117870724,
+            -0.4242326884210453
+          ],
+          [
+            -0.04824422077542054,
+            0.09324944736390246
+          ]
+        ],
+        "predicted_LR_phase_rad": -2.564340612588813,
+        "predicted_norm_squared": 0.7500307104189065,
+        "squared_coherence": 0.01248079783544449,
+        "squared_norm_product": 0.002746842729830247
+      }
+    },
+    "head_centered": {
+      "max_bin_disagreement": 2.3647750424515834e-14,
+      "max_sweep_disagreement": 4.579669976578771e-16,
+      "max_sweep_mean": 0.11323677193368638,
+      "mean": 0.012064127154328183,
+      "worst_coordinate": [
+        45,
+        -20,
+        540
+      ],
+      "worst_frequency": 7875.0,
+      "worst_vector_witness": {
+        "observed": [
+          [
+            -0.00011744850008348052,
+            0.03819824009845711
+          ],
+          [
+            -0.07728737291055769,
+            0.09265274821320614
+          ]
+        ],
+        "observed_LR_phase_rad": -0.6921522425028409,
+        "observed_norm_squared": 0.016016989103644932,
+        "predicted": [
+          [
+            0.15307521874175037,
+            0.5483625732168455
+          ],
+          [
+            0.029337464290507043,
+            -0.17154065748681974
+          ]
+        ],
+        "predicted_LR_phase_rad": 2.69998802582544,
+        "predicted_norm_squared": 0.35442041827984216,
+        "squared_coherence": 0.005122279770760866,
+        "squared_norm_product": 0.005676747977697511
+      }
+    },
+    "head_inverse_radius": {
+      "max_bin_disagreement": 2.4424906541753444e-14,
+      "max_sweep_disagreement": 4.718447854656915e-16,
+      "max_sweep_mean": 0.1144465643372287,
+      "mean": 0.012380412512919658,
+      "worst_coordinate": [
+        45,
+        -20,
+        540
+      ],
+      "worst_frequency": 7875.0,
+      "worst_vector_witness": {
+        "observed": [
+          [
+            -0.00011744850008348052,
+            0.03819824009845711
+          ],
+          [
+            -0.07728737291055769,
+            0.09265274821320614
+          ]
+        ],
+        "observed_LR_phase_rad": -0.6921522425028409,
+        "observed_norm_squared": 0.016016989103644932,
+        "predicted": [
+          [
+            0.08963111092001903,
+            0.3480349740625269
+          ],
+          [
+            0.023272691439937716,
+            -0.12892714102184238
+          ]
+        ],
+        "predicted_LR_phase_rad": 2.7109478115995618,
+        "predicted_norm_squared": 0.14632590507438512,
+        "squared_coherence": 0.008140206646629372,
+        "squared_norm_product": 0.002343700427157409
+      }
+    },
+    "neighbor_fem_residual": {
+      "max_bin_disagreement": 2.6978419498391304e-14,
+      "max_sweep_disagreement": 4.649058915617843e-16,
+      "max_sweep_mean": 0.07567451090314586,
+      "mean": 0.006932608044158213,
+      "worst_coordinate": [
+        65,
+        -25,
+        690
+      ],
+      "worst_frequency": 7875.0,
+      "worst_vector_witness": {
+        "observed": [
+          [
+            0.0031656741741744676,
+            0.01358894127615334
+          ],
+          [
+            0.04570197468782744,
+            0.03713429282275888
+          ]
+        ],
+        "observed_LR_phase_rad": 0.6595833569555614,
+        "observed_norm_squared": 0.0036623070117970005,
+        "predicted": [
+          [
+            -1.131094480095794,
+            0.8129319241095733
+          ],
+          [
+            0.22305948780743187,
+            -0.272129653056983
+          ]
+        ],
+        "predicted_LR_phase_rad": -2.8805978721642904,
+        "predicted_norm_squared": 2.0640431193134954,
+        "squared_coherence": 0.008570661253141577,
+        "squared_norm_product": 0.007559159588513167
+      }
+    },
+    "neighbor_measured": {
+      "max_bin_disagreement": 2.4424906541753444e-14,
+      "max_sweep_disagreement": 4.718447854656915e-16,
+      "max_sweep_mean": 0.30747838728966154,
+      "mean": 0.06944171556563968,
+      "worst_coordinate": [
+        185,
+        -5,
+        540
+      ],
+      "worst_frequency": 7125.0,
+      "worst_vector_witness": {
+        "observed": [
+          [
+            0.06887637569332263,
+            0.0908098659310009
+          ],
+          [
+            -0.0943015681341776,
+            -0.05709333299506807
+          ]
+        ],
+        "observed_LR_phase_rad": -2.764100132913571,
+        "observed_norm_squared": 0.02514282130410475,
+        "predicted": [
+          [
+            -0.7102597114233633,
+            0.0
+          ],
+          [
+            -0.6573476869230578,
+            0.2518435244863493
+          ]
+        ],
+        "predicted_LR_phase_rad": 0.36587113611730565,
+        "predicted_norm_squared": 1.0,
+        "squared_coherence": 0.00048040149029329396,
+        "squared_norm_product": 0.02514282130410475
+      }
+    }
+  },
+  "joint": false,
+  "per_arm_complex_points": 65520,
+  "section": "dev",
+  "source_md5": "8e286f7f2ffa67973bb0eb2e37c158e2",
+  "source_sha256": "0bda73c4c80233502421adf7c8c2aafddfbe00a6a734cbdd3160bbb9001bbf88"
+}
