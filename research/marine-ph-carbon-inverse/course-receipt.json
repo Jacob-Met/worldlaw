@@ -1,0 +1,475 @@
+{
+  "registration": {
+    "post": 181898,
+    "seq": 1664405
+  },
+  "prediction_lock": {
+    "post": 181931,
+    "seq": 1664890,
+    "sha256": "e951aca9b1c1a820beb3f90500136017a36d94858133c01b04bec03c639bbcdc",
+    "bytes": 114149,
+    "historical_labels": 9,
+    "held_labels_seen": 0
+  },
+  "originals": [
+    {
+      "id": "p2-f747-Woosley25-measured-pH-thermal-batches-assay-docs-only",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "7f2e2a93b0f9198ad0a511346f5e7f5d1ec97c32bfb74138aa8fb88ed669e8d0",
+      "started": "2026-11-22T17:34:54.422329277Z",
+      "finished": "2026-11-22T17:35:07.520025748Z",
+      "resources": {
+        "max_rss_bytes": 24588288,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.048998,
+        "user_cpu_seconds": 0.128272
+      }
+    },
+    {
+      "id": "p2-f747-woosley-full-3-opaque-source-objects-only-header-decoded",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "208d13827b17482b561b4a72b25d77838cc366f71b2874ba51d23e2da973cfe3",
+      "started": "2026-11-22T17:36:53.788037939Z",
+      "finished": "2026-11-22T17:36:54.739108691Z",
+      "resources": {
+        "max_rss_bytes": 24342528,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.016438,
+        "user_cpu_seconds": 0.102608
+      }
+    },
+    {
+      "id": "p2-f747-woosley-gas-salinity-batch-bath-and-replicate-design-only",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "ade43aa4a23ab41ec04c2cf8b52b8fe885c4920833d2d0641358dfe5a3f358f3",
+      "started": "2026-11-22T17:38:16.385290006Z",
+      "finished": "2026-11-22T17:38:16.545610334Z",
+      "resources": {
+        "max_rss_bytes": 33771520,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.024206,
+        "user_cpu_seconds": 0.072648
+      }
+    },
+    {
+      "id": "p2-f747-woosley-PyCO2SYS-synthetic-affine-identifiability-and-repeat-T",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "f981c2edd16405210a81af048cb94946530bb38cfd6deb130d5e3562bac1a566",
+      "started": "2026-11-22T17:37:10.898257414Z",
+      "finished": "2026-11-22T17:37:11.631151359Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 46571520,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.33999999999999997
+          },
+          "distinct_processes": 2,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 7,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 7
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.052498,
+        "user_cpu_seconds": 0.379768
+      }
+    },
+    {
+      "id": "p2-f747-woosley-absolute-carbon-scale-blind-finite-tolerance-witness",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "65dbb86a100ebaae4d0449e8b9218152ccce9f7756ff106f7873250ce2cae3e2",
+      "started": "2026-11-22T17:40:55.606564183Z",
+      "finished": "2026-11-22T17:40:56.250743442Z",
+      "resources": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 0.4
+          },
+          "snapshots": 6,
+          "nonempty_snapshots": 6,
+          "distinct_processes": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.530978,
+        "system_cpu_seconds": 0.029271,
+        "max_rss_bytes": 41779200,
+        "max_rss_scope": "largest_waited_process"
+      }
+    },
+    {
+      "id": "p2-f747-woosley-225-bath-measurement-clock-source-audit-batch2-retain60k",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "state": "failed",
+      "exit_code": 1,
+      "hash": "e18fc2cd6fc0ac45b64653f4aa102c616f8b8e0ef18641a0af995fd16c444c09",
+      "started": "2026-11-22T17:40:58.090855748Z",
+      "finished": "2026-11-22T17:40:58.200665214Z",
+      "resources": {
+        "max_rss_bytes": 14561280,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.017816,
+        "user_cpu_seconds": 0.024954
+      }
+    },
+    {
+      "id": "p2-f747-woosley-225-bath-clock-preserve-blank-raw-metrology",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "45d0c51248fba4fe2aac0dbf3f6fec601a4501434c8928cf57082e7f3ebe7895",
+      "started": "2026-11-22T17:42:22.545085149Z",
+      "finished": "2026-11-22T17:42:22.628168887Z",
+      "resources": {
+        "max_rss_bytes": 14737408,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.007253,
+        "user_cpu_seconds": 0.025388
+      }
+    },
+    {
+      "id": "p2-f747-woosley-carbon-and-nutrient-physical-units-semantic-source-audit",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "90c2cce843352612ff01f9dc5b2e016c28198d5b50836e02272e3dad02a4a64c",
+      "started": "2026-11-22T17:45:56.226413114Z",
+      "finished": "2026-11-22T17:45:56.305401467Z",
+      "resources": {
+        "max_rss_bytes": 13918208,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.007603,
+        "user_cpu_seconds": 0.015206
+      }
+    },
+    {
+      "id": "p2-f747-woosley-affine-physical-support-native-four-untouched-synthetic-waters",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "failed",
+      "exit_code": 1,
+      "hash": "8f88ac1e1d379b64f973605e5286fbc3b4097e13ec0beb1f1b76be2274a29ec2",
+      "started": "2026-11-22T17:44:16.989143373Z",
+      "finished": "2026-11-22T17:44:18.792872895Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 87146496,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 1.5900000000000003
+          },
+          "distinct_processes": 2,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 18,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 18
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.09303,
+        "user_cpu_seconds": 1.623942
+      }
+    },
+    {
+      "id": "p2-f747-woosley-four-water-feasible-set-bounded-or-recession-ray-check",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "4c57b9a36f978ed2724168fea456c077127d94a65d2778ac350f66b007d848d0",
+      "started": "2026-11-22T17:47:00.077884088Z",
+      "finished": "2026-11-22T17:47:06.819162891Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 86900736,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 6.309999999999996
+          },
+          "distinct_processes": 2,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 67,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 67
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.074193,
+        "user_cpu_seconds": 6.402425
+      }
+    },
+    {
+      "id": "p2-f747-woosley-full-synthetic-receiver-12-controls-preserved-intersections",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "ac3339d0a91de4bf433f25c94a943b9ce156a3f38cacbfe126828ec4df50d8b0",
+      "started": "2026-11-22T17:48:20.346500923Z",
+      "finished": "2026-11-22T17:48:26.140587157Z",
+      "resources": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 5.609999999999997
+          },
+          "snapshots": 58,
+          "nonempty_snapshots": 58,
+          "distinct_processes": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 5.6402529999999995,
+        "system_cpu_seconds": 0.101154,
+        "max_rss_bytes": 87261184,
+        "max_rss_scope": "largest_waited_process"
+      }
+    },
+    {
+      "id": "p2-f747-woosley-all-source-availability-only-no-scientific-value-decoding",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "057d431b39db5062f3888566c7f23a98620ce1101c7d05a38a1a12ed0f4de3b0",
+      "started": "2026-11-22T17:49:12.135430911Z",
+      "finished": "2026-11-22T17:49:12.216233789Z",
+      "resources": {
+        "max_rss_bytes": 13656064,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.007827,
+        "user_cpu_seconds": 0.019566
+      }
+    },
+    {
+      "id": "p2-f747-woosley-181898-input-projection-only-25optics-nine-calibration",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "cbc752351844ae05104bf147360382cdc7a7c9a456c415042998a869b69607d6",
+      "started": "2026-11-22T17:50:55.65229247Z",
+      "finished": "2026-11-22T17:51:00.526990019Z",
+      "resources": {
+        "max_rss_bytes": 73699328,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.243314,
+        "user_cpu_seconds": 1.06055
+      }
+    },
+    {
+      "id": "p2-f747-Woosley-181898-9cal16blind-12arm-and-all-bath-strips",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "b9f4cccc4f20cd6a7a450d0129c7bc302d260a3cff90209a8e6e86f845a4960c",
+      "started": "2026-11-22T17:51:58.364151259Z",
+      "finished": "2026-11-22T17:52:31.634050554Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 88862720,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "other": 0.19,
+            "python": 30.110000000000102,
+            "shell": 0
+          },
+          "distinct_processes": 10,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 332,
+          "read_errors": 1,
+          "saturated_snapshots": 0,
+          "snapshots": 333
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.375679,
+        "user_cpu_seconds": 30.326922
+      }
+    },
+    {
+      "id": "p2-f747-Woosley25-all-16-registered-outer-assays-after-12arm-cold-lock",
+      "owner": "node-79febd8541173afe561fb18d1d53c16c",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "eb53aca7d34438fe2fbfe0591cd8cad6632e9870fea508f919422d3cae80fba8",
+      "started": "2026-11-22T17:52:59.302212518Z",
+      "finished": "2026-11-22T17:53:02.768472157Z",
+      "resources": {
+        "max_rss_bytes": 73633792,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.169328,
+        "user_cpu_seconds": 0.558689
+      }
+    },
+    {
+      "id": "p2-f747-Woosley-third-worker-600-arm-errors-675-raw-bath-inequalities",
+      "owner": "node-49e1f179692dbb161a06c2914300be22",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "fc6565ffaad14fa42f2a6a62a9219797d4438067020a4b938dcc11f34af8340b",
+      "started": "2026-11-22T17:53:57.661946572Z",
+      "finished": "2026-11-22T17:54:30.867120585Z",
+      "resources": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "other": 0.060000000000000005,
+            "python": 0.05,
+            "shell": 0
+          },
+          "snapshots": 332,
+          "nonempty_snapshots": 332,
+          "distinct_processes": 9,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.383263,
+        "system_cpu_seconds": 0.100163,
+        "max_rss_bytes": 70979584,
+        "max_rss_scope": "largest_waited_process"
+      }
+    },
+    {
+      "id": "p2-f747-woosley-exact-Farkas-certificates-and-matched-official-forward",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit_code": 0,
+      "hash": "884a9b46f3ea24c9297462b5dfa18326d3af351362c79d76723bfe312ffb0046",
+      "started": "2026-11-22T17:56:19.975594472Z",
+      "finished": "2026-11-22T17:56:23.922039799Z",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 86085632,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "other": 0.12,
+            "python": 1.9300000000000008,
+            "shell": 0
+          },
+          "distinct_processes": 8,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 39,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 39
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.175627,
+        "user_cpu_seconds": 2.218825
+      }
+    }
+  ],
+  "early_failures": [
+    {
+      "id": "p2-f747-woosley-225-bath-measurement-clock-source-audit-batch2",
+      "reason": "retain_output_bytes 70000 exceeds65536; original refused pre-execution"
+    },
+    {
+      "id": "p2-f747-woosley-225-bath-measurement-clock-source-audit-batch2-retain60k",
+      "reason": "two missing raw thermometer cells refused by float cast; preserved missing in replacement"
+    },
+    {
+      "id": "p2-f747-woosley-affine-physical-support-native-four-untouched-synthetic-waters",
+      "reason": "synthetic test assumed finite confidence sets. Explicit nonnegative recession-ray criterion and full-forward ray check resolved the control."
+    }
+  ],
+  "inputs": {
+    "calibration-assays.json": {
+      "bytes": 1311,
+      "sha256": "0bd18948594345fa770cc68db34e41ba00124715b570a5ada11bfa26b3eff19e"
+    },
+    "optical-inputs.json": {
+      "bytes": 7617,
+      "sha256": "21b6055bcc3b623ad5ec42dfdd15b333a2b3f0b7855f8e6982bc006965aaf7ba"
+    },
+    "split.json": {
+      "bytes": 2292,
+      "sha256": "b515c47a51d2851d859dab164f02b705dd6ffdbb141de7f4c836bac7eeeeceff"
+    }
+  },
+  "scoring": {
+    "assay_sha256": "d586222e640df3c586f988789484c5e6cfae55275747b97773c75d14b473c36e",
+    "observed_sha256": "7657a0eb8b84992d2ba7f202d04ab5103d93f024867f7a20c5bed006b132d74d",
+    "independent_sha256": "30000897fc27fc1b1fa3f0a6174ee1c7b8f6922223b1f647bd4b33bb85255ed9",
+    "diagnostics_sha256": "a5fd1bde6d47fd9d25e8f04134d0440e4df3fa7856d79e00d3cab012e2baed74",
+    "available_replicates": [
+      99,
+      99
+    ],
+    "component_errors": 600,
+    "individual_strips": 675,
+    "point_gates": [
+      false,
+      false,
+      true
+    ],
+    "engineering_gate": false,
+    "external_265_opened": 0
+  },
+  "source_exposure": {
+    "original_experiment": "Author compared 120 equilibrium parameter combinations against these same 25 batches. The fixed Millero2010 and Lee-boron choice had literature exposure.",
+    "independent_assays": "Forecast process only received nine interior calibration chemical results. The outer16 were opened once after cold lock.",
+    "rejected_noaa": "NCEI0247018 discrete and underway framework samples distinct water. Not used.",
+    "unrelated": "One unlabeled aggregate appeared in metadata search for an unrelated 2021 two-CRM study, which was excluded."
+  }
+}
