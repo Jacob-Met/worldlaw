@@ -32,7 +32,8 @@ def authenticated_file(name, record, md5, size, cache):
             metadata = json.load(response)
         spec = next(item for item in metadata['files'] if item['key'] == name)
         assert spec['size'] == size and spec['checksum'] == 'md5:' + md5
-        with urlopen(spec['links']['content'], timeout=120) as stream:
+        download = spec['links'].get('content') or spec['links']['self']
+        with urlopen(download, timeout=120) as stream:
             with tempfile.NamedTemporaryFile(dir=cache, delete=False) as output:
                 while block := stream.read(1024 * 1024):
                     output.write(block)
