@@ -1,0 +1,94 @@
+{
+  "first_forecast_transport": {
+    "detail": "retain_output_bytes must be between 0 and 65536; requested 175000; separate poll found no original native job binding",
+    "id": "p3-f747-ktc2023-lock-33-training-only-voltage-forecasts-62-admitted-drives",
+    "state": "original operation completed with provider error"
+  },
+  "first_lock_note_attempt": {
+    "result": "no post; succeeded as normal message 182551 before scoring",
+    "status": "invalid_kind"
+  },
+  "first_source": {
+    "claim": 1671296,
+    "id": "p3-f747-ktc2023-actual-electrode-design-nullspace-and-winner-link-headers",
+    "stdout": "879d76471a3350fc82db0db4edf5547ec577f22199f8e5e751224a93a9a321a2"
+  },
+  "native_authority": "node-3e1997435f3f4ffb9db90803039402b6",
+  "official_challenge_voltages_decoded": 0,
+  "original_forecast": {
+    "archive_bytes": 117362,
+    "archive_sha256": "68662a383ef4799767f1a59ad9327a6bffb320982a7bc532cbac59b6e02abb1e",
+    "forecast_arrays": 33,
+    "id": "p3-f747-ktc2023-same-frozen-training-voltage-lock-owner-archive",
+    "later_attachment_readback_slices": [
+      40000,
+      40000,
+      37362
+    ],
+    "later_full_archival_attachment": "att-mws74fvdc18y9t",
+    "post_seq": 1672613,
+    "pre_score_post": 182551,
+    "stdout_sha256": "931c0973e117418bc6ac5a2e0eaa8117cef2b43dd0d667d55fa3602010504b80"
+  },
+  "original_forecast_archive_reads": [
+    {
+      "id": "p3-f747-ktc2023-original-forecast-archive-read-shard-0",
+      "size": 40000,
+      "start": 0,
+      "stdout_sha256": "0eb54e93201ca41ec0d6aca8aca5d0166d0abb3da83a4f2a37ef4ad37fcb2dcc"
+    },
+    {
+      "id": "p3-f747-ktc2023-original-forecast-archive-read-shard-1",
+      "size": 40000,
+      "start": 40000,
+      "stdout_sha256": "736fae6f8111db3eee1f9e5b2fcf429c88dc866cdad28e05770f47e113113af4"
+    },
+    {
+      "id": "p3-f747-ktc2023-original-forecast-archive-read-shard-2",
+      "size": 37362,
+      "start": 80000,
+      "stdout_sha256": "c96abf7489a92ba2f5a961a54d80b6896b542322d04975e2f97ff38cdeb59a94"
+    }
+  ],
+  "photographic_masks_decoded": 0,
+  "physical_worker": "node-c0da1eb7402af862460cccd552698bb4",
+  "postscore_polarity_original": {
+    "bytes": 3442,
+    "fitted_parameters": 0,
+    "id": "p3-f747-ktc2023-fixed-identical-vs-reversed-orientation-postscore-recount",
+    "stdout_sha256": "7487953dd4bbbaafe9ca9edb47229854c98f38e3c67bf6af3801b996e9d9d031"
+  },
+  "preregistration": {
+    "id": "att-mws6xkh00x60f2",
+    "sha256": "fdaac2d257a293501569c9dd9138bff94760e81c1665368062f93c3730130eb4",
+    "size": 16785
+  },
+  "source_model_qualification": {
+    "id": "p3-f747-ktc2023-source1-configuration-and-dense-constrained-qualification",
+    "stdout": "909751bd8a3858757ba0713f5c1a97524fa04d3153485cbd08ad9573ddfdb24a"
+  },
+  "training1": {
+    "id": "p3-f747-ktc2023-exact-water-and-training1-repeated-current-qualification",
+    "stdout": "e0c78e5158fb4a647b8086e37033dbf20a7fad8a3f2275bc5f3420e5fe840b70"
+  },
+  "two_receivers": {
+    "bytes": 38170,
+    "comparisons": 462,
+    "id": "p3-f747-ktc2023-original-and-independent-score-33-locked-ports",
+    "stdout_sha256": "033b9160820c25ce7229bf4bdca24ebf6409813a6cda5266de45eaf5077669db"
+  },
+  "winner": {
+    "author_repository_issue": 1,
+    "challenge_release": "5f0b13f807d3482e964f236ada6e86b5c66477f5",
+    "current_checked": "7ccf7bc6c75327e835b60dc74409df2b85706cb6",
+    "files_in_release": "The official Git release contains the inference implementation. It points to external model.pt and precomputed matrices; neither is in the release tree.",
+    "issue_resolution": "Open public issue reports HTTP 502 for both links; zero comments at inspection. No new contact or alternate implementation used.",
+    "native_result": "Both Bremen Seafile directory hosts returned DNS resolution errors from the source worker.",
+    "source": "alexdenker/ktc2023_postprocessing"
+  },
+  "worst_and_witnesses": {
+    "bytes": 14280,
+    "id": "p3-f747-ktc2023-locked-worst-packet-and-all-7753-port-witnesses",
+    "stdout_sha256": "d282dbc3b37429fca7f5637fff7e2978ad54cb5ed98e65bf55c05ed1afe566e4"
+  }
+}

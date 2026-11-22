@@ -1,0 +1,49 @@
+{
+  "candidate": "reference_reciprocal_gls. Regress water-subtracted voltages on actual nonunit signed currents under reciprocity. Generalized least squares with a covariance proxy estimated from 14 source1-minus-water configuration-pair differences, half shrunk to an isotropic matrix. Strong matched controls include direct water-referenced repeated measurement, unweighted reciprocal, superposition, same-dimensional incorrect voltage-edge reversal, transferred source1 per-configuration bias and a source1-only data-driven blend.",
+  "frozen_source": {
+    "geometry-native-original.json": "879d76471a3350fc82db0db4edf5547ec577f22199f8e5e751224a93a9a321a2",
+    "locked_course.py": "4f6dcafe907b85cd355c1230619b0ef6080505749014217b483bf572193a5dd3",
+    "port_forecast.py": "6f79f0376803ee7cfbeed3167ad756600d1691272f765683081d73be3491ac23",
+    "qualify_geometry.py": "479206538fe2731a093c1d57545b8e6d098814ba2ab7f2c4abb0b38f0391c4a3",
+    "row_witness.py": "171d0b2339184716b4ea249569ce8a2ec7e08482910359fa9d911e5d07d7fcf7",
+    "source1-pilot-native-original.jsonl": "909751bd8a3858757ba0713f5c1a97524fa04d3153485cbd08ad9573ddfdb24a",
+    "source_pilot.py": "fab5fa20a3392bc9c0afb392984cd277da09998f30c7c23c5a7af116742fd7e6",
+    "training_qualification.py": "c4deb522c59f2eed5ab97a7f60212c361db80426712f959cf506d0e4ff3ea46e",
+    "water-phantom1-training-original.jsonl": "e0c78e5158fb4a647b8086e37033dbf20a7fad8a3f2275bc5f3420e5fe840b70"
+  },
+  "gates": {
+    "core": [
+      "reference_repeat",
+      "reference_superposition",
+      "reference_reciprocal",
+      "reference_reciprocal_gls_wrong_electrode_order"
+    ],
+    "rule": "Primary must beat every comparator in mean and on at least two of three phantoms; report both subtotals and conjunction. All eleven arms, all phantoms and all entries retained. No adjustment after any target arrival.",
+    "strong": [
+      "reference_repeat_source_bias",
+      "source_blend"
+    ]
+  },
+  "inputs": "62 first-listed distinct unoriented configurations, all 31 reported voltage edges (V); known signed injection current amplitudes per column (mA), known edge directions and all 76 water configurations. Use 14 simultaneous repeated columns for target. The forecasts for each of phantoms 2\u20134 receive none of that phantom\u2019s fourteen target columns. Source calibration and water deliberately use all 76 columns from their separate specimens. Trusted fetch checks all file bytes and decodes only allowed contiguous entries of Uel before lock. Each phantom current matrix and voltage-pattern matrix must equal the canonical matrices or refuse; first voltage read in forecast is the train subset.",
+  "reference": "alexdenker/ktc2023_postprocessing official challenge release 5f0b13f807d3482e964f236ada6e86b5c66477f5, ChallengeData/level_1, full electrode array. The held excitations are repeat-pattern recorded columns, whose chronological timing and statistical independence have not been established. Water and phantom1 have 0/14 identical complete repeated vectors.",
+  "schema": "p3.ktc2023.frozen-training-electrical-course.v1",
+  "scope": "Training phantoms 2 to 4. No challenge evaluation files, masks, images or segmentation. Files 1 and water are the sole conditioning specimens. Three held-by-design public training specimens are the independent unit for description; the repeated drives within each specimen share electrodes and water. No independent device/session or temporal forecast.",
+  "target_columns_1based": [
+    17,
+    31,
+    32,
+    35,
+    36,
+    47,
+    51,
+    54,
+    55,
+    62,
+    66,
+    70,
+    73,
+    74
+  ],
+  "targets": "Three nominal test cases within public training cohort, 31x14 observed voltages per phantom. No official imaging gate. Source measurement stores signed real double V. Current vector may be configured rather than independently observed; no independent phase calibration. Full complex reciprocity is ordinary transpose, time-average dissipation uses the Hermitian part and conjugate power pairing; no imaginary voltage data or general passive-boundary equivalence is asserted.",
+  "unit": "per-physical-phantom RMSE in volts, then unweighted mean across three distinct held-by-design public training phantoms. Also all MAE and source-whitened RMS, all 14 column residual RMSEs and exact worst values with actual observed voltages."
+}
