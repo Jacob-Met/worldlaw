@@ -3,7 +3,6 @@ import argparse
 import csv
 from datetime import datetime, timedelta
 import hashlib
-import gzip
 import json
 import math
 from pathlib import Path
@@ -28,7 +27,7 @@ def validate(source, destination):
             for row in csv.DictReader(stream):
                 stamp=datetime.fromisoformat(row["datetime"]).isoformat()
                 reference[station,stamp]=row
-    canonical = gzip.decompress(Path(__file__).with_name("original-forecasts.json.gz").read_bytes())
+    canonical = Path(__file__).with_name("original-forecasts.json").read_bytes()
     if hashlib.sha256(canonical).hexdigest() != "cea85fdfd80340f3691563830304ac3549a9a9f1633c093f1c79b58004f006ae":
         raise ValueError("Changed immutable forecast evidence")
     published = {(r["station"],r["datetime"]):r for r in json.loads(canonical)}

@@ -19,7 +19,7 @@ INCLUDE = (
     "research/ghent-shield-temperature/README.md",
     "research/ghent-shield-temperature/replay.py",
     "research/ghent-shield-temperature/verify_scores.py",
-    "research/ghent-shield-temperature/original-forecasts.json.gz",
+    "research/ghent-shield-temperature/original-forecasts.json",
     "research/bridge-cross-speed-strain/README.md",
     "research/bridge-cross-speed-strain/bridge_source.py",
     "research/bridge-cross-speed-strain/clock_registration.py",
