@@ -79,6 +79,8 @@ The preceding 0.25 s of adjusted pull in that episode ranged from −0.394 to +0
 
 The forecast program writes eight arrays per held run, with hashes for every array. The scoring program verifies the whole archive, each run archive and each array before using the held orientations. A separately implemented fresh-process receiver fetched the original measurement release, reconstructed each crop and source variance, and recomputed all 80 run-by-coordinate results in extended precision. Its receipt agrees on all 32 primary and supplemental mean coordinates, all six run-win counts, the worst-sample indices and the failed gate.
 
+The private archive path in `numerical-custody.json` was read back in full after writing and matched all 7,819,170 bytes by SHA-256. It contains generated forecasts and their lock. The original receiver used Python 3.12.3, NumPy 2.5.5 and SciPy 1.18.1.
+
 Run `python replay_course.py --predictions /path/to/predictions.zip` from this directory to receive the original forecast bytes. Running without the option regenerates the forecasts and requires their complete byte identity before scoring. The replay fetches the public 29,445,451-byte measurement release from Figshare and verifies its digest. The ten-fold source search took 54.585 s on one allocated CPU. The original source and held episode digests are listed in `numerical-custody.json`. The held receipt also includes every per-coordinate RMSE in radians against centered and uncentered observations and each run's largest standardized error.
 
 ## Primary sources

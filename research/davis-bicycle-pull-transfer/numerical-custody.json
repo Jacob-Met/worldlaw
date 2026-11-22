@@ -42,6 +42,29 @@
     "state": "captured",
     "total_bytes": 19545
   },
+  "immutable_prediction_receiver": {
+    "bytes": 7819170,
+    "original": {
+      "has_more": false,
+      "job_id": "p3-f747-davis-forecast-only-cold-archive-after-verified-reclamation",
+      "next_offset": 338,
+      "offset": 0,
+      "sha256": "751d47819cc2a87ef103ef87ab0623fd2a9ac501354b918075fc2500d21af796",
+      "source": {
+        "command_id": "p3-f747-davis-forecast-only-cold-archive-after-verified-reclamation",
+        "generation": "d03430cdd57651b8fb007fe14586f24bf3da65cbfd3e84709dc2799f334c6a2a",
+        "output_bytes": 338,
+        "owner": "node-c0da1eb7402af862460cccd552698bb4",
+        "receipt_sha256": "f764df9d0cf6dec8fcba8ad9df9c06fd4a7eed3d26764568533e461e9bca1fb9",
+        "request_sha256": "ce1f37583cbcce8f4a233050ec78df67af43084c0c28cfaeed01be744687ce8c"
+      },
+      "state": "captured",
+      "total_bytes": 338
+    },
+    "remote": "r2-estate:hamon-build-cache/research/astra62-p3-f747f5728172/davis-bicycle/1c82e2e30651df8354b624eacf2e2c68d8153184e59666b10337400c0664a3e8/predictions.zip",
+    "runtime": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0] 2.5.5 1.18.1",
+    "sha256": "1c82e2e30651df8354b624eacf2e2c68d8153184e59666b10337400c0664a3e8"
+  },
   "locked_forecast": {
     "has_more": false,
     "job_id": "p3-f747-davis-r190-history-and-five-held-forecast-after-archive",
@@ -60,6 +83,10 @@
     "total_bytes": 6817
   },
   "original_directory": "/var/tmp/p3-f747-davis-prediction-2chiemp2",
+  "original_prediction_copy_pre_dispatch_refusal": {
+    "job": "p3-f747-davis-immutable-prediction-only-receive-1c82e2e3",
+    "state": "artifact_storage_pressure/not_attempted"
+  },
   "post_freeze_source_sha256": {
     "development.json": "cd765a4c291be8131adf167efb1a4f206cb0debb964ca95ab79a629559a716e6",
     "frozen-protocol.json": "cd3d1c3f700679b181c1504d03d47f12331983f2073552cdcf7bea07aa0f4157",
