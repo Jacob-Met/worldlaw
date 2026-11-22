@@ -1,0 +1,52 @@
+{
+  "windings": [
+    "WINDING Ag,Cr107 triangle 358 barycentric_sixths (2, 2, 2) floating [-1.0000000000007527, -9.368235465509637e-13] EXACT {\"1\": [-1, -1, -1], \"-1\": [0, 0, 0]}",
+    "WINDING Ag,St42 triangle 21 barycentric_sixths (2, 2, 2) floating [0.9999999999999866, 1.9999999999999878] EXACT {\"1\": [1, 1, 1], \"-1\": [2, 2, 2]}",
+    "WINDING Ag,Cr121 triangle 405 barycentric_sixths (2, 2, 2) floating [-1.9297603041606812e-05, 1.9331433985699975e-05] EXACT {\"1\": [0, 0, 0], \"-1\": [1, 1, 1]}",
+    "WINDING Ag,St100 triangle 977 barycentric_sixths (2, 2, 2) floating [1.0000000000000009, 2.0000000000000004] EXACT {\"1\": [1, 1, 1], \"-1\": [2, 2, 2]}",
+    "WINDING Ag,St53 triangle 20 barycentric_sixths (2, 2, 2) floating [1.0000000000000204, 1.9999999999999845] EXACT {\"1\": [1, 1, 1], \"-1\": [2, 2, 2]}",
+    "ORDINARY_SIDES Ag,Cr44 976",
+    "ORDINARY_SIDES Ag,Cr92 1086"
+  ],
+  "components": [
+    "COMPONENTS Ag,C1 1 [(1112, 1.0)]",
+    "COMPONENTS Ag,C2 1 [(1780, 1.0)]",
+    "COMPONENTS Ag,Cr107 1 [(888, 1.0)]",
+    "COMPONENTS Ag,Cr121 1 [(568, 1.0)]",
+    "COMPONENTS Ag,Cr127 1 [(736, 1.0)]",
+    "COMPONENTS Ag,Cr14 1 [(1346, 1.0)]",
+    "COMPONENTS Ag,Cr44 1 [(976, 1.0)]",
+    "COMPONENTS Ag,Cr62 1 [(708, 1.0)]",
+    "COMPONENTS Ag,Cr77 1 [(554, 1.0)]",
+    "COMPONENTS Ag,Cr91 1 [(978, 1.0)]",
+    "COMPONENTS Ag,Cr92 1 [(1086, 1.0)]",
+    "COMPONENTS Ag,Cr95 1 [(626, 1.0)]",
+    "COMPONENTS Ag,P1 1 [(646, 1.0)]",
+    "COMPONENTS Ag,Sq1 1 [(836, 1.0)]",
+    "COMPONENTS Ag,Sq2 1 [(1466, 1.0)]",
+    "COMPONENTS Ag,St100 1 [(1560, 1.0)]",
+    "COMPONENTS Ag,St18 1 [(958, 1.0)]",
+    "COMPONENTS Ag,St36 1 [(1114, 1.0)]",
+    "COMPONENTS Ag,St42 1 [(562, 1.0)]",
+    "COMPONENTS Ag,St53 1 [(1188, 1.0)]"
+  ],
+  "pockets": [
+    "VOXEL_POCKETS Ag,Sq2 40 [1]",
+    "VOXEL_POCKETS Ag,St18 24 [1]",
+    "VOXEL_POCKETS Ag,St18 40 [1]",
+    "VOXEL_POCKETS Ag,St42 40 [1, 1]",
+    "VOXEL_POCKETS Ag,St53 40 [1]"
+  ],
+  "carlson": {
+    "exact_orientation_reconstructions": 153,
+    "same_ellipsoid_middle": "1.37349462415606650076258",
+    "same_ellipsoid_mixed": "1.44295378005731538971792",
+    "separate_mean_inflation_example": "25/16",
+    "sheared_sphere": "2.54912876811192512665225",
+    "sphere": "2.66666666666666666666667",
+    "trace_different_at_equal_area": [
+      "10",
+      "25/4"
+    ]
+  }
+}
