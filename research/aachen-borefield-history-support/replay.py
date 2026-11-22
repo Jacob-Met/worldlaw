@@ -89,7 +89,7 @@ def physical_checks(cache, work, geometry):
         wall = np.full((2, steps), params['Tundist'])
         _, outlet, _ = hybrid_model.calc_sa_sec_U_backw(
             config, kernel, inlet, flows, wall, state, np.full(2, params['Tundist']))
-        return outlet
+        return np.asarray(outlet, dtype=float)
     base, warm, cold = (run(x) for x in (0., 2., -2.))
     drift = float(np.max(abs(base-params['Tundist'])))
     assert 5e-6 < drift < .0005
