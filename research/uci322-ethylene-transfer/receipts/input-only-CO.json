@@ -1,0 +1,74 @@
+{
+  "target": "CO",
+  "source_models": {
+    "CO": {
+      "model": "861678d15def439fede0a4542d148810fd17254084c6fe3b4c340e829ca69db2",
+      "development": "9293f5f0e27339ad17cfde3672c771a2b25488402af67a13dd5cc59d94bb88c9",
+      "reference": "history_linear"
+    },
+    "methane": {
+      "model": "f960e1c04e2c3ced5209ef3d751ccba647d80e87dc0481b15caa75bab3cada82",
+      "development": "44aee0f7033fd421bec8e6d02bab0406d8b9bf5ca7e3bb9e485d9240febca94b",
+      "reference": "history_rbf"
+    }
+  },
+  "native_rows": 4208261,
+  "first_held_row": 2524956,
+  "decision_count": 16833,
+  "first_decision_native_id": 2525044,
+  "last_decision_native_id": 4208205,
+  "numeric_columns_read": [
+    0,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "raw_text_ingress_contains_interleaved_setpoints": true,
+  "setpoint_values_accessible_to_decoders": false,
+  "sensor_and_time_sha256": "96e4f4be7f00fab2cdfdffcee933c0a257bdcd025fd5536fff53462773e412f1",
+  "highrate_sampled_max_delta": {
+    "CO": 0.0,
+    "methane": 0.0
+  },
+  "npz": "b7cf698822908745d034a97c328167713c4cb236ef5213e65fd23e15ed019a97",
+  "arrays": {
+    "native_ids": "5f533c1301045cd661068444e742b2dc4d928939fa20c76b75e0216221d7453e",
+    "time": "0258dd6919ba525d10cd2b2f4481a746ad3d619e056c9bbbe097363d8cbec6b1",
+    "first_four_readings": "7743c9995a5a6dadc92d77106398141bfb4a53b1d16844df06df10e44cfafd7b",
+    "threshold": "f533a22b26c1b87af59ae4987591e8c7beaec9f773ec3b25b3816b4bf868d02e",
+    "native_rows": "7c4b47577068b8f7d5b9dad28870dc16a5735e7748c0adf8ce96048de1042cdd",
+    "CO__mean": "40e1063d69c216d3c0fe46cd1a9d5da52e2269a1a9cfc834bc53b3eed68e8f90",
+    "CO__oger": "54fcff9e97621fad13440227c662a7942c73480eddb9df24625f4d2dd38b932d",
+    "CO__static_svr": "f8a4b91415db03c9bff7815d290d57fc20d0858c5d5301ecb79d139a2f403a22",
+    "CO__linear": "2d6b1aba80d2e29f5efad5ce830237801f83fef365be6389bfb12727ecb464ce",
+    "CO__static_rbf": "ff48a1e4af3cfc83caf8072e506972a9548ecea72ca140d5febeae4a94324cc3",
+    "CO__history_linear": "733773a20e864ed0efface39dceb439395a4057afbb97775fe1962c36082a1ed",
+    "CO__history_rbf": "77e64cbe9a9fa5f773d9adf3ca483680afdf59c563b712198a44c6399ca29b03",
+    "CO__nuisance": "9f33607a4c749c3d5a8ca55000ad31458f531d8694840f25586d6bfc0f251766",
+    "CO__sham": "3d347573ae09d610ca6fdfbf26826df0908070fb3319afa67914f9f52d505f0b",
+    "CO__fullrate_oger": "e315fa0a3e3ec8c3451d834b12d4a48322b24c2b15c8a7c6be565c84763bffae",
+    "methane__mean": "39c32c150cc7b8218ba5ae02a8643f81c7e435f0b53773c67e9b29b52ee314da",
+    "methane__oger": "b80b4b1d3ec92240bb0fb85ee3d8b9ad07fbab4614cc1ae6ba5a0355025e59e9",
+    "methane__static_svr": "21e86c46f7814758719c8cd9bec78068a7fa668e0dc0a3595fd4b565d52a07cb",
+    "methane__linear": "60a8d3d12572856d3774bda81815d0f03b837967a6ea1f1bd2718d4d832bfb30",
+    "methane__static_rbf": "b593e1cbaad7d3b0d767f66802642ff4439c03f165b0ea137d67e8919d85720a",
+    "methane__history_linear": "f971f128094679fc750f99efce85a7b6c3dc37ee9197150c731fb6d2ff9d8bd8",
+    "methane__history_rbf": "751e460b8aa622cc07357e63012923df7e5d8e2c075804455c07099ba8f26ca5",
+    "methane__nuisance": "ab070d0a94ce7461005f2f8ed47c204f7f93003a88a481b9aa826fe9d9ed3b49",
+    "methane__sham": "8771d166cc1772837cf4800d339dc5ac2044c1acdaa6be0927f92913e6ca0629",
+    "methane__fullrate_oger": "f50eb7b968ebb570077bf22826127f2833f2b1fa97a928046beb0ccc8f8c3ca3"
+  }
+}

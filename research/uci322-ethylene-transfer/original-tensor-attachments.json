@@ -1,0 +1,72 @@
+[
+  {
+    "file": "input-only-CO.npz",
+    "offset": 0,
+    "size": 7340032,
+    "sha256": "7e3188f1183e9a4bd90a21826eddd99ddeab1cfe6893f210b44f633479b54620",
+    "attachment": "att-mwrqlzitx6vya6"
+  },
+  {
+    "file": "input-only-CO.npz",
+    "offset": 7340032,
+    "size": 7340032,
+    "sha256": "28305994cd6226ddc62a6eb1993299a3f0c80f0c976a9bbd16c499a72ec0743c",
+    "attachment": "att-mwrqlzkgkmu11e"
+  },
+  {
+    "file": "input-only-CO.npz",
+    "offset": 14680064,
+    "size": 7340032,
+    "sha256": "67ea0639e86ed8155e8e563b4ad6664bf4438d1674658849f2fbf4eff4a8cb95",
+    "attachment": "att-mwrqm0qk22m32v"
+  },
+  {
+    "file": "input-only-CO.npz",
+    "offset": 22020096,
+    "size": 2559721,
+    "sha256": "7455496c9878fd167e708874c0b8f5a888ff55f4c73bdf85511879c79eef0a44",
+    "attachment": "att-mwrqlz3c3x383w"
+  },
+  {
+    "file": "input-only-methane.npz",
+    "offset": 0,
+    "size": 7340032,
+    "sha256": "e1b23c73f82bb0c0003e8c3733e4248ce9baf5fcb3091c5feadc0b8b999e1170",
+    "attachment": "att-mwrqlzeds55zqd"
+  },
+  {
+    "file": "input-only-methane.npz",
+    "offset": 7340032,
+    "size": 7340032,
+    "sha256": "730a95a3292057cfd04e627acdbcda5bbc83be360bfec9955e81f3204f6f55f9",
+    "attachment": "att-mwrqm06n4671v1"
+  },
+  {
+    "file": "input-only-methane.npz",
+    "offset": 14680064,
+    "size": 7340032,
+    "sha256": "8c79c34db51a65c37bbdde8d28d847e98198ed9a0b47f0b1cab3fa6272edf644",
+    "attachment": "att-mwrqlzs2u3si94"
+  },
+  {
+    "file": "input-only-methane.npz",
+    "offset": 22020096,
+    "size": 2212032,
+    "sha256": "ccfe61d753c5ea8220fd2c298d1feaa4d1020c57951eb0572ccccb3e8b034be8",
+    "attachment": "att-mwrqlzcxi4rs7h"
+  },
+  {
+    "file": "frozen-model-CO.npz",
+    "offset": 0,
+    "size": 2633673,
+    "sha256": "861678d15def439fede0a4542d148810fd17254084c6fe3b4c340e829ca69db2",
+    "attachment": "att-mwrqlz1xdsc0kc"
+  },
+  {
+    "file": "frozen-model-methane.npz",
+    "offset": 0,
+    "size": 2171104,
+    "sha256": "f960e1c04e2c3ced5209ef3d751ccba647d80e87dc0481b15caa75bab3cada82",
+    "attachment": "att-mwrqlzj5dl340o"
+  }
+]

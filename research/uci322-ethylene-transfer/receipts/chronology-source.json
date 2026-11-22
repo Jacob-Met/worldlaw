@@ -1,0 +1,32 @@
+{
+  "ethylene_CO.txt": {
+    "header": "Time (seconds), CO conc (ppm), Ethylene conc (ppm), sensor readings (16 channels)",
+    "n": 4208261,
+    "train_rows": 2524956,
+    "test_rows": 1683305,
+    "first_t": [
+      0.0,
+      0.01,
+      0.01
+    ],
+    "last_t": 42087.55,
+    "min_dt": 0.0,
+    "max_dt": 0.37999999999919964,
+    "nonincreasing_steps": 122672
+  },
+  "ethylene_methane.txt": {
+    "header": "Time (seconds), Methane conc (ppm), Ethylene conc (ppm), sensor readings (16 channels)",
+    "n": 4178504,
+    "train_rows": 2507102,
+    "test_rows": 1671402,
+    "first_t": [
+      0.0,
+      0.01,
+      0.02
+    ],
+    "last_t": 41790.19,
+    "min_dt": 0.0,
+    "max_dt": 0.27000000000001023,
+    "nonincreasing_steps": 104950
+  }
+}

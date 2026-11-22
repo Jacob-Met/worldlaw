@@ -1,0 +1,18 @@
+{
+  "source_score": "0d0d5f645b962ac3ba425279795d28e2eb57492a27580348a494b24eedcd585f",
+  "compared_material_role_strata": 328,
+  "recomputed_native_statistic_fields": 1640,
+  "worst_rows": 36,
+  "release_events": 33548,
+  "four_direction_candidate_rmse": {
+    "CO": [
+      3.115308965434469,
+      34.545929866185375
+    ],
+    "methane": [
+      11.166694230513627,
+      3.173933475546606
+    ]
+  },
+  "joint_pass": false
+}

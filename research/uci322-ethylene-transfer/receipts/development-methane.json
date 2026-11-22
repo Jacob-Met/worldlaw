@@ -1,0 +1,46 @@
+{
+  "source": "methane",
+  "n": 25076,
+  "fit_dev": 17554,
+  "test_prediction": "not opened",
+  "development_RMSE_ppm": {
+    "mean": 6.139835782117579,
+    "oger": 3.5126026338044887,
+    "static_svr": 3.755151318832977,
+    "linear": 3.5701445978332376,
+    "static_rbf": 3.4994622293181035,
+    "history_linear": 3.337990210906801,
+    "history_rbf": 3.2275988576363823,
+    "nuisance": 3.278515697004434,
+    "sham": 3.225693139653852
+  },
+  "chosen_reference": "history_rbf",
+  "worst_reference": {
+    "native_index": 2111980,
+    "t": 21124.0,
+    "co_setpoint": 0.0,
+    "ethylene_setpoint": 20.0,
+    "sensor_first4": [
+      2344.54,
+      1754.8,
+      979.27,
+      1088.25
+    ],
+    "pred": {
+      "mean": 3.9212834681554067,
+      "oger": 3.022062872199248,
+      "static_svr": 0.28782939806221997,
+      "linear": 1.2591450255382837,
+      "static_rbf": 2.8872488424965006,
+      "history_linear": 1.6152715063036442,
+      "history_rbf": 2.5157253945019367,
+      "nuisance": 2.3500000665026697,
+      "sham": 2.5744410275873193
+    }
+  },
+  "nuisance_eth_direction_cosine": 0.6605100361289091,
+  "nuisance_events": 109,
+  "ethylene_events": 88,
+  "full_model_sha256": "f960e1c04e2c3ced5209ef3d751ccba647d80e87dc0481b15caa75bab3cada82",
+  "fit_only_native_source": "f7f93c7a418f8c623ccaf8749fa3debbc51f7b77c9654b9ac4ec25e3ecbab83f"
+}

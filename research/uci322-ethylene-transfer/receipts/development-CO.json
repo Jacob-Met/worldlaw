@@ -1,0 +1,46 @@
+{
+  "source": "CO",
+  "n": 25255,
+  "fit_dev": 17680,
+  "test_prediction": "not opened",
+  "development_RMSE_ppm": {
+    "mean": 5.8575875549727865,
+    "oger": 5.264005735351965,
+    "static_svr": 3.532278150755892,
+    "linear": 3.353773548830715,
+    "static_rbf": 3.5306094831937798,
+    "history_linear": 3.1499173112716115,
+    "history_rbf": 3.219809109247987,
+    "nuisance": 3.286758275071433,
+    "sham": 3.2854794584663938
+  },
+  "chosen_reference": "history_linear",
+  "worst_reference": {
+    "native_index": 2039240,
+    "t": 20397.0,
+    "co_setpoint": 0.0,
+    "ethylene_setpoint": 18.33,
+    "sensor_first4": [
+      1085.45,
+      153.69,
+      1327.22,
+      1463.76
+    ],
+    "pred": {
+      "mean": 5.426413461538462,
+      "oger": 5.971161791628326,
+      "static_svr": 0.5268554777810843,
+      "linear": 2.946920315640174,
+      "static_rbf": 6.195887805002256,
+      "history_linear": 1.1848076637980407,
+      "history_rbf": 3.9106200561230606,
+      "nuisance": 2.9050874429318574,
+      "sham": 2.2053525195817665
+    }
+  },
+  "nuisance_eth_direction_cosine": 0.783864379750583,
+  "nuisance_events": 100,
+  "ethylene_events": 96,
+  "full_model_sha256": "861678d15def439fede0a4542d148810fd17254084c6fe3b4c340e829ca69db2",
+  "fit_only_native_source": "cfdb15c2a8313abd442513f85be60df967bf9b293319115ee7a5251138f0fa10"
+}
