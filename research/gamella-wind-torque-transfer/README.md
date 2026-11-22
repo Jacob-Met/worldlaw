@@ -30,3 +30,11 @@ The executable notebook's arithmetic subtracts the no-load current after adding 
 - [Released chamber datasets, generators, variable dictionary and archive checksums](https://github.com/juangamella/causal-chamber/tree/967d59a42956872f37463cc561ecf6e9ceab9364/datasets)
 - [Mechanistic kernels and simulators](https://github.com/juangamella/causal-chamber-package/tree/087725404b9bad99df3160a2b3bd7da250f44fe3)
 - [Parameter notebook and figure code](https://github.com/juangamella/causal-chamber-paper/tree/52f418837cf56b474fc4d9704f0c41c3d1dbd7dd)
+
+## Reproduction
+
+Place the unmodified official `wt_intake_impulse_v1.zip` and `wt_walks_v1.zip` beside the scripts as `impulse.zip` and `walks.zip`. Their SHA-256 digests are `d4dec2de1fcf255c08a0da1290e73adbfbea09272a43dbcb58e96a448ef6b748` and `1ef92d39fff7645a9e6e8cd41311e708362606491590a1534c6a5135d207736e`. The public archives contain scientific outputs. The predictor's CSV boundary delivers every held control row and the five allowed outcome rows per flag.
+
+With Python, NumPy and pandas available, run `python3 qualify_timing.py` for the control-only timing audit or `python3 verify_author.py` for the middle-duty simulator check. `python3 predict_lock.py frozen` writes the two forecast archives and prints the digest of the registry. Subsequent scoring requires the previously recorded registry digest. Pass it to `python3 score_locked.py frozen DIGEST > score.json` and `python3 recount.py frozen DIGEST score.json`. The second implementation reads CSV fields directly and recalculates each session, phase, output and worst flag from the locked arrays.
+
+As of the prospective source commit, the provider had declined the held forecast command before dispatch. No held suffix measures or resulting accuracy values appear in this registration.

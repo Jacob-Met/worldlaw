@@ -16,6 +16,22 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/gamella-wind-torque-transfer/README.md",
+    "research/gamella-wind-torque-transfer/author-check.json",
+    "research/gamella-wind-torque-transfer/author_simulator.py",
+    "research/gamella-wind-torque-transfer/design.txt",
+    "research/gamella-wind-torque-transfer/development.json",
+    "research/gamella-wind-torque-transfer/notebook-check.json",
+    "research/gamella-wind-torque-transfer/predict_lock.py",
+    "research/gamella-wind-torque-transfer/protocol.json",
+    "research/gamella-wind-torque-transfer/qualify_timing.py",
+    "research/gamella-wind-torque-transfer/recount.py",
+    "research/gamella-wind-torque-transfer/score_locked.py",
+    "research/gamella-wind-torque-transfer/timing.json",
+    "research/gamella-wind-torque-transfer/training_development.py",
+    "research/gamella-wind-torque-transfer/verify_author.py",
+    "research/gamella-wind-torque-transfer/wind_transfer.py",
+    "research/gamella-wind-torque-transfer/wt_models.py",
     "research/nantes-rubber-observability/README.md",
     "research/nantes-rubber-observability/incident.py",
     "research/nantes-rubber-observability/project.py",
