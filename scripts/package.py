@@ -16,6 +16,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/gamella-wind-torque-transfer/prediction-lock.json",
     "research/gamella-wind-torque-transfer/README.md",
     "research/gamella-wind-torque-transfer/author-check.json",
     "research/gamella-wind-torque-transfer/author_simulator.py",
