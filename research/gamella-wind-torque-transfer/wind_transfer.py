@@ -5,10 +5,12 @@ import hashlib
 import numpy as np
 import pandas as pd
 import wt_models as author
+from torque_flow import flow, interval_drive
 
 PANEL="wt_intake_impulse_v1"
 ROLES=("persistence","author_draw","author_centered","middle_template","squared_speed",
-       "walk_additive","walk_coupled","walk_plus_template","torque_transfer")
+       "walk_additive","walk_coupled","walk_plus_template","torque_transfer",
+       "torque_exact_forward","torque_calibrated_flow")
 WMAX=3000*np.pi/30
 INERTIA=.5*.059**2*.02
 def tau(load):
@@ -151,5 +153,20 @@ def forecasts(model,u,prefix):
         dt=t[:,j]-t[:,j-1]
         w[:,j]=np.maximum(0,w[:,j-1]+dt/INERTIA*(torque[:,j-1]-DRAG*(w[:,j-1]**2-target0[:,0]**2)))
     roles['torque_transfer']=correct(w)
+    # Separately frozen controls preserve the original inferred forcing and change
+    # only its numerical integration. The final role also inverts each source interval.
+    drag=DRAG/INERTIA
+    start=src[:,4:-1].copy()
+    start[:,0]=mid
+    stop=src[:,5:]
+    mean_dt=dt_src[:,4:]
+    inferred=interval_drive(start,stop,mean_dt,drag)
+    drives=(torque[:,4:]/INERTIA+drag*target0**2,
+            inferred+drag*(target0**2-src0**2))
+    for name,a in zip(('torque_exact_forward','torque_calibrated_flow'),drives):
+        exact=np.broadcast_to(target0,src.shape).copy()
+        for j in range(5,50):
+            exact[:,j]=flow(exact[:,j-1],a[:,j-5],t[:,j]-t[:,j-1],drag)
+        roles[name]=correct(exact)
     if set(roles)!=set(ROLES) or not all(np.isfinite(a).all() for a in roles.values()):raise ValueError('nonfinite or missing role')
     return {k:np.array(roles[k][:,5:,:],dtype='<f4') for k in ROLES}

@@ -17,7 +17,7 @@ def main(out):
     if [*policy['controls'],policy['candidate']]!=list(w.ROLES):
         raise ValueError('registered role order')
     files=['design.txt','protocol.json','wind_transfer.py','wt_models.py','predict_lock.py',
-           'score_locked.py','author_simulator.py','verify_author.py']
+           'score_locked.py','author_simulator.py','verify_author.py','torque_flow.py']
     if digest(Path('design.txt'))!=policy['design_sha256']:raise ValueError('changed initial design')
     model=w.fit()
     record={'source_sha256':{f:digest(Path(f)) for f in files},'predictions':{},

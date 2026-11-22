@@ -10,7 +10,8 @@ from pathlib import Path
 import numpy as np
 
 ROLES = ('persistence','author_draw','author_centered','middle_template','squared_speed',
-         'walk_additive','walk_coupled','walk_plus_template','torque_transfer')
+         'walk_additive','walk_coupled','walk_plus_template','torque_transfer',
+         'torque_exact_forward','torque_calibrated_flow')
 DUTIES = ('0.01', '1')
 
 def file_sha(path):
@@ -75,16 +76,16 @@ def main(out,lock_hash,scores_path):
                     if (worst['flag'],worst['row'])!=(f,j+5):raise ValueError('worst index')
                     close([worst['truth'],worst['pred'],worst['abs_error']],[observed[f,j],a[f,j,k],abs(delta[f,j])])
                     maxima+=1
-                    if role=='torque_transfer':all_worst.append((f,j,k))
+                    if role==ROLES[-1]:all_worst.append((f,j,k))
                     rows.append(event)
                 trial_loss[role]=np.stack(rows,axis=1);overall[role]=trial_loss[role].sum(0)
-            w={r:(trial_loss['torque_transfer']<trial_loss[r]).sum(0).tolist() for r in ROLES[:-1]}
+            w={r:(trial_loss[ROLES[-1]]<trial_loss[r]).sum(0).tolist() for r in ROLES[:-1]}
             if w!=ref['candidate_event_wins']:raise ValueError('event pair counts')
             for original,(f,j,k) in zip(ref['worst'],all_worst,strict=True):
                 if original['flag']!=f or original['row']!=j+5:raise ValueError('raw case flag')
                 close(actual[f],original['observed_rpm_pa']);close(u[f],original['actuators_and_time'])
                 for r in ROLES:close(data[r][f,j],original['locked_predictions_at_row'][r])
-            won=all(np.all(overall['torque_transfer']<overall[r]) for r in ROLES[:-1])
+            won=all(np.all(overall[ROLES[-1]]<overall[r]) for r in ROLES[:-1])
             if bool(won)!=ref['gate']:raise ValueError('duty gate')
             gate=gate and bool(won);paired_wins[m]=w
     if gate!=report['strict_gate']:raise ValueError('joint gate')
