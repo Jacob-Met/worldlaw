@@ -1,0 +1,26 @@
+{
+  "question": "Does the middle-duty intake-pulse torque waveform transport to two different fixed exhaust operating points and improve both measured outputs?",
+  "scientific_scope": "Forward quantitative transfer within one apparatus, conditional on the measured five-row baseline. The published paper already shows tandem coupling. This design does not isolate mechanical versus electrical mediation.",
+  "design_sha256": "ee737c762ea9a181e1a015b1fc56f9c0a8edb012f23f3a6550302ae1973db020",
+  "source": {
+    "dataset_commit": "967d59a42956872f37463cc561ecf6e9ceab9364",
+    "package_commit": "087725404b9bad99df3160a2b3bd7da250f44fe3",
+    "paper_commit": "52f418837cf56b474fc4d9704f0c41c3d1dbd7dd",
+    "parameter_notebook_blob": "5d94d6127bccd26520e79404b3f18cca9a1f4d65",
+    "models_blob": "b0161bcaa25b9709a1266e769bf3c194b0494df0",
+    "impulse_zip_md5": "8b7a0e587d3e9a804b380d96f14a1b12",
+    "walks_zip_md5": "19bb4e92cbe0b8dff49299b9b509ac36"
+  },
+  "training": "All flags 0..3999 in .5/OSR4 for the pulse profiles. All complete 50-row blocks in random walks seeds 1..15 for both ridge regressions. Seed 1 has 16 unused tail rows. Ridge .001 times training-row count after source RMS scaling.",
+  "development": "Middle .5/OSR4 flags 4000..4999 and walk seed16. Nine five-degree hatch bins are interpolated between bin centers, with constant endpoint extrapolation.",
+  "holdouts": ["0.01","1"],
+  "held_membership": "All flags 0..4999 in each respective OSR4 acquisition, with every post-onset row 5..49. Fifty-row events begin with five baseline rows. The other two middle-duty OSR2 and OSR8 outcome panels stay sealed.",
+  "fields": {"predictor":["timestamp","load_in","load_out","hatch"],"allowed_prefix":["rpm_out","pressure_downwind"],"target":["rpm_out","pressure_downwind"],"units":["revolutions per minute","pascal"]},
+  "causality": "Each output uses commands and timestamps only through that row, plus outputs from the five baseline rows. Time since the exact physical transition is unavailable. All recorded intervals enter the dynamic integration explicitly. The forecasts are conditional on the five baseline samples.",
+  "controls": ["persistence","author_draw","author_centered","middle_template","squared_speed","walk_additive","walk_coupled","walk_plus_template"],
+  "candidate": "torque_transfer",
+  "competition": "Strictly lower all-row RMSE than every comparator for both channels separately at each of both held duties. No session aggregation can rescue a losing endpoint.",
+  "diagnostics": "For each role, held session and channel, report RMSE and MAE pooled across all samples, phase-specific high and recovery RMSE, event-wise win counts and the maximum absolute sample error with its zero-based flag and within-flag index. Preserve the worst candidate event's full observed series and all predictions at the worst sample. No iid interval across events.",
+  "lock": "Write exact ordered little-endian float32 arrays and SHA256 of each C-order byte sequence and a prediction registry. Verify source/archive digests and all array hashes prior to scoring in a separate process. No held outcomes accessed by model code. Trust the CSV reader to deliver the five allowed baseline rows even though source records physically store all channels.",
+  "stop": "No selection of coefficients, panels, time shifts, roles, missing rows, smoothing or successor models after held scoring."
+}
