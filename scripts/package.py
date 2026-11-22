@@ -16,6 +16,14 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/laum-optical-harmonic-transfer/README.md",
+    "research/laum-optical-harmonic-transfer/clock.py",
+    "research/laum-optical-harmonic-transfer/support.py",
+    "research/laum-optical-harmonic-transfer/transfer.py",
+    "research/laum-optical-harmonic-transfer/author.py",
+    "research/laum-optical-harmonic-transfer/independent.py",
+    "research/laum-optical-harmonic-transfer/replay.py",
+    "research/laum-optical-harmonic-transfer/observed.json",
     "research/wang-piezo-drive-observability/README.md",
     "research/wang-piezo-drive-observability/independent.py",
     "research/wang-piezo-drive-observability/observed.json",
