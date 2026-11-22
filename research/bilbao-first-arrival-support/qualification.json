@@ -1,0 +1,305 @@
+{
+  "calibration_recordings": 390,
+  "conditions": 199,
+  "missing_author_heights_regular_stations": [
+    0,
+    2,
+    11,
+    55,
+    123,
+    205,
+    319
+  ],
+  "opened_validation_responses": 0,
+  "rate_hz_min_median_max": [
+    36.525339325546746,
+    49.33504389438748,
+    53.18676263806343
+  ],
+  "stations_m": [
+    8,
+    10,
+    12,
+    14,
+    16,
+    16.3,
+    18,
+    20
+  ],
+  "supported_recordings_by_station": {
+    "first_crest_return": [
+      389,
+      388,
+      378,
+      359,
+      257,
+      244,
+      151,
+      62
+    ],
+    "source": [
+      390,
+      390,
+      390,
+      390,
+      369,
+      343,
+      279,
+      173
+    ]
+  },
+  "ten_critical_recordings": {
+    "h500T200H120P1": {
+      "earliest_threshold_return_s": 15.731424,
+      "first_crest_return": {
+        "cycles": 0.9616319999999998,
+        "qualified": false,
+        "rows": 76
+      },
+      "first_threshold_s": 11.839968,
+      "first_to_stable_s": 1.9681920000000002,
+      "source": {
+        "cond": 1.5266413007963509,
+        "cycles": 1.9464480000000002,
+        "harmonic_peak_to_trough_mm": 114.46781216996946,
+        "qualified": true,
+        "rank": 7,
+        "rows": 149
+      },
+      "source_fallback_to_first_crest": false,
+      "source_start_s": 13.80816,
+      "source_stop_s": 17.701056,
+      "status": "window"
+    },
+    "h500T200H120P2": {
+      "earliest_threshold_return_s": 14.879376,
+      "first_crest_return": {
+        "cycles": -0.009719999999999729,
+        "qualified": false,
+        "rows": 0
+      },
+      "first_threshold_s": 10.978704,
+      "first_to_stable_s": 3.9201119999999996,
+      "source": {
+        "cond": 1.5173294853704393,
+        "cycles": 1.9499759999999995,
+        "harmonic_peak_to_trough_mm": 112.30977549587328,
+        "qualified": true,
+        "rank": 7,
+        "rows": 158
+      },
+      "source_fallback_to_first_crest": false,
+      "source_start_s": 14.898816,
+      "source_stop_s": 18.798768,
+      "status": "window"
+    },
+    "h500T200H20P1": {
+      "earliest_threshold_return_s": 14.619312,
+      "first_crest_return": {
+        "cycles": -6.031079999999999,
+        "qualified": false,
+        "rows": 0
+      },
+      "first_threshold_s": 10.719648,
+      "first_to_stable_s": 15.961824,
+      "source": {
+        "cond": 1.524455374023649,
+        "cycles": 1.9595520000000004,
+        "harmonic_peak_to_trough_mm": 9.857086571797614,
+        "qualified": true,
+        "rank": 7,
+        "rows": 146
+      },
+      "source_fallback_to_first_crest": false,
+      "source_start_s": 26.681472,
+      "source_stop_s": 30.600576,
+      "status": "window"
+    },
+    "h500T200H20P2": {
+      "earliest_threshold_return_s": 17.940816,
+      "first_crest_return": {
+        "cond": 1.5444750760039145,
+        "cycles": 1.950336000000001,
+        "harmonic_peak_to_trough_mm": 18.52787351388497,
+        "qualified": true,
+        "rank": 7,
+        "rows": 150
+      },
+      "first_threshold_s": 14.040144,
+      "first_to_stable_s": 0.0,
+      "source": {
+        "cond": 1.5444750760039145,
+        "cycles": 1.950336000000001,
+        "harmonic_peak_to_trough_mm": 18.52787351388497,
+        "qualified": true,
+        "rank": 7,
+        "rows": 150
+      },
+      "source_fallback_to_first_crest": false,
+      "source_start_s": 14.040144,
+      "source_stop_s": 17.940816,
+      "status": "window"
+    },
+    "h500T200H40P1": {
+      "earliest_threshold_return_s": 14.488704,
+      "first_crest_return": {
+        "cycles": 0.934056,
+        "qualified": false,
+        "rows": 76
+      },
+      "first_threshold_s": 10.584,
+      "first_to_stable_s": 2.0365920000000006,
+      "source": {
+        "cond": 1.5186861992364566,
+        "cycles": 1.9500479999999998,
+        "harmonic_peak_to_trough_mm": 38.07007376728978,
+        "qualified": true,
+        "rank": 7,
+        "rows": 158
+      },
+      "source_fallback_to_first_crest": false,
+      "source_start_s": 12.620592,
+      "source_stop_s": 16.520688,
+      "status": "window"
+    },
+    "h500T200H40P2": {
+      "earliest_threshold_return_s": 16.079616,
+      "first_crest_return": {
+        "cycles": 0.9794880000000008,
+        "qualified": false,
+        "rows": 83
+      },
+      "first_threshold_s": 12.168432,
+      "first_to_stable_s": 1.9522080000000006,
+      "source": {
+        "cond": 1.4972546025865288,
+        "cycles": 1.9497600000000004,
+        "harmonic_peak_to_trough_mm": 37.695151770971016,
+        "qualified": true,
+        "rank": 7,
+        "rows": 158
+      },
+      "source_fallback_to_first_crest": false,
+      "source_start_s": 14.12064,
+      "source_stop_s": 18.02016,
+      "status": "window"
+    },
+    "h500T200H60P1": {
+      "earliest_threshold_return_s": 15.099552,
+      "first_crest_return": {
+        "cycles": 0.9799199999999999,
+        "qualified": false,
+        "rows": 75
+      },
+      "first_threshold_s": 11.180448,
+      "first_to_stable_s": 1.9592639999999992,
+      "source": {
+        "cond": 1.4938914007778485,
+        "cycles": 1.95012,
+        "harmonic_peak_to_trough_mm": 55.8351714613819,
+        "qualified": true,
+        "rank": 7,
+        "rows": 149
+      },
+      "source_fallback_to_first_crest": false,
+      "source_start_s": 13.139712,
+      "source_stop_s": 17.039952,
+      "status": "window"
+    },
+    "h500T200H60P2": {
+      "earliest_threshold_return_s": 16.061904,
+      "first_crest_return": {
+        "cycles": 0.9591839999999996,
+        "qualified": false,
+        "rows": 76
+      },
+      "first_threshold_s": 12.141792,
+      "first_to_stable_s": 2.0017439999999986,
+      "source": {
+        "cond": 1.5039371880764278,
+        "cycles": 1.949688000000001,
+        "harmonic_peak_to_trough_mm": 56.26179114561628,
+        "qualified": true,
+        "rank": 7,
+        "rows": 150
+      },
+      "source_fallback_to_first_crest": false,
+      "source_start_s": 14.143536,
+      "source_stop_s": 18.042912,
+      "status": "window"
+    },
+    "h500T200H90P1": {
+      "earliest_threshold_return_s": 16.06392,
+      "first_crest_return": {
+        "cycles": 0.9610560000000001,
+        "qualified": false,
+        "rows": 80
+      },
+      "first_threshold_s": 12.161952,
+      "first_to_stable_s": 1.9798559999999998,
+      "source": {
+        "cond": 1.5549798324300583,
+        "cycles": 1.9600560000000007,
+        "harmonic_peak_to_trough_mm": 84.93173350222212,
+        "qualified": true,
+        "rank": 7,
+        "rows": 157
+      },
+      "source_fallback_to_first_crest": false,
+      "source_start_s": 14.141808,
+      "source_stop_s": 18.06192,
+      "status": "window"
+    },
+    "h500T200H90P2": {
+      "earliest_threshold_return_s": 15.461568,
+      "first_crest_return": {
+        "cycles": 0.9799199999999999,
+        "qualified": false,
+        "rows": 71
+      },
+      "first_threshold_s": 11.540304,
+      "first_to_stable_s": 1.9614239999999992,
+      "source": {
+        "cond": 1.5590179190377171,
+        "cycles": 1.9498320000000007,
+        "harmonic_peak_to_trough_mm": 84.87475535862644,
+        "qualified": true,
+        "rank": 7,
+        "rows": 142
+      },
+      "source_fallback_to_first_crest": false,
+      "source_start_s": 13.501728,
+      "source_stop_s": 17.401392,
+      "status": "window"
+    }
+  },
+  "unsupported_author_presets": [
+    [
+      0.5,
+      2.0,
+      16.0,
+      0.08,
+      0.08654636071630421
+    ]
+  ],
+  "unsupported_raw_presets": {
+    "first_crest_return": [
+      [
+        0.5,
+        1.5,
+        16.0,
+        0.05,
+        0.054394111133363995
+      ],
+      [
+        0.5,
+        2.0,
+        16.0,
+        0.08,
+        0.08654636071630421
+      ]
+    ],
+    "source": []
+  },
+  "wraps": 7
+}

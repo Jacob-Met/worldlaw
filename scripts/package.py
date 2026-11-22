@@ -16,6 +16,14 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/bilbao-first-arrival-support/README.md",
+    "research/bilbao-first-arrival-support/independent_windows.py",
+    "research/bilbao-first-arrival-support/nominal_contract.md",
+    "research/bilbao-first-arrival-support/qualify_flume.py",
+    "research/bilbao-first-arrival-support/qualification.json",
+    "research/bilbao-first-arrival-support/raw_window_audit.py",
+    "research/bilbao-first-arrival-support/validation-preset-roster.json",
+    "research/bilbao-first-arrival-support/xlsx_tables.py",
     "research/bridge-cross-speed-strain/README.md",
     "research/bridge-cross-speed-strain/bridge_source.py",
     "research/bridge-cross-speed-strain/clock_registration.py",
