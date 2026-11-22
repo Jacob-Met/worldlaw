@@ -19,7 +19,8 @@ def author_archive(path):
         entry=entries[0];details=entry['content_details']
         assert entry['id']=='97f1c2af-4ceb-4570-a173-abaad91ba6f9' and details['sha256_hash']==SOURCE_SHA
         temporary=path.with_suffix('.part')
-        with urlopen(details['download_url'],timeout=120) as source,temporary.open('wb') as target:
+        request=Request(details['download_url'],headers={'User-Agent':'Published piezoelectric response archive, schema only'})
+        with urlopen(request,timeout=120) as source,temporary.open('wb') as target:
             while chunk:=source.read(1<<20):target.write(chunk)
         if temporary.stat().st_size!=98478148 or hashlib.sha256(temporary.read_bytes()).hexdigest()!=SOURCE_SHA:
             raise ValueError('Downloaded source differs from the registered v9 object')
