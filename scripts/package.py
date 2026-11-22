@@ -16,6 +16,15 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/kaheman-mounted-double-pendulum/README.md",
+    "research/kaheman-mounted-double-pendulum/exact_mounted.py",
+    "research/kaheman-mounted-double-pendulum/frozen-results.json",
+    "research/kaheman-mounted-double-pendulum/mounted.c",
+    "research/kaheman-mounted-double-pendulum/physical.py",
+    "research/kaheman-mounted-double-pendulum/protocol.txt",
+    "research/kaheman-mounted-double-pendulum/range_reader.py",
+    "research/kaheman-mounted-double-pendulum/replay.py",
+    "research/kaheman-mounted-double-pendulum/source_lineage.py",
     "research/continuum-robot-contact-wrench/README.md",
     "research/continuum-robot-contact-wrench/prospective.md",
     "research/continuum-robot-contact-wrench/contact_models.py",
