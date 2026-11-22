@@ -1,0 +1,33 @@
+Fs = 64000;
+Nw = 512;
+am = 640;
+hop = 50;
+cfg = struct('abs',0,'calib',1,'coh',0);
+w = hanning(Nw);
+[peak,imax] = max(w);
+fprintf('NATIVE_WINDOW first_one_based=%d left=%.17g right=%.17g\n',imax,w(256),w(257));
+fid = fopen('native_w512.bin','wb','ieee-le');
+fwrite(fid,w,'double');
+fclose(fid);
+frame_counts = [5111,5112,4900];
+turn_counts = [15,25,24.6];
+for ix = 1:3
+    frames = frame_counts(ix);
+    n = (0:(Nw+hop*(frames-1)-1))';
+    t = n/Fs;
+    turns = turn_counts(ix);
+    x = (1+.6*cos(2*pi*380*t)).*(sin(2*pi*7340*t)+.43*cos(2*pi*12183*t)) + 1.8*(mod(n,757)==0);
+    x = x - mean(x);
+    [S,a,f] = Fast_SC(x,Nw,am,Fs,cfg);
+    [ow,cw] = meshgrid((0:1280)/64,0:125:32000);
+    grid = interp2(a,f,abs(S),ow*turns,cw-ow*turns/2,'linear',0);
+    fid = fopen(sprintf('window_input_%d.bin',ix),'wb','ieee-le');
+    fwrite(fid,x,'double'); fclose(fid);
+    fid = fopen(sprintf('window_S_%d.bin',ix),'wb','ieee-le');
+    fwrite(fid,real(S(:)),'double'); fwrite(fid,imag(S(:)),'double'); fclose(fid);
+    fid = fopen(sprintf('window_axes_%d.bin',ix),'wb','ieee-le');
+    fwrite(fid,a(:),'double'); fwrite(fid,f(:),'double'); fclose(fid);
+    fid = fopen(sprintf('window_grid_%d.bin',ix),'wb','ieee-le');
+    fwrite(fid,grid(:),'double'); fclose(fid);
+    fprintf('NATIVE_CASE %d %d %d %d %.17g %.17g\n',ix,frames,numel(a),numel(f),max(abs(S(:))),max(grid(:)));
+endfor
