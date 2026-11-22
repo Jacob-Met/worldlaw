@@ -1,0 +1,58 @@
+{
+  "905235": {
+    "url": "https://datadocs.bco-dmo.org/dataset/905235/file/YVl5ygMuDDDNAV/905235_v1_rawph.csv",
+    "bytes": 311164,
+    "sha256": "e29a43ef75ca386fe41080961495ca232e1bed6385445f0fb59a828f2d88e424",
+    "md5": "adefcb2cbac5a23c4dfd118660c19f20",
+    "header": [
+      "Batch",
+      "Bottle",
+      "Rep",
+      "Practical_Salinity",
+      "Calculated_Temperature",
+      "Measured_Temperature",
+      "A434",
+      "A578",
+      "A730",
+      "A488",
+      "R",
+      "raw_pHt",
+      "flag",
+      "flag_reason"
+    ]
+  },
+  "905278": {
+    "url": "https://datadocs.bco-dmo.org/dataset/905278/file/B1R6P4LiVM4o0Y/905278_v1_ta_dic.csv",
+    "bytes": 2465,
+    "sha256": "8eedc82518a161c94e8a8480124561f461930b7bcc0c52ee307ac3c237c164ee",
+    "md5": "bb79044f2152c9c697f2ca4478c04c89",
+    "header": [
+      "Batch",
+      "Practical_Salinity",
+      "meas_TA",
+      "meas_DIC"
+    ]
+  },
+  "905357": {
+    "url": "https://datadocs.bco-dmo.org/dataset/905357/file/DwJ8Q5pulZqyP/905357_v1_measuredph.csv",
+    "bytes": 18743,
+    "sha256": "fc1b18c5eee9960e5833e340eb52497b556740965baaa2b8dd4dd897e89702c3",
+    "md5": "4ac14585e23ec70b171225bb18302995",
+    "header": [
+      "Batch",
+      "Practical_Salinity",
+      "Temp",
+      "meas_pHt",
+      "pHt_std_err",
+      "meas_TA",
+      "TA_std",
+      "meas_DIC",
+      "DIC_std",
+      "equilibrator_pCO2",
+      "PO4",
+      "PO4_stdev",
+      "Si",
+      "Si_stdev"
+    ]
+  }
+}
