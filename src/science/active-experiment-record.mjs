@@ -13,6 +13,7 @@ import {ACTIVE_LINEAR_ADAPTIVE_SCHEMA,ACTIVE_ADAPTIVE_READINGS_SCHEMA,
   from './active-linear-adaptive.mjs';
 
 import {designConditionalFuture,classifyAccumulatedReadings,FOLLOWUP_READINGS} from './active-linear-followup.mjs';
+import {ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA,designActiveVandermondeNonlinear,replayActiveVandermondeNonlinear,evaluateActiveVandermondeReadings} from './active-vandermonde-nonlinear.mjs';
 
 export const ACTIVE_EXPERIMENT_NOTEBOOK_SCHEMA='worldlaw.active-experiment-notebook/v1';
 const encoder=new TextEncoder();
@@ -35,19 +36,21 @@ function source(bytes){
   const bounded=request?.schema===ACTIVE_LINEAR_CONTROL_BOX_SCHEMA;
   const joint=request?.schema===ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA;
   const adaptive=request?.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA;
-  need(multiple||bounded||joint||adaptive||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request?.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request?.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA,
+  const vandermonde=request?.schema===ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA;
+  need(multiple||bounded||joint||adaptive||vandermonde||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request?.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request?.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA,
     'Unrecognized active experiment source schema; choose linear family, intervention family, control box, joint control, one erasure, one replaced reading, affine sensor or adaptive v1');
-  return {request,multiple,bounded,joint,adaptive};
+  return {request,multiple,bounded,joint,adaptive,vandermonde};
 }
 function pick(value,keys){return Object.fromEntries(keys.map(key=>[key,value?.[key]]));}
 
 /** Create a new prospective plan, or reproduce a saved plan exactly. */
 export async function sealActivePlan(original,{prior=null,sourcePath}={}){
-  const bytes=bytesOf(original),{request,multiple,bounded,joint,adaptive}=source(bytes);
+  const bytes=bytesOf(original),{request,multiple,bounded,joint,adaptive,vandermonde}=source(bytes);
   const saved=prior==null?null:clone(prior);
   const core=multiple?designActiveInterventionFamily(request):bounded?
     designActiveLinearControlBox(request):joint?designActiveLinearJointControl(request):
-    adaptive?designActiveLinearAdaptive(request):designActiveLinearFamily(request);
+    adaptive?designActiveLinearAdaptive(request):vandermonde?
+    designActiveVandermondeNonlinear(request):designActiveLinearFamily(request);
   const sourceSHA256=await activeBytesSHA256(bytes);
   let frozen=core,planSHA256=await activeBytesSHA256(JSON.stringify(core));
   if(saved){
@@ -60,6 +63,7 @@ export async function sealActivePlan(original,{prior=null,sourcePath}={}){
     else if(bounded)replayActiveLinearControlBox(request,previous);
     else if(joint)replayActiveLinearJointControl(request,previous);
     else if(adaptive)replayActiveLinearAdaptive(request,previous);
+    else if(vandermonde)replayActiveVandermondeNonlinear(request,previous);
     else replayActiveLinearFamily(request,previous);
     frozen=previous;planSHA256=saved.planSHA256;
   }
@@ -72,7 +76,7 @@ export async function sealActiveReadout(original,plan,readings,{prior=null,sourc
   const sourceBytes=bytesOf(original),readingBytes=bytesOf(readings);
   const saved=prior==null?null:clone(prior);
   const frozen=await sealActivePlan(sourceBytes,{prior:plan});
-  const {request}=source(sourceBytes);
+  const {request,vandermonde}=source(sourceBytes);
   need(request.schema!==ACTIVE_LINEAR_ADAPTIVE_SCHEMA,
     'Adaptive readings require the original portable notebook and its complete preceding transcript.');
   const supplied=JSON.parse(decoder.decode(readingBytes));
@@ -80,7 +84,7 @@ export async function sealActiveReadout(original,plan,readings,{prior=null,sourc
     'Readout source or plan digest does not match the frozen prospective certificate.');
   const core=Object.fromEntries(Object.entries(frozen).filter(([key])=>
     !['sourceSHA256','planSHA256','evidenceLevel'].includes(key)));
-  const result=evaluateActiveLinearReadings(request,core,supplied);
+  const result=vandermonde?evaluateActiveVandermondeReadings(request,core,supplied):evaluateActiveLinearReadings(request,core,supplied);
   const report={sourceSHA256:frozen.sourceSHA256,planSHA256:frozen.planSHA256,
     readingsSHA256:await activeBytesSHA256(readingBytes),
     ...(sourcePath!==undefined?{sourcePath}:{}),...(planPath!==undefined?{planPath}:{}),
