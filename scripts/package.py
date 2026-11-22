@@ -16,6 +16,11 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/irpwind-airfoil-history/README.md",
+    "research/irpwind-airfoil-history/baseline.py",
+    "research/irpwind-airfoil-history/history.py",
+    "research/irpwind-airfoil-history/replay.py",
+    "research/irpwind-airfoil-history/frozen-results.json",
     "Makefile",
     "src/active/*.mjs",
     "active.html", "active.css",
