@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "<string>", line 54, in <module>
+  File "<string>", line 51, in main
+  File "/home/ubuntu/.cache/uv/archive-v0/I8cLhzpITj1WbAv2/lib/python3.12/site-packages/scipy/spatial/transform/_rotation.py", line 814, in from_euler
+    quat = backend.from_euler(seq, angles, degrees=degrees)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "scipy/spatial/transform/_rotation_cy.pyx", line 454, in scipy.spatial.transform._rotation_cy.from_euler
+ValueError: Expected last dimension of `angles` to match number of sequence axes specified, got 15.

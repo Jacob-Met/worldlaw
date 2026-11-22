@@ -1,0 +1,29 @@
+{"trial": 19, "mat_fields": [["imu_gyr", [88071, 3], "double"], ["imu_acc", [88071, 3], "double"], ["imu_mag", [88071, 3], "double"], ["opt_quat", [88071, 4], "double"], ["opt_pos", [88071, 3], "double"], ["sampling_rate", [1, 1], "double"], ["movement", [88071, 1], "logical"], ["info", [1], "char"]], "file_sha256": "7568c31fb6fabfb23a2db40f65019165ab7cf39991a0c1c8ef48d3979ba1592d"}
+/home/ubuntu/.cache/uv/archive-v0/I8cLhzpITj1WbAv2/lib/python3.12/site-packages/scipy/_external/array_api_compat/numpy/_aliases.py:94: ComplexWarning: Casting complex values to real discards the imaginary part
+  return np.array(obj, copy=copy, dtype=dtype, **kwargs)
+{"trial": 28, "mat_fields": [["imu_gyr", [52628, 3], "double"], ["imu_acc", [52628, 3], "double"], ["imu_mag", [52628, 3], "double"], ["opt_quat", [52628, 4], "double"], ["opt_pos", [52628, 3], "double"], ["sampling_rate", [1, 1], "double"], ["movement", [52628, 1], "logical"], ["info", [1], "char"]], "file_sha256": "a909fb0b89ff454328cdb1151e6b796082b748a4cb5d6b00986a221649ccff42"}
+{"trial": 34, "mat_fields": [["imu_gyr", [48305, 3], "double"], ["imu_acc", [48305, 3], "double"], ["imu_mag", [48305, 3], "double"], ["opt_quat", [48305, 4], "double"], ["opt_pos", [48305, 3], "double"], ["sampling_rate", [1, 1], "double"], ["movement", [48305, 1], "logical"], ["info", [1], "char"]], "file_sha256": "b6fc1bc7c858b241cf0cfe5db57c364f8e5e92f44d22f0501a8b95e0d03f0264"}
+Traceback (most recent call last):
+  File "/home/ubuntu/hamon-work/sessions/native-164cfc438811e8f0934696692cf8eed45f4dc916068d22eb68f5f12f23e5a78d/p3-broad-sensor-training-se3czebp/source_field_pilot.py", line 85, in <module>
+    if __name__=="__main__":main()
+                            ^^^^^^
+  File "/home/ubuntu/hamon-work/sessions/native-164cfc438811e8f0934696692cf8eed45f4dc916068d22eb68f5f12f23e5a78d/p3-broad-sensor-training-se3czebp/source_field_pilot.py", line 82, in main
+    print(json.dumps({"schema":"p3.broad.source-sensor-only.v1","trials":out,"optical_arrays_decoded":0,"prospective_held_trials_opened":0},sort_keys=True))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type complex is not JSON serializable
+Traceback (most recent call last):
+  File "<string>", line 7, in <module>
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/home/ubuntu/.local/bin/uv', 'run', '--offline', '--no-project', '--with', 'scipy', '--python', '3.12', 'python', 'source_field_pilot.py']' returned non-zero exit status 1.
