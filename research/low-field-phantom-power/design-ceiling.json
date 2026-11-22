@@ -1,0 +1,29 @@
+{
+  "clipped_pairs": [
+    [
+      100.0,
+      101.0
+    ],
+    [
+      100.0,
+      105.0
+    ]
+  ],
+  "design_grid_points": 420,
+  "greatest_absolute_b1_error": 0.4445227096764789,
+  "grid": "28 log-spaced nominal T1 .025..4s by 15 B1 .65..1.30",
+  "median_max_relative_low_error": 7.346253372719769e-05,
+  "preconditions": "Noiseless ideal perfectly spoiled steady states, nominal TR, unclipped-positive refit; engineering design grid only",
+  "resulting_source_map": [
+    0.6,
+    0.6
+  ],
+  "worst_low": {
+    "apparent_b1": 0.8554772903235212,
+    "fitted_t1_s": 0.0575334981938783,
+    "max_relative_high_error": 0.0007817063471242669,
+    "max_relative_low_error": 0.0006774940170364285,
+    "seconds": 0.025,
+    "true_b1": 1.3
+  }
+}
