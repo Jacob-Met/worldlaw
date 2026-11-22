@@ -16,6 +16,18 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/pv-series-remainder/README.md",
+    "research/pv-series-remainder/protocol.md",
+    "research/pv-series-remainder/forecast.py",
+    "research/pv-series-remainder/score.py",
+    "research/pv-series-remainder/string_model.py",
+    "research/pv-series-remainder/replay.py",
+    "research/pv-series-remainder/recount.py",
+    "research/pv-series-remainder/course-receipt.json",
+    "research/pv-series-remainder/input-support.json",
+    "research/pv-series-remainder/original-scores.json",
+    "research/pv-series-remainder/forecast-hashes.json",
+    "research/pv-series-remainder/support_witness.py",
     "research/cargill-glass-source/README.md",
     "research/cargill-glass-source/inspect_source.py",
     "research/cargill-glass-source/source-receipt.json",

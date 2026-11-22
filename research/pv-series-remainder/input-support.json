@@ -1,0 +1,560 @@
+{
+  "archive_sha256": "e08ab75a76e5234fce9d55220cbb75531bdcd70aa3ce9749cd190648b2bfb9fb",
+  "registry_sha256": "a6db2966b67c0a3d78360e8931caefd6fe54ed8d41a783b168d89c0e995a9e50",
+  "mat_file_count": 264,
+  "raw_count": {
+    "test1": 57,
+    "test2": 20,
+    "test3": 55
+  },
+  "processed_count": {
+    "test1": 57,
+    "test2": 20,
+    "test3": 55
+  },
+  "test1_missing": [
+    "MP4_Irr1",
+    "MP4_Irr2",
+    "MP4_Irr3"
+  ],
+  "test3_missing": [
+    "MP15_S2",
+    "MP2_S2",
+    "MP7_NS",
+    "MP7_S1",
+    "MP7_S2"
+  ],
+  "field_temperatures_degC": {
+    "calibration_min": 39.9,
+    "calibration_max": 46.6,
+    "MP4_NS": 56.9,
+    "MP4_S1": 47.9,
+    "MP4_S2": 57.8
+  },
+  "common_current": {
+    "identical_on_all55_with_equal_NaN": true,
+    "nonfinite_input_rows": 9,
+    "positions_zero_based": [
+      "MP1,MP18,MP19,all NS/S1/S2, row1000"
+    ],
+    "other_raw_rows_finite": true
+  },
+  "source_support": [
+    {
+      "all19_current_supported": 74,
+      "file": "MP4_NS.mat",
+      "limiting_panels": [
+        [
+          3,
+          {
+            "outside_rows": 901,
+            "permissive_interval_amp": [
+              -0.0002555448707862538,
+              0.09359579495201782
+            ]
+          }
+        ],
+        [
+          2,
+          {
+            "outside_rows": 891,
+            "permissive_interval_amp": [
+              -0.0007963852340298717,
+              0.09872200919302619
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "outside_rows": 889,
+            "permissive_interval_amp": [
+              -0.0010251765368821458,
+              0.0989658432076532
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0.06265887706886138,
+      "max_below_amp": 0.0028069551292137463,
+      "most_missing_at_one_row": 19,
+      "n": 1000,
+      "normalized_by_irradiance": false,
+      "outside_each_member_temperature": 19,
+      "source": "Processed Data"
+    },
+    {
+      "all19_current_supported": 58,
+      "file": "MP4_NS.mat",
+      "limiting_panels": [
+        [
+          3,
+          {
+            "outside_rows": 732,
+            "permissive_interval_amp": [
+              -0.000847774772060966,
+              0.13522773862022297
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "outside_rows": 716,
+            "permissive_interval_amp": [
+              -0.001416239319188253,
+              0.136717251482913
+            ]
+          }
+        ],
+        [
+          2,
+          {
+            "outside_rows": 716,
+            "permissive_interval_amp": [
+              -0.0011035277099590752,
+              0.13679619871411708
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0.07287323966884134,
+      "max_below_amp": 0.0022147252279390343,
+      "most_missing_at_one_row": 19,
+      "n": 1000,
+      "normalized_by_irradiance": true,
+      "outside_each_member_temperature": 19,
+      "source": "Processed Data"
+    },
+    {
+      "all19_current_supported": 74,
+      "file": "MP4_S1.mat",
+      "limiting_panels": [
+        [
+          1,
+          {
+            "outside_rows": 580,
+            "permissive_interval_amp": [
+              -0.0010251765368821458,
+              0.0989658432076532
+            ]
+          }
+        ],
+        [
+          2,
+          {
+            "outside_rows": 580,
+            "permissive_interval_amp": [
+              -0.0007963852340298717,
+              0.09872200919302619
+            ]
+          }
+        ],
+        [
+          3,
+          {
+            "outside_rows": 580,
+            "permissive_interval_amp": [
+              -0.0002555448707862538,
+              0.09359579495201782
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0.005815077068861391,
+      "max_below_amp": 0.002931955129213746,
+      "most_missing_at_one_row": 3,
+      "n": 1000,
+      "normalized_by_irradiance": false,
+      "outside_each_member_temperature": 19,
+      "source": "Processed Data"
+    },
+    {
+      "all19_current_supported": 64,
+      "file": "MP4_S1.mat",
+      "limiting_panels": [
+        [
+          2,
+          {
+            "outside_rows": 580,
+            "permissive_interval_amp": [
+              -0.0012067178698562384,
+              0.14958792246626224
+            ]
+          }
+        ],
+        [
+          3,
+          {
+            "outside_rows": 580,
+            "permissive_interval_amp": [
+              -0.0009270496407355337,
+              0.1478727966870205
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "outside_rows": 570,
+            "permissive_interval_amp": [
+              -0.0015486709386943053,
+              0.14950159293071014
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0.009401799813892525,
+      "max_below_amp": 0.002260450359264466,
+      "most_missing_at_one_row": 3,
+      "n": 1000,
+      "normalized_by_irradiance": true,
+      "outside_each_member_temperature": 19,
+      "source": "Processed Data"
+    },
+    {
+      "all19_current_supported": 410,
+      "file": "MP4_S2.mat",
+      "limiting_panels": [
+        [
+          3,
+          {
+            "outside_rows": 590,
+            "permissive_interval_amp": [
+              -0.0002555448707862538,
+              0.09359579495201782
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "outside_rows": 586,
+            "permissive_interval_amp": [
+              -0.0010251765368821458,
+              0.0989658432076532
+            ]
+          }
+        ],
+        [
+          2,
+          {
+            "outside_rows": 586,
+            "permissive_interval_amp": [
+              -0.0007963852340298717,
+              0.09872200919302619
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0,
+      "max_below_amp": 0.002494455129213746,
+      "most_missing_at_one_row": 3,
+      "n": 1000,
+      "normalized_by_irradiance": false,
+      "outside_each_member_temperature": 19,
+      "source": "Processed Data"
+    },
+    {
+      "all19_current_supported": 379,
+      "file": "MP4_S2.mat",
+      "limiting_panels": [
+        [
+          3,
+          {
+            "outside_rows": 586,
+            "permissive_interval_amp": [
+              -0.0009270496407355337,
+              0.1478727966870205
+            ]
+          }
+        ],
+        [
+          2,
+          {
+            "outside_rows": 581,
+            "permissive_interval_amp": [
+              -0.0012067178698562384,
+              0.14958792246626224
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "outside_rows": 519,
+            "permissive_interval_amp": [
+              -0.0015486709386943053,
+              0.14950159293071014
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0.003495599813892525,
+      "max_below_amp": 0.001822950359264466,
+      "most_missing_at_one_row": 3,
+      "n": 1000,
+      "normalized_by_irradiance": true,
+      "outside_each_member_temperature": 19,
+      "source": "Processed Data"
+    },
+    {
+      "all19_current_supported": 75,
+      "file": "MP4_NS.mat",
+      "limiting_panels": [
+        [
+          3,
+          {
+            "outside_rows": 896,
+            "permissive_interval_amp": [
+              -0.0012166502,
+              0.094917245
+            ]
+          }
+        ],
+        [
+          2,
+          {
+            "outside_rows": 888,
+            "permissive_interval_amp": [
+              -0.0011795949,
+              0.099647976
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "outside_rows": 887,
+            "permissive_interval_amp": [
+              -0.0014328064,
+              0.099987648
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0.062320897999999986,
+      "max_below_amp": 0.0018829051,
+      "most_missing_at_one_row": 19,
+      "n": 1000,
+      "normalized_by_irradiance": false,
+      "outside_each_member_temperature": 19,
+      "source": "Raw Data"
+    },
+    {
+      "all19_current_supported": 640,
+      "file": "MP4_NS.mat",
+      "limiting_panels": [
+        [
+          14,
+          {
+            "outside_rows": 360,
+            "permissive_interval_amp": [
+              -0.06569998048125,
+              0.07117216703653848
+            ]
+          }
+        ],
+        [
+          10,
+          {
+            "outside_rows": 349,
+            "permissive_interval_amp": [
+              -0.06144463836585366,
+              0.07912418055958055
+            ]
+          }
+        ],
+        [
+          12,
+          {
+            "outside_rows": 334,
+            "permissive_interval_amp": [
+              -0.048574862602105265,
+              0.08476507818068833
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0.07257783296346151,
+      "max_below_amp": 0,
+      "most_missing_at_one_row": 19,
+      "n": 1000,
+      "normalized_by_irradiance": true,
+      "outside_each_member_temperature": 19,
+      "source": "Raw Data"
+    },
+    {
+      "all19_current_supported": 75,
+      "file": "MP4_S1.mat",
+      "limiting_panels": [
+        [
+          2,
+          {
+            "outside_rows": 580,
+            "permissive_interval_amp": [
+              -0.0011795949,
+              0.099647976
+            ]
+          }
+        ],
+        [
+          3,
+          {
+            "outside_rows": 580,
+            "permissive_interval_amp": [
+              -0.0012166502,
+              0.094917245
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "outside_rows": 576,
+            "permissive_interval_amp": [
+              -0.0014328064,
+              0.099987648
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0.005477098,
+      "max_below_amp": 0.0020079050999999995,
+      "most_missing_at_one_row": 3,
+      "n": 1000,
+      "normalized_by_irradiance": false,
+      "outside_each_member_temperature": 19,
+      "source": "Raw Data"
+    },
+    {
+      "all19_current_supported": 644,
+      "file": "MP4_S1.mat",
+      "limiting_panels": [
+        [
+          14,
+          {
+            "outside_rows": 356,
+            "permissive_interval_amp": [
+              -0.0718435430125,
+              0.07782743018076924
+            ]
+          }
+        ],
+        [
+          10,
+          {
+            "outside_rows": 23,
+            "permissive_interval_amp": [
+              -0.06719028661788619,
+              0.08652303132697807
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "outside_rows": 0,
+            "permissive_interval_amp": [
+              -0.006880239428019323,
+              0.1510451703829787
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0.009078769819230767,
+      "max_below_amp": 0,
+      "most_missing_at_one_row": 2,
+      "n": 1000,
+      "normalized_by_irradiance": true,
+      "outside_each_member_temperature": 19,
+      "source": "Raw Data"
+    },
+    {
+      "all19_current_supported": 417,
+      "file": "MP4_S2.mat",
+      "limiting_panels": [
+        [
+          2,
+          {
+            "outside_rows": 583,
+            "permissive_interval_amp": [
+              -0.0011795949,
+              0.099647976
+            ]
+          }
+        ],
+        [
+          3,
+          {
+            "outside_rows": 581,
+            "permissive_interval_amp": [
+              -0.0012166502,
+              0.094917245
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "outside_rows": 559,
+            "permissive_interval_amp": [
+              -0.0014328064,
+              0.099987648
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0,
+      "max_below_amp": 0.0015704050999999998,
+      "most_missing_at_one_row": 3,
+      "n": 1000,
+      "normalized_by_irradiance": false,
+      "outside_each_member_temperature": 19,
+      "source": "Raw Data"
+    },
+    {
+      "all19_current_supported": 968,
+      "file": "MP4_S2.mat",
+      "limiting_panels": [
+        [
+          14,
+          {
+            "outside_rows": 32,
+            "permissive_interval_amp": [
+              -0.0718435430125,
+              0.07782743018076924
+            ]
+          }
+        ],
+        [
+          1,
+          {
+            "outside_rows": 0,
+            "permissive_interval_amp": [
+              -0.006880239428019323,
+              0.1510451703829787
+            ]
+          }
+        ],
+        [
+          2,
+          {
+            "outside_rows": 0,
+            "permissive_interval_amp": [
+              -0.005479052946728972,
+              0.15099098802439023
+            ]
+          }
+        ]
+      ],
+      "max_above_amp": 0.0031725698192307666,
+      "max_below_amp": 0,
+      "most_missing_at_one_row": 1,
+      "n": 1000,
+      "normalized_by_irradiance": true,
+      "outside_each_member_temperature": 19,
+      "source": "Raw Data"
+    }
+  ]
+}

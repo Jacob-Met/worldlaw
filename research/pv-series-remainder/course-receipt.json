@@ -1,0 +1,305 @@
+{
+  "archive": "e08ab75a76e5234fce9d55220cbb75531bdcd70aa3ce9749cd190648b2bfb9fb",
+  "registration": [
+    182835,
+    182861,
+    182874
+  ],
+  "source_refusals": [
+    "No numerical data from direct authenticated registry paths. Used public publisher-issued complete archive URL.",
+    "Initial memory-only SciPy intake lacked SciPy; stdlib MAT header projector completed.",
+    "Nonfinite raw-current input initially refused; full input-only recount localized 9 terminal NaNs outside MP4; all nine included in accounting."
+  ],
+  "forecast_originals": [
+    {
+      "stage": "development",
+      "failed_original": "p2-f747-PVmini20-182835-frozen-development-seven-forecast-lock",
+      "retained_refusal": "zero avalanche factor times undefined fractional power at 651/2101 grid points. NaN in training response prevented sealing.",
+      "successor": "p2-f747-PVmini20-182861-model-domain-development-seven-lock",
+      "sealed": {
+        "stage": "development",
+        "n": 334673,
+        "sha": "63e0917d12a68992aa9ec85cc3e87f13aa55d1b7e6b39ebd4015039ec6bfac0f",
+        "key": "r2-estate:hamon-build-cache/research/astra62-p2-f747f5728172/pvmini20/63e0917d12a68992aa9ec85cc3e87f13aa55d1b7e6b39ebd4015039ec6bfac0f/development-predictions.zip"
+      }
+    },
+    {
+      "stage": "final",
+      "failed_original": "p2-f747-PVmini20-182835-frozen-final-seven-forecast-lock",
+      "retained_refusal": "zero avalanche factor times undefined fractional power at 651/2101 grid points. NaN in training response prevented sealing.",
+      "successor": "p2-f747-PVmini20-182861-model-domain-final-seven-lock",
+      "sealed": {
+        "stage": "final",
+        "n": 83741,
+        "sha": "e9455b259afabe9751d2938a81ad55270e70bef5fa265456ccbed48b97e58550",
+        "key": "r2-estate:hamon-build-cache/research/astra62-p2-f747f5728172/pvmini20/e9455b259afabe9751d2938a81ad55270e70bef5fa265456ccbed48b97e58550/final-predictions.zip"
+      }
+    }
+  ],
+  "pvlib": {
+    "version": "0.15.2",
+    "wheel_sha256": "42035b063cc692bc3ece9480246297ccf211c835f1151faa752acac9584f6bb5",
+    "source_sha256": "6b234389db9478a3170db48c141d226e70d1a87682ff0682a5e8bc6f64435d67",
+    "prior_model_sha256": "c34b8a32a818d1647da294611328a959a6dc1e7a49733396d82e6bebab4fadca",
+    "repaired_model_sha256": "96f62d4ae1dbe11a3b24514296db619a96312d6155e929f95a00355c3544dc83",
+    "domain_qualifier": "p2-f747-PVmini20-2101-grid-inactive-breakdown-native-control",
+    "unchanged_finite_grid": 1450,
+    "all_grid_values": 2101,
+    "max_closed_form_abs": 8.881784197001252e-16
+  },
+  "score": {
+    "n": 35605,
+    "sha": "0f38fdbf6525154bc92535032d0759afca7fd407520708847cfb1719361ee398",
+    "key": "r2-estate:hamon-build-cache/research/astra62-p2-f747f5728172/pvmini20/0f38fdbf6525154bc92535032d0759afca7fd407520708847cfb1719361ee398/official-seven-arm-results.json"
+  },
+  "independent": {
+    "data": [
+      {
+        "individual_errors": 84000,
+        "joint": false,
+        "max_metric_difference_V": 3.552713678800501e-15,
+        "mean_worst_gates": [
+          false,
+          false
+        ],
+        "raw_worst_verified": 84,
+        "stage": "development",
+        "unique_curve_arms": 84
+      },
+      {
+        "individual_errors": 21000,
+        "joint": false,
+        "max_metric_difference_V": 1.4210854715202004e-14,
+        "mean_worst_gates": [
+          false,
+          false
+        ],
+        "raw_worst_verified": 21,
+        "stage": "final",
+        "unique_curve_arms": 21
+      }
+    ],
+    "n": 409,
+    "sha": "3b2ec57e813e9f843ac7017cd5e99cb3049b0235c27a8fccbbb2543190b7713b",
+    "key": "r2-estate:hamon-build-cache/research/astra62-p2-f747f5728172/pvmini20/3b2ec57e813e9f843ac7017cd5e99cb3049b0235c27a8fccbbb2543190b7713b/independent-raw-MAT-NPY-recount.json"
+  },
+  "worst": {
+    "sha": "9602d9adf7273a6c04879030084aa697f66ce2a64101880a15a4eed14a44c580",
+    "key": "r2-estate:hamon-build-cache/research/astra62-p2-f747f5728172/pvmini20/9602d9adf7273a6c04879030084aa697f66ce2a64101880a15a4eed14a44c580/worst-locked-MP4-S1.json",
+    "data": {
+      "nearby": [
+        {
+          "I": 0.0839062,
+          "V": -25.625,
+          "Va": 72.5469,
+          "j": 309,
+          "phase": 0.30930930930930933,
+          "previous_I": 0.0839687,
+          "remainder": 98.1719,
+          "seven_predictions": {
+            "bishop_residual_tree": 58.8663677349339,
+            "bishop_sum": 40.90573638826321,
+            "component_profile": 73.77050189212534,
+            "component_residual_tree": 61.53632398454253,
+            "direct_tree": 63.32751429944108,
+            "pooled_profile": 73.77050189212534,
+            "pooled_residual_tree": 62.79461973912519
+          }
+        },
+        {
+          "I": 0.0838125,
+          "V": -24.3867,
+          "Va": 73.9062,
+          "j": 310,
+          "phase": 0.3103103103103103,
+          "previous_I": 0.0839062,
+          "remainder": 98.2929,
+          "seven_predictions": {
+            "bishop_residual_tree": 59.108322492549476,
+            "bishop_sum": 41.07144984820545,
+            "component_profile": 73.871095766744,
+            "component_residual_tree": 61.636917859161194,
+            "direct_tree": 64.01315316330951,
+            "pooled_profile": 73.871095766744,
+            "pooled_residual_tree": 63.034274436253725
+          }
+        },
+        {
+          "I": 0.0836562,
+          "V": -23.2695,
+          "Va": 75.2656,
+          "j": 311,
+          "phase": 0.3113113113113113,
+          "previous_I": 0.0838125,
+          "remainder": 98.5351,
+          "seven_predictions": {
+            "bishop_residual_tree": 60.19329900688888,
+            "bishop_sum": 41.34781260887014,
+            "component_profile": 74.03850599436186,
+            "component_residual_tree": 62.87963360101733,
+            "direct_tree": 64.42118015554205,
+            "pooled_profile": 74.03850599436186,
+            "pooled_residual_tree": 63.0546624876578
+          }
+        },
+        {
+          "I": 0.0838125,
+          "V": -22.1211,
+          "Va": 76.5625,
+          "j": 312,
+          "phase": 0.3123123123123123,
+          "previous_I": 0.0836562,
+          "remainder": 98.6836,
+          "seven_predictions": {
+            "bishop_residual_tree": 58.04277942501512,
+            "bishop_sum": 41.07144984820545,
+            "component_profile": 73.871095766744,
+            "component_residual_tree": 60.90740270399077,
+            "direct_tree": 62.479379506802246,
+            "pooled_profile": 73.871095766744,
+            "pooled_residual_tree": 62.10322858548652
+          }
+        },
+        {
+          "I": 0.0837187,
+          "V": -20.8477,
+          "Va": 77.875,
+          "j": 313,
+          "phase": 0.3133133133133133,
+          "previous_I": 0.0838125,
+          "remainder": 98.7227,
+          "seven_predictions": {
+            "bishop_residual_tree": 59.437676360497406,
+            "bishop_sum": 41.23730879863196,
+            "component_profile": 73.97171988913938,
+            "component_residual_tree": 62.70759371748483,
+            "direct_tree": 63.941597435247765,
+            "pooled_profile": 73.97171988913938,
+            "pooled_residual_tree": 63.04401491605999
+          }
+        },
+        {
+          "I": 0.083875,
+          "V": -19.6055,
+          "Va": 79,
+          "j": 314,
+          "phase": 0.31431431431431434,
+          "previous_I": 0.0837187,
+          "remainder": 98.6055,
+          "seven_predictions": {
+            "bishop_residual_tree": 57.975198431794155,
+            "bishop_sum": 40.960916620497414,
+            "component_profile": 73.80411490934785,
+            "component_residual_tree": 60.84042184659461,
+            "direct_tree": 61.651634230665486,
+            "pooled_profile": 73.80411490934785,
+            "pooled_residual_tree": 61.89718690558049
+          }
+        },
+        {
+          "I": 0.083875,
+          "V": -18.3711,
+          "Va": 80.0938,
+          "j": 315,
+          "phase": 0.3153153153153153,
+          "previous_I": 0.083875,
+          "remainder": 98.4649,
+          "seven_predictions": {
+            "bishop_residual_tree": 59.0273719173769,
+            "bishop_sum": 40.960916620497414,
+            "component_profile": 73.80411490934785,
+            "component_residual_tree": 61.569937001765034,
+            "direct_tree": 63.32751429944108,
+            "pooled_profile": 73.80411490934785,
+            "pooled_residual_tree": 62.828232756347695
+          }
+        }
+      ],
+      "nearest_farther20": {
+        "I": 0.0838125,
+        "V": -32.3789,
+        "Va": 65.6719,
+        "j": 54,
+        "phase": 0.05405405405405406,
+        "previous_I": 0.0840313,
+        "remainder": 98.0508,
+        "seven_predictions": {
+          "bishop_residual_tree": 59.45400899838713,
+          "bishop_sum": 41.07144984820545,
+          "component_profile": 73.871095766744,
+          "component_residual_tree": 62.01522067776637,
+          "direct_tree": 64.78965904739748,
+          "pooled_profile": 73.871095766744,
+          "pooled_residual_tree": 62.97813590262905
+        }
+      },
+      "same_current_max_target": {
+        "I": 0.0838125,
+        "V": -22.1211,
+        "Va": 76.5625,
+        "j": 312,
+        "phase": 0.3123123123123123,
+        "previous_I": 0.0836562,
+        "remainder": 98.6836,
+        "seven_predictions": {
+          "bishop_residual_tree": 58.04277942501512,
+          "bishop_sum": 41.07144984820545,
+          "component_profile": 73.871095766744,
+          "component_residual_tree": 60.90740270399077,
+          "direct_tree": 62.479379506802246,
+          "pooled_profile": 73.871095766744,
+          "pooled_residual_tree": 62.10322858548652
+        }
+      },
+      "same_current_min_target": {
+        "I": 0.0838125,
+        "V": -32.3789,
+        "Va": 65.6719,
+        "j": 54,
+        "phase": 0.05405405405405406,
+        "previous_I": 0.0840313,
+        "remainder": 98.0508,
+        "seven_predictions": {
+          "bishop_residual_tree": 59.45400899838713,
+          "bishop_sum": 41.07144984820545,
+          "component_profile": 73.871095766744,
+          "component_residual_tree": 62.01522067776637,
+          "direct_tree": 64.78965904739748,
+          "pooled_profile": 73.871095766744,
+          "pooled_residual_tree": 62.97813590262905
+        }
+      },
+      "same_exact_current_count": 5,
+      "same_exact_current_farther20": 3,
+      "scope": "postscore descriptive within one repeatedly swept record; does not identify temperature, probe calibration, lag or model cause",
+      "worst": {
+        "I": 0.0838125,
+        "V": -22.1211,
+        "Va": 76.5625,
+        "j": 312,
+        "phase": 0.3123123123123123,
+        "previous_I": 0.0836562,
+        "remainder": 98.6836,
+        "seven_predictions": {
+          "bishop_residual_tree": 58.04277942501512,
+          "bishop_sum": 41.07144984820545,
+          "component_profile": 73.871095766744,
+          "component_residual_tree": 60.90740270399077,
+          "direct_tree": 62.479379506802246,
+          "pooled_profile": 73.871095766744,
+          "pooled_residual_tree": 62.10322858548652
+        }
+      }
+    }
+  },
+  "observed_runtime_versions": {
+    "numpy": "2.5.5",
+    "scipy": "1.18.1",
+    "scikit_learn": "1.9.1",
+    "pvlib": "0.15.2"
+  },
+  "native_fit_seconds": {
+    "development": 3.7037430389318615,
+    "final": 4.2245978930732235
+  }
+}
