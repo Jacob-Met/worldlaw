@@ -9,7 +9,7 @@ import {
   evaluateActiveLinearReadings,
 } from './active-linear-family.mjs';
 import {ACTIVE_LINEAR_ADAPTIVE_SCHEMA,ACTIVE_ADAPTIVE_READINGS_SCHEMA,
-  designActiveLinearAdaptive,replayActiveLinearAdaptive,evaluateActiveAdaptiveReadings}
+  designActiveLinearAdaptive,evaluateActiveAdaptiveReadings}
   from './active-linear-adaptive.mjs';
 
 import {designConditionalFuture,classifyAccumulatedReadings,FOLLOWUP_READINGS} from './active-linear-followup.mjs';
@@ -62,7 +62,8 @@ export async function sealActivePlan(original,{prior=null,sourcePath}={}){
     if(multiple)replayActiveInterventionFamily(request,previous);
     else if(bounded)replayActiveLinearControlBox(request,previous);
     else if(joint)replayActiveLinearJointControl(request,previous);
-    else if(adaptive)replayActiveLinearAdaptive(request,previous);
+    else if(adaptive)need(JSON.stringify(core)===JSON.stringify(previous),
+      'Adaptive experiment: frozen adaptive policy changed; exact replay refused');
     else if(vandermonde)replayActiveVandermondeNonlinear(request,previous);
     else replayActiveLinearFamily(request,previous);
     frozen=previous;planSHA256=saved.planSHA256;
