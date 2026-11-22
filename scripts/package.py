@@ -16,6 +16,13 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/g1-helix-load-transfer/README.md",
+    "research/g1-helix-load-transfer/compare_helix.py",
+    "research/g1-helix-load-transfer/gates.py",
+    "research/g1-helix-load-transfer/harmonic.py",
+    "research/g1-helix-load-transfer/range_source.py",
+    "research/g1-helix-load-transfer/response.py",
+    "research/g1-helix-load-transfer/comparison.json",
     "research/irpwind-airfoil-history/README.md",
     "research/irpwind-airfoil-history/baseline.py",
     "research/irpwind-airfoil-history/history.py",
