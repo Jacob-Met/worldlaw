@@ -1,0 +1,56 @@
+[
+  {
+    "id": "p3-f747-guitar-frozen-prediction-bytes-six-readers-0000",
+    "admission": "unresolved",
+    "polled_state": "binding_not_found",
+    "code": "INVALID_ARGUMENT",
+    "terminal_exit": null,
+    "provider_decision_sha256": "c4211b9641328d7db1253da22b7cbec35c42750ab8f608015ce80ec81f575151",
+    "summary": "No eligible measured owner during this optional read"
+  },
+  {
+    "id": "p3-f747-guitar-frozen-prediction-bytes-six-readers-0001",
+    "admission": "unresolved",
+    "polled_state": null,
+    "code": "UNKNOWN",
+    "terminal_exit": null,
+    "provider_decision_sha256": "9823958564bba7e3acf4649cf2134928e6c96ca0c2edf2dadb63a3eea36444b2",
+    "summary": "No eligible measured owner during this optional read"
+  },
+  {
+    "id": "p3-f747-guitar-frozen-prediction-bytes-six-readers-0002",
+    "admission": "completed",
+    "polled_state": null,
+    "code": null,
+    "terminal_exit": null,
+    "provider_decision_sha256": null,
+    "summary": "Completed optional forecast-fragment read"
+  },
+  {
+    "id": "p3-f747-guitar-frozen-prediction-bytes-six-readers-0003",
+    "admission": "unresolved",
+    "polled_state": "binding_not_found",
+    "code": "INVALID_ARGUMENT",
+    "terminal_exit": null,
+    "provider_decision_sha256": "aa02ff4cfd0ecd1196b081627ef2a422815b6dd6de493a57b11ee02ce3f3a7c5",
+    "summary": "No eligible measured owner during this optional read"
+  },
+  {
+    "id": "p3-f747-guitar-frozen-prediction-bytes-six-readers-0004",
+    "admission": "unresolved",
+    "polled_state": "binding_not_found",
+    "code": "INVALID_ARGUMENT",
+    "terminal_exit": null,
+    "provider_decision_sha256": "cefd666dd373d75a3a86760bf857ddcca74af252fdf41c5ccba8360017a0bf07",
+    "summary": "No eligible measured owner during this optional read"
+  },
+  {
+    "id": "p3-f747-guitar-frozen-prediction-bytes-six-readers-0005",
+    "admission": "completed",
+    "polled_state": null,
+    "code": "UNKNOWN",
+    "terminal_exit": null,
+    "provider_decision_sha256": null,
+    "summary": "Completed optional forecast-fragment read"
+  }
+]

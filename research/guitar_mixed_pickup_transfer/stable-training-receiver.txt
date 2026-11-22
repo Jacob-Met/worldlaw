@@ -1,0 +1,8 @@
+OWNER_PATH /var/tmp/p3-f747-guitar-stable-source-6o6dj32m/features
+{"string_complete": 1, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"string_complete": 2, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"string_complete": 3, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"string_complete": 4, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"string_complete": 5, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"string_complete": 6, "source_single_wavs": 24, "training_mixed_wavs": 8, "held_mixed_wavs": 0}
+{"shape_singles": [6, 8, 3, 25], "shape_training": [6, 4, 2, 25], "inputs": {"metadata.json": [68872, "a755f3dc5d0c41b81bee15223a3cacce38bc38855a3c795616396494e94e601e"], "singles.npy": [57728, "89105bd754d65efb0e2ed53a6e96a03e89c9b44768e63674f642be7e4956135e"], "training-mixed.npy": [9728, "192d326297ee520c8d5c79696a390ff16b1b4d18ed712a0a984456afd89b72cd"]}, "owner_path": "/var/tmp/p3-f747-guitar-stable-source-6o6dj32m/features", "held_mixed_wavs": 0}

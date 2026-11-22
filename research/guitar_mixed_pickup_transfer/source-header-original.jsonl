@@ -1,0 +1,5 @@
+{"metadata_header": [12, "fmt ", 16]}
+{"metadata_header": [36, "bext", 602]}
+{"metadata_header": [646, "junk", 74]}
+{"metadata_header": [728, "data", 1380921]}
+{"path": "string-1/1/01.wav", "git_lfs_total": 1381657, "RIFF_length": 1381657, "trailing_bytes": 0, "fmt_tag_channels_rate_byterate_align_bits": [1, 1, 44100, 132300, 3, 24], "headers": [[12, "fmt ", 16], [36, "bext", 602], [646, "junk", 74], [728, "data", 1380921]], "n_frames": 460307, "data_payload_offset": 736, "science_samples_read": 0, "mixed_files_opened": 0}
