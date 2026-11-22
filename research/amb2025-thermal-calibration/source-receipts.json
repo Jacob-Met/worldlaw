@@ -1,0 +1,173 @@
+{
+  "first_original": {
+    "calibration_catalog": {
+      "exception_type": "HTTPError",
+      "message": "HTTP Error 502: Bad Gateway"
+    },
+    "calibration_record": {
+      "bytes": 8117,
+      "doi": "10.18434/mds2-3707",
+      "sha256": "0f5b614617102a9322e16e857128d0df3ea98d1da52ccd60dfc216150cb2742a",
+      "titles": [
+        {
+          "title": "AMB2025-06 and AMB2025-07 Challenge Problem Calibration Data and Answers"
+        }
+      ],
+      "url": "https://data.nist.gov/od/id/mds2-3707"
+    },
+    "endpoint_arrays_requested": 0,
+    "organizer_awards": {
+      "bytes": 91850,
+      "first_team_named": true,
+      "pcrtam_present": true,
+      "sha256": "7967611b8bb69676452f0de113d393e7832490fc09ced31100edccfa93ffe1d4"
+    },
+    "organizer_design": {
+      "bytes": 96810,
+      "design_and_template_links": [
+        "/document/am-bench-amb2025-06-and-07-measurements-and-challenge-problems",
+        "/video/amb2025-06-07-webinar-benchmark-measurements-and-challenge-problems",
+        "/document/am-bench-amb2025-06-and-07-measurements-and-challenge-problems",
+        "/video/amb2025-06-07-webinar-benchmark-measurements-and-challenge-problems"
+      ],
+      "sha256": "2bf990164044868c9fb258796672bbc98245bd8a253635791c25dbbe5ff41a87"
+    },
+    "released_solver_metadata": {
+      "branch": "master",
+      "bytes": 1091,
+      "id": 66090950,
+      "namespace": "hpfem/publications/2025_laser_turnaround_simulation_AM",
+      "sha256": "b6551993af80365eead3b6e947eb6c9ec0b46afabf4111104bb63bb4869b328b",
+      "visibility": "public"
+    },
+    "scope": "CHAL-AMB2025-07-PCRTAM only, premeasurement source qualification",
+    "solver_git_head": {
+      "exit": 0,
+      "sha": "9a754a717b43309b83561da72fd1d29ac61d17da"
+    }
+  },
+  "second_original": {
+    "doi": {
+      "alternates": [
+        {
+          "alternateIdentifier": "ark:/88434/mds2-3707",
+          "alternateIdentifierType": "data.gov POD identifier"
+        }
+      ],
+      "bytes": 8117,
+      "content": null,
+      "ids": [
+        {
+          "identifier": "ark:/88434/mds2-3707",
+          "identifierType": "data.gov POD identifier"
+        }
+      ],
+      "related": [
+        {
+          "relatedIdentifier": "https://data.nist.gov/od/id/ark:/88434/pdr0-0003",
+          "relatedIdentifierType": "URL",
+          "relationType": "IsPartOf"
+        }
+      ],
+      "sha": "0f5b614617102a9322e16e857128d0df3ea98d1da52ccd60dfc216150cb2742a",
+      "type": "application/json; charset=utf-8",
+      "url": "https://api.datacite.org/dois/10.18434/mds2-3707",
+      "version": "1.1.1"
+    },
+    "nist_catalog_list": {
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    "nist_landing": {
+      "error": "HTTPError: HTTP Error 503: Service Unavailable"
+    },
+    "solver_readme": {
+      "bytes": 1633,
+      "sha": "accb68b0c09241babe14dcf0b79218b91e31a11d1da689a592532b54aa117841",
+      "type": "text/plain; charset=utf-8",
+      "url": "https://gitlab.com/api/v4/projects/66090950/repository/files/README.md/raw?ref=9a754a717b43309b83561da72fd1d29ac61d17da"
+    },
+    "solver_tree": {
+      "bytes": 2145,
+      "committed_paths": [
+        [
+          "input_data",
+          "tree"
+        ],
+        [
+          ".gitmodules",
+          "blob"
+        ],
+        [
+          "CMakeLists.txt",
+          "blob"
+        ],
+        [
+          "LICENSE",
+          "blob"
+        ],
+        [
+          "README.md",
+          "blob"
+        ],
+        [
+          "helper_am.hpp",
+          "blob"
+        ],
+        [
+          "helper_timestepping.hpp",
+          "blob"
+        ],
+        [
+          "input_data/scanStrategyConv.csv",
+          "blob"
+        ],
+        [
+          "input_data/scanStrategyConvLong.csv",
+          "blob"
+        ],
+        [
+          "input_data/scanStrategyDiv.csv",
+          "blob"
+        ],
+        [
+          "input_data/singleTrack.csv",
+          "blob"
+        ],
+        [
+          "single_track.cpp",
+          "blob"
+        ],
+        [
+          "turn_around_conv.cpp",
+          "blob"
+        ],
+        [
+          "turn_around_conv_long.cpp",
+          "blob"
+        ],
+        [
+          "turn_around_div.cpp",
+          "blob"
+        ],
+        [
+          "mlhp",
+          "commit"
+        ]
+      ],
+      "sha": "1c9608a81439787f2c9055672acdb6f49b6d224b756ded1d20abcb2895efa526",
+      "type": "application/json",
+      "url": "https://gitlab.com/api/v4/projects/66090950/repository/tree?recursive=true&per_page=100&ref=9a754a717b43309b83561da72fd1d29ac61d17da"
+    }
+  },
+  "owner_readback": "Original second reservation temporarily returned HTTP507 on the retained worker. It subsequently completed with preserved source identity; no replay.",
+  "scope": "metadata, no held pad arrays or contestant forecasts",
+  "official_geometry_pdf_native": "403 on exact design binary. Indexed organizer Table 5 supplied the source cells; an identical two-owner binary readback is unverified.",
+  "additional_queries": {
+    "official_rmm_plain_and_ark": "HTTP 502",
+    "official_landing_ark": "HTTP 503",
+    "official_distribution_directory": "two timeouts, including 50.74 s",
+    "datacite_record_version": "1.1.1",
+    "group_census": "team-source-census.json",
+    "exact_competition_configuration": "unrecovered from these public sources"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "doi": "10.18434/mds2-3707",
+  "version": "1.1.1",
+  "ark": "ark:/88434/mds2-3707",
+  "provider": "NIST",
+  "pre_challenge_geometry": {
+    "width_um": [
+      135.4,
+      138,
+      137.4,
+      137.8,
+      140.6,
+      137.6
+    ],
+    "depth_um": [
+      124.2,
+      125.8,
+      125.9,
+      122.9,
+      124.9,
+      126.7
+    ],
+    "means_um": [
+      137.8,
+      125.1
+    ],
+    "combined_expanded_uncertainty_k2_um": [
+      5.9,
+      12.6
+    ],
+    "measurement": "hand segmentation of original plate cross sections; width of bounding box, depth below original plate surface",
+    "independent_tracks": 3,
+    "cross_sections_per_track": 2
+  },
+  "holdout_access": {
+    "pad_thermography_read": false,
+    "pad_answer_tables_read": false,
+    "contestant_prediction_arrays_read": false
+  },
+  "public_solver": {
+    "group": "hpfem/publications",
+    "project": 66090950,
+    "git": "9a754a717b43309b83561da72fd1d29ac61d17da",
+    "study_doi": "10.1007/s40964-025-01147-9",
+    "material": "IN625",
+    "properties": {
+      "density": 8440,
+      "latent_heat": 280000,
+      "solidus_C": 1290,
+      "liquidus_C": 1350,
+      "ambient_C": 20,
+      "D4sigma_um": 85,
+      "absorptivity": 0.54
+    },
+    "scope": "published converging, diverging and single-track study; no confirmed FLaMI 2025-07 entry in this tree"
+  }
+}
