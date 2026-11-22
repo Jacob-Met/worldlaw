@@ -1,0 +1,679 @@
+{
+  "forecast_sha256": "a95352fba5fed39c0b23cbf93f9c9b5d91fed57c8f09d89bc54f5525b0c7f6b3",
+  "outcome_sha256": "82869d7de58dd17cc2800d0f89c4ea412db7b2bbfbf0d9dadd3885309cea43d1",
+  "protocol": "ed1bacb82d31408d1a5ca0a382e12fdc2f63a33e2a92be8f1bf6f71bb155a4c7",
+  "laws_sha256": "98d702721760ef3047379ce658794fc86fa611fc4d8a7ca81cc8800e1d74b10f",
+  "metrics": {
+    "acceleration-only": {
+      "macro_force_shape_rmse": 0.25006835409256234,
+      "macro_phase_mae_deg": 32.70276327805432,
+      "per_curve_phase_mae_deg": [
+        21.236856136634046,
+        27.274570859851398,
+        31.268928880774556,
+        35.92605425479808,
+        36.529350803324476,
+        36.59650706188103,
+        36.37596997786237,
+        36.41386824930859
+      ],
+      "per_curve_shape_rmse": [
+        0.11257465600152707,
+        0.1488076414418011,
+        0.25333007276487435,
+        0.11736597167234648,
+        0.2395061564242713,
+        0.29462428687122,
+        0.40778806867122425,
+        0.4265499788932342
+      ],
+      "worst_curve_shape_rmse": 0.4265499788932342
+    },
+    "author-PFF": {
+      "macro_force_shape_rmse": 0.13967461173018642,
+      "macro_phase_mae_deg": 36.92197194022593,
+      "per_curve_phase_mae_deg": [
+        21.20140652706538,
+        27.126213464034404,
+        31.18784608496842,
+        36.465670664498965,
+        41.880120959775354,
+        45.27701909911946,
+        46.0998002254496,
+        46.13769849689583
+      ],
+      "per_curve_shape_rmse": [
+        0.11231913581946529,
+        0.14686800173966807,
+        0.25934350973825104,
+        0.08895456527221081,
+        0.0957331417376784,
+        0.10520601829280017,
+        0.1466655318319,
+        0.1623069894095176
+      ],
+      "worst_curve_shape_rmse": 0.25934350973825104
+    },
+    "constant-linear": {
+      "macro_force_shape_rmse": 0.18930418667284776,
+      "macro_phase_mae_deg": 17.638276110251617,
+      "per_curve_phase_mae_deg": [
+        17.781848541188822,
+        17.514071139294536,
+        17.608463115697518,
+        17.381211327336416,
+        17.541883701135127,
+        17.609039959691682,
+        17.81589641311131,
+        17.85379468455754
+      ],
+      "per_curve_shape_rmse": [
+        0.03350877695158923,
+        0.22000678979088664,
+        0.25512036383682846,
+        0.29467882075621327,
+        0.16146915987427676,
+        0.13782156488989414,
+        0.18711848511856383,
+        0.22470953216452988
+      ],
+      "worst_curve_shape_rmse": 0.29467882075621327
+    },
+    "constant-shape": {
+      "macro_force_shape_rmse": 0.29182946427897644,
+      "macro_phase_mae_deg": 30.98868506010135,
+      "per_curve_phase_mae_deg": [
+        21.342180384355984,
+        27.571485645484433,
+        31.702776068856103,
+        33.424456181108596,
+        33.58512855490731,
+        33.65228481346386,
+        33.29663528059415,
+        33.334533552040384
+      ],
+      "per_curve_shape_rmse": [
+        0.11818411274635529,
+        0.15980219939378995,
+        0.25507582221813185,
+        0.17066427931653022,
+        0.303633239203001,
+        0.35976767984961316,
+        0.4748325823958586,
+        0.4926757991085313
+      ],
+      "worst_curve_shape_rmse": 0.4926757991085313
+    },
+    "spatial-energy": {
+      "macro_force_shape_rmse": 0.2910964772084698,
+      "macro_phase_mae_deg": 31.252717062722056,
+      "per_curve_phase_mae_deg": [
+        21.432556279341988,
+        27.723492463089006,
+        31.980425974077246,
+        33.74389285439135,
+        33.90456522819006,
+        33.97172148674661,
+        33.61359197224699,
+        33.65149024369321
+      ],
+      "per_curve_shape_rmse": [
+        0.11757680773426736,
+        0.15981409235249705,
+        0.2542839055633821,
+        0.1708260734156973,
+        0.3031347207671461,
+        0.3589512903323566,
+        0.47324100366945093,
+        0.49094392383296126
+      ],
+      "worst_curve_shape_rmse": 0.49094392383296126
+    }
+  },
+  "gates": {
+    "macro_phase_beats_PFF": true,
+    "macro_shape_beats_PFF": false,
+    "worst_curve_shape_not_worse": false
+  },
+  "radian_sensitivity": {
+    "acceleration-only": {
+      "macro_phase_mae_deg": 10.423119637356113,
+      "per_curve_phase_mae_deg": [
+        5.126766646876948,
+        5.548690995082987,
+        9.397831898067821,
+        4.228870366989914,
+        8.814919260381085,
+        13.525735037435444,
+        16.930724458976265,
+        19.811418435038433
+      ],
+      "worst": {
+        "conditioned_acceleration_m_s2": 80.41195128662446,
+        "curve": 7,
+        "frequency_hz": 80.45,
+        "observed_folded_deg": 88.73414203495238,
+        "observed_phase_rad": -1.592889716147573,
+        "predicted_folded_deg": 39.26030151681998,
+        "row": 25,
+        "signed_miss_deg": -49.473840518132405
+      }
+    },
+    "author-PFF": {
+      "macro_phase_mae_deg": 5.301806682315584,
+      "per_curve_phase_mae_deg": [
+        5.1111418084146925,
+        5.391454671742126,
+        9.58562274836903,
+        4.2666952241990845,
+        4.3500741022543705,
+        3.9166832333386714,
+        3.5271279947813055,
+        6.265653675425389
+      ],
+      "worst": {
+        "conditioned_acceleration_m_s2": 30.823505926027813,
+        "curve": 2,
+        "frequency_hz": 80,
+        "observed_folded_deg": 47.819227013775745,
+        "observed_phase_rad": -0.8346029571490026,
+        "predicted_folded_deg": 83.43784842302392,
+        "row": 16,
+        "signed_miss_deg": 35.61862140924818
+      }
+    },
+    "constant-linear": {
+      "macro_phase_mae_deg": 20.542598333955716,
+      "per_curve_phase_mae_deg": [
+        4.22437212106697,
+        14.973717641335334,
+        15.86227590694941,
+        21.599294410158173,
+        21.850835733744756,
+        25.2795673683748,
+        28.537888551677696,
+        32.012834938338585
+      ],
+      "worst": {
+        "conditioned_acceleration_m_s2": 40.13606637804138,
+        "curve": 3,
+        "frequency_hz": 80.1,
+        "observed_folded_deg": 88.04993297182607,
+        "observed_phase_rad": -1.5367612365186805,
+        "predicted_folded_deg": 19.12420889527471,
+        "row": 22,
+        "signed_miss_deg": -68.92572407655136
+      }
+    },
+    "constant-shape": {
+      "macro_phase_mae_deg": 12.243277166871914,
+      "per_curve_phase_mae_deg": [
+        5.358719625510155,
+        6.164020641550732,
+        9.625379653741437,
+        4.891056229320231,
+        12.139396605976392,
+        16.64041850919159,
+        20.159760711022578,
+        22.967465358662196
+      ],
+      "worst": {
+        "conditioned_acceleration_m_s2": 80.41195128662446,
+        "curve": 7,
+        "frequency_hz": 80.45,
+        "observed_folded_deg": 88.73414203495238,
+        "observed_phase_rad": -1.592889716147573,
+        "predicted_folded_deg": 31.84731658149407,
+        "row": 25,
+        "signed_miss_deg": -56.886825453458314
+      }
+    },
+    "spatial-energy": {
+      "macro_phase_mae_deg": 12.20450007870628,
+      "per_curve_phase_mae_deg": [
+        5.417864200893514,
+        6.2484737741904866,
+        9.747404380282067,
+        4.953795330932305,
+        12.027142868780606,
+        16.47275997627652,
+        19.991042502494217,
+        22.777517595800525
+      ],
+      "worst": {
+        "conditioned_acceleration_m_s2": 80.41195128662446,
+        "curve": 7,
+        "frequency_hz": 80.45,
+        "observed_folded_deg": 88.73414203495238,
+        "observed_phase_rad": -1.592889716147573,
+        "predicted_folded_deg": 32.24859105501503,
+        "row": 25,
+        "signed_miss_deg": -56.48555097993736
+      }
+    }
+  },
+  "source_rows": 328,
+  "per_curve_worst_primary": [
+    {
+      "clamped_lower": 0,
+      "clamped_upper": 0,
+      "force_shape_rmse": 0.11757680773426736,
+      "phase_mae_deg": 21.432556279341988,
+      "worst_phase": {
+        "conditioned_acceleration_amplitude": 4.987841484368002,
+        "curve_force_RMS_N": 0.1798639144302698,
+        "frequency_hz": 80.3,
+        "observed_folded_deg": 1.0908146717308074,
+        "observed_force_N": 0.03264301513829446,
+        "observed_force_shape": 0.1814872941117358,
+        "observed_phase_deg": -1.0908146717308074,
+        "phase_miss_deg": 81.49237156177138,
+        "predicted_folded_deg": 82.58318623350219,
+        "predicted_force_shape": 0.1999451413319369,
+        "row": 26,
+        "shape_miss": 0.01845784722020108
+      },
+      "worst_shape": {
+        "conditioned_acceleration_amplitude": 4.984350528427893,
+        "curve_force_RMS_N": 0.1798639144302698,
+        "frequency_hz": 81,
+        "observed_folded_deg": 2.9652570173232533,
+        "observed_force_N": 0.1435140954581433,
+        "observed_force_shape": 0.79790377026283,
+        "observed_phase_deg": -2.9652570173232533,
+        "phase_miss_deg": 7.675362794148944,
+        "predicted_folded_deg": 10.640619811472197,
+        "predicted_force_shape": 1.0593821394340095,
+        "row": 40,
+        "shape_miss": 0.2614783691711795
+      }
+    },
+    {
+      "clamped_lower": 0,
+      "clamped_upper": 0,
+      "force_shape_rmse": 0.15981409235249705,
+      "phase_mae_deg": 27.723492463089006,
+      "worst_phase": {
+        "conditioned_acceleration_amplitude": 20.11477568241842,
+        "curve_force_RMS_N": 0.6245567949161256,
+        "frequency_hz": 80.1,
+        "observed_folded_deg": 1.0955108832204177,
+        "observed_force_N": 0.17045419446410542,
+        "observed_force_shape": 0.27292024656780245,
+        "observed_phase_deg": -1.0955108832204177,
+        "phase_miss_deg": 88.23028628970917,
+        "predicted_folded_deg": 89.32579717292958,
+        "predicted_force_shape": 0.3099630504663482,
+        "row": 22,
+        "shape_miss": 0.03704280389854575
+      },
+      "worst_shape": {
+        "conditioned_acceleration_amplitude": 20.09539966840957,
+        "curve_force_RMS_N": 0.6245567949161256,
+        "frequency_hz": 81,
+        "observed_folded_deg": 2.969232755692794,
+        "observed_force_N": 0.7252649184977025,
+        "observed_force_shape": 1.1612473427578374,
+        "observed_phase_deg": -2.9692327556927944,
+        "phase_miss_deg": 9.176931286133668,
+        "predicted_folded_deg": 12.146164041826461,
+        "predicted_force_shape": 1.4395165025613124,
+        "row": 40,
+        "shape_miss": 0.278269159803475
+      }
+    },
+    {
+      "clamped_lower": 0,
+      "clamped_upper": 0,
+      "force_shape_rmse": 0.2542839055633821,
+      "phase_mae_deg": 31.980425974077246,
+      "worst_phase": {
+        "conditioned_acceleration_amplitude": 30.75809486058576,
+        "curve_force_RMS_N": 0.9030249695340852,
+        "frequency_hz": 80.05,
+        "observed_folded_deg": 0.9905837001632728,
+        "observed_force_N": 0.35153120749337075,
+        "observed_force_shape": 0.38928182426089825,
+        "observed_phase_deg": -0.9905837001632728,
+        "phase_miss_deg": 84.88163894650991,
+        "predicted_folded_deg": 85.87222264667318,
+        "predicted_force_shape": 0.40240899805526453,
+        "row": 17,
+        "shape_miss": 0.013127173794366287
+      },
+      "worst_shape": {
+        "conditioned_acceleration_amplitude": 27.644795904625862,
+        "curve_force_RMS_N": 0.9030249695340852,
+        "frequency_hz": 79.25,
+        "observed_folded_deg": 0.22751137259161847,
+        "observed_force_N": 1.4919404629239292,
+        "observed_force_shape": 1.6521585927947202,
+        "observed_phase_deg": -0.22751137259161844,
+        "phase_miss_deg": 16.571718993569828,
+        "predicted_folded_deg": 16.799230366161446,
+        "predicted_force_shape": 1.1883143687606323,
+        "row": 1,
+        "shape_miss": -0.46384422403408787
+      }
+    },
+    {
+      "clamped_lower": 0,
+      "clamped_upper": 41,
+      "force_shape_rmse": 0.1708260734156973,
+      "phase_mae_deg": 33.74389285439135,
+      "worst_phase": {
+        "conditioned_acceleration_amplitude": 40.13442167481449,
+        "curve_force_RMS_N": 1.3287597638963509,
+        "frequency_hz": 80,
+        "observed_folded_deg": 1.1617962881881543,
+        "observed_force_N": 0.5472318030286218,
+        "observed_force_shape": 0.4118365244775039,
+        "observed_phase_deg": -1.1617962881881543,
+        "phase_miss_deg": 83.68320350920594,
+        "predicted_folded_deg": 84.8449997973941,
+        "predicted_force_shape": 0.41659667896945357,
+        "row": 20,
+        "shape_miss": 0.004760154491949664
+      },
+      "worst_shape": {
+        "conditioned_acceleration_amplitude": 40.11868966224641,
+        "curve_force_RMS_N": 1.3287597638963509,
+        "frequency_hz": 81,
+        "observed_folded_deg": 2.9166777658247196,
+        "observed_force_N": 1.6763154003291312,
+        "observed_force_shape": 1.2615639379489,
+        "observed_phase_deg": -2.916677765824719,
+        "phase_miss_deg": 12.526349719440235,
+        "predicted_folded_deg": 15.443027485264954,
+        "predicted_force_shape": 1.538337784119957,
+        "row": 40,
+        "shape_miss": 0.27677384617105694
+      }
+    },
+    {
+      "clamped_lower": 0,
+      "clamped_upper": 41,
+      "force_shape_rmse": 0.3031347207671461,
+      "phase_mae_deg": 33.90456522819006,
+      "worst_phase": {
+        "conditioned_acceleration_amplitude": 50.26022698253296,
+        "curve_force_RMS_N": 1.886722571050262,
+        "frequency_hz": 80,
+        "observed_folded_deg": 0.9228653948530545,
+        "observed_force_N": 1.0385488516897947,
+        "observed_force_shape": 0.5504512786486021,
+        "observed_phase_deg": -0.9228653948530544,
+        "phase_miss_deg": 83.92213440254105,
+        "predicted_folded_deg": 84.8449997973941,
+        "predicted_force_shape": 0.41557821268481854,
+        "row": 20,
+        "shape_miss": -0.13487306596378357
+      },
+      "worst_shape": {
+        "conditioned_acceleration_amplitude": 50.24281281163167,
+        "curve_force_RMS_N": 1.886722571050262,
+        "frequency_hz": 81,
+        "observed_folded_deg": 2.802231945451441,
+        "observed_force_N": 1.854526577711507,
+        "observed_force_shape": 0.9829354915063995,
+        "observed_phase_deg": -2.8022319454514406,
+        "phase_miss_deg": 12.640795539813514,
+        "predicted_folded_deg": 15.443027485264954,
+        "predicted_force_shape": 1.5346468190806632,
+        "row": 40,
+        "shape_miss": 0.5517113275742638
+      }
+    },
+    {
+      "clamped_lower": 0,
+      "clamped_upper": 41,
+      "force_shape_rmse": 0.3589512903323566,
+      "phase_mae_deg": 33.97172148674661,
+      "worst_phase": {
+        "conditioned_acceleration_amplitude": 60.257584042977506,
+        "curve_force_RMS_N": 2.495404334235247,
+        "frequency_hz": 80,
+        "observed_folded_deg": 0.8932737889593887,
+        "observed_force_N": 1.592282461043027,
+        "observed_force_shape": 0.6380859563310028,
+        "observed_phase_deg": -0.8932737889593888,
+        "phase_miss_deg": 83.9517260084347,
+        "predicted_folded_deg": 84.8449997973941,
+        "predicted_force_shape": 0.4151966301808193,
+        "row": 20,
+        "shape_miss": -0.22288932615018353
+      },
+      "worst_shape": {
+        "conditioned_acceleration_amplitude": 60.23811281852482,
+        "curve_force_RMS_N": 2.495404334235247,
+        "frequency_hz": 81,
+        "observed_folded_deg": 2.688107183637693,
+        "observed_force_N": 2.0803683226265695,
+        "observed_force_shape": 0.8336798546373161,
+        "observed_phase_deg": -2.688107183637693,
+        "phase_miss_deg": 12.754920301627262,
+        "predicted_folded_deg": 15.443027485264954,
+        "predicted_force_shape": 1.5332735204484933,
+        "row": 40,
+        "shape_miss": 0.6995936658111772
+      }
+    },
+    {
+      "clamped_lower": 0,
+      "clamped_upper": 41,
+      "force_shape_rmse": 0.47324100366945093,
+      "phase_mae_deg": 33.61359197224699,
+      "worst_phase": {
+        "conditioned_acceleration_amplitude": 70.39331677518236,
+        "curve_force_RMS_N": 2.8322718189110176,
+        "frequency_hz": 80,
+        "observed_folded_deg": 0.9101547699353415,
+        "observed_force_N": 2.274280929108547,
+        "observed_force_shape": 0.8029882280094808,
+        "observed_phase_deg": -0.9101547699353415,
+        "phase_miss_deg": 83.93484502745875,
+        "predicted_folded_deg": 84.8449997973941,
+        "predicted_force_shape": 0.4041491778110446,
+        "row": 16,
+        "shape_miss": -0.3988390501984362
+      },
+      "worst_shape": {
+        "conditioned_acceleration_amplitude": 70.30110785347942,
+        "curve_force_RMS_N": 2.8322718189110176,
+        "frequency_hz": 81.2,
+        "observed_folded_deg": 2.7093555945413974,
+        "observed_force_N": 2.8521299868757968,
+        "observed_force_shape": 1.0070113919971193,
+        "observed_phase_deg": -2.7093555945413974,
+        "phase_miss_deg": 10.21871340131305,
+        "predicted_folded_deg": 12.928068995854447,
+        "predicted_force_shape": 1.7702174941250637,
+        "row": 40,
+        "shape_miss": 0.7632061021279444
+      }
+    },
+    {
+      "clamped_lower": 0,
+      "clamped_upper": 41,
+      "force_shape_rmse": 0.49094392383296126,
+      "phase_mae_deg": 33.65149024369321,
+      "worst_phase": {
+        "conditioned_acceleration_amplitude": 80.4753559446569,
+        "curve_force_RMS_N": 3.4763272616459875,
+        "frequency_hz": 80,
+        "observed_folded_deg": 0.9274919693592695,
+        "observed_force_N": 2.9658396057365555,
+        "observed_force_shape": 0.8531531649676377,
+        "observed_phase_deg": -0.9274919693592691,
+        "phase_miss_deg": 83.91750782803483,
+        "predicted_folded_deg": 84.8449997973941,
+        "predicted_force_shape": 0.40419712332073365,
+        "row": 16,
+        "shape_miss": -0.44895604164690406
+      },
+      "worst_shape": {
+        "conditioned_acceleration_amplitude": 80.37422545663007,
+        "curve_force_RMS_N": 3.4763272616459875,
+        "frequency_hz": 81.2,
+        "observed_folded_deg": 2.6170134333205146,
+        "observed_force_N": 3.242246034392544,
+        "observed_force_shape": 0.9326642143747395,
+        "observed_phase_deg": -2.617013433320514,
+        "phase_miss_deg": 10.311055562533934,
+        "predicted_folded_deg": 12.928068995854447,
+        "predicted_force_shape": 1.7705218927042814,
+        "row": 40,
+        "shape_miss": 0.8378576783295419
+      }
+    }
+  ],
+  "corrected_gates": {
+    "macro_phase_beats_PFF": false,
+    "macro_shape_beats_PFF": false,
+    "worst_curve_shape_not_worse": false
+  },
+  "independent_receipt": "bf8a1d8b8a9337dfb4a0fe0789d556b212b3935b8cc0e004aa8e06cf2c4f773e",
+  "independent_recount": {
+    "curves": 8,
+    "points": 328,
+    "paired_prediction_components": 3280,
+    "worst_rows_compared": 80,
+    "max_metric_or_witness_difference": 1.4210854715202004e-14,
+    "minimum_observed_curve_rms_N": 0.1798639144302698,
+    "gates": [
+      true,
+      false,
+      false
+    ],
+    "per_arm_macro_phase_shape_worst": {
+      "acceleration-only": [
+        32.70276327805432,
+        0.25006835409256234,
+        0.4265499788932342
+      ],
+      "author-PFF": [
+        36.92197194022593,
+        0.13967461173018642,
+        0.2593435097382511
+      ],
+      "constant-linear": [
+        17.638276110251617,
+        0.1893041866728478,
+        0.29467882075621327
+      ],
+      "constant-shape": [
+        30.988685060101353,
+        0.29182946427897644,
+        0.4926757991085314
+      ],
+      "spatial-energy": [
+        31.252717062722056,
+        0.2910964772084698,
+        0.4909439238329613
+      ]
+    },
+    "force_control_numeric_arrays_accessed": 0,
+    "source_unit_audit": [
+      {
+        "curve": 0,
+        "source_units": "Hz, N, m/s^2, rad",
+        "phase_range_raw": [
+          -2.9652570173232533,
+          -0.11071639337199574
+        ],
+        "force_N_range": [
+          0.029536399598886702,
+          0.36465207768785535
+        ]
+      },
+      {
+        "curve": 1,
+        "source_units": "Hz, N, m/s^2, rad",
+        "phase_range_raw": [
+          -2.9692327556927944,
+          -0.16602213215492898
+        ],
+        "force_N_range": [
+          0.14890343545333212,
+          1.1834841132924896
+        ]
+      },
+      {
+        "curve": 2,
+        "source_units": "Hz, N, m/s^2, rad",
+        "phase_range_raw": [
+          -2.980297260406708,
+          -0.22751137259161844
+        ],
+        "force_N_range": [
+          0.2747880687989027,
+          1.494955800401406
+        ]
+      },
+      {
+        "curve": 3,
+        "source_units": "Hz, N, m/s^2, rad",
+        "phase_range_raw": [
+          -2.916677765824719,
+          -0.30538755666911677
+        ],
+        "force_N_range": [
+          0.48555094501633983,
+          2.3449483224018195
+        ]
+      },
+      {
+        "curve": 4,
+        "source_units": "Hz, N, m/s^2, rad",
+        "phase_range_raw": [
+          -2.8022319454514406,
+          -0.3304596376587043
+        ],
+        "force_N_range": [
+          0.7674910711955737,
+          3.431837793807477
+        ]
+      },
+      {
+        "curve": 5,
+        "source_units": "Hz, N, m/s^2, rad",
+        "phase_range_raw": [
+          -2.688107183637693,
+          -0.4073780945507183
+        ],
+        "force_N_range": [
+          1.102765231590958,
+          4.501915841765358
+        ]
+      },
+      {
+        "curve": 6,
+        "source_units": "Hz, N, m/s^2, rad",
+        "phase_range_raw": [
+          -2.7093555945413974,
+          -0.48006467187762464
+        ],
+        "force_N_range": [
+          1.5490335373963462,
+          4.880295640401279
+        ]
+      },
+      {
+        "curve": 7,
+        "source_units": "Hz, N, m/s^2, rad",
+        "phase_range_raw": [
+          -2.617013433320514,
+          -0.5255385176509489
+        ],
+        "force_N_range": [
+          2.046927647969148,
+          5.852530833492671
+        ]
+      }
+    ],
+    "forecast_sha256": "a95352fba5fed39c0b23cbf93f9c9b5d91fed57c8f09d89bc54f5525b0c7f6b3",
+    "outcome_sha256": "82869d7de58dd17cc2800d0f89c4ea412db7b2bbfbf0d9dadd3885309cea43d1"
+  },
+  "source_unit_history_receipt": "546fda91d2c0471f54b291e6120f1f272558cd8298258e6ba77ceba5187df699",
+  "original_phase_decode": "Incorrectly interpreted raw radians as degrees before recode. Raw response-control metadata explicitly supplies radians in all eight sweeps."
+}
