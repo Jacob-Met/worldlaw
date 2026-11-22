@@ -1,0 +1,94 @@
+{
+  "aggregate_equality_max_abs": 1.3877787807814457e-17,
+  "all_main_positive_pairs": 1498,
+  "apex_height_below_initial_radius": 157,
+  "final_definitive_count_if_same_132": [
+    368,
+    500
+  ],
+  "gate_checks": 48,
+  "lowest_apex_ratio": [
+    0.42901418947433717,
+    1340,
+    "final",
+    "D600"
+  ],
+  "one_125_row_geometry_definitive_count_if_same_132": [
+    0,
+    125
+  ],
+  "per_split_checks": {
+    "development": {
+      "joint": false,
+      "passed": 2,
+      "total": 16
+    },
+    "final": {
+      "joint": false,
+      "passed": 4,
+      "total": 16
+    },
+    "train": {
+      "joint": false,
+      "passed": 4,
+      "total": 16
+    }
+  },
+  "pooled_paired_force_minus_control_removal_bounds": {
+    "duration_s": {
+      "author_ie_gp": {
+        "final_n": 500,
+        "full_paired_mean_squared_error_difference": 2.906366453585908e-06,
+        "sharp_lower": -2.1241698477686484e-06,
+        "sharp_upper": 6.849071272492373e-06
+      },
+      "capillary_clock_mean_energy": {
+        "final_n": 500,
+        "full_paired_mean_squared_error_difference": 1.0931976422280042e-07,
+        "sharp_lower": -4.420110974868405e-06,
+        "sharp_upper": 4.102200791482365e-06
+      },
+      "deformation": {
+        "final_n": 500,
+        "full_paired_mean_squared_error_difference": 2.680113382617214e-06,
+        "sharp_lower": -1.4614004871410893e-06,
+        "sharp_upper": 5.5271359894578035e-06
+      },
+      "dimensionless_ie_gp": {
+        "final_n": 500,
+        "full_paired_mean_squared_error_difference": 2.916621581012511e-06,
+        "sharp_lower": -2.4813700305685954e-06,
+        "sharp_upper": 7.185120908483521e-06
+      }
+    },
+    "height_energy": {
+      "author_ie_gp": {
+        "final_n": 500,
+        "full_paired_mean_squared_error_difference": 0.0006570970537907958,
+        "sharp_lower": 9.698560541872922e-05,
+        "sharp_upper": 0.001090935127564086
+      },
+      "capillary_clock_mean_energy": {
+        "final_n": 500,
+        "full_paired_mean_squared_error_difference": -0.009871159169071142,
+        "sharp_lower": -0.01361653824467538,
+        "sharp_upper": -0.002382220073803139
+      },
+      "deformation": {
+        "final_n": 500,
+        "full_paired_mean_squared_error_difference": 0.00030429887071658455,
+        "sharp_lower": -0.00010806402960472126,
+        "sharp_upper": 0.0006251875040718265
+      },
+      "dimensionless_ie_gp": {
+        "final_n": 500,
+        "full_paired_mean_squared_error_difference": 0.0005950823379210416,
+        "sharp_lower": 3.891434022117232e-05,
+        "sharp_upper": 0.0010468614419846072
+      }
+    }
+  },
+  "reference_endpoint_unavailable": 125,
+  "surface_rmse_checks": 120,
+  "terms_recomputed": 14980
+}

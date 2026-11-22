@@ -1,0 +1,134 @@
+{
+  "source": {
+    "release": "Mendeley wsh8rxwd38.1",
+    "version": 1,
+    "license": "CC BY 4.0",
+    "source_author_inputs_sha256": "32f306184b5853470539c962c6c7e7db69c8a26c607fa07202fd7382ad3a792b",
+    "training_targets_sha256": "fa309985f359a92edf3f6eafa23f90413fa6c90313511003e9ab873cd95c5150",
+    "source_description_pdf": "45e0f062861da4d56f88026ced16b274c3e87c9f3047fe937927f490d75955f0"
+  },
+  "registered": {
+    "split_post": 183973,
+    "model_post": 184005,
+    "initial_forecast_post": 184022,
+    "source_sha256": "07faed2ddbccb06dcc95e63270be95794b74caa8f6619ffb76db6a10bd068274",
+    "independent_score_source": "ef444406615a8235b5989c9293715f27437b6c79b9e2a3e1b6cd4302fb573a9d",
+    "forecast_sha256": "571af04e59d5f109eb131c1017193e5ef0777c2e5f5070b7fc60c3a4719fcdc2",
+    "scientific_result_sha256": "d0150e365f5465daace482bad5e40e61c67691f3315cd4584db28adac0009811",
+    "independent_sha256": "0a8473948541668ea1f7a7df9877435a1a1a65e2b13bf254763e54a1ce402db4"
+  },
+  "native": [
+    {
+      "phase": "meta",
+      "job": "p2-f747-MOZE-drop-source-only-roster-and-author-forecasting-methods",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "command_sha256": "e1efc92a9b016ed445bd9b426152b5fc45f3a81131d78b7b7ea9f6525d35448f",
+      "terminal": "completed",
+      "exit_code": 0
+    },
+    {
+      "phase": "public",
+      "job": "p2-f747-MOZE-public-file-manifest-PDF-and-author-method-only",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "command_sha256": "f286dd79d16e489b0555f6e86fdee09f04d6324fbebbcc940bfe2edc47b6557b",
+      "terminal": "completed",
+      "exit_code": 0
+    },
+    {
+      "phase": "schema",
+      "job": "p2-f747-MOZE-authenticated-native-headers-and-instrument-columns",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "command_sha256": "f922df5b3ee6ad5d446503b55ecc530bdd95753a7167a8c3bbd8a4346fa85748",
+      "terminal": "failed",
+      "exit_code": 1
+    },
+    {
+      "phase": "authorized",
+      "job": "p2-f747-MOZE-fresh-organizer-public-file-grants-header-only",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "command_sha256": "747d015005333f1a269cbd39294b271074b2e4aa0ea063d7c700eb123ca93e24",
+      "terminal": "completed",
+      "exit_code": 0
+    },
+    {
+      "phase": "input",
+      "job": "p2-f747-MOZE-1623-source-rows-surface-grouped-preimpact-only",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "command_sha256": "8f3c3fb68ecda326fa7566b653f01dd95907578d8ab6b54282da1165fd5b5ca0",
+      "terminal": "completed",
+      "exit_code": 0
+    },
+    {
+      "phase": "training",
+      "job": "p2-f747-MOZE-training-six-textures-raw-eligibility-and-status",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "command_sha256": "18b56de1a5a9d3951980baec25ef2c469bb7310fc6aa639e4c7a06b75674c300",
+      "terminal": "completed",
+      "exit_code": 0
+    },
+    {
+      "phase": "radius",
+      "job": "p2-f747-MOZE-training-only-apex-spherical-height-source-bound",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "command_sha256": "72c5c60cfebea8351a5edb5189db4ff3f6adee92b606395672e504d13be9a4c5",
+      "terminal": "completed",
+      "exit_code": 0
+    },
+    {
+      "phase": "fit",
+      "job": "p2-f747-MOZE-locked-coupled-force-vs-position-and-authentic-family-GP",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "command_sha256": "74a6a6c3e83bf22594065a97e027416274bfe3629d2f5263fa1b253bc3335493",
+      "terminal": "completed",
+      "exit_code": 0
+    },
+    {
+      "phase": "results",
+      "job": "p2-f747-MOZE-750-held-rows-sealed-forecast-receiver",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "command_sha256": "9ce9caf0cdc8dee72ad4925a58dc0558156ffb80be8fa5d946b9b02eaee9fe6f",
+      "terminal": "completed",
+      "exit_code": 0
+    },
+    {
+      "phase": "raw",
+      "job": "p2-f747-MOZE-known-two-original-CSV-exact-cold-public-custody",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "command_sha256": "930f60e253b754b082c1cc8adf69519979b13e60f1dae423304bf997c2d74870",
+      "terminal": "completed",
+      "exit_code": 0
+    },
+    {
+      "phase": "independent",
+      "job": "p2-f747-MOZE-independent-all14980-errors-unresolved-132-mask-bounds",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "command_sha256": "d2665019b207080b8d9e7fa9650ac288b6b9959549df3ad4e3893e34d104d43a",
+      "terminal": "completed",
+      "exit_code": 0
+    },
+    {
+      "phase": "zip2",
+      "job": "p2-f747-MOZE-five-original-capsule-size-and-cold-identity",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "command_sha256": "30143b8ce4b9521a1ce8c5ec71a9f66e6d5cd448b6aa711e813a36c334f538c3",
+      "terminal": "completed",
+      "exit_code": 0
+    }
+  ],
+  "acquisition_events": [
+    "Original api.data.mendeley.com returned HTTP401. The publisher public dataset index supplied all six files and exact checksums.",
+    "Independent article XML routes returned HTTP500 or HTML. Primary author articles and the original PDF methods supplied the observation definitions.",
+    "First CSV download from the public file locator returned HTTP403 before any rows decoded. Fresh public organizer index delivered both exact original CSVs and authenticated headers.",
+    "The initial request to retain over 65,536 bytes of transfer output was refused before execution. A smaller packaging original sealed the five data members; six read-only transfers passed per-part and whole-file hash checks."
+  ],
+  "archive": {
+    "len": 215588,
+    "sha": "31c138fa6d8580d89d8729d3a2cd3380b4cf17ff331003d83c917f8b25da8b2a",
+    "git": "b26c08061c265b0ecf699ed8c8d1c040a98181d9",
+    "key": "r2-estate:hamon-build-cache/research/astra62-p2-f747f5728172/ljubljana-drop/31c138fa6d8580d89d8729d3a2cd3380b4cf17ff331003d83c917f8b25da8b2a/original-course.zip"
+  },
+  "publication_corrections": [
+    "Initial clean science read reproduced all scores but refused training projection SHA when line-number string keys sorted lexicographically. Restored original numeric sort for serialization only; no original forecast, data, scorer or gate changed.",
+    "Initial ordinary package policy refused tracked ZIP suffix. Distributed the same five original members as their native CSV/JSON files. The external original archive and its digest remain unchanged."
+  ]
+}
