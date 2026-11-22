@@ -1,0 +1,92 @@
+{
+  "data_commit": "9389f33c0ee83d549c8c3a82fcb330ca706ab9e0",
+  "source_sha256": "bdf6004da1342a8746e51580a57b5ddb8ac400ac5caa48368719c33cbb0ef505",
+  "model_sha256": {
+    "bla_100mV": "07531abe661f7693c11de278249d85139857fd6d086855fd520a0ddc35753435",
+    "bla_200mV": "4c31059bb379a63f6950f091f58d416406195054ee439ea48502919833ecae3d",
+    "bla_300mV": "72c1e03a108297aaf05507a0bd8354041ad87efdeb00207d681df79bfaef1a64",
+    "bla_all_amplitudes": "4a20de24da3791fa735ebe3a123ac8b43371f4b73eb6ee6a6d18389e148383b3",
+    "nllfr_all_amplitudes": "8d856f96e12297a489650d2368c0bf2048eaff37370949cdc8db72014c59d608"
+  },
+  "model_library_commit": "ad43d976bee664494117febc3cf82c86790c7347",
+  "organizer_loader_commit": "f9fb3883086870a27b31917ccde1f78c95d53cb2",
+  "verified_development": {
+    "rms_comparisons": 486,
+    "maximum_rmse_difference_um": 2.6645352591003757e-15,
+    "model_means_by_amp_um": {
+      "bla_100mV": {
+        "100": 0.11401046224790266,
+        "200": 0.5522079162468533,
+        "300": 1.315622784900771
+      },
+      "bla_200mV": {
+        "100": 0.29358026596857745,
+        "200": 0.21822878841678792,
+        "300": 0.7006464393990486
+      },
+      "bla_300mV": {
+        "100": 0.4426396933679374,
+        "200": 0.41744911805638085,
+        "300": 0.2323579959821696
+      },
+      "bla_all_amplitudes": {
+        "100": 0.24929654852175842,
+        "200": 0.1764308209403776,
+        "300": 0.6556925587889548
+      },
+      "correction_clip": {
+        "100": 0.1141800112337422,
+        "200": 0.2176370128933918,
+        "300": 0.22998658335192987
+      },
+      "correction_gain": {
+        "100": 0.11472237720005525,
+        "200": 0.21754138492697658,
+        "300": 0.22989093125423932
+      },
+      "correction_lag": {
+        "100": 0.11309801526711794,
+        "200": 0.21275088435158807,
+        "300": 0.22925169653377406
+      },
+      "correction_play": {
+        "100": 0.11355001873447312,
+        "200": 0.21678550493224893,
+        "300": 0.22987407215969086
+      },
+      "nllfr_all_amplitudes": {
+        "100": 0.0890529548202279,
+        "200": 0.1314189231562173,
+        "300": 0.16705315183577263
+      }
+    },
+    "gains": {
+      "mean_gain_over_diag": 0.007771293336100382,
+      "mean_gain_over_best_control": -0.009203736600796875,
+      "mean_gain_over_oracle_saved": -0.44560880647599044
+    },
+    "erasure_summary": {
+      "controls": 162,
+      "erased": 162,
+      "latest": {
+        "amplitude_mV": 100,
+        "r": 6,
+        "channel": 1,
+        "fraction": 1,
+        "first_erasure_sample": 19,
+        "remaining_interval_V": 0,
+        "last_span_over_2r": 3.0116599764295064
+      },
+      "smallest_peak_span_2r": 2.9942592103976677,
+      "note": "Measured training voltages only; scalar stop forgets even unbounded initial memory under these finite prefix intervals, no general steady-state onset or physical mechanism implication."
+    },
+    "held_outputs_accessed": []
+  },
+  "receipt_sha256": {
+    "f32_native_five": "07eeb6ee5d97c8e480d176a322da2128a6c36d92883d8404d23ca6f9262f91e2",
+    "raw_development": "51eaaca9b1ad4a5d18c4630cdc7672f0f8f8e104ad245e69d53676e628c3d846",
+    "independent_recount": "6fec86d81f5f836284747dbd279fbbf8c91a8aee29ba2a500b8785a395ea2484",
+    "input_lineage": "d40f3ad26dcd5acf73e0b1c5825567bcb86fe7d2568a25a644dbe7b193c03518",
+    "initial_float64_skeleton_refusal": "bde7ceb6726f15640952dbd5b867af295ac264c699cbd404a977e06663d004f2"
+  }
+}
