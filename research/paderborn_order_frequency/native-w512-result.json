@@ -1,0 +1,265 @@
+{
+  "actual_native_center0": 255,
+  "actual_window_sha256": "ebc331b54bd1be01e8c8b12d4a2579cf9f46571d6de8551cbcccec04a332135d",
+  "runs": [
+    {
+      "all_grid_cells": 329217,
+      "common_positive_cells": 324478,
+      "complex_pass": false,
+      "complex_worst": [
+        59,
+        0
+      ],
+      "complex_worst_native": [
+        0.0012088957483635469,
+        0.0
+      ],
+      "complex_worst_receiver": [
+        0.00119646555362476,
+        0.0
+      ],
+      "fft_cyclic_count": 2556,
+      "frames": 5111,
+      "grid_pass": false,
+      "identical_complex_shape": true,
+      "max_common_grid_scaled": 0.010278296968543314,
+      "max_complex_scaled": 0.010282271863072814,
+      "max_grid_scaled": 0.010282271863072814,
+      "measured_scientific_waveforms": 0,
+      "mode": "existing-scipy",
+      "native_complex_cells": 656892,
+      "native_complex_shape": [
+        257,
+        2556
+      ],
+      "receiver_complex_shape": [
+        257,
+        2556
+      ],
+      "worst_Hz": 7375.0,
+      "worst_common": [
+        59,
+        1
+      ],
+      "worst_common_native": 7.76439500762983e-05,
+      "worst_common_receiver": 7.684590249960336e-05,
+      "worst_order": 0.015625
+    },
+    {
+      "all_grid_cells": 329217,
+      "common_positive_cells": 324478,
+      "complex_pass": true,
+      "complex_worst": [
+        58,
+        0
+      ],
+      "complex_worst_native": [
+        0.0006712230692405818,
+        0.0
+      ],
+      "complex_worst_receiver": [
+        0.0006712230692405821,
+        0.0
+      ],
+      "fft_cyclic_count": 2556,
+      "frames": 5111,
+      "grid_pass": true,
+      "identical_complex_shape": true,
+      "max_common_grid_scaled": 2.2691124402579345e-15,
+      "max_complex_scaled": 2.6905599774500724e-16,
+      "max_grid_scaled": 2.6905599774500724e-16,
+      "measured_scientific_waveforms": 0,
+      "mode": "literal-native-vector-and-axis",
+      "native_complex_cells": 656892,
+      "native_complex_shape": [
+        257,
+        2556
+      ],
+      "receiver_complex_shape": [
+        257,
+        2556
+      ],
+      "worst_Hz": 7500.0,
+      "worst_common": [
+        60,
+        1
+      ],
+      "worst_common_native": 7.946842630937893e-06,
+      "worst_common_receiver": 7.946842630937717e-06,
+      "worst_order": 0.015625
+    },
+    {
+      "all_grid_cells": 329217,
+      "common_positive_cells": 324478,
+      "complex_pass": false,
+      "complex_worst": [
+        59,
+        0
+      ],
+      "complex_worst_native": [
+        0.0012088901829409992,
+        0.0
+      ],
+      "complex_worst_receiver": [
+        0.0011964600454274009,
+        0.0
+      ],
+      "fft_cyclic_count": 2557,
+      "frames": 5112,
+      "grid_pass": false,
+      "identical_complex_shape": true,
+      "max_common_grid_scaled": 0.00220797914296932,
+      "max_complex_scaled": 0.010282271863072075,
+      "max_grid_scaled": 0.010282271863072075,
+      "measured_scientific_waveforms": 0,
+      "mode": "existing-scipy",
+      "native_complex_cells": 657149,
+      "native_complex_shape": [
+        257,
+        2557
+      ],
+      "receiver_complex_shape": [
+        257,
+        2557
+      ],
+      "worst_Hz": 7125.0,
+      "worst_common": [
+        57,
+        973
+      ],
+      "worst_common_native": 0.00019090969044276244,
+      "worst_common_receiver": 0.0001904881658280741,
+      "worst_order": 15.203125
+    },
+    {
+      "all_grid_cells": 329217,
+      "common_positive_cells": 324478,
+      "complex_pass": true,
+      "complex_worst": [
+        59,
+        0
+      ],
+      "complex_worst_native": [
+        0.0012088901829409992,
+        0.0
+      ],
+      "complex_worst_receiver": [
+        0.0012088901829409996,
+        0.0
+      ],
+      "fft_cyclic_count": 2557,
+      "frames": 5112,
+      "grid_pass": true,
+      "identical_complex_shape": true,
+      "max_common_grid_scaled": 4.2593523014900246e-16,
+      "max_complex_scaled": 3.5874298188040453e-16,
+      "max_grid_scaled": 3.5874298188040453e-16,
+      "measured_scientific_waveforms": 0,
+      "mode": "literal-native-vector-and-axis",
+      "native_complex_cells": 657149,
+      "native_complex_shape": [
+        257,
+        2557
+      ],
+      "receiver_complex_shape": [
+        257,
+        2557
+      ],
+      "worst_Hz": 7500.0,
+      "worst_common": [
+        60,
+        973
+      ],
+      "worst_common_native": 0.0001872472095523016,
+      "worst_common_receiver": 0.00018724720955230151,
+      "worst_order": 15.203125
+    },
+    {
+      "all_grid_cells": 329217,
+      "common_positive_cells": 324478,
+      "complex_pass": false,
+      "complex_worst": [
+        59,
+        0
+      ],
+      "complex_worst_native": [
+        0.0012089160971359503,
+        0.0
+      ],
+      "complex_worst_receiver": [
+        0.0011964856931655536,
+        0.0
+      ],
+      "fft_cyclic_count": 2451,
+      "frames": 4900,
+      "grid_pass": false,
+      "identical_complex_shape": false,
+      "max_common_grid_scaled": 0.002208417198327765,
+      "max_complex_scaled": 0.01028227186307279,
+      "max_grid_scaled": 0.01028227186307279,
+      "measured_scientific_waveforms": 0,
+      "mode": "existing-scipy",
+      "native_complex_cells": 629907,
+      "native_complex_shape": [
+        257,
+        2451
+      ],
+      "receiver_complex_shape": [
+        257,
+        2450
+      ],
+      "worst_Hz": 7125.0,
+      "worst_common": [
+        57,
+        989
+      ],
+      "worst_common_native": 0.0001712506849919393,
+      "worst_common_receiver": 0.0001708724920339777,
+      "worst_order": 15.453125
+    },
+    {
+      "all_grid_cells": 329217,
+      "common_positive_cells": 324478,
+      "complex_pass": true,
+      "complex_worst": [
+        58,
+        0
+      ],
+      "complex_worst_native": [
+        0.0006712220669086017,
+        0.0
+      ],
+      "complex_worst_receiver": [
+        0.0006712220669086018,
+        0.0
+      ],
+      "fft_cyclic_count": 2451,
+      "frames": 4900,
+      "grid_pass": true,
+      "identical_complex_shape": true,
+      "max_common_grid_scaled": 4.748311689395012e-16,
+      "max_complex_scaled": 8.968382297614315e-17,
+      "max_grid_scaled": 8.968382297614315e-17,
+      "measured_scientific_waveforms": 0,
+      "mode": "literal-native-vector-and-axis",
+      "native_complex_cells": 629907,
+      "native_complex_shape": [
+        257,
+        2451
+      ],
+      "receiver_complex_shape": [
+        257,
+        2451
+      ],
+      "worst_Hz": 7500.0,
+      "worst_common": [
+        60,
+        989
+      ],
+      "worst_common_native": 0.00016798231065432172,
+      "worst_common_receiver": 0.0001679823106543218,
+      "worst_order": 15.453125
+    }
+  ],
+  "scipy_center0": 256
+}
