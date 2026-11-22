@@ -8,6 +8,7 @@
  * offset + linear + quadratic + cubic actuator laws under arbitrary unknown
  * per-episode initial states x_k[0].
  */
+import {compileExactAffineCircuits} from './active-linear-family.mjs';
 
 export const ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA = 'worldlaw.active-vandermonde-nonlinear/v1';
 export const ACTIVE_VANDERMONDE_READINGS_SCHEMA = 'worldlaw.active-vandermonde-readings/v1';
@@ -514,6 +515,82 @@ export function replayActiveVandermondeNonlinear(request, plan) {
   return recomputed;
 }
 
+/** Project each complete bounded-error episode onto its scalar actuator
+ * response. For every circuit w of O, |w.y - (w.h)g| <= epsilon ||w||1.
+ * These are all dual faces, not just a nullspace basis. Their intersection
+ * is exactly the set of g admitting ONE initial state and ONE error vector.
+ * Then intersect the resulting response box with the shared polynomial
+ * image. A conformal decomposition into circuits makes those box checks
+ * sufficient even when individual response intervals have zero width. */
+function jointReadoutGeometry(plant, episodeValues, noiseBound, V) {
+  const circuits = compileExactAffineCircuits(plant.O);
+  const intervals = [];
+  const dynamicalViolations = [];
+  const witness = (weights, values) => {
+    const row = primitiveIntegerRow(weights);
+    return {
+      certificate: 'complete_episode_noise_box',
+      annihilatorIndex: null,
+      weights: row.map(fmt),
+      residual: fmt(absQ(dot(row, values))),
+      threshold: fmt(mul(l1Norm(row), noiseBound)),
+    };
+  };
+  for (let k = 0; k < episodeValues.length; k++) {
+    const values = episodeValues[k];
+    let lower = null, upper = null, lowerWeights = null, upperWeights = null;
+    let violation = null;
+    for (const {weights} of circuits) {
+      const gain = dot(weights, plant.hp);
+      const response = dot(weights, values);
+      const radius = mul(l1Norm(weights), noiseBound);
+      if (gain.n === 0n) {
+        if (!violation && cmpQ(absQ(response), radius) > 0)
+          violation = witness(weights, values);
+        continue;
+      }
+      // Normalize to unit response; its sign is then immaterial.
+      const normalized = weights.map(q => div(q, gain));
+      const center = div(response, gain);
+      const spread = div(radius, absQ(gain));
+      const lo = sub(center, spread), hi = add(center, spread);
+      if (lower === null || cmpQ(lo, lower) > 0) {
+        lower = lo; lowerWeights = normalized;
+      }
+      if (upper === null || cmpQ(hi, upper) < 0) {
+        upper = hi; upperWeights = normalized;
+      }
+    }
+    need(lower !== null && upper !== null, 'internal actuator response is not observable');
+    if (!violation && cmpQ(lower, upper) > 0)
+      violation = witness(lowerWeights.map((q, i) => sub(q, upperWeights[i])), values);
+    intervals.push({lower, upper});
+    if (violation) dynamicalViolations.push({episode: k, ...violation});
+  }
+  if (dynamicalViolations.length) return {intervals, dynamicalViolations, polynomialViolation: null};
+
+  const centers = intervals.map(({lower, upper}) => div(add(lower, upper), Q(2n)));
+  const radii = intervals.map(({lower, upper}) => div(sub(upper, lower), Q(2n)));
+  let polynomialViolation = null;
+  for (const {weights} of compileExactAffineCircuits(V)) {
+    const row = primitiveIntegerRow(weights);
+    const residual = absQ(dot(row, centers));
+    const threshold = row.reduce((sum, q, i) => add(sum, mul(absQ(q), radii[i])), Z());
+    if (cmpQ(residual, threshold) > 0) {
+      polynomialViolation = {
+        certificate: 'complete_polynomial_response_box',
+        annihilatorIndex: null,
+        weights: row.map(fmt),
+        responseIntervals: intervals.map(({lower, upper}) => [fmt(lower), fmt(upper)]),
+        residual: fmt(residual),
+        threshold: fmt(threshold),
+      };
+      break;
+    }
+  }
+  return {intervals, dynamicalViolations, polynomialViolation};
+}
+
 export function evaluateActiveVandermondeReadings(request, plan, supplied) {
   const verifiedPlan = replayActiveVandermondeNonlinear(request, plan);
   need(supplied && typeof supplied === 'object' && supplied.schema === ACTIVE_VANDERMONDE_READINGS_SCHEMA,
@@ -534,6 +611,7 @@ export function evaluateActiveVandermondeReadings(request, plan, supplied) {
   const obsTicks = verifiedPlan.observationTicks;
 
   const zVec = [];
+  const episodeValues = [];
   const dynamicalViolations = [];
 
   for (let k = 0; k < K; k++) {
@@ -549,6 +627,7 @@ export function evaluateActiveVandermondeReadings(request, plan, supplied) {
       need(row && row.tick === obsTicks[i], `episode ${k} reading ${i} tick mismatch`);
       yk.push(parseRational(row.value, `episode ${k} tick ${obsTicks[i]} value`));
     }
+    episodeValues.push(yk);
     for (let dIdx = 0; dIdx < dynBasis.length; dIdx++) {
       const wDyn = dynBasis[dIdx];
       const residual = absQ(dot(wDyn, yk));
@@ -596,9 +675,19 @@ export function evaluateActiveVandermondeReadings(request, plan, supplied) {
     errorRadius: fmt(radii[m]),
   }));
 
-  const abstained = dynamicalViolations.length > 0 || polynomialViolations.length > 0;
   const hypotheses = parseHypotheses(request.hypotheses, verifiedPlan.maxDegree);
   const V = verifiedPlan.vandermondeMatrix.map((row) => row.map((v) => parseRational(v)));
+  const plant = parsePlant(request.plant, request.stateDimension, request.horizon);
+  const joint = jointReadoutGeometry(plant, episodeValues, noiseBound, V);
+  // Preserve historical diagnostic fields and valid notebook bytes. Basis
+  // residuals remain useful explanations, but never suffice for acceptance.
+  if (!dynamicalViolations.length) {
+    for (const row of joint.dynamicalViolations)
+      dynamicalViolations.push({...row, amplitude: verifiedPlan.amplitudes[row.episode]});
+  }
+  if (!polynomialViolations.length && joint.polynomialViolation)
+    polynomialViolations.push(joint.polynomialViolation);
+  const abstained = joint.dynamicalViolations.length > 0 || joint.polynomialViolation !== null;
   const consistentIds = [];
   const falsifiedIds = [];
 
@@ -607,7 +696,8 @@ export function evaluateActiveVandermondeReadings(request, plan, supplied) {
       let ok = true;
       for (let k = 0; k < K; k++) {
         const predicted = dot(V[k], h.coefficients);
-        if (cmpQ(absQ(sub(zVec[k], predicted)), epsilonZ) > 0) {
+        if (cmpQ(predicted, joint.intervals[k].lower) < 0 ||
+            cmpQ(predicted, joint.intervals[k].upper) > 0) {
           ok = false;
           break;
         }

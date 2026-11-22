@@ -1,0 +1,255 @@
+{
+  "fs_Hz": 78125.0,
+  "T_s": 1.28e-05,
+  "amplitudes_V": [
+    0.1,
+    0.325,
+    0.55,
+    0.775,
+    1.0
+  ],
+  "declared_lines": [
+    4095,
+    2,
+    4096
+  ],
+  "mat_variable_shapes": [
+    [
+      "amp",
+      [
+        1,
+        5
+      ],
+      "double"
+    ],
+    [
+      "fs",
+      [
+        1,
+        1
+      ],
+      "double"
+    ],
+    [
+      "lines",
+      [
+        1,
+        4095
+      ],
+      "double"
+    ],
+    [
+      "uEst",
+      [
+        16384,
+        2,
+        20,
+        5
+      ],
+      "double"
+    ],
+    [
+      "uVal",
+      [
+        16384,
+        2,
+        1,
+        5
+      ],
+      "double"
+    ],
+    [
+      "uValArr",
+      [
+        16384,
+        2
+      ],
+      "double"
+    ],
+    [
+      "yEst",
+      [
+        16384,
+        2,
+        20,
+        5
+      ],
+      "double"
+    ],
+    [
+      "yVal",
+      [
+        16384,
+        2,
+        1,
+        5
+      ],
+      "double"
+    ],
+    [
+      "yValArr",
+      [
+        16384,
+        2
+      ],
+      "double"
+    ]
+  ],
+  "input_output_training_only": true,
+  "csv_rows": 3276800,
+  "measurements": [
+    {
+      "kind": "u",
+      "amp": 0,
+      "csv_chronological_rms": 1.5929283016237899e-06,
+      "csv_chronological_peak": 4.999997312987725e-06,
+      "csv_literal_rms": 0.13598358029786528,
+      "csv_literal_peak": 0.671475893242662,
+      "physical_step_rms": 0.08129423982094398,
+      "literal_odd_step_rms": 0.00023375156351008216,
+      "literal_even_step_rms": 0.08129438682446499,
+      "repeated_period_rms": 0.00023375156351008216
+    },
+    {
+      "kind": "y",
+      "amp": 0,
+      "csv_chronological_rms": 4.2383575989580366e-07,
+      "csv_chronological_peak": 4.999975146788294e-06,
+      "csv_literal_rms": 0.05788561790560471,
+      "csv_literal_peak": 0.2898158750830273,
+      "physical_step_rms": 0.00370849334453423,
+      "literal_odd_step_rms": 0.00023284384337087275,
+      "literal_even_step_rms": 0.0037107590111338145,
+      "repeated_period_rms": 0.00023284384337087275
+    },
+    {
+      "kind": "u",
+      "amp": 1,
+      "csv_chronological_rms": 2.7414257631851462e-06,
+      "csv_chronological_peak": 4.9999448950233116e-05,
+      "csv_literal_rms": 0.4437458801600771,
+      "csv_literal_peak": 2.23821491205961,
+      "physical_step_rms": 0.2653126666961401,
+      "literal_odd_step_rms": 0.0002344147871124476,
+      "literal_even_step_rms": 0.26531448602802177,
+      "repeated_period_rms": 0.00023441478711244763
+    },
+    {
+      "kind": "y",
+      "amp": 1,
+      "csv_chronological_rms": 1.9164604717529425e-06,
+      "csv_chronological_peak": 4.999979915154551e-06,
+      "csv_literal_rms": 0.17830710658322635,
+      "csv_literal_peak": 0.7855194988594631,
+      "physical_step_rms": 0.011272698163832705,
+      "literal_odd_step_rms": 0.00023314630829125482,
+      "literal_even_step_rms": 0.011273380317222826,
+      "repeated_period_rms": 0.00023314630829125482
+    },
+    {
+      "kind": "u",
+      "amp": 2,
+      "csv_chronological_rms": 7.526453753435184e-06,
+      "csv_chronological_peak": 4.9999878103612616e-05,
+      "csv_literal_rms": 0.7505155832528448,
+      "csv_literal_peak": 3.7404896602842164,
+      "physical_step_rms": 0.4491592243142862,
+      "literal_odd_step_rms": 0.00023479702319145822,
+      "literal_even_step_rms": 0.4491608559409483,
+      "repeated_period_rms": 0.00023479702319145822
+    },
+    {
+      "kind": "y",
+      "amp": 2,
+      "csv_chronological_rms": 2.3063865254524844e-06,
+      "csv_chronological_peak": 4.999989451914821e-06,
+      "csv_literal_rms": 0.2858988684846522,
+      "csv_literal_peak": 1.1463550738726238,
+      "physical_step_rms": 0.017822966219114538,
+      "literal_odd_step_rms": 0.00022929457279965922,
+      "literal_even_step_rms": 0.017822758427869113,
+      "repeated_period_rms": 0.00022929457279965922
+    },
+    {
+      "kind": "u",
+      "amp": 3,
+      "csv_chronological_rms": 1.2527216851909128e-05,
+      "csv_chronological_peak": 4.9999496633867935e-05,
+      "csv_literal_rms": 1.0588023651231953,
+      "csv_literal_peak": 5.134407255503829,
+      "physical_step_rms": 0.6326327327052784,
+      "literal_odd_step_rms": 0.00023360504146446894,
+      "literal_even_step_rms": 0.6326313798779067,
+      "repeated_period_rms": 0.00023360504146446894
+    },
+    {
+      "kind": "y",
+      "amp": 3,
+      "csv_chronological_rms": 2.4627914896131365e-06,
+      "csv_chronological_peak": 4.9999676327572296e-06,
+      "csv_literal_rms": 0.385230203070969,
+      "csv_literal_peak": 1.4977284682140928,
+      "physical_step_rms": 0.02331626724497572,
+      "literal_odd_step_rms": 0.00023278431804366008,
+      "literal_even_step_rms": 0.023316710488594912,
+      "repeated_period_rms": 0.00023278431804366008
+    },
+    {
+      "kind": "u",
+      "amp": 4,
+      "csv_chronological_rms": 1.6039550009667595e-05,
+      "csv_chronological_peak": 4.9999353582741435e-05,
+      "csv_literal_rms": 1.3623445127920824,
+      "csv_literal_peak": 6.411278686430757,
+      "physical_step_rms": 0.8157008427408511,
+      "literal_odd_step_rms": 0.0002343886766266539,
+      "literal_even_step_rms": 0.8156922198352826,
+      "repeated_period_rms": 0.0002343886766266539
+    },
+    {
+      "kind": "y",
+      "amp": 4,
+      "csv_chronological_rms": 2.579988385954487e-06,
+      "csv_chronological_peak": 4.9526809634770075e-05,
+      "csv_literal_rms": 0.4672807639836104,
+      "csv_literal_peak": 1.7096071475066563,
+      "physical_step_rms": 0.027830394427177337,
+      "literal_odd_step_rms": 0.00023212710486923097,
+      "literal_even_step_rms": 0.027831267963951627,
+      "repeated_period_rms": 0.000232127104869231
+    }
+  ],
+  "worst_training_disagreement": {
+    "kind": "u",
+    "amplitude_index": 4,
+    "realization": 4,
+    "row": 3318,
+    "csv": 3.1868,
+    "physical": 3.1867773139688325,
+    "literal": -3.224478686430757,
+    "absolute_error": 6.411278686430757,
+    "physical_source": [
+      3318,
+      0
+    ],
+    "loader_source": [
+      1659,
+      0
+    ]
+  },
+  "pointwise_full_rmse": [
+    0.31767798377110695,
+    0.31767798377110695
+  ],
+  "pointwise_equal_event_values": true,
+  "future_predecessors": 16383,
+  "lag1_offsets": {
+    "-16383": 16383,
+    "16384": 16384
+  },
+  "prefix_shared": 25,
+  "loader_50_last_physical_time_s": 0.2100224,
+  "chronological_50_last_physical_time_s": 0.0006272,
+  "chronological_y_persistence_rmse": 0.01885027290963407,
+  "literal_y_persistence_rmse": 0.013330315164626776
+}

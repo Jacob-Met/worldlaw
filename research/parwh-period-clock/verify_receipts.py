@@ -1,20 +1,26 @@
 """Verify the published receipt archive and display its frozen prediction comparison."""
 import hashlib
-import io
 import json
 from pathlib import Path
-import zipfile
 
 HERE = Path(__file__).resolve().parent
-ARCHIVE = '402c821dd1890be359b5ca99728fbcda571d2e99309e77f8c35869196ac8e756'
+EXPECTED = {
+    'estimation-clock-source.json': '8d9f8d70a61746230694db436b5b9cb061fa0dc38c416de11450febb66eae54a',
+    'qualification.json': '7adbf09fc6c2b376b2bfdff191842b12447c83645626a0383f9746e0b7d217b9',
+    'phase-control-development.json': '6dadf020a59370c6bd7702792882b0d5dd2185eb4971d3cf03992bce2e452432',
+    'prediction-lock.json': '1ff22c83957d54a4fd58f444a880e4bf343d5fb5a8a7eb4ae56e644c5c114d11',
+    'official-locked-scores.json': 'd258f743193f6fee84b088e087377c9416b440fd5e8764b8a1fb03c852c57270',
+    'independent-physical-recount.json': 'c62e9266ea55b5977fbfc9cadcab10ca8948f0872b0613ab34a356ec510f2ee2',
+}
 
 
 def main():
-    raw = (HERE / 'aggregate-receipts.zip').read_bytes()
-    if hashlib.sha256(raw).hexdigest() != ARCHIVE:
-        raise ValueError('Receipt archive hash mismatch')
-    with zipfile.ZipFile(io.BytesIO(raw)) as archive:
-        receipts = {name: archive.read(name) for name in archive.namelist()}
+    receipts = {}
+    for name, digest in EXPECTED.items():
+        raw = (HERE / 'receipts' / name).read_bytes()
+        if hashlib.sha256(raw).hexdigest() != digest:
+            raise ValueError(f'Receipt hash mismatch: {name}')
+        receipts[name] = raw
     report = json.loads(receipts['official-locked-scores.json'])
     recount = json.loads(receipts['independent-physical-recount.json'])
     lock = json.loads(receipts['prediction-lock.json'])

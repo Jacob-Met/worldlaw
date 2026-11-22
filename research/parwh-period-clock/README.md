@@ -25,7 +25,7 @@ Each entry below uses the same 32,693 physical events across all four columns. T
 | 0.775 | 7.1956 | 190.6759 | 4.3216 | 12.4100 |
 | 1.000 | 10.2979 | 234.4237 | 7.4978 | 15.5129 |
 
-The largest repeat-current error occurred at the highest input level, first period, row 6,776. The current input was −0.552977 V, the measured output was −0.252845 V and the prediction was −0.193887 V, a +58.958 mV residual. At 1 V RMS its matched-event error was 7.5061 mV over the first period and 7.4895 mV over the second. All 35 role/amplitude worst rows and both period slices are available in the receipt archive.
+The largest repeat-current error occurred at the highest input level, first period, row 6,776. The current input was −0.552977 V, the measured output was −0.252845 V and the prediction was −0.193887 V, a +58.958 mV residual. At 1 V RMS its matched-event error was 7.5061 mV over the first period and 7.4895 mV over the second. All 35 role/amplitude worst rows and both period slices are available in the six hash-verified receipt files.
 
 The checkpoint reproduced all five released scaled trajectories to within 5.56 × 10⁻¹⁷ and their RMSEs to within 3.08 × 10⁻⁷ mV. The independent receiver recomputed 140 error statistics with maximum disagreement 2.85 × 10⁻¹⁴ mV and recovered all 35 raw worst-row coordinates. Each direct rollout uses 32,761 recurrent updates after constructing its lag vectors. The two microstep arms use 65,529 each. No real-time latency measurement was performed.
 
@@ -93,4 +93,4 @@ score=$(sha256sum "$work/official-locked-scores.json" | cut -d" " -f1)
 python independent_recount.py "$work" recount "$score" "$pred"
 ```
 
-The prospective decisions were recorded in task posts 177020, 177037 and 177093. All 35 predictions were sealed at post 177106 before measured multisine outputs or the historical released prediction arrays were opened. The six-receipt archive includes the original scores, per-array locks, out-of-fit FIR controls, independent recount and estimation chronology checks.
+The prospective decisions were recorded in task posts 177020, 177037 and 177093. All 35 predictions were sealed at post 177106 before measured multisine outputs or the historical released prediction arrays were opened. The six individually hashed JSON receipts include the original scores, per-array locks, out-of-fit FIR controls, independent recount and estimation chronology checks.
