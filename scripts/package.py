@@ -16,6 +16,22 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/bridge-cross-speed-strain/README.md",
+    "research/bridge-cross-speed-strain/bridge_source.py",
+    "research/bridge-cross-speed-strain/clock_registration.py",
+    "research/bridge-cross-speed-strain/passage_models.py",
+    "research/bridge-cross-speed-strain/fit_course.py",
+    "research/bridge-cross-speed-strain/score_course.py",
+    "research/bridge-cross-speed-strain/model_protocol.md",
+    "research/bridge-cross-speed-strain/independent_bridge.py",
+    "research/bridge-cross-speed-strain/failure_trace.py",
+    "research/bridge-cross-speed-strain/replay_bridge.py",
+    "research/bridge-cross-speed-strain/clock-qualification.json",
+    "research/bridge-cross-speed-strain/frozen-prediction-registry.json",
+    "research/bridge-cross-speed-strain/held-original.json",
+    "research/bridge-cross-speed-strain/independent-receipt.json",
+    "research/bridge-cross-speed-strain/failure-trace.json",
+    "research/bridge-cross-speed-strain/worst-passage-trace.csv.gz",
     "research/gamella-wind-torque-transfer/score-original.json",
     "research/gamella-wind-torque-transfer/independent-receipt.json",
     "research/gamella-wind-torque-transfer/numerical-custody.json",
@@ -1179,3 +1195,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
