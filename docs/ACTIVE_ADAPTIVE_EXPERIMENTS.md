@@ -54,7 +54,7 @@ predictions without an automatic animation.
 
 ## Source contract
 
-The strict schema is `worldlaw.active-linear-adaptive/v1`. Its only fields are:
+The strict schema is `worldlaw.active-linear-adaptive/v1`. Its fields are:
 
 | Field | Contract |
 | --- | --- |
@@ -65,6 +65,8 @@ The strict schema is `worldlaw.active-linear-adaptive/v1`. Its only fields are:
 | `noiseBound` | Nonnegative exact rational componentwise absolute error bound |
 | `maxTotalReadings` | Integer total budget from 1 through 32 |
 | `workLimit` | Integer exact-work budget from 100 through 50,000 |
+| `requiredExperiments` | Optional nonempty list of distinct offered experiment IDs that must all be received before a singleton can terminate |
+| `requiredInputDiversity` | Optional `{minimumDistinct, minimumRank}` obligation on the required effective input histories, checked exactly before any policy is certified |
 
 Each law supplies `A`, `B`, and `C`, with one to five latent dimensions and one
 to four shared control channels. Each experiment supplies a distinct `id`,
@@ -164,6 +166,62 @@ single work budget. Exhaustion returns `search_inconclusive`, with no chosen
 policy, worst reading count, or worst cost. Partial geometry does not establish
 an impossibility result.
 
+## Required experiments after early agreement
+
+Selecting one listed law at a single input is conditional compatibility. It
+does not test how that law predicts a different actuator amplitude or a later
+time. An optional `requiredExperiments` list freezes these additional obligations
+before any readings arrive. The planner continues even when only one candidate
+remains, and a later residual outside the original declared noise bound rejects
+the remaining family. The error bound is never fitted to rescue a candidate.
+
+Coverage joins the Bellman state: survivor mask, remaining reading budget, and
+the set of required experiments already received. A singleton is terminal only
+when coverage is complete. An experiment that cannot separate any remaining
+listed pair can still be necessary to satisfy coverage. The static comparator
+must meet the identical obligations, and all acquisitions count against the
+same reading and cost budget. Exhaustion still produces no certified policy.
+The notebook binds coverage to each original reading and its preceding digest;
+reopen recomputes it rather than trusting a saved completion flag. Sources
+without this optional field retain the previous policy and certificate bytes.
+
+In the existing Hidden-state lab, choose **Require several actuator amplitudes**
+or import `examples/active-adaptive-amplitudes.json`. Its required inputs are
+`u = 1, 2, 3/2`, in that order after equal-cost tie-breaking. The three declared
+laws are `0`, `2u`, and `4u`. A separately supplied `2, 4, 5/2` transcript remains
+provisional after both endpoints and rejects the final survivor at the interior
+input; `2, 4, 3` remains compatible with `2u` after all three observations.
+This consumes three readings, not one. No same-acquisition-budget gain is implied.
+
+Named bundle coverage alone does not prove input diversity: three differently
+named copies of the same experiment still count as three received bundles.
+The amplitude example therefore also freezes `requiredInputDiversity` with
+three distinct histories and exact rank two. Both `{1,1,1}` and `{1,2,2}` are
+refused. Rank two alone would not exclude the second duplication. Effective
+input histories end before their last prescribed reading and are zero-padded
+to a shared horizon; unused later controls cannot manufacture diversity.
+The rank calculation uses exact rationals and the same hard work budget.
+This describes the declared inputs, not verified physical actuation.
+
+The audited quadratic aliases have the form `g(u) + c(u-1)(u-2)` and are exposed
+by the interior observation when the residual exceeds the declared error bound.
+At exact closed-bound equality the candidate remains compatible. A required
+later reading also detects a delayed response that aliases a listed law at the
+first tick. These are synthetic identifiability diagnostics, not physical
+calibration or unseen real-mechanism performance.
+
+Finite validation remains conditional on the offered family. For any finite
+queried set, an unlisted polynomial can add a nonzero multiple of the product
+of `(u - queried input)` and agree at every observation. The retained vanishing
+cubic control demonstrates this limit for all three amplitudes. More required
+experiments strengthen falsification; they do not establish unrestricted law
+identification, empirical coverage probabilities or an authenticated instrument.
+Each round keeps its own supplied/synthetic declaration; mixed declarations
+do not become an authenticated physical transcript. Replay checks original
+source, scientific core and round custody. Existing envelope normalization
+restores evidence labels and drops unrelated metadata rather than treating
+every extra envelope field as a tampering error.
+
 ## Receiving and portable replay
 
 Use the existing portable `worldlaw.active-experiment-notebook/v1` format.
@@ -258,7 +316,9 @@ replay the exported notebooks before calling the increment shipped.
 ## Reproduce the focused checks
 
 ```sh
-node --test tests/active-adaptive.test.mjs tests/active-adaptive-view.test.mjs
+node --test tests/active-adaptive.test.mjs tests/active-adaptive-view.test.mjs tests/active-required-experiments.test.mjs
+python3 scripts/active-required-receiving.py --cases 512 --output /tmp/worldlaw-required-receiving.json
+python3 scripts/active-required-receiving.py --cases 512 --require-input-diversity --output /tmp/worldlaw-diversity-receiving.json
 node scripts/active-experiment-browser.mjs
 ```
 
@@ -266,4 +326,16 @@ The browser command requires the same sandboxed Chromium/Playwright setup as
 the existing active experiment receiver. Full independent SciPy receiving,
 frozen baseline comparison, historical certificate compatibility, packaging,
 and ABBA measurements are specified in `.github/workflows/active-adaptive.yml`.
+
+The required-experiment receiver independently enumerates exact observation
+cells with Python fractions, including closed-boundary contacts and multi-reading
+bundles, and solves the finite-budget worst-case problem without importing the
+production geometry or policy. Its frozen default seed supplies 512 synthetic
+point-response courses: 236 certified policies, 167 inseparable families and 109
+insufficient budgets, with no disagreement or inconclusive result in the native
+receiving run. This qualifies the finite planner and its abstentions; it does
+not establish physical noise calibration or generalization outside the offered
+family. The three required amplitude example spends three readings under both
+the adaptive and static obligations; it does not claim a three-versus-one
+efficiency gain against the former, weaker stopping condition.
 

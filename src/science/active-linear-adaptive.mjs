@@ -26,8 +26,11 @@ const budgetFor=limit=>({limit,nodes:0,exhausted:false,take(){
 }});
 
 function compile(request){
+  const required=Object.hasOwn(request??{},'requiredExperiments');
+  const diversity=Object.hasOwn(request??{},'requiredInputDiversity');
   exactKeys(request,['schema','source','resetSemantics','hypotheses','experiments','noiseBound',
-    'maxTotalReadings','workLimit'],'source');
+    'maxTotalReadings','workLimit',...(required?['requiredExperiments']:[]),
+    ...(diversity?['requiredInputDiversity']:[])],'source');
   need(request.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA,'explicit adaptive v1 source schema required');
   need(request.resetSemantics==='independent-unknown-state-per-experiment',
     'declare independent unknown initial states and fresh bounded errors for each experiment');
@@ -72,8 +75,54 @@ function compile(request){
       cost:experiment.actuationCost+experiment.readings.reduce((sum,r)=>sum+r.cost,0),
       actuationCost:experiment.actuationCost};
   });
+  let requiredMask=0;
+  if(required){
+    need(Array.isArray(request.requiredExperiments)&&request.requiredExperiments.length>=1&&
+      request.requiredExperiments.length<=actions.length&&
+      new Set(request.requiredExperiments).size===request.requiredExperiments.length&&
+      request.requiredExperiments.every(id=>names.has(id)),
+      'requiredExperiments must name distinct offered experiments');
+    actions.forEach((action,i)=>{if(request.requiredExperiments.includes(action.id))requiredMask|=1<<i;});
+  }
+  if(diversity){
+    need(required,'requiredInputDiversity needs requiredExperiments');
+    exactKeys(request.requiredInputDiversity,['minimumDistinct','minimumRank'],'required input diversity');
+    const {minimumDistinct,minimumRank}=request.requiredInputDiversity;
+    need(Number.isSafeInteger(minimumDistinct)&&minimumDistinct>=2&&minimumDistinct<=request.requiredExperiments.length&&
+      Number.isSafeInteger(minimumRank)&&minimumRank>=1&&minimumRank<=minimumDistinct,
+      'required input diversity needs 2..required-count distinct inputs and rank 1..minimumDistinct');
+  }
   return {actions,ids:request.hypotheses.map(h=>h.id),epsilon:actions[0].epsilon,
+    requiredMask,requiredInputDiversity:diversity?{...request.requiredInputDiversity}:null,
     fullMask:(1<<request.hypotheses.length)-1};
+}
+
+function inputDiversity(actions,requiredMask,budget){
+  const selected=actions.filter((_,i)=>requiredMask&(1<<i));
+  const width=Math.max(...selected.map(action=>action.readings.at(-1).tick))*actions[0].controls[0].length;
+  const rows=selected.map(action=>{
+    const row=action.controls.slice(0,action.readings.at(-1).tick).flat().map(parseSource);
+    while(row.length<width)row.push(Z());
+    return row;
+  });
+  const distinct=new Set(rows.map(row=>row.map(fmt).join(','))).size;
+  let rank=0;
+  for(let column=0;column<width&&rank<rows.length;column++){
+    if(!budget.take())return null;
+    const pivot=rows.findIndex((row,i)=>i>=rank&&row[column].n!==0n);
+    if(pivot<0)continue;
+    [rows[rank],rows[pivot]]=[rows[pivot],rows[rank]];
+    for(let row=rank+1;row<rows.length;row++){
+      if(rows[row][column].n===0n)continue;
+      const factor=div(rows[row][column],rows[rank][column]);
+      for(let j=column;j<width;j++){
+        if(!budget.take())return null;
+        rows[row][j]=sub(rows[row][j],mul(factor,rows[rank][j]));
+      }
+    }
+    rank++;
+  }
+  return {distinct,rank};
 }
 
 /** min_(x_h,y) max_(h,j) |O_h[j]x_h+f_h[j]-y[j]|.
@@ -137,12 +186,13 @@ function maximalMasks(feasible,mask){
   return subsets.filter(item=>!subsets.some(other=>other!==item&&(item&other)===item));
 }
 
-function staticCatalogue(actions,fullMask,budget){
+function staticCatalogue(actions,fullMask,budget,requiredMask=0){
   const pairs=[];
   for(let i=0;(1<<i)<=fullMask;i++)for(let j=i+1;(1<<j)<=fullMask;j++)pairs.push((1<<i)|(1<<j));
   let best=null;
   for(let mask=1;mask<(1<<actions.length);mask++){
     if(!budget.take())return null;
+    if((mask&requiredMask)!==requiredMask)continue;
     const chosen=actions.filter((_,i)=>mask&(1<<i));
     if(pairs.some(pair=>chosen.every(action=>action.feasible.has(pair))))continue;
     const readings=chosen.reduce((sum,action)=>sum+action.readingCount,0),cost=chosen.reduce((sum,a)=>sum+a.cost,0);
@@ -153,17 +203,32 @@ function staticCatalogue(actions,fullMask,budget){
 }
 
 export function designActiveLinearAdaptive(request){
-  const {actions,ids,epsilon,fullMask}=compile(request),budget=budgetFor(request.workLimit);
+  const {actions,ids,epsilon,fullMask,requiredMask,requiredInputDiversity}=compile(request),budget=budgetFor(request.workLimit);
+  const terminal=(mask,covered)=>singleton(mask)&&(covered&requiredMask)===requiredMask;
+  const stateKey=(mask,remaining,covered)=>mask+':'+remaining+(requiredMask?':'+covered:'');
   const geometry=[];
+  let achievedRequiredInputDiversity=null;
   const base=()=>({schema:ACTIVE_LINEAR_ADAPTIVE_SCHEMA,source:request.source,hypothesisIds:ids,
     resetSemantics:request.resetSemantics,noiseBound:fmt(epsilon),maxTotalReadings:request.maxTotalReadings,
     sourceOnly:true,outcomeValuesUsed:false,physicalActionsPerformed:false,
     experiments:actions.map(({id,controls,readings,actuationCost,cost})=>({id,controls,readings,actuationCost,cost})),
+    ...(requiredMask?{requiredExperiments:actions.filter((_,i)=>requiredMask&(1<<i)).map(a=>a.id),
+      requiredExperimentMask:requiredMask}:{}),
+    ...(requiredInputDiversity?{requiredInputDiversity,achievedRequiredInputDiversity}:{}),
     geometry,workLimit:budget.limit,nodes:budget.nodes,exhausted:budget.exhausted,
-    workAccounting:'Common-tube mask traversals and exact LP starts/affected tableau rows, maximal-mask traversals, static catalogue subsets and memoized policy state/action checks share one hard limit.',
+    workAccounting:'Common-tube mask traversals and exact LP starts/affected tableau rows, maximal-mask traversals, static catalogue subsets and memoized policy state/action checks share one hard limit.'+
+      (requiredInputDiversity?' Required-input rank pivots and eliminated entries use that same limit.':''),
     worstReadings:null,worstCost:null,policy:null,staticPlan:null});
   const incomplete=()=>({...base(),status:'search_inconclusive',
     interpretation:'The declared exact-work limit was reached. Partial intersection certificates do not establish an optimal policy or an impossibility result.'});
+  if(requiredInputDiversity){
+    achievedRequiredInputDiversity=inputDiversity(actions,requiredMask,budget);
+    if(budget.exhausted)return incomplete();
+    if(achievedRequiredInputDiversity.distinct<requiredInputDiversity.minimumDistinct||
+      achievedRequiredInputDiversity.rank<requiredInputDiversity.minimumRank)
+      return {...base(),status:'insufficient_required_input_diversity',interpretation:
+        'The required effective control histories do not meet their frozen distinct-count and exact-rank obligations. Controls after the last prescribed reading do not count. No acquisition policy is certified.'};
+  }
   for(const action of actions){
     const entry={experimentId:action.id,intersections:[],complete:false};geometry.push(entry);
     action.feasible=new Set();action.maximal=new Map();
@@ -184,22 +249,23 @@ export function designActiveLinearAdaptive(request){
     }
     entry.complete=true;entry.maximalMasks=action.maximal.get(fullMask);
   }
-  const staticPlan=staticCatalogue(actions,fullMask,budget);
+  const staticPlan=staticCatalogue(actions,fullMask,budget,requiredMask);
   if(budget.exhausted)return incomplete();
   if(!staticPlan)return {...base(),status:'no_guaranteed_policy',
     interpretation:'At least one pair can remain compatible under every offered experiment. Fresh arbitrary nuisance states permit that ambiguity to persist for any finite policy.'};
   const memo=new Map();
-  const solve=(mask,remaining)=>{
-    if(singleton(mask))return {cost:0,actualReadings:0,action:null};
-    const key=mask+':'+remaining;
+  const solve=(mask,remaining,covered=0)=>{
+    if(terminal(mask,covered))return {cost:0,actualReadings:0,action:null};
+    const key=stateKey(mask,remaining,covered);
     if(memo.has(key))return memo.get(key);
     if(!budget.take())return null;
     let winner=null;
     for(let index=0;index<actions.length;index++){
       if(!budget.take())return null;
       const action=actions[index];
-      if(action.readingCount>remaining||action.feasible.has(mask))continue;
-      const children=action.maximal.get(mask).map(child=>solve(child,remaining-action.readingCount));
+      const nextCovered=covered|((1<<index)&requiredMask);
+      if(action.readingCount>remaining||(action.feasible.has(mask)&&nextCovered===covered))continue;
+      const children=action.maximal.get(mask).map(child=>solve(child,remaining-action.readingCount,nextCovered));
       if(budget.exhausted)return null;
       if(children.some(child=>child===null))continue;
       const cost=action.cost+Math.max(...children.map(child=>child.cost));
@@ -217,6 +283,32 @@ export function designActiveLinearAdaptive(request){
   if(!root)return {...base(),status:'insufficient_total_reading_budget',staticPlan,
     interpretation:'The catalogue can distinguish the family, but no adaptive policy guarantees a singleton within the declared total reading budget.'};
   const states=[];
+  if(requiredMask){
+    // Coverage is part of the Bellman state. Freeze every feasible actual
+    // survivor subset reachable from the root, including singletons whose
+    // mandatory interventions are still pending. No outcome chooses a new plan.
+    const visited=new Set();
+    const freeze=(mask,remaining,covered)=>{
+      if(terminal(mask,covered)||budget.exhausted)return;
+      const key=stateKey(mask,remaining,covered);
+      if(visited.has(key))return;
+      visited.add(key);
+      const value=solve(mask,remaining,covered);
+      if(budget.exhausted)return;
+      need(value,'a reachable validation state has no frozen continuation');
+      const action=actions[value.action],nextCovered=covered|((1<<value.action)&requiredMask);
+      states.push({key,mask,hypothesisIds:idsFor(ids,mask),budget:remaining,
+        action:action.id,cost:value.cost,actualReadings:value.actualReadings,
+        branchMasks:action.maximal.get(mask),remainingAfterAction:remaining-action.readingCount,
+        coveredMask:covered,nextCoveredMask:nextCovered});
+      for(let child=mask;child;child=(child-1)&mask){
+        if(!budget.take())return;
+        if(action.feasible.has(child))freeze(child,remaining-action.readingCount,nextCovered);
+      }
+    };
+    freeze(fullMask,rootBudget,0);
+    if(budget.exhausted)return incomplete();
+  }else{
   // Store every possible observed subset, not only worst-case maximal branches.
   // A smaller actual survivor set therefore follows a precomputed frozen node.
   for(let remaining=0;remaining<=rootBudget;remaining++)for(let mask=1;mask<=fullMask;mask++){
@@ -229,10 +321,12 @@ export function designActiveLinearAdaptive(request){
       action:action.id,cost:value.cost,actualReadings:value.actualReadings,
       branchMasks:action.maximal.get(mask),remainingAfterAction:remaining-action.readingCount});
   }
+  }
   need(root.actualReadings===rootBudget,'minimal root budget does not match its attained worst branch');
   return {...base(),status:'optimal_certified_adaptive_policy',worstReadings:rootBudget,worstCost:root.cost,
-    staticPlan,policy:{rootKey:fullMask+':'+rootBudget,initialMask:fullMask,states},
-    interpretation:'Exact minimum worst-case readings, then worst declared cost, over the frozen finite experiment catalogue and independent fresh nuisance states. This policy does not discover the candidate family or authenticate physical evidence.'};
+    staticPlan,policy:{rootKey:stateKey(fullMask,rootBudget,0),initialMask:fullMask,states},
+    interpretation:'Exact minimum worst-case readings, then worst declared cost, over the frozen finite experiment catalogue and independent fresh nuisance states. This policy does not discover the candidate family or authenticate physical evidence.'+
+      (requiredMask?' A compatible singleton remains provisional until every required experiment is received. Finite validation does not exclude unlisted mechanisms that agree on all queried inputs.':'')};
 }
 
 export function replayActiveLinearAdaptive(request,prior){
@@ -246,9 +340,13 @@ export function replayActiveLinearAdaptive(request,prior){
 export function evaluateActiveAdaptiveReadings(request,plan,readout,state){
   replayActiveLinearAdaptive(request,plan);
   need(plan.status==='optimal_certified_adaptive_policy','a certified frozen policy is required');
-  need(state&&Number.isSafeInteger(state.mask)&&state.mask>0&&!singleton(state.mask)&&
+  const requiredMask=plan.requiredExperimentMask??0,covered=requiredMask?state?.coveredMask:0;
+  need(Number.isSafeInteger(covered)&&covered>=0&&(covered&requiredMask)===covered,
+    'the prior required-experiment coverage must match a frozen state');
+  need(state&&Number.isSafeInteger(state.mask)&&state.mask>0&&(!singleton(state.mask)||requiredMask)&&
     Number.isSafeInteger(state.budget),'a live nonterminal frozen state is required');
-  const node=plan.policy.states.find(row=>row.key===state.mask+':'+state.budget);
+  const key=state.mask+':'+state.budget+(requiredMask?':'+covered:'');
+  const node=plan.policy.states.find(row=>row.key===key);
   need(node,'the observed survivor state has no frozen continuation');
   need(readout&&readout.schema===ACTIVE_ADAPTIVE_READINGS_SCHEMA,'explicit adaptive readings v1 required');
   need(typeof readout.source==='string'&&readout.source.trim().length>=12&&readout.source.length<=2048,
@@ -277,11 +375,14 @@ export function evaluateActiveAdaptiveReadings(request,plan,readout,state){
     checks.push({hypothesis:compiled.ids[i],status:consistent?'consistent':'falsified',
       minimumNoiseRequired:fmt(result.radius),noiseMarginExact:true,noiseLowerBound:fmt(result.radius),certificate:result.certificate});
   }
+  const nextCovered=requiredMask?node.nextCoveredMask:0;
+  const validationComplete=(nextCovered&requiredMask)===requiredMask;
   const status=unresolvedMask?'readout_inconclusive':nextMask===0?'all_remaining_hypotheses_falsified':
-    singleton(nextMask)?'one_hypothesis_consistent':'continue_frozen_policy';
+    singleton(nextMask)&&validationComplete?'one_hypothesis_consistent':'continue_frozen_policy';
   const nextBudget=state.budget-action.readingCount;
-  if(!unresolvedMask&&nextMask&&!singleton(nextMask))
-    need(plan.policy.states.some(row=>row.key===nextMask+':'+nextBudget),
+  const nextKey=nextMask+':'+nextBudget+(requiredMask?':'+nextCovered:'');
+  if(status==='continue_frozen_policy')
+    need(plan.policy.states.some(row=>row.key===nextKey),
       'complete observations contradicted the frozen continuation guarantee');
   return {schema:ACTIVE_ADAPTIVE_RESULT_SCHEMA,source:request.source,readoutSource:readout.source,
     acquisition:readout.acquisition,sourceOnly:false,outcomeValuesUsed:true,physicalActionsPerformed:false,
@@ -289,8 +390,11 @@ export function evaluateActiveAdaptiveReadings(request,plan,readout,state){
     plannedTicks:action.readings.map(row=>row.tick),receivedTicks:action.readings.map(row=>row.tick),missingTicks:[],
     noiseBound:fmt(compiled.epsilon),checks,status,
     consistentHypothesisIds:idsFor(compiled.ids,nextMask),unresolvedHypothesisIds:idsFor(compiled.ids,unresolvedMask),
+    ...(requiredMask?{priorCoveredMask:covered,nextCoveredMask:unresolvedMask?null:nextCovered,
+      requiredExperimentsComplete:validationComplete,pendingRequiredExperiments:compiled.actions.filter((_,i)=>
+        (requiredMask&~nextCovered)&(1<<i)).map(a=>a.id)}:{}),
     nextMask:unresolvedMask?null:nextMask,nextBudget:unresolvedMask?null:nextBudget,
-    nextStateKey:status==='continue_frozen_policy'?nextMask+':'+nextBudget:null,
+    nextStateKey:status==='continue_frozen_policy'?nextKey:null,
     readingCount:action.readingCount,declaredCost:action.cost,nodes:budget.nodes,workLimit:budget.limit,exhausted:budget.exhausted,
     interpretation:status==='all_remaining_hypotheses_falsified'?
       'The received experiment contradicts every law that survived the preceding experiments. Keep the original transcript and investigate the family, state assumptions, input, timing or error bound.':

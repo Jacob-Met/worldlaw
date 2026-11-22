@@ -6,7 +6,10 @@ on:
       - 'src/science/exact-box-envelope.mjs'
       - 'src/science/active-experiment-record.mjs'
       - 'scripts/active-adaptive-*'
+      - 'scripts/active-required-*'
       - 'tests/active-adaptive-*'
+      - 'tests/active-required-*'
+      - 'examples/active-adaptive-amplitudes.json'
       - 'tests/fixtures/active-adaptive-baseline/**'
       - '.github/workflows/active-adaptive.yml'
   push:
@@ -16,6 +19,9 @@ on:
       - 'src/science/exact-box-envelope.mjs'
       - 'src/science/active-experiment-record.mjs'
       - 'scripts/active-adaptive-*'
+      - 'scripts/active-required-*'
+      - 'tests/active-required-*'
+      - 'examples/active-adaptive-amplitudes.json'
       - 'tests/fixtures/active-adaptive-baseline/**'
       - '.github/workflows/active-adaptive.yml'
 permissions:
@@ -110,7 +116,11 @@ jobs:
         with:
           python-version: '3.12'
       - name: Exact custody, branches, contact and hard-budget checks
-        run: node --test tests/active-adaptive.test.mjs tests/active-experiment-record.test.mjs tests/active-joint-control.test.mjs tests/active-linear-replay.test.mjs
+        run: node --test tests/active-adaptive.test.mjs tests/active-required-experiments.test.mjs tests/active-experiment-record.test.mjs tests/active-joint-control.test.mjs tests/active-linear-replay.test.mjs
+      - name: Independently enumerate required experiment observation cells
+        run: python3 scripts/active-required-receiving.py --cases 512 --output .receipts/active-adaptive-candidate/required-receiving.json
+      - name: Independently check required input diversity and exact ranks
+        run: python3 scripts/active-required-receiving.py --cases 512 --require-input-diversity --output .receipts/active-adaptive-candidate/diversity-receiving.json
       - name: Preserve every prior binary and joint plan byte-for-byte
         run: |
           node --input-type=module <<'JS'
