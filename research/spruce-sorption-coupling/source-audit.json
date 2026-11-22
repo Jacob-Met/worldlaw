@@ -1,0 +1,535 @@
+{
+  "archive_sha256": "8beba1224c9a9e4e7d140028e6c4fd3cdcb1d304eeed0cdc4c6946116b449700",
+  "complete": [
+    73,
+    33,
+    11,
+    11,
+    9
+  ],
+  "dish_specimens": {
+    "R1": {
+      "D": 1.122,
+      "E": 4.93,
+      "F": 4.94,
+      "G": 16.81,
+      "H": 16.81,
+      "I": 35.15,
+      "J": 35.15,
+      "K": 0.0000029159508525,
+      "L": 384.7801477991475
+    },
+    "R3": {
+      "D": 1.286,
+      "E": 4.92,
+      "F": 4.93,
+      "G": 16.69,
+      "H": 16.71,
+      "I": 36.16,
+      "J": 36.15,
+      "K": 0.0000029736583625,
+      "L": 432.4639360786692
+    },
+    "R7": {
+      "D": 1.116,
+      "E": 4.91,
+      "F": 4.88,
+      "G": 16.79,
+      "H": 16.79,
+      "I": 36.14,
+      "J": 36.15,
+      "K": 0.000002970650922249999,
+      "L": 375.6752406151885
+    },
+    "R8": {
+      "D": 1.274,
+      "E": 4.91,
+      "F": 4.94,
+      "G": 16.67,
+      "H": 16.69,
+      "I": 36.09,
+      "J": 36.15,
+      "K": 0.0000029672218800000007,
+      "L": 429.3578476847844
+    },
+    "T4": {
+      "D": 1.23,
+      "E": 4.89,
+      "F": 4.9,
+      "G": 16.87,
+      "H": 16.86,
+      "I": 36.17,
+      "J": 36.1,
+      "K": 0.000002983095113625,
+      "L": 412.32342689379675
+    },
+    "T5": {
+      "D": 1.231,
+      "E": 4.88,
+      "F": 4.85,
+      "G": 16.86,
+      "H": 16.86,
+      "I": 36.14,
+      "J": 36.18,
+      "K": 0.000002965984224,
+      "L": 415.03929455829774
+    },
+    "T6": {
+      "D": 1.226,
+      "E": 4.88,
+      "F": 4.9,
+      "G": 16.89,
+      "H": 16.88,
+      "I": 36.25,
+      "J": 36.22,
+      "K": 0.0000029918387977499993,
+      "L": 409.78143639356784
+    },
+    "T7": {
+      "D": 1.236,
+      "E": 4.88,
+      "F": 4.88,
+      "G": 16.83,
+      "H": 16.84,
+      "I": 36.14,
+      "J": 36.17,
+      "K": 0.000002970306794,
+      "L": 416.11863208767244
+    }
+  },
+  "estimated_scanning_rows": 65230,
+  "input_minute_count": 65230,
+  "mass_observation_minutes": [
+    0,
+    64,
+    190,
+    364,
+    548,
+    779,
+    1435,
+    2079,
+    2843,
+    3256,
+    4281,
+    4748,
+    5759,
+    5829,
+    5954,
+    6131,
+    6337,
+    6549,
+    7149,
+    7717,
+    8603,
+    9072,
+    10049,
+    10506,
+    11521,
+    11593,
+    11717,
+    11905,
+    12200,
+    13090,
+    13433,
+    14383,
+    14822,
+    16495,
+    17278,
+    17344,
+    17462,
+    17643,
+    17822,
+    18066,
+    18660,
+    19191,
+    20147,
+    20588,
+    21637,
+    22024,
+    22985,
+    23603,
+    24478,
+    24543,
+    24664,
+    24845,
+    25027,
+    25208,
+    25995,
+    28020,
+    28782,
+    29243,
+    30204,
+    30674,
+    31681,
+    31748,
+    31881,
+    32071,
+    32282,
+    32475,
+    33131,
+    33612,
+    34549,
+    34997,
+    36713,
+    37654,
+    38878,
+    38958,
+    39092,
+    39264,
+    39505,
+    40304,
+    40886,
+    41758,
+    43317,
+    44602,
+    45055,
+    46128,
+    46675,
+    47653,
+    47895,
+    47955,
+    49243,
+    49451,
+    50395,
+    50822,
+    51838,
+    51917,
+    52069,
+    52232,
+    52367,
+    52614,
+    53377,
+    53650,
+    54680,
+    55153,
+    59055,
+    59422,
+    60445,
+    60871,
+    60960,
+    61018,
+    61089,
+    61174,
+    61257,
+    61477,
+    61752,
+    61920,
+    62010,
+    62074,
+    62186,
+    62298,
+    62401,
+    62468,
+    62559,
+    62704,
+    63254,
+    63363,
+    63424,
+    63562,
+    63633,
+    63748,
+    63839,
+    63906,
+    63961,
+    64055,
+    64116,
+    64629,
+    64796,
+    64863,
+    64953,
+    65229
+  ],
+  "mass_rounding_residual_minutes": 9.313225746154785e-9,
+  "mass_values_used": false,
+  "missing_minute_columns": [
+    [
+      61920,
+      [
+        "D",
+        "E",
+        "F",
+        "G"
+      ]
+    ]
+  ],
+  "outside_relative_humidity_domain": [
+    9081,
+    9082
+  ],
+  "permeability_parameters": {
+    "16": {
+      "F": "8.4637682201854705E-3",
+      "G": "1.7461248991187601E-6",
+      "H": "12.1821267033257"
+    },
+    "17": {
+      "F": "4.8704275915430204E-3",
+      "G": "1.8590280049425199E-4",
+      "H": "7.59462224341378"
+    },
+    "18": {
+      "F": "-2.1934928106291399E-2",
+      "G": "6.2209398512124096E-3",
+      "H": "15.110930297748"
+    }
+  },
+  "relative_humidity_range": [
+    0.699467670892809,
+    0.974830425148631
+  ],
+  "scheduled": [
+    73,
+    33,
+    12,
+    11,
+    9
+  ],
+  "source_lineage_labels": {
+    "K5": "The sorption properties of the investigated wood are given in the form of adsorption and desorption boundary curves. The functions for their mathematical description are taken from the IPM hysteresis model introduced in [1]. The model parameters were fitted to the measured sorption data for spruce wood of the same origin as in the dynamic experiment [2]. Any other sorption model can be fitted to the presented data. However, the IPM model allows for accurate modelling of the hysteretic behavior of the samples, which is an integral part of the dynamic experiment. Other parameters of the IPM model that determine the shape of the scanning curves of the wood from the same single board can be found in [3].",
+    "V20": "estimated scanning curves",
+    "V21": "– averaged for samples SR2, ST1, ST2",
+    "permeability": "The moisture permeability is expressed as a diffusion resistance factor, μ [–]. It is given in two ways – as a function of relative humidity and as a function of moisture content. The values of parameters a, b, and c were obtained by fitting measured data [4]. The measurement was performed using the cup method with wood of the same origin as used in the dynamic experiment and in the measurement of sorption properties. Given the higher uncertainty of the measured μ-values in the lower humidity region [4], and given that the relative humidity in the dynamic experiment was in the range of 72 to 97 %, the presented μ-functions are valid only for relative humidity higher than 70 %. Also note that the moisture permeability of the wood is practically identical in the tangential and radial directions at relative humidity higher than 70 % [5]."
+  },
+  "source_wood_parameters": {
+    "14": {
+      "F": "0.29680000000000001",
+      "G": "0.41210000000000002",
+      "H": "1.7486999999999999",
+      "I": "7.2990000000000004"
+    },
+    "15": {
+      "H": "3.0533000000000001",
+      "I": "4.3106"
+    }
+  },
+  "surface_coefficient_steps_minute_and_m_s": [
+    [
+      0,
+      0.0134884488448845
+    ],
+    [
+      37530,
+      0.00701399339933994
+    ]
+  ],
+  "target_linked_equilibrium_formula_references": [
+    [
+      "P55",
+      "'2 Mass and moisture content'!I9"
+    ],
+    [
+      "Q55",
+      "'2 Mass and moisture content'!J9"
+    ],
+    [
+      "R55",
+      "'2 Mass and moisture content'!K9"
+    ],
+    [
+      "S55",
+      "'2 Mass and moisture content'!L9"
+    ],
+    [
+      "T55",
+      "'2 Mass and moisture content'!M9"
+    ],
+    [
+      "P56",
+      "'2 Mass and moisture content'!I21"
+    ],
+    [
+      "Q56",
+      "'2 Mass and moisture content'!J21"
+    ],
+    [
+      "R56",
+      "'2 Mass and moisture content'!K21"
+    ],
+    [
+      "S56",
+      "'2 Mass and moisture content'!L21"
+    ],
+    [
+      "T56",
+      "'2 Mass and moisture content'!M21"
+    ],
+    [
+      "P57",
+      "'2 Mass and moisture content'!I33"
+    ],
+    [
+      "Q57",
+      "'2 Mass and moisture content'!J33"
+    ],
+    [
+      "R57",
+      "'2 Mass and moisture content'!K33"
+    ],
+    [
+      "S57",
+      "'2 Mass and moisture content'!L33"
+    ],
+    [
+      "T57",
+      "'2 Mass and moisture content'!M33"
+    ],
+    [
+      "P58",
+      "'2 Mass and moisture content'!I43"
+    ],
+    [
+      "Q58",
+      "'2 Mass and moisture content'!J43"
+    ],
+    [
+      "R58",
+      "'2 Mass and moisture content'!K43"
+    ],
+    [
+      "S58",
+      "'2 Mass and moisture content'!L43"
+    ],
+    [
+      "T58",
+      "'2 Mass and moisture content'!M43"
+    ],
+    [
+      "P59",
+      "'2 Mass and moisture content'!I57"
+    ],
+    [
+      "Q59",
+      "'2 Mass and moisture content'!J57"
+    ],
+    [
+      "R59",
+      "'2 Mass and moisture content'!K57"
+    ],
+    [
+      "S59",
+      "'2 Mass and moisture content'!L57"
+    ],
+    [
+      "T59",
+      "'2 Mass and moisture content'!M57"
+    ],
+    [
+      "P60",
+      "'2 Mass and moisture content'!I69"
+    ],
+    [
+      "Q60",
+      "'2 Mass and moisture content'!J69"
+    ],
+    [
+      "R60",
+      "'2 Mass and moisture content'!K69"
+    ],
+    [
+      "S60",
+      "'2 Mass and moisture content'!L69"
+    ],
+    [
+      "T60",
+      "'2 Mass and moisture content'!M69"
+    ],
+    [
+      "P61",
+      "'2 Mass and moisture content'!I81"
+    ],
+    [
+      "Q61",
+      "'2 Mass and moisture content'!J81"
+    ],
+    [
+      "R61",
+      "'2 Mass and moisture content'!K81"
+    ],
+    [
+      "S61",
+      "'2 Mass and moisture content'!L81"
+    ],
+    [
+      "T61",
+      "'2 Mass and moisture content'!M81"
+    ],
+    [
+      "P62",
+      "'2 Mass and moisture content'!I94"
+    ],
+    [
+      "Q62",
+      "'2 Mass and moisture content'!J94"
+    ],
+    [
+      "R62",
+      "'2 Mass and moisture content'!K94"
+    ],
+    [
+      "S62",
+      "'2 Mass and moisture content'!L94"
+    ],
+    [
+      "T62",
+      "'2 Mass and moisture content'!M94"
+    ],
+    [
+      "P63",
+      "'2 Mass and moisture content'!I101"
+    ],
+    [
+      "Q63",
+      "'2 Mass and moisture content'!J101"
+    ],
+    [
+      "R63",
+      "'2 Mass and moisture content'!K101"
+    ],
+    [
+      "S63",
+      "'2 Mass and moisture content'!L101"
+    ],
+    [
+      "T63",
+      "'2 Mass and moisture content'!M101"
+    ],
+    [
+      "P64",
+      "'2 Mass and moisture content'!I115"
+    ],
+    [
+      "Q64",
+      "'2 Mass and moisture content'!J115"
+    ],
+    [
+      "R64",
+      "'2 Mass and moisture content'!K115"
+    ],
+    [
+      "S64",
+      "'2 Mass and moisture content'!L115"
+    ],
+    [
+      "T64",
+      "'2 Mass and moisture content'!M115"
+    ]
+  ],
+  "temperature_range_c": [
+    22.1709814583333,
+    23.636140125
+  ],
+  "thermocouple_sheet_opened": false,
+  "time_range_minutes": [
+    0,
+    65229
+  ],
+  "window_minute_boundaries": [
+    0,
+    38880,
+    60960,
+    62400,
+    63840,
+    65230
+  ],
+  "workbook_sha256": "337864c01b641e0d8da49f1c9e61d1163a6a43648455377b50686627d9fd28e3"
+}

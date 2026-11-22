@@ -1,0 +1,48 @@
+{
+  "source_node": "node-c0da1eb7402af862460cccd552698bb4",
+  "id": "p2-f747-spruce-source-compatible-ordered-couplings-cold-c0da",
+  "result": {
+    "200": {
+      "lower": {
+        "grid_intervals": 200,
+        "max_marginal_residual": "0E-8",
+        "positive_edges": 399,
+        "return_mass": "0.142301255829824587879802589707141165897973605463"
+      },
+      "upper": {
+        "grid_intervals": 200,
+        "max_marginal_residual": "0E-8",
+        "positive_edges": 399,
+        "return_mass": "0.162129407881521492198686262433165822522707493123"
+      }
+    },
+    "1000": {
+      "lower": {
+        "grid_intervals": 1000,
+        "max_marginal_residual": "0E-8",
+        "positive_edges": 1999,
+        "return_mass": "0.142301255829824587879802589707141165897973605467"
+      },
+      "upper": {
+        "grid_intervals": 1000,
+        "max_marginal_residual": "0E-8",
+        "positive_edges": 1999,
+        "return_mass": "0.162129407881521492198686262433165822522707493123"
+      }
+    },
+    "4000": {
+      "lower": {
+        "grid_intervals": 4000,
+        "max_marginal_residual": "0E-8",
+        "positive_edges": 7999,
+        "return_mass": "0.142301255829824587879802589707141165897973605468"
+      },
+      "upper": {
+        "grid_intervals": 4000,
+        "max_marginal_residual": "0E-8",
+        "positive_edges": 7999,
+        "return_mass": "0.162129407881521492198686262433165822522707493123"
+      }
+    }
+  }
+}
