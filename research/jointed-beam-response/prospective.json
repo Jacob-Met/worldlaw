@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "scope": "Half Brake–Reuss lap-jointed beam. Predict conditional phase and force-curve SHAPE on every released response-controlled sweep; absolute input-force gain is not supplied by the release.",
+  "sources": {
+    "authors": "2d42d3a618206da58642674d3287ae34dfc7d5e5",
+    "ssm": "305581114f62239b70c1fe44bce69cbf939326ea",
+    "mat_schema": "a02c8d3288695e5d355877ebca4d3ede1180dfd50ee93d660d835c4472e3fcd6",
+    "force_mat": "e4bfe248b921edbd23153c24a37c3a9e1556fb1bf59fe6d9e63ae8e2177f1100",
+    "hammer_mat": "26b014dac30ed69b0a97aa3bb62bfb240de83e679502c15782465cd60a339189",
+    "decay_mat": "a62c551e34cc45257257d4e683cc9406beec2cbc1c7270329658fd9033de2f4a",
+    "author_decay": "4611e6dad7a9bf096dc317e5b1b53f192feb8358b061c7102ca266dcf19e9e49"
+  },
+  "training": "Only the separate shaker ringdown DIC/acceleration and matched author PFF decay summaries. Hammer is unusable as a force calibration without the time waveform. Unknown input gain is retained. No forced arrays used to develop, choose or scale any model.",
+  "test": "All eight RC curves in released acquisition order, all original frequency steps; FC four curves completely excluded from scientific access. RC frequency and realized collocated acceleration-amplitude are the only test explanatory fields; response phase and force are held outcomes. This is a conditional inverse task. No evaluation of prospective command tracking or forward FC amplitude.",
+  "contrast": {
+    "candidate": "Spatial energy-loss model. Infer displacement amplitude X, frequency ω and amplitude-dependent effective mode mass from the published bottom-side DIC field normalized at the acceleration-3 location, and damping or decay of its spatial velocity energy. Under near-single-mode balance form the reactive/dissipative components of driving-point force. Common unknown mass/gain is irrelevant to the registered shape. These are model assumptions; finite linewidth, other modes, damping and a changing mode shape can invalidate them.",
+    "primary_comparator": "Measured-source author PFF frequency and damping versus displacement amplitude at the same acceleration location, using constant mode mass and real collocated force projection. Exact site correspondence or a documented deterministic amplitude-ratio map from training is required. Document separately that full MATLAB SSMLearn is fitted only to the same decay and is not a released forced-response predictor.",
+    "controls": [
+      "Linear constant-frequency/damping version estimated from the same decay",
+      "Same measured decay law and energy formula with constant spatial mode shape, isolating the changing-mass term",
+      "Source acceleration-only backbone estimate as a separate control."
+    ]
+  },
+  "physics": "Use exp(+iΩt). X=measured acceleration amplitude/Ω². Recorded force-to-acceleration phase arg(a/F)=π−arg([reactive]+i[dissipative]) under positive collocated projection. Added π comes from a=−Ω²x. Because source identifies relative phase but not sensor polarity/FFT sign, primary θ=atan2(|sin φ|,|cos φ|) in [0,π/2], sign/polarity invariant; θ=0 aligned or antialigned, θ=π/2 quadrature. Signed phases, if reported, descriptive only. A force-magnitude curve is normalized by that predictor’s OWN RMS over every row of that acquisition curve: no measured force used in prediction. Scoring separately maps each observed curve to its unit-RMS shape. No constant fit or minimization against held targets.",
+  "gates": "For each curve compute angular MAE in degrees between folded observed/predicted phases, and RMSE of separately normalized nonnegative force shape. Equal-weight macro average of the eight curves for both metrics; primary joint requires strictly lower macro phase MAE AND shape RMSE than the authentic PFF constant-mass arm, and no larger maximum per-curve shape RMSE. Also report every arm/curve, all acquisition directions, worst observed row in each metric, full dimensioned force unknown. No significance claim for eight curves on one apparatus; no selection of “stable” branches, omit no row. Zero-RMS or nonfinite/incompatible data invalidate the specified gate, not grounds to drop a sweep.",
+  "boundaries": "Models may be constructed on training files only, with the final algorithms/parameters/coefficients frozen before any conditional target input is admitted. Preserve intermediate failures and endpoint coverage. Interpolation beyond fitted acceleration/displacement support uses nearest trained endpoint (record number/range of clamped rows per curve; no test-based tuning). If same-site PFF/calibration or independently checkable physically interpretable model cannot be resolved, stop before protected outcomes. Do not claim absolute force from unknown input gain."
+}
