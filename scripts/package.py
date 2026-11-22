@@ -16,6 +16,23 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/optical-trap-fluctuation/README.md",
+    "research/optical-trap-fluctuation/protocol.json",
+    "research/optical-trap-fluctuation/provenance.json",
+    "research/optical-trap-fluctuation/recording.py",
+    "research/optical-trap-fluctuation/forecast.py",
+    "research/optical-trap-fluctuation/score.py",
+    "research/optical-trap-fluctuation/cascade.py",
+    "research/optical-trap-fluctuation/raw_receiver.py",
+    "research/optical-trap-fluctuation/aggregate.py",
+    "research/optical-trap-fluctuation/tail_diagnostic.py",
+    "research/optical-trap-fluctuation/replay.py",
+    "research/optical-trap-fluctuation/assessment.json",
+    "research/optical-trap-fluctuation/worst_diagnostic.json",
+    "research/optical-trap-fluctuation/dev0.json",
+    "research/optical-trap-fluctuation/dev1.json",
+    "research/optical-trap-fluctuation/dev2.json",
+    "research/optical-trap-fluctuation/dev3.json",
     "research/nist-copper-unload/README.md",
     "research/nist-copper-unload/intercept.py",
     "research/nist-copper-unload/sampling.py",

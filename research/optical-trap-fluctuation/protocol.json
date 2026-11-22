@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "dataset": "10.5281/zenodo.3333905",
+  "acquisition_role_freeze": 184473,
+  "development": {
+    "dates": [
+      "2013-06-13",
+      "2015-01-05",
+      "2019-03-05"
+    ],
+    "beads": [
+      [
+        "2013-06-13",
+        1
+      ],
+      [
+        "2013-06-13",
+        2
+      ],
+      [
+        "2015-01-05",
+        1
+      ],
+      [
+        "2019-03-05",
+        1
+      ]
+    ]
+  },
+  "sealed": {
+    "dates": [
+      "2013-10-21",
+      "2013-10-23",
+      "2015-11-10",
+      "2015-11-13",
+      "2019-05-08",
+      "2019-05-09"
+    ],
+    "beads": 15
+  },
+  "other_beads": 115,
+  "physical_contract": "the nominal command's actual trap-center amplitudes and edge time courses are not observed; no claim of identifying physical bead or detector poles, per-bead diffusion, stiffness, or FDT",
+  "prediction": "measured signed QPD Y/X vector change on the nominal source-index clock, at every 20 samples from 4000 through 5000 inclusive",
+  "allowed": [
+    "raw ±500-nm channels per bead",
+    "gain scalar",
+    "command identity and source index"
+  ],
+  "excluded": [
+    "every ±800-nm value before forecast lock",
+    "pooled 4-amplitude QPD slope",
+    "all author output rates including apparent lower-drive rates after large-drive window choice",
+    "per-held trace onset selection"
+  ],
+  "target": "ratio of both channel ensemble means to gain × ensemble mean sum, in author axis signs/order, subtract own neutral mean from [1000,3000). The baseline is part of the target transformation and is never supplied to the predictor.",
+  "plateau": "±500 plateau difference [7000,9000) minus [1000,3000), ×1.6 with like sign; nominal DC gain assumption",
+  "sensitivity": "Measured lower-drive quiet covariance pooled equally across the two commands. Jacobian of ratios centered at the low-phase mean; conditional phase ensemble means subtracted. All raw phase offsets kept, all complete cycles used. 20 index lag increment, positive lag anchor3=0.3ms, κ2<=10000; no regularization/rerun. Detector memory, nonlinearity, actuator rise and actual plateau scaling remain alternatives.",
+  "author": "released log-absolute-residual slope protocol on small drive only, fixed [4100,4600) per sign. Archived interactive interval selected using first sorted large drive. Entrant derived estimator in same family, preserving differing access",
+  "arms": [
+    "quiet_positive_lag",
+    "quiet_zero_lag",
+    "author_log_slope",
+    "scaled_small_wave",
+    "instantaneous_step"
+  ],
+  "aggregation": "per command sqrt(mean of 51 squared Euclidean 2-vector errors), equally weight both signs within bead, beads within date, and dates overall. Worst date evaluated on that same date score; largest single time error also retained with both components",
+  "admission": "all four development beads and all eight signed commands required. Positive-lag arm must strictly beat every comparator in date-balanced mean and in maximum per-date score. All competing arms use identical lower-amplitude access. Any scientific or source admission failure leaves all 15 final beads closed. If development passes, freeze and apply identical gates to all six final dates. No exclusions. Source unavailable or conditioning/gain/log-domain failure reported independently of accuracy.",
+  "expected": {
+    "development_predicted_components": 4080,
+    "development_observed_components": 816
+  },
+  "optical_step_trace_qualified": false
+}
