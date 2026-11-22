@@ -454,6 +454,53 @@ try{
   assert.deepEqual(await accepted(),adaptiveBook);
   mark('adaptive incomplete bundle refusal, out-of-family rejection and exact closed-contact negative without losing originals');
 
+  await page.setViewportSize({width:1920,height:1080});
+  await openDetails('source-details');await page.locator('#example').selectOption('amplitudes');
+  await page.locator('#load-example').click();await idle();
+  const amplitudePreview=JSON.parse(await page.locator('#certificate').textContent());
+  assert.deepEqual(amplitudePreview.requiredExperiments,['amplitude_one','amplitude_two','amplitude_interior']);
+  assert.deepEqual(amplitudePreview.achievedRequiredInputDiversity,{distinct:3,rank:2});
+  assert.equal(amplitudePreview.worstReadings,3);assert.equal(amplitudePreview.staticPlan.readings,3);
+  await page.locator('#freeze-plan').focus();await page.keyboard.press('Enter');
+  await openDetails('supplied-details');
+  for(const [round,value] of ['2','4','5/2'].entries()){
+    await page.locator('#readout-source').fill('Separate exact quadratic diagnostic, double law plus 2(u-1)(u-2); synthetic only.');
+    await page.locator('#acquisition-kind').selectOption('synthetic');
+    await page.locator('#reading-1').fill(value);
+    await page.locator('#evaluate-readings').focus();await page.keyboard.press('Enter');await idle();
+    const book=await accepted(),last=book.readouts.at(-1).result;
+    assert.equal(book.plan.planSHA256,amplitudePreview.planSHA256);
+    assert.equal(book.readouts.length,round+1);
+    assert.equal(last.status,round<2?'continue_frozen_policy':'all_remaining_hypotheses_falsified');
+    assert.equal(last.pendingRequiredExperiments.length,2-round);
+    if(round===0){
+      assert.deepEqual(last.consistentHypothesisIds,['double']);
+      assert.match(await page.locator('#result-heading').textContent(),/One candidate fits so far/);
+      assert.equal(await page.locator('#evaluate-readings').isDisabled(),false);
+      await page.locator('#inspect-next').focus();await page.keyboard.press('Enter');
+      assert.equal(await page.locator('#apparatus .model-marker').count(),1);
+      for(const width of [1920,390,320]){
+        await page.setViewportSize({width,height:width===1920?1080:844});
+        assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+        await page.locator('#adaptive-policy').scrollIntoViewIfNeeded();
+        await page.screenshot({path:resolve(dir,'active-required-pending-'+width+'.png'),fullPage:true});
+      }
+      await page.reload();await idle();assert.deepEqual(await accepted(),book);
+      await openDetails('supplied-details');
+    }
+  }
+  const amplitudeRejected=await accepted();
+  assert.deepEqual(amplitudeRejected.readouts.at(-1).result.consistentHypothesisIds,[]);
+  assert.equal(await page.locator('#evaluate-readings').isDisabled(),true);
+  await page.screenshot({path:resolve(dir,'active-required-rejected-320.png'),fullPage:true});
+  const amplitudePath=await download('export-notebook','active-required-rejected-notebook.json');
+  const amplitudeReplay=cli(['--notebook',amplitudePath]);assert.equal(amplitudeReplay.status,0,amplitudeReplay.stderr);
+  assert.deepEqual(JSON.parse(amplitudeReplay.stdout),amplitudeRejected);
+  const forgedCoverage=clone(amplitudeRejected);forgedCoverage.readouts[0].result.nextCoveredMask=7;
+  await refuse('altered-required-coverage.json',forgedCoverage,amplitudeRejected);
+  await page.reload();await idle();assert.deepEqual(await accepted(),amplitudeRejected);
+  mark('required amplitudes keep a singleton provisional, reject the endpoint alias, and retain exact portable custody');
+
   const legacy=JSON.parse(await readFile('tests/fixtures/active-linear-certificates-v1.json','utf8')).cases[0];
   await setFile('source-file','historical-source.json',legacy.sourceText);await idle();
   await setFile('plan-file','historical-plan.json',JSON.stringify(legacy.plan));await idle();

@@ -134,10 +134,11 @@ export function adaptiveNotebookState(book){
   const stopped=Boolean(last&&last.status!=='continue_frozen_policy');
   const mask=last?last.nextMask:plan.policy?.initialMask??null;
   const budget=last?last.nextBudget:plan.worstReadings;
-  const node=started&&!stopped?plan.policy.states.find(row=>row.key===mask+':'+budget):null;
+  const node=started&&!stopped?plan.policy.states.find(row=>row.key===(last?.nextStateKey??plan.policy.rootKey)):null;
   const action=node?plan.experiments.find(row=>row.id===node.action):null;
   return {status:!started?plan.status:stopped?last.status:'awaiting_readings',
     mask,budget,node,action,round:book.readouts.length+1,
+    ...(plan.requiredExperimentMask?{coveredMask:last?.nextCoveredMask??last?.priorCoveredMask??0}:{}),
     previousReadingsSHA256:last?.readingsSHA256??null,
     spentReadings:book.readouts.reduce((sum,row)=>sum+row.result.readingCount,0),
     spentCost:book.readouts.reduce((sum,row)=>sum+row.result.declaredCost,0),
@@ -160,7 +161,7 @@ async function sealAdaptiveRound(book,originalReadings,{prior=null}={}){
   const metadata=new Set(['sourceSHA256','planSHA256','sourcePath','evidenceLevel']);
   const core=Object.fromEntries(Object.entries(book.plan).filter(([key])=>!metadata.has(key)));
   const result=evaluateActiveAdaptiveReadings(JSON.parse(book.sourceText),core,supplied,
-    {mask:current.mask,budget:current.budget});
+    {mask:current.mask,budget:current.budget,...(book.plan.requiredExperimentMask?{coveredMask:current.coveredMask}:{})});
   const report={sourceSHA256:book.plan.sourceSHA256,planSHA256:book.plan.planSHA256,
     readingsSHA256:await activeBytesSHA256(originalReadings),round:current.round,
     previousReadingsSHA256:current.previousReadingsSHA256,stateKey:current.node.key,

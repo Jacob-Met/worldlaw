@@ -11,6 +11,7 @@ const examplePaths={coupled:'/examples/active-intervention-coupled-kinematics.js
   bounded:'/examples/active-control-box-coupled-kinematics.json',
   joint:'/examples/active-joint-control-three-responses.json',
   adaptive:'/examples/active-adaptive-coupled-track.json',
+  amplitudes:'/examples/active-adaptive-amplitudes.json',
   replacement:'/examples/active-linear-one-replacement.json',
   conditional:'/examples/active-linear-conditional-future.json',
   calibratedMixedLoss:'/examples/active-linear-calibrated-mixed-loss.json',
@@ -215,6 +216,10 @@ function renderAdaptive(current){
       readout_inconclusive:'The readout was inconclusive.'})[current.status]??'No further experiment is certified.';
   $('adaptive-progress').textContent=current.spentReadings+' readings received'+
     (plan.worstReadings===null?'':' · at most '+plan.worstReadings+' in the frozen policy')+'. Declared cost so far '+current.spentCost+'.';
+  if(plan.requiredExperiments)$('adaptive-progress').textContent+=' Required experiments still pending: '+
+    (plan.experiments.filter((_,i)=>(plan.requiredExperimentMask&~current.coveredMask)&(1<<i)).map(a=>label(a.id)).join(', ')||'none')+'.';
+  if(plan.achievedRequiredInputDiversity)$('adaptive-progress').textContent+=' Required inputs: '+
+    plan.achievedRequiredInputDiversity.distinct+' distinct courses, '+plan.achievedRequiredInputDiversity.rank+' independent input directions.';
   $('adaptive-explanation').textContent=current.action?
     'The next input was selected before acquisition as part of the complete policy. Each experiment starts with a fresh unknown state; the law stays the same. '+
     (readingIndex>=0?'The apparatus above shows received round '+(readingIndex+1)+'. Inspect the next experiment to view its controls and forecasts.':
@@ -227,9 +232,10 @@ function renderAdaptive(current){
   $('inspect-next').hidden=!current.action||readingIndex===-1;
   $('adaptive-branches').innerHTML=current.node?current.node.branchMasks.map(mask=>{
     const survivors=ids.filter((_,i)=>mask&(1<<i));
-    const child=plan.policy.states.find(row=>row.key===mask+':'+current.node.remainingAfterAction);
+    const child=plan.policy.states.find(row=>row.mask===mask&&row.budget===current.node.remainingAfterAction&&
+      (row.coveredMask??0)===(current.node.nextCoveredMask??0));
     return '<div class="adaptive-branch"><span>'+html(survivors.map(label).join(' / '))+'</span><strong>'+
-      html(survivors.length===1?'Stop · one candidate':child?'Then '+label(child.action):'No continuation')+'</strong></div>';
+      html(child?'Then '+label(child.action):survivors.length===1?'Stop · one candidate':'No continuation')+'</strong></div>';
   }).join(''):'';
   $('adaptive-branch-note').hidden=!current.node;
   $('adaptive-controls').hidden=plan.sourceSHA256!==ADAPTIVE_DEMO_SOURCE_SHA256;
@@ -329,6 +335,8 @@ function render(){
     const result=record.result;$('result-region').dataset.status=result.status;
     $('result-origin').textContent=result.acquisition==='synthetic'?'SEPARATE SYNTHETIC READINGS':'SUPPLIED READINGS · PHYSICAL ORIGIN UNVERIFIED';
     $('result-heading').textContent=({one_hypothesis_consistent:'One candidate remains compatible.',all_hypotheses_falsified:'No offered law fits these readings.',all_remaining_hypotheses_falsified:'No remaining law fits these readings.',continue_frozen_policy:'Two or more candidates remain. Follow the frozen branch.',multiple_hypotheses_consistent:'Multiple explanations remain compatible.',readout_inconclusive:'The readout test is inconclusive.'})[result.status];
+    if(result.status==='continue_frozen_policy'&&result.consistentHypothesisIds.length===1)
+      $('result-heading').textContent='One candidate fits so far. Required experiments remain.';
     $('result-summary').textContent='Checked '+result.receivedTicks.length+' of '+result.plannedTicks.length+' planned readings under ±'+result.noiseBound+' error per reading. The candidate family and control course stayed frozen.';
     $('candidate-results').innerHTML=result.checks.map(row=>`<div class="candidate-result"><h3>${html(row.hypothesis.replaceAll('_',' '))}</h3><p class="${row.status==='consistent'?'conditional':row.status==='falsified'?'falsified':'muted'}">${row.status==='consistent'?'Conditionally consistent':row.status==='falsified'?'Falsified within the declared bound':'Inconclusive'}</p><small>${(book.plan.schema==='worldlaw.active-linear-one-replacement/v1'||calibratedOutlierPlan(book.plan))?html(replacementReadoutEvidence(row)):book.plan.schema==='worldlaw.active-linear-affine-sensor/v1'?(row.gainWitness?'Compatible gain: '+html(row.gainWitness):'No compatible gain established'):row.noiseMarginExact?'Exact minimum error required: '+html(row.minimumNoiseRequired):'Error lower bound: '+html(row.noiseLowerBound)}</small></div>`).join('');
     $('missing-readings').textContent=result.missingTicks.length?'Missing planned ticks: '+result.missingTicks.join(', ')+'. No value was invented.':'Every selected tick is present in this reading set.';
