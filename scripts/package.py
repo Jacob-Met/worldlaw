@@ -16,6 +16,21 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/low-field-phantom-power/README.md",
+    "research/low-field-phantom-power/raw-afi-qualification.md",
+    "research/low-field-phantom-power/power-admission.md",
+    "research/low-field-phantom-power/source_mat_headers.py",
+    "research/low-field-phantom-power/qualify_power.py",
+    "research/low-field-phantom-power/independent_power.py",
+    "research/low-field-phantom-power/replay_phantom.py",
+    "research/low-field-phantom-power/figshare-roster.json",
+    "research/low-field-phantom-power/mat-structural-receipt.json",
+    "research/low-field-phantom-power/per-file-protocol.json",
+    "research/low-field-phantom-power/compiled-programs.json",
+    "research/low-field-phantom-power/power-development.json",
+    "research/low-field-phantom-power/independent-physical-boxes.json",
+    "research/low-field-phantom-power/design_ceiling.py",
+    "research/low-field-phantom-power/design-ceiling.json",
     "research/continuum-robot-contact-wrench/README.md",
     "research/continuum-robot-contact-wrench/prospective.md",
     "research/continuum-robot-contact-wrench/contact_models.py",

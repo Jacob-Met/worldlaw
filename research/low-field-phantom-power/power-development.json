@@ -1,0 +1,324 @@
+{
+  "registration": 180697,
+  "sha256_source": "927c0e9a2ece84287b6a20005ed40fbb79b6213a287c7f2d2120c71287db4486",
+  "native_job": "p2-f747-055t-post180697-six-development-high-angles-only-power-admission",
+  "native_owner": "node-4e105730de5e78651a704e31c3991a3e",
+  "native_receipt": {
+    "command_id": "p2-f747-055t-post180697-six-development-high-angles-only-power-admission",
+    "exit_code": 0,
+    "finished_at": "2026-11-22T16:10:58.244688951Z",
+    "generation": "7becf41c5617530ffb7dd4ee8ee4afc5c41ec8fb84a80317a78c2e6bc1c383ec",
+    "request_sha256": "fa3f81eae0ae4a09d2b6be5aa7335e27f899bd43135d80b09b3cee7635954e30",
+    "resource_process": {
+      "boot_id": "ac92c782-ca8c-4e8f-b850-261e3213a257",
+      "pid": 4165429,
+      "start_ticks": 46615723
+    },
+    "resource_usage": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 182251520,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "python": 2.5600000000000005
+        },
+        "distinct_processes": 2,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 26,
+        "read_errors": 0,
+        "saturated_snapshots": 0,
+        "snapshots": 26
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.610293,
+      "user_cpu_seconds": 2.202382
+    },
+    "runner_pid": 4165416,
+    "script_observation_version": 3,
+    "started_at": "2026-11-22T16:10:55.616058598Z",
+    "state": "completed",
+    "working_tree_context": {
+      "repository": "github.com/Jacob-Met/cursor-swiss-env",
+      "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+    }
+  },
+  "development": [
+    {
+      "central_voxels": 368640,
+      "corner_nonzero_fraction": 1,
+      "corner_power": [
+        0.0020905158234983986,
+        0.0021231674536032687,
+        0.0021297341742168826,
+        0.00211514200454022
+      ],
+      "face_power": [
+        0.5285638775109324,
+        0.5376757821868032,
+        0.3876164097248732,
+        0.222311681859024
+      ],
+      "face_to_floor": [
+        249.4220314636769,
+        253.72181408495916,
+        182.91085799792504,
+        104.90582816310133
+      ],
+      "file": {
+        "computed_md5": "597c59b167fda62fac41e298bfdb16ba",
+        "folder": "Phantom/Commercial_1",
+        "id": 46512931,
+        "name": "vfagre3_vfa_MID256.mat",
+        "size": 42843104
+      },
+      "floor": 0.0021191547290717446,
+      "foreground": 198690,
+      "gates": {
+        "face_transfer_in_interval": false,
+        "high_angle_spread_under_1_50": true,
+        "median_fraction_over_1pct": true,
+        "nonempty_foreground": true,
+        "nonzero_at_least_95pct": true,
+        "positive_finite": true
+      },
+      "max_min_high_ratio": 1.018760131005779,
+      "median_first_angle_floor_fraction": 0.03685071631877871,
+      "normalizer": 411.76519775390597,
+      "passed": false,
+      "source_fit_usable": 198253
+    },
+    {
+      "central_voxels": 368640,
+      "corner_nonzero_fraction": 1,
+      "corner_power": [
+        0.0020878688919932055,
+        0.002089475147599025,
+        0.0020707864827516943,
+        0.002044128235578142
+      ],
+      "face_power": [
+        0.528956606059874,
+        0.5314769760063848,
+        0.376814260807192,
+        0.21269642629005733
+      ],
+      "face_to_floor": [
+        254.38828582535348,
+        255.60039393213083,
+        181.2192773152339,
+        102.29096047811106
+      ],
+      "file": {
+        "computed_md5": "de591a75ac26be7508ef2e8f5255b419",
+        "folder": "Phantom/Commercial_1",
+        "id": 46512934,
+        "name": "vfagre3_vfa_MID37.mat",
+        "size": 42799128
+      },
+      "floor": 0.00207932768737245,
+      "foreground": 205365,
+      "gates": {
+        "face_transfer_in_interval": false,
+        "high_angle_spread_under_1_50": true,
+        "median_fraction_over_1pct": true,
+        "nonempty_foreground": true,
+        "nonzero_at_least_95pct": true,
+        "positive_finite": true
+      },
+      "max_min_high_ratio": 1.022183985931811,
+      "median_first_angle_floor_fraction": 0.03841594329147799,
+      "normalizer": 404.32684173583954,
+      "passed": false,
+      "source_fit_usable": 204930
+    },
+    {
+      "central_voxels": 368640,
+      "corner_nonzero_fraction": 1,
+      "corner_power": [
+        0.0008153322584525341,
+        0.0007990361881137293,
+        0.0008332885941776733,
+        0.0008142587539398848
+      ],
+      "face_power": [
+        0.0028633210269115544,
+        0.002812284660968013,
+        0.0029174738353522573,
+        0.0027716524191469735
+      ],
+      "face_to_floor": [
+        3.5141590805755416,
+        3.4515220562480518,
+        3.5806209204223394,
+        3.401654032293518
+      ],
+      "file": {
+        "computed_md5": "0763d479772cc73d60a818798afe3da5",
+        "folder": "Phantom/Prototype_1",
+        "id": 46512937,
+        "name": "vfagre3_vfa_MID574.mat",
+        "size": 35733740
+      },
+      "floor": 0.0008147955061962094,
+      "foreground": 228924,
+      "gates": {
+        "face_transfer_in_interval": false,
+        "high_angle_spread_under_1_50": true,
+        "median_fraction_over_1pct": false,
+        "nonempty_foreground": true,
+        "nonzero_at_least_95pct": true,
+        "positive_finite": true
+      },
+      "max_min_high_ratio": 1.0428671524187196,
+      "median_first_angle_floor_fraction": 0.008472031325450685,
+      "normalizer": 353.6982086181638,
+      "passed": false,
+      "source_fit_usable": 228640
+    },
+    {
+      "central_voxels": 368640,
+      "corner_nonzero_fraction": 1,
+      "corner_power": [
+        0.0013244598633585004,
+        0.0013391877097241895,
+        0.0013162316858693452,
+        0.00133251930619548
+      ],
+      "face_power": [
+        0.004617333383775717,
+        0.004548354206964948,
+        0.004476890900409517,
+        0.004409551217006269
+      ],
+      "face_to_floor": [
+        3.475626332855907,
+        3.4237033237475227,
+        3.3699104243719304,
+        3.319221518583819
+      ],
+      "file": {
+        "computed_md5": "00a56fc080e892edd755cab894d9851b",
+        "folder": "Phantom/Prototype_1",
+        "id": 46512940,
+        "name": "vfagre3_vfa_MID110.mat",
+        "size": 36169210
+      },
+      "floor": 0.0013284895847769903,
+      "foreground": 241962,
+      "gates": {
+        "face_transfer_in_interval": false,
+        "high_angle_spread_under_1_50": true,
+        "median_fraction_over_1pct": false,
+        "nonempty_foreground": true,
+        "nonzero_at_least_95pct": true,
+        "positive_finite": true
+      },
+      "max_min_high_ratio": 1.0174407166316486,
+      "median_first_angle_floor_fraction": 0.008246492044851256,
+      "normalizer": 294.26417694091793,
+      "passed": false,
+      "source_fit_usable": 241797
+    },
+    {
+      "central_voxels": 368640,
+      "corner_nonzero_fraction": 1,
+      "corner_power": [
+        0.0021828066332632754,
+        0.0021494993857940257,
+        0.009028091169510167,
+        0.0021602481580466166
+      ],
+      "face_power": [
+        0.5328234398693056,
+        0.5415711918004207,
+        0.40201060520096643,
+        0.22881354883696187
+      ],
+      "face_to_floor": [
+        245.36804874552496,
+        249.39643537726565,
+        185.12803753033822,
+        105.36986514413755
+      ],
+      "file": {
+        "computed_md5": "8bd2b83b7b1b7626c684b82c0e7fc125",
+        "folder": "Phantom/Commercial_1",
+        "id": 46512943,
+        "name": "vfagre3_vfa_MID276.mat",
+        "size": 42853873
+      },
+      "floor": 0.002171527395654946,
+      "foreground": 201222,
+      "gates": {
+        "face_transfer_in_interval": false,
+        "high_angle_spread_under_1_50": false,
+        "median_fraction_over_1pct": true,
+        "nonempty_foreground": true,
+        "nonzero_at_least_95pct": true,
+        "positive_finite": true
+      },
+      "max_min_high_ratio": 4.2000901368832855,
+      "median_first_angle_floor_fraction": 0.0378876957121563,
+      "normalizer": 408.7759323120118,
+      "passed": false,
+      "source_fit_usable": 200851
+    },
+    {
+      "central_voxels": 368640,
+      "corner_nonzero_fraction": 1,
+      "corner_power": [
+        0.0007860995994116611,
+        0.0007930668392947136,
+        0.0007748073248742527,
+        0.0007897558101352871
+      ],
+      "face_power": [
+        0.0026595897298940267,
+        0.002729736349700966,
+        0.0027613833488689976,
+        0.0027333060384391373
+      ],
+      "face_to_floor": [
+        3.375423549370748,
+        3.464450270200556,
+        3.5046151215902275,
+        3.4689807477006425
+      ],
+      "file": {
+        "computed_md5": "8a57e9be848eaf2a98ac6681dafaab0a",
+        "folder": "Phantom/Prototype_1",
+        "id": 46512946,
+        "name": "vfagre3_vfa_MID382.mat",
+        "size": 35740066
+      },
+      "floor": 0.0007879277047734741,
+      "foreground": 221814,
+      "gates": {
+        "face_transfer_in_interval": false,
+        "high_angle_spread_under_1_50": true,
+        "median_fraction_over_1pct": false,
+        "nonempty_foreground": true,
+        "nonzero_at_least_95pct": true,
+        "positive_finite": true
+      },
+      "max_min_high_ratio": 1.0235665227137913,
+      "median_first_angle_floor_fraction": 0.007545193147712902,
+      "normalizer": 358.18538055419907,
+      "passed": false,
+      "source_fit_usable": 221622
+    }
+  ],
+  "admission": {
+    "external_images": 0,
+    "low_angles": 0,
+    "organizer_masks": 0,
+    "passed": false,
+    "per_vial_NMR": 0,
+    "runs": 6,
+    "stored_fits": 0
+  }
+}

@@ -1,0 +1,344 @@
+[
+  {
+    "name": "irse2d_t1irse_MID1176.mat",
+    "file": 46512787,
+    "parameters": {
+      "IRData": [
+        50,
+        100,
+        200,
+        400,
+        800,
+        1600,
+        4500
+      ],
+      "TimingTable": [
+        5000
+      ]
+    }
+  },
+  {
+    "name": "irse2d_t1irse_MID1177.mat",
+    "file": 46512793,
+    "parameters": {
+      "IRData": [
+        50,
+        100,
+        200,
+        400,
+        800,
+        1600,
+        4500
+      ],
+      "TimingTable": [
+        5000
+      ]
+    }
+  },
+  {
+    "name": "irse2d_t1irse_MID87.mat",
+    "file": 46512796,
+    "parameters": {
+      "IRData": [
+        50,
+        100,
+        200,
+        400,
+        800,
+        1600,
+        4500
+      ],
+      "TimingTable": [
+        5000
+      ]
+    }
+  },
+  {
+    "name": "irse2d_t1irse_MID78.mat",
+    "file": 46512805,
+    "parameters": {
+      "IRData": [
+        50,
+        100,
+        200,
+        400,
+        800,
+        1600,
+        4500
+      ],
+      "TimingTable": [
+        5000
+      ]
+    }
+  },
+  {
+    "name": "irse2d_t1irse_MID32.mat",
+    "file": 46512838,
+    "parameters": {
+      "IRData": [
+        50,
+        100,
+        200,
+        400,
+        800,
+        1600,
+        4500
+      ],
+      "TimingTable": [
+        5000
+      ]
+    }
+  },
+  {
+    "name": "irse2d_t1irse_MID40.mat",
+    "file": 46512853,
+    "parameters": {
+      "IRData": [
+        50,
+        100,
+        200,
+        400,
+        800,
+        1600,
+        4500
+      ],
+      "TimingTable": [
+        5000
+      ]
+    }
+  },
+  {
+    "name": "irse2d_t1irse_MID390.mat",
+    "file": 46512868,
+    "parameters": {
+      "IRData": [
+        50,
+        100,
+        200,
+        400,
+        800,
+        1600,
+        4500
+      ],
+      "TimingTable": [
+        5000
+      ]
+    }
+  },
+  {
+    "name": "irse2d_t1irse_MID392.mat",
+    "file": 46512874,
+    "parameters": {
+      "IRData": [
+        50,
+        100,
+        200,
+        400,
+        800,
+        1600,
+        4500
+      ],
+      "TimingTable": [
+        5000
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID214.mat",
+    "file": 46512913,
+    "parameters": {
+      "VFAData": [
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID1171.mat",
+    "file": 46512916,
+    "parameters": {
+      "VFAData": [
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID671.mat",
+    "file": 46512919,
+    "parameters": {
+      "VFAData": [
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID366.mat",
+    "file": 46512922,
+    "parameters": {
+      "VFAData": [
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID75.mat",
+    "file": 46512925,
+    "parameters": {
+      "VFAData": [
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID379.mat",
+    "file": 46512928,
+    "parameters": {
+      "VFAData": [
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID256.mat",
+    "file": 46512931,
+    "parameters": {
+      "VFAData": [
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID37.mat",
+    "file": 46512934,
+    "parameters": {
+      "VFAData": [
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID574.mat",
+    "file": 46512937,
+    "parameters": {
+      "VFAData": [
+        1,
+        1.7627,
+        3.1072,
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID110.mat",
+    "file": 46512940,
+    "parameters": {
+      "VFAData": [
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID276.mat",
+    "file": 46512943,
+    "parameters": {
+      "VFAData": [
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  },
+  {
+    "name": "vfagre3_vfa_MID382.mat",
+    "file": 46512946,
+    "parameters": {
+      "VFAData": [
+        5.4772,
+        9.6549,
+        17.019,
+        30,
+        0.023,
+        0.023,
+        0.023,
+        0.023
+      ]
+    }
+  }
+]
