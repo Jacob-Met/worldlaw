@@ -1,0 +1,401 @@
+[
+  {
+    "computed_md5": "66e15a37963ea53d0bd741490b08551c",
+    "id": 46512790,
+    "name": "mcse2d_t2stimfit_MID505.mat",
+    "size": 2497318,
+    "folder": "HumanSubject"
+  },
+  {
+    "computed_md5": "772bb71a793e58059eb74fed494f6047",
+    "id": 46512784,
+    "name": "vfagre3_vfa_MID499.mat",
+    "size": 640689,
+    "folder": "HumanSubject"
+  },
+  {
+    "computed_md5": "70c6bf1c51f87ebc3ecfac2182e16bc5",
+    "id": 46512799,
+    "name": "mcse2d_t2stimfit_MID219.mat",
+    "size": 2460607,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "c0104b87999f5d3f674789d4bba0e203",
+    "id": 46512913,
+    "name": "vfagre3_vfa_MID214.mat",
+    "size": 35931128,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "77bc14fa72a5391f7086f3b06f7e073e",
+    "id": 46512787,
+    "name": "irse2d_t1irse_MID1176.mat",
+    "size": 649597,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "51031e2379e877e57360e716211983a2",
+    "id": 46512802,
+    "name": "mcse2d_t2stimfit_MID217.mat",
+    "size": 2481955,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "20aeeb6bf8516837416f931d06827af8",
+    "id": 46512808,
+    "name": "se_t2map_MID1555.mat",
+    "size": 2374986,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "e5460e4f57aedd3294c9aac019094a9f",
+    "id": 46512811,
+    "name": "mcse2d_t2stimfit_MID673.mat",
+    "size": 2481416,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "a94de6e11a1d100b5545df4027ce9e91",
+    "id": 46512814,
+    "name": "mcse2d_t2stimfit_MID675.mat",
+    "size": 2457438,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "604782ec9b5f8cd8633bfd62421edf1e",
+    "id": 46512916,
+    "name": "vfagre3_vfa_MID1171.mat",
+    "size": 35877638,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "9e6f81a7ed6a783461a84fe0875e7570",
+    "id": 46512817,
+    "name": "mcse2d_t2stimfit_MID1173.mat",
+    "size": 2478330,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "828cc5db36505df67967af95a56948db",
+    "id": 46512919,
+    "name": "vfagre3_vfa_MID671.mat",
+    "size": 35865269,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "a4fecb73881718930cc1aac0131f9910",
+    "id": 46512793,
+    "name": "irse2d_t1irse_MID1177.mat",
+    "size": 698583,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "891644719b687015f4458a0e2c82cce2",
+    "id": 46512829,
+    "name": "mcse2d_t2stimfit_MID85.mat",
+    "size": 848550,
+    "folder": "(unmapped)"
+  },
+  {
+    "computed_md5": "58206e54236eebb9238fe1f8ff10b2c9",
+    "id": 46512823,
+    "name": "mcse2d_t2stimfit_MID1175.mat",
+    "size": 2457680,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "5a6cda7d65ca83acbdb571f4d75b2447",
+    "id": 46512826,
+    "name": "se_t2map_MID387.mat",
+    "size": 2377951,
+    "folder": "Phantom/Commercial_2"
+  },
+  {
+    "computed_md5": "d47d2449d1b0ca8aa630a4a6a513fccd",
+    "id": 46512796,
+    "name": "irse2d_t1irse_MID87.mat",
+    "size": 304618,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "949eff6c66253352b89b53127529c34f",
+    "id": 46512922,
+    "name": "vfagre3_vfa_MID366.mat",
+    "size": 36440004,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "d3198d4c264924cf2c7bed090d41fc0b",
+    "id": 46512835,
+    "name": "mcse2d_t2stimfit_MID382.mat",
+    "size": 2473637,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "74fa870373132f218c13e72dd9a0db52",
+    "id": 46512841,
+    "name": "mcse2d_t2stimfit_MID367.mat",
+    "size": 2503305,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "964ab5dfdba2cd9c760f0324091c85a6",
+    "id": 46512844,
+    "name": "mcse2d_t2stimfit_MID380.mat",
+    "size": 2503850,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "2558a070b2be883d8f395d56b09bebc2",
+    "id": 46512805,
+    "name": "irse2d_t1irse_MID78.mat",
+    "size": 364560,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "bd52e9ce2b8402130a60156d45ef72a2",
+    "id": 46512847,
+    "name": "mcse2d_t2stimfit_MID376.mat",
+    "size": 2473877,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "e49939b3cd56b63088836c8c285a642d",
+    "id": 46512925,
+    "name": "vfagre3_vfa_MID75.mat",
+    "size": 36460125,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "9d06f354421addfd131af99c58760b6e",
+    "id": 46512820,
+    "name": "mcse2d_t2mono_MID88.mat",
+    "size": 783244,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "7963e9525b414d413dea0419b96d0136",
+    "id": 46512856,
+    "name": "mcse2d_t2mono_MID79.mat",
+    "size": 2978305,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "a594dfed66ab90a67f012583463a6c37",
+    "id": 46512877,
+    "name": "mcse2d_t2stimfit_MID280.mat",
+    "size": 3056436,
+    "folder": "(unmapped)"
+  },
+  {
+    "computed_md5": "0eeff9438bf3bf70c32841db2890b3fa",
+    "id": 46512832,
+    "name": "mcse2d_t2stimfit_MID77.mat",
+    "size": 915444,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "191b09c4430b15a2633f640a6f480c3e",
+    "id": 46512928,
+    "name": "vfagre3_vfa_MID379.mat",
+    "size": 36415618,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "891644719b687015f4458a0e2c82cce2",
+    "id": 46513165,
+    "name": "mcse2d_t2stimfit_MID85.mat",
+    "size": 848550,
+    "folder": "Phantom/Prototype_2"
+  },
+  {
+    "computed_md5": "dbad3b99c84413f8a7264aed1e9da697",
+    "id": 46512859,
+    "name": "se_t2map_MID60.mat",
+    "size": 2389558,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "4a5a1bc02a0af99407491689c423c048",
+    "id": 46512862,
+    "name": "se_t2map_MID47.mat",
+    "size": 2373822,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "10aa4fb2f8f249d8ea57a9e6997b3753",
+    "id": 46512850,
+    "name": "mcse2d_t2stimfit_MID39.mat",
+    "size": 1839548,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "de591a75ac26be7508ef2e8f5255b419",
+    "id": 46512934,
+    "name": "vfagre3_vfa_MID37.mat",
+    "size": 42799128,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "2cf99b22a69f31c1b702e232fd01e594",
+    "id": 46512838,
+    "name": "irse2d_t1irse_MID32.mat",
+    "size": 519025,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "1ea63aa373c9494c4a76e9edbd2f5daf",
+    "id": 46512865,
+    "name": "mcse2d_t2stimfit_MID31.mat",
+    "size": 1824027,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "a594dfed66ab90a67f012583463a6c37",
+    "id": 46513168,
+    "name": "mcse2d_t2stimfit_MID280.mat",
+    "size": 3056436,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "597c59b167fda62fac41e298bfdb16ba",
+    "id": 46512931,
+    "name": "vfagre3_vfa_MID256.mat",
+    "size": 42843104,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "db1c9d3b06767325a2fcb07c2458cb8c",
+    "id": 46512883,
+    "name": "mcse2d_t2stimfit_MID278.mat",
+    "size": 3057727,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "34da8b017e573a681dcd4390278b6626",
+    "id": 46512892,
+    "name": "mcse2d_t2stimfit_MID274.mat",
+    "size": 3062302,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "a252aab553f18ef53b4544e736d244ce",
+    "id": 46512889,
+    "name": "mcse2d_t2stimfit_MID258.mat",
+    "size": 3037965,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "189b86737e702a50031518f23c89f2e9",
+    "id": 46512853,
+    "name": "irse2d_t1irse_MID40.mat",
+    "size": 568917,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "8bd2b83b7b1b7626c684b82c0e7fc125",
+    "id": 46512943,
+    "name": "vfagre3_vfa_MID276.mat",
+    "size": 42853873,
+    "folder": "Phantom/Commercial_1"
+  },
+  {
+    "computed_md5": "0a5f3991f606d5baaa22bb003de86b9d",
+    "id": 46512880,
+    "name": "mcse2d_t2stimfit_MID581.mat",
+    "size": 2468499,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "a1e74d7ba8e789f848d63386fdfd46dc",
+    "id": 46512868,
+    "name": "irse2d_t1irse_MID390.mat",
+    "size": 711161,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "0763d479772cc73d60a818798afe3da5",
+    "id": 46512937,
+    "name": "vfagre3_vfa_MID574.mat",
+    "size": 35733740,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "00a56fc080e892edd755cab894d9851b",
+    "id": 46512940,
+    "name": "vfagre3_vfa_MID110.mat",
+    "size": 36169210,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "d7ee0bae8661a5eff0a630a3f0d71bf9",
+    "id": 46512886,
+    "name": "mcse2d_t2mono_MID391.mat",
+    "size": 2404445,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "649e37bceaf452ef6445098da6ef286b",
+    "id": 46512895,
+    "name": "mcse2d_t2stimfit_MID116.mat",
+    "size": 2492783,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "989da1cf026e77ef21c8f68dbaa51afa",
+    "id": 46512898,
+    "name": "mcse2d_t2mono_MID394.mat",
+    "size": 2394001,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "9ffb9fbd32f952ced3503b8e2ba5b0a3",
+    "id": 46512901,
+    "name": "mcse2d_t2stimfit_MID580.mat",
+    "size": 2490115,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "e29ba037180c45a814347bca397cd9e1",
+    "id": 46512904,
+    "name": "mcse2d_t2stimfit_MID388.mat",
+    "size": 2469268,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "5b2d414b026ca133b48c2d9d01064248",
+    "id": 46512907,
+    "name": "mcse2d_t2stimfit_MID117.mat",
+    "size": 2469668,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "fbe183b561da56fb826bf4948c67cce6",
+    "id": 46512910,
+    "name": "mcse2d_t2stimfit_MID389.mat",
+    "size": 2491783,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "8a57e9be848eaf2a98ac6681dafaab0a",
+    "id": 46512946,
+    "name": "vfagre3_vfa_MID382.mat",
+    "size": 35740066,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "e4d92dba47f90e06bd8bc26e9f03b6df",
+    "id": 46512874,
+    "name": "irse2d_t1irse_MID392.mat",
+    "size": 657879,
+    "folder": "Phantom/Prototype_1"
+  },
+  {
+    "computed_md5": "82ae33db05de71d6546e7ae9d51cb0af",
+    "id": 46512871,
+    "name": "README.md",
+    "size": 1230,
+    "folder": ""
+  }
+]
