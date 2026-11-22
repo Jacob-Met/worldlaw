@@ -58,18 +58,35 @@ def channel_clock(record,channel,nominal):
     if not np.isscalar(ix) or int(ix)!=ix or not 1<=ix<=len(axes):
         raise ValueError('Invalid MATLAB channel XIndex')
     axis=axes[int(ix)-1]
-    t=np.asarray(axis.Data,dtype=float).reshape(-1)
+    native_time=np.asarray(axis.Data).reshape(-1)
+    if native_time.dtype.kind!='f':raise ValueError('Native floating timestamp precision is unverified')
+    t=np.asarray(native_time,dtype=float)
     if len(t)!=np.size(channel.Data) or len(t)<2 or not np.isfinite(t).all():
         raise ValueError('Time axis cannot be paired to every sample')
     delta=np.diff(t)
     if np.any(delta<=0):raise ValueError('Nonincreasing channel time')
     median=float(np.median(delta))
     mean_rate=float((len(t)-1)/(t[-1]-t[0]))
+    # Quantizing an affine clock rounds each timestamp and both endpoints.
+    # Allow six native ULPs for those roundings and arithmetic, at most 1/8 of a step.
+    wide=native_time.astype(np.longdouble)
+    ideal=wide[0]+np.arange(len(t),dtype=np.longdouble)*(wide[-1]-wide[0])/(len(t)-1)
+    residual=np.abs(wide-ideal)
+    peak_index=int(np.argmax(residual))
+    scale=native_time.dtype.type(np.max(np.abs(native_time)))
+    ulp=float(np.spacing(scale))
+    tolerance=min(6*ulp,median/8)
     report={'x_index':int(ix),'time_unit':unit_text(getattr(axis,'Unit',[])),
+            'native_time_dtype':native_time.dtype.str,'uniform_grid_tolerance':tolerance,
+            'uniform_grid_max_abs_deviation':float(residual[peak_index]),
+            'uniform_grid_worst_index':peak_index,'uniform_grid_worst_timestamp':float(wide[peak_index]),
+            'uniform_grid_worst_affine':float(ideal[peak_index]),
             'raster':unit_text(getattr(axis,'Raster',[])),'samples':len(t),
             'first':float(t[0]),'last':float(t[-1]),'mean_rate':mean_rate,
             'median_rate':1/median,'minimum_dt':float(delta.min()),
             'maximum_dt':float(delta.max()),'time_sha256':hashlib.sha256(t.astype('<f8').tobytes()).hexdigest()}
+    if ulp>median/8 or residual[peak_index]>tolerance:
+        raise ValueError(f'Timestamps differ from a resolvable uniform grid: {report}')
     if any(abs(rate/nominal-1)>.01 for rate in [mean_rate,1/median]):
         raise ValueError(f'Clock differs from the nominal estimator grid: {report}')
     if report['time_unit'].lower() not in ('','s','sec','second','seconds','unreported'):
