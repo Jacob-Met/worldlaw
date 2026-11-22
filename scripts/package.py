@@ -16,6 +16,13 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/nist-copper-unload/README.md",
+    "research/nist-copper-unload/intercept.py",
+    "research/nist-copper-unload/sampling.py",
+    "research/nist-copper-unload/verify.py",
+    "research/nist-copper-unload/replay.py",
+    "research/nist-copper-unload/certificate.json",
+    "research/nist-copper-unload/source.json",
     "research/laum-optical-harmonic-transfer/README.md",
     "research/laum-optical-harmonic-transfer/clock.py",
     "research/laum-optical-harmonic-transfer/support.py",
