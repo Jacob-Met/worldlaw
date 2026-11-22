@@ -1,0 +1,155 @@
+{
+  "producer": {
+    "id": "p3-f747-broad-precommitted-eleven-imu-trials-88-forecast-lock",
+    "owner": "node-c0da1eb7402af862460cccd552698bb4",
+    "receipt": {
+      "command_id": "p3-f747-broad-precommitted-eleven-imu-trials-88-forecast-lock",
+      "exit_code": 0,
+      "finished_at": "2026-11-22T19:22:09.625129643Z",
+      "generation": "d0e083743c378d1c0eeedf84bf035691d5ba0df58a5f7fc4dfbd910e482c8bb3",
+      "request_sha256": "c034ea9a79b0d434972fb1739d04748d614fe9aca114ad0af405abf1230d9f6c",
+      "resource_process": {
+        "boot_id": "062f2ae0-c943-4cb6-95a0-a77012cd8fe5",
+        "pid": 2142941,
+        "start_ticks": 106599305
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 205230080,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "compiler": 0.19,
+            "other": 0,
+            "python": 7.869999999999988
+          },
+          "distinct_processes": 5,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 157,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 157
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.276981,
+        "user_cpu_seconds": 8.158584
+      },
+      "runner_pid": 2142930,
+      "script_observation_version": 3,
+      "started_at": "2026-11-22T19:21:53.962447742Z",
+      "state": "completed",
+      "working_tree_context": {
+        "repository": "github.com/Jacob-Met/cursor-swiss-env",
+        "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+      }
+    },
+    "output_bytes": 8969
+  },
+  "scorer": {
+    "id": "p3-f747-broad-frozen-88-quaternion-official-optical-scores",
+    "owner": "node-c0da1eb7402af862460cccd552698bb4",
+    "receipt": {
+      "command_id": "p3-f747-broad-frozen-88-quaternion-official-optical-scores",
+      "exit_code": 0,
+      "finished_at": "2026-11-22T19:25:54.576917475Z",
+      "generation": "2bce418f54f638ce2de2f1e8960f13c1d346bc986e624df976b69e367a137aac",
+      "request_sha256": "636a81a2086c682f0165fcac5555edcfc9813cf7e0406a6659ee6e8b04406aeb",
+      "resource_process": {
+        "boot_id": "062f2ae0-c943-4cb6-95a0-a77012cd8fe5",
+        "pid": 2143779,
+        "start_ticks": 106622928
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 129798144,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "compiler": 0.19,
+            "other": 0,
+            "python": 3.2000000000000015
+          },
+          "distinct_processes": 5,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 44,
+          "read_errors": 1,
+          "saturated_snapshots": 0,
+          "snapshots": 44
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.320315,
+        "user_cpu_seconds": 3.452967
+      },
+      "runner_pid": 2143767,
+      "script_observation_version": 3,
+      "started_at": "2026-11-22T19:25:50.192653661Z",
+      "state": "completed",
+      "working_tree_context": {
+        "repository": "github.com/Jacob-Met/cursor-swiss-env",
+        "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+      }
+    },
+    "output_bytes": 36370
+  },
+  "worst_receiver": {
+    "id": "p3-f747-broad-31-worst-frozen-window-decision-and-output-receiver",
+    "owner": "node-c0da1eb7402af862460cccd552698bb4",
+    "receipt": {
+      "command_id": "p3-f747-broad-31-worst-frozen-window-decision-and-output-receiver",
+      "exit_code": 0,
+      "finished_at": "2026-11-22T19:27:12.122209482Z",
+      "generation": "33a179e5068e8f680bf5f529c83dcf714c0f39aa0e205acb882c045f04604b27",
+      "request_sha256": "c74d4eeb64326a2ff098ceb7daa860afe7dcba44667dc8b900de93ad92fd6975",
+      "resource_process": {
+        "boot_id": "062f2ae0-c943-4cb6-95a0-a77012cd8fe5",
+        "pid": 2144013,
+        "start_ticks": 106631105
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 25104384,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {},
+          "distinct_processes": 1,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 1,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 1
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.015693,
+        "user_cpu_seconds": 0.082392
+      },
+      "runner_pid": 2143999,
+      "script_observation_version": 3,
+      "started_at": "2026-11-22T19:27:11.970257524Z",
+      "state": "completed",
+      "working_tree_context": {
+        "repository": "github.com/Jacob-Met/cursor-swiss-env",
+        "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+      }
+    },
+    "output_bytes": 7588
+  },
+  "scope_claim": 1674009,
+  "preregistration": {
+    "attachment": "att-mws82z79xl8z9f",
+    "sha256": "9dded4099482e2d49ce1d5c50f5b12716ade2f115fbe4bd9fa688ae142709228"
+  },
+  "prediction_lock_post": 182921,
+  "score_whole_sha256": "b794aed7a732687894c2f08592bf614e989eb6e25dafb61278c3596403a08f34"
+}

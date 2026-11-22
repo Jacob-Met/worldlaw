@@ -1,0 +1,104 @@
+{
+  "schema": "p3.broad.board-magnet.source-access.v1",
+  "data_commit": "7e2f8189bb4a3ac91eae32c69b6bc87f08a6e2ad",
+  "vqf": "86ba56bdd3158b9b05f9f9fe5596866ba326438c",
+  "ellipsoid": "bd96a8973553ed5cad13b5bd7385b2ab0f74fdb4",
+  "reproducible_source_code": "Source qualification only; synthetic receiver output b8a92bb205e8b919099607ead9cf08a06575580bd276999a3e99166c17404508. Original one-axis SciPy Euler-array shape refusal preceded any physical access.",
+  "input_only_source_cases": [
+    19,
+    28,
+    34
+  ],
+  "prospective_attached_magnet_cases": [
+    32,
+    33,
+    35,
+    36
+  ],
+  "prospective_room_fixed_magnet_cases": [
+    29,
+    30,
+    31
+  ],
+  "prospective_clean_combined_cases": [
+    20,
+    21,
+    22,
+    23
+  ],
+  "source_intake": "Source-only three complete preassigned trials 19,28,34. Decode only time/sampling, imu_gyr, imu_acc, imu_mag and source metadata. No optical positions/quaternions or movement mask in this phase. No held trial member or outcome. Source admission may inspect signed ranges, saturation proxy in µT, first-rest stability, rank and conditioning, training input-only predictability under frozen lag/window, and unusually large residuals. No hidden index or inferred attach/remove change based on target outcomes.",
+  "source_pilot_protocol": "Reported sampling rate 2000/7 Hz. Estimate baseline gyroscope bias using first 20 seconds, then integrate commanded sensor-frame rotations by right composition of midpoint angular rates. Fixed calibration interval [0,60s). Fit at 20 nominal Hz using fixed 0.49 s transport pairs (140 source samples, 3.5ms each), evaluated on times at or after60s. Bias coefficients use only those prefix pairs. Compare zero offset, naive range-midpoint, algebraic sphere, authentic full hard/soft-iron ellipsoid, and gyro-transported hard-iron fits. Report prefix singular spectra and sustained room/constant-field differences; any future fallback/rank threshold frozen before held inputs. Full-length predictions and official movement-mask suffix optical scoring belong to a separate preregistration.",
+  "optical_ground_truth": "Ground truth per-day independent calibration recording and per-trial optical/gyro temporal alignment; global yaw is magnetically defined on that separate recording. No held optical data used for initial conditions.",
+  "files": [
+    [
+      "data_mat/19_undisturbed_slow_combined_240s.mat",
+      6257950,
+      "5aff5c8dd0cd6bda6acad5a5da2529d56bd2a234"
+    ],
+    [
+      "data_mat/20_undisturbed_slow_combined_360s.mat",
+      8844158,
+      "21c5a4cfb85842f980f9f4acfc1ef91d28a5bffe"
+    ],
+    [
+      "data_mat/21_undisturbed_fast_combined.mat",
+      4043263,
+      "bdafa899ef89fd92c7130d9ed0ce0f4ee87ada31"
+    ],
+    [
+      "data_mat/22_undisturbed_fast_combined_240s.mat",
+      6733371,
+      "92343877826e058d72fae514a7beb2e2da765701"
+    ],
+    [
+      "data_mat/23_undisturbed_fast_combined_360s.mat",
+      9468035,
+      "5bb6d4f3395895187c0183cd56c5c186c3eeab82"
+    ],
+    [
+      "data_mat/28_disturbed_stationary_magnet_A.mat",
+      3927956,
+      "08c6068f1dabf7e5c38e7202c750681d7732b668"
+    ],
+    [
+      "data_mat/29_disturbed_stationary_magnet_B.mat",
+      4007864,
+      "2f06ee286d8abd8412839fde46f7cb69012c8438"
+    ],
+    [
+      "data_mat/30_disturbed_stationary_magnet_C.mat",
+      3747043,
+      "d72faa47131b9651b1f6dd38d6054dacd7dc2e3d"
+    ],
+    [
+      "data_mat/31_disturbed_stationary_magnet_D.mat",
+      3699928,
+      "8aca3f1331f635da45ff52c6e00208a271a22226"
+    ],
+    [
+      "data_mat/32_disturbed_attached_magnet_1cm.mat",
+      3064358,
+      "5ebe9c6621304a743c1286309487900a97bb3e18"
+    ],
+    [
+      "data_mat/33_disturbed_attached_magnet_2cm.mat",
+      3037631,
+      "cd7256024360474de5aea75980a459d8fd6152dd"
+    ],
+    [
+      "data_mat/34_disturbed_attached_magnet_3cm.mat",
+      3097393,
+      "e975f160e78a293b0936110114b80d3426751bd0"
+    ],
+    [
+      "data_mat/35_disturbed_attached_magnet_4cm.mat",
+      2962905,
+      "bd3959587e6a93db0fedbe9e248613a8cd20014b"
+    ],
+    [
+      "data_mat/36_disturbed_attached_magnet_5cm.mat",
+      3012196,
+      "05872a4a6e6f389e8b1727a4de970d41c693b621"
+    ]
+  ]
+}

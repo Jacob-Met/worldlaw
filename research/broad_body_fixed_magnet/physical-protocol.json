@@ -1,0 +1,55 @@
+{
+  "arms": [
+    "raw_vqf",
+    "initial_field_then_6d",
+    "static60_gyro",
+    "rolling_midpoint",
+    "rolling_sphere",
+    "rolling_ellipsoid",
+    "rolling_gyro_sham",
+    "rolling_gyro"
+  ],
+  "comparators": "Direct raw VQF; same VQF with reference magnet only during initial20s; static60s gyro fit; each gated rolling midpoint, algebraic sphere, unmodified published full hard/soft-iron ellipsoid class, and same dimensional sham using circularly shifted gyro rotations within the training segment. The author ellipsoid is scaled to the initial20s median raw strength. The source class returns a complex dtype on some inputs; exactly zero imaginary bias is required, otherwise use raw. Current-program zeros and original serialization failure retained.",
+  "cost_and_exposure": "Single apparatus and one recording per source distance; moderate CPU. Compiled C++ from immutable source, no external model fitting or GPU. Published BROAD and VQF evaluations are historical, not new acquisitions. These eleven records were previously unopened in this course. No trial-specific optical frame/heading alignment or target-derived initializer is permitted.",
+  "experiment": "Handheld rigid-board BROAD, full official movement intervals on all eleven preassigned recordings. Target is the optical orientation of the sensor in the daily aligned, magnetically defined ENU frame. Motion is not assumed to share an identical trajectory across distances.",
+  "first_freeze": "att-mws7n5gilw8nk8",
+  "gate": "Compute unchanged author calculateRMSE on whole-record prediction and all official movement frames (including early transition/recovery); equal mean over physical trials. For each of seven competitors, require strict lower attached mean heading RMSE in degrees and strict wins on >=3/4 cases. Separately both room and clean mean degradation over raw <=0.2deg and worst individual degradation <=1.0deg. Joint success requires both. Report total/inclination/heading by trial and role, finite mask counts, worst heading sample and all arms at the same time. A registered failure has no replacement score.",
+  "groups": {
+    "attached": [
+      32,
+      33,
+      35,
+      36
+    ],
+    "clean_combined": [
+      20,
+      21,
+      22,
+      23
+    ],
+    "development_imu_only": [
+      19,
+      28,
+      34
+    ],
+    "room_fixed": [
+      29,
+      30,
+      31
+    ]
+  },
+  "pinned_files": {
+    "native_vqf_factors.py": "07a1624a847dac8d9be2edecf9b11b5ff4a2e9a56afaae24ec1077a8d99f0198",
+    "physical_gate.py": "43147638a749aca7cd2f4bc55cc66942080a981b77453e846350ee7e42247343",
+    "rolling_field.py": "c879793f7843d75d1328112e2bbad27aef8a4a38247f1834c584002503bd9e6f",
+    "source-input-boundary.json": "f4f988dd4e2db145fa838874e90462483e3e50c0d3dea5a8af10b466d2a3b33d",
+    "source_field_pilot_v2.py": "0f6aa428bfce8e9d0d519d2a6cb45c2e348a9512971679aa255e5add6b73ca20"
+  },
+  "primary": "rolling_gyro estimates b from m_t-Q m_s=(I-Q)b. It requires the smallest singular value divided by square root of pair count >=.08, singular ratio >=.15, no axis >=990\u00b5T in the window, finite calibration, matrix condition <=10, bias norm <=1500\u00b5T, and held-in-past validation vector RMS improvement >=.25\u00b5T and >=5% vs zero-offset magnetic transport. Otherwise use ordinary raw magnetic input on the next interval. The same excitation, range and validation rules apply to the rolling competitors.",
+  "receiver": "Before any held optical arrays or movement masks are decoded, fix one full native forecast SHA and all88 full binary quaternion-array SHA256s. On the original producer each exact default C++ output is bitwise checked against author quatApplyDelta compression into one common gyro/acc six-dimensional quaternion array and eight per-role yaw arrays. Verify all retained factors, role/phantom roster, exact quaternion hashes and metadata before reading opt_quat. Independent component formula must match official heading, inclination and total RMSE within 3e-7 deg. NaNs and the unchanged per-record organizer mask retained.",
+  "reference_data": "dlaidig/broad@7e2f8189bb4a3ac91eae32c69b6bc87f08a6e2ad",
+  "role_logic": "All use the same genuine causal full VQF with default gyro bias, accelerometer and magnetic-rejection logic. Raw uses the supplied magnetometer. Initial-field baseline stops calling updateMag after 20 s. The fixed comparator subtracts one bias after 60s, fitted on the first60s. Matched rolling roles fit on the preceding 8.008 s and validate on a disjoint preceding4.004 s of each trailing12.012 s, update every1.001 s, use 0.49s gyro transport and ~20.4Hz pair spacing. No estimate affects an earlier sample. Rolling fits begin after the 20s static gyro bias estimate is available. There is no trial-type, magnet distance, movement mask or optical input. Eligible fits apply only until the next update.",
+  "schema": "p3.broad.handheld.optical-freeze.v1",
+  "scope": "A constant body-fixed bias model assumes local field spatial/temporal uniformity and rotation-equivariant sensor response. Anisotropic soft-iron creates a commutator; clipping breaks additivity. None of these are inferred away. No measured magnet-on schedule available. Source3cm gave +13.4/+13.5/+2.7/\u22120.5\u00b5T z-bias across four successive well-excited motion windows, so trial label alone cannot define a fixed mounted-on epoch. Inputs identify sensor-scale excursions, not ADC saturation status.",
+  "vqf_tag": "dlaidig/vqf@86ba56bdd3158b9b05f9f9fe5596866ba326438c (v2.1.2), original C++ defaults. Independent tagged Python gate 2.07e-15 max quaternion component discrepancy and identical magnetic-disturbance flags on 2200 artificial samples."
+}
