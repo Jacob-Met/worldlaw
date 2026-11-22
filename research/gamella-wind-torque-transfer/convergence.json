@@ -1,0 +1,183 @@
+{
+  "middle-dev": {
+    "events": 1000,
+    "prefix_kind": "measured training only",
+    "exact_rmse_rpm": 9.833336248624423,
+    "substeps": {
+      "1": {
+        "rms_vs_exact": 2.47813953466594,
+        "max_abs_vs_exact": 31.316336473667207,
+        "p95_event_max": 5.576685939689957,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 4782,
+          "row": 15,
+          "interval_s": 1.2164863709913334,
+          "euler_rpm": 1752.2382536705086,
+          "exact_rpm": 1720.9219171968414
+        },
+        "rmse_rpm": 9.740085852709274
+      },
+      "4": {
+        "rms_vs_exact": 0.5651611575376547,
+        "max_abs_vs_exact": 5.582239765971963,
+        "p95_event_max": 1.3339721666436615,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 4782,
+          "row": 15,
+          "interval_s": 1.2164863709913334,
+          "euler_rpm": 1726.5041569628133,
+          "exact_rpm": 1720.9219171968414
+        },
+        "rmse_rpm": 9.754213800737027
+      },
+      "16": {
+        "rms_vs_exact": 0.13911430377205766,
+        "max_abs_vs_exact": 1.3109256611692217,
+        "p95_event_max": 0.32549780637112896,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 4782,
+          "row": 15,
+          "interval_s": 1.2164863709913334,
+          "euler_rpm": 1722.2328428580106,
+          "exact_rpm": 1720.9219171968414
+        },
+        "rmse_rpm": 9.810829575475513
+      },
+      "64": {
+        "rms_vs_exact": 0.034652260422803366,
+        "max_abs_vs_exact": 0.3229247601375391,
+        "p95_event_max": 0.0810932868952136,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 4782,
+          "row": 15,
+          "interval_s": 1.2164863709913334,
+          "euler_rpm": 1721.244841956979,
+          "exact_rpm": 1720.9219171968414
+        },
+        "rmse_rpm": 9.827547031940947
+      }
+    }
+  },
+  "low-clock-nominal": {
+    "events": 5000,
+    "prefix_kind": "fixed nominal A1 speed",
+    "exact_rmse_rpm": null,
+    "substeps": {
+      "1": {
+        "rms_vs_exact": 1.4828094052904306,
+        "max_abs_vs_exact": 23.93189136283047,
+        "p95_event_max": 3.2119292721103316,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 3078,
+          "row": 25,
+          "interval_s": 1.535663353977725,
+          "euler_rpm": 701.4089717079055,
+          "exact_rpm": 677.477080345075
+        }
+      },
+      "4": {
+        "rms_vs_exact": 0.36309694495710915,
+        "max_abs_vs_exact": 5.345463415186373,
+        "p95_event_max": 0.7919474112045806,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 3078,
+          "row": 25,
+          "interval_s": 1.535663353977725,
+          "euler_rpm": 682.8225437602614,
+          "exact_rpm": 677.477080345075
+        }
+      },
+      "16": {
+        "rms_vs_exact": 0.09034025681136698,
+        "max_abs_vs_exact": 1.3016258069810647,
+        "p95_event_max": 0.19676338883776912,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 3078,
+          "row": 25,
+          "interval_s": 1.535663353977725,
+          "euler_rpm": 678.7787061520561,
+          "exact_rpm": 677.477080345075
+        }
+      },
+      "64": {
+        "rms_vs_exact": 0.022558556549506826,
+        "max_abs_vs_exact": 0.3233098028007362,
+        "p95_event_max": 0.049154250141708655,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 3078,
+          "row": 25,
+          "interval_s": 1.535663353977725,
+          "euler_rpm": 677.8003901478758,
+          "exact_rpm": 677.477080345075
+        }
+      }
+    }
+  },
+  "high-clock-nominal": {
+    "events": 5000,
+    "prefix_kind": "fixed nominal A1 speed",
+    "exact_rmse_rpm": null,
+    "substeps": {
+      "1": {
+        "rms_vs_exact": 2.602858341066164,
+        "max_abs_vs_exact": 51.78897033667454,
+        "p95_event_max": 4.5014893093137065,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 1982,
+          "row": 32,
+          "interval_s": 1.220434633010882,
+          "euler_rpm": 2968.780439812513,
+          "exact_rpm": 3020.5694101491877
+        }
+      },
+      "4": {
+        "rms_vs_exact": 0.5714523960742592,
+        "max_abs_vs_exact": 6.491091069303366,
+        "p95_event_max": 1.0706138830905274,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 1982,
+          "row": 32,
+          "interval_s": 1.220434633010882,
+          "euler_rpm": 3014.0783190798843,
+          "exact_rpm": 3020.5694101491877
+        }
+      },
+      "16": {
+        "rms_vs_exact": 0.1405760811023721,
+        "max_abs_vs_exact": 1.4849008006017357,
+        "p95_event_max": 0.2646002935096476,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 1982,
+          "row": 32,
+          "interval_s": 1.220434633010882,
+          "euler_rpm": 3019.084509348586,
+          "exact_rpm": 3020.5694101491877
+        }
+      },
+      "64": {
+        "rms_vs_exact": 0.03501054451201916,
+        "max_abs_vs_exact": 0.36368859251251706,
+        "p95_event_max": 0.06596316323664268,
+        "zero_clamps": 0,
+        "worst": {
+          "flag": 1982,
+          "row": 32,
+          "interval_s": 1.220434633010882,
+          "euler_rpm": 3020.205721556675,
+          "exact_rpm": 3020.5694101491877
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "simulator_sha256": "1c7c8bc2597c8fc9ef1a0e81d0fb5d9d7ad673f9f2074c889dba7234987df0f3",
+  "training": [
+    {
+      "flag": 0,
+      "max_abs_rpm_pa": [
+        0.0,
+        1.4551915228366852e-11
+      ],
+      "stored_pressure_f32_equal": true
+    },
+    {
+      "flag": 422,
+      "max_abs_rpm_pa": [
+        0.0,
+        1.4551915228366852e-11
+      ],
+      "stored_pressure_f32_equal": true
+    }
+  ]
+}

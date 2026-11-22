@@ -1,0 +1,52 @@
+{
+  "predictions": {
+    "0.01": {
+      "archive_sha256": "44f4aa3412f4d829b3f5e5bc898fa11e48b76bddfe1a9f51acf5bf986b08a380",
+      "array_sha256": {
+        "author_centered": "248e1807e4976e166bdea9850d3e93349f0920ee2eb8a0f1d8454580d9421ac4",
+        "author_draw": "133a5a309fdf726e6d0c0f46b3e903a38d8078c91a86345d45b0fb0002f372f6",
+        "middle_template": "27b5377696a2cf362ca16ffe193db89db940f3f6924a04c13beb272853728971",
+        "persistence": "1e534a04744905558943c0cafd9c73be56e0d2a9b8a1b67aa02a9f7282333494",
+        "squared_speed": "d52b726453814043c4a57d02c64f8c72bb33bc6932dc8b3753716014e001cfdd",
+        "torque_calibrated_flow": "c110dc4806b384066c187eb05ab4fce4317edb99882738125c9dcd43ad97be4f",
+        "torque_exact_forward": "bce477f89c6d8438ca97ca0cd832a05cd37569c6817b4ea74d92c6fcaef2e1a4",
+        "torque_transfer": "653458d5eeb1eb620abed5427bf234a7c35a94a5c8eba8b67c57f3bc03227885",
+        "walk_additive": "6f79ddd7d6af950852a4268184cbe711fd1ea8b918d9fde1d1427f548c99c4b8",
+        "walk_coupled": "8c13efb537aaf0b8a2076bb529d006d5c5822d32668428f1ce997aa15b12c036",
+        "walk_plus_template": "3dfe9d5f54c39ae8c6692362c1e4c389a008f122265cbb86081407c59497b660"
+      }
+    },
+    "1": {
+      "archive_sha256": "1f7c784dfd881b9b10c0381f6f695bbb5d44c6b363e70b4eb3725df0b439488f",
+      "array_sha256": {
+        "author_centered": "0d4ad04fd5a341447bebfce0ce8afc4a94eceb0b1785fa252650484401b4b274",
+        "author_draw": "1f38f3b044e1f7c6aa9e44e38114b6faa74b6568cd078f8a2ee7c7014e1d6647",
+        "middle_template": "ed94591db8da62ffd9ea16c3a8baaa88a8abfdc6e1277f8bf9d80ef45fa58265",
+        "persistence": "d3183d06f709473ebbe8ec8a2a256868ab3dde799a4aee749839adde02a39544",
+        "squared_speed": "4acb5bd0696dc1397a105827b297cd754ac20a279870fb37dae90fb279a22dd5",
+        "torque_calibrated_flow": "eadffa0634a54e57e459cbaa2c484fd038df777be9628a73fa49c544397b7f1f",
+        "torque_exact_forward": "ee9e4511994db1e1a0a7a2d68839189eb8492d1fab6a47503f74ccf28c7911fe",
+        "torque_transfer": "e404ddb626623e42bf289fd7ac8a50a75ab243a51db0079bb7246b123253aadd",
+        "walk_additive": "4b335f5af76c49c6caf87bcfb8cd7ab4f1e4b46d89159d4359f49c258094c72b",
+        "walk_coupled": "8beec6457f5d27155a4f2a62b3353f6fc8d884ebb77e3cdf92aa577e058299a0",
+        "walk_plus_template": "a6939ff180ecde56815cdbca5ec30b2fb0f425c23483d1610b44dcfc822af317"
+      }
+    }
+  },
+  "runtime": [
+    "3.12.3",
+    "2.3.5",
+    "2.2.3"
+  ],
+  "source_sha256": {
+    "author_simulator.py": "1c7c8bc2597c8fc9ef1a0e81d0fb5d9d7ad673f9f2074c889dba7234987df0f3",
+    "design.txt": "ee737c762ea9a181e1a015b1fc56f9c0a8edb012f23f3a6550302ae1973db020",
+    "predict_lock.py": "ff7a2bf8bfc5cb95bef18eb7f650e0a85861f174266d20007cc3bf68f5a323cb",
+    "protocol.json": "322acdf8dc1a946a084351d07d00fedee1e514887bad23f779b36707b369b3b1",
+    "score_locked.py": "a741a402b873bc127b02936160d98d16cd2839e63996c973a25dfe6b6318c0e9",
+    "torque_flow.py": "7f5f3f98518e17c4fe333b1c55f8dd07ec9726c44b5b6136855a0ccdb1114823",
+    "verify_author.py": "bb5b222e2b158be8980719079fbf6348efc4cd51fbcd30c77afcc1c91bd3dd78",
+    "wind_transfer.py": "63d9758305973ba317669de1e874db5a3e6802d6818fefa13118317688b5e168",
+    "wt_models.py": "532f2877e84373494368011f38aee9deeabb0cba2602b111000fc70967463380"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "lock_sha256": "933584d35e8989676c78c2b87ebc5e08be9cbef27b173ff40007bf61acefa33e",
+  "score_sha256": "e87829e3461f117c7c2672f4d0f6bc7e12f9d826f0b5e8b004e1d3ccddcb7b4a",
+  "session_channel_metrics_verified": 176,
+  "raw_maxima_verified": 44,
+  "complete_worst_events_verified": 4,
+  "per_event_comparisons": {
+    "0.01": {
+      "persistence": [
+        4996,
+        4999
+      ],
+      "author_draw": [
+        5000,
+        4910
+      ],
+      "author_centered": [
+        5000,
+        4923
+      ],
+      "middle_template": [
+        4975,
+        4732
+      ],
+      "squared_speed": [
+        4916,
+        4732
+      ],
+      "walk_additive": [
+        5000,
+        4967
+      ],
+      "walk_coupled": [
+        5000,
+        4973
+      ],
+      "walk_plus_template": [
+        4992,
+        4956
+      ],
+      "torque_transfer": [
+        4931,
+        601
+      ],
+      "torque_exact_forward": [
+        4984,
+        499
+      ]
+    },
+    "1": {
+      "persistence": [
+        5000,
+        5000
+      ],
+      "author_draw": [
+        4987,
+        5000
+      ],
+      "author_centered": [
+        5000,
+        4703
+      ],
+      "middle_template": [
+        460,
+        913
+      ],
+      "squared_speed": [
+        4915,
+        913
+      ],
+      "walk_additive": [
+        5000,
+        4992
+      ],
+      "walk_coupled": [
+        5000,
+        4959
+      ],
+      "walk_plus_template": [
+        5000,
+        4990
+      ],
+      "torque_transfer": [
+        4776,
+        4897
+      ],
+      "torque_exact_forward": [
+        3880,
+        735
+      ]
+    }
+  },
+  "all_role_joint_gate": false
+}
