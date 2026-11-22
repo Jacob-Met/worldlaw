@@ -1,0 +1,672 @@
+{
+  "site": "TestUM, Wittstock/Dosse",
+  "archive_sha256": "ab7d202b630667c53f868c4fa20c43c8847af46f180ce6757beb2839b1a1d034",
+  "original_primary": {
+    "fits": {
+      "Theis": [
+        {
+          "well": "W2_2z_D09",
+          "train_rmse_mm": 1.0841754415424893,
+          "D_m2_s": 28.18382931264452,
+          "vertical_horizontal_ratio": null,
+          "T_m2_s": 0.0036262216020008426,
+          "gain_m": 0.0021286660295933924,
+          "full_rmse_mm": 1.1680240938851356,
+          "pumping_rmse_mm": 0.9179444826756132,
+          "recovery_rmse_mm": 1.2860017849097942,
+          "max_refinement_mm": 0,
+          "worst": {
+            "seconds": 404,
+            "depth_m": 7.5,
+            "measured_m": -0.000878,
+            "calculated_m": 0.0036670483405467674,
+            "error_mm": 4.545048340546767
+          }
+        },
+        {
+          "well": "W2_2z_U01",
+          "train_rmse_mm": 1.0711302754031211,
+          "D_m2_s": 28.18382931264452,
+          "vertical_horizontal_ratio": null,
+          "T_m2_s": 0.003721999465027578,
+          "gain_m": 0.002073889266370362,
+          "full_rmse_mm": 1.2037782306993796,
+          "pumping_rmse_mm": 1.4516360561528436,
+          "recovery_rmse_mm": 1.0410573167228374,
+          "max_refinement_mm": 0,
+          "worst": {
+            "seconds": 335,
+            "depth_m": 7.5,
+            "measured_m": 0.015834,
+            "calculated_m": 0.009640063326642617,
+            "error_mm": -6.193936673357384
+          }
+        },
+        {
+          "well": "W2_2z_U07",
+          "train_rmse_mm": 1.1512959308949493,
+          "D_m2_s": 39.81071705534969,
+          "vertical_horizontal_ratio": null,
+          "T_m2_s": 0.003831894492851961,
+          "gain_m": 0.002014412128088605,
+          "full_rmse_mm": 1.03810869258476,
+          "pumping_rmse_mm": 1.1552848219516303,
+          "recovery_rmse_mm": 0.9669680664802257,
+          "max_refinement_mm": 0,
+          "worst": {
+            "seconds": 340,
+            "depth_m": 7.5,
+            "measured_m": 0.013734,
+            "calculated_m": 0.007469004810879023,
+            "error_mm": -6.2649951891209765
+          }
+        }
+      ],
+      "finite_screen": [
+        {
+          "well": "W2_2z_D09",
+          "train_rmse_mm": 1.0193882688552336,
+          "D_m2_s": 28.18382931264452,
+          "vertical_horizontal_ratio": 0.4528674223104257,
+          "T_m2_s": 0.003625823173774711,
+          "gain_m": 0.0021288999407880504,
+          "full_rmse_mm": 1.2588255348526336,
+          "pumping_rmse_mm": 1.2078316198144263,
+          "recovery_rmse_mm": 1.286255078776873,
+          "max_refinement_mm": 0.00012860451877646367,
+          "worst": {
+            "seconds": 3,
+            "depth_m": 7.5,
+            "measured_m": 0.000898,
+            "calculated_m": 0.005523268752549268,
+            "error_mm": 4.6252687525492675
+          }
+        },
+        {
+          "well": "W2_2z_U01",
+          "train_rmse_mm": 1.0809241041023392,
+          "D_m2_s": 28.18382931264452,
+          "vertical_horizontal_ratio": 1,
+          "T_m2_s": 0.0037238885966091838,
+          "gain_m": 0.0020728371807324027,
+          "full_rmse_mm": 1.1357552100578912,
+          "pumping_rmse_mm": 1.289569694711552,
+          "recovery_rmse_mm": 1.0406234148251137,
+          "max_refinement_mm": 4.105331728428488e-05,
+          "worst": {
+            "seconds": 335,
+            "depth_m": 7.5,
+            "measured_m": 0.015834,
+            "calculated_m": 0.009635176525110487,
+            "error_mm": -6.198823474889514
+          }
+        },
+        {
+          "well": "W2_2z_U07",
+          "train_rmse_mm": 1.1245698516681484,
+          "D_m2_s": 56.23413251903491,
+          "vertical_horizontal_ratio": 0.7679336413150996,
+          "T_m2_s": 0.004026686588925611,
+          "gain_m": 0.0019169643749245677,
+          "full_rmse_mm": 1.0868043117404054,
+          "pumping_rmse_mm": 1.2725872991587042,
+          "recovery_rmse_mm": 0.9684357417135859,
+          "max_refinement_mm": 9.039619313505609e-06,
+          "worst": {
+            "seconds": 340,
+            "depth_m": 7.5,
+            "measured_m": 0.013734,
+            "calculated_m": 0.007130865165221843,
+            "error_mm": -6.603134834778157
+          }
+        }
+      ]
+    },
+    "ratios": [
+      1.0777393560996418,
+      0.943492066140814,
+      1.0469080159943553
+    ],
+    "mean_ratio": 1.0209606758422067,
+    "decision": false,
+    "depthblind_exact_oracle": [
+      {
+        "well": "W2_2z_D09",
+        "at_s": 10,
+        "depth_values_m": [
+          0.003706,
+          0.006106,
+          0.005606
+        ],
+        "minimum_any_depthblind_worst_mm": 1.2000000000000002,
+        "minimum_any_depthblind_rmse_mm": 0.5690270911086964
+      },
+      {
+        "well": "W2_2z_U01",
+        "at_s": 339,
+        "depth_values_m": [
+          0.013732,
+          0.008632,
+          0.008332
+        ],
+        "minimum_any_depthblind_worst_mm": 2.6999999999999993,
+        "minimum_any_depthblind_rmse_mm": 0.6777429283703782
+      },
+      {
+        "well": "W2_2z_U07",
+        "at_s": 340,
+        "depth_values_m": [
+          0.013734,
+          0.008534,
+          0.008834
+        ],
+        "minimum_any_depthblind_worst_mm": 2.6,
+        "minimum_any_depthblind_rmse_mm": 0.5924156428678207
+      }
+    ],
+    "pumping_source_minimum": [
+      334,
+      -0.13437
+    ]
+  },
+  "independent": {
+    "raw_sha256": {
+      "Upload_Data/Pumping_test/Processed/NMR4_W2_2z_D09_S1_R1_pump_recovery_20190325.dat": "d7c222a0e588cf0e964966819d432b7ea51ea8978fe10d7037e758b57809818c",
+      "Upload_Data/Pumping_test/Processed/NMR4_W2_2z_D09_S1_R2_pump_recovery_20190325.dat": "c84c9987039d79a708123a3f90a99d94669ca6df172da96551db3aed288d191f",
+      "Upload_Data/Pumping_test/Processed/NMR4_W2_2z_D09_S1_R3_pump_recovery_20190325.dat": "50e3f2a1d68a8420567a36a6b80d63a1c89653a1f1ef3e3baf2644d28132cc7d",
+      "Upload_Data/Pumping_test/Processed/NMR4_W2_2z_U01_S1_R1_pump_recovery_20190325.dat": "cd85b844882399c17d0abd6336c34a092c01a3cdd7215707f9782de439c4aad7",
+      "Upload_Data/Pumping_test/Processed/NMR4_W2_2z_U01_S1_R2_pump_recovery_20190325.dat": "8bd1b8abdc40a5d2bf0cf2641e422533d74af80740c1b2f92e3be367aa7be731",
+      "Upload_Data/Pumping_test/Processed/NMR4_W2_2z_U01_S1_R3_pump_recovery_20190325.dat": "234b4fa4a4f1be55202cac92b1f60320d96db4c20ad70496494ab18d672f6d16",
+      "Upload_Data/Pumping_test/Processed/NMR4_W2_2z_U07_S1_R1_pump_recovery_20190325.dat": "d44839d0bcd95523b6f563f285268865ceedf6e0375ba963cddae0eb8eb53d98",
+      "Upload_Data/Pumping_test/Processed/NMR4_W2_2z_U07_S1_R2_pump_recovery_20190325.dat": "d6a765a359f7464ded848ac9825bf6b3cce48e3dc83e0a613cdf65c8821a0c48",
+      "Upload_Data/Pumping_test/Processed/NMR4_W2_2z_U07_S1_R3_pump_recovery_20190325.dat": "a92a4c8633e141e3c147f1a30a927a612c7fcfe9f0ba823f7fdb7a6bda88f698"
+    },
+    "source_hash": "ab7d202b630667c53f868c4fa20c43c8847af46f180ce6757beb2839b1a1d034",
+    "independent_exact_depth_floor": [
+      {
+        "well": "W2_2z_D09",
+        "worst_second": 10,
+        "minimax_halfspread_mm": "6/5",
+        "pressure_at_three_screen_centres_mm": [
+          "1853/500",
+          "3053/500",
+          "2803/500"
+        ],
+        "perfect_depthblind_MSE_mm2": "67972/209925"
+      },
+      {
+        "well": "W2_2z_U01",
+        "worst_second": 339,
+        "minimax_halfspread_mm": "27/10",
+        "pressure_at_three_screen_centres_mm": [
+          "3433/250",
+          "1079/125",
+          "2083/250"
+        ],
+        "perfect_depthblind_MSE_mm2": "10714/23325"
+      },
+      {
+        "well": "W2_2z_U07",
+        "worst_second": 340,
+        "minimax_halfspread_mm": "13/5",
+        "pressure_at_three_screen_centres_mm": [
+          "6867/500",
+          "4267/500",
+          "4417/500"
+        ],
+        "perfect_depthblind_MSE_mm2": "147349/419850"
+      }
+    ],
+    "method": "independent 3-D erfc image superposition and double six-point Gauss-Legendre screen integral; scalar adaptive improper quadrature for 2-D Theis",
+    "comparisons": {
+      "Theis": [
+        {
+          "well": "W2_2z_D09",
+          "worst_difference_to_archived_prediction_mm": 3.426078865054194e-14,
+          "independent_rmse_mm": 1.1680240938851376,
+          "pointwise_maximum": {
+            "depth": 7.5,
+            "second": 404,
+            "signed_error_mm": 4.545048340546773
+          },
+          "stock_rmse_mm": 1.1680240938851356
+        },
+        {
+          "well": "W2_2z_U01",
+          "worst_difference_to_archived_prediction_mm": 4.228388472693467e-14,
+          "independent_rmse_mm": 1.2037782306993818,
+          "pointwise_maximum": {
+            "depth": 7.5,
+            "second": 335,
+            "signed_error_mm": -6.193936673357381
+          },
+          "stock_rmse_mm": 1.2037782306993796
+        },
+        {
+          "well": "W2_2z_U07",
+          "worst_difference_to_archived_prediction_mm": 3.7513395167998453e-14,
+          "independent_rmse_mm": 1.0381086925847611,
+          "pointwise_maximum": {
+            "depth": 7.5,
+            "second": 340,
+            "signed_error_mm": -6.264995189120987
+          },
+          "stock_rmse_mm": 1.03810869258476
+        }
+      ],
+      "finite_screen": [
+        {
+          "well": "W2_2z_D09",
+          "worst_difference_to_archived_prediction_mm": 0.0001557926919723389,
+          "independent_rmse_mm": 1.2588255301939484,
+          "pointwise_maximum": {
+            "depth": 7.5,
+            "second": 3,
+            "signed_error_mm": 4.625295511672157
+          },
+          "stock_rmse_mm": 1.2588255348526336
+        },
+        {
+          "well": "W2_2z_U01",
+          "worst_difference_to_archived_prediction_mm": 4.985316116520866e-05,
+          "independent_rmse_mm": 1.1357552795648493,
+          "pointwise_maximum": {
+            "depth": 7.5,
+            "second": 335,
+            "signed_error_mm": -6.198823675892709
+          },
+          "stock_rmse_mm": 1.1357552100578912
+        },
+        {
+          "well": "W2_2z_U07",
+          "worst_difference_to_archived_prediction_mm": 1.1003338431375687e-05,
+          "independent_rmse_mm": 1.0868043203931919,
+          "pointwise_maximum": {
+            "depth": 7.5,
+            "second": 340,
+            "signed_error_mm": -6.603134834778165
+          },
+          "stock_rmse_mm": 1.0868043117404054
+        }
+      ]
+    },
+    "local_rebound": {
+      "pump_m_at_332": 0.301432,
+      "pump_m_at_334": -0.13437,
+      "pump_m_at_340": -0.127566,
+      "U07_m_at_332": [
+        0.013632,
+        0.013532,
+        0.012732
+      ],
+      "U07_m_at_334": [
+        0.01353,
+        0.01203,
+        0.01203
+      ],
+      "U07_m_at_340": [
+        0.013734,
+        0.008534,
+        0.008834
+      ]
+    },
+    "counterfactual_control": [
+      {
+        "conductance": [
+          "1",
+          "2"
+        ],
+        "total": "3",
+        "upper_fraction": "1/3",
+        "unit_volume_upper_breakthrough": "3"
+      },
+      {
+        "conductance": [
+          "2",
+          "1"
+        ],
+        "total": "3",
+        "upper_fraction": "2/3",
+        "unit_volume_upper_breakthrough": "3/2"
+      }
+    ],
+    "max_disagreement_mm": 0.0001557926919723389,
+    "match_1_micrometre": true
+  },
+  "activity_clock": {
+    "fits": {
+      "Theis": [
+        {
+          "well": "W2_2z_D09",
+          "train_rmse_mm": 1.077719516549737,
+          "D_m2_s": 28.18382931264452,
+          "vertical_horizontal_ratio": null,
+          "T_m2_s": 0.003632899492250534,
+          "gain_m": 0.002124753177571421,
+          "full_rmse_mm": 1.1674616158955715,
+          "pumping_rmse_mm": 0.9162235021523267,
+          "recovery_rmse_mm": 1.2864170205934515,
+          "max_refinement_mm": 0,
+          "worst": {
+            "seconds": 404,
+            "depth_m": 7.5,
+            "measured_m": -0.000878,
+            "calculated_m": 0.0036899503429229635,
+            "error_mm": 4.5679503429229635
+          }
+        },
+        {
+          "well": "W2_2z_U01",
+          "train_rmse_mm": 1.0662371051521826,
+          "D_m2_s": 28.18382931264452,
+          "vertical_horizontal_ratio": null,
+          "T_m2_s": 0.0037289468547924125,
+          "gain_m": 0.0020700254094628643,
+          "full_rmse_mm": 1.2002668445361648,
+          "pumping_rmse_mm": 1.4630263523120224,
+          "recovery_rmse_mm": 1.0249057001255346,
+          "max_refinement_mm": 0,
+          "worst": {
+            "seconds": 337,
+            "depth_m": 7.5,
+            "measured_m": 0.014832,
+            "calculated_m": 0.009073562570976456,
+            "error_mm": -5.7584374290235445
+          }
+        },
+        {
+          "well": "W2_2z_U07",
+          "train_rmse_mm": 1.1404255029315482,
+          "D_m2_s": 56.23413251903491,
+          "vertical_horizontal_ratio": null,
+          "T_m2_s": 0.004033109470859569,
+          "gain_m": 0.0019139115354366476,
+          "full_rmse_mm": 1.0751576483850651,
+          "pumping_rmse_mm": 1.276969392030198,
+          "recovery_rmse_mm": 0.944076521290475,
+          "max_refinement_mm": 0,
+          "worst": {
+            "seconds": 340,
+            "depth_m": 7.5,
+            "measured_m": 0.013734,
+            "calculated_m": 0.007366850114435029,
+            "error_mm": -6.367149885564971
+          }
+        }
+      ],
+      "finite_screen": [
+        {
+          "well": "W2_2z_D09",
+          "train_rmse_mm": 1.0121632922978898,
+          "D_m2_s": 28.18382931264452,
+          "vertical_horizontal_ratio": 0.4528674223104257,
+          "T_m2_s": 0.0036324728415975923,
+          "gain_m": 0.0021250027396108586,
+          "full_rmse_mm": 1.2585855503586714,
+          "pumping_rmse_mm": 1.2065543656645348,
+          "recovery_rmse_mm": 1.28668456268336,
+          "max_refinement_mm": 0.00012836909311399192,
+          "worst": {
+            "seconds": 3,
+            "depth_m": 7.5,
+            "measured_m": 0.000898,
+            "calculated_m": 0.005513157760918344,
+            "error_mm": 4.615157760918344
+          }
+        },
+        {
+          "well": "W2_2z_U01",
+          "train_rmse_mm": 1.0749312838766822,
+          "D_m2_s": 39.81071705534969,
+          "vertical_horizontal_ratio": 1,
+          "T_m2_s": 0.003939923633263163,
+          "gain_m": 0.001959178770570181,
+          "full_rmse_mm": 1.130815645465361,
+          "pumping_rmse_mm": 1.3617876782639036,
+          "recovery_rmse_mm": 0.9786337082978267,
+          "max_refinement_mm": 1.4436590398819726e-05,
+          "worst": {
+            "seconds": 337,
+            "depth_m": 7.5,
+            "measured_m": 0.014832,
+            "calculated_m": 0.008616304751599496,
+            "error_mm": -6.215695248400504
+          }
+        },
+        {
+          "well": "W2_2z_U07",
+          "train_rmse_mm": 1.1130502207230797,
+          "D_m2_s": 56.23413251903491,
+          "vertical_horizontal_ratio": 0.7679336413150996,
+          "T_m2_s": 0.004033524033464457,
+          "gain_m": 0.0019137148250302953,
+          "full_rmse_mm": 1.0697056911674054,
+          "pumping_rmse_mm": 1.2641004874553103,
+          "recovery_rmse_mm": 0.9440869875144412,
+          "max_refinement_mm": 9.024295765519552e-06,
+          "worst": {
+            "seconds": 340,
+            "depth_m": 7.5,
+            "measured_m": 0.013734,
+            "calculated_m": 0.007366092955050849,
+            "error_mm": -6.367907044949151
+          }
+        }
+      ]
+    },
+    "ratios": [
+      1.0780530453613224,
+      0.9421368678248855,
+      0.9949291555281695
+    ],
+    "mean_ratio": 1.004711389706763,
+    "decision": false,
+    "depthblind_exact_oracle": [
+      {
+        "well": "W2_2z_D09",
+        "at_s": 10,
+        "depth_values_m": [
+          0.003706,
+          0.006106,
+          0.005606
+        ],
+        "minimum_any_depthblind_worst_mm": 1.2000000000000002,
+        "minimum_any_depthblind_rmse_mm": 0.5690270911086964
+      },
+      {
+        "well": "W2_2z_U01",
+        "at_s": 339,
+        "depth_values_m": [
+          0.013732,
+          0.008632,
+          0.008332
+        ],
+        "minimum_any_depthblind_worst_mm": 2.6999999999999993,
+        "minimum_any_depthblind_rmse_mm": 0.6777429283703782
+      },
+      {
+        "well": "W2_2z_U07",
+        "at_s": 340,
+        "depth_values_m": [
+          0.013734,
+          0.008534,
+          0.008834
+        ],
+        "minimum_any_depthblind_worst_mm": 2.6,
+        "minimum_any_depthblind_rmse_mm": 0.5924156428678207
+      }
+    ],
+    "pumping_source_minimum": [
+      334,
+      -0.13437
+    ]
+  },
+  "doubled_grid": {
+    "fits": {
+      "Theis": [
+        {
+          "well": "W2_2z_D09",
+          "train_rmse_mm": 1.082621275559219,
+          "D_m2_s": 23.71373705661655,
+          "vertical_horizontal_ratio": null,
+          "T_m2_s": 0.0035236403940329137,
+          "gain_m": 0.0021906363524009545,
+          "full_rmse_mm": 1.1872824384221141,
+          "pumping_rmse_mm": 0.873033179072463,
+          "recovery_rmse_mm": 1.3300285008686792,
+          "max_refinement_mm": 0,
+          "worst": {
+            "seconds": 404,
+            "depth_m": 7.5,
+            "measured_m": -0.000878,
+            "calculated_m": 0.0037729583089238287,
+            "error_mm": 4.650958308923829
+          }
+        },
+        {
+          "well": "W2_2z_U01",
+          "train_rmse_mm": 1.0711302754031211,
+          "D_m2_s": 28.18382931264452,
+          "vertical_horizontal_ratio": null,
+          "T_m2_s": 0.003721999465027578,
+          "gain_m": 0.002073889266370362,
+          "full_rmse_mm": 1.2037782306993796,
+          "pumping_rmse_mm": 1.4516360561528436,
+          "recovery_rmse_mm": 1.0410573167228374,
+          "max_refinement_mm": 0,
+          "worst": {
+            "seconds": 335,
+            "depth_m": 7.5,
+            "measured_m": 0.015834,
+            "calculated_m": 0.009640063326642617,
+            "error_mm": -6.193936673357384
+          }
+        },
+        {
+          "well": "W2_2z_U07",
+          "train_rmse_mm": 1.1500215382969192,
+          "D_m2_s": 47.315125896148025,
+          "vertical_horizontal_ratio": null,
+          "T_m2_s": 0.00392886829779013,
+          "gain_m": 0.001964691650340796,
+          "full_rmse_mm": 1.0638839218281584,
+          "pumping_rmse_mm": 1.2207370046906854,
+          "recovery_rmse_mm": 0.9659010510522195,
+          "max_refinement_mm": 0,
+          "worst": {
+            "seconds": 340,
+            "depth_m": 7.5,
+            "measured_m": 0.013734,
+            "calculated_m": 0.007297532329865241,
+            "error_mm": -6.436467670134759
+          }
+        }
+      ],
+      "finite_screen": [
+        {
+          "well": "W2_2z_D09",
+          "train_rmse_mm": 1.0176525747981293,
+          "D_m2_s": 23.71373705661655,
+          "vertical_horizontal_ratio": 0.4528674223104257,
+          "T_m2_s": 0.0035234974770275472,
+          "gain_m": 0.002190725207065779,
+          "full_rmse_mm": 1.282486584759023,
+          "pumping_rmse_mm": 1.1916393952287994,
+          "recovery_rmse_mm": 1.3302322137694884,
+          "max_refinement_mm": 0.00013816278279939719,
+          "worst": {
+            "seconds": 404,
+            "depth_m": 7.5,
+            "measured_m": -0.000878,
+            "calculated_m": 0.003773111344340031,
+            "error_mm": 4.6511113443400305
+          }
+        },
+        {
+          "well": "W2_2z_U01",
+          "train_rmse_mm": 1.0805004132307168,
+          "D_m2_s": 33.49654391578276,
+          "vertical_horizontal_ratio": 1,
+          "T_m2_s": 0.00382812437935855,
+          "gain_m": 0.002016396014084146,
+          "full_rmse_mm": 1.1357358412753475,
+          "pumping_rmse_mm": 1.3195303401153782,
+          "recovery_rmse_mm": 1.0195313381846642,
+          "max_refinement_mm": 2.603649252967688e-05,
+          "worst": {
+            "seconds": 335,
+            "depth_m": 7.5,
+            "measured_m": 0.015834,
+            "calculated_m": 0.009394002832961735,
+            "error_mm": -6.439997167038266
+          }
+        },
+        {
+          "well": "W2_2z_U07",
+          "train_rmse_mm": 1.12291048403954,
+          "D_m2_s": 47.315125896148025,
+          "vertical_horizontal_ratio": 0.672954249790003,
+          "T_m2_s": 0.003930119610177335,
+          "gain_m": 0.001964066111364134,
+          "full_rmse_mm": 1.0580189346552475,
+          "pumping_rmse_mm": 1.2063379459906276,
+          "recovery_rmse_mm": 0.9659238503129851,
+          "max_refinement_mm": 2.5423714553746146e-05,
+          "worst": {
+            "seconds": 340,
+            "depth_m": 7.5,
+            "measured_m": 0.013734,
+            "calculated_m": 0.007295208865567428,
+            "error_mm": -6.438791134432572
+          }
+        }
+      ]
+    },
+    "ratios": [
+      1.0801866036723613,
+      0.9434759761484469,
+      0.9944871925850401
+    ],
+    "mean_ratio": 1.006164142196594,
+    "decision": false,
+    "depthblind_exact_oracle": [
+      {
+        "well": "W2_2z_D09",
+        "at_s": 10,
+        "depth_values_m": [
+          0.003706,
+          0.006106,
+          0.005606
+        ],
+        "minimum_any_depthblind_worst_mm": 1.2000000000000002,
+        "minimum_any_depthblind_rmse_mm": 0.5690270911086964
+      },
+      {
+        "well": "W2_2z_U01",
+        "at_s": 339,
+        "depth_values_m": [
+          0.013732,
+          0.008632,
+          0.008332
+        ],
+        "minimum_any_depthblind_worst_mm": 2.6999999999999993,
+        "minimum_any_depthblind_rmse_mm": 0.6777429283703782
+      },
+      {
+        "well": "W2_2z_U07",
+        "at_s": 340,
+        "depth_values_m": [
+          0.013734,
+          0.008534,
+          0.008834
+        ],
+        "minimum_any_depthblind_worst_mm": 2.6,
+        "minimum_any_depthblind_rmse_mm": 0.5924156428678207
+      }
+    ],
+    "pumping_source_minimum": [
+      334,
+      -0.13437
+    ]
+  }
+}
