@@ -1,0 +1,72 @@
+{
+  "A": {
+    "job": "p3-f747-magnet2023-frozen-official-inputs-material-a",
+    "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+    "command_id": "p3-f747-magnet2023-frozen-official-inputs-material-a",
+    "request_sha256": "0bac62fe11d9568de6e8d8ef6bc96f0f6dad355990e4c05525c787b87439405c",
+    "generation": "d1629725007e1b0d1226079b70764d0cc629bcabc1181794dcf4f602b817f4e6",
+    "state": "completed",
+    "started_at": "2026-11-22T10:22:00.339952696Z",
+    "finished_at": "2026-11-22T10:22:26.991764925Z",
+    "elapsed_seconds": 26.652,
+    "user_cpu_seconds": 21.649935,
+    "system_cpu_seconds": 13.312874,
+    "max_rss_bytes": 2511380480
+  },
+  "B": {
+    "job": "p3-f747-magnet2023-frozen-official-inputs-material-b",
+    "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+    "command_id": "p3-f747-magnet2023-frozen-official-inputs-material-b",
+    "request_sha256": "9d652d9153b8db4b6e6e410a7aca0a9961e7d527bd6c2042cbb54f5a3d266bdf",
+    "generation": "577db481417a96b69de905095bc69b8f2968ab58135312212215d7829d45abd3",
+    "state": "completed",
+    "started_at": "2026-11-22T10:23:57.736518261Z",
+    "finished_at": "2026-11-22T10:24:09.116104433Z",
+    "elapsed_seconds": 11.38,
+    "user_cpu_seconds": 10.639347,
+    "system_cpu_seconds": 3.952561,
+    "max_rss_bytes": 1254150144
+  },
+  "C": {
+    "job": "p3-f747-magnet2023-frozen-official-inputs-material-c",
+    "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+    "command_id": "p3-f747-magnet2023-frozen-official-inputs-material-c",
+    "request_sha256": "49c70373a66d9a7765f7226e002f1ec72f9b5e882c7bebd112a5368ca14667b1",
+    "generation": "82b9d4ea89a66c88c191c2a8390386fe679d0f345a0f675fe74825b28115bb8c",
+    "state": "completed",
+    "started_at": "2026-11-22T10:24:13.885864269Z",
+    "finished_at": "2026-11-22T10:24:31.809159998Z",
+    "elapsed_seconds": 17.924,
+    "user_cpu_seconds": 15.867231,
+    "system_cpu_seconds": 7.424519,
+    "max_rss_bytes": 1844604928
+  },
+  "D": {
+    "job": "p3-f747-magnet2023-frozen-official-inputs-material-d",
+    "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+    "command_id": "p3-f747-magnet2023-frozen-official-inputs-material-d",
+    "request_sha256": "44e863ff89782b2556dac04bbc3e1545bbf80d85ca8fb091f1d2481da8e1740c",
+    "generation": "97127d8de6c20550911407b76d4454cd3c086e387e062ff264f9b9114c753bbb",
+    "state": "completed",
+    "started_at": "2026-11-22T10:23:09.270033155Z",
+    "finished_at": "2026-11-22T10:23:37.41437819Z",
+    "elapsed_seconds": 28.144,
+    "user_cpu_seconds": 21.903508,
+    "system_cpu_seconds": 14.019203,
+    "max_rss_bytes": 2408996864
+  },
+  "E": {
+    "job": "p3-f747-magnet2023-frozen-official-inputs-material-e",
+    "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+    "command_id": "p3-f747-magnet2023-frozen-official-inputs-material-e",
+    "request_sha256": "0ff0baa1df521da7cbdcdebd2979cfebe5b3406c38a2e2e758c2097567de5796",
+    "generation": "6aaa0da3da1a38bdedc83c65b3cd5241c37c55ab7c158f3e324de2178c2c5901",
+    "state": "completed",
+    "started_at": "2026-11-22T10:22:53.137035807Z",
+    "finished_at": "2026-11-22T10:23:05.571318293Z",
+    "elapsed_seconds": 12.434,
+    "user_cpu_seconds": 12.072348,
+    "system_cpu_seconds": 4.052306,
+    "max_rss_bytes": 1428205568
+  }
+}

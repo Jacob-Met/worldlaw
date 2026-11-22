@@ -1,0 +1,22 @@
+{
+  "A": {
+    "npz": "733ca60534e9adbcc4d787dfdfe0d42e62dd60a3ab5d8a2f0b02dd4c789e8a1f",
+    "json": "ae567a00d34c410449cd4b46e80e1408e3ba575cc200fce5922d0d883df6ade3"
+  },
+  "B": {
+    "npz": "55f837c3c0f86df3d9596730ec551bd9dce105de0a811ce44e48c7a18ea31179",
+    "json": "51e1a2739cf1fe02f2ea2418c0f5f1a436e37702535eb6652037750e2ba2a84c"
+  },
+  "C": {
+    "npz": "f2a18cff759873647a683fc3261fc9ba460f48060e1a8ba8706f3b7a9e7d2811",
+    "json": "69f9491fee36ccc71924d18fd1fa12e418d6bf8fa30f3ff34ae49f024f5a794d"
+  },
+  "D": {
+    "npz": "e705ce68a8b8023f6ff79dbff13a86b19d0d828521cfda486633b7d49fc83a7f",
+    "json": "525b8bd2ec8eed1b415b533ccd63b598b3492ee97c317f4618a8e639f2120010"
+  },
+  "E": {
+    "npz": "67c5638d57fbb9d27b65f5de4f2b130196c37ebfb2e4cb7e920519b8201a6e60",
+    "json": "882002104048762bfda854f102c88cc5b46d4f46a7f56c896e524aa014644508"
+  }
+}
