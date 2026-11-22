@@ -1,0 +1,134 @@
+{
+  "dataset_doi": "10.18434/mds2-3867",
+  "source_article": "10.1021/acsanm.5c05142",
+  "manuscript": {
+    "url": "https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=960439",
+    "bytes": 4875902,
+    "sha256": "ddc0d543f216d42a473e615f017c7a1b809b7d7559b1b9c9e79c8f8a2a63830b"
+  },
+  "supplement": {
+    "doi": "10.1021/acsanm.5c05142.s001",
+    "metadata_url": "https://api.figshare.com/v2/articles/30840643",
+    "bytes": 3333203,
+    "md5": "e232668be33dfb9755d06047b7c1eb06",
+    "sha256": "ca6f460650767f1eefdaa818f0c0b60085e085b2df73c42774adeb050af2217a"
+  },
+  "source_access": [
+    {
+      "endpoint": "https://data.nist.gov/od/ds/mds2-3867/",
+      "members_with_http503": [
+        "3867_README.txt",
+        "Data_Figure_1.csv",
+        "Data_Figure_2.csv",
+        "Data_Figure_5.csv"
+      ]
+    },
+    {
+      "second_owner": [
+        "agency_record",
+        "3867_README.txt"
+      ],
+      "http": 503,
+      "status_page": "https://data.nist.gov/index.html",
+      "status_metadata": "Currently Paused for Maintenance"
+    },
+    {
+      "figshare_field": "download_url",
+      "preserved_initial_parser_failure": "KeyError: 'downloadUrl'"
+    }
+  ],
+  "frozen_rule": {
+    "post": 184308,
+    "seq": 1690333,
+    "load_fraction_lower": "64/125",
+    "cube_root_load_lower": "4/5",
+    "score_if_qualified": "average absolute error of the sorted pair of residual depth predictions versus the sorted pair of depths measured independently by the topographic transect",
+    "both_last_measured_unloads_required": true,
+    "independent_topographic_pre_surface_and_post_floor_datum_required": true,
+    "individual_sites_scored": 0,
+    "curve_or_profile_arrays_opened": 0
+  },
+  "independent_certificate": {
+    "file_sha256": "bfad5097a1fa15a768ea63ba8ee1ad806e7ecf96d4f3317f221fa4d0f6d8ea9f",
+    "independent_output_sha256": "3fbaeb6aa6572cb034dd706cef3d94b3fb2607c6ba12f73e3f9cfe40ebed1085"
+  },
+  "native_runs": [
+    {
+      "id": "p2-f747-NIST-Cu3867-paired-site-and-channel-source-header-only",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "arguments_sha256": "6218f3c0725f43848801e06e28fc6bcb3d332f537725e423330d3b9d0dee920e",
+      "request_sha256": "7cc1f32a0d97dfca2bbbe19de3b5ea8eed086c1861c637a8e67c0b35ea76cdbc",
+      "state": "completed",
+      "exit_code": 0,
+      "started_utc": "2026-11-22T21:14:55.59606476Z",
+      "finished_utc": "2026-11-22T21:14:55.872639009Z",
+      "retained_bytes": 470
+    },
+    {
+      "id": "p2-f747-NIST3867-independent-public-catalog-and-author-provenance",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "arguments_sha256": "f51cce01141cf1beea511fabe6eeb720a1e40d715d435a1d1cf63e95fb9b671c",
+      "request_sha256": "ca1d3277d5d8d4527c94fb432efdcda1aa8d87dc5411e7dc0bea8aad73b2d4b1",
+      "state": "completed",
+      "exit_code": 0,
+      "started_utc": "2026-11-22T21:17:02.37906898Z",
+      "finished_utc": "2026-11-22T21:17:06.488076393Z",
+      "retained_bytes": 1334
+    },
+    {
+      "id": "p2-f747-NIST3867-author-paper-instrument-and-vector-structure-only",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "arguments_sha256": "9aad78a42fd3f574370944663d7ae8a5dc529767b96e794dec5b2aed96d35ceb",
+      "request_sha256": "5a7dcb2956ee46983a37b8113f4d8aae66a5689e896b3733f0258bd9680574de",
+      "state": "completed",
+      "exit_code": 0,
+      "started_utc": "2026-11-22T21:18:04.681540388Z",
+      "finished_utc": "2026-11-22T21:18:05.36632726Z",
+      "retained_bytes": 3509
+    },
+    {
+      "id": "p2-f747-NIST3867-figure-object-and-SI-site-identity-support",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "arguments_sha256": "d9bdad6f3b9b552b350ac412464f9011c9988d126d19936b9b4fb3a61899d3eb",
+      "request_sha256": "37fd5719153487ef4d7bebe43bb29b0d33502308914caac454df7c1b97fd4665",
+      "state": "failed",
+      "exit_code": 1,
+      "started_utc": "2026-11-22T21:18:53.440704149Z",
+      "finished_utc": "2026-11-22T21:18:53.978645661Z",
+      "retained_bytes": 2779
+    },
+    {
+      "id": "p2-f747-NIST3867-official-SI-source-metadata-correct-figshare-field",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "arguments_sha256": "3d2700857cebe2b950108e9cc9f45a7be55d879af138c0ff5b0ae9c769847ad2",
+      "request_sha256": "2264d6000a96a2b19939a11db005592f9b56d129ab43771706ad7b13cfb18153",
+      "state": "completed",
+      "exit_code": 0,
+      "started_utc": "2026-11-22T21:21:55.319090135Z",
+      "finished_utc": "2026-11-22T21:21:57.07851671Z",
+      "retained_bytes": 4073
+    },
+    {
+      "id": "p2-f747-NIST3867-independent-datum-qualifier-and-author-equation",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "arguments_sha256": "14f1bf7dd1d5f8afc4ffa06e322071270848249b98272691f69698a743b4d369",
+      "request_sha256": "7add61c21a6caa3809501e67facaad636166e4876425dcf67ee8058447a15ed2",
+      "state": "completed",
+      "exit_code": 0,
+      "started_utc": "2026-11-22T21:23:26.134855301Z",
+      "finished_utc": "2026-11-22T21:23:26.215763411Z",
+      "retained_bytes": 2974
+    },
+    {
+      "id": "p2-f747-NIST3867-independent-exact-rational-and-positive-model-recount",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "arguments_sha256": "4343ba2fa5aa95d304b6e15add14f070e28f3de111a39699738876fa9d94cfeb",
+      "request_sha256": "f6f64e9ab1fa69ad83a00705447dfab698de78f13b96e73c4249d010ccec73c0",
+      "state": "completed",
+      "exit_code": 0,
+      "started_utc": "2026-11-22T21:24:50.81726152Z",
+      "finished_utc": "2026-11-22T21:24:50.989167764Z",
+      "retained_bytes": 1114
+    }
+  ]
+}
