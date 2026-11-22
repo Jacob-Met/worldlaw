@@ -16,6 +16,11 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/wang-piezo-drive-observability/README.md",
+    "research/wang-piezo-drive-observability/independent.py",
+    "research/wang-piezo-drive-observability/observed.json",
+    "research/wang-piezo-drive-observability/qualify.py",
+    "research/wang-piezo-drive-observability/replay.py",
     "research/post-spice-paired-gauges/README.md",
     "research/post-spice-paired-gauges/clock_audit.py",
     "research/post-spice-paired-gauges/diagnostic.py",
