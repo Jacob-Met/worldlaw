@@ -1,0 +1,70 @@
+{
+  "primary_doi": "10.2172/961604",
+  "pdf_sha256": "d07ce62b6917d58b7fc84ee60d14aa73a794a853e8b6a1ded5a5924846ebbfdd",
+  "mat_source": {
+    "repo": "ebpfly/shmtools",
+    "commit": "747392d82d17e5ef8d1bbe31bbd696894151b0e5",
+    "path": "examples/data/data_files/data3SS.mat",
+    "git_blob": "daa5bc2b90679b1394c347ddb4f21efdea57c8de",
+    "bytes": 25940175,
+    "sha256": "d738160e7d0a2c422a1189e3fe6c47c6e978be068247f55dc5a94ca381773e0f",
+    "original_2010_mat_header": "MATLAB 5.0 MAT-file, Platform: PCWIN, Created on: Thu Jul 29 10:22:28 2010"
+  },
+  "intake": {
+    "mat_catalog": [
+      "dataset single(8192,5,170)",
+      "states single(1,170)"
+    ],
+    "training_states": [
+      1,
+      2,
+      10
+    ],
+    "held_state": 15,
+    "other_state_response_values_analyzed": false,
+    "prespecified_held_lock_post": 178603,
+    "force_trials": 170
+  },
+  "originals": [
+    {
+      "id": "p3-f747-lanl-three-story-original-protocol-and-port-manifest",
+      "state": "completed",
+      "exit_code": 0,
+      "drained": "drained",
+      "request_sha256": "270e68583e7f560266b374baadf688224518c75e20acef14eeb0cf8e67c15f64",
+      "detail": "Source report and port manifest; historical LANL download redirect-loop reported."
+    },
+    {
+      "id": "p3-f747-lanl-three-story-force-only-trial-identity-and-reuse",
+      "state": "failed",
+      "exit_code": 1,
+      "drained": "drained",
+      "request_sha256": "26d35e191c9ccf4183791285fb633621e9b858be85adcc1d5a4f0483207f4a72",
+      "detail": "Terminal ModuleNotFoundError: scipy. Actual qualified local SciPy force-only receiver completed."
+    },
+    {
+      "id": "p3-f747-lanl-native-independent-port-and-force-recount",
+      "state": "completed",
+      "exit_code": 0,
+      "drained": "drained",
+      "request_sha256": "dc98b21bc533d065ced9d3a392f1f29199d08bd5a2d3e70d5a1204b724454ac0",
+      "detail": "Fresh Git source and portable independent binary receiver, all24 primary/H1 +168 trial/floor sums, worst assessed."
+    }
+  ],
+  "independent_native": {
+    "trials": 10,
+    "roles": 12,
+    "floors": 4,
+    "retained_bins": 385,
+    "scalar_scores_checked": 24,
+    "trial_floor_sums_checked": 168,
+    "max_abs_primary_and_H1_difference": 7.771561172376096e-16,
+    "worst_identity": [
+      140,
+      3,
+      6,
+      71.25
+    ]
+  },
+  "independent_source_commit": "cdcf9104b4ca1f75ce24bd88ff2b5bb50db2bced"
+}
