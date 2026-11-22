@@ -1,0 +1,134 @@
+[
+  {
+    "original": "p3-f747-uci322-received-source-training-view-co",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "8dfb421cf117ca9580d3ea7e0713dfeec99a1282f420247eab1c40c2e139a0fd",
+    "started_at": "2026-11-22T10:56:08.852337922Z",
+    "finished_at": "2026-11-22T10:56:14.421359499Z",
+    "wall_s": 5.569,
+    "cpu_s": 5.782195,
+    "max_rss_bytes": 80560128
+  },
+  {
+    "original": "p3-f747-uci322-received-source-training-view-methane",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "678d6ccd76a8cff5cc0067d5433450353a6b07b9f918f0f88bb638b380432958",
+    "started_at": "2026-11-22T10:55:53.696678093Z",
+    "finished_at": "2026-11-22T10:55:59.58151675Z",
+    "wall_s": 5.885,
+    "cpu_s": 5.894104,
+    "max_rss_bytes": 92553216
+  },
+  {
+    "original": "p3-f747-uci322-2012-source-oger-100hz-2015-training-co",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "9778776a9fcc1767e66ba04510b984238da58d30827ac70e11c06ef0cd65d9b7",
+    "started_at": "2026-11-22T10:57:52.43501837Z",
+    "finished_at": "2026-11-22T10:58:21.996118761Z",
+    "wall_s": 29.561,
+    "cpu_s": 29.486186,
+    "max_rss_bytes": 200450048
+  },
+  {
+    "original": "p3-f747-uci322-2012-source-oger-100hz-2015-training-methane",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "d5ec3796287cf2cf8700dbab4d3c1c6b0a182b890eb8747d376476e3223db664",
+    "started_at": "2026-11-22T10:57:11.951798163Z",
+    "finished_at": "2026-11-22T10:57:45.278291615Z",
+    "wall_s": 33.327,
+    "cpu_s": 32.90179,
+    "max_rss_bytes": 202948608
+  },
+  {
+    "original": "p3-f747-uci322-source-nuisance-direction-development-co",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "3eb989a18965f49521adabf93b49aa41c121df05c51f900d7c1f1ef40fdcb201",
+    "started_at": "2026-11-22T10:59:18.484875378Z",
+    "finished_at": "2026-11-22T10:59:45.092508633Z",
+    "wall_s": 26.608,
+    "cpu_s": 25.540734,
+    "max_rss_bytes": 317235200
+  },
+  {
+    "original": "p3-f747-uci322-source-nuisance-direction-development-methane",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "09f954ce1e428ae49f546ab2c91bdc3fcbdc6b2ae9c5a54e5ba19e3c2ec5e4c8",
+    "started_at": "2026-11-22T10:59:53.077123515Z",
+    "finished_at": "2026-11-22T11:00:23.606573091Z",
+    "wall_s": 30.529,
+    "cpu_s": 30.470637,
+    "max_rss_bytes": 311730176
+  },
+  {
+    "original": "p3-f747-uci322-frozen-real-100hz-causal-inputs-co",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "61b41f71df7994e591d4a55a6d0b49f308a6d56f7fa2c760b87bdcf566cbb54a",
+    "started_at": "2026-11-22T11:03:06.422270218Z",
+    "finished_at": "2026-11-22T11:03:47.363090967Z",
+    "wall_s": 40.941,
+    "cpu_s": 40.851267,
+    "max_rss_bytes": 247488512
+  },
+  {
+    "original": "p3-f747-uci322-frozen-real-100hz-causal-inputs-methane",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "75db5a2dc54d1ed45d7e67433332e9e5f188aa8f05e6a2c0847c4e948659565c",
+    "started_at": "2026-11-22T11:02:16.799536076Z",
+    "finished_at": "2026-11-22T11:02:57.922898748Z",
+    "wall_s": 41.123,
+    "cpu_s": 41.001723,
+    "max_rss_bytes": 270098432
+  },
+  {
+    "original": "p3-f747-uci322-real-four-route-sealed-setpoint-score-177743",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "bc5e7958422fb230f31f4541b96d0af1b5454f0844b10cd7c27c96379c801f83",
+    "started_at": "2026-11-22T11:04:59.50288795Z",
+    "finished_at": "2026-11-22T11:05:12.18596246Z",
+    "wall_s": 12.683,
+    "cpu_s": 12.62086,
+    "max_rss_bytes": 255152128
+  },
+  {
+    "original": "p3-f747-uci322-independent-328-strata-36-raw-worsts",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "e4f7f14d2c7b375b89a0edc7d6ee6cc1f1f6bf9e22740b6974affc344a0bdcca",
+    "started_at": "2026-11-22T11:05:59.544425878Z",
+    "finished_at": "2026-11-22T11:06:14.290294968Z",
+    "wall_s": 14.746,
+    "cpu_s": 14.668906,
+    "max_rss_bytes": 188264448
+  },
+  {
+    "original": "p3-f747-uci322-source-only-repeated-transition-lag-and-drift-bound",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "c1b02c5bea64499d5af6d8136c5815eb5e8daeee81a3abec71981f56ff7d6e87",
+    "started_at": "2026-11-22T11:03:13.946259365Z",
+    "finished_at": "2026-11-22T11:03:14.182033905Z",
+    "wall_s": 0.236,
+    "cpu_s": 0.401306,
+    "max_rss_bytes": 44748800
+  },
+  {
+    "original": "p3-f747-uci322-raw-exposed-support-and-source-mean-diagnosis",
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "state": "completed",
+    "request_sha256": "efa8a39efe2c5e74a138ce6cd3972c31aab55a690fc9ce51b30d6798d27ee181",
+    "started_at": "2026-11-22T11:08:00.225735037Z",
+    "finished_at": "2026-11-22T11:08:07.539358801Z",
+    "wall_s": 7.314,
+    "cpu_s": 7.246745,
+    "max_rss_bytes": 45023232
+  }
+]

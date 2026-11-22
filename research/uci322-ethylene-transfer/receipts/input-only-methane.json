@@ -1,0 +1,74 @@
+{
+  "target": "methane",
+  "source_models": {
+    "CO": {
+      "model": "861678d15def439fede0a4542d148810fd17254084c6fe3b4c340e829ca69db2",
+      "development": "9293f5f0e27339ad17cfde3672c771a2b25488402af67a13dd5cc59d94bb88c9",
+      "reference": "history_linear"
+    },
+    "methane": {
+      "model": "f960e1c04e2c3ced5209ef3d751ccba647d80e87dc0481b15caa75bab3cada82",
+      "development": "44aee0f7033fd421bec8e6d02bab0406d8b9bf5ca7e3bb9e485d9240febca94b",
+      "reference": "history_rbf"
+    }
+  },
+  "native_rows": 4178504,
+  "first_held_row": 2507102,
+  "decision_count": 16715,
+  "first_decision_native_id": 2507156,
+  "last_decision_native_id": 4178484,
+  "numeric_columns_read": [
+    0,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "raw_text_ingress_contains_interleaved_setpoints": true,
+  "setpoint_values_accessible_to_decoders": false,
+  "sensor_and_time_sha256": "bc60375436a4d1072f150055a6a57385b196c46346d7703fd9c044ccbbc532e1",
+  "highrate_sampled_max_delta": {
+    "CO": 4.092726157978177e-12,
+    "methane": 1.0913936421275139e-11
+  },
+  "npz": "ebac7d019cb5d038c00e62ed29674c85a4ada9a763631e213749d7bbed8fe4be",
+  "arrays": {
+    "native_ids": "2dfc947ce72daf1ac4a1d10c8016a7d1bbb25ba94e1bef4343ba16213c5104a4",
+    "time": "80dbedb3302aa15f77fd686daca4a4a334b5b477303f2b8c70767e20c100bdf3",
+    "first_four_readings": "5a7678f8542d63802ee97debf68168ce1d5836fcf7b4eed61694d00cbd01f717",
+    "threshold": "e36e0a3869ca6cfe300ed28db4b13871f65d03b4eb83fc67e7742d74101f9862",
+    "native_rows": "8fd2ff1d7f0c10903a70d1f31096c9757686780579f0d2a61f8b3eaf2f18a8de",
+    "CO__mean": "98e8db32f6331fd257cffbd894b71e2a2bbe76cff1eb87520cc6dc750a2f76d9",
+    "CO__oger": "25b2ad42490becfd8c2020fb819de9a9f95cd78bd5e774adac85b871e618539d",
+    "CO__static_svr": "3ace0e39de47018169a726c1bb1f15b64a893607bf38e6e8e760cc199bbe13c4",
+    "CO__linear": "8c777e036b460959e257f7b4acc0adc8a19dc5065f95a50839e9b8e5bb89ed84",
+    "CO__static_rbf": "3db0a10dabd3ca1b90ee8d49e95a6c447ff92b0f9b016c238021a8274d0e5891",
+    "CO__history_linear": "82824f0294cfdf4fad8bfdabe4dbdca3b826051e49c893c7f6a8ba2405b7319a",
+    "CO__history_rbf": "c63e3773b44ed06eedbd4bb29084539da2faefb86259d8771af83e06e9e30164",
+    "CO__nuisance": "3e658a2267616822337461e812322e7bd8f4922e6a9b2205d0d0a9f877c03034",
+    "CO__sham": "94c5fdb88d008546df4efb404adf373bcd96bd87fd20c4af3228e357bfb131a0",
+    "CO__fullrate_oger": "8cfd7d7b45cc905fbfccdec4c61bd0ab09075539036b13aa4a57aae651523c5a",
+    "methane__mean": "63bc042c2896488ff54be2b807f8fbbe8972cec54a6256d35177a18822bb5957",
+    "methane__oger": "c1d5ed9734155df16f7aa35fac4a8c1009fc2b45faf38732bc11810e49321d53",
+    "methane__static_svr": "605a39f35fda39e7c8bd606d5d216bb078fb558a78348a1033d2807b16a09d54",
+    "methane__linear": "69375c0f901a0f2959fda431f8406bf19da83acf8f1285ad1c604196b1eabcf4",
+    "methane__static_rbf": "703ecd507eec641764569c2c707e7db45eaef11a76eb7e2626abb88a9ec103a6",
+    "methane__history_linear": "76fce86528f3bcd81d3a2fcaf7583941d0c7059d99c2c67fd839424d58bc81fd",
+    "methane__history_rbf": "03e2c66b1d0b5398cc762655e728ef36dd1e1721e317aa138763b64b39ed0962",
+    "methane__nuisance": "66d6f622c7fdad66f3c0e39278989aa0685f6d0f1fbaeeb7c1e43f90e754ba4f",
+    "methane__sham": "e42e745af89ab0a1601ff74ffc109417529f9cf8b31094d4bc591392e7ccaff2",
+    "methane__fullrate_oger": "68b2b5adfacbbe6bbf3de6853ee02aa6a1c9ffbb9a9060c45a9fec625e6d131a"
+  }
+}

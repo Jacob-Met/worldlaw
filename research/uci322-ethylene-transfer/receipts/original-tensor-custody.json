@@ -1,0 +1,76 @@
+{
+  "input-only-CO.npz": {
+    "size": 24579817,
+    "sha256": "b7cf698822908745d034a97c328167713c4cb236ef5213e65fd23e15ed019a97",
+    "chunks": [
+      {
+        "offset": 0,
+        "size": 7340032,
+        "sha256": "7e3188f1183e9a4bd90a21826eddd99ddeab1cfe6893f210b44f633479b54620"
+      },
+      {
+        "offset": 7340032,
+        "size": 7340032,
+        "sha256": "28305994cd6226ddc62a6eb1993299a3f0c80f0c976a9bbd16c499a72ec0743c"
+      },
+      {
+        "offset": 14680064,
+        "size": 7340032,
+        "sha256": "67ea0639e86ed8155e8e563b4ad6664bf4438d1674658849f2fbf4eff4a8cb95"
+      },
+      {
+        "offset": 22020096,
+        "size": 2559721,
+        "sha256": "7455496c9878fd167e708874c0b8f5a888ff55f4c73bdf85511879c79eef0a44"
+      }
+    ]
+  },
+  "input-only-methane.npz": {
+    "size": 24232128,
+    "sha256": "ebac7d019cb5d038c00e62ed29674c85a4ada9a763631e213749d7bbed8fe4be",
+    "chunks": [
+      {
+        "offset": 0,
+        "size": 7340032,
+        "sha256": "e1b23c73f82bb0c0003e8c3733e4248ce9baf5fcb3091c5feadc0b8b999e1170"
+      },
+      {
+        "offset": 7340032,
+        "size": 7340032,
+        "sha256": "730a95a3292057cfd04e627acdbcda5bbc83be360bfec9955e81f3204f6f55f9"
+      },
+      {
+        "offset": 14680064,
+        "size": 7340032,
+        "sha256": "8c79c34db51a65c37bbdde8d28d847e98198ed9a0b47f0b1cab3fa6272edf644"
+      },
+      {
+        "offset": 22020096,
+        "size": 2212032,
+        "sha256": "ccfe61d753c5ea8220fd2c298d1feaa4d1020c57951eb0572ccccb3e8b034be8"
+      }
+    ]
+  },
+  "frozen-model-CO.npz": {
+    "size": 2633673,
+    "sha256": "861678d15def439fede0a4542d148810fd17254084c6fe3b4c340e829ca69db2",
+    "chunks": [
+      {
+        "offset": 0,
+        "size": 2633673,
+        "sha256": "861678d15def439fede0a4542d148810fd17254084c6fe3b4c340e829ca69db2"
+      }
+    ]
+  },
+  "frozen-model-methane.npz": {
+    "size": 2171104,
+    "sha256": "f960e1c04e2c3ced5209ef3d751ccba647d80e87dc0481b15caa75bab3cada82",
+    "chunks": [
+      {
+        "offset": 0,
+        "size": 2171104,
+        "sha256": "f960e1c04e2c3ced5209ef3d751ccba647d80e87dc0481b15caa75bab3cada82"
+      }
+    ]
+  }
+}
