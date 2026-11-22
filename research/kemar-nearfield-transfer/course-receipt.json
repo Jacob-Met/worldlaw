@@ -1,0 +1,149 @@
+{
+  "registration": {
+    "post": 182144,
+    "seq": 1667775
+  },
+  "forecast_lock_post": 182251,
+  "asset_schema_sha256": "cdd0f19143b4e47e6046e4d32dfb7928532fa89cd7b94ccec7daa9d6fcd5c97c",
+  "r2_prefix": "r2-estate:hamon-build-cache/research/astra62-p2-f747f5728172/kemar7626148-182144",
+  "program_pins": {
+    "projective": "e963374fef5f8454fddb3152c528829c1351d49bf3b49718048a1247e61150eb",
+    "parallax": "0d262b5666c880f1302445d7e7fabe072a5faf0fa2ed3f8ccef9171c8f34571b",
+    "course": "b9208c1b358cb060465a6365f76271e569a3a2c88f2991ff842b2a0d4621553d",
+    "independent_first": "59034b02f8a051b99371526fae49c698163a9f9fdbbee55af2e089c66c8014d8",
+    "independent_corrected": "f98eca40755eff9f7f0207bda98780c25d5be34b2e94504f21b30ff58f746db8"
+  },
+  "originals": [
+    {
+      "id": "p2-f747-KEMAR-7626148-two-SOFA-source-geometry-no-IR",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit": 0,
+      "request_sha256": "6c9e8f2c62363b32c554b80f5ca0531a6803b01cf2d79f79c5e06dfaf54e1f4c"
+    },
+    {
+      "id": "p2-f747-KEMAR-complete-both-ear-geometry-and-overlap-design-no-IR",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit": 0,
+      "request_sha256": "fbfe606c90dafdef07a280a4038ebf5fbcd09799424d4632afc8aed7e613295f"
+    },
+    {
+      "id": "p2-f747-KEMAR-182144-native-seven-arm-dev-forecasts-before-targets",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit": 0,
+      "request_sha256": "8a00acdaddc8ba30e6d7617bd27d676e61e1e2a58d085801b1c0bd1a0230c2dc"
+    },
+    {
+      "id": "p2-f747-KEMAR-dev-182251-receive-all1638-sweepscore-no-held",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit": 0,
+      "request_sha256": "7cb030538e7208d11388962c9ad1faf36a1c06e237d113e88dbc186810f8da9c"
+    },
+    {
+      "id": "p2-f747-KEMAR-independent-458640-raw-DFT-projective-errors-no-near-targets",
+      "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+      "state": "failed",
+      "exit": 1,
+      "request_sha256": "586f3052817cba39077d5dbcce4095fee51089055c478e269269322678ef92e2"
+    },
+    {
+      "id": "p2-f747-KEMAR-458640-official-common-shell-independent-denominator-witness",
+      "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+      "state": "completed",
+      "exit": 0,
+      "request_sha256": "19451c893006224a38c45013790369bf8338c3246755883419dcc9bdb34fc0c4"
+    },
+    {
+      "id": "p2-f747-KEMAR-source-locked-bin-and-sweep-asymmetry-diagnostic-no-refit",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit": 0,
+      "request_sha256": "43a4777a465f36ec002840c49f6c952af11bdbf44ad57b7daf86a54ce2652461"
+    },
+    {
+      "id": "p2-f747-KEMAR-independent-raw-MD5-SHA-custody-before-recount",
+      "owner": "node-49e1f179692dbb161a06c2914300be22",
+      "state": "cancelled_before_admission",
+      "request_sha256": "f9e218d69c27906249eda71d47dc4bac3bfd8d5f00f667b0329f5e822c6b6de3"
+    },
+    {
+      "id": "p2-f747-KEMAR-independent-cold-source-on18e8-after-predispatch-disk-cancel",
+      "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+      "state": "completed",
+      "exit": 0,
+      "request_sha256": "113d724248df6f7da919778938e661a4e845f993aebbc4cc68f64615d1c4a402"
+    }
+  ],
+  "forecast": {
+    "arms": [
+      "author_fem",
+      "neighbor_measured",
+      "neighbor_fem_residual",
+      "ear_local",
+      "head_centered",
+      "head_inverse_radius",
+      "global_ear_gain"
+    ],
+    "bytes": 12415142,
+    "fit_and_forecast_s": 30.244395675021224,
+    "measured_target_rows": 0,
+    "measured_training_rows": 5616,
+    "selected_lambda": {
+      "ear_local": {
+        "loss": [
+          0.031303598400783124,
+          0.024023217932418683,
+          0.01364088881331288,
+          0.014594753990031857
+        ],
+        "selected": 0.01
+      },
+      "global_ear_gain": {
+        "loss": [
+          0.016103850707934922,
+          0.016103219013164728,
+          0.016103113449229434,
+          0.016341543323126262
+        ],
+        "selected": 0.01
+      },
+      "head_centered": {
+        "loss": [
+          0.031653443962578506,
+          0.024045522983290078,
+          0.013663831341167427,
+          0.014622489529962562
+        ],
+        "selected": 0.01
+      },
+      "head_inverse_radius": {
+        "loss": [
+          0.0329336008844268,
+          0.02332240136051986,
+          0.01355494307997622,
+          0.014608203205164755
+        ],
+        "selected": 0.01
+      }
+    },
+    "sha256": "c3b1d74250830bc0c9735db17fe1d549c734d9947a13f67248e6c16da5826296",
+    "simulated_forecast_rows": 1638,
+    "simulated_training_rows": 5616,
+    "synthetic_crop_witness": 0.16666666666666666
+  },
+  "artifacts": {
+    "outcomes": "70beffa7b8f8ac2bceaf43a8e50d74e21483e717f2d76c2d81682d42a7b5de6c",
+    "score": "03e949e00f53d2e0d3cb91a99e8ff89d1d1ee6dfd102287c2ad8d3a9b976355b",
+    "independent": "584a03f064f056a7cf969c7f384d3b527b887ff06dbbbbae9b700d0115bee5bf"
+  },
+  "court": {
+    "first_independent_refusal": "Expected 1,638 rows. First selector included every measured 1cm shell; terminated on coordinate cardinality before IR selection. Corrected exactly to 3cm common shell.",
+    "primary_mean": false,
+    "primary_tail": false,
+    "near_targets_opened": 0,
+    "remaining": 1872
+  }
+}

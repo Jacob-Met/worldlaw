@@ -16,6 +16,21 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/kemar-nearfield-transfer/README.md",
+    "research/kemar-nearfield-transfer/registration.txt",
+    "research/kemar-nearfield-transfer/source-contract.md",
+    "research/kemar-nearfield-transfer/source-schema.json",
+    "research/kemar-nearfield-transfer/projective.py",
+    "research/kemar-nearfield-transfer/parallax.py",
+    "research/kemar-nearfield-transfer/course.py",
+    "research/kemar-nearfield-transfer/recount.py",
+    "research/kemar-nearfield-transfer/recount_first_refused.py",
+    "research/kemar-nearfield-transfer/replay.py",
+    "research/kemar-nearfield-transfer/freeze-dev.json",
+    "research/kemar-nearfield-transfer/score-dev.json",
+    "research/kemar-nearfield-transfer/raw-development-diagnostic.json",
+    "research/kemar-nearfield-transfer/independent-dev.json",
+    "research/kemar-nearfield-transfer/course-receipt.json",
     "research/marine-ph-carbon-inverse/README.md",
     "research/marine-ph-carbon-inverse/registration.txt",
     "research/marine-ph-carbon-inverse/source-registry.json",
