@@ -1,0 +1,147 @@
+{
+  "format": "kuka_forecast_protocol_v1",
+  "primary": "basis-position",
+  "primary_comparator": "basis-filter",
+  "development": {
+    "basis-position": 0.4209454198262555,
+    "basis-filter": 0.42105643341349036,
+    "basis-released": 0.4650571586104251,
+    "nystrom": 0.5220152692009935,
+    "author-v2": 0.60735,
+    "snapshot": 0.76499,
+    "history": 0.90712,
+    "history-differences": 0.81716,
+    "filter-mlp": 0.68248,
+    "released-structural": 0.80829,
+    "position-structural": 0.71285,
+    "filter-structural": 0.7101
+  },
+  "raw_source_sha256": "9011509cf901dcb50a8de1e4a5a0fcf6cb8bed2f64945ba0fbbfb8e0b54886fe",
+  "inverse_mat_sha256": "0615b1692bde550785a34f197880586c2cd4bc5faa61f5345d2fba2840b46ae4",
+  "author_control": "caf3fd4698be2f9ae9bdf157278847df17590fe6ff2957d324162204e11148c1",
+  "path_repeat_receipt": "022f402a8cdcfdfd3fba154e9732e1a526013d250e23951c4bab22eac647d89e",
+  "predictions": {
+    "author-v2": {
+      "file": "author-v2-locked-test.npy",
+      "sha256": "d6d016e7db8ec42a6a5e018e65c3e7a2feac8d96aa6ea09b1b6622a4a8113ea4",
+      "job": "p2-f747-kuka-v2-equation-rank-frozen-forecasts-and-catalog-provenance"
+    },
+    "author-v1-weights": {
+      "file": "author-v1-weights-locked-test.npy",
+      "sha256": "4b8dc73ff96c3cf1afe4aef30c7161573234e6a84f32f13b897be065606466a7",
+      "job": "p2-f747-kuka-v2-equation-rank-frozen-forecasts-and-catalog-provenance"
+    },
+    "basis-released": {
+      "file": "basis-released-locked-test.npy",
+      "sha256": "ad372e0699aebd8eb9992350f8e423249edd1187e31439964311f89db8c8aef3",
+      "receipt": "1700a5ddc7690c16a9c63e55ced42d1e957c9fe6c65e2df8eba595679d05d3e8",
+      "seconds": 0.9797239179606549,
+      "job": "p2-f747-kuka-qualified-scipy-lock-three-basis-forecasts"
+    },
+    "basis-filter": {
+      "file": "basis-filter-locked-test.npy",
+      "sha256": "7593eb1c83839f9924361b4c62f50af50d545adb7f9b617d8bcfa35c99b4453b",
+      "receipt": "e8152aa9c788589298d2533ac64346acb409cb7da44cd5595a4248151951c7ab",
+      "seconds": 0.9206876689568162,
+      "job": "p2-f747-kuka-qualified-scipy-lock-three-basis-forecasts"
+    },
+    "basis-position": {
+      "file": "basis-position-locked-test.npy",
+      "sha256": "81a9814dc4943c3e429db449d0221a70e9cb0bb2bb486e2c2d2ed19d827d0bd6",
+      "receipt": "2ffba647d03c864c66910f97387ed9a2610a40687c3654eefb6a9105e19ca9e6",
+      "seconds": 0.9942905200296082,
+      "job": "p2-f747-kuka-qualified-scipy-lock-three-basis-forecasts"
+    },
+    "history": {
+      "file": "history-locked-test.npy",
+      "sha256": "a4432718d67d5d5a074ba45f3b7170034be51984d9bae9d623e361f1a640397c",
+      "receipt": "fbaf247fcd80e2d50d8ea3088e064c87cc9914e7be144ee404df8c94b02aedb6",
+      "seconds": 24.634565706946887,
+      "job": "p2-f747-kuka-lock-masked-neural-four-nonlinear-controls"
+    },
+    "snapshot": {
+      "file": "snapshot-locked-test.npy",
+      "sha256": "530bc87cff32b22007f7a01ff231136ab1f57c08db41d67be671eddec76752a2",
+      "receipt": "91fad2f1abe35e27536c2bc9098364a1b14965ff830dbc924388a54626115afc",
+      "seconds": 23.769136665039696,
+      "job": "p2-f747-kuka-lock-masked-neural-four-nonlinear-controls"
+    },
+    "history-differences": {
+      "file": "history-differences-locked-test.npy",
+      "sha256": "ca803fb4cf1b0c5a875b281e8144f677df0099618b96f097a1412c03d352ca9f",
+      "receipt": "9b9c8fa5393f83d7bf40768aa8989906edad21a2f7a26ccfb6f398eef8a2186a",
+      "seconds": 29.763490212964825,
+      "job": "p2-f747-kuka-lock-masked-neural-four-nonlinear-controls"
+    },
+    "filter-mlp": {
+      "file": "filter-mlp-locked-test.npy",
+      "sha256": "014f57c971bc94f1d47688f4c319c6bc576771e2aca3194a63dcfb579d845201",
+      "receipt": "eae37630415f92a29e184c75b37f47e6c3bbbfa35292ce4e0307975d149d08b9",
+      "seconds": 28.118983246968128,
+      "job": "p2-f747-kuka-lock-masked-neural-four-nonlinear-controls"
+    },
+    "released-structural": {
+      "file": "released-structural-locked-test.npy",
+      "sha256": "a6fcd9d3133227f62b522e16342e87aaa9280aa6bdebd827a1b718fc2e35bc25",
+      "receipt": "efc1078fd5c5ff32014973f9962aa520f871f0b40da8bac67d63167d08ea16ec",
+      "seconds": 25.5471397950314,
+      "job": "p2-f747-kuka-lock-three-architecture-controls-before-labels"
+    },
+    "position-structural": {
+      "file": "position-structural-locked-test.npy",
+      "sha256": "d565c882ce3c1d7f651ccad849c419689bef60a86bc4faf44da90ebfefa47f23",
+      "receipt": "9aac9de1f478dae475e4320d7a4c06e6073c177abfa1ae654362ea96645d24fb",
+      "seconds": 40.0602086649742,
+      "job": "p2-f747-kuka-lock-three-architecture-controls-before-labels"
+    },
+    "filter-structural": {
+      "file": "filter-structural-locked-test.npy",
+      "sha256": "d5e09a585caf5b99671e8ceb9c10ae7eadaeca0b68ef8bcc9fa473ef4e2ab6e9",
+      "receipt": "a4b1c24d38b43a3a1bf6c95c103d79b117d0ec989d075c2adfe2ffc68246055e",
+      "seconds": 41.04382097302005,
+      "job": "p2-f747-kuka-lock-three-architecture-controls-before-labels"
+    },
+    "nystrom": {
+      "file": "nystrom-locked-test.npy",
+      "sha256": "c174593b906598bd34e74e316d3c98ea13207cc4b12780b11f1ab58ac5b0324c",
+      "receipt": "0af18d9836d3add7b83998604aa2621626c555b388c871db6dfc2321be2e558e",
+      "seconds": 24.016567190992646,
+      "job": "p2-f747-kuka-qualified-scipy-lock-matched-kernel-forecasts"
+    }
+  },
+  "path_edges": [
+    0,
+    606,
+    1212,
+    1818,
+    2424,
+    3030,
+    3636
+  ],
+  "path_repeats": [
+    [
+      0,
+      3
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      5
+    ]
+  ],
+  "primary_gate": [
+    "pooled mean of six sample-standard-deviation-normalized torque RMSE lower than fixed basis-filter",
+    "worst of six full-record normalized RMSE lower than fixed basis-filter",
+    "all three 2-traversal design groups have lower mean normalized RMSE than published v2 normalized linear"
+  ],
+  "secondary_diagnostic": "Mean NRMSE against same fixed dictionary using released rate/acceleration (outside primary joint).",
+  "training_protocol": {
+    "model_selection": "First 9 recordings for pilot fit; final 2 train recordings held for selection; final learned refits on all 11.",
+    "fallback": "Same train-only affine baseline first 3 rows per nominal path; no samples dropped. Official test is independently decimated with origin 0.",
+    "reported_sensor_scope": "Causal relative to prepared inputs; zero-phase prefilter and one raw sample advance preclude raw online interpretation.",
+    "published_v2": "Listing 3 from university PDF ed5037cd23c7500bd0c428a74b01ac5096250abea0f2fb6cff2fbb6329513135; ddof=1 training-only means/scales; rank18 least squares via default SVD cutoff; denormalize Y with training statistics."
+  }
+}
