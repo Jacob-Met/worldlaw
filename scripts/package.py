@@ -16,6 +16,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/cargill-glass-source/README.md",
+    "research/cargill-glass-source/inspect_source.py",
+    "research/cargill-glass-source/source-receipt.json",
+    "research/cargill-glass-source/conditional_witness.py",
+    "research/cargill-glass-source/author_control.py",
+    "research/cargill-glass-source/course-receipt.json",
     "research/kemar-nearfield-transfer/README.md",
     "research/kemar-nearfield-transfer/registration.txt",
     "research/kemar-nearfield-transfer/source-contract.md",

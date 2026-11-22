@@ -1,0 +1,75 @@
+{
+  "decision": "Physical glass-to-corn common bandpass unqualified; no physical transfer score",
+  "source": {
+    "zip": "8a2d1a03648b6ad334caaafa5d8377bf945ba1477a5082c4963d705d07cca795",
+    "mat": "e28fd4be274a54ca57b1f2c67ef5a8bf4981f8314bcc73e4c64836fe658c46b5",
+    "two_owner_metadata": "8d64739ac75b468d82d66b7e761186821dd4da00d35b06e6ff23bda1e59e1f30"
+  },
+  "source_release_effects": {
+    "measured_glass_decoded": 0,
+    "measured_corn_decoded": 0,
+    "measured_property_decoded": 0,
+    "whole_archive_authenticated": true,
+    "wavelength_coordinates_per_spectral_object": 700
+  },
+  "originals": [
+    {
+      "id": "p2-f747-Cargill-Eigenvector-source-MAT-classes-glass-labels-no-numerical-spectra",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "failed",
+      "exit": 1,
+      "input_arguments_sha256": "5cce70a430deee7d602bd96e5adb7360dce069f8b535cb161cb80b54f3c99895"
+    },
+    {
+      "id": "p2-f747-Cargill-original-MAT-empty-cell-metadata-no-spectrum-values",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit": 0,
+      "input_arguments_sha256": "91a2dbdc7abed74920bd5271f1a745d13f7c4450d24903a29c7718115164273f"
+    },
+    {
+      "id": "p2-f747-Cargill-top-level-primary-information-and-optical-units-source-only",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit": 0,
+      "input_arguments_sha256": "1d737aceb77171fce512a8644399cc3f260c71bb87ba765b570f54688b918379"
+    },
+    {
+      "id": "p2-f747-Cargill-second-source-history-glass-labels-and-wavelength-axes",
+      "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+      "state": "failed",
+      "exit": 1,
+      "input_arguments_sha256": "5e25d5ae9146f81529b72f136239483dc6136a998741b97e8ea3a587716d6a9c"
+    },
+    {
+      "id": "p2-f747-Cargill-MAT-wire-dtype-accurate-axis-and-history-receipt",
+      "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+      "state": "completed",
+      "exit": 0,
+      "input_arguments_sha256": "70cf7f6b90ff54c16844f633f3ccbe29b97511e34fe029ac16a9b2c226153716"
+    },
+    {
+      "id": "p2-f747-Cargill-authentic-GCTPLS-source-f11e224d-frozen-synthetic-no-corn",
+      "owner": "node-4e105730de5e78651a704e31c3991a3e",
+      "state": "completed",
+      "exit": 0,
+      "input_arguments_sha256": "3cdf132862e526e5a5e891c616372a36c4c5c59923c4db87d1ebc4df8db9c52c"
+    }
+  ],
+  "author_control": {
+    "repo": "B-Analytics/diPLSlib",
+    "commit": "f11e224dd0e4dc3975555be54af6b7a9ae7b8819",
+    "models_blob": "bd7efaa95dc714beb8cc336c4814a3adb4b12af5",
+    "functions_blob": "343581f7ca0264b8650bb6ee9003762c93847d84",
+    "notebook_blob": "7b87e09c7cf389a6cc2ab525d3409822199ed0d3",
+    "numpy": "2.1.3",
+    "scipy": "1.14.1",
+    "sklearn": "1.5.2",
+    "matplotlib": "3.9.2",
+    "entry": "GCTPLS(A=3,l=10,rescale='Source').fit(X,y,xs,xt).predict(query)",
+    "synthetic_seed": 182386,
+    "synthetic_forecasts_f64_sha256": "82c71a0fc25acb1afb401d04aacdd56a7314ba1972902daff3afbc5f0fe398df",
+    "unmatched_standards_refused": true
+  },
+  "competitor_exposure": "Published GCT-PLS and earlier distributor PDS/GLS comparisons already used these corn samples. No new physical verdict or assay score."
+}
