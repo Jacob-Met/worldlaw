@@ -16,6 +16,16 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/continuum-robot-contact-wrench/README.md",
+    "research/continuum-robot-contact-wrench/prospective.md",
+    "research/continuum-robot-contact-wrench/contact_models.py",
+    "research/continuum-robot-contact-wrench/compare_contact.py",
+    "research/continuum-robot-contact-wrench/independent_contact.py",
+    "research/continuum-robot-contact-wrench/replay_contact.py",
+    "research/continuum-robot-contact-wrench/contact-original.json",
+    "research/continuum-robot-contact-wrench/contact-independent.json",
+    "research/continuum-robot-contact-wrench/custody.json",
+    "research/continuum-robot-contact-wrench/push-retract.csv",
     "research/davis-bicycle-pull-transfer/README.md",
     "research/davis-bicycle-pull-transfer/author_controller.py",
     "research/davis-bicycle-pull-transfer/author_fir.py",

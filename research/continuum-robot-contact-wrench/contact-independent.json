@@ -1,0 +1,16 @@
+{
+  "arm_subset_groups": 35,
+  "arm_window_rows": 110180,
+  "cases": {
+    "plane_y_contact_midway": 3579,
+    "plane_y_poke_x": 3566,
+    "plane_y_poke_y": 3574,
+    "push_retract": 2840
+  },
+  "component_predictions_reconstructed": 244062,
+  "independent": true,
+  "independent_source_sha256": "e3db75486f71b41e61bf56e6fd8924a8cd96c67de03b84dacab3fa15d10d0084",
+  "joint": false,
+  "largest_reconstructed_component_difference": 4.424904886946024e-12,
+  "source_sha256": "1255612e370d447ef55105c9b843136c891f00a0dd6817da47484f343ab5a29c"
+}

@@ -1,0 +1,86 @@
+{
+  "source": {
+    "doi": "10.6084/m9.figshare.31990188.v3",
+    "data_bytes": 2693612410,
+    "md5": "598cd9441123f9e3152d5d8bb893767c",
+    "sha256": "1255612e370d447ef55105c9b843136c891f00a0dd6817da47484f343ab5a29c",
+    "code_sha256": "4e491bf194dacaa4db8ef944437ecde05ebb182063322e04f0345696a69e11c9",
+    "custom_parts_sha256": "3754d03f013f465de187b0cba849fb95406d0f81ec3cfb87d940e65747e6974d",
+    "source_registration": "7b97b4f78da3e188f1b26e1e6fc673cf8e0309a6195bac6359505392dbe8dd10",
+    "source_freeze_attachment": "att-mwrzv6jsqk99vg",
+    "source_bundle_sha256": "4fb379deea918496664455b5afa826505bec82fc0bec57c9c1e652bd9a541668"
+  },
+  "freeze": {
+    "protocol_post": 180262,
+    "protocol_sha256": "7b97b4f78da3e188f1b26e1e6fc673cf8e0309a6195bac6359505392dbe8dd10",
+    "lock_post": 180309,
+    "lock_ledger_sha256": "3a79c6d54012c9f3d9e9c58c7b97f3fd3138023e039dbb8f7c8eb87e52a28463",
+    "held_ATI_arrays_before_lock": 0,
+    "held_ATI_arrays_after": 4
+  },
+  "originals": {
+    "models": {
+      "bytes": 43646,
+      "sha256": "09a03f5ff56fb67646ee6b802a0ad0681db7fbd44c355a9e0e51e814f53629f8"
+    },
+    "locked_predictions": {
+      "bytes": 4427907,
+      "sha256": "6857443dc52866aed6284937a01d13d66fd0398a33b4668396fc09eb1998dcb1"
+    },
+    "filtered_ATI_arrays": {
+      "bytes": 656656,
+      "sha256": "0f2a83419937e1d14c4f2263dff2d102fec14f5c7806c2d2b7478f4f1ffa4331"
+    },
+    "outcome": {
+      "bytes": 45071,
+      "sha256": "aa0f106c288a27ce61351d8ec38c57dbc467db37d09c33439ebe5c95b7e6a0d9"
+    },
+    "passive_trace": {
+      "bytes": 1320399,
+      "sha256": "a63cadd4590e14582a51453effcc7a5de727beb1fca2cd13c2fba2dd9ec5cf90",
+      "rows": 2840
+    }
+  },
+  "production": {
+    "forecast_job": "p2-f747-toronto-33-physical-runs-seven-forecasts-four-held-locked-before-ati",
+    "native_request_sha256": "e97779df2565294c69d757c06f460bd3326cf6a3a193c6d1bed262f6ef866c78",
+    "native_input_owner": "node-4e105730de5e78651a704e31c3991a3e",
+    "native_forecast_resource": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 215420928,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "other": 0.21000000000000002,
+          "python": 13.219999999999976,
+          "shell": 0
+        },
+        "distinct_processes": 22,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 197,
+        "read_errors": 0,
+        "saturated_snapshots": 0,
+        "snapshots": 197
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 2.542414,
+      "user_cpu_seconds": 11.727541
+    },
+    "native_outcome_job": "p2-f747-gotelli-ati-whole-four-held-contact-torque-open-unchanged-seven-arm",
+    "native_outcome_request_sha256": "e6994c6d1c6ed62874961450a82bf72fa9da438cf227b1908441d0ebfebce5fa",
+    "training_paths": 26,
+    "calibration_touch_rows": 2993,
+    "held_rows": 13559
+  },
+  "independent_recount": {
+    "job": "p2-f747-toronto-independent-author-recount-capacity-selected-original",
+    "owner": "node-4e105730de5e78651a704e31c3991a3e",
+    "same_physical_worker_as_producer": true,
+    "fresh_read_of_original_assets": 5,
+    "receipt_sha256": "948e0299c86f4cebc8a568ab0112d2fe5079d193d8e4979eb67e907d7da1725a"
+  }
+}
