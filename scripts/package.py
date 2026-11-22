@@ -31,7 +31,7 @@ INCLUDE = (
     "research/bridge-cross-speed-strain/held-original.json",
     "research/bridge-cross-speed-strain/independent-receipt.json",
     "research/bridge-cross-speed-strain/failure-trace.json",
-    "research/bridge-cross-speed-strain/worst-passage-trace.csv.gz",
+    "research/bridge-cross-speed-strain/worst-passage-trace.csv",
     "research/gamella-wind-torque-transfer/score-original.json",
     "research/gamella-wind-torque-transfer/independent-receipt.json",
     "research/gamella-wind-torque-transfer/numerical-custody.json",
@@ -1195,4 +1195,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

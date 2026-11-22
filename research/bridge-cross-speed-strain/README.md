@@ -34,7 +34,9 @@ The largest primary error occurred on a different crossing, loaded 13.9 m/s run 
 
 At this timestamp the primary forecast was 11.2021 µm/m below the separately fitted static model and 9.7205 below the separately fitted delay model. These are paired output differences. The original forecast archive contains aggregate model outputs. It cannot uniquely apportion the candidate's internal oscillator contributions. The complete gauge record contains 8,217 actual timestamps and 1,947 scored observations, with every forecast reported wherever the original forecast grid covers that timestamp. The source gives no measured instantaneous axle force. This test establishes a failure of the fitted forcing and modal representation to transfer at the selected gauges and speeds.
 
-[Complete gauge record (compressed CSV)](worst-passage-trace.csv.gz) · [Registration, reference levels and all nine signed errors](failure-trace.json)
+The public CSV contains the exact decompressed bytes of the original trace. The original gzip SHA256 is recorded in the trace receipt. CSV SHA256 is `bf0699ddf6034dda99b8bb411b953fb9336289cc5239bcaad385bc36fee9e465`.
+
+[Complete gauge record (CSV)](worst-passage-trace.csv) · [Registration, reference levels and all nine signed errors](failure-trace.json)
 
 ## The test
 
