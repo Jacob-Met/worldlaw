@@ -76,7 +76,7 @@ def main():
             worst_point=max(worst_point,max(abs(points[n]-v) for n,v in zip(plan["point_names"],row["point_drop_mV"])))
             worst_interval=max(worst_interval,max(max(abs(np.array(bands[n])-v)) for n,v in zip(plan["interval_names"],row["interval_drop_mV"])))
     summary={"rows":len(rows),"max_point_replay_difference_mV":worst_point,"max_band_replay_difference_mV":worst_interval,
-             "max_constructive_EIS_error_mohm":max(witness),"poststep_voltage_reads":0}
+             "max_constructive_EIS_error_mohm":max(witness),"source_mat_decoded_as_whole":True,"poststep_voltage_used_for_predictions":False}
     print(json.dumps(summary,sort_keys=True))
     # Optimizer versions can select different minimax witnesses; compare native
     # dependency-matched runs at the published numerical replay tolerance.

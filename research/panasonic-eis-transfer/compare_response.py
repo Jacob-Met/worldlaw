@@ -90,7 +90,7 @@ def main():
     gates["midpoint_better_mae"] = mid["mae_mV"] < ref["mae_mV"]
     gates["midpoint_better_worst"] = mid["max_absolute_mV"] < ref["max_absolute_mV"]
     gates["midpoint_joint"] = gates["midpoint_better_mae"] and gates["midpoint_better_worst"]
-    out = {"n":n,"primary_comparator":plan["primary_comparator"],"pooled":pooled,"gates":gates}
+    out = {"n":n,"source_mat_decoded_as_whole":True,"scored_response_rows":n,"primary_comparator":plan["primary_comparator"],"pooled":pooled,"gates":gates}
     if args.details:
         out["rows"]=results
         out["by_horizon"]={str(h):summarize([r for r in results if r["horizon_s"]==h]) for h in (1,5,9)}

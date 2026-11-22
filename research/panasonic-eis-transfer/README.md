@@ -4,7 +4,7 @@ Fourteen measured impedance spectra each admit a nonnegative relaxation model wi
 
 ## Reproduce the comparison
 
-Use Python 3.11, NumPy 1.26.4 and SciPy 1.13.1 to reproduce the original optimization environment. The comparison checks immutable source hashes and reads only one pre-pulse sample and the three registered response samples per event. The spectral replay reads the impedance measurements and recorded input current. Setting one BLAS thread makes the modest dense optimization problems run faster.
+Use Python 3.11, NumPy 1.26.4 and SciPy 1.13.1 to reproduce the original optimization environment. Both commands use SciPy to decode the entire MATLAB structure, including its Voltage array. The comparison checks immutable source hashes and indexes one pre-pulse voltage and the three registered response voltages per event. The spectral replay selects only current and time from the decoded structure. Poststep voltage does not enter its predictions. This trusted projection applies to the native pre-outcome calculation as well. Setting one BLAS thread makes the modest dense optimization problems run faster.
 
 ```sh
 python research/panasonic-eis-transfer/compare_response.py --details
