@@ -1,0 +1,143 @@
+{
+  "cohort": "development",
+  "units": "V/(gain times sum voltage)",
+  "scores": {
+    "quiet_positive_lag": {
+      "mean": 0.16051341470545757,
+      "worst_date": 0.19378102164420435
+    },
+    "quiet_zero_lag": {
+      "mean": 0.04238565651594186,
+      "worst_date": 0.0453389863111001
+    },
+    "author_log_slope": {
+      "mean": 0.01922430882033747,
+      "worst_date": 0.025705457211091513
+    },
+    "scaled_small_wave": {
+      "mean": 0.007845092979860777,
+      "worst_date": 0.011572526353583192
+    },
+    "instantaneous_step": {
+      "mean": 0.04195004067638752,
+      "worst_date": 0.04835683041609255
+    }
+  },
+  "gates": {
+    "mean": {
+      "quiet_zero_lag": false,
+      "author_log_slope": false,
+      "scaled_small_wave": false,
+      "instantaneous_step": false
+    },
+    "worst_date": {
+      "quiet_zero_lag": false,
+      "author_log_slope": false,
+      "scaled_small_wave": false,
+      "instantaneous_step": false
+    }
+  },
+  "passed": false,
+  "by_date": {
+    "2013-06-13": {
+      "quiet_positive_lag": 0.19378102164420435,
+      "quiet_zero_lag": 0.04390423950881356,
+      "author_log_slope": 0.025705457211091513,
+      "scaled_small_wave": 0.006392460642722766,
+      "instantaneous_step": 0.04835683041609255
+    },
+    "2015-01-05": {
+      "quiet_positive_lag": 0.17646423745617074,
+      "quiet_zero_lag": 0.0453389863111001,
+      "author_log_slope": 0.015012800359006186,
+      "scaled_small_wave": 0.005570291943276375,
+      "instantaneous_step": 0.045091990823491086
+    },
+    "2019-03-05": {
+      "quiet_positive_lag": 0.11129498501599763,
+      "quiet_zero_lag": 0.0379137437279119,
+      "author_log_slope": 0.01695466889091471,
+      "scaled_small_wave": 0.011572526353583192,
+      "instantaneous_step": 0.032401300789578924
+    }
+  },
+  "worst_raw_rows": {
+    "quiet_positive_lag": {
+      "error": 0.27222678711409265,
+      "date": "2013-06-13",
+      "bead": 2,
+      "command": 800,
+      "index": 4460,
+      "prediction": [
+        0.051761801480147654,
+        -0.08369195379279655
+      ],
+      "observation": [
+        -0.2142466908713656,
+        -0.02583950683213247
+      ]
+    },
+    "quiet_zero_lag": {
+      "error": 0.1536222286283088,
+      "date": "2013-06-13",
+      "bead": 2,
+      "command": 800,
+      "index": 4020,
+      "prediction": [
+        -0.17581742886527524,
+        -0.04199176515761464
+      ],
+      "observation": [
+        -0.02745541094402787,
+        -0.00213576476791354
+      ]
+    },
+    "author_log_slope": {
+      "error": 0.06931652617860472,
+      "date": "2013-06-13",
+      "bead": 1,
+      "command": -800,
+      "index": 4140,
+      "prediction": [
+        0.10205693154374645,
+        0.01295135786726826
+      ],
+      "observation": [
+        0.16997704127235064,
+        0.026794749645425817
+      ]
+    },
+    "scaled_small_wave": {
+      "error": 0.029660691634928273,
+      "date": "2019-03-05",
+      "bead": 1,
+      "command": -800,
+      "index": 5000,
+      "prediction": [
+        -0.0782413388646056,
+        -0.10798110457787143
+      ],
+      "observation": [
+        -0.0673862732591881,
+        -0.08037813048151025
+      ]
+    },
+    "instantaneous_step": {
+      "error": 0.21813640638562737,
+      "date": "2013-06-13",
+      "bead": 2,
+      "command": 800,
+      "index": 4000,
+      "prediction": [
+        -0.21635944932561918,
+        -0.026038942045472344
+      ],
+      "observation": [
+        0.00014052668981467953,
+        0.0006303694595540463
+      ]
+    }
+  },
+  "component_forecasts_recounted": 4080,
+  "max_independent_raw_error": 1.3877787807814457e-16
+}

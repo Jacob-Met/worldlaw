@@ -1,0 +1,252 @@
+{
+  "source": {
+    "doi": "10.5281/zenodo.3333905",
+    "concept": "10.5281/zenodo.3333904",
+    "record_bytes": 48956,
+    "record_sha256": "c5e3498646ac7ba49d13caea4cc55ac4bac0bc9e4db8e96ef79ad577d64f1a58",
+    "software_zip_sha256": "a8db3fba0a39ba61b0cfe23de3e7a20ecad66376350c436d4b6d87ef4bd67f5b",
+    "software_py_sha256": "7210e27d672be4e1f44cb2961816e0a4bbf765129c243fa00c43c9bd6bf7399a",
+    "reported": [
+      153,
+      69
+    ],
+    "enumerated": [
+      134,
+      58
+    ],
+    "yearly": [
+      [
+        2013,
+        46,
+        21
+      ],
+      [
+        2015,
+        35,
+        18
+      ],
+      [
+        2019,
+        53,
+        19
+      ]
+    ],
+    "duplicates_by_md5": 0,
+    "public_version_query": "latest returned the pinned v1; a concept versions list query and keyword query returned HTTP 400; DataCite found the one concept and one version. No identities assigned to the 19 bead / 11 day difference.",
+    "author_methods_chapter": "10.1007/978-1-4939-6646-2_12",
+    "author_methods_year": 2017
+  },
+  "freeze": {
+    "roster": 184473,
+    "scientific": 184533,
+    "source_zip": "att-mwsd4288xacbo4",
+    "source_sha256": "d6965ba05e8b6a4edd727a1530b68bcddafb7f64bca31a0323cf105311cb0010",
+    "all_forecasts": 184566
+  },
+  "arms": [
+    "quiet_positive_lag",
+    "quiet_zero_lag",
+    "author_log_slope",
+    "scaled_small_wave",
+    "instantaneous_step"
+  ],
+  "records": [
+    {
+      "date": "2013-06-13",
+      "bead": 1,
+      "zip_sha256": "adcf705633cd13b17f10480c256a631ffdccdf250a9749b4835832477496f860",
+      "forecast_sha256": "2194036cf606057fe629e48c710e980a9524e9117f780885509683cb86eab965",
+      "forecast_bytes": 24409,
+      "record_sha256": "2d8feaf44523251f2684f9911cb1f44f1308c24231eef7c6526923a97b214740",
+      "record_bytes": 31908,
+      "locked": {
+        "id": "p2-f747-OT3333905-dev-calibration-only-locked-2013-06-13-bead1",
+        "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+        "state": "completed",
+        "exit_code": 0,
+        "request_sha256": "09c4ec0fc84bb56d0e8a6b92ce79a73e8b4d4b70110d3eb87ce20f32b8d35ce1",
+        "started": "2026-11-22T21:43:10.716909835Z",
+        "finished": "2026-11-22T21:43:14.606611197Z"
+      },
+      "scored": {
+        "id": "p2-f747-OT3333905-dev-source-phase-score-2013-06-13-bead1",
+        "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+        "state": "completed",
+        "exit_code": 0,
+        "request_sha256": "b7dc9e54b22bdf4dc7305efe7a93faedf2007718839c95666e38f4d873a04f56",
+        "started": "2026-11-22T21:46:55.40742134Z",
+        "finished": "2026-11-22T21:46:58.09972236Z"
+      }
+    },
+    {
+      "date": "2013-06-13",
+      "bead": 2,
+      "zip_sha256": "a0b0e6b4a463a14a293944d373b5f0bf86bc5ae34d485fa892cf121e6ee86cb5",
+      "forecast_sha256": "6c6071b54e2e127bc8672d93b661225c7380f01446f77202dd265a19c0ffa543",
+      "forecast_bytes": 24479,
+      "record_sha256": "ae1e489a96c08fd8ff2a491bd7d3801ae48f85476acb6678c9aa4d760a3d5e07",
+      "record_bytes": 31980,
+      "locked": {
+        "id": "p2-f747-OT3333905-dev-calibration-only-locked-2013-06-13-bead2",
+        "owner": "node-c0da1eb7402af862460cccd552698bb4",
+        "state": "completed",
+        "exit_code": 0,
+        "request_sha256": "d1fd18badbdbee9634e2d2e3f448fd0b595cb44a7321599d35a15a55d41a6619",
+        "started": "2026-11-22T21:43:10.915013302Z",
+        "finished": "2026-11-22T21:44:49.506036164Z"
+      },
+      "scored": {
+        "id": "p2-f747-OT3333905-dev-source-phase-score-2013-06-13-bead2",
+        "owner": "node-c0da1eb7402af862460cccd552698bb4",
+        "state": "completed",
+        "exit_code": 0,
+        "request_sha256": "bccea13e8bc56d83f9a118793fc74e7e34655d6cf725cded6e56daba562ca6b7",
+        "started": "2026-11-22T21:46:55.906750349Z",
+        "finished": "2026-11-22T21:46:58.414125364Z"
+      }
+    },
+    {
+      "date": "2015-01-05",
+      "bead": 1,
+      "zip_sha256": "3d3fe389843abf4ef957665dd4a8710caa70e6e4c3126252fc1ba2f5239f13d4",
+      "forecast_sha256": "689f51a0ec0f11de86f0e3b76b4fc6f37b0068369a88f56c64e9c5f24752e60f",
+      "forecast_bytes": 24453,
+      "record_sha256": "8fa7851adac021c74cd129cec81319713e15bb121383ac6184f01e1a37922ff6",
+      "record_bytes": 31972,
+      "locked": {
+        "id": "p2-f747-OT3333905-dev-calibration-only-locked-2015-01-05-bead1",
+        "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+        "state": "completed",
+        "exit_code": 0,
+        "request_sha256": "ce8e176b1727d04570ab433817e6ad59b55534d9ff12cdeca812647b146e1bc9",
+        "started": "2026-11-22T21:43:11.438356669Z",
+        "finished": "2026-11-22T21:43:52.169729842Z"
+      },
+      "scored": {
+        "id": "p2-f747-OT3333905-dev-source-phase-score-2015-01-05-bead1",
+        "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+        "state": "completed",
+        "exit_code": 0,
+        "request_sha256": "af6cde4c175ff2cddba9c3f73e82732c7a9749e4199482ee1df1a58e753f96ee",
+        "started": "2026-11-22T21:46:55.729115214Z",
+        "finished": "2026-11-22T21:46:58.449444329Z"
+      }
+    },
+    {
+      "date": "2019-03-05",
+      "bead": 1,
+      "zip_sha256": "87b9b142740eaee2a708817d3474a07672c2480dab8d0eb0ef4436ba1d772686",
+      "forecast_sha256": "403ae3b4adf24fabfd4132875477abd807e9862224d14b51024a34fee7509553",
+      "forecast_bytes": 24294,
+      "record_sha256": "93e3c0d05293a49a046f5e4d6de6e853acbc2be4f5c58cbd56dcc6bb51e21f43",
+      "record_bytes": 31730,
+      "locked": {
+        "id": "p2-f747-OT3333905-dev-calibration-only-locked-2019-03-05-bead1-qualified-ed6d",
+        "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+        "state": "completed",
+        "exit_code": 0,
+        "request_sha256": "3c39bc2a16ae337ef6d11d00c251f19747676db8e19dafec805982f6c10e7398",
+        "started": "2026-11-22T21:43:23.895736684Z",
+        "finished": "2026-11-22T21:46:00.393716832Z"
+      },
+      "scored": {
+        "id": "p2-f747-OT3333905-dev-source-phase-score-2019-03-05-bead1",
+        "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+        "state": "completed",
+        "exit_code": 0,
+        "request_sha256": "5fb24c53447d1d29e14b97ef74d36a9b553a03c59af0d3d9124574b4a170b3fe",
+        "started": "2026-11-22T21:46:55.88252446Z",
+        "finished": "2026-11-22T21:46:58.573923259Z"
+      }
+    }
+  ],
+  "native_context": [
+    {
+      "id": "p2-f747-Skidmore3333905-author-calibration-code-and-153-file-roster-no-signals",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "fe9618f35c9f50d1efb45a6cc0347254c5d1a03fc6dce80b67fac4c776eef567",
+      "started": "2026-11-22T21:31:57.407919343Z",
+      "finished": "2026-11-22T21:31:59.137026275Z"
+    },
+    {
+      "id": "p2-f747-Skidmore3333905-trigger-step-drive-and-author-fits-source-only",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "6d2ff9f92a54e1e26445db2e9c2dcb1420932ef591023c0f1f56feb75f968d4b",
+      "started": "2026-11-22T21:32:54.371859651Z",
+      "finished": "2026-11-22T21:32:54.442832257Z"
+    },
+    {
+      "id": "p2-f747-Skidmore3333905-author-dependent-clock-and-published-version-source",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "d95b5faaf725609bd1689920902022e2e4012b90600a6eb232a43b4cf3e66c9b",
+      "started": "2026-11-22T21:34:34.777770845Z",
+      "finished": "2026-11-22T21:34:34.871474075Z"
+    },
+    {
+      "id": "p2-f747-Skidmore3333905-release-roster-and-first-development-opaque-HDF-structure",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "a994db96b43b05c162389d59371e86856ab133ac93e1b06448c587a81c38efdd",
+      "started": "2026-11-22T21:36:14.41663156Z",
+      "finished": "2026-11-22T21:37:47.701740332Z"
+    },
+    {
+      "id": "p2-f747-Skidmore3333905-publisher-related-records-and-date-roster-full-audit",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "3dd9e895f7dbfd84774fe10b3d8c8b3ed0e8fa8e8b50e847bb07e27dea910581",
+      "started": "2026-11-22T21:36:53.521729018Z",
+      "finished": "2026-11-22T21:36:55.002529261Z"
+    },
+    {
+      "id": "p2-f747-trap3333905-source-guard-two-pole-and-synthetic-roundtrip-before-QPD",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "43dbec60eac4df70fd4148af8edd717592241540e91a6df73ef76e2847128ba1",
+      "started": "2026-11-22T21:41:53.397031729Z",
+      "finished": "2026-11-22T21:41:53.822736267Z"
+    },
+    {
+      "id": "p2-f747-OT3333905-independent-cold-4080-vector-component-recount",
+      "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "a36cbc563bda288eaf7029c591dd306cf21a134a4bfd80bdecad5e595e21e9b3",
+      "started": "2026-11-22T21:47:54.740158411Z",
+      "finished": "2026-11-22T21:48:00.429774178Z"
+    },
+    {
+      "id": "p2-f747-Skidmore3333905-source-bound-worst-C3-C26-positive-lag-diagnostic",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "9893d9f31c62a4a2e0b9005c5623f32c989e85007b44cb218f5db209d2479bfb",
+      "started": "2026-11-22T21:49:50.843277372Z",
+      "finished": "2026-11-22T21:49:53.88114193Z"
+    },
+    {
+      "id": "p2-f747-Skidmore3333905-worst-original-lower-drive-eight-contiguous-covariance-blocks",
+      "owner": "node-c0da1eb7402af862460cccd552698bb4",
+      "state": "completed",
+      "exit_code": 0,
+      "request_sha256": "2a433c74b9f0f274742b2ee6f8490e03f0f83d826fa25e2ca77a2d4adb850605",
+      "started": "2026-11-22T21:50:51.974082847Z",
+      "finished": "2026-11-22T21:50:53.436863855Z"
+    }
+  ],
+  "refused_worker": {
+    "job": "p2-f747-OT3333905-dev-calibration-only-locked-2019-03-05-bead1",
+    "reason": "queued owner is not in configured worker pool",
+    "no_measurements_or_job_started": true
+  },
+  "no_later_date_payload_opened": true
+}
