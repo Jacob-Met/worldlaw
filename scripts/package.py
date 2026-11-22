@@ -27,6 +27,8 @@ INCLUDE = (
     "experiments/magfid_reference.py",
     "experiments/magfid_reference_controls.py",
     "experiments/magfid_reference_tests.py",
+    "research/emps-feedback/README.md",
+    "research/emps-feedback/audit_feedback.py",
     "research/magfid-covariance/magfid-v1-zip-manifest.json",
     "research/magfid-covariance/nullgarden-control-plan.json",
     "research/magfid-covariance/physical-covariance-protocol.json",
