@@ -16,6 +16,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/dlr-fatigue-chord-interpolation/README.md",
+    "research/dlr-fatigue-chord-interpolation/mesh.py",
+    "research/dlr-fatigue-chord-interpolation/prediction.py",
+    "research/dlr-fatigue-chord-interpolation/source.py",
+    "research/dlr-fatigue-chord-interpolation/replay.py",
+    "research/dlr-fatigue-chord-interpolation/evidence.json",
     "research/roughness-reverse-transmission/README.md",
     "research/roughness-reverse-transmission/replay_transmission.py",
     "research/roughness-reverse-transmission/spectra.py",
