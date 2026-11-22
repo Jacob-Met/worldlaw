@@ -1,0 +1,340 @@
+{
+  "observed": {
+    "source_sha256": "d5f820a3c94223d201ab3c890b0e1203899c044dacfb00ed29e0af4ea8707fae",
+    "clocks": {
+      "Experimental data/ex_sin100hz.csv": {
+        "header": [
+          "Frequency [kHz];500",
+          "Start of Measurement;2022年8月29日 16:43:12",
+          "Unit Time;s",
+          "Unit Position;pm",
+          "",
+          "Time;Noname 1"
+        ],
+        "rows": 3048540,
+        "width_histogram": {
+          "2": 3048540
+        },
+        "missing_response_symbol": 0,
+        "first_time_s": "0",
+        "last_time_s": "6.097078",
+        "elapsed_s": "6.097078",
+        "delta_count": 1,
+        "min_step_s": "0.000002",
+        "max_step_s": "0.000002",
+        "nonpositive_steps": 0,
+        "nominal_2us_steps": 3048539,
+        "top_step_counts": [
+          [
+            "0.000002",
+            3048539
+          ]
+        ]
+      },
+      "Experimental data/feedforward_100hz.csv": {
+        "header": [
+          "Frequency [kHz];500",
+          "Start of Measurement;2022年10月17日 10:33:34",
+          "Unit Time;s",
+          "Unit Position;pm",
+          "",
+          "Time;PZT"
+        ],
+        "rows": 2435763,
+        "width_histogram": {
+          "2": 2435763
+        },
+        "missing_response_symbol": 0,
+        "first_time_s": "0",
+        "last_time_s": "4.871524",
+        "elapsed_s": "4.871524",
+        "delta_count": 1,
+        "min_step_s": "0.000002",
+        "max_step_s": "0.000002",
+        "nonpositive_steps": 0,
+        "nominal_2us_steps": 2435762,
+        "top_step_counts": [
+          [
+            "0.000002",
+            2435762
+          ]
+        ]
+      },
+      "Experimental data/ex_multifreq.csv": {
+        "header": [
+          "Frequency [kHz];500",
+          "Start of Measurement;2022年8月29日 16:45:40",
+          "Unit Time;s",
+          "Unit Position;pm",
+          "",
+          "Time;Noname 1"
+        ],
+        "rows": 4133943,
+        "width_histogram": {
+          "2": 4133943
+        },
+        "missing_response_symbol": 0,
+        "first_time_s": "0",
+        "last_time_s": "8.267884",
+        "elapsed_s": "8.267884",
+        "delta_count": 1,
+        "min_step_s": "0.000002",
+        "max_step_s": "0.000002",
+        "nonpositive_steps": 0,
+        "nominal_2us_steps": 4133942,
+        "top_step_counts": [
+          [
+            "0.000002",
+            4133942
+          ]
+        ]
+      },
+      "Experimental data/ex_sin4hz.csv": {
+        "header": [
+          "Frequency [kHz];500",
+          "Start of Measurement;2022年8月31日 9:47:43",
+          "Unit Time;s",
+          "Unit Position;pm",
+          "",
+          "Time;Noname 1"
+        ],
+        "rows": 5521131,
+        "width_histogram": {
+          "2": 5521131
+        },
+        "missing_response_symbol": 0,
+        "first_time_s": "0",
+        "last_time_s": "11.04226",
+        "elapsed_s": "11.04226",
+        "delta_count": 1,
+        "min_step_s": "0.000002",
+        "max_step_s": "0.000002",
+        "nonpositive_steps": 0,
+        "nominal_2us_steps": 5521130,
+        "top_step_counts": [
+          [
+            "0.000002",
+            5521130
+          ]
+        ]
+      },
+      "Experimental data/feedforward_4hz.csv": {
+        "header": [
+          "Frequency [kHz];500",
+          "Start of Measurement;2022年10月17日 10:31:57",
+          "Unit Time;s",
+          "Unit Position;pm",
+          "",
+          "Time;PZT"
+        ],
+        "rows": 3233703,
+        "width_histogram": {
+          "2": 3233703
+        },
+        "missing_response_symbol": 0,
+        "first_time_s": "0",
+        "last_time_s": "6.467404",
+        "elapsed_s": "6.467404",
+        "delta_count": 1,
+        "min_step_s": "0.000002",
+        "max_step_s": "0.000002",
+        "nonpositive_steps": 0,
+        "nominal_2us_steps": 3233702,
+        "top_step_counts": [
+          [
+            "0.000002",
+            3233702
+          ]
+        ]
+      }
+    },
+    "identification_designs": {
+      "Identification input/L50_triangle_500050pts_10s.csv": {
+        "rows": 500050,
+        "columns": 1,
+        "command_range_V": [
+          0,
+          5
+        ],
+        "first_last": [
+          0,
+          0
+        ],
+        "reversal_count": 99,
+        "first_reversal_samples": [
+          5000,
+          10001,
+          15001,
+          20002,
+          25002
+        ],
+        "last_reversal_samples": [
+          475047,
+          480048,
+          485048,
+          490049,
+          495049
+        ],
+        "constant_sample_steps": 49,
+        "clock_column": false
+      },
+      "Identification input/L100_triangle_1000100pts_20s.csv": {
+        "rows": 1000100,
+        "columns": 1,
+        "command_range_V": [
+          0,
+          5
+        ],
+        "first_last": [
+          0,
+          0
+        ],
+        "reversal_count": 199,
+        "first_reversal_samples": [
+          5000,
+          10001,
+          15001,
+          20002,
+          25002
+        ],
+        "last_reversal_samples": [
+          975097,
+          980098,
+          985098,
+          990099,
+          995099
+        ],
+        "constant_sample_steps": 99,
+        "clock_column": false
+      }
+    },
+    "author_density": {
+      "Identified density values/Df_50.mat": {
+        "variable": "X",
+        "shape": [
+          50,
+          50
+        ],
+        "dtype": "float64",
+        "count_nonzero": 1275,
+        "upper_nonzero": 1225,
+        "lower_nonzero": 0,
+        "negative": 442,
+        "positive": 833,
+        "coefficient_sha256_F64LE_rowmajor": "b9b610efe00e9ea095f43387e6370c57c313b769008e3b25113b6566b1761bb4"
+      },
+      "Identified density values/Df_100.mat": {
+        "variable": "X",
+        "shape": [
+          100,
+          100
+        ],
+        "dtype": "float64",
+        "count_nonzero": 5050,
+        "upper_nonzero": 4950,
+        "lower_nonzero": 0,
+        "negative": 2161,
+        "positive": 2889,
+        "coefficient_sha256_F64LE_rowmajor": "52dde0969b29681a0a8e4049dea6a15723304bc7f9dc27f03b99d1033741590f"
+      },
+      "Identified density values/Df_50_compared.mat": {
+        "variable": "X",
+        "shape": [
+          50,
+          50
+        ],
+        "dtype": "float64",
+        "count_nonzero": 1275,
+        "upper_nonzero": 1225,
+        "lower_nonzero": 0,
+        "negative": 476,
+        "positive": 799,
+        "coefficient_sha256_F64LE_rowmajor": "2748804a8bb425f3381e93490170223e08035acbcd19dac8191c19b4aac99ca4"
+      }
+    },
+    "position_values_converted": 0,
+    "mathematical_control": {
+      "command": [
+        0,
+        5,
+        5,
+        0,
+        0,
+        0
+      ],
+      "filtered_voltage_exact": [
+        "0",
+        "5/2",
+        "15/4",
+        "15/8",
+        "15/16",
+        "15/32"
+      ],
+      "both_output_histories": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "normalized_abs_loop_area_at_nominal_hz": {
+        "4": "25/626",
+        "100": "1/2"
+      },
+      "area_ratio_100_to_4": "313/25"
+    }
+  },
+  "independent": {
+    "clock_rows": {
+      "Experimental data/ex_sin100hz.csv": 3048540,
+      "Experimental data/feedforward_100hz.csv": 2435763,
+      "Experimental data/ex_multifreq.csv": 4133943,
+      "Experimental data/ex_sin4hz.csv": 5521131,
+      "Experimental data/feedforward_4hz.csv": 3233703
+    },
+    "complete_position_rows_unopened": 18373080,
+    "independent_author_parameter_sha256": {
+      "Identified density values/Df_50.mat": "b9b610efe00e9ea095f43387e6370c57c313b769008e3b25113b6566b1761bb4",
+      "Identified density values/Df_100.mat": "52dde0969b29681a0a8e4049dea6a15723304bc7f9dc27f03b99d1033741590f",
+      "Identified density values/Df_50_compared.mat": "2748804a8bb425f3381e93490170223e08035acbcd19dac8191c19b4aac99ca4"
+    },
+    "exact_control_output": [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0
+    ]
+  },
+  "publisher_directory": {
+    "dataset": "10.17632/kzf668wggx.9",
+    "signal_cells_decoded": 0,
+    "observations": [
+      [
+        "https://data.mendeley.com/public-api/datasets/kzf668wggx/files?folder_id=root&version=9",
+        200,
+        "e72095e04499b6164e6dbd68e7b7e7fc51ede806fd7c18ad9bc4afd638845bd5"
+      ],
+      [
+        "https://data.mendeley.com/public-files/datasets/kzf668wggx/files/bundle.zip?version=9",
+        "HTTPError",
+        "HTTP Error 404: Not Found"
+      ],
+      [
+        "https://prod-dcd-datasets-cache-zipfiles.s3.eu-west-1.amazonaws.com/kzf668wggx-9.zip",
+        "HTTPError",
+        "HTTP Error 403: Forbidden"
+      ]
+    ],
+    "file_registry": [
+      {
+        "name": "Dataset.zip",
+        "id": "97f1c2af-4ceb-4570-a173-abaad91ba6f9",
+        "size": 98478148,
+        "checksum": "d5f820a3c94223d201ab3c890b0e1203899c044dacfb00ed29e0af4ea8707fae"
+      }
+    ]
+  }
+}
