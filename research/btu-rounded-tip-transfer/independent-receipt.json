@@ -1,0 +1,15 @@
+{
+  "native_owner": "node-ed6d75e73315250d137bef37f2e21b18",
+  "completed": "p2-f747-BTU-independent-raw-reader-capacity-successor",
+  "unscored_capacity_failure": "p2-f747-BTU-cold-stdlib-37-raw-files-7-models-all-bands",
+  "result": {
+    "sha": "a7b84f53fc10cf543de5d929a9959258b3c1cb8b61d96ce2a6267e97d23879cc",
+    "bytes": 11683
+  },
+  "complete_report": [
+    "RECOUNTED 6 all21 {'max_forecast_difference': 4.547473508864641e-13, 'max_rms_difference': 8.526512829121202e-14, 'max_signed_error_difference': 4.547473508864641e-13, 'signed_components': 2352}",
+    "RECOUNTED 6 primary {'max_forecast_difference': 2.3092638912203256e-14, 'max_rms_difference': 1.2434497875801753e-14, 'max_signed_error_difference': 2.842170943040401e-14, 'signed_components': 1232}",
+    "RECOUNTED 9 all21 {'max_forecast_difference': 1.0800249583553523e-12, 'max_rms_difference': 2.1316282072803006e-13, 'max_signed_error_difference': 1.0800249583553523e-12, 'signed_components': 2352}",
+    "RECOUNTED 9 primary {'max_forecast_difference': 6.039613253960852e-14, 'max_rms_difference': 2.6645352591003757e-14, 'max_signed_error_difference': 6.039613253960852e-14, 'signed_components': 1232}"
+  ]
+}
