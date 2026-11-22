@@ -4,10 +4,22 @@ Antoni, Xin and Hamzaoui, 2017, DOI 10.1016/j.ymssp.2017.01.011.
 Uses the released defaults for complex scan summation and window calibration.
 """
 
+import hashlib
+from functools import lru_cache
+from pathlib import Path
+
 import numpy as np
 from scipy import fft
 from scipy.signal.windows import hann
 from numpy.lib.stride_tricks import sliding_window_view
+
+
+@lru_cache(maxsize=1)
+def native_window512():
+    raw=bytes.fromhex(Path(__file__).with_name('native-window512.hex').read_text())
+    if len(raw)!=4096 or hashlib.sha256(raw).hexdigest()!='ebc331b54bd1be01e8c8b12d4a2579cf9f46571d6de8551cbcccec04a332135d':
+        raise ValueError('Wrong literal native W512 coefficient vector')
+    return np.frombuffer(raw,dtype='<f8')
 
 
 def round_half_away(x):
@@ -19,12 +31,12 @@ def fast_spectral_correlation(samples, fs, window_length, max_cyclic_hz):
     if samples.ndim != 1 or window_length % 2 or not (0 < max_cyclic_hz < fs / 2):
         raise ValueError("Expected a real trace, even window size and a positive sub-Nyquist range")
     hop = max(1, min(int(fs / (2 * max_cyclic_hz)), window_length // 4))
-    window = hann(window_length, sym=True)
+    window = native_window512() if window_length == 512 else hann(window_length, sym=True)
     blocks = sliding_window_view(samples, window_length)[::hop]
     stft = fft.rfft(blocks * window, axis=1).T
     bins, frames = stft.shape
     cyclic_fs = fs / hop
-    alpha = np.arange(frames) * (cyclic_fs / frames)
+    alpha = (np.arange(frames) / frames) * cyclic_fs
     carrier = np.arange(bins) * (fs / window_length)
     center = int(np.argmax(window))
     center_matlab = center + 1

@@ -32,7 +32,7 @@ def convert(arr):
 
 def quantify(root, expected):
     proto_path = Path(__file__).with_name('protocol.json')
-    if file_sha(proto_path) != 'd057fb09a07671387210099e3dc585735c5fead1be50f36742d11b826b5d8205':
+    if file_sha(proto_path) != '86a79d999e515483f67aa28cc5f277d2d6c009f6039a87ec9cf6dfddfa2fefd8':
         raise ValueError('Independent receiver requires the reviewed immutable protocol')
     proto = json.loads(proto_path.read_text())
     forecast = root / 'forecasts.zip'

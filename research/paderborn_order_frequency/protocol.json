@@ -44,6 +44,7 @@
     "KI21"
   ],
   "learned_controls": "Trained paired target mean and mean offset, per-carrier ridge over source, healthy low, candidate and additive; cellwise smoothed multiplicative regressions around unmodified mixed-center and around candidate. All penalties chosen by equal-bearing leave-one-artificial-unit-out using .001,.01,.1,1,10. Frequency-ridge smoothing2 rows=250Hz; dense gain smoothing1 row and8 order bins. Earliest minimum breaks ties.",
+  "native_configured_estimator": "Physical v4 supersedes source-only v3 d057fb09a07671387210099e3dc585735c5fead1be50f36742d11b826b5d8205; original protocol before physical acquisition. Same cohort, data budget, gate, roles and all physical coordinates. Literal author Fast_SC.m on GNU Octave8.4.0 uses zero-based window peak255 at W512 while pinned SciPy1.18.1 chooses256. Three 64-kHz examples (5111,5112,4900 frames) differed1.0282271863% of native peak for stock complex matrices and registered grids. Stock multiplied by pre-divided alpha step and drops the last640Hz column at frame count4900. Freeze exact4096 native Hann bytes SHA ebc331b54bd1be01e8c8b12d4a2579cf9f46571d6de8551cbcccec04a332135d and original alpha=(j/T)*1280 operation order. Adapter qualification on actual worker reproduced all full complex and complete physical-grid shapes; peak-scaled maximum3.59e-16 for three fixtures. Original native stdout SHA c76e2fa4210d13b4b0f9883db0aea5c7dd7df8fd8ca1f50530b62d8dd3bc8d3a. Production entry must independently repeat the three full-matrix/grid comparisons before opening K001.",
   "phase": "Each trial starts at arbitrary shaft phase. Use magnitude before averaging per bearing; no time-phase realignment, no complex phase prediction, no inference about positive or negative energy flow.",
   "pre_read_clock_qualification": "Source-only revision of 31f01b4699dab66d37db2efe78e551553da6de01786cc788241d77dbe4842efa, before any physical records or admitted measurement job. Every floating timestamp must match its endpoint-defined affine grid within six ULPs of the largest absolute stored timestamp, capped at 1/8 median step; native precision must resolve 1/8 step. Long-double grid comparison, full-vector max residual/worst index and timestamp, plus unchanged 1% mean/median-rate test. Refuse irregular or unresolvable records; no omission, interpolation or later retuning. This protects the existing uniform-clock estimator; no change to candidate, controls, metric, population or gate.",
   "pre_read_review": "Preserves v1 protocol SHA967ed2f22c84cc71c78ee4f9fa6d008d8ecb5986f67797891502cae7f4be0d9d. Same population, inputs, roles, formulas, endpoint and criterion. Before real records: validate native XIndex and full per-channel time array, finite increasing, 1% tolerance on mean and median rates at 64000/4000 Hz; retain extrema and exact time digests. Preserve empty native units as unreported, report recorded signal units. Trusted MATLAB reader materializes all channels for a permitted file, predictor uses only vibration and speed. Held low readers require complete literal archive inventory, every member digest and protocol hash, and score reports every absolute role RMS, source denominator and target mean. Secondary published reader reported a potentially duplicated recording and slightly varying actual clocks; no measurement values were inspected and no row weighting changed.",
@@ -66,15 +67,18 @@
     "trained_cell_mixed_center",
     "trained_cell_sideband_gain"
   ],
-  "schema": "paired-speed-order-frequency-registration/3",
+  "schema": "paired-speed-order-frequency-registration/4",
   "scientific_open_before_registration": 0,
   "score": "Equal 14 physical bearing units; per unit mean squared error over every common cell divided by the source high-speed surface mean squared amplitude on that exact grid. Candidate must strictly beat every16 other role macromean AND strictly win at least8 of14 against each. Report all roles, each bearing, each run-input digest, target means/rpms, absolute RMS and worst raw cell per bearing. Publish trained roles even if candidate loses. No post-opening model selection.",
   "source_hashes": {
     "LICENSE-Fast-SC.txt": "61d7ec5542ef35b31ffe53fdaf4b14d5ec73d123f0690fbfff8a73fe74f4d01c",
     "collect_surfaces.py": "bd60ca8b54fca7f5d601d797207a9e82f9ccb56694559ddb6de3068db509106f",
-    "fastsc_receiver.py": "12c198c9b5815aa49ab8b984280e3f4e67d1f2fde3d586cf1c039451bbb98345",
+    "fastsc_receiver.py": "2bf18c75116bf78a8dab34cabf7b5689549e5a9b6d006518fe76f77b55e0f1b4",
     "forecast.py": "c49fb7089864cc436d6edd156a8cd477a5a69b804addb4224b1fc0ae65335194",
     "independent-archive-lock.json": "1d02f8fbf5929824df6e44e661ba1d5b1841e99a465c11cb3ad0638895590bac",
+    "native-w512-original.txt": "c76e2fa4210d13b4b0f9883db0aea5c7dd7df8fd8ca1f50530b62d8dd3bc8d3a",
+    "native-w512-result.json": "4269bb2373b4c2f7a32189b92738f8a8e87bded1e46b789ffecccfc5fdc717a1",
+    "native-window512.hex": "0410d26999613cd33a3b968f10e8970219d7f4483da32023470cc03eef2b5ddd",
     "score.py": "5715f19ae6ef9f70a178c1c18ab9e802933c8d1062f9be54f2cc2f610ba4272d",
     "supervised.py": "5e30302496d62e8b6e831fc80a0d7734748b967fe5e0b5b76263bb7c2a550c0a",
     "surface.py": "9394ff3393cc4db337bab21b131cb6217757da52f23192c8dcecc7a7709e2dc2",
