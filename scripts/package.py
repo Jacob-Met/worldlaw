@@ -16,6 +16,10 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/rocit-clock-transfer-closure/README.md",
+    "research/rocit-clock-transfer-closure/closure.py",
+    "research/rocit-clock-transfer-closure/measured.json",
+    "research/rocit-clock-transfer-closure/replay.py",
     "research/optical-trap-fluctuation/README.md",
     "research/optical-trap-fluctuation/protocol.json",
     "research/optical-trap-fluctuation/provenance.json",
