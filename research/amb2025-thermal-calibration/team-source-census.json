@@ -1,0 +1,35 @@
+{
+  "public_group_project_count": 9,
+  "screened": [
+    {
+      "name": "2026_dynamic_laser_beam_shape_optimization_AM",
+      "id": 83516996,
+      "revision": "1308475c4d7dd0ab4f7a229c5c33100772c9aa01",
+      "entries": 721,
+      "matching_paths": []
+    },
+    {
+      "name": "2026_laser_beam_shaping_temperature_control_AM",
+      "id": 75278342,
+      "revision": "14ee0652492e76083bea69e9f2f7ae33345ddba0",
+      "entries": 26,
+      "matching_paths": []
+    },
+    {
+      "name": "2025_laser_turnaround_simulation_AM",
+      "id": 66090950,
+      "revision": "9a754a717b43309b83561da72fd1d29ac61d17da",
+      "entries": 16,
+      "matching_paths": []
+    },
+    {
+      "name": "2022_AM_laser_beam_shape_optimization",
+      "id": 39175209,
+      "revision": "55b60e755662c1a5f4b2436a580d904f59e8169f",
+      "entries": 16,
+      "matching_paths": []
+    }
+  ],
+  "criterion": "all group project names containing laser, bench, thermo, melting, thermal or temperature; all recursive pages of these exact project revisions",
+  "science_arrays_opened": 0
+}

@@ -1,0 +1,69 @@
+{
+  "calibration": "NIST AMB2025-06/07 descriptions Table 5 six hand-measured cross sections",
+  "convergence": {
+    "96": {
+      "normal_sigma_um": 64.81404826627116,
+      "peak_time_s": [
+        0.004350717696663178,
+        0.0044538774389956855,
+        0.004197323388406851
+      ],
+      "stretch": 1.959018163407287,
+      "stretch_admissible": true,
+      "stretch_eta": 0.7669753001567031,
+      "surface_admissible": true,
+      "surface_arb_gauge_error_K": 3.637978807091713e-12,
+      "surface_depth_um": 63.85851970990188,
+      "surface_eta": 0.39151005053608895,
+      "volume_admissible": true,
+      "volume_depth_temp_C": 1260.000000141706,
+      "volume_eta": 0.6479852768735106,
+      "volume_surface_temp_C": 1260
+    },
+    "192": {
+      "normal_sigma_um": 64.81404826627116,
+      "peak_time_s": [
+        0.004350717693158267,
+        0.004453877426965549,
+        0.0041973233753751435
+      ],
+      "stretch": 1.959018163407287,
+      "stretch_admissible": true,
+      "stretch_eta": 0.7669753001567129,
+      "surface_admissible": true,
+      "surface_arb_gauge_error_K": 1.8189894035458565e-12,
+      "surface_depth_um": 63.85851970990188,
+      "surface_eta": 0.39151005053609395,
+      "volume_admissible": true,
+      "volume_depth_temp_C": 1260.000000141737,
+      "volume_eta": 0.6479852768735196,
+      "volume_surface_temp_C": 1260
+    },
+    "384": {
+      "normal_sigma_um": 64.81404826627116,
+      "peak_time_s": [
+        0.004350717687006027,
+        0.004453877414661071,
+        0.004197323384146658
+      ],
+      "stretch": 1.959018163407287,
+      "stretch_admissible": true,
+      "stretch_eta": 0.7669753001566944,
+      "surface_admissible": true,
+      "surface_arb_gauge_error_K": 5.4569682106375694e-12,
+      "surface_depth_um": 63.85851970990188,
+      "surface_eta": 0.3915100505360845,
+      "volume_admissible": true,
+      "volume_depth_temp_C": 1260.0000001417231,
+      "volume_eta": 0.6479852768735032,
+      "volume_surface_temp_C": 1260
+    }
+  },
+  "held_pad_arrays_opened": 0,
+  "property_scope": "fixed effective comparison, independent IN718 specimen; no claim of fitted plate properties",
+  "property_source": "Agazhanov et al. 2019 10.1088/1742-6596/1382/1/012175 Table 2 at 1400 kelvin",
+  "registered_eta_interval": [
+    0,
+    1
+  ]
+}
