@@ -1,0 +1,3552 @@
+{
+  "acquisition": "Tian et al. 2014 inert resolution target; 293 numbered TIFFs. Assumed acquisition assignment follows the author natural-sort singleton example and authentic chart mask. Actual per-exposure control logs, flux monitors and blank/dark calibration unavailable.",
+  "chart_setup_sha256": "f95dfe2eabf60bafe6ff45d87dbae1440cdc88e0eba8478469286dc9c0bff07e",
+  "evaluation_unit": "unweighted mean squared Euclidean shape error across 98 preregistered, disjoint opposed pairs; single chart/session. Include every pair and summarize per-pair worst with both raw, normalized and control values. No pooled pixel confidence interval.",
+  "frame_state": {
+    "bits": 16,
+    "compression": 1,
+    "height": 2160,
+    "orientation": 1,
+    "planar_configuration": 1,
+    "samples_per_pixel": 1,
+    "width": 2560
+  },
+  "frames": {
+    "1": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEVU4ycVNfcXY5VGs",
+      "led_xy": [
+        -9,
+        -3
+      ],
+      "name": "Iled_1.tif"
+    },
+    "10": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEWk5BdFdnVE12TFU",
+      "led_xy": [
+        -8,
+        -3
+      ],
+      "name": "Iled_10.tif"
+    },
+    "100": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZm9tNENlYnNCbkU",
+      "led_xy": [
+        -2,
+        -9
+      ],
+      "name": "Iled_100.tif"
+    },
+    "101": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEbldVNkV2XzliVm8",
+      "led_xy": [
+        -2,
+        -8
+      ],
+      "name": "Iled_101.tif"
+    },
+    "102": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEUk9SS2VDdkp3aEE",
+      "led_xy": [
+        -2,
+        -7
+      ],
+      "name": "Iled_102.tif"
+    },
+    "103": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEWFVBYlV1Nlg2LXM",
+      "led_xy": [
+        -2,
+        -6
+      ],
+      "name": "Iled_103.tif"
+    },
+    "104": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbEhfdHNkbkk4Q00",
+      "led_xy": [
+        -2,
+        -5
+      ],
+      "name": "Iled_104.tif"
+    },
+    "105": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdWl3bjNqb0ZTUGc",
+      "led_xy": [
+        -2,
+        -4
+      ],
+      "name": "Iled_105.tif"
+    },
+    "106": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbGlwb05LamQ1NDA",
+      "led_xy": [
+        -2,
+        -3
+      ],
+      "name": "Iled_106.tif"
+    },
+    "107": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEeThQOUh6eEdXdkk",
+      "led_xy": [
+        -2,
+        -2
+      ],
+      "name": "Iled_107.tif"
+    },
+    "108": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEaXZrcGVWTmVRV0k",
+      "led_xy": [
+        -2,
+        -1
+      ],
+      "name": "Iled_108.tif"
+    },
+    "109": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETXZoNTMxX2owMzQ",
+      "led_xy": [
+        -2,
+        0
+      ],
+      "name": "Iled_109.tif"
+    },
+    "11": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEb182b0NydGZ1dVk",
+      "led_xy": [
+        -8,
+        -2
+      ],
+      "name": "Iled_11.tif"
+    },
+    "110": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEUWlnYVFRSk9iU0U",
+      "led_xy": [
+        -2,
+        1
+      ],
+      "name": "Iled_110.tif"
+    },
+    "111": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEQ3lXcjJIcm1OTHM",
+      "led_xy": [
+        -2,
+        2
+      ],
+      "name": "Iled_111.tif"
+    },
+    "112": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEeTRmSUV1al9rZWc",
+      "led_xy": [
+        -2,
+        3
+      ],
+      "name": "Iled_112.tif"
+    },
+    "113": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAESDE5NkM1cjdTSWs",
+      "led_xy": [
+        -2,
+        4
+      ],
+      "name": "Iled_113.tif"
+    },
+    "114": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbE1MaVRVUzk4WDA",
+      "led_xy": [
+        -2,
+        5
+      ],
+      "name": "Iled_114.tif"
+    },
+    "115": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEMThWTkIwU2k2Wjg",
+      "led_xy": [
+        -2,
+        6
+      ],
+      "name": "Iled_115.tif"
+    },
+    "116": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbFlYODBNTk0xVm8",
+      "led_xy": [
+        -2,
+        7
+      ],
+      "name": "Iled_116.tif"
+    },
+    "117": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEeXd3RGRUWU96d0U",
+      "led_xy": [
+        -2,
+        8
+      ],
+      "name": "Iled_117.tif"
+    },
+    "118": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEOTVybWROZFBTZ1E",
+      "led_xy": [
+        -2,
+        9
+      ],
+      "name": "Iled_118.tif"
+    },
+    "119": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZDI4X2VHQnVMdEE",
+      "led_xy": [
+        -1,
+        -9
+      ],
+      "name": "Iled_119.tif"
+    },
+    "12": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZUlGVWpOcTZlUUE",
+      "led_xy": [
+        -8,
+        -1
+      ],
+      "name": "Iled_12.tif"
+    },
+    "120": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEdmZ3b1U0ZXpIQTA",
+      "led_xy": [
+        -1,
+        -8
+      ],
+      "name": "Iled_120.tif"
+    },
+    "121": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEYzB5azV0NjVBa2s",
+      "led_xy": [
+        -1,
+        -7
+      ],
+      "name": "Iled_121.tif"
+    },
+    "122": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEaWhZRGRScTVIZ0E",
+      "led_xy": [
+        -1,
+        -6
+      ],
+      "name": "Iled_122.tif"
+    },
+    "123": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEb29jd0xSSGdCa0E",
+      "led_xy": [
+        -1,
+        -5
+      ],
+      "name": "Iled_123.tif"
+    },
+    "124": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEcVpkNFBBREoxTmM",
+      "led_xy": [
+        -1,
+        -4
+      ],
+      "name": "Iled_124.tif"
+    },
+    "125": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEOEdQdDE0bFkwLUU",
+      "led_xy": [
+        -1,
+        -3
+      ],
+      "name": "Iled_125.tif"
+    },
+    "126": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZTFlWXhOWjFxV00",
+      "led_xy": [
+        -1,
+        -2
+      ],
+      "name": "Iled_126.tif"
+    },
+    "127": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZWM5UkRodmxjQzg",
+      "led_xy": [
+        -1,
+        -1
+      ],
+      "name": "Iled_127.tif"
+    },
+    "128": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEb0NQZWlfMWNNZVU",
+      "led_xy": [
+        -1,
+        0
+      ],
+      "name": "Iled_128.tif"
+    },
+    "129": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAELWVqRWVhSmlBWkU",
+      "led_xy": [
+        -1,
+        1
+      ],
+      "name": "Iled_129.tif"
+    },
+    "13": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEYURwcTdDRm9wQ2s",
+      "led_xy": [
+        -8,
+        0
+      ],
+      "name": "Iled_13.tif"
+    },
+    "130": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEWDFldGNER2dOXzg",
+      "led_xy": [
+        -1,
+        2
+      ],
+      "name": "Iled_130.tif"
+    },
+    "131": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEMmNveFVDa2RDRjQ",
+      "led_xy": [
+        -1,
+        3
+      ],
+      "name": "Iled_131.tif"
+    },
+    "132": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdkVCNFBUT1hNVGM",
+      "led_xy": [
+        -1,
+        4
+      ],
+      "name": "Iled_132.tif"
+    },
+    "133": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAESkU5MS1NYlI2cXc",
+      "led_xy": [
+        -1,
+        5
+      ],
+      "name": "Iled_133.tif"
+    },
+    "134": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAESUt5SUZDSzFwSWs",
+      "led_xy": [
+        -1,
+        6
+      ],
+      "name": "Iled_134.tif"
+    },
+    "135": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEZUV2WFRXN3dNaTA",
+      "led_xy": [
+        -1,
+        7
+      ],
+      "name": "Iled_135.tif"
+    },
+    "136": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAESzJYeXJreDZ5cTQ",
+      "led_xy": [
+        -1,
+        8
+      ],
+      "name": "Iled_136.tif"
+    },
+    "137": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEb0drQ1FsTXJLZTA",
+      "led_xy": [
+        -1,
+        9
+      ],
+      "name": "Iled_137.tif"
+    },
+    "138": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEakFVYzhuWVhtUFE",
+      "led_xy": [
+        0,
+        -9
+      ],
+      "name": "Iled_138.tif"
+    },
+    "139": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdmdVZ3ZKajR3LWM",
+      "led_xy": [
+        0,
+        -8
+      ],
+      "name": "Iled_139.tif"
+    },
+    "14": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAETzd3UWp6YktqdWc",
+      "led_xy": [
+        -8,
+        1
+      ],
+      "name": "Iled_14.tif"
+    },
+    "140": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEcXZtUzRiRU9ZUE0",
+      "led_xy": [
+        0,
+        -7
+      ],
+      "name": "Iled_140.tif"
+    },
+    "141": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEQXVQblNreWJia1E",
+      "led_xy": [
+        0,
+        -6
+      ],
+      "name": "Iled_141.tif"
+    },
+    "142": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdmJGQ0JXYzdEdTQ",
+      "led_xy": [
+        0,
+        -5
+      ],
+      "name": "Iled_142.tif"
+    },
+    "143": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEREh4UTBJTHlHZWM",
+      "led_xy": [
+        0,
+        -4
+      ],
+      "name": "Iled_143.tif"
+    },
+    "144": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZS1ZcUs1Wmd3Unc",
+      "led_xy": [
+        0,
+        -3
+      ],
+      "name": "Iled_144.tif"
+    },
+    "145": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEazQ2RzJraW5vZ0k",
+      "led_xy": [
+        0,
+        -2
+      ],
+      "name": "Iled_145.tif"
+    },
+    "146": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEVWdHM1UxbVpSbFE",
+      "led_xy": [
+        0,
+        -1
+      ],
+      "name": "Iled_146.tif"
+    },
+    "147": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETXVfSVl4ZFZkT0U",
+      "led_xy": [
+        0,
+        0
+      ],
+      "name": "Iled_147.tif"
+    },
+    "148": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEWTJnWTJjSmlmeFU",
+      "led_xy": [
+        0,
+        1
+      ],
+      "name": "Iled_148.tif"
+    },
+    "149": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEY29HODFpUUdTQTQ",
+      "led_xy": [
+        0,
+        2
+      ],
+      "name": "Iled_149.tif"
+    },
+    "15": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETHZickF6RWxfbEE",
+      "led_xy": [
+        -8,
+        2
+      ],
+      "name": "Iled_15.tif"
+    },
+    "150": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEUWhLLXN2ckpCOW8",
+      "led_xy": [
+        0,
+        3
+      ],
+      "name": "Iled_150.tif"
+    },
+    "151": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETGM3a2xzMW1SeXM",
+      "led_xy": [
+        0,
+        4
+      ],
+      "name": "Iled_151.tif"
+    },
+    "152": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAESlA0cEhkX2Nlb1k",
+      "led_xy": [
+        0,
+        5
+      ],
+      "name": "Iled_152.tif"
+    },
+    "153": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEN19zU1pKS1JoZk0",
+      "led_xy": [
+        0,
+        6
+      ],
+      "name": "Iled_153.tif"
+    },
+    "154": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEdmxqSTl0NDlFWWc",
+      "led_xy": [
+        0,
+        7
+      ],
+      "name": "Iled_154.tif"
+    },
+    "155": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEcGtsdWN2cllZYWs",
+      "led_xy": [
+        0,
+        8
+      ],
+      "name": "Iled_155.tif"
+    },
+    "156": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEZUczb2JSVHQ0b2c",
+      "led_xy": [
+        0,
+        9
+      ],
+      "name": "Iled_156.tif"
+    },
+    "157": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEZG9pYzlHTUV4TmM",
+      "led_xy": [
+        1,
+        -9
+      ],
+      "name": "Iled_157.tif"
+    },
+    "158": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAENE9kWklKQXdEY2c",
+      "led_xy": [
+        1,
+        -8
+      ],
+      "name": "Iled_158.tif"
+    },
+    "159": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEY0FJMTJuWUJlMlk",
+      "led_xy": [
+        1,
+        -7
+      ],
+      "name": "Iled_159.tif"
+    },
+    "16": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbF9WWjJieDM5UUU",
+      "led_xy": [
+        -8,
+        3
+      ],
+      "name": "Iled_16.tif"
+    },
+    "160": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEemZVbGxFeW5qOW8",
+      "led_xy": [
+        1,
+        -6
+      ],
+      "name": "Iled_160.tif"
+    },
+    "161": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEb25nUW1mRFNyVmM",
+      "led_xy": [
+        1,
+        -5
+      ],
+      "name": "Iled_161.tif"
+    },
+    "162": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdWZxMEZKcDk4SlU",
+      "led_xy": [
+        1,
+        -4
+      ],
+      "name": "Iled_162.tif"
+    },
+    "163": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAELW5ZN296SjBvQ1k",
+      "led_xy": [
+        1,
+        -3
+      ],
+      "name": "Iled_163.tif"
+    },
+    "164": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAENTdEVFBzTHdwN1E",
+      "led_xy": [
+        1,
+        -2
+      ],
+      "name": "Iled_164.tif"
+    },
+    "165": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAERUNnREdVRTJZaTg",
+      "led_xy": [
+        1,
+        -1
+      ],
+      "name": "Iled_165.tif"
+    },
+    "166": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEdXZSYk4xdDQxdkk",
+      "led_xy": [
+        1,
+        0
+      ],
+      "name": "Iled_166.tif"
+    },
+    "167": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAETFhhN09GZlllLW8",
+      "led_xy": [
+        1,
+        1
+      ],
+      "name": "Iled_167.tif"
+    },
+    "168": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEa3JndC1PLTNwbWM",
+      "led_xy": [
+        1,
+        2
+      ],
+      "name": "Iled_168.tif"
+    },
+    "169": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbDYwSXI3RGI5MU0",
+      "led_xy": [
+        1,
+        3
+      ],
+      "name": "Iled_169.tif"
+    },
+    "17": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEMGFGb2JORERuc1k",
+      "led_xy": [
+        -8,
+        4
+      ],
+      "name": "Iled_17.tif"
+    },
+    "170": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEVnhTR051TEU4WVU",
+      "led_xy": [
+        1,
+        4
+      ],
+      "name": "Iled_170.tif"
+    },
+    "171": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEWXY3a0pFNTRpMkU",
+      "led_xy": [
+        1,
+        5
+      ],
+      "name": "Iled_171.tif"
+    },
+    "172": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAESnc5M2ktSEs1Rjg",
+      "led_xy": [
+        1,
+        6
+      ],
+      "name": "Iled_172.tif"
+    },
+    "173": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEYWx2VDNHbTAzUzA",
+      "led_xy": [
+        1,
+        7
+      ],
+      "name": "Iled_173.tif"
+    },
+    "174": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbU9BY0dWX1Rodnc",
+      "led_xy": [
+        1,
+        8
+      ],
+      "name": "Iled_174.tif"
+    },
+    "175": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAENVh1ZG5IeHpWOHc",
+      "led_xy": [
+        1,
+        9
+      ],
+      "name": "Iled_175.tif"
+    },
+    "176": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEZXpmSGx6X2FfamM",
+      "led_xy": [
+        2,
+        -9
+      ],
+      "name": "Iled_176.tif"
+    },
+    "177": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEVk5mMEgwX0JSVXM",
+      "led_xy": [
+        2,
+        -8
+      ],
+      "name": "Iled_177.tif"
+    },
+    "178": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEZndFQ0g2MWMzZE0",
+      "led_xy": [
+        2,
+        -7
+      ],
+      "name": "Iled_178.tif"
+    },
+    "179": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEaTJXLVlsYzNBU2c",
+      "led_xy": [
+        2,
+        -6
+      ],
+      "name": "Iled_179.tif"
+    },
+    "18": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEUDBZUG1xMWh0akE",
+      "led_xy": [
+        -8,
+        5
+      ],
+      "name": "Iled_18.tif"
+    },
+    "180": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEZDlhUnh0dUUtV3c",
+      "led_xy": [
+        2,
+        -5
+      ],
+      "name": "Iled_180.tif"
+    },
+    "181": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEMG5MNVBDb0s4X1U",
+      "led_xy": [
+        2,
+        -4
+      ],
+      "name": "Iled_181.tif"
+    },
+    "182": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEMXpZSFNIcFJSTUE",
+      "led_xy": [
+        2,
+        -3
+      ],
+      "name": "Iled_182.tif"
+    },
+    "183": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEWE9Qd0hTODktVkk",
+      "led_xy": [
+        2,
+        -2
+      ],
+      "name": "Iled_183.tif"
+    },
+    "184": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEaFlHWFlKd0dhSDA",
+      "led_xy": [
+        2,
+        -1
+      ],
+      "name": "Iled_184.tif"
+    },
+    "185": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEVm9zZVdrZFNUbG8",
+      "led_xy": [
+        2,
+        0
+      ],
+      "name": "Iled_185.tif"
+    },
+    "186": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAESTRLNmNFM1VLSFU",
+      "led_xy": [
+        2,
+        1
+      ],
+      "name": "Iled_186.tif"
+    },
+    "187": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEYWR4dVNIZUkwTEE",
+      "led_xy": [
+        2,
+        2
+      ],
+      "name": "Iled_187.tif"
+    },
+    "188": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAENVVHLUZBdHdzZEU",
+      "led_xy": [
+        2,
+        3
+      ],
+      "name": "Iled_188.tif"
+    },
+    "189": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAERDF3TGFoMGFPYjA",
+      "led_xy": [
+        2,
+        4
+      ],
+      "name": "Iled_189.tif"
+    },
+    "19": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEZXR0RVN1QTBxblU",
+      "led_xy": [
+        -7,
+        -6
+      ],
+      "name": "Iled_19.tif"
+    },
+    "190": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAERzlqMktJaHlZNjA",
+      "led_xy": [
+        2,
+        5
+      ],
+      "name": "Iled_190.tif"
+    },
+    "191": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEVkVHTkExNlF6clU",
+      "led_xy": [
+        2,
+        6
+      ],
+      "name": "Iled_191.tif"
+    },
+    "192": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEUWRnbVBjbGMxWGs",
+      "led_xy": [
+        2,
+        7
+      ],
+      "name": "Iled_192.tif"
+    },
+    "193": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAELU55cUZVbm0yTUE",
+      "led_xy": [
+        2,
+        8
+      ],
+      "name": "Iled_193.tif"
+    },
+    "194": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbEFwQ0Q0UEt3blU",
+      "led_xy": [
+        2,
+        9
+      ],
+      "name": "Iled_194.tif"
+    },
+    "195": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEZ05WVUk5NTQtd0k",
+      "led_xy": [
+        3,
+        -9
+      ],
+      "name": "Iled_195.tif"
+    },
+    "196": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAESkRKT0IxQ2NneDA",
+      "led_xy": [
+        3,
+        -8
+      ],
+      "name": "Iled_196.tif"
+    },
+    "197": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAER0V3bjlfNGtMQUU",
+      "led_xy": [
+        3,
+        -7
+      ],
+      "name": "Iled_197.tif"
+    },
+    "198": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAETTBsTW5VbFJMOTg",
+      "led_xy": [
+        3,
+        -6
+      ],
+      "name": "Iled_198.tif"
+    },
+    "199": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETEpTSGpHa1NoR2M",
+      "led_xy": [
+        3,
+        -5
+      ],
+      "name": "Iled_199.tif"
+    },
+    "2": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZFpGNnpZVFo5dUk",
+      "led_xy": [
+        -9,
+        -2
+      ],
+      "name": "Iled_2.tif"
+    },
+    "20": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEemptdTJnLXZjLTQ",
+      "led_xy": [
+        -7,
+        -5
+      ],
+      "name": "Iled_20.tif"
+    },
+    "200": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAERmlpNmxGVzl1ZXc",
+      "led_xy": [
+        3,
+        -4
+      ],
+      "name": "Iled_200.tif"
+    },
+    "201": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEeTFXOFd4YkszZ00",
+      "led_xy": [
+        3,
+        -3
+      ],
+      "name": "Iled_201.tif"
+    },
+    "202": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAESW9uZE9TUlY2MXM",
+      "led_xy": [
+        3,
+        -2
+      ],
+      "name": "Iled_202.tif"
+    },
+    "203": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAENVc2NGpzUVRqWm8",
+      "led_xy": [
+        3,
+        -1
+      ],
+      "name": "Iled_203.tif"
+    },
+    "204": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEUEM4NUpnNE4tTmM",
+      "led_xy": [
+        3,
+        0
+      ],
+      "name": "Iled_204.tif"
+    },
+    "205": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEaXhTOXAyZlFNLWc",
+      "led_xy": [
+        3,
+        1
+      ],
+      "name": "Iled_205.tif"
+    },
+    "206": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEVGZQWkEwMTdRTWc",
+      "led_xy": [
+        3,
+        2
+      ],
+      "name": "Iled_206.tif"
+    },
+    "207": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbC05NG9Kc2h1Y2s",
+      "led_xy": [
+        3,
+        3
+      ],
+      "name": "Iled_207.tif"
+    },
+    "208": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEU1BBaVVzUXJGRmM",
+      "led_xy": [
+        3,
+        4
+      ],
+      "name": "Iled_208.tif"
+    },
+    "209": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEalNXLUEwdHV2eDg",
+      "led_xy": [
+        3,
+        5
+      ],
+      "name": "Iled_209.tif"
+    },
+    "21": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEek5XeGo0MVJtRzg",
+      "led_xy": [
+        -7,
+        -4
+      ],
+      "name": "Iled_21.tif"
+    },
+    "210": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEMzNZNmdXWDhXX2s",
+      "led_xy": [
+        3,
+        6
+      ],
+      "name": "Iled_210.tif"
+    },
+    "211": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbXdHUEV6cU5TSU0",
+      "led_xy": [
+        3,
+        7
+      ],
+      "name": "Iled_211.tif"
+    },
+    "212": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZHFxdUdxbGExRVE",
+      "led_xy": [
+        3,
+        8
+      ],
+      "name": "Iled_212.tif"
+    },
+    "213": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEU2l2Y3lkbE5wN2M",
+      "led_xy": [
+        3,
+        9
+      ],
+      "name": "Iled_213.tif"
+    },
+    "214": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEcEZBalNGZmhVQWs",
+      "led_xy": [
+        4,
+        -8
+      ],
+      "name": "Iled_214.tif"
+    },
+    "215": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAERVJ0RmFiMU90TEk",
+      "led_xy": [
+        4,
+        -7
+      ],
+      "name": "Iled_215.tif"
+    },
+    "216": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEN05MNkVMeFZldzg",
+      "led_xy": [
+        4,
+        -6
+      ],
+      "name": "Iled_216.tif"
+    },
+    "217": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEUkZFWndMeFNKM1k",
+      "led_xy": [
+        4,
+        -5
+      ],
+      "name": "Iled_217.tif"
+    },
+    "218": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEYzRUcFgyR3pCM1k",
+      "led_xy": [
+        4,
+        -4
+      ],
+      "name": "Iled_218.tif"
+    },
+    "219": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEOXltUWNhNm55WkU",
+      "led_xy": [
+        4,
+        -3
+      ],
+      "name": "Iled_219.tif"
+    },
+    "22": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETFQ5ZTJLbXVTb00",
+      "led_xy": [
+        -7,
+        -3
+      ],
+      "name": "Iled_22.tif"
+    },
+    "220": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEY1gzVm12SVNIemM",
+      "led_xy": [
+        4,
+        -2
+      ],
+      "name": "Iled_220.tif"
+    },
+    "221": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEazQ4dTNRc05SRGM",
+      "led_xy": [
+        4,
+        -1
+      ],
+      "name": "Iled_221.tif"
+    },
+    "222": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEQkp3dmktSnVvSjA",
+      "led_xy": [
+        4,
+        0
+      ],
+      "name": "Iled_222.tif"
+    },
+    "223": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEUTBWMWZMWW10ZGM",
+      "led_xy": [
+        4,
+        1
+      ],
+      "name": "Iled_223.tif"
+    },
+    "224": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEUnhBWDItdFVlajg",
+      "led_xy": [
+        4,
+        2
+      ],
+      "name": "Iled_224.tif"
+    },
+    "225": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEWl91dE56cW1VOUk",
+      "led_xy": [
+        4,
+        3
+      ],
+      "name": "Iled_225.tif"
+    },
+    "226": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETUFES1Vld3lJazA",
+      "led_xy": [
+        4,
+        4
+      ],
+      "name": "Iled_226.tif"
+    },
+    "227": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEdF9tVlpsN1EtT2M",
+      "led_xy": [
+        4,
+        5
+      ],
+      "name": "Iled_227.tif"
+    },
+    "228": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEXzFCcGVLS2duNGs",
+      "led_xy": [
+        4,
+        6
+      ],
+      "name": "Iled_228.tif"
+    },
+    "229": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEQUpzd1hCVFpTUkk",
+      "led_xy": [
+        4,
+        7
+      ],
+      "name": "Iled_229.tif"
+    },
+    "23": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEaU9VSlVBRmlHcWM",
+      "led_xy": [
+        -7,
+        -2
+      ],
+      "name": "Iled_23.tif"
+    },
+    "230": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEc1JIbGlHTUdYdEk",
+      "led_xy": [
+        4,
+        8
+      ],
+      "name": "Iled_230.tif"
+    },
+    "231": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEaG1DT0FSSXFNZW8",
+      "led_xy": [
+        5,
+        -8
+      ],
+      "name": "Iled_231.tif"
+    },
+    "232": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAESVc1bm5QeGNNbEU",
+      "led_xy": [
+        5,
+        -7
+      ],
+      "name": "Iled_232.tif"
+    },
+    "233": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEaUxOREhIbENGQ28",
+      "led_xy": [
+        5,
+        -6
+      ],
+      "name": "Iled_233.tif"
+    },
+    "234": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEWmJ5cjZPZFRaTms",
+      "led_xy": [
+        5,
+        -5
+      ],
+      "name": "Iled_234.tif"
+    },
+    "235": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEa1dYRUlmb1NxUGc",
+      "led_xy": [
+        5,
+        -4
+      ],
+      "name": "Iled_235.tif"
+    },
+    "236": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEY1hwVjNqakpEZGM",
+      "led_xy": [
+        5,
+        -3
+      ],
+      "name": "Iled_236.tif"
+    },
+    "237": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAER1pRYkRLOUtPMUk",
+      "led_xy": [
+        5,
+        -2
+      ],
+      "name": "Iled_237.tif"
+    },
+    "238": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAETk9vVDY4Q01RTXc",
+      "led_xy": [
+        5,
+        -1
+      ],
+      "name": "Iled_238.tif"
+    },
+    "239": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEQ0IwQ1d5WHB0VlU",
+      "led_xy": [
+        5,
+        0
+      ],
+      "name": "Iled_239.tif"
+    },
+    "24": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEUEdmal9wLXZtSm8",
+      "led_xy": [
+        -7,
+        -1
+      ],
+      "name": "Iled_24.tif"
+    },
+    "240": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEdHJXZ3BhdFhiM28",
+      "led_xy": [
+        5,
+        1
+      ],
+      "name": "Iled_240.tif"
+    },
+    "241": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEUlc2czBhVGZqdzA",
+      "led_xy": [
+        5,
+        2
+      ],
+      "name": "Iled_241.tif"
+    },
+    "242": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAENVV5QmhBZjVIbDA",
+      "led_xy": [
+        5,
+        3
+      ],
+      "name": "Iled_242.tif"
+    },
+    "243": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEWmQzZWNreWtDeDA",
+      "led_xy": [
+        5,
+        4
+      ],
+      "name": "Iled_243.tif"
+    },
+    "244": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAENnFZOG1JcFRaRjQ",
+      "led_xy": [
+        5,
+        5
+      ],
+      "name": "Iled_244.tif"
+    },
+    "245": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEUFpySXBmc3JqZWs",
+      "led_xy": [
+        5,
+        6
+      ],
+      "name": "Iled_245.tif"
+    },
+    "246": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEajJLSlA4MEdSZWM",
+      "led_xy": [
+        5,
+        7
+      ],
+      "name": "Iled_246.tif"
+    },
+    "247": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEMHZMS3JNRlFmcjQ",
+      "led_xy": [
+        5,
+        8
+      ],
+      "name": "Iled_247.tif"
+    },
+    "248": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETUFnamwycFFWSmM",
+      "led_xy": [
+        6,
+        -7
+      ],
+      "name": "Iled_248.tif"
+    },
+    "249": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEV1hXZ0Y5MjNEQTQ",
+      "led_xy": [
+        6,
+        -6
+      ],
+      "name": "Iled_249.tif"
+    },
+    "25": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETFNVODE0Z3B3Nm8",
+      "led_xy": [
+        -7,
+        0
+      ],
+      "name": "Iled_25.tif"
+    },
+    "250": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEek9TRXduZUY4a28",
+      "led_xy": [
+        6,
+        -5
+      ],
+      "name": "Iled_250.tif"
+    },
+    "251": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEb3JsRk1uZWNrRDQ",
+      "led_xy": [
+        6,
+        -4
+      ],
+      "name": "Iled_251.tif"
+    },
+    "252": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETFFZQTZiR0lBN3M",
+      "led_xy": [
+        6,
+        -3
+      ],
+      "name": "Iled_252.tif"
+    },
+    "253": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEcS1TOWp0UkRTSHc",
+      "led_xy": [
+        6,
+        -2
+      ],
+      "name": "Iled_253.tif"
+    },
+    "254": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEeW5EM05jZGlIUFk",
+      "led_xy": [
+        6,
+        -1
+      ],
+      "name": "Iled_254.tif"
+    },
+    "255": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEWVRVaVIwdlB5dUE",
+      "led_xy": [
+        6,
+        0
+      ],
+      "name": "Iled_255.tif"
+    },
+    "256": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAENHY4eGFwS0lTTVE",
+      "led_xy": [
+        6,
+        1
+      ],
+      "name": "Iled_256.tif"
+    },
+    "257": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAESnhFNXdCNkJpVW8",
+      "led_xy": [
+        6,
+        2
+      ],
+      "name": "Iled_257.tif"
+    },
+    "258": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEVkVnaXFrVVc2M1k",
+      "led_xy": [
+        6,
+        3
+      ],
+      "name": "Iled_258.tif"
+    },
+    "259": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbTczU2VFOW1uWjA",
+      "led_xy": [
+        6,
+        4
+      ],
+      "name": "Iled_259.tif"
+    },
+    "26": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEM1pjVExEcDdCQkE",
+      "led_xy": [
+        -7,
+        1
+      ],
+      "name": "Iled_26.tif"
+    },
+    "260": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEQ2dzbUdNbXZPN28",
+      "led_xy": [
+        6,
+        5
+      ],
+      "name": "Iled_260.tif"
+    },
+    "261": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAET19la09JNFNrVTg",
+      "led_xy": [
+        6,
+        6
+      ],
+      "name": "Iled_261.tif"
+    },
+    "262": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEejJCT2g4eEl0SXM",
+      "led_xy": [
+        6,
+        7
+      ],
+      "name": "Iled_262.tif"
+    },
+    "263": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZlhLQ1E3YzZhLU0",
+      "led_xy": [
+        7,
+        -6
+      ],
+      "name": "Iled_263.tif"
+    },
+    "264": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEY1k4djBKbnphU2s",
+      "led_xy": [
+        7,
+        -5
+      ],
+      "name": "Iled_264.tif"
+    },
+    "265": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEcTNYQnFfcHBxUlE",
+      "led_xy": [
+        7,
+        -4
+      ],
+      "name": "Iled_265.tif"
+    },
+    "266": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEa3ZUOC1VLVM2TjQ",
+      "led_xy": [
+        7,
+        -3
+      ],
+      "name": "Iled_266.tif"
+    },
+    "267": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAELXJsVjZTSUZlZDg",
+      "led_xy": [
+        7,
+        -2
+      ],
+      "name": "Iled_267.tif"
+    },
+    "268": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEdExyRnctcUhTd28",
+      "led_xy": [
+        7,
+        -1
+      ],
+      "name": "Iled_268.tif"
+    },
+    "269": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEZm9OYl9wX3BwMkk",
+      "led_xy": [
+        7,
+        0
+      ],
+      "name": "Iled_269.tif"
+    },
+    "27": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEeXEzRHZZRTlnLVk",
+      "led_xy": [
+        -7,
+        2
+      ],
+      "name": "Iled_27.tif"
+    },
+    "270": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEaGxfaHFjVUZadkU",
+      "led_xy": [
+        7,
+        1
+      ],
+      "name": "Iled_270.tif"
+    },
+    "271": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEVmNkUWJDN2Z6SG8",
+      "led_xy": [
+        7,
+        2
+      ],
+      "name": "Iled_271.tif"
+    },
+    "272": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEMXhMelVRV3dObmc",
+      "led_xy": [
+        7,
+        3
+      ],
+      "name": "Iled_272.tif"
+    },
+    "273": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEN2IwLTFRQjNBVDA",
+      "led_xy": [
+        7,
+        4
+      ],
+      "name": "Iled_273.tif"
+    },
+    "274": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEeXhRdC1ldEZQazQ",
+      "led_xy": [
+        7,
+        5
+      ],
+      "name": "Iled_274.tif"
+    },
+    "275": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdEIwblBPZEcwS0k",
+      "led_xy": [
+        7,
+        6
+      ],
+      "name": "Iled_275.tif"
+    },
+    "276": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZ19ISlphVlJUMlk",
+      "led_xy": [
+        8,
+        -5
+      ],
+      "name": "Iled_276.tif"
+    },
+    "277": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEVEhoNmFOclpYdkk",
+      "led_xy": [
+        8,
+        -4
+      ],
+      "name": "Iled_277.tif"
+    },
+    "278": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAERlhJbFRQcmE2bEE",
+      "led_xy": [
+        8,
+        -3
+      ],
+      "name": "Iled_278.tif"
+    },
+    "279": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEQjdiNTdVX0VMekU",
+      "led_xy": [
+        8,
+        -2
+      ],
+      "name": "Iled_279.tif"
+    },
+    "28": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAETGYzeHVUOG1BMFk",
+      "led_xy": [
+        -7,
+        3
+      ],
+      "name": "Iled_28.tif"
+    },
+    "280": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEOUxzaTBsVWw1S2s",
+      "led_xy": [
+        8,
+        -1
+      ],
+      "name": "Iled_280.tif"
+    },
+    "281": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEOVhvWWdtSTdnV28",
+      "led_xy": [
+        8,
+        0
+      ],
+      "name": "Iled_281.tif"
+    },
+    "282": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAETkNzSlhjcmVncDQ",
+      "led_xy": [
+        8,
+        1
+      ],
+      "name": "Iled_282.tif"
+    },
+    "283": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEcmg0Tk5KTmQ5b0U",
+      "led_xy": [
+        8,
+        2
+      ],
+      "name": "Iled_283.tif"
+    },
+    "284": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZUtxbElSZkFDQ2s",
+      "led_xy": [
+        8,
+        3
+      ],
+      "name": "Iled_284.tif"
+    },
+    "285": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEWFFoVWExT3hCX00",
+      "led_xy": [
+        8,
+        4
+      ],
+      "name": "Iled_285.tif"
+    },
+    "286": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAENUtHUTlWSVZ4dlk",
+      "led_xy": [
+        8,
+        5
+      ],
+      "name": "Iled_286.tif"
+    },
+    "287": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEaEZZZWp5VUM1YVk",
+      "led_xy": [
+        9,
+        -3
+      ],
+      "name": "Iled_287.tif"
+    },
+    "288": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEN1pkajh0ZjA5Q1k",
+      "led_xy": [
+        9,
+        -2
+      ],
+      "name": "Iled_288.tif"
+    },
+    "289": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEQk9IblhaQk05ZWs",
+      "led_xy": [
+        9,
+        -1
+      ],
+      "name": "Iled_289.tif"
+    },
+    "29": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEWWlZWTZYUENUb1E",
+      "led_xy": [
+        -7,
+        4
+      ],
+      "name": "Iled_29.tif"
+    },
+    "290": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEQl8xeVNiRWQxYTg",
+      "led_xy": [
+        9,
+        0
+      ],
+      "name": "Iled_290.tif"
+    },
+    "291": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEUW5ub3RoYm5kZnM",
+      "led_xy": [
+        9,
+        1
+      ],
+      "name": "Iled_291.tif"
+    },
+    "292": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEQjNKNzNRbjNScUU",
+      "led_xy": [
+        9,
+        2
+      ],
+      "name": "Iled_292.tif"
+    },
+    "293": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEcXhJS2lxTDdmTGM",
+      "led_xy": [
+        9,
+        3
+      ],
+      "name": "Iled_293.tif"
+    },
+    "3": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbThlTFl6Mm5nLWc",
+      "led_xy": [
+        -9,
+        -1
+      ],
+      "name": "Iled_3.tif"
+    },
+    "30": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdVdnT2dfVUZBaEE",
+      "led_xy": [
+        -7,
+        5
+      ],
+      "name": "Iled_30.tif"
+    },
+    "31": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZkdpWUE5a1JDb0U",
+      "led_xy": [
+        -7,
+        6
+      ],
+      "name": "Iled_31.tif"
+    },
+    "32": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAET0c1b3doeHlfZWM",
+      "led_xy": [
+        -6,
+        -7
+      ],
+      "name": "Iled_32.tif"
+    },
+    "33": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEWndBLUN2U2R5WUU",
+      "led_xy": [
+        -6,
+        -6
+      ],
+      "name": "Iled_33.tif"
+    },
+    "34": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZEFkQlNuUVZZbU0",
+      "led_xy": [
+        -6,
+        -5
+      ],
+      "name": "Iled_34.tif"
+    },
+    "35": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEOFZyQVNick5RMkE",
+      "led_xy": [
+        -6,
+        -4
+      ],
+      "name": "Iled_35.tif"
+    },
+    "36": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEZlN6b2VVeFlGUEk",
+      "led_xy": [
+        -6,
+        -3
+      ],
+      "name": "Iled_36.tif"
+    },
+    "37": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZ3BVWjV6Y25fMFE",
+      "led_xy": [
+        -6,
+        -2
+      ],
+      "name": "Iled_37.tif"
+    },
+    "38": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEVVBxLXVKNXVoQ1U",
+      "led_xy": [
+        -6,
+        -1
+      ],
+      "name": "Iled_38.tif"
+    },
+    "39": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEWmd6c0VLYVYwQzQ",
+      "led_xy": [
+        -6,
+        0
+      ],
+      "name": "Iled_39.tif"
+    },
+    "4": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEVm96ZDdOX242TDg",
+      "led_xy": [
+        -9,
+        0
+      ],
+      "name": "Iled_4.tif"
+    },
+    "40": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZm5vME1GTlpRMkE",
+      "led_xy": [
+        -6,
+        1
+      ],
+      "name": "Iled_40.tif"
+    },
+    "41": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAERjJJeWlGN0Zka1U",
+      "led_xy": [
+        -6,
+        2
+      ],
+      "name": "Iled_41.tif"
+    },
+    "42": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdldxU3NHMlRPNWM",
+      "led_xy": [
+        -6,
+        3
+      ],
+      "name": "Iled_42.tif"
+    },
+    "43": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAENm1nY0MwQ242dW8",
+      "led_xy": [
+        -6,
+        4
+      ],
+      "name": "Iled_43.tif"
+    },
+    "44": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEd3licTdORk9lWUE",
+      "led_xy": [
+        -6,
+        5
+      ],
+      "name": "Iled_44.tif"
+    },
+    "45": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAERVh2WXczQnhjNVE",
+      "led_xy": [
+        -6,
+        6
+      ],
+      "name": "Iled_45.tif"
+    },
+    "46": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAES1BQZFk3S3VfZ1E",
+      "led_xy": [
+        -6,
+        7
+      ],
+      "name": "Iled_46.tif"
+    },
+    "47": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEMzJ5Rng5YmQwWE0",
+      "led_xy": [
+        -5,
+        -8
+      ],
+      "name": "Iled_47.tif"
+    },
+    "48": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZFFLbGI0SGpKNnc",
+      "led_xy": [
+        -5,
+        -7
+      ],
+      "name": "Iled_48.tif"
+    },
+    "49": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETkhtdXBhVl9iRTQ",
+      "led_xy": [
+        -5,
+        -6
+      ],
+      "name": "Iled_49.tif"
+    },
+    "5": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdS13NUxyVHBDbUU",
+      "led_xy": [
+        -9,
+        1
+      ],
+      "name": "Iled_5.tif"
+    },
+    "50": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEeTVyR0FyR1ZnTU0",
+      "led_xy": [
+        -5,
+        -5
+      ],
+      "name": "Iled_50.tif"
+    },
+    "51": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEQWpNczY3bnppcFU",
+      "led_xy": [
+        -5,
+        -4
+      ],
+      "name": "Iled_51.tif"
+    },
+    "52": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEYVNid2k1ZWdtdVE",
+      "led_xy": [
+        -5,
+        -3
+      ],
+      "name": "Iled_52.tif"
+    },
+    "53": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAENXhOUlpkSHhpZ2M",
+      "led_xy": [
+        -5,
+        -2
+      ],
+      "name": "Iled_53.tif"
+    },
+    "54": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEVWpRWVlNMExIcnc",
+      "led_xy": [
+        -5,
+        -1
+      ],
+      "name": "Iled_54.tif"
+    },
+    "55": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZTNtcDBOUEltV0E",
+      "led_xy": [
+        -5,
+        0
+      ],
+      "name": "Iled_55.tif"
+    },
+    "56": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAENV9OdDVhTVRMR1E",
+      "led_xy": [
+        -5,
+        1
+      ],
+      "name": "Iled_56.tif"
+    },
+    "57": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAER19YcG9WY0FjNEE",
+      "led_xy": [
+        -5,
+        2
+      ],
+      "name": "Iled_57.tif"
+    },
+    "58": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZDhhcGEzZUlSc3c",
+      "led_xy": [
+        -5,
+        3
+      ],
+      "name": "Iled_58.tif"
+    },
+    "59": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEMHgxN2pScmYxS00",
+      "led_xy": [
+        -5,
+        4
+      ],
+      "name": "Iled_59.tif"
+    },
+    "6": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEcXp5MU5EVkhPYmM",
+      "led_xy": [
+        -9,
+        2
+      ],
+      "name": "Iled_6.tif"
+    },
+    "60": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEb2N3SjNFaFA4Rzg",
+      "led_xy": [
+        -5,
+        5
+      ],
+      "name": "Iled_60.tif"
+    },
+    "61": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAESWk3dHY5NmlPMkk",
+      "led_xy": [
+        -5,
+        6
+      ],
+      "name": "Iled_61.tif"
+    },
+    "62": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdlBNdVBhRGhJSUk",
+      "led_xy": [
+        -5,
+        7
+      ],
+      "name": "Iled_62.tif"
+    },
+    "63": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEYUVzSVpmSVNtcUE",
+      "led_xy": [
+        -5,
+        8
+      ],
+      "name": "Iled_63.tif"
+    },
+    "64": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEb3JTVWFVZktkOTQ",
+      "led_xy": [
+        -4,
+        -8
+      ],
+      "name": "Iled_64.tif"
+    },
+    "65": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEMndDWnFVSWV6V0E",
+      "led_xy": [
+        -4,
+        -7
+      ],
+      "name": "Iled_65.tif"
+    },
+    "66": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEaWVzTDEwSEl6ZkU",
+      "led_xy": [
+        -4,
+        -6
+      ],
+      "name": "Iled_66.tif"
+    },
+    "67": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZnRBSDlYQnpTN00",
+      "led_xy": [
+        -4,
+        -5
+      ],
+      "name": "Iled_67.tif"
+    },
+    "68": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEc01wc2JUdzMybkk",
+      "led_xy": [
+        -4,
+        -4
+      ],
+      "name": "Iled_68.tif"
+    },
+    "69": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEOHNxU2M0OFhEek0",
+      "led_xy": [
+        -4,
+        -3
+      ],
+      "name": "Iled_69.tif"
+    },
+    "7": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEcFE4c2o3YjhBWEE",
+      "led_xy": [
+        -9,
+        3
+      ],
+      "name": "Iled_7.tif"
+    },
+    "70": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEenZBZ2VSWHA0bHc",
+      "led_xy": [
+        -4,
+        -2
+      ],
+      "name": "Iled_70.tif"
+    },
+    "71": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAESDBwM0QxY1pQYmc",
+      "led_xy": [
+        -4,
+        -1
+      ],
+      "name": "Iled_71.tif"
+    },
+    "72": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEeUkwb0lSWHUxaUE",
+      "led_xy": [
+        -4,
+        0
+      ],
+      "name": "Iled_72.tif"
+    },
+    "73": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAERWwzVEwxOHBSeWs",
+      "led_xy": [
+        -4,
+        1
+      ],
+      "name": "Iled_73.tif"
+    },
+    "74": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEcWdJQkNlYjNUYnM",
+      "led_xy": [
+        -4,
+        2
+      ],
+      "name": "Iled_74.tif"
+    },
+    "75": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEeWpvWEdENkRiTVE",
+      "led_xy": [
+        -4,
+        3
+      ],
+      "name": "Iled_75.tif"
+    },
+    "76": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETnppT2EzSXNybzA",
+      "led_xy": [
+        -4,
+        4
+      ],
+      "name": "Iled_76.tif"
+    },
+    "77": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAERkM1UFFTb1VFWkU",
+      "led_xy": [
+        -4,
+        5
+      ],
+      "name": "Iled_77.tif"
+    },
+    "78": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAERWQ0Y19kQXFqd2c",
+      "led_xy": [
+        -4,
+        6
+      ],
+      "name": "Iled_78.tif"
+    },
+    "79": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEU3hORHBnX0lQTTg",
+      "led_xy": [
+        -4,
+        7
+      ],
+      "name": "Iled_79.tif"
+    },
+    "8": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAESHAyQm81bHVYaDg",
+      "led_xy": [
+        -8,
+        -5
+      ],
+      "name": "Iled_8.tif"
+    },
+    "80": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEbVJkaVRaZzREZ2M",
+      "led_xy": [
+        -4,
+        8
+      ],
+      "name": "Iled_80.tif"
+    },
+    "81": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAET3RDU3EyS0trR2c",
+      "led_xy": [
+        -3,
+        -9
+      ],
+      "name": "Iled_81.tif"
+    },
+    "82": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdFUzbGFMdlhwWmM",
+      "led_xy": [
+        -3,
+        -8
+      ],
+      "name": "Iled_82.tif"
+    },
+    "83": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEOXVuVXY3Qjlyc2M",
+      "led_xy": [
+        -3,
+        -7
+      ],
+      "name": "Iled_83.tif"
+    },
+    "84": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEWFg0LUxuYXpMcjA",
+      "led_xy": [
+        -3,
+        -6
+      ],
+      "name": "Iled_84.tif"
+    },
+    "85": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEMVB0ODNiS3hPWjQ",
+      "led_xy": [
+        -3,
+        -5
+      ],
+      "name": "Iled_85.tif"
+    },
+    "86": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEMzU5eExhQ0FQejg",
+      "led_xy": [
+        -3,
+        -4
+      ],
+      "name": "Iled_86.tif"
+    },
+    "87": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAETFZ0eWVuUlI3dTQ",
+      "led_xy": [
+        -3,
+        -3
+      ],
+      "name": "Iled_87.tif"
+    },
+    "88": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEMXpFZWhoaUtWbGc",
+      "led_xy": [
+        -3,
+        -2
+      ],
+      "name": "Iled_88.tif"
+    },
+    "89": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEdG4zSENSek9HeVU",
+      "led_xy": [
+        -3,
+        -1
+      ],
+      "name": "Iled_89.tif"
+    },
+    "9": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAETUo4R3dlOE9XYms",
+      "led_xy": [
+        -8,
+        -4
+      ],
+      "name": "Iled_9.tif"
+    },
+    "90": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEUVpkLVhNV1cyYXc",
+      "led_xy": [
+        -3,
+        0
+      ],
+      "name": "Iled_90.tif"
+    },
+    "91": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEMjU1ajdxbTk1NHM",
+      "led_xy": [
+        -3,
+        1
+      ],
+      "name": "Iled_91.tif"
+    },
+    "92": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAETFJVTE9MT0Z5cTg",
+      "led_xy": [
+        -3,
+        2
+      ],
+      "name": "Iled_92.tif"
+    },
+    "93": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEdUxFUWdCLUVxUkk",
+      "led_xy": [
+        -3,
+        3
+      ],
+      "name": "Iled_93.tif"
+    },
+    "94": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEM05jUkt2b3R3V0k",
+      "led_xy": [
+        -3,
+        4
+      ],
+      "name": "Iled_94.tif"
+    },
+    "95": {
+      "access": "held",
+      "id": "0Bwoz65fi7IAEUXBpekc3aHVmQVk",
+      "led_xy": [
+        -3,
+        5
+      ],
+      "name": "Iled_95.tif"
+    },
+    "96": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAENDFsMllISy1jNWM",
+      "led_xy": [
+        -3,
+        6
+      ],
+      "name": "Iled_96.tif"
+    },
+    "97": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEZDJLa3F6b1M4RzA",
+      "led_xy": [
+        -3,
+        7
+      ],
+      "name": "Iled_97.tif"
+    },
+    "98": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEUDJ2MHdQSTQtTXc",
+      "led_xy": [
+        -3,
+        8
+      ],
+      "name": "Iled_98.tif"
+    },
+    "99": {
+      "access": "development",
+      "id": "0Bwoz65fi7IAEaE16a2ptQmxBR3c",
+      "led_xy": [
+        -3,
+        9
+      ],
+      "name": "Iled_99.tif"
+    }
+  },
+  "out_of_scope": "Absolute intensity, hardware component inference, uniform irradiance, repeat trials, acquisition-time ordering, and synthetic or missing simultaneous-light measurements.",
+  "pairs": [
+    {
+      "donor": 293,
+      "group": "held",
+      "pair_id": 1,
+      "target": 1
+    },
+    {
+      "donor": 292,
+      "group": "development",
+      "pair_id": 2,
+      "target": 2
+    },
+    {
+      "donor": 3,
+      "group": "held",
+      "pair_id": 3,
+      "target": 291
+    },
+    {
+      "donor": 290,
+      "group": "held",
+      "pair_id": 4,
+      "target": 4
+    },
+    {
+      "donor": 5,
+      "group": "held",
+      "pair_id": 5,
+      "target": 289
+    },
+    {
+      "donor": 6,
+      "group": "held",
+      "pair_id": 6,
+      "target": 288
+    },
+    {
+      "donor": 7,
+      "group": "development",
+      "pair_id": 7,
+      "target": 287
+    },
+    {
+      "donor": 286,
+      "group": "development",
+      "pair_id": 8,
+      "target": 8
+    },
+    {
+      "donor": 285,
+      "group": "held",
+      "pair_id": 9,
+      "target": 9
+    },
+    {
+      "donor": 284,
+      "group": "held",
+      "pair_id": 10,
+      "target": 10
+    },
+    {
+      "donor": 283,
+      "group": "held",
+      "pair_id": 11,
+      "target": 11
+    },
+    {
+      "donor": 12,
+      "group": "held",
+      "pair_id": 12,
+      "target": 282
+    },
+    {
+      "donor": 13,
+      "group": "held",
+      "pair_id": 13,
+      "target": 281
+    },
+    {
+      "donor": 280,
+      "group": "held",
+      "pair_id": 14,
+      "target": 14
+    },
+    {
+      "donor": 15,
+      "group": "held",
+      "pair_id": 15,
+      "target": 279
+    },
+    {
+      "donor": 16,
+      "group": "development",
+      "pair_id": 16,
+      "target": 278
+    },
+    {
+      "donor": 17,
+      "group": "held",
+      "pair_id": 17,
+      "target": 277
+    },
+    {
+      "donor": 18,
+      "group": "development",
+      "pair_id": 18,
+      "target": 276
+    },
+    {
+      "donor": 275,
+      "group": "held",
+      "pair_id": 19,
+      "target": 19
+    },
+    {
+      "donor": 20,
+      "group": "held",
+      "pair_id": 20,
+      "target": 274
+    },
+    {
+      "donor": 273,
+      "group": "held",
+      "pair_id": 21,
+      "target": 21
+    },
+    {
+      "donor": 22,
+      "group": "held",
+      "pair_id": 22,
+      "target": 272
+    },
+    {
+      "donor": 271,
+      "group": "held",
+      "pair_id": 23,
+      "target": 23
+    },
+    {
+      "donor": 24,
+      "group": "development",
+      "pair_id": 24,
+      "target": 270
+    },
+    {
+      "donor": 25,
+      "group": "held",
+      "pair_id": 25,
+      "target": 269
+    },
+    {
+      "donor": 26,
+      "group": "held",
+      "pair_id": 26,
+      "target": 268
+    },
+    {
+      "donor": 27,
+      "group": "development",
+      "pair_id": 27,
+      "target": 267
+    },
+    {
+      "donor": 266,
+      "group": "held",
+      "pair_id": 28,
+      "target": 28
+    },
+    {
+      "donor": 29,
+      "group": "held",
+      "pair_id": 29,
+      "target": 265
+    },
+    {
+      "donor": 30,
+      "group": "held",
+      "pair_id": 30,
+      "target": 264
+    },
+    {
+      "donor": 31,
+      "group": "development",
+      "pair_id": 31,
+      "target": 263
+    },
+    {
+      "donor": 32,
+      "group": "held",
+      "pair_id": 32,
+      "target": 262
+    },
+    {
+      "donor": 33,
+      "group": "held",
+      "pair_id": 33,
+      "target": 261
+    },
+    {
+      "donor": 34,
+      "group": "held",
+      "pair_id": 34,
+      "target": 260
+    },
+    {
+      "donor": 35,
+      "group": "development",
+      "pair_id": 35,
+      "target": 259
+    },
+    {
+      "donor": 258,
+      "group": "held",
+      "pair_id": 36,
+      "target": 36
+    },
+    {
+      "donor": 37,
+      "group": "held",
+      "pair_id": 37,
+      "target": 257
+    },
+    {
+      "donor": 256,
+      "group": "held",
+      "pair_id": 38,
+      "target": 38
+    },
+    {
+      "donor": 39,
+      "group": "held",
+      "pair_id": 39,
+      "target": 255
+    },
+    {
+      "donor": 254,
+      "group": "development",
+      "pair_id": 40,
+      "target": 40
+    },
+    {
+      "donor": 41,
+      "group": "held",
+      "pair_id": 41,
+      "target": 253
+    },
+    {
+      "donor": 42,
+      "group": "development",
+      "pair_id": 42,
+      "target": 252
+    },
+    {
+      "donor": 251,
+      "group": "development",
+      "pair_id": 43,
+      "target": 43
+    },
+    {
+      "donor": 250,
+      "group": "held",
+      "pair_id": 44,
+      "target": 44
+    },
+    {
+      "donor": 249,
+      "group": "development",
+      "pair_id": 45,
+      "target": 45
+    },
+    {
+      "donor": 248,
+      "group": "held",
+      "pair_id": 46,
+      "target": 46
+    },
+    {
+      "donor": 247,
+      "group": "held",
+      "pair_id": 47,
+      "target": 47
+    },
+    {
+      "donor": 246,
+      "group": "development",
+      "pair_id": 48,
+      "target": 48
+    },
+    {
+      "donor": 49,
+      "group": "development",
+      "pair_id": 49,
+      "target": 245
+    },
+    {
+      "donor": 50,
+      "group": "held",
+      "pair_id": 50,
+      "target": 244
+    },
+    {
+      "donor": 51,
+      "group": "held",
+      "pair_id": 51,
+      "target": 243
+    },
+    {
+      "donor": 242,
+      "group": "held",
+      "pair_id": 52,
+      "target": 52
+    },
+    {
+      "donor": 53,
+      "group": "held",
+      "pair_id": 53,
+      "target": 241
+    },
+    {
+      "donor": 54,
+      "group": "held",
+      "pair_id": 54,
+      "target": 240
+    },
+    {
+      "donor": 55,
+      "group": "held",
+      "pair_id": 55,
+      "target": 239
+    },
+    {
+      "donor": 56,
+      "group": "held",
+      "pair_id": 56,
+      "target": 238
+    },
+    {
+      "donor": 237,
+      "group": "held",
+      "pair_id": 57,
+      "target": 57
+    },
+    {
+      "donor": 58,
+      "group": "development",
+      "pair_id": 58,
+      "target": 236
+    },
+    {
+      "donor": 59,
+      "group": "held",
+      "pair_id": 59,
+      "target": 235
+    },
+    {
+      "donor": 60,
+      "group": "held",
+      "pair_id": 60,
+      "target": 234
+    },
+    {
+      "donor": 233,
+      "group": "development",
+      "pair_id": 61,
+      "target": 61
+    },
+    {
+      "donor": 62,
+      "group": "held",
+      "pair_id": 62,
+      "target": 232
+    },
+    {
+      "donor": 63,
+      "group": "development",
+      "pair_id": 63,
+      "target": 231
+    },
+    {
+      "donor": 230,
+      "group": "held",
+      "pair_id": 64,
+      "target": 64
+    },
+    {
+      "donor": 229,
+      "group": "held",
+      "pair_id": 65,
+      "target": 65
+    },
+    {
+      "donor": 66,
+      "group": "held",
+      "pair_id": 66,
+      "target": 228
+    },
+    {
+      "donor": 67,
+      "group": "held",
+      "pair_id": 67,
+      "target": 227
+    },
+    {
+      "donor": 226,
+      "group": "held",
+      "pair_id": 68,
+      "target": 68
+    },
+    {
+      "donor": 225,
+      "group": "held",
+      "pair_id": 69,
+      "target": 69
+    },
+    {
+      "donor": 70,
+      "group": "held",
+      "pair_id": 70,
+      "target": 224
+    },
+    {
+      "donor": 223,
+      "group": "development",
+      "pair_id": 71,
+      "target": 71
+    },
+    {
+      "donor": 222,
+      "group": "development",
+      "pair_id": 72,
+      "target": 72
+    },
+    {
+      "donor": 221,
+      "group": "held",
+      "pair_id": 73,
+      "target": 73
+    },
+    {
+      "donor": 220,
+      "group": "held",
+      "pair_id": 74,
+      "target": 74
+    },
+    {
+      "donor": 75,
+      "group": "held",
+      "pair_id": 75,
+      "target": 219
+    },
+    {
+      "donor": 76,
+      "group": "held",
+      "pair_id": 76,
+      "target": 218
+    },
+    {
+      "donor": 217,
+      "group": "development",
+      "pair_id": 77,
+      "target": 77
+    },
+    {
+      "donor": 216,
+      "group": "development",
+      "pair_id": 78,
+      "target": 78
+    },
+    {
+      "donor": 215,
+      "group": "development",
+      "pair_id": 79,
+      "target": 79
+    },
+    {
+      "donor": 80,
+      "group": "development",
+      "pair_id": 80,
+      "target": 214
+    },
+    {
+      "donor": 213,
+      "group": "development",
+      "pair_id": 81,
+      "target": 81
+    },
+    {
+      "donor": 82,
+      "group": "development",
+      "pair_id": 82,
+      "target": 212
+    },
+    {
+      "donor": 211,
+      "group": "held",
+      "pair_id": 83,
+      "target": 83
+    },
+    {
+      "donor": 84,
+      "group": "development",
+      "pair_id": 84,
+      "target": 210
+    },
+    {
+      "donor": 209,
+      "group": "held",
+      "pair_id": 85,
+      "target": 85
+    },
+    {
+      "donor": 86,
+      "group": "development",
+      "pair_id": 86,
+      "target": 208
+    },
+    {
+      "donor": 207,
+      "group": "held",
+      "pair_id": 87,
+      "target": 87
+    },
+    {
+      "donor": 88,
+      "group": "held",
+      "pair_id": 88,
+      "target": 206
+    },
+    {
+      "donor": 205,
+      "group": "development",
+      "pair_id": 89,
+      "target": 89
+    },
+    {
+      "donor": 204,
+      "group": "held",
+      "pair_id": 90,
+      "target": 90
+    },
+    {
+      "donor": 203,
+      "group": "development",
+      "pair_id": 91,
+      "target": 91
+    },
+    {
+      "donor": 202,
+      "group": "development",
+      "pair_id": 92,
+      "target": 92
+    },
+    {
+      "donor": 201,
+      "group": "held",
+      "pair_id": 93,
+      "target": 93
+    },
+    {
+      "donor": 200,
+      "group": "held",
+      "pair_id": 94,
+      "target": 94
+    },
+    {
+      "donor": 199,
+      "group": "held",
+      "pair_id": 95,
+      "target": 95
+    },
+    {
+      "donor": 96,
+      "group": "held",
+      "pair_id": 96,
+      "target": 198
+    },
+    {
+      "donor": 97,
+      "group": "held",
+      "pair_id": 97,
+      "target": 197
+    },
+    {
+      "donor": 196,
+      "group": "development",
+      "pair_id": 98,
+      "target": 98
+    },
+    {
+      "donor": 99,
+      "group": "held",
+      "pair_id": 99,
+      "target": 195
+    },
+    {
+      "donor": 194,
+      "group": "development",
+      "pair_id": 100,
+      "target": 100
+    },
+    {
+      "donor": 193,
+      "group": "held",
+      "pair_id": 101,
+      "target": 101
+    },
+    {
+      "donor": 192,
+      "group": "held",
+      "pair_id": 102,
+      "target": 102
+    },
+    {
+      "donor": 191,
+      "group": "held",
+      "pair_id": 103,
+      "target": 103
+    },
+    {
+      "donor": 104,
+      "group": "held",
+      "pair_id": 104,
+      "target": 190
+    },
+    {
+      "donor": 105,
+      "group": "development",
+      "pair_id": 105,
+      "target": 189
+    },
+    {
+      "donor": 188,
+      "group": "development",
+      "pair_id": 106,
+      "target": 106
+    },
+    {
+      "donor": 187,
+      "group": "held",
+      "pair_id": 107,
+      "target": 107
+    },
+    {
+      "donor": 186,
+      "group": "development",
+      "pair_id": 108,
+      "target": 108
+    },
+    {
+      "donor": 185,
+      "group": "development",
+      "pair_id": 109,
+      "target": 109
+    },
+    {
+      "donor": 110,
+      "group": "held",
+      "pair_id": 110,
+      "target": 184
+    },
+    {
+      "donor": 183,
+      "group": "held",
+      "pair_id": 111,
+      "target": 111
+    },
+    {
+      "donor": 182,
+      "group": "development",
+      "pair_id": 112,
+      "target": 112
+    },
+    {
+      "donor": 181,
+      "group": "development",
+      "pair_id": 113,
+      "target": 113
+    },
+    {
+      "donor": 114,
+      "group": "held",
+      "pair_id": 114,
+      "target": 180
+    },
+    {
+      "donor": 115,
+      "group": "development",
+      "pair_id": 115,
+      "target": 179
+    },
+    {
+      "donor": 116,
+      "group": "held",
+      "pair_id": 116,
+      "target": 178
+    },
+    {
+      "donor": 117,
+      "group": "development",
+      "pair_id": 117,
+      "target": 177
+    },
+    {
+      "donor": 118,
+      "group": "held",
+      "pair_id": 118,
+      "target": 176
+    },
+    {
+      "donor": 119,
+      "group": "held",
+      "pair_id": 119,
+      "target": 175
+    },
+    {
+      "donor": 174,
+      "group": "held",
+      "pair_id": 120,
+      "target": 120
+    },
+    {
+      "donor": 121,
+      "group": "held",
+      "pair_id": 121,
+      "target": 173
+    },
+    {
+      "donor": 122,
+      "group": "development",
+      "pair_id": 122,
+      "target": 172
+    },
+    {
+      "donor": 123,
+      "group": "development",
+      "pair_id": 123,
+      "target": 171
+    },
+    {
+      "donor": 170,
+      "group": "development",
+      "pair_id": 124,
+      "target": 124
+    },
+    {
+      "donor": 125,
+      "group": "development",
+      "pair_id": 125,
+      "target": 169
+    },
+    {
+      "donor": 126,
+      "group": "held",
+      "pair_id": 126,
+      "target": 168
+    },
+    {
+      "donor": 127,
+      "group": "held",
+      "pair_id": 127,
+      "target": 167
+    },
+    {
+      "donor": 128,
+      "group": "held",
+      "pair_id": 128,
+      "target": 166
+    },
+    {
+      "donor": 165,
+      "group": "held",
+      "pair_id": 129,
+      "target": 129
+    },
+    {
+      "donor": 164,
+      "group": "held",
+      "pair_id": 130,
+      "target": 130
+    },
+    {
+      "donor": 131,
+      "group": "held",
+      "pair_id": 131,
+      "target": 163
+    },
+    {
+      "donor": 132,
+      "group": "development",
+      "pair_id": 132,
+      "target": 162
+    },
+    {
+      "donor": 161,
+      "group": "held",
+      "pair_id": 133,
+      "target": 133
+    },
+    {
+      "donor": 134,
+      "group": "held",
+      "pair_id": 134,
+      "target": 160
+    },
+    {
+      "donor": 159,
+      "group": "held",
+      "pair_id": 135,
+      "target": 135
+    },
+    {
+      "donor": 136,
+      "group": "held",
+      "pair_id": 136,
+      "target": 158
+    },
+    {
+      "donor": 137,
+      "group": "held",
+      "pair_id": 137,
+      "target": 157
+    },
+    {
+      "donor": 138,
+      "group": "held",
+      "pair_id": 138,
+      "target": 156
+    },
+    {
+      "donor": 139,
+      "group": "held",
+      "pair_id": 139,
+      "target": 155
+    },
+    {
+      "donor": 140,
+      "group": "held",
+      "pair_id": 140,
+      "target": 154
+    },
+    {
+      "donor": 141,
+      "group": "held",
+      "pair_id": 141,
+      "target": 153
+    },
+    {
+      "donor": 142,
+      "group": "development",
+      "pair_id": 142,
+      "target": 152
+    },
+    {
+      "donor": 151,
+      "group": "development",
+      "pair_id": 143,
+      "target": 143
+    },
+    {
+      "donor": 144,
+      "group": "held",
+      "pair_id": 144,
+      "target": 150
+    },
+    {
+      "donor": 145,
+      "group": "held",
+      "pair_id": 145,
+      "target": 149
+    },
+    {
+      "donor": 146,
+      "group": "held",
+      "pair_id": 146,
+      "target": 148
+    }
+  ],
+  "primary_roi": {
+    "cols_zero_based_half_open": [
+      1152,
+      1408
+    ],
+    "rows_zero_based_half_open": [
+      952,
+      1208
+    ],
+    "selection": "fixed central 256 square, using the released SystemSetup.m center row1080 col1280. No registration, translation or rescaling.",
+    "units": "camera pixels"
+  },
+  "primary_shape": "Subtract one spatial mean, divide by Euclidean norm over all 65536 ROI pixels separately per image. Target transformation belongs only to scorer. A constant image maps to all zero and remains in primary aggregate, with count disclosed; nonconstant shape error is Euclidean distance of unit vectors.",
+  "public_reader_main_git_blob": "8e112826fb128a2efcf737eae0db95c2ed38f902",
+  "separate_multiplex_endpoint": "not scored; corresponding second stack and random realization unbound",
+  "source_directory_receipt_sha256": "146568c925eebb360c54d4464bdd7bd2e0ab8753f69ee2a9592e149b7616619b",
+  "source_indexing": "i=1..293 is column-major order over LitCoord<9.5 (h0=14,v0=13), counterpart 294-i. Numeric file index records the assignment. Central camera ROI can have finite off-axis mismatch.",
+  "source_only_diagnostics": "Check source identity and direction-dependent diversity, zero/dynamic range or constant/clipping path, recorded opposing-pair residuals and strongest same-information interpolation. Candidate and complete controls will freeze after source diagnostics and before held pixels; no held-selection changes.",
+  "status": "prospective source/held membership before any pixels",
+  "version": 1
+}

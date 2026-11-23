@@ -1,0 +1,278 @@
+{
+  "tianDevStatus": {
+    "arguments_sha256": "e78773855ba9516dfe4e2f988c9c144cd1e93b8d907d2985066f228651b56a2b",
+    "begin": "2026-11-23T01:07:34.228260681Z",
+    "end": "2026-11-23T01:07:35.657296538Z",
+    "exit": 0,
+    "generation": "4e9424e658bf7dfd6b9063c34bdf67e3192a3a350214f1ac79fbfb719561c5f7",
+    "job_id": "p3-f747-tian-48-observed-pairs-source-only-worst-contrast",
+    "output_length": 1041,
+    "output_sha256": "408d89f1ef7a81b45c79494430237b38868afccc8367c3f44023d36c62082941",
+    "request_sha256": "a0f98353c3a9a8c576b0672e4b3b52553c44c171291356ceb866dd617c8079fa",
+    "resource_usage": {
+      "max_rss_bytes": 60436480,
+      "max_rss_scope": "largest_waited_process",
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.047913,
+      "user_cpu_seconds": 1.329481
+    },
+    "worker": "node-79febd8541173afe561fb18d1d53c16c"
+  },
+  "tianDiagStatus": {
+    "arguments_sha256": "e18e45eed631b4732864a8ba3925e1157b75e11bf529a3ce5dd7e414ebf4517a",
+    "begin": "2026-11-23T01:19:30.971541262Z",
+    "end": "2026-11-23T01:19:34.702642224Z",
+    "exit": 0,
+    "generation": "b790a552d105c37ebb54704c5975414069c4f9984bc2455f248b5fc0219cf781",
+    "job_id": "p3-f747-tian-locate-absolute-roundoff-and-ranking-of-full-recount",
+    "output_length": 10004,
+    "output_sha256": "76562b7857b23c7be301bdd5b43bdaa336d86b70fdfa918ef558ae3fecaab327",
+    "request_sha256": "12d8351455dc1a1a6c49c04f69422f21c149019a61cd134f79b84f5489b23992",
+    "resource_usage": {
+      "max_rss_bytes": 626900992,
+      "max_rss_scope": "largest_waited_process",
+      "source": "linux_rusage",
+      "system_cpu_seconds": 2.155348,
+      "user_cpu_seconds": 1.503313
+    },
+    "worker": "node-79febd8541173afe561fb18d1d53c16c"
+  },
+  "tianForecastStatus": {
+    "arguments_sha256": "74c09efc71435d71871a1f05d66e5b510691d8f72cbdfcf126b1d0f991c393fe",
+    "begin": "2026-11-23T01:09:50.172135513Z",
+    "end": "2026-11-23T01:10:22.065949807Z",
+    "exit": 0,
+    "generation": "a3ce2d0e7af12a7f1abc40079ec119561ed1ff3fa40013cff938ef917361bb10",
+    "job_id": "p3-f747-tian-11-roles-1078-sealed-image-shape-forecasts",
+    "output_length": 3658,
+    "output_sha256": "1296a3bbffbe9a24cf97b234ef885bb024ac99ecfd388e3c50b81c05b8f3a0f1",
+    "request_sha256": "83cfab08660ac839642aafdb0bd3d350b92bf7670db2b1b2934fb0ef1699e073",
+    "resource_usage": {
+      "max_rss_bytes": 570580992,
+      "max_rss_scope": "largest_waited_process",
+      "source": "linux_rusage",
+      "system_cpu_seconds": 1.547485,
+      "user_cpu_seconds": 30.271086
+    },
+    "worker": "node-79febd8541173afe561fb18d1d53c16c"
+  },
+  "tianFullListingPoll": {
+    "arguments_sha256": "5ebcec5653b1611e54f1c5c15b7969fd214970d3f3f3284090b210cd344e18d7",
+    "begin": "2026-11-23T00:54:26.936472345Z",
+    "end": "2026-11-23T00:54:27.858320972Z",
+    "exit": 0,
+    "generation": "f3f518080314ace60dbe51b95d920a976553b43f8910d25c00d7c174cc8171b4",
+    "job_id": "p3-f747-tian-complete-anonymous-embedded-chart-filename-directory",
+    "output_length": 14074,
+    "output_sha256": "146568c925eebb360c54d4464bdd7bd2e0ab8753f69ee2a9592e149b7616619b",
+    "request_sha256": "8ca13a50e9940d236c2add9641a56c9185c49727ba73574a09d7006bc1daf2f7",
+    "resource_usage": {
+      "max_rss_bytes": 24293376,
+      "max_rss_scope": "largest_waited_process",
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.012288,
+      "user_cpu_seconds": 0.077827
+    },
+    "worker": "node-79febd8541173afe561fb18d1d53c16c"
+  },
+  "tianHeldStatus": {
+    "arguments_sha256": "c8482aa29af5f9160cd824b03c6cb580ccbbdda7e24c1bb6c7327c3941921a3d",
+    "begin": "2026-11-23T01:12:24.290094781Z",
+    "end": "2026-11-23T01:14:48.300747007Z",
+    "exit": 0,
+    "generation": "014811a3d20f292f7a24f8308f7e0409e582b1549ac5a2d0908f4b7373a167c2",
+    "job_id": "p3-f747-tian-98-frozen-target-tiles-after-all-1078-shape-locks",
+    "output_length": 431,
+    "output_sha256": "b096c0d77b13175bc62139e8bc8272fb709e0546d41465988fbd91ac650ecafa",
+    "request_sha256": "fccba95443e193201f296f06451e1f66bc18d19c25ff456f96ab0b14a96778c7",
+    "resource_usage": {
+      "max_rss_bytes": 32727040,
+      "max_rss_scope": "largest_waited_process",
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.785556,
+      "user_cpu_seconds": 3.426296
+    },
+    "worker": "node-79febd8541173afe561fb18d1d53c16c"
+  },
+  "tianIFDPoll": {
+    "arguments_sha256": "10d7be7948b498d89b791bce20b202a01fd10fbe6204d38a6686d0dc082ec15a",
+    "begin": "2026-11-23T00:55:38.721237846Z",
+    "end": "2026-11-23T00:55:51.153828285Z",
+    "exit": 0,
+    "generation": "51b89e084bbf0be2d9e81711f2f455db9bfde4bbbb24fa37575fef0b6a7ec242",
+    "job_id": "p3-f747-tian-three-chart-ifd-only-no-strip-reads",
+    "output_length": 1466,
+    "output_sha256": "42167193bbf7058fb695a1e740e345db70264ac91eb24141e887db1f796f2813",
+    "request_sha256": "99dada6568b6e8757eb1b3f74176f7a2468ba1f340dc566babbd87c1c4aa9892",
+    "resource_usage": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 25186304,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "python": 0.26000000000000006
+        },
+        "distinct_processes": 1,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 124,
+        "read_errors": 0,
+        "saturated_snapshots": 0,
+        "snapshots": 124
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.038268,
+      "user_cpu_seconds": 0.244764
+    },
+    "worker": "node-bf5f0531217bc08888c18af9bb61e75e"
+  },
+  "tianIndStatus": {
+    "arguments_sha256": "278d2999744d8c7cd17a49a9806952dce1c764c9a72219af872c280281d8c8e7",
+    "begin": "2026-11-23T01:17:24.467307404Z",
+    "end": "2026-11-23T01:17:26.009155204Z",
+    "exit": 1,
+    "generation": "a8c7a641e3550f29ba21897f55b5ac20d8b0499e4d9c2079ef6095df78e11ffd",
+    "job_id": "p3-f747-tian-independent-complete-3234-score-121-worst-index-recount",
+    "output_length": 138,
+    "output_sha256": "6a99956dd2b5986ead5a30ebc5c70372beadd979a023c0a1e60bb7fa9af2efc9",
+    "request_sha256": "e20d08863df35d2a7d4f3eaacfc1bd80482b7bc5aa67755bfe249303f66a86ae",
+    "resource_usage": {
+      "max_rss_bytes": 575238144,
+      "max_rss_scope": "largest_waited_process",
+      "source": "linux_rusage",
+      "system_cpu_seconds": 1.042735,
+      "user_cpu_seconds": 0.431436
+    },
+    "worker": "node-79febd8541173afe561fb18d1d53c16c"
+  },
+  "tianMetadataReadback": {
+    "arguments_sha256": "4576933add907c0a1603bcbee09c47237cbad04c56f2e238a282581081224640",
+    "begin": "2026-11-23T01:21:24.04738201Z",
+    "end": "2026-11-23T01:21:24.139928339Z",
+    "exit": 0,
+    "generation": "76eabf21129dd2a4e12062dd367146ade273912503c25c6eab7440489ee57ef4",
+    "job_id": "p3-f747-tian-readback-three-original-digest-manifests-no-image-bytes",
+    "output_length": 75107,
+    "output_sha256": "e717e42d235ba8fccaaef8bf41026abe2763837ea1d116335c4bf183d44aed2d",
+    "request_sha256": "131403406e03f728112b6557ae715eb0a21ec4d5a2398a38f1ae89f3ce7ccaf4",
+    "resource_usage": {
+      "max_rss_bytes": 16543744,
+      "max_rss_scope": "largest_waited_process",
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.004018,
+      "user_cpu_seconds": 0.028131
+    },
+    "worker": "node-79febd8541173afe561fb18d1d53c16c"
+  },
+  "tianParamPoll": {
+    "arguments_sha256": "3587d205145bd5843938b93c649d9076145eb4d34b9d4ee92feae523a2cb7bd9",
+    "begin": "2026-11-23T00:52:45.780298224Z",
+    "end": "2026-11-23T00:52:47.874937691Z",
+    "exit": 0,
+    "generation": "417be10d04364df5717979e92274b33fb1147846499552e0ccf638bf1e74b9cf",
+    "job_id": "p3-f747-tian-author-parameter-and-directory-page-controls",
+    "output_length": 2831,
+    "output_sha256": "770d7acaf90886c9b81b3491011598344dbd591b0dba78c0959d3a68c34b1189",
+    "request_sha256": "316fb005fde93ced4a6e55ad94a30082fcce05be092eeed35f85fc4a14312437",
+    "resource_usage": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 24236032,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "python": 0.05
+        },
+        "distinct_processes": 1,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 21,
+        "read_errors": 0,
+        "saturated_snapshots": 0,
+        "snapshots": 21
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.01822,
+      "user_cpu_seconds": 0.054652
+    },
+    "worker": "node-8879be0ade29acfeda94e5c7be7b4c5a"
+  },
+  "tianPubPoll": {
+    "arguments_sha256": "5336c6c49cfae00d1e8a343bcae9452bca3b4ee5b8bc1b9cc6d0bae42ca7ec79",
+    "begin": "2026-11-23T00:49:39.363204658Z",
+    "end": "2026-11-23T00:49:40.710106892Z",
+    "exit": 0,
+    "generation": "15ba5ecbe5a870accfbafff344da8abd4e0b6ca24b41c079bd3982112bdf6747",
+    "job_id": "p3-f747-tian-source-only-public-chart-metadata-no-file-bodies",
+    "output_length": 1572,
+    "output_sha256": "c9c38e4a7047a362f56dd2a8dc2c7e1ab7cc59a8a2a7d9b8e732d5af95a6ba2f",
+    "request_sha256": "8b98871156d5f30296955ce59c7e7523ccc2c3b0094aa6a6b50217e7cf920be5",
+    "resource_usage": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 23924736,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "python": 0.05
+        },
+        "distinct_processes": 1,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 13,
+        "read_errors": 0,
+        "saturated_snapshots": 0,
+        "snapshots": 13
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.01874,
+      "user_cpu_seconds": 0.063716
+    },
+    "worker": "node-ed6d75e73315250d137bef37f2e21b18"
+  },
+  "tianScoreStatus0": {
+    "arguments_sha256": "a756a2495a189b9c9a1e7ccf57ec9712e3f05c57d872d3589e13f9aad1b7ff89",
+    "begin": "2026-11-23T01:15:29.842546761Z",
+    "end": "2026-11-23T01:15:31.267323823Z",
+    "exit": 0,
+    "generation": "c162b9bd4b094266787035f51dba23b2dd4a5a716dc2ec197586f80c6c87851f",
+    "job_id": "p3-f747-tian-score-all-98-observed-held-singleton-tiles",
+    "output_length": 57290,
+    "output_sha256": "0e8d8dbce929baaff3891741fd2b27cad3fbae489902ba11262145280a941048",
+    "request_sha256": "a20cae81b6a611dfa14beb70ce89e5b914b26654e67c7b736ed87f241e131ed3",
+    "resource_usage": {
+      "max_rss_bytes": 334094336,
+      "max_rss_scope": "largest_waited_process",
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.416483,
+      "user_cpu_seconds": 0.961067
+    },
+    "worker": "node-79febd8541173afe561fb18d1d53c16c"
+  },
+  "tianSourceTileStatus": {
+    "arguments_sha256": "de2bf8b0408da5d936b9d2de939300b3b14e472345522d9104a71df7477beb8d",
+    "begin": "2026-11-23T01:00:37.001583153Z",
+    "end": "2026-11-23T01:06:44.674183889Z",
+    "exit": 0,
+    "generation": "3e56ed800adf047bbc16ae929ba2621e0dcae4dce539f54d52f437ab432e6287",
+    "job_id": "p3-f747-tian-195-development-singleton-central-chart-tiles",
+    "output_length": 613,
+    "output_sha256": "3ee558741b66a8a3b5a29cdfca408c5613799e4ff0383c316aed9026db122c4d",
+    "request_sha256": "dee92d9cb9c2c42dad8e17a529c28075982e1130e8618e140f3f1dd071387189",
+    "resource_usage": {
+      "max_rss_bytes": 31744000,
+      "max_rss_scope": "largest_waited_process",
+      "source": "linux_rusage",
+      "system_cpu_seconds": 1.3593169999999999,
+      "user_cpu_seconds": 5.870219
+    },
+    "worker": "node-79febd8541173afe561fb18d1d53c16c"
+  }
+}

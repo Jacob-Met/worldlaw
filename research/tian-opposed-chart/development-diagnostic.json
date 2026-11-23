@@ -1,0 +1,52 @@
+{
+  "constant_count": 0,
+  "development_pairs": 48,
+  "development_shapes": 195,
+  "donor_raw": {
+    "hard_limits": 0,
+    "mean_DN": 105.06484985351562,
+    "raw_max": 325,
+    "raw_min": 84,
+    "rms_DN": 6.665468679632007
+  },
+  "normalized_shape_mean_squares": {
+    "nearest": 0.7588915981037646,
+    "opposite": 0.4978883223763606,
+    "radial": 1.171063942485605
+  },
+  "numpy_version": "1.26.4",
+  "raw_RMS_DN_range": [
+    4.792095714074268,
+    9673.663977154383
+  ],
+  "rms_at_most_one_DN": 0,
+  "stored_endpoints_0_or_65535": 0,
+  "target_access": 0,
+  "target_raw": {
+    "hard_limits": 0,
+    "mean_DN": 100.81002807617188,
+    "raw_max": 381,
+    "raw_min": 82,
+    "rms_DN": 6.060112047762672
+  },
+  "worst_pair": {
+    "d": 18,
+    "near_donor": 263,
+    "nearest": 1.013322363881476,
+    "opposite": 1.190428965061781,
+    "r2": 89,
+    "radial": 1.3820177705412071,
+    "radial_donor": 231,
+    "t": 276
+  },
+  "worst_pair_pixel": {
+    "donor": 325,
+    "donor_z": 32.996201875278594,
+    "row_col_zero_based": [
+      1093,
+      1294
+    ],
+    "target": 381,
+    "target_z": 46.235114089560646
+  }
+}

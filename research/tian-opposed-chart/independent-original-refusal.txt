@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "<string>", line 68, in <module>
+  File "<string>", line 47, in main
+ValueError: score mismatch

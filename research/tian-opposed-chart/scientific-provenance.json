@@ -1,0 +1,53 @@
+{
+  "chart_parameter": {
+    "bytes": 2420,
+    "sha256": "f95dfe2eabf60bafe6ff45d87dbae1440cdc88e0eba8478469286dc9c0bff07e"
+  },
+  "author_repository": "Waller-Lab/FPM",
+  "commit": "ac5cd45313153cd5337f31797a5c2d22efaa5e70",
+  "git_tree": "dcb67772e50e0d45432c6360813e3d2a37892daf",
+  "files": [
+    [
+      "FP_Func/AlterMin.m",
+      "e4125cdd5905bc46e9e3715753f2393253c4ce3c"
+    ],
+    [
+      "FP_Func/GDUpdate_Multiplication_rank1.m",
+      "350fa5891d6341ec822810813f7d7530c1e14cb1"
+    ],
+    [
+      "FP_Func/GDUpdate_Multiplication_rank_r.m",
+      "ea3ba02d1f916dc10aa80ccdb9d968c3ca4a3eae"
+    ],
+    [
+      "FP_Func/Proj_Fourier_v2.m",
+      "54bf2f56653b1629ea9873726f429be90498f6c3"
+    ],
+    [
+      "FP_Func/SystemSetup.m",
+      "2d66eeed5c732e3350bab75c5d1d46ce406935bb"
+    ],
+    [
+      "LICENSE",
+      "18c7b6507c7dcc07374c56f0179001300ce921bb"
+    ],
+    [
+      "README.md",
+      "7860a474bb14bbb13c18e37e8b52fbd2168aed3b"
+    ],
+    [
+      "main.m",
+      "8e112826fb128a2efcf737eae0db95c2ed38f902"
+    ]
+  ],
+  "registration": {
+    "split": "att-mwsk5bbahxrn96",
+    "split_sha256": "f1234fc1d4720d73a6699d1c70f97c55da34d95c97452709e77b9c33ce861587",
+    "preheld_code": "att-mwskiydkx7ustv",
+    "kit_sha256": "788464f7a6a9301b20cd5a3081377f30fad0639d6abf9ac05440bf4bbcbadc05",
+    "pre_first_held_post": 185416
+  },
+  "originals_public_intake_scope": "The shared directory roster is represented by all names and IDs in singleton-split.json. Three metadata-only header reads inspected TIFF 1,147,293; during the blind source and held stages every used TIFF passed the full shape and offsets contract. The source-only author parameter body is not redistributed.",
+  "article": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4102371/",
+  "author_release": "https://sites.bu.edu/tianlab/open-source/"
+}
