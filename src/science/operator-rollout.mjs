@@ -27,7 +27,7 @@ function forcingResolution(course) {
 function drive(course,t,j,n) {
   const f=course.forcing,duration=course.step*course.steps;
   if(f.amplitude===0)return f.offset;
-  const cycles=f.startFrequency*t+(f.endFrequency-f.startFrequency)*t*t/(2*duration);
+  const cycles=f.startFrequency*t+(f.endFrequency-f.startFrequency)*t*(t/duration)/2;
   const spatial=j===null?1:Math.cos(2*Math.PI*f.spatialMode*j/n);
   return f.offset+f.amplitude*spatial*Math.sin(2*Math.PI*cycles);
 }

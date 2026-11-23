@@ -98,3 +98,14 @@ test('continuous forcing is resolved before ranking or checking held trajectorie
   }
   assert.equal(designEvolutionExcitation([active,active],[sine(1.25),dc]).status,'indistinguishable_on_menu');
 });
+
+test('the chirp phase survives a reciprocal time and frequency rescaling',()=>{
+  const model=simple('periodic');
+  const solve=duration=>rolloutEvolution(model,{
+    id:'rescaled',initial:[0,0,0],spacing:1,step:duration,steps:1,
+    forcing:{offset:0,amplitude:1/duration,startFrequency:0,endFrequency:1/duration,spatialMode:0},
+  },16).at(-1);
+  const normal=solve(1),rescaled=solve(1e308);
+  assert.ok(normal[0]>.5);
+  for(let i=0;i<normal.length;i++)assert.ok(Math.abs(normal[i]-rescaled[i])<1e-13);
+});
