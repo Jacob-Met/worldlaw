@@ -1,0 +1,93 @@
+{
+  "job": "p3-f747-fhnw-source-only-field-subspace-capacity",
+  "binding": {
+    "mandate": "_unattributed",
+    "forward_resource_budget": true,
+    "forward_start_caller": true,
+    "caller": {
+      "agent": "astra62-p3-f747f5728172",
+      "attribution": "caller_named"
+    },
+    "session_id": "p3-f747-fhnw-source-only-field-subspace-capacity",
+    "job_id": "p3-f747-fhnw-source-only-field-subspace-capacity",
+    "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+    "command_id": "p3-f747-fhnw-source-only-field-subspace-capacity",
+    "start_operation_id": "placement-ef59143cdf078e614ea34c214a2bcfa4b861a819150bfa7d",
+    "arguments_sha256": "d76eccf390b67f51bf92014e1655f3ac872b7f3c5b8e6c4c0afdd44dd04fbc87",
+    "requirements": {
+      "retain_output_bytes": 65536,
+      "retain_full_output": true,
+      "cpu_cores": 1,
+      "git_repositories": [
+        "Jacob-Met/worldlaw"
+      ],
+      "executables": [
+        "git",
+        "python3",
+        "uv"
+      ],
+      "memory_bytes": 900000000,
+      "scratch_bytes": 500000000
+    },
+    "created_at": "2026-11-23T09:46:23.120877069Z",
+    "active": false
+  },
+  "receipt": {
+    "script_observation_version": 3,
+    "working_tree_context": {
+      "repository": "github.com/Jacob-Met/cursor-swiss-env",
+      "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+    },
+    "resource_usage": {
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "interval_milliseconds": 100,
+        "cpu_seconds": {
+          "git": 1.0699999999999998,
+          "other": 0.07,
+          "python": 0.01
+        },
+        "snapshots": 19,
+        "nonempty_snapshots": 19,
+        "distinct_processes": 7,
+        "read_errors": 2,
+        "saturated_snapshots": 0
+      },
+      "source": "linux_rusage",
+      "user_cpu_seconds": 1.158958,
+      "system_cpu_seconds": 0.188122,
+      "max_rss_bytes": 34652160,
+      "max_rss_scope": "largest_waited_process"
+    },
+    "resource_process": {
+      "pid": 1647295,
+      "start_ticks": 55071981,
+      "boot_id": "1ca46c53-d5e4-4b04-a9c4-fed66e762765"
+    },
+    "command_id": "p3-f747-fhnw-source-only-field-subspace-capacity",
+    "request_sha256": "5092b2e5b291770daf26c2269816d04ff5c0c77cdf03cdac6ae5f45c02a33eb9",
+    "generation": "a331431a430a0cc66178b0f710ca843f5c4d009a6677e0edaa6c21adda4d018a",
+    "state": "completed",
+    "runner_pid": 1647283,
+    "started_at": "2026-11-23T09:46:23.71809351Z",
+    "finished_at": "2026-11-23T09:46:25.649337875Z",
+    "exit_code": 0
+  },
+  "result": {
+    "basis_principal_angles_deg": [
+      0.9962663207389227,
+      1.069897999421915,
+      1.3830981581453434
+    ],
+    "candidate_minus_isotropic_rms": 0.00027975473569966146,
+    "max_possible_rms_given_current_offset_norm": 0.0003013234686689611,
+    "minimum_local_singular": 0.5607166276049803,
+    "projector_norm": 0.024137272362219638,
+    "sin_largest": 0.024137272362224276,
+    "worst_local_condition": 1.0464013104299343
+  }
+}

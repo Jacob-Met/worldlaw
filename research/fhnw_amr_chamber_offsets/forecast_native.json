@@ -1,0 +1,97 @@
+{
+  "job": "p3-f747-manadbs-registered-42-coil-files-3t-prior-only",
+  "binding": {
+    "mandate": "_unattributed",
+    "forward_resource_budget": true,
+    "forward_start_caller": true,
+    "caller": {
+      "agent": "astra62-p3-f747f5728172",
+      "attribution": "caller_named"
+    },
+    "session_id": "p3-f747-manadbs-registered-42-coil-files-3t-prior-only",
+    "job_id": "p3-f747-manadbs-registered-42-coil-files-3t-prior-only",
+    "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+    "command_id": "p3-f747-manadbs-registered-42-coil-files-3t-prior-only",
+    "start_operation_id": "placement-cf30bd5555f306f44ffd6853b37805cfa057b2568bd55208",
+    "arguments_sha256": "c496a829bf42514718b3d7443f01a982fd3d8ce671e3342da18ba08bdf73dd70",
+    "requirements": {
+      "retain_output_bytes": 65536,
+      "retain_full_output": true,
+      "cpu_cores": 1,
+      "git_repositories": [
+        "Jacob-Met/worldlaw"
+      ],
+      "executables": [
+        "git",
+        "python3",
+        "uv"
+      ],
+      "memory_bytes": 900000000,
+      "scratch_bytes": 500000000
+    },
+    "created_at": "2026-11-23T09:41:17.525668647Z",
+    "active": false
+  },
+  "receipt": {
+    "command_id": "p3-f747-manadbs-registered-42-coil-files-3t-prior-only",
+    "exit_code": 0,
+    "finished_at": "2026-11-23T09:43:02.271405697Z",
+    "generation": "99a0abb8f1d192a909d9c374c033188fa2f23cc5eb0d7445fafc655d80e45ec4",
+    "request_sha256": "4f2ca294d440c3ad274a5addd111f49b3d6f5b0ff81f7f4c6bb95a9bb32d3d5a",
+    "resource_process": {
+      "boot_id": "a6da9a5b-0643-4c19-acd9-88aaf545786f",
+      "pid": 1178050,
+      "start_ticks": 51434910
+    },
+    "resource_usage": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 63299584,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "git": 0.8999999999999999,
+          "other": 0.11,
+          "python": 1.620000000000001
+        },
+        "distinct_processes": 7,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 1045,
+        "read_errors": 1,
+        "saturated_snapshots": 0,
+        "snapshots": 1045
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.300333,
+      "user_cpu_seconds": 2.63695
+    },
+    "runner_pid": 1178036,
+    "script_observation_version": 3,
+    "started_at": "2026-11-23T09:41:17.804681721Z",
+    "state": "completed",
+    "working_tree_context": {
+      "repository": "github.com/Jacob-Met/cursor-swiss-env",
+      "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+    }
+  },
+  "complete_stdout": {
+    "job_id": "p3-f747-manadbs-registered-42-coil-files-3t-prior-only",
+    "state": "captured",
+    "source": {
+      "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+      "command_id": "p3-f747-manadbs-registered-42-coil-files-3t-prior-only",
+      "request_sha256": "4f2ca294d440c3ad274a5addd111f49b3d6f5b0ff81f7f4c6bb95a9bb32d3d5a",
+      "generation": "99a0abb8f1d192a909d9c374c033188fa2f23cc5eb0d7445fafc655d80e45ec4",
+      "receipt_sha256": "53d1cdc24ab8f19d4d896fe1174d043e52e87ce7038c4c9ea5f338c45a7242d0",
+      "output_bytes": 134685
+    },
+    "total_bytes": 134685,
+    "sha256": "3eebd241fd1c4e81a0f5c34a90790a9bf1a9160e52b07a58473a8f3134e370b0",
+    "offset": 0,
+    "next_offset": 0,
+    "has_more": true
+  }
+}
