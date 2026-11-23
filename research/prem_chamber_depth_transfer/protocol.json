@@ -1,0 +1,100 @@
+{
+  "schema": "worldlaw.prem-chamber-directional-transfer.v1",
+  "source": {
+    "fraction": "32–63 μm",
+    "diameter_um": 47.5,
+    "columns": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "source_selection": "Single PARSEC plagioclase sheet with authenticated 0-degree apparatus. Distinct enstatite/olivine setups excluded, no numerical assays opened. Additional Stony Brook workbook HTTP403 retained; no mirror or enlarged cohort.",
+  "prior": "Publication qualitative size trends, calibration settings and historical model comparisons for all three fractions exposed. This is an archival, prospective numerical forecast lock, not previously unstudied samples.",
+  "files": {
+    "zip": "469765e8b4a08a47525c0326351ae2dfdc45000073369e04d22f81acaf6d8796",
+    "workbook": "56738a7ff6a99469282dbd982d0289c212106704178a9b73784a153bd92450ac"
+  },
+  "held": [
+    {
+      "fraction": "63–90 μm",
+      "diameter_um": 76.5,
+      "columns": [
+        "E",
+        "F",
+        "G"
+      ]
+    },
+    {
+      "fraction": "<32 μm",
+      "diameter_um": 16,
+      "columns": [
+        "I",
+        "J",
+        "K"
+      ]
+    }
+  ],
+  "access": "Predictor receives all wavelengths and ambient emissivities, only C for SLE. G/K decoded by separate receiver after fixed arrays emitted, transferred and hash-verified. Physical workbook shares bytes; boundary is extraction logic. No target-derived CF, brightness temperature, intensity, fitted orientation, smoothing or clipping in inference. All568 rows each preparation. Target contribution in its own reported effective-emissivity transformation remains part of the measured quantity.",
+  "optical": "Use all three complex refractive-index orientations of independent plag_nk. Literal Maetzler mie_abcd and mie formulas evaluated with scipy.special Bessel J,Y at calibrated wavelengths. Require complete native-optics support within 0.001 μm to accommodate tabular rounding, else refuse. Use source assumption 0.37 across all preparations, independent spheres and air nmed=1; actual packing unmeasured. Mean grain sizes fixed as authored. Weight orientations from each fraction’s own ambient only using deposited simplex-grid fit at steps .01. Correct equal-orientation spectrum vs mean of three orientation spectra; weight g by scattering cross section. Both directional arms share these fitted optics. Sum of coefficients and angular recurrences require physical finite values. No scientific output inferred on input refusal.",
+  "transport": {
+    "layers": 100,
+    "layer_um": 10,
+    "substrate": "black",
+    "seed_formula": "Fixed random seed = 1 + big-endian uint64(SHA256(ASCII decimal replicate seed, colon, semantic label) first 8 bytes) mod (2^64−2). Labels include stage, nominal diameter and angle/axis as in forecast.py. The two runs have independent streams. No outcome-dependent restart.",
+    "orientation_rays_per_wavelength": 8192,
+    "final_rays_per_wavelength": 24576,
+    "angles": [
+      "hemisphere flux",
+      "normal central ray",
+      "finite cone 15 degrees half angle (sensitivity only)"
+    ],
+    "grid": "all supplied plagioclase wavelengths, 568 strictly increasing per preparation; native optical grid interpolated only within tolerance. Fixed three-sample moving average of brightness temperature, endpoint replicated, in every modeled spectrum including isothermal (published smoothing algorithm unnamed). Effective emissivity = B_lambda(Tb_lambda)/B_lambda(max(Tb)) over same entire grid. Apply same per-wavelength measured ambient/model-ambient compensation.",
+    "seeds": [
+      873541,
+      116903
+    ]
+  },
+  "temperature": {
+    "bottoms_K": [
+      350,
+      400
+    ],
+    "delta_K": [
+      0,
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      75,
+      100
+    ],
+    "depth_um": [
+      40,
+      80,
+      160,
+      320,
+      640,
+      1000
+    ],
+    "profile": "T_depth minus delta*max(1-z/depth,0), nominal top depths 0,10,...,990 um, fixed black bottom at T[deepest]. Choose lowest calibration RMSE over source 32–63 only, loop tie break ascending bottom then delta then depth. Source interface temperature unobserved. 350K matches cup setpoint, 400K is author model assumption."
+  },
+  "roles": [
+    "normal_same_hemisphere_gradient",
+    "hemisphere_source_fit",
+    "normal_own_source_fit",
+    "hemisphere_with_normal_gradient",
+    "cone15_same_hemisphere_gradient",
+    "author_hemisphere_400K_source_fit",
+    "ambient_unchanged",
+    "source_difference",
+    "source_ratio",
+    "normal_grain_scaled_hemisphere_gradient",
+    "hemisphere_grain_scaled_source_gradient"
+  ],
+  "empirical": "source_difference adds native aligned middle-fraction measured SLE minus ambient; source_ratio multiplies by measured SLE/ambient. Every target uses its own ambient input. Shared wavelength grids must agree within 1e-6 μm. No clipping; refuse any nonpositive denominator.",
+  "score": "Whole-spectrum RMSE of released dimensionless effective emissivity (equal native bins). Two distinct held preparations, one spectrum per size. Primary first role must win on both versus hemisphere_source_fit, author_hemisphere_400K_source_fit, ambient_unchanged, source_difference and source_ratio, in each of two fixed independent MC replicates. All other roles are fixed diagnostics and may be stronger. Report errors per fraction/role, MAE, largest signed error and same-row all-arm error; per-branch coefficient metadata, CPU time, raw extremes; no general instrument or unique temperature inference.",
+  "instrument": "PARSEC zero-degree nominal emission, 256-scan averaged spectrum. Normal is central-ray approximation. Unknown cone response, packing, angular/particle dependence, lamp adjustment and spectral self-normalization are material limits. Independent Stony Brook XLSX access returned HTTP403 before numeric values. Target physical source is deposited plagioclase subset only."
+}

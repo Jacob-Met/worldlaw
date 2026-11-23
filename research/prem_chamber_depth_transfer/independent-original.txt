@@ -1,0 +1,2 @@
+SOURCE a6ff87a4cbec8d648ba3ac652faac969ee00083b
+{"joint_gate": false, "locks": ["811c7356bb1d2edcc18234fc09a40f8502b3e83d1c8fc6c14749dc11479d70cf", "88ed2dbee2b336f4c3b7430ea08f36367ee64a291abd31d490592ef1b80e4e01"], "max_float_difference": 2.7755575615628914e-17, "native_predictions_recounted": 24992, "neighbors_and_roles_checked": 308, "original_targets": 1136, "replicate_gates": [false, false], "role_worsts": 44, "whole_spectrum_metrics": 88}
