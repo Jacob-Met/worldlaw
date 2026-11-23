@@ -1,0 +1,9 @@
+{
+  "primary_target": {
+    "2022-106975": "50 chemical-state T and pressure inputs observed through trusted extraction; optical/acoustic target values from Table12 and fitted coefficients from Table13 never emitted or inspected"
+  },
+  "reference": {
+    "2026-5c00816": "Exposed archived comparison, pre-freeze source search emitted 32 speed values on four isotherms (nominal340/350/400/450K; 0.1/0.5/1/2/5/10/15/20MPa). No retrospective blind claim. Tables5/6/7 direct calibration distinguished from SI tables15–17 derived from acoustics."
+  },
+  "coverage_notice": "State count and method source only. The later-year study compared its independently acquired measurements to Ahmadi; chronology and possible method-selection influence must be identified."
+}
