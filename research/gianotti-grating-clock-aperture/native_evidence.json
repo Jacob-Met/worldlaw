@@ -266,6 +266,26 @@
       "job_id": "p1-f747-gianotti-unloaded-three-carrier-type-i-channel-receive",
       "error_code": "INVALID_ARGUMENT",
       "fault": "Object containing commit and blob IDs provided instead of a commit string; rejected before native admission."
+    },
+    {
+      "job_id": "p1-f747-gianotti-portable-public-archive-decimal-reference-recount",
+      "owner": "node-f16b825d04f9993acd590fd2b38fe4f5",
+      "recorded_state": "failed",
+      "exit": 1,
+      "descendants": "drained",
+      "request_sha256": "28318257bf53f74d827ef2f26f21e75d39c321616347b53a526a16387ba45b1b",
+      "generation": "68efb98a383fea2a992a4fcaa5c6f51adc09e38aa4fd314504db533c7f333fe1",
+      "output_bytes": 982
+    },
+    {
+      "job_id": "p1-f747-gianotti-canonical-clock-and-decimal-unloaded-receiver",
+      "owner": "node-f16b825d04f9993acd590fd2b38fe4f5",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "8ea45ae6057ab2a7d39231df694e58b264d591789747382d6efb6ccf849d78aa",
+      "generation": "24befc07007b8556b8c59e8297edf0aaa9ff103b6ba988f82f97e5e47ffb4d1d",
+      "output_bytes": 730
     }
   ],
   "record_notes": [
@@ -274,6 +294,56 @@
     "The initial author-source requests reported DNS failures. Another source owner later fetched both published papers.",
     "The first PDF-layout capture selected Figure 1. The caption-bound successor recovered the intended Figure 2 and Table 1. Published mesh and bending values exposed incidentally are described in the manuscript.",
     "Two positive admission refusals, an expiry and a cancelled unadmitted exposure-duration request remain separate from completed computations. The portable clock replay ran once on its own input.",
-    "The independent-decimal checkout on the original archive owner was positively refused before execution on a capacity-probe timeout; the unpinned successor independently downloads the same immutable archive."
-  ]
+    "The independent-decimal checkout on the original archive owner was positively refused before execution on a capacity-probe timeout; the unpinned successor independently downloads the same immutable archive.",
+    "A separate worker downloaded and verified the complete original ZIP. The first strict clock comparison stopped before reference amplitudes because in-memory tuples were compared to JSON arrays. The successor compares their exact full sorted JSON representation. It reproduced all 41 file clocks, 20 paired starts, 12 exact-decimal contrasts and all 80,000 reference binary64 values. No tolerance, carrier or forecast gate changed."
+  ],
+  "independent_decimal_recount": {
+    "aperture_controls": {
+      "loading": "Identical phase field with the delay in the second gap.",
+      "normalized_loaded_resonant_powers": [
+        "1/49",
+        "25/49"
+      ],
+      "scope": "Weak scalar reflection with unknown longitudinal coupling. This is an existence result for that class.",
+      "unloaded_autocorrelation": [
+        21,
+        10,
+        4
+      ]
+    },
+    "clock_files": 41,
+    "loaded_forecast_admission": false,
+    "machine_rows": 1000,
+    "paired_starts": 20,
+    "reference": {
+      "exact_contrasts": [
+        [
+          "21.85",
+          "0.00",
+          "0.00",
+          "-0.92"
+        ],
+        [
+          "23.09",
+          "0.00",
+          "0.00",
+          "0.995"
+        ],
+        [
+          "0.00",
+          "24.63",
+          "0.00",
+          "21.46"
+        ]
+      ],
+      "loaded_ordinates_decoded": 0,
+      "reference_f64_sha256": "5c45ca74acf6ac6be92ca79388c1c02ab80d270c5e985bbcaa2b24a0c080a891",
+      "unloaded_exposures": 1,
+      "winning_channels": [
+        1,
+        1,
+        null
+      ]
+    }
+  }
 }
