@@ -1,0 +1,8 @@
+API_CONTRACT ["2a0f9a4e1726c26b6e79a160e6dc09c82f587e1f","items.md",23952,"352948cc5f2e95fd67fc5afbc8722e85de002b452d9fa31fb207c90348e225ff"]
+API_CONTRACT ["2a0f9a4e1726c26b6e79a160e6dc09c82f587e1f","bundles.md",11382,"03eb2b3525a8af3225dc36283be77e7153556e51a32d4a25ceb2093df6a24e8d"]
+API_CONTRACT ["2a0f9a4e1726c26b6e79a160e6dc09c82f587e1f","bitstreams.md",10367,"68a49131b5de30d50f9b58376f1dd8bed93f03ca832b26e51e579ac4b83d49f9"]
+ITEM ["8cd322fd-a31c-4081-88b7-f5f6acca4a87","Planar particle image velocimetry, force and kinematic data for a surging and rotating cylinder","1810/290142",["10.17863/CAM.37305","https://www.repository.cam.ac.uk/handle/1810/290142"]]
+CATALOG [["Open Access Data.zip","51ff899f-4920-4eba-a45f-5443947d1748",1351560391,{"checkSumAlgorithm":"MD5","value":"741bce55204fdb910d38db0132baef9f"}]]
+Traceback (most recent call last):
+  File "<stdin>", line 25, in <module>
+AssertionError
