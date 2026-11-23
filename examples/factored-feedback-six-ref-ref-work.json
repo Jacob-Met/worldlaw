@@ -1,0 +1,126 @@
+{
+  "result": {
+    "status": "exact",
+    "lower": "1/20",
+    "upper": "1/20",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+  },
+  "design": {
+    "status": "exact",
+    "lower": "1/20",
+    "upper": "1/20",
+    "history": [
+      [
+        "3/76",
+        "1/16",
+        3,
+        43
+      ],
+      [
+        "3/76",
+        "1/16",
+        46,
+        53
+      ],
+      [
+        "3/76",
+        "1/16",
+        99,
+        57
+      ],
+      [
+        "3/76",
+        "1/16",
+        156,
+        45
+      ],
+      [
+        "1/24",
+        "1/16",
+        201,
+        46
+      ],
+      [
+        "1/22",
+        "1/16",
+        247,
+        40
+      ],
+      [
+        "1/20",
+        "1/16",
+        287,
+        22
+      ],
+      [
+        "1/20",
+        "1/16",
+        309,
+        13
+      ],
+      [
+        "1/20",
+        "1/16",
+        322,
+        2
+      ],
+      [
+        "1/20",
+        "1/16",
+        324,
+        6
+      ],
+      [
+        "1/20",
+        "1/16",
+        330,
+        2
+      ],
+      [
+        "1/20",
+        "1/16",
+        332,
+        2
+      ],
+      [
+        "1/20",
+        "1/16",
+        334,
+        2
+      ],
+      [
+        "1/20",
+        "1/20",
+        336,
+        0
+      ]
+    ],
+    "stats": {
+      "solves": 1149,
+      "pivots": 122612,
+      "rowsProcessed": 330206,
+      "peakRows": 336,
+      "peakWidth": 90,
+      "peakTerminalLeaves": 8,
+      "exactHits": 1389,
+      "primalHits": 617,
+      "envelopeChecks": 2437,
+      "primalBuilds": 1135,
+      "cutHits": 3,
+      "deferredBlocks": 2228,
+      "zeroHits": 1796,
+      "zeroBlocks": 386,
+      "seedCuts": 2,
+      "initialUpper": "1/16"
+    },
+    "export": {
+      "solves": 349,
+      "pivots": 39098,
+      "rowsProcessed": 100512,
+      "zeroWorldBlocks": 163
+    }
+  }
+}

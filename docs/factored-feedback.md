@@ -57,3 +57,5 @@ Each table entry below is the cumulative count of LP rows processed in design; r
 | z1 | 81,997 | 104,807 | 106,778 | 125,194 | 69,694 | 100,572 | 114,914 | 98,373 |
 
 As a changed higher-horizon control, a two-command point catalog with rate gap 1/7 and an a/a prefix reaches the analytic nine-pulse radius 5/63. With split depth seven, its 128 leaves were checked in 32 blocks of four. Design took eight rounds and 29,158 LP rows; export took another 5,376. The compact five- and six-pulse examples shipped here include the complete upper worlds, even though their executable lower menus use only four words each.
+
+The [complete six-pulse ref/ref result](six-pulse-ref-ref.md) reaches 1/20 with two executable continuations and covers 8,192 physical worlds at equality.
