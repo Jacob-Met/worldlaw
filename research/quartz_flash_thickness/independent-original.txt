@@ -1,0 +1,5 @@
+SOURCE 5b0fb390cc2228972749e51050d078ed72389774
+Downloading numpy (15.8MiB)
+ Downloaded numpy
+Installed 2 packages in 22ms
+{"forecast_sha256": "5a80dc0a1eaf10d305464b0acc8ea9d4082d323d11450778d050c174bf5cc06f", "future_cube_records_opened": 0, "group_wins": 0, "joint": false, "maximum_absolute_metric_disagreement": 1.1102230246251565e-16, "means": [0.20502297779558448, 0.35597261094818333, 0.242071811482625, 0.15064628657379703, 0.16982760083500129, 0.2038480952363248, 0.16389778543828704, 0.15986677964381724, 0.1650061712090227], "original_sha256": "cc29c01b1ef3ccfa90b56490f768d69a2dcdddcef4cde72d523e23c042cdd4fe", "scalar_residuals": 129762, "summary_cells": 225, "verified_forecasts": 162, "worst": ["Quartz_thermaldiffusivity_low_high_T/HT2_100/HT2_100_001 25.csv", 0, 7.421, -1.185, 13.808861789613163, 1.3229455225601376e-32]}
