@@ -173,6 +173,20 @@ export function receiveChosenRateTape(cat,commands,ys,spend){
   const ticks=ys.map((_,i)=>BigInt(i));
   const runs=commands.map(command=>({command:cat.commands.indexOf(command),repeats:one}));
   need(ys.length===runs.length+1&&runs.every(r=>r.command>=0),'invalid unit-pulse receiving course');
+  return receiveSelectedRuns(cat,runs,ys,ticks,spend);
+}
+
+/** One named, positive-integer command run between each pair of measured checkpoints. */
+export function receiveChosenRateRuns(cat,program,ys,spend){
+  const runs=program.map(run=>({command:cat.commands.indexOf(run.command),repeats:rational(run.repeats)}));
+  need(ys.length===runs.length+1&&runs.every(r=>r.command>=0&&r.repeats.d===1n&&r.repeats.n>0n),
+    'invalid named checkpoint course');
+  const ticks=[0n];
+  for(const run of runs)ticks.push(ticks.at(-1)+run.repeats.n);
+  return receiveSelectedRuns(cat,runs,ys,ticks,spend);
+}
+
+function receiveSelectedRuns(cat,runs,ys,ticks,spend){
   return cat.ids.flatMap((law,i)=>{
     const region=receiveFamily(cat.vertices[i],ys,ticks,runs,cat.error,spend,cat.error.n===0n);
     return region?[{law,...region}]:[];
