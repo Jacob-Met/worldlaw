@@ -16,6 +16,23 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/wasp12-sector-clock-transfer/README.md",
+    "research/wasp12-sector-clock-transfer/comparison.json",
+    "research/wasp12-sector-clock-transfer/design.json",
+    "research/wasp12-sector-clock-transfer/fit.py",
+    "research/wasp12-sector-clock-transfer/native-originals.json",
+    "research/wasp12-sector-clock-transfer/protocol.json",
+    "research/wasp12-sector-clock-transfer/receive.py",
+    "research/wasp12-sector-clock-transfer/score.py",
+    "research/wasp12-sector-clock-transfer/verify.py",
+    "research/qcm_polymer_overtone/README.md",
+    "research/qcm_polymer_overtone/audit_archives.py",
+    "research/qcm_polymer_overtone/layer_oracle.py",
+    "research/qcm_polymer_overtone/native-originals.json",
+    "research/qcm_polymer_overtone/oracle-receipt.json",
+    "research/qcm_polymer_overtone/replay.py",
+    "research/qcm_polymer_overtone/source-schema.json",
+    "research/qcm_polymer_overtone/traveling_wave.py",
     "research/hideg_oer_rotation/README.md",
     "research/hideg_oer_rotation/acquisition.py",
     "research/hideg_oer_rotation/forecast-lock.json",

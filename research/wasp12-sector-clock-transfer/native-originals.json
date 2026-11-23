@@ -1,0 +1,280 @@
+{
+  "freeze": "c76841dce90525d689ade3f09fd524791e9a543b",
+  "static_calibration_source": "2cffe2beeae478bd31ff032c9346177bc93409a0",
+  "scorer_boolean_fix": "97e29f5c573f41e2a90a5d65648b2b120774406f",
+  "outputs": {
+    "constant": "57724d84b0367f49519f88f159aeb50ccad1374139f43f10b34ac06f863c9240",
+    "decay": "2b1385474e400127ae31eab96ab64aa0e0bc71d24e761d2fc280e7166bc4d1b6",
+    "precession": "68c453019d9e0b42bbd6520cfc397d46efec1afb24af9938a65db1ae506cec69",
+    "truth": "16e97c28cb6e2d08b5b9d5760b0bf8ad06849449aaff50c246bf1aeea4d3606c",
+    "score": "859a3e2b1bb1c25a2aa386673cc1656c8706eceb6e4a9b518a13c2d5a235b5e3"
+  },
+  "storage": "r2-estate:hamon-build-cache/research/astra62-p2-f747f5728172/wasp12/<sha256>.json",
+  "locks": [
+    {
+      "bytes": 60970,
+      "epochs": 2974,
+      "lock": "57724d84b0367f49519f88f159aeb50ccad1374139f43f10b34ac06f863c9240",
+      "metadata": {
+        "kind": "constant",
+        "logz": -204.68643902646855,
+        "native_clock_sha256": "4e2c6703c106dbdb1500a4aa684434f6832839df2a1187a0df14802c33d1cf8b",
+        "ncall": 30638,
+        "neff": 4022.527161134062,
+        "period_days": 1.09142,
+        "ref_bjd": 2456305.4555,
+        "samples": 19926,
+        "training_sha256": "7b86183ee5cff27ee4643404efccab51ab0a136c3e56b9dd7adbf22a279f9bbb"
+      }
+    },
+    {
+      "bytes": 60417,
+      "epochs": 2974,
+      "lock": "2b1385474e400127ae31eab96ab64aa0e0bc71d24e761d2fc280e7166bc4d1b6",
+      "metadata": {
+        "kind": "decay",
+        "logz": -104.65473764264564,
+        "native_clock_sha256": "4e2c6703c106dbdb1500a4aa684434f6832839df2a1187a0df14802c33d1cf8b",
+        "ncall": 48717,
+        "neff": 4691.849599342748,
+        "period_days": 1.09142,
+        "ref_bjd": 2456305.4555,
+        "samples": 26483,
+        "training_sha256": "7b86183ee5cff27ee4643404efccab51ab0a136c3e56b9dd7adbf22a279f9bbb"
+      }
+    },
+    {
+      "bytes": 61817,
+      "epochs": 2974,
+      "lock": "68c453019d9e0b42bbd6520cfc397d46efec1afb24af9938a65db1ae506cec69",
+      "metadata": {
+        "kind": "precession",
+        "logz": -116.05820691529823,
+        "native_clock_sha256": "4e2c6703c106dbdb1500a4aa684434f6832839df2a1187a0df14802c33d1cf8b",
+        "ncall": 214761,
+        "neff": 5794.314736831685,
+        "period_days": 1.09142,
+        "ref_bjd": 2456305.4555,
+        "samples": 31815,
+        "training_sha256": "7b86183ee5cff27ee4643404efccab51ab0a136c3e56b9dd7adbf22a279f9bbb"
+      }
+    }
+  ],
+  "originals": [
+    {
+      "id": "p2-f747-wasp12-author-catalog-projected-design-no-midpoints",
+      "owner": "node-b4c8cadf0feda78776c212a02c585fca",
+      "request_sha256": "630d0b9144032a88f1a84bf851f09aa13190b55125d31543abff964140ed28af",
+      "generation": "0cc807abe23b10230f11f1df19d12e05f9c3036aa7afbfaba311bb923d8c6820",
+      "started": "2026-11-23T06:31:16.461936186Z",
+      "finished": "2026-11-23T06:32:03.271305462Z",
+      "exit": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "output_bytes": 4174
+    },
+    {
+      "id": "p2-f747-wasp12-official-orbdot-clock-models-priors",
+      "owner": "node-5d5f9bc8480019cba71fd5565fd2fbf3",
+      "request_sha256": "454910a7a1d7d7369350ca233198213346a5d2b12c9349778516f36d1660e4af",
+      "generation": "bb98e17ebf28aee01351320a11b716e5222d1fda51955704035c1ee3b5c5e555",
+      "started": "2026-11-23T06:37:02.207081904Z",
+      "finished": "2026-11-23T06:37:03.230492622Z",
+      "exit": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "output_bytes": 1224
+    },
+    {
+      "id": "p2-f747-wasp12-wong-metadata-and-coarse-day-native-projection",
+      "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+      "request_sha256": "144ae7916e3a28489adc42d06466b89b2c45aceafb8e05f96183dd5e0e9b933a",
+      "generation": "b7e97d6da11196efc0522713c7ce6702a6bf0c32c7b022fcd471a3cb9943481d",
+      "started": "2026-11-23T06:59:23.682351313Z",
+      "finished": "2026-11-23T07:00:09.010380553Z",
+      "exit": 1,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "output_bytes": 2470
+    },
+    {
+      "id": "p2-f747-wasp12-yee-only-constant-all-future-epoch-lock",
+      "owner": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "ee88f529a2f5302aec4dab555c2486f830eb7da695bef04f81d4412e59a0a3ae",
+      "generation": "f19435abd8631b4b3940a2ce45e96aa2cef0900ea150d69f22cbcf396101dceb",
+      "started": "2026-11-23T06:49:19.824758164Z",
+      "finished": "2026-11-23T06:49:28.620328364Z",
+      "exit": 1,
+      "descendant_wait": null,
+      "output_bytes": 948
+    },
+    {
+      "id": "p2-f747-wasp12-yee-only-decay-all-future-epoch-lock",
+      "owner": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "5128401739ff4383c32af0e4a289ef0385653b8ca22eae57b4bd9da676c331f3",
+      "generation": "57b8df5d8711297d17e5c3f70449dcf6509fe957a1f1b2d2ebdac45303e95e93",
+      "started": "2026-11-23T06:49:19.749744508Z",
+      "finished": "2026-11-23T06:49:28.606016003Z",
+      "exit": 1,
+      "descendant_wait": null,
+      "output_bytes": 948
+    },
+    {
+      "id": "p2-f747-wasp12-yee-only-precession-all-future-epoch-lock",
+      "owner": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "d1b4d43a25c1d8f8b2e971ff3bea7d9af4ff3e06c0ddac9e21f907a1374b5c50",
+      "generation": "ae47d217c7dc61ae35317607ed7318022b8681e83bdc7610813e6fdd2bcac3c2",
+      "started": "2026-11-23T06:49:19.682542529Z",
+      "finished": "2026-11-23T06:49:28.639917428Z",
+      "exit": 1,
+      "descendant_wait": null,
+      "output_bytes": 948
+    },
+    {
+      "id": "p2-f747-wasp12-typed-header-order-diagnostic",
+      "owner": "node-afe5effb4abf983e03793cfe74983139",
+      "request_sha256": "260905524b478b01c0097059280d098eaffb53f29ebaa169b45f3c96ace1491b",
+      "generation": "2d3a64e7af75687548f2c5cde02b7781d3cb7a272aa014400b63bde8fab68fed",
+      "started": "2026-11-23T06:51:26.463126891Z",
+      "finished": "2026-11-23T06:51:27.160115114Z",
+      "exit": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "output_bytes": 1696
+    },
+    {
+      "id": "p2-f747-wasp12-calibration-only-immutable-primary-intake",
+      "owner": "node-f63e15fee38f87b459616c5a7973e32f",
+      "request_sha256": "d9fdba4d64f834b487265b342371c26fcb868807e4e55c3907140465132777ca",
+      "generation": "1cc4146c75b28e49ee919affa097914c34a358087008193d63d23be9dbbb971e",
+      "started": "2026-11-23T06:52:59.808302229Z",
+      "finished": "2026-11-23T06:53:28.85049694Z",
+      "exit": 1,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "output_bytes": 976
+    },
+    {
+      "id": "p2-f747-wasp12-publisher-machine-table-five",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "request_sha256": "da3dfb777c01560112fb9a4a23cfa2165d7b988b5ff13aaf93e67c6064200d13",
+      "generation": "1f1f1d4f540311a81852940b922c31fe4f7942931e39024be744536a8de88aae",
+      "started": "2026-11-23T06:55:57.45991214Z",
+      "finished": "2026-11-23T06:55:57.686505106Z",
+      "exit": 1,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "output_bytes": 1030
+    },
+    {
+      "id": "p2-f747-wasp12-yee-only-constant-all-future-epoch-lock-susie",
+      "owner": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "e40e64c514bb18ddb81f09762f035c36a95938c6c2d028d25c3fd94bfe60462c",
+      "generation": "1d7eab015acdf244408d08be3180cf02df721eac1b2808e2b7401d0928efec53",
+      "started": "2026-11-23T06:58:00.703507876Z",
+      "finished": "2026-11-23T06:58:11.22698659Z",
+      "exit": 0,
+      "descendant_wait": null,
+      "output_bytes": 460
+    },
+    {
+      "id": "p2-f747-wasp12-yee-only-decay-all-future-epoch-lock-susie",
+      "owner": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "3c62d2b7ee2c32c049e208c60801b25782d1f8e1a4868d07ba977c76257500b1",
+      "generation": "1fc0fe973ec691f5f92c237fa938dc42123a132771e3aa78ed873ee4db1cd317",
+      "started": "2026-11-23T06:58:01.266939545Z",
+      "finished": "2026-11-23T06:58:13.527000671Z",
+      "exit": 0,
+      "descendant_wait": null,
+      "output_bytes": 457
+    },
+    {
+      "id": "p2-f747-wasp12-yee-only-precession-all-future-epoch-lock-susie",
+      "owner": "node-2c6923b3148e63391d0e8d72e866360a",
+      "request_sha256": "9eae372bc81022d528fa518de12d742b4392df5ce3679f6acfb10f5f830b9c2f",
+      "generation": "d179256d67fead7665986f914f9ec2ca6927c1fb8fc4d9f7594dedfe38b9d54d",
+      "started": "2026-11-23T06:58:00.919132216Z",
+      "finished": "2026-11-23T06:58:52.035573696Z",
+      "exit": 0,
+      "descendant_wait": null,
+      "output_bytes": 463
+    },
+    {
+      "id": "p2-f747-wasp12-all74-wong-after-three-physical-locks",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "da9312d521751118f34b2cb9d373cdafbe0cf5758b78de6cebcaf1ab308c783c",
+      "generation": "fb93f08c93b37bcca6c1ddfe95772157846614efe42b43450fcf01cb871ce3db",
+      "started": "2026-11-23T07:00:01.660314797Z",
+      "finished": "2026-11-23T07:00:11.473784236Z",
+      "exit": 1,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "output_bytes": 719
+    },
+    {
+      "id": "p2-f747-wasp12-original74-locked-boolean-serialization",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "8ccf6c8d6d431f9b20c08f32421adeb1db0de06c12d7547775281bbab446e9dd",
+      "generation": "f8197faa9b82a97f2fdfa1d21a7ddbb7047d360b3c8411a23a502397f5f6c043",
+      "started": "2026-11-23T07:02:32.89037646Z",
+      "finished": "2026-11-23T07:02:37.21803574Z",
+      "exit": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "output_bytes": 1655
+    },
+    {
+      "id": "p2-f747-wasp12-independent-decimal-all74-original",
+      "owner": "node-d594b178fe479ad35c52baaace3bbd40",
+      "request_sha256": "186c2e62a895e6a538ebe9d3d0ed608e68ee139f4d466c6b91c4b6ca69620cbc",
+      "generation": "5ddbcd1a2b41f6f495d972aed2a9cce2c6b60f62441258ae95debb76d0be2da9",
+      "started": "2026-11-23T07:04:06.220465511Z",
+      "finished": "2026-11-23T07:04:08.822303948Z",
+      "exit": 1,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "output_bytes": 496
+    },
+    {
+      "id": "p2-f747-wasp12-independent-decimal-all74-original-literal-tuples",
+      "owner": "node-4f8366087786022937864890fe02d752",
+      "request_sha256": "02a933a42e5883879c640e36d2f92d1ac310652a5fed4cac3242a82b8d41fc6f",
+      "generation": "1eb9c42df8794aedd31acc5c193967b4ea93d127d651e0424348f3a2c765f391",
+      "started": "2026-11-23T07:06:16.576767975Z",
+      "finished": "2026-11-23T07:06:19.272620166Z",
+      "exit": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "output_bytes": 17793
+    }
+  ],
+  "comparison_archive_bytes": 17321,
+  "truth_archive_bytes": 3002,
+  "independent_74row_decimal_original": "p2-f747-wasp12-independent-decimal-all74-original-literal-tuples",
+  "printed_primary_pdf": {
+    "separately_received_from": "https://ntrs.nasa.gov/api/citations/20220009055/downloads/Wong.tess.STI.pdf",
+    "table": "A1",
+    "rows": 74,
+    "exact_names_dates_uncertainty_strings": true
+  }
+}

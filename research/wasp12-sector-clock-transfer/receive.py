@@ -21,8 +21,8 @@ def acquire():
         subprocess.run(["pdftotext","-layout","wong.pdf","wong.txt"],check=True)
         data=Path("wong.txt").read_text()
         # Anchor the reported individual visit, BJD and its printed uncertainty.
-        pattern = re.compile(r"^\s*(S(?:20|43|44|45)[-−–]\d+)\s+(245\d{4}\.\d+)\s*(?:±|\+/-|\+-)\s*(0\.\d+)",re.M)
-        r=[[n.replace("−","-").replace("–","-"),b,s] for n,b,s in pattern.findall(data)]
+        pattern = re.compile(r"^\s*(S(?:20|43|44|45)[-−–]\d+)\s+(2,?4\d{2},?\d{3}\.\d+)\s*(?:±|\+/-|\+-)\s*(0\.\d+)",re.M)
+        r=[[n.replace("−","-").replace("–","-"),b.replace(",",""),s] for n,b,s in pattern.findall(data)]
         if len(r)!=74:
             heads=[x[:100] for x in data.splitlines() if re.match(r"\s*S(?:20|43|44|45)[-−–]\d+\s+",x)]
             print("PUBLISHED_FORMAT",len(heads),heads[:1],flush=True)
@@ -32,3 +32,13 @@ def acquire():
     assert all(re.fullmatch(r"S(?:20|43|44|45)-\d+",n) and 2400000<float(t)<2500000 and 0<float(s)<0.03 for n,t,s in r)
     print("ROWS",source,flush=True)
     return r,source
+
+
+if __name__ == "__main__":
+    import score
+    rows, source = acquire()
+    Path("truth.json").write_text(json.dumps({"source":source,"rows":rows},sort_keys=True)+"\n")
+    score.table = lambda catalog, columns: rows
+    result=score.score(Path("."))
+    Path("score.json").write_text(json.dumps(result,sort_keys=True)+"\n")
+    print(json.dumps(result["gates"],sort_keys=True))
