@@ -26,7 +26,16 @@ def read_array():
     container=rdata.conversion.convert(rdata.parser.parse_data(raw))
     assert set(container)=={"TG"}
     value=container["TG"]
-    assert value.shape==(15,1000,7)
+    source_layout=[["R/ils.fqcdata.R","a2aa3dc092f533946bf73ee2c67d7981489f7a5e"],["R/ils.fqcs.R","1a603eadaf82dddd92107b104f384aab0bef7f65"],["R/plot.ils.fqcdata.R","8a65d8fbac2d5b2597d813e0a67f8666857da4f8"]]
+    docs={}
+    for path,oid in source_layout:
+        text=fetch(path)
+        assert hashlib.sha1(("blob "+str(len(text))+"\0").encode()+text).hexdigest()==oid
+        docs[path]=re.sub(r"\s+","",text.decode())
+    assert "n<-dim(x)[1]/p" in docs["R/ils.fqcdata.R"] and 'index.laboratory<-paste("Lab",1:p)' in docs["R/ils.fqcdata.R"]
+    assert "rep(x$index.laboratory,each=n)" in docs["R/ils.fqcs.R"]
+    assert "objectfdata[(i*n)+(1:n),]" in docs["R/plot.ils.fqcdata.R"]
+    assert value.shape==(105,1000)
     grid=np.linspace(40.,850.,1000)
     coord={}
     if hasattr(value,"coords"):
@@ -46,7 +55,8 @@ def read_array():
             if axis in (0,2) and all(re.fullmatch(r"[^\d]*\d+",name) for name in names):
                 ids=[int(re.search(r"\d+$",name).group()) for name in names]
                 if ids!=list(range(1,len(names)+1)) and ids!=list(range(len(names))):raise ValueError("nonsequential specimen/group labels: "+str(coord[str(axis)]))
-    return grid,np.asarray(value),dict(git_blob=TG_BLOB,sha256=hashlib.sha256(raw).hexdigest(),
+    matrix=np.asarray(value).reshape(7,15,1000).transpose(1,2,0)
+    return grid,matrix,dict(storage_layout=source_layout,physical_shape=list(matrix.shape),git_blob=TG_BLOB,sha256=hashlib.sha256(raw).hexdigest(),
         processing_grid_example_sha256=hashlib.sha256(example.encode()).hexdigest(),coordinate_labels=coord,
         shape=list(value.shape),rdata_version=rdata.__version__)
 
