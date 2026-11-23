@@ -85,7 +85,12 @@ export async function sealActiveReadout(original,plan,readings,{prior=null,sourc
     'Readout source or plan digest does not match the frozen prospective certificate.');
   const core=Object.fromEntries(Object.entries(frozen).filter(([key])=>
     !['sourceSHA256','planSHA256','evidenceLevel'].includes(key)));
-  const result=vandermonde?evaluateActiveVandermondeReadings(request,core,supplied):evaluateActiveLinearReadings(request,core,supplied);
+  let result=vandermonde?evaluateActiveVandermondeReadings(request,core,supplied):evaluateActiveLinearReadings(request,core,supplied);
+  if(request.schema===ACTIVE_ACTUATOR_TIMELINE_SCHEMA&&saved?.schema==='worldlaw.active-actuator-timeline-result/v1'){
+    // Reproduce all historical witness estimates exactly from the supplied source and readings.
+    result={...result,schema:saved.schema,estimates:result.estimates.map(({coefficients,estimate,interval})=>
+      ({coefficients,estimate,interval}))};
+  }
   const report={sourceSHA256:frozen.sourceSHA256,planSHA256:frozen.planSHA256,
     readingsSHA256:await activeBytesSHA256(readingBytes),
     ...(sourcePath!==undefined?{sourcePath}:{}),...(planPath!==undefined?{planPath}:{}),
