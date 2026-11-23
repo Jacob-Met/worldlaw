@@ -16,6 +16,17 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/waissman-monolithic-gate-shape/README.md",
+    "research/waissman-monolithic-gate-shape/bank.json.zlib",
+    "research/waissman-monolithic-gate-shape/common-support-successor.json",
+    "research/waissman-monolithic-gate-shape/electrical_registration.py",
+    "research/waissman-monolithic-gate-shape/figure_reader.py",
+    "research/waissman-monolithic-gate-shape/independent.py",
+    "research/waissman-monolithic-gate-shape/native-originals.json",
+    "research/waissman-monolithic-gate-shape/outcome.json.zlib",
+    "research/waissman-monolithic-gate-shape/protocol.json",
+    "research/waissman-monolithic-gate-shape/replay.py",
+    "research/waissman-monolithic-gate-shape/shape_transfer.py",
     "research/waissman-graphene-thermal-secants/README.md",
     "research/waissman-graphene-thermal-secants/figure-manifest.json",
     "research/waissman-graphene-thermal-secants/native-originals.json",
