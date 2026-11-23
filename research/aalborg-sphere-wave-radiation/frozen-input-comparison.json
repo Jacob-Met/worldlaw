@@ -1,0 +1,98 @@
+{
+  "RANS2": {
+    "end_s": 6.0,
+    "grid_rows": 3001,
+    "maps": {
+      "cap_tied": {
+        "same_map_input_rms_by_gauge_mm": [
+          0.14548214678891058,
+          0.19445732204441343,
+          0.2967670831080081
+        ],
+        "same_map_input_rms_mm": 0.2213966325755883,
+        "submitted_to_mapped_rms_mm": 1.9695626868214824
+      },
+      "constant_area": {
+        "same_map_input_rms_by_gauge_mm": [
+          0.16220965526583173,
+          0.21648736794346074,
+          0.33475761820710986
+        ],
+        "same_map_input_rms_mm": 0.24848971520517288,
+        "submitted_to_mapped_rms_mm": 1.7537345740205623
+      }
+    }
+  },
+  "RANS3": {
+    "end_s": 6.0,
+    "grid_rows": 3001,
+    "maps": {
+      "cap_tied": {
+        "same_map_input_rms_by_gauge_mm": [
+          0.11783396333843185,
+          0.18436803609009725,
+          0.3132602311335797
+        ],
+        "same_map_input_rms_mm": 0.22061156516800146,
+        "submitted_to_mapped_rms_mm": 1.9825239074515484
+      },
+      "constant_area": {
+        "same_map_input_rms_by_gauge_mm": [
+          0.12490107042685718,
+          0.1915218138457942,
+          0.3249030917386794
+        ],
+        "same_map_input_rms_mm": 0.22937807334464952,
+        "submitted_to_mapped_rms_mm": 1.9577334433661127
+      }
+    }
+  },
+  "RANS4": {
+    "end_s": 6.048,
+    "grid_rows": 3025,
+    "maps": {
+      "cap_tied": {
+        "same_map_input_rms_by_gauge_mm": [
+          0.11378606092233474,
+          0.16603297801167943,
+          0.26543489288380384
+        ],
+        "same_map_input_rms_mm": 0.19232775827380783,
+        "submitted_to_mapped_rms_mm": 5.725079967337303
+      },
+      "constant_area": {
+        "same_map_input_rms_by_gauge_mm": [
+          0.12483369503391654,
+          0.17549387012175444,
+          0.2904009793781073
+        ],
+        "same_map_input_rms_mm": 0.20873769719426663,
+        "submitted_to_mapped_rms_mm": 5.8576425685621585
+      }
+    }
+  },
+  "RANS5": {
+    "end_s": 6.048,
+    "grid_rows": 3025,
+    "maps": {
+      "cap_tied": {
+        "same_map_input_rms_by_gauge_mm": [
+          0.049765915496280365,
+          0.08619025526184639,
+          0.15079510160561124
+        ],
+        "same_map_input_rms_mm": 0.10431453896035106,
+        "submitted_to_mapped_rms_mm": 5.739586952288438
+      },
+      "constant_area": {
+        "same_map_input_rms_by_gauge_mm": [
+          0.05537295280227058,
+          0.09142132604671642,
+          0.15475658597840222
+        ],
+        "same_map_input_rms_mm": 0.10858732839190331,
+        "submitted_to_mapped_rms_mm": 5.882207167611071
+      }
+    }
+  }
+}

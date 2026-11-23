@@ -1,0 +1,244 @@
+{
+  "author_archive_bytes": 17549045,
+  "author_archive_sha256": "04c4d78d6987e4eec6c31d692d3c5cf5adea2580ffcfe50fbbd44e6589c7623f",
+  "execution": "Independent scalar recount in the workspace that already holds the verified five-page forecast archive. The admitted native queue original expired and produced no science output.",
+  "implementation": "The unchanged published independent_recount.py executed with its lone public archive URL bound to an independently fetched whole-byte copy of the OES archive. No model fitted, predicted, or submitted.",
+  "numpy": "2.3.5",
+  "python": "3.12.14",
+  "receipt": {
+    "archive": "9ab6306f9f9b0665873c73e3e8d2866d9c50140a935e54520312e427591b3f7f",
+    "gate": {
+      "motion_constant_area": [
+        false,
+        1,
+        0
+      ],
+      "motion_dev_convex": [
+        true,
+        3,
+        4
+      ],
+      "motion_free_asymmetric": [
+        true,
+        3,
+        4
+      ],
+      "motion_free_pair": [
+        true,
+        3,
+        4
+      ],
+      "motion_opposite_cubic": [
+        true,
+        3,
+        4
+      ],
+      "motion_other_repeat_cap": [
+        true,
+        3,
+        2
+      ]
+    },
+    "passed": false,
+    "raw_worst_by_role": {
+      "motion_cap_tied": [
+        3025,
+        4,
+        2.112,
+        3
+      ],
+      "motion_constant_area": [
+        3025,
+        1,
+        2.634,
+        3
+      ],
+      "motion_dev_convex": [
+        3025,
+        2,
+        2.26,
+        3
+      ],
+      "motion_free_asymmetric": [
+        3025,
+        1,
+        1.766,
+        3
+      ],
+      "motion_free_pair": [
+        3025,
+        2,
+        1.754,
+        3
+      ],
+      "motion_opposite_cubic": [
+        3025,
+        3,
+        1.688,
+        3
+      ],
+      "motion_other_repeat_cap": [
+        3025,
+        3,
+        2.106,
+        3
+      ],
+      "release_height_cubic": [
+        3025,
+        1,
+        1.74,
+        3
+      ],
+      "release_height_latest": [
+        3025,
+        3,
+        1.91,
+        3
+      ],
+      "release_height_pooled": [
+        3025,
+        3,
+        1.91,
+        3
+      ],
+      "release_height_quadratic": [
+        3025,
+        3,
+        1.924,
+        3
+      ],
+      "release_zero": [
+        3025,
+        4,
+        1.726,
+        3
+      ],
+      "solver_RANS2_cap_tied": [
+        3001,
+        2,
+        2.26,
+        3
+      ],
+      "solver_RANS2_constant_area": [
+        3001,
+        1,
+        1.752,
+        3
+      ],
+      "solver_RANS2_dev_convex": [
+        3001,
+        2,
+        2.26,
+        3
+      ],
+      "solver_RANS2_free_pair": [
+        3001,
+        1,
+        1.758,
+        3
+      ],
+      "solver_RANS2_submitted": [
+        3001,
+        2,
+        1.498,
+        3
+      ],
+      "solver_RANS3_cap_tied": [
+        3001,
+        2,
+        2.262,
+        3
+      ],
+      "solver_RANS3_constant_area": [
+        3001,
+        1,
+        1.752,
+        3
+      ],
+      "solver_RANS3_dev_convex": [
+        3001,
+        2,
+        2.26,
+        3
+      ],
+      "solver_RANS3_free_pair": [
+        3001,
+        1,
+        1.758,
+        3
+      ],
+      "solver_RANS3_submitted": [
+        3001,
+        2,
+        1.91,
+        3
+      ],
+      "solver_RANS4_cap_tied": [
+        3025,
+        2,
+        2.264,
+        3
+      ],
+      "solver_RANS4_constant_area": [
+        3025,
+        1,
+        1.754,
+        3
+      ],
+      "solver_RANS4_dev_convex": [
+        3025,
+        2,
+        2.264,
+        3
+      ],
+      "solver_RANS4_free_pair": [
+        3025,
+        1,
+        1.762,
+        3
+      ],
+      "solver_RANS4_submitted": [
+        3025,
+        4,
+        1.73,
+        3
+      ],
+      "solver_RANS5_cap_tied": [
+        3025,
+        1,
+        2.106,
+        3
+      ],
+      "solver_RANS5_constant_area": [
+        3025,
+        1,
+        2.636,
+        3
+      ],
+      "solver_RANS5_dev_convex": [
+        3025,
+        1,
+        2.106,
+        3
+      ],
+      "solver_RANS5_free_pair": [
+        3025,
+        1,
+        1.76,
+        3
+      ],
+      "solver_RANS5_submitted": [
+        3025,
+        4,
+        1.728,
+        3
+      ]
+    },
+    "registry": "2a44b7687410453565e3daed7145f69b1601131d744ee5e26e798297eb846c49",
+    "residuals": 1158720,
+    "roles": 32,
+    "score": "4c2dcb5c106411832fcb6ef52379a6c3f2009fec4fae79f1fb75b7530dc1fe71"
+  },
+  "receiver_source_sha256": "363361e787e833fbc4c3965956a44026491b3e98cf319a8161552448b21c39d0",
+  "receiver_stdout_sha256": "c4f8ae6ccb886bd153c513e2791f58d5e2042f28378caf02521f846d5af5ee1b"
+}

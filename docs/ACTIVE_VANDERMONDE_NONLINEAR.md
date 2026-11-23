@@ -132,3 +132,18 @@ maintained-CLI checks also verified byte-identical valid legacy replay and
 refusal of changed source bytes, wrong plan bindings, changed prospective plans
 and an old false certificate. Full case data, solver witnesses, execution
 receipts and logs remain separate from the source distribution.
+
+## Off-grid identifiability
+
+The seven signed amplitudes from −3/2 to 3/2, spaced 1/2 apart, admit an exact counterexample even with noiseless readings. For the unit-gain law `g(u) = u`, a periodic ripple `±sin(2πu)/2` vanishes at every measured amplitude. A degree-seven term `±∏(2u−2v)/128`, with one factor per measured amplitude `v`, also vanishes at each one. A gain change `±max(0,u−3/2)` is invisible inside the measured range. Adding any of these six terms to the reference gives identical readings for all starting states on this schedule. An arbitrarily long episode at the same amplitude cannot separate these laws.
+
+The executable audit uses the exact plant `A=0, b=C=1`, so each reading after the initial state equals its actuator response. It verifies the complete receiver output for indistinguishable courses and requires a cross-amplitude polynomial contradiction when the readings separate. The schedules and alternative laws are fixed in `tests/active-vandermonde-domain.test.mjs`.
+
+| Amplitudes added to the original seven | Degree-seven alternatives rejected | Periodic alternatives rejected | Gain changes rejected | Unit-gain control |
+|---|---:|---:|---:|---|
+| None | 0/2 | 0/2 | 0/2 | Accepted |
+| 1/4 | 2/2 | 2/2 | 0/2 | Accepted |
+| 2 | 2/2 | 0/2 | 2/2 | Accepted |
+| 1/4 and 2 | 2/2 | 2/2 | 2/2 | Accepted |
+
+These are deterministic synthetic witnesses selected to examine the measurement support. The fractions above count those witnesses. To assess transfer, freeze candidate laws first, then acquire independently chosen intervention levels and record the design range, noise budget and admissible law class. For any finite set of distinct levels, the product of the factors `(u−v)` over those levels produces another polynomial invisible there. An independently justified degree bound changes this conclusion. Two noiseless polynomials of degree at most `d` that agree on `d+1` distinct levels agree everywhere.
