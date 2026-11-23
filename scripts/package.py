@@ -16,6 +16,13 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/rasscal-gas-storage/README.md",
+    "research/rasscal-gas-storage/modern-heos-original.jsonl",
+    "research/rasscal-gas-storage/modern_heos_original.py",
+    "research/rasscal-gas-storage/replay.py",
+    "research/rasscal-gas-storage/source-custody.json",
+    "research/rasscal-gas-storage/source-methods-original.txt",
+    "research/rasscal-gas-storage/source_methods_original.py",
     "research/aalborg-sphere-wave-radiation/README.md",
     "research/aalborg-sphere-wave-radiation/apparatus.md",
     "research/aalborg-sphere-wave-radiation/archival-replay-gate.md",
