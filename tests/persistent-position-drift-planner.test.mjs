@@ -194,3 +194,11 @@ test('raw polynomial plant, unchanged fixed witness, and exact policy/record rep
   forged.refusals[0].alternatives[0].witnesses[0].start[0]='99';
   assert.throws(()=>replayPositionDriftPolicy(neg,forged),/saved policy/);
 });
+
+test('finite menus and law counts extend beyond the small catalog fixtures',()=>{
+  const expanded=source(Array.from({length:9},(_,law)=>Array.from({length:7},(_,command)=>law+command)));
+  const result=plan(expanded);
+  assert.equal(result.status,'impossible');
+  checkRefusals(expanded,result);
+  assert.equal(result.refusals.length,49);
+});
