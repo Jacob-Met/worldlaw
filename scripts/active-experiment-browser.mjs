@@ -829,6 +829,27 @@ try{
   assert.match(await page.locator('#plan-heading').textContent(),/between 2 and 4 pulses/);
   mark('persistent binary minimax certifies 49, while unmatched integer bounds stay open after a changed noise input');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftPointSupport');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/zero-noise minimum is 4 pulses/);
+  assert.match(await page.locator('#drift-proof').textContent(),/1\/3, 1\/3, 1\/3/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#acquisition-kind').selectOption('synthetic');await page.locator('#readout-source').fill('Exact four-command reference experiment');
+  for(const t of [0,1])await page.locator('#drift-reading-'+t).fill('0');
+  await page.locator('#evaluate-readings').click();await idle();await page.reload();await idle();await openDetails('supplied-details');
+  for(const [t,y] of [[2,'1/3'],[3,'2/3'],[4,'1']])await page.locator('#drift-reading-'+t).fill(y);
+  await page.locator('#evaluate-readings').click();await idle();
+  const supportBook=await accepted();assert.deepEqual(supportBook.readouts.at(-1).result.consistentHypothesisIds,['B']);
+  assert.equal(supportBook.plan.preceding.length,4);
+  const supportFile=await download('export-notebook','point-support-minimum.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',supportFile]).stdout),supportBook);
+  await openDetails('source-details');await page.locator('#new-draft').click();await idle();
+  const cutSupport=JSON.parse(await page.locator('#source-text').inputValue());cutSupport.subsetLimit=6;
+  await page.locator('#source-text').fill(JSON.stringify(cutSupport));await page.locator('#replan').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/subset limit/);
+  assert.match(await page.locator('#plan-summary').textContent(),/upper bound of 4/);
+  mark('zero-noise four-pulse support minimum and its persistent witnesses survive browser and CLI replay');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';

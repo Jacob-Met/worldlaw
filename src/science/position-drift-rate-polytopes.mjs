@@ -138,4 +138,4 @@ export function openRatePolytopes(source,policy){
   }};
 }
 
-export {parse as parseRatePolytopeSource,exactRow as primitiveRateInequality,mixture as mixRateRows,budget as rateWorkBudget,exhausted as RATE_WORK_EXHAUSTED};
+export {compareFamilies as compareRateHulls,parse as parseRatePolytopeSource,exactRow as primitiveRateInequality,mixture as mixRateRows,budget as rateWorkBudget,exhausted as RATE_WORK_EXHAUSTED};
