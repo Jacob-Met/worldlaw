@@ -60,3 +60,19 @@ if (policy.status === 'finite-schedule') {
 An indistinguishable policy includes all equivalence classes and explicit starting-state witnesses for every aliased pair. Its trace receiver reconstructs both physical trajectories on a supplied command word and an arbitrary rational initial position and drift. Published clean equality also permits identical arbitrary bounded observation errors.
 
 Run `node --test tests/persistent-position-drift-all-horizon.test.mjs` to reproduce the original eleven cases, gauge classes, nonuniform checkpoint correlations, forged-record refusals and a parameterized rational-gap family up to denominator 10⁶⁰⁰+1. For the two-law family with rates (0,0) and (0,1/D) and ε=1, N=8D+1 suffices. At N=8D, origins (−1,2/N) and (1,−2/N) both explain the same checkpoint readings (0,0,4), demonstrating why touching bounds cannot certify separation. The enormous schedules are represented symbolically; the small historical schedules are also replayed explicitly pulse by pulse.
+
+## Use the Hidden-state experiment
+
+Open `/active.html` and expand **Inspect the source and design another experiment**. Choose **Separate laws with persistent drift** or **Trace laws with indistinguishable drift**, then select **Load as a new draft**. You can also import a rate catalog from a JSON file. Review the schedule and margins or the listed equivalent starting states, then freeze the plan.
+
+For a finite schedule, expand **Supply readings from another source**. Name the measurement source and enter a consecutive prefix of checkpoint positions starting at tick 0. Each submission represents a single trajectory and is saved as a separate dataset. The bundled example accepts positions 0, 25 and 35 at ticks 0, 5 and 10. Its compatible law is A. For indistinguishable laws, choose a pair, enter the first initial position and drift, and type one command and positive repeat count per line. **Compare trajectories** computes both paths and retains the command word, initial states and exact positions. Checkpoint times and repeat counts remain decimal strings, including above the JavaScript safe-integer range.
+
+The shared notebook records the original source and each input document. Export it from the browser and reopen it in either the workbench or CLI. These commands start from the bundled files:
+
+```sh
+node scripts/active-linear-family.mjs --input examples/active-position-drift-schedule.json --create-notebook --output my-plan.json
+node scripts/active-linear-family.mjs --notebook my-plan.json --readings my-input.json --output my-run.json
+node scripts/active-linear-family.mjs --notebook my-run.json
+```
+
+For standalone CLI input, use the frozen plan's `sourceSHA256` and `planSHA256`. Measured input uses `worldlaw.active-position-drift-checkpoints/v1`, a descriptive `source`, an `acquisition` of `synthetic` or `supplied`, and `readings` such as `[{"tick":"0","value":"0"},{"tick":"5","value":"25"},{"tick":"10","value":"35"}]`. A gauge input uses `worldlaw.active-position-drift-gauge-input/v1`, `laws` containing two law identifiers, `origin` containing position and drift, and `runs` such as `[{"command":"slow","repeats":"3"}]`. Gauge traces are calculated from the source. The browser exports either original input in full.
