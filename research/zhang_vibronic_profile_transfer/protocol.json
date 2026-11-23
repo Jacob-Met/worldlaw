@@ -1,0 +1,117 @@
+{
+  "schema": "worldlaw.zhang-vibronic-profile.v1",
+  "archive": {
+    "doi": "10.5281/zenodo.21387374",
+    "sha256": "f54f7e108c16e1bbce3b68da3069f9453e5e43f6ca8c8f438af3c626e5a415a3",
+    "md5": "cf4b6e063e57c95b99cf22a390f7684b",
+    "license": "CC BY 4.0"
+  },
+  "source_class": "Corrected, normalized energy spectra on common per-scan vertical scale. All estimates and truth divided by same positive measured Stokes mean over prescribed support; cancels any unknown multiplicative globally common scale, even if authors used both sides to set it. Does not address offsets or spatially varying response. Conditional on held temperature and same-scan Stokes shape. No absolute photon counts, device precision or inferred thermometer temperature.",
+  "hosts": {
+    "KSF": {
+      "sheet": "Fig6-A",
+      "file": "Fig-6.xlsx",
+      "axis": "S",
+      "axis_last": "S",
+      "cols": [
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+        "AA",
+        "AB",
+        "AC",
+        "AD",
+        "AE",
+        "AF",
+        "AG",
+        "AH"
+      ],
+      "T_start": 197,
+      "T_step": 20,
+      "n": 15,
+      "lambda0_nm": 622,
+      "as": [
+        218,
+        339,
+        633
+      ],
+      "s": [
+        235,
+        342,
+        644
+      ],
+      "band": [
+        150,
+        735
+      ]
+    },
+    "MGO": {
+      "sheet": "Fig2-A",
+      "file": "Fig-2.xlsx",
+      "axis": "Y",
+      "axis_last": "AS",
+      "cols": [
+        "Z",
+        "AA",
+        "AB",
+        "AC",
+        "AD",
+        "AE",
+        "AF",
+        "AG",
+        "AH",
+        "AI",
+        "AJ",
+        "AK",
+        "AL",
+        "AM",
+        "AN",
+        "AO",
+        "AP",
+        "AQ",
+        "AR",
+        "AT"
+      ],
+      "T_start": 97.15,
+      "T_step": 20,
+      "n": 20,
+      "lambda0_nm": 641.2,
+      "as": [
+        235,
+        417
+      ],
+      "s": [
+        251,
+        414
+      ],
+      "band": [
+        150,
+        530
+      ]
+    }
+  },
+  "assignment": "last five listed columns in each host wholly held on blue side; preceding columns development. Workbook temperature labels authoritative; 477.15 MGO uses separate twice-dense grid. A workbook contains both roles; trusted extraction can read container but must not decode held ordinate before role+coordinate authorization. Receive only after forecast arrays independently preserved.",
+  "coordinate": "Grid of detunings d every 5 cm^-1 inclusive over host band. nu0=1e7/lambda0_nm. Target is interpolated corrected native blue ordinate at nu0+d using linear adjacent native nodes. Source red value at nu0−f(d), f monotone piecewise linear map of paired author peak detunings, outer extensions of slope 1. Denominator mean over all these source red grid values. No alignment fitted from held blue. No clipping of measured truth or raw source. Refuse cohort on unresolved header, invalid units/labels, missing brackets or nonpositive red mean. Author unequal detunings retained.",
+  "training": "training includes all earlier T; donor highest development T. Fit empirical inverse-temperature slopes across final four development temperatures with unweighted OLS. E(d) is literature Stokes detuning of nearest indexed AS center, ties lower index. eps=.02 in red-mean-normalized units; every ratio/log uses max(0,value)+eps. For scaled prediction using ratio r, anchor formula (max(0,donorblue)+eps)*r-eps; no output rectification unless direct optical role. Coordinates fixed. Normalized optical cubic factor varies with d but cancels in comparisons of the same registered grid point across T.",
+  "roles": [
+    "red_ratio_mode_thermal",
+    "blue_persistence",
+    "blue_mode_thermal",
+    "red_ratio",
+    "red_ratio_detuning_thermal",
+    "fit_blue_slope",
+    "fit_blue_red_slope",
+    "optical_mode",
+    "optical_detuning",
+    "zero"
+  ],
+  "candidate": "At d, predict using anchored donor blue, measured target-to-donor red ratio, and known Boltzmann exponent with nearest mode energy E(d); c2=1.438776877 K cm. Opposite branches may broaden or translate differently. Same-amplitude source misfit and unequal branch energies not resolved by model. The optical_mode arm applies the published single-mode (nu_AS/nu_S)^3 exp(-c2 E/T) amplitude law to mapped red values; its full-profile extension is ours, and no historical full-profile author implementation is claimed.",
+  "metrics": "Per full target spectrum (equal d weights), MAE and RMSE in units of current red-band mean. Equal average across five temperatures per host and equal host means. Gate requires candidate lower both macro metrics than EVERY alternative, lower both metrics independently in each host than blue_persistence and fit_blue_red_slope, and strictly lower MAE in >=7/10 temperatures than fit_blue_red_slope. Retain all roles, temperatures, grid residuals, worst raw native interpolation and all predictions at that same grid point. Descriptive small N, correlated temperatures, no new specimen or calibration-free thermometry claim.",
+  "known_prior": "Source paper qualitative KSF resolved agreement, broad MGO overlap, shifts/literature mode detunings and selected author integrated parameters exposed. No deposited scientific ordinates opened before this precommit. Do not use publication fitted values in training, split selection or prediction.",
+  "exposure_update": "Subsequent pre-ordinate methods search displayed selected reported KSF fitted/integrated amplitude parameters and peak positions, plus published thermal redshift estimates. Those aggregates are exposed background; no approach or arm uses fitted parameters from the publication.",
+  "readout_grids": "Neither held anti-Stokes temperatures nor spectral counts are independent specimens. No duplicate panel B/C/D treated as new scans. The plotted MGO 477.15 K was measured/deposited on a twice-dense grid; same fixed output coordinates apply. The KSF file has 20 K steps, although the methods discuss 10 K acquisitions."
+}

@@ -16,6 +16,20 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/zhang_vibronic_profile_transfer/README.md",
+    "research/zhang_vibronic_profile_transfer/axis_only.py",
+    "research/zhang_vibronic_profile_transfer/catalog_original.py",
+    "research/zhang_vibronic_profile_transfer/forecast-lock.json",
+    "research/zhang_vibronic_profile_transfer/forecasts.json",
+    "research/zhang_vibronic_profile_transfer/independent.py",
+    "research/zhang_vibronic_profile_transfer/native-receipts.json",
+    "research/zhang_vibronic_profile_transfer/predict.py",
+    "research/zhang_vibronic_profile_transfer/protocol.json",
+    "research/zhang_vibronic_profile_transfer/replay.py",
+    "research/zhang_vibronic_profile_transfer/result.json",
+    "research/zhang_vibronic_profile_transfer/schema_only.py",
+    "research/zhang_vibronic_profile_transfer/score.py",
+    "research/zhang_vibronic_profile_transfer/source.py",
     "research/ider_teg_port_transfer/README.md",
     "research/ider_teg_port_transfer/catalog-result.json",
     "research/ider_teg_port_transfer/catalog.py",
