@@ -40,3 +40,5 @@ For H≥50 we can omit even that third candidate. The distance H/6−aH is H(3�
 node scripts/active-linear-family.mjs --reference-calibration --input examples/active-position-drift-all-dwell-calibration.json --output /tmp/all-dwell-proof.json
 python3 scripts/verify-reference-calibration.py examples/active-position-drift-all-dwell-calibration.json /tmp/all-dwell-proof.json --pulse-tick 4
 ```
+
+The [twelve-pulse unequal-suffix result](twelve-pulse-unequal-suffix.md) extends the 1/10 obstruction to every ordering and independent positive dwell in either named suffix triple.
