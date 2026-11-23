@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "record": "Zenodo 11033677 / DOI 10.48804/GDE9TW",
+  "inputs": [
+    "healthy 7×144×8192, all seven original sensors and original collocated seven-node drives",
+    "six-mass change: only retained first six receiver and first six hammer ports (36 entries per frequency); NPZ deserialization may decode whole six-mass bytes, but no excluded values may enter computation or logs"
+  ],
+  "c": [
+    16,
+    45,
+    50,
+    66,
+    94,
+    115
+  ],
+  "h": 121,
+  "u": [
+    19,
+    27,
+    68,
+    74,
+    106,
+    124
+  ],
+  "targets": {
+    "1 mass": [
+      74
+    ],
+    "3 masses": [
+      19,
+      74,
+      124
+    ],
+    "4 masses": [
+      19,
+      27,
+      74,
+      124
+    ],
+    "5 masses": [
+      19,
+      27,
+      68,
+      74,
+      124
+    ]
+  },
+  "held": "All four entire smaller-state originals sealed through forecast and source-gate lock. Primary scoring: 13 distinct coordinates touching held h (7 row and 6 additional column), 8192 frequencies*13*4=425984. Other 36 coordinates available for descriptive scoring only if primary opened. Elongated single 315g body at 80,91,102 is outside the six-node subset and remains sealed. One plate, one configuration per mass set, five acquisition averages, no independent plate replication.",
+  "gain": "At each frequency solve complex weighted six-unknown 21-edge least squares with w0=1: H_ij*w_i=H_ji*w_j, equation weighted by 1/max(|H_ij|,|H_ji|). Skip edge if either amplitude below 1e-6 of largest offdiagonal amplitude. Require rank6 and cond(design)<=1e3, max/min(|w|)<=10, and Frobenius symmetry defect ||S-S.T||/||S||<=.20 on S=H/ w[column]. Unknown fixed output/drive gains can vary by bin but must be shared across acquisitions.",
+  "scattering": "B=healthy[:,U], B_C is first six rows. Delta=(six[:6,:6]-healthy[:6,probing[:6]]) / w_C[None,:]. Require ||Delta-Delta.T||/||Delta||<=.30. Fit once to symmetrized Delta: T=B_C^-1 sym(Delta) B_C^-T. For each subset A and complement J form T_AA-T_AJ(T_JJ)^-1T_JA. Predict healthy + B_A core B_A.T times w_j. Symmetric complex transpose. Complete known unperturbed measurement carried forward, even if slight nonreciprocity.",
+  "thresholds": "Use raw B_C in published channel scale: positive finite s_min/s_max>=1e-3; full T and T_JJ positive finite s_min/s_max>=1e-3. Require removed-block absolute floor s_min(T_JJ)>=1e-4*s_max(T), including singleton. Record singular values and actual weak vectors of worst finite slices. Zero/nonfinite norms or nonfinite output refuse. Thresholds are numerical sensitivity screens, not measurement uncertainty. Common baseline fallback for all learned arms on unavailable bins; all 8192 bins retained. Admission of four-state score requires at least 50% bins for EVERY subset and 25% per subset in each of four contiguous equal-bin quarters; otherwise keep all four sealed and publish source gate.",
+  "controls": [
+    "healthy unchanged",
+    "n/6 times full six-mass continuation through known six columns",
+    "n/6 times healthy all144-node minimum-norm composed row and column continuation (author least-squares family extended for prediction, not authentic damage-localization score)",
+    "known-A two-sided projection of the whole six-mass change using the Moore-Penrose inverse on its six-port healthy fields, no strength shrinkage",
+    "diagonal truncation of the fitted six-site core, retain only A",
+    "diagonal approximation to inverse core T^-1, retain reciprocal diagonal for A",
+    "fit six independent diagonal-site scatterers directly to all36 sym(Delta) entries with complex least squares; keep A"
+  ],
+  "metrics": "All arms same 36 source measurements. Per-state held-port complex RMSE / RMS of held measured responses over 13×8192. Equal-state mean and worst-state relative RMSE primary. Candidate must strictly beat every comparator on both. Report worst raw absolute complex error for candidate, true, forecast and every comparator; fixed four contiguous frequency quarters, row/column/self. No postscore tuning or frequency selections. A matched empirical full-core spatial projection is included; its calibration is still six-mass-only.",
+  "limits": "No absolute 55g or inferred hidden receptance in physical units without traceable channel scaling. Effective scatterer assumptions include repeatable support/glue, independent point increments, shared baseline and reciprocity through the relevant FRF. Finite calibration bins do not identify installation drift. Healthy and six-mass numeric arrays were unopened when this protocol was frozen."
+}
