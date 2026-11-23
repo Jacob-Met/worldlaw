@@ -1,0 +1,117 @@
+{
+  "Data/Indroduction to Dataset.docx": {
+    "description": [
+      "Introduction to the dataset",
+      "These data are the P- and S-wave velocities obtained by Ba et al. through ultrasonic experimental measurements and the seismic measurements on a rock sample at different pressures.",
+      "In the package of data, wave velocities measured at different pore fluids and frequencies are saved as different XLSX files. The title of each XLSX file includes the sample number, saturation condition and measurement frequency. For instance, “Sample D_Seismic_Brine” denotes that wave velocities of sample D measured with the full brine saturation are measured at seismic frequency, while “Sample D_Ultrasonic_Gas” denotes that wave velocities of gas-saturated sample D are measured at ultrasonic frequency. The package also includes the TXT file of sample properties.",
+      "In the TXT files of seismic measurements, the first column gives the differential pressure values, the second column gives frequency values, the third and fourth column gives P- and S-wave velocities. In the TXT files of ultrasonic measurements, the first column gives the differential pressure values, the second and third column gives P- and S-wave velocities."
+    ],
+    "sha256": "9d78e42cbb02727ddfc8cc7438c401d5e741521d40a23006113ca6ae24fdf9f8"
+  },
+  "Data/Sample D_Seismic_Brine.xlsx": {
+    "sha256": "b85e6c25a780b29a83718e9c1291d833ea990c2669073af486481fec29042db6",
+    "sheets": [
+      {
+        "column_cell_counts": {
+          "A": 71,
+          "B": 71,
+          "C": 71,
+          "D": 71
+        },
+        "rows": 71,
+        "sheet": "xl/worksheets/sheet1.xml",
+        "text_label_count": 3,
+        "text_labels": [
+          [
+            "A1",
+            "Pressure"
+          ],
+          [
+            "B1",
+            "Frequency"
+          ],
+          [
+            "A2",
+            "<numeric>MPa"
+          ]
+        ]
+      }
+    ]
+  },
+  "Data/Sample D_Seismic_Gas.xlsx": {
+    "sha256": "89a49d1f75b8f5b33f54e12593b0ad767d9ac34a9eb89bb614780679211b80b1",
+    "sheets": [
+      {
+        "column_cell_counts": {
+          "A": 71,
+          "B": 71,
+          "C": 71,
+          "D": 71
+        },
+        "rows": 71,
+        "sheet": "xl/worksheets/sheet1.xml",
+        "text_label_count": 3,
+        "text_labels": [
+          [
+            "A1",
+            "Pressure"
+          ],
+          [
+            "B1",
+            "Frequency"
+          ],
+          [
+            "A2",
+            "<numeric>MPa"
+          ]
+        ]
+      }
+    ]
+  },
+  "Data/Sample D_Ultrasonic_Brine.xlsx": {
+    "sha256": "fc25308c90b24bed9890b6e69527bea609d016d170de12500034d5d0e319c04b",
+    "sheets": [
+      {
+        "column_cell_counts": {
+          "A": 8,
+          "B": 8,
+          "C": 9
+        },
+        "rows": 9,
+        "sheet": "xl/worksheets/sheet1.xml",
+        "text_label_count": 1,
+        "text_labels": [
+          [
+            "A1",
+            "Pressure"
+          ]
+        ]
+      }
+    ]
+  },
+  "Data/Sample D_Ultrasonic_Gas.xlsx": {
+    "sha256": "cc597bce5579936c911c2cd4d5cf164a11dc606b516f9846da4d48777d3230c3",
+    "sheets": [
+      {
+        "column_cell_counts": {
+          "A": 8,
+          "B": 8,
+          "C": 8
+        },
+        "rows": 8,
+        "sheet": "xl/worksheets/sheet1.xml",
+        "text_label_count": 1,
+        "text_labels": [
+          [
+            "A1",
+            "Pressure"
+          ]
+        ]
+      }
+    ]
+  },
+  "Data/Sample Properties.txt": {
+    "bytes": 105,
+    "sha256": "fcfeb71b19c23c09e75366cc15a0f5c62f8fec31e3db5711fb7fdba7b7f66831"
+  }
+}
