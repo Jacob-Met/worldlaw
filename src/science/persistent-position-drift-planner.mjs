@@ -22,10 +22,10 @@ function parse(source) {
   need(source?.schema===CATALOG_SCHEMA && Object.keys(source).sort().join(',')==='commands,laws,noiseBound,schema',
     'expected the declared command/rate catalog');
   const {commands,laws}=source;
-  need(Array.isArray(commands) && commands.length>=1 && commands.length<=6 && names(commands),
-    'offer one to six uniquely named commands');
-  need(Array.isArray(laws) && laws.length>=2 && laws.length<=8 && names(laws.map(l=>l?.id)),
-    'offer two to eight uniquely named laws');
+  need(Array.isArray(commands) && commands.length>=1 && names(commands),
+    'offer at least one uniquely named command');
+  need(Array.isArray(laws) && laws.length>=2 && names(laws.map(l=>l?.id)),
+    'offer at least two uniquely named laws');
   const rates=laws.map(l=>{
     need(Object.keys(l).sort().join(',')==='id,rates' && Array.isArray(l.rates) && l.rates.length===commands.length,
       'provide one exact rate per command');
