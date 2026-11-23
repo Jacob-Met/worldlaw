@@ -1,0 +1,67 @@
+[
+  {
+    "role": "telegraph-metadata-original",
+    "job": "p2-f747-telegraph-dryad-metadata-and-exact-generator-screen",
+    "owner": "node-d2dbd5b69be273f1ed6d83bc99877038",
+    "authority_arguments": "6444a9c301439547a543df1db9cd37b2100d3a9db696c7a9b9713f54f5a02bb0",
+    "request": "c7075340b2f549f57098b55705ee76f5f91ebbede16968bb3a326be77ba064e7",
+    "generation": "fe5b6cf90512937632fb04649b87942fcb00720d9ede8b8222f14c2a835742c7",
+    "exit": 0,
+    "output": "WORKDIR /tmp/hamon-s-1000/39a1beaf0e23441cb8d7574a349bffc3/f747-telegraph-source-only-pe8aeiri\nLANDING 53230 42ffc4703303f0d31fdf4bce9f92a009db199cb9894ebc7c3cca8b08ac0b9dbc [('README.md', '/downloads/file_stream/2936863'), ('SwitchingTrap.zip', '/downloads/file_stream/2936856')]\nFILES_ONLY [('OpticalMicroscopy.rar', 339037973, 'f1b75e89618d49987f9910708f7cc5746afd9653fd0b65e0f9344121878e3e58', 'sha-256'), ('OpticalSensing.zip', 35781785, '241c67805b96a45649d6891247bb70ee8649c8882046a2e172795216b431196f', 'sha-256'), ('OpticalStretching.zip', 324339621, 'b36f72b0174d923c1bcf9910d554b3ed81ae8ebcf60869ec9156d58830cce933', 'sha-256'), ('README.md', 4135, '827f4142a20905b9ffb63cfba107fdbf4037c0c2f4a7762a7057e9899ec601b1', 'sha-256'), ('SwitchingTrap.zip', 285389783, 'e63a021d4b6cbf3e362d5ed06e4f7502fa7c8628741aabe1c77cdd402a11d541', 'sha-256')]\nANALYTIC_SYNTHETIC_DERIVATIVES ['0', '0', '0', '-12', '192'] MEASUREMENT_TRACES_READ 0\n"
+  },
+  {
+    "role": "telegraph-opaque-obs",
+    "job": "p2-f747-telegraph-opaque-archive-roster-and-filter-source",
+    "owner": "node-49ce35aee5f5ac3713107652d4b7fb2c",
+    "authority_arguments": "1dab504cc7310df3197fe55b70e447266133054a12677620e7e15c58259040fc",
+    "request": "f9a46ff5721bdb273e16b0e55805de7fcc4de5254214edddf7915d3685bede30",
+    "generation": "a16394122bee7218362fa75375f3ff5c6ec291dd202cdefa6960819f85d659a5",
+    "exit": 1,
+    "descendants": "drained",
+    "output": "WORKDIR /tmp/hamon-s-1000/7f80f975d7fe4e199cf21ca96d800221/f747-telegraph-opaque-7fr_57ga\ncurl: (22) The requested URL returned error: 403\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['curl', '-fLsS', '--retry', '2', '--max-time', '420', 'https://datadryad.org/downloads/file_stream/2936856', '-o', 'SwitchingTrap.zip']' returned non-zero exit status 22.\n"
+  },
+  {
+    "role": "telegraph-authorsw-obs",
+    "job": "p2-f747-telegraph-author-linked-zenodo-software-catalog",
+    "owner": "node-afe5effb4abf983e03793cfe74983139",
+    "authority_arguments": "b3c2195fc569064547c6468eb615689f395534e4a1a78cadbc54310a6a300dd7",
+    "request": "6f8074e3891ee3919a065a8dd1d217bee5c9bacfd495fe4c16c7a64fd3a4534a",
+    "generation": "e0f73daadb13e7ee9c4ac4766b203d087734a54643ffb1dd2cdcb3f693d512a9",
+    "exit": 0,
+    "descendants": "drained",
+    "output": "PUBLISHER_LINKED_RECORD https://zenodo.org/api/records/10472504 Data from: Variance sum rule for entropy production open [('VSR_fit.ipynb', 983732, 'md5:cca90dc314803c230119757a4eff0c21', 'https://zenodo.org/api/records/10472505/files/VSR_fit.ipynb/content')]\nPUBLISHER_LINKED_RECORD https://zenodo.org/api/records/10472505 Data from: Variance sum rule for entropy production open [('VSR_fit.ipynb', 983732, 'md5:cca90dc314803c230119757a4eff0c21', 'https://zenodo.org/api/records/10472505/files/VSR_fit.ipynb/content')]\nDATACITE [{'title': 'Data from: Variance sum rule for entropy production'}] https://zenodo.org/doi/10.5281/zenodo.10472505 {'ris': 'COMP', 'bibtex': 'misc', 'citeproc': 'article', 'schemaOrg': 'SoftwareSourceCode', 'resourceType': '', 'resourceTypeGeneral': 'Software'}\nTRAJECTORY_OR_NOTEBOOK_OUTPUT_VALUES_READ 0\n"
+  },
+  {
+    "role": "telegraph-code-obs",
+    "job": "p2-f747-telegraph-published-code-filter-and-coordinate-contract",
+    "owner": "node-740d2ac3d9e5f4d07596fe1cfd9701df",
+    "authority_arguments": "e9b8680af95f4ce13a97446dae2b874575191f095e1cb5f66c079da13df94339",
+    "request": "2f100712efb7c718702011d68f6b8f527febc3bfa628a26aa34cab4697747bd7",
+    "generation": "1c6c1d71fddddb091ae1ff060bfcd13ba969efc52c887aa7fbf2bf1c00bf39e9",
+    "exit": 0,
+    "descendants": "drained",
+    "output": "WORKDIR /tmp/hamon-s-1000/da87b7725e6248c8a45f526d39d76545/f747-di-terlizzi-source-l8b036wx\nCODE_CELL 3 \n    cfx=np.fft.fft(xp,fsize)\n        idx = np.where((freq<-max_freq)+(freq>max_freq))[0]\ndef Binning(x,t,nu,be=1.01):\nCODE_CELL 9 \n    mux = pars[0]\n    if idx=='xx':\n    elif idx=='yy':\n    elif idx=='ff':\n    elif idx=='xy':\n    elif idx=='xf':\n    elif idx=='yf':\nCODE_CELL 10 \n    mux = pars[0]\n    mux = pars[0]\n    mux = pars[0]\n    mux = pars[0]\ndef Entr_Err(pars,error,idx=0):\nCODE_CELL 12 \ndef fit_VSR(files, time = 1, fit_mode='tot',fit_s = [0,1], p0 = False , bounds = (0,1000),s_interval=[1,100],\n    # files : list of files to analyse, must be two columns with time and position\n    # delimiter: to extract data from files with np.loadtxt(file, delimiter=delimiter)\n    # be : binning exponent for binning (get logarithmically spaced array in s space)\n    fig,ax=plt.subplots(n_comp,3,figsize=(10,2.8*n_comp))\n        data = np.array(np.loadtxt(file, delimiter=delimiter))\n        x = data[:,1]-np.mean(data[:,1])\n            x = scsg.detrend(x,type = 'linear')\n        indexes_time = np.where(t<=time+10**-6)[0]\n        len_idx = len(indexes_time)    \n            dt = timej[s][1]-timej[s][0]\n                ax[1].axvline(x=timej[s][0])\n                ax[1].axvline(x=t[-1])\n                ax[idx,1].axvline(x=timej[s][0])\n                ax[idx,1].axvline(x=t[-1])\n        Cxx=np.mean(Cxxs,axis=0)\n        Cxxs_fil, s_fil = Binning(Cxx_lap,s,fit_s[0],be=be)\n            entropies.append(Entr_Err(eff_pars,eff_cov,idx=i))\nCODE_CELL 15 \nRBC1 = fit_VSR(dataRBC, fit_mode = 'tot', p0=p0, bounds = bounds,time =1,s_interval=interval,\\\nORIGINAL c6efaa35ad308a41dd6ad6b4e0079c0f4589fe163443be12fa108ff96090e635 CELL_OUTPUTS_PROJECTED 0 TRACE_FILES_READ 0\n"
+  },
+  {
+    "role": "telegraph-head-obs",
+    "job": "p2-f747-telegraph-dryad-publisher-file-metadata-and-head",
+    "owner": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "authority_arguments": "2de52604acbcb07491d6c40af2474f317bc0a96c1b02eba1b34e8c27a653fee9",
+    "request": "dd1c863c63c20737967c6c91a951de46a67ff7782e596eb90b47f7626745b194",
+    "generation": "713419877a04407751a41fc16853e2aec72db8c71302059aa4f7cab39317750d",
+    "exit": 0,
+    "descendants": "drained",
+    "output": "CATALOG SwitchingTrap.zip 285389783 {'self': {'href': '/api/v2/files/2936856'}, 'stash:dataset': {'href': '/api/v2/datasets/doi%3A10.5061%2Fdryad.h44j0zpsw'}, 'stash:version': {'href': '/api/v2/versions/280180'}, 'stash:files': {'href': '/api/v2/versions/280180/files'}, 'stash:download': {'href': '/api/v2/files/2936856/download'}, 'curies': [{'name': 'stash', 'href': 'https://github.com/datadryad/dryad-app/blob/main/documentation/apis/link_relations.md#{rel}', 'templated': 'true'}]}\nHTTP_RESULT landing attachment 403 text/html awselb/2.0 None\nMEASURED_TRACE_BYTES 0\n"
+  },
+  {
+    "role": "telegraph-api-obs",
+    "job": "p2-f747-telegraph-advertised-dryad-file-api-roster",
+    "owner": "node-740d2ac3d9e5f4d07596fe1cfd9701df",
+    "authority_arguments": "e1655bc738e74c215430b1a66df7708f309e7a733d384a7e1c8562ce116291be",
+    "request": "f2046eb4a7a97ce1eeb98fcdac577751e64d223620b3c6fbe390b1f3ebd8fceb",
+    "generation": "a29769f13c18d7033c6d824ca63c7339232b774266375c6c2cb2e04dc4468077",
+    "exit": 2,
+    "descendants": "drained",
+    "output": "WORKDIR /tmp/hamon-s-1000/a60e862b58684dc6b61266dd69f9f49f/f747-sst-api-900cmyit\nADVERTISED_API_REFUSAL 401 application/json; charset=utf-8 Apache/2.4.69 (Amazon Linux) OpenSSL/3.5.8\n"
+  }
+]
