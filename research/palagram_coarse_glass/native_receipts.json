@@ -1,0 +1,82 @@
+[
+  {
+    "job": "p3-f747-palagram-287-archive-and-source-only-roster",
+    "source": {
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "command_id": "p3-f747-palagram-287-archive-and-source-only-roster",
+      "request_sha256": "15290e5c406311ec4695d3bc572d84c3dcc71ed3bd1a82c1e7cc17b11aaaf11e",
+      "generation": "9a63583588edf04406361555dfbb3037b450487b744e4150eacd83b2a1e71795",
+      "receipt_sha256": "9279ecb3bdca549b46222872503f0a2f092b51e240df4b127ff13278f1abb05e",
+      "output_bytes": 2615
+    },
+    "bytes": 2615,
+    "stdout_sha256": "7d52e9da97baee61092092d5a1b5637f2855acbd61fa46630ab17b740d55975d",
+    "state": "failed",
+    "exit": 1,
+    "descendants": "drained"
+  },
+  {
+    "job": "p3-f747-palagram-canonical-source-record-and-clock-metadata",
+    "source": {
+      "owner": "node-49b54506b7dba476ddbe7515b0d39c8a",
+      "command_id": "p3-f747-palagram-canonical-source-record-and-clock-metadata",
+      "request_sha256": "ef4c7a4f9fc927edc367cf7e7a70ef5c42f882a9dfcc40bd437bbb3965e87cf9",
+      "generation": "129b69cf374fb9d04559c43e9d5449d0ec2fbb6625954019a5cb5769d0d319a9",
+      "receipt_sha256": "adc4e0a14e0ad3dfbbdb2ab2a368feee5efc381a5dc19b535e4dd5200e928969",
+      "output_bytes": 210463
+    },
+    "bytes": 210463,
+    "stdout_sha256": "7d886bb0da7eccc5511b70abda5e076a02a3bbf213568b6769c8e00ae3627814",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained"
+  },
+  {
+    "job": "p3-f747-palagram-native-61-development-13-unseen-forecast-original",
+    "source": {
+      "owner": "node-dca2afb29d0ea38ed174f70e12b3d5ea",
+      "command_id": "p3-f747-palagram-native-61-development-13-unseen-forecast-original",
+      "request_sha256": "eb778f706724750fa54da08e5013f4af5fcca9a6558e031839460ffd0530223b",
+      "generation": "94a589f6f33bddf13c09ebb2f4341892029b26666eb7e377da9f9aa87860c624",
+      "receipt_sha256": "3201dd087e3a6371ec5a9f9d49d6bd7df59d44ec288b2f60d2550ba74a7267e6",
+      "output_bytes": 177466
+    },
+    "bytes": 177466,
+    "stdout_sha256": "595fc20ad424e95f74fb15a9f6cabee3e610a8c2b61437c53cbd12fa39b983b1",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained"
+  },
+  {
+    "job": "p3-f747-palagram-13-held-front-records-and-12-locked-arms",
+    "source": {
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "command_id": "p3-f747-palagram-13-held-front-records-and-12-locked-arms",
+      "request_sha256": "8aa3c8385b8bff789c51e52c8720630a18725ee772a56cfc0a4a5e3f57b5c908",
+      "generation": "6d5813ebdf21bb51feb23106aea174258d939dc87b8bed5e06a9b041df7e99af",
+      "receipt_sha256": "1b67a434257ed83ea92121d10c1def291f95eb4c0bc1b68e522b15a04563b67b",
+      "output_bytes": 52421
+    },
+    "bytes": 52421,
+    "stdout_sha256": "624739cef4b55c5e0abce6f22f24a27439bdae781e98d8480657db531c273b96",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained"
+  },
+  {
+    "job": "p3-f747-palagram-13-actual-git-blobs-and-scalar-decimal-receiver",
+    "source": {
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "command_id": "p3-f747-palagram-13-actual-git-blobs-and-scalar-decimal-receiver",
+      "request_sha256": "c0c33edb933ab508d790dc2b2b87c9721c7d3db81f8e4f5735bdab58b0239b80",
+      "generation": "c91e2c35a1128707094be4f691596071fdacc5ea783e7b188291a8a88a8e9f1e",
+      "receipt_sha256": "f9dd069fde8e173692afde851e7c54280891864d8d22e492e6c847c663b38e65",
+      "output_bytes": 480
+    },
+    "bytes": 480,
+    "stdout_sha256": "7bb82a80380ff140546936bd5b2215f7bb6382e2ff05fbeb1c8cb19c45f828c8",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained"
+  }
+]
