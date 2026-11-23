@@ -1,0 +1,112 @@
+{
+  "circuits": 648,
+  "date_wins": 12,
+  "duplicate_held_equal": 3,
+  "duplicate_prefix_identical": 0,
+  "eligible_jobs": 18,
+  "gate": {
+    "free_static_spam": false,
+    "single_spam": true,
+    "static_spam": true,
+    "var1": true,
+    "var2": true
+  },
+  "joint": false,
+  "maximum_mean_delta": 1.1102230246251565e-16,
+  "maximum_per_cell_delta": 1.4779288903810084e-12,
+  "maximum_total_nll_delta": 2.892193151637912e-10,
+  "nll_gap_from_ce_per_shot": 176.22986520628092,
+  "nll_gap_from_exact_binomial": 176.22986520628638,
+  "probabilities_and_residuals": 7128,
+  "raw_source_verified": true,
+  "shots": 663552,
+  "worst_raw_row": [
+    4,
+    "Y",
+    1,
+    110
+  ],
+  "originals": [
+    {
+      "job": "p3-f747-npl-mirrored-sequence-metadata-and-readme-only",
+      "owner": "node-9198bc15530634050cdb2d65145320ca",
+      "state": "completed",
+      "exit": 0,
+      "output_bytes": 1923,
+      "drain": "drained",
+      "request": "b83257d4e717e1f330989772439871f987ce3d60b51ca879212bac8b4539a20b",
+      "generation": "a07b582e5252a0184ac3f5ddfb2c6ee73bbe66e0c7f9cab897c109fedd261fce"
+    },
+    {
+      "job": "p3-f747-npl-independent-job-depth-basis-and-drive-roster-only",
+      "owner": "node-740d2ac3d9e5f4d07596fe1cfd9701df",
+      "state": "failed",
+      "exit": 1,
+      "output_bytes": 598,
+      "drain": "drained",
+      "request": "ac37a2b7478b6d74dd826f1ef08961e4f448cb338d196a1515a1d78030f5d6b3",
+      "generation": "fb2a5ceecca98e5b2ed1ef47951fb439a01e788f140f826a8411da82ad787feb"
+    },
+    {
+      "job": "p3-f747-npl-printed-numpy-depth-vector-design-only",
+      "owner": "node-740d2ac3d9e5f4d07596fe1cfd9701df",
+      "state": "completed",
+      "exit": 0,
+      "output_bytes": 1167,
+      "drain": "drained",
+      "request": "74836524b924ced0fe3133401a173861c12a43e9f2bd5e2980fe5aea063dad6d",
+      "generation": "529d9cfd0f28f0bb092a7782ef03cbd9d76d747518a0e8c1d47744e67c4a63de"
+    },
+    {
+      "job": "p3-f747-npl-exact-driven-telegraph-generator-and-instruments",
+      "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+      "state": "completed",
+      "exit": 0,
+      "output_bytes": 296,
+      "drain": "drained",
+      "request": "84f5b6ddea05e959189ea6b9df72377d7965c2153154fec6032a1cf2bfbc1a35",
+      "generation": "cd51d9e9b1e3d36f0060dc24c17b73bd30a4f8d6564ec3e5374e478061482d08"
+    },
+    {
+      "job": "p3-f747-npl-idle-analytic-response-versus-full-16-state-exponential",
+      "owner": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+      "state": "completed",
+      "exit": 0,
+      "output_bytes": 258,
+      "drain": "drained",
+      "request": "052a620e52bf9f904b63e1e26297d094641f5a1018699ca819142fcd4555a565",
+      "generation": "b91f083b720a929d2969b99076b65857a62c716c79e631e5b9c5ce38131d5b15"
+    },
+    {
+      "job": "p3-f747-npl-locked-binomial-receiver-with-full-output-policy",
+      "owner": "node-1084bfa3c8365d0b8987c0e8d018df71",
+      "state": "completed",
+      "exit": 0,
+      "output_bytes": 346784,
+      "drain": "drained",
+      "request": "10b8970cf329709f45cbe6c1c6ba454c7b41c785860350906e19e6e244d2bc33",
+      "generation": "c76a37516b47092b4a4bf46a877ab01d4192e351dc81941e67798056161f6762"
+    },
+    {
+      "job": "p3-f747-npl-independent-raw-648-held-binomial-recount",
+      "owner": "node-40283bca720474f59ba9fedb7db2a7d0",
+      "state": "completed",
+      "exit": 0,
+      "output_bytes": 602,
+      "drain": "drained",
+      "request": "d98558dd3904011ad4180d26b05a3b0cfaa823a55c8b8223167a60a681665f35",
+      "generation": "22b3808b8955a80d6b17ce4fb438365650f23a2f50ad96139df0a46e8705a204"
+    }
+  ],
+  "initial_score_diagnostic": "INVALID_ARGUMENT",
+  "score_original": {
+    "owner": "node-1084bfa3c8365d0b8987c0e8d018df71",
+    "command_id": "p3-f747-npl-locked-binomial-receiver-with-full-output-policy",
+    "request_sha256": "10b8970cf329709f45cbe6c1c6ba454c7b41c785860350906e19e6e244d2bc33",
+    "generation": "c76a37516b47092b4a4bf46a877ab01d4192e351dc81941e67798056161f6762",
+    "receipt_sha256": "d21d6351489a8ecb56c9141e527e0f87f9f4f69a827fcf5abf30f9deb05b57da",
+    "output_bytes": 346784
+  },
+  "score_full_stdout_sha256": "10f135eaae24558eef36d7fe5cd83b664ef7b9eae7be92d53dd52e62c18a90d9",
+  "prefix_original_ledger": "forecast-lock.json"
+}

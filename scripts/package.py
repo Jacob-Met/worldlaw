@@ -16,6 +16,22 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/npl_mirrored_qubit/EQUIVALENCE.md",
+    "research/npl_mirrored_qubit/README.md",
+    "research/npl_mirrored_qubit/analytic_fixture.py",
+    "research/npl_mirrored_qubit/design-receipt.json",
+    "research/npl_mirrored_qubit/design_roster.py",
+    "research/npl_mirrored_qubit/forecast-lock.json",
+    "research/npl_mirrored_qubit/forecast.py",
+    "research/npl_mirrored_qubit/forecasts.json",
+    "research/npl_mirrored_qubit/generator-receipt.json",
+    "research/npl_mirrored_qubit/generator_oracle.py",
+    "research/npl_mirrored_qubit/independent-receipt.json",
+    "research/npl_mirrored_qubit/protocol.json",
+    "research/npl_mirrored_qubit/recount.py",
+    "research/npl_mirrored_qubit/score.json.gz",
+    "research/npl_mirrored_qubit/score.py",
+    "research/npl_mirrored_qubit/source_intake.py",
     "research/switching-trap-time-reversal/README.md",
     "research/switching-trap-time-reversal/conditional_forecast.py",
     "research/switching-trap-time-reversal/exact_controls.py",

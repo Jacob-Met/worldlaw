@@ -1,0 +1,352 @@
+{
+  "source": "57e0e3cde79c6ae09ca2b30731f34b11866c9c82",
+  "forecast_sha256": "53da3857baaa68d1a50b6f080bbdaac7dca5dc1eaa89af9e0a40244b2265d21a",
+  "bytes": 114094,
+  "conditional_probabilities": 3564,
+  "paired_evaluation_circuits": 648,
+  "source_jobs": [
+    {
+      "ordinal": 0,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0000",
+      "request": "c202759b9a7ad92cc9a2c3567c1e0eed839aaea5c6a243c9cf6b35bc01c06ed9",
+      "generation": "69298dbdaf5826fdd7326d6ec9970ec9eab492be94bd2eb621788e82916f01f2",
+      "owner": "node-d807db003bdba7cdc89bb0e727dcf02d",
+      "bytes": 6763,
+      "output_sha256": "9a9b8ec13dee6c578ea8251bac65a75f9703708699e59b4f3f381efba7a59dd8",
+      "forecast_json_sha256": "7a6f0a57bc801117701efd36e7fbdc69119c5746f78545f2bb7104afc9002bb2",
+      "cpu": 4.705546000000001,
+      "rss": 94195712,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 1,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0001",
+      "request": "46352e0bb09fc8010fe9a6b2e575bb7674da44b2bc63d2d9fa1466bffa2daf6a",
+      "generation": "077d4861fc92e005fa0e0c99db1b07c1b034d1ff034b0b935000a5929c4d3ddb",
+      "owner": "node-7a9dead9904fa3581a4286fb5ced2323",
+      "bytes": 6835,
+      "output_sha256": "5f6051e1b4e5e2e81cf857b6c6a0f017c2a45834792c98303e57d234e71c58b7",
+      "forecast_json_sha256": "5d2fa53679682d154b10b34dbe288d1eaa73f0619257095aa3a8fc4518576132",
+      "cpu": 5.0351360000000005,
+      "rss": 89960448,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 2,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0002",
+      "request": "3396485f85ce9ffb8d6629b867201396a41b508e1a4fa5022d6361108e5e126d",
+      "generation": "096505784c8a5d2b1cc36d57da875ca8cbced1d85facb3f3e44d700b00ee51ef",
+      "owner": "node-9198bc15530634050cdb2d65145320ca",
+      "bytes": 6778,
+      "output_sha256": "661e073535b2764ed4ff789620068815141ea76b489353d95b6149106cdc8df0",
+      "forecast_json_sha256": "77881096c3a72c5009747f2c092eb06b2b1c6ed1d8d7721160501c8aaa9f4c48",
+      "cpu": 4.070152,
+      "rss": 85905408,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 3,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0003",
+      "request": "b757f42bdd3b4d30a9a50ee3b69d7eb2f2cf23eb88ad522b1e2c0944e78fcde2",
+      "generation": "eb2060daa127fa1e75783a09e8f4907755e395a720ca9d5a9ca02e0d61bd32fa",
+      "owner": "node-afe5effb4abf983e03793cfe74983139",
+      "bytes": 6697,
+      "output_sha256": "d7cd5794f90cc8ef25520b060fdf0f2890a9a421e2d403fa9f904426d7ff374e",
+      "forecast_json_sha256": "05b4aff42f2004ae317171f62a9ed9dbe45cc987635361c0ba38fcda7c8c8bb1",
+      "cpu": 4.739772,
+      "rss": 90464256,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 4,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0004",
+      "request": "0f573dff7b4c64edbafccdb1d7c4d1e7467a08273ad08de691c20645cb3f0ba9",
+      "generation": "03d1f211f8f428c77138243b0438cee336bbe15e534402480287e63c3a374858",
+      "owner": "node-9198bc15530634050cdb2d65145320ca",
+      "bytes": 6775,
+      "output_sha256": "1a378997580aea01a526c2202ec4f940fe137a2b1ac17215f8ea9b773bd4fc1f",
+      "forecast_json_sha256": "db5d845028943422f3fe961b0512ba41c4ab84bb9dd909fa524be72ab0f2722f",
+      "cpu": 4.610262,
+      "rss": 89120768,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 5,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0005",
+      "request": "34d9afaac24840e2ff9931e743827cfcd75d7c2caa73c733fcfe8de3e4000a27",
+      "generation": "041e22ed8d0e43233fc8eb0b1ed6ef0a9626d7262be6863492c0610ef8ee6efe",
+      "owner": "node-afe5effb4abf983e03793cfe74983139",
+      "bytes": 6902,
+      "output_sha256": "d3eb08539ca526fcbcd4ccb5546a610b38c4d08b545f3856f4c1839ee4846b6b",
+      "forecast_json_sha256": "f2d0f761b43c5812fc2787b902da4a90b04fb3201b5cf16f04d4128c1e850669",
+      "cpu": 4.742136,
+      "rss": 90316800,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 6,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0006",
+      "request": "61e9285e67475c2c6a361fa6a5610d6511a4255ad2ebf3a808f357a347ea0deb",
+      "generation": "684d897adc56ab1bf070b893f5ab770fad8052fcf060d773fbfc34c578097ead",
+      "owner": "node-9198bc15530634050cdb2d65145320ca",
+      "bytes": 6781,
+      "output_sha256": "6aedded090b1ce52f6c7f765097da21e9f591f82b5589b07bbe58dbde7fd1131",
+      "forecast_json_sha256": "14a3e15c778e87121c97c16299ebbb3f7e4b0c02ff1ac226932ac18afe1fcc4e",
+      "cpu": 4.399986,
+      "rss": 87740416,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 7,
+      "job": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0007",
+      "request": "7fd498b83c4c2b3117bd9bc4aa4988d9c7887d8acc1c47773232039965c7e5e2",
+      "generation": "19f91cd9806d7c5a2db27508c285928d63f67acbd92834c5e8b97e2de38df067",
+      "owner": "node-34946f5baf98e12f01440f2df96d9e7e",
+      "bytes": 6827,
+      "output_sha256": "ec1f00deacd57121c722e5dab00ea9718d3ec99df9df76adbc0ca93c80351035",
+      "forecast_json_sha256": "9ae7d617c02fa2038cc2a7b90c241652b5c5e682df62f542e762abf04c44f689",
+      "cpu": 5.153315,
+      "rss": 93294592,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 8,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0007",
+      "request": "6f5f7c98e33cbf26b39ba34b284d5268c791b831d75247e48d883c319e432e3a",
+      "generation": "90ab4120afcaf71ed2ca1537dd0731dcb990768954f221e8df1b97f351e5360e",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "bytes": 6797,
+      "output_sha256": "559073e9c249c34a302755c36411b8ab02016f2f42d63aa7010f443d5929c376",
+      "forecast_json_sha256": "06550f4ebf0ae739913fbc3699d2a0477b0d6891bf5660bb9fd9c3ebc6976844",
+      "cpu": 4.927461,
+      "rss": 89194496,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 9,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0008",
+      "request": "82119a6e9b083cea6d0eceb807bd44b8454931efe3a607afa6827bce2e272b9d",
+      "generation": "5d5fcb027ea709b2121ebe85746ff628fe6d735803215fd62c944677ecdbfcf9",
+      "owner": "node-740d2ac3d9e5f4d07596fe1cfd9701df",
+      "bytes": 6829,
+      "output_sha256": "2c850df684880f56d17b3e7833210ecb6951b1f9301a83b1522518eba116c090",
+      "forecast_json_sha256": "274763236076c403921ebf67bdb3f3afb2ea445ea117c5e49711072b813be692",
+      "cpu": 4.033323,
+      "rss": 89018368,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 10,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0009",
+      "request": "7dcefad6d5d9ea58d649e5ece9bffe1bc7f1be2597bb8e7894d17df0f82ee513",
+      "generation": "b906b2e6a9e60e931d0ba7df9776e071b133ac4a7863fc2a10d3fa3ae6877837",
+      "owner": "node-d807db003bdba7cdc89bb0e727dcf02d",
+      "bytes": 6929,
+      "output_sha256": "4774654a3e083fd9023037591fddf1c83c6e6ad4bffa858eeddae3c86b4f2542",
+      "forecast_json_sha256": "f74bfc8b7b71c9fe9241932c00f4f5b5d0b69a34cf743c64a42fd986c2b44467",
+      "cpu": 5.132269,
+      "rss": 93716480,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 11,
+      "job": "p3-f747-npl-ordinal11-pypi-dns-recovery-same-frozen-forecast",
+      "request": "36b543aa2e62315448c01c884a802d2800d44aa4d064a9589d44f083ac0c82d4",
+      "generation": "d9a973eb0d8755b947241097ce5ef13fc6f83a07f5e265c92a8e3a949725c5b5",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "bytes": 6800,
+      "output_sha256": "a9dccdd629c61caea85b98bc851e3cc472ada7a19ba370ac914a817f3b0866b3",
+      "forecast_json_sha256": "43f257d4951cb9069252765042f0d936deffa62df6c03007c67d0bb7c464b70d",
+      "cpu": 4.2932760000000005,
+      "rss": 86556672,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 12,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0011",
+      "request": "e086cd65ba55bac7dec36978d66aed3f058b1ee9bbfd45cbe33a6ade5f1eba05",
+      "generation": "32bd0c25c8899b04e86c778d17a8f36d9783596811da4f868f1a0e70d8e440f0",
+      "owner": "node-9198bc15530634050cdb2d65145320ca",
+      "bytes": 6687,
+      "output_sha256": "c2cecab98885500c95cd2392840a9e3e5e5574ca1478aa9e7452e103486b1aed",
+      "forecast_json_sha256": "f5886e88818d3467a93daa5381f87ffa4941b38aadad5371e120e90c5bb908b9",
+      "cpu": 4.74891,
+      "rss": 88403968,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 13,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0012",
+      "request": "cd730a4f369bd776b1cbf8e0b2b8d75d08123f657f4cdeb48eb6dbca13482c82",
+      "generation": "62068fb757080eb16039e66c54693a8f50f12301599b91377b5a8e182e07c507",
+      "owner": "node-740d2ac3d9e5f4d07596fe1cfd9701df",
+      "bytes": 6752,
+      "output_sha256": "affa1c9aee754ae252095f2c70f2091569a20a86d1db37f0aa7a0d89b2d48ccf",
+      "forecast_json_sha256": "61bed914bf9c4a4321c4015b4a0d0539db6837507607e79bc5fab7753e9e04b3",
+      "cpu": 4.368257,
+      "rss": 88481792,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 14,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0013",
+      "request": "fa426278f40c5781ebb27a5a9ee0f125084eda75576704d8adf4b7bb566265c0",
+      "generation": "c28a059aa3d53f7ca4cbc844d8a84871f96988168dc4a798554edbbfaf9a7e13",
+      "owner": "node-740d2ac3d9e5f4d07596fe1cfd9701df",
+      "bytes": 6791,
+      "output_sha256": "0b76cba58455a031b3dce58cd847c3436f160739841788d5a66115ee442fa2f5",
+      "forecast_json_sha256": "bcc7355fe2db044fa4b91c89df7e340ec5df88e8cd7efa94834f55c0f9ad8b29",
+      "cpu": 4.410334,
+      "rss": 89128960,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 15,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0014",
+      "request": "acc8ce31bc8b3e79e813bc3a9acf72a3fc6722fa2098220e5760a0c5c3f38129",
+      "generation": "69352fbd5830baf2883c4659152286dd34db1a6fd737916a27fb0f038d3b93d0",
+      "owner": "node-bf1cce3aee39f75421b8ca4bd1488dda",
+      "bytes": 6839,
+      "output_sha256": "dd6b70bfe93dae1dc0f464b47810d57be5bd887a4034027656c9afbf560f6db9",
+      "forecast_json_sha256": "fb0d17df0e2a463aa1188001ec97fcf89e9f3258ba4bd4f7160df56c0cf2b90a",
+      "cpu": 5.8855010000000005,
+      "rss": 89612288,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 16,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0015",
+      "request": "1c4bb5aaae3419211ad89136b355bb15fd08e1266b0ae929986a375be27b951c",
+      "generation": "55a08852de2096d09d6decd99e0734a882ba9821a9440a2d1488de0a67c8f73d",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "bytes": 6858,
+      "output_sha256": "2694cf69f7122589e62cd4d7fd7d56e1c1af257ac8913300cde8ded2d6afe998",
+      "forecast_json_sha256": "40c238f91732c10734e9497ddc8ae90a00b10774d2d5badd7c48813557bb0b01",
+      "cpu": 4.632038,
+      "rss": 89669632,
+      "drained": "drained"
+    },
+    {
+      "ordinal": 17,
+      "job": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0016",
+      "request": "aac153c2de4149957552457567d5da938df6f8adc31b77168a60095206094536",
+      "generation": "750e74f8874851e98462556255317733bd4c39a10a64217bdc65ed0b2022a153",
+      "owner": "node-7a9dead9904fa3581a4286fb5ced2323",
+      "bytes": 6741,
+      "output_sha256": "e1ab33de4cb9eaae40351828bc21f6581f7e4976dcdfa18ddd8fe92b5dcb8c76",
+      "forecast_json_sha256": "a8c205fc3aad161111c900498b0e98bdf0dd27d1ea6ba89c1ce72b97a26c7e8b",
+      "cpu": 3.999171,
+      "rss": 87126016,
+      "drained": "drained"
+    }
+  ],
+  "nonadmissions": [
+    {
+      "ordinal": "0",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0000",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "1",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0001",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "2",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0002",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "3",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0003",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "4",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0004",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "5",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0005",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "6",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0006",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "8",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0008",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "9",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0009",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "10",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0010",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "11",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0011",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "12",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0012",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "13",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0013",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "14",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0014",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "15",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0015",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "16",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0016",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    },
+    {
+      "ordinal": "17",
+      "id": "p3-f747-npl-frozen-idle-18-job-prefix-forecast-0017",
+      "state": "unresolved",
+      "error": "capacity search incomplete: unpinned fleet probes exceeded the bounded read window; no job admitted. Observe the same job_id with execution_poll. If it is durably placing, keep its original admission or retire it with execution_cancel(before_start=true) and wait for positive cancellation before starting a replacement. A new execution_queue request needs an explicit owner or an established workspace."
+    }
+  ],
+  "dependency_refusal": {
+    "id": "p3-f747-npl-unadmitted17-finite-prefix-forecast-0010",
+    "stderr": "error: Request failed after 3 retries in 7.9s\n  cause: Failed to fetch: https://pypi.org/simple/numpy/\n  cause: error sending request for url (https://pypi.org/simple/numpy/)\n  cause: client error (Connect)\n  cause: dns error\n  cause: error resolving DNS\n  cause: failed to lookup address information: Temporary failure in name resolution\n"
+  },
+  "no_held_count_read": true
+}
