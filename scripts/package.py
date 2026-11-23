@@ -29,7 +29,7 @@ INCLUDE = (
     "research/npl_mirrored_qubit/independent-receipt.json",
     "research/npl_mirrored_qubit/protocol.json",
     "research/npl_mirrored_qubit/recount.py",
-    "research/npl_mirrored_qubit/score.json.gz",
+    "research/npl_mirrored_qubit/score.json",
     "research/npl_mirrored_qubit/score.py",
     "research/npl_mirrored_qubit/source_intake.py",
     "research/switching-trap-time-reversal/README.md",

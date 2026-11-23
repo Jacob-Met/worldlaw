@@ -5,7 +5,6 @@ Without it, verify the same forecasts against the published held count ledger.
 """
 import ast
 import csv
-import gzip
 import hashlib
 import io
 import json
@@ -61,7 +60,7 @@ def source_counts(csv_bytes, jobs):
 
 def run(root, data=None):
     locks=json.loads(checked((root/"forecasts.json").read_bytes(),LOCK_SHA))
-    report=json.loads(checked(gzip.decompress((root/"score.json.gz").read_bytes()),SCORE_SHA))
+    report=json.loads(checked((root/"score.json").read_bytes(),SCORE_SHA))
     assert report["forecast_lock_sha256"]==LOCK_SHA and len(locks)==18
     truth=source_counts(data,[l["job_id"] for l in locks]) if data is not None else {}
     ledger={(v["ordinal"],v["basis"],v["rep"],v["n"]):v for v in report["events"]}
