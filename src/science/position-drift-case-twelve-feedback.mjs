@@ -1,5 +1,5 @@
 /** Two six-pulse policies for the original case-12 position/drift catalog. */
-import {openPositionDriftFeedback} from './position-drift-terminal-feedback.mjs';
+import {openPositionDriftFeedback,selectSafePositionDriftCommand} from './position-drift-terminal-feedback.mjs';
 import {equalPositionDriftData} from './persistent-position-drift-planner.mjs';
 
 const need=(ok,reason)=>{if(!ok)throw Error('Case-12 feedback: '+reason);};
@@ -51,12 +51,16 @@ export function planCaseTwelveOneFeedback(first){
 export function openCaseTwelveOneFeedback(first,saved=planCaseTwelveOneFeedback(first)){
   const plan=planCaseTwelveOneFeedback(first);
   need(equalPositionDriftData(saved,plan),'saved plan differs from its exact source');
-  const physical=openPositionDriftFeedback(plan.source),other=plan.prefix.at(-1);
+  const physical=openPositionDriftFeedback(plan.source);
   function afterFive(values){
     const witnesses=physical.receive(plan.prefix,values);
-    const ids=new Set(witnesses.map(w=>w.law));
-    need(!ids.has('L1')||!ids.has('L2'),'disjoint shared-prefix intervals both survived');
-    return {witnesses,command:ids.size?(ids.has('L2')?other:'u2'):null};
+    if(!witnesses.length)return {witnesses,command:null};
+    // Preserve the registered certificate's priority while using the general
+    // physical interval test for the decision on these actual measurements.
+    const order=plan.certificates.filter(c=>c.last&&witnesses.every(w=>c.laws.includes(w.law))).map(c=>c.last);
+    const command=selectSafePositionDriftCommand(physical.finalOptions(plan.prefix,values),order);
+    need(command!==null,'no certified final action fits the retained prefix');
+    return {witnesses,command};
   }
   function receive(values){
     need(Array.isArray(values)&&values.length>=1&&values.length<=7,'supply a prefix of one to seven exact readings');

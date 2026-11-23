@@ -1,0 +1,18 @@
+{
+  "schema": "worldlaw.position-drift-one-feedback-source/v1",
+  "catalog": {
+    "schema": "worldlaw.position-drift-rate-catalog/v1",
+    "commands": ["coast", "rise", "sample"],
+    "noiseBound": "1",
+    "laws": [
+      {"id": "A", "rates": ["-1", "6", "4"]},
+      {"id": "B", "rates": ["-4", "2", "8"]},
+      {"id": "C", "rates": ["-8", "2", "-2"]}
+    ]
+  },
+  "prefixes": [
+    ["coast", "rise"],
+    ["coast", "coast", "coast", "rise", "rise"]
+  ],
+  "limits": {"assignments": 60, "linearWork": 100000}
+}
