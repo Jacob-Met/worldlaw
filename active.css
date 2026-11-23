@@ -30,3 +30,11 @@
 .result-region[data-status="all_remaining_hypotheses_falsified"]{border-color:var(--danger);background:#2b1d25}
 .result-region[data-status="continue_frozen_policy"]{border-color:var(--amber);background:#27231c}
 @media(max-width:760px){.adaptive-policy{grid-template-columns:1fr;gap:15px}.adaptive-branches{grid-template-columns:1fr}.adaptive-branch{padding:12px 14px}}
+
+#drift-panel,#drift-panel fieldset,#drift-panel .form-row>label{min-width:0}
+#drift-panel .drift-tables,#result-region .candidate-results:has(table){display:block;max-width:100%;overflow-x:auto}
+#drift-panel table,#result-region .candidate-results table{width:100%;border-collapse:collapse;table-layout:fixed}
+#drift-panel caption,#result-region .candidate-results caption{text-align:left;padding:.75rem 0;color:var(--muted)}
+#drift-panel td,#drift-panel th,#result-region .candidate-results td,#result-region .candidate-results th{text-align:left;padding:.5rem;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+#drift-panel textarea{width:100%;font-family:var(--mono)}
+.plan-strip p,#reading-fields .tick-label,#reading-fields label{overflow-wrap:anywhere}
