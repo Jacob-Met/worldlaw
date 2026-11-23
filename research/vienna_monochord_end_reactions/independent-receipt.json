@@ -1,0 +1,45 @@
+{
+  "comparison": "Independent reductions, original locked forecasts and observed filtered target arrays; no independent raw-sensor calibration.",
+  "finite_sample_residuals": 1062642,
+  "gate": true,
+  "max_metric_delta": 1.1102230246251565e-16,
+  "onset_wins": 6,
+  "role_strokes": 42,
+  "scalar_checks": 399,
+  "summary": {
+    "onset100ms": {
+      "direct_fir": 0.513014958813857,
+      "long_fir": 0.4083295471605955,
+      "mechanics_filter": 0.3491907999862843,
+      "mechanics_gain": 0.38750155864255625,
+      "signed_half_period": 0.6013196147079045,
+      "source_geometry": 0.3879408672101235,
+      "zero": 0.6076227154579431
+    },
+    "pre_motion": {
+      "direct_fir": 0.026478661787352465,
+      "long_fir": 0.02164484452162717,
+      "mechanics_filter": 0.016631940817195937,
+      "mechanics_gain": 0.01651995893174078,
+      "signed_half_period": 0.06640536490207857,
+      "source_geometry": 0.019497538526224576,
+      "zero": 0.06852293784008298
+    },
+    "whole": {
+      "direct_fir": 0.3568386124775283,
+      "long_fir": 0.31566028766293214,
+      "mechanics_filter": 0.2529508079981117,
+      "mechanics_gain": 0.27143561522826826,
+      "signed_half_period": 0.42761856606259263,
+      "source_geometry": 0.29196727841559106,
+      "zero": 0.43912727913097543
+    }
+  },
+  "whole_wins": {
+    "direct_fir": 6,
+    "long_fir": 6,
+    "signed_half_period": 6,
+    "source_geometry": 6
+  },
+  "worst_verified": 7
+}

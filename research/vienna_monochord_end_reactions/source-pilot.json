@@ -1,0 +1,86 @@
+[
+  {
+    "ac_bridge_rms": 0.46009556774973326,
+    "beta": 0.200108073997398,
+    "half_period_raw_correlation": -0.200518928260393,
+    "half_period_signed_scale": -0.25227696423718116,
+    "id": 1,
+    "initial_50ms_bridge_rms": 0.005033929887765836,
+    "largest_raw_nut_ac": {
+      "bridge": 0.4586510589137782,
+      "index": 23831,
+      "scaled_delay": 0.0017484197738311437,
+      "true": 2.775812529687057
+    },
+    "motion_range": [
+      0,
+      0.05
+    ],
+    "n_50k": 258001,
+    "onset_100ms_bridge_rms": 0.43818646486489465,
+    "onset_at_5k": 4994,
+    "outside_nominal_8Hz_harmonic_bands_fraction": 0.8719716760208152,
+    "reaction_range_N": [
+      -0.455501160717833,
+      4.08412849567871,
+      -1.67648369059283,
+      3.05592719367063
+    ]
+  },
+  {
+    "ac_bridge_rms": 0.4275821692497444,
+    "beta": 0.20009903281447,
+    "half_period_raw_correlation": -0.2214671504147438,
+    "half_period_signed_scale": -0.2363709924729089,
+    "id": 3,
+    "initial_50ms_bridge_rms": 0.004450709914218686,
+    "largest_raw_nut_ac": {
+      "bridge": 1.1050504468918723,
+      "index": 23947,
+      "scaled_delay": -0.6632178443255994,
+      "true": -2.2920346446348496
+    },
+    "motion_range": [
+      0,
+      0.05
+    ],
+    "n_50k": 254001,
+    "onset_100ms_bridge_rms": 0.4419707601902458,
+    "onset_at_5k": 4578,
+    "outside_nominal_8Hz_harmonic_bands_fraction": 0.8248629395831832,
+    "reaction_range_N": [
+      -0.364820021571336,
+      3.49562671652562,
+      -1.6421161547753,
+      2.61831371806972
+    ]
+  },
+  {
+    "ac_bridge_rms": 0.30178130443040985,
+    "beta": 0.200100331371818,
+    "half_period_raw_correlation": -0.460805751573802,
+    "half_period_signed_scale": -0.4245833063633048,
+    "id": 6,
+    "initial_50ms_bridge_rms": 0.00426699750732066,
+    "largest_raw_nut_ac": {
+      "bridge": 0.42295603256261877,
+      "index": 4443,
+      "scaled_delay": -0.01236212595890589,
+      "true": 1.6297216968294659
+    },
+    "motion_range": [
+      0,
+      0.05
+    ],
+    "n_50k": 250001,
+    "onset_100ms_bridge_rms": 0.33504706281284485,
+    "onset_at_5k": 4112,
+    "outside_nominal_8Hz_harmonic_bands_fraction": 0.6240507392803717,
+    "reaction_range_N": [
+      -0.476220870645573,
+      2.64737652694482,
+      -1.53672237517973,
+      1.94012745534619
+    ]
+  }
+]
