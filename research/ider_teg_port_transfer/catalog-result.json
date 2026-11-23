@@ -1,0 +1,1107 @@
+{
+  "accounts": false,
+  "created": "2021-10-28T19:54:44.000Z",
+  "doi": "10.17632/tfg4byhch8.1",
+  "entries": [
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "72354623-4677-4767-8508-32888ce905d9",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG1_1.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "50743278-0fc3-4a18-8ff6-a831aa3b89a4",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG1_2.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "fc7ae323-37d5-4ac8-97f8-db7001535cb6",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG1_3.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "532c3e56-e567-4d17-bc48-81bf9a9d8322",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG1_4.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "8e4dc5a9-0136-4e9d-93a5-016968ed22e2",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG1_5.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "1b42dd71-e945-47a9-8c47-ac9b3b8c403f",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG1_6.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "a44ccf78-df1a-463a-889e-f802b1e2f582",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG1_7.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "90fc0901-e754-4cd0-9426-af21b1294351",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG1_8.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "460d13e4-d324-4199-8608-c4b96586ff5f",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG1_9.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "14cdf9c7-8db2-4f71-a445-ef4b9f35ca27",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG2_1.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "1e426c42-6ea1-4a41-b0a8-2ade6f26396e",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG2_2.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "93c658af-f5ce-48ae-99f2-120373fa9046",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG2_3.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "52c955cf-942e-432b-99df-f693f3127148",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG2_4.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "f69380d8-b80d-4819-9607-7875ca9ea48d",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG2_5.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "f6b82d93-2952-4f0e-b08f-7ea595fa4a0b",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG2_6.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "146ebf7b-b73a-4539-a0a6-8b646a3a7645",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG2_7.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "df3c33de-8892-4c10-b1fa-29d46d07a33e",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG2_8.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "5aea4d42-6fbc-459b-b031-540a8b1f58a1",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG2_9.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "270b6a53-b5a8-4d39-aa5f-d70a1b49a69b",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG3_1.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "fb9629bf-0f30-471d-ab10-a4df4fce3b13",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG3_2.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "6629ccb1-7cab-4a4e-a908-a90447ad026b",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG3_3.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "8f7a8a14-9a76-4f06-acf5-49353ad25626",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG3_4.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "b43240cc-9b36-41cf-af08-9b28758e7338",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG3_5.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "24a89af9-f5d1-457b-9889-b4e0ef329017",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG3_6.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "c5cf3499-cc04-43a1-b6d8-943a0eff1e83",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG3_7.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "fedb79b0-1b34-4395-8f95-1c7542407c9c",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG3_8.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "efe4853e-0240-4dea-8c0d-fe7896243532",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG3_9.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "2245ff55-5761-4c3e-8da6-6a3525cea063",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG4_1.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "20f5ed72-4d17-442d-80d6-11fa9cc4367e",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG4_2.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "5c4b8492-5703-43e2-bfed-8e193dba79dd",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG4_3.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "0ae257d6-840c-4cd1-aaa9-9a0e90d97990",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG4_4.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "e47f1de9-9fa3-4c6a-bc16-cb2e5df0fc7e",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG4_5.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "02e3b442-ff40-49cf-b90d-c3a48562bef5",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG4_6.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "5b8f34c5-622d-4405-9cd9-064af2eabd4f",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG4_7.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "5cb5150a-8e48-4676-b96a-2f585d509519",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG4_8.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "6375ee3c-43cb-4182-befd-d8e1ba2d8bea",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG4_9.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "9ea5fd71-68fd-4e02-9a30-1add2f079156",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG5_1.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "44a9cc41-a4f4-46a1-8319-0bef2890e9cb",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG5_2.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "eb7b8888-814c-4210-88be-be0c6519f425",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG5_3.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "4dd1ce67-a9a6-46e2-aa62-8185b68c5082",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG5_4.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "eedac6ee-7584-440f-9b4f-5a7dad932543",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG5_5.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "c4429567-887b-450f-ac6a-5b8020c37d19",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG5_6.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "942ba89b-cf59-4005-b46b-6f462d5a9dba",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG5_7.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "ed62aa76-f7f7-4b12-a889-8ae16ad246b3",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG5_8.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "af8a3472-b8d4-4a76-b418-2c87e4277f59",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG5_9.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "c65bb23f-629d-432f-9d9b-2c7edc2d0fa2",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG6_1.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "08419e56-4a69-4425-987b-a6517bf0f8bc",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG6_2.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "c30d2a00-8452-40b8-a299-d3419b4e92e5",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG6_3.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "8d07575d-ed61-4830-aa3b-0139e67d9e6b",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG6_4.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "f466ce2a-df0f-4abb-a249-9e576ca9f116",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG6_5.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "cdce6347-5b62-4e59-b8de-4c2b5add6b79",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG6_6.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "336540a2-2003-4959-b188-7dea7e8dbb9f",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG6_7.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "1370aef3-ddba-4d23-9333-cb89b4791acb",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG6_8.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "f1c008b3-357f-46ae-bdf1-5e630d1c48e3",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG6_9.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "1fb7eafc-7385-4606-af45-5a2765c418a0",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG7_1.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "f822d87b-db20-4ad8-8d92-a35e24c6f708",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG7_2.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "2422ba71-744f-438d-ba21-c4f910d07482",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG7_3.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "0d03c69b-2622-4a38-af88-f62559a96a08",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG7_4.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "081cdf7b-ae29-47f5-8d45-ec519595e24b",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG7_5.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "acf0620a-f296-47e5-a020-1f905e30b0ea",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG7_6.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "a7bed5fb-d48e-4926-bc56-641a8675f466",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG7_7.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "d7e35819-dbc4-41ce-8084-d961b5c42ce9",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG7_8.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "a2e22db4-31ee-4660-9c43-79e41e97a785",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG7_9.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "daf0879d-bf35-4443-8e35-9df662419670",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG8_1.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "df716e20-0cc4-4c69-9ae1-80decaff07c8",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG8_2.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "c6033cce-39a5-473b-a33c-102e24379b5c",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG8_3.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "698e3180-5b5f-442a-8f97-94aecfa8fb40",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG8_4.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "0c7ec1e9-6869-4d09-b678-f06c074ab792",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG8_5.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "0a70d358-612d-4537-9d89-2cab520775e3",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG8_6.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "3613f191-1b4a-48f3-a6ae-33e0ae27070b",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG8_7.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "a62db447-0a97-4edd-8039-246167db0fd0",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG8_8.txt",
+      "type": null
+    },
+    {
+      "folder": "root",
+      "folder_entry": false,
+      "id": "a3093133-4d8f-4f94-bfb1-726a3f3e7ab0",
+      "keys": [
+        "content_details",
+        "filename",
+        "id",
+        "last_modified_date",
+        "size",
+        "status"
+      ],
+      "name": "TEG8_9.txt",
+      "type": null
+    }
+  ],
+  "folders": [
+    "root"
+  ],
+  "payloads": 0,
+  "publisher": "Mendeley",
+  "rights": [
+    {
+      "rights": "Creative Commons Attribution 4.0 International",
+      "rightsIdentifier": "cc-by-4.0",
+      "rightsIdentifierScheme": "SPDX",
+      "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "schemeUri": "https://spdx.org/licenses/"
+    }
+  ],
+  "title": [
+    {
+      "title": "I(V) data sets on Thermoelectric Generators"
+    }
+  ],
+  "version": null
+}
