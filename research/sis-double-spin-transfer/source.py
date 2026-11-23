@@ -56,9 +56,17 @@ def branches(directory,phase):
         hold=(si,sulfur)==DOUBLE
         if phase=="training" and hold:continue
         if phase in ("predict","score") and not hold:continue
-        try:wt=float(fields[13]) if len(fields)>13 else 1.
-        except ValueError:wt=1.
-        if not 0<wt<=1:raise ValueError(("Blend weight",idx,wt))
+        # The source preamble defines column 13 as a weight below one or a
+        # literature reference. Integer references such as 22 carry unit weight.
+        wt=1.
+        if len(fields)>13:
+            token=fields[13]
+            if token.isdecimal():
+                if int(token)<1:raise ValueError(("Invalid reference",idx,token))
+            else:
+                try:wt=float(token)
+                except ValueError as exc:raise ValueError(("Unknown annotation",idx,token)) from exc
+                if not 0<wt<1:raise ValueError(("Blend weight",idx,wt))
         # Columns 11/12 are kHz uncertainty and jointly fitted residual.
         # The residual is never used. Frequencies in column 10 are MHz.
         y=None if phase=="predict" else float(fields[10])*1000
