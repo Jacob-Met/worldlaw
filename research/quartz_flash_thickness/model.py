@@ -1,5 +1,5 @@
 """Paired KIT quartz source-domain forward maps. No optimizer uses an HT2 trace."""
-import hashlib, io, json, math, pathlib, tarfile, urllib.request
+import hashlib, io, json, math, pathlib, tarfile, urllib.request, zipfile
 import numpy as np
 from scipy.optimize import least_squares
 from scipy.signal import lfilter
@@ -15,10 +15,15 @@ def archive():
     with urllib.request.urlopen(q,timeout=120) as f:b=f.read(p['size']+1)
     assert len(b)==p['size'] and sha(b)==p['sha256']
     return tarfile.open(fileobj=io.BytesIO(b),mode='r:*')
+def measurements():
+    # RADAR supplies BagIt TAR containing one dataset ZIP plus metadata and manifests.
+    with archive() as outer:
+        b=outer.extractfile('10.35097-1215/data/dataset/Quartz_thermaldiffusivity_low_high_T.zip').read()
+    assert len(b)==40309964 and sha(b)=='3a7c6a447cad4d7eea0f28934c90dd682e12ba1cb60708bba782ff5c9d5a5eb2'
+    return zipfile.ZipFile(io.BytesIO(b))
 def filedata(a,path):
-    target=[m for m in a.getmembers() if m.isfile() and m.name.strip('./')==path]
-    assert len(target)==1
-    return a.extractfile(target[0]).read()
+    assert a.namelist().count(path)==1
+    return a.read(path)
 def split(b):
     if b.startswith((b'\xff\xfe',b'\xfe\xff')): b=b.decode('utf-16').encode('latin1','replace')
     l=b.splitlines();k={}
@@ -49,12 +54,12 @@ def waveform(a,row,kind):
     return normal(raw-base),raw,float(base)
 def pulse(a):
     rows=[]
-    for m in a.getmembers():
-        if not m.isfile() or '/Laserpulse/' not in m.name or not m.name.endswith('.csv'):continue
-        b=a.extractfile(m).read();h,lines=split(b)
+    for m in a.namelist():
+        if '/Laserpulse/' not in m or not m.endswith('.csv'):continue
+        b=a.read(m);h,lines=split(b)
         if (h.get(b'laser_voltage/v'),h.get(b'laser_filter/mm'),h.get(b'sensor'))==(b'1538,0',b'100,0',b'InSb'):
-            t,y=trace(lines);rows.append((t,y,m.name,sha(b)))
-    assert len(rows)==1
+            t,y=trace(lines);rows.append((t,y,m,sha(b)))
+    assert len(rows)==1 and rows[0][3]=='f3cd94a332d9dc40ae93ed3126b0e24a20a717b2f2cb497d09e365504d150586'
     t,y,path,h=rows[0];assert t.min()>=0 and t.max()<1
     w=np.maximum(y,0)*np.gradient(t)
     assert w.sum()>0

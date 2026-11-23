@@ -6,7 +6,7 @@ def main():
     assert sha(roster_bytes)==p['roster_sha256']
     roster=json.loads(roster_bytes);assert len(roster)==18
     arr=[];meta=[]; cache={}
-    with archive() as a:
+    with measurements() as a:
         pt,pw,pc=pulse(a)
         for row in roster:
             paths=tuple(q['sha256'] for q in row['source'])

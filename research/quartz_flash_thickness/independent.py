@@ -1,5 +1,5 @@
 """Independent stored-forecast and original HT2 voltage receiver. Uses stdlib scalar operations only."""
-import base64,bisect,hashlib,io,json,math,pathlib,statistics,tarfile,urllib.request,zlib
+import base64,bisect,hashlib,io,json,math,pathlib,statistics,tarfile,urllib.request,zlib,zipfile
 from decimal import Decimal,localcontext
 ROOT=pathlib.Path(__file__).resolve().parent
 H=lambda b:hashlib.sha256(b).hexdigest()
@@ -10,7 +10,7 @@ def interp(ts,vs,t):
     assert 0<i<len(ts)
     return vs[i-1]+(vs[i]-vs[i-1])/(ts[i]-ts[i-1])*(t-ts[i-1])
 def truth(tar,row):
-    b=tar.extractfile(row['path']).read();assert H(b)==row['sha256']
+    b=tar.read(row['path']);assert H(b)==row['sha256']
     s=b.decode('utf-16' if b[:2] in (b'\xff\xfe',b'\xfe\xff') else 'latin-1')
     it=iter(s.splitlines())
     for ln in it:
@@ -47,7 +47,10 @@ def main():
     with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'public-quartz-independent-receiver/1.0'}),timeout=120) as f:packed=f.read(pub['size']+1)
     assert len(packed)==pub['size'] and H(packed)==pub['sha256'] and hashlib.md5(packed).hexdigest()==pub['md5']
     reference=json.loads((ROOT/'scores.json').read_bytes());metrics=[];worst=None; groups={}
-    with localcontext() as ctx,tarfile.open(fileobj=io.BytesIO(packed),mode='r:*') as tar:
+    with tarfile.open(fileobj=io.BytesIO(packed),mode='r:*') as envelope:
+        member=envelope.extractfile('10.35097-1215/data/dataset/Quartz_thermaldiffusivity_low_high_T.zip').read()
+    assert H(member)=='3a7c6a447cad4d7eea0f28934c90dd682e12ba1cb60708bba782ff5c9d5a5eb2'
+    with localcontext() as ctx,zipfile.ZipFile(io.BytesIO(member)) as tar:
         ctx.prec=55
         for i,(row,arm) in enumerate(zip(rows,arms)):
             raw,base,t=truth(tar,row['target']); target=vec(t);scores=[]

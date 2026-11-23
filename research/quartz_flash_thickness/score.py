@@ -11,7 +11,7 @@ def main():
     assert np.isfinite(pred).all() and [[sha(x.tobytes()) for x in t] for t in pred]==lock['role_digests']
     assert [r['target'] for r in lock['fit']]==[r['target']['sha256'] for r in roster] and [r['sources'] for r in lock['fit']]==[[s['sha256'] for s in r['source']] for r in roster]
     targets=[];raw=[];base=[]
-    with archive() as a:
+    with measurements() as a:
         for row in roster:
             y,v,z=waveform(a,row['target'],'HT2');targets.append(y);raw.append(v);base.append(z)
     d=pred-np.array(targets)[:,None,:];per=np.sqrt(np.mean(d*d,axis=2))
