@@ -270,6 +270,19 @@
       "descendant": "drained",
       "stdout_bytes": 815,
       "stdout_sha256": "391bdcb416d1cd15e60cb217c0e53f113f8c2f47d43eb1c46fd6b89e1568cfd3"
+    },
+    {
+      "job": "p2-f747-sis-source-bound-normal-entry-native-product",
+      "owner": "node-10327a6eec1b92f134b328e043c6e28c",
+      "request": "51bde4fd0650074aa60dc391333979ffd0ef82b9c3749470de47928addf9a5e2",
+      "generation": "14aab10406378d4f1c8436450e2ef66e8f1cd3e9967ebb1319a7868baf687c29",
+      "started_at": "2026-11-23T14:00:13.405243529Z",
+      "finished_at": "2026-11-23T14:00:16.342293492Z",
+      "exit": 1,
+      "descendant": "drained",
+      "stdout_bytes": 728,
+      "stdout_sha256": "0c85bb4caf8e572fb808887e1a1adccdc8d176561df0d20c001ce54a69e7e4cc",
+      "scope": "First clean product stopped at comparison of Python slot tuples with JSON slot arrays before forecast comparison. Publication receiver type normalization only."
     }
   ],
   "refusals": [

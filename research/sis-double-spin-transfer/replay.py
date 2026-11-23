@@ -48,7 +48,9 @@ def main():
             raise ValueError(("Frozen output hash",name))
     reference=json.loads((ROOT/"forecast.json").read_bytes())
     actual=forecast(args.sources,calibrate(args.sources),program(args.sources/"calpgm",args.spcat))
-    if actual["calibration"]["exact_donor_kernel"]!=reference["calibration"]["exact_donor_kernel"]:
+    # JSON stores the five (J, twice-F1) slot tuples as arrays.
+    kernel=json.loads(json.dumps(actual["calibration"]["exact_donor_kernel"]))
+    if kernel!=reference["calibration"]["exact_donor_kernel"]:
         raise ValueError("Donor null family")
     largest=0.
     count=0
