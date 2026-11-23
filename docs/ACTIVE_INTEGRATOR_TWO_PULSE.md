@@ -23,7 +23,8 @@ Receive round one by appending a JSON file with schema `worldlaw.active-integrat
 and `observations` containing `{tick,value}` for ticks 0 and 1. Use
 `--notebook book.json --readings round1.json --output after1.json`. If the result asks for
 a continuation, submit the indicated amplitude at round two, bind the preceding `readingsSHA256`,
-and supply only tick 2. A notebook reopened with `--notebook after2.json` recomputes the plan
+and supply only tick 2. Use integer or rational strings for large measurements and fractional values.
+Measurements can exceed the numeric budget for the catalog coefficients and commands. A notebook reopened with `--notebook after2.json` recomputes the plan
 and both decisions. All-hypotheses-falsified readings terminate with an empty candidate set.
 
 ## Why the continuous decision is complete
