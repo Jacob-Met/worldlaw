@@ -1,0 +1,53 @@
+{
+  "schema": "worldlaw.position-drift-minimax-source/v1",
+  "catalog": {
+    "schema": "worldlaw.position-drift-rate-polytopes/v1",
+    "commands": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "noiseBound": 1,
+    "limits": {
+      "designWork": 80000,
+      "receiverWork": 80000
+    },
+    "laws": [
+      {
+        "id": "A",
+        "vertices": [
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "B",
+        "vertices": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      }
+    ]
+  }
+}

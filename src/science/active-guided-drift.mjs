@@ -1,3 +1,5 @@
+import {MINIMAX_SOURCE,MINIMAX_PLAN,planMinimaxHorizon} from './position-drift-minimax-horizon.mjs';
+export {MINIMAX_SOURCE,MINIMAX_PLAN};
 import {POLYTOPE_SOURCE,POLYTOPE_PLAN,planRatePolytopes,observeRatePolytopeSchedule} from './position-drift-rate-polytopes.mjs';
 export {POLYTOPE_SOURCE,POLYTOPE_PLAN};
 import {SEGMENT_SOURCE,SEGMENT_PLAN,planRateSegments,observeRateSegmentSchedule} from './position-drift-rate-segments.mjs';
@@ -7,7 +9,7 @@ import {SHARED_SUFFIX_REQUEST,PLANAR_SUFFIX_REQUEST,REGION_SUFFIX_REQUEST,HISTOR
 import {EXACT_TREE_REQUEST,TREE_REQUEST,TREE_PLAN,planFeedbackTree,receiveFeedbackTree} from './position-drift-feedback-tree.mjs';
 export {ONE_FEEDBACK_REQUEST,ONE_FEEDBACK_PLAN,SUFFIX_REQUEST,HISTORY_SUFFIX_REQUEST,SUFFIX_PLAN,TREE_PLAN};
 export const isSuffixRequest=request=>request?.schema===SUFFIX_REQUEST||request?.schema===HISTORY_SUFFIX_REQUEST||request?.schema===REGION_SUFFIX_REQUEST||request?.schema===PLANAR_SUFFIX_REQUEST||request?.schema===SHARED_SUFFIX_REQUEST||request?.schema===TREE_REQUEST||request?.schema===EXACT_TREE_REQUEST;
-export const driftFeedbackInconclusive=p=>(p.schema===POLYTOPE_PLAN&&p.status==='design-budget-exhausted')||(p.schema===ONE_FEEDBACK_PLAN&&p.status!=='one-feedback-certified')||
+export const driftFeedbackInconclusive=p=>([POLYTOPE_PLAN,MINIMAX_PLAN].includes(p.schema)&&p.status==='design-budget-exhausted')||(p.schema===ONE_FEEDBACK_PLAN&&p.status!=='one-feedback-certified')||
   (p.schema===SUFFIX_PLAN&&p.status!=='suffix-certified')||(p.schema===TREE_PLAN&&p.status!=='tree-certified');
 /** Measurement-led notebook continuations for minimum and case-12 drift plans. */
 import {planAllHorizonPositionDrift,planBinaryPositionDriftMinimum,observeCertifiedPositionDriftTape} from './persistent-position-drift-all-horizon.mjs';
@@ -20,11 +22,12 @@ export const BINARY_PLAN='worldlaw.position-drift-binary-minimum/v1';
 export const MULTICLASS_PLAN='worldlaw.multiclass-position-drift-minimum/v1';
 export const GUIDED_INPUT='worldlaw.active-guided-drift-readings/v1';
 export const GUIDED_RESULT='worldlaw.active-guided-drift-result/v1';
-export const isGuidedPlan=p=>[BINARY_PLAN,MULTICLASS_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,TREE_PLAN,SEGMENT_PLAN,POLYTOPE_PLAN].includes(p?.schema);
+export const isGuidedPlan=p=>[BINARY_PLAN,MULTICLASS_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,TREE_PLAN,SEGMENT_PLAN,POLYTOPE_PLAN,MINIMAX_PLAN].includes(p?.schema);
 const need=(ok,msg)=>{if(!ok)throw Error('Guided position/drift: '+msg);};
 const fields=(o,ks)=>o && typeof o==='object'&&!Array.isArray(o)&&Object.keys(o).sort().join(',')===[...ks].sort().join(',');
 
 export function designCatalog(request,design={}){
+  if(request.schema===MINIMAX_SOURCE)return planMinimaxHorizon(request);
   if(request.schema===POLYTOPE_SOURCE)return planRatePolytopes(request);
   if(request.schema===SEGMENT_SOURCE)return planRateSegments(request);
   if(request.schema===TREE_REQUEST||request.schema===EXACT_TREE_REQUEST)return planFeedbackTree(request);
@@ -40,7 +43,7 @@ export function designCatalog(request,design={}){
   return planAllHorizonPositionDrift(request);
 }
 
-export function fixedDriftRuns(p){return (p.schema===BINARY_PLAN||p.schema===SEGMENT_PLAN||p.schema===POLYTOPE_PLAN)?p.runs:p.tape.runs;}
+export function fixedDriftRuns(p){return (p.schema===BINARY_PLAN||p.schema===SEGMENT_PLAN||p.schema===POLYTOPE_PLAN||p.schema===MINIMAX_PLAN)?p.runs:p.tape.runs;}
 export function pendingDriftSteps(plan,last){
   if(driftFeedbackInconclusive(plan)||plan.status==='indistinguishable'||(last&&!last.checked.surviving?.length))return [];
   const count=last?.checked.values.length??0;
@@ -96,8 +99,8 @@ export function receiveGuidedDrift(book,input){
     surviving=checked.witnesses.map(w=>({law:w.law,initialWitness:w.start}));nextCommand=checked.nextCommand;suffix=checked.suffix;
     if(p.schema===TREE_PLAN)tree={committed:checked.committed,decisions:checked.decisions};
   }else{
-    const checked=p.schema===POLYTOPE_PLAN?observeRatePolytopeSchedule(p,values):p.schema===SEGMENT_PLAN?observeRateSegmentSchedule(p,values):observeCertifiedPositionDriftTape(p.source,fixedDriftRuns(p),values);
-    if(p.schema===POLYTOPE_PLAN)calculation={status:checked.status,work:checked.work};
+    const checked=(p.schema===POLYTOPE_PLAN||p.schema===MINIMAX_PLAN)?observeRatePolytopeSchedule(p,values):p.schema===SEGMENT_PLAN?observeRateSegmentSchedule(p,values):observeCertifiedPositionDriftTape(p.source,fixedDriftRuns(p),values);
+    if(p.schema===POLYTOPE_PLAN||p.schema===MINIMAX_PLAN)calculation={status:checked.status,work:checked.work};
     surviving=checked.surviving;nextCommand=surviving?.length?(pending[input.readings.length]?.command??null):null;
   }
   const checked={values,ticks,commands,surviving,nextCommand};
