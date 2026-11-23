@@ -1,0 +1,67 @@
+{
+  "format": "worldlaw-noisy-field-intervention/1",
+  "base": "e5f11c088daf04072a8c1941d50ba5ac23ce8995",
+  "branch": "fr-disc-active-intervention-worldlaw",
+  "scope": "Finite structured symbolic dictionary with two continuous unknown coefficients in each law. Select within measurement layout only. All simulated law and coefficient labels stay with the scorer.",
+  "snr_db": [
+    15,
+    25,
+    40
+  ],
+  "outer_worlds": [
+    {
+      "seed": 155331,
+      "coefficients": [
+        0.82,
+        1.16
+      ]
+    },
+    {
+      "seed": 299473,
+      "coefficients": [
+        1.22,
+        0.74
+      ]
+    }
+  ],
+  "step": 0.025,
+  "samples": 129,
+  "grid": 16,
+  "worlds": [
+    "pendulum",
+    "duffing",
+    "van-der-pol",
+    "rayleigh",
+    "quartic-spring",
+    "double-well",
+    "morse",
+    "toda",
+    "quadratic-drag",
+    "dry-friction",
+    "lotka-volterra",
+    "brusselator",
+    "fitzhugh-nagumo",
+    "competition",
+    "holling-tanner",
+    "burgers",
+    "kdv",
+    "modified-kdv",
+    "allen-cahn",
+    "fisher-kpp",
+    "porous-medium",
+    "cahn-hilliard"
+  ],
+  "ood": [
+    "lorenz-hidden-z",
+    "delay-feedback"
+  ],
+  "arms": [
+    "active-weak",
+    "random-weak",
+    "passive-sindy"
+  ],
+  "budget": "A common unforced pilot plus one 128-interval acquisition. Active and random receive one equally powered bounded intervention from the same menu; passive receives an unforced second acquisition. Initial cases and unit Gaussian generator streams matched by world/SNR across arms; actual noise scales calibrated to each trajectory's centered component signal power. No true time derivatives, state labels or exact initial conditions enter estimation. Native result covers synthetic finite-roster recovery, not laboratory validation.",
+  "active": "Fit all laws on noisy unforced pilot by constrained two-coefficient weak regression. With the closest 4 viable pilot fits, rank 8 candidate waveforms by their minimum squared predicted trajectory separation from noisy pilot initial state. No simulator truth queries are permitted in selection.",
+  "verification": "After both training acquisitions, select least residual weak or smoothed differential symbolic fit. Use an independently initialized, identical, measured third trajectory only as an abstention check: normalized full rollout RMSE <=3.0 noise standard deviations per channel. Shams permute interior time rows of all three acquisitions, keep inputs fixed. Count any sham admission false positive. Report wrong admissions separately from abstentions, per family and SNR.",
+  "gate": "Of all 132 family/seed/SNR cases (22 x 2 x 3), active must yield strictly more correct admitted laws than each comparator, zero active permutation admissions, and zero admitted out-of-roster chaotic/delay controls. Failed thresholds remain rejected. No held tuning or denominator reduction."
+}
