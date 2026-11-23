@@ -1,0 +1,33 @@
+{
+  "schema": "worldlaw.forecast-diameter-course/v1",
+  "source": "de54664f0a9185dc2b6f369a18e66245384db947",
+  "rosters": "experiments/continuous-rival-separation/development-rosters.json",
+  "worlds": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006
+  ],
+  "settings": {
+    "position0": 0.25,
+    "rate0": 0,
+    "inertia": 1,
+    "horizon": 8,
+    "interval": 0.04,
+    "sigma": 0.002,
+    "boundedRecordRadiusSigma": 1.5,
+    "positionRateLimit": 12,
+    "firstOrderActuatorResponseSeconds": 0.25,
+    "beforeStart": 0,
+    "rk4Steps": [
+      0.02,
+      0.01
+    ]
+  },
+  "design": "Enumerate the original 48 signed four-segment command targets; apply continuous first-order response at every RK4 stage. Reject a design if any roster trajectory leaves common limits. Use 200 post-initial positions. Consider each distinct pair of admissible designs; deterministic lexicographic pair order breaks ties.",
+  "criterion": "Two laws are compatible on a design when RMS <=3 sigma. Keep pairwise ambiguity, never transitive closure. Minimize the largest forecast distance over all admissible design commands among pairs still compatible on both acquisitions; report also actionable residual pairs and smallest number of acquisitions achieving the predeclared <=3 sigma planning diameter (0,1,2,or >2). Mean across all distinct two-design choices is the uniform-random comparator; full-roster maximin compares the smallest over law pairs of their maximum acquisition RMS. No fitted truth labels used.",
+  "stress": "After selecting acquisitions from the planning bank alone, compute remaining diameter against twelve smooth challenge target histories: sin(2*pi*cycles*t/8 + phase), cycles {0.5,1,2}, phase {0,pi/2,pi,3pi/2}, same response. Screen domain; report excluded counts. World-level calibration and scientific evaluation remain unopened. Results conditional on finite roster, selected histories and per-record deterministic radius, not statistical error probability.",
+  "refinement": "Recompute entire course on both independent step sizes; report worst trace error, action or decision changes, and values within the numerical margin of 3 sigma. No changes after observing the challenge."
+}
