@@ -1,0 +1,67 @@
+{
+  "README.md": {
+    "bytes": 9658,
+    "git_blob": "2fbeecbae581ea48020fc4a4112ec9864b36505a",
+    "sha256": "e725fe5471bd21fc8e84954845f357e28bc60e504202ace6a7a670fac46c6087"
+  },
+  "development.json": {
+    "bytes": 6287,
+    "git_blob": "24bbb54fabae4891ff05fe3478b7ad0384f48b07",
+    "sha256": "1896bd8e5fc8c7293652a87f8ab0150a90ab85e4ca558c57494abab19f70e6e3"
+  },
+  "forecasts.npz": {
+    "bytes": 786991,
+    "git_blob": "09819a52a71ccf57acc9d980cdb39eaddafd53e1",
+    "sha256": "98a9c946341b490502d618f77d19a5ec6aa03cc8bdfef46397e46dc7d02d5d5d"
+  },
+  "independent-receipt.json": {
+    "bytes": 748,
+    "git_blob": "ec094536fa61242da03f49eb5a2baedcf8cc00c0",
+    "sha256": "118616f4bcd6eaa8fab1fae52d162183f2694b322a39d14a39187de95c6b2e69"
+  },
+  "measured-outer-pergola.csv.gz": {
+    "bytes": 48438,
+    "git_blob": "e53588c938db2c41d186a390b125db6dba58cfef",
+    "sha256": "51ac920e9053e3c47668eac7345b4a8f6587c5d4e164fcaadd5055deb0824cf7"
+  },
+  "native-originals.json": {
+    "bytes": 13384,
+    "git_blob": "8c6a148a3b23bb4b045ef45e2373242ae7034f16",
+    "sha256": "0037cbf0ca730833323715ab9419411e70eae8dfca4a4ffe3da70c12d0854966"
+  },
+  "predict.py": {
+    "bytes": 6456,
+    "git_blob": "256b968987a31d3048041f703b7530af8c25faed",
+    "sha256": "1a062c59bf6cbb4461f01e95ca22e4511b295a347e8d19969905ec6302598fc4"
+  },
+  "protocol.json": {
+    "bytes": 6460,
+    "git_blob": "6968a23333716d05fda30a4547b1f3279fbc0e0b",
+    "sha256": "c42ca82e2382adbc6eb6d28b5f124674473381d3d4db527ebcb2dd1e20879cbe"
+  },
+  "recount.py": {
+    "bytes": 5487,
+    "git_blob": "f72242e707fe9a70dd4689475041128deeb227fa",
+    "sha256": "2cca88c85cb80b771ba3d1afb8a41d9ddb7d704a47394e89b1d05c5add7df765"
+  },
+  "score-original.json": {
+    "bytes": 107318,
+    "git_blob": "4aadc3c2d8428ec2d22807a94ab12d3f5b184f5f",
+    "sha256": "e8b2f684d8da5277224d6eb34a2002661450cc8724343261eb6494c5e712a2a9"
+  },
+  "score.py": {
+    "bytes": 4567,
+    "git_blob": "100ccf549baae5441b54ffd593076aec5eb9186a",
+    "sha256": "76e9868782e07e7af25e42fbf7e153f52c9c436f4f63311a7e51c2974e6542c0"
+  },
+  "source.py": {
+    "bytes": 2649,
+    "git_blob": "984bdf0093c81e0bd67d592ae41aaf5268ebf322",
+    "sha256": "05c3d0c614ae10f054a3f4c53b69c2ee3667c14ce35ad60899462a4a53354839"
+  },
+  "theory.py": {
+    "bytes": 2509,
+    "git_blob": "55bc466d7f45a7d6d7359fdade0cdef05e6d56d0",
+    "sha256": "b9fa453355f2eb330b751713b9b80d3002821e2059918d291f67355dd3afbd0b"
+  }
+}

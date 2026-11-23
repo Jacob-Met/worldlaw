@@ -1,0 +1,364 @@
+{
+  "trMeta": {
+    "operation_id": "p3-f747-trondheim-zeb-multiplane-metadata-only-v1",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "request_sha256": "43157656d75c575729bda4e22533a405d02c466a1643a4f3c2b83aaeb4e6b07b",
+    "operation_outcome": "succeeded",
+    "job": "p3-f747-trondheim-zeb-multiplane-metadata-only-v1",
+    "original_state": "completed",
+    "exit_code": 0,
+    "output_bytes": null,
+    "receipt": {
+      "command_id": "p3-f747-trondheim-zeb-multiplane-metadata-only-v1",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T03:37:06.268240296Z",
+      "generation": "343fe90d77a73dda95ae00caeb0ec189cdd28762fd7adc195b063140f30fc144",
+      "request_sha256": "82036f2384b079eba7fa7b8e4dbe8d185850eec22f0b7d9c0b266f1d80e3158b",
+      "resource_process": {
+        "boot_id": "18332755-06b8-4c8b-b889-1485b43062cb",
+        "pid": 1726749,
+        "start_ticks": 45329642
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 23011328,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.05
+          },
+          "distinct_processes": 1,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 10,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 10
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.008104,
+        "user_cpu_seconds": 0.05958
+      },
+      "runner_pid": 1726741,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T03:37:05.293219912Z",
+      "state": "completed"
+    }
+  },
+  "trV2": {
+    "operation_id": "p3-f747-trondheim-author-v2-schema-and-sensor-provenance",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "request_sha256": "e266bcd7485fe4fb7d8eed4e94452aaca39d283e463780002fd259c789712f91",
+    "operation_outcome": "succeeded",
+    "job": "p3-f747-trondheim-author-v2-schema-and-sensor-provenance",
+    "original_state": "failed",
+    "exit_code": 1,
+    "output_bytes": null,
+    "receipt": {
+      "command_id": "p3-f747-trondheim-author-v2-schema-and-sensor-provenance",
+      "error": "exit status 1",
+      "exit_code": 1,
+      "finished_at": "2026-11-23T03:38:12.488968957Z",
+      "generation": "9bd70d1cb1e374c273746dd616e4dc3ada59dc1bd0dbda9dcd4f691fe8f3fe04",
+      "request_sha256": "ccc49e2c8d0ec51d756269911358cf2f0aef7942a0f4247339ccd54ad08f907d",
+      "resource_process": {
+        "boot_id": "18332755-06b8-4c8b-b889-1485b43062cb",
+        "pid": 1726964,
+        "start_ticks": 45335366
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 23580672,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.05
+          },
+          "distinct_processes": 1,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 100,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 100
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.012889,
+        "user_cpu_seconds": 0.055853
+      },
+      "runner_pid": 1726956,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T03:38:02.534417861Z",
+      "state": "failed"
+    }
+  },
+  "trHeaders": {
+    "operation_id": "p3-f747-zeb-author-v2-header-only-receiver",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "request_sha256": "23efa4b96319403044d12722d7734126978146d1ee363d806ce418ead67c62e8",
+    "operation_outcome": "succeeded",
+    "job": "p3-f747-zeb-author-v2-header-only-receiver",
+    "original_state": "completed",
+    "exit_code": 0,
+    "output_bytes": null,
+    "receipt": {
+      "command_id": "p3-f747-zeb-author-v2-header-only-receiver",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T03:39:35.507539593Z",
+      "generation": "a45f4c3037b2e3d737f87833a8dbd540a4a747164c081eccde622a7ebb82ca47",
+      "request_sha256": "f992cbef43f31e232c94188a80bcb7f8a29c6baad538bf33dab989312605861a",
+      "resource_process": {
+        "boot_id": "096ffda8-9217-4369-a7fb-fec1e7be9dd2",
+        "pid": 3733507,
+        "start_ticks": 40344182
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 28266496,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.08
+          },
+          "distinct_processes": 1,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 37,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 37
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.011173,
+        "user_cpu_seconds": 0.093108
+      },
+      "runner_pid": 3733493,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T03:39:31.800619889Z",
+      "state": "completed",
+      "working_tree_context": {
+        "repository": "github.com/Jacob-Met/cursor-swiss-env",
+        "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+      }
+    }
+  },
+  "trForecast": {
+    "operation_id": "p3-f747-zeb-v2-sealed-outer-pergola-forecast",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "request_sha256": "3ef59c9d7f52379a6fcf1ae53d5e78b96fa0ae0875939f21e4ce7be454da927e",
+    "operation_outcome": "failed",
+    "job": "p3-f747-zeb-v2-sealed-outer-pergola-forecast",
+    "original_state": null,
+    "exit_code": null,
+    "output_bytes": null,
+    "receipt": null,
+    "refusal": "invalid_retained_output_budget; no native job record"
+  },
+  "trForecastBound": {
+    "operation_id": "p3-f747-zeb-v2-sealed-outer-pergola-forecast-bounded-console",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "request_sha256": "6c11a86c6e9840e37187d81c58b7bdf748d2b2006df9ba86ee339af460d1f66d",
+    "operation_outcome": "succeeded",
+    "job": "p3-f747-zeb-v2-sealed-outer-pergola-forecast-bounded-console",
+    "original_state": "completed",
+    "exit_code": 0,
+    "output_bytes": null,
+    "receipt": {
+      "command_id": "p3-f747-zeb-v2-sealed-outer-pergola-forecast-bounded-console",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T03:47:09.509633081Z",
+      "generation": "b97c019272e2d8701ff6daae43dac8da6f814aeec4981557485d0ac9270bad97",
+      "request_sha256": "5a3de735e3faa1885139efa226ee12c0f02696d0e1c397bc68c7ac365c737f46",
+      "resource_process": {
+        "boot_id": "cedb22dc-e4ff-4af4-81c7-7890b3e0071d",
+        "pid": 444576,
+        "start_ticks": 95083297
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 219348992,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "other": 1.2300000000000002,
+            "python": 6.369999999999993
+          },
+          "distinct_processes": 4,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 127,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 127
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.964767,
+        "user_cpu_seconds": 6.878287
+      },
+      "runner_pid": 444567,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T03:46:56.761690082Z",
+      "state": "completed"
+    }
+  },
+  "trScore": {
+    "operation_id": "p3-f747-zeb-held-2025-native-score-locked-ten-forecasts",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "request_sha256": "b8afa9046f6e960a10fe0e913f2e436abd351680517d9294dade9122ee04f358",
+    "operation_outcome": "succeeded",
+    "job": "p3-f747-zeb-held-2025-native-score-locked-ten-forecasts",
+    "original_state": "completed",
+    "exit_code": 0,
+    "output_bytes": null,
+    "receipt": {
+      "command_id": "p3-f747-zeb-held-2025-native-score-locked-ten-forecasts",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T03:50:00.832644262Z",
+      "generation": "068544db911562b68a451bccdb76ce1467d676793e97bf4b93e709d7ee5d586a",
+      "request_sha256": "ffddfaae30b3cef3874daf9fb189b0c83e733869cacb851779434fff3b8a2de4",
+      "resource_process": {
+        "boot_id": "cedb22dc-e4ff-4af4-81c7-7890b3e0071d",
+        "pid": 447212,
+        "start_ticks": 95101473
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 50974720,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "other": 0,
+            "python": 0.63
+          },
+          "distinct_processes": 3,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 23,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 23
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.084909,
+        "user_cpu_seconds": 0.710192
+      },
+      "runner_pid": 447203,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T03:49:58.503628835Z",
+      "state": "completed"
+    }
+  },
+  "trRecount": {
+    "operation_id": "p3-f747-zeb-independent-stdlib-whole-year-electrometric-recount",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "request_sha256": "b7346afc54c3f4c48dd14ef7171daa8efb1da970564c6ad46381a51dd182779e",
+    "operation_outcome": "succeeded",
+    "job": "p3-f747-zeb-independent-stdlib-whole-year-electrometric-recount",
+    "original_state": "completed",
+    "exit_code": 0,
+    "output_bytes": null,
+    "receipt": {
+      "command_id": "p3-f747-zeb-independent-stdlib-whole-year-electrometric-recount",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T03:51:03.057068284Z",
+      "generation": "28271d16cdedc4d405efe440204ea47603179f718578c4a568fd9271d84d849e",
+      "request_sha256": "5fc1172fe62bb42edfb3ac30fab2f3eb5d3a0c805df66eaeb190cf5b25a0aa95",
+      "resource_process": {
+        "boot_id": "cedb22dc-e4ff-4af4-81c7-7890b3e0071d",
+        "pid": 447706,
+        "start_ticks": 95107696
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 41009152,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.4
+          },
+          "distinct_processes": 2,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 23,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 23
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.039866,
+        "user_cpu_seconds": 0.510154
+      },
+      "runner_pid": 447698,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T03:51:00.745726677Z",
+      "state": "completed"
+    }
+  },
+  "trTruth": {
+    "operation_id": "p3-f747-zeb-ccby-held-hourly-target-portable-receiver",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "request_sha256": "1975b2c1fe8f26ba851d4390e8c257e7f9c15c2db82948b9b02a1aeff623f9f9",
+    "operation_outcome": "succeeded",
+    "job": "p3-f747-zeb-ccby-held-hourly-target-portable-receiver",
+    "original_state": "completed",
+    "exit_code": 0,
+    "output_bytes": null,
+    "receipt": {
+      "command_id": "p3-f747-zeb-ccby-held-hourly-target-portable-receiver",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T03:53:12.056802026Z",
+      "generation": "83df4af819118955998e7c1221b052d208c3a079a719b7507c527faa9ea79c58",
+      "request_sha256": "690aac8396ab3ca3cc66b1e57917848c848dee05d3a050dd7c98522b40c76060",
+      "resource_process": {
+        "boot_id": "cedb22dc-e4ff-4af4-81c7-7890b3e0071d",
+        "pid": 450182,
+        "start_ticks": 95120609
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 31535104,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.4
+          },
+          "distinct_processes": 1,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 22,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 22
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.023916,
+        "user_cpu_seconds": 0.418524
+      },
+      "runner_pid": 450174,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T03:53:09.870519749Z",
+      "state": "completed"
+    }
+  }
+}
