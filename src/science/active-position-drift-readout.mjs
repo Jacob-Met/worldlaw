@@ -6,7 +6,7 @@ import {SEGMENT_SOURCE,SEGMENT_PLAN,openRateSegments} from './position-drift-rat
 /** Readout documents for the active experiment notebook and CLI. */
 import {openAllHorizonPositionDrift} from './persistent-position-drift-all-horizon.mjs';
 
-import {isGuidedPlan,CASE_TWELVE_REQUEST,ONE_FEEDBACK_REQUEST,isSuffixRequest,GUIDED_INPUT,GUIDED_RESULT} from './active-guided-drift.mjs';
+import {THREE_HULL_SOURCE,isGuidedPlan,CASE_TWELVE_REQUEST,ONE_FEEDBACK_REQUEST,isSuffixRequest,GUIDED_INPUT,GUIDED_RESULT} from './active-guided-drift.mjs';
 
 export const ACTIVE_DRIFT_PLAN='worldlaw.position-drift-all-horizon-policy/v1';
 export const ACTIVE_DRIFT_CHECKPOINTS='worldlaw.active-position-drift-checkpoints/v1';
@@ -19,7 +19,7 @@ const need=(ok,message)=>{if(!ok)throw Error(message);};
 export function parseActiveOriginalJSON(text){
   const data=JSON.parse(text);
   const schema=data?.schema;
-  if(schema!==CUT_SOURCE && schema!==SUPPORT_SOURCE && schema!==MINIMAX_SOURCE && schema!==POLYTOPE_SOURCE && schema!==SEGMENT_SOURCE && schema!=='worldlaw.position-drift-rate-catalog/v1' && schema!==ACTIVE_DRIFT_PLAN &&
+  if(schema!==THREE_HULL_SOURCE && schema!==CUT_SOURCE && schema!==SUPPORT_SOURCE && schema!==MINIMAX_SOURCE && schema!==POLYTOPE_SOURCE && schema!==SEGMENT_SOURCE && schema!=='worldlaw.position-drift-rate-catalog/v1' && schema!==ACTIVE_DRIFT_PLAN &&
      schema!==ACTIVE_DRIFT_CHECKPOINTS && schema!==ACTIVE_DRIFT_TRACE && schema!==CASE_TWELVE_REQUEST && schema!==ONE_FEEDBACK_REQUEST && !isSuffixRequest(data) &&
      schema!==GUIDED_INPUT && schema!==GUIDED_RESULT && !isGuidedPlan(data) && !isGuidedPlan(data?.plan) &&
      schema!=='worldlaw.active-position-drift-checkpoint-result/v1' &&

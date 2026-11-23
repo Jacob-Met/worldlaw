@@ -866,6 +866,25 @@ try{
   assert.deepEqual(JSON.parse(cli(['--notebook',cutFile]).stdout),cutBook);
   mark('two physical witness queries certify fifteen pulses and preserve the measured reference through browser and CLI replay');
 
+  for(const [contrast,command,value,law] of [['0','y','1','A'],['1','z','0','B']]){
+    await openDetails('source-details');await page.locator('#example').selectOption('driftAdaptiveHulls');
+    await page.locator('#load-example').click();await idle();assert.match(await page.locator('#plan-heading').textContent(),/Three pulses/);
+    await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+    await page.locator('#acquisition-kind').selectOption('synthetic');await page.locator('#readout-source').fill('Correlated error convex family feedback');
+    for(const [i,y] of ['0','0',contrast].entries())await page.locator('#drift-reading-'+i).fill(y);
+    await page.locator('#evaluate-readings').click();await idle();await page.reload();await idle();await openDetails('supplied-details');
+    assert.equal(await page.locator('#drift-reading-3').getAttribute('data-command'),command);
+    await page.locator('#drift-reading-3').fill(value);await page.locator('#evaluate-readings').click();await idle();
+    const savedHull=await accepted();assert.deepEqual(savedHull.readouts.at(-1).result.consistentHypothesisIds,[law]);
+    const hullFile=await download('export-notebook','adaptive-hulls-'+law+'.json');
+    assert.deepEqual(JSON.parse(cli(['--notebook',hullFile]).stdout),savedHull);
+  }
+  await openDetails('source-details');await page.locator('#new-draft').click();await idle();
+  await page.locator('#noise-bound').fill('1/20');await page.locator('#replan').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/Every three-pulse strategy/);
+  assert.match(await page.locator('#plan-summary').textContent(),/minimum is four/);
+  mark('two continuous-family feedback branches and the exact closed-noise refusal replay through the workbench');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';
