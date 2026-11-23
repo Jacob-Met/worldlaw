@@ -17,3 +17,8 @@ magfid-reference-selftest:
 	"$$T/venv/bin/python" -m pip install -q --disable-pip-version-check numpy==1.26.4; \
 	OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
 	"$$T/venv/bin/python" experiments/magfid_reference.py selftest
+
+# Native generated controls for the continuous acquisition path.
+.PHONY: test-continuous-law
+test-continuous-law:
+	node --test tests/command-cubic-discovery.test.mjs tests/residual-abstention.test.mjs tests/trajectory-continuous-planner.test.mjs tests/trajectory-sindy-discovery.test.mjs tests/trajectory-continuous-instrument.test.mjs tests/forced-weak-discovery.test.mjs
