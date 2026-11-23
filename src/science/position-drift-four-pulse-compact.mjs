@@ -5,12 +5,14 @@ import {compare} from './persistent-four-pulse-geometry.mjs';
 import {equalPositionDriftData} from './persistent-position-drift-planner.mjs';
 import {rateWorkBudget,RATE_WORK_EXHAUSTED} from './position-drift-rate-polytopes.mjs';
 import {FOUR_PULSE_FEEDBACK_SOURCE,prepareFourPulseFeedback} from './position-drift-four-pulse-feedback-witness.mjs';
-import {fourPulseCourseTree,buildFourPulseMenuProof,checkFourPulseMenuProof,receiveFourPulseMenu,fourPulseSourceSupport} from './position-drift-four-pulse-radius.mjs';
-const {Q,add,mul,div,neg,fmt}=ACTIVE_LINEAR_EXACT_ARITHMETIC;
-const one=Q(1n),abs=x=>x.n<0n?neg(x):x;
+import {projectedFourPulseMenu,projectFourPulseRows} from './position-drift-four-pulse-projection.mjs';
+import {verifyFourPulseMenuSupport,fourPulseCourseTree,buildFourPulseMenuProof,checkFourPulseMenuProof,receiveFourPulseMenu,fourPulseSourceSupport} from './position-drift-four-pulse-radius.mjs';
+const {Q,add,mul,fmt}=ACTIVE_LINEAR_EXACT_ARITHMETIC;
+const one=Q(1n);
 const need=(ok,msg)=>{if(!ok)throw Error('Four-pulse compact menu: '+msg);};
 export const FOUR_PULSE_MENU_SOURCE='worldlaw.position-drift-four-pulse-menu/v1';
 const schema='worldlaw.position-drift-four-pulse-compact-proof/v1';
+const projectedSchema='worldlaw.position-drift-four-pulse-compact-proof/v2';
 
 function prepare(request){
   if(request?.schema===FOUR_PULSE_FEEDBACK_SOURCE)return prepareFourPulseFeedback(request);
@@ -19,17 +21,7 @@ function prepare(request){
   const source={...out.source,schema:FOUR_PULSE_MENU_SOURCE};delete source.denominator;return {...out,source};
 }
 function projectLast(rows,spend){
-  const result=[],lo=[],hi=[];
-  for(const row of rows){
-    spend();const last=row.c.at(-1),c=row.c.slice(0,-1);
-    if(!last.n){result.push({...row,c});continue;}
-    const u=abs(last);(last.n>0n?hi:lo).push({c:c.map(x=>div(x,u)),h:div(row.h,u),r:div(row.r,u),
-      terms:row.terms.map(t=>({atom:t.atom,weight:div(t.weight,u)}))});
-  }
-  for(const a of lo)for(const b of hi){
-    spend();result.push({c:a.c.map((v,i)=>add(v,b.c[i])),h:add(a.h,b.h),r:add(a.r,b.r),terms:[...a.terms,...b.terms]});
-  }
-  return result;
+  const result=[];projectFourPulseRows(rows,spend,row=>result.push(row));return result;
 }
 function restrictedSupport(cat,prefix,menu,original,spend){
   const radius=rational(original.radius),tree=fourPulseCourseTree(cat,prefix,'full',spend,menu);
@@ -84,7 +76,7 @@ function proofs(cat,prefix,menu,saved,spend){
   });
   return {branches,compact,original:{...base,...boundary,lower:lifted}};
 }
-export function compressFourPulseMenu(request){
+export function compressFourPulseMenuWithSimplex(request){
   const {cat,source,prefix,menu}=prepare(request),work=rateWorkBudget(source.experiment.catalog.limits.designWork),base={schema,source};
   try{
     const original=buildFourPulseMenuProof(cat,prefix,menu,work.spend),{kept,lower}=restrictedSupport(cat,prefix,menu,original,work.spend);
@@ -92,15 +84,31 @@ export function compressFourPulseMenu(request){
       boundary:{observations:original.observations,worlds:original.worlds},work:work.used};
   }catch(e){if(e!==RATE_WORK_EXHAUSTED)throw e;return {...base,status:'design-budget-exhausted',work:work.used};}
 }
+export function compressFourPulseMenu(request){
+  const {cat,source,prefix,menu}=prepare(request);
+  if(menu.reduce((n,branch)=>n+branch.last.length,0)<=4)return compressFourPulseMenuWithSimplex(request);
+  const work=rateWorkBudget(source.experiment.catalog.limits.designWork),base={schema:projectedSchema,source};
+  try{return {...base,status:'menu-compressed',...projectedFourPulseMenu(cat,prefix,menu,work.spend),work:work.used};}
+  catch(e){if(e!==RATE_WORK_EXHAUSTED)throw e;return {...base,status:'design-budget-exhausted',work:work.used};}
+}
 export function verifyCompactFourPulseMenu(request,saved){
   const {cat,source,prefix,menu}=prepare(request),work=rateWorkBudget(source.experiment.catalog.limits.designWork);
-  need(saved?.schema===schema&&equalPositionDriftData(saved.source,source),'source differs');
+  need([schema,projectedSchema].includes(saved?.schema)&&equalPositionDriftData(saved.source,source),'source differs');
   if(saved.status==='design-budget-exhausted'){
-    need(equalPositionDriftData(compressFourPulseMenu(request),saved),'unreproducible exhaustion');return true;
+    const rebuild=saved.schema===schema?compressFourPulseMenuWithSimplex:compressFourPulseMenu;
+    need(equalPositionDriftData(rebuild(request),saved),'unreproducible exhaustion');return true;
   }
   need(saved.status==='menu-compressed'&&Number.isSafeInteger(saved.work)&&saved.work>=0&&saved.work<=source.experiment.catalog.limits.designWork,'invalid proof');
   try{
     const {branches,compact,original}=proofs(cat,prefix,menu,saved,work.spend);
+    if(saved.schema===projectedSchema){
+      let previous=Q(0n);need(Array.isArray(saved.jumps),'missing projected lower bounds');
+      for(const jump of saved.jumps){
+        const next=rational(jump.radius);need(compare(next,previous)>0&&jump.lower.length<=8,'invalid lower-bound progression');
+        verifyFourPulseMenuSupport(cat,prefix,menu,next,jump.lower,work.spend);previous=next;
+      }
+      need(compare(previous,rational(saved.radius))===0&&equalPositionDriftData(saved.jumps.at(-1)?.lower??[],original.lower),'last projected support differs');
+    }
     checkFourPulseMenuProof(cat,prefix,menu,original,work.spend);checkFourPulseMenuProof(cat,prefix,branches,compact,work.spend);
   }catch(e){if(e!==RATE_WORK_EXHAUSTED)throw e;throw Error('Compact-menu replay exceeded source budget');}
   return true;

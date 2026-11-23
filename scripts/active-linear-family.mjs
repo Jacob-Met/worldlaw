@@ -5,7 +5,7 @@
  */
 import {readFile,writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
-import {compressFourPulseMenu,verifyCompactFourPulseMenu,receiveCompactFourPulseMenu} from '../src/science/position-drift-four-pulse-compact.mjs';
+import {compressFourPulseMenu,compressFourPulseMenuWithSimplex,verifyCompactFourPulseMenu,receiveCompactFourPulseMenu} from '../src/science/position-drift-four-pulse-compact.mjs';
 import {certifyFourPulseLeafMinimum,verifyFourPulseLeafMinimum} from '../src/science/position-drift-four-pulse-leaf-minimum.mjs';
 import {certifyFourPulseNoiseRadius,verifyFourPulseNoiseRadius} from '../src/science/position-drift-four-pulse-radius.mjs';
 import {certifyFourPulseFeedback,verifyFourPulseFeedback,receiveFourPulseFeedback} from '../src/science/position-drift-four-pulse-feedback-witness.mjs';
@@ -15,12 +15,13 @@ import {certifyMulticlassPositionDriftMinimum} from '../src/science/persistent-p
 import {planBinaryPositionDriftMinimum} from '../src/science/persistent-position-drift-all-horizon.mjs';
 import {parseActiveOriginalJSON} from '../src/science/active-position-drift-readout.mjs';
 import {recommendActiveFollowup,sealActivePlan,sealActiveReadout,replayActiveNotebook,receiveActiveNotebook,createActiveNotebook} from '../src/science/active-experiment-record.mjs';
-const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE | --recommend INDEX] [--output NEW_FILE] | --input FILE [--binary-minimum | --multiclass-minimum [--enumerate-through N --word-budget N]] --create-notebook --output NEW_FILE | --input FILE --binary-minimum [--output NEW_FILE] | --input FILE --multiclass-minimum [--enumerate-through N --word-budget N] [--output NEW_FILE] | --input FILE --three-pulse-radius [--replay CERTIFICATE] [--output NEW_FILE] | --input FILE --four-pulse-radius [--replay CERTIFICATE] [--output NEW_FILE] | --input FILE --four-pulse-feedback [--replay CERTIFICATE [--readings POSITIONS]] [--output NEW_FILE] | --input FILE --four-pulse-compact [--replay CERTIFICATE [--readings POSITIONS]] [--output NEW_FILE] | --input FILE --four-pulse-leaves [--replay CERTIFICATE] [--output NEW_FILE]';
+const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE | --recommend INDEX] [--output NEW_FILE] | --input FILE [--binary-minimum | --multiclass-minimum [--enumerate-through N --word-budget N]] --create-notebook --output NEW_FILE | --input FILE --binary-minimum [--output NEW_FILE] | --input FILE --multiclass-minimum [--enumerate-through N --word-budget N] [--output NEW_FILE] | --input FILE --three-pulse-radius [--replay CERTIFICATE] [--output NEW_FILE] | --input FILE --four-pulse-radius [--replay CERTIFICATE] [--output NEW_FILE] | --input FILE --four-pulse-feedback [--replay CERTIFICATE [--readings POSITIONS]] [--output NEW_FILE] | --input FILE [--four-pulse-compact | --four-pulse-compact-simplex] [--replay CERTIFICATE [--readings POSITIONS]] [--output NEW_FILE] | --input FILE --four-pulse-leaves [--replay CERTIFICATE] [--output NEW_FILE]';
 let recommend=null,binaryMinimum=false,multiclassMinimum=false,threePulseRadius=false;
 const fourPulseModes=new Map([
   ['--four-pulse-radius',{build:certifyFourPulseNoiseRadius,verify:verifyFourPulseNoiseRadius}],
   ['--four-pulse-feedback',{build:certifyFourPulseFeedback,verify:verifyFourPulseFeedback,receive:receiveFourPulseFeedback}],
   ['--four-pulse-compact',{build:compressFourPulseMenu,verify:verifyCompactFourPulseMenu,receive:receiveCompactFourPulseMenu}],
+  ['--four-pulse-compact-simplex',{build:compressFourPulseMenuWithSimplex,verify:verifyCompactFourPulseMenu,receive:receiveCompactFourPulseMenu}],
   ['--four-pulse-leaves',{build:certifyFourPulseLeafMinimum,verify:verifyFourPulseLeafMinimum}]
 ]);
 let fourPulseMode=null;
