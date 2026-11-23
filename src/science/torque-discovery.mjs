@@ -24,6 +24,7 @@ export const TERMS = Object.freeze([
   { id: 'rate_squared', label: 'ω²', coefficientUnit: 'N·m·s²/rad²', optional: true },
   { id: 'cosine', label: 'cos(θ)', coefficientUnit: 'N·m', optional: true },
   { id: 'cubic', label: 'θ³', coefficientUnit: 'N·m/rad³', optional: true },
+  { id: 'command_cubic', label: 'u³', coefficientUnit: '1/(N·m)²', optional: true },
 ].map(Object.freeze));
 export const DEFAULT_TERMS = Object.freeze(TERMS.filter(term => !term.optional).map(term => term.id));
 export const UNITS = Object.freeze({command:'N·m', position:'rad', rate:'rad/s', jointTorque:'N·m'});
@@ -69,6 +70,7 @@ function rows(values, minimum = 0) {
 function feature(id, row) {
   switch (id) {
     case 'command': return row.command;
+    case 'command_cubic': return row.command ** 3;
     case 'command_position': return row.command * row.position;
     case 'rate': return row.rate;
     case 'coulomb': return Math.sign(row.rate);
