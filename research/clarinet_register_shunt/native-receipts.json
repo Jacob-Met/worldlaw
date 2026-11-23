@@ -1,0 +1,112 @@
+[
+  {
+    "job": "p3-f747-clarinet-author-archive-member-identities",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "request": "39817d5544332e25ce42307e6d496155bec189fb52918408f7516a3141b7993a",
+    "generation": "7fae391bf49d6fca370e89413ead638b847efe6de25a6c5406fa864684a08a1d",
+    "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+    "bytes": 35898,
+    "sha256": "0ab73af6cbe1e86a7a5bbf3e68809463cf7036a189612fc66bc2c4055a6b8c00"
+  },
+  {
+    "job": "p3-f747-clarinet-source-and-complex-mat-header-only",
+    "state": "failed",
+    "exit": 1,
+    "descendants": "drained",
+    "request": "d8dbd6d22760d16e9d4a5f8add155e758e36b3d276caaea5ed0066863d5c90aa",
+    "generation": "d99f8b0177c1b64104faa920460efbbd5eeaf85209a3f586e3454a95a7968a18",
+    "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+    "bytes": 7772,
+    "sha256": "fbae17f214b5b4312e78d4925d7820a96eecd69854dd5badb4fd4734c22d1d8c"
+  },
+  {
+    "job": "p3-f747-clarinet-opaque-element-tags-and-author-impedance-mapping",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "request": "5649850d5f9777e7d3a9ac7a02b3b5e22297b07f9a12a3be987de5163441c4c8",
+    "generation": "c304a3e86455032b3ac16d6a5dfb4340c87c614efcc67b85883cfcd4ffb6cf80",
+    "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+    "bytes": 39022,
+    "sha256": "be5aef53298a0a06f1cd647e3f09fff3c39975647c8eb4747463316b9e39ab01"
+  },
+  {
+    "job": "p3-f747-clarinet-common-frequency-and-geometry-before-spectra",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "request": "e1ecb696804e2d660373ef4d64106e9e762d9d344c9a520792f06230adf117ba",
+    "generation": "ef8fc60444d502cb3345485ddd8db213426e5a4e18523159f8702a4e78729c7d",
+    "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+    "bytes": 6158,
+    "sha256": "dbc86a6f1ff6e3b3219a0370889cedea908a92816df382a1e2f491b639f7bbd2"
+  },
+  {
+    "job": "p3-f747-clarinet-author-comparison-settings-source-only",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "request": "966fcf9ba96152b51cdc18d5deb73f85098c87a911c4f8d57c1d7438cb758e4d",
+    "generation": "81be06a8012d82605f0dfd257b762254a42b0cdc6f3f1984a5fc690edda28673",
+    "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+    "bytes": 6811,
+    "sha256": "3ef76241cdf579e8a0f856790c27795833ab68ece1aca3c5758370438fb84749"
+  },
+  {
+    "job": "p3-f747-clarinet-nine-role-whole-spectrum-locked-forecast",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "request": "45b7c714ddefe6a44375bb50976ec624ad5c2af1eb336f7e6db596defafd1a26",
+    "generation": "fd0589c1c500bb91053ff27a6ab0773bb29d4f8f9a84c9b32092214f9d64d373",
+    "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+    "bytes": 15310880,
+    "sha256": "d66a6eaa16ae1d0b089c1fe78582c50c1a7f997c3814fcacfbba66a87cb35149"
+  },
+  {
+    "job": "p3-f747-clarinet-independent-81-spectrum-forecast-lock",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "request": "530ba9f46606df5866ce7f2f568ad0759c634c939f18552817e256c9a6e1a157",
+    "generation": "28dd0d367647eff99a46e035e3211812e856d7eb49df705690d7b2b60a9971ef",
+    "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+    "bytes": 320,
+    "sha256": "2fe49ee055275b15b3ba05a2a55f93fcfe496328fbafa4b8a1e436ad49b18c3a"
+  },
+  {
+    "job": "p3-f747-clarinet-unopened-loads-246-whole-frequency-receiver",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "request": "b46d6c462dfc4cb386a2295903e9ae521c43762fe2b6a4584f28afae494703d2",
+    "generation": "2ba3e93250d0644e1950f22d2df3f36e17ae20a7e0f9eae6a1cfe32febb3c305",
+    "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+    "bytes": 11487,
+    "sha256": "b9653d7323573b3dcd838002158c861d4c930bbd769af4dfb3d71a433c3e3385"
+  },
+  {
+    "job": "p3-f747-clarinet-independent-all1579581-complex-residuals",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "request": "9bef2988b1da7e20378ab41668049900d80a0506409973c6d3d9ab35e06bb76b",
+    "generation": "515c890cf98f39e6f9e11ffe53b0f4eca8b9912e931fac71b3248df8820651a7",
+    "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+    "bytes": 568,
+    "sha256": "9acef8a8a38b50c51f4d2f4c966f55b69a546e8e2a378c27cf1063fca86cd947"
+  },
+  {
+    "job": "p3-f747-clarinet-cold-git-24-parts-and-81-forecast-vectors",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "request": "120e0c305fd9114bd8411badeacefcfc11239a071ac893ebcbe7109e0a2c55d1",
+    "generation": "8e94fafdd8bd8ea8fd067f14af1c4466f723a1670a66c37234563576c1283fc6",
+    "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+    "bytes": 215,
+    "sha256": "691a2692210f05551d182244088a316630644ad52798f151a30da0c76f96ad64"
+  }
+]

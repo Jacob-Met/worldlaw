@@ -1,0 +1,7 @@
+# Source and execution qualifications
+
+The authored controls are a source-bound implementation of impedance_tube_CstL1.m, coeffs_lowpass_Gamma.m and compute_Mtot.m. The A_main_comparison_experiment.m driver supplies the 10 mm chimney override and 44100 Hz sample rate. The independent score verified the locked outputs and errors. It did not run the author's MATLAB code.
+
+An additional GNU Octave comparison of the unchanged three .m files across 21 geometries has original ID p3-f747-clarinet-literal-author-m-files-on-21-geometries. The latest observation while preparing this publication was durable placing with no worker admission. No native MATLAB/Octave numerical result is claimed. A different optional independent matrix calculation needed both original files on their worker. That admission was refused before compute because other jobs reserved the worker’s available memory. Immutable refusal placement-6f674ea7aef26f8727cd57e890485685db3fa4a5e5e3462e has 2897 bytes and SHA-256 7dfcaeb7ef79e64d5b8a4f333d936601027de10bfb437ceec70770584bc9cd27. No alternative worker or model output replaced it.
+
+An earlier MATLAB metadata reader stopped on the opaque class used for a string. No impedance target was decoded. The corrected tag reader established the two named complex variables, grid and figure mapping before the scientific forecast. The published source includes that first unsuccessful reader and all ten scientific/custody originals.

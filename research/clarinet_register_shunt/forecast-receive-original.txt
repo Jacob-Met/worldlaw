@@ -1,0 +1,2 @@
+EXACT_CODE 3ed6d4e1f3e991e09b62484cdc2f25ccd4ff9ff7
+{"all_verified": true, "archive_bytes": 11477643, "archive_sha": "5cae02c22786be38fad002e70c6749fb3b822bbf27738f04bfaa857bbc4a812b", "forecast_cells": 1579581, "protocol_sha": "64fd575f0f5f4a4bd163d9f46929dbb3cb9235158f7baf8f72b2a3fd8d80190f", "spectrum_digests": 81}

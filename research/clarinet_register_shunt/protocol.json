@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "source": "10.5281/zenodo.16169580 v1, ZIP SHA256 c6805fceb01a4a106d4ff1ca265d6fc5d99729b55abc5df4df0e6ef30cdfd7d2",
+  "acquisitions": [
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 1/Z1.mat",
+      "sha256": "2f2a41b9be895eaa2b4dfd737790209f79472cc0d4a9d2bd76c69df1d834d9c4"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 1/Z2.mat",
+      "sha256": "dff1fd13c58662b71e4a6c2e6be0ec0bb6002aa654c536c929080d7191dae381"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 1/Z3.mat",
+      "sha256": "7b8d9f437d1ea6137f60bb294e0488d0f275eb9d0654dd616650bbcefc2bfd98"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 1/Z4.mat",
+      "sha256": "bbd800526f76335a509fde8d441315b39ef1780175c96a702a597bd7400be7aa"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 1/Z5.mat",
+      "sha256": "e18e3e58a81686eea56087462716886b239e5efb5ec077b04e01e75546d257f2"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 1/Z6.mat",
+      "sha256": "016263876d525a01833217966cc865b9fcf5e7b75d88d8a0d3d08e0d5fe79ae6"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 1/Z7.mat",
+      "sha256": "f6d20daa5915929b99788c4602d5b3c79835d2d25d3f8228b777810ce80c1c84"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 2/Z1.mat",
+      "sha256": "4fd81baf3ea4fc9551264737d89d28efe184ceb26cdb1fd527f11e994e3e6c6e"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 2/Z2.mat",
+      "sha256": "6da6b53b89b6e62603fae64f061a0f92958032ee3055f1a549fcbd86c174fb03"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 2/Z3.mat",
+      "sha256": "406905abb189ec405b923c65c33d3b9fc14891f4bd3a9f8f056b1cd66939b1e7"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 2/Z4.mat",
+      "sha256": "507f7691d56feaa429084405cbc42c9a6dbe174e34ba7b772391095bb1b3d1f1"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 2/Z5.mat",
+      "sha256": "063aa67041b78ca58f9d1177a92dfd50c59ced904a52c207b11ef2c32f61a291"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 2/Z6.mat",
+      "sha256": "5db7547eb388c055f2e9f584a82f8ec8f9ab202347ca3e2ac17ad58a8b0d8079"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 2/Z7.mat",
+      "sha256": "f8bb105a687737df91ca5df27034cee281bdf756eec62695a553815ac636a427"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 3/Z1.mat",
+      "sha256": "c429f274feb88ad1d02ec44046103c84ca8c2eb42f8fa256263409b412fd4031"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 3/Z2.mat",
+      "sha256": "4575b3a795d455e8f874addd046050edbc861f71dda8f2b99144c0b9a925667f"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 3/Z3.mat",
+      "sha256": "755bd6045fc6ae31c1112de3eaf17a6e0de0666da6929d8849840ab93441421f"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 3/Z4.mat",
+      "sha256": "74a4c7d49827d112ec3389b32551d8c37a1e3e45440be10481a42aa42840ffe2"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 3/Z5.mat",
+      "sha256": "3ae86ff454c4627530bfcf4c582789f4c6d5fa7e3e3edf358c574b62f0b11b02"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 3/Z6.mat",
+      "sha256": "c91a428a0a1f1c6230c3d2e3c4c4c2148a7dfdd7d6e0ea5354a67d9e392de407"
+    },
+    {
+      "path": "_ARCHIVE_ClarinetRegisterHole/data/Impedance_Measurements/diam 3/Z7.mat",
+      "sha256": "b10aadf01e3fe32390d0f9cedbfe5a9967800061c90909be26647ecff0fabc7d"
+    }
+  ],
+  "geometry": {
+    "L1": [
+      0.13186
+    ],
+    "L2": [
+      0.04,
+      0.0756,
+      0.1156,
+      0.166,
+      0.2228,
+      0.26789999999999997,
+      0.4032
+    ],
+    "Lh": [
+      0.0127,
+      0.0127,
+      0.0127
+    ],
+    "R": [
+      0.0075
+    ],
+    "Rh": [
+      0.0005,
+      0.001,
+      0.0015
+    ]
+  },
+  "frequency": {
+    "count": 19501,
+    "first_hz": 100,
+    "last_hz": 4000,
+    "step_hz": 0.2,
+    "sha256": "4e981a338e2d404ae1afcf016159ba01a033b586b743ea2be84f41a665f916b5"
+  },
+  "calibration_lower": [
+    1,
+    3,
+    5,
+    7
+  ],
+  "held_lower": [
+    2,
+    4,
+    6
+  ],
+  "upper": [
+    1,
+    2,
+    3
+  ],
+  "information": "All seven closed impedances for all three diameters are allowed as conditioning inputs. Only open impedances from lower indices1,3,5,7 can calibrate. Hold back all Z_open for indices2,4,6 until the exact forecast archive, SHA, 9-unit/role census and model diagnostics have been independently received. Never decode player, simulated-result, or figure arrays. Header-validated normalized Z/Zc converts to reflection z=(Z−1)/(Z+1). Strict finite and denominator checks. Time convention common across empirical acquisitions is assumed; no independent reference/phase calibration established. All published closed resonance summaries and qualitative player outcomes already exposed.",
+  "target": "Forecast the complex normalized open-hole reflection at all 19,501 measured frequencies, including full 100–4,000Hz band in every one of nine held acquisitions. Both real and imaginary components count. Plot marker f1 is not a target; per acquisition RMSE = sqrt(mean(abs(pred−observed)^2)), primary mean equally weights9. Report worst absolute error across all rows, every role at same location, and cold source calibration. 3 explicitly held in-range tube lengths on one rig. No claim over players, materials or number of independent frequencies.",
+  "roles": [
+    "shared_parabolic",
+    "per_hole_parabolic",
+    "per_hole_free_mobius",
+    "nearest_length_delta_interpolation",
+    "closed_unchanged",
+    "author_direct_open",
+    "author_exact_shunt_on_measured_closed",
+    "author_source_selected_convention",
+    "rank_one_global_additive"
+  ],
+  "model": "Use common fixed point in complex reflection coordinates at a frequency, independent complex shunt strength for each diameter. Generate algebraic candidates from quadratic coefficients of every pair of calibration lengths, plus zero and infinity. Normalize (u,v) for finite r and represent infinity with (1,0). For each candidate fit complex least-squares k separately by diameter to (w−z)=k(vw−u)(vz−u). Choose candidate minimizing source mean squared complex reflection prediction residual, with source-generated candidate order as deterministic tie breaker. Per-hole control selects each r independently. Use trace-unconstrained complex DLT fit on four training pairs for free Mobius. Measured-length interpolation of open-closed delta uses neighboring bracketing calibration lengths and actual lengths. Rank-one_global_additive uses arithmetic mean complex open-minus-closed per diameter/frequency. Authored direct and relative formulas from exact released lowpass/filter and open/closed tube; separately compare source-selected sign of phase and extra 65 mm straight-tube measurement adaptor versus none on training only. The native model uses a per-length pole approximation optimized at f1,5f1, so its upstream numerical transfer need not be exactly common across lengths despite common physical tube. Keep geometry file and article hardware statements separate.",
+  "conditioning": "For a diameter and frequency refuse ill-conditioned training DLT identification if sigma3/sigma1<1e-8, s1 or numeric quantities nonfinite or a predicted projective denominator <1e-10 on the norm-scaled chart. Preserve each frequency; substitute closed unchanged only for affected learned-role evaluations. For all learned roles count fails by acquisition; more than 1% substituted for candidate defeats gate. Per-diameter free transform unit-norm matrix; parabolic rhs denominator 1−kv(vz−u) normalized relative to 1+|kv(vz−u)|. No point removed or clipping into passive disk. Primary pass: shared-parabolic mean RMSE strictly lower than EACH of the other eight roles, beats each on >=6/9 units, and each candidate unit <1% fallback; tie fails. No model selection after targets.",
+  "storage": "Forecast arrays serialized little-endian complex64, scored after promotion to complex128. Numerical role construction uses binary64. Never use searched frequency offsets, target phase shifts or adaptation across held loads. Independent scorer reconstructs all residuals and worst directly from author archive and locked forecasts.",
+  "author_implementation": "The geometry MAT stores 12.7 mm Lh. A_main_comparison_experiment.m expressly sets vec_Lh=10/1000, Fs=44100, freqsFitLosses=[1,5], R=7.5 mm and Rh=(1:3)/2000. The released-comparison roles use that literal 10 mm override. Undecorated direct-open uses the comparison's no-radiation outlet and no external adapter. The separately scored convention variant compares four signed-phase/65mm-adapter settings on calibration only. Its optional 65mm tube is an explicit alternative transfer approximation at the main-bore radius."
+}
