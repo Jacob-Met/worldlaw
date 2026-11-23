@@ -188,7 +188,7 @@ export function verifyPointCuts(request,saved){
 
 export function openPointCuts(request,policy){
   const plan=planPointCuts(request);need(equalPositionDriftData(policy,plan),'saved candidate search differs from source');
-  const data=sourceData(request),{cat,reference}=data;
+  const {cat,reference}=pointRateCatalog(plan.source);
   const ratesFor=(id,ws)=>mixRateRows(cat.vertices[cat.ids.indexOf(id)],ws.map(rational));
   if(plan.status==='indistinguishable')return openRateAlias(plan,cat.commands,ratesFor);
   need(plan.status==='minimum-certified','design work ended without a minimum');verifyPointCuts(request,plan);

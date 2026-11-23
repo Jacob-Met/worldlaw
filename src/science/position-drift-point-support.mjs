@@ -123,7 +123,7 @@ export function verifyPointSupport(request,saved){
 
 export function openPointSupport(request,policy){
   const plan=planPointSupport(request);need(equalPositionDriftData(plan,policy),'saved support plan differs from source');
-  const {cat,reference}=prepare(request),ratesFor=(id,ws)=>mixRateRows(cat.vertices[cat.ids.indexOf(id)],ws.map(rational));
+  const {cat,reference}=pointRateCatalog(plan.source),ratesFor=(id,ws)=>mixRateRows(cat.vertices[cat.ids.indexOf(id)],ws.map(rational));
   if(plan.status==='indistinguishable')return openRateAlias(plan,cat.commands,ratesFor);
   need(plan.status==='minimum-certified','design work ended without a minimum');
   verifyPointSupport(request,plan);

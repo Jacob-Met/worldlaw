@@ -29,6 +29,8 @@ test('two physical candidate checks close the skewed simplex at 12, 15 and 24 co
     req.catalog.commands.slice(1).reverse().forEach(cmd=>adv.pulse(cmd));
     adv.pulse('u1',String(10n**68n));const z=adv.collision();assert.deepEqual(z.readings[0],z.readings[1]);
     assert.deepEqual(z.parameters[1],cut.alias.parameters[1]);assert.throws(()=>adv.pulse('ref'),/distinct-command/);
+    req.catalog.commands[1]='changed-after-opening';const saved=r.referenceAdversary();saved.pulse('u1');
+    assert.deepEqual(saved.collision().readings,[['0','0'],['0','0']]);
   }
 });
 
