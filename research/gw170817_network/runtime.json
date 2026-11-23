@@ -1,0 +1,10 @@
+{
+  "native_runner": "uv run --no-project --python /usr/bin/python3",
+  "requirements": [
+    "lalsuite==7.26.1",
+    "h5py==3.13.0",
+    "numpy==2.2.6",
+    "scipy==1.15.3"
+  ],
+  "blas_threads": 1
+}
