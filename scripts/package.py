@@ -16,6 +16,10 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/trifilar_reference_eligibility/README.md",
+    "research/trifilar_reference_eligibility/archive_roster.py",
+    "research/trifilar_reference_eligibility/native-originals.json",
+    "research/trifilar_reference_eligibility/replay.py",
     "research/gw170817_network/README.md",
     "research/gw170817_network/geometry_replay.py",
     "research/gw170817_network/independent-receipt.json",
