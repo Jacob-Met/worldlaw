@@ -1,0 +1,144 @@
+{
+  "scope": "Registered successor, before any held 20K H or C ordinate, with all absolute/relative limitations, both electrical assignments, source methods, eight arms, hyperparameters and gates of protocol.json retained.",
+  "parent": {
+    "h": "ea0098e818eb4d423ec1a213340a0ccaa9ad5c4c",
+    "t": "fd8fe009af3cb799ddfd98056517da49f4f2ba72"
+  },
+  "original_refusal": {
+    "script_observation_version": 3,
+    "resource_usage": {
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "interval_milliseconds": 100,
+        "cpu_seconds": {
+          "git": 1.5800000000000003,
+          "other": 0.07,
+          "python": 1.9400000000000006,
+          "shell": 0
+        },
+        "snapshots": 59,
+        "nonempty_snapshots": 59,
+        "distinct_processes": 8,
+        "read_errors": 1,
+        "saturated_snapshots": 0
+      },
+      "source": "linux_rusage",
+      "user_cpu_seconds": 3.355858,
+      "system_cpu_seconds": 0.599935,
+      "max_rss_bytes": 102191104,
+      "max_rss_scope": "largest_waited_process"
+    },
+    "resource_process": {
+      "pid": 1627860,
+      "start_ticks": 54895762,
+      "boot_id": "1ca46c53-d5e4-4b04-a9c4-fed66e762765"
+    },
+    "command_id": "p2-f747-graphene-closed20-5-and30-noise-eight-arm-bank",
+    "request_sha256": "0a40f4518f8643ecd349a0778a2a361a85511bd04f3dd0cbd99e723b0b4f0f36",
+    "generation": "40cdec4dff14bc0b713547c1a1e6b1d55b250a4231020dad13022ff8bbfe5ecc",
+    "state": "failed",
+    "runner_pid": 1627842,
+    "started_at": "2026-11-23T09:17:01.527878874Z",
+    "finished_at": "2026-11-23T09:17:07.461604511Z",
+    "exit_code": 1,
+    "error": "exit status 1"
+  },
+  "source_support": "All baths use physical common intervention interval [-7,+5] V, fixed from the input axes and independently audited finite-resistance mask. All 181 5K donor gates in this interval, all 121 30K donor gates and every 121 held 20K gate admitted. No interpolation or imputation of the 30 unshared 5K R missing values at 5.0667 through 7 V. The original all-donor support claim failed and remains closed.",
+  "source_receipts": [
+    {
+      "script_observation_version": 3,
+      "working_tree_context": {
+        "repository": "github.com/Jacob-Met/worldlaw",
+        "revision": "ea0098e818eb4d423ec1a213340a0ccaa9ad5c4c",
+        "observation": "dominant-sampled-process-cpu"
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "git": 1.6500000000000006,
+            "other": 0.1,
+            "python": 0.04,
+            "shell": 0
+          },
+          "snapshots": 35,
+          "nonempty_snapshots": 35,
+          "distinct_processes": 7,
+          "read_errors": 2,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 1.571231,
+        "system_cpu_seconds": 0.596481,
+        "max_rss_bytes": 101867520,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 2403700,
+        "start_ticks": 111614599,
+        "boot_id": "062f2ae0-c943-4cb6-95a0-a77012cd8fe5"
+      },
+      "command_id": "p2-f747-graphene-actual-resistance-domain-refusal-census",
+      "request_sha256": "6aa3ed85e6d0e1d1646e42f8739143122e86fc5313f012be85077fd741123762",
+      "generation": "0873ea2a2e179ef0a567e9bd59b6a746cbb281984c87d238c9ad53d0e56e2619",
+      "state": "completed",
+      "runner_pid": 2403688,
+      "started_at": "2026-11-23T09:18:02.488209035Z",
+      "finished_at": "2026-11-23T09:18:05.960031723Z",
+      "exit_code": 0
+    },
+    {
+      "script_observation_version": 3,
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "git": 1.6300000000000006,
+            "other": 0.11,
+            "python": 2.5599999999999996,
+            "shell": 0
+          },
+          "snapshots": 84,
+          "nonempty_snapshots": 84,
+          "distinct_processes": 10,
+          "read_errors": 3,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 3.98156,
+        "system_cpu_seconds": 1.049055,
+        "max_rss_bytes": 155521024,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 2403612,
+        "start_ticks": 111614087,
+        "boot_id": "062f2ae0-c943-4cb6-95a0-a77012cd8fe5"
+      },
+      "command_id": "p2-f747-graphene-independent-published-resistance-crop-registration",
+      "request_sha256": "9035e1a9ca06caa277f114ea0ff3f9f38661ab8f75c4bc3544cde0f7b563f2fc",
+      "generation": "6a18013c7d095668affc70d9d9dc95ff6aa49a83c5972e3982e42cd06a152bcb",
+      "state": "completed",
+      "runner_pid": 2403600,
+      "started_at": "2026-11-23T09:17:57.345960285Z",
+      "finished_at": "2026-11-23T09:18:05.732058065Z",
+      "exit_code": 0
+    }
+  ],
+  "electrical_diagnostic": "Published electrical-only rendering has known-blue RMS .2354 pt, two 20/30 matching RMS .2172 and .2194 pt, swapped 1.1849 and 1.3747 pt. Favors darker short-grid blue=20K; both electrical assignments must still pass. One off-diagonal 5K reference comparison is NaN due to source tail and not used to determine assignment.",
+  "publication_rights": "Program reruns only the fixed common-support forecast; the new full bank and cold readback must precede any held H or C. Both this successor and original eligibility failure remain public."
+}

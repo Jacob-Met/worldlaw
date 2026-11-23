@@ -1,0 +1,523 @@
+{
+  "source_freeze": {
+    "h": "ea0098e818eb4d423ec1a213340a0ccaa9ad5c4c",
+    "t": "fd8fe009af3cb799ddfd98056517da49f4f2ba72"
+  },
+  "original_source_post": 187496,
+  "successor_freeze": {
+    "h": "fd23996cea8404b7efa38deff10184f4362deb46",
+    "t": "5ccaacf5463910f3d4ec85070e2311ea5e62c00c"
+  },
+  "successor_post": 187504,
+  "lock_post": 187509,
+  "originals": [
+    {
+      "id": "p2-f747-graphene-two-source-axes-gate-and-editorial-color-only",
+      "receipt": {
+        "command_id": "p2-f747-graphene-two-source-axes-gate-and-editorial-color-only",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T09:11:58.470674049Z",
+        "generation": "0ea14d42448e507d034e8069a15b2f5af7b5c810868ac6c6913097665a8acead",
+        "request_sha256": "c0a15733174380bb7415c364663f760907dfaf52dd274608febe7bc70c0bdf12",
+        "resource_process": {
+          "boot_id": "2ca0e609-1208-40ae-a202-77e6301c0a3f",
+          "pid": 380845,
+          "start_ticks": 55290126
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 23973888,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "python": 0.01,
+              "shell": 0
+            },
+            "distinct_processes": 2,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 16,
+            "read_errors": 0,
+            "saturated_snapshots": 0,
+            "snapshots": 16
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.016992,
+          "user_cpu_seconds": 0.060084
+        },
+        "runner_pid": 380823,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T09:11:56.859222231Z",
+        "state": "completed",
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/cursor-swiss-env",
+          "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+        }
+      },
+      "full": {
+        "owner": "node-7a9dead9904fa3581a4286fb5ced2323",
+        "command_id": "p2-f747-graphene-two-source-axes-gate-and-editorial-color-only",
+        "request_sha256": "c0a15733174380bb7415c364663f760907dfaf52dd274608febe7bc70c0bdf12",
+        "generation": "0ea14d42448e507d034e8069a15b2f5af7b5c810868ac6c6913097665a8acead",
+        "receipt_sha256": "aba1e38b804a67b0de3cff749af4b18702f8e6e32c372b8e7ee7c7e4b860649d",
+        "output_bytes": 3269
+      },
+      "sha": "26eb5cd1424ca2e865ce538409156031b0f851b6212875dc0a462347b36df26e",
+      "size": 3269
+    },
+    {
+      "id": "p2-f747-graphene-published-electrical-axis-layout-text-only",
+      "receipt": {
+        "command_id": "p2-f747-graphene-published-electrical-axis-layout-text-only",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T09:13:28.207061259Z",
+        "generation": "b9dd309ef0ab7b158e93e859ae56f7086496e44663fa64ecd13a247c9925a7c3",
+        "request_sha256": "3c56085bdec35f5a871cbe1172fd87e6d181bc2b1c6440969bbcdaac66b071e2",
+        "resource_process": {
+          "boot_id": "041d0f9e-2eb7-43b7-af92-475c2001084a",
+          "pid": 3004641,
+          "start_ticks": 46008388
+        },
+        "resource_usage": {
+          "max_rss_bytes": 35323904,
+          "max_rss_scope": "largest_waited_process",
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.044191,
+          "user_cpu_seconds": 0.619569
+        },
+        "runner_pid": 3004634,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T09:13:24.886489235Z",
+        "state": "completed"
+      },
+      "full": {
+        "owner": "node-2c6923b3148e63391d0e8d72e866360a",
+        "command_id": "p2-f747-graphene-published-electrical-axis-layout-text-only",
+        "request_sha256": "3c56085bdec35f5a871cbe1172fd87e6d181bc2b1c6440969bbcdaac66b071e2",
+        "generation": "b9dd309ef0ab7b158e93e859ae56f7086496e44663fa64ecd13a247c9925a7c3",
+        "receipt_sha256": "6f8dfe23b83bb372399a7a6fdee810c659ef113b5343126f5676034d28a74136",
+        "output_bytes": 2083
+      },
+      "sha": "a353b11ced29765ca8161355ed1ff28f95c0260337dc565792e07e29861f2d05",
+      "size": 2083
+    },
+    {
+      "id": "p2-f747-graphene-closed20-5-and30-noise-eight-arm-bank",
+      "receipt": {
+        "script_observation_version": 3,
+        "resource_usage": {
+          "descendant_wait": {
+            "state": "drained",
+            "adopted_waits": 0
+          },
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "interval_milliseconds": 100,
+            "cpu_seconds": {
+              "git": 1.5800000000000003,
+              "other": 0.07,
+              "python": 1.9400000000000006,
+              "shell": 0
+            },
+            "snapshots": 59,
+            "nonempty_snapshots": 59,
+            "distinct_processes": 8,
+            "read_errors": 1,
+            "saturated_snapshots": 0
+          },
+          "source": "linux_rusage",
+          "user_cpu_seconds": 3.355858,
+          "system_cpu_seconds": 0.599935,
+          "max_rss_bytes": 102191104,
+          "max_rss_scope": "largest_waited_process"
+        },
+        "resource_process": {
+          "pid": 1627860,
+          "start_ticks": 54895762,
+          "boot_id": "1ca46c53-d5e4-4b04-a9c4-fed66e762765"
+        },
+        "command_id": "p2-f747-graphene-closed20-5-and30-noise-eight-arm-bank",
+        "request_sha256": "0a40f4518f8643ecd349a0778a2a361a85511bd04f3dd0cbd99e723b0b4f0f36",
+        "generation": "40cdec4dff14bc0b713547c1a1e6b1d55b250a4231020dad13022ff8bbfe5ecc",
+        "state": "failed",
+        "runner_pid": 1627842,
+        "started_at": "2026-11-23T09:17:01.527878874Z",
+        "finished_at": "2026-11-23T09:17:07.461604511Z",
+        "exit_code": 1,
+        "error": "exit status 1"
+      },
+      "full": {
+        "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+        "command_id": "p2-f747-graphene-closed20-5-and30-noise-eight-arm-bank",
+        "request_sha256": "0a40f4518f8643ecd349a0778a2a361a85511bd04f3dd0cbd99e723b0b4f0f36",
+        "generation": "40cdec4dff14bc0b713547c1a1e6b1d55b250a4231020dad13022ff8bbfe5ecc",
+        "receipt_sha256": "37b581d498a02abd97583889b93925623617c82737d416a3b97ee91f0a9d5d2a",
+        "output_bytes": 987
+      },
+      "sha": "14fa9af14269fb9c53a69a69cff839cb30e4966c3ce6894e182404297dc5f02f",
+      "size": 987
+    },
+    {
+      "id": "p2-f747-graphene-independent-published-resistance-crop-registration",
+      "receipt": {
+        "script_observation_version": 3,
+        "resource_usage": {
+          "descendant_wait": {
+            "state": "drained",
+            "adopted_waits": 0
+          },
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "interval_milliseconds": 100,
+            "cpu_seconds": {
+              "git": 1.6300000000000006,
+              "other": 0.11,
+              "python": 2.5599999999999996,
+              "shell": 0
+            },
+            "snapshots": 84,
+            "nonempty_snapshots": 84,
+            "distinct_processes": 10,
+            "read_errors": 3,
+            "saturated_snapshots": 0
+          },
+          "source": "linux_rusage",
+          "user_cpu_seconds": 3.98156,
+          "system_cpu_seconds": 1.049055,
+          "max_rss_bytes": 155521024,
+          "max_rss_scope": "largest_waited_process"
+        },
+        "resource_process": {
+          "pid": 2403612,
+          "start_ticks": 111614087,
+          "boot_id": "062f2ae0-c943-4cb6-95a0-a77012cd8fe5"
+        },
+        "command_id": "p2-f747-graphene-independent-published-resistance-crop-registration",
+        "request_sha256": "9035e1a9ca06caa277f114ea0ff3f9f38661ab8f75c4bc3544cde0f7b563f2fc",
+        "generation": "6a18013c7d095668affc70d9d9dc95ff6aa49a83c5972e3982e42cd06a152bcb",
+        "state": "completed",
+        "runner_pid": 2403600,
+        "started_at": "2026-11-23T09:17:57.345960285Z",
+        "finished_at": "2026-11-23T09:18:05.732058065Z",
+        "exit_code": 0
+      },
+      "full": {
+        "owner": "node-c0da1eb7402af862460cccd552698bb4",
+        "command_id": "p2-f747-graphene-independent-published-resistance-crop-registration",
+        "request_sha256": "9035e1a9ca06caa277f114ea0ff3f9f38661ab8f75c4bc3544cde0f7b563f2fc",
+        "generation": "6a18013c7d095668affc70d9d9dc95ff6aa49a83c5972e3982e42cd06a152bcb",
+        "receipt_sha256": "422f2c6ba2ca6847e0a31796f22679addf59a5d2c5ea5cdee01f903bf4c81b56",
+        "output_bytes": 533
+      },
+      "sha": "de9f6dce3b4944fb55aaf411e8128c8111be8d80e0fe2594bdbf73798542604d",
+      "size": 533
+    },
+    {
+      "id": "p2-f747-graphene-actual-resistance-domain-refusal-census",
+      "receipt": {
+        "script_observation_version": 3,
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/worldlaw",
+          "revision": "ea0098e818eb4d423ec1a213340a0ccaa9ad5c4c",
+          "observation": "dominant-sampled-process-cpu"
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "state": "drained",
+            "adopted_waits": 0
+          },
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "interval_milliseconds": 100,
+            "cpu_seconds": {
+              "git": 1.6500000000000006,
+              "other": 0.1,
+              "python": 0.04,
+              "shell": 0
+            },
+            "snapshots": 35,
+            "nonempty_snapshots": 35,
+            "distinct_processes": 7,
+            "read_errors": 2,
+            "saturated_snapshots": 0
+          },
+          "source": "linux_rusage",
+          "user_cpu_seconds": 1.571231,
+          "system_cpu_seconds": 0.596481,
+          "max_rss_bytes": 101867520,
+          "max_rss_scope": "largest_waited_process"
+        },
+        "resource_process": {
+          "pid": 2403700,
+          "start_ticks": 111614599,
+          "boot_id": "062f2ae0-c943-4cb6-95a0-a77012cd8fe5"
+        },
+        "command_id": "p2-f747-graphene-actual-resistance-domain-refusal-census",
+        "request_sha256": "6aa3ed85e6d0e1d1646e42f8739143122e86fc5313f012be85077fd741123762",
+        "generation": "0873ea2a2e179ef0a567e9bd59b6a746cbb281984c87d238c9ad53d0e56e2619",
+        "state": "completed",
+        "runner_pid": 2403688,
+        "started_at": "2026-11-23T09:18:02.488209035Z",
+        "finished_at": "2026-11-23T09:18:05.960031723Z",
+        "exit_code": 0
+      },
+      "full": {
+        "owner": "node-c0da1eb7402af862460cccd552698bb4",
+        "command_id": "p2-f747-graphene-actual-resistance-domain-refusal-census",
+        "request_sha256": "6aa3ed85e6d0e1d1646e42f8739143122e86fc5313f012be85077fd741123762",
+        "generation": "0873ea2a2e179ef0a567e9bd59b6a746cbb281984c87d238c9ad53d0e56e2619",
+        "receipt_sha256": "bc1abdb5e504243f543ee1dbd1f704d6d68ed9f4b4046133aecc7e33422bb2a6",
+        "output_bytes": 1538
+      },
+      "sha": "1ccd05a9e5f0e602044c9ed7e2994226813f1101aebfba7a22f36ac3645565ec",
+      "size": 1538
+    },
+    {
+      "id": "p2-f747-graphene-common-domain-all-121-gates-closed-forecast",
+      "receipt": {
+        "command_id": "p2-f747-graphene-common-domain-all-121-gates-closed-forecast",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T09:20:07.70271849Z",
+        "generation": "8481ee45133bfa7d3b9b61eeb5a26e0dabe29c02ba2c9c32e33354c49b82d286",
+        "request_sha256": "4ff01d7b62ca2a7e0bd3143b77265017ae37abc058094ea6f3beecfe9ec49f1b",
+        "resource_process": {
+          "boot_id": "1ca46c53-d5e4-4b04-a9c4-fed66e762765",
+          "pid": 1628931,
+          "start_ticks": 54913663
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 101978112,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "git": 1.5300000000000002,
+              "other": 0.15,
+              "python": 1.8500000000000003,
+              "shell": 0
+            },
+            "distinct_processes": 14,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 72,
+            "read_errors": 1,
+            "saturated_snapshots": 0,
+            "snapshots": 72
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.559841,
+          "user_cpu_seconds": 3.533372
+        },
+        "runner_pid": 1628914,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T09:20:00.518915306Z",
+        "state": "completed"
+      },
+      "full": {
+        "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+        "command_id": "p2-f747-graphene-common-domain-all-121-gates-closed-forecast",
+        "request_sha256": "4ff01d7b62ca2a7e0bd3143b77265017ae37abc058094ea6f3beecfe9ec49f1b",
+        "generation": "8481ee45133bfa7d3b9b61eeb5a26e0dabe29c02ba2c9c32e33354c49b82d286",
+        "receipt_sha256": "46fe6859e4f390a61616c7b170edde135e60f68735501fd45c90fb295a225f9b",
+        "output_bytes": 421
+      },
+      "sha": "f57055be3f768b2845d686ee3b1f88f65549433b5c2533165c1a9cf4c0596ba4",
+      "size": 421
+    },
+    {
+      "id": "p2-f747-graphene-open-complete-20K-hot-cold-author-curves",
+      "receipt": {
+        "script_observation_version": 3,
+        "resource_usage": {
+          "descendant_wait": {
+            "state": "drained",
+            "adopted_waits": 0
+          },
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "interval_milliseconds": 100,
+            "cpu_seconds": {
+              "compiler": 0.01,
+              "git": 1.4200000000000004,
+              "other": 0.18000000000000002,
+              "python": 1.8800000000000006,
+              "shell": 0
+            },
+            "snapshots": 284,
+            "nonempty_snapshots": 284,
+            "distinct_processes": 15,
+            "read_errors": 1,
+            "saturated_snapshots": 0
+          },
+          "source": "linux_rusage",
+          "user_cpu_seconds": 3.431521,
+          "system_cpu_seconds": 0.56461,
+          "max_rss_bytes": 102957056,
+          "max_rss_scope": "largest_waited_process"
+        },
+        "resource_process": {
+          "pid": 3917727,
+          "start_ticks": 65654897,
+          "boot_id": "c01d4c24-c060-4229-b16f-29030b625fb1"
+        },
+        "command_id": "p2-f747-graphene-open-complete-20K-hot-cold-author-curves",
+        "request_sha256": "12b796a82d414d8a33269736c8a717cc925e91e87b9d1ffb4b4d111fab6455de",
+        "generation": "043c35659d511348dcf9a12cf1e4fcd3ae77546c594c86d1039a6984394551af",
+        "state": "completed",
+        "runner_pid": 3917714,
+        "started_at": "2026-11-23T09:21:05.52517773Z",
+        "finished_at": "2026-11-23T09:21:33.947372824Z",
+        "exit_code": 0
+      },
+      "full": {
+        "owner": "node-d807db003bdba7cdc89bb0e727dcf02d",
+        "command_id": "p2-f747-graphene-open-complete-20K-hot-cold-author-curves",
+        "request_sha256": "12b796a82d414d8a33269736c8a717cc925e91e87b9d1ffb4b4d111fab6455de",
+        "generation": "043c35659d511348dcf9a12cf1e4fcd3ae77546c594c86d1039a6984394551af",
+        "receipt_sha256": "c525f9f8f433cbdae4e181f2d5536e07c745a55abdbab698266c66a2d37e4354",
+        "output_bytes": 1134
+      },
+      "sha": "711d8301380c55fa47fb6bcc21512c64b967a2c161f5aa44d38ee3c65025215f",
+      "size": 1134
+    },
+    {
+      "id": "p2-f747-graphene-independent-own-mat-20K-full-centered-recount",
+      "receipt": {
+        "command_id": "p2-f747-graphene-independent-own-mat-20K-full-centered-recount",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T09:23:50.589410068Z",
+        "generation": "4f825d04785e9ae2815df1eea3eff5ad8f8eaa2cbd9a38a6159f25236f2058c9",
+        "request_sha256": "b1fa22c9e1cd6a44f14144206bd6c8a3df93358581a0cea10c331a1af2320bd5",
+        "resource_process": {
+          "boot_id": "2be1f0a4-7130-4457-8f49-6bd5cec31928",
+          "pid": 3760858,
+          "start_ticks": 64064469
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 114954240,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "other": 0.01,
+              "python": 5.569999999999998,
+              "shell": 0
+            },
+            "distinct_processes": 6,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 81,
+            "read_errors": 4,
+            "saturated_snapshots": 0,
+            "snapshots": 81
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.770373,
+          "user_cpu_seconds": 5.394278
+        },
+        "runner_pid": 3760843,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T09:23:42.512241389Z",
+        "state": "completed",
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/cursor-swiss-env",
+          "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+        }
+      },
+      "full": {
+        "owner": "node-4bf32eb7151785ee55ae5d40eac88d72",
+        "command_id": "p2-f747-graphene-independent-own-mat-20K-full-centered-recount",
+        "request_sha256": "b1fa22c9e1cd6a44f14144206bd6c8a3df93358581a0cea10c331a1af2320bd5",
+        "generation": "4f825d04785e9ae2815df1eea3eff5ad8f8eaa2cbd9a38a6159f25236f2058c9",
+        "receipt_sha256": "a32c6ed86573f661e9959c82985f6a670861a2f63797abcfb1c3c343ee4efefa",
+        "output_bytes": 93968
+      },
+      "sha": "cb60d2db4c1d8b30e0d12bca06eb6cc3b2b14c5e63362dad8b6f2ac14a348330",
+      "size": 93968
+    }
+  ],
+  "independent": {
+    "arms_times_assignments": 16,
+    "comparisons": 7936,
+    "gates": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "joint": false,
+    "maximum_absolute_difference": 1.4210854715202004e-14,
+    "raw_witnesses": {
+      "dark20": {
+        "C_K": 0.03979638254682009,
+        "H_K": 1.3827251914322871,
+        "R_kOhm": 1.228756457958388,
+        "Y_K": 1.329663348036527,
+        "conditioning": [
+          0.9085922916004888,
+          0.3609113333246934
+        ],
+        "control_residuals_K": {
+          "constant": 0.39993343569028617,
+          "direct": 0.12225660753377343,
+          "empirical_ridge": 0.25440109146833834,
+          "only30": 0.17696349094805064,
+          "only5": 0.4722610238286731,
+          "optimized_exponent": 0.12225660753377343,
+          "physical": 0.29421412935775426,
+          "wiedemann_franz": 0.44956017876976095
+        },
+        "full_cold_norm": 0.05232984998949344,
+        "full_heat_norm": 1.3968549891375417,
+        "gate": -0.9000000000000004,
+        "max_Y_K": 1.404056663479096,
+        "min_Y_K": 1.2502998143606658,
+        "physical_signed_K": 0.29421412935775426,
+        "raw_max_C_K": 0.0779312417180444,
+        "raw_min_C_K": 0.02174881079583986,
+        "row": 61,
+        "sCV_K": 1.0354492186787727
+      },
+      "light20": {
+        "C_K": 0.032115715686148155,
+        "H_K": 1.3830420319066141,
+        "R_kOhm": 1.4167863577006985,
+        "Y_K": 1.3402210776584167,
+        "conditioning": [
+          0.9085922916004888,
+          0.3767477573154733
+        ],
+        "control_residuals_K": {
+          "constant": 0.5899282213996716,
+          "direct": 0.18768330040894154,
+          "empirical_ridge": 0.3704750063428365,
+          "only30": 0.2996201860345713,
+          "only5": 0.5183013597348226,
+          "optimized_exponent": 0.18768330040894154,
+          "physical": 0.38612000802085744,
+          "wiedemann_franz": 0.5101141370838742
+        },
+        "full_cold_norm": 0.05232984998949344,
+        "full_heat_norm": 1.3968549891375417,
+        "gate": -1.5,
+        "max_Y_K": 1.404056663479096,
+        "min_Y_K": 1.2502998143606658,
+        "physical_signed_K": 0.38612000802085744,
+        "raw_max_C_K": 0.0779312417180444,
+        "raw_min_C_K": 0.02174881079583986,
+        "row": 55,
+        "sCV_K": 0.9541010696375593
+      }
+    },
+    "target_rows": 121
+  }
+}
