@@ -16,6 +16,15 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/watzl-stepped-plate/README.md",
+    "research/watzl-stepped-plate/author_pattern.py",
+    "research/watzl-stepped-plate/comlas_author.py",
+    "research/watzl-stepped-plate/independent_check.py",
+    "research/watzl-stepped-plate/observed.json",
+    "research/watzl-stepped-plate/protocol.json",
+    "research/watzl-stepped-plate/replay.py",
+    "research/watzl-stepped-plate/score_plate.py",
+    "research/watzl-stepped-plate/wave_forecast.py",
     "research/printed-ice-orientation/README.md",
     "research/printed-ice-orientation/digital-fill-moments.json",
     "research/printed-ice-orientation/exact_winding.py",
