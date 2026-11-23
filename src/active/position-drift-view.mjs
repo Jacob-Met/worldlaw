@@ -1,4 +1,4 @@
-import {isGuidedPlan,BINARY_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,TREE_PLAN,driftFeedbackInconclusive,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
+import {isGuidedPlan,SEGMENT_PLAN,BINARY_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,TREE_PLAN,driftFeedbackInconclusive,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
 import {escapeHTML as html} from './view.mjs';
 
 const byId=id=>document.getElementById(id);
@@ -7,6 +7,11 @@ function table(caption,head,rows){
     '</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+html(c)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
 }
 function guidedProof(p){
+  if(p.schema===SEGMENT_PLAN)return {heading:'One schedule separates all persistent rate families.',
+    summary:'Apply each command for '+p.runs[0].repeats+' pulses. The '+p.pulseUpperBound+'-pulse guarantee covers every permitted parameter value. The minimum horizon is open.',
+    proof:table('Each law uses the same parameter for the complete run.',['Command','Pulses'],p.runs.map(r=>[r.command,r.repeats]))+
+      table('The response gap is per repeat. The error radius applies to each complete checkpoint contrast.',
+        ['Families','Checkpoint weights','Response gap','Error radius'],p.certificates.map(c=>[c.laws.join(' / '),c.checkpointWeights.join(', '),c.unitGap,c.noiseRadius]))};
   if(p.schema===TREE_PLAN&&p.nodes){
     if(p.status==='tree-budget-exhausted')return {heading:'The adaptive-tree proof reached its budget.',
       summary:'The remaining adversarial assignments are inconclusive. The search used '+p.work.assignments+' assignments and '+p.work.linearWork+' linear-work units.',proof:''};
@@ -109,7 +114,7 @@ export function renderDriftNotebook(book,index,mode,dirty){
   const finite=guided||p.status==='finite-schedule',frozen=mode==='frozen';
   const guidedView=guided?guidedProof(p):null;
   const latest=book.readouts.at(-1)?.result,pending=guided?pendingDriftSteps(p,latest):[];
-  const witnesses=p.witnesses??(p.witness?[p.witness]:[]);
+  const witnesses=p.aliases??p.witnesses??(p.witness?[p.witness]:[]);
   const row=book.readouts[index], result=row?.result;
   byId('phase').textContent=dirty?'Unapplied source edits':frozen?'Frozen experiment':'Prospective preview';
   byId('source-kind').textContent='Persistent position and drift';
@@ -126,6 +131,8 @@ export function renderDriftNotebook(book,index,mode,dirty){
     table('For each pair, the contrast is the first reading minus twice the middle reading plus the last reading.',
       ['Laws','Block','First interval','Second interval','Separation margin'],
       p.pairCertificates.map(c=>[c.laws.join(' / '),String(c.block+1),c.intervals[0].join(' to '),c.intervals[1].join(' to '),c.margin])):
+    p.schema===SEGMENT_PLAN?table('These fixed parameter choices coincide at every horizon after shifting the second drift.',
+      ['Families','Parameter values','Drift shift'],witnesses.map(w=>[w.laws.join(' / '),w.parameters.join(', '),w.driftShift])):
     table('From the same starting position, shifting the second law’s drift by this amount preserves each commanded increment.',
       ['First law','Second law','Drift shift'],witnesses.map(w=>[...w.laws,w.driftShift]));
   byId('drift-gauge-controls').hidden=finite;
@@ -151,7 +158,7 @@ export function renderDriftNotebook(book,index,mode,dirty){
     '<input id="drift-reading-'+i+'" data-tick="'+html(t)+'" type="text" inputmode="text"></label>').join(''):'';
   for(const id of ['adaptive-policy','control-course','joint-comparison','demo-controls','adaptive-controls','future-region'])
     byId(id).hidden=true;
-  byId('source-description').textContent=p.source.laws.length+' laws on '+p.source.commands.length+' commands, with one unknown initial position and constant drift.';
+  byId('source-description').textContent=p.source.laws.length+' laws on '+p.source.commands.length+' commands, with one unknown initial position and constant drift.'+(p.schema===SEGMENT_PLAN?' Each family also has one persistent parameter in [0,1].':'');
   byId('source-digest').textContent=p.sourceSHA256;byId('plan-digest').textContent=p.planSHA256;
   byId('reading-digest').textContent=result?.readingsSHA256??'No input received';
   byId('custody-summary').textContent=book.readouts.length+' saved inputs. Reopening recalculates the plan and each result.';
@@ -171,7 +178,7 @@ export function renderDriftNotebook(book,index,mode,dirty){
     const checked=result.checked;
     byId('candidate-results').innerHTML=(guided?table('Retained measurements',['Tick','Applied command','Position'],
       checked.ticks.map((t,i)=>[t,i?checked.commands[i-1]:'Initial reading',checked.values[i]])):'')+table('Compatible initial states',['Law','Position witness','Drift witness'],
-      checked.surviving.map(s=>[s.law,...s.initialWitness]));
+      checked.surviving.map(s=>[s.law,...s.initialWitness]))+(p.schema===SEGMENT_PLAN?table('Parameter values compatible with every checkpoint.',['Family','Closed interval','Parameter used for the displayed start'],checked.surviving.map(s=>[s.law,s.parameterRange.join(' to '),s.witnessParameter])):'');
     byId('missing-readings').textContent=checked.nextTick===null?'':guided?'Next command: '+checked.nextCommand+' · next reading at tick '+checked.nextTick+'.':'Next planned checkpoint: '+checked.nextTick+'.';
   }else{
     const trace=result.trace;
