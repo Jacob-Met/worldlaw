@@ -16,6 +16,20 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/boulder_electrode_response/README.md",
+    "research/boulder_electrode_response/availability.py",
+    "research/boulder_electrode_response/eligibility.json",
+    "research/boulder_electrode_response/header-original.txt",
+    "research/boulder_electrode_response/independent-original.txt",
+    "research/boulder_electrode_response/independent.py",
+    "research/boulder_electrode_response/mask-original.txt",
+    "research/boulder_electrode_response/native-receipts.json",
+    "research/boulder_electrode_response/protocol.json",
+    "research/boulder_electrode_response/registry-dns-refusal.txt",
+    "research/boulder_electrode_response/replay.py",
+    "research/boulder_electrode_response/source-channel-units.py",
+    "research/boulder_electrode_response/source-headers.py",
+    "research/boulder_electrode_response/unit-original.txt",
     "research/cai-dp590-terminal-work/README.md",
     "research/cai-dp590-terminal-work/controls.py",
     "research/cai-dp590-terminal-work/course.py",
