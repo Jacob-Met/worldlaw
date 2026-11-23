@@ -16,6 +16,9 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/fretting-phase/README.md",
+    "research/fretting-phase/replay.py",
+    "research/fretting-phase/source-ledger.json",
     "research/watzl-stepped-plate/README.md",
     "research/watzl-stepped-plate/author_pattern.py",
     "research/watzl-stepped-plate/comlas_author.py",
