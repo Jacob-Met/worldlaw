@@ -47,12 +47,12 @@ def attainable(knots, mean, lo, hi):
     return min(candidates),max(candidates)
 
 def phase_support(row):
-    # W and O are percentages of total pore space, not of bulk rock.
+    # Stable water, stable oil and intermittent occupancy use fractions of pore space.
     water,oil,intermittent = (float(row[k]) for k in ("water","oil","intermittent"))
-    if abs(water+oil+intermittent-100) > sum(rounding_half(row[k]) for k in ("water","oil","intermittent"))+1e-9:
-        raise ValueError("phase percentages do not close within printed precision")
-    low = max(0,(water-rounding_half(row["water"]))/100)
-    high = min(1,1-(oil-rounding_half(row["oil"]))/100)
+    if abs(water+oil+intermittent-1) > sum(rounding_half(row[k]) for k in ("water","oil","intermittent"))+1e-9:
+        raise ValueError("phase fractions do not close within printed precision")
+    low = max(0,water-rounding_half(row["water"]))
+    high = min(1,1-(oil-rounding_half(row["oil"])))
     s = float(row["Sw"])
     if s < low or s > high:
         raise ValueError("reported mean incompatible with printed stable phase bounds")
@@ -67,7 +67,7 @@ def connection_forecast(f,r_low,s_low,c_low,high,permissive):
             raise ValueError("no low-rate connected oil capacity")
         eligible=float(high["oil"])+(float(high["intermittent"]) if permissive else 0.)
         percent=float(high["conn_union"] if permissive else high["conn_stable"])
-        gain+=(1-f)*eligible*percent/10000/active_low
+        gain+=(1-f)*eligible*percent/100/active_low
     if gain<=0:
         raise ValueError("zero parallel capacity")
     return r_low/gain
