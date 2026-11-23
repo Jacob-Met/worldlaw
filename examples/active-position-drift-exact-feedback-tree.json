@@ -1,0 +1,96 @@
+{
+  "schema": "worldlaw.position-drift-feedback-tree-source/v2",
+  "catalog": {
+    "schema": "worldlaw.position-drift-rate-catalog/v1",
+    "commands": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "noiseBound": 1,
+    "laws": [
+      {
+        "id": "L0",
+        "rates": [
+          -4,
+          1,
+          -6,
+          -5,
+          -2,
+          6
+        ]
+      },
+      {
+        "id": "L1",
+        "rates": [
+          -2,
+          -4,
+          1,
+          -2,
+          -1,
+          -2
+        ]
+      },
+      {
+        "id": "L2",
+        "rates": [
+          3,
+          5,
+          5,
+          -5,
+          -4,
+          5
+        ]
+      },
+      {
+        "id": "L3",
+        "rates": [
+          -1,
+          -1,
+          -5,
+          4,
+          0,
+          -3
+        ]
+      }
+    ]
+  },
+  "program": {
+    "commands": [
+      "a",
+      "b"
+    ],
+    "alternatives": [
+      {
+        "commands": [
+          "c"
+        ],
+        "alternatives": [
+          {
+            "commands": [
+              "e"
+            ]
+          },
+          {
+            "commands": [
+              "f"
+            ]
+          }
+        ]
+      },
+      {
+        "commands": [
+          "d",
+          "e"
+        ]
+      }
+    ]
+  },
+  "limits": {
+    "assignments": 200,
+    "linearWork": 500000
+  }
+}

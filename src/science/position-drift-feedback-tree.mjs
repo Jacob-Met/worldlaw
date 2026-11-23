@@ -6,32 +6,14 @@ import {openPositionDriftFeedback} from './position-drift-terminal-feedback.mjs'
 import {maximalCliques} from './position-drift-suffix-feedback.mjs';
 
 export const TREE_REQUEST='worldlaw.position-drift-feedback-tree-source/v1';
-export const TREE_PLAN='worldlaw.position-drift-feedback-tree-policy/v1';
+import {TREE_PLAN,compileTree} from './position-drift-feedback-program.mjs';
+import {EXACT_TREE_REQUEST,planExactFeedbackTree,receiveExactFeedbackTree} from './position-drift-exact-feedback-tree.mjs';
+export {TREE_PLAN,EXACT_TREE_REQUEST};
 const need=(ok,msg)=>{if(!ok)throw Error('Feedback tree: '+msg);};
 
-function compileTree(program,commands){
-  let count=0,horizon=null;
-  function build(raw,depth,history){
-    need(++count<=32&&depth<=4,'at most 32 nodes and four committed segments per path');
-    const keys=raw&&Object.keys(raw).sort().join(',');
-    need((keys==='commands'||keys==='alternatives,commands')&&Array.isArray(raw.commands)&&raw.commands.length>0&&
-      raw.commands.every(u=>commands.includes(u)),'each node commits a nonempty catalog command sequence');
-    const node={id:count-1,commands:raw.commands.slice(),word:[...history,...raw.commands]};
-    need(node.word.length<=16,'at most sixteen pulses on a path');
-    if(keys==='commands'){
-      if(horizon===null)horizon=node.word.length;
-      need(horizon===node.word.length,'all leaves must use the same pulse budget');
-      node.alternatives=[];return node;
-    }
-    need(Array.isArray(raw.alternatives)&&raw.alternatives.length>0&&raw.alternatives.length<=8,'offer one to eight continuations');
-    node.alternatives=raw.alternatives.map(child=>build(child,depth+1,node.word));
-    return node;
-  }
-  const root=build(program,1,[]);
-  return {root,horizon};
-}
 
 export function planFeedbackTree(request){
+  if(request?.schema===EXACT_TREE_REQUEST)return planExactFeedbackTree(request);
   need(request?.schema===TREE_REQUEST&&Object.keys(request).sort().join(',')==='catalog,program,schema,subproblems'&&
     Number.isSafeInteger(request.subproblems)&&request.subproblems>=0,'supply a program, rate catalog and a nonnegative subproblem budget');
   const source=structuredClone(request.catalog),cat=parsePositionDriftRates(source,parseAllHorizonRational);
@@ -80,6 +62,7 @@ export function planFeedbackTree(request){
 }
 
 export function receiveFeedbackTree(plan,values){
+  if(plan.nodes)return receiveExactFeedbackTree(plan,values);
   need(plan.status==='tree-certified'&&Array.isArray(values)&&values.length>=1&&values.length<=plan.horizon+1,
     'supply consecutive positions from a certified course');
   const model=openPositionDriftFeedback(plan.source),decisions=[];

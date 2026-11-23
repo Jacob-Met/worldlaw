@@ -1,8 +1,8 @@
 import {ONE_FEEDBACK_REQUEST,ONE_FEEDBACK_PLAN,planOneFeedback,receiveOneFeedback} from './persistent-position-drift-one-feedback.mjs';
 import {SHARED_SUFFIX_REQUEST,PLANAR_SUFFIX_REQUEST,REGION_SUFFIX_REQUEST,HISTORY_SUFFIX_REQUEST,SUFFIX_REQUEST,SUFFIX_PLAN,planSuffixFeedback,receiveSuffixFeedback} from './position-drift-suffix-feedback.mjs';
-import {TREE_REQUEST,TREE_PLAN,planFeedbackTree,receiveFeedbackTree} from './position-drift-feedback-tree.mjs';
+import {EXACT_TREE_REQUEST,TREE_REQUEST,TREE_PLAN,planFeedbackTree,receiveFeedbackTree} from './position-drift-feedback-tree.mjs';
 export {ONE_FEEDBACK_REQUEST,ONE_FEEDBACK_PLAN,SUFFIX_REQUEST,HISTORY_SUFFIX_REQUEST,SUFFIX_PLAN,TREE_PLAN};
-export const isSuffixRequest=request=>request?.schema===SUFFIX_REQUEST||request?.schema===HISTORY_SUFFIX_REQUEST||request?.schema===REGION_SUFFIX_REQUEST||request?.schema===PLANAR_SUFFIX_REQUEST||request?.schema===SHARED_SUFFIX_REQUEST||request?.schema===TREE_REQUEST;
+export const isSuffixRequest=request=>request?.schema===SUFFIX_REQUEST||request?.schema===HISTORY_SUFFIX_REQUEST||request?.schema===REGION_SUFFIX_REQUEST||request?.schema===PLANAR_SUFFIX_REQUEST||request?.schema===SHARED_SUFFIX_REQUEST||request?.schema===TREE_REQUEST||request?.schema===EXACT_TREE_REQUEST;
 export const driftFeedbackInconclusive=p=>(p.schema===ONE_FEEDBACK_PLAN&&p.status!=='one-feedback-certified')||
   (p.schema===SUFFIX_PLAN&&p.status!=='suffix-certified')||(p.schema===TREE_PLAN&&p.status!=='tree-certified');
 /** Measurement-led notebook continuations for minimum and case-12 drift plans. */
@@ -21,7 +21,7 @@ const need=(ok,msg)=>{if(!ok)throw Error('Guided position/drift: '+msg);};
 const fields=(o,ks)=>o && typeof o==='object'&&!Array.isArray(o)&&Object.keys(o).sort().join(',')===[...ks].sort().join(',');
 
 export function designCatalog(request,design={}){
-  if(request.schema===TREE_REQUEST)return planFeedbackTree(request);
+  if(request.schema===TREE_REQUEST||request.schema===EXACT_TREE_REQUEST)return planFeedbackTree(request);
   if(isSuffixRequest(request))return planSuffixFeedback(request);
   if(request.schema===ONE_FEEDBACK_REQUEST)return planOneFeedback(request);
   if(request.schema===CASE_TWELVE_REQUEST){
@@ -40,7 +40,7 @@ export function pendingDriftSteps(plan,last){
   const count=last?.checked.values.length??0;
   const initial={tick:'0',command:null,repeats:'0'};
   if(plan.schema===TREE_PLAN){
-    const word=last?.checked.committed??plan.tables[plan.entry].commands;
+    const word=last?.checked.committed??(plan.nodes?plan.nodes[0].commands:plan.tables[plan.entry].commands);
     return [initial,...word.map((command,i)=>({tick:String(i+1),command,repeats:'1'}))].slice(count);
   }
   if(plan.schema===SUFFIX_PLAN){

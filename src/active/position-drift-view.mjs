@@ -7,6 +7,18 @@ function table(caption,head,rows){
     '</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+html(c)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
 }
 function guidedProof(p){
+  if(p.schema===TREE_PLAN&&p.nodes){
+    if(p.status==='tree-budget-exhausted')return {heading:'The adaptive-tree proof reached its budget.',
+      summary:'The remaining adversarial assignments are inconclusive. The search used '+p.work.assignments+' assignments and '+p.work.linearWork+' linear-work units.',proof:''};
+    if(p.status==='tree-refuted')return {heading:'Every continuation can retain two laws.',
+      summary:'The measured positions agree across each shared ancestor segment. Each alternative then has its own later readings.',
+      proof:table('One feasible shared history per decision.',['Path','Positions','Possible laws'],
+        p.collision.map(x=>[x.commands.join(' → '),x.readings.join(', '),x.worlds.map(w=>w.law).join(' / ')]))};
+    return {heading:'The measured history determines a winning continuation.',
+      summary:'Begin with '+p.nodes[0].commands.join(' → ')+'. Each decision checks the remaining subtree using only the positions already received.',
+      proof:table('Complete paths covered by the adaptive proof.',['Path','Pairs that can collide on this fixed tape'],
+        p.nodes[0].leaves.map(id=>[p.nodes[id].word.join(' → '),String(p.candidates[id].length)]))};
+  }
   if(p.schema===TREE_PLAN){
     if(p.status!=='tree-certified')return {heading:p.status==='tree-budget-exhausted'?'The tree search reached its budget.':'The declared tree cover is inconclusive.',
       summary:'The planner examined '+p.work.subproblems+' command-sequence and law-set combinations.',proof:''};
