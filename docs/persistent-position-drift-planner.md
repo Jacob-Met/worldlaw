@@ -27,7 +27,7 @@ If all third commands are unsafe at some reachable s, this first pair cannot suc
 
 ## Source and replay
 
-Import the functions from `src/science/persistent-position-drift-planner.mjs`. One to six commands and two to eight laws are supported. Rates and the nonnegative noise bound use the existing exact source-rational parser. Measurements accept exact integer or rational strings, including values beyond the coefficient bound. The old four-law receiver remains available with its existing record schema.
+Import the functions from `src/science/persistent-position-drift-planner.mjs`. Supply at least one command and two laws. For m commands and n laws, a failed complete search constructs O(m³n²) pair projections. Sorting and scanning the resulting interval endpoints increases the runtime; an exhaustive refusal also records m³ final-command collisions. Rates and the nonnegative noise bound use the existing exact source-rational parser. Measurements accept exact integer or rational strings, including values beyond the coefficient bound. The old four-law receiver remains available with its existing record schema.
 
 ```js
 const source = {
