@@ -1,0 +1,41 @@
+{
+  "candidate_gate": false,
+  "forecast_sha256": "40c70a27033bf30b75a718d76ebaa043a0824715bd47011d5dec1140cdf534ab",
+  "independently_reopened_held_sweeps": 0,
+  "metric_and_episode_checks": {
+    "E_R": 728,
+    "module": 416,
+    "overall": 104,
+    "recorded_worst_via_sweep_metrics": 13,
+    "slope": 6,
+    "worst_episode": 78,
+    "worst_error": 1
+  },
+  "module_wins": {
+    "additive_by_setting": 4,
+    "constant_thevenin": 3,
+    "elapsed_shape": 0,
+    "integrated_line": 4,
+    "local_gradient": 3,
+    "nearest_corrected": 0,
+    "quadratic_shared": 0,
+    "relative_by_setting": 4,
+    "relative_by_setting_shape": 0,
+    "shrunk_local": 3,
+    "source_mean_curve": 2,
+    "wrong_module": 2
+  },
+  "recorded_rows": 14656,
+  "roles": 13,
+  "score_sha256": "7a1ee6a1f96d0ef99dfde55b2cbd9a15aae61af67efb56df703567af1c2336a0",
+  "whole_sweeps": 28,
+  "worst_fraction_error_floor_1": {
+    "E_R": "3.388365750795889103419632965174347136626909925981486843E-15",
+    "module": "6.92857142857142857142857142857142857143E-17",
+    "overall": "3.62857142857142857142857142857142857142E-17",
+    "recorded_worst_via_sweep_metrics": "0",
+    "slope": "1.1030922428343137562539517602576029301870E-17",
+    "worst_episode": "2.433246318286013472968709381109124744732E-16",
+    "worst_error": "1E-16"
+  }
+}

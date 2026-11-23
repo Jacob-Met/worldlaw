@@ -1,0 +1,90 @@
+[
+  {
+    "job": "p3-f747-ider-thermoelectric-8-module-catalog-only",
+    "owner": "node-66f5e5c87083f69a72b62d0151259f56",
+    "request_sha256": "01e67a8659c88ce3a70377cb7db7f6b9387314e884a51537263c7aae105b54fa",
+    "generation": "34d24b1102efa192ce34e293a5570246ac65384ccec2fd05c4bedd99338dab89",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 15817,
+    "stdout_sha256": "93692829c41f33c60ec5c5905039c69c5cbd89dae7067bd9b768c28a89e5f8ba",
+    "source": "SOURCE b1eecf417c101293b4cfc9106f7cff4a7ae7d793"
+  },
+  {
+    "job": "p3-f747-ider-exact-2-port-thermal-shunt-witness",
+    "owner": "node-b23922c26355a7238caf95228a766964",
+    "request_sha256": "0d715c5f6a58a1c91a51c28c5924b2a286cace3dfa0879aec7e4bc290e7b49d7",
+    "generation": "642a1a714f578e75cd1da928f0c1593c27ea66c6920ea0e9bdda7f7d23e7ff30",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 533,
+    "stdout_sha256": "9621916021e23ce5023319d9dc9bebda12bce87b28c7a61b577deba2989157c5",
+    "source": "SOURCE e88ff3a21aeab0670d7b41199bb844491df1745f"
+  },
+  {
+    "job": "p3-f747-ider-one-development-curve-port-units",
+    "owner": "node-b23922c26355a7238caf95228a766964",
+    "request_sha256": "9df061a60509a2c78dff3cb8208b50348822268e714d71dcee2d146fe857130d",
+    "generation": "0b0135650fe301d86dec4cf783e191ef0a37bdc5a38ff4cb8b7f24b529b698d1",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 2911,
+    "stdout_sha256": "b4f6a98e1e20b7fe67b1047a0fe9021c9badccc5aef95b613bfec229bbed7f97",
+    "source": "SOURCE 3f4a947387a24743e535d2d84db6604e62853f76"
+  },
+  {
+    "job": "p3-f747-ider-44-development-curves-authenticated-terminal-map",
+    "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+    "request_sha256": "4a32baa41c4c541bfb9a82bd5aadbf47ebac71e5a101cff4a2c52ada1f5a9ba4",
+    "generation": "8129beb578b0de90fe4a1dd03710bbf01d033c89d7b567d1547ee14a52e2356f",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 32309,
+    "stdout_sha256": "351bd95611739e8db08bea84efc10ca4fb48560dbbeda54755588a6c6590ca90",
+    "source": "SOURCE f83b20206526d89eb07ba6a0b1c839e6c3560b89"
+  },
+  {
+    "job": "p3-f747-ider-28-functions-13-roles-before-stopped-grids",
+    "owner": "node-a3f05e18e4f82d637340509e6ad98636",
+    "request_sha256": "11d094fa36d6b8e34fa11a272d7ee9d40093c704b8b72e0f1f5b2038d75118fd",
+    "generation": "035ba042a34d1e3ee1bc216a7b411038399f76bd03941bdab4d8750c13a131ad",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 39008,
+    "stdout_sha256": "055b39f6fec14c0a8d011eb0a84a3722613b136db152fb61dd33a0f29d43437c",
+    "source": "SOURCE 4dcaaa64a8bd4d5f808f644ee1d1455f6a45454f"
+  },
+  {
+    "job": "p3-f747-ider-28-uncropped-recordings-locked-functions",
+    "owner": "node-b23922c26355a7238caf95228a766964",
+    "request_sha256": "7534281463c58189874b21aa131a215aba1cb784f8289894059c957ec1ab8a3f",
+    "generation": "a5fea3f4cb721a21871dbaa8c984e48a301cb77f69f94dde45b2fc8c090ac9dd",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 72057,
+    "stdout_sha256": "a617616b842f047b3df2e711dc6fe01541e3fd17401339453038f1acdac81ebb",
+    "source": "SOURCE 77466fd8b3dc4047393fa065654b77709189bcef"
+  },
+  {
+    "job": "p3-f747-ider-independent-28-raw-curves-55-digit-receiving",
+    "owner": "node-1cd915107e50bd4c47445f864d5e1d33",
+    "request_sha256": "ed6f6789490984b187c2067ed9b1fd4bcdb77aab3456f4bc6078318ac05cb7da",
+    "generation": "6ba868c486afe586cfbf8c5d94c2fcf8076a63c78f7d4135b1d540da14ae9050",
+    "exit": 1,
+    "descendants": "drained",
+    "stdout_bytes": 1612,
+    "stdout_sha256": "804bc564d17d021d5a0af3491d8479ed5c45d027fdd749c4cdd403b014568e71",
+    "source": "SOURCE f2aa2691bd1188dd58573f2010088646b9a09eec"
+  },
+  {
+    "job": "p3-f747-ider-offline-decimal-calibration-aggregate-episode",
+    "owner": "node-0e3285bc38d3d1e84e2b6bd04193cc88",
+    "request_sha256": "41fd7aa1d76819e790d871b5ff0efd0e04089fa5abc897de988baf4f6edf1e9f",
+    "generation": "8dbf015e9d8318575797b926be8d8e9ba5dba136771b789a96e7b5bc95a21c41",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 1217,
+    "stdout_sha256": "0728da45779e041ab2fa9ae5a91bb23c2be263eb4e37ed8269499b5334d915fb",
+    "source": "SOURCE 014a64e0d66144801fa06bd21864736bc86b3d3a"
+  }
+]
