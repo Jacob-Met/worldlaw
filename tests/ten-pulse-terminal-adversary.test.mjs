@@ -6,6 +6,15 @@ import {certifyFixedTapeOptimum as plan,receiveFixedTapeOptimum as receive} from
 const source='examples/active-position-drift-fixed-tape-optimum.json';
 const packet='examples/ten-pulse-terminal-adversary.json';
 const script='scripts/verify-ten-pulse-terminal-adversary.py';
+test('balanced midpoint and fixed-tape radii meet at adjacent multiples of twelve',()=>{
+  const req=JSON.parse(readFileSync(source,'utf8'));
+  for(const h of [11n,12n,13n,23n,24n,25n,119n,120n,121n,12n*10n**80n+1n]){
+    const p=plan({...req,pulseBudget:String(h)}),[num,den='1']=p.radius.split('/');
+    const q=h/2n;
+    assert.equal(BigInt(num)*24n*h,BigInt(den)*q*(h-q));
+  }
+});
+
 const read=(...args)=>spawnSync('python3',[script,source,packet,...args],{encoding:'utf8'});
 
 test('all ten-pulse category patterns and every exceptional literal action word have a causal physical collision',()=>{

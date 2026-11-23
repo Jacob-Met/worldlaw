@@ -1,6 +1,6 @@
 # The adaptive minimum at noise 1/10 is eleven pulses
 
-For the registered eight-command, two-family position/drift catalog, **ten pulses cannot identify the family with a sure guarantee, even when every command can depend on every prior position reading**. The [fixed eleven-pulse receiver](fixed-tape-optimum.md) identifies both families at this noise. At ten pulses the unrestricted first-failure radius is exactly 1/10: the fixed ten-pulse tape succeeds at every smaller noise. The eleven-pulse radius is at least 5/44; this certificate determines the minimum horizon at the specified noise.
+For the registered eight-command, two-family position/drift catalog, **ten pulses cannot identify the family with a sure guarantee, even when every command can depend on every prior position reading**. The [fixed eleven-pulse receiver](fixed-tape-optimum.md) identifies both families at this noise. At ten pulses the unrestricted first-failure radius is exactly 1/10: the fixed ten-pulse tape succeeds at every smaller noise. The unrestricted eleven-pulse radius is also exact at 5/44.
 
 ## One causal reading rule
 
@@ -23,6 +23,8 @@ An independent geometric derivation explains the only exceptions. The best unifo
     |(k−i)(Nⱼ−Nᵢ) − (j−i)(Nₖ−Nᵢ)| / [24(k−i)],
 
 where N is the cumulative, unscaled suffix count. On any interval of length n the numerator is bounded by floor(n²/4), since the two subinterval counts lie between zero and their lengths. For n≤9 the ratio is at most 5/54. For n=10 exceeding 1/10 requires integer numerator 25. This requires a split exactly at five with one half all baseline and the other all suffix. The ordinary rule at those two words requires exactly 5/48.
+
+The same balanced midpoint gives an unrestricted upper bound floor(H²/4)/(24H) at every positive horizon H. Choose the chord slope joining the two endpoints of the cumulative suffix count; the range of the residual is at most q(H−q)/H with q suffix pulses. Centring that residual by its midrange gives physical measurement error at most q(H−q)/(24H). This argument applies to any feedback controller on the resulting causal word. When H ≥ 11 is congruent to 11, 0 or 1 modulo 12, an integer q nearest H/2 is a multiple of six. The fixed construction uses q=6k suffix pulses and H−q references, attaining q(H−q)/(24H). Thus feedback cannot improve the radius at any of these horizons. The first three examples are H=11,12,13 with exact unrestricted radii 5/44, 1/8 and 7/52.
 
 In fact no single virtual rate table can do better than 5/48 uniformly. Subtract its reference rate and write uᵧ and u𝓏 for virtual rates on y0,z0. Five refs followed by five z0 must be fit by A, whose z0 rate is zero, and the analogous y0 tape must be fit by B. Their three-checkpoint chords require |uᵧ|,|u𝓏|≤4ε/5. With five refs followed by all six suffix commands except z0, A's accumulated source rate equals one. Omitting y0 instead makes B's sum zero. The two chord bounds require uᵧ−u𝓏≥1−8ε. Combining these gives ε≥5/48. This is why the terminal reading genuinely depends on the completed actions.
 
