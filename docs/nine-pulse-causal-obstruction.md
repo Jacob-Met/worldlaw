@@ -39,3 +39,5 @@ python3 scripts/verify-nine-pulse-causal-obstruction.py examples/active-position
 ```
 
 Passing `--commands` with a shorter prefix returns its retained readings and one physical witness per law. Omitting that option verifies the whole certificate.
+
+The [eight-pulse causal obstruction](eight-pulse-causal-obstruction.md) and [paired-suffix measured policy](paired-suffix-calibration.md) meet at 1/14, giving minimum nine throughout [1/14,1/12).
