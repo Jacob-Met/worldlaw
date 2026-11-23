@@ -3,6 +3,15 @@
  */
 import {RUN_UNITS, validateRun} from './data.mjs';
 const REQUEST='worldlaw.continuous-command-request/v1';
+const INSTRUMENT='worldlaw.controlled-ode-instrument/v1';
+const sameJson=(left,right)=>{
+  if(left===right)return true;
+  if(!left||!right||typeof left!=='object'||typeof right!=='object'||
+    Array.isArray(left)!==Array.isArray(right))return false;
+  const keys=Object.keys(left);
+  return keys.length===Object.keys(right).length&&
+    keys.every(k=>Object.hasOwn(right,k)&&sameJson(left[k],right[k]));
+};
 const copy=value=>JSON.parse(JSON.stringify(value));
 const check=(ok,message)=>{if(!ok)throw new RangeError(message);};
 const finite=(v,lo,hi,name)=>{check(typeof v==='number'&&Number.isFinite(v)&&v>=lo&&v<=hi,'Invalid '+name);return v;};
@@ -17,8 +26,8 @@ export function commandSamples(raw,{amplitudeBounds=[-1,1],maximumSamples=4096}=
   check(Array.isArray(amplitudeBounds)&&amplitudeBounds.length===2&&
     amplitudeBounds.every(Number.isFinite)&&amplitudeBounds[0]<amplitudeBounds[1],'Invalid actuator bounds');
   const n=Math.round(r.duration/r.dt);
-  check(n>=1&&n+1<=maximumSamples&&Math.abs(n*r.dt-r.duration)<=32*Number.EPSILON*r.duration,
-    'Duration must contain a bounded whole number of sample intervals');
+  check(n>=16&&n+1<=maximumSamples&&Math.abs(n*r.dt-r.duration)<=32*Number.EPSILON*r.duration,
+    'Training acquisitions require 17 or more sample rows on a bounded whole-interval grid');
   check(Array.isArray(r.segments)&&r.segments.length>=1&&r.segments.length<=32,'Invalid actuator segments');
   let cursor=0;
   for(const s of r.segments){
@@ -98,7 +107,7 @@ export function createControlledInstrument(raw) {
     return validateRun({id,label:'Controlled synthetic acquisition '+index,kind:'synthetic',
       units:{...RUN_UNITS},inertia:p.inertia,initialRate:r.initialRate,
       source:{label:'Independent controlled ODE instrument',recordingId:id,
-        instrument:'worldlaw.controlled-ode-instrument/v1',sourceId:p.sourceId,
+        instrument:INSTRUMENT,sourceId:p.sourceId,
         request:copy(r),acquisitionIndex:index,noise:{distribution:'iid_gaussian',sigma:p.noiseSigma,
           initialPosition:'exactly set by the synthetic instrument; later observations noisy'},
         integrator:{method:'independent_classical_RK4',maximumStep:step,steps},
@@ -111,9 +120,20 @@ export function createControlledInstrument(raw) {
 }
 
 /** Bind supplied evidence to the prospective command; no interpolation or repair. */
-export function receiveContinuousRun(request,rawRun,{amplitudeBounds=[-1,1]}={}) {
+export function receiveContinuousRun(request,rawRun,{expectedSourceId,amplitudeBounds=[-1,1]}={}) {
   const expected=commandSamples(request,{amplitudeBounds});
   const run=validateRun(rawRun,{role:'training'});
+  const source=run.source;
+  check(typeof expectedSourceId==='string'&&expectedSourceId.trim().length>0,'Require expected source identity');
+  check(run.kind==='synthetic'&&source.instrument===INSTRUMENT&&source.sourceId===expectedSourceId,
+    'Controlled instrument/source identity mismatch');
+  // These are declared provenance checks. They cannot authenticate an external recorder.
+  check(Number.isSafeInteger(source.acquisitionIndex)&&source.acquisitionIndex>=0&&
+    source.recordingId===run.id&&run.id===expectedSourceId+'-acquisition-'+source.acquisitionIndex,
+    'Controlled recording identity mismatch');
+  check(sameJson(source.request,expected.request),'Instrument receipt differs from frozen request');
+  check(source.noise?.distribution==='iid_gaussian'&&source.noise.sigma===expected.request.noiseSigma,
+    'Controlled noise declaration mismatch');
   check(run.inertia===request.inertia&&run.initialRate===request.initialRate&&
     run.samples[0].position===request.initialPosition,'Acquired initial state/inertia mismatch');
   check(run.samples.length===expected.samples.length,'Incomplete prospective observation grid');

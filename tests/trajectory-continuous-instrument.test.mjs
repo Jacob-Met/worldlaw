@@ -20,14 +20,14 @@ test('independent cubic actuator follows exact piecewise constant acceleration',
   assert.equal(device.usage().acquired,1);
   assert.equal(run.source.truthParametersExposed,false);
   assert.equal(JSON.stringify(run.source).includes('restoring'),false);
-  assert.deepEqual(receiveContinuousRun(r,run),run);
+  assert.deepEqual(receiveContinuousRun(r,run,{expectedSourceId:'generated-control'}),run);
 });
 test('receiver refuses altered applied command, clock, missing row and initial state',()=>{
   const r=request([.2,.3,-.4,-.5]),run=instrument().acquire(r);
   for(const edit of [x=>x.samples[20].command+=.01,x=>x.samples[20].time+=.001,
     x=>x.samples.pop(),x=>x.initialRate+=.01]){
     const changed=structuredClone(run);edit(changed);
-    assert.throws(()=>receiveContinuousRun(r,changed));
+    assert.throws(()=>receiveContinuousRun(r,changed,{expectedSourceId:'generated-control'}));
   }
   const invalid=structuredClone(r);invalid.segments[1].startIndex++;
   assert.throws(()=>commandSamples(invalid));
@@ -42,7 +42,7 @@ test('instrument inputs are owned and acquisition budgets cannot be replayed for
   assert.equal(d.usage().requests[0].segments[0].amplitude,.2);
   assert.throws(()=>d.acquire(request([.2,.2,.2,.2])));
 });
-test('owned forecasts precede reception and replay reproduces the actual refit',()=>{
+function loopSetup(){
   const sigma=1e-6,d=instrument({noiseSigma:sigma,sourceId:'loop'});
   const a=request([1,-1,1,-1]);a.noiseSigma=sigma;
   const b=request([-1,1,-1,1]);b.noiseSigma=sigma;b.initialPosition=-.1;
@@ -53,6 +53,10 @@ test('owned forecasts precede reception and replay reproduces the actual refit',
   const setup={trainingRuns,fitOptions:{terms:['command','command_cubic'],maxTerms:1,
     noiseSigma:sigma,windowDuration:.5,windowStride:.25},plannerConfig,
     policy:'active',policyId:'generated-control-only',worldId:'loop',maxRounds:1,seed:7};
+  return {d,setup};
+}
+test('owned forecasts precede reception and replay reproduces the actual refit',()=>{
+  const {d,setup}=loopSetup();
   let s=planNextContinuous(createContinuousSession(setup));
   assert.equal(s.pending.plan.status,'planned');
   const changed=structuredClone(s);changed.pending.plan.predictions[0].position[5]+=1;
@@ -60,7 +64,9 @@ test('owned forecasts precede reception and replay reproduces the actual refit',
   const r=continuousRequest(s),run=d.acquire(r);
   const altered=structuredClone(r);altered.segments[0].amplitude+=.01;
   assert.throws(()=>receiveContinuous(s,{request:altered,run}));
-  s=receiveContinuous(s,{request:r,run});
+  const pending=s;
+  s=receiveContinuous(pending,{request:r,run});
+  assert.throws(()=>receiveContinuous(pending,{request:r,run}),/stale/);
   assert.deepEqual(s.events.map(e=>e.type),['source_fit','predictions_owned_before_acquisition',
     'prospective_residual_scored_before_refit','model_refit_after_receipt']);
   assert.equal(s.history[0].assessment.status,'uncalibrated_diagnostic');
@@ -69,4 +75,72 @@ test('owned forecasts precede reception and replay reproduces the actual refit',
   assert.deepEqual(restored.discovery.selected,s.discovery.selected);
   assert.deepEqual(restored.history,s.history);
   assert.throws(()=>planNextContinuous(s));
+});
+
+test('controlled receipts bind declared world, noise, recording and complete original request',()=>{
+  const {d,setup}=loopSetup(),options={expectedSourceId:'loop'};
+  const pending=planNextContinuous(createContinuousSession(setup));
+  const req=continuousRequest(pending),run=d.acquire(req);
+  const wrongWorld=instrument({sourceId:'foreign',noiseSigma:req.noiseSigma}).acquire(req);
+  const noisier={...req,noiseSigma:req.noiseSigma*2};
+  const wrongNoise=instrument({sourceId:'loop',noiseSigma:noisier.noiseSigma}).acquire(noisier);
+  assert.throws(()=>receiveContinuous(pending,{request:req,run:wrongWorld}),/source identity/);
+  assert.throws(()=>receiveContinuous(pending,{request:req,run:wrongNoise}),/frozen request/);
+  for(const edit of [x=>{x.kind='measured';},x=>{x.source.instrument='sim/other';},
+    x=>{x.source.recordingId='another-acquisition';},x=>{x.source.acquisitionIndex++;},
+    x=>{x.source.noise.sigma*=2;},x=>{x.source.noise.distribution='other';},
+    x=>{x.source.request.commandConvention='different schedule convention';}]){
+    const changed=structuredClone(run);edit(changed);
+    assert.throws(()=>receiveContinuousRun(req,changed,options));
+  }
+  assert.throws(()=>receiveContinuousRun(req,run),/expected source/);
+  assert.equal(receiveContinuous(pending,{request:req,run}).history.length,1);
+  for(const edit of [x=>{x.source.sourceId='foreign';},x=>{x.source.request.noiseSigma*=2;},
+    x=>{x.samples[8].command=.01;},x=>{x.source.noise.sigma*=2;}]){
+    const foreign=structuredClone(setup);edit(foreign.trainingRuns[0]);
+    assert.throws(()=>createContinuousSession(foreign));
+  }
+});
+
+test('short instrument grids are refused before charging; 8192 fitter rows are checked before acquisition',()=>{
+  const device=instrument(),r=request([1,1,1,1]);
+  const short={...r,duration:.1,dt:.01,segments:[{startIndex:0,endIndex:10,amplitude:1}]};
+  assert.throws(()=>device.acquire(short),/17 or more/);
+  assert.deepEqual(device.usage(),{acquired:0,chargedSamples:0,requests:[]});
+
+  const {setup}=loopSetup(),sigma=setup.plannerConfig.noiseSigma;
+  const source=instrument({sourceId:'loop',noiseSigma:sigma});
+  setup.trainingRuns=[1,-1].map(amplitude=>source.acquire({...r,noiseSigma:sigma,dt:.001,duration:4.095,
+    segments:[{startIndex:0,endIndex:4095,amplitude}]}));
+  const session=createContinuousSession(setup);
+  assert.equal(session.trainingRuns.reduce((s,x)=>s+x.samples.length,0),8192);
+  assert.throws(()=>planNextContinuous(session),/combined 8192-sample/);
+  assert.equal(source.usage().acquired,2);
+});
+
+test('random schedules refuse insufficient work before the first model rollout',()=>{
+  const {setup}=loopSetup();
+  setup.policy='random';setup.plannerConfig.maxTotalSteps=1;
+  assert.throws(()=>planNextContinuous(createContinuousSession(setup)),/before rollouts/);
+});
+
+test('paid short-window observation and its original residual survive a refused refit',()=>{
+  const {setup,d}=loopSetup();
+  setup.policy='random';setup.maxRounds=2;
+  Object.assign(setup.plannerConfig,{duration:.4,dt:.025,segmentDurations:[.1,.1,.1,.1]});
+  const pending=planNextContinuous(createContinuousSession(setup)),r=continuousRequest(pending);
+  const run=d.acquire(r),result=receiveContinuous(pending,{request:r,run});
+  assert.equal(result.status,'refit_refused');
+  assert.deepEqual(result.history[0].run,run);
+  assert.equal(result.history[0].residual.rowsUsed,16);
+  assert.equal(result.history[0].selectedAfter,null);
+  assert.equal(result.history[0].refitError.code,'insufficient_sampling');
+  assert.deepEqual(result.history[0].retainedModel,{id:pending.discovery.selected.id,status:'experimental_pre_receipt_fit'});
+  assert.deepEqual(result.discovery.selected,pending.discovery.selected);
+  assert.deepEqual(result.events.slice(-2).map(e=>e.type),['prospective_residual_scored_before_refit','refit_refused']);
+  assert.throws(()=>receiveContinuous(pending,{request:r,run}),/stale/);
+  assert.throws(()=>planNextContinuous(result),/could not be refitted/);
+  const restored=restoreContinuousSession(exportContinuousSession(result));
+  assert.equal(restored.status,'refit_refused');
+  assert.deepEqual(restored.history,result.history);
 });

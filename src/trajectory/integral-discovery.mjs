@@ -22,6 +22,11 @@ function normalizeOptions(options) {
   const terms = options.terms ?? DEFAULT_TERMS;
   insist(Array.isArray(terms) && terms.length > 0 && terms.length <= IDS.length &&
     new Set(terms).size === terms.length && Array.from(terms).every(id => IDS.includes(id) && id !== 'rate_squared'), 'terms must be unique supported integral-library IDs; rate_squared requires weak fitting.');
+  // The command-timeline integral is linear in the applied input. Cubing its
+  // result, or interpolating cubed command endpoints, gives the wrong forcing.
+  insist(!terms.includes('command_cubic'),
+    'command_cubic lacks an applied-command cubic integral here; use weak fitting or derivative-SINDy.',
+    'unsupported_term');
   const result = {terms: [...terms], noiseSigma: options.noiseSigma ?? 0.01,
     maxTerms: options.maxTerms ?? Math.min(4, terms.length), ambiguityDelta: options.ambiguityDelta ?? 6,
     rateWindowSize: options.rateWindowSize ?? 9, rowStride: options.rowStride ?? 1};
