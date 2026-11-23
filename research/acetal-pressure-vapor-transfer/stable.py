@@ -113,7 +113,8 @@ def solve(x,p,u,t,outer):
                 for k,ivals in enumerate(sets):
                     for a,b in ivals:
                         a1=max(a,lo[k]);b1=min(b,hi[k])
-                        if a1<=b1:
+                        if a1 <= b1 + 5e-14:
+                            # Forward and reverse subtraction can round the same closed endpoint differently.
                             return k,(a1+b1)/2
                 raise ValueError("backtrace has no shared-pressure witness")
             for i in range(j-1,-1,-1):
@@ -122,8 +123,8 @@ def solve(x,p,u,t,outer):
             for i in range(j+1,n):
                 L,U=edge[i-1];k=v[i-1]
                 v[i],pp[i]=choose(reverse[i],pp[i-1]+L[k],pp[i-1]+U[k])
-            assert all(a-1e-11<=pv<=b+1e-11 for pv,(a,b) in zip(pp,domains))
-            assert all(L[v[i],v[i+1]]-1e-11<=pp[i+1]-pp[i]<=U[v[i],v[i+1]]+1e-11 for i,(L,U) in enumerate(edge))
+            assert all(a-1e-13<=pv<=b+1e-13 for pv,(a,b) in zip(pp,domains))
+            assert all(L[v[i],v[i+1]]-1e-13<=pp[i+1]-pp[i]<=U[v[i],v[i+1]]+1e-13 for i,(L,U) in enumerate(edge))
             witnesses.append({"y":[boxes[i][k][0] for i,k in enumerate(v)],"pressure_kpa":np.exp(pp).tolist()})
         out.update(widest_index=j,witnesses=witnesses)
     return out
