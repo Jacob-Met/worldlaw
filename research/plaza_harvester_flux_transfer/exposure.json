@@ -1,0 +1,563 @@
+{
+  "source": "Plaza et al. 10.17632/y4cmrsdv9f.1, 10.3390/s24123813, Bacaicoa et al. 10.1016/j.dib.2024.111126",
+  "stage": "prespecified exposure split before any CSV data values; separate exact learner freeze after loaded-only development",
+  "source_system": "Three independently oscillating Halbach mass assemblies, 24 fixed-measurement coils, 100 Hz electrical, phone video/sticker kinematics 240 Hz. LED onset/end synchronizes clocks. Source angular estimates and regularized derivatives can use whole videos; offline motion-conditioned electrical reconstruction only.",
+  "directory_manifest_sha": "bd1345fb920587132f5052bd6e3c6ba87bbb27f32bd2fda7316273c28c218098",
+  "roster": [
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp01.csv",
+      "bytes": 105557,
+      "sha256": "adddb8de69a624de9e5b3a36191c5ca0e001f2b7e70d1e87d4b9e13bf696bb90",
+      "id": "156316d9-70d4-473b-ab17-b813dee1eb7e"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp02-GItOQH-Ou6JTR.csv",
+      "bytes": 110599,
+      "sha256": "a5a4c687655bf9c4437319223576068a1f44aa03cecea5116355c97d62429c88",
+      "id": "0c26fe07-7498-4d5a-b054-f9c39b360e6a"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp03-0mhwC7-chbUz6.csv",
+      "bytes": 112555,
+      "sha256": "a615f2e8471cf7f73a2c45b4b91f63773545d4c9400fb9c6b6abfd9d78ae638d",
+      "id": "df483451-409e-4a77-8900-ee47bb63c332"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp04-SY0t2P-RpJ3va.csv",
+      "bytes": 121435,
+      "sha256": "11206ac4f1a9d79264bf70aef26d898b99dd5ad1f4e184ee55e006a325a0ec67",
+      "id": "71961b12-3070-4f37-8454-f3aa8939bb3c"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp05-3CzkH7-0pZtCh.csv",
+      "bytes": 119092,
+      "sha256": "bc035fb760678ce919cc612baa1ab702655adf587a6c0d148c0501b18c265d5f",
+      "id": "fe49f5b7-5ab4-4cca-96e2-f0a5625129a5"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp06-4ZNbY1-7yzxnk.csv",
+      "bytes": 119389,
+      "sha256": "5196e60ef6c18365b872f718f8f24ad3dcaabd3eeae4cd9adcc9a74c4d7877f6",
+      "id": "a4258ee2-5af9-48db-a822-a1951665aacf"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp07-YhMuV4-D9sxpn.csv",
+      "bytes": 126757,
+      "sha256": "08403d6da859fff9afc10c129f31faa4f27d8c02d241e776b8774acd9e4db15c",
+      "id": "d7caeec8-33a5-4af8-b821-e2aab89b1d04"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp08-wpuhTH-8PBMNf.csv",
+      "bytes": 126879,
+      "sha256": "9d6d11f4d05748ea2faf9b7cb3dd687ed39f30fdc1d7bcb8821364e5061668ce",
+      "id": "83607207-8092-4965-b133-ba0f71e03e0f"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp09-xyRIU3.csv",
+      "bytes": 125844,
+      "sha256": "c73b77eebca3b24bf68e42e3a0d582339089f41974dfee717741695fb9a65557",
+      "id": "d8b37364-2877-43b7-b252-faeac270eb90"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp10-PJ8E3g.csv",
+      "bytes": 129470,
+      "sha256": "d6a5b1cd031abd022521a0571f5e8221ee7df57a89e2e56348435801abd86a94",
+      "id": "b3f0b9b0-54d6-4937-9b54-1c1d2a5859e3"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp11-drzMjO.csv",
+      "bytes": 126940,
+      "sha256": "7799f2e623715bc3a93bee64664c0e10ebd740bae6db16e4b0648a111b90e713",
+      "id": "f183eef3-39ca-4e15-8c03-01b2ba8f35ed"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp12-OGHzQP.csv",
+      "bytes": 130403,
+      "sha256": "f7c7fd55a312af0cf468cffb32c9bfcf55516b2589208ff72fcec20dd6953040",
+      "id": "ba90dfb2-95c3-4b97-bff5-1f88890bbee3"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp13-mM1Tu8.csv",
+      "bytes": 114750,
+      "sha256": "8d50d6a670e181cf8d76e5a5f7c7c191340957629677d7cb9b5d031b95731f97",
+      "id": "084f498e-5523-40d6-9ea3-42732f0869fe"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp14-wsP3NG.csv",
+      "bytes": 115083,
+      "sha256": "554555a7660759896268cef0fe964cf3d65988801061d7fc714366b6b480b764",
+      "id": "00145df2-cae8-40f6-ac91-4398e9898fe9"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp15-rxIy5Q.csv",
+      "bytes": 117582,
+      "sha256": "7f81185d8bb7b008ef66a53a72b1db05d6a46d2b29f9e395bdbd077752bf5c82",
+      "id": "bd184953-eb1a-4a74-aeda-298938a4bffb"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp16-6S9040.csv",
+      "bytes": 127332,
+      "sha256": "378698a856479b5c9c354c5685d08a41b56a8da9a50c4572a5f3c2c5ff3b5d63",
+      "id": "267547cc-f847-4d3a-8123-122194f24062"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp17-HSnsqx.csv",
+      "bytes": 129634,
+      "sha256": "5f80d2462eed5fb1d61402d6cb4eb9d0387ca067fb64836bcc4501cf9d64b533",
+      "id": "ec21a8ed-1402-41ff-b131-d5f9bb7952b9"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp18-aHJZvg.csv",
+      "bytes": 131045,
+      "sha256": "59927c1b3e0ff0f7cf76e6e1c6f909966fcc03d25db21100a63dbd25a5ca96c9",
+      "id": "06d868c7-6f0b-4435-89a7-a03ee65b21c3"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp20-P11ayB.csv",
+      "bytes": 135919,
+      "sha256": "3968805bdd8e930b59ba4f14e54492d9049a786e9b24de13d863a0dd64b12364",
+      "id": "f1bec5f3-9b54-4293-af97-5f0d9e753b8c"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp21-QKj6Ff.csv",
+      "bytes": 132730,
+      "sha256": "98953b7d74bcb0932b7f137c95cfe5dcc2899d1a23bbdef5c202f1460a83a7e1",
+      "id": "23d091b9-153a-4e31-9fe3-53627725bf2c"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp22-TNDoPd.csv",
+      "bytes": 136485,
+      "sha256": "c105d16f7c497914104c43d1511425f4822a05a1aa575b6baf2f6475e9ddd363",
+      "id": "50f4999b-476c-436c-9907-9d3af3fee530"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp23-25vhGv.csv",
+      "bytes": 129507,
+      "sha256": "16833652909dd7b6768732fd38f15f6a629e171e4c6163fae6aae0c498177809",
+      "id": "dcc1f9d4-d394-4cd9-a8f6-236722b9706a"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp24-1FUA45.csv",
+      "bytes": 135549,
+      "sha256": "86098e1e404e151cdaa737860c9eb51ba2707e326dac1ca04bc16697ae4cb99e",
+      "id": "2496a59b-9b9f-4345-af23-b90fda29c73d"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp26-shQVVo.csv",
+      "bytes": 116582,
+      "sha256": "74b8286894a4b77c7f0e6e8a9b6df728b1b72168684a37bfacd23e8968115a5d",
+      "id": "828ef752-bfbf-463d-8e5c-661a3eed1b53"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp27-embKR0.csv",
+      "bytes": 116919,
+      "sha256": "9f80e871153065bda1099ac9580f99ecc0ce86731d754400c993db6838b9ac8f",
+      "id": "90792275-baaa-4b9e-b245-29c271881905"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp28-rNujh3.csv",
+      "bytes": 131213,
+      "sha256": "e4e11164e66e0543a01e714dd563e7fe35d98702ae5f865250a1789f9ea56c64",
+      "id": "5cd9219c-12e4-444b-97dd-58a76314cef8"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp30-fFC0wn.csv",
+      "bytes": 130684,
+      "sha256": "d8769ee5ae01d82bcb4c9228209204ba8c4c67a7b8b2909ec83a122ff98c881e",
+      "id": "79fcb350-5561-469e-b22d-0d58f9fb4b21"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp32-WtgCRb.csv",
+      "bytes": 136348,
+      "sha256": "a37915cabc1cb7505a4bb800f3989f4601b610900d3a4127a64bd413c2e5ada9",
+      "id": "6ed6e1f3-9bcf-4438-9f6c-02433c589ab4"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp33-eXAbL0.csv",
+      "bytes": 134876,
+      "sha256": "605e96193426ca4b5e2eab5835bb3d3091f1666ce1422c9a8f4ee3ab96db2c05",
+      "id": "1ed92a2b-53ec-4665-b927-4cd74f65d9dc"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp35-ogwps2.csv",
+      "bytes": 134990,
+      "sha256": "95675776646beba70311f542a9a9dfe9cef9b41f6b670f399ed82d85b517ec2f",
+      "id": "0a2a6a3e-0868-4219-8448-cc01f962903e"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp36-zxpwO0.csv",
+      "bytes": 132539,
+      "sha256": "c729cd0fb43ba515bbd971787fe8658a3e7a85269c3200a7bc6c8f5a435aa71d",
+      "id": "c88c51a3-a8ca-4900-a1ad-4af7d069ebb5"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp37-CPJ1rO.csv",
+      "bytes": 103423,
+      "sha256": "46ec1eda02e0d3b5f77d016c542307107c40bcdc2fcd21664cf0bfe76a6b0a95",
+      "id": "91d09f82-2e24-40ad-b0c3-3cce094c9096"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp38-2r01KW.csv",
+      "bytes": 128269,
+      "sha256": "0a605830726375372dd0820ccbaac4f4ab6882863f5b13e22ea570965fcee477",
+      "id": "f24f4ab7-2452-4d61-b088-9c8f7c4c61ee"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp39-MeZylc.csv",
+      "bytes": 132630,
+      "sha256": "91ea65e35d89fdbf9d23e0d3dfa4b651cff8b7e3516a47729ebe47e8cd8e57d2",
+      "id": "d3161f98-b61e-4a6b-9b56-fd43bfb41918"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp40-3vh0Ps.csv",
+      "bytes": 142128,
+      "sha256": "0455a8d3086e915050d0b5082592472c7f3afbecb9d54cfd9bd5d96613c2b11a",
+      "id": "4ef7a1ed-9f51-4bb9-9429-3edeadc42e28"
+    },
+    {
+      "folder": "Measurements",
+      "name": "measurements_exp41-hCnWCb.csv",
+      "bytes": 142211,
+      "sha256": "16ff7b468d5b398eef8f2d3b6bbff4510f00e035a8fed421bc58c837ac2a2351",
+      "id": "05b061aa-9579-4c5d-bea4-20e29fc0625b"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp01.csv",
+      "bytes": 460274,
+      "sha256": "624b5dceddff6952059053af0b386ec2089aeae4153459bbc633ef3dd3aeffaa",
+      "id": "6ad8c7b8-2aeb-4d95-bfff-a57498b87177"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp02.csv",
+      "bytes": 461543,
+      "sha256": "690719737acc6d54d23da8e67d5327aebeae0e28d939500dd277a972daf6c2af",
+      "id": "d262a2ce-5950-4273-81b4-7fefcdc28089"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp03.csv",
+      "bytes": 459483,
+      "sha256": "f5db58a54bcb2d0479a554045c21f234b680f929af0e509630888249e784136a",
+      "id": "9d3ffa7d-8b83-45f3-9d6f-dd62ccc3e87d"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp04.csv",
+      "bytes": 451934,
+      "sha256": "92d90b6d04bb3f15b864e747ff7e7aef9d4a41282938a4a1b8ed489112a35f9b",
+      "id": "599a62f4-358a-4171-863f-4485b5aa41b4"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp05.csv",
+      "bytes": 458546,
+      "sha256": "d5d6b89941faa571293222db103183313d7a911b41b5b5961aa159cf464080f7",
+      "id": "0bf790b9-b6fd-4a00-bfa0-ccd89299077d"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp06.csv",
+      "bytes": 455120,
+      "sha256": "4a405e7a8b60b1747ad7dcdd11b8405f7c99dbc43e20874d675e4cd2f27e6a6c",
+      "id": "c9f55219-4059-48cf-bd4d-3711c9780bd0"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp07.csv",
+      "bytes": 454031,
+      "sha256": "84de4d642357303d386a6450d06e8748ccefcb31dd14ca14f7fa64353a7fb1b7",
+      "id": "fdb994dd-51b3-42fb-ad5c-80e37685cdcb"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp08.csv",
+      "bytes": 453901,
+      "sha256": "1479ce45398caa5c2f093601d2fb400d48c0da12eef45018e5519e7273372dd3",
+      "id": "a153fcaf-bc3f-46b8-8498-f5bdb63a422c"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp09.csv",
+      "bytes": 452587,
+      "sha256": "fb1ddef80b1cd024d0ec96b9e3ac187d9a33f1f56947c5223812f110ee194d38",
+      "id": "350344d6-172a-4482-9add-259f5bef742e"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp10.csv",
+      "bytes": 453343,
+      "sha256": "3c9f26cacc9676d351ba405a26cf4c5b932d8e2c25abec74e49d6506b6fc5298",
+      "id": "2d75eeb0-ba91-4725-bc94-44fc0f584de7"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp11.csv",
+      "bytes": 451455,
+      "sha256": "2fd144e5299596462caf2e78a02564a4527bfe451bcb1fb76da252c41ce81c00",
+      "id": "fc4f715d-194b-49fb-95da-357811327266"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp12.csv",
+      "bytes": 453008,
+      "sha256": "3e76a364a19f41af125f7a970cb2aadf708893313eb4d5753170f569a8c6decc",
+      "id": "b255c125-0b03-413d-9847-d2913c13941b"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp13.csv",
+      "bytes": 465693,
+      "sha256": "5b31e0959bcf17cb1eeeade88eb054b594b4ce1940c9110c8c862e5336f3c897",
+      "id": "fb272fa7-9728-42cb-83bd-088513a6e6f7"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp14.csv",
+      "bytes": 457505,
+      "sha256": "3f1c245b5d227ae714f1c2fbac0fa989ddfb51dc7b68191c7763ee77d63e8d5a",
+      "id": "2dc895ef-bcf1-4ae7-bfd1-8505843feb84"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp15.csv",
+      "bytes": 466158,
+      "sha256": "c6903bc824ca6be172b8e37d3e8faaec411d80499ab575dda1d21e970f25c6f6",
+      "id": "af3ec6f2-daa6-46c3-9796-5a9372f31a85"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp16.csv",
+      "bytes": 457000,
+      "sha256": "0abced53fec75c95b2eef45e42d115b66de66b1f3e94ae68bb911245047886cf",
+      "id": "0773d72b-9b00-4f7f-b860-9cb9262329b6"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp17.csv",
+      "bytes": 455287,
+      "sha256": "de4b8effa895a3a9ac68c8e0484087823bbd519b473e508080c37933726fd536",
+      "id": "dac65836-5e8d-4f44-8df3-5493eef79fe7"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp18.csv",
+      "bytes": 456047,
+      "sha256": "e86d3b5149cac622de41e080333a5a2e5edb382169541a2810ac5e191e23cbdf",
+      "id": "21a44864-d317-4c71-8c49-26bf32464ac1"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp20.csv",
+      "bytes": 452772,
+      "sha256": "dfb60a9b223dcaaa8487029c2a7fd380d6b99a6e1de6ca8916cddebfcabeb585",
+      "id": "23a0f6ab-424e-470f-afd6-f25e4c2e1598"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp21.csv",
+      "bytes": 454374,
+      "sha256": "7f8cd002b540efad9d7d798a6f8d60b8dda4f96f8c8bf4e2f581c7bcef670833",
+      "id": "57b9ab2a-1bef-484d-91aa-13a4e6400704"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp22.csv",
+      "bytes": 452830,
+      "sha256": "3391526adc26f1fbacbb94a51b57e91cb13285f1c2aaf5613e5682731d13c8a2",
+      "id": "ae5fa85e-f48c-4ef8-9893-16c6cf93f160"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp23.csv",
+      "bytes": 457388,
+      "sha256": "f508488d107d795143d23740a938ee57611c3856a95a520da096f4a4b7d9e7cf",
+      "id": "da531fc9-70c5-4be3-a31b-ca948d8cddce"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp24.csv",
+      "bytes": 456200,
+      "sha256": "4e97692c489128c6b97946293351407d35a325b8c8895eb897812603ba144040",
+      "id": "ada20798-2852-47e1-8208-007073f6860e"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp26.csv",
+      "bytes": 465107,
+      "sha256": "57afb143a88c8755c0fce9ccec843b92d7413b37abf17a58e532ae71877a92d7",
+      "id": "a7e29356-c68f-48c5-99f0-cb3c5ded9164"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp27.csv",
+      "bytes": 466581,
+      "sha256": "30402565a259f59dcfe0d80897706aa09a161ec99445ac786e33c353c0214c48",
+      "id": "4b1f9c13-3fe5-4146-9a36-d7c8f8ea0151"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp28.csv",
+      "bytes": 457105,
+      "sha256": "9abad7314adfe9b0efaa5f70ab9db4376a04d4fecb9528404ec7fd67ae05e9ba",
+      "id": "e6715bdb-5ab7-4e13-a8bd-2e1e3864f73b"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp30.csv",
+      "bytes": 457179,
+      "sha256": "3079f1031abcdbf81ffee63df5b598332d46d939bd40525aaf7fc44721c0e180",
+      "id": "3a2e5eb1-84ac-4784-806b-b40504a215fa"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp32.csv",
+      "bytes": 453534,
+      "sha256": "91e9b3578c1d2b07021466fb1041fe72dcd673fb717d02e4d16932679e2ee968",
+      "id": "914c6558-2c08-4bec-be5c-e36aa6b6a85f"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp33.csv",
+      "bytes": 455402,
+      "sha256": "19bff254b3aa611b351ecc99a3c3d326f0cd1fea528582d1f971b4afd4333b59",
+      "id": "1a95f27c-5262-49c9-917a-4a9a1bdad380"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp35.csv",
+      "bytes": 456257,
+      "sha256": "933036145c21cb5e66f734c996808619cf5a3e2e39b1162665e2a608d2286033",
+      "id": "28f88771-8040-4fce-a695-3f25f7b45ced"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp36.csv",
+      "bytes": 454908,
+      "sha256": "f34f87014a429044f9a3493e105e5e41f8e55c5c1ad9580c4b84cc6fe0a4c266",
+      "id": "bf364545-8b61-41e5-8d72-f5e9f9cb1859"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp37.csv",
+      "bytes": 471603,
+      "sha256": "e0a58f147c2fb2b639e0f3346da7fa3d51cfd261712c32ebda22a78aab2261e5",
+      "id": "f5b70a45-5f63-4e17-833e-a899c87a156b"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp38.csv",
+      "bytes": 232177,
+      "sha256": "7daa8fccaf94e9c841e44c8c37b8f3643ce51784f838469ed943aa7c16964c7d",
+      "id": "8d7ca93e-7cee-4e70-bba4-3594382f676f"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp39.csv",
+      "bytes": 233019,
+      "sha256": "13f329498e0c29b50046f83cc66f7587b8695fc32f655f7f0ab45017acf71d7c",
+      "id": "6bd81fe3-61be-41f1-81f9-44d2661b4746"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp40.csv",
+      "bytes": 227640,
+      "sha256": "6e808643c98d82c3e4cc6b574a13c18198a19fa088e395ee90d21989f088f1d0",
+      "id": "b2dbac88-f7d2-4920-b158-5c416d5f9c95"
+    },
+    {
+      "folder": "Post-processed data",
+      "name": "post-processed_exp41.csv",
+      "bytes": 226293,
+      "sha256": "4d3b1f585d32d19184683e2a81300232a902c7ecf487e997cf3fb7c8b3ef6c36",
+      "id": "e1a8a293-ca27-4d8b-994b-538cbd5f2829"
+    }
+  ],
+  "available_loaded_training": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20,
+    21,
+    22,
+    23,
+    24,
+    26,
+    27,
+    28,
+    30,
+    32,
+    33,
+    35,
+    36
+  ],
+  "permanently_unavailable_loaded": [
+    19,
+    25,
+    29,
+    31,
+    34
+  ],
+  "reserved_open_circuit_target": [
+    37,
+    38,
+    39,
+    40,
+    41
+  ],
+  "input_boundary": "During development only the 31 existing loaded sessions can supply voltages/angles, including setup troubleshooting. None of 37–41 measurement/processed numeric payloads are read before forecast production. In held prediction the separate post-processed files may supply camera clock and three angles only, through trusted extraction that drops derived power and all electrical channels before modeling. Raw measurement files for all five held sessions require an independently recorded forecast lock before scoring. No held calibrations, gain/offset, latency, channel permutation, or favorable mask selection.",
+  "physical_problem": "Forecast time-integrated signed open-circuit terminal voltage from endpoint change of a periodic flux function learned on loaded drives, compared to the author fundamental/angular model and unrestricted path-dependent/velocity controls using the same motion. Open-circuit coil voltage can approximate negative flux derivative only if ADC loading and wiring support it. Under constant series winding resistance Rc, load R and winding inductance L, integrated KVL gives −ΔΦ=(1+Rc/R)∫Vdt+(L/R)[V(t1)−V(t0)]. No estimation of absolute magnetic flux, unobserved ADC transfer, or independently measured electrical power from an algebraic power summary. No global loop/circulation inference without path coverage. Coordinates refer to fixed coil/housing frame.",
+  "physical_controls": "Account for reported nominal 100/666/1000 ohm versus apparatus 100/677/993 ohm values; winding reference≈100 ohm. Evaluate a bounded positive inductance calibration and its identifiability on loaded data only. Source article models local magnetic harmonic 12 and summed squared power, which does not supply signed per-coil output without calibration. Keep this distinction in comparison.",
+  "timing_questions": "Require clock precision, coil count, input target units and sync for all prospective IDs. Count completed fixed intervals and every clipping/missing event; no adjustment from held electrical data. Register exact window, target integration, clipping, source-only rank/cv and gate/baselines before held motion use."
+}

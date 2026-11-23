@@ -1,0 +1,39 @@
+{
+  "course": "plaza-periodic-flux-open-circuit-v1-clock-v2",
+  "exposure_pinned": "8b6abafc13f5f1975dec31fe79f5c1035e697424",
+  "training_source": "p3-f747-plaza-31-loaded-sessions-only-calibration-intake",
+  "training_source_sha": "df03db854a4d4ddf2d254cec3351184c82f9bbf30b399ddd724a24160faf4f6e",
+  "physical_scope": "Open-circuit terminal voltage recorded by the same 24-channel ADC; finite-input electronics can load the coil. Forecast conditioned on the released whole-trial optical trajectory, not from initial state or platform excitation alone. Five available open-circuit experiments at three frequencies are the whole evaluation units, one apparatus. No current, flux or power independently sensed. Terminal voltages finite and reported as labeled; quoted full-scale ±1.65 V conflicted with loaded source values up to 2.19 V; retain all finite samples and disclose exceedances, never clip or calibrate from open-circuit labels.",
+  "time": "Optical frame time from LED trigger, camera fitted housing-frame qr/qb/qy unwrapped in native order, linearly interpolated to 100 Hz. 0..9.99 s all 1000 ADC samples paired. Nonoverlapping integration interiors with shared boundary samples: 99 windows of .1s plus last .09s. Integral by trapezoidal rule; a discrete integral approximation of signed terminal voltage, in V s. No latency fit/timeshift in held or loaded trials. 100 interval mean voltages = integral divided by actual duration. Each trial carries equal weight, complete 24 channel coverage expected, each observed electrical NaN omits exactly its incident interval/coil(s) and every omitted cell must be listed. Refuse full 5-run promotion if any run has <95% finite reference cells, any missing coil in the full run, changed role/trajectory/clock identities, or high-rate targets were accessed before complete forecast lock.",
+  "physics": "Shared flux F_j=sum over three blade angles of a Fourier series through integer harmonic24 with common coefficients across identical Halbach blades, independent coefficients per fixed housing coil j. dF sign is absorbed by calibrated coefficient convention. Learn from (1+Rc/R) integral(V)dt + (L/R)deltaV at loaded terminals and a separate coil-specific additive constant voltage bias (dt coefficient). Only the bias-corrected candidate is a periodic endpoint difference with zero integral around a closed modeled path; its presence does not identify instrument offset. KVL assumes constant lone series winding impedance/resistor, no mutual-inductance/iron loss/coupled electronics, and unchanged optical coordinate definition. Static flux offsets are invisible. Loaded L is profiled as a nonnegative coefficient with same ridge; all nine completed calibration models place L at zero or fixed zero. This is not an independent inductance measurement. Loaded-validation filtering uses motion-only emf at 100Hz, constant within each interval, zero initial terminal state; validation voltage endpoints do not enter predictions. Open-circuit target has no measured endpoint/initial voltage provided; use predicted flux difference+bias directly.",
+  "controls": "Seven structural controls: zero; source coil constant bias; author-inspired angular harmonic 12 with signed per-blade sine/cosine coefficients (published model predicts aggregate squared power, not these signed coil impulses); independent per-blade periodic flux; per-blade winding + cross-angle velocity terms; shared-blade unrestricted path (same shared features plus summed winding and four permutation-symmetric cross one-forms, allowing path dependence); load-blind identical shared Fourier. Eighth sensitivity nominal 100/666/1000 vs apparatus 100/677/993 ohm repeated source fit. Actual winding resistance cited as approx100ohm; none of these fits determine its physical value. Loaded-only regularization .0001/.001/.01 selected using three whole initial-orientation folds, then all31 loaded runs refit; all nontrivial models selected .01. Lower target RMS is better.",
+  "gate": "Score 45 arrays, 5 x 9 x 100 x 24=108000 signed predictions. First compare per-run RMS in V of window-mean voltage error, then average equally across all five. Both shared flux fits (apparatus and nominal load conventions) must strictly beat all seven structurally distinct controls on that mean. Apparatus shared flux must beat same-sharing unrestricted path and load-blind in at least 4/5 individual runs each. Report all individual runs and every role, MAE and peak same-window errors, duration, opposite signs, worst physical voltage/time/angle record, declared-scale exceedances and finite counts. No population-level or SOTA claim, no free-running motion claim. A joint-negative or partial control win remains negative; no postscore refit. Report held RMS with no trimming. Additional diagnostics of condition/parameter sensitivity stay descriptive.",
+  "source_falsifier": "Before accessing any open motion arrays: run18 coil9 6.3..6.4s measured -0.04245Vs while shared+0.0394457856384Vs; signed model was opposite. Mean loaded RMS .05647178 vs .05677985 nested path, zero .09167172V; nominal-load .05645288. Three isolated missing ADC source cells omitted in per-coil score; training uses three fewer complete windows. Predecessor first source fit refused before optimization. Near-symmetry or locally oscillatory motion cannot establish full angular-period coverage or a global measured circulation. Preserve terminal/path degeneracy and actual excitation support.",
+  "files": [
+    {
+      "name": "flux.py",
+      "bytes": 9138,
+      "sha256": "e52adce3e3b96a62d807a150d27355b33821d58ee589c158bed0374fb99d41a9"
+    },
+    {
+      "name": "loaded-coefficients.npz",
+      "bytes": 98914,
+      "sha256": "5fa1bb0794ce01af82105ee68d6f572ecee9c283cf8685417d83a1d8c27c8c76"
+    },
+    {
+      "name": "loaded-development.json",
+      "bytes": 302209,
+      "sha256": "f3fc6ef1f89930a5315795e5991bba418c253ddf29045dc0c033c42d023c0d9b"
+    }
+  ],
+  "loaded_only_native_original": "p3-f747-plaza-matched-blade-sharing-nonconservative-path-and-load-sensitivity",
+  "raw_held_files_seen_before_freeze": 0,
+  "timing_correction": {
+    "failed_original": "p3-f747-plaza-open-motion-only-forty-five-frozen-electromagnetic-forecasts",
+    "original_source": "91cb5d19f8e81a8421fd88bd389134c8b5593b9d",
+    "clock_only_original": "p3-f747-plaza-open-optical-time-only-original-refusal-diagnosis",
+    "observed_input": "37=240Hz; 38,39,40,41=120Hz. Every measured optical clock starts at0 and covers t=9.99s. Retain all 5×100 windows, coefficients, controls, inference and numerical scoring gates. Use each actual timestamp without retiming; an exact 120 or240Hz uniform grid is required to 2e-9s. No physical resampling claim from printed clocks. The original 240Hz-only course did not produce a prediction lock. Held optical source arrays and clocks already exposed, raw terminal CSVs unopened.",
+    "new_flux_sha256": "1b33d5da2d4e78d0a44a9f89d3046b017e97f7c208885bb49478267f767cfc48",
+    "weights_sha256": "5fa1bb0794ce01af82105ee68d6f572ecee9c283cf8685417d83a1d8c27c8c76"
+  }
+}

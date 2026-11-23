@@ -1,0 +1,218 @@
+{
+  "chosen": {
+    "shared-flux": 0.01,
+    "zero": 0.001,
+    "source-bias": 0.001,
+    "author-harmonic12": 0.01,
+    "independent-flux": 0.01,
+    "path-dependent": 0.01,
+    "shared-path": 0.01,
+    "load-blind": 0.01,
+    "nominal-load": 0.01
+  },
+  "summary": {
+    "shared-flux": {
+      "mean_V": 0.05647178198790484,
+      "worst_run": 18,
+      "worst": {
+        "rms_V": 0.17954697340367562,
+        "mae_V": 0.12322228731846242,
+        "finite_cells": 2400,
+        "all_cells": 2400,
+        "worst_abs_V": 0.8189578563839369,
+        "window": 63,
+        "coil": 9,
+        "target_volt_seconds": -0.04245,
+        "predicted_volt_seconds": 0.039445785638393696,
+        "duration_s": 0.1
+      },
+      "full_fit": {
+        "L_H": 0,
+        "profile_den": 0.09919383880273606,
+        "raw_rank": 49,
+        "features": 49,
+        "gram_condition": 96.1053670984703
+      }
+    },
+    "zero": {
+      "mean_V": 0.09167172157085196,
+      "worst_run": 16,
+      "worst": {
+        "rms_V": 0.12478132879849495,
+        "mae_V": 0.06356349537037037,
+        "finite_cells": 2400,
+        "all_cells": 2400,
+        "worst_abs_V": 0.5872222222222223,
+        "window": 99,
+        "coil": 24,
+        "target_volt_seconds": 0.05285,
+        "predicted_volt_seconds": 0,
+        "duration_s": 0.09
+      },
+      "full_fit": {
+        "L_H": 0
+      }
+    },
+    "source-bias": {
+      "mean_V": 0.0916333820770948,
+      "worst_run": 16,
+      "worst": {
+        "rms_V": 0.12475560864993153,
+        "mae_V": 0.06350484730732062,
+        "finite_cells": 2400,
+        "all_cells": 2400,
+        "worst_abs_V": 0.5910954645880143,
+        "window": 99,
+        "coil": 24,
+        "target_volt_seconds": 0.05285,
+        "predicted_volt_seconds": -0.0003485918129212881,
+        "duration_s": 0.09
+      },
+      "full_fit": {
+        "L_H": 0,
+        "profile_den": 0.11285246732735309,
+        "raw_rank": 1,
+        "features": 1,
+        "gram_condition": 1
+      }
+    },
+    "author-harmonic12": {
+      "mean_V": 0.0895676237662508,
+      "worst_run": 30,
+      "worst": {
+        "rms_V": 0.1274662180799793,
+        "mae_V": 0.0877417155070805,
+        "finite_cells": 2400,
+        "all_cells": 2400,
+        "worst_abs_V": 0.605584154770897,
+        "window": 54,
+        "coil": 24,
+        "target_volt_seconds": -0.054400000000000004,
+        "predicted_volt_seconds": 0.006158415477089696,
+        "duration_s": 0.1
+      },
+      "full_fit": {
+        "L_H": 0,
+        "profile_den": 0.1099407212211646,
+        "raw_rank": 7,
+        "features": 7,
+        "gram_condition": 1.8015186902273372
+      }
+    },
+    "independent-flux": {
+      "mean_V": 0.06996091983106095,
+      "worst_run": 18,
+      "worst": {
+        "rms_V": 0.1940843190628594,
+        "mae_V": 0.1360186780301717,
+        "finite_cells": 2400,
+        "all_cells": 2400,
+        "worst_abs_V": 1.0332073719132195,
+        "window": 63,
+        "coil": 9,
+        "target_volt_seconds": -0.04245,
+        "predicted_volt_seconds": 0.06087073719132195,
+        "duration_s": 0.1
+      },
+      "full_fit": {
+        "L_H": 0,
+        "profile_den": 0.08934098086620722,
+        "raw_rank": 145,
+        "features": 145,
+        "gram_condition": 472.94059356105663
+      }
+    },
+    "path-dependent": {
+      "mean_V": 0.07125388850854554,
+      "worst_run": 18,
+      "worst": {
+        "rms_V": 0.19280985783548577,
+        "mae_V": 0.13474356814890878,
+        "finite_cells": 2400,
+        "all_cells": 2400,
+        "worst_abs_V": 0.9881148532283548,
+        "window": 63,
+        "coil": 9,
+        "target_volt_seconds": -0.04245,
+        "predicted_volt_seconds": 0.05636148532283548,
+        "duration_s": 0.1
+      },
+      "full_fit": {
+        "L_H": 0,
+        "profile_den": 0.08839923493538764,
+        "raw_rank": 172,
+        "features": 172,
+        "gram_condition": 771.8667664078042
+      }
+    },
+    "shared-path": {
+      "mean_V": 0.056779850946413225,
+      "worst_run": 18,
+      "worst": {
+        "rms_V": 0.17917588135873996,
+        "mae_V": 0.12285200542761786,
+        "finite_cells": 2400,
+        "all_cells": 2400,
+        "worst_abs_V": 0.8247322035916195,
+        "window": 63,
+        "coil": 9,
+        "target_volt_seconds": -0.04245,
+        "predicted_volt_seconds": 0.04002322035916195,
+        "duration_s": 0.1
+      },
+      "full_fit": {
+        "L_H": 0,
+        "profile_den": 0.09884950101892126,
+        "raw_rank": 54,
+        "features": 54,
+        "gram_condition": 272.9716754069631
+      }
+    },
+    "load-blind": {
+      "mean_V": 0.06125690282074947,
+      "worst_run": 18,
+      "worst": {
+        "rms_V": 0.17707729566161873,
+        "mae_V": 0.12202710203643913,
+        "finite_cells": 2400,
+        "all_cells": 2400,
+        "worst_abs_V": 0.8001215388169483,
+        "window": 63,
+        "coil": 9,
+        "target_volt_seconds": -0.04245,
+        "predicted_volt_seconds": 0.03756215388169482,
+        "duration_s": 0.1
+      },
+      "full_fit": {
+        "L_H": 0,
+        "profile_den": 0.09919383880273606,
+        "raw_rank": 49,
+        "features": 49,
+        "gram_condition": 96.1053670984703
+      }
+    },
+    "nominal-load": {
+      "mean_V": 0.0564528837361962,
+      "worst_run": 18,
+      "worst": {
+        "rms_V": 0.17939113981747593,
+        "mae_V": 0.1231037269784855,
+        "finite_cells": 2400,
+        "all_cells": 2400,
+        "worst_abs_V": 0.8178654830540216,
+        "window": 63,
+        "coil": 9,
+        "target_volt_seconds": -0.04245,
+        "predicted_volt_seconds": 0.03933654830540217,
+        "duration_s": 0.1
+      },
+      "full_fit": {
+        "L_H": 0,
+        "profile_den": 0.0994035477916829,
+        "raw_rank": 49,
+        "features": 49,
+        "gram_condition": 96.1053670984703
+      }
+    }
+  }
+}

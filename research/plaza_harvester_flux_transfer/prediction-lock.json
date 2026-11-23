@@ -1,0 +1,18 @@
+{
+  "source": "46a28f39fd519d3ed141d0df13b97dff62f3fbfd",
+  "prior_failed_240_only_original": "p3-f747-plaza-open-motion-only-forty-five-frozen-electromagnetic-forecasts",
+  "original": "p3-f747-plaza-correct-native-angle-clock-unchanged-108000-voltage-forecasts",
+  "original_owner": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+  "command_generation": "619e5fa3feedbee5083c53751199418b91aa19ed8e37dc90490c4398281c1556",
+  "request_sha256": "cdf6456b3ac499eda881e6d6bd4d5280d18bd9e6e9de15ae4a85cfa0e37d86cd",
+  "receipt_sha256": "3e1d294d46f94a20383f07169f1e40ebf3f872150beb34973f18bd8b0c148b6a",
+  "original_stdout_bytes": 877494,
+  "original_stdout_sha256": "777d149bfa48a391a5affdf95e37be265b781faf5b844db38572d16e2b48b5d5",
+  "archive_sha256": "7be44ab317b7666be7cd88b5b33e0cb606f2fc9250e723b31f7b88815f87cfb5",
+  "archive_bytes": 657738,
+  "git_blob": "36fc3f29e9fe05193ff75861aec274783f38d117",
+  "arrays": 45,
+  "predictions": 108000,
+  "prior_feature_arrays_reproduced": 352,
+  "target_terminal_csvs_opened": 0
+}
