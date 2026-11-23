@@ -1,6 +1,6 @@
 # The grouped families have adaptive minimum five at the four-pulse boundary
 
-For the published eight-command, two-family catalog, the **unrestricted four-pulse noise radius is exactly 1/40**. Only the prospective prefix (ref,group) attains it. Every four-pulse strategy admits a shared physical history at equality. The exhibited five-pulse tree first uses ref, ref, group, then chooses x0 or x1 from the positions already received, and finally chooses that group’s y or z command. Its exact first-failure radius is **1/29**. Consequently the minimum adaptive pulse count is five for **1/40 ≤ ε < 1/29**. At 1/29 this particular five-pulse tree has a collision; the unrestricted five-pulse optimum remains open.
+For the published eight-command, two-family catalog, the **unrestricted four-pulse noise radius is exactly 1/40**. Only the prospective prefix (ref,group) attains it. Every four-pulse strategy admits a shared physical history at equality. The exhibited five-pulse tree first uses ref, ref, group, then chooses x0 or x1 from the positions already received, and finally chooses that group’s y or z command. Its exact first-failure radius is **1/29**. Consequently the minimum adaptive pulse count is five for **1/40 ≤ ε < 1/29**. At 1/29 this particular five-pulse tree has a collision. The subsequent [complete five-pulse certificate](position-drift-five-pulse-global.md) rules out every five-pulse policy there.
 
 ```sh
 node scripts/active-linear-family.mjs --input examples/active-position-drift-five-pulse-minimum.json --five-pulse-minimum --output five.json
@@ -28,4 +28,4 @@ The runtime first verifies the source-bound proof. It checks the physical surviv
 
 The independent Python receiver recomputes each four-pulse support directly on the source vertices and checks the complete position trajectories. For the fifth pulse it rebuilds the signed raw equations with symbolic identifiers for each private state and each shared command history. It verifies the entire lower combination and the boundary states without calling the JavaScript designer or a numerical optimizer.
 
-For a changed two-point catalog with rates (0,0) and (0,1), the same verifier recovers four-pulse radius 1/4 and exhibited balanced five-pulse radius 3/10. At the latter equality the program reports that the exhibited five-pulse tree is refuted; a global five-pulse maximum is not inferred from a single program.
+For a changed two-point catalog with rates (0,0) and (0,1), the same verifier recovers four-pulse radius 1/4 and exhibited balanced five-pulse radius 3/10. At the latter equality the program reports that the exhibited five-pulse tree is refuted; this changed catalog has no complete five-pulse certificate in this example.
