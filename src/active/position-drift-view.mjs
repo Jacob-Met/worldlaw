@@ -1,4 +1,4 @@
-import {isGuidedPlan,BINARY_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
+import {isGuidedPlan,BINARY_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,driftFeedbackInconclusive,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
 import {escapeHTML as html} from './view.mjs';
 
 const byId=id=>document.getElementById(id);
@@ -7,6 +7,16 @@ function table(caption,head,rows){
     '</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+html(c)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
 }
 function guidedProof(p){
+  if(p.schema===SUFFIX_PLAN){
+    if(p.status==='cover-inconclusive')return {heading:'The suffix cover is inconclusive.',
+      summary:'A group of pairwise-compatible laws has a collision on each offered tape. Those collisions can require different prefix readings.',
+      proof:table('Uncovered laws: '+p.uncovered.laws.join(', '),['Suffix','Colliding pair'],
+        p.uncovered.failures.map(f=>[p.suffixes[f.suffix].join(' → '),f.collision.laws.join(' / ')]))};
+    return {heading:'Choose a command sequence from the prefix readings.',
+      summary:'Apply '+p.prefix.join(' → ')+'. The remaining laws determine the entire suffix before its first command.',
+      proof:table('Each group has a suffix that separates every pair.', ['Compatible group','Suffix'],
+        p.cover.map(r=>[r.laws.join(', '),p.suffixes[r.suffix].join(' → ')]))};
+  }
   if(p.schema===ONE_FEEDBACK_PLAN){
     const won=p.status==='one-feedback-certified',refuted=p.status==='all-declared-prefixes-refuted';
     const trials=table('Declared fixed prefixes in search order.',['Command prefix','Result'],p.trials.map(t=>[
@@ -77,7 +87,7 @@ export function renderDriftNotebook(book,index,mode,dirty){
       byId('drift-position').value='0';byId('drift-velocity').value='0';
     }
   }
-  const receivable=finite&&(p.schema!==ONE_FEEDBACK_PLAN||p.status==='one-feedback-certified');
+  const receivable=finite&&!driftFeedbackInconclusive(p);
   byId('receive-region').hidden=!receivable;
   byId('supplied-details').hidden=!receivable;
   byId('receive-note').textContent=guided&&frozen?(pending.length?(pending[0].command?'Apply '+pending[0].command+' for '+pending[0].repeats+' pulse'+(pending[0].repeats==='1'?'':'s')+', then record tick '+pending[0].tick+'.':'Record the starting position at tick 0.'):'This recorded trajectory is complete or inconsistent.'):frozen?'Enter positions from a single run in checkpoint order.':'Freeze the schedule before entering readings.';
