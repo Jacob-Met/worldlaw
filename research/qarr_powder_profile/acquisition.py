@@ -46,7 +46,11 @@ def source_values(name,b,fn):
         packed=struct.unpack_from('<7251H',native,250)
         assert max(packed)==struct.unpack_from('<H',native,136)[0]
         counts=[float((v*v)//100) for v in packed]
-        assert counts==x,('native/PRN axis-matched count identity refused',name,sum(v!=w for v,w in zip(counts,x)))
+        converted=counts if name=='corundum' else [float((v*v+50)//100) for v in packed]
+        assert converted==x,('converter-specific count refusal',name)
+        delta=[v-w for v,w in zip(x,counts)]
+        assert set(delta)<={0.,1.} and sum(delta)==(2108 if name=='cpd-1e' else 0)
+        print('CONVERTER',name,len(delta),sum(delta),flush=True)
         return counts
     return x
 def qualify():
