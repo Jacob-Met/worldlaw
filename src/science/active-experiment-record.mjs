@@ -19,6 +19,7 @@ import {TWO_PULSE_SCHEMA,designTwoPulse,receiveTwoPulse} from './active-integrat
 
 import {CATALOG_SCHEMA} from './persistent-position-drift-planner.mjs';
 import {planAllHorizonPositionDrift} from './persistent-position-drift-all-horizon.mjs';
+import {CASE_TWELVE_REQUEST,isGuidedPlan,designCatalog,receiveGuidedDrift} from './active-guided-drift.mjs';
 import {ACTIVE_DRIFT_PLAN,evaluateActiveDriftInput,parseActiveOriginalJSON} from './active-position-drift-readout.mjs';
 
 export const ACTIVE_EXPERIMENT_NOTEBOOK_SCHEMA='worldlaw.active-experiment-notebook/v1';
@@ -43,17 +44,19 @@ function source(bytes){
   const joint=request?.schema===ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA;
   const adaptive=request?.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA;
   const vandermonde=request?.schema===ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA||request?.schema===ACTIVE_ACTUATOR_TIMELINE_SCHEMA;
-  need(multiple||bounded||joint||adaptive||vandermonde||request?.schema===CATALOG_SCHEMA||request?.schema===TWO_PULSE_SCHEMA||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request?.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request?.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA,
+  need(multiple||bounded||joint||adaptive||vandermonde||request?.schema===CASE_TWELVE_REQUEST||request?.schema===CATALOG_SCHEMA||request?.schema===TWO_PULSE_SCHEMA||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request?.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request?.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA,
     'Unrecognized active experiment source schema; choose linear family, intervention family, control box, joint control, one erasure, one replaced reading, affine sensor or adaptive v1');
   return {request,multiple,bounded,joint,adaptive,vandermonde};
 }
 function pick(value,keys){return Object.fromEntries(keys.map(key=>[key,value?.[key]]));}
 
 /** Create a new prospective plan, or reproduce a saved plan exactly. */
-export async function sealActivePlan(original,{prior=null,sourcePath}={}){
+export async function sealActivePlan(original,{prior=null,sourcePath,design}={}){
   const bytes=bytesOf(original),{request,multiple,bounded,joint,adaptive,vandermonde}=source(bytes);
   const saved=prior==null?null:clone(prior);
-  const core=request.schema===CATALOG_SCHEMA?planAllHorizonPositionDrift(request):request.schema===TWO_PULSE_SCHEMA?designTwoPulse(request):multiple?designActiveInterventionFamily(request):bounded?
+  const driftSource=request.schema===CATALOG_SCHEMA||request.schema===CASE_TWELVE_REQUEST;
+  need(!design||driftSource,'Select a drift rate catalog for the requested planner.');
+  const core=driftSource?designCatalog(request,design??(saved?{method:saved.schema,limits:saved.limits}:{})):request.schema===TWO_PULSE_SCHEMA?designTwoPulse(request):multiple?designActiveInterventionFamily(request):bounded?
     designActiveLinearControlBox(request):joint?designActiveLinearJointControl(request):
     adaptive?designActiveLinearAdaptive(request):vandermonde?
     designActiveVandermondeNonlinear(request):designActiveLinearFamily(request);
@@ -65,7 +68,7 @@ export async function sealActivePlan(original,{prior=null,sourcePath}={}){
     const previous=pick(saved,Object.keys(core));
     need(saved.planSHA256===await activeBytesSHA256(JSON.stringify(previous)),
       'Prospective plan digest changed; cannot replay experiment certificate');
-    if(request.schema===CATALOG_SCHEMA){
+    if(driftSource){
       const allowed=new Set([...Object.keys(core),'sourceSHA256','planSHA256','sourcePath','evidenceLevel']);
       need(Object.keys(saved).every(key=>allowed.has(key)) && JSON.stringify(core)===JSON.stringify(previous),
         'Position/drift schedule or gauge witness changed; exact replay refused.');
@@ -92,12 +95,13 @@ export async function sealActiveReadout(original,plan,readings,{prior=null,sourc
   const {request,vandermonde}=source(sourceBytes);
   need(request.schema!==ACTIVE_LINEAR_ADAPTIVE_SCHEMA&&request.schema!==TWO_PULSE_SCHEMA,
     'Adaptive readings require the original portable notebook and its complete preceding transcript.');
+  need(!isGuidedPlan(frozen)||frozen.status==='indistinguishable','Guided readings require the portable notebook and preceding transcript.');
   const supplied=parseActiveOriginalJSON(decoder.decode(readingBytes));
   need(supplied.sourceSHA256===frozen.sourceSHA256&&supplied.planSHA256===frozen.planSHA256,
     'Readout source or plan digest does not match the frozen prospective certificate.');
   const core=Object.fromEntries(Object.entries(frozen).filter(([key])=>
     !['sourceSHA256','planSHA256','evidenceLevel'].includes(key)));
-  let result=frozen.schema===ACTIVE_DRIFT_PLAN?evaluateActiveDriftInput(request,core,supplied):vandermonde?evaluateActiveVandermondeReadings(request,core,supplied):evaluateActiveLinearReadings(request,core,supplied);
+  let result=isGuidedPlan(frozen)?evaluateActiveDriftInput(frozen.source,planAllHorizonPositionDrift(frozen.source),supplied):frozen.schema===ACTIVE_DRIFT_PLAN?evaluateActiveDriftInput(request,core,supplied):vandermonde?evaluateActiveVandermondeReadings(request,core,supplied):evaluateActiveLinearReadings(request,core,supplied);
   if(request.schema===ACTIVE_ACTUATOR_TIMELINE_SCHEMA&&saved?.schema==='worldlaw.active-actuator-timeline-result/v1'){
     // Reproduce all historical witness estimates exactly from the supplied source and readings.
     result={...result,schema:saved.schema,estimates:result.estimates.map(({coefficients,estimate,interval})=>
@@ -109,7 +113,7 @@ export async function sealActiveReadout(original,plan,readings,{prior=null,sourc
     ...(readingsPath!==undefined?{readingsPath}:{}),...result,evidenceLevel:readingEvidence};
   if(saved){
     const keys=['sourceSHA256','planSHA256','readingsSHA256',...Object.keys(result)];
-    if(frozen.schema===ACTIVE_DRIFT_PLAN){
+    if(frozen.schema===ACTIVE_DRIFT_PLAN||isGuidedPlan(frozen)){
       const allowed=new Set([...keys,'sourcePath','planPath','readingsPath','evidenceLevel']);
       need(Object.keys(saved).every(k=>allowed.has(k)), 'Unexpected position/drift readout result fields.');
     }
@@ -145,11 +149,11 @@ function notebookObject(raw){
   }
   return book;
 }
-export async function createActiveNotebook(original,{plan=null}={}){
+export async function createActiveNotebook(original,{plan=null,design}={}){
   const text=sourceText(original);
   const book={schema:ACTIVE_EXPERIMENT_NOTEBOOK_SCHEMA,sourceText:text,
-    plan:await sealActivePlan(text,{prior:plan}),readouts:[]};
-  if(book.plan.schema===ACTIVE_DRIFT_PLAN)notebookObject(book);
+    plan:await sealActivePlan(text,{prior:plan,design}),readouts:[]};
+  if(book.plan.schema===ACTIVE_DRIFT_PLAN||isGuidedPlan(book.plan))notebookObject(book);
   return book;
 }
 
@@ -317,7 +321,17 @@ async function sealTwoPulseReadings(book,text,prior){
   return report;
 }
 
+async function sealGuidedRound(book,text,prior){
+  const supplied=parseActiveOriginalJSON(text);
+  const result=receiveGuidedDrift(book,supplied);
+  const report={...result,sourceSHA256:book.plan.sourceSHA256,planSHA256:book.plan.planSHA256,
+    previousReadingsSHA256:supplied.previousReadingsSHA256,readingsSHA256:await activeBytesSHA256(text),evidenceLevel:readingEvidence};
+  if(prior)need(JSON.stringify(prior)===JSON.stringify(report),'Guided readings, commands or retained result changed.');
+  return report;
+}
+
 function sealNotebookRow(book,text,prior=null){
+  if(isGuidedPlan(book.plan))return book.plan.status==='indistinguishable'?sealActiveReadout(book.sourceText,book.plan,text,{prior}):sealGuidedRound(book,text,prior);
   if(book.plan.schema===TWO_PULSE_SCHEMA)return sealTwoPulseReadings(book,text,prior);
   const schema=JSON.parse(text)?.schema;
   if(schema==='worldlaw.active-linear-historical-readings/v1')return sealHistoricalReadings(book,text,prior);
@@ -345,6 +359,6 @@ export async function receiveActiveNotebook(raw,originalReadings){
   need(!book.readouts.some(row=>row.result.readingsSHA256===result.readingsSHA256),
     'These exact reading bytes are already recorded.');
   const next={...book,readouts:[...book.readouts,{readingsText:text,result}]};
-  if(book.plan.schema===ACTIVE_DRIFT_PLAN)notebookObject(next);
+  if(book.plan.schema===ACTIVE_DRIFT_PLAN||isGuidedPlan(book.plan))notebookObject(next);
   return next;
 }

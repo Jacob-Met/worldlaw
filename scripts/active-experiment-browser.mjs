@@ -562,6 +562,59 @@ try{
   await page.screenshot({path:resolve(dir,'active-drift-gauge-320.png'),fullPage:true});
   mark('drift schedules and gauge traces use the same frozen browser/CLI source and exact physical receiver');
 
+  await page.setViewportSize({width:390,height:844});
+  for(const [example,expected,values] of [
+    ['driftBinary',/require 5 pulses/,[[0,'0'],[2,'4'],[5,'25']]],
+    ['driftMulti',/requires 9 pulses/,[[0,'0'],[4,'8'],[9,'33']]]]){
+    await openDetails('source-details');await page.locator('#example').selectOption(example);
+    await page.locator('#load-example').click();await idle();
+    assert.match(await page.locator('#plan-heading').textContent(),expected);
+    await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+    await page.locator('#readout-source').fill('Known synthetic fixed-tape trajectory');
+    await page.locator('#acquisition-kind').selectOption('synthetic');
+    for(const [tick,value] of values)await page.locator('#drift-reading-'+tick).fill(value);
+    await page.locator('#evaluate-readings').click();await idle();
+    const exact=await accepted();assert.deepEqual(exact.readouts.at(-1).result.consistentHypothesisIds,['A']);
+    const portable=await download('export-notebook',example+'.json');
+    assert.deepEqual(JSON.parse(cli(['--notebook',portable]).stdout),exact);
+  }
+  const shift=value=>String(10n**60n+1n+13n*BigInt(value))+'/13';
+  for(const [values,command,survivors,finalValue] of [
+    [[-1,-2,-3,-4,2,8],'u2',['L0','L1'],13],
+    [[1,-2,-3,-4,2,10],'u1',['L0','L2'],15]]){
+    await openDetails('source-details');await page.locator('#example').selectOption('driftFeedback');
+    await page.locator('#load-example').click();await idle();await page.locator('#freeze-plan').click();
+    await openDetails('supplied-details');
+    assert.equal(await page.locator('#drift-reading-6').count(),0);
+    await page.locator('#readout-source').fill('Original rational trajectory for branch '+command);
+    await page.locator('#acquisition-kind').selectOption('synthetic');
+    for(const [i,value] of values.entries())await page.locator('#drift-reading-'+i).fill(shift(value));
+    await page.locator('#evaluate-readings').click();await idle();
+    const prefix=await accepted(),outcome=prefix.readouts[0].result;
+    assert.deepEqual(outcome.consistentHypothesisIds,survivors);assert.equal(outcome.checked.nextCommand,command);
+    assert.match(await page.locator('#receive-note').textContent(),new RegExp('Apply '+command));
+    const prefixPath=await download('export-notebook','active-feedback-'+command+'-prefix.json');
+    const opened=cli(['--notebook',prefixPath]);assert.equal(opened.status,0,opened.stderr);
+    assert.deepEqual(JSON.parse(opened.stdout),prefix);
+    await setFile('notebook-file','cli-reopened-notebook.json',opened.stdout);await idle();
+    assert.equal(await page.locator('#drift-reading-6').getAttribute('data-command'),command);
+    assert.equal(await page.locator('#readout-source').inputValue(),outcome.readoutSource);
+    await openDetails('supplied-details');
+    await page.locator('#drift-reading-6').fill(shift(finalValue));await page.locator('#evaluate-readings').click();await idle();
+    const final=await accepted(),result=final.readouts[1].result;
+    assert.deepEqual(result.consistentHypothesisIds,['L0']);
+    assert.deepEqual(result.checked.values,[...values,finalValue].map(shift));
+    assert.equal(result.checked.nextCommand,null);
+    assert.equal(result.previousReadingsSHA256,outcome.readingsSHA256);
+    assert.ok(await page.locator('#evaluate-readings').isDisabled());
+    const finalPath=await download('export-notebook','active-feedback-'+command+'-final.json');
+    assert.deepEqual(JSON.parse(cli(['--notebook',finalPath]).stdout),final);
+    await page.reload();await idle();assert.deepEqual(await accepted(),final);
+    await page.screenshot({path:resolve(dir,'active-feedback-'+command+'.png'),fullPage:true});
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  }
+  mark('exact minimum planners and both measured sixth-command branches survive browser and CLI notebook replay');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';

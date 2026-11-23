@@ -98,3 +98,22 @@ For Δ=0 the constant-offset gauge applies forever. Otherwise the minimum is the
 In JavaScript, `planBinaryPositionDriftMinimum(source)` constructs the policy. `openBinaryPositionDriftMinimum(source, policy)` rederives every field. Its finite-schedule `observe(values)` accepts the three checkpoint positions or a consecutive prefix and returns physical state regions. Call `midpointAdversary()` for a lower-bound witness. Read `initialReading`, pass each selected command to `pulse(command)`, then call `collision()` for both initial states, readings and the maximum error over the whole run. An optional positive decimal-string count groups consecutive identical commands. Intermediate readings and errors interpolate linearly within each such run. The adversary accepts every word through the predecessor horizon, including an early stop, or arbitrary finite words for gauge-equivalent laws.
 
 The [multiclass minimum study](persistent-position-drift-multiclass-minimum.md) combines these binary lower bounds with verified common fixed tapes. It resolves three of the five finite historical cases and gives one-pulse adaptive intervals for the other two.
+
+## Minimum planners and measurement-led feedback in the workbench
+
+In the Hidden-state experiment at `/active.html`, choose **Find the two-law minimum**, **Bound a multiclass minimum**, or **Choose the sixth pulse from five-pulse readings**. You can also import a rate catalog, select its planner in the source panel, and recompute the draft. The multiclass planner accepts an explicit horizon and total budget for fixed-word enumeration. The binary planner reports an exact minimum or a permanent alias. A multiclass plan displays distinct adaptive and fixed bounds, and reports an exact minimum when its bounds meet.
+
+Freeze the design, give the physical run a source description, and supply consecutive positions at the displayed checkpoints. For a fixed tape the displayed repeat counts remain exact decimal strings. For case 12, record the initial position and the five prefix measurements, in one or more packets. The workbench displays the sixth command only after those six readings have been accepted. Reopening that notebook restores the same command. The final packet must carry the matching tick, command and digest of the preceding original packet. Each accepted measurement remains in its original packet, and each result includes the accumulated trajectory and compatible initial states. For the reverse registered prefix, set the feedback source's `first` field to `u1` before freezing.
+
+The CLI uses the same notebook and receiver:
+
+```sh
+node scripts/active-linear-family.mjs --input examples/active-position-drift-binary.json --binary-minimum --create-notebook --output binary.json
+node scripts/active-linear-family.mjs --input examples/active-position-drift-schedule.json --multiclass-minimum --enumerate-through 7 --word-budget 2000 --create-notebook --output multiclass.json
+node scripts/active-linear-family.mjs --input examples/active-position-drift-feedback.json --create-notebook --output feedback.json
+node scripts/active-linear-family.mjs --notebook feedback.json --readings first-packet.json --output after-five.json
+node scripts/active-linear-family.mjs --notebook after-five.json --readings last-packet.json --output complete.json
+node scripts/active-linear-family.mjs --notebook complete.json
+```
+
+For guided readings use schema `worldlaw.active-guided-drift-readings/v1`. Include `sourceSHA256` and `planSHA256` from the frozen plan, a descriptive `source`, and an `acquisition` of `supplied` or `synthetic` for the run. Set `previousReadingsSHA256` to null on the first packet and to the last accepted result's `readingsSHA256` thereafter. The `readings` array starts with `{"tick":"0","command":null,"value":"1/13"}`; subsequent rows name the preceding run's command and its exact end tick. Submit positions as exact integer or fraction strings. After a case-12 prefix use the returned `checked.nextCommand` and `checked.nextTick` for the last input. An inconsistent prefix stops the experiment. The notebook preserves the original UTF-8 source and packet texts through browser export, CLI replay and reopening.

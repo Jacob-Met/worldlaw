@@ -1,3 +1,4 @@
+import {isGuidedPlan,BINARY_PLAN,MULTICLASS_PLAN,CASE_TWELVE_PLAN,CASE_TWELVE_REQUEST,GUIDED_INPUT,pendingDriftSteps} from '../science/active-guided-drift.mjs';
 import {ACTIVE_DRIFT_PLAN,ACTIVE_DRIFT_CHECKPOINTS,ACTIVE_DRIFT_TRACE,parseActiveOriginalJSON} from '../science/active-position-drift-readout.mjs';
 import {renderDriftNotebook} from './position-drift-view.mjs';
 import {COUPLED_DEMO_SOURCE_SHA256} from './instrument.mjs';
@@ -9,7 +10,8 @@ import {escapeHTML as html,approximate,displayNumber,plannedTicks,certified,
 
 const $=id=>document.getElementById(id);
 const PREFIX='worldlaw-active-notebook-v1:',POINTER='worldlaw-active-current-v1';
-const examplePaths={driftSchedule:'/examples/active-position-drift-schedule.json',driftGauge:'/examples/active-position-drift-gauge.json',coupled:'/examples/active-intervention-coupled-kinematics.json',
+const isDrift=p=>p?.schema===ACTIVE_DRIFT_PLAN||isGuidedPlan(p);
+const examplePaths={driftBinary:'/examples/active-position-drift-binary.json',driftMulti:'/examples/active-position-drift-schedule.json',driftFeedback:'/examples/active-position-drift-feedback.json',driftSchedule:'/examples/active-position-drift-schedule.json',driftGauge:'/examples/active-position-drift-gauge.json',coupled:'/examples/active-intervention-coupled-kinematics.json',
   bounded:'/examples/active-control-box-coupled-kinematics.json',
   joint:'/examples/active-joint-control-three-responses.json',
   adaptive:'/examples/active-adaptive-coupled-track.json',
@@ -39,9 +41,9 @@ function showError(error){$('error').hidden=false;$('error').textContent=error.m
 function stopPlayback(){if(playback!==null)clearInterval(playback);playback=null;$('play').textContent=reduced.matches?'Step predictions':'Play predictions';}
 function updateControls(){
   const frozen=mode==='frozen',current=adaptiveNotebookState(book);
-  const drift=book?.plan.schema===ACTIVE_DRIFT_PLAN;
+  const drift=isDrift(book?.plan);
   $('drift-gauge-controls').disabled=busy||!frozen||!drift||book.plan.status!=='indistinguishable';
-  const ready=book&&(certified(book.plan)||(drift&&book.plan.status==='finite-schedule'))&&frozen&&!busy&&(!current||Boolean(current.action));
+  const ready=book&&(certified(book.plan)||(drift&&book.plan.status==='finite-schedule')||(isGuidedPlan(book?.plan)&&pendingDriftSteps(book.plan,book.readouts.at(-1)?.result).length>0))&&frozen&&!busy&&(!current||Boolean(current.action));
   $('experiment').setAttribute('aria-busy',String(busy));
   $('freeze-plan').disabled=!book||busy||frozen||dirty;
   $('freeze-plan').textContent=frozen?'Plan frozen ✓':'Freeze this plan →';
@@ -57,10 +59,13 @@ function updateControls(){
   $('inspect-next').disabled=!current?.action||busy;
   $('adaptive-history').disabled=busy;
   $('supplied-controls').disabled=!ready;
+  const continuing=isGuidedPlan(book?.plan)&&book.readouts.length>0&&book.plan.status!=='indistinguishable';
+  $('readout-source').readOnly=Boolean(continuing);$('acquisition-kind').disabled=Boolean(continuing);
   $('history-controls').hidden=!book||!frozen||!calibratedOutlierPlan(book.plan);
   $('import-history').disabled=busy;
   $('play').disabled=!book||busy||drift;$('tick').disabled=!book||busy||drift;
-  $('source-text').readOnly=frozen;$('noise-bound').readOnly=frozen;
+  $('source-text').readOnly=frozen;$('noise-bound').readOnly=frozen||book?.plan.schema===CASE_TWELVE_PLAN;
+  for(const id of ['drift-design','drift-search-length','drift-search-budget'])$(id).disabled=frozen||busy;
   $('replan').disabled=!book||busy||frozen;
   $('new-draft').disabled=!book||busy;
   $('import-plan').disabled=!book||busy||frozen||dirty;
@@ -100,7 +105,7 @@ function persist(){
       const initial=custody.readInitial();
       if(!initial.ok||initial.text!==null){activeKey=null;custody=null;throw Error('A new local notebook could not be created safely.');}
     }
-    const title=(book.plan.schema===ACTIVE_DRIFT_PLAN?'Persistent drift · '+book.plan.status:book.plan.source.slice(0,72))+' · '+book.readouts.length+' reading set'+(book.readouts.length===1?'':'s');
+    const title=(isDrift(book.plan)?'Persistent drift · '+(book.plan.status??'six-pulse feedback'):book.plan.source.slice(0,72))+' · '+book.readouts.length+' reading set'+(book.readouts.length===1?'':'s');
     const saved=custody?.saveCurrent(JSON.stringify({title,savedAt:Date.now(),book}));
     if(!saved?.ok){
       storageMessage=saved?.reason==='active-source-changed'?
@@ -119,7 +124,7 @@ function readStored(key){
   return {guard,entry:JSON.parse(initial.text)};
 }
 function adopt(next,newMode,key=null,save=true,guard=null){
-  const newSource=book?.plan?.sourceSHA256!==next.plan.sourceSHA256;
+  const newSource=book?.plan?.sourceSHA256!==next.plan.sourceSHA256||book?.plan?.planSHA256!==next.plan.planSHA256;
   custody=guard??(key&&key===activeKey?custody:null);
   book=next;mode=newMode;activeKey=key;readingIndex=book.readouts.length-1;pairIndex=0;dirty=false;
   const shown=displayActiveNotebook(book,readingIndex);
@@ -127,8 +132,17 @@ function adopt(next,newMode,key=null,save=true,guard=null){
   tick=shown.display?.adaptive?(plannedTicks(shown.plan).at(-1)??0):
     book.plan.schema==='worldlaw.active-linear-joint-control/v1'?(plannedTicks(book.plan)[0]??0):0;
   $('source-text').value=book.sourceText;
-  $('noise-bound').value=String(JSON.parse(book.sourceText).noiseBound??0);
+  const rawSource=parseActiveOriginalJSON(book.sourceText);
+  $('noise-bound').value=String(rawSource.noiseBound??(rawSource.schema===CASE_TWELVE_REQUEST?1:0));
+  $('drift-design-controls').hidden=rawSource.schema!=='worldlaw.position-drift-rate-catalog/v1';
+  $('drift-design').value=book.plan.schema===BINARY_PLAN?'binary':book.plan.schema===MULTICLASS_PLAN?'multiclass':'schedule';
+  $('drift-search').hidden=$('drift-design').value!=='multiclass';
+  $('drift-search-length').value=String(book.plan.limits?.enumerateThrough??0);
+  $('drift-search-budget').value=String(book.plan.limits?.wordBudget??0);
   if(newSource||newMode==='preview'){$('readout-source').value='';$('acquisition-kind').value='supplied';}
+  if(isGuidedPlan(book.plan)&&book.readouts.length){
+    const last=book.readouts.at(-1).result;$('readout-source').value=last.readoutSource??'';$('acquisition-kind').value=last.acquisition;
+  }
   if(newMode==='frozen'&&save)persist();
   else if(newMode==='preview'&&!storageWarning)storageMessage='Draft · not saved';
 }
@@ -203,7 +217,7 @@ function renderWitness(){
   $('witness-explanation').textContent='This combination cancels the independent unknown starting states for '+projection.pair.map(row=>row.id.replaceAll('_',' ')).join(' and ')+'. The exact difference is '+projection.proof.witness.signedGap+'.';
   drawProjection($('projection'),projection);
 }
-function redraw(){if(!book||book.plan.schema===ACTIVE_DRIFT_PLAN)return;drawApparatus($('apparatus'),book,tick,readingIndex);renderWitness();}
+function redraw(){if(!book||isDrift(book.plan))return;drawApparatus($('apparatus'),book,tick,readingIndex);renderWitness();}
 function setTick(next){
   if(!book)return;const horizon=illustrateModels(book,readingIndex).horizon;tick=Math.max(0,Math.min(horizon,next));
   $('tick').value=String(tick);$('tick-value').value=String(tick);$('tick-value').textContent=String(tick);
@@ -276,7 +290,7 @@ function renderFollowup(record){
 }
 function render(){
   if(!book){updateControls();return;}
-  const drift=book.plan.schema===ACTIVE_DRIFT_PLAN;
+  const drift=isDrift(book.plan);
   $('drift-panel').hidden=!drift;$('apparatus-heading').closest('section').hidden=drift;
   if(drift){renderDriftNotebook(book,readingIndex,mode,dirty);updateControls();return;}
   $('receive-region').hidden=false;$('supplied-details').hidden=false;
@@ -370,22 +384,22 @@ function render(){
 }
 function download(text,name){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),link=document.createElement('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function exportJSON(value,name){download(JSON.stringify(value,null,2)+'\n',name);}
-function exactInput(raw){
+function exactInput(raw,wide=false){
   const value=raw.trim();if(/^[+-]?\d+(?:\/[1-9]\d*)?$/.test(value))return value;
   if(!/^[+-]?(?:\d+\.\d*|\d*\.\d+)$/.test(value))throw Error('Use an integer, decimal or fraction for each reading.');
   const negative=value.startsWith('-'),unsigned=value.replace(/^[+-]/,''),[whole,fraction='']=unsigned.split('.');
-  if(fraction.length>12||whole.length>13)throw Error('This decimal exceeds the exact input budget; use a smaller exact fraction.');
+  if(!wide&&(fraction.length>12||whole.length>13))throw Error('This decimal exceeds the exact input budget; use a smaller exact fraction.');
   let n=BigInt((whole||'0')+fraction)*(negative?-1n:1n),d=10n**BigInt(fraction.length),a=n<0n?-n:n,b=d;
   while(b)[a,b]=[b,a%b];const g=a||1n;n/=g;d/=g;return d===1n?String(n):String(n)+'/'+String(d);
 }
 const decodeOriginal=bytes=>new TextDecoder('utf-8',{fatal:true,ignoreBOM:true}).decode(bytes);
 async function fetchSource(path){const response=await fetch(path);if(!response.ok)throw Error('The source example could not be loaded.');return decodeOriginal(await response.arrayBuffer());}
-function planDraft(source){return transact(()=>ask({action:'plan',sourceText:source}),next=>adopt(next,'preview'),'Prospective design recomputed from this source. No reading values were used.');}
+function planDraft(source,design){return transact(()=>ask({action:'plan',sourceText:source,design}),next=>adopt(next,'preview'),'Prospective design recomputed from this source. No reading values were used.');}
 $('freeze-plan').addEventListener('click',()=>{
   if(!book||busy||dirty||mode==='frozen')return;
   mode='frozen';persist();render();announce('The source and prospective plan are frozen. Receive a separate reading set when ready.');
-  if(book.plan.schema===ACTIVE_DRIFT_PLAN&&book.plan.status==='indistinguishable'){announce('The gauge witnesses are frozen. Choose a pair and command word to compare their trajectories.');$('drift-pair').focus();return;}
-  if(certified(book.plan)||book.plan.schema===ACTIVE_DRIFT_PLAN){$('receive-region').scrollIntoView({block:'nearest',behavior:reduced.matches?'auto':'smooth'});if(book.plan.sourceSHA256===COUPLED_DEMO_SOURCE_SHA256)$('acquire').focus({preventScroll:true});else if(book.plan.sourceSHA256===ADAPTIVE_DEMO_SOURCE_SHA256)$('acquire-adaptive').focus({preventScroll:true});else{$('supplied-details').open=true;$('readout-source').focus({preventScroll:true});}}
+  if(isDrift(book.plan)&&book.plan.status==='indistinguishable'){announce('The gauge witnesses are frozen. Choose a pair and command word to compare their trajectories.');$('drift-pair').focus();return;}
+  if(certified(book.plan)||isDrift(book.plan)){$('receive-region').scrollIntoView({block:'nearest',behavior:reduced.matches?'auto':'smooth'});if(book.plan.sourceSHA256===COUPLED_DEMO_SOURCE_SHA256)$('acquire').focus({preventScroll:true});else if(book.plan.sourceSHA256===ADAPTIVE_DEMO_SOURCE_SHA256)$('acquire-adaptive').focus({preventScroll:true});else{$('supplied-details').open=true;$('readout-source').focus({preventScroll:true});}}
 });
 $('acquire').addEventListener('click',()=>{
   if(busy||mode!=='frozen'||!book||!certified(book.plan))return;
@@ -393,24 +407,25 @@ $('acquire').addEventListener('click',()=>{
   transact(()=>ask({action:'demo',book:original,profile}),next=>{adopt(next,'frozen',key);tick=plannedTicks(next.plan).at(-1)??0;},'Separate synthetic readings received. Exact consistency was checked against the original frozen plan.','result-heading');
 });
 $('evaluate-readings').addEventListener('click',()=>{
-  if(busy||mode!=='frozen'||!book||(!certified(book.plan)&&book.plan.schema!==ACTIVE_DRIFT_PLAN))return;
+  if(busy||mode!=='frozen'||!book||(!certified(book.plan)&&!isDrift(book.plan)))return;
   const original=book,key=activeKey;
   transact(()=>{
-    const drift=original.plan.schema===ACTIVE_DRIFT_PLAN;
-    const rows=[...$('reading-fields').querySelectorAll('input')].filter(input=>input.value.trim()).map(input=>({tick:drift?input.dataset.tick:Number(input.dataset.tick),value:exactInput(input.value)}));
+    const drift=isDrift(original.plan),guided=isGuidedPlan(original.plan);
+    const rows=[...$('reading-fields').querySelectorAll('input')].filter(input=>input.value.trim()).map(input=>({tick:drift?input.dataset.tick:Number(input.dataset.tick),...(guided?{command:input.dataset.command||null}:{}),value:exactInput(input.value,guided)}));
     const current=adaptiveNotebookState(original);
-    const raw={schema:drift?ACTIVE_DRIFT_CHECKPOINTS:current?'worldlaw.active-adaptive-readings/v1':'worldlaw.active-linear-readings/v1',source:$('readout-source').value,
+    const raw={schema:guided?GUIDED_INPUT:drift?ACTIVE_DRIFT_CHECKPOINTS:current?'worldlaw.active-adaptive-readings/v1':'worldlaw.active-linear-readings/v1',source:$('readout-source').value,
       acquisition:$('acquisition-kind').value,sourceSHA256:original.plan.sourceSHA256,planSHA256:original.plan.planSHA256,
+      ...(guided?{previousReadingsSHA256:original.readouts.at(-1)?.result.readingsSHA256??null}:{}),
       ...(current?{round:current.round,previousReadingsSHA256:current.previousReadingsSHA256,stateKey:current.node?.key,experimentId:current.action?.id}:{}),
       ...(original.plan.chosenIntervention?{interventionId:original.plan.chosenIntervention}:{}),readings:rows};
     return ask({action:'read',book:original,text:JSON.stringify(raw,null,2)+'\n'});
   },next=>adopt(next,'frozen',key),'Supplied readings checked. Their physical origin and error calibration are not verified.','result-heading');
 });
 $('drift-trace').addEventListener('click',()=>{
-  if(busy||mode!=='frozen'||book?.plan.schema!==ACTIVE_DRIFT_PLAN||book.plan.status!=='indistinguishable')return;
+  if(busy||mode!=='frozen'||!isDrift(book?.plan)||book.plan.status!=='indistinguishable')return;
   const original=book,key=activeKey;
   transact(()=>{
-    const witness=original.plan.witnesses[Number($('drift-pair').value)];
+    const witness=(original.plan.witnesses??[original.plan.witness])[Number($('drift-pair').value)];
     const runs=$('drift-word').value.split(/\r?\n/).filter(l=>l.trim()).map(line=>{
       const fields=line.trim().split(/\s+/);
       if(fields.length!==2)throw Error('Use one command and its positive repeat count per line.');
@@ -435,7 +450,7 @@ fileAction('readings-file',524288,(text,snapshot)=>{
   const plan=snapshot.book?.plan;
   const refusal='Freeze a certified prospective plan before receiving readings.';
   if(snapshot.mode!=='frozen'||!plan)throw Error(refusal);
-  if(!certified(plan)&&plan.schema!==ACTIVE_DRIFT_PLAN){
+  if(!certified(plan)&&!isDrift(plan)){
     if(!calibratedOutlierPlan(plan))throw Error(refusal);
     let schema;
     try{schema=JSON.parse(text)?.schema;}catch{throw Error(refusal);}
@@ -473,13 +488,23 @@ $('receive-future').addEventListener('click',()=>{
     return ask({action:'read',book:original,text:JSON.stringify(raw,null,2)+'\n'});
   },next=>adopt(next,'frozen',key),'The original history and new readings were checked together.','result-heading');
 });
-$('load-example').addEventListener('click',()=>transact(async()=>ask({action:'plan',sourceText:await fetchSource(examplePaths[$('example').value])}),next=>adopt(next,'preview'),'A separate example draft is ready. No readings acquired.'));
-$('new-draft').addEventListener('click',()=>book&&planDraft(book.sourceText));
+function catalogDesign(){
+  if($('drift-design-controls').hidden)return undefined;
+  if($('drift-design').value==='binary')return {method:BINARY_PLAN};
+  if($('drift-design').value==='multiclass'){
+    const limits={enumerateThrough:Number($('drift-search-length').value),wordBudget:Number($('drift-search-budget').value)};
+    return {method:MULTICLASS_PLAN,limits};
+  }
+  return undefined;
+}
+$('load-example').addEventListener('click',()=>transact(async()=>ask({action:'plan',sourceText:await fetchSource(examplePaths[$('example').value]),design:$('example').value==='driftBinary'?{method:BINARY_PLAN}:$('example').value==='driftMulti'?{method:MULTICLASS_PLAN}:undefined}),next=>adopt(next,'preview'),'A separate example draft is ready. No readings acquired.'));
+$('new-draft').addEventListener('click',()=>book&&planDraft(book.sourceText,catalogDesign()));
 $('replan').addEventListener('click',()=>{
   const source=$('source-text').value,bound=$('noise-bound').value.trim();
-  transact(()=>{let text=source;const request=parseActiveOriginalJSON(source);if(String(request.noiseBound??0)!==bound){request.noiseBound=exactInput(bound);text=JSON.stringify(request,null,2)+'\n';}return ask({action:'plan',sourceText:text});},next=>adopt(next,'preview'),'Draft recomputed using the stated source and error bound. No readout values were used.');
+  transact(()=>{let text=source;const request=parseActiveOriginalJSON(source);if(request.schema!==CASE_TWELVE_REQUEST&&String(request.noiseBound??0)!==bound){request.noiseBound=exactInput(bound);text=JSON.stringify(request,null,2)+'\n';}return ask({action:'plan',sourceText:text,design:request.schema==='worldlaw.position-drift-rate-catalog/v1'?catalogDesign():undefined});},next=>adopt(next,'preview'),'Draft recomputed using the stated source and error bound. No readout values were used.');
 });
-for(const id of ['source-text','noise-bound'])$(id).addEventListener('input',()=>{if(mode==='preview'){dirty=true;$('phase').textContent='Unapplied source edits';announce('Displayed forecasts still belong to the last accepted source. Recompute the draft to apply these edits.');updateControls();}});
+$('drift-design').addEventListener('change',()=>{$('drift-search').hidden=$('drift-design').value!=='multiclass';});
+for(const id of ['source-text','noise-bound','drift-design','drift-search-length','drift-search-budget'])$(id).addEventListener('input',()=>{if(mode==='preview'){dirty=true;$('phase').textContent='Unapplied source edits';announce('Displayed forecasts still belong to the last accepted source. Recompute the draft to apply these edits.');updateControls();}});
 $('open-local').addEventListener('click',()=>{
   const key=$('local-notebook').value;if(!key)return;
   transact(async()=>{
