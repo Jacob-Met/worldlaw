@@ -14,6 +14,8 @@ The same five source tables and noise bounds from the [all-horizon study](persis
 | 30 | 12 | 6 | 6 | 6 | u0 × 3, u2 × 3 |
 | 34 | 18 | 17 | 17 | 17 | u0 × 8, u1 × 9 |
 
+The table records what the fixed-tape calculation established. Two subsequent feedback certificates close the adaptive intervals. Case 8 requires **seven** pulses, and case 12 requires **six**. Together with cases 26, 30 and 34, the five exact adaptive minima are **7, 6, 9, 6 and 17**. The fixed minima in the table still apply. [Case 8 causal lower bound](position-drift-case-eight-causal.md) · [Case 12 feedback policy](position-drift-case-twelve-feedback.md)
+
 Cases 8 and 12 each have 729 six-pulse words over three commands. Every one has a common physical trajectory transcript under at least two laws. The seven-pulse fixed words separate all law pairs. Different six-pulse words can collide under different law pairs or on different transcripts, so these computations leave the adaptive six-pulse question open.
 
 ## Exact fixed-tape gate
