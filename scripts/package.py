@@ -16,6 +16,19 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/cai-dp590-terminal-work/README.md",
+    "research/cai-dp590-terminal-work/controls.py",
+    "research/cai-dp590-terminal-work/course.py",
+    "research/cai-dp590-terminal-work/forecast.json",
+    "research/cai-dp590-terminal-work/independent-receipt.json",
+    "research/cai-dp590-terminal-work/independent.py",
+    "research/cai-dp590-terminal-work/model.py",
+    "research/cai-dp590-terminal-work/native-originals.json",
+    "research/cai-dp590-terminal-work/protocol.json",
+    "research/cai-dp590-terminal-work/replay.py",
+    "research/cai-dp590-terminal-work/score.json",
+    "research/cai-dp590-terminal-work/score.py",
+    "research/cai-dp590-terminal-work/source.py",
     "research/qarr_powder_profile/README.md",
     "research/qarr_powder_profile/acquisition.py",
     "research/qarr_powder_profile/compact_forecast.py",

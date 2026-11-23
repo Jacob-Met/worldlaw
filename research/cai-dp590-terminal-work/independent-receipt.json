@@ -1,0 +1,166 @@
+{
+  "bank_sha256": "7c5d6afc99905d3f50749917507b9e0fd6659740b2edee8b3a277a05e1dc1acd",
+  "checks": 185,
+  "exact_dyadic_component_increments": 42004,
+  "gates": {
+    "axis_blend/mean_abs_log": true,
+    "axis_blend/worst_abs_log": true,
+    "hill48/mean_abs_log": false,
+    "hill48/worst_abs_log": false,
+    "hosford6/mean_abs_log": false,
+    "hosford6/worst_abs_log": false,
+    "mises_terminal_strain/mean_abs_log": false,
+    "mises_terminal_strain/worst_abs_log": false,
+    "yld2000_m4/mean_abs_log": false,
+    "yld2000_m4/worst_abs_log": false,
+    "yld2000_m6/mean_abs_log": false,
+    "yld2000_m6/worst_abs_log": false,
+    "yld2000_m8/mean_abs_log": false,
+    "yld2000_m8/worst_abs_log": false,
+    "yld6_midarea/mean_abs_log": false,
+    "yld6_midarea/worst_abs_log": false
+  },
+  "maximum_numeric_difference": 6.394884621840902e-14,
+  "programs": {
+    "1:4": {
+      "bracket": [
+        12.924195777713294,
+        19.727258066167863
+      ],
+      "candidate": 15.957845966745245,
+      "components": [
+        -1.479361745935325,
+        21.739679770717746
+      ],
+      "hill48": 18.97564505258643,
+      "minimum_by_direction": [
+        0,
+        18.38793897288969,
+        5.769103864669338
+      ],
+      "rows": 2998,
+      "work": 20.26031802478242
+    },
+    "2:4": {
+      "bracket": [
+        8.715850337406977,
+        19.789046404656915
+      ],
+      "candidate": 13.103861580837492,
+      "components": [
+        0.1876173630955952,
+        17.36691033011557
+      ],
+      "hill48": 16.532492572362866,
+      "minimum_by_direction": [
+        0.13217721982021657,
+        13.87315365520021,
+        6.509907710180857
+      ],
+      "rows": 3002,
+      "work": 17.554527693211167
+    },
+    "3:4": {
+      "bracket": [
+        8.637455830141084,
+        29.461377010046128
+      ],
+      "candidate": 15.883939214543664,
+      "components": [
+        3.8000666305935686,
+        16.154132573068797
+      ],
+      "hill48": 18.693778732398457,
+      "minimum_by_direction": [
+        3.5219071729551588,
+        12.958631223858047,
+        8.167073641375733
+      ],
+      "rows": 3002,
+      "work": 19.954199203662366
+    },
+    "4:1": {
+      "bracket": [
+        15.394922400101006,
+        23.12803979667495
+      ],
+      "candidate": 18.860524719784014,
+      "components": [
+        25.8221916508883,
+        -1.7737309057438846
+      ],
+      "hill48": 22.443173697033696,
+      "minimum_by_direction": [
+        21.838069161919826,
+        0,
+        6.876902269638589
+      ],
+      "rows": 3002,
+      "work": 24.048460745144414
+    },
+    "4:2": {
+      "bracket": [
+        9.890668590872023,
+        21.724788981853074
+      ],
+      "candidate": 14.639317387839975,
+      "components": [
+        19.265640944533992,
+        0.24531750247245418
+      ],
+      "hill48": 18.61535237185193,
+      "minimum_by_direction": [
+        15.608181497658538,
+        0.20824921990223086,
+        7.419034920939389
+      ],
+      "rows": 3002,
+      "work": 19.51095844700645
+    },
+    "4:3": {
+      "bracket": [
+        8.243351797579647,
+        26.476467742608417
+      ],
+      "candidate": 14.726890656289681,
+      "components": [
+        15.123529570591364,
+        4.058889236118856
+      ],
+      "hill48": 17.71855091288471,
+      "minimum_by_direction": [
+        11.918408494559458,
+        3.7259507197990023,
+        7.855250870316335
+      ],
+      "rows": 3002,
+      "work": 19.18241880671022
+    },
+    "4:4": {
+      "bracket": [
+        12.250009959512541,
+        59.53755519492124
+      ],
+      "candidate": 26.940566451170195,
+      "components": [
+        14.350981615675636,
+        15.371088196425324
+      ],
+      "hill48": 27.540897929483418,
+      "minimum_by_direction": [
+        11.66771051844619,
+        12.975625161722,
+        12.599952193488003
+      ],
+      "rows": 3001,
+      "work": 29.722069812100962
+    }
+  },
+  "raw_mixed_rows": 21009,
+  "score_sha256": "4beb7ce859aa181d28be419af39a4f19571aa667cd7509b42be8f70141ba616a",
+  "source_hashes": {
+    "biaxial": "55f314d4eea13adbd8fb2235ec925bebf197ac1e5f677fa7d58e7046f7925a61",
+    "uniaxial": "810e9befa9ce366b8d51005a86f9c53a16361e10116c32d5127bc06092312901"
+  },
+  "unrounded_residuals": 84
+}
