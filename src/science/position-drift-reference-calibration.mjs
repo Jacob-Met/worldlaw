@@ -21,6 +21,8 @@ function need(ok,message){if(!ok)throw Error('Reference calibration: '+message);
 
 const dwellSchema='worldlaw.position-drift-dwell-calibration/v1';
 const dwellProofSchema='worldlaw.position-drift-dwell-calibration-proof/v1';
+const allDwellSchema='worldlaw.position-drift-dwell-calibration/v2';
+const allDwellProofSchema='worldlaw.position-drift-dwell-calibration-proof/v2';
 
 function integerRoot(n){
   if(n<2n)return n;
@@ -32,15 +34,20 @@ function integerRoot(n){
   }
 }
 
-function dwellRadius(m,k){return Q(k*m,10n*(m+2n*k));}
+function dwellRadius(m,k){
+  return Q(k*m,m>=2n*k?10n*(m+2n*k):8n*(m+3n*k));
+}
 
-function chooseBudget(h){
-  need(h>=6n,'the total pulse budget must be at least six');
+function chooseBudget(h,allRatios){
+  need(h>=(allRatios?5n:6n),allRatios?'the total pulse budget must be at least five':'the total pulse budget must be at least six');
   const largest=h/6n;
   // sqrt(2)*h is irrational. Its integer floor resolves floor((2-sqrt(2))*h/4) exactly.
   const below=(2n*h-integerRoot(2n*h*h)-1n)/4n;
   const valid=k=>k<1n?1n:(k>largest?largest:k);
-  const candidates=[...new Set([valid(below),valid(below+1n)])];
+  const candidates=largest>0n?[...new Set([valid(below),valid(below+1n)])]:[];
+  // On k>h/6 the low-reference radius decreases strictly. Only its left endpoint matters.
+  const low=largest+1n;
+  if(allRatios&&h<50n&&4n*low<h)candidates.push(low);
   let best=Z(),optimal=[];
   for(const k of candidates){
     const radius=dwellRadius(h-4n*k,k),order=compare(radius,best);
@@ -60,16 +67,18 @@ function positiveInteger(raw,label){
 function prepare(input){
   const keys=Object.keys(input??{}).sort().join(',');
   const standard=input?.schema===sourceSchema&&keys==='catalog,references,schema';
-  const explicit=input?.schema===dwellSchema&&keys==='catalog,dwell,references,schema';
-  const budget=input?.schema===dwellSchema&&keys==='catalog,pulseBudget,schema';
+  const allRatios=input?.schema===allDwellSchema;
+  const dwell=input?.schema===dwellSchema||allRatios;
+  const explicit=dwell&&keys==='catalog,dwell,references,schema';
+  const budget=dwell&&keys==='catalog,pulseBudget,schema';
   need(standard||explicit||budget,'supply a reference count, an explicit dwell, or a total pulse budget');
   const {cat,canonical}=prepareThreePulseHullRequest({schema:THREE_HULL_SOURCE,catalog:input.catalog,fourPulseControl:null});
   if(budget){
     const h=positiveInteger(input.pulseBudget,'pulse budget');
-    return {cat,...chooseBudget(h),source:{schema:dwellSchema,pulseBudget:String(h),catalog:canonical}};
+    return {cat,...chooseBudget(h,allRatios),source:{schema:input.schema,pulseBudget:String(h),catalog:canonical}};
   }
   const count=rational(input.references),k=explicit?positiveInteger(input.dwell,'dwell'):1n;
-  need(count.d===1n&&count.n>=2n*k,'the reference count must be an integer of at least twice the dwell');
+  need(count.d===1n&&count.n>=(allRatios?1n:2n*k),allRatios?'the reference count must be a positive integer':'the reference count must be an integer of at least twice the dwell');
   const source={schema:input.schema,references:String(count.n),catalog:canonical};
   if(explicit)source.dwell=String(k);
   return {m:count.n,k,cat,source,selector:null};
@@ -111,9 +120,13 @@ function trajectory(cat,world,runs,spend){
 }
 
 function boundaryWorlds(cat,roles,m,k,spend){
-  const d=10n*(m+2n*k),q=n=>Q(n,d),radius=q(m*k);
-  const shared=[Z(),q(-2n*m*k),q(k*(4n*m+4n*k))];
-  const masses=[
+  const low=m<2n*k;
+  const d=low?8n*(m+3n*k):10n*(m+2n*k),q=n=>Q(n,d),radius=q(m*k);
+  const shared=[Z(),q(-2n*m*k),q(k*(low?2n*m+8n*k:4n*m+4n*k))];
+  const masses=low?[
+    [[4n*k,2n*m+8n*k,0n,6n*m+12n*k],[4n*m+12n*k,4n*k,0n,4n*m+8n*k]],
+    [[4n*m+12n*k,0n,4n*m+4n*k,8n*k],[4n*m+16n*k,0n,4n*m+4n*k,4n*k]],
+  ]:[
     [[0n,2n*m+12n*k,0n,8n*m+8n*k],[4n*m+12n*k,4n*k,0n,6n*m+4n*k]],
     [[6n*m+14n*k,0n,4n*m+2n*k,4n*k],[4n*m+16n*k,0n,6n*m+2n*k,2n*k]],
   ];
@@ -122,7 +135,7 @@ function boundaryWorlds(cat,roles,m,k,spend){
       const weights=cat.vertices[family].map(Z);
       indices.forEach((j,i)=>{weights[j]=q(masses[b][l][i]);});
       return {law:cat.ids[family],weights:weights.map(fmt),origin:fmt(l?neg(radius):radius),
-        drift:fmt(l?Z():q((b?-2n:-4n)*k))};
+        drift:fmt(l?Z():q((b&&!low?-2n:-4n)*k))};
     });
     const clean=worlds.map(w=>trajectory(cat,w,runsFor(m,k,commands),spend));
     const after=clean[0].slice(3).map((x,i)=>div(add(x,clean[1][i+3]),two));
@@ -138,7 +151,11 @@ function boundaryWorlds(cat,roles,m,k,spend){
   return {reference:{origin:fmt(shared[0]),perTick:fmt(step),through:String(m)},shared:shared.map(fmt),branches};
 }
 
-function leastReferences(error,k){
+function leastReferences(error,k,allRatios){
+  if(allRatios&&compare(error,Q(k,20n))<0){
+    const bound=div(mul(Q(24n*k),error),sub(Q(k),mul(Q(8n),error)));
+    return bound.n/bound.d+1n;
+  }
   const room=sub(Q(k),mul(Q(10n),error));
   if(room.n<=0n)return null;
   const bound=div(mul(Q(20n*k),error),room),n=bound.n/bound.d+1n;
@@ -147,11 +164,12 @@ function leastReferences(error,k){
 
 export function certifyReferenceCalibration(input){
   const {cat,m,k,source,selector}=prepare(input),work=rateWorkBudget(source.catalog.limits.designWork);
-  const schema=source.schema===sourceSchema?proofSchema:dwellProofSchema;
+  const allRatios=source.schema===allDwellSchema;
+  const schema=allRatios?allDwellProofSchema:(source.schema===sourceSchema?proofSchema:dwellProofSchema);
   try{
     const roles=bindRoles(cat,work.spend);
     need(roles[0].family!==roles[1].family,'the two physical roles must use different families');
-    const radius=dwellRadius(m,k),least=leastReferences(cat.error,k);
+    const radius=dwellRadius(m,k),least=leastReferences(cat.error,k,allRatios);
     const boundary=boundaryWorlds(cat,roles,m,k,work.spend);
     const extra=source.schema===sourceSchema?{familyCeiling:'1/10'}:
       {references:String(m),dwell:String(k),fixedDwellCeiling:fmt(Q(k,10n)),
@@ -179,7 +197,7 @@ export function receiveReferenceCalibration(input,saved,values){
   let score=null,cutoff=null,tail=[];
   if(ys.length>=3){
     score=add(sub(mul(Q(k),ys[0]),mul(Q(m+k),ys[1])),mul(Q(m),ys[2]));
-    cutoff=add(Q(m*k,2n),mul(Q(m-4n*k),cat.error));
+    cutoff=add(Q(m*k,2n),mul(Q(m<2n*k?-2n*k:m-4n*k),cat.error));
     tail=tails[compare(score,cutoff)<0?0:1];
   }
   const program=runsFor(m,k,tail),taken=program.slice(0,ys.length-1);

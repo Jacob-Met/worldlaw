@@ -39,8 +39,10 @@ def optimal_dwells(h):
 def check(source, proof, tick=None, pulse_tick=None):
     from math import isqrt
     standard = source['schema'] == 'worldlaw.position-drift-reference-calibration/v1'
-    require(standard or source['schema'] == 'worldlaw.position-drift-dwell-calibration/v1', 'unknown source')
+    all_ratios = source['schema'] == 'worldlaw.position-drift-dwell-calibration/v2'
+    require(standard or all_ratios or source['schema'] == 'worldlaw.position-drift-dwell-calibration/v1', 'unknown source')
     expected_schema = ('worldlaw.position-drift-reference-calibration-proof/v1' if standard
+                       else 'worldlaw.position-drift-dwell-calibration-proof/v2' if all_ratios
                        else 'worldlaw.position-drift-dwell-calibration-proof/v1')
     require(proof['schema'] == expected_schema and proof['status'] == 'calibration-certified', 'unknown proof')
     cat, saved = source['catalog'], proof['source']
@@ -51,11 +53,21 @@ def check(source, proof, tick=None, pulse_tick=None):
     if budgeted:
         h = positive(source['pulseBudget'])
         require(positive(saved['pulseBudget']) == h, 'source budget differs')
-        optimal = optimal_dwells(h)
+        require(h >= (5 if all_ratios else 6), 'pulse budget too small')
+        high = optimal_dwells(h) if h >= 6 else []
+        low = h//6+1
+        options = high + ([low] if all_ratios and 4*low < h else [])
+        def radius_at(j):
+            ref = h-4*j
+            return F(ref*j, 10*(ref+2*j) if ref >= 2*j else 8*(ref+3*j))
+        best = max(map(radius_at, options))
+        optimal = [j for j in options if radius_at(j) == best]
         k = optimal[0]
         m = h-4*k
         below = (2*h-isqrt(2*h*h)-1)//4
-        candidates = sorted({min(h//6,max(1,i)) for i in (below,below+1)})
+        candidates = sorted({min(h//6,max(1,i)) for i in (below,below+1)}) if h >= 6 else []
+        if all_ratios and h < 50 and 4*low < h:
+            candidates.append(low)
         require(proof['selector'] == {'budget':str(h),'checkedDwells':list(map(str,candidates)),
                                      'optimalDwells':list(map(str,optimal))}, 'budget optimum differs')
     else:
@@ -63,7 +75,7 @@ def check(source, proof, tick=None, pulse_tick=None):
         k = 1 if standard else positive(source['dwell'])
         require(positive(saved['references']) == m and
                 (standard or (positive(saved['dwell']) == k and proof['selector'] is None)), 'source counts differ')
-    require(m >= 2*k, 'at least twice the dwell is required')
+    require(m >= 1 if all_ratios else m >= 2*k, 'reference count outside source domain')
     if not standard:
         require(proof['references'] == str(m) and proof['dwell'] == str(k) and
                 proof['interpolation'] == 'affine-on-each-command-run', 'selected counts or interpolation differ')
@@ -75,9 +87,11 @@ def check(source, proof, tick=None, pulse_tick=None):
     require(canonical(cat) == canonical(saved['catalog']), 'saved catalog differs')
     laws = {law['id']: [[rational(x) for x in row] for row in law['vertices']] for law in cat['laws']}
     require(len(laws) == 2, 'family names must differ')
-    radius = F(k*m, 10*(m+2*k))
+    radius = F(k*m, 10*(m+2*k) if m >= 2*k else 8*(m+3*k))
     noise = rational(cat['noiseBound'])
     least = max(2*k, (20*k*noise) // (k-10*noise) + 1) if noise < F(k, 10) else None
+    if all_ratios and noise < F(k,20):
+        least = (24*k*noise)//(k-8*noise) + 1
     require(noise >= 0 and rational(proof['radius']) == radius and rational(proof['familyCeiling' if standard else 'fixedDwellCeiling']) == F(k, 10)
             and proof['leastReferencesAtNoise'] == (None if least is None else str(least))
             and proof['atRequestedNoise'] == ('policy-separates' if noise < radius else 'closed-collision'),
