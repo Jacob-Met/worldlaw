@@ -131,23 +131,29 @@ function verifyBound(cat,p,a,radius,proof,spend){
   need(!shared.n&&privateFinal.every(x=>!x.n)&&noise.n>0n&&!add(clean,mul(radius,noise)).n,
     'weighted source inequalities do not prove this radius');
 }
+
+export function verifyRateHullCollision(cat,commands,readings,radius,worlds,spend){
+  need(worlds.length===cat.ids.length,'missing physical worlds');
+  worlds.forEach((world,law)=>{
+    const weights=world.weights.map(rational);
+    need(world.law===cat.ids[law]&&weights.length===cat.vertices[law].length&&weights.every(w=>w.n>=0n)&&
+      !sub(weights.reduce(add,Z()),one).n&&world.start.length===2&&world.positions.length===readings.length,'invalid physical state');
+    const [start,drift]=world.start.map(rational),rates=mixRateRows(cat.vertices[law],weights),positions=[start];
+    for(const command of commands)positions.push(add(positions.at(-1),add(drift,rates[cat.commands.indexOf(command)])));
+    for(let t=0;t<positions.length;t++){
+      spend();need(!sub(positions[t],rational(world.positions[t])).n&&compare(absolute(sub(positions[t],readings[t])),radius)<=0,
+        'boundary states do not reproduce the common readings');
+    }
+  });
+}
+
 function verifyHistory(cat,prefix,radius,boundary,spend){
   const ys=boundary.prefixReadings.map(rational);
   need(ys.length===3&&!ys[0].n&&!ys[1].n&&boundary.branches.length===cat.commands.length,'invalid common prefix');
   boundary.branches.forEach((branch,b)=>{
     const commands=[...prefix,cat.commands[b]],readings=[...ys,rational(branch.reading)];
     need(branch.command===cat.commands[b]&&branch.worlds.length===cat.ids.length,'missing counterfactual branch');
-    branch.worlds.forEach((world,law)=>{
-      const weights=world.weights.map(rational);
-      need(world.law===cat.ids[law]&&weights.length===cat.vertices[law].length&&weights.every(w=>w.n>=0n)&&
-        !sub(weights.reduce(add,Z()),one).n&&world.start.length===2&&world.positions.length===4,'invalid physical state');
-      const [start,drift]=world.start.map(rational),rates=mixRateRows(cat.vertices[law],weights),positions=[start];
-      for(const command of commands)positions.push(add(positions.at(-1),add(drift,rates[cat.commands.indexOf(command)])));
-      for(let t=0;t<positions.length;t++){
-        spend();need(!sub(positions[t],rational(world.positions[t])).n&&compare(absolute(sub(positions[t],readings[t])),radius)<=0,
-          'boundary states do not reproduce the common readings');
-      }
-    });
+    verifyRateHullCollision(cat,commands,readings,radius,branch.worlds,spend);
   });
 }
 
