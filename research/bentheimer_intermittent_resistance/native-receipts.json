@@ -1,0 +1,104 @@
+{
+  "bentSource": {
+    "id": "p3-f747-bentheimer-author-clock-and-public-catalog-file-index",
+    "worker": "node-24b88ab7d5c1d228529e66f210bada65",
+    "generation": "4165aedda9e1949bbff17f23c62df673e22eae8f92426cffc0b3571ca78b40d3",
+    "request_sha256": "34af93ccf698d4d55d910ae99d99ab950f54153a3d203e2e2d6f259835c0bfb2",
+    "finished_at": "2026-11-23T02:13:09.501810589Z",
+    "exit": 0,
+    "descendants": "drained",
+    "output_bytes": 6397
+  },
+  "bentZipMeta": {
+    "id": "p3-f747-bentheimer-publisher-introduction-and-zip-central-directory-only",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "9535ffbca8c0fe97625afca4520ab7b2db10e34f4411ef9f5543a0ab9599a665",
+    "request_sha256": "e2f20ce58d75938557e022b68b869140fe13339e5019813e63a0e5a04b80108b",
+    "finished_at": "2026-11-23T02:22:53.54693374Z",
+    "exit": 0,
+    "descendants": "drained",
+    "output_bytes": 2667
+  },
+  "bentTableSpec": {
+    "id": "p3-f747-bentheimer-occupancy-denominator-and-pressure-figure-contract",
+    "worker": "node-24b88ab7d5c1d228529e66f210bada65",
+    "generation": "2f68818c1b7b1579af6bb77430b39d11aab6a243630b0d684545bd48ceeae35f",
+    "request_sha256": "5503a73f30db87fef370976acf18512551cfb6c5498994294b04493f6e091792",
+    "finished_at": "2026-11-23T02:26:07.102250547Z",
+    "exit": 0,
+    "descendants": "drained",
+    "output_bytes": 7173
+  },
+  "bentLow": {
+    "id": "p3-f747-bentheimer-seven-low-rate-measured-development-states-only",
+    "worker": "node-24b88ab7d5c1d228529e66f210bada65",
+    "generation": "148eaf51c7e0749d16bb4714d8fc7f817423c160de640bd5455e57c290808948",
+    "request_sha256": "eb4c26655e30df17f4b01e2760f220a841a5f96f3bd029ed6400138cbe0265a1",
+    "finished_at": "2026-11-23T02:28:06.980574626Z",
+    "exit": 0,
+    "descendants": "drained",
+    "output_bytes": 771
+  },
+  "bentForecast": {
+    "id": "p3-f747-bentheimer-preregistered-high-imaging-forecasts-before-pressure",
+    "terminal": "nonadmission",
+    "refusal_sha256": "19c3ff7c6f54bb8e146f980dca53cdad795b18cbcbe0e41ddedb2a5e0505c503",
+    "refusal_id": "placement-97324bbb6a76f20d385342eff3213c53bb436f38a710a2aa"
+  },
+  "bentForecastQueue": {
+    "id": "p3-f747-bentheimer-same-frozen-imaging-producer-finite-queue",
+    "worker": "node-24b88ab7d5c1d228529e66f210bada65",
+    "generation": "779629b44f6f38acbcef1acb83dfeab418d44b09f5cc5c11af318f91fee09981",
+    "request_sha256": "279318cb88b519a4ce0cac4bc415f54bd02ec4efdd756c4eb16bea01146ac036",
+    "finished_at": "2026-11-23T02:36:32.176733394Z",
+    "exit": 1,
+    "descendants": "drained",
+    "output_bytes": 1807
+  },
+  "bentInputDx": {
+    "id": "p3-f747-bentheimer-input-only-seven-phase-closure-refusal-diagnosis",
+    "terminal": "nonadmission",
+    "refusal_sha256": "3b6197ea3200da14515fe56117e8f92d6007db6b3411ba13c77f8269a6433f3b",
+    "refusal_id": "placement-7a8e9d30ac931548382456e939ee599c47726ea3e23e63a2"
+  },
+  "bentInputDxQ": {
+    "id": "p3-f747-bentheimer-table-one-closure-diagnostic-finite-original",
+    "worker": "node-24b88ab7d5c1d228529e66f210bada65",
+    "generation": "1bab9e3192ad3da95502ba2672067dca53d49fd39e76b1099359870e0acc26f1",
+    "request_sha256": "0e9d0f850e04b99fd3643d704c5c11f279732c5935d7eb5ed6e9615ac32b5c4b",
+    "finished_at": "2026-11-23T02:40:00.214835971Z",
+    "exit": 0,
+    "descendants": "drained",
+    "output_bytes": 1557
+  },
+  "bentV2Q": {
+    "id": "p3-f747-bentheimer-literal-fraction-56-forecasts-before-pressure",
+    "worker": "node-24b88ab7d5c1d228529e66f210bada65",
+    "generation": "479df2e1d91395203624dc1d5639a88e1a781f689becb11220acc72ecd3a9d50",
+    "request_sha256": "b8bcb854b0fc2e3d7f784f493272acb855123fcc2075ea0e9229a943e3fb49e8",
+    "finished_at": "2026-11-23T02:42:02.814622661Z",
+    "exit": 0,
+    "descendants": "drained",
+    "output_bytes": 2845
+  },
+  "bentScoreQ": {
+    "id": "p3-f747-bentheimer-locked-56-forecast-seven-pressure-receiver",
+    "worker": "node-24b88ab7d5c1d228529e66f210bada65",
+    "generation": "58ccbf8a14fc968a34fce8706b3c529ad8cb5da97ca5d671559636c467e7d52a",
+    "request_sha256": "7e26d952e0c8d70b5eda0c5cbc8124ef77612ea8372747cbb2dc48f8674a08ac",
+    "finished_at": "2026-11-23T02:43:59.73488809Z",
+    "exit": 0,
+    "descendants": "drained",
+    "output_bytes": 9989
+  },
+  "bentRecountQ": {
+    "id": "p3-f747-bentheimer-cold-decimal-and-original-publisher-table-recount",
+    "worker": "node-24b88ab7d5c1d228529e66f210bada65",
+    "generation": "1f43c993ade595cbafcda2c4bf17909d79478e4fd40b676f3989dbcb75dc6f25",
+    "request_sha256": "351ed0c1847830577aba72e455bc1ff1e418e5b291fc2c0c8783d6a166299027",
+    "finished_at": "2026-11-23T02:46:00.575210968Z",
+    "exit": 0,
+    "descendants": "drained",
+    "output_bytes": 605
+  }
+}

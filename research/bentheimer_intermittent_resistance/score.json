@@ -1,0 +1,342 @@
+{
+  "covered": 2,
+  "forecast_sha256": "87a7573f28a92492e98123ce96659caa96a3103f5da05b691578fd391fd856d0",
+  "kPa_per_unit": 10.376808731408904,
+  "mean_full_width": 11.824296900169431,
+  "mean_width": 5.922664917917933,
+  "metrics": {
+    "connected-permissive": {
+      "mae": 3.776069324376364,
+      "maxae": 8.568547122889768,
+      "worst_fw": 0.3
+    },
+    "connected-stable": {
+      "mae": 10.070580698383239,
+      "maxae": 17.266894863316086,
+      "worst_fw": 0.3
+    },
+    "cyclic-support": {
+      "mae": 3.6684602520229985,
+      "maxae": 6.811496229396406,
+      "worst_fw": 0.15
+    },
+    "endpoint-switch": {
+      "mae": 6.049643405815074,
+      "maxae": 7.6855268408652435,
+      "worst_fw": 0.5
+    },
+    "full-support-midpoint": {
+      "mae": 4.470772567269902,
+      "maxae": 5.68621440496846,
+      "worst_fw": 0.5
+    },
+    "mean-saturation": {
+      "mae": 3.152694943352576,
+      "maxae": 10.156514793719866,
+      "worst_fw": 0.15
+    },
+    "occupancy-midpoint": {
+      "mae": 3.9346803748101102,
+      "maxae": 7.686573522038584,
+      "worst_fw": 0.15
+    },
+    "same-flow-fraction": {
+      "mae": 2.340385893804418,
+      "maxae": 6.496379048627702,
+      "worst_fw": 0.3
+    }
+  },
+  "pass_primary": false,
+  "rows": [
+    {
+      "R_interval": [
+        3.256898561989895,
+        3.256898561989895
+      ],
+      "full_width": 4.618733253559294,
+      "fw": 0.0,
+      "inside": false,
+      "kPa": 18.477647557256883,
+      "kPa_printing_interval": [
+        18.461367691567673,
+        18.493956160573084
+      ],
+      "phase_specific_oil": 1.7806676441214597,
+      "phase_specific_water": null,
+      "printing_interval": [
+        1.7790987739504276,
+        1.7822392837014431
+      ],
+      "printing_interval_covered": false,
+      "printing_interval_overlaps": false,
+      "signed_errors": {
+        "connected-permissive": 1.0657816897597963,
+        "connected-stable": 1.0657816897597963,
+        "cyclic-support": 1.4762309178684356,
+        "endpoint-switch": 1.4762309178684352,
+        "full-support-midpoint": 3.7855975446480823,
+        "mean-saturation": 1.4762309178684356,
+        "occupancy-midpoint": 1.4762309178684356,
+        "same-flow-fraction": 1.4762309178684356
+      },
+      "target": 1.7806676441214595,
+      "target_printed": [
+        "0",
+        "0.145",
+        "0.567",
+        "0.000"
+      ],
+      "width": 0.0
+    },
+    {
+      "R_interval": [
+        14.589041298568755,
+        19.604499231828687
+      ],
+      "full_width": 12.724252516967919,
+      "fw": 0.15,
+      "inside": false,
+      "kPa": 97.64781172869974,
+      "kPa_printing_interval": [
+        96.73740909868064,
+        98.57551288403629
+      ],
+      "phase_specific_oil": 9.32818229439497,
+      "phase_specific_water": 9.903614457831326,
+      "printing_interval": [
+        9.3224623872918,
+        9.49959813614607
+      ],
+      "printing_interval_covered": false,
+      "printing_interval_overlaps": false,
+      "signed_errors": {
+        "connected-permissive": 1.8171116046877955,
+        "connected-stable": 9.397669636865915,
+        "cyclic-support": 6.811496229396406,
+        "endpoint-switch": 5.962455348898535,
+        "full-support-midpoint": 4.303135269858263,
+        "mean-saturation": 10.156514793719866,
+        "occupancy-midpoint": 7.686573522038584,
+        "same-flow-fraction": 2.2953447457857727
+      },
+      "target": 9.410196743160137,
+      "target_printed": [
+        "0.15",
+        "0.528",
+        "0.092",
+        "0.015"
+      ],
+      "width": 5.015457933259931
+    },
+    {
+      "R_interval": [
+        12.220528398883292,
+        19.422315147372174
+      ],
+      "full_width": 12.416941415040561,
+      "fw": 0.3,
+      "inside": true,
+      "kPa": 192.90276649943877,
+      "kPa_printing_interval": [
+        189.38186892731986,
+        196.557061843268
+      ],
+      "phase_specific_oil": 18.59860494610019,
+      "phase_specific_water": 18.569277108433734,
+      "printing_interval": [
+        18.250492403709043,
+        18.941956716261128
+      ],
+      "printing_interval_covered": true,
+      "printing_interval_overlaps": true,
+      "signed_errors": {
+        "connected-permissive": -8.568547122889768,
+        "connected-stable": 17.266894863316086,
+        "cyclic-support": -2.918925969317799,
+        "endpoint-switch": -6.369268473401116,
+        "full-support-midpoint": -4.674093697834508,
+        "mean-saturation": 0.6003061931576674,
+        "occupancy-midpoint": -2.768375099156673,
+        "same-flow-fraction": -6.496379048627702
+      },
+      "target": 18.589796872284406,
+      "target_printed": [
+        "0.3",
+        "0.552",
+        "0.038",
+        "0.016"
+      ],
+      "width": 7.201786748488882
+    },
+    {
+      "R_interval": [
+        11.924200761002933,
+        19.18723081383882
+      ],
+      "full_width": 12.195210318343408,
+      "fw": 0.5,
+      "inside": false,
+      "kPa": 203.48639259961587,
+      "kPa_printing_interval": [
+        199.57246726920982,
+        207.55690512872226
+      ],
+      "phase_specific_oil": 19.41612604263207,
+      "phase_specific_water": 19.807228915662648,
+      "printing_interval": [
+        19.232547542785152,
+        20.00199777225164
+      ],
+      "printing_interval_covered": false,
+      "printing_interval_overlaps": false,
+      "signed_errors": {
+        "connected-permissive": -2.6961508714578883,
+        "connected-stable": 14.580217491183323,
+        "cyclic-support": -4.030768723170619,
+        "endpoint-switch": -7.6855268408652435,
+        "full-support-midpoint": -5.68621440496846,
+        "mean-saturation": -0.9897154705889157,
+        "occupancy-midpoint": -4.0540118144473,
+        "same-flow-fraction": -1.0929294857087584
+      },
+      "target": 19.609727601868176,
+      "target_printed": [
+        "0.5",
+        "0.560",
+        "0.026",
+        "0.025"
+      ],
+      "width": 7.263030052835887
+    },
+    {
+      "R_interval": [
+        12.391854907551554,
+        18.163784298692146
+      ],
+      "full_width": 11.308285931554797,
+      "fw": 0.7,
+      "inside": false,
+      "kPa": 195.02584146929078,
+      "kPa_printing_interval": [
+        191.4277386770015,
+        198.76179624263628
+      ],
+      "phase_specific_oil": 18.930722891566266,
+      "phase_specific_water": 18.736567893194398,
+      "printing_interval": [
+        18.44765029710734,
+        19.154424196045632
+      ],
+      "printing_interval_covered": false,
+      "printing_interval_overlaps": false,
+      "signed_errors": {
+        "connected-permissive": 4.19194897593081,
+        "connected-stable": 7.501533453635311,
+        "cyclic-support": -3.4717075984472014,
+        "endpoint-switch": -6.402540028049355,
+        "full-support-midpoint": -4.839641648901932,
+        "mean-saturation": -2.365511576320298,
+        "occupancy-midpoint": -3.516575332479059,
+        "same-flow-fraction": 1.535889998166791
+      },
+      "target": 18.79439493560091,
+      "target_printed": [
+        "0.7",
+        "0.592",
+        "0.016",
+        "0.037"
+      ],
+      "width": 5.771929391140592
+    },
+    {
+      "R_interval": [
+        13.006392347811015,
+        17.367512811675386
+      ],
+      "full_width": 10.476794318940472,
+      "fw": 0.85,
+      "inside": true,
+      "kPa": 174.6916935291684,
+      "kPa_printing_interval": [
+        171.79921615865274,
+        177.68323651895977
+      ],
+      "phase_specific_oil": 16.827309236947794,
+      "phase_specific_water": 16.836144578313252,
+      "printing_interval": [
+        16.556074281165518,
+        17.123109919251153
+      ],
+      "printing_interval_covered": true,
+      "printing_interval_overlaps": true,
+      "signed_errors": {
+        "connected-permissive": 1.606588046915558,
+        "connected-stable": 1.606588046915558,
+        "cyclic-support": -1.1094027397829684,
+        "endpoint-switch": -3.828426337861119,
+        "full-support-midpoint": -2.8507778147863476,
+        "mean-saturation": -1.6514266829761315,
+        "occupancy-midpoint": -1.6478661059289355,
+        "same-flow-fraction": -0.28138619073306614
+      },
+      "target": 16.834818685672136,
+      "target_printed": [
+        "0.85",
+        "0.622",
+        "0.009",
+        "0.050"
+      ],
+      "width": 4.361120463864371
+    },
+    {
+      "R_interval": [
+        14.353064431639602,
+        14.353064431639602
+      ],
+      "full_width": 9.340422448367566,
+      "fw": 1.0,
+      "inside": false,
+      "kPa": 153.38494474407693,
+      "kPa_printing_interval": [
+        152.24875996819486,
+        154.53821500531058
+      ],
+      "phase_specific_oil": null,
+      "phase_specific_water": 14.781514116166157,
+      "printing_interval": [
+        14.672021419009369,
+        14.892653320047103
+      ],
+      "printing_interval_covered": false,
+      "printing_interval_overlaps": false,
+      "signed_errors": {
+        "connected-permissive": -0.8830716348499781,
+        "connected-stable": -0.8830716348499781,
+        "cyclic-support": -0.4284496845265533,
+        "endpoint-switch": -0.4284496845265533,
+        "full-support-midpoint": -0.7574468802250571,
+        "mean-saturation": -0.4284496845265533,
+        "occupancy-midpoint": -0.4284496845265533,
+        "same-flow-fraction": -0.4284496845265533
+      },
+      "target": 14.781514116166155,
+      "target_printed": [
+        "1",
+        "0.663",
+        "0.000",
+        "0.067"
+      ],
+      "width": 0.0
+    }
+  ],
+  "strict_comparisons": {
+    "connected-permissive": false,
+    "connected-stable": true,
+    "cyclic-support": false,
+    "endpoint-switch": false,
+    "full-support-midpoint": false,
+    "mean-saturation": false,
+    "same-flow-fraction": false
+  },
+  "xml_sha256": "edd1a164af3632201c114d4b5845599ef2783da1d19a4f07223fb6c656e2513f"
+}
