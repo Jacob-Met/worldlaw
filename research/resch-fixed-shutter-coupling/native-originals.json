@@ -1,0 +1,263 @@
+[
+  {
+    "id": "p2-f747-resch-fixed-shutters-source-only-first",
+    "worker": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+    "receipt": {
+      "script_observation_version": 3,
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {},
+          "snapshots": 1,
+          "nonempty_snapshots": 1,
+          "distinct_processes": 1,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.054719,
+        "system_cpu_seconds": 0.00842,
+        "max_rss_bytes": 23793664,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 1234560,
+        "start_ticks": 71401120,
+        "boot_id": "e63a2f1b-7ab2-4bc5-8e4e-5927618e40ec"
+      },
+      "command_id": "p2-f747-resch-fixed-shutters-source-only-first",
+      "request_sha256": "d15fb4f04a6b21f4206f9f4fbf81d26efa5feeb2da2b1f1f80914f9d66e31a0e",
+      "generation": "f163f2a0d5cd8f307a0afc5ae33dee20e427e7bc79739cec82d7ffaf7adca957",
+      "state": "failed",
+      "runner_pid": 1234550,
+      "started_at": "2026-11-23T05:49:02.388590481Z",
+      "finished_at": "2026-11-23T05:49:02.507245488Z",
+      "exit_code": 1,
+      "error": "exit status 1"
+    },
+    "request": "d15fb4f04a6b21f4206f9f4fbf81d26efa5feeb2da2b1f1f80914f9d66e31a0e",
+    "generation": "f163f2a0d5cd8f307a0afc5ae33dee20e427e7bc79739cec82d7ffaf7adca957",
+    "output": "Traceback (most recent call last):\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1344, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/usr/lib/python3.12/http/client.py\", line 1365, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/usr/lib/python3.12/http/client.py\", line 1411, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.12/http/client.py\", line 1360, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.12/http/client.py\", line 1120, in _send_output\n    self.send(msg)\n  File \"/usr/lib/python3.12/http/client.py\", line 1064, in send\n    self.connect()\n  File \"/usr/lib/python3.12/http/client.py\", line 1499, in connect\n    super().connect()\n  File \"/usr/lib/python3.12/http/client.py\", line 1030, in connect\n    self.sock = self._create_connection(\n                ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 828, in create_connection\n    for res in getaddrinfo(host, port, 0, SOCK_STREAM):\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 963, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno -3] Temporary failure in name resolution\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<string>\", line 6, in <module>\n  File \"/usr/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 515, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 532, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1392, in https_open\n    return self.do_open(http.client.HTTPSConnection, req,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1347, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno -3] Temporary failure in name resolution>\n",
+    "witness": {
+      "source": "authority_native_observation_v1",
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "placement-4a4ddec28174ecc330d2e26139cf0881ed93cd8d31be756a",
+      "artifact_sha256": "1b128d159d20877e2c5e4a7f4c63a4cbc641d058b810e75036a3782ab0b6db4c",
+      "artifact_bytes": 3695,
+      "original_owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "command_id": "p2-f747-resch-fixed-shutters-source-only-first",
+      "generation": "f163f2a0d5cd8f307a0afc5ae33dee20e427e7bc79739cec82d7ffaf7adca957",
+      "request_sha256": "d15fb4f04a6b21f4206f9f4fbf81d26efa5feeb2da2b1f1f80914f9d66e31a0e",
+      "native_sha256": "0aa9f1f010ccb8c34994a9a5ce255a9f760cb265a161063858b5affd12514186",
+      "output_sha256": "a80e69c8f15f21de6835cbc1d26796560e89f6176c09db6416a7ef7f1d586b94",
+      "offset": 0,
+      "bytes": 2583,
+      "total_bytes": 2583,
+      "complete": true
+    }
+  },
+  {
+    "id": "p2-f747-resch-source-only-public-dns-successor",
+    "worker": "node-b438062a0d8833852879c5f622fc267a",
+    "receipt": {
+      "script_observation_version": 3,
+      "working_tree_context": {
+        "repository": "github.com/Jacob-Met/cursor-swiss-env",
+        "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 0.09000000000000001
+          },
+          "snapshots": 88,
+          "nonempty_snapshots": 88,
+          "distinct_processes": 1,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.155705,
+        "system_cpu_seconds": 0.035747,
+        "max_rss_bytes": 34979840,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 1380639,
+        "start_ticks": 52431010,
+        "boot_id": "5eba2a01-d873-461b-b1c4-6b36a566de04"
+      },
+      "command_id": "p2-f747-resch-source-only-public-dns-successor",
+      "request_sha256": "6462268cfe4388eedad96ee38a837a809760f859f69a1e845c4867a536852332",
+      "generation": "afb6351bb6964a9cdc54154587deb66513152dcbe4fc189074b49804e7c59422",
+      "state": "completed",
+      "runner_pid": 1380626,
+      "started_at": "2026-11-23T05:50:02.402784055Z",
+      "finished_at": "2026-11-23T05:50:11.249846777Z",
+      "exit_code": 0
+    },
+    "request": "6462268cfe4388eedad96ee38a837a809760f859f69a1e845c4867a536852332",
+    "generation": "afb6351bb6964a9cdc54154587deb66513152dcbe4fc189074b49804e7c59422",
+    "output": "AUTHOR start=640;%first measurement\nAUTHOR fin=740;%last measurement\nAUTHOR ptsPerMeas=500;%the number of times the powermeter is read per measurement\nAUTHOR kappa=power(1,:)-power(2,:)-power(3,:)-power(4,:)+power(5,:)+power(6,:)+power(7,:)-power(8,:);\nAUTHOR pow=[870,600,345];%experimental powers of the input beams (mW), used to normalize kappa\nAUTHOR indivErr=std(power')/sqrt(length(power));%error bars on the individual terms\nAUTHOR kappaFinalErr=sqrt(sum(indivErr))/sum(pow)%error of kappa\nAUTHOR [frequency,powHist]= hist(kappa/sum(pow),numBins);\nSOURCE_ONLY 831 808 [('# Start date/time: 1622475103.7339206', 808)] [((0, '# state: [1, 1, 1]'), 101), ((1, '# state: [1, 1, 0]'), 101), ((2, '# state: [1, 0, 1]'), 101), ((3, '# state: [0, 1, 1]'), 101), ((4, '# state: [1, 0, 0]'), 101), ((5, '# state: [0, 1, 0]'), 101), ((6, '# state: [0, 0, 1]'), 101), ((7, '# state: [0, 0, 0]'), 101)] {'MATLAB/computeKappa.m': '88bbb592e82f4ba365b38c4264145c627619a190c9b302b54fa4dea2f49a8527', 'MATLAB/coupledWaveEqStr2.m': 'cae2f97f3b289f3363e6d2c555f86d0f973aee0d23ed15ed82257dd0afc0626e', 'MATLAB/gaussFunc.m': '883cc5336299e98b00642462f90754108f7caeb108ad61e81e3c0a8b7128e8e1', 'MATLAB/initialize.m': 'ecab8a4df96fa357a1ad080ba99b1b5406af47d3bb0a567755ce6cd7f48bf3b0', 'MATLAB/plotIndividualZscans.m': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855', 'MATLAB/plotKappaHist.m': '06246a288bed4a2ff88c1074c082503f1d90070806d5c052d47175b4d4ae548d', 'MATLAB/plotKappaVsZ.m': 'f3f4fbf1debe1f490130706f99a79770ccb7d267ff2b04e715a720c9b84a917e', 'MATLAB/plotProcessEff.m': '8cb2de92cfb2c1eb6ae7616641dcfbbf0893fd04e545afd4eacd35c9fceeb5e7', 'MATLAB/plotStabilityData.m': '83bb8dc77115f677c1b927fdbe9c310f66e3d345099e427496e15e9200a29f36'} MEASURED_POWERS_DECODED 0\n",
+    "witness": {
+      "first_observation": true,
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "first-output-placement-954c8fb480f1f1d8a40de55a8437f2755f497ee45099c9cb-o0-r1",
+      "artifact_sha256": "72ddb20736093882f6462d1fe9fb32c69621d169847cc7499a7698ff5cd09a05",
+      "artifact_bytes": 9329,
+      "original_owner": "node-b438062a0d8833852879c5f622fc267a",
+      "command_id": "p2-f747-resch-source-only-public-dns-successor",
+      "generation": "afb6351bb6964a9cdc54154587deb66513152dcbe4fc189074b49804e7c59422",
+      "request_sha256": "6462268cfe4388eedad96ee38a837a809760f859f69a1e845c4867a536852332",
+      "native_sha256": "249db66f0b686855e3b575fe64e6ef634e56279a4ec9747380a65a6d4acbcd99",
+      "output_sha256": "bf92239bc130dd5dabdc20d2f3054afedeea61bc278eef79cfecd5c2bcea4cfc",
+      "offset": 0,
+      "bytes": 1777,
+      "total_bytes": 1777,
+      "complete": true
+    }
+  },
+  {
+    "id": "p2-f747-resch-frozen101-exact-dual-and-attainment",
+    "worker": "node-49ce35aee5f5ac3713107652d4b7fb2c",
+    "receipt": {
+      "script_observation_version": 3,
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "git": 0,
+            "other": 0.08,
+            "python": 29.790000000000163,
+            "shell": 0
+          },
+          "snapshots": 519,
+          "nonempty_snapshots": 519,
+          "distinct_processes": 29,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 29.769596,
+        "system_cpu_seconds": 0.873541,
+        "max_rss_bytes": 147574784,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 3077900,
+        "start_ticks": 79745162,
+        "boot_id": "bb7f1afb-49b2-4296-b013-0a6bafd5f1b8"
+      },
+      "command_id": "p2-f747-resch-frozen101-exact-dual-and-attainment",
+      "request_sha256": "f0f151893886aaf8d7933396eb12dacd18ba39494e72adb8fa4c6e6c77ae6aac",
+      "generation": "4546d3bcd878ce91840a02e677ab5ff1ed1ff40d3d767f9048b0feef79b55df5",
+      "state": "completed",
+      "runner_pid": 3077890,
+      "started_at": "2026-11-23T05:56:19.19647315Z",
+      "finished_at": "2026-11-23T05:57:11.079144276Z",
+      "exit_code": 0
+    },
+    "request": "f0f151893886aaf8d7933396eb12dacd18ba39494e72adb8fa4c6e6c77ae6aac",
+    "generation": "4546d3bcd878ce91840a02e677ab5ff1ed1ff40d3d767f9048b0feef79b55df5",
+    "output": "Finite-source transport checks passed, including exact third moments ±3/4\nCYCLE 640\nCYCLE 660\nCYCLE 680\nCYCLE 700\nCYCLE 720\nCYCLE 740\nRESULT unresolved outer -6.7510241503808345e-06 1.7357677565521377e-06 inner -4.526655919136254e-06 -2.489697665889574e-06 observed -3.518128038455939e-06 mean 0.03336313062651101 worst_width_cycle 732 -8.603824003776293e-05 -1.3235480784956658e-05\nCOLD 11371a4b05881a40ca919cadd571d39104092aaffaa5d4f7a48460d111f57c10 118522\n",
+    "witness": {
+      "source": "authority_native_observation_v1",
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "placement-d7177dabe2ded6fcd8288d8f15f3d20aded9204bdc55c554",
+      "artifact_sha256": "0984f452ecdac2dc2b7d134c7362ea7adc4b2dbb0b06b17be0fcfe0c7c24d379",
+      "artifact_bytes": 867,
+      "original_owner": "node-49ce35aee5f5ac3713107652d4b7fb2c",
+      "command_id": "p2-f747-resch-frozen101-exact-dual-and-attainment",
+      "generation": "4546d3bcd878ce91840a02e677ab5ff1ed1ff40d3d767f9048b0feef79b55df5",
+      "request_sha256": "f0f151893886aaf8d7933396eb12dacd18ba39494e72adb8fa4c6e6c77ae6aac",
+      "native_sha256": "30ef2eee666503bd4f473a5ca95e75e9e1e6c32e03cf5d90c08ddfeb759c1721",
+      "output_sha256": "a94a20116be89c6a8339ef63dc0a2c127a789463b77b981139b980b2e514e0a7",
+      "offset": 0,
+      "bytes": 461,
+      "total_bytes": 461,
+      "complete": true
+    }
+  },
+  {
+    "id": "p2-f747-resch-independent-exact-certificate-original",
+    "worker": "node-7a9dead9904fa3581a4286fb5ced2323",
+    "receipt": {
+      "script_observation_version": 3,
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "git": 0,
+            "other": 0.11,
+            "python": 21.910000000000032,
+            "shell": 0
+          },
+          "snapshots": 265,
+          "nonempty_snapshots": 265,
+          "distinct_processes": 24,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 22.232406,
+        "system_cpu_seconds": 0.225328,
+        "max_rss_bytes": 88166400,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 4049352,
+        "start_ticks": 54126578,
+        "boot_id": "2ca0e609-1208-40ae-a202-77e6301c0a3f"
+      },
+      "command_id": "p2-f747-resch-independent-exact-certificate-original",
+      "request_sha256": "a2e797a595f69a3543375736d4eae0aa0e59dc7ab19697685b05d20dbc33cbd4",
+      "generation": "731c386e55992ae1d3edb538c873b265a1718a658355a2aab4c1fb1bd4913ddb",
+      "state": "completed",
+      "runner_pid": 4049340,
+      "started_at": "2026-11-23T05:58:01.387377975Z",
+      "finished_at": "2026-11-23T05:58:27.870282653Z",
+      "exit_code": 0
+    },
+    "request": "a2e797a595f69a3543375736d4eae0aa0e59dc7ab19697685b05d20dbc33cbd4",
+    "generation": "731c386e55992ae1d3edb538c873b265a1718a658355a2aab4c1fb1bd4913ddb",
+    "output": "VERIFIED 101 202 1111 unresolved widest 732\nRAW widest 732 54 ['81764593750000003/250000000000000', '-182508588000000003/500000000000000', '-367283970000000011/1000000000000000', '-33780378312499999/625000000000000', '403486966999999993/1000000000000000', '71017435400000009/2000000000000000000', '296684974999999983/10000000000000000000', '-49149443000000001/2000000000000000000'] -0.03072386049933885 0.03336313062651101 [-8.603824003776293e-05, -1.3235480784956658e-05]\nRAW max_upper 685 3 ['164511903999999987/500000000000000', '-359527110999999991/1000000000000000', '-71991902600000003/200000000000000', '-66709085374999999/1250000000000000', '80113011599999993/200000000000000', '74620234999999993/2000000000000000000', '74031954750000007/2500000000000000000', '-61476593999999999/2500000000000000000'] -0.02381415649487607 0.03336313062651101 [-4.877530212726509e-06, 6.383636588818309e-06]\nRAW min_stored 732 54 ['81764593750000003/250000000000000', '-182508588000000003/500000000000000', '-367283970000000011/1000000000000000', '-33780378312499999/625000000000000', '403486966999999993/1000000000000000', '71017435400000009/2000000000000000000', '296684974999999983/10000000000000000000', '-49149443000000001/2000000000000000000'] -0.03072386049933885 0.03336313062651101 [-8.603824003776293e-05, -1.3235480784956658e-05]\nCYCLE_COUNTS 10 22\n",
+    "witness": {
+      "first_observation": true,
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "first-output-placement-3c769ccd71aef7c7c5a997a86b53ec9e0b0c43ee806dc8d5-o0-r1",
+      "artifact_sha256": "2062060661e3485edf8a4f0cd87bb1b3668c47d0fe258332a752bb38be1621ad",
+      "artifact_bytes": 8477,
+      "original_owner": "node-7a9dead9904fa3581a4286fb5ced2323",
+      "command_id": "p2-f747-resch-independent-exact-certificate-original",
+      "generation": "731c386e55992ae1d3edb538c873b265a1718a658355a2aab4c1fb1bd4913ddb",
+      "request_sha256": "a2e797a595f69a3543375736d4eae0aa0e59dc7ab19697685b05d20dbc33cbd4",
+      "native_sha256": "aadf2013b43aa1865da9ff66b72ff35c8a68ac90f6a2c990e87fdef13f18266c",
+      "output_sha256": "192f7c7918a541145c8e6f0e9063e286eb0c30eba74cf08809e97912b3afa06e",
+      "offset": 0,
+      "bytes": 1351,
+      "total_bytes": 1351,
+      "complete": true
+    }
+  }
+]

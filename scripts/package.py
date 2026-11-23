@@ -16,6 +16,13 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/resch-fixed-shutter-coupling/README.md",
+    "research/resch-fixed-shutter-coupling/archive_reader.py",
+    "research/resch-fixed-shutter-coupling/certified_transport.py",
+    "research/resch-fixed-shutter-coupling/coupling_course.py",
+    "research/resch-fixed-shutter-coupling/native-originals.json",
+    "research/resch-fixed-shutter-coupling/protocol.json",
+    "research/resch-fixed-shutter-coupling/verify.py",
     "research/ils_oxalate_temperature/README.md",
     "research/ils_oxalate_temperature/acquisition.py",
     "research/ils_oxalate_temperature/catalog.json",
