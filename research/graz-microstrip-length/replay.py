@@ -11,7 +11,7 @@ import zipfile
 
 ARCHIVE = 'fb07e056ca519ab8c9637be7360617d3cfd4519cdd8b28597f53ad3c42308956'
 ARCHIVED_AUTHOR = '5ba8b85738ce09e292e6d8d81262ca4076caa4427505148f47639ec865e9b8a6'
-MAINTAINED_AUTHOR = '6cabbc267c32d3abcb17acdbcc01ff203946d9b12284367bd7aa601614f37a9a'
+MAINTAINED_AUTHOR = 'ac0a335bc39d7fb31b2fa2df83544e082096474709d08ab3811c4bf41b1b4d76'
 FILES = ('authors.py','receiver.py','matrix_paths.py','projective.py','pole_certificate.py',
          'forecast.py','forecast_projective.py','score.py','synthetic_projective.py')
 
