@@ -16,6 +16,22 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/bentheimer_intermittent_resistance/README.md",
+    "research/bentheimer_intermittent_resistance/forecast-custody.json",
+    "research/bentheimer_intermittent_resistance/forecast-lock.json",
+    "research/bentheimer_intermittent_resistance/independent-receipt.json",
+    "research/bentheimer_intermittent_resistance/independent_recount.py",
+    "research/bentheimer_intermittent_resistance/low-rate-calibration.json",
+    "research/bentheimer_intermittent_resistance/native-receipts.json",
+    "research/bentheimer_intermittent_resistance/occupancy_model.py",
+    "research/bentheimer_intermittent_resistance/phase-input-diagnosis.jsonl",
+    "research/bentheimer_intermittent_resistance/predict_locked.py",
+    "research/bentheimer_intermittent_resistance/protocol.json",
+    "research/bentheimer_intermittent_resistance/recount-inputs.json",
+    "research/bentheimer_intermittent_resistance/rounding-sensitivity.json",
+    "research/bentheimer_intermittent_resistance/rounding_sensitivity.py",
+    "research/bentheimer_intermittent_resistance/score.json",
+    "research/bentheimer_intermittent_resistance/score_locked.py",
     "research/glycerol_calorimetry_acoustic_transfer/README.md",
     "research/glycerol_calorimetry_acoustic_transfer/alternate_layout_reader.py",
     "research/glycerol_calorimetry_acoustic_transfer/calibration-checks.json",

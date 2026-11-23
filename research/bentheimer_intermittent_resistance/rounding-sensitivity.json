@@ -1,0 +1,34 @@
+{
+  "candidate_minus_control_MAE_range": {
+    "connected-permissive": [
+      -0.09158456676632838,
+      0.4179392480432419
+    ],
+    "connected-stable": [
+      -6.6726897518365575,
+      -5.578800120219557
+    ],
+    "cyclic-support": [
+      0.26622012278711155,
+      0.26622012278711155
+    ],
+    "endpoint-switch": [
+      -2.1149630310049634,
+      -2.1149630310049634
+    ],
+    "full-support-midpoint": [
+      -0.5360921924597918,
+      -0.5360921924597918
+    ],
+    "mean-saturation": [
+      0.646263644027389,
+      0.9228493690482231
+    ],
+    "same-flow-fraction": [
+      1.4555966256082649,
+      1.7383061851835813
+    ]
+  },
+  "interval_guaranteed_coverages": 2,
+  "interval_possible_coverages": 2
+}

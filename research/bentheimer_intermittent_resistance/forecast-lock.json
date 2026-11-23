@@ -1,0 +1,365 @@
+{
+  "high_imaging_inputs": [
+    {
+      "Sw": "0.145",
+      "conn_stable": "99.6",
+      "conn_union": "99.6",
+      "fw": "0",
+      "intermittent": "0",
+      "oil": "0.855",
+      "water": "0.145"
+    },
+    {
+      "Sw": "0.528",
+      "conn_stable": "62.1",
+      "conn_union": "88.9",
+      "fw": "0.15",
+      "intermittent": "0.149",
+      "oil": "0.427",
+      "water": "0.424"
+    },
+    {
+      "Sw": "0.552",
+      "conn_stable": "0",
+      "conn_union": "83.5",
+      "fw": "0.3",
+      "intermittent": "0.297",
+      "oil": "0.361",
+      "water": "0.342"
+    },
+    {
+      "Sw": "0.560",
+      "conn_stable": "0",
+      "conn_union": "67.3",
+      "fw": "0.5",
+      "intermittent": "0.328",
+      "oil": "0.339",
+      "water": "0.333"
+    },
+    {
+      "Sw": "0.592",
+      "conn_stable": "0",
+      "conn_union": "22.3",
+      "fw": "0.7",
+      "intermittent": "0.320",
+      "oil": "0.310",
+      "water": "0.370"
+    },
+    {
+      "Sw": "0.622",
+      "conn_stable": "0",
+      "conn_union": "0",
+      "fw": "0.85",
+      "intermittent": "0.292",
+      "oil": "0.291",
+      "water": "0.417"
+    },
+    {
+      "Sw": "0.663",
+      "conn_stable": "0",
+      "conn_union": "0",
+      "fw": "1",
+      "intermittent": "0",
+      "oil": "0.337",
+      "water": "0.663"
+    }
+  ],
+  "input_boundary": "Only Table1 parsed for high-rate inputs; all high Table2 cells are unopened. Trusted XML parser loaded source bytes in full.",
+  "predictions": [
+    {
+      "R_interval": [
+        3.256898561989895,
+        3.256898561989895
+      ],
+      "extreme_Sw_states": [
+        [
+          0.1445,
+          0.14549999999999996
+        ],
+        [
+          0.145,
+          0.145
+        ]
+      ],
+      "full_support_interval": [
+        3.256898561989895,
+        7.875631815549189
+      ],
+      "fw": 0.0,
+      "high_Sw": 0.145,
+      "low_Sw": 0.252,
+      "out_of_calibration_support": true,
+      "sham_support": [
+        0.1445,
+        0.1455
+      ],
+      "support": [
+        0.1445,
+        0.14549999999999996
+      ],
+      "values": {
+        "connected-permissive": 2.8464493338812558,
+        "connected-stable": 2.8464493338812558,
+        "cyclic-support": 3.256898561989895,
+        "endpoint-switch": 3.2568985619898947,
+        "full-support-midpoint": 5.566265188769542,
+        "mean-saturation": 3.256898561989895,
+        "occupancy-midpoint": 3.256898561989895,
+        "same-flow-fraction": 3.256898561989895
+      }
+    },
+    {
+      "R_interval": [
+        14.589041298568755,
+        19.604499231828687
+      ],
+      "extreme_Sw_states": [
+        [
+          0.491,
+          0.5735
+        ],
+        [
+          0.4235,
+          0.536
+        ]
+      ],
+      "full_support_interval": [
+        7.35120575453444,
+        20.07545827150236
+      ],
+      "fw": 0.15,
+      "high_Sw": 0.528,
+      "low_Sw": 0.463,
+      "out_of_calibration_support": false,
+      "sham_support": [
+        0.3175,
+        0.6154999999999999
+      ],
+      "support": [
+        0.4235,
+        0.5735
+      ],
+      "values": {
+        "connected-permissive": 11.227308347847933,
+        "connected-stable": 18.807866380026052,
+        "cyclic-support": 16.221692972556543,
+        "endpoint-switch": 15.372652092058672,
+        "full-support-midpoint": 13.7133320130184,
+        "mean-saturation": 19.566711536880003,
+        "occupancy-midpoint": 17.09677026519872,
+        "same-flow-fraction": 11.70554148894591
+      }
+    },
+    {
+      "R_interval": [
+        12.220528398883292,
+        19.422315147372174
+      ],
+      "extreme_Sw_states": [
+        [
+          0.3415,
+          0.6395
+        ],
+        [
+          0.536,
+          0.6395
+        ]
+      ],
+      "full_support_interval": [
+        7.707232466929618,
+        20.12417388197018
+      ],
+      "fw": 0.3,
+      "high_Sw": 0.552,
+      "low_Sw": 0.491,
+      "out_of_calibration_support": false,
+      "sham_support": [
+        0.3245,
+        0.6535
+      ],
+      "support": [
+        0.3415,
+        0.6395
+      ],
+      "values": {
+        "connected-permissive": 10.021249749394638,
+        "connected-stable": 35.85669173560049,
+        "cyclic-support": 15.670870902966607,
+        "endpoint-switch": 12.22052839888329,
+        "full-support-midpoint": 13.915703174449899,
+        "mean-saturation": 19.190103065442074,
+        "occupancy-midpoint": 15.821421773127733,
+        "same-flow-fraction": 12.093417823656704
+      }
+    },
+    {
+      "R_interval": [
+        11.924200761002933,
+        19.18723081383882
+      ],
+      "extreme_Sw_states": [
+        [
+          0.3325,
+          0.6615
+        ],
+        [
+          0.536,
+          0.6615
+        ]
+      ],
+      "full_support_interval": [
+        7.825908037728011,
+        20.02111835607142
+      ],
+      "fw": 0.5,
+      "high_Sw": 0.56,
+      "low_Sw": 0.517,
+      "out_of_calibration_support": true,
+      "sham_support": [
+        0.3375000000000001,
+        0.6585000000000002
+      ],
+      "support": [
+        0.3325,
+        0.6615
+      ],
+      "values": {
+        "connected-permissive": 16.913576730410288,
+        "connected-stable": 34.1899450930515,
+        "cyclic-support": 15.578958878697557,
+        "endpoint-switch": 11.924200761002933,
+        "full-support-midpoint": 13.923513196899716,
+        "mean-saturation": 18.62001213127926,
+        "occupancy-midpoint": 15.555715787420876,
+        "same-flow-fraction": 18.516798116159418
+      }
+    },
+    {
+      "R_interval": [
+        12.391854907551554,
+        18.163784298692146
+      ],
+      "extreme_Sw_states": [
+        [
+          0.3695,
+          0.6905
+        ],
+        [
+          0.536,
+          0.6905
+        ]
+      ],
+      "full_support_interval": [
+        8.30061032092158,
+        19.608896252476377
+      ],
+      "fw": 0.7,
+      "high_Sw": 0.592,
+      "low_Sw": 0.536,
+      "out_of_calibration_support": true,
+      "sham_support": [
+        0.38649999999999995,
+        0.6794999999999999
+      ],
+      "support": [
+        0.3695,
+        0.6905
+      ],
+      "values": {
+        "connected-permissive": 22.98634391153172,
+        "connected-stable": 26.29592838923622,
+        "cyclic-support": 15.322687337153708,
+        "endpoint-switch": 12.391854907551554,
+        "full-support-midpoint": 13.954753286698978,
+        "mean-saturation": 16.42888335928061,
+        "occupancy-midpoint": 15.27781960312185,
+        "same-flow-fraction": 20.3302849337677
+      }
+    },
+    {
+      "R_interval": [
+        13.006392347811015,
+        17.367512811675386
+      ],
+      "extreme_Sw_states": [
+        [
+          0.4165,
+          0.7095
+        ],
+        [
+          0.536,
+          0.7095
+        ]
+      ],
+      "full_support_interval": [
+        8.745643711415552,
+        19.222438030356024
+      ],
+      "fw": 0.85,
+      "high_Sw": 0.622,
+      "low_Sw": 0.589,
+      "out_of_calibration_support": true,
+      "sham_support": [
+        0.5175,
+        0.6675
+      ],
+      "support": [
+        0.4165,
+        0.7095
+      ],
+      "values": {
+        "connected-permissive": 18.441406732587694,
+        "connected-stable": 18.441406732587694,
+        "cyclic-support": 15.725415945889168,
+        "endpoint-switch": 13.006392347811017,
+        "full-support-midpoint": 13.984040870885789,
+        "mean-saturation": 15.183392002696005,
+        "occupancy-midpoint": 15.1869525797432,
+        "same-flow-fraction": 16.55343249493907
+      }
+    },
+    {
+      "R_interval": [
+        14.353064431639602,
+        14.353064431639602
+      ],
+      "extreme_Sw_states": [
+        [
+          0.6625000000000001,
+          0.6635
+        ],
+        [
+          0.663,
+          0.663
+        ]
+      ],
+      "full_support_interval": [
+        9.353856011757316,
+        18.69427846012488
+      ],
+      "fw": 1.0,
+      "high_Sw": 0.663,
+      "low_Sw": 0.642,
+      "out_of_calibration_support": true,
+      "sham_support": [
+        0.6625000000000001,
+        0.6635
+      ],
+      "support": [
+        0.6625000000000001,
+        0.6635
+      ],
+      "values": {
+        "connected-permissive": 13.898442481316177,
+        "connected-stable": 13.898442481316177,
+        "cyclic-support": 14.353064431639602,
+        "endpoint-switch": 14.353064431639602,
+        "full-support-midpoint": 14.024067235941098,
+        "mean-saturation": 14.353064431639602,
+        "occupancy-midpoint": 14.353064431639602,
+        "same-flow-fraction": 14.353064431639602
+      }
+    }
+  ],
+  "whole_source_sha256": "edd1a164af3632201c114d4b5845599ef2783da1d19a4f07223fb6c656e2513f"
+}
