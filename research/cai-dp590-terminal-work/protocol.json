@@ -1,0 +1,37 @@
+{
+  "source": {
+    "title": "DP590 terminal plastic-work transfer on seven cruciform force ratios",
+    "paper": "Cai et al. A modified yield function for modeling of the evolving yielding behavior and micro-mechanism in biaxial deformation of sheet metals",
+    "archives": [
+      "10.17632/tbdsbrnkj9.1",
+      "10.17632/62nyx7gdd3.1"
+    ],
+    "source_kind": "Origin 9.3 published 4-column RD/TD true-stress vs logarithmic-plastic-strain plots and companion two-column uniaxial curves, no raw forces or timestamps. First-passage reference rendering and accurate physical power conjugacy are model ingredients.",
+    "frozen_access_post": 188562,
+    "source_files": {
+      "biaxial": "55f314d4eea13adbd8fb2235ec925bebf197ac1e5f677fa7d58e7046f7925a61",
+      "uniaxial": "810e9befa9ce366b8d51005a86f9c53a16361e10116c32d5127bc06092312901"
+    },
+    "liborigin": "SciDAVis/liborigin@a92f26f28e531f64684b66a2731dd617bea3cb45",
+    "traces_read_before_freeze": [
+      "separate DP590 uniaxial 0,45,90",
+      "cruciform 0:4 and 4:0"
+    ]
+  },
+  "held": [
+    "1:4",
+    "2:4",
+    "3:4",
+    "4:4",
+    "4:3",
+    "4:2",
+    "4:1"
+  ],
+  "target": "For each mixed worksheet, whole terminal sum of all signed trapezoidal integrals σx dεxᵖ+σy dεyᵖ, in MPa = MJ/m³. Preserve complete component works, stored signs, reversals, first/last rows. This is an endpoint conditional on observed strain records and nominal force labels, not a time-ahead load forecast.",
+  "issuance": "Metadata and five calibration curves first. After this source lock, decode only the two strain columns A/C on seven held books. No held B/D stresses enter any forecast. Commit all seven forecast banks, including unsupported entries, before scoring stresses.",
+  "math": "Convex associated local yield loci matched by cumulative work W; positive uniaxial strengths s_d(W) calibrate dε_dd ≤ dW/s_d(W) hence U_d(Δε_dd) ≤ W. Horizontal endpoints use net strains, separate signed per-axis work integrals, local principal frame, plane stress, zero shear for 45deg, same start/end and work origin. First-arrival monotonic branch U_d extracted from raw tensile reference; retain raw signed calibration jitter. Common W need not imply identical physical history. Representability and force conversion not established.",
+  "recipe": "Two-axis tensile strengths average independent and cruciform calibration at 13 prespecified W knots; 45° external only. Transverse/axial plastic strain slopes from fixed 0.8–1.2W windows at the two pure controls. Point candidate uses geometric mean between convex-hull and supporting-halfspace radial bounds, then inverts u·Δε=integral_0^W dV/rho_u(V) on work grid 0–105 MJ/m³ step .05. Holds exactly for constant true-stress direction, here approximated by the prescribed force direction. Outside grid marks unsupported; no extrapolation. Numerical intervals depend on inferred tangent slopes and the same true-ray approximation. No calibrated probabilistic intervals.",
+  "controls": "Hill48 reciprocal-gradient average; anisotropic Hosford6; empirical axis-strength blend; source-family Barlat Yld2000 m=4/6/8 with parameters at all 13 work levels regularized toward isotropy; also its m6 midpoint-area variant and net-strain Mises. Alternative midpoint-area candidate reported only as sensitivity. The published variable-exponent full-data fits have mixed-path exposure. These source-family controls exclude that fit and share source access. The five references underdetermine a general 8-parameter fit, so Yld branches are selected regularized procedures.",
+  "primary": "All seven mixed programs mandatory. Absolute log(predicted/observed terminal signed work), equal per-program mean and maximum. Shared-support geometric midpoint must strictly beat ALL eight designated comparison procedures on BOTH summaries (16 gates); any unsupported whole-program score fails the corresponding gate. No counting rows as independent experimental units.",
+  "secondary": "For all seven report exact direction-specific minimum work bounds for 0,90,45, and all seven engineering-relaxed results. The largest fractional shortfall across two pure cruciform vs independent same-direction controls at fixed strains .002,.004,.006,.008,.01,.02,.04,.08,.12,.16 is a deterministic calibration sensitivity, not a confidence bound. Report as an inequality test; satisfaction does not establish associated flow. Keep nominal-ray interval coverage distinct from unconditional uniaxial directions. No score selected/reweighted after measurement."
+}
