@@ -51,7 +51,7 @@ export function weakWindows(run, options, rates, insist, {includePositionDerivat
     const feature = (id, i) => {
       const position = rows[i].position;
       switch (id) {case 'command': return rows[i].command; case 'spring': return position; case 'cubic': return position ** 3; case 'gravity': return Math.sin(position); case 'cosine': return Math.cos(position); case 'bias': return 1;
-        case 'coulomb': return Math.sign(rates[start + i]); case 'quadratic': return rates[start + i] * Math.abs(rates[start + i]); case 'rate_squared': return rates[start + i] ** 2; default: return 0;}
+        case 'coulomb': return Math.sign(rates[start + i]); case 'quadratic': return rates[start + i] * Math.abs(rates[start + i]); case 'rate_squared': return rates[start + i] ** 2; default: throw Error('Unsupported weak feature: ' + id);}
     };
     for (let i = 0; i < rows.length - 1; i++) {
       const h = x[i + 1] - x[i], {integral, firstOffset} = moments(x[i], x[i + 1]);
@@ -59,7 +59,12 @@ export function weakWindows(run, options, rates, insist, {includePositionDerivat
       const amount = (phi(x[i + 1]) - phi(x[i])) / h;
       weights[i] += amount; weights[i + 1] -= amount;
       for (const id of options.terms) {
-        if (id === 'command') features[id] += duration * duration * rows[i].command * integral;
+        if (id === 'command' || id === 'command_cubic') {
+          // A nonlinear command feature is transformed before integration and
+          // is constant on the same left-held interval as the actual actuator.
+          const held = rows[i].command;
+          features[id] += duration * duration * (id === 'command' ? held : held ** 3) * integral;
+        }
         else if (id === 'command_position') {
           // Command is held over this interval, including at a command jump.
           // Only position is interpolated; interpolating u*theta would smear it.

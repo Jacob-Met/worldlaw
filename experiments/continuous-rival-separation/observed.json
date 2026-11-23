@@ -1,0 +1,96 @@
+[
+  {
+    "id": 1001,
+    "amplitudes": [
+      -1,
+      1,
+      1,
+      0.5773502691896258
+    ],
+    "noiseUnits": 0.47667499903293425,
+    "limitingPair": [
+      "command_cubic+rate+spring+gravity",
+      "command_cubic+rate+spring+cubic"
+    ],
+    "refinementError": 1.5662730001864134e-9,
+    "nestedClassUniformBoundInNoiseUnits": 0.00036884636112764546
+  },
+  {
+    "id": 1002,
+    "amplitudes": [
+      -1,
+      1,
+      1,
+      0.5773502691896258
+    ],
+    "noiseUnits": 2.360775332172971,
+    "limitingPair": [
+      "command_cubic+rate+spring+gravity",
+      "command_cubic+rate+spring+cubic"
+    ],
+    "refinementError": 2.6826785237688e-9,
+    "nestedClassUniformBoundInNoiseUnits": 0.0007705612733639697
+  },
+  {
+    "id": 1003,
+    "amplitudes": [
+      -1,
+      -1,
+      1,
+      -0.5773502691896258
+    ],
+    "noiseUnits": 1.8784991525237245,
+    "limitingPair": [
+      "command_cubic+rate+gravity",
+      "command_cubic+rate+spring+gravity"
+    ],
+    "refinementError": 1.9266348516566723e-9,
+    "nestedClassUniformBoundInNoiseUnits": 0.005869431413291194
+  },
+  {
+    "id": 1004,
+    "amplitudes": [
+      1,
+      1,
+      -1,
+      0.5773502691896258
+    ],
+    "noiseUnits": 1.1382779400492369,
+    "limitingPair": [
+      "command_cubic+rate+spring+gravity",
+      "command_cubic+rate+gravity+cubic"
+    ],
+    "refinementError": 2.890178540937427e-9,
+    "nestedClassUniformBoundInNoiseUnits": 0.008310056259930206
+  },
+  {
+    "id": 1005,
+    "amplitudes": [
+      -0.5773502691896258,
+      -1,
+      1,
+      -1
+    ],
+    "noiseUnits": 201.4450542544902,
+    "limitingPair": [
+      "command+rate+spring+cubic",
+      "command_cubic+rate+spring+cubic"
+    ],
+    "refinementError": 7.054548667451144e-9
+  },
+  {
+    "id": 1006,
+    "amplitudes": [
+      -1,
+      1,
+      -1,
+      -0.5773502691896258
+    ],
+    "noiseUnits": 8.226829610157111,
+    "limitingPair": [
+      "command_cubic+rate+spring+cubic",
+      "command_cubic+rate+gravity+cubic"
+    ],
+    "refinementError": 5.049244777843853e-8
+  }
+]
