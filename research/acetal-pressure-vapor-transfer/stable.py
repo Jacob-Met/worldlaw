@@ -73,7 +73,7 @@ def propagate(domains, edges):
             for lo,hi in prior:
                 left=np.maximum(target_lo,lo+L[i])
                 right=np.minimum(target_hi,hi+U[i])
-                for k in np.flatnonzero(left<=right):
+                for k in np.flatnonzero((L[i] <= U[i]) & (left <= right)):
                     dest[k].append([float(left[k]),float(right[k])])
         current=[merge(p) for p in dest]
         history.append(current)
