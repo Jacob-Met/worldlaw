@@ -45,13 +45,16 @@ function region(law, commands, readings) {
 }
 
 // Shared exact receiver kernel. Centers are readings minus accumulated forcing.
-export function positionDriftStateRegion(centers, error) {
+export function positionDriftStateRegion(centers, error, ticks = centers.map((_, t) => t)) {
+  need(ticks.length === centers.length && ticks.length > 0, 'expected one tick per reading');
+  const times = ticks.map(tick => Q(BigInt(tick)));
+  need(times.every((time, i) => i === 0 || cmp(times[i - 1], time) < 0), 'observation ticks must increase');
   const drift = {lower: null, upper: null};
   const diameter = add(error, error);
   for (let j = 1; j < centers.length; j++) {
     for (let i = 0; i < j; i++) {
       const difference = sub(centers[j], centers[i]);
-      const dt = Q(BigInt(j - i));
+      const dt = sub(times[j], times[i]);
       intersectLower(drift, div(sub(difference, diameter), dt));
       intersectUpper(drift, div(add(difference, diameter), dt));
     }
@@ -61,10 +64,10 @@ export function positionDriftStateRegion(centers, error) {
   const intercept = {lower: null, upper: null};
   const strips = centers.map((z, t) => {
     const lo = sub(z, error), hi = add(z, error);
-    const tv = mul(Q(BigInt(t)), v);
+    const tv = mul(times[t], v);
     intersectLower(intercept, sub(lo, tv));
     intersectUpper(intercept, sub(hi, tv));
-    return {tick: t, lower: fmt(lo), upper: fmt(hi)};
+    return {tick: ticks[t], lower: fmt(lo), upper: fmt(hi)};
   });
   need(nonempty(intercept), 'internal inconsistent intercept projection');
   return {strips, driftRange: [serialize(drift.lower), serialize(drift.upper)],
