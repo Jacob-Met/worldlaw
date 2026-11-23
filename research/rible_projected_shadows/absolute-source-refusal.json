@@ -1,0 +1,77 @@
+{
+  "frozen_protocol": "9edf4aeb7858668e924445eb5dd04db14d484dbe",
+  "native_receiver": "ff3952095c8e2c03dcbdb5116b45ab4d31e09cf3",
+  "scope": "Single development camera R1 distilled water green. All 2001 source indices match. Exact segmentation/unit map refused. No held inputs, forecasts or scores for the proposed absolute course.",
+  "members": [
+    {
+      "j": "p3-f747-rible-levitation-release-and-mat-descriptor-inventory",
+      "raw_sha256": "86b0150e43241921f3cccaa25cf9a01e1496a92101399f4a27ac5a923a25e6c5",
+      "len": 1443,
+      "stage": "failed",
+      "code": 1,
+      "drain": "drained",
+      "request": "d9bc57f7bd650e0888be1636ed7b104aa3069f7c65d044e6be85620d6a1693c5",
+      "generation": "9db9a5b9fc406be0352ee0dc87e33ab8bf2b3720019bd31605e03f41f3be6541"
+    },
+    {
+      "j": "p3-f747-rible-mat5-prefix-catalog-and-actual-deposit-metadata",
+      "raw_sha256": "ef57fa8d57f76734e083e280f5bf8aabc637f5457706569958a8bb41130b070d",
+      "len": 4043,
+      "stage": "completed",
+      "code": 0,
+      "drain": "drained",
+      "request": "39642c448da6883e1db81769f4985087a4c724bf6721d382ee0a0b72a255b292",
+      "generation": "86767791c659898222fd9d660ce699ad3a0e352d520c59edab882387342a5c46"
+    },
+    {
+      "j": "p3-f747-rible-corrected-deposit20mb-member-and-field-census",
+      "raw_sha256": "9246e219025b4d6b52f3409bea11005f7e10bd65965a5446295ce7232a8e58ff",
+      "len": 2615,
+      "stage": "failed",
+      "code": 1,
+      "drain": "drained",
+      "request": "74d5c37809f16f3f5b82e36350682cf41b0ce86c7cdabefdd581d80ee9f57bbd",
+      "generation": "65157de1894aea43cfdb75d07e0323a632105c8006dd97997f0cbcd10c1c3523"
+    },
+    {
+      "j": "p3-f747-rible-paired-capture-and-debug-mat-lineage-intersection",
+      "raw_sha256": "8860494a883cebb49912931c94227bf3fcd89c3366d854c15b6c65f3c7fb6fc2",
+      "len": 509,
+      "stage": "failed",
+      "code": 1,
+      "drain": "drained",
+      "request": "fcdf7e7f84957d8ca6f3d5bed380b92c4a4542d5236a4ec89a87e5685489e6dc",
+      "generation": "fa0b0b780af929798b541802c0f93129f9238389b30a746c282df52f76e81192"
+    },
+    {
+      "j": "p3-f747-rible-authenticated-public-archive-source-pair-camera-clocks",
+      "raw_sha256": "2df5f5d30c60796fcadfae25149a6f1b52a5bfe0db4e9ca03e7a6e85c993ea50",
+      "len": 27226,
+      "stage": "completed",
+      "code": 0,
+      "drain": "drained",
+      "request": "4e32409cab4fb46280bbd18c903a2298bfc0e58ead486ea17ca307ca4234338a",
+      "generation": "8bdc850ada9724749609c74ccf5aa4476c536ae360a8a8f993c9371432316a66"
+    },
+    {
+      "j": "p3-f747-rible-source-cam1-dwgreen-2001-frame-unit-bridge",
+      "raw_sha256": "28c6a74ee657feae99dc16c92336d5b98f0eb4213121e205ec5cdf7c0921d062",
+      "len": 215,
+      "stage": "failed",
+      "code": 1,
+      "drain": "drained",
+      "request": "edcdd0569641c55776ee6dde613ce01e4809ef9fe6d3d10ea4217afa3f3b4360",
+      "generation": "509aba9775abf7d8e37166bc9fb3c539184b43b1c6439a2f3e18a9f053cf9af2"
+    },
+    {
+      "j": "p3-f747-rible-source-typed-mat5-length-and-angle-bridge",
+      "raw_sha256": "858f5defb4d7b0a61893dc7cc5273037734947257b169010dcca65cda409f925",
+      "len": 1700,
+      "stage": "failed",
+      "code": 1,
+      "drain": "drained",
+      "request": "1c0dd52fd7e79108ff0ec2db9d3a29dd02add881b9831782a2a9379299a30ac1",
+      "generation": "5eb45cda2a2d17f8106fab24eec2e66b5eef2d108503b465b1a6420a2d7f9454"
+    }
+  ]
+}
