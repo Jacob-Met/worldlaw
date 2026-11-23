@@ -23,6 +23,8 @@ With five readings `["0","0","0","0","0"]`, the CLI selects y0. Completing the o
 
 The reference rate is identically zero in both families. Before the group pulse the initial and third-reference readings restrict the constant drift to the interval (Y₃−Y₀ ± 2ε)/3. In the absence of measurement error, S is three times the group's rate for this fixed mixture. The coefficient sums cancel both the unknown origin and drift, including after arbitrary affine changes of the entire trace.
 
+The source rates also give a direct derivation. Define T = 4Y₀ − 7Y₃ + 3Y₇. On the first continuation, A's group displacement plus its three remaining displacements is exactly one. The terminal reading must satisfy |T − 3| ≤ 14ε. On either continuation, B's three suffix displacements sum to zero, giving |T − S| ≤ 12ε. If both families survive the first continuation, subtracting these bounds gives S ≥ 3 − 26ε. On the second continuation, A's three suffix displacements sum to its group displacement, so |T − 2S| ≤ 12ε. Combining that bound with B's gives S ≤ 24ε. The error coefficients 14, 12 and 12 are the sums of absolute coefficients of the corresponding measured positions. T is used for this proof and can be evaluated after the final pulse. The branch choice at tick four uses only S.
+
 The exact lower certificate has 15 positive original-row weights. Multiply each by 50 and sum separately on the two terminal words. All private initial states, mixture weights, and later readings cancel. The remaining necessary conditions for a collision are
 
 | Continuation | Necessary condition for both families to survive |
