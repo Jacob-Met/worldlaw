@@ -2,6 +2,8 @@
 
 For the registered eight-command source, the unrestricted adaptive H16 radius lies in **[5/32,14/87]**. This improves the [nominal-prefix upper bound of 5/31](sixteen-pulse-terminal-bound.md) by exactly 1/2697. The existing ten-reference fixed tape still separates below 5/32. Equality at 5/32 remains unresolved.
 
+The earlier [seven-row original-source dual](../examples/sixteen-pulse-nominal-prefix-limits.json) also makes 14/87 sharp for this reading rule. On y1 y0 z0 z0 x0 x1 z1 x0 followed by eight references, the rule keeps the nominal observations through tick eight. The dual uses only ticks 0, 7, 8 and 16 and allows a free final observation. Any further decrease in the unrestricted upper bound must therefore change an earlier reading on this suffix-first word, even if all subsequent replies change.
+
 ## The causal reading rule
 
 Let μ be the mean rate of the two original balanced mixtures, with canonical weights A=(1,2,1,2)/6 and B=(2,1,2,1)/6. Through tick eight, publish the cumulative nominal reading. At tick nine inspect only the nine commands already received. If they are eight references followed by x0 or x1, subtract 1/174 from the current nominal reading and retain that same additive correction through tick fifteen. All other prefixes keep the nominal readings. On the six branches beginning with eight references and a suffix, the final reading is the midpoint of the two reconstructed physical positions. Elsewhere retain the previous balanced/terminal reading rule with the new bound ε=14/87.
