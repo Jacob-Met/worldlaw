@@ -29,16 +29,20 @@ def rates(law,weights):
     return dict(zip(NAMES,(sum(w*v for w,v in zip(weights,column)) for column in zip(*ANCHORS[law]))))
 
 class Experiment:
-    def __init__(self,source,balanced_only=False):
+    def __init__(self,source,balanced_only=False,terminal_bound=False):
         check(source.get('schema')=='worldlaw.position-drift-fixed-tape-optimum/v1','wrong source schema')
         self.h=integer(source['pulseBudget'])
         self.n=n=self.h//2
         certified_even=self.h==2*n and n>=5 and n%6 in (1,5)
         certified_odd=self.h==2*n+1 and n>=10 and n%6 in (1,4)
         self.balanced_only=balanced_only
-        check(self.h>0 and (balanced_only or self.h>=67 or certified_even or certified_odd),'unsupported horizon')
+        self.terminal_bound=terminal_bound
+        check(not terminal_bound or (self.h==16 and not balanced_only),'terminal-bound mode requires H=16')
+        check(self.h>0 and (terminal_bound or balanced_only or self.h>=67 or certified_even or certified_odd),'unsupported horizon')
         self.k=(self.h+6)//12
         self.product=n*(self.h-n) if balanced_only else 6*self.k*(self.h-6*self.k)
+        if terminal_bound:
+            self.product=24*self.h*Q(5,31)
         self.e=e=Q(self.product,24*self.h)
         self.critical={}
         # The closest multiple of six to H/2 lies at distance at most three.
@@ -78,6 +82,11 @@ class Experiment:
         self.requested=number(cat['noiseBound'])
         check(self.requested>=0,'negative noise')
     def describe(self):
+        if self.terminal_bound:
+            fixed=Q(self.k*(self.h-6*self.k),4*self.h)
+            status='closed-collision' if self.requested>=self.e else ('policy-separates' if self.requested<fixed else 'unresolved')
+            return dict(horizon=str(self.h),nominalPrefixRadius=str(self.e),adaptiveLower=str(fixed),
+                        adaptiveUpper=str(self.e),atRequestedNoise=status)
         if self.balanced_only:
             return dict(horizon=str(self.h),radius=str(self.e),scope='balanced midpoint upper bound',
                         atRequestedNoise='closed-collision' if self.requested>=self.e else 'below-this-bound')
@@ -192,6 +201,7 @@ if __name__=='__main__':
     parser.add_argument('source',type=Path)
     parser.add_argument('--runs',type=Path,help='JSON array of received command/count pairs')
     parser.add_argument('--balanced-bound',action='store_true',help='use the balanced midpoint upper bound at any positive horizon')
+    parser.add_argument('--terminal-bound',action='store_true',help='certify the sharp nominal-prefix H16 upper')
     args=parser.parse_args()
-    experiment=Experiment(json.loads(args.source.read_text()),balanced_only=args.balanced_bound)
+    experiment=Experiment(json.loads(args.source.read_text()),balanced_only=args.balanced_bound,terminal_bound=args.terminal_bound)
     print(json.dumps(experiment.describe() if args.runs is None else experiment.receive(json.loads(args.runs.read_text()))))
