@@ -1,3 +1,4 @@
+import {predictEvolution,synthesizeEvolution} from './operator-synthesis.mjs';
 import {preparePeriodicOrigin} from './periodic-origin-model.mjs';
 import {fitInputOriginColumns,inputOriginWork} from './input-origin-fit.mjs';
 import {splitResidual} from './split-multicolumn.mjs';
@@ -126,6 +127,7 @@ function predictUnchecked(model, row) {
   return value;
 }
 export function predict(model, values) {
+  if (model?.schema==='worldlaw.symbolic-evolution/v1') return predictEvolution(model,values);
   if(model?.schema==='worldlaw.split-torque-experiment/v1')return prepareSplitTorquePoint(model)(values).roundedPrediction;
   if(model?.schema==='worldlaw.centered-torque-experiment/v1')return evaluateCenteredTorquePoint(model,values).rounded;
   checkedTerms(model); return predictUnchecked(model, input(values));
@@ -215,6 +217,13 @@ export function evaluate(model, observations) {
 }
 
 export function discover(observations, requestedOptions = {}) {
+  if (requestedOptions?.operatorGrammar !== undefined) {
+    const supplied=requestedOptions.operatorGrammar;
+    requireThat(supplied && typeof supplied==='object' && !Array.isArray(supplied),'Declare an operator grammar.');
+    requireThat(Object.keys(requestedOptions).length===1,'Operator discovery accepts its own explicit grammar and tolerance.');
+    const training=rows(observations,8).map(r=>({...r,change:r.jointTorque}));
+    return synthesizeEvolution(training,{...supplied,kind:'torque'});
+  }
   const samples = rows(observations, 8), options = normalizeOptions(requestedOptions);
   const robustWork = discoveryRobustWork(samples.length, options);
   requireThat(robustWork <= SOFT_L1_MAX_WORK,
