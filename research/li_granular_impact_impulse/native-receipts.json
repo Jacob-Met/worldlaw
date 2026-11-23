@@ -1,0 +1,101 @@
+[
+  {
+    "job": "p3-f747-li-2021jb022905-revised-archive-roster-only",
+    "worker": "node-39f6c61f6323be3e156d05f744ef98ef",
+    "request_sha256": "bdf189c47c48c40b8d84e6516133767955a65fb61447219d92f4bfd9578de42b",
+    "generation": "fc8917152b23851958fabd0bc65f530148071d967ffbe59b4411ebbcf056c6c1",
+    "exit": 0,
+    "descendants": null,
+    "output_bytes": 1172,
+    "sha256": "ff1d00a3e94146032e65658367ecf8e6ba633b737c3d0e5bdf2e1c93c81481c7",
+    "first_line": "SOURCE 18e8cbaa63ab9ba745832d429a595d671a7e3df4"
+  },
+  {
+    "job": "p3-f747-li-v2-real-condition-run-time-and-header-map",
+    "worker": "node-c0da1eb7402af862460cccd552698bb4",
+    "request_sha256": "9a4033338538197a27bbc7a586c064555e0568eefc773e478384c48667015a07",
+    "generation": "78d028167be8095bee8ab5ad4b1b70ae9f28aab575534fddbc888fa3c491b0c9",
+    "exit": 0,
+    "descendants": "drained",
+    "output_bytes": 53683,
+    "sha256": "b88c710c7c4d7f70c76d01fc1b372112b48956dc4f1cc31767a98ceb386951c0",
+    "first_line": "SOURCE 6303e6eb139f2b5e845027f83cbcc35d8775ddf3"
+  },
+  {
+    "job": "p3-f747-li-per-run-pressure-clock-and-literal-filter",
+    "worker": "node-39f6c61f6323be3e156d05f744ef98ef",
+    "request_sha256": "d7ffb32daf8f7d7f5b3d88186dfaec877eca9fb595a725dd5ac5922c24c03cab",
+    "generation": "5987f7338e3839e15bf10029f9ed710141585fffc25cba9c7c9d33cf768c98f3",
+    "exit": 0,
+    "descendants": null,
+    "output_bytes": 22013,
+    "sha256": "2608fe5b469e18dbf543f286eb94cd039feaadfb4f6462ba7bf91401049d739c",
+    "first_line": "SOURCE 8ec1f3c863e98b1178500e79de0329120b907885"
+  },
+  {
+    "job": "p3-f747-li-development-imf223-g3-literal-21x30-check",
+    "worker": "node-39f6c61f6323be3e156d05f744ef98ef",
+    "request_sha256": "88c05ac390a004c124103166863abfe34dc10441fd398e450c4865d1209d037d",
+    "generation": "81ce246a2b0f796f5fc1bd4c30f03514ed1d67ffb49d13bd2b145c0171745938",
+    "exit": 0,
+    "descendants": null,
+    "output_bytes": 6315,
+    "sha256": "91a5d00d31fa109353ac922a332c8a4641d628d22e2c665c44af1322c5bb9bb9",
+    "first_line": "SOURCE 1ec5c03e8d59de1cb042dd8a51191389447babf5"
+  },
+  {
+    "job": "p3-f747-li-optical-source-condition-shear-only",
+    "worker": "node-39f6c61f6323be3e156d05f744ef98ef",
+    "request_sha256": "1790d8fc8d00471589786945cd49e50192c994b1691f2a53c068085f034f2356",
+    "generation": "9d7e5c05c130fa15428ff3283cfbfdbde22b2fa41f23f6ca3db0fd6bf09a290a",
+    "exit": 0,
+    "descendants": null,
+    "output_bytes": 8562,
+    "sha256": "928cd0f3ffd0538ac33dc0aa130a8645f7339c74a01ff813bddfef92d8e74d64",
+    "first_line": "SOURCE c63c5cc8111c8599cf7e29f53a26958948126109"
+  },
+  {
+    "job": "p3-f747-li-optical-complete-merged-profile-region",
+    "worker": "node-39f6c61f6323be3e156d05f744ef98ef",
+    "request_sha256": "c25a490d1bc387831907428bfdec75c6fb326f3d0bff6dd41cb65c7927f86920",
+    "generation": "9a6653a8a1b5e8462647a48a44da1b4fca394a8604d83e117382235ca58532d2",
+    "exit": 0,
+    "descendants": null,
+    "output_bytes": 13733,
+    "sha256": "56d9d891024aa923c3bebd08eb8c52d1d58f68e8877d0b8fda73c2badf2b5e77",
+    "first_line": "SOURCE ec9e067034122341c70009abf9ff321d41e891ec"
+  },
+  {
+    "job": "p3-f747-li-locked-source-and-disjoint-dc-predictions",
+    "worker": "node-39f6c61f6323be3e156d05f744ef98ef",
+    "request_sha256": "6d8d065993f03d689f2b7a2ceaa1cf3386939754fa19a0a704df6db97a8c0b8b",
+    "generation": "b0986cfd0882b9228c22d408f173619499e13b26eb3d9415e3d72ba6c96f14d0",
+    "exit": 0,
+    "descendants": null,
+    "output_bytes": 42979,
+    "sha256": "ea54a01528b4906fcfc904bfe379400c6fd7a43656394f5cf876a8793f53da23",
+    "first_line": "SOURCE 2018e12be5437aeb603d4d154985ca5899fc9aed"
+  },
+  {
+    "job": "p3-f747-li-all-13-held-wavelet-energy-receiver",
+    "worker": "node-0bee39ddbe74826313b385fbc6bbd6c2",
+    "request_sha256": "adcce5d404f3951ac5334488713c0d362594871403775156fb10e39cf3531ab3",
+    "generation": "818f1ee91b44da0b202501677ee31986a5f2580d6045093df2c5f088d7222c86",
+    "exit": 0,
+    "descendants": "drained",
+    "output_bytes": 28349,
+    "sha256": "df9055c4da6bee3b6c22f525b9ad144578df684da32db3c9f5c4df8fb530d695",
+    "first_line": "SOURCE 6ae85598acc1703a895e3324c56228d4af66cc01"
+  },
+  {
+    "job": "p3-f747-li-decimal-187737-sample-1014-prediction-audit",
+    "worker": "node-1783c8b23e3d11fb22a036ce3c992a1a",
+    "request_sha256": "38c751f1f3e5a37f1b812ffbfb9eabf40f6b886112e9615dc81e8ea7acef9a35",
+    "generation": "ba90b308b996ac0b625b663cf5bd9691aca6f4d5ac69f7fee61deeeb7f0d7381",
+    "exit": 0,
+    "descendants": "drained",
+    "output_bytes": 1547,
+    "sha256": "ac29ea4220d8dc8187c33a4c86226cbd16b04bece7f55aa5ba23da2adc3c1ebf",
+    "first_line": "SOURCE ea488b75354098e8f7208221dda9fa527dda6188"
+  }
+]
