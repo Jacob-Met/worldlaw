@@ -1,0 +1,114 @@
+{
+  "schema": "worldlaw.position-drift-fixed-tape-optimum/v1",
+  "pulseBudget": "15",
+  "catalog": {
+    "schema": "worldlaw.position-drift-rate-polytopes/v1",
+    "commands": [
+      "ref",
+      "group",
+      "x0",
+      "y0",
+      "z0",
+      "x1",
+      "y1",
+      "z1"
+    ],
+    "noiseBound": "3/20",
+    "limits": {
+      "designWork": 12000000,
+      "receiverWork": 1000000
+    },
+    "laws": [
+      {
+        "id": "A",
+        "vertices": [
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "B",
+        "vertices": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            -1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            -1
+          ]
+        ]
+      }
+    ]
+  }
+}

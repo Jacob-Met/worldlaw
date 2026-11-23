@@ -4,7 +4,7 @@ For the registered eight-command A/B source, let H=2n+1≥21 be congruent to 3 o
 
     e = [n(n+1)−2]/(24H).
 
-A fixed tape separates strictly below e. At e, each adaptive controller admits a causal transcript with two persistent physical explanations. Examples include H=21 at 3/14 and H=27 at 5/18. This theorem leaves H=15 open. The [even-horizon construction](even-near-balanced-adaptive-optimum.md) uses a smaller correction at equal block lengths.
+A fixed tape separates strictly below e. At e, each adaptive controller admits a causal transcript with two persistent physical explanations. Examples include H=21 at 3/14 and H=27 at 5/18. The different [early-feedback construction](fifteen-pulse-early-obstruction.md) closes H=15 separately. The [even-horizon construction](even-near-balanced-adaptive-optimum.md) uses a smaller correction at equal block lengths.
 
 ## Which transcripts require a terminal adjustment?
 
@@ -36,4 +36,4 @@ python3 scripts/near-balanced-even-obstruction.py examples/active-position-drift
 python3 scripts/near-balanced-even-obstruction.py examples/active-position-drift-odd-near-balance.json --runs runs.json
 ```
 
-The existing command accepts odd and even sources. H=15 illustrates the limit of this proof. At b=7,s=8, α=17/420 is below C=1/21. Two *literal* tapes show the need for an earlier change at the fixed radius. Put W=x0 x0 y0 z0 z0 x1 y1 z1. If every proper reading is μ, even a free terminal reading on ref⁷ W forces ε≥35/232, and W ref⁷ forces ε≥14/93. Both exceed 3/20. The [two sparse original-row certificates](../examples/fifteen-pulse-nominal-prefix-limits.json) use only nonnegative weights; the test sums their actual source-position inequalities and recovers −ε≤−35/232 and −ε≤−14/93. The current unrestricted H=15 radius remains in [3/20,7/45].
+The existing command accepts odd and even sources. H=15 illustrates the limit of this proof. At b=7,s=8, α=17/420 is below C=1/21. Two *literal* tapes show the need for an earlier change at the fixed radius. Put W=x0 x0 y0 z0 z0 x1 y1 z1. If every proper reading is μ, even a free terminal reading on ref⁷ W forces ε≥35/232, and W ref⁷ forces ε≥14/93. Both exceed 3/20. The [two sparse original-row certificates](../examples/fifteen-pulse-nominal-prefix-limits.json) use only nonnegative weights; the test sums their actual source-position inequalities and recovers −ε≤−35/232 and −ε≤−14/93. The later early-feedback construction establishes the unrestricted H=15 radius 3/20.
