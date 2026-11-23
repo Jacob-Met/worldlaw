@@ -16,6 +16,13 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/deng-forced-orbit/README.md",
+    "research/deng-forced-orbit/forecast.json",
+    "research/deng-forced-orbit/forecast.py",
+    "research/deng-forced-orbit/protocol.json",
+    "research/deng-forced-orbit/receive.py",
+    "research/deng-forced-orbit/score.json",
+    "research/deng-forced-orbit/score.py",
     "research/ider_teg_port_transfer/README.md",
     "research/ider_teg_port_transfer/catalog-result.json",
     "research/ider_teg_port_transfer/catalog.py",
