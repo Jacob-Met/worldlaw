@@ -16,6 +16,20 @@ const overlap = (first, second) => {
 };
 const differences = (a, b) => [sub(a[0],b[1]), sub(a[1],b[0])];
 
+// Measurements can exceed the coefficient and command budget even on a
+// short trajectory, and the initial offset is unknown. Preserve exact decimal
+// integers and rationals throughout the same notebook input-size boundary.
+function parseReading(input) {
+  if (typeof input === 'number') {
+    need(Number.isSafeInteger(input), 'use an exact integer or a rational string for each reading');
+    input = String(input);
+  }
+  need(typeof input === 'string' && input.length <= 524288 && /^[+-]?\\d+(?:\\/[1-9]\\d*)?$/.test(input),
+    'expected an exact reading in integer or rational notation within the notebook byte limit');
+  const [numerator, denominator = '1'] = input.split('/');
+  return Q(BigInt(numerator), BigInt(denominator));
+}
+
 function parse(request) {
   need(request?.schema === TWO_PULSE_SCHEMA && Object.keys(request).sort().join(',') ===
     'amplitudes,hypotheses,initialState,noiseBound,schema', 'expected the declared scalar integrator source fields');
@@ -124,8 +138,8 @@ export function receiveTwoPulse(request, frozen, supplied, previous=null) {
   const expectedTicks=round===1?[0,1]:[2];
   need(Array.isArray(supplied.observations) && supplied.observations.length===expectedTicks.length &&
     supplied.observations.every((r,i)=>r?.tick===expectedTicks[i]), 'supply the ordered readings for this pulse only');
-  const current=supplied.observations.map(r=>parseSource(r.value));
-  const values=previous ? [...previous.readings.map(parseSource),...current] : current;
+  const current=supplied.observations.map(r=>parseReading(r.value));
+  const values=previous ? [...previous.readings.map(parseReading),...current] : current;
   const d=sub(values[1],values[0]);
   const cell=optimal.policy.find(c=>c.point ? compare(d,c.lo)===0 : compare(c.lo,d)<0 && compare(d,c.hi)<0);
   let ids=cell?.possible??[];
