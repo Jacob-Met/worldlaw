@@ -16,6 +16,18 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/flowave-pressure-moment-transfer/README.md",
+    "research/flowave-pressure-moment-transfer/diagnose.py",
+    "research/flowave-pressure-moment-transfer/diagnosis.json",
+    "research/flowave-pressure-moment-transfer/forecast.py",
+    "research/flowave-pressure-moment-transfer/geometry.py",
+    "research/flowave-pressure-moment-transfer/independent-recount.json",
+    "research/flowave-pressure-moment-transfer/independent.py",
+    "research/flowave-pressure-moment-transfer/joint-registration.md",
+    "research/flowave-pressure-moment-transfer/joint_pressure.py",
+    "research/flowave-pressure-moment-transfer/native-receipts.json",
+    "research/flowave-pressure-moment-transfer/registration.md",
+    "research/flowave-pressure-moment-transfer/score.json",
     "research/ba_cross_band_shear/README.md",
     "research/ba_cross_band_shear/catalog-record.json",
     "research/ba_cross_band_shear/catalog.py",
