@@ -4,6 +4,9 @@ import {parseAllHorizonRational} from './persistent-position-drift-all-horizon.m
 import {certifyPositionDriftTape} from './persistent-position-drift-multiclass-minimum.mjs';
 import {openPositionDriftFeedback} from './position-drift-terminal-feedback.mjs';
 
+import {prefixHistoryOracle} from './position-drift-prefix-intersection.mjs';
+
+export const HISTORY_SUFFIX_REQUEST='worldlaw.position-drift-suffix-feedback-source/v2';
 export const SUFFIX_REQUEST='worldlaw.position-drift-suffix-feedback-source/v1';
 export const SUFFIX_PLAN='worldlaw.position-drift-suffix-feedback-policy/v1';
 const need=(ok,reason)=>{if(!ok)throw Error('Suffix feedback: '+reason);};
@@ -28,8 +31,12 @@ function maximalCliques(neighbors){
 }
 
 export function planSuffixFeedback(request){
-  need(request?.schema===SUFFIX_REQUEST && Object.keys(request).sort().join(',')==='catalog,prefix,schema,suffixes',
-    'supply a catalog, a fixed prefix and an ordered suffix menu');
+  const higher=request?.schema===HISTORY_SUFFIX_REQUEST;
+  need((higher||request?.schema===SUFFIX_REQUEST) && Object.keys(request).sort().join(',')===(higher?
+    'catalog,limits,prefix,schema,suffixes':'catalog,prefix,schema,suffixes'),
+    'supply a catalog, a fixed prefix, an ordered suffix menu and the limits for the selected schema');
+  if(higher)need(request.limits&&Object.keys(request.limits).sort().join(',')==='linearWork,subsets'&&
+    Object.values(request.limits).every(v=>Number.isSafeInteger(v)&&v>=0),'supply nonnegative subset and linear-work budgets');
   const source=structuredClone(request.catalog),{ids,commands}=parsePositionDriftRates(source,parseAllHorizonRational);
   need(ids.length<=16,'at most 16 laws per cover');
   const validWord=word=>Array.isArray(word)&&word.length>0&&word.every(u=>commands.includes(u));
@@ -46,24 +53,54 @@ export function planSuffixFeedback(request){
     if(result.status==='fixed-tape-collision'){neighbors[i].add(j);neighbors[j].add(i);}
     else prefixSeparations.push(result.pairs[0]);
   }
-  const cache=new Map(),cover=[];
-  for(const clique of maximalCliques(neighbors)){
+  const cache=new Map(),cover=[],visited=new Set();
+  const work={subsets:0,linearWork:0},eliminations=[];
+  const checkHistory=higher?prefixHistoryOracle(source,prefix):null;
+  if(higher)Object.assign(base,{limits:{...request.limits},work,eliminations});
+  const exhausted=Symbol();
+  function spend(kind){
+    if(work[kind]>=request.limits[kind])throw exhausted;
+    work[kind]++;
+  }
+  function inspect(clique){
     clique.sort((a,b)=>a-b);
+    const key=clique.join(',');
+    if(visited.has(key))return;
+    visited.add(key);
+    if(higher)spend('subsets');
     const laws=clique.map(i=>ids[i]),failures=[];
     for(const [s,suffix] of suffixes.entries()){
       const proofs=[];
       let collision=null;
       for(let j=1;j<clique.length&&!collision;j++)for(let i=0;i<j;i++){
-        const key=[s,clique[i],clique[j]].join(',');
-        if(!cache.has(key))cache.set(key,pairTest(clique[i],clique[j],[...prefix,...suffix]));
-        const result=cache.get(key);
+        const pairKey=[s,clique[i],clique[j]].join(',');
+        if(!cache.has(pairKey))cache.set(pairKey,pairTest(clique[i],clique[j],[...prefix,...suffix]));
+        const result=cache.get(pairKey);
         if(result.collision){collision=result.collision;break;}
         proofs.push(result.pairs[0]);
       }
-      if(!collision){cover.push({laws,suffix:s,proofs});break;}
+      if(!collision){cover.push({laws,suffix:s,proofs});return;}
       failures.push({suffix:s,collision});
     }
-    if(failures.length===suffixes.length)return {...base,status:'cover-inconclusive',prefixSeparations,uncovered:{laws,failures}};
+    if(!higher)return {laws,failures};
+    const common=checkHistory(clique,()=>spend('linearWork'));
+    if(common.readings)return {laws,failures,commonPrefix:common};
+    // A physically realizable subset omits at least one member of the
+    // contradiction's support. Branch only on that support.
+    eliminations.push({laws,excluded:common.excluded.map(i=>ids[i]),proof:common.proof});
+    for(const missing of common.excluded){
+      const failed=inspect(clique.filter(i=>i!==missing));
+      if(failed)return failed;
+    }
+  }
+  try{
+    for(const clique of maximalCliques(neighbors)){
+      const uncovered=inspect(clique);
+      if(uncovered)return {...base,status:'cover-inconclusive',prefixSeparations,uncovered};
+    }
+  }catch(e){
+    if(e!==exhausted)throw e;
+    return {...base,status:'cover-budget-exhausted',prefixSeparations};
   }
   return {...base,status:'suffix-certified',prefixSeparations,cover};
 }

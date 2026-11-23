@@ -655,6 +655,23 @@ try{
   assert.deepEqual(JSON.parse(cli(['--notebook',earlyFile]).stdout),early);
   mark('the prefix commits both later pulses and the unchanged suffix survives intermediate reopen and CLI replay');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftHistorySuffix');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#drift-proof').textContent(),/cannot share one prefix/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Six-command physical world B');
+  await page.locator('#acquisition-kind').selectOption('synthetic');
+  for(const [i,x] of [0,0,2,4,7].entries())await page.locator('#drift-reading-'+i).fill(String(x));
+  await page.locator('#evaluate-readings').click();await idle();
+  assert.equal(await page.locator('#drift-reading-5').getAttribute('data-command'),'x');
+  assert.equal(await page.locator('#drift-reading-6').getAttribute('data-command'),'rest');
+  await page.locator('#drift-reading-5').fill('6');await page.locator('#drift-reading-6').fill('8');
+  await page.locator('#evaluate-readings').click();await idle();
+  const higher=await accepted();assert.deepEqual(higher.readouts.at(-1).result.consistentHypothesisIds,['B']);
+  const higherFile=await download('export-notebook','higher-order-suffix.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',higherFile]).stdout),higher);
+  mark('a four-law common-history exclusion admits both suffixes and replays a six-command measured record');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';
