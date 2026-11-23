@@ -7,7 +7,7 @@ import numpy as np
 from flux import KINDS, build_motion
 
 FIT_SHA = '5fa1bb0794ce01af82105ee68d6f572ecee9c283cf8685417d83a1d8c27c8c76'
-FLUX_SHA = 'e52adce3e3b96a62d807a150d27355b33821d58ee589c158bed0374fb99d41a9'
+FLUX_SHA = '1b33d5da2d4e78d0a44a9f89d3046b017e97f7c208885bb49478267f767cfc48'
 HELD = (37,38,39,40,41)
 
 def digest(path):

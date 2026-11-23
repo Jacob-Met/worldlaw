@@ -36,8 +36,9 @@ def integral(z,steps):
 def build_motion(path, fine=False):
     z=get_csv(path,['Time','qr','qb','qy'])
     t=z[:,0];q=np.unwrap(z[:,1:],axis=0)
-    if max(abs(t-np.arange(len(t))/240.))>2e-9 or t[-1]<9.99:
-        raise ValueError('camera time coverage or uniform sampling')
+    times=np.arange(len(t),dtype=float)
+    if t[-1]<9.99 or not any(np.max(np.abs(t-times/rate))<=2e-9 for rate in (120.,240.)):
+        raise ValueError('complete released 120 or 240 Hz camera grid required')
     t100=np.arange(1000)/100.
     a=np.stack([np.interp(t100,t,q[:,i]) for i in range(3)],axis=1)
     cuts=np.arange(1000) if fine else np.r_[np.arange(0,1000,10),999]

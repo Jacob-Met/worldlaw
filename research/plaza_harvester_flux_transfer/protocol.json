@@ -1,5 +1,5 @@
 {
-  "course": "plaza-periodic-flux-open-circuit-v1",
+  "course": "plaza-periodic-flux-open-circuit-v1-clock-v2",
   "exposure_pinned": "8b6abafc13f5f1975dec31fe79f5c1035e697424",
   "training_source": "p3-f747-plaza-31-loaded-sessions-only-calibration-intake",
   "training_source_sha": "df03db854a4d4ddf2d254cec3351184c82f9bbf30b399ddd724a24160faf4f6e",
@@ -27,5 +27,13 @@
     }
   ],
   "loaded_only_native_original": "p3-f747-plaza-matched-blade-sharing-nonconservative-path-and-load-sensitivity",
-  "raw_held_files_seen_before_freeze": 0
+  "raw_held_files_seen_before_freeze": 0,
+  "timing_correction": {
+    "failed_original": "p3-f747-plaza-open-motion-only-forty-five-frozen-electromagnetic-forecasts",
+    "original_source": "91cb5d19f8e81a8421fd88bd389134c8b5593b9d",
+    "clock_only_original": "p3-f747-plaza-open-optical-time-only-original-refusal-diagnosis",
+    "observed_input": "37=240Hz; 38,39,40,41=120Hz. Every measured optical clock starts at0 and covers t=9.99s. Retain all 5×100 windows, coefficients, controls, inference and numerical scoring gates. Use each actual timestamp without retiming; an exact 120 or240Hz uniform grid is required to 2e-9s. No physical resampling claim from printed clocks. The original 240Hz-only course did not produce a prediction lock. Held optical source arrays and clocks already exposed, raw terminal CSVs unopened.",
+    "new_flux_sha256": "1b33d5da2d4e78d0a44a9f89d3046b017e97f7c208885bb49478267f767cfc48",
+    "weights_sha256": "5fa1bb0794ce01af82105ee68d6f572ecee9c283cf8685417d83a1d8c27c8c76"
+  }
 }
