@@ -29,7 +29,7 @@ def rates(law,weights):
     return dict(zip(NAMES,(sum(w*v for w,v in zip(weights,column)) for column in zip(*ANCHORS[law]))))
 
 class Experiment:
-    def __init__(self,source,balanced_only=False,terminal_bound=False):
+    def __init__(self,source,balanced_only=False,terminal_bound=False,early_bound=False):
         check(source.get('schema')=='worldlaw.position-drift-fixed-tape-optimum/v1','wrong source schema')
         self.h=integer(source['pulseBudget'])
         self.n=n=self.h//2
@@ -37,12 +37,16 @@ class Experiment:
         certified_odd=self.h==2*n+1 and n>=10 and n%6 in (1,4)
         self.balanced_only=balanced_only
         self.terminal_bound=terminal_bound
+        self.early_bound=early_bound
+        check(not early_bound or (self.h==16 and not balanced_only and not terminal_bound),'early-bound mode requires H=16')
         check(not terminal_bound or (self.h==16 and not balanced_only),'terminal-bound mode requires H=16')
-        check(self.h>0 and (terminal_bound or balanced_only or self.h>=67 or certified_even or certified_odd),'unsupported horizon')
+        check(self.h>0 and (early_bound or terminal_bound or balanced_only or self.h>=67 or certified_even or certified_odd),'unsupported horizon')
         self.k=(self.h+6)//12
         self.product=n*(self.h-n) if balanced_only else 6*self.k*(self.h-6*self.k)
         if terminal_bound:
             self.product=24*self.h*Q(5,31)
+        if early_bound:
+            self.product=24*self.h*Q(14,87)
         self.e=e=Q(self.product,24*self.h)
         self.critical={}
         # The closest multiple of six to H/2 lies at distance at most three.
@@ -56,7 +60,8 @@ class Experiment:
             room=Q(d,6*b)
             alpha=Q(1,12)-2*e/b
             beta=Q(1,12)-2*e/s
-            check(alpha>=room and (s-1)*alpha<=2*e,'baseline-first room failed')
+            if not (early_bound and b==s==8):
+                check(alpha>=room and (s-1)*alpha<=2*e,'baseline-first room failed')
             check(2*e/s>=room*(1-Q(1,s)) and beta>=room/s and (b-1)*beta<=2*e,'suffix-first room failed')
             check(Q(s,6)-room==4*e*self.h/b,'terminal contrast identity failed')
         L=self.h-1
@@ -82,6 +87,10 @@ class Experiment:
         self.requested=number(cat['noiseBound'])
         check(self.requested>=0,'negative noise')
     def describe(self):
+        if self.early_bound:
+            return dict(horizon='16',adaptiveLower='5/32',adaptiveUpper=str(self.e),
+                        atRequestedNoise='closed-collision' if self.requested>=self.e else (
+                            'policy-separates' if self.requested<Q(5,32) else 'unresolved'))
         if self.terminal_bound:
             fixed=Q(self.k*(self.h-6*self.k),4*self.h)
             status='closed-collision' if self.requested>=self.e else ('policy-separates' if self.requested<fixed else 'unresolved')
@@ -94,9 +103,19 @@ class Experiment:
                     atRequestedNoise='policy-separates' if self.requested<self.e else 'closed-collision',
                     fixedRuns=[{'command':'ref','repeats':str(self.h-6*self.k)}]+[
                         {'command':c,'repeats':str(self.k)} for c in ('y0','x0','z0','y1','x1','z1')])
-    def transfer(self,counts,room):
+    def transfer(self,counts,room,prefer_neutral=False):
         """Construct a high-block mass transfer from the literal command counts."""
         w=[row.copy() for row in self.balanced]
+        if counts['group'] and (prefer_neutral or all(counts['x'+str(g)]==counts['y'+str(g)]==counts['z'+str(g)] for g in range(2))):
+            suffix=sum(counts[c] for c in NAMES[2:])
+            room=Q(self.critical[suffix],6*suffix)
+            amount=room/counts['group']
+            # Decrease B's group rate. In the swapped/negated coordinates this
+            # lowers the high-block total by room, without affecting any suffix.
+            w[1][0]+=amount
+            w[1][2]-=amount
+            check(min(w[1])>=0 and sum(w[1])==1,'invalid neutral source mixture')
+            return w,1,dict(mode='neutral baseline',law=self.bindings[1][0],groupCount=str(counts['group']),weightChange=str(amount))
         for g in range(2):
             x,y,z=(label+str(g) for label in 'xyz')
             for law,other in ((0,y),(1,z)):
@@ -111,16 +130,6 @@ class Experiment:
         # Uniform x,y,z counts within each group. Sixfold balance cannot be critical.
         difference=counts['y1']-counts['y0']
         check(difference!=0,'uniform six-command histogram cannot be critical')
-        if counts['group']:
-            suffix=sum(counts[c] for c in NAMES[2:])
-            room=Q(self.critical[suffix],6*suffix)
-            amount=room/counts['group']
-            # Decrease B's group rate. In the swapped/negated coordinates this
-            # lowers the high-block total by room, without affecting any suffix.
-            w[1][0]+=amount
-            w[1][2]-=amount
-            check(min(w[1])>=0 and sum(w[1])==1,'invalid neutral source mixture')
-            return w,1,dict(mode='neutral baseline',law=self.bindings[1][0],groupCount=str(counts['group']),weightChange=str(amount))
         amount=-room/difference
         w[0][2]+=amount
         w[0][0]-=amount
@@ -133,6 +142,11 @@ class Experiment:
         check(all(c in NAMES and count>0 for c,count in runs),'invalid command or repeat count')
         horizon=sum(count for _,count in runs)
         check(horizon<=self.h,'supplied tape exceeds the registered horizon')
+        if self.early_bound and horizon>=9:
+            captured=[c for c,n in runs for _ in range(n)]
+            if captured[:8]==['ref']*8 and captured[8] in NAMES[2:]:
+                from sixteen_early_worlds import receive_prefix
+                return receive_prefix(captured,self,rates)
         counts=Counter()
         cats=[]
         for c,count in runs:
@@ -149,7 +163,8 @@ class Experiment:
         if special:
             baseline=self.h-suffix
             room=Q(self.critical[suffix],6*baseline)
-            w,law,move=self.transfer(counts,room)
+            prefer_neutral=self.early_bound and baseline==suffix==8 and not cats[0] and bool(counts['group'])
+            w,law,move=self.transfer(counts,room,prefer_neutral)
             high_first=cats[0]
             swapped=move.get('mode')=='neutral baseline'
             if swapped:
@@ -202,6 +217,7 @@ if __name__=='__main__':
     parser.add_argument('--runs',type=Path,help='JSON array of received command/count pairs')
     parser.add_argument('--balanced-bound',action='store_true',help='use the balanced midpoint upper bound at any positive horizon')
     parser.add_argument('--terminal-bound',action='store_true',help='certify the sharp nominal-prefix H16 upper')
+    parser.add_argument('--early-bound',action='store_true',help='certify the causal H16 upper at 14/87')
     args=parser.parse_args()
-    experiment=Experiment(json.loads(args.source.read_text()),balanced_only=args.balanced_bound,terminal_bound=args.terminal_bound)
+    experiment=Experiment(json.loads(args.source.read_text()),balanced_only=args.balanced_bound,terminal_bound=args.terminal_bound,early_bound=args.early_bound)
     print(json.dumps(experiment.describe() if args.runs is None else experiment.receive(json.loads(args.runs.read_text()))))

@@ -1,6 +1,6 @@
 # A sharp nominal-prefix upper bound for sixteen pulses
 
-For the registered source, the unrestricted sixteen-pulse radius lies in **[5/32,5/31]**. The [fixed course](fixed-tape-optimum.md) of ten references followed by each suffix once separates below 5/32. The new causal collision at 5/31 tightens the balanced midpoint upper 1/6. The endpoints have different proof scopes. Equality at 5/32 remains open for unrestricted feedback. The already established minimum sixteen at ε=3/20 is unchanged.
+This nominal-prefix construction established **[5/32,5/31]**. A later [early-response construction](sixteen-pulse-early-bound.md) tightened the unrestricted sixteen-pulse interval to **[5/32,14/87]**. The [fixed course](fixed-tape-optimum.md) of ten references followed by each suffix once separates below 5/32. The new causal collision at 5/31 tightens the balanced midpoint upper 1/6. The endpoints have different proof scopes. Equality at 5/32 remains open for unrestricted feedback. The already established minimum sixteen at ε=3/20 is unchanged.
 
 ## Testing measured feedback first
 
