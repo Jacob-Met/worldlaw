@@ -28,7 +28,29 @@ function support(points,n,spend){
   const h=points.map(p=>{spend();return dot(p,n);}).reduce(maximum);
   return {h,r:generators.reduce((s,g)=>add(s,absolute(dot(g,n))),zero)};
 }
-function leafFacets(cat,word,spend){
+
+// For positive noise, a true supporting facet has two independent tangent
+// directions from the exposed clean face and the orthogonal error generators.
+function facetSupport(points,n,spend){
+  let h=null,exposed=[];
+  for(const p of points){
+    spend();const value=dot(p,n),order=h===null?1:compare(value,h);
+    if(order>0){h=value;exposed=[p];}else if(!order)exposed.push(p);
+  }
+  let r=zero;const tangents=[];
+  for(const g of generators){
+    const t=dot(n,g);r=add(r,absolute(t));if(!t.n)tangents.push(g);
+  }
+  for(const p of exposed.slice(1))tangents.push(p.map((x,i)=>sub(x,exposed[0][i])));
+  let first=null;
+  for(const t of tangents){
+    spend();if(!t.some(x=>x.n))continue;
+    if(!first)first=t;else if(cross(first,t).some(x=>x.n))return {h,r};
+  }
+  return null;
+}
+
+function leafFacets(cat,word,spend,facetsOnly=false){
   const tight=new Map();
   cat.vertices.forEach((vertices,law)=>{
     const points=cleanPoints(vertices,word,spend),directions=generators.slice();
@@ -41,7 +63,8 @@ function leafFacets(cat,word,spend){
       if(pivot){const normal=vector.map(x=>div(x,pivot));normals.set(normal.map(fmt).join(','),normal);}
     }
     for(const normal of normals.values())for(const n of [normal,normal.map(neg)]){
-      const key=n.map(fmt).join(','),bound=support(points,n,spend),old=tight.get(key);
+      const key=n.map(fmt).join(','),bound=facetsOnly?facetSupport(points,n,spend):support(points,n,spend),old=tight.get(key);
+      if(!bound)continue;
       if(!old||compare(bound.h,old.h)<0)tight.set(key,{n,...bound,law});
     }
   });
@@ -204,10 +227,13 @@ function verifyCourse(cat,prefix,mode,saved,spend,menu=null){
   tree.leaves.forEach(({word,coordinates},i)=>{
     verifyRateHullCollision(cat,word.map(j=>cat.commands[j]),[zero,zero,...coordinates.map(j=>observed[j])],radius,saved.worlds[i],spend);
   });
+  verifySupport(cat,tree,radius,saved.lower,spend);
+}
+function verifySupport(cat,tree,radius,lower,spend){
   const balance=zeros(tree.width);let h=zero,r=zero;
-  need(Array.isArray(saved.lower)&&saved.lower.length<=2*tree.width+1,'invalid supporting terms');
-  if(!radius.n){need(!saved.lower.length,'zero radius uses nonnegative noise');return;}
-  for(const t of saved.lower){
+  need(Array.isArray(lower)&&lower.length<=Math.max(8,2*tree.width+1),'invalid supporting terms');
+  if(!radius.n){need(!lower.length,'zero radius uses nonnegative noise');return;}
+  for(const t of lower){
     spend();const law=cat.ids.indexOf(t.law),leaf=tree.leaves[t.leaf];
     need(Number.isSafeInteger(t.leaf)&&leaf&&law>=0&&Array.isArray(t.normal)&&t.normal.length===3,'invalid support reference');
     const n=t.normal.map(rational),weight=rational(t.weight);need(weight.n>0n&&n.some(x=>x.n),'invalid normal or weight');
@@ -249,3 +275,8 @@ export function fourPulseSourceSupport(cat,word,law,normal,spend){return support
 
 export function buildFourPulseCutProof(cat,prefix,mode,spend){return certifyCourse(cat,prefix,mode,new Map(),spend);}
 export function checkFourPulseCutProof(cat,prefix,mode,saved,spend){return verifyCourse(cat,prefix,mode,saved,spend);}
+
+export function fourPulseLeafFacets(cat,word,spend){return leafFacets(cat,word,spend,true);}
+export function verifyFourPulseMenuSupport(cat,prefix,menu,radius,lower,spend){
+  return verifySupport(cat,courseTree(cat,prefix,'full',spend,menu),radius,lower,spend);
+}

@@ -39,3 +39,5 @@ The denominator-four grid covers 802,812 asymmetric menus. The remaining four ha
 In the second catalog the second group has shared local x, with its y rate equal to x in A and x+W/2 in B. Two early-cut cases missed the finite grid; exact physical states close both. The asymmetric search stops at its first certified winning tree. It does not label the unvisited menus or claim the maximum radius over that class. If a positive fixed-cut course is found, the tool returns it directly. If the supplied menu has zero radius or a computational limit is reached, it makes no minimum-leaf claim.
 
 The lower bounds hold for multiple decision rules as well as literal fixed words: unrestricted initial position and drift allow the physical adversary to keep y₀=y₁=0, fixing the prospective prefix on that history. The subsequent common observations enforce exactly the command-tree sharing above. The results concern sure identification on this four-pulse binary model.
+
+The default designer projects larger menus without first constructing a full-tree simplex tableau. [Projected support algorithm and measured work](position-drift-four-pulse-projection.md)
