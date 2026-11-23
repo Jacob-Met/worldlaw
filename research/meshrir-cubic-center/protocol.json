@@ -1,0 +1,86 @@
+{
+  "source": {
+    "zenodo": "10.5281/zenodo.10852693",
+    "member": "S1-M3969_npy.zip",
+    "md5": "2cb598eb44bb9905560c545db7af3432",
+    "author_git": "ff6a145e3b2631e46e8cd4e47156ad33bff3acb8",
+    "source_only": "One 21×21×9 grid, 0.05 m spacing, one source (2,1.5,0)m. Sequential robot positions, common Dante I/O, three synchronously averaged sweeps at each position, circular deconvolution. Stored finite 32768-sample IR. One room/source.",
+    "archive_sha256": "8f25e09401b3592b682bebbbb0ef093aea2a82b8156327dc05d5c49e2e56aa57",
+    "archive_bytes": 995777273,
+    "coordinate_member_sha256": "3476d0d84d27c062a6b5d9bc7e5fa8b8e26e6e87b0bdc8122bec9db643a77ed3",
+    "geometry": "Bounds [-.5,.5]m × [-.5,.5]m × [-.2,.2]m. Source exterior at (2,1.5,0)m. Coordinates verify .4m thickness, resolving the paper section2.2 narrative .04m inconsistency against Table1.",
+    "clock_metadata": {
+      "sample_rate_hz": 48000,
+      "ir_length_samples": 32768,
+      "average_temperature_C": 26.3,
+      "per_position_timestamp_range": [
+        20200918233450,
+        20200919052338
+      ],
+      "fields_per_response": [
+        "pos",
+        "time"
+      ],
+      "date_time_timezone": "Unspecified archive wall clock. It dates acquisition, not the sub-sample phase of an individual IR.",
+      "total_span_seconds": 20928,
+      "position_index_time_reversals": 0,
+      "disjoint_cube_min_median_max_spans_seconds": [
+        4811,
+        4916,
+        4944
+      ],
+      "ambient_records": 25,
+      "ambient_celsius_range": [
+        26.2,
+        26.3
+      ],
+      "ambient_cadence_seconds": 900,
+      "interpretation": "The cube is sampled over roughly 80–82 minutes. Spatial Helmholtz interpretation presumes a stationary source, room and clock; the test predicts archived sequential RIR Fourier coefficients. No held timing shift or pose correction."
+    }
+  },
+  "split": {
+    "layout": "All 147 disjoint 3³ cubes. Cube centers reside at indices1 modulo3 on all axes. 3822 unique surrounding donors,49 middle z=4 calibration centers,98 lower and upper z=1,7 protected centers. No held center reused as a donor. Author published mid-plane example and aggregate performance previously seen. No individual IR values accessed before freeze.",
+    "registration": "Full complex FFT of each archived 48 kHz response. No independent per-position shifts, windows, smoothing, amplitude exclusions or fitted sound speed. Possible clock drift, unknown thermal/path variation and fixture scattering remain. All controls receive the same 26 neighbors, physical positions, c=347.3m/s and source position.",
+    "frequencies_hz": [
+      375,
+      750,
+      1500,
+      2250,
+      3000,
+      3750,
+      4500
+    ],
+    "fft_bins": [
+      256,
+      512,
+      1024,
+      1536,
+      2048,
+      2560,
+      3072
+    ]
+  },
+  "mechanism": {
+    "law": "Unit-total-variation angular spectrum of propagating plane waves plus complex measurement errors bounded in modulus by .01 per donor. Neither absolute bound is independently measured in the room. Cubic group averaging and conjugation allow real shared weights for each of the three shell means under isotropic directional worst case. LP minimizes maximum directional reproduction error plus .01 times shell l1 norm on a 65×65 octant grid.",
+    "remainder": "Second derivatives of a donor plane-wave response in either spherical coordinate are bounded by (kr)²+kr. On a separate193×193 octant grid with step b=π/384, bilinear interpolation bounds the unsampled excess over grid by b²Σ|w_s|[(kr_s)²+kr_s]/4. Numerical sampled values and solver use float64. No certification of measured angular mass or absolute acoustic error.",
+    "witness": "Product of three cos(k x_i/√3) is an eight-plane-wave field with coefficient total variation1. At k=√3π/(2h), all26 donors vanish, center=1. At3000Hz, c=347.3,h=.05, maximum donor |cos(kh/√3)|=.0040246221<.01, so both signs can yield identical all-zero donors with admissible noise. Every predictor incurs worst-case magnitude error≥1, zero attains1 for this normalized class. At 3000 Hz the three absolute donor shell magnitudes are 0.0040246220910, 0.0000161975829755 and 0.00000006518915026. The exact zero-donor frequency is 3007.70622734 Hz. Output belongs to the synthetic normalized class. It establishes no lower bound on any particular room observation."
+  },
+  "comparison": {
+    "arms": [
+      "direction_minimax",
+      "radial_mean",
+      "author_isotropic",
+      "author_directional",
+      "empirical_shell_ridge",
+      "empirical_26_ridge",
+      "equal_26",
+      "zero"
+    ],
+    "author": "Use authentic kiFilterGen and kiFilterGenDir with 0.001 ridge, beta=2 and source direction per center. Read the full/untruncated positive frequency response; compare against directly assembled kernel. Author notebook’s 18 planar microphones, 500Hz filtered, truncated FIR demonstration is different.",
+    "learning": "Two complex-linear fits per frequency on the49 middle centers: 3-shell and unrestricted26. Hold out each full x-column for training SSE to choose regularization from [1e-6,1e-4,.01,.1,1] times mean Gram diagonal. Fit final on all49."
+  },
+  "evaluation": {
+    "primary": "For each frequency E=sqrt(sum held |pred−obs|²/sum held |obs|²). An entirely zero-energy frequency refuses. Strictly beat each of seven controls on arithmetic mean and maximum across all seven E, 14 inequalities. Per-layer and complete worst position/frequency with complex measured and predicted values reported. No IID inference from these spatial observations.",
+    "custody": "Lock all eight arms, all98 centers, all7 frequencies before opening any held center. Keep 3000Hz stress case and zero baseline. Preserve all failures and compare room evidence separately from the angular-class bound."
+  }
+}

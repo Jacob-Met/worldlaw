@@ -1,0 +1,19 @@
+{
+  "bank": {
+    "raw_bytes": 219332,
+    "sha256": "4da574ab06e6be16310cc716f99deb51403e925c48fb5192f280df9a8e3dcd49",
+    "compressed_bytes": 98478,
+    "compressed_sha256": "4d8317bca389c3454a9793ed3b6f67ab76f764b94ee8a4ed751aa1408b2f4863"
+  },
+  "outcome": {
+    "raw_bytes": 38825,
+    "sha256": "cd2e14aba140e5bb6dfcb7c8e14836c20b91a2cf156627199aa2e4006b592526",
+    "compressed_bytes": 16885,
+    "compressed_sha256": "734b51be26ac3ad3130e6f18c295bdec0354b7b1a9bd10c2a49eea39cee42d13"
+  },
+  "primary_archive": {
+    "bytes": 995777273,
+    "sha256": "8f25e09401b3592b682bebbbb0ef093aea2a82b8156327dc05d5c49e2e56aa57",
+    "md5": "2cb598eb44bb9905560c545db7af3432"
+  }
+}
