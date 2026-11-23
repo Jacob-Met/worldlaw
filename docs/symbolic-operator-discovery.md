@@ -22,3 +22,14 @@ The deterministic course recovered command·cos(position) on the oscillator and 
 The input-only design compared the recovered oscillator to a command-only model across three courses. The quiet course had zero pairwise separation; weak excitation gave approximately 0.000353 and the selected wide chirp approximately 0.374. The optimum is over that declared menu.
 
 A held trajectory that reaches an undefined operator or a nonfinite state receives an explicit refusal. Excitation design records each such course in `excluded` and scores the remaining courses. If all courses fail, it returns `no_admissible_course`.
+
+
+### Observation resolution and ambiguous laws
+
+`designEvolutionExcitation(models, courses, {resolution, observedIndices})` compares simulated observations for every admissible course. For a position sensor on an oscillator, pass `observedIndices: [0]` and a nonnegative RMS resolution in radians. The default uses all state channels and a resolution of zero. Select commensurate channels when interpreting a single absolute RMS threshold. Resolution is a declared sensor or decision threshold, and the planner does not estimate it from observations.
+
+The result retains the original model indices. `unresolvedPairs` lists pairs whose simulated separation stays at or below the threshold across the entire admissible menu. `groups` collects models with identical sets of unresolved neighbors, including themselves. For example, if A and B are unresolved, and B and C are unresolved, A and C can still be distinguishable. The pair list preserves both ambiguities.
+
+A course separates a group pair when every cross-group model pair clears the threshold on that course. The planner maximizes the number of separated group pairs, then their minimum separation across group pairs attainable on the menu. Remaining ties favor a course that separates at least some members of more group pairs. `ranked[].minimumSeparation` continues to report the whole-roster minimum. The chosen course's `selectedUnresolvedPairs` can include additional pairs that another course would separate. The status `partially_separating_in_simulation` reports that the selected experiment leaves some hypotheses unresolved.
+
+With accelerations `command`, `command × 1`, and `−command`, silence makes all three predictions coincide. Applying a constant unit command for two seconds yields positions +2, +2, and −2. The planner selects that forcing course and returns the original two model indices as an unresolved pair. These statements concern predictions over the supplied menu.
