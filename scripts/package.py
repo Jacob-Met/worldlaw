@@ -16,6 +16,21 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/hart-two-station-pipe-transfer/README.md",
+    "research/hart-two-station-pipe-transfer/advection.cpp",
+    "research/hart-two-station-pipe-transfer/full-worst.npz.zlib",
+    "research/hart-two-station-pipe-transfer/independent.py",
+    "research/hart-two-station-pipe-transfer/inputs-and-parameters.json.zlib",
+    "research/hart-two-station-pipe-transfer/native-originals.json",
+    "research/hart-two-station-pipe-transfer/protocol.json",
+    "research/hart-two-station-pipe-transfer/replay.py",
+    "research/hart-two-station-pipe-transfer/score.py",
+    "research/hart-two-station-pipe-transfer/scored.json.zlib",
+    "research/hart-two-station-pipe-transfer/signed-clock-protocol.json",
+    "research/hart-two-station-pipe-transfer/time_model.py",
+    "research/hart-two-station-pipe-transfer/time_score.py",
+    "research/hart-two-station-pipe-transfer/time_train.py",
+    "research/hart-two-station-pipe-transfer/transport.py",
     "research/hagemeier_wall_image_capacity/README.md",
     "research/hagemeier_wall_image_capacity/native-originals.json",
     "research/hagemeier_wall_image_capacity/replay.py",
