@@ -7,6 +7,16 @@ function table(caption,head,rows){
     '</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+html(c)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
 }
 function guidedProof(p){
+  if(p.schema===SUPPORT_PLAN&&p.method==='disagreement-cuts'){
+    if(p.status==='design-budget-exhausted')return {heading:'The disagreement search reached its '+p.reason+' limit.',
+      summary:'The completed hitting-set lower bound is '+p.provedLower+' pulses. No separating tape was certified.',proof:''};
+    return {heading:'The witness-cut minimum is '+p.minimumPulses+' pulses.',
+      summary:'Each physical competitor disagrees on a set of commands. Every successful experiment must use a member of each set.',
+      proof:table('Candidates checked against the complete convex family.',['Command set','Outcome'],
+        p.history.map(h=>[h.commands.join(', '),h.result]))+
+        table('Retained physical disagreement sets.',['Commands','Competing mixture','Drift shift'],
+          p.cuts.map(c=>[c.disagreements.map(i=>p.source.commands[i]).join(', '),c.alias.parameters[1].join(', '),c.alias.driftShift]))};
+  }
   if(p.schema===SUPPORT_PLAN){
     if(p.status==='design-budget-exhausted')return {heading:'The support search reached its '+(p.reason==='subsets'?'subset':'linear-work')+' limit.',
       summary:p.subsetsVisited+' subsets visited. Every subset through size '+p.completeThrough+' has a complete alias proof.'+

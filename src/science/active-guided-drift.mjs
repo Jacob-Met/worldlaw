@@ -1,3 +1,5 @@
+import {CUT_SOURCE,planPointCuts} from './position-drift-point-cuts.mjs';
+export {CUT_SOURCE};
 import {SUPPORT_SOURCE,SUPPORT_PLAN,planPointSupport} from './position-drift-point-support.mjs';
 export {SUPPORT_SOURCE,SUPPORT_PLAN};
 import {MINIMAX_SOURCE,MINIMAX_PLAN,planMinimaxHorizon} from './position-drift-minimax-horizon.mjs';
@@ -29,6 +31,7 @@ const need=(ok,msg)=>{if(!ok)throw Error('Guided position/drift: '+msg);};
 const fields=(o,ks)=>o && typeof o==='object'&&!Array.isArray(o)&&Object.keys(o).sort().join(',')===[...ks].sort().join(',');
 
 export function designCatalog(request,design={}){
+  if(request.schema===CUT_SOURCE)return planPointCuts(request);
   if(request.schema===SUPPORT_SOURCE)return planPointSupport(request);
   if(request.schema===MINIMAX_SOURCE)return planMinimaxHorizon(request);
   if(request.schema===POLYTOPE_SOURCE)return planRatePolytopes(request);

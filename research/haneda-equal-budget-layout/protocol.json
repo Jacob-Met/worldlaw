@@ -1,0 +1,40 @@
+{
+  "source": {
+    "part": "Part 0 pre-suppression 48 kHz, 4800 samples across the archived common time index",
+    "dois": [
+      "10.5281/zenodo.19656813",
+      "10.1109/ICASSP55912.2026.11461569"
+    ],
+    "author_site": "764a0f2944e5ddc4951009803c90255d5945cbe5",
+    "files": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "public_method": "The actual Part0 MATLAB visualization uses the same time-sample slices across all four spatial dimensions. No peak alignment, amplitude normalization using targets, window tuning, Part1 responses, animations or response-derived input geometry.",
+    "limits": "The 48-channel line moves through different y,z placements, carrying a scattering frame. Files give fs, nominal c, speaker/array coordinates and a 100ms window; they provide no per-line physical acquisition timestamps, trigger jitter bound or per-channel phase-calibration certificate. Empirical results concern the released array responses only."
+  },
+  "geometry": {
+    "input": "2cm grid, h=.04m, centered disjoint nine-point-wide boxes; centers x=(5,14,23,32,41), y=(7,16,25,34,43), z=(8,17), 50 per speaker; same physical grid across four source positions in one room",
+    "split": "Complete sp1 and sp3 calibration, all sp2 and sp4 held. Source identity and spatial role both fixed. Source-coordinate reuse means spatial centers are paired across speakers.",
+    "old": "All 26 noncentral coordinates of {-h,0,h}^3",
+    "relocated": "Replace only six axial positions ±h by same-axis positions ±2h. Keep the 12 faces and 8 body diagonals.",
+    "alternative": "Choose 26 of the 32 union positions by removing three opposite pairs. Require maximum radius exactly2h (559 possibilities). Exhaustively minimize authentic directional kernel conditional variance with .001 regularization, beta2, known speaker direction at 3680Hz; round variance increment to 12 decimals for lexical ties. One selection per center/source, fixed across all seven frequencies. Every predictor has only those 26 complex donor values."
+  },
+  "theorem": {
+    "normalization": "Homogeneous propagating Herglotz waves, complex angular total variation ≤1, each donor complex error ≤.01, exact relative phase.",
+    "range": "alpha²=(2πfh/c)²∈[183/25,187/25]. Original normalized worst absolute error 1; relocated rational weights (−1/2,−3,−1/2) yield upper10478531969/15000000000 on the continuum, including .04 noise. The unit-magnitude two-field line-phase counterexample applies to both layouts if each translated line has unrestricted common phase.",
+    "limitation": "Bounds use exact ideal nominal geometry and a fixed normalized class. No empirical field normalization or instrument noise radius is inferred. Finite views do not uniquely determine a general Helmholtz field. Time truncation and moving fixtures can affect archived phasors."
+  },
+  "methods": {
+    "external_reference": "Ueno/Koyama authentic kiFilterGen and kiFilterGenDir on matched each 26 donors, exact source ff6a145e3b2631e46e8cd4e47156ad33bff3acb8 (separate MeshRIR release). Haneda–Ren provide raw visualization and frame-reflection suppression for another endpoint.",
+    "calibration": "Leave one of the two calibration speakers out reciprocally. Select ridge lambda from 1e-6,1e-4,.01,.1,1 minimizing equal calibration-source mean of the three near-blind frequency NRMSEs. Refit on both development speakers. Separately select each layout’s best development arm among directional/isotropic authentic kernel, same-line directional kernel, four-shell ridge, full masked complex ridge and residual ridge atop directional. No target or held donor reading enters selection labels.",
+    "empirical": "Seven frequency DFTs of full unshifted acquired 4800 samples in float64, no tapered window. Frequencies 1840,2760,3670,3680,3690,4600,5520Hz, nearest 10Hz bins to 0.5,0.75,1,1.25,1.5 times f* plus f*±10Hz near peak. Rounding at 1.25 yields 4600; at 1.5 yields5520."
+  },
+  "gates": {
+    "primary": "On each complete held source (2 and4), mean of its 3 per-frequency NRMSEs at 3670,3680,3690Hz strictly lower for relocated than both original and equal-aperture optimum under BOTH (i) common authentic directional kernel and (ii) each layout’s preselected development estimator. All 8 inequalities required. Nonfinite/zero-energy is a refusal; all locations count. No independence, uncertainty or repeat-trial claim.",
+    "secondary": "All seven frequency values, whole-roster means, individual held speakers and largest raw phasor per arm/source/layout. Rational point filter and zero controls reported separately; changed selectability on old geometry or gain against zero alone cannot pass. No re-fitting from outcome or archive-calibration drift."
+  },
+  "custody": "Numeric RIR stage after source/software freeze only. Exact full original MD5 before projecting numerical RIR. Each development source allows 32 union donor rows and 50 source-labeled calib centers; each held source grants the 32 tagged donor alternatives, each evaluated estimator only accesses its own selected 26. Both complete held-center tensors require the physically locked aggregate forecast and verified SHA. All prior native DNS/TLS/other failures preserved."
+}
