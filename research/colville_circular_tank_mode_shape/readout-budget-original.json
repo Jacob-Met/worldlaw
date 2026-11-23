@@ -1,0 +1,18 @@
+{
+  "operation_id": "p3-f747-colville-figure11-development-raster-only",
+  "owner": "node-3e1997435f3f4ffb9db90803039402b6",
+  "state": "completed",
+  "request_sha256": "7b35a5277567d79c75f035f9178ac4174747c41353f3c80798f39e02487f2b0b",
+  "result_digest": "27e5c857e531cd3ca904ea068d98341b34337b5cb35ac8ea5c932702097192a6",
+  "error_code": "INVALID_ARGUMENT",
+  "result": [
+    {
+      "type": "text",
+      "text": "retain_output_bytes must be between 0 and 65536"
+    }
+  ],
+  "original_inspection": {
+    "jobs": [],
+    "queues": []
+  }
+}
