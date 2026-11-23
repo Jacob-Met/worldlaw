@@ -162,9 +162,9 @@ function arm(world,policy,directory){
     return finish('complete');
   }catch(e){return finish('refused',err(e));}
 }
-function runWorld(entry,phase,directory){
+function runWorld(entry,phase,directory,activePolicy){
   const world=privateWorld(entry,phase);mkdirSync(directory);
-  const arms=Object.fromEntries(P.comparison.policies.map(policy=>[policy,arm(world,policy,join(directory,policy))]));
+  const arms=Object.fromEntries(P.comparison.policies.map(policy=>[policy,arm(world,policy==='active'?activePolicy:policy,join(directory,policy))]));
   const commonSource=hash(arms.active.sourceEvidenceHashes)===hash(arms.random.sourceEvidenceHashes),r=request(P.holdoutRequest);
   const models={weak_source:arms.active.sourceModel,sindy_source:arms.active.sourceSindy?.model??null,
     weak_active:arms.active.status==='complete'?arms.active.selected:null,
@@ -197,15 +197,17 @@ function runWorld(entry,phase,directory){
 }
 function main(){
   const args=process.argv.slice(2),options={};
-  while(args.length){const k=args.shift(),v=args.shift();check(['--stage','--output'].includes(k)&&v&&!options[k],'Invalid arguments');options[k]=v;}
+  while(args.length){const k=args.shift(),v=args.shift();check(['--stage','--output','--active-policy'].includes(k)&&v&&!options[k],'Invalid arguments');options[k]=v;}
   check(options['--stage']==='development','Only six-world development is implemented. Calibration and evaluation remain closed.');
+  const activePolicy=options['--active-policy']??'active';
+  check(['active','active_joint'].includes(activePolicy),'Unknown development acquisition policy');
   check(options['--output'],'Require a fresh output directory');
   const output=resolve(options['--output']);mkdirSync(output,{recursive:false});
   const source=sourceManifest(),startedAt=new Date().toISOString();
   save(join(output,'runtime-source-manifest.json'),source);save(join(output,'protocol.json'),P);
   const worlds=[];
   for(const entry of P.sourceWorlds){
-    try{const w=runWorld(entry,'development',join(output,'world-'+entry.seed));worlds.push(w);
+    try{const w=runWorld(entry,'development',join(output,'world-'+entry.seed),activePolicy);worlds.push(w);
       console.log(JSON.stringify({event:'development_world_finished',worldId:w.worldId,
         executionQualified:w.executionQualified,metrics:w.metrics}));
     }catch(e){const failure={seed:entry.seed,executionQualified:false,error:err(e)};worlds.push(failure);
@@ -213,7 +215,7 @@ function main(){
       console.log(JSON.stringify({event:'development_world_failed',...failure}));}
   }
   const summary={schema:'worldlaw.continuous-development-receipt/v1',protocolId:P.protocolId,
-    protocolSHA256:hash(P),runtimeSourceSHA256:source.sha256,startedAt,finishedAt:new Date().toISOString(),
+    activePolicy,protocolSHA256:hash(P),runtimeSourceSHA256:source.sha256,startedAt,finishedAt:new Date().toISOString(),
     worldsExpected:P.sourceWorlds.length,worldsFinished:worlds.length,
     executionQualified:worlds.length===6&&worlds.every(w=>w.executionQualified),
     calibrationOpened:false,evaluationOpened:false,scope:P.scope,

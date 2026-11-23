@@ -26,9 +26,34 @@ export function actuatorRivals(discovery){
   check(chosen[0].id!==chosen[1].id,'Actuator alternatives must remain distinct');
   return clone(chosen);
 }
+/** Best fit for every restoring support still viable within each actuator family. */
+export function jointActuatorRestoringRivals(discovery){
+  const allowed=new Set(['command','command_cubic','rate','spring','gravity','cubic','bias']);
+  check(discovery.options.terms.every(term=>allowed.has(term)),
+    'Joint actuator/restoring design requires the declared scalar seven-term library');
+  const classes=new Map([['command',new Map()],['command_cubic',new Map()]]);
+  for(const model of discovery.candidates){
+    const terms=new Set(model.terms.map(term=>term.id));
+    if(terms.has('command')===terms.has('command_cubic'))continue;
+    const drive=terms.has('command')?'command':'command_cubic';
+    const restoring=['spring','gravity','cubic'].filter(term=>terms.has(term)).join('+');
+    const supports=classes.get(drive);
+    // discoverWeak orders candidates by ascending selection score.
+    if(!supports.has(restoring))supports.set(restoring,model);
+  }
+  const rivals=[];
+  for(const supports of classes.values()){
+    check(supports.size>0,'Source cannot identify both declared actuator alternatives');
+    const best=supports.values().next().value.metrics.score;
+    for(const model of supports.values()){
+      if(model.metrics.score-best<=discovery.options.ambiguityDelta)rivals.push(model);
+    }
+  }
+  return clone(rivals);
+}
 export function createContinuousSession({trainingRuns,fitOptions,plannerConfig,
   policy='active',policyId,worldId,seed=1,maxRounds=2,calibration=null}){
-  check(['active','random'].includes(policy),'Unknown acquisition policy');
+  check(['active','active_joint','random'].includes(policy),'Unknown acquisition policy');
   check(typeof policyId==='string'&&policyId.length>0,'Require frozen policy identity');
   check(typeof worldId==='string'&&worldId.length>0,'Require world identity');
   check(Number.isSafeInteger(seed)&&seed>=0&&seed<=0xffffffff,'Require uint32 policy seed');
@@ -105,8 +130,8 @@ export function planNextContinuous(session){
   const newRows=1+Math.round(s.plannerConfig.duration/s.plannerConfig.dt);
   check(Number.isSafeInteger(newRows)&&newRows>=17&&newRows<=4096,'Prospective training grid requires 17–4096 rows');
   check(sourceRows+newRows<=8192,'Prospective acquisition exceeds combined 8192-sample fitter limit');
-  const models=actuatorRivals(s.discovery);
-  const plan=s.policy==='active'?planContinuousExperiment(models,s.plannerConfig):
+  const models=s.policy==='active_joint'?jointActuatorRestoringRivals(s.discovery):actuatorRivals(s.discovery);
+  const plan=s.policy!=='random'?planContinuousExperiment(models,s.plannerConfig):
     randomPlan(models,s.plannerConfig,(s.seed+Math.imul(s.history.length+1,0x9e3779b9))>>>0);
   const next=clone(s);
   next.events.push({type:plan.status==='planned'?'predictions_owned_before_acquisition':'plan_refused',

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createControlledInstrument,commandSamples,receiveContinuousRun} from '../src/trajectory/controlled-instrument.mjs';
 import {createContinuousSession,planNextContinuous,continuousRequest,receiveContinuous,
-  exportContinuousSession,restoreContinuousSession} from '../src/trajectory/continuous-session.mjs';
+  exportContinuousSession,restoreContinuousSession,jointActuatorRestoringRivals} from '../src/trajectory/continuous-session.mjs';
 const request=amplitudes=>({schema:'worldlaw.continuous-command-request/v1',inertia:1,
   initialPosition:.1,initialRate:.2,duration:4,dt:.05,noiseSigma:0,
   segments:amplitudes.map((amplitude,i)=>({startIndex:i*20,endIndex:(i+1)*20,amplitude}))});
@@ -168,4 +168,20 @@ test('session setup validates and owns every calibration world and round before 
   const result=receiveContinuous(pending,{request:req,run:d.acquire(req)});
   assert.equal(result.history[0].assessment.status,'insufficient_calibration');
   assert.equal(result.history[0].assessment.n,2);
+});
+
+test('joint acquisition keeps each viable restoring support within its actuator and preserves replay',()=>{
+  const make=(id,score)=>({id,terms:id.split('+').map(id=>({id})),metrics:{score}});
+  const candidates=[
+    make('command+rate+gravity',10),make('command_cubic+rate+gravity',12),
+    make('command+rate+spring',16),make('command+rate+gravity+bias',16),
+    make('command+spring+cubic',16.001),make('command_cubic+rate+spring',18),
+    make('command+command_cubic+spring',18),make('rate+spring',19)];
+  const options={terms:['command','command_cubic','rate','gravity','spring','cubic','bias'],ambiguityDelta:6};
+  assert.deepEqual(jointActuatorRestoringRivals({candidates,options}).map(m=>m.id),
+    [candidates[0].id,candidates[2].id,candidates[1].id,candidates[5].id]);
+  const {setup}=loopSetup();
+  const session=planNextContinuous(createContinuousSession({...setup,policy:'active_joint',policyId:'joint-test'}));
+  assert.equal(session.pending.plan.status,'planned');
+  assert.deepEqual(restoreContinuousSession(exportContinuousSession(session)).pending,session.pending);
 });

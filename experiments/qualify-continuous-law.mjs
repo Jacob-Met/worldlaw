@@ -8,12 +8,14 @@ import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 if(!process.env.ARTIFACT_DIR)throw new Error('Require native ARTIFACT_DIR before opening development evidence');
+const activePolicy=process.argv[2]??'active';
+if(process.argv.length>3||!['active','active_joint'].includes(activePolicy))throw new Error('Unknown development acquisition policy');
 const artifact=resolve(process.env.ARTIFACT_DIR);
 mkdirSync(artifact,{recursive:true});
 const work=mkdtempSync(join(process.env.TMPDIR??tmpdir(),'worldlaw-continuous-'));
 const evidence=join(work,'evidence');mkdirSync(evidence);
 const summary={schema:'worldlaw.continuous-qualification/v1',startedAt:new Date().toISOString(),
-  runtime:{node:process.version,platform:process.platform,arch:process.arch},
+  activePolicy,runtime:{node:process.version,platform:process.platform,arch:process.arch},
   phases:[],calibrationOpened:false,evaluationOpened:false,status:'incomplete'};
 function phase(name,command,args){
   const path=join(evidence,name+'.log'),fd=openSync(path,'wx'),start=Date.now();
@@ -40,7 +42,7 @@ try{
   if(passed)passed=phase('real-app-smoke',process.execPath,['scripts/smoke.mjs']);
   if(passed)passed=phase('real-trajectory-smoke',process.execPath,['scripts/trajectory-smoke-92be.mjs']);
   if(passed)passed=phase('six-world-development',process.execPath,[
-    'experiments/continuous-law-course.mjs','--stage','development','--output',join(evidence,'development')]);
+    'experiments/continuous-law-course.mjs','--stage','development','--active-policy',activePolicy,'--output',join(evidence,'development')]);
   summary.status=passed?'qualified':'refused';
   if(passed)summary.development=JSON.parse(readFileSync(join(evidence,'development/development-summary.json'),'utf8'));
 }catch(error){summary.status='refused';summary.error={name:error.name,message:error.message};}

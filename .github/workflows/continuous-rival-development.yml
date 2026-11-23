@@ -1,0 +1,70 @@
+name: Continuous rival development comparison
+on:
+  pull_request:
+    paths:
+      - 'src/trajectory/continuous-session.mjs'
+      - 'experiments/continuous-law-course.mjs'
+      - 'experiments/compare-continuous-rivals.mjs'
+      - 'experiments/qualify-continuous-law.mjs'
+      - '.github/workflows/continuous-rival-development.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: e6eaec056b820a3ac8e584a90c36b17d4aee8b7f
+          path: frozen
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Qualify the frozen two-rival planner
+        id: frozen
+        continue-on-error: true
+        working-directory: frozen
+        run: ARTIFACT_DIR="$RUNNER_TEMP/rival-results/frozen" make qualify-continuous-law
+      - name: Qualify viable actuator and restoring rivals
+        id: candidate
+        continue-on-error: true
+        working-directory: candidate
+        run: ARTIFACT_DIR="$RUNNER_TEMP/rival-results/candidate" node experiments/qualify-continuous-law.mjs active_joint
+      - name: Compare the recorded six worlds
+        id: compare
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -eu
+          result="$RUNNER_TEMP/rival-results"
+          for branch in frozen candidate; do
+            mkdir "$RUNNER_TEMP/$branch-evidence"
+            tar -xzf "$result/$branch/continuous-law-development.tgz" -C "$RUNNER_TEMP/$branch-evidence" evidence/development
+          done
+          node candidate/experiments/compare-continuous-rivals.mjs \
+            "$RUNNER_TEMP/frozen-evidence/evidence/development" "$RUNNER_TEMP/candidate-evidence/evidence/development" \
+            > "$result/comparison.json"
+          cat "$result/comparison.json"
+      - name: Preserve both original gates and the paired result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: continuous-rival-development-${{ github.run_id }}
+          path: ${{ runner.temp }}/rival-results/
+          if-no-files-found: error
+      - name: Require both qualifications and the pairing checks
+        if: always()
+        env:
+          FROZEN: ${{ steps.frozen.outcome }}
+          CANDIDATE: ${{ steps.candidate.outcome }}
+          PAIR: ${{ steps.compare.outcome }}
+        run: test "$FROZEN" = success && test "$CANDIDATE" = success && test "$PAIR" = success
