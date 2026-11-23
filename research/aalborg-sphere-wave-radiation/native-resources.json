@@ -1,0 +1,110 @@
+[
+  {
+    "job": "p3-f747-aalborg-sphere-organizer-central-directory-no-member-access",
+    "state": "completed",
+    "exit": 0,
+    "started_at": "2026-11-22T21:36:52.522359056Z",
+    "finished_at": "2026-11-22T21:36:57.670128718Z",
+    "user_cpu_s": 0.096705,
+    "sys_cpu_s": 0.051671,
+    "peak_rss_bytes": 59637760,
+    "descendants": "drained",
+    "returned_bytes": 13502
+  },
+  {
+    "job": "p3-f747-aalborg-blind-design-and43-schema-receiver",
+    "state": "completed",
+    "exit": 0,
+    "started_at": "2026-11-22T21:42:00.999589597Z",
+    "finished_at": "2026-11-22T21:42:06.51332794Z",
+    "user_cpu_s": 0.398899,
+    "sys_cpu_s": 0.082733,
+    "peak_rss_bytes": 76787712,
+    "descendants": "drained",
+    "returned_bytes": 7620
+  },
+  {
+    "job": "p3-f747-aalborg-compact-clock-and-finite-size-geometry-figure",
+    "state": "completed",
+    "exit": 0,
+    "started_at": "2026-11-22T21:47:54.078035097Z",
+    "finished_at": "2026-11-22T21:48:00.088236019Z",
+    "user_cpu_s": 0.403425,
+    "sys_cpu_s": 0.070845,
+    "peak_rss_bytes": 76652544,
+    "descendants": "drained",
+    "returned_bytes": 1623
+  },
+  {
+    "job": "p3-f747-aalborg-eight-lower-releases-causal-clock-and-amplitude-control",
+    "state": "failed",
+    "exit": 1,
+    "started_at": "2026-11-22T21:49:04.032373058Z",
+    "finished_at": "2026-11-22T21:49:08.384532155Z",
+    "user_cpu_s": 0.133943,
+    "sys_cpu_s": 0.052102,
+    "peak_rss_bytes": 58294272,
+    "descendants": "drained",
+    "returned_bytes": 133
+  },
+  {
+    "job": "p3-f747-aalborg-eight-lower-clock-only-refusal-diagnosis",
+    "state": "completed",
+    "exit": 0,
+    "started_at": "2026-11-22T21:50:51.510357343Z",
+    "finished_at": "2026-11-22T21:50:55.460675697Z",
+    "user_cpu_s": 0.159921,
+    "sys_cpu_s": 0.031386,
+    "peak_rss_bytes": 57630720,
+    "descendants": "drained",
+    "returned_bytes": 3616
+  },
+  {
+    "job": "p3-f747-aalborg-3025-native-row-low-to-middle-amplitude-control",
+    "state": "completed",
+    "exit": 0,
+    "started_at": "2026-11-22T21:53:57.379987144Z",
+    "finished_at": "2026-11-22T21:54:01.355692237Z",
+    "user_cpu_s": 0.125998,
+    "sys_cpu_s": 0.068249,
+    "peak_rss_bytes": 60211200,
+    "descendants": "drained",
+    "returned_bytes": 3722
+  },
+  {
+    "job": "p3-f747-aalborg-lower-to-middle-30-causal-kernel-fits",
+    "state": "completed",
+    "exit": 0,
+    "started_at": "2026-11-22T21:54:54.111889168Z",
+    "finished_at": "2026-11-22T21:55:02.359173479Z",
+    "user_cpu_s": 0.682907,
+    "sys_cpu_s": 0.094622,
+    "peak_rss_bytes": 176099328,
+    "descendants": "drained",
+    "returned_bytes": 11406
+  },
+  {
+    "job": "p3-f747-aalborg-184677-lock-all-conditional-and-four-rans-forecasts",
+    "state": "completed",
+    "exit": 0,
+    "started_at": "2026-11-22T21:59:34.776643514Z",
+    "finished_at": "2026-11-22T21:59:46.517575359Z",
+    "user_cpu_s": 1.194122,
+    "sys_cpu_s": 0.128101,
+    "peak_rss_bytes": 200048640,
+    "descendants": "drained",
+    "returned_bytes": 7658
+  },
+  {
+    "job": "p3-f747-aalborg-184695-receive-locked-36-arrays-then-score-gauges",
+    "state": "completed",
+    "exit": 0,
+    "started_at": "2026-11-22T22:04:17.216769625Z",
+    "finished_at": "2026-11-22T22:04:22.000186121Z",
+    "user_cpu_s": 0.194321,
+    "sys_cpu_s": 0.049613,
+    "peak_rss_bytes": 63021056,
+    "descendants": "drained",
+    "returned_bytes": 27016
+  }
+]
