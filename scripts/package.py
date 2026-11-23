@@ -932,6 +932,7 @@ INCLUDE = (
     "scripts/active-joint-control-receiving.py",
     "scripts/active-adaptive-receiving.py",
     "scripts/active-required-receiving.py",
+    "tests/fixtures/vandermonde-conservative-plan.json",
     "tests/fixtures/active-adaptive-baseline/benchmark.mjs",
     "tests/fixtures/active-adaptive-baseline/cases.json",
     "tests/fixtures/active-adaptive-baseline/exact-box-envelope.mjs",
