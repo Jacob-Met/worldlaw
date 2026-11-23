@@ -1,0 +1,460 @@
+{
+  "originals": [
+    {
+      "job": "p2-f747-flowave-publisher-file-and-condition-roster-only",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request": "77b95306f0409c49c4a52337a7eee4d55bf6ef5b6a45e0846704a0b19b228cdc",
+      "generation": "357a6e46501b6452e2b7a1fafffb3ec37fd8a38d865bc56f77b21d8548f0ee02",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:12:45.693015915Z",
+      "finished": "2026-11-23T17:13:29.076777201Z",
+      "output_bytes": 13857,
+      "output_sha256": "c4c905536f6880d82dee7930d0aacdf80e0002e1d7b6e76568473d3d571cb173",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 106696704,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "other": 0.34000000000000014,
+            "python": 0.32000000000000006
+          },
+          "distinct_processes": 5,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 434,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 434
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.252729,
+        "user_cpu_seconds": 0.522163
+      }
+    },
+    {
+      "job": "p2-f747-flowave-222-schema-signal-free-and-publisher-figure3-identity",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request": "7da70fb2071c1d4c93167c74a9e1d03495903cd5173485420dac15ae382db616",
+      "generation": "f6400db284998fc2041c9cab0196d92420c9a5c52fe65e6d89d0aaa74738918f",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:23:32.445649581Z",
+      "finished": "2026-11-23T17:23:38.088883604Z",
+      "output_bytes": 24924,
+      "output_sha256": "7cd4c35ef17cf70e8a4a7c9cafe32c199deb8fc8556b62062b9ecc6cb86d2d46",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 20561920,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 5.309999999999996
+          },
+          "distinct_processes": 3,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 56,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 56
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.058279,
+        "user_cpu_seconds": 5.3328240000000005
+      }
+    },
+    {
+      "job": "p2-f747-flowave-source-drawings-window-roster-and-timing-only",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request": "b0ffb466cb0c4b2bdb7b1b75eb355fe29419880c45e72f1a7212ee4e4d53f566",
+      "generation": "0707e99251c3e5ea43142e23b2ed95c0afd55c6087b3777a1bb962341ed81123",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:18:16.635853026Z",
+      "finished": "2026-11-23T17:18:16.861001785Z",
+      "output_bytes": 8916,
+      "output_sha256": "aeb45feb4ef631dc573eb20452283de28d9d941c869e86e86b4e81228c18b6a4",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 27521024,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.03
+          },
+          "distinct_processes": 2,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 2
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.02611,
+        "user_cpu_seconds": 0.0855
+      }
+    },
+    {
+      "job": "p2-f747-flowave-apparatus-figure-three-drawing-only",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request": "eea53630cc4edb906da4ec286da7d71fc39e3792b2a86680e2cd30c31809f0e0",
+      "generation": "2be60af9e46fa1a6876550023bd065cb7663d96ca08161e0d80aa7628fd6969d",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:20:32.656891225Z",
+      "finished": "2026-11-23T17:20:32.869396653Z",
+      "output_bytes": 372794,
+      "output_sha256": "576b075a98fa69a001841ed9a0f493b41c4751f06935e90ba1e873851ac59d4a",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 29040640,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.03
+          },
+          "distinct_processes": 2,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 2
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.024219,
+        "user_cpu_seconds": 0.129599
+      }
+    },
+    {
+      "job": "p2-f747-flowave-original-data-description-versus-authors-published-figure",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request": "39f59b8652217c872f4b44f5855f23882280a3f33a0654c880898405646c0286",
+      "generation": "e86775037518cf55e4939146bb78017aeaa8ad0f1610fed2458ab04212ad230d",
+      "exit_code": 1,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:25:13.657345062Z",
+      "finished": "2026-11-23T17:25:14.219254028Z",
+      "output_bytes": 383,
+      "output_sha256": "b3857f850757bb5b842564d3ab60fe7a1da616b036532f1ba07ad735bb1d41ef",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 29093888,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "other": 0,
+            "python": 0.02
+          },
+          "distinct_processes": 2,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 6,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 6
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.012915,
+        "user_cpu_seconds": 0.051662
+      }
+    },
+    {
+      "job": "p2-f747-flowave-figshare-file-id-apparatus-read",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request": "22829469e045676eb0760ee21af84a00b5f810f7ed05cb863c435a1e4e6e0f62",
+      "generation": "ba30a6f356047750fa14133c8170f2a945737cd32f88fd5ba432ff8160e309ca",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:27:07.025737541Z",
+      "finished": "2026-11-23T17:27:09.373772433Z",
+      "output_bytes": 649,
+      "output_sha256": "6fce5721d5422abd2c319d999c5d1af8b09bd7b97ec45dbdbd5505a753cd21a2",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 52908032,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "other": 0.04,
+            "python": 0.05
+          },
+          "distinct_processes": 3,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 23,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 23
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.073218,
+        "user_cpu_seconds": 0.166943
+      }
+    },
+    {
+      "job": "p2-f747-flowave-published-figure3-apparatus-only",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request": "6253a9f6f3d528b729997d2985c54e59503eea5d0fc43707fc9a9d58985ead2b",
+      "generation": "a0b7041758b282d9aff1731496de1484a93a0c77f021fcf5d60644130ecba770",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:33:09.782014705Z",
+      "finished": "2026-11-23T17:33:10.000813957Z",
+      "output_bytes": 513979,
+      "output_sha256": "82e5d341b920858397e2729009424475dffca08d8e9bfcac731ceaed7f994ebc",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 38768640,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.03
+          },
+          "distinct_processes": 2,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 2
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.031859,
+        "user_cpu_seconds": 0.12775
+      }
+    },
+    {
+      "job": "p2-f747-flowave-calibration-and-closed-moment-prediction-original",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request": "b41b5efabc89a2dcd54b28cb8a2e990a1e46f3b2fd60d93d390d9697335a83a9",
+      "generation": "14ce5ed2c9035a4b5e69ce316936be6dde055e2b48ffa06999187f25f750197a",
+      "exit_code": 1,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:38:35.297679949Z",
+      "finished": "2026-11-23T17:38:49.506537736Z",
+      "output_bytes": 933,
+      "output_sha256": "3c111b00d7fec681fd5632cadca5f6e8827624a9f981941db9980b8c40d9e6bb",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 42217472,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "git": 0,
+            "other": 0.01,
+            "python": 4.649999999999996,
+            "shell": 0
+          },
+          "distinct_processes": 10,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 141,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 141
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.075623,
+        "user_cpu_seconds": 4.711885
+      }
+    },
+    {
+      "job": "p2-f747-flowave-joint-surface-force-forecast-original",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request": "fe38e25347f5945c1edd40b3a4f2889811533eb29965925bfad60ce0d00ea50f",
+      "generation": "9bafbe01ebfa8cd8e70aded0d1882616c1546ab477dc06f989249216dc7a8de6",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:42:14.572579859Z",
+      "finished": "2026-11-23T17:42:51.212249263Z",
+      "output_bytes": 634,
+      "output_sha256": "d8072c877d6ce9eb9654f42ed597dc12d9df341b2c868a454613d6d9c7296552",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 73428992,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "git": 0,
+            "other": 0.12,
+            "python": 10.369999999999942,
+            "shell": 0
+          },
+          "distinct_processes": 13,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 364,
+          "read_errors": 1,
+          "saturated_snapshots": 0,
+          "snapshots": 364
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.177273,
+        "user_cpu_seconds": 10.567026
+      }
+    },
+    {
+      "job": "p2-f747-flowave-held-moment-receiver-after-joint-bank",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request": "7301829db32b33129ceb9cce113cb95358028bec40c85302b066edf6a0a46bda",
+      "generation": "346485e66ad45ec092e9895a11e62f2cd4746ece794a4f92ecda058682cfb0df",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:43:29.7725123Z",
+      "finished": "2026-11-23T17:43:41.424136909Z",
+      "output_bytes": 5935,
+      "output_sha256": "91572715772ce2027d8ef2bbe6210cc2b4089fdbed2c6f7d937553c827225232",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 75005952,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "git": 0,
+            "other": 0.13,
+            "python": 2.230000000000001,
+            "shell": 0
+          },
+          "distinct_processes": 15,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 116,
+          "read_errors": 2,
+          "saturated_snapshots": 0,
+          "snapshots": 116
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.119218,
+        "user_cpu_seconds": 2.593265
+      }
+    },
+    {
+      "job": "p2-f747-flowave-independent-raw-scalar-and-frozen-worst-recount",
+      "owner": "node-1cd915107e50bd4c47445f864d5e1d33",
+      "request": "f7d2269f378d0e446d5e2f727d9f26d932ca19b503f27ecf5ee6315daaaa10fa",
+      "generation": "6efcf65a946a1456c755e91e827c5f530132f85c9b535ee16e05cbb4e0d47bfc",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:44:31.0641698Z",
+      "finished": "2026-11-23T17:45:02.620554249Z",
+      "output_bytes": 1235,
+      "output_sha256": "7122d63076afd7cdd3893b22e256f21d51fd5e6d08921802f70b3a0503d6790b",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 71389184,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "git": 0,
+            "other": 0.19,
+            "python": 2.22,
+            "shell": 0
+          },
+          "distinct_processes": 23,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 316,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 316
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.214451,
+        "user_cpu_seconds": 2.63606
+      }
+    },
+    {
+      "job": "p2-f747-flowave-frozen-field-attribution-and-outcome-receiving-within-output-limit",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request": "31a498bb8989a6a11139bfc39c7a69d7571fd5de5aa930e8e3e8614b64ace25f",
+      "generation": "cd4b614955c354be9c206c6875a89c46fdceaff64ae3e440d4b9e1360b20a73d",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "started": "2026-11-23T17:46:09.867176081Z",
+      "finished": "2026-11-23T17:46:12.260598509Z",
+      "output_bytes": 49219,
+      "output_sha256": "75a2a283ec99261d4151fe90b75de2f85dfdca879287dd6cf9544ff0877ae6a9",
+      "resources": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 37203968,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "git": 0,
+            "other": 0.01,
+            "python": 0.43999999999999995,
+            "shell": 0
+          },
+          "distinct_processes": 15,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 23,
+          "read_errors": 1,
+          "saturated_snapshots": 0,
+          "snapshots": 23
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.026889,
+        "user_cpu_seconds": 0.56443
+      }
+    }
+  ],
+  "pre_admission": [
+    {
+      "attempt": "p2-f747-flowave-frozen-field-attribution-and-outcome-receiving",
+      "reason": "retain_output_bytes must be between 0 and 65536",
+      "request_sha256": "5415552f175b3ad0894401f5c32dc9c760bbb53e4257203958de23202653b4b9"
+    }
+  ],
+  "registrations": {
+    "surface_only_git": "50fb0eceeb1bd1ad98dc2265643b71c0ed6b87fd",
+    "surface_only_post": 190437,
+    "joint_git": "b091b43549be7a1b5a53344dd4bc15798f94e607",
+    "joint_post_effect": "unconfirmed following transport refusal; not used to establish timing",
+    "joint_post_original": "direct-f8f217b07d0c500c6a0a3d715a6933d8"
+  },
+  "archived_files": {
+    "bank": "r2-estate:estate-archive/transfers/fr-disc-wave2-unseen-repo-repair-and-multiamplitude-worldlaw/c26dd92650dc8e0abbc25b7cf732470d953ea110fa5380a9955e89fbf4265508/forecast.json",
+    "score": "r2-estate:estate-archive/transfers/fr-disc-wave2-unseen-repo-repair-and-multiamplitude-worldlaw/37e984247efc68eb42f9eba5fd912541384a4c36f6f1424ce55cad890baa47c1/score.json"
+  }
+}
