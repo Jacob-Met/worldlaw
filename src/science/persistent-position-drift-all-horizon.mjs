@@ -40,18 +40,23 @@ function classify(catalog) {
   return [...bySignature.values()];
 }
 
+function rateDifferenceRange(catalog,i,j) {
+  const differences=catalog.rates[i].map((v,u)=>sub(v,catalog.rates[j][u]));
+  let low=0, high=0;
+  for (let u=1;u<differences.length;u++) {
+    if (cmp(differences[u],differences[low])<0) low=u;
+    if (cmp(differences[u],differences[high])>0) high=u;
+  }
+  const gap=sub(differences[high],differences[low]);
+  return {low,high,gap};
+}
+
 function buildBlocks(catalog) {
   const blocks=[], index=new Map(), comparisons=[];
   const threshold=mul(Q(8n),catalog.error);
   for (let j=1;j<catalog.ids.length;j++) {
     for (let i=0;i<j;i++) {
-      const differences=catalog.rates[i].map((v,u)=>sub(v,catalog.rates[j][u]));
-      let low=0, high=0;
-      for (let u=1;u<differences.length;u++) {
-        if (cmp(differences[u],differences[low])<0) low=u;
-        if (cmp(differences[u],differences[high])>0) high=u;
-      }
-      const gap=sub(differences[high],differences[low]);
+      const {low,high,gap}=rateDifferenceRange(catalog,i,j);
       need(gap.n>0n,'an unseparated gauge pair reached schedule construction');
       const ratio=div(threshold,gap);
       const repetitions=ratio.n/ratio.d+1n;
@@ -87,10 +92,14 @@ function buildBlocks(catalog) {
   return {schedule,readAt,pulseUpperBound:String(tick),pairCertificates};
 }
 
+function canonicalSource(catalog){
+  return {schema:CATALOG_SCHEMA,commands:catalog.commands.slice(),noiseBound:fmt(catalog.error),
+    laws:catalog.ids.map((id,i)=>({id,rates:catalog.rates[i].map(fmt)}))};
+}
+
 export function planAllHorizonPositionDrift(source) {
   const catalog=parsePositionDriftRates(source,rational);
-  const contract={schema:CATALOG_SCHEMA,commands:catalog.commands.slice(),noiseBound:fmt(catalog.error),
-    laws:catalog.ids.map((id,i)=>({id,rates:catalog.rates[i].map(fmt)}))};
+  const contract=canonicalSource(catalog);
   const groups=classify(catalog);
   const classes=groups.map(group=>group.map(i=>catalog.ids[i]));
   const witnesses=[];
@@ -183,4 +192,80 @@ export function openAllHorizonPositionDrift(source,policy) {
     need(equalPositionDriftData(actual,record),'saved checkpoint record differs from physical replay');
     return actual;
   }};
+}
+
+// Exact binary horizon. The older finite-catalog policy and its replay format
+// remain independent of this tighter two-law construction.
+function binaryRates(source) {
+  const catalog=parsePositionDriftRates(source,rational);
+  need(catalog.ids.length===2,'the minimum-horizon certificate requires exactly two laws');
+  return {catalog,...rateDifferenceRange(catalog,0,1)};
+}
+function binaryDistance(gap,n){
+  if(n===0n)return Z();
+  const a=n/2n;
+  return mul(gap,Q(a*(n-a),2n * n));
+}
+
+export function planBinaryPositionDriftMinimum(source){
+  const {catalog,low,high,gap}=binaryRates(source);
+  const threshold=mul(Q(2n),catalog.error);
+  const base={schema:'worldlaw.position-drift-binary-minimum/v1',source:canonicalSource(catalog),laws:catalog.ids,
+    gap:fmt(gap),collisionThreshold:fmt(threshold)};
+  if(gap.n===0n){
+    const [witness]=planAllHorizonPositionDrift(source).witnesses;
+    return {...base,status:'indistinguishable',minimumPulses:null,witness};
+  }
+  // D(n) <= n*gap/8, with equality at every even n.
+  const lower=div(mul(Q(16n),catalog.error),gap);
+  let n=lower.n/lower.d+1n;
+  if(cmp(binaryDistance(gap,n),threshold)<=0)n++;
+  const a=n/2n,b=n-a;
+  const runs=[{command:catalog.commands[low],repeats:String(a)},
+    {command:catalog.commands[high],repeats:String(b)}];
+  return {...base,status:'minimum-schedule',minimumPulses:String(n),runs,readAt:['0',String(a),String(n)],
+    previousDistance:fmt(binaryDistance(gap,n-1n)),optimalDistance:fmt(binaryDistance(gap,n)),
+    margin:fmt(sub(binaryDistance(gap,n),threshold))};
+}
+
+export function openBinaryPositionDriftMinimum(source,policy){
+  const canonical=planBinaryPositionDriftMinimum(source);
+  need(equalPositionDriftData(canonical,policy),'saved binary minimum differs from source derivation');
+  const {catalog,gap}=binaryRates(source);
+  // Each reply uses only the chosen command and the current forcing; a caller
+  // can choose the next action after seeing precisely this reply.
+  function midpointAdversary(){
+    const runs=[],ticks=['0'],forces=[[Z(),Z()]],readings=['0'];
+    let tick=0n;
+    function pulse(command,repeats='1'){
+      const u=catalog.commands.indexOf(command), n=count(repeats);
+      need(u>=0,'command absent from binary menu');
+      const next=tick+n;
+      need(cmp(binaryDistance(gap,next),mul(Q(2n),catalog.error))<=0,
+        'this horizon exceeds the universal binary collision guarantee');
+      const f=catalog.rates.map((rates,i)=>add(forces.at(-1)[i],mul(Q(n),rates[u])));
+      const y=fmt(div(add(f[0],f[1]),Q(2n)));
+      forces.push(f);readings.push(y);ticks.push(String(next));runs.push({command,repeats:String(n)});
+      tick=next;
+      return y;
+    }
+    function collision(){
+      const differences=forces.map(([a,b])=>sub(a,b));
+      const slope=tick===0n?Z():div(differences.at(-1),Q(tick));
+      // Center the chord residual. Extremes occur at run endpoints since
+      // forcing, chord and midpoint readings interpolate linearly inside a run.
+      const residuals=differences.map((s,i)=>sub(s,mul(Q(BigInt(ticks[i])),slope)));
+      let lo=Z(),hi=Z();
+      for(const r of residuals){if(cmp(r,lo)<0)lo=r;if(cmp(r,hi)>0)hi=r;}
+      const intercept=div(add(lo,hi),Q(2n));
+      const starts=[Q(-1n,2n),Q(1n,2n)].map(sign=>[fmt(mul(sign,intercept)),fmt(mul(sign,slope))]);
+      return {laws:catalog.ids.slice(),runs:runs.map(r=>({...r})),ticks:ticks.slice(),
+        readings:readings.slice(),starts,maximumError:fmt(div(sub(hi,lo),Q(4n)))};
+    }
+    return {initialReading:'0',pulse,collision};
+  }
+  if(canonical.status==='indistinguishable')return {midpointAdversary};
+  const runs=canonical.runs.map(r=>({u:catalog.commands.indexOf(r.command),n:BigInt(r.repeats)}));
+  const observe=values=>readSchedule(canonical,catalog,runs,values);
+  return {midpointAdversary,observe};
 }
