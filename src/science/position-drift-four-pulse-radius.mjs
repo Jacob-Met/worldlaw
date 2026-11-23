@@ -244,3 +244,8 @@ export function verifyFourPulseNoiseRadius(request,saved){
 export {courseTree as fourPulseCourseTree};
 export function buildFourPulseMenuProof(cat,prefix,menu,spend){return certifyCourse(cat,prefix,'full',new Map(),spend,menu);}
 export function checkFourPulseMenuProof(cat,prefix,menu,saved,spend){return verifyCourse(cat,prefix,'full',saved,spend,menu);}
+
+export function fourPulseSourceSupport(cat,word,law,normal,spend){return support(cleanPoints(cat.vertices[law],word,spend),normal,spend);}
+
+export function buildFourPulseCutProof(cat,prefix,mode,spend){return certifyCourse(cat,prefix,mode,new Map(),spend);}
+export function checkFourPulseCutProof(cat,prefix,mode,saved,spend){return verifyCourse(cat,prefix,mode,saved,spend);}

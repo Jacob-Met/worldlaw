@@ -131,3 +131,5 @@ export function receiveFourPulseFeedback(request,saved,values){
   try{return {...receiveFourPulseMenu(cat,prefix,menu,values,work.spend),work:work.used};}
   catch(e){if(e!==RATE_WORK_EXHAUSTED)throw e;return {status:'receiver-budget-exhausted',surviving:null,nextCommand:null,work:work.used};}
 }
+
+export {prepare as prepareFourPulseFeedback,mixtureGrid as fourPulseMixtureGrid,collisions as fourPulseGridCollisions};
