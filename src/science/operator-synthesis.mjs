@@ -6,6 +6,7 @@ const terminals = {
   periodic: ['field','command','dx','dxx']
 };
 const unary = new Map([['sin',Math.sin],['cos',Math.cos],['abs',Math.abs],['tanh',Math.tanh]]);
+const spatial = new Set(['gradient','laplacian']);
 const binary = new Map([['add',(a,b)=>a+b],['mul',(a,b)=>a*b],['div',(a,b)=>b===0?NaN:a/b]]);
 export class EvolutionDomainError extends RangeError {
   constructor(reason) { super(reason); this.code=reason; }
@@ -24,18 +25,42 @@ function coordinates(kind, row) {
   const dx=(row.right-row.left)/(2*row.spacing);
   const dxx=(row.left-2*row.field+row.right)/(row.spacing**2);
   insist(Number.isFinite(dx)&&Number.isFinite(dxx),'Nonfinite spatial derivative');
-  return {field:row.field,command:row.command,dx,dxx};
+  return {field:row.field,command:row.command,left:row.left,right:row.right,spacing:row.spacing,dx,dxx};
 }
 function apply(op,a,b) {
   if (!Number.isFinite(a) || (binary.has(op) && !Number.isFinite(b))) return NaN;
   const value=unary.has(op)?unary.get(op)(a):binary.get(op)(a,b);
   return Number.isFinite(value)?value:NaN;
 }
+// Apply a pointwise potential to the three actually observed cell values.
+// No neighboring command or second ring of cells is supplied by this schema.
+function pointTriplet(tree,row,size) {
+  insist(++size.count<=32,'Operator tree is too large');
+  if(tree==='field') return [row.left,row.field,row.right];
+  if(tree==='one') return [1,1,1];
+  insist(Array.isArray(tree)&&(unary.has(tree[0])?tree.length===2:binary.has(tree[0])&&tree.length===3),
+    'Spatial potential must use only the field, constants and pointwise operators');
+  const a=pointTriplet(tree[1],row,size);
+  const b=tree.length===3?pointTriplet(tree[2],row,size):null;
+  return a.map((v,i)=>apply(tree[0],v,b?.[i]));
+}
+function spatialValue(op,tree,row,size) {
+  const [left,center,right]=pointTriplet(tree,row,size);
+  return op==='gradient'?(right-left)/(2*row.spacing):(left-2*center+right)/row.spacing**2;
+}
+function isPointPotential(tree) {
+  if(typeof tree==='string')return tree==='field'||tree==='one';
+  return !spatial.has(tree[0])&&tree.slice(1).every(isPointPotential);
+}
 function treeValue(tree,row,kind,size) {
   insist(++size.count<=32,'Operator tree is too large');
   if (typeof tree==='string') {
     insist(tree==='one'||terminals[kind].includes(tree),'Invalid evolution terminal');
     return tree==='one'?1:row[tree];
+  }
+  if(Array.isArray(tree)&&spatial.has(tree[0])) {
+    insist(kind==='periodic'&&tree.length===2,'Spatial operators require one periodic-field potential');
+    return spatialValue(tree[0],tree[1],row,size);
   }
   insist(Array.isArray(tree)&&(unary.has(tree[0])?tree.length===2:binary.has(tree[0])&&tree.length===3),'Invalid operator node');
   return apply(tree[0],treeValue(tree[1],row,kind,size),tree.length===3?treeValue(tree[2],row,kind,size):undefined);
@@ -88,6 +113,15 @@ function columns(kind,xs,operators,maxNodes,maxCandidates) {
   for(let n=2;n<=maxNodes;n++) {
     const level=[];
     for(const op of operators) {
+      if(spatial.has(op)) {
+        for(const i of sizes[n-1]) {
+          const tree=bank[i].tree;
+          // The bare-field derivatives already have the one-node terminals dx and dxx.
+          if(typeof tree!=='string'&&isPointPotential(tree))
+            record([op,tree],xs.map(row=>spatialValue(op,tree,row,{count:1})),level);
+        }
+        continue;
+      }
       if(unary.has(op)) {
         for(const i of sizes[n-1]) {
           const a=bank[i];
@@ -112,7 +146,7 @@ export function synthesizeEvolution(rows, options={}) {
   const {kind,operators,maxNodes=4,maxCandidates=3000,maxTerms=2,beam=6,tolerance}=options;
   insist(Object.hasOwn(terminals,kind),'Invalid evolution geometry');
   insist(Array.isArray(operators)&&operators.length>0&&new Set(operators).size===operators.length&&
-    operators.every(op=>unary.has(op)||binary.has(op)),'Invalid operator menu');
+    operators.every(op=>unary.has(op)||binary.has(op)||(kind==='periodic'&&spatial.has(op))),'Invalid operator menu');
   limit(maxNodes,1,7,'node budget');limit(maxCandidates,5,12000,'candidate budget');
   limit(maxTerms,1,4,'support budget');limit(beam,1,32,'beam width');
   insist(Array.isArray(rows)&&rows.length>=4&&rows.length<=1024&&Number.isFinite(tolerance)&&tolerance>=0,'Invalid training design');
