@@ -274,7 +274,13 @@
   ],
   "refusals": [
     {
-      "sha256": "151fd09c558ab906967acf5b58ebcfb90e4f46bc7c2260bfb688b907955e3fbf"
+      "job": "p2-f747-sis-bounded-49-header-and-typed-assignment-design",
+      "refusal_id": "placement-f0f42a60c2506ef07aa9a1016b86cbaeb380d6fa411a1b68",
+      "arguments_sha256": "e45ad34916fe057f963ef17db4b3a829fca521e0912cc10595b81b67bfed0e90",
+      "sha256": "151fd09c558ab906967acf5b58ebcfb90e4f46bc7c2260bfb688b907955e3fbf",
+      "reasons": {
+        "node-d807db003bdba7cdc89bb0e727dcf02d": "available memory already reserved by active jobs"
+      }
     },
     {
       "job": "p2-f747-sis-source-rank-null-and-held-assignment-estimability",
