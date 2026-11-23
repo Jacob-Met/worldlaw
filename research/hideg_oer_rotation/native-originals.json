@@ -1,0 +1,198 @@
+{
+  "ordinary": [
+    {
+      "id": "p3-f747-hideg-oer-archive-roster-and-source-qualification",
+      "owner": "node-49ce35aee5f5ac3713107652d4b7fb2c",
+      "request_sha256": "d5816d0df063dabdb15d42a230d2c966257599c5195024a7ce9309c1f6034191",
+      "generation": "5fbebafbe2fc6f5a19ed3e229f797c302c995fbe0d742aef536eb6a784ff364b",
+      "output_bytes": 18954,
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_wait": "drained"
+    },
+    {
+      "id": "p3-f747-hideg-bounded-authentic-notebook-input-cells",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "request_sha256": "0c96c28ce25902784bda880d930e2735f189cab1d90fc279e2088efb22829ac0",
+      "generation": "759f2c5fcba95b9eacc128c8a3b56e3c2223dbfc8f8934f0b6434a3666bf50f0",
+      "output_bytes": 2583,
+      "state": "failed",
+      "exit_code": 1,
+      "descendant_wait": "drained"
+    },
+    {
+      "id": "p3-f747-hideg-fitter-source-compressed-after-dns-terminal",
+      "owner": "node-1084bfa3c8365d0b8987c0e8d018df71",
+      "request_sha256": "1fc830631af8a72569c82fb9c5a1ee321cfc90b5cd7bad0f8d7cebc4bd47c9f3",
+      "generation": "94ba7e01594b5851ec0c90cf00c85e3c8515103342eaf224c553cc432400ed91",
+      "output_bytes": 7995,
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_wait": "drained"
+    },
+    {
+      "id": "p3-f747-hideg-central-ph-header-and-time-unit-schema",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "request_sha256": "870cb823135515948d61f1e5bdc6dce6083547b29404939e6729de99658b72ed",
+      "generation": "0bed130a50ef6a17ed62e44e39be1d9a7a59ca368c2077ab9f6e86c0eca1021f",
+      "output_bytes": 2626,
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_wait": "drained"
+    },
+    {
+      "id": "p3-f747-hideg-source-five-rotations-locked-equation-and-control-forecast",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "06cd0cca0e45566619911fab18ac3e9e23869daee4047ab305a40e2b2a45e42d",
+      "generation": "5610acf435755f2f9bb74b7c6876d8bd58b57997fc884a363aa046e868053766",
+      "output_bytes": 1575,
+      "state": "failed",
+      "exit_code": 1,
+      "descendant_wait": "drained"
+    },
+    {
+      "id": "p3-f747-hideg-registered-rotation-conversion-21-input-gate-then-forecast",
+      "owner": "node-ed6d75e73315250d137bef37f2e21b18",
+      "request_sha256": "7f771b114bae01022ebe6bc91d44bcd8889a09d8b5707fad81302cc10f542386",
+      "generation": "aa45c0b8d9994cde9617be352c89f10f23ab8223247fb74dfeae4e927c2757bd",
+      "output_bytes": 1297,
+      "state": "failed",
+      "exit_code": 1,
+      "descendant_wait": "drained"
+    },
+    {
+      "id": "p3-f747-hideg-raw-command-path-first-refused-Au400-only",
+      "owner": "node-97c6d409c2cbae394d3688f835c7bef8",
+      "request_sha256": "e842cf46294814b5e33b0411c8f4a13b3aba7edbc395222a60f957897998989e",
+      "generation": "1ac07a6a50bc8394ac79097647cb5bc6eb57cccb5d3e4cf9c07cc662e37079f8",
+      "output_bytes": 1614,
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_wait": "drained"
+    },
+    {
+      "id": "p3-f747-hideg-full-monotone-record-source-fit-166617e2",
+      "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+      "request_sha256": "cec98d09e35aea904836e58fc43427dc3c83305f0f2a8eea02120b25ec5f7cc3",
+      "generation": "cc2746d37f86e7fca2bec4357719f8c9f65d67a934867d8c893d5f98d12058c2",
+      "output_bytes": 760805,
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_wait": "drained"
+    },
+    {
+      "id": "p3-f747-hideg-original-six-whole-held-current-sweeps",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "request_sha256": "6c38c2a1a48b9038871c94f45db14a988319ab43ec6c289a3aaa89a05816bb81",
+      "generation": "5639bc30e025f9d01d06a3671a124e9cddea908ed616275fdc6e9e937d47c338",
+      "output_bytes": 123068,
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_wait": "drained"
+    },
+    {
+      "id": "p3-f747-hideg-independent-csv-original-six-transfers-and-worst-cell",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "request_sha256": "b415b0ac84b23a639338d97f665e11cdc52127a81c4b7d83547b3638de989408",
+      "generation": "c9fd5b6cb730c35f10bb053fdd3c6688896349fd999a35c943a5ffb0b0392672",
+      "output_bytes": 2583,
+      "state": "failed",
+      "exit_code": 1,
+      "descendant_wait": "drained"
+    },
+    {
+      "id": "p3-f747-hideg-public-physical-six-original-members-after-terminal-dns",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "request_sha256": "b880838534f3b84e477c9c166e274f8e914abf18c20d43059493f1a2bf290235",
+      "generation": "00802828cde7b2ca0ffb55d9db4e1d7aa9d7c81598833ec780b28356063a6a25",
+      "output_bytes": 203096,
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_wait": "drained"
+    },
+    {
+      "id": "p3-f747-hideg-exact-six-member-independent-receiver",
+      "owner": "node-f3d68e739dad8ba76cc7db10399df7e3",
+      "descendant_wait": null
+    }
+  ],
+  "pred": {
+    "n": 1448423,
+    "sha": "4f95a20d29cd94e5f45ad304b2460b06a368d7e78f3db574a43cd59e3a121f0f",
+    "gzip_sha": "f08c6e9b85f6030cdfe22ac5595660c40c9ce32b5def8bb7ccecaf1948bfc916",
+    "native_stdout": "fd6e4dadc6e1c90381fd7e3d22204bde5ed68e243da7469e33ac2208ced36ae8",
+    "output_bytes": 760805,
+    "source": {
+      "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+      "command_id": "p3-f747-hideg-full-monotone-record-source-fit-166617e2",
+      "request_sha256": "cec98d09e35aea904836e58fc43427dc3c83305f0f2a8eea02120b25ec5f7cc3",
+      "generation": "cc2746d37f86e7fca2bec4357719f8c9f65d67a934867d8c893d5f98d12058c2",
+      "receipt_sha256": "2a8240d3415ece31c3d1042c59a68ea48827e56e01f037a1b7d8940a4e0543c9",
+      "output_bytes": 760805
+    }
+  },
+  "score": {
+    "n": 266335,
+    "sha": "20ed1eac55313c80fc8c9cd9eae56a3db449623d4505982f211474e768c24fdc",
+    "gzip_sha": "bb70a08e5f431af3ade7e518a846514b96b73bbbd52f354045df5208fabee413",
+    "native_stdout": "18d410d72d8a5bed4043664264620e360eb745dbfaac943c1f572c8452b5fc0b",
+    "output_bytes": 123068,
+    "source": {
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "command_id": "p3-f747-hideg-original-six-whole-held-current-sweeps",
+      "request_sha256": "6c38c2a1a48b9038871c94f45db14a988319ab43ec6c289a3aaa89a05816bb81",
+      "generation": "5639bc30e025f9d01d06a3671a124e9cddea908ed616275fdc6e9e937d47c338",
+      "receipt_sha256": "28bc015daa75521d1eea6beccbdea7a59674e4a3300a9a1af3534aaa7eae57ce",
+      "output_bytes": 123068
+    }
+  },
+  "six_member_escrow": {
+    "n": 482407,
+    "sha": "f701715592ac48ec656a4f64a233b696e6e833f1b83cbcdb928fc428ec47111d",
+    "gzip_sha": "436724605f2a80436f076416bfe80d30dca02c28ebd2a8752c19a73be3a30037",
+    "native_stdout": "280593ff1467c427eea4ef15bb9bf0a67f86ba44a7d03894768562b494395efe",
+    "output_bytes": 203096,
+    "source": {
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "command_id": "p3-f747-hideg-public-physical-six-original-members-after-terminal-dns",
+      "request_sha256": "b880838534f3b84e477c9c166e274f8e914abf18c20d43059493f1a2bf290235",
+      "generation": "00802828cde7b2ca0ffb55d9db4e1d7aa9d7c81598833ec780b28356063a6a25",
+      "receipt_sha256": "ec533c0ee2d9eae456ff580169b400744b97f0d80518536e35b4e6f261e02320",
+      "output_bytes": 203096
+    }
+  },
+  "public_member_hashes": {
+    "src/pH10.458/Au/pH10.458_Au_1225rpm.tsv": "9d99c367ff33f020cc4a31171ab33dc81074f3a245ae5a4a9334e253c9c90b09",
+    "src/pH10.458/Au/pH10.458_Au_2500rpm.tsv": "40faced56231650531f32024108c98e420d9a1867f8cad17664d3a4ff8b51bb6",
+    "src/pH10.458/Ir/pH10.458_Ir_1225rpm.tsv": "dec631f2513c365289f3ab408b12cc978ad0f73a20967e5926400c368d97f6cd",
+    "src/pH10.458/Ir/pH10.458_Ir_2500rpm.tsv": "cd3006a053ebc69c95424f955b30a1241a374a3ebd71df71675043ecb9e54ff3",
+    "src/pH10.458/Pt/pH10.458_Pt_1225rpm.tsv": "0033eb3fc3beee857836c9e78a3eeb22af4c9b22528a11599b5177228e6a7037",
+    "src/pH10.458/Pt/pH10.458_Pt_2500rpm.tsv": "1c19094ba9fb457651dca7087e098cf176deecef7c6bd64ae9be14d9d900022d"
+  },
+  "workspace_independent": {
+    "authenticated_original_archive": "a191eb58d0ec89c9b6342d674b3dc5ccde1285acdaf125e2778f384de0f02f68",
+    "forecast_values": 64980,
+    "gate": false,
+    "maximum_metric_error": 0,
+    "metric_checks": 130,
+    "physical_rows": 6498,
+    "six_member_bundle": "f701715592ac48ec656a4f64a233b696e6e833f1b83cbcdb928fc428ec47111d",
+    "worst": [
+      0.000117250275374064,
+      "Pt",
+      2500,
+      1,
+      1.59881591796875,
+      0.0032017498317314886
+    ]
+  },
+  "metadata_only_original": {
+    "job": "p3-f747-hideg-measured-rpm-time-voltage-design-audit-only",
+    "state": "reserved with no verified original worker start in latest observation; no replay; all input contracts separately received from original forecast"
+  },
+  "independent_native_original": {
+    "job": "p3-f747-hideg-exact-six-member-independent-receiver",
+    "state": "reserved; local independent code already verified complete original member bytes; pending original does not supply the local receipt"
+  },
+  "schema_refusal": "p3-f747-hideg-authentic-fitter-input-cells-only refused retained output before dispatch; bounded source observer then incurred DNS failure; source was collected by separate compressed input-cell original."
+}
