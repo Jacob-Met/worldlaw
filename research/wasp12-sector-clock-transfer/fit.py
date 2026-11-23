@@ -43,7 +43,17 @@ def author_module():
 
 def fit(kind, design, output):
     module = author_module()
-    rows = table(YEECAT, ["Event", "Orbit", "Ref", "BJD", "e_BJD"])
+    # The SUSIE authors' distributed Yee table retains the printed, uncorrected clock.
+    # VizieR's independently projected event/orbit/reference roster supplies attribution.
+    url = ("https://raw.githubusercontent.com/BoiseStatePlanetary/susie/"
+           "461f5ca485dd22e255e2d1dbada42fa6df733a67/example_data/wasp12b_tra_occ.csv")
+    blob = urlopen(url, timeout=60).read()
+    assert hashlib.sha1(b"blob "+str(len(blob)).encode()+b"\0"+blob).hexdigest() == "8aaefed8ed7dd453fe9f2c6f1229f2cb738128f4"
+    import csv
+    src = list(csv.DictReader(io.StringIO(blob.decode("utf-8"))))
+    assert len(src) == len(design["yee"]) == 158
+    rows = [[v["tra_or_occ"],v["epoch"],ident[2],v["mid_time"],v["mid_time_err"]]
+            for v,ident in zip(src,design["yee"])]
     assert [(r[0], int(r[1]), r[2]) for r in rows] == [tuple(r) for r in design["yee"]]
     epochs = np.array([int(r[1]) for r in rows])
     occ = np.array([r[0] == "occ" for r in rows])
