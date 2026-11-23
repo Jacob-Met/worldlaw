@@ -1,0 +1,758 @@
+{
+  "study": "Parel et al. published stiffness direction and specimen weighting",
+  "source_qualification": {
+    "article": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7735307/",
+    "bytes": 236295,
+    "sha256": "1e643f27fceace5f8a939e79307420b4b27d059892c4d6e4ab1a4b39e8b30bda",
+    "prior_reader_result": [
+      [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7735307/fullTextXML",
+        "TimeoutError('The read operation timed out')"
+      ]
+    ],
+    "scope": "Published fitted summaries, not the Dryad load/DIC archive",
+    "native_original": "p1-f747-parel-2020-seven-published-stiffness-pairs-phase-audit",
+    "native_request": "d869beb8137f440dd94762aeb477439f9a2b5a69c815b473c4c59d5b24b05a10",
+    "native_generation": "1bbfa057029399d97ff09d040766b94abdf5121ba2ddc2e4a06a05d669ed6430",
+    "native_stdout_sha256": "05394693c94d4f06bbda9d5a2c98c8992b9ec3661089a38ce0de37b02838de3c",
+    "native_stdout_bytes": 18808,
+    "exit_code": 0,
+    "descendants": "drained",
+    "freeze_post": 190543,
+    "unresolved_source_fanout": [
+      "p1-f747-parel-archive-and-publisher-methods-source-0000",
+      "p1-f747-parel-archive-and-publisher-methods-source-0001"
+    ],
+    "thesis_landing_source": "aaa1d90663d36cbe739d288318475d310a88127238ed4f6ac41bcf7fadaa4b33",
+    "thesis_pdf_attempt": "p1-f747-parel-thesis-authenticated-specimen-force-conventions",
+    "thesis_pdf_status": 403
+  },
+  "diagnostic": {
+    "cutoff": "207/338",
+    "missing_normal": "S5",
+    "phase_switches": [
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "phases": {
+      "loading": {
+        "equal_group_mae": {
+          "constant": "474517/2700",
+          "full": "6067966/190125",
+          "half": "18689609/152100",
+          "lso_scale": "102094116710713574069276711331160010911/3856851768596490077405742152474518125"
+        },
+        "group_mae": {
+          "constant": {
+            "R": "225389/1800",
+            "S123": "34723/150",
+            "S4": "102323/600"
+          },
+          "full": {
+            "R": "2403601/126750",
+            "S123": "740683/12675",
+            "S4": "775167/42250"
+          },
+          "half": {
+            "R": "16384713/169000",
+            "S123": "105670361/507000",
+            "S4": "1069053/16900"
+          },
+          "lso_scale": {
+            "R": "5531151527680003/484068863321250",
+            "S123": "17108343319128811/307342280638500",
+            "S4": "159701649279807/12962044080500"
+          }
+        },
+        "preference_counts": {
+          "component_box": {
+            "full": 5,
+            "unresolved": 2
+          },
+          "nominal": {
+            "full": 7
+          },
+          "published_ratio_box": {
+            "full": 5,
+            "unresolved": 2
+          }
+        },
+        "rows": {
+          "R1": {
+            "component_box": "unresolved",
+            "d_ratio_published": "137/1000",
+            "dn": "2779/500",
+            "dt": "9043/1000",
+            "errors": {
+              "constant": "261149/1500",
+              "full": "1594361/169000",
+              "half": "-2477663/84500",
+              "lso_scale": "9315002943052567/645425151095000"
+            },
+            "forecasts": {
+              "constant": "726529/3000",
+              "full": "6549687/84500",
+              "half": "6549687/169000",
+              "lso_scale": "26626805477073441/322712575547500"
+            },
+            "lso_slope": "561019046534/645425151095",
+            "n": "94923/1000",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "68077/94923",
+            "ratio_delta": "17209/94923000",
+            "ratio_published": "717/1000",
+            "t": "68077/1000"
+          },
+          "R2": {
+            "component_box": "full",
+            "d_ratio_published": "173/1000",
+            "dn": "2009/125",
+            "dt": "1639/125",
+            "errors": {
+              "constant": "157721/1500",
+              "full": "-298739/33800",
+              "half": "-6162899/84500",
+              "lso_scale": "-369265971163697/645425151095000"
+            },
+            "forecasts": {
+              "constant": "726529/3000",
+              "full": "10832103/84500",
+              "half": "10832103/169000",
+              "lso_scale": "44036348529116529/322712575547500"
+            },
+            "lso_slope": "561019046534/645425151095",
+            "n": "156987/1000",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "full",
+            "ratio": "137029/156987",
+            "ratio_delta": "-20651/156987000",
+            "ratio_published": "873/1000",
+            "t": "137029/1000"
+          },
+          "R3": {
+            "component_box": "full",
+            "d_ratio_published": "19/100",
+            "dn": "10737/250",
+            "dt": "30231/1000",
+            "errors": {
+              "constant": "-57841/600",
+              "full": "-1631587/42250",
+              "half": "-6374603/33800",
+              "lso_scale": "-3110084299125937/161356287773750"
+            },
+            "forecasts": {
+              "constant": "726529/3000",
+              "full": "25346667/84500",
+              "half": "25346667/169000",
+              "lso_scale": "103043209805469581/322712575547500"
+            },
+            "lso_slope": "561019046534/645425151095",
+            "n": "367343/1000",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "full",
+            "ratio": "338578/367343",
+            "ratio_delta": "-56123/183671500",
+            "ratio_published": "461/500",
+            "t": "169289/500"
+          },
+          "S1": {
+            "component_box": "full",
+            "d_ratio_published": "283/500",
+            "dn": "23427/1000",
+            "dt": "13337/250",
+            "errors": {
+              "constant": "-8753/125",
+              "full": "-1905291/21125",
+              "half": "-25765173/169000",
+              "lso_scale": "-7658975624260149/102447426879500"
+            },
+            "forecasts": {
+              "constant": "72349/500",
+              "full": "2104569/16900",
+              "half": "2104569/33800",
+              "lso_scale": "286774815403197/2048948537590"
+            },
+            "lso_slope": "188042893940/204894853759",
+            "n": "30501/200",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "full",
+            "ratio": "23858/16945",
+            "ratio_delta": "-14/423625",
+            "ratio_published": "176/125",
+            "t": "107361/500"
+          },
+          "S2": {
+            "component_box": "unresolved",
+            "d_ratio_published": "43/125",
+            "dn": "24613/200",
+            "dt": "5161/50",
+            "errors": {
+              "constant": "-14919/50",
+              "full": "43328/1625",
+              "half": "-541339/2600",
+              "lso_scale": "8694858641388009/102447426879500"
+            },
+            "forecasts": {
+              "constant": "72349/500",
+              "full": "3053319/6500",
+              "half": "3053319/13000",
+              "lso_scale": "5408705964830311/10244742687950"
+            },
+            "lso_slope": "188042893940/204894853759",
+            "n": "575263/1000",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "443078/575263",
+            "ratio_delta": "12549/57526300",
+            "ratio_published": "77/100",
+            "t": "221539/500"
+          },
+          "S3": {
+            "component_box": "full",
+            "d_ratio_published": "213/1000",
+            "dn": "15767/250",
+            "dt": "9743/200",
+            "errors": {
+              "constant": "-40757/125",
+              "full": "-246972/4225",
+              "half": "-44718153/169000",
+              "lso_scale": "-754509053480653/102447426879500"
+            },
+            "forecasts": {
+              "constant": "72349/500",
+              "full": "34839273/84500",
+              "half": "34839273/169000",
+              "lso_scale": "4747302693975149/10244742687950"
+            },
+            "lso_slope": "188042893940/204894853759",
+            "n": "504917/1000",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "full",
+            "ratio": "470754/504917",
+            "ratio_delta": "42839/126229250",
+            "ratio_published": "233/250",
+            "t": "235377/500"
+          },
+          "S4": {
+            "component_box": "full",
+            "d_ratio_published": "331/1000",
+            "dn": "25931/1000",
+            "dt": "5463/500",
+            "errors": {
+              "constant": "102323/600",
+              "full": "-775167/42250",
+              "half": "-1069053/16900",
+              "lso_scale": "-159701649279807/12962044080500"
+            },
+            "forecasts": {
+              "constant": "836119/3000",
+              "full": "3794931/42250",
+              "half": "3794931/84500",
+              "lso_scale": "1242376734819717/12962044080500"
+            },
+            "lso_slope": "67767235849/77772264483",
+            "n": "54999/500",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "full",
+            "ratio": "18028/18333",
+            "ratio_delta": "6661/18333000",
+            "ratio_published": "983/1000",
+            "t": "13521/125"
+          }
+        }
+      },
+      "mean": {
+        "equal_group_mae": {
+          "constant": "474517/2700",
+          "full": "13856639/253500",
+          "half": "71518051/760500",
+          "lso_scale": "183697622643648623762209566230836958557/3657245240679567520691574507626991000"
+        },
+        "group_mae": {
+          "constant": {
+            "R": "225389/1800",
+            "S123": "34723/150",
+            "S4": "102323/600"
+          },
+          "full": {
+            "R": "1945691/126750",
+            "S123": "7626062/63375",
+            "S4": "2391429/84500"
+          },
+          "half": {
+            "R": "7660033/84500",
+            "S123": "76829603/507000",
+            "S4": "6748767/169000"
+          },
+          "lso_scale": {
+            "R": "2887511087582207/70181348451000",
+            "S123": "351315477173691/3279088216750",
+            "S4": "397881667678864/165541940367625"
+          }
+        },
+        "preference_counts": {
+          "component_box": {
+            "full": 2,
+            "unresolved": 5
+          },
+          "nominal": {
+            "full": 6,
+            "half": 1
+          },
+          "published_ratio_box": {
+            "full": 2,
+            "unresolved": 5
+          }
+        },
+        "rows": {
+          "R1": {
+            "component_box": "unresolved",
+            "d_ratio_published": "137/1000",
+            "dn": "8341/1000",
+            "dt": "9043/1000",
+            "errors": {
+              "constant": "261149/1500",
+              "full": "6287/520",
+              "half": "-363913/13000",
+              "lso_scale": "-142333315699021/23393782817000"
+            },
+            "forecasts": {
+              "constant": "726529/3000",
+              "full": "130272/1625",
+              "half": "65136/1625",
+              "lso_scale": "181280654641736/2924222852125"
+            },
+            "lso_slope": "29543783351/46787565634",
+            "n": "12272/125",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "68077/98176",
+            "ratio_delta": "5129/12272000",
+            "ratio_published": "693/1000",
+            "t": "68077/1000"
+          },
+          "R2": {
+            "component_box": "unresolved",
+            "d_ratio_published": "77/500",
+            "dn": "5103/200",
+            "dt": "1639/125",
+            "errors": {
+              "constant": "157721/1500",
+              "full": "1829207/169000",
+              "half": "-10664347/169000",
+              "lso_scale": "-53093932751461/2339378281700"
+            },
+            "forecasts": {
+              "constant": "726529/3000",
+              "full": "6246777/42250",
+              "half": "6246777/84500",
+              "lso_scale": "2674687338116083/23393782817000"
+            },
+            "lso_slope": "29543783351/46787565634",
+            "n": "90533/500",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "137029/181066",
+            "ratio_delta": "-18981/90533000",
+            "ratio_published": "757/1000",
+            "t": "137029/1000"
+          },
+          "R3": {
+            "component_box": "full",
+            "d_ratio_published": "33/200",
+            "dn": "52539/1000",
+            "dt": "30231/1000",
+            "errors": {
+              "constant": "-57841/600",
+              "full": "-1955141/84500",
+              "half": "-15282491/84500",
+              "lso_scale": "-276779805546072/2924222852125"
+            },
+            "forecasts": {
+              "constant": "726529/3000",
+              "full": "266547/845",
+              "half": "266547/1690",
+              "lso_scale": "114127635084913/467875656340"
+            },
+            "lso_slope": "29543783351/46787565634",
+            "n": "3863/10",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "full",
+            "ratio": "169289/193150",
+            "ratio_delta": "224/482875",
+            "ratio_published": "219/250",
+            "t": "169289/500"
+          },
+          "S1": {
+            "component_box": "full",
+            "d_ratio_published": "117/250",
+            "dn": "32399/1000",
+            "dt": "13337/250",
+            "errors": {
+              "constant": "-8753/125",
+              "full": "-5985519/84500",
+              "half": "-3016191/21125",
+              "lso_scale": "-1499337835224971/19674529300500"
+            },
+            "forecasts": {
+              "constant": "72349/500",
+              "full": "1215849/8450",
+              "half": "1215849/16900",
+              "lso_scale": "272521644523699/1967452930050"
+            },
+            "lso_slope": "30931461838/39349058601",
+            "n": "17621/100",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "full",
+            "ratio": "107361/88105",
+            "ratio_delta": "-7799/17621000",
+            "ratio_published": "1219/1000",
+            "t": "107361/500"
+          },
+          "S2": {
+            "component_box": "unresolved",
+            "d_ratio_published": "8/25",
+            "dn": "202929/1000",
+            "dt": "5161/50",
+            "errors": {
+              "constant": "-14919/50",
+              "full": "7528727/84500",
+              "half": "-7477841/42250",
+              "lso_scale": "1362005992585579/19674529300500"
+            },
+            "forecasts": {
+              "constant": "72349/500",
+              "full": "22484409/42250",
+              "half": "22484409/84500",
+              "lso_scale": "5039678542996259/9837264650250"
+            },
+            "lso_slope": "30931461838/39349058601",
+            "n": "325861/500",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "221539/325861",
+            "ratio_delta": "-1162/8146525",
+            "ratio_published": "17/25",
+            "t": "221539/500"
+          },
+          "S3": {
+            "component_box": "unresolved",
+            "d_ratio_published": "109/1000",
+            "dn": "47129/500",
+            "dt": "9743/200",
+            "errors": {
+              "constant": "-40757/125",
+              "full": "8495001/42250",
+              "half": "-22788711/169000",
+              "lso_scale": "288527896776324/1639544108375"
+            },
+            "forecasts": {
+              "constant": "72349/500",
+              "full": "11353743/16900",
+              "half": "11353743/33800",
+              "lso_scale": "848279875176231/1311635286700"
+            },
+            "lso_slope": "30931461838/39349058601",
+            "n": "164547/200",
+            "nominal": "half",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "52306/91415",
+            "ratio_delta": "831/4570750",
+            "ratio_published": "143/250",
+            "t": "235377/500"
+          },
+          "S4": {
+            "component_box": "unresolved",
+            "d_ratio_published": "183/1000",
+            "dn": "80451/2000",
+            "dt": "5463/500",
+            "errors": {
+              "constant": "102323/600",
+              "full": "2391429/84500",
+              "half": "-6748767/169000",
+              "lso_scale": "397881667678864/165541940367625"
+            },
+            "forecasts": {
+              "constant": "836119/3000",
+              "full": "92253/676",
+              "half": "92253/1352",
+              "lso_scale": "146433778186913/1324335522941"
+            },
+            "lso_slope": "876193137992/1324335522941",
+            "n": "1337/8",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "108168/167125",
+            "ratio_delta": "61/267400",
+            "ratio_published": "647/1000",
+            "t": "13521/125"
+          }
+        }
+      },
+      "unloading": {
+        "equal_group_mae": {
+          "constant": "474517/2700",
+          "full": "8838061/84500",
+          "half": "49588057/760500",
+          "lso_scale": "41084674180377922074657397398043715263079/581686012853809307867618043127569371250"
+        },
+        "group_mae": {
+          "constant": {
+            "R": "225389/1800",
+            "S123": "34723/150",
+            "S4": "102323/600"
+          },
+          "full": {
+            "R": "343789/19500",
+            "S123": "14018429/63375",
+            "S4": "1583298/21125"
+          },
+          "half": {
+            "R": "14255419/169000",
+            "S123": "9597769/101400",
+            "S4": "701751/42250"
+          },
+          "lso_scale": {
+            "R": "13502621397177311/202194160030700",
+            "S123": "25325492313673613/183736213813500",
+            "S4": "1898318235258951/260960033863750"
+          }
+        },
+        "preference_counts": {
+          "component_box": {
+            "full": 2,
+            "half": 1,
+            "unresolved": 4
+          },
+          "nominal": {
+            "full": 4,
+            "half": 3
+          },
+          "published_ratio_box": {
+            "full": 1,
+            "half": 1,
+            "unresolved": 5
+          }
+        },
+        "rows": {
+          "R1": {
+            "component_box": "unresolved",
+            "d_ratio_published": "163/1000",
+            "dn": "2781/250",
+            "dt": "9043/1000",
+            "errors": {
+              "constant": "261149/1500",
+              "full": "2492189/169000",
+              "half": "-1126603/42250",
+              "lso_scale": "-38728306316550617/2021941600307000"
+            },
+            "forecasts": {
+              "constant": "726529/3000",
+              "full": "6998601/84500",
+              "half": "6998601/169000",
+              "lso_scale": "49459706003774511/1010970800153500"
+            },
+            "lso_slope": "975257687718/2021941600307",
+            "n": "101429/1000",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "68077/101429",
+            "ratio_delta": "18141/101429000",
+            "ratio_published": "671/1000",
+            "t": "68077/1000"
+          },
+          "R2": {
+            "component_box": "unresolved",
+            "d_ratio_published": "89/500",
+            "dn": "17479/500",
+            "dt": "1639/125",
+            "errors": {
+              "constant": "157721/1500",
+              "full": "5152109/169000",
+              "half": "-1125362/21125",
+              "lso_scale": "-76995397201558793/2021941600307000"
+            },
+            "forecasts": {
+              "constant": "726529/3000",
+              "full": "2831001/16900",
+              "half": "2831001/33800",
+              "lso_scale": "20006923834690911/202194160030700"
+            },
+            "lso_slope": "975257687718/2021941600307",
+            "n": "41029/200",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "137029/205145",
+            "ratio_delta": "-393/10257250",
+            "ratio_published": "167/250",
+            "t": "137029/1000"
+          },
+          "R3": {
+            "component_box": "full",
+            "d_ratio_published": "203/1000",
+            "dn": "6213/100",
+            "dt": "30231/1000",
+            "errors": {
+              "constant": "-57841/600",
+              "full": "-161777/21125",
+              "half": "-29256949/169000",
+              "lso_scale": "-7233873459930248/50548540007675"
+            },
+            "forecasts": {
+              "constant": "726529/3000",
+              "full": "27962733/84500",
+              "half": "27962733/169000",
+              "lso_scale": "197615002375766763/1010970800153500"
+            },
+            "lso_slope": "975257687718/2021941600307",
+            "n": "405257/1000",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "full",
+            "ratio": "338578/405257",
+            "ratio_delta": "37681/81051400",
+            "ratio_published": "167/200",
+            "t": "169289/500"
+          },
+          "S1": {
+            "component_box": "full",
+            "d_ratio_published": "489/1000",
+            "dn": "41371/1000",
+            "dt": "13337/250",
+            "errors": {
+              "constant": "-8753/125",
+              "full": "-2174937/42250",
+              "half": "-22493883/169000",
+              "lso_scale": "-4987620840021169/61245404604500"
+            },
+            "forecasts": {
+              "constant": "72349/500",
+              "full": "2758827/16900",
+              "half": "2758827/33800",
+              "lso_scale": "408155746373314/3062270230225"
+            },
+            "lso_slope": "81665857264/122490809209",
+            "n": "39983/200",
+            "nominal": "full",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "214722/199915",
+            "ratio_delta": "1329/19991500",
+            "ratio_published": "537/500",
+            "t": "107361/500"
+          },
+          "S2": {
+            "component_box": "unresolved",
+            "d_ratio_published": "189/500",
+            "dn": "282793/1000",
+            "dt": "5161/50",
+            "errors": {
+              "constant": "-14919/50",
+              "full": "6402199/42250",
+              "half": "-24635693/169000",
+              "lso_scale": "2597271422825741/61245404604500"
+            },
+            "forecasts": {
+              "constant": "72349/500",
+              "full": "50244489/84500",
+              "half": "50244489/169000",
+              "lso_scale": "7433440701044598/15311351151125"
+            },
+            "lso_slope": "81665857264/122490809209",
+            "n": "728181/1000",
+            "nominal": "half",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "443078/728181",
+            "ratio_delta": "42994/91022625",
+            "ratio_published": "76/125",
+            "t": "221539/500"
+          },
+          "S3": {
+            "component_box": "half",
+            "d_ratio_published": "11/125",
+            "dn": "15681/125",
+            "dt": "9743/200",
+            "errors": {
+              "constant": "-40757/125",
+              "full": "9729861/21125",
+              "half": "-859269/169000",
+              "lso_scale": "17740600050826703/61245404604500"
+            },
+            "forecasts": {
+              "constant": "72349/500",
+              "full": "78698157/84500",
+              "half": "78698157/169000",
+              "lso_scale": "11643029812503374/15311351151125"
+            },
+            "lso_slope": "81665857264/122490809209",
+            "n": "1140553/1000",
+            "nominal": "half",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "half",
+            "ratio": "470754/1140553",
+            "ratio_delta": "-294389/1140553000",
+            "ratio_published": "413/1000",
+            "t": "235377/500"
+          },
+          "S4": {
+            "component_box": "unresolved",
+            "d_ratio_published": "83/500",
+            "dn": "1363/25",
+            "dt": "5463/500",
+            "errors": {
+              "constant": "102323/600",
+              "full": "1583298/21125",
+              "half": "-701751/42250",
+              "lso_scale": "1898318235258951/260960033863750"
+            },
+            "forecasts": {
+              "constant": "836119/3000",
+              "full": "3868347/21125",
+              "half": "3868347/42250",
+              "lso_scale": "30125843178233061/260960033863750"
+            },
+            "lso_slope": "537356958747/1043840135455",
+            "n": "56063/250",
+            "nominal": "half",
+            "printed_intervals_overlap": true,
+            "published_ratio_box": "unresolved",
+            "ratio": "27042/56063",
+            "ratio_delta": "9817/28031500",
+            "ratio_published": "241/500",
+            "t": "13521/125"
+          }
+        }
+      }
+    },
+    "r": "138/169",
+    "steps": {
+      "R1": "9/10",
+      "R2": "10/10",
+      "R3": "10/10",
+      "S1": "3/5",
+      "S2": "5/10",
+      "S3": "7/10",
+      "S4": "10/10",
+      "S5": "8/9"
+    }
+  }
+}
