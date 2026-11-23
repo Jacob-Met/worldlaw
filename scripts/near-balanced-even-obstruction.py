@@ -1,4 +1,4 @@
-"""Construct measured or colliding witnesses for even horizons one suffix away from balance."""
+"""Construct measured or colliding witnesses for near-balanced odd and even horizons."""
 import argparse
 from collections import Counter
 from fractions import Fraction as Q
@@ -33,7 +33,12 @@ class Experiment:
         check(source.get('schema')=='worldlaw.position-drift-fixed-tape-optimum/v1','wrong source schema')
         self.h=integer(source['pulseBudget'])
         self.n=n=self.h//2
-        check(self.h==2*n and n>=5 and n%6 in (1,5),'need H=2n, n>=5, n=1 or 5 modulo 6')
+        if self.h==2*n and n>=5 and n%6 in (1,5):
+            self.deficit=1
+        elif self.h==2*n+1 and n>=10 and n%6 in (1,4):
+            self.deficit=2
+        else:
+            raise ValueError('unsupported near-balanced horizon')
         cat=source['catalog']
         check(cat.get('schema')=='worldlaw.position-drift-rate-polytopes/v1','wrong rate catalog')
         commands=cat['commands']
@@ -52,13 +57,17 @@ class Experiment:
         ar,br=[rates(l,w) for l,w in enumerate(self.balanced)]
         self.mu={c:(ar[c]+br[c])/2 for c in NAMES}
         check(all(ar[c]-br[c]==(0 if c in NAMES[:2] else Q(1,6)) for c in NAMES),'balanced physical contrast differs')
-        self.e=e=Q(n*n-1,48*n)
-        self.alpha=Q(1,12)-2*e/n
-        room=Q(1,6*n)
-        check(2*e/n>=room and self.alpha>=room and (n-1)*self.alpha<=2*e,'proper-prefix bounds failed')
-        check(Q(n,6)-room==8*e,'terminal contrast identity failed')
-        self.k=(n+1)//6
-        check(abs(6*self.k-n)==1 and Q(self.k*(self.h-6*self.k),4*self.h)==e,'fixed-tape radius differs')
+        self.e=e=Q(n*(self.h-n)-self.deficit,24*self.h)
+        self.k=(self.h+6)//12
+        check(Q(self.k*(self.h-6*self.k),4*self.h)==e,'fixed-tape radius differs')
+        for b in {n,self.h-n}:
+            s=self.h-b
+            room=Q(self.deficit,6*b)
+            alpha=Q(1,12)-2*e/b
+            beta=Q(1,12)-2*e/s
+            check(alpha>=room and (s-1)*alpha<=2*e,'baseline-first room failed')
+            check(2*e/s>=room*(1-Q(1,s)) and beta>=room/s and (b-1)*beta<=2*e,'suffix-first room failed')
+            check(Q(s,6)-room==4*e*self.h/b,'terminal contrast identity failed')
         self.requested=number(cat['noiseBound'])
         check(self.requested>=0,'negative noise')
     def describe(self):
@@ -66,7 +75,7 @@ class Experiment:
                     atRequestedNoise='policy-separates' if self.requested<self.e else 'closed-collision',
                     fixedRuns=[{'command':'ref','repeats':str(self.h-6*self.k)}]+[
                         {'command':c,'repeats':str(self.k)} for c in ('y0','x0','z0','y1','x1','z1')])
-    def transfer(self,counts):
+    def transfer(self,counts,room):
         """Change one within-group coordinate while keeping that group's baseline mass."""
         w=[row.copy() for row in self.balanced]
         for g in range(2):
@@ -75,7 +84,7 @@ class Experiment:
                 difference=counts[x]-counts[other]
                 if not difference:
                     continue
-                amount=Q((-1,1)[law],6*self.n*difference)
+                amount=(-1,1)[law]*room/difference
                 w[law][2*g+1]+=amount
                 w[law][2*g]-=amount
                 check(min(w[law])>=0 and sum(w[law])==1,'invalid perturbed source mixture')
@@ -95,18 +104,21 @@ class Experiment:
             bit=c not in NAMES[:2]
             if not cats or bit!=cats[-1]:cats.append(bit)
         # A free terminal reading is available only when the full critical word is known.
-        special=horizon==self.h and len(cats)==2 and sum(counts[c] for c in NAMES[2:])==self.n
+        suffix=sum(counts[c] for c in NAMES[2:])
+        special=horizon==self.h and len(cats)==2 and suffix in (self.n,self.h-self.n)
         points=[(0,Q(0),Q(0))]
         for c,count in runs:
             t,y,d=points[-1];points.append((t+count,y+count*self.mu[c],d+(Q(count,6) if c in NAMES[2:] else 0)))
         w=self.balanced;move=None
         if special:
-            w,law,move=self.transfer(counts)
+            baseline=self.h-suffix
+            room=Q(self.deficit,6*baseline)
+            w,law,move=self.transfer(counts,room)
             if cats[0]:
                 start=[-self.e,self.e]
-                drift=[(-1)**l*(-self.alpha+(Q(1,6*self.n**2) if l==law else 0)) for l in (0,1)]
+                drift=[(-1)**l*(-Q(1,12)+2*self.e/suffix+(room/suffix if l==law else 0)) for l in (0,1)]
             else:
-                start=[self.e,-self.e];drift=[-2*self.e/self.n,2*self.e/self.n]
+                start=[self.e,-self.e];drift=[-2*self.e/baseline,2*self.e/baseline]
         else:
             if horizon:
                 low=max((b[2]-a[2]-4*self.e)/(b[0]-a[0]) for j,b in enumerate(points) for a in points[:j])
