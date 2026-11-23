@@ -1,0 +1,214 @@
+{
+  "source": {
+    "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+    "command_id": "p2-f747-spatz-independent-complete-raw-ratio-and-disk-bound-receiver",
+    "request_sha256": "bb1626953161fec411c48afad5e3368ecdac0cdd40525691cfb1dcd9f7d2d22e",
+    "generation": "60a8c4a4571dfa52af1a7b237b3000f51e2b656a5939b0b12d75452a05c67218",
+    "receipt_sha256": "4655b256bea301fdf102f5ae145cac07971064ed49724e5517cd98600c4a8a74",
+    "output_bytes": 4179
+  },
+  "stdout_sha256": "0dad65ad6aae2ec0351cb7e044f35f4edc63dc9e36159e31d5f42a9147d475ca",
+  "recount": {
+    "bounds": {
+      "held_row_endpoints": 560,
+      "locally_nonempty_rows": {
+        "3495": 34,
+        "3496": 17,
+        "3497": 0,
+        "3498": 2,
+        "3499": 0
+      },
+      "maximum_stable_formula_difference": 1.080649025125835e-12,
+      "nonindependent_pair_violations": 2465
+    },
+    "contrast_scores": {
+      "CM4": {
+        "asinh_SLD": 0.7168852437214532,
+        "author_free_backing": 0.5166858753674783,
+        "author_solvated_slabs": 0.5232113209821105,
+        "dry_slabs": 0.4717282014962871,
+        "linear_SLD": 1.0665464630271722,
+        "nearest_contrast": 1.3596794051523498,
+        "shared_disk": 0.5997023498086594
+      },
+      "CMSi": {
+        "asinh_SLD": 1.614179938516854,
+        "author_free_backing": 1.29487682951977,
+        "author_solvated_slabs": 1.1782154252271475,
+        "dry_slabs": 1.1423615795998834,
+        "linear_SLD": 2.1004897140770473,
+        "nearest_contrast": 1.0163846433519121,
+        "shared_disk": 1.3719041338658984
+      }
+    },
+    "held_scalar_residuals": 1960,
+    "interval_gates": {
+      "3495/coverage": false,
+      "3495/width": false,
+      "3496/coverage": false,
+      "3496/width": false,
+      "3497/coverage": false,
+      "3497/width": false,
+      "3498/coverage": false,
+      "3498/width": false,
+      "3499/coverage": false,
+      "3499/width": false,
+      "calibration_compatible": false
+    },
+    "invalid_calibration_bands": [
+      [
+        3493,
+        0
+      ],
+      [
+        3493,
+        1
+      ],
+      [
+        3493,
+        2
+      ],
+      [
+        3493,
+        3
+      ],
+      [
+        3493,
+        4
+      ],
+      [
+        3493,
+        5
+      ],
+      [
+        3493,
+        6
+      ],
+      [
+        3493,
+        7
+      ],
+      [
+        3493,
+        8
+      ],
+      [
+        3493,
+        9
+      ],
+      [
+        3493,
+        10
+      ],
+      [
+        3493,
+        11
+      ]
+    ],
+    "maximum_raw_ordinate_or_grid_error": 0,
+    "primary_gates": {
+      "CM4/asinh_SLD": true,
+      "CM4/author_free_backing": false,
+      "CM4/author_solvated_slabs": false,
+      "CM4/dry_slabs": false,
+      "CM4/linear_SLD": true,
+      "CM4/nearest_contrast": true,
+      "CMSi/asinh_SLD": true,
+      "CMSi/author_free_backing": false,
+      "CMSi/author_solvated_slabs": false,
+      "CMSi/dry_slabs": false,
+      "CMSi/linear_SLD": true,
+      "CMSi/nearest_contrast": false
+    },
+    "raw_reduced_rows": 504,
+    "raw_vectors": 36,
+    "scan_arm_scores": 35,
+    "worst_raw_acquisition_components": {
+      "3495": {
+        "dR": 0.0005914932831801011,
+        "measured_ratio": 0.012564317595791196,
+        "monitor_normalized_direct_spectrum": 0.0068676376219335466,
+        "monitor_normalized_reflected_spectrum": 0.00008628718021477726,
+        "predictions": {
+          "asinh_SLD": 0.05323304881445518,
+          "author_free_backing": 0.02639076890429131,
+          "author_solvated_slabs": 0.020616221233699484,
+          "dry_slabs": 0.019526498411062024,
+          "linear_SLD": 0.07340453490313611,
+          "nearest_contrast": 0.10381518442203252,
+          "shared_disk": 0.04884013411392224
+        },
+        "q": 0.019253472139379165,
+        "row": 34
+      },
+      "3496": {
+        "dR": 0.061571226383506865,
+        "measured_ratio": 1.6528061745912277,
+        "monitor_normalized_direct_spectrum": 0.00004059933666160068,
+        "monitor_normalized_reflected_spectrum": 0.0000671028343186016,
+        "predictions": {
+          "asinh_SLD": 0.8398973668962795,
+          "author_free_backing": 0.963661041378714,
+          "author_solvated_slabs": 0.6149433081808364,
+          "dry_slabs": 0.6074135227118475,
+          "linear_SLD": 1.723102176051766,
+          "nearest_contrast": 2.5645961950770917,
+          "shared_disk": 0.31215582356150673
+        },
+        "q": 0.0102677195475367,
+        "row": 0
+      },
+      "3497": {
+        "dR": 0.000039244526053012293,
+        "measured_ratio": 0.0006706154808409203,
+        "monitor_normalized_direct_spectrum": 0.0015145780162867158,
+        "monitor_normalized_reflected_spectrum": 0.0000010156994646632031,
+        "predictions": {
+          "asinh_SLD": 0.001089582603853322,
+          "author_free_backing": 0.0014061499681563173,
+          "author_solvated_slabs": 0.001467252053418481,
+          "dry_slabs": 0.0013061242042026635,
+          "linear_SLD": 0.001357646640230395,
+          "nearest_contrast": 0.0018595680794741122,
+          "shared_disk": 0.0013215146299795193
+        },
+        "q": 0.047098671763145895,
+        "row": 3
+      },
+      "3498": {
+        "dR": 0.0000862892232408679,
+        "measured_ratio": 0.000842590905731287,
+        "monitor_normalized_direct_spectrum": 0.0019129267582444916,
+        "monitor_normalized_reflected_spectrum": 0.000001611814689826841,
+        "predictions": {
+          "asinh_SLD": 0.035130336931942355,
+          "author_free_backing": 0.015907904404373223,
+          "author_solvated_slabs": 0.012003894608182193,
+          "dry_slabs": 0.010819892173956819,
+          "linear_SLD": 0.0553327067590059,
+          "nearest_contrast": 0.016681640643258968,
+          "shared_disk": 0.029107778477209186
+        },
+        "q": 0.019046846373617428,
+        "row": 18
+      },
+      "3499": {
+        "dR": 0.0000372638519175751,
+        "measured_ratio": 0.0003298265186819242,
+        "monitor_normalized_direct_spectrum": 0.0007009885775428861,
+        "monitor_normalized_reflected_spectrum": 2.3120462216676418e-7,
+        "predictions": {
+          "asinh_SLD": 0.0015168125655364672,
+          "author_free_backing": 0.002067878897407096,
+          "author_solvated_slabs": 0.0018037563842436156,
+          "dry_slabs": 0.0016669632329995283,
+          "linear_SLD": 0.0025703860078224463,
+          "nearest_contrast": 0.0006766208208119932,
+          "shared_disk": 0.0015863913052709404
+        },
+        "q": 0.042526584842696995,
+        "row": 0
+      }
+    }
+  }
+}

@@ -16,6 +16,21 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/spatz-solvent-contrast-transfer/README.md",
+    "research/spatz-solvent-contrast-transfer/course.py",
+    "research/spatz-solvent-contrast-transfer/design.json",
+    "research/spatz-solvent-contrast-transfer/envelope.py",
+    "research/spatz-solvent-contrast-transfer/exact_controls.py",
+    "research/spatz-solvent-contrast-transfer/forecast.json.zlib",
+    "research/spatz-solvent-contrast-transfer/forecast.py",
+    "research/spatz-solvent-contrast-transfer/independent-receipt.json",
+    "research/spatz-solvent-contrast-transfer/independent.py",
+    "research/spatz-solvent-contrast-transfer/native-originals.json",
+    "research/spatz-solvent-contrast-transfer/outcome.json.zlib",
+    "research/spatz-solvent-contrast-transfer/projection.py",
+    "research/spatz-solvent-contrast-transfer/protocol.json",
+    "research/spatz-solvent-contrast-transfer/replay.py",
+    "research/spatz-solvent-contrast-transfer/score.py",
     "research/rible_projected_shadows/README.md",
     "research/rible_projected_shadows/absolute-source-refusal.json",
     "research/rible_projected_shadows/absolute-source-unit-original.stdout",
