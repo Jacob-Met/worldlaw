@@ -40,3 +40,5 @@ All four rows are nonnegative and sum to D for every m ≥ 2. Give both continua
 From group through the three suffix endpoints, the clean A-minus-B gaps are **q·(0,−4,2m,2m)** on the first continuation and **q·(−2m,−2m,−2m,2m)** on the second. Their magnitudes are at most 2e because m ≥ 2. On each suffix use the midpoint of the two clean positions. The same mixture, origin and drift then fit that word's entire history. At the group reading, S=(6m+6)e, where the two collision conditions meet. This proves exact failure at equality.
 
 The standard-library verifier checks the source identities, four physical mixtures, all checkpoint tubes and the common affine reference line. Its optional tick argument independently evaluates any requested intermediate reference position.
+
+The [equal-dwell extension](equal-dwell-calibration.md) allows a common dwell on the group and suffix commands and selects all optimal allocations for a fixed pulse budget.
