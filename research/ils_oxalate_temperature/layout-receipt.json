@@ -1,0 +1,40 @@
+{
+  "first_refusal": "p3-f747-naya-frozen-reference-and-early-only-forecast-producer",
+  "stored_shape": [
+    105,
+    1000
+  ],
+  "physical_design": [
+    15,
+    1000,
+    7
+  ],
+  "actual_layout": [
+    {
+      "path": "R/ils.fqcdata.R",
+      "sha": "a2aa3dc092f533946bf73ee2c67d7981489f7a5e"
+    },
+    {
+      "path": "R/ils.fqcs.R",
+      "sha": "1a603eadaf82dddd92107b104f384aab0bef7f65"
+    },
+    {
+      "path": "R/plot.ils.fqcdata.R",
+      "sha": "8a65d8fbac2d5b2597d813e0a67f8666857da4f8"
+    }
+  ],
+  "layout_receipt": {
+    "container": "ndarray",
+    "data_amplitudes_read": false,
+    "keys": [
+      "TG"
+    ],
+    "raw_bytes": 496800,
+    "sha256": "cfded84c4386475437347c4a63ca4ffe46cf66544b2ba3f9cbc6731e48767ecc",
+    "shape": [
+      105,
+      1000
+    ]
+  },
+  "meaning": "The R object deserialized but its shape failed before reference or calibration masses were selected. The TG documentation describes a conceptual 15×1000×7 array. The maintained author plotting/statistic uses seven consecutive 15-row blocks of a 105×1000 matrix. Correct only that exact source representation. Preregistered grouping, roles, numerical thresholds and all target endpoints unchanged; no mass values accessed by estimator during refusal."
+}
