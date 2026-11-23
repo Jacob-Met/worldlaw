@@ -16,6 +16,11 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/hagemeier_wall_image_capacity/README.md",
+    "research/hagemeier_wall_image_capacity/native-originals.json",
+    "research/hagemeier_wall_image_capacity/replay.py",
+    "research/hagemeier_wall_image_capacity/source_capacity.py",
+    "research/hagemeier_wall_image_capacity/speed_integrator.py",
     "research/trifilar_reference_eligibility/README.md",
     "research/trifilar_reference_eligibility/archive_roster.py",
     "research/trifilar_reference_eligibility/native-originals.json",
