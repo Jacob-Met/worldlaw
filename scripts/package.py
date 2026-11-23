@@ -16,6 +16,19 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/mmim-calorimetry-pressure-transfer/README.md",
+    "research/mmim-calorimetry-pressure-transfer/diagnose.py",
+    "research/mmim-calorimetry-pressure-transfer/diagnosis.json",
+    "research/mmim-calorimetry-pressure-transfer/forecast.json",
+    "research/mmim-calorimetry-pressure-transfer/independent-recount.json",
+    "research/mmim-calorimetry-pressure-transfer/independent.py",
+    "research/mmim-calorimetry-pressure-transfer/native-receipts.json",
+    "research/mmim-calorimetry-pressure-transfer/pure.json",
+    "research/mmim-calorimetry-pressure-transfer/pure_reference.py",
+    "research/mmim-calorimetry-pressure-transfer/registration.md",
+    "research/mmim-calorimetry-pressure-transfer/score.json",
+    "research/mmim-calorimetry-pressure-transfer/temperature-key-receiving.md",
+    "research/mmim-calorimetry-pressure-transfer/transport.py",
     "research/li_granular_impact_impulse/README.md",
     "research/li_granular_impact_impulse/catalog.py",
     "research/li_granular_impact_impulse/clock-and-repeat.json",
