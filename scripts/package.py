@@ -16,6 +16,11 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/switching-trap-time-reversal/README.md",
+    "research/switching-trap-time-reversal/conditional_forecast.py",
+    "research/switching-trap-time-reversal/exact_controls.py",
+    "research/switching-trap-time-reversal/ideal_population.json",
+    "research/switching-trap-time-reversal/source_receipts.json",
     "research/apg13x-ternary-adsorption/README.md",
     "research/apg13x-ternary-adsorption/check_iast.py",
     "research/apg13x-ternary-adsorption/comparison.json",
