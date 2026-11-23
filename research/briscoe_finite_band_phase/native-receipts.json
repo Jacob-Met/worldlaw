@@ -1,0 +1,198 @@
+[
+  {
+    "id": "p3-f747-briscoe-14fdd132-four-complete-sourceonly-forecasts-0000",
+    "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "bd086ca00706ae7fbc8ff4adb974adee78b56e5a850dca74dcf5c37fa6d7bb65",
+    "generation": "3e6ed5741ead38a85ca97bdf6ab801df2985dd038f7906931964272d125f8436",
+    "stdout_bytes": 82980,
+    "stdout_sha256": "21fdab2fc3b3c840efcec29401f06166c4d0e793ce7f283c9e6c2161609763bd"
+  },
+  {
+    "id": "p3-f747-briscoe-14fdd132-four-complete-sourceonly-forecasts-0001",
+    "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "fba585536adc62244b4260f669aac06b522a1551e4fde6c690d6fed4c82fda45",
+    "generation": "39f24869c89d9280616610360ec8a0c11f167ca70dade2127aaf7a9db3ad3ca4",
+    "stdout_bytes": 82978,
+    "stdout_sha256": "610091353bd18f67774d6a19819886580e8800c6748cd3d43bd0571526fac9b7"
+  },
+  {
+    "id": "p3-f747-briscoe-14fdd132-four-complete-sourceonly-forecasts-0002",
+    "owner": "node-d807db003bdba7cdc89bb0e727dcf02d",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "2511a61b980fcd8fee00f972b42b64eaff1b668a73bb688c97295d53aea6bed8",
+    "generation": "9c6b0dbd6a5e190f1955e5ae37587cb285253a6c52a602e259941046a312fc31",
+    "stdout_bytes": 83331,
+    "stdout_sha256": "19bcc8c51f6bfb4e70eb5cd20e9f824fc65fd481e682ca085697cbb103e6b02d"
+  },
+  {
+    "id": "p3-f747-briscoe-14fdd132-four-complete-sourceonly-forecasts-0003",
+    "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "6ab316ac71e8204bd223d73b6a9e75600088d597bbfc4c6315d99ddb4e2ad670",
+    "generation": "e83366a389934a0a219e2766980b028f5d13afda4ab46853f4ece9a26f06c6a8",
+    "stdout_bytes": 83184,
+    "stdout_sha256": "97d3a5c0cea1198a1869ac76bcbb29c921d4ff29363b2909ccb4d462f8b21ad9"
+  },
+  {
+    "id": "p3-f747-briscoe-crossed-analyzer-four-held-native-repeats",
+    "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "c51cd6478a9a108b5282b951e01d5a75c1085efaa5823cf9a40f3aadce98ecf6",
+    "generation": "2d91c699a64dd3aad7110275d34f62d17bd184ca34e162d0cf4bb9a4269d6cfa",
+    "stdout_bytes": 42224,
+    "stdout_sha256": "9995f47392edf84995beca1e2f819601f109e9c9404f042f905567cf169d7032"
+  },
+  {
+    "id": "p3-f747-briscoe-durham-public-archive-and-software-lineage",
+    "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "4ed92347aca9f26bd7d5caedc64446079f16f2e3bf6487a8683c10916c6362e4",
+    "generation": "54e8e555db16b09eea5cbce5377c79a537e02f68fe3ab371a30a72a25d2a3267",
+    "stdout_bytes": 16943,
+    "stdout_sha256": "563d855738d95de8f69377f1e41deba8f1c358f3cb873d596da5fe9a2ffe5884"
+  },
+  {
+    "id": "p3-f747-briscoe-faraday-header-and-author-preprocessing-lineage",
+    "owner": "node-bf5f0531217bc08888c18af9bb61e75e",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "67688068fc8730ef6f3d202fa26a818f12ae328a362a56809f0c5bbe4b94669b",
+    "generation": "d7e131693a98102c472b895f0b1f82b5a7fa37de56ac3e29a4bfc54c7ba6a26b",
+    "stdout_bytes": 25668,
+    "stdout_sha256": "14f3ba719f6675c6bd0845095db946755ee5708ce8b3f6f11d812fa1109e9771"
+  },
+  {
+    "id": "p3-f747-briscoe-independent-6800000-native-residual-cells",
+    "owner": "node-de8004eb639d0ee37e9464ff83741e88",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "4c3ef1851f2089e1f2348b99d53a1125f4e18fa0c7997d4050009136fc8008dc",
+    "generation": "47584169092e50a9feba765f711cef0fe9a4325e815a56b5c7b7b2fe0cb1eed8",
+    "stdout_bytes": 649,
+    "stdout_sha256": "95ddab8cd7790ec2441420ade98a5daf6b1bba9c1e574b5c22928d17ffc90490"
+  },
+  {
+    "id": "p3-f747-briscoe-independent-physical-and-original-export-header",
+    "owner": "node-66f5e5c87083f69a72b62d0151259f56",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "d443c1ebca34ec1bd756ae9c6eb600b25dfd975b796a8e8141bd7c4dbf039a91",
+    "generation": "f28c3d05a2e3e3e8410dc1db116d4d32621488cf910458d3472631d4a71a9292",
+    "stdout_bytes": 4012,
+    "stdout_sha256": "4a73ec76f02c63259d392e4ac99e827db799d7f8ca32d95bb203e89fac89185e"
+  },
+  {
+    "id": "p3-f747-briscoe-independent-physical-ordinate-and-export-grid",
+    "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+    "state": "failed",
+    "exit": 1,
+    "descendants": {
+      "state": "drained",
+      "adopted_waits": 0
+    },
+    "request_sha256": "69cc03629f167b7e4cd9752dfdadeb7e71a6c1ec360adf9af8ef03b6e8d26480",
+    "generation": "04a0cb92d4f4aebc73f26b3145d5a0297b8ba9de9ae78f6256fcb56f2f082103",
+    "stdout_bytes": 846,
+    "stdout_sha256": "19734e5a1bafba8d2468f965aba275c994f062c5d4097d84be290c82b7a0e17e"
+  },
+  {
+    "id": "p3-f747-briscoe-native-3p0p8-synthetic-field-and-phase",
+    "owner": "node-fa7e1f4e6f040c8f8670d3e314319121",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "74fdc927dad3b6308c6c7ed194da2c631018c2d772440838ca462fd12bed698f",
+    "generation": "32379973503eb47aa65f8f41f95ebcda01c7b251ed5334afeb644c8114e299eb",
+    "stdout_bytes": 862,
+    "stdout_sha256": "939bc6b061f4ee3d718a5ba1e310c5110fed51faae7c29d23b0933e0bb721fd3"
+  },
+  {
+    "id": "p3-f747-briscoe-original-notebook-filter-offset-audit",
+    "owner": "node-0bee39ddbe74826313b385fbc6bbd6c2",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "0be9862017b8a2e4c452700ea24e4672e1bd60b2148f600d3a1aae38fa67c916",
+    "generation": "da53768dc9064003d31d00a936357244e887351d28df22210ee3eb6d310f34a4",
+    "stdout_bytes": 13949,
+    "stdout_sha256": "ccdd0ea1293eb1097aa8fbb2efddffff5d25d77fe0f581cbc9e4175275e9e79c"
+  },
+  {
+    "id": "p3-f747-briscoe-postscore-author-deoffset-locked-forecast-comparison",
+    "owner": "node-f16b825d04f9993acd590fd2b38fe4f5",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "cc268d6cdf00ea675ed2f226cede01d194d62ec24818ee7c0d2f4d54f2a9f5ba",
+    "generation": "c149345d1c3d5f4cabbfae82ce4b1050d79b18c1a5875c01d9fc3559c92c8c8b",
+    "stdout_bytes": 46245,
+    "stdout_sha256": "ae5134d236e0282d80df121ffd3397dfcb887fd7da7e5136087e8bcddc494f3c"
+  },
+  {
+    "id": "p3-f747-briscoe-sixteen-native-detuning-vectors-no-intensities",
+    "owner": "node-66f5e5c87083f69a72b62d0151259f56",
+    "state": "completed",
+    "exit": 0,
+    "descendants": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "request_sha256": "7a72a29085ce2350541e7bfc7199f06e1255bdf65e4a339d380fb384d1b5dbfc",
+    "generation": "2a238917b64893907ba01381f6edc8f5935dd582f8c065e305bf731a6326989e",
+    "stdout_bytes": 6146,
+    "stdout_sha256": "4542da7f862baf364f2584ddd414ac3c3416b2ae1631a0ab5c145992edc8125e"
+  }
+]

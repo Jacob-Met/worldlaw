@@ -1,0 +1,17 @@
+SOURCE 784ea0524af49d75ccb506c79f1ab3daed3783d3
+Downloading kiwisolver (1.4MiB)
+Downloading sympy (5.9MiB)
+Downloading numpy (17.1MiB)
+Downloading pillow (6.8MiB)
+Downloading fonttools (5.2MiB)
+Downloading scipy (36.0MiB)
+Downloading matplotlib (11.1MiB)
+ Downloaded kiwisolver
+ Downloaded fonttools
+ Downloaded sympy
+ Downloaded pillow
+ Downloaded numpy
+ Downloaded matplotlib
+ Downloaded scipy
+Installed 14 packages in 34ms
+{"L_input_which_calc_chi": 0, "R_input_which_calc_chi": 1, "grid": 1401, "lorentz_sign_max": 2.3564260727589048e-07, "max_errors": [8.881784197001252e-16, 9.992007221626409e-16, 5.551115123125783e-16, 9.12353526061338e-13], "reversed_sign_max": 0.005999771331054426, "scientific_scans": 0, "seconds": 0.15910526900552213, "source": "1933456b905739fb31c89665cdc6733e769e5ec0", "spectra_blob": "7aa0172e7460930179a16a24e13d42a1aac0f77a"}
