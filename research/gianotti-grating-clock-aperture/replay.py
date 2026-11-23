@@ -74,7 +74,7 @@ def main():
     args = p.parse_args()
     expected = json.loads((HERE / "clock_qualification.json").read_text())
     clock = evaluate(args.archive)
-    if clock != expected:
+    if json.dumps(clock, sort_keys=True, allow_nan=False) != json.dumps(expected, sort_keys=True, allow_nan=False):
         raise ValueError("Authentic original clock reconstruction differs")
     reference = independent_reference(args.archive)
     result = {"clock_files": len(clock["optical_file_timing"]), "machine_rows": clock["machine_rows"],
