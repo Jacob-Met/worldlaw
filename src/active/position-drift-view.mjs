@@ -1,4 +1,4 @@
-import {isGuidedPlan,BINARY_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,driftFeedbackInconclusive,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
+import {isGuidedPlan,BINARY_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,TREE_PLAN,driftFeedbackInconclusive,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
 import {escapeHTML as html} from './view.mjs';
 
 const byId=id=>document.getElementById(id);
@@ -7,6 +7,24 @@ function table(caption,head,rows){
     '</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+html(c)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
 }
 function guidedProof(p){
+  if(p.schema===TREE_PLAN){
+    if(p.status!=='tree-certified')return {heading:p.status==='tree-budget-exhausted'?'The tree search reached its budget.':'The declared tree cover is inconclusive.',
+      summary:'The planner examined '+p.work.subproblems+' command-sequence and law-set combinations.',proof:''};
+    const rows=[],seen=new Set();
+    function visit(index){
+      if(seen.has(index))return;
+      seen.add(index);
+      const row=p.tables[index];
+      for(const group of row.groups??[]){
+        rows.push([row.commands.join(' → '),group.laws.join(', '),p.tables[group.table].commands.join(' → ')]);
+        visit(group.table);
+      }
+    }
+    visit(p.entry);
+    return {heading:'Use successive readings to choose the next commands.',
+      summary:'Begin with '+p.tables[p.entry].commands.join(' → ')+'. Each measured segment guides the next choice on the same physical run. Every path uses '+p.horizon+' pulses.',
+      proof:table('Readings determine which compatible group and continuation apply.',['After commands','Compatible group','Next commands'],rows)};
+  }
   if(p.schema===SUFFIX_PLAN){
     if(p.status==='shared-budget-exhausted')return {heading:'The shared-history proof reached its budget.',
       summary:'The remaining counterfactual choices have no verdict. Work used: '+p.work.assignments+' assignments and '+p.work.linearWork+' linear-work units.',proof:''};

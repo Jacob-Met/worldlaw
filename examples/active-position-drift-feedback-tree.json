@@ -1,0 +1,274 @@
+{
+  "schema": "worldlaw.position-drift-feedback-tree-source/v1",
+  "catalog": {
+    "schema": "worldlaw.position-drift-rate-catalog/v1",
+    "commands": [
+      "ref",
+      "group",
+      "sub0",
+      "sub1",
+      "sub2",
+      "bit0",
+      "bit1",
+      "bit2",
+      "bit3",
+      "bit4",
+      "bit5"
+    ],
+    "noiseBound": 1,
+    "laws": [
+      {
+        "id": "G0H0B0",
+        "rates": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "G0H0B1",
+        "rates": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "G0H1B0",
+        "rates": [
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "G0H1B1",
+        "rates": [
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "G1H0B0",
+        "rates": [
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "G1H0B1",
+        "rates": [
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          16,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "G1H1B0",
+        "rates": [
+          0,
+          16,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "G1H1B1",
+        "rates": [
+          0,
+          16,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          16,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "G2H0B0",
+        "rates": [
+          0,
+          32,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "G2H0B1",
+        "rates": [
+          0,
+          32,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          16,
+          0
+        ]
+      },
+      {
+        "id": "G2H1B0",
+        "rates": [
+          0,
+          32,
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "G2H1B1",
+        "rates": [
+          0,
+          32,
+          0,
+          0,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          16
+        ]
+      }
+    ]
+  },
+  "program": {
+    "commands": [
+      "ref",
+      "group"
+    ],
+    "alternatives": [
+      {
+        "commands": [
+          "sub0"
+        ],
+        "alternatives": [
+          {
+            "commands": [
+              "bit0"
+            ]
+          },
+          {
+            "commands": [
+              "bit1"
+            ]
+          }
+        ]
+      },
+      {
+        "commands": [
+          "sub1"
+        ],
+        "alternatives": [
+          {
+            "commands": [
+              "bit2"
+            ]
+          },
+          {
+            "commands": [
+              "bit3"
+            ]
+          }
+        ]
+      },
+      {
+        "commands": [
+          "sub2"
+        ],
+        "alternatives": [
+          {
+            "commands": [
+              "bit4"
+            ]
+          },
+          {
+            "commands": [
+              "bit5"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "subproblems": 200
+}

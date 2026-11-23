@@ -724,6 +724,25 @@ try{
   assert.deepEqual(JSON.parse(cli(['--notebook',sharedFile]).stdout),sharedBook);
   mark('the state-space exclusion commits a three-command suffix from a four-pulse measured prefix');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftTree');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/successive readings/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Two decisions on one persistent trajectory');
+  await page.locator('#acquisition-kind').selectOption('synthetic');
+  for(const [i,x] of [0,0,32].entries())await page.locator('#drift-reading-'+i).fill(String(x));
+  await page.locator('#evaluate-readings').click();await idle();
+  assert.equal(await page.locator('#drift-reading-3').getAttribute('data-command'),'sub2');
+  assert.equal(await page.locator('#drift-reading-4').count(),0);
+  await page.locator('#drift-reading-3').fill('48');await page.locator('#evaluate-readings').click();await idle();
+  await page.reload();await idle();await openDetails('supplied-details');
+  assert.equal(await page.locator('#drift-reading-4').getAttribute('data-command'),'bit5');
+  await page.locator('#drift-reading-4').fill('64');await page.locator('#evaluate-readings').click();await idle();
+  const treeBook=await accepted();assert.deepEqual(treeBook.readouts.at(-1).result.consistentHypothesisIds,['G2H1B1']);
+  const treeFile=await download('export-notebook','successive-feedback.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',treeFile]).stdout),treeBook);
+  mark('two successive measured decisions govern one four-pulse course and survive intermediate reopen');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';
