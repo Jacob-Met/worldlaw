@@ -13,7 +13,7 @@ import {ACTIVE_LINEAR_ADAPTIVE_SCHEMA,ACTIVE_ADAPTIVE_READINGS_SCHEMA,
   from './active-linear-adaptive.mjs';
 
 import {designConditionalFuture,classifyAccumulatedReadings,FOLLOWUP_READINGS} from './active-linear-followup.mjs';
-import {ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA,designActiveVandermondeNonlinear,replayActiveVandermondeNonlinear,evaluateActiveVandermondeReadings} from './active-vandermonde-nonlinear.mjs';
+import {ACTIVE_ACTUATOR_TIMELINE_SCHEMA,ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA,designActiveVandermondeNonlinear,replayActiveVandermondeNonlinear,evaluateActiveVandermondeReadings} from './active-vandermonde-nonlinear.mjs';
 
 export const ACTIVE_EXPERIMENT_NOTEBOOK_SCHEMA='worldlaw.active-experiment-notebook/v1';
 const encoder=new TextEncoder();
@@ -36,7 +36,7 @@ function source(bytes){
   const bounded=request?.schema===ACTIVE_LINEAR_CONTROL_BOX_SCHEMA;
   const joint=request?.schema===ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA;
   const adaptive=request?.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA;
-  const vandermonde=request?.schema===ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA;
+  const vandermonde=request?.schema===ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA||request?.schema===ACTIVE_ACTUATOR_TIMELINE_SCHEMA;
   need(multiple||bounded||joint||adaptive||vandermonde||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request?.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request?.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA,
     'Unrecognized active experiment source schema; choose linear family, intervention family, control box, joint control, one erasure, one replaced reading, affine sensor or adaptive v1');
   return {request,multiple,bounded,joint,adaptive,vandermonde};
