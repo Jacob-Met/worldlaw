@@ -51,8 +51,12 @@ def get_numeric(x):
     _,_,_,q=sub(x,q);_,n,off,q=sub(x,q)
     shape=struct.unpack_from('<'+'i'*(n//4),x,off)
     _,_,_,q=sub(x,q);k,n,off,nq=sub(x,q)
-    assert k==9 and n==shape[0]*shape[1]*8
-    return shape,struct.unpack_from('<'+'d'*(n//8),x,off)
+    formats={1:'b',2:'B',3:'h',4:'H',5:'i',6:'I',7:'f',9:'d',12:'q',13:'Q'}
+    assert k in formats,('unsupported MATLAB numeric storage',k,n,shape)
+    fmt=formats[k];width=struct.calcsize('<'+fmt)
+    assert n==shape[0]*shape[1]*width,('MAT shape mismatch',k,n,shape)
+    print('NATIVE_STORAGE',shape,k,width,flush=True)
+    return shape,struct.unpack_from('<'+fmt*(n//width),x,off)
 i=128
 while i<len(m):
     kind,sz,ptr,nxt=sub(m,i)
@@ -76,7 +80,7 @@ scale=next(float(d['resolution_pxls_per_mm']) for d in rows(base+'Properties_Cam
 res={};modes=[]
 for col,(key,idx) in selected.items():
     (n,nc),v=get_numeric(field[key]);assert nc>idx and all(v[i]==i+1 for i in range(n))
-    assert len(obs)==n and all(int(d['frame_no'])==i+1 for i,d in enumerate(obs))
+    assert len(obs)==n and all(int(d['frame_no'])==i+1 for i,d in enumerate(obs)),('movie frame identity',n,len(obs),obs[0]['frame_no'],obs[-1]['frame_no'])
     px=v[idx*n:(idx+1)*n]
     factors={'degrees':1.0} if col=='cantingAngle' else {'pixels':1.,'mm':1./scale,'literal_times_ten':10.}
     errs={mode:max(abs(float(d[col])-p*frac) for d,p in zip(obs,px)) for mode,frac in factors.items()}
