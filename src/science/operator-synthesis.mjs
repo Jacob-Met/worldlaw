@@ -7,6 +7,9 @@ const terminals = {
 };
 const unary = new Map([['sin',Math.sin],['cos',Math.cos],['abs',Math.abs],['tanh',Math.tanh]]);
 const binary = new Map([['add',(a,b)=>a+b],['mul',(a,b)=>a*b],['div',(a,b)=>b===0?NaN:a/b]]);
+export class EvolutionDomainError extends RangeError {
+  constructor(reason) { super(reason); this.code=reason; }
+}
 function insist(ok, reason) { if (!ok) throw new RangeError(reason); }
 function limit(n, min, max, name) {
   insist(Number.isInteger(n)&&n>=min&&n<=max,'Invalid '+name);
@@ -24,7 +27,9 @@ function coordinates(kind, row) {
   return {field:row.field,command:row.command,dx,dxx};
 }
 function apply(op,a,b) {
-  return unary.has(op)?unary.get(op)(a):binary.get(op)(a,b);
+  if (!Number.isFinite(a) || (binary.has(op) && !Number.isFinite(b))) return NaN;
+  const value=unary.has(op)?unary.get(op)(a):binary.get(op)(a,b);
+  return Number.isFinite(value)?value:NaN;
 }
 function treeValue(tree,row,kind,size) {
   insist(++size.count<=32,'Operator tree is too large');
@@ -44,7 +49,7 @@ export function predictEvolution(model,input) {
     insist(Number.isFinite(weight),'Invalid evolution coefficient');
     y+=weight*treeValue(tree,row,model.kind,{count:0});
   }
-  insist(Number.isFinite(y),'Undefined operator on the requested state');
+  if (!Number.isFinite(y)) throw new EvolutionDomainError('undefined_operator');
   return y;
 }
 export function assessEvolution(model, rows, tolerance) {
@@ -55,7 +60,7 @@ export function assessEvolution(model, rows, tolerance) {
     let y;
     try { y=predictEvolution(model,row); }
     catch (err) {
-      if (err.message!=='Undefined operator on the requested state') throw err;
+      if (!(err instanceof EvolutionDomainError)) throw err;
       return {accepted:false,reason:'undefined_operator',maxError:null,rmse:null,worstRow:i};
     }
     const e=Math.abs(y-row.change);squared+=e*e;
@@ -115,8 +120,14 @@ export function synthesizeEvolution(rows, options={}) {
   const xs=rows.map(r=>coordinates(kind,r)), target=rows.map(r=>r.change);
   insist(target.every(Number.isFinite),'Invalid measured training response');
   const bank=columns(kind,xs,operators,maxNodes,maxCandidates);
+  let work=bank.length*target.length;
+  function charge(n) {
+    work+=n;
+    insist(work<=50000000,'Operator fit exceeds its numerical work budget');
+  }
   const toModel=f=>({schema:'worldlaw.symbolic-evolution/v1',kind,terms:f.ids.map((id,k)=>({tree:bank[id].tree,weight:f.weights[k]}))});
   function fit(ids) {
+    charge(target.length*(1+3*ids.length*ids.length));
     const cs=ids.map(i=>bank[i].values), qr=fitLinearColumns(cs,target);
     if(!qr)return null;
     const residual=target.map((v,t)=>v-cs.reduce((s,c,k)=>s+c[t]*qr.coefficients[k],0));
@@ -129,6 +140,7 @@ export function synthesizeEvolution(rows, options={}) {
   for(let size=1;size<=maxTerms;size++) {
     const next=new Map();
     for(const base of front) {
+      charge(bank.length*target.length);
       const scores=[];
       for(let i=0;i<bank.length;i++) {
         const x=bank[i];

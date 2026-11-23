@@ -1,4 +1,4 @@
-import {predictEvolution} from './operator-synthesis.mjs';
+import {predictEvolution,EvolutionDomainError} from './operator-synthesis.mjs';
 
 function need(ok,reason){if(!ok)throw new RangeError(reason);}
 function admit(kind,course) {
@@ -21,6 +21,7 @@ function drive(course,t,j,n) {
   return f.offset+f.amplitude*spatial*Math.sin(2*Math.PI*cycles);
 }
 function derivative(model,course,t,x) {
+  if(!x.every(Number.isFinite)) throw new EvolutionDomainError('nonfinite_trajectory');
   if(model.kind==='oscillator')
     return [x[1],predictEvolution(model,{position:x[0],rate:x[1],command:drive(course,t,null)})];
   return x.map((field,j)=>predictEvolution(model,{field,left:x[(j+x.length-1)%x.length],right:x[(j+1)%x.length],
@@ -40,7 +41,7 @@ export function rolloutEvolution(model, experiment, substeps=1) {
       const k1=derivative(model,course,t,x),k2=derivative(model,course,t+h/2,advance(x,h/2,k1));
       const k3=derivative(model,course,t+h/2,advance(x,h/2,k2)),k4=derivative(model,course,t+h,advance(x,h,k3));
       x=x.map((v,a)=>v+h*(k1[a]+2*k2[a]+2*k3[a]+k4[a])/6);
-      need(x.every(Number.isFinite),'Nonfinite trajectory');
+      if(!x.every(Number.isFinite)) throw new EvolutionDomainError('nonfinite_trajectory');
     }
     states.push([...x]);
   }
@@ -68,22 +69,34 @@ export function designEvolutionExcitation(models, courses) {
     admit(models[0].kind,c);work+=c.steps*c.initial.length*models.length**2;
     need(work<=2000000,'Excitation menu exceeds comparison budget');
   }
-  const ranked=courses.map(c=>{
-    const paths=models.map(model=>rolloutEvolution(model,c));
+  const excluded=[];
+  const ranked=courses.flatMap(c=>{
+    let paths;
+    try { paths=models.map(model=>rolloutEvolution(model,c)); }
+    catch(err) {
+      if(!(err instanceof EvolutionDomainError))throw err;
+      excluded.push({id:c.id,reason:err.code});return [];
+    }
     let minimumSeparation=Infinity,pair;
     for(let a=0;a<paths.length;a++)for(let b=0;b<a;b++){
       const d=distance(paths[a],paths[b]).rmse;
       if(d<minimumSeparation){minimumSeparation=d;pair=[b,a];}
     }
-    return {id:c.id,minimumSeparation,closestPair:pair};
+    return [{id:c.id,minimumSeparation,closestPair:pair}];
   }).sort((a,b)=>b.minimumSeparation-a.minimumSeparation);
+  if(!ranked.length)return {status:'no_admissible_course',selected:null,ranked,excluded};
   return {status:ranked[0].minimumSeparation>0?'separating_in_simulation':'indistinguishable_on_menu',
-    selected:ranked[0].id,ranked};
+    selected:ranked[0].id,ranked,excluded};
 }
 
 export function verifyEvolutionRollout(model,course,observations,{maxError,resolutionTolerance}) {
   need([maxError,resolutionTolerance].every(x=>Number.isFinite(x)&&x>=0),'Declare finite rollout tolerances');
-  const coarse=rolloutEvolution(model,course,1),fine=rolloutEvolution(model,course,2);
+  let coarse,fine;
+  try { coarse=rolloutEvolution(model,course,1);fine=rolloutEvolution(model,course,2); }
+  catch(err) {
+    if(!(err instanceof EvolutionDomainError))throw err;
+    return {accepted:false,reason:err.code,resolution:null,held:null};
+  }
   const resolution=distance(coarse,fine),held=distance(fine,observations);
   const reason=resolution.maxError>resolutionTolerance?'resolution_failure':held.maxError>maxError?'trajectory_mismatch':'within_tolerance';
   return {accepted:reason==='within_tolerance',reason,resolution,held};

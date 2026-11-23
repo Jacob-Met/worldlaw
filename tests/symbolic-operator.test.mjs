@@ -56,7 +56,13 @@ test('finite excitation design scores input-only chirps and refuses singular or 
   assert.equal(verifyEvolutionRollout(plain,active,exact,{maxError:1e-5,resolutionTolerance:1e-5}).reason,'trajectory_mismatch');
   const singular={...plain,terms:[{tree:['div','command','rate'],weight:1}]};
   const row={position:1,rate:0,command:1,change:0};
-  assert.throws(()=>predictEvolution(singular,row),/Undefined/);
+  assert.throws(()=>predictEvolution(singular,row),/undefined_operator/);
+  const held=verifyEvolutionRollout(singular,quiet,rolloutEvolution(plain,quiet),{maxError:1,resolutionTolerance:1});
+  assert.deepEqual(held,{accepted:false,reason:'undefined_operator',resolution:null,held:null});
+  assert.equal(designEvolutionExcitation([singular,plain],[quiet]).status,'no_admissible_course');
+  const mixed=designEvolutionExcitation([singular,plain],[quiet,drive('finite',[1,2],1)]);
+  assert.equal(mixed.selected,'finite');
+  assert.deepEqual(mixed.excluded,[{id:'quiet',reason:'undefined_operator'}]);
   assert.equal(assessEvolution(singular,[row],1).reason,'undefined_operator');
   assert.throws(()=>synthesizeEvolution(Array(8).fill(row),{...grammar,kind:'oscillator',maxCandidates:5}),/candidate budget/);
 });
