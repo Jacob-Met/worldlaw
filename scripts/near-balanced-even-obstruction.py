@@ -1,4 +1,4 @@
-"""Construct measured or colliding witnesses for near-balanced odd and even horizons."""
+"""Construct fixed separating tapes and persistent collisions at certified horizons."""
 import argparse
 from collections import Counter
 from fractions import Fraction as Q
@@ -33,12 +33,29 @@ class Experiment:
         check(source.get('schema')=='worldlaw.position-drift-fixed-tape-optimum/v1','wrong source schema')
         self.h=integer(source['pulseBudget'])
         self.n=n=self.h//2
-        if self.h==2*n and n>=5 and n%6 in (1,5):
-            self.deficit=1
-        elif self.h==2*n+1 and n>=10 and n%6 in (1,4):
-            self.deficit=2
-        else:
-            raise ValueError('unsupported near-balanced horizon')
+        certified_even=self.h==2*n and n>=5 and n%6 in (1,5)
+        certified_odd=self.h==2*n+1 and n>=10 and n%6 in (1,4)
+        check(self.h>=67 or certified_even or certified_odd,'unsupported horizon')
+        self.k=(self.h+6)//12
+        self.product=6*self.k*(self.h-6*self.k)
+        self.e=e=Q(self.product,24*self.h)
+        self.critical={}
+        # The closest multiple of six to H/2 lies at distance at most three.
+        for b in range(max(1,n-2),min(self.h,n+4)):
+            s=self.h-b
+            d=b*s-self.product
+            if d<=0:
+                continue
+            check(s%6!=0 and min(s,b)>=d,'critical category or histogram bound failed')
+            self.critical[s]=d
+            room=Q(d,6*b)
+            alpha=Q(1,12)-2*e/b
+            beta=Q(1,12)-2*e/s
+            check(alpha>=room and (s-1)*alpha<=2*e,'baseline-first room failed')
+            check(2*e/s>=room*(1-Q(1,s)) and beta>=room/s and (b-1)*beta<=2*e,'suffix-first room failed')
+            check(Q(s,6)-room==4*e*self.h/b,'terminal contrast identity failed')
+        L=self.h-1
+        check(Q((L*L)//4,24*L)<=e,'a proper span exceeds the target')
         cat=source['catalog']
         check(cat.get('schema')=='worldlaw.position-drift-rate-polytopes/v1','wrong rate catalog')
         commands=cat['commands']
@@ -57,17 +74,6 @@ class Experiment:
         ar,br=[rates(l,w) for l,w in enumerate(self.balanced)]
         self.mu={c:(ar[c]+br[c])/2 for c in NAMES}
         check(all(ar[c]-br[c]==(0 if c in NAMES[:2] else Q(1,6)) for c in NAMES),'balanced physical contrast differs')
-        self.e=e=Q(n*(self.h-n)-self.deficit,24*self.h)
-        self.k=(self.h+6)//12
-        check(Q(self.k*(self.h-6*self.k),4*self.h)==e,'fixed-tape radius differs')
-        for b in {n,self.h-n}:
-            s=self.h-b
-            room=Q(self.deficit,6*b)
-            alpha=Q(1,12)-2*e/b
-            beta=Q(1,12)-2*e/s
-            check(alpha>=room and (s-1)*alpha<=2*e,'baseline-first room failed')
-            check(2*e/s>=room*(1-Q(1,s)) and beta>=room/s and (b-1)*beta<=2*e,'suffix-first room failed')
-            check(Q(s,6)-room==4*e*self.h/b,'terminal contrast identity failed')
         self.requested=number(cat['noiseBound'])
         check(self.requested>=0,'negative noise')
     def describe(self):
@@ -76,7 +82,7 @@ class Experiment:
                     fixedRuns=[{'command':'ref','repeats':str(self.h-6*self.k)}]+[
                         {'command':c,'repeats':str(self.k)} for c in ('y0','x0','z0','y1','x1','z1')])
     def transfer(self,counts,room):
-        """Change one within-group coordinate while keeping that group's baseline mass."""
+        """Construct a high-block mass transfer from the literal command counts."""
         w=[row.copy() for row in self.balanced]
         for g in range(2):
             x,y,z=(label+str(g) for label in 'xyz')
@@ -89,7 +95,24 @@ class Experiment:
                 w[law][2*g]-=amount
                 check(min(w[law])>=0 and sum(w[law])==1,'invalid perturbed source mixture')
                 return w,law,dict(group=g,law=self.bindings[law][0],difference=str(difference),weightChange=str(amount))
-        raise ValueError('a suffix count must differ within a group')
+        # Uniform x,y,z counts within each group. Sixfold balance cannot be critical.
+        difference=counts['y1']-counts['y0']
+        check(difference!=0,'uniform six-command histogram cannot be critical')
+        if counts['group']:
+            suffix=sum(counts[c] for c in NAMES[2:])
+            room=Q(self.critical[suffix],6*suffix)
+            amount=room/counts['group']
+            # Decrease B's group rate. In the swapped/negated coordinates this
+            # lowers the high-block total by room, without affecting any suffix.
+            w[1][0]+=amount
+            w[1][2]-=amount
+            check(min(w[1])>=0 and sum(w[1])==1,'invalid neutral source mixture')
+            return w,1,dict(mode='neutral baseline',law=self.bindings[1][0],groupCount=str(counts['group']),weightChange=str(amount))
+        amount=-room/difference
+        w[0][2]+=amount
+        w[0][0]-=amount
+        check(min(w[0])>=0 and sum(w[0])==1,'invalid cross-group source mixture')
+        return w,0,dict(mode='cross-group suffix',law=self.bindings[0][0],difference=str(difference),weightChange=str(amount))
 
     def receive(self,runs):
         check(isinstance(runs,list),'supply an array of command/count runs')
@@ -105,20 +128,29 @@ class Experiment:
             if not cats or bit!=cats[-1]:cats.append(bit)
         # A free terminal reading is available only when the full critical word is known.
         suffix=sum(counts[c] for c in NAMES[2:])
-        special=horizon==self.h and len(cats)==2 and suffix in (self.n,self.h-self.n)
+        special=horizon==self.h and len(cats)==2 and suffix in self.critical
         points=[(0,Q(0),Q(0))]
         for c,count in runs:
             t,y,d=points[-1];points.append((t+count,y+count*self.mu[c],d+(Q(count,6) if c in NAMES[2:] else 0)))
         w=self.balanced;move=None
         if special:
             baseline=self.h-suffix
-            room=Q(self.deficit,6*baseline)
+            room=Q(self.critical[suffix],6*baseline)
             w,law,move=self.transfer(counts,room)
-            if cats[0]:
+            high_first=cats[0]
+            swapped=move.get('mode')=='neutral baseline'
+            if swapped:
+                room=Q(self.critical[suffix],6*suffix)
+                baseline,suffix=suffix,baseline
+                high_first=not high_first
+            if high_first:
                 start=[-self.e,self.e]
                 drift=[(-1)**l*(-Q(1,12)+2*self.e/suffix+(room/suffix if l==law else 0)) for l in (0,1)]
             else:
                 start=[self.e,-self.e];drift=[-2*self.e/baseline,2*self.e/baseline]
+            if swapped:
+                start=[-v for v in start]
+                drift=[-v-(-1)**l*Q(1,12) for l,v in enumerate(drift)]
         else:
             if horizon:
                 low=max((b[2]-a[2]-4*self.e)/(b[0]-a[0]) for j,b in enumerate(points) for a in points[:j])
