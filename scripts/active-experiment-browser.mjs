@@ -763,6 +763,30 @@ try{
   }
   mark('identical root readings choose c before its measured position determines e or f');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftSegments');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/persistent rate families/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Synthetic persistent parameter two fifths');
+  await page.locator('#acquisition-kind').selectOption('synthetic');
+  for(const t of [0,41])await page.locator('#drift-reading-'+t).fill('0');
+  await page.locator('#evaluate-readings').click();await idle();
+  await page.reload();await idle();await openDetails('supplied-details');
+  for(const t of [82,123])await page.locator('#drift-reading-'+t).fill('41/5');
+  await page.locator('#evaluate-readings').click();await idle();
+  const segmentBook=await accepted();assert.deepEqual(segmentBook.readouts.at(-1).result.consistentHypothesisIds,['B']);
+  assert.match(await page.locator('#candidate-results').textContent(),/Parameter values compatible/);
+  const segmentFile=await download('export-notebook','rate-segments.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',segmentFile]).stdout),segmentBook);
+  await openDetails('source-details');await page.locator('#example').selectOption('driftSegmentAlias');
+  await page.locator('#load-example').click();await idle();await page.locator('#freeze-plan').click();
+  await page.locator('#drift-word').fill('b 10000000000000000000001\nc 2');await page.locator('#drift-trace').click();await idle();
+  const aliasBook=await accepted(),aliasTrace=aliasBook.readouts[0].result.trace;
+  assert.deepEqual(aliasTrace.parameters,['0','1/2']);assert.deepEqual(aliasTrace.readings[0],aliasTrace.readings[1]);
+  const aliasFile=await download('export-notebook','rate-segment-alias.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',aliasFile]).stdout),aliasBook);
+  mark('continuous parameter range and interior gauge alias survive browser and CLI replay');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';
