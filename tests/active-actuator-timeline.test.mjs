@@ -79,3 +79,51 @@ test('portable receiver binds the original timeline, exact readings and ordered 
   await assert.rejects(receiveActiveNotebook(book, JSON.stringify({...readings, observations: readings.observations.toReversed()})), /frozen observation tick/);
   await assert.rejects(replayActiveNotebook({...saved, sourceText: JSON.stringify({...q, amplitudeTimeline: [2,1,0,-1,-2]})}), /source bytes changed/);
 });
+
+const memoryless = {A: [[0]], bUnit: [1], C: [1]};
+const repeated = source([1,1], 1, {plant: memoryless, stateDimension: 1, maxDegree: 2});
+
+test('opposite noise faces pin an identifiable sum at one value', () => {
+  const plan = design(repeated);
+  assert.equal(plan.identifiableRank, 1);
+  const [row] = receive(repeated, plan, read([7,-1,1])).estimates;
+  assert.deepEqual(row.coefficients, ['1','1','1']);
+  assert.equal(Number(row.interval[1]) - Number(row.interval[0]), 2);
+  assert.deepEqual(row.feasibleInterval, ['0','0']);
+  assert.deepEqual(row.endpointReadingWeights, {lower: ['0','0','1'], upper: ['0','1','0']});
+  assert.equal(receive(repeated, plan, read([7,-1,2])).polynomialFamilyConsistent, false);
+});
+
+test('all nuisance coefficients participate and both rational endpoints are attained', () => {
+  const q = source([-1,0,1], 1, {plant: memoryless, stateDimension: 1, maxDegree: 1});
+  const observations = [0,0,1,1];
+  const rows = receive(q, design(q), read(observations)).estimates;
+  assert.deepEqual(rows.map(r => r.feasibleInterval), [['0','3/2'],['-1/2','3/2']]);
+  // Each tuple witnesses an endpoint for *one* functional across all three readings.
+  for (const [intercept,slope] of [[0,0],[1.5,.5],[.5,-.5],[.5,1.5]]) {
+    const predicted = [0,...[-1,0,1].map(u => intercept + slope*u)];
+    assert.ok(predicted.every((v,i) => Math.abs(v-observations[i]) <= 1));
+  }
+  const exact = {...q, noiseBound: 0};
+  assert.deepEqual(receive(exact, design(exact), read([0,0,1,2])).estimates.map(r => r.feasibleInterval),
+    [['1','1'],['1','1']]);
+});
+
+test('portable replay checks sharp endpoint certificates and reconstructs historical v1 estimates', async () => {
+  const book = await createActiveNotebook(JSON.stringify(repeated));
+  const readings = {...read([7,-1,1]), sourceSHA256: book.plan.sourceSHA256, planSHA256: book.plan.planSHA256};
+  const saved = await receiveActiveNotebook(book, JSON.stringify(readings));
+  const current = saved.readouts[0].result;
+  assert.equal(current.schema, 'worldlaw.active-actuator-timeline-result/v2');
+  assert.deepEqual((await replayActiveNotebook(saved)).readouts[0].result, current);
+  const tamper = structuredClone(saved);
+  tamper.readouts[0].result.estimates[0].endpointReadingWeights.lower[0] = '1';
+  await assert.rejects(replayActiveNotebook(tamper), /exact readout replay refused/);
+  const historical = structuredClone(saved);
+  const old = historical.readouts[0].result;
+  old.schema = 'worldlaw.active-actuator-timeline-result/v1';
+  old.estimates = old.estimates.map(({coefficients, estimate, interval}) => ({coefficients, estimate, interval}));
+  assert.deepEqual((await replayActiveNotebook(historical)).readouts[0].result, old);
+  old.estimates[0].interval[0] = '99';
+  await assert.rejects(replayActiveNotebook(historical), /exact readout replay refused/);
+});
