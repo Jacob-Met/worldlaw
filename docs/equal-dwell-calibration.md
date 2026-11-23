@@ -58,3 +58,5 @@ python3 scripts/verify-reference-calibration.py examples/active-position-drift-d
 printf '["0","0","47/50"]\n' >/tmp/dwell-readings.json
 node scripts/active-linear-family.mjs --reference-calibration --input examples/active-position-drift-dwell-calibration.json --replay /tmp/dwell-proof.json --readings /tmp/dwell-readings.json
 ```
+
+The [positive-reference extension](all-reference-dwell-calibration.md) covers all m ≥ 1, including the changed eleven-pulse optimum.
