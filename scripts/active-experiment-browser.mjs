@@ -615,6 +615,27 @@ try{
   }
   mark('exact minimum planners and both measured sixth-command branches survive browser and CLI notebook replay');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftFeedbackSearch');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/single feedback decision/);
+  assert.match(await page.locator('#drift-proof').textContent(),/Common history found/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Generic held rate-catalog trajectory');
+  await page.locator('#acquisition-kind').selectOption('synthetic');
+  for(const [i,x] of [-1,-2,-3,-4,2,8].entries())await page.locator('#drift-reading-'+i).fill(String(x));
+  await page.locator('#evaluate-readings').click();await idle();
+  assert.equal(await page.locator('#drift-reading-6').getAttribute('data-command'),'sample');
+  await page.locator('#drift-reading-6').fill('13');await page.locator('#evaluate-readings').click();await idle();
+  const generic=await accepted();assert.deepEqual(generic.readouts[1].result.consistentHypothesisIds,['A']);
+  const genericFile=await download('export-notebook','generic-one-feedback.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',genericFile]).stdout),generic);
+  await page.locator('#new-draft').click();await idle();
+  const cut=JSON.parse(await page.locator('#source-text').inputValue());cut.limits.assignments=0;
+  await page.locator('#source-text').fill(JSON.stringify(cut));await page.locator('#replan').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/budget was reached/);
+  assert.equal(await page.locator('#supplied-details').isVisible(),false);
+  mark('a source-driven feedback search exposes a physical refutation, executes its winning prefix, and marks exhausted budgets inconclusive');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';

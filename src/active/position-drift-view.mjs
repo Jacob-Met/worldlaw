@@ -1,4 +1,4 @@
-import {isGuidedPlan,BINARY_PLAN,CASE_TWELVE_PLAN,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
+import {isGuidedPlan,BINARY_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
 import {escapeHTML as html} from './view.mjs';
 
 const byId=id=>document.getElementById(id);
@@ -7,6 +7,19 @@ function table(caption,head,rows){
     '</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+html(c)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
 }
 function guidedProof(p){
+  if(p.schema===ONE_FEEDBACK_PLAN){
+    const won=p.status==='one-feedback-certified',refuted=p.status==='all-declared-prefixes-refuted';
+    const trials=table('Declared fixed prefixes in search order.',['Command prefix','Result'],p.trials.map(t=>[
+      t.prefix.join(' → ')||'Initial reading only',t.collision?'Common history found':won?'Every last-action assignment excluded':'Budget reached']));
+    const collisions=p.trials.filter(t=>t.collision).map(t=>table('Shared readings: '+t.collision.readings.join(', '),
+      ['Final command','Possible final reading','Compatible laws'],t.collision.branches.map(b=>[
+        b.command,b.finalReading,b.worlds.map(w=>w.law).join(' / ')]))).join('');
+    return {heading:won?'A single feedback decision identifies the law.':refuted?'Every declared prefix admits a collision.':'The stated search budget was reached.',
+      summary:won?'Apply '+p.prefix.length+' fixed pulses. The retained positions determine which last command separates all remaining laws.':
+        refuted?'Each recorded history is compatible with two laws after every offered last command.':
+        'The remaining assignments have no conclusion. Work used: '+p.work.assignments+' assignments and '+p.work.linearWork+' linear-work units.',
+      proof:trials+collisions};
+  }
   if(p.schema===CASE_TWELVE_PLAN)return {
     heading:'Identify the law in six pulses.',
     summary:'Five fixed pulses determine which command to apply last. Every fixed tape needs at least seven pulses.',
@@ -64,8 +77,9 @@ export function renderDriftNotebook(book,index,mode,dirty){
       byId('drift-position').value='0';byId('drift-velocity').value='0';
     }
   }
-  byId('receive-region').hidden=!finite;
-  byId('supplied-details').hidden=!finite;
+  const receivable=finite&&(p.schema!==ONE_FEEDBACK_PLAN||p.status==='one-feedback-certified');
+  byId('receive-region').hidden=!receivable;
+  byId('supplied-details').hidden=!receivable;
   byId('receive-note').textContent=guided&&frozen?(pending.length?(pending[0].command?'Apply '+pending[0].command+' for '+pending[0].repeats+' pulse'+(pending[0].repeats==='1'?'':'s')+', then record tick '+pending[0].tick+'.':'Record the starting position at tick 0.'):'This recorded trajectory is complete or inconsistent.'):frozen?'Enter positions from a single run in checkpoint order.':'Freeze the schedule before entering readings.';
   byId('supplied-note').textContent=guided?'Append consecutive readings from the same run. Accepted readings remain in the notebook.':'Enter a consecutive prefix starting at tick 0. A compatible initial position and drift must explain the entire run.';
   byId('reading-fields').innerHTML=guided?pending.map(step=>'<label>'+html(step.command?

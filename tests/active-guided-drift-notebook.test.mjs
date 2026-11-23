@@ -45,7 +45,7 @@ test('feedback requires a retained five-pulse prefix before revealing the sixth 
   for(const [values,cmd,ids,final] of [[[-1,-2,-3,-4,2,8],'u2',['L0','L1'],13],[[1,-2,-3,-4,2,10],'u1',['L0','L2'],15]]){
     const before=packet(initial,values.map(shift));
     const tooEarly=structuredClone(before);tooEarly.readings.push({tick:'6',value:shift(final),command:cmd});
-    await assert.rejects(append(initial,tooEarly),/receive the five-pulse prefix/);
+    await assert.rejects(append(initial,tooEarly),/receive the fixed prefix/);
     const one=await append(initial,before),result=one.readouts[0].result;
     assert.equal(result.checked.nextCommand,cmd);assert.deepEqual(result.consistentHypothesisIds,ids);
     const restored=await replayActiveNotebook(JSON.stringify(one)),doc=packet(restored,[shift(final)]);

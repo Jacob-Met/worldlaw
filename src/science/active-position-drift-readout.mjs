@@ -1,7 +1,7 @@
 /** Readout documents for the active experiment notebook and CLI. */
 import {openAllHorizonPositionDrift} from './persistent-position-drift-all-horizon.mjs';
 
-import {isGuidedPlan,CASE_TWELVE_REQUEST,GUIDED_INPUT,GUIDED_RESULT} from './active-guided-drift.mjs';
+import {isGuidedPlan,CASE_TWELVE_REQUEST,ONE_FEEDBACK_REQUEST,GUIDED_INPUT,GUIDED_RESULT} from './active-guided-drift.mjs';
 
 export const ACTIVE_DRIFT_PLAN='worldlaw.position-drift-all-horizon-policy/v1';
 export const ACTIVE_DRIFT_CHECKPOINTS='worldlaw.active-position-drift-checkpoints/v1';
@@ -15,7 +15,7 @@ export function parseActiveOriginalJSON(text){
   const data=JSON.parse(text);
   const schema=data?.schema;
   if(schema!=='worldlaw.position-drift-rate-catalog/v1' && schema!==ACTIVE_DRIFT_PLAN &&
-     schema!==ACTIVE_DRIFT_CHECKPOINTS && schema!==ACTIVE_DRIFT_TRACE && schema!==CASE_TWELVE_REQUEST &&
+     schema!==ACTIVE_DRIFT_CHECKPOINTS && schema!==ACTIVE_DRIFT_TRACE && schema!==CASE_TWELVE_REQUEST && schema!==ONE_FEEDBACK_REQUEST &&
      schema!==GUIDED_INPUT && schema!==GUIDED_RESULT && !isGuidedPlan(data) && !isGuidedPlan(data?.plan) &&
      schema!=='worldlaw.active-position-drift-checkpoint-result/v1' &&
      schema!=='worldlaw.active-position-drift-gauge-result/v1' && data?.plan?.schema!==ACTIVE_DRIFT_PLAN)return data;
