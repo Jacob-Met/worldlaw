@@ -1,0 +1,133 @@
+{
+  "source": {
+    "instrument": "JAI CV-M9GE 3-CCD; SIGMAKOKI SPF-50C-32/PH-50-ARS, 1000 frame averages each orientation",
+    "official_archive_bytes": 3390596418,
+    "code_commit": "bef123c5024aca12ef0eeae70fb98fedd665bf13",
+    "license": "Research use; source measurements/maps not redistributed"
+  },
+  "source_freeze": "2ebf3627b92329b1ca5cd349b087db7f2acc81eef6b371bf7c6aeea2a0c83011",
+  "development_freeze": "71e833fccdee643365523bea0f902193ae773c5481993edfe298ab6821cef8b6",
+  "original_forecast_source_sha": "d686fd0fd6120c1b1d143056b59f4d4670c8a6474be78bbc1e458d5f587aaeff",
+  "publication_adapter": "Only the qualified original runtime path in course.py is parameterized by MORIMATSU_AUTHOR_RUNTIME.",
+  "locked_map_bytes": 519087540,
+  "lock_sha256": "2a290ff5fc0458f18273549fc5b576e03b268989dc26c8c775450904baf8ec46",
+  "score_sha256": "17833743a0028bc86e571af0cdc9f8eaca2903c7da2cae74224df2f60bd90259",
+  "source_correction": "First training original accepted ZIP DEFLATE only; 33 of 160 archive PNG members use ZIP STORE. Seven existing PNGs separately verified in successor; no fitted model or development image in failed original.",
+  "primary_comparison": "15 named development scenes, 11 same-input arms, 12 reserve scenes unopened after development refusal.",
+  "early_source_qualification": {
+    "study": "MultiPolar",
+    "doi": "10.17632/bkb7sdsywj.1",
+    "scope": "Point-sampled raw site assignment unavailable; all specimen intensities unopened.",
+    "source_capsule": "6915b5b3d4d2373cb6d557dec277f73a746530279e6c83d26635fb7d169e9c6d"
+  },
+  "originals": {
+    "p1-f747-morimatsu-independent-four-exposures-callable-author-metadata": {
+      "job_id": "p1-f747-morimatsu-independent-four-exposures-callable-author-metadata",
+      "request": "88f09230850cfd6fd26e98b9d6861b7004d4efbeceaed52d61388ac55f3c41e4",
+      "worker": "node-bf1cce3aee39f75421b8ca4bd1488dda",
+      "generation": "d4023c868da8c1a8d80ff8f2525ec21137bb7178292f64cd9495daee8a794cc5",
+      "process_request": "41fa49125e97f2d52d0fbbbf7db14d712e3258089bb93ede9582466535bec3a1",
+      "output_bytes": 929,
+      "output_sha256": "c493fe61e6dce9f39d7af620501f0e13fb320435c863a74637c8806b396f7661",
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained"
+    },
+    "p1-f747-morimatsu-octave-author-unchanged-synthetic-runtime": {
+      "job_id": "p1-f747-morimatsu-octave-author-unchanged-synthetic-runtime",
+      "request": "45de4a2a704d35649ce9b8a3fc01b44a35e41304a3cb0766158b34a33b903af2",
+      "worker": "node-83a81744648c6cd293add78fa3eb7d77",
+      "generation": "ec357661ea3ae367258be03bdce5eb80c3c0d88b34e3533d7cd7e8e41d0ea00c",
+      "process_request": "8624bcbf4a8ae5283a61e13e1b026d6032fd17c8f3dd1ce2ada94e2c22a2e3bb",
+      "output_bytes": 1132,
+      "output_sha256": "970e70c0df5d37e2c58dbaf7b185be042a6e739e7ef51026174303de581e98f6",
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained"
+    },
+    "p1-f747-morimatsu-training-only-thirteen-physical-angles-author-gates": {
+      "job_id": "p1-f747-morimatsu-training-only-thirteen-physical-angles-author-gates",
+      "request": "664ac5baa5233c0866b284a08de20b379f7749e99dbe1bd8255d001a6edf7b5d",
+      "worker": "node-83a81744648c6cd293add78fa3eb7d77",
+      "generation": "eea6681832107df9d32dee559d867b7c1f0563984b5887a08ad85fb98da1b1e4",
+      "process_request": "eb3153e715992e5f3364b0a0cc9f2e825495c32d1177e3f9b2ed34d92f0b72b8",
+      "output_bytes": 1563,
+      "output_sha256": "cf46848b61a0f20142945267991eb9742c214d8a468d1a5931d59b0b31977007",
+      "state": "failed",
+      "exit_code": 1,
+      "descendant_state": "drained"
+    },
+    "p1-f747-morimatsu-thirteen-training-zip-stored-and-deflate": {
+      "job_id": "p1-f747-morimatsu-thirteen-training-zip-stored-and-deflate",
+      "request": "2cc9db119fd89ef08b5e20c079ae612ccc3ab27316a18fa746076825ad32cfcd",
+      "worker": "node-83a81744648c6cd293add78fa3eb7d77",
+      "generation": "339b67bf47433f7d9396ad03f68779c765885ae5990c8fc7c609e8866e14ae55",
+      "process_request": "16638f5424f1c5cb2086dcbb275dd570f18960fdb221e89caa4d0a2d3c1058c8",
+      "output_bytes": 17332,
+      "output_sha256": "ac7183f2bf48f8e4ff785d355641c9d557571005a60decfb8e71b45ea2007e1b",
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained"
+    },
+    "p1-f747-morimatsu-development-fifteen-donor-only-locked-physical-forecasts": {
+      "job_id": "p1-f747-morimatsu-development-fifteen-donor-only-locked-physical-forecasts",
+      "request": "8e5771cc909dc95e735275462f2f7e2291c3461f373e1a5e1d60bd7efcccbbac",
+      "worker": "node-83a81744648c6cd293add78fa3eb7d77",
+      "generation": "4dddab55979e7a6db112a52cc30fe4ca2a4282a10e8442efec86f610fd9f2f28",
+      "process_request": "243a173100d08878954dbfd56a4ee14217f8a548386c0c58b45405ef5090aa4a",
+      "output_bytes": 5471,
+      "output_sha256": "8cbe146a4cbc7b4993537f7a8c85e30e94c0cf0a75152605603abbed548cb3e2",
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained"
+    },
+    "p1-f747-morimatsu-two-training-outdoor-worst-patch-receive": {
+      "job_id": "p1-f747-morimatsu-two-training-outdoor-worst-patch-receive",
+      "request": "a2a889787fc659e9bb0fb5afcb5e4491e6c1f090ff33ee70f46817df3868822b",
+      "worker": "node-83a81744648c6cd293add78fa3eb7d77",
+      "generation": "58fee80b0fddb310cd0ce6879448da9803c9f0c53c8236a7396cfc589e96f72c",
+      "process_request": "b560dc0412954b91451d3338b3ad93672d897eb94efb715b8100cb02ed902eb1",
+      "output_bytes": 1468,
+      "output_sha256": "3f82d7980d95102917328701c35054824869e60d4707484e1098f401bee3bf2b",
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained"
+    },
+    "p1-f747-morimatsu-separately-measured-fifteen-fourth-exposures-after-lock": {
+      "job_id": "p1-f747-morimatsu-separately-measured-fifteen-fourth-exposures-after-lock",
+      "request": "572e6f9d6569d42974e9c99a85e21a2b690565e21957a3eac6388113709f58ec",
+      "worker": "node-83a81744648c6cd293add78fa3eb7d77",
+      "generation": "899bf04c8f45eb38207e115d42660132381e37b5eb111740f8dc089028af4e1c",
+      "process_request": "78bc499b80e5880dfd40af0801fa56c93fa64ef427a4d6d088dc28643f47c684",
+      "output_bytes": 4055,
+      "output_sha256": "264c72fe75231d7c0465a4e92e1323f1d4f913a7443b23e249a7e73297864742",
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained"
+    },
+    "p1-f747-morimatsu-independent-165-float-maps-and-fifteen-measured-exposures": {
+      "job_id": "p1-f747-morimatsu-independent-165-float-maps-and-fifteen-measured-exposures",
+      "request": "fbc2f242bb713437c8da37d6bf3def85b61bc672f0d92a278e5006a55c579bd4",
+      "worker": "node-83a81744648c6cd293add78fa3eb7d77",
+      "generation": "a797a99a80ee9096d6cf7530d6ef440998ad2a49ff036e420ed7d4ef63264d83",
+      "process_request": "b0f30e5946414b00de1ddfb388baaff9c194f37b8907af717c4e337807d2cfab",
+      "output_bytes": 396,
+      "output_sha256": "b5979302a98a8a6bde7e2cf7a6f1d72fe56c6d6a66ec8a9a95d5cdccee6f01b8",
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained"
+    },
+    "p1-f747-morimatsu-exact-original-reader-source-custody": {
+      "job_id": "p1-f747-morimatsu-exact-original-reader-source-custody",
+      "request": "954f1ebece726054e2d795b354c6e72245cb84624e61bd828bdf3047df7a2476",
+      "worker": "node-83a81744648c6cd293add78fa3eb7d77",
+      "generation": "0df89936951d94b641697954793f0accc3727123ba166c0a13d80e1850b42b59",
+      "process_request": "622ad8fd2f1345498b36bde8237b145f6d7b456d8ef1a2c82e3e9603cabf7425",
+      "output_bytes": 8705,
+      "output_sha256": "13ecb644aa975a36d957f07fc2711fbbe4afca9333223fd2b3f675b14603107c",
+      "state": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained"
+    }
+  }
+}

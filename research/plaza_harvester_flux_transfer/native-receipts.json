@@ -1,0 +1,182 @@
+{
+  "source methods first": {
+    "id": "p3-f747-plaza-harvester-circuit-and-trajectory-source-qualification",
+    "worker": "node-e70963c08ce63bd916168b48d2b1c1fc",
+    "generation": "b55f973709aea673dbe38bbd288324ca31c198c66402f7f63b509462c83ac5e4",
+    "request_sha256": "9d959e5918398303829e13488bae217ea619159eb713283a597f07ba0480a57a",
+    "exit": 0,
+    "finished": "2026-11-23T02:55:51.580227216Z",
+    "descendants": "drained",
+    "output_bytes": 2069
+  },
+  "author data paper": {
+    "id": "p3-f747-harvester-author-repository-source-and-published-folder-inventory",
+    "worker": "node-bf1cce3aee39f75421b8ca4bd1488dda",
+    "generation": "f2e91ebdf32b4327dea01614ec906d83a120c3333d7a1468fce10f342a6f59bb",
+    "request_sha256": "7d9e6d244053ddc09c3d625fd20ccd1fd7cfaa55ea1e5d74d0818ecd309b9837",
+    "exit": 0,
+    "finished": "2026-11-23T02:57:58.642435126Z",
+    "descendants": "drained",
+    "output_bytes": 3796
+  },
+  "measurement methods": {
+    "id": "p3-f747-plaza-instrument-schematic-and-three-ring-channel-geometry",
+    "worker": "node-bf1cce3aee39f75421b8ca4bd1488dda",
+    "generation": "54125d866a1bca0e5b41a18e50b2ce40349ef3c411fcb90a2e8e0315b1362286",
+    "request_sha256": "87cbcd8e9430b1178a214be9bd006157b2d4fc175d73ee82cc8ad37958c7bd65",
+    "exit": 0,
+    "finished": "2026-11-23T02:58:57.876752792Z",
+    "descendants": "drained",
+    "output_bytes": 8031
+  },
+  "DNS refusal": {
+    "id": "p3-f747-harvester-real-public-versioned-folder-and-file-census",
+    "worker": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+    "generation": "2165e4ee09653b8dbf09d4229e7f8586ddee78d6d9e96949c67563919b2f6ab5",
+    "request_sha256": "93eb5403c9849a8692ec17da91dbc7baaf91ca4eda28b181dce72762de54d142",
+    "exit": 1,
+    "finished": "2026-11-23T03:00:56.245582323Z",
+    "descendants": "drained",
+    "output_bytes": 2619
+  },
+  "complete metadata file roster": {
+    "id": "p3-f747-plaza-public-roster-collector-with-bounded-dns-recovery",
+    "worker": "node-18e8f0af63153c48a7b4df95850dca06",
+    "generation": "ac333e8ff34ad1ee92294abcb57d587d246d813a823fdd38a2285c06670ee396",
+    "request_sha256": "61cb30907f47d36c50c0f090302188c85c3d93d45eac2e2f477ee18b818de260",
+    "exit": 0,
+    "finished": "2026-11-23T03:01:56.958209202Z",
+    "descendants": "drained",
+    "output_bytes": 25501
+  },
+  "31 source sessions": {
+    "id": "p3-f747-plaza-31-loaded-sessions-only-calibration-intake",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "22196ab5291281ffe0a36ce85c3c5010998672dcab58c37aa1dd084848232e03",
+    "request_sha256": "da2cb5e71eb4531f6affe6f084df1c3f69e802c9f6832f7988ce3d27b4cceb52",
+    "exit": 0,
+    "finished": "2026-11-23T03:04:27.246930618Z",
+    "descendants": "drained",
+    "output_bytes": 1008
+  },
+  "source clocks and extrema": {
+    "id": "p3-f747-plaza-source-only-clocks-angle-support-and-terminal-raw-extremes",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "05e4a8a70e8ad1ef3bc0f9a3d89f147b0e165e67ec5cc512f34bb29d7cafd868",
+    "request_sha256": "9e4cee6ae98ecfc8436f1337be437653aa796f970f5eb095db0bbc63739c761a",
+    "exit": 0,
+    "finished": "2026-11-23T03:05:08.899390139Z",
+    "descendants": "drained",
+    "output_bytes": 15906
+  },
+  "source missing response refusal": {
+    "id": "p3-f747-plaza-31-loaded-whole-session-cv-seven-physics-and-path-baselines",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "7586c56cb7cec1feb441880a9143080524fc0f74f9b1db1aa1c1ec8e27bd39fa",
+    "request_sha256": "193707276fd547c72dc6567f1cbe09d07cefdfced1144a895eade97e8c4abc1f",
+    "exit": 1,
+    "finished": "2026-11-23T03:08:03.667775473Z",
+    "descendants": "drained",
+    "output_bytes": 1678
+  },
+  "three missing source cells": {
+    "id": "p3-f747-plaza-source-only-nonfinite-sample-and-channel-census",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "e9c22dfe27e04faa42e21f439037bdbd3117c92b5fb77f15ed1e58eeaee8ae1d",
+    "request_sha256": "8a52e4af52af9c5318f9f831884dc8b6ddf7c5b806edfd7e38964549a2311da0",
+    "exit": 0,
+    "finished": "2026-11-23T03:08:27.965436317Z",
+    "descendants": "drained",
+    "output_bytes": 945
+  },
+  "source calibration": {
+    "id": "p3-f747-plaza-loaded-source-local-integration-with-three-absent-samples",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "8cbfed3621db2c20788cb4b299e8fc8b42ee5fae4464effe8c82140cbfe432ff",
+    "request_sha256": "9be2af918dfde26f7ecb9747aae52c6f99728c38d824676af9bf6889141fc771",
+    "exit": 0,
+    "finished": "2026-11-23T03:09:32.904747952Z",
+    "descendants": "drained",
+    "output_bytes": 4017
+  },
+  "final nested source fit": {
+    "id": "p3-f747-plaza-matched-blade-sharing-nonconservative-path-and-load-sensitivity",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "562a7f082d7ec5a085a9a7d0a5e50e7a2db34a7a440560175992ad8d36b2a4c2",
+    "request_sha256": "916459272eb4890e2971aab2598e78def6cd4afea1b24119d315b6336a285b3f",
+    "exit": 0,
+    "finished": "2026-11-23T03:11:10.73110754Z",
+    "descendants": "drained",
+    "output_bytes": 4962
+  },
+  "240 Hz registration refusal": {
+    "id": "p3-f747-plaza-open-motion-only-forty-five-frozen-electromagnetic-forecasts",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "a77f38a64582364cdfc94424ebad084243fe22a419f019cbf2fdf8fd79e1c8da",
+    "request_sha256": "a71c6909f680a1bd76c489a93ee2f64a4644ff4e3fe8bc3c20de1f4e4cb59c9f",
+    "exit": 1,
+    "finished": "2026-11-23T03:14:11.161293181Z",
+    "descendants": "drained",
+    "output_bytes": 743
+  },
+  "timestamp-only qualification": {
+    "id": "p3-f747-plaza-open-optical-time-only-original-refusal-diagnosis",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "d6517debfc6ce07998e011da679e21c121e995b82302bd5eff3e87d3771b0fac",
+    "request_sha256": "aa7de54d74d8b10120b260165242f662d4bff0f67a4a6f34adcaf5e560fb2834",
+    "exit": 0,
+    "finished": "2026-11-23T03:15:04.945058065Z",
+    "descendants": "drained",
+    "output_bytes": 1151
+  },
+  "45 forecasts": {
+    "id": "p3-f747-plaza-correct-native-angle-clock-unchanged-108000-voltage-forecasts",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "619e5fa3feedbee5083c53751199418b91aa19ed8e37dc90490c4398281c1556",
+    "request_sha256": "cdf6456b3ac499eda881e6d6bd4d5280d18bd9e6e9de15ae4a85cfa0e37d86cd",
+    "exit": 0,
+    "finished": "2026-11-23T03:17:03.229232103Z",
+    "descendants": "drained",
+    "output_bytes": 877494
+  },
+  "physical target scoring": {
+    "id": "p3-f747-plaza-git-locked-open-circuit-actual-five-recordings-receiver",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "8568a6fe529896429bdcb34ec343e29d48c150892506089d9b05fe999bc604f9",
+    "request_sha256": "7722860b1b0bbf439ac675644e36058768a4c6dd565c824c6881058cf1bdefd1",
+    "exit": 0,
+    "finished": "2026-11-23T03:21:12.160496577Z",
+    "descendants": "drained",
+    "output_bytes": 51921
+  },
+  "separate physical score recount": {
+    "id": "p3-f747-plaza-independent-24-coil-decimal-voltage-recount",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "bc854d0bc3edb8f6e82c05d9ed112ebc1b6c599f02ce14ce7c21cb86102f2e35",
+    "request_sha256": "48bc1fb97fec2b37876b69687ce835bcff40fde7092da668c26fc954cc82ea84",
+    "exit": 0,
+    "finished": "2026-11-23T03:22:32.332683917Z",
+    "descendants": "drained",
+    "output_bytes": 332
+  },
+  "worst native episode": {
+    "id": "p3-f747-plaza-worst-coil19-sign-reversal-per-blade-and-native-clock-receiver",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "f944970f7798ecf4f5e7c836af13a4ded86fca304ae0fd06d8b5db7d9e614518",
+    "request_sha256": "d963bd09a19cea2fda8bc715545afba9e90dc3c2478427d7e394430b74fcc2d4",
+    "exit": 0,
+    "finished": "2026-11-23T03:23:03.562123374Z",
+    "descendants": "drained",
+    "output_bytes": 2368
+  },
+  "weight readback": {
+    "id": "p3-f747-plaza-original-31-session-weights-and-all-development-errors-escrow",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "generation": "e5176016d160dfca99772d93fe5833dd592af4c31a329c2686c6c20eb17be44a",
+    "request_sha256": "1c93ad8f9f4a4294b175197d73b55119838d36eb3d187707ccace8a706fb235c",
+    "exit": 0,
+    "finished": "2026-11-23T03:24:01.183871073Z",
+    "descendants": "drained",
+    "output_bytes": 182891
+  }
+}

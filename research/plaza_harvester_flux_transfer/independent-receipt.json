@@ -1,0 +1,14 @@
+{
+  "all_means_pass": true,
+  "finite_residuals": 107991,
+  "gate": false,
+  "max_absolute_difference": "2.666675308233607211150229E-16",
+  "measured_cells": 11999,
+  "physical_source": "five original voltage CSVs",
+  "recount_checks": 12143,
+  "total_forecasts": 108000,
+  "wins": {
+    "load-blind": 5,
+    "shared-path": 3
+  }
+}

@@ -1,0 +1,1343 @@
+{
+  "schema": 1,
+  "url": "http://www.ok.sc.e.titech.ac.jp/res/PolarDem/data/Dataset.zip",
+  "archive_bytes": 3390596418,
+  "directory_sha256": "5ab684df063705737250a3194d0d44d2d802588e8d96728c3add06926d29f489",
+  "source_sha": "bef123c5024aca12ef0eeae70fb98fedd665bf13",
+  "split": {
+    "training": [
+      "ball",
+      "box",
+      "glass",
+      "hand",
+      "lamp",
+      "outside",
+      "outside2",
+      "package",
+      "pencil",
+      "pot",
+      "shell",
+      "smartphone",
+      "yarn"
+    ],
+    "development": [
+      "bus",
+      "car",
+      "chart",
+      "chart2",
+      "cup",
+      "cup2",
+      "doll",
+      "doll2",
+      "glasses",
+      "object",
+      "object2",
+      "ornament",
+      "panda",
+      "snowman",
+      "stuffedtoy"
+    ],
+    "reserve": [
+      "apple",
+      "bottle",
+      "bottle2",
+      "bubblewrap",
+      "clothes",
+      "fabric",
+      "globe",
+      "mirror",
+      "orange",
+      "orgel",
+      "painting",
+      "umbrella"
+    ]
+  },
+  "pngs": {
+    "Dataset/png/apple/0.png": {
+      "name": "Dataset/png/apple/0.png",
+      "method": 8,
+      "crc32": 1921593154,
+      "size": 3488780,
+      "compressed": 3485752,
+      "offset": 2806350545
+    },
+    "Dataset/png/apple/135.png": {
+      "name": "Dataset/png/apple/135.png",
+      "method": 8,
+      "crc32": 1843476148,
+      "size": 3500405,
+      "compressed": 3497232,
+      "offset": 2809836350
+    },
+    "Dataset/png/apple/45.png": {
+      "name": "Dataset/png/apple/45.png",
+      "method": 8,
+      "crc32": 1549911742,
+      "size": 3508791,
+      "compressed": 3505602,
+      "offset": 2813333637
+    },
+    "Dataset/png/apple/90.png": {
+      "name": "Dataset/png/apple/90.png",
+      "method": 8,
+      "crc32": 3733922113,
+      "size": 3472757,
+      "compressed": 3470024,
+      "offset": 2816839293
+    },
+    "Dataset/png/ball/0.png": {
+      "name": "Dataset/png/ball/0.png",
+      "method": 8,
+      "crc32": 1972575908,
+      "size": 3513576,
+      "compressed": 3511040,
+      "offset": 2820309418
+    },
+    "Dataset/png/ball/135.png": {
+      "name": "Dataset/png/ball/135.png",
+      "method": 8,
+      "crc32": 3339410713,
+      "size": 3515292,
+      "compressed": 3512902,
+      "offset": 2823820510
+    },
+    "Dataset/png/ball/45.png": {
+      "name": "Dataset/png/ball/45.png",
+      "method": 8,
+      "crc32": 3607635631,
+      "size": 3520371,
+      "compressed": 3518317,
+      "offset": 2827333466
+    },
+    "Dataset/png/ball/90.png": {
+      "name": "Dataset/png/ball/90.png",
+      "method": 8,
+      "crc32": 2277169883,
+      "size": 3511496,
+      "compressed": 3508932,
+      "offset": 2830851836
+    },
+    "Dataset/png/bottle/0.png": {
+      "name": "Dataset/png/bottle/0.png",
+      "method": 8,
+      "crc32": 2334666328,
+      "size": 3614685,
+      "compressed": 3613104,
+      "offset": 2834360870
+    },
+    "Dataset/png/bottle/135.png": {
+      "name": "Dataset/png/bottle/135.png",
+      "method": 8,
+      "crc32": 854067971,
+      "size": 3626592,
+      "compressed": 3625267,
+      "offset": 2837974028
+    },
+    "Dataset/png/bottle/45.png": {
+      "name": "Dataset/png/bottle/45.png",
+      "method": 8,
+      "crc32": 131395415,
+      "size": 3629671,
+      "compressed": 3628352,
+      "offset": 2841599351
+    },
+    "Dataset/png/bottle/90.png": {
+      "name": "Dataset/png/bottle/90.png",
+      "method": 8,
+      "crc32": 3853520102,
+      "size": 3614788,
+      "compressed": 3614055,
+      "offset": 2845227758
+    },
+    "Dataset/png/bottle2/0.png": {
+      "name": "Dataset/png/bottle2/0.png",
+      "method": 8,
+      "crc32": 1026558442,
+      "size": 3709038,
+      "compressed": 3708289,
+      "offset": 2848841918
+    },
+    "Dataset/png/bottle2/135.png": {
+      "name": "Dataset/png/bottle2/135.png",
+      "method": 8,
+      "crc32": 586690298,
+      "size": 3728213,
+      "compressed": 3727207,
+      "offset": 2852550262
+    },
+    "Dataset/png/bottle2/45.png": {
+      "name": "Dataset/png/bottle2/45.png",
+      "method": 8,
+      "crc32": 2051932243,
+      "size": 3729101,
+      "compressed": 3728075,
+      "offset": 2856277526
+    },
+    "Dataset/png/bottle2/90.png": {
+      "name": "Dataset/png/bottle2/90.png",
+      "method": 8,
+      "crc32": 2776118849,
+      "size": 3714130,
+      "compressed": 3713170,
+      "offset": 2860005657
+    },
+    "Dataset/png/box/0.png": {
+      "name": "Dataset/png/box/0.png",
+      "method": 0,
+      "crc32": 2743243478,
+      "size": 3993226,
+      "compressed": 3993226,
+      "offset": 2863718929
+    },
+    "Dataset/png/box/135.png": {
+      "name": "Dataset/png/box/135.png",
+      "method": 0,
+      "crc32": 3845619927,
+      "size": 3994187,
+      "compressed": 3994187,
+      "offset": 2867712206
+    },
+    "Dataset/png/box/45.png": {
+      "name": "Dataset/png/box/45.png",
+      "method": 0,
+      "crc32": 572455727,
+      "size": 4018905,
+      "compressed": 4018905,
+      "offset": 2871706446
+    },
+    "Dataset/png/box/90.png": {
+      "name": "Dataset/png/box/90.png",
+      "method": 0,
+      "crc32": 643370685,
+      "size": 3942882,
+      "compressed": 3942882,
+      "offset": 2875725403
+    },
+    "Dataset/png/bubblewrap/0.png": {
+      "name": "Dataset/png/bubblewrap/0.png",
+      "method": 0,
+      "crc32": 2852393228,
+      "size": 4065278,
+      "compressed": 4065278,
+      "offset": 2879668390
+    },
+    "Dataset/png/bubblewrap/135.png": {
+      "name": "Dataset/png/bubblewrap/135.png",
+      "method": 0,
+      "crc32": 3491612693,
+      "size": 4025291,
+      "compressed": 4025291,
+      "offset": 2883733726
+    },
+    "Dataset/png/bubblewrap/45.png": {
+      "name": "Dataset/png/bubblewrap/45.png",
+      "method": 0,
+      "crc32": 717036169,
+      "size": 4061041,
+      "compressed": 4061041,
+      "offset": 2887759077
+    },
+    "Dataset/png/bubblewrap/90.png": {
+      "name": "Dataset/png/bubblewrap/90.png",
+      "method": 0,
+      "crc32": 1939096525,
+      "size": 3964626,
+      "compressed": 3964626,
+      "offset": 2891820177
+    },
+    "Dataset/png/bus/0.png": {
+      "name": "Dataset/png/bus/0.png",
+      "method": 8,
+      "crc32": 1454887380,
+      "size": 3670390,
+      "compressed": 3669342,
+      "offset": 2895784908
+    },
+    "Dataset/png/bus/135.png": {
+      "name": "Dataset/png/bus/135.png",
+      "method": 8,
+      "crc32": 657608556,
+      "size": 3682883,
+      "compressed": 3681855,
+      "offset": 2899454301
+    },
+    "Dataset/png/bus/45.png": {
+      "name": "Dataset/png/bus/45.png",
+      "method": 8,
+      "crc32": 3001287743,
+      "size": 3689622,
+      "compressed": 3688442,
+      "offset": 2903136209
+    },
+    "Dataset/png/bus/90.png": {
+      "name": "Dataset/png/bus/90.png",
+      "method": 8,
+      "crc32": 804572111,
+      "size": 3664346,
+      "compressed": 3663112,
+      "offset": 2906824703
+    },
+    "Dataset/png/car/0.png": {
+      "name": "Dataset/png/car/0.png",
+      "method": 0,
+      "crc32": 282657544,
+      "size": 3923439,
+      "compressed": 3923439,
+      "offset": 2910487913
+    },
+    "Dataset/png/car/135.png": {
+      "name": "Dataset/png/car/135.png",
+      "method": 0,
+      "crc32": 2282473175,
+      "size": 3934203,
+      "compressed": 3934203,
+      "offset": 2914411403
+    },
+    "Dataset/png/car/45.png": {
+      "name": "Dataset/png/car/45.png",
+      "method": 0,
+      "crc32": 314628621,
+      "size": 3938971,
+      "compressed": 3938971,
+      "offset": 2918345659
+    },
+    "Dataset/png/car/90.png": {
+      "name": "Dataset/png/car/90.png",
+      "method": 0,
+      "crc32": 3450031694,
+      "size": 3907532,
+      "compressed": 3907532,
+      "offset": 2922284682
+    },
+    "Dataset/png/chart/0.png": {
+      "name": "Dataset/png/chart/0.png",
+      "method": 8,
+      "crc32": 4040670441,
+      "size": 3327264,
+      "compressed": 3325415,
+      "offset": 2926192314
+    },
+    "Dataset/png/chart/135.png": {
+      "name": "Dataset/png/chart/135.png",
+      "method": 8,
+      "crc32": 4068098161,
+      "size": 3352101,
+      "compressed": 3350342,
+      "offset": 2929517782
+    },
+    "Dataset/png/chart/45.png": {
+      "name": "Dataset/png/chart/45.png",
+      "method": 8,
+      "crc32": 4085816520,
+      "size": 3349905,
+      "compressed": 3348267,
+      "offset": 2932868179
+    },
+    "Dataset/png/chart/90.png": {
+      "name": "Dataset/png/chart/90.png",
+      "method": 8,
+      "crc32": 3414968308,
+      "size": 3335579,
+      "compressed": 3333699,
+      "offset": 2936216500
+    },
+    "Dataset/png/chart2/0.png": {
+      "name": "Dataset/png/chart2/0.png",
+      "method": 8,
+      "crc32": 3308355247,
+      "size": 3318622,
+      "compressed": 3313852,
+      "offset": 2939550302
+    },
+    "Dataset/png/chart2/135.png": {
+      "name": "Dataset/png/chart2/135.png",
+      "method": 8,
+      "crc32": 1734324837,
+      "size": 3345033,
+      "compressed": 3340692,
+      "offset": 2942864208
+    },
+    "Dataset/png/chart2/45.png": {
+      "name": "Dataset/png/chart2/45.png",
+      "method": 8,
+      "crc32": 3092694946,
+      "size": 3352619,
+      "compressed": 3348758,
+      "offset": 2946204956
+    },
+    "Dataset/png/chart2/90.png": {
+      "name": "Dataset/png/chart2/90.png",
+      "method": 8,
+      "crc32": 2488570625,
+      "size": 3329364,
+      "compressed": 3324553,
+      "offset": 2949553769
+    },
+    "Dataset/png/clothes/0.png": {
+      "name": "Dataset/png/clothes/0.png",
+      "method": 0,
+      "crc32": 1872913107,
+      "size": 3956553,
+      "compressed": 3956553,
+      "offset": 2952878427
+    },
+    "Dataset/png/clothes/135.png": {
+      "name": "Dataset/png/clothes/135.png",
+      "method": 0,
+      "crc32": 2109060874,
+      "size": 3981106,
+      "compressed": 3981106,
+      "offset": 2956835035
+    },
+    "Dataset/png/clothes/45.png": {
+      "name": "Dataset/png/clothes/45.png",
+      "method": 0,
+      "crc32": 923947096,
+      "size": 3970701,
+      "compressed": 3970701,
+      "offset": 2960816198
+    },
+    "Dataset/png/clothes/90.png": {
+      "name": "Dataset/png/clothes/90.png",
+      "method": 0,
+      "crc32": 4082805463,
+      "size": 3952571,
+      "compressed": 3952571,
+      "offset": 2964786955
+    },
+    "Dataset/png/cup/0.png": {
+      "name": "Dataset/png/cup/0.png",
+      "method": 8,
+      "crc32": 2624430579,
+      "size": 3699890,
+      "compressed": 3698338,
+      "offset": 2968739628
+    },
+    "Dataset/png/cup/135.png": {
+      "name": "Dataset/png/cup/135.png",
+      "method": 8,
+      "crc32": 1782727926,
+      "size": 3717430,
+      "compressed": 3716314,
+      "offset": 2972438017
+    },
+    "Dataset/png/cup/45.png": {
+      "name": "Dataset/png/cup/45.png",
+      "method": 8,
+      "crc32": 2056268367,
+      "size": 3719945,
+      "compressed": 3718555,
+      "offset": 2976154384
+    },
+    "Dataset/png/cup/90.png": {
+      "name": "Dataset/png/cup/90.png",
+      "method": 8,
+      "crc32": 3111200247,
+      "size": 3688840,
+      "compressed": 3686972,
+      "offset": 2979872991
+    },
+    "Dataset/png/cup2/0.png": {
+      "name": "Dataset/png/cup2/0.png",
+      "method": 8,
+      "crc32": 3071607542,
+      "size": 3815958,
+      "compressed": 3815890,
+      "offset": 2983560062
+    },
+    "Dataset/png/cup2/135.png": {
+      "name": "Dataset/png/cup2/135.png",
+      "method": 8,
+      "crc32": 3668290466,
+      "size": 3820645,
+      "compressed": 3820523,
+      "offset": 2987376004
+    },
+    "Dataset/png/cup2/45.png": {
+      "name": "Dataset/png/cup2/45.png",
+      "method": 0,
+      "crc32": 2012259538,
+      "size": 3825095,
+      "compressed": 3825095,
+      "offset": 2991196581
+    },
+    "Dataset/png/cup2/90.png": {
+      "name": "Dataset/png/cup2/90.png",
+      "method": 8,
+      "crc32": 3659398206,
+      "size": 3806482,
+      "compressed": 3806399,
+      "offset": 2995021729
+    },
+    "Dataset/png/doll/0.png": {
+      "name": "Dataset/png/doll/0.png",
+      "method": 8,
+      "crc32": 3059353601,
+      "size": 3666541,
+      "compressed": 3664058,
+      "offset": 2998828228
+    },
+    "Dataset/png/doll/135.png": {
+      "name": "Dataset/png/doll/135.png",
+      "method": 8,
+      "crc32": 1650027396,
+      "size": 3668741,
+      "compressed": 3666078,
+      "offset": 3002492338
+    },
+    "Dataset/png/doll/45.png": {
+      "name": "Dataset/png/doll/45.png",
+      "method": 8,
+      "crc32": 1809725925,
+      "size": 3673903,
+      "compressed": 3671381,
+      "offset": 3006158470
+    },
+    "Dataset/png/doll/90.png": {
+      "name": "Dataset/png/doll/90.png",
+      "method": 8,
+      "crc32": 2864796626,
+      "size": 3653674,
+      "compressed": 3650932,
+      "offset": 3009829904
+    },
+    "Dataset/png/doll2/0.png": {
+      "name": "Dataset/png/doll2/0.png",
+      "method": 0,
+      "crc32": 1631209096,
+      "size": 3857271,
+      "compressed": 3857271,
+      "offset": 3013480937
+    },
+    "Dataset/png/doll2/135.png": {
+      "name": "Dataset/png/doll2/135.png",
+      "method": 0,
+      "crc32": 2820514210,
+      "size": 3888487,
+      "compressed": 3888487,
+      "offset": 3017338261
+    },
+    "Dataset/png/doll2/45.png": {
+      "name": "Dataset/png/doll2/45.png",
+      "method": 0,
+      "crc32": 4291739157,
+      "size": 3892350,
+      "compressed": 3892350,
+      "offset": 3021226803
+    },
+    "Dataset/png/doll2/90.png": {
+      "name": "Dataset/png/doll2/90.png",
+      "method": 0,
+      "crc32": 1485334583,
+      "size": 3856512,
+      "compressed": 3856512,
+      "offset": 3025119207
+    },
+    "Dataset/png/fabric/0.png": {
+      "name": "Dataset/png/fabric/0.png",
+      "method": 0,
+      "crc32": 1983522020,
+      "size": 4065808,
+      "compressed": 4065808,
+      "offset": 3028975822
+    },
+    "Dataset/png/fabric/135.png": {
+      "name": "Dataset/png/fabric/135.png",
+      "method": 0,
+      "crc32": 2625291789,
+      "size": 4093676,
+      "compressed": 4093676,
+      "offset": 3033041684
+    },
+    "Dataset/png/fabric/45.png": {
+      "name": "Dataset/png/fabric/45.png",
+      "method": 0,
+      "crc32": 3870685799,
+      "size": 4098281,
+      "compressed": 4098281,
+      "offset": 3037135416
+    },
+    "Dataset/png/fabric/90.png": {
+      "name": "Dataset/png/fabric/90.png",
+      "method": 0,
+      "crc32": 2966769921,
+      "size": 4065064,
+      "compressed": 4065064,
+      "offset": 3041233752
+    },
+    "Dataset/png/glass/0.png": {
+      "name": "Dataset/png/glass/0.png",
+      "method": 8,
+      "crc32": 3323464960,
+      "size": 3510846,
+      "compressed": 3508596,
+      "offset": 3045298919
+    },
+    "Dataset/png/glass/135.png": {
+      "name": "Dataset/png/glass/135.png",
+      "method": 8,
+      "crc32": 3040007698,
+      "size": 3492594,
+      "compressed": 3490819,
+      "offset": 3048807568
+    },
+    "Dataset/png/glass/45.png": {
+      "name": "Dataset/png/glass/45.png",
+      "method": 8,
+      "crc32": 3044423993,
+      "size": 3499864,
+      "compressed": 3497525,
+      "offset": 3052298442
+    },
+    "Dataset/png/glass/90.png": {
+      "name": "Dataset/png/glass/90.png",
+      "method": 8,
+      "crc32": 3753441705,
+      "size": 3512338,
+      "compressed": 3510349,
+      "offset": 3055796021
+    },
+    "Dataset/png/glasses/0.png": {
+      "name": "Dataset/png/glasses/0.png",
+      "method": 8,
+      "crc32": 694843163,
+      "size": 3524833,
+      "compressed": 3522894,
+      "offset": 3059306474
+    },
+    "Dataset/png/glasses/135.png": {
+      "name": "Dataset/png/glasses/135.png",
+      "method": 8,
+      "crc32": 3994029315,
+      "size": 3503497,
+      "compressed": 3501487,
+      "offset": 3062829423
+    },
+    "Dataset/png/glasses/45.png": {
+      "name": "Dataset/png/glasses/45.png",
+      "method": 8,
+      "crc32": 960231605,
+      "size": 3496197,
+      "compressed": 3494660,
+      "offset": 3066330967
+    },
+    "Dataset/png/glasses/90.png": {
+      "name": "Dataset/png/glasses/90.png",
+      "method": 8,
+      "crc32": 2636441919,
+      "size": 3518046,
+      "compressed": 3516559,
+      "offset": 3069825683
+    },
+    "Dataset/png/globe/0.png": {
+      "name": "Dataset/png/globe/0.png",
+      "method": 8,
+      "crc32": 3823412006,
+      "size": 3530997,
+      "compressed": 3525434,
+      "offset": 3073342346
+    },
+    "Dataset/png/globe/135.png": {
+      "name": "Dataset/png/globe/135.png",
+      "method": 8,
+      "crc32": 3287024569,
+      "size": 3542988,
+      "compressed": 3537595,
+      "offset": 3076867833
+    },
+    "Dataset/png/globe/45.png": {
+      "name": "Dataset/png/globe/45.png",
+      "method": 8,
+      "crc32": 3717342002,
+      "size": 3546649,
+      "compressed": 3540879,
+      "offset": 3080405483
+    },
+    "Dataset/png/globe/90.png": {
+      "name": "Dataset/png/globe/90.png",
+      "method": 8,
+      "crc32": 1345895039,
+      "size": 3543872,
+      "compressed": 3538516,
+      "offset": 3083946416
+    },
+    "Dataset/png/hand/0.png": {
+      "name": "Dataset/png/hand/0.png",
+      "method": 8,
+      "crc32": 1450504556,
+      "size": 3445704,
+      "compressed": 3445285,
+      "offset": 3087485033
+    },
+    "Dataset/png/hand/135.png": {
+      "name": "Dataset/png/hand/135.png",
+      "method": 8,
+      "crc32": 3972349724,
+      "size": 3450903,
+      "compressed": 3449890,
+      "offset": 3090930370
+    },
+    "Dataset/png/hand/45.png": {
+      "name": "Dataset/png/hand/45.png",
+      "method": 8,
+      "crc32": 1745754868,
+      "size": 3447082,
+      "compressed": 3446734,
+      "offset": 3094380314
+    },
+    "Dataset/png/hand/90.png": {
+      "name": "Dataset/png/hand/90.png",
+      "method": 8,
+      "crc32": 1599343083,
+      "size": 3446526,
+      "compressed": 3446018,
+      "offset": 3097827101
+    },
+    "Dataset/png/lamp/0.png": {
+      "name": "Dataset/png/lamp/0.png",
+      "method": 8,
+      "crc32": 3026546563,
+      "size": 3714114,
+      "compressed": 3713513,
+      "offset": 3101273219
+    },
+    "Dataset/png/lamp/135.png": {
+      "name": "Dataset/png/lamp/135.png",
+      "method": 8,
+      "crc32": 3916849472,
+      "size": 3731256,
+      "compressed": 3730714,
+      "offset": 3104986784
+    },
+    "Dataset/png/lamp/45.png": {
+      "name": "Dataset/png/lamp/45.png",
+      "method": 8,
+      "crc32": 4054423839,
+      "size": 3738078,
+      "compressed": 3737547,
+      "offset": 3108717552
+    },
+    "Dataset/png/lamp/90.png": {
+      "name": "Dataset/png/lamp/90.png",
+      "method": 8,
+      "crc32": 3188060980,
+      "size": 3710175,
+      "compressed": 3709621,
+      "offset": 3112455152
+    },
+    "Dataset/png/mirror/0.png": {
+      "name": "Dataset/png/mirror/0.png",
+      "method": 8,
+      "crc32": 2035402844,
+      "size": 3632632,
+      "compressed": 3631227,
+      "offset": 3116164875
+    },
+    "Dataset/png/mirror/135.png": {
+      "name": "Dataset/png/mirror/135.png",
+      "method": 8,
+      "crc32": 828318965,
+      "size": 3663517,
+      "compressed": 3662418,
+      "offset": 3119796156
+    },
+    "Dataset/png/mirror/45.png": {
+      "name": "Dataset/png/mirror/45.png",
+      "method": 8,
+      "crc32": 3141510228,
+      "size": 3632632,
+      "compressed": 3631227,
+      "offset": 3123458630
+    },
+    "Dataset/png/mirror/90.png": {
+      "name": "Dataset/png/mirror/90.png",
+      "method": 8,
+      "crc32": 4214764124,
+      "size": 3630185,
+      "compressed": 3628538,
+      "offset": 3127089912
+    },
+    "Dataset/png/object/0.png": {
+      "name": "Dataset/png/object/0.png",
+      "method": 8,
+      "crc32": 2313318691,
+      "size": 3659546,
+      "compressed": 3658607,
+      "offset": 3130718554
+    },
+    "Dataset/png/object/135.png": {
+      "name": "Dataset/png/object/135.png",
+      "method": 8,
+      "crc32": 4274185965,
+      "size": 3687522,
+      "compressed": 3686495,
+      "offset": 3134377215
+    },
+    "Dataset/png/object/45.png": {
+      "name": "Dataset/png/object/45.png",
+      "method": 8,
+      "crc32": 4164851299,
+      "size": 3689034,
+      "compressed": 3688045,
+      "offset": 3138063766
+    },
+    "Dataset/png/object/90.png": {
+      "name": "Dataset/png/object/90.png",
+      "method": 8,
+      "crc32": 3070101605,
+      "size": 3665254,
+      "compressed": 3664035,
+      "offset": 3141751866
+    },
+    "Dataset/png/object2/0.png": {
+      "name": "Dataset/png/object2/0.png",
+      "method": 8,
+      "crc32": 3633095967,
+      "size": 3791332,
+      "compressed": 3791012,
+      "offset": 3145416006
+    },
+    "Dataset/png/object2/135.png": {
+      "name": "Dataset/png/object2/135.png",
+      "method": 8,
+      "crc32": 1624555254,
+      "size": 3814995,
+      "compressed": 3814605,
+      "offset": 3149207073
+    },
+    "Dataset/png/object2/45.png": {
+      "name": "Dataset/png/object2/45.png",
+      "method": 8,
+      "crc32": 4008264723,
+      "size": 3812576,
+      "compressed": 3812252,
+      "offset": 3153021735
+    },
+    "Dataset/png/object2/90.png": {
+      "name": "Dataset/png/object2/90.png",
+      "method": 8,
+      "crc32": 536729770,
+      "size": 3787787,
+      "compressed": 3787382,
+      "offset": 3156834043
+    },
+    "Dataset/png/orange/0.png": {
+      "name": "Dataset/png/orange/0.png",
+      "method": 8,
+      "crc32": 3497251553,
+      "size": 3358006,
+      "compressed": 3353265,
+      "offset": 3160621530
+    },
+    "Dataset/png/orange/135.png": {
+      "name": "Dataset/png/orange/135.png",
+      "method": 8,
+      "crc32": 4119162688,
+      "size": 3377065,
+      "compressed": 3372242,
+      "offset": 3163974849
+    },
+    "Dataset/png/orange/45.png": {
+      "name": "Dataset/png/orange/45.png",
+      "method": 8,
+      "crc32": 96596966,
+      "size": 3378354,
+      "compressed": 3373426,
+      "offset": 3167347147
+    },
+    "Dataset/png/orange/90.png": {
+      "name": "Dataset/png/orange/90.png",
+      "method": 8,
+      "crc32": 739758897,
+      "size": 3355353,
+      "compressed": 3350696,
+      "offset": 3170720628
+    },
+    "Dataset/png/orgel/0.png": {
+      "name": "Dataset/png/orgel/0.png",
+      "method": 8,
+      "crc32": 3982640049,
+      "size": 3624894,
+      "compressed": 3623789,
+      "offset": 3174071427
+    },
+    "Dataset/png/orgel/135.png": {
+      "name": "Dataset/png/orgel/135.png",
+      "method": 8,
+      "crc32": 4076847843,
+      "size": 3622876,
+      "compressed": 3622433,
+      "offset": 3177695269
+    },
+    "Dataset/png/orgel/45.png": {
+      "name": "Dataset/png/orgel/45.png",
+      "method": 8,
+      "crc32": 1621616793,
+      "size": 3626482,
+      "compressed": 3625213,
+      "offset": 3181317757
+    },
+    "Dataset/png/orgel/90.png": {
+      "name": "Dataset/png/orgel/90.png",
+      "method": 8,
+      "crc32": 1414151985,
+      "size": 3618392,
+      "compressed": 3617311,
+      "offset": 3184943024
+    },
+    "Dataset/png/ornament/0.png": {
+      "name": "Dataset/png/ornament/0.png",
+      "method": 8,
+      "crc32": 1327140376,
+      "size": 3513249,
+      "compressed": 3508865,
+      "offset": 3188560440
+    },
+    "Dataset/png/ornament/135.png": {
+      "name": "Dataset/png/ornament/135.png",
+      "method": 8,
+      "crc32": 567694597,
+      "size": 3507563,
+      "compressed": 3502606,
+      "offset": 3192069361
+    },
+    "Dataset/png/ornament/45.png": {
+      "name": "Dataset/png/ornament/45.png",
+      "method": 8,
+      "crc32": 2729074950,
+      "size": 3513249,
+      "compressed": 3508865,
+      "offset": 3195572025
+    },
+    "Dataset/png/ornament/90.png": {
+      "name": "Dataset/png/ornament/90.png",
+      "method": 8,
+      "crc32": 177282033,
+      "size": 3495670,
+      "compressed": 3489046,
+      "offset": 3199080947
+    },
+    "Dataset/png/outside/0.png": {
+      "name": "Dataset/png/outside/0.png",
+      "method": 8,
+      "crc32": 2774809501,
+      "size": 3456054,
+      "compressed": 3455095,
+      "offset": 3202570100
+    },
+    "Dataset/png/outside/135.png": {
+      "name": "Dataset/png/outside/135.png",
+      "method": 8,
+      "crc32": 3079161011,
+      "size": 3490455,
+      "compressed": 3489226,
+      "offset": 3206025250
+    },
+    "Dataset/png/outside/45.png": {
+      "name": "Dataset/png/outside/45.png",
+      "method": 8,
+      "crc32": 2437830633,
+      "size": 3338057,
+      "compressed": 3332218,
+      "offset": 3209514533
+    },
+    "Dataset/png/outside/90.png": {
+      "name": "Dataset/png/outside/90.png",
+      "method": 8,
+      "crc32": 4112414207,
+      "size": 3310188,
+      "compressed": 3304723,
+      "offset": 3212846807
+    },
+    "Dataset/png/outside2/0.png": {
+      "name": "Dataset/png/outside2/0.png",
+      "method": 8,
+      "crc32": 3007710378,
+      "size": 3401962,
+      "compressed": 3398059,
+      "offset": 3216151637
+    },
+    "Dataset/png/outside2/135.png": {
+      "name": "Dataset/png/outside2/135.png",
+      "method": 8,
+      "crc32": 2756716565,
+      "size": 3539619,
+      "compressed": 3537149,
+      "offset": 3219549752
+    },
+    "Dataset/png/outside2/45.png": {
+      "name": "Dataset/png/outside2/45.png",
+      "method": 8,
+      "crc32": 883262190,
+      "size": 3438125,
+      "compressed": 3435069,
+      "offset": 3223086959
+    },
+    "Dataset/png/outside2/90.png": {
+      "name": "Dataset/png/outside2/90.png",
+      "method": 8,
+      "crc32": 2454744510,
+      "size": 3469778,
+      "compressed": 3467319,
+      "offset": 3226522085
+    },
+    "Dataset/png/package/0.png": {
+      "name": "Dataset/png/package/0.png",
+      "method": 8,
+      "crc32": 1281985515,
+      "size": 3667832,
+      "compressed": 3666287,
+      "offset": 3229989511
+    },
+    "Dataset/png/package/135.png": {
+      "name": "Dataset/png/package/135.png",
+      "method": 8,
+      "crc32": 2608163048,
+      "size": 3677272,
+      "compressed": 3675900,
+      "offset": 3233655853
+    },
+    "Dataset/png/package/45.png": {
+      "name": "Dataset/png/package/45.png",
+      "method": 8,
+      "crc32": 247886994,
+      "size": 3679732,
+      "compressed": 3678810,
+      "offset": 3237331810
+    },
+    "Dataset/png/package/90.png": {
+      "name": "Dataset/png/package/90.png",
+      "method": 8,
+      "crc32": 3898644116,
+      "size": 3661966,
+      "compressed": 3660554,
+      "offset": 3241010676
+    },
+    "Dataset/png/panda/0.png": {
+      "name": "Dataset/png/panda/0.png",
+      "method": 8,
+      "crc32": 2652715892,
+      "size": 3437721,
+      "compressed": 3435452,
+      "offset": 3244671334
+    },
+    "Dataset/png/panda/135.png": {
+      "name": "Dataset/png/panda/135.png",
+      "method": 8,
+      "crc32": 4187375630,
+      "size": 3442411,
+      "compressed": 3440519,
+      "offset": 3248106839
+    },
+    "Dataset/png/panda/45.png": {
+      "name": "Dataset/png/panda/45.png",
+      "method": 8,
+      "crc32": 2163387276,
+      "size": 3454828,
+      "compressed": 3453102,
+      "offset": 3251547413
+    },
+    "Dataset/png/panda/90.png": {
+      "name": "Dataset/png/panda/90.png",
+      "method": 8,
+      "crc32": 1956929957,
+      "size": 3431982,
+      "compressed": 3429977,
+      "offset": 3255000569
+    },
+    "Dataset/png/pencil/0.png": {
+      "name": "Dataset/png/pencil/0.png",
+      "method": 8,
+      "crc32": 1108190647,
+      "size": 3870779,
+      "compressed": 3869903,
+      "offset": 3258430649
+    },
+    "Dataset/png/pencil/135.png": {
+      "name": "Dataset/png/pencil/135.png",
+      "method": 8,
+      "crc32": 1517982917,
+      "size": 3892795,
+      "compressed": 3892105,
+      "offset": 3262300606
+    },
+    "Dataset/png/pencil/45.png": {
+      "name": "Dataset/png/pencil/45.png",
+      "method": 8,
+      "crc32": 1310849422,
+      "size": 3887080,
+      "compressed": 3886496,
+      "offset": 3266192767
+    },
+    "Dataset/png/pencil/90.png": {
+      "name": "Dataset/png/pencil/90.png",
+      "method": 8,
+      "crc32": 217936722,
+      "size": 3867383,
+      "compressed": 3865893,
+      "offset": 3270079318
+    },
+    "Dataset/png/pinting/0.png": {
+      "name": "Dataset/png/pinting/0.png",
+      "method": 0,
+      "crc32": 2725976349,
+      "size": 3789866,
+      "compressed": 3789866,
+      "offset": 3273945316
+    },
+    "Dataset/png/pinting/135.png": {
+      "name": "Dataset/png/pinting/135.png",
+      "method": 0,
+      "crc32": 3604772525,
+      "size": 3809110,
+      "compressed": 3809110,
+      "offset": 3277735237
+    },
+    "Dataset/png/pinting/45.png": {
+      "name": "Dataset/png/pinting/45.png",
+      "method": 0,
+      "crc32": 111956332,
+      "size": 3810895,
+      "compressed": 3810895,
+      "offset": 3281544404
+    },
+    "Dataset/png/pinting/90.png": {
+      "name": "Dataset/png/pinting/90.png",
+      "method": 0,
+      "crc32": 82434316,
+      "size": 3778964,
+      "compressed": 3778964,
+      "offset": 3285355355
+    },
+    "Dataset/png/pot/0.png": {
+      "name": "Dataset/png/pot/0.png",
+      "method": 8,
+      "crc32": 2632213066,
+      "size": 3441330,
+      "compressed": 3439443,
+      "offset": 3289134421
+    },
+    "Dataset/png/pot/135.png": {
+      "name": "Dataset/png/pot/135.png",
+      "method": 8,
+      "crc32": 1490638902,
+      "size": 3449975,
+      "compressed": 3448467,
+      "offset": 3292573915
+    },
+    "Dataset/png/pot/45.png": {
+      "name": "Dataset/png/pot/45.png",
+      "method": 8,
+      "crc32": 1462771457,
+      "size": 3456117,
+      "compressed": 3455016,
+      "offset": 3296022435
+    },
+    "Dataset/png/pot/90.png": {
+      "name": "Dataset/png/pot/90.png",
+      "method": 8,
+      "crc32": 3724323125,
+      "size": 3424953,
+      "compressed": 3423540,
+      "offset": 3299477503
+    },
+    "Dataset/png/shell/0.png": {
+      "name": "Dataset/png/shell/0.png",
+      "method": 8,
+      "crc32": 689862649,
+      "size": 3765191,
+      "compressed": 3764507,
+      "offset": 3302901143
+    },
+    "Dataset/png/shell/135.png": {
+      "name": "Dataset/png/shell/135.png",
+      "method": 8,
+      "crc32": 4195450683,
+      "size": 3783591,
+      "compressed": 3782915,
+      "offset": 3306665703
+    },
+    "Dataset/png/shell/45.png": {
+      "name": "Dataset/png/shell/45.png",
+      "method": 8,
+      "crc32": 1726800262,
+      "size": 3785875,
+      "compressed": 3785560,
+      "offset": 3310448673
+    },
+    "Dataset/png/shell/90.png": {
+      "name": "Dataset/png/shell/90.png",
+      "method": 8,
+      "crc32": 259034487,
+      "size": 3762079,
+      "compressed": 3761643,
+      "offset": 3314234287
+    },
+    "Dataset/png/smartphone/0.png": {
+      "name": "Dataset/png/smartphone/0.png",
+      "method": 8,
+      "crc32": 3271461548,
+      "size": 3529367,
+      "compressed": 3526114,
+      "offset": 3317996037
+    },
+    "Dataset/png/smartphone/135.png": {
+      "name": "Dataset/png/smartphone/135.png",
+      "method": 8,
+      "crc32": 962394729,
+      "size": 3530068,
+      "compressed": 3526543,
+      "offset": 3321522209
+    },
+    "Dataset/png/smartphone/45.png": {
+      "name": "Dataset/png/smartphone/45.png",
+      "method": 8,
+      "crc32": 44646505,
+      "size": 3533270,
+      "compressed": 3529789,
+      "offset": 3325048812
+    },
+    "Dataset/png/smartphone/90.png": {
+      "name": "Dataset/png/smartphone/90.png",
+      "method": 8,
+      "crc32": 2219821402,
+      "size": 3518837,
+      "compressed": 3515117,
+      "offset": 3328578660
+    },
+    "Dataset/png/snowman/0.png": {
+      "name": "Dataset/png/snowman/0.png",
+      "method": 8,
+      "crc32": 3766214520,
+      "size": 3569529,
+      "compressed": 3568228,
+      "offset": 3332093886
+    },
+    "Dataset/png/snowman/135.png": {
+      "name": "Dataset/png/snowman/135.png",
+      "method": 8,
+      "crc32": 4233599229,
+      "size": 3586650,
+      "compressed": 3585019,
+      "offset": 3335662169
+    },
+    "Dataset/png/snowman/45.png": {
+      "name": "Dataset/png/snowman/45.png",
+      "method": 8,
+      "crc32": 2240320100,
+      "size": 3584903,
+      "compressed": 3583358,
+      "offset": 3339247245
+    },
+    "Dataset/png/snowman/90.png": {
+      "name": "Dataset/png/snowman/90.png",
+      "method": 8,
+      "crc32": 1465678804,
+      "size": 3570991,
+      "compressed": 3568774,
+      "offset": 3342830659
+    },
+    "Dataset/png/stuffedtoy/0.png": {
+      "name": "Dataset/png/stuffedtoy/0.png",
+      "method": 0,
+      "crc32": 2343034253,
+      "size": 3907352,
+      "compressed": 3907352,
+      "offset": 3346399542
+    },
+    "Dataset/png/stuffedtoy/135.png": {
+      "name": "Dataset/png/stuffedtoy/135.png",
+      "method": 0,
+      "crc32": 3760062,
+      "size": 3927012,
+      "compressed": 3927012,
+      "offset": 3350306952
+    },
+    "Dataset/png/stuffedtoy/45.png": {
+      "name": "Dataset/png/stuffedtoy/45.png",
+      "method": 0,
+      "crc32": 1384552582,
+      "size": 3931063,
+      "compressed": 3931063,
+      "offset": 3354234024
+    },
+    "Dataset/png/stuffedtoy/90.png": {
+      "name": "Dataset/png/stuffedtoy/90.png",
+      "method": 0,
+      "crc32": 254490987,
+      "size": 3900657,
+      "compressed": 3900657,
+      "offset": 3358165146
+    },
+    "Dataset/png/umbrella/0.png": {
+      "name": "Dataset/png/umbrella/0.png",
+      "method": 8,
+      "crc32": 2080287125,
+      "size": 3417986,
+      "compressed": 3414319,
+      "offset": 3362065913
+    },
+    "Dataset/png/umbrella/135.png": {
+      "name": "Dataset/png/umbrella/135.png",
+      "method": 8,
+      "crc32": 1660627866,
+      "size": 3417679,
+      "compressed": 3413755,
+      "offset": 3365480288
+    },
+    "Dataset/png/umbrella/45.png": {
+      "name": "Dataset/png/umbrella/45.png",
+      "method": 8,
+      "crc32": 1570364906,
+      "size": 3435120,
+      "compressed": 3432224,
+      "offset": 3368894101
+    },
+    "Dataset/png/umbrella/90.png": {
+      "name": "Dataset/png/umbrella/90.png",
+      "method": 8,
+      "crc32": 2517634034,
+      "size": 3429620,
+      "compressed": 3426573,
+      "offset": 3372326382
+    },
+    "Dataset/png/yarn/0.png": {
+      "name": "Dataset/png/yarn/0.png",
+      "method": 8,
+      "crc32": 957326980,
+      "size": 3682816,
+      "compressed": 3680972,
+      "offset": 3375753059
+    },
+    "Dataset/png/yarn/135.png": {
+      "name": "Dataset/png/yarn/135.png",
+      "method": 8,
+      "crc32": 2898163015,
+      "size": 3723924,
+      "compressed": 3722147,
+      "offset": 3379434083
+    },
+    "Dataset/png/yarn/45.png": {
+      "name": "Dataset/png/yarn/45.png",
+      "method": 8,
+      "crc32": 1202253241,
+      "size": 3709425,
+      "compressed": 3707882,
+      "offset": 3383156284
+    },
+    "Dataset/png/yarn/90.png": {
+      "name": "Dataset/png/yarn/90.png",
+      "method": 8,
+      "crc32": 547360197,
+      "size": 3708454,
+      "compressed": 3706479,
+      "offset": 3386864219
+    }
+  },
+  "outcome": "separately acquired 135 deg exposure, green 16-bit exported PNG DN divided by 65535; fully hidden for development/reserve predictions",
+  "timing": "sequential stage angles; physical sequence order and timestamps not authenticated; 1000 averaged images per orientation, 40 named scenes not 160000 independent observations",
+  "input": "G at each of three separately acquired angles 0,45,90; complete planes allowed at issuance; no 135 target including registration, target norms, histograms, masks or test tuning",
+  "uncertainty": "all scenes reported, no IID confidence; exact PNG raw acquisitions averaged, not individual camera counts or direct Stokes/stress",
+  "matched_author": "unmodified source EARI and IGRI2 called with observed mask order 90/45/135/0. Populate otherwise unavailable 135 sublattice with clipped co-located Stokes forecast from the three observed green planes. This is synthetic sampling of available inputs; scored target is physical independently acquired 135 frame only. Stock four-physical-angle mosaic is strictly separate and cannot compete. Preserve undefined demo workspace variable; call functions directly.",
+  "course": "Training observations first for fixed mean residual, strongest uncomplicated affine controls and actual worst shift/gain tails; no development or reserve images until forecast contract frozen. Freeze feature family, fitting, support, controls and quantitative gates before any development pixels; prelabel lock includes per-method predicted float32 values/scores only after lock+readback. Never use a measured test 135 for conditioning at any stage."
+}
