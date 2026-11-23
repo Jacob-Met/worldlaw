@@ -1,0 +1,933 @@
+{
+  "archive_sha256": "3f213a17acac029248ee5acbebde5e0d13522d386577e8a393bb1b48a75b45f3",
+  "conditional_mathematical_controls": {
+    "equal_histogram_zero_detuning_powers": [
+      4.405284734569351,
+      0.40528473456935127
+    ],
+    "ideal_rectangular_3mm_response_to_5mm_period": 0.5045511524271047,
+    "reversal_maximum_fixture_difference": 6.661338147750939e-16
+  },
+  "constraint_sensitivity": {
+    "FBG22": {
+      "10": {
+        "complete_offset_windows_s": [],
+        "count": 22,
+        "first_maximizing_offset_s": -57981.625806452,
+        "maximum_compatible": 21,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/FBG/down/2/Responses.20260219171156.txt"
+        ]
+      },
+      "2": {
+        "complete_offset_windows_s": [],
+        "count": 22,
+        "first_maximizing_offset_s": -57977.043478261,
+        "maximum_compatible": 20,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/FBG/up/2200/Responses.20260219163704.txt",
+          "campaign_a/datasources/FBG/down/2/Responses.20260219171156.txt"
+        ]
+      },
+      "20": {
+        "complete_offset_windows_s": [],
+        "count": 22,
+        "first_maximizing_offset_s": -57984.713375796,
+        "maximum_compatible": 21,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/FBG/down/2/Responses.20260219171156.txt"
+        ]
+      },
+      "5": {
+        "complete_offset_windows_s": [],
+        "count": 22,
+        "first_maximizing_offset_s": -57980.335483871,
+        "maximum_compatible": 20,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/FBG/up/2200/Responses.20260219163704.txt",
+          "campaign_a/datasources/FBG/down/2/Responses.20260219171156.txt"
+        ]
+      }
+    },
+    "OFDR19": {
+      "10": {
+        "complete_offset_windows_s": [
+          [
+            -58048.41606765328,
+            -58048.040216114634
+          ],
+          [
+            -58047.21226993865,
+            -57980.779938924126
+          ]
+        ],
+        "count": 19,
+        "first_maximizing_offset_s": -58048.416067653,
+        "maximum_compatible": 19,
+        "misses_at_first_maximum": []
+      },
+      "2": {
+        "complete_offset_windows_s": [],
+        "count": 19,
+        "first_maximizing_offset_s": -58048.265727038,
+        "maximum_compatible": 17,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/OFDR/fixed-ref/up/5mm/2000_Lower.txt",
+          "campaign_a/datasources/OFDR/fixed-ref/down/5mm/2000_Lower.txt"
+        ]
+      },
+      "20": {
+        "complete_offset_windows_s": [
+          [
+            -58048.6039934226,
+            -57980.592013154805
+          ]
+        ],
+        "count": 19,
+        "first_maximizing_offset_s": -58048.603993423,
+        "maximum_compatible": 19,
+        "misses_at_first_maximum": []
+      },
+      "5": {
+        "complete_offset_windows_s": [],
+        "count": 19,
+        "first_maximizing_offset_s": -58048.322104769,
+        "maximum_compatible": 17,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/OFDR/fixed-ref/up/5mm/2000_Lower.txt",
+          "campaign_a/datasources/OFDR/fixed-ref/down/5mm/2000_Lower.txt"
+        ]
+      }
+    },
+    "all41": {
+      "10": {
+        "complete_offset_windows_s": [],
+        "count": 41,
+        "first_maximizing_offset_s": -57981.625806452,
+        "maximum_compatible": 40,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/FBG/down/2/Responses.20260219171156.txt"
+        ]
+      },
+      "2": {
+        "complete_offset_windows_s": [],
+        "count": 41,
+        "first_maximizing_offset_s": -57985.307548928,
+        "maximum_compatible": 36,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/OFDR/fixed-ref/up/5mm/2000_Lower.txt",
+          "campaign_a/datasources/FBG/up/2200/Responses.20260219163704.txt",
+          "campaign_a/datasources/OFDR/fixed-ref/down/5mm/2000_Lower.txt",
+          "campaign_a/datasources/FBG/down/1809/Responses.20260219164246.txt",
+          "campaign_a/datasources/FBG/down/2/Responses.20260219171156.txt"
+        ]
+      },
+      "20": {
+        "complete_offset_windows_s": [],
+        "count": 41,
+        "first_maximizing_offset_s": -57984.713375796,
+        "maximum_compatible": 40,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/FBG/down/2/Responses.20260219171156.txt"
+        ]
+      },
+      "5": {
+        "complete_offset_windows_s": [],
+        "count": 41,
+        "first_maximizing_offset_s": -57985.363466915,
+        "maximum_compatible": 36,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/OFDR/fixed-ref/up/5mm/2000_Lower.txt",
+          "campaign_a/datasources/FBG/up/2200/Responses.20260219163704.txt",
+          "campaign_a/datasources/OFDR/fixed-ref/down/5mm/2000_Lower.txt",
+          "campaign_a/datasources/FBG/down/1809/Responses.20260219164246.txt",
+          "campaign_a/datasources/FBG/down/2/Responses.20260219171156.txt"
+        ]
+      }
+    },
+    "matched20": {
+      "10": {
+        "complete_offset_windows_s": [
+          [
+            -57981.625806451615,
+            -57980.779938924126
+          ]
+        ],
+        "count": 20,
+        "first_maximizing_offset_s": -57981.625806452,
+        "maximum_compatible": 20,
+        "misses_at_first_maximum": []
+      },
+      "2": {
+        "complete_offset_windows_s": [],
+        "count": 20,
+        "first_maximizing_offset_s": -57985.307548928,
+        "maximum_compatible": 19,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/FBG/down/1809/Responses.20260219164246.txt"
+        ]
+      },
+      "20": {
+        "complete_offset_windows_s": [
+          [
+            -57984.71337579618,
+            -57980.592013154805
+          ]
+        ],
+        "count": 20,
+        "first_maximizing_offset_s": -57984.713375796,
+        "maximum_compatible": 20,
+        "misses_at_first_maximum": []
+      },
+      "5": {
+        "complete_offset_windows_s": [],
+        "count": 20,
+        "first_maximizing_offset_s": -57985.363466915,
+        "maximum_compatible": 19,
+        "misses_at_first_maximum": [
+          "campaign_a/datasources/FBG/down/1809/Responses.20260219164246.txt"
+        ]
+      }
+    }
+  },
+  "independently_synchronized_clocks": false,
+  "machine_rows": 1000,
+  "machine_sha256": "12da9518739fd9127f6b8beb92789cbdc0be8e3fa37219f9aa08aadf9eb07524",
+  "optical_file_timing": [
+    {
+      "branch": "up",
+      "device": "FBG",
+      "frame_s": [
+        57995.08993,
+        58000.08993,
+        58005.08993,
+        58010.08893,
+        58015.08893,
+        58020.08893,
+        58025.08893,
+        58030.08893,
+        58035.08893
+      ],
+      "load_N": 205,
+      "name": "campaign_a/datasources/FBG/up/205/Responses.20260219160634.txt",
+      "stamp_s": 57994.0
+    },
+    {
+      "branch": "up",
+      "device": "OFDR",
+      "load_N": 205,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/up/5mm/205_Lower.txt",
+      "stamp_s": 58132.0
+    },
+    {
+      "branch": "up",
+      "device": "FBG",
+      "frame_s": [
+        58233.04329,
+        58238.04329,
+        58243.04329,
+        58248.04229,
+        58253.04229,
+        58258.04229,
+        58263.04229,
+        58268.04229,
+        58273.04229,
+        58278.04129
+      ],
+      "load_N": 408,
+      "name": "campaign_a/datasources/FBG/up/408/Responses.20260219161032.txt",
+      "stamp_s": 58232.0
+    },
+    {
+      "branch": "up",
+      "device": "OFDR",
+      "load_N": 408,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/up/5mm/408_Lower.txt",
+      "stamp_s": 58238.0
+    },
+    {
+      "branch": "up",
+      "device": "FBG",
+      "frame_s": [
+        58365.15615,
+        58370.15615,
+        58375.15615,
+        58380.15515
+      ],
+      "load_N": 609,
+      "name": "campaign_a/datasources/FBG/up/609/Responses.20260219161244.txt",
+      "stamp_s": 58364.0
+    },
+    {
+      "branch": "up",
+      "device": "OFDR",
+      "load_N": 608,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/up/5mm/608_Lower.txt",
+      "stamp_s": 58479.0
+    },
+    {
+      "branch": "up",
+      "device": "OFDR",
+      "load_N": 807,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/up/5mm/807_Lower.txt",
+      "stamp_s": 58613.0
+    },
+    {
+      "branch": "up",
+      "device": "FBG",
+      "frame_s": [
+        58650.55535,
+        58655.55535,
+        58660.55535,
+        58665.55435,
+        58670.55435,
+        58675.55435,
+        58680.55435,
+        58685.55435
+      ],
+      "load_N": 809,
+      "name": "campaign_a/datasources/FBG/up/809/Responses.20260219161730.txt",
+      "stamp_s": 58650.0
+    },
+    {
+      "branch": "up",
+      "device": "FBG",
+      "frame_s": [
+        58722.73989,
+        58727.43989,
+        58732.43989,
+        58737.43889
+      ],
+      "load_N": 1008,
+      "name": "campaign_a/datasources/FBG/up/1008/Responses.20260219161840.txt",
+      "stamp_s": 58720.0
+    },
+    {
+      "branch": "up",
+      "device": "OFDR",
+      "load_N": 1007,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/up/5mm/1007_Lower.txt",
+      "stamp_s": 58838.0
+    },
+    {
+      "branch": "up",
+      "device": "FBG",
+      "frame_s": [
+        58963.9506,
+        58968.9506,
+        58973.9506,
+        58978.9496,
+        58983.9496,
+        58988.9496,
+        58993.9496,
+        58998.9496,
+        59003.9496,
+        59008.9486
+      ],
+      "load_N": 1208,
+      "name": "campaign_a/datasources/FBG/up/1208/Responses.20260219162243.txt",
+      "stamp_s": 58963.0
+    },
+    {
+      "branch": "up",
+      "device": "FBG",
+      "frame_s": [
+        59091.29174,
+        59096.29174,
+        59101.29174,
+        59106.29074,
+        59111.29074
+      ],
+      "load_N": 1407,
+      "name": "campaign_a/datasources/FBG/up/1407/Responses.20260219162451.txt",
+      "stamp_s": 59091.0
+    },
+    {
+      "branch": "up",
+      "device": "OFDR",
+      "load_N": 1408,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/up/5mm/1408_Lower.txt",
+      "stamp_s": 59228.0
+    },
+    {
+      "branch": "up",
+      "device": "OFDR",
+      "load_N": 1607,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/up/5mm/1607_Lower.txt",
+      "stamp_s": 59344.0
+    },
+    {
+      "branch": "up",
+      "device": "FBG",
+      "frame_s": [
+        59370.12793,
+        59375.12793,
+        59380.12793,
+        59385.12693,
+        59390.12693,
+        59395.12693,
+        59400.12693,
+        59405.12693,
+        59410.12693,
+        59415.12593,
+        59420.12593,
+        59425.12593
+      ],
+      "load_N": 1608,
+      "name": "campaign_a/datasources/FBG/up/1608/Responses.20260219162930.txt",
+      "stamp_s": 59370.0
+    },
+    {
+      "branch": "up",
+      "device": "FBG",
+      "frame_s": [
+        59447.2521,
+        59452.2521,
+        59457.2521,
+        59462.2511,
+        59467.2511
+      ],
+      "load_N": 1808,
+      "name": "campaign_a/datasources/FBG/up/1808/Responses.20260219163046.txt",
+      "stamp_s": 59446.0
+    },
+    {
+      "branch": "up",
+      "device": "OFDR",
+      "load_N": 1808,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/up/5mm/1808_Lower.txt",
+      "stamp_s": 59592.0
+    },
+    {
+      "branch": "up",
+      "device": "OFDR",
+      "load_N": 2000,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/up/5mm/2000_Lower.txt",
+      "stamp_s": 59712.0
+    },
+    {
+      "branch": "up",
+      "device": "FBG",
+      "frame_s": [
+        59723.67312,
+        59728.67312,
+        59733.67312,
+        59738.67212,
+        59743.67212,
+        59748.67212,
+        59753.67212,
+        59758.67212
+      ],
+      "load_N": 2008,
+      "name": "campaign_a/datasources/FBG/up/2008/Responses.20260219163523.txt",
+      "stamp_s": 59723.0
+    },
+    {
+      "branch": "up",
+      "device": "FBG",
+      "frame_s": [
+        59824.80434,
+        59829.80434,
+        59834.80434,
+        59839.80334,
+        59844.80334
+      ],
+      "load_N": 2200,
+      "name": "campaign_a/datasources/FBG/up/2200/Responses.20260219163704.txt",
+      "stamp_s": 59824.0
+    },
+    {
+      "branch": "down",
+      "device": "OFDR",
+      "load_N": 2000,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/down/5mm/2000_Lower.txt",
+      "stamp_s": 60061.0
+    },
+    {
+      "branch": "down",
+      "device": "FBG",
+      "frame_s": [
+        60074.11617,
+        60079.11617,
+        60084.11617,
+        60089.11517,
+        60094.11517,
+        60099.11517,
+        60104.11517
+      ],
+      "load_N": 2009,
+      "name": "campaign_a/datasources/FBG/down/2009/Responses.20260219164113.txt",
+      "stamp_s": 60073.0
+    },
+    {
+      "branch": "down",
+      "device": "FBG",
+      "frame_s": [
+        60166.49152,
+        60171.49152,
+        60176.49152,
+        60181.49052,
+        60186.49052,
+        60191.49052,
+        60196.49052,
+        60201.49052,
+        60206.49052,
+        60211.48952
+      ],
+      "load_N": 1809,
+      "name": "campaign_a/datasources/FBG/down/1809/Responses.20260219164246.txt",
+      "stamp_s": 60166.0
+    },
+    {
+      "branch": "down",
+      "device": "OFDR",
+      "load_N": 1809,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/down/5mm/1809_Lower.txt",
+      "stamp_s": 60321.0
+    },
+    {
+      "branch": "down",
+      "device": "OFDR",
+      "load_N": 1609,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/down/5mm/1609_Lower.txt",
+      "stamp_s": 60421.0
+    },
+    {
+      "branch": "down",
+      "device": "FBG",
+      "frame_s": [
+        60441.99615,
+        60446.99615,
+        60451.99615,
+        60456.99615,
+        60461.99515,
+        60466.99515,
+        60471.99515,
+        60476.99515,
+        60481.99515,
+        60486.99515
+      ],
+      "load_N": 1609,
+      "name": "campaign_a/datasources/FBG/down/1609/Responses.20260219164721.txt",
+      "stamp_s": 60441.0
+    },
+    {
+      "branch": "down",
+      "device": "FBG",
+      "frame_s": [
+        60530.88481,
+        60535.88481,
+        60540.88481,
+        60545.88381,
+        60550.88381,
+        60555.88381
+      ],
+      "load_N": 1409,
+      "name": "campaign_a/datasources/FBG/down/1409/Responses.20260219164850.txt",
+      "stamp_s": 60530.0
+    },
+    {
+      "branch": "down",
+      "device": "OFDR",
+      "load_N": 1409,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/down/5mm/1409_Lower.txt",
+      "stamp_s": 60667.0
+    },
+    {
+      "branch": "down",
+      "device": "OFDR",
+      "load_N": 1209,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/down/5mm/1209_Lower.txt",
+      "stamp_s": 60786.0
+    },
+    {
+      "branch": "down",
+      "device": "FBG",
+      "frame_s": [
+        60799.55294,
+        60804.55294,
+        60809.55294,
+        60814.55194,
+        60819.55194,
+        60824.55194,
+        60829.55194,
+        60834.55194,
+        60839.55194
+      ],
+      "load_N": 1209,
+      "name": "campaign_a/datasources/FBG/down/1209/Responses.20260219165319.txt",
+      "stamp_s": 60799.0
+    },
+    {
+      "branch": "down",
+      "device": "FBG",
+      "frame_s": [
+        60919.55601,
+        60924.55601,
+        60929.55601,
+        60934.55501,
+        60939.55501,
+        60944.55501
+      ],
+      "load_N": 1009,
+      "name": "campaign_a/datasources/FBG/down/1009/Responses.20260219165519.txt",
+      "stamp_s": 60919.0
+    },
+    {
+      "branch": "down",
+      "device": "OFDR",
+      "load_N": 1009,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/down/5mm/1009_Lower.txt",
+      "stamp_s": 61065.0
+    },
+    {
+      "branch": "down",
+      "device": "OFDR",
+      "load_N": 809,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/down/5mm/809_Lower.txt",
+      "stamp_s": 61177.0
+    },
+    {
+      "branch": "down",
+      "device": "FBG",
+      "frame_s": [
+        61218.86609,
+        61223.86609,
+        61228.86609,
+        61233.86509,
+        61238.86509,
+        61243.86509,
+        61248.86509,
+        61253.86509
+      ],
+      "load_N": 809,
+      "name": "campaign_a/datasources/FBG/down/809/Responses.20260219170018.txt",
+      "stamp_s": 61218.0
+    },
+    {
+      "branch": "down",
+      "device": "FBG",
+      "frame_s": [
+        61281.30817,
+        61286.30817,
+        61291.30817,
+        61296.30717,
+        61301.30717,
+        61306.30717,
+        61311.30717,
+        61316.30717
+      ],
+      "load_N": 609,
+      "name": "campaign_a/datasources/FBG/down/609/Responses.20260219170121.txt",
+      "stamp_s": 61281.0
+    },
+    {
+      "branch": "down",
+      "device": "OFDR",
+      "load_N": 609,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/down/5mm/609_Lower.txt",
+      "stamp_s": 61432.0
+    },
+    {
+      "branch": "down",
+      "device": "FBG",
+      "frame_s": [
+        61502.8932,
+        61507.8932,
+        61512.8932,
+        61517.8922,
+        61522.8922,
+        61527.8922,
+        61532.8922,
+        61537.8922
+      ],
+      "load_N": 411,
+      "name": "campaign_a/datasources/FBG/down/411/Responses.20260219170502.txt",
+      "stamp_s": 61502.0
+    },
+    {
+      "branch": "down",
+      "device": "OFDR",
+      "load_N": 410,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/down/5mm/410_Lower.txt",
+      "stamp_s": 61503.0
+    },
+    {
+      "branch": "down",
+      "device": "FBG",
+      "frame_s": [
+        61642.50978,
+        61647.50978,
+        61652.50978,
+        61657.50878
+      ],
+      "load_N": 209,
+      "name": "campaign_a/datasources/FBG/down/209/Responses.20260219170722.txt",
+      "stamp_s": 61642.0
+    },
+    {
+      "branch": "down",
+      "device": "OFDR",
+      "load_N": 211,
+      "name": "campaign_a/datasources/OFDR/fixed-ref/down/5mm/211_Lower.txt",
+      "stamp_s": 61750.0
+    },
+    {
+      "branch": "down",
+      "device": "FBG",
+      "frame_s": [
+        61916.61844,
+        61921.61844,
+        61926.61844,
+        61931.61744,
+        61936.61744
+      ],
+      "load_N": 2,
+      "name": "campaign_a/datasources/FBG/down/2/Responses.20260219171156.txt",
+      "stamp_s": 61916.0
+    }
+  ],
+  "optical_response_values_decoded": 0,
+  "ten_matched_pairs": [
+    {
+      "branch": "down",
+      "fb_entire_interval_force_N": [
+        608.49,
+        609.1888180776897
+      ],
+      "fb_first_force_N": [
+        608.49,
+        608.49
+      ],
+      "fb_first_last_s": [
+        61281.30817,
+        61316.30717
+      ],
+      "fb_frames": 8,
+      "fb_start_s": 61281.0,
+      "load_N": 609,
+      "ofdr_start_force_N": [
+        599.0000000000722,
+        610.71
+      ],
+      "ofdr_start_s": 61432.0,
+      "start_difference_s": 151.0
+    },
+    {
+      "branch": "down",
+      "fb_entire_interval_force_N": [
+        595.41,
+        809.598798582258
+      ],
+      "fb_first_force_N": [
+        809.5945692446206,
+        809.598798582258
+      ],
+      "fb_first_last_s": [
+        61218.86609,
+        61253.86509
+      ],
+      "fb_frames": 8,
+      "fb_start_s": 61218.0,
+      "load_N": 809,
+      "ofdr_start_force_N": [
+        809.4712258064516,
+        809.4966018322763
+      ],
+      "ofdr_start_s": 61177.0,
+      "start_difference_s": -41.0
+    },
+    {
+      "branch": "down",
+      "fb_entire_interval_force_N": [
+        1007.6732550887097,
+        1008.0
+      ],
+      "fb_first_force_N": [
+        1007.6732550887097,
+        1007.6944017768969
+      ],
+      "fb_first_last_s": [
+        60919.55601,
+        60944.55501
+      ],
+      "fb_frames": 6,
+      "fb_start_s": 60919.0,
+      "load_N": 1009,
+      "ofdr_start_force_N": [
+        1008.6,
+        1008.6
+      ],
+      "ofdr_start_s": 61065.0,
+      "start_difference_s": 146.0
+    },
+    {
+      "branch": "down",
+      "fb_entire_interval_force_N": [
+        1207.9,
+        1208.6
+      ],
+      "fb_first_force_N": [
+        1208.6,
+        1208.6
+      ],
+      "fb_first_last_s": [
+        60799.55294,
+        60839.55194
+      ],
+      "fb_frames": 9,
+      "fb_start_s": 60799.0,
+      "load_N": 1209,
+      "ofdr_start_force_N": [
+        1208.5,
+        1208.5
+      ],
+      "ofdr_start_s": 60786.0,
+      "start_difference_s": -13.0
+    },
+    {
+      "branch": "down",
+      "fb_entire_interval_force_N": [
+        1405.2201530161299,
+        1408.5327903306904
+      ],
+      "fb_first_force_N": [
+        1405.2201530161299,
+        1405.9391404144953
+      ],
+      "fb_first_last_s": [
+        60530.88481,
+        60555.88381
+      ],
+      "fb_frames": 6,
+      "fb_start_s": 60530.0,
+      "load_N": 1409,
+      "ofdr_start_force_N": [
+        1408.9,
+        1408.9165045806906
+      ],
+      "ofdr_start_s": 60667.0,
+      "start_difference_s": 137.0
+    },
+    {
+      "branch": "down",
+      "fb_entire_interval_force_N": [
+        1608.8392394462062,
+        1609.2157414112905
+      ],
+      "fb_first_force_N": [
+        1609.2,
+        1609.2157414112905
+      ],
+      "fb_first_last_s": [
+        60441.99615,
+        60486.99515
+      ],
+      "fb_frames": 10,
+      "fb_start_s": 60441.0,
+      "load_N": 1609,
+      "ofdr_start_force_N": [
+        1609.5444984731032,
+        1609.5656451612904
+      ],
+      "ofdr_start_s": 60421.0,
+      "start_difference_s": -20.0
+    },
+    {
+      "branch": "down",
+      "fb_entire_interval_force_N": [
+        1800.904640000004,
+        1807.9
+      ],
+      "fb_first_force_N": [
+        1800.904640000004,
+        1804.182376669023
+      ],
+      "fb_first_last_s": [
+        60166.49152,
+        60211.48952
+      ],
+      "fb_frames": 10,
+      "fb_start_s": 60166.0,
+      "load_N": 1809,
+      "ofdr_start_force_N": [
+        1808.2093548387097,
+        1808.230501526897
+      ],
+      "ofdr_start_s": 60321.0,
+      "start_difference_s": 155.0
+    },
+    {
+      "branch": "up",
+      "fb_entire_interval_force_N": [
+        204.13,
+        204.83
+      ],
+      "fb_first_force_N": [
+        204.2761634927988,
+        204.2872061498156
+      ],
+      "fb_first_last_s": [
+        57995.08993,
+        58035.08893
+      ],
+      "fb_frames": 9,
+      "fb_start_s": 57994.0,
+      "load_N": 205,
+      "ofdr_start_force_N": [
+        204.87723014281156,
+        204.88590570719606
+      ],
+      "ofdr_start_s": 58132.0,
+      "start_difference_s": 138.0
+    },
+    {
+      "branch": "up",
+      "fb_entire_interval_force_N": [
+        407.77,
+        408.56
+      ],
+      "fb_first_force_N": [
+        407.8584995797819,
+        407.8867702996605
+      ],
+      "fb_first_last_s": [
+        58233.04329,
+        58278.04129
+      ],
+      "fb_frames": 10,
+      "fb_start_s": 58232.0,
+      "load_N": 408,
+      "ofdr_start_force_N": [
+        407.8371629445819,
+        407.9889853213107
+      ],
+      "ofdr_start_s": 58238.0,
+      "start_difference_s": 6.0
+    },
+    {
+      "branch": "up",
+      "fb_entire_interval_force_N": [
+        1806.8,
+        1808.0
+      ],
+      "fb_first_force_N": [
+        1807.8084195698923,
+        1807.8648107383915
+      ],
+      "fb_first_last_s": [
+        59447.2521,
+        59467.2511
+      ],
+      "fb_frames": 5,
+      "fb_start_s": 59446.0,
+      "load_N": 1808,
+      "ofdr_start_force_N": [
+        1807.0889969462064,
+        1807.1312903225808
+      ],
+      "ofdr_start_s": 59592.0,
+      "start_difference_s": 146.0
+    }
+  ]
+}
