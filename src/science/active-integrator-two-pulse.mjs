@@ -24,7 +24,7 @@ function parseReading(input) {
     need(Number.isSafeInteger(input), 'use an exact integer or a rational string for each reading');
     input = String(input);
   }
-  need(typeof input === 'string' && input.length <= 524288 && /^[+-]?\\d+(?:\\/[1-9]\\d*)?$/.test(input),
+  need(typeof input === 'string' && input.length <= 524288 && /^[+-]?[0-9]+(?:[/][1-9][0-9]*)?$/.test(input),
     'expected an exact reading in integer or rational notation within the notebook byte limit');
   const [numerator, denominator = '1'] = input.split('/');
   return Q(BigInt(numerator), BigInt(denominator));
