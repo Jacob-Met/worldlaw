@@ -850,6 +850,22 @@ try{
   assert.match(await page.locator('#plan-summary').textContent(),/upper bound of 4/);
   mark('zero-noise four-pulse support minimum and its persistent witnesses survive browser and CLI replay');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftPointCuts');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/minimum is 15 pulses/);
+  assert.match(await page.locator('#drift-proof').textContent(),/affine-alias/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#acquisition-kind').selectOption('synthetic');await page.locator('#readout-source').fill('Reference trajectory for physical disagreement cuts');
+  for(let i=0;i<=7;i++)await page.locator('#drift-reading-'+i).fill('0');
+  await page.locator('#evaluate-readings').click();await idle();await page.reload();await idle();await openDetails('supplied-details');
+  for(let i=8;i<=15;i++)await page.locator('#drift-reading-'+i).fill('0');
+  await page.locator('#evaluate-readings').click();await idle();
+  const cutBook=await accepted();assert.deepEqual(cutBook.readouts.at(-1).result.consistentHypothesisIds,['A']);
+  assert.equal(cutBook.plan.candidatesTested,2);assert.equal(cutBook.plan.lowerProof.packing.length,15);
+  const cutFile=await download('export-notebook','physical-cut-minimum.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',cutFile]).stdout),cutBook);
+  mark('two physical witness queries certify fifteen pulses and preserve the measured reference through browser and CLI replay');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';
