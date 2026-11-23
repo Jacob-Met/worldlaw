@@ -1,0 +1,11 @@
+{
+  "sha256": "e3da8843cb6f13d994d4c4d5fb1ac5e21bbe5149aaa4a4eb9579e658bbd0d2b6",
+  "bytes": 28685,
+  "forecast_job": "p3-f747-ba-registered-seven-pressure-ultrasonic-forecast",
+  "source": "e2b8ea6375796c677dbd23f846c94961f46b975d",
+  "full_stdout": {
+    "n": 28760,
+    "sha": "eefc82ce2719320dcc75ee8105faee2b7f4abab79ab8c700c395b9aa7e3db73e"
+  },
+  "targets_read_by_forecaster": 0
+}

@@ -1,0 +1,23 @@
+{
+  "forecast": "e3da8843cb6f13d994d4c4d5fb1ac5e21bbe5149aaa4a4eb9579e658bbd0d2b6",
+  "forecast_cells": 180,
+  "gates": [
+    [
+      "primary",
+      false
+    ],
+    [
+      "paper_range",
+      false
+    ]
+  ],
+  "max_forecast_gap": "7.384316127435579710217980762516632919155296064181E-13",
+  "max_metric_gap": "6.047911562015162815897570110713656359474294661619E-13",
+  "native_raw_rar_bytes": 49047,
+  "precision": 65,
+  "pressure_rows_including_sensitivity": 12,
+  "residuals": 180,
+  "rmse_mae_and_worst_value_cells": 90,
+  "source_io": "libarchive memory reader and openpyxl; no registered predictor/scorer imported",
+  "worst_indices_and_win_counts": 60
+}

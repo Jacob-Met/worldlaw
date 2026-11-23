@@ -1,0 +1,2028 @@
+{
+  "Data/Sample D_Seismic_Brine.xlsx": {
+    "header": {
+      "A1": "Pressure",
+      "B1": "Frequency",
+      "C1": "Pwave",
+      "D1": "Swave"
+    },
+    "rows": [
+      [
+        2,
+        [
+          "1MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        3,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        4,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        5,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        6,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        7,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        8,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        9,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        10,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        11,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        12,
+        [
+          "3MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        13,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        14,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        15,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        16,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        17,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        18,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        19,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        20,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        21,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        22,
+        [
+          "5MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        23,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        24,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        25,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        26,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        27,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        28,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        29,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        30,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        31,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        32,
+        [
+          "8MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        33,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        34,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        35,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        36,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        37,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        38,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        39,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        40,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        41,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        42,
+        [
+          "10MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        43,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        44,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        45,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        46,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        47,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        48,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        49,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        50,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        51,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        52,
+        [
+          "15MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        53,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        54,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        55,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        56,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        57,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        58,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        59,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        60,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        61,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        62,
+        [
+          "20MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        63,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        64,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        65,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        66,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        67,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        68,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        69,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        70,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        71,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ]
+    ],
+    "sheet": "xl/worksheets/sheet1.xml"
+  },
+  "Data/Sample D_Seismic_Gas.xlsx": {
+    "header": {
+      "A1": "Pressure",
+      "B1": "Frequency",
+      "C1": "Pwave",
+      "D1": "Swave"
+    },
+    "rows": [
+      [
+        2,
+        [
+          "1MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        3,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        4,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        5,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        6,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        7,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        8,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        9,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        10,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        11,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        12,
+        [
+          "3MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        13,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        14,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        15,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        16,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        17,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        18,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        19,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        20,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        21,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        22,
+        [
+          "5MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        23,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        24,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        25,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        26,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        27,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        28,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        29,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        30,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        31,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        32,
+        [
+          "8MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        33,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        34,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        35,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        36,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        37,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        38,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        39,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        40,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        41,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        42,
+        [
+          "10MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        43,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        44,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        45,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        46,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        47,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        48,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        49,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        50,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        51,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        52,
+        [
+          "15MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        53,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        54,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        55,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        56,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        57,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        58,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        59,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        60,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        61,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        62,
+        [
+          "20MPa",
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        63,
+        [
+          null,
+          "2"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        64,
+        [
+          null,
+          "4"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        65,
+        [
+          null,
+          "8"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        66,
+        [
+          null,
+          "10"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        67,
+        [
+          null,
+          "16"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        68,
+        [
+          null,
+          "32"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        69,
+        [
+          null,
+          "64"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        70,
+        [
+          null,
+          "100"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ],
+      [
+        71,
+        [
+          null,
+          "128"
+        ],
+        {
+          "A": false,
+          "B": true,
+          "C": true,
+          "D": true
+        }
+      ]
+    ],
+    "sheet": "xl/worksheets/sheet1.xml"
+  },
+  "Data/Sample D_Ultrasonic_Brine.xlsx": {
+    "header": {
+      "A1": "Pressure",
+      "B1": "Pwave",
+      "C1": "Swave"
+    },
+    "rows": [
+      [
+        2,
+        [
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        3,
+        [
+          "3"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        4,
+        [
+          "5"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        5,
+        [
+          "8"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        6,
+        [
+          "10"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        7,
+        [
+          "15"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        8,
+        [
+          "20"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        9,
+        [
+          null
+        ],
+        {
+          "C": false
+        }
+      ]
+    ],
+    "sheet": "xl/worksheets/sheet1.xml"
+  },
+  "Data/Sample D_Ultrasonic_Gas.xlsx": {
+    "header": {
+      "A1": "Pressure",
+      "B1": "Pwave",
+      "C1": "Swave"
+    },
+    "rows": [
+      [
+        2,
+        [
+          "1"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        3,
+        [
+          "3"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        4,
+        [
+          "5"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        5,
+        [
+          "8"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        6,
+        [
+          "10"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        7,
+        [
+          "15"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ],
+      [
+        8,
+        [
+          "20"
+        ],
+        {
+          "A": true,
+          "B": true,
+          "C": true
+        }
+      ]
+    ],
+    "sheet": "xl/worksheets/sheet1.xml"
+  },
+  "Data/Sample Properties.txt": "Porosity <number>%\r\nDensity <number>kg/m<number>\r\nQuartz <number>%\r\nFeldspar <number>%\r\nDolomite <number>%\r\nSiderite <number>%\r\nClay <number>%"
+}
