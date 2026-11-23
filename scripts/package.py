@@ -16,6 +16,18 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/gw170817_network/README.md",
+    "research/gw170817_network/geometry_replay.py",
+    "research/gw170817_network/independent-receipt.json",
+    "research/gw170817_network/independent_source.py",
+    "research/gw170817_network/native-originals.json",
+    "research/gw170817_network/protocol.json",
+    "research/gw170817_network/replay.py",
+    "research/gw170817_network/runtime.json",
+    "research/gw170817_network/screen-receipt.json",
+    "research/gw170817_network/screen.py",
+    "research/gw170817_network/source-metadata.json",
+    "research/gw170817_network/synthetic.py",
     "research/phobos_transit_radiometer/README.md",
     "research/phobos_transit_radiometer/acquisition.py",
     "research/phobos_transit_radiometer/channels-and-clocks.json",

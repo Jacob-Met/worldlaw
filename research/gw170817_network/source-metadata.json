@@ -1,0 +1,159 @@
+{
+  "v2_original": "p3-f747-gw170817-original-optical-geometry-and-clean-strain-roster",
+  "v2_catalog": {
+    "event_catalog_sha256": "118790617e4a1cb7b124660f73a9a35598adfc42556cce6de6d057f4aeed187f",
+    "selected": [
+      {
+        "detector": "H1",
+        "GPSstart": 1187007040,
+        "sampling_rate": 4096,
+        "duration": 2048,
+        "format": "hdf5",
+        "url": "https://gwosc.org/eventapi/json/O1_O2-Preliminary/GW170817/v2/H-H1_LOSC_CLN_4_V1-1187007040-2048.hdf5"
+      },
+      {
+        "detector": "L1",
+        "GPSstart": 1187007040,
+        "sampling_rate": 4096,
+        "duration": 2048,
+        "format": "hdf5",
+        "url": "https://gwosc.org/eventapi/json/O1_O2-Preliminary/GW170817/v2/L-L1_LOSC_CLN_4_V1-1187007040-2048.hdf5"
+      },
+      {
+        "detector": "V1",
+        "GPSstart": 1187007040,
+        "sampling_rate": 4096,
+        "duration": 2048,
+        "format": "hdf5",
+        "url": "https://gwosc.org/eventapi/json/O1_O2-Preliminary/GW170817/v2/V-V1_LOSC_CLN_4_V1-1187007040-2048.hdf5"
+      }
+    ],
+    "scientific_strain_reads": 0,
+    "posterior_reads": 0
+  },
+  "v1_original": "p3-f747-gw170817-before-cleaning-independent-input-catalog",
+  "v1_catalog": {
+    "event_catalog_sha256": "e3df90f043439f57a4c3d6e902df0c0e2b4910e113fdf5081e0b6d5c00aab28b",
+    "selected": [
+      {
+        "detector": "H1",
+        "GPSstart": 1187006834,
+        "sampling_rate": 4096,
+        "duration": 4096,
+        "format": "hdf5",
+        "url": "https://gwosc.org/eventapi/json/O1_O2-Preliminary/GW170817/v1/H-H1_LOSC_C00_4_V1-1187006834-4096.hdf5"
+      },
+      {
+        "detector": "L1",
+        "GPSstart": 1187006834,
+        "sampling_rate": 4096,
+        "duration": 4096,
+        "format": "hdf5",
+        "url": "https://gwosc.org/eventapi/json/O1_O2-Preliminary/GW170817/v1/L-L1_LOSC_C00_4_V1-1187006834-4096.hdf5"
+      },
+      {
+        "detector": "V1",
+        "GPSstart": 1187006834,
+        "sampling_rate": 4096,
+        "duration": 4096,
+        "format": "hdf5",
+        "url": "https://gwosc.org/eventapi/json/O1_O2-Preliminary/GW170817/v1/V-V1_LOSC_C00_4_V1-1187006834-4096.hdf5"
+      }
+    ],
+    "scientific_strain_reads": 0,
+    "posterior_reads": 0
+  },
+  "revised_input_reason": "Unverified external dependency of actual v2 glitch-regression fit. Superseded prospectively without opening v2 scientific inputs. V1 notch deterministic and local.",
+  "lal_original": "p3-f747-gw170817-lalsuite-7261-optical-response-and-time-delay-oracle",
+  "detector_source": {
+    "reference": "https://lscsoft.docs.ligo.org/lalsuite/dev/lal/_l_a_l_detectors_8h_source.html",
+    "sha256": "8d350067ab1cacd188a2cd57cef4273a4792c14d625d01730f466c75bb1185b1",
+    "geometry": {
+      "LHO_4K": {
+        "LAL_LHO_4K_ARM_X_DIRECTION_X": -0.22389266154,
+        "LAL_LHO_4K_ARM_X_DIRECTION_Y": 0.79983062746,
+        "LAL_LHO_4K_ARM_X_DIRECTION_Z": 0.55690487831,
+        "LAL_LHO_4K_ARM_Y_DIRECTION_X": -0.91397818574,
+        "LAL_LHO_4K_ARM_Y_DIRECTION_Y": 0.02609403989,
+        "LAL_LHO_4K_ARM_Y_DIRECTION_Z": -0.40492342125,
+        "LAL_LHO_4K_VERTEX_LOCATION_X_SI": -2161414.92636,
+        "LAL_LHO_4K_VERTEX_LOCATION_Y_SI": -3834695.17889,
+        "LAL_LHO_4K_VERTEX_LOCATION_Z_SI": 4600350.22664
+      },
+      "LLO_4K": {
+        "LAL_LLO_4K_ARM_X_DIRECTION_X": -0.95457412153,
+        "LAL_LLO_4K_ARM_X_DIRECTION_Y": -0.1415807734,
+        "LAL_LLO_4K_ARM_X_DIRECTION_Z": -0.26218911324,
+        "LAL_LLO_4K_ARM_Y_DIRECTION_X": 0.29774156894,
+        "LAL_LLO_4K_ARM_Y_DIRECTION_Y": -0.48791033647,
+        "LAL_LLO_4K_ARM_Y_DIRECTION_Z": -0.82054461286,
+        "LAL_LLO_4K_VERTEX_LOCATION_X_SI": -74276.0447238,
+        "LAL_LLO_4K_VERTEX_LOCATION_Y_SI": -5496283.71971,
+        "LAL_LLO_4K_VERTEX_LOCATION_Z_SI": 3224257.01744
+      },
+      "VIRGO": {
+        "LAL_VIRGO_ARM_X_DIRECTION_X": -0.70045821479,
+        "LAL_VIRGO_ARM_X_DIRECTION_Y": 0.20848948619,
+        "LAL_VIRGO_ARM_X_DIRECTION_Z": 0.68256166277,
+        "LAL_VIRGO_ARM_Y_DIRECTION_X": -0.05379255368,
+        "LAL_VIRGO_ARM_Y_DIRECTION_Y": -0.96908180549,
+        "LAL_VIRGO_ARM_Y_DIRECTION_Z": 0.24080451708,
+        "LAL_VIRGO_VERTEX_LOCATION_X_SI": 4546374.099,
+        "LAL_VIRGO_VERTEX_LOCATION_Y_SI": 842989.697626,
+        "LAL_VIRGO_VERTEX_LOCATION_Z_SI": 4378576.96241
+      }
+    }
+  },
+  "source_astro": {
+    "RA_DEC": [
+      3.446158789437238,
+      -0.40808388271125595
+    ],
+    "condition": 7.592352834961945,
+    "detectors": {
+      "H1": {
+        "arrival_s": 0.018794305017042247,
+        "cross": -0.8855668455224228,
+        "geo_m": [
+          -2161414.92636,
+          -3834695.17889,
+          4600350.22664
+        ],
+        "plus": 0.07927756232061514
+      },
+      "L1": {
+        "arrival_s": 0.01550087957383439,
+        "cross": 0.7391036549900689,
+        "geo_m": [
+          -74276.0447238,
+          -5496283.71971,
+          3224257.01744
+        ],
+        "plus": 0.13150226105895968
+      },
+      "V1": {
+        "arrival_s": -0.006390531979024529,
+        "cross": -0.2578623984006164,
+        "geo_m": [
+          4546374.099,
+          842989.697626,
+          4378576.96241
+        ],
+        "plus": -0.16077163889473628
+      }
+    },
+    "gmst_rad": 40566.97325177815,
+    "max_forward_error": 1.1102230246251565e-16,
+    "pinned_GPS": "1187008882.43",
+    "singular": [
+      0.8029464461897775,
+      0.10575726176637866
+    ],
+    "strain_reads": 0,
+    "version": "7.26.1",
+    "weights": [
+      -1.9173538276312823,
+      -2.0613954562046217
+    ]
+  }
+}
