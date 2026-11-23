@@ -1,0 +1,142 @@
+{
+  "dispatched": [
+    {
+      "id": "p3-f747-prem-rebl-original-software-and-spectrum-catalog",
+      "state": "completed",
+      "request_sha256": "e6fe2d579beb8a1fdb8b8b1335e9370dd78f82f4de1c433b7b51194755f1eb4b",
+      "generation": "5fd22ad54ecdbed87d436005c3ba1293aca674b65f0d56f091cc884e4e3f19ad",
+      "exit": 0,
+      "descendants": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "stdout_bytes": 3512,
+      "stdout_sha256": "529ba89013a906e410ec5c34490f51ae9e4d6440d205e7c205d84a522ca3568d",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c"
+    },
+    {
+      "id": "p3-f747-prem-authored-monte-carlo-and-mie-source",
+      "state": "completed",
+      "request_sha256": "3141504212f843c5bae99a2f52d9076f0e2b83e48b6a72adbbdf4fc827a0dbce",
+      "generation": "92fe5c1510d6312ed49c6076585b73c0ce23c533ef3a2bbe07fe99a4eb5207a5",
+      "exit": 0,
+      "descendants": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "stdout_bytes": 19611,
+      "stdout_sha256": "87ce1446d446f20956f0020b55d755fd0205d7126ef3190228c169f3cca03fc4",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c"
+    },
+    {
+      "id": "p3-f747-prem-literal-forward-reciprocity-six-synthetic-media",
+      "state": "completed",
+      "request_sha256": "03c17f77f9d2fead96b743fd5403e1269c8cb92f798768cf0da6c5cd02d8ed69",
+      "generation": "87aebd9668029ecaf79d9b49d63d4db414dfcbda70c1fafc5f3394dbebc1e60e",
+      "exit": 0,
+      "descendants": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "stdout_bytes": 1623,
+      "stdout_sha256": "265f94696ee408998c41737a3a43f7caa50436d72deb8b7a2d4ded02ba579ee4",
+      "owner": "node-bf5f0531217bc08888c18af9bb61e75e"
+    },
+    {
+      "id": "p3-f747-prem-optical-and-acquisition-axes-with-explicit-uv-runtime",
+      "state": "failed",
+      "request_sha256": "a1bad352ea56dcf7802c7489b98f314e33b3da26b1c9389e90fd5dc6c0c1ec0a",
+      "generation": "e7b34e0ac8bf528de05c412385b142ebdd020284757198f2324286d780e6f57c",
+      "exit": 1,
+      "descendants": null,
+      "stdout_bytes": 4370,
+      "stdout_sha256": "669e9e4fcf055a35880ded28e3c0c8852a9690c54a65beb85bb785f8d80bf79f",
+      "owner": "node-71c3775574da4b07241725add268e638"
+    },
+    {
+      "id": "p3-f747-prem-6fb97bd1-frozen-forecast-full-output-873541",
+      "state": "completed",
+      "request_sha256": "979fdce045d3a3872fea65507a0d618868f80ac2be3e2cfac8febb9906b7b748",
+      "generation": "8ebe2a433ad0709849b031857be7804ab91e5f62a5a8e154d7913cb080fb7a5a",
+      "exit": 0,
+      "descendants": null,
+      "stdout_bytes": 136863,
+      "stdout_sha256": "c7f82f2d3ac3619f4385f614de980b3ef4741a9ee2fa7b5fea12a76a64f15bd5",
+      "owner": "node-71c3775574da4b07241725add268e638"
+    },
+    {
+      "id": "p3-f747-prem-6fb97bd1-frozen-forecast-full-output-116903",
+      "state": "completed",
+      "request_sha256": "6453e6e5403f1eb6459ddf0e9f0fde59bb4252fee9037caa0e72fb1d8891a926",
+      "generation": "7de97a88bab99b3592f890acd6a6a173b0f4ba3d0abf531555cdfae1fd0dd38d",
+      "exit": 0,
+      "descendants": null,
+      "stdout_bytes": 136829,
+      "stdout_sha256": "575857576c18571eb6d595c9d57871bce34727879a34032cba1ed9acbd339cc7",
+      "owner": "node-71c3775574da4b07241725add268e638"
+    },
+    {
+      "id": "p3-f747-prem-held-two-fractions-eleven-roles-both-original-seeds",
+      "state": "completed",
+      "request_sha256": "bf02cc95aabb01a1c8b5ec54f889028cda9df05a92ab43dc2eac2db82c84d0d2",
+      "generation": "d14be872a05970a4031d88849a8955f9a55eabbcb52af644d50113bbeec8089e",
+      "exit": 0,
+      "descendants": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "stdout_bytes": 24116,
+      "stdout_sha256": "97758bfc0355b636f4b60e7ff164b3718597f6ae19c146db52901f9d966ec24a",
+      "owner": "node-66f5e5c87083f69a72b62d0151259f56"
+    },
+    {
+      "id": "p3-f747-prem-independent-raw-ooxml-24992-residuals",
+      "state": "completed",
+      "request_sha256": "57e5a617d90321f7116af285eb3e3695021d73e68fd13b2ef19f1296ae3af4b4",
+      "generation": "c1e333d7e57c25c21abd2ae3727755814b1ceedfbea2d084ac136ba44fcaf96e",
+      "exit": 0,
+      "descendants": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "stdout_bytes": 450,
+      "stdout_sha256": "0247322d7e772044ded84a8064aa43ab174949b88cb44c67eac2e775f7c3f302",
+      "owner": "node-40283bca720474f59ba9fedb7db2a7d0"
+    }
+  ],
+  "predispatch_refusals": [
+    {
+      "job": "p3-f747-prem-optical-headers-and-chamber-axis-qualification",
+      "original_result": [
+        {
+          "type": "text",
+          "text": "validating \"arguments\": validating root: validating /properties/requirements: unexpected additional properties [\"python_packages\"]"
+        }
+      ],
+      "o": "p3-f747-prem-optical-headers-and-chamber-axis-qualification",
+      "sha256": "f8f572c121119f3ea0a9b1cdd1bcf99bba6197a0a4b4f402fc1a49519ef4e658"
+    },
+    {
+      "job": "p3-f747-prem-6fb97bd1-frozen-chamber-forecast-seed-873541",
+      "original_result": [
+        {
+          "type": "text",
+          "text": "retain_output_bytes must be between 0 and 65536"
+        }
+      ],
+      "o": "p3-f747-prem-6fb97bd1-frozen-chamber-forecast-seed-873541",
+      "sha256": "27e5c857e531cd3ca904ea068d98341b34337b5cb35ac8ea5c932702097192a6"
+    },
+    {
+      "job": "p3-f747-prem-6fb97bd1-frozen-chamber-forecast-seed-116903",
+      "original_result": [
+        {
+          "type": "text",
+          "text": "retain_output_bytes must be between 0 and 65536"
+        }
+      ],
+      "o": "p3-f747-prem-6fb97bd1-frozen-chamber-forecast-seed-116903",
+      "sha256": "27e5c857e531cd3ca904ea068d98341b34337b5cb35ac8ea5c932702097192a6"
+    }
+  ]
+}
