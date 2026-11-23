@@ -16,6 +16,22 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/ils_oxalate_temperature/README.md",
+    "research/ils_oxalate_temperature/acquisition.py",
+    "research/ils_oxalate_temperature/catalog.json",
+    "research/ils_oxalate_temperature/duplicate-and-score-recount.json",
+    "research/ils_oxalate_temperature/forecast-lock.json",
+    "research/ils_oxalate_temperature/forecast.py",
+    "research/ils_oxalate_temperature/forecasts.json",
+    "research/ils_oxalate_temperature/independent.py",
+    "research/ils_oxalate_temperature/layout-receipt.json",
+    "research/ils_oxalate_temperature/native-originals.json",
+    "research/ils_oxalate_temperature/protocol.json",
+    "research/ils_oxalate_temperature/replay.py",
+    "research/ils_oxalate_temperature/score.json",
+    "research/ils_oxalate_temperature/score.py",
+    "research/ils_oxalate_temperature/source_intake.py",
+    "research/ils_oxalate_temperature/synthetic_check.py",
     "research/martins-compression-work/README.md",
     "research/martins-compression-work/comparison.json",
     "research/martins-compression-work/controls.py",

@@ -1,0 +1,147 @@
+{
+  "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+  "jobs": [
+    {
+      "note": "First forecast refused the documented logical dimensions before selecting masses.",
+      "job_id": "p3-f747-naya-frozen-reference-and-early-only-forecast-producer",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "request_sha256": "83de845ea12c8dbc2815207a8800a251ffb8914dd0c7c752f7a5ac6438897e39",
+      "generation": "f6002792cfe0d42df11bff00adb5383d16d5da0ea8c7317a0ff87f166e9dbf02",
+      "state": "failed",
+      "exit_code": 1,
+      "descendants": "drained",
+      "output_bytes": 1376,
+      "output_sha256": "603a94e21ea3e73273b3fbdedd103d291da0860439c7af92635bb0443835dc2f"
+    },
+    {
+      "note": "Metadata only, authenticated the 105 × 1000 physical storage layout.",
+      "job_id": "p3-f747-naya-original-r-array-dimensions-and-axis-metadata-only",
+      "owner": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "06b0b4094c37838142ac649d95b766bab077ab6affc004d8b2b75c91a7d1c257",
+      "generation": "b69951bdb7a1fe790b2b0549a31a79ae5faa3d4a89c6ff462ae6958493e251e1",
+      "state": "completed",
+      "exit_code": 0,
+      "descendants": null,
+      "output_bytes": 363,
+      "output_sha256": "8394b5a58dd7e21c9165affaae231d71c3e8d11f12b9e38e11c2216d889935cb"
+    },
+    {
+      "note": "Forecast constructed from registered reference and calibration slices.",
+      "job_id": "p3-f747-naya-author-rowblocks-frozen-early-only-forecasts",
+      "owner": "node-71c3775574da4b07241725add268e638",
+      "request_sha256": "1b7edb37c6950c19157f9504126c2294344a9b17097f405d037fca6765e57330",
+      "generation": "bec80268c04fef5882ced7f635e113476a5c4bdd727922e5fcb49dea32e57806",
+      "state": "completed",
+      "exit_code": 0,
+      "descendants": null,
+      "output_bytes": 247145,
+      "output_sha256": "5cb88a4544f00acdda4abe8337d30a28b241c767ce70a5e6c46fcbf2d6feafdc"
+    },
+    {
+      "note": "Original source fetch exited 128, before scoring. No specific network cause established.",
+      "job_id": "p3-f747-naya-30-later-specimens-first-sealed-mass-receiver",
+      "owner": "node-eb2d690bfa767553dc51ffd13a31a207",
+      "request_sha256": "e7476ae3267a07841ad9d185016093e0f443cd1585670ee684f7330ed0a186e5",
+      "generation": "f7ec2289b6071e423607eef80bee6fd2fd61ea0802b3cd7f8b32d6f0444db9b9",
+      "state": "failed",
+      "exit_code": 1,
+      "descendants": "drained",
+      "output_bytes": 670,
+      "output_sha256": "f164db45bc386e11496b287994a792e9493d0b845eb665e340c0b990f3c50f6a"
+    },
+    {
+      "note": "Exact forecast and frozen receiver supplied by byte hash. First successful numerical outcome.",
+      "job_id": "p3-f747-naya-locked-byte-receiver-after-terminal-git128",
+      "owner": "node-afe5effb4abf983e03793cfe74983139",
+      "request_sha256": "7ed849f182569430dbc45268a4a13b9f4744efb62d2d83c6032cd2c491e31351",
+      "generation": "ee7c2818e90fd11b4010c66c797ed44b851f9fc6fae9f5ebc03f2780358bac20",
+      "state": "completed",
+      "exit_code": 0,
+      "descendants": "drained",
+      "output_bytes": 230722,
+      "output_sha256": "dc5a4a9e15c784c39d2ff46402c0aa7c0638fd9c1cfcb934a9a841226db30bb9"
+    },
+    {
+      "note": "Public raw source metadata request failed at DNS lookup.",
+      "job_id": "p3-f747-ils-independent-r-xdr-structure-only",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "request_sha256": "7496d9b330d1ce706fa2bae0c270b38648e510c7b991ac80e0e7bf7722c4c877",
+      "generation": "81677cab299a4f3b8d7a5efe0a25f9039b291c1218880c1b9a054d8a5c99404a",
+      "state": "failed",
+      "exit_code": 1,
+      "descendants": "drained",
+      "output_bytes": 2583,
+      "output_sha256": "c11fda3e6d72f7944531390ad30539f8bc4ffe76e6b7199e6df6a40803cff496"
+    },
+    {
+      "note": "Pinned original TG.RData bytes obtained from the public source.",
+      "job_id": "p3-f747-ils-xdr-skeleton-and-authenticated-public-input-after-dns-refusal",
+      "owner": "node-4bf32eb7151785ee55ae5d40eac88d72",
+      "request_sha256": "2293a32b23e08f354f3e79b03ba24972fddb6937b6dbae18069a880227feae1e",
+      "generation": "4fa96023f6181420a332d69a782caf83c10af7861813eff3248cec108a34e6ac",
+      "state": "completed",
+      "exit_code": 0,
+      "descendants": "drained",
+      "output_bytes": 662825,
+      "output_sha256": "956e65014b854f5a7a519a0849e5805a8c88f92e8facade60a304c24fa4989dd"
+    },
+    {
+      "note": "Independent stdlib XDR recount. No original score supplied to this run.",
+      "job_id": "p3-f747-naya-independent-xdr-105-curve-equivalence-and-raw-scores",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "request_sha256": "1d8af67f38f5b845815cf107ca17504f468a75416a34c02410b3682835727b09",
+      "generation": "30bfe10b62981961c48fe274336998fa7ae6b3ccb600fc825c13155e3426e5d8",
+      "state": "completed",
+      "exit_code": 0,
+      "descendants": "drained",
+      "output_bytes": 42291,
+      "output_sha256": "0e5f3beb9923f027f11f2a74415f9afdb291cda6e689f7b5cc2a609415eec501"
+    },
+    {
+      "note": "Independent recount compared to the original score and all 30 original target vectors.",
+      "job_id": "p3-f747-naya-locked-score-recount-stdin-schema-correct",
+      "owner": "node-9198bc15530634050cdb2d65145320ca",
+      "request_sha256": "66de3fcc63a36a426a322c659056d43e7eb127b80e5d88eed342cae1ff28d268",
+      "generation": "09b6af50629eaf9dd2c5bccf58f30ed8c24072397c20768d3a21846183429b1f",
+      "state": "completed",
+      "exit_code": 0,
+      "descendants": "drained",
+      "output_bytes": 304,
+      "output_sha256": "26f2aa7d6a817395af09ec8395bb9608bcadca7c51f375a779fd8d0112b42c32",
+      "scalar": {
+        "compare": {
+          "all30_original_target_vectors_exact": true,
+          "max_delta": 1.1102230246251565e-15,
+          "metric_checks": 1512
+        },
+        "coordinate_comparisons": 274680,
+        "primary": false,
+        "recorded_unique": {
+          "early": 80,
+          "full": 80,
+          "second": 80,
+          "third": 80,
+          "whole": 80
+        },
+        "unique_held_late": {
+          "1": 8,
+          "6": 10,
+          "7": 9
+        }
+      }
+    }
+  ],
+  "validation_refusal": {
+    "operation": "p3-f747-naya-immutable-score-xdr-independent-scalar-receiver",
+    "request_sha256": "53617ae5abf75415581fa1f70cc20e2f7b1661447232897c181eba10db100500",
+    "error": "INVALID_ARGUMENT",
+    "message": "validating \"arguments\": validating root: validating /properties/command: unexpected additional properties [\"stdin_utf8\"]",
+    "provider_command_started": false
+  },
+  "inputs": {
+    "release_sha256": "cfded84c4386475437347c4a63ca4ffe46cf66544b2ba3f9cbc6731e48767ecc",
+    "forecast_sha256": "a3798e58660d0d6589b51cf4a32d931fc37e28a60e9b874590578bf9e6282543",
+    "score_sha256": "c185be5aae1d041c25579d2c9e8121b4d6ff6fcad2770d2beb16037e02aa5019",
+    "recount_sha256": "a7e30e2bd81bcf2297d38c1697595723e1e5599bb0e442d2f83320c1db0bcbe3"
+  }
+}
