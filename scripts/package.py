@@ -2104,6 +2104,8 @@ INCLUDE = (
     'src/trajectory-lm/panel.mjs',
     'src/trajectory-lm/session.mjs',
     'tests/affine-partitions-fixture.mjs',
+    "tests/continuous-forecast-diameter-course.mjs",
+    "tests/fixtures/continuous-forecast-diameter-protocol.json",
     'tests/fixtures/affine-origin-original.json',
     'tests/fixtures/critical-affine-original.json',
     'tests/fixtures/damped-affine-original.json',
