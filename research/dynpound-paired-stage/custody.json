@@ -1,0 +1,262 @@
+{
+  "schema": "worldlaw.usgs-dynpound-field-custody.v1",
+  "source": {
+    "article": "10.3133/sir20245129",
+    "model": "10.5066/P9X7QZFG",
+    "companion": "10.5066/P955QRPQ",
+    "software": "10.5066/P13FOADX",
+    "archive_model_sha256": "0f12cf65ef8f9f36463839ebea4dde46ff20772de0443c38106cf0cbd17dea4b",
+    "archive_source_sha256": "6314bede3710cd03c27383ff006f0137d990fed91a09f60dd8b7780a46b6d8e4",
+    "archive_output_sha256": "0cbfc256a7c104b9a2cf712feedb3ab2ff34bfee734f286c4f74f5eae60928b0",
+    "archive_event_parity": [
+      "EVENT_PARITY 02052090 Discharge 1344 published_member_sha eb6447df049b1fe082d7a8551ad9bcd74e33dd58ad04c4b4a96d47e84fcb9296 max_abs 1.8189894035458565e-12 max_rel 3.157102599205343e-16 raw_worst 2018-05-22 09:30:00+00:00 8817.098355280395 8817.098355280397",
+      "EVENT_PARITY 02052090 Stage 1344 published_member_sha 54829e90a1e5caeb2781a8d54ed0c4dac6780a2932bf65be69a40fb20b7d5a16 max_abs 6.572520305780927e-14 max_rel 4.7820795487315265e-15 raw_worst 2018-05-21 23:45:00+00:00 13.74406309808116 13.744063098081094",
+      "EVENT_PARITY 06933500 Discharge 1600 published_member_sha 245a0250582898528b5d07851dc74782eacee604aac8e4b76df351a718f0b583 max_abs 2.9103830456733704e-11 max_rel 6.564875428527243e-16 raw_worst 2017-05-01 16:30:00+00:00 178523.40771340913 178523.4077134091",
+      "EVENT_PARITY 06933500 Stage 1600 published_member_sha f5bda777d0385c1fb3519d59ff60dfcd3f6da0cd71d8d41f3d9e1d46700f7850 max_abs 1.127986593019159e-13 max_rel 6.939642882503477e-14 raw_worst 2017-04-05 06:00:00+00:00 4.297946375346313 4.2979463753462",
+      "EVENT_PARITY 07010000 Discharge 1800 published_member_sha 2ba005a6fb2f2362835dc15cb4c19571a68d0d8240d2629806359c2f5d9a0052 max_abs 2.7939677238464355e-09 max_rel 4.977173893028781e-15 raw_worst 2015-06-17 18:00:00+00:00 561356.2603789591 561356.2603789619",
+      "EVENT_PARITY 07010000 Stage 1800 published_member_sha 6663f73e64edc6ec3a18fb3d0279df14fa1ce88dd789f53437343ae2bdb0c300 max_abs 1.5276668818842154e-13 max_rel 5.724883506346583e-15 raw_worst 2015-07-26 17:00:00+00:00 26.684680661024085 26.684680661023933"
+    ]
+  },
+  "prior_clock_controls": {
+    "source_convention": "https://waterdata.usgs.gov/blog/api-v1-release/",
+    "legacy_exact_seconds": [
+      55,
+      44,
+      132
+    ],
+    "post_archive": [
+      2,
+      0,
+      4
+    ],
+    "legacy_vs_local_time_matches": 0,
+    "date_only_input_panel_sha256": "884ad9d19cf257688cc54728462f04ed15776c2ee0e6959863e72f0481e7eaaa",
+    "invalid_date_only_features_sha256": "a181b18239f709b806d50c4cc5c06d0c73767a0215c3da0fd80a664e30a2a149",
+    "correct_input_panel_sha256": "9003d07698a36793119f84a572e1014dceb4fedfc22ddb4476ffd936e4a32c12",
+    "correct_physical_features_sha256": "c1a6953bea83647652cbedbf50a46a132cfbfafcef1dbf388fa9ae4daa40b4a9"
+  },
+  "freeze": {
+    "source": 186729,
+    "operator_and_gates": 186763,
+    "date_key_refusal": 186776,
+    "clock_repair": 186792,
+    "score_definition": 186799,
+    "prelabel_board_attachment": "att-mwsx6a9s0oo6lm",
+    "model_training_source_sha256": "e11f55f586aa7ec9448df3064d1980fb1cb0816152f5adefaea908ae5c7dd1d6",
+    "scoring_ordinary_result_sha256": "143f9838bb858ebd7f06b632137aea7611c0f1a325d178c429bfe2496a8b953a"
+  },
+  "termination": {
+    "output_retention_refused": {
+      "job": "p1-f747-dynpound-momentum-and-strong-controls-training-only-forecast-lock",
+      "reason": "requested 131072 exceeds maximum 65536; no native producer from that request"
+    },
+    "source_owner_export": {
+      "job": "p1-f747-usgs-original-profile-and-ADCP-capsule-forwarder",
+      "owner": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "state": "bound; no terminal observation at publication preparation",
+      "readback": "owner_connection_not_established before dispatch; original not replayed"
+    }
+  },
+  "originals": [
+    {
+      "job": "p1-f747-usgs-dynpound-model-and-gaugings-source-metadata",
+      "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+      "request_sha256": "0b57be32928fa2e2b3d3d115ed77af5a77fea22dc6e95ce1a561b2fa36061746",
+      "generation": "26426f23a7b4d929a588deada3717e47451b3f276fd0d24be0ccb6dde0023bb1",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained",
+      "output_bytes": 5357
+    },
+    {
+      "job": "p1-f747-dynpound-ten-sites-header-and-author-source-join",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "2934d6372a08182b26ce413f4f686669686ffd75b371159e96e4d10da06d9276",
+      "generation": "618eb8aaa1231a55e68fe4cae1c7afccfd9aa77bbc9031650dd2d470af1eaa87",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 21827
+    },
+    {
+      "job": "p1-f747-dynpound-ten-events-calibration-clock-and-sensor-crosswalk",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "4f23ab5cbfc25e1bfe17603de4cd526717c54167f890f8e8c568d4b3909c9320",
+      "generation": "94607c913ba4527441d546dc74e96e2fd3099244128ee4868c9e8f74a64bb58a",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 17692
+    },
+    {
+      "job": "p1-f747-dynpound-stage-clock-hdf-and-calibration-window-census",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "023c7218059f1dce0dbe13ddf4601bc485d2e9035df383eaaf715eee5a7f7874",
+      "generation": "f369d861b0533d4fbe0de4792ac8de1cef34c5020120cea5ccc1d5f7ede417e2",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 21426
+    },
+    {
+      "job": "p1-f747-dynpound-three-named-river-neighbor-source-and-clock-rights",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "59de09adffd7a3d2c51dcf1b3c6b25b2059a84bb4abbac16ec2d558717b3c2ea",
+      "generation": "a5bdefb4f0cd3bd79f35ff8332f888e41211067e59284562a38cca0978d05bdd",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 29143
+    },
+    {
+      "job": "p1-f747-dynpound-real-gauging-method-join-and-official-run-contract",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "f5d52d655c5c42eb79f7b422f5d238f248f080ad5da61ab80e1f700f51180490",
+      "generation": "ea64fe9f47f3aa4ac23cde687d1aa62750fe043aacd843b13ae32ae4b8dd5d2f",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 12499
+    },
+    {
+      "job": "p1-f747-dynpound-authentic-three-historical-event-bidirectional-parity",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "f918b6e88e9bd1c3768342c5a840740600edb5695db3f40780e11a925d94ae55",
+      "generation": "79844f974030b2af199a4638faca4a11872f11a40dddfc47a723c46ee38a5734",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 3241
+    },
+    {
+      "job": "p1-f747-dynpound-observing-procedures-and-real-stage-column-preflight",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "a909928c2bd2e50d6d970151e893153669add1aa92a8e812e074c92d2a07f83d",
+      "generation": "a44a1c79a230dc4119ae40fe3ddaaf6520f48ad34e53874c68c621821b6114a5",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 1937
+    },
+    {
+      "job": "p1-f747-dynpound-real-core-units-and-24-hour-causal-interface-source",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "d4bb414f368759c76f5c257abed5868496eb2a1b86914816542b90c550fccb77",
+      "generation": "cd1528c490bf5b018f7167e73d5c5cefd79a9f6f8903b5e1862d5e4f8f69c720",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 14742
+    },
+    {
+      "job": "p1-f747-usgs-training-ADCP-and-three-reach-causal-stage-acquisition",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "0002e4896fdb201a6c151fa2936714def9b0f0819600360ea2195e42107454ce",
+      "generation": "1ee331ce87935a1228d74371e0017c1126f0c23afd0ee06b487a887cf55d27a6",
+      "status": "failed",
+      "exit_code": 1,
+      "descendant_state": "unobserved",
+      "output_bytes": 90
+    },
+    {
+      "job": "p1-f747-usgs-unique-ADCP-visit-time-causal-history-acquisition",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "43d4084d31f42677a0f1c04364c3ae86ec1f417551d040cd7e2bb09fab6ffb61",
+      "generation": "6c9558eadbd01127ffac3769618f8fa77b5e1b20cf67064f0c31db2dc019876f",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 1296
+    },
+    {
+      "job": "p1-f747-dynpound-real-solver-causal-24h-development-input-lock",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "9926fdb1823de6bd3bfc57fda0f22621ced8fa840d0b30af466dfebdc17a3ba2",
+      "generation": "b660aad186f5b5ed3f858565cdb6fe22a7ce3352228b228241ea5ec3a2d34da7",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 5258
+    },
+    {
+      "job": "p1-f747-dynpound-USGS-v1-split-field-clock-independent-legacy-census",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "4ed7ca7a046956389ed3bfd9e9976dac640c4d142a81caba3c74324cf92881e0",
+      "generation": "8b5ee267f9ed8b27ab0053048d20a7a49e062afc19b38e08f23b8d34f457b1d6",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 3200
+    },
+    {
+      "job": "p1-f747-usgs-confirmed-split-UTC-direct-ADCP-issue-time-histories",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "1473fcc8c526ba8cb3083a7ac7443133248037acb92e5c7ead2eaef6759bbad4",
+      "generation": "9bee6dad9f098bf41baadbf675601d4f8707f19ab4b44711093099532397f8cd",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 999
+    },
+    {
+      "job": "p1-f747-dynpound-split-UTC-registered-physical-features-and-worst",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "e05552430611221c4f7c8c4a17f2a8141cb8d21fa2217e04dfeabd58d5896efe",
+      "generation": "a0504bf29076f6bbd021f1d1badd50b50dbf4ee4234737b0edd247188cedc20e",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 5411
+    },
+    {
+      "job": "p1-f747-dynpound-momentum-and-strong-controls-training-only-forecast-lock-64k",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "2e6081167fd8bf761ce4e6536b62066f042ad6bba265ca2aa981ef9bde3ed54d",
+      "generation": "07ab6f636422419aef5566a76eeba292baeb9d43f6d373e02019e268fd6cdd10",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 59958
+    },
+    {
+      "job": "p1-f747-dynpound-board-cold-prelabel-262-forecast-receiver",
+      "worker": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "request_sha256": "7fdb459b8808b47021f037350f8238291f8adedf491679b6297bafd43fb1b6aa",
+      "generation": "671c736802ca6e1cc246f8549d26d58e9738b0714d09a502ed4817811153c98c",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained",
+      "output_bytes": 342
+    },
+    {
+      "job": "p1-f747-dynpound-locked-three-site-development-ADCP-scoring",
+      "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "request_sha256": "cdb437ceb10c84f4d05194f5181e0c3c737b2017cfb79d62b75fd73ae94bf24a",
+      "generation": "2c2fbcf6befa1a1e9454afcf88c9e33a2a73deade0724e2435c5dee6c8a5d8cc",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "unobserved",
+      "output_bytes": 7683
+    },
+    {
+      "job": "p1-f747-dynpound-independent-65digit-ADCP-paired-gate-recount",
+      "worker": "node-4bf32eb7151785ee55ae5d40eac88d72",
+      "request_sha256": "1c2144035ed0ca6848588cb7411e6c6c7578fa12f0f9e21a982e99663fe8b51a",
+      "generation": "e33782b428a17f5c79407626409d0e61a8835f5e85b500a62124ce1b055b703c",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained",
+      "output_bytes": 12416
+    },
+    {
+      "job": "p1-f747-dynpound-independent-worst-development-paths-raw-USGS-receive",
+      "worker": "node-7a9dead9904fa3581a4286fb5ced2323",
+      "request_sha256": "71f94db282bc72f6df1d8cb41b273ad94da2d08f221f67885c32290f98409ba3",
+      "generation": "9f88d203b17d8edfcd3cc576af5169c1b12047218f5cc544d66a646b28300c55",
+      "status": "completed",
+      "exit_code": 0,
+      "descendant_state": "drained",
+      "output_bytes": 3177
+    }
+  ]
+}
