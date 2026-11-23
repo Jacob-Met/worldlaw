@@ -5,15 +5,24 @@
  */
 import {readFile,writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
+import {certifyMulticlassPositionDriftMinimum} from '../src/science/persistent-position-drift-multiclass-minimum.mjs';
 import {planBinaryPositionDriftMinimum} from '../src/science/persistent-position-drift-all-horizon.mjs';
 import {parseActiveOriginalJSON} from '../src/science/active-position-drift-readout.mjs';
 import {recommendActiveFollowup,sealActivePlan,sealActiveReadout,replayActiveNotebook,receiveActiveNotebook,createActiveNotebook} from '../src/science/active-experiment-record.mjs';
-const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE | --recommend INDEX] [--output NEW_FILE] | --input FILE --create-notebook --output NEW_FILE | --input FILE --binary-minimum [--output NEW_FILE]';
-let recommend=null,binaryMinimum=false;
+const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE | --recommend INDEX] [--output NEW_FILE] | --input FILE --create-notebook --output NEW_FILE | --input FILE --binary-minimum [--output NEW_FILE] | --input FILE --multiclass-minimum [--enumerate-through N --word-budget N] [--output NEW_FILE]';
+let recommend=null,binaryMinimum=false,multiclassMinimum=false;
+const searchLimits={};
 let input='examples/active-linear-family-decays.json',output=null,replay=null,readings=null,replayReadings=null,notebook=null,inputChosen=false,createNotebook=false;
 const argv=process.argv.slice(2);
 for(let i=0;i<argv.length;i++){
   if(argv[i]==='--help'){console.log(usage);process.exit(0);}
+  if(argv[i]==='--multiclass-minimum'){multiclassMinimum=true;continue;}
+  if(argv[i]==='--enumerate-through'||argv[i]==='--word-budget'){
+    const key=argv[i]==='--enumerate-through'?'enumerateThrough':'wordBudget';
+    const raw=argv[++i];
+    if(!/^(0|[1-9][0-9]*)$/.test(raw)||!Number.isSafeInteger(Number(raw)))throw Error(usage);
+    searchLimits[key]=Number(raw);continue;
+  }
   if(argv[i]==='--binary-minimum'){binaryMinimum=true;continue;}
   if(argv[i]==='--create-notebook'){createNotebook=true;continue;}
   if(!['--input','--output','--replay','--readings','--replay-readings','--notebook','--recommend'].includes(argv[i])||i+1>=argv.length)
@@ -31,8 +40,9 @@ for(let i=0;i<argv.length;i++){
   else if(flag==='--replay-readings')replayReadings=value;
   else notebook=value;
 }
-if(binaryMinimum&&(!inputChosen||notebook||readings||replay||replayReadings||recommend!==null||createNotebook))
-  throw Error('--binary-minimum requires --input with an exact two-law source and optional --output.');
+if(binaryMinimum&&multiclassMinimum || Object.keys(searchLimits).length&&!multiclassMinimum)throw Error(usage);
+if((binaryMinimum||multiclassMinimum)&&(!inputChosen||notebook||readings||replay||replayReadings||recommend!==null||createNotebook))
+  throw Error('A minimum-horizon request requires --input and optional --output.');
 if(recommend!==null&&(!notebook||readings||createNotebook))throw Error('--recommend requires a preceding --notebook only.');
 if(readings&&!replay&&!notebook)throw Error('Readouts require --replay PLAN or the preceding portable --notebook.');
 if(replayReadings&&!readings)throw Error('--replay-readings requires --readings and --replay PLAN.');
@@ -41,7 +51,9 @@ if(notebook&&(inputChosen||replay||replayReadings||createNotebook))
 if(createNotebook&&(!inputChosen||!output||replay||readings||replayReadings))
   throw Error('--create-notebook requires --input and --output and no separate plan or readings.');
 let report;
-if(binaryMinimum){
+if(multiclassMinimum){
+  report=certifyMulticlassPositionDriftMinimum(parseActiveOriginalJSON(await readFile(input,'utf8')),searchLimits);
+}else if(binaryMinimum){
   report=planBinaryPositionDriftMinimum(parseActiveOriginalJSON(await readFile(input,'utf8')));
 }else if(notebook){
   const original=await readFile(notebook,'utf8');
