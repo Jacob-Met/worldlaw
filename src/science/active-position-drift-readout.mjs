@@ -1,3 +1,4 @@
+import {POLYTOPE_SOURCE,POLYTOPE_PLAN,openRatePolytopes} from './position-drift-rate-polytopes.mjs';
 import {SEGMENT_SOURCE,SEGMENT_PLAN,openRateSegments} from './position-drift-rate-segments.mjs';
 /** Readout documents for the active experiment notebook and CLI. */
 import {openAllHorizonPositionDrift} from './persistent-position-drift-all-horizon.mjs';
@@ -15,7 +16,7 @@ const need=(ok,message)=>{if(!ok)throw Error(message);};
 export function parseActiveOriginalJSON(text){
   const data=JSON.parse(text);
   const schema=data?.schema;
-  if(schema!==SEGMENT_SOURCE && schema!=='worldlaw.position-drift-rate-catalog/v1' && schema!==ACTIVE_DRIFT_PLAN &&
+  if(schema!==POLYTOPE_SOURCE && schema!==SEGMENT_SOURCE && schema!=='worldlaw.position-drift-rate-catalog/v1' && schema!==ACTIVE_DRIFT_PLAN &&
      schema!==ACTIVE_DRIFT_CHECKPOINTS && schema!==ACTIVE_DRIFT_TRACE && schema!==CASE_TWELVE_REQUEST && schema!==ONE_FEEDBACK_REQUEST && !isSuffixRequest(data) &&
      schema!==GUIDED_INPUT && schema!==GUIDED_RESULT && !isGuidedPlan(data) && !isGuidedPlan(data?.plan) &&
      schema!=='worldlaw.active-position-drift-checkpoint-result/v1' &&
@@ -34,7 +35,7 @@ function fields(value,expected){
 }
 
 export function evaluateActiveDriftInput(source,policy,supplied){
-  const session=policy.schema===SEGMENT_PLAN?openRateSegments(source,policy):openAllHorizonPositionDrift(source,policy);
+  const session=policy.schema===POLYTOPE_PLAN?openRatePolytopes(source,policy):policy.schema===SEGMENT_PLAN?openRateSegments(source,policy):openAllHorizonPositionDrift(source,policy);
   const bound=['schema','sourceSHA256','planSHA256'];
   if(policy.status==='indistinguishable'){
     fields(supplied,[...bound,'laws','origin','runs']);

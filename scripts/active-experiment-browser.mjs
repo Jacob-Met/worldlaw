@@ -787,6 +787,31 @@ try{
   assert.deepEqual(JSON.parse(cli(['--notebook',aliasFile]).stdout),aliasBook);
   mark('continuous parameter range and interior gauge alias survive browser and CLI replay');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftSimplex');
+  await page.locator('#load-example').click();await idle();await page.locator('#freeze-plan').click();
+  await openDetails('supplied-details');await page.locator('#acquisition-kind').selectOption('synthetic');
+  await page.locator('#readout-source').fill('One persistent three-vertex mixture');
+  for(const [tick,value] of [[0,'0'],[17,'0'],[34,'17/3']])await page.locator('#drift-reading-'+tick).fill(value);
+  await page.locator('#evaluate-readings').click();await idle();await page.reload();await idle();await openDetails('supplied-details');
+  for(const [tick,value] of [[51,'34/3'],[68,'17']])await page.locator('#drift-reading-'+tick).fill(value);
+  await page.locator('#evaluate-readings').click();await idle();
+  const simplexBook=await accepted(),simplexResult=simplexBook.readouts.at(-1).result;
+  assert.deepEqual(simplexResult.consistentHypothesisIds,['B']);
+  assert.equal(simplexResult.checked.surviving[0].jointRegion.weightCoordinates,2);
+  const simplexFile=await download('export-notebook','persistent-simplex.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',simplexFile]).stdout),simplexBook);
+  await openDetails('source-details');await page.locator('#new-draft').click();await idle();
+  const projectedSimplex=JSON.parse(await page.locator('#source-text').inputValue());
+  projectedSimplex.commands.shift();for(const law of projectedSimplex.laws)for(const row of law.vertices)row.shift();
+  await page.locator('#source-text').fill(JSON.stringify(projectedSimplex));await page.locator('#replan').click();await idle();
+  await page.locator('#freeze-plan').click();await page.locator('#drift-trace').click();await idle();
+  const simplexAlias=await accepted(),simplexTrace=simplexAlias.readouts[0].result.trace;
+  assert.deepEqual(simplexTrace.parameters,[['1'],['1/3','1/3','1/3']]);
+  assert.deepEqual(simplexTrace.readings[0],simplexTrace.readings[1]);
+  const simplexAliasFile=await download('export-notebook','simplex-interior-alias.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',simplexAliasFile]).stdout),simplexAlias);
+  mark('persistent simplex region and a strictly interior three-way alias survive browser and CLI replay');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';

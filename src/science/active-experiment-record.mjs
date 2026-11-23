@@ -19,7 +19,7 @@ import {TWO_PULSE_SCHEMA,designTwoPulse,receiveTwoPulse} from './active-integrat
 
 import {CATALOG_SCHEMA} from './persistent-position-drift-planner.mjs';
 import {planAllHorizonPositionDrift} from './persistent-position-drift-all-horizon.mjs';
-import {SEGMENT_SOURCE,SEGMENT_PLAN,CASE_TWELVE_REQUEST,ONE_FEEDBACK_REQUEST,isSuffixRequest,isGuidedPlan,designCatalog,receiveGuidedDrift} from './active-guided-drift.mjs';
+import {POLYTOPE_SOURCE,POLYTOPE_PLAN,SEGMENT_SOURCE,SEGMENT_PLAN,CASE_TWELVE_REQUEST,ONE_FEEDBACK_REQUEST,isSuffixRequest,isGuidedPlan,designCatalog,receiveGuidedDrift} from './active-guided-drift.mjs';
 import {ACTIVE_DRIFT_PLAN,evaluateActiveDriftInput,parseActiveOriginalJSON} from './active-position-drift-readout.mjs';
 
 export const ACTIVE_EXPERIMENT_NOTEBOOK_SCHEMA='worldlaw.active-experiment-notebook/v1';
@@ -44,7 +44,7 @@ function source(bytes){
   const joint=request?.schema===ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA;
   const adaptive=request?.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA;
   const vandermonde=request?.schema===ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA||request?.schema===ACTIVE_ACTUATOR_TIMELINE_SCHEMA;
-  need(multiple||bounded||joint||adaptive||vandermonde||request?.schema===SEGMENT_SOURCE||isSuffixRequest(request)||request?.schema===ONE_FEEDBACK_REQUEST||request?.schema===CASE_TWELVE_REQUEST||request?.schema===CATALOG_SCHEMA||request?.schema===TWO_PULSE_SCHEMA||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request?.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request?.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA,
+  need(multiple||bounded||joint||adaptive||vandermonde||request?.schema===POLYTOPE_SOURCE||request?.schema===SEGMENT_SOURCE||isSuffixRequest(request)||request?.schema===ONE_FEEDBACK_REQUEST||request?.schema===CASE_TWELVE_REQUEST||request?.schema===CATALOG_SCHEMA||request?.schema===TWO_PULSE_SCHEMA||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request?.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request?.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA,
     'Unrecognized active experiment source schema; choose linear family, intervention family, control box, joint control, one erasure, one replaced reading, affine sensor or adaptive v1');
   return {request,multiple,bounded,joint,adaptive,vandermonde};
 }
@@ -54,7 +54,7 @@ function pick(value,keys){return Object.fromEntries(keys.map(key=>[key,value?.[k
 export async function sealActivePlan(original,{prior=null,sourcePath,design}={}){
   const bytes=bytesOf(original),{request,multiple,bounded,joint,adaptive,vandermonde}=source(bytes);
   const saved=prior==null?null:clone(prior);
-  const driftSource=request.schema===SEGMENT_SOURCE||isSuffixRequest(request)||request.schema===CATALOG_SCHEMA||request.schema===CASE_TWELVE_REQUEST||request.schema===ONE_FEEDBACK_REQUEST;
+  const driftSource=request.schema===POLYTOPE_SOURCE||request.schema===SEGMENT_SOURCE||isSuffixRequest(request)||request.schema===CATALOG_SCHEMA||request.schema===CASE_TWELVE_REQUEST||request.schema===ONE_FEEDBACK_REQUEST;
   need(!design||driftSource,'Select a drift rate catalog for the requested planner.');
   const core=driftSource?designCatalog(request,design??(saved?{method:saved.schema,limits:saved.limits}:{})):request.schema===TWO_PULSE_SCHEMA?designTwoPulse(request):multiple?designActiveInterventionFamily(request):bounded?
     designActiveLinearControlBox(request):joint?designActiveLinearJointControl(request):
@@ -101,7 +101,7 @@ export async function sealActiveReadout(original,plan,readings,{prior=null,sourc
     'Readout source or plan digest does not match the frozen prospective certificate.');
   const core=Object.fromEntries(Object.entries(frozen).filter(([key])=>
     !['sourceSHA256','planSHA256','evidenceLevel'].includes(key)));
-  let result=frozen.schema===SEGMENT_PLAN?evaluateActiveDriftInput(request,designCatalog(request),supplied):isGuidedPlan(frozen)?evaluateActiveDriftInput(frozen.source,planAllHorizonPositionDrift(frozen.source),supplied):frozen.schema===ACTIVE_DRIFT_PLAN?evaluateActiveDriftInput(request,core,supplied):vandermonde?evaluateActiveVandermondeReadings(request,core,supplied):evaluateActiveLinearReadings(request,core,supplied);
+  let result=(frozen.schema===POLYTOPE_PLAN||frozen.schema===SEGMENT_PLAN)?evaluateActiveDriftInput(request,designCatalog(request),supplied):isGuidedPlan(frozen)?evaluateActiveDriftInput(frozen.source,planAllHorizonPositionDrift(frozen.source),supplied):frozen.schema===ACTIVE_DRIFT_PLAN?evaluateActiveDriftInput(request,core,supplied):vandermonde?evaluateActiveVandermondeReadings(request,core,supplied):evaluateActiveLinearReadings(request,core,supplied);
   if(request.schema===ACTIVE_ACTUATOR_TIMELINE_SCHEMA&&saved?.schema==='worldlaw.active-actuator-timeline-result/v1'){
     // Reproduce all historical witness estimates exactly from the supplied source and readings.
     result={...result,schema:saved.schema,estimates:result.estimates.map(({coefficients,estimate,interval})=>

@@ -51,6 +51,22 @@ function nearest(first,second){
 
 function rateAt(endpoints,t){return shift(endpoints[0],minus(endpoints[1],endpoints[0]),t);}
 function sum(list){return list.reduce(add,Z());}
+/** Certify one equal-block experiment from a uniform separating functional. */
+export function weightedRateBlocks(weights,responseBands,error){
+  const gap=sub(responseBands[0][0],responseBands[1][1]);
+  need(gap.n>0n,'weighted rate intervals must be strictly separated');
+  const readings=[neg(weights[0]),...weights.slice(0,-1).map((v,k)=>sub(v,weights[k+1])),weights.at(-1)];
+  const noiseRadius=mul(error,sum(readings.map(abs))),threshold=div(add(noiseRadius,noiseRadius),gap);
+  return {repetitions:threshold.n/threshold.d+1n,certificate:{weights:weights.map(fmt),checkpointWeights:readings.map(fmt),
+    unitResponseBands:responseBands.map(b=>b.map(fmt)),unitGap:fmt(gap),noiseRadius:fmt(noiseRadius)}};
+}
+
+export function equalRateSchedule(commands,repetitions){
+  return {status:'finite-schedule',runs:commands.map(command=>({command,repeats:String(repetitions)})),
+    readAt:Array.from({length:commands.length+1},(_,k)=>String(BigInt(k)*repetitions)),
+    pulseUpperBound:String(BigInt(commands.length)*repetitions)};
+}
+
 export const SEGMENT_PLAN='worldlaw.position-drift-rate-segment-policy/v1';
 export function planRateSegments(source){
   const cat=parse(source),certificates=[],aliases=[];
@@ -70,20 +86,15 @@ export function planRateSegments(source){
     });
     const gap=sub(responseBands[0][0],responseBands[1][1]);
     need(cmp(gap,closest.squared)===0,'closest-pair certificate disagrees with endpoint response bands');
-    const readings=[neg(weights[0]),...weights.slice(0,-1).map((v,k)=>sub(v,weights[k+1])),weights.at(-1)];
-    const noiseRadius=mul(cat.error,sum(readings.map(abs)));
-    const threshold=div(add(noiseRadius,noiseRadius),gap),needed=threshold.n/threshold.d+1n;
-    if(needed>repetitions)repetitions=needed;
-    certificates.push({laws,closestParameters:[fmt(closest.t),fmt(closest.s)],weights:weights.map(fmt),
-      checkpointWeights:readings.map(fmt),unitResponseBands:responseBands.map(b=>b.map(fmt)),unitGap:fmt(gap),noiseRadius:fmt(noiseRadius)});
+    const block=weightedRateBlocks(weights,responseBands,cat.error);
+    if(block.repetitions>repetitions)repetitions=block.repetitions;
+    certificates.push({laws,closestParameters:[fmt(closest.t),fmt(closest.s)],...block.certificate});
   }
   const canonical={schema:SEGMENT_SOURCE,commands:cat.commands.slice(),noiseBound:fmt(cat.error),
     laws:cat.ids.map((id,i)=>({id,endpoints:cat.rates[i].map(row=>row.map(fmt))}))};
   const base={schema:SEGMENT_PLAN,source:canonical,aliases,certificates};
   if(aliases.length)return {...base,status:'indistinguishable'};
-  return {...base,status:'finite-schedule',runs:cat.commands.map(command=>({command,repeats:String(repetitions)})),
-    readAt:Array.from({length:cat.commands.length+1},(_,k)=>String(BigInt(k)*repetitions)),
-    pulseUpperBound:String(BigInt(cat.commands.length)*repetitions)};
+  return {...base,...equalRateSchedule(cat.commands,repetitions)};
 }
 
 function receiveSegment(endpoints,ticks,values,error,repetitions){
@@ -118,38 +129,42 @@ function receiveSegment(endpoints,ticks,values,error,repetitions){
   return {parameterRange:[fmt(lo),fmt(hi)],witnessParameter:fmt(lo),initialWitness:state.initialWitness};
 }
 
+export function openRateAlias(plan,commands,ratesFor){
+  function trace(first,second,runs,origin=['0','0']){
+    const laws=[first,second];
+    const alias=plan.aliases.find(a=>first!==second&&a.laws.includes(first)&&a.laws.includes(second));
+    need(alias&&Array.isArray(runs)&&Array.isArray(origin)&&origin.length===2,'supply an alias and physical origin');
+    const parameters=laws.map(id=>{
+      const value=alias.parameters[alias.laws.indexOf(id)];return Array.isArray(value)?value.slice():value;
+    });
+    const driftShift=first===alias.laws[0]?rational(alias.driftShift):neg(rational(alias.driftShift));
+    const [p,v]=origin.map(rational),starts=[v,add(v,driftShift)];
+    const rates=laws.map((id,i)=>ratesFor(id,parameters[i]));
+    const position=[p,p],readings=[[fmt(p)],[fmt(p)]],ticks=['0'];
+    let tick=0n;
+    const word=runs.map(run=>{
+      need(run&&Object.keys(run).sort().join(',')==='command,repeats','malformed command run');
+      const command=commands.indexOf(run.command),n=rational(run.repeats);
+      need(command>=0&&n.d===1n&&n.n>0n,'unknown command or invalid repeat count');
+      for(let i=0;i<2;i++){
+        position[i]=add(position[i],mul(n,add(starts[i],rates[i][command])));
+        readings[i].push(fmt(position[i]));
+      }
+      need(cmp(position[0],position[1])===0,'alias failed physical replay');
+      tick+=n.n;ticks.push(String(tick));return {command:run.command,repeats:fmt(n)};
+    });
+    return {laws:[...laws],parameters,driftShift:fmt(driftShift),origin:[fmt(p),fmt(v)],starts:starts.map(x=>[fmt(p),fmt(x)]),word,ticks,readings};
+  }
+  return {trace,replay:record=>{
+    const actual=trace(...record.laws,record.word,record.origin);
+    need(equalPositionDriftData(actual,record),'saved alias trace differs from physical replay');return actual;
+  }};
+}
+
 export function openRateSegments(source,policy){
   const plan=planRateSegments(source),cat=parse(plan.source);
   need(equalPositionDriftData(plan,policy),'saved policy differs from source');
-  if(plan.status==='indistinguishable'){
-    function trace(first,second,runs,origin=['0','0']){
-      const laws=[first,second];
-      const alias=plan.aliases.find(a=>first!==second&&a.laws.includes(first)&&a.laws.includes(second));
-      need(alias&&Array.isArray(runs)&&Array.isArray(origin)&&origin.length===2,'supply an alias and physical origin');
-      const parameters=laws.map(id=>alias.parameters[alias.laws.indexOf(id)]);
-      const driftShift=first===alias.laws[0]?rational(alias.driftShift):neg(rational(alias.driftShift));
-      const [p,v]=origin.map(rational),starts=[v,add(v,driftShift)];
-      const rates=laws.map((id,i)=>rateAt(cat.rates[cat.ids.indexOf(id)],rational(parameters[i])));
-      const position=[p,p],readings=[[fmt(p)],[fmt(p)]],ticks=['0'];
-      let tick=0n;
-      const word=runs.map(run=>{
-        need(run&&Object.keys(run).sort().join(',')==='command,repeats','malformed command run');
-        const command=cat.commands.indexOf(run.command),n=rational(run.repeats);
-        need(command>=0&&n.d===1n&&n.n>0n,'unknown command or invalid repeat count');
-        for(let i=0;i<2;i++){
-          position[i]=add(position[i],mul(n,add(starts[i],rates[i][command])));
-          readings[i].push(fmt(position[i]));
-        }
-        need(cmp(position[0],position[1])===0,'alias failed physical replay');
-        tick+=n.n;ticks.push(String(tick));return {command:run.command,repeats:fmt(n)};
-      });
-      return {laws:[...laws],parameters,driftShift:fmt(driftShift),origin:[fmt(p),fmt(v)],starts:starts.map(x=>[fmt(p),fmt(x)]),word,ticks,readings};
-    }
-    return {trace,replay:record=>{
-      const actual=trace(...record.laws,record.word,record.origin);
-      need(equalPositionDriftData(actual,record),'saved alias trace differs from physical replay');return actual;
-    }};
-  }
+  if(plan.status==='indistinguishable')return openRateAlias(plan,cat.commands,(id,t)=>rateAt(cat.rates[cat.ids.indexOf(id)],rational(t)));
   const observe=values=>observeRateSegmentSchedule(plan,values);
   return {observe,replay:record=>{
     const actual=observe(record.readings);
