@@ -1,0 +1,622 @@
+{
+ "archive": "Frequency_tunable_Regime_1_DC_vs_C_crit.zip",
+ "bytes": 1414300985,
+ "central_directory": [
+  1414120565,
+  180398,
+  "c8f071036f6e915f083c96a83638bad76d21ba3688a902bbedb9879922a47ff2"
+ ],
+ "physical_members": 1053,
+ "channels": "numeric columns only; conflicting named-frequency labels",
+ "triads": [
+  [
+   {
+    "bias": 100,
+    "step": 0,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_0.mat",
+    "bytes": 1171483,
+    "compressed": 1171831,
+    "crc": 2377262495,
+    "offset": 1309958866
+   },
+   {
+    "bias": 200,
+    "step": 0,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_0.mat",
+    "bytes": 1170255,
+    "compressed": 1170603,
+    "crc": 1540074498,
+    "offset": 1341077018
+   },
+   {
+    "bias": 400,
+    "step": 0,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.mat",
+    "bytes": 1162069,
+    "compressed": 1162421,
+    "crc": 1791453343,
+    "offset": 1405853453
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 4,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_0.25.mat",
+    "bytes": 1169166,
+    "compressed": 1169521,
+    "crc": 2375445885,
+    "offset": 3515289
+   },
+   {
+    "bias": 200,
+    "step": 2,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_0.125.mat",
+    "bytes": 1171242,
+    "compressed": 1171597,
+    "crc": 3492317524,
+    "offset": 389079983
+   },
+   {
+    "bias": 400,
+    "step": 1,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.0625.mat",
+    "bytes": 1163040,
+    "compressed": 1163392,
+    "crc": 3431533880,
+    "offset": 1206483358
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 8,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_0.5.mat",
+    "bytes": 1172423,
+    "compressed": 1172770,
+    "crc": 2421773133,
+    "offset": 8200639
+   },
+   {
+    "bias": 200,
+    "step": 4,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_0.25.mat",
+    "bytes": 1171166,
+    "compressed": 1171521,
+    "crc": 1762248567,
+    "offset": 391423914
+   },
+   {
+    "bias": 400,
+    "step": 2,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.125.mat",
+    "bytes": 1163556,
+    "compressed": 1163903,
+    "crc": 2052810000,
+    "offset": 1207646930
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 12,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_0.75.mat",
+    "bytes": 1170707,
+    "compressed": 1171058,
+    "crc": 4246787019,
+    "offset": 12889105
+   },
+   {
+    "bias": 200,
+    "step": 6,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_0.375.mat",
+    "bytes": 1170417,
+    "compressed": 1170766,
+    "crc": 2278735453,
+    "offset": 393767458
+   },
+   {
+    "bias": 400,
+    "step": 3,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.1875.mat",
+    "bytes": 1161627,
+    "compressed": 1161977,
+    "crc": 1765233776,
+    "offset": 1208811012
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 16,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_1.mat",
+    "bytes": 1173604,
+    "compressed": 1173955,
+    "crc": 1550084926,
+    "offset": 1311130872
+   },
+   {
+    "bias": 200,
+    "step": 8,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_0.5.mat",
+    "bytes": 1171884,
+    "compressed": 1172244,
+    "crc": 1169332932,
+    "offset": 396111389
+   },
+   {
+    "bias": 400,
+    "step": 4,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.25.mat",
+    "bytes": 1162915,
+    "compressed": 1163270,
+    "crc": 921835804,
+    "offset": 1209973169
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 20,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_1.25.mat",
+    "bytes": 1173195,
+    "compressed": 1173550,
+    "crc": 1308268055,
+    "offset": 21100977
+   },
+   {
+    "bias": 200,
+    "step": 10,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_0.625.mat",
+    "bytes": 1172416,
+    "compressed": 1172773,
+    "crc": 1765069893,
+    "offset": 398455535
+   },
+   {
+    "bias": 400,
+    "step": 5,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.3125.mat",
+    "bytes": 1162182,
+    "compressed": 1162537,
+    "crc": 3904941975,
+    "offset": 1211136617
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 24,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_1.5.mat",
+    "bytes": 1175561,
+    "compressed": 1175921,
+    "crc": 1295185690,
+    "offset": 25800186
+   },
+   {
+    "bias": 200,
+    "step": 12,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_0.75.mat",
+    "bytes": 1171510,
+    "compressed": 1171870,
+    "crc": 2401980681,
+    "offset": 400800990
+   },
+   {
+    "bias": 400,
+    "step": 6,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.375.mat",
+    "bytes": 1162897,
+    "compressed": 1163242,
+    "crc": 43737597,
+    "offset": 1212299334
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 28,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_1.75.mat",
+    "bytes": 1177887,
+    "compressed": 1178243,
+    "crc": 618315230,
+    "offset": 30507336
+   },
+   {
+    "bias": 200,
+    "step": 14,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_0.875.mat",
+    "bytes": 1171953,
+    "compressed": 1172308,
+    "crc": 2514368185,
+    "offset": 403145343
+   },
+   {
+    "bias": 400,
+    "step": 7,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.4375.mat",
+    "bytes": 1162235,
+    "compressed": 1162590,
+    "crc": 671649763,
+    "offset": 1213462755
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 32,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_2.mat",
+    "bytes": 1179608,
+    "compressed": 1179950,
+    "crc": 73957432,
+    "offset": 1312305002
+   },
+   {
+    "bias": 200,
+    "step": 16,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_1.mat",
+    "bytes": 1172550,
+    "compressed": 1172910,
+    "crc": 1437614567,
+    "offset": 1342247796
+   },
+   {
+    "bias": 400,
+    "step": 8,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.5.mat",
+    "bytes": 1163293,
+    "compressed": 1163643,
+    "crc": 3590169029,
+    "offset": 1214625525
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 36,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_2.25.mat",
+    "bytes": 1179865,
+    "compressed": 1180216,
+    "crc": 3551732808,
+    "offset": 38765478
+   },
+   {
+    "bias": 200,
+    "step": 18,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_1.125.mat",
+    "bytes": 1173192,
+    "compressed": 1173548,
+    "crc": 2898896302,
+    "offset": 406664171
+   },
+   {
+    "bias": 400,
+    "step": 9,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.5625.mat",
+    "bytes": 1163792,
+    "compressed": 1164145,
+    "crc": 2706672657,
+    "offset": 1215789345
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 40,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_2.5.mat",
+    "bytes": 1183068,
+    "compressed": 1183427,
+    "crc": 2241048314,
+    "offset": 43492981
+   },
+   {
+    "bias": 200,
+    "step": 20,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_1.25.mat",
+    "bytes": 1173637,
+    "compressed": 1173995,
+    "crc": 386883961,
+    "offset": 409012636
+   },
+   {
+    "bias": 400,
+    "step": 10,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.625.mat",
+    "bytes": 1163444,
+    "compressed": 1163793,
+    "crc": 812195646,
+    "offset": 1216953670
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 44,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_2.75.mat",
+    "bytes": 1188322,
+    "compressed": 1188683,
+    "crc": 1610202626,
+    "offset": 48231071
+   },
+   {
+    "bias": 200,
+    "step": 22,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_1.375.mat",
+    "bytes": 1177491,
+    "compressed": 1177851,
+    "crc": 4139487721,
+    "offset": 411361229
+   },
+   {
+    "bias": 400,
+    "step": 11,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.6875.mat",
+    "bytes": 1165752,
+    "compressed": 1166100,
+    "crc": 3935390994,
+    "offset": 1218117642
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 48,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_3.mat",
+    "bytes": 1190851,
+    "compressed": 1191213,
+    "crc": 4200578675,
+    "offset": 1313485127
+   },
+   {
+    "bias": 200,
+    "step": 24,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_1.5.mat",
+    "bytes": 1178839,
+    "compressed": 1179191,
+    "crc": 1109504436,
+    "offset": 413715739
+   },
+   {
+    "bias": 400,
+    "step": 12,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.75.mat",
+    "bytes": 1248429,
+    "compressed": 1248807,
+    "crc": 494766578,
+    "offset": 1219283922
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 52,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_3.25.mat",
+    "bytes": 1198706,
+    "compressed": 1199071,
+    "crc": 2357729901,
+    "offset": 56577363
+   },
+   {
+    "bias": 200,
+    "step": 26,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_1.625.mat",
+    "bytes": 1490434,
+    "compressed": 1490889,
+    "crc": 2259470488,
+    "offset": 416344715
+   },
+   {
+    "bias": 400,
+    "step": 13,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.8125.mat",
+    "bytes": 1498549,
+    "compressed": 1499005,
+    "crc": 1799930112,
+    "offset": 1220532907
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 56,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_3.5.mat",
+    "bytes": 1404729,
+    "compressed": 1405148,
+    "crc": 2454491169,
+    "offset": 61801815
+   },
+   {
+    "bias": 200,
+    "step": 28,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_1.75.mat",
+    "bytes": 1495915,
+    "compressed": 1496365,
+    "crc": 3622618021,
+    "offset": 419330611
+   },
+   {
+    "bias": 400,
+    "step": 14,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.875.mat",
+    "bytes": 1496744,
+    "compressed": 1497199,
+    "crc": 1365469591,
+    "offset": 1222032092
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 60,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_3.75.mat",
+    "bytes": 1400404,
+    "compressed": 1400828,
+    "crc": 253210791,
+    "offset": 67416067
+   },
+   {
+    "bias": 200,
+    "step": 30,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_1.875.mat",
+    "bytes": 1498496,
+    "compressed": 1498950,
+    "crc": 821314230,
+    "offset": 422325340
+   },
+   {
+    "bias": 400,
+    "step": 15,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_0.9375.mat",
+    "bytes": 1495731,
+    "compressed": 1496182,
+    "crc": 2845048534,
+    "offset": 1223529470
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 64,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_4.mat",
+    "bytes": 1393007,
+    "compressed": 1393424,
+    "crc": 679277967,
+    "offset": 1314676515
+   },
+   {
+    "bias": 200,
+    "step": 32,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_2.mat",
+    "bytes": 1493521,
+    "compressed": 1493971,
+    "crc": 3245894787,
+    "offset": 1343420881
+   },
+   {
+    "bias": 400,
+    "step": 16,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_1.mat",
+    "bytes": 1494830,
+    "compressed": 1495287,
+    "crc": 665575777,
+    "offset": 1407016049
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 68,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_4.25.mat",
+    "bytes": 1384876,
+    "compressed": 1385291,
+    "crc": 1786336989,
+    "offset": 77175988
+   },
+   {
+    "bias": 200,
+    "step": 34,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_2.125.mat",
+    "bytes": 1480475,
+    "compressed": 1480920,
+    "crc": 2894152610,
+    "offset": 426808907
+   },
+   {
+    "bias": 400,
+    "step": 17,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_1.0625.mat",
+    "bytes": 1489754,
+    "compressed": 1490205,
+    "crc": 2500107580,
+    "offset": 1225025832
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 72,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_4.5.mat",
+    "bytes": 1380766,
+    "compressed": 1381184,
+    "crc": 257275925,
+    "offset": 82708993
+   },
+   {
+    "bias": 200,
+    "step": 36,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_2.25.mat",
+    "bytes": 1458163,
+    "compressed": 1458602,
+    "crc": 801746945,
+    "offset": 429760854
+   },
+   {
+    "bias": 400,
+    "step": 18,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_1.125.mat",
+    "bytes": 1484452,
+    "compressed": 1484896,
+    "crc": 4202173216,
+    "offset": 1226516217
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 76,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_4.75.mat",
+    "bytes": 1377423,
+    "compressed": 1377836,
+    "crc": 2739583504,
+    "offset": 88231627
+   },
+   {
+    "bias": 200,
+    "step": 38,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_2.375.mat",
+    "bytes": 1433748,
+    "compressed": 1434178,
+    "crc": 1399188995,
+    "offset": 432665424
+   },
+   {
+    "bias": 400,
+    "step": 19,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_1.1875.mat",
+    "bytes": 1476779,
+    "compressed": 1477224,
+    "crc": 982507487,
+    "offset": 1228001292
+   }
+  ],
+  [
+   {
+    "bias": 100,
+    "step": 80,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_100mV_Cf_5.mat",
+    "bytes": 1381073,
+    "compressed": 1381492,
+    "crc": 4262387721,
+    "offset": 1316070114
+   },
+   {
+    "bias": 200,
+    "step": 40,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_200mV_Cf_2.5.mat",
+    "bytes": 1416268,
+    "compressed": 1416696,
+    "crc": 1594208805,
+    "offset": 435523389
+   },
+   {
+    "bias": 400,
+    "step": 20,
+    "name": "Frequency_tunable_Regime_1_DC_vs_C_crit/3.63_3.79kHz/Cantilever_3630_Hz_3790_Hz_DC_400mV_Cf_1.25.mat",
+    "bytes": 1475815,
+    "compressed": 1476259,
+    "crc": 3843036032,
+    "offset": 1229478696
+   }
+  ]
+ ]
+}
