@@ -60,9 +60,11 @@ export function verifyPhysicalFeedbackTree(input,saved){
   need(saved.atRequestedNoise===verdict(cat,saved.tree.radius),'incorrect noise verdict');
   return true;
 }
-export function receivePhysicalFeedbackTree(input,saved,readings){
+export function receivePhysicalFeedbackTree(input,saved,readings,{twoWordRule=false}={}){
   verifyPhysicalFeedbackTree(input,saved);
   const {cat,leaves,source}=prepare(input);
   need(saved.status==='tree-certified','receiver requires a solved tree');
-  return receivePhysicalTree(cat,saved.compact.kept.map(i=>leaves[i]),saved.tree.radius,source.catalog.limits.receiverWork,readings);
+  need(!twoWordRule||saved.compact.kept.length===2,'the two-word rule requires exactly two retained words');
+  return receivePhysicalTree(cat,saved.compact.kept.map(i=>leaves[i]),saved.tree.radius,
+    source.catalog.limits.receiverWork,readings,twoWordRule?saved.compact.proof:null);
 }

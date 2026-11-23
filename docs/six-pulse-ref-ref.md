@@ -1,6 +1,6 @@
 # Six pulses after ref/ref
 
-The exact first-failure radius for this grouped eight-command catalog and initial **ref, ref** is **1/20**. Every smaller error bound permits guaranteed identification in six pulses. At equality a causal observation tree defeats all 4,096 continuations after that initial pair. The earlier four-word exhibit reached 3/76. The increase is 1/95 in absolute radius and 26⅔% relative. The [global five-pulse certificate](position-drift-five-pulse-global.md) puts the **minimum at six pulses throughout [1/29, 1/20)**. The other 63 initial pairs at six pulses remain unclassified at equality.
+The exact first-failure radius for this grouped eight-command catalog and initial **ref, ref** is **1/20**. Every smaller error bound permits guaranteed identification in six pulses. At equality a causal observation tree defeats all 4,096 continuations after that initial pair. The earlier four-word exhibit reached 3/76. The increase is 1/95 in absolute radius and 26⅔% relative. The [global five-pulse certificate](position-drift-five-pulse-global.md) puts the **minimum at six pulses throughout [1/29, 1/20)**. The [subsequent complete course](six-pulse-global.md) established the same 1/20 boundary over all 64 initial pairs. Three individual prefix thresholds remain bounded.
 
 ## Run the two-word policy
 

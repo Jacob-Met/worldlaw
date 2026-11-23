@@ -1,0 +1,146 @@
+{
+  "paper": "Halbwachs et al., MNRAS 455, 3303 (2016), arXiv:1510.07412.",
+  "native": [
+    {
+      "job": "p2-f747-halbwachs-three-binaries-portable-source-schema-original",
+      "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+      "request_sha256": "78cb78014d29c597a4bb55d1c6569d4102ab50f8b3b8bf5f5b894c478c7d98a3",
+      "generation": "7c0b851b3e4440f9b10a244e0bdfc33db1c5b05e959410cc8571b99ba6ce76ec",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T15:16:43.7654073Z",
+      "started_at": "2026-11-23T15:16:43.554921022Z",
+      "descendant": "drained",
+      "bytes": 1334,
+      "stdout_sha256": "5b41ec2029889401275b61702f2ce786ac214f902e869f2dfc024ef568bfaf46"
+    },
+    {
+      "job": "p2-f747-halbwachs-original-source-clock-component-and-blind-roster",
+      "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+      "request_sha256": "1b70ecf42a761d12965d19cf001e3528976c567a339aa6592cac6c426cbb6ad7",
+      "generation": "dd2e6eb106ce0d7eba298b00a27b8152133a6bffa4923649e51f0d3a4f703789",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T15:17:30.346889405Z",
+      "started_at": "2026-11-23T15:17:30.267672897Z",
+      "descendant": "drained",
+      "bytes": 23305,
+      "stdout_sha256": "77c637c590d9f1a57f70a97924fa00db1d8a30a19724a4e2b026451cb59c6d9a"
+    },
+    {
+      "job": "p2-f747-halbwachs-allowed-rv-only-and-historical-single-star-parallax-inputs",
+      "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+      "request_sha256": "a27923cefaa217badae639fd477fd3d547454a9e18e50930bf6826c5d546e4bd",
+      "generation": "1c213e9ac20a2c32fe94e9ce7fafb4efc1f297fffd6587afb02eb3c749bdf876",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T15:19:06.496925634Z",
+      "started_at": "2026-11-23T15:19:06.417635619Z",
+      "descendant": "drained",
+      "bytes": 4903,
+      "stdout_sha256": "c8d3fbd7fe1ede1665a3266de24573633c66b35a6f3c3ef507198b0b88627818"
+    },
+    {
+      "job": "p2-f747-halbwachs-locked-three-anchor-no-later-positions-all-orbits",
+      "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+      "request_sha256": "912873c848ce9fec197bfd80f1a8805202c22feee38a75b5b37f7334ca54c202",
+      "generation": "267248c48058be935bfb002de2c2b271798f136fd6147f6e90d7468867613a8b",
+      "exit_code": 1,
+      "finished_at": "2026-11-23T15:23:28.487727825Z",
+      "started_at": "2026-11-23T15:23:26.247478546Z",
+      "descendant": "drained",
+      "bytes": 1133,
+      "stdout_sha256": "2f33f737e80f88d9df0da6b072e4cb286273e72b0399ee8060287b25ce998a79"
+    },
+    {
+      "job": "p2-f747-halbwachs-tex-minus-fixed-three-anchor-forecast-original",
+      "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+      "request_sha256": "2110c8eb34a6eb6a3bd114217f53dd2222af0bb42d2d08b5167892a0026745ef",
+      "generation": "21bdcd999230ea02f1a92e11f045704fddac2e657927bc0a1e11938d1a881457",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T15:25:10.551980346Z",
+      "started_at": "2026-11-23T15:25:07.3025329Z",
+      "descendant": "drained",
+      "bytes": 52095,
+      "stdout_sha256": "b4969898ed78e861e553d02777e5f5ed52061fd9a32a1d0cc01df7ad428af0e4"
+    },
+    {
+      "job": "p2-f747-halbwachs-twenty-registered-relative-positions-and-global-mirror",
+      "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+      "request_sha256": "2ab9151d3d72088a89fe7f3715cc2efe9d8a9ce87661d3fc0327acc80a676c09",
+      "generation": "3df18210fed2deae4578989564e7673ada510f5e237f4bb374dc2ea345a1fdf0",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T15:26:17.890042983Z",
+      "started_at": "2026-11-23T15:26:15.723802553Z",
+      "descendant": "drained",
+      "bytes": 16178,
+      "stdout_sha256": "b03bc6706e5eb2cbeaab6c818bb02626554a918a6af97be06cd3646ba31ac375"
+    },
+    {
+      "job": "p2-f747-halbwachs-independent-complex-orbit-and-twenty-sky-offset-recount",
+      "owner": "node-dca2afb29d0ea38ed174f70e12b3d5ea",
+      "request_sha256": "e6b7fe46a0ac764ed00ec9302658c4d089c8abbf3ada9a4300d7935552b12cbe",
+      "generation": "6d822d96d2fc67ae7aa99d9c2dff7ba6841f99d46cbbd15d6b7e20bee25cd389",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T15:28:17.086363518Z",
+      "started_at": "2026-11-23T15:28:13.513391227Z",
+      "descendant": "drained",
+      "bytes": 4340,
+      "stdout_sha256": "83d5ab172422e8703d25604891f6d183bdaae24c3a599a8e06425c92b7dcc6d5"
+    },
+    {
+      "job": "p2-f747-halbwachs-independent-input-tables-and-original-hipparcos-ii",
+      "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+      "request_sha256": "abe661ece833e6fef23b4a463544f08d0821c6b4eac9d741efa6661fe5cb5a45",
+      "generation": "f005a50c30633493426b01c20d15a37d5f5e912799a31066819c1a4c54ea2e38",
+      "exit_code": 1,
+      "finished_at": "2026-11-23T15:29:19.744317205Z",
+      "started_at": "2026-11-23T15:29:16.620351051Z",
+      "descendant": "drained",
+      "bytes": 1102,
+      "stdout_sha256": "4f6275f4db8258ecd7937890ad3b358c401f06cf09d8e4a0e42bc837acdc626c"
+    },
+    {
+      "job": "p2-f747-halbwachs-original-historical-cds-hip2-whole-catalogue-three-rows",
+      "owner": "node-66f5e5c87083f69a72b62d0151259f56",
+      "request_sha256": "69a285567fa4612b5d0322d2238a1501f358c9b5379e3f7364f4a11d7414fdc3",
+      "generation": "d16f115fa28ce64dc34e2740a586d7d80aba1eae32ae7b24046207225277bf0f",
+      "exit_code": 1,
+      "finished_at": "2026-11-23T15:30:41.747859665Z",
+      "started_at": "2026-11-23T15:30:40.572593477Z",
+      "descendant": "drained",
+      "bytes": 953,
+      "stdout_sha256": "d317d1e690df8ed37a7a15ff62414b9c30347c611e6305fd6c3057a47c55a72b"
+    }
+  ],
+  "source_tar": {
+    "bytes": 50407,
+    "sha256": "182cc7b0c35d21ae628e2ca7b645b8d7870ad708ad8d12e51e19a7c431a68439"
+  },
+  "source_pdf": {
+    "bytes": 292605,
+    "sha256": "400eed82abc8440586c441130f0cd087d954ca44f683fa3e4b20af794b5d564b"
+  },
+  "initial_source": {
+    "sha": "d4f10d2f8d6400d032bb41381ea88c191fdc48a0",
+    "tree": "90a9c7114e0e227427e8d03a2e1c0f7ee554582f",
+    "ref": {
+      "success": true
+    }
+  },
+  "decoder_correction": {
+    "sha": "4a48a2d7c4165f1480fa5747652f1b30431d4de0",
+    "tree": "cf93f22eaa8f59aef6d255c398f5bdb4fa2b6113",
+    "ref": {
+      "success": true
+    }
+  },
+  "forecast_commit": {
+    "sha": "28de32e188956ca504c6b396ebb067b962068beb",
+    "tree": "f3666893711d5f300f0c72f245b41fd36ce3ac73",
+    "ref": {
+      "success": true
+    }
+  },
+  "forecast_sha256": "2726f93ed200be23ca0d4f9eea68a0b0088d676bd9f38140ecacd824dfe9a182",
+  "outcome_sha256": "fe4c73f8e541ff486dca3743d62733e512d7aa5bc6aec1c522e44f84056a8099",
+  "source_limits": "The direct CDS historical-catalogue requests gave HTTP404, after all54 spectroscopic input table values were independently matched. Numerical single-star parallaxes are transcribed and directly qualified by the original authors’ Table HIP2, not independently validated on the two failed CDS routes.",
+  "transport": "An unpinned queue request refused before worker admission: queues require explicit owner or established workspace. A distinct ordinary portable start acquired both primary archives."
+}

@@ -98,7 +98,35 @@ function normalize(ys){
   if(ys.length<2)return ys.map(()=>zero);
   const slope=sub(ys[1],ys[0]);return ys.map((y,i)=>sub(sub(y,ys[0]),mul(Q(BigInt(i)),slope)));
 }
-export function receivePhysicalTree(cat,leaves,radius,receiverWork,values){
+// For two retained words the verified lower proof splits into two necessary
+// collision inequalities. At least one is violated below the certified radius.
+function chooseFromTwoWordProof(cat,words,proof,pinned,spend){
+  const {nodes,rows}=physicalProgram(cat,words,[],spend);
+  const perWord=rows.length/2;
+  need(words.length===2&&Number.isInteger(perWord),'expected two complete words');
+  const known=new Map();
+  for(let t=2;t<pinned.length;t++)known.set(nodes.get(observedHistory(words[0],t)),pinned[t]);
+  const coefficients=[new Map(),new Map()],violations=[zero,zero];
+  for(const [rowIndex,rawWeight] of proof.lower){
+    const word=Math.floor(rowIndex/perWord),row=rows[rowIndex],weight=rational(rawWeight);
+    violations[word]=sub(violations[word],mul(weight,add(row.h,mul(row.r,cat.error))));
+    for(const [id,coefficient] of row.terms){
+      spend();
+      const sums=coefficients[word];
+      sums.set(id,add(sums.get(id)??zero,mul(weight,coefficient)));
+    }
+  }
+  for(let word=0;word<2;word++)for(const [id,coefficient] of coefficients[word]){
+    if(!coefficient.n)continue;
+    need(known.has(id),'branch inequality depends on an unobserved coordinate');
+    violations[word]=add(violations[word],mul(coefficient,known.get(id)));
+  }
+  const selected=compare(violations[0],violations[1])>0?0:1;
+  need(violations[selected].n>0n,'neither certified branch inequality is violated');
+  return words[selected][pinned.length-1];
+}
+
+export function receivePhysicalTree(cat,leaves,radius,receiverWork,values,twoWordProof=null){
   const work=rateWorkBudget(receiverWork),horizon=leaves[0].length;
   need(compare(cat.error,rational(radius))<0,'the exhibited tree has no guaranteed separation at this bound');
   need(Array.isArray(values)&&values.length>0&&values.length<=horizon+1,'supply consecutive positions within the declared horizon');
@@ -111,6 +139,7 @@ export function receivePhysicalTree(cat,leaves,radius,receiverWork,values){
       if(t===horizon){need(surviving.length<=1,'two families survived the guaranteed tree');next=null;break;}
       const choices=[...new Set(paths.map(word=>word[t]))];
       if(choices.length===1)next=choices[0];
+      else if(twoWordProof)next=chooseFromTwoWordProof(cat,paths,twoWordProof,pinned.slice(0,t+1),work.spend);
       else{
         next=null;
         for(const choice of choices){
