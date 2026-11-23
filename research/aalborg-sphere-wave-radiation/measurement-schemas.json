@@ -1,0 +1,793 @@
+[
+  {
+    "file": "Datafile/Experimental results/01D_Measured1_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Experimental results/01D_Measured2_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Experimental results/01D_Measured3_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Experimental results/01D_Measured4_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Experimental results/03D_Measured1_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Experimental results/03D_Measured2_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Experimental results/03D_Measured3_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Experimental results/03D_Measured4_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Experimental results/05D_Measured1_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Experimental results/05D_Measured2_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Experimental results/05D_Measured3_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Experimental results/05D_Measured4_Raw.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/FNPF1/01D_FNPF1.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/FNPF1/03D_FNPF1.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/FNPF1/05D_FNPF1.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF0/01D_LPF0.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF0/03D_LPF0.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF0/05D_LPF0.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF1/01D_LPF1.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF1/03D_LPF1.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF1/05D_LPF1.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF2/01D_LPF2.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF2/03D_LPF2.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF2/05D_LPF2.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF3/01D_LPF3.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF3/03D_LPF3.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF3/05D_LPF3.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF4/01D_LPF4.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF4/03D_LPF4.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/LPF4/05D_LPF4.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS1/01D_RANS1.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS1/03D_RANS1.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS1/05D_RANS1.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 2,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS2/01D_RANS2.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS2/03D_RANS2.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS2/05D_RANS2.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS3/05D_RANS3.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS4/01D_RANS4.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS4/03D_RANS4.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS4/05D_RANS4.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS5/01D_RANS5.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS5/03D_RANS5.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "Datafile/Numerical results/RANS5/05D_RANS5.txt",
+    "header": {
+      "end": "data",
+      "first_row_field_count": 5,
+      "labels": [
+        [
+          "t",
+          "s",
+          "x3",
+          "m",
+          "WG1",
+          "m",
+          "WG2",
+          "m",
+          "WG3",
+          "m"
+        ]
+      ]
+    }
+  },
+  {
+    "sha256": "a9fcfa0cdece6ca6d799f4df7997f732566ee94a5d763d139f0e181a95bda4c0",
+    "spec": "Datafile/Descriptions/Highly accurate experimental tests with a floating sphere - Kramer Sphere Cases.pdf"
+  },
+  {
+    "matching_source_geometry_lines": [
+      "\u2022 Wave measurements from 3 wave gauges are part of the dataset, but"
+    ]
+  },
+  {
+    "measurement_values_decoded": 0,
+    "solver_values_decoded": 0,
+    "text_headers": 43
+  }
+]

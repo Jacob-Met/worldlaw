@@ -1,0 +1,64 @@
+{
+  "forecast_archive": "forecast-lock.npz",
+  "sha256": "9ab6306f9f9b0665873c73e3e8d2866d9c50140a935e54520312e427591b3f7f",
+  "bytes": 3618133,
+  "registered_members": 36,
+  "prediction_roles": 32,
+  "registry_sha256": "2a44b7687410453565e3daed7145f69b1601131d744ee5e26e798297eb846c49",
+  "native_worker": "node-0ba78df9bf5f6beacf918cb1cb966e66",
+  "native_authority": "node-3e1997435f3f4ffb9db90803039402b6",
+  "native_working_path": "/var/tmp/p3-f747-aalborg-184677-forecast/forecast-lock.npz",
+  "worker_original": "p3-f747-aalborg-184677-lock-all-conditional-and-four-rans-forecasts",
+  "native_score_original": "p3-f747-aalborg-184695-receive-locked-36-arrays-then-score-gauges",
+  "local_reassembled_file": "aalborg-sphere/forecast-lock.npz",
+  "pages": [
+    [
+      0,
+      900000,
+      "ff015485317fa1a5924114337b7e233a7767b04e8bfdac8016e216d11201f66e"
+    ],
+    [
+      900000,
+      900000,
+      "4336908c971c7aa59ab9ac087f16652d377eda2c618fc875d83ec7bbde731c79"
+    ],
+    [
+      1800000,
+      900000,
+      "7a7c4e1f18ef235dfd26ab9c9492e6601352719b7ae3271b8f111644a4d48526"
+    ],
+    [
+      2700000,
+      900000,
+      "f3eec7f521d49fbe151dc5a913f36a047450010e3ae135f42e6b4d14525aa4e4"
+    ],
+    [
+      3600000,
+      18133,
+      "ca539427669a46c685fa7e704659b4e58a99cade3e184f0c30835c547c7d755a"
+    ]
+  ],
+  "readback_verification": "Five ordinary-file pages used one metadata token. The independent complete byte assembly matched the registered size and SHA256.",
+  "taskboard_archive": {
+    "operation_id": "p3-f747-aalborg-canonical-whole-36-forecast-before-score-lock",
+    "result": "artifact storage reserve reached",
+    "retry": false
+  },
+  "source_archival_replay_posts": [
+    184588,
+    184612,
+    184677,
+    184695
+  ],
+  "source_qualification": {
+    "first_central_directory_job": "p3-f747-aalborg-sphere-organizer-central-directory-no-member-access",
+    "schema_job": "p3-f747-aalborg-blind-design-and43-schema-receiver",
+    "figure_job_invalid_retained_output_budget": "p3-f747-aalborg-figure8-and-blind-release-clock-source",
+    "figure_compact_job": "p3-f747-aalborg-compact-clock-and-finite-size-geometry-figure",
+    "figure_compact_result": "Two institutional PDFs hashed and geometry/clock text received. Direct publisher Figure 8 JPEG returned HTTP 403 at the source worker; separate publisher web rendering showed the drawing.",
+    "first_source_development_refusal": "p3-f747-aalborg-eight-lower-releases-causal-clock-and-amplitude-control",
+    "time_only_diagnosis": "p3-f747-aalborg-eight-lower-clock-only-refusal-diagnosis",
+    "full_native_supported_development": "p3-f747-aalborg-3025-native-row-low-to-middle-amplitude-control",
+    "calibration_model_original": "p3-f747-aalborg-lower-to-middle-30-causal-kernel-fits"
+  }
+}
