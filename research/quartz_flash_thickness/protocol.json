@@ -1,0 +1,28 @@
+{
+  "schema": "kit-quartz-matched-readout-shape-v1",
+  "source_archive": {
+    "doi": "10.35097/1215",
+    "sha256": "cc29c01b1ef3ccfa90b56490f768d69a2dcdddcef4cde72d523e23c042cdd4fe",
+    "md5": "df726a12287749ee051eb65d7091a8b9",
+    "size": 40327680
+  },
+  "roster_sha256": "8814ad43e500bd78c0116028e64e54f677fd60c44d5121ca90ba1ae383ffb8a3",
+  "role_order": [
+    "positive_thickness_kernel",
+    "source_identity",
+    "linear_time_warp",
+    "squared_time_warp",
+    "parker_zero_loss",
+    "parker_fixed_loss",
+    "parker_surface_loss",
+    "measured_loss_corrected_warp",
+    "measured_loss_corrected_kernel"
+  ],
+  "information": "All18 source-matched HT2 low-temperature raw waveforms held. All 110 cube raw waveforms sealed; no source-qualified matching group. The 18 include instrument-derived output summary header exposure in first metadata reader, no untouched-raw-metadata claim. Only HT1 source waveforms, matching pulse exemplar and named settings may materialize before forecast lock. Targets are two specimens from one parent crystal, three temperature groups per axis and three shots per group. No arbitrary random resplitting.",
+  "eligibility": "Identical sensor, beam_enlargement, laser_voltage, laser_filter, analog_filter, ampl_gain and crystallographic axis; temperature difference <=2 degC; HT2 and HT1 both <150 degC, regime cited in Breuer and Schilling eq8. All18. No posterior exclusions/repairs. Exact digital settings do not authenticate actual pulse identity or stability of the IR response. RT thickness used for both; no tabulated expansion values substituted. The common axial expansion factor cancels in Lb/La under uniform temperatures and equivalent specimens; remaining mismatch up to2 C/pulse heating not measured.",
+  "endpoint": "Physical-time acquisition coordinates 0..8000 ms inclusive on 801 points, 10ms spacing; linear interpolation within exact timestamp range, baseline median -300..-10 ms (inclusive each read). Unit RMS post-trigger voltage per shot on all 801 samples, positive denominator, signs preserved. Unit-RMS source traces averaged with equal weight then renormalized. Target transform applies only to outputs in scoring. No postscore gain, timing alignment, refit, derivative of digitized target or normalization by fitted/calibrated quantities. All scoring bounded to this physical time window. Zero dynamic norm/nonfinite/refused inputs invalidates complete test.",
+  "primary": "Per-shot RMS difference on all801 normalized voltage points. Average three repeat errors in each direction×temperature group. Candidate must have strictly lowest six-group mean versus every listed control and strictly beat every control in at least five of six groups. Report every role, each group, each trial, maximum absolute error and raw target values at candidate worst. Each of six groups is descriptive, two target specimens from same parent crystal. No iid interval.",
+  "sourcefit": "Per target use all (1 or 3) actual matched HT1 shots and the corresponding thin specimen thickness. Fit diffusion alpha and first-order loss h by normalized waveform residual over all801 source points with actual matched 1538V/100mm/InSb exemplar only, positive baseline-unsubtracted pulse weights and only the source sample clock. Exemplar positive values binned to 16 uniform bins; shared diode/receiver transfer is conditional. Two real thicknesses with same axis. Freeze bounded multistart nonlinear least squares, tie ordering, explicit zero-loss refit, transfer/control formulas in pinned implementation.",
+  "raw_regime": "The earlier 19th matched HT2 c-axis shot near575 C is outside the source-defined negligible-radiation regime. No conclusions at the transition or on the 110 cube waveforms. Published aggregate diffusivities and cube crossover are prior exposure. No same-instrument fit to the held waveforms serves as a forecast comparator. Author-style discrete Parker+surface-loss+finite-pulse source refit omits the high-temperature radiation component here, is separately identified from unavailable in-house code, and does not reproduce paper fitted scalar tables.",
+  "scientific_limit": "General equal-thickness, equal-axis or same-run correlations are insufficient. This discriminates finite-model predictions under a fixed acquisition contract. Heat flux, instrument calibration, absorptivity, actual same-shot source pulse, absolute diffusivities and specimen-specific coating effects remain separate."
+}
