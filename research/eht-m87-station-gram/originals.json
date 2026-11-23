@@ -1,0 +1,215 @@
+[
+  {
+    "job": "p2-f747-eht-m87-eight-uvfits-time-station-clique-no-visibility",
+    "request": "ce16103b1a4a84018f564f29f1b28a3649bb23deda7c5ff8bd9fcea8e749c7d8",
+    "generation": "8338b9b280b8a3c161c19e1b584f703524b8f51b899abbf39ab1a8b557a8ba09",
+    "receipt": {
+      "command_id": "p2-f747-eht-m87-eight-uvfits-time-station-clique-no-visibility",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T09:42:27.980563938Z",
+      "generation": "8338b9b280b8a3c161c19e1b584f703524b8f51b899abbf39ab1a8b557a8ba09",
+      "request_sha256": "ce16103b1a4a84018f564f29f1b28a3649bb23deda7c5ff8bd9fcea8e749c7d8",
+      "resource_process": {
+        "boot_id": "041d0f9e-2eb7-43b7-af92-475c2001084a",
+        "pid": 3010407,
+        "start_ticks": 46182550
+      },
+      "resource_usage": {
+        "max_rss_bytes": 30044160,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.016816,
+        "user_cpu_seconds": 0.68657
+      },
+      "runner_pid": 3010400,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T09:42:26.499189158Z",
+      "state": "completed"
+    },
+    "full_output": {
+      "bytes": 442454,
+      "sha256": "85ac3073f61bab7cfde9422639dcfc741d16fb57c3d9406a00cee6c1bcad5b71",
+      "source": {
+        "owner": "node-2c6923b3148e63391d0e8d72e866360a",
+        "command_id": "p2-f747-eht-m87-eight-uvfits-time-station-clique-no-visibility",
+        "request_sha256": "ce16103b1a4a84018f564f29f1b28a3649bb23deda7c5ff8bd9fcea8e749c7d8",
+        "generation": "8338b9b280b8a3c161c19e1b584f703524b8f51b899abbf39ab1a8b557a8ba09",
+        "receipt_sha256": "085f69765baa238f2cb05d0b6cb71bcd9651bdde209b1d959756c9aac9197ea7",
+        "output_bytes": 442454
+      }
+    }
+  },
+  {
+    "job": "p2-f747-eht-equal-date-baseline-exposure-compatibility-all-four-cliques",
+    "request": "bbe99ff947634ed524bd3f2da63459ac9f5767595b4e7d88dc6ce4e3fd33343f",
+    "generation": "149df3ce240bdbeb4ffe34fbf8f2f2447c09f4b4e44228ddf0837baf569df2ca",
+    "receipt": {
+      "script_observation_version": 3,
+      "working_tree_context": {
+        "repository": "github.com/Jacob-Met/cursor-swiss-env",
+        "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 1.0599999999999998,
+            "shell": 0
+          },
+          "snapshots": 13,
+          "nonempty_snapshots": 13,
+          "distinct_processes": 2,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 1.151084,
+        "system_cpu_seconds": 0.016636,
+        "max_rss_bytes": 34099200,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 66072,
+        "start_ticks": 96529125,
+        "boot_id": "3fef6629-f5ff-414e-90d9-5682416c79e0"
+      },
+      "command_id": "p2-f747-eht-equal-date-baseline-exposure-compatibility-all-four-cliques",
+      "request_sha256": "bbe99ff947634ed524bd3f2da63459ac9f5767595b4e7d88dc6ce4e3fd33343f",
+      "generation": "149df3ce240bdbeb4ffe34fbf8f2f2447c09f4b4e44228ddf0837baf569df2ca",
+      "state": "completed",
+      "runner_pid": 66061,
+      "started_at": "2026-11-23T09:46:22.542407385Z",
+      "finished_at": "2026-11-23T09:46:23.830576616Z",
+      "exit_code": 0
+    },
+    "full_output": {
+      "bytes": 6065,
+      "sha256": "9f84d918a2a416cf0b52ac9dae6091bb7160f8337ca046c62d3815f7af99ff85",
+      "source": {
+        "owner": "node-63fbcea7e7e266574ee04ba386b8bb4b",
+        "command_id": "p2-f747-eht-equal-date-baseline-exposure-compatibility-all-four-cliques",
+        "request_sha256": "bbe99ff947634ed524bd3f2da63459ac9f5767595b4e7d88dc6ce4e3fd33343f",
+        "generation": "149df3ce240bdbeb4ffe34fbf8f2f2447c09f4b4e44228ddf0837baf569df2ca",
+        "receipt_sha256": "0b8ce0fc76cf5252e332d735eaf9513ae9440f636116a7d712b39621c0fd03a2",
+        "output_bytes": 6065
+      }
+    }
+  },
+  {
+    "job": "p2-f747-eht-exact-common-cadence-and-near-complete-duty-cycle-obstruction",
+    "request": "3f8ee079bc74df0e0a96c66713840363bf9e05ffd6cb723eb07c04952e2895d7",
+    "generation": "b862693b233c7686c3c8bc486ad27ec59110d88a468869a38241f83a801e5091",
+    "receipt": {
+      "script_observation_version": 3,
+      "working_tree_context": {
+        "repository": "github.com/Jacob-Met/cursor-swiss-env",
+        "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {},
+          "snapshots": 1,
+          "nonempty_snapshots": 1,
+          "distinct_processes": 1,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.0205,
+        "system_cpu_seconds": 0.003996,
+        "max_rss_bytes": 19881984,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 66111,
+        "start_ticks": 96529221,
+        "boot_id": "3fef6629-f5ff-414e-90d9-5682416c79e0"
+      },
+      "command_id": "p2-f747-eht-exact-common-cadence-and-near-complete-duty-cycle-obstruction",
+      "request_sha256": "3f8ee079bc74df0e0a96c66713840363bf9e05ffd6cb723eb07c04952e2895d7",
+      "generation": "b862693b233c7686c3c8bc486ad27ec59110d88a468869a38241f83a801e5091",
+      "state": "completed",
+      "runner_pid": 66099,
+      "started_at": "2026-11-23T09:46:23.505085755Z",
+      "finished_at": "2026-11-23T09:46:23.580941778Z",
+      "exit_code": 0
+    },
+    "full_output": {
+      "bytes": 1203,
+      "sha256": "1736410a61f09bab109f7aebd551c5de1fd72b8aefe7343654c75444785e843d",
+      "source": {
+        "owner": "node-63fbcea7e7e266574ee04ba386b8bb4b",
+        "command_id": "p2-f747-eht-exact-common-cadence-and-near-complete-duty-cycle-obstruction",
+        "request_sha256": "3f8ee079bc74df0e0a96c66713840363bf9e05ffd6cb723eb07c04952e2895d7",
+        "generation": "b862693b233c7686c3c8bc486ad27ec59110d88a468869a38241f83a801e5091",
+        "receipt_sha256": "f07d2066ea9b0f06b5d56fcf66b0f44c37a2c4c2dd5dbda98a3ab33e084fc2e5",
+        "output_bytes": 1203
+      }
+    }
+  },
+  {
+    "job": "p2-f747-eht-full-support-unequal-factorized-weights-exact-gram-proof",
+    "request": "016af3ced22814ed99333d09797943e508f0057d02f5de60531c5e53d0f57411",
+    "generation": "cab212ba7b011805b3af6805f7ac803bb97e6884d43580ef3e4e427f720804f5",
+    "receipt": {
+      "script_observation_version": 3,
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {},
+          "snapshots": 1,
+          "nonempty_snapshots": 1,
+          "distinct_processes": 1,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.015077,
+        "system_cpu_seconds": 0.009967,
+        "max_rss_bytes": 19476480,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 1775401,
+        "start_ticks": 72856456,
+        "boot_id": "e63a2f1b-7ab2-4bc5-8e4e-5927618e40ec"
+      },
+      "command_id": "p2-f747-eht-full-support-unequal-factorized-weights-exact-gram-proof",
+      "request_sha256": "016af3ced22814ed99333d09797943e508f0057d02f5de60531c5e53d0f57411",
+      "generation": "cab212ba7b011805b3af6805f7ac803bb97e6884d43580ef3e4e427f720804f5",
+      "state": "completed",
+      "runner_pid": 1775375,
+      "started_at": "2026-11-23T09:51:35.75310479Z",
+      "finished_at": "2026-11-23T09:51:35.826641337Z",
+      "exit_code": 0
+    },
+    "full_output": {
+      "bytes": 1212,
+      "sha256": "a6623fa999018c761c4aa8084369c59997133a88ad126566b5532d92593ab9bf",
+      "source": {
+        "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+        "command_id": "p2-f747-eht-full-support-unequal-factorized-weights-exact-gram-proof",
+        "request_sha256": "016af3ced22814ed99333d09797943e508f0057d02f5de60531c5e53d0f57411",
+        "generation": "cab212ba7b011805b3af6805f7ac803bb97e6884d43580ef3e4e427f720804f5",
+        "receipt_sha256": "8dd8d9fc5c7d931206b864c67d80a05359b58e741726c0298600f8a23aa44816",
+        "output_bytes": 1212
+      }
+    }
+  }
+]

@@ -16,6 +16,13 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/eht-m87-station-gram/README.md",
+    "research/eht-m87-station-gram/inspect_metadata.py",
+    "research/eht-m87-station-gram/metadata.json",
+    "research/eht-m87-station-gram/originals.json",
+    "research/eht-m87-station-gram/overlap.py",
+    "research/eht-m87-station-gram/positive_weights.py",
+    "research/eht-m87-station-gram/replay.py",
     "research/solar_angular_line_profile/README.md",
     "research/solar_angular_line_profile/acquisition.py",
     "research/solar_angular_line_profile/common_acquisition.py",
