@@ -1,0 +1,90 @@
+[
+  {
+    "role": "camMetaJ",
+    "id": "p3-f747-cambridge-surging-cylinder-released-run-and-clock-catalogue",
+    "owner": "node-49b54506b7dba476ddbe7515b0d39c8a",
+    "request_sha256": "d4155497a8fb5079aa104449b3f0c8f90f55ef785a1a51438a0259578c97fa50",
+    "generation": "2c2ae750251ba6505ee166ad6db647c1df3bb1dade2355b0a92355bcfdcbec14",
+    "exit": 1,
+    "descendant": "drained",
+    "stdout_bytes": 913,
+    "stdout_sha256": "d2321966e9c771013c84e51701ccadbedd451061c5de6b5d5c8e40326d650686"
+  },
+  {
+    "role": "camMeta2J",
+    "id": "p3-f747-cambridge-bound-observed-open-access-zip-directory",
+    "owner": "node-01cc058c216929994fc2fb0d25f8c52a",
+    "request_sha256": "6a9710a5f662320dc3d750b5a800a67866db3058a416ccf908dfbddc2cfd7b87",
+    "generation": "0157d59d7603a23ff4aa37c4bdb5fadf249ee5831661916e231508aab04a9719",
+    "exit": 0,
+    "descendant": "drained",
+    "stdout_bytes": 2544,
+    "stdout_sha256": "d440063ad980e927e4d3ad3da01eb3f5433073eac3a8b0b1d8590f62ecbb1d07"
+  },
+  {
+    "role": "camMeta3J",
+    "id": "p3-f747-cambridge-author-rtf-and-ascii-layout-only",
+    "owner": "node-01cc058c216929994fc2fb0d25f8c52a",
+    "request_sha256": "8f0c08f12c160bb39a04da1ee2d24fa6eeb4c5739979845a9f6aa25c8fe09389",
+    "generation": "b1412bacca452a9469f27a72036b898e7eb180dd1b61a32b5f148808205dce06",
+    "exit": 0,
+    "descendant": "drained",
+    "stdout_bytes": 9810,
+    "stdout_sha256": "553cd0d27b7630a3fa2f584d35cbad44f0dbe58e1feada8e346d079ccc5cb176"
+  },
+  {
+    "role": "camGeomJ",
+    "id": "p3-f747-cambridge-original-package-masks-and-kinematic-clock",
+    "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+    "request_sha256": "b4d8e03103a3a8c4263f5eaa38759eee2b2c095d77ed6cdecdb006799d74a4cd",
+    "generation": "bce78d86688f26c33df315891f428b99b3a0178c62dbc0783b45b0036973f386",
+    "exit": 1,
+    "descendant": "drained",
+    "stdout_bytes": 3535,
+    "stdout_sha256": "4e682504120eb853d587491d686dbb33d5220d71452fa9eab2754ecebb917980"
+  },
+  {
+    "role": "camGeom2J",
+    "id": "p3-f747-cambridge-complete-row-census-and-geometry-existing-input",
+    "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+    "request_sha256": "cc747793002611abb8a12d2ecc1a25bbaa921ccefcbc3c586a759f3a1d076212",
+    "generation": "fb72b7bf5dc19778c2a1de8d46c738eacebad45a515c22caf78255670c3d090d",
+    "exit": 0,
+    "descendant": "drained",
+    "stdout_bytes": 7371,
+    "stdout_sha256": "4d2e507878180f3a87afa3f825086efdc55a939e61b5ce98d41855e1ef827dd3"
+  },
+  {
+    "role": "camIndependentJ",
+    "id": "p3-f747-cambridge-independent-force-schema-and-spin-contract",
+    "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+    "request_sha256": "16dd8092e9fa36285237d1b9705f78968efe0329d5c32fa96dd9ee623596df51",
+    "generation": "90dc2f89bc503eb66659bcc7623ebeb98de612b149c6dce8e1702f03d31603b9",
+    "exit": 0,
+    "descendant": "drained",
+    "stdout_bytes": 1902,
+    "stdout_sha256": "7fccdc050dd66cdce31e714f55eb23206d28e421849c2c3340ae5d31445b7b1d"
+  },
+  {
+    "role": "camAlignJ",
+    "id": "p3-f747-cambridge-frozen-mask-encoder-clock-comparison",
+    "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+    "request_sha256": "f37a8205f60b72e5cdde65e714778ffd41b1f92b9a86c77b1d4ed644d2cf61e1",
+    "generation": "05a2749c63aa71d63f048b8ae2d7f4cf9c920cdd07db61ff2a6fca2fba80a221",
+    "exit": 0,
+    "descendant": "drained",
+    "stdout_bytes": 28372,
+    "stdout_sha256": "3f675f8a0a3a0bcb39fd4af9c073ad5a9b68217231534c0c3659280c15e25cfd"
+  },
+  {
+    "role": "camIndependentMaskJ",
+    "id": "p3-f747-cambridge-independent-original-all126-mask-frames",
+    "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+    "request_sha256": "b466a1dc676aa0227eb280005d9ccf51695a28ba196a6ca6ade15aef06802a8b",
+    "generation": "0d512c6839072126d9130571e5268d4f369806ee2ac2ef6a721afd014ff9a6de",
+    "exit": 0,
+    "descendant": "drained",
+    "stdout_bytes": 780,
+    "stdout_sha256": "28fa15bf1619354aa425ad18d0c8748cbe475babe5d15084561511bbd8093d54"
+  }
+]

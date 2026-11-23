@@ -1,0 +1,104 @@
+{
+  "cases": {
+    "0": {
+      "first_three_kinematic_ranges": [
+        [
+          0,
+          9.999667
+        ],
+        [
+          0,
+          0.44017789
+        ],
+        [
+          0,
+          2.2664
+        ]
+      ],
+      "first_three_lexical_sha256": "27663fe6b4ecce82323c73822356fcf63978becbecc59d4a7bc72e0f31685fee",
+      "member_sha256": "a3d67d76b9b4b2159317b900cc59c2ccac1eb524b29c984bb5a346e4bc607b8b",
+      "name": "Open Access Data/Alfa_0_Re_20k/Vel_43_RPM_0_Acc_dist_3_Data.dat",
+      "rows": 30000,
+      "width_histogram": {
+        "3": 30000
+      }
+    },
+    "1": {
+      "first_three_kinematic_ranges": [
+        [
+          0,
+          13.332867
+        ],
+        [
+          -0.052198697,
+          0.44245158
+        ],
+        [
+          0,
+          2.2742
+        ]
+      ],
+      "first_three_lexical_sha256": "83a5a2950b98977c18b12b14f9d153f75fa68a8f7b684287b2238b5c03b00949",
+      "member_sha256": "b03ac73b30520aee7ce8d2b6890b07aebc5da3966e262f533977ac3be28af5b0",
+      "name": "Open Access Data/Alfa_1_Re_20k/Vel_43_RPM_137_Acc_dist_2_Data.dat",
+      "rows": 40000,
+      "width_histogram": {
+        "3": 40000
+      }
+    },
+    "3": {
+      "first5s_steady_translation_rpm_count": 10415,
+      "first_three_kinematic_ranges": [
+        [
+          0,
+          13.332867
+        ],
+        [
+          -0.042086393,
+          0.44530921
+        ],
+        [
+          0,
+          2.275
+        ]
+      ],
+      "first_three_lexical_sha256": "093655675a92a26f0195743902c7b53bf5383a0ae7193c8fb9adcc2bc47fb2c7",
+      "implied_surface_speed_ratio": 1.0011885371298723,
+      "member_sha256": "eb6c4bd197e0c8c166e1b2a389ccce3d16f8e852eaefa8b0dcd34c056a76f9e2",
+      "name": "Open Access Data/Alfa_3_Re_20k/Vel_43_RPM_411_Acc_dist_2_Data.dat",
+      "nominal_rpm": 411,
+      "raw_max_kinematic_row": [
+        3769,
+        1.256321,
+        0.18567816,
+        0.024,
+        0.74642822,
+        138.6654
+      ],
+      "raw_min_kinematic_row": [
+        20799,
+        6.932931,
+        -0.00044643041,
+        2.137,
+        -0.0070544956,
+        -1.3097529
+      ],
+      "relative_mismatch_to_137": 0.00026226277372268296,
+      "relative_mismatch_to_411": 0.6665792457420925,
+      "rows": 40000,
+      "steady_median_rpm": 137.03593,
+      "width_histogram": {
+        "7": 40000
+      }
+    }
+  },
+  "compared_ordinal_rows": 40000,
+  "load_cells_decoded": 0,
+  "matched_ordinal_kinematic_cells_equal_1_vs_3": [
+    40000,
+    602,
+    18352
+  ],
+  "piv_velocity_values_decoded": 0,
+  "source_sha256": "be4bca8565b16ecb8c0d992f5c9c3a9028e88a44ffbc64319c8a4181eb9e1367"
+}
