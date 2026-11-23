@@ -16,6 +16,21 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/palagram_coarse_glass/README.md",
+    "research/palagram_coarse_glass/course.py",
+    "research/palagram_coarse_glass/design.json",
+    "research/palagram_coarse_glass/forecast.py",
+    "research/palagram_coarse_glass/forecast.sha256",
+    "research/palagram_coarse_glass/independent.py",
+    "research/palagram_coarse_glass/independent_receipt.json",
+    "research/palagram_coarse_glass/locked_forecasts.json",
+    "research/palagram_coarse_glass/native_receipts.json",
+    "research/palagram_coarse_glass/protocol.json",
+    "research/palagram_coarse_glass/replay.py",
+    "research/palagram_coarse_glass/score.json",
+    "research/palagram_coarse_glass/score.py",
+    "research/palagram_coarse_glass/source_intake_failure.py",
+    "research/palagram_coarse_glass/source_qualification.py",
     "research/iers_chandler_eam/README.md",
     "research/iers_chandler_eam/capacity.py",
     "research/iers_chandler_eam/cold_recount.py",

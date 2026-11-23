@@ -85,7 +85,7 @@ export function planRatePolytopes(source){
   return {...common,...equalRateSchedule(cat.commands,n)};
 }
 
-function receiveFamily(vertices,ys,ticks,n,error,spend){
+function receiveFamily(vertices,ys,ticks,runs,error,spend){
   // Eliminate the last weight by sum(weights)=1. The two final coordinates
   // represent the same initial position and drift in every observation strip.
   const count=vertices.length-1,width=count+2,rows=[];
@@ -94,7 +94,7 @@ function receiveFamily(vertices,ys,ticks,n,error,spend){
   if(count)append([...Array(count).fill(one),Z(),Z()],one);
   const forcing=vertices.map(Z);
   for(let i=0;i<ys.length;i++){
-    if(i)vertices.forEach((v,j)=>{forcing[j]=add(forcing[j],mul(n,v[i-1]));});
+    if(i){const {command,repeats}=runs[i-1];vertices.forEach((v,j)=>{forcing[j]=add(forcing[j],mul(repeats,v[command]));});}
     const base=forcing.at(-1),a=[...forcing.slice(0,-1).map(y=>sub(y,base)),one,Q(ticks[i])];
     const b=sub(ys[i],base);
     append(a,add(b,error));append(a.map(neg),sub(error,b));
@@ -110,13 +110,14 @@ function receiveFamily(vertices,ys,ticks,n,error,spend){
 }
 
 export function observeRatePolytopeSchedule(plan,values){
-  need(plan.status==='finite-schedule'&&Array.isArray(values)&&values.length>=1&&values.length<=plan.readAt.length,
+  need(['finite-schedule','minimum-certified','horizon-bounded'].includes(plan.status)&&Array.isArray(values)&&values.length>=1&&values.length<=plan.readAt.length,
     'supply an ordered prefix of a finite schedule');
   const cat=parse(plan.source),ys=values.map(rational),ticks=plan.readAt.slice(0,ys.length),times=ticks.map(BigInt);
-  const base={ticks,readings:ys.map(fmt)},work=budget(plan.source.limits.receiverWork),n=rational(plan.runs[0].repeats);
+  const base={ticks,readings:ys.map(fmt)},work=budget(plan.source.limits.receiverWork);
+  const runs=plan.runs.map(run=>({command:cat.commands.indexOf(run.command),repeats:rational(run.repeats)}));
   let surviving;
   try{surviving=cat.ids.flatMap((law,i)=>{
-    const region=receiveFamily(cat.vertices[i],ys,times,n,cat.error,work.spend);return region?[{law,...region}]:[];
+    const region=receiveFamily(cat.vertices[i],ys,times,runs,cat.error,work.spend);return region?[{law,...region}]:[];
   });}catch(e){if(e!==exhausted)throw e;return {...base,status:'receiver-budget-exhausted',work:work.used,surviving:null,nextTick:null};}
   need(ys.length!==plan.readAt.length||surviving.length<=1,'full schedule left a pair unresolved');
   return {...base,status:'received',work:work.used,surviving,nextTick:surviving.length?(plan.readAt[ys.length]??null):null};
@@ -136,3 +137,5 @@ export function openRatePolytopes(source,policy){
     need(equalPositionDriftData(actual,record),'saved physical region differs from source and readings');return actual;
   }};
 }
+
+export {parse as parseRatePolytopeSource,exactRow as primitiveRateInequality,mixture as mixRateRows,budget as rateWorkBudget,exhausted as RATE_WORK_EXHAUSTED};
