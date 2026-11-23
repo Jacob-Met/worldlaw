@@ -1,3 +1,5 @@
+import {ACTIVE_DRIFT_PLAN,ACTIVE_DRIFT_CHECKPOINTS,ACTIVE_DRIFT_TRACE} from '../science/active-position-drift-readout.mjs';
+import {renderDriftNotebook} from './position-drift-view.mjs';
 import {COUPLED_DEMO_SOURCE_SHA256} from './instrument.mjs';
 import {ADAPTIVE_DEMO_SOURCE_SHA256} from './adaptive-instrument.mjs';
 import {adaptiveNotebookState} from '../science/active-experiment-record.mjs';
@@ -7,7 +9,7 @@ import {escapeHTML as html,approximate,displayNumber,plannedTicks,certified,
 
 const $=id=>document.getElementById(id);
 const PREFIX='worldlaw-active-notebook-v1:',POINTER='worldlaw-active-current-v1';
-const examplePaths={coupled:'/examples/active-intervention-coupled-kinematics.json',
+const examplePaths={driftSchedule:'/examples/active-position-drift-schedule.json',driftGauge:'/examples/active-position-drift-gauge.json',coupled:'/examples/active-intervention-coupled-kinematics.json',
   bounded:'/examples/active-control-box-coupled-kinematics.json',
   joint:'/examples/active-joint-control-three-responses.json',
   adaptive:'/examples/active-adaptive-coupled-track.json',
@@ -37,7 +39,9 @@ function showError(error){$('error').hidden=false;$('error').textContent=error.m
 function stopPlayback(){if(playback!==null)clearInterval(playback);playback=null;$('play').textContent=reduced.matches?'Step predictions':'Play predictions';}
 function updateControls(){
   const frozen=mode==='frozen',current=adaptiveNotebookState(book);
-  const ready=book&&certified(book.plan)&&frozen&&!busy&&(!current||Boolean(current.action));
+  const drift=book?.plan.schema===ACTIVE_DRIFT_PLAN;
+  $('drift-gauge-controls').disabled=busy||!frozen||!drift||book.plan.status!=='indistinguishable';
+  const ready=book&&(certified(book.plan)||(drift&&book.plan.status==='finite-schedule'))&&frozen&&!busy&&(!current||Boolean(current.action));
   $('experiment').setAttribute('aria-busy',String(busy));
   $('freeze-plan').disabled=!book||busy||frozen||dirty;
   $('freeze-plan').textContent=frozen?'Plan frozen ✓':'Freeze this plan →';
@@ -96,7 +100,7 @@ function persist(){
       const initial=custody.readInitial();
       if(!initial.ok||initial.text!==null){activeKey=null;custody=null;throw Error('A new local notebook could not be created safely.');}
     }
-    const title=book.plan.source.slice(0,72)+' · '+book.readouts.length+' reading set'+(book.readouts.length===1?'':'s');
+    const title=(book.plan.schema===ACTIVE_DRIFT_PLAN?'Persistent drift · '+book.plan.status:book.plan.source.slice(0,72))+' · '+book.readouts.length+' reading set'+(book.readouts.length===1?'':'s');
     const saved=custody?.saveCurrent(JSON.stringify({title,savedAt:Date.now(),book}));
     if(!saved?.ok){
       storageMessage=saved?.reason==='active-source-changed'?
@@ -272,6 +276,10 @@ function renderFollowup(record){
 }
 function render(){
   if(!book){updateControls();return;}
+  const drift=book.plan.schema===ACTIVE_DRIFT_PLAN;
+  $('drift-panel').hidden=!drift;$('apparatus-heading').closest('section').hidden=drift;
+  if(drift){renderDriftNotebook(book,readingIndex,mode,dirty);updateControls();return;}
+  $('receive-region').hidden=false;$('supplied-details').hidden=false;
   const shown=displayActiveNotebook(book,readingIndex),data=illustrateModels(shown),plan=book.plan,
     ticks=plannedTicks(shown.plan),frozen=mode==='frozen',current=adaptiveNotebookState(book);
   const record=book.readouts[readingIndex];
@@ -376,7 +384,8 @@ function planDraft(source){return transact(()=>ask({action:'plan',sourceText:sou
 $('freeze-plan').addEventListener('click',()=>{
   if(!book||busy||dirty||mode==='frozen')return;
   mode='frozen';persist();render();announce('The source and prospective plan are frozen. Receive a separate reading set when ready.');
-  if(certified(book.plan)){$('receive-region').scrollIntoView({block:'nearest',behavior:reduced.matches?'auto':'smooth'});if(book.plan.sourceSHA256===COUPLED_DEMO_SOURCE_SHA256)$('acquire').focus({preventScroll:true});else if(book.plan.sourceSHA256===ADAPTIVE_DEMO_SOURCE_SHA256)$('acquire-adaptive').focus({preventScroll:true});else{$('supplied-details').open=true;$('readout-source').focus({preventScroll:true});}}
+  if(book.plan.schema===ACTIVE_DRIFT_PLAN&&book.plan.status==='indistinguishable'){announce('The gauge witnesses are frozen. Choose a pair and command word to compare their trajectories.');$('drift-pair').focus();return;}
+  if(certified(book.plan)||book.plan.schema===ACTIVE_DRIFT_PLAN){$('receive-region').scrollIntoView({block:'nearest',behavior:reduced.matches?'auto':'smooth'});if(book.plan.sourceSHA256===COUPLED_DEMO_SOURCE_SHA256)$('acquire').focus({preventScroll:true});else if(book.plan.sourceSHA256===ADAPTIVE_DEMO_SOURCE_SHA256)$('acquire-adaptive').focus({preventScroll:true});else{$('supplied-details').open=true;$('readout-source').focus({preventScroll:true});}}
 });
 $('acquire').addEventListener('click',()=>{
   if(busy||mode!=='frozen'||!book||!certified(book.plan))return;
@@ -384,18 +393,35 @@ $('acquire').addEventListener('click',()=>{
   transact(()=>ask({action:'demo',book:original,profile}),next=>{adopt(next,'frozen',key);tick=plannedTicks(next.plan).at(-1)??0;},'Separate synthetic readings received. Exact consistency was checked against the original frozen plan.','result-heading');
 });
 $('evaluate-readings').addEventListener('click',()=>{
-  if(busy||mode!=='frozen'||!book||!certified(book.plan))return;
+  if(busy||mode!=='frozen'||!book||(!certified(book.plan)&&book.plan.schema!==ACTIVE_DRIFT_PLAN))return;
   const original=book,key=activeKey;
   transact(()=>{
-    const rows=[...$('reading-fields').querySelectorAll('input')].filter(input=>input.value.trim()).map(input=>({tick:Number(input.dataset.tick),value:exactInput(input.value)}));
+    const drift=original.plan.schema===ACTIVE_DRIFT_PLAN;
+    const rows=[...$('reading-fields').querySelectorAll('input')].filter(input=>input.value.trim()).map(input=>({tick:drift?input.dataset.tick:Number(input.dataset.tick),value:exactInput(input.value)}));
     const current=adaptiveNotebookState(original);
-    const raw={schema:current?'worldlaw.active-adaptive-readings/v1':'worldlaw.active-linear-readings/v1',source:$('readout-source').value,
+    const raw={schema:drift?ACTIVE_DRIFT_CHECKPOINTS:current?'worldlaw.active-adaptive-readings/v1':'worldlaw.active-linear-readings/v1',source:$('readout-source').value,
       acquisition:$('acquisition-kind').value,sourceSHA256:original.plan.sourceSHA256,planSHA256:original.plan.planSHA256,
       ...(current?{round:current.round,previousReadingsSHA256:current.previousReadingsSHA256,stateKey:current.node?.key,experimentId:current.action?.id}:{}),
       ...(original.plan.chosenIntervention?{interventionId:original.plan.chosenIntervention}:{}),readings:rows};
     return ask({action:'read',book:original,text:JSON.stringify(raw,null,2)+'\n'});
   },next=>adopt(next,'frozen',key),'Supplied readings checked. Their physical origin and error calibration are not verified.','result-heading');
 });
+$('drift-trace').addEventListener('click',()=>{
+  if(busy||mode!=='frozen'||book?.plan.schema!==ACTIVE_DRIFT_PLAN||book.plan.status!=='indistinguishable')return;
+  const original=book,key=activeKey;
+  transact(()=>{
+    const witness=original.plan.witnesses[Number($('drift-pair').value)];
+    const runs=$('drift-word').value.split(/\r?\n/).filter(l=>l.trim()).map(line=>{
+      const fields=line.trim().split(/\s+/);
+      if(fields.length!==2)throw Error('Use one command and its positive repeat count per line.');
+      return {command:fields[0],repeats:fields[1]};
+    });
+    const raw={schema:ACTIVE_DRIFT_TRACE,sourceSHA256:original.plan.sourceSHA256,planSHA256:original.plan.planSHA256,
+      laws:witness.laws,origin:[exactInput($('drift-position').value),exactInput($('drift-velocity').value)],runs};
+    return ask({action:'read',book:original,text:JSON.stringify(raw,null,2)+'\n'});
+  },next=>adopt(next,'frozen',key),'Both trajectories were computed from the frozen laws and initial states.','result-heading');
+});
+$('drift-import').addEventListener('click',()=>$('readings-file').click());
 function fileAction(inputId,maximum,work,commit,message,focus){
   const input=$(inputId);let reads=0;
   input.addEventListener('change',()=>{
@@ -409,7 +435,7 @@ fileAction('readings-file',524288,(text,snapshot)=>{
   const plan=snapshot.book?.plan;
   const refusal='Freeze a certified prospective plan before receiving readings.';
   if(snapshot.mode!=='frozen'||!plan)throw Error(refusal);
-  if(!certified(plan)){
+  if(!certified(plan)&&plan.schema!==ACTIVE_DRIFT_PLAN){
     if(!calibratedOutlierPlan(plan))throw Error(refusal);
     let schema;
     try{schema=JSON.parse(text)?.schema;}catch{throw Error(refusal);}
