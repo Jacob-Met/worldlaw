@@ -1,0 +1,22 @@
+SOURCE 6a3340f44a4f05b0ab38e9afacb58b4c1fb91eae
+Traceback (most recent call last):
+  File "/home/ubuntu/hamon-work/sessions/native-45690df3c009e2bc90ed6668206801669af49c80871c429c59cd0ba89522a3ee/colville-native-emtgl_ph/journal_metadata.py", line 22, in <module>
+    b=fetch(URL);p=Tags();p.feed(b.decode("utf-8"));print(json.dumps({"url":URL,"primary_html_bytes":len(b),"sha256":hashlib.sha256(b).hexdigest(),"links":p.links,"figure_image_metadata":p.figures,"physical_rows_read":0},sort_keys=True))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/html/parser.py", line 168, in feed
+    self.goahead(0)
+  File "/usr/lib/python3.12/html/parser.py", line 260, in goahead
+    k = self.parse_starttag(i)
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/html/parser.py", line 475, in parse_starttag
+    self.handle_starttag(tag, attrs)
+  File "/home/ubuntu/hamon-work/sessions/native-45690df3c009e2bc90ed6668206801669af49c80871c429c59cd0ba89522a3ee/colville-native-emtgl_ph/journal_metadata.py", line 20, in handle_starttag
+    if tag=="img" and ("fig" in a.get("src","").lower() or "fig" in a.get("alt","").lower()):
+                                                                    ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'lower'
+Traceback (most recent call last):
+  File "<stdin>", line 9, in <module>
+  File "<stdin>", line 3, in run
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'journal_metadata.py']' returned non-zero exit status 1.

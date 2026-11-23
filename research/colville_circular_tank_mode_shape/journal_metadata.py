@@ -12,7 +12,7 @@ class Tags(html.parser.HTMLParser):
     def __init__(self):
         super().__init__();self.links=[];self.figures=[]
     def handle_starttag(self,tag,attrs):
-        a=dict(attrs)
+        a={k:(v or "") for k,v in attrs}
         if tag=="meta" and a.get("name") in ("citation_pdf_url","citation_doi"):
             self.links.append([a["name"],a.get("content")])
         if tag=="a" and ("pdf" in a.get("href","").lower() or "figure" in a.get("href","").lower()) and len(self.links)<160:
