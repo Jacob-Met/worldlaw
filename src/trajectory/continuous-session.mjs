@@ -2,7 +2,7 @@
 import {discoverWeak} from './weak-discovery.mjs';
 import {planContinuousExperiment} from './continuous-planner.mjs';
 import {rollout} from './forward.mjs';
-import {RUN_UNITS,validateRun} from './data.mjs';
+import {RUN_UNITS} from './data.mjs';
 import {receiveContinuousRun,commandSamples} from './controlled-instrument.mjs';
 import {residualScore,assessResidual} from './residual-abstention.mjs';
 const states=new WeakMap();
@@ -34,16 +34,23 @@ export function createContinuousSession({trainingRuns,fitOptions,plannerConfig,
   check(Number.isSafeInteger(seed)&&seed>=0&&seed<=0xffffffff,'Require uint32 policy seed');
   check(Array.isArray(trainingRuns)&&trainingRuns.length>=1&&trainingRuns.length<=3,'Require one to three source runs');
   check(Number.isSafeInteger(maxRounds)&&maxRounds>=1&&trainingRuns.length+maxRounds<=4,'Source plus acquisitions exceed four-run fitter limit');
-  const runs=trainingRuns.map(r=>validateRun(r,{role:'training'}));
+  const runs=trainingRuns.map(raw=>{
+    const request=raw?.source?.request;
+    check(request?.noiseSigma===plannerConfig.noiseSigma,'Source/planning noise disagree');
+    return receiveContinuousRun(request,raw,{expectedSourceId:worldId,amplitudeBounds:plannerConfig.amplitudeBounds});
+  });
   check(new Set(runs.map(r=>r.id)).size===runs.length,'Duplicate source evidence identity');
   check(plannerConfig.noiseSigma===fitOptions.noiseSigma,'Fit/planning noise disagree');
   check(runs.every(r=>r.inertia===plannerConfig.inertia),'Source/planning inertias disagree');
   const discovery=discoverWeak(runs,fitOptions);
-  if(calibration)check(calibration.policyId===policyId,'Calibration belongs to another policy');
+  if(calibration){
+    check(calibration.policyId===policyId&&calibration.maxRounds===maxRounds,'Calibration policy/horizon mismatch');
+    check(!calibration.roundScoresByWorld.some(row=>row.worldId===worldId),'Test world overlaps calibration');
+  }
   return expose({schema:'worldlaw.continuous-discovery-session/v1',policy,policyId,worldId,seed,maxRounds,
     baseTrainingRuns:clone(runs),trainingRuns:runs,fitOptions:clone(fitOptions),
     plannerConfig:clone(plannerConfig),calibration:calibration?clone(calibration):null,
-    discovery,history:[],pending:null,events:[{type:'source_fit',rows:runs.reduce((n,r)=>n+r.samples.length,0)}]});
+    discovery,status:'ready',history:[],pending:null,events:[{type:'source_fit',rows:runs.reduce((n,r)=>n+r.samples.length,0)}]});
 }
 function randomPlan(models,c,seed){
   let state=seed>>>0||1;
@@ -62,11 +69,20 @@ function randomPlan(models,c,seed){
   const run={id:'prospective-random',label:'Prospective random command',kind:'unknown',
     source:{label:'Prediction placeholders only'},units:{...RUN_UNITS},inertia:c.inertia,
     initialRate:c.initialRate,samples:checked.samples.map(s=>({...s,position:c.initialPosition}))};
-  const predictions=[],work={rolloutCalls:0,completedSteps:0};
+  check(Number.isFinite(c.maxStep)&&c.maxStep>0&&Number.isSafeInteger(c.maxTotalSteps)&&
+    c.maxTotalSteps>=1&&c.maxTotalSteps<=10000000,'Invalid random rollout budget');
+  const stepsAt=h=>checked.samples.slice(1).reduce((total,row,i)=>
+    total+Math.max(1,Math.ceil((row.time-checked.samples[i].time)/h)),0);
+  const coarseSteps=stepsAt(c.maxStep),fineSteps=stepsAt(c.maxStep/2);
+  const reservedSteps=models.length*(coarseSteps+fineSteps);
+  check(Number.isSafeInteger(reservedSteps)&&reservedSteps<=c.maxTotalSteps&&fineSteps<=1000000,
+    'Random plan exceeds step budget before rollouts');
+  const predictions=[],work={rolloutCalls:0,completedSteps:0,reservedSteps,coarseStepsPerModel:coarseSteps,
+    fineStepsPerModel:fineSteps};
   let maximumError=0;
   for(const m of models){
-    const coarse=rollout(m,run,{maxStep:c.maxStep,positionDomain:c.positionDomain});
-    const fine=rollout(m,run,{maxStep:c.maxStep/2,positionDomain:c.positionDomain});
+    const coarse=rollout(m,run,{maxStep:c.maxStep,maxSteps:coarseSteps,positionDomain:c.positionDomain});
+    const fine=rollout(m,run,{maxStep:c.maxStep/2,maxSteps:fineSteps,positionDomain:c.positionDomain});
     work.rolloutCalls+=2;work.completedSteps+=coarse.diagnostics.steps+fine.diagnostics.steps;
     for(let i=0;i<fine.rows.length;i++)maximumError=Math.max(maximumError,Math.abs(fine.rows[i].predicted-coarse.rows[i].predicted));
     if(c.rateDomain)check(fine.rows.every(r=>r.rate>=c.rateDomain[0]&&r.rate<=c.rateDomain[1]),'Random plan violates rate envelope');
@@ -80,14 +96,19 @@ function randomPlan(models,c,seed){
 }
 export function planNextContinuous(session){
   const s=own(session);
+  check(s.status!=='refit_refused','A paid acquisition could not be refitted');
   check(!s.pending&&s.history.length<s.maxRounds,'Pending plan or exhausted acquisition budget');
+  const sourceRows=s.trainingRuns.reduce((n,r)=>n+r.samples.length,0);
+  const newRows=1+Math.round(s.plannerConfig.duration/s.plannerConfig.dt);
+  check(Number.isSafeInteger(newRows)&&newRows>=17&&newRows<=4096,'Prospective training grid requires 17–4096 rows');
+  check(sourceRows+newRows<=8192,'Prospective acquisition exceeds combined 8192-sample fitter limit');
   const models=actuatorRivals(s.discovery);
   const plan=s.policy==='active'?planContinuousExperiment(models,s.plannerConfig):
     randomPlan(models,s.plannerConfig,(s.seed+Math.imul(s.history.length+1,0x9e3779b9))>>>0);
   const next=clone(s);
   next.events.push({type:plan.status==='planned'?'predictions_owned_before_acquisition':'plan_refused',
     round:s.history.length+1,planStatus:plan.status,reason:plan.reason??null});
-  next.pending={plan,models,sourceRows:s.trainingRuns.reduce((n,r)=>n+r.samples.length,0)};
+  next.pending={plan,models,sourceRows};
   return expose(next);
 }
 export function continuousRequest(session){
@@ -97,7 +118,7 @@ export function continuousRequest(session){
 export function receiveContinuous(session,{request,run}){
   const s=own(session);check(s.pending?.plan.status==='planned','No executable prediction plan');
   check(canonical(request)===canonical(s.pending.plan.request),'Receipt changes frozen request');
-  const received=receiveContinuousRun(request,run,{amplitudeBounds:s.plannerConfig.amplitudeBounds});
+  const received=receiveContinuousRun(request,run,{expectedSourceId:s.worldId,amplitudeBounds:s.plannerConfig.amplitudeBounds});
   check(!s.trainingRuns.some(r=>r.id===received.id||
     (r.source.recordingId&&r.source.recordingId===received.source.recordingId)),'Repeated acquisition evidence');
   const next=clone(s),round=s.history.length+1;
@@ -107,13 +128,25 @@ export function receiveContinuous(session,{request,run}){
     {policyId:s.policyId,worldId:s.worldId,round,score:residual.score}):
     {status:'uncalibrated_diagnostic',p:null,reason:'No disjoint-world calibration supplied'};
   next.events.push({type:'prospective_residual_scored_before_refit',round,score:residual.score,assessment});
+  // The handle remains retryable after validation errors, but its first scored receipt consumes it.
+  states.delete(session);
   next.trainingRuns.push(received);
-  // A revision cannot erase the failure of its preceding frozen predictions.
-  next.discovery=discoverWeak(next.trainingRuns,next.fitOptions);
+  const entry={round,request:clone(request),plan:clone(s.pending.plan),run:received,
+    residual,assessment,selectedAfter:null};
+  next.history.push(entry);
+  next.pending=null;
+  try{
+    next.discovery=discoverWeak(next.trainingRuns,next.fitOptions);
+  }catch(error){
+    next.status='refit_refused';
+    entry.refitError={name:error.name,code:error.code??null,message:error.message};
+    entry.retainedModel={id:s.discovery.selected.id,status:'experimental_pre_receipt_fit'};
+    next.events.push({type:'refit_refused',round,error:entry.refitError,retainedModel:entry.retainedModel});
+    return expose(next);
+  }
+  entry.selectedAfter=clone(next.discovery.selected);
   next.events.push({type:'model_refit_after_receipt',round,selected:next.discovery.selected.id});
-  next.history.push({round,request:clone(request),plan:clone(s.pending.plan),run:received,
-    residual,assessment,selectedAfter:clone(next.discovery.selected)});
-  next.pending=null;return expose(next);
+  return expose(next);
 }
 export function exportContinuousSession(session){
   const s=own(session);
