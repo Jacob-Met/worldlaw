@@ -3,7 +3,7 @@ import {ACTIVE_LINEAR_EXACT_ARITHMETIC} from './active-linear-family.mjs';
 import {parseIntegratorReading} from './active-integrator-two-pulse.mjs';
 import {CATALOG_SCHEMA, parsePositionDriftRates, positionDriftStates,
   equalPositionDriftData} from './persistent-position-drift-planner.mjs';
-import {compare, minimum, maximum, midpoint, contains, fourPulseCenter,
+import {midpoint, contains, fourPulseCenter,
   pairFourPulseProjection, commonFourthReading, section, sortedCuts,
   trappedSections, unsafeThirdBands} from './persistent-four-pulse-geometry.mjs';
 
