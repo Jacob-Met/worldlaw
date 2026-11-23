@@ -1,0 +1,135 @@
+{
+  "closed_scope": "Published equation and eight modern fluid-model states. No rock observations.",
+  "dataset": "10.17632/tk6kx5w3mc.1",
+  "article": "10.1016/j.petrol.2019.04.087",
+  "gsa": "https://gsa.confex.com/gsa/2018AM/webprogram/Handout/Paper321302/Hannon%202018%20GSA%20Presentation.pptx",
+  "deck_bytes": 8266775,
+  "deck_sha256": "110a3ded734db1c211807e00937250e2411cc926df2c037e775dcfb54c79ba58",
+  "source_scope": "2018 slide titles and methods 3\u20137. Results slides 8\u20139, embedded charts/workbooks, and all pressure-slope records excluded.",
+  "earlier_call_refusal": {
+    "kind": "call_refusal",
+    "code": "provider_tool_unavailable",
+    "scope": "this_invocation",
+    "provider_dispatch": "not_attempted",
+    "owner": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_id": "p3-f747-rasscal-gsa-methods-and-eight-exogenous-nist-storage-states",
+    "ingress": {
+      "node_id": "node-3e1997435f3f4ffb9db90803039402b6",
+      "incarnation": "eef12f5324639a1feb1554cb9eef8b58"
+    },
+    "message": "the requested provider tool is not currently available at this owner; read its current catalogue and retain the original invocation handle. This invocation was rejected before dispatching the requested tool. This refusal does not establish the state of earlier or concurrent attempts; retain their original owner and operation receipts.",
+    "issuer": {
+      "node_id": "node-3e1997435f3f4ffb9db90803039402b6",
+      "incarnation": "eef12f5324639a1feb1554cb9eef8b58"
+    },
+    "error_code": "INVALID_ARGUMENT"
+  },
+  "source_acquisitions": {
+    "publisher_ordinary_accepted_manuscript": "HTTP 403",
+    "publisher_xml": "HTTP 403",
+    "doi_metadata": "DataCite version1 and CC BY 4.0 recorded",
+    "osti_1547428": "Catalog DOI only",
+    "mendeley_public_catalog_api": "HTTP 403 (response code 1010), no attempted acquisition through another route",
+    "preflight_html_method_selection": "Transient local environment was offline before process creation; no NIST CGI request from that attempt.",
+    "public_landing_page": "Dataset describes four input channels and one slope; web index is not evidence of actual row order"
+  },
+  "native_originals": [
+    {
+      "class": "GSA_methods_verified_then_NIST_CGI_refused",
+      "job": "p3-f747-rasscal-gsa-methods-and-eight-exogenous-nist-storage-states",
+      "owner": "node-ac967e45a16ae952113fd5bfe3be75f7",
+      "placement_arguments_sha256": "5c0ed247e7f0888881c8edc9199b07f87a3320e54cb0ca4a150c89767ec1ca07",
+      "command_request_sha256": "3b2d4c2befcd5254ca4498d1cb517c805f5a5c4bbcef9aa141a153a94a278bf8",
+      "generation": "2368dc4368420a0c99f2f35470c34c06b4865fc5df75c708228186f37cf834a5",
+      "stdout_bytes": 1871,
+      "terminal_receipt": {
+        "command_id": "p3-f747-rasscal-gsa-methods-and-eight-exogenous-nist-storage-states",
+        "error": "exit status 1",
+        "exit_code": 1,
+        "finished_at": "2026-11-23T00:32:39.151600211Z",
+        "generation": "2368dc4368420a0c99f2f35470c34c06b4865fc5df75c708228186f37cf834a5",
+        "request_sha256": "3b2d4c2befcd5254ca4498d1cb517c805f5a5c4bbcef9aa141a153a94a278bf8",
+        "resource_process": {
+          "boot_id": "e70016ad-b780-46d2-93e7-cb45bf2fda31",
+          "pid": 2246466,
+          "start_ticks": 78429406
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 34263040,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "python": 0.08
+            },
+            "distinct_processes": 1,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 7,
+            "read_errors": 0,
+            "saturated_snapshots": 0,
+            "snapshots": 7
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.019628,
+          "user_cpu_seconds": 0.083446
+        },
+        "runner_pid": 2246457,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T00:32:38.493643068Z",
+        "state": "failed"
+      }
+    },
+    {
+      "class": "modern_HEOS_supplemental",
+      "job": "p3-f747-rasscal-coolprop72-independent-downstream-storage-eight-states",
+      "owner": "node-ac967e45a16ae952113fd5bfe3be75f7",
+      "placement_arguments_sha256": "47336efce62232f6cdd4d66cfca3bd4c3b7a74391173ea7e2db6037f5aeee378",
+      "command_request_sha256": "ad89ad01a38faec3c1b99f2064b72850a99b274152469d67212efe00b25c3dde",
+      "generation": "df5f5dd00296a99f952717706e44db614b22e81f1f929b59741286ec188235f8",
+      "stdout_bytes": 4938,
+      "terminal_receipt": {
+        "command_id": "p3-f747-rasscal-coolprop72-independent-downstream-storage-eight-states",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T00:35:25.545472732Z",
+        "generation": "df5f5dd00296a99f952717706e44db614b22e81f1f929b59741286ec188235f8",
+        "request_sha256": "ad89ad01a38faec3c1b99f2064b72850a99b274152469d67212efe00b25c3dde",
+        "resource_process": {
+          "boot_id": "e70016ad-b780-46d2-93e7-cb45bf2fda31",
+          "pid": 2247244,
+          "start_ticks": 78446010
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 127393792,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "python": 0.6799999999999999
+            },
+            "distinct_processes": 1,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 10,
+            "read_errors": 0,
+            "saturated_snapshots": 0,
+            "snapshots": 10
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.064309,
+          "user_cpu_seconds": 0.687308
+        },
+        "runner_pid": 2247228,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T00:35:24.546002984Z",
+        "state": "completed"
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{"method_deck_sha256": "110a3ded734db1c211807e00937250e2411cc926df2c037e775dcfb54c79ba58", "method_slides": [3, 4, 5, 6, 7], "outcome_slides_opened": 0, "slide7_equations": ["[f [num [sSub 𝑉[sub 𝑑]]𝐿][den [sSub 𝑍[sub 𝑑]]𝐴]][f [num 𝑑[sSub 𝑝[sub 𝑑]]][den 𝑑𝑡]] =[sSub 𝑘[sub ∞]][nary [sub [sSub 𝑝[sub 𝑑]]][sup [sSub 𝑝[sub 𝑢]]][sSup 𝑒[sup −𝛼[d [sSub 𝑝[sub 𝑐]]−𝜒𝑝]]][f [num 𝑝][den 𝜇𝑍]]𝑑𝑝]", "   +[sSub 𝑘[sub ∞]]𝑏[nary [sub [sSub 𝑝[sub 𝑑]]][sup [sSub 𝑝[sub 𝑢]]][sSup 𝑒[sup −𝛼[d [sSub 𝑝[sub 𝑐]]−𝜒𝑝]]][f [num 1][den 𝜇𝑍]]𝑑𝑝]", "𝜇[d 𝑝,𝑇], 𝑍[d 𝑝,𝑇]", "[sSub 𝑘= 𝑘[sub ∞,0]][d 1+[f [num 𝑏][den 𝑝]]][sSup 𝑒[sup −𝛼[d [sSub 𝑝[sub 𝑐]]−𝜒𝑝]]]", "[f [num 𝑑[sSub 𝑝[sub 𝑑]]][den 𝑑𝑡]]"]}
+Traceback (most recent call last):
+  File "<string>", line 46, in <module>
+  File "<string>", line 17, in fetch
+  File "/usr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 403: Forbidden
