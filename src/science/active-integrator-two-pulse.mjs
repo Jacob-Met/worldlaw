@@ -160,3 +160,5 @@ export function receiveTwoPulse(request, frozen, supplied, previous=null) {
     nextAmplitude:status==='continue_frozen_policy'?fmt(data.amplitudes[cell.action]):null,
     physicalProvenanceVerified:false,source:supplied.source,acquisition:supplied.acquisition};
 }
+
+export {parseReading as parseIntegratorReading};
