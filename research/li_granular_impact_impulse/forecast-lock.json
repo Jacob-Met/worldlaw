@@ -1,0 +1,11 @@
+{
+  "bytes": 42931,
+  "sha256": "013e4fb7c60d6329d40a014dd884d53d6554c61759c18c8694959419bc6ea9c5",
+  "native": {
+    "n": 42979,
+    "sha": "ea54a01528b4906fcfc904bfe379400c6fd7a43656394f5cf876a8793f53da23"
+  },
+  "freeze": "2018e12be5437aeb603d4d154985ca5899fc9aed",
+  "job": "p3-f747-li-locked-source-and-disjoint-dc-predictions",
+  "flat_cells": 1014
+}
