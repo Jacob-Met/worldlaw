@@ -23,13 +23,18 @@ def rows(z,metal,rpm,allow_current):
             if not line.strip(): continue
             cols=line.rstrip(b'\r\n').split(b'\t')
             if len(cols)<3: raise ValueError(f"schema {path}")
-            if i==0 and (len(cols)<4 or float(cols[3])!=rpm): raise ValueError(f"rotation binding {path}")
+            if i==0:
+                # The released notebook multiplies the first fourth-column value by 1000.
+                shaft_setting = 1000 * float(cols[3])
+                named = sorted(SOURCE+HELD, key=lambda n:abs(n-shaft_setting))
+                if not math.isfinite(shaft_setting) or shaft_setting<=0 or named[0]!=rpm or abs(named[0]-shaft_setting)==abs(named[1]-shaft_setting):
+                    raise ValueError(f"ambiguous converted rotation {path}")
             times.append(float(cols[0]));pot.append(float(cols[1]))
             if allow_current: curr.append(float(cols[2])/AREA)
     if len(pot)<50 or not all(math.isfinite(v) for v in times+pot+curr): raise ValueError(f"invalid input {path}")
     if any(b<a for a,b in zip(times,times[1:])): raise ValueError(f"clock {path}")
     if any(b<a for a,b in zip(pot,pot[1:])): raise ValueError(f"nonmonotonic applied voltage {path}")
-    return pot,curr,dict(rows=len(pot),start=times[0],end=times[-1],potential_support=[min(pot),max(pot)])
+    return pot,curr,dict(nominal_rpm=rpm,notebook_rpm=shaft_setting,rows=len(pot),start=times[0],end=times[-1],potential_support=[min(pot),max(pot)])
 
 def forecast_inputs(z,metal):
     import numpy as np

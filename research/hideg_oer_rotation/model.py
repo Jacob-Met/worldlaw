@@ -42,7 +42,7 @@ def forward(e,rpm,par):
         hi=np.where(high,mid,hi)
     return intrinsic((lo+hi)/2,rpm,par)
 
-def fit(source,metal,filtered=False,zero_rs=False):
+def fit(source,metal,physical_rpm,filtered=False,zero_rs=False):
     E=[];J=[];S=[];W=[]
     for rpm in SOURCE:
         e,j=source[rpm]
@@ -50,7 +50,7 @@ def fit(source,metal,filtered=False,zero_rs=False):
         if len(eligible)<4:
             raise ValueError("insufficient design")
         idx=eligible[np.unique(np.rint(np.linspace(0,len(eligible)-1,min(len(eligible),50 if filtered else 100))).astype(int))]
-        E.extend(e[idx]);J.extend(j[idx]);S.extend(np.full(len(idx),rpm))
+        E.extend(e[idx]);J.extend(j[idx]);S.extend(np.full(len(idx),physical_rpm[rpm]))
         val,count=np.unique(j,return_counts=True)
         mode=val[np.argmax(count)]
         W.extend(np.exp(-6*(j[idx]-.25*mode)))
@@ -75,22 +75,23 @@ def lookup(e,y,target):
     mean=np.bincount(ix,weights=y)/np.bincount(ix)
     return np.interp(target,x,mean)
 
-def predict(source,metal,targets):
+def predict(source,metal,targets,physical_rpm):
     pars={};metrics={}
     for role,filtered,zero in [('notebook_equations_full',False,False),('notebook_equations_filtered',True,False),('physics_without_solution_resistance',False,True)]:
-        pars[role],metrics[role]=fit(source,metal,filtered,zero)
+        pars[role],metrics[role]=fit(source,metal,physical_rpm,filtered,zero)
     main=pars['notebook_equations_full'];out={}
     for speed,e in targets.items():
         pair=[900,1600] if speed==1225 else [1600,2025]
         a,b=pair
-        t=(math.sqrt(speed)-math.sqrt(a))/(math.sqrt(b)-math.sqrt(a))
-        u=(speed-a)/(b-a)
-        nearest=min(SOURCE,key=lambda v:abs(math.sqrt(v)-math.sqrt(speed)))
+        sa,sb,st=physical_rpm[a],physical_rpm[b],physical_rpm[speed]
+        t=(math.sqrt(st)-math.sqrt(sa))/(math.sqrt(sb)-math.sqrt(sa))
+        u=(st-sa)/(sb-sa)
+        nearest=min(SOURCE,key=lambda v:abs(math.sqrt(physical_rpm[v])-math.sqrt(st)))
         ys={r:lookup(*source[r],e) for r in SOURCE}
-        residual={r:lookup(source[r][0],source[r][1]-forward(source[r][0],r,main),e) for r in pair}
-        data={k:forward(e,speed,v) for k,v in pars.items()}
-        root=np.sqrt(SOURCE);weights=(np.sqrt(speed)-root.mean())*(root-root.mean())/np.sum((root-root.mean())**2)+1/len(SOURCE)
-        data.update(physics_fixed_speed=forward(e,nearest,main),nearest_speed=ys[nearest],current_linear_sqrt_rpm=ys[a]+t*(ys[b]-ys[a]),current_linear_rpm=ys[a]+u*(ys[b]-ys[a]),all_source_linear_sqrt_rpm=sum(w*ys[r] for w,r in zip(weights,SOURCE)),scaled_limiting_flux=ys[nearest]*math.sqrt(speed/nearest),corrected_physics=data['notebook_equations_full']+(1-t)*residual[a]+t*residual[b])
+        residual={r:lookup(source[r][0],source[r][1]-forward(source[r][0],physical_rpm[r],main),e) for r in pair}
+        data={k:forward(e,st,v) for k,v in pars.items()}
+        root=np.sqrt([physical_rpm[v] for v in SOURCE]);weights=(np.sqrt(st)-root.mean())*(root-root.mean())/np.sum((root-root.mean())**2)+1/len(SOURCE)
+        data.update(physics_fixed_speed=forward(e,physical_rpm[nearest],main),nearest_speed=ys[nearest],current_linear_sqrt_rpm=ys[a]+t*(ys[b]-ys[a]),current_linear_rpm=ys[a]+u*(ys[b]-ys[a]),all_source_linear_sqrt_rpm=sum(w*ys[r] for w,r in zip(weights,SOURCE)),scaled_limiting_flux=ys[nearest]*math.sqrt(st/physical_rpm[nearest]),corrected_physics=data['notebook_equations_full']+(1-t)*residual[a]+t*residual[b])
         if not all(np.isfinite(v).all() for v in data.values()): raise ValueError("nonfinite forecast")
         out[str(speed)]={k:v.tolist() for k,v in data.items()}
     return {'params':{k:v.tolist() for k,v in pars.items()},'fit':metrics,'predictions':out}

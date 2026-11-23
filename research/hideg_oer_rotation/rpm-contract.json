@@ -1,0 +1,7 @@
+{
+  "first_original": "p3-f747-hideg-source-five-rotations-locked-equation-and-control-forecast",
+  "scientific_currents_parsed": 0,
+  "source_contract": "The authentic notebook defines measuredRPMs as 1000 times the first row of numeric column 4 then sorts by it. The TSV header says Column 4 only; no external shaft-speed metrology claim. Nominal file identities fix the existing source/target assignments. The converted value must be positive, finite and uniquely nearest to that file’s nominal programmed setting. Every speed-dependent role uses the same converted values. No change to voltage/time grid, role roster or scores. Before any source current is selected, sequentially validate all 21 input coordinate paths. Record refusal if commanded potential lacks the prespecified monotonicity or if the design cannot be bound.",
+  "prior": "872b688b47e54489ec23f332d842958159a586ed",
+  "metadata_original": "p3-f747-hideg-measured-rpm-time-voltage-design-audit-only"
+}
