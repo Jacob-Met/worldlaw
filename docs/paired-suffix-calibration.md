@@ -1,6 +1,6 @@
 # Feedback after probing both x commands
 
-For this registered two-family position experiment, eight pulses identify the family at every noise below **1/14**. The previous adaptive program reached 1/15, and the best fixed eight-pulse tape reaches 1/16. Four reference pulses followed by x1 and x0 measure the response on the x commands. This measurement chooses between probing both y commands and probing both z commands. Three references give a seven-pulse program with sharp policy radius **1/16**. Unrestricted seven-pulse optimality remains open.
+For this registered two-family position experiment, eight pulses identify the family at every noise below **1/14**. The previous adaptive program reached 1/15, and the best fixed eight-pulse tape reaches 1/16. Four reference pulses followed by x1 and x0 measure the response on the x commands. This measurement chooses between probing both y commands and probing both z commands. Three references give a seven-pulse program with sharp policy radius **1/16**. The [seven-pulse causal obstruction](seven-pulse-causal-obstruction.md) supplies the matching unrestricted upper.
 
 ## Measured controller
 

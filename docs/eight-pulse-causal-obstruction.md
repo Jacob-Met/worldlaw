@@ -1,6 +1,6 @@
 # The unrestricted eight-pulse first collision is 1/14
 
-Against the registered eight-command catalog, the [measured paired-suffix policy](paired-suffix-calibration.md) succeeds below **1/14**. At equality the causal receiver here gives every adaptive controller one measured history admissible under both laws. Thus the eight-pulse adaptive optimum is exactly 1/14, compared with 1/16 for a fixed tape. Combining this obstruction with the [nine-pulse result](nine-pulse-causal-obstruction.md) gives **minimum nine pulses on [1/14,1/12)**. Seven pulses reach at least 1/16; the balanced upper at seven is 1/14. The unrestricted seven-pulse radius remains open.
+Against the registered eight-command catalog, the [measured paired-suffix policy](paired-suffix-calibration.md) succeeds below **1/14**. At equality the causal receiver here gives every adaptive controller one measured history admissible under both laws. Thus the eight-pulse adaptive optimum is exactly 1/14, compared with 1/16 for a fixed tape. Combining this obstruction with the [nine-pulse result](nine-pulse-causal-obstruction.md) gives **minimum nine pulses on [1/14,1/12)**. The [subsequent seven-pulse obstruction](seven-pulse-causal-obstruction.md) matches the paired-suffix lower at 1/16.
 
 ## Why the fourth reply changes
 

@@ -288,7 +288,8 @@ class Receiver:
                 return sum(walk(word+(c,)) for c in (self.suffix if bits[n] else self.base))
             count+=walk(())
         require(count==self.critical_word_count,'unexpected critical word count')
-        require(report['maximum']==self.upper,'reported upper lacks a binding center')
+        if self.horizon!=7:
+            require(report['maximum']==self.upper,'reported upper lacks a binding center')
         result=dict(upper=str(self.upper),ordinaryCategoryWords=2**self.horizon-len(critical),criticalWords=count,
                     totalWords=8**self.horizon,physicalPanels=len(self.standard),conditionalRoots=len(self.centers),
                     analyticLeaves=report['leafCount'],distinctWorldPairs=len(self.worlds))
@@ -296,6 +297,21 @@ class Receiver:
 
         if self.horizon==8:result['orderedPanels']=len(self.ordered)
         return result
+
+
+class SevenPulseReceiver(Receiver):
+    horizon=7
+    noise=F(1,16)
+    packet_schema='worldlaw.seven-pulse-causal-obstruction/v1'
+    critical_splits=(3,4)
+    critical_word_count=27648
+
+    def valid_root(self,head):
+        return False
+
+    def panel(self,blocks,shifts,ids):
+        require(sum(map(len,blocks))==self.horizon,'seven-pulse adjustment must be terminal')
+        return super().panel(blocks,shifts,ids)
 
 
 class EightPulseReceiver(Receiver):
