@@ -30,6 +30,10 @@ def sparse_matrix(rows, width):
                 data.append(float(v))
     return coo_matrix((data, (ii, jj)), shape=(len(rows), width)).tocsr()
 
+class UnverifiedProposal(ArithmeticError):
+    """The numerical LP suggestion did not pass exact substitution."""
+
+
 def reconstruct_primal(proposal, rows, rhs, dual):
     """Check every raw inequality, optionally removing the shared RHS denominator before rounding."""
     from math import lcm
@@ -47,7 +51,7 @@ def reconstruct_primal(proposal, rows, rhs, dual):
         if x[0] == expected and all((sum((v * scaled[j] for j, v in row.items())) <= b * den for row, b in zip(rows, rhs))):
             break
     else:
-        raise ArithmeticError('rational primal failed after RHS-aware reconstruction')
+        raise UnverifiedProposal('rational primal failed after RHS-aware reconstruction')
     return x
 
 def solve_checked_lp(rows, rhs, width):
@@ -58,7 +62,7 @@ def solve_checked_lp(rows, rhs, width):
     objective[0] = 1
     result = linprog(objective, A_ub=sparse_matrix(rows, width), b_ub=np.asarray(rhs, dtype=float), bounds=(None, None), method='highs-ds', options={'threads': 1})
     if not result.success:
-        raise ArithmeticError(result.message)
+        raise UnverifiedProposal(result.message)
     dual = {i: rat(-v) for i, v in enumerate(result.ineqlin.marginals) if v < -1e-12}
     x = reconstruct_primal(result.x, rows, rhs, dual)
     coeff = defaultdict(F)
@@ -70,7 +74,7 @@ def solve_checked_lp(rows, rhs, width):
         for j, v in rows[i].items():
             coeff[j] += w * v
     if coeff.pop(0, 0) != -1 or any(coeff.values()) or value != -x[0]:
-        raise ArithmeticError('rational dual failed')
+        raise UnverifiedProposal('rational dual failed')
     return (x, dual, int(result.nit))
 
 def position_rows(words, vertices):
@@ -213,7 +217,94 @@ def solve_suffix_block(words, vertices, outer, values, summarize=False):
         return (x[0], cut, constant, dual, None, pivots, len(rows), len(private), bands)
     return (x[0], cut, constant, dual, x, pivots, len(rows), len(private))
 
-def design(vertices, prefix, horizon, wordset=None, rounds=32, split=None, block_limit=128, word_limit=16):
+def fixed_mixture_bound(vertices, weights, horizon):
+    """A causal midpoint transcript bounds every tape of this length by a binary chord argument."""
+    if len(weights) != 2:
+        raise ValueError('provide one fixed mixture per law')
+    weights = [[F(q) if type(q) in (int, str) else None for q in ws] for ws in weights]
+    for ws, vs in zip(weights, vertices):
+        if len(ws) != len(vs) or any(q is None or q < 0 for q in ws) or sum(ws) != 1:
+            raise ValueError('invalid fixed mixture')
+    rates = [[sum(w * v[j] for w, v in zip(ws, vs)) for j in range(len(vs[0]))]
+             for ws, vs in zip(weights, vertices)]
+    diff = [a - b for a, b in zip(*rates)]
+    radius = (max(diff) - min(diff)) * (horizon * horizon // 4) / (4 * horizon)
+    return radius, rates, weights
+
+
+def midpoint_reading(word, rates):
+    return sum((rates[0][c] + rates[1][c] - rates[0][word[0]] - rates[1][word[0]])
+               for c in word) / 2
+
+
+def midpoint_worlds(word, rates, weights):
+    gap = [F(0)]
+    for c in word:
+        gap.append(gap[-1] + rates[0][c] - rates[1][c])
+    slope = gap[-1] / len(word)
+    residual = [g - t * slope for t, g in enumerate(gap)]
+    intercept = (min(residual) + max(residual)) / 2
+    first = (rates[0][word[0]] + rates[1][word[0]]) / 2
+    return [[str(-sign * intercept / 2), str(-first - sign * slope / 2), *map(str, ws[:-1])]
+            for sign, ws in zip((1, -1), weights)]
+
+
+def read_seed(source, path, verifier):
+    """Validate the finite source tree and bind every lower atom to a complete command word."""
+    with path.open() as stream:
+        verifier.verify(source, stream)
+    _, horizon, seed_words = verifier.source_tree(source, False, None, None)
+    vertices = [law['vertices'] for law in source['catalog']['laws']]
+    stride = sum(len(vs) + 2 * (horizon + 1) for vs in vertices)
+    by_word = defaultdict(dict)
+    with path.open() as stream:
+        next(stream)
+        for line in stream:
+            block = json.loads(line)
+            prefix = tuple(block['prefix'])
+            block_words = [w for w in seed_words if w[:len(prefix)] == prefix]
+            for i, weight in block['lower']:
+                leaf, offset = divmod(i, stride)
+                by_word[block_words[leaf]][offset] = F(weight)
+    return by_word
+
+
+def lift_seed(seed, words, prefixes, depth, vertices, outer):
+    """Rebuild cuts in the target row order. Only shared readings and noise may survive."""
+    groups = defaultdict(list)
+    for w in seed:
+        groups[w[:depth]].append(w)
+    result = []
+    for p, retained in sorted(groups.items()):
+        if p not in prefixes:
+            raise ValueError('seed leaf is outside the target prefix')
+        tapes = words(p)
+        coords, rows, rhs = position_rows(tapes, vertices)
+        stride = len(rows) // len(tapes)
+        local = {}
+        for w in retained:
+            if w not in tapes:
+                raise ValueError('seed leaf is outside the target program')
+            start = stride * tapes.index(w)
+            for offset, weight in seed[w].items():
+                if not 0 <= offset < stride or weight <= 0:
+                    raise ValueError('invalid source row or lower multiplier')
+                local[start + offset] = weight
+        terms = defaultdict(F)
+        bound = F(0)
+        for i, weight in local.items():
+            bound += rhs[i] * weight
+            for j, coefficient in rows[i].items():
+                terms[j] += weight * coefficient
+        scale = -terms[coords['e']]
+        if scale <= 0 or any(terms[i] for key, i in coords.items() if key not in outer):
+            raise ValueError('seed block cannot be lifted at this separator')
+        cut = {outer[key]: terms[i] / scale for key, i in coords.items() if key in outer and terms[i]}
+        result.append((cut, bound / scale, p, {i: w / scale for i, w in local.items()}))
+    return result
+
+
+def design(vertices, prefix, horizon, wordset=None, rounds=32, split=None, block_limit=128, word_limit=16, seed=None, mixture_bound=None):
     """Keep separator readings and verified cuts; discard every suffix matrix after use."""
     m = len(vertices[0][0])
     depth = max(len(prefix), horizon - 1) if split is None else split
@@ -233,7 +324,9 @@ def design(vertices, prefix, horizon, wordset=None, rounds=32, split=None, block
     outer = {('y', p): i + 1 for i, p in enumerate(ancestors)}
     outer['e'] = 0
     cuts = [({0: -1}, 0, None, {})]
-    known = set()
+    seeded = lift_seed(seed or {}, words, prefixes, depth, vertices, outer)
+    cuts.extend(seeded)
+    known = {(tuple(sorted(row.items())), rhs) for row, rhs, _, _ in seeded}
     hist = []
     stats = dict(solves=0, pivots=0, rowsProcessed=0, peakRows=0, peakWidth=0, peakTerminalLeaves=0)
 
@@ -254,10 +347,27 @@ def design(vertices, prefix, horizon, wordset=None, rounds=32, split=None, block
         if zero_vertices(words(p), vertices) is not None:
             zero_blocks.add(p)
     stats.update(exactHits=0, primalHits=0, envelopeChecks=0, primalBuilds=0, cutHits=0, deferredBlocks=0, zeroHits=0, zeroBlocks=len(zero_blocks))
+    if seed is not None:
+        stats['seedCuts'] = len(seeded)
     best = None
+    fixed_start = None
+    if mixture_bound is not None:
+        upper, rates, _ = mixture_bound
+        values = [F(0)] * len(outer)
+        for history in ancestors:
+            values[outer['y', history]] = midpoint_reading(history, rates)
+        best = (upper, values)
+        fixed_start = best
+        stats['initialUpper'] = str(upper)
     lo = None
     for iteration in range(rounds):
-        values, multipliers, piv = solve_checked_lp([r for r, h, b, d in cuts], [h for r, h, b, d in cuts], len(outer))
+        try:
+            values, multipliers, piv = solve_checked_lp([r for r, h, b, d in cuts], [h for r, h, b, d in cuts], len(outer))
+        except UnverifiedProposal as error:
+            if fixed_start is None or lo is None:
+                raise
+            stats['numericalStop'] = str(error)
+            break
         charge(len(cuts), len(outer), piv, 0)
         lo = values[0]
         mused = [(cuts[j], w) for j, w in multipliers.items()]
@@ -308,7 +418,13 @@ def design(vertices, prefix, horizon, wordset=None, rounds=32, split=None, block
                         stats['primalHits'] += 1
                         continue
                     tapes = words(p)
-                    r, cut, bound, dual, x, piv, n, k, bands = solve_suffix_block(tapes, vertices, outer, values, True)
+                    try:
+                        r, cut, bound, dual, x, piv, n, k, bands = solve_suffix_block(tapes, vertices, outer, values, True)
+                    except UnverifiedProposal as error:
+                        if fixed_start is None:
+                            raise
+                        stats['numericalStop'] = str(error)
+                        break
                     charge(n, k, piv, len(tapes))
                     stats['primalBuilds'] += 1
                     records.append(BlockSnapshot(key, r, cut, bound, dual, bands))
@@ -324,6 +440,10 @@ def design(vertices, prefix, horizon, wordset=None, rounds=32, split=None, block
                         complete = False
                         stats['deferredBlocks'] += len(ordered) - index - 1
                         break
+            if 'numericalStop' in stats:
+                break
+        if 'numericalStop' in stats:
+            break
         if complete and (best is None or high < best[0]):
             best = (high, values[:])
         hist.append([str(lo), str(best[0]), len(cuts), len(added)])
@@ -333,13 +453,17 @@ def design(vertices, prefix, horizon, wordset=None, rounds=32, split=None, block
     if lo > best[0]:
         raise ArithmeticError('inverted bounds')
     summary = dict(status='exact' if lo == best[0] else 'bounded', lower=str(lo), upper=str(best[0]), history=hist, stats=stats)
-    return (summary, (prefixes, outer, best, mused))
+    data = (prefixes, outer, best, mused)
+    if fixed_start is not None and best is fixed_start:
+        data += (mixture_bound,)
+    return summary, data
 
 def proof_lines(commands, law_ids, vertices, plan, data, summary):
     """Stream the best verified upper worlds and expand the master's lower proof."""
     export = dict(solves=0, pivots=0, rowsProcessed=0, zeroWorldBlocks=0)
     summary['export'] = export
-    prefixes, outer, (upper, values), active = data
+    prefixes, outer, (upper, values), active = data[:4]
+    fixed = data[4] if len(data) == 5 else None
     h = plan['horizon']
     split = plan['split']
     wordset = plan.get('words')
@@ -360,6 +484,15 @@ def proof_lines(commands, law_ids, vertices, plan, data, summary):
     yield {'type': 'header', 'schema': 'worldlaw.factored-feedback-certificate/v1', 'plan': plan, 'commands': commands, 'lawIds': law_ids, 'vertices': [[[str(q) for q in row] for row in vs] for vs in vertices], 'status': summary['status'], 'lower': summary['lower'], 'upper': summary['upper'], 'domain': str(domain), 'shared': [[list(key[1]), str(values[i])] for key, i in outer.items() if key != 'e']}
     for p in prefixes:
         ws = block_words(p)
+        if fixed is not None:
+            _, rates, weights = fixed
+            histories = sorted({w[:t] for w in ws for t in range(split, h)})
+            yield {'type': 'block', 'prefix': list(p),
+                   'readings': [[list(w), str(midpoint_reading(w, rates))] for w in histories],
+                   'worlds': [midpoint_worlds(w, rates, weights) for w in ws],
+                   'lower': [[i, str(weight)] for i, weight in sorted(combined[p].items()) if weight]}
+            export['fixedMixtureBlocks'] = export.get('fixedMixtureBlocks', 0) + 1
+            continue
         choices = zero_vertices(ws, vertices)
         bands = ((F(0),) * split, (F(0),) * split, F(0))
         pinned = tuple((values[outer['y', p[:t]]] for t in range(2, split)))
@@ -397,6 +530,8 @@ def main():
     parser = argparse.ArgumentParser(description='Design an exact bounded feedback policy by suffix-block decomposition.')
     parser.add_argument('source', type=Path)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--upper-mixtures', type=json.loads, help='two fixed barycentric vectors for a causal midpoint upper witness')
+    parser.add_argument('--seed-proof', type=Path, help='lower cuts from this source’s independently verified finite menu')
     parser.add_argument('--complete', action='store_true', help='design every suffix after the supplied prefix')
     parser.add_argument('--prefix', type=json.loads)
     parser.add_argument('--horizon', type=int)
@@ -422,7 +557,9 @@ def main():
         raise ValueError('supply two finite rate families with compatible named commands')
     prefix, h, words = verifier.source_tree(src, args.complete, args.prefix, args.horizon)
     split = max(len(prefix), h - 1) if args.split is None else args.split
-    summary, data = design(vertices, prefix, h, words, args.rounds, split, args.block_limit, args.word_limit)
+    seed = read_seed(src, args.seed_proof, verifier) if args.seed_proof else None
+    fixed = fixed_mixture_bound(vertices, args.upper_mixtures, h) if args.upper_mixtures is not None else None
+    summary, data = design(vertices, prefix, h, words, args.rounds, split, args.block_limit, args.word_limit, seed, fixed)
     plan = dict(prefix=list(prefix), horizon=h, split=split, words=None if words is None else [list(w) for w in words])
     with tempfile.NamedTemporaryFile(mode='w', dir=args.output.parent, delete=False) as f:
         name = f.name
