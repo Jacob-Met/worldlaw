@@ -16,6 +16,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/datar-capillary-radius-transfer/README.md",
+    "research/datar-capillary-radius-transfer/course.py",
+    "research/datar-capillary-radius-transfer/freeze.txt",
+    "research/datar-capillary-radius-transfer/independent.py",
+    "research/datar-capillary-radius-transfer/replay.py",
+    "research/datar-capillary-radius-transfer/scores.json",
     "research/reiter-potentiometric-step-forecast/README.md",
     "research/reiter-potentiometric-step-forecast/baselines.py",
     "research/reiter-potentiometric-step-forecast/extract.py",
