@@ -16,6 +16,21 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/hideg_oer_rotation/README.md",
+    "research/hideg_oer_rotation/acquisition.py",
+    "research/hideg_oer_rotation/forecast-lock.json",
+    "research/hideg_oer_rotation/forecasts.json",
+    "research/hideg_oer_rotation/independent.py",
+    "research/hideg_oer_rotation/model.py",
+    "research/hideg_oer_rotation/native-originals.json",
+    "research/hideg_oer_rotation/protocol.json",
+    "research/hideg_oer_rotation/replay.py",
+    "research/hideg_oer_rotation/rpm-contract.json",
+    "research/hideg_oer_rotation/scan-direction.json",
+    "research/hideg_oer_rotation/score-receipt.json",
+    "research/hideg_oer_rotation/score.json",
+    "research/hideg_oer_rotation/score.py",
+    "research/hideg_oer_rotation/synthetic.py",
     "research/junction-signed-field-transfer/README.md",
     "research/junction-signed-field-transfer/audit.py",
     "research/junction-signed-field-transfer/comparison.json",
