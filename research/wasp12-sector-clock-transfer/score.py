@@ -46,7 +46,7 @@ def score(folder):
         key="decay_vs_"+arms[j]
         tests[key]={"raw_d2":raw,"shape_d2":shape,"offset_d2":offset,
                     "ideal_shape_error":0.5*math.erfc(math.sqrt(shape)/(2*math.sqrt(2)))}
-    winners=[scores["decay"]["projected_chisq"]<scores[a]["projected_chisq"] for a in ("constant","precession")]
+    winners=[bool(scores["decay"]["projected_chisq"]<scores[a]["projected_chisq"]) for a in ("constant","precession")]
     per=[all(x<y for x,y in zip(scores["decay"]["sector_projected_chisq"],scores[a]["sector_projected_chisq"])) for a in ("constant","precession")]
     distinguish=[v["ideal_shape_error"]<=.05 for v in tests.values()]
     r=residual[1]
