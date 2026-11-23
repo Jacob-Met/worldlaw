@@ -2293,6 +2293,7 @@ INCLUDE = (
     "unknown-lab.html", "unknown-lab.css", "src/unknown-lab/*.mjs",
     "coupling.html", "coupling.css", "src/coupling/*.mjs",
     "scripts/*.mjs", "scripts/package.py", "scripts/generate-motion-fixtures-15cc.py", "tests/*.test.mjs",
+    "experiments/CONTINUOUS-LAW-HANDOFF.md", "experiments/continuous-law-protocol.json",
     "examples/*.json", "experiments/*.mjs", "research/PHYSICAL_TELEMETRY_92be.md",
     "examples/physical-pasco-92be/README.md", "examples/physical-pasco-92be/LICENSE",
     "examples/physical-pasco-92be/build-bundle.py", "examples/physical-pasco-92be/receive.mjs",
