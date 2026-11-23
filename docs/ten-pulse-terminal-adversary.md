@@ -51,3 +51,5 @@ python3 scripts/verify-ten-pulse-terminal-adversary.py examples/active-position-
 ```
 
 The [nine-pulse causal obstruction](nine-pulse-causal-obstruction.md) closes the adjacent radius at 1/12, giving minimum ten throughout [1/12, 1/10).
+
+The [near-balanced even-horizon theorem](even-near-balanced-adaptive-optimum.md) gives a symbolic two-order terminal construction at H=10 and at every H≥10 congruent to 2 or 10 modulo 12. The H=10 table remains independently replayable.
