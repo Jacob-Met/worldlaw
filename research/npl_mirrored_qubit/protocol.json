@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "source": {
+    "doi": "10.5281/zenodo.8363718",
+    "csv_bytes": 832470,
+    "csv_sha256": "3917448673855c2e6a7276c078f8f53de5450e9ffb2bef90f2d129b5b72d31a7",
+    "design_sha256": "ab7aab893bb62afc799100a73c65fecbb76e25d2f99507169b50c23d8e6b34cc",
+    "counts_seen": false,
+    "prior_exposure": "Paper aggregate Fig2 oscillation and selected-angle conclusions exposed. No released count, probability, fitted parameter or individual date outcome read."
+  },
+  "unit": "Each of all 18 all-idle IBM batch IDs, one per completion date May6–23 2022. Select only when all six design rows have theta_full=0 and each Pauli basis occurs twice. Within each basis retain file order as row labels 0,1. No correspondence of row labels across basis or shots is required.",
+  "time": "k=n/10 at exactly integer 0…15. Fit k0…9. Freeze all late k10…15 probabilities for every day, basis and row at once before inspecting held dictionaries. 270 jobs containing a nonzero drive excluded and remain sealed.",
+  "information": "Only the two rows’ same-job prefix counts, no other date, time-of-day, drive, outcome or official full-course coefficient. Counts representation lexer transports full row; no later coefficient/readout may be parsed numerically by the predictor. Never pool dates. Individual shot order and circuit timestamps are unreleased. Pauli mean maps to P(0)=(1+s)/2.",
+  "mechanisms": {
+    "candidate": "Minimal Eq22 dynamic telegraph, λ≥0 and equal ±ν initial weights, ground-target relaxation r, coherence damping g=r/2+2ΓD and offset frequency ω. c=e^[(-g+iω)k]f(k), f solves f″+2λ f′+ν² f=0, f(0)=1,f′(0)=0. Z=1−e^(−r k). ν and ω are coherence angular shifts per ten pseudoidentities; λ is classical switching rate, author κ=4λ in same units. Independent TLS and classical implementations count as one prediction.",
+    "static": "Mandatory λ=0 f=cos(νk). Equals equal fixed-frequency mixture and nondissipative-environment model.",
+    "single": "ν=λ=0 author restricted idle Markov envelope.",
+    "free_static": "Two free initial sign weights, same static detunings/noise; f=cos(νk)+iη sin(νk), η∈[−.98,.98].",
+    "constant": "Jeffreys-smoothed prefix-pooled probability per basis.",
+    "last": "Final prefix depth probability with Jeffreys smoothing per basis.",
+    "linear": "Within-job empirical order-1 and order-2 vector autoregressions on X/Y/Z prefix averages, ridge1e−2 on non-intercept weights, recursive 6-step forecasts clipped only for physical probability. Both retained separately."
+  },
+  "spam": "Separate ideal-source roles and equal-budget observation-corrected source roles. At each basis probability-of-report-zero = e1 +(1−e0−e1) p_ideal. e0,e1 each constrained [0,.15] and fitted from the same prefix. The extra flexible static control uses the identical nuisance budget. Separate fit for each job/role, shared across duplicate rows.",
+  "objective": "Sum exact binary binomial negative log probabilities on observed counts, each 1024. Primary sum per-shot predictive cross entropy over held counts using q clipped [1e−9,1−1e−9] for numerical safety. Include complete coefficient log-choose to report held binomial NLL and log likelihood; coefficient cancels in paired differences. No cubic interpolation, purity transformation, post-score fit or comparison to historical interpolated full-record RMSE.",
+  "joint_gate": "Observation-corrected dynamic equal mixture must have lower held mean cross entropy than all corrected static, single, free-static and VAR1/2 controls and improve over corrected static on at least 12/18 days. Report every arm, each independent date, and raw worst circuit actual (basis,depth,ordinal,count,predictions,all signed residuals). Also report worst day per model and all six late depths. Model rank or predictive win does not identify physical TLS.",
+  "minimization": "Use fixed bounded fits with deterministic FFT-free multistarts from ω in −1.8,−0.45,0,0.45,1.8 rad/step, ν in .25,1,2 where applicable and λ in 0,.2 for dynamics. Bounds |ω|≤π,0≤ν≤π, λ∈[0,2], r∈[0,1], ΓD∈[0,1]. Select best finite training binomial likelihood including boundary starts. Report starts/evaluations and convergence for each job; finite budgets do not certify global fits or remove discrete sampling aliases.",
+  "duplicate_check": "If all exact dictionaries across the two all-idle rows are identical at all prefix depths for any day/basis, still include all observed rows but flag concordance, report both total and per-replicate means, and do not treat them as independent shot replication. Dates are the descriptive units. Also report exact held duplicate agreement and empirical difference, without changing membership.",
+  "scope": "Historical fixed IBM device, no interday parameter transfer, no calibration timestamp, no unseen hardware. General arbitrary-drive observational equivalence is an exact theorem of the minimal Eq22 only; empirical test restricted to new depth suffixes within existing idle batches. Room for leakage/drift/noncommuting environmental terms remains."
+}
