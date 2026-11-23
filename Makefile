@@ -28,3 +28,14 @@ test-symbolic-operators:
 	test "$$(git hash-object "$$D/source.mjs")" = 2e1fedb42d12517d8d10b97c5cba5511e5acc19d; \
 	node "$$D/source.mjs" > "$$D/course.json"; \
 	node scripts/receive-symbolic-operator-course.mjs "$$D/course.json"
+
+# Native generated controls for the continuous acquisition path.
+.PHONY: test-continuous-law
+test-continuous-law:
+	node --test tests/command-cubic-discovery.test.mjs tests/residual-abstention.test.mjs tests/trajectory-continuous-planner.test.mjs tests/trajectory-sindy-discovery.test.mjs tests/trajectory-continuous-instrument.test.mjs tests/forced-weak-discovery.test.mjs tests/trajectory-integral-92be.test.mjs tests/trajectory-continuous-cli.test.mjs
+
+# All maintained tests, real app smokes, then the closed six-world source gate.
+# The native worker must retain both requested artifacts, including failed runs.
+.PHONY: qualify-continuous-law
+qualify-continuous-law:
+	node experiments/qualify-continuous-law.mjs

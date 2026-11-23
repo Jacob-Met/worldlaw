@@ -1,6 +1,6 @@
 import {prepareTorquePredictor, DiscoveryError} from './torque-discovery.mjs';
 
-const supported = new Set(['command','rate','coulomb','spring','gravity',
+const supported = new Set(['command','command_cubic','rate','coulomb','spring','gravity',
   'quadratic','bias','command_position','rate_squared','cosine','cubic']);
 const fail = (message, code = 'invalid_input') => { throw new DiscoveryError(message, code); };
 
@@ -33,7 +33,7 @@ function partials(id, coefficient, command, position, rate) {
     case 'rate': return [0, coefficient];
     case 'quadratic': return [0, product(2, coefficient, Math.abs(rate))];
     case 'rate_squared': return [0, product(2, coefficient, rate)];
-    case 'command': case 'bias': case 'coulomb': return [0, 0];
+    case 'command': case 'command_cubic': case 'bias': case 'coulomb': return [0, 0];
     default: return fail('Local response does not support every model term.', 'unsupported_term');
   }
 }

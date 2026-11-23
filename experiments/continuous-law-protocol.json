@@ -1,0 +1,206 @@
+{
+  "schema": "worldlaw.continuous-law-course/v1",
+  "protocolId": "continuous-law-course-5db375-v1",
+  "scope": "Synthetic known-inertia scalar ODEs; finite-library structure and coefficient discovery. No PDE or physical-hardware claim.",
+  "sourceWorlds": [
+    {
+      "seed": 1001,
+      "family": "spring",
+      "actuator": "linear"
+    },
+    {
+      "seed": 1002,
+      "family": "spring",
+      "actuator": "cubic"
+    },
+    {
+      "seed": 1003,
+      "family": "gravity",
+      "actuator": "linear"
+    },
+    {
+      "seed": 1004,
+      "family": "gravity",
+      "actuator": "cubic"
+    },
+    {
+      "seed": 1005,
+      "family": "duffing",
+      "actuator": "linear"
+    },
+    {
+      "seed": 1006,
+      "family": "duffing",
+      "actuator": "cubic"
+    }
+  ],
+  "noiseSigma": 0.002,
+  "inertia": 1,
+  "instrumentMaximumStep": 0.001,
+  "fit": {
+    "terms": [
+      "command",
+      "command_cubic",
+      "rate",
+      "spring",
+      "gravity",
+      "cubic",
+      "bias"
+    ],
+    "maxTerms": 4,
+    "noiseSigma": 0.002,
+    "ambiguityDelta": 6,
+    "windowDuration": 1,
+    "windowStride": 0.5,
+    "rateWindowSize": 9
+  },
+  "sindy": {
+    "terms": [
+      "command",
+      "command_cubic",
+      "rate",
+      "spring",
+      "gravity",
+      "cubic",
+      "bias"
+    ],
+    "maxTerms": 4,
+    "noiseSigma": 0.002,
+    "derivativeWindow": 21,
+    "threshold": 0.05,
+    "ridge": 1e-8,
+    "maxIterations": 10
+  },
+  "planner": {
+    "inertia": 1,
+    "initialPosition": 0.25,
+    "initialRate": 0,
+    "duration": 8,
+    "dt": 0.04,
+    "maxStep": 0.02,
+    "amplitudeBounds": [
+      -1,
+      1
+    ],
+    "segmentDurations": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "positionDomain": [
+      -12,
+      12
+    ],
+    "rateDomain": [
+      -12,
+      12
+    ],
+    "noiseSigma": 0.002,
+    "starts": 3,
+    "sweeps": 2,
+    "maxTotalSteps": 1000000,
+    "maxRefinementError": 0.0001,
+    "minSeparation": 3
+  },
+  "maxRounds": 2,
+  "sourceRequests": [
+    {
+      "initialPosition": 1.2,
+      "initialRate": 0.1,
+      "amplitudes": [
+        1,
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "initialPosition": -0.8,
+      "initialRate": -0.1,
+      "amplitudes": [
+        -1,
+        0,
+        1,
+        -1
+      ]
+    }
+  ],
+  "holdoutRequest": {
+    "initialPosition": 0.45,
+    "initialRate": -0.2,
+    "amplitudes": [
+      0.35,
+      -0.65,
+      0.8,
+      -0.2
+    ]
+  },
+  "comparison": {
+    "policies": [
+      "active",
+      "random"
+    ],
+    "commonSourceRecordings": true,
+    "commonNoiseByAcquisitionIndex": true,
+    "observationBudgetPerArm": 804,
+    "sindyUses": "Exactly the same acquired recordings as its active or random weak-fit arm; it does not select the commands."
+  },
+  "grading": {
+    "primary": "Exact support recovery on independent held worlds; refusal counts as failure.",
+    "secondary": [
+      "Actuator type accuracy",
+      "Normalized L2 coefficient error",
+      "Postinitial held-trajectory position RMS / declared noise sigma"
+    ],
+    "coefficientTolerance": 0.1,
+    "coldLawSuccess": "Completed acquisition arm, executable finite final forecast, exact support AND normalized coefficient error <= 0.1. Forward RMS is reported separately. Fit-only recovery is distinctly labeled.",
+    "failureDenominator": "Every one of the six source worlds remains in the denominator, including whole-world exceptions with metrics:null. Later fixed cohorts must follow the same rule."
+  },
+  "qualification": {
+    "development": "All six worlds and both arms must finish two scored receipts with exact command/forecast binding; all weak holdout forecasts finite. SINDy refusals remain recorded. This qualifies execution, not scientific superiority.",
+    "calibration": {
+      "seedsStart": 20001,
+      "worlds": 64,
+      "alpha": 0.05,
+      "maximumRounds": 2,
+      "requireCompleteAllWorlds": true
+    },
+    "evaluation": {
+      "inFamilySeedsStart": 30001,
+      "inFamilyWorlds": 48,
+      "outOfFamilySeedsStart": 40001,
+      "outOfFamilyWorlds": 48,
+      "worldDistribution": "Independent uniform family and actuator; independent uniform coefficients from the frozen generator. OOD adds the declared hidden oscillator.",
+      "stopPolicy": "Always attempt the fixed two rounds, including after an abstention; any refusal is retained and counted. Calibration refuses on any incomplete reference world."
+    }
+  },
+  "nullgarden": {
+    "repository": "Jacob-Met/nullgarden",
+    "commit": "75527fb3934f65310b63d6ac9880394c5b98dc29",
+    "pipeline": "runControls, fixed top-k=2 diagonal LDA, subject/world-level within-family label permutations",
+    "features": [
+      "log1p(active round1 prospective residual)",
+      "log1p(active round2 prospective residual)"
+    ],
+    "label": "0 in-family, 1 hidden oscillator",
+    "independentUnit": "one independently generated world; no row-wise timepoint permutation",
+    "seed": 271828,
+    "perms": 199,
+    "stopping": "fixed",
+    "missingFeaturePolicy": "Refuse the complete sham, never silently remove failed worlds",
+    "interpretation": "A separate conditional association diagnostic; neither a conformal threshold nor proof of causal identification."
+  },
+  "sources": [
+    "https://doi.org/10.1073/pnas.1517384113",
+    "https://arxiv.org/abs/1605.06682",
+    "https://doi.org/10.1137/20M1343166"
+  ],
+  "generator": {
+    "parameters": "SHA256 domain-separated counter stream; uint32 midpoint / 2^32. Counter order is frozen in native harness.",
+    "policySeed": "First 32 bits of SHA256('policy-seed:'+world seed).",
+    "noise": "Independent instrument seeded by the world seed xor 0x6a09e667; common noise across paired policies.",
+    "interpretation": "Deterministic pseudorandom synthetic replicates; guarantees remain conditional on the specified exchangeability model."
+  },
+  "blinding": "Trusted fixed learner code receives only recordings and declared settings. Seeds and the generator are available in this repository: this is not cryptographic blinding or an independent external oracle."
+}

@@ -27,7 +27,7 @@ function featureRange(id,[lo,hi]){
  }
  if(id==='rate_squared')return[lo<=0&&hi>=0?0:Math.max(0,down(Math.min(lo*lo,hi*hi))),up(Math.max(lo*lo,hi*hi))];
  if(id==='quadratic')return[down(lo*Math.abs(lo)),up(hi*Math.abs(hi))];
- if(id==='cubic'){
+ if(id==='cubic'||id==='command_cubic'){
   const cube=x=>{const value=x*x*x;const slack=8*Number.EPSILON*Math.abs(value);return[value-slack,value+slack];};
   return[down(cube(lo)[0]),up(cube(hi)[1])];
  }
@@ -82,7 +82,7 @@ export function inspectInputEnclosures(model,observations,radii,{refinementSegme
   let low=0,high=0;
   for(const term of model.terms){
    if(term.coefficient===0)continue;
-   const coordinate=term.id==='command'?'command':['rate','coulomb','quadratic','rate_squared'].includes(term.id)?'rate':'position';
+   const coordinate=(term.id==='command'||term.id==='command_cubic')?'command':['rate','coulomb','quadratic','rate_squared'].includes(term.id)?'rate':'position';
    const [a,b]=term.id==='command_position'?productRange(boxes.command,boxes.position):term.id==='bias'?[1,1]:featureRange(term.id,boxes[coordinate]);
    const products=[term.coefficient*a,term.coefficient*b];
    low=down(low+down(Math.min(...products)));high=up(high+up(Math.max(...products)));
@@ -91,7 +91,7 @@ export function inspectInputEnclosures(model,observations,radii,{refinementSegme
   if(segments){
    const joint=refinePosition(positionTerms,boxes.position,segments);
    if(joint){let other=[0,0];
-    for(const t of model.terms.filter(t=>!positionIds.has(t.id)))other=add(other,scale(t.id==='command_position'?productRange(boxes.command,boxes.position):t.id==='bias'?[1,1]:featureRange(t.id,boxes[t.id==='command'?'command':'rate']),t.coefficient));
+    for(const t of model.terms.filter(t=>!positionIds.has(t.id)))other=add(other,scale(t.id==='command_position'?productRange(boxes.command,boxes.position):t.id==='bias'?[1,1]:featureRange(t.id,boxes[(t.id==='command'||t.id==='command_cubic')?'command':'rate']),t.coefficient));
     const combined=add(joint,other),a=Math.max(low,combined[0]),b=Math.min(high,combined[1]);
     if(a<=b){low=a;high=b;refinedCount++;}
    }

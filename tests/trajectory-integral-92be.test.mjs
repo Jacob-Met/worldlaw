@@ -179,3 +179,18 @@ test('first-derivative nonlinear terms recover analytic drag and retain honest s
     assert.ok(rollout(result.selected, heldOut).metrics.positionRMSE < .001);
   }
 });
+
+test('nonzero switched cubic input is refused before it can appear as a zero column', () => {
+  const run = switchedCommandRun();
+  assert.ok(new Set(run.samples.slice(0,-1).map(r=>r.command ** 3)).size > 2);
+  for (const timing of [{}, {commandTiming:{delaySeconds:.05,responseTimeSeconds:.2}}]) {
+    for (const terms of [['command_cubic'], ['command','command_cubic','bias']]) {
+      assert.throws(() => discoverIntegral([run], {terms, maxTerms:terms.length, ...timing}),
+        e => e instanceof DiscoveryError && e.code === 'unsupported_term' && /command_cubic/.test(e.message));
+    }
+  }
+  const original = discoverIntegral([run], {terms:['command','bias'], maxTerms:2, noiseSigma:1e-10});
+  assert.equal(original.selected.id,'command+bias');
+  near(coefficient(original.selected,'command'),1.4,1e-13);
+  near(coefficient(original.selected,'bias'),.12,1e-13);
+});
