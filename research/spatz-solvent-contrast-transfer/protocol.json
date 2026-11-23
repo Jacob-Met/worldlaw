@@ -1,0 +1,467 @@
+{
+  "source": {
+    "title": "Spatz solvent contrast transfer on one spin-coated h-polystyrene/Si wafer",
+    "dataset_doi": "10.5281/zenodo.6829895",
+    "paper_doi": "10.1107/S160057672201086X",
+    "data_license": "CC-BY-4.0",
+    "source_number_of_files": 75,
+    "source_metadata_sha256": "2f8b848d4a35a9db359a9c396e9bf495c8763d222e397ded111f78a1846bb285",
+    "authenticated_file_sha256": {
+      "SPZ0003470.nx.hdf": "123021d6e7cbecebece0c7fb50385350288544d7ef2e03711a73fcbbfb7b74f7",
+      "SPZ0003471.nx.hdf": "e421b3ddd74e0e87ed0d406ee341e91caaf8c01fff2018952b3ad303042b9b5c",
+      "SPZ0003472.nx.hdf": "3624467fc15df72baa19c9b4c2515614e16abf381f27a95f93ba623327214c97",
+      "SPZ0003493.nx.hdf": "bfbfea99e137ee208271ebca90c0fccc5c3255be122cfbdf67257af4368d10e9",
+      "SPZ0003494.nx.hdf": "3c90d3228d08a578d626b4664656005bedb402e4882fdfc5cc37e3b2b306ac02",
+      "SPZ0003495.nx.hdf": "8c38cb6142c33191a8cf1d8ddab3d525a9889f3e53af8fd95978a8e06f106429",
+      "SPZ0003496.nx.hdf": "276b795b39f6b73f5c4433d3a35b99485621d4d4713df9f821183c499d2b8021",
+      "SPZ0003497.nx.hdf": "ca9b2a05f688a9cd282cf9b6287c56a7b7f6ee72f4965d799f100f03cbde7dc4",
+      "SPZ0003498.nx.hdf": "83a518dabe79986c6dabe143884cd633bd5ec01151c542f5763717aa833201f2",
+      "SPZ0003499.nx.hdf": "108fa988bcfa1fb72f6258dfbf7705d67c30ecf9c67507eaa0c9056d368c8c1e",
+      "SPZ0003500.nx.hdf": "57d687f3b4c6aef40a56cf74c7caa0038a604c82b57a1afe345afeda9d9f25ac",
+      "SPZ0003501.nx.hdf": "4bc40591e544ee656b64e57cc2fed38db9a62d7e2e6415f7c4c38e2b49c0d68b",
+      "Spatz_reduction_demo.ipynb": "db733b6298de5892bd56f2ce0e8637ac053f37bf19a843bc8057d07afbd92046",
+      "coef_c_SPZ0003493.pkl": "2c5651f4cec6474f6fced8212a86556b53c37e4ebd4854c17dea9661c3fd9050",
+      "coef_c_SPZ0003495.pkl": "a2925922784133baace2ed6686e4ec03fe9348e53cf0cec3d1d1550cbdc7dd34",
+      "coef_c_SPZ0003498.pkl": "00f1d8bd44b8691d2028f27b0433270328759cdaed04319127ef306b108efe2b",
+      "coef_c_SPZ0003500.pkl": "0c0d4184797290f16d4822f5adb29604f0e7786206f9d3ec1c494e777c5cfb00"
+    },
+    "roster": {
+      "direct": {
+        "0.5": 3470,
+        "0.85": 3471,
+        "3.5": 3472
+      },
+      "training": {
+        "D2O": [
+          3493,
+          3494
+        ],
+        "H2O": [
+          3500,
+          3501
+        ]
+      },
+      "held": {
+        "CM4": [
+          3495,
+          3496,
+          3497
+        ],
+        "CMSi": [
+          3498,
+          3499
+        ]
+      }
+    },
+    "nominal_sld_in_millionth_inverse_square_angstroms": {
+      "Si": 2.07,
+      "D2O": 6.36,
+      "H2O": -0.56,
+      "CM4": 4,
+      "CMSi": 2.07
+    },
+    "input_fields": {
+      "SPZ0003470.nx.hdf": {
+        "entry1/end_time": "2022-01-18 17:04:31",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 0.007323999889194965,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 1.5803699493408203,
+        "entry1/instrument/slits/third/horizontal/gap": 0.40962499380111694,
+        "entry1/monitor/bm1_counts": 92895019,
+        "entry1/monitor/bm1_time": 899.6514892578125,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "direct beam som 0.5",
+        "entry1/sample/som": 0.007240999955683947,
+        "entry1/start_time": "2022-01-18 17:04:31"
+      },
+      "SPZ0003471.nx.hdf": {
+        "entry1/end_time": "2022-01-18 19:04:40",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 0.007323999889194965,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 2.679882049560547,
+        "entry1/instrument/slits/third/horizontal/gap": 0.6841250061988831,
+        "entry1/monitor/bm1_counts": 36720710,
+        "entry1/monitor/bm1_time": 7201.04443359375,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "direct beam som 0.85",
+        "entry1/sample/som": 0.007240999955683947,
+        "entry1/start_time": "2022-01-18 19:04:40"
+      },
+      "SPZ0003472.nx.hdf": {
+        "entry1/end_time": "2022-01-18 19:13:15",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 0.007323999889194965,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 11.049949645996094,
+        "entry1/instrument/slits/third/horizontal/gap": 2.8288750648498535,
+        "entry1/monitor/bm1_counts": 2552344,
+        "entry1/monitor/bm1_time": 499.6326599121094,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "direct beam som 3.5",
+        "entry1/sample/som": 0.007240999955683947,
+        "entry1/start_time": "2022-01-18 19:13:15"
+      },
+      "SPZ0003493.nx.hdf": {
+        "entry1/end_time": "2022-01-19 16:16:43",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 1.693114995956421,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 2.679589033126831,
+        "entry1/instrument/slits/third/horizontal/gap": 0.6786249876022339,
+        "entry1/monitor/bm1_counts": 90594288,
+        "entry1/monitor/bm1_time": 900.0997314453125,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "silicon hPS D2O om=0.85",
+        "entry1/sample/som": 0.8485329747200012,
+        "entry1/start_time": "2022-01-19 16:16:43"
+      },
+      "SPZ0003494.nx.hdf": {
+        "entry1/end_time": "2022-01-19 18:17:01",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 6.997313976287842,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 11.04946231842041,
+        "entry1/instrument/slits/third/horizontal/gap": 2.8278748989105225,
+        "entry1/monitor/bm1_counts": 722432937,
+        "entry1/monitor/bm1_time": 7201.55419921875,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "silicon hPS D2O om=3.5",
+        "entry1/sample/som": 3.4972150325775146,
+        "entry1/start_time": "2022-01-19 18:17:01"
+      },
+      "SPZ0003495.nx.hdf": {
+        "entry1/end_time": "2022-01-19 18:32:21",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 1.0076899528503418,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 1.5802240371704102,
+        "entry1/instrument/slits/third/horizontal/gap": 0.40950000286102295,
+        "entry1/monitor/bm1_counts": 30095839,
+        "entry1/monitor/bm1_time": 300.455810546875,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "silicon hPS CM4 om=0.5",
+        "entry1/sample/som": 0.5046610236167908,
+        "entry1/start_time": "2022-01-19 18:32:21"
+      },
+      "SPZ0003496.nx.hdf": {
+        "entry1/end_time": "2022-01-19 18:47:33",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 1.6928709745407104,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 2.679589033126831,
+        "entry1/instrument/slits/third/horizontal/gap": 0.6832500100135803,
+        "entry1/monitor/bm1_counts": 90134833,
+        "entry1/monitor/bm1_time": 900.0718994140625,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "silicon hPS CM4 om=0.85",
+        "entry1/sample/som": 0.846701979637146,
+        "entry1/start_time": "2022-01-19 18:47:33"
+      },
+      "SPZ0003497.nx.hdf": {
+        "entry1/end_time": "2022-01-19 20:47:50",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 6.996826171875,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 11.049510955810547,
+        "entry1/instrument/slits/third/horizontal/gap": 2.827500104904175,
+        "entry1/monitor/bm1_counts": 719378135,
+        "entry1/monitor/bm1_time": 7201.07763671875,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "silicon hPS CM4 om=3.5",
+        "entry1/sample/som": 3.4964818954467773,
+        "entry1/start_time": "2022-01-19 20:47:50"
+      },
+      "SPZ0003498.nx.hdf": {
+        "entry1/end_time": "2022-01-19 21:28:10",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 1.707885980606079,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 2.6803700923919678,
+        "entry1/instrument/slits/third/horizontal/gap": 0.6943749785423279,
+        "entry1/monitor/bm1_counts": 179503331,
+        "entry1/monitor/bm1_time": 1799.8902587890625,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "silicon hPS CMSi om=0.85",
+        "entry1/sample/som": 0.8552470207214355,
+        "entry1/start_time": "2022-01-19 21:28:10"
+      },
+      "SPZ0003499.nx.hdf": {
+        "entry1/end_time": "2022-01-19 23:28:26",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 6.992554187774658,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 11.04936408996582,
+        "entry1/instrument/slits/third/horizontal/gap": 2.8252499103546143,
+        "entry1/monitor/bm1_counts": 717108039,
+        "entry1/monitor/bm1_time": 7200.87060546875,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "silicon hPS CMSi om=3.5",
+        "entry1/sample/som": 3.4956281185150146,
+        "entry1/start_time": "2022-01-19 23:28:26"
+      },
+      "SPZ0003500.nx.hdf": {
+        "entry1/end_time": "2022-01-19 23:53:46",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 1.7081300020217896,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 2.6802730560302734,
+        "entry1/instrument/slits/third/horizontal/gap": 0.6967499852180481,
+        "entry1/monitor/bm1_counts": 89505544,
+        "entry1/monitor/bm1_time": 899.66259765625,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "silicon hPS H2O om=0.85",
+        "entry1/sample/som": 0.8558570146560669,
+        "entry1/start_time": "2022-01-19 23:53:46"
+      },
+      "SPZ0003501.nx.hdf": {
+        "entry1/end_time": "2022-01-20 01:54:03",
+        "entry1/instrument/chopper/c01/spee": 25,
+        "entry1/instrument/chopper/c02/spee": 25,
+        "entry1/instrument/chopper/c2b/spee": 0,
+        "entry1/instrument/detector/detector_distance/pos": 8307,
+        "entry1/instrument/detector/detrot": 6.992554187774658,
+        "entry1/instrument/parameters/dy": 2064.659912109375,
+        "entry1/instrument/slits/second/horizontal/gap": 11.04931640625,
+        "entry1/instrument/slits/third/horizontal/gap": 2.8247499465942383,
+        "entry1/monitor/bm1_counts": 715371639,
+        "entry1/monitor/bm1_time": 7200.7216796875,
+        "entry1/sample/hplc/pump/ratio/pval": "",
+        "entry1/sample/hplc/pump/ratio/setp": "",
+        "entry1/sample/hplc/pump/state": "",
+        "entry1/sample/name": "silicon hPS H2O om=3.5",
+        "entry1/sample/som": 3.4957499504089355,
+        "entry1/start_time": "2022-01-20 01:54:03"
+      }
+    },
+    "archived_model_root": {
+      "coef_c_SPZ0003493.pkl": {
+        "type": "refnx.reflect.reflect_model.ReflectModel",
+        "components": [
+          "fronting",
+          "1",
+          "slab",
+          "backing"
+        ],
+        "free_flags": [
+          {
+            "name": "scale",
+            "vary": false
+          },
+          {
+            "name": "bkg",
+            "vary": true
+          },
+          {
+            "name": "q_offset",
+            "vary": false
+          },
+          {
+            "name": "backing - sld",
+            "vary": true
+          }
+        ]
+      },
+      "coef_c_SPZ0003495.pkl": {
+        "type": "refnx.reflect.reflect_model.ReflectModel",
+        "components": [
+          "fronting",
+          "1",
+          "slab",
+          "backing"
+        ],
+        "free_flags": [
+          {
+            "name": "scale",
+            "vary": false
+          },
+          {
+            "name": "bkg",
+            "vary": true
+          },
+          {
+            "name": "q_offset",
+            "vary": false
+          },
+          {
+            "name": "backing - sld",
+            "vary": true
+          }
+        ]
+      },
+      "coef_c_SPZ0003498.pkl": {
+        "type": "refnx.reflect.reflect_model.ReflectModel",
+        "components": [
+          "fronting",
+          "1",
+          "slab",
+          "backing"
+        ],
+        "free_flags": [
+          {
+            "name": "scale",
+            "vary": true
+          },
+          {
+            "name": "bkg",
+            "vary": true
+          },
+          {
+            "name": "q_offset",
+            "vary": false
+          },
+          {
+            "name": "backing - sld",
+            "vary": true
+          }
+        ]
+      },
+      "coef_c_SPZ0003500.pkl": {
+        "type": "refnx.reflect.reflect_model.ReflectModel",
+        "components": [
+          "fronting",
+          "1",
+          "slab",
+          "backing"
+        ],
+        "free_flags": [
+          {
+            "name": "scale",
+            "vary": false
+          },
+          {
+            "name": "bkg",
+            "vary": true
+          },
+          {
+            "name": "q_offset",
+            "vary": false
+          },
+          {
+            "name": "backing - sld",
+            "vary": true
+          }
+        ]
+      }
+    },
+    "limitations": [
+      "The complete release contains no standalone reduced .dat and the four model roots omit measured datasets. The demo uses sample 1039 and 1041, manual beam regions and an explicit 1.05 example scale. These are insufficient to reconstruct the figures with established byte equality.",
+      "All HPLC ratio and state fields are empty. Actual SLD may differ from nominal values. Published jointly fitted layer solutions and per-contrast offsets/scales are descriptive prior exposure and excluded from fit initialization and held calibration.",
+      "Every stored root start and end timestamp is the same within its own file. File stamps span 9 h 37 min 20 s across reflected acquisitions, with independent positive monitor counting durations. Film time-invariance, incident beam stability and solvent penetration remain assumptions.",
+      "Finite source-angle, waist and white spectrum resolution can change the contrast identity after averaging. Actual kernels may differ across scans. There is no certified infinite-dimensional common material profile from a selection of pointwise disk coordinates."
+    ],
+    "source_only_native": [
+      {
+        "key": "catalog",
+        "sha": "3e730e1f176ef1d0fb565df407df754e2b36bed7a2aaabfbdd96f0e500e08561"
+      },
+      {
+        "key": "type_scan",
+        "sha": "b8931507120fa20970aab990c95faf7aef51b0f4c3ad052de48cf01ce6c257df"
+      },
+      {
+        "key": "initial_static_parser_APPENDError",
+        "sha": "729c123797a627c000a5700707621c7855f99549b598129bac1b353a9b65f360"
+      },
+      {
+        "key": "synthetic_exact",
+        "sha": "5f6ab62ff6939ec209e5b977f0f32a6b998e3f051ca10f078e40e3d6d503a45d"
+      },
+      {
+        "key": "corrected_metadata",
+        "job": "p2-f747-spatz-static-parameter-topology-and-goniometer-input-receipt-append-support"
+      }
+    ]
+  },
+  "freeze": "Before any observed reflected histogram enters a numerical reducer. No all-contrast fitted numeric model, held power, held background, target-dependent mask or gain may enter a forecast.",
+  "unit": "Single hPS-on-Si wafer; D2O and H2O are calibration, CM4 and CMSi are the two held solvent exchange acquisitions. Angles and q bins are nested. They are not independent films.",
+  "receiver": {
+    "versions": {
+      "refnx": "0.1.57",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "h5py": "3.12.1",
+      "pandas": "2.2.3",
+      "orsopy": "1.2.3"
+    },
+    "endpoint": "New raw-data reduction of unstitched scan monitor-normalized ratios using one direct exposure per angle and pinned fixed detector center and width measured on the corresponding direct beam. Scale one, background subtraction, 2.8–18Å wavelength, 3.4% rebin. Includes every original 56 bins per scan, negative and >1 ratios retained.",
+    "forecast_design": "Nine opaque copies first received direct reference histograms in place of all physical reflected histograms, and corresponding surrogate count summaries before author instrument reduction. Real per-scan geometry retained. 504 q/FWHM values refrozen; measured extraction must reproduce these coordinates at rtol=1e-11/atol=1e-13 or refuse without rescaling.",
+    "absolute_limit": "Detector registration aperture, direct/reference date and unknown actual SLD/gain can change observed ratios. They are not calibrated independent reflectivity truth."
+  },
+  "point_gate": {
+    "candidate": "shared_disk",
+    "controls": [
+      "linear_SLD",
+      "asinh_SLD",
+      "nearest_contrast",
+      "author_solvated_slabs",
+      "author_free_backing",
+      "dry_slabs"
+    ],
+    "loss": "RMS of difference in asinh(R/1e-5) per scan. Equal-weight mean of whole-scan losses per held contrast. The shared disk must strictly beat every comparator at each contrast; 12 gates. Also retain raw RMSE, worst bins and all measurements.",
+    "regularization": "Fixed nonparametric common complex disk amplitude/cosine coordinates via two piecewise-linear knot fields with second-difference penalty one. Optimize four training scans using stated uncertainties with 1e-8 numerical floor. Background affine in nominal solvent fraction for every physical model. Seed27 and193 DE+LS on author-family refnx two-slab controls. Source fit seeding excludes the published 971Å and 1.5%."
+  },
+  "interval_gate": {
+    "class": "Common passive, power-normalized contractive two-port per energy across the two scan times on one fixed film. May be a broader class than finite physical stacks. Real positive backing wavenumbers required for Cayley contraction. Set delta=1 on every unsupported lower-Q/complex/critical interval. Numeric R modeled in [0,1].",
+    "kernel": "Nonnegative normalized whole-real-axis Gaussian on common Si normal q, each row with its own independently fixed center and FWHM. This is an effective instrument-resolution assumption. Outside positive q and propagating domain use delta=1. Hellinger bound is analytic for full Gaussian. Left tails integrated by normal CDF at depths2..8; use best valid bound. Estimates evaluated in float64 with stated 2e-12 guard; not exact instrument metrology.",
+    "band": "Engineering allowance ±3 reported propagated dR per calibration measurement. No confidence or joint coverage claim. If any calibration band misses [0,1] or any two calibration bands violate the contraction, the global conditional interval course fails, and rows retain diagnostic local bounds only. Passing all pairwise checks is not a joint feasibility proof.",
+    "coverage": "Report all280 raw ordinates and width for local nominal passivity intersections. A bounded engineering-envelope claim additionally requires calibration compatibility, observed coverage of all56 bins in each of five held scans and narrower mean width than [0,1] in every scan. This secondary verdict cannot rescue the point comparison."
+  },
+  "prior_exposures": "Historical all-contrast cofit summary and metadata only. Initial unsupported APPEND metadata parser refusal and initial owner scratch admission refusal retained; neither used measured reflected signal."
+}
