@@ -1,0 +1,146 @@
+[
+  {
+    "job_id": "p2-f747-wut-two-receiver-public-original-md5-and-48-headers-only",
+    "owner": "node-eb2d690bfa767553dc51ffd13a31a207",
+    "admission_arguments_sha256": "a367d7eb9ab5b4e6baa3c5c55cb083365c3f47f1a9a9c88430bc4cdffda18381",
+    "native_request_sha256": "0b9e081c3afe1460b90950e3fc408235ee831bada3ba724add8ae49c97079448",
+    "generation": "c63ff1e11d10f9dd78acd8e74e4cd763a8a4c52b0aa4b72e38acc07cc21425dc",
+    "started": "2026-11-23T16:28:34.662010223Z",
+    "finished": "2026-11-23T16:28:34.799131124Z",
+    "exit": 1,
+    "descendant_wait": {
+      "state": "drained",
+      "adopted_waits": 0
+    },
+    "output_bytes": 2681,
+    "output_sha256": "4803c46adfb097e9ea2c0a35de8019ae65f1af65a512247765a114a0a6cffdf8"
+  },
+  {
+    "job_id": "p2-f747-wut-public-curl-checksum-and-original-RINEX-headers",
+    "owner": "node-eb2d690bfa767553dc51ffd13a31a207",
+    "admission_arguments_sha256": "a825a51710c1470831675f8b58015c56193e1c65bad857f37c4c4e30dadc8456",
+    "native_request_sha256": "07164dacf4bc982bb20ed90ee72d92934e53d1c6f762fabde25f9e2ab221e30e",
+    "generation": "e687698f88469fc571dbbd5c9a92b0aae1c22d777d9b03e017d1f3dbccdfcc6c",
+    "started": "2026-11-23T16:30:10.595507109Z",
+    "finished": "2026-11-23T16:30:13.700846382Z",
+    "exit": 1,
+    "descendant_wait": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "output_bytes": 743,
+    "output_sha256": "13ee589cd4afcf70c19eb4eb6fe9e2d41695a44122d2f48be500d13718c8b8d2"
+  },
+  {
+    "job_id": "p2-f747-wut-authenticated-science-checkout-public-archive-headers",
+    "owner": "node-f63e15fee38f87b459616c5a7973e32f",
+    "admission_arguments_sha256": "ba3feb6e765be5ee896cc8b634accf1a54ff7bb023c375de03966cfa9f6cd7d1",
+    "native_request_sha256": "fbd0a763f78016c58bf98a775926eea5e0b7f684974368530259869f29be5990",
+    "generation": "12cb57db2d938af3f2c2fd58e53a2d180cc3adc0bae4829b02cac9c1d77197f1",
+    "started": "2026-11-23T16:31:26.969500533Z",
+    "finished": "2026-11-23T16:35:56.173324166Z",
+    "exit": 1,
+    "descendant_wait": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "output_bytes": 17828,
+    "output_sha256": "d161fee0d26d08736537da7697cf295b1711d71afeb86a93177b77a28ff21e44"
+  },
+  {
+    "job_id": "p2-f747-wut-resume-cutoff-second-original-archive-and-exhaust-48-headers",
+    "owner": "node-f63e15fee38f87b459616c5a7973e32f",
+    "admission_arguments_sha256": "5b23df7411901063bcfc4a319f0cd7ff17db06aa12e6750c3b9fe17d05e33fe7",
+    "native_request_sha256": "cd0e2045459be80981fcf93e5940cbb33309825c5fb219502b227fe08392508c",
+    "generation": "a1bf8fd251ab8028c10df986a2da07c9275f139bb4059ebf91eeaeac4fc74eca",
+    "started": "2026-11-23T16:44:31.111239546Z",
+    "finished": "2026-11-23T16:45:13.612667368Z",
+    "exit": 0,
+    "descendant_wait": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "output_bytes": 30566,
+    "output_sha256": "07570d4efde9e718171fea08f560b767d750c11cadc5495a69e6823b10fd0870"
+  },
+  {
+    "job_id": "p2-f747-wut-trained-eight-frozen-development-input-forecasts",
+    "owner": "node-f63e15fee38f87b459616c5a7973e32f",
+    "admission_arguments_sha256": "e57341b863b09caceaf468598d066694a011a410e81a1e8c7f6304125dfd9646",
+    "native_request_sha256": "84b263a301c6d42b6b6353cd784e36b6046ae82bd452ede9e75b1baf37295e04",
+    "generation": "276411970f7fd939a409857f4472e380929a187588c688ad25180a02ad7d6fd1",
+    "started": "2026-11-23T16:52:28.235419318Z",
+    "finished": "2026-11-23T16:52:42.573207292Z",
+    "exit": 0,
+    "descendant_wait": {
+      "state": "drained",
+      "adopted_waits": 0
+    },
+    "output_bytes": 2115,
+    "output_sha256": "7f14a390afec867d398c4d56f235ad9fd81b1de8969e613121d688615663bf3c"
+  },
+  {
+    "job_id": "p2-f747-wut-dev-forecast-cold-copy-and-six-hour-e5b-outcome",
+    "owner": "node-f63e15fee38f87b459616c5a7973e32f",
+    "admission_arguments_sha256": "d75097bee59a58efce3dd77d60371180a28c25e28b144719de1ff31199937500",
+    "native_request_sha256": "ec48d7915ada130067d8cc2cad953d6b39e73bc52c68829bd81d29282b6c0c5d",
+    "generation": "28197469eecfc0693b0fbd0f07f3a5e70dd3d0ffadc5ef15f358f6102d97b571",
+    "started": "2026-11-23T16:54:16.05771865Z",
+    "finished": "2026-11-23T16:54:23.658320593Z",
+    "exit": 0,
+    "descendant_wait": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "output_bytes": 5126,
+    "output_sha256": "46a54e101e1cd1bcfb8ca547954796bd2e5468cbe551d8d70c0e5e11d64f4cd0"
+  },
+  {
+    "job_id": "p2-f747-wut-independent-rinex-proof-and-122-epoch-window",
+    "owner": "node-f63e15fee38f87b459616c5a7973e32f",
+    "admission_arguments_sha256": "480587b539a8588c2963d925861b4c4a27f0541f7f55db17f1374a1883024c7b",
+    "native_request_sha256": "df5ff1809acab9277ee9a89df3715bdad45ae5f3482ccffdd6dfdf87617cec25",
+    "generation": "e793cca44783200f26c5d5fe9dc208e976d3b0a9cf148b18e0e58c0103f8e4af",
+    "started": "2026-11-23T16:57:08.263178437Z",
+    "finished": "2026-11-23T16:57:14.123390355Z",
+    "exit": 0,
+    "descendant_wait": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "output_bytes": 9365,
+    "output_sha256": "a9769c28ffeeef619014c9d1c568c170b951ce1afccfe4e25576c6e00cc040f5"
+  },
+  {
+    "job_id": "p2-f747-wut-independent-cold-decimal-eight-arm-forecast-score-reader",
+    "owner": "node-7568f58684dce9595d85a8fa98fbc6c2",
+    "admission_arguments_sha256": "cdf7a2e5bc12c4adaea6c58c55b87499cff9ec4b1aa891dc07fc926429aa6548",
+    "native_request_sha256": "a7abac4945ea83e8e4b573ddc7fad424c465a3b07baf043e3f43b48857ba734b",
+    "generation": "8af1bb109519723e5c66435264d0c17f50c2d6b55dcbfbc65d113fe59ce1fb8e",
+    "started": "2026-11-23T16:57:16.041230243Z",
+    "finished": "2026-11-23T16:57:19.720326491Z",
+    "exit": 0,
+    "descendant_wait": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "output_bytes": 2156,
+    "output_sha256": "0dd70f0de9cfb3659b94fde946a2b3afe23c74b1ac0f0e99871bab37dc269ca7"
+  },
+  {
+    "job_id": "p2-f747-wut-content-addressed-published-forecast-and-score-bytes",
+    "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+    "admission_arguments_sha256": "0fb30a027a79d029aa852173463bf616b5b667321b1020732d5c5601737e59a7",
+    "native_request_sha256": "e69f02a8fe9801874727aac91cee67177828aba993d161ad76d9ec503695a38f",
+    "generation": "60276bc31f8fe35822e4cc3cafbada8dc323dacf1561f175a39d8fe5da12253c",
+    "started": "2026-11-23T16:58:12.812979266Z",
+    "finished": "2026-11-23T16:58:15.31091107Z",
+    "exit": 0,
+    "descendant_wait": {
+      "adopted_waits": 0,
+      "state": "drained"
+    },
+    "output_bytes": 795770,
+    "output_sha256": "5f3d1607a0ee5731169d23af1959578cb9ef913ebfa92bba6773864a678f6974"
+  }
+]
