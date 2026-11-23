@@ -1,0 +1,69 @@
+{
+  "schema": "solar.angular-coupling.v1",
+  "scope": "Eight literature-defined photospheric Fe I lines across fourteen IAG μ. Predict three PEPSI 2016 full-disc pseudo-line profiles with fixed transforms. This is relative line shape, not absolute radial velocity or a new disk-integration law.",
+  "source": {
+    "doi": "10.1051/0004-6361/202245612",
+    "edition": "A&A673,A19",
+    "angles": [
+      0.2,
+      0.3,
+      0.35,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      0.95,
+      0.97,
+      0.98,
+      0.99,
+      1
+    ],
+    "acquisition": "2020–2021 quiet-Sun patches",
+    "url": "https://www.astro.physik.uni-goettingen.de/research/solar-lib/data/",
+    "viewer_blob": "742ac293a77af9c39f42f6c0ace98bc835e23e40",
+    "coordinate_rule": "verify every accessed coordinate against 4200+i*.001 vacuum Å, tolerance2e-6. Science inputs are second float64 BE plane of 3,800,001x2 FITS. Full 14 × 8 mandatory. Reject a nonfinite source value in any requested window, do not fill a telluric gap.",
+    "missing_limb": "Hold μ=.2 local normalized profile constant below .2; evaluate zero-weight region and linear first-two profile extension as diagnostics. No held choice."
+  },
+  "target": {
+    "doi": "10.1051/0004-6361/201731631",
+    "dates": [
+      "2016-11-15",
+      "2016-11-16",
+      "2016-11-17"
+    ],
+    "spectra": [
+      "pepsib.20161115.070.dxt.all6.gz",
+      "pepsib.20161116.070.dxt.all6.gz",
+      "pepsib.20161117.040.dxt.all6.gz"
+    ],
+    "contract": "All 24 complete line/date outputs required. Header/metadata alone before prediction lock. Standard-air wavelength from author; Arg numeric units qualified via documented coverage 383–912nm; refuse ambiguous scale. Finite delivered samples pooled with no mask-quality claim; report both mask states and interleave pass/fail at every line and date. If mixed flags occur in scored core and polarity cannot be authenticated, retain score descriptive and refuse primary gate.",
+    "activity": "One star, three adjacent coadds, related instrument and solar state. No claim of statistical independence among line pixels. Source and target share solar line structure, are independently acquired epochs with unlike quietness and telluric processing."
+  },
+  "lines_air_angstrom": [
+    5250.2084,
+    5250.6453,
+    5432.947,
+    5434.5232,
+    5576.0881,
+    6173.3344,
+    6301.5008,
+    6302.4932
+  ],
+  "line_selection": "All Fe I (only) in Table1, Löhner-Böttcher et al. 2019 DOI10.1051/0004-6361/201834925. No held-curve selection.",
+  "air_vacuum": "Standard-air Edlén relation inverted for every sample; no fit to PEPSI positions.",
+  "limb": "Linear interpolation in wavelength of Neckel & Labs1994 Table1 continuum degree-five coefficient rows at519.930,541.760,559.950,579.880,610.975,640.970 nm. Projected disk area dA=2μdμ; 96 midpoint μ bins, 192 uniform azimuth points with paired velocity ±x symmetry. Linear interpolation of planar absorption among 14 μ at fixed v.",
+  "rotation": "Snodgrass & Ulrich 1990 magnetic tracer sidereal 14.713−2.396 sin²lat−1.787 sin⁴lat°/day; adopt apparent solar rotation by subtracting mean orbital rate0.9856°/day on same axis. Date-specific solar B0 from nominal 12UTC Meeus heliographic orientation. Solar R=695700km. Date ref and ±0.5d or sidereal perturbations are diagnostics only; simplified viewpoint model, not full observer velocity.",
+  "local": "v=299792.458 log(λ/λlab) km/s, step0.1 on [-22,22]. Endpoint continuum from medians at [-14,-12] and [12,14] km/s with straight line across; positive fractional absorption times compact raised cosine (flat to |v|8, zero by12 km/s). If positive finite absorption area ≤0.2 km/s or continuum ≤0, primary refuse without dropping a line. Every mode uses same finite-support construction.",
+  "models": [
+    "paired angular Doppler/local absorption",
+    "equivalent-width-weighted independent marginals",
+    "continuum-weighted independent marginals",
+    "no rotation",
+    "published IAG23 integrated atlas (Hanassi-Savari et al. 2025 DOI10.1051/0004-6361/202451874)"
+  ],
+  "transfer": "Resample flux on common v axis, source IAG resolving R≈700000 to target nominal R250000 via quadrature Gaussian LSF difference; shared model-side response approximation. Apply same continuum/taper/centroid/unit-area transform to predictions and PEPSI; target-centroid only defines measurement, never a fitted model shift. Model array lock precedes targets. Report raw finite-window rows, measured RMS vs conditional predictions. Target read should reject gaps >.7 km/s or missing interval.",
+  "endpoints": "Primary daily mean across eight line-wise RMSEs in absorption-density units over recentered |v|≤6 km/s. Positive covariance requires paired beating both independent marginals on all three dates; claim of improvement over released full model additionally requires beating IAG23 all dates. Report all controls, line/date worst, both line/epoch averages, all 24-case paired versus strongest and signed third-moment identity. Diagnostics |v|≤4,8 km/s; input taper/support, seeing, solar activity, magnetic line sensitivity and tellurics remain qualifiers.",
+  "source_gate": "Require 24 complete finite predictions/source-only profile roles and numerical equal mean/variance and third-moment covariance within 3e-7 relative to max(1,|moment|) on full compact pre-measurement support. Strongest authentic comparator present before target reading. No required photon-SNR threshold can prove accuracy; quantify coupling signal against published S/N and endpoint/window changes before target access. Any source-only failure stays visible; no retune from target."
+}

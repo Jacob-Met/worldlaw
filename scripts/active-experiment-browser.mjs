@@ -636,6 +636,25 @@ try{
   assert.equal(await page.locator('#supplied-details').isVisible(),false);
   mark('a source-driven feedback search exposes a physical refutation, executes its winning prefix, and marks exhausted budgets inconclusive');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftSuffix');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/command sequence/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Early suffix group-three trajectory');
+  await page.locator('#acquisition-kind').selectOption('synthetic');
+  for(const [i,x] of [0,0,48].entries())await page.locator('#drift-reading-'+i).fill(String(x));
+  await page.locator('#evaluate-readings').click();await idle();
+  assert.equal(await page.locator('#drift-reading-3').getAttribute('data-command'),'g3x');
+  assert.equal(await page.locator('#drift-reading-4').getAttribute('data-command'),'g3y');
+  await page.locator('#drift-reading-3').fill('48');
+  await page.locator('#evaluate-readings').click();await idle();await page.reload();await idle();
+  await openDetails('supplied-details');await page.locator('#drift-reading-4').fill('64');
+  await page.locator('#evaluate-readings').click();await idle();
+  const early=await accepted();assert.deepEqual(early.readouts.at(-1).result.consistentHypothesisIds,['G3_01']);
+  const earlyFile=await download('export-notebook','early-suffix-feedback.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',earlyFile]).stdout),early);
+  mark('the prefix commits both later pulses and the unchanged suffix survives intermediate reopen and CLI replay');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';

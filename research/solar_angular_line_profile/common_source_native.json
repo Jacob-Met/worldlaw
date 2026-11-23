@@ -1,0 +1,67 @@
+{
+  "source_commit": "82c2099a66c79de340fdd7d4dba914fd868e20fc",
+  "original": "p3-f747-solar-registered-common-eight-core-source-lock",
+  "actual_worker": "node-c18cbb0f77315407f24848ddfe652c96",
+  "native_receipt": {
+    "command_id": "p3-f747-solar-registered-common-eight-core-source-lock",
+    "exit_code": 0,
+    "finished_at": "2026-11-23T09:12:34.685767241Z",
+    "generation": "87028869ae3eee990d024fdbff03e5aabcfc4eb3d2d3ad0f1c558dcd5287945a",
+    "request_sha256": "b11b09410e5991f6900365331656a526d27cca1502e07534b02f5e11738e6c5c",
+    "resource_process": {
+      "boot_id": "1ca46c53-d5e4-4b04-a9c4-fed66e762765",
+      "pid": 1625565,
+      "start_ticks": 54859325
+    },
+    "resource_usage": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 44322816,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "git": 1.02,
+          "other": 0.07,
+          "python": 2.1000000000000014
+        },
+        "distinct_processes": 7,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 975,
+        "read_errors": 1,
+        "saturated_snapshots": 0,
+        "snapshots": 975
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.406515,
+      "user_cpu_seconds": 3.036151
+    },
+    "runner_pid": 1625553,
+    "script_observation_version": 3,
+    "started_at": "2026-11-23T09:10:57.156496113Z",
+    "state": "completed",
+    "working_tree_context": {
+      "repository": "github.com/Jacob-Met/cursor-swiss-env",
+      "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+    }
+  },
+  "complete_output": {
+    "job_id": "p3-f747-solar-registered-common-eight-core-source-lock",
+    "state": "captured",
+    "source": {
+      "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+      "command_id": "p3-f747-solar-registered-common-eight-core-source-lock",
+      "request_sha256": "b11b09410e5991f6900365331656a526d27cca1502e07534b02f5e11738e6c5c",
+      "generation": "87028869ae3eee990d024fdbff03e5aabcfc4eb3d2d3ad0f1c558dcd5287945a",
+      "receipt_sha256": "753362b5ae252eb96bbde782b2879267f3c84b51733b3544d049bc88c8b393eb",
+      "output_bytes": 397667
+    },
+    "total_bytes": 397667,
+    "sha256": "41809ddb74e8156f95beae0ae83f6b7979bc8419ca5676e2db09a06bfd4435b2",
+    "offset": 0,
+    "next_offset": 0,
+    "has_more": true
+  }
+}

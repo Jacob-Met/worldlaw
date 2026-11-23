@@ -1,0 +1,60 @@
+{
+  "schema": "solar.angular-common-core.v2",
+  "predecessor": "4d75f022ad9ce07ca34b8e9a738967856562d67c",
+  "original_refusal": "Fe 6301.5008 mu .2,22 nonfinite. The predecessor is closed. An exponent-only census found 6302.4932 blanks in the former positive continuum sideband.",
+  "angles": [
+    0.2,
+    0.3,
+    0.35,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    0.95,
+    0.97,
+    0.98,
+    0.99,
+    1
+  ],
+  "lines": [
+    5250.2084,
+    5250.6453,
+    5432.947,
+    5434.5232,
+    5576.0881,
+    6173.3344,
+    6301.5008,
+    6302.4932
+  ],
+  "target": {
+    "doi": "10.1051/0004-6361/201731631",
+    "dates": [
+      "2016-11-15",
+      "2016-11-16",
+      "2016-11-17"
+    ],
+    "spectra": [
+      "pepsib.20161115.070.dxt.all6.gz",
+      "pepsib.20161116.070.dxt.all6.gz",
+      "pepsib.20161117.040.dxt.all6.gz"
+    ],
+    "contract": "All 24 complete line/date outputs required. Header/metadata alone before prediction lock. Standard-air wavelength from author; Arg numeric units qualified via documented coverage 383–912nm; refuse ambiguous scale. Finite delivered samples pooled with no mask-quality claim; report both mask states and interleave pass/fail at every line and date. If mixed flags occur in scored core and polarity cannot be authenticated, retain score descriptive and refuse primary gate.",
+    "activity": "One star, three adjacent coadds, related instrument and solar state. No claim of statistical independence among line pixels. Source and target share solar line structure, are independently acquired epochs with unlike quietness and telluric processing."
+  },
+  "models": [
+    "paired angular Doppler/local absorption",
+    "equivalent-width-weighted independent marginals",
+    "continuum-weighted independent marginals",
+    "no rotation",
+    "published IAG23 integrated atlas (Hanassi-Savari et al. 2025 DOI10.1051/0004-6361/202451874)"
+  ],
+  "source": "https://www.astro.physik.uni-goettingen.de/research/solar-lib/data/",
+  "measurement": "Native brackets inside ±8 km/s for every input and target. Every team supplies its own continuum-normalized spectrum. Source positive fractional absorption max(0,1−I) is multiplied by a mathematical compact taper flat to |v|5, smoothly zero by7.3. Define it as zero beyond the support; no inferred flux in a masked bin. Disk rotation and LSF convolution use only that compact field. The authentic released integrated spectrum is treated with the identical compact source taper before its resolution degradation; an empirically measured disk spectrum already contains optical blurring and rotation. Every model output and target is measured via the same final compact taper, centroid and normalization. Applying a local source taper before blurring and an observed taper afterward do not commute. No exact stellar or atmospheric deconvolution claimed. A center outside ±2 km/s or area≤0.2 refuses the result without omitting any case.",
+  "endpoints": "All 8 × 3 durations × 5 roles mandatory. Primary RMSE over recentered |v|≤3 km/s (before centering within |v|≤5), diagnostics |v|≤2,4,6. Report mean over 8 lines per date, per-role worst, same-cell values, no continuum selection or fitted shift. Beat both independent marginals on every date, and separately beat released IAG23 on every date for a stronger claim. Mixed flags with unqualified polarity force descriptive-only status. All raw targets and conditional predictions retained. Source compact fields before convolution must match mean/variance exactly and third moment up to 3Cov under 3e−7 scaled numerical threshold.",
+  "geometry": "Use predecessor geometry/ephemeris/weights, resolving powers 700000→250000 and actual nonuniform masks unchanged. Raw solar values originate only in the finite 2023 excised source; no 2025 untreated angular spectrum used. Disk-integrated 2025 comparator is delivered with its own residual atmosphere.",
+  "truncation": "Freeze input-taper narrow (4,6.3), flatter (6,7.3), and almost-square (7.19,7.3) sensitivity on primary domain, with fixed final taper. Report the full kernel's exterior |v|>8 contribution to raw central ±3/±5, conditionally on depth≤1; upper envelope for arbitrary input-angle patterns uses annular weights and kernel sums. These are pre-normalization quantities and do not bound EW or recentered error. As a result only a finite compact-profile forecast is tested. The source positive-branch profiles and raw local intensities are retained.",
+  "atmosphere": "Ellwarth thesis §4.5.3 says they excluded HITRAN2020 H2O/O2 intervals before velocity shifting. All 112 finite native support windows; local excision and surviving weak atmosphere are distinct. Pre-lock evidence never includes PEPSI scientific columns.",
+  "conditioning": "All three dates same star/instrument, no independent population test. No PEPSI values used to select this scope; common window was chosen from released source IEEE exponent bits only, after the v1 source refusal."
+}
