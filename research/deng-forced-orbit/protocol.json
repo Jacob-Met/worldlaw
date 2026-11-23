@@ -1,0 +1,36 @@
+{
+  "schema": "f747.deng.measured-forced-coefficient-design.v1",
+  "origin": {
+    "repo": "https://zenodo.org/records/18398883",
+    "zip_sha256": "d0110a8c08d1ed6239e18588cd8d947fef935b789a69559503b6f809fd6e24df",
+    "raw_zip_sha256": "b6f91406a4f57c47bdb1ef816fc955932ae058ada4b1a6149c7614feb0324fd1",
+    "source": "initial_data_csv.zip / initial_data.csv (OOXML) / Sheet1",
+    "visible_before_freeze": "source code, container and design, zero force values; raw numeric first lines classified by field count only. Full five MAT objects authenticated; only selected structural headers read."
+  },
+  "subject": "Predict four published forced-oscillation coefficients per complete record from the prescribed two-frequency orbit and towing speed. Compare the candidate distance between displacement/velocity/acceleration harmonic coefficient vectors against a periodic scalar-coordinate kernel, a displacement-only kernel, train-calibrated ARD GP and boosted trees. The 69 raw traces have no matched recipe and supply no independent measurement validation. The free-response transfer is unqualified.",
+  "inputs": [
+    "A1non",
+    "f1non",
+    "A2non",
+    "f2non",
+    "Theta (degrees)",
+    "Speed"
+  ],
+  "responses": [
+    "Cv1",
+    "Ca1",
+    "Cv2",
+    "Ca2"
+  ],
+  "exclude": "Only numbered positive, forward design rows 1…920. No content-based exclusions. Exclude zero/sentinel candidate. Intake exact design roster SHAe3f4ce4b096680864d588e67c4007c52e149f397ff6b8f195a4ab2e642145f9a.",
+  "design": "Numbers are publisher ledger order, not independently timed runs; one apparatus. 1:80 form 16 source groups each at 0/90/180/270/360 degrees; same geometry averaged only as a separate repeatability diagnostic. Keep all fitting rows and all fixed groups. 81:920 are all distinct complete recipes. Publication models potentially saw all rows, so they cannot supply matched out-of-sample predictions; declared plot loads GPR_Model1.mat absent and free plot explicitly labels Cv.",
+  "train": "IDs1–400 inclusive, with tune fits 1–160→161–240 and 1–240→241–320 and 1–320→321–400. All preprocessors and targets scaled on each fit (per-channel population standard deviations). Hyperparameter loss equal mean of four variances-normalized MSE over 3 equal blocks. Final train1–400. Inputs for 401–660 allowed; no output 401–660 before prediction file SHA lock; reserve661–920 unopened. Calibration 0/360 paired errors and all four quarter-circle finite differences reported, no IID inference.",
+  "features": {
+    "orbit": "For order n=0,1,2 form (A1non*(2pi*f1non)^n, A2non*(2pi*f2non)^n*cos(theta), A2non*(2pi*f2non)^n*sin(theta)). These are fixed-quadrature amplitudes on a nominal synchronized orbit; use actual positive reported frequencies for amplitude factors. Weight each triple by one pooled centered training RMS per triple (not separate sine and cosine scaling). Append standardized log f1non and log Speed. Code uses dimensionless frequencies as named in the author plotting code, no calibrated acceleration/force reconstruction.",
+    "displacement_only": "Same map with order0 only, plus log frequency and log speed.",
+    "periodic": "Standardize A1non, log f1non, A2non, log Speed. Append (cos theta,sin theta) with one pooled centered RMS. Include scalar linear-angle model with the first four and standardized theta as a baseline."
+  },
+  "models": "Candidate/3 baseline features fitted by same Matérn-3/2 kernel ridge. Train-only median positive distance times bandwidth scales [.35,.7,1.4,2.8], ridge alpha [1e-4,.003,.05,.3], arm-wise fixed blocked tuning. ARD reference: periodic baseline coordinates, independent Matérn-3/2 length per coordinate; maximum marginal likelihood on standardized four targets using shared covariance, fitted train only by L-BFGS-B, init all lengths1 noise .03, length [.1,10], noise[1e-4,1]; optimizing noise coefficient as additive variance, deterministic, maxiter80. Boosting: each channel independent HistGradientBoostingRegressor, 250 iterations, learning_rate .06, leaf_nodes=7/15/31, l2=1, early_stopping=False, random_state=747, choose leaf count by same tuning. Include training mean and nearest periodic point. Every fit/prediction must be finite; failure preserved and never quietly remove a comparator.",
+  "gate": "On all260 development rows and four endpoints, main metric sqrt(mean of all squared channel residuals standardized by final training sigmas); at least5% below every baseline including displacement only, periodic KRR, ARD GP, boosted trees, linear phase, mean and nearest. Each of four individual RMSE must beat or equal the best aggregate competitor on the same channel within5% relative, and rowwise standardized RMS 95th percentile <= same contender. All3 equal-index contiguous subblocks separately reported; no independent-run or uncertainty claim. No reserve labels if any gate fails. Archive every prediction, residual and worst actual study row.",
+  "limits": "The initial phase stencil has four independent angles; sin(2theta) is zero throughout. 0/360 nominal designs are duplicates, not proven independent repeated acquisitions. A2non>=.1; no tested zero-inline limit. Results are conditional on the reported designs including adaptive acquisition. Predicted coefficients are the four released estimator outputs under absent raw-channel calibration. No proven independent free specimen, material law, new hydrodynamic force field, or global physical passivity."
+}
