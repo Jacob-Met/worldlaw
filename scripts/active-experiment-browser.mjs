@@ -708,6 +708,22 @@ try{
   assert.deepEqual(JSON.parse(cli(['--notebook',planeFile]).stdout),planeBook);
   mark('an oblique closed suffix region governs the measured three-pulse prefix and replays through the CLI');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftSharedSuffix');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/safe complete suffix/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Seven-pulse shared-prefix replay');
+  await page.locator('#acquisition-kind').selectOption('synthetic');
+  for(const [i,x] of ['0','0','11/40','-11/40','5/8'].entries())await page.locator('#drift-reading-'+i).fill(x);
+  await page.locator('#evaluate-readings').click();await idle();
+  assert.equal(await page.locator('#drift-reading-5').getAttribute('data-command'),'x1');
+  for(const [i,x] of ['1/2','-7/2','1/2'].entries())await page.locator('#drift-reading-'+(5+i)).fill(x);
+  await page.locator('#evaluate-readings').click();await idle();
+  const sharedBook=await accepted();assert.deepEqual(sharedBook.readouts.at(-1).result.consistentHypothesisIds,['A']);
+  const sharedFile=await download('export-notebook','shared-suffix.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',sharedFile]).stdout),sharedBook);
+  mark('the state-space exclusion commits a three-command suffix from a four-pulse measured prefix');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';

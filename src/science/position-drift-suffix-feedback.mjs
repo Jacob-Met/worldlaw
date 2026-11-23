@@ -6,11 +6,12 @@ import {openPositionDriftFeedback} from './position-drift-terminal-feedback.mjs'
 
 import {SUFFIX_PLAN,REGION_SUFFIX_REQUEST,planSuffixRegions,chooseRegionSuffix} from './position-drift-suffix-regions.mjs';
 import {PLANAR_SUFFIX_REQUEST,planPlanarSuffix,choosePlanarSuffix} from './position-drift-planar-suffix.mjs';
+import {SHARED_SUFFIX_REQUEST,planSharedSuffix,chooseSharedSuffix} from './position-drift-shared-suffix.mjs';
 import {prefixHistoryOracle} from './position-drift-prefix-intersection.mjs';
 
 export const HISTORY_SUFFIX_REQUEST='worldlaw.position-drift-suffix-feedback-source/v2';
 export const SUFFIX_REQUEST='worldlaw.position-drift-suffix-feedback-source/v1';
-export {SUFFIX_PLAN,REGION_SUFFIX_REQUEST,PLANAR_SUFFIX_REQUEST};
+export {SUFFIX_PLAN,REGION_SUFFIX_REQUEST,PLANAR_SUFFIX_REQUEST,SHARED_SUFFIX_REQUEST};
 const need=(ok,reason)=>{if(!ok)throw Error('Suffix feedback: '+reason);};
 const runs=word=>word.map(command=>({command,repeats:'1'}));
 
@@ -33,6 +34,7 @@ function maximalCliques(neighbors){
 }
 
 export function planSuffixFeedback(request){
+  if(request?.schema===SHARED_SUFFIX_REQUEST)return planSharedSuffix(request);
   if(request?.schema===PLANAR_SUFFIX_REQUEST)return planPlanarSuffix(request);
   if(request?.schema===REGION_SUFFIX_REQUEST)return planSuffixRegions(request);
   const higher=request?.schema===HISTORY_SUFFIX_REQUEST;
@@ -120,7 +122,7 @@ export function receiveSuffixFeedback(plan,values){
     need(values.length<=cut,'no command follows an inconsistent prefix');
     return {commands:prefix,witnesses:survivors,suffix:null,nextCommand:survivors.length?(plan.prefix[prefix.length]??null):null};
   }
-  const selected=plan.polygons?choosePlanarSuffix(plan.polygons,values):plan.regions?chooseRegionSuffix(plan.regions,values):
+  const selected=plan.candidates?chooseSharedSuffix(plan,values,survivors):plan.polygons?choosePlanarSuffix(plan.polygons,values):plan.regions?chooseRegionSuffix(plan.regions,values):
     plan.cover.find(r=>survivors.every(w=>r.laws.includes(w.law)))?.suffix;
   need(selected!==undefined,'the retained prefix is missing from the policy');
   const suffix=plan.suffixes[selected],used=values.length-cut;
