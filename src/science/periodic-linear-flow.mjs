@@ -23,6 +23,46 @@ function exponentialIntegral(x,y) {
   return [((real/mag)*a+(imag/mag)*b)/den,((imag/mag)*a-(real/mag)*b)/den];
 }
 
+// A uniform or two-cell repeating drive preserves a two-cell state orbit. Both
+// neighbors of every cell then coincide, so a centered potential gradient is
+// exactly zero wherever that potential is defined. Verify finite potential
+// arithmetic on an invariant amplitude envelope before erasing a source term.
+function potentialBound(tree, amplitude) {
+  if(tree==='one') return 1;
+  if(tree==='field') return amplitude;
+  if(!Array.isArray(tree)) return Infinity;
+  const [op,left,right]=tree, a=potentialBound(left,amplitude);
+  if(!Number.isFinite(a)) return Infinity;
+  if(op==='sin'||op==='cos'||op==='tanh') return 1;
+  if(op==='abs') return a;
+  const b=potentialBound(right,amplitude);
+  if(!Number.isFinite(b)) return Infinity;
+  return op==='add'?a+b:op==='mul'?a*b:Infinity;
+}
+export function onAlternatingOrbit(model,course) {
+  if(model.kind!=='periodic')return model;
+  const {initial,forcing,step,steps}=course,n=initial.length;
+  if(!initial.every((v,i)=>v===initial[i%2]) || (n%2!==0&&initial[0]!==initial[1]))return model;
+  if(forcing.amplitude!==0&&(forcing.startFrequency!==0||forcing.endFrequency!==0)&&
+      forcing.spatialMode!==0&&2*forcing.spatialMode!==n) return model;
+  const gradients=model.terms.filter(t=>Array.isArray(t.tree)&&t.tree[0]==='gradient');
+  if(!gradients.length) return model;
+  predictEvolution(model,{field:initial[0],left:initial[n-1],right:initial[1],spacing:course.spacing,command:forcing.offset});
+  const keep=model.terms.filter(t=>!gradients.includes(t)),coeff=[0,0,0,0,0];
+  for(const term of keep) {
+    const row=affineCoefficients(term.tree,['field','dx','dxx','command']);
+    if(!row) return model;
+    for(let i=0;i<5;i++)coeff[i]+=term.weight*row[i];
+  }
+  if(coeff[0]>0||coeff[2]<0||!coeff.every(Number.isFinite))return model;
+  // The two-cell diffusion generator is cooperative with zero row sums.
+  // Nonpositive reaction cannot increase the maximum absolute state.
+  const drive=Math.abs(forcing.offset)+Math.abs(forcing.amplitude);
+  const amplitude=Math.max(...initial.map(Math.abs))+(step*steps)*(Math.abs(coeff[3])*drive+Math.abs(coeff[4]));
+  if(!Number.isFinite(amplitude)||!gradients.every(t=>Number.isFinite(potentialBound(t.tree[1],amplitude))))return model;
+  return {...model,terms:keep};
+}
+
 function coefficients(model,course) {
   if(model.kind!=='periodic') return null;
   const f=course.forcing;
