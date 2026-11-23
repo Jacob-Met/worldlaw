@@ -40,8 +40,14 @@ function region(law, commands, readings) {
     if (t > 0) forcing = add(forcing, rate(law, commands[t - 1]));
     return sub(y, forcing);
   });
+  const state = positionDriftStateRegion(centers, unit);
+  return state === null ? null : {law: ids[law], ...state};
+}
+
+// Shared exact receiver kernel. Centers are readings minus accumulated forcing.
+export function positionDriftStateRegion(centers, error) {
   const drift = {lower: null, upper: null};
-  const diameter = add(unit, unit);
+  const diameter = add(error, error);
   for (let j = 1; j < centers.length; j++) {
     for (let i = 0; i < j; i++) {
       const difference = sub(centers[j], centers[i]);
@@ -54,14 +60,14 @@ function region(law, commands, readings) {
   const v = member(drift);
   const intercept = {lower: null, upper: null};
   const strips = centers.map((z, t) => {
-    const lo = sub(z, unit), hi = add(z, unit);
+    const lo = sub(z, error), hi = add(z, error);
     const tv = mul(Q(BigInt(t)), v);
     intersectLower(intercept, sub(lo, tv));
     intersectUpper(intercept, sub(hi, tv));
     return {tick: t, lower: fmt(lo), upper: fmt(hi)};
   });
   need(nonempty(intercept), 'internal inconsistent intercept projection');
-  return {law: ids[law], strips, driftRange: [serialize(drift.lower), serialize(drift.upper)],
+  return {strips, driftRange: [serialize(drift.lower), serialize(drift.upper)],
     initialWitness: [fmt(member(intercept)), fmt(v)]};
 }
 
