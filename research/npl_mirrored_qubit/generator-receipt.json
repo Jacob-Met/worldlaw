@@ -1,0 +1,1 @@
+{"additional_noncommuting_tls_z_max_error": 0.25, "correlated_bell_initial_block_traces": [0.5, 0.5], "data_accessed": false, "generator_block_comparisons": 640, "generator_max_error": 0.0, "incorrect_flip_rate_max_error": 0.125, "instrument_block_comparisons": 160, "instrument_max_error": 0.0}
