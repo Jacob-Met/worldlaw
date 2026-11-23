@@ -672,6 +672,26 @@ try{
   assert.deepEqual(JSON.parse(cli(['--notebook',higherFile]).stdout),higher);
   mark('a four-law common-history exclusion admits both suffixes and replays a six-command measured record');
 
+  for(const [history,command,tail,law] of [[2,'y1',[4,7],'A'],[3,'x1',[101,99],'C']]){
+    await openDetails('source-details');await page.locator('#example').selectOption('driftSuffixRegions');
+    await page.locator('#load-example').click();await idle();
+    assert.match(await page.locator('#plan-heading').textContent(),/second difference/);
+    await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+    await page.locator('#readout-source').fill('Four-survivor conditional position course');
+    await page.locator('#acquisition-kind').selectOption('synthetic');
+    for(const [i,x] of [0,0,history].entries())await page.locator('#drift-reading-'+i).fill(String(x));
+    await page.locator('#evaluate-readings').click();await idle();
+    const prefixBook=await accepted();
+    assert.deepEqual(prefixBook.readouts.at(-1).result.consistentHypothesisIds,['A','B','C','D']);
+    assert.equal(await page.locator('#drift-reading-3').getAttribute('data-command'),command);
+    for(const [i,x] of tail.entries())await page.locator('#drift-reading-'+(3+i)).fill(String(x));
+    await page.locator('#evaluate-readings').click();await idle();
+    const finished=await accepted();assert.deepEqual(finished.readouts.at(-1).result.consistentHypothesisIds,[law]);
+    const file=await download('export-notebook','conditional-suffix-'+command+'.json');
+    assert.deepEqual(JSON.parse(cli(['--notebook',file]).stdout),finished);
+  }
+  mark('identical four-law survivor lists drive opposite measured suffixes in the browser and CLI');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';

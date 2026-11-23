@@ -4,11 +4,12 @@ import {parseAllHorizonRational} from './persistent-position-drift-all-horizon.m
 import {certifyPositionDriftTape} from './persistent-position-drift-multiclass-minimum.mjs';
 import {openPositionDriftFeedback} from './position-drift-terminal-feedback.mjs';
 
+import {SUFFIX_PLAN,REGION_SUFFIX_REQUEST,planSuffixRegions,chooseRegionSuffix} from './position-drift-suffix-regions.mjs';
 import {prefixHistoryOracle} from './position-drift-prefix-intersection.mjs';
 
 export const HISTORY_SUFFIX_REQUEST='worldlaw.position-drift-suffix-feedback-source/v2';
 export const SUFFIX_REQUEST='worldlaw.position-drift-suffix-feedback-source/v1';
-export const SUFFIX_PLAN='worldlaw.position-drift-suffix-feedback-policy/v1';
+export {SUFFIX_PLAN,REGION_SUFFIX_REQUEST};
 const need=(ok,reason)=>{if(!ok)throw Error('Suffix feedback: '+reason);};
 const runs=word=>word.map(command=>({command,repeats:'1'}));
 
@@ -31,6 +32,7 @@ function maximalCliques(neighbors){
 }
 
 export function planSuffixFeedback(request){
+  if(request?.schema===REGION_SUFFIX_REQUEST)return planSuffixRegions(request);
   const higher=request?.schema===HISTORY_SUFFIX_REQUEST;
   need((higher||request?.schema===SUFFIX_REQUEST) && Object.keys(request).sort().join(',')===(higher?
     'catalog,limits,prefix,schema,suffixes':'catalog,prefix,schema,suffixes'),
@@ -116,10 +118,11 @@ export function receiveSuffixFeedback(plan,values){
     need(values.length<=cut,'no command follows an inconsistent prefix');
     return {commands:prefix,witnesses:survivors,suffix:null,nextCommand:survivors.length?(plan.prefix[prefix.length]??null):null};
   }
-  const row=plan.cover.find(r=>survivors.every(w=>r.laws.includes(w.law)));
-  need(row,'the retained prefix is missing from the cover');
-  const suffix=plan.suffixes[row.suffix],used=values.length-cut;
+  const selected=plan.regions?chooseRegionSuffix(plan.regions,values):
+    plan.cover.find(r=>survivors.every(w=>r.laws.includes(w.law)))?.suffix;
+  need(selected!==undefined,'the retained prefix is missing from the policy');
+  const suffix=plan.suffixes[selected],used=values.length-cut;
   const commands=[...prefix,...suffix.slice(0,used)];
   const witnesses=used?model.receive(commands,values):survivors;
-  return {commands,witnesses,suffix:row.suffix,nextCommand:witnesses.length?(suffix[used]??null):null};
+  return {commands,witnesses,suffix:selected,nextCommand:witnesses.length?(suffix[used]??null):null};
 }

@@ -8,6 +8,14 @@ function table(caption,head,rows){
 }
 function guidedProof(p){
   if(p.schema===SUFFIX_PLAN){
+    if(p.status==='suffix-refuted')return {heading:'One measured prefix defeats every offered suffix.',
+      summary:'The shared prefix is '+p.collision.prefixReadings.join(', ')+'. For each suffix, two laws fit the same complete record.',
+      proof:table('Each alternative has its own later measurements.',['Suffix','Compatible laws','Remaining positions'],
+        p.collision.branches.map(b=>[p.suffixes[b.suffix].join(' → '),b.worlds.map(w=>w.law).join(', '),b.readings.slice(3).join(', ')]))};
+    if(p.regions)return {heading:'The measured second difference chooses the suffix.',
+      summary:'Apply '+p.prefix.join(' → ')+'. Compute the last prefix position minus twice the middle position plus the starting position.',
+      proof:table('Decision regions include separate rows for exact endpoints.',['Second difference','Suffix'],
+        p.regions.map(r=>[r.lo===r.hi?r.lo:'('+r.lo+', '+r.hi+')',p.suffixes[r.suffix].join(' → ')]))};
     if(p.status==='cover-budget-exhausted')return {heading:'The common-history search reached its budget.',
       summary:'The remaining groups have no verdict. The search used '+p.work.subsets+' group visits and '+p.work.linearWork+' linear-work units.',
       proof:''};
