@@ -17,3 +17,14 @@ magfid-reference-selftest:
 	"$$T/venv/bin/python" -m pip install -q --disable-pip-version-check numpy==1.26.4; \
 	OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
 	"$$T/venv/bin/python" experiments/magfid_reference.py selftest
+
+.PHONY: test-symbolic-operators
+test-symbolic-operators:
+	node --test tests/symbolic-operator.test.mjs
+	@set -eu; D=$$(mktemp -d); trap 'rm -rf "$$D"' EXIT; \
+	git -C "$$D" init -q; \
+	git -C "$$D" fetch --quiet --depth=1 --filter=blob:none https://github.com/Jacob-Met/nullgarden.git 628f480528f00aa84e48e73218fb1574fe3be05d; \
+	git -C "$$D" show FETCH_HEAD:src/operator-course.mjs > "$$D/source.mjs"; \
+	test "$$(git hash-object "$$D/source.mjs")" = 2e1fedb42d12517d8d10b97c5cba5511e5acc19d; \
+	node "$$D/source.mjs" > "$$D/course.json"; \
+	node scripts/receive-symbolic-operator-course.mjs "$$D/course.json"
