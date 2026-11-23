@@ -19,7 +19,7 @@ def get_range(archive, total, start, count):
     if len(data)!=count:raise ValueError("incomplete member")
     return data
 
-def receive(row, index):
+def receive(row, index, raw_window=False):
     arc=index["archive"];total=index["bytes"];pos=row["offset"]
     head=get_range(arc,total,pos,30)
     fields=struct.unpack("<IHHHHHIIIHH",head)
@@ -55,8 +55,13 @@ def receive(row, index):
             channels.append([mean,rms,min(v),max(v)])
         if not all(math.isfinite(t) for c in channels for t in c):raise ValueError("nonfinite")
         return {"channel_mean_rms_min_max":channels,"joint":math.hypot(channels[0][1],channels[1][1])}
-    return {"bias":row["bias"],"step":row["step"],"sha256":hashlib.sha256(blob).hexdigest(),"full":shape(0,125000),
+    out={"bias":row["bias"],"step":row["step"],"sha256":hashlib.sha256(blob).hexdigest(),"full":shape(0,125000),
             "quarters":[shape(i*31250,(i+1)*31250) for i in range(4)]}
+    if raw_window:
+        means=[r[0] for r in out["full"]["channel_mean_rms_min_max"]]
+        peak=max(range(125000),key=lambda i:(x[i]-means[0])**2+(x[i+125000]-means[1])**2)
+        out["illustrative_peak"]={"row":peak,"samples":[[i,x[i],x[i+125000]] for i in range(max(0,peak-3),min(125000,peak+4))]}
+    return out
 
 def get_index():
     index=json.loads(Path("matched_commands.json").read_text())
