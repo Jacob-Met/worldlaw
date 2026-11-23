@@ -1,0 +1,15 @@
+{
+  "n": 1448423,
+  "sha": "4f95a20d29cd94e5f45ad304b2460b06a368d7e78f3db574a43cd59e3a121f0f",
+  "gzip_sha": "f08c6e9b85f6030cdfe22ac5595660c40c9ce32b5def8bb7ccecaf1948bfc916",
+  "native_stdout": "fd6e4dadc6e1c90381fd7e3d22204bde5ed68e243da7469e33ac2208ced36ae8",
+  "output_bytes": 760805,
+  "source": {
+    "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+    "command_id": "p3-f747-hideg-full-monotone-record-source-fit-166617e2",
+    "request_sha256": "cec98d09e35aea904836e58fc43427dc3c83305f0f2a8eea02120b25ec5f7cc3",
+    "generation": "cc2746d37f86e7fca2bec4357719f8c9f65d67a934867d8c893d5f98d12058c2",
+    "receipt_sha256": "2a8240d3415ece31c3d1042c59a68ea48827e56e01f037a1b7d8940a4e0543c9",
+    "output_bytes": 760805
+  }
+}
