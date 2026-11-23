@@ -1,0 +1,24 @@
+{
+  "schema": "worldlaw.position-drift-rate-catalog/v1",
+  "commands": [
+    "slow",
+    "fast"
+  ],
+  "noiseBound": 1,
+  "laws": [
+    {
+      "id": "A",
+      "rates": [
+        "1/3",
+        "-1/2"
+      ]
+    },
+    {
+      "id": "B",
+      "rates": [
+        "1/2",
+        "-1/3"
+      ]
+    }
+  ]
+}
