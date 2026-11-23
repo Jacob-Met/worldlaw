@@ -5,6 +5,7 @@ import { constants } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { resolve, extname, join } from 'node:path';
 import { requestLawCandidates, summarizeTraining, MAX_PROPOSED_CANDIDATES } from './src/science/nemotron-law-candidates.mjs';
+import {handleTrajectoryOperators} from './src/science/trajectory-operator-api.mjs';
 
 const MAX_PROPOSAL_BODY_BYTES = 1_500_000;
 
@@ -94,6 +95,9 @@ export function createProductServer() {
     }
     if (new URL(req.url, 'http://localhost').pathname === '/api/nemotron/law-candidates') {
       await handleLawCandidates(req, res); return;
+    }
+    if (new URL(req.url, 'http://localhost').pathname === '/api/trajectory/operator-discovery') {
+      await handleTrajectoryOperators(req, res); return;
     }
     if (!['GET','HEAD'].includes(req.method)) {
       res.writeHead(405, {'Allow':'GET, HEAD'}).end('This application serves local files only.'); return;

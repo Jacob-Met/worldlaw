@@ -24,7 +24,7 @@ function coordinates(kind, row) {
   const dx=(row.right-row.left)/(2*row.spacing);
   const dxx=(row.left-2*row.field+row.right)/(row.spacing**2);
   insist(Number.isFinite(dx)&&Number.isFinite(dxx),'Nonfinite spatial derivative');
-  return {field:row.field,command:row.command,dx,dxx};
+  return {...row,dx,dxx};
 }
 function apply(op,a,b) {
   if (!Number.isFinite(a) || (binary.has(op) && !Number.isFinite(b))) return NaN;
@@ -36,6 +36,21 @@ function treeValue(tree,row,kind,size) {
   if (typeof tree==='string') {
     insist(tree==='one'||terminals[kind].includes(tree),'Invalid evolution terminal');
     return tree==='one'?1:row[tree];
+  }
+  // Conservative fluxes admit discrete weak adjoints without differentiating data.
+  if (kind==='periodic' && Array.isArray(tree) && ['dx','dxx'].includes(tree[0])) {
+    insist(tree.length===2,'Invalid spatial operator');
+    function local(t, field, budget) {
+      insist(++budget.count<=32,'Operator tree is too large');
+      if (typeof t==='string') {
+        insist(t==='field'||t==='one','A flux must depend on the local field only');
+        return t==='one'?1:field;
+      }
+      insist(Array.isArray(t)&&(unary.has(t[0])?t.length===2:binary.has(t[0])&&t.length===3),'Invalid flux node');
+      return apply(t[0],local(t[1],field,budget),t.length===3?local(t[2],field,budget):undefined);
+    }
+    const a=local(tree[1],row.left,{count:0}), b=local(tree[1],row.field,{count:0}), c=local(tree[1],row.right,{count:0});
+    return tree[0]==='dx'?(c-a)/(2*row.spacing):(a-2*b+c)/(row.spacing**2);
   }
   insist(Array.isArray(tree)&&(unary.has(tree[0])?tree.length===2:binary.has(tree[0])&&tree.length===3),'Invalid operator node');
   return apply(tree[0],treeValue(tree[1],row,kind,size),tree.length===3?treeValue(tree[2],row,kind,size):undefined);
