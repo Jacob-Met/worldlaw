@@ -1,0 +1,306 @@
+{
+  "study": "Müller et al. laboratory rotational spectroscopy of SiS, DOI10.1039/B618799D",
+  "source": "Official Cologne 2008 supplementary measured frequencies and archived blend assignments. All-fit residuals and fitted .par/.fit/.var or predicted CDMS catalogs excluded. Published spin-free Table 2 high-J calibration values and qualitative global-fit success known before design.",
+  "rights": "299 assigned low-J singly spin-bearing branches allowed to calibrate. All 47 assignments /41 features of doubly spin-bearing 29Si33S held to a separate post-bank score. Only author assignment metadata, widths and exact equality classes were observed in advance. A shared spectrometer and literature-selected measured branches limit independence. No inferential sample-size inflation.",
+  "feature_registry": [
+    {
+      "ids": [
+        489
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        490
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        491
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        492
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        493
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        494
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        495
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        496
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        497,
+        498
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        499
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        500
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        501
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        502,
+        503,
+        504
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        505,
+        506
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        507
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        508
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        509
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        510
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        511
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        512
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        513
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        514
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        515
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        516
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        517
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        518,
+        519
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        520
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        521
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        522,
+        523
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        524
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        525
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        526
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        527
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        528
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        529
+      ],
+      "j": 1,
+      "state": 162
+    },
+    {
+      "ids": [
+        530
+      ],
+      "j": 1,
+      "state": 162
+    },
+    {
+      "ids": [
+        531
+      ],
+      "j": 1,
+      "state": 162
+    },
+    {
+      "ids": [
+        532
+      ],
+      "j": 1,
+      "state": 162
+    },
+    {
+      "ids": [
+        533
+      ],
+      "j": 1,
+      "state": 162
+    },
+    {
+      "ids": [
+        534
+      ],
+      "j": 1,
+      "state": 163
+    },
+    {
+      "ids": [
+        535
+      ],
+      "j": 1,
+      "state": 163
+    }
+  ],
+  "units": "Frequency in MHz and reported 2 kHz uncertainty for every double feature; within-group centered spacings in kHz. Six independent unknown rotational origin coordinates removed: groups v0/J1, v0/J2, v1/J1, v1/J2, v2/J1, v3/J1. Mean removal is unweighted per distinct measured feature, after weighted blend averaging, the same for all predictions and measured data. No held numerical origin needed for forecast construction. Explicit conditioning on reported assignments, blend membership and author relative weights. They need not be independently measured; no blind line finding or empirical intensity validation.",
+  "fit": "Single-spin least squares on donor feature spacings only, eliminating each species/v/J unknown origin with quoted inverse-variance weights. S quadrupole and S spin rotation plus Si spin rotation vary linearly with v and reciprocal nominal partner mass including interaction. Flexible control infers all independent sulfur level offsets for J=1,2 instead of the two-operator form; level gauge fixed per J. All design columns must have full rank. Authentic JPL SPCAT runs same donor-estimated coefficients in its full rotor with the donor-derived reduced-mass-scaled B; its .cat 0.1kHz quantization is reported.",
+  "primary": "Additive coupled operator hypothesis, not unique Hamiltonian identification. On all six whole v/J groups, coupled must beat sulfur-only, diagonal-only and flexible donor-level diagonal-only on both mean and worst group RMS (six strict comparisons). It must also meet declared mean RMS <=2kHz and worst group RMS <=4kHz (two engineering thresholds, no statistical coverage/error-rate interpretation). Compare genuine SPCAT, flexible coupled, silicon-only and zero using identical controls; agreement between fixed-J and SPCAT is implementation evidence, not an independent physical win. Joint equals all eight primary tests. No refit or removal of a group after truth.",
+  "limits": "Unknown pair-only interaction: λJ² I_Si·I_S exactly invisible to any singly spin-bearing spectrometer; two double-spin branches split by 4λ in the synthetic J=0→1 witness. Native recoupling includes only additive one-spin interactions apart from published fixed-J versus full-rotor difference. Centering removes the group mean and cannot test absolute isotopologue rotational frequency. Compare calibrated maximum centered coupled−diagonal separation with the reported 2kHz; small separation does not identify offdiagonal dynamics even if the ordering is favorable.",
+  "source_math": "c68faedfe49b760951f4c4d9ca03033ac7a96fb7",
+  "source_rights_post": 188943
+}
