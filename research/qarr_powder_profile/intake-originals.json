@@ -1,0 +1,20 @@
+[
+  {
+    "id": "p3-f747-iucr-qarr-standard-pattern-original-and-conversion-roster",
+    "full": "e4ed914e103c44daea3c2bac0e148c1acd6f7ee8566c0b1ccbf406a592334f8b",
+    "bytes": 2617,
+    "exit": 1
+  },
+  {
+    "id": "p3-f747-qarr-native-RD-header-reader-and-authentic-profile-source",
+    "full": "513939a755e92e25ed0530080edef2e4b76b1742fda51c7a25b43a4358b7c59b",
+    "bytes": 156,
+    "exit": 1
+  },
+  {
+    "id": "p3-f747-qarr-syntax-checked-original-RD-and-peak-source",
+    "full": "f727f5b9b7eb0a7745a7aafbaf1a238637fb843b2ab93beaa818f16b2c3b70bf",
+    "bytes": 1139,
+    "exit": 1
+  }
+]
