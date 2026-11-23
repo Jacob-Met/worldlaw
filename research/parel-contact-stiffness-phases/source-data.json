@@ -1,0 +1,246 @@
+{
+  "doi": "10.1098/rspa.2020.0329",
+  "table_numbers": [
+    1,
+    2,
+    5
+  ],
+  "stiffness_unit": "kN/mm^3",
+  "pressure_unit": "kN/mm^2",
+  "data": [
+    {
+      "interface": "R1",
+      "specimen": "R",
+      "pressure": "0.200",
+      "tangential": [
+        "68.077",
+        "9.043"
+      ],
+      "retained_steps": "9/10",
+      "loading": [
+        "94.923",
+        "5.558"
+      ],
+      "unloading": [
+        "101.429",
+        "11.124"
+      ],
+      "ratios": {
+        "loading": [
+          "0.717",
+          "0.137"
+        ],
+        "unloading": [
+          "0.671",
+          "0.163"
+        ],
+        "mean": [
+          "0.693",
+          "0.137"
+        ]
+      }
+    },
+    {
+      "interface": "R2",
+      "specimen": "R",
+      "pressure": "0.400",
+      "tangential": [
+        "137.029",
+        "13.112"
+      ],
+      "retained_steps": "10/10",
+      "loading": [
+        "156.987",
+        "16.072"
+      ],
+      "unloading": [
+        "205.145",
+        "34.958"
+      ],
+      "ratios": {
+        "loading": [
+          "0.873",
+          "0.173"
+        ],
+        "unloading": [
+          "0.668",
+          "0.178"
+        ],
+        "mean": [
+          "0.757",
+          "0.154"
+        ]
+      }
+    },
+    {
+      "interface": "R3",
+      "specimen": "R",
+      "pressure": "0.600",
+      "tangential": [
+        "338.578",
+        "30.231"
+      ],
+      "retained_steps": "10/10",
+      "loading": [
+        "367.343",
+        "42.948"
+      ],
+      "unloading": [
+        "405.257",
+        "62.130"
+      ],
+      "ratios": {
+        "loading": [
+          "0.922",
+          "0.190"
+        ],
+        "unloading": [
+          "0.835",
+          "0.203"
+        ],
+        "mean": [
+          "0.876",
+          "0.165"
+        ]
+      }
+    },
+    {
+      "interface": "S1",
+      "specimen": "S123",
+      "pressure": "0.200",
+      "tangential": [
+        "214.722",
+        "53.348"
+      ],
+      "retained_steps": "3/5",
+      "loading": [
+        "152.505",
+        "23.427"
+      ],
+      "unloading": [
+        "199.915",
+        "41.371"
+      ],
+      "ratios": {
+        "loading": [
+          "1.408",
+          "0.566"
+        ],
+        "unloading": [
+          "1.074",
+          "0.489"
+        ],
+        "mean": [
+          "1.219",
+          "0.468"
+        ]
+      }
+    },
+    {
+      "interface": "S2",
+      "specimen": "S123",
+      "pressure": "0.400",
+      "tangential": [
+        "443.078",
+        "103.220"
+      ],
+      "retained_steps": "5/10",
+      "loading": [
+        "575.263",
+        "123.065"
+      ],
+      "unloading": [
+        "728.181",
+        "282.793"
+      ],
+      "ratios": {
+        "loading": [
+          "0.770",
+          "0.344"
+        ],
+        "unloading": [
+          "0.608",
+          "0.378"
+        ],
+        "mean": [
+          "0.680",
+          "0.320"
+        ]
+      }
+    },
+    {
+      "interface": "S3",
+      "specimen": "S123",
+      "pressure": "0.600",
+      "tangential": [
+        "470.754",
+        "48.715"
+      ],
+      "retained_steps": "7/10",
+      "loading": [
+        "504.917",
+        "63.068"
+      ],
+      "unloading": [
+        "1140.553",
+        "125.448"
+      ],
+      "ratios": {
+        "loading": [
+          "0.932",
+          "0.213"
+        ],
+        "unloading": [
+          "0.413",
+          "0.088"
+        ],
+        "mean": [
+          "0.572",
+          "0.109"
+        ]
+      }
+    },
+    {
+      "interface": "S4",
+      "specimen": "S4",
+      "pressure": "0.205",
+      "tangential": [
+        "108.168",
+        "10.926"
+      ],
+      "retained_steps": "10/10",
+      "loading": [
+        "109.998",
+        "25.931"
+      ],
+      "unloading": [
+        "224.252",
+        "54.520"
+      ],
+      "ratios": {
+        "loading": [
+          "0.983",
+          "0.331"
+        ],
+        "unloading": [
+          "0.482",
+          "0.166"
+        ],
+        "mean": [
+          "0.647",
+          "0.183"
+        ]
+      }
+    },
+    {
+      "interface": "S5",
+      "specimen": "S5",
+      "pressure": "0.300",
+      "tangential": [
+        "327.767",
+        "62.367"
+      ],
+      "retained_steps": "8/9"
+    }
+  ]
+}

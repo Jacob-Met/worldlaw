@@ -49,3 +49,5 @@ With `--commands`, the receiver returns the exact shared readings and two comple
 python3 scripts/design-ten-pulse-terminal-adversary.py examples/active-position-drift-fixed-tape-optimum.json /tmp/ten-adversary.json
 python3 scripts/verify-ten-pulse-terminal-adversary.py examples/active-position-drift-fixed-tape-optimum.json /tmp/ten-adversary.json
 ```
+
+The [nine-pulse causal obstruction](nine-pulse-causal-obstruction.md) closes the adjacent radius at 1/12, giving minimum ten throughout [1/12, 1/10).
