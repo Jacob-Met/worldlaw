@@ -1,0 +1,39 @@
+{
+  "title": "Does a frequency-independent real distortion of the published Boulder layered-Earth response transfer across storms?",
+  "claim": "Retrospective prediction of field measured by the USGS Boulder electrode channels from magnetometer variation during the same complete event. Unit of comparison is the selected UTC day. No inference about geoelectric grid exposure, identified conductivity, mechanical intervention or prospective forecasting with future magnetic input unknown.",
+  "design": "Boulder 1s vector X/Y in nT and directly measured E-N/E-E in mV/km. No inclusion of electric field synthesized from magnetometer data. E-N/E-E is the ordinary variation product; the released header does not specify 100m versus 200m dipole, so no cross-length comparison. E field analog high-pass about 30000s plus ObsRIO digital filter. 1s header states the magnetometer vector uses centered 123-tap Blackman at 10Hz, cutoff .25Hz. Cannot assume identical axes or delay in either chain. A persistent calibrated operator describes composite instrument/site/source response.",
+  "authority": {
+    "bezpy": "greglucas/bezpy@3ac04d05f354d891c1df2011ce2d50780589cf7f",
+    "model_file": "bezpy/mt/data_1d/earth_model_BOU.txt",
+    "model_file_sha256": "ad69117e3aaae1cd37bdbbb0dbe4e4ff10c8e18d8ae6c7c6a4d22acd20cb9d3c",
+    "model_code": "bezpy/mt/site.py sha256 9c2618278f19e6b7d826b1f0399858484780fd8638e25306e664036f3793991c; original get_1d_site(BOU).calcZ at every selected harmonic",
+    "scope": "The BOU profile is a legacy published parameter file with unknown original calibration. Its service source knows magnetic and electric units. IAGA MTH5 geomag.py 6c62aeb91a25362803b4cf6b86e466a260c33023 builds Magnetic/nanotesla for supported output columns and is not authority for E units."
+  },
+  "literature": "Caldwell–Bibby–Brown 2004 phase tensor for 1D regional fields and frequency-independent galvanic distortion. Use it as established conditional model. COP24 is a spatially distinct Tiny Town 2018 survey; no claim to reproduce a collocated 3D refit. October12-14 2016 field and range/qualitative behavior previously published in Blum et al.; exclude from experiments. Hu et al. 2024 uses synthesized electric targets, disjoint from actual electrodes.",
+  "dev": [
+    "2017-05-28",
+    "2017-09-08",
+    "2018-08-26"
+  ],
+  "held": [
+    "2021-11-04",
+    "2023-04-24",
+    "2024-05-11",
+    "2024-10-10"
+  ],
+  "timing": "Each date 00:00:00 through 23:59:59 UTC. Download unmodified variation service output with exact timestamp, header identity and missingness recording. First 21 disjoint windows of 4096s fill 86016s; residual 384s are outside the fixed basis. Each date must have at least 12/21 complete valid windows. Missing-mask-only availability assessment before any fit or measured field values; no replacement events. For source and held, precompute eligibility from membership/clock/missing markers only. Spectrum comparison is an offline, window-local response; magnetic input uses the complete window.",
+  "levels": "Open one IAGA same-role pair X/Y or E-N/E-E at a time; check BOU, 1-second, variation, north/east order, all86400 signed time tags. All 7 dates mandatory. Only visible positive target evidence before lock is presence/absence of service fill-marker fields, no numerical electric decoding. Document API errors and any numerical-equivalence issues, no compensating interpolation or endpoint substitutions.",
+  "spectrum": "Each complete 4096-s segment subtract its arithmetic mean per axis, multiply symmetric Hann win(n-1) and return positive FFT cells k=4..127 (period ~32.25..1024s). Normalize by 2/sum(taper). Compare complex N/E electric vectors in physical mV/km, every selected k and segment equally, equal-date RMSE=sqrt(mean(|delta|²)) across windows,bins,axes; aggregate arithmetic mean across four independent date labels at a single observatory. Development/matched controls regress unweighted pooled complex residuals on all valid source segments. Condition each magnetic source band Gram smallest/largest>=.01; every date >=12 complete windows. A single Fourier input vector cannot identify a 2x2 response.",
+  "roles": [
+    "zero",
+    "BOU_unadjusted",
+    "BOU_real_scalar",
+    "BOU_constant_real_matrix",
+    "BOU_constant_complex_matrix",
+    "BOU_five_complex_matrices",
+    "BOU_five_real_matrices",
+    "BOU_five_complex_scalars"
+  ],
+  "fit": "From original calcZ get ZNE and ZEN opposite signs, other two zero. U=(ZNE BY,ZEN BX). Model family E=U A in row-vector layout. Constant-real candidate fits real 2x2 A with stacked real and imaginary regression. Constant scalar restricts both components to same real scale; each five-band scalar is a shared complex scale per band. Five bands k=[4,8),[8,16),[16,32),[32,64),[64,128). General complex fits unregularized. Mean/condition checks only from development. No new efficiency weighting, phase sign, axis correction or redo. Frozen calibration maps and B-only complex target forecasts committed and verified before measured E is decoded.",
+  "success": "Candidate must beat mean RMSE of all seven alternatives and win strictly >=3/4 against direct BOU and five-complex-matrix model. Missing required data/conditioning stays qualification refusal; no substitute data or dates. Keep all event and worst same-component/bin errors. Independent recount from frozen inputs and outputs."
+}
