@@ -1,0 +1,41 @@
+{
+  "gates": {
+    "Ethanol_mean": false,
+    "Ethanol_worst": false,
+    "Methanol_mean": false,
+    "Methanol_worst": false,
+    "Water_mean": false,
+    "Water_worst": false,
+    "all_mean": false,
+    "all_worst": false
+  },
+  "max_score_absolute_difference": 6.245004513516506e-16,
+  "numeric_score_comparisons": 993,
+  "prediction_errors": 830,
+  "primary_max_relative_difference": 1.4022116801015727e-11,
+  "primary_recomputed": 83,
+  "raw_worst": {
+    "id": "Water/42",
+    "observed_kpa": 39.15,
+    "record": {
+      "T": 429.75,
+      "dataset": 7,
+      "pred_kpa": {
+        "antoine_shared_shift": 35.250720883595974,
+        "caloric_cp": 28.586679040900034,
+        "caloric_ideal_vapor": 28.92696624906825,
+        "caloric_no_cp": 29.83290461012066,
+        "caloric_residual_slope": 35.3823728848783,
+        "fixed_activity": 27.33164221205043,
+        "nrtl_pressure": 34.499309080307555,
+        "nrtl_pressure_heat": 28.301572301203688,
+        "per_curve_activity_slope": 35.481576777024266,
+        "per_curve_clausius": 35.594007144055574
+      },
+      "row": 42,
+      "solvent": "Water",
+      "z": 0.56
+    }
+  },
+  "rows": 83
+}
