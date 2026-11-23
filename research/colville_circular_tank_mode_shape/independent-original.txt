@@ -1,0 +1,7 @@
+SOURCE b84d4b0dbe9c6c93d13ad98da0835e223be1484f
+Downloading pymupdf (19.1MiB)
+Downloading pillow (4.3MiB)
+ Downloaded pillow
+ Downloaded pymupdf
+Installed 3 packages in 27ms
+{"all_20_worst_indices_equal": true, "all_40_metric_max_diff": 2.9282132274488504e-15, "all_82_input_census": true, "archive_sha": "feb7fae7eeb196abeb81b2282c2ec70d3de6b3fda7528c7c01486e5ebbf504cf", "available_by_held_fill": [41, 40], "endpoint_and_forecast_max_diff": 8.23646706393788e-15, "forecast_sha": "b81a47b026d46cebc8dd1f44c3cb9d23dbc39c41cb6d22ae6465ff2f3a7a5d98", "held_arms_recounted": 810, "joint": false, "per_fill_gate": [false, false], "primary_worst_bins": [0, 27], "training_stripes": 122}

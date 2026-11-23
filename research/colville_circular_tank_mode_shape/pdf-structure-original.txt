@@ -1,0 +1,5 @@
+SOURCE deec9267eedb92c52182aee8b977d298f89b0cf2
+Downloading pymupdf (19.1MiB)
+ Downloaded pymupdf
+Installed 1 package in 2ms
+{"bytes": 2331908, "figure_schemas": [{"caption_figures": [11], "native_images": [[706, 652, 509]], "page": 16, "page_size_points": [493.20001220703125, 699.8400268554688], "paint_histogram": [], "vector_paths": 0}, {"caption_figures": [15], "native_images": [[721, 441, 302], [722, 436, 298], [723, 664, 509]], "page": 19, "page_size_points": [493.20001220703125, 699.8400268554688], "paint_histogram": [], "vector_paths": 0}], "output_amplitude_values": 0, "pages": 24, "sha256": "feb7fae7eeb196abeb81b2282c2ec70d3de6b3fda7528c7c01486e5ebbf504cf"}
