@@ -22,7 +22,8 @@ def load_signals(open_held):
                 if not(np.isfinite(x).all() and (np.diff(x)>0).all()):raise ValueError("invalid gate grid")
                 if axis=="R":
                     r=np.array(numbers(opaque))
-                    if not(np.isfinite(r).all() and (r>0).all()):raise ValueError("invalid resistance")
+                    common=(x>=-7)&(x<=5)
+                    if not(np.isfinite(r[common]).all() and (r[common]>0).all()):raise ValueError("invalid common-support resistance")
                     rlist.append((tuple(color),x,r));continue
                 if color==[0.0,0.447,0.741]: temp=5
                 elif color==[0.929,0.694,0.125]: temp=20
@@ -32,7 +33,7 @@ def load_signals(open_held):
                 assert np.array_equal(x,sphere["x"]) and axis not in sphere
                 if open_held or temp!=20:
                     y=np.array(numbers(opaque))
-                    if not np.isfinite(y).all():raise ValueError("nonfinite temperature")
+                    if not np.isfinite(y[(x>=-7)&(x<=5)]).all():raise ValueError("nonfinite common-support temperature")
                     sphere[axis]=y
     assert sorted(signal)==[5,20,30] and len(rlist)==3
     r5,=filter(lambda v:len(v[1])==211,rlist)
@@ -43,6 +44,10 @@ def load_signals(open_held):
         for t,(_,x,r) in zip((5,20,30),(r5,alternatives[a],alternatives[b])):
             assert np.array_equal(x,case[t]["x"]);case[t]["R"]=r
         assert all(len(case[t]["x"])==n for t,n in ((5,211),(20,121),(30,121)))
+        for t in (5,20,30):
+            common=(case[t]["x"]>=-7)&(case[t]["x"]<=5)
+            case[t]={k:v[common] for k,v in case[t].items()}
+        assert [len(case[t]["x"]) for t in (5,20,30)]==[181,121,121]
         yield label,case
 
 def weights(x):
