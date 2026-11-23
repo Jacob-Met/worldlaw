@@ -1,0 +1,314 @@
+{
+  "study": "SiS double-spin transfer",
+  "doi": "10.1039/B618799D",
+  "preheld": {
+    "first_freeze": "b714039dc8aabb6fd203a6523a59356a2a75a590",
+    "decoder_repair": "4169ff31b335e57d86829f4ad56ccc286d5742a9",
+    "exact_rational_rank": "4258788173333f8a7191bbeb898fd75590578c69",
+    "successor": "af2b14ec4eeb56cbb244766ca2d3ff40d5055ce1",
+    "successor_registration": {
+      "ok": true,
+      "seq": 1769382,
+      "op_id": "p2-f747-sis-donor-rank-refusal-and-preregistered-whole-family-control",
+      "result": {
+        "id": 189000
+      }
+    },
+    "forecast_commit": "bc43467d106d324b594a1cf7ce1c98d88391222a",
+    "forecast_cold_board": {
+      "ok": true,
+      "seq": 1769544,
+      "op_id": "p2-f747-sis-actual-entire-family-forecast-bank-before-truth",
+      "result": {
+        "id": 189007
+      }
+    }
+  },
+  "forecast": {
+    "bytes": 9075,
+    "sha256": "66a7d1803ca57fcee6ce3e678fd9f3f5cfaabf02da418a47e178bf0f5a38ad36"
+  },
+  "outcome": {
+    "bytes": 13269,
+    "sha256": "8a22c10f59adb058b57aee3788e504fd52334839d52fe009acbfea5945411f6d",
+    "commit": "f27fb680218162cd93fd59a719815d284735c541"
+  },
+  "independent": {
+    "comparisons": {
+      "aggregate": [
+        18,
+        "2.03224977569525474906940907378359458891487794471201579E-13"
+      ],
+      "centered_kHz": [
+        41,
+        "3.31155555555555555555555555555555555555555555555555556000E-9"
+      ],
+      "group_rms": [
+        54,
+        "3.07298706540986090654501511884157860044203668794416754E-13"
+      ],
+      "null_image": [
+        41,
+        "1E-71"
+      ],
+      "oracle_t": [
+        1,
+        "2.32666666666666666666666666666666666666666666666666666684E-13"
+      ],
+      "raw_MHz": [
+        41,
+        "0.000"
+      ],
+      "residual_kHz": [
+        369,
+        "3.31159355555555555555555555555555555555555555555555556000E-9"
+      ]
+    },
+    "fits": 9,
+    "gates": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true
+    ],
+    "joint": false,
+    "measured_features": 41,
+    "raw_worst_kHz": [
+      "8.63601661329861538461538461538461538461538461538461538461538462000",
+      "0/2",
+      "[505, 506]",
+      "-2619.61538461538461538461538461538461538461538461538461538461538462000",
+      "-2610.979368002086"
+    ]
+  },
+  "upstream_solver": {
+    "spcat_sha256": "8d3eb357347e9678d699cee1ee7d9df12c20b91d220f788aea7ad50be3ca533c",
+    "spfit_sha256": "784ce379142ce700dbf0345ca1cdec6f82be344f687433ee585e5cd279012071",
+    "source_files": 20
+  },
+  "native": [
+    {
+      "job": "p2-f747-sis-author-measured-archive-and-quantum-schema-no-frequencies",
+      "owner": "node-d807db003bdba7cdc89bb0e727dcf02d",
+      "request": "5d24da1859683bd2bbe73de0a33aea46fc8f182bdd7a7ce93cc7624f49d632d1",
+      "generation": "3fa3b85a2dc7296ea4a737694d90290b4e3e909193cc3248985722a072ff661d",
+      "started_at": "2026-11-23T13:23:10.877374163Z",
+      "finished_at": "2026-11-23T13:23:14.230784521Z",
+      "exit": 0,
+      "descendant": "drained",
+      "stdout_bytes": 2298,
+      "stdout_sha256": "a907e7dcb51ca1ff74ef4f8998e7f36328d388778e623547e4e2a17a69e6c289"
+    },
+    {
+      "job": "p2-f747-sis-author-assignment-key-and-low-J-source-roster",
+      "owner": "node-d807db003bdba7cdc89bb0e727dcf02d",
+      "request": "69504284594ec6f04ee46ac5a8c04f8192e745ed41e3e7dc7bb8b6ee9a340fc7",
+      "generation": "2321d5b93f1a99237769ca83fdc8e8d555b755e48d614b090ffda8b4f3308d0f",
+      "started_at": "2026-11-23T13:24:25.129986074Z",
+      "finished_at": "2026-11-23T13:24:25.212318774Z",
+      "exit": 1,
+      "descendant": "drained",
+      "stdout_bytes": 2371,
+      "stdout_sha256": "cf96ba98377d5d517fbe68f644056643b91c9967c0d7f965aff10a684a877969"
+    },
+    {
+      "job": "p2-f747-sis-portable-authenticated-quantum-assignment-census",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "request": "6328051dab998500dab4ca6c2e5247b78b9ba16e5187db2a1bf332a48b94aa2f",
+      "generation": "e447b5b2c5d4ce44537815c7cf5092c6551e788868600f84ff8d596c69b3ac25",
+      "started_at": "2026-11-23T13:26:40.014302993Z",
+      "finished_at": "2026-11-23T13:26:40.128228722Z",
+      "exit": 1,
+      "descendant": "drained",
+      "stdout_bytes": 2582,
+      "stdout_sha256": "495da14ff677bf670ae00cc3e78d9ef2119c65cbf591dbd76f636446103d4943"
+    },
+    {
+      "job": "p2-f747-sis-existing-observed-linefiles-host-queue-typed-roster",
+      "owner": "node-d807db003bdba7cdc89bb0e727dcf02d",
+      "request": "c278c2787d03d09d344e3b0fc8d611ea1ecf130ffd6069307a781896ca2a8f05",
+      "generation": "b76bb98a101c560e8438a7e0ee6e5df291fb7795a6e68a3feb476d5a4b7fe40b",
+      "started_at": "2026-11-23T13:36:03.826664479Z",
+      "finished_at": "2026-11-23T13:36:03.90846547Z",
+      "exit": 0,
+      "descendant": "drained",
+      "stdout_bytes": 6422,
+      "stdout_sha256": "ec84dad2b0968f3078f09e3bed1ae84bffbd859b0299ccc4d2dd61eb8cb7d319"
+    },
+    {
+      "job": "p2-f747-sis-exact-racah-recoupling-and-unseen-two-spin-null-controls",
+      "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+      "request": "ad457034f3285cd5a612fb2b3556681d90adb3c925b4e09e60e37e38f2f9902f",
+      "generation": "834e97b72c1bacaa84868103134770d42efd0a32c8ea352a92a529c8b44b42df",
+      "started_at": "2026-11-23T13:30:04.36755792Z",
+      "finished_at": "2026-11-23T13:30:06.997196421Z",
+      "exit": 0,
+      "descendant": "drained",
+      "stdout_bytes": 81,
+      "stdout_sha256": "2cfb2412905f71282f499feb015fe1525349b183294d27bed1e88e8c240d0373"
+    },
+    {
+      "job": "p2-f747-sis-pickett-official-source-two-spin-synthetic-only",
+      "owner": "node-10327a6eec1b92f134b328e043c6e28c",
+      "request": "2472f443493908658e20cdab0017890629d620c0d8a2bea00a7608b9293b8ab8",
+      "generation": "c03388033f2564687ef2043f9ddfd88c882a52f48021c027cad6830cc2e9c2e5",
+      "started_at": "2026-11-23T13:32:21.292484636Z",
+      "finished_at": "2026-11-23T13:32:28.667210564Z",
+      "exit": 0,
+      "descendant": "drained",
+      "stdout_bytes": 3995,
+      "stdout_sha256": "bd77ded30b280cb4cdac530b38878515ead401f164c2c1bbe4085c874e610872"
+    },
+    {
+      "job": "p2-f747-sis-authentic-spcat-recoupling-crosscheck-and-opaque-input-stage",
+      "owner": "node-10327a6eec1b92f134b328e043c6e28c",
+      "request": "1a4e3672c9214752c0c216cf9f9f4e5faeaaa54be5e1e5d398af57b31b655334",
+      "generation": "5ca54792b0f82cf4348b3c982908c80bc61da7e74e0425cee3b8739c10ebe3c3",
+      "started_at": "2026-11-23T13:34:30.651848317Z",
+      "finished_at": "2026-11-23T13:34:35.6475003Z",
+      "exit": 0,
+      "descendant": "drained",
+      "stdout_bytes": 560,
+      "stdout_sha256": "fae39f867118b9d0207191b010d2d7456e0e992ccf8467699da649bf14b716db"
+    },
+    {
+      "job": "p2-f747-sis-solver-owner-admissible-blends-and-uncertainty-roster",
+      "owner": "node-10327a6eec1b92f134b328e043c6e28c",
+      "request": "5e44037a49afbf0a7aac9ba6e503c16c8583a949678d66fbb85cea618977c143",
+      "generation": "2e40bf2c007c20927a620e7d38d0cad5fc74df42ca4f7fb57be0da93b3699029",
+      "started_at": "2026-11-23T13:36:10.183330743Z",
+      "finished_at": "2026-11-23T13:36:10.287662053Z",
+      "exit": 0,
+      "descendant": "drained",
+      "stdout_bytes": 6054,
+      "stdout_sha256": "9f5f429a4052bf6c341d8443397c2e820776eec380c00344867c7a0faf7489ca"
+    },
+    {
+      "job": "p2-f747-sis-release-repeated-transition-groupings-sealed-ordinates",
+      "owner": "node-10327a6eec1b92f134b328e043c6e28c",
+      "request": "361ee7e82ef148d21b103877fedd0c7e1f3226f9c378e3998473cdc7200face7",
+      "generation": "d12461db616711552a7962eb7caa4dc2d820e82e249bc35b0c9f1ed592537d0a",
+      "started_at": "2026-11-23T13:37:10.775543713Z",
+      "finished_at": "2026-11-23T13:37:10.876559427Z",
+      "exit": 0,
+      "descendant": "drained",
+      "stdout_bytes": 5632,
+      "stdout_sha256": "343b21657328bcc45e565ad0b48b1a6c3265e4fa7b65185cbc2eb0c544a63275"
+    },
+    {
+      "job": "p2-f747-sis-single-spin-only-calibration-full-donor-operator-fit",
+      "owner": "node-10327a6eec1b92f134b328e043c6e28c",
+      "request": "fef5767e131b1bb14e2f71ba78137fee548147e19eb29af2aa46ca4ec9753372",
+      "generation": "f0b8b6fda2aa27d9e33172e26c3a18341390309d1960e0a14e6ea8a3b7311ed9",
+      "started_at": "2026-11-23T13:42:29.122856246Z",
+      "finished_at": "2026-11-23T13:42:34.319569343Z",
+      "exit": 1,
+      "descendant": "drained",
+      "stdout_bytes": 1447,
+      "stdout_sha256": "599228d0aefa128c751f436ae5fb342b02f286f07abc31d44ddf618fd8bbe976"
+    },
+    {
+      "job": "p2-f747-sis-donor-only-esi-numeric-reference-decoder-successor",
+      "owner": "node-10327a6eec1b92f134b328e043c6e28c",
+      "request": "48dba3d7ee21e9b93c60292e8dae9638f146e2ed4be0508661bfede65addaf7e",
+      "generation": "52af382bfe0a2b4bf9d72a17c403fbc7d8520038d579c181992a7941fbd7f5ef",
+      "started_at": "2026-11-23T13:46:35.514157972Z",
+      "finished_at": "2026-11-23T13:46:38.459829771Z",
+      "exit": 1,
+      "descendant": "drained",
+      "stdout_bytes": 1229,
+      "stdout_sha256": "7f497ace9e91a17582b1d65fc923b78b25f73c8f14126ee93b141cde06ba5ee9"
+    },
+    {
+      "job": "p2-f747-sis-exact-fraction-design-kernel-and-registered-transfer",
+      "owner": "node-e70963c08ce63bd916168b48d2b1c1fc",
+      "request": "5a44d87908239f6c04f1895b50562d82828ff007d8a84be79ee89f93c3851cb2",
+      "generation": "43837093f3bdfb05d845492fdf0a9b8a5bd87e3d78c78a9aeefbce52eba12478",
+      "started_at": "2026-11-23T13:50:26.495082212Z",
+      "finished_at": "2026-11-23T13:50:30.497990006Z",
+      "exit": 0,
+      "descendant": "drained",
+      "stdout_bytes": 507,
+      "stdout_sha256": "47cfb13598c4f3e5b229bf31902709a1c01f8b64e4a824dcd954b41d94235100"
+    },
+    {
+      "job": "p2-f747-sis-whole-family-reference-and-double-spin-forecast-lock",
+      "owner": "node-10327a6eec1b92f134b328e043c6e28c",
+      "request": "bfe944b3030105a05f19deccd01c03a239dd89b3312d8550878d3a73d1da96f5",
+      "generation": "f300dd59d57556882aca4e3aa5df4bc8fdf501ef6e0e20941b0db3b703f0177b",
+      "started_at": "2026-11-23T13:52:24.038668937Z",
+      "finished_at": "2026-11-23T13:52:27.244243332Z",
+      "exit": 0,
+      "descendant": "drained",
+      "stdout_bytes": 12976,
+      "stdout_sha256": "268fd41877cd9eb93236f9a11b22fe1d9443bc5d9bec58d5b75e8bbbad9dd858"
+    },
+    {
+      "job": "p2-f747-sis-first-held-double-spin-41-feature-outcome",
+      "owner": "node-10327a6eec1b92f134b328e043c6e28c",
+      "request": "55618e1991a25289604b8fd5cab731bd2562fc4a4973b2531cc6c784ecd19bf2",
+      "generation": "fec756f6f6d3bcc1058e0c3858d7bbabed9d48657a4bc8f274d31075f9e6f1f9",
+      "started_at": "2026-11-23T13:54:19.600180927Z",
+      "finished_at": "2026-11-23T13:54:19.784267514Z",
+      "exit": 0,
+      "descendant": "drained",
+      "stdout_bytes": 19106,
+      "stdout_sha256": "1d5d943ee2ba50745ca9bd8b5ca29e42d5fa6f6d2fbe6f5ebae1d4df08a03949"
+    },
+    {
+      "job": "p2-f747-sis-independent-spfit-file-fraction-decimal-recount",
+      "owner": "node-01cc058c216929994fc2fb0d25f8c52a",
+      "request": "a40980299f81a804eb0d7d37d91084637b0c2865a80bc6b22bf428e30639cfb4",
+      "generation": "dc973cb11a7debcf58275fbafb6afa8f2faa8cc588807d1949c8347169617842",
+      "started_at": "2026-11-23T13:55:04.526035773Z",
+      "finished_at": "2026-11-23T13:55:08.423648586Z",
+      "exit": 0,
+      "descendant": "drained",
+      "stdout_bytes": 815,
+      "stdout_sha256": "391bdcb416d1cd15e60cb217c0e53f113f8c2f47d43eb1c46fd6b89e1568cfd3"
+    },
+    {
+      "job": "p2-f747-sis-source-bound-normal-entry-native-product",
+      "owner": "node-10327a6eec1b92f134b328e043c6e28c",
+      "request": "51bde4fd0650074aa60dc391333979ffd0ef82b9c3749470de47928addf9a5e2",
+      "generation": "14aab10406378d4f1c8436450e2ef66e8f1cd3e9967ebb1319a7868baf687c29",
+      "started_at": "2026-11-23T14:00:13.405243529Z",
+      "finished_at": "2026-11-23T14:00:16.342293492Z",
+      "exit": 1,
+      "descendant": "drained",
+      "stdout_bytes": 728,
+      "stdout_sha256": "0c85bb4caf8e572fb808887e1a1adccdc8d176561df0d20c001ce54a69e7e4cc",
+      "scope": "First clean product stopped at comparison of Python slot tuples with JSON slot arrays before forecast comparison. Publication receiver type normalization only."
+    }
+  ],
+  "refusals": [
+    {
+      "job": "p2-f747-sis-bounded-49-header-and-typed-assignment-design",
+      "refusal_id": "placement-f0f42a60c2506ef07aa9a1016b86cbaeb380d6fa411a1b68",
+      "arguments_sha256": "e45ad34916fe057f963ef17db4b3a829fca521e0912cc10595b81b67bfed0e90",
+      "sha256": "151fd09c558ab906967acf5b58ebcfb90e4f46bc7c2260bfb688b907955e3fbf",
+      "reasons": {
+        "node-d807db003bdba7cdc89bb0e727dcf02d": "available memory already reserved by active jobs"
+      }
+    },
+    {
+      "job": "p2-f747-sis-source-rank-null-and-held-assignment-estimability",
+      "arguments_sha256": "a89605b00200dd5054e31d5b7ac946e304f49288cab90cab58137829e09e41b2",
+      "refusal_id": "placement-5227ee28870dd5461719b7e03e221d764ab6de0a987ba0d2",
+      "sha256": "a03d3d9dc3140633252d850dbcc2d4301520047dcc833b35be577b0202f84d7f",
+      "details": {
+        "kind": "admission_refusal",
+        "job_id": "p2-f747-sis-source-rank-null-and-held-assignment-estimability",
+        "arguments_sha256": "a89605b00200dd5054e31d5b7ac946e304f49288cab90cab58137829e09e41b2",
+        "created_at": "2026-11-23T13:48:12.008515508Z",
+        "reasons": {
+          "node-10327a6eec1b92f134b328e043c6e28c": "owner_probe_timeout: capacity: context deadline exceeded"
+        }
+      }
+    }
+  ]
+}
