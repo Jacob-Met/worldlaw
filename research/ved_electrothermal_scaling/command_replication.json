@@ -1,0 +1,18 @@
+{
+  "schema": "ved-regime1-command-prediction-v1",
+  "scope": "Archival command-label prediction on one apparatus. Physical diagonal gains, signed routing, channel gain stability and selected orbit unverified.",
+  "acquisition": "Source used 100/200 mV command amplitudes only. Hold all 400 mV waveforms until forecasts locked. Other ten biases untouched. Plotting divides DC and Cf separately by two. Take original unnamed columns, sample rate 125000 Hz, 125000 samples per recording.",
+  "outcome": "Center each column over the entire capture, take its RMS in volts and the Euclidean norm across the two channel RMS values. Preserve 4 equal consecutive quarter summaries recentered within the quarter. No stationarity, clipping or attractor exclusions. No noise subtraction.",
+  "support": "21 exact common products for 100/200/400 mV and Cf digital steps (4s,2s,s)/16, s=0..20. Whole 42 source and 21 target recordings. A missing binding, wrong shape or nonfinite data refuses the entire gate; no replacement.",
+  "roles": [
+    "quadratic: 4 A200",
+    "unchanged: A200",
+    "linear: 2 A200",
+    "zero: 0",
+    "matched empirical power: A200^2/A100",
+    "pooled empirical gain: A200*sum(A100*A200)/sum(A100^2)",
+    "local affine versus bias: max(0,3 A200-2 A100)",
+    "pooled affine: max(0,OLS(1,A100)->A200 applied at A200)"
+  ],
+  "gate": "Strictly lower average absolute error across the 21 joint RMS values than every control and lower absolute error than pooled gain on at least 11/21 settings. Ties fail. Report all command cases/roles, MAE/RMSE/max, raw worst and all-role same-case errors. A100 must be positive and the pooled affine must have positive source variance. Figure 3 qualitative onset trend exposed. No physical gain-identification claim."
+}
