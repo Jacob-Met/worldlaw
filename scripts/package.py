@@ -16,6 +16,17 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/apg13x-ternary-adsorption/README.md",
+    "research/apg13x-ternary-adsorption/check_iast.py",
+    "research/apg13x-ternary-adsorption/comparison.json",
+    "research/apg13x-ternary-adsorption/envelopes.py",
+    "research/apg13x-ternary-adsorption/independent.json",
+    "research/apg13x-ternary-adsorption/independent.py",
+    "research/apg13x-ternary-adsorption/parity.py",
+    "research/apg13x-ternary-adsorption/protocol.json",
+    "research/apg13x-ternary-adsorption/replay.py",
+    "research/apg13x-ternary-adsorption/score_course.py",
+    "research/apg13x-ternary-adsorption/table_roles.py",
     "research/chen-ren-backing-transfer/README.md",
     "research/chen-ren-backing-transfer/independent.json",
     "research/chen-ren-backing-transfer/measurements.json",
