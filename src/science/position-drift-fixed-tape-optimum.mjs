@@ -104,3 +104,40 @@ export function receiveFixedTapeOptimum(input,saved,values){
     return {status:'receiver-budget-exhausted',surviving:null,nextAt:null,nextRuns:null,work:work.used};
   }
 }
+
+const largeMinimumSource='worldlaw.position-drift-large-noise-minimum/v1';
+const largeMinimumProof='worldlaw.position-drift-large-noise-minimum-proof/v1';
+
+export function certifyLargeNoiseMinimum(input){
+  requireTrue(input?.schema===largeMinimumSource&&Object.keys(input).sort().join(',')==='catalog,schema','invalid minimum-horizon source');
+  const error=rational(input.catalog.noiseBound);
+  requireTrue(compare(error,Q(11n,16n))>=0,'this minimum-horizon theorem requires noise at least 11/16');
+  requireTrue(input.catalog.laws.length===2&&input.catalog.laws.every(l=>l.vertices.length===4),'the minimum requires the registered two four-vertex families');
+  const floor=8n*error.n/error.d;
+  const ceil=(8n*error.n+error.d-1n)/error.d;
+  const candidates=[...new Set([floor,ceil])].filter(k=>k*error.d>4n*error.n).map(k=>{
+    const denominator=k*error.d-4n*error.n;
+    const numerator=6n*k*k*error.d;
+    return {dwell:String(k),firstStrictHorizon:String(numerator/denominator+1n)};
+  });
+  const h=candidates.map(c=>BigInt(c.firstStrictHorizon)).reduce((a,b)=>a<b?a:b);
+  const course=certifyFixedTapeOptimum({schema:sourceSchema,pulseBudget:String(h),catalog:input.catalog});
+  const source={schema:largeMinimumSource,catalog:course.source.catalog};
+  if(course.status==='design-budget-exhausted')return {schema:largeMinimumProof,source,status:course.status,work:course.work};
+  const predecessor=h-1n,upper=predecessor===66n?Q(11n,16n):allocation(predecessor).radius;
+  requireTrue(h>=67n&&compare(upper,error)<=0&&course.atRequestedNoise==='policy-separates','the two adjacent horizons do not bracket the requested noise');
+  return {schema:largeMinimumProof,source,status:'adaptive-minimum-certified',minimum:String(h),candidates,course,
+    predecessor:{source:{...course.source,pulseBudget:String(predecessor)},upper:fmt(upper),
+      method:predecessor===66n?'balanced-midpoint':'all-large-horizon-transfer'}};
+}
+
+export function verifyLargeNoiseMinimum(input,saved){
+  requireTrue(equalPositionDriftData(certifyLargeNoiseMinimum(input),saved),'saved minimum, predecessor, or measured course differs');
+  return true;
+}
+
+export function receiveLargeNoiseMinimum(input,saved,values){
+  verifyLargeNoiseMinimum(input,saved);
+  requireTrue(saved.status==='adaptive-minimum-certified','minimum design exhausted its work limit');
+  return receiveFixedTapeOptimum(saved.course.source,saved.course,values);
+}

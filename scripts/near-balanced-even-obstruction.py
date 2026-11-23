@@ -29,15 +29,16 @@ def rates(law,weights):
     return dict(zip(NAMES,(sum(w*v for w,v in zip(weights,column)) for column in zip(*ANCHORS[law]))))
 
 class Experiment:
-    def __init__(self,source):
+    def __init__(self,source,balanced_only=False):
         check(source.get('schema')=='worldlaw.position-drift-fixed-tape-optimum/v1','wrong source schema')
         self.h=integer(source['pulseBudget'])
         self.n=n=self.h//2
         certified_even=self.h==2*n and n>=5 and n%6 in (1,5)
         certified_odd=self.h==2*n+1 and n>=10 and n%6 in (1,4)
-        check(self.h>=67 or certified_even or certified_odd,'unsupported horizon')
+        self.balanced_only=balanced_only
+        check(self.h>0 and (balanced_only or self.h>=67 or certified_even or certified_odd),'unsupported horizon')
         self.k=(self.h+6)//12
-        self.product=6*self.k*(self.h-6*self.k)
+        self.product=n*(self.h-n) if balanced_only else 6*self.k*(self.h-6*self.k)
         self.e=e=Q(self.product,24*self.h)
         self.critical={}
         # The closest multiple of six to H/2 lies at distance at most three.
@@ -55,7 +56,7 @@ class Experiment:
             check(2*e/s>=room*(1-Q(1,s)) and beta>=room/s and (b-1)*beta<=2*e,'suffix-first room failed')
             check(Q(s,6)-room==4*e*self.h/b,'terminal contrast identity failed')
         L=self.h-1
-        check(Q((L*L)//4,24*L)<=e,'a proper span exceeds the target')
+        check(L==0 or Q((L*L)//4,24*L)<=e,'a proper span exceeds the target')
         cat=source['catalog']
         check(cat.get('schema')=='worldlaw.position-drift-rate-polytopes/v1','wrong rate catalog')
         commands=cat['commands']
@@ -77,6 +78,9 @@ class Experiment:
         self.requested=number(cat['noiseBound'])
         check(self.requested>=0,'negative noise')
     def describe(self):
+        if self.balanced_only:
+            return dict(horizon=str(self.h),radius=str(self.e),scope='balanced midpoint upper bound',
+                        atRequestedNoise='closed-collision' if self.requested>=self.e else 'below-this-bound')
         return dict(horizon=str(self.h),radius=str(self.e),scope='unrestricted adaptive',
                     atRequestedNoise='policy-separates' if self.requested<self.e else 'closed-collision',
                     fixedRuns=[{'command':'ref','repeats':str(self.h-6*self.k)}]+[
@@ -187,6 +191,7 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('source',type=Path)
     parser.add_argument('--runs',type=Path,help='JSON array of received command/count pairs')
+    parser.add_argument('--balanced-bound',action='store_true',help='use the balanced midpoint upper bound at any positive horizon')
     args=parser.parse_args()
-    experiment=Experiment(json.loads(args.source.read_text()))
+    experiment=Experiment(json.loads(args.source.read_text()),balanced_only=args.balanced_bound)
     print(json.dumps(experiment.describe() if args.runs is None else experiment.receive(json.loads(args.runs.read_text()))))
