@@ -23,6 +23,7 @@ function rational(value) {
   const [n,d='1']=value.split('/');
   return Q(BigInt(n),BigInt(d));
 }
+export {rational as parseAllHorizonRational};
 function count(value) {
   const n=rational(value);
   need(n.d===1n && n.n>0n,'repeat counts must be positive integers');

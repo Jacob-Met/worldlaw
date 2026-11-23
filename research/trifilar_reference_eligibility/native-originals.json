@@ -1,0 +1,134 @@
+{
+  "catalog": {
+    "id": "p3-f747-stijnen-rigid-reference-trifilar-catalog-original",
+    "owner": "node-e7d99d4bbb140f458a81403a6b1e5f48",
+    "generation": "1f7a9ade4c3caed8b1776b7f874e6e18d66135f4663f49f4ab707372d0aa5075",
+    "request_sha256": "32742259c10a6dbcfd3ce2a2e378d333a24e02faff17be884d829ea927e248d9",
+    "exit_code": 0,
+    "descendants": "drained",
+    "output_size": 1311,
+    "stdout_sha256": "8ae96a26e4edac3d5b58423e3234661ba283d158b4f8692f338fc06dd9b27ada",
+    "stdout": "{\"doi\": {\"rights\": [{\"rightsUri\": \"info:eu-repo/semantics/openAccess\"}, {\"rights\": \"Creative Commons Attribution 4.0 International\", \"rightsIdentifier\": \"cc-by-4.0\", \"rightsIdentifierScheme\": \"SPDX\", \"rightsUri\": \"https://creativecommons.org/licenses/by/4.0/legalcode\", \"schemeUri\": \"https://spdx.org/licenses/\"}], \"sha256\": \"480b0f87c899e459a5a07c9a890ba55bdb992e74fa19f9e11aac1877f6af01c9\", \"titles\": [{\"title\": \"Trifilar Pendulum - Mass Moment of Inertia Measurement\"}], \"url\": \"https://data.mendeley.com/datasets/zww548rfbn/4\", \"version\": null}, \"root_files\": {\"members\": [{\"content_type\": null, \"filename\": \"Database readme.docx\", \"folder_id\": null, \"id\": \"57856013-cb17-4c50-ac22-57a935813b76\", \"size\": 12967}, {\"content_type\": null, \"filename\": \"MoI Testing Procedure.pdf\", \"folder_id\": null, \"id\": \"56cb27ad-7d1a-4599-b073-be5125f7c78f\", \"size\": 51084}, {\"content_type\": null, \"filename\": \"Trifilar Pendulum assembly instructions v1_1.docx\", \"folder_id\": null, \"id\": \"14ba884a-7a97-422c-bbc8-53e9355b69d7\", \"size\": 4454273}, {\"content_type\": null, \"filename\": \"Trifilar Pendulum User manual v1_3 .docx\", \"folder_id\": null, \"id\": \"2cc7c02d-b111-49fb-ae4b-7e861f80ceaf\", \"size\": 3629724}], \"sha256\": \"023aad89fd8fa8cc6b44c3f790cf7d379dcdb45d271ced31f3c4985633acba8e\"}, \"videos_or_period_outputs_read\": 0}\n"
+  },
+  "guide": {
+    "id": "p3-f747-stijnen-v4-folder-and-database-guide",
+    "owner": "node-e7d99d4bbb140f458a81403a6b1e5f48",
+    "generation": "327fad029e7726ffa7e318c91c65c7acc43bfff7e1848bba85b434fe0ce2ad24",
+    "request_sha256": "cf7318d2e9331e37e1f95295d0b8f5896883d8f96d266462c82cd8902d09fb02",
+    "exit_code": 0,
+    "descendants": "drained",
+    "output_size": 839,
+    "stdout_sha256": "cc55081d529628e21d1ad5453d65f49721795834dc7943cc5723492c533cfbb0",
+    "stdout": "{\"folders_refusal\": \"HTTP Error 404: Not Found\", \"readme_sha256\": \"f0348ec32332d85042e29d44917a941694f5b050be01f12320877eee58aad618\", \"readme_text\": [\"Database readme\", \"\", \"On this database, all the information can be found to build and operate a trifler pendulum device for Mass Moment of Inertia measurements. There are both Hardware and Software components, Assembly Instructions a user manual and a test procedure. \", \"\", \"All the files for the hardware assembly can be found in the Design files, Software can be found in the Software folder but also on the Projects GitHub: https://github.com/BasStijnen/Trifilar-pendulum\", \"\", \"This database is part of the publication named: \\u201cA Simple test setup for Measuring Mass Moment of Inertia of Small Satellites\\u201d published in Elsevier HardwareX\"], \"video_or_period_rows_read\": 0}\n"
+  },
+  "landing": {
+    "id": "p3-f747-stijnen-v4-publisher-experiment-folder-lineage",
+    "owner": "node-e7d99d4bbb140f458a81403a6b1e5f48",
+    "generation": "ce77bd5ca6982744e87c04d3419e0554369c9fe5a90452c111160f877cdfd8ac",
+    "request_sha256": "65cfa66405e19b7b76f54f91130af919fb8e28a114df2ebcccc4b9528eb701cc",
+    "exit_code": 0,
+    "descendants": "drained",
+    "output_size": 917,
+    "stdout_sha256": "0e34ee7495af79020013775b42641f467a5103ae8125c5948542d44437a83dd5",
+    "stdout": "{\"experiment_folder_snippets\": [], \"page_length\": 130943, \"page_sha256\": \"5ad54ff29c5aa399141ab663c390091644deadcd187138a4b12eb7f51731b79a\", \"public_archive_links\": [], \"scientific_rows_read\": 0, \"script_identifiers\": [\"https://cdn.cookielaw.org/consent/a2567f1b-8a60-4464-b725-6c59f84a5801/OtAutoBlock.js\", \"https://cdn.cookielaw.org/scripttemplates/otSDKStub.js\", \"&#x2F;&#x2F;&#x2F;assets.adobedtm.com&#x2F;376c5346e33126fdb6b2dbac81e307cbacfd7935&#x2F;satelliteLib-4a7497b2b1d1900fe42ef2c13e32daeedf9c1642.js\", \"https://cdn.jsdelivr.net/npm/@datacite/datacite-tracker\", \"https://unpkg.com/xlsx@0.14.3/dist/jszip.js\", \"https://unpkg.com/xlsx@0.14.3/dist/xlsx.min.js\", \"https://static.data.mendeley.com/scripts/script-v2.0.8.min.js\", \"/datasets/bundle.js?c2c2cda645a5424c6f37\", \"//cdn.plu.mx/widget-summary.js\", \"https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092\"]}\n"
+  },
+  "application_script": {
+    "id": "p3-f747-stijnen-v4-publisher-public-directory-contract",
+    "owner": "node-4bf32eb7151785ee55ae5d40eac88d72",
+    "generation": "04d925ba7940332c072779e6413819d7ba72617af77d5d5c916f699f173a93ba",
+    "request_sha256": "cf65633f769e71d716608aaf063a6c5fbd596eb14e2a46deb3017606dd13ee5e",
+    "exit_code": 1,
+    "descendants": "drained",
+    "output_size": 952,
+    "stdout_sha256": "ef7799b76c506b409862527cc2e79db72240dbb62e3d32e32ac2beebba8486f3",
+    "diagnostic": "urllib.error.HTTPError: HTTP Error 403: Forbidden"
+  },
+  "public_directory": {
+    "id": "p3-f747-stijnen-public-registered-file-ancestry",
+    "owner": "node-e7d99d4bbb140f458a81403a6b1e5f48",
+    "generation": "2b5d823104ed9b56ed8be722fe72fe377d4770fedd92b2c5e7307fcb3384ee43",
+    "request_sha256": "4b9d2a9d54cd9e29d4af8c908d4ab3db5e84b510a7d13a368e7a6853dd1f3d12",
+    "exit_code": 0,
+    "descendants": "drained",
+    "output_size": 719,
+    "stdout_sha256": "17d131c46d625b4f8cf8e2b3abef6396116caab022e5df72cf76792b6a1c926e",
+    "stdout": "{\"catalog\": {\"keys\": [\"error\"]}, \"declared_links\": [\"ME-HTML\\\"}}},\\\"apiBaseUrl\\\":\\\"/api/datasets-v2\\\",\\\"publicApiBaseUrl\\\":\\\"/public-api\\\",\\\"baseUrl\\\":\\\"/datasets\\\",\\\"baseAssetsUrl\\\":\\\"/datasets\\\"},\\\"customer\\\":{\\\"customer\\\":null,\\\"institution\\\":null},\\\"dataset\\\":{\\\"snapshot\\\":{\\\"id\\\":\\\"zww548rfbn\"], \"folder_metadata_refusal\": \"HTTP Error 401: Unauthorized\", \"publication_state\": [\"window.INITIAL_STATE = {\\\"archive\\\":{\\\"data\\\":{\\\"status\\\":\\\"PENDING\\\"},\\\"error\\\":null,\\\"loading\\\":false},\\\"articles\\\":{\\\"list\\\":[],\\\"loading\\\":true},\\\"citations\\\":{\\\"data\\\":{\", \"window.initialTime = 1795421343723</script><script src=\\\"/datasets/bundle.js?c2c2cda645a5424c6f37\\\" data-ot-ignore></script><script src=\\\"//cdn.plu.mx/wi\"]}\n"
+  },
+  "landing_snapshot": {
+    "id": "p3-f747-stijnen-public-embedded-v4-snapshot-metadata",
+    "owner": "node-63fbcea7e7e266574ee04ba386b8bb4b",
+    "generation": "e07ba3d46b9ad05c65d14bb9ab40b64b976fbebe4a177ed5d092a30bf1e3a73d",
+    "request_sha256": "138827a2a20ccb15c99d28be74e84c05ad0909980ec2d181dda70714b2068368",
+    "exit_code": 0,
+    "descendants": "drained",
+    "output_size": 1145,
+    "stdout_sha256": "8fcc90035f327a457e5ef2e31ff7523c59ba13dcdba7e26845397fb1e432b187",
+    "stdout": "{\"author_snapshot_id\": \"zww548rfbn\", \"publication_sections\": [\"archive\", \"articles\", \"citations\", \"configClient\", \"customer\", \"dataset\", \"environment\", \"files\", \"fileViewer\", \"hostname\", \"idToken\", \"orcidDomain\", \"repository\", \"s3\", \"versions\"], \"section_archive\": {\"data\": [\"status\"], \"error\": null, \"loading\": false}, \"section_dataset\": {\"contributors\": 0, \"doi\": \"\", \"loading\": false, \"snapshot\": [\"id\", \"version\", \"name\", \"description\", \"doi\", \"publish_date\", \"last_modification_date\", \"is_confidential\", \"customer\", \"owner\", \"categories\", \"licence\", \"institutions\", \"funders\", \"organisational_unit_names\", \"contributors\", \"related_links\", \"custom_metadata\", \"is_metadata_only\"], \"status\": 200}, \"section_files\": {\"currentFile\": [], \"currentFolder\": [], \"filesLoading\": true, \"folders\": 0, \"foldersLoading\": true, \"list\": 0}, \"snapshot_keys\": [\"id\", \"version\", \"name\", \"description\", \"doi\", \"publish_date\", \"last_modification_date\", \"is_confidential\", \"customer\", \"owner\", \"categories\", \"licence\", \"institutions\", \"funders\", \"organisational_unit_names\", \"contributors\", \"related_links\", \"custom_metadata\", \"is_metadata_only\"], \"version\": 4}\n"
+  },
+  "article_methods": {
+    "id": "p3-f747-stijnen-archive-article-reference-body-design",
+    "owner": "node-e7d99d4bbb140f458a81403a6b1e5f48",
+    "generation": "650e7805bc028e725775da9a37749d5b376f57ffc871955fce328b2bb074a199",
+    "request_sha256": "75a32e41bae005ff6e647264b01dcde1c14116982ed228b3c6f51ff40928c362",
+    "exit_code": 1,
+    "descendants": "drained",
+    "output_size": 943,
+    "stdout_sha256": "99ddb43d524458b60654cc42084767747326ca2fd0a87a4a7907ed2e6e5eff5f",
+    "diagnostic": "urllib.error.HTTPError: HTTP Error 500:"
+  },
+  "procedure": {
+    "id": "p3-f747-stijnen-v4-reference-procedure-timing",
+    "owner": "node-4bf32eb7151785ee55ae5d40eac88d72",
+    "generation": "4d1e151bb50a26723e5f50fbd4a0257ea2324464d6fe938cfc0c238cc49cc11b",
+    "request_sha256": "e9a6821a04ce5e83ec951c54267a11a167332816be67acacfc9d47995e38bebd",
+    "exit_code": 0,
+    "descendants": "drained",
+    "output_size": 724,
+    "stdout_sha256": "3db6218154c51b5389baebf09d8043350acee81eddecb2268353fff00af5cbbc",
+    "stdout": "{\"pdf_sha256\": \"6caaa92ea6841e56acbca0f97c027afa9f484b991cd5128c45b53e45b1e1f2c2\", \"source_lines\": [\"Spirit level\", \"Step 1 Level the test      Use the spirit level to check the test stand is level, adjust\", \"Step 2 Level the               - Place the spirit level on the table such that the\", \"- Now place the spirit level perpendicular to its\", \"cable to make the plaJorm level.\", \"Step 3 Measure the         Give the table a small rota(on(<10 degrees), then start\", \"Step 5 Perform test        Give the plaJorm a small rota(on (<10 degrees), then\", \"Step 6 Transfer            Transfer the Video\\u2019s to the computer\", \"video\\u2019s\"], \"text_sha256\": \"99ef3e279d128d9bd29ffb3c690e9d175b16f3cc0de710cb78f01aa1900a2785\"}\n"
+  },
+  "archive_v4": {
+    "id": "p3-f747-stijnen-v4-public-archive-central-roster",
+    "owner": "node-e7d99d4bbb140f458a81403a6b1e5f48",
+    "generation": "cd23c8e56b2dd7e9afccff4228964a94ceb5d7d3cf009846e59b448cae7bd5c7",
+    "request_sha256": "27b4a0db3c3370c137c88f14fba854dc342acfcdcba4d82bde74ce14ae87d15a",
+    "exit_code": 0,
+    "descendants": "drained",
+    "output_size": 811,
+    "stdout_sha256": "78da5a93f4c61da3f3c33daddf29b8020634879f15f6125ab84e8f0557c2770a",
+    "stdout": "{\"archive_bytes\": 21961363, \"central_sha256\": \"94d6b0f3fc2d7f334faf855d6fca333d2d06d36af7fe4e071b559742dd745457\", \"declared_members\": 26, \"example_count\": 3, \"example_members\": [[\"Trifilar Pendulum - Mass Moment of Inertia Measure/Example data sets/platform_only_30fps.mp4\", 9605059, 9596946, \"bd2e34e9\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Example data sets/sample_data.mp4\", 2953137, 2939508, \"a45f4f74\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/calibration.json\", 119, 104, \"3e07ec97\"]], \"physical_files_opened\": 0, \"top_folders\": {\"Database readme.docx\": 1, \"Design files\": 8, \"Example data sets\": 2, \"MoI Testing Procedure.pdf\": 1, \"Software\": 12, \"Trifilar Pendulum User manual v1_3 .docx\": 1, \"Trifilar Pendulum assembly instructions v1_1.docx\": 1}, \"version\": 4}\n"
+  },
+  "version_comparison": {
+    "id": "p3-f747-stijnen-versioned-observation-member-comparison",
+    "owner": "node-e7d99d4bbb140f458a81403a6b1e5f48",
+    "generation": "a4e34abeb22b0b4daf2a02d54eddd1bf6f6ebac92a16d53b3425137c95c38e9d",
+    "request_sha256": "9d2dcc9ef5eacdba9c315fcb832478c76014259fa6c6436ced5581c0c90ad500",
+    "exit_code": 0,
+    "descendants": "drained",
+    "output_size": 7790,
+    "stdout_sha256": "7021eabafa240720c4d7f32ce6adf8472b3f28d66030d3cd02da974bdecae88d",
+    "stdout": "{\"archive_bytes\": 21961363, \"central_sha256\": \"94d6b0f3fc2d7f334faf855d6fca333d2d06d36af7fe4e071b559742dd745457\", \"declared_members\": 26, \"example_count\": 18, \"example_members\": [[\"Trifilar Pendulum - Mass Moment of Inertia Measure/MoI Testing Procedure.pdf\", 51084, 48886, \"fd2d8e1e\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Database readme.docx\", 12967, 10271, \"d6056da9\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Trifilar Pendulum User manual v1_3 .docx\", 3629724, 3274890, \"b1e9caef\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Trifilar Pendulum assembly instructions v1_1.docx\", 4454273, 4380028, \"df7e287a\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Example data sets/platform_only_30fps.mp4\", 9605059, 9596946, \"bd2e34e9\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Example data sets/sample_data.mp4\", 2953137, 2939508, \"a45f4f74\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/marker_N=4.png\", 1991, 1996, \"a861a482\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/MarkerTracker.py\", 8172, 2427, \"bfc546b8\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/track_marker_moi.py\", 4382, 1532, \"e891c385\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/calibration.json\", 119, 104, \"3e07ec97\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/toggle_switch.py\", 1641, 628, \"b8ad75cb\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/UCD_logo.png\", 5281, 5286, \"c1175080\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/marker_N=5.png\", 2746, 2751, \"82e9ed3d\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/MarkerPose.py\", 413, 215, \"4656a7e4\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/README.md\", 2164, 996, \"9c368825\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/functions_MoI_rig2.py\", 5705, 1850, \"1b07564e\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/Moi_calculation_automatic_v3.py\", 19927, 5160, \"3ef7d282\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/requirements.txt\", 82, 80, \"abb23b3e\"]], \"physical_files_opened\": 0, \"top_folders\": {\"Database readme.docx\": 1, \"Design files\": 8, \"Example data sets\": 2, \"MoI Testing Procedure.pdf\": 1, \"Software\": 12, \"Trifilar Pendulum User manual v1_3 .docx\": 1, \"Trifilar Pendulum assembly instructions v1_1.docx\": 1}, \"version\": \"4\"}\n{\"archive_bytes\": 26721065, \"central_sha256\": \"915440f13868f03e99fd79b3c45f05cab96951417fa2cb7115c0ac24a41e9896\", \"declared_members\": 31, \"example_count\": 19, \"example_members\": [[\"Trifilar Pendulum - Mass Moment of Inertia Measure/MoI Testing Procedure.pdf\", 51084, 48886, \"fd2d8e1e\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Database readme.docx\", 12967, 10271, \"d6056da9\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Trifilar Pendulum User manual v1_3 .docx\", 3629724, 3274890, \"b1e9caef\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Trifilar Pendulum assembly instructions v1_1.docx\", 4454273, 4380028, \"df7e287a\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Example data sets/platform_only_30fps.mp4\", 9605059, 9596946, \"bd2e34e9\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Example data sets/sample_data.mp4\", 2953137, 2939508, \"a45f4f74\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/requirements.txt\", 82, 80, \"abb23b3e\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/functions_MoI_rig2.py\", 5705, 1850, \"1b07564e\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/Moi_calculation_automatic.py\", 19929, 5162, \"860732da\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/Test_PyQt.py\", 1002, 464, \"c25391c6\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/toggle_switch.py\", 1641, 628, \"b8ad75cb\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/calibration.json\", 119, 104, \"3e07ec97\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/track_marker_moi.py\", 4382, 1532, \"e891c385\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/marker_N=5.png\", 2746, 2751, \"82e9ed3d\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/marker_N=4.png\", 1991, 1996, \"a861a482\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/sample_data.mp4\", 2953137, 2939508, \"a45f4f74\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/README.md\", 2164, 996, \"9c368825\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/MarkerTracker.py\", 8172, 2427, \"bfc546b8\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/MarkerPose.py\", 413, 215, \"4656a7e4\"]], \"physical_files_opened\": 0, \"top_folders\": {\"Database readme.docx\": 1, \"Design files\": 12, \"Example data sets\": 2, \"MoI Testing Procedure.pdf\": 1, \"Software\": 13, \"Trifilar Pendulum User manual v1_3 .docx\": 1, \"Trifilar Pendulum assembly instructions v1_1.docx\": 1}, \"version\": \"5\"}\n{\"archive_bytes\": 30510742, \"central_sha256\": \"9ce1583d80e29b14315f51c88ad9e170a302fba3bf36093af8cde7caecfbab49\", \"declared_members\": 33, \"example_count\": 21, \"example_members\": [[\"Trifilar Pendulum - Mass Moment of Inertia Measure/MoI Testing Procedure.pdf\", 51084, 48886, \"fd2d8e1e\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Database readme.docx\", 12967, 10271, \"d6056da9\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Trifilar Pendulum User manual v1_3 .docx\", 3629724, 3274890, \"b1e9caef\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Trifilar Pendulum assembly instructions v1_1.docx\", 4454273, 4380028, \"df7e287a\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Example data sets/platform_only_30fps.mp4\", 9605059, 9596946, \"bd2e34e9\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Example data sets/sample_data.mp4\", 2953137, 2939508, \"a45f4f74\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/requirements.txt\", 82, 80, \"abb23b3e\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/functions_MoI_rig2.py\", 5705, 1850, \"1b07564e\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/Moi_calculation_automatic.py\", 19929, 5162, \"860732da\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/Test_PyQt.py\", 1002, 464, \"c25391c6\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/toggle_switch.py\", 1641, 628, \"b8ad75cb\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/calibration.json\", 119, 104, \"3e07ec97\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/track_marker_moi.py\", 4382, 1532, \"e891c385\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/marker_N=5.png\", 2746, 2751, \"82e9ed3d\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/marker_N=4.png\", 1991, 1996, \"a861a482\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/sample_data.mp4\", 2953137, 2939508, \"a45f4f74\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/MarkerTracker.py\", 8172, 2427, \"bfc546b8\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/MarkerPose.py\", 413, 215, \"4656a7e4\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/self_test.py\", 3311, 1317, \"e747b0d0\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/README.md\", 3483, 1536, \"fe4c6cfe\"], [\"Trifilar Pendulum - Mass Moment of Inertia Measure/Software/self_test_video.mp4\", 3834033, 3787334, \"ad9ddedd\"]], \"physical_files_opened\": 0, \"top_folders\": {\"Database readme.docx\": 1, \"Design files\": 12, \"Example data sets\": 2, \"MoI Testing Procedure.pdf\": 1, \"Software\": 15, \"Trifilar Pendulum User manual v1_3 .docx\": 1, \"Trifilar Pendulum assembly instructions v1_1.docx\": 1}, \"version\": \"6\"}\n"
+  },
+  "software_inspection": {
+    "id": "p3-f747-stijnen-v4-example-reference-provenance-source",
+    "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+    "generation": "833336957c0657850c2db85facc4c80975f32ed60bcea75b2be0acc19be60e85",
+    "request_sha256": "c928ad3ef878e4abd098576383d42cc8f3ff5bfcaa6e1d79b08d942814e03c72",
+    "exit_code": 1,
+    "descendants": "drained",
+    "output_size": 2623,
+    "stdout_sha256": "fff383e9f7936278b2429358b7c62303dd9a505d91628cdefad8a1605a14baa2",
+    "diagnostic": "urllib.error.URLError: <urlopen error [Errno -3] Temporary failure in name resolution>"
+  },
+  "independent_archive_reader": {
+    "id": "p3-f747-stijnen-stdlib-directory-and-checkpointed-source-lineage",
+    "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+    "generation": "05740e2bb1eef81aa2d8183c0eeb4032885efe4c13d19e024e1bc4abe99a7f4c",
+    "request_sha256": "22c7efc1cbad023e487f9f295c880ec147ec0307f65a3fc6e28d6392d1f00c54",
+    "exit_code": 1,
+    "descendants": "drained",
+    "output_size": 2623,
+    "stdout_sha256": "fff383e9f7936278b2429358b7c62303dd9a505d91628cdefad8a1605a14baa2",
+    "diagnostic": "urllib.error.URLError: <urlopen error [Errno -3] Temporary failure in name resolution>"
+  }
+}

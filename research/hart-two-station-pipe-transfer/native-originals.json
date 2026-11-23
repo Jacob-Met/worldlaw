@@ -1,0 +1,331 @@
+{
+  "dataset": "10.15131/shef.data.14135591.v2",
+  "volume_freeze": "af7a6b90e102b90a6d131f3a5e2ed9fd21ba5498",
+  "signed_time_freeze": "fa49e0e3eb897a77c493799b7de04c5e90d0cc18",
+  "source_only_registry_commit": "9da25e024a20a0c034ef346ae5c7da284d787fd0",
+  "physical_time_register": 187232,
+  "bank_lock": 187259,
+  "source_archive_pins": [
+    [
+      "1f98db0d20b03db1965478204faadd47cc95fd249d1c324763c188a464fbd416",
+      "forecasts.npz"
+    ],
+    [
+      "a79720e2331057c1f622e4c1e43f3e6b9d88ff91aebd2f68482285fd620fc033",
+      "inputs-and-parameters.json"
+    ]
+  ],
+  "score_pins": [
+    [
+      "7a833fc388472f92681ad910ae36a6d4f2264f03ff4b750ae1ec3c1f21cf707b",
+      "scored.json"
+    ],
+    [
+      "c5d110cb9193f39354e06046b2b82253779d2187910615b12c4e093e89834e25",
+      "full-worst.npz"
+    ]
+  ],
+  "calibration_pins": [
+    [
+      "31b80631f8e3653306c055f02a49225caa3d27df225f31b52a8ca415a8631907",
+      "train-1.json"
+    ],
+    [
+      "0edafe74b649cf4484c6d31167a41359a2eb5aa6e6a6271e120877cc86842955",
+      "train-2.json"
+    ],
+    [
+      "709c5c561ee62e574d3595d26f0cdffc997a280d6a97c21b84fa00cea9e8530f",
+      "train-4.json"
+    ]
+  ],
+  "originals": [
+    {
+      "id": "p2-f747-hart-seven-pipe-detectors-source-roster-no-series",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "generation": "79e3ad6e1dee7fbeff23809cea805ae162f01fc486076f2987e094865b770597",
+      "request_sha": "4029c1fb857aeab7bb554e2af7324dced09e246df2a9f51de7b9a72cb395e11d",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T07:57:04.783963232Z",
+      "finished": "2026-11-23T07:57:05.320689289Z",
+      "stdout_bytes": 1868,
+      "stdout_sha256": "ea3aced062c679aad32a601976af019cdfe488c4b9967769bbca36ba1e515814"
+    },
+    {
+      "id": "p2-f747-hart-authentic-readme-run-index-and-detector-headers",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "generation": "d70bbe8ea00dcbce1595c918e6bd1d8c8e4c98aab56f447650969054a207ab6f",
+      "request_sha": "e3391c74d3a78ad879fff38d46b706761a2281d0c3542baac7cb5daf4653d477",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T07:59:04.580126318Z",
+      "finished": "2026-11-23T07:59:09.012364148Z",
+      "stdout_bytes": 15854,
+      "stdout_sha256": "3577cd94989e5e012bfbc4cb1a5a2702e88c3543db8754846248107dd79bfffb"
+    },
+    {
+      "id": "p2-f747-hart-input-only-322-run-condition-and-station-roster",
+      "owner": "node-d594b178fe479ad35c52baaace3bbd40",
+      "generation": "a80b0d5166d2b9f3c0b8ea39fc482fe60ca8b402ecf29f6a64903c4c0ef8204f",
+      "request_sha": "c8594cc27c95df2efcfef602974a8c45f70c0f93b4368cca186f6f2033049594",
+      "exit": 1,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:01:12.971150063Z",
+      "finished": "2026-11-23T08:01:14.88420035Z",
+      "stdout_bytes": 476,
+      "stdout_sha256": "b3557cef1a40d08b9649bebd445baa3412164e4149f074305050928eaf09ad78"
+    },
+    {
+      "id": "p2-f747-hart-source-labels-test-run-prefix-322-index",
+      "owner": "node-d594b178fe479ad35c52baaace3bbd40",
+      "generation": "14ba063229f7d1a59845545f1536bb0b74165ae0ff987c4be8f6c93a3e99945b",
+      "request_sha": "8dd5cbfb2f99efa30c79257a0f9761a3b01ffc2b81cff99d225fccf702f3359c",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:07:22.915298909Z",
+      "finished": "2026-11-23T08:07:26.41924134Z",
+      "stdout_bytes": 3618,
+      "stdout_sha256": "f23ebcdb07e65aa90f33b2c67e1cd47f3d02aee7cfd437e7748fba539d171b65"
+    },
+    {
+      "id": "p2-f747-hart-215-calibration-50-prospective-profile-lock",
+      "owner": "node-4bf32eb7151785ee55ae5d40eac88d72",
+      "generation": "2bbc957969ca2a04f2ea8d3910abb25adef8003bfdfd096b578dd88431b785df",
+      "request_sha": "9f62d730ca2914000aca0be85f6c6417fb29670ed629c159bf0d3ec0cfd72d62",
+      "exit": 1,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:14:08.836181027Z",
+      "finished": "2026-11-23T08:14:17.788510681Z",
+      "stdout_bytes": 881,
+      "stdout_sha256": "ecc97b21a2d300cd77e8803df665cc7393c363b58e5d024b96dff0a37d7c6e50"
+    },
+    {
+      "id": "p2-f747-hart-all-265-source-flow-clock-invalidity-recount",
+      "owner": "node-97c6d409c2cbae394d3688f835c7bef8",
+      "generation": "e37f60f18c6826bcc5a28d4791afa46db177cc868074cbdde402e7826bfb5d9e",
+      "request_sha": "6b5fff54a1d1fe3c04a3758c2302057d88512f705a0a5c5423320484089fabdb",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:16:03.834217015Z",
+      "finished": "2026-11-23T08:16:13.315929312Z",
+      "stdout_bytes": 2443,
+      "stdout_sha256": "dba9faaadb54c21b2eccd5add5b66d9eb62e4f9f2bc6e6f27d763c4d921b9b84"
+    },
+    {
+      "id": "p2-f747-hart-source-clock-excursion-and-actuator-law-identities",
+      "owner": "node-10327a6eec1b92f134b328e043c6e28c",
+      "generation": "e04dc34cd371631b86f28457925541725bf6cd2302e096fed426d2f636805ca1",
+      "request_sha": "eccf66f41354fde46fa2b560e4e80fcb29109677153642a60745de2ac660d0ce",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:18:56.001804812Z",
+      "finished": "2026-11-23T08:19:07.566580484Z",
+      "stdout_bytes": 1928,
+      "stdout_sha256": "c25187c9cdf140d302964db58072e8155fde15e21552266993712486b625cdfc"
+    },
+    {
+      "id": "p2-f747-hart-hydraulic-clusters-and-injection-relative-reversals",
+      "owner": "node-18e8f0af63153c48a7b4df95850dca06",
+      "generation": "ab9dfeb7584a472339b99ff8186406704ea9fbb97daed057cc577346ad6530fe",
+      "request_sha": "749d136fd96f31a353ef9e3cccabdf58cd369d2887f92e7c1145c32361fbc7ae",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:21:17.605220548Z",
+      "finished": "2026-11-23T08:21:27.114339558Z",
+      "stdout_bytes": 2279,
+      "stdout_sha256": "5b366dd43cec4e36688b65c94857bb8389e0109031aac4a8f81137192fa44b19"
+    },
+    {
+      "id": "p2-f747-hart-signed-time-complete-calibration-program-1",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "generation": "26fb67d8a75050e523b82d79ecdcc84509f88e68dbe07a5c0cf16fdb1dc04c11",
+      "request_sha": "93975ba60d93c8924e2f755c54b0de96a65b0b06d6570c7c384d512f81ec848f",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:28:33.268115024Z",
+      "finished": "2026-11-23T08:28:44.725629131Z",
+      "stdout_bytes": 124,
+      "stdout_sha256": "1d97dfbcb39227af3ac292834375d9c4630459dc56cbf9d2e793ec7be4786e01"
+    },
+    {
+      "id": "p2-f747-hart-signed-time-complete-calibration-program-2",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "generation": "87e9e2faba407da7652ea42cbd6415424e5680428ea87fec942781b6a69f4d90",
+      "request_sha": "82f74db928a98a910cc00a81bed6242c8b1d4ecc427dc031540adacbafd749ce",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:28:33.364173537Z",
+      "finished": "2026-11-23T08:28:45.398025407Z",
+      "stdout_bytes": 124,
+      "stdout_sha256": "dc774d9ff46906de40dc3d5665547b8d3340831cc3381a04fc279446a107adff"
+    },
+    {
+      "id": "p2-f747-hart-signed-time-complete-calibration-program-4",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "generation": "7a1e39d1bc28d7150c381e440d567654b2ef7fb68bf51b31c004eb15ec724ad5",
+      "request_sha": "8d1b035ee06a54c4c322a4b177b28dc3a2a48f8efd81a767274661da22809e9e",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:28:33.230454568Z",
+      "finished": "2026-11-23T08:28:47.174662095Z",
+      "stdout_bytes": 124,
+      "stdout_sha256": "8899d269b99368f6d93f715ef8cc12e19193ea0e1d5c11334409df42cafc2319"
+    },
+    {
+      "id": "p2-f747-hart-time-215-true-calibrations-and-fine-50-input-lock",
+      "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+      "generation": "7763d2274c27f0cf60bfead1b5ca1d6e19be284864b4ade4561a295e28c3b910",
+      "request_sha": "f44c2ef628a35142bbc18cfe83ada75285944204dfe6baad2eafe90681f5f024",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:30:58.704406172Z",
+      "finished": "2026-11-23T08:31:16.650589178Z",
+      "stdout_bytes": 367,
+      "stdout_sha256": "4ec3a0e82393c38b7ceb5c7fce6920ad3facc00874ad86d3d668bc116a8d1f9e"
+    },
+    {
+      "id": "p2-f747-hart-time-all-150-held-destinations-receipt",
+      "owner": "node-e7d99d4bbb140f458a81403a6b1e5f48",
+      "generation": "146a0d00f504e5f732e2eb0496dd7ac6f03e000036a26075b2c691e8a3ab0dc1",
+      "request_sha": "0eeeacfd7e50a13f534ad668ee60c1d5a43bd5b527c48814baf4b3accd319381",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:33:01.252754011Z",
+      "finished": "2026-11-23T08:33:13.150548999Z",
+      "stdout_bytes": 1663,
+      "stdout_sha256": "a5727d2860ed99c83df1bc21a2685792ef7cb9f6ace63a9efcda2d9b9f679513"
+    },
+    {
+      "id": "p2-f747-hart-independent-150-raw-dt-and-first-moment-recount",
+      "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+      "generation": "dd7e0dca26f5129612f7978dc1ba421483bd9c44bc857fd05015ec7fc5e32315",
+      "request_sha": "657b7f9e0d518f0a8986f1eb56c3da56a10491f57ce3c674ab20191cd0152544",
+      "exit": 0,
+      "descendant_state": "drained",
+      "started": "2026-11-23T08:35:08.957721286Z",
+      "finished": "2026-11-23T08:35:18.08977604Z",
+      "stdout_bytes": 211226,
+      "stdout_sha256": "f40651015aa1a7cd941d09fc279c1e3f4dfba9996e73febfb5fdbdb4d0af69c9"
+    }
+  ],
+  "independent_output": {
+    "curves": 150,
+    "distinct_hydraulic_histories": 15,
+    "forecast_samples": 9640050,
+    "gates": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "maximum_metric_difference": 5.684341886080802e-14,
+    "metrics": [
+      [
+        0.30866447065444536,
+        0.27285469091281367,
+        0.34593557548901976,
+        0.23279733332125044,
+        0.2622608769218345,
+        0.7907545893370669,
+        0.31434152169964147
+      ],
+      [
+        0.45508776002582013,
+        0.35109509857448856,
+        1.2906712966683878,
+        0.32143851462255113,
+        0.3316023590269399,
+        1.6754489719242769,
+        0.4623734307186704
+      ],
+      [
+        0.38401577258126685,
+        0.30704392207188935,
+        0.5303860656657118,
+        0.25708882774635544,
+        0.30411742278633447,
+        1.2469196305152794,
+        0.42920544204801725
+      ],
+      [
+        0.4856763745661835,
+        0.4315301411781591,
+        0.4837679978998448,
+        0.27112429997400533,
+        0.4289515222907251,
+        0.9590231121679194,
+        0.48972174785173817
+      ]
+    ],
+    "runs": 50,
+    "worst": [
+      9,
+      13.06,
+      0.6942509688059147,
+      8701
+    ]
+  },
+  "worst_first_moments_in_order_truth_seven_arms_donor1_donor2": [
+    {
+      "mass_ppb_s": 26.533194460000043,
+      "centroid_s": 216.46932764604628,
+      "peak_ppb": 34.95,
+      "peak_at_s": 216.33
+    },
+    {
+      "mass_ppb_s": 26.2423552416438,
+      "centroid_s": 216.2667894761279,
+      "peak_ppb": 33.26025910474944,
+      "peak_at_s": 216.13
+    },
+    {
+      "mass_ppb_s": 25.52972292887112,
+      "centroid_s": 216.30046757017956,
+      "peak_ppb": 32.43869664986228,
+      "peak_at_s": 216.13
+    },
+    {
+      "mass_ppb_s": 26.260589435937387,
+      "centroid_s": 216.46789486285516,
+      "peak_ppb": 32.46768414157192,
+      "peak_at_s": 216.33
+    },
+    {
+      "mass_ppb_s": 25.465089080762986,
+      "centroid_s": 216.60861006681392,
+      "peak_ppb": 30.153466439335272,
+      "peak_at_s": 216.43
+    },
+    {
+      "mass_ppb_s": 25.355111099011573,
+      "centroid_s": 216.31740535345156,
+      "peak_ppb": 21.229433680581444,
+      "peak_at_s": 216.43
+    },
+    {
+      "mass_ppb_s": 24.89509839640086,
+      "centroid_s": 222.40754978363432,
+      "peak_ppb": 22.05852800005443,
+      "peak_at_s": 216.37
+    },
+    {
+      "mass_ppb_s": 25.37047106061168,
+      "centroid_s": 216.2750600100329,
+      "peak_ppb": 27.17332117959372,
+      "peak_at_s": 215.8
+    },
+    {
+      "mass_ppb_s": 47.31017980000023,
+      "centroid_s": 211.36840111328428,
+      "peak_ppb": 76.738,
+      "peak_at_s": 211.17
+    },
+    {
+      "mass_ppb_s": 26.265282349999765,
+      "centroid_s": 212.7153896527406,
+      "peak_ppb": 46.566,
+      "peak_at_s": 212.57
+    }
+  ]
+}
