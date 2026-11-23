@@ -16,6 +16,14 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/reiter-potentiometric-step-forecast/README.md",
+    "research/reiter-potentiometric-step-forecast/baselines.py",
+    "research/reiter-potentiometric-step-forecast/extract.py",
+    "research/reiter-potentiometric-step-forecast/finite_horizon.py",
+    "research/reiter-potentiometric-step-forecast/independent.py",
+    "research/reiter-potentiometric-step-forecast/modal_forecast.py",
+    "research/reiter-potentiometric-step-forecast/observed.json",
+    "research/reiter-potentiometric-step-forecast/replay.py",
     "research/rasscal-gas-storage/README.md",
     "research/rasscal-gas-storage/modern-heos-original.jsonl",
     "research/rasscal-gas-storage/modern_heos_original.py",
