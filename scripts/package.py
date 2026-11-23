@@ -16,6 +16,13 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "experiments/noisy-field-interventions/protocol.json",
+    "scripts/noisy-field-course.mjs",
+    "scripts/replay-noisy-field-course.mjs",
+    "src/trajectory/field-law-dictionary.mjs",
+    "src/trajectory/noisy-field-intervention.mjs",
+    "tests/noisy-field-intervention.test.mjs",
+    "tests/continuous-forecast-diameter-course.mjs",
     "research/nakagawa-harmonic-transfer/README.md",
     "research/nakagawa-harmonic-transfer/bank.json",
     "research/nakagawa-harmonic-transfer/harmonic.py",
