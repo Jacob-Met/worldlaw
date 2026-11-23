@@ -1,0 +1,685 @@
+{
+  "decomposition_max_error": 5.684341886080802e-14,
+  "literal_21x30": {
+    "max_abs": 1.0008276567566838,
+    "n": 4144,
+    "rmse": 0.09214026006957396,
+    "worst": {
+      "index": 2457,
+      "predicted": 11.799857656756684,
+      "record": [
+        2.457,
+        7.618790000000001,
+        10.79903,
+        -3.18024
+      ]
+    }
+  },
+  "single_21": {
+    "max_abs": 60.46354428571428,
+    "n": 4144,
+    "rmse": 9.823973555049191,
+    "worst": {
+      "index": 1515,
+      "predicted": 108.81078571428571,
+      "record": [
+        1.515,
+        110.09146999999999,
+        169.27433,
+        -59.18286
+      ]
+    }
+  },
+  "source_piv_labels": {
+    "IMF-211": [
+      [
+        5,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        6,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-212": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-213": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-214": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-215": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-221": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ],
+      [
+        50,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        6,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        8,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        10,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        12,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        14,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        16,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        18,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        20,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        22,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        24,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        26,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        28,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        30,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        33,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        35,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        37,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        39,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        41,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        43,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        45,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        47,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        49,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        51,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        53,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        55,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        57,
+        "flow height h (cm)"
+      ],
+      [
+        50,
+        59,
+        "flow height h (cm)"
+      ],
+      [
+        51,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-222": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ],
+      [
+        47,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        6,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        8,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        10,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        12,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        14,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        16,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        18,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        20,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        22,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        24,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        26,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        28,
+        "flow height h (cm)"
+      ],
+      [
+        47,
+        30,
+        "flow height h (cm)"
+      ],
+      [
+        48,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-223": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ],
+      [
+        45,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        6,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        8,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        10,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        12,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        14,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        16,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        18,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        20,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        22,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        24,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        26,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        28,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        30,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        32,
+        "flow height h (cm)"
+      ],
+      [
+        46,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-224": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ],
+      [
+        44,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        6,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        8,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        10,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        12,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        14,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        16,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        18,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        20,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        22,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        24,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        26,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        28,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        30,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        32,
+        "flow height h (cm)"
+      ],
+      [
+        44,
+        34,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-225": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ],
+      [
+        45,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        6,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        8,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        10,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        12,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        14,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        16,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        18,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        20,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        22,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        24,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        26,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        28,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        30,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        32,
+        "flow height h (cm)"
+      ],
+      [
+        45,
+        34,
+        "flow height h (cm)"
+      ],
+      [
+        46,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-231": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-232": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-233": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-234": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ],
+    "IMF-235": [
+      [
+        3,
+        4,
+        "flow height h (cm)"
+      ],
+      [
+        4,
+        1,
+        "us - slip velocity (m/s); \nhbot - center height of the bottom subset (cm);\nut - top velocity (m/s);\n"
+      ]
+    ]
+  }
+}
