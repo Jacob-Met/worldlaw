@@ -1,0 +1,98 @@
+{
+  "study": "GW170817 physical detector transfer, archival source-screen and conditional prediction.",
+  "optical": "Coulter et al. 2017 Science doi:10.1126/science.aap9811. J2000 RA 13:09:48.085 dec −23:22:53.343. The source was imaged 10.9 h after a network-guided targeted search. Coordinate measurement is astrometric; selection and trigger time use network information. Counts and strain from H1 and all network posteriors excluded before lock.",
+  "catalog": {
+    "event_catalog_sha256": "e3df90f043439f57a4c3d6e902df0c0e2b4910e113fdf5081e0b6d5c00aab28b",
+    "selected": [
+      {
+        "detector": "H1",
+        "GPSstart": 1187006834,
+        "sampling_rate": 4096,
+        "duration": 4096,
+        "format": "hdf5",
+        "url": "https://gwosc.org/eventapi/json/O1_O2-Preliminary/GW170817/v1/H-H1_LOSC_C00_4_V1-1187006834-4096.hdf5"
+      },
+      {
+        "detector": "L1",
+        "GPSstart": 1187006834,
+        "sampling_rate": 4096,
+        "duration": 4096,
+        "format": "hdf5",
+        "url": "https://gwosc.org/eventapi/json/O1_O2-Preliminary/GW170817/v1/L-L1_LOSC_C00_4_V1-1187006834-4096.hdf5"
+      },
+      {
+        "detector": "V1",
+        "GPSstart": 1187006834,
+        "sampling_rate": 4096,
+        "duration": 4096,
+        "format": "hdf5",
+        "url": "https://gwosc.org/eventapi/json/O1_O2-Preliminary/GW170817/v1/V-V1_LOSC_C00_4_V1-1187006834-4096.hdf5"
+      }
+    ],
+    "scientific_strain_reads": 0,
+    "posterior_reads": 0
+  },
+  "lap": "Only pre-noise-subtraction v1 C00 calibrated 4096 Hz L1 and V1 allowed. The LIGO-T1700406 summary of the cleaned v2 counterpart did not establish every upstream detector dependency. The cleaned catalog remained metadata-only. H1, its PSD and all posterior samples are closed. Fixed L1-only notch below. The v1 calibration and trigger provide an archival conditional observation.",
+  "geometry": {
+    "RA_DEC": [
+      3.446158789437238,
+      -0.40808388271125595
+    ],
+    "condition": 7.592352834961945,
+    "detectors": {
+      "H1": {
+        "arrival_s": 0.018794305017042247,
+        "cross": -0.8855668455224228,
+        "geo_m": [
+          -2161414.92636,
+          -3834695.17889,
+          4600350.22664
+        ],
+        "plus": 0.07927756232061514
+      },
+      "L1": {
+        "arrival_s": 0.01550087957383439,
+        "cross": 0.7391036549900689,
+        "geo_m": [
+          -74276.0447238,
+          -5496283.71971,
+          3224257.01744
+        ],
+        "plus": 0.13150226105895968
+      },
+      "V1": {
+        "arrival_s": -0.006390531979024529,
+        "cross": -0.2578623984006164,
+        "geo_m": [
+          4546374.099,
+          842989.697626,
+          4378576.96241
+        ],
+        "plus": -0.16077163889473628
+      }
+    },
+    "gmst_rad": 40566.97325177815,
+    "max_forward_error": 1.1102230246251565e-16,
+    "pinned_GPS": "1187008882.43",
+    "singular": [
+      0.8029464461897775,
+      0.10575726176637866
+    ],
+    "strain_reads": 0,
+    "version": "7.26.1",
+    "weights": [
+      -1.9173538276312823,
+      -2.0613954562046217
+    ]
+  },
+  "source_screen": {
+    "interval": "Public event GPS1187008882.43 is a network time, uncertain to tens of ms; source L1 recovers peak over ±50 ms around that public time. V arrival = L fit + LAL[delay(V)−delay(L)]. Final V score uses ±1 ms around that predicted time; also report true center. Each 64-s FFT uses 56s before floor(center),8 after. Center clean data. Use a fixed 1-second cosine edge taper. 35–100 Hz band, reject 59–61 Hz. Low-frequency chirp segment precedes the L1 transient, and the local inverse Tukey masks it; do not describe the entire FFT as disjoint from the glitch. Revised final input: apply the official local inverse Tukey mask at t=1187008881.389 GPS: zero for |delta|<=.1s and half-cosine ramp over .5s, unity beyond .6s. Multiply both detector data AND both real quadrature templates by the same native window before Fourier band selection and use the 2x2 windowed quadrature Gram. V1 gets only the universal one-second edge taper. The complete L1 64s window contains the original transient. No H1 data enters the notch. For a passing source gate, the prospective H prediction and scoring focus on the 35–100 Hz inspiral during GPS [1187008826.43,1187008879.43] (−56 to −3s), before the L1 notch. Preserve all source data and hard timing bounds.",
+    "psd": "Separate source-only median Welch PSD per detector. First 600 seconds of that detector file, 8s periodic Hann windows, 50% overlap, no detrend. Interpolate PSD linearly onto 1/64-Hz grid. No off-source strain used from H1.",
+    "waveform": "LALSuite7.26.1 SimInspiralChooseFDWaveform TaylorF2 equal component masses, zero spins, face-on, 1 Mpc, fmin35/fmax100/df1/64. Intrinsic chirp-mass source bank 1.10..1.30 solar masses in .001 increments. Refine around best source point ±.001 by .0001. Select using L1 only; complex magnitude maximizes over arbitrary phase, arrival coarse 1/512s and fine around selected time ±3ms at1/4096s. No alternative waveform after seeing V. This targeted test does not prove waveform completeness. The time shift and plus/quadrature data weighting are evaluated exactly for each L or V hypothesis. Use an off-event pure synthetic injection control before any measured source strain is admitted.",
+    "calibration": "Official calibrated dimensionless strain, LAL nominal clocks. Predicted onsite threshold checked before any target access; retain ±1ms receiver window and fixed off-event controls in full. Detector scale/phase uncertainty cannot be learned from H1. Independent antenna math against official LAL and analytic unit polarizations; report frequency-dependent noise transfer separately. An unsupported V1 source mode forbids physical promotion, not all models.",
+    "background": "18 nonoverlapping 64s source-only V1 windows with nominal centers fileStart+680+64j, j=0..17. Freeze L1-selected mass and relative fractional second; test the same V window and statistic. No network p-value or population estimate from 18 controls.",
+    "gate": "Require source L1 matched-filter SNR >=8 and V1 >=5, with V1 score exceeding all 18 registered off-event maxima. If any fails, close source screen and leave all H data sealed. Low SNR means this finite waveform/timing detector did not establish independent source support; arbitrary polarization remains geometrically identifiable in the ideal noiseless problem. Record all template/search costs.",
+    "same_input": "Source-only baselines for noise amplification: L-only minimum-norm projection, V-only projection, unique geometry-exact L/V transfer; report coefficient norm and source PSD weighted transfer. If source gate passes, freeze all H predictions before H data including reference noise. Physical downstream controls predeclared: zero, L-only and V-only projections, nominal unconstrained and circular ± handedness with source PSD weights; H trace whole outputs and source-informed chirp band. No H read under a failed screen."
+  },
+  "targets_opened": 0
+}
