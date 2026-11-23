@@ -1,6 +1,6 @@
 import {fitLinearColumns} from './linear-fit.mjs';
-import {prepareStateTrajectory,forecastStateTrajectory,requireState,meanSquare} from './state-trajectory.mjs';
-import {trajectoryOperatorGrammar,stateOperatorEquations,spatialSmooth} from './trajectory-operator-equations.mjs';
+import {prepareStateTrajectory,validateStateTrajectory,forecastStateTrajectory,requireState,meanSquare} from './state-trajectory.mjs';
+import {trajectoryOperatorGrammar,stateOperatorEquations} from './trajectory-operator-equations.mjs';
 import {designEvolutionExcitation} from './operator-rollout.mjs';
 export {trajectoryOperatorGrammar,stateOperatorEquations} from './trajectory-operator-equations.mjs';
 
@@ -75,9 +75,12 @@ export function discoverTrajectoryEvolution(training,selection,options={}) {
   requireState(Array.isArray(ridges)&&ridges.length>=1&&ridges.length<=4&&ridges.every(x=>Number.isFinite(x)&&x>0&&x<=1),'Invalid ridge menu');
   requireState([adequacyNoiseMultiplier,adequacySignalFraction].every(x=>Number.isFinite(x)&&x>=0),'Invalid residual screen');
   const all=[...training,...selection];requireState(new Set(all.map(r=>r.id)).size===all.length,'Fitting and selection recordings must be disjoint');
+  const candidateBudget=estimator==='beam'?1+beam*maxTerms:thresholds.length*ridges.length;
+  const forecastCells=selection.reduce((s,run)=>{const p=validateStateTrajectory(run);return s+Math.max(0,p.length-smoothingPoints)*p.n*8;},0)*candidateBudget;
+  requireState(forecastCells<=20000000,'Aggregate selection forecast work budget exceeded');
   const trees=trajectoryOperatorGrammar(training[0]?.kind,options.grammar),eq=stateOperatorEquations(training,trees,options);
   const fits=estimator==='beam'?sparseBeam(eq,maxTerms,beam):thresholdFits(eq,maxTerms,thresholds,ridges);
-  const prepared=selection.map(r=>spatialSmooth(prepareStateTrajectory(r,smoothingPoints))),ranked=[];
+  const prepared=selection.map(r=>prepareStateTrajectory(r,smoothingPoints)),ranked=[];
   for(const fit of fits) {
     const model={schema:'worldlaw.symbolic-evolution/v1',kind:eq.kind,terms:fit.ids.map((id,j)=>({tree:trees[id],weight:fit.weights[j]}))};
     let squared=0,signal=0,count=0,noise=0,diverged=false;

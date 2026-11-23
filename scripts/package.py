@@ -16,6 +16,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "tests/fixtures/continuous-forecast-diameter-protocol.json",
     "research/nakagawa-harmonic-transfer/README.md",
     "research/nakagawa-harmonic-transfer/bank.json",
     "research/nakagawa-harmonic-transfer/harmonic.py",

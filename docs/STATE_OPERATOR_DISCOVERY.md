@@ -12,7 +12,7 @@ A declared, response-independent grammar contains polynomial products through de
 
 The weak estimator multiplies state trajectories by compact polynomial test functions. Integration by parts replaces observed time derivatives with derivatives of the known test functions. For periodic conservative fluxes, exact adjoints of the central-difference stencils act on spatial test weights. The implemented discrete identity holds for arbitrary sampled arrays. It does not equate a finite difference of a nonlinear flux with a pointwise product through a continuum chain rule.
 
-A common local cubic denoiser and periodic five-point spatial filter are used by both weak and derivative comparators. The primary sparse beam search and sequential-thresholded least squares use normalized, rank-aware QR fitting. The comparator also considers the conventional nested polynomial library, choosing on the same separate selection recording. Nonlinear feature bias from noisy regressors remains possible; overlapping windows are not independent likelihood samples.
+A common local cubic temporal denoiser is used by both weak and derivative comparators. For periodic fields, the same five-point linear observation filter is applied to the target and each complete right-hand-side feature, including command features. Nonlinear features are evaluated before that filter: H(f(u)), not f(H(u)). Selection and public forecasting use the same prefix initialization, without spatial smoothing. The primary sparse beam search and sequential-thresholded least squares use normalized, rank-aware QR fitting. The comparator also considers the conventional nested polynomial library, choosing on the same separate selection recording. Nonlinear feature bias from temporal denoising and noisy regressors remains possible; overlapping windows are not independent likelihood samples.
 
 Returned models have `structuralIdentification: false`. A `predictive_candidate` passes a declared heuristic selection-residual screen: three estimated noise standard deviations plus three percent of signal RMS. This is not calibrated uncertainty, a unique equation certificate, or guaranteed out-of-grammar rejection. The complete benchmark reports the false predictive acceptances of this screen rather than treating the absence of a structural claim as a scientific success.
 
@@ -21,7 +21,7 @@ The optional experiment menu uses the existing observable-class rollout planner,
 ## Verification and the frozen comparison
 
 ```sh
-node --test tests/state-operator.test.mjs tests/state-operator-http.test.mjs
+node --test tests/state-operator*.test.mjs
 NULLGARDEN_SOURCE=/path/to/nullgarden node scripts/receive-state-operator-course.mjs
 ```
 
@@ -32,5 +32,7 @@ The comparison crosses weak beam search, weak STLSQ and denoised derivative STLS
 Every method is scored on a different complete recording, initialized only by its observed prefix. The loss is state-vector relative L2 error against clean simulation reference, with a 1e-4 RMS denominator floor and a fixed cap/failure penalty of 10. Divergences and fitting failures remain in the attempted-run denominator. Time-permuted controls and four independently simulated omitted mechanisms are reported separately. The full course has 576 result rows: 360 genuine-law comparisons, 180 time-permutation controls and 36 omitted-mechanism comparisons. Two independent CPU shards each retain 288 rows.
 
 Each artifact includes raw noisy observations, separate clean reference states, discovered models, free predictions, full failures and a summary. A completed integrity check means the registered course ran; it does not mean active acquisition beat random, the learned grammar was correct, or false acceptances vanished. Those outcomes must be read from the measured table.
+
+Independent source review invalidated the first implementation at be964770 before any evaluation scores were used for tuning or promotion. It found inconsistent spatial observation operators, mismatched initialization between selection and public forecasts, and an epoch-scaled time check. Six separately authored counterexamples now guard those failures and masked undefined AST intermediates. Numerical results from that implementation are unqualified; the corrected source must complete its own frozen course. The source-distribution repair also includes the existing continuous-forecast-diameter protocol fixture without widening the release policy.
 
 Method background: [Brunton, Proctor and Kutz (2016), sparse identification of nonlinear dynamics](https://doi.org/10.1073/pnas.1517384113), and [Messenger and Bortz (2021), Weak SINDy for partial differential equations](https://doi.org/10.1016/j.jcp.2021.110525). This implementation is a bounded product extension informed by those methods, not a reproduction of every algorithm or benchmark in either paper.

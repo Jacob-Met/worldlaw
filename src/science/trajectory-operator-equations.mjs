@@ -1,4 +1,4 @@
-import {compileStateTree,prepareStateTrajectory,requireState} from './state-trajectory.mjs';
+import {compileStateTree,prepareStateTrajectory,validateStateTrajectory,requireState} from './state-trajectory.mjs';
 
 // Response-independent, bounded compositional grammar shared by all estimators.
 export function trajectoryOperatorGrammar(kind,{degree=3,unary=['sin','cos','tanh','abs'],rational=true,flux=true}={}) {
@@ -45,10 +45,8 @@ export function spatialTestWeights(n,center,radius,h,order=0) {
   return Float64Array.from(w,(_,j)=>order===1?-(w[(j+1)%n]-w[(j+n-1)%n])/(2*h):(w[(j+n-1)%n]-2*w[j]+w[(j+1)%n])/(h*h));
 }
 
-export function spatialSmooth(p) {
-  if(p.run.kind!=='periodic')return p;
-  const smooth=a=>Float64Array.from(a,(_,j)=>(a[(j+a.length-2)%a.length]+4*a[(j+a.length-1)%a.length]+6*a[j]+4*a[(j+1)%a.length]+a[(j+2)%a.length])/16);
-  return {...p,states:p.states.map(smooth),derivatives:p.derivatives.map(smooth),initial:[...smooth(p.initial)]};
+export function filterPeriodicObservation(a) {
+  return Float64Array.from(a,(_,j)=>(a[(j+a.length-2)%a.length]+4*a[(j+a.length-1)%a.length]+6*a[j]+4*a[(j+1)%a.length]+a[(j+2)%a.length])/16);
 }
 
 export function stateOperatorEquations(recordings,trees,{method='weak',smoothingPoints=11,windowPoints=61,stride=15,spatialRadius=4,spatialStride=4}={}) {
@@ -57,15 +55,29 @@ export function stateOperatorEquations(recordings,trees,{method='weak',smoothing
   requireState(new Set(recordings.map(r=>r.id)).size===recordings.length,'Duplicate recording identity');
   requireState(Number.isInteger(windowPoints)&&windowPoints>=9&&windowPoints<=129&&windowPoints%2===1&&Number.isInteger(stride)&&stride>=1&&stride<=windowPoints,'Invalid weak window schedule');
   requireState(Number.isInteger(spatialStride)&&spatialStride>=1&&spatialStride<=16,'Invalid spatial stride');
+  requireState(Array.isArray(trees)&&trees.length>=1&&trees.length<=256,'Invalid expression bank');
   const kind=recordings[0].kind,compiled=trees.map(t=>compileStateTree(t,kind)),columns=trees.map(()=>[]),target=[],coverage=[];
-  let observed=0;
+  requireState(compiled.every(c=>!c.requiresPointwise),'Weak trajectory fitting requires complete conservative fluxes, not pointwise derivative products');
+  let observed=0,equations=0,reductionWork=0;
+  // Reject excessive work before allocating feature arrays or smoothing samples.
   for(const run of recordings) {
     requireState(run.kind===kind,'Mixed fitting geometries');
-    const p=spatialSmooth(prepareStateTrajectory(run,smoothingPoints)),{n,length,dt}=p;
-    observed+=length*n;requireState(observed<=262144,'Fitting observation budget exceeded');
-    requireState(length>=windowPoints,'Recording is shorter than a complete test window');
-    requireState(trees.length*length*n<=16777216,'Operator feature storage budget exceeded');
-    const features=compiled.map(({fn})=>p.states.map((state,t)=>kind==='oscillator'?Float64Array.of(fn(state,run.samples[t].command)):Float64Array.from(state,(v,j)=>fn(v,run.samples[t].command[j]))));
+    const p=validateStateTrajectory(run);observed+=p.n*p.length;
+    const centers=kind==='periodic'?Math.ceil(p.n/spatialStride):1;
+    const rows=Math.max(0,Math.floor((p.length-windowPoints)/stride)+1)*centers;
+    equations+=rows;
+    reductionWork+=rows*(method==='weak'?windowPoints:1)*trees.length*(kind==='periodic'?p.n:1);
+    requireState(p.length>=windowPoints,'Recording is shorter than a complete test window');
+    requireState(trees.length*p.length*p.n<=16777216,'Operator feature storage budget exceeded');
+  }
+  requireState(observed<=262144&&equations<=4096&&reductionWork<=200000000,'Trajectory equation work budget exceeded');
+  for(const run of recordings) {
+    const p=prepareStateTrajectory(run,smoothingPoints),{n,length,dt}=p;
+    // Apply one linear observation operator AFTER each complete nonlinear
+    // expression, and to the target. H(f(u)) is generally not f(H(u)).
+    const features=compiled.map(({fn})=>p.states.map((state,t)=>kind==='oscillator'?Float64Array.of(fn(state,run.samples[t].command)):filterPeriodicObservation(Float64Array.from(state,(v,j)=>fn(v,run.samples[t].command[j])))));
+    const observedStates=kind==='periodic'?run.samples.map(r=>filterPeriodicObservation(r.state)):null;
+    const derivatives=kind==='periodic'?p.derivatives.map(filterPeriodicObservation):p.derivatives;
     requireState(features.every(c=>c.every(a=>a.every(Number.isFinite))),'Operator undefined on a fitting observation');
     const centers=kind==='oscillator'?[0]:Array.from({length:Math.ceil(n/spatialStride)},(_,j)=>j*spatialStride);
     const kernels=kind==='periodic'?centers.map(j=>[0,1,2].map(order=>spatialTestWeights(n,j,spatialRadius,run.spacing,order))):null;
@@ -78,12 +90,12 @@ export function stateOperatorEquations(recordings,trees,{method='weak',smoothing
         let y=0;const vals=trees.map(()=>0);
         for(let k=0;k<windowPoints;k++) {
           const at=start+k;
-          y+=tw.target[k]*(kind==='oscillator'?run.samples[at].state[1]:dot(kernels[ci][0],run.samples[at].state));
+          y+=tw.target[k]*(kind==='oscillator'?run.samples[at].state[1]:dot(kernels[ci][0],observedStates[at]));
           for(let j=0;j<trees.length;j++)vals[j]+=tw.value[k]*(kind==='oscillator'?features[j][at][0]:dot(kernels[ci][compiled[j].order],features[j][at]));
         }
         target.push(y);for(let j=0;j<trees.length;j++)columns[j].push(vals[j]);
       } else {
-        target.push(p.derivatives[t][kind==='oscillator'?1:center]);
+        target.push(derivatives[t][kind==='oscillator'?1:center]);
         for(let j=0;j<trees.length;j++) {
           const a=features[j][t],order=compiled[j].order,l=(center+n-1)%n,r=(center+1)%n;
           columns[j].push(kind==='oscillator'?a[0]:order===0?a[center]:order===1?(a[r]-a[l])/(2*run.spacing):(a[l]-2*a[center]+a[r])/(run.spacing**2));
@@ -94,5 +106,5 @@ export function stateOperatorEquations(recordings,trees,{method='weak',smoothing
     coverage.push({id:run.id,samples:length,stateValues:length*n,equations:rows,noiseSigma:p.noiseSigma});
   }
   requireState(target.length>=12&&target.every(Number.isFinite)&&columns.every(c=>c.every(Number.isFinite)),'Insufficient or nonfinite trajectory equations');
-  return {kind,trees,columns,target,coverage,method};
+  return {kind,trees,columns,target,coverage,method,reductionWork};
 }

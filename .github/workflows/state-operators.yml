@@ -38,7 +38,7 @@ jobs:
       - name: Check independent source and actual HTTP consumer
         run: |
           node --test .independent-state-nullgarden/test/state-operator-course.test.mjs
-          node --test tests/state-operator.test.mjs tests/state-operator-http.test.mjs
+          node --test tests/state-operator*.test.mjs
       - name: Run the complete registered shard
         env:
           NODE_OPTIONS: --max-old-space-size=1536

@@ -8,29 +8,36 @@ const unary={sin:Math.sin,cos:Math.cos,tanh:Math.tanh,abs:Math.abs};
  * operators act on a complete local flux, never on a noisy supplied derivative.
  */
 export function compileStateTree(tree, kind) {
-  let count=0;
+  let count=0,requiresPointwise=false;
+  const finite=x=>Number.isFinite(x)?x:NaN;
   function local(t, fieldOnly=false) {
     requireState(++count<=32,'Operator tree is too large');
     if(typeof t==='string') {
-      const allowed=fieldOnly?['one','field']:kind==='periodic'?['one','field','command']:['one','position','rate','command'];
+      const allowed=fieldOnly?['one','field']:kind==='periodic'?['one','field','command','dx','dxx']:['one','position','rate','command'];
       requireState(allowed.includes(t),'Invalid state terminal');
+      if(t==='dx'||t==='dxx'){requiresPointwise=true;return(_x,_u,context)=>context?.[t]??NaN;}
       return t==='one'?()=>1:t==='command'?(_x,u)=>u:kind==='periodic'?(x)=>x:t==='position'?(x)=>x[0]:(x)=>x[1];
     }
     requireState(Array.isArray(t),'Invalid state expression');
     if(Object.hasOwn(unary,t[0])) {
       requireState(t.length===2,'Invalid unary expression');
-      const a=local(t[1],fieldOnly), fn=unary[t[0]]; return (x,u)=>fn(a(x,u));
+      const a=local(t[1],fieldOnly), fn=unary[t[0]]; return (x,u,context)=>{const v=a(x,u,context);return Number.isFinite(v)?finite(fn(v)):NaN;};
+    }
+    if(kind==='periodic'&&!fieldOnly&&['dx','dxx'].includes(t[0])){
+      requireState(t.length===2,'Invalid nested flux');requiresPointwise=true;
+      const fn=local(t[1],true);
+      return(x,_u,context)=>{if(!context)return NaN;const a=fn(context.left),b=fn(x),c=fn(context.right);return [a,b,c].every(Number.isFinite)?finite(t[0]==='dx'?(c-a)/(2*context.spacing):(a-2*b+c)/context.spacing**2):NaN;};
     }
     requireState(['add','mul','div'].includes(t[0])&&t.length===3,'Invalid local state operator');
     const a=local(t[1],fieldOnly),b=local(t[2],fieldOnly);
-    return t[0]==='add'?(x,u)=>a(x,u)+b(x,u):t[0]==='mul'?(x,u)=>a(x,u)*b(x,u):(x,u)=>a(x,u)/b(x,u);
+    return(x,u,context)=>{const av=a(x,u,context),bv=b(x,u,context);if(!Number.isFinite(av)||!Number.isFinite(bv)||(t[0]==='div'&&bv===0))return NaN;return finite(t[0]==='add'?av+bv:t[0]==='mul'?av*bv:av/bv);};
   }
   if(kind==='periodic'&&Array.isArray(tree)&&['dx','dxx'].includes(tree[0])) {
     requireState(tree.length===2,'Invalid flux expression');
     const fn=local(tree[1],true); return {order:tree[0]==='dx'?1:2,fn};
   }
   if(kind==='periodic'&&(tree==='dx'||tree==='dxx')) return {order:tree==='dx'?1:2,fn:x=>x};
-  return {order:0,fn:local(tree)};
+  const fn=local(tree);return {order:0,fn,requiresPointwise};
 }
 
 export function validateStateTrajectory(run) {
@@ -45,9 +52,12 @@ export function validateStateTrajectory(run) {
   if(run.kind==='periodic') requireState(Number.isFinite(run.spacing)&&run.spacing>0,'Require positive periodic grid spacing');
   const dt=s[1]?.time-s[0]?.time;
   requireState(Number.isFinite(dt)&&dt>0,'Require increasing sample times');
+  const roundoff=8*Number.EPSILON*Math.max(1,Math.abs(s[0].time),Math.abs(s[s.length-1]?.time));
+  requireState(roundoff<dt/8,'Sample interval is too small relative to timestamp precision');
   for(let i=0;i<s.length;i++) {
     const row=s[i];
-    requireState(row&&Number.isFinite(row.time)&&Math.abs(row.time-(s[0].time+i*dt))<=1e-8*Math.max(1,Math.abs(row.time)),'Require a uniform time grid');
+    requireState(row&&Number.isFinite(row.time),'Require finite sample times');
+    if(i)requireState(row.time>s[i-1].time&&Math.abs((row.time-s[i-1].time)-dt)<=1e-8*dt+roundoff,'Require a strictly increasing uniform time grid');
     requireState(Array.isArray(row.state)&&row.state.length===n&&row.state.every(Number.isFinite),'Require finite observed states');
     requireState(!['change','derivative','rhs','truth'].some(k=>Object.hasOwn(row,k)),'Derivative labels are not accepted');
     requireState(run.kind==='oscillator'?Number.isFinite(row.command):Array.isArray(row.command)&&row.command.length===n&&row.command.every(Number.isFinite),'Require measured input at every state sample');
@@ -102,8 +112,9 @@ function modelPredictor(model,n,spacing) {
   if(model.kind==='oscillator') return (x,u)=>[x[1],terms.reduce((s,t)=>s+t.weight*t.fn(x,u),0)];
   return (x,u)=>Array.from({length:n},(_,j)=>{
     let y=0;const l=(j+n-1)%n,r=(j+1)%n;
+    const context={left:x[l],right:x[r],spacing,dx:(x[r]-x[l])/(2*spacing),dxx:(x[l]-2*x[j]+x[r])/(spacing*spacing)};
     for(const t of terms) {
-      const v=t.order===0?t.fn(x[j],u[j]):t.order===1?(t.fn(x[r],0)-t.fn(x[l],0))/(2*spacing):(t.fn(x[l],0)-2*t.fn(x[j],0)+t.fn(x[r],0))/(spacing*spacing);
+      const v=t.order===0?t.fn(x[j],u[j],context):t.order===1?(t.fn(x[r],0)-t.fn(x[l],0))/(2*spacing):(t.fn(x[l],0)-2*t.fn(x[j],0)+t.fn(x[r],0))/(spacing*spacing);
       y+=t.weight*v;
     }
     return y;
@@ -114,6 +125,7 @@ export function forecastStateTrajectory(model, run, {smoothingPoints=11,substeps
   const p=prepared||prepareStateTrajectory(run,smoothingPoints),{n,dt,startIndex}=p;
   requireState(model.kind===run.kind,'Model and observation geometries differ');
   requireState(Number.isInteger(substeps)&&substeps>=1&&substeps<=16&&p.length*n*substeps<=2097152,'Invalid forecast work budget');
+  requireState(Number.isFinite(maxMagnitude)&&maxMagnitude>0,'Invalid state-domain bound');
   const rhs=modelPredictor(model,n,run.spacing),states=[p.initial.slice()],h=dt/substeps;
   let x=p.initial.slice();
   function command(i,f) {

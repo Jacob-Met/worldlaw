@@ -55,3 +55,12 @@ test('state-only weak equations recover the harmonic force without acceleration 
   }
   assert.ok(errors[1]<3e-6&&errors[1]<errors[0]/8,JSON.stringify(errors));
 });
+
+test('public forecasts preserve legacy pointwise spatial derivative models',()=>{
+  const n=16,run={schema:'worldlaw.state-trajectory/v1',id:'legacy-burgers',kind:'periodic',spacing:.5,samples:Array.from({length:41},(_,i)=>({time:i*.01,state:Array.from({length:n},(_,j)=>.4+.2*Math.sin(2*Math.PI*j/n)),command:Array(n).fill(0)}))};
+  const model={schema:'worldlaw.symbolic-evolution/v1',kind:'periodic',terms:[{tree:['mul','field','dx'],weight:-1},{tree:'dxx',weight:.1}]};
+  const forecast=forecastStateTrajectory(model,run);
+  assert.equal(forecast.status,'forecast');
+  for(const state of forecast.states)assert.ok(Math.abs(state.reduce((a,b)=>a+b,0)/n-.4)<1e-12);
+  assert.throws(()=>stateOperatorEquations([run],[['mul','field','dx']],{windowPoints:15,stride:5,spatialRadius:2,spatialStride:2}),/conservative flux/);
+});
