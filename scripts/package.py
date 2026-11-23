@@ -16,6 +16,15 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/nakagawa-harmonic-transfer/README.md",
+    "research/nakagawa-harmonic-transfer/bank.json",
+    "research/nakagawa-harmonic-transfer/harmonic.py",
+    "research/nakagawa-harmonic-transfer/independent.py",
+    "research/nakagawa-harmonic-transfer/native-receipts.json",
+    "research/nakagawa-harmonic-transfer/registration.md",
+    "research/nakagawa-harmonic-transfer/results.json",
+    "research/nakagawa-harmonic-transfer/score.json",
+    "research/nakagawa-harmonic-transfer/theorem.py",
     "research/zhang_vibronic_profile_transfer/README.md",
     "research/zhang_vibronic_profile_transfer/axis_only.py",
     "research/zhang_vibronic_profile_transfer/catalog_original.py",
