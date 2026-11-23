@@ -26,3 +26,5 @@ The verifier uses exact rational arithmetic and checks 102,960 original world/ti
 python3 scripts/design-unequal-suffix-dwell.py examples/active-position-drift-dwell-calibration.json /tmp/unequal.json
 python3 scripts/verify-unequal-suffix-dwell.py examples/active-position-drift-dwell-calibration.json /tmp/unequal.json
 ```
+
+[The universal fixed-tape optimum](fixed-tape-optimum.md) uses commands from both suffix triples and guarantees identification in eleven pulses at the same noise.

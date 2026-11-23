@@ -1,0 +1,221 @@
+{
+  "schema": "worldlaw.position-drift-fixed-tape-optimum-proof/v1",
+  "source": {
+    "schema": "worldlaw.position-drift-fixed-tape-optimum/v1",
+    "pulseBudget": "11",
+    "catalog": {
+      "schema": "worldlaw.position-drift-rate-polytopes/v1",
+      "commands": [
+        "ref",
+        "group",
+        "x0",
+        "y0",
+        "z0",
+        "x1",
+        "y1",
+        "z1"
+      ],
+      "noiseBound": "1/10",
+      "limits": {
+        "designWork": 12000000,
+        "receiverWork": 1000000
+      },
+      "laws": [
+        {
+          "id": "A",
+          "vertices": [
+            [
+              "0",
+              "0",
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "1",
+              "0",
+              "0"
+            ]
+          ]
+        },
+        {
+          "id": "B",
+          "vertices": [
+            [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1",
+              "0",
+              "-1",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "1",
+              "0",
+              "-1"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "status": "fixed-optimum-certified",
+  "radius": "5/44",
+  "atRequestedNoise": "policy-separates",
+  "references": "5",
+  "dwell": "1",
+  "optimalDwells": [
+    "1"
+  ],
+  "runs": [
+    {
+      "command": "ref",
+      "repeats": "5"
+    },
+    {
+      "command": "y0",
+      "repeats": "1"
+    },
+    {
+      "command": "x0",
+      "repeats": "1"
+    },
+    {
+      "command": "z0",
+      "repeats": "1"
+    },
+    {
+      "command": "y1",
+      "repeats": "1"
+    },
+    {
+      "command": "x1",
+      "repeats": "1"
+    },
+    {
+      "command": "z1",
+      "repeats": "1"
+    }
+  ],
+  "readAt": [
+    "0",
+    "5",
+    "11"
+  ],
+  "roles": [
+    "A",
+    "B"
+  ],
+  "singleCoordinatePairs": [
+    {
+      "command": "y0",
+      "a": 0,
+      "b": 0
+    },
+    {
+      "command": "x0",
+      "a": 1,
+      "b": 0
+    },
+    {
+      "command": "z0",
+      "a": 1,
+      "b": 1
+    },
+    {
+      "command": "y1",
+      "a": 2,
+      "b": 2
+    },
+    {
+      "command": "x1",
+      "a": 3,
+      "b": 2
+    },
+    {
+      "command": "z1",
+      "a": 3,
+      "b": 3
+    }
+  ],
+  "boundaryWorlds": [
+    {
+      "law": "A",
+      "weights": [
+        "1/6",
+        "1/3",
+        "1/6",
+        "1/3"
+      ],
+      "origin": "5/44",
+      "drift": "-1/11"
+    },
+    {
+      "law": "B",
+      "weights": [
+        "1/3",
+        "1/6",
+        "1/3",
+        "1/6"
+      ],
+      "origin": "-5/44",
+      "drift": "0"
+    }
+  ],
+  "work": 22
+}
