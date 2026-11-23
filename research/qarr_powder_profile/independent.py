@@ -16,7 +16,7 @@ def main():
         b=git('show',s['sha']+':tests/data/qarr/'+n+'.prn')
         assert hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()==s['files'][n]
         if n in L['sources']:assert digest(b)==L['sources'][n]
-        rr=[row.split() for row in b.splitlines()];assert len(rr)==7251
+        rr=[row.split() for row in b.splitlines() if row.strip()];assert len(rr)==7251 and all(len(row)==2 for row in rr)
         assert all(round((float(row[0])-5)/.02)==j for j,row in enumerate(rr))
         x=[int(float(row[1])) for row in rr];assert all(v==float(r[1]) for v,r in zip(x,rr))
         if n in ('corundum','cpd-1e'):
