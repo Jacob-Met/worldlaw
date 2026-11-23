@@ -1,0 +1,177 @@
+{
+  "scope": "Recorded extension traces; three hairpin constructs plus separate handles-only control.",
+  "original_forecast_custody": {
+    "object_manifest": "r2-estate:estate-archive/transfers/fr-disc-wave2-unseen-repo-repair-and-multiamplitude-worldlaw/p2-f747-hoffer/manifests/17063afd6fd1e03da04dff21bbeafbef8301b582f726209716aa605eb66afc5e.json",
+    "manifest_sha256": "17063afd6fd1e03da04dff21bbeafbef8301b582f726209716aa605eb66afc5e",
+    "manifest_bytes": 397,
+    "sha256": "47f1ecd544538cfb97679cf6347a0a44b2637017dead6c23daa0dae7fc0f8b66",
+    "bytes": 27286919,
+    "source": "/tmp/hamon-s-1000/75168984b4614e0cad901d941bd36fd8/p2-hoffer-prefix-publication-NeuW5QgW/hoffer-original-banks.zip"
+  },
+  "native_originals": [
+    {
+      "job": "p2-f747-hoffer-figshare-metadata-and-acquisition-info-no-trace-rows",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "request_sha256": "71db943fbdaf7dfd8cf55afe85d5f0b962375d5ab5886c94174147b4fcf589a4",
+      "generation": "ef40bfc9aff35f1573580f98ee019cfbc4635a7c4d20543e6bdad1c7836f3cd0",
+      "start": "2026-11-23T14:16:15.922726171Z",
+      "end": "2026-11-23T14:16:17.860311322Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "d92eec8791e1b8e0ae12c851e1b1213db4ca29fcc383cb35248e992fac502f84",
+      "stdout_bytes": 54476
+    },
+    {
+      "job": "p2-f747-hoffer-data-info-complete-roster-bounded-stdout",
+      "owner": "node-f16b825d04f9993acd590fd2b38fe4f5",
+      "request_sha256": "067e0899c58e672aa7bc0c0cda5dd1c4bc386ae3f55f94862cde0af04f4f346c",
+      "generation": "2582c1e20d869d9a3621e83cbe46e3075901fd198beea998e8d206e3e2a2e637",
+      "start": "2026-11-23T14:18:07.604703153Z",
+      "end": "2026-11-23T14:18:21.485807684Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "9b8111f4f32472f05cb4209a88c81f6abfaa2aadce386093c432e5d4cc5342b6",
+      "stdout_bytes": 14787
+    },
+    {
+      "job": "p2-f747-hoffer-matched-acquisition-metadata-and-reversible-chain-control",
+      "owner": "node-63fbcea7e7e266574ee04ba386b8bb4b",
+      "request_sha256": "d86bffb9bfba147c72637a27c6131da45ebf63e2b2967a16bc786d51fc4d26d3",
+      "generation": "abf3e025287ca6f6f1bc37cf299b6df8e1697f35df526b0c66934c825b0d32a8",
+      "start": "2026-11-23T14:19:31.706832059Z",
+      "end": "2026-11-23T14:19:31.793493778Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "19994d9883586b8b138129bd027fea85a282056796e2f3a310cd6a605ef197e5",
+      "stdout_bytes": 1391
+    },
+    {
+      "job": "p2-f747-hoffer-literal-702-info-row-to-native-archive-member-join",
+      "owner": "node-63fbcea7e7e266574ee04ba386b8bb4b",
+      "request_sha256": "af917ac929702b911033a2b0a396a7f62b10369eeed97f32eccf28d5b12a6546",
+      "generation": "868f8c86c5cce4ed5c419221481754e066f88f876ff30a6be512864f90b330d3",
+      "start": "2026-11-23T14:21:09.209996215Z",
+      "end": "2026-11-23T14:21:21.796425973Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "502a7231cc2666f6d52699295bd9010e831e0db1435b16ba6845bcacccd4f174",
+      "stdout_bytes": 1057
+    },
+    {
+      "job": "p2-f747-hoffer-whole-source-checksum-and-four-unfolding-calibration-headers",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "d4f37daec7a9fb5137741250e95f45857323c3516879b7bf6f87936867d005ae",
+      "generation": "84438a48b93304e79c779318ba15aed25f017b32e0ffef2e4235e8753d55f8a2",
+      "start": "2026-11-23T14:23:27.073225422Z",
+      "end": "2026-11-23T14:23:40.091235109Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "2964e00fcabf45f806155fe8ba36f19283743cbf61783b3eecefbf287bc7ea05",
+      "stdout_bytes": 3525
+    },
+    {
+      "job": "p2-f747-hoffer-all-physical-column-headers-and-unfolding-only-layout",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "ca048d822fb5d40ac72c36e12d8e8cbcdda1da8c13eebc685a353f0ffad27caf",
+      "generation": "65ac5ce6fbf011d4ff456c257598b26f63011fd086169acf2abd1cb92ab4e141",
+      "start": "2026-11-23T14:25:21.693771054Z",
+      "end": "2026-11-23T14:25:22.176930131Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "c387dc9170890d3dbe1c30945baab90b3af6fbc34c0bda8478288732113d8ae1",
+      "stdout_bytes": 4983
+    },
+    {
+      "job": "p2-f747-hoffer-portable-whole-donor-block-integrity-and-calibration-stage",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "request_sha256": "5dff0d4fc261dce138e676feb4b5c183fbc10806a9bee59b13bbdd2b631ca80e",
+      "generation": "f78aac86adf4dbea721927b8005a506d2c0987529c4485fdd14920292706efb2",
+      "start": "2026-11-23T14:29:19.574644012Z",
+      "end": "2026-11-23T14:29:39.68775776Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "3859c873f140fd39b2e46855d28ee17a0caaa4b0deef424ef97b7e2d66b687ec",
+      "stdout_bytes": 3137
+    },
+    {
+      "job": "p2-f747-hoffer-preserved-archive-donor-bank-normal-fifo",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "request_sha256": "41623219bc7b52199971ff144288be78a3360fa9f498a8a4bc99829e324010a5",
+      "generation": "6e89660a946b5d80b2cfa549f591927f21cee3b73dcbfc6d06610fcb13c6ec9a",
+      "start": "2026-11-23T14:38:34.559631144Z",
+      "end": "2026-11-23T14:38:55.936700088Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "f4d6b3e697f83f3200397613cf1636c8949ff9f71d1a28c8b3a9de2d9db35925",
+      "stdout_bytes": 302
+    },
+    {
+      "job": "p2-f747-hoffer-held-folding-prefix-only-nine-arm-cdf-lock",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "request_sha256": "22d65448e8c15cc7287afd4b7a5e4cbd19a7aec80e051aabbb9e2683777b7a8c",
+      "generation": "a0fa72ff29342380aba067b3e13876a7b4933a705d18a585faeb9f891c13467f",
+      "start": "2026-11-23T14:41:23.741466287Z",
+      "end": "2026-11-23T14:42:16.483942386Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "cff664ba2db63b80c77291d01c68bc65b9bcd93a3cb9af2cea8a63afc8076df8",
+      "stdout_bytes": 365
+    },
+    {
+      "job": "p2-f747-hoffer-immutable-whole-donor-prefix-bank-publish-and-full-readback",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "request_sha256": "bae96fe68e8b330251eb3cb4501aa095fcbe3085c3a9b9275fa8bfcbe311db48",
+      "generation": "74aa1eaf6bc10d0320d90272b108df301a267e1524470197c3ab127b790b45a1",
+      "start": "2026-11-23T14:43:23.786011733Z",
+      "end": "2026-11-23T14:43:31.075635467Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "5f67d8603331c11749272caab7c4c7fb9613ea93020702b206608968b54712db",
+      "stdout_bytes": 838
+    },
+    {
+      "job": "p2-f747-hoffer-first-held-folding-outcomes-full-source-and-missing-bounds",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "request_sha256": "66bfb6c6855cb606a057d831aafcfaf52cedefecebb7668bac21e8d00b79a9a1",
+      "generation": "2b80363cbf96dec929c083b1a9997b978d26f9e0ecaa138d3dcc7e7cb2b75525",
+      "start": "2026-11-23T14:46:37.646774939Z",
+      "end": "2026-11-23T14:46:52.237420955Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "8156341a007f1f6d16fffd2acf0a41587032337737d1b35d55212c396200b38c",
+      "stdout_bytes": 30510
+    },
+    {
+      "job": "p2-f747-hoffer-independent-receive-exact-seven-horizon-banks-before-score",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "9e7d6b5a99d091019f5b98dc22bb42146b6dbaab22b8a154485149b8407d707e",
+      "generation": "e5405aaa5c9022d0236029366c220880c130fd606faece48267ddf599f5018e5",
+      "start": "2026-11-23T14:47:05.696821586Z",
+      "end": "2026-11-23T14:47:10.907866565Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "9d094008948f8e59714ee3e6cb59240c39d6cf2b7002550f47ffad1171d5f527",
+      "stdout_bytes": 1401
+    },
+    {
+      "job": "p2-f747-hoffer-other-source-complete-raw-passage-and-16m-brier-recount",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "975cc60fadf13c044977099b48f21f9a4cb037c8c2418101fdda5618390836e9",
+      "generation": "1070179e2d2096776a6301c4ef9f8b1c2faff14bc405fed358e80138887f4b12",
+      "start": "2026-11-23T14:49:06.657516026Z",
+      "end": "2026-11-23T14:49:32.400940466Z",
+      "exit": 0,
+      "descendant_state": "drained",
+      "stdout_sha256": "56a88b11223546f38f202598ee56d6986e3cb34bac96e8c5e26148acf0e07a24",
+      "stdout_bytes": 14509
+    }
+  ],
+  "preserved_admission_outcomes": {
+    "source_info_110000_bytes": "Invalid argument; maximum retained output 65536. Corrected source-info original above.",
+    "donor_audit_owner_refusal": "Original refused at placement before worker computation. Distinct portable original downloaded and authenticated the whole source.",
+    "donor_lock_immediate": "Earlier FIFO head prevented immediate admission. Submitted the distinct ordinary queued lock."
+  },
+  "forecast_source": "a547d79f23c2cdb4dd58b8d931e25452218d0313",
+  "independent_source": "ce32daec6c4b5a121d2851e0ad4e0adeee3a586a",
+  "score_source": "cc2ac6dfa2ee8734df2f83004557799e0a429666"
+}
