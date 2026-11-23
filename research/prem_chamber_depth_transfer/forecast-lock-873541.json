@@ -1,0 +1,126 @@
+{
+  "job": "p3-f747-prem-6fb97bd1-frozen-forecast-full-output-873541",
+  "original_stdout": {
+    "n": 136863,
+    "sha": "c7f82f2d3ac3619f4385f614de980b3ef4741a9ee2fa7b5fea12a76a64f15bd5"
+  },
+  "forecast": {
+    "cost_per_preparation_seconds": [
+      6.896381650934927,
+      7.293779070023447,
+      8.026648801052943
+    ],
+    "diameters_um": [
+      47.5,
+      76.5,
+      16
+    ],
+    "digest": [
+      [
+        "3403330e9a2700e70dc61f8402723b345dc86f6c552cb840aeb7ae98ee89891c",
+        "b7a38278366e0d2a0f1e3fa595d49b4a49250c8510accea61b226d388695a377",
+        "b8d124b922f25cbc1b333d31345ab99e58722a8e59df979488e04103ff386540",
+        "d4cd1e27d061523295168ec214350434e33112960701e2fcac19697a83de77fe",
+        "2ef619c97d834cea9b72c807d864d2b0e21cc408b898f2a1fdc47fb9026f8583",
+        "d4cd1e27d061523295168ec214350434e33112960701e2fcac19697a83de77fe",
+        "93d35d9b1fa173354b6e7b7bf55dd448dc5da9769cceb42e636b0463308f91b4",
+        "14e9a323dd8f1a3377e8da9aa8f4b9782c860577acd5020279ac06f583dd40ca",
+        "29b35e0b5f6d93e99007e3d44b0e5981b60f30e579460cbbd829e38459f5f6ae",
+        "279cb9bf84e24962ea482c02486f33d4b74350845c3ce6b54692a7bb557bffeb",
+        "71979b1c0dbf0182d6a8f7b82264eef51b757b71a1b37d9977bbb8fc6fdbdcbd"
+      ],
+      [
+        "5be0943ed024cf48123f78aca1d6338a68a0da764eb0fc14b754ce4216a4aec1",
+        "ad4ea433acf8f831096f40f20daf9879167f0b36e4d135372f14a63de6606628",
+        "fe139889c27b8a59187f78396eb30761a9989ed5ac4b7776f5ec0770ce844918",
+        "6551f1bde5b6a7ec1dcf216ea50ef36b6b2e71880dd722e846d06afb4fe8dc19",
+        "00faea6608a4ff6e43667eedaab4befaaf9b502cdb540dc0c4eec84e2da327e7",
+        "6551f1bde5b6a7ec1dcf216ea50ef36b6b2e71880dd722e846d06afb4fe8dc19",
+        "e00e98e610852ebd3b57d4ee3dd49a573534d24acf23685d3223b7e4f06666dd",
+        "ae6e27cf14bc18df0fa168c0bc73bd45378c5f1a4c53046725b678332e54645a",
+        "b9e699576a74cf85debb8f991feb72e7e24b745bceaad844861ca03ef4146c40",
+        "5feb1103ca280a69f7dea4a798ada8a393f7c5b33ff1acf0a33b2b746b125868",
+        "2a87f1eb08ae3d7177bf2b6318b77bd627fd4d47e419da902be5c33cf1d1c4ab"
+      ]
+    ],
+    "fit": {
+      "author400": [
+        [
+          400,
+          100,
+          160
+        ],
+        0.048902744066138454
+      ],
+      "hemisphere": [
+        [
+          350,
+          100,
+          320
+        ],
+        0.04558510769408113
+      ],
+      "normal": [
+        [
+          400,
+          100,
+          160
+        ],
+        0.04107329280336781
+      ]
+    },
+    "held_sle_read": 0,
+    "npy_bytes": 100096,
+    "npy_sha": "811c7356bb1d2edcc18234fc09a40f8502b3e83d1c8fc6c14749dc11479d70cf",
+    "orientations": [
+      {
+        "ambient_rmse": 0.015835372190325905,
+        "diameter": 47.5,
+        "integer_weights": [
+          23,
+          55,
+          22
+        ]
+      },
+      {
+        "ambient_rmse": 0.01786369526387967,
+        "diameter": 76.5,
+        "integer_weights": [
+          24,
+          58,
+          18
+        ]
+      },
+      {
+        "ambient_rmse": 0.026713480571623545,
+        "diameter": 16,
+        "integer_weights": [
+          32,
+          0,
+          68
+        ]
+      }
+    ],
+    "protocol_sha": "46fcfc9933fb1a08feff59e6a8278f1540f3f49f5233a06c40bfb936173bf903",
+    "roles": [
+      "normal_same_hemisphere_gradient",
+      "hemisphere_source_fit",
+      "normal_own_source_fit",
+      "hemisphere_with_normal_gradient",
+      "cone15_same_hemisphere_gradient",
+      "author_hemisphere_400K_source_fit",
+      "ambient_unchanged",
+      "source_difference",
+      "source_ratio",
+      "normal_grain_scaled_hemisphere_gradient",
+      "hemisphere_grain_scaled_source_gradient"
+    ],
+    "seed": 873541,
+    "shape": [
+      2,
+      11,
+      568
+    ],
+    "total_wall_seconds": 25.818916673073545
+  }
+}
