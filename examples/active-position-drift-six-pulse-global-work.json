@@ -1,0 +1,11206 @@
+{
+ "schema": "worldlaw.grouped-six-pulse-work/v1",
+ "fixedLimits": {
+  "rounds": 32,
+  "blocks": 512,
+  "wordsPerBlock": 8
+ },
+ "analyticalUpper": "1/16",
+ "refRef": {
+  "result": {
+   "status": "exact",
+   "lower": "1/20",
+   "upper": "1/20",
+   "blocks": 512,
+   "terminalPairs": 4096,
+   "physicalWorlds": 8192,
+   "retainedWords": 2
+  },
+  "design": {
+   "status": "exact",
+   "lower": "1/20",
+   "upper": "1/20",
+   "history": [
+    [
+     "3/76",
+     "1/16",
+     3,
+     43
+    ],
+    [
+     "3/76",
+     "1/16",
+     46,
+     53
+    ],
+    [
+     "3/76",
+     "1/16",
+     99,
+     57
+    ],
+    [
+     "3/76",
+     "1/16",
+     156,
+     45
+    ],
+    [
+     "1/24",
+     "1/16",
+     201,
+     46
+    ],
+    [
+     "1/22",
+     "1/16",
+     247,
+     40
+    ],
+    [
+     "1/20",
+     "1/16",
+     287,
+     22
+    ],
+    [
+     "1/20",
+     "1/16",
+     309,
+     13
+    ],
+    [
+     "1/20",
+     "1/16",
+     322,
+     2
+    ],
+    [
+     "1/20",
+     "1/16",
+     324,
+     6
+    ],
+    [
+     "1/20",
+     "1/16",
+     330,
+     2
+    ],
+    [
+     "1/20",
+     "1/16",
+     332,
+     2
+    ],
+    [
+     "1/20",
+     "1/16",
+     334,
+     2
+    ],
+    [
+     "1/20",
+     "1/20",
+     336,
+     0
+    ]
+   ],
+   "stats": {
+    "solves": 1149,
+    "pivots": 122612,
+    "rowsProcessed": 330206,
+    "peakRows": 336,
+    "peakWidth": 90,
+    "peakTerminalLeaves": 8,
+    "exactHits": 1389,
+    "primalHits": 617,
+    "envelopeChecks": 2437,
+    "primalBuilds": 1135,
+    "cutHits": 3,
+    "deferredBlocks": 2228,
+    "zeroHits": 1796,
+    "zeroBlocks": 386,
+    "seedCuts": 2,
+    "initialUpper": "1/16"
+   },
+   "export": {
+    "solves": 349,
+    "pivots": 39098,
+    "rowsProcessed": 100512,
+    "zeroWorldBlocks": 163
+   }
+  }
+ },
+ "remaining": [
+  {
+   "prefix": [
+    0,
+    1
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "2/59",
+    "upper": "2/59",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 6
+   },
+   "policy": {
+    "commands": [
+     "ref",
+     "group",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "x0"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "y0"
+          ]
+         },
+         {
+          "commands": [
+           "z0"
+          ]
+         }
+        ]
+       },
+       {
+        "commands": [
+         "x1"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "y1"
+          ]
+         },
+         {
+          "commands": [
+           "z1"
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "x1",
+       "y1",
+       "z1"
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "x1",
+       "y1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "2/59",
+    "upper": "2/59",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      131
+     ],
+     [
+      "0",
+      "1/16",
+      132,
+      53
+     ],
+     [
+      "0",
+      "1/16",
+      185,
+      57
+     ],
+     [
+      "1/39",
+      "1/16",
+      242,
+      57
+     ],
+     [
+      "1/34",
+      "1/16",
+      299,
+      54
+     ],
+     [
+      "4/123",
+      "1/16",
+      353,
+      48
+     ],
+     [
+      "1/30",
+      "1/16",
+      401,
+      29
+     ],
+     [
+      "1/30",
+      "1/16",
+      430,
+      21
+     ],
+     [
+      "2/59",
+      "1/16",
+      451,
+      13
+     ],
+     [
+      "2/59",
+      "1/16",
+      464,
+      3
+     ],
+     [
+      "2/59",
+      "1/16",
+      467,
+      12
+     ],
+     [
+      "2/59",
+      "1/16",
+      479,
+      2
+     ],
+     [
+      "2/59",
+      "1/16",
+      481,
+      4
+     ],
+     [
+      "2/59",
+      "1/16",
+      485,
+      1
+     ],
+     [
+      "2/59",
+      "1/16",
+      486,
+      4
+     ],
+     [
+      "2/59",
+      "1/16",
+      490,
+      4
+     ],
+     [
+      "2/59",
+      "2/59",
+      494,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2273,
+     "pivots": 272850,
+     "rowsProcessed": 656068,
+     "peakRows": 494,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 1846,
+     "primalHits": 1862,
+     "envelopeChecks": 7350,
+     "primalBuilds": 2256,
+     "cutHits": 15,
+     "deferredBlocks": 2509,
+     "zeroHits": 216,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 64068,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 11.15736360102892,
+    "export": 2.440306812990457,
+    "replay": 0.6506678119767457
+   },
+   "gzipSha256": "fbc7fc73d6fa3055db79d3aec872177b1dc2bf9e90b36c85e3dc9f3c75ef0264",
+   "rawBytes": 392303
+  },
+  {
+   "prefix": [
+    0,
+    2
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/29",
+    "upper": "1/29",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "ref",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "z0",
+       "z0",
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "y0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "x1",
+       "z1",
+       "y0",
+       "y1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/29",
+    "upper": "1/29",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      118
+     ],
+     [
+      "0",
+      "1/16",
+      119,
+      54
+     ],
+     [
+      "2/71",
+      "1/16",
+      173,
+      54
+     ],
+     [
+      "1/31",
+      "1/16",
+      227,
+      56
+     ],
+     [
+      "1/31",
+      "1/16",
+      283,
+      44
+     ],
+     [
+      "1/29",
+      "1/16",
+      327,
+      33
+     ],
+     [
+      "1/29",
+      "1/16",
+      360,
+      19
+     ],
+     [
+      "1/29",
+      "1/16",
+      379,
+      5
+     ],
+     [
+      "1/29",
+      "1/16",
+      384,
+      3
+     ],
+     [
+      "1/29",
+      "1/16",
+      387,
+      2
+     ],
+     [
+      "1/29",
+      "1/16",
+      389,
+      1
+     ],
+     [
+      "1/29",
+      "1/29",
+      390,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1820,
+     "pivots": 240426,
+     "rowsProcessed": 524123,
+     "peakRows": 390,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 1612,
+     "primalHits": 561,
+     "envelopeChecks": 3624,
+     "primalBuilds": 1808,
+     "cutHits": 10,
+     "deferredBlocks": 1967,
+     "zeroHits": 186,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 72356,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 8.825981252011843,
+    "export": 2.4497910239733756,
+    "replay": 0.6814271589973941
+   },
+   "gzipSha256": "ab3d76a38999ffba04069333f56298d446c941a9cbd3a6e5696794a9beed575d",
+   "rawBytes": 377209
+  },
+  {
+   "prefix": [
+    0,
+    3
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "ref",
+     "y0",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "z0",
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "z0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "y1",
+       "x1",
+       "z1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      62
+     ],
+     [
+      "0",
+      "1/16",
+      63,
+      57
+     ],
+     [
+      "0",
+      "1/16",
+      120,
+      31
+     ],
+     [
+      "9/376",
+      "1/16",
+      151,
+      52
+     ],
+     [
+      "1/32",
+      "1/16",
+      203,
+      48
+     ],
+     [
+      "1/32",
+      "1/16",
+      251,
+      40
+     ],
+     [
+      "1/30",
+      "1/16",
+      291,
+      29
+     ],
+     [
+      "1/30",
+      "1/16",
+      320,
+      16
+     ],
+     [
+      "1/30",
+      "1/16",
+      336,
+      6
+     ],
+     [
+      "1/30",
+      "1/30",
+      342,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1322,
+     "pivots": 158351,
+     "rowsProcessed": 379934,
+     "peakRows": 342,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 445,
+     "primalHits": 449,
+     "envelopeChecks": 2451,
+     "primalBuilds": 1312,
+     "cutHits": 1,
+     "deferredBlocks": 2180,
+     "zeroHits": 733,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 405,
+     "pivots": 54343,
+     "rowsProcessed": 116640,
+     "zeroWorldBlocks": 107
+    }
+   },
+   "seconds": {
+    "design": 6.194491434027441,
+    "export": 1.950191874988377,
+    "replay": 0.6276243049651384
+   },
+   "gzipSha256": "45a15be1ca653cf30af7d28180cedd9c445f5fc271b0fc21c22333b97ff88756",
+   "rawBytes": 343973
+  },
+  {
+   "prefix": [
+    0,
+    4
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/31",
+    "upper": "1/31",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "ref",
+     "z0",
+     "x1",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "y1"
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "z1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/31",
+    "upper": "1/31",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      50
+     ],
+     [
+      "0",
+      "1/16",
+      51,
+      36
+     ],
+     [
+      "0",
+      "1/16",
+      87,
+      46
+     ],
+     [
+      "3/121",
+      "1/16",
+      133,
+      43
+     ],
+     [
+      "51/1807",
+      "1/16",
+      176,
+      38
+     ],
+     [
+      "3/103",
+      "1/16",
+      214,
+      38
+     ],
+     [
+      "1/32",
+      "1/16",
+      252,
+      26
+     ],
+     [
+      "1/32",
+      "1/16",
+      278,
+      6
+     ],
+     [
+      "6/187",
+      "1/16",
+      284,
+      7
+     ],
+     [
+      "1/31",
+      "1/16",
+      291,
+      1
+     ],
+     [
+      "1/31",
+      "1/31",
+      292,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1615,
+     "pivots": 187424,
+     "rowsProcessed": 464011,
+     "peakRows": 292,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 16,
+     "primalHits": 923,
+     "envelopeChecks": 4062,
+     "primalBuilds": 1604,
+     "cutHits": 6,
+     "deferredBlocks": 1965,
+     "zeroHits": 1118,
+     "zeroBlocks": 386,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 366,
+     "pivots": 44910,
+     "rowsProcessed": 105408,
+     "zeroWorldBlocks": 146
+    }
+   },
+   "seconds": {
+    "design": 7.804567291983403,
+    "export": 1.7538134870119393,
+    "replay": 0.6385509989922866
+   },
+   "gzipSha256": "fc21dba0fe9a1f01936b8d0db8207190b70013fc4d4eabcfdbdf14be8e3eca3b",
+   "rawBytes": 343768
+  },
+  {
+   "prefix": [
+    0,
+    5
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/29",
+    "upper": "1/29",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "ref",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0",
+       "y0",
+       "y1",
+       "z0"
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "z1",
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "y0"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/29",
+    "upper": "1/29",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      86
+     ],
+     [
+      "0",
+      "1/16",
+      87,
+      61
+     ],
+     [
+      "2/71",
+      "1/16",
+      148,
+      52
+     ],
+     [
+      "1/32",
+      "1/16",
+      200,
+      59
+     ],
+     [
+      "3/88",
+      "1/16",
+      259,
+      46
+     ],
+     [
+      "3/88",
+      "1/16",
+      305,
+      29
+     ],
+     [
+      "6/175",
+      "1/16",
+      334,
+      18
+     ],
+     [
+      "1/29",
+      "1/16",
+      352,
+      7
+     ],
+     [
+      "1/29",
+      "1/16",
+      359,
+      1
+     ],
+     [
+      "1/29",
+      "1/16",
+      360,
+      1
+     ],
+     [
+      "1/29",
+      "1/29",
+      361,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1493,
+     "pivots": 179038,
+     "rowsProcessed": 429582,
+     "peakRows": 361,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 936,
+     "primalHits": 1060,
+     "envelopeChecks": 3210,
+     "primalBuilds": 1482,
+     "cutHits": 0,
+     "deferredBlocks": 1816,
+     "zeroHits": 338,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 63761,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 7.333453543949872,
+    "export": 2.5075175270903856,
+    "replay": 0.6359614939428866
+   },
+   "gzipSha256": "c9468aa9f70b2a8ebb15050369c68a0812d57f4ade8184e1eff523c33fa47069",
+   "rawBytes": 378439
+  },
+  {
+   "prefix": [
+    0,
+    6
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "ref",
+     "y1",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "x1",
+       "z1"
+      ]
+     },
+     {
+      "commands": [
+       "z0",
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "z0"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      62
+     ],
+     [
+      "0",
+      "1/16",
+      63,
+      62
+     ],
+     [
+      "0",
+      "1/16",
+      125,
+      18
+     ],
+     [
+      "9/376",
+      "1/16",
+      143,
+      51
+     ],
+     [
+      "2/71",
+      "1/16",
+      194,
+      53
+     ],
+     [
+      "1/30",
+      "1/16",
+      247,
+      37
+     ],
+     [
+      "1/30",
+      "1/16",
+      284,
+      26
+     ],
+     [
+      "1/30",
+      "1/16",
+      310,
+      11
+     ],
+     [
+      "1/30",
+      "1/16",
+      321,
+      16
+     ],
+     [
+      "1/30",
+      "1/16",
+      337,
+      3
+     ],
+     [
+      "1/30",
+      "1/30",
+      340,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1277,
+     "pivots": 161470,
+     "rowsProcessed": 366973,
+     "peakRows": 340,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 648,
+     "primalHits": 408,
+     "envelopeChecks": 2279,
+     "primalBuilds": 1266,
+     "cutHits": 7,
+     "deferredBlocks": 2250,
+     "zeroHits": 1053,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 381,
+     "pivots": 52093,
+     "rowsProcessed": 109728,
+     "zeroWorldBlocks": 131
+    }
+   },
+   "seconds": {
+    "design": 6.135358236031607,
+    "export": 1.859364310046658,
+    "replay": 0.6336058550514281
+   },
+   "gzipSha256": "970e2d493db2d0a413945519ddf5a521bdac8164ba18a211b41638b9bae596e9",
+   "rawBytes": 343085
+  },
+  {
+   "prefix": [
+    0,
+    7
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/31",
+    "upper": "1/31",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "ref",
+     "z1",
+     "x0",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "y1"
+      ]
+     },
+     {
+      "commands": [
+       "z0",
+       "z0"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/31",
+    "upper": "1/31",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      39
+     ],
+     [
+      "0",
+      "1/16",
+      40,
+      51
+     ],
+     [
+      "0",
+      "1/16",
+      91,
+      27
+     ],
+     [
+      "2/85",
+      "1/16",
+      118,
+      47
+     ],
+     [
+      "2/71",
+      "1/16",
+      165,
+      28
+     ],
+     [
+      "3/103",
+      "1/16",
+      193,
+      41
+     ],
+     [
+      "5/164",
+      "1/16",
+      234,
+      22
+     ],
+     [
+      "1/32",
+      "1/16",
+      256,
+      18
+     ],
+     [
+      "3/94",
+      "1/16",
+      274,
+      12
+     ],
+     [
+      "1/31",
+      "1/16",
+      286,
+      9
+     ],
+     [
+      "1/31",
+      "1/16",
+      295,
+      5
+     ],
+     [
+      "1/31",
+      "1/31",
+      300,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1768,
+     "pivots": 241509,
+     "rowsProcessed": 507981,
+     "peakRows": 300,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 178,
+     "primalHits": 740,
+     "envelopeChecks": 4704,
+     "primalBuilds": 1756,
+     "cutHits": 6,
+     "deferredBlocks": 2084,
+     "zeroHits": 1380,
+     "zeroBlocks": 386,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 412,
+     "pivots": 59012,
+     "rowsProcessed": 118656,
+     "zeroWorldBlocks": 100
+    }
+   },
+   "seconds": {
+    "design": 8.92903778096661,
+    "export": 2.1049883239902556,
+    "replay": 0.6364945219829679
+   },
+   "gzipSha256": "00fc86e83aa121057b82a0a2692582e51549156f46fa2e07e07a96be1193f5b6",
+   "rawBytes": 368205
+  },
+  {
+   "prefix": [
+    1,
+    0
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/22",
+    "upper": "1/22",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "group",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "x0",
+       "z0"
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "x1",
+       "y1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/22",
+    "upper": "1/22",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      128
+     ],
+     [
+      "0",
+      "1/16",
+      129,
+      55
+     ],
+     [
+      "0",
+      "1/16",
+      184,
+      61
+     ],
+     [
+      "0",
+      "1/16",
+      245,
+      58
+     ],
+     [
+      "9/326",
+      "1/16",
+      303,
+      63
+     ],
+     [
+      "1/22",
+      "1/16",
+      366,
+      56
+     ],
+     [
+      "1/22",
+      "1/16",
+      422,
+      43
+     ],
+     [
+      "1/22",
+      "1/16",
+      465,
+      30
+     ],
+     [
+      "1/22",
+      "1/16",
+      495,
+      17
+     ],
+     [
+      "1/22",
+      "1/16",
+      512,
+      14
+     ],
+     [
+      "1/22",
+      "1/16",
+      526,
+      5
+     ],
+     [
+      "1/22",
+      "1/16",
+      531,
+      5
+     ],
+     [
+      "1/22",
+      "1/16",
+      536,
+      2
+     ],
+     [
+      "1/22",
+      "1/16",
+      538,
+      1
+     ],
+     [
+      "1/22",
+      "1/22",
+      539,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2223,
+     "pivots": 278941,
+     "rowsProcessed": 641696,
+     "peakRows": 539,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 988,
+     "primalHits": 1514,
+     "envelopeChecks": 6770,
+     "primalBuilds": 2208,
+     "cutHits": 2,
+     "deferredBlocks": 2752,
+     "zeroHits": 216,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 67064,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 11.097937133978121,
+    "export": 2.5343424500897527,
+    "replay": 0.7205978169804439
+   },
+   "gzipSha256": "ddf6b6b48df61d0a70e70356d31c911789f523231363c4529048375f0b536f56",
+   "rawBytes": 378381
+  },
+  {
+   "prefix": [
+    1,
+    1
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/29",
+    "upper": "1/29",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "group",
+     "group",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0"
+        ]
+       },
+       {
+        "commands": [
+         "z0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/29",
+    "upper": "1/29",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      135
+     ],
+     [
+      "0",
+      "1/16",
+      136,
+      55
+     ],
+     [
+      "0",
+      "1/16",
+      191,
+      61
+     ],
+     [
+      "5/382",
+      "1/16",
+      252,
+      26
+     ],
+     [
+      "1/53",
+      "1/16",
+      278,
+      59
+     ],
+     [
+      "1/52",
+      "1/16",
+      337,
+      58
+     ],
+     [
+      "1/44",
+      "1/16",
+      395,
+      51
+     ],
+     [
+      "3/112",
+      "1/16",
+      446,
+      44
+     ],
+     [
+      "1/32",
+      "1/16",
+      490,
+      23
+     ],
+     [
+      "1/31",
+      "1/16",
+      513,
+      11
+     ],
+     [
+      "1/29",
+      "1/16",
+      524,
+      32
+     ],
+     [
+      "1/29",
+      "1/16",
+      556,
+      18
+     ],
+     [
+      "1/29",
+      "1/16",
+      574,
+      3
+     ],
+     [
+      "1/29",
+      "1/16",
+      577,
+      1
+     ],
+     [
+      "1/29",
+      "1/16",
+      578,
+      1
+     ],
+     [
+      "1/29",
+      "1/29",
+      579,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2641,
+     "pivots": 320004,
+     "rowsProcessed": 762427,
+     "peakRows": 579,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 375,
+     "primalHits": 1662,
+     "envelopeChecks": 9190,
+     "primalBuilds": 2625,
+     "cutHits": 4,
+     "deferredBlocks": 3177,
+     "zeroHits": 349,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 494,
+     "pivots": 64546,
+     "rowsProcessed": 142272,
+     "zeroWorldBlocks": 18
+    }
+   },
+   "seconds": {
+    "design": 13.513847536989488,
+    "export": 2.4510693459305912,
+    "replay": 0.6436299009947106
+   },
+   "gzipSha256": "641c7b40d98948b8885f490bf432824d9cecc2d5748b0341723ef738facc4f79",
+   "rawBytes": 399461
+  },
+  {
+   "prefix": [
+    1,
+    2
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "3/83",
+    "upper": "3/83",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 5
+   },
+   "policy": {
+    "commands": [
+     "group",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0",
+         "y0"
+        ]
+       },
+       {
+        "commands": [
+         "x1"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "y1"
+          ]
+         },
+         {
+          "commands": [
+           "z1"
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref",
+         "ref",
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "y0",
+         "ref",
+         "ref"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "3/83",
+    "upper": "3/83",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      293
+     ],
+     [
+      "0",
+      "1/16",
+      294,
+      54
+     ],
+     [
+      "4/253",
+      "1/16",
+      348,
+      57
+     ],
+     [
+      "60/2381",
+      "1/16",
+      405,
+      57
+     ],
+     [
+      "3/94",
+      "1/16",
+      462,
+      47
+     ],
+     [
+      "21/646",
+      "1/16",
+      509,
+      38
+     ],
+     [
+      "28/843",
+      "1/16",
+      547,
+      19
+     ],
+     [
+      "4/119",
+      "1/16",
+      566,
+      10
+     ],
+     [
+      "3/89",
+      "1/16",
+      576,
+      4
+     ],
+     [
+      "3/83",
+      "1/16",
+      580,
+      4
+     ],
+     [
+      "3/83",
+      "3/83",
+      584,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2486,
+     "pivots": 337329,
+     "rowsProcessed": 717672,
+     "peakRows": 584,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 440,
+     "primalHits": 773,
+     "envelopeChecks": 6339,
+     "primalBuilds": 2475,
+     "cutHits": 5,
+     "deferredBlocks": 1939,
+     "zeroHits": 0,
+     "zeroBlocks": 0,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 73024,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 12.289673776947893,
+    "export": 2.6109385390300304,
+    "replay": 0.696793628972955
+   },
+   "gzipSha256": "408c7c453f4f63f1409218ead7d3f1d05664d6fcfd754163def6b346873d0884",
+   "rawBytes": 450245
+  },
+  {
+   "prefix": [
+    1,
+    3
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/28",
+    "upper": "1/28",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 5
+   },
+   "policy": {
+    "commands": [
+     "group",
+     "y0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "x0",
+         "z0"
+        ]
+       },
+       {
+        "commands": [
+         "x1"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "y1"
+          ]
+         },
+         {
+          "commands": [
+           "z1"
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref",
+         "ref",
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "z0",
+         "ref",
+         "ref"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/28",
+    "upper": "1/28",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      173
+     ],
+     [
+      "0",
+      "1/16",
+      174,
+      60
+     ],
+     [
+      "0",
+      "1/16",
+      234,
+      59
+     ],
+     [
+      "3/143",
+      "1/16",
+      293,
+      63
+     ],
+     [
+      "6/185",
+      "1/16",
+      356,
+      54
+     ],
+     [
+      "11/334",
+      "1/16",
+      410,
+      49
+     ],
+     [
+      "1/29",
+      "1/16",
+      459,
+      31
+     ],
+     [
+      "1/28",
+      "1/16",
+      490,
+      22
+     ],
+     [
+      "1/28",
+      "1/16",
+      512,
+      12
+     ],
+     [
+      "1/28",
+      "1/16",
+      524,
+      1
+     ],
+     [
+      "1/28",
+      "1/16",
+      525,
+      1
+     ],
+     [
+      "1/28",
+      "1/28",
+      526,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2049,
+     "pivots": 264557,
+     "rowsProcessed": 591160,
+     "peakRows": 526,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 1188,
+     "primalHits": 604,
+     "envelopeChecks": 4506,
+     "primalBuilds": 2037,
+     "cutHits": 6,
+     "deferredBlocks": 2309,
+     "zeroHits": 0,
+     "zeroBlocks": 0,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 70712,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 10.10808947100304,
+    "export": 2.4814772279933095,
+    "replay": 0.6599255769979209
+   },
+   "gzipSha256": "bfd798d6b3c230c7eff4e5f45d73c6a229b705f3887825311c4181f88ea0ca36",
+   "rawBytes": 393328
+  },
+  {
+   "prefix": [
+    1,
+    4
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "3/86",
+    "upper": "3/86",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "group",
+     "z0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0",
+         "ref",
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "y1",
+         "x1",
+         "z1"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "y1",
+       "x1",
+       "z1",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "3/86",
+    "upper": "3/86",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      188
+     ],
+     [
+      "0",
+      "1/16",
+      189,
+      39
+     ],
+     [
+      "0",
+      "1/16",
+      228,
+      63
+     ],
+     [
+      "1/39",
+      "1/16",
+      291,
+      63
+     ],
+     [
+      "19/632",
+      "1/16",
+      354,
+      50
+     ],
+     [
+      "1/32",
+      "1/16",
+      404,
+      44
+     ],
+     [
+      "7/204",
+      "1/16",
+      448,
+      31
+     ],
+     [
+      "7/204",
+      "1/16",
+      479,
+      17
+     ],
+     [
+      "3/86",
+      "1/16",
+      496,
+      9
+     ],
+     [
+      "3/86",
+      "1/16",
+      505,
+      2
+     ],
+     [
+      "3/86",
+      "1/16",
+      507,
+      2
+     ],
+     [
+      "3/86",
+      "1/16",
+      509,
+      1
+     ],
+     [
+      "3/86",
+      "3/86",
+      510,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1770,
+     "pivots": 226838,
+     "rowsProcessed": 510937,
+     "peakRows": 510,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 1080,
+     "primalHits": 1376,
+     "envelopeChecks": 4471,
+     "primalBuilds": 1757,
+     "cutHits": 2,
+     "deferredBlocks": 2225,
+     "zeroHits": 216,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 70654,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 8.804981237044558,
+    "export": 2.5524731850018725,
+    "replay": 0.6483158479677513
+   },
+   "gzipSha256": "b791a211c81940816e9e732a7258bba729ccadfbdfc2a526df6864a18289dd3e",
+   "rawBytes": 417561
+  },
+  {
+   "prefix": [
+    1,
+    5
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/31",
+    "upper": "1/31",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "group",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "x0"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "y0"
+          ]
+         },
+         {
+          "commands": [
+           "z0"
+          ]
+         }
+        ]
+       },
+       {
+        "commands": [
+         "z1",
+         "z1"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "y1",
+       "y1",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/31",
+    "upper": "1/31",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      152
+     ],
+     [
+      "0",
+      "1/16",
+      153,
+      61
+     ],
+     [
+      "76/5327",
+      "1/16",
+      214,
+      62
+     ],
+     [
+      "2/99",
+      "1/16",
+      276,
+      63
+     ],
+     [
+      "1/46",
+      "1/16",
+      339,
+      56
+     ],
+     [
+      "3/115",
+      "1/16",
+      395,
+      52
+     ],
+     [
+      "1/36",
+      "1/16",
+      447,
+      31
+     ],
+     [
+      "7/241",
+      "1/16",
+      478,
+      30
+     ],
+     [
+      "3/97",
+      "1/16",
+      508,
+      15
+     ],
+     [
+      "4/129",
+      "1/16",
+      523,
+      5
+     ],
+     [
+      "3/94",
+      "1/16",
+      528,
+      4
+     ],
+     [
+      "1/31",
+      "1/16",
+      532,
+      2
+     ],
+     [
+      "1/31",
+      "1/16",
+      534,
+      1
+     ],
+     [
+      "1/31",
+      "1/16",
+      535,
+      1
+     ],
+     [
+      "1/31",
+      "1/31",
+      536,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2608,
+     "pivots": 345147,
+     "rowsProcessed": 752783,
+     "peakRows": 536,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 728,
+     "primalHits": 1607,
+     "envelopeChecks": 8580,
+     "primalBuilds": 2593,
+     "cutHits": 12,
+     "deferredBlocks": 2524,
+     "zeroHits": 216,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 68585,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 13.610909483046271,
+    "export": 2.569284930941649,
+    "replay": 0.6436066000023857
+   },
+   "gzipSha256": "887e1cbb47598a6604720e0e331e6ee465c3403db623234388b9eca894a5269e",
+   "rawBytes": 428854
+  },
+  {
+   "prefix": [
+    1,
+    6
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "group",
+     "y1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref",
+         "z1"
+        ]
+       },
+       {
+        "commands": [
+         "x0"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "y0"
+          ]
+         },
+         {
+          "commands": [
+           "z0"
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "x1",
+       "z1",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      155
+     ],
+     [
+      "0",
+      "1/16",
+      156,
+      53
+     ],
+     [
+      "0",
+      "1/16",
+      209,
+      61
+     ],
+     [
+      "0",
+      "1/16",
+      270,
+      58
+     ],
+     [
+      "6/311",
+      "1/16",
+      328,
+      60
+     ],
+     [
+      "1/44",
+      "1/16",
+      388,
+      61
+     ],
+     [
+      "1/32",
+      "1/16",
+      449,
+      50
+     ],
+     [
+      "1/32",
+      "1/16",
+      499,
+      32
+     ],
+     [
+      "1/30",
+      "1/16",
+      531,
+      20
+     ],
+     [
+      "1/30",
+      "1/16",
+      551,
+      12
+     ],
+     [
+      "1/30",
+      "1/16",
+      563,
+      4
+     ],
+     [
+      "1/30",
+      "1/16",
+      567,
+      3
+     ],
+     [
+      "1/30",
+      "1/16",
+      570,
+      1
+     ],
+     [
+      "1/30",
+      "1/30",
+      571,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1854,
+     "pivots": 231751,
+     "rowsProcessed": 535573,
+     "peakRows": 571,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 1286,
+     "primalHits": 1014,
+     "envelopeChecks": 4523,
+     "primalBuilds": 1840,
+     "cutHits": 4,
+     "deferredBlocks": 2808,
+     "zeroHits": 216,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 70244,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 9.322454952984117,
+    "export": 2.623084792983718,
+    "replay": 0.6997063960880041
+   },
+   "gzipSha256": "2c11fc47f276248aa71dd3e4adaba158faf29ad24699f0ebaa3f4f7cb0ffca4a",
+   "rawBytes": 392034
+  },
+  {
+   "prefix": [
+    1,
+    7
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "7/206",
+    "upper": "7/206",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "group",
+     "z1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "x0"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "y0"
+          ]
+         },
+         {
+          "commands": [
+           "z0"
+          ]
+         }
+        ]
+       },
+       {
+        "commands": [
+         "x1",
+         "y1"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "x1",
+       "y1",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "7/206",
+    "upper": "7/206",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      131
+     ],
+     [
+      "0",
+      "1/16",
+      132,
+      64
+     ],
+     [
+      "0",
+      "1/16",
+      196,
+      61
+     ],
+     [
+      "10/589",
+      "1/16",
+      257,
+      58
+     ],
+     [
+      "3/148",
+      "1/16",
+      315,
+      63
+     ],
+     [
+      "9/352",
+      "1/16",
+      378,
+      52
+     ],
+     [
+      "6/203",
+      "1/16",
+      430,
+      32
+     ],
+     [
+      "57/1850",
+      "1/16",
+      462,
+      26
+     ],
+     [
+      "23/716",
+      "1/16",
+      488,
+      15
+     ],
+     [
+      "1/30",
+      "1/16",
+      503,
+      7
+     ],
+     [
+      "1/30",
+      "1/16",
+      510,
+      3
+     ],
+     [
+      "7/206",
+      "1/16",
+      513,
+      7
+     ],
+     [
+      "7/206",
+      "1/16",
+      520,
+      2
+     ],
+     [
+      "7/206",
+      "7/206",
+      522,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2393,
+     "pivots": 334801,
+     "rowsProcessed": 690379,
+     "peakRows": 522,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 396,
+     "primalHits": 1614,
+     "envelopeChecks": 7760,
+     "primalBuilds": 2379,
+     "cutHits": 13,
+     "deferredBlocks": 2550,
+     "zeroHits": 216,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 74859,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 12.615847246022895,
+    "export": 2.6517321650171652,
+    "replay": 0.683886126964353
+   },
+   "gzipSha256": "d1eed355cc8ff398d5d057e61959da9747fff4da14e4ee16f663a481ddb72dbc",
+   "rawBytes": 466085
+  },
+  {
+   "prefix": [
+    2,
+    0
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/24",
+    "upper": "1/24",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "x0",
+     "ref",
+     "ref",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "y1"
+      ]
+     },
+     {
+      "commands": [
+       "z0",
+       "z1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/24",
+    "upper": "1/24",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      130
+     ],
+     [
+      "0",
+      "1/16",
+      131,
+      56
+     ],
+     [
+      "1/38",
+      "1/16",
+      187,
+      61
+     ],
+     [
+      "1/34",
+      "1/16",
+      248,
+      56
+     ],
+     [
+      "1/32",
+      "1/16",
+      304,
+      37
+     ],
+     [
+      "1/25",
+      "1/16",
+      341,
+      34
+     ],
+     [
+      "1/25",
+      "1/16",
+      375,
+      37
+     ],
+     [
+      "1/25",
+      "1/16",
+      412,
+      31
+     ],
+     [
+      "1/24",
+      "1/16",
+      443,
+      14
+     ],
+     [
+      "1/24",
+      "1/16",
+      457,
+      11
+     ],
+     [
+      "1/24",
+      "1/16",
+      468,
+      2
+     ],
+     [
+      "1/24",
+      "1/24",
+      470,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2665,
+     "pivots": 340422,
+     "rowsProcessed": 767901,
+     "peakRows": 470,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 341,
+     "primalHits": 612,
+     "envelopeChecks": 7469,
+     "primalBuilds": 2653,
+     "cutHits": 27,
+     "deferredBlocks": 2278,
+     "zeroHits": 233,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 66375,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 13.067212519003078,
+    "export": 2.4363107070093974,
+    "replay": 0.6651182100176811
+   },
+   "gzipSha256": "3682c45e9188879f1fc12e0bcc70220b42302631f5467423ef3ec5b99e4ab169",
+   "rawBytes": 386145
+  },
+  {
+   "prefix": [
+    2,
+    1
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "2/57",
+    "upper": "2/57",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 6
+   },
+   "policy": {
+    "commands": [
+     "x0",
+     "group"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "y0",
+           "y0"
+          ]
+         },
+         {
+          "commands": [
+           "x1"
+          ],
+          "alternatives": [
+           {
+            "commands": [
+             "y1"
+            ]
+           },
+           {
+            "commands": [
+             "z1"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "commands": [
+         "y1",
+         "z1",
+         "x1"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref",
+         "ref",
+         "group"
+        ]
+       },
+       {
+        "commands": [
+         "y0",
+         "ref",
+         "ref"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "2/57",
+    "upper": "2/57",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      290
+     ],
+     [
+      "0",
+      "1/16",
+      291,
+      36
+     ],
+     [
+      "32/6965",
+      "1/16",
+      327,
+      51
+     ],
+     [
+      "1/54",
+      "1/16",
+      378,
+      63
+     ],
+     [
+      "5/218",
+      "1/16",
+      441,
+      62
+     ],
+     [
+      "17/585",
+      "1/16",
+      503,
+      56
+     ],
+     [
+      "3/98",
+      "1/16",
+      559,
+      50
+     ],
+     [
+      "1/32",
+      "1/16",
+      609,
+      34
+     ],
+     [
+      "2/63",
+      "1/16",
+      643,
+      22
+     ],
+     [
+      "2/61",
+      "1/16",
+      665,
+      19
+     ],
+     [
+      "1/30",
+      "1/16",
+      684,
+      14
+     ],
+     [
+      "9/266",
+      "1/16",
+      698,
+      11
+     ],
+     [
+      "2/59",
+      "1/16",
+      709,
+      4
+     ],
+     [
+      "2/57",
+      "1/16",
+      713,
+      7
+     ],
+     [
+      "2/57",
+      "1/16",
+      720,
+      3
+     ],
+     [
+      "2/57",
+      "1/16",
+      723,
+      2
+     ],
+     [
+      "2/57",
+      "1/16",
+      725,
+      1
+     ],
+     [
+      "2/57",
+      "2/57",
+      726,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 3532,
+     "pivots": 455478,
+     "rowsProcessed": 1022147,
+     "peakRows": 726,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 1280,
+     "primalHits": 1338,
+     "envelopeChecks": 12437,
+     "primalBuilds": 3514,
+     "cutHits": 15,
+     "deferredBlocks": 3069,
+     "zeroHits": 0,
+     "zeroBlocks": 0,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 70222,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 18.408937577041797,
+    "export": 2.5722804409451783,
+    "replay": 0.7396393360104412
+   },
+   "gzipSha256": "efcd31e2f7315ea7149971a255ad9d8d0f5a278a183011e4c74779cbcf0775ad",
+   "rawBytes": 428954
+  },
+  {
+   "prefix": [
+    2,
+    2
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/33",
+    "upper": "1/33",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "x0",
+     "x0",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "z0",
+       "z0"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0",
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1",
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/33",
+    "upper": "1/33",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      127
+     ],
+     [
+      "0",
+      "1/16",
+      128,
+      57
+     ],
+     [
+      "3/149",
+      "1/16",
+      185,
+      19
+     ],
+     [
+      "3/146",
+      "1/16",
+      204,
+      61
+     ],
+     [
+      "4/191",
+      "1/16",
+      265,
+      47
+     ],
+     [
+      "1/38",
+      "1/16",
+      312,
+      37
+     ],
+     [
+      "13/458",
+      "1/16",
+      349,
+      26
+     ],
+     [
+      "1/35",
+      "1/16",
+      375,
+      31
+     ],
+     [
+      "1/35",
+      "1/16",
+      406,
+      19
+     ],
+     [
+      "1/35",
+      "1/16",
+      425,
+      12
+     ],
+     [
+      "1/34",
+      "1/16",
+      437,
+      9
+     ],
+     [
+      "1/33",
+      "1/16",
+      446,
+      3
+     ],
+     [
+      "1/33",
+      "1/33",
+      449,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2464,
+     "pivots": 325998,
+     "rowsProcessed": 709870,
+     "peakRows": 449,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 243,
+     "primalHits": 971,
+     "envelopeChecks": 7711,
+     "primalBuilds": 2451,
+     "cutHits": 5,
+     "deferredBlocks": 2479,
+     "zeroHits": 507,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 478,
+     "pivots": 67532,
+     "rowsProcessed": 137664,
+     "zeroWorldBlocks": 34
+    }
+   },
+   "seconds": {
+    "design": 12.81686396303121,
+    "export": 2.3875116349663585,
+    "replay": 0.6666694339364767
+   },
+   "gzipSha256": "6337c6e0c49f4cf47a6349f67dccb40fade07eb8da3ba27d178ec8539d2b1f32",
+   "rawBytes": 373305
+  },
+  {
+   "prefix": [
+    2,
+    3
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "x0",
+     "y0",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "z0",
+       "z0"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      156
+     ],
+     [
+      "0",
+      "1/16",
+      157,
+      58
+     ],
+     [
+      "0",
+      "1/16",
+      215,
+      58
+     ],
+     [
+      "8/391",
+      "1/16",
+      273,
+      63
+     ],
+     [
+      "6/211",
+      "1/16",
+      336,
+      58
+     ],
+     [
+      "9/274",
+      "1/16",
+      394,
+      48
+     ],
+     [
+      "9/274",
+      "1/16",
+      442,
+      36
+     ],
+     [
+      "3/82",
+      "1/16",
+      478,
+      26
+     ],
+     [
+      "3/82",
+      "1/16",
+      504,
+      14
+     ],
+     [
+      "3/82",
+      "1/16",
+      518,
+      9
+     ],
+     [
+      "1/26",
+      "1/16",
+      527,
+      9
+     ],
+     [
+      "1/26",
+      "1/16",
+      536,
+      24
+     ],
+     [
+      "1/26",
+      "1/16",
+      560,
+      5
+     ],
+     [
+      "1/26",
+      "1/16",
+      565,
+      5
+     ],
+     [
+      "1/26",
+      "1/16",
+      570,
+      8
+     ],
+     [
+      "1/26",
+      "1/16",
+      578,
+      1
+     ],
+     [
+      "1/26",
+      "1/16",
+      579,
+      1
+     ],
+     [
+      "1/26",
+      "1/26",
+      580,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 3340,
+     "pivots": 415232,
+     "rowsProcessed": 964549,
+     "peakRows": 580,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 543,
+     "primalHits": 2501,
+     "envelopeChecks": 13760,
+     "primalBuilds": 3322,
+     "cutHits": 26,
+     "deferredBlocks": 2824,
+     "zeroHits": 0,
+     "zeroBlocks": 0,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 66146,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 17.386686159996316,
+    "export": 2.5327073810622096,
+    "replay": 0.7314572460018098
+   },
+   "gzipSha256": "f74534d244d46144adb4dfacbaed1ea6a4176e5456815713f6b7f88cbe06991b",
+   "rawBytes": 472599
+  },
+  {
+   "prefix": [
+    2,
+    4
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "x0",
+     "z0",
+     "y0",
+     "group"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      136
+     ],
+     [
+      "0",
+      "1/16",
+      137,
+      56
+     ],
+     [
+      "0",
+      "1/16",
+      193,
+      57
+     ],
+     [
+      "1/32",
+      "1/16",
+      250,
+      48
+     ],
+     [
+      "1/32",
+      "1/16",
+      298,
+      48
+     ],
+     [
+      "1/32",
+      "1/16",
+      346,
+      54
+     ],
+     [
+      "1/32",
+      "1/16",
+      400,
+      43
+     ],
+     [
+      "1/32",
+      "1/16",
+      443,
+      19
+     ],
+     [
+      "1/32",
+      "1/16",
+      462,
+      15
+     ],
+     [
+      "1/32",
+      "1/16",
+      477,
+      12
+     ],
+     [
+      "1/32",
+      "1/16",
+      489,
+      5
+     ],
+     [
+      "1/32",
+      "1/16",
+      494,
+      2
+     ],
+     [
+      "1/32",
+      "1/16",
+      496,
+      13
+     ],
+     [
+      "1/32",
+      "1/16",
+      509,
+      2
+     ],
+     [
+      "1/32",
+      "1/32",
+      511,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2445,
+     "pivots": 301091,
+     "rowsProcessed": 705346,
+     "peakRows": 511,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 252,
+     "primalHits": 2106,
+     "envelopeChecks": 8838,
+     "primalBuilds": 2430,
+     "cutHits": 11,
+     "deferredBlocks": 2695,
+     "zeroHits": 186,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 67713,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 12.112124373903498,
+    "export": 2.67079913103953,
+    "replay": 0.6754953570198268
+   },
+   "gzipSha256": "afe52123a1d3e0a57daf41b53a53d5d2bb105dde1ae60d5ed6a5767c32b54ec2",
+   "rawBytes": 448520
+  },
+  {
+   "prefix": [
+    2,
+    5
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/24",
+    "upper": "1/24",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "x0",
+     "x1",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "y1"
+      ]
+     },
+     {
+      "commands": [
+       "z0",
+       "z1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/24",
+    "upper": "1/24",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      255
+     ],
+     [
+      "0",
+      "1/16",
+      256,
+      57
+     ],
+     [
+      "176/33067",
+      "1/16",
+      313,
+      64
+     ],
+     [
+      "11/486",
+      "1/16",
+      377,
+      62
+     ],
+     [
+      "1/32",
+      "1/16",
+      439,
+      51
+     ],
+     [
+      "3/86",
+      "1/16",
+      490,
+      39
+     ],
+     [
+      "3/86",
+      "1/16",
+      529,
+      31
+     ],
+     [
+      "1/28",
+      "1/16",
+      560,
+      21
+     ],
+     [
+      "1/28",
+      "1/16",
+      581,
+      10
+     ],
+     [
+      "1/24",
+      "1/16",
+      591,
+      4
+     ],
+     [
+      "1/24",
+      "1/24",
+      595,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2085,
+     "pivots": 271810,
+     "rowsProcessed": 602044,
+     "peakRows": 595,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 336,
+     "primalHits": 647,
+     "envelopeChecks": 4991,
+     "primalBuilds": 2074,
+     "cutHits": 13,
+     "deferredBlocks": 2342,
+     "zeroHits": 220,
+     "zeroBlocks": 125,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 482,
+     "pivots": 63752,
+     "rowsProcessed": 138816,
+     "zeroWorldBlocks": 30
+    }
+   },
+   "seconds": {
+    "design": 10.819110834039748,
+    "export": 2.4148569910321385,
+    "replay": 0.6580242040799931
+   },
+   "gzipSha256": "a6815cbfc26d7f6130967c78006e7abb88f03ac65fa1c0e34d66474207f55543",
+   "rawBytes": 394359
+  },
+  {
+   "prefix": [
+    2,
+    6
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "x0",
+     "y1",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "z0",
+       "z0"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      215
+     ],
+     [
+      "0",
+      "1/16",
+      216,
+      58
+     ],
+     [
+      "80/4369",
+      "1/16",
+      274,
+      63
+     ],
+     [
+      "19/632",
+      "1/16",
+      337,
+      58
+     ],
+     [
+      "171/5296",
+      "1/16",
+      395,
+      45
+     ],
+     [
+      "13/387",
+      "1/16",
+      440,
+      40
+     ],
+     [
+      "3/88",
+      "1/16",
+      480,
+      34
+     ],
+     [
+      "9/256",
+      "1/16",
+      514,
+      27
+     ],
+     [
+      "3/82",
+      "1/16",
+      541,
+      10
+     ],
+     [
+      "1/26",
+      "1/16",
+      551,
+      6
+     ],
+     [
+      "1/26",
+      "1/16",
+      557,
+      2
+     ],
+     [
+      "1/26",
+      "1/16",
+      559,
+      2
+     ],
+     [
+      "1/26",
+      "1/26",
+      561,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2425,
+     "pivots": 308881,
+     "rowsProcessed": 700082,
+     "peakRows": 561,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 377,
+     "primalHits": 1442,
+     "envelopeChecks": 7566,
+     "primalBuilds": 2412,
+     "cutHits": 8,
+     "deferredBlocks": 2292,
+     "zeroHits": 125,
+     "zeroBlocks": 125,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 66162,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 12.254511674051173,
+    "export": 2.533634935040027,
+    "replay": 0.6641653759870678
+   },
+   "gzipSha256": "0e073ffce0e8b1c66937079bdc81d701eb4b74ff8b06beb1360bb25ec68f2900",
+   "rawBytes": 393336
+  },
+  {
+   "prefix": [
+    2,
+    7
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "3/92",
+    "upper": "3/92",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "x0",
+     "z1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "x1",
+       "y1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "x0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z0",
+       "ref",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "3/92",
+    "upper": "3/92",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      158
+     ],
+     [
+      "0",
+      "1/16",
+      159,
+      56
+     ],
+     [
+      "0",
+      "1/16",
+      215,
+      63
+     ],
+     [
+      "3/127",
+      "1/16",
+      278,
+      56
+     ],
+     [
+      "5/178",
+      "1/16",
+      334,
+      51
+     ],
+     [
+      "23/712",
+      "1/16",
+      385,
+      25
+     ],
+     [
+      "23/712",
+      "1/16",
+      410,
+      16
+     ],
+     [
+      "3/92",
+      "1/16",
+      426,
+      11
+     ],
+     [
+      "3/92",
+      "1/16",
+      437,
+      15
+     ],
+     [
+      "3/92",
+      "1/16",
+      452,
+      4
+     ],
+     [
+      "3/92",
+      "1/16",
+      456,
+      4
+     ],
+     [
+      "3/92",
+      "1/16",
+      460,
+      1
+     ],
+     [
+      "3/92",
+      "1/16",
+      461,
+      1
+     ],
+     [
+      "3/92",
+      "1/16",
+      462,
+      1
+     ],
+     [
+      "3/92",
+      "3/92",
+      463,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1879,
+     "pivots": 276000,
+     "rowsProcessed": 542231,
+     "peakRows": 463,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 1768,
+     "primalHits": 1731,
+     "envelopeChecks": 5451,
+     "primalBuilds": 1864,
+     "cutHits": 8,
+     "deferredBlocks": 2123,
+     "zeroHits": 186,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 80245,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 9.93351341295056,
+    "export": 2.6391807639738545,
+    "replay": 0.6673453309340402
+   },
+   "gzipSha256": "f9b5b03511fc744b5cc7aaffa9d6f22402d0af3515a5f62bef454d7b129c616a",
+   "rawBytes": 419896
+  },
+  {
+   "prefix": [
+    3,
+    0
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/27",
+    "upper": "1/27",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "y0",
+     "ref",
+     "ref",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "z0"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/27",
+    "upper": "1/27",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      64
+     ],
+     [
+      "0",
+      "1/16",
+      65,
+      39
+     ],
+     [
+      "2/75",
+      "1/16",
+      104,
+      53
+     ],
+     [
+      "1/30",
+      "1/16",
+      157,
+      56
+     ],
+     [
+      "1/30",
+      "1/16",
+      213,
+      32
+     ],
+     [
+      "1/27",
+      "1/16",
+      245,
+      22
+     ],
+     [
+      "1/27",
+      "1/16",
+      267,
+      24
+     ],
+     [
+      "1/27",
+      "1/16",
+      291,
+      16
+     ],
+     [
+      "1/27",
+      "1/16",
+      307,
+      17
+     ],
+     [
+      "1/27",
+      "1/16",
+      324,
+      4
+     ],
+     [
+      "1/27",
+      "1/16",
+      328,
+      3
+     ],
+     [
+      "1/27",
+      "1/16",
+      331,
+      3
+     ],
+     [
+      "1/27",
+      "1/27",
+      334,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1923,
+     "pivots": 230146,
+     "rowsProcessed": 553047,
+     "peakRows": 334,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 640,
+     "primalHits": 931,
+     "envelopeChecks": 5479,
+     "primalBuilds": 1910,
+     "cutHits": 12,
+     "deferredBlocks": 1971,
+     "zeroHits": 1192,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 388,
+     "pivots": 46853,
+     "rowsProcessed": 111744,
+     "zeroWorldBlocks": 124
+    }
+   },
+   "seconds": {
+    "design": 9.230213511036709,
+    "export": 1.81163216708228,
+    "replay": 0.6221335160080343
+   },
+   "gzipSha256": "b2fb63355ad457f23a49515740c7c5c95c2a17812547c4300ea113984a0ed1e9",
+   "rawBytes": 339939
+  },
+  {
+   "prefix": [
+    3,
+    1
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/28",
+    "upper": "1/28",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "y0",
+     "group"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "x0",
+         "z0"
+        ]
+       },
+       {
+        "commands": [
+         "x1"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "y1"
+          ]
+         },
+         {
+          "commands": [
+           "z1"
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z0",
+       "x0",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/28",
+    "upper": "1/28",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      181
+     ],
+     [
+      "0",
+      "1/16",
+      182,
+      53
+     ],
+     [
+      "0",
+      "1/16",
+      235,
+      54
+     ],
+     [
+      "3/245",
+      "1/16",
+      289,
+      64
+     ],
+     [
+      "5/174",
+      "1/16",
+      353,
+      57
+     ],
+     [
+      "5/154",
+      "1/16",
+      410,
+      46
+     ],
+     [
+      "1/28",
+      "1/16",
+      456,
+      24
+     ],
+     [
+      "1/28",
+      "1/16",
+      480,
+      12
+     ],
+     [
+      "1/28",
+      "1/16",
+      492,
+      6
+     ],
+     [
+      "1/28",
+      "1/28",
+      498,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1779,
+     "pivots": 206462,
+     "rowsProcessed": 512868,
+     "peakRows": 498,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 913,
+     "primalHits": 276,
+     "envelopeChecks": 3106,
+     "primalBuilds": 1769,
+     "cutHits": 11,
+     "deferredBlocks": 2151,
+     "zeroHits": 0,
+     "zeroBlocks": 0,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 66040,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 8.32144003699068,
+    "export": 2.4478281310293823,
+    "replay": 0.6458416118985042
+   },
+   "gzipSha256": "347ec36aaec2565035f8ddfad44aec59e3fca60e3088cd1cf3b50e9c88d71dfd",
+   "rawBytes": 376064
+  },
+  {
+   "prefix": [
+    3,
+    2
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "y0",
+     "x0",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "z0",
+       "z0"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      159
+     ],
+     [
+      "0",
+      "1/16",
+      160,
+      59
+     ],
+     [
+      "0",
+      "1/16",
+      219,
+      50
+     ],
+     [
+      "8/1077",
+      "1/16",
+      269,
+      59
+     ],
+     [
+      "17/718",
+      "1/16",
+      328,
+      57
+     ],
+     [
+      "3/97",
+      "1/16",
+      385,
+      44
+     ],
+     [
+      "27/863",
+      "1/16",
+      429,
+      30
+     ],
+     [
+      "5/154",
+      "1/16",
+      459,
+      29
+     ],
+     [
+      "3/88",
+      "1/16",
+      488,
+      13
+     ],
+     [
+      "3/88",
+      "1/16",
+      501,
+      3
+     ],
+     [
+      "3/82",
+      "1/16",
+      504,
+      8
+     ],
+     [
+      "1/26",
+      "1/16",
+      512,
+      6
+     ],
+     [
+      "1/26",
+      "1/16",
+      518,
+      2
+     ],
+     [
+      "1/26",
+      "1/16",
+      520,
+      14
+     ],
+     [
+      "1/26",
+      "1/16",
+      534,
+      10
+     ],
+     [
+      "1/26",
+      "1/16",
+      544,
+      6
+     ],
+     [
+      "1/26",
+      "1/26",
+      550,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 3394,
+     "pivots": 463396,
+     "rowsProcessed": 979497,
+     "peakRows": 550,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 587,
+     "primalHits": 2010,
+     "envelopeChecks": 13334,
+     "primalBuilds": 3377,
+     "cutHits": 26,
+     "deferredBlocks": 2704,
+     "zeroHits": 0,
+     "zeroBlocks": 0,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 75253,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 17.203569518984295,
+    "export": 2.519347300985828,
+    "replay": 0.670301447971724
+   },
+   "gzipSha256": "265b00030ab3bc6d7878f6c67cff74dfe7e787ea1008af8ce567628ff286c889",
+   "rawBytes": 434233
+  },
+  {
+   "prefix": [
+    3,
+    3
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "3/109",
+    "upper": "3/109",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "y0",
+     "y0",
+     "group"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref",
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "z0",
+         "ref"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "3/109",
+    "upper": "3/109",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      76
+     ],
+     [
+      "0",
+      "1/16",
+      77,
+      51
+     ],
+     [
+      "7/340",
+      "1/16",
+      128,
+      56
+     ],
+     [
+      "1/48",
+      "1/16",
+      184,
+      34
+     ],
+     [
+      "1/48",
+      "1/16",
+      218,
+      12
+     ],
+     [
+      "2/81",
+      "1/16",
+      230,
+      47
+     ],
+     [
+      "6/227",
+      "1/16",
+      277,
+      29
+     ],
+     [
+      "3/113",
+      "1/16",
+      306,
+      15
+     ],
+     [
+      "12/445",
+      "1/16",
+      321,
+      13
+     ],
+     [
+      "5/184",
+      "1/16",
+      334,
+      4
+     ],
+     [
+      "3/110",
+      "1/16",
+      338,
+      8
+     ],
+     [
+      "2/73",
+      "1/16",
+      346,
+      4
+     ],
+     [
+      "3/109",
+      "1/16",
+      350,
+      2
+     ],
+     [
+      "3/109",
+      "3/109",
+      352,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1978,
+     "pivots": 247271,
+     "rowsProcessed": 569094,
+     "peakRows": 352,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 155,
+     "primalHits": 1433,
+     "envelopeChecks": 6814,
+     "primalBuilds": 1964,
+     "cutHits": 5,
+     "deferredBlocks": 2485,
+     "zeroHits": 1126,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 388,
+     "pivots": 50088,
+     "rowsProcessed": 111744,
+     "zeroWorldBlocks": 124
+    }
+   },
+   "seconds": {
+    "design": 9.725500546977855,
+    "export": 1.8806108210701495,
+    "replay": 0.662711477954872
+   },
+   "gzipSha256": "b371ace1f4dd6e5a3d661b086ee8b23bbfc298bb820abc078981471cbdcf14b4",
+   "rawBytes": 392191
+  },
+  {
+   "prefix": [
+    3,
+    4
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "y0",
+     "z0",
+     "x0",
+     "group"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      148
+     ],
+     [
+      "0",
+      "1/16",
+      149,
+      61
+     ],
+     [
+      "1/62",
+      "1/16",
+      210,
+      61
+     ],
+     [
+      "25/983",
+      "1/16",
+      271,
+      60
+     ],
+     [
+      "5/174",
+      "1/16",
+      331,
+      44
+     ],
+     [
+      "5/174",
+      "1/16",
+      375,
+      25
+     ],
+     [
+      "3/104",
+      "1/16",
+      400,
+      16
+     ],
+     [
+      "1/32",
+      "1/16",
+      416,
+      9
+     ],
+     [
+      "1/32",
+      "1/16",
+      425,
+      5
+     ],
+     [
+      "1/32",
+      "1/16",
+      430,
+      1
+     ],
+     [
+      "1/32",
+      "1/16",
+      431,
+      1
+     ],
+     [
+      "1/32",
+      "1/16",
+      432,
+      1
+     ],
+     [
+      "1/32",
+      "1/32",
+      433,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1573,
+     "pivots": 200962,
+     "rowsProcessed": 453584,
+     "peakRows": 433,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 561,
+     "primalHits": 1907,
+     "envelopeChecks": 4676,
+     "primalBuilds": 1560,
+     "cutHits": 3,
+     "deferredBlocks": 1947,
+     "zeroHits": 678,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 458,
+     "pivots": 61394,
+     "rowsProcessed": 131904,
+     "zeroWorldBlocks": 54
+    }
+   },
+   "seconds": {
+    "design": 8.081323995953426,
+    "export": 2.299383716075681,
+    "replay": 0.6982192890718579
+   },
+   "gzipSha256": "a8f858f61732019e10dfb41e1487753c626ea8feec9c503c465e19a1e433e2c2",
+   "rawBytes": 425710
+  },
+  {
+   "prefix": [
+    3,
+    5
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "y0",
+     "x1",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "z0"
+        ]
+       },
+       {
+        "commands": [
+         "y1"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "z1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      169
+     ],
+     [
+      "0",
+      "1/16",
+      170,
+      59
+     ],
+     [
+      "1/34",
+      "1/16",
+      229,
+      50
+     ],
+     [
+      "19/639",
+      "1/16",
+      279,
+      47
+     ],
+     [
+      "19/618",
+      "1/16",
+      326,
+      34
+     ],
+     [
+      "3/82",
+      "1/16",
+      360,
+      22
+     ],
+     [
+      "1/26",
+      "1/16",
+      382,
+      9
+     ],
+     [
+      "1/26",
+      "1/16",
+      391,
+      6
+     ],
+     [
+      "1/26",
+      "1/16",
+      397,
+      18
+     ],
+     [
+      "1/26",
+      "1/16",
+      415,
+      7
+     ],
+     [
+      "1/26",
+      "1/16",
+      422,
+      4
+     ],
+     [
+      "1/26",
+      "1/16",
+      426,
+      29
+     ],
+     [
+      "1/26",
+      "1/16",
+      455,
+      9
+     ],
+     [
+      "1/26",
+      "1/16",
+      464,
+      5
+     ],
+     [
+      "1/26",
+      "1/26",
+      469,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 3463,
+     "pivots": 443877,
+     "rowsProcessed": 998210,
+     "peakRows": 469,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 218,
+     "primalHits": 1770,
+     "envelopeChecks": 13609,
+     "primalBuilds": 3448,
+     "cutHits": 38,
+     "deferredBlocks": 2041,
+     "zeroHits": 165,
+     "zeroBlocks": 125,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 67164,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 18.256491626962088,
+    "export": 2.5728981090942398,
+    "replay": 0.6811848980141804
+   },
+   "gzipSha256": "b4561fa00e559d1bd4635d9ea237245f643657de6da80e2ba67aa852e0031898",
+   "rawBytes": 407444
+  },
+  {
+   "prefix": [
+    3,
+    6
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "5/147",
+    "upper": "5/147",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 5
+   },
+   "policy": {
+    "commands": [
+     "y0",
+     "y1",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref",
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "z0",
+         "ref"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref",
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "x0"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "ref"
+          ]
+         },
+         {
+          "commands": [
+           "z0"
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "5/147",
+    "upper": "5/147",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      124
+     ],
+     [
+      "0",
+      "1/16",
+      125,
+      54
+     ],
+     [
+      "1/38",
+      "1/16",
+      179,
+      50
+     ],
+     [
+      "1/38",
+      "1/16",
+      229,
+      52
+     ],
+     [
+      "70/2267",
+      "1/16",
+      281,
+      51
+     ],
+     [
+      "7/222",
+      "1/16",
+      332,
+      40
+     ],
+     [
+      "7/222",
+      "1/16",
+      372,
+      47
+     ],
+     [
+      "7/222",
+      "1/16",
+      419,
+      21
+     ],
+     [
+      "35/1044",
+      "1/16",
+      440,
+      12
+     ],
+     [
+      "5/147",
+      "1/16",
+      452,
+      3
+     ],
+     [
+      "5/147",
+      "1/16",
+      455,
+      9
+     ],
+     [
+      "5/147",
+      "271/7938",
+      464,
+      1
+     ],
+     [
+      "5/147",
+      "5/147",
+      465,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1855,
+     "pivots": 237404,
+     "rowsProcessed": 534710,
+     "peakRows": 465,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 334,
+     "primalHits": 1191,
+     "envelopeChecks": 5546,
+     "primalBuilds": 1842,
+     "cutHits": 21,
+     "deferredBlocks": 2642,
+     "zeroHits": 626,
+     "zeroBlocks": 125,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 427,
+     "pivots": 55578,
+     "rowsProcessed": 122976,
+     "zeroWorldBlocks": 85
+    }
+   },
+   "seconds": {
+    "design": 9.525732495938428,
+    "export": 2.117569941096008,
+    "replay": 0.6695724509190768
+   },
+   "gzipSha256": "2cbfa153a904294512fd538ccb3479d01b171d12493ae3a8e54db6acc99b368c",
+   "rawBytes": 415111
+  },
+  {
+   "prefix": [
+    3,
+    7
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/34",
+    "upper": "1/34",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "y0",
+     "z1",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "z0",
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "x1",
+       "y1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "x0"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/34",
+    "upper": "1/34",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      85
+     ],
+     [
+      "0",
+      "1/16",
+      86,
+      51
+     ],
+     [
+      "1/40",
+      "1/16",
+      137,
+      52
+     ],
+     [
+      "1/40",
+      "1/16",
+      189,
+      54
+     ],
+     [
+      "1/36",
+      "1/16",
+      243,
+      53
+     ],
+     [
+      "5/174",
+      "1/16",
+      296,
+      26
+     ],
+     [
+      "5/174",
+      "1/16",
+      322,
+      15
+     ],
+     [
+      "1/34",
+      "1/16",
+      337,
+      6
+     ],
+     [
+      "1/34",
+      "1/16",
+      343,
+      1
+     ],
+     [
+      "1/34",
+      "1/16",
+      344,
+      1
+     ],
+     [
+      "1/34",
+      "1/34",
+      345,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1470,
+     "pivots": 211794,
+     "rowsProcessed": 422835,
+     "peakRows": 345,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 857,
+     "primalHits": 881,
+     "envelopeChecks": 3096,
+     "primalBuilds": 1459,
+     "cutHits": 2,
+     "deferredBlocks": 1894,
+     "zeroHits": 539,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 458,
+     "pivots": 69313,
+     "rowsProcessed": 131904,
+     "zeroWorldBlocks": 54
+    }
+   },
+   "seconds": {
+    "design": 7.615671328967437,
+    "export": 2.3934149550041184,
+    "replay": 0.666356809088029
+   },
+   "gzipSha256": "4df14cf5b33a0f5d119e2b5f94be8b7edac7ffb0ac7d79a5bb294619e8e826d5",
+   "rawBytes": 386506
+  },
+  {
+   "prefix": [
+    4,
+    0
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/28",
+    "upper": "1/28",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "z0",
+     "ref",
+     "ref",
+     "group"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0",
+       "y0"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/28",
+    "upper": "1/28",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      48
+     ],
+     [
+      "0",
+      "1/16",
+      49,
+      52
+     ],
+     [
+      "0",
+      "1/16",
+      101,
+      41
+     ],
+     [
+      "0",
+      "1/16",
+      142,
+      25
+     ],
+     [
+      "12/515",
+      "1/16",
+      167,
+      55
+     ],
+     [
+      "9/316",
+      "1/16",
+      222,
+      42
+     ],
+     [
+      "1/28",
+      "1/16",
+      264,
+      43
+     ],
+     [
+      "1/28",
+      "1/16",
+      307,
+      30
+     ],
+     [
+      "1/28",
+      "1/16",
+      337,
+      36
+     ],
+     [
+      "1/28",
+      "1/16",
+      373,
+      15
+     ],
+     [
+      "1/28",
+      "23/588",
+      388,
+      1
+     ],
+     [
+      "1/28",
+      "1/28",
+      389,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1465,
+     "pivots": 172552,
+     "rowsProcessed": 421204,
+     "peakRows": 389,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 472,
+     "primalHits": 265,
+     "envelopeChecks": 2958,
+     "primalBuilds": 1453,
+     "cutHits": 4,
+     "deferredBlocks": 2679,
+     "zeroHits": 1271,
+     "zeroBlocks": 386,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 374,
+     "pivots": 47355,
+     "rowsProcessed": 107712,
+     "zeroWorldBlocks": 138
+    }
+   },
+   "seconds": {
+    "design": 6.975425767013803,
+    "export": 1.8047621250152588,
+    "replay": 0.6172008210560307
+   },
+   "gzipSha256": "d610a37ff123c10d91890330be1fc28f48786e4bf320f477e5135e3bf28577b5",
+   "rawBytes": 333672
+  },
+  {
+   "prefix": [
+    4,
+    1
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/28",
+    "upper": "1/28",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "z0",
+     "group"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref",
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "x0",
+       "y0",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/28",
+    "upper": "1/28",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      184
+     ],
+     [
+      "0",
+      "1/16",
+      185,
+      50
+     ],
+     [
+      "0",
+      "1/16",
+      235,
+      61
+     ],
+     [
+      "1/82",
+      "1/16",
+      296,
+      60
+     ],
+     [
+      "2/83",
+      "1/16",
+      356,
+      61
+     ],
+     [
+      "1/34",
+      "1/16",
+      417,
+      47
+     ],
+     [
+      "1/30",
+      "1/16",
+      464,
+      35
+     ],
+     [
+      "1/29",
+      "1/16",
+      499,
+      30
+     ],
+     [
+      "1/28",
+      "1/16",
+      529,
+      13
+     ],
+     [
+      "1/28",
+      "1/16",
+      542,
+      5
+     ],
+     [
+      "1/28",
+      "1/28",
+      547,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1929,
+     "pivots": 231756,
+     "rowsProcessed": 556455,
+     "peakRows": 547,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 529,
+     "primalHits": 571,
+     "envelopeChecks": 4077,
+     "primalBuilds": 1918,
+     "cutHits": 4,
+     "deferredBlocks": 2394,
+     "zeroHits": 216,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 64925,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 9.227479093940929,
+    "export": 2.478113110992126,
+    "replay": 0.6651821590494365
+   },
+   "gzipSha256": "8ddb7d0acc19db5ade5df0f8ee8c12ea26073e1ee9380f034a5b931761d70802",
+   "rawBytes": 369337
+  },
+  {
+   "prefix": [
+    4,
+    2
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "z0",
+     "x0",
+     "y0",
+     "group"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      121
+     ],
+     [
+      "0",
+      "1/16",
+      122,
+      61
+     ],
+     [
+      "1/42",
+      "1/16",
+      183,
+      52
+     ],
+     [
+      "5/174",
+      "1/16",
+      235,
+      46
+     ],
+     [
+      "5/174",
+      "1/16",
+      281,
+      40
+     ],
+     [
+      "1/32",
+      "1/16",
+      321,
+      24
+     ],
+     [
+      "1/32",
+      "1/16",
+      345,
+      13
+     ],
+     [
+      "1/32",
+      "1/16",
+      358,
+      13
+     ],
+     [
+      "1/32",
+      "1/16",
+      371,
+      6
+     ],
+     [
+      "1/32",
+      "1/32",
+      377,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1929,
+     "pivots": 247439,
+     "rowsProcessed": 555266,
+     "peakRows": 377,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 387,
+     "primalHits": 785,
+     "envelopeChecks": 4206,
+     "primalBuilds": 1919,
+     "cutHits": 8,
+     "deferredBlocks": 1835,
+     "zeroHits": 186,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 71014,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 9.245633247075602,
+    "export": 2.485913489945233,
+    "replay": 0.6348133540013805
+   },
+   "gzipSha256": "ce0185a75710dca6635879a7ed67430cddc6b2eb6c0b691833de4b7a795e2cea",
+   "rawBytes": 369139
+  },
+  {
+   "prefix": [
+    4,
+    3
+   ],
+   "result": {
+    "status": "bounded",
+    "lower": "5/163",
+    "upper": "1/16",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "z0",
+     "y0",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "group"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref",
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "x1"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "y1"
+          ]
+         },
+         {
+          "commands": [
+           "z1"
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "x1",
+       "y1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "bounded",
+    "lower": "5/163",
+    "upper": "1/16",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      132
+     ],
+     [
+      "0",
+      "1/16",
+      133,
+      61
+     ],
+     [
+      "1/42",
+      "1/16",
+      194,
+      54
+     ]
+    ],
+    "stats": {
+     "solves": 517,
+     "pivots": 56170,
+     "rowsProcessed": 148320,
+     "peakRows": 288,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 0,
+     "primalHits": 10,
+     "envelopeChecks": 219,
+     "primalBuilds": 513,
+     "cutHits": 1,
+     "deferredBlocks": 1036,
+     "zeroHits": 216,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16",
+     "numericalStop": "rational primal failed after RHS-aware reconstruction"
+    },
+    "export": {
+     "solves": 0,
+     "pivots": 0,
+     "rowsProcessed": 0,
+     "zeroWorldBlocks": 0,
+     "fixedMixtureBlocks": 512
+    }
+   },
+   "seconds": {
+    "design": 2.3583672790555283,
+    "export": 0.13718234200496227,
+    "replay": 0.5983424129663035
+   },
+   "gzipSha256": "14b196177573b6587510d330decb2f880b35bd13005003d44fe0267cf2b19698",
+   "rawBytes": 317360
+  },
+  {
+   "prefix": [
+    4,
+    4
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "3/107",
+    "upper": "3/107",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "z0",
+     "z0",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0",
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "ref"
+          ]
+         },
+         {
+          "commands": [
+           "z1"
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "3/107",
+    "upper": "3/107",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      55
+     ],
+     [
+      "0",
+      "1/16",
+      56,
+      33
+     ],
+     [
+      "0",
+      "1/16",
+      89,
+      40
+     ],
+     [
+      "0",
+      "1/16",
+      129,
+      38
+     ],
+     [
+      "1/68",
+      "1/16",
+      167,
+      61
+     ],
+     [
+      "1/39",
+      "1/16",
+      228,
+      50
+     ],
+     [
+      "4/151",
+      "1/16",
+      278,
+      55
+     ],
+     [
+      "1/37",
+      "1/16",
+      333,
+      31
+     ],
+     [
+      "1/37",
+      "1/16",
+      364,
+      24
+     ],
+     [
+      "1/37",
+      "1/16",
+      388,
+      8
+     ],
+     [
+      "3/109",
+      "1/16",
+      396,
+      7
+     ],
+     [
+      "3/109",
+      "1/16",
+      403,
+      3
+     ],
+     [
+      "3/107",
+      "1/16",
+      406,
+      1
+     ],
+     [
+      "3/107",
+      "3/107",
+      407,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1522,
+     "pivots": 181741,
+     "rowsProcessed": 437949,
+     "peakRows": 407,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 528,
+     "primalHits": 755,
+     "envelopeChecks": 3864,
+     "primalBuilds": 1508,
+     "cutHits": 7,
+     "deferredBlocks": 2866,
+     "zeroHits": 1504,
+     "zeroBlocks": 386,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 354,
+     "pivots": 45057,
+     "rowsProcessed": 101952,
+     "zeroWorldBlocks": 158
+    }
+   },
+   "seconds": {
+    "design": 7.418794061988592,
+    "export": 1.7726733109448105,
+    "replay": 0.6341777489287779
+   },
+   "gzipSha256": "0a6883e9c6f7de4f811e2224fd2f03d5fd80a6475c89b3d6a3585670112b9c2b",
+   "rawBytes": 386499
+  },
+  {
+   "prefix": [
+    4,
+    5
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "3/92",
+    "upper": "3/92",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "z0",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "x0",
+       "y1",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "ref",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "3/92",
+    "upper": "3/92",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      124
+     ],
+     [
+      "0",
+      "1/16",
+      125,
+      48
+     ],
+     [
+      "0",
+      "1/16",
+      173,
+      57
+     ],
+     [
+      "1/42",
+      "1/16",
+      230,
+      62
+     ],
+     [
+      "1/42",
+      "1/16",
+      292,
+      63
+     ],
+     [
+      "1/36",
+      "1/16",
+      355,
+      50
+     ],
+     [
+      "1/34",
+      "1/16",
+      405,
+      36
+     ],
+     [
+      "6/185",
+      "1/16",
+      441,
+      32
+     ],
+     [
+      "3/92",
+      "1/16",
+      473,
+      16
+     ],
+     [
+      "3/92",
+      "1/16",
+      489,
+      9
+     ],
+     [
+      "3/92",
+      "1/16",
+      498,
+      2
+     ],
+     [
+      "3/92",
+      "3/92",
+      500,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1714,
+     "pivots": 213414,
+     "rowsProcessed": 494158,
+     "peakRows": 500,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 638,
+     "primalHits": 796,
+     "envelopeChecks": 4015,
+     "primalBuilds": 1702,
+     "cutHits": 8,
+     "deferredBlocks": 2662,
+     "zeroHits": 338,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 66632,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 8.709396330988966,
+    "export": 2.6066733920015395,
+    "replay": 0.653992805047892
+   },
+   "gzipSha256": "87863f76b8a9d193c198e1e7d34bfac9273f0fa3b9bf4d4d1739fc5627d0914d",
+   "rawBytes": 407750
+  },
+  {
+   "prefix": [
+    4,
+    6
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "z0",
+     "y1",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0",
+       "y0",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      93
+     ],
+     [
+      "0",
+      "1/16",
+      94,
+      60
+     ],
+     [
+      "1/42",
+      "1/16",
+      154,
+      60
+     ],
+     [
+      "5/174",
+      "1/16",
+      214,
+      45
+     ],
+     [
+      "3/104",
+      "1/16",
+      259,
+      48
+     ],
+     [
+      "381/12758",
+      "1/16",
+      307,
+      31
+     ],
+     [
+      "9/298",
+      "1/16",
+      338,
+      30
+     ],
+     [
+      "1/32",
+      "1/16",
+      368,
+      8
+     ],
+     [
+      "1/32",
+      "1/16",
+      376,
+      2
+     ],
+     [
+      "1/32",
+      "1/16",
+      378,
+      4
+     ],
+     [
+      "1/32",
+      "1/16",
+      382,
+      1
+     ],
+     [
+      "1/32",
+      "1/32",
+      383,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1708,
+     "pivots": 227208,
+     "rowsProcessed": 491702,
+     "peakRows": 383,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 544,
+     "primalHits": 1016,
+     "envelopeChecks": 4391,
+     "primalBuilds": 1696,
+     "cutHits": 8,
+     "deferredBlocks": 2038,
+     "zeroHits": 842,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 453,
+     "pivots": 62816,
+     "rowsProcessed": 130464,
+     "zeroWorldBlocks": 59
+    }
+   },
+   "seconds": {
+    "design": 8.614714555093087,
+    "export": 2.2426827530143782,
+    "replay": 0.6347122279694304
+   },
+   "gzipSha256": "2971e359f73696e11a3010ad82e586f82e4de837cba0057abdf7feb6ccdabd25",
+   "rawBytes": 372001
+  },
+  {
+   "prefix": [
+    4,
+    7
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "z0",
+     "z1",
+     "x0",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "y0",
+       "y1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      53
+     ],
+     [
+      "0",
+      "1/16",
+      54,
+      49
+     ],
+     [
+      "0",
+      "1/16",
+      103,
+      56
+     ],
+     [
+      "1/30",
+      "1/16",
+      159,
+      55
+     ],
+     [
+      "1/30",
+      "1/16",
+      214,
+      46
+     ],
+     [
+      "1/30",
+      "1/16",
+      260,
+      41
+     ],
+     [
+      "1/30",
+      "1/16",
+      301,
+      13
+     ],
+     [
+      "1/30",
+      "1/16",
+      314,
+      7
+     ],
+     [
+      "1/30",
+      "1/16",
+      321,
+      25
+     ],
+     [
+      "1/30",
+      "1/16",
+      346,
+      6
+     ],
+     [
+      "1/30",
+      "1/16",
+      352,
+      5
+     ],
+     [
+      "1/30",
+      "1/16",
+      357,
+      1
+     ],
+     [
+      "1/30",
+      "1/16",
+      358,
+      1
+     ],
+     [
+      "1/30",
+      "1/30",
+      359,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1447,
+     "pivots": 198799,
+     "rowsProcessed": 416203,
+     "peakRows": 359,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 1406,
+     "primalHits": 613,
+     "envelopeChecks": 3102,
+     "primalBuilds": 1433,
+     "cutHits": 12,
+     "deferredBlocks": 2390,
+     "zeroHits": 1314,
+     "zeroBlocks": 386,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 414,
+     "pivots": 59480,
+     "rowsProcessed": 119232,
+     "zeroWorldBlocks": 98
+    }
+   },
+   "seconds": {
+    "design": 7.423615409992635,
+    "export": 2.0870545599609613,
+    "replay": 0.6382447460200638
+   },
+   "gzipSha256": "44e24ddc7a15cd9fc22bcdc4f816616f38319e3f53a8aeb2419269a56d66cb47",
+   "rawBytes": 336736
+  },
+  {
+   "prefix": [
+    5,
+    0
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/24",
+    "upper": "1/24",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "x1",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0",
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z0",
+         "z0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "x1",
+       "z1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/24",
+    "upper": "1/24",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      88
+     ],
+     [
+      "0",
+      "1/16",
+      89,
+      52
+     ],
+     [
+      "0",
+      "1/16",
+      141,
+      63
+     ],
+     [
+      "12/443",
+      "1/16",
+      204,
+      61
+     ],
+     [
+      "4/143",
+      "1/16",
+      265,
+      56
+     ],
+     [
+      "1/25",
+      "1/16",
+      321,
+      38
+     ],
+     [
+      "1/25",
+      "1/16",
+      359,
+      26
+     ],
+     [
+      "1/25",
+      "1/16",
+      385,
+      20
+     ],
+     [
+      "1/24",
+      "1/16",
+      405,
+      9
+     ],
+     [
+      "1/24",
+      "1/16",
+      414,
+      17
+     ],
+     [
+      "1/24",
+      "1/16",
+      431,
+      12
+     ],
+     [
+      "1/24",
+      "1/16",
+      443,
+      6
+     ],
+     [
+      "1/24",
+      "1/16",
+      449,
+      1
+     ],
+     [
+      "1/24",
+      "1/24",
+      450,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2082,
+     "pivots": 278006,
+     "rowsProcessed": 599941,
+     "peakRows": 450,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 1113,
+     "primalHits": 1246,
+     "envelopeChecks": 5831,
+     "primalBuilds": 2068,
+     "cutHits": 11,
+     "deferredBlocks": 2392,
+     "zeroHits": 338,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 69775,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 10.991600595065393,
+    "export": 2.5648381219943985,
+    "replay": 0.6481246019247919
+   },
+   "gzipSha256": "eae99ea60bd9d44da392e832a9b32462bd4ad90b43fbf1a09bd184af9113802a",
+   "rawBytes": 371380
+  },
+  {
+   "prefix": [
+    5,
+    1
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "x1",
+     "group",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0"
+        ]
+       },
+       {
+        "commands": [
+         "z0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "y1",
+       "z1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      151
+     ],
+     [
+      "0",
+      "1/16",
+      152,
+      58
+     ],
+     [
+      "0",
+      "1/16",
+      210,
+      59
+     ],
+     [
+      "5/258",
+      "1/16",
+      269,
+      64
+     ],
+     [
+      "3/134",
+      "1/16",
+      333,
+      57
+     ],
+     [
+      "1/39",
+      "1/16",
+      390,
+      42
+     ],
+     [
+      "1/36",
+      "1/16",
+      432,
+      27
+     ],
+     [
+      "1/34",
+      "1/16",
+      459,
+      13
+     ],
+     [
+      "1/34",
+      "1/16",
+      472,
+      6
+     ],
+     [
+      "23/780",
+      "1/16",
+      478,
+      4
+     ],
+     [
+      "17/552",
+      "1/16",
+      482,
+      8
+     ],
+     [
+      "5/162",
+      "1/16",
+      490,
+      3
+     ],
+     [
+      "4/129",
+      "1/16",
+      493,
+      1
+     ],
+     [
+      "1/32",
+      "1/16",
+      494,
+      1
+     ],
+     [
+      "1/31",
+      "1/16",
+      495,
+      10
+     ],
+     [
+      "1/30",
+      "1/16",
+      505,
+      7
+     ],
+     [
+      "1/30",
+      "1/30",
+      512,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 3157,
+     "pivots": 450505,
+     "rowsProcessed": 910987,
+     "peakRows": 512,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 462,
+     "primalHits": 2401,
+     "envelopeChecks": 12443,
+     "primalBuilds": 3140,
+     "cutHits": 21,
+     "deferredBlocks": 2464,
+     "zeroHits": 216,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 74997,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 17.103143685963005,
+    "export": 2.716878038016148,
+    "replay": 0.6999724389752373
+   },
+   "gzipSha256": "d36dd2c3e88c5a184c8df339e1fc4fcc7343ede72ab0ddd0d4e06bbdcee82f1f",
+   "rawBytes": 526233
+  },
+  {
+   "prefix": [
+    5,
+    2
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/24",
+    "upper": "1/24",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "x1",
+     "x0",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "y1"
+      ]
+     },
+     {
+      "commands": [
+       "z0",
+       "z1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/24",
+    "upper": "1/24",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      250
+     ],
+     [
+      "0",
+      "1/16",
+      251,
+      54
+     ],
+     [
+      "1/98",
+      "1/16",
+      305,
+      59
+     ],
+     [
+      "1/58",
+      "1/16",
+      364,
+      63
+     ],
+     [
+      "55/1898",
+      "1/16",
+      427,
+      57
+     ],
+     [
+      "1/30",
+      "1/16",
+      484,
+      45
+     ],
+     [
+      "1/30",
+      "1/16",
+      529,
+      27
+     ],
+     [
+      "3/89",
+      "1/16",
+      556,
+      15
+     ],
+     [
+      "7/206",
+      "1/16",
+      571,
+      10
+     ],
+     [
+      "1/28",
+      "1/16",
+      581,
+      3
+     ],
+     [
+      "1/24",
+      "1/16",
+      584,
+      24
+     ],
+     [
+      "1/24",
+      "1/16",
+      608,
+      10
+     ],
+     [
+      "1/24",
+      "1/16",
+      618,
+      6
+     ],
+     [
+      "1/24",
+      "1/16",
+      624,
+      1
+     ],
+     [
+      "1/24",
+      "1/24",
+      625,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 3090,
+     "pivots": 429959,
+     "rowsProcessed": 892728,
+     "peakRows": 625,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 24,
+     "primalHits": 1669,
+     "envelopeChecks": 11176,
+     "primalBuilds": 3075,
+     "cutHits": 18,
+     "deferredBlocks": 2629,
+     "zeroHits": 265,
+     "zeroBlocks": 125,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 472,
+     "pivots": 65228,
+     "rowsProcessed": 135936,
+     "zeroWorldBlocks": 40
+    }
+   },
+   "seconds": {
+    "design": 16.166556629934348,
+    "export": 2.3662323839962482,
+    "replay": 0.6681007459992543
+   },
+   "gzipSha256": "a4e06e562afd03d2182ace6bf10e3d05465f67b549a290a4708074ccd20fe8e4",
+   "rawBytes": 399243
+  },
+  {
+   "prefix": [
+    5,
+    3
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "x1",
+     "y0",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "z0"
+        ]
+       },
+       {
+        "commands": [
+         "y1"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "z1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      163
+     ],
+     [
+      "0",
+      "1/16",
+      164,
+      59
+     ],
+     [
+      "0",
+      "1/16",
+      223,
+      64
+     ],
+     [
+      "1/41",
+      "1/16",
+      287,
+      60
+     ],
+     [
+      "6/197",
+      "1/16",
+      347,
+      53
+     ],
+     [
+      "19/618",
+      "1/16",
+      400,
+      53
+     ],
+     [
+      "3/82",
+      "1/16",
+      453,
+      31
+     ],
+     [
+      "3/82",
+      "1/16",
+      484,
+      21
+     ],
+     [
+      "3/82",
+      "1/16",
+      505,
+      15
+     ],
+     [
+      "1/26",
+      "1/16",
+      520,
+      3
+     ],
+     [
+      "1/26",
+      "1/16",
+      523,
+      1
+     ],
+     [
+      "1/26",
+      "1/16",
+      524,
+      1
+     ],
+     [
+      "1/26",
+      "1/26",
+      525,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2245,
+     "pivots": 303387,
+     "rowsProcessed": 647772,
+     "peakRows": 525,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 396,
+     "primalHits": 1435,
+     "envelopeChecks": 6730,
+     "primalBuilds": 2232,
+     "cutHits": 7,
+     "deferredBlocks": 2461,
+     "zeroHits": 125,
+     "zeroBlocks": 125,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 71191,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 11.704630029969849,
+    "export": 2.622682948014699,
+    "replay": 0.7012027649907395
+   },
+   "gzipSha256": "addc9273010754057c5055e7c922562b4da1b20b2cb61886c4ccc77f5390d921",
+   "rawBytes": 471884
+  },
+  {
+   "prefix": [
+    5,
+    4
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "3/92",
+    "upper": "3/92",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "x1",
+     "z0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "x0",
+       "y1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "x0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "ref",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "3/92",
+    "upper": "3/92",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      120
+     ],
+     [
+      "0",
+      "1/16",
+      121,
+      61
+     ],
+     [
+      "0",
+      "1/16",
+      182,
+      62
+     ],
+     [
+      "1/42",
+      "1/16",
+      244,
+      59
+     ],
+     [
+      "1/32",
+      "1/16",
+      303,
+      41
+     ],
+     [
+      "1/32",
+      "1/16",
+      344,
+      46
+     ],
+     [
+      "5/156",
+      "1/16",
+      390,
+      35
+     ],
+     [
+      "15/467",
+      "1/16",
+      425,
+      18
+     ],
+     [
+      "3/92",
+      "1/16",
+      443,
+      5
+     ],
+     [
+      "3/92",
+      "1/16",
+      448,
+      2
+     ],
+     [
+      "3/92",
+      "1/16",
+      450,
+      1
+     ],
+     [
+      "3/92",
+      "3/92",
+      451,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1691,
+     "pivots": 227758,
+     "rowsProcessed": 487354,
+     "peakRows": 451,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 702,
+     "primalHits": 1089,
+     "envelopeChecks": 4168,
+     "primalBuilds": 1679,
+     "cutHits": 8,
+     "deferredBlocks": 2312,
+     "zeroHits": 354,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 71897,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 8.86459963908419,
+    "export": 2.6573525730054826,
+    "replay": 0.6611758209764957
+   },
+   "gzipSha256": "4d5434f2e55bacb9a04963d6325a383efd25e309de8c6f5b8d2c8b9bb2a932dd",
+   "rawBytes": 433713
+  },
+  {
+   "prefix": [
+    5,
+    5
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/33",
+    "upper": "1/33",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "x1",
+     "x1",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "z1",
+       "z1"
+      ]
+     },
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0",
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z0",
+         "z0"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/33",
+    "upper": "1/33",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      71
+     ],
+     [
+      "0",
+      "1/16",
+      72,
+      50
+     ],
+     [
+      "1/53",
+      "1/16",
+      122,
+      23
+     ],
+     [
+      "2/95",
+      "1/16",
+      145,
+      56
+     ],
+     [
+      "3/128",
+      "1/16",
+      201,
+      52
+     ],
+     [
+      "7/250",
+      "1/16",
+      253,
+      39
+     ],
+     [
+      "1/35",
+      "1/16",
+      292,
+      22
+     ],
+     [
+      "1/35",
+      "1/16",
+      314,
+      23
+     ],
+     [
+      "1/34",
+      "1/16",
+      337,
+      11
+     ],
+     [
+      "4/133",
+      "1/16",
+      348,
+      9
+     ],
+     [
+      "1/33",
+      "1/16",
+      357,
+      8
+     ],
+     [
+      "1/33",
+      "1/16",
+      365,
+      3
+     ],
+     [
+      "1/33",
+      "1/16",
+      368,
+      42
+     ],
+     [
+      "1/33",
+      "1/16",
+      410,
+      17
+     ],
+     [
+      "1/33",
+      "1/16",
+      427,
+      10
+     ],
+     [
+      "1/33",
+      "1/16",
+      437,
+      13
+     ],
+     [
+      "1/33",
+      "1/16",
+      450,
+      3
+     ],
+     [
+      "1/33",
+      "1/16",
+      453,
+      4
+     ],
+     [
+      "1/33",
+      "1/33",
+      457,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 3250,
+     "pivots": 425102,
+     "rowsProcessed": 936337,
+     "peakRows": 457,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 804,
+     "primalHits": 1585,
+     "envelopeChecks": 12748,
+     "primalBuilds": 3231,
+     "cutHits": 20,
+     "deferredBlocks": 3036,
+     "zeroHits": 1052,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 458,
+     "pivots": 53233,
+     "rowsProcessed": 131904,
+     "zeroWorldBlocks": 54
+    }
+   },
+   "seconds": {
+    "design": 17.487772144959308,
+    "export": 2.330279362970032,
+    "replay": 0.64776817697566
+   },
+   "gzipSha256": "1835a832c8b63c8c6422b1bc70417437c89fea10236edfcb5e69645c9f4e189f",
+   "rawBytes": 376080
+  },
+  {
+   "prefix": [
+    5,
+    6
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "x1",
+     "y1",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0"
+        ]
+       },
+       {
+        "commands": [
+         "z0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "z1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      141
+     ],
+     [
+      "0",
+      "1/16",
+      142,
+      59
+     ],
+     [
+      "0",
+      "1/16",
+      201,
+      62
+     ],
+     [
+      "43/1802",
+      "1/16",
+      263,
+      61
+     ],
+     [
+      "6/197",
+      "1/16",
+      324,
+      53
+     ],
+     [
+      "19/618",
+      "1/16",
+      377,
+      51
+     ],
+     [
+      "1/30",
+      "1/16",
+      428,
+      34
+     ],
+     [
+      "9/256",
+      "1/16",
+      462,
+      15
+     ],
+     [
+      "3/82",
+      "1/16",
+      477,
+      26
+     ],
+     [
+      "3/82",
+      "1/16",
+      503,
+      15
+     ],
+     [
+      "3/82",
+      "1/16",
+      518,
+      5
+     ],
+     [
+      "1/26",
+      "1/16",
+      523,
+      5
+     ],
+     [
+      "1/26",
+      "1/16",
+      528,
+      2
+     ],
+     [
+      "1/26",
+      "1/26",
+      530,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2332,
+     "pivots": 316439,
+     "rowsProcessed": 672861,
+     "peakRows": 530,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 546,
+     "primalHits": 1420,
+     "envelopeChecks": 7221,
+     "primalBuilds": 2318,
+     "cutHits": 9,
+     "deferredBlocks": 2653,
+     "zeroHits": 222,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 70962,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 12.204508131952025,
+    "export": 2.588591172010638,
+    "replay": 0.6487951959716156
+   },
+   "gzipSha256": "cd2ebee40d7d6df2a3cc81e06dc08e4c1ff0c2c6956558fc3264f8ad87e6c601",
+   "rawBytes": 406804
+  },
+  {
+   "prefix": [
+    5,
+    7
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "x1",
+     "z1",
+     "z0",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "y0",
+       "y1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      87
+     ],
+     [
+      "0",
+      "1/16",
+      88,
+      62
+     ],
+     [
+      "1/45",
+      "1/16",
+      150,
+      58
+     ],
+     [
+      "1/33",
+      "1/16",
+      208,
+      47
+     ],
+     [
+      "1/32",
+      "1/16",
+      255,
+      29
+     ],
+     [
+      "1/32",
+      "1/16",
+      284,
+      38
+     ],
+     [
+      "1/32",
+      "1/16",
+      322,
+      16
+     ],
+     [
+      "1/32",
+      "1/16",
+      338,
+      4
+     ],
+     [
+      "1/32",
+      "1/16",
+      342,
+      4
+     ],
+     [
+      "1/32",
+      "1/16",
+      346,
+      10
+     ],
+     [
+      "1/32",
+      "1/16",
+      356,
+      10
+     ],
+     [
+      "1/32",
+      "1/16",
+      366,
+      1
+     ],
+     [
+      "1/32",
+      "1/32",
+      367,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1981,
+     "pivots": 277122,
+     "rowsProcessed": 570207,
+     "peakRows": 367,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 269,
+     "primalHits": 2127,
+     "envelopeChecks": 6484,
+     "primalBuilds": 1968,
+     "cutHits": 8,
+     "deferredBlocks": 1946,
+     "zeroHits": 338,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 72681,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 10.395293677924201,
+    "export": 2.628319593030028,
+    "replay": 0.6833037399919704
+   },
+   "gzipSha256": "cfd76de55225b66fc8a370a716ba6fd36739749eb50240121c2f3f6cde897e0b",
+   "rawBytes": 435689
+  },
+  {
+   "prefix": [
+    6,
+    0
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/27",
+    "upper": "1/27",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "y1",
+     "ref",
+     "ref",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "x1"
+      ]
+     },
+     {
+      "commands": [
+       "z0",
+       "z0"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/27",
+    "upper": "1/27",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      62
+     ],
+     [
+      "0",
+      "1/16",
+      63,
+      55
+     ],
+     [
+      "0",
+      "1/16",
+      118,
+      23
+     ],
+     [
+      "2/89",
+      "1/16",
+      141,
+      52
+     ],
+     [
+      "2/75",
+      "1/16",
+      193,
+      41
+     ],
+     [
+      "1/28",
+      "1/16",
+      234,
+      23
+     ],
+     [
+      "1/28",
+      "1/16",
+      257,
+      29
+     ],
+     [
+      "1/27",
+      "1/16",
+      286,
+      3
+     ],
+     [
+      "1/27",
+      "1/16",
+      289,
+      3
+     ],
+     [
+      "1/27",
+      "1/24",
+      292,
+      1
+     ],
+     [
+      "1/27",
+      "1/27",
+      293,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1579,
+     "pivots": 189176,
+     "rowsProcessed": 453751,
+     "peakRows": 293,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 475,
+     "primalHits": 522,
+     "envelopeChecks": 3345,
+     "primalBuilds": 1568,
+     "cutHits": 10,
+     "deferredBlocks": 1866,
+     "zeroHits": 1191,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 375,
+     "pivots": 46915,
+     "rowsProcessed": 108000,
+     "zeroWorldBlocks": 137
+    }
+   },
+   "seconds": {
+    "design": 7.5161822200752795,
+    "export": 1.8043673119973391,
+    "replay": 0.6357906869379804
+   },
+   "gzipSha256": "704fd48a13fd2cd0e0d39ea442c3766835a39af8fcf56007de533f4f2a0efa02",
+   "rawBytes": 337772
+  },
+  {
+   "prefix": [
+    6,
+    1
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "y1",
+     "group",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "z0"
+      ]
+     },
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0"
+        ]
+       },
+       {
+        "commands": [
+         "z0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "x1",
+       "z1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      145
+     ],
+     [
+      "0",
+      "1/16",
+      146,
+      59
+     ],
+     [
+      "0",
+      "1/16",
+      205,
+      57
+     ],
+     [
+      "3/496",
+      "1/16",
+      262,
+      61
+     ],
+     [
+      "3/209",
+      "1/16",
+      323,
+      62
+     ],
+     [
+      "1/44",
+      "1/16",
+      385,
+      51
+     ],
+     [
+      "1/34",
+      "1/16",
+      436,
+      34
+     ],
+     [
+      "1/34",
+      "1/16",
+      470,
+      22
+     ],
+     [
+      "1/32",
+      "1/16",
+      492,
+      7
+     ],
+     [
+      "1/30",
+      "1/16",
+      499,
+      1
+     ],
+     [
+      "1/30",
+      "1/16",
+      500,
+      1
+     ],
+     [
+      "1/30",
+      "1/30",
+      501,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2172,
+     "pivots": 268472,
+     "rowsProcessed": 626300,
+     "peakRows": 501,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 740,
+     "primalHits": 537,
+     "envelopeChecks": 5046,
+     "primalBuilds": 2160,
+     "cutHits": 5,
+     "deferredBlocks": 2462,
+     "zeroHits": 240,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 67072,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 10.558138758991845,
+    "export": 2.498352842987515,
+    "replay": 0.650187085964717
+   },
+   "gzipSha256": "2ac0c9f0f8d864e8f786c5d220c0410106529aae07b492819018603acac87198",
+   "rawBytes": 370253
+  },
+  {
+   "prefix": [
+    6,
+    2
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "y1",
+     "x0",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "z0",
+       "z0"
+      ]
+     },
+     {
+      "commands": [
+       "x1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0"
+        ]
+       },
+       {
+        "commands": [
+         "z1"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/26",
+    "upper": "1/26",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      206
+     ],
+     [
+      "0",
+      "1/16",
+      207,
+      59
+     ],
+     [
+      "0",
+      "1/16",
+      266,
+      53
+     ],
+     [
+      "75/4034",
+      "1/16",
+      319,
+      62
+     ],
+     [
+      "1/34",
+      "1/16",
+      381,
+      55
+     ],
+     [
+      "19/618",
+      "1/16",
+      436,
+      46
+     ],
+     [
+      "21/590",
+      "1/16",
+      482,
+      21
+     ],
+     [
+      "31/866",
+      "1/16",
+      503,
+      23
+     ],
+     [
+      "3/82",
+      "1/16",
+      526,
+      20
+     ],
+     [
+      "1/26",
+      "1/16",
+      546,
+      10
+     ],
+     [
+      "1/26",
+      "1/16",
+      556,
+      3
+     ],
+     [
+      "1/26",
+      "1/16",
+      559,
+      2
+     ],
+     [
+      "1/26",
+      "1/26",
+      561,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2402,
+     "pivots": 326234,
+     "rowsProcessed": 693375,
+     "peakRows": 561,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 329,
+     "primalHits": 1335,
+     "envelopeChecks": 7075,
+     "primalBuilds": 2389,
+     "cutHits": 10,
+     "deferredBlocks": 2438,
+     "zeroHits": 155,
+     "zeroBlocks": 125,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 73614,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 12.12040093401447,
+    "export": 2.525092546013184,
+    "replay": 0.6723291599191725
+   },
+   "gzipSha256": "d55cd27502a5acc48b9548b361654459e75ad043dc140add45627a5357d38384",
+   "rawBytes": 389661
+  },
+  {
+   "prefix": [
+    6,
+    3
+   ],
+   "result": {
+    "status": "bounded",
+    "lower": "5/147",
+    "upper": "1/16",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 5
+   },
+   "policy": {
+    "commands": [
+     "y1",
+     "y0",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref",
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "z0",
+         "ref"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z1"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref",
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "x0"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "ref"
+          ]
+         },
+         {
+          "commands": [
+           "z0"
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "bounded",
+    "lower": "5/147",
+    "upper": "1/16",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      122
+     ],
+     [
+      "0",
+      "1/16",
+      123,
+      39
+     ],
+     [
+      "0",
+      "1/16",
+      162,
+      57
+     ],
+     [
+      "3/143",
+      "1/16",
+      219,
+      55
+     ],
+     [
+      "1/40",
+      "1/16",
+      274,
+      25
+     ],
+     [
+      "15/547",
+      "1/16",
+      299,
+      49
+     ],
+     [
+      "5/172",
+      "1/16",
+      348,
+      36
+     ],
+     [
+      "2/65",
+      "1/16",
+      384,
+      40
+     ],
+     [
+      "1/30",
+      "1/16",
+      424,
+      24
+     ],
+     [
+      "2/59",
+      "1/16",
+      448,
+      9
+     ]
+    ],
+    "stats": {
+     "solves": 1758,
+     "pivots": 222729,
+     "rowsProcessed": 506275,
+     "peakRows": 457,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 18,
+     "primalHits": 384,
+     "envelopeChecks": 4090,
+     "primalBuilds": 1747,
+     "cutHits": 8,
+     "deferredBlocks": 2787,
+     "zeroHits": 400,
+     "zeroBlocks": 125,
+     "initialUpper": "1/16",
+     "numericalStop": "rational primal failed after RHS-aware reconstruction"
+    },
+    "export": {
+     "solves": 0,
+     "pivots": 0,
+     "rowsProcessed": 0,
+     "zeroWorldBlocks": 0,
+     "fixedMixtureBlocks": 512
+    }
+   },
+   "seconds": {
+    "design": 8.600051581976004,
+    "export": 0.1378734459867701,
+    "replay": 0.6033701529959217
+   },
+   "gzipSha256": "b0ed7fa918ccbf686416e4bc9a8724419833bb5577bf4bc992718194d02bfa31",
+   "rawBytes": 323305
+  },
+  {
+   "prefix": [
+    6,
+    4
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/34",
+    "upper": "1/34",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "y1",
+     "z0",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0",
+       "y0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "x0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "z1",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/34",
+    "upper": "1/34",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      95
+     ],
+     [
+      "0",
+      "1/16",
+      96,
+      59
+     ],
+     [
+      "1/40",
+      "1/16",
+      155,
+      55
+     ],
+     [
+      "1/40",
+      "1/16",
+      210,
+      54
+     ],
+     [
+      "5/174",
+      "1/16",
+      264,
+      45
+     ],
+     [
+      "5/174",
+      "1/16",
+      309,
+      38
+     ],
+     [
+      "5/174",
+      "1/16",
+      347,
+      22
+     ],
+     [
+      "3/104",
+      "1/16",
+      369,
+      11
+     ],
+     [
+      "1/34",
+      "1/16",
+      380,
+      9
+     ],
+     [
+      "1/34",
+      "1/16",
+      389,
+      2
+     ],
+     [
+      "1/34",
+      "1/34",
+      391,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1600,
+     "pivots": 204888,
+     "rowsProcessed": 460543,
+     "peakRows": 391,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 541,
+     "primalHits": 631,
+     "envelopeChecks": 3490,
+     "primalBuilds": 1589,
+     "cutHits": 14,
+     "deferredBlocks": 2082,
+     "zeroHits": 775,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 440,
+     "pivots": 57402,
+     "rowsProcessed": 126720,
+     "zeroWorldBlocks": 72
+    }
+   },
+   "seconds": {
+    "design": 7.993943357025273,
+    "export": 2.199685168918222,
+    "replay": 0.6500381489749998
+   },
+   "gzipSha256": "7ca5b508800441915992d881abdea1858453defeadabba26d433acd3b1c7307b",
+   "rawBytes": 367800
+  },
+  {
+   "prefix": [
+    6,
+    5
+   ],
+   "result": {
+    "status": "bounded",
+    "lower": "0",
+    "upper": "1/16",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 1
+   },
+   "policy": {
+    "commands": [
+     "y1",
+     "x1",
+     "ref",
+     "ref",
+     "ref",
+     "ref"
+    ]
+   },
+   "design": {
+    "status": "bounded",
+    "lower": "0",
+    "upper": "1/16",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      142
+     ],
+     [
+      "0",
+      "1/16",
+      143,
+      59
+     ],
+     [
+      "0",
+      "1/16",
+      202,
+      57
+     ]
+    ],
+    "stats": {
+     "solves": 423,
+     "pivots": 46325,
+     "rowsProcessed": 121306,
+     "peakRows": 288,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 8,
+     "primalHits": 0,
+     "envelopeChecks": 104,
+     "primalBuilds": 420,
+     "cutHits": 0,
+     "deferredBlocks": 868,
+     "zeroHits": 240,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16",
+     "numericalStop": "rational primal failed after RHS-aware reconstruction"
+    },
+    "export": {
+     "solves": 0,
+     "pivots": 0,
+     "rowsProcessed": 0,
+     "zeroWorldBlocks": 0,
+     "fixedMixtureBlocks": 512
+    }
+   },
+   "seconds": {
+    "design": 2.039253892027773,
+    "export": 0.13966852496378124,
+    "replay": 0.6133258478948846
+   },
+   "gzipSha256": "b3281068e091f5dd975f9932fba782f1eb2accb843c3e28b695bdd44caa07552",
+   "rawBytes": 322780
+  },
+  {
+   "prefix": [
+    6,
+    6
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/37",
+    "upper": "1/37",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "y1",
+     "y1",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "group",
+       "ref",
+       "x1"
+      ]
+     },
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "z0",
+         "z0"
+        ]
+       },
+       {
+        "commands": [
+         "x1"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "y0"
+          ]
+         },
+         {
+          "commands": [
+           "z1"
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/37",
+    "upper": "1/37",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      58
+     ],
+     [
+      "0",
+      "1/16",
+      59,
+      43
+     ],
+     [
+      "7/340",
+      "1/16",
+      102,
+      51
+     ],
+     [
+      "1/48",
+      "1/16",
+      153,
+      26
+     ],
+     [
+      "1/48",
+      "1/16",
+      179,
+      21
+     ],
+     [
+      "13/609",
+      "1/16",
+      200,
+      60
+     ],
+     [
+      "3/131",
+      "1/16",
+      260,
+      31
+     ],
+     [
+      "6/235",
+      "1/16",
+      291,
+      38
+     ],
+     [
+      "1/38",
+      "1/16",
+      329,
+      31
+     ],
+     [
+      "3/113",
+      "1/16",
+      360,
+      13
+     ],
+     [
+      "1/37",
+      "1/16",
+      373,
+      4
+     ],
+     [
+      "1/37",
+      "1/16",
+      377,
+      5
+     ],
+     [
+      "1/37",
+      "1/16",
+      382,
+      6
+     ],
+     [
+      "1/37",
+      "1/16",
+      388,
+      10
+     ],
+     [
+      "1/37",
+      "1/16",
+      398,
+      2
+     ],
+     [
+      "1/37",
+      "1/37",
+      400,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1857,
+     "pivots": 236711,
+     "rowsProcessed": 534460,
+     "peakRows": 400,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 94,
+     "primalHits": 1523,
+     "envelopeChecks": 6206,
+     "primalBuilds": 1841,
+     "cutHits": 6,
+     "deferredBlocks": 3048,
+     "zeroHits": 1680,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 343,
+     "pivots": 45623,
+     "rowsProcessed": 98784,
+     "zeroWorldBlocks": 169
+    }
+   },
+   "seconds": {
+    "design": 9.448406141018495,
+    "export": 1.8328081400832161,
+    "replay": 0.6769148750463501
+   },
+   "gzipSha256": "73dd92a667c639cb6224e88ca1f8dc911a49a8d22215eff89580fca7e27cb09a",
+   "rawBytes": 357815
+  },
+  {
+   "prefix": [
+    6,
+    7
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/34",
+    "upper": "1/34",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "y1",
+     "z1",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "z0",
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "x1",
+       "y0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "ref"
+        ]
+       },
+       {
+        "commands": [
+         "z0"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/34",
+    "upper": "1/34",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      90
+     ],
+     [
+      "0",
+      "1/16",
+      91,
+      55
+     ],
+     [
+      "1/40",
+      "1/16",
+      146,
+      54
+     ],
+     [
+      "1/40",
+      "1/16",
+      200,
+      46
+     ],
+     [
+      "1/36",
+      "1/16",
+      246,
+      54
+     ],
+     [
+      "5/174",
+      "1/16",
+      300,
+      22
+     ],
+     [
+      "1/34",
+      "1/16",
+      322,
+      11
+     ],
+     [
+      "1/34",
+      "1/16",
+      333,
+      5
+     ],
+     [
+      "1/34",
+      "1/16",
+      338,
+      6
+     ],
+     [
+      "1/34",
+      "1/16",
+      344,
+      1
+     ],
+     [
+      "1/34",
+      "1/16",
+      345,
+      7
+     ],
+     [
+      "1/34",
+      "1/34",
+      352,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1860,
+     "pivots": 273588,
+     "rowsProcessed": 535242,
+     "peakRows": 352,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 87,
+     "primalHits": 1421,
+     "envelopeChecks": 5467,
+     "primalBuilds": 1848,
+     "cutHits": 9,
+     "deferredBlocks": 1909,
+     "zeroHits": 870,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 411,
+     "pivots": 63718,
+     "rowsProcessed": 118368,
+     "zeroWorldBlocks": 101
+    }
+   },
+   "seconds": {
+    "design": 10.268680384964682,
+    "export": 2.201977637014352,
+    "replay": 0.6728460070444271
+   },
+   "gzipSha256": "76b67ea19523b20b03a94e5f992a919b7095e8e68f994dc68022ab82eee173e1",
+   "rawBytes": 391293
+  },
+  {
+   "prefix": [
+    7,
+    0
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/28",
+    "upper": "1/28",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "z1",
+     "ref",
+     "ref",
+     "group"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0"
+        ]
+       },
+       {
+        "commands": [
+         "z0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "x1",
+       "y1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/28",
+    "upper": "1/28",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      39
+     ],
+     [
+      "0",
+      "1/16",
+      40,
+      51
+     ],
+     [
+      "0",
+      "1/16",
+      91,
+      34
+     ],
+     [
+      "1/51",
+      "1/16",
+      125,
+      48
+     ],
+     [
+      "4/155",
+      "1/16",
+      173,
+      42
+     ],
+     [
+      "8/277",
+      "1/16",
+      215,
+      52
+     ],
+     [
+      "1/34",
+      "1/16",
+      267,
+      21
+     ],
+     [
+      "3/98",
+      "1/16",
+      288,
+      25
+     ],
+     [
+      "1/32",
+      "1/16",
+      313,
+      4
+     ],
+     [
+      "1/30",
+      "1/16",
+      317,
+      9
+     ],
+     [
+      "21/611",
+      "1/16",
+      326,
+      16
+     ],
+     [
+      "1/28",
+      "1/16",
+      342,
+      10
+     ],
+     [
+      "1/28",
+      "1/16",
+      352,
+      3
+     ],
+     [
+      "1/28",
+      "1/16",
+      355,
+      2
+     ],
+     [
+      "1/28",
+      "1/28",
+      357,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2134,
+     "pivots": 279754,
+     "rowsProcessed": 613834,
+     "peakRows": 357,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 578,
+     "primalHits": 727,
+     "envelopeChecks": 6473,
+     "primalBuilds": 2119,
+     "cutHits": 12,
+     "deferredBlocks": 2514,
+     "zeroHits": 1730,
+     "zeroBlocks": 386,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 368,
+     "pivots": 49399,
+     "rowsProcessed": 105984,
+     "zeroWorldBlocks": 144
+    }
+   },
+   "seconds": {
+    "design": 10.968241847935133,
+    "export": 1.8421470179455355,
+    "replay": 0.6268869540654123
+   },
+   "gzipSha256": "850d3540245e6f9f83d54005fbbcea3403fb0eb28c29f42bbdf3ae9e5738d83d",
+   "rawBytes": 327421
+  },
+  {
+   "prefix": [
+    7,
+    1
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/29",
+    "upper": "1/29",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 3
+   },
+   "policy": {
+    "commands": [
+     "z1",
+     "group",
+     "ref",
+     "ref"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0"
+        ]
+       },
+       {
+        "commands": [
+         "z0"
+        ]
+       }
+      ]
+     },
+     {
+      "commands": [
+       "x1",
+       "y1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/29",
+    "upper": "1/29",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      131
+     ],
+     [
+      "0",
+      "1/16",
+      132,
+      61
+     ],
+     [
+      "0",
+      "1/16",
+      193,
+      63
+     ],
+     [
+      "1/59",
+      "1/16",
+      256,
+      64
+     ],
+     [
+      "4/177",
+      "1/16",
+      320,
+      64
+     ],
+     [
+      "1/38",
+      "1/16",
+      384,
+      55
+     ],
+     [
+      "1/37",
+      "1/16",
+      439,
+      38
+     ],
+     [
+      "1/34",
+      "1/16",
+      477,
+      25
+     ],
+     [
+      "1/30",
+      "1/16",
+      502,
+      24
+     ],
+     [
+      "1/29",
+      "1/16",
+      526,
+      23
+     ],
+     [
+      "1/29",
+      "1/16",
+      549,
+      28
+     ],
+     [
+      "1/29",
+      "1/16",
+      577,
+      8
+     ],
+     [
+      "1/29",
+      "1/16",
+      585,
+      2
+     ],
+     [
+      "1/29",
+      "1/29",
+      587,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 2696,
+     "pivots": 361084,
+     "rowsProcessed": 777944,
+     "peakRows": 587,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 533,
+     "primalHits": 804,
+     "envelopeChecks": 7969,
+     "primalBuilds": 2682,
+     "cutHits": 23,
+     "deferredBlocks": 2910,
+     "zeroHits": 216,
+     "zeroBlocks": 216,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 70645,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 13.684628383023664,
+    "export": 2.5797354279784486,
+    "replay": 0.6659915270283818
+   },
+   "gzipSha256": "fc739e632f790ff52602da63eba9c5128f1a53fd139a587af4528c84ea9385c0",
+   "rawBytes": 435155
+  },
+  {
+   "prefix": [
+    7,
+    2
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "3/92",
+    "upper": "3/92",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "z1",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "z0",
+       "ref",
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "x1",
+       "y0",
+       "y1",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "3/92",
+    "upper": "3/92",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      137
+     ],
+     [
+      "0",
+      "1/16",
+      138,
+      64
+     ],
+     [
+      "1/66",
+      "1/16",
+      202,
+      54
+     ],
+     [
+      "18/847",
+      "1/16",
+      256,
+      61
+     ],
+     [
+      "7/250",
+      "1/16",
+      317,
+      60
+     ],
+     [
+      "45/1517",
+      "1/16",
+      377,
+      45
+     ],
+     [
+      "3/92",
+      "1/16",
+      422,
+      26
+     ],
+     [
+      "3/92",
+      "1/16",
+      448,
+      20
+     ],
+     [
+      "3/92",
+      "1/16",
+      468,
+      10
+     ],
+     [
+      "3/92",
+      "1/16",
+      478,
+      6
+     ],
+     [
+      "3/92",
+      "1/16",
+      484,
+      7
+     ],
+     [
+      "3/92",
+      "1/16",
+      491,
+      2
+     ],
+     [
+      "3/92",
+      "3/92",
+      493,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1902,
+     "pivots": 268120,
+     "rowsProcessed": 548607,
+     "peakRows": 493,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 1298,
+     "primalHits": 833,
+     "envelopeChecks": 4606,
+     "primalBuilds": 1889,
+     "cutHits": 5,
+     "deferredBlocks": 2445,
+     "zeroHits": 186,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 76253,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 9.697290990967304,
+    "export": 2.63428715209011,
+    "replay": 0.720543393981643
+   },
+   "gzipSha256": "3e0a2620fda9534c2b5cdc3ad101d58f743001b5930cd7f82b43f99115451500",
+   "rawBytes": 407914
+  },
+  {
+   "prefix": [
+    7,
+    3
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "z1",
+     "y0",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "z0",
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "y1",
+       "x1",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      86
+     ],
+     [
+      "0",
+      "1/16",
+      87,
+      55
+     ],
+     [
+      "1/42",
+      "1/16",
+      142,
+      54
+     ],
+     [
+      "5/174",
+      "1/16",
+      196,
+      43
+     ],
+     [
+      "3/104",
+      "1/16",
+      239,
+      57
+     ],
+     [
+      "381/12758",
+      "1/16",
+      296,
+      43
+     ],
+     [
+      "9/298",
+      "1/16",
+      339,
+      28
+     ],
+     [
+      "1/32",
+      "1/16",
+      367,
+      11
+     ],
+     [
+      "1/32",
+      "1/16",
+      378,
+      8
+     ],
+     [
+      "1/32",
+      "1/16",
+      386,
+      1
+     ],
+     [
+      "1/32",
+      "1/32",
+      387,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1755,
+     "pivots": 237647,
+     "rowsProcessed": 505090,
+     "peakRows": 387,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 372,
+     "primalHits": 972,
+     "envelopeChecks": 4140,
+     "primalBuilds": 1744,
+     "cutHits": 8,
+     "deferredBlocks": 2111,
+     "zeroHits": 425,
+     "zeroBlocks": 186,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 475,
+     "pivots": 68227,
+     "rowsProcessed": 136800,
+     "zeroWorldBlocks": 37
+    }
+   },
+   "seconds": {
+    "design": 9.170186093077064,
+    "export": 2.5047989239683375,
+    "replay": 0.7461223090067506
+   },
+   "gzipSha256": "90d39688e1b75a70581410d9f972c9e469942c6372d2494b761945def5009722",
+   "rawBytes": 397576
+  },
+  {
+   "prefix": [
+    7,
+    4
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "z1",
+     "z0",
+     "x0",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "y0",
+       "y1"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/30",
+    "upper": "1/30",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      55
+     ],
+     [
+      "0",
+      "1/16",
+      56,
+      44
+     ],
+     [
+      "0",
+      "1/16",
+      100,
+      43
+     ],
+     [
+      "0",
+      "1/16",
+      143,
+      33
+     ],
+     [
+      "1/64",
+      "1/16",
+      176,
+      58
+     ],
+     [
+      "1/30",
+      "1/16",
+      234,
+      47
+     ],
+     [
+      "1/30",
+      "1/16",
+      281,
+      30
+     ],
+     [
+      "1/30",
+      "1/16",
+      311,
+      10
+     ],
+     [
+      "1/30",
+      "1/16",
+      321,
+      2
+     ],
+     [
+      "1/30",
+      "1/16",
+      323,
+      1
+     ],
+     [
+      "1/30",
+      "1/30",
+      324,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1006,
+     "pivots": 126815,
+     "rowsProcessed": 288830,
+     "peakRows": 324,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 979,
+     "primalHits": 318,
+     "envelopeChecks": 1593,
+     "primalBuilds": 995,
+     "cutHits": 2,
+     "deferredBlocks": 2264,
+     "zeroHits": 1074,
+     "zeroBlocks": 386,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 404,
+     "pivots": 53277,
+     "rowsProcessed": 116352,
+     "zeroWorldBlocks": 108
+    }
+   },
+   "seconds": {
+    "design": 5.1293193130986765,
+    "export": 2.0725615210831165,
+    "replay": 0.6274330610176548
+   },
+   "gzipSha256": "696f6493fd95836073d04a5c972f961a178287da073e11a4091e5656a16caf24",
+   "rawBytes": 339238
+  },
+  {
+   "prefix": [
+    7,
+    5
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "z1",
+     "x1",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "y1",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "z0",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      87
+     ],
+     [
+      "0",
+      "1/16",
+      88,
+      59
+     ],
+     [
+      "1/42",
+      "1/16",
+      147,
+      55
+     ],
+     [
+      "5/174",
+      "1/16",
+      202,
+      59
+     ],
+     [
+      "7/243",
+      "1/16",
+      261,
+      45
+     ],
+     [
+      "1/34",
+      "1/16",
+      306,
+      32
+     ],
+     [
+      "2/65",
+      "1/16",
+      338,
+      15
+     ],
+     [
+      "1/32",
+      "1/16",
+      353,
+      2
+     ],
+     [
+      "1/32",
+      "1/16",
+      355,
+      1
+     ],
+     [
+      "1/32",
+      "1/32",
+      356,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1556,
+     "pivots": 197473,
+     "rowsProcessed": 447655,
+     "peakRows": 356,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 475,
+     "primalHits": 839,
+     "envelopeChecks": 3229,
+     "primalBuilds": 1546,
+     "cutHits": 7,
+     "deferredBlocks": 1915,
+     "zeroHits": 338,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 512,
+     "pivots": 66674,
+     "rowsProcessed": 147456,
+     "zeroWorldBlocks": 0
+    }
+   },
+   "seconds": {
+    "design": 7.790703134029172,
+    "export": 2.5408557639457285,
+    "replay": 0.6429735400015488
+   },
+   "gzipSha256": "70abc19376a3fca4d1adb802ff3a84dcb594cba9b5397322d76ab7d4e4b11f1c",
+   "rawBytes": 372537
+  },
+  {
+   "prefix": [
+    7,
+    6
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 2
+   },
+   "policy": {
+    "commands": [
+     "z1",
+     "y1",
+     "x0"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "y0",
+       "x1",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "z0",
+       "ref",
+       "ref"
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "1/32",
+    "upper": "1/32",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      88
+     ],
+     [
+      "0",
+      "1/16",
+      89,
+      59
+     ],
+     [
+      "1/42",
+      "1/16",
+      148,
+      61
+     ],
+     [
+      "5/174",
+      "1/16",
+      209,
+      53
+     ],
+     [
+      "5/174",
+      "1/16",
+      262,
+      37
+     ],
+     [
+      "1/32",
+      "1/16",
+      299,
+      20
+     ],
+     [
+      "1/32",
+      "1/16",
+      319,
+      5
+     ],
+     [
+      "1/32",
+      "1/32",
+      324,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1124,
+     "pivots": 154102,
+     "rowsProcessed": 323059,
+     "peakRows": 324,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 194,
+     "primalHits": 388,
+     "envelopeChecks": 1714,
+     "primalBuilds": 1116,
+     "cutHits": 2,
+     "deferredBlocks": 1675,
+     "zeroHits": 721,
+     "zeroBlocks": 338,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 380,
+     "pivots": 54956,
+     "rowsProcessed": 109440,
+     "zeroWorldBlocks": 132
+    }
+   },
+   "seconds": {
+    "design": 5.742398942005821,
+    "export": 1.9404926059069112,
+    "replay": 0.663716658949852
+   },
+   "gzipSha256": "32f3d053fb3a1788423ba3b7353367e159fba62e23283b2eaa100c63fc7d35c7",
+   "rawBytes": 351060
+  },
+  {
+   "prefix": [
+    7,
+    7
+   ],
+   "result": {
+    "status": "exact",
+    "lower": "3/107",
+    "upper": "3/107",
+    "blocks": 512,
+    "terminalPairs": 4096,
+    "physicalWorlds": 8192,
+    "retainedWords": 4
+   },
+   "policy": {
+    "commands": [
+     "z1",
+     "z1",
+     "x1"
+    ],
+    "alternatives": [
+     {
+      "commands": [
+       "ref",
+       "ref",
+       "ref"
+      ]
+     },
+     {
+      "commands": [
+       "x0"
+      ],
+      "alternatives": [
+       {
+        "commands": [
+         "y0",
+         "y1"
+        ]
+       },
+       {
+        "commands": [
+         "z0"
+        ],
+        "alternatives": [
+         {
+          "commands": [
+           "ref"
+          ]
+         },
+         {
+          "commands": [
+           "z0"
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "design": {
+    "status": "exact",
+    "lower": "3/107",
+    "upper": "3/107",
+    "history": [
+     [
+      "0",
+      "1/16",
+      1,
+      41
+     ],
+     [
+      "0",
+      "1/16",
+      42,
+      50
+     ],
+     [
+      "1/74",
+      "1/16",
+      92,
+      26
+     ],
+     [
+      "3/182",
+      "1/16",
+      118,
+      58
+     ],
+     [
+      "5/252",
+      "1/16",
+      176,
+      38
+     ],
+     [
+      "1/39",
+      "1/16",
+      214,
+      51
+     ],
+     [
+      "4/151",
+      "1/16",
+      265,
+      48
+     ],
+     [
+      "4/151",
+      "1/16",
+      313,
+      34
+     ],
+     [
+      "1/37",
+      "1/16",
+      347,
+      24
+     ],
+     [
+      "1/37",
+      "1/16",
+      371,
+      12
+     ],
+     [
+      "3/110",
+      "1/16",
+      383,
+      14
+     ],
+     [
+      "1/36",
+      "1/16",
+      397,
+      3
+     ],
+     [
+      "3/107",
+      "1/16",
+      400,
+      3
+     ],
+     [
+      "3/107",
+      "3/107",
+      403,
+      0
+     ]
+    ],
+    "stats": {
+     "solves": 1721,
+     "pivots": 246588,
+     "rowsProcessed": 495138,
+     "peakRows": 403,
+     "peakWidth": 90,
+     "peakTerminalLeaves": 8,
+     "exactHits": 229,
+     "primalHits": 977,
+     "envelopeChecks": 5175,
+     "primalBuilds": 1707,
+     "cutHits": 9,
+     "deferredBlocks": 3062,
+     "zeroHits": 1184,
+     "zeroBlocks": 386,
+     "initialUpper": "1/16"
+    },
+    "export": {
+     "solves": 398,
+     "pivots": 59165,
+     "rowsProcessed": 114624,
+     "zeroWorldBlocks": 114
+    }
+   },
+   "seconds": {
+    "design": 9.014032350038178,
+    "export": 2.073169609066099,
+    "replay": 0.6655859670136124
+   },
+   "gzipSha256": "d4ee8b34866ce4efef9f7d6e7657ae0627530b2ea194a583c2fffc2f594c74b1",
+   "rawBytes": 407521
+  }
+ ],
+ "certified": {
+  "scope": "all-first-pairs",
+  "status": "exact",
+  "lower": "1/20",
+  "upper": "1/20",
+  "maximizingLower": [
+   "ref",
+   "ref"
+  ],
+  "prefixes": [
+   {
+    "prefix": [
+     "ref",
+     "ref"
+    ],
+    "lower": "1/20",
+    "upper": "1/20",
+    "searchUpper": "1/20",
+    "retainedWords": 2,
+    "searchLower": "1/20"
+   },
+   {
+    "prefix": [
+     "ref",
+     "group"
+    ],
+    "lower": "2/59",
+    "upper": "2/59",
+    "searchUpper": "2/59",
+    "retainedWords": 6,
+    "searchLower": "2/59"
+   },
+   {
+    "prefix": [
+     "ref",
+     "x0"
+    ],
+    "lower": "1/29",
+    "upper": "1/29",
+    "searchUpper": "1/29",
+    "retainedWords": 3,
+    "searchLower": "1/29"
+   },
+   {
+    "prefix": [
+     "ref",
+     "y0"
+    ],
+    "lower": "1/30",
+    "upper": "1/30",
+    "searchUpper": "1/30",
+    "retainedWords": 3,
+    "searchLower": "1/30"
+   },
+   {
+    "prefix": [
+     "ref",
+     "z0"
+    ],
+    "lower": "1/31",
+    "upper": "1/31",
+    "searchUpper": "1/31",
+    "retainedWords": 2,
+    "searchLower": "1/31"
+   },
+   {
+    "prefix": [
+     "ref",
+     "x1"
+    ],
+    "lower": "1/29",
+    "upper": "1/29",
+    "searchUpper": "1/29",
+    "retainedWords": 3,
+    "searchLower": "1/29"
+   },
+   {
+    "prefix": [
+     "ref",
+     "y1"
+    ],
+    "lower": "1/30",
+    "upper": "1/30",
+    "searchUpper": "1/30",
+    "retainedWords": 3,
+    "searchLower": "1/30"
+   },
+   {
+    "prefix": [
+     "ref",
+     "z1"
+    ],
+    "lower": "1/31",
+    "upper": "1/31",
+    "searchUpper": "1/31",
+    "retainedWords": 2,
+    "searchLower": "1/31"
+   },
+   {
+    "prefix": [
+     "group",
+     "ref"
+    ],
+    "lower": "1/22",
+    "upper": "1/22",
+    "searchUpper": "1/22",
+    "retainedWords": 2,
+    "searchLower": "1/22"
+   },
+   {
+    "prefix": [
+     "group",
+     "group"
+    ],
+    "lower": "1/29",
+    "upper": "1/29",
+    "searchUpper": "1/29",
+    "retainedWords": 4,
+    "searchLower": "1/29"
+   },
+   {
+    "prefix": [
+     "group",
+     "x0"
+    ],
+    "lower": "3/83",
+    "upper": "3/83",
+    "searchUpper": "3/83",
+    "retainedWords": 5,
+    "searchLower": "3/83"
+   },
+   {
+    "prefix": [
+     "group",
+     "y0"
+    ],
+    "lower": "1/28",
+    "upper": "1/28",
+    "searchUpper": "1/28",
+    "retainedWords": 5,
+    "searchLower": "1/28"
+   },
+   {
+    "prefix": [
+     "group",
+     "z0"
+    ],
+    "lower": "3/86",
+    "upper": "3/86",
+    "searchUpper": "3/86",
+    "retainedWords": 3,
+    "searchLower": "3/86"
+   },
+   {
+    "prefix": [
+     "group",
+     "x1"
+    ],
+    "lower": "1/31",
+    "upper": "1/31",
+    "searchUpper": "1/31",
+    "retainedWords": 4,
+    "searchLower": "1/31"
+   },
+   {
+    "prefix": [
+     "group",
+     "y1"
+    ],
+    "lower": "1/30",
+    "upper": "1/30",
+    "searchUpper": "1/30",
+    "retainedWords": 4,
+    "searchLower": "1/30"
+   },
+   {
+    "prefix": [
+     "group",
+     "z1"
+    ],
+    "lower": "7/206",
+    "upper": "7/206",
+    "searchUpper": "7/206",
+    "retainedWords": 4,
+    "searchLower": "7/206"
+   },
+   {
+    "prefix": [
+     "x0",
+     "ref"
+    ],
+    "lower": "1/24",
+    "upper": "1/24",
+    "searchUpper": "1/24",
+    "retainedWords": 2,
+    "searchLower": "1/24"
+   },
+   {
+    "prefix": [
+     "x0",
+     "group"
+    ],
+    "lower": "2/57",
+    "upper": "2/57",
+    "searchUpper": "2/57",
+    "retainedWords": 6,
+    "searchLower": "2/57"
+   },
+   {
+    "prefix": [
+     "x0",
+     "x0"
+    ],
+    "lower": "1/33",
+    "upper": "1/33",
+    "searchUpper": "1/33",
+    "retainedWords": 3,
+    "searchLower": "1/33"
+   },
+   {
+    "prefix": [
+     "x0",
+     "y0"
+    ],
+    "lower": "1/26",
+    "upper": "1/26",
+    "searchUpper": "1/26",
+    "retainedWords": 3,
+    "searchLower": "1/26"
+   },
+   {
+    "prefix": [
+     "x0",
+     "z0"
+    ],
+    "lower": "1/32",
+    "upper": "1/32",
+    "searchUpper": "1/32",
+    "retainedWords": 3,
+    "searchLower": "1/32"
+   },
+   {
+    "prefix": [
+     "x0",
+     "x1"
+    ],
+    "lower": "1/24",
+    "upper": "1/24",
+    "searchUpper": "1/24",
+    "retainedWords": 2,
+    "searchLower": "1/24"
+   },
+   {
+    "prefix": [
+     "x0",
+     "y1"
+    ],
+    "lower": "1/26",
+    "upper": "1/26",
+    "searchUpper": "1/26",
+    "retainedWords": 3,
+    "searchLower": "1/26"
+   },
+   {
+    "prefix": [
+     "x0",
+     "z1"
+    ],
+    "lower": "3/92",
+    "upper": "3/92",
+    "searchUpper": "3/92",
+    "retainedWords": 3,
+    "searchLower": "3/92"
+   },
+   {
+    "prefix": [
+     "y0",
+     "ref"
+    ],
+    "lower": "1/27",
+    "upper": "1/27",
+    "searchUpper": "1/27",
+    "retainedWords": 3,
+    "searchLower": "1/27"
+   },
+   {
+    "prefix": [
+     "y0",
+     "group"
+    ],
+    "lower": "1/28",
+    "upper": "1/28",
+    "searchUpper": "1/28",
+    "retainedWords": 4,
+    "searchLower": "1/28"
+   },
+   {
+    "prefix": [
+     "y0",
+     "x0"
+    ],
+    "lower": "1/26",
+    "upper": "1/26",
+    "searchUpper": "1/26",
+    "retainedWords": 3,
+    "searchLower": "1/26"
+   },
+   {
+    "prefix": [
+     "y0",
+     "y0"
+    ],
+    "lower": "3/109",
+    "upper": "3/109",
+    "searchUpper": "3/109",
+    "retainedWords": 4,
+    "searchLower": "3/109"
+   },
+   {
+    "prefix": [
+     "y0",
+     "z0"
+    ],
+    "lower": "1/32",
+    "upper": "1/32",
+    "searchUpper": "1/32",
+    "retainedWords": 3,
+    "searchLower": "1/32"
+   },
+   {
+    "prefix": [
+     "y0",
+     "x1"
+    ],
+    "lower": "1/26",
+    "upper": "1/26",
+    "searchUpper": "1/26",
+    "retainedWords": 3,
+    "searchLower": "1/26"
+   },
+   {
+    "prefix": [
+     "y0",
+     "y1"
+    ],
+    "lower": "5/147",
+    "upper": "5/147",
+    "searchUpper": "5/147",
+    "retainedWords": 5,
+    "searchLower": "5/147"
+   },
+   {
+    "prefix": [
+     "y0",
+     "z1"
+    ],
+    "lower": "1/34",
+    "upper": "1/34",
+    "searchUpper": "1/34",
+    "retainedWords": 3,
+    "searchLower": "1/34"
+   },
+   {
+    "prefix": [
+     "z0",
+     "ref"
+    ],
+    "lower": "1/28",
+    "upper": "1/28",
+    "searchUpper": "1/28",
+    "retainedWords": 3,
+    "searchLower": "1/28"
+   },
+   {
+    "prefix": [
+     "z0",
+     "group"
+    ],
+    "lower": "1/28",
+    "upper": "1/28",
+    "searchUpper": "1/28",
+    "retainedWords": 3,
+    "searchLower": "1/28"
+   },
+   {
+    "prefix": [
+     "z0",
+     "x0"
+    ],
+    "lower": "1/32",
+    "upper": "1/32",
+    "searchUpper": "1/32",
+    "retainedWords": 3,
+    "searchLower": "1/32"
+   },
+   {
+    "prefix": [
+     "z0",
+     "y0"
+    ],
+    "lower": "5/163",
+    "upper": "1/20",
+    "searchUpper": "1/16",
+    "retainedWords": 4,
+    "searchLower": "5/163"
+   },
+   {
+    "prefix": [
+     "z0",
+     "z0"
+    ],
+    "lower": "3/107",
+    "upper": "3/107",
+    "searchUpper": "3/107",
+    "retainedWords": 4,
+    "searchLower": "3/107"
+   },
+   {
+    "prefix": [
+     "z0",
+     "x1"
+    ],
+    "lower": "3/92",
+    "upper": "3/92",
+    "searchUpper": "3/92",
+    "retainedWords": 2,
+    "searchLower": "3/92"
+   },
+   {
+    "prefix": [
+     "z0",
+     "y1"
+    ],
+    "lower": "1/32",
+    "upper": "1/32",
+    "searchUpper": "1/32",
+    "retainedWords": 2,
+    "searchLower": "1/32"
+   },
+   {
+    "prefix": [
+     "z0",
+     "z1"
+    ],
+    "lower": "1/30",
+    "upper": "1/30",
+    "searchUpper": "1/30",
+    "retainedWords": 2,
+    "searchLower": "1/30"
+   },
+   {
+    "prefix": [
+     "x1",
+     "ref"
+    ],
+    "lower": "1/24",
+    "upper": "1/24",
+    "searchUpper": "1/24",
+    "retainedWords": 3,
+    "searchLower": "1/24"
+   },
+   {
+    "prefix": [
+     "x1",
+     "group"
+    ],
+    "lower": "1/30",
+    "upper": "1/30",
+    "searchUpper": "1/30",
+    "retainedWords": 3,
+    "searchLower": "1/30"
+   },
+   {
+    "prefix": [
+     "x1",
+     "x0"
+    ],
+    "lower": "1/24",
+    "upper": "1/24",
+    "searchUpper": "1/24",
+    "retainedWords": 2,
+    "searchLower": "1/24"
+   },
+   {
+    "prefix": [
+     "x1",
+     "y0"
+    ],
+    "lower": "1/26",
+    "upper": "1/26",
+    "searchUpper": "1/26",
+    "retainedWords": 3,
+    "searchLower": "1/26"
+   },
+   {
+    "prefix": [
+     "x1",
+     "z0"
+    ],
+    "lower": "3/92",
+    "upper": "3/92",
+    "searchUpper": "3/92",
+    "retainedWords": 3,
+    "searchLower": "3/92"
+   },
+   {
+    "prefix": [
+     "x1",
+     "x1"
+    ],
+    "lower": "1/33",
+    "upper": "1/33",
+    "searchUpper": "1/33",
+    "retainedWords": 3,
+    "searchLower": "1/33"
+   },
+   {
+    "prefix": [
+     "x1",
+     "y1"
+    ],
+    "lower": "1/26",
+    "upper": "1/26",
+    "searchUpper": "1/26",
+    "retainedWords": 3,
+    "searchLower": "1/26"
+   },
+   {
+    "prefix": [
+     "x1",
+     "z1"
+    ],
+    "lower": "1/32",
+    "upper": "1/32",
+    "searchUpper": "1/32",
+    "retainedWords": 2,
+    "searchLower": "1/32"
+   },
+   {
+    "prefix": [
+     "y1",
+     "ref"
+    ],
+    "lower": "1/27",
+    "upper": "1/27",
+    "searchUpper": "1/27",
+    "retainedWords": 4,
+    "searchLower": "1/27"
+   },
+   {
+    "prefix": [
+     "y1",
+     "group"
+    ],
+    "lower": "1/30",
+    "upper": "1/30",
+    "searchUpper": "1/30",
+    "retainedWords": 4,
+    "searchLower": "1/30"
+   },
+   {
+    "prefix": [
+     "y1",
+     "x0"
+    ],
+    "lower": "1/26",
+    "upper": "1/26",
+    "searchUpper": "1/26",
+    "retainedWords": 3,
+    "searchLower": "1/26"
+   },
+   {
+    "prefix": [
+     "y1",
+     "y0"
+    ],
+    "lower": "5/147",
+    "upper": "1/20",
+    "searchUpper": "1/16",
+    "retainedWords": 5,
+    "searchLower": "5/147"
+   },
+   {
+    "prefix": [
+     "y1",
+     "z0"
+    ],
+    "lower": "1/34",
+    "upper": "1/34",
+    "searchUpper": "1/34",
+    "retainedWords": 3,
+    "searchLower": "1/34"
+   },
+   {
+    "prefix": [
+     "y1",
+     "x1"
+    ],
+    "lower": "1/38",
+    "upper": "1/20",
+    "searchLower": "0",
+    "searchUpper": "1/16",
+    "retainedWords": 3
+   },
+   {
+    "prefix": [
+     "y1",
+     "y1"
+    ],
+    "lower": "1/37",
+    "upper": "1/37",
+    "searchUpper": "1/37",
+    "retainedWords": 4,
+    "searchLower": "1/37"
+   },
+   {
+    "prefix": [
+     "y1",
+     "z1"
+    ],
+    "lower": "1/34",
+    "upper": "1/34",
+    "searchUpper": "1/34",
+    "retainedWords": 3,
+    "searchLower": "1/34"
+   },
+   {
+    "prefix": [
+     "z1",
+     "ref"
+    ],
+    "lower": "1/28",
+    "upper": "1/28",
+    "searchUpper": "1/28",
+    "retainedWords": 3,
+    "searchLower": "1/28"
+   },
+   {
+    "prefix": [
+     "z1",
+     "group"
+    ],
+    "lower": "1/29",
+    "upper": "1/29",
+    "searchUpper": "1/29",
+    "retainedWords": 3,
+    "searchLower": "1/29"
+   },
+   {
+    "prefix": [
+     "z1",
+     "x0"
+    ],
+    "lower": "3/92",
+    "upper": "3/92",
+    "searchUpper": "3/92",
+    "retainedWords": 2,
+    "searchLower": "3/92"
+   },
+   {
+    "prefix": [
+     "z1",
+     "y0"
+    ],
+    "lower": "1/32",
+    "upper": "1/32",
+    "searchUpper": "1/32",
+    "retainedWords": 2,
+    "searchLower": "1/32"
+   },
+   {
+    "prefix": [
+     "z1",
+     "z0"
+    ],
+    "lower": "1/30",
+    "upper": "1/30",
+    "searchUpper": "1/30",
+    "retainedWords": 2,
+    "searchLower": "1/30"
+   },
+   {
+    "prefix": [
+     "z1",
+     "x1"
+    ],
+    "lower": "1/32",
+    "upper": "1/32",
+    "searchUpper": "1/32",
+    "retainedWords": 2,
+    "searchLower": "1/32"
+   },
+   {
+    "prefix": [
+     "z1",
+     "y1"
+    ],
+    "lower": "1/32",
+    "upper": "1/32",
+    "searchUpper": "1/32",
+    "retainedWords": 2,
+    "searchLower": "1/32"
+   },
+   {
+    "prefix": [
+     "z1",
+     "z1"
+    ],
+    "lower": "3/107",
+    "upper": "3/107",
+    "searchUpper": "3/107",
+    "retainedWords": 4,
+    "searchLower": "3/107"
+   }
+  ],
+  "physicalWorlds": 524288,
+  "terminalPairs": 262144,
+  "blocks": 32768
+ }
+}
