@@ -1,0 +1,240 @@
+{
+  "material": "WTe2",
+  "scores_in_microvolts": {
+    "constant_prefix": {
+      "NLMT_mean": 191.22441541117388,
+      "NLMT_worst": 855.275973006905,
+      "NLN_mean": 166.24245218138836,
+      "NLN_worst": 438.64430260047294,
+      "NLS_mean": 247.82473266751057,
+      "NLS_worst": 1315.8334745762713,
+      "all_mean": 200.61801467039083,
+      "all_worst": 1315.8334745762713
+    },
+    "paired_published_quartic": {
+      "NLMT_mean": 143.5572194716241,
+      "NLMT_worst": 583.3583680878396,
+      "NLN_mean": 149.1185325467097,
+      "NLN_worst": 265.8360906929777,
+      "NLS_mean": 232.19375188218459,
+      "NLS_worst": 1584.8356078586523,
+      "all_mean": 174.12301843715784,
+      "all_worst": 1584.8356078586523
+    },
+    "published_quartic": {
+      "NLMT_mean": 143.1359741813107,
+      "NLMT_worst": 571.0600062369908,
+      "NLN_mean": 129.1399541193033,
+      "NLN_worst": 250.0548602100848,
+      "NLS_mean": 200.79373096868213,
+      "NLS_worst": 1104.8954905467765,
+      "all_mean": 156.76892086491173,
+      "all_worst": 1104.8954905467765
+    },
+    "quartic_octic": {
+      "NLMT_mean": 354.5640980269659,
+      "NLMT_worst": 2138.840684172345,
+      "NLN_mean": 575.8319765620237,
+      "NLN_worst": 3338.230829029445,
+      "NLS_mean": 433.9923598714461,
+      "NLS_worst": 2430.4071771208064,
+      "all_mean": 458.70052648923803,
+      "all_worst": 3338.230829029445
+    },
+    "quartic_plus_curvature": {
+      "NLMT_mean": 129.90851329879317,
+      "NLMT_worst": 546.5761525203638,
+      "NLN_mean": 186.0607116664337,
+      "NLN_worst": 638.7178056638379,
+      "NLS_mean": 172.91527399773884,
+      "NLS_worst": 996.8655251594028,
+      "all_mean": 163.70663552568033,
+      "all_worst": 996.8655251594028
+    },
+    "quartic_sextic": {
+      "NLMT_mean": 177.98426765157075,
+      "NLMT_worst": 1220.5937071181013,
+      "NLN_mean": 338.8143323949727,
+      "NLN_worst": 1931.9439338267935,
+      "NLS_mean": 199.07243212629615,
+      "NLS_worst": 1719.8070790538707,
+      "all_mean": 241.85563400397965,
+      "all_worst": 1931.9439338267935
+    },
+    "raw_integral": {
+      "NLMT_mean": 11.846631461891382,
+      "NLMT_worst": 29.544480703470267,
+      "NLN_mean": 8.816744263481263,
+      "NLN_worst": 33.859263776052714,
+      "NLS_mean": 21.626254692507327,
+      "NLS_worst": 52.480050850210404,
+      "all_mean": 13.926227369105838,
+      "all_worst": 52.480050850210404
+    },
+    "reversed_unit": {
+      "NLMT_mean": 400.5551133779325,
+      "NLMT_worst": 1755.5623222358875,
+      "NLN_mean": 345.00949638306196,
+      "NLN_worst": 908.5104225789034,
+      "NLS_mean": 515.8656362576415,
+      "NLS_worst": 2701.728914666795,
+      "all_mean": 418.0423211796588,
+      "all_worst": 2701.728914666795
+    },
+    "smooth_integral": {
+      "NLMT_mean": 7.685032258829372,
+      "NLMT_worst": 20.354911235865877,
+      "NLN_mean": 7.9974678701518975,
+      "NLN_worst": 25.56120955364848,
+      "NLS_mean": 23.35344078223137,
+      "NLS_worst": 87.71484072782914,
+      "all_mean": 12.850221838138008,
+      "all_worst": 87.71484072782914
+    },
+    "unconstrained_curvature": {
+      "NLMT_mean": 195.64920961165524,
+      "NLMT_worst": 862.7926286216644,
+      "NLN_mean": 169.74283739237765,
+      "NLN_worst": 442.82158223104204,
+      "NLS_mean": 253.12013698711317,
+      "NLS_worst": 1343.1547007915362,
+      "all_mean": 204.99563475173673,
+      "all_worst": 1343.1547007915362
+    },
+    "unit_integral": {
+      "NLMT_mean": 18.71238503065814,
+      "NLMT_worst": 47.225428686288474,
+      "NLN_mean": 14.327975677153319,
+      "NLN_worst": 31.775827336225856,
+      "NLS_mean": 32.97980039789941,
+      "NLS_worst": 72.71810400975465,
+      "all_mean": 21.75901892691168,
+      "all_worst": 72.71810400975465
+    },
+    "validation_power": {
+      "NLMT_mean": 238.74406164298475,
+      "NLMT_worst": 1256.4768894198742,
+      "NLN_mean": 282.60589164987437,
+      "NLN_worst": 2415.0850781814897,
+      "NLS_mean": 206.02197534076055,
+      "NLS_worst": 1698.872335737656,
+      "all_mean": 243.75242509632488,
+      "all_worst": 2415.0850781814897
+    }
+  },
+  "gates": {
+    "NLMT_mean": true,
+    "NLMT_worst": true,
+    "NLN_mean": true,
+    "NLN_worst": true,
+    "NLS_mean": false,
+    "NLS_worst": false,
+    "all_mean": true,
+    "all_worst": false
+  },
+  "all_eight": false,
+  "diagnostic": {
+    "U_range": [
+      -0.007526,
+      -0.0000065
+    ],
+    "all_held_V4_range": [
+      -0.000004,
+      0.0000405
+    ],
+    "cut": 122,
+    "features_at_worst": {
+      "G_V": -0.00008072423332321435,
+      "U_V": -0.007526,
+      "affine_residual_V": 0.00008552616425116632
+    },
+    "n": 188,
+    "prefix_V4_range": [
+      -0.0000133,
+      0.0000315
+    ],
+    "raw": {
+      "center": [
+        0.008871500429400311,
+        0.000009133877720677097
+      ],
+      "coefficients": [
+        0.000008203278688524592,
+        7.378219622484871e-7,
+        0.0000035348296277949375
+      ],
+      "rank": 3,
+      "scale": [
+        0.09028531854099385,
+        0.000004178805838502578
+      ],
+      "singular_values": [
+        13.55964211032336,
+        11.045361017187261,
+        7.754747309870594
+      ]
+    },
+    "smooth": {
+      "center": [
+        0.008871500429400311,
+        0.000009117585732060938
+      ],
+      "coefficients": [
+        0.000008203278688524592,
+        0.0000035622714072397636,
+        0.000006850192049135235
+      ],
+      "rank": 3,
+      "scale": [
+        0.09028531854099385,
+        0.0000031428585564118884
+      ],
+      "singular_values": [
+        14.290752289766264,
+        11.045361017187261,
+        6.306694775596816
+      ]
+    }
+  },
+  "independent": {
+    "forecast_errors": 36288,
+    "gates": {
+      "NLMT_mean": true,
+      "NLMT_worst": true,
+      "NLN_mean": true,
+      "NLN_worst": true,
+      "NLS_mean": false,
+      "NLS_worst": false,
+      "all_mean": true,
+      "all_worst": false
+    },
+    "held_rows": 3024,
+    "max_primary_difference_V": 2.6454533008646308e-17,
+    "max_score_difference_uV": 4.547473508864641e-13,
+    "scalar_score_checks": 840,
+    "sweeps": 62,
+    "worst": {
+      "V2_V": -0.007526,
+      "drive": 0.752,
+      "error_V": -0.0001853664828338213,
+      "forecasts_V": {
+        "constant_prefix": 0.00000820327868852459,
+        "paired_published_quartic": 0.0001876348841747182,
+        "published_quartic": 0.00021219333339028796,
+        "quartic_octic": -0.0011057730268807927,
+        "quartic_plus_curvature": -0.00008076649645526972,
+        "quartic_sextic": -0.00043646387912299077,
+        "raw_integral": -0.00006605880093290158,
+        "reversed_unit": 0.00009835686406498255,
+        "smooth_integral": -0.00018796648283382131,
+        "unconstrained_curvature": -0.000051344862131300894,
+        "unit_integral": -0.00008174305061009712,
+        "validation_power": 0.00008119821342735277
+      },
+      "path": "data/raw/NLS_78_36/data_8.dat",
+      "raw_row": 187,
+      "truth_V": -0.0000026
+    }
+  },
+  "unopened_TaIrTe4_sweeps": 80
+}
