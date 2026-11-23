@@ -70,14 +70,14 @@ def verify(xml,pure,bank,score):
             seq=sorted(entries); fit=bank['fits'][sol]
             anchors=[]
             for t,i,y in seq[:4]:
-                q=pure[sol][str(t)]
+                q,=[v for key,v in pure[sol].items() if float(key)==t]
                 anchors.append(inferred_gamma(q,y*1000,t,z,fit['ve'])-heat_model(z,t,fit))
             for t,i,y in seq[4:]:
                 key=f'{sol}/{i}';row=bank['rows'][key];groups[key]=(sol,z)
                 if (row['T'],row['z'],row['dataset'],row['row'])!=(t,z,index,i):raise ValueError('row identity')
                 if set(row['pred_kpa'])!=set(ARMS):raise ValueError('arm census')
                 compare(y,score['truth_kpa'][key])
-                q=pure[sol][str(t)]
+                q,=[v for key,v in pure[sol].items() if float(key)==t]
                 target=math.fsum(anchors)/4+heat_model(z,t,fit)
                 lo=q['pstar_pa']*1e-7;hi=1.5*q['pstar_pa']
                 for _ in range(75):

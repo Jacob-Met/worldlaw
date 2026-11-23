@@ -76,7 +76,9 @@ def fit_rk(z,y):
 
 
 def prop_table(reference,solvent,T):
-    return reference[solvent][str(float(T))]
+    values=[v for k,v in reference[solvent].items() if float(k)==float(T)]
+    if len(values)!=1:raise ValueError(('nonunique or absent pure temperature',solvent,T))
+    return values[0]
 
 
 def thermal_inputs(source,reference,solvent):
