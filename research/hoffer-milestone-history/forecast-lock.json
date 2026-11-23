@@ -1,0 +1,78 @@
+{
+  "forecast_source": "a547d79f23c2cdb4dd58b8d931e25452218d0313",
+  "independent_source": "ce32daec6c4b5a121d2851e0ad4e0adeee3a586a",
+  "status": "All held CDF forecasts frozen; no held post-issuance coordinate used for any outcome",
+  "native": {
+    "donors": {
+      "raw": "FIT_DIR /tmp/hamon-s-1000/846f6aa5e5f94fae9bfebbc4635f229f/p2-hoffer-donor-lock-2mUOfyvs\nDONORS 192 260278 260266\nOUTPUT donor-ledger.json 133419 09675cca57c4e85ce3d452ed3d9480be6cfaaf56fa2415f4eeaed644de0bf335\nOUTPUT donors.npz 6432132 7fbbd194e8121dc1487f96ab5b3bbe57b65b90a4d9a25047a2863a53cd7bbdbe\n",
+      "bytes": 302,
+      "sha256": "f4d6b3e697f83f3200397613cf1636c8949ff9f71d1a28c8b3a9de2d9db35925",
+      "source": {
+        "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+        "command_id": "p2-f747-hoffer-preserved-archive-donor-bank-normal-fifo",
+        "request_sha256": "41623219bc7b52199971ff144288be78a3360fa9f498a8a4bc99829e324010a5",
+        "generation": "6e89660a946b5d80b2cfa549f591927f21cee3b73dcbfc6d06610fcb13c6ec9a",
+        "receipt_sha256": "e55fde992278c2e06a1e71e29c1bff0c15b68fa89146c7c23a11065626c5344f",
+        "output_bytes": 302
+      }
+    },
+    "prefix": {
+      "raw": "PREFIX_DIR /tmp/hamon-s-1000/8f3fb268586e46e9a5cad43ff6ab03ae/p2-hoffer-all-issued-cdf-5Q8PWqlP\nPREFIX_STRATA 192 PATHS 260018\nOUTPUT predictions.npz 20588526 38c97b2a56e465086c2922c0c09dcecf611d95f2dfb9c578a92ce7b024bc66be\nOUTPUT prefix-ledger.json 132396 5bff60361c2ada03174b054e91b810cb00a7c9a4fc4adb4e08fd9f1cec2a1579\nCONFIGURED_REMOTE_NAMES\ngdrive:\nr2-estate:\n",
+      "bytes": 365,
+      "sha256": "cff664ba2db63b80c77291d01c68bc65b9bcd93a3cb9af2cea8a63afc8076df8",
+      "source": {
+        "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+        "command_id": "p2-f747-hoffer-held-folding-prefix-only-nine-arm-cdf-lock",
+        "request_sha256": "22d65448e8c15cc7287afd4b7a5e4cbd19a7aec80e051aabbb9e2683777b7a8c",
+        "generation": "a0fa72ff29342380aba067b3e13876a7b4933a705d18a585faeb9f891c13467f",
+        "receipt_sha256": "7cc293a51205c078bebc53c09a8361a4595234720c752c5906ee1fbc9951ce9a",
+        "output_bytes": 365
+      }
+    },
+    "combined_publication": {
+      "raw": "PUBLICATION_DIR /tmp/hamon-s-1000/75168984b4614e0cad901d941bd36fd8/p2-hoffer-prefix-publication-NeuW5QgW\n/tmp/hamon-s-1000/75168984b4614e0cad901d941bd36fd8/p2-hoffer-prefix-publication-NeuW5QgW/helper.py: OK\nBUNDLE 27286919 47f1ecd544538cfb97679cf6347a0a44b2637017dead6c23daa0dae7fc0f8b66\n{\"object_manifest\": \"r2-estate:estate-archive/transfers/fr-disc-wave2-unseen-repo-repair-and-multiamplitude-worldlaw/p2-f747-hoffer/manifests/17063afd6fd1e03da04dff21bbeafbef8301b582f726209716aa605eb66afc5e.json\", \"manifest_sha256\": \"17063afd6fd1e03da04dff21bbeafbef8301b582f726209716aa605eb66afc5e\", \"manifest_bytes\": 397, \"sha256\": \"47f1ecd544538cfb97679cf6347a0a44b2637017dead6c23daa0dae7fc0f8b66\", \"bytes\": 27286919, \"source\": \"/tmp/hamon-s-1000/75168984b4614e0cad901d941bd36fd8/p2-hoffer-prefix-publication-NeuW5QgW/hoffer-original-banks.zip\"}\n",
+      "bytes": 838,
+      "sha256": "5f67d8603331c11749272caab7c4c7fb9613ea93020702b206608968b54712db",
+      "source": {
+        "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+        "command_id": "p2-f747-hoffer-immutable-whole-donor-prefix-bank-publish-and-full-readback",
+        "request_sha256": "bae96fe68e8b330251eb3cb4501aa095fcbe3085c3a9b9275fa8bfcbe311db48",
+        "generation": "74aa1eaf6bc10d0320d90272b108df301a267e1524470197c3ab127b790b45a1",
+        "receipt_sha256": "55028aaaa8be716fdbf26342d041f6144d8440e7fd10527ec4b6a95eee72cb60",
+        "output_bytes": 838
+      }
+    }
+  },
+  "original_bank_manifest": {
+    "object_manifest": "r2-estate:estate-archive/transfers/fr-disc-wave2-unseen-repo-repair-and-multiamplitude-worldlaw/p2-f747-hoffer/manifests/17063afd6fd1e03da04dff21bbeafbef8301b582f726209716aa605eb66afc5e.json",
+    "manifest_sha256": "17063afd6fd1e03da04dff21bbeafbef8301b582f726209716aa605eb66afc5e",
+    "manifest_bytes": 397,
+    "sha256": "47f1ecd544538cfb97679cf6347a0a44b2637017dead6c23daa0dae7fc0f8b66",
+    "bytes": 27286919,
+    "source": "/tmp/hamon-s-1000/75168984b4614e0cad901d941bd36fd8/p2-hoffer-prefix-publication-NeuW5QgW/hoffer-original-banks.zip"
+  },
+  "donor_post": {
+    "ok": true,
+    "seq": 1773527,
+    "op_id": "p2-f747-hoffer-actual-unfolding-donor-bank-before-any-folding-coordinates",
+    "result": {
+      "id": 189312
+    }
+  },
+  "prediction_post": {
+    "ok": true,
+    "seq": 1773690,
+    "op_id": "p2-f747-hoffer-complete-folding-prediction-bank-before-suffix",
+    "result": {
+      "id": 189330
+    }
+  },
+  "source_rank_post": {
+    "ok": true,
+    "seq": 1773361,
+    "op_id": "p2-f747-hoffer-one-byte-present-file-and-declared-count-correction",
+    "result": {
+      "id": 189302
+    }
+  }
+}
