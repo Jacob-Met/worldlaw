@@ -1,0 +1,718 @@
+{
+  "native_originals": [
+    {
+      "job_id": "p2-f747-spatz-four-solvent-polystyrene-canonical-file-roster-only",
+      "worker": "node-63fbcea7e7e266574ee04ba386b8bb4b",
+      "terminal": {
+        "command_id": "p2-f747-spatz-four-solvent-polystyrene-canonical-file-roster-only",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T11:48:29.618802952Z",
+        "generation": "5d93fe930cae52f20e91e704f18321059cf3ea2a33487cf2eb954ec324987fdd",
+        "request_sha256": "10e35a88557b5058dc87280821578a8fec90a641d1d1ee2d46211947d579b901",
+        "resource_process": {
+          "boot_id": "3fef6629-f5ff-414e-90d9-5682416c79e0",
+          "pid": 109610,
+          "start_ticks": 97261638
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 23330816,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "python": 0.060000000000000005
+            },
+            "distinct_processes": 1,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 19,
+            "read_errors": 0,
+            "saturated_snapshots": 0,
+            "snapshots": 19
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.011706,
+          "user_cpu_seconds": 0.070217
+        },
+        "runner_pid": 109596,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T11:48:27.683765987Z",
+        "state": "completed",
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/cursor-swiss-env",
+          "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+        }
+      },
+      "full_output_sha256": "3e730e1f176ef1d0fb565df407df754e2b36bed7a2aaabfbdd96f0e500e08561",
+      "output_bytes": 19015,
+      "full_output_source": {
+        "owner": "node-63fbcea7e7e266574ee04ba386b8bb4b",
+        "command_id": "p2-f747-spatz-four-solvent-polystyrene-canonical-file-roster-only",
+        "request_sha256": "10e35a88557b5058dc87280821578a8fec90a641d1d1ee2d46211947d579b901",
+        "generation": "5d93fe930cae52f20e91e704f18321059cf3ea2a33487cf2eb954ec324987fdd",
+        "receipt_sha256": "ac7a5494e160e2a1ea03e99a0bf221e0606c59dac4114a4fd59e2d74cbd4e301",
+        "output_bytes": 19015
+      }
+    },
+    {
+      "job_id": "p2-f747-spatz-file-authentication-typed-hdf-and-nonexecuting-model-inventory",
+      "worker": "node-78df0dffcc236bb35d1f48860561f55d",
+      "terminal": {
+        "script_observation_version": 3,
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/cursor-swiss-env",
+          "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "state": "drained",
+            "adopted_waits": 0
+          },
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "interval_milliseconds": 100,
+            "cpu_seconds": {
+              "python": 3.1299999999999932,
+              "shell": 0
+            },
+            "snapshots": 683,
+            "nonempty_snapshots": 683,
+            "distinct_processes": 4,
+            "read_errors": 0,
+            "saturated_snapshots": 0
+          },
+          "source": "linux_rusage",
+          "user_cpu_seconds": 2.790555,
+          "system_cpu_seconds": 0.569675,
+          "max_rss_bytes": 103792640,
+          "max_rss_scope": "largest_waited_process"
+        },
+        "resource_process": {
+          "pid": 513121,
+          "start_ticks": 81397589,
+          "boot_id": "e63a2f1b-7ab2-4bc5-8e4e-5927618e40ec"
+        },
+        "command_id": "p2-f747-spatz-file-authentication-typed-hdf-and-nonexecuting-model-inventory",
+        "request_sha256": "0db8b18ab9e27eddb422821650c07c24956e2329b04137782b94c55215c3967a",
+        "generation": "22a0db37599740421226e0691605997d6a476888429ea6b5c3936e8b81bb11fa",
+        "state": "completed",
+        "runner_pid": 513110,
+        "started_at": "2026-11-23T11:51:29.248674987Z",
+        "finished_at": "2026-11-23T11:52:37.535604459Z",
+        "exit_code": 0
+      },
+      "full_output_sha256": "b8931507120fa20970aab990c95faf7aef51b0f4c3ad052de48cf01ce6c257df",
+      "output_bytes": 24087,
+      "full_output_source": {
+        "owner": "node-78df0dffcc236bb35d1f48860561f55d",
+        "command_id": "p2-f747-spatz-file-authentication-typed-hdf-and-nonexecuting-model-inventory",
+        "request_sha256": "0db8b18ab9e27eddb422821650c07c24956e2329b04137782b94c55215c3967a",
+        "generation": "22a0db37599740421226e0691605997d6a476888429ea6b5c3936e8b81bb11fa",
+        "receipt_sha256": "5e15c93cef46378683470e6761b852718f90b16b5d41c404121dd7c85084d7dc",
+        "output_bytes": 24087
+      }
+    },
+    {
+      "job_id": "p2-f747-spatz-exact-lossless-matrix-and-two-energy-inverse-ambiguity",
+      "worker": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "terminal": {
+        "script_observation_version": 3,
+        "resource_usage": {
+          "descendant_wait": {
+            "state": "drained",
+            "adopted_waits": 0
+          },
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "interval_milliseconds": 100,
+            "cpu_seconds": {},
+            "snapshots": 1,
+            "nonempty_snapshots": 1,
+            "distinct_processes": 1,
+            "read_errors": 0,
+            "saturated_snapshots": 0
+          },
+          "source": "linux_rusage",
+          "user_cpu_seconds": 0.022977,
+          "system_cpu_seconds": 0,
+          "max_rss_bytes": 20672512,
+          "max_rss_scope": "largest_waited_process"
+        },
+        "resource_process": {
+          "pid": 2044825,
+          "start_ticks": 73581372,
+          "boot_id": "e63a2f1b-7ab2-4bc5-8e4e-5927618e40ec"
+        },
+        "command_id": "p2-f747-spatz-exact-lossless-matrix-and-two-energy-inverse-ambiguity",
+        "request_sha256": "08f1aadbac8843bfb4fde5e233299cd348429230787a8ff553c3a8c85ddfa2e7",
+        "generation": "c4bdef768f0a84fb82ca9ac016d5ac36fc0a1b13a8e2fa0ad25693b5b3a844d5",
+        "state": "completed",
+        "runner_pid": 2044773,
+        "started_at": "2026-11-23T11:52:24.905612363Z",
+        "finished_at": "2026-11-23T11:52:24.982588511Z",
+        "exit_code": 0
+      },
+      "full_output_sha256": "5f6ab62ff6939ec209e5b977f0f32a6b998e3f051ca10f078e40e3d6d503a45d",
+      "output_bytes": 466,
+      "full_output_source": {
+        "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+        "command_id": "p2-f747-spatz-exact-lossless-matrix-and-two-energy-inverse-ambiguity",
+        "request_sha256": "08f1aadbac8843bfb4fde5e233299cd348429230787a8ff553c3a8c85ddfa2e7",
+        "generation": "c4bdef768f0a84fb82ca9ac016d5ac36fc0a1b13a8e2fa0ad25693b5b3a844d5",
+        "receipt_sha256": "9e1ff13d282e193080d39be82908dba9d5e630a7decc28246a6ebdc74a3fdfde",
+        "output_bytes": 466
+      }
+    },
+    {
+      "job_id": "p2-f747-spatz-static-parameter-topology-and-goniometer-input-receipt",
+      "worker": "node-78df0dffcc236bb35d1f48860561f55d",
+      "terminal": {
+        "command_id": "p2-f747-spatz-static-parameter-topology-and-goniometer-input-receipt",
+        "error": "exit status 1",
+        "exit_code": 1,
+        "finished_at": "2026-11-23T11:55:24.347311203Z",
+        "generation": "960b12be913581a7ac150917ccb22048eb7fb4b207ca861b6d407e55050a4315",
+        "request_sha256": "7d3edb74179b667b09c9a861b39d1910de085ae1f96ab77f436b0e641f97f7e8",
+        "resource_process": {
+          "boot_id": "e63a2f1b-7ab2-4bc5-8e4e-5927618e40ec",
+          "pid": 514990,
+          "start_ticks": 81420873
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 103047168,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "python": 1.9600000000000006,
+              "shell": 0
+            },
+            "distinct_processes": 2,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 22,
+            "read_errors": 0,
+            "saturated_snapshots": 0,
+            "snapshots": 22
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.190636,
+          "user_cpu_seconds": 1.985243
+        },
+        "runner_pid": 514977,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T11:55:22.094828363Z",
+        "state": "failed",
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/cursor-swiss-env",
+          "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+        }
+      },
+      "full_output_sha256": "729c123797a627c000a5700707621c7855f99549b598129bac1b353a9b65f360",
+      "output_bytes": 2737,
+      "full_output_source": {
+        "owner": "node-78df0dffcc236bb35d1f48860561f55d",
+        "command_id": "p2-f747-spatz-static-parameter-topology-and-goniometer-input-receipt",
+        "request_sha256": "7d3edb74179b667b09c9a861b39d1910de085ae1f96ab77f436b0e641f97f7e8",
+        "generation": "960b12be913581a7ac150917ccb22048eb7fb4b207ca861b6d407e55050a4315",
+        "receipt_sha256": "a0a0c358032603494fbec638ec30093fa6d5c13b34534dbbba2ddb783f8f1c36",
+        "output_bytes": 2737
+      }
+    },
+    {
+      "job_id": "p2-f747-spatz-static-parameter-topology-and-goniometer-input-receipt-append-support",
+      "worker": "node-78df0dffcc236bb35d1f48860561f55d",
+      "terminal": {
+        "script_observation_version": 3,
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/cursor-swiss-env",
+          "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "state": "drained",
+            "adopted_waits": 0
+          },
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "interval_milliseconds": 100,
+            "cpu_seconds": {
+              "python": 1.9500000000000006,
+              "shell": 0
+            },
+            "snapshots": 23,
+            "nonempty_snapshots": 23,
+            "distinct_processes": 3,
+            "read_errors": 0,
+            "saturated_snapshots": 0
+          },
+          "source": "linux_rusage",
+          "user_cpu_seconds": 2.023578,
+          "system_cpu_seconds": 0.197616,
+          "max_rss_bytes": 103157760,
+          "max_rss_scope": "largest_waited_process"
+        },
+        "resource_process": {
+          "pid": 515907,
+          "start_ticks": 81431537,
+          "boot_id": "e63a2f1b-7ab2-4bc5-8e4e-5927618e40ec"
+        },
+        "command_id": "p2-f747-spatz-static-parameter-topology-and-goniometer-input-receipt-append-support",
+        "request_sha256": "1b105337cf3d25eb62c939d05c767dec10b738710c6ef709c6d156d67cb8a4e9",
+        "generation": "0015de68c3e70641cc6c9203fbc42456c9c421e32d7a95ae3ff053efa31d1fc1",
+        "state": "completed",
+        "runner_pid": 515895,
+        "started_at": "2026-11-23T11:57:08.731419562Z",
+        "finished_at": "2026-11-23T11:57:11.031449032Z",
+        "exit_code": 0
+      },
+      "full_output_sha256": "a8a4bd2360b342015b047b76e6c9b6b7a6e4e1d3b7c6e00fca756b4a9fb027bc",
+      "output_bytes": 22668,
+      "full_output_source": {
+        "owner": "node-78df0dffcc236bb35d1f48860561f55d",
+        "command_id": "p2-f747-spatz-static-parameter-topology-and-goniometer-input-receipt-append-support",
+        "request_sha256": "1b105337cf3d25eb62c939d05c767dec10b738710c6ef709c6d156d67cb8a4e9",
+        "generation": "0015de68c3e70641cc6c9203fbc42456c9c421e32d7a95ae3ff053efa31d1fc1",
+        "receipt_sha256": "6a58292c21d9d3e634793748610d347dea9ca10c81d450954acedb143a9c0132",
+        "output_bytes": 22668
+      }
+    },
+    {
+      "job_id": "p2-f747-spatz-organizer-reducer-three-direct-reference-only-and-synthetic-slab-portable-reference-only",
+      "worker": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+      "terminal": {
+        "script_observation_version": 3,
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/cursor-swiss-env",
+          "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "state": "drained",
+            "adopted_waits": 0
+          },
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "interval_milliseconds": 100,
+            "cpu_seconds": {
+              "python": 11.429999999999982,
+              "shell": 0
+            },
+            "snapshots": 177,
+            "nonempty_snapshots": 177,
+            "distinct_processes": 3,
+            "read_errors": 0,
+            "saturated_snapshots": 0
+          },
+          "source": "linux_rusage",
+          "user_cpu_seconds": 9.963854,
+          "system_cpu_seconds": 1.699708,
+          "max_rss_bytes": 236875776,
+          "max_rss_scope": "largest_waited_process"
+        },
+        "resource_process": {
+          "pid": 3327320,
+          "start_ticks": 97723216,
+          "boot_id": "f89c7c25-5464-43bd-9544-d81f7ee6b579"
+        },
+        "command_id": "p2-f747-spatz-organizer-reducer-three-direct-reference-only-and-synthetic-slab-portable-reference-only",
+        "request_sha256": "3beb4c3cf0307947cd5c96168e792ee9284c75db7c5ce72131b33c32da8d427c",
+        "generation": "04a5c613b13e67af70c3ee4a9c0baaefe69541b671fc3d4e13a6a0194c124305",
+        "state": "completed",
+        "runner_pid": 3327308,
+        "started_at": "2026-11-23T12:00:10.439293091Z",
+        "finished_at": "2026-11-23T12:00:28.11629221Z",
+        "exit_code": 0
+      },
+      "full_output_sha256": "455fd72562ccdb1f9c1dbf7bef789a46dfa1d292ec3d6c72c227f7006336673e",
+      "output_bytes": 16208,
+      "full_output_source": {
+        "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+        "command_id": "p2-f747-spatz-organizer-reducer-three-direct-reference-only-and-synthetic-slab-portable-reference-only",
+        "request_sha256": "3beb4c3cf0307947cd5c96168e792ee9284c75db7c5ce72131b33c32da8d427c",
+        "generation": "04a5c613b13e67af70c3ee4a9c0baaefe69541b671fc3d4e13a6a0194c124305",
+        "receipt_sha256": "7c04503f25d6a3c7c47f251027b9076ac92ce5fb28b27bb0c9d3298de8881d76",
+        "output_bytes": 16208
+      }
+    },
+    {
+      "job_id": "p2-f747-spatz-input-only-zero-measured-response-scan-geometry-and-kernel-design",
+      "worker": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+      "terminal": {
+        "command_id": "p2-f747-spatz-input-only-zero-measured-response-scan-geometry-and-kernel-design",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T12:03:35.881417225Z",
+        "generation": "a813bbc67dbc879df796197dd03e2b71ec14609c495c8ee02502ace261c2dae1",
+        "request_sha256": "4ffcc9c2da0f54c869dbe4de88ee7d535687a43b99b5ac82c9b4c6ff0089ab1f",
+        "resource_process": {
+          "boot_id": "f89c7c25-5464-43bd-9544-d81f7ee6b579",
+          "pid": 3328737,
+          "start_ticks": 97736705
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 186597376,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "python": 3.0800000000000014,
+              "shell": 0
+            },
+            "distinct_processes": 2,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 705,
+            "read_errors": 0,
+            "saturated_snapshots": 0,
+            "snapshots": 705
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.196914,
+          "user_cpu_seconds": 3.075544
+        },
+        "runner_pid": 3328719,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T12:02:25.343151499Z",
+        "state": "completed",
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/cursor-swiss-env",
+          "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+        }
+      },
+      "full_output_sha256": "f8280d515906be5a1be0ecdddb09c1a3a318ec88a50ad3e288e0c19a93fec45e",
+      "output_bytes": 22532,
+      "full_output_source": {
+        "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+        "command_id": "p2-f747-spatz-input-only-zero-measured-response-scan-geometry-and-kernel-design",
+        "request_sha256": "4ffcc9c2da0f54c869dbe4de88ee7d535687a43b99b5ac82c9b4c6ff0089ab1f",
+        "generation": "a813bbc67dbc879df796197dd03e2b71ec14609c495c8ee02502ace261c2dae1",
+        "receipt_sha256": "21e7df7c1b16b3a7d276e2b74e4696913490060d76f0a43f07fd7a53f27e4bb7",
+        "output_bytes": 22532
+      }
+    },
+    {
+      "job_id": "p2-f747-spatz-f619-synthetic-jacobian-author-slab-and-all-gates",
+      "worker": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+      "terminal": {
+        "script_observation_version": 3,
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/worldlaw",
+          "revision": "f6193c513eac5aff4b4f6945ae8a387f4434bf04",
+          "observation": "dominant-sampled-process-cpu"
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "state": "drained",
+            "adopted_waits": 0
+          },
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "interval_milliseconds": 100,
+            "cpu_seconds": {
+              "git": 1.6500000000000006,
+              "other": 0.060000000000000005,
+              "python": 0.5,
+              "shell": 0
+            },
+            "snapshots": 32,
+            "nonempty_snapshots": 32,
+            "distinct_processes": 7,
+            "read_errors": 1,
+            "saturated_snapshots": 0
+          },
+          "source": "linux_rusage",
+          "user_cpu_seconds": 2.133154,
+          "system_cpu_seconds": 0.416839,
+          "max_rss_bytes": 115724288,
+          "max_rss_scope": "largest_waited_process"
+        },
+        "resource_process": {
+          "pid": 3334744,
+          "start_ticks": 97789512,
+          "boot_id": "f89c7c25-5464-43bd-9544-d81f7ee6b579"
+        },
+        "command_id": "p2-f747-spatz-f619-synthetic-jacobian-author-slab-and-all-gates",
+        "request_sha256": "32579bd26f94842795956a98616ab7b77440277795de758d5123d064d81c1735",
+        "generation": "a95266e2691b5203ae1f5144659cfda5c69a6db4b4f3499db277b387ae3ccd61",
+        "state": "completed",
+        "runner_pid": 3334732,
+        "started_at": "2026-11-23T12:11:13.417842991Z",
+        "finished_at": "2026-11-23T12:11:16.658396088Z",
+        "exit_code": 0
+      },
+      "full_output_sha256": "e08ab0fdd5b365ff5aec7e0257c80178f21177d9a1ce0b96cfc10b56bcd8f3d6",
+      "output_bytes": 644,
+      "full_output_source": {
+        "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+        "command_id": "p2-f747-spatz-f619-synthetic-jacobian-author-slab-and-all-gates",
+        "request_sha256": "32579bd26f94842795956a98616ab7b77440277795de758d5123d064d81c1735",
+        "generation": "a95266e2691b5203ae1f5144659cfda5c69a6db4b4f3499db277b387ae3ccd61",
+        "receipt_sha256": "aa83b158de3b2ff661ee5be33705a038f4efa8a307b7cc295137dbc903fa92a3",
+        "output_bytes": 644
+      }
+    },
+    {
+      "job_id": "p2-f747-spatz-native-four-training-scans-first-reflected-opening",
+      "worker": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+      "terminal": {
+        "command_id": "p2-f747-spatz-native-four-training-scans-first-reflected-opening",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T12:12:41.089153143Z",
+        "generation": "e3ed27c3a0f313a34fc3da0a21dd54237cdf006f498440cc6c422c4c8e2aeef7",
+        "request_sha256": "1274c08ab695c13626627d66fea79783d0a25d75e55051ad0ba9415827fbb6e5",
+        "resource_process": {
+          "boot_id": "f89c7c25-5464-43bd-9544-d81f7ee6b579",
+          "pid": 3335157,
+          "start_ticks": 97797838
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 184004608,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "git": 1.9200000000000006,
+              "other": 0.08,
+              "python": 1.6000000000000003,
+              "shell": 0
+            },
+            "distinct_processes": 7,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 44,
+            "read_errors": 1,
+            "saturated_snapshots": 0,
+            "snapshots": 44
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.875222,
+          "user_cpu_seconds": 2.980667
+        },
+        "runner_pid": 3335143,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T12:12:36.677264031Z",
+        "state": "completed",
+        "working_tree_context": {
+          "observation": "dominant-sampled-process-cpu",
+          "repository": "github.com/Jacob-Met/worldlaw",
+          "revision": "f6193c513eac5aff4b4f6945ae8a387f4434bf04"
+        }
+      },
+      "full_output_sha256": "19c2c2cd6b10f8426caa9607d1d7832d6f597567db140f3a75df69745004a1f8",
+      "output_bytes": 12201,
+      "full_output_source": {
+        "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+        "command_id": "p2-f747-spatz-native-four-training-scans-first-reflected-opening",
+        "request_sha256": "1274c08ab695c13626627d66fea79783d0a25d75e55051ad0ba9415827fbb6e5",
+        "generation": "e3ed27c3a0f313a34fc3da0a21dd54237cdf006f498440cc6c422c4c8e2aeef7",
+        "receipt_sha256": "6076680562f50d800e66be6288364402c9755ce1735c7798449256d114d0b7ca",
+        "output_bytes": 12201
+      }
+    },
+    {
+      "job_id": "p2-f747-spatz-four-endpoint-scans-to-seven-arm-predictions-and-passivity-bank",
+      "worker": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+      "terminal": {
+        "command_id": "p2-f747-spatz-four-endpoint-scans-to-seven-arm-predictions-and-passivity-bank",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T12:14:32.825281723Z",
+        "generation": "3c46e5c568e28618683e63c6cfdae0b9017c51ff6d6bb6a63ca63944fc05949a",
+        "request_sha256": "193c36eb3459854769cbb4fe526929688be8825b0e6b527a0922379f66d297d1",
+        "resource_process": {
+          "boot_id": "f89c7c25-5464-43bd-9544-d81f7ee6b579",
+          "pid": 3335375,
+          "start_ticks": 97804162
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 154509312,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "git": 1.8600000000000005,
+              "other": 0.09999999999999999,
+              "python": 49.90000000000046,
+              "shell": 0
+            },
+            "distinct_processes": 7,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 529,
+            "read_errors": 2,
+            "saturated_snapshots": 0,
+            "snapshots": 529
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.822387,
+          "user_cpu_seconds": 51.439555
+        },
+        "runner_pid": 3335360,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T12:13:39.908810842Z",
+        "state": "completed",
+        "working_tree_context": {
+          "observation": "dominant-sampled-process-cpu",
+          "repository": "github.com/Jacob-Met/worldlaw",
+          "revision": "f6193c513eac5aff4b4f6945ae8a387f4434bf04"
+        }
+      },
+      "full_output_sha256": "19138f33ed2cfef7d42836c99e86df8771e576c68c790620b2075a47f7cf9469",
+      "output_bytes": 82790,
+      "full_output_source": {
+        "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+        "command_id": "p2-f747-spatz-four-endpoint-scans-to-seven-arm-predictions-and-passivity-bank",
+        "request_sha256": "193c36eb3459854769cbb4fe526929688be8825b0e6b527a0922379f66d297d1",
+        "generation": "3c46e5c568e28618683e63c6cfdae0b9017c51ff6d6bb6a63ca63944fc05949a",
+        "receipt_sha256": "b7764186d1de91a3e116ff2a8134631e0a6245f986b26113510029b03c58ccdf",
+        "output_bytes": 82790
+      }
+    },
+    {
+      "job_id": "p2-f747-spatz-five-held-raw-reflections-original-after-complete-62ee-lock",
+      "worker": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+      "terminal": {
+        "script_observation_version": 3,
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/worldlaw",
+          "revision": "62ee21e8d6ecab5b1922ccc5584a14fab046773b",
+          "observation": "dominant-sampled-process-cpu"
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "state": "drained",
+            "adopted_waits": 0
+          },
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "interval_milliseconds": 100,
+            "cpu_seconds": {
+              "git": 1.5000000000000004,
+              "other": 0.08,
+              "python": 1.7000000000000004,
+              "shell": 0
+            },
+            "snapshots": 43,
+            "nonempty_snapshots": 43,
+            "distinct_processes": 8,
+            "read_errors": 2,
+            "saturated_snapshots": 0
+          },
+          "source": "linux_rusage",
+          "user_cpu_seconds": 3.308646,
+          "system_cpu_seconds": 0.422208,
+          "max_rss_bytes": 184958976,
+          "max_rss_scope": "largest_waited_process"
+        },
+        "resource_process": {
+          "pid": 3338031,
+          "start_ticks": 97824520,
+          "boot_id": "f89c7c25-5464-43bd-9544-d81f7ee6b579"
+        },
+        "command_id": "p2-f747-spatz-five-held-raw-reflections-original-after-complete-62ee-lock",
+        "request_sha256": "ca9556fdf0d6a8ed2ad5319a061cd190537625bc837a441dba7b879f3d607da6",
+        "generation": "0172e98c7c2ec7847da54356e9f6ba66aea102aa5d30a80e481c1f21920aeeb3",
+        "state": "completed",
+        "runner_pid": 3338020,
+        "started_at": "2026-11-23T12:17:03.492835137Z",
+        "finished_at": "2026-11-23T12:17:07.825354776Z",
+        "exit_code": 0
+      },
+      "full_output_sha256": "530d11fe91bb125975bfadf3b5b0b5f934d02d69a293d000e76ee97b3147cdb2",
+      "output_bytes": 19941,
+      "full_output_source": {
+        "owner": "node-0af2abba81d208e5bb8df1a3aa47a92d",
+        "command_id": "p2-f747-spatz-five-held-raw-reflections-original-after-complete-62ee-lock",
+        "request_sha256": "ca9556fdf0d6a8ed2ad5319a061cd190537625bc837a441dba7b879f3d607da6",
+        "generation": "0172e98c7c2ec7847da54356e9f6ba66aea102aa5d30a80e481c1f21920aeeb3",
+        "receipt_sha256": "e0e1cf2d3dc8f7c24e4ad999c86b3ae23477ec139748391278e7576c21b4afb6",
+        "output_bytes": 19941
+      }
+    },
+    {
+      "job_id": "p2-f747-spatz-independent-complete-raw-ratio-and-disk-bound-receiver",
+      "worker": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "terminal": {
+        "command_id": "p2-f747-spatz-independent-complete-raw-ratio-and-disk-bound-receiver",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T12:23:41.627919089Z",
+        "generation": "60a8c4a4571dfa52af1a7b237b3000f51e2b656a5939b0b12d75452a05c67218",
+        "request_sha256": "bb1626953161fec411c48afad5e3368ecdac0cdd40525691cfb1dcd9f7d2d22e",
+        "resource_process": {
+          "boot_id": "cedb22dc-e4ff-4af4-81c7-7890b3e0071d",
+          "pid": 1045275,
+          "start_ticks": 98180297
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 236957696,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "git": 1.5000000000000004,
+              "other": 0.060000000000000005,
+              "python": 13.009999999999975,
+              "shell": 0
+            },
+            "distinct_processes": 8,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 349,
+            "read_errors": 1,
+            "saturated_snapshots": 0,
+            "snapshots": 349
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 1.4725329999999999,
+          "user_cpu_seconds": 13.634443
+        },
+        "runner_pid": 1045262,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T12:23:06.762694249Z",
+        "state": "completed"
+      },
+      "full_output_sha256": "0dad65ad6aae2ec0351cb7e044f35f4edc63dc9e36159e31d5f42a9147d475ca",
+      "output_bytes": 4179,
+      "full_output_source": {
+        "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+        "command_id": "p2-f747-spatz-independent-complete-raw-ratio-and-disk-bound-receiver",
+        "request_sha256": "bb1626953161fec411c48afad5e3368ecdac0cdd40525691cfb1dcd9f7d2d22e",
+        "generation": "60a8c4a4571dfa52af1a7b237b3000f51e2b656a5939b0b12d75452a05c67218",
+        "receipt_sha256": "4655b256bea301fdf102f5ae145cac07971064ed49724e5517cd98600c4a8a74",
+        "output_bytes": 4179
+      }
+    }
+  ],
+  "placement_refusal": {
+    "job": "p2-f747-spatz-organizer-reducer-three-direct-reference-only-and-synthetic-slab",
+    "request": "dfc22c472e407f2d038fbdd3566768ba8458be91a00032947235d9439806833c",
+    "refusal": "839824392fddfa73769a81c4157b9850958e541f6434d32b254a48bae01823e8",
+    "receipt_id": "placement-daa0a6f46f1b285992fae3038218a189ceaa99a6ed5142dd",
+    "bytes": 1896,
+    "reason": {
+      "node-78df0dffcc236bb35d1f48860561f55d": "required available scratch unknown or insufficient"
+    }
+  },
+  "freeze_commit": "f6193c513eac5aff4b4f6945ae8a387f4434bf04",
+  "freeze_post": 188348,
+  "forecast_commit": "62ee21e8d6ecab5b1922ccc5584a14fab046773b",
+  "forecast_post": 188372,
+  "receiver_commit": "a02df54d1cc4620036e22f6d5d11bb81891b1bac"
+}
