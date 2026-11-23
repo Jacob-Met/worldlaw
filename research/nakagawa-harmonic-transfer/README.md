@@ -49,9 +49,9 @@ Run the following with the authors' `data.zip` in this directory. Forecasting us
 python3 theorem.py
 python3 harmonic.py forecast data.zip WTe2 new-bank.json
 python3 harmonic.py score data.zip WTe2 new-score.json --bank new-bank.json --bank-sha "$(sha256sum new-bank.json | cut -d' ' -f1)"
-python3 independent.py data.zip bank.json.gz score.json.gz 27dd19078b526fdd21a8e5274b40dcb617e38b23c2a2555ca3611e25e95feb23 b95335ea06c3d53873f0d00a8014caeff65c05ccefd56cd6a8c58c92eb653b4e
+python3 independent.py data.zip bank.json score.json 27dd19078b526fdd21a8e5274b40dcb617e38b23c2a2555ca3611e25e95feb23 b95335ea06c3d53873f0d00a8014caeff65c05ccefd56cd6a8c58c92eb653b4e
 ```
 
-Original archive SHA256 is `aae5a0a58124b3aac207cfb46699481d354240f61b396cda5300a12ecaf16786`. The fixed protocol and code were registered at `e68aff14a2b2c2b5322e45ed9d70fb340ad2f138`. The two gzip files contain the unchanged bank and score. Decompression reproduces their original SHA256 values in the command above.
+Original archive SHA256 is `aae5a0a58124b3aac207cfb46699481d354240f61b396cda5300a12ecaf16786`. The fixed protocol and code were registered at `e68aff14a2b2c2b5322e45ed9d70fb340ad2f138`. The two plain JSON files are byte-identical to the original bank and score. The first publication head reproduced both scientific files exactly but failed the repository distribution checks because it proposed shipping gzip files. The correction publishes the same original bytes in the accepted JSON format.
 
 Source data by Kurea Nakagawa, Krishnaraajan Sundararajan and Marcos H. D. Guimarães, released under CC BY 4.0. The measurements and protocols are described by K. Nakagawa, K. Sundararajan, C. A. Cordero-Silis, B. J. van Wees and M. H. D. Guimarães. [Source archive](https://zenodo.org/records/24083693) · [Paper and supplementary methods](https://arxiv.org/abs/2607.21808)
