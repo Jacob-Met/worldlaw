@@ -77,3 +77,21 @@ test('notebook seals the exact applied branch, previous readings and terminal de
   book.readouts[0].result.nextAmplitude='0';
   await assert.rejects(replayActiveNotebook(book),/exact replay refused/);
 });
+
+test('law-generated readings and unknown rational initial offsets may exceed the source coefficient budget',async()=>{
+  const huge='1000000000000000000000000', input=1000000000000;
+  const req=source([[0],[0,input]],[input]);
+  const direct=designTwoPulse(req);
+  assert.equal(direct.worstReadings,2);
+  assert.deepEqual(receiveTwoPulse(req,direct,read(1,input,['0',huge])).consistentHypothesisIds,['L1']);
+  assert.throws(()=>receiveTwoPulse(req,direct,read(1,input,[0,Number(huge)])),/exact integer/);
+  const den=100000000000000000003n, offset=10n**40n+1n;
+  const measured=delta=>String(offset+BigInt(delta)*den)+'/'+String(den);
+  let book=await createActiveNotebook(JSON.stringify(q));
+  for(const row of [read(1,1,[measured(0),measured(8)]),read(2,2,[measured(8)])]){
+    book=await receiveActiveNotebook(book,JSON.stringify({...row,sourceSHA256:book.plan.sourceSHA256,
+      planSHA256:book.plan.planSHA256,previousReadingsSHA256:book.readouts.at(-1)?.result.readingsSHA256??null}));
+  }
+  assert.deepEqual(book.readouts[1].result.consistentHypothesisIds,['L2']);
+  assert.deepEqual((await replayActiveNotebook(book)).readouts,book.readouts);
+});
