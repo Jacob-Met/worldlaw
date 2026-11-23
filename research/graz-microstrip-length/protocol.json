@@ -1,0 +1,46 @@
+{
+  "schema": "graz-50ohm-held-length-v1",
+  "previous_input_only_post": 185355,
+  "source_correction": "Before opening any scientific wave, both documented public short1 and short2 standards are available to all models. Original DOI main.py used short1; current Git example used short2. Archive nominal mTRL, archived uncertainty driver and maintained implementation are distinct.",
+  "source_doi": "10.3217/mgd4n-gq267",
+  "archive_sha256": "fb07e056ca519ab8c9637be7360617d3cfd4519cdd8b28597f53ad3c42308956",
+  "source_lengths_mm": [
+    0,
+    0.5,
+    1.5,
+    2,
+    3,
+    5
+  ],
+  "held_lengths_mm": [
+    1,
+    6.5
+  ],
+  "shorts": [
+    "short1__0_0mm",
+    "short2__0_0mm"
+  ],
+  "held_shape": [
+    2,
+    25,
+    299,
+    2,
+    2
+  ],
+  "score_reference": "arithmetic complex mean of all25 paired B@inv(A) sweeps independently for each standard",
+  "coverage": "all299 measured increasing frequencies on 1–150GHz support, same exact axis across the roster",
+  "comparison_unit": "two measured physical standard lengths on one substrate; within-standard sweeps measure temporal repeatability, not independent connection/geometry replicates",
+  "candidate": "all exact unordered source triples; average order reversal in measured S, then nonnegative simplex sum-to-one minimizing trace of analytic Jacobian covariance from conditional independent standard sweep means; shared matrices propagate once per physical source; 1e-12 scaled diagonal for numerical tie resolution",
+  "primary": "strict superiority on equal-length mean RMSE and maximum length RMSE against each other fixed arm, all ten gates jointly",
+  "arms": [
+    "covariance_weighted",
+    "equal_path",
+    "nominal_phase_empirical",
+    "archived_short1",
+    "archived_short2",
+    "maintained_short2"
+  ],
+  "admission": "all source wave ids, clocks and 25 paired sweep rows valid; incident matrices condition<1e10; largest observed source chain perturbation spectral norm less than each mean chain minimum singular value at every frequency; all outputs finite, authentic apply_cal inverse residual≤1e−8, then content-hash complete predictions before held extraction",
+  "cost": "separate runtime and source read rights for each arm, published full seven-line roster expressly changed to identical six sources; retained thirty-ohm family, embedded shorts and alternate DUT remain excluded",
+  "unmodelled": "common nominal GSG pads; no independent identical launch, repositioning nor manufacturing-error bound; no empirical uncertainty guarantee"
+}
