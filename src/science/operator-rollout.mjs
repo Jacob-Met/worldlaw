@@ -130,15 +130,16 @@ export function designEvolutionExcitation(models, courses, {resolution=0, observ
   const ranked=scores.map(({id,gaps},i)=>{
     const minimumSeparation=Math.min(...gaps);
     const attainable=reachable.map(j=>classGaps[i][j]);
+    const partlySeparatedClassPairs=[...classPairs.values()].filter(indices=>indices.some(p=>gaps[p]>resolution)).length;
     return {id,minimumSeparation,closestPair:pairs[gaps.indexOf(minimumSeparation)],
-      separatedClassPairs:attainable.filter(g=>g>resolution).length,
+      separatedClassPairs:attainable.filter(g=>g>resolution).length,partlySeparatedClassPairs,
       betweenClassSeparation:attainable.length?Math.min(...attainable):0};
-  }).sort((a,b)=>b.separatedClassPairs-a.separatedClassPairs||b.betweenClassSeparation-a.betweenClassSeparation);
+  }).sort((a,b)=>b.separatedClassPairs-a.separatedClassPairs||b.betweenClassSeparation-a.betweenClassSeparation||b.partlySeparatedClassPairs-a.partlySeparatedClassPairs);
   const selected=ranked[0].id;
   const selectedGaps=scores.find(c=>c.id===selected).gaps;
   const selectedUnresolvedPairs=pairs.filter((_,i)=>selectedGaps[i]<=resolution);
   const status=!selectedUnresolvedPairs.length?'separating_in_simulation':
-    ranked[0].separatedClassPairs?'partially_separating_in_simulation':'indistinguishable_on_menu';
+    ranked[0].partlySeparatedClassPairs?'partially_separating_in_simulation':'indistinguishable_on_menu';
   return {status,selected,ranked,excluded,groups,unresolvedPairs,selectedUnresolvedPairs,resolution,observedIndices};
 }
 
