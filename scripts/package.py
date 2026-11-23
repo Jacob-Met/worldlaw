@@ -51,7 +51,7 @@ INCLUDE = (
     "research/trondheim_multiplane_irradiance/forecasts.npz",
     "research/trondheim_multiplane_irradiance/independent-receipt.json",
     "research/trondheim_multiplane_irradiance/manifest.json",
-    "research/trondheim_multiplane_irradiance/measured-outer-pergola.csv.gz",
+    "research/trondheim_multiplane_irradiance/measured-outer-pergola.csv",
     "research/trondheim_multiplane_irradiance/native-originals.json",
     "research/trondheim_multiplane_irradiance/predict.py",
     "research/trondheim_multiplane_irradiance/protocol.json",

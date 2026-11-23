@@ -1,8 +1,8 @@
 {
   "README.md": {
-    "bytes": 9658,
-    "git_blob": "2fbeecbae581ea48020fc4a4112ec9864b36505a",
-    "sha256": "e725fe5471bd21fc8e84954845f357e28bc60e504202ace6a7a670fac46c6087"
+    "bytes": 9962,
+    "git_blob": "43e5cd1b378ee13af029b2d5278534d3f0cdf64d",
+    "sha256": "17700db6c43f2165ebe02b878492e915e21a75c924beb8dc6383c4627fea805c"
   },
   "development.json": {
     "bytes": 6287,
@@ -19,10 +19,10 @@
     "git_blob": "ec094536fa61242da03f49eb5a2baedcf8cc00c0",
     "sha256": "118616f4bcd6eaa8fab1fae52d162183f2694b322a39d14a39187de95c6b2e69"
   },
-  "measured-outer-pergola.csv.gz": {
-    "bytes": 48438,
-    "git_blob": "e53588c938db2c41d186a390b125db6dba58cfef",
-    "sha256": "51ac920e9053e3c47668eac7345b4a8f6587c5d4e164fcaadd5055deb0824cf7"
+  "measured-outer-pergola.csv": {
+    "bytes": 189911,
+    "git_blob": "34f892126f6e3f0788d86d89c076fbe956616bc8",
+    "sha256": "5002dc73bf7f06d4b39a48394f98ed71badf69bfc6802274fd4bfd6fc303fcc0"
   },
   "native-originals.json": {
     "bytes": 13384,
@@ -40,9 +40,9 @@
     "sha256": "c42ca82e2382adbc6eb6d28b5f124674473381d3d4db527ebcb2dd1e20879cbe"
   },
   "recount.py": {
-    "bytes": 5487,
-    "git_blob": "f72242e707fe9a70dd4689475041128deeb227fa",
-    "sha256": "2cca88c85cb80b771ba3d1afb8a41d9ddb7d704a47394e89b1d05c5add7df765"
+    "bytes": 5455,
+    "git_blob": "f77c593f61982e4e62e6e9d2d08d3eccd717db15",
+    "sha256": "8d88ccef10bf5bcc7d748cdf0e680584c3b5e067ea0d2f23b33ca2c1c8a46370"
   },
   "score-original.json": {
     "bytes": 107318,

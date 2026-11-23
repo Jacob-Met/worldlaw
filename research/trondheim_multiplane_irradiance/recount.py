@@ -1,6 +1,5 @@
 """Independent scalar receiver for the .npy bytes, archived calendar labels and empirical model tests."""
 import csv
-import gzip
 import ast
 import datetime as dt
 import hashlib
@@ -36,7 +35,7 @@ def main(archive,dev_path,score_path,source_mode='published'):
     if source_mode=='publisher':
         obs={t.strftime('%Y%m%d%H'):v.get('I') for t,v in read(2025,targets_only=True)}
     elif source_mode=='published':
-        raw_targets=gzip.decompress(Path(__file__).with_name('measured-outer-pergola.csv.gz').read_bytes())
+        raw_targets=Path(__file__).with_name('measured-outer-pergola.csv').read_bytes()
         assert hashlib.sha256(raw_targets).hexdigest()=='5002dc73bf7f06d4b39a48394f98ed71badf69bfc6802274fd4bfd6fc303fcc0'
         obs={r['timestamp']:float(r['outer_pergola_W_m2']) if r['outer_pergola_W_m2'] else None for r in csv.DictReader(io.StringIO(raw_targets.decode()))}
         assert len(obs)==8760
