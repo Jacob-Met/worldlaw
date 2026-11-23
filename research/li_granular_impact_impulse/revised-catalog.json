@@ -1,0 +1,51 @@
+{
+  "concept": "5139265",
+  "doi": "10.5281/zenodo.5764145",
+  "files": [
+    {
+      "checksum": "md5:64c3f827614839540814af8ca4bfed14",
+      "key": "S6_video_granular flow.zip",
+      "size": 493770874
+    },
+    {
+      "checksum": "md5:a3112ca12221beeffa412f9eb177a217",
+      "key": "S7_codes_data analysis.zip",
+      "size": 5270
+    },
+    {
+      "checksum": "md5:4b85fb53e4b58e37ab3cfaa1dd6ec93a",
+      "key": "S5_data_granular flow_density.xlsx",
+      "size": 10711
+    },
+    {
+      "checksum": "md5:50aceb2843c77fc699c7e9332914233e",
+      "key": "S4_data_granular flow_deposit.xlsx",
+      "size": 19760
+    },
+    {
+      "checksum": "md5:44cfeaf1c5cc67367346aef0162d7197",
+      "key": "S3_data_granular flow_flow depth.xlsx",
+      "size": 42860
+    },
+    {
+      "checksum": "md5:f3ed584320c4ddca763a17e9af069a0a",
+      "key": "S2_data_granular flow_stress.xlsx",
+      "size": 7829391
+    },
+    {
+      "checksum": "md5:52d13f622f2fd5bcb93d9422122529c5",
+      "key": "S1_data_granular flow_velocity.xlsx",
+      "size": 412045
+    },
+    {
+      "checksum": "md5:112e1c9ac4628fa17779e6c00a116aab",
+      "key": "Dataset_S5.rar",
+      "size": 783486088
+    }
+  ],
+  "id": 5764145,
+  "opened_scientific_files": 0,
+  "record_bytes": 8720,
+  "record_sha256": "13dfab447efb2edf0fe9ce383b4af424fd1d767bc074db809e60ecd926b33a2c",
+  "version": "2"
+}
