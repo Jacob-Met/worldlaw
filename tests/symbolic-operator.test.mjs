@@ -66,3 +66,46 @@ test('finite excitation design scores input-only chirps and refuses singular or 
   assert.equal(assessEvolution(singular,[row],1).reason,'undefined_operator');
   assert.throws(()=>synthesizeEvolution(Array(8).fill(row),{...grammar,kind:'oscillator',maxCandidates:5}),/candidate budget/);
 });
+
+test('continuous forcing is resolved before ranking or checking held trajectories',()=>{
+  const active=simple('oscillator');
+  const idle={...active,terms:[{tree:'command',weight:0}]};
+  const sine=f=>({id:`sin-${f}`,initial:[0,0],step:1,steps:8,
+    forcing:{amplitude:1,offset:0,startFrequency:f,endFrequency:f}});
+  const dc={...sine(0),id:'dc',forcing:{amplitude:0,offset:.05,startFrequency:1e308,endFrequency:1e308}};
+  const trajectory=f=>Array.from({length:9},(_,t)=>{
+    const w=2*Math.PI*f;
+    return [t/w-Math.sin(w*t)/(w*w),(1-Math.cos(w*t))/w];
+  });
+  const dcPath=Array.from({length:9},(_,t)=>[.025*t*t,.05*t]);
+  const rms=path=>Math.sqrt(path.flat().reduce((sum,value)=>sum+value*value,0)/(2*path.length));
+  for(const f of [.25,1.25]){
+    const course=sine(f),truth=trajectory(f);
+    const plan=designEvolutionExcitation([active,idle],[course,dc]);
+    assert.equal(plan.selected,rms(truth)>rms(dcPath)?course.id:dc.id);
+    const score=plan.ranked.find(row=>row.id===course.id);
+    assert.ok(Math.abs(score.minimumSeparation-rms(truth))<.001);
+    assert.equal(verifyEvolutionRollout(active,course,truth,{maxError:.001,resolutionTolerance:.001}).accepted,true);
+  }
+  const unresolved=sine(8.25);
+  assert.ok(rms(trajectory(8.25))<rms(dcPath));
+  for(const [startFrequency,endFrequency] of [[8.25,8.25],[8.25,0],[0,8.25]]){
+    const c={...unresolved,forcing:{...unresolved.forcing,startFrequency,endFrequency}};
+    const plan=designEvolutionExcitation([active,idle],[c,dc]);
+    assert.equal(plan.selected,'dc');
+    assert.deepEqual(plan.excluded,[{id:c.id,reason:'forcing_resolution_budget'}]);
+    assert.equal(verifyEvolutionRollout(active,c,trajectory(8.25),{maxError:1,resolutionTolerance:1}).reason,'forcing_resolution_budget');
+  }
+  assert.equal(designEvolutionExcitation([active,active],[sine(1.25),dc]).status,'indistinguishable_on_menu');
+});
+
+test('the chirp phase survives a reciprocal time and frequency rescaling',()=>{
+  const model=simple('periodic');
+  const solve=duration=>rolloutEvolution(model,{
+    id:'rescaled',initial:[0,0,0],spacing:1,step:duration,steps:1,
+    forcing:{offset:0,amplitude:1/duration,startFrequency:0,endFrequency:1/duration,spatialMode:0},
+  },16).at(-1);
+  const normal=solve(1),rescaled=solve(1e308);
+  assert.ok(normal[0]>.5);
+  for(let i=0;i<normal.length;i++)assert.ok(Math.abs(normal[i]-rescaled[i])<1e-13);
+});

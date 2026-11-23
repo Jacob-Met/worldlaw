@@ -14,9 +14,20 @@ function admit(kind,course) {
   need(steps*initial.length<=65536,'Rollout exceeds the state budget');
   return course;
 }
+// A linear chirp reaches its maximum instantaneous frequency at one endpoint.
+// Resolve the commanded waveform before using simulated differences to select a course.
+function forcingResolution(course) {
+  const f=course.forcing;
+  const cyclesPerStep=f.amplitude===0?0:course.step*Math.max(f.startFrequency,f.endFrequency);
+  const required=Math.max(1,Math.ceil(8*cyclesPerStep));
+  const allowed=Math.min(16,Math.floor(262144/(course.steps*course.initial.length)));
+  if(required>allowed)throw new EvolutionDomainError('forcing_resolution_budget');
+  return {required,allowed};
+}
 function drive(course,t,j,n) {
   const f=course.forcing,duration=course.step*course.steps;
-  const cycles=f.startFrequency*t+(f.endFrequency-f.startFrequency)*t*t/(2*duration);
+  if(f.amplitude===0)return f.offset;
+  const cycles=f.startFrequency*t+(f.endFrequency-f.startFrequency)*t*(t/duration)/2;
   const spatial=j===null?1:Math.cos(2*Math.PI*f.spatialMode*j/n);
   return f.offset+f.amplitude*spatial*Math.sin(2*Math.PI*cycles);
 }
@@ -72,7 +83,7 @@ export function designEvolutionExcitation(models, courses, {resolution=0, observ
     need(Array.isArray(observedIndices)&&observedIndices.length>0&&new Set(observedIndices).size===observedIndices.length&&
       Array.from(observedIndices).every(j=>Number.isInteger(j)&&j>=0),'Invalid observed state indices');
   }
-  let work=0;
+  let work=0,rolloutWork=0;
   for(const c of courses){
     admit(models[0].kind,c);
     need(observedIndices===null||observedIndices.every(j=>j<c.initial.length),'Observed channel outside course state');
@@ -84,11 +95,14 @@ export function designEvolutionExcitation(models, courses, {resolution=0, observ
   const excluded=[], scores=[];
   for(const c of courses){
     try {
+      const substeps=forcingResolution(c).required;
+      rolloutWork+=c.steps*c.initial.length*models.length*substeps;
+      need(rolloutWork<=2000000,'Excitation menu exceeds rollout budget');
       const paths=models.map(model=>{
-        const path=rolloutEvolution(model,c);
+        const path=rolloutEvolution(model,c,substeps);
         return observedIndices===null?path:path.map(state=>observedIndices.map(j=>state[j]));
       });
-      scores.push({id:c.id,gaps:pairs.map(([a,b])=>distance(paths[a],paths[b]).rmse)});
+      scores.push({id:c.id,substeps,gaps:pairs.map(([a,b])=>distance(paths[a],paths[b]).rmse)});
     } catch(err) {
       if(!(err instanceof EvolutionDomainError))throw err;
       excluded.push({id:c.id,reason:err.code});
@@ -127,11 +141,11 @@ export function designEvolutionExcitation(models, courses, {resolution=0, observ
   // clear the threshold there. Identical copies cannot inflate the score.
   const classGaps=scores.map(({gaps})=>[...classPairs.values()].map(indices=>Math.min(...indices.map(p=>gaps[p]))));
   const reachable=classGaps[0].map((_,i)=>i).filter(i=>classGaps.some(row=>row[i]>resolution));
-  const ranked=scores.map(({id,gaps},i)=>{
+  const ranked=scores.map(({id,gaps,substeps},i)=>{
     const minimumSeparation=Math.min(...gaps);
     const attainable=reachable.map(j=>classGaps[i][j]);
     const partlySeparatedClassPairs=[...classPairs.values()].filter(indices=>indices.some(p=>gaps[p]>resolution)).length;
-    return {id,minimumSeparation,closestPair:pairs[gaps.indexOf(minimumSeparation)],
+    return {id,substeps,minimumSeparation,closestPair:pairs[gaps.indexOf(minimumSeparation)],
       separatedClassPairs:attainable.filter(g=>g>resolution).length,partlySeparatedClassPairs,
       betweenClassSeparation:attainable.length?Math.min(...attainable):0};
   }).sort((a,b)=>b.separatedClassPairs-a.separatedClassPairs||b.betweenClassSeparation-a.betweenClassSeparation||b.partlySeparatedClassPairs-a.partlySeparatedClassPairs);
@@ -146,7 +160,13 @@ export function designEvolutionExcitation(models, courses, {resolution=0, observ
 export function verifyEvolutionRollout(model,course,observations,{maxError,resolutionTolerance}) {
   need([maxError,resolutionTolerance].every(x=>Number.isFinite(x)&&x>=0),'Declare finite rollout tolerances');
   let coarse,fine;
-  try { coarse=rolloutEvolution(model,course,1);fine=rolloutEvolution(model,course,2); }
+  try {
+    admit(model.kind,course);
+    const {required,allowed}=forcingResolution(course);
+    const fineSteps=Math.min(2*required,allowed);
+    coarse=rolloutEvolution(model,course,Math.floor(fineSteps/2));
+    fine=rolloutEvolution(model,course,fineSteps);
+  }
   catch(err) {
     if(!(err instanceof EvolutionDomainError))throw err;
     return {accepted:false,reason:err.code,resolution:null,held:null};
