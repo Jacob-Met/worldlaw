@@ -1,0 +1,37 @@
+{
+  "status": "prospective secondary device-output course; unopened response values",
+  "source": "Gianotti/Magne release v2.1, Campaign A February 2026 only, one coupon and one selected rise/fall sequence",
+  "primary_question": "Can a one-dimensional wavelength displacement interpolation between ascending force-conditioned measured spectra predict held native wavelength bins beyond direct native-bin interpolation and shift/width registration?",
+  "scope": "Conditional on measured actuator force, registered using input clocks. This estimates a native instrument output. It does not invert a strain field, infer material hysteresis, establish spectral power calibration or use FEM as a measured strain sensor.",
+  "archive_sha256": "3f213a17acac029248ee5acbebde5e0d13522d386577e8a393bb1b48a75b45f3",
+  "clock_report_sha256": "73e1057795194630a6588ba614a982dcf119b29b15fc51082eda9eb068a796f0",
+  "open_rights": {
+    "initial": "First unloaded reference spectrum only. Choose a unique front sensor channel before reading any loaded spectrum. Use first captured spectrum per rising file only for development. Ten percent or more masked/corrupt native bins in any input or target prevents that course. All finite bins are scored; no removal by performance.",
+    "development": "11 rising files plus unloaded reference. Score the first frame of each of the 10 nonmaximal rising labels via full file exclusion and the zero/high anchors; no same-file frame is a training replicate of a held condition.",
+    "reserve": "All 11 declining files, all time-stamped frames, only after a separate forecast lock and positive development gate. Campaign B measurements and every OFDR strain value remain sealed."
+  },
+  "front_reference": {
+    "nominal_wavelengths_nm": [
+      1551.16,
+      1560.68,
+      1569.44
+    ],
+    "fixed_bin_windows_nm": "carrier ±3.5 nm for each of the 3 independently named front WDM gratings",
+    "channel_gate": "For each of three wavelengths and each of four raw channels, contrast is max of center ±0.75nm minus median of the two outer flanks 1.5–3nm from that carrier. Require unique same channel maximizing all three positive contrasts, each winning contrast at least twice the largest other-channel positive contrast. Failure closes physically named channel target; no loaded spectrum inspected."
+  },
+  "inputs": {
+    "force": "Machine linear-interpolation at original FBG frame timestamp plus midpoint of preregistered ten-pair ±10N admissible interval. Only if outside machine log use file's nominal load with missing-lineage flag. Freeze entire timestamp support including late mislabeled rows.",
+    "array": "Native raw response ordinate. No dBm→mW conversion or implicit optical intensity claim. No measured held FBG peak, spectrum or donor covariate may enter test forecasts."
+  },
+  "reference_models": [
+    "Nearest-force measured ascending spectrum.",
+    "Per-native-wavelength linear interpolation in force.",
+    "Shape-preserving cubic Hermite (PCHIP) interpolation of each native bin over all ascending training frames.",
+    "Rigid shift of each bracketing native spectrum using interpolation of the wavelength of its maximum, then ordinary interpolation of the two shifted arrays.",
+    "Shift and width rescaling of both bracketing spectra from positive background-subtracted native-ordinate mass centers and standard deviations, with linear interpolation of spectrum baseline and area."
+  ],
+  "candidate": "In each carrier window subtract the donor spectrum's minimum native ordinate, retain its baseline and integrated area separately, and form the discrete normalized nonnegative weights. Between neighboring forces use common CDF midpoint ranks (19999 equally spaced) to interpolate the two donor wavelength quantiles. Return mass by linear deposition into adjacent 0.008nm bins, then restore interpolated native baseline and area. Identity endpoints return measured native spectrum exactly. Flat donor falls back to the same direct native-bin linear rule. Forces outside observed training extents clamp to endpoints for every arm.",
+  "scoring": "For each native wavelength bin residual divide by that grating's max-minus-min of its fixed unloaded window. Average squared bin errors within a grating/file frame, equally average three gratings per file and all files, then take the square root. Report maximum file RMS, each of three grating RMSs, all load/clock intervals, and maximum native-bin residual with original value. Reserve weights frames equally within each file before equally weighting files; multiple frames and wavelengths are correlated.",
+  "development_gate": "All gates required: candidate total RMS <=0.98x every comparator, two or more of three grating RMS <=0.98x best comparator there, maximum per-file RMS <=1.05x smallest comparator maximum, finite complete coverage. No tuning or reserve opening after a failed gate.",
+  "source_gate": "This alternative implementation is admissible only on confirmation of raw four-channel native wavelength rows, unique preregistered unloaded front-channel identity, and separately reported status of the original OFDR-to-finite-grating proposal."
+}
