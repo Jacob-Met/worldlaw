@@ -534,6 +534,7 @@ try{
   await page.locator('#evaluate-readings').click();await idle();
   const measured=await accepted();
   assert.deepEqual(measured.readouts[0].result.checked.surviving.map(r=>r.law),['A']);
+  await page.screenshot({path:resolve(dir,'active-drift-checkpoints.png'),fullPage:true});
   const measuredPath=await download('export-notebook','active-drift-checkpoints.json');
   const measuredCLI=cli(['--notebook',measuredPath]);assert.equal(measuredCLI.status,0,measuredCLI.stderr);
   assert.deepEqual(JSON.parse(measuredCLI.stdout),measured);
@@ -558,6 +559,7 @@ try{
     await page.setViewportSize({width,height:840});
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   }
+  await page.screenshot({path:resolve(dir,'active-drift-gauge-320.png'),fullPage:true});
   mark('drift schedules and gauge traces use the same frozen browser/CLI source and exact physical receiver');
 
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
