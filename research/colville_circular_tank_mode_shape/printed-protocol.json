@@ -1,0 +1,68 @@
+{
+  "schema": "worldlaw.colville-printed-envelope.v1",
+  "source": {
+    "doi": "10.1017/jfm.2025.16",
+    "pdf_url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/D287DD0E83E77D4F81A926F1A1BCC8C3/S0022112025000163a.pdf/div-class-title-faraday-waves-and-period-tripling-in-a-horizontal-circular-tank-div.pdf",
+    "pdf_sha256": "feb7fae7eeb196abeb81b2282c2ec70d3de6b3fda7528c7c01486e5ebbf504cf",
+    "archive_refusal": "Different institutional DOI10.24382/87c2f31a-524d-41ec-95d4-383fa82b10b8 native HTTP403. No source file, run IDs or measured time series."
+  },
+  "question": "Conditional spread of literally visible same-fill plot strokes in Figure 15 at .50 and .67 fill, going from the upper printed envelope to lower. No isolated wall or center or native physical amplitude is authenticated from this representation. The upper may itself belong to the center. Figure 11 at .30 is development. No held pixel in model except the registered upper-envelope extraction. The primary raw-run question remains unscored.",
+  "figs": {
+    "development": {
+      "page": 15,
+      "xref": 706,
+      "width": 652,
+      "height": 509,
+      "fx_lo": 0.92,
+      "fx_hi": 1.08,
+      "px_lo": 0.03301,
+      "px_hi": 0.94312,
+      "y0": 0.99077,
+      "dy_per_unit": 5.01498,
+      "swatch_y": [
+        0.22874,
+        0.28741,
+        0.3438
+      ]
+    },
+    "held": {
+      "page": 18,
+      "xref": 723,
+      "width": 664,
+      "height": 509,
+      "fx_lo": 0.97,
+      "fx_hi": 1.04,
+      "px_lo": 0.04121,
+      "px_hi": 0.90744,
+      "y0": 0.99279,
+      "dy_per_unit": 7.8875,
+      "swatch_y": [
+        0.22921,
+        0.28605,
+        0.34471
+      ]
+    }
+  },
+  "grid": "41 fixed f/f* from .980 through 1.020 inclusive, equal-bin 0.001 width, strictly left of the two legends. Spectral color mask from legend swatches in [.73,.79] width ±.011 height; nearest dominant colorful RGB in each swatch, tolerance 96 Euclidean RGB units, saturation ≥50. Exclude pixels belonging more closely to other colored strokes (ties first palette index). Extrema use 5th/95th sample quantiles of all eligible same-color pixels in a stripe. Require at least 3 colored pixels. Every missing stripe has source-only abstention reported, no replacement. Strict primary also requires all 41 upper/lower pairs on both held fills. Y at pixel centers uses print text-layer calibrated scale. Plot traces, error bars/marker overwrites, gaps/dashed lines and line width limit physical interpretation.",
+  "development": "All 3 h=.30 drive series in Figure11 use present stripes on the fixed 41-grid. Equal weight per observed stripe. Require ≥20/41 per drive. Do not substitute Figure15 h=.30 or any target calibration. Inputs U are 95th percentiles of dimensionless A_s/D printed ordinates. Lower endpoints are 5th percentile. Physical nonnegative prediction clipped to [0,U] for all arms, measurements unmodified; refuse negative U.",
+  "ratios": {
+    ".3": 0.7769391265876383,
+    ".5": 0.9609188320158342,
+    ".67": 1.1121854229765114
+  },
+  "roles": [
+    "symmetric_mode_folded",
+    "upper_equals_lower",
+    "lower_zero",
+    "development_pooled_ratio",
+    "development_affine",
+    "development_quadratic",
+    "development_frequencywise_ratio",
+    "calibrated_mode_gap",
+    "reversed_fill_assignment",
+    "unfolded_high_fill"
+  ],
+  "fits": "Pooled ratio through origin. Affine and quadratic ordinary least squares scaled by mean training U before polynomial fit. Frequencywise ratio solved on all available training points within fixed ±.003; if their U² sum is zero use pooled ratio. Calibrated alternative multiplies nominal gap (1−r_folded) by (1−pooled)/(1−folded_.3). Use min(r,1/r) primary. Reverse maps each held fill to the other. Unfolded uses raw ratio before physical clipping.",
+  "gate": "On each of two held fill groups require all41 source stripes and lower binned RMSE strictly smaller than upper_equals_lower, lower_zero, development_pooled_ratio, development_affine, development_quadratic, development_frequencywise_ratio and reversed_fill_assignment. Also report all-role MAE, paired raw worst and observed coverage including each blank stripe. No independence for adjacent printed bands. Postscore visual interpretation cannot repair this gate.",
+  "exposure": "Development Figure11 colors/trends seen before freeze; previously seen qualitative low-fill asymmetry, softening, period-tripling occurrence and reported steepnesses, not a ground-truth blind physical challenge. Figure15 text-layer/ticks/legend locations known; no Figure15 image pixel values read before this freeze by the modeling process."
+}
