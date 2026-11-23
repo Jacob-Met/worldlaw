@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "source": "10.5281/zenodo.17579041, official checksummed ring ZIPs",
+  "groups": [
+    {
+      "key": "20:301",
+      "ring": 20,
+      "mf": 301,
+      "amplitude": 1.25,
+      "ma": 0.95,
+      "runs": [
+        {
+          "f": 20,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_20Hz_mf_301_ma_0p95.txt",
+          "size": 6323049,
+          "crc": "bbc98b0b"
+        },
+        {
+          "f": 50,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_50Hz_mf_301_ma_0p95.txt",
+          "size": 11018754,
+          "crc": "862ac314"
+        },
+        {
+          "f": 70,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_70Hz_mf_301_ma_0p95.txt",
+          "size": 11056820,
+          "crc": "a520fbc6"
+        },
+        {
+          "f": 100,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_100Hz_mf_301_ma_0p95.txt",
+          "size": 8069440,
+          "crc": "dd29cbf2"
+        },
+        {
+          "f": 200,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_200Hz_mf_301_ma_0p95.txt",
+          "size": 6424395,
+          "crc": "2ba5d932"
+        },
+        {
+          "f": 300,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_300Hz_mf_301_ma_0p95.txt",
+          "size": 2462728,
+          "crc": "232bd811"
+        }
+      ]
+    },
+    {
+      "key": "20:51",
+      "ring": 20,
+      "mf": 51,
+      "amplitude": 1.25,
+      "ma": 0.95,
+      "runs": [
+        {
+          "f": 20,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_20Hz_mf_51_ma_0p95.txt",
+          "size": 1853683,
+          "crc": "d95b0606"
+        },
+        {
+          "f": 50,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_50Hz_mf_51_ma_0p95.txt",
+          "size": 1863192,
+          "crc": "098b3d4b"
+        },
+        {
+          "f": 70,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_70Hz_mf_51_ma_0p95.txt",
+          "size": 1873221,
+          "crc": "0aa801d1"
+        },
+        {
+          "f": 100,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_100Hz_mf_51_ma_0p95.txt",
+          "size": 1876914,
+          "crc": "b07e27d1"
+        },
+        {
+          "f": 200,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_200Hz_mf_51_ma_0p95.txt",
+          "size": 1879297,
+          "crc": "eca6659e"
+        },
+        {
+          "f": 300,
+          "path": "Ring20_Dataset_Txt/PWM/PWM_B1_1p25T_f_300Hz_mf_51_ma_0p95.txt",
+          "size": 1885581,
+          "crc": "7657e9ca"
+        }
+      ]
+    },
+    {
+      "key": "35:301",
+      "ring": 35,
+      "mf": 301,
+      "amplitude": 1.25,
+      "ma": 0.95,
+      "runs": [
+        {
+          "f": 20,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_20Hz_mf_301_ma_0p95.txt",
+          "size": 6324526,
+          "crc": "2a0db508"
+        },
+        {
+          "f": 30,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_30Hz_mf_301_ma_0p95.txt",
+          "size": 4864461,
+          "crc": "4ffa7938"
+        },
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_50Hz_mf_301_ma_0p95.txt",
+          "size": 8069907,
+          "crc": "6b77e04a"
+        },
+        {
+          "f": 70,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_70Hz_mf_301_ma_0p95.txt",
+          "size": 10496259,
+          "crc": "27fb28ee"
+        },
+        {
+          "f": 100,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_100Hz_mf_301_ma_0p95.txt",
+          "size": 6369379,
+          "crc": "720abf3f"
+        },
+        {
+          "f": 200,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_200Hz_mf_301_ma_0p95.txt",
+          "size": 6424058,
+          "crc": "42b69b0b"
+        },
+        {
+          "f": 300,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_300Hz_mf_301_ma_0p95.txt",
+          "size": 4930550,
+          "crc": "8279d044"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_400Hz_mf_301_ma_0p95.txt",
+          "size": 8068767,
+          "crc": "080151f8"
+        }
+      ]
+    },
+    {
+      "key": "35:51",
+      "ring": 35,
+      "mf": 51,
+      "amplitude": 1.25,
+      "ma": 0.95,
+      "runs": [
+        {
+          "f": 20,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_20Hz_mf_51_ma_0p95.txt",
+          "size": 1854269,
+          "crc": "f3b41856"
+        },
+        {
+          "f": 30,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_30Hz_mf_51_ma_0p95.txt",
+          "size": 1860567,
+          "crc": "52952d55"
+        },
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_50Hz_mf_51_ma_0p95.txt",
+          "size": 1862902,
+          "crc": "a766b200"
+        },
+        {
+          "f": 70,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_70Hz_mf_51_ma_0p95.txt",
+          "size": 1872892,
+          "crc": "dc093f51"
+        },
+        {
+          "f": 100,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_100Hz_mf_51_ma_0p95.txt",
+          "size": 1876818,
+          "crc": "7fb8b07d"
+        },
+        {
+          "f": 200,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_200Hz_mf_51_ma_0p95.txt",
+          "size": 1879335,
+          "crc": "4695c685"
+        },
+        {
+          "f": 300,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_300Hz_mf_51_ma_0p95.txt",
+          "size": 1885703,
+          "crc": "84c1ed56"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/PWM/PWM_B1_1p25T_f_400Hz_mf_51_ma_0p95.txt",
+          "size": 1884706,
+          "crc": "37102bbf"
+        }
+      ]
+    }
+  ],
+  "history": "All SIN data forbidden to the prospective PWM experiment. The old blind SIN gate closed before predictions when H-column summaries were exposed by an error in the author-prose position mapping.",
+  "roles": "In each of the four fully distinct ring/carrier-ratio series use the highest frequency as target. All have 1.25 T nominal fundamental and modulation index0.95. Compare source-only matching on all lower frequencies, without access to any PWM H. No fitted parameters, no register from H. Do not drop cases if any fail.",
+  "info": "Require literal exact UTF8 header t_s,B_T,H_Aperm,dBdt_Tpers or an explicit semantically identical whitespace-separated header. Check header before reading any body; extract only t/B/dBdt by header NAME. No conversion/summary of H. Frequency/temperature/gain, reversible-state initialization, and sensor delays are assumptions in any physical inference.",
+  "condition": "Protocol is restricted to matched observable reversal sequences. Exactly one period from times, allow 1.5 sample intervals tolerance. Compare measured B extrema after alignment of the first harmonic of B only. Resample each input onto 32768 equally spaced phases. Accept a source/held pair only when maximum B mismatch<=.005*1.25 T and the prominent turning points alternate with equal counts (cyclic). Register local extrema using a circular height-change threshold .05*1.25/mf T. Match each turning point to its nearest target turn of same sense, enforce bijection, cyclic adjacency and shifted-time distance <= .1/mf cycle; also require every extremum mismatch <= 0.1 times the smaller adjacent target swing. All lower rates must pass for the named target and all four targets required. Preserve all primary failures, all unselected settings closed. Smaller undetected loops may differ even on successful tests.",
+  "outcomes": "No PWM magnetic-field comparison if this necessary input test fails. In any future admissible forecast, count known primary/secondary readout, resistance/thickness and per-ring uncertainties. Keep published thermal/metrology and prior signed-law caveats."
+}
