@@ -39,3 +39,5 @@ node scripts/active-linear-family.mjs --fixed-tape-optimum --input examples/acti
 printf '["0","0","1"]\n' >/tmp/fixed-positions.json
 node scripts/active-linear-family.mjs --fixed-tape-optimum --input examples/active-position-drift-fixed-tape-optimum.json --replay /tmp/fixed-plan.json --readings /tmp/fixed-positions.json
 ```
+
+The [ten-pulse causal obstruction](ten-pulse-terminal-adversary.md) proves that the eleven-pulse minimum at noise 1/10 also holds for fully adaptive controllers.
