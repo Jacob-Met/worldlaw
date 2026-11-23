@@ -13,7 +13,7 @@ p,r,s=read('forecasts.json'),read('result.json'),read('protocol.json')
 roles=s['roles'];c=roles[0];wins=0;cells=0;overall={};worst=(-1,)
 for host,profiles in r['profiles'].items():
     assert len(profiles)==len(p[host]['targets'])==5
-    avg={role:[0,0] for role in roles}
+    avg={role:[[],[]] for role in roles}
     for y,fc in zip(profiles,p[host]['targets']):
         assert fc['T']==y['T'] and fc['scale']==y['scale']
         measured=[]
@@ -26,13 +26,13 @@ for host,profiles in r['profiles'].items():
             errs=[abs(yy-v) for yy,v in zip(measured,vals)]
             stats=[sum(errs)/len(errs),math.sqrt(sum(e*e for e in errs)/len(errs))]
             assert stats==y['metrics'][role]
-            for k in (0,1):avg[role][k]+=stats[k]
+            for k in (0,1):avg[role][k].append(stats[k])
             cells+=len(errs)
             if role==c:
                 for j,e in enumerate(errs):
                     if e>worst[0]:worst=(e,host,fc['T'],p[host]['detunings'][j])
         wins+=int(y['metrics'][c][0]<y['metrics']['fit_blue_red_slope'][0])
-    overall[host]={role:[val/5 for val in avg[role]] for role in roles}
+    overall[host]={role:[sum(series)/5 for series in avg[role]] for role in roles}
 assert overall==r['host_means']
 macro={role:[sum(v[role][k] for v in overall.values())/len(overall) for k in (0,1)] for role in roles}
 assert macro==r['macro']

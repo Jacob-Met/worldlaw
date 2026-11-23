@@ -367,5 +367,50 @@
     "observation": "binding_not_found",
     "original_outcome": "unresolved",
     "replay_elsewhere": false
+  },
+  "additional_original_product_gate": {
+    "source": "ad5fbebcad7d8400d1ddf0155f4077ff64be9a2e",
+    "whole": {
+      "job_id": "p3-f747-zhang-native-head-and-14file-distribution-ad5fbebc",
+      "state": "captured",
+      "source": {
+        "owner": "node-2c6923b3148e63391d0e8d72e866360a",
+        "command_id": "p3-f747-zhang-native-head-and-14file-distribution-ad5fbebc",
+        "request_sha256": "e1e2f717535f7dd58e18398a98d069de4751918592d1144a01fece377a92a112",
+        "generation": "4d777d5f325af77f3ef16622f72487738c61a13e3c60d0f7d23958cd78d36d39",
+        "receipt_sha256": "943fc91cebb6a27a0b55f7c254e4ad1658430352301ef6e34bb709c55477d886",
+        "output_bytes": 1554
+      },
+      "total_bytes": 1554,
+      "sha256": "d5dd836cbd274cffba1c7516145ecbadb4dbdc16f594dbb11936092a9b9814cd",
+      "offset": 0,
+      "next_offset": 0,
+      "has_more": true
+    },
+    "receipt": {
+      "command_id": "p3-f747-zhang-native-head-and-14file-distribution-ad5fbebc",
+      "error": "exit status 1",
+      "exit_code": 1,
+      "finished_at": "2026-11-23T19:01:07.240659958Z",
+      "generation": "4d777d5f325af77f3ef16622f72487738c61a13e3c60d0f7d23958cd78d36d39",
+      "request_sha256": "e1e2f717535f7dd58e18398a98d069de4751918592d1144a01fece377a92a112",
+      "resource_process": {
+        "boot_id": "041d0f9e-2eb7-43b7-af92-475c2001084a",
+        "pid": 3134366,
+        "start_ticks": 49534270
+      },
+      "resource_usage": {
+        "max_rss_bytes": 110936064,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.714945,
+        "user_cpu_seconds": 2.062446
+      },
+      "runner_pid": 3134359,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T19:01:03.702025687Z",
+      "state": "failed"
+    },
+    "stdout": "[[\"git\", \"init\", \"-q\"], 0, 0, \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"\"]\n[[\"git\", \"fetch\", \"-q\"], 0, 0, \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"\"]\n[[\"git\", \"checkout\", \"-q\"], 0, 0, \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"\"]\n[[\"git\", \"rev-parse\", \"HEAD\"], 0, 41, \"19a0971429834183b9ceba813212d046084bd02d7290187610de82c4536afc88\", \"ad5fbebcad7d8400d1ddf0155f4077ff64be9a2e\\n\"]\n[[\"git\", \"rev-parse\", \"HEAD^{tree}\"], 0, 41, \"68891cb9fdf0cdb3c3fc6d9a094607713bb5252bd1cf85aeca1bb957286f1ef0\", \"f37fdec21daad3e0d5553aab72d8f09a166f6a09\\n\"]\n[[\"node\", \"-p\", \"process.versions.node\"], 0, 8, \"0c4bf84f9bedd485b2c4eac05f59e35addc86ce7dbf0d90435528e04384c6314\", \"22.23.4\\n\"]\n[[\"python3\", \"replay.py\", \".\"], 1, 326, \"d49db153358ed945d1e5d332ea190b4642d905b6d0a30ba7e8c9b28aa5a370ad\", \"Traceback (most recent call last):\\n  File \\\"/home/ubuntu/hamon-work/sessions/native-7f4ab8512540130480c003b10a828f2e564f4de32d251d32bc7ec9f1dbd9636f/tmpdc6bt09y/repo/research/zhang_vibronic_profile_transfer/replay.py\\\", line 36, in <module>\\n    assert overall==r['host_means']\\n           ^^^^^^^^^^^^^^^^^^^^^^^^\\nAssertionError\\n\"]\nTraceback (most recent call last):\n  File \"<string>\", line 21, in <module>\n  File \"<string>\", line 10, in run\n  File \"/usr/lib/python3.12/subprocess.py\", line 502, in check_returncode\n    raise CalledProcessError(self.returncode, self.args, self.stdout,\nsubprocess.CalledProcessError: Command '['python3', 'replay.py', '.']' returned non-zero exit status 1.\n"
   }
 }
