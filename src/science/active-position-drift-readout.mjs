@@ -1,3 +1,4 @@
+import {CUT_SOURCE,openPointCuts} from './position-drift-point-cuts.mjs';
 import {SUPPORT_SOURCE,SUPPORT_PLAN,openPointSupport} from './position-drift-point-support.mjs';
 import {MINIMAX_SOURCE,MINIMAX_PLAN,openMinimaxHorizon} from './position-drift-minimax-horizon.mjs';
 import {POLYTOPE_SOURCE,POLYTOPE_PLAN,openRatePolytopes} from './position-drift-rate-polytopes.mjs';
@@ -18,7 +19,7 @@ const need=(ok,message)=>{if(!ok)throw Error(message);};
 export function parseActiveOriginalJSON(text){
   const data=JSON.parse(text);
   const schema=data?.schema;
-  if(schema!==SUPPORT_SOURCE && schema!==MINIMAX_SOURCE && schema!==POLYTOPE_SOURCE && schema!==SEGMENT_SOURCE && schema!=='worldlaw.position-drift-rate-catalog/v1' && schema!==ACTIVE_DRIFT_PLAN &&
+  if(schema!==CUT_SOURCE && schema!==SUPPORT_SOURCE && schema!==MINIMAX_SOURCE && schema!==POLYTOPE_SOURCE && schema!==SEGMENT_SOURCE && schema!=='worldlaw.position-drift-rate-catalog/v1' && schema!==ACTIVE_DRIFT_PLAN &&
      schema!==ACTIVE_DRIFT_CHECKPOINTS && schema!==ACTIVE_DRIFT_TRACE && schema!==CASE_TWELVE_REQUEST && schema!==ONE_FEEDBACK_REQUEST && !isSuffixRequest(data) &&
      schema!==GUIDED_INPUT && schema!==GUIDED_RESULT && !isGuidedPlan(data) && !isGuidedPlan(data?.plan) &&
      schema!=='worldlaw.active-position-drift-checkpoint-result/v1' &&
@@ -37,7 +38,7 @@ function fields(value,expected){
 }
 
 export function evaluateActiveDriftInput(source,policy,supplied){
-  const session=policy.schema===SUPPORT_PLAN?openPointSupport(source,policy):policy.schema===MINIMAX_PLAN?openMinimaxHorizon(source,policy):policy.schema===POLYTOPE_PLAN?openRatePolytopes(source,policy):policy.schema===SEGMENT_PLAN?openRateSegments(source,policy):openAllHorizonPositionDrift(source,policy);
+  const session=source.schema===CUT_SOURCE?openPointCuts(source,policy):policy.schema===SUPPORT_PLAN?openPointSupport(source,policy):policy.schema===MINIMAX_PLAN?openMinimaxHorizon(source,policy):policy.schema===POLYTOPE_PLAN?openRatePolytopes(source,policy):policy.schema===SEGMENT_PLAN?openRateSegments(source,policy):openAllHorizonPositionDrift(source,policy);
   const bound=['schema','sourceSHA256','planSHA256'];
   if(policy.status==='indistinguishable'){
     fields(supplied,[...bound,'laws','origin','runs']);

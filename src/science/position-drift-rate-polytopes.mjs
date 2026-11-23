@@ -85,10 +85,29 @@ export function planRatePolytopes(source){
   return {...common,...equalRateSchedule(cat.commands,n)};
 }
 
-function receiveFamily(vertices,ys,ticks,runs,error,spend){
+// Return a particular rational solution with free variables zero. A negative
+// mixture from this shortcut is inconclusive and goes to the convex solver.
+export function solveRateEqualities(rows,width,spend){
+  const pivots=[];let rank=0;
+  for(let c=0;c<width&&rank<rows.length;c++){
+    spend();
+    let i=rank;while(i<rows.length&&!rows[i][c].n)i++;
+    if(i===rows.length)continue;
+    [rows[rank],rows[i]]=[rows[i],rows[rank]];
+    const pivot=rows[rank][c];rows[rank]=rows[rank].map(x=>div(x,pivot));
+    for(let j=0;j<rows.length;j++){
+      spend();const factor=rows[j][c];if(j===rank||!factor.n)continue;
+      rows[j]=rows[j].map((x,k)=>sub(x,mul(factor,rows[rank][k])));
+    }
+    pivots.push(c);rank++;
+  }
+  if(rows.slice(rank).some(r=>r[width].n))return null;
+  const point=Array.from({length:width},Z);pivots.forEach((c,i)=>{point[c]=rows[i][width];});return point;
+}
+function receiveFamily(vertices,ys,ticks,runs,error,spend,useEqualities){
   // Eliminate the last weight by sum(weights)=1. The two final coordinates
   // represent the same initial position and drift in every observation strip.
-  const count=vertices.length-1,width=count+2,rows=[];
+  const count=vertices.length-1,width=count+2,rows=[],equalities=[];
   const append=(a,b)=>{spend();rows.push(exactRow(a,b));};
   for(let k=0;k<count;k++){const a=Array.from({length:width},Z);a[k]=neg(one);append(a,Z());}
   if(count)append([...Array(count).fill(one),Z(),Z()],one);
@@ -97,11 +116,20 @@ function receiveFamily(vertices,ys,ticks,runs,error,spend){
     if(i){const {command,repeats}=runs[i-1];vertices.forEach((v,j)=>{forcing[j]=add(forcing[j],mul(repeats,v[command]));});}
     const base=forcing.at(-1),a=[...forcing.slice(0,-1).map(y=>sub(y,base)),one,Q(ticks[i])];
     const b=sub(ys[i],base);
+    if(useEqualities)equalities.push([...a,b]);
     append(a,add(b,error));append(a.map(neg),sub(error,b));
   }
-  const fit=intersectFeedbackHalfspaces(rows,width,spend);
-  if(fit.proof){need(checkFeedbackContradiction(rows,width,fit.proof),'invalid physical exclusion');return null;}
-  const point=fit.point;
+  let point;
+  if(useEqualities){
+    const particular=solveRateEqualities(equalities,width,spend);
+    if(!particular)return null;
+    const weights=particular.slice(0,count);if(weights.every(w=>w.n>=0n)&&cmp(sum(weights),one)<=0)point=particular;
+  }
+  if(!point){
+    const fit=intersectFeedbackHalfspaces(rows,width,spend);
+    if(fit.proof){need(checkFeedbackContradiction(rows,width,fit.proof),'invalid physical exclusion');return null;}
+    point=fit.point;
+  }
   need(rows.every(r=>cmp(sum(r.a.map((v,i)=>mul(Q(v),point[i]))),r.b)<=0),'invalid physical point');
   const weights=point.slice(0,count);weights.push(sub(one,sum(weights)));
   return {weightWitness:weights.map(fmt),initialWitness:point.slice(count).map(fmt),
@@ -117,7 +145,7 @@ export function observeRatePolytopeSchedule(plan,values){
   const runs=plan.runs.map(run=>({command:cat.commands.indexOf(run.command),repeats:rational(run.repeats)}));
   let surviving;
   try{surviving=cat.ids.flatMap((law,i)=>{
-    const region=receiveFamily(cat.vertices[i],ys,times,runs,cat.error,work.spend);return region?[{law,...region}]:[];
+    const region=receiveFamily(cat.vertices[i],ys,times,runs,cat.error,work.spend,cat.error.n===0n&&plan.method==='disagreement-cuts');return region?[{law,...region}]:[];
   });}catch(e){if(e!==exhausted)throw e;return {...base,status:'receiver-budget-exhausted',work:work.used,surviving:null,nextTick:null};}
   need(ys.length!==plan.readAt.length||surviving.length<=1,'full schedule left a pair unresolved');
   return {...base,status:'received',work:work.used,surviving,nextTick:surviving.length?(plan.readAt[ys.length]??null):null};

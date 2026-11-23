@@ -13,13 +13,17 @@ export const SUPPORT_PLAN='worldlaw.position-drift-point-support-policy/v1';
 function prepare(request){
   need(request?.schema===SUPPORT_SOURCE&&Object.keys(request).sort().join(',')==='catalog,schema,subsetLimit'&&
     Number.isSafeInteger(request.subsetLimit)&&request.subsetLimit>=0,'supply a catalog and a nonnegative subset limit');
-  const cat=parseRatePolytopeSource(request.catalog);
+  return pointRateCatalog(request.catalog);
+}
+
+export function pointRateCatalog(source){
+  const cat=parseRatePolytopeSource(source);
   need(cat.ids.length===2&&cat.error.n===0n,'supply two families and an exact zero error bound');
   const reference=cat.vertices.findIndex(vs=>vs.every(v=>v.every((x,i)=>
     cmp(sub(x,vs[0][i]),sub(v[0],vs[0][0]))===0)));
   need(reference>=0,'one family must be a point after subtracting first-command rates');
-  const other=1-reference,canonical={schema:request.catalog.schema,commands:cat.commands.slice(),noiseBound:'0',
-    limits:{...request.catalog.limits},laws:cat.ids.map((id,i)=>({id,vertices:cat.vertices[i].map(v=>v.map(fmt))}))};
+  const other=1-reference,canonical={schema:source.schema,commands:cat.commands.slice(),noiseBound:'0',
+    limits:{...source.limits},laws:cat.ids.map((id,i)=>({id,vertices:cat.vertices[i].map(v=>v.map(fmt))}))};
   return {cat,reference,other,canonical};
 }
 
@@ -123,28 +127,32 @@ export function openPointSupport(request,policy){
   if(plan.status==='indistinguishable')return openRateAlias(plan,cat.commands,ratesFor);
   need(plan.status==='minimum-certified','design work ended without a minimum');
   verifyPointSupport(request,plan);
-  function referenceAdversary(origin=['0','0']){
-    need(Array.isArray(origin)&&origin.length===2,'supply a physical starting position and drift');
-    const [start,drift]=origin.map(rational),row=cat.vertices[reference][0],used=new Set(),word=[],readings=[fmt(start)];
-    let position=start;
-    function pulse(command,repeats='1'){
-      const index=cat.commands.indexOf(command),n=rational(repeats);
-      need(index>=0&&n.d===1n&&n.n>0n,'supply a known command and positive integer repetitions');
-      need(used.has(command)||used.size+1<plan.separator.commands.length,'distinct-command lower-bound budget exceeded');
-      used.add(command);position=add(position,mul(n,add(row[index],drift)));
-      const y=fmt(position);word.push({command,repeats:fmt(n)});readings.push(y);return y;
-    }
-    function collision(){
-      const leaf=plan.preceding.find(item=>[...used].every(c=>item.commands.includes(c)));
-      need(leaf,'no covering lower-bound subset');
-      const r=openRateAlias({aliases:[leaf.alias]},cat.commands,ratesFor).trace(...leaf.alias.laws,word,origin);
-      need(equalPositionDriftData(r.readings[0],readings),'physical transcript differs from the causal reference');
-      return {...r,coveredBy:leaf.commands.slice()};
-    }
-    return {initialReading:fmt(start),pulse,collision};
-  }
+  const referenceAdversary=(origin=['0','0'])=>replayReferenceBranch(cat,reference,plan.separator.commands.length,
+    used=>plan.preceding.find(item=>[...used].every(c=>item.commands.includes(c))),ratesFor,origin);
   const observe=values=>observeRatePolytopeSchedule(plan,values);
   return {referenceAdversary,observe,replay:record=>{
     const actual=observe(record.readings);need(equalPositionDriftData(actual,record),'saved physical region differs from readings');return actual;
   }};
 }
+
+export function replayReferenceBranch(cat,reference,size,findCover,ratesFor,origin){
+  need(Array.isArray(origin)&&origin.length===2,'supply a physical starting position and drift');
+  const [start,drift]=origin.map(rational),row=cat.vertices[reference][0],used=new Set(),word=[],readings=[fmt(start)];
+  let position=start;
+  function pulse(command,repeats='1'){
+    const index=cat.commands.indexOf(command),n=rational(repeats);
+    need(index>=0&&n.d===1n&&n.n>0n,'supply a known command and positive integer repetitions');
+    need(used.has(command)||used.size+1<size,'distinct-command lower-bound budget exceeded');
+    used.add(command);position=add(position,mul(n,add(row[index],drift)));
+    const y=fmt(position);word.push({command,repeats:fmt(n)});readings.push(y);return y;
+  }
+  function collision(){
+    const leaf=findCover(used);
+    need(leaf,'no covering lower-bound subset');
+    const r=openRateAlias({aliases:[leaf.alias]},cat.commands,ratesFor).trace(...leaf.alias.laws,word,origin);
+    need(equalPositionDriftData(r.readings[0],readings),'physical transcript differs from the causal reference');
+    return {...r,coveredBy:leaf.commands.slice()};
+  }
+  return {initialReading:fmt(start),pulse,collision};
+}
+
