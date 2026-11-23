@@ -91,3 +91,18 @@ test('the CLI rebuilds the shared source and continues the compact policy from o
     assert.equal(JSON.parse(next.stdout).nextCommand,'x1');
   }finally{rmSync(dir,{recursive:true,force:true});}
 });
+
+test('a physical feedback menu reduces to a single executable tape at the same exact radius',()=>{
+  const s=example();s.horizon=4;s.catalog.commands=['a','b'];
+  s.catalog.laws=[{id:'A',vertices:[[0,0]]},{id:'B',vertices:[[0,1]]}];s.catalog.noiseBound='1/5';
+  s.program={commands:['a','a'],alternatives:['a','b'].map(c=>({commands:[c],
+    alternatives:['a','b'].map(d=>({commands:[d]}))}))};
+  const plan=certifyPhysicalFeedbackTree(s);
+  assert.equal(plan.tree.worlds.length,4);assert.equal(plan.tree.radius,'1/4');
+  assert.deepEqual(plan.compact.kept,[3]);assert.equal(plan.compact.proof.radius,'1/4');
+  assert.equal(verifyPhysicalFeedbackTree(s,plan),true);
+  const out=receivePhysicalFeedbackTree(s,plan,['0','0','0','1','2']);
+  assert.deepEqual(out.commands,['a','a','b','b']);assert.deepEqual(out.surviving.map(x=>x.law),['B']);
+  const forged=structuredClone(plan);forged.compact.kept=[0];
+  assert.throws(()=>verifyPhysicalFeedbackTree(s,forged));
+});
