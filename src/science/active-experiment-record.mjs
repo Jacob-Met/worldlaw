@@ -15,6 +15,8 @@ import {ACTIVE_LINEAR_ADAPTIVE_SCHEMA,ACTIVE_ADAPTIVE_READINGS_SCHEMA,
 import {designConditionalFuture,classifyAccumulatedReadings,FOLLOWUP_READINGS} from './active-linear-followup.mjs';
 import {ACTIVE_ACTUATOR_TIMELINE_SCHEMA,ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA,designActiveVandermondeNonlinear,replayActiveVandermondeNonlinear,evaluateActiveVandermondeReadings} from './active-vandermonde-nonlinear.mjs';
 
+import {TWO_PULSE_SCHEMA,designTwoPulse,receiveTwoPulse} from './active-integrator-two-pulse.mjs';
+
 export const ACTIVE_EXPERIMENT_NOTEBOOK_SCHEMA='worldlaw.active-experiment-notebook/v1';
 const encoder=new TextEncoder();
 const decoder=new TextDecoder('utf-8',{ignoreBOM:true});
@@ -37,7 +39,7 @@ function source(bytes){
   const joint=request?.schema===ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA;
   const adaptive=request?.schema===ACTIVE_LINEAR_ADAPTIVE_SCHEMA;
   const vandermonde=request?.schema===ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA||request?.schema===ACTIVE_ACTUATOR_TIMELINE_SCHEMA;
-  need(multiple||bounded||joint||adaptive||vandermonde||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request?.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request?.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA,
+  need(multiple||bounded||joint||adaptive||vandermonde||request?.schema===TWO_PULSE_SCHEMA||request?.schema===ACTIVE_LINEAR_FAMILY_SCHEMA||request?.schema===ACTIVE_LINEAR_ERASURE_SCHEMA||request?.schema===ACTIVE_LINEAR_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATION_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_REPLACEMENT_SCHEMA||request?.schema===ACTIVE_LINEAR_CALIBRATED_MIXED_LOSS_SCHEMA,
     'Unrecognized active experiment source schema; choose linear family, intervention family, control box, joint control, one erasure, one replaced reading, affine sensor or adaptive v1');
   return {request,multiple,bounded,joint,adaptive,vandermonde};
 }
@@ -47,7 +49,7 @@ function pick(value,keys){return Object.fromEntries(keys.map(key=>[key,value?.[k
 export async function sealActivePlan(original,{prior=null,sourcePath}={}){
   const bytes=bytesOf(original),{request,multiple,bounded,joint,adaptive,vandermonde}=source(bytes);
   const saved=prior==null?null:clone(prior);
-  const core=multiple?designActiveInterventionFamily(request):bounded?
+  const core=request.schema===TWO_PULSE_SCHEMA?designTwoPulse(request):multiple?designActiveInterventionFamily(request):bounded?
     designActiveLinearControlBox(request):joint?designActiveLinearJointControl(request):
     adaptive?designActiveLinearAdaptive(request):vandermonde?
     designActiveVandermondeNonlinear(request):designActiveLinearFamily(request);
@@ -59,7 +61,8 @@ export async function sealActivePlan(original,{prior=null,sourcePath}={}){
     const previous=pick(saved,Object.keys(core));
     need(saved.planSHA256===await activeBytesSHA256(JSON.stringify(previous)),
       'Prospective plan digest changed; cannot replay experiment certificate');
-    if(multiple)replayActiveInterventionFamily(request,previous);
+    if(request.schema===TWO_PULSE_SCHEMA)need(JSON.stringify(core)===JSON.stringify(previous),'Two-pulse frozen policy changed.');
+    else if(multiple)replayActiveInterventionFamily(request,previous);
     else if(bounded)replayActiveLinearControlBox(request,previous);
     else if(joint)replayActiveLinearJointControl(request,previous);
     else if(adaptive)need(JSON.stringify(core)===JSON.stringify(previous),
@@ -78,14 +81,19 @@ export async function sealActiveReadout(original,plan,readings,{prior=null,sourc
   const saved=prior==null?null:clone(prior);
   const frozen=await sealActivePlan(sourceBytes,{prior:plan});
   const {request,vandermonde}=source(sourceBytes);
-  need(request.schema!==ACTIVE_LINEAR_ADAPTIVE_SCHEMA,
+  need(request.schema!==ACTIVE_LINEAR_ADAPTIVE_SCHEMA&&request.schema!==TWO_PULSE_SCHEMA,
     'Adaptive readings require the original portable notebook and its complete preceding transcript.');
   const supplied=JSON.parse(decoder.decode(readingBytes));
   need(supplied.sourceSHA256===frozen.sourceSHA256&&supplied.planSHA256===frozen.planSHA256,
     'Readout source or plan digest does not match the frozen prospective certificate.');
   const core=Object.fromEntries(Object.entries(frozen).filter(([key])=>
     !['sourceSHA256','planSHA256','evidenceLevel'].includes(key)));
-  const result=vandermonde?evaluateActiveVandermondeReadings(request,core,supplied):evaluateActiveLinearReadings(request,core,supplied);
+  let result=vandermonde?evaluateActiveVandermondeReadings(request,core,supplied):evaluateActiveLinearReadings(request,core,supplied);
+  if(request.schema===ACTIVE_ACTUATOR_TIMELINE_SCHEMA&&saved?.schema==='worldlaw.active-actuator-timeline-result/v1'){
+    // Reproduce all historical witness estimates exactly from the supplied source and readings.
+    result={...result,schema:saved.schema,estimates:result.estimates.map(({coefficients,estimate,interval})=>
+      ({coefficients,estimate,interval}))};
+  }
   const report={sourceSHA256:frozen.sourceSHA256,planSHA256:frozen.planSHA256,
     readingsSHA256:await activeBytesSHA256(readingBytes),
     ...(sourcePath!==undefined?{sourcePath}:{}),...(planPath!==undefined?{planPath}:{}),
@@ -281,7 +289,21 @@ function readingStatus(checked){
   return count===0?'all_hypotheses_falsified':count===1?'one_hypothesis_consistent':'multiple_hypotheses_consistent';
 }
 
+async function sealTwoPulseReadings(book,text,prior){
+  const supplied=JSON.parse(text),previous=book.readouts.at(-1)?.result??null;
+  need(supplied.sourceSHA256===book.plan.sourceSHA256&&supplied.planSHA256===book.plan.planSHA256&&
+    supplied.previousReadingsSHA256===(previous?.readingsSHA256??null),'Two-pulse readings do not match the preceding notebook.');
+  const metadata=new Set(['evidenceLevel','planSHA256','sourceSHA256','sourcePath']);
+  const core=Object.fromEntries(Object.entries(book.plan).filter(([k])=>!metadata.has(k)));
+  const result=receiveTwoPulse(JSON.parse(book.sourceText),core,supplied,previous);
+  const report={...result,sourceSHA256:book.plan.sourceSHA256,planSHA256:book.plan.planSHA256,
+    previousReadingsSHA256:supplied.previousReadingsSHA256,readingsSHA256:await activeBytesSHA256(text),evidenceLevel:readingEvidence};
+  if(prior)need(JSON.stringify(prior)===JSON.stringify(report),'Two-pulse source, readings or decision changed; exact replay refused.');
+  return report;
+}
+
 function sealNotebookRow(book,text,prior=null){
+  if(book.plan.schema===TWO_PULSE_SCHEMA)return sealTwoPulseReadings(book,text,prior);
   const schema=JSON.parse(text)?.schema;
   if(schema==='worldlaw.active-linear-historical-readings/v1')return sealHistoricalReadings(book,text,prior);
   if(schema===FOLLOWUP_READINGS)return sealFollowup(book,text,prior);

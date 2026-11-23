@@ -540,6 +540,38 @@ export function replayActiveVandermondeNonlinear(request, plan) {
   return previous;
 }
 
+/** Intersect the exact circuit constraints on y - direction * t. */
+function projectScalarResponse(circuits, direction, values, noiseBound) {
+  let lower = null, upper = null, lowerWeights = null, upperWeights = null;
+  let violation = null;
+  for (const {weights} of circuits) {
+    const gain = dot(weights, direction);
+    const response = dot(weights, values);
+    const radius = mul(l1Norm(weights), noiseBound);
+    if (gain.n === 0n) {
+      if (!violation && cmpQ(absQ(response), radius) > 0)
+        violation = weights;
+      continue;
+    }
+    // Normalize to unit response; its sign is then immaterial.
+    const normalized = weights.map(q => div(q, gain));
+    const center = div(response, gain);
+    const spread = div(radius, absQ(gain));
+    const lo = sub(center, spread), hi = add(center, spread);
+    if (lower === null || cmpQ(lo, lower) > 0) {
+      lower = lo; lowerWeights = normalized;
+    }
+    if (upper === null || cmpQ(hi, upper) < 0) {
+      upper = hi; upperWeights = normalized;
+    }
+  }
+  need(lower !== null && upper !== null, 'internal actuator response is not observable');
+  if (!violation && cmpQ(lower, upper) > 0)
+    violation = lowerWeights.map((q, i) => sub(q, upperWeights[i]));
+
+  return {lower, upper, lowerWeights, upperWeights, violation};
+}
+
 /** Project each complete bounded-error episode onto its scalar actuator
  * response. For every circuit w of O, |w.y - (w.h)g| <= epsilon ||w||1.
  * These are all dual faces, not just a nullspace basis. Their intersection
@@ -561,36 +593,10 @@ function jointReadoutGeometry(plant, episodeValues, noiseBound, V) {
       threshold: fmt(mul(l1Norm(row), noiseBound)),
     };
   };
-  for (let k = 0; k < episodeValues.length; k++) {
-    const values = episodeValues[k];
-    let lower = null, upper = null, lowerWeights = null, upperWeights = null;
-    let violation = null;
-    for (const {weights} of circuits) {
-      const gain = dot(weights, plant.hp);
-      const response = dot(weights, values);
-      const radius = mul(l1Norm(weights), noiseBound);
-      if (gain.n === 0n) {
-        if (!violation && cmpQ(absQ(response), radius) > 0)
-          violation = witness(weights, values);
-        continue;
-      }
-      // Normalize to unit response; its sign is then immaterial.
-      const normalized = weights.map(q => div(q, gain));
-      const center = div(response, gain);
-      const spread = div(radius, absQ(gain));
-      const lo = sub(center, spread), hi = add(center, spread);
-      if (lower === null || cmpQ(lo, lower) > 0) {
-        lower = lo; lowerWeights = normalized;
-      }
-      if (upper === null || cmpQ(hi, upper) < 0) {
-        upper = hi; upperWeights = normalized;
-      }
-    }
-    need(lower !== null && upper !== null, 'internal actuator response is not observable');
-    if (!violation && cmpQ(lower, upper) > 0)
-      violation = witness(lowerWeights.map((q, i) => sub(q, upperWeights[i])), values);
+  for (const [episode, values] of episodeValues.entries()) {
+    const {lower, upper, violation} = projectScalarResponse(circuits, plant.hp, values, noiseBound);
     intervals.push({lower, upper});
-    if (violation) dynamicalViolations.push({episode: k, ...violation});
+    if (violation) dynamicalViolations.push({episode, ...witness(violation, values)});
   }
   if (dynamicalViolations.length) return {intervals, dynamicalViolations, polynomialViolation: null};
 
@@ -838,6 +844,22 @@ function timelineDistance(circuits, values) {
   return maximum;
 }
 
+// Eliminate one coefficient in t = coefficients · theta. The remaining
+// initial states and coefficient columns span every nuisance response at fixed t.
+function projectTimelineFunctional(O, H, coefficients, weights, values, noise) {
+  if (noise.n === 0n) {
+    const value = dot(weights, values);
+    return {lower: value, upper: value, lowerWeights: weights, upperWeights: weights};
+  }
+  const pivot = coefficients.findIndex(q => q.n !== 0n);
+  const direction = H.map(row => div(row[pivot], coefficients[pivot]));
+  const nuisance = H.map((row, i) => [...O[i], ...row.flatMap((h, j) => j === pivot ? [] :
+    [sub(h, mul(direction[i], coefficients[j]))])]);
+  const projection = projectScalarResponse(compileExactAffineCircuits(nuisance), direction, values, noise);
+  need(!projection.violation, 'compatible timeline has an empty coefficient projection');
+  return projection;
+}
+
 function evaluateActuatorTimeline(request, prior, supplied) {
   const {plan, O, H, identifiable, noise, catalog, circuits} = compileActuatorTimeline(request);
   need(JSON.stringify(prior) === JSON.stringify(plan), 'continuous-actuation plan changed');
@@ -852,14 +874,18 @@ function evaluateActuatorTimeline(request, prior, supplied) {
   const image = O.map((row, i) => [...row, ...H[i]]);
   const distance = timelineDistance(compileExactAffineCircuits(image), values);
   const compatible = cmpQ(distance, noise) <= 0;
-  return {schema: 'worldlaw.active-actuator-timeline-result/v1',
+  return {schema: 'worldlaw.active-actuator-timeline-result/v2',
     status: compatible ? 'supplied_readings_consistent' : 'abstained_out_of_polynomial_family',
     readoutSource: supplied.source, acquisition: supplied.acquisition, physicalProvenanceVerified: false,
     polynomialFamilyConsistent: compatible,
     minimumReadingError: fmt(distance), estimates: compatible ? identifiable.map(({coefficients, weights}) => {
       const estimate = dot(weights, values), radius = mul(noise, l1Norm(weights));
+      const {lower, upper, lowerWeights, upperWeights} =
+        projectTimelineFunctional(O, H, coefficients, weights, values, noise);
       return {coefficients: coefficients.map(fmt), estimate: fmt(estimate),
-        interval: [fmt(sub(estimate, radius)), fmt(add(estimate, radius))]};
+        interval: [fmt(sub(estimate, radius)), fmt(add(estimate, radius))],
+        feasibleInterval: [fmt(lower), fmt(upper)],
+        endpointReadingWeights: {lower: lowerWeights.map(fmt), upper: upperWeights.map(fmt)}};
     }) : [],
     consistentHypothesisIds: catalog.filter(law => cmpQ(timelineDistance(circuits,
       values.map((v, i) => sub(v, law.predicted[i]))), noise) <= 0).map(law => law.id)};
