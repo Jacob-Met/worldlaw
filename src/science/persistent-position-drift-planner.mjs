@@ -201,3 +201,5 @@ export function projectedDriftOverlap(first,second,noiseBound) {
   const pair=[first,second].map(row=>response(row.map(parseSource),0,1,2,error));
   return joint(...pair)?.map(fmt) ?? null;
 }
+
+export {parse as parsePositionDriftRates, states as positionDriftStates, same as equalPositionDriftData};
