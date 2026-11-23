@@ -1,0 +1,156 @@
+{
+  "schema": "worldlaw.position-drift-five-pulse-experiment/v1",
+  "catalog": {
+    "schema": "worldlaw.position-drift-rate-polytopes/v1",
+    "commands": [
+      "ref",
+      "group",
+      "x0",
+      "y0",
+      "z0",
+      "x1",
+      "y1",
+      "z1"
+    ],
+    "noiseBound": "1/40",
+    "limits": {
+      "designWork": 12000000,
+      "receiverWork": 1000000
+    },
+    "laws": [
+      {
+        "id": "A",
+        "vertices": [
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "B",
+        "vertices": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            -1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            -1
+          ]
+        ]
+      }
+    ]
+  },
+  "program": {
+    "commands": [
+      "ref",
+      "ref",
+      "group"
+    ],
+    "alternatives": [
+      {
+        "commands": [
+          "x0"
+        ],
+        "alternatives": [
+          {
+            "commands": [
+              "y0"
+            ]
+          },
+          {
+            "commands": [
+              "z0"
+            ]
+          }
+        ]
+      },
+      {
+        "commands": [
+          "x1"
+        ],
+        "alternatives": [
+          {
+            "commands": [
+              "y1"
+            ]
+          },
+          {
+            "commands": [
+              "z1"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

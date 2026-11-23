@@ -2,7 +2,7 @@
 
 For a fixed first two commands, any nonempty finite menu of third and fourth commands can be reduced to at most **four complete command paths** with exactly the same first-failure noise radius. This holds for two finite-vertex convex rate families, one persistent mixture and initial position/drift per physical world, and one bounded scalar error per position reading. A four-pulse experiment with the best prospective prefix therefore has an equally robust four-leaf realization. The theorem does not identify the best prefix for a catalog.
 
-The eight-command grouped source requires all four leaves even with exact position readings. Its unrestricted 64 continuations after (ref,group) compress to (x0,y0), (x0,z0), (x1,y1), and (x1,z1). Both menus have radius 1/40. The first member of each pair is the third command; its last command is chosen only after the next actual position is read. The remaining possibility of a better first prefix does not affect the minimum-leaf result.
+The eight-command grouped source requires all four leaves even with exact position readings. Its unrestricted 64 continuations after (ref,group) compress to (x0,y0), (x0,z0), (x1,y1), and (x1,z1). Both menus have radius 1/40. The first member of each pair is the third command; its last command is chosen only after the next actual position is read. The minimum-leaf result holds over every first prefix. A later [complete-prefix certificate](position-drift-five-pulse-minimum.md) proves that (ref,group) also uniquely maximizes the four-pulse noise radius.
 
 ```sh
 node scripts/active-linear-family.mjs --input examples/active-position-drift-full-group-menu.json --four-pulse-compact --output compact.json
