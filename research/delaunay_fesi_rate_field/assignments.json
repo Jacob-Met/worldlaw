@@ -1,0 +1,884 @@
+{
+  "schema": 1,
+  "dataset": "10.5281/zenodo.17579041",
+  "units": {
+    "t": "s",
+    "H": "A/m",
+    "B": "T",
+    "dBdt": "T/s"
+  },
+  "groups": [
+    {
+      "key": "20-0p75",
+      "ring": 20,
+      "amplitude": 0.75,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_0p75T_f_50Hz.txt",
+          "size": 6403902,
+          "crc": "fc5be0fe"
+        },
+        {
+          "f": 100,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_0p75T_f_100Hz.txt",
+          "size": 631570,
+          "crc": "fe50c3cd"
+        },
+        {
+          "f": 150,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_0p75T_f_150Hz.txt",
+          "size": 706281,
+          "crc": "1e90d0f6"
+        },
+        {
+          "f": 200,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_0p75T_f_200Hz.txt",
+          "size": 636838,
+          "crc": "56b53795"
+        },
+        {
+          "f": 250,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_0p75T_f_250Hz.txt",
+          "size": 640055,
+          "crc": "ca000b48"
+        },
+        {
+          "f": 300,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_0p75T_f_300Hz.txt",
+          "size": 707611,
+          "crc": "6da51569"
+        },
+        {
+          "f": 350,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_0p75T_f_350Hz.txt",
+          "size": 729631,
+          "crc": "fe4cdc75"
+        },
+        {
+          "f": 400,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_0p75T_f_400Hz.txt",
+          "size": 644501,
+          "crc": "42003282"
+        }
+      ]
+    },
+    {
+      "key": "20-1p00",
+      "ring": 20,
+      "amplitude": 1,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p00T_f_50Hz.txt",
+          "size": 6401711,
+          "crc": "ff9f876b"
+        },
+        {
+          "f": 100,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p00T_f_100Hz.txt",
+          "size": 631354,
+          "crc": "948c87e1"
+        },
+        {
+          "f": 150,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p00T_f_150Hz.txt",
+          "size": 705730,
+          "crc": "3829e319"
+        },
+        {
+          "f": 200,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p00T_f_200Hz.txt",
+          "size": 636475,
+          "crc": "50e6707f"
+        },
+        {
+          "f": 250,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p00T_f_250Hz.txt",
+          "size": 639465,
+          "crc": "ceb1ade8"
+        },
+        {
+          "f": 300,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p00T_f_300Hz.txt",
+          "size": 706824,
+          "crc": "5b38e1ab"
+        },
+        {
+          "f": 350,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p00T_f_350Hz.txt",
+          "size": 729011,
+          "crc": "d43fb6f6"
+        },
+        {
+          "f": 400,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p00T_f_400Hz.txt",
+          "size": 643957,
+          "crc": "eea3b28a"
+        }
+      ]
+    },
+    {
+      "key": "20-1p25",
+      "ring": 20,
+      "amplitude": 1.25,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p25T_f_50Hz.txt",
+          "size": 6359174,
+          "crc": "f3d35610"
+        },
+        {
+          "f": 100,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p25T_f_100Hz.txt",
+          "size": 627038,
+          "crc": "7383cadf"
+        },
+        {
+          "f": 150,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p25T_f_150Hz.txt",
+          "size": 701908,
+          "crc": "5e1c61e4"
+        },
+        {
+          "f": 200,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p25T_f_200Hz.txt",
+          "size": 632478,
+          "crc": "74febda5"
+        },
+        {
+          "f": 250,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p25T_f_250Hz.txt",
+          "size": 635645,
+          "crc": "622d090a"
+        },
+        {
+          "f": 300,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p25T_f_300Hz.txt",
+          "size": 703129,
+          "crc": "10ac2b68"
+        },
+        {
+          "f": 350,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p25T_f_350Hz.txt",
+          "size": 725158,
+          "crc": "ff90a209"
+        },
+        {
+          "f": 400,
+          "path": "Ring20_Dataset_Txt/SIN/SIN_Bp_1p25T_f_400Hz.txt",
+          "size": 640075,
+          "crc": "b6d51333"
+        }
+      ]
+    },
+    {
+      "key": "35-0p10",
+      "ring": 35,
+      "amplitude": 0.1,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p10T_f_50Hz.txt",
+          "size": 640612,
+          "crc": "f3e69a4d"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p10T_f_400Hz.txt",
+          "size": 323255,
+          "crc": "a2877518"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p10T_f_1000Hz.txt",
+          "size": 650148,
+          "crc": "bfe6f40b"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p10T_f_2000Hz.txt",
+          "size": 654650,
+          "crc": "d08a9da6"
+        }
+      ]
+    },
+    {
+      "key": "35-0p20",
+      "ring": 35,
+      "amplitude": 0.2,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p20T_f_50Hz.txt",
+          "size": 633300,
+          "crc": "a2b2a0de"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p20T_f_400Hz.txt",
+          "size": 319749,
+          "crc": "3a900c65"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p20T_f_1000Hz.txt",
+          "size": 643288,
+          "crc": "aa61d354"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p20T_f_2000Hz.txt",
+          "size": 647697,
+          "crc": "de5a0229"
+        }
+      ]
+    },
+    {
+      "key": "35-0p25",
+      "ring": 35,
+      "amplitude": 0.25,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p25T_f_50Hz.txt",
+          "size": 632660,
+          "crc": "320a15df"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p25T_f_400Hz.txt",
+          "size": 319403,
+          "crc": "f304e5f7"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p25T_f_1000Hz.txt",
+          "size": 642437,
+          "crc": "45bfcf6a"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p25T_f_2000Hz.txt",
+          "size": 647115,
+          "crc": "f002d0dc"
+        }
+      ]
+    },
+    {
+      "key": "35-0p30",
+      "ring": 35,
+      "amplitude": 0.3,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p30T_f_50Hz.txt",
+          "size": 632000,
+          "crc": "45307473"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p30T_f_400Hz.txt",
+          "size": 319131,
+          "crc": "0da2042e"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p30T_f_1000Hz.txt",
+          "size": 641937,
+          "crc": "ea13f662"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p30T_f_2000Hz.txt",
+          "size": 646435,
+          "crc": "196e7158"
+        }
+      ]
+    },
+    {
+      "key": "35-0p40",
+      "ring": 35,
+      "amplitude": 0.4,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p40T_f_50Hz.txt",
+          "size": 631326,
+          "crc": "29bff21a"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p40T_f_400Hz.txt",
+          "size": 318815,
+          "crc": "335d59d3"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p40T_f_1000Hz.txt",
+          "size": 641333,
+          "crc": "6785c9ec"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p40T_f_2000Hz.txt",
+          "size": 645795,
+          "crc": "cf2c4b36"
+        }
+      ]
+    },
+    {
+      "key": "35-0p50",
+      "ring": 35,
+      "amplitude": 0.5,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p50T_f_50Hz.txt",
+          "size": 631116,
+          "crc": "7f27d234"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p50T_f_400Hz.txt",
+          "size": 318663,
+          "crc": "6ca89152"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p50T_f_1000Hz.txt",
+          "size": 640829,
+          "crc": "ec622807"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p50T_f_2000Hz.txt",
+          "size": 645618,
+          "crc": "03614195"
+        }
+      ]
+    },
+    {
+      "key": "35-0p60",
+      "ring": 35,
+      "amplitude": 0.6,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p60T_f_50Hz.txt",
+          "size": 630712,
+          "crc": "8fb54ad7"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p60T_f_400Hz.txt",
+          "size": 318461,
+          "crc": "7a08483b"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p60T_f_1000Hz.txt",
+          "size": 640828,
+          "crc": "35c71aa8"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p60T_f_2000Hz.txt",
+          "size": 645125,
+          "crc": "67187e29"
+        }
+      ]
+    },
+    {
+      "key": "35-0p70",
+      "ring": 35,
+      "amplitude": 0.7,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p70T_f_50Hz.txt",
+          "size": 630655,
+          "crc": "add66a34"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p70T_f_400Hz.txt",
+          "size": 318450,
+          "crc": "53e943f8"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p70T_f_1000Hz.txt",
+          "size": 640564,
+          "crc": "eb603378"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p70T_f_2000Hz.txt",
+          "size": 644924,
+          "crc": "f2c95cb9"
+        }
+      ]
+    },
+    {
+      "key": "35-0p75",
+      "ring": 35,
+      "amplitude": 0.75,
+      "runs": [
+        {
+          "f": 10,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_10Hz.txt",
+          "size": 621828,
+          "crc": "f97aed63"
+        },
+        {
+          "f": 20,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_20Hz.txt",
+          "size": 627229,
+          "crc": "d2415a6d"
+        },
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_50Hz.txt",
+          "size": 630507,
+          "crc": "f1520677"
+        },
+        {
+          "f": 100,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_100Hz.txt",
+          "size": 631577,
+          "crc": "b9929165"
+        },
+        {
+          "f": 150,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_150Hz.txt",
+          "size": 495180,
+          "crc": "f90fba73"
+        },
+        {
+          "f": 200,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_200Hz.txt",
+          "size": 637070,
+          "crc": "f716240e"
+        },
+        {
+          "f": 250,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_250Hz.txt",
+          "size": 509556,
+          "crc": "9d21f6e0"
+        },
+        {
+          "f": 300,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_300Hz.txt",
+          "size": 496339,
+          "crc": "44950bd3"
+        },
+        {
+          "f": 350,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_350Hz.txt",
+          "size": 425834,
+          "crc": "e37e88b9"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_400Hz.txt",
+          "size": 318357,
+          "crc": "462abd29"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_1000Hz.txt",
+          "size": 640574,
+          "crc": "2bf34b79"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p75T_f_2000Hz.txt",
+          "size": 644909,
+          "crc": "4b08559e"
+        }
+      ]
+    },
+    {
+      "key": "35-0p80",
+      "ring": 35,
+      "amplitude": 0.8,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p80T_f_50Hz.txt",
+          "size": 630493,
+          "crc": "1f6bacb6"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p80T_f_400Hz.txt",
+          "size": 318344,
+          "crc": "3f56ff5b"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p80T_f_1000Hz.txt",
+          "size": 640468,
+          "crc": "359ef92c"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p80T_f_2000Hz.txt",
+          "size": 644921,
+          "crc": "8e6fb7ab"
+        }
+      ]
+    },
+    {
+      "key": "35-0p90",
+      "ring": 35,
+      "amplitude": 0.9,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p90T_f_50Hz.txt",
+          "size": 630238,
+          "crc": "b17e837f"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p90T_f_400Hz.txt",
+          "size": 318345,
+          "crc": "830054ec"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p90T_f_1000Hz.txt",
+          "size": 640340,
+          "crc": "4922660c"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_0p90T_f_2000Hz.txt",
+          "size": 644761,
+          "crc": "d0c87652"
+        }
+      ]
+    },
+    {
+      "key": "35-1p00",
+      "ring": 35,
+      "amplitude": 1,
+      "runs": [
+        {
+          "f": 10,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_10Hz.txt",
+          "size": 621489,
+          "crc": "c9d2e951"
+        },
+        {
+          "f": 20,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_20Hz.txt",
+          "size": 626876,
+          "crc": "208de810"
+        },
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_50Hz.txt",
+          "size": 630319,
+          "crc": "1d04a2d2"
+        },
+        {
+          "f": 100,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_100Hz.txt",
+          "size": 630881,
+          "crc": "b8b6679b"
+        },
+        {
+          "f": 150,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_150Hz.txt",
+          "size": 494889,
+          "crc": "355129dc"
+        },
+        {
+          "f": 200,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_200Hz.txt",
+          "size": 636768,
+          "crc": "4b2c2c4d"
+        },
+        {
+          "f": 250,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_250Hz.txt",
+          "size": 509419,
+          "crc": "6a2e97fd"
+        },
+        {
+          "f": 300,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_300Hz.txt",
+          "size": 496124,
+          "crc": "e58c3e50"
+        },
+        {
+          "f": 350,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_350Hz.txt",
+          "size": 425648,
+          "crc": "198cfdde"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_400Hz.txt",
+          "size": 318188,
+          "crc": "f51358f7"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_1000Hz.txt",
+          "size": 640174,
+          "crc": "ed784945"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p00T_f_2000Hz.txt",
+          "size": 644615,
+          "crc": "c23be326"
+        }
+      ]
+    },
+    {
+      "key": "35-1p10",
+      "ring": 35,
+      "amplitude": 1.1,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p10T_f_50Hz.txt",
+          "size": 627463,
+          "crc": "47e96a00"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p10T_f_400Hz.txt",
+          "size": 316847,
+          "crc": "ff2bf86c"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p10T_f_1000Hz.txt",
+          "size": 637420,
+          "crc": "c0e2bf48"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p10T_f_2000Hz.txt",
+          "size": 641858,
+          "crc": "4b5a7cc0"
+        }
+      ]
+    },
+    {
+      "key": "35-1p20",
+      "ring": 35,
+      "amplitude": 1.2,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p20T_f_50Hz.txt",
+          "size": 626425,
+          "crc": "f944e9e1"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p20T_f_400Hz.txt",
+          "size": 316400,
+          "crc": "b3bc1956"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p20T_f_1000Hz.txt",
+          "size": 636339,
+          "crc": "f602be4a"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p20T_f_2000Hz.txt",
+          "size": 641004,
+          "crc": "e707fbd4"
+        }
+      ]
+    },
+    {
+      "key": "35-1p25",
+      "ring": 35,
+      "amplitude": 1.25,
+      "runs": [
+        {
+          "f": 10,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_10Hz.txt",
+          "size": 617379,
+          "crc": "3ee9d2c9"
+        },
+        {
+          "f": 20,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_20Hz.txt",
+          "size": 622867,
+          "crc": "0543e725"
+        },
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_50Hz.txt",
+          "size": 625895,
+          "crc": "cd0abeaa"
+        },
+        {
+          "f": 100,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_100Hz.txt",
+          "size": 627081,
+          "crc": "bc4d5582"
+        },
+        {
+          "f": 150,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_150Hz.txt",
+          "size": 492391,
+          "crc": "48add2b2"
+        },
+        {
+          "f": 200,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_200Hz.txt",
+          "size": 632466,
+          "crc": "b818a9bd"
+        },
+        {
+          "f": 250,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_250Hz.txt",
+          "size": 505941,
+          "crc": "9b0f3967"
+        },
+        {
+          "f": 300,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_300Hz.txt",
+          "size": 493348,
+          "crc": "a03463fc"
+        },
+        {
+          "f": 350,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_350Hz.txt",
+          "size": 423230,
+          "crc": "c4d9c819"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_400Hz.txt",
+          "size": 316158,
+          "crc": "514f755e"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_1000Hz.txt",
+          "size": 635947,
+          "crc": "99f25e3c"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p25T_f_2000Hz.txt",
+          "size": 640464,
+          "crc": "5fe113b3"
+        }
+      ]
+    },
+    {
+      "key": "35-1p30",
+      "ring": 35,
+      "amplitude": 1.3,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p30T_f_50Hz.txt",
+          "size": 625681,
+          "crc": "b98fbe93"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p30T_f_400Hz.txt",
+          "size": 315980,
+          "crc": "dded5562"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p30T_f_1000Hz.txt",
+          "size": 635644,
+          "crc": "3572e653"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p30T_f_2000Hz.txt",
+          "size": 640091,
+          "crc": "b55b6340"
+        }
+      ]
+    },
+    {
+      "key": "35-1p35",
+      "ring": 35,
+      "amplitude": 1.35,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p35T_f_50Hz.txt",
+          "size": 625335,
+          "crc": "896a7a03"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p35T_f_400Hz.txt",
+          "size": 315764,
+          "crc": "49e31e6b"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p35T_f_1000Hz.txt",
+          "size": 635400,
+          "crc": "4ab0baec"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p35T_f_2000Hz.txt",
+          "size": 639845,
+          "crc": "6ef4ed9e"
+        }
+      ]
+    },
+    {
+      "key": "35-1p40",
+      "ring": 35,
+      "amplitude": 1.4,
+      "runs": [
+        {
+          "f": 50,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p40T_f_50Hz.txt",
+          "size": 625098,
+          "crc": "56c65c08"
+        },
+        {
+          "f": 400,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p40T_f_400Hz.txt",
+          "size": 315648,
+          "crc": "8263f2bf"
+        },
+        {
+          "f": 1000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p40T_f_1000Hz.txt",
+          "size": 635121,
+          "crc": "f3ba82ae"
+        },
+        {
+          "f": 2000,
+          "path": "Ring35_Dataset_Txt/SIN/SIN_Bp_1p40T_f_2000Hz.txt",
+          "size": 639476,
+          "crc": "9975b83a"
+        }
+      ]
+    }
+  ],
+  "source": "all but highest frequency per listed same-ring same-nominal-amplitude SIN group",
+  "held": "one full highest-frequency H channel per group",
+  "dev_input_contract": "use only listed numeric t,B,dBdt columns for source and held. Group by filenames only. Loader may read entire line bytes, but does not parse H. Do not open QDC, PWM, BIAS or any loss-table contents.",
+  "source_claim": "An empirical test on exported field units; same physical rings, not independent specimens across amplitudes. Author protocol cites B control (fundamental amplitude error below .5% and derivative THD below 1%). No independent phase or absolute H calibration, per-file temperature, preconditioning, gains or channel-delay records recovered. Descriptive origin/units supported, complete history equality must be checked on measured B. Whole measured loop as a file is assigned, matched postprocessing uses two branch interiors.",
+  "source_criteria": "the first intake reports duration in periods and actual extrema, finite clocks and field-derivative agreement. No H results can be used when deciding endpoint/registration."
+}

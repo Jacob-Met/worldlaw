@@ -1,0 +1,2 @@
+EXACT_CODE c83df79fa168d7a1f0983a5df6602222915564bd
+{"H_decoded": false, "aligned_values": 1572864, "all_rejected_by_full_path_alone": true, "max_abs_disagreement_T": 6.661338147750939e-16, "max_pair": ["20:51", 20, 17133, 0.12595475534668132], "min_pair": ["35:301", 200, 1156, 0.007435269512651832], "pairs": 24}

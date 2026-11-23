@@ -1,0 +1,80 @@
+[
+  {
+    "job": "p3-f747-delaunay-fesi-author-cover-and-loop-member-identities",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "location": {
+      "owner": "node-1d7d90b586ef77496f62cc73fa8fc96d"
+    },
+    "request": "70c47f3485d0001a5c693223d5b7648356d8c33550cde27b54b6ea3d2c1365ea",
+    "generation": "176f43ad1905ea056a457a9558dcf03783e0fc289c5f861024b2654b287987f7",
+    "output_bytes": 11578,
+    "output_sha256": "2c439109057904b5e9879434cc35f3e114cce352a590c5ed3f37d3599007fc91"
+  },
+  {
+    "job": "p3-f747-delaunay-fesi-exact-condition-roster-and-readme-only",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "location": {
+      "owner": "node-1d7d90b586ef77496f62cc73fa8fc96d"
+    },
+    "request": "27f8a1d70b948337b7c2ef22f3760d1445bbf72a449ea4c6a17762aafbba4696",
+    "generation": "244a984686fedb59436ee41634c43b1ad6e4070a7cce6891824f230dd66643ad",
+    "output_bytes": 53952,
+    "output_sha256": "931baf9a6188d977a0935877fc5dac75f543f3bb2a2740ce5d1ee0aaabe81f04"
+  },
+  {
+    "job": "p3-f747-fesi-sine-clock-and-reversal-inputs-only",
+    "state": "failed",
+    "exit": 1,
+    "descendants": "drained",
+    "location": {
+      "owner": "node-1d7d90b586ef77496f62cc73fa8fc96d"
+    },
+    "request": "7100feb3334729e561ea08b77a0c9a318cfced2eb02e3bc2181960b77b617c50",
+    "generation": "f0394a757ae84359373fb02a04f2505a55a5ff335eb0b7e164d77f66eee2e665",
+    "output_bytes": 814,
+    "output_sha256": "ad1567895389797b02f511010f9afb31d04682a79bf9e0d375cc342ac21eecc1"
+  },
+  {
+    "job": "p3-f747-fesi-sine-clock-and-reversal-inputs-system-python",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "location": {
+      "owner": "node-1d7d90b586ef77496f62cc73fa8fc96d"
+    },
+    "request": "d83d3bd508a72964ce0e014c760f671ae9b439d4153b0603ada79ffd11ac1045",
+    "generation": "f1c5f226bd94247b8b78a3818a8852a65b8d48c0facc9c439db11d59719b33ac",
+    "output_bytes": 46904,
+    "output_sha256": "58fea9fe5f8c776944e6e79734ca35bf92c6febe49c79af9ef04ef57156868f2"
+  },
+  {
+    "job": "p3-f747-fesi-pwm-four-group-named-input-reversal-gate",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "location": {
+      "owner": "node-1d7d90b586ef77496f62cc73fa8fc96d"
+    },
+    "request": "c74f393e0b605009b8498537b2fba2972b659ecdfa1248093823ea82612c71dc",
+    "generation": "8519b949eb4ea087b93b3083ee808e0077f73363b81a9381cdbe98bfeabcb5da",
+    "output_bytes": 24992,
+    "output_sha256": "e99cac4823dd0e450ab7ac2d62547795a71a470e3327796d4a80f749ec983fd6"
+  },
+  {
+    "job": "p3-f747-fesi-independent-raw-B-and-clock-24-path-reconstruction",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "location": {
+      "owner": "node-1d7d90b586ef77496f62cc73fa8fc96d"
+    },
+    "request": "108ae17cbd40f7d82af2106105b574461e1351bd616b6b399e06845a4544317b",
+    "generation": "1929cce6b62899edef198a73e6782d11a527bbdde6a18f1dbe8777da7ded22c8",
+    "output_bytes": 315,
+    "output_sha256": "33c99c6ce39c3bc88615f110d7cbeebfc637174605d956a767e970ae3c63b202"
+  }
+]
