@@ -1799,6 +1799,14 @@ INCLUDE = (
     'experiments/angular-prelude.mjs',
     'experiments/rolling-origin.mjs',
     "scripts/support/trajectory-measured-units.mjs",
+    "research/gianotti-grating-clock-aperture/README.md",
+    "research/gianotti-grating-clock-aperture/aperture_ambiguity.py",
+    "research/gianotti-grating-clock-aperture/clock_qualification.json",
+    "research/gianotti-grating-clock-aperture/conditional_spectrum_protocol.json",
+    "research/gianotti-grating-clock-aperture/native_evidence.json",
+    "research/gianotti-grating-clock-aperture/reference_channel.py",
+    "research/gianotti-grating-clock-aperture/replay.py",
+    "research/gianotti-grating-clock-aperture/source_clocks.py",
 )
 REQUIRED = (
     "src/science/active-linear-adaptive.mjs", "src/active/adaptive-instrument.mjs",
