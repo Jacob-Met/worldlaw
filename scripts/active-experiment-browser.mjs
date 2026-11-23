@@ -539,7 +539,9 @@ try{
   assert.deepEqual(JSON.parse(measuredCLI.stdout),measured);
   await openDetails('source-details');
   await page.locator('#example').selectOption('driftGauge');await page.locator('#load-example').click();await idle();
-  assert.ok(await page.locator('#drift-gauge-controls').isDisabled());
+  assert.match(await page.locator('#plan-summary').textContent(),/constant change in drift/);
+  assert.equal(await page.locator('#drift-gauge-controls').evaluate(control=>control.disabled),true);
+  assert.ok(await page.locator('#drift-trace').isDisabled());
   await page.locator('#freeze-plan').click();
   await page.locator('#drift-position').fill('1/7');await page.locator('#drift-velocity').fill('-2/9');
   await page.locator('#drift-word').fill('slow 10000000000000000000001\nfast 2');
