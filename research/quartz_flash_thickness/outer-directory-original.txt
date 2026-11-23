@@ -1,0 +1,17 @@
+SOURCE de2ab2e55856f6ad2a807ab34c05cd05ef85ce48
+Downloading scipy (35.5MiB)
+Downloading numpy (15.8MiB)
+ Downloaded numpy
+ Downloaded scipy
+Installed 2 packages in 18ms
+TAR_MEMBER 10.35097-1215/data/readme.txt 1689 a3a63108e9355a6988bcef27e584740f234e56fc5c2c6a17b0da1617664077c0
+TAR_MEMBER 10.35097-1215/data/descriptive-md/dataset.desc_md.xml 4462 15b615baac0ed45d561ff353ccfedaf07c915d11c9c426219a075e903eb6889b
+TAR_MEMBER 10.35097-1215/data/technical-md/dataset.tech_md.xml 599 d2a785c0eace2bfca4c167ad1c2a7fe38c2ab3f3cd86a63c4e01e2a7714dc1e9
+TAR_MEMBER 10.35097-1215/data/dataset/Quartz_thermaldiffusivity_low_high_T.zip 40309964 3a7c6a447cad4d7eea0f28934c90dd682e12ba1cb60708bba782ff5c9d5a5eb2
+INNER_COUNTS 1352 1333
+PULSE_HEADER Quartz_thermaldiffusivity_low_high_T/Laserpulse/Sample_Laser_Voltage_1538_Filter_100.csv f3cd94a332d9dc40ae93ed3126b0e24a20a717b2f2cb497d09e365504d150586 {b'sensor': b'InSb', b'laser_filter/mm': b'100,0', b'laser_voltage/v': b'1538,0'}
+TAR_MEMBER 10.35097-1215/bagit.txt 55 e91f941be5973ff71f1dccbdd1a32d598881893a7f21be516aca743da38b1689
+TAR_MEMBER 10.35097-1215/manifest-md5.txt 284 0e0ed6f789748a4d94cda34737be10994c5acddda3f03755f132698e505206da
+TAR_MEMBER 10.35097-1215/bag-info.txt 106 902c6b7fa98e02a635a111a59220904a7d8adcc2349eab78d3c74ad5e552389a
+TAR_MEMBER 10.35097-1215/tagmanifest-md5.txt 95 7ec4ff909c19459989e5579fd184e484eb6a5519eff1ef64888d50b5960a2425
+QUARANTINE no scientific measurement rows decoded

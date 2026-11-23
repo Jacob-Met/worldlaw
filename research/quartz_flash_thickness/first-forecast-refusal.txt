@@ -1,0 +1,21 @@
+SOURCE e0c6a24867f84ee81fdee3dcf1eed7be7603dd40
+Downloading scipy (35.6MiB)
+ Downloaded scipy
+Installed 2 packages in 101ms
+Traceback (most recent call last):
+  File "/home/ubuntu/hamon-work/sessions/native-dee482d63ca010d0942f9c93994c559b43956d947399c716a974b959bb376628/quartz-native-9akdck01/predict.py", line 23, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/ubuntu/hamon-work/sessions/native-dee482d63ca010d0942f9c93994c559b43956d947399c716a974b959bb376628/quartz-native-9akdck01/predict.py", line 10, in main
+    pt,pw,pc=pulse(a)
+             ^^^^^^^^
+  File "/home/ubuntu/hamon-work/sessions/native-dee482d63ca010d0942f9c93994c559b43956d947399c716a974b959bb376628/quartz-native-9akdck01/model.py", line 57, in pulse
+    assert len(rows)==1
+           ^^^^^^^^^^^^
+AssertionError
+Traceback (most recent call last):
+  File "<stdin>", line 9, in <module>
+  File "<stdin>", line 3, in run
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['uv', 'run', '--no-project', '--with', 'numpy==2.2.6', '--with', 'scipy==1.15.3', 'python', 'predict.py']' returned non-zero exit status 1.
