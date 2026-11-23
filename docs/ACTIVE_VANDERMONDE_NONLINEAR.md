@@ -147,3 +147,27 @@ The executable audit uses the exact plant `A=0, b=C=1`, so each reading after th
 | 1/4 and 2 | 2/2 | 2/2 | 2/2 | Accepted |
 
 These are deterministic synthetic witnesses selected to examine the measurement support. The fractions above count those witnesses. To assess transfer, freeze candidate laws first, then acquire independently chosen intervention levels and record the design range, noise budget and admissible law class. For any finite set of distinct levels, the product of the factors `(u−v)` over those levels produces another polynomial invisible there. An independently justified degree bound changes this conclusion. Two noiseless polynomials of degree at most `d` that agree on `d+1` distinct levels agree everywhere.
+
+## Prospective separation under bounded reading noise
+
+For the original unknown-state observation matrix `O` and unit forced response
+`h`, a contrast `w` must satisfy `Oᵀw=0`. Its actuator estimate has noise
+radius `epsilon * ||w||₁ / |wᵀh|`. Minimizing that radius over all contrasts
+is equivalent to maximizing the gain on the unit l1 ball in the left kernel.
+A linear objective attains its maximum at a circuit of `O`. Prospective plans
+now compare the historical candidates with the complete exact circuit family.
+The original witness wins ties. At zero declared noise, every informative
+contrast already has zero radius.
+
+For `A=2, b=C=1`, measuring ticks 0, 1 and 2 with the only pulse at tick 1
+gives `O=(1,2,4)` and `h=(0,0,1)`. At unit observation noise the historical
+basis-and-pair search gave radius 4. The contrast `y₂−2y₁` gives radius 3.
+The residual `h−O/6=(-1/6,-1/3,1/3)` proves the matching dual bound.
+Constant responses 0 and 7 are separable for every initial state.
+Responses 0 and 6 admit the same measurements `(-1/2,-1,1)` with initial
+states 0 and −1 respectively. The receiver accepts both at this boundary.
+
+Frozen v1 plans replay their original conservative schedule, witness and
+readout coefficients when their complete historical reconstruction matches.
+Fresh planning uses the tighter contrast. These are prospective bounds for
+the specified plant, catalog and observation-noise model.

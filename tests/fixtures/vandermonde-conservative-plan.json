@@ -1,0 +1,166 @@
+{
+  "schema": "worldlaw.active-vandermonde-nonlinear/v1",
+  "status": "vandermonde_design_noise_limited",
+  "stateDimension": 1,
+  "horizon": 3,
+  "maxDegree": 2,
+  "noiseBound": "1",
+  "invariantNoiseBound": "4",
+  "amplitudes": [
+    "-2",
+    "-1",
+    "0",
+    "1",
+    "2"
+  ],
+  "episodeCount": 5,
+  "observationTicks": [
+    0,
+    1,
+    2
+  ],
+  "pulseTicks": [
+    1
+  ],
+  "initialStateEliminator": [
+    "-2",
+    "-1",
+    "1"
+  ],
+  "forcedResponseGain": "1",
+  "dynamicalAnnihilators": [
+    [
+      "2",
+      "-1",
+      "0"
+    ]
+  ],
+  "vandermondeMatrix": [
+    [
+      "1",
+      "-2",
+      "4"
+    ],
+    [
+      "1",
+      "-1",
+      "1"
+    ],
+    [
+      "1",
+      "0",
+      "0"
+    ],
+    [
+      "1",
+      "1",
+      "1"
+    ],
+    [
+      "1",
+      "2",
+      "4"
+    ]
+  ],
+  "fisherMatrix": [
+    [
+      "5",
+      "0",
+      "10"
+    ],
+    [
+      "0",
+      "10",
+      "0"
+    ],
+    [
+      "10",
+      "0",
+      "34"
+    ]
+  ],
+  "fisherDeterminant": "700",
+  "fisherEigenvalues": [
+    1.88608505,
+    10,
+    37.11391495
+  ],
+  "fisherConditionNumber": 19.677753,
+  "maxFisherConditionNumber": 250,
+  "parityOrthogonal": true,
+  "pseudoinverseEstimator": [
+    [
+      "-3/35",
+      "12/35",
+      "17/35",
+      "12/35",
+      "-3/35"
+    ],
+    [
+      "-1/5",
+      "-1/10",
+      "0",
+      "1/10",
+      "1/5"
+    ],
+    [
+      "1/7",
+      "-1/14",
+      "-1/7",
+      "-1/14",
+      "1/7"
+    ]
+  ],
+  "coefficientL1Norms": [
+    "47/35",
+    "3/5",
+    "4/7"
+  ],
+  "coefficientErrorRadii": [
+    "188/35",
+    "12/5",
+    "16/7"
+  ],
+  "outOfFamilyAnnihilators": [
+    [
+      "1",
+      "-3",
+      "3",
+      "-1",
+      "0"
+    ],
+    [
+      "3",
+      "-8",
+      "6",
+      "0",
+      "-1"
+    ]
+  ],
+  "outOfFamilyThresholds": [
+    "32",
+    "72"
+  ],
+  "singleAmplitudeU2AliasedPairs": [
+    [
+      "off",
+      "on"
+    ]
+  ],
+  "hypothesisIds": [
+    "off",
+    "on"
+  ],
+  "pairwiseSeparations": [
+    {
+      "pair": [
+        "off",
+        "on"
+      ],
+      "maxInvariantSeparation": "7",
+      "requiredSeparation": "8",
+      "witnessAmplitude": "-2",
+      "certified": false
+    }
+  ]
+}
