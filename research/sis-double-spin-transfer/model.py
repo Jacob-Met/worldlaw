@@ -6,7 +6,9 @@ import subprocess
 import tempfile
 import numpy as np
 from recoupling import projection,recouple
-from source import branches,grouped_targets
+from source import branches,grouped_targets,source_file
+from source_rank import project,NAME
+import json
 
 ARMS=("coupled","diagonal","sulfur_only","silicon_only","flex_diagonal","flex_coupled","spcat","zero")
 SLOTS=[(j,p) for j in (1,2) for p in range(abs(2*j-3)+2,2*j+4,2)]
@@ -35,7 +37,10 @@ def calibrate(directory):
     # their laboratory isotope/v/J group. Give each observed feature one residual.
     groups=defaultdict(lambda:defaultdict(list))
     for s in rows:groups[(s.si,s.sulfur,s.v,s.j)][s.frequency].append(s)
-    output={}
+    registry=json.loads((Path(__file__).parent/"feature-groups.json").read_text())
+    proof=project(source_file(directory,NAME),registry)
+    if proof["rank"]!=19 or proof["free"]!=[19]:raise ValueError("Unregistered kernel")
+    output={"exact_donor_kernel":proof}
     for mode,is_s,flex in (("sulfur",True,False),("silicon",False,False),("flex",True,True)):
         X=[];Y=[]
         for (si,sulfur,v,j),features in groups.items():
@@ -51,7 +56,13 @@ def calibrate(directory):
             X.extend(x);Y.extend(y)
         X=np.asarray(X);Y=np.asarray(Y)
         coef,_,rank,sv=np.linalg.lstsq(X,Y,rcond=1e-12)
-        if rank<X.shape[1]:raise ValueError(("Unidentified source fit",mode,rank,X.shape[1]))
+        expected=19 if mode=="flex" else X.shape[1]
+        if rank!=expected:raise ValueError(("Donor design rank",mode,rank,expected))
+        if mode=="flex":
+            from fractions import Fraction
+            z=np.asarray([float(Fraction(x)) for x in proof["null"]])
+            if np.max(abs(X@z))>1e-11:raise ValueError("Donor null direction mismatch")
+            # coef is one Moore-Penrose origin; only its entire affine family is scored as the required comparator.
         output[mode]={"coef":coef.reshape(-1,4).tolist(),"rank":int(rank),"singular_values":sv.tolist(),
                       "feature_count":len(Y),"weighted_sse":float(np.sum((X@coef-Y)**2))}
     # Source-only rotor scale for the authentic full-J calculation. Nominal integer

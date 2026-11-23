@@ -1,0 +1,315 @@
+{
+  "study": "Müller et al. laboratory rotational spectroscopy of SiS, DOI10.1039/B618799D",
+  "source": "Official Cologne 2008 supplementary measured frequencies and archived blend assignments. All-fit residuals and fitted .par/.fit/.var or predicted CDMS catalogs excluded. Published spin-free Table 2 high-J calibration values and qualitative global-fit success known before design.",
+  "rights": "299 assigned low-J singly spin-bearing branches allowed to calibrate. All 47 assignments /41 features of doubly spin-bearing 29Si33S held to a separate post-bank score. Only author assignment metadata, widths and exact equality classes were observed in advance. A shared spectrometer and literature-selected measured branches limit independence. No inferential sample-size inflation.",
+  "feature_registry": [
+    {
+      "ids": [
+        489
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        490
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        491
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        492
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        493
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        494
+      ],
+      "j": 1,
+      "state": 160
+    },
+    {
+      "ids": [
+        495
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        496
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        497,
+        498
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        499
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        500
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        501
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        502,
+        503,
+        504
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        505,
+        506
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        507
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        508
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        509
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        510
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        511
+      ],
+      "j": 2,
+      "state": 160
+    },
+    {
+      "ids": [
+        512
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        513
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        514
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        515
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        516
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        517
+      ],
+      "j": 1,
+      "state": 161
+    },
+    {
+      "ids": [
+        518,
+        519
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        520
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        521
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        522,
+        523
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        524
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        525
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        526
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        527
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        528
+      ],
+      "j": 2,
+      "state": 161
+    },
+    {
+      "ids": [
+        529
+      ],
+      "j": 1,
+      "state": 162
+    },
+    {
+      "ids": [
+        530
+      ],
+      "j": 1,
+      "state": 162
+    },
+    {
+      "ids": [
+        531
+      ],
+      "j": 1,
+      "state": 162
+    },
+    {
+      "ids": [
+        532
+      ],
+      "j": 1,
+      "state": 162
+    },
+    {
+      "ids": [
+        533
+      ],
+      "j": 1,
+      "state": 162
+    },
+    {
+      "ids": [
+        534
+      ],
+      "j": 1,
+      "state": 163
+    },
+    {
+      "ids": [
+        535
+      ],
+      "j": 1,
+      "state": 163
+    }
+  ],
+  "units": "Frequency in MHz and reported 2 kHz uncertainty for every double feature; within-group centered spacings in kHz. Six independent unknown rotational origin coordinates removed: groups v0/J1, v0/J2, v1/J1, v1/J2, v2/J1, v3/J1. Mean removal is unweighted per distinct measured feature, after weighted blend averaging, the same for all predictions and measured data. No held numerical origin needed for forecast construction. Explicit conditioning on reported assignments, blend membership and author relative weights. They need not be independently measured; no blind line finding or empirical intensity validation.",
+  "fit": "Unchanged full-rank donor sulfur/Si operators. Exact rational rank 19 with one free parameter for the 20-dimensional flexible sulfur-level donor control. Store minimum-norm coordinate as affine origin; predictions for entire flexible-diagonal family are forecast origin plus t times the exact registered centered vector, for any real common t. Canonical flex_coupled/min-norm is solely a coordinate-dependent diagnostic.",
+  "primary": "All original measured features, six groups, thresholds, weight conventions and nonflexible gates retained. Two original flexible comparisons now require coupled to beat the best attainable flexible-diagonal family across every donor-equivalent coefficient. The global oracle t minimizes the sole affected group RMS, hence mean and worst simultaneously. Oracle evaluated only in the separately locked score stage; receives deliberate additional information. Joint gate retains eight tests. No line or group removed, no bound on t or pseudo-identified donor gap. Point flexible controls are explicitly descriptive. Independently recompute all 8 bank arms,9 scored arms,41 observations,54 group scores and 8 gates.",
+  "limits": "Unknown pair-only interaction: λJ² I_Si·I_S exactly invisible to any singly spin-bearing spectrometer; two double-spin branches split by 4λ in the synthetic J=0→1 witness. Native recoupling includes only additive one-spin interactions apart from published fixed-J versus full-rotor difference. Centering removes the group mean and cannot test absolute isotopologue rotational frequency. Compare calibrated maximum centered coupled−diagonal separation with the reported 2kHz; small separation does not identify offdiagonal dynamics even if the ordering is favorable.",
+  "source_math": "c68faedfe49b760951f4c4d9ca03033ac7a96fb7",
+  "source_rights_post": 188943,
+  "parent_preheld_failure": {
+    "freeze": "b714039dc8aabb6fd203a6523a59356a2a75a590",
+    "decoder_repair": "4169ff31b335e57d86829f4ad56ccc286d5742a9",
+    "source_rank": "4258788173333f8a7191bbeb898fd75590578c69",
+    "rank": 19,
+    "columns": 20,
+    "raw_rank_proof_sha": "47cfb13598c4f3e5b229bf31902709a1c01f8b64e4a824dcd954b41d94235100",
+    "status": "closed unscored before any double-spin frequency"
+  }
+}
