@@ -5,14 +5,20 @@
  */
 export function forecastRms(a, b) {
   if (!a.length || a.length !== b.length) throw new RangeError('Forecast lengths must match and be positive.');
-  let norm = 0;
+  let norm = 0, scale = 0;
   for (let i = 0; i < a.length; i++) {
     if (!Number.isFinite(a[i]) || !Number.isFinite(b[i])) throw new RangeError('Forecast values must be finite numbers.');
     const delta = a[i] - b[i];
-    if (!Number.isFinite(delta)) throw new RangeError('Forecast differences must be finite.');
+    scale = Math.max(scale, Math.abs(a[i]), Math.abs(b[i]));
     norm = Math.hypot(norm, delta);
   }
-  return norm / Math.sqrt(a.length);
+  if (Number.isFinite(norm)) return norm / Math.sqrt(a.length);
+  // Scale before subtracting when even a single difference or the vector norm overflows.
+  let scaledNorm = 0;
+  for (let i = 0; i < a.length; i++) scaledNorm = Math.hypot(scaledNorm, a[i] / scale - b[i] / scale);
+  const rms = (scaledNorm / Math.sqrt(a.length)) * scale;
+  if (!Number.isFinite(rms)) throw new RangeError('Forecast RMS exceeds the finite numeric range.');
+  return rms;
 }
 
 export function forecastDistances(traces) {
@@ -49,6 +55,9 @@ export function planForecastDiameter(probes, radius) {
     return {indices, diameter, minSeparation, ambiguous};
   }
   let minimumPlan = assess([]).diameter <= threshold ? [] : null;
+  const planCount = probes.length * (probes.length - 1) / 2;
+  const largest = envelope.reduce((m, x) => Math.max(m, x), 0);
+  const sumScale = largest > Number.MAX_VALUE / planCount ? largest : 1;
   let best, maximin, diameterSum = 0, count = 0;
   for (let i = 0; i < probes.length; i++) {
     if (minimumPlan === null && assess([i]).diameter <= threshold) minimumPlan = [i];
@@ -57,10 +66,10 @@ export function planForecastDiameter(probes, radius) {
       if (!best || candidate.diameter < best.diameter) best = candidate;
       if (!maximin || candidate.minSeparation > maximin.minSeparation) maximin = candidate;
       count++;
-      diameterSum += candidate.diameter;
+      diameterSum += candidate.diameter / sumScale;
     }
   }
   if (minimumPlan === null && best.diameter <= threshold) minimumPlan = best.indices;
-  return {best, maximin, uniformMeanDiameter:diameterSum/count, planCount:count,
+  return {best, maximin, uniformMeanDiameter:(diameterSum/count)*sumScale, planCount:count,
     minimumExperiments:minimumPlan?.length ?? null, minimumPlan, envelope};
 }
