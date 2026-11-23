@@ -18,7 +18,7 @@ The Fig. 4a header has two curves apiece at 125, 156 and 182 samples, consistent
 
 ## Exact limit for a favorable ideal experiment
 
-Suppose the temperatures at both ends are known, every heat-current measurement is exact, and a fixed contact and gate obey $J(a,b)=F$b$-F$a$$ with increasing $F$. This is the endpoint-separable class. With a differentiable potential and a genuinely measured equilibrium conductance $G(T)=F'(T)$, $J$ would equal its temperature integral. The figure measurements at finite imposed excursions constrain differences across finite intervals. The following examples grant exact cold temperature equal to the bath and hot temperature equal to the reported average. Each target excursion $T\to 1.5T$ is an illustrative synthetic query. It is not a claim about any particular plotted acquisition point.
+Suppose the temperatures at both ends are known, every heat-current measurement is exact, and a fixed contact and gate obey $J(a,b)=F(b)-F(a)$ with increasing $F$. This is the endpoint-separable class. With a differentiable potential and a genuinely measured equilibrium conductance $G(T)=F'(T)$, $J$ would equal its temperature integral. The figure measurements at finite imposed excursions constrain differences across finite intervals. The following examples grant exact cold temperature equal to the bath and hot temperature equal to the reported average. Each target excursion $T\to 1.5T$ is an illustrative synthetic query. It is not a claim about any particular plotted acquisition point.
 
 | Idealized source intervals in K | Synthetic query | Source-unobserved interval inside query |
 | --- | --- | --- |
