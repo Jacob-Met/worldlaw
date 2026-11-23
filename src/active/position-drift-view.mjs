@@ -8,10 +8,16 @@ function table(caption,head,rows){
 }
 function guidedProof(p){
   if(p.schema===SUFFIX_PLAN){
+    if(p.status==='shared-budget-exhausted')return {heading:'The shared-history proof reached its budget.',
+      summary:'The remaining counterfactual choices have no verdict. Work used: '+p.work.assignments+' assignments and '+p.work.linearWork+' linear-work units.',proof:''};
     if(p.status==='suffix-refuted')return {heading:'One measured prefix defeats every offered suffix.',
       summary:'The shared prefix is '+p.collision.prefixReadings.join(', ')+'. For each suffix, two laws fit the same complete record.',
       proof:table('Each alternative has its own later measurements.',['Suffix','Compatible laws','Remaining positions'],
         p.collision.branches.map(b=>[p.suffixes[b.suffix].join(' → '),b.worlds.map(w=>w.law).join(', '),b.readings.slice(p.prefix.length+1).join(', ')]))};
+    if(p.candidates)return {heading:'The measured prefix selects a safe complete suffix.',
+      summary:'The proof excludes every assignment of a colliding pair to each alternative. The receiver evaluates the actual prefix before committing the chosen sequence.',
+      proof:table('Pairs that can collide on a whole tape before any readings are known.',['Suffix','Pairs'],
+        p.candidates.map((pairs,i)=>[p.suffixes[i].join(' → '),pairs.map(([a,b])=>[p.source.laws[a].id,p.source.laws[b].id].join(' / ')).join(', ')||'None']))};
     if(p.polygons)return {heading:'Two measured contrasts choose the suffix.',
       summary:'Apply '+p.prefix.join(' → ')+'. Subtract the line through the first two measured positions from the next two. The resulting point determines the safe suffix.',
       proof:table('Closed regions where a complete suffix can retain a pair of laws.',['Suffix','Compatible laws','Polygon vertices'],
