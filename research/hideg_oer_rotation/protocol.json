@@ -1,0 +1,22 @@
+{
+  "study": "Hideg OER held-rotation polarization curves, central pH",
+  "archive_sha256": "a191eb58d0ec89c9b6342d674b3dc5ccde1285acdaf125e2778f384de0f02f68",
+  "nb_sha256": "24b561bb5765bf56919304a573de54e39ca90910cd160555f71f081775e8858d",
+  "cohort": "The middle of seven release pH levels, pH10.458, all three metals. All 7 rotation files per metal; source=400,625,900,1600,2025 rpm, held=1225 (interior),2500 (exterior). All other 126 raw sweeps closed. Joint .dat, .par, .jpg exports sealed. One archived sweep per rpm/group, electrodes or replicates not established. One sweep is the score unit, group by metal and interpolation/extrapolation.",
+  "boundary": "Source acquisition may unpack ZIP. Held input reader selects only first (time), second (V vs reference) and fourth (first-row rpm) columns, never parses third (current) column. Validate headers, counts, monotone sweep and finiteness. Before numerical source outcomes freeze pipeline and all role rules. Prior exposure limited to existence of stepped shape, in-sample published fit and paper abstract. Fixed author notebook initial guesses are source-informed, unknown whether chosen using full curves. No archived fit output usage.",
+  "roles": [
+    "notebook_equations_full",
+    "physics_without_solution_resistance",
+    "physics_fixed_speed",
+    "nearest_speed",
+    "current_linear_sqrt_rpm",
+    "current_linear_rpm",
+    "all_source_linear_sqrt_rpm",
+    "scaled_limiting_flux",
+    "corrected_physics",
+    "notebook_equations_filtered"
+  ],
+  "candidate": "Residual correction: at each target command voltage, evaluate all FIVE full-equation source residual curves, interpolating recorded duplicate voltages by mean then endpoint-clamped linear interpolation to that voltage. Add the residual obtained by nearest two bracketing source speeds in sqrt(rpm); outer target extrapolates from nearest two endpoints. This is a predictive correction to the physical forward map integrating shared electrode and speed-dependent mismatch; no separate physical component inference.",
+  "baseline": "Direct transfer of authenticated notebook equations with five fitted unknowns (D, logk, alpha, Rs, jchg). Local SciPy optimizer is a new source-only realization, not Wolfram NonlinearModelFit. Area π*.25² cm², fixed initial metal estimates, 25°C, 13.9918 pKw. Estimate on source measurements only (all points stratified by source rows using up to 100 uniform indices per file); unsmoothed unweighted robust-free squared measured current-density errors at applied potential, stable fitted bounded least-squares. Also produce distinct frozen source-filter like author max/100 versus unit weighting comparator and retain implementation differences from native ArrayResample/weights. Literal Wolfram execution must be separately distinguished. No cross-metal fitting.",
+  "score": "Every finite recorded held row at actual supplied voltage, including low-current onset. Per-sweep RMSE and MAE in A/cm²; arithmetic mean across 6 sweeps, disaggregate both held speeds and 3 metals. Primary corrected vs every listed control mean RMSE and at least 4/6 vs strongest aggregate competitor, plus lower mean RMSE on both held speeds vs uncorrected physics. No trimming or current-defined scoring. Report exact row coverage, nested dependence, whole worst raw row and all same-row controls; no mechanistic identifiability, independent electrode replication or causal-assignment claim."
+}
