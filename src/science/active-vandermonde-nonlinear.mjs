@@ -264,16 +264,27 @@ function parsePlant(raw, n, horizon) {
     hp.push(forced);
   }
 
+  return { A, bUnit, C, obsTicks, pulseTicks, O, hp };
+}
+
+function actuatorInvariants(O, hp, exactNoiseDesign) {
   // Left-nullspace of O: { c : O^T c = 0 }
   const nullO = rightNullBasis(transpose(O));
   need(nullO.length > 0, 'observationTicks must exceed observable state rank to eliminate unknown x[0]');
 
-  // Select minimal-(||c||_1 / |c^T h_p|) circuit with c^T h_p != 0 (including pairwise combinations)
+  // Preserve the historical witness on ties, including every noiseless design.
   const candidates = [...nullO];
   for (let i = 0; i < nullO.length; i++) {
     for (let j = i + 1; j < nullO.length; j++) {
       candidates.push(primitiveIntegerRow(nullO[i].map((v, k) => add(v, nullO[j][k]))));
       candidates.push(primitiveIntegerRow(nullO[i].map((v, k) => sub(v, nullO[j][k]))));
+    }
+  }
+  if (exactNoiseDesign) {
+    // Extreme points of ker(O^T) intersected with the unit l1 ball are circuits.
+    // Thus a circuit attains the largest normalized forced response.
+    for (const { weights } of compileExactAffineCircuits(O)) {
+      candidates.push(primitiveIntegerRow(weights));
     }
   }
   let bestCircuit = null;
@@ -302,7 +313,6 @@ function parsePlant(raw, n, horizon) {
   const dynNull = rightNullBasis(augmented);
 
   return {
-    A, bUnit, C, obsTicks, pulseTicks, O, hp,
     circuit: bestCircuit,
     forcedGain: bestGain,
     noiseAmplification: bestAmplification,
@@ -432,6 +442,10 @@ function buildScheduleDesign(ampStrings, maxDegree, epsilonZ, hypotheses) {
 }
 
 export function designActiveVandermondeNonlinear(request) {
+  return designNonlinear(request, false);
+}
+
+function designNonlinear(request, historical) {
   need(request && typeof request === 'object' && request.schema === ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA,
     'expected schema ' + ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA);
   const n = request.stateDimension;
@@ -448,7 +462,8 @@ export function designActiveVandermondeNonlinear(request) {
     'maxFisherConditionNumber must be a finite number >= 1');
 
   const plant = parsePlant(request.plant, n, horizon);
-  const epsilonZ = mul(plant.noiseAmplification, noiseBound);
+  const invariant = actuatorInvariants(plant.O, plant.hp, !historical && noiseBound.n > 0n);
+  const epsilonZ = mul(invariant.noiseAmplification, noiseBound);
   const hypotheses = parseHypotheses(request.hypotheses, maxDegree);
 
   const schedules = Array.isArray(request.candidateSchedules) && request.candidateSchedules.length > 0
@@ -487,9 +502,9 @@ export function designActiveVandermondeNonlinear(request) {
     episodeCount: chosen.canonicalKeys.length,
     observationTicks: plant.obsTicks,
     pulseTicks: plant.pulseTicks,
-    initialStateEliminator: plant.circuit.map(fmt),
-    forcedResponseGain: fmt(plant.forcedGain),
-    dynamicalAnnihilators: plant.dynamicalAnnihilators.map((row) => row.map(fmt)),
+    initialStateEliminator: invariant.circuit.map(fmt),
+    forcedResponseGain: fmt(invariant.forcedGain),
+    dynamicalAnnihilators: invariant.dynamicalAnnihilators.map((row) => row.map(fmt)),
     vandermondeMatrix: chosen.V.map((row) => row.map(fmt)),
     fisherMatrix: chosen.F.map((row) => row.map(fmt)),
     fisherDeterminant: fmt(chosen.detF),
@@ -510,9 +525,14 @@ export function designActiveVandermondeNonlinear(request) {
 
 export function replayActiveVandermondeNonlinear(request, plan) {
   const recomputed = designActiveVandermondeNonlinear(request);
-  need(JSON.stringify(recomputed) === JSON.stringify(plan),
+  const frozen = JSON.stringify(plan);
+  if (JSON.stringify(recomputed) === frozen) return recomputed;
+  // Older plans used a conservative invariant. Replay only its exact original
+  // schedule and certificate; readouts continue to use that frozen invariant.
+  const previous = designNonlinear(request, true);
+  need(JSON.stringify(previous) === frozen,
     'Replayed Vandermonde nonlinear certificate does not match frozen plan');
-  return recomputed;
+  return previous;
 }
 
 /** Project each complete bounded-error episode onto its scalar actuator
