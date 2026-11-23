@@ -21,4 +21,10 @@ magfid-reference-selftest:
 # Native generated controls for the continuous acquisition path.
 .PHONY: test-continuous-law
 test-continuous-law:
-	node --test tests/command-cubic-discovery.test.mjs tests/residual-abstention.test.mjs tests/trajectory-continuous-planner.test.mjs tests/trajectory-sindy-discovery.test.mjs tests/trajectory-continuous-instrument.test.mjs tests/forced-weak-discovery.test.mjs
+	node --test tests/command-cubic-discovery.test.mjs tests/residual-abstention.test.mjs tests/trajectory-continuous-planner.test.mjs tests/trajectory-sindy-discovery.test.mjs tests/trajectory-continuous-instrument.test.mjs tests/forced-weak-discovery.test.mjs tests/trajectory-integral-92be.test.mjs tests/trajectory-continuous-cli.test.mjs
+
+# All maintained tests, real app smokes, then the closed six-world source gate.
+# The native worker must retain both requested artifacts, including failed runs.
+.PHONY: qualify-continuous-law
+qualify-continuous-law:
+	node experiments/qualify-continuous-law.mjs

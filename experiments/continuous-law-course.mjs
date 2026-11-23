@@ -21,8 +21,13 @@ const err=e=>({name:e.name,code:e.code??null,message:e.message});
 function save(path,value){
   const bytes=typeof value==='string'?value:JSON.stringify(value,null,2)+'\n';
   const fd=openSync(path,'wx');
-  try{writeSync(fd,bytes);fsyncSync(fd);}finally{closeSync(fd);}
-  return {file:path,bytes:Buffer.byteLength(bytes),sha256:digest(bytes)};
+  const intended=Buffer.from(bytes);
+  try{let offset=0;while(offset<intended.length){
+    const count=writeSync(fd,intended,offset,intended.length-offset);
+    check(count>0,'Incomplete evidence write');offset+=count;
+  }fsyncSync(fd);}finally{closeSync(fd);}
+  const actual=readFileSync(path);check(actual.equals(intended),'Evidence readback differs before acquisition');
+  return {file:path,bytes:actual.length,sha256:digest(actual)};
 }
 function sourceManifest(){
   const files=[];
@@ -173,9 +178,14 @@ function runWorld(entry,phase,directory){
   const heldInstrument=createControlledInstrument({...world.instrument,sourceId:world.worldId+'-held',
     seed:(world.seed^0xbb67ae85)>>>0,maximumAcquisitions:1});
   const held=heldInstrument.acquire(r),heldReceipt=save(join(directory,'holdout-observations.json'),held);
-  const metrics=Object.fromEntries(Object.entries(forecasts).map(([name,f])=>[name,{
-    ...gradeModel(f.model,world.truth),forecastStatus:f.status,heldRmsInNoiseUnits:f.status==='predicted'?
-      residualScore([f.positions],held.samples.map(s=>s.position),P.noiseSigma).score:null}]));
+  const metrics=Object.fromEntries(Object.entries(forecasts).map(([name,f])=>{
+    const fit=gradeModel(f.model,world.truth),available=f.status==='predicted';
+    return [name,{fitOnlyExactSupport:fit.exactSupport,fitOnlyColdLawSuccess:fit.coldLawSuccess,
+      exactSupport:available&&fit.exactSupport,actuatorCorrect:available&&fit.actuatorCorrect,
+      coldLawSuccess:available&&fit.coldLawSuccess,coefficientRelativeError:fit.coefficientRelativeError,
+      forecastStatus:f.status,heldRmsInNoiseUnits:available?
+        residualScore([f.positions],held.samples.map(s=>s.position),P.noiseSigma).score:null}];
+  }));
   save(join(directory,'truth-opened-after-forecast.json'),{worldId:world.worldId,seed:world.seed,
     family:world.family,actuator:world.actuator,truth:world.truth,jointSeal,heldReceipt});
   const executionQualified=commonSource&&Object.values(arms).every(a=>a.status==='complete'&&a.completedRounds===2&&

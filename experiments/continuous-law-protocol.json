@@ -154,7 +154,8 @@
       "Postinitial held-trajectory position RMS / declared noise sigma"
     ],
     "coefficientTolerance": 0.1,
-    "coldLawSuccess": "Exact support AND normalized coefficient error <= 0.1. Forward error is reported separately, never used to tune the fit."
+    "coldLawSuccess": "Completed acquisition arm, executable finite final forecast, exact support AND normalized coefficient error <= 0.1. Forward RMS is reported separately. Fit-only recovery is distinctly labeled.",
+    "failureDenominator": "Every one of the six source worlds remains in the denominator, including whole-world exceptions with metrics:null. Later fixed cohorts must follow the same rule."
   },
   "qualification": {
     "development": "All six worlds and both arms must finish two scored receipts with exact command/forecast binding; all weak holdout forecasts finite. SINDy refusals remain recorded. This qualifies execution, not scientific superiority.",
@@ -200,5 +201,6 @@
     "policySeed": "First 32 bits of SHA256('policy-seed:'+world seed).",
     "noise": "Independent instrument seeded by the world seed xor 0x6a09e667; common noise across paired policies.",
     "interpretation": "Deterministic pseudorandom synthetic replicates; guarantees remain conditional on the specified exchangeability model."
-  }
+  },
+  "blinding": "Trusted fixed learner code receives only recordings and declared settings. Seeds and the generator are available in this repository: this is not cryptographic blinding or an independent external oracle."
 }
