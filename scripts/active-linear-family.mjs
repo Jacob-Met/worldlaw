@@ -5,6 +5,7 @@
  */
 import {readFile,writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
+import {parseActiveOriginalJSON} from '../src/science/active-position-drift-readout.mjs';
 import {recommendActiveFollowup,sealActivePlan,sealActiveReadout,replayActiveNotebook,receiveActiveNotebook,createActiveNotebook} from '../src/science/active-experiment-record.mjs';
 const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE | --recommend INDEX] [--output NEW_FILE] | --input FILE --create-notebook --output NEW_FILE';
 let recommend=null;
@@ -45,13 +46,13 @@ if(notebook){
   report=await createActiveNotebook(await readFile(input,'utf8'));
 }else{
 const bytes=await readFile(input);
-const prior=replay?JSON.parse(await readFile(replay,'utf8')):null;
+const prior=replay?parseActiveOriginalJSON(await readFile(replay,'utf8')):null;
 const plan=await sealActivePlan(bytes,{prior,sourcePath:input});
 if(replay)console.error('Exact source and prospective schedule verified; no physical action replayed.');
 report=plan;
 if(readings){
   const readingBytes=await readFile(readings);
-  const old=replayReadings?JSON.parse(await readFile(replayReadings,'utf8')):null;
+  const old=replayReadings?parseActiveOriginalJSON(await readFile(replayReadings,'utf8')):null;
   report=await sealActiveReadout(bytes,plan,readingBytes,
     {prior:old,sourcePath:input,planPath:replay,readingsPath:readings});
   if(replayReadings)console.error('Exact source, frozen plan, readout bytes and conditional result verified.');
