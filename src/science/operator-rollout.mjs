@@ -1,4 +1,5 @@
 import {predictEvolution,EvolutionDomainError} from './operator-synthesis.mjs';
+import {constantOscillatorFlow} from './affine-oscillator-flow.mjs';
 
 function need(ok,reason){if(!ok)throw new RangeError(reason);}
 function admit(kind,course) {
@@ -60,15 +61,20 @@ export function rolloutEvolution(model, experiment, substeps=1) {
 }
 function distance(a,b) {
   need(Array.isArray(b)&&a.length===b.length,'Incompatible trajectory length');
-  let squared=0,maxError=0,n=0;
+  let scaledSquares=0,maxError=0,n=0;
   for(let t=0;t<a.length;t++){
     need(Array.isArray(b[t])&&b[t].length===a[t].length&&b[t].every(Number.isFinite),'Incompatible measured states');
     for(let j=0;j<a[t].length;j++){
-      const e=Math.abs(a[t][j]-b[t][j]);maxError=Math.max(maxError,e);squared+=e*e;n++;
+      const e=Math.abs(a[t][j]-b[t][j]);
+      if(!Number.isFinite(e))throw new EvolutionDomainError('nonfinite_trajectory_error');
+      if(e>maxError) {
+        scaledSquares=scaledSquares*(maxError/e)**2+1;
+        maxError=e;
+      } else if(e>0) scaledSquares+=(e/maxError)**2;
+      n++;
     }
   }
-  need(Number.isFinite(squared),'Nonfinite trajectory error');
-  return {rmse:Math.sqrt(squared/n),maxError};
+  return {rmse:maxError*Math.sqrt(scaledSquares/n),maxError};
 }
 
 /** Score only simulated observations on the declared finite menu. Resolution is
@@ -99,7 +105,7 @@ export function designEvolutionExcitation(models, courses, {resolution=0, observ
       rolloutWork+=c.steps*c.initial.length*models.length*substeps;
       need(rolloutWork<=2000000,'Excitation menu exceeds rollout budget');
       const paths=models.map(model=>{
-        const path=rolloutEvolution(model,c,substeps);
+        const path=constantOscillatorFlow(model,c,substeps) ?? rolloutEvolution(model,c,substeps);
         return observedIndices===null?path:path.map(state=>observedIndices.map(j=>state[j]));
       });
       scores.push({id:c.id,substeps,gaps:pairs.map(([a,b])=>distance(paths[a],paths[b]).rmse)});
@@ -159,19 +165,20 @@ export function designEvolutionExcitation(models, courses, {resolution=0, observ
 
 export function verifyEvolutionRollout(model,course,observations,{maxError,resolutionTolerance}) {
   need([maxError,resolutionTolerance].every(x=>Number.isFinite(x)&&x>=0),'Declare finite rollout tolerances');
-  let coarse,fine;
+  let resolution,held;
   try {
     admit(model.kind,course);
     const {required,allowed}=forcingResolution(course);
     const fineSteps=Math.min(2*required,allowed);
-    coarse=rolloutEvolution(model,course,Math.floor(fineSteps/2));
-    fine=rolloutEvolution(model,course,fineSteps);
+    const coarseSteps=Math.floor(fineSteps/2);
+    const coarse=constantOscillatorFlow(model,course,coarseSteps) ?? rolloutEvolution(model,course,coarseSteps);
+    const fine=constantOscillatorFlow(model,course,fineSteps) ?? rolloutEvolution(model,course,fineSteps);
+    resolution=distance(coarse,fine);held=distance(fine,observations);
   }
   catch(err) {
     if(!(err instanceof EvolutionDomainError))throw err;
     return {accepted:false,reason:err.code,resolution:null,held:null};
   }
-  const resolution=distance(coarse,fine),held=distance(fine,observations);
   const reason=resolution.maxError>resolutionTolerance?'resolution_failure':held.maxError>maxError?'trajectory_mismatch':'within_tolerance';
   return {accepted:reason==='within_tolerance',reason,resolution,held};
 }
