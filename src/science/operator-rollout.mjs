@@ -1,5 +1,6 @@
 import {predictEvolution,EvolutionDomainError} from './operator-synthesis.mjs';
 import {constantOscillatorFlow} from './affine-oscillator-flow.mjs';
+import {periodicLinearPlan} from './periodic-linear-flow.mjs';
 
 function need(ok,reason){if(!ok)throw new RangeError(reason);}
 function admit(kind,course) {
@@ -102,10 +103,13 @@ export function designEvolutionExcitation(models, courses, {resolution=0, observ
   for(const c of courses){
     try {
       const substeps=forcingResolution(c).required;
-      rolloutWork+=c.steps*c.initial.length*models.length*substeps;
+      const plans=models.map(model=>periodicLinearPlan(model,c));
+      const cost=plans.reduce((sum,plan)=>sum+(plan?plan.work(substeps):c.steps*c.initial.length*substeps),0);
+      if(plans.some(Boolean)&&cost>2000000)throw new EvolutionDomainError('periodic_transition_budget');
+      rolloutWork+=cost;
       need(rolloutWork<=2000000,'Excitation menu exceeds rollout budget');
-      const paths=models.map(model=>{
-        const path=constantOscillatorFlow(model,c,substeps) ?? rolloutEvolution(model,c,substeps);
+      const paths=models.map((model,index)=>{
+        const path=plans[index]?.run(substeps) ?? constantOscillatorFlow(model,c,substeps) ?? rolloutEvolution(model,c,substeps);
         return observedIndices===null?path:path.map(state=>observedIndices.map(j=>state[j]));
       });
       scores.push({id:c.id,substeps,gaps:pairs.map(([a,b])=>distance(paths[a],paths[b]).rmse)});
@@ -171,8 +175,10 @@ export function verifyEvolutionRollout(model,course,observations,{maxError,resol
     const {required,allowed}=forcingResolution(course);
     const fineSteps=Math.min(2*required,allowed);
     const coarseSteps=Math.floor(fineSteps/2);
-    const coarse=constantOscillatorFlow(model,course,coarseSteps) ?? rolloutEvolution(model,course,coarseSteps);
-    const fine=constantOscillatorFlow(model,course,fineSteps) ?? rolloutEvolution(model,course,fineSteps);
+    const plan=periodicLinearPlan(model,course);
+    if(plan&&plan.work(coarseSteps)+plan.work(fineSteps)>2000000)throw new EvolutionDomainError('periodic_transition_budget');
+    const flow=steps=>plan?.run(steps) ?? constantOscillatorFlow(model,course,steps) ?? rolloutEvolution(model,course,steps);
+    const coarse=flow(coarseSteps),fine=flow(fineSteps);
     resolution=distance(coarse,fine);held=distance(fine,observations);
   }
   catch(err) {

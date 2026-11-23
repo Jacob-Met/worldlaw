@@ -2,6 +2,8 @@
 // Symbolic affine expressions use the same flow across equivalent source trees.
 import {EvolutionDomainError, predictEvolution} from './operator-synthesis.mjs';
 
+import {affineCoefficients} from './affine-operator-columns.mjs';
+
 const identity = () => [1,0,0,0,1,0,0,0,1];
 
 function multiply(a,b) {
@@ -33,39 +35,13 @@ function transition(a,b,h) {
   return result;
 }
 
-const fixedUnary = {sin: Math.sin, cos: Math.cos, abs: Math.abs, tanh: Math.tanh};
-
-function coefficients(tree, command) {
-  if (tree === 'position') return [1, 0, 0];
-  if (tree === 'rate') return [0, 1, 0];
-  if (tree === 'one' || tree === 'command') return [0, 0, tree === 'one' ? 1 : command];
-  const [operator, left, right] = tree;
-  const x = coefficients(left, command);
-  if (!x) return null;
-  const constant = row => row[0] === 0 && row[1] === 0;
-  let result;
-  if (right === undefined) {
-    if (!constant(x)) return null;
-    result = [0, 0, fixedUnary[operator](x[2])];
-  } else {
-    const y = coefficients(right, command);
-    if (!y) return null;
-    if (operator === 'add') result = x.map((v, i) => v + y[i]);
-    else if (operator === 'mul' && constant(x)) result = y.map(v => x[2] * v);
-    else if (operator === 'mul' && constant(y)) result = x.map(v => v * y[2]);
-    else if (operator === 'div' && constant(y) && y[2] !== 0) result = x.map(v => v / y[2]);
-    else return null;
-  }
-  return result.every(Number.isFinite) ? result : null;
-}
-
 export function constantOscillatorFlow(model,course,substeps=1) {
   if(model.kind!=='oscillator' || course.forcing.amplitude!==0) return null;
   const u=course.forcing.offset;
   predictEvolution(model,{position:course.initial[0],rate:course.initial[1],command:u});
   let a=0,b=0,c=0;
   for(const {tree,weight} of model.terms) {
-    const row = coefficients(tree, u);
+    const row = affineCoefficients(tree, ['position','rate'], {command:u});
     if (!row) return null;
     a += weight * row[0];
     b += weight * row[1];
