@@ -16,6 +16,14 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/qcm_polymer_overtone/README.md",
+    "research/qcm_polymer_overtone/audit_archives.py",
+    "research/qcm_polymer_overtone/layer_oracle.py",
+    "research/qcm_polymer_overtone/native-originals.json",
+    "research/qcm_polymer_overtone/oracle-receipt.json",
+    "research/qcm_polymer_overtone/replay.py",
+    "research/qcm_polymer_overtone/source-schema.json",
+    "research/qcm_polymer_overtone/traveling_wave.py",
     "research/hideg_oer_rotation/README.md",
     "research/hideg_oer_rotation/acquisition.py",
     "research/hideg_oer_rotation/forecast-lock.json",

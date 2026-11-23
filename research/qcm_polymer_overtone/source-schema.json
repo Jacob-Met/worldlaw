@@ -1,0 +1,400 @@
+{
+  "archives_2_3_4": {
+    "2. Fig 2 QCM-D Frequency and Dissipation Shifts.zip": {
+      "members": [
+        {
+          "crc32": "74b7b0ac",
+          "name": "2. Fig 2 QCM-D Frequency and Dissipation Shifts/2.1 Fig 2a Polysomers A6B34A6.csv",
+          "size": 574750,
+          "textual_header": [
+            "time ,f5 ,d5 ,type"
+          ]
+        },
+        {
+          "crc32": "c8555403",
+          "name": "2. Fig 2 QCM-D Frequency and Dissipation Shifts/2.2 Fig 2b Polymersomes A6B65A6.csv",
+          "size": 468766,
+          "textual_header": [
+            "time ,f5 ,d5 ,type"
+          ]
+        }
+      ],
+      "sha256": "3674419df0e40bb5be9e9622e27247628f4903d9d34eb383f35d5c08a91d8490"
+    },
+    "3. Fig 3 Changes of Viscoelastic Properties.zip": {
+      "members": [
+        {
+          "crc32": "2ce62de4",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.1 Fig 3a Upper Layer Thickness (QCM-D Determination)/3.1.1 Polysomers A3B22A3.csv",
+          "size": 887443
+        },
+        {
+          "crc32": "74b7b0ac",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.1 Fig 3a Upper Layer Thickness (QCM-D Determination)/3.1.2 Polysomers A6B34A6.csv",
+          "size": 574750
+        },
+        {
+          "crc32": "2b0df2cc",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.1 Fig 3a Upper Layer Thickness (QCM-D Determination)/3.1.3 Polysomers A7B42A7.csv",
+          "size": 483579
+        },
+        {
+          "crc32": "4b6e291c",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.1 Fig 3a Upper Layer Thickness (QCM-D Determination)/3.1.4 Polysomers A6B44A6.csv",
+          "size": 461839
+        },
+        {
+          "crc32": "c8555403",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.1 Fig 3a Upper Layer Thickness (QCM-D Determination)/3.1.5 Polysomers A6B65A6.csv",
+          "size": 468766
+        },
+        {
+          "crc32": "2ce62de4",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.2 Fig 3b Shear Elastic Modulus/3.2.1 Polysomers A3B22A3.csv",
+          "size": 887443
+        },
+        {
+          "crc32": "74b7b0ac",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.2 Fig 3b Shear Elastic Modulus/3.2.2 Polysomers A6B34A6.csv",
+          "size": 574750
+        },
+        {
+          "crc32": "2b0df2cc",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.2 Fig 3b Shear Elastic Modulus/3.2.3 Polysomers A7B42A7.csv",
+          "size": 483579
+        },
+        {
+          "crc32": "4b6e291c",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.2 Fig 3b Shear Elastic Modulus/3.2.4 Polysomers A6B44A6.csv",
+          "size": 461839
+        },
+        {
+          "crc32": "c8555403",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.2 Fig 3b Shear Elastic Modulus/3.2.5 Polysomers A6B65A6.csv",
+          "size": 468766
+        },
+        {
+          "crc32": "a21383fc",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.3 Fig 3c Upper Layer Thickness (SE Determination)/3.3.1 Polysomers A3B22A3.log",
+          "size": 368
+        },
+        {
+          "crc32": "77e000a1",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.3 Fig 3c Upper Layer Thickness (SE Determination)/3.3.2 Polysomers A6B34A6.log",
+          "size": 3545
+        },
+        {
+          "crc32": "f94b8f3e",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.3 Fig 3c Upper Layer Thickness (SE Determination)/3.3.3 Polysomers A7B42A7.log",
+          "size": 7523
+        },
+        {
+          "crc32": "4488db38",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.3 Fig 3c Upper Layer Thickness (SE Determination)/3.3.4 Polysomers A6B44A6.log",
+          "size": 6322
+        },
+        {
+          "crc32": "a21383fc",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.3 Fig 3c Upper Layer Thickness (SE Determination)/3.3.5 Polysomers A6B65A6.log",
+          "size": 368
+        },
+        {
+          "crc32": "2ce62de4",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.4 Fig 3d Differences of Thickness/3.4.1 Polysomers A3B22A3.csv",
+          "size": 887443
+        },
+        {
+          "crc32": "74b7b0ac",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.4 Fig 3d Differences of Thickness/3.4.2 Polysomers A6B34A6.csv",
+          "size": 574750
+        },
+        {
+          "crc32": "2b0df2cc",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.4 Fig 3d Differences of Thickness/3.4.3 Polysomers A7B42A7.csv",
+          "size": 483579
+        },
+        {
+          "crc32": "4b6e291c",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.4 Fig 3d Differences of Thickness/3.4.4 Polysomers A6B44A6.csv",
+          "size": 461839
+        },
+        {
+          "crc32": "c8555403",
+          "name": "3. Fig 3 Changes of Viscoelastic Properties/3.4 Fig 3d Differences of Thickness/3.4.5 Polysomers A6B65A6.csv",
+          "size": 468766
+        }
+      ],
+      "sha256": "d700be04b3ca2b90a5b4f8199385c571bc5152cd5c213bfcdc9df83a8b9b3fc3"
+    },
+    "4. Fig 4 Membrane Thickness Comparison.zip": {
+      "members": [
+        {
+          "crc32": "2ce62de4",
+          "name": "4. Fig 4 Membrane Thickness Comparison/4.1 Polysomers A3B22A3.csv",
+          "size": 887443
+        },
+        {
+          "crc32": "74b7b0ac",
+          "name": "4. Fig 4 Membrane Thickness Comparison/4.2 Polysomers A6B34A6.csv",
+          "size": 574750
+        },
+        {
+          "crc32": "2b0df2cc",
+          "name": "4. Fig 4 Membrane Thickness Comparison/4.3 Polysomers A7B42A7.csv",
+          "size": 483579
+        },
+        {
+          "crc32": "4b6e291c",
+          "name": "4. Fig 4 Membrane Thickness Comparison/4.4 Polysomers A6B44A6.csv",
+          "size": 461839
+        },
+        {
+          "crc32": "c8555403",
+          "name": "4. Fig 4 Membrane Thickness Comparison/4.5 Polysomers A6B65A6.csv",
+          "size": 468766
+        }
+      ],
+      "sha256": "67345fb678f7f518f0a3b1260b76e5e28165f6a11888943e854188dca73a3d48"
+    }
+  },
+  "remaining_archive_names": {
+    "1. Fig 1 Size and Morphology Characterization.zip": {
+      "names": [
+        "1. Fig 1 Size and Morphology Characterization/1.1 Fig 1a DLS Graphs_SL4_P65.ods",
+        "1. Fig 1 Size and Morphology Characterization/1.2 Fig 1b TEM Micrographs.zip"
+      ],
+      "sha256": "15ecbb225d5597b67b78d1e9f35e757e9cac4ae452ca55daf4b878e1d8c17f49"
+    },
+    "5. Fig 5 AFM Migrographs.zip": {
+      "names": [
+        "5. Fig 5 AFM Migrographs/5.1 Fig 5a Immobilized Thiol-Bearing A3B22A3.png",
+        "5. Fig 5 AFM Migrographs/5.2 Fig 5b left A6B34A6 Planar Membrane Formation.png",
+        "5. Fig 5 AFM Migrographs/5.3 Fig 5b middle A7B42A7 Membrane “Patches” Formation.png",
+        "5. Fig 5 AFM Migrographs/5.4 Fig 5b right A6B34A6 Deformed Polymersomes.png"
+      ],
+      "sha256": "a417db2fd448581b836925b356940ff58191827a659a20ea866b6e84168e64a3"
+    }
+  },
+  "csv_classes": {
+    "0903f65885de0e6b52286d5b0f95a8f66e39a1fd0b97f0c19ed5155f2cfc5e78": {
+      "categorical_types": [
+        "p65a",
+        "p65r"
+      ],
+      "channel_symbols": [],
+      "header": [
+        "time",
+        "f5",
+        "d5",
+        "type"
+      ],
+      "paths": [
+        "3. Fig 3 Changes of Viscoelastic Properties/3.1 Fig 3a Upper Layer Thickness (QCM-D Determination)/3.1.5 Polysomers A6B65A6.csv",
+        "3. Fig 3 Changes of Viscoelastic Properties/3.2 Fig 3b Shear Elastic Modulus/3.2.5 Polysomers A6B65A6.csv",
+        "3. Fig 3 Changes of Viscoelastic Properties/3.4 Fig 3d Differences of Thickness/3.4.5 Polysomers A6B65A6.csv",
+        "4. Fig 4 Membrane Thickness Comparison/4.5 Polysomers A6B65A6.csv",
+        "2. Fig 2 QCM-D Frequency and Dissipation Shifts/2.2 Fig 2b Polymersomes A6B65A6.csv"
+      ],
+      "repeated_header": 0,
+      "rows": 15244,
+      "width_exception_rows": [],
+      "widths": {
+        "4": 15244
+      }
+    },
+    "95948eb5cd5e7f0f7d998a4531fa8326dac637f2d0126506f81087c9b468727a": {
+      "categorical_types": [
+        "sl4_a",
+        "sl4_f",
+        "sl4_r"
+      ],
+      "channel_symbols": [],
+      "header": [
+        "time",
+        "f5",
+        "d5",
+        "type"
+      ],
+      "paths": [
+        "3. Fig 3 Changes of Viscoelastic Properties/3.1 Fig 3a Upper Layer Thickness (QCM-D Determination)/3.1.2 Polysomers A6B34A6.csv",
+        "3. Fig 3 Changes of Viscoelastic Properties/3.2 Fig 3b Shear Elastic Modulus/3.2.2 Polysomers A6B34A6.csv",
+        "3. Fig 3 Changes of Viscoelastic Properties/3.4 Fig 3d Differences of Thickness/3.4.2 Polysomers A6B34A6.csv",
+        "4. Fig 4 Membrane Thickness Comparison/4.2 Polysomers A6B34A6.csv",
+        "2. Fig 2 QCM-D Frequency and Dissipation Shifts/2.1 Fig 2a Polysomers A6B34A6.csv"
+      ],
+      "repeated_header": 0,
+      "rows": 22866,
+      "width_exception_rows": [],
+      "widths": {
+        "4": 22866
+      }
+    },
+    "a9d28300853afb916cb272d1cf7b3290fdc392b9633c4702f5e8e196ab794a37": {
+      "categorical_types": [
+        "sl2a",
+        "sl2r",
+        "sl2sf"
+      ],
+      "channel_symbols": [],
+      "header": [
+        "time",
+        "f3",
+        "d3",
+        "type"
+      ],
+      "paths": [
+        "3. Fig 3 Changes of Viscoelastic Properties/3.1 Fig 3a Upper Layer Thickness (QCM-D Determination)/3.1.3 Polysomers A7B42A7.csv",
+        "3. Fig 3 Changes of Viscoelastic Properties/3.2 Fig 3b Shear Elastic Modulus/3.2.3 Polysomers A7B42A7.csv",
+        "3. Fig 3 Changes of Viscoelastic Properties/3.4 Fig 3d Differences of Thickness/3.4.3 Polysomers A7B42A7.csv",
+        "4. Fig 4 Membrane Thickness Comparison/4.3 Polysomers A7B42A7.csv"
+      ],
+      "repeated_header": 0,
+      "rows": 15837,
+      "width_exception_rows": [],
+      "widths": {
+        "4": 15837
+      }
+    },
+    "b63f5061c3ef617c85ab6437c73c2c6737ae5dcbb306369fdd0643f4dd0c4e7f": {
+      "categorical_types": [],
+      "channel_symbols": [],
+      "header": [
+        "time",
+        "f3",
+        "d3",
+        "type",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "paths": [
+        "3. Fig 3 Changes of Viscoelastic Properties/3.1 Fig 3a Upper Layer Thickness (QCM-D Determination)/3.1.1 Polysomers A3B22A3.csv",
+        "3. Fig 3 Changes of Viscoelastic Properties/3.2 Fig 3b Shear Elastic Modulus/3.2.1 Polysomers A3B22A3.csv",
+        "3. Fig 3 Changes of Viscoelastic Properties/3.4 Fig 3d Differences of Thickness/3.4.1 Polysomers A3B22A3.csv",
+        "4. Fig 4 Membrane Thickness Comparison/4.1 Polysomers A3B22A3.csv"
+      ],
+      "repeated_header": 0,
+      "rows": 18023,
+      "width_exception_rows": [],
+      "widths": {
+        "11": 18023
+      }
+    },
+    "b9dfb00dfd1555aac18dfd67f2052e47c52ec8a71cf0271d72325c1c9d5b65d2": {
+      "categorical_types": [
+        "sl3a",
+        "sl3r",
+        "sl3sf"
+      ],
+      "channel_symbols": [],
+      "header": [
+        "time",
+        "f3",
+        "d3",
+        "type"
+      ],
+      "paths": [
+        "3. Fig 3 Changes of Viscoelastic Properties/3.1 Fig 3a Upper Layer Thickness (QCM-D Determination)/3.1.4 Polysomers A6B44A6.csv",
+        "3. Fig 3 Changes of Viscoelastic Properties/3.2 Fig 3b Shear Elastic Modulus/3.2.4 Polysomers A6B44A6.csv",
+        "3. Fig 3 Changes of Viscoelastic Properties/3.4 Fig 3d Differences of Thickness/3.4.4 Polysomers A6B44A6.csv",
+        "4. Fig 4 Membrane Thickness Comparison/4.4 Polysomers A6B44A6.csv"
+      ],
+      "repeated_header": 0,
+      "rows": 15188,
+      "width_exception_rows": [],
+      "widths": {
+        "4": 15188
+      }
+    }
+  },
+  "wide_field_counts": {
+    "field_populations": {
+      "(False, False, False, False, False, False, False, False, False, False, True)": 15,
+      "(False, False, False, False, False, True, False, False, False, False, True)": 2228,
+      "(True, True, True, True, False, False, False, False, False, False, False)": 2653,
+      "(True, True, True, True, False, False, False, False, True, True, False)": 3867,
+      "(True, True, True, True, False, False, True, True, False, False, False)": 3766,
+      "(True, True, True, True, False, False, True, True, False, True, True)": 3855,
+      "(True, True, True, True, False, True, False, False, False, False, True)": 10,
+      "(True, True, True, True, False, True, True, True, False, False, False)": 3,
+      "(True, True, True, True, False, True, True, True, False, False, True)": 1614,
+      "(True, True, True, True, False, True, True, True, False, True, True)": 12
+    },
+    "header": [
+      "time",
+      "f3 ",
+      "d3",
+      "type",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "nonnull": [
+      15780,
+      15780,
+      15780,
+      15780,
+      0,
+      3867,
+      9250,
+      9250,
+      3867,
+      7734,
+      7734
+    ],
+    "numeric_token_count": [
+      15780,
+      15780,
+      15780,
+      0,
+      0,
+      3867,
+      9249,
+      9249,
+      3867,
+      7734,
+      7734
+    ],
+    "numerical_values_reported": false,
+    "path": "3. Fig 3 Changes of Viscoelastic Properties/3.1 Fig 3a Upper Layer Thickness (QCM-D Determination)/3.1.1 Polysomers A3B22A3.csv",
+    "textual_labels": [
+      [],
+      [],
+      [],
+      [
+        "sl5a",
+        "sl5f",
+        "sl5r"
+      ],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ]
+  },
+  "wide_field_markers": [
+    {
+      "row_ordinal": 10277,
+      "col_ordinal": 7,
+      "label": "f3 [Hz]",
+      "matched_channel": true
+    },
+    {
+      "row_ordinal": 10277,
+      "col_ordinal": 8,
+      "label": "f3 [Hz]",
+      "matched_channel": true
+    }
+  ]
+}
