@@ -5,18 +5,20 @@
  */
 import {readFile,writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
+import {certifyThreePulseNoiseRadius,verifyThreePulseNoiseRadius} from '../src/science/position-drift-three-pulse-radius.mjs';
 import {BINARY_PLAN,MULTICLASS_PLAN} from '../src/science/active-guided-drift.mjs';
 import {certifyMulticlassPositionDriftMinimum} from '../src/science/persistent-position-drift-multiclass-minimum.mjs';
 import {planBinaryPositionDriftMinimum} from '../src/science/persistent-position-drift-all-horizon.mjs';
 import {parseActiveOriginalJSON} from '../src/science/active-position-drift-readout.mjs';
 import {recommendActiveFollowup,sealActivePlan,sealActiveReadout,replayActiveNotebook,receiveActiveNotebook,createActiveNotebook} from '../src/science/active-experiment-record.mjs';
-const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE | --recommend INDEX] [--output NEW_FILE] | --input FILE [--binary-minimum | --multiclass-minimum [--enumerate-through N --word-budget N]] --create-notebook --output NEW_FILE | --input FILE --binary-minimum [--output NEW_FILE] | --input FILE --multiclass-minimum [--enumerate-through N --word-budget N] [--output NEW_FILE]';
-let recommend=null,binaryMinimum=false,multiclassMinimum=false;
+const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE | --recommend INDEX] [--output NEW_FILE] | --input FILE [--binary-minimum | --multiclass-minimum [--enumerate-through N --word-budget N]] --create-notebook --output NEW_FILE | --input FILE --binary-minimum [--output NEW_FILE] | --input FILE --multiclass-minimum [--enumerate-through N --word-budget N] [--output NEW_FILE] | --input FILE --three-pulse-radius [--replay CERTIFICATE] [--output NEW_FILE]';
+let recommend=null,binaryMinimum=false,multiclassMinimum=false,threePulseRadius=false;
 const searchLimits={};
 let input='examples/active-linear-family-decays.json',output=null,replay=null,readings=null,replayReadings=null,notebook=null,inputChosen=false,createNotebook=false;
 const argv=process.argv.slice(2);
 for(let i=0;i<argv.length;i++){
   if(argv[i]==='--help'){console.log(usage);process.exit(0);}
+  if(argv[i]==='--three-pulse-radius'){threePulseRadius=true;continue;}
   if(argv[i]==='--multiclass-minimum'){multiclassMinimum=true;continue;}
   if(argv[i]==='--enumerate-through'||argv[i]==='--word-budget'){
     const key=argv[i]==='--enumerate-through'?'enumerateThrough':'wordBudget';
@@ -41,6 +43,7 @@ for(let i=0;i<argv.length;i++){
   else if(flag==='--replay-readings')replayReadings=value;
   else notebook=value;
 }
+if(threePulseRadius&&(!inputChosen||binaryMinimum||multiclassMinimum||createNotebook||notebook||readings||replayReadings||recommend!==null))throw Error(usage);
 if(binaryMinimum&&multiclassMinimum || Object.keys(searchLimits).length&&!multiclassMinimum)throw Error(usage);
 if((binaryMinimum||multiclassMinimum)&&(!inputChosen||notebook||readings||replay||replayReadings||recommend!==null))
   throw Error('A minimum-horizon request requires --input, optionally with --create-notebook and --output.');
@@ -52,7 +55,12 @@ if(notebook&&(inputChosen||replay||replayReadings||createNotebook))
 if(createNotebook&&(!inputChosen||!output||replay||readings||replayReadings))
   throw Error('--create-notebook requires --input and --output and no separate plan or readings.');
 let report;
-if(multiclassMinimum&&!createNotebook){
+if(threePulseRadius){
+  const request=parseActiveOriginalJSON(await readFile(input,'utf8'));
+  report=replay?parseActiveOriginalJSON(await readFile(replay,'utf8')):certifyThreePulseNoiseRadius(request);
+  verifyThreePulseNoiseRadius(request,report);
+  if(report.status==='design-budget-exhausted')process.exitCode=2;
+}else if(multiclassMinimum&&!createNotebook){
   report=certifyMulticlassPositionDriftMinimum(parseActiveOriginalJSON(await readFile(input,'utf8')),searchLimits);
 }else if(binaryMinimum&&!createNotebook){
   report=planBinaryPositionDriftMinimum(parseActiveOriginalJSON(await readFile(input,'utf8')));

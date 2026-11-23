@@ -179,3 +179,5 @@ export function receiveThreePulseHulls(plan,values){
 export function replayThreePulseHulls(request,saved){
   const rebuilt=planThreePulseHulls(request);need(equalPositionDriftData(rebuilt,saved),'saved policy or physical collision differs from source');return rebuilt;
 }
+
+export {prepare as prepareThreePulseHullRequest,physical as physicalThreePulseCollision};
