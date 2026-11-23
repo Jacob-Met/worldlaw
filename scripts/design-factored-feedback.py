@@ -9,9 +9,7 @@ from collections import defaultdict
 from functools import lru_cache
 from pathlib import Path
 import argparse, os, tempfile, importlib.util
-import numpy as np
-from scipy.sparse import coo_matrix
-from scipy.optimize import linprog
+from typing import NamedTuple
 import sys, json, warnings
 warnings.filterwarnings('ignore', message='Unrecognized options detected')
 
@@ -20,6 +18,7 @@ def rat(v):
     return F(float(v)).limit_denominator(1000000)
 
 def sparse_matrix(rows, width):
+    from scipy.sparse import coo_matrix
     ii = []
     jj = []
     data = []
@@ -31,22 +30,37 @@ def sparse_matrix(rows, width):
                 data.append(float(v))
     return coo_matrix((data, (ii, jj)), shape=(len(rows), width)).tocsr()
 
+def reconstruct_primal(proposal, rows, rhs, dual):
+    """Check every raw inequality, optionally removing the shared RHS denominator before rounding."""
+    from math import lcm
+
+    def denominators():
+        yield 1
+        common = lcm(*(F(q).denominator for q in rhs))
+        if common != 1 and common <= 2 ** 53:
+            yield common
+    expected = -sum((weight * rhs[i] for i, weight in dual.items()))
+    for scale in denominators():
+        x = [rat(v * scale) / scale for v in proposal]
+        den = lcm(*(v.denominator for v in x))
+        scaled = [int(v * den) for v in x]
+        if x[0] == expected and all((sum((v * scaled[j] for j, v in row.items())) <= b * den for row, b in zip(rows, rhs))):
+            break
+    else:
+        raise ArithmeticError('rational primal failed after RHS-aware reconstruction')
+    return x
+
 def solve_checked_lp(rows, rhs, width):
     """Use HiGHS to propose a basis, then check primal feasibility and the exact dual."""
+    import numpy as np
+    from scipy.optimize import linprog
     objective = np.zeros(width)
     objective[0] = 1
     result = linprog(objective, A_ub=sparse_matrix(rows, width), b_ub=np.asarray(rhs, dtype=float), bounds=(None, None), method='highs-ds', options={'threads': 1})
     if not result.success:
         raise ArithmeticError(result.message)
-    x = [rat(v) for v in result.x]
     dual = {i: rat(-v) for i, v in enumerate(result.ineqlin.marginals) if v < -1e-12}
-    # Matrix and point are scaled to integers for fast, exact row checks.
-    from math import lcm
-    den = lcm(*(v.denominator for v in x))
-    scaled = [int(v * den) for v in x]
-    for row, b in zip(rows, rhs):
-        if sum((v * scaled[j] for j, v in row.items())) > b * den:
-            raise ArithmeticError('rational primal failed')
+    x = reconstruct_primal(result.x, rows, rhs, dual)
     coeff = defaultdict(F)
     value = F(0)
     for i, w in dual.items():
@@ -95,8 +109,88 @@ def position_rows(words, vertices):
                 for sign in (1, -1):
                     row({**{j: v * sign for j, v in z.items()}, 0: -1}, -sign * disp[-1])
     return (coords, rows, rhs)
+SNAPSHOTS_PER_BLOCK = 6
 
-def solve_suffix_block(words, vertices, outer, values):
+class BlockSnapshot(NamedTuple):
+    ancestor_key: tuple
+    radius: F
+    cut: dict
+    constant: F
+    dual: dict
+    bands: tuple
+
+    def lower_at(self, values):
+        return sum((v * values[j] for j, v in self.cut.items() if j)) - self.constant
+
+def primal_bands(words, vertices, outer, coords, private, x):
+    """Extrema of all raw pinned tubes and the worst remaining private residual."""
+    depth = next((t for t in range(2, len(words[0]) + 2) if ('y', words[0][:t]) not in outer))
+    from math import lcm
+    denominator = lcm(*(v.denominator for v in x))
+    x = [int(v * denominator) for v in x]
+    lows = [None] * depth
+    highs = [None] * depth
+    fixed = F(0)
+    for w in words:
+        for law, vs in enumerate(vertices):
+            start = x[private[coords[w, law, 'p']]]
+            drift = x[private[coords[w, law, 'v']]]
+            masses = [x[private[coords[w, law, i]]] for i in range(len(vs) - 1)]
+            masses.append(denominator - sum(masses))
+            pos = start
+            for t in range(len(w) + 1):
+                if t:
+                    pos += drift + sum((m * v[w[t - 1]] for m, v in zip(masses, vs)))
+                if t < depth:
+                    lows[t] = pos if lows[t] is None else min(lows[t], pos)
+                    highs[t] = pos if highs[t] is None else max(highs[t], pos)
+                else:
+                    fixed = max(fixed, abs(pos - x[private[coords['y', w[:t]]]]))
+    return (tuple((F(v, denominator) for v in lows)), tuple((F(v, denominator) for v in highs)), F(fixed, denominator))
+
+def gauge_witness(bands, key, radius):
+    """Find one offset and drift satisfying all old source states at new shared readings."""
+    lows, highs, fixed = bands
+    if fixed > radius:
+        return None
+    reads = (0, 0) + key
+    if len(lows) != len(reads) or len(highs) != len(reads):
+        raise ValueError('gauge certificate has the wrong number of ancestral ticks')
+    low = [y - c - radius for y, c in zip(reads, lows)]
+    high = [y - c + radius for y, c in zip(reads, highs)]
+    if any((a > b for a, b in zip(low, high))):
+        return None
+    left = None
+    right = None
+    for j in range(1, len(low)):
+        for i in range(j):
+            a = F(low[j] - high[i], j - i)
+            b = F(high[j] - low[i], j - i)
+            left = a if left is None else max(left, a)
+            right = b if right is None else min(right, b)
+            if left > right:
+                return None
+    slope = left
+    offset = max((v - t * slope for t, v in enumerate(low)))
+    if not all((a <= offset + t * slope <= b for t, (a, b) in enumerate(zip(low, high)))):
+        raise ArithmeticError('invalid source-tube affine correction')
+    return (offset, slope)
+
+def zero_vertices(words, vertices):
+    """Each selected source vertex admits a zero trajectory along its entire leaf."""
+    choices = []
+    for w in words:
+        controls = set(w)
+        pair = []
+        for vs in vertices:
+            selected = next((j for j, row in enumerate(vs) if all((row[c] == row[w[0]] for c in controls))), None)
+            if selected is None:
+                return None
+            pair.append(selected)
+        choices.append(pair)
+    return choices
+
+def solve_suffix_block(words, vertices, outer, values, summarize=False):
     """Pin only shared ancestors; lift the local noise dual to a valid master cut."""
     coords, rows, rhs = position_rows(words, vertices)
     shared = {i: outer[k] for k, i in coords.items() if k != 'e' and k in outer}
@@ -114,6 +208,9 @@ def solve_suffix_block(words, vertices, outer, values):
     cut[0] = -1
     if sum((v * values[j] for j, v in cut.items() if j)) - constant != x[0]:
         raise ArithmeticError('invalid lifted supporting cut')
+    if summarize:
+        bands = primal_bands(words, vertices, outer, coords, private, x)
+        return (x[0], cut, constant, dual, None, pivots, len(rows), len(private), bands)
     return (x[0], cut, constant, dual, x, pivots, len(rows), len(private))
 
 def design(vertices, prefix, horizon, wordset=None, rounds=32, split=None, block_limit=128, word_limit=16):
@@ -147,33 +244,87 @@ def design(vertices, prefix, horizon, wordset=None, rounds=32, split=None, block
         stats['peakRows'] = max(stats['peakRows'], n)
         stats['peakWidth'] = max(stats['peakWidth'], k)
         stats['peakTerminalLeaves'] = max(stats['peakTerminalLeaves'], term)
-    cached = {}
+    cached = {p: [] for p in prefixes}
+    groups = defaultdict(list)
+    for p in prefixes:
+        groups[p[:-1]].append(p)
+    zero_bands = ((F(0),) * depth, (F(0),) * depth, F(0))
+    zero_blocks = set()
+    for p in prefixes:
+        if zero_vertices(words(p), vertices) is not None:
+            zero_blocks.add(p)
+    stats.update(exactHits=0, primalHits=0, envelopeChecks=0, primalBuilds=0, cutHits=0, deferredBlocks=0, zeroHits=0, zeroBlocks=len(zero_blocks))
     best = None
     lo = None
-    for mode in range(rounds):
+    for iteration in range(rounds):
         values, multipliers, piv = solve_checked_lp([r for r, h, b, d in cuts], [h for r, h, b, d in cuts], len(outer))
         charge(len(cuts), len(outer), piv, 0)
         lo = values[0]
         mused = [(cuts[j], w) for j, w in multipliers.items()]
         added = []
         high = F(0)
-        for p in prefixes:
-            # The cache retains only one block result per separator value, with no block matrices.
-            key = tuple((values[outer['y', p[:t]]] for t in range(2, depth)))
-            if p not in cached or cached[p][0] != key:
-                tapes = words(p)
-                result = solve_suffix_block(tapes, vertices, outer, values)
-                r, cut, bound, dual, x, piv, n, k = result
-                charge(n, k, piv, len(tapes))
-                cached[p] = (key, (r, cut, bound, dual))
-            r, cut, bound, dual = cached[p][1]
-            high = max(high, r)
-            if r > lo:
-                ident = (tuple(sorted(cut.items())), bound)
-                if ident not in known:
-                    known.add(ident)
-                    added.append((cut, bound, p, dual))
-        if best is None or high < best[0]:
+        # A lower cut may defer siblings. Update the upper bound only after full coverage.
+        complete = True
+        for group in groups.values():
+            key = tuple((values[outer['y', group[0][:t]]] for t in range(2, depth)))
+
+            def risk(p):
+                return max((record.lower_at(values) for record in cached[p]), default=F(0))
+            ordered = sorted(group, key=lambda p: (-risk(p), p))
+            for index, p in enumerate(ordered):
+                records = cached[p]
+                keycut = None
+                for record in reversed(records):
+                    if record.lower_at(values) > lo:
+                        keycut = (record.cut, record.constant, record.dual)
+                        break
+                if keycut is not None and iteration:
+                    cut, bound, dual = keycut
+                    stats['cutHits'] += 1
+                    ident = (tuple(sorted(cut.items())), bound)
+                    if ident not in known:
+                        known.add(ident)
+                        added.append((cut, bound, p, dual))
+                    complete = False
+                    stats['deferredBlocks'] += len(ordered) - index - 1
+                    break
+                if p in zero_blocks and gauge_witness(zero_bands, key, lo) is not None:
+                    high = max(high, lo)
+                    stats['zeroHits'] += 1
+                    continue
+                hit = next((record for record in records if record.ancestor_key == key), None)
+                if hit is not None:
+                    r, cut, bound, dual = (hit.radius, hit.cut, hit.constant, hit.dual)
+                    stats['exactHits'] += 1
+                else:
+                    good = False
+                    for record in reversed(records):
+                        stats['envelopeChecks'] += 1
+                        if gauge_witness(record.bands, key, lo) is not None:
+                            good = True
+                            break
+                    if good:
+                        high = max(high, lo)
+                        stats['primalHits'] += 1
+                        continue
+                    tapes = words(p)
+                    r, cut, bound, dual, x, piv, n, k, bands = solve_suffix_block(tapes, vertices, outer, values, True)
+                    charge(n, k, piv, len(tapes))
+                    stats['primalBuilds'] += 1
+                    records.append(BlockSnapshot(key, r, cut, bound, dual, bands))
+                    if len(records) > SNAPSHOTS_PER_BLOCK:
+                        records.pop(0)
+                high = max(high, r)
+                if r > lo:
+                    ident = (tuple(sorted(cut.items())), bound)
+                    if ident not in known:
+                        known.add(ident)
+                        added.append((cut, bound, p, dual))
+                    if iteration and index + 1 < len(ordered):
+                        complete = False
+                        stats['deferredBlocks'] += len(ordered) - index - 1
+                        break
+        if complete and (best is None or high < best[0]):
             best = (high, values[:])
         hist.append([str(lo), str(best[0]), len(cuts), len(added)])
         if lo == best[0] or not added:
@@ -186,7 +337,7 @@ def design(vertices, prefix, horizon, wordset=None, rounds=32, split=None, block
 
 def proof_lines(commands, law_ids, vertices, plan, data, summary):
     """Stream the best verified upper worlds and expand the master's lower proof."""
-    export = dict(solves=0, pivots=0, rowsProcessed=0)
+    export = dict(solves=0, pivots=0, rowsProcessed=0, zeroWorldBlocks=0)
     summary['export'] = export
     prefixes, outer, (upper, values), active = data
     h = plan['horizon']
@@ -209,6 +360,24 @@ def proof_lines(commands, law_ids, vertices, plan, data, summary):
     yield {'type': 'header', 'schema': 'worldlaw.factored-feedback-certificate/v1', 'plan': plan, 'commands': commands, 'lawIds': law_ids, 'vertices': [[[str(q) for q in row] for row in vs] for vs in vertices], 'status': summary['status'], 'lower': summary['lower'], 'upper': summary['upper'], 'domain': str(domain), 'shared': [[list(key[1]), str(values[i])] for key, i in outer.items() if key != 'e']}
     for p in prefixes:
         ws = block_words(p)
+        choices = zero_vertices(ws, vertices)
+        bands = ((F(0),) * split, (F(0),) * split, F(0))
+        pinned = tuple((values[outer['y', p[:t]]] for t in range(2, split)))
+        change = gauge_witness(bands, pinned, upper) if choices is not None else None
+        if change is not None:
+            origin, velocity = change
+            physical = []
+            for w, chosen in zip(ws, choices):
+                pair = []
+                for l, j in enumerate(chosen):
+                    rate = vertices[l][j][w[0]]
+                    pair.append([str(origin), str(velocity - rate), *[str(int(k == j)) for k in range(len(vertices[l]) - 1)]])
+                physical.append(pair)
+            histories = sorted(set((w[:t] for w in ws for t in range(split, h))))
+            observations = [[list(w), str(origin + len(w) * velocity)] for w in histories]
+            export['zeroWorldBlocks'] += 1
+            yield {'type': 'block', 'prefix': list(p), 'readings': observations, 'worlds': physical, 'lower': [[i, str(weight)] for i, weight in sorted(combined[p].items()) if weight]}
+            continue
         r, _, _, _, x, pivots, row_count, _ = solve_suffix_block(ws, vertices, outer, values)
         export['solves'] += 1
         export['pivots'] += pivots
