@@ -812,6 +812,23 @@ try{
   assert.deepEqual(JSON.parse(cli(['--notebook',simplexAliasFile]).stdout),simplexAlias);
   mark('persistent simplex region and a strictly interior three-way alias survive browser and CLI replay');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftMinimax');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/require 49 pulses/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#acquisition-kind').selectOption('synthetic');await page.locator('#readout-source').fill('Uniform mixture with two aggregate command blocks');
+  for(const [tick,value] of [[0,'0'],[25,'0'],[33,'8/3']])await page.locator('#drift-reading-'+tick).fill(value);
+  await page.locator('#evaluate-readings').click();await idle();await page.reload();await idle();await openDetails('supplied-details');
+  await page.locator('#drift-reading-41').fill('16/3');await page.locator('#drift-reading-49').fill('8');
+  await page.locator('#evaluate-readings').click();await idle();
+  const minimaxBook=await accepted();assert.deepEqual(minimaxBook.readouts.at(-1).result.consistentHypothesisIds,['B']);
+  const minimaxFile=await download('export-notebook','minimax-horizon.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',minimaxFile]).stdout),minimaxBook);
+  await openDetails('source-details');await page.locator('#new-draft').click();await idle();
+  await page.locator('#noise-bound').fill('0');await page.locator('#replan').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/between 2 and 4 pulses/);
+  mark('persistent binary minimax certifies 49, while unmatched integer bounds stay open after a changed noise input');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';
