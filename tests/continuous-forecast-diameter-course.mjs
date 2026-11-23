@@ -42,7 +42,7 @@ for(const {id,models:raw} of rosters){
   const models=raw.map(m=>({schema:'worldlaw.torque-model/v1',id:m.id,
     terms:Object.entries(m.terms).map(([id,coefficient])=>({id,coefficient}))}));
   const pairs=[];for(let i=0;i<models.length;i++)for(let j=i+1;j<models.length;j++)pairs.push([i,j]);
-  let coarse, previous, maxTraceChange=0, domainChanges=0;
+  let previous, maxTraceChange=0, domainChanges=0;
   const estimates=[];
   for(const h of options.rk4Steps) {
     const bank=designs.map(t=>traces(models,t,h));
@@ -60,6 +60,7 @@ for(const {id,models:raw} of rosters){
     }
     const entry={h,admissibleDesigns:ids.length,admissibleStress:tested.filter(Boolean).length,
       planCount:result.planCount,minExperiments:result.minimumExperiments,
+      minimumDesignIndices:result.minimumPlan?.map(i=>ids[i]) ?? null,
       best:summarize(result.best,tested,ids,pairs),maximin:summarize(result.maximin,tested,ids,pairs),
       randomMeanPlanningDiameterSigma:result.uniformMeanDiameter,
       actionablePairs:result.envelope.filter(x=>x>3).length,pairCount:pairs.length,
@@ -68,5 +69,11 @@ for(const {id,models:raw} of rosters){
     previous=all;
   }
   assert.equal(domainChanges,0);
+  const [coarse, fine] = estimates;
+  assert.deepEqual(coarse.best.designIndices, fine.best.designIndices);
+  assert.deepEqual(coarse.best.ambiguousPairs, fine.best.ambiguousPairs);
+  assert.deepEqual(coarse.minimumDesignIndices, fine.minimumDesignIndices);
+  // A difference of two trajectories changes by at most twice the largest trace change.
+  assert.ok(2 * maxTraceChange / sigma < fine.closestSeparationMarginSigma);
   console.log(JSON.stringify({id,modelIds:models.map(m=>m.id),estimates,maxTraceChange,domainChanges}));
 }
