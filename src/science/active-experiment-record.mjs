@@ -19,7 +19,7 @@ import {TWO_PULSE_SCHEMA,designTwoPulse,receiveTwoPulse} from './active-integrat
 
 import {CATALOG_SCHEMA} from './persistent-position-drift-planner.mjs';
 import {planAllHorizonPositionDrift} from './persistent-position-drift-all-horizon.mjs';
-import {ACTIVE_DRIFT_PLAN,evaluateActiveDriftInput} from './active-position-drift-readout.mjs';
+import {ACTIVE_DRIFT_PLAN,evaluateActiveDriftInput,parseActiveOriginalJSON} from './active-position-drift-readout.mjs';
 
 export const ACTIVE_EXPERIMENT_NOTEBOOK_SCHEMA='worldlaw.active-experiment-notebook/v1';
 const encoder=new TextEncoder();
@@ -37,7 +37,7 @@ export async function activeBytesSHA256(value){
   return [...new Uint8Array(result)].map(byte=>byte.toString(16).padStart(2,'0')).join('');
 }
 function source(bytes){
-  const request=JSON.parse(decoder.decode(bytes));
+  const request=parseActiveOriginalJSON(decoder.decode(bytes));
   const multiple=request?.schema===ACTIVE_INTERVENTION_SCHEMA;
   const bounded=request?.schema===ACTIVE_LINEAR_CONTROL_BOX_SCHEMA;
   const joint=request?.schema===ACTIVE_LINEAR_JOINT_CONTROL_SCHEMA;
@@ -92,7 +92,7 @@ export async function sealActiveReadout(original,plan,readings,{prior=null,sourc
   const {request,vandermonde}=source(sourceBytes);
   need(request.schema!==ACTIVE_LINEAR_ADAPTIVE_SCHEMA&&request.schema!==TWO_PULSE_SCHEMA,
     'Adaptive readings require the original portable notebook and its complete preceding transcript.');
-  const supplied=JSON.parse(decoder.decode(readingBytes));
+  const supplied=parseActiveOriginalJSON(decoder.decode(readingBytes));
   need(supplied.sourceSHA256===frozen.sourceSHA256&&supplied.planSHA256===frozen.planSHA256,
     'Readout source or plan digest does not match the frozen prospective certificate.');
   const core=Object.fromEntries(Object.entries(frozen).filter(([key])=>
@@ -128,7 +128,7 @@ function notebookObject(raw){
   const text=typeof raw==='string'?raw:JSON.stringify(raw);
   need(typeof text==='string'&&encoder.encode(text).byteLength<=8388608,
     'An experiment notebook must be at most 8 MiB.');
-  const book=JSON.parse(text);
+  const book=parseActiveOriginalJSON(text);
   need(book&&typeof book==='object'&&!Array.isArray(book)&&
     book.schema===ACTIVE_EXPERIMENT_NOTEBOOK_SCHEMA,'Choose an active experiment notebook v1.');
   need(Object.keys(book).sort().join(',')==='plan,readouts,schema,sourceText',
