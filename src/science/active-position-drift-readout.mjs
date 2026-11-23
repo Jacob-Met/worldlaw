@@ -5,6 +5,24 @@ export const ACTIVE_DRIFT_PLAN='worldlaw.position-drift-all-horizon-policy/v1';
 export const ACTIVE_DRIFT_CHECKPOINTS='worldlaw.active-position-drift-checkpoints/v1';
 export const ACTIVE_DRIFT_TRACE='worldlaw.active-position-drift-gauge-input/v1';
 const need=(ok,message)=>{if(!ok)throw Error(message);};
+
+// JSON.parse rounds a number before a schema validator can inspect it.
+// On exact drift documents, a bare number must be an actual safe integer
+// token. Strings may contain arbitrary digits and keep their original bytes.
+export function parseActiveOriginalJSON(text){
+  const data=JSON.parse(text);
+  const schema=data?.schema;
+  if(schema!=='worldlaw.position-drift-rate-catalog/v1' && schema!==ACTIVE_DRIFT_PLAN &&
+     schema!==ACTIVE_DRIFT_CHECKPOINTS && schema!==ACTIVE_DRIFT_TRACE &&
+     schema!=='worldlaw.active-position-drift-checkpoint-result/v1' &&
+     schema!=='worldlaw.active-position-drift-gauge-result/v1' && data?.plan?.schema!==ACTIVE_DRIFT_PLAN)return data;
+  for(const [token] of text.matchAll(/"(?:\\.|[^"\\])*"|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g)){
+    if(token[0]!=='"')need(/^-?\d+$/.test(token) && Number.isSafeInteger(Number(token)),
+      'A bare position/drift number must be a safe integer token. Use a quoted exact integer or rational string.');
+  }
+  return data;
+}
+
 function fields(value,expected){
   need(value && typeof value==='object' && !Array.isArray(value) &&
     Object.keys(value).sort().join(',')===[...expected].sort().join(','),
