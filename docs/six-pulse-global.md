@@ -27,9 +27,9 @@ The independent fixed-mixture midpoint control gives 1/16 for every command word
 
 ## Three bounded searches and their physical upper witnesses
 
-Three numerical LP proposals failed exact rational primal reconstruction. The original runs stopped at that point, and their proofs remain in the shards. The source-only refinements below use fixed mixtures and retain every original bound. The other 61 first pairs have exact individual radii.
+Three numerical LP proposals failed exact rational primal reconstruction. The original runs stopped at that point, and their proofs remain in the shards. The source-only refinements below use fixed mixtures and retain every original bound. The other 61 first pairs have exact individual radii. The three stopped prefixes completed 3, 10 and 3 design rounds. They had 4, 11 and 3 verified master solves, respectively. The first two retained tighter lower bounds from the master preceding the rejected suffix proposal.
 
-| Initial pair | Completed master rounds | Original search interval | Independently replayed interval |
+| Initial pair | Completed design rounds | Original search interval | Independently replayed interval |
 | --- | ---: | --- | --- |
 | z0 / y0 | 3 | [5/163, 1/16] | [5/163, 1/20] |
 | y1 / y0 | 10 | [5/147, 1/16] | [5/147, 1/20] |
