@@ -1,6 +1,6 @@
 # The grouped families' unrestricted five-pulse noise radius
 
-The largest first-failure radius over all five-pulse feedback policies is **1/29** for the eight-command grouped catalog. The only optimal first pair is `ref, ref`. The runner-up, `group, ref`, first fails at 1/31. The previously exhibited four-leaf program attains 1/29. At equality **every** five-pulse policy now has a physical collision, so at least six pulses are required. The exact minimum remains five on 1/40 ≤ ε < 1/29. This proof leaves the upper horizon at ε = 1/29 open.
+The largest first-failure radius over all five-pulse feedback policies is **1/29** for the eight-command grouped catalog. The only optimal first pair is `ref, ref`. The runner-up, `group, ref`, first fails at 1/31. The previously exhibited four-leaf program attains 1/29. At equality **every** five-pulse policy now has a physical collision, so at least six pulses are required. The exact minimum remains five on 1/40 ≤ ε < 1/29. The [six-pulse physical tree](persistent-feedback-tree.md) attains six there.
 
 ## Replay the physical result
 
