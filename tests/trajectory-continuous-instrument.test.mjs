@@ -144,3 +144,28 @@ test('paid short-window observation and its original residual survive a refused 
   assert.equal(restored.status,'refit_refused');
   assert.deepEqual(restored.history,result.history);
 });
+
+test('session setup validates and owns every calibration world and round before prospective planning',()=>{
+  const {d,setup}=loopSetup();
+  const valid={schema:'worldlaw.residual-calibration/v1',policyId:setup.policyId,alpha:.05,maxRounds:1,
+    roundScoresByWorld:[{worldId:'cal-A',scores:[.5]},{worldId:'cal-B',scores:[1.5]}]};
+  for(const edit of [
+    x=>{x.schema='unknown';},x=>{delete x.schema;},x=>{x.alpha=1;},x=>{x.policyId='another';},
+    x=>{x.maxRounds=2;for(const row of x.roundScoresByWorld)row.scores.push(0);},
+    x=>{x.roundScoresByWorld[1].worldId='cal-A';},x=>{x.roundScoresByWorld[0].worldId=setup.worldId;},
+    x=>{x.roundScoresByWorld[1].scores=[];},x=>{x.roundScoresByWorld[1].scores[0]=-1;},
+    x=>{x.roundScoresByWorld[1].scores[0]=NaN;},x=>{x.roundScoresByWorld=[];}
+  ]){
+    const calibration=structuredClone(valid);edit(calibration);
+    assert.throws(()=>createContinuousSession({...setup,calibration}),RangeError);
+  }
+  const session=createContinuousSession({...setup,calibration:valid});
+  valid.roundScoresByWorld[0].scores[0]=99;
+  assert.equal(session.calibration.roundScoresByWorld[0].scores[0],.5);
+  // Two reference worlds are valid data but cannot resolve alpha=.05.
+  const pending=planNextContinuous(session),req=continuousRequest(pending);
+  assert.equal(d.usage().acquired,2);
+  const result=receiveContinuous(pending,{request:req,run:d.acquire(req)});
+  assert.equal(result.history[0].assessment.status,'insufficient_calibration');
+  assert.equal(result.history[0].assessment.n,2);
+});

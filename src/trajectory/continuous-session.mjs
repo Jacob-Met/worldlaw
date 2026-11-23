@@ -4,7 +4,7 @@ import {planContinuousExperiment} from './continuous-planner.mjs';
 import {rollout} from './forward.mjs';
 import {RUN_UNITS} from './data.mjs';
 import {receiveContinuousRun,commandSamples} from './controlled-instrument.mjs';
-import {residualScore,assessResidual} from './residual-abstention.mjs';
+import {residualScore,assessResidual,createResidualCalibration} from './residual-abstention.mjs';
 const states=new WeakMap();
 const clone=x=>JSON.parse(JSON.stringify(x));
 const check=(ok,text)=>{if(!ok)throw new RangeError(text);};
@@ -42,14 +42,17 @@ export function createContinuousSession({trainingRuns,fitOptions,plannerConfig,
   check(new Set(runs.map(r=>r.id)).size===runs.length,'Duplicate source evidence identity');
   check(plannerConfig.noiseSigma===fitOptions.noiseSigma,'Fit/planning noise disagree');
   check(runs.every(r=>r.inertia===plannerConfig.inertia),'Source/planning inertias disagree');
-  const discovery=discoverWeak(runs,fitOptions);
-  if(calibration){
-    check(calibration.policyId===policyId&&calibration.maxRounds===maxRounds,'Calibration policy/horizon mismatch');
-    check(!calibration.roundScoresByWorld.some(row=>row.worldId===worldId),'Test world overlaps calibration');
+  let reference=null;
+  if(calibration!==null){
+    reference=createResidualCalibration(calibration);
+    check(calibration.schema===reference.schema,'Unsupported calibration schema');
+    check(reference.policyId===policyId&&reference.maxRounds===maxRounds,'Calibration policy/horizon mismatch');
+    check(!reference.roundScoresByWorld.some(row=>row.worldId===worldId),'Test world overlaps calibration');
   }
+  const discovery=discoverWeak(runs,fitOptions);
   return expose({schema:'worldlaw.continuous-discovery-session/v1',policy,policyId,worldId,seed,maxRounds,
     baseTrainingRuns:clone(runs),trainingRuns:runs,fitOptions:clone(fitOptions),
-    plannerConfig:clone(plannerConfig),calibration:calibration?clone(calibration):null,
+    plannerConfig:clone(plannerConfig),calibration:reference,
     discovery,status:'ready',history:[],pending:null,events:[{type:'source_fit',rows:runs.reduce((n,r)=>n+r.samples.length,0)}]});
 }
 function randomPlan(models,c,seed){
