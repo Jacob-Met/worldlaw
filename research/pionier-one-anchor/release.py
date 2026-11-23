@@ -63,7 +63,7 @@ def projected_tables(path, targets=False):
         epochs = stars[current]["epochs"]
         row = {"mjd":float(cells[0]),"fixed_flux":"*" in cells[1]}
         if not epochs or targets:
-            row.update(rho=float(cells[2]),pa=float(cells[3]))
+            row.update(rho=float(cells[2].replace("$-$","-")),pa=float(cells[3].replace("$-$","-")))
         epochs.append(row)
     if tuple(stars) != STARS or [len(stars[s]["epochs"]) for s in STARS] != [10,6,7]:
         raise ValueError("Three-star roster")
