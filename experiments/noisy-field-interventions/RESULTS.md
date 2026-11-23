@@ -12,9 +12,9 @@ Each noise band contains 44 in-roster cases. At 15, 25 and 40 dB, active recover
 
 All six hidden-Z Lorenz cases were rejected by every arm. For delay feedback at outer seed 155331, the active arm admitted van der Pol at both 15 and 25 dB, with standardized forecast errors 1.960 and 1.561 under the registered threshold 3. Rejecting scrambled time series did not suffice for rejecting an ordered trajectory from unmodelled dynamics.
 
-## Native reproduction
+## Shared-workspace CPU reproduction
 
-Node v24.22.3 ran the exact source at `39bf51ef024b5401f89a87530c012235f3145317` from a clean RAM-backed working directory. The six scientific input files matched the commit's Git blob IDs before execution. All three Node unit tests passed. The originally submitted tagged test job `j-build-620ba495a0771bb68d1e8f50` had zero attempts and was cancelled before assignment. It supplied no scientific observations.
+The shared-workspace CPU ran Node v24.22.3 through the local shell, using the exact source at `39bf51ef024b5401f89a87530c012235f3145317` from a clean RAM-backed working directory. The six scientific input files matched the commit's Git blob IDs before execution. All three Node unit tests passed. The originally submitted tagged test job `j-build-620ba495a0771bb68d1e8f50` had zero attempts and was cancelled before assignment. It supplied no scientific observations. No Renpō worker executed this course. GitHub Actions ran the repository’s hosted verification separately.
 
 Run `node scripts/noisy-field-course.mjs /tmp/noisy-field-result.json` to regenerate the course. Run `node scripts/replay-noisy-field-course.mjs experiments/noisy-field-interventions/result.json` to recount the retained decisions. The independent replay found all 144 unique registered cells, checked row decisions for all three arms, and reproduced the rejection. Five mutated receipts were refused separately: a missing row, changed aggregate, unregistered seed, changed sham decision and wrong protocol digest.
 
