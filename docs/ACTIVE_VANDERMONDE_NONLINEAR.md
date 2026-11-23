@@ -198,8 +198,9 @@ timeline. If the rows of `W` span the left nullspace of `O`, the row space
 of `W H` contains precisely the estimable coefficient functionals. The
 plan returns a canonical basis of this space, a reading-weight vector for
 each functional and compensating initial-state shifts for every basis
-direction of its nullspace. With bounded noise the reported interval uses
-the stated witness's L1 norm. It is an outer bound for that functional.
+direction of its nullspace. With bounded noise, `estimate` and `interval` use this witness and its
+L1 norm. A witness estimate can fall outside the values compatible with
+all readings.
 Full-family consistency and compatible catalog IDs use every affine-image
 circuit and include the noise boundary.
 
@@ -218,3 +219,28 @@ unknown position and drift. With unit noise, zero and identity are
 separated at exact affine-image distance `5/2`, above the two-noise
 threshold of 2. The equality case `[-4,4]` admits the same readout
 `[1,-1,1]` under both laws. These checks use synthetic measurements.
+
+### Feasible coefficient ranges on a continuous timeline
+
+A v2 timeline result gives `feasibleInterval` for each identifiable
+coefficient functional. Both endpoints are attainable across the complete
+episode, possibly with different initial states, error vectors, and other
+coefficients. Different functionals' endpoints may also require different
+solutions. The list of intervals gives the individual projections of the
+feasible family.
+
+For a chosen functional `t = l theta`, substitute one coefficient in terms
+of `t` and the remaining coefficients. The readings then take the form
+`y = D beta + h t + e`, where `beta` includes all unknown initial states.
+Every circuit `w` of the left nullspace of `D` gives
+`|w y - (w h) t| <= noiseBound * ||w||1`. Together these inequalities
+characterize intersection with the closed reading-error box. Their tightest
+lower and upper bounds therefore give the sharp interval. The
+`endpointReadingWeights` are scaled to unit functional gain and allow
+each bound to be checked directly on the original readings.
+
+For `A=0`, `b=C=1`, two inputs of 1 give two noisy measurements of the
+same polynomial value. Readings of −1 and +1 at unit noise pin that value
+to zero, even though either individual measurement gives an interval of
+width two. Existing v1 notebook readouts replay their original witness
+estimates. New readouts include the sharp ranges and their certificates.
