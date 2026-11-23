@@ -16,6 +16,14 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/oc6_wave_gauge_identifiability/README.md",
+    "research/oc6_wave_gauge_identifiability/figure.py",
+    "research/oc6_wave_gauge_identifiability/geometry.py",
+    "research/oc6_wave_gauge_identifiability/interval_proof.py",
+    "research/oc6_wave_gauge_identifiability/observations.json",
+    "research/oc6_wave_gauge_identifiability/reflection.py",
+    "research/oc6_wave_gauge_identifiability/replay.py",
+    "research/oc6_wave_gauge_identifiability/uncertainty.py",
     "research/colville_circular_tank_mode_shape/README.md",
     "research/colville_circular_tank_mode_shape/catalog-original-403.txt",
     "research/colville_circular_tank_mode_shape/catalog.py",
