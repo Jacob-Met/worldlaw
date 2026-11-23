@@ -16,6 +16,15 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/chen-ren-backing-transfer/README.md",
+    "research/chen-ren-backing-transfer/independent.json",
+    "research/chen-ren-backing-transfer/measurements.json",
+    "research/chen-ren-backing-transfer/protocol.json",
+    "research/chen-ren-backing-transfer/receive.py",
+    "research/chen-ren-backing-transfer/replay.py",
+    "research/chen-ren-backing-transfer/reserve.py",
+    "research/chen-ren-backing-transfer/study.py",
+    "research/chen-ren-backing-transfer/training.json",
     "research/leuven-nested-mass-transfer/README.md",
     "research/leuven-nested-mass-transfer/comparison.json",
     "research/leuven-nested-mass-transfer/forecast_native.py",
