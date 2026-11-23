@@ -18,7 +18,7 @@ const recordSchema = 'worldlaw.position-drift-rate-record/v1';
 function names(list) {
   return list.every(s => typeof s === 'string' && /^[A-Za-z0-9_-]{1,64}$/.test(s)) && new Set(list).size===list.length;
 }
-function parse(source) {
+function parse(source, parseScalar = parseSource) {
   need(source?.schema===CATALOG_SCHEMA && Object.keys(source).sort().join(',')==='commands,laws,noiseBound,schema',
     'expected the declared command/rate catalog');
   const {commands,laws}=source;
@@ -29,9 +29,9 @@ function parse(source) {
   const rates=laws.map(l=>{
     need(Object.keys(l).sort().join(',')==='id,rates' && Array.isArray(l.rates) && l.rates.length===commands.length,
       'provide one exact rate per command');
-    return l.rates.map(parseSource);
+    return l.rates.map(parseScalar);
   });
-  const error=parseSource(source.noiseBound);
+  const error=parseScalar(source.noiseBound);
   need(error.n>=0n,'provide a nonnegative noise bound');
   return {commands,ids:laws.map(l=>l.id),rates,error};
 }
