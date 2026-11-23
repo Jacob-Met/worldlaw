@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 
 test('original vertices verify stationary lower and both full-reading ambiguity endpoints',()=>{
-  const py=`import json,itertools,gzip,base64,sys
+  const py=`import json,itertools,sys
 from fractions import Fraction as F
 from math import lcm
 cat=json.load(open(sys.argv[1]))['catalog'];p=json.load(open(sys.argv[2]));assert p['schema']=='worldlaw.sixteen-pulse-feedback-boundaries/v1'
@@ -31,12 +31,13 @@ assert all(v==0 for v in columns[1:8]) and columns[-1]==-1
 for wi in range(len(ws)):
     c=columns[8+12*wi:20+12*wi];assert min(c[:8])>=0 and not any(c[8:])
 assert -rhs==F(d['lower'])==F(882,5611)>F(5,32)
-tables=json.loads(gzip.decompress(base64.b64decode(p['physicalPairsGzipBase64'],validate=True)))
+tables=p['physicalCovers']
 assert list(map(F,p['marks']))==[F(11,128),F(27,128)] and len(tables)==2
 tails=list(itertools.combinations_with_replacement(range(8),7))
 for table,mark in zip(tables,map(F,p['marks'])):
-    assert len(table)==len(tails)==3432
-    for tail,row in zip(tails,table):
+    assert len(table)==11 and len(tails)==3432
+    covered=set()
+    for row in table:
         x=list(map(F,row));assert len(x)==10
         scale=lcm(128,*(v.denominator for v in x));x=[int(v*scale) for v in x]
         ps=[];increments=[];e=5*scale//32
@@ -47,9 +48,14 @@ for table,mark in zip(tables,map(F,p['marks'])):
             assert abs(origin)<=e and abs(origin+8*rates[0])<=e
             pos=origin+8*rates[0]+rates[2];assert abs(pos-int(mark*scale))<=e
             ps.append(pos);increments.append(rates)
-        delta=[increments[0][c]-increments[1][c] for c in tail];delta.sort();lo=hi=ps[0]-ps[1]
-        for a,b in zip(delta,reversed(delta)):
-            lo+=a;hi+=b;assert -2*e<=lo<=hi<=2*e`;
+        ds=[a-b for a,b in zip(*increments)];start=ps[0]-ps[1]
+        for t,tail in enumerate(tails):
+            # The extrema across every partial permutation are achieved by
+            # taking all strictly negative or all strictly positive increments.
+            lo=start+sum(min(0,ds[c]) for c in tail)
+            hi=start+sum(max(0,ds[c]) for c in tail)
+            if -2*e<=lo and hi<=2*e:covered.add(t)
+    assert len(covered)==3432`;
   const z=spawnSync('python3',['-c',py,'examples/active-position-drift-sixteen-pulse-upper.json','examples/sixteen-pulse-feedback-boundaries.json'],{encoding:'utf8'});
   assert.equal(z.status,0,z.stderr);
 });
