@@ -513,6 +513,51 @@ try{
   }
   mark('historical CLI plan and original readouts retain their prior certificate identity');
 
+
+  await openDetails('source-details');
+  await page.locator('#example').selectOption('driftSchedule');
+  await page.locator('#load-example').click();await idle();
+  assert.ok(await page.locator('#drift-panel').isVisible());
+  assert.match(await page.locator('#plan-summary').textContent(),/10 pulses/);
+  await page.locator('#freeze-plan').click();
+  await page.locator('#readout-source').fill('Synthetic persistent-drift trajectory');
+  await page.locator('#acquisition-kind').selectOption('synthetic');
+  await page.locator('#drift-reading-0').fill('0');
+  await page.locator('#drift-reading-2').fill('35');
+  const beforeDrift=await accepted();
+  await page.locator('#evaluate-readings').click();await idle();
+  assert.ok(await page.locator('#error').isVisible());
+  assert.deepEqual(await accepted(),beforeDrift);
+  await page.locator('#drift-reading-0').fill('0');
+  await page.locator('#drift-reading-1').fill('25');
+  await page.locator('#drift-reading-2').fill('35');
+  await page.locator('#evaluate-readings').click();await idle();
+  const measured=await accepted();
+  assert.deepEqual(measured.readouts[0].result.checked.surviving.map(r=>r.law),['A']);
+  const measuredPath=await download('export-notebook','active-drift-checkpoints.json');
+  const measuredCLI=cli(['--notebook',measuredPath]);assert.equal(measuredCLI.status,0,measuredCLI.stderr);
+  assert.deepEqual(JSON.parse(measuredCLI.stdout),measured);
+  await openDetails('source-details');
+  await page.locator('#example').selectOption('driftGauge');await page.locator('#load-example').click();await idle();
+  assert.ok(await page.locator('#drift-gauge-controls').isDisabled());
+  await page.locator('#freeze-plan').click();
+  await page.locator('#drift-position').fill('1/7');await page.locator('#drift-velocity').fill('-2/9');
+  await page.locator('#drift-word').fill('slow 10000000000000000000001\nfast 2');
+  await page.locator('#drift-trace').click();await idle();
+  const gauged=await accepted(),trace=gauged.readouts[0].result.trace;
+  assert.deepEqual(trace.readings[0],trace.readings[1]);assert.equal(trace.driftShift,'-1/6');
+  assert.match(await page.locator('#candidate-results').textContent(),/10000000000000000000003/);
+  await page.reload();await idle();assert.deepEqual(await accepted(),gauged);
+  const gaugeExport=await download('export-notebook','active-drift-gauge.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',gaugeExport]).stdout),gauged);
+  const wrongGauge=clone(gauged);wrongGauge.readouts[0].result.trace.starts[1][1]='123';
+  await refuse('altered-gauge-witness.json',wrongGauge,gauged);
+  for(const width of [390,320]){
+    await page.setViewportSize({width,height:840});
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  }
+  mark('drift schedules and gauge traces use the same frozen browser/CLI source and exact physical receiver');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';
