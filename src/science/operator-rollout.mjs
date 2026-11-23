@@ -71,38 +71,90 @@ function distance(a,b) {
   return {rmse:Math.sqrt(squared/n),maxError};
 }
 
-/** The objective uses only candidate forward predictions; no measured challenge state is accepted. */
-export function designEvolutionExcitation(models, courses) {
+/** Score only simulated observations on the declared finite menu. Resolution is
+ * an absolute RMS threshold in the supplied channels' units, not a significance test.
+ * Pair indices always refer to the original, unmodified model roster.
+ */
+export function designEvolutionExcitation(models, courses, {resolution=0, observedIndices=null}={}) {
   need(Array.isArray(models)&&models.length>=2&&models.length<=16&&models.every(m=>m.kind===models[0].kind),'Require 2–16 comparable models');
   need(Array.isArray(courses)&&courses.length>0&&courses.length<=32&&new Set(courses.map(c=>c.id)).size===courses.length,'Invalid excitation menu');
+  need(Number.isFinite(resolution)&&resolution>=0,'Invalid observation resolution');
+  if(observedIndices!==null) {
+    need(Array.isArray(observedIndices)&&observedIndices.length>0&&new Set(observedIndices).size===observedIndices.length&&
+      Array.from(observedIndices).every(j=>Number.isInteger(j)&&j>=0),'Invalid observed state indices');
+  }
   let work=0,rolloutWork=0;
   for(const c of courses){
-    admit(models[0].kind,c);work+=c.steps*c.initial.length*models.length**2;
+    admit(models[0].kind,c);
+    need(observedIndices===null||observedIndices.every(j=>j<c.initial.length),'Observed channel outside course state');
+    work+=c.steps*c.initial.length*models.length**2;
     need(work<=2000000,'Excitation menu exceeds comparison budget');
   }
-  const excluded=[];
-  const ranked=courses.flatMap(c=>{
-    let paths,substeps;
+  const pairs=[];
+  for(let b=1;b<models.length;b++)for(let a=0;a<b;a++)pairs.push([a,b]);
+  const excluded=[], scores=[];
+  for(const c of courses){
     try {
-      substeps=forcingResolution(c).required;
+      const substeps=forcingResolution(c).required;
       rolloutWork+=c.steps*c.initial.length*models.length*substeps;
       need(rolloutWork<=2000000,'Excitation menu exceeds rollout budget');
-      paths=models.map(model=>rolloutEvolution(model,c,substeps));
-    }
-    catch(err) {
+      const paths=models.map(model=>{
+        const path=rolloutEvolution(model,c,substeps);
+        return observedIndices===null?path:path.map(state=>observedIndices.map(j=>state[j]));
+      });
+      scores.push({id:c.id,substeps,gaps:pairs.map(([a,b])=>distance(paths[a],paths[b]).rmse)});
+    } catch(err) {
       if(!(err instanceof EvolutionDomainError))throw err;
-      excluded.push({id:c.id,reason:err.code});return [];
+      excluded.push({id:c.id,reason:err.code});
     }
-    let minimumSeparation=Infinity,pair;
-    for(let a=0;a<paths.length;a++)for(let b=0;b<a;b++){
-      const d=distance(paths[a],paths[b]).rmse;
-      if(d<minimumSeparation){minimumSeparation=d;pair=[b,a];}
-    }
-    return [{id:c.id,minimumSeparation,closestPair:pair,substeps}];
-  }).sort((a,b)=>b.minimumSeparation-a.minimumSeparation);
-  if(!ranked.length)return {status:'no_admissible_course',selected:null,ranked,excluded};
-  return {status:ranked[0].minimumSeparation>0?'separating_in_simulation':'indistinguishable_on_menu',
-    selected:ranked[0].id,ranked,excluded};
+  }
+  if(!scores.length)return {status:'no_admissible_course',selected:null,ranked:[],excluded};
+
+  // Threshold proximity is not transitive. Group mutually unresolved models
+  // only when they also have the same unresolved neighbors across the menu.
+  const neighbors=models.map((_,i)=>new Set([i]));
+  const unresolvedPairs=pairs.filter(([a,b],p)=>{
+    if(scores.some(course=>course.gaps[p]>resolution))return false;
+    neighbors[a].add(b);
+    neighbors[b].add(a);
+    return true;
+  });
+  const byNeighbors=new Map();
+  const groups=[],membership=[];
+  for(const [i,neighborsOfModel] of neighbors.entries()){
+    const key=[...neighborsOfModel].sort((a,b)=>a-b).join(',');
+    if(!byNeighbors.has(key)){byNeighbors.set(key,groups.length);groups.push([]);}
+    const group=byNeighbors.get(key);
+    groups[group].push(i);
+    membership.push(group);
+  }
+
+  const classPairs=new Map();
+  for(const [p,[a,b]] of pairs.entries()){
+    const x=membership[a],y=membership[b];
+    if(x===y)continue;
+    const key=Math.min(x,y)+','+Math.max(x,y);
+    if(!classPairs.has(key))classPairs.set(key,[]);
+    classPairs.get(key).push(p);
+  }
+  // A class pair is separable on a course only when *all* its member pairs
+  // clear the threshold there. Identical copies cannot inflate the score.
+  const classGaps=scores.map(({gaps})=>[...classPairs.values()].map(indices=>Math.min(...indices.map(p=>gaps[p]))));
+  const reachable=classGaps[0].map((_,i)=>i).filter(i=>classGaps.some(row=>row[i]>resolution));
+  const ranked=scores.map(({id,gaps,substeps},i)=>{
+    const minimumSeparation=Math.min(...gaps);
+    const attainable=reachable.map(j=>classGaps[i][j]);
+    const partlySeparatedClassPairs=[...classPairs.values()].filter(indices=>indices.some(p=>gaps[p]>resolution)).length;
+    return {id,substeps,minimumSeparation,closestPair:pairs[gaps.indexOf(minimumSeparation)],
+      separatedClassPairs:attainable.filter(g=>g>resolution).length,partlySeparatedClassPairs,
+      betweenClassSeparation:attainable.length?Math.min(...attainable):0};
+  }).sort((a,b)=>b.separatedClassPairs-a.separatedClassPairs||b.betweenClassSeparation-a.betweenClassSeparation||b.partlySeparatedClassPairs-a.partlySeparatedClassPairs);
+  const selected=ranked[0].id;
+  const selectedGaps=scores.find(c=>c.id===selected).gaps;
+  const selectedUnresolvedPairs=pairs.filter((_,i)=>selectedGaps[i]<=resolution);
+  const status=!selectedUnresolvedPairs.length?'separating_in_simulation':
+    ranked[0].partlySeparatedClassPairs?'partially_separating_in_simulation':'indistinguishable_on_menu';
+  return {status,selected,ranked,excluded,groups,unresolvedPairs,selectedUnresolvedPairs,resolution,observedIndices};
 }
 
 export function verifyEvolutionRollout(model,course,observations,{maxError,resolutionTolerance}) {
