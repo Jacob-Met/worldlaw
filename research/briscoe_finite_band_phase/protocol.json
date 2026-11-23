@@ -1,0 +1,66 @@
+{
+  "schema": "worldlaw.briscoe-faraday-held-crossed.v1",
+  "source": {
+    "doi": "10.15128/r2x920fw90c",
+    "sha256": "fc370bdedf30167fcc4737f5da0e4b235caec53db7de8e6a679f28e2ccb16c07",
+    "n": 107468871,
+    "md5": "6873c7048302b16f2e898682cb2e2709",
+    "code": "durham-qlm/ElecSus@1933456b905739fb31c89665cdc6733e769e5ec0",
+    "numeric": "only Data without fit/Faraday/<channel>/<channel>_<repeat>.csv. No archived fits, joint parameter files, publication data-with-fit files, Voigt records or notebook outputs. The pre-fit measured acquisition has two columns of calibrated detuning GHz and recorded transmission. Authored FFT Hilbert and 750-bin reduction are prior methods. Never use a target-specific fit, shift, normalization or off-band background."
+  },
+  "repeats": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "permitted": [
+    "tauLeft",
+    "tauRight",
+    "tauLin",
+    "filter-detuning-only"
+  ],
+  "endpoint": "filter transmission for input horizontal and crossed vertical analyzer. Four repeats under one enriched 2mm cell condition. All four raw filter ordinate columns held until four separate source-only predictions durably locked.",
+  "measurement": "Prior methods and joint-fit aggregate agreement published. Frequency reference from atomic reference and etalon. Trusted source extraction of target-axis-only from both-column CSV before lock. The fit-all archive is never consulted. Joint posterior frequency/angle offsets are unavailable to predictors, no independent absolute crossed angle readout established.",
+  "axis": "Use 750 fixed equal-width bins per complete 170000-row target detuning axis min to max, centers midpoints, source transmissions averaged using same bins. Require all bins nonempty and both circular averages >0. Refuse without clipping/flooring if unsupported. Literal per-channel FFT method also averages each entire circular scan into its own 750 uniform bins, HT then interpolates to target centers with constant nearest extension at sub-bin outer ends. Require positive finite means. Record original axes digests. Retain all rows; native descriptive predictions piecewise constant within each target bin. Compare own-axis direct Hilbert as a source-faithful finite-bin construction. The deposited notebook uses empirical bin mean detunings; this comparison uses nominal equally spaced bin centers consistently on each axis. No claim of bitwise recreation of published fits or figures.",
+  "model": {
+    "isotope_85_percent": 1.8,
+    "cell_m": 0.002,
+    "elem": "Rb D2",
+    "bounds": {
+      "T_C": [
+        40,
+        150
+      ],
+      "B_G": [
+        4800,
+        7200
+      ],
+      "common_shift_MHz": [
+        -450,
+        450
+      ],
+      "relative_shift_each_MHz": [
+        -75,
+        75
+      ]
+    },
+    "source": "Fit per repeat by equally weighting the three complete binned source transmissions. Both circular names may map to either native eigenmode convention; fit alternatives for this assignment from circular inputs only. Select the lowest squared source discrepancy. Two parameter starts (T75/105C,B6000G), source-only bounded least squares, maximum40 function evaluations each. Local finite differences absolute [.15 C,2 G,1 MHz,1 MHz,1 MHz] to resolve native grid. Model evaluates causal native complex indices sqrt(1+chi). Relative source shifts L,R and −L−R on horizontal, centered so predicted crossed channel receives only the common shift. Relative shifts used for fitting physical model, no outcome-derived alignment. Fixed weak beam, no extra homogeneous pressure broadening, no extra detector background/gain or window retardance."
+  },
+  "roles": [
+    "atomic_wings_measured_residual",
+    "direct_common_fft",
+    "native_source_fit",
+    "direct_own_axes_fft",
+    "zero_phase",
+    "half_incoherent",
+    "reversed_atomic_wing_correction",
+    "hybrid_analyzer_plus_1deg",
+    "hybrid_analyzer_minus_1deg",
+    "pure_model_phase_measured_amplitudes"
+  ],
+  "formula": "Ideal crossed I=(TL+TR−2sqrt(TL TR)cos(delta+2beta))/4. Circular differential phase for a causal transparent-high-frequency minimum-phase cell with weighted equal transfer paths is .5*H(logTL−logTR). Hybrid = fitted native cell phase + .5*H[(logTL−logTR)−(logTL_model−logTR_model)] on the full common grid. Model-difference term is evaluated in observed channel coordinates at the common shift for the held axis. All amplitudes are reported source-bin means except pure native source fit. Off-band/unobserved phase and unknown polarizer angle remain limitations. Flip of atomic wing correction and fixed ±1° give diagnostics only. Signed output labels do not identify handedness from a single crossed intensity.",
+  "acceptance": "For each of the four separately indexed acquisitions the primary requires smaller whole-spectrum binned RMSE than common-grid FFT, source-only ElecSus, author-style own-axes FFT, zero-phase and incoherent. Any tie, loss or pre-read source refusal blocks the gate. Recount all RMSE/MAE, raw full acquisitions and maximum original and binned residuals plus same-row alternatives. Comparisons are four scans under one setup, correlated across frequency and repeats, without mechanical or new uncertainty calibration.",
+  "roles_detail": "half_incoherent = (TL+TR)/4, suppressing interference. Pure source-fit applies native complex susceptibilities and model amplitudes; pure_model_phase_measured_amplitudes uses native phase and empirical amplitudes. Polarizer beta fixed to zero except explicit ±1° sensitivity. Source diagnostic exact bound |hybrid−direct| ≤ sqrt(TL TR)|sin((delta_model−delta_model_windowed)/2)|.",
+  "geometry_excluded": "No source or target from naturally abundant Voigt cell. Report labels/denominator for each Faraday repeat. Complete four predictions required before opening any filtered ordinate, even if a subset passes positivity. No synthetic replacement for a refused repeat."
+}
