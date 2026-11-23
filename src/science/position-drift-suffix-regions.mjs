@@ -15,21 +15,20 @@ const need=(ok,msg)=>{if(!ok)throw Error('Suffix regions: '+msg);};
 export const SUFFIX_PLAN='worldlaw.position-drift-suffix-feedback-policy/v1';
 export const REGION_SUFFIX_REQUEST='worldlaw.position-drift-suffix-feedback-source/v3';
 
-function normalizedForcing(row,actions){
+export function normalizedForcing(row,actions){
   const forcing=[Z()];
   for(const u of actions)forcing.push(add(forcing.at(-1),sub(row[u],row[actions[0]])));
   return forcing;
 }
 
-function affine(d0,d1,t){return add(d0,times(t,sub(d1,d0)));}
+export function affine(d0,d1,t){return add(d0,times(t,sub(d1,d0)));}
 
 // Differences between the worlds' clean values at ticks zero and one lie
 // in a compact polygon, regardless of the suffix's length.
-function projectPair(left,right,error){
+export function differenceVertices(left,right,error,prefixLength,visit){
   const delta=left.map((x,t)=>sub(x,right[t])),diameter=mul(two,error);
   const lines=delta.flatMap((d,t)=>[{t,b:sub(diameter,d)},{t,b:sub(neg(diameter),d)}]);
-  for(const t of [0,1,2])lines.push({t,b:neg(delta[t])});
-  let best=null;
+  for(let t=0;t<=prefixLength;t++)lines.push({t,b:neg(delta[t])});
   for(let j=1;j<lines.length;j++)for(let i=0;i<j;i++){
     const a=lines[i],b=lines[j];
     if(a.t===b.t)continue;
@@ -37,9 +36,16 @@ function projectPair(left,right,error){
     const d0=sub(a.b,times(a.t,slope)),d1=add(d0,slope);
     const difference=t=>add(affine(d0,d1,t),delta[t]);
     if(!delta.every((_,t)=>cmp(abs(difference(t)),diameter)<=0))continue;
+    visit(d0,d1,difference);
+  }
+}
+
+function projectPair(left,right,error){
+  let best=null;
+  differenceVertices(left,right,error,2,(d0,d1,difference)=>{
     const penalty=add(add(abs(d0),times(2,abs(d1))),abs(difference(2)));
     if(!best||cmp(penalty,best.penalty)<0)best={d0,d1,penalty};
-  }
+  });
   if(!best)return null;
   const center=mid(left[2],right[2]),radius=sub(mul(four,error),div(best.penalty,two));
   return {lo:sub(center,radius),hi:add(center,radius),center,d0:best.d0,d1:best.d1};
