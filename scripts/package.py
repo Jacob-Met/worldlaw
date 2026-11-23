@@ -16,6 +16,20 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/cantilever-wet-calibration/README.md",
+    "research/cantilever-wet-calibration/source-protocol.md",
+    "research/cantilever-wet-calibration/two-standard-admission.md",
+    "research/cantilever-wet-calibration/anchor_admission.py",
+    "research/cantilever-wet-calibration/exact_controls.py",
+    "research/cantilever-wet-calibration/independent_anchor.py",
+    "research/cantilever-wet-calibration/rgb_projection.py",
+    "research/cantilever-wet-calibration/cold_replay.py",
+    "research/cantilever-wet-calibration/anchor-rgb.json",
+    "research/cantilever-wet-calibration/original-admission.json",
+    "research/cantilever-wet-calibration/exact-result.json",
+    "research/cantilever-wet-calibration/source-and-native.json",
+    "research/cantilever-wet-calibration/independent-full-archive.json",
+    "research/cantilever-wet-calibration/independent-cold.json",
     "research/prem_chamber_depth_transfer/README.md",
     "research/prem_chamber_depth_transfer/adjoint.c",
     "research/prem_chamber_depth_transfer/angular-response.md",

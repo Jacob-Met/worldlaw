@@ -1,0 +1,199 @@
+{
+  "source_freeze": "3501de0810f02458880155d3395350ca257b94dc",
+  "graphic_freeze": "9997cb44e4dad56991cda7b18e9cb99baae5ac5a",
+  "projector": "4526ddc271f8e7aeb4bedbcc7c78d7d94af4670a",
+  "controls": "c1d09c812d56495c4f9a5c0b9ed584a8129f3452",
+  "cold": "7f97616351ea63b1e844aa734b2b8e63bda2d5fd",
+  "originals": [
+    {
+      "original": "p2-f747-payam-cantilever-author-equation-supplement-and-table-schema",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "90a0d4ed4c29f9ae893b4d2c1ad6ad23c8e9180557bb8c38305e25c3c6a3fb54",
+      "generation": "f07f021f609ffaeec8d930aa1091fb4ba67b9173c3026f47d0397720f76b5326",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T15:46:26.057396955Z",
+      "finished": "2026-11-23T15:47:01.731740781Z",
+      "stdout_bytes": 2529,
+      "stdout_sha256": "261ad9e5306cf93a234318f4563ff90eb0f0771c893072479fcc1acc1dd51376"
+    },
+    {
+      "original": "p2-f747-payam-europepmc-original-esi-source-and-calibration-schema",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "126c72275f2714a85b6966e5c632bdb752c20a94046aae248e21778f1ae8d888",
+      "generation": "10ae3169903916fbbf67e7032eff6291324220d329119b1193524c9fbe2acf87",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T15:49:03.187706319Z",
+      "finished": "2026-11-23T15:49:39.291534075Z",
+      "stdout_bytes": 1912,
+      "stdout_sha256": "01afdc95228530bf0fd84a9b304e4ed3733a61df70b569e03f34d94d4de9f49f"
+    },
+    {
+      "original": "p2-f747-payam-exact-source-equations-air-water-calibration-and-mode-definition",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "7f692bae792fa16084eff76ccb2ce56c5105552180691f0c695acc7d847c51e8",
+      "generation": "40c62315f16b4b6c15f4018c54cb5df7a4bbdd91b3565c6fcb18b47927fded76",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T15:51:33.438703792Z",
+      "finished": "2026-11-23T15:51:33.579819881Z",
+      "stdout_bytes": 19070,
+      "stdout_sha256": "9da45aa02a9a05110248293886dabede76937bf5a6da802c8dca8afb15112bad"
+    },
+    {
+      "original": "p2-f747-payam-original-equation-two-image-and-chemical-standards-method-only",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "902da73b771dfd3bcde228c80b6494ffac6db33b94029842dcda58bb7f447110",
+      "generation": "726aca589e14c0b3cdf45678285b50c3bdf8a12815b808bf8487a9a0f4345f23",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T15:54:39.249285301Z",
+      "finished": "2026-11-23T15:54:39.322449149Z",
+      "stdout_bytes": 35624,
+      "stdout_sha256": "cf2d7c5d5b02e027fb52a732ee180d27fcea8dccfe9850afe821a3e159fadc36"
+    },
+    {
+      "original": "p2-f747-payam-figure2-axis-and-source-caption-projection",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "ce4b9ee5bb0ed47c047147d9283a7d08aa68ed43369f08ed1945d845282ecb90",
+      "generation": "03492febb0ab45adcf967899bf42d41973ecc63c2e173a391d9b706ca6e4d52e",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T15:59:19.345395346Z",
+      "finished": "2026-11-23T15:59:19.44397055Z",
+      "stdout_bytes": 1267,
+      "stdout_sha256": "0582644758deeafafed1795e711241c9c1d4b06fff7517befc9c8dacedd1169c"
+    },
+    {
+      "original": "p2-f747-payam-fig2-black-axis-and-x-abscissa-projection-only",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "b4ccf0e0324e895a2c953b4ad6aac482c4fd8503bf3f55fe275e3ad5e79417b0",
+      "generation": "bde0e9bc2f48e31c25b6053f227b53caac0869a6872d11caaa20732e8048706e",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T16:01:09.151764894Z",
+      "finished": "2026-11-23T16:01:09.983301587Z",
+      "stdout_bytes": 2416,
+      "stdout_sha256": "cc6b36e76cec660f358587f97785ebc243e73562b26966f993a5bb11573ddc04"
+    },
+    {
+      "original": "p2-f747-payam-raster-margins-only-masked-four-panels",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "32df12cd07ca29bb0dabc77385d6e705fb6f17edba41c2dbec96c5dba82a7871",
+      "generation": "c9d2d1933fbceca1df4cefba648959d37200c53182df6f6c1d0b8ef8a4777341",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T16:02:25.715593975Z",
+      "finished": "2026-11-23T16:02:25.816248924Z",
+      "stdout_bytes": 49574,
+      "stdout_sha256": "a56c8f35aaad12b2993e281d0e6812715156bface063d6b826bc4be26085096d"
+    },
+    {
+      "original": "p2-f747-payam-frozen-two-liquid-probe-symbol-admission",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "c00f5d49d74d4c857472d2d2541ecfc166071730b0d2c0bfe8193c94bd8ccf56",
+      "generation": "e50a9c5e9a3b079a82fffb397d3c50d9824421d79f8ff4404db3f8e947740821",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T16:08:03.397463387Z",
+      "finished": "2026-11-23T16:08:03.507117266Z",
+      "stdout_bytes": 1538,
+      "stdout_sha256": "e985ac3cd5a4db93027ece9c1678e0608173f0f4659efc84e4315a9835c29d34"
+    },
+    {
+      "original": "p2-f747-payam-exact-coefficient-family-and-anchor-rank",
+      "owner": "node-dca2afb29d0ea38ed174f70e12b3d5ea",
+      "request_sha256": "81f5d131e72a2cfce17015708c0cb171d12116e64efda8e1d7f5558c13658eb6",
+      "generation": "b41cf1c4c332b83f9ac5c8ebc6e3702613ccd91b4a99348d622e1c8560a811b4",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T16:06:34.404948435Z",
+      "finished": "2026-11-23T16:06:34.509365186Z",
+      "stdout_bytes": 473,
+      "stdout_sha256": "cb2ba2c5915cbf63007931ca3ed89d9241f934a1eadbf677cda6ea7895320049"
+    },
+    {
+      "original": "p2-f747-payam-independent-two-anchor-original-ebi-and-pixel-integers",
+      "owner": "node-dca2afb29d0ea38ed174f70e12b3d5ea",
+      "request_sha256": "d7e68fc1fd8df41c4c9ba2e9615906fdd284c16d976f711b68166e2cbc29d6d5",
+      "generation": "959221886283c23ffbcae3d47f7dbb873fe87755a92b0322ef7eed7aee9a3622",
+      "exit_code": 1,
+      "descendants": "drained",
+      "started": "2026-11-23T16:07:18.165210126Z",
+      "finished": "2026-11-23T16:07:18.253858301Z",
+      "stdout_bytes": 118,
+      "stdout_sha256": "7dff79b45949542a4b584cbd838e2625906ec6b79c32fe422f67013677ac5720"
+    },
+    {
+      "original": "p2-f747-payam-independent-two-anchor-job-local-imaging-runtime",
+      "owner": "node-1d7d90b586ef77496f62cc73fa8fc96d",
+      "request_sha256": "48781f60b6fd4710ab0f4a0ca2b0d77aa104507465d9eac424ddb719c3f53e6e",
+      "generation": "3d9652ebaaab40130ce092e50832efa51906915b3339ca11a840680d06945b38",
+      "exit_code": 1,
+      "descendants": "drained",
+      "started": "2026-11-23T16:08:18.931890567Z",
+      "finished": "2026-11-23T16:09:19.683954536Z",
+      "stdout_bytes": 1949,
+      "stdout_sha256": "48e860794cb134c1fce0cc9db83667654d66914b57fd50418599289511562494"
+    },
+    {
+      "original": "p2-f747-payam-two-permitted-anchor-column-masks-for-cold-replay",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "5a37a096a0b7c7d5483a02b07296227bc760839a00112193ec58b927756a8410",
+      "generation": "9854a674a18c45d8cac454e0df7649913ec50bf0f6682e0bdccf8a5676bdff12",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T16:11:16.068479262Z",
+      "finished": "2026-11-23T16:11:16.175650186Z",
+      "stdout_bytes": 912,
+      "stdout_sha256": "3cca39bf448f7907b4e2d660f7cb0e74f35ec63eb11f12b1fb3632ebe8c521cf"
+    },
+    {
+      "original": "p2-f747-payam-lossless-two-anchor-rgb-projection-for-other-owner",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "39d7290ae703515eeda05910306e44292d56a69e5fae4b946bd67eeaf05f31b1",
+      "generation": "89ba2c3e6208d6d40b7f8bb266f7d0dfec44d6b572c33172a8b49277b8a4b1ba",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T16:13:13.535167977Z",
+      "finished": "2026-11-23T16:13:13.637960855Z",
+      "stdout_bytes": 12467,
+      "stdout_sha256": "23baf1fc219b4f3f213a0906e650e2692fe58ee9688a93a42a026ff1998750f7"
+    },
+    {
+      "original": "p2-f747-payam-independent-cold-two-anchor-rgb-and-canonical-fraction",
+      "owner": "node-0bee39ddbe74826313b385fbc6bbd6c2",
+      "request_sha256": "9a98bef923674a6ab28a138c063ffee06085a0493b99ddf6f5ec333028490591",
+      "generation": "f2f782f1eeacfea984dc3c98ef040660a9369abf9abbcb27f9be22f69dfa6fcf",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T16:14:12.686387728Z",
+      "finished": "2026-11-23T16:14:15.532516309Z",
+      "stdout_bytes": 1394,
+      "stdout_sha256": "3e87162cb12ca5dfe9870bb09658226f51627fbbbf4d6d115b3e6cff9d9acc3b"
+    },
+    {
+      "original": "p2-f747-payam-independent-rectangle-reader-full-original-archive",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "request_sha256": "8dbc7413c26c4d54d3a54fea69db4bc0d29d3a769c7b32ceca45efa3dd4281ee",
+      "generation": "d545cc0b1041512553a427529d730a643a7112a526d57e7baa5f6809c0884eca",
+      "exit_code": 0,
+      "descendants": "drained",
+      "started": "2026-11-23T16:14:51.627613886Z",
+      "finished": "2026-11-23T16:14:51.757394735Z",
+      "stdout_bytes": 961,
+      "stdout_sha256": "01a851b247ba6529393dc5a5abec5b3a074694c62ef81a0036210ffe149bedf8"
+    }
+  ],
+  "pre_admission_refusal": {
+    "attempt": "complete Figure 2 JPEG in 155000-byte retained stdout",
+    "reason": "retain_output_bytes must be between 0 and 65536",
+    "job_started": false
+  },
+  "scientific": {
+    "original_air_water": "required absolute dry measurements absent from numeric tables",
+    "two_wet": "4/8 calibration cells admitted; all four necessary long-probe pairs unresolved",
+    "held_frequencies_scored": 0
+  }
+}
