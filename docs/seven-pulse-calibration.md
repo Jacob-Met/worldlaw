@@ -53,3 +53,5 @@ There are seven insertion slots per original word. Inserting before, between, or
 | 6 | 0 | 1/20 | 1/22 | 1/22 | 1/20 |
 
 Only the shared early calibration separates at ε=1/20. The exact JavaScript receiver certified all 25 menus. A separate one-CPU calculation reconstructed primal and dual witnesses on the original physical inequalities and obtained every matrix entry in 0.33 seconds including the winning packet export. Each program had two terminal words.
+
+The [parameterized calibration family](reference-calibration-family.md) gives the exact radius for every reference count m ≥ 2 and receives only six checkpoints.
