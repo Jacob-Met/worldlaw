@@ -79,3 +79,30 @@ test('public CLI freezes the same source, receives independent inputs, exports a
     }
   }finally{await rm(dir,{recursive:true,force:true});}
 });
+
+test('public byte paths reject rounded decimal and exponent tokens before exact physical replay',async()=>{
+  const sourceText=await source('schedule');
+  const wrongSource=sourceText.replace('"noiseBound": 1','"noiseBound": 1.00000000000000001');
+  await assert.rejects(()=>createActiveNotebook(wrongSource),/safe integer token/);
+  const book=await createActiveNotebook(sourceText),p=book.plan;
+  const raw=JSON.stringify({schema:ACTIVE_DRIFT_CHECKPOINTS,...bound(p),source:'Trial 1.00000000000000001 in a description',
+    acquisition:'synthetic',readings:[{tick:'0',value:1}]});
+  assert.equal((await receiveActiveNotebook(book,raw)).readouts[0].result.checked.readings[0],'1');
+  for(const numeral of ['1.00000000000000001','1e-1000','9007199254740993','1e0']){
+    await assert.rejects(()=>receiveActiveNotebook(book,raw.replace('"value":1','"value":'+numeral)),/safe integer token/);
+  }
+  const serialized=JSON.stringify(book).replace('"block":0','"block":1e-1000');
+  await assert.rejects(()=>replayActiveNotebook(serialized),/safe integer token/);
+  const alias=await createActiveNotebook(await source('gauge'));
+  const gauge=JSON.stringify({schema:ACTIVE_DRIFT_TRACE,...bound(alias.plan),laws:['A','B'],origin:[1,0],runs:[{command:'slow',repeats:1}]});
+  for(const input of [gauge.replace('"origin":[1','"origin":[1.00000000000000001'),gauge.replace('"repeats":1','"repeats":1.00000000000000001')])
+    await assert.rejects(()=>receiveActiveNotebook(alias,input),/safe integer token/);
+  const dir=await mkdtemp(join(tmpdir(),'worldlaw-exact-original-'));
+  try{
+    const file=join(dir,'book.json'),input=join(dir,'input.json');
+    await writeFile(file,JSON.stringify(book));
+    await writeFile(input,raw.replace('"value":1','"value":1.00000000000000001'));
+    const cli=spawnSync(process.execPath,[resolve('scripts/active-linear-family.mjs'),'--notebook',file,'--readings',input],{encoding:'utf8'});
+    assert.notEqual(cli.status,0);assert.match(cli.stderr,/safe integer token/);
+  }finally{await rm(dir,{recursive:true,force:true});}
+});
