@@ -29,6 +29,8 @@ The existing source-based verifier checks strict increase, the supporting rows a
 
 ## Work on the original and changed inputs
 
-The 64-leaf grouped source drops from 623,262 charged units with simplex to 75,424 with projection. The single positive jump gives 1/40, retains the same four command paths and reconstructs every original boundary history. Under a 100,000-unit limit the original result is exhausted, while projection certifies that radius. Both saved results replay under the current public CLI.
+In the V8 preparation run, the 64-leaf grouped source drops from 623,262 charged units with simplex to 75,424 with projection. The single positive jump gives 1/40, retains the same four command paths and reconstructs every original boundary history. Under a 100,000-unit limit the original result is exhausted, while projection certifies that radius. Both saved results replay under the current public CLI.
 
 The tetrahedron source takes the three positive jumps 5/376, 1/68 and 1/65. Its projected search uses 71,645 charged units versus 52,734 with the original simplex (1.359×). The frozen changed-input comparison runs 48 catalogs with three to five commands and one to four vertices per family. Projection uses less work on 40 of 48; total work falls from 3,689,076 to 1,891,574. Its worst case uses 34,720 units versus 17,598 with simplex (1.973×). Work units measure charged operations and do not imply a fixed wall-clock ratio.
+
+The maintained native Node check on the same 48 sources reported 39/48 work wins, 3,689,076→1,893,268 units and a worst ratio of 1.9742×. The preparation figures above and the native run both count sorting comparisons; JavaScript runtimes can use different comparison schedules. The exact radii and physical proof checks agreed.

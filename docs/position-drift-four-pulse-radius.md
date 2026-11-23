@@ -1,6 +1,6 @@
 # Four pulses with two observation-dependent decisions
 
-Two convex rate families can require both feedback decisions. In the eight-command grouped example, every four-pulse experiment that selects a suffix once at a fixed cut can collide even with exact readings. A four-leaf program using both cuts succeeds for every position-error bound strictly below 1/40. Its boundary collision at 1/40 applies to this particular menu. The unrestricted four-pulse threshold for the grouped catalog remains open.
+Two convex rate families can require both feedback decisions. In the eight-command grouped example, every four-pulse experiment that selects a suffix once at a fixed cut can collide even with exact readings. A four-leaf program using both cuts succeeds for every position-error bound strictly below 1/40. Its boundary collision at 1/40 applies to this particular menu. A later complete-prefix certificate establishes the unrestricted four-pulse threshold as 1/40. [Global four-pulse boundary and minimum-five interval](position-drift-five-pulse-minimum.md)
 
 ```sh
 node scripts/active-linear-family.mjs --input examples/active-position-drift-two-feedback-groups.json --four-pulse-feedback --output group-proof.json

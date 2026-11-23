@@ -280,3 +280,5 @@ export function fourPulseLeafFacets(cat,word,spend){return leafFacets(cat,word,s
 export function verifyFourPulseMenuSupport(cat,prefix,menu,radius,lower,spend){
   return verifySupport(cat,courseTree(cat,prefix,'full',spend,menu),radius,lower,spend);
 }
+
+export {solveTree as solvePhysicalSupportProgram};
