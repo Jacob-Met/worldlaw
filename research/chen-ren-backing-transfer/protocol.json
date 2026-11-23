@@ -1,0 +1,33 @@
+{
+  "archive_sha256": "9b93ad7d7dfe8b576c65836f4c884caa0b34b65c599778dac557abffdd950e59",
+  "development_freeze": "PROSPECTIVE Chen–Ren v2.0 on archive SHA256 9b93ad7d7dfe8b576c65836f4c884caa0b34b65c599778dac557abffdd950e59. No scientific rows opened. Earlier author source literals disclose an aggregate artifact at 126–148Hz, outside the article's recommended 340–1600Hz primary band. 100mm tube, 50mm microphone spacing, front-of-specimen plane, switch calibration, identical nominal rigid piston cavity; 3 consecutive acquisitions without remounting, unretained calibration factors, no coherence/SNR, measured ambient or independent seating, axial clearance 0.44/0.54/0.67mm and radial1.2mm: empirical measured-response portability only. Feed 4 complete even-parity sheets A1,A4,A6,A7, then three non-target backing means of each queried sheet. Development whole held configurations A2-D,A3-G,A5-P; A8-0 reserve (all four A8 configs sealed until every development gate passes). A single 631-line measurement vector is a unit, not a collection of independent frequencies. Front-face instrument-mean complex reflection directly, reported R_real/R_imag. Candidate: align homogeneous cross-ratio directions via donor unit projectors at each frequency, largest eigenvector, predict missing through deterministic homogeneous inverse. Preserve raw extrapolation, denominator and conditioning, finite/singular diagnostics; fallback nearest donor complex value only if normalized denominator <1e-10 or all donor products vanish, never delete a row. All arms apply common unit-disk output projection; raw predictions retained separately. Controls (i) equal-average measured same-load R over four donors (ii) geometry-nearest donor, ties average (iii) per-backing additive normalized impedance difference over four donors and three target anchors, operate with explicit poles (iv) pooled local complex affine ridge of held R on three observed anchor Rs; donor-only leave-one-sheet-out tuning halfwindow {16,64,160}Hz and ridge {0.0001,0.01,1} on average training RMSE over all four backing targets, ties lexical. Include input-only numerical controls, e.g. separate independent Möbius sheets positive, corrupt one complex target and degenerate anchors. Author format/reduction is measurement provenance, not a withheld-load predictor. Primary RMSE sqrt(mean abs(deltaR)^2) per sheet×load equally weighted. All 3 dev configurations ×631 primary rows scored. Gate candidate mean ≤.95 times each comparison mean, candidate ≤1.05 times best control on each unit, and ≤1.10 times best comparator mean in each fixed band [340,700),[700,1100),[1100,1600]. Complete complex errors, raw worst frequencies/sweeps, mean and all3 technical acquisitions retained for held measurements; no independent-repeat or stress-free calibration claim. Absent competitive success close development without opening any A8. Forecast bytes SHA-locked before development target decode; train-only worst errors/conditioning inspected first; no target-driven selection or tuning.",
+  "development_post": 185980,
+  "reserve_activation": "The original A8-0 reserve remains sealed after every 3-config development gate passed. Apply the same 4 calibration sheets and identical projective, additive-Z, geometry/same-load and local complex ridge methods, width 160Hz/penalty1 from the original training-only lock. Allow inputs A8-P/G/D mean R only; score A8-0 mean/three acquisitions only in a separate original after immutable forecast hash. Same 631 frequencies, unit disk, synthetic controls and mean/per-unit/three-band gates (.95 /1.05 /1.10). No retraining, no opened development targets as new calibration and no new hyperparameters. This one independent physical assembly concerns the empty cavity on A8; no independent specimen or universal two-port claim.",
+  "reserve_post": 186003,
+  "development_forecast": {
+    "inputs": {
+      "data/mean/A2-0.csv": "d2af5f50ef5d1351c0242f326f020b517f0ba58808298af538961d1494d024e0",
+      "data/mean/A2-G.csv": "563c4e6f72bc511f633acf6f65e44891ecf22c73d07ce9bc197c0971f85bc43a",
+      "data/mean/A2-P.csv": "2262cd31875360befa7ce29353b6b425eac2ded436d818e0efdd95f38ca8967d",
+      "data/mean/A3-0.csv": "56fc046ea6eb6d03400e296d8d4f53337346943ae71b34bc736a7173ad6fbfad",
+      "data/mean/A3-D.csv": "59d4c3abdfd044542ab1bb1229a3d956eb2927496e1022ddae428533364cfb99",
+      "data/mean/A3-P.csv": "898a8ceca9fbf669fe5f0a55edd866220d8da6bbe2aa1828a99f11d3b1bb444a",
+      "data/mean/A5-0.csv": "649496a1e89115417155f43687d547aeb571b830a7a33161959d19ef20da9ef4",
+      "data/mean/A5-D.csv": "3b29bba095aa8ecdc4ef2fae30de0146263ed3b68e2970d18b106f5067e77e37",
+      "data/mean/A5-G.csv": "e6a380bac47b4539a81ee3f861d770b736a5cb7d1b3bcd6f3878a2c81a054a38"
+    },
+    "sha256": "d27270fa86c511572eb4025688971e10587e04cdfc0638e6db9198ccc5371fb4",
+    "training_sha": "3277de035022209e1707f7a443d7ecee25d52b7423b1dd62945a6eadd119991a"
+  },
+  "reserve_forecast": {
+    "inputs": {
+      "data/mean/A8-D.csv": "187e72527c347a914b45a61c790edcdb6f1866979213bc8190d97b09ccc7c654",
+      "data/mean/A8-G.csv": "04e92b4c29a65def92fafeeaceb89bc3c5a97340a78046b04e4d05fb1b1a51d8",
+      "data/mean/A8-P.csv": "97232b900358c4ff3769320b0ade673c84930e37cc07689a31f4f1ba8bc114d0"
+    },
+    "sha256": "f79758919eeaa7bc7da9ab6f86fc4400f90f27a48efd50ff6f5f1d0204438c07",
+    "training_sha": "3277de035022209e1707f7a443d7ecee25d52b7423b1dd62945a6eadd119991a"
+  },
+  "development_manifest_sha256": "417435e4c466ce65d5fe2cecd4f4ddac53cc1295f440da524ceffc03adf5c546",
+  "reserve_manifest_sha256": "e6d53113a8b8967c62a6bd9c19374aeb50866f563d5f0cbc3042a06b54dc481e"
+}
