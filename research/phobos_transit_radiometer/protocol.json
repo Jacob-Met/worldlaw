@@ -1,0 +1,65 @@
+{
+  "doi": [
+    "10.1029/2021GL093542",
+    "10.1029/2020GL089099",
+    "10.1029/2020EA001086"
+  ],
+  "scope": "Archival, conditional forward prediction from independent spacecraft array-current variation. FOV2 is the far footprint. Repeat events at one site; no material identification. Author calibrated its layered model on Sol501 and all six event amplitudes are historical outcomes. Aggregate values and illustrated fits have been exposed, raw target time series still sealed at registration.",
+  "calibration_sol": "0501",
+  "evaluation_sols": [
+    "0498",
+    "0499"
+  ],
+  "coverage": "All six paper events have 172 or 173 RAD SCET observations in +/-180s. The three 2019 events each have exactly one native hardwired string sample during the event, so they cannot resolve the waveform from those measurements. 2020 events have respectively 9/7/7 synchronous points per panel. No extra data-based selection.",
+  "clock": "The timing reference is minimum angular separation (MAS) UTC from published Table 1; set t=0 there. Source durations 36,28,27s. Solar strings E-0771/0791 are simultaneous amperes, 9999.900 is invalid. SCET_UTC not ERT_UTC, label-derived positive indexing. Per-event baseline fit on recorded [-90,-25] seconds using OLS line for current and for far-temperature; no other evaluation temperature can enter prediction.",
+  "radiometer": {
+    "uri": "https://pds-geosciences.wustl.edu/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00478_20200401_121608.tab",
+    "sha256": "c82b277b5768159021ae0848cd74092cc016775307611abb3aa61c72f1563732",
+    "rows": 35539,
+    "temp_field": "TS FoV 2",
+    "FOV": 2,
+    "temp_unit": "K"
+  },
+  "events": [
+    {
+      "sol": "0498",
+      "utc": "2020-04-21T14:58:53",
+      "width": 36,
+      "elevation_deg": 9,
+      "current_uri": "https://pds-ppi.igpp.ucla.edu/data/insight-ifg-mars/data-sc-engineering/SOL0480_SOL0509_20200402_20200503/ancil_SOL0498_20200420_20200421_v01.tab",
+      "current_sha256": "e9bd0f223d9ae264a408db9648c7fda3c80b816809c0f0db3fddde0c4994c7d6"
+    },
+    {
+      "sol": "0499",
+      "utc": "2020-04-22T13:52:39",
+      "width": 28,
+      "elevation_deg": 34,
+      "current_uri": "https://pds-ppi.igpp.ucla.edu/data/insight-ifg-mars/data-sc-engineering/SOL0480_SOL0509_20200402_20200503/ancil_SOL0499_20200421_20200422_v01.tab",
+      "current_sha256": "824af7fad8ecf317eac4d8b7257479cce4624a94dff9e062106706853273b41c"
+    },
+    {
+      "sol": "0501",
+      "utc": "2020-04-24T11:27:56",
+      "width": 27,
+      "elevation_deg": 81,
+      "current_uri": "https://pds-ppi.igpp.ucla.edu/data/insight-ifg-mars/data-sc-engineering/SOL0480_SOL0509_20200402_20200503/ancil_SOL0501_20200423_20200425_v01.tab",
+      "current_sha256": "0b5773bc2c436e3d3cdcdd6102a045f0c6d748b0217955a063f6c6efbf01e5c1"
+    }
+  ],
+  "units": "Independent units two other transits (dates), one physical site/footprint. Native temperature records in [−D/2,60s] unweighted mean per case; no pooled record-level statistical claims.",
+  "roles": [
+    "zero",
+    "instantaneous",
+    "integral",
+    "halfspace",
+    "fractional_selected",
+    "exponential_selected",
+    "phase_template",
+    "normalized_halfspace",
+    "solar_elevation_halfspace"
+  ],
+  "driver": "Half-sum valid simultaneous current in amperes. Subtract measured current from pre-event trend, clip deficit below zero. Positive deficit is cooling. Treat input as piecewise constant on [sample time,next sample) inside geometric contact window, zero outside, with zero from first contact to first in-event current. Overall amplitude fit scales A to K, not absorbed-flux calibration. Time normalization or free current scaling fixed in role definitions. Observed fractional-deficit and sine-elevation roles alter input scaling but share all data.",
+  "variants": "Power-law integral exactly sums q*((t-a)^alpha-(t-b)^alpha). Nonnegative scalar gain LS on all source samples. Instantaneous holds q, integral alpha1, halfspace alpha.5 (semi-infinite conduction). Fractional selects alpha {0.25,0.5,0.75,1} on source SSE, exponential selects tau{2,4,8,16,32,64}s. Normalized halfspace divides input by the zero-time baseline current. Solar-elevation halfspace further multiplies by sine of declared solar elevation. Same-information source template linearly interpolates measured source cooling in normalized eclipse time and rescales by each event’s peak deficit/source peak (hold zero outside source support). Tie first, due to fixed order, no clipping of temperature truth.",
+  "gate": "Primary absolute-current halfspace must beat every other role in aggregate event-averaged RMSE and beat baseline, instantaneous, integral, selected exponential and phase template on BOTH events. Equalities fail; no retuning. Preserve MAE, native per-event worst rows and every forecast/target. The nested fractional bank includes alpha=.5. If calibration selects it, both roles coincide by construction and strict superiority is impossible; preserve that equality.",
+  "rivals": "Published Mueller atmospheric/SPICE and layered model used source ephemerides plus optical depth, diurnal boundary and published sol501 temperature fit. It is a reference under richer forcing, not a head-to-head result; do not claim frontier-level model superiority. This measured-current experiment does not reproduce its outputs."
+}

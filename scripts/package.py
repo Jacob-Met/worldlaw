@@ -16,6 +16,21 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/phobos_transit_radiometer/README.md",
+    "research/phobos_transit_radiometer/acquisition.py",
+    "research/phobos_transit_radiometer/channels-and-clocks.json",
+    "research/phobos_transit_radiometer/clock_census.py",
+    "research/phobos_transit_radiometer/forecast-lock.json",
+    "research/phobos_transit_radiometer/forecast.json",
+    "research/phobos_transit_radiometer/identity-checkpoint.json",
+    "research/phobos_transit_radiometer/independent.py",
+    "research/phobos_transit_radiometer/inventory.py",
+    "research/phobos_transit_radiometer/model.py",
+    "research/phobos_transit_radiometer/native-originals.json",
+    "research/phobos_transit_radiometer/protocol.json",
+    "research/phobos_transit_radiometer/replay.py",
+    "research/phobos_transit_radiometer/score.json",
+    "research/phobos_transit_radiometer/score.py",
     "research/wasp12-sector-clock-transfer/README.md",
     "research/wasp12-sector-clock-transfer/comparison.json",
     "research/wasp12-sector-clock-transfer/design.json",
