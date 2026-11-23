@@ -26,6 +26,15 @@ def main():
     r=base64.b64decode((root/"forecast_bytes.txt").read_text())
     assert len(r)==stamp["size"] and hashlib.sha256(r).hexdigest()==stamp["sha"]
     with zipfile.ZipFile(io.BytesIO(r)) as z:a={k[:-4]:read_array(z.read(k)) for k in z.namelist()}
+    source_diff=0.0
+    for epoch in (3,7):
+        levels=a["levels"+str(epoch)][1];slopes_src=a["response"+str(epoch)][1];c_src=a["pose_intercept"+str(epoch)][1]
+        currents=(-1.8,-1.2,-.6,0.,.6,1.2,1.8);den=product(currents,currents)
+        for axis in range(3):
+            for k in range(189):
+                row=[levels[(axis*7+j)*189+k] for j in range(7)]
+                source_diff=max(source_diff,abs(c_src[axis*189+k]-math.fsum(row)/7),abs(slopes_src[k*3+axis]-product(row,currents)/den))
+    assert source_diff<1e-11
     ids=[int(x) for x in a["sensor_id"][1]];assert ids==score["ids"] and 24 not in ids
     tg=[x for row in score["target"] for x in row];prev=a["prior_chamber"][1]
     slopes=a["response7"][1];P=a["predictions"][1];a0=a["pose_intercept7"][1]
@@ -51,5 +60,5 @@ def main():
         eps.extend(abs(a-b) for a,b in zip(estimates+ma[-1],comp+d["axis_rmse"]))
     gate=all(worst[0]<x for i,x in enumerate(worst) if i not in [0,4]) and all(ma[0][k]<min(ma[1][k],ma[2][k]) for k in range(3))
     assert gate==score["gate"] and max(eps)<1e-10
-    print(json.dumps(dict(component_residuals=12*189,source_chips=63,forecast_delta=fit,metric_delta=max(eps),overall=worst,gate=gate),sort_keys=True))
+    print(json.dumps(dict(checked_source_level_means=2*3*7*189,source_intercept_slope_delta=source_diff,component_residuals=12*189,source_chips=63,forecast_delta=fit,metric_delta=max(eps),overall=worst,gate=gate),sort_keys=True))
 if __name__=="__main__":main()

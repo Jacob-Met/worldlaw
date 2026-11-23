@@ -1,0 +1,81 @@
+{
+  "job": "p3-f747-manadbs-literal-held-chamber-all-189-row-receiver",
+  "binding": {
+    "mandate": "m-frontier-research-gpu",
+    "forward_resource_budget": true,
+    "forward_start_caller": true,
+    "caller": {
+      "agent": "astra62-p3-f747f5728172",
+      "attribution": "caller_named"
+    },
+    "session_id": "p3-f747-manadbs-literal-held-chamber-all-189-row-receiver",
+    "job_id": "p3-f747-manadbs-literal-held-chamber-all-189-row-receiver",
+    "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+    "command_id": "p3-f747-manadbs-literal-held-chamber-all-189-row-receiver",
+    "start_operation_id": "placement-17f2714a7350f677b058f19eb02e0e3b780f7cb89d27969d",
+    "arguments_sha256": "760d20e8a901f423e6271958502eb88dfdcff2a98b9ff4158faab31934eee11a",
+    "requirements": {
+      "retain_output_bytes": 65536,
+      "retain_full_output": true,
+      "cpu_cores": 1,
+      "git_repositories": [
+        "Jacob-Met/worldlaw"
+      ],
+      "executables": [
+        "git",
+        "python3",
+        "uv"
+      ],
+      "memory_bytes": 900000000,
+      "scratch_bytes": 500000000
+    },
+    "created_at": "2026-11-23T09:47:25.534092581Z",
+    "active": false
+  },
+  "receipt": {
+    "command_id": "p3-f747-manadbs-literal-held-chamber-all-189-row-receiver",
+    "exit_code": 0,
+    "finished_at": "2026-11-23T09:47:28.143156335Z",
+    "generation": "38494b7c27a192c2b0f484d3de5b4f914166a92ceeb17ab30a715eb71a7c3362",
+    "request_sha256": "0d8946dfa364337a85eff3f21ccf23c92af9034636c72594d8b710ff40039069",
+    "resource_process": {
+      "boot_id": "1ca46c53-d5e4-4b04-a9c4-fed66e762765",
+      "pid": 1647529,
+      "start_ticks": 55078188
+    },
+    "resource_usage": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 40169472,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "git": 1.02,
+          "other": 0.07,
+          "python": 0.09000000000000001
+        },
+        "distinct_processes": 7,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 24,
+        "read_errors": 2,
+        "saturated_snapshots": 0,
+        "snapshots": 24
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.210498,
+      "user_cpu_seconds": 1.140906
+    },
+    "runner_pid": 1647516,
+    "script_observation_version": 3,
+    "started_at": "2026-11-23T09:47:25.783274672Z",
+    "state": "completed",
+    "working_tree_context": {
+      "repository": "github.com/Jacob-Met/cursor-swiss-env",
+      "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+    }
+  },
+  "stdout_sha256": "026db9b14954fc464942c9c0ae5efa59a265f4a19260cdeec21c01aef56d04f1"
+}
