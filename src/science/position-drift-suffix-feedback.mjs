@@ -17,7 +17,7 @@ const runs=word=>word.map(command=>({command,repeats:'1'}));
 
 // Every physically possible survivor set lies in a maximal clique.
 // Bron–Kerbosch uses a pivot to avoid enumerating all subsets of each clique.
-function maximalCliques(neighbors){
+export function maximalCliques(neighbors){
   const found=[];
   function visit(clique,possible,excluded){
     if(!possible.size&&!excluded.size){found.push(clique);return;}
