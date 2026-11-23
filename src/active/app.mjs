@@ -1,4 +1,4 @@
-import {ACTIVE_DRIFT_PLAN,ACTIVE_DRIFT_CHECKPOINTS,ACTIVE_DRIFT_TRACE} from '../science/active-position-drift-readout.mjs';
+import {ACTIVE_DRIFT_PLAN,ACTIVE_DRIFT_CHECKPOINTS,ACTIVE_DRIFT_TRACE,parseActiveOriginalJSON} from '../science/active-position-drift-readout.mjs';
 import {renderDriftNotebook} from './position-drift-view.mjs';
 import {COUPLED_DEMO_SOURCE_SHA256} from './instrument.mjs';
 import {ADAPTIVE_DEMO_SOURCE_SHA256} from './adaptive-instrument.mjs';
@@ -59,7 +59,7 @@ function updateControls(){
   $('supplied-controls').disabled=!ready;
   $('history-controls').hidden=!book||!frozen||!calibratedOutlierPlan(book.plan);
   $('import-history').disabled=busy;
-  $('play').disabled=!book||busy;$('tick').disabled=!book||busy;
+  $('play').disabled=!book||busy||drift;$('tick').disabled=!book||busy||drift;
   $('source-text').readOnly=frozen;$('noise-bound').readOnly=frozen;
   $('replan').disabled=!book||busy||frozen;
   $('new-draft').disabled=!book||busy;
@@ -203,7 +203,7 @@ function renderWitness(){
   $('witness-explanation').textContent='This combination cancels the independent unknown starting states for '+projection.pair.map(row=>row.id.replaceAll('_',' ')).join(' and ')+'. The exact difference is '+projection.proof.witness.signedGap+'.';
   drawProjection($('projection'),projection);
 }
-function redraw(){if(!book)return;drawApparatus($('apparatus'),book,tick,readingIndex);renderWitness();}
+function redraw(){if(!book||book.plan.schema===ACTIVE_DRIFT_PLAN)return;drawApparatus($('apparatus'),book,tick,readingIndex);renderWitness();}
 function setTick(next){
   if(!book)return;const horizon=illustrateModels(book,readingIndex).horizon;tick=Math.max(0,Math.min(horizon,next));
   $('tick').value=String(tick);$('tick-value').value=String(tick);$('tick-value').textContent=String(tick);
@@ -444,7 +444,7 @@ fileAction('readings-file',524288,(text,snapshot)=>{
   }
   return ask({action:'read',book:snapshot.book,text}).then(next=>({next,key:snapshot.key}));
 },received=>adopt(received.next,'frozen',received.key),'Original readout bytes received and checked against the frozen plan.','result-heading');
-fileAction('plan-file',2097152,(text,snapshot)=>{if(!snapshot.book||snapshot.mode!=='preview'||snapshot.dirty)throw Error('Open a CLI plan against an accepted prospective draft.');return ask({action:'plan',sourceText:snapshot.book.sourceText,plan:JSON.parse(text)});},next=>adopt(next,'frozen'),'The original CLI plan reopened with its original digest, counters and decision.');
+fileAction('plan-file',2097152,(text,snapshot)=>{if(!snapshot.book||snapshot.mode!=='preview'||snapshot.dirty)throw Error('Open a CLI plan against an accepted prospective draft.');return ask({action:'plan',sourceText:snapshot.book.sourceText,plan:parseActiveOriginalJSON(text)});},next=>adopt(next,'frozen'),'The original CLI plan reopened with its original digest, counters and decision.');
 for(const [button,input] of [['open-notebook','notebook-file'],['import-source','source-file'],['import-readings','readings-file'],['import-history','readings-file'],['import-plan','plan-file']])$(button).addEventListener('click',()=>$(input).click());
 $('export-notebook').addEventListener('click',()=>{if(book&&mode==='frozen'){exportJSON(book,'worldlaw-active-experiment.json');announce('Portable notebook exported with original source, frozen plan and every separate reading set.');}});
 $('download-source').addEventListener('click',()=>book&&download(book.sourceText,'worldlaw-active-source.json'));
@@ -477,7 +477,7 @@ $('load-example').addEventListener('click',()=>transact(async()=>ask({action:'pl
 $('new-draft').addEventListener('click',()=>book&&planDraft(book.sourceText));
 $('replan').addEventListener('click',()=>{
   const source=$('source-text').value,bound=$('noise-bound').value.trim();
-  transact(()=>{let text=source;const request=JSON.parse(source);if(String(request.noiseBound??0)!==bound){request.noiseBound=exactInput(bound);text=JSON.stringify(request,null,2)+'\n';}return ask({action:'plan',sourceText:text});},next=>adopt(next,'preview'),'Draft recomputed using the stated source and error bound. No readout values were used.');
+  transact(()=>{let text=source;const request=parseActiveOriginalJSON(source);if(String(request.noiseBound??0)!==bound){request.noiseBound=exactInput(bound);text=JSON.stringify(request,null,2)+'\n';}return ask({action:'plan',sourceText:text});},next=>adopt(next,'preview'),'Draft recomputed using the stated source and error bound. No readout values were used.');
 });
 for(const id of ['source-text','noise-bound'])$(id).addEventListener('input',()=>{if(mode==='preview'){dirty=true;$('phase').textContent='Unapplied source edits';announce('Displayed forecasts still belong to the last accepted source. Recompute the draft to apply these edits.');updateControls();}});
 $('open-local').addEventListener('click',()=>{
