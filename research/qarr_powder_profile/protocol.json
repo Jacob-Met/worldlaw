@@ -93,5 +93,29 @@
     "Actual lmfit 1.3.4 PseudoVoigtModel+LinearModel areas from pure-reference-calibrated isolated peaks. Three strongest classifiable isolated peaks per phase: pure find_peaks prominence>=2% peak-to-peak amplitude, other-phase center separation >0.85°, same-phase selected peaks >1°, endpoints >0.5°. Fit each matched ±0.40° window on each reference and 5 development mixtures; amplitude≥0, center ±0.12° of reference maximum, sigma .01..0.30°, fraction0..1. Retain every fit and fail qualification if fewer than three peaks/phase, failed fit, or nonpositive area. r_sp median over peaks(log(mixture area/pure area)−log w_sp); subtract phase mean per mixture, average over development and exponentiate to obtain three relative pure coefficients. Same measured refs predict full held profiles. This is actual peak fitting and not an implementation of the historical TOPAS inverse fits."
   ],
   "gate": "Candidate must beat mean RMS of every control and win at least 2/3 independent held specimen comparisons against both peak-fit and bulk-MAC measured-pure rules. Preserve per-target and worst raw angle, all-role same-angle predictions, and discrepancy with predicted near-equal g/h difference. Include development-only hold-one-out, spectrum shape separation/conditioning as diagnostic, no fitted held parameters.",
-  "durability": "All predicted directions for f/g/h are reconstructed from exact source vectors and fixed coefficients and hashed as binary64 before target counts are decoded. Forecast matrix persists in native producer and compressed receipts; physical archive stays upstream, do not republish third-party raw spectra."
+  "durability": "All predicted directions for f/g/h are reconstructed from exact source vectors and fixed coefficients and hashed as binary64 before target counts are decoded. Forecast matrix persists in native producer and compressed receipts; physical archive stays upstream, do not republish third-party raw spectra.",
+  "prevalue_amendment": {
+    "original": "b7a0407f02192a053a075caf98629c9f72b3df19",
+    "refusal": {
+      "job_id": "p3-f747-qarr-eleven-grids-native-RD-and-independent-copies",
+      "state": "captured",
+      "source": {
+        "owner": "node-f16b825d04f9993acd590fd2b38fe4f5",
+        "command_id": "p3-f747-qarr-eleven-grids-native-RD-and-independent-copies",
+        "request_sha256": "f9515dae76a95b54575b7fdcdf5e7ab618360d4328bac4b1072b0a00333bda31",
+        "generation": "6bfd45c4572b75dbe21be1ff170684cfa362ba8f6c12ea60842fced34bc519b1",
+        "receipt_sha256": "ec9e4acd5202c25e1c553f5b1ce3089f39b6f24f90c4bf9bc5d528db35b2b07e",
+        "output_bytes": 2216
+      },
+      "total_bytes": 2216,
+      "sha256": "7f9856b6915394e8af6bdcc1a4c9bc0fc6a36e658e3059247c5afb06da8988e3",
+      "offset": 0,
+      "next_offset": 0,
+      "has_more": true
+    },
+    "native_decoder": "yue-here/rietx 0c3e7cc src/rietx/io/formats/philips_rd.py f699749c75fe58240b5bf9aca8c16e621c0383db",
+    "rule": "1e printed PRN deviates from its original native theta in 124 coordinates, by at most 0.000011 deg. Use original Philips V3RD sequential ordinals from offset 250 (little-endian uint16), native header max at 136, and integer counts v²//100. Require every 1e text ordinal to resolve uniquely to its native bin and exact equality of all native and printed counts for both 1e and corundum before fitting. Other ten text grids retain original tolerance. Failure refuses development and leaves all target counts sealed.",
+    "exposure": "Angles and headers only at registration. Source bytes passed as opaque custody; no numerical intensity outcomes examined."
+  },
+  "physical_model": "After removing a per-scan constant, X_i(q)=g_i sum_c m_ic S_c(q) with arbitrary positive scalar per scan. A common mixture absorption factor is indistinguishable from g_i. The model cannot distinguish texture, nonconstant background, microabsorption, phase profile changes, packing or specimen geometry."
 }

@@ -1,0 +1,25 @@
+V3RD [["corundum", "5dd3a811f33dd2f95dc0049f93dba9b10bc98c2861bcb617cc9605499316b1ec", [3, 0, 3], 0.02, 5.0, 150.0, 14752], ["cpd-1e", "99aff9a54dd5d2f5c65df49019ff1e4e8de60c7e0a39df0eb2b480f24388eb89", [3, 0, 3], 0.02, 5.0, 150.0, 14752]]
+GRID corundum 145020 3526b31527aa8cc38870334dd6abaae10aa79d71ed9949e476fb2b2023dd580e 7251 5.0 150.0
+GRID zincite 145020 3e9ba9f10e35d2722ebd21a975b681242e4648180d08254b084b03464c435e60 7251 5.0 150.0
+GRID fluorite 145020 a2ceef66ae255e1fe5537f62d042c47c6a65443f3c02e9efecb2adafee08df9c 7251 5.0 150.0
+GRID cpd-1a 145020 8b296af7874080e0d6e4680e4a6fc2f57f1fe6af4d46cb53c1f164dfd56d9d64 7251 5.0 150.0
+GRID cpd-1b 145020 3784e42f8ff9d7e144a1203cf4b4d74ce884609efd9884ea845c883cc651cfe1 7251 5.0 150.0
+GRID cpd-1c 145020 d8161bd98e3de02e6c8c3ac9d5238c55a6e785756c65a7dee84c2faaac763bcf 7251 5.0 150.0
+GRID cpd-1d 145020 4ecaa5dbb56240f2d2880ca7a4509228e193ff63d7e1ea42c3f0508924576d41 7251 5.0 150.0
+Traceback (most recent call last):
+  File "/tmp/hamon-s-1000/707df1329d8a4ba4b34eef6c07fdc17f/rible-frozen-lo44ejjb/research/qarr_powder_profile/acquisition.py", line 46, in <module>
+    if __name__=='__main__':qualify()
+                            ^^^^^^^^^
+  File "/tmp/hamon-s-1000/707df1329d8a4ba4b34eef6c07fdc17f/rible-frozen-lo44ejjb/research/qarr_powder_profile/acquisition.py", line 42, in qualify
+    b=raw(n);a=angles(b);print('GRID',n,len(b),sha(b),len(a),a[0],a[-1],flush=True)
+               ^^^^^^^^^
+  File "/tmp/hamon-s-1000/707df1329d8a4ba4b34eef6c07fdc17f/rible-frozen-lo44ejjb/research/qarr_powder_profile/acquisition.py", line 25, in angles
+    assert len(out)==7251 and max(abs(x-(5+i*.02)) for i,x in enumerate(out))<2e-10
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+  File "<stdin>", line 3, in run
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/bin/python3', '/tmp/hamon-s-1000/707df1329d8a4ba4b34eef6c07fdc17f/rible-frozen-lo44ejjb/research/qarr_powder_profile/acquisition.py']' returned non-zero exit status 1.
