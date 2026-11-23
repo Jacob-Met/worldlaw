@@ -692,6 +692,22 @@ try{
   }
   mark('identical four-law survivor lists drive opposite measured suffixes in the browser and CLI');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftPlanarSuffix');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/Two measured contrasts/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Five-pulse oblique region replay');
+  await page.locator('#acquisition-kind').selectOption('synthetic');
+  for(const [i,x] of [0,0,-1,-3].entries())await page.locator('#drift-reading-'+i).fill(String(x));
+  await page.locator('#evaluate-readings').click();await idle();
+  assert.equal(await page.locator('#drift-reading-4').getAttribute('data-command'),'x1');
+  await page.locator('#drift-reading-4').fill('-5/2');await page.locator('#drift-reading-5').fill('-3');
+  await page.locator('#evaluate-readings').click();await idle();
+  const planeBook=await accepted();assert.deepEqual(planeBook.readouts.at(-1).result.consistentHypothesisIds,['A']);
+  const planeFile=await download('export-notebook','planar-suffix.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',planeFile]).stdout),planeBook);
+  mark('an oblique closed suffix region governs the measured three-pulse prefix and replays through the CLI');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';
