@@ -1,0 +1,231 @@
+{
+  "schema": "worldlaw.position-drift-dwell-calibration-proof/v1",
+  "source": {
+    "schema": "worldlaw.position-drift-dwell-calibration/v1",
+    "pulseBudget": "13",
+    "catalog": {
+      "schema": "worldlaw.position-drift-rate-polytopes/v1",
+      "commands": [
+        "ref",
+        "group",
+        "x0",
+        "y0",
+        "z0",
+        "x1",
+        "y1",
+        "z1"
+      ],
+      "noiseBound": "1/10",
+      "limits": {
+        "designWork": 12000000,
+        "receiverWork": 1000000
+      },
+      "laws": [
+        {
+          "id": "A",
+          "vertices": [
+            [
+              "0",
+              "0",
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "1",
+              "0",
+              "0"
+            ]
+          ]
+        },
+        {
+          "id": "B",
+          "vertices": [
+            [
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1",
+              "0",
+              "-1",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "1",
+              "0",
+              "-1"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "status": "calibration-certified",
+  "horizon": "13",
+  "readAt": [
+    "0",
+    "5",
+    "7",
+    "9",
+    "11",
+    "13"
+  ],
+  "radius": "1/9",
+  "atRequestedNoise": "policy-separates",
+  "leastReferencesAtNoise": "5",
+  "references": "5",
+  "dwell": "2",
+  "fixedDwellCeiling": "1/5",
+  "interpolation": "affine-on-each-command-run",
+  "selector": {
+    "budget": "13",
+    "checkedDwells": [
+      "1",
+      "2"
+    ],
+    "optimalDwells": [
+      "2"
+    ]
+  },
+  "boundary": {
+    "reference": {
+      "origin": "0",
+      "perTick": "-2/45",
+      "through": "5"
+    },
+    "shared": [
+      "0",
+      "-2/9",
+      "28/45"
+    ],
+    "branches": [
+      {
+        "commands": [
+          "y0",
+          "x0",
+          "z0"
+        ],
+        "after": [
+          "29/45",
+          "46/45",
+          "38/45"
+        ],
+        "worlds": [
+          {
+            "law": "A",
+            "weights": [
+              "0",
+              "17/45",
+              "0",
+              "28/45"
+            ],
+            "origin": "1/9",
+            "drift": "-4/45"
+          },
+          {
+            "law": "B",
+            "weights": [
+              "22/45",
+              "4/45",
+              "0",
+              "19/45"
+            ],
+            "origin": "-1/9",
+            "drift": "0"
+          }
+        ]
+      },
+      {
+        "commands": [
+          "z1",
+          "x1",
+          "y1"
+        ],
+        "after": [
+          "8/15",
+          "28/45",
+          "38/45"
+        ],
+        "worlds": [
+          {
+            "law": "A",
+            "weights": [
+              "29/45",
+              "0",
+              "4/15",
+              "4/45"
+            ],
+            "origin": "1/9",
+            "drift": "-2/45"
+          },
+          {
+            "law": "B",
+            "weights": [
+              "26/45",
+              "0",
+              "17/45",
+              "2/45"
+            ],
+            "origin": "-1/9",
+            "drift": "0"
+          }
+        ]
+      }
+    ]
+  },
+  "work": 36
+}
