@@ -1,4 +1,4 @@
-import {isGuidedPlan,BINARY_PLAN,MULTICLASS_PLAN,CASE_TWELVE_PLAN,CASE_TWELVE_REQUEST,ONE_FEEDBACK_REQUEST,ONE_FEEDBACK_PLAN,GUIDED_INPUT,pendingDriftSteps} from '../science/active-guided-drift.mjs';
+import {isGuidedPlan,BINARY_PLAN,MULTICLASS_PLAN,CASE_TWELVE_PLAN,CASE_TWELVE_REQUEST,ONE_FEEDBACK_REQUEST,SUFFIX_REQUEST,driftFeedbackInconclusive,GUIDED_INPUT,pendingDriftSteps} from '../science/active-guided-drift.mjs';
 import {ACTIVE_DRIFT_PLAN,ACTIVE_DRIFT_CHECKPOINTS,ACTIVE_DRIFT_TRACE,parseActiveOriginalJSON} from '../science/active-position-drift-readout.mjs';
 import {renderDriftNotebook} from './position-drift-view.mjs';
 import {COUPLED_DEMO_SOURCE_SHA256} from './instrument.mjs';
@@ -11,7 +11,7 @@ import {escapeHTML as html,approximate,displayNumber,plannedTicks,certified,
 const $=id=>document.getElementById(id);
 const PREFIX='worldlaw-active-notebook-v1:',POINTER='worldlaw-active-current-v1';
 const isDrift=p=>p?.schema===ACTIVE_DRIFT_PLAN||isGuidedPlan(p);
-const examplePaths={driftFeedbackSearch:'/examples/active-position-drift-one-feedback.json',driftBinary:'/examples/active-position-drift-binary.json',driftMulti:'/examples/active-position-drift-schedule.json',driftFeedback:'/examples/active-position-drift-feedback.json',driftSchedule:'/examples/active-position-drift-schedule.json',driftGauge:'/examples/active-position-drift-gauge.json',coupled:'/examples/active-intervention-coupled-kinematics.json',
+const examplePaths={driftSuffix:'/examples/active-position-drift-suffix-feedback.json',driftFeedbackSearch:'/examples/active-position-drift-one-feedback.json',driftBinary:'/examples/active-position-drift-binary.json',driftMulti:'/examples/active-position-drift-schedule.json',driftFeedback:'/examples/active-position-drift-feedback.json',driftSchedule:'/examples/active-position-drift-schedule.json',driftGauge:'/examples/active-position-drift-gauge.json',coupled:'/examples/active-intervention-coupled-kinematics.json',
   bounded:'/examples/active-control-box-coupled-kinematics.json',
   joint:'/examples/active-joint-control-three-responses.json',
   adaptive:'/examples/active-adaptive-coupled-track.json',
@@ -399,7 +399,7 @@ $('freeze-plan').addEventListener('click',()=>{
   if(!book||busy||dirty||mode==='frozen')return;
   mode='frozen';persist();render();announce('The source and prospective plan are frozen. Receive a separate reading set when ready.');
   if(isDrift(book.plan)&&book.plan.status==='indistinguishable'){announce('The gauge witnesses are frozen. Choose a pair and command word to compare their trajectories.');$('drift-pair').focus();return;}
-  if(book.plan.schema===ONE_FEEDBACK_PLAN&&book.plan.status!=='one-feedback-certified'){announce('The search record is frozen. Export it to replay the bounds and available counterexamples.');return;}
+  if(driftFeedbackInconclusive(book.plan)){announce('The search record is frozen. Export it to replay the bounds and available counterexamples.');return;}
   if(certified(book.plan)||isDrift(book.plan)){$('receive-region').scrollIntoView({block:'nearest',behavior:reduced.matches?'auto':'smooth'});if(book.plan.sourceSHA256===COUPLED_DEMO_SOURCE_SHA256)$('acquire').focus({preventScroll:true});else if(book.plan.sourceSHA256===ADAPTIVE_DEMO_SOURCE_SHA256)$('acquire-adaptive').focus({preventScroll:true});else{$('supplied-details').open=true;$('readout-source').focus({preventScroll:true});}}
 });
 $('acquire').addEventListener('click',()=>{
@@ -502,7 +502,7 @@ $('load-example').addEventListener('click',()=>transact(async()=>ask({action:'pl
 $('new-draft').addEventListener('click',()=>book&&planDraft(book.sourceText,catalogDesign()));
 $('replan').addEventListener('click',()=>{
   const source=$('source-text').value,bound=$('noise-bound').value.trim();
-  transact(()=>{let text=source;const request=parseActiveOriginalJSON(source);const catalog=request.schema===ONE_FEEDBACK_REQUEST?request.catalog:request;if(request.schema!==CASE_TWELVE_REQUEST&&String(catalog.noiseBound??0)!==bound){catalog.noiseBound=exactInput(bound);text=JSON.stringify(request,null,2)+'\n';}return ask({action:'plan',sourceText:text,design:request.schema==='worldlaw.position-drift-rate-catalog/v1'?catalogDesign():undefined});},next=>adopt(next,'preview'),'Draft recomputed using the stated source and error bound. No readout values were used.');
+  transact(()=>{let text=source;const request=parseActiveOriginalJSON(source);const catalog=[ONE_FEEDBACK_REQUEST,SUFFIX_REQUEST].includes(request.schema)?request.catalog:request;if(request.schema!==CASE_TWELVE_REQUEST&&String(catalog.noiseBound??0)!==bound){catalog.noiseBound=exactInput(bound);text=JSON.stringify(request,null,2)+'\n';}return ask({action:'plan',sourceText:text,design:request.schema==='worldlaw.position-drift-rate-catalog/v1'?catalogDesign():undefined});},next=>adopt(next,'preview'),'Draft recomputed using the stated source and error bound. No readout values were used.');
 });
 $('drift-design').addEventListener('change',()=>{$('drift-search').hidden=$('drift-design').value!=='multiclass';});
 for(const id of ['source-text','noise-bound','drift-design','drift-search-length','drift-search-budget'])$(id).addEventListener('input',()=>{if(mode==='preview'){dirty=true;$('phase').textContent='Unapplied source edits';announce('Displayed forecasts still belong to the last accepted source. Recompute the draft to apply these edits.');updateControls();}});

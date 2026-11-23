@@ -1,5 +1,8 @@
 import {ONE_FEEDBACK_REQUEST,ONE_FEEDBACK_PLAN,planOneFeedback,receiveOneFeedback} from './persistent-position-drift-one-feedback.mjs';
-export {ONE_FEEDBACK_REQUEST,ONE_FEEDBACK_PLAN};
+import {SUFFIX_REQUEST,SUFFIX_PLAN,planSuffixFeedback,receiveSuffixFeedback} from './position-drift-suffix-feedback.mjs';
+export {ONE_FEEDBACK_REQUEST,ONE_FEEDBACK_PLAN,SUFFIX_REQUEST,SUFFIX_PLAN};
+export const driftFeedbackInconclusive=p=>(p.schema===ONE_FEEDBACK_PLAN&&p.status!=='one-feedback-certified')||
+  (p.schema===SUFFIX_PLAN&&p.status!=='suffix-certified');
 /** Measurement-led notebook continuations for minimum and case-12 drift plans. */
 import {planAllHorizonPositionDrift,planBinaryPositionDriftMinimum,observeCertifiedPositionDriftTape} from './persistent-position-drift-all-horizon.mjs';
 import {certifyMulticlassPositionDriftMinimum} from './persistent-position-drift-multiclass-minimum.mjs';
@@ -11,11 +14,12 @@ export const BINARY_PLAN='worldlaw.position-drift-binary-minimum/v1';
 export const MULTICLASS_PLAN='worldlaw.multiclass-position-drift-minimum/v1';
 export const GUIDED_INPUT='worldlaw.active-guided-drift-readings/v1';
 export const GUIDED_RESULT='worldlaw.active-guided-drift-result/v1';
-export const isGuidedPlan=p=>[BINARY_PLAN,MULTICLASS_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN].includes(p?.schema);
+export const isGuidedPlan=p=>[BINARY_PLAN,MULTICLASS_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN].includes(p?.schema);
 const need=(ok,msg)=>{if(!ok)throw Error('Guided position/drift: '+msg);};
 const fields=(o,ks)=>o && typeof o==='object'&&!Array.isArray(o)&&Object.keys(o).sort().join(',')===[...ks].sort().join(',');
 
 export function designCatalog(request,design={}){
+  if(request.schema===SUFFIX_REQUEST)return planSuffixFeedback(request);
   if(request.schema===ONE_FEEDBACK_REQUEST)return planOneFeedback(request);
   if(request.schema===CASE_TWELVE_REQUEST){
     need(fields(request,['schema','first']),'supply exactly the source schema and first command');
@@ -29,9 +33,17 @@ export function designCatalog(request,design={}){
 
 export function fixedDriftRuns(p){return p.schema===BINARY_PLAN?p.runs:p.tape.runs;}
 export function pendingDriftSteps(plan,last){
-  if((plan.schema===ONE_FEEDBACK_PLAN&&plan.status!=='one-feedback-certified')||plan.status==='indistinguishable'||(last&&!last.checked.surviving.length))return [];
+  if(driftFeedbackInconclusive(plan)||plan.status==='indistinguishable'||(last&&!last.checked.surviving.length))return [];
   const count=last?.checked.values.length??0;
   const initial={tick:'0',command:null,repeats:'0'};
+  if(plan.schema===SUFFIX_PLAN){
+    const steps=[initial,...plan.prefix.map((command,i)=>({tick:String(i+1),command,repeats:'1'}))];
+    if(count>=steps.length){
+      const suffix=plan.suffixes[last.checked.suffix],start=steps.length;
+      steps.push(...suffix.map((command,i)=>({tick:String(start+i),command,repeats:'1'})));
+    }
+    return steps.slice(count);
+  }
   if(plan.schema===CASE_TWELVE_PLAN||plan.schema===ONE_FEEDBACK_PLAN){
     const lastTick=plan.prefix.length+1;
     if(count===lastTick)return [{tick:String(lastTick),command:last.checked.nextCommand,repeats:'1'}];
@@ -64,16 +76,17 @@ export function receiveGuidedDrift(book,input){
     ticks.push(row.tick);values.push(row.value);
     if(row.command!==null)commands.push(row.command);
   }
-  let surviving,nextCommand;
-  if(p.schema===CASE_TWELVE_PLAN||p.schema===ONE_FEEDBACK_PLAN){
-    const checked=p.schema===CASE_TWELVE_PLAN?openCaseTwelveOneFeedback(p.prefix[0]).receive(values):receiveOneFeedback(p,values);
+  let surviving,nextCommand,suffix;
+  if(p.schema===CASE_TWELVE_PLAN||p.schema===ONE_FEEDBACK_PLAN||p.schema===SUFFIX_PLAN){
+    const checked=p.schema===SUFFIX_PLAN?receiveSuffixFeedback(p,values):p.schema===CASE_TWELVE_PLAN?openCaseTwelveOneFeedback(p.prefix[0]).receive(values):receiveOneFeedback(p,values);
     need(JSON.stringify(checked.commands)===JSON.stringify(commands),'applied commands disagree with the retained readings');
-    surviving=checked.witnesses.map(w=>({law:w.law,initialWitness:w.start}));nextCommand=checked.nextCommand;
+    surviving=checked.witnesses.map(w=>({law:w.law,initialWitness:w.start}));nextCommand=checked.nextCommand;suffix=checked.suffix;
   }else{
     const checked=observeCertifiedPositionDriftTape(p.source,fixedDriftRuns(p),values);
     surviving=checked.surviving;nextCommand=surviving.length?(pending[input.readings.length]?.command??null):null;
   }
   const checked={values,ticks,commands,surviving,nextCommand};
+  if(p.schema===SUFFIX_PLAN)checked.suffix=suffix;
   const remaining=pendingDriftSteps(p,{checked});checked.nextTick=remaining[0]?.tick??null;
   return {schema:GUIDED_RESULT,acquisition:input.acquisition,readoutSource:input.source,
     consistentHypothesisIds:surviving.map(w=>w.law),checked,status:surviving.length===0?'all_hypotheses_falsified':
