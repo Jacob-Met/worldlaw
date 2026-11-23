@@ -32,3 +32,5 @@ Direct replay checks the lower certificate and the original physical trajectorie
 The original four active supports add to 0 ≤ −1 + 20ε. The triangle catalog adds vertex (0,0,1,1/3) to A and (0,0,1/3,0) to B. Its supporting row proves ε≥1/26 for any common history after (ref,x). All sixteen prefixes in each certificate have a physical history at their own critical bound. Both examples retain a fixed four-pulse separator at equality.
 
 The separate marginal error radii of s and w are 4ε and 6ε. Replacing the shared-generator zonotope by their Cartesian product loses information. In the original 1/24 experiment that relaxation permits s=1/2 to defeat both y and z. At y the independent intervals admit common final contrast 3/4 from clean points (1/2,1) and (2/3,2/3). At z they admit 1/4 from (1/2,1/2) and (1/2,0). The exact shared-error supports exclude both collisions. All other prefixes already lose in the physical model, so the rectangular relaxation would refuse a valid experiment.
+
+The four-pulse extension retains a separate observation at each decision-tree node. [Four-pulse thresholds and a two-decision witness](position-drift-four-pulse-radius.md)
