@@ -1,0 +1,463 @@
+[
+  {
+    "id": "p2-f747-junction-signed-field-cooldown-script-inventory",
+    "worker": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "receipt": {
+      "script_observation_version": 3,
+      "working_tree_context": {
+        "repository": "github.com/Jacob-Met/cursor-swiss-env",
+        "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 0.17000000000000004
+          },
+          "snapshots": 493,
+          "nonempty_snapshots": 493,
+          "distinct_processes": 1,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.174298,
+        "system_cpu_seconds": 0.059516,
+        "max_rss_bytes": 73080832,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 2075649,
+        "start_ticks": 33529602,
+        "boot_id": "6df4a52c-2139-4c16-9a65-e7d1486a3954"
+      },
+      "command_id": "p2-f747-junction-signed-field-cooldown-script-inventory",
+      "request_sha256": "7f76a97bd68e49e606a7456b200897c95a2ab997f80d7757ee1efde39ec0a419",
+      "generation": "78ec113f98b67fc47dcebabd7095f4e7453fe4e0b894cd278b76f73cda0447ca",
+      "state": "completed",
+      "runner_pid": 2075638,
+      "started_at": "2026-11-23T06:05:03.831863009Z",
+      "finished_at": "2026-11-23T06:05:53.15764988Z",
+      "exit_code": 0
+    },
+    "witness": {
+      "source": "authority_native_observation_v1",
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "placement-c3dd67158c693d7266dbe4c0e360b11babf0aec0c192d3cc",
+      "artifact_sha256": "a64ba35cbb510291545ce41ecff785a74f86a66fdd39b54719f41bd20c0531aa",
+      "artifact_bytes": 15408,
+      "original_owner": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+      "command_id": "p2-f747-junction-signed-field-cooldown-script-inventory",
+      "generation": "78ec113f98b67fc47dcebabd7095f4e7453fe4e0b894cd278b76f73cda0447ca",
+      "request_sha256": "7f76a97bd68e49e606a7456b200897c95a2ab997f80d7757ee1efde39ec0a419",
+      "native_sha256": "75867553dacb17eda0409a6a519d197b70a227c1049849500cd95a5f8e4a5500",
+      "output_sha256": "40eed20d293e0e1ab06da7c8c92250223271b489d0b5f403c627f0a4f7842e79",
+      "offset": 0,
+      "bytes": 11366,
+      "total_bytes": 11366,
+      "complete": true
+    },
+    "request": "7f76a97bd68e49e606a7456b200897c95a2ab997f80d7757ee1efde39ec0a419",
+    "generation": "78ec113f98b67fc47dcebabd7095f4e7453fe4e0b894cd278b76f73cda0447ca"
+  },
+  {
+    "id": "p2-f747-junction-matched-sweep-coordinate-qualification",
+    "worker": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+    "receipt": {
+      "script_observation_version": 3,
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {},
+          "snapshots": 1,
+          "nonempty_snapshots": 1,
+          "distinct_processes": 1,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.05079,
+        "system_cpu_seconds": 0.01172,
+        "max_rss_bytes": 23281664,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 1273533,
+        "start_ticks": 71506341,
+        "boot_id": "e63a2f1b-7ab2-4bc5-8e4e-5927618e40ec"
+      },
+      "command_id": "p2-f747-junction-matched-sweep-coordinate-qualification",
+      "request_sha256": "5de41a1c0cebb80bf18479baa9cb98c433bccb329879d6b8b924183d107c5da1",
+      "generation": "c56afaa65a485d0af28933740ef3c0f50824e9dbc790aa02059424e37618dabb",
+      "state": "failed",
+      "runner_pid": 1273521,
+      "started_at": "2026-11-23T06:06:34.603722107Z",
+      "finished_at": "2026-11-23T06:06:34.717896732Z",
+      "exit_code": 1,
+      "error": "exit status 1"
+    },
+    "witness": {
+      "source": "authority_native_observation_v1",
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "placement-89a2bc17f2f6d7bf521403f2080c8486769d7a80cfa914d0",
+      "artifact_sha256": "8d0ca2c914dcc117a1fa7c208e15bf7b0019f1ced7469184b42c8a2369ee268c",
+      "artifact_bytes": 3747,
+      "original_owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "command_id": "p2-f747-junction-matched-sweep-coordinate-qualification",
+      "generation": "c56afaa65a485d0af28933740ef3c0f50824e9dbc790aa02059424e37618dabb",
+      "request_sha256": "5de41a1c0cebb80bf18479baa9cb98c433bccb329879d6b8b924183d107c5da1",
+      "native_sha256": "17b8fa80f9215139d20d39b13d2663d451825cef85a34b05a54f2ef6556f38b6",
+      "output_sha256": "4a5dbab24d043c181d53739438c208fa099b7ef1d6c91acb8de1b2f69f16b90e",
+      "offset": 0,
+      "bytes": 2621,
+      "total_bytes": 2621,
+      "complete": true
+    },
+    "request": "5de41a1c0cebb80bf18479baa9cb98c433bccb329879d6b8b924183d107c5da1",
+    "generation": "c56afaa65a485d0af28933740ef3c0f50824e9dbc790aa02059424e37618dabb"
+  },
+  {
+    "id": "p2-f747-junction-matched-sweep-coordinate-qualification-headers",
+    "worker": "node-97c6d409c2cbae394d3688f835c7bef8",
+    "receipt": {
+      "script_observation_version": 3,
+      "working_tree_context": {
+        "repository": "github.com/Jacob-Met/cursor-swiss-env",
+        "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 0.21
+          },
+          "snapshots": 274,
+          "nonempty_snapshots": 274,
+          "distinct_processes": 1,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.270402,
+        "system_cpu_seconds": 0.040673,
+        "max_rss_bytes": 52826112,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 3839146,
+        "start_ticks": 80927714,
+        "boot_id": "7ea52103-2999-4937-aa6d-2741fccefa43"
+      },
+      "command_id": "p2-f747-junction-matched-sweep-coordinate-qualification-headers",
+      "request_sha256": "2a524d473f6b6285cf57e4842b1a0a2d8f1410a37bfdceeddd98f5316d14ec02",
+      "generation": "67c501beeddc7a5cc2c8c244255ee614dbe17727c8330baa653b8763fa35085b",
+      "state": "completed",
+      "runner_pid": 3839131,
+      "started_at": "2026-11-23T06:07:11.618615385Z",
+      "finished_at": "2026-11-23T06:07:39.066854012Z",
+      "exit_code": 0
+    },
+    "witness": {
+      "first_observation": true,
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "first-output-placement-a641c258cbc017707a208970d8cca9903c7bf7ef25cff9b2-o0-r1",
+      "artifact_sha256": "89638c88bfb2284501c0fbd6cd2e14a137d79b41305ce77bd45abe89ef2ce501",
+      "artifact_bytes": 19601,
+      "original_owner": "node-97c6d409c2cbae394d3688f835c7bef8",
+      "command_id": "p2-f747-junction-matched-sweep-coordinate-qualification-headers",
+      "generation": "67c501beeddc7a5cc2c8c244255ee614dbe17727c8330baa653b8763fa35085b",
+      "request_sha256": "2a524d473f6b6285cf57e4842b1a0a2d8f1410a37bfdceeddd98f5316d14ec02",
+      "native_sha256": "4173d86d6625d6102548b1a04289f38f1028196af90362cc0f758943ce92bff8",
+      "output_sha256": "ae92f06200839eebf4bdb3eb8a605e54a51abfbc4dc290caf6c47e5823d12e72",
+      "offset": 0,
+      "bytes": 6505,
+      "total_bytes": 6505,
+      "complete": true
+    },
+    "request": "2a524d473f6b6285cf57e4842b1a0a2d8f1410a37bfdceeddd98f5316d14ec02",
+    "generation": "67c501beeddc7a5cc2c8c244255ee614dbe17727c8330baa653b8763fa35085b"
+  },
+  {
+    "id": "p2-f747-junction-actual-currents-fields-all44-no-voltage",
+    "worker": "node-63fbcea7e7e266574ee04ba386b8bb4b",
+    "receipt": {
+      "script_observation_version": 3,
+      "working_tree_context": {
+        "repository": "github.com/Jacob-Met/cursor-swiss-env",
+        "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "python": 1.8800000000000006
+          },
+          "snapshots": 117,
+          "nonempty_snapshots": 117,
+          "distinct_processes": 1,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 1.879027,
+        "system_cpu_seconds": 0.039896,
+        "max_rss_bytes": 52969472,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 11554,
+        "start_ticks": 95250566,
+        "boot_id": "3fef6629-f5ff-414e-90d9-5682416c79e0"
+      },
+      "command_id": "p2-f747-junction-actual-currents-fields-all44-no-voltage",
+      "request_sha256": "3cf46bb5afcf04c2f4fe5816c32f3bdbf7911084ee86f9a68a4ffb1e185a1ab0",
+      "generation": "eca1e66203f7f4827b017655a350e167d443ec7427bf773f881fe2c383f89d0e",
+      "state": "completed",
+      "runner_pid": 11540,
+      "started_at": "2026-11-23T06:13:04.372815394Z",
+      "finished_at": "2026-11-23T06:13:16.060906192Z",
+      "exit_code": 0
+    },
+    "witness": {
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "retained-output-f27e55f0d55e4c4c521c2c0454f355d166263a2e1acb319e91aab1e4f30402ec",
+      "artifact_sha256": "60a2bf24db76c4fe4d4e04063e1fc117a0933958a0dafb87e9faf09fbfb28c35",
+      "artifact_bytes": 33692,
+      "original_owner": "node-63fbcea7e7e266574ee04ba386b8bb4b",
+      "command_id": "p2-f747-junction-actual-currents-fields-all44-no-voltage",
+      "generation": "eca1e66203f7f4827b017655a350e167d443ec7427bf773f881fe2c383f89d0e",
+      "request_sha256": "3cf46bb5afcf04c2f4fe5816c32f3bdbf7911084ee86f9a68a4ffb1e185a1ab0",
+      "native_sha256": "a5c981d96895a97b9b3dec87ae4811d4bb468fc871d842a65805b800ac81a238",
+      "output_sha256": "2b8b6435396ce94e059065417975fbb1cde0c8ac6872aed30b4b7fc521569c55",
+      "offset": 0,
+      "bytes": 13728,
+      "total_bytes": 13728,
+      "complete": true
+    },
+    "request": "3cf46bb5afcf04c2f4fe5816c32f3bdbf7911084ee86f9a68a4ffb1e185a1ab0",
+    "generation": "eca1e66203f7f4827b017655a350e167d443ec7427bf773f881fe2c383f89d0e"
+  },
+  {
+    "id": "p2-f747-junction-eight-config-specific-setup",
+    "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+    "receipt": {
+      "script_observation_version": 1,
+      "resource_usage": {
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.113159,
+        "system_cpu_seconds": 0.052807,
+        "max_rss_bytes": 52703232,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 2928297,
+        "start_ticks": 64309364,
+        "boot_id": "59be3933-e057-4cb9-96e2-c7effc2a04ed"
+      },
+      "command_id": "p2-f747-junction-eight-config-specific-setup",
+      "request_sha256": "ef301d19c113e29b72da1ea7cc3bdc20140b40e4d66d6b86f24e012272ed975c",
+      "generation": "1243afb477c957532e73d696008fa073afa74dae832c356020de752af9c56b27",
+      "state": "completed",
+      "runner_pid": 2928288,
+      "started_at": "2026-11-23T06:14:19.061991129Z",
+      "finished_at": "2026-11-23T06:14:47.0742378Z",
+      "exit_code": 0
+    },
+    "witness": {
+      "source": "authority_native_observation_v1",
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "placement-124a547675b010137ba726cd085c818330dadad8766554f6",
+      "artifact_sha256": "0fad322f8d9267f150fee8fcd260d8f03f10bea16635a8e7da7c6a1b6df29dc0",
+      "artifact_bytes": 7287,
+      "original_owner": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "command_id": "p2-f747-junction-eight-config-specific-setup",
+      "generation": "1243afb477c957532e73d696008fa073afa74dae832c356020de752af9c56b27",
+      "request_sha256": "ef301d19c113e29b72da1ea7cc3bdc20140b40e4d66d6b86f24e012272ed975c",
+      "native_sha256": "076b00ceec1d3eb9f4a86890616f4a9b6712a0c2b790ac79c67621133fca9db1",
+      "output_sha256": "7f1c3ddfc124b31f238b6996d63707771b799e2a563f966f11c5349a45b6cf53",
+      "offset": 0,
+      "bytes": 5276,
+      "total_bytes": 5276,
+      "complete": true
+    },
+    "request": "ef301d19c113e29b72da1ea7cc3bdc20140b40e4d66d6b86f24e012272ed975c",
+    "generation": "1243afb477c957532e73d696008fa073afa74dae832c356020de752af9c56b27"
+  },
+  {
+    "id": "p2-f747-junction-late-two-target-forecast-lock",
+    "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+    "receipt": {
+      "script_observation_version": 1,
+      "resource_usage": {
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.897623,
+        "system_cpu_seconds": 0.183135,
+        "max_rss_bytes": 78630912,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 2928884,
+        "start_ticks": 64320635,
+        "boot_id": "59be3933-e057-4cb9-96e2-c7effc2a04ed"
+      },
+      "command_id": "p2-f747-junction-late-two-target-forecast-lock",
+      "request_sha256": "486967c75822fe838b42aacad8346c190b23a52c60d2b37b5b9450f7ed12fb60",
+      "generation": "da965b4fdf09f27240e6371170b2fb0f0179749c0fc6e72c340d501436b7b6de",
+      "state": "completed",
+      "runner_pid": 2928877,
+      "started_at": "2026-11-23T06:16:11.785735462Z",
+      "finished_at": "2026-11-23T06:16:42.737235896Z",
+      "exit_code": 0
+    },
+    "witness": {
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "retained-output-101aa8e18673640122be46bfa82a51350ddbf12db52fcd82597cc24965f533cc",
+      "artifact_sha256": "38385b76030fc480614e9c667f873c4fc5bd5cb38e5479321f9ee5b52dd05f07",
+      "artifact_bytes": 5312,
+      "original_owner": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "command_id": "p2-f747-junction-late-two-target-forecast-lock",
+      "generation": "da965b4fdf09f27240e6371170b2fb0f0179749c0fc6e72c340d501436b7b6de",
+      "request_sha256": "486967c75822fe838b42aacad8346c190b23a52c60d2b37b5b9450f7ed12fb60",
+      "native_sha256": "250c9c84c931a7c136b1fc38cd5270aa275110d8466a321c6223fc5f173d1016",
+      "output_sha256": "5ca98ba3b40e4b79762f875f0b35eacac24969543ae488b7a43f7f3c363c7d22",
+      "offset": 0,
+      "bytes": 258,
+      "total_bytes": 258,
+      "complete": true
+    },
+    "request": "486967c75822fe838b42aacad8346c190b23a52c60d2b37b5b9450f7ed12fb60",
+    "generation": "da965b4fdf09f27240e6371170b2fb0f0179749c0fc6e72c340d501436b7b6de",
+    "output": "LOCK 2b156d27ddb959b50417b9862eab845d3992a478bc1c73e86ac144d3412dd17e (2, 231, 231, 6) [0.3510024543367819, 0.18417743605380701, 0.28537468087163415, 0.15878739558471294]\nCOLD_FORECAST 2b156d27ddb959b50417b9862eab845d3992a478bc1c73e86ac144d3412dd17e 4800378\n"
+  },
+  {
+    "id": "p2-f747-junction-25-26-held-voltages-six-arm-outcome",
+    "worker": "node-d2dbd5b69be273f1ed6d83bc99877038",
+    "receipt": {
+      "script_observation_version": 1,
+      "resource_usage": {
+        "source": "linux_rusage",
+        "user_cpu_seconds": 0.600652,
+        "system_cpu_seconds": 0.250682,
+        "max_rss_bytes": 74211328,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 2929561,
+        "start_ticks": 64331201,
+        "boot_id": "59be3933-e057-4cb9-96e2-c7effc2a04ed"
+      },
+      "command_id": "p2-f747-junction-25-26-held-voltages-six-arm-outcome",
+      "request_sha256": "e6e150045cacfda1528723dad6edc6a84d9d5ee6d47a532db3c9467e2b1b3c56",
+      "generation": "d1cd807e5a02adc868b59b9290690c42f920a1496cda0d6e8e42274c6b4c6ad3",
+      "state": "completed",
+      "runner_pid": 2929554,
+      "started_at": "2026-11-23T06:17:57.441376395Z",
+      "finished_at": "2026-11-23T06:18:27.326414532Z",
+      "exit_code": 0
+    },
+    "witness": {
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "retained-output-83978e993e0c22849957cae801e5776e9c5464543ee3d397e251f9950e685b00",
+      "artifact_sha256": "038879dfd370872c0deaf6de185965375d737a6e70629950494fd43f8f785fa0",
+      "artifact_bytes": 7782,
+      "original_owner": "node-d2dbd5b69be273f1ed6d83bc99877038",
+      "command_id": "p2-f747-junction-25-26-held-voltages-six-arm-outcome",
+      "generation": "d1cd807e5a02adc868b59b9290690c42f920a1496cda0d6e8e42274c6b4c6ad3",
+      "request_sha256": "e6e150045cacfda1528723dad6edc6a84d9d5ee6d47a532db3c9467e2b1b3c56",
+      "native_sha256": "e17faae176b269e60f00b24680a12ab630790ccf4582da9ca91dc4fb5ecf0b09",
+      "output_sha256": "9448c443c7c82f4d80eb2beadcf71951f2253c2dc52b9f09413a9ab741a27bdd",
+      "offset": 0,
+      "bytes": 1368,
+      "total_bytes": 1368,
+      "complete": true
+    },
+    "request": "e6e150045cacfda1528723dad6edc6a84d9d5ee6d47a532db3c9467e2b1b3c56",
+    "generation": "d1cd807e5a02adc868b59b9290690c42f920a1496cda0d6e8e42274c6b4c6ad3",
+    "output": "OUTCOME {\"arms\": [\"persistence\", \"bias_reflection\", \"field_reflection\", \"joint_reflection\", \"equal_blend\", \"trained_mix\"], \"gates\": [false, false, false, false], \"joint\": false, \"rmse\": [[0.0011910665988610729, 0.0012701253247884895, 0.00019382022345831802, 0.0004847146905703277, 0.0006535292239888339, 0.0026517221456616815], [0.0011887652210748932, 0.0012665021948786992, 0.00018092813910549157, 0.00047699728160934083, 0.0006483596901440512, 0.0026515887656061183]], \"worst\": {\"array_indices\": [0, 86, 196], \"current\": 70.4347826087, \"error\": [0.00551957324000002, 0.006044880330000002, 0.004301423230000018, 0.004816344720000004, 0.005170555380000025, 0.0020310566079446146], \"field\": -0.000504347826087, \"file\": 25, \"input_row_order\": \"ascending-current/ascending-field analysis indices\", \"observed\": 0.14580041576, \"pred\": [0.15131998900000002, 0.15184529609, 0.15010183899, 0.15061676048, 0.15097097114000002, 0.1478314723679446], \"raw\": 0.146904118, \"reference\": 0.00110370224}, \"worst_field_rmse\": [[0.0023062765447480066, 0.0023785870681821445, 0.0006568464623327101, 0.0007270524105384332, 0.0012667650388969239, 0.003594790728497153], [0.0023028826588167134, 0.002400176113636619, 0.000516546709800641, 0.0006711757755028016, 0.0012004960776130261, 0.003599661429048032]]}\nCOLD_RESULT 66feb524742388eb5d4d4f2af31d5d4679d5b637b4a007370b4366f93f557cd6 1277\n"
+  },
+  {
+    "id": "p2-f747-junction-third-reader-original-measured-coordinate-recount",
+    "worker": "node-c701a0127ac0f5eea88adc5f1342e52c",
+    "receipt": {
+      "script_observation_version": 3,
+      "resource_usage": {
+        "descendant_wait": {
+          "state": "drained",
+          "adopted_waits": 0
+        },
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "interval_milliseconds": 100,
+          "cpu_seconds": {
+            "git": 0,
+            "other": 0.04,
+            "python": 0.8999999999999999,
+            "shell": 0
+          },
+          "snapshots": 176,
+          "nonempty_snapshots": 176,
+          "distinct_processes": 12,
+          "read_errors": 0,
+          "saturated_snapshots": 0
+        },
+        "source": "linux_rusage",
+        "user_cpu_seconds": 1.183932,
+        "system_cpu_seconds": 0.251493,
+        "max_rss_bytes": 102522880,
+        "max_rss_scope": "largest_waited_process"
+      },
+      "resource_process": {
+        "pid": 525764,
+        "start_ticks": 95995804,
+        "boot_id": "cedb22dc-e4ff-4af4-81c7-7890b3e0071d"
+      },
+      "command_id": "p2-f747-junction-third-reader-original-measured-coordinate-recount",
+      "request_sha256": "85d70a88e452b083885e1da82eedbfebd51b5b6df45b41eb658edae99f756680",
+      "generation": "f8fe42209251688219e695d27c7ebdee7bea14dfa0b915736577543bb2a51377",
+      "state": "completed",
+      "runner_pid": 525752,
+      "started_at": "2026-11-23T06:19:01.831025774Z",
+      "finished_at": "2026-11-23T06:19:19.452276779Z",
+      "exit_code": 0
+    },
+    "witness": {
+      "controller_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+      "operation_id": "retained-output-ac8b89588f2d6544e4761f876c0137cb1a76e16e0c3aa8855286c38ef68ed85b",
+      "artifact_sha256": "dee9cf4726b5ae906a1dd4a493a41605463178d1d1fffe424b72202db7256c84",
+      "artifact_bytes": 6025,
+      "original_owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "command_id": "p2-f747-junction-third-reader-original-measured-coordinate-recount",
+      "generation": "f8fe42209251688219e695d27c7ebdee7bea14dfa0b915736577543bb2a51377",
+      "request_sha256": "85d70a88e452b083885e1da82eedbfebd51b5b6df45b41eb658edae99f756680",
+      "native_sha256": "be7e419b4adc5a0e3a4a2cb4468c90cca8e0e1ff7f74e224c0b77f3312ed167f",
+      "output_sha256": "20002c33bb2d1203ef9a73fa9dfbaf47428e59481b09066b781264811394523f",
+      "offset": 0,
+      "bytes": 68,
+      "total_bytes": 68,
+      "complete": true
+    },
+    "request": "85d70a88e452b083885e1da82eedbfebd51b5b6df45b41eb658edae99f756680",
+    "generation": "f8fe42209251688219e695d27c7ebdee7bea14dfa0b915736577543bb2a51377",
+    "output": "VERIFIED 106722 640332 24 [False, False, False, False] (0, 86, 196)\n"
+  }
+]

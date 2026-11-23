@@ -16,6 +16,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/junction-signed-field-transfer/README.md",
+    "research/junction-signed-field-transfer/audit.py",
+    "research/junction-signed-field-transfer/comparison.json",
+    "research/junction-signed-field-transfer/junction.py",
+    "research/junction-signed-field-transfer/native-receipts.json",
+    "research/junction-signed-field-transfer/protocol.json",
     "research/resch-fixed-shutter-coupling/README.md",
     "research/resch-fixed-shutter-coupling/archive_reader.py",
     "research/resch-fixed-shutter-coupling/certified_transport.py",
