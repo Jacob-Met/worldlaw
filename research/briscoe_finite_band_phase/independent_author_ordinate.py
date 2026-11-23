@@ -29,7 +29,10 @@ with zipfile.ZipFile(io.BytesIO(b)) as z:
         # Compare released measurement columns only. The author notebooks use Pandas'
         # inferred header on the original headerless scans. Keep all 170000 rows for scores.
         ep=n.replace("Data without fit","Data with fit").replace(".csv","_with_fit.csv")
-        with z.open(ep) as ef: ex=[tuple(map(float,r)) for r in csv.reader(io.TextIOWrapper(ef,encoding="ascii"))]
+        with z.open(ep) as ef:
+            it=csv.reader(io.TextIOWrapper(ef,encoding="ascii"));header=next(it)
+            assert len(header)==4 and header[0].strip()=="# Detuning data (GHz)"
+            ex=[tuple(map(float,r)) for r in it]
         assert len(ex)==750
         for skip in (0,1):
             xx=[v*1000 for v in x[skip:]];ed=[xx[0]+i*(xx[-1]-xx[0])/750 for i in range(750)]+[xx[-1]]
@@ -38,7 +41,7 @@ with zipfile.ZipFile(io.BytesIO(b)) as z:
                 q=min(749,bisect.bisect_right(ed,u)-1);xs[q].append(u);ys[q].append(y[skip+i])
             means=[math.fsum(a)/len(a) for a in ys];cent=[math.fsum(a)/len(a) for a in xs]
             off=[a-r[1] for a,r in zip(means,ex)]
-            checks.append({"repeat":rep,"skip_source_rows":skip,"released_minus_predicted_min":-max(off),"released_minus_predicted_max":-min(off),"physical_residual_rms":math.sqrt(math.fsum(a*a for a in off)/750),"physical_minus_one_residual_rms":math.sqrt(math.fsum((a-1)**2 for a in off)/750),"detuning_max_abs_MHz":max(abs(a-r[0]) for a,r in zip(cent,ex))})
+            checks.append({"repeat":rep,"export_header":header,"skip_source_rows":skip,"released_minus_predicted_min":-max(off),"released_minus_predicted_max":-min(off),"physical_residual_rms":math.sqrt(math.fsum(a*a for a in off)/750),"physical_minus_one_residual_rms":math.sqrt(math.fsum((a-1)**2 for a in off)/750),"detuning_max_abs_MHz":max(abs(a-r[0]) for a,r in zip(cent,ex))})
         low=min(x);high=max(x);st=(high-low)/750;edges=[low+i*st for i in range(750)]+[high]
         groups=[[] for _ in range(750)]
         for i,v in enumerate(x):groups[min(749,bisect.bisect_right(edges,v)-1)].append(i)

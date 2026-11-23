@@ -1,0 +1,12 @@
+SOURCE 93050355e48dff16df0f15ff22f7e9282856f871
+Traceback (most recent call last):
+  File "/home/ubuntu/hamon-work/sessions/native-6a22b4759eb857c1a436b05d7a31b9a0fa4331a49e6bd1294389ed6ded2bbcd3/briscoe-native-4d8qqghd/independent_author_ordinate.py", line 32, in <module>
+    with z.open(ep) as ef: ex=[tuple(map(float,r)) for r in csv.reader(io.TextIOWrapper(ef,encoding="ascii"))]
+                               ^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: '# Detuning data (GHz)'
+Traceback (most recent call last):
+  File "<stdin>", line 9, in <module>
+  File "<stdin>", line 3, in run
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'independent_author_ordinate.py']' returned non-zero exit status 1.
