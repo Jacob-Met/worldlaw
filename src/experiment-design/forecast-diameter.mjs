@@ -7,6 +7,7 @@ export function forecastRms(a, b) {
   if (!a.length || a.length !== b.length) throw new RangeError('Forecast lengths must match and be positive.');
   let norm = 0;
   for (let i = 0; i < a.length; i++) {
+    if (!Number.isFinite(a[i]) || !Number.isFinite(b[i])) throw new RangeError('Forecast values must be finite numbers.');
     const delta = a[i] - b[i];
     if (!Number.isFinite(delta)) throw new RangeError('Forecast differences must be finite.');
     norm = Math.hypot(norm, delta);
@@ -47,10 +48,10 @@ export function planForecastDiameter(probes, radius) {
     }
     return {indices, diameter, minSeparation, ambiguous};
   }
-  let minimum = assess([]).diameter <= threshold ? 0 : null;
+  let minimumPlan = assess([]).diameter <= threshold ? [] : null;
   let best, maximin, diameterSum = 0, count = 0;
   for (let i = 0; i < probes.length; i++) {
-    if (minimum !== 0 && assess([i]).diameter <= threshold) minimum = 1;
+    if (minimumPlan === null && assess([i]).diameter <= threshold) minimumPlan = [i];
     for (let j = i + 1; j < probes.length; j++) {
       const candidate = assess([i, j]);
       if (!best || candidate.diameter < best.diameter) best = candidate;
@@ -59,7 +60,7 @@ export function planForecastDiameter(probes, radius) {
       diameterSum += candidate.diameter;
     }
   }
-  if (minimum === null && best.diameter <= threshold) minimum = 2;
+  if (minimumPlan === null && best.diameter <= threshold) minimumPlan = best.indices;
   return {best, maximin, uniformMeanDiameter:diameterSum/count, planCount:count,
-    minimumExperiments:minimum, envelope};
+    minimumExperiments:minimumPlan?.length ?? null, minimumPlan, envelope};
 }
