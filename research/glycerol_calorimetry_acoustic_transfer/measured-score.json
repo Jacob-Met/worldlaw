@@ -1,0 +1,1644 @@
+{
+  "all_50_rows": [
+    {
+      "T_K": 298.14,
+      "index": 0,
+      "nominal_T": 298,
+      "observed": 1925.79,
+      "p_MPa": 1.584,
+      "predicted": {
+        "author-density-measured-cp": 1900.7654060632228,
+        "author-density-printed-cp": 1904.9460855749169,
+        "author-direct-sound": 1915.6783258067776,
+        "gibbs": 1869.553628435121,
+        "gibbs-isothermal": 1780.660920233882,
+        "gibbs-reduced": 1912.5579811943883,
+        "gibbs-static-cp": 1869.5190134375068
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 298.14,
+      "index": 1,
+      "nominal_T": 298,
+      "observed": 1928.96,
+      "p_MPa": 3.517,
+      "predicted": {
+        "author-density-measured-cp": 1900.5206883778071,
+        "author-density-printed-cp": 1904.6832393848342,
+        "author-direct-sound": 1919.3827058654933,
+        "gibbs": 1876.1069720629841,
+        "gibbs-isothermal": 1786.567494952812,
+        "gibbs-reduced": 1910.8871376041595,
+        "gibbs-static-cp": 1876.0268502834103
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 298.14,
+      "index": 2,
+      "nominal_T": 298,
+      "observed": 1936.21,
+      "p_MPa": 6.959,
+      "predicted": {
+        "author-density-measured-cp": 1900.0890331974697,
+        "author-density-printed-cp": 1904.219541571567,
+        "author-direct-sound": 1926.0145041428386,
+        "gibbs": 1887.8742718060173,
+        "gibbs-isothermal": 1797.2784747819003,
+        "gibbs-reduced": 1907.9225853056228,
+        "gibbs-static-cp": 1887.712142757358
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 298.15,
+      "index": 3,
+      "nominal_T": 298,
+      "observed": 1951.83,
+      "p_MPa": 13.853,
+      "predicted": {
+        "author-density-measured-cp": 1899.22608453207,
+        "author-density-printed-cp": 1903.2933427305718,
+        "author-direct-sound": 1939.4140252342636,
+        "gibbs": 1911.807712740566,
+        "gibbs-isothermal": 1819.4800243042512,
+        "gibbs-reduced": 1902.0015354542597,
+        "gibbs-static-cp": 1911.4790087052274
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 298.13,
+      "index": 4,
+      "nominal_T": 298,
+      "observed": 1965.72,
+      "p_MPa": 20.744,
+      "predicted": {
+        "author-density-measured-cp": 1898.4258084226883,
+        "author-density-printed-cp": 1902.4309778170834,
+        "author-direct-sound": 1953.0615843635735,
+        "gibbs": 1936.3389825332429,
+        "gibbs-isothermal": 1842.8576336989522,
+        "gibbs-reduced": 1896.209129891188,
+        "gibbs-static-cp": 1935.8434710649667
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 298.13,
+      "index": 5,
+      "nominal_T": 298,
+      "observed": 1979.76,
+      "p_MPa": 27.474,
+      "predicted": {
+        "author-density-measured-cp": 1897.6361991579085,
+        "author-density-printed-cp": 1901.5819024016896,
+        "author-direct-sound": 1966.5325480178226,
+        "gibbs": 1960.8026396153687,
+        "gibbs-isothermal": 1866.7697759330629,
+        "gibbs-reduced": 1890.5564660678804,
+        "gibbs-static-cp": 1960.1474331368383
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 298.14,
+      "index": 6,
+      "nominal_T": 298,
+      "observed": 1993.04,
+      "p_MPa": 34.522,
+      "predicted": {
+        "author-density-measured-cp": 1896.8154399414539,
+        "author-density-printed-cp": 1900.7000524483176,
+        "author-direct-sound": 1980.8206541781242,
+        "gibbs": 1986.984172157634,
+        "gibbs-isothermal": 1893.0403204149634,
+        "gibbs-reduced": 1884.6661429010303,
+        "gibbs-static-cp": 1986.1690770612865
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 298.14,
+      "index": 7,
+      "nominal_T": 298,
+      "observed": 2006.45,
+      "p_MPa": 41.435,
+      "predicted": {
+        "author-density-measured-cp": 1896.0434296893945,
+        "author-density-printed-cp": 1899.8692603292004,
+        "author-direct-sound": 1995.0591543793105,
+        "gibbs": 2013.385824327692,
+        "gibbs-isothermal": 1920.2367242442026,
+        "gibbs-reduced": 1878.9654813774525,
+        "gibbs-static-cp": 2012.4250989789573
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 298.14,
+      "index": 8,
+      "nominal_T": 298,
+      "observed": 2020.02,
+      "p_MPa": 48.313,
+      "predicted": {
+        "author-density-measured-cp": 1895.2939936728133,
+        "author-density-printed-cp": 1899.0624513139499,
+        "author-direct-sound": 2009.430157452306,
+        "gibbs": 2040.3923633167929,
+        "gibbs-isothermal": 1948.7623866581014,
+        "gibbs-reduced": 1873.3452411284527,
+        "gibbs-static-cp": 2039.3017701010579
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 298.14,
+      "index": 9,
+      "nominal_T": 298,
+      "observed": 2032.72,
+      "p_MPa": 55.192,
+      "predicted": {
+        "author-density-measured-cp": 1894.5626599841355,
+        "author-density-printed-cp": 1898.2748257928597,
+        "author-direct-sound": 2024.0118168587135,
+        "gibbs": 2068.2321683776568,
+        "gibbs-isothermal": 1978.8771586719886,
+        "gibbs-reduced": 1867.7751132344904,
+        "gibbs-static-cp": 2067.0305535820435
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 323.15,
+      "index": 10,
+      "nominal_T": 323,
+      "observed": 1866.0,
+      "p_MPa": 1.448,
+      "predicted": {
+        "author-density-measured-cp": 1861.0014764598723,
+        "author-density-printed-cp": 1865.2545538510747,
+        "author-direct-sound": 1857.1558967421838,
+        "gibbs": 1859.4140904899245,
+        "gibbs-isothermal": 1752.5082954207355,
+        "gibbs-reduced": 1857.1998652364603,
+        "gibbs-static-cp": 1859.3848804072584
+      },
+      "primary": false,
+      "thermal_support": true
+    },
+    {
+      "T_K": 323.13,
+      "index": 11,
+      "nominal_T": 323,
+      "observed": 1869.86,
+      "p_MPa": 3.503,
+      "predicted": {
+        "author-density-measured-cp": 1860.825111273629,
+        "author-density-printed-cp": 1865.0548049815798,
+        "author-direct-sound": 1861.5629634459676,
+        "gibbs": 1858.980579187085,
+        "gibbs-isothermal": 1752.533843916797,
+        "gibbs-reduced": 1855.382527311598,
+        "gibbs-static-cp": 1858.907405725429
+      },
+      "primary": false,
+      "thermal_support": true
+    },
+    {
+      "T_K": 323.13,
+      "index": 12,
+      "nominal_T": 323,
+      "observed": 1876.63,
+      "p_MPa": 6.967,
+      "predicted": {
+        "author-density-measured-cp": 1860.4743345324725,
+        "author-density-printed-cp": 1864.6650671255359,
+        "author-direct-sound": 1868.9594241303867,
+        "gibbs": 1858.0930545980968,
+        "gibbs-isothermal": 1752.538400315385,
+        "gibbs-reduced": 1852.2601492943033,
+        "gibbs-static-cp": 1857.9475545173598
+      },
+      "primary": false,
+      "thermal_support": true
+    },
+    {
+      "T_K": 323.13,
+      "index": 13,
+      "nominal_T": 323,
+      "observed": 1891.19,
+      "p_MPa": 13.763,
+      "predicted": {
+        "author-density-measured-cp": 1859.8094996839197,
+        "author-density-printed-cp": 1863.9251087927134,
+        "author-direct-sound": 1883.6425947861626,
+        "gibbs": 1855.8702948335583,
+        "gibbs-isothermal": 1752.560008459408,
+        "gibbs-reduced": 1846.174927637806,
+        "gibbs-static-cp": 1855.5905772008891
+      },
+      "primary": false,
+      "thermal_support": true
+    },
+    {
+      "T_K": 323.13,
+      "index": 14,
+      "nominal_T": 323,
+      "observed": 1907.85,
+      "p_MPa": 20.754,
+      "predicted": {
+        "author-density-measured-cp": 1859.1571644906865,
+        "author-density-printed-cp": 1863.1972785139155,
+        "author-direct-sound": 1898.9897552967557,
+        "gibbs": 1852.93881959448,
+        "gibbs-isothermal": 1752.599855813941,
+        "gibbs-reduced": 1839.9705991263863,
+        "gibbs-static-cp": 1852.533807120275
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 323.12,
+      "index": 15,
+      "nominal_T": 323,
+      "observed": 1923.82,
+      "p_MPa": 27.652,
+      "predicted": {
+        "author-density-measured-cp": 1858.5614828681487,
+        "author-density-printed-cp": 1862.5288346489565,
+        "author-direct-sound": 1914.4011388600888,
+        "gibbs": 1849.4803601158148,
+        "gibbs-isothermal": 1752.6995275655233,
+        "gibbs-reduced": 1833.9244888716373,
+        "gibbs-static-cp": 1848.9665940763696
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 323.13,
+      "index": 16,
+      "nominal_T": 323,
+      "observed": 1936.24,
+      "p_MPa": 34.543,
+      "predicted": {
+        "author-density-measured-cp": 1857.9611124734622,
+        "author-density-printed-cp": 1861.8574725110132,
+        "author-direct-sound": 1930.0053979361503,
+        "gibbs": 1845.3752188459691,
+        "gibbs-isothermal": 1752.7313430532213,
+        "gibbs-reduced": 1827.8956244459762,
+        "gibbs-static-cp": 1844.7696019805715
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 323.12,
+      "index": 17,
+      "nominal_T": 323,
+      "observed": 1948.8,
+      "p_MPa": 41.424,
+      "predicted": {
+        "author-density-measured-cp": 1857.4248391269025,
+        "author-density-printed-cp": 1861.2519493104776,
+        "author-direct-sound": 1945.8849573628909,
+        "gibbs": 1840.8658025618436,
+        "gibbs-isothermal": 1752.8825975903821,
+        "gibbs-reduced": 1821.9706680192057,
+        "gibbs-static-cp": 1840.1862486356777
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 323.13,
+      "index": 18,
+      "nominal_T": 323,
+      "observed": 1961.51,
+      "p_MPa": 48.316,
+      "predicted": {
+        "author-density-measured-cp": 1856.8812587869347,
+        "author-density-printed-cp": 1860.640613103257,
+        "author-direct-sound": 1962.0131270688785,
+        "gibbs": 1835.763304059611,
+        "gibbs-isothermal": 1752.933620446087,
+        "gibbs-reduced": 1816.0456530623528,
+        "gibbs-static-cp": 1835.0288230172564
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 323.12,
+      "index": 19,
+      "nominal_T": 323,
+      "observed": 1975.36,
+      "p_MPa": 55.191,
+      "predicted": {
+        "author-density-measured-cp": 1856.4002205449121,
+        "author-density-printed-cp": 1860.0935700711661,
+        "author-direct-sound": 1978.4095580287972,
+        "gibbs": 1830.4165139129134,
+        "gibbs-isothermal": 1753.1373400209686,
+        "gibbs-reduced": 1810.2294917358454,
+        "gibbs-static-cp": 1829.6462113474024
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 348.15,
+      "index": 20,
+      "nominal_T": 348,
+      "observed": 1806.69,
+      "p_MPa": 1.456,
+      "predicted": {
+        "author-density-measured-cp": 1811.5673078496577,
+        "author-density-printed-cp": 1815.8822315157613,
+        "author-direct-sound": 1798.2219931865684,
+        "gibbs": 1835.569578995068,
+        "gibbs-isothermal": 1718.4272460863785,
+        "gibbs-reduced": 1807.458433926716,
+        "gibbs-static-cp": 1835.5480042981653
+      },
+      "primary": true,
+      "thermal_support": true
+    },
+    {
+      "T_K": 348.15,
+      "index": 21,
+      "nominal_T": 348,
+      "observed": 1812.79,
+      "p_MPa": 3.519,
+      "predicted": {
+        "author-density-measured-cp": 1811.4534249095288,
+        "author-density-printed-cp": 1815.7402772709352,
+        "author-direct-sound": 1802.9543138731776,
+        "gibbs": 1828.4593593781374,
+        "gibbs-isothermal": 1713.073306208194,
+        "gibbs-reduced": 1805.5358898904112,
+        "gibbs-static-cp": 1828.406113142607
+      },
+      "primary": true,
+      "thermal_support": true
+    },
+    {
+      "T_K": 348.16,
+      "index": 22,
+      "nominal_T": 348,
+      "observed": 1819.96,
+      "p_MPa": 6.976,
+      "predicted": {
+        "author-density-measured-cp": 1811.2509095570554,
+        "author-density-printed-cp": 1815.491291297781,
+        "author-direct-sound": 1810.9169324689922,
+        "gibbs": 1816.5273516087068,
+        "gibbs-isothermal": 1704.1560430627135,
+        "gibbs-reduced": 1802.3064506912804,
+        "gibbs-static-cp": 1816.4241959740204
+      },
+      "primary": true,
+      "thermal_support": true
+    },
+    {
+      "T_K": 348.15,
+      "index": 23,
+      "nominal_T": 348,
+      "observed": 1835.3,
+      "p_MPa": 13.88,
+      "predicted": {
+        "author-density-measured-cp": 1810.9479067562695,
+        "author-density-printed-cp": 1815.097462924101,
+        "author-direct-sound": 1827.1031362982994,
+        "gibbs": 1792.7841128156313,
+        "gibbs-isothermal": 1686.6778421440504,
+        "gibbs-reduced": 1795.9567518835595,
+        "gibbs-static-cp": 1792.5930876936166
+      },
+      "primary": true,
+      "thermal_support": true
+    },
+    {
+      "T_K": 348.14,
+      "index": 24,
+      "nominal_T": 348,
+      "observed": 1851.76,
+      "p_MPa": 20.775,
+      "predicted": {
+        "author-density-measured-cp": 1810.6922744857811,
+        "author-density-printed-cp": 1814.7537767204578,
+        "author-direct-sound": 1843.5578316808528,
+        "gibbs": 1769.1715848509866,
+        "gibbs-isothermal": 1669.5820720285403,
+        "gibbs-reduced": 1789.6711628420974,
+        "gibbs-static-cp": 1768.9085000924115
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 348.16,
+      "index": 25,
+      "nominal_T": 348,
+      "observed": 1868.58,
+      "p_MPa": 28.273,
+      "predicted": {
+        "author-density-measured-cp": 1810.4008266980102,
+        "author-density-printed-cp": 1814.3694973558536,
+        "author-direct-sound": 1861.721314197032,
+        "gibbs": 1743.543112381936,
+        "gibbs-isothermal": 1651.264357361758,
+        "gibbs-reduced": 1782.8385316369754,
+        "gibbs-static-cp": 1743.2193192880106
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 348.15,
+      "index": 26,
+      "nominal_T": 348,
+      "observed": 1881.92,
+      "p_MPa": 34.536,
+      "predicted": {
+        "author-density-measured-cp": 1810.253772839435,
+        "author-density-printed-cp": 1814.1471574507023,
+        "author-direct-sound": 1877.2302027580242,
+        "gibbs": 1722.4127516769956,
+        "gibbs-isothermal": 1636.3484207689016,
+        "gibbs-reduced": 1777.232101990821,
+        "gibbs-static-cp": 1722.0513977994237
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 348.16,
+      "index": 27,
+      "nominal_T": 348,
+      "observed": 1896.44,
+      "p_MPa": 41.422,
+      "predicted": {
+        "author-density-measured-cp": 1810.0891162157177,
+        "author-density-printed-cp": 1813.9020264800333,
+        "author-direct-sound": 1894.5367998884171,
+        "gibbs": 1699.3162750268566,
+        "gibbs-isothermal": 1620.150610741029,
+        "gibbs-reduced": 1771.0781722687432,
+        "gibbs-static-cp": 1698.9270209789672
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 348.16,
+      "index": 28,
+      "nominal_T": 348,
+      "observed": 1910.25,
+      "p_MPa": 48.308,
+      "predicted": {
+        "author-density-measured-cp": 1809.986567984399,
+        "author-density-printed-cp": 1813.721361647698,
+        "author-direct-sound": 1912.1877597270154,
+        "gibbs": 1676.5562469915005,
+        "gibbs-isothermal": 1604.2884171385056,
+        "gibbs-reduced": 1764.9963728622877,
+        "gibbs-static-cp": 1676.1517768827653
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 348.16,
+      "index": 29,
+      "nominal_T": 348,
+      "observed": 1924.24,
+      "p_MPa": 55.187,
+      "predicted": {
+        "author-density-measured-cp": 1809.9239850666047,
+        "author-density-printed-cp": 1813.58302640373,
+        "author-direct-sound": 1930.1522409571185,
+        "gibbs": 1654.155749874479,
+        "gibbs-isothermal": 1588.7233047619777,
+        "gibbs-reduced": 1758.972726392995,
+        "gibbs-static-cp": 1653.7476295878307
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 373.14,
+      "index": 30,
+      "nominal_T": 373,
+      "observed": 1745.92,
+      "p_MPa": 1.343,
+      "predicted": {
+        "author-density-measured-cp": 1752.0284678553758,
+        "author-density-printed-cp": 1756.3945784776179,
+        "author-direct-sound": 1737.3949950602973,
+        "gibbs": 1798.9512319073626,
+        "gibbs-isothermal": 1679.9331881344747,
+        "gibbs-reduced": 1760.936133136114,
+        "gibbs-static-cp": 1798.9420158361809
+      },
+      "primary": true,
+      "thermal_support": true
+    },
+    {
+      "T_K": 373.14,
+      "index": 31,
+      "nominal_T": 373,
+      "observed": 1750.11,
+      "p_MPa": 3.554,
+      "predicted": {
+        "author-density-measured-cp": 1752.1220291108702,
+        "author-density-printed-cp": 1756.4527738478764,
+        "author-direct-sound": 1742.8060072195806,
+        "gibbs": 1785.4478324257632,
+        "gibbs-isothermal": 1669.5358386302235,
+        "gibbs-reduced": 1758.8413441142034,
+        "gibbs-static-cp": 1785.4232512339333
+      },
+      "primary": true,
+      "thermal_support": true
+    },
+    {
+      "T_K": 373.14,
+      "index": 32,
+      "nominal_T": 373,
+      "observed": 1760.79,
+      "p_MPa": 7.005,
+      "predicted": {
+        "author-density-measured-cp": 1752.2837339966577,
+        "author-density-printed-cp": 1756.5601548890513,
+        "author-direct-sound": 1751.3193738025072,
+        "gibbs": 1764.7436460671615,
+        "gibbs-isothermal": 1653.6113571209542,
+        "gibbs-reduced": 1755.583535683215,
+        "gibbs-static-cp": 1764.697602977257
+      },
+      "primary": true,
+      "thermal_support": true
+    },
+    {
+      "T_K": 373.14,
+      "index": 33,
+      "nominal_T": 373,
+      "observed": 1776.88,
+      "p_MPa": 13.899,
+      "predicted": {
+        "author-density-measured-cp": 1752.6624944422472,
+        "author-density-printed-cp": 1756.8335211118829,
+        "author-direct-sound": 1768.5778505659575,
+        "gibbs": 1724.6930665014418,
+        "gibbs-isothermal": 1622.8521994371818,
+        "gibbs-reduced": 1749.1181882539413,
+        "gibbs-static-cp": 1724.6126345999041
+      },
+      "primary": true,
+      "thermal_support": true
+    },
+    {
+      "T_K": 373.15,
+      "index": 34,
+      "nominal_T": 373,
+      "observed": 1793.24,
+      "p_MPa": 20.753,
+      "predicted": {
+        "author-density-measured-cp": 1753.0853595731721,
+        "author-density-printed-cp": 1757.1556124338313,
+        "author-direct-sound": 1786.053250522531,
+        "gibbs": 1686.490514834043,
+        "gibbs-isothermal": 1593.5387561150521,
+        "gibbs-reduced": 1742.727769489132,
+        "gibbs-static-cp": 1686.385917345414
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 373.14,
+      "index": 35,
+      "nominal_T": 373,
+      "observed": 1809.9,
+      "p_MPa": 27.642,
+      "predicted": {
+        "author-density-measured-cp": 1753.6283273319655,
+        "author-density-printed-cp": 1757.601168104074,
+        "author-direct-sound": 1804.0173382854553,
+        "gibbs": 1649.7249350913494,
+        "gibbs-isothermal": 1565.333259942628,
+        "gibbs-reduced": 1736.3967820253351,
+        "gibbs-static-cp": 1649.6044967661655
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 373.14,
+      "index": 36,
+      "nominal_T": 373,
+      "observed": 1826.0,
+      "p_MPa": 34.526,
+      "predicted": {
+        "author-density-measured-cp": 1754.2117420778743,
+        "author-density-printed-cp": 1758.090988864331,
+        "author-direct-sound": 1822.3086077032176,
+        "gibbs": 1614.4412439072694,
+        "gibbs-isothermal": 1538.2275052874686,
+        "gibbs-reduced": 1730.1066054759663,
+        "gibbs-static-cp": 1614.3122765487497
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 373.14,
+      "index": 37,
+      "nominal_T": 373,
+      "observed": 1842.37,
+      "p_MPa": 41.406,
+      "predicted": {
+        "author-density-measured-cp": 1754.857508217621,
+        "author-density-printed-cp": 1758.646821375044,
+        "author-direct-sound": 1840.9636178168532,
+        "gibbs": 1580.5911977319759,
+        "gibbs-isothermal": 1512.1614537093608,
+        "gibbs-reduced": 1723.8738231416507,
+        "gibbs-static-cp": 1580.4596824490072
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 373.14,
+      "index": 38,
+      "nominal_T": 373,
+      "observed": 1859.89,
+      "p_MPa": 48.285,
+      "predicted": {
+        "author-density-measured-cp": 1755.5631699414746,
+        "author-density-printed-cp": 1759.2660371524594,
+        "author-direct-sound": 1860.0017064010165,
+        "gibbs": 1548.0923487546322,
+        "gibbs-isothermal": 1487.0478907862162,
+        "gibbs-reduced": 1717.6949201429245,
+        "gibbs-static-cp": 1547.9631062807427
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 373.15,
+      "index": 39,
+      "nominal_T": 373,
+      "observed": 1871.5,
+      "p_MPa": 55.159,
+      "predicted": {
+        "author-density-measured-cp": 1756.3031291824095,
+        "author-density-printed-cp": 1759.9229472583613,
+        "author-direct-sound": 1879.402573206355,
+        "gibbs": 1516.8524134526083,
+        "gibbs-isothermal": 1462.7880323947788,
+        "gibbs-reduced": 1711.5542069100902,
+        "gibbs-static-cp": 1516.7293053442447
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 398.15,
+      "index": 40,
+      "nominal_T": 398,
+      "observed": 1680.09,
+      "p_MPa": 1.359,
+      "predicted": {
+        "author-density-measured-cp": 1682.8863626313935,
+        "author-density-printed-cp": 1687.2919139722778,
+        "author-direct-sound": 1674.2769822457687,
+        "gibbs": 1750.2310301160105,
+        "gibbs-isothermal": 1637.250452486049,
+        "gibbs-reduced": 1715.7293748464892,
+        "gibbs-static-cp": 1750.2335465836534
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 398.15,
+      "index": 41,
+      "nominal_T": 398,
+      "observed": 1686.15,
+      "p_MPa": 3.552,
+      "predicted": {
+        "author-density-measured-cp": 1683.431803313084,
+        "author-density-printed-cp": 1687.798269643365,
+        "author-direct-sound": 1679.9671694488186,
+        "gibbs": 1732.434936966889,
+        "gibbs-isothermal": 1623.3378161201783,
+        "gibbs-reduced": 1713.6417458707233,
+        "gibbs-static-cp": 1732.4418823931228
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 398.14,
+      "index": 42,
+      "nominal_T": 398,
+      "observed": 1693.89,
+      "p_MPa": 7.004,
+      "predicted": {
+        "author-density-measured-cp": 1684.3429450436354,
+        "author-density-printed-cp": 1688.649272201995,
+        "author-direct-sound": 1689.0284116108962,
+        "gibbs": 1705.2673311868084,
+        "gibbs-isothermal": 1602.05157447523,
+        "gibbs-reduced": 1710.3853483181394,
+        "gibbs-static-cp": 1705.2812872407296
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 398.14,
+      "index": 43,
+      "nominal_T": 398,
+      "observed": 1714.03,
+      "p_MPa": 13.901,
+      "predicted": {
+        "author-density-measured-cp": 1686.190492380257,
+        "author-density-printed-cp": 1690.3816657561492,
+        "author-direct-sound": 1707.3752936414419,
+        "gibbs": 1653.7320566574178,
+        "gibbs-isothermal": 1561.501867712078,
+        "gibbs-reduced": 1703.8862718909604,
+        "gibbs-static-cp": 1653.7599454934302
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 398.14,
+      "index": 44,
+      "nominal_T": 398,
+      "observed": 1730.83,
+      "p_MPa": 20.78,
+      "predicted": {
+        "author-density-measured-cp": 1688.1407047295309,
+        "author-density-printed-cp": 1692.2233610800718,
+        "author-direct-sound": 1726.0756466477717,
+        "gibbs": 1605.692646609539,
+        "gibbs-isothermal": 1523.4860979524544,
+        "gibbs-reduced": 1697.4604050366738,
+        "gibbs-static-cp": 1605.7337890506424
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 398.14,
+      "index": 45,
+      "nominal_T": 398,
+      "observed": 1749.48,
+      "p_MPa": 27.654,
+      "predicted": {
+        "author-density-measured-cp": 1690.190706826166,
+        "author-density-printed-cp": 1694.170945897669,
+        "author-direct-sound": 1745.1761086796473,
+        "gibbs": 1560.6874340993459,
+        "gibbs-isothermal": 1487.659744105205,
+        "gibbs-reduced": 1691.0944768090483,
+        "gibbs-static-cp": 1560.7406844193279
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 398.14,
+      "index": 46,
+      "nominal_T": 398,
+      "observed": 1765.36,
+      "p_MPa": 34.536,
+      "predicted": {
+        "author-density-measured-cp": 1692.3387718122378,
+        "author-density-printed-cp": 1696.2222209298004,
+        "author-direct-sound": 1764.726988179301,
+        "gibbs": 1518.3324660443682,
+        "gibbs-isothermal": 1453.732802435504,
+        "gibbs-reduced": 1684.7756565061115,
+        "gibbs-static-cp": 1518.3963212332976
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 398.14,
+      "index": 47,
+      "nominal_T": 398,
+      "observed": 1781.5,
+      "p_MPa": 41.428,
+      "predicted": {
+        "author-density-measured-cp": 1694.5805472483316,
+        "author-density-printed-cp": 1698.372561239547,
+        "author-direct-sound": 1784.7502429455078,
+        "gibbs": 1478.3678150411242,
+        "gibbs-isothermal": 1421.5092382706302,
+        "gibbs-reduced": 1678.5015090064844,
+        "gibbs-static-cp": 1478.4404886424632
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 398.15,
+      "index": 48,
+      "nominal_T": 398,
+      "observed": 1800.39,
+      "p_MPa": 48.313,
+      "predicted": {
+        "author-density-measured-cp": 1696.8822879058566,
+        "author-density-printed-cp": 1700.5882235469298,
+        "author-direct-sound": 1805.1894972483765,
+        "gibbs": 1440.6317978778573,
+        "gibbs-isothermal": 1390.8663599831143,
+        "gibbs-reduced": 1672.2688462061983,
+        "gibbs-static-cp": 1440.7113571999807
+      },
+      "primary": false,
+      "thermal_support": false
+    },
+    {
+      "T_K": 398.16,
+      "index": 49,
+      "nominal_T": 398,
+      "observed": 1812.98,
+      "p_MPa": 55.193,
+      "predicted": {
+        "author-density-measured-cp": 1699.2648252914662,
+        "author-density-printed-cp": 1702.8897512522258,
+        "author-direct-sound": 1826.0891864735167,
+        "gibbs": 1404.9522725525874,
+        "gibbs-isothermal": 1361.676556622926,
+        "gibbs-reduced": 1666.0928536463457,
+        "gibbs-static-cp": 1405.0366042747576
+      },
+      "primary": false,
+      "thermal_support": false
+    }
+  ],
+  "by_isotherm_pass": false,
+  "forecast_sha256": "3b8ea53a8d9e5d15290e392a939e992e10c17f7a7b5170f92e379a117179e5bf",
+  "metrics": {
+    "all": {
+      "author-density-measured-cp": {
+        "eligible": true,
+        "mae": 57.582831806812095,
+        "mean_abs_percent": 3.041112009575577,
+        "rmse": 70.300213188174,
+        "rows": 50,
+        "worst_abs": 138.15734001586452,
+        "worst_index": 9
+      },
+      "author-density-printed-cp": {
+        "eligible": true,
+        "mae": 54.45756518158747,
+        "mean_abs_percent": 2.875163040717541,
+        "rmse": 67.23002570677033,
+        "rows": 50,
+        "worst_abs": 134.44517420714033,
+        "worst_index": 9
+      },
+      "author-direct-sound": {
+        "eligible": true,
+        "mae": 7.07256242830726,
+        "mean_abs_percent": 0.3788761371871008,
+        "rmse": 7.839968043876627,
+        "rows": 50,
+        "worst_abs": 13.2274519821774,
+        "worst_index": 5
+      },
+      "gibbs": {
+        "eligible": true,
+        "mae": 110.28898982264919,
+        "mean_abs_percent": 5.979862524029175,
+        "rmse": 154.1554429848006,
+        "rows": 50,
+        "worst_abs": 408.02772744741264,
+        "worst_index": 49
+      },
+      "gibbs-isothermal": {
+        "eligible": true,
+        "mae": 187.09081282959357,
+        "mean_abs_percent": 10.096988017842795,
+        "rmse": 213.46025157215783,
+        "rows": 50,
+        "worst_abs": 451.303443377074,
+        "worst_index": 49
+      },
+      "gibbs-reduced": {
+        "eligible": true,
+        "mae": 74.05235121257282,
+        "mean_abs_percent": 3.9172446067204607,
+        "rmse": 90.93463904380665,
+        "rows": 50,
+        "worst_abs": 165.2672736070051,
+        "worst_index": 29
+      },
+      "gibbs-static-cp": {
+        "eligible": true,
+        "mae": 110.41425775894902,
+        "mean_abs_percent": 5.986488162937179,
+        "rmse": 154.2680467911485,
+        "rows": 50,
+        "worst_abs": 407.94339572524245,
+        "worst_index": 49
+      }
+    },
+    "all_T298": {
+      "author-density-measured-cp": {
+        "eligible": true,
+        "mae": 76.11212569610363,
+        "mean_abs_percent": 3.8207772274633998,
+        "rmse": 85.36542144108871,
+        "rows": 10,
+        "worst_abs": 138.15734001586452,
+        "worst_index": 9
+      },
+      "author-density-printed-cp": {
+        "eligible": true,
+        "mae": 72.14383206350094,
+        "mean_abs_percent": 3.619536491445605,
+        "rmse": 81.92233829132738,
+        "rows": 10,
+        "worst_abs": 134.44517420714033,
+        "worst_index": 9
+      },
+      "author-direct-sound": {
+        "eligible": true,
+        "mae": 11.109452370077657,
+        "mean_abs_percent": 0.56298057119194,
+        "rmse": 11.199629683730532,
+        "rows": 10,
+        "worst_abs": 13.2274519821774,
+        "worst_index": 5
+      },
+      "gibbs": {
+        "eligible": true,
+        "mae": 31.466197667120742,
+        "mean_abs_percent": 1.6064360046607054,
+        "rmse": 35.885442517131416,
+        "rows": 10,
+        "worst_abs": 56.23637156487894,
+        "worst_index": 0
+      },
+      "gibbs-isothermal": {
+        "eligible": true,
+        "mae": 110.59690861058834,
+        "mean_abs_percent": 5.63223044096561,
+        "rmse": 114.64199740774235,
+        "rows": 10,
+        "worst_abs": 145.1290797661179,
+        "worst_index": 0
+      },
+      "gibbs-reduced": {
+        "eligible": true,
+        "mae": 81.56131858410754,
+        "mean_abs_percent": 4.084672187115461,
+        "rmse": 96.58741940140841,
+        "rows": 10,
+        "worst_abs": 164.94488676550964,
+        "worst_index": 9
+      },
+      "gibbs-static-cp": {
+        "eligible": true,
+        "mae": 31.398042621546438,
+        "mean_abs_percent": 1.6033740694207892,
+        "rmse": 35.85771718692637,
+        "rows": 10,
+        "worst_abs": 56.270986562493135,
+        "worst_index": 0
+      }
+    },
+    "all_T323": {
+      "author-density-measured-cp": {
+        "eligible": true,
+        "mae": 56.87634997590594,
+        "mean_abs_percent": 2.930350832290317,
+        "rmse": 68.96203951425811,
+        "rows": 10,
+        "worst_abs": 118.95977945508776,
+        "worst_index": 19
+      },
+      "author-density-printed-cp": {
+        "eligible": true,
+        "mae": 52.87907470903101,
+        "mean_abs_percent": 2.7214219440689797,
+        "rmse": 65.8172140425383,
+        "rows": 10,
+        "worst_abs": 115.26642992883376,
+        "worst_index": 19
+      },
+      "author-direct-sound": {
+        "eligible": true,
+        "mae": 6.3340556537089245,
+        "mean_abs_percent": 0.33311180158199194,
+        "rmse": 6.9785356380165995,
+        "rows": 10,
+        "worst_abs": 9.418861139911087,
+        "worst_index": 15
+      },
+      "gibbs": {
+        "eligible": true,
+        "mae": 67.0061961800703,
+        "mean_abs_percent": 3.4512106724070826,
+        "rmse": 81.8666603939636,
+        "rows": 10,
+        "worst_abs": 144.9434860870865,
+        "worst_index": 19
+      },
+      "gibbs-isothermal": {
+        "eligible": true,
+        "mae": 163.0135167397551,
+        "mean_abs_percent": 8.474572353775056,
+        "rmse": 167.21055271414716,
+        "rows": 10,
+        "worst_abs": 222.22265997903128,
+        "worst_index": 19
+      },
+      "gibbs-reduced": {
+        "eligible": true,
+        "mae": 79.62060052584283,
+        "mean_abs_percent": 4.103449923618102,
+        "rmse": 95.8374906228986,
+        "rows": 10,
+        "worst_abs": 165.1305082641545,
+        "worst_index": 19
+      },
+      "gibbs-static-cp": {
+        "eligible": true,
+        "mae": 67.4298295971511,
+        "mean_abs_percent": 3.473065209226823,
+        "rmse": 82.36307571247173,
+        "rows": 10,
+        "worst_abs": 145.7137886525975,
+        "worst_index": 19
+      }
+    },
+    "all_T348": {
+      "author-density-measured-cp": {
+        "eligible": true,
+        "mae": 51.111852333685626,
+        "mean_abs_percent": 2.7031416411224796,
+        "rmse": 64.40438794608436,
+        "rows": 10,
+        "worst_abs": 114.31601493339531,
+        "worst_index": 29
+      },
+      "author-density-printed-cp": {
+        "eligible": true,
+        "mae": 48.55269085063399,
+        "mean_abs_percent": 2.5674844336926395,
+        "rmse": 61.48005478523846,
+        "rows": 10,
+        "worst_abs": 110.65697359627006,
+        "worst_index": 29
+      },
+      "author-direct-sound": {
+        "eligible": true,
+        "mae": 6.50474763327702,
+        "mean_abs_percent": 0.352302235959104,
+        "rmse": 7.043127974856175,
+        "rows": 10,
+        "worst_abs": 9.835686126822338,
+        "worst_index": 21
+      },
+      "gibbs": {
+        "eligible": true,
+        "mae": 115.8531753146113,
+        "mean_abs_percent": 6.125932074787616,
+        "rmse": 147.3813454282022,
+        "rows": 10,
+        "worst_abs": 270.08425012552107,
+        "worst_index": 29
+      },
+      "gibbs-isothermal": {
+        "eligible": true,
+        "mae": 201.52383796979515,
+        "mean_abs_percent": 10.738610828188294,
+        "rmse": 218.28259002637603,
+        "rows": 10,
+        "worst_abs": 335.5166952380223,
+        "worst_index": 29
+      },
+      "gibbs-reduced": {
+        "eligible": true,
+        "mae": 75.34202734675452,
+        "mean_abs_percent": 3.9863752066979976,
+        "rmse": 93.91826576350996,
+        "rows": 10,
+        "worst_abs": 165.2672736070051,
+        "worst_index": 29
+      },
+      "gibbs-static-cp": {
+        "eligible": true,
+        "mae": 116.09011891437262,
+        "mean_abs_percent": 6.138491127662568,
+        "rmse": 147.65843976735337,
+        "rows": 10,
+        "worst_abs": 270.4923704121693,
+        "worst_index": 29
+      }
+    },
+    "all_T373": {
+      "author-density-measured-cp": {
+        "eligible": true,
+        "mae": 51.609503220282434,
+        "mean_abs_percent": 2.8105248983878672,
+        "rmse": 65.15021011461782,
+        "rows": 10,
+        "worst_abs": 115.19687081759048,
+        "worst_index": 39
+      },
+      "author-density-printed-cp": {
+        "eligible": true,
+        "mae": 49.331010113645924,
+        "mean_abs_percent": 2.6868057968888577,
+        "rmse": 62.2918745533409,
+        "rows": 10,
+        "worst_abs": 111.57705274163868,
+        "worst_index": 39
+      },
+      "author-direct-sound": {
+        "eligible": true,
+        "mae": 5.978323863097171,
+        "mean_abs_percent": 0.33432740236609887,
+        "rmse": 6.700484848065112,
+        "rows": 10,
+        "worst_abs": 9.47062619749272,
+        "worst_index": 32
+      },
+      "gibbs": {
+        "eligible": true,
+        "mae": 155.12169901269675,
+        "mean_abs_percent": 8.452991179770141,
+        "rmse": 194.96913085600525,
+        "rows": 10,
+        "worst_abs": 354.6475865473917,
+        "worst_index": 39
+      },
+      "gibbs-isothermal": {
+        "eligible": true,
+        "mae": 225.15705184416615,
+        "mean_abs_percent": 12.335584643779436,
+        "rmse": 253.7043871183318,
+        "rows": 10,
+        "worst_abs": 408.71196760522116,
+        "worst_index": 39
+      },
+      "gibbs-reduced": {
+        "eligible": true,
+        "mae": 69.72616461280624,
+        "mean_abs_percent": 3.797006669778385,
+        "rmse": 88.37009622968019,
+        "rows": 10,
+        "worst_abs": 159.94579308990978,
+        "worst_index": 39
+      },
+      "gibbs-static-cp": {
+        "eligible": true,
+        "mae": 155.19554507131434,
+        "mean_abs_percent": 8.457010653423215,
+        "rmse": 195.06083399067748,
+        "rows": 10,
+        "worst_abs": 354.7706946557553,
+        "worst_index": 39
+      }
+    },
+    "all_T398": {
+      "author-density-measured-cp": {
+        "eligible": true,
+        "mae": 52.20432780808282,
+        "mean_abs_percent": 2.94076544861382,
+        "rmse": 65.38430037129855,
+        "rows": 10,
+        "worst_abs": 113.71517470853382,
+        "worst_index": 49
+      },
+      "author-density-printed-cp": {
+        "eligible": true,
+        "mae": 49.38121817112549,
+        "mean_abs_percent": 2.7805665374916253,
+        "rmse": 62.41900219852869,
+        "rows": 10,
+        "worst_abs": 110.09024874777424,
+        "worst_index": 49
+      },
+      "author-direct-sound": {
+        "eligible": true,
+        "mae": 5.436232621375529,
+        "mean_abs_percent": 0.31165867483636894,
+        "rmse": 6.22026374616992,
+        "rows": 10,
+        "worst_abs": 13.10918647351673,
+        "worst_index": 49
+      },
+      "gibbs": {
+        "eligible": true,
+        "mae": 181.99768093874678,
+        "mean_abs_percent": 10.262742688520332,
+        "rmse": 226.0428388016672,
+        "rows": 10,
+        "worst_abs": 408.02772744741264,
+        "worst_index": 49
+      },
+      "gibbs-isothermal": {
+        "eligible": true,
+        "mae": 235.1627489836631,
+        "mean_abs_percent": 13.303941822505578,
+        "rmse": 273.3331910799086,
+        "rows": 10,
+        "worst_abs": 451.303443377074,
+        "worst_index": 49
+      },
+      "gibbs-reduced": {
+        "eligible": true,
+        "mae": 64.01164499335293,
+        "mean_abs_percent": 3.6147190463923566,
+        "rmse": 78.75070884094355,
+        "rows": 10,
+        "worst_abs": 146.88714635365432,
+        "worst_index": 49
+      },
+      "gibbs-static-cp": {
+        "eligible": true,
+        "mae": 181.9577525903606,
+        "mean_abs_percent": 10.260499754952502,
+        "rmse": 225.99105156938447,
+        "rows": 10,
+        "worst_abs": 407.94339572524245,
+        "worst_index": 49
+      }
+    },
+    "outside_thermal": {
+      "author-density-measured-cp": {
+        "eligible": true,
+        "mae": 72.0382283456935,
+        "mean_abs_percent": 3.798010751174982,
+        "rmse": 80.19039676927135,
+        "rows": 38,
+        "worst_abs": 138.15734001586452,
+        "worst_index": 9
+      },
+      "author-density-printed-cp": {
+        "eligible": true,
+        "mae": 68.42606218265533,
+        "mean_abs_percent": 3.606140527972729,
+        "rmse": 76.77592562784348,
+        "rows": 38,
+        "worst_abs": 134.44517420714033,
+        "worst_index": 9
+      },
+      "author-direct-sound": {
+        "eligible": true,
+        "mae": 6.634831657774839,
+        "mean_abs_percent": 0.35138938363742456,
+        "rmse": 7.623265872443622,
+        "rows": 38,
+        "worst_abs": 13.2274519821774,
+        "worst_index": 5
+      },
+      "gibbs": {
+        "eligible": true,
+        "mae": 137.0557997998266,
+        "mean_abs_percent": 7.421494692626878,
+        "rmse": 175.97421089654554,
+        "rows": 38,
+        "worst_abs": 408.02772744741264,
+        "worst_index": 49
+      },
+      "gibbs-isothermal": {
+        "eligible": true,
+        "mae": 210.54811080042563,
+        "mean_abs_percent": 11.330633549165702,
+        "rmse": 236.07035313052768,
+        "rows": 38,
+        "worst_abs": 451.303443377074,
+        "worst_index": 49
+      },
+      "gibbs-reduced": {
+        "eligible": true,
+        "mae": 91.79526145616269,
+        "mean_abs_percent": 4.8464232580643785,
+        "rmse": 103.55977745964205,
+        "rows": 38,
+        "worst_abs": 165.2672736070051,
+        "worst_index": 29
+      },
+      "gibbs-static-cp": {
+        "eligible": true,
+        "mae": 137.20095359415222,
+        "mean_abs_percent": 7.429161407705443,
+        "rmse": 176.1005174118074,
+        "rows": 38,
+        "worst_abs": 407.94339572524245,
+        "worst_index": 49
+      }
+    },
+    "primary": {
+      "author-density-measured-cp": {
+        "eligible": true,
+        "mae": 10.01491689426814,
+        "mean_abs_percent": 0.5574933290262865,
+        "rmse": 13.203470395932326,
+        "rows": 8,
+        "worst_abs": 24.35209324373045,
+        "worst_index": 23
+      },
+      "author-density-printed-cp": {
+        "eligible": true,
+        "mae": 9.738428861171855,
+        "mean_abs_percent": 0.5435783688081035,
+        "rmse": 11.678043488886217,
+        "rows": 8,
+        "worst_abs": 20.202537075899045,
+        "worst_index": 23
+      },
+      "author-direct-sound": {
+        "eligible": true,
+        "mae": 8.643174690577467,
+        "mean_abs_percent": 0.4831875459269353,
+        "rmse": 8.675079044657872,
+        "rows": 8,
+        "worst_abs": 9.835686126822338,
+        "worst_index": 21
+      },
+      "gibbs": {
+        "eligible": true,
+        "mae": 29.375889730964133,
+        "mean_abs_percent": 1.648273065433802,
+        "rmse": 34.81939823517369,
+        "rows": 8,
+        "worst_abs": 53.03123190736255,
+        "worst_index": 30
+      },
+      "gibbs-isothermal": {
+        "eligible": true,
+        "mae": 107.5216223969787,
+        "mean_abs_percent": 5.998233792055817,
+        "rmse": 111.40641512807365,
+        "rows": 8,
+        "worst_abs": 154.02780056281836,
+        "worst_index": 33
+      },
+      "gibbs-reduced": {
+        "eligible": true,
+        "mae": 15.21688684682826,
+        "mean_abs_percent": 0.8466800376289423,
+        "rmse": 19.40456668621029,
+        "rows": 8,
+        "worst_abs": 39.34324811644046,
+        "worst_index": 23
+      },
+      "gibbs-static-cp": {
+        "eligible": true,
+        "mae": 29.403383652575314,
+        "mean_abs_percent": 1.649763596542944,
+        "rmse": 34.854225700675464,
+        "rows": 8,
+        "worst_abs": 53.0220158361808,
+        "worst_index": 30
+      }
+    },
+    "primary_T348": {
+      "author-density-measured-cp": {
+        "eligible": true,
+        "mae": 9.818766656700973,
+        "mean_abs_percent": 0.537273268105272,
+        "rmse": 13.17618368997196,
+        "rows": 4,
+        "worst_abs": 24.35209324373045,
+        "worst_index": 23
+      },
+      "author-density-printed-cp": {
+        "eligible": true,
+        "mae": 9.203438641203661,
+        "mean_abs_percent": 0.5044627468182824,
+        "rmse": 11.416141182368891,
+        "rows": 4,
+        "worst_abs": 20.202537075899045,
+        "worst_index": 23
+      },
+      "author-direct-sound": {
+        "eligible": true,
+        "mae": 8.885906043240595,
+        "mean_abs_percent": 0.4886949648582103,
+        "rmse": 8.908051216347976,
+        "rows": 4,
+        "worst_abs": 9.835686126822338,
+        "worst_index": 21
+      },
+      "gibbs": {
+        "eligible": true,
+        "mae": 22.624368487216827,
+        "mean_abs_percent": 1.2420081669387744,
+        "rmse": 26.92091493758063,
+        "rows": 4,
+        "worst_abs": 42.515887184368694,
+        "worst_index": 23
+      },
+      "gibbs-isothermal": {
+        "eligible": true,
+        "mae": 113.1013906246659,
+        "mean_abs_percent": 6.211757655520182,
+        "rmse": 115.36120989881847,
+        "rows": 4,
+        "worst_abs": 148.62215785594958,
+        "worst_index": 23
+      },
+      "gibbs-reduced": {
+        "eligible": true,
+        "mae": 16.254835365366205,
+        "mean_abs_percent": 0.8890969346868934,
+        "rmse": 21.867507743962037,
+        "rows": 4,
+        "worst_abs": 39.34324811644046,
+        "worst_index": 23
+      },
+      "gibbs-static-cp": {
+        "eligible": true,
+        "mae": 22.679208443283812,
+        "mean_abs_percent": 1.2449944154301293,
+        "rmse": 26.986244971331615,
+        "rows": 4,
+        "worst_abs": 42.7069123063834,
+        "worst_index": 23
+      }
+    },
+    "primary_T373": {
+      "author-density-measured-cp": {
+        "eligible": true,
+        "mae": 10.211067131835307,
+        "mean_abs_percent": 0.577713389947301,
+        "rmse": 13.230700826511026,
+        "rows": 4,
+        "worst_abs": 24.21750555775293,
+        "worst_index": 33
+      },
+      "author-density-printed-cp": {
+        "eligible": true,
+        "mae": 10.273419081140048,
+        "mean_abs_percent": 0.5826939907979246,
+        "rmse": 11.934199594478743,
+        "rows": 4,
+        "worst_abs": 20.046478888117235,
+        "worst_index": 33
+      },
+      "author-direct-sound": {
+        "eligible": true,
+        "mae": 8.40044333791434,
+        "mean_abs_percent": 0.4776801269956603,
+        "rmse": 8.435675218323999,
+        "rows": 4,
+        "worst_abs": 9.47062619749272,
+        "worst_index": 32
+      },
+      "gibbs": {
+        "eligible": true,
+        "mae": 36.12741097471144,
+        "mean_abs_percent": 2.0545379639288295,
+        "rmse": 41.23160590909335,
+        "rows": 4,
+        "worst_abs": 53.03123190736255,
+        "worst_index": 30
+      },
+      "gibbs-isothermal": {
+        "eligible": true,
+        "mae": 101.9418541692915,
+        "mean_abs_percent": 5.784709928591454,
+        "rmse": 107.30596401905208,
+        "rows": 4,
+        "worst_abs": 154.02780056281836,
+        "worst_index": 33
+      },
+      "gibbs-reduced": {
+        "eligible": true,
+        "mae": 14.178938328290315,
+        "mean_abs_percent": 0.804263140570991,
+        "rmse": 16.579702097050017,
+        "rows": 4,
+        "worst_abs": 27.76181174605881,
+        "worst_index": 33
+      },
+      "gibbs-static-cp": {
+        "eligible": true,
+        "mae": 36.12755886186682,
+        "mean_abs_percent": 2.054532777655759,
+        "rmse": 41.24774758377155,
+        "rows": 4,
+        "worst_abs": 53.0220158361808,
+        "worst_index": 30
+      }
+    },
+    "thermal_support": {
+      "author-density-measured-cp": {
+        "eligible": true,
+        "mae": 11.80740943368763,
+        "mean_abs_percent": 0.6442659945107932,
+        "rmse": 15.130016585790049,
+        "rows": 12,
+        "worst_abs": 31.380500316080315,
+        "worst_index": 13
+      },
+      "author-density-printed-cp": {
+        "eligible": true,
+        "mae": 10.223991344872596,
+        "mean_abs_percent": 0.5604009977427802,
+        "rmse": 12.913794621089462,
+        "rows": 12,
+        "worst_abs": 27.26489120728661,
+        "worst_index": 13
+      },
+      "author-direct-sound": {
+        "eligible": true,
+        "mae": 8.458709868326594,
+        "mean_abs_percent": 0.465917523427742,
+        "rmse": 8.489778212138981,
+        "rows": 12,
+        "worst_abs": 9.835686126822338,
+        "worst_index": 21
+      },
+      "gibbs": {
+        "eligible": true,
+        "mae": 25.52742489492071,
+        "mean_abs_percent": 1.4146939901364526,
+        "rmse": 30.892231853727996,
+        "rows": 12,
+        "worst_abs": 53.03123190736255,
+        "worst_index": 30
+      },
+      "gibbs-isothermal": {
+        "eligible": true,
+        "mae": 112.80936925529203,
+        "mean_abs_percent": 6.190443835320253,
+        "rmse": 115.66975556511015,
+        "rows": 12,
+        "worst_abs": 154.02780056281836,
+        "worst_index": 33
+      },
+      "gibbs-reduced": {
+        "eligible": true,
+        "mae": 17.86646877453821,
+        "mean_abs_percent": 0.974845544131389,
+        "rmse": 22.210327208921044,
+        "rows": 12,
+        "worst_abs": 45.01507236219413,
+        "worst_index": 13
+      },
+      "gibbs-static-cp": {
+        "eligible": true,
+        "mae": 25.589720947472188,
+        "mean_abs_percent": 1.4180228878376757,
+        "rmse": 30.955086005049765,
+        "rows": 12,
+        "worst_abs": 53.0220158361808,
+        "worst_index": 30
+      }
+    }
+  },
+  "primary_aggregate_pass": false,
+  "primary_joint_pass": false,
+  "primary_same_row_all_roles": {
+    "T_K": 373.14,
+    "index": 30,
+    "nominal_T": 373,
+    "observed": 1745.92,
+    "p_MPa": 1.343,
+    "predicted": {
+      "author-density-measured-cp": 1752.0284678553758,
+      "author-density-printed-cp": 1756.3945784776179,
+      "author-direct-sound": 1737.3949950602973,
+      "gibbs": 1798.9512319073626,
+      "gibbs-isothermal": 1679.9331881344747,
+      "gibbs-reduced": 1760.936133136114,
+      "gibbs-static-cp": 1798.9420158361809
+    },
+    "primary": true,
+    "thermal_support": true
+  },
+  "source_sha256": "9ba6858c8d9624713314ccc080a6d33d4d578b2231b4fc8bba17e3c4b4a90026"
+}

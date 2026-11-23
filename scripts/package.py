@@ -16,6 +16,20 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/glycerol_calorimetry_acoustic_transfer/README.md",
+    "research/glycerol_calorimetry_acoustic_transfer/alternate_layout_reader.py",
+    "research/glycerol_calorimetry_acoustic_transfer/calibration-checks.json",
+    "research/glycerol_calorimetry_acoustic_transfer/calibration-tables.json",
+    "research/glycerol_calorimetry_acoustic_transfer/exposure.json",
+    "research/glycerol_calorimetry_acoustic_transfer/forecast-lock.json",
+    "research/glycerol_calorimetry_acoustic_transfer/forecast.py",
+    "research/glycerol_calorimetry_acoustic_transfer/held-state-inputs.json",
+    "research/glycerol_calorimetry_acoustic_transfer/measured-score.json",
+    "research/glycerol_calorimetry_acoustic_transfer/native-receipts.json",
+    "research/glycerol_calorimetry_acoustic_transfer/protocol.json",
+    "research/glycerol_calorimetry_acoustic_transfer/published-experimental-coefficients.json",
+    "research/glycerol_calorimetry_acoustic_transfer/replay.py",
+    "research/glycerol_calorimetry_acoustic_transfer/score_locked.py",
     "research/tian-opposed-chart/README.md",
     "research/tian-opposed-chart/Waller-Lab-LICENSE.txt",
     "research/tian-opposed-chart/acquire_source.py",
