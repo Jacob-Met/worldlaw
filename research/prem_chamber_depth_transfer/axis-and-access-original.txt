@@ -1,0 +1,38 @@
+SOURCE 135f6ed60a9d3e2b48e7a60b846be39f4f865366
+Downloading scipy (34.0MiB)
+ Downloaded scipy
+Installed 2 packages in 40ms
+OPTICAL {"codes/mie_code/optical constants/enst_300K_nk.mat": [["enst_300K_kx", [916, 1], "double"], ["enst_300K_ky", [916, 1], "double"], ["enst_300K_kz", [916, 1], "double"], ["enst_300K_lambda", [916, 1], "double"], ["enst_300K_nx", [916, 1], "double"], ["enst_300K_ny", [916, 1], "double"], ["enst_300K_nz", [916, 1], "double"]], "codes/mie_code/optical constants/oliSC_300K_nk.mat": [["oliSC_300K_kx", [916, 1], "double"], ["oliSC_300K_ky", [916, 1], "double"], ["oliSC_300K_kz", [916, 1], "double"], ["oliSC_300K_lambda", [916, 1], "double"], ["oliSC_300K_nx", [916, 1], "double"], ["oliSC_300K_ny", [916, 1], "double"], ["oliSC_300K_nz", [916, 1], "double"]], "codes/mie_code/optical constants/plag_nk.mat": [["plag_kx", [568, 1], "double"], ["plag_ky", [568, 1], "double"], ["plag_kz", [568, 1], "double"], ["plag_lambda", [568, 1], "double"], ["plag_nx", [568, 1], "double"], ["plag_ny", [568, 1], "double"], ["plag_nz", [568, 1], "double"]]}
+AXES {"1": {"A": {"decreasing": false, "hi": 25.0, "increasing": true, "lo": 6.7, "n": 916}, "E": {"decreasing": false, "hi": 25.0, "increasing": true, "lo": 6.7, "n": 916}, "I": {"decreasing": false, "hi": 25.0, "increasing": true, "lo": 6.7, "n": 916}}, "2": {"A": {"decreasing": false, "hi": 25.0, "increasing": true, "lo": 6.69999981, "n": 916}, "E": {"decreasing": false, "hi": 25.0, "increasing": true, "lo": 6.69999981, "n": 916}, "I": {"decreasing": false, "hi": 25.0, "increasing": true, "lo": 6.69999981, "n": 916}}, "3": {"A": {"decreasing": false, "hi": 25.0501003, "increasing": true, "lo": 6.69926977, "n": 568}, "E": {"decreasing": false, "hi": 25.0501003, "increasing": true, "lo": 6.69926977, "n": 568}, "I": {"decreasing": false, "hi": 25.0501003, "increasing": true, "lo": 6.69926977, "n": 568}}}
+STONYBROOK {"AmbientSilicateMineralSpectra_PartSize2019.xlsx": "https://commons.library.stonybrook.edu/cgi/viewcontent.cgi?filename=0&article=1008&context=geodata&type=additional", "SLESilicateMineralSpectra_PartSize2019.xlsx": "https://commons.library.stonybrook.edu/cgi/viewcontent.cgi?filename=1&article=1008&context=geodata&type=additional", "SilicateParticleSizeMin-ASD2019.xlsx": "https://commons.library.stonybrook.edu/cgi/viewcontent.cgi?filename=2&article=1008&context=geodata&type=additional", "SilicateSampesMicroProbe.xlsx": "https://commons.library.stonybrook.edu/cgi/viewcontent.cgi?filename=3&article=1008&context=geodata&type=additional"}
+Traceback (most recent call last):
+  File "/home/ubuntu/hamon-work/sessions/native-dc7c212c837b6198364a9b9de04f986105cc211eb70396a14556136a9969bec1/prem-native-nurb2zvu/axis_provenance.py", line 41, in <module>
+    b=grab(url)
+      ^^^^^^^^^
+  File "/home/ubuntu/hamon-work/sessions/native-dc7c212c837b6198364a9b9de04f986105cc211eb70396a14556136a9969bec1/prem-native-nurb2zvu/axis_provenance.py", line 7, in grab
+    with urllib.request.urlopen(req,timeout=45) as f:return f.read()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 403: Forbidden
+Traceback (most recent call last):
+  File "<stdin>", line 9, in <module>
+  File "<stdin>", line 3, in run
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['uv', 'run', '--no-project', '--with', 'scipy==1.16.3', '--python', '/usr/bin/python3', 'python', 'axis_provenance.py']' returned non-zero exit status 1.
