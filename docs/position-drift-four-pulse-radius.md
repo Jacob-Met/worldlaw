@@ -47,3 +47,5 @@ To minimize ε, the exact rational simplex starts at zero in the dual max −h·
 | Changed tetrahedra | 1/68 | 10/659 | 1/65 | 1/65 |
 
 All three rows are global within their four declared classes, with every ordered prefix/word checked. On the changed tetrahedra at ε=2/131, early and full succeed and late and fixed fail. That row alone does not require two decisions. The eight-command grouped source supplies the stronger distinction with a restricted winning menu and exhaustive single-cut failures.
+
+Every four-pulse binary menu has an equally robust subtree with at most four leaves. [Exact compression and the sharp grouped example](position-drift-four-pulse-compact.md)
