@@ -1,0 +1,294 @@
+[
+  {
+    "id": 1001,
+    "models": [
+      {
+        "id": "command+rate+spring",
+        "terms": {
+          "command": 0.8776914468214603,
+          "rate": -0.2361732517768892,
+          "spring": -0.7752464781626811
+        }
+      },
+      {
+        "id": "command+rate+spring+gravity",
+        "terms": {
+          "command": 0.8765786282657247,
+          "rate": -0.23552793937377903,
+          "spring": -0.778472851295508,
+          "gravity": 0.005289826781110194
+        }
+      },
+      {
+        "id": "command+rate+spring+cubic",
+        "terms": {
+          "command": 0.8765453907590572,
+          "rate": -0.23551129252258818,
+          "spring": -0.773325379786394,
+          "cubic": -0.000694451545756919
+        }
+      },
+      {
+        "id": "command_cubic+rate+spring",
+        "terms": {
+          "command_cubic": 0.8776914468214603,
+          "rate": -0.2361732517768892,
+          "spring": -0.7752464781626811
+        }
+      },
+      {
+        "id": "command_cubic+rate+spring+gravity",
+        "terms": {
+          "command_cubic": 0.8765786282657247,
+          "rate": -0.23552793937377903,
+          "spring": -0.778472851295508,
+          "gravity": 0.005289826781110194
+        }
+      },
+      {
+        "id": "command_cubic+rate+spring+cubic",
+        "terms": {
+          "command_cubic": 0.8765453907590572,
+          "rate": -0.23551129252258818,
+          "spring": -0.773325379786394,
+          "cubic": -0.000694451545756919
+        }
+      }
+    ]
+  },
+  {
+    "id": 1002,
+    "models": [
+      {
+        "id": "command+rate+spring",
+        "terms": {
+          "command": 1.1264750674691897,
+          "rate": -0.28246004827688764,
+          "spring": -1.0113730795412295
+        }
+      },
+      {
+        "id": "command+rate+spring+gravity",
+        "terms": {
+          "command": 1.1325611375290654,
+          "rate": -0.2857023272809498,
+          "spring": -0.9968931439067041,
+          "gravity": -0.025431061624085902
+        }
+      },
+      {
+        "id": "command+rate+spring+cubic",
+        "terms": {
+          "command": 1.1327355634791116,
+          "rate": -0.2857922830542652,
+          "spring": -1.0216246509653562,
+          "cubic": 0.0033061286272532487
+        }
+      },
+      {
+        "id": "command_cubic+rate+spring",
+        "terms": {
+          "command_cubic": 1.1264750674691897,
+          "rate": -0.28246004827688764,
+          "spring": -1.0113730795412295
+        }
+      },
+      {
+        "id": "command_cubic+rate+spring+gravity",
+        "terms": {
+          "command_cubic": 1.1325611375290654,
+          "rate": -0.2857023272809498,
+          "spring": -0.9968931439067041,
+          "gravity": -0.025431061624085902
+        }
+      },
+      {
+        "id": "command_cubic+rate+spring+cubic",
+        "terms": {
+          "command_cubic": 1.1327355634791116,
+          "rate": -0.2857922830542652,
+          "spring": -1.0216246509653562,
+          "cubic": 0.0033061286272532487
+        }
+      }
+    ]
+  },
+  {
+    "id": 1003,
+    "models": [
+      {
+        "id": "command+rate+gravity",
+        "terms": {
+          "command": 1.0790980966945123,
+          "rate": -0.22970386136311838,
+          "gravity": -0.8632922817551669
+        }
+      },
+      {
+        "id": "command+rate+spring+gravity",
+        "terms": {
+          "command": 1.0799113447899282,
+          "rate": -0.23014603051965662,
+          "spring": 0.00043968766809197537,
+          "gravity": -0.8640556829708147
+        }
+      },
+      {
+        "id": "command+rate+gravity+cubic",
+        "terms": {
+          "command": 1.0797331277763098,
+          "rate": -0.23004226333713337,
+          "gravity": -0.8634747808072779,
+          "cubic": 0.00003345776541700064
+        }
+      },
+      {
+        "id": "command_cubic+rate+gravity",
+        "terms": {
+          "command_cubic": 1.0790980966945123,
+          "rate": -0.22970386136311838,
+          "gravity": -0.8632922817551669
+        }
+      },
+      {
+        "id": "command_cubic+rate+spring+gravity",
+        "terms": {
+          "command_cubic": 1.0799113447899282,
+          "rate": -0.23014603051965662,
+          "spring": 0.00043968766809197537,
+          "gravity": -0.8640556829708147
+        }
+      },
+      {
+        "id": "command_cubic+rate+gravity+cubic",
+        "terms": {
+          "command_cubic": 1.0797331277763098,
+          "rate": -0.23004226333713337,
+          "gravity": -0.8634747808072779,
+          "cubic": 0.00003345776541700064
+        }
+      }
+    ]
+  },
+  {
+    "id": 1004,
+    "models": [
+      {
+        "id": "command+rate+gravity",
+        "terms": {
+          "command": 1.060751647025698,
+          "rate": -0.21247570496314994,
+          "gravity": -0.9758806837913219
+        }
+      },
+      {
+        "id": "command+rate+spring+gravity",
+        "terms": {
+          "command": 1.0605007799345196,
+          "rate": -0.21231225229984674,
+          "spring": -0.00011754569474837884,
+          "gravity": -0.9756938589757572
+        }
+      },
+      {
+        "id": "command+rate+gravity+cubic",
+        "terms": {
+          "command": 1.060596983466682,
+          "rate": -0.21237765665904676,
+          "gravity": -0.9758580958759829,
+          "cubic": -0.000006475494120689487
+        }
+      },
+      {
+        "id": "command_cubic+rate+gravity",
+        "terms": {
+          "command_cubic": 1.060751647025698,
+          "rate": -0.21247570496314994,
+          "gravity": -0.9758806837913219
+        }
+      },
+      {
+        "id": "command_cubic+rate+spring+gravity",
+        "terms": {
+          "command_cubic": 1.0605007799345196,
+          "rate": -0.21231225229984674,
+          "spring": -0.00011754569474837884,
+          "gravity": -0.9756938589757572
+        }
+      },
+      {
+        "id": "command_cubic+rate+gravity+cubic",
+        "terms": {
+          "command_cubic": 1.060596983466682,
+          "rate": -0.21237765665904676,
+          "gravity": -0.9758580958759829,
+          "cubic": -0.000006475494120689487
+        }
+      }
+    ]
+  },
+  {
+    "id": 1005,
+    "models": [
+      {
+        "id": "command+rate+spring+cubic",
+        "terms": {
+          "command": 0.8924284286288567,
+          "rate": -0.12943885940753505,
+          "spring": -0.7232350339888758,
+          "cubic": -0.1526893572176221
+        }
+      },
+      {
+        "id": "command_cubic+rate+spring+cubic",
+        "terms": {
+          "command_cubic": 0.8924284286288567,
+          "rate": -0.12943885940753505,
+          "spring": -0.7232350339888758,
+          "cubic": -0.1526893572176221
+        }
+      }
+    ]
+  },
+  {
+    "id": 1006,
+    "models": [
+      {
+        "id": "command+rate+spring+cubic",
+        "terms": {
+          "command": 1.116248043946159,
+          "rate": -0.15528065598929436,
+          "spring": -0.8357382454509079,
+          "cubic": -0.315872169274869
+        }
+      },
+      {
+        "id": "command+rate+gravity+cubic",
+        "terms": {
+          "command": 1.1152200252888784,
+          "rate": -0.1551845292840144,
+          "gravity": -0.8578997340765546,
+          "cubic": -0.43031462208432797
+        }
+      },
+      {
+        "id": "command_cubic+rate+spring+cubic",
+        "terms": {
+          "command_cubic": 1.116248043946159,
+          "rate": -0.15528065598929436,
+          "spring": -0.8357382454509079,
+          "cubic": -0.315872169274869
+        }
+      },
+      {
+        "id": "command_cubic+rate+gravity+cubic",
+        "terms": {
+          "command_cubic": 1.1152200252888784,
+          "rate": -0.1551845292840144,
+          "gravity": -0.8578997340765546,
+          "cubic": -0.43031462208432797
+        }
+      }
+    ]
+  }
+]
