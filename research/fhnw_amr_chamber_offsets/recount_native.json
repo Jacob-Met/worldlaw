@@ -1,0 +1,102 @@
+{
+  "job": "p3-f747-fhnw-both-slope-stacks-and-all-2268-residuals",
+  "binding": {
+    "mandate": "m-frontier-research-gpu",
+    "forward_resource_budget": true,
+    "forward_start_caller": true,
+    "caller": {
+      "agent": "astra62-p3-f747f5728172",
+      "attribution": "caller_named"
+    },
+    "session_id": "p3-f747-fhnw-both-slope-stacks-and-all-2268-residuals",
+    "job_id": "p3-f747-fhnw-both-slope-stacks-and-all-2268-residuals",
+    "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+    "command_id": "p3-f747-fhnw-both-slope-stacks-and-all-2268-residuals",
+    "start_operation_id": "placement-3e7b13a8927c4179cbeabf963d25627ba8ea8dbbf968731a",
+    "arguments_sha256": "d850be463c7eb9c3be041b72e83776699e8d998f67aa6a2dcce450a4ac703647",
+    "requirements": {
+      "retain_output_bytes": 65536,
+      "retain_full_output": true,
+      "cpu_cores": 1,
+      "git_repositories": [
+        "Jacob-Met/worldlaw"
+      ],
+      "executables": [
+        "git",
+        "python3"
+      ],
+      "memory_bytes": 420000000,
+      "scratch_bytes": 500000000
+    },
+    "created_at": "2026-11-23T09:49:09.428293859Z",
+    "active": false
+  },
+  "receipt": {
+    "script_observation_version": 3,
+    "working_tree_context": {
+      "repository": "github.com/Jacob-Met/cursor-swiss-env",
+      "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+    },
+    "resource_usage": {
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "interval_milliseconds": 100,
+        "cpu_seconds": {
+          "git": 1.15,
+          "other": 0.07,
+          "python": 0.01
+        },
+        "snapshots": 18,
+        "nonempty_snapshots": 18,
+        "distinct_processes": 5,
+        "read_errors": 2,
+        "saturated_snapshots": 0
+      },
+      "source": "linux_rusage",
+      "user_cpu_seconds": 1.118149,
+      "system_cpu_seconds": 0.259505,
+      "max_rss_bytes": 22417408,
+      "max_rss_scope": "largest_waited_process"
+    },
+    "resource_process": {
+      "pid": 1648064,
+      "start_ticks": 55088571,
+      "boot_id": "1ca46c53-d5e4-4b04-a9c4-fed66e762765"
+    },
+    "command_id": "p3-f747-fhnw-both-slope-stacks-and-all-2268-residuals",
+    "request_sha256": "59eeb7bd7f51b562f39d99e5d142d3b337d817c2214396088378c32a10405a12",
+    "generation": "4d0171037f5b1b6f411c8cf8256fce39a37c12b614ebeb874587c999f62f3213",
+    "state": "completed",
+    "runner_pid": 1648051,
+    "started_at": "2026-11-23T09:49:09.60628Z",
+    "finished_at": "2026-11-23T09:49:11.422194154Z",
+    "exit_code": 0
+  },
+  "result": {
+    "checked_source_level_means": 7938,
+    "component_residuals": 2268,
+    "forecast_delta": 1.3877787807814457e-17,
+    "gate": false,
+    "metric_delta": 6.661338147750939e-16,
+    "overall": [
+      0.002639817707502888,
+      0.002677447629263683,
+      0.0026523214064966215,
+      0.0030623431920501942,
+      1.00192702646797,
+      0.013549053520350782,
+      0.012835985368471785,
+      0.003044138010968252,
+      0.0025027519628492314,
+      0.0025100610683685314,
+      0.0030383995208837565,
+      0.01207151567103311
+    ],
+    "source_chips": 63,
+    "source_intercept_slope_delta": 1.1102230246251565e-16
+  }
+}

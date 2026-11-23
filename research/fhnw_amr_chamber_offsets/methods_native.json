@@ -1,0 +1,138 @@
+{
+  "job": "p3-f747-fhnw-held-data-free-published-anchor-audit",
+  "binding": {
+    "mandate": "m-frontier-research-gpu",
+    "forward_resource_budget": true,
+    "forward_start_caller": true,
+    "caller": {
+      "agent": "astra62-p3-f747f5728172",
+      "attribution": "caller_named"
+    },
+    "session_id": "p3-f747-fhnw-held-data-free-published-anchor-audit",
+    "job_id": "p3-f747-fhnw-held-data-free-published-anchor-audit",
+    "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+    "command_id": "p3-f747-fhnw-held-data-free-published-anchor-audit",
+    "start_operation_id": "placement-678905341df65ac9aa791be81e440050efb5f2acd1ed42d1",
+    "arguments_sha256": "bea0433a8a9f706b1ed39b08378344b3c08e8c03e480880dcb81149d03be2ba8",
+    "requirements": {
+      "retain_output_bytes": 65536,
+      "retain_full_output": true,
+      "cpu_cores": 1,
+      "git_repositories": [
+        "Jacob-Met/worldlaw"
+      ],
+      "executables": [
+        "git",
+        "python3"
+      ],
+      "memory_bytes": 420000000,
+      "scratch_bytes": 500000000
+    },
+    "created_at": "2026-11-23T09:38:14.31047422Z",
+    "active": false
+  },
+  "receipt": {
+    "script_observation_version": 3,
+    "working_tree_context": {
+      "repository": "github.com/Jacob-Met/cursor-swiss-env",
+      "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+    },
+    "resource_usage": {
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "interval_milliseconds": 100,
+        "cpu_seconds": {
+          "git": 1.16,
+          "other": 0.10999999999999999,
+          "python": 0.04
+        },
+        "snapshots": 56,
+        "nonempty_snapshots": 56,
+        "distinct_processes": 6,
+        "read_errors": 1,
+        "saturated_snapshots": 0
+      },
+      "source": "linux_rusage",
+      "user_cpu_seconds": 1.175929,
+      "system_cpu_seconds": 0.254684,
+      "max_rss_bytes": 23478272,
+      "max_rss_scope": "largest_waited_process"
+    },
+    "resource_process": {
+      "pid": 1639291,
+      "start_ticks": 55023063,
+      "boot_id": "1ca46c53-d5e4-4b04-a9c4-fed66e762765"
+    },
+    "command_id": "p3-f747-fhnw-held-data-free-published-anchor-audit",
+    "request_sha256": "704043bf5080afdb5dc321c51eae30f4b509447e5736a4feea5cdd534a3b2c8d",
+    "generation": "25a455d02c6fa985be4a146d6a5b59856b9c7738a26e762460f5134177e2ae37",
+    "state": "completed",
+    "runner_pid": 1639277,
+    "started_at": "2026-11-23T09:38:14.528720557Z",
+    "finished_at": "2026-11-23T09:38:20.120320492Z",
+    "exit_code": 0
+  },
+  "result": {
+    "dc_files": 63,
+    "held_chamber_rows": 0,
+    "method_files": [
+      {
+        "anchor_lines": [],
+        "bytes": 846,
+        "name": "LICENSE.md",
+        "sha256": "781f84dc2917f889b96ba929662a79ddd7ff749f2a002860a1a23c7cd12f96d9"
+      },
+      {
+        "anchor_lines": [
+          [
+            35,
+            "#sensitivity.append([np.float#(row[#])-0.9921,np.float#(row[#])-0.9921,np.float#(row[#])-0.9921])"
+          ],
+          [
+            45,
+            "off = [[off[i][#]-meanX+0.9921,off[i][#]-meanY+0.9921, off[i][#]-meanZ+0.9921] for i in range(#)]"
+          ]
+        ],
+        "bytes": 14054,
+        "name": "Program/MRI_exposed_mapper_plot_intermag.py",
+        "sha256": "3ed0826ee80e3fab21a0760cc01f10f6c84638b5ce8abc401c378ed24ee1af5f"
+      },
+      {
+        "anchor_lines": [
+          [
+            36,
+            "#sensitivity.append([np.float#(row[#])-0.9921,np.float#(row[#])-0.9921,np.float#(row[#])-0.9921])"
+          ]
+        ],
+        "bytes": 23674,
+        "name": "Program/MRI_exposed_mapper_plot_intermag_ppt.py",
+        "sha256": "7abe31db6d2d35616c729540334df3611e689b7f6671387b29f10a21c44ce76e"
+      },
+      {
+        "anchor_lines": [],
+        "bytes": 8517,
+        "name": "Raw Data/Exposure_3T/calib_catheter_gain_offset_MMC_8x8.m",
+        "sha256": "b1075b00982bc96ef6842d584c9f0fd4aa2bca8b20f28cfe3ac8d3dc4bde1ee0"
+      },
+      {
+        "anchor_lines": [],
+        "bytes": 8517,
+        "name": "Raw Data/No_exposure/calib_catheter_gain_offset_MMC_8x8.m",
+        "sha256": "b1075b00982bc96ef6842d584c9f0fd4aa2bca8b20f28cfe3ac8d3dc4bde1ee0"
+      },
+      {
+        "anchor_lines": [],
+        "bytes": 11316,
+        "name": "README.md",
+        "sha256": "93646532e276c77d64a0194b14bc654e6efde8ea1efd89c73270c3b227b5c2ef"
+      }
+    ],
+    "opened_measurement_tables": 0,
+    "record": 24110229,
+    "roster": 89
+  }
+}

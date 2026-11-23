@@ -1,0 +1,68 @@
+{
+  "job": "p3-f747-fhnw-array-roster-and-author-offset-conventions",
+  "binding": {
+    "mandate": "m-frontier-research-gpu",
+    "forward_resource_budget": true,
+    "forward_start_caller": true,
+    "caller": {
+      "agent": "astra62-p3-f747f5728172",
+      "attribution": "caller_named"
+    },
+    "session_id": "p3-f747-fhnw-array-roster-and-author-offset-conventions",
+    "job_id": "p3-f747-fhnw-array-roster-and-author-offset-conventions",
+    "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+    "command_id": "p3-f747-fhnw-array-roster-and-author-offset-conventions",
+    "start_operation_id": "placement-92ae63c34e4629aa98ff3982dcac7f3c669950b5bcb21b88",
+    "arguments_sha256": "7998aeed839e56a99893b9215209ebd8d397e0728b063c2af853daba52081a8f",
+    "requirements": {
+      "retain_output_bytes": 65536,
+      "retain_full_output": true,
+      "cpu_cores": 1,
+      "executables": [
+        "python3"
+      ],
+      "memory_bytes": 300000000
+    },
+    "created_at": "2026-11-23T09:34:28.711717975Z",
+    "active": false
+  },
+  "receipt": {
+    "script_observation_version": 3,
+    "resource_usage": {
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "interval_milliseconds": 100,
+        "cpu_seconds": {},
+        "snapshots": 1,
+        "nonempty_snapshots": 1,
+        "distinct_processes": 1,
+        "read_errors": 0,
+        "saturated_snapshots": 0
+      },
+      "source": "linux_rusage",
+      "user_cpu_seconds": 0.033678,
+      "system_cpu_seconds": 0.021048,
+      "max_rss_bytes": 22667264,
+      "max_rss_scope": "largest_waited_process"
+    },
+    "resource_process": {
+      "pid": 1735448,
+      "start_ticks": 72753803,
+      "boot_id": "e63a2f1b-7ab2-4bc5-8e4e-5927618e40ec"
+    },
+    "command_id": "p3-f747-fhnw-array-roster-and-author-offset-conventions",
+    "request_sha256": "78c738c50c255ca07025307184d772ab2ca079437b942122232eab1449a33dd9",
+    "generation": "0b6dd7968dc42b36405fedd495141e5148f6d0a7e615d543b8c8c73e79a5f66e",
+    "state": "failed",
+    "runner_pid": 1735438,
+    "started_at": "2026-11-23T09:34:29.219956074Z",
+    "finished_at": "2026-11-23T09:34:29.323544822Z",
+    "exit_code": 1,
+    "error": "exit status 1"
+  },
+  "stdout": "Traceback (most recent call last):\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1344, in do_open\n    h.request(req.get_method(), req.selector, req.data, headers,\n  File \"/usr/lib/python3.12/http/client.py\", line 1365, in request\n    self._send_request(method, url, body, headers, encode_chunked)\n  File \"/usr/lib/python3.12/http/client.py\", line 1411, in _send_request\n    self.endheaders(body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.12/http/client.py\", line 1360, in endheaders\n    self._send_output(message_body, encode_chunked=encode_chunked)\n  File \"/usr/lib/python3.12/http/client.py\", line 1120, in _send_output\n    self.send(msg)\n  File \"/usr/lib/python3.12/http/client.py\", line 1064, in send\n    self.connect()\n  File \"/usr/lib/python3.12/http/client.py\", line 1499, in connect\n    super().connect()\n  File \"/usr/lib/python3.12/http/client.py\", line 1030, in connect\n    self.sock = self._create_connection(\n                ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 828, in create_connection\n    for res in getaddrinfo(host, port, 0, SOCK_STREAM):\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/socket.py\", line 963, in getaddrinfo\n    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsocket.gaierror: [Errno -3] Temporary failure in name resolution\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"<stdin>\", line 9, in <module>\n  File \"<stdin>\", line 5, in get\n  File \"/usr/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 515, in open\n    response = self._open(req, data)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 532, in _open\n    result = self._call_chain(self.handle_open, protocol, protocol +\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1392, in https_open\n    return self.do_open(http.client.HTTPSConnection, req,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 1347, in do_open\n    raise URLError(err)\nurllib.error.URLError: <urlopen error [Errno -3] Temporary failure in name resolution>\n"
+}
