@@ -8,13 +8,18 @@ function table(caption,head,rows){
 }
 function guidedProof(p){
   if(p.schema===SUFFIX_PLAN){
+    if(p.status==='cover-budget-exhausted')return {heading:'The common-history search reached its budget.',
+      summary:'The remaining groups have no verdict. The search used '+p.work.subsets+' group visits and '+p.work.linearWork+' linear-work units.',
+      proof:''};
     if(p.status==='cover-inconclusive')return {heading:'The suffix cover is inconclusive.',
       summary:'A group of pairwise-compatible laws has a collision on each offered tape. Those collisions can require different prefix readings.',
       proof:table('Uncovered laws: '+p.uncovered.laws.join(', '),['Suffix','Colliding pair'],
         p.uncovered.failures.map(f=>[p.suffixes[f.suffix].join(' → '),f.collision.laws.join(' / ')]))};
     return {heading:'Choose a command sequence from the prefix readings.',
       summary:'Apply '+p.prefix.join(' → ')+'. The remaining laws determine the entire suffix before its first command.',
-      proof:table('Each group has a suffix that separates every pair.', ['Compatible group','Suffix'],
+      proof:(p.eliminations?.length?table('These laws cannot share one prefix reading history.',
+        ['Incompatible group','Positive inequality weights'],p.eliminations.map(e=>[e.excluded.join(', '),e.proof.map(term=>term[1]).join(', ')])):'')+
+        table('Each group has a suffix that separates every pair.', ['Compatible group','Suffix'],
         p.cover.map(r=>[r.laws.join(', '),p.suffixes[r.suffix].join(' → ')]))};
   }
   if(p.schema===ONE_FEEDBACK_PLAN){

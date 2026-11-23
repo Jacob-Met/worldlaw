@@ -1,6 +1,7 @@
 import {ONE_FEEDBACK_REQUEST,ONE_FEEDBACK_PLAN,planOneFeedback,receiveOneFeedback} from './persistent-position-drift-one-feedback.mjs';
-import {SUFFIX_REQUEST,SUFFIX_PLAN,planSuffixFeedback,receiveSuffixFeedback} from './position-drift-suffix-feedback.mjs';
-export {ONE_FEEDBACK_REQUEST,ONE_FEEDBACK_PLAN,SUFFIX_REQUEST,SUFFIX_PLAN};
+import {HISTORY_SUFFIX_REQUEST,SUFFIX_REQUEST,SUFFIX_PLAN,planSuffixFeedback,receiveSuffixFeedback} from './position-drift-suffix-feedback.mjs';
+export {ONE_FEEDBACK_REQUEST,ONE_FEEDBACK_PLAN,SUFFIX_REQUEST,HISTORY_SUFFIX_REQUEST,SUFFIX_PLAN};
+export const isSuffixRequest=request=>request?.schema===SUFFIX_REQUEST||request?.schema===HISTORY_SUFFIX_REQUEST;
 export const driftFeedbackInconclusive=p=>(p.schema===ONE_FEEDBACK_PLAN&&p.status!=='one-feedback-certified')||
   (p.schema===SUFFIX_PLAN&&p.status!=='suffix-certified');
 /** Measurement-led notebook continuations for minimum and case-12 drift plans. */
@@ -19,7 +20,7 @@ const need=(ok,msg)=>{if(!ok)throw Error('Guided position/drift: '+msg);};
 const fields=(o,ks)=>o && typeof o==='object'&&!Array.isArray(o)&&Object.keys(o).sort().join(',')===[...ks].sort().join(',');
 
 export function designCatalog(request,design={}){
-  if(request.schema===SUFFIX_REQUEST)return planSuffixFeedback(request);
+  if(isSuffixRequest(request))return planSuffixFeedback(request);
   if(request.schema===ONE_FEEDBACK_REQUEST)return planOneFeedback(request);
   if(request.schema===CASE_TWELVE_REQUEST){
     need(fields(request,['schema','first']),'supply exactly the source schema and first command');
