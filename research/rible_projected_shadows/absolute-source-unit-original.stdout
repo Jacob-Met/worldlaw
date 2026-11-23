@@ -1,0 +1,11 @@
+MAT_SOURCE 1861439 a87bc1a194f89d6bc41d080ab047d5399ad64de431f0029fda225b8ba6d45a5b
+NATIVE_STORAGE (2001, 5) 9 8
+NATIVE_STORAGE (2001, 5) 9 8
+NATIVE_STORAGE (2001, 2) 9 8
+NATIVE_STORAGE (2001, 2) 9 8
+NATIVE_STORAGE (2001, 2) 9 8
+NATIVE_STORAGE (2001, 2) 4 2
+UNIT_AUDIT {"bbox_heigth": {"count": 2001, "frame1_raw_pixel_or_degree": 48.0, "frame1_release": 48.0, "matching": [], "max_abs_difference": {"literal_times_ten": 477.0, "mm": 48.139432474041264, "pixels": 2.0}}, "bbox_width": {"count": 2001, "frame1_raw_pixel_or_degree": 61.0, "frame1_release": 61.0, "matching": [], "max_abs_difference": {"literal_times_ten": 621.0, "mm": 62.64387323528473, "pixels": 3.0}}, "cantingAngle": {"count": 2001, "frame1_raw_pixel_or_degree": -8.628464455795848, "frame1_release": -8.60963131196004, "matching": [], "max_abs_difference": {"degrees": 1.8753717147076525}}, "majorAxis": {"count": 2001, "frame1_raw_pixel_or_degree": 60.81191231220194, "frame1_release": 61.0428301678084, "matching": [], "max_abs_difference": {"literal_times_ten": 625.3666029433629, "mm": 63.38492787099826, "pixels": 0.6960384380566751}}, "minorAxis": {"count": 2001, "frame1_raw_pixel_or_degree": 47.59025605693734, "frame1_release": 47.8215298980818, "matching": [], "max_abs_difference": {"literal_times_ten": 465.42206333376174, "mm": 47.19540927576686, "pixels": 0.8172153061030301}}, "verticalAxis": {"count": 2001, "frame1_raw_pixel_or_degree": 48, "frame1_release": 48.0, "matching": [], "max_abs_difference": {"literal_times_ten": 468.0, "mm": 48.139432474041264, "pixels": 2.0}}}
+Traceback (most recent call last):
+  File "<stdin>", line 91, in <module>
+AssertionError: source unit/segmentation correspondence refused
