@@ -1,0 +1,1 @@
+{"effective_field": ["2", "9"], "intrinsic_transverse_fields": ["9", "91/10"], "known_external_full_tensor": false, "line_temperature_same_for_all_x": true, "measured_voltage_rows_used": 0, "opposite_principal_signs_in_both": true, "ordered_edges": 56, "polarity_even_terms": 28, "principal_thermopowers": [["13", "-5"], ["262/21", "-102/19"]], "rank": 7, "undirected_cycles": 21}
