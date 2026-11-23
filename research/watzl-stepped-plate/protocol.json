@@ -1,0 +1,64 @@
+{
+  "study": "Watzl et al. Ultras. 2024, 107453. Predict the three screw-caliper plateau contrasts on this one scanned plate from waveforms alone.",
+  "units": "One plate, three machined levels, two linearly independent log contrasts, 301 correlated waveforms at 0.2mm measured x increments, 1000 hardware averages per stored waveform. Caption says 2 mm. No iid intervals, replicate-level variance, new specimen, or absolute calibration claim.",
+  "frozen_sources": {
+    "scan": "f3475d634a57aff883c2b88d290b4df0681d8fe4bb17ce1de2d4aa17af84f7ee",
+    "paper": "396500bcbd214bdbe8ce86153c904bcdc93d8fa42263111cfdbda0c49f4d87de",
+    "chart": "691806f2ae9a33ac9bba2d247d4fbabcac1bcf64df1e8024c5e85ae5462b78e7",
+    "separate_pattern": "fee779205a0367d9f3b714881b90beebdeb4f2e57e5e265b66da37d1c61eed2c",
+    "method_reference": "dea99e5fd029a89ee4ba3cae582db9280206bd922bbd573ef60b16e74329a8f8",
+    "source_parity": "8c68a94c3592791a5565170cdefb6cca16be1888e2bc0de4116562b1a2525f78"
+  },
+  "exposure": "Only source design, figure legend, caliper artists' x extents, one uppermost row at top of input schematic, qualitative author conclusions, separate flat-pattern source frequencies and inverse outputs. All black/green Fig6E y values and stepped waveforms unopened when frozen. No decoding of separate h_caliper, laser sample_distances_mm, distances_vs_x, z_vec_standa or calibration_signal.",
+  "allowed_wave_inputs": [
+    "traces",
+    "x_vec",
+    "t_vec",
+    "win_saw and win_S1S2 of reference optical pattern 20/400/5"
+  ],
+  "target": "Black artists 341\u2013343 in Fig6E are held external plotted targets. Source green vector artist340 is a genuine author baseline; extract only after every wave prediction is locked. No refitting or choosing windows/branches against either. Caliper pixel precision is not metrology uncertainty.",
+  "support": {
+    "u": "scan index/300; equal spacing verified input-only",
+    "cores": [
+      [
+        0.04,
+        0.18
+      ],
+      [
+        0.42,
+        0.58
+      ],
+      [
+        0.84,
+        0.96
+      ]
+    ],
+    "interfaces": [
+      [
+        0.2,
+        0.36
+      ],
+      [
+        0.64,
+        0.82
+      ]
+    ],
+    "gaps": "No interpolation of measured caliper through transitions. For each diagnostic location bracket by both adjacent levels in the transition slice; per-position residual outside interval is a model discrepancy under this bracket only. Compare to both endpoints separately. Report full index series, extrema, spreads and all ambiguous/zero roots."
+  },
+  "spectrum": "Published temporal windows and exact stored Tukey samples, no trace-mean subtraction; amplitude rFFT zero padded to 131072, dT=(t[-1]-t[0])/(N-1). Three-point log-parabolic interpolation of interior band maxima. MHz bands SAW [10.5,18.5], ZGV1 [1.05,1.85], ZGV2 [3.7,5.6]. Same wave and preprocessing for every wave-based arm.",
+  "inverse": "Published Eq8 + all piecewise-linear chart roots, also exact Rayleigh. No imputation or arbitrary root choice. Missing/ambiguous per-location h recorded. Require a unique estimate at each core for primary computed local CoMLAS gate; published green curve retained as separate author benchmark. Pitch199.18843482715618um from matching focal-plane pattern.",
+  "candidate": "Two late-mode normalized spectral templates with one shared multiplicative dilation on a single alloy. No material speed or thickness labels. Per mode take pointwise median of every center-core spectrum after per-trace l2 normalization on 161 log-frequency samples from -.025 to .025 centered on central-core median peak. For shift s in [-.025,.025] in .00005 steps, compare template with spectrum sampled at frequency times exp(s) by cosine after centering both vectors and unit normalizing. Equal average cosine over the two modes, earliest maximizing grid index. Relative log thickness = -s. All traces incl center use same center template; this is retrospective within-scan estimation. Record boundary hits, best score and separation from next distinct lobe. Reuse of central traces makes this a within-plate comparison.",
+  "controls": [
+    "constant relative thickness",
+    "negative log of each modal peak standalone",
+    "negative mean log of two modal peaks",
+    "subtract modal log peak from SAW log frequency for each mode and their mean (local common speed control)",
+    "spectral-template shift separately for each mode",
+    "mean of individually optimized two shifts",
+    "local Eq8 and exact-CoMLAS with every admissible branch recorded",
+    "published green LUS result from the same plot"
+  ],
+  "score": "Median log thickness within each frozen core. Subtract in fixed pairs (middle-left,right-middle,right-left). Equal-weight RMS contrast error and max absolute pair error in natural log units; full three signed residuals published; third contrast algebraically dependent. Also compare each slice and worst position to appropriate graphical level(s), without interpreting unmeasured transitions or assigning 301 independent references.",
+  "gate": "All primary core observations valid for author graphical and every comparator; shared-dilation RMS strictly below 0.90 times published author and below 0.95 times every other control including wave-based published Eq8; candidate maximum absolute pair error no larger than the best comparator. An unavailable required baseline blocks promotion, never relax coverage. Under independent box bounds for black stroke thickness, require both margins and max guard at nominal values and a conservative sensitivity bound using per-contrast min/max abs residuals; otherwise graphical uncertainty prevents qualification. One plate, no causal/material generalization. Secondary absolute h only for actual calibrated local CoMLAS and plotted author, no calibrator for scale-only candidate.",
+  "custody": "Execute wave receiver before label extraction, store full per-position outputs and independently bind SHA. Read only black Fig6E and historical green y afterward; extract axis independently, verify scalar calibration and all source geometric artists. No method change after lock. No raw micrometer replicate series claimed."
+}
