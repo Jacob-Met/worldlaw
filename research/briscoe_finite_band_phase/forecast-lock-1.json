@@ -1,0 +1,136 @@
+{
+  "job": "p3-f747-briscoe-14fdd132-four-complete-sourceonly-forecasts-0000",
+  "original_stdout": {
+    "n": 82980,
+    "sha": "21fdab2fc3b3c840efcec29401f06166c4d0e793ce7f283c9e6c2161609763bd"
+  },
+  "meta": {
+    "fit_history": [
+      {
+        "cost": 51.35694676876071,
+        "nfev": 40,
+        "parameters": [
+          56.41683471383715,
+          5981.613462943724,
+          -16.790771875657626,
+          10.372189051143083,
+          -22.10049296557889
+        ],
+        "start": 75,
+        "status": 0,
+        "sw": 0
+      },
+      {
+        "cost": 51.35742052933922,
+        "nfev": 40,
+        "parameters": [
+          56.41569299426878,
+          5981.524088472666,
+          -12.8469052169825,
+          4.392445223042532,
+          -13.636482967790277
+        ],
+        "start": 105,
+        "status": 0,
+        "sw": 0
+      },
+      {
+        "cost": 0.02056560400627807,
+        "nfev": 14,
+        "parameters": [
+          87.09728309162286,
+          5982.919864528744,
+          -3.288247538583692,
+          4.34407223556023,
+          -2.6985009901540593
+        ],
+        "start": 75,
+        "status": 3,
+        "sw": 1
+      },
+      {
+        "cost": 0.020565032337238102,
+        "nfev": 18,
+        "parameters": [
+          87.09740141136834,
+          5982.94068942157,
+          -3.2872604493780075,
+          4.285870495203085,
+          -2.6431813135626885
+        ],
+        "start": 105,
+        "status": 3,
+        "sw": 1
+      }
+    ],
+    "max_actual_signal_change": 0.0031707845893095554,
+    "max_phase_continuation_rad": 0.01644680185899602,
+    "max_signal_difference_bound": 0.0082157198534266,
+    "n": 60128,
+    "protocol_sha": "dc93f83d8773e2fddfe81d7bfdcf1d52a008aca81e17e26d12f93e5991563f9d",
+    "range_GHz": [
+      -51.26190397033292,
+      58.952804176557265
+    ],
+    "repeat": 1,
+    "rms_horizontal_half_sum_disagreement": 0.002583174130311395,
+    "role_sha": [
+      "b093f2aa2c945c5b3437ae6a58942fa94afd9482784131517407e53278224a58",
+      "ac11bb71c535b3c3a8efd7660e76369ba96719a3e77b3e98ef2c644ce7ad2e47",
+      "0df8a413971f0beccbe3a01b7c612fb65fa1534f6255f6b2ffbfe7d9dbee2550",
+      "0e4104d0fc6cb322c085a31999e77ad1b4cb88b6a74c0dc67a80d377fac4f8d8",
+      "a598978f96eb0ac9e4e929e269fb8fd5ab4c4ad658ae17ca0423525671bb5a8d",
+      "a5237a57a72070cfce2ecd6e8c2c8932d31f86288ae8288ebbf6aae1c89f9195",
+      "1e1cf8f28f6e17f4568927d35e350a33b5038affc5239cb9e3b05e537520daf4",
+      "9ef339830159d34e82a4f7613524e8a856d60d4a2836710bfea421efe8f58c78",
+      "b46234bb12652416e71ef2af13f8be9f29455a7596490a7743cc29898af3d9d0",
+      "63c1cc8182252a72d8a024e0cdd440538640c18a78af583d97d4aaa5304e78a4"
+    ],
+    "roles": [
+      "atomic_wings_measured_residual",
+      "direct_common_fft",
+      "native_source_fit",
+      "direct_own_axes_fft",
+      "zero_phase",
+      "half_incoherent",
+      "reversed_atomic_wing_correction",
+      "hybrid_analyzer_plus_1deg",
+      "hybrid_analyzer_minus_1deg",
+      "pure_model_phase_measured_amplitudes"
+    ],
+    "selected": {
+      "cost": 0.020565032337238102,
+      "nfev": 18,
+      "parameters": [
+        87.09740141136834,
+        5982.94068942157,
+        -3.2872604493780075,
+        4.285870495203085,
+        -2.6431813135626885
+      ],
+      "start": 105,
+      "status": 3,
+      "sw": 1
+    },
+    "sha": "a475bcc4e88f2981cee8244b98d8a04251c42030f485cab11328f3e4971cf3f3",
+    "shape": [
+      10,
+      750
+    ],
+    "source_minima": [
+      [
+        "tauLeft",
+        0.05645236312724303,
+        0.058340718250727924
+      ],
+      [
+        "tauRight",
+        0.06084310779689722,
+        0.0591252384941611
+      ]
+    ],
+    "target_axis_sha": "628ba9c72be87328a8c3c30e4e1b71cc7bed761fcede179b4a060ef8cc46be87",
+    "target_ordinates_read": 0,
+    "wall_seconds": 111.09021441393998
+  }
+}
