@@ -59,6 +59,10 @@ export function openPositionDriftFeedback(source){
   return {receive,finalOptions};
 }
 
+export function selectSafePositionDriftCommand(options,order=options.map(o=>o.command)){
+  return order.find(command=>options.some(o=>o.command===command&&o.intervals.length&&!o.collisions.length))??null;
+}
+
 export function caseEightRateCatalog(){
   return {schema:'worldlaw.position-drift-rate-catalog/v1',commands:['u0','u1','u2'],noiseBound:'1',
     laws:[[-2,-2,5],[1,-2,6],[-1,-4,0],[6,7,-3]].map((rates,i)=>({id:'L'+i,rates}))};
