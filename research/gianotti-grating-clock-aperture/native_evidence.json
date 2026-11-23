@@ -1,0 +1,349 @@
+{
+  "version": 1,
+  "archive": {
+    "sha256": "3f213a17acac029248ee5acbebde5e0d13522d386577e8a393bb1b48a75b45f3",
+    "bytes": 174035217,
+    "doi": "10.5281/zenodo.22655280",
+    "readme_sha256": "8f59a97883fdf5a5cbed1d4e9fa34941a7f166d043b7bad7e91c74a35dfb9cea",
+    "journal_pdf_sha256": "bc7bb9bde7802f5aee3907e9f4b8955aaa427409c936ec170b62273f3abd0406",
+    "conference_pdf_sha256": "cb3c1e1dce4c24094184c546d0475e19df3453eab3a0b59c7e41c5e0b38b2331"
+  },
+  "frozen_protocol_source": "1c19bafc7e4591b036cbdb5c1a3eca4a0fdf107d",
+  "clock_report_sha256": "73e1057795194630a6588ba614a982dcf119b29b15fc51082eda9eb068a796f0",
+  "reference_output": {
+    "loaded_spectra_opened": 0,
+    "member": "campaign_a/datasources/FBG/0_ref/Responses.20260219155941.txt",
+    "native_f64_sha256": "5c45ca74acf6ac6be92ca79388c1c02ab80d270c5e985bbcaa2b24a0c080a891",
+    "reference_channel": {
+      "carriers_nm": [
+        1551.16,
+        1560.68,
+        1569.44
+      ],
+      "channel_one_based": null,
+      "contrast_rows_grating_by_channel": [
+        [
+          21.85,
+          0,
+          0,
+          -0.9200000000000017
+        ],
+        [
+          23.090000000000003,
+          0,
+          0,
+          0.9949999999999974
+        ],
+        [
+          0,
+          24.630000000000003,
+          0,
+          21.46
+        ]
+      ],
+      "identified": false,
+      "winning_channels_one_based": [
+        1,
+        1,
+        null
+      ]
+    },
+    "synthetic_controls": {
+      "inconsistent_refused": true,
+      "permuted": true,
+      "tie_refused": true,
+      "unique": true
+    },
+    "timestamp": "19/02/2026 15:59:41.89120",
+    "unloaded_frames_opened": 1
+  },
+  "reference_terminal_output_sha256": "3634d8087147598d30dfea435689ff1fae060ea6a9fab68f2a3d0eea2c5e34dc",
+  "original_jobs": [
+    {
+      "job_id": "p1-f747-gianotti-fiber-gradient-geometry-and-archive-index-only",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "recorded_state": "failed",
+      "exit": 1,
+      "descendants": "drained",
+      "request_sha256": "7cd76b77e758e4210d6f50d628508c8682d56a7f6e58745effbc862cd3ab7d61",
+      "generation": "bd50477357323515914f831af1f1e0252cb5cfbdac64cf9fc2835cbd6bb419a4",
+      "output_bytes": 2620
+    },
+    {
+      "job_id": "p1-f747-gianotti-public-api-readme-zip-central-directory-ranges",
+      "owner": "node-45042c3ba1942e8eb574434bcfb0f371",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "88d599e9a45b21a58d1723d1f1188a2391dd3e1db3ae7ab68b4e88ff0aee9f70",
+      "generation": "1f764b6975679f90bc3a8c06bd68452ecd5e8c8037a84134024c8f6aef51b575",
+      "output_bytes": 19122
+    },
+    {
+      "job_id": "p1-f747-gianotti-authenticated-readme-instrument-position-geometry-and-clocks",
+      "admission_state": "not_admitted",
+      "request_arguments_sha256": "ebe2a78ac00991e3f9fbb1d596d2f0cf9da6b864d4d0d0ead777feaa61420b5f",
+      "refusal_id": "placement-000f93a9933301d8e1357c156368656adf1dd10c0dd82742",
+      "refusal_sha256": "7be4e30d2ad202a48f7fce57f7d469eca5dce6d0e1c6f572499762f0d04bd8e0"
+    },
+    {
+      "job_id": "p1-f747-gianotti-geometry-readme-source-owner-queued",
+      "admission_state": "expired",
+      "request_arguments_sha256": "725032e15951dcf85de1b5a4e8ff422f473b7504f56ded0026dc86346c1a932e",
+      "deadline": "2026-11-23T10:10:00Z"
+    },
+    {
+      "job_id": "p1-f747-gianotti-cross-instrument-header-and-nominal-load-receiver",
+      "owner": "node-4bf32eb7151785ee55ae5d40eac88d72",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "cdbc864ea7744e0cff28dbec44591bb8e74991f7c43456207cf05a6bcb733bc4",
+      "generation": "2ee273b499a2bbe00a65fdccb6f85d993ec52ceb44378d5ba1cb331ecf4dfb7d",
+      "output_bytes": 2130
+    },
+    {
+      "job_id": "p1-f747-gianotti-source-figure-registered-sensor-geometry",
+      "owner": "node-4bf32eb7151785ee55ae5d40eac88d72",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "57a98fa7d1482338a32a3ac98a153174b0954872d3d613090c4451124dd12084",
+      "generation": "a568269bf9675bd6b4a654e884b0c4354c87b9dbf8d2f971eb5a9a4f478a9eb0",
+      "output_bytes": 2470
+    },
+    {
+      "job_id": "p1-f747-gianotti-native-optical-channel-clock-and-reverse-face-map",
+      "owner": "node-4bf32eb7151785ee55ae5d40eac88d72",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "2060c8e631f3b0e973c7c2ecaf51b4ef752e43cd1190826cd5010f1bb7054c8f",
+      "generation": "e0e0e017388968cab768419ec5733c0117ca3a1eaf21edb977cf917cdd485766",
+      "output_bytes": 9261
+    },
+    {
+      "job_id": "p1-f747-gianotti-enlight-ordinate-axis-and-author-registered-coordinate-schema",
+      "owner": "node-4bf32eb7151785ee55ae5d40eac88d72",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "27a52e5e8e7ca5371d84bad6d67fa08ad1a0704a5aceee2270f83987e76cbaf0",
+      "generation": "a589bd46fa9636c661d519e0a9a249e973a5021085c2ea7fea4f19d06e8bfc28",
+      "output_bytes": 6010
+    },
+    {
+      "job_id": "p1-f747-gianotti-parquet-schema-only-thrift-receiver-and-raw-spectrum-axis",
+      "owner": "node-4bf32eb7151785ee55ae5d40eac88d72",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "109d5f9348ff1a56a9bdd1df2c78d44ad559871b94e29eae017bb4f7b8126259",
+      "generation": "edb236c4d3e4dab5c5175d38d4d8562eaf38af15e2613de0c72854233b7e1d2a",
+      "output_bytes": 2702
+    },
+    {
+      "job_id": "p1-f747-gianotti-authors-open-methods-grating-wavelength-location-source",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "a36b5cc6a83746b47a1875d7a85dc373dc96d257c215c80ea12df1940197e2d7",
+      "generation": "e75cf5305442d2b20d3c7bf9d238b89be13a6e520f4671dd5670187e19e477ae",
+      "output_bytes": 689
+    },
+    {
+      "job_id": "p1-f747-gianotti-released-clock-and-author-location-crosswalk-source",
+      "admission_state": "not_admitted",
+      "request_arguments_sha256": "67e4b5a2573092397debbb0491590cffe4133e739740a52cad5e8cc3a5e01b21",
+      "refusal_id": "placement-4e7860e476d469a4eec56f26d6cfa47b94136c2be7aa5ef5",
+      "refusal_sha256": "3c11313fd169c04def6cce43866926ad10b71f5c685aac7edfa57c7dca4fdc85"
+    },
+    {
+      "job_id": "p1-f747-gianotti-author-source-crosswalk-needs-original-archive-queued",
+      "owner": "node-4bf32eb7151785ee55ae5d40eac88d72",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "61b94eb5be588e726fc2a4ecb9bd6351aeb0f2d7a5a22b9e8327628ed82da562",
+      "generation": "147da564c78f473c339d2b0bd66a609d5a1acce646a4e2c59a91334cf6a4182a",
+      "output_bytes": 1629
+    },
+    {
+      "job_id": "p1-f747-gianotti-independent-41-clock-force-constraint-and-aperture-controls",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "67bc986b76a137811bbb110e1f1772a2114cf3af3843fa1bc87a210382935bd3",
+      "generation": "8d1c36ff2bc59fe44062b2b943e4b5fdab8893d0a4bad7539c18dc3d38b1f0b8",
+      "output_bytes": 1194
+    },
+    {
+      "job_id": "p1-f747-gianotti-stage-clock-maximum-support-and-all-ten-exact-load-pair-diagnostic",
+      "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "b6877f137355f64859460fcf2873ac584ad8124916f177b160270f1e72556752",
+      "generation": "e8504db63737ed28fcb6c076401c5705b15a086050d89fdcb786c67912d8e9fe",
+      "output_bytes": 2379
+    },
+    {
+      "job_id": "p1-f747-gianotti-full-fbg-exposure-duration-and-machine-grip-creep-original",
+      "admission_state": "cancelled",
+      "request_arguments_sha256": "08c72bbb01ba149e188fa403718aa8c6f8becdbf933c8c83a38a7f2f5a3e10d9",
+      "deadline": "2026-11-23T10:45:00Z"
+    },
+    {
+      "job_id": "p1-f747-gianotti-portable-immutable-complete-source-clock-replay",
+      "owner": "node-357473e483b388a98ecbc328968017b7",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "0921ec3e9f34b1b8ebf206486955d9e415f7504404624c11ae67cd73c17ca964",
+      "generation": "1d8a3694d6115c02f8578bf88bee17ecbf19ddf63602ac32d3713ece9c1e3afb",
+      "output_bytes": 4087
+    },
+    {
+      "job_id": "p1-f747-gianotti-author-reference-mapping-after-source-clock-qualification",
+      "owner": "node-357473e483b388a98ecbc328968017b7",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "9dee4bc08d34928787f1804888880bde8e3e95579755fe1cb16a67a95eb8e883",
+      "generation": "2d43ea33c811e054bb79a9eb0a7b73c92e97b907b1296cb1f7684f8a81d2e5e6",
+      "output_bytes": 2663
+    },
+    {
+      "job_id": "p1-f747-gianotti-journal-table1-registered-axial-path-and-spectra-claim",
+      "owner": "node-357473e483b388a98ecbc328968017b7",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "313e6b05d2a50414d49471800a9e879205c008dc3fa6c0f63e6f826c0a1babe8",
+      "generation": "bc90cd9487c67333988056a81fca887e64c1af7cfb51c7655a112a8662354607",
+      "output_bytes": 7517
+    },
+    {
+      "job_id": "p1-f747-gianotti-journal-declared-registration-and-figure-two",
+      "owner": "node-357473e483b388a98ecbc328968017b7",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "1de591eda0d52c79b3d5e6c8a80ceafba154c609f95be5fb39790b35048683ea",
+      "generation": "433c7f9b476042ebf22ac845285f09425eb436c48454b7880d5229dd344f2d57",
+      "output_bytes": 524
+    },
+    {
+      "job_id": "p1-f747-gianotti-caption-bound-figure2-and-registration-equations",
+      "owner": "node-357473e483b388a98ecbc328968017b7",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "b8084e89d2a3f71cce60a7dc0df6a849a441d7b84631704e0b8cf232b4c61df7",
+      "generation": "97ab8cf206832f11bf521cbf69fdc1806f462e5eb5796645754b2ab610b5c6a2",
+      "output_bytes": 2373
+    },
+    {
+      "job_id": "p1-f747-gianotti-unloaded-three-carrier-type-i-channel-receive-pinned-sha",
+      "owner": "node-357473e483b388a98ecbc328968017b7",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "be1beccc7994a4aefe3477fbab487280411ff36dbb23bbdb4b6b01dc36524d21",
+      "generation": "1f173a61fd682d631f597ccbe1413feaa67c07f8275a87158323f222ab5ec838",
+      "output_bytes": 953
+    },
+    {
+      "job_id": "p1-f747-gianotti-independent-decimal-grid-reference-and-full-clock-comparison",
+      "admission_state": "not_admitted",
+      "request_arguments_sha256": "3a3ad783f7c29f4b27826ec9a584334ef3171c9b0f9c14caa92f9a8b257375c9",
+      "refusal_id": "placement-49a6d1a03355030ee03e1c6603edea5e03d75a4e55c8bee5",
+      "refusal_sha256": "cda46965032aae9bad5b2915e249f704d4bccb04c55288ee640c221ae1895c36"
+    },
+    {
+      "job_id": "p1-f747-gianotti-unloaded-three-carrier-type-i-channel-receive",
+      "error_code": "INVALID_ARGUMENT",
+      "fault": "Object containing commit and blob IDs provided instead of a commit string; rejected before native admission."
+    },
+    {
+      "job_id": "p1-f747-gianotti-portable-public-archive-decimal-reference-recount",
+      "owner": "node-f16b825d04f9993acd590fd2b38fe4f5",
+      "recorded_state": "failed",
+      "exit": 1,
+      "descendants": "drained",
+      "request_sha256": "28318257bf53f74d827ef2f26f21e75d39c321616347b53a526a16387ba45b1b",
+      "generation": "68efb98a383fea2a992a4fcaa5c6f51adc09e38aa4fd314504db533c7f333fe1",
+      "output_bytes": 982
+    },
+    {
+      "job_id": "p1-f747-gianotti-canonical-clock-and-decimal-unloaded-receiver",
+      "owner": "node-f16b825d04f9993acd590fd2b38fe4f5",
+      "recorded_state": "completed",
+      "exit": 0,
+      "descendants": "drained",
+      "request_sha256": "8ea45ae6057ab2a7d39231df694e58b264d591789747382d6efb6ccf849d78aa",
+      "generation": "24befc07007b8556b8c59e8297edf0aaa9ff103b6ba988f82f97e5e47ffb4d1d",
+      "output_bytes": 730
+    }
+  ],
+  "record_notes": [
+    "The first portable index job could not resolve the public host. The range and full-archive receivers separately authenticated the public bytes.",
+    "The optional parquet schema libraries were unavailable. A distinct Thrift metadata reader examined the file schema without numerical payloads.",
+    "The initial author-source requests reported DNS failures. Another source owner later fetched both published papers.",
+    "The first PDF-layout capture selected Figure 1. The caption-bound successor recovered the intended Figure 2 and Table 1. Published mesh and bending values exposed incidentally are described in the manuscript.",
+    "Two positive admission refusals, an expiry and a cancelled unadmitted exposure-duration request remain separate from completed computations. The portable clock replay ran once on its own input.",
+    "The independent-decimal checkout on the original archive owner was positively refused before execution on a capacity-probe timeout; the unpinned successor independently downloads the same immutable archive.",
+    "A separate worker downloaded and verified the complete original ZIP. The first strict clock comparison stopped before reference amplitudes because in-memory tuples were compared to JSON arrays. The successor compares their exact full sorted JSON representation. It reproduced all 41 file clocks, 20 paired starts, 12 exact-decimal contrasts and all 80,000 reference binary64 values. No tolerance, carrier or forecast gate changed."
+  ],
+  "independent_decimal_recount": {
+    "aperture_controls": {
+      "loading": "Identical phase field with the delay in the second gap.",
+      "normalized_loaded_resonant_powers": [
+        "1/49",
+        "25/49"
+      ],
+      "scope": "Weak scalar reflection with unknown longitudinal coupling. This is an existence result for that class.",
+      "unloaded_autocorrelation": [
+        21,
+        10,
+        4
+      ]
+    },
+    "clock_files": 41,
+    "loaded_forecast_admission": false,
+    "machine_rows": 1000,
+    "paired_starts": 20,
+    "reference": {
+      "exact_contrasts": [
+        [
+          "21.85",
+          "0.00",
+          "0.00",
+          "-0.92"
+        ],
+        [
+          "23.09",
+          "0.00",
+          "0.00",
+          "0.995"
+        ],
+        [
+          "0.00",
+          "24.63",
+          "0.00",
+          "21.46"
+        ]
+      ],
+      "loaded_ordinates_decoded": 0,
+      "reference_f64_sha256": "5c45ca74acf6ac6be92ca79388c1c02ab80d270c5e985bbcaa2b24a0c080a891",
+      "unloaded_exposures": 1,
+      "winning_channels": [
+        1,
+        1,
+        null
+      ]
+    }
+  }
+}

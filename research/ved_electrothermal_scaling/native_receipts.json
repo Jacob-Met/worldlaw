@@ -1,0 +1,130 @@
+{
+  "originals": [
+    {
+      "id": "p3-f747-ved-published-hopf-code-and-zip-directory-original",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "state": "failed",
+      "request": "e1d5fdeb26d12003212b6b7d230cbdd72a34ae4231b9d30efee63ed6f2a6e62a",
+      "generation": "04fab320faed2dd8b8d777c9b5f46cf684ca97bc66977f1e6c498c8f5453f6eb",
+      "exit": 1,
+      "descendants": "drained",
+      "stdout_bytes": 2651,
+      "stdout_sha256": "44c91ef70c126cb325c75b86853e645cce0d01dea31061f35eae8b1204801306"
+    },
+    {
+      "id": "p3-f747-ved-exact-nonlinear-field-and-first-command-lattice",
+      "owner": "node-d594b178fe479ad35c52baaace3bbd40",
+      "state": "completed",
+      "request": "4ace6bcad0e57ff89b330af2dac3beb236cf280cddc7a56a68f5a5e85e0251f2",
+      "generation": "3481a5de6d630102429b9086dc0158bea0ba41124a733914a0e122ea7cfa34dc",
+      "exit": 0,
+      "descendants": "drained",
+      "stdout_bytes": 153663,
+      "stdout_sha256": "9733d89ef9e871ff85e31f20879a903787bd61ee926d1e198106417417d7ca16"
+    },
+    {
+      "id": "p3-f747-ved-exact-63-file-support-and-fig3-parameter-source",
+      "owner": "node-f236ea27ea962832c86eb27ca2040683",
+      "state": "completed",
+      "request": "ecd5987cbc3989d789fa28f83a64ed9006a60dc7381b5d7e89791b913d36a262",
+      "generation": "d0adde47092ecb902d269293822ab07b9e3d191976553aeb8e351db946e54a84",
+      "exit": 0,
+      "descendants": null,
+      "stdout_bytes": 17993,
+      "stdout_sha256": "4f02be0194d8b6d079d2270d7c64545d28fba7ed46181c1b2f602412891f2b0a"
+    },
+    {
+      "id": "p3-f747-ved-source-only-mat-descriptors-and-config-file-census",
+      "owner": "node-71c3775574da4b07241725add268e638",
+      "state": "completed",
+      "request": "aa367780d7309523c43ab134290f9f1da8cb6beb14b23438f68211eae58850b6",
+      "generation": "184677dbea35b5d7c63b17495965261b3fa9511127182912893c601bbc052ca1",
+      "exit": 0,
+      "descendants": null,
+      "stdout_bytes": 838,
+      "stdout_sha256": "3ba76ad5aabe36a11017eb4941cd1e4f8facb29c51cfcb4eef4186524911ad8d"
+    },
+    {
+      "id": "p3-f747-ved-42-source-only-full-trace-command-forecast-original",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "state": "completed",
+      "request": "71e70d1c05a1b98c85b458568e494902e64fc582a4f13ae6288adefdc428c2c1",
+      "generation": "e0577ed7484179ef546296190eb4e29f89e91ecceb8d566816bc7b6a8e845747",
+      "exit": 0,
+      "descendants": "drained",
+      "stdout_bytes": 46782,
+      "stdout_sha256": "b45ab0b7f51e5cb72d3741836028a88df086168e565ce185a74ee138a771ada1"
+    },
+    {
+      "id": "p3-f747-ved-21-targets-eight-locked-roles-native-receiver",
+      "owner": "node-7a9dead9904fa3581a4286fb5ced2323",
+      "state": "completed",
+      "request": "d441c9f82220f152e5b74b22a158a17a629b42dfdaa55b16a17191fe89600866",
+      "generation": "2245f6f270991894ed6f5887f91aae66621da53ef28e7200c0b41997770d8208",
+      "exit": 0,
+      "descendants": "drained",
+      "stdout_bytes": 31092,
+      "stdout_sha256": "5e9432a42496cf80a720f0bf85a35d80364aac8d55fcd273e45d7173b03d14b3"
+    },
+    {
+      "id": "p3-f747-ved-independent-63-raw-mat-full-sample-and-score-recount",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "state": "failed",
+      "request": "3f643916e6e4461033bddeb42b58182038c193ac023fec022ff65ec96e91eff8",
+      "generation": "7624926df1ec2cce7cb540a5f51eb66faceb74feeaaeb56e911c1fc43aa1484c",
+      "exit": 1,
+      "descendants": "drained",
+      "stdout_bytes": 4735,
+      "stdout_sha256": "5b32614b4f6131573751b1d85d3925b98b7ca1f488fcc7f07cdcdde6326de216"
+    },
+    {
+      "id": "p3-f747-ved-continuous-verified-https-63-file-checkpointed-independent",
+      "owner": "node-f236ea27ea962832c86eb27ca2040683",
+      "state": "completed",
+      "request": "1dec3fea74dd2651e3ad4427c52626956dc158c3735fcb8db79c94d2c79a8475",
+      "generation": "a4eea19474b128333bfdb04ec9aa22c3b7ca16d319e40a6a9a45aa1dda437d32",
+      "exit": 0,
+      "descendants": null,
+      "stdout_bytes": 1170,
+      "stdout_sha256": "ee3b4c77f09ddba817942286db38b197bafbba9bc657274858464ad94db0d88e"
+    }
+  ],
+  "selector_model_only": "critical_point_vs_dc_voltage.m d651b7fe687dd85db909ceadb3a5c90ffe5774c935ed29ee3092c2bb7cf05165",
+  "directory": [
+    1414120565,
+    180398,
+    "c8f071036f6e915f083c96a83638bad76d21ba3688a902bbedb9879922a47ff2"
+  ],
+  "prediction_freeze": "1d01768cccdd03d8a1872ba75898c04d042d7624",
+  "locked_forecast_commit": "81a9c1bc79172918a37ff473cb3fb2295fe27827",
+  "recount": {
+    "gate": false,
+    "mae": [
+      0.34516929958158926,
+      0.12429000520855361,
+      0.03552010598334262,
+      0.27947314416673114,
+      0.32895923417255224,
+      0.04280714779142188,
+      0.04299009839683611,
+      0.04314493515256155
+    ],
+    "max_error_difference": 3.3306690738754696e-16,
+    "max_forecast_difference": 3.3306690738754696e-16,
+    "max_statistics_difference": 2.220446049250313e-16,
+    "scalar_voltages": 15750000,
+    "statistics": 2835,
+    "waveforms": 63,
+    "wins": 0,
+    "worsts": [
+      13,
+      20,
+      13,
+      17,
+      13,
+      13,
+      13,
+      13
+    ]
+  }
+}

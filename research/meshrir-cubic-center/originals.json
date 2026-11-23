@@ -1,0 +1,271 @@
+{
+  "freeze": "be35f37d7dca1188e52392520572260051825395",
+  "lock": "a90845dcd37dbd391cede27430ef0939fd5174ec",
+  "executions": [
+    {
+      "role": "archive",
+      "owner": "node-5d5f9bc8480019cba71fd5565fd2fbf3",
+      "job": "p2-f747-meshrir-s1-geometry-and-room-source-no-impulse-values",
+      "request_sha256": "2c16c23b167f940801f220ba6703a40406c2fbc9736cb592b8d391d17edccc10",
+      "generation": "fb0f115fe450c6915de09badc183b88ac30a9c829c4ac954326b2d4fe0d025a5",
+      "native_receipt_sha256": "26fd623b19179c74e1b36c7384777452ea19bb42edd58b84a921f5376e16675b",
+      "started_at": "2026-11-23T10:08:10.115001664Z",
+      "finished_at": "2026-11-23T10:16:06.96429954Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 1051,
+      "full_output_sha256": "ed00643c6c0cc1e0b6ce421cb3e80f303649475fefd14ca776401ef6d288d514",
+      "resources": {
+        "user_cpu_seconds": 3.422461,
+        "system_cpu_seconds": 1.528604,
+        "max_rss_bytes": 35692544
+      }
+    },
+    {
+      "role": "math internal index failure",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "job": "p2-f747-meshrir-cubic-minimax-and-authentic-two-kernel-qualification",
+      "request_sha256": "7c848506f00f259b81894a698853f671043ebbfa8c521a006b82d1cbabc18b6b",
+      "generation": "178cc0e4a656153a20f42f27b7e2b4932ede7e27c4e151f9532093a925a744cf",
+      "native_receipt_sha256": "013a3aa4d398b0cfdc71954c1f2550958758b0c4d820f4342f79a4399d9fcae0",
+      "started_at": "2026-11-23T10:12:26.376185723Z",
+      "finished_at": "2026-11-23T10:12:34.286251125Z",
+      "exit_code": 1,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 1733,
+      "full_output_sha256": "ddaf2214bb72edb0f11341ce8d42ec6402eff2363ca460b9297e5f5c4d4c4b60",
+      "resources": {
+        "user_cpu_seconds": 0.267508,
+        "system_cpu_seconds": 0.074939,
+        "max_rss_bytes": 48291840
+      }
+    },
+    {
+      "role": "math public index",
+      "owner": "node-9198bc15530634050cdb2d65145320ca",
+      "job": "p2-f747-meshrir-direction-design-explicit-pypi-source",
+      "request_sha256": "87702eb4eda8eabb886e81c435e593b0831c2aa22c05e693d6e92d3e278783ff",
+      "generation": "dac2d369b7623b48864cbf2dc723ad3ac8919bab7c643a9f00acd3a5fef49a73",
+      "native_receipt_sha256": "69c313aadb848f6da71213779ff025ed8930a4a99b07a96cc6d99047b107ecef",
+      "started_at": "2026-11-23T10:14:09.661489054Z",
+      "finished_at": "2026-11-23T10:14:15.139292442Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 1972,
+      "full_output_sha256": "c6fbeb71d8a9ced99a740b1135ca62709cd463aa6e3eee1160c6835cc9e3b5f5",
+      "resources": {
+        "user_cpu_seconds": 4.703379,
+        "system_cpu_seconds": 0.371292,
+        "max_rss_bytes": 113332224
+      }
+    },
+    {
+      "role": "timestamp schema",
+      "owner": "node-5d5f9bc8480019cba71fd5565fd2fbf3",
+      "job": "p2-f747-meshrir-release-temperature-clock-and-record-fields",
+      "request_sha256": "12689840c335ad3979a12cf8868484f607f651cce1e102193b1149d66d6d798d",
+      "generation": "1f78b450f003f487fd6be93b4698e8fdf862ea06403d2815ca7f3140ce846ff3",
+      "native_receipt_sha256": "adcef146a201d15798a1f94154cb3e4bac0abfff450faf5347df64acedbcb827",
+      "started_at": "2026-11-23T10:18:08.078237894Z",
+      "finished_at": "2026-11-23T10:18:08.205265161Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 697,
+      "full_output_sha256": "0e5a3939d0330a31851fcc1dbc075231841b356a09df82d040678a17b6fbac5f",
+      "resources": {
+        "user_cpu_seconds": 0.057082,
+        "system_cpu_seconds": 0.011597,
+        "max_rss_bytes": 23994368
+      }
+    },
+    {
+      "role": "temperature and timing",
+      "owner": "node-5d5f9bc8480019cba71fd5565fd2fbf3",
+      "job": "p2-f747-meshrir-per-position-cube-time-and-ambient-log",
+      "request_sha256": "2dba044562ed56ae15a2902d81649296676fa189a9a74198fdb7c910bba992dd",
+      "generation": "5790aaef9a7f087f8e25de32241bb91e0c33af34c939c575bfb44e2e0ead384d",
+      "native_receipt_sha256": "1a74910068d7a0685d6886cd6ade60b73ac3fee57ed25087c15567f545b4c847",
+      "started_at": "2026-11-23T10:19:10.140285073Z",
+      "finished_at": "2026-11-23T10:19:10.286626801Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 1539,
+      "full_output_sha256": "28e0ec2bbed93a6cc4c51dd7d77afdd6d65e4755f02eb549f034b1548d6c78e1",
+      "resources": {
+        "user_cpu_seconds": 0.073402,
+        "system_cpu_seconds": 0.017135,
+        "max_rss_bytes": 27873280
+      }
+    },
+    {
+      "role": "independent source copy",
+      "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+      "job": "p2-f747-meshrir-independent-archive-before-target-and-coordinate-identity",
+      "request_sha256": "48ec06293b091d6df5672f100922b24e31e0ec2092292409d4882d5a19fa3c5a",
+      "generation": "1e679aa2201893c67df42a9e5ba37780ba7e1ec50844a23e5429735d59899590",
+      "native_receipt_sha256": "17a7a21fa6fe1cf779b751348aed395530356d21df4b361ff8526db318e50e82",
+      "started_at": "2026-11-23T10:24:30.438471167Z",
+      "finished_at": "2026-11-23T10:31:38.32191175Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 511,
+      "full_output_sha256": "abee827c2df02fecec2c65d65c8aacac7a1f60e9c8714c07c90b511ea0e0c9e6",
+      "resources": {
+        "user_cpu_seconds": 2.7757199999999997,
+        "system_cpu_seconds": 0.827755,
+        "max_rss_bytes": 36225024
+      }
+    },
+    {
+      "role": "forecast",
+      "owner": "node-5d5f9bc8480019cba71fd5565fd2fbf3",
+      "job": "p2-f747-meshrir-seven-frequency-forecast-original-fifo",
+      "request_sha256": "9a026d9b7552d0297ea9085dc8924972f8f713c4bcee759b0c9d8c884fcacd5c",
+      "generation": "2ed592366a37f5ed4e5a79f8e35dbe9bfc5f72400b2d2ba0a27b613a5133201b",
+      "native_receipt_sha256": "6474a2d0c06f0177371091c8a97c1f065f908a128b348462537b95cbd191d259",
+      "started_at": "2026-11-23T10:29:35.083710545Z",
+      "finished_at": "2026-11-23T10:29:49.854335369Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 131722,
+      "full_output_sha256": "f886038f903126bbce5644c20a078fd990f41bed410265e26c51802e3ac7433b",
+      "resources": {
+        "user_cpu_seconds": 12.509083,
+        "system_cpu_seconds": 1.6854390000000001,
+        "max_rss_bytes": 113410048
+      }
+    },
+    {
+      "role": "oversized argument startup failure",
+      "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+      "job": "p2-f747-meshrir-locked-bank-held-receiver-second-authenticated-archive",
+      "request_sha256": "78221587a433e6bb56e69d764a28cd9c0f892a1277b4a8a70eb00676076cf13a",
+      "generation": "f6db411d17843055480b728aaea5a8a5bbc8267c2ccb61c0dcdb5f4d768a8f23",
+      "native_receipt_sha256": "0bd4b8bad23744360a896581e470adb82dc59e0737e5d9c403a5a617fef22495",
+      "started_at": "2026-11-23T10:34:11.247971334Z",
+      "finished_at": "2026-11-23T10:34:11.29614401Z",
+      "exit_code": -1,
+      "descendant_wait": null,
+      "full_output_bytes": 0,
+      "full_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "resources": {
+        "user_cpu_seconds": null,
+        "system_cpu_seconds": null,
+        "max_rss_bytes": null
+      }
+    },
+    {
+      "role": "held receiver stdin transport",
+      "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+      "job": "p2-f747-meshrir-locked-outcome-stdin-bank-transport",
+      "request_sha256": "db7967b5b93b3562ef64fdd231d24b5e770baa3188a1f6ab334a5b7f4458dbe0",
+      "generation": "11bc0016efd5573a4e4d4482830c2585a7bd582b965db71815c250b3a621e495",
+      "native_receipt_sha256": "cd08bae428018d417ff830e9ceaed84d55bb3593b65dfae8daefe9f908d918da",
+      "started_at": "2026-11-23T10:34:38.548334257Z",
+      "finished_at": "2026-11-23T10:34:40.597008519Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 23824,
+      "full_output_sha256": "203851eb6ab5c7287f9075e5945efba27797a1afab161e3e5d84b2ffc94a9497",
+      "resources": {
+        "user_cpu_seconds": 1.6881810000000002,
+        "system_cpu_seconds": 0.160476,
+        "max_rss_bytes": 44949504
+      }
+    },
+    {
+      "role": "raw 16-phase worst donor verification",
+      "owner": "node-72685e0b10b6dd2e20f8b200f43a0415",
+      "job": "p2-f747-meshrir-measured-26-donor-shells-at-3000hz-worst-using-16phase-receiver",
+      "request_sha256": "6a921bb1ca2d5688f23a1ed9ff3d0e766d2c2bd3a004402b13dd061ae8e29946",
+      "generation": "be5e71804f17f79b139780fc7388a252abf100ba2649758e2e542e06835f9aae",
+      "native_receipt_sha256": "6cf15d20279cbe5ac8d582369686fc8fff37ce76c492655f060c84aefeb16806",
+      "started_at": "2026-11-23T10:49:04.38872055Z",
+      "finished_at": "2026-11-23T10:49:05.284414407Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 3245,
+      "full_output_sha256": "7ec67c8b477497bec2c176bfc396b31c4ed4c75599049a61c1a04ef7ec0c18ea",
+      "resources": {
+        "user_cpu_seconds": 0.670429,
+        "system_cpu_seconds": 0.172638,
+        "max_rss_bytes": 29876224
+      }
+    },
+    {
+      "role": "independent direct-DFT entire held panel",
+      "owner": "node-5d5f9bc8480019cba71fd5565fd2fbf3",
+      "job": "p2-f747-meshrir-independent-direct-dft-capped-worker-original",
+      "request_sha256": "f602014f55eaaba67c4ca3ca617355c7effa78032859241157adf349937ed083",
+      "generation": "da86b48c5e5a9dd63d57cd53e260c066c29d30d3613e7ccea9a8254d5d87d586",
+      "native_receipt_sha256": "9273904e28a7ba52e21b76afb84a0c227a9829b1c9cf648c4e468328220f6442",
+      "started_at": "2026-11-23T10:49:06.146680155Z",
+      "finished_at": "2026-11-23T10:49:14.532532146Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 5067,
+      "full_output_sha256": "36116c25d67321bd10399b97e4dc74a12f8c245e058830b6ec7d06f8ed0f1b23",
+      "resources": {
+        "user_cpu_seconds": 0.992673,
+        "system_cpu_seconds": 0.794393,
+        "max_rss_bytes": 30633984
+      }
+    }
+  ],
+  "placement_refusals": [
+    {
+      "id": "placement-d116e2e756f1b958013273082c5c3ac144b3c7abb32f5b15",
+      "job": "p2-f747-meshrir-98-center-8-arm-7-frequency-immutable-forecast",
+      "request": "a286ac9582874417f2122677d4daa43d0e62000465cfb5047460ed3d2676c40b",
+      "digest": "2934ae229236c2afbbaa11aa963404e8a71bddd170c7c193fa9f3757a6ba5b17",
+      "reason": {
+        "node-5d5f9bc8480019cba71fd5565fd2fbf3": "effective CPU already reserved by active jobs"
+      }
+    },
+    {
+      "id": "placement-a172f7b794ef8131a0633a039d422a45ec5c8a201714fdf4",
+      "job": "p2-f747-meshrir-complete-98-held-center-seven-frequency-receiver",
+      "request": "c18063d8266cc26328ccb39f9737f9d1bb8ba219f11d33def4d629d525a4da07",
+      "digest": "fa6e5a0bae47e62cb0b68b768c15a99df33a2adbc1218a5b8a76620230e30a78",
+      "reason": {
+        "node-5d5f9bc8480019cba71fd5565fd2fbf3": "earlier queued request: fe739ae3-lead-plane-v4-private-package-01"
+      }
+    }
+  ],
+  "unstarted_request": {
+    "job": "p2-f747-meshrir-independent-direct-phase-dft-and-complete-worst-row",
+    "arguments": "727ec1238a76573c4a423468ae9c29054066a01a1683d6b57336ac84b33c9375",
+    "operation_state": "cancelled",
+    "reason": "Original worker had 0.5 CPU available. After positive queue cancellation, the identical reader ran there with a process-group duty limit of 25 ms active in each 100 ms interval and a 0.5 CPU reservation."
+  }
+}
