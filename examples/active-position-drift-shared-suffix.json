@@ -1,0 +1,103 @@
+{
+  "schema": "worldlaw.position-drift-suffix-search-source/v1",
+  "catalog": {
+    "schema": "worldlaw.position-drift-rate-catalog/v1",
+    "commands": [
+      "ref",
+      "second",
+      "third",
+      "fourth",
+      "x1",
+      "x2",
+      "x3",
+      "y1",
+      "y2",
+      "y3"
+    ],
+    "noiseBound": 1,
+    "laws": [
+      {
+        "id": "A",
+        "rates": [
+          0,
+          0,
+          0,
+          0,
+          "1/2",
+          -4,
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "B",
+        "rates": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          100,
+          0,
+          0
+        ]
+      },
+      {
+        "id": "C",
+        "rates": [
+          0,
+          "11/20",
+          "-11/10",
+          "11/10",
+          300,
+          0,
+          0,
+          "601/2",
+          -4,
+          4
+        ]
+      },
+      {
+        "id": "D",
+        "rates": [
+          0,
+          "11/20",
+          "-11/10",
+          "11/10",
+          400,
+          0,
+          0,
+          300,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "prefix": [
+    "ref",
+    "second",
+    "third",
+    "fourth"
+  ],
+  "suffixes": [
+    [
+      "x1",
+      "x2",
+      "x3"
+    ],
+    [
+      "y1",
+      "y2",
+      "y3"
+    ]
+  ],
+  "limits": {
+    "assignments": 200,
+    "linearWork": 600000
+  }
+}
