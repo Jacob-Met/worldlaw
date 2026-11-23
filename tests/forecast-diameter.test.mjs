@@ -43,3 +43,13 @@ test('identical futures need no experiment; invalid model traces are rejected', 
   assert.throws(()=>forecastRms([Infinity],[1]));
   assert.throws(()=>planForecastDiameter([[1],[1,2]],.1));
 });
+
+test('finite RMS and uniform means survive large intermediate sums', () => {
+  const h = 1e308;
+  assert.equal(forecastRms([h,h,h,h], [0,0,0,0]), h);
+  assert.equal(forecastRms([h,0,0,0], [-h,0,0,0]), h);
+  assert.throws(() => forecastRms([h], [-h]), RangeError);
+  const rows = [[0,h],[0,h],[h,0],[0,0],[0,0],[0,0]];
+  const unit = planForecastDiameter(rows.map(row => row.map(x => x / h)), 0);
+  assert.equal(planForecastDiameter(rows, 0).uniformMeanDiameter, unit.uniformMeanDiameter * h);
+});
