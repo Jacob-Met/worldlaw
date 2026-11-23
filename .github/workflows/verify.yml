@@ -89,6 +89,8 @@ jobs:
           NULLGARDEN_SOURCE: ${{ github.workspace }}/.independent-nullgarden
           NULLGARDEN_ARTIFACT_DIR: ${{ github.workspace }}/.receipts/correlated-nullgarden
         run: node scripts/correlated-nullgarden-receiving.mjs
+      - name: Receive the fixed symbolic ODE and periodic-field course
+        run: make test-symbolic-operators
       - name: Retain independently received exact-permutation outcomes
         uses: actions/upload-artifact@v4
         with:

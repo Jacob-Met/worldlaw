@@ -1,0 +1,119 @@
+{
+  "originals": {
+    "catalog": {
+      "job": "p2-f747-nakagawa-dual-heater-archive-layout-zero-voltages",
+      "owner": "node-ac967e45a16ae952113fd5bfe3be75f7",
+      "request_sha256": "77752bae1a53f7dd2d91806b1a0a8e685402a0cc11c7f5a6ced0d9b8443b89b1",
+      "generation": "1ba9cc4c4be598cadd783fcf537360b3ed224d1e887b2dfeef5fddc14bcb399c",
+      "started_at": "2026-11-23T18:41:20.850295095Z",
+      "finished_at": "2026-11-23T18:41:31.691254073Z",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "stdout_bytes": 35975,
+      "stdout_sha256": "a98028fa35e8ad683db36cef8b783b96121995fef8b5944fb161fcd29d56b10b"
+    },
+    "schema": {
+      "job": "p2-f747-nakagawa-harmonic-channel-source-map-bounded-output",
+      "owner": "node-ac967e45a16ae952113fd5bfe3be75f7",
+      "request_sha256": "80f4d39ab02e93533c2c05d51ea6a7c25998e0b4f3427bf87b8245811c5f88ed",
+      "generation": "258025702900e0e6c3b0f82d023fe06f67dede2dd77c34875fe025572ac259b8",
+      "started_at": "2026-11-23T18:42:46.60891525Z",
+      "finished_at": "2026-11-23T18:42:57.419870002Z",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "stdout_bytes": 269293,
+      "stdout_sha256": "2a30f2458a067b904a0d1a2710cba0df6f5ae136b5f84a697ab89b00033692c7"
+    },
+    "settings": {
+      "job": "p2-f747-nakagawa-lockin-reference-and-command-only-roster",
+      "owner": "node-ac967e45a16ae952113fd5bfe3be75f7",
+      "request_sha256": "de9b2d32458e9884c2e6cf6101d7785ac2093e7f8068af20d905b8389554e836",
+      "generation": "e422e89bb3ba733930ee5d283566947e4926ec7ac214f4c3ec05b02a3714001b",
+      "started_at": "2026-11-23T18:44:47.296598152Z",
+      "finished_at": "2026-11-23T18:44:57.267570432Z",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "stdout_bytes": 84712,
+      "stdout_sha256": "780703f0a679d4ab7acf08f49aa3a73bbd935035cd7d537459f9d7546caeb8b6"
+    },
+    "tairte4": {
+      "job": "p2-f747-nakagawa-tairte4-header-drive-and-author-fit-contract",
+      "owner": "node-49ce35aee5f5ac3713107652d4b7fb2c",
+      "request_sha256": "a6552d0615262cc87287b3ae16768f6c8f2e4cd632c73c3bbf1b57a85fce9958",
+      "generation": "9f04f1b521da325e7db7be0aa8b51bcb5e41c27aebfc89aa477477d32c8c8cba",
+      "started_at": "2026-11-23T18:46:51.848181092Z",
+      "finished_at": "2026-11-23T18:46:55.000154448Z",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "stdout_bytes": 48226,
+      "stdout_sha256": "4245894b8cf751f2cb6dba398b4403194ce4f4437a95035cf8707ee274d4af3c"
+    },
+    "author": {
+      "job": "p2-f747-nakagawa-original-author-harmonic-fit-operators",
+      "owner": "node-ac967e45a16ae952113fd5bfe3be75f7",
+      "request_sha256": "d122249cffaa9701e3cdf509ab0ae9dc0a644cc0f63071a00dc8bf01e32c7b1c",
+      "generation": "6df6aa868fcc5358d17cf757381fdc4700519b8f8f820a796c7dc0588e50c870",
+      "started_at": "2026-11-23T18:48:56.539194025Z",
+      "finished_at": "2026-11-23T18:49:04.364202995Z",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "stdout_bytes": 10598,
+      "stdout_sha256": "3b3e3885546487770d17a463637cb8d1e66aeb6792dc2474f6c02971081ba284"
+    },
+    "forecast": {
+      "job": "p2-f747-nakagawa-62-wte2-conditional-bank-e68aff14",
+      "owner": "node-ac967e45a16ae952113fd5bfe3be75f7",
+      "request_sha256": "b793bf0363fdc49758e28d9115c4c473685baa18dcdcee2906b60b146fde08d4",
+      "generation": "26d31f79872d627dba6e9e47d76944c05f447ac51e2843af24f71e2b851b3024",
+      "started_at": "2026-11-23T18:53:59.622817519Z",
+      "finished_at": "2026-11-23T18:54:06.229911888Z",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "stdout_bytes": 603,
+      "stdout_sha256": "e6224baf7e811dad28be3e76aaefe78e218e59cfcb9d2310870e4ba8730a3d55"
+    },
+    "score": {
+      "job": "p2-f747-nakagawa-62-wte2-all-held-fourth-harmonic-score",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request_sha256": "a1063fbddf51618612a603c9d80d3179577e91fd3601e125e2c18c276f0e63b6",
+      "generation": "c26373fca1bf3f9247fbe7e81992bd035dc73394e3377e661532980a5d22bc13",
+      "started_at": "2026-11-23T18:54:45.885889555Z",
+      "finished_at": "2026-11-23T18:54:58.444163894Z",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "stdout_bytes": 4992,
+      "stdout_sha256": "be111eca40a880f4a812556579ad100a29d4081a46682b0109af931267d1a286"
+    },
+    "independent": {
+      "job": "p2-f747-nakagawa-independent-62-raw-harmonic-and-quadrature-recount",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request_sha256": "c2f7a492393c51fdf35e0df6dda4565f1a92377d9b2291680b8912e39052e167",
+      "generation": "6b93e782e63f9f95469d2ed88deeb268dae59daa7ec0905f85f2f7557e51d147",
+      "started_at": "2026-11-23T18:56:15.101165163Z",
+      "finished_at": "2026-11-23T18:56:26.296588635Z",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "stdout_bytes": 2204,
+      "stdout_sha256": "2ddc7421cc6dbd866fb192c1197f55ed5b2271fc6fc857ce43278c63075203c2"
+    },
+    "transport": {
+      "job": "p2-f747-nakagawa-original-bank-score-portable-gzip-custody",
+      "owner": "node-8879be0ade29acfeda94e5c7be7b4c5a",
+      "request_sha256": "cc41f8db60559003910e0aa8dc9a50b99847b79b0a2bb9993492942c7026cf9d",
+      "generation": "aeed9f529ab76210e1c8e8b2aeac3912d26e2d36d362be5a909ae0971b30d50e",
+      "started_at": "2026-11-23T18:56:40.737510152Z",
+      "finished_at": "2026-11-23T18:56:42.383951815Z",
+      "exit_code": 0,
+      "descendant_wait": "drained",
+      "stdout_bytes": 630098,
+      "stdout_sha256": "aaae0f20fba598b1fbfac3050b704947adfd6739f46923d4404044c40170b7e0"
+    }
+  },
+  "prior_api_refusal": {
+    "outcome": "prior retained_output_bytes 125000 exceeded native 65536 maximum; refused before job admission",
+    "operation": "p2-f747-nakagawa-source-matlab-qtlab-native-map",
+    "sha256": "de6e465dc23cbaf53d8d35cafd3043f39c81171c721e81fbd6966364aa795da1"
+  },
+  "frozen_bank": "27dd19078b526fdd21a8e5274b40dcb617e38b23c2a2555ca3611e25e95feb23",
+  "held_score": "b95335ea06c3d53873f0d00a8014caeff65c05ccefd56cd6a8c58c92eb653b4e"
+}

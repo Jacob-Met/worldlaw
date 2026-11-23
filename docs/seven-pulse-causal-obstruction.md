@@ -33,5 +33,7 @@ Each upper endpoint is the first noise at which **every** policy of that row's h
 | 11 | [1/10, 5/44) | [Matching fixed and adaptive bounds](ten-pulse-terminal-adversary.md) |
 | 12 | [5/44, 1/8) | [Matching fixed and adaptive bounds](ten-pulse-terminal-adversary.md) |
 | 13 | [1/8, 7/52) | [Matching fixed and adaptive bounds](ten-pulse-terminal-adversary.md) |
+| 14 | [7/52, 1/7) | [Near-balanced even horizons](even-near-balanced-adaptive-optimum.md) |
+| 15 | [1/7, 3/20) | [Fifteen-pulse early obstruction](fifteen-pulse-early-obstruction.md) |
 
-At ε=7/52 at least fourteen pulses are necessary. At larger horizons the previously proved equality for H congruent to 0, 1 or 11 modulo 12 continues to apply; the table reports the complete consecutive range through thirteen.
+At ε=3/20 the minimum is sixteen. The [even-horizon theorem](even-near-balanced-adaptive-optimum.md) extends the known higher-horizon equality to H congruent to 2 or 10 modulo 12.
