@@ -1,0 +1,10 @@
+{
+  "source": "4eb6ea13b830987ffcfb456581a9053470471cad",
+  "job": "p3-f747-phobos-registered-sol501-training-and-498-499-prediction-lock",
+  "original_owner": "node-9198bc15530634050cdb2d65145320ca",
+  "generation": "889dc5ad2b5a87c4b50548002c15e9ffb32a4e6a89914fc34a4be309527f03db",
+  "request_sha256": "aef7b3aa3d9e7e965652fac2870f7b2dafb3250fe6d84e4549bab2d450a2ddda",
+  "sha256": "d17bf0f730396e757f0111e8a747b3a5004dd36c9b9d81919b68f9be9ff49fe6",
+  "bytes": 21799,
+  "held_suffix_targets_opened": 0
+}

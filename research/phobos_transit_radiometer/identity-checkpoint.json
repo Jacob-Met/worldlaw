@@ -1,0 +1,281 @@
+{
+  "actor": "astra62-p3-f747f5728172",
+  "task": "fr-disc-wave2-unseen-repo-repair-and-multiamplitude-worldlaw",
+  "qcm_release": 1733419,
+  "qcm_merge": "eeab7c97cda3bba2c2527f67142ac81e93418b78",
+  "qcm_verification": {
+    "merge": "eeab7c97cda3bba2c2527f67142ac81e93418b78",
+    "tree": "57b021b4301e26a3ff429b75e9d1d9043d59d891",
+    "files": [
+      {
+        "name": "README.md",
+        "sha": "94ecbf237832a4f71d084f42b4596969d7f5c617",
+        "size": 4081
+      },
+      {
+        "name": "audit_archives.py",
+        "sha": "d2aeff4faee661421817a76c187e134a6b68b5ab",
+        "size": 2894
+      },
+      {
+        "name": "layer_oracle.py",
+        "sha": "5d9032b08a19ff2c7e973abe51985ca961efb32a",
+        "size": 2470
+      },
+      {
+        "name": "native-originals.json",
+        "sha": "4b5146332ce8970f9bf13cd42e7bde39cdb54b04",
+        "size": 3338
+      },
+      {
+        "name": "oracle-receipt.json",
+        "sha": "f68cea2ae267e51202849ed2641c75c90bc9ebbd",
+        "size": 1852
+      },
+      {
+        "name": "replay.py",
+        "sha": "a4c4e6fafd0034b5b3b11025d589cd15333e6f93",
+        "size": 1870
+      },
+      {
+        "name": "source-schema.json",
+        "sha": "37008317dfc9d819d4772cdd13d06e116a139f6f",
+        "size": 13780
+      },
+      {
+        "name": "traveling_wave.py",
+        "sha": "d65a0f43b95cdbf5b8145ab7e88abf9ef9c3fc54",
+        "size": 1441
+      }
+    ],
+    "ci": [
+      [
+        "verify",
+        "success",
+        137532609818
+      ],
+      [
+        "correlated-nullgarden",
+        "success",
+        137532609781
+      ],
+      [
+        "source-distribution",
+        "success",
+        137532609586
+      ]
+    ],
+    "native": [
+      {
+        "j": "p3-f747-inert-polymer-wet-overtones-original-figure2-catalog",
+        "owner": "node-2c6923b3148e63391d0e8d72e866360a",
+        "request_sha256": "bd93f6e78a47e11e078eb790fce11a62cc677095f57cfe5221a63004bebd1a6f",
+        "generation": "2fce3008ef3a47347e7a6a7366c33d91d3040d73c85b80cc74ed1e6df19d9ad3",
+        "exit": 0,
+        "state": "completed",
+        "descendant_wait": null,
+        "output_bytes": 1701
+      },
+      {
+        "j": "p3-f747-qcm-acoustic-csv-header-and-adjacent-figure-rosters",
+        "owner": "node-b438062a0d8833852879c5f622fc267a",
+        "request_sha256": "25243f9a6332744cf9aa0a9a2a7778cf46d8aae2a3e930eb1977685c62f48726",
+        "generation": "540bbea9ff11b6115acee15f91aac860dd8135c7469e318f35a73126341c2e53",
+        "exit": 0,
+        "state": "completed",
+        "descendant_wait": "drained",
+        "output_bytes": 4690
+      },
+      {
+        "j": "p3-f747-qcm-entire-figure-acoustic-schema-and-exact-cross-folder-equality",
+        "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+        "request_sha256": "127ced00a75ee1bb3072b48ddf3dc3fca8af571c338aa3c701be0a7e36e23610",
+        "generation": "eb8e0e282970c6a9edc9d4556338ef475c3b13763f2b181e3c749d79da64bac3",
+        "exit": 0,
+        "state": "completed",
+        "descendant_wait": "drained",
+        "output_bytes": 3682
+      },
+      {
+        "j": "p3-f747-qcm-unlabeled-seven-fields-lineage-and-population",
+        "owner": "node-97c6d409c2cbae394d3688f835c7bef8",
+        "request_sha256": "41532dca43726c2a9ea220367acf2e2fba7e427ecfbc95c05a1a56f6c86535c9",
+        "generation": "224f2e1ec4d434e2e1d8d15681ab64640d433ace319c884585286f34844e37fa",
+        "exit": 0,
+        "state": "completed",
+        "descendant_wait": "drained",
+        "output_bytes": 1326
+      },
+      {
+        "j": "p3-f747-qcm-unnamed-columns-two-nonnumeric-marker-types",
+        "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+        "request_sha256": "3a412ece89c41b5cd8c8bc4b198d364bca4e010573abeaed5262aad339f7f387",
+        "generation": "362f22e0620a6acc6a8c494b780fbe3b6abaae8bc009579bb6510795f7110163",
+        "exit": 0,
+        "state": "completed",
+        "descendant_wait": "drained",
+        "output_bytes": 175
+      },
+      {
+        "j": "p3-f747-qcm-homogeneous-load-and-passive-single-band-witness",
+        "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+        "request_sha256": "7f9a4ff954b435996f10dfee02f702e8b33c8b3f826f93b6b8af2b2501264111",
+        "generation": "138b7d664bf46b8b4c0e94c457091facce425fd9b3a1040a3c6582ae99ad660f",
+        "exit": 0,
+        "state": "completed",
+        "descendant_wait": "drained",
+        "output_bytes": 1350
+      },
+      {
+        "j": "p3-f747-qcm-remaining-zenodo-archive-names-only",
+        "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+        "request_sha256": "2d93d3757c0121e9deeca7e0e52322e634b90b4db038b4710d8216fe1b458777",
+        "generation": "c24f9268ce9503e3b11396875723a92a04290e1222457440e2d5664dcf538f89",
+        "exit": 0,
+        "state": "completed",
+        "output_sha256": "cc2166b04ad3a67a23dd9e8fd00641130bfcbec0ee0699b0b00a6b12ccd133dc"
+      },
+      {
+        "j": "p3-f747-qcm-travelling-wave-all-twelve-independent-loads",
+        "owner": "node-97c6d409c2cbae394d3688f835c7bef8",
+        "request_sha256": "25b99ad26c8cb60674061bfe5f0ab06b48bb388672173d275e84f14d985921ed",
+        "generation": "bfe5b5320c9de7ed764ff4df76cce16814d6a4ba8bd8a8e6fb838ac0617f94a3",
+        "state": "completed",
+        "exit": 0,
+        "output_sha256": "c9bf8941908508e04fdc2947e5aee160419257b50c229a1e1bacab11b3903511"
+      }
+    ],
+    "gate": "p3-f747-qcm-exact-source-package-and-layer-replay",
+    "live_archive": "p3-f747-qcm-published-five-archive-schema-cli-verification"
+  },
+  "phobos_claim": 1733450,
+  "first_catalog": "p3-f747-phobos-insight-pds-radiometer_and-current-metadata-original",
+  "terminal_catalog": {
+    "": {
+      "links": [
+        "/insight/",
+        "/insight/urn-nasa-pds-insight_rad/bundle_insight_rad.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/",
+        "/insight/urn-nasa-pds-insight_rad/data_raw/",
+        "/insight/urn-nasa-pds-insight_rad/readme.txt",
+        "/insight/urn-nasa-pds-insight_rad/urn-nasa-pds-insight_rad.md5"
+      ],
+      "sha256": "32b47adf5cb61bc7b8a4e0f45b7bf3bb0d4603f5d83fde1cd648f837d7f65f6b",
+      "url": "https://pds-geosciences.wustl.edu/insight/urn-nasa-pds-insight_rad/"
+    },
+    "array_current_rows_opened": 0,
+    "author_current_archive": {
+      "refusal": "HTTP Error 403: Forbidden"
+    },
+    "data_calibrated/": {
+      "links": [
+        "/insight/urn-nasa-pds-insight_rad/",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/collection_data_rad_calibrated.csv",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/collection_data_rad_calibrated.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00014_20181211_073042.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00014_20181211_073042.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00122_20190401_123217.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00122_20190401_123217.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00213_20190703_052044.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00213_20190703_052044.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00305_20191006_053040.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00305_20191006_053040.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00390_20200101_120222.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00390_20200101_120222.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00478_20200401_121608.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00478_20200401_121608.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00567_20200701_125545.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00567_20200701_125545.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00670_20201014_095833.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00670_20201014_095833.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00746_20210101_072936.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00746_20210101_072936.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00839_20210406_011149.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00839_20210406_011149.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00983_20210901_113348.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00983_20210901_113348.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_01050_20211109_073646.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_01050_20211109_073646.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_01102_20220101_054657.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_01102_20220101_054657.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_01192_20220404_050415.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_01192_20220404_050415.xml"
+      ],
+      "sha256": "a2a883e9970b9b789a9d555f604532f3902123c1c8716ec2ef94d8293bf0adbc",
+      "url": "https://pds-geosciences.wustl.edu/insight/urn-nasa-pds-insight_rad/data_calibrated/"
+    },
+    "data_derived/": {
+      "links": [
+        "/insight/urn-nasa-pds-insight_rad/",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/collection_data_rad_derived.csv",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/collection_data_rad_derived.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00014_20181211_073042.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00014_20181211_073042.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00122_20190401_123217.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00122_20190401_123217.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00213_20190703_052044.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00213_20190703_052044.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00305_20191006_053040.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00305_20191006_053040.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00390_20200101_120222.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00390_20200101_120222.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00478_20200401_121608.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00478_20200401_121608.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00567_20200701_125545.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00567_20200701_125545.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00670_20201014_095833.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00670_20201014_095833.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00746_20210101_072936.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00746_20210101_072936.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00839_20210406_011149.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00839_20210406_011149.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00983_20210901_113348.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00983_20210901_113348.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_01050_20211109_073646.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_01050_20211109_073646.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_01102_20220101_054657.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_01102_20220101_054657.xml",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_01192_20220404_050415.tab",
+        "/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_01192_20220404_050415.xml"
+      ],
+      "sha256": "2db8981f2ce300d021c0e643f855ff8b29e29952619f64fceda38cd8f0d1f764",
+      "url": "https://pds-geosciences.wustl.edu/insight/urn-nasa-pds-insight_rad/data_derived/"
+    },
+    "thermal_scientific_rows_opened": 0
+  },
+  "second_label_original": "p3-f747-phobos-both-seasons-rad-solar-array-source-labels",
+  "label_fetch_refusals": [
+    {
+      "directory": "SOL0090_SOL0119_20190226_20190329/",
+      "error": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+    },
+    {
+      "directory": "SOL0480_SOL0509_20200402_20200503/",
+      "error": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+    },
+    {
+      "url": "https://pds-geosciences.wustl.edu/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00014_20181211_073042.xml",
+      "error": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+    },
+    {
+      "url": "https://pds-geosciences.wustl.edu/insight/urn-nasa-pds-insight_rad/data_calibrated/hp3_rad_cal_00478_20200401_121608.xml",
+      "error": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+    },
+    {
+      "url": "https://pds-geosciences.wustl.edu/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00014_20181211_073042.xml",
+      "error": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+    },
+    {
+      "url": "https://pds-geosciences.wustl.edu/insight/urn-nasa-pds-insight_rad/data_derived/hp3_rad_der_00478_20200401_121608.xml",
+      "error": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+    }
+  ],
+  "pending_clock_job": "p3-f747-phobos-six-independent-ephemeris-centers-native-clock-census",
+  "preserved_Hideg_supplemental_unresolved": [
+    "p3-f747-hideg-measured-rpm-time-voltage-design-audit-only",
+    "p3-f747-hideg-exact-six-member-independent-receiver"
+  ],
+  "permitted_preflight": "Catalogs, labels, solar-array timestamp and channel-validity checks only. No temperature or current values used. Published Mueller 2021 and Staehler 2020 aggregate results and selected scalar table rows are exposed. Whole telemetry traces not opened for scientific values.",
+  "planned": "Source qual of six Table 1 events, exact acquisition and sample times relative to source ephemeris, high-rate independent solar forcing only if authenticated. Preserve native FAQ/refusals and label versus numeric row distinction."
+}
