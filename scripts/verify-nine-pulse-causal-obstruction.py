@@ -4,7 +4,6 @@ from fractions import Fraction as F
 from itertools import combinations,product
 from math import lcm
 from pathlib import Path
-import gzip
 import json
 
 H=9
@@ -265,6 +264,6 @@ if __name__=='__main__':
     parser.add_argument('source',type=Path);parser.add_argument('packet',type=Path)
     parser.add_argument('--commands',nargs='*')
     args=parser.parse_args()
-    with gzip.open(args.packet,'rt',encoding='utf8') as f:packet=json.load(f)
+    with args.packet.open(encoding='utf8') as f:packet=json.load(f)
     receiver=Receiver(json.loads(args.source.read_text()),packet)
     print(json.dumps(receiver.verify() if args.commands is None else receiver.receive(args.commands)))

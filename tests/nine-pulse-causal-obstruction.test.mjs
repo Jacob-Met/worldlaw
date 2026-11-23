@@ -5,7 +5,7 @@ import {readFileSync} from 'node:fs';
 import {certifyFixedTapeOptimum} from '../src/science/position-drift-fixed-tape-optimum.mjs';
 
 const source = 'examples/active-position-drift-nine-pulse-upper.json';
-const packet = 'examples/nine-pulse-causal-obstruction.json.gz';
+const packet = 'examples/nine-pulse-causal-obstruction.json';
 const script = 'scripts/verify-nine-pulse-causal-obstruction.py';
 
 test('the fixed lower bound meets the nine-pulse causal upper at its closed boundary', () => {
@@ -29,11 +29,11 @@ test('all literal words retain a causal observation and two source-persistent wi
 });
 
 test('changed action prefixes, proof corruption, and the earlier terminal-only counterexample', () => {
-  const program = `import gzip, json, runpy, sys
+  const program = `import json, runpy, sys
 from fractions import Fraction as F
 from copy import deepcopy
 ns=runpy.run_path(sys.argv[1]); source=json.load(open(sys.argv[2]))
-with gzip.open(sys.argv[3],'rt') as f: packet=json.load(f)
+with open(sys.argv[3],encoding='utf8') as f: packet=json.load(f)
 r=ns['Receiver'](source,packet)
 panel=['ref']*4+['x1','x0','y0','z0','y1']
 center=['x1','x0','y0','z0','y1']+['ref']*4
