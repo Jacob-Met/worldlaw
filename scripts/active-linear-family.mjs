@@ -17,7 +17,7 @@ import {certifyMulticlassPositionDriftMinimum} from '../src/science/persistent-p
 import {planBinaryPositionDriftMinimum} from '../src/science/persistent-position-drift-all-horizon.mjs';
 import {parseActiveOriginalJSON} from '../src/science/active-position-drift-readout.mjs';
 import {recommendActiveFollowup,sealActivePlan,sealActiveReadout,replayActiveNotebook,receiveActiveNotebook,createActiveNotebook} from '../src/science/active-experiment-record.mjs';
-const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE | --recommend INDEX] [--output NEW_FILE] | --input FILE [--binary-minimum | --multiclass-minimum [--enumerate-through N --word-budget N]] --create-notebook --output NEW_FILE | --input FILE --binary-minimum [--output NEW_FILE] | --input FILE --multiclass-minimum [--enumerate-through N --word-budget N] [--output NEW_FILE] | --input FILE --three-pulse-radius [--replay CERTIFICATE] [--output NEW_FILE] | --input FILE --four-pulse-radius [--replay CERTIFICATE] [--output NEW_FILE] | --input FILE --four-pulse-feedback [--replay CERTIFICATE [--readings POSITIONS]] [--output NEW_FILE] | --input FILE [--four-pulse-compact | --four-pulse-compact-simplex] [--replay CERTIFICATE [--readings POSITIONS]] [--output NEW_FILE] | --input FILE --four-pulse-leaves [--replay CERTIFICATE] [--output NEW_FILE] | --input FILE --five-pulse-minimum [--replay CERTIFICATE [--readings POSITIONS]] [--output NEW_FILE] | --input FILE --physical-feedback-tree [--replay CERTIFICATE [--readings POSITIONS]] [--output NEW_FILE]';
+const usage='Usage: node scripts/active-linear-family.mjs [--input FILE] [--output NEW_FILE] [--replay PLAN] [--readings FILE [--replay-readings PRIOR_RESULT]] | --notebook FILE [--readings FILE | --recommend INDEX] [--output NEW_FILE] | --input FILE [--binary-minimum | --multiclass-minimum [--enumerate-through N --word-budget N]] --create-notebook --output NEW_FILE | --input FILE --binary-minimum [--output NEW_FILE] | --input FILE --multiclass-minimum [--enumerate-through N --word-budget N] [--output NEW_FILE] | --input FILE --three-pulse-radius [--replay CERTIFICATE] [--output NEW_FILE] | --input FILE --four-pulse-radius [--replay CERTIFICATE] [--output NEW_FILE] | --input FILE --four-pulse-feedback [--replay CERTIFICATE [--readings POSITIONS]] [--output NEW_FILE] | --input FILE [--four-pulse-compact | --four-pulse-compact-simplex] [--replay CERTIFICATE [--readings POSITIONS]] [--output NEW_FILE] | --input FILE --four-pulse-leaves [--replay CERTIFICATE] [--output NEW_FILE] | --input FILE --five-pulse-minimum [--replay CERTIFICATE [--readings POSITIONS]] [--output NEW_FILE] | --input FILE --physical-feedback-tree [--replay CERTIFICATE [--readings POSITIONS [--two-word-rule]]] [--output NEW_FILE]';
 let recommend=null,binaryMinimum=false,multiclassMinimum=false,threePulseRadius=false;
 const treeDesignModes=new Map([
   ['--physical-feedback-tree',{build:certifyPhysicalFeedbackTree,verify:verifyPhysicalFeedbackTree,receive:receivePhysicalFeedbackTree}],
@@ -31,12 +31,14 @@ const treeDesignModes=new Map([
 let treeDesignMode=null;
 const searchLimits={};
 let input='examples/active-linear-family-decays.json',output=null,replay=null,readings=null,replayReadings=null,notebook=null,inputChosen=false,createNotebook=false;
+let twoWordRule=false;
 const argv=process.argv.slice(2);
 for(let i=0;i<argv.length;i++){
   if(argv[i]==='--help'){console.log(usage);process.exit(0);}
   if(treeDesignModes.has(argv[i])){
     if(treeDesignMode)throw Error(usage);treeDesignMode=treeDesignModes.get(argv[i]);continue;
   }
+  if(argv[i]==='--two-word-rule'){twoWordRule=true;continue;}
   if(argv[i]==='--three-pulse-radius'){threePulseRadius=true;continue;}
   if(argv[i]==='--multiclass-minimum'){multiclassMinimum=true;continue;}
   if(argv[i]==='--enumerate-through'||argv[i]==='--word-budget'){
@@ -62,6 +64,7 @@ for(let i=0;i<argv.length;i++){
   else if(flag==='--replay-readings')replayReadings=value;
   else notebook=value;
 }
+if(twoWordRule&&(!readings||!replay||treeDesignMode?.receive!==receivePhysicalFeedbackTree))throw Error(usage);
 if(treeDesignMode&&(!inputChosen||threePulseRadius||binaryMinimum||multiclassMinimum||createNotebook||notebook||replayReadings||recommend!==null||
   (readings&&(!replay||!treeDesignMode.receive))))throw Error(usage);
 if(threePulseRadius&&(!inputChosen||binaryMinimum||multiclassMinimum||createNotebook||notebook||readings||replayReadings||recommend!==null))throw Error(usage);
@@ -79,7 +82,10 @@ let report;
 if(treeDesignMode){
   const request=parseActiveOriginalJSON(await readFile(input,'utf8'));
   report=replay?parseActiveOriginalJSON(await readFile(replay,'utf8')):treeDesignMode.build(request);
-  if(readings)report=treeDesignMode.receive(request,report,parseActiveOriginalJSON(await readFile(readings,'utf8')));
+  if(readings){
+    const measured=parseActiveOriginalJSON(await readFile(readings,'utf8'));
+    report=twoWordRule?receivePhysicalFeedbackTree(request,report,measured,{twoWordRule:true}):treeDesignMode.receive(request,report,measured);
+  }
   else treeDesignMode.verify(request,report);
   if(['inconclusive','grid-inconclusive','design-budget-exhausted','receiver-budget-exhausted'].includes(report.status))process.exitCode=2;
 }else if(threePulseRadius){

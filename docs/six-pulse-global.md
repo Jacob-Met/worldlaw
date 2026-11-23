@@ -1,6 +1,6 @@
 # Unrestricted six-pulse feedback for the grouped rate families
 
-The unrestricted six-pulse first-failure radius is **1/20** for this eight-command grouped catalog. The strongest verified lower policy starts with **ref/ref**. The next distinct verified lower bound is 1/22 at group/ref. The known global five-pulse bound gives a minimum of **six pulses throughout [1/29, 1/20)**. At 1/20 and above every six-pulse policy has a physical collision, so at least seven pulses are required.
+The unrestricted six-pulse first-failure radius is **1/20** for this eight-command grouped catalog. The strongest verified lower policy starts with **ref/ref**. The next distinct verified lower bound is 1/22 at group/ref. The known global five-pulse bound gives a minimum of **six pulses throughout [1/29, 1/20)**. At 1/20 and above every six-pulse policy has a physical collision, so at least seven pulses are required. The [seven-pulse calibration experiment](seven-pulse-calibration.md) attains that minimum on [1/20, 3/50).
 
 ## Results by initial command pair
 
