@@ -1,0 +1,91 @@
+{
+  "metadata": {
+    "job_id": "p2-f747-fairmat-vendor-single-acquisition-axis-and-method-qualification",
+    "owner": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "arguments_sha256": "338ad962966d656176161e295e2709f3b8b1adc94f20d1b679041cf4d08ac0fa",
+    "generation": "af1550d26f05110948231d7fc2cb4b693429bc50d28124b0fc5888ae6629e2d4",
+    "request_sha256": "7acab30b0d8b4b14d3dd9898430d361ba348c2c7be66f1c2757e1effd439a277",
+    "state": "completed",
+    "exit_code": 0,
+    "finished_at": "2026-11-23T02:28:19.185348091Z",
+    "output_bytes": 2779,
+    "output_sha256": "8e59a307666277bb9959b2f09e0d03f21cd7df35fa726fd749c5e4f22625a074"
+  },
+  "forecast": {
+    "job_id": "p2-f747-fairmat-rho-all-eight-forecast-lock-591-held-sealed",
+    "owner": "node-740d2ac3d9e5f4d07596fe1cfd9701df",
+    "arguments_sha256": "881a6204e5451985279a5c94f386ba496da8906f12bc6f56b0a1beed842e311b",
+    "generation": "e48f76be404b148686bd4aa64d65a8e432901904c75f9ba443bb04bd6a350d81",
+    "request_sha256": "95e7f864b1c792d7ca5a579ed42b29259245d13c800f05da8dd2fb376759e979",
+    "state": "completed",
+    "exit_code": 0,
+    "finished_at": "2026-11-23T02:34:37.789872798Z",
+    "output_bytes": 2540,
+    "output_sha256": "8a5e3b811e994d3238682fc3329797d76c9b81b34b8d5312946890be245266c9"
+  },
+  "score": {
+    "job_id": "p2-f747-fairmat-postlock-fifty-degree-all591-scorer",
+    "owner": "node-740d2ac3d9e5f4d07596fe1cfd9701df",
+    "arguments_sha256": "d5d18a29d1583e0f23895da0b3e19dd90fcd85415c88308ed88a60bb4a95e63e",
+    "generation": "d08172b6a3f4903a7c93e1c3efb6f97dbee5cc33af2e166b4452a7b8fe67238c",
+    "request_sha256": "a438c013f64ba46745a22878e95734a5fbdb8cb9ef960d709b88d03d93188f6f",
+    "state": "completed",
+    "exit_code": 0,
+    "finished_at": "2026-11-23T02:36:05.598088285Z",
+    "output_bytes": 5966,
+    "output_sha256": "fdec26171d91ada404171b3d86ad172c30a2793f4dbe7fac8de21eb2b87350ba"
+  },
+  "recount": {
+    "job_id": "p2-f747-fairmat-independent-raw-4728-complex-errors-14-thresholds",
+    "owner": "node-d594b178fe479ad35c52baaace3bbd40",
+    "arguments_sha256": "fa627febe9099ed13e2acb10571ca6a7f2bdb28d0bd08327ccede588bafb948d",
+    "generation": "a6d4d6fb85f2c86f9880bf41b9aa417b38f982aa9f849cf6889e00c503465644",
+    "request_sha256": "6359b9816844cb30816570c40378d06bfa5c8c112102b53894cfb5a87919380f",
+    "state": "completed",
+    "exit_code": 0,
+    "finished_at": "2026-11-23T02:37:08.127070972Z",
+    "output_bytes": 316,
+    "output_sha256": "fbafdb5d8ab595dd6672add5529333880b380483830fb81364c825d23577be57",
+    "scientific_result": {
+      "arm_wavelength_errors": 4728,
+      "joint_pass": false,
+      "lock_sha256": "4855ad5d1bbd812333b631ad51d4610124ffba6cf18536f928042c0bf82820e2",
+      "max_abs_metric_error": 3.469446951953614e-18,
+      "score_sha256": "84555aff2b82a51e0eda7ccfa400c51b568c9e7e9809715579f4f3d3071cfc42",
+      "thresholds_passed": 12,
+      "thresholds_total": 14
+    }
+  },
+  "old_nexus_runtime_refusal": {
+    "job_id": "p2-f747-pyElli-authentic-wafer-sample-angle-calibration-binding-no-spectra",
+    "owner": "node-6706f5b2ac58d90b2133310ee1d9ff36",
+    "arguments_sha256": "88c0aec29295d9b288dfb627465b9a5e15f6f2f4acf92ae6f45509402ad3a9d9",
+    "generation": "ae0930e3e55162780615a4950d4cea83c26d1a373874e9f6f100fc5805f71d00",
+    "request_sha256": "a04f7ac1bbdcb4072010c96881b2b4c730e8e008c69396dce8c5343185da60fb",
+    "state": "failed",
+    "exit_code": 1,
+    "finished_at": "2026-11-23T02:25:08.532871206Z",
+    "output_bytes": 487,
+    "output_sha256": "fd83e7f510a6b4d4cc1bffc9b21bde18261ab4cb94be261c0a68dff140fb24d9"
+  },
+  "freeze": {
+    "post": 185661,
+    "sequence": 1712930
+  },
+  "old_nexus_reserve_refusals": [
+    {
+      "operation_id": "capacity-5551a809751ccec8b3b1355d248edb2c0edde498f5f25978",
+      "code": "artifact_storage_pressure",
+      "available_bytes": 2147364864,
+      "required_bytes": 2147483648,
+      "provider_dispatch": "not_attempted"
+    },
+    {
+      "operation_id": "p2-f747-wafer-runtime-packaging-after-ae0930e3",
+      "code": "artifact_storage_pressure",
+      "available_bytes": 2147475456,
+      "required_bytes": 2147483648,
+      "provider_dispatch": "not_attempted"
+    }
+  ]
+}
