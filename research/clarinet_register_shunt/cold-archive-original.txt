@@ -1,0 +1,1 @@
+{"all_field_vectors": 81, "archive_bytes": 11477643, "archive_sha": "5cae02c22786be38fad002e70c6749fb3b822bbf27738f04bfaa857bbc4a812b", "part_blobs": 24, "source_commit": "52d9d657e2bbfd1b812661a46ea8bfdcfee5b1b4"}
