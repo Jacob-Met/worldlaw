@@ -2,6 +2,8 @@
 
 The factored solver recovered all 64 known five-pulse thresholds while loading at most eight terminal words in any individual LP. The original direct programs loaded 512 words apiece. The independent streaming receiver exports the four words carrying the lower proof for the best initial pair, ref/ref. The existing physical-feedback CLI then runs that menu from actual readings. The six-pulse exhibit gives 3/76 again. The largest improvement is in the size of each linear program; total solver work increased.
 
+The [subsequent reuse course](factored-feedback-reuse.md) cut cumulative design rows by 53.4% while preserving the same block size and thresholds.
+
 ## Use the design and independent receiver
 
 The designer requires Python, NumPy and SciPy. The receiver uses only the standard library.
