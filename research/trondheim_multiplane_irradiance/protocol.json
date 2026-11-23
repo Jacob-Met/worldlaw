@@ -1,0 +1,42 @@
+{
+  "course": "Trondheim ZEB Lab outer-pergola hourly plane-of-array irradiance conditional transfer",
+  "deposit": "10.17632/g86rtgzvkh.2",
+  "source_article": "10.1016/j.dib.2026.113014",
+  "historical_baseline": "10.1016/j.solener.2024.112924 reports Perez1/Perez1 best for pergola among 725 one-minute chains, with local sky-view/shadow masks and additional atmospheric information. We compare the executable pvlib DIRINT/Perez transposition family on current archived hourly inputs. Availability of historical auxiliary maps, time convention and per-minute components is unresolved. No literal historical-score comparison.",
+  "orientation": "Angle from upward. Target outer pergola 60 degrees south; sources roof horizontal and opposed due-south/north verticals. Ignore nominal west (240 degrees), tilted roof (reported 30 versus 40 degrees), East, inner pergola, temperature, PV. Model presumes same full-sphere angular radiance and ideal cosine response across physically separate sensors.",
+  "units": "W/m2 arithmetic hourly mean, hour stamp ends the previous hour. Ledger labels are not assumed to be UTC. Negative nighttime irradiance author-clipped to zero. No artificial replacement of missing targets.",
+  "exposure": "Header-only receiver authenticated all three annual file IDs and bytes and only year-independent row1 labels. Papers' completeness and illustrative winter/summer PV summary and older site-validation rankings seen. Workbook-extracted scientific values unopened before this protocol. New analysis of a released record; not an externally blinded challenge.",
+  "files": {
+    "2023": [
+      "9677d136-50c1-4515-a83d-d4e2fb6d18b2",
+      "9b480d6af2cff99c4cb3bda3340d9a90c6bc4995b4095ca6cdbb40c4eabdfb6e"
+    ],
+    "2024": [
+      "b2d942f8-3c54-4bbe-8efd-ca579014e3c4",
+      "17d954fca876980502b03059a796c079da593af0ee4a0089ce511c815ebea489"
+    ],
+    "2025": [
+      "221585a1-4317-48b1-8c35-491b755732f5",
+      "4276156e888c626c9ff76938eb17f52db6de0a8aa372064c704c0a9d7329a2a2"
+    ]
+  },
+  "split": "Fit = all 2023; selection = all 2024; report 2025 untouched until all array bytes and chosen models locked. No refit on 2024, no time shift from 2025. 2025 is one contiguous site year; days are descriptive, not independent sites.",
+  "read_boundary": "Trusted extractor selects A:D calendar and E,NORTH H,SOUTH L,HORIZONTAL for all models. 2023/2024 may select I actual pergola. 2025 producer never selects I or any other unused scientific column. Workbook bytes are authenticated in full, XML parser may materialize other cells transiently. Independent scorer alone selects 2025 I after Git lock. Physical scientific values from other columns unused.",
+  "model": "Upper and lower hemispheres each have a uniform nonnegative diffuse radiance, plus one upward collimated beam per hourly effective field. Conditional point identity when S>=N; otherwise the exact feasible range in theory.py. Midpoint and 20% assumed ground-reflected fraction are controls; nominal0.2 is frozen physical point. Sign change of beam within the hour, anisotropic diffuse light, local shadows, snow, instruments and different sky views may break model.",
+  "roles": [
+    "hemispheres",
+    "hemispheres_residual",
+    "empirical_boost",
+    "empirical_ridge",
+    "perez_dirint",
+    "perez_calibrated",
+    "algebraic_upper",
+    "front_only",
+    "arithmetic_mid",
+    "ordinary_linear"
+  ],
+  "controls": "Ridge fits standardized H,N,S plus intercept. A second ridge adds fixed irradiance, clock/month trigonometric interactions and daylight asymmetry. Histogram gradient boosting shares design and budget across raw target, hemispheres-residual, and Perez-residual arms; absolute_loss, max_iter 160, 15 leaves, learning_rate .07, min_samples_leaf 40, l2=1, early_stopping=False, seed 9017. Fit models to 2023 only. Primary practical comparator is the 2024 lowest daytime-MAE of ordinary linear, richer ridge, raw boosting, Perez, and calibrated Perez (listed order breaks ties). Both fitted structural and standalone physical outcomes retained. No feature tuning.",
+  "perez": "Use published open pvlib 0.13.1 DIRINT with use_delta_kt_prime=False (same-hour input only), pressure standard, Perez allsitescomposite1990, albedo0.2, midpoint sun position at 63+25/60 N,10+27/60 E. Use finite nighttime GHI<=0 as zero, zenith>=87 as DNI0. Reject any other unexplained nonfinite. No private local sky/shading mask, so this is a maintained alternate implementation, not a replay of the one-minute author model. Compare UTC, fixed UTC+1 and Europe/Oslo DST-using offset from calendar noon, chosen solely by training GHI-weighted solar-availability loss, with deterministic ordering. Report all three source losses and offset assignment; this diagnoses timing consistency, not timestamp provenance. Below apparent horizon with positive GHI, use the isotropic-sky and ground0.2 limiting contribution 0.8 times GHI. Clock score is 2023 mean-squared departure of measured GHI from a scaled positive solar-elevation sine. Role output floors for regressions are zero.",
+  "endpoints": "Unweighted MAE and RMSE W/m2 over all finite source/truth rows and informative H>=20 W/m2 (primary). Same error denominator for all roles. Physical sharp interval violations and excess above/below in both measured S>=N/N>S strata, all seasons; repeats/night don't give independence. Prespecified promotion requires physical-trained residual arm lower informative MAE than every four fitted alternatives (including calibrated Perez); lower informative RMSE than 2024-selected empirical/Perez control; >=8/12 measured-month informative MAE wins vs selected control. A standalone physical-law claim also requires no nominal interval misses beyond sensitivity allowances and common-field/within-hour qualifications; do not interpret 3.2% as hard bounds.",
+  "raw": "Retain 10 largest absolute errors, same-row actual predictions for all roles, stored timestamp, measured H/N/S and pergola, lower and upper envelope, neighboring hours. Also retain largest positive and negative interval violation and complete bracket/source averages, month/sign support, positive counts. Preserve data/parser/resource failures separately. Fixed exclusions: missing or nonfinite required source or target; separately count every excluded timestamp. Negative actual input refuses the physical role/course; no dropping anomalous signed readings. Zero remains a measured/censored value."
+}
