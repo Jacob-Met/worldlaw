@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/tmp/hamon-s-1000/2adcff59678e4b41a4df5e9504b5be79/rible-frozen-r1o7yz7l/research/qarr_powder_profile/independent.py", line 57, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/tmp/hamon-s-1000/2adcff59678e4b41a4df5e9504b5be79/rible-frozen-r1o7yz7l/research/qarr_powder_profile/independent.py", line 30, in main
+    dev=[counts(n) for n in L['basis']];roles=L['roles'];ids=list(meta['held']);by={};meas={};worst={};allpred={};devcols=list(zip(*dev))
+         ^^^^^^^^^
+  File "/tmp/hamon-s-1000/2adcff59678e4b41a4df5e9504b5be79/rible-frozen-r1o7yz7l/research/qarr_powder_profile/independent.py", line 19, in counts
+    rr=[row.split() for row in b.splitlines()];assert len(rr)==7251
+                                                      ^^^^^^^^^^^^^
+AssertionError
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+  File "<stdin>", line 3, in run
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/bin/python3', '/tmp/hamon-s-1000/2adcff59678e4b41a4df5e9504b5be79/rible-frozen-r1o7yz7l/research/qarr_powder_profile/independent.py']' returned non-zero exit status 1.

@@ -1,0 +1,142 @@
+{
+  "title": "Direction of centered whole powder patterns from weighed ternary compositions",
+  "scope": "Archival conditional shape prediction on eight separately weighed CPD powders plus three measured pure references. Only target diffraction spectra are held. Published fractions, XRF values, qualitative method differences, RietX inverse concentration errors and historical subset comparisons have been exposed and are not prospective outcomes. Assessed on independently versioned maintained benchmark copies; organizer direct data host native access refused.",
+  "source": {
+    "repo": "yue-here/rietx",
+    "sha": "0c3e7ccd8e0e347f950fc56320890546e2d410aa",
+    "files": {
+      "corundum": "7206019616e472ec9ea30da72450e2723b3f3133",
+      "zincite": "47510983e3dc893ea6c8c8970a6faa6a2e719152",
+      "fluorite": "d136ca1a0f4b4813b84fd27d2de094696f506e97",
+      "cpd-1a": "a90f49679a39aba05a88ad54196bffc7b7840330",
+      "cpd-1b": "ff6f32225bd14bb2627ae7bf1015d782a41d11de",
+      "cpd-1c": "85fb4efc5f445b7433df4140a6439f722d59aa67",
+      "cpd-1d": "6db1d66086b15cc4cf750c62a153584b7675abe4",
+      "cpd-1e": "1471f5b4275426ad12b8f7273ad94edfd936b313",
+      "cpd-1f": "0a26174d632f3222786b22d4429e59447d84f33b",
+      "cpd-1g": "7794307756c27897e8450b2c3cd08f974a7196f5",
+      "cpd-1h": "a9e4926a9b0b36893715632429291ba4c0830bd6"
+    },
+    "native_1e": "c7881b80ad137240502909098e6e7fc1d945584d",
+    "native_corundum": "6273d25e438d5d530ef4ea07de9398dd0d98f845",
+    "gsas_tutorial": "78c18d8c2c058067b92e1a8ecb8fa81d32980008",
+    "maud": "728f977498b2414fd4e7433f597e1fe2a4e8efbb",
+    "xylib": "199a1eda5a16c0f4f89772e21ebe14f72499de0f",
+    "lmfit": "1.3.4",
+    "lineshapes_sha256": "55252cca220b462368ca813b2686e4de4929adb607646a51374e31ed90f64d5f"
+  },
+  "units": "Copper reflection flat-plate back-packed unspun 40 kV 40 mA, nominal 3 s/0.02° step. Organizer kit says 5..150°, 2001 paper describes 15..145°; primary entire actual common 5..150°/7251 row grid conditioned on matching PRN coordinate metadata and two native RD headers. No evidence of independent flux normalization or specimen-specific packing/thickness; absolute common gain and bulk absorption factor are indistinguishable after normalization. No absolute absorption or incident-beam inference.",
+  "phase_order": [
+    "corundum",
+    "zincite",
+    "fluorite"
+  ],
+  "weighed": {
+    "a": [
+      1.15,
+      4.04,
+      94.81
+    ],
+    "b": [
+      94.31,
+      1.36,
+      4.33
+    ],
+    "c": [
+      5.04,
+      93.59,
+      1.36
+    ],
+    "d": [
+      13.53,
+      32.89,
+      53.58
+    ],
+    "e": [
+      55.12,
+      15.25,
+      29.62
+    ],
+    "f": [
+      27.06,
+      55.22,
+      17.72
+    ],
+    "g": [
+      31.37,
+      34.21,
+      34.42
+    ],
+    "h": [
+      35.12,
+      30.19,
+      34.69
+    ]
+  },
+  "mac": [
+    31.4,
+    49.3,
+    95.6
+  ],
+  "dev": "abcde",
+  "held": "fgh",
+  "masses": "Weighed input percentages normalized by their printed row sum, retain 99.99 roundoff. g and h independent specimens prepared at close but different fractions. Seven digital formats are conversions of a scan; no independent experimental repeats asserted.",
+  "response": "Subtract arithmetic channel mean then divide by root mean square about the mean over all 7251 bins. Multiply scalar gain and add constant background invariance only. Predictions normalized using their computed forecast profile alone; target self-normalization defines the response in receiving after lock. Forecast equality scored using all channels equally. Per-pattern RMS distances; macro mean across three held specimens. No angular adjustment, target scales, validation refitting or specimen selection.",
+  "candidate": "For the 5 actual development mixture patterns only, center and normalize each to unit L2 length. W rows are 3 phase components; P=I-W W† for shape (5,3). H=(U Uᵀ)∘P. The smallest-eigenvalue vector models the effective 5 relative scales, sign chosen so sum positive. Require all positive (min/max>=0.10), eiggap λ2−λ1>=0.01 and λ1/λ2<=0.25, source W condition<=10, all finite. These are sufficient empirical conditioning screens, not metrological confidence. Form B=W† diag(g) U and predict by composition. If the screen fails retain the development refusal; never open f/g/h.",
+  "controls": [
+    "Uncorrected mass sum of three centered raw pure references.",
+    "Pure references scaled by weighed fractions × published pure phase Cu mass absorption coefficients; common mixture denominator cancels.",
+    "Mass sum of independently unit-normalized pure patterns.",
+    "Linear mixture OLS on unit-normalized development patterns with g=1.",
+    "OLS on raw development counts before centering/normalization.",
+    "Nearest development composition by Euclidean distance, alphabetically first tie.",
+    "Actual lmfit 1.3.4 PseudoVoigtModel+LinearModel areas from pure-reference-calibrated isolated peaks. Three strongest classifiable isolated peaks per phase: pure find_peaks prominence>=2% peak-to-peak amplitude, other-phase center separation >0.85°, same-phase selected peaks >1°, endpoints >0.5°. Fit each matched ±0.40° window on each reference and 5 development mixtures; amplitude≥0, center ±0.12° of reference maximum, sigma .01..0.30°, fraction0..1. Retain every fit and fail qualification if fewer than three peaks/phase, failed fit, or nonpositive area. r_sp median over peaks(log(mixture area/pure area)−log w_sp); subtract phase mean per mixture, average over development and exponentiate to obtain three relative pure coefficients. Same measured refs predict full held profiles. This is actual peak fitting and not an implementation of the historical TOPAS inverse fits."
+  ],
+  "gate": "Candidate must beat mean RMS of every control and win at least 2/3 independent held specimen comparisons against both peak-fit and bulk-MAC measured-pure rules. Preserve per-target and worst raw angle, all-role same-angle predictions, and discrepancy with predicted near-equal g/h difference. Include development-only hold-one-out, spectrum shape separation/conditioning as diagnostic, no fitted held parameters.",
+  "durability": "All predicted directions for f/g/h are reconstructed from exact source vectors and fixed coefficients and hashed as binary64 before target counts are decoded. Forecast matrix persists in native producer and compressed receipts; physical archive stays upstream, do not republish third-party raw spectra.",
+  "prevalue_amendment": {
+    "original": "b7a0407f02192a053a075caf98629c9f72b3df19",
+    "refusal": {
+      "job_id": "p3-f747-qarr-eleven-grids-native-RD-and-independent-copies",
+      "state": "captured",
+      "source": {
+        "owner": "node-f16b825d04f9993acd590fd2b38fe4f5",
+        "command_id": "p3-f747-qarr-eleven-grids-native-RD-and-independent-copies",
+        "request_sha256": "f9515dae76a95b54575b7fdcdf5e7ab618360d4328bac4b1072b0a00333bda31",
+        "generation": "6bfd45c4572b75dbe21be1ff170684cfa362ba8f6c12ea60842fced34bc519b1",
+        "receipt_sha256": "ec9e4acd5202c25e1c553f5b1ce3089f39b6f24f90c4bf9bc5d528db35b2b07e",
+        "output_bytes": 2216
+      },
+      "total_bytes": 2216,
+      "sha256": "7f9856b6915394e8af6bdcc1a4c9bc0fc6a36e658e3059247c5afb06da8988e3",
+      "offset": 0,
+      "next_offset": 0,
+      "has_more": true
+    },
+    "native_decoder": "yue-here/rietx 0c3e7cc src/rietx/io/formats/philips_rd.py f699749c75fe58240b5bf9aca8c16e621c0383db",
+    "rule": "1e printed PRN deviates from its original native theta in 124 coordinates, by at most 0.000011 deg. Use original Philips V3RD sequential ordinals from offset 250 (little-endian uint16), native header max at 136, and integer counts v²//100. Require every 1e text ordinal to resolve uniquely to its native bin and exact equality of all native and printed counts for both 1e and corundum before fitting. Other ten text grids retain original tolerance. Failure refuses development and leaves all target counts sealed.",
+    "exposure": "Angles and headers only at registration. Source bytes passed as opaque custody; no numerical intensity outcomes examined."
+  },
+  "physical_model": "After removing a per-scan constant, X_i(q)=g_i sum_c m_ic S_c(q) with arbitrary positive scalar per scan. A common mixture absorption factor is indistinguishable from g_i. The model cannot distinguish texture, nonconstant background, microabsorption, phase profile changes, packing or specimen geometry.",
+  "converter_correction": {
+    "closed_original": {
+      "job_id": "p3-f747-qarr-native-count-concordance-eight-arm-held-forecast",
+      "state": "captured",
+      "source": {
+        "owner": "node-991a732b5c49b120984f4ae617631a53",
+        "command_id": "p3-f747-qarr-native-count-concordance-eight-arm-held-forecast",
+        "request_sha256": "d90cb70e5cad148e5d5b3726f4fa744dda3cf866fab9948b5f0a305c81b7d89d",
+        "generation": "b76bb8f91c2b1ed39670652f95dcee53e05ad378ada4f7eec1b5337265c021f6",
+        "receipt_sha256": "274b34566aa926d1cd8b0f56574976cf60b252e80df7f61ade54dbe04e6f50ef",
+        "output_bytes": 1791
+      },
+      "total_bytes": 1791,
+      "sha256": "3b4bb9e8f9c0ffffac616ce8309b1f886309f63784daa5c9d354831e58ae6441",
+      "offset": 0,
+      "next_offset": 0,
+      "has_more": true
+    },
+    "source": "tests/data/README.md at 0c3e7ccd8e0e347f950fc56320890546e2d410aa, lines 1671–1677. The committed 1e was generated by nearest rounding; its documented 2,108 one-count discrepancies are the complete difference. The previous same-truncation requirement was wrong.",
+    "frozen_gate": "Original corundum: native truncation equals every PRN count. 1e: integer nearest encoding (v²+50)//100 equals every PRN count; differences from native truncation are zero or +1, exactly 2,108 +1. Squaring an integer modulo 100 never gives 50, so nearest-half tie policy irrelevant. Return native truncation for both scans as already frozen. The first producer exposed the discrepancy count only; no fit, prediction or held spectrum."
+  }
+}

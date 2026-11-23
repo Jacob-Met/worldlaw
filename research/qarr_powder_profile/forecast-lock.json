@@ -1,0 +1,23 @@
+{
+  "sha256": "dbb5848c0ecd0a0a3bb7c13b0726082e5e816d17c59d78258dc34b57c14ecb45",
+  "matrix_sha256": "3b7c9aea29abeb1229b1cf9c6e515647751dd570a9bf058edf452d8cea13b7ff",
+  "bytes": 1392192,
+  "producer_source": "ac15e7bed9dabf5da3c4e16745ce847159a713f7",
+  "original": {
+    "job_id": "p3-f747-qarr-1e-nearest-converter-source-and-prevalue-24-arrays",
+    "state": "captured",
+    "source": {
+      "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+      "command_id": "p3-f747-qarr-1e-nearest-converter-source-and-prevalue-24-arrays",
+      "request_sha256": "d4b08133c667555b4731233f93d3d5339629773507d5a4bb87747b333396bb3a",
+      "generation": "8c48b97a11108efdfade24f340776a7bde62ba822feee27f1692abb6853dea11",
+      "receipt_sha256": "04e07f04dfbcc73933d54b5acea9bfe95b256334e8e8ade302712b449ae4aba3",
+      "output_bytes": 6923
+    },
+    "total_bytes": 6923,
+    "sha256": "bc272cbe95523e277864569af9be672d5bdfed1be2dda6b1b19c77f1effa28a8",
+    "offset": 0,
+    "next_offset": 0,
+    "has_more": true
+  }
+}

@@ -1,0 +1,22 @@
+Downloading numpy (15.8MiB)
+Downloading scipy (35.6MiB)
+ Downloaded numpy
+ Downloaded scipy
+Installed 6 packages in 27ms
+Traceback (most recent call last):
+  File "/tmp/hamon-s-1000/f9d34ab3778f4225a5179cedb7bda6b7/rible-frozen-tklmt6zw/research/qarr_powder_profile/forecast.py", line 58, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/tmp/hamon-s-1000/f9d34ab3778f4225a5179cedb7bda6b7/rible-frozen-tklmt6zw/research/qarr_powder_profile/forecast.py", line 28, in main
+    raw_bytes=[raw(n) for n in names];rows=[source_values(n,b,fn) for n,b in zip(names,raw_bytes)];t=np.array(angles(raw_bytes[0]))
+                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hamon-work/sessions/native-84c64eed12550b5850cd7ea81cfe62af75c00c044d4613b1222fab1b15915664/rible-frozen-tklmt6zw/research/qarr_powder_profile/acquisition.py", line 49, in source_values
+    assert counts==x,('native/PRN axis-matched count identity refused',name,sum(v!=w for v,w in zip(counts,x)))
+           ^^^^^^^^^
+AssertionError: ('native/PRN axis-matched count identity refused', 'cpd-1e', 2108)
+Traceback (most recent call last):
+  File "<stdin>", line 10, in <module>
+  File "<stdin>", line 3, in run
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['uv', 'run', '--no-project', '--python', '/usr/bin/python3', '--with', 'numpy==2.2.6', '--with', 'scipy==1.15.3', '--with', 'lmfit==1.3.4', '--', 'python', '/tmp/hamon-s-1000/f9d34ab3778f4225a5179cedb7bda6b7/rible-frozen-tklmt6zw/research/qarr_powder_profile/forecast.py', '/tmp/hamon-s-1000/f9d34ab3778f4225a5179cedb7bda6b7/rible-frozen-tklmt6zw/prevalue.json']' returned non-zero exit status 1.
