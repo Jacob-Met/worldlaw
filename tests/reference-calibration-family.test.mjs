@@ -54,7 +54,7 @@ test('the six-checkpoint receiver keeps one physical world and accepts reordered
   assert.equal(receive(s,p,['0','0','1/2']).nextRun.command,'z1');
   assert.deepEqual(receive(s,p,['0','0','100']).surviving,[]);
   const bad=structuredClone(p);bad.boundary.branches[1].worlds[0].drift='0';
-  assert.throws(()=>verify(s,bad),/differs/);
+  assert.throws(()=>verify(s,bad),/saved plan or boundary worlds differ/);
   s.catalog.laws[0].vertices.at(-1)[s.catalog.commands.indexOf('ref')]='1/2';
   assert.throws(()=>plan(s),/terminal rate identity/);
 });
