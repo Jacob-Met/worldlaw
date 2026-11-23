@@ -1,0 +1,1 @@
+The native directory census found only sample D in the four workbooks. Thus the forecast can compare pressures and fluid states on one shaly sandstone specimen. Sample C has no outcome panel in this release. This source qualification reads workbook schemas, row/column occupancy and text metadata, and leaves measured velocities out of output.

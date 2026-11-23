@@ -1,0 +1,56 @@
+{
+  "bytes": 49047,
+  "members": [
+    {
+      "bytes": 15121,
+      "crc": 1805859686,
+      "directory": false,
+      "method": 51,
+      "path": "Data/Indroduction to Dataset.docx"
+    },
+    {
+      "bytes": 13357,
+      "crc": 2194969262,
+      "directory": false,
+      "method": 51,
+      "path": "Data/Sample D_Seismic_Brine.xlsx"
+    },
+    {
+      "bytes": 13372,
+      "crc": 4028363237,
+      "directory": false,
+      "method": 51,
+      "path": "Data/Sample D_Seismic_Gas.xlsx"
+    },
+    {
+      "bytes": 10642,
+      "crc": 243099137,
+      "directory": false,
+      "method": 51,
+      "path": "Data/Sample D_Ultrasonic_Brine.xlsx"
+    },
+    {
+      "bytes": 10594,
+      "crc": 251676128,
+      "directory": false,
+      "method": 51,
+      "path": "Data/Sample D_Ultrasonic_Gas.xlsx"
+    },
+    {
+      "bytes": 105,
+      "crc": 3518715526,
+      "directory": false,
+      "method": 51,
+      "path": "Data/Sample Properties.txt"
+    },
+    {
+      "bytes": 0,
+      "crc": 0,
+      "directory": true,
+      "method": 48,
+      "path": "Data/"
+    }
+  ],
+  "scientific_member_values_opened": 0,
+  "sha256": "939bd8a15c38a6944810bae9a578f2c439c0fe3de29efa957751cde8bf5feb60"
+}
