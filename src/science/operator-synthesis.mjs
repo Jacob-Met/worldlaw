@@ -6,7 +6,7 @@ const terminals = {
   periodic: ['field','command','dx','dxx']
 };
 const unary = new Map([['sin',Math.sin],['cos',Math.cos],['abs',Math.abs],['tanh',Math.tanh]]);
-const spatial = new Set(['gradient','laplacian']);
+const spatial = new Set(['gradient','laplacian','thirdDerivative','biharmonic']);
 const binary = new Map([['add',(a,b)=>a+b],['mul',(a,b)=>a*b],['div',(a,b)=>b===0?NaN:a/b]]);
 export class EvolutionDomainError extends RangeError {
   constructor(reason) { super(reason); this.code=reason; }
@@ -25,28 +25,33 @@ function coordinates(kind, row) {
   const dx=(row.right-row.left)/(2*row.spacing);
   const dxx=(row.left-2*row.field+row.right)/(row.spacing**2);
   insist(Number.isFinite(dx)&&Number.isFinite(dxx),'Nonfinite spatial derivative');
-  return {field:row.field,command:row.command,left:row.left,right:row.right,spacing:row.spacing,dx,dxx};
+  return {field:row.field,command:row.command,left:row.left,right:row.right,spacing:row.spacing,left2:row.left2,right2:row.right2,dx,dxx};
 }
 function apply(op,a,b) {
   if (!Number.isFinite(a) || (binary.has(op) && !Number.isFinite(b))) return NaN;
   const value=unary.has(op)?unary.get(op)(a):binary.get(op)(a,b);
   return Number.isFinite(value)?value:NaN;
 }
-// Apply a pointwise potential to the three actually observed cell values.
-// No neighboring command or second ring of cells is supplied by this schema.
-function pointTriplet(tree,row,size) {
+// Apply the same pointwise expression at each observed cell of the requested stencil.
+function pointValues(tree,field,size) {
   insist(++size.count<=32,'Operator tree is too large');
-  if(tree==='field') return [row.left,row.field,row.right];
-  if(tree==='one') return [1,1,1];
+  if(tree==='field') return field;
+  if(tree==='one') return field.map(()=>1);
   insist(Array.isArray(tree)&&(unary.has(tree[0])?tree.length===2:binary.has(tree[0])&&tree.length===3),
     'Spatial potential must use only the field, constants and pointwise operators');
-  const a=pointTriplet(tree[1],row,size);
-  const b=tree.length===3?pointTriplet(tree[2],row,size):null;
+  const a=pointValues(tree[1],field,size);
+  const b=tree.length===3?pointValues(tree[2],field,size):null;
   return a.map((v,i)=>apply(tree[0],v,b?.[i]));
 }
 function spatialValue(op,tree,row,size) {
-  const [left,center,right]=pointTriplet(tree,row,size);
-  return op==='gradient'?(right-left)/(2*row.spacing):(left-2*center+right)/row.spacing**2;
+  const h=row.spacing;
+  if(op==='thirdDerivative'||op==='biharmonic') {
+    insist(Number.isFinite(row.left2)&&Number.isFinite(row.right2),'Second spatial neighbors required');
+    const [ll,l,c,r,rr]=pointValues(tree,[row.left2,row.left,row.field,row.right,row.right2],size);
+    return op==='thirdDerivative'?(rr-2*r+2*l-ll)/(2*h**3):(rr-4*r+6*c-4*l+ll)/h**4;
+  }
+  const [l,c,r]=pointValues(tree,[row.left,row.field,row.right],size);
+  return op==='gradient'?(r-l)/(2*h):(l-2*c+r)/h**2;
 }
 function isPointPotential(tree) {
   if(typeof tree==='string')return tree==='field'||tree==='one';
@@ -117,7 +122,7 @@ function columns(kind,xs,operators,maxNodes,maxCandidates) {
         for(const i of sizes[n-1]) {
           const tree=bank[i].tree;
           // The bare-field derivatives already have the one-node terminals dx and dxx.
-          if(typeof tree!=='string'&&isPointPotential(tree))
+          if((typeof tree!=='string'||(tree==='field'&&(op==='thirdDerivative'||op==='biharmonic')))&&isPointPotential(tree))
             record([op,tree],xs.map(row=>spatialValue(op,tree,row,{count:1})),level);
         }
         continue;
