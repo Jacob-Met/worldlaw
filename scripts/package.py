@@ -16,6 +16,19 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/acetal-pressure-vapor-transfer/README.md",
+    "research/acetal-pressure-vapor-transfer/forecast.json",
+    "research/acetal-pressure-vapor-transfer/forecast.py",
+    "research/acetal-pressure-vapor-transfer/independent.py",
+    "research/acetal-pressure-vapor-transfer/native-originals.json",
+    "research/acetal-pressure-vapor-transfer/phase_models.py",
+    "research/acetal-pressure-vapor-transfer/project.py",
+    "research/acetal-pressure-vapor-transfer/protocol.json",
+    "research/acetal-pressure-vapor-transfer/replay.py",
+    "research/acetal-pressure-vapor-transfer/score.json",
+    "research/acetal-pressure-vapor-transfer/score.py",
+    "research/acetal-pressure-vapor-transfer/stable.py",
+    "research/acetal-pressure-vapor-transfer/test_edge.py",
     "research/phobos_transit_radiometer/README.md",
     "research/phobos_transit_radiometer/acquisition.py",
     "research/phobos_transit_radiometer/channels-and-clocks.json",
