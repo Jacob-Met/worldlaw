@@ -1,0 +1,23 @@
+{
+  "protocol": "f12fd769fd0d078c5c02e431a781142ffde2835f",
+  "science": "39c14cd2516265a405530871fe4ab430054e2416",
+  "archive_sha256": "baa0b064c43728eb2a24e0d51fb4e9b4185f6f3cd4b8acd6c4e52ded409c7a65",
+  "archive_bytes": 509940,
+  "forecast_name": "forecast.json.gz",
+  "native_job": "p2-f747-wut-trained-eight-frozen-development-input-forecasts",
+  "request": "e57341b863b09caceaf468598d066694a011a410e81a1e8c7f6304125dfd9646",
+  "generation": "276411970f7fd939a409857f4472e380929a187588c688ad25180a02ad7d6fd1",
+  "owner": "node-f63e15fee38f87b459616c5a7973e32f",
+  "original_capture_sha256": "7f14a390afec867d398c4d56f235ad9fd81b1de8969e613121d688615663bf3c",
+  "original_stdout": "WORK_DIR /tmp/hamon-s-1000/27ab516795ee4e0b8f7eeacf7cff5d6b/p2-wut-forecast-IqwmudjZ\nTRAIN 0 {'nominal': 5841, 'seen': 469, 'donors': 461, 'paired_targets': 461}\nTRAIN 1 {'nominal': 5841, 'seen': 480, 'donors': 470, 'paired_targets': 470}\nTRAIN 2 {'nominal': 5841, 'seen': 559, 'donors': 555, 'paired_targets': 555}\nTRAIN 3 {'nominal': 5841, 'seen': 550, 'donors': 530, 'paired_targets': 530}\nTRAIN 4 {'nominal': 5841, 'seen': 484, 'donors': 478, 'paired_targets': 478}\nTRAIN 5 {'nominal': 5841, 'seen': 466, 'donors': 442, 'paired_targets': 442}\nTRAIN 6 {'nominal': 5841, 'seen': 416, 'donors': 400, 'paired_targets': 400}\nTRAIN 7 {'nominal': 5841, 'seen': 591, 'donors': 565, 'paired_targets': 565}\nTRAIN 8 {'nominal': 5841, 'seen': 592, 'donors': 573, 'paired_targets': 573}\nTRAIN 9 {'nominal': 5841, 'seen': 541, 'donors': 521, 'paired_targets': 521}\nTRAIN 10 {'nominal': 5841, 'seen': 526, 'donors': 513, 'paired_targets': 513}\nTRAIN 11 {'nominal': 5841, 'seen': 533, 'donors': 519, 'paired_targets': 519}\nFORECAST_LOCK {\"bytes\": 509940, \"name\": \"forecast.json.gz\", \"sha256\": \"baa0b064c43728eb2a24e0d51fb4e9b4185f6f3cd4b8acd6c4e52ded409c7a65\"}\nTRAIN_MODEL {\"center\": [-976.7392512986911, 169.00638016147607, 0.006335205843798369, 3.5811241040573756e-06], \"coef\": [[0.0007313920343880785, 0.0007248280795932953], [-7.825989088706769e-05, -8.773855276487269e-05], [3.053242519353574e-06, 2.24038147116145e-05], [0.005446681468500742, 0.005467555101570789], [0.0008785360208673157, -0.0010925219091351404]], \"rank\": 5, \"robust\": [[0.0007191167873690338, 0.0007171760671638224], [-6.270911081309284e-05, -5.072166707329731e-05], [1.0643061334044898e-06, 1.0280030529078983e-05], [0.005444872035752657, 0.005443511079419926], [0.000780117180103244, -0.0011439752091116878]], \"scale\": [30548.48196377615, 18606.108005179372, 0.04596226067267813, 0.0011283442707177263], \"singular\": [98.22401439546489, 77.96262714105876, 77.63375554486593, 77.30723390144466, 49.045523259631764], \"thresholds\": [0.003241187515325732, 0.0033187585650679466], \"v\": 0.11764977913242428, \"w\": 0.8733845216366514} ELIGIBLE 2717 SEEN 2830\n",
+  "stage": "development",
+  "training_hours": [
+    0,
+    11
+  ],
+  "development_hours": [
+    12,
+    17
+  ],
+  "target_fields_decoded_for_development": false
+}

@@ -86,7 +86,7 @@ function prepare(input){
 
 // The lower conditions hold at every supplied vertex, hence throughout each hull.
 // The upper construction needs four named rate projections in each of those hulls.
-function bindRoles(cat,spend){
+export function bindGroupedRateRoles(cat,spend){
   const ids=actions.map(c=>cat.commands.indexOf(c));
   need(ids.every(i=>i>=0),'catalog omits a calibration command');
   const projected=cat.vertices.map(vertices=>vertices.map(vertex=>{spend();return ids.map(i=>vertex[i]);}));
@@ -167,7 +167,7 @@ export function certifyReferenceCalibration(input){
   const allRatios=source.schema===allDwellSchema;
   const schema=allRatios?allDwellProofSchema:(source.schema===sourceSchema?proofSchema:dwellProofSchema);
   try{
-    const roles=bindRoles(cat,work.spend);
+    const roles=bindGroupedRateRoles(cat,work.spend);
     need(roles[0].family!==roles[1].family,'the two physical roles must use different families');
     const radius=dwellRadius(m,k),least=leastReferences(cat.error,k,allRatios);
     const boundary=boundaryWorlds(cat,roles,m,k,work.spend);
