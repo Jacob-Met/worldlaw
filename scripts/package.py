@@ -16,6 +16,16 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/martins-compression-work/README.md",
+    "research/martins-compression-work/comparison.json",
+    "research/martins-compression-work/controls.py",
+    "research/martins-compression-work/cumulant_screen.py",
+    "research/martins-compression-work/first-opening-receipt.json",
+    "research/martins-compression-work/independent.py",
+    "research/martins-compression-work/native-receipts.json",
+    "research/martins-compression-work/protocol.json",
+    "research/martins-compression-work/replay.py",
+    "research/martins-compression-work/source_roles.py",
     "research/hohenbrink-drying-conductivity/README.md",
     "research/hohenbrink-drying-conductivity/capillary_transport.py",
     "research/hohenbrink-drying-conductivity/controls.py",
