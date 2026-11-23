@@ -70,3 +70,18 @@ test('large finite trajectory differences retain a finite RMS separation',()=>{
   const rms=Math.hypot(...Array.from({length:11},(_,i)=>Math.cosh(40*i)-1))/Math.sqrt(11);
   assert.ok(Math.abs(plan.ranked[0].minimumSeparation/rms-1)<1e-10);
 });
+
+test('equivalent symbolic affine expressions retain an exact observational alias',()=>{
+  const base=model(-4,0,0,1);
+  const represented={...base,terms:[
+    {tree:['div',['mul','position',['add','one','one']],['add','one','one']],weight:-4},
+    {tree:['mul','command','one'],weight:1},
+    {tree:['sin','command'],weight:1},
+    {tree:['sin','command'],weight:-1}
+  ]};
+  for (const offset of [0,.5,1]) {
+    const result=designEvolutionExcitation([base,represented],[course('alias',offset,[1,0],.4,20)]);
+    assert.deepEqual(result.unresolvedPairs,[[0,1]]);
+    assert.equal(result.ranked[0].minimumSeparation,0);
+  }
+});
