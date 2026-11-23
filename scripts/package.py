@@ -16,6 +16,11 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/waissman-graphene-thermal-secants/README.md",
+    "research/waissman-graphene-thermal-secants/figure-manifest.json",
+    "research/waissman-graphene-thermal-secants/native-originals.json",
+    "research/waissman-graphene-thermal-secants/project_schema.py",
+    "research/waissman-graphene-thermal-secants/secant_witness.py",
     "research/hart-two-station-pipe-transfer/README.md",
     "research/hart-two-station-pipe-transfer/advection.cpp",
     "research/hart-two-station-pipe-transfer/full-worst.npz.zlib",

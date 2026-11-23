@@ -1,0 +1,202 @@
+{
+  "validation_refusal": {
+    "operation": "f747-p2-waissman-source-manifest-first",
+    "receipt": [
+      {
+        "type": "text",
+        "text": "validating \"arguments\": validating root: validating /properties/command: unexpected additional properties [\"timeout_ms\"]"
+      }
+    ],
+    "worker_run": false
+  },
+  "originals": [
+    {
+      "job": "p2-f747-waissman-nonlocal-thermometry-author-catalog-and-instrument-metadata",
+      "receipt": {
+        "command_id": "p2-f747-waissman-nonlocal-thermometry-author-catalog-and-instrument-metadata",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T08:52:08.157688298Z",
+        "generation": "64e299b11fb64b827c4ad9dee015942eb752821b22487c261ea0a247e3493240",
+        "request_sha256": "386c0deeec318c064c11ae049dd9883af291b2a41a06caa58de27bd969b68173",
+        "resource_process": {
+          "boot_id": "d4e223d1-993d-4e09-91fa-88b034ba6946",
+          "pid": 2700451,
+          "start_ticks": 57054235
+        },
+        "resource_usage": {
+          "max_rss_bytes": 22982656,
+          "max_rss_scope": "largest_waited_process",
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.013283,
+          "user_cpu_seconds": 0.060081
+        },
+        "runner_pid": 2700443,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T08:52:07.352165365Z",
+        "state": "completed"
+      },
+      "worker": "node-71c3775574da4b07241725add268e638",
+      "full": {
+        "owner": "node-71c3775574da4b07241725add268e638",
+        "command_id": "p2-f747-waissman-nonlocal-thermometry-author-catalog-and-instrument-metadata",
+        "request_sha256": "386c0deeec318c064c11ae049dd9883af291b2a41a06caa58de27bd969b68173",
+        "generation": "64e299b11fb64b827c4ad9dee015942eb752821b22487c261ea0a247e3493240",
+        "receipt_sha256": "330012ed315545a05fbd4294c9dbae78bb5991276e284ddb936c0dc4f92d4178",
+        "output_bytes": 3821
+      },
+      "stdout_bytes": 3821,
+      "sha256": "e9b55d857c9acd9010923b78c64610a4db728627b4e38ed8ce364b8b766a307e"
+    },
+    {
+      "job": "p2-f747-waissman-sixteen-fig-graphics-labels-and-shapes-only",
+      "receipt": {
+        "command_id": "p2-f747-waissman-sixteen-fig-graphics-labels-and-shapes-only",
+        "error": "exit status 1",
+        "exit_code": 1,
+        "finished_at": "2026-11-23T08:53:16.172504877Z",
+        "generation": "2024d68724c0f4c482be9e4c538a1239d5352f6389c2be1438bd1962c7bd7f66",
+        "request_sha256": "30ceeada5744e67b78afb3b97501a245fc492623fa3d6297210835220a0679ef",
+        "resource_process": {
+          "boot_id": "041d0f9e-2eb7-43b7-af92-475c2001084a",
+          "pid": 3000361,
+          "start_ticks": 45887364
+        },
+        "resource_usage": {
+          "max_rss_bytes": 23560192,
+          "max_rss_scope": "largest_waited_process",
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.00794,
+          "user_cpu_seconds": 0.131408
+        },
+        "runner_pid": 3000353,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T08:53:14.6411866Z",
+        "state": "failed"
+      },
+      "worker": "node-2c6923b3148e63391d0e8d72e866360a",
+      "full": {
+        "owner": "node-2c6923b3148e63391d0e8d72e866360a",
+        "command_id": "p2-f747-waissman-sixteen-fig-graphics-labels-and-shapes-only",
+        "request_sha256": "30ceeada5744e67b78afb3b97501a245fc492623fa3d6297210835220a0679ef",
+        "generation": "2024d68724c0f4c482be9e4c538a1239d5352f6389c2be1438bd1962c7bd7f66",
+        "receipt_sha256": "34b42cc9bedc9c641539ebbc53908812e962ec0f37286337f51ba2c6cbd8779e",
+        "output_bytes": 354
+      },
+      "stdout_bytes": 354,
+      "sha256": "984c5fb53d27a4543baaa6505e865480c00fc2df5922b659aacebc89ea1669bd"
+    },
+    {
+      "job": "p2-f747-waissman-fig-empty-matrix-schema-successor",
+      "receipt": {
+        "command_id": "p2-f747-waissman-fig-empty-matrix-schema-successor",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T08:54:25.666097154Z",
+        "generation": "ea910df143324f10b0c138e2cdb02653a73cacfcb61df6c2dc1af5434c5f66e8",
+        "request_sha256": "baae5612b101c5b20603c7e27878f181ed90ab19f325f2f2173036f2902b70ef",
+        "resource_process": {
+          "boot_id": "7a2e5e7d-8da6-490c-8c31-1d771998c9a7",
+          "pid": 2833783,
+          "start_ticks": 90957730
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 23973888,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "python": 0.10999999999999999,
+              "shell": 0
+            },
+            "distinct_processes": 2,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 125,
+            "read_errors": 0,
+            "saturated_snapshots": 0,
+            "snapshots": 125
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.04054,
+          "user_cpu_seconds": 0.14364
+        },
+        "runner_pid": 2833771,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T08:54:13.18204396Z",
+        "state": "completed",
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/cursor-swiss-env",
+          "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+        }
+      },
+      "worker": "node-5d5f9bc8480019cba71fd5565fd2fbf3",
+      "full": {
+        "owner": "node-5d5f9bc8480019cba71fd5565fd2fbf3",
+        "command_id": "p2-f747-waissman-fig-empty-matrix-schema-successor",
+        "request_sha256": "baae5612b101c5b20603c7e27878f181ed90ab19f325f2f2173036f2902b70ef",
+        "generation": "ea910df143324f10b0c138e2cdb02653a73cacfcb61df6c2dc1af5434c5f66e8",
+        "receipt_sha256": "886d6a734a1b960d7e94f4cc9d8cd18115be3fd375833d6a00be0ae97d65acf6",
+        "output_bytes": 7725
+      },
+      "stdout_bytes": 7725,
+      "sha256": "3d3e4fa8ebf1a22fdede0e83b908a29d77d515770849bc4f9c06340a27099923"
+    },
+    {
+      "job": "p2-f747-waissman-exact-finite-secant-nullspace-before-ordinates",
+      "receipt": {
+        "script_observation_version": 3,
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/cursor-swiss-env",
+          "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "state": "drained",
+            "adopted_waits": 0
+          },
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "interval_milliseconds": 100,
+            "cpu_seconds": {},
+            "snapshots": 1,
+            "nonempty_snapshots": 1,
+            "distinct_processes": 1,
+            "read_errors": 0,
+            "saturated_snapshots": 0
+          },
+          "source": "linux_rusage",
+          "user_cpu_seconds": 0.020033,
+          "system_cpu_seconds": 0.004814,
+          "max_rss_bytes": 20705280,
+          "max_rss_scope": "largest_waited_process"
+        },
+        "resource_process": {
+          "pid": 392267,
+          "start_ticks": 52654056,
+          "boot_id": "ac92c782-ca8c-4e8f-b850-261e3213a257"
+        },
+        "command_id": "p2-f747-waissman-exact-finite-secant-nullspace-before-ordinates",
+        "request_sha256": "c5a33bbe15e35743d149c7f6e1af6f58964c8929e6e7295eeabeeecdf13ef158",
+        "generation": "db5569e1a9f447ee6cc56f6d6180538fa73a060afd1f20292bb456927649a27b",
+        "state": "completed",
+        "runner_pid": 392256,
+        "started_at": "2026-11-23T08:57:18.950380523Z",
+        "finished_at": "2026-11-23T08:57:19.035526885Z",
+        "exit_code": 0
+      },
+      "worker": "node-4e105730de5e78651a704e31c3991a3e",
+      "full": {
+        "owner": "node-4e105730de5e78651a704e31c3991a3e",
+        "command_id": "p2-f747-waissman-exact-finite-secant-nullspace-before-ordinates",
+        "request_sha256": "c5a33bbe15e35743d149c7f6e1af6f58964c8929e6e7295eeabeeecdf13ef158",
+        "generation": "db5569e1a9f447ee6cc56f6d6180538fa73a060afd1f20292bb456927649a27b",
+        "receipt_sha256": "0f8e3a5be2ed4f2520cfc1db575365a2dd705a410fe7c9b54b12c9eb2ac51907",
+        "output_bytes": 1060
+      },
+      "stdout_bytes": 1060,
+      "sha256": "066bb096ddb231669ef21f8c3bcdf44163e04afb8170baaa259637770b4d17f8"
+    }
+  ]
+}
