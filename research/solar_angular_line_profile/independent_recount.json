@@ -1,0 +1,120 @@
+{
+  "job": "p3-f747-solar-stdlibrary-cold-120-arm-scalar-recount",
+  "binding": {
+    "mandate": "m-frontier-research-gpu",
+    "forward_resource_budget": true,
+    "forward_start_caller": true,
+    "caller": {
+      "agent": "astra62-p3-f747f5728172",
+      "attribution": "caller_named"
+    },
+    "session_id": "p3-f747-solar-stdlibrary-cold-120-arm-scalar-recount",
+    "job_id": "p3-f747-solar-stdlibrary-cold-120-arm-scalar-recount",
+    "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+    "command_id": "p3-f747-solar-stdlibrary-cold-120-arm-scalar-recount",
+    "start_operation_id": "placement-f7ad0c81193ca35258ae7ab12e6bf8e417efe3faa20f3fbf",
+    "arguments_sha256": "34586a0bd7e04212c2d9cf26a4a816a5382584298cb35841070a5b85969ece66",
+    "requirements": {
+      "retain_output_bytes": 65536,
+      "retain_full_output": true,
+      "cpu_cores": 1,
+      "git_repositories": [
+        "Jacob-Met/worldlaw"
+      ],
+      "executables": [
+        "git",
+        "python3"
+      ],
+      "memory_bytes": 450000000,
+      "scratch_bytes": 400000000
+    },
+    "created_at": "2026-11-23T09:20:00.276736949Z",
+    "active": false
+  },
+  "receipt": {
+    "script_observation_version": 3,
+    "working_tree_context": {
+      "repository": "github.com/Jacob-Met/cursor-swiss-env",
+      "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+    },
+    "resource_usage": {
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "interval_milliseconds": 100,
+        "cpu_seconds": {
+          "git": 1.0799999999999998,
+          "other": 0.08,
+          "python": 0.02
+        },
+        "snapshots": 18,
+        "nonempty_snapshots": 18,
+        "distinct_processes": 6,
+        "read_errors": 1,
+        "saturated_snapshots": 0
+      },
+      "source": "linux_rusage",
+      "user_cpu_seconds": 1.128677,
+      "system_cpu_seconds": 0.201838,
+      "max_rss_bytes": 23982080,
+      "max_rss_scope": "largest_waited_process"
+    },
+    "resource_process": {
+      "pid": 1628913,
+      "start_ticks": 54913655,
+      "boot_id": "1ca46c53-d5e4-4b04-a9c4-fed66e762765"
+    },
+    "command_id": "p3-f747-solar-stdlibrary-cold-120-arm-scalar-recount",
+    "request_sha256": "7566a36bd5ebf1bee4d785755da782dbf7f64ebe1f30ce15f2b8742cd8e835cd",
+    "generation": "d86d40555cc10dfac2e28b31734a558d4dbfb9006bfb8ee8763146dced1b1620",
+    "state": "completed",
+    "runner_pid": 1628899,
+    "started_at": "2026-11-23T09:20:00.456782015Z",
+    "finished_at": "2026-11-23T09:20:02.225628145Z",
+    "exit_code": 0
+  },
+  "result": {
+    "author_gate": false,
+    "checked_daily": 15,
+    "checked_observations": 10584,
+    "checked_residuals": 52920,
+    "checked_rmse": 480,
+    "daily": [
+      [
+        0.005653364001022478,
+        0.005448396777244574,
+        0.005451840895201081,
+        0.008184749701092718,
+        0.005777758582854061
+      ],
+      [
+        0.0055745091618519035,
+        0.005367225978737456,
+        0.005370048787498496,
+        0.008125396807694746,
+        0.005668754955195801
+      ],
+      [
+        0.005618963579477583,
+        0.005412801984024482,
+        0.005415517478229657,
+        0.008163585198581421,
+        0.005707263157986657
+      ]
+    ],
+    "gate": false,
+    "max_metric_delta": 2.6020852139652106e-17,
+    "max_raw_delta": 1.7763568394002505e-15,
+    "mixed_rows": 0,
+    "nonstandard": true,
+    "worst": [
+      0,
+      4,
+      1.9,
+      0.009820451656136764
+    ]
+  }
+}

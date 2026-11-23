@@ -1,0 +1,82 @@
+{
+  "job": "p3-f747-solar-fixed-120-forecasts-three-day-pepsi-comparison",
+  "binding": {
+    "mandate": "m-frontier-research-gpu",
+    "forward_resource_budget": true,
+    "forward_start_caller": true,
+    "caller": {
+      "agent": "astra62-p3-f747f5728172",
+      "attribution": "caller_named"
+    },
+    "session_id": "p3-f747-solar-fixed-120-forecasts-three-day-pepsi-comparison",
+    "job_id": "p3-f747-solar-fixed-120-forecasts-three-day-pepsi-comparison",
+    "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+    "command_id": "p3-f747-solar-fixed-120-forecasts-three-day-pepsi-comparison",
+    "start_operation_id": "placement-ad970d46e9d94580085997409cba43781ba787359e24a3b3",
+    "arguments_sha256": "ace6a5bba092841dace897508258662d7b43a4bfc1cd8d6f7a65df605be006e5",
+    "requirements": {
+      "retain_output_bytes": 65536,
+      "retain_full_output": true,
+      "cpu_cores": 1,
+      "git_repositories": [
+        "Jacob-Met/worldlaw"
+      ],
+      "executables": [
+        "git",
+        "python3",
+        "uv"
+      ],
+      "memory_bytes": 800000000,
+      "scratch_bytes": 400000000
+    },
+    "created_at": "2026-11-23T09:15:00.596655418Z",
+    "active": false
+  },
+  "receipt": {
+    "script_observation_version": 3,
+    "working_tree_context": {
+      "repository": "github.com/Jacob-Met/cursor-swiss-env",
+      "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+    },
+    "resource_usage": {
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "interval_milliseconds": 100,
+        "cpu_seconds": {
+          "git": 0.9199999999999999,
+          "other": 0.07,
+          "python": 0.05
+        },
+        "snapshots": 41,
+        "nonempty_snapshots": 40,
+        "distinct_processes": 7,
+        "read_errors": 2,
+        "saturated_snapshots": 0
+      },
+      "source": "linux_rusage",
+      "user_cpu_seconds": 1.1789939999999999,
+      "system_cpu_seconds": 0.254183,
+      "max_rss_bytes": 87420928,
+      "max_rss_scope": "largest_waited_process"
+    },
+    "resource_process": {
+      "pid": 1626888,
+      "start_ticks": 54883703,
+      "boot_id": "1ca46c53-d5e4-4b04-a9c4-fed66e762765"
+    },
+    "command_id": "p3-f747-solar-fixed-120-forecasts-three-day-pepsi-comparison",
+    "request_sha256": "632810094b4484aed0116c17b1e010e45822f7ad842cdc0a960712db71ca89c1",
+    "generation": "aeddbdf64be7ae3e67ed50100efb5025df53420965c6dd80c122d0e44700eeed",
+    "state": "failed",
+    "runner_pid": 1626875,
+    "started_at": "2026-11-23T09:15:00.929892445Z",
+    "finished_at": "2026-11-23T09:15:04.983484754Z",
+    "exit_code": 1,
+    "error": "exit status 1"
+  },
+  "output": "Traceback (most recent call last):\n  File \"/home/ubuntu/hamon-work/sessions/native-80e489c85aa2c3aea68023534ca7485a9e1351da023a624c1de366820366a5fd/solar-angular-common-3iscnfx8/research/solar_angular_line_profile/common_score.py\", line 75, in <module>\n    if __name__==\"__main__\":main()\n                            ^^^^^^\n  File \"/home/ubuntu/hamon-work/sessions/native-80e489c85aa2c3aea68023534ca7485a9e1351da023a624c1de366820366a5fd/solar-angular-common-3iscnfx8/research/solar_angular_line_profile/common_score.py\", line 63, in main\n    if not set(flags)<=set(\"TF\"):raise ValueError((\"unknown FITS logical\",flags))\n                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: ('unknown FITS logical', {'\\x01': 31})\nTraceback (most recent call last):\n  File \"<stdin>\", line 11, in <module>\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['uv', 'run', '--no-project', '--with', 'numpy==2.2.6', '--python', '/usr/bin/python3', '--', 'python', 'common_score.py']' returned non-zero exit status 1.\n"
+}
