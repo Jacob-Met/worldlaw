@@ -1,0 +1,150 @@
+[
+  {
+    "job": "p3-f747-solar-eight-fe-14-angle-only-five-role-forecast",
+    "binding": {
+      "mandate": "m-frontier-research-gpu",
+      "forward_resource_budget": true,
+      "forward_start_caller": true,
+      "caller": {
+        "agent": "astra62-p3-f747f5728172",
+        "attribution": "caller_named"
+      },
+      "session_id": "p3-f747-solar-eight-fe-14-angle-only-five-role-forecast",
+      "job_id": "p3-f747-solar-eight-fe-14-angle-only-five-role-forecast",
+      "owner": "node-7ac7c17334e51bbda1ad9465fb7ed513",
+      "command_id": "p3-f747-solar-eight-fe-14-angle-only-five-role-forecast",
+      "start_operation_id": "placement-519f0514d473bbf013449b05d6cd77d5dccc062a42982f46",
+      "arguments_sha256": "f0fe12849b750e8947511422af350625e2a3257697b34b352092271e910fceee",
+      "requirements": {
+        "retain_output_bytes": 65536,
+        "retain_full_output": true,
+        "cpu_cores": 1,
+        "git_repositories": [
+          "Jacob-Met/worldlaw"
+        ],
+        "executables": [
+          "git",
+          "python3",
+          "uv"
+        ],
+        "memory_bytes": 1000000000,
+        "scratch_bytes": 700000000
+      },
+      "created_at": "2026-11-23T08:58:55.480779214Z",
+      "active": false
+    },
+    "receipt": {
+      "command_id": "p3-f747-solar-eight-fe-14-angle-only-five-role-forecast",
+      "error": "exit status 1",
+      "exit_code": 1,
+      "finished_at": "2026-11-23T08:59:25.212555247Z",
+      "generation": "cf7c104ef96f0022cebd021b231825a30d8b222b96fe1e236a46c3f9a32b5450",
+      "request_sha256": "fc2b62edfc8f81c9ccb30b4e6da5b3438aacee9f551c332a5ea8604a473f7cd4",
+      "resource_process": {
+        "boot_id": "a286b03b-5863-41e5-9263-6ec338ade216",
+        "pid": 4004853,
+        "start_ticks": 110131915
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 45473792,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "git": 0,
+            "other": 0.19,
+            "python": 0.7400000000000004
+          },
+          "distinct_processes": 23,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 293,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 293
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.233535,
+        "user_cpu_seconds": 1.036962
+      },
+      "runner_pid": 4004842,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T08:58:55.871401546Z",
+      "state": "failed"
+    },
+    "output": "Downloading numpy (15.8MiB)\n Downloaded numpy\nInstalled 1 package in 12ms\nTraceback (most recent call last):\n  File \"/tmp/hamon-s-1000/b24a0504b7b64a45ac43035599fc64f3/solar-angular-source-z3x2bamk/forecast.py\", line 62, in <module>\n    main()\n  File \"/tmp/hamon-s-1000/b24a0504b7b64a45ac43035599fc64f3/solar-angular-source-z3x2bamk/forecast.py\", line 19, in main\n    source,auth,receipts=acquire(proto)\n                         ^^^^^^^^^^^^^^\n  File \"/home/ubuntu/hamon-work/sessions/native-8ea7c55100684c23a3db9303393b5387d9ba15238773a1717448b63e3d14f3fb/solar-angular-source-z3x2bamk/acquisition.py\", line 112, in acquire\n    source=[f.result() for f in futures]\n            ^^^^^^^^^^\n  File \"/usr/lib/python3.12/concurrent/futures/_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/concurrent/futures/_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"/usr/lib/python3.12/concurrent/futures/thread.py\", line 58, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/hamon-work/sessions/native-8ea7c55100684c23a3db9303393b5387d9ba15238773a1717448b63e3d14f3fb/solar-angular-source-z3x2bamk/acquisition.py\", line 79, in read_mu\n    raise ValueError((\"nonfinite source flux\",mu,i,int(np.count_nonzero(~np.isfinite(y)))))\nValueError: ('nonfinite source flux', 0.2, 2102778, 22)\nTraceback (most recent call last):\n  File \"<stdin>\", line 10, in <module>\n  File \"<stdin>\", line 3, in go\n  File \"/usr/lib/python3.12/subprocess.py\", line 571, in run\n    raise CalledProcessError(retcode, process.args,\nsubprocess.CalledProcessError: Command '['uv', 'run', '--no-project', '--with', 'numpy==2.2.6', '--python', '/usr/bin/python3', '--', 'python', '/tmp/hamon-s-1000/b24a0504b7b64a45ac43035599fc64f3/solar-angular-source-z3x2bamk/forecast.py']' returned non-zero exit status 1.\n"
+  },
+  {
+    "job": "p3-f747-solar-published-2023-112-source-validity-bitspans",
+    "binding": {
+      "mandate": "m-frontier-research-gpu",
+      "forward_resource_budget": true,
+      "forward_start_caller": true,
+      "caller": {
+        "agent": "astra62-p3-f747f5728172",
+        "attribution": "caller_named"
+      },
+      "session_id": "p3-f747-solar-published-2023-112-source-validity-bitspans",
+      "job_id": "p3-f747-solar-published-2023-112-source-validity-bitspans",
+      "owner": "node-e7d99d4bbb140f458a81403a6b1e5f48",
+      "command_id": "p3-f747-solar-published-2023-112-source-validity-bitspans",
+      "start_operation_id": "placement-b52a25d35c1d36001d951ccecc93b6e087cfa304afa9b73b",
+      "arguments_sha256": "31116b0a7d8a84452528b3dda733231009a3f3fb07772a6b7a6c7f40327a9174",
+      "requirements": {
+        "retain_output_bytes": 65536,
+        "retain_full_output": true,
+        "cpu_cores": 1,
+        "executables": [
+          "python3"
+        ],
+        "memory_bytes": 300000000
+      },
+      "created_at": "2026-11-23T09:05:26.087328515Z",
+      "active": false
+    },
+    "receipt": {
+      "command_id": "p3-f747-solar-published-2023-112-source-validity-bitspans",
+      "exit_code": 0,
+      "finished_at": "2026-11-23T09:05:41.324248531Z",
+      "generation": "29cffd724dc4eb8111b735da20c62c1094fc70e95b43e4746eb7ea643453c78d",
+      "request_sha256": "066f9edd6d83e89a2d4de6d27e94df41c34955bab4546b65265e878662aa1e26",
+      "resource_process": {
+        "boot_id": "f7f54d56-60b3-4d98-bbef-7373cd0e257e",
+        "pid": 1848973,
+        "start_ticks": 112396318
+      },
+      "resource_usage": {
+        "descendant_wait": {
+          "adopted_waits": 0,
+          "state": "drained"
+        },
+        "max_rss_bytes": 25939968,
+        "max_rss_scope": "largest_waited_process",
+        "process_families": {
+          "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+          "cpu_seconds": {
+            "python": 0.5200000000000002
+          },
+          "distinct_processes": 1,
+          "interval_milliseconds": 100,
+          "nonempty_snapshots": 150,
+          "read_errors": 0,
+          "saturated_snapshots": 0,
+          "snapshots": 150
+        },
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.064546,
+        "user_cpu_seconds": 0.47334
+      },
+      "runner_pid": 1848962,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T09:05:26.367824334Z",
+      "state": "completed"
+    },
+    "native_output_bytes": 18917,
+    "native_stdout_sha256": "271cc6f1d8ff8973c1e899a610eebf34375340b0ce19291e69db491dde1860ef"
+  }
+]

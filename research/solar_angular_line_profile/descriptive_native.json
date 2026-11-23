@@ -1,0 +1,97 @@
+{
+  "job": "p3-f747-solar-raw-logical-byte-all-24-descriptive-receiver",
+  "binding": {
+    "mandate": "m-frontier-research-gpu",
+    "forward_resource_budget": true,
+    "forward_start_caller": true,
+    "caller": {
+      "agent": "astra62-p3-f747f5728172",
+      "attribution": "caller_named"
+    },
+    "session_id": "p3-f747-solar-raw-logical-byte-all-24-descriptive-receiver",
+    "job_id": "p3-f747-solar-raw-logical-byte-all-24-descriptive-receiver",
+    "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+    "command_id": "p3-f747-solar-raw-logical-byte-all-24-descriptive-receiver",
+    "start_operation_id": "placement-2f476d5c60014f5dc47adf523b798b02c9cded3fec21fe01",
+    "arguments_sha256": "c8332e9fd44cb8978f34772c4e4e7b6d52ca7f81caf15bf3318bf02365f195cd",
+    "requirements": {
+      "retain_output_bytes": 65536,
+      "retain_full_output": true,
+      "cpu_cores": 1,
+      "git_repositories": [
+        "Jacob-Met/worldlaw"
+      ],
+      "executables": [
+        "git",
+        "python3",
+        "uv"
+      ],
+      "memory_bytes": 800000000,
+      "scratch_bytes": 400000000
+    },
+    "created_at": "2026-11-23T09:17:01.242942756Z",
+    "active": false
+  },
+  "receipt": {
+    "command_id": "p3-f747-solar-raw-logical-byte-all-24-descriptive-receiver",
+    "exit_code": 0,
+    "finished_at": "2026-11-23T09:17:08.565856774Z",
+    "generation": "3eb731370a4d552f127f5572edb6c85b2d354c52cb4359896028a9e015039fff",
+    "request_sha256": "37f664c54744b4b243a4160f133fa6e7bb55e8729c0671a4e525e78fc6b88bfb",
+    "resource_process": {
+      "boot_id": "1ca46c53-d5e4-4b04-a9c4-fed66e762765",
+      "pid": 1627841,
+      "start_ticks": 54895755
+    },
+    "resource_usage": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 111710208,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "git": 1.03,
+          "other": 0.060000000000000005,
+          "python": 0.39
+        },
+        "distinct_processes": 7,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 71,
+        "read_errors": 1,
+        "saturated_snapshots": 0,
+        "snapshots": 71
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.381193,
+      "user_cpu_seconds": 1.331211
+    },
+    "runner_pid": 1627827,
+    "script_observation_version": 3,
+    "started_at": "2026-11-23T09:17:01.447270481Z",
+    "state": "completed",
+    "working_tree_context": {
+      "repository": "github.com/Jacob-Met/cursor-swiss-env",
+      "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+    }
+  },
+  "complete_stdout": {
+    "job_id": "p3-f747-solar-raw-logical-byte-all-24-descriptive-receiver",
+    "state": "captured",
+    "source": {
+      "owner": "node-c18cbb0f77315407f24848ddfe652c96",
+      "command_id": "p3-f747-solar-raw-logical-byte-all-24-descriptive-receiver",
+      "request_sha256": "37f664c54744b4b243a4160f133fa6e7bb55e8729c0671a4e525e78fc6b88bfb",
+      "generation": "3eb731370a4d552f127f5572edb6c85b2d354c52cb4359896028a9e015039fff",
+      "receipt_sha256": "a1f8d4e772c220f4095255c46383084e255bd39044c7a5b2ba862118d96249b1",
+      "output_bytes": 184190
+    },
+    "total_bytes": 184190,
+    "sha256": "8cf4a13dbed2b6f941284372dbcd1ffa60a2d9c06cdfad5f2d802765501ea98b",
+    "offset": 0,
+    "next_offset": 0,
+    "has_more": true
+  }
+}
