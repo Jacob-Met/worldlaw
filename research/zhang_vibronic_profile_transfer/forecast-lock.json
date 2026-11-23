@@ -1,0 +1,54 @@
+{
+  "job": "p3-f747-zhang-both-hosts-freeze100-forecast-arrays",
+  "owner": "node-49ce35aee5f5ac3713107652d4b7fb2c",
+  "generation": "e59a2587d93fd805e78e2d789ddcbf78bf4a971dd48df394b222d349af3cf995",
+  "request_sha256": "d466b7231b3aac78ccf40462719090939526d3ca936e1250799324607cc58078",
+  "receipt": {
+    "command_id": "p3-f747-zhang-both-hosts-freeze100-forecast-arrays",
+    "exit_code": 0,
+    "finished_at": "2026-11-23T18:54:54.319858968Z",
+    "generation": "e59a2587d93fd805e78e2d789ddcbf78bf4a971dd48df394b222d349af3cf995",
+    "request_sha256": "d466b7231b3aac78ccf40462719090939526d3ca936e1250799324607cc58078",
+    "resource_process": {
+      "boot_id": "bb7f1afb-49b2-4296-b013-0a6bafd5f1b8",
+      "pid": 3351559,
+      "start_ticks": 81853595
+    },
+    "resource_usage": {
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "max_rss_bytes": 110903296,
+      "max_rss_scope": "largest_waited_process",
+      "process_families": {
+        "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+        "cpu_seconds": {
+          "git": 2,
+          "other": 0.08,
+          "python": 0.21000000000000002
+        },
+        "distinct_processes": 7,
+        "interval_milliseconds": 100,
+        "nonempty_snapshots": 80,
+        "read_errors": 2,
+        "saturated_snapshots": 0,
+        "snapshots": 80
+      },
+      "source": "linux_rusage",
+      "system_cpu_seconds": 0.372244,
+      "user_cpu_seconds": 2.2186500000000002
+    },
+    "runner_pid": 3351549,
+    "script_observation_version": 3,
+    "started_at": "2026-11-23T18:54:46.28910868Z",
+    "state": "completed"
+  },
+  "stdout": "{\"work\": \"/tmp/hamon-s-1000/cd3c97363bf64f87b5da924d083e8dc1/zhang-vibronic-source-0rwvrf7b\", \"source\": \"827bd8e647f1fd88e3948b93102ac9dda88320c5\"}\n{\"blue_held_numerical_reads\":0,\"bytes\":178884,\"path\":\"/home/ubuntu/hamon-work/sessions/native-bead33dc2506de0ec12f59d374ab92bc0e31708104f83037b71e46f51b86d12b/zhang-vibronic-source-0rwvrf7b/forecasts.json\",\"series\":100,\"sha256\":\"3c8be4fa779779221fbb2d6d4ef997a5ca36679320294f139693cb41d9628839\",\"temperatures\":{\"KSF\":[397,417,437,457,477],\"MGO\":[397.15,417.15,437.15,457.15,477.15]}}\n",
+  "file_custody": {
+    "bytes": 178884,
+    "sha256": "3c8be4fa779779221fbb2d6d4ef997a5ca36679320294f139693cb41d9628839",
+    "token": "6e1ff88a4048615b7b5ee973cf8242ff8c7753a03f21dcdd848b6ed1791cfcdd"
+  },
+  "blue_target_access_before_save": false
+}

@@ -1,0 +1,416 @@
+{
+  "originals": [
+    {
+      "job": "p3-f747-zhang-author-zip-member-roster-64k",
+      "check": {
+        "captured": {
+          "owner": "node-ac967e45a16ae952113fd5bfe3be75f7",
+          "command_id": "p3-f747-zhang-author-zip-member-roster-64k",
+          "request_sha256": "80f518c5fb4831319d39a1dce041b4685e0aff6f9ee5bae722fe58969859c628",
+          "generation": "aa86cc26ed78fedd1a00c910f5f284e7d008719ff878c6319bc1432e3992705f",
+          "receipt_sha256": "9f278de417451c5ae36355b3f078465e4e004c3e32f15e97da1e1d990954f636",
+          "output_bytes": 2176
+        },
+        "sha256": "fa6d0b357e27ceb09703a99514574fe1e9c6f31de7d801809c7946f1782000e6",
+        "bytes": 2176
+      },
+      "receipt": {
+        "command_id": "p3-f747-zhang-author-zip-member-roster-64k",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T18:48:49.156063966Z",
+        "generation": "aa86cc26ed78fedd1a00c910f5f284e7d008719ff878c6319bc1432e3992705f",
+        "request_sha256": "80f518c5fb4831319d39a1dce041b4685e0aff6f9ee5bae722fe58969859c628",
+        "resource_process": {
+          "boot_id": "e70016ad-b780-46d2-93e7-cb45bf2fda31",
+          "pid": 2271304,
+          "start_ticks": 79184839
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 27320320,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "python": 0.07
+            },
+            "distinct_processes": 1,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 50,
+            "read_errors": 0,
+            "saturated_snapshots": 0,
+            "snapshots": 50
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.004725,
+          "user_cpu_seconds": 0.092032
+        },
+        "runner_pid": 2271293,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T18:48:44.125263566Z",
+        "state": "completed"
+      },
+      "stdout": "{\"doi\": \"10.5281/zenodo.21387374\", \"license\": {\"id\": \"cc-by-4.0\"}, \"access\": null, \"name\": \"Data for Science Advances revision.zip\", \"size\": 3809363}\n{\"source_sha256\": \"f54f7e108c16e1bbce3b68da3069f9453e5e43f6ca8c8f438af3c626e5a415a3\", \"member_count\": 22, \"members\": [{\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-1.xlsx\", \"size\": 215084, \"crc32\": \"5461a27a\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-2.xlsx\", \"size\": 263674, \"crc32\": \"299606ae\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-3.xlsx\", \"size\": 326424, \"crc32\": \"049cc37a\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-4.xlsx\", \"size\": 49230, \"crc32\": \"85f95996\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-5.xlsx\", \"size\": 1173234, \"crc32\": \"57eac825\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-6.xlsx\", \"size\": 132817, \"crc32\": \"64dd65e1\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-7.xlsx\", \"size\": 111499, \"crc32\": \"dbf20cd4\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-8.xlsx\", \"size\": 16111, \"crc32\": \"200dc190\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-9.xlsx\", \"size\": 999968, \"crc32\": \"24d4fd44\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-S1.xlsx\", \"size\": 116085, \"crc32\": \"e422e50c\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/FIg-S10.xlsx\", \"size\": 13061, \"crc32\": \"1adbbcf5\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-S11.xlsx\", \"size\": 17283, \"crc32\": \"f821fbc3\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-S2.xlsx\", \"size\": 12333, \"crc32\": \"02a83330\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-S3.xlsx\", \"size\": 179568, \"crc32\": \"51864ce9\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-S4.xlsx\", \"size\": 13632, \"crc32\": \"ccf39bfb\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-S5.xlsx\", \"size\": 17416, \"crc32\": \"fc3ee714\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-S6.xlsx\", \"size\": 85495, \"crc32\": \"5ddcc37a\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-S7.xlsx\", \"size\": 36035, \"crc32\": \"d8c3410d\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-S8.xlsx\", \"size\": 58805, \"crc32\": \"04627222\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Fig-S9.xlsx\", \"size\": 170551, \"crc32\": \"036259d9\"}, {\"name\": \"\\u539f\\u59cb\\u6570\\u636e/Table-S1.xlsx\", \"size\": 15896, \"crc32\": \"5a81059f\"}, {\"name\": \"Readme.docx\", \"size\": 16972, \"crc32\": \"3cdd9e41\"}], \"expanded_scientific_members\": 0}\n"
+    },
+    {
+      "job": "p3-f747-zhang-fig2-fig6-workbook-headers-readme-only",
+      "check": {
+        "captured": {
+          "owner": "node-ac967e45a16ae952113fd5bfe3be75f7",
+          "command_id": "p3-f747-zhang-fig2-fig6-workbook-headers-readme-only",
+          "request_sha256": "14dc356a1ca820cbeaf58a3c86a43ec0fbf7a95730d2984849ffe819ef617288",
+          "generation": "f2fcc9464e4532fefa9ca67223c4ec2c8c1fe751160edd546c39ec7feabeb015",
+          "receipt_sha256": "691d1df2a65be00561f66720fc12d04826340df25d419356864f5bb3cab6bc3a",
+          "output_bytes": 2512
+        },
+        "sha256": "0a10cab73bf951bc594d0ef86c987d9f20816110bb0476c86587a5634a434247",
+        "bytes": 2512
+      },
+      "receipt": {
+        "command_id": "p3-f747-zhang-fig2-fig6-workbook-headers-readme-only",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T18:50:01.389638892Z",
+        "generation": "f2fcc9464e4532fefa9ca67223c4ec2c8c1fe751160edd546c39ec7feabeb015",
+        "request_sha256": "14dc356a1ca820cbeaf58a3c86a43ec0fbf7a95730d2984849ffe819ef617288",
+        "resource_process": {
+          "boot_id": "e70016ad-b780-46d2-93e7-cb45bf2fda31",
+          "pid": 2271611,
+          "start_ticks": 79192075
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 41762816,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "python": 0.11
+            },
+            "distinct_processes": 1,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 49,
+            "read_errors": 0,
+            "saturated_snapshots": 0,
+            "snapshots": 49
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.026123,
+          "user_cpu_seconds": 0.15654
+        },
+        "runner_pid": 2271600,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T18:49:56.474384329Z",
+        "state": "completed"
+      },
+      "stdout": "{\"doi\": \"10.5281/zenodo.21387374\", \"license\": {\"id\": \"cc-by-4.0\"}, \"access\": null, \"name\": \"Data for Science Advances revision.zip\", \"size\": 3809363}\n{\"file\": \"Fig-2.xlsx\", \"sheet\": \"Fig2-A\", \"dim\": \"A1:AT803\", \"text_headers_only\": [[\"B1\", \"Origin Em Specturm\\uff0897K-477K\\uff09\"], [\"X1\", \"Corrected Nomalized Em Specturm\\uff0897K-477K\\uff09from orginal 97K-477K\"], [\"A2\", \"x(nm)\"], [\"U2\", \"x(nm)\"], [\"Y2\", \"x(cm-1)\"], [\"AS2\", \"x(cm-1)\"]]}\n{\"file\": \"Fig-2.xlsx\", \"sheet\": \"Fig2-B\", \"dim\": \"A1:D404\", \"text_headers_only\": [[\"A1\", \"Fig2-B-257K\"], [\"A2\", \"Origin Em Specturm\"], [\"C2\", \" corrected Specturm\"], [\"A3\", \"x(nm)\"], [\"B3\", \"y(Int)\"], [\"C3\", \"x(cm-1)\"]]}\n{\"file\": \"Fig-2.xlsx\", \"sheet\": \"Fig2-C\", \"dim\": \"A1:D404\", \"text_headers_only\": [[\"A1\", \"Fig2-C-357K\"], [\"A2\", \"Origin Em Specturm\"], [\"C2\", \" corrected Specturm\"], [\"A3\", \"x(nm)\"], [\"B3\", \"y(Int)\"], [\"C3\", \"x(cm-1)\"]]}\n{\"file\": \"Fig-2.xlsx\", \"sheet\": \"Fig2-D\", \"dim\": \"A1:D804\", \"text_headers_only\": [[\"A1\", \"Fig2-D-477K\"], [\"A2\", \"Origin Em Specturm\"], [\"C2\", \" corrected Specturm\"], [\"A3\", \"x(nm)\"], [\"B3\", \"y(Int)\"], [\"C3\", \"x(cm-1)\"]]}\n{\"file\": \"Fig-6.xlsx\", \"sheet\": \"Fig6-A\", \"dim\": \"A1:AH283\", \"text_headers_only\": [[\"B1\", \"Origin Em Specturm\\uff08197K-477K\\uff09\"], [\"S1\", \"Corrected Nomalized Em Specturm\\uff08197K-477K\\uff09from orginal 197K-477K\"], [\"A2\", \"x(nm)\"], [\"B2\", \"197K\"], [\"C2\", \"217K\"], [\"D2\", \"237K\"], [\"E2\", \"257K\"], [\"F2\", \"277K\"], [\"G2\", \"297K\"], [\"H2\", \"317K\"], [\"I2\", \"337K\"], [\"J2\", \"357K\"], [\"K2\", \"377K\"], [\"L2\", \"397K\"], [\"M2\", \"417K\"], [\"N2\", \"437K\"], [\"O2\", \"457K\"], [\"P2\", \"477K\"], [\"S2\", \"x(cm-1)\"], [\"T2\", \"197K\"], [\"U2\", \"217K\"], [\"V2\", \"237K\"], [\"W2\", \"257K\"], [\"X2\", \"277K\"], [\"Y2\", \"297K\"], [\"Z2\", \"317K\"], [\"AA2\", \"337K\"], [\"AB2\", \"357K\"], [\"AC2\", \"377K\"], [\"AD2\", \"397K\"], [\"AE2\", \"417K\"], [\"AF2\", \"437K\"], [\"AG2\", \"457K\"], [\"AH2\", \"477K\"]]}\n{\"file\": \"Fig-6.xlsx\", \"sheet\": \"Fig6-B\", \"dim\": \"A1:D284\", \"text_headers_only\": [[\"A1\", \"Fig6-B-197K\"], [\"A2\", \"Origin Em Specturm\"], [\"C2\", \" corrected Specturm\"], [\"A3\", \"x(nm)\"], [\"B3\", \"y(Int)\"], [\"C3\", \"x(cm-1)\"]]}\n{\"file\": \"Fig-6.xlsx\", \"sheet\": \"Fig6-C\", \"dim\": \"A1:D284\", \"text_headers_only\": [[\"A1\", \"Fig6-B-337K\"], [\"A2\", \"Origin Em Specturm\"], [\"C2\", \" corrected Specturm\"], [\"A3\", \"x(nm)\"], [\"B3\", \"y(Int)\"], [\"C3\", \"x(cm-1)\"]]}\n{\"file\": \"Fig-6.xlsx\", \"sheet\": \"Fig6-D\", \"dim\": \"A1:D284\", \"text_headers_only\": [[\"A1\", \"Fig6-B-477K\"], [\"A2\", \"Origin Em Specturm\"], [\"C2\", \" corrected Specturm\"], [\"A3\", \"x(nm)\"], [\"B3\", \"y(Int)\"], [\"C3\", \"x(cm-1)\"]]}\n"
+    },
+    {
+      "job": "p3-f747-zhang-temperature-labels-and-coordinate-grid-only",
+      "check": {
+        "captured": {
+          "owner": "node-a54de6fe7c79c59e74717161c381a0d9",
+          "command_id": "p3-f747-zhang-temperature-labels-and-coordinate-grid-only",
+          "request_sha256": "1974f8f4f229b6a79e4177ea0ecd5271021ea1b254d0a59153ce0c6eb5c348a3",
+          "generation": "1fb4454e24a8a4ab49b0b81730e084112260878f05329e7ddb6a3b091e702791",
+          "receipt_sha256": "c635cba2fc9c3d032dbcb0cc18cbbdd357d70e0f71192549730cc9a89bf617b0",
+          "output_bytes": 2334
+        },
+        "sha256": "d54ec75f321d10dc5a36a800ecd538e5caa73372e6da8348f5adb4f24c43138d",
+        "bytes": 2334
+      },
+      "receipt": {
+        "command_id": "p3-f747-zhang-temperature-labels-and-coordinate-grid-only",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T18:51:12.392551364Z",
+        "generation": "1fb4454e24a8a4ab49b0b81730e084112260878f05329e7ddb6a3b091e702791",
+        "request_sha256": "1974f8f4f229b6a79e4177ea0ecd5271021ea1b254d0a59153ce0c6eb5c348a3",
+        "resource_process": {
+          "boot_id": "2a3014a1-d8c2-4439-abb7-70745d0ff1a7",
+          "pid": 1892023,
+          "start_ticks": 23068827
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 42696704,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "python": 0.14
+            },
+            "distinct_processes": 1,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 50,
+            "read_errors": 0,
+            "saturated_snapshots": 0,
+            "snapshots": 50
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.038279,
+          "user_cpu_seconds": 0.145462
+        },
+        "runner_pid": 1892009,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T18:51:07.396819536Z",
+        "state": "completed",
+        "working_tree_context": {
+          "repository": "github.com/Jacob-Met/cursor-swiss-env",
+          "revision": "18476972771f1b4a98c1e61f7c614d0fb9b6c949"
+        }
+      },
+      "stdout": "{\"doi\": \"10.5281/zenodo.21387374\", \"license\": {\"id\": \"cc-by-4.0\"}, \"access\": null, \"name\": \"Data for Science Advances revision.zip\", \"size\": 3809363}\n{\"file\": \"Fig-2.xlsx\", \"row2_headers\": {\"A\": \"x(nm)\", \"B\": \"97.15K\", \"C\": \"117.15K\", \"D\": \"137.15K\", \"E\": \"157.15K\", \"F\": \"177.15K\", \"G\": \"197.15K\", \"H\": \"217.15K\", \"I\": \"237.15K\", \"J\": \"257.15K\", \"K\": \"277.15K\", \"L\": \"297.15K\", \"M\": \"317.15K\", \"N\": \"337.15K\", \"O\": \"357.15K\", \"P\": \"377.15K\", \"Q\": \"397.15K\", \"R\": \"417.15K\", \"S\": \"437.15K\", \"T\": \"457.15K\", \"U\": \"x(nm)\", \"V\": \"477.15K\", \"Y\": \"x(cm-1)\", \"Z\": \"97.15K\", \"AA\": \"117.15K\", \"AB\": \"137.15K\", \"AC\": \"157.15K\", \"AD\": \"177.15K\", \"AE\": \"197.15K\", \"AF\": \"217.15K\", \"AG\": \"237.15K\", \"AH\": \"257.15K\", \"AI\": \"277.15K\", \"AJ\": \"297.15K\", \"AK\": \"317.15K\", \"AL\": \"337.15K\", \"AM\": \"357.15K\", \"AN\": \"377.15K\", \"AO\": \"397.15K\", \"AP\": \"417.15K\", \"AQ\": \"437.15K\", \"AR\": \"457.15K\", \"AS\": \"x(cm-1)\", \"AT\": \"477.15K\"}, \"axis_only_from_row4\": {\"A\": [400, [4, 550.5], [403, 750.0], 0.5, 0.5, 0.5, \"87daa3c135e6820bd45b7bd6edb60a98d2841a097d5f721fba26b007382dfc5b\"], \"U\": [800, [4, 550.25], [803, 750.0], 0.25, 0.25, 0.25, \"2b4264db6663cca7bddff6a2d2c5136329a9f07302aafec73cc6d79593f29239\"], \"Y\": [400, [4, 18165.30427], [403, 13333.33333], -16.483940000001894, -11.825219999998808, -8.894820000001346, \"18a076613f53dcbd2bbe191ae7ba5aeba5db4e60036a6f3e064f1a79ade43a27\"], \"AS\": [800, [4, 18173.55747], [803, 13333.33333], -8.253199999999197, -5.914879999998448, -4.445929999999862, \"456c7cad720302a2ace7e4f581645072c41ac0ea7c08db700d3cbb36d5e968b5\"]}}\n{\"file\": \"Fig-6.xlsx\", \"row2_headers\": {\"A\": \"x(nm)\", \"B\": \"197K\", \"C\": \"217K\", \"D\": \"237K\", \"E\": \"257K\", \"F\": \"277K\", \"G\": \"297K\", \"H\": \"317K\", \"I\": \"337K\", \"J\": \"357K\", \"K\": \"377K\", \"L\": \"397K\", \"M\": \"417K\", \"N\": \"437K\", \"O\": \"457K\", \"P\": \"477K\", \"S\": \"x(cm-1)\", \"T\": \"197K\", \"U\": \"217K\", \"V\": \"237K\", \"W\": \"257K\", \"X\": \"277K\", \"Y\": \"297K\", \"Z\": \"317K\", \"AA\": \"337K\", \"AB\": \"357K\", \"AC\": \"377K\", \"AD\": \"397K\", \"AE\": \"417K\", \"AF\": \"437K\", \"AG\": \"457K\", \"AH\": \"477K\"}, \"axis_only_from_row4\": {\"A\": [280, [4, 560.5], [283, 700.0], 0.5, 0.5, 0.5, \"3d16aaec9e79c6f2d6135f7a06ebb8e9acd075ae37df9c0f5b2e024b50bc1632\"], \"S\": [280, [4, 17841.2132], [283, 14285.71429], -15.901259999998729, -12.587639999999737, -10.211370000000898, \"0fe7d0a26f0b0a9aba75f65d424111e8ab6c32670ced11271d0f4b6fc390f8ea\"]}}\n"
+    },
+    {
+      "job": "p3-f747-zhang-both-hosts-freeze100-forecast-arrays",
+      "check": {
+        "captured": {
+          "owner": "node-49ce35aee5f5ac3713107652d4b7fb2c",
+          "command_id": "p3-f747-zhang-both-hosts-freeze100-forecast-arrays",
+          "request_sha256": "d466b7231b3aac78ccf40462719090939526d3ca936e1250799324607cc58078",
+          "generation": "e59a2587d93fd805e78e2d789ddcbf78bf4a971dd48df394b222d349af3cf995",
+          "receipt_sha256": "566926ab74315bb9ed8833fdbdcf2cdf224cbb24e44baae4b21087ff809842e8",
+          "output_bytes": 532
+        },
+        "sha256": "6f49594c732691c56f623a918d9e1e4466f0ee8ac8c01e868436ecd8712a20a8",
+        "bytes": 532
+      },
+      "receipt": {
+        "command_id": "p3-f747-zhang-both-hosts-freeze100-forecast-arrays",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T18:54:54.319858968Z",
+        "generation": "e59a2587d93fd805e78e2d789ddcbf78bf4a971dd48df394b222d349af3cf995",
+        "request_sha256": "d466b7231b3aac78ccf40462719090939526d3ca936e1250799324607cc58078",
+        "resource_process": {
+          "boot_id": "bb7f1afb-49b2-4296-b013-0a6bafd5f1b8",
+          "pid": 3351559,
+          "start_ticks": 81853595
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 110903296,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "git": 2,
+              "other": 0.08,
+              "python": 0.21000000000000002
+            },
+            "distinct_processes": 7,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 80,
+            "read_errors": 2,
+            "saturated_snapshots": 0,
+            "snapshots": 80
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.372244,
+          "user_cpu_seconds": 2.2186500000000002
+        },
+        "runner_pid": 3351549,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T18:54:46.28910868Z",
+        "state": "completed"
+      },
+      "stdout": "{\"work\": \"/tmp/hamon-s-1000/cd3c97363bf64f87b5da924d083e8dc1/zhang-vibronic-source-0rwvrf7b\", \"source\": \"827bd8e647f1fd88e3948b93102ac9dda88320c5\"}\n{\"blue_held_numerical_reads\":0,\"bytes\":178884,\"path\":\"/home/ubuntu/hamon-work/sessions/native-bead33dc2506de0ec12f59d374ab92bc0e31708104f83037b71e46f51b86d12b/zhang-vibronic-source-0rwvrf7b/forecasts.json\",\"series\":100,\"sha256\":\"3c8be4fa779779221fbb2d6d4ef997a5ca36679320294f139693cb41d9628839\",\"temperatures\":{\"KSF\":[397,417,437,457,477],\"MGO\":[397.15,417.15,437.15,457.15,477.15]}}\n"
+    },
+    {
+      "job": "p3-f747-zhang-native-receive-10-temperature-profiles",
+      "check": {
+        "captured": {
+          "owner": "node-2c6923b3148e63391d0e8d72e866360a",
+          "command_id": "p3-f747-zhang-native-receive-10-temperature-profiles",
+          "request_sha256": "df3014c437b40223537a996ea07d91f5df78f1f8ea2981336c4398d5248d2180",
+          "generation": "0ea3d3860bb1f33054724c52640736b687345f014060d6632d3bf95483193e6c",
+          "receipt_sha256": "49a3a23a26b4681871f12308399b05281ea4bf60e8ac288189f948074a32a4b1",
+          "output_bytes": 2961
+        },
+        "sha256": "06094e1ba5535d18b690ff57ce3c1b94fd2ac20e95ecf9cc322fbd54626edf2b",
+        "bytes": 2961
+      },
+      "receipt": {
+        "command_id": "p3-f747-zhang-native-receive-10-temperature-profiles",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T18:56:12.384738797Z",
+        "generation": "0ea3d3860bb1f33054724c52640736b687345f014060d6632d3bf95483193e6c",
+        "request_sha256": "df3014c437b40223537a996ea07d91f5df78f1f8ea2981336c4398d5248d2180",
+        "resource_process": {
+          "boot_id": "041d0f9e-2eb7-43b7-af92-475c2001084a",
+          "pid": 3133044,
+          "start_ticks": 49504341
+        },
+        "resource_usage": {
+          "max_rss_bytes": 111050752,
+          "max_rss_scope": "largest_waited_process",
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.574323,
+          "user_cpu_seconds": 1.992103
+        },
+        "runner_pid": 3133037,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T18:56:04.409620529Z",
+        "state": "completed"
+      },
+      "stdout": "{\"work\": \"/tmp/hamon-s-1000/827c299368594711acb8082fca12bdeb/zhang-vibronic-source-9f6pqcnr\", \"source\": \"f40e066f781c50e0ab6274a49d86c30650cfb35d\"}\n{\"bytes\":94494,\"forecast_sha256\":\"3c8be4fa779779221fbb2d6d4ef997a5ca36679320294f139693cb41d9628839\",\"gate\":false,\"host_means\":{\"KSF\":{\"blue_mode_thermal\":[0.06364061702202643,0.10913541415192492],\"blue_persistence\":[0.06719747344101387,0.09463419064646549],\"fit_blue_red_slope\":[0.025289045959865152,0.03274868819425852],\"fit_blue_slope\":[0.030485311299511757,0.053476521058128446],\"optical_detuning\":[0.15354460449898039,0.20161133675841453],\"optical_mode\":[0.1228262950902188,0.15349011911832228],\"red_ratio\":[0.11239841633240491,0.1731564376118099],\"red_ratio_detuning_thermal\":[0.15093452927803702,0.23100133086692248],\"red_ratio_mode_thermal\":[0.14512503571723237,0.22323802418153643],\"zero\":[0.4524495803358148,0.6422750903555665]},\"MGO\":{\"blue_mode_thermal\":[0.026646630593502335,0.030776616308381362],\"blue_persistence\":[0.0469523231807458,0.052484458078084426],\"fit_blue_red_slope\":[0.011053804108998562,0.013308589244402291],\"fit_blue_slope\":[0.007785108667511397,0.010237642126587107],\"optical_detuning\":[0.07089726585549962,0.08810534812917048],\"optical_mode\":[0.11783214409962799,0.1399483789219853],\"red_ratio\":[0.0506880525601224,0.06016876694624983],\"red_ratio_detuning_thermal\":[0.035606976412253244,0.04283641600940932],\"red_ratio_mode_thermal\":[0.02934514790332992,0.0341513843123127],\"zero\":[0.37625677540673824,0.39045368281017157]}},\"macro\":{\"blue_mode_thermal\":[0.045143623807764384,0.06995601523015314],\"blue_persistence\":[0.057074898310879835,0.07355932436227496],\"fit_blue_red_slope\":[0.018171425034431858,0.023028638719330405],\"fit_blue_slope\":[0.019135209983511578,0.031857081592357776],\"optical_detuning\":[0.11222093517724,0.1448583424437925],\"optical_mode\":[0.1203292195949234,0.1467192490201538],\"red_ratio\":[0.08154323444626366,0.11666260227902986],\"red_ratio_detuning_thermal\":[0.09327075284514513,0.1369188734381659],\"red_ratio_mode_thermal\":[0.08723509181028115,0.12869470424692456],\"zero\":[0.4143531778712765,0.5163643865828691]},\"path\":\"/home/ubuntu/hamon-work/sessions/native-9b1788c47d180726f3558491442953f2c01ca92774e932fcbd2436a31c7015c0/zhang-vibronic-source-9f6pqcnr/result.json\",\"sha256\":\"fdf6a8c5ca82c1453be4ecfa01aec96a461c2066885819a6fd2f402b6f7ad784\",\"wins\":0,\"worst\":{\"T\":477,\"abs_error\":1.1415262911322612,\"detuning\":250,\"host\":\"KSF\",\"native_bracket\":[108,107,16326.53061,16339.86928,0.38931,0.29835,16327.170418006432],\"observed\":1.2111122573847624,\"same_cell_predictions\":{\"blue_mode_thermal\":1.7730403883756953,\"blue_persistence\":1.4657115079960403,\"fit_blue_red_slope\":1.26756171065105,\"fit_blue_slope\":1.3700096435074252,\"optical_detuning\":1.2117451585473111,\"optical_mode\":1.2678292121294856,\"red_ratio\":1.9459659752784992,\"red_ratio_detuning_thermal\":2.3812846282954565,\"red_ratio_mode_thermal\":2.3526385485170236,\"zero\":0.0},\"scale\":0.31784582620911495}}\n"
+    },
+    {
+      "job": "p3-f747-zhang-independent-decimal-raw-grid-receiver",
+      "check": {
+        "captured": {
+          "owner": "node-23be8aa0db729cc81ab8988ae6059e0b",
+          "command_id": "p3-f747-zhang-independent-decimal-raw-grid-receiver",
+          "request_sha256": "1ab1c9bc3414f99cff5dc83460fb60678bd4d6238293268df9c178d59449b864",
+          "generation": "b29f56ddabb176685a6a5ef62d81fb0fab8671600cfcb680876c22f3fc1b3cec",
+          "receipt_sha256": "b882b2c1aca312c1ad1ac1d4ae95fa00cf55488268121d0ceabe9d28d2b7d867",
+          "output_bytes": 642
+        },
+        "sha256": "00a2c2685e76d917918f415ece96b8cabc0ef18daf22ec5ab87924e0ca7effc7",
+        "bytes": 642
+      },
+      "receipt": {
+        "command_id": "p3-f747-zhang-independent-decimal-raw-grid-receiver",
+        "exit_code": 0,
+        "finished_at": "2026-11-23T18:57:57.93367681Z",
+        "generation": "b29f56ddabb176685a6a5ef62d81fb0fab8671600cfcb680876c22f3fc1b3cec",
+        "request_sha256": "1ab1c9bc3414f99cff5dc83460fb60678bd4d6238293268df9c178d59449b864",
+        "resource_process": {
+          "boot_id": "7aae01bc-0bc7-431b-aafd-6be22c550127",
+          "pid": 2810036,
+          "start_ticks": 77477426
+        },
+        "resource_usage": {
+          "descendant_wait": {
+            "adopted_waits": 0,
+            "state": "drained"
+          },
+          "max_rss_bytes": 110936064,
+          "max_rss_scope": "largest_waited_process",
+          "process_families": {
+            "basis": "sampled_linux_procfs_pid_tree_cpu_lower_bound",
+            "cpu_seconds": {
+              "git": 2.18,
+              "other": 0.09999999999999999,
+              "python": 0.24000000000000002
+            },
+            "distinct_processes": 7,
+            "interval_milliseconds": 100,
+            "nonempty_snapshots": 91,
+            "read_errors": 2,
+            "saturated_snapshots": 0,
+            "snapshots": 91
+          },
+          "source": "linux_rusage",
+          "system_cpu_seconds": 0.663863,
+          "user_cpu_seconds": 2.101071
+        },
+        "runner_pid": 2810025,
+        "script_observation_version": 3,
+        "started_at": "2026-11-23T18:57:48.876195151Z",
+        "state": "completed"
+      },
+      "stdout": "{\"work\": \"/tmp/hamon-s-1000/6f7fc3f2329e4f978521f8459f099fee/zhang-vibronic-source-zlnwjndq\", \"source\": \"5a55fc011da1ccda03768427a6310fb73b110d7f\"}\n{\"counts\": {\"forecasts\": 9750, \"metric_cells\": 260, \"native_brackets\": 975, \"profile_rows\": 10}, \"gate\": false, \"max_scaled_delta\": \"4.818615676683546607919759981254536448E-14\", \"sha_forecast\": \"3c8be4fa779779221fbb2d6d4ef997a5ca36679320294f139693cb41d9628839\", \"source\": \"fresh author ZIP, independent workbook parser and Decimal coordinates, locked forecasts; predictor and scorer not imported\", \"wins\": 0, \"worst\": [\"KSF\", \"477\", 250, \"1.1415262911322405662723285331761758600352364600231\"]}\n"
+    }
+  ],
+  "refused": [
+    {
+      "type": "text",
+      "text": "HAMON node error (invalid_retained_output_budget); set retain_output_bytes between 0 and 65536, then inspect the original job before retrying."
+    }
+  ],
+  "refused_journal": {
+    "owner": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_id": "p3-f747-zhang-vibronic-zenodo21387374-roster-only",
+    "usage": {
+      "agent": "astra62-p3-f747f5728172",
+      "attribution": "caller_named",
+      "id": "operation-p3-f747-zhang-vibronic-zenodo21387374-roster-only",
+      "outcome": "failed",
+      "purpose": "work"
+    },
+    "provider_timing": {
+      "started_at": "2026-11-23T18:47:54.926698951Z",
+      "returned_at": "2026-11-23T18:47:54.938715644Z",
+      "duration_ns": 12016718
+    },
+    "incarnation": "32bc109d37e3a50658e8781b6d72f1e5",
+    "state": "completed",
+    "tool": "mcp_execution__execution_start_f23ac9f86e3a00fd",
+    "source": "execution",
+    "generation": 4,
+    "binding_revision": "1bed803ee05c72ff4b3a4527467917c79bd4ec786b5a03c84f4ac630eec0bc98",
+    "principal": "estate-renpo-c",
+    "arguments_digest": "0e3bc0854797157a5fef2489fd24f0b7b473501c853bce568a4a212f7666e5dd",
+    "request_sha256": "6f39c5a87446d4e3c182abc4793142f83c756bdef672f81cf86ed3de9ce1243b",
+    "request_bytes": 1970,
+    "request_digest": "89cdff8227e7113a9e706533eb3c9d65dd638a74d79624c877aa0205dd7058a5",
+    "result_sha256": "27e5c857e531cd3ca904ea068d98341b34337b5cb35ac8ea5c932702097192a6",
+    "result_bytes": 213,
+    "acknowledged": true,
+    "created_at": "2026-11-23T18:47:54.861191733Z",
+    "updated_at": "2026-11-23T18:47:54.93906877Z"
+  },
+  "refused_poll": {
+    "authority_owner": "node-3e1997435f3f4ffb9db90803039402b6",
+    "job_id": "p3-f747-zhang-vibronic-zenodo21387374-roster-only",
+    "observation": "binding_not_found",
+    "original_outcome": "unresolved",
+    "replay_elsewhere": false
+  },
+  "additional_original_product_gate": {
+    "source": "ad5fbebcad7d8400d1ddf0155f4077ff64be9a2e",
+    "whole": {
+      "job_id": "p3-f747-zhang-native-head-and-14file-distribution-ad5fbebc",
+      "state": "captured",
+      "source": {
+        "owner": "node-2c6923b3148e63391d0e8d72e866360a",
+        "command_id": "p3-f747-zhang-native-head-and-14file-distribution-ad5fbebc",
+        "request_sha256": "e1e2f717535f7dd58e18398a98d069de4751918592d1144a01fece377a92a112",
+        "generation": "4d777d5f325af77f3ef16622f72487738c61a13e3c60d0f7d23958cd78d36d39",
+        "receipt_sha256": "943fc91cebb6a27a0b55f7c254e4ad1658430352301ef6e34bb709c55477d886",
+        "output_bytes": 1554
+      },
+      "total_bytes": 1554,
+      "sha256": "d5dd836cbd274cffba1c7516145ecbadb4dbdc16f594dbb11936092a9b9814cd",
+      "offset": 0,
+      "next_offset": 0,
+      "has_more": true
+    },
+    "receipt": {
+      "command_id": "p3-f747-zhang-native-head-and-14file-distribution-ad5fbebc",
+      "error": "exit status 1",
+      "exit_code": 1,
+      "finished_at": "2026-11-23T19:01:07.240659958Z",
+      "generation": "4d777d5f325af77f3ef16622f72487738c61a13e3c60d0f7d23958cd78d36d39",
+      "request_sha256": "e1e2f717535f7dd58e18398a98d069de4751918592d1144a01fece377a92a112",
+      "resource_process": {
+        "boot_id": "041d0f9e-2eb7-43b7-af92-475c2001084a",
+        "pid": 3134366,
+        "start_ticks": 49534270
+      },
+      "resource_usage": {
+        "max_rss_bytes": 110936064,
+        "max_rss_scope": "largest_waited_process",
+        "source": "linux_rusage",
+        "system_cpu_seconds": 0.714945,
+        "user_cpu_seconds": 2.062446
+      },
+      "runner_pid": 3134359,
+      "script_observation_version": 3,
+      "started_at": "2026-11-23T19:01:03.702025687Z",
+      "state": "failed"
+    },
+    "stdout": "[[\"git\", \"init\", \"-q\"], 0, 0, \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"\"]\n[[\"git\", \"fetch\", \"-q\"], 0, 0, \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"\"]\n[[\"git\", \"checkout\", \"-q\"], 0, 0, \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\", \"\"]\n[[\"git\", \"rev-parse\", \"HEAD\"], 0, 41, \"19a0971429834183b9ceba813212d046084bd02d7290187610de82c4536afc88\", \"ad5fbebcad7d8400d1ddf0155f4077ff64be9a2e\\n\"]\n[[\"git\", \"rev-parse\", \"HEAD^{tree}\"], 0, 41, \"68891cb9fdf0cdb3c3fc6d9a094607713bb5252bd1cf85aeca1bb957286f1ef0\", \"f37fdec21daad3e0d5553aab72d8f09a166f6a09\\n\"]\n[[\"node\", \"-p\", \"process.versions.node\"], 0, 8, \"0c4bf84f9bedd485b2c4eac05f59e35addc86ce7dbf0d90435528e04384c6314\", \"22.23.4\\n\"]\n[[\"python3\", \"replay.py\", \".\"], 1, 326, \"d49db153358ed945d1e5d332ea190b4642d905b6d0a30ba7e8c9b28aa5a370ad\", \"Traceback (most recent call last):\\n  File \\\"/home/ubuntu/hamon-work/sessions/native-7f4ab8512540130480c003b10a828f2e564f4de32d251d32bc7ec9f1dbd9636f/tmpdc6bt09y/repo/research/zhang_vibronic_profile_transfer/replay.py\\\", line 36, in <module>\\n    assert overall==r['host_means']\\n           ^^^^^^^^^^^^^^^^^^^^^^^^\\nAssertionError\\n\"]\nTraceback (most recent call last):\n  File \"<string>\", line 21, in <module>\n  File \"<string>\", line 10, in run\n  File \"/usr/lib/python3.12/subprocess.py\", line 502, in check_returncode\n    raise CalledProcessError(self.returncode, self.args, self.stdout,\nsubprocess.CalledProcessError: Command '['python3', 'replay.py', '.']' returned non-zero exit status 1.\n"
+  }
+}
