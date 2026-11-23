@@ -1,0 +1,227 @@
+{
+  "schema": "worldlaw.position-drift-four-pulse-menu/v1",
+  "experiment": {
+    "schema": "worldlaw.position-drift-three-pulse-hulls/v1",
+    "catalog": {
+      "schema": "worldlaw.position-drift-rate-polytopes/v1",
+      "commands": [
+        "ref",
+        "group",
+        "x0",
+        "y0",
+        "z0",
+        "x1",
+        "y1",
+        "z1"
+      ],
+      "noiseBound": "1/50",
+      "limits": {
+        "designWork": 12000000,
+        "receiverWork": 1000000
+      },
+      "laws": [
+        {
+          "id": "A",
+          "vertices": [
+            [
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "B",
+          "vertices": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1,
+              0,
+              -1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              0,
+              0,
+              1,
+              0,
+              -1
+            ]
+          ]
+        }
+      ]
+    },
+    "fourPulseControl": null
+  },
+  "prefix": [
+    "ref",
+    "group"
+  ],
+  "branches": [
+    {
+      "third": "ref",
+      "last": [
+        "ref",
+        "group",
+        "x0",
+        "y0",
+        "z0",
+        "x1",
+        "y1",
+        "z1"
+      ]
+    },
+    {
+      "third": "group",
+      "last": [
+        "ref",
+        "group",
+        "x0",
+        "y0",
+        "z0",
+        "x1",
+        "y1",
+        "z1"
+      ]
+    },
+    {
+      "third": "x0",
+      "last": [
+        "ref",
+        "group",
+        "x0",
+        "y0",
+        "z0",
+        "x1",
+        "y1",
+        "z1"
+      ]
+    },
+    {
+      "third": "y0",
+      "last": [
+        "ref",
+        "group",
+        "x0",
+        "y0",
+        "z0",
+        "x1",
+        "y1",
+        "z1"
+      ]
+    },
+    {
+      "third": "z0",
+      "last": [
+        "ref",
+        "group",
+        "x0",
+        "y0",
+        "z0",
+        "x1",
+        "y1",
+        "z1"
+      ]
+    },
+    {
+      "third": "x1",
+      "last": [
+        "ref",
+        "group",
+        "x0",
+        "y0",
+        "z0",
+        "x1",
+        "y1",
+        "z1"
+      ]
+    },
+    {
+      "third": "y1",
+      "last": [
+        "ref",
+        "group",
+        "x0",
+        "y0",
+        "z0",
+        "x1",
+        "y1",
+        "z1"
+      ]
+    },
+    {
+      "third": "z1",
+      "last": [
+        "ref",
+        "group",
+        "x0",
+        "y0",
+        "z0",
+        "x1",
+        "y1",
+        "z1"
+      ]
+    }
+  ]
+}
