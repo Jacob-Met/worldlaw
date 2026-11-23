@@ -1,0 +1,206 @@
+{
+  "celloMeta": {
+    "job": "p3-f747-lampis-monochord-two-end-geometry-source-metadata",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "0c342da80151a9ed8d577ed351d9fde0cad2e2295994f187f18e4e1da818fe78",
+    "terminal": "completed",
+    "exit": 0,
+    "command_request_sha256": "d0dad506e35f74cd19c135613917f15b29a39ee04eea573a8367e417840c87a0",
+    "generation": "6231a5e1e73d8c3876896278614ffa7d138871bf728d07a68db9b1fa924cb61b",
+    "original_output_bytes": 13077,
+    "resource_process": {
+      "boot_id": "1cbe7d57-bf2c-4315-990c-f451a08affbb",
+      "pid": 2150996,
+      "start_ticks": 41891948
+    }
+  },
+  "celloDir": {
+    "job": "p3-f747-lampis-7z-directory-only-typea-no-member-decode",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "63640cb1e87e0804a56d074189510eaf621df04799fad156f702817953b4f913",
+    "terminal": "failed",
+    "exit": 1,
+    "command_request_sha256": "6ad7cadda9517873c157ff136addedf330c0a8cc1d36645f0e71f039d982c0e9",
+    "generation": "369da40cadc3368ac1786f98a5a8cee36f9a3fc97ecde0bb58ff85768868022a",
+    "original_output_bytes": 1262,
+    "resource_process": {
+      "boot_id": "bb7f1afb-49b2-4296-b013-0a6bafd5f1b8",
+      "pid": 3024925,
+      "start_ticks": 79083490
+    }
+  },
+  "celloDir2": {
+    "job": "p3-f747-lampis-7z-native-seekable-stream-catalog-v2",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "377d24a91ffa1c565654cbbf8947dd7fb5d644ccbdfe4f5e9a661873c7c228d9",
+    "terminal": "completed",
+    "exit": 0,
+    "command_request_sha256": "db044aacf1995fa15d0a2531b1c8fffcae785121643b52e6362148aa975532ae",
+    "generation": "d06871fbbabb380fa540732e503b288973d8a300e3b27b7d53dace84b5c61019",
+    "original_output_bytes": 1815,
+    "resource_process": {
+      "boot_id": "bb7f1afb-49b2-4296-b013-0a6bafd5f1b8",
+      "pid": 3025007,
+      "start_ticks": 79085536
+    }
+  },
+  "celloShape": {
+    "job": "p3-f747-vienna-first-training-stroke-source-structure-only",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "62c0afa96c39153077fc0eca95d350109404c08b0eafec4990ce434fedf80540",
+    "terminal": "completed",
+    "exit": 0,
+    "command_request_sha256": "3e2dc7b983e21e646e44abcb2026dd2313b02a6ed337c8f0949e633c19817192",
+    "generation": "d1c97a64acf7039708c44ffabdcb4fd25873691499bce0c84d99a57eccc6b3a0",
+    "original_output_bytes": 824,
+    "resource_process": {
+      "boot_id": "1cbe7d57-bf2c-4315-990c-f451a08affbb",
+      "pid": 2151882,
+      "start_ticks": 41921973
+    }
+  },
+  "celloDesign": {
+    "job": "p3-f747-lampis-typea-preoutcome-index-and-position-roster56",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "1e7598ae50c7e0518df32afbb6036303aac72a93eda316ca3af8001019005839",
+    "terminal": "failed",
+    "exit": 1,
+    "command_request_sha256": "b58fbc4fff4b693daa55c96eb1c001aa3b4c05508849d3196447d67e5906f44f",
+    "generation": "8559d313169c91705bb014274bedbbf6137b6ebb288b9fbdafa4d1d7bd537457",
+    "original_output_bytes": 1056,
+    "resource_process": {
+      "pid": 3760184,
+      "start_ticks": 53472879,
+      "boot_id": "2ca0e609-1208-40ae-a202-77e6301c0a3f"
+    }
+  },
+  "celloOrder": {
+    "job": "p3-f747-lampis-solid-file-order-and-recovered-prefix-receipt",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "4023a8c9bb54329ac55381299019e5833221764611ec7bd13020dc1778f37d4a",
+    "terminal": "completed",
+    "exit": 0,
+    "command_request_sha256": "2e1ad605f0cb8e0a07e04661243ac84e9d5bd8a69fe01e823057b4709df6aae5",
+    "generation": "6f5e299c30c7186a9a5c40076117c45aa889dd70a986faaad6b009f2bf82c730",
+    "original_output_bytes": 17721,
+    "resource_process": {
+      "boot_id": "2ca0e609-1208-40ae-a202-77e6301c0a3f",
+      "pid": 3762001,
+      "start_ticks": 53502154
+    }
+  },
+  "celloRosterCorrect": {
+    "job": "p3-f747-lampis-catalog-identified-resume-missing-suffix-only",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "8a3101c203b510eb833c72996964c9366c5bab537469992ba774f90d17af4ff1",
+    "terminal": "completed",
+    "exit": 0,
+    "command_request_sha256": "294dfd17fa36276b90cd52c7f2040d00771412f293ddfd81212898b151e70caa",
+    "generation": "dc7f5cd7d8b45c28a7555505525123f6930efab39508a1dc94445415bf91e9dc",
+    "original_output_bytes": 12664,
+    "resource_process": {
+      "boot_id": "2ca0e609-1208-40ae-a202-77e6301c0a3f",
+      "pid": 3762951,
+      "start_ticks": 53509241
+    }
+  },
+  "celloPilot": {
+    "job": "p3-f747-first-three-source-strokes-transient-support-and-phase",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "26b704ae0b6a3f4ad3276c38420976013a17f24926ba1476c6a26f46cfe8103d",
+    "terminal": "completed",
+    "exit": 0,
+    "command_request_sha256": "7c37c4efe09ec65a1a79fe349dedad6d4258d3ec57b6d396704100ea67ee69df",
+    "generation": "f5e5fadbd6d2d8fc36882ca4fc2afccfffe6c455d36df28347b33c527fbdff9c",
+    "original_output_bytes": 1990,
+    "resource_process": {
+      "pid": 3763785,
+      "start_ticks": 53520424,
+      "boot_id": "2ca0e609-1208-40ae-a202-77e6301c0a3f"
+    }
+  },
+  "celloForecast": {
+    "job": "p3-f747-vienna-cold-causal-end-transfer-whole-stroke-forecast",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "c483705857ecf596bf3690417f69bcc448cb18c19a4a1dccc110a36f39832030",
+    "terminal": "completed",
+    "exit": 0,
+    "command_request_sha256": "2666295d16ebc8883ceff7c176f44e8cc523938f4831caf9217e0ead4f689b0e",
+    "generation": "1d2565ed32259942be82c34ba6d95df40e865e413682cbba73d0d16da166bcd5",
+    "original_output_bytes": 4583830,
+    "resource_process": {
+      "boot_id": "2ca0e609-1208-40ae-a202-77e6301c0a3f",
+      "pid": 3765802,
+      "start_ticks": 53545438
+    }
+  },
+  "celloScore": {
+    "job": "p3-f747-vienna-six-held-nut-reactions-original-receiver",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "614882ba7ee3a714b8c5cba18e6d243bb8da4a916a84e925ed1b48f7d40e8ee2",
+    "terminal": "completed",
+    "exit": 0,
+    "command_request_sha256": "429cdec4e276142c727a00304f0b4afa1a21ab00a30b8d4dca89f279e5e1b73b",
+    "generation": "ee381ac3a0954d735aec8f0afb8d2474f873e09ad38973ab677cbd981a377fc8",
+    "original_output_bytes": 1631243,
+    "resource_process": {
+      "boot_id": "2ca0e609-1208-40ae-a202-77e6301c0a3f",
+      "pid": 3767279,
+      "start_ticks": 53564571
+    }
+  },
+  "celloRecount": {
+    "job": "p3-f747-lampis-independent-whole-waveform-causal-transfer-recount",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "9f5f08930aac271e70993982cfe725be9c1502bbe725f80d87191c9a0d5a328a",
+    "terminal": "completed",
+    "exit": 0,
+    "command_request_sha256": "0d1e59f196f33c064421a9035d6bd1d9f4d5f4def686949a5049152528a6f4c3",
+    "generation": "106ffc6067df11236788ad7e0b213ef53682bdc7c6e45d868ce525e40f02db1c",
+    "original_output_bytes": 1243,
+    "resource_process": {
+      "pid": 3767753,
+      "start_ticks": 53571905,
+      "boot_id": "2ca0e609-1208-40ae-a202-77e6301c0a3f"
+    }
+  },
+  "celloRawWorst": {
+    "job": "p3-f747-lampis-native-original-raw-worst-stroke52-independent-filter",
+    "authority": "node-3e1997435f3f4ffb9db90803039402b6",
+    "operation_request_sha256": "fee92d593de556aed4dcb6973d8f68adc7c6e4e218671bab7a7538744ee4f165",
+    "terminal": "completed",
+    "exit": 0,
+    "command_request_sha256": "c6031708907cf51d9703409d0596a2825487189fc97c85d9e87f9950057dcd25",
+    "generation": "81a762df6a028ed43ebaffccb6caf1ea4b272aea82a5636806e0ba2e03c76d26",
+    "original_output_bytes": 1708,
+    "resource_process": {
+      "boot_id": "2ca0e609-1208-40ae-a202-77e6301c0a3f",
+      "pid": 3768339,
+      "start_ticks": 53583283
+    }
+  },
+  "complete_forecast_capture": {
+    "total": 4583830,
+    "sha": "aaedc7d51953621d0e7a61116d888e235d9b9fe721571342196777d8a7c6ba9c",
+    "source": {
+      "owner": "node-7a9dead9904fa3581a4286fb5ced2323",
+      "command_id": "p3-f747-vienna-cold-causal-end-transfer-whole-stroke-forecast",
+      "request_sha256": "2666295d16ebc8883ceff7c176f44e8cc523938f4831caf9217e0ead4f689b0e",
+      "generation": "1d2565ed32259942be82c34ba6d95df40e865e413682cbba73d0d16da166bcd5",
+      "receipt_sha256": "69f6c101b99a54a3ead4c2fb06162e65b76302700d4ac60d5ef57fe8fbf47589",
+      "output_bytes": 4583830
+    }
+  },
+  "complete_measurement_capture": {
+    "total": 1631243,
+    "sha": "d4bc4e2d9a1eb9e4c091a857eafb8aea3d05ddc9bed8689371015cf84907c933",
+    "source": {
+      "owner": "node-7a9dead9904fa3581a4286fb5ced2323",
+      "command_id": "p3-f747-vienna-six-held-nut-reactions-original-receiver",
+      "request_sha256": "429cdec4e276142c727a00304f0b4afa1a21ab00a30b8d4dca89f279e5e1b73b",
+      "generation": "ee381ac3a0954d735aec8f0afb8d2474f873e09ad38973ab677cbd981a377fc8",
+      "receipt_sha256": "954427d3abd84ef37a6875240fe36b0fb6403b99712916694dfa9b6bbea2a6d5",
+      "output_bytes": 1631243
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "id": 52,
+  "index_5k": 24588,
+  "max_independent_filter_delta": 0,
+  "member": "4a21077617807c9a3b729454cb1d56147fc7d326011d2141aeb36679f1f1a03d",
+  "method": "independent bounded LZMA2 reader, per-member CRC, SHA, raw CSV parsing and manual scalar SOS recursion with shared Butterworth coefficients",
+  "raw_rows": [
+    {
+      "independent_filtered_truth": 0.7298949164224319,
+      "index_50k": 245850,
+      "measured_raw_bow_force_velocity_bridge_nut": [
+        3.90931466093692,
+        0.0389639205093575,
+        1.7372877895647,
+        1.35244246083405
+      ]
+    },
+    {
+      "independent_filtered_truth": 1.017218526415145,
+      "index_50k": 245860,
+      "measured_raw_bow_force_velocity_bridge_nut": [
+        3.90885029925745,
+        0.0389156858961991,
+        1.70204714577666,
+        1.57468592375815
+      ]
+    },
+    {
+      "independent_filtered_truth": 1.3122460762399577,
+      "index_50k": 245870,
+      "measured_raw_bow_force_velocity_bridge_nut": [
+        3.90842515334071,
+        0.0388674512830407,
+        1.84941693614437,
+        1.59759762202436
+      ]
+    },
+    {
+      "independent_filtered_truth": 1.5280551747239648,
+      "index_50k": 245880,
+      "measured_raw_bow_force_velocity_bridge_nut": [
+        3.90803947497043,
+        0.0388192166698823,
+        1.83339854413999,
+        1.51740667643808
+      ]
+    },
+    {
+      "independent_filtered_truth": 1.5940115950116607,
+      "index_50k": 245890,
+      "measured_raw_bow_force_velocity_bridge_nut": [
+        3.90769347813026,
+        0.0387709820567239,
+        1.85582440121792,
+        1.38108208449408
+      ]
+    },
+    {
+      "independent_filtered_truth": 1.494640252804421,
+      "index_50k": 245900,
+      "measured_raw_bow_force_velocity_bridge_nut": [
+        3.90738733869828,
+        0.0387227474435655,
+        1.87504651881858,
+        1.22070021317601
+      ]
+    },
+    {
+      "independent_filtered_truth": 1.2743366955751114,
+      "index_50k": 245910,
+      "measured_raw_bow_force_velocity_bridge_nut": [
+        3.90712119420129,
+        0.0386745128304071,
+        1.83339850712399,
+        1.03396989034088
+      ]
+    }
+  ],
+  "whole_source_crc32": 1958334075
+}

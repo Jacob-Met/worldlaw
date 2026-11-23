@@ -1,0 +1,41 @@
+{
+  "cases": 27,
+  "components": 81,
+  "conditions_scored": 63,
+  "forecast_sha256": "43d441c0fbd08ae989e4edba9ab84f9d8c7a7d2adef1351630d8b1bc55fb3f0b",
+  "interval_cells": 162,
+  "maximum_numeric_difference": 5.551115123125783e-17,
+  "point_gates": 12,
+  "primary": false,
+  "score_sha256": "fff782a701c986c8dd175de670dbfa49d1b3d20fc7a64bd6313569c8e1deee60",
+  "signed_errors": 567,
+  "source_sha256": "b3434079b37233fef3c8ea656a0e011d46f5ce7559d7893631a9c0c5cabce9b3",
+  "worst": {
+    "absolute": 0.55297416471607,
+    "all_three_observed": [
+      0.04,
+      0.01,
+      3.33
+    ],
+    "all_three_predicted": [
+      0.07315597119923684,
+      0.012041058318660442,
+      3.88297416471607
+    ],
+    "forecast": 3.88297416471607,
+    "gas": "CO2",
+    "q": 3.33,
+    "row": {
+      "P": 112,
+      "T": 303,
+      "pressure_group": 100,
+      "row": 9,
+      "y": [
+        0.3,
+        0.3,
+        0.4
+      ]
+    },
+    "u": 0.19
+  }
+}
