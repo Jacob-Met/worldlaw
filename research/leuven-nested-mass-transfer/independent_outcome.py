@@ -6,7 +6,8 @@ def recount(pred_path,truth_path):
     assert check(pred_path)['admitted']
     with zipfile.ZipFile(pred_path) as z:
         pred=np.load(io.BytesIO(z.read('forecasts.npy')),allow_pickle=False)
-    state=[];max_gap=0.;residuals=0
+    with zipfile.ZipFile(pred_path) as z:mask=np.load(io.BytesIO(z.read('source_admission.npy')),allow_pickle=False)
+    state=[];max_gap=0.;residuals=0;tails=[]
     with zipfile.ZipFile(truth_path) as z:
         rep=json.loads(z.read('result.json'))
         for k,name in enumerate(rep['conditions']):
@@ -15,6 +16,13 @@ def recount(pred_path,truth_path):
             y=np.array([x[i,j] for i,j in coords])
             power=np.sum(y.real*y.real+y.imag*y.imag)
             row=[]
+            err=np.abs(pred[k,0]-y)
+            best=err.copy()
+            best[:,~mask[k]]=-1
+            c,fi=map(int,np.unravel_index(np.argmax(best),best.shape))
+            pair=lambda v:[float(v.real),float(v.imag)]
+            by_arm=np.linalg.norm((pred[k]-y)[:,:,mask[k]].reshape(8,-1),axis=1)/np.linalg.norm(y[:,mask[k]])
+            tails.append({'configuration':name,'approved_only_nrmse':by_arm.tolist(),'frequency_index':fi,'component':c,'hertz':1600*fi/8191,'truth':pair(y[c,fi]),'all_predictions':[pair(v) for v in pred[k,:,c,fi]],'approved_worst_abs':float(err[c,fi]),'registered_worst_was_refused':not bool(mask[k,rep['worst_one_per_state'][k]['frequency_index']])})
             for j,g in enumerate(pred[k]):
                 delta=g-y
                 squared=delta.real*delta.real+delta.imag*delta.imag
@@ -32,5 +40,5 @@ def recount(pred_path,truth_path):
     state=np.array(state);mean=state.mean(0);worst=state.max(0)
     decisions={'mean':list(map(bool,mean[0]<mean[1:])),'worst':list(map(bool,worst[0]<worst[1:]))}
     assert decisions==rep['gates'] and all(decisions['mean']+decisions['worst'])==rep['joint']
-    return {'complex_residuals':residuals,'targets':residuals//8,'max_score_delta':max_gap,'gates':decisions,'joint':rep['joint'],'raw_worst_confirmed':4}
+    return {'complex_residuals':residuals,'targets':residuals//8,'max_score_delta':max_gap,'gates':decisions,'joint':rep['joint'],'raw_worst_confirmed':4,'approved_slice_diagnostic':tails}
 if __name__=='__main__':print(json.dumps(recount(*sys.argv[1:]),sort_keys=True))
