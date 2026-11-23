@@ -13,6 +13,9 @@ import {compileExactAffineCircuits} from './active-linear-family.mjs';
 export const ACTIVE_VANDERMONDE_NONLINEAR_SCHEMA = 'worldlaw.active-vandermonde-nonlinear/v1';
 export const ACTIVE_VANDERMONDE_READINGS_SCHEMA = 'worldlaw.active-vandermonde-readings/v1';
 
+export const ACTIVE_ACTUATOR_TIMELINE_SCHEMA = 'worldlaw.active-actuator-timeline/v1';
+export const ACTIVE_ACTUATOR_TIMELINE_READINGS_SCHEMA = 'worldlaw.active-actuator-timeline-readings/v1';
+
 const err = (msg) => { throw new Error('Active Vandermonde nonlinear: ' + msg); };
 const need = (ok, msg) => { if (!ok) err(msg); };
 const absBig = (x) => (x < 0n ? -x : x);
@@ -78,9 +81,9 @@ const matMul = (A, B) => {
   return A.map((row) => Bt.map((col) => dot(row, col)));
 };
 
-function rref(M) {
+function rref(M, columnLimit = M[0]?.length ?? 0) {
   const a = M.map((r) => r.slice());
-  const m = a.length, n = a[0]?.length ?? 0;
+  const m = a.length, n = columnLimit;
   let k = 0;
   const pivots = [];
   for (let c = 0; c < n && k < m; c++) {
@@ -442,6 +445,7 @@ function buildScheduleDesign(ampStrings, maxDegree, epsilonZ, hypotheses) {
 }
 
 export function designActiveVandermondeNonlinear(request) {
+  if (request?.schema === ACTIVE_ACTUATOR_TIMELINE_SCHEMA) return compileActuatorTimeline(request).plan;
   return designNonlinear(request, false);
 }
 
@@ -529,6 +533,7 @@ export function replayActiveVandermondeNonlinear(request, plan) {
   if (JSON.stringify(recomputed) === frozen) return recomputed;
   // Older plans used a conservative invariant. Replay only its exact original
   // schedule and certificate; readouts continue to use that frozen invariant.
+  need(request?.schema !== ACTIVE_ACTUATOR_TIMELINE_SCHEMA, 'continuous-actuation plan changed');
   const previous = designNonlinear(request, true);
   need(JSON.stringify(previous) === frozen,
     'Replayed Vandermonde nonlinear certificate does not match frozen plan');
@@ -612,6 +617,7 @@ function jointReadoutGeometry(plant, episodeValues, noiseBound, V) {
 }
 
 export function evaluateActiveVandermondeReadings(request, plan, supplied) {
+  if (request?.schema === ACTIVE_ACTUATOR_TIMELINE_SCHEMA) return evaluateActuatorTimeline(request, plan, supplied);
   const verifiedPlan = replayActiveVandermondeNonlinear(request, plan);
   need(supplied && typeof supplied === 'object' && supplied.schema === ACTIVE_VANDERMONDE_READINGS_SCHEMA,
     'expected readings schema ' + ACTIVE_VANDERMONDE_READINGS_SCHEMA);
@@ -755,4 +761,106 @@ export function evaluateActiveVandermondeReadings(request, plan, supplied) {
     falsifiedHypothesisIds: falsifiedIds,
     physicalProvenanceVerified: false,
   };
+}
+
+// One episode has one unknown initial state. At each transition a declared
+// amplitude drives the SAME polynomial. A null entry is an actuator-off tick.
+function compileActuatorTimeline(request) {
+  const n = request.stateDimension, degree = request.maxDegree;
+  const timeline = request.amplitudeTimeline;
+  need(Number.isSafeInteger(n) && n >= 1 && n <= 8, 'stateDimension must be in 1..8');
+  need(Number.isSafeInteger(degree) && degree >= 0 && degree <= 4, 'maxDegree must be in 0..4');
+  need(Array.isArray(timeline) && timeline.length >= n && timeline.length < 16,
+    'amplitudeTimeline must contain stateDimension..15 transitions of one episode');
+  need(request.plant?.pulseTicks === undefined && request.amplitudes === undefined &&
+    request.candidateSchedules === undefined && request.horizon === undefined,
+    'amplitudeTimeline specifies all transitions of the continuous episode');
+  need(!Array.isArray(request.plant?.C?.[0]) || request.plant.C.length === 1,
+    'continuous actuation requires one scalar observation channel');
+  const amplitudes = timeline.map(v => v === null ? null : parseRational(v, 'timeline amplitude'));
+  const noise = parseRational(request.noiseBound ?? 0, 'noiseBound');
+  need(noise.n >= 0n, 'noiseBound must be nonnegative');
+  const { A, bUnit, C, O, obsTicks } = parsePlant(request.plant, n, timeline.length + 1);
+  const columns = degree + 1;
+  const forced = Array.from({length: columns}, () => Array.from({length: n}, Z));
+  const H = [];
+  for (let tick = 0; tick <= timeline.length; tick++) {
+    if (obsTicks.includes(tick)) H.push(forced.map(state => dot(C, state)));
+    if (tick === timeline.length) break;
+    for (let k = 0; k < columns; k++) {
+      const input = amplitudes[tick] === null ? Z() : powQ(amplitudes[tick], k);
+      forced[k] = matVec(A, forced[k]).map((v, i) => add(v, mul(bUnit[i], input)));
+    }
+  }
+  // y = O*x0 + H*theta + e. Left-annihilating O gives all observable
+  // coefficient functionals. Row reduction carries each reading witness
+  // alongside its coefficient row, so w*O=0 and w*H=l are constructive.
+  const W = rightNullBasis(transpose(O));
+  const response = matMul(W, H);
+  const augmented = rref(response.map((row, i) => [...row, ...W[i]]), columns);
+  const identifiable = augmented.a.filter(row => row.slice(0, columns).some(v => v.n !== 0n))
+    .map(row => ({coefficients: row.slice(0, columns), weights: row.slice(columns)}));
+  const hidden = rightNullBasis(response).map(coefficients => {
+    const rhs = matVec(H, coefficients).map(neg);
+    const {a, pivots} = rref(O.map((row, i) => [...row, rhs[i]]));
+    need(!pivots.includes(n), 'internal coefficient shift cannot be absorbed by the initial state');
+    const initial = Array.from({length: n}, Z);
+    pivots.forEach((col, i) => { initial[col] = a[i][n]; });
+    return {coefficients: coefficients.map(fmt), initialStateShift: initial.map(fmt)};
+  });
+  const hypotheses = parseHypotheses(request.hypotheses, degree);
+  const circuits = hypotheses.length ? compileExactAffineCircuits(O) : [];
+  const catalog = hypotheses.map(h => ({id: h.id, predicted: matVec(H, h.coefficients)}));
+  const distances = [];
+  for (let i = 0; i < catalog.length; i++) for (let j = i + 1; j < catalog.length; j++) {
+    const difference = catalog[i].predicted.map((v, t) => sub(v, catalog[j].predicted[t]));
+    const margin = timelineDistance(circuits, difference);
+    distances.push({pair: [catalog[i].id, catalog[j].id], distance: fmt(margin),
+      separated: cmpQ(margin, add(noise, noise)) > 0});
+  }
+  const plan = {schema: ACTIVE_ACTUATOR_TIMELINE_SCHEMA, status: 'coefficient_observability_certified', episodeCount: 1,
+    stateDimension: n, maxDegree: degree, noiseBound: fmt(noise),
+    amplitudeTimeline: amplitudes.map(v => v === null ? null : fmt(v)), observationTicks: obsTicks,
+    identifiableRank: identifiable.length,
+    identifiableFunctionals: identifiable.map(({coefficients, weights}) => ({
+      coefficients: coefficients.map(fmt), readingWeights: weights.map(fmt),
+      errorRadius: fmt(mul(noise, l1Norm(weights)))})),
+    indistinguishableDirections: hidden, pairwiseSeparations: distances};
+  return {plan, O, H, identifiable, noise, catalog, circuits};
+}
+
+function timelineDistance(circuits, values) {
+  let maximum = Z();
+  for (const {weights} of circuits) {
+    const ratio = div(absQ(dot(weights, values)), l1Norm(weights));
+    if (cmpQ(ratio, maximum) > 0) maximum = ratio;
+  }
+  return maximum;
+}
+
+function evaluateActuatorTimeline(request, prior, supplied) {
+  const {plan, O, H, identifiable, noise, catalog, circuits} = compileActuatorTimeline(request);
+  need(JSON.stringify(prior) === JSON.stringify(plan), 'continuous-actuation plan changed');
+  need(supplied?.schema === ACTIVE_ACTUATOR_TIMELINE_READINGS_SCHEMA &&
+    typeof supplied.source === 'string' && supplied.source.trim().length >= 8 &&
+    ['supplied', 'synthetic'].includes(supplied.acquisition), 'invalid continuous-actuation readout source');
+  const records = supplied.observations;
+  need(Array.isArray(records) && records.length === plan.observationTicks.length &&
+    records.every((r, i) => r?.tick === plan.observationTicks[i]),
+    'one reading is required at every frozen observation tick, in order');
+  const values = records.map(r => parseRational(r.value, 'reading'));
+  const image = O.map((row, i) => [...row, ...H[i]]);
+  const distance = timelineDistance(compileExactAffineCircuits(image), values);
+  const compatible = cmpQ(distance, noise) <= 0;
+  return {schema: 'worldlaw.active-actuator-timeline-result/v1',
+    status: compatible ? 'supplied_readings_consistent' : 'abstained_out_of_polynomial_family',
+    readoutSource: supplied.source, acquisition: supplied.acquisition, physicalProvenanceVerified: false,
+    polynomialFamilyConsistent: compatible,
+    minimumReadingError: fmt(distance), estimates: compatible ? identifiable.map(({coefficients, weights}) => {
+      const estimate = dot(weights, values), radius = mul(noise, l1Norm(weights));
+      return {coefficients: coefficients.map(fmt), estimate: fmt(estimate),
+        interval: [fmt(sub(estimate, radius)), fmt(add(estimate, radius))]};
+    }) : [],
+    consistentHypothesisIds: catalog.filter(law => cmpQ(timelineDistance(circuits,
+      values.map((v, i) => sub(v, law.predicted[i]))), noise) <= 0).map(law => law.id)};
 }

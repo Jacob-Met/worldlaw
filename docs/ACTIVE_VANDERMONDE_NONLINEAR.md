@@ -171,3 +171,50 @@ Frozen v1 plans replay their original conservative schedule, witness and
 readout coefficients when their complete historical reconstruction matches.
 Fresh planning uses the tighter contrast. These are prospective bounds for
 the specified plant, catalog and observation-noise model.
+
+## One continuous actuation timeline
+
+A `worldlaw.active-actuator-timeline/v1` source describes ordered transitions
+of a single physical run, with one unknown initial state and one unknown
+polynomial throughout. For example:
+
+```json
+{"schema":"worldlaw.active-actuator-timeline/v1","stateDimension":2,"maxDegree":2,
+ "plant":{"A":[[1,1],[0,1]],"bUnit":[1,0],"C":[1,0]},
+ "amplitudeTimeline":[-2,-1,0,1,2],"noiseBound":0}
+```
+
+The array contains one amplitude for each transition. Zero applies the
+polynomial at zero. A JSON `null` turns the actuator off for that tick.
+The existing byte-bound planner, CLI and portable notebook accept this
+source through the same commands shown above. The second input has schema
+`worldlaw.active-actuator-timeline-readings/v1`, the bound source and plan
+hashes, source and acquisition attribution, and an ordered `observations`
+array of `{"tick":0,"value":"11"}` records for the frozen observation ticks.
+
+Writing the sampled trajectory as `y = O x0 + H theta + e`, each column of
+`H` is the forced response of one polynomial power along the declared
+timeline. If the rows of `W` span the left nullspace of `O`, the row space
+of `W H` contains precisely the estimable coefficient functionals. The
+plan returns a canonical basis of this space, a reading-weight vector for
+each functional and compensating initial-state shifts for every basis
+direction of its nullspace. With bounded noise the reported interval uses
+the stated witness's L1 norm. It is an outer bound for that functional.
+Full-family consistency and compatible catalog IDs use every affine-image
+circuit and include the noise boundary.
+
+In the example the second state is an unknown constant drift. With the
+actuator on at every tick, a constant amplitude produces a constant
+response that can be absorbed in the drift for any run length. Independent
+resets at more constant levels cannot remove this ambiguity. The mixed
+timeline identifies slope and curvature. Its intercept remains
+indistinguishable from an equal and opposite drift, as witnessed by an
+initial-state shift of `[0,-1]` for coefficient shift `[1,0,0]`. A
+deliberate actuator-off transition is a different physical experiment and
+can identify this intercept.
+
+On the shorter timeline `[-5,5]`, the second difference divides away the
+unknown position and drift. With unit noise, zero and identity are
+separated at exact affine-image distance `5/2`, above the two-noise
+threshold of 2. The equality case `[-4,4]` admits the same readout
+`[1,-1,1]` under both laws. These checks use synthetic measurements.

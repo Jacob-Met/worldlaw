@@ -171,10 +171,10 @@ function enumerateCircuitSupports(rows,basis,budget,enumeration,measure){
  * it does not change any existing planner traversal or certificate bytes. */
 export function compileExactAffineCircuits(rows){
   need(Array.isArray(rows)&&rows.length>=1&&rows.length<=16&&
-    Array.isArray(rows[0])&&rows[0].length>=1&&rows[0].length<=8&&
+    Array.isArray(rows[0])&&rows[0].length>=1&&rows[0].length<=13&&
     rows.every(row=>Array.isArray(row)&&row.length===rows[0].length&&
       row.every(q=>typeof q?.n==='bigint'&&typeof q?.d==='bigint'&&q.d>0n)),
-    'exact affine circuit input must be a 1–16 by 1–8 rational matrix');
+    'exact affine circuit input must be a 1–16 by 1–13 rational matrix');
   const budget=workBudget(50000);
   budget.take();
   const result=enumerateCircuitSupports(rows,nullBasis(rows),budget,
