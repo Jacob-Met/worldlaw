@@ -1,4 +1,4 @@
-import {isGuidedPlan,BINARY_PLAN,MULTICLASS_PLAN,CASE_TWELVE_PLAN,CASE_TWELVE_REQUEST,ONE_FEEDBACK_REQUEST,isSuffixRequest,driftFeedbackInconclusive,GUIDED_INPUT,pendingDriftSteps} from '../science/active-guided-drift.mjs';
+import {isGuidedPlan,MINIMAX_SOURCE,BINARY_PLAN,MULTICLASS_PLAN,CASE_TWELVE_PLAN,CASE_TWELVE_REQUEST,ONE_FEEDBACK_REQUEST,isSuffixRequest,driftFeedbackInconclusive,GUIDED_INPUT,pendingDriftSteps} from '../science/active-guided-drift.mjs';
 import {ACTIVE_DRIFT_PLAN,ACTIVE_DRIFT_CHECKPOINTS,ACTIVE_DRIFT_TRACE,parseActiveOriginalJSON} from '../science/active-position-drift-readout.mjs';
 import {renderDriftNotebook} from './position-drift-view.mjs';
 import {COUPLED_DEMO_SOURCE_SHA256} from './instrument.mjs';
@@ -11,7 +11,7 @@ import {escapeHTML as html,approximate,displayNumber,plannedTicks,certified,
 const $=id=>document.getElementById(id);
 const PREFIX='worldlaw-active-notebook-v1:',POINTER='worldlaw-active-current-v1';
 const isDrift=p=>p?.schema===ACTIVE_DRIFT_PLAN||isGuidedPlan(p);
-const examplePaths={driftExactTree:'/examples/active-position-drift-exact-feedback-tree.json',driftTree:'/examples/active-position-drift-feedback-tree.json',driftSharedSuffix:'/examples/active-position-drift-shared-suffix.json',driftPlanarSuffix:'/examples/active-position-drift-planar-suffix.json',driftSuffixRegions:'/examples/active-position-drift-suffix-regions.json',driftHistorySuffix:'/examples/active-position-drift-history-suffix.json',driftSuffix:'/examples/active-position-drift-suffix-feedback.json',driftFeedbackSearch:'/examples/active-position-drift-one-feedback.json',driftBinary:'/examples/active-position-drift-binary.json',driftMulti:'/examples/active-position-drift-schedule.json',driftFeedback:'/examples/active-position-drift-feedback.json',driftSchedule:'/examples/active-position-drift-schedule.json',driftGauge:'/examples/active-position-drift-gauge.json',coupled:'/examples/active-intervention-coupled-kinematics.json',
+const examplePaths={driftMinimax:'/examples/active-position-drift-minimax-simplex.json',driftSimplex:'/examples/active-position-drift-rate-simplex.json',driftSegmentAlias:'/examples/active-position-drift-rate-segment-alias.json',driftSegments:'/examples/active-position-drift-rate-segments.json',driftExactTree:'/examples/active-position-drift-exact-feedback-tree.json',driftTree:'/examples/active-position-drift-feedback-tree.json',driftSharedSuffix:'/examples/active-position-drift-shared-suffix.json',driftPlanarSuffix:'/examples/active-position-drift-planar-suffix.json',driftSuffixRegions:'/examples/active-position-drift-suffix-regions.json',driftHistorySuffix:'/examples/active-position-drift-history-suffix.json',driftSuffix:'/examples/active-position-drift-suffix-feedback.json',driftFeedbackSearch:'/examples/active-position-drift-one-feedback.json',driftBinary:'/examples/active-position-drift-binary.json',driftMulti:'/examples/active-position-drift-schedule.json',driftFeedback:'/examples/active-position-drift-feedback.json',driftSchedule:'/examples/active-position-drift-schedule.json',driftGauge:'/examples/active-position-drift-gauge.json',coupled:'/examples/active-intervention-coupled-kinematics.json',
   bounded:'/examples/active-control-box-coupled-kinematics.json',
   joint:'/examples/active-joint-control-three-responses.json',
   adaptive:'/examples/active-adaptive-coupled-track.json',
@@ -426,7 +426,7 @@ $('drift-trace').addEventListener('click',()=>{
   if(busy||mode!=='frozen'||!isDrift(book?.plan)||book.plan.status!=='indistinguishable')return;
   const original=book,key=activeKey;
   transact(()=>{
-    const witness=(original.plan.witnesses??[original.plan.witness])[Number($('drift-pair').value)];
+    const witness=(original.plan.aliases??original.plan.witnesses??[original.plan.witness])[Number($('drift-pair').value)];
     const runs=$('drift-word').value.split(/\r?\n/).filter(l=>l.trim()).map(line=>{
       const fields=line.trim().split(/\s+/);
       if(fields.length!==2)throw Error('Use one command and its positive repeat count per line.');
@@ -502,7 +502,7 @@ $('load-example').addEventListener('click',()=>transact(async()=>ask({action:'pl
 $('new-draft').addEventListener('click',()=>book&&planDraft(book.sourceText,catalogDesign()));
 $('replan').addEventListener('click',()=>{
   const source=$('source-text').value,bound=$('noise-bound').value.trim();
-  transact(()=>{let text=source;const request=parseActiveOriginalJSON(source);const catalog=(request.schema===ONE_FEEDBACK_REQUEST||isSuffixRequest(request))?request.catalog:request;if(request.schema!==CASE_TWELVE_REQUEST&&String(catalog.noiseBound??0)!==bound){catalog.noiseBound=exactInput(bound);text=JSON.stringify(request,null,2)+'\n';}return ask({action:'plan',sourceText:text,design:request.schema==='worldlaw.position-drift-rate-catalog/v1'?catalogDesign():undefined});},next=>adopt(next,'preview'),'Draft recomputed using the stated source and error bound. No readout values were used.');
+  transact(()=>{let text=source;const request=parseActiveOriginalJSON(source);const catalog=(request.schema===MINIMAX_SOURCE||request.schema===ONE_FEEDBACK_REQUEST||isSuffixRequest(request))?request.catalog:request;if(request.schema!==CASE_TWELVE_REQUEST&&String(catalog.noiseBound??0)!==bound){catalog.noiseBound=exactInput(bound);text=JSON.stringify(request,null,2)+'\n';}return ask({action:'plan',sourceText:text,design:request.schema==='worldlaw.position-drift-rate-catalog/v1'?catalogDesign():undefined});},next=>adopt(next,'preview'),'Draft recomputed using the stated source and error bound. No readout values were used.');
 });
 $('drift-design').addEventListener('change',()=>{$('drift-search').hidden=$('drift-design').value!=='multiclass';});
 for(const id of ['source-text','noise-bound','drift-design','drift-search-length','drift-search-budget'])$(id).addEventListener('input',()=>{if(mode==='preview'){dirty=true;$('phase').textContent='Unapplied source edits';announce('Displayed forecasts still belong to the last accepted source. Recompute the draft to apply these edits.');updateControls();}});

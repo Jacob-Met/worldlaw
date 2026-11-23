@@ -1,0 +1,25 @@
+{
+  "schema": "palagram.coarse-glass.material-transfer.v1",
+  "source": "cgadal-papers/palagram_monograph at d7559b7772e59c26358b9cd931f915e218de5dd9, tag1.0.0, Zenodo10854247. Zenodo metadata original DNS failure preserved. Canonical Git metadata-only audit inventoried 288 raw files: 269 physical and 19 simulation. Cyril/Marie files in runs_CYRIL belong to apparatus 2, therefore select author Cyril only.",
+  "exposure": "Published aggregate trends and figures, formulae and 0.01 settling threshold exposed. No run-level measured front samples or fitted coefficients read before this freeze. Whole-size holdout in an archival study, not discovery of settling.",
+  "membership": "Every original apparatus-1 Cyril run at 7.24 degrees. Source 61=20 silica,15 saline,18 fine glass (64.20µm),8 medium glass (135.06µm). Held13=8 of size186.87µm,5 of size250µm. Same H0=.202112m L0=.099m. All source/held notebook identifiers in design.json. No MARIE/JEAN/SedFoam experiment. Two size families, one lock/camera, repeated releases.",
+  "input": "Recorded initial sizes, densities, phi, tilt, geometry and t only for all runs; source front samples and source-only author estimates Fr/lamb admitted after freeze. No held fitted coefficients, positions, endpoint cutoffs or per-run fitted origin enter forecasts. Canonical files encode glass density2650 kg/m3; prose says2500. A declared sensitivity substitutes2500 in every glass train/held predictor and evaluates predictions at the same physical times.",
+  "grid": "45 fixed points u=5,5.25,...,16; u=t*sqrt(9.81*(rho_mix-rho_a)/rho_a*H0*cos(alpha))/L0. Score x in raw gate coordinates without retrospective origin adjustment. Exact finite raw point or adjacent finite observations at most 1.5 times median dt apart. No imputation, no extrapolation. At least36/45 eligible cells on each registered run required for primary, all missing counts recorded. Fit dimensionless x/L0 equal-run weighted MSE, report mm for run-level RMSE.",
+  "candidate": "finite_column. From a perfectly unmixed initially uniform column with constant fall speed and fixed effective depth, suspended fraction max(1-k*S*u,0). Speed proportional to square root of remaining density excess. Integrate speed c*F*exp(-b*u)*sqrt(max(1-k*S*u,0)); S=effective settling speed*t0/H0. For all saline S=0. Stokes isolated-particle speed adjusted by solving w*(1+.15*(w*d*rho_f/.001)^.687)=wStokes and multiplying by (1-phi)^4.65 (fixed low-Re hindrance approximation). Author energy F uses Fr0=.45,Cd=.02,Sphi=.25,Re_c=500, Krieger viscosity, a=H0/L0 and r=rho_mix/rho_a. Neither uniform active region, deposit nor concentration history directly observed. No causal loss claim.",
+  "roles": [
+    "finite_column",
+    "mixed_column",
+    "finite_raw_stokes",
+    "mixed_raw_stokes",
+    "finite_no_hindrance",
+    "hydraulic_decay",
+    "constant_velocity",
+    "author_fr_lambda",
+    "author_hinge_fit",
+    "empirical_curve",
+    "finite_glass2500",
+    "frozen_medium_curve"
+  ],
+  "fit": "Finite/mixed/hydraulic roles fit 0≤c≤3, 0≤b≤.2, 0≤k≤10 with fixed deterministic multiple starts and source-only bounded least-squares. Mixed replaces sqrt(1-kSu)_+ with exp(-kSu/2). Raw Stokes and no-hindrance remove specified drag correction(s). Hydraulic k=0. Constant b=k=0. Author_fr_lambda uses mean finite source published Fr and exact least-squares through origin slope of source published lamb versus max(StokesSt-.01,0); source-fitted transfer of released Fig5 law x=Fr*u*(1-lambda*u). Author_hinge_fit uses x=cF*u*(1-(l0+l1*max(StokesSt-.01,0))*u) fit on actual source paths. Empirical_curve is ridge tensor polynomial in u with initial StokesSt,phi,log(Re),log(d), saline indicator; ridge strength selected leaving one of four entire source materials/sizes out. Frozen_medium_curve copies medium-source mean dimensionless path.",
+  "acceptance": "Require equal-weight mean of two held-size mean run RMSE to beat strictly every comparator except declared density sensitivity, and lower per-size error than mixed_column and empirical_curve on both size groups. Every held run has≥36 target cells. Preserve exact first forecasts, all12 arms×13 runs, raw worst and neighbors, development losses, unsupported endpoint counts, elapsed/optimizer cost. Independent receiver must reconstruct actual native positions, linear interpolation, all scores and worst raw cases without reusing scorer. No postscore retuning or multiple-lab claim."
+}

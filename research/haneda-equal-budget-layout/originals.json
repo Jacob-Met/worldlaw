@@ -1,0 +1,449 @@
+{
+  "freeze_commit": "ef688b11e97f2f319569a7283148e705971e55c0",
+  "freeze_post": 188042,
+  "forecast_commit": "cc1a2a943637edd85b7b4c4796a95e9f742f0609",
+  "forecast_post": 188063,
+  "execution_receipts": [
+    {
+      "role": "original predownload h5py DNS refusal",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "job": "p2-f747-haneda-ren-raw-four-source-grid-and-clock-only-inventory",
+      "request_sha256": "ca98aa4838a708fed118b3458e2d610b1c455b0abdc65d9747f7a74f2153eed5",
+      "generation": "d83f908b904db00733043993b22aad8f7efd27a501e835c7afca9a40b6633266",
+      "native_receipt_sha256": "4f702d8a6ec39aa607adf0913253f17cff1241a48aa8d942e89292701ad74bcd",
+      "started_at": "2026-11-23T10:58:12.017923837Z",
+      "finished_at": "2026-11-23T10:58:19.904151694Z",
+      "exit_code": 1,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 1846,
+      "full_output_sha256": "41ea8fa66ddef6b0b28c717e1a69a7a0cb83616b8f9f74d9998a42997b366190",
+      "resources": {
+        "user_cpu_seconds": 0.268179,
+        "system_cpu_seconds": 0.066763,
+        "max_rss_bytes": 48029696
+      }
+    },
+    {
+      "role": "partial metadata source TLS refusal, includes all four typed headers and three complete grids",
+      "owner": "node-408916f225fedd58ae6e48e0e6e1a436",
+      "job": "p2-f747-haneda-author-source-git-and-official-four-raw-header-inventory",
+      "request_sha256": "a70a5452691a0ec71b08f724f0a69330f93ff1d267e10ce889652011a159caaa",
+      "generation": "d4ef9289f9829624c9cd58a59248c4e4064ca821bd53f15a8584f32e9fd9007c",
+      "native_receipt_sha256": "3fc6425cdfacb90daa1a7fc296d713619df90f61269b39e65a98fff6c0d50399",
+      "started_at": "2026-11-23T11:00:12.127646873Z",
+      "finished_at": "2026-11-23T11:02:34.286156793Z",
+      "exit_code": 1,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 14650,
+      "full_output_sha256": "59732c6de90fbfd1ff6a01b3dfc099fbc62cd04ae253be4b00eb4d0b25d852c9",
+      "resources": {
+        "user_cpu_seconds": 2.506532,
+        "system_cpu_seconds": 0.327108,
+        "max_rss_bytes": 103768064
+      }
+    },
+    {
+      "role": "exact simplex enclosure",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "job": "p2-f747-haneda-closed-direction-simplex-rational-relocation-certificate",
+      "request_sha256": "6205be190352551240042a990b5db49ac39f48f309ec8ab0a6759e765e133f81",
+      "generation": "2e5d461f6ae5d1e0fac298267c4f112f885720efa0850a22024b01b89c7bb9c0",
+      "native_receipt_sha256": "9fcee6009061995384cf9303cd15833baca5145a9742954f66f18435c3957595",
+      "started_at": "2026-11-23T11:01:11.202468325Z",
+      "finished_at": "2026-11-23T11:01:11.302140632Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 450,
+      "full_output_sha256": "06b064903e6a638ba556b099e89a09b472b80bb2530a4e3c4709497e1eb73b2e",
+      "resources": {
+        "user_cpu_seconds": 0.051532,
+        "system_cpu_seconds": 0,
+        "max_rss_bytes": 21078016
+      }
+    },
+    {
+      "role": "independent exact stereographic enclosure",
+      "owner": "node-3222d1f6e27516919fe8bd7e979a8a8d",
+      "job": "p2-f747-haneda-independent-stereographic-rational-continuum-check",
+      "request_sha256": "1383b87604c9abbe979665e189e106bb02844f42b1dd3e21d930ba4cb3a84dcf",
+      "generation": "0507471d7f17dbb8d09d86370643ce4f074cbf8a44f54d599fc63dbb17f1adf8",
+      "native_receipt_sha256": "31e10b0a186c214cd9644a085de6acf1ddb363f211e67a995542539c7021fca6",
+      "started_at": "2026-11-23T11:07:30.797265794Z",
+      "finished_at": "2026-11-23T11:07:31.115247985Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 362,
+      "full_output_sha256": "9874fe575c9eb806ac294ab0ea17c1534082ca9cf1fe59181628f1a419be222b",
+      "resources": {
+        "user_cpu_seconds": 0.25584,
+        "system_cpu_seconds": 0.003997,
+        "max_rss_bytes": 21602304
+      }
+    },
+    {
+      "role": "opaque file+typed grid sp1",
+      "owner": "node-32ff91607fe60300bf0b4154e116a288",
+      "job": "p2-f747-haneda-raw-opaque-file-and-geometry-sp1",
+      "request_sha256": "4c4436be7df616e6b93e71e9596040c039dddae68f914fbcd9f7c66b52388597",
+      "generation": "6322c211d046611eb1836502e7109d6cc33db9275848293b0a4de3b19201cbde",
+      "native_receipt_sha256": "a37668bbae46214805f80517734eb53ae41bc6190c4074a53bbb6ebc98f310e9",
+      "started_at": "2026-11-23T11:05:14.25635391Z",
+      "finished_at": "2026-11-23T11:12:09.261149824Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 1005,
+      "full_output_sha256": "34da6ab25c5661762be860b16206da3490b140323679d4251ad8d24a654bbc96",
+      "resources": {
+        "user_cpu_seconds": 6.006859,
+        "system_cpu_seconds": 3.168113,
+        "max_rss_bytes": 104210432
+      }
+    },
+    {
+      "role": "opaque file+typed grid sp2",
+      "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+      "job": "p2-f747-haneda-raw-opaque-file-and-geometry-sp2",
+      "request_sha256": "31742bf3fb0c50a4d42dcb3812debccc166b4dab9ebd0703ece0c40ab5f5b5a4",
+      "generation": "be6640db5cce1d87e3d223cd23e94bf8a20ef4069828646facdd14a42ed0e16b",
+      "native_receipt_sha256": "13650cc02e8f44f4655560f6cf95f45315cacbcd439b69cc2c5d2d05743639b5",
+      "started_at": "2026-11-23T11:05:16.429365869Z",
+      "finished_at": "2026-11-23T11:12:56.496485417Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 1005,
+      "full_output_sha256": "f3ff4049b67962a28e79b5d94928a3b7c7bc728dc53ab6862479911ceee8b6b2",
+      "resources": {
+        "user_cpu_seconds": 5.553727,
+        "system_cpu_seconds": 2.288114,
+        "max_rss_bytes": 103784448
+      }
+    },
+    {
+      "role": "opaque file+typed grid sp3",
+      "owner": "node-5ac3f22d329300cd2bd708147fb06e85",
+      "job": "p2-f747-haneda-raw-opaque-file-and-geometry-sp3",
+      "request_sha256": "b93f805a81a5a69acff563d3be28f697069e4c5d7799eb296cd87c9f0aae5a07",
+      "generation": "5034135187dde8005a00224855e909e5a2c1f4a8add5a34243d5780fb831a4fa",
+      "native_receipt_sha256": "2203789dbdb1ce4c838b86fde00dafee2f04fcc917f9df2c45bd07faf5e1139a",
+      "started_at": "2026-11-23T11:05:17.449041309Z",
+      "finished_at": "2026-11-23T11:12:19.571854245Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 1006,
+      "full_output_sha256": "4f4a49161e97afaf64bc13421b0d15226574d77d93eee16391f1a13284ac85ff",
+      "resources": {
+        "user_cpu_seconds": 5.126932,
+        "system_cpu_seconds": 1.602298,
+        "max_rss_bytes": 104050688
+      }
+    },
+    {
+      "role": "opaque file+typed grid sp4",
+      "owner": "node-5ac3f22d329300cd2bd708147fb06e85",
+      "job": "p2-f747-haneda-raw-opaque-file-and-geometry-sp4",
+      "request_sha256": "3a2af414ca9064a99ba8003338f84cce9ad8275715df384e44f330be34b01abd",
+      "generation": "4d195b5bb58898dfeaa440130c45fa0e5a68fd32cde874716eb7bff7b39861f5",
+      "native_receipt_sha256": "0f956464884977a8b7a72411737ccc7478377f6f5d7545517fb4aff30eb480e7",
+      "started_at": "2026-11-23T11:05:20.534665672Z",
+      "finished_at": "2026-11-23T11:13:48.738363649Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 1006,
+      "full_output_sha256": "42a57dea58dd246ec8ade68d26a27b04dd3f209a21cba5de2255fe044a320e33",
+      "resources": {
+        "user_cpu_seconds": 5.30306,
+        "system_cpu_seconds": 1.4094470000000001,
+        "max_rss_bytes": 103399424
+      }
+    },
+    {
+      "role": "synthetic complete original panel",
+      "owner": "node-c701a0127ac0f5eea88adc5f1342e52c",
+      "job": "p2-f747-haneda-authentic-filter-and-559-subset-synthetic-full-panel-before-outcome",
+      "request_sha256": "c25fae67a5b1d962b140d4f63542efd346cd3d920653694e9947a9d9e45214ea",
+      "generation": "0d19f71b28b7b4edc88e9d5300f7a3a658fac1d36d42ef497dbcd6a32337fe45",
+      "native_receipt_sha256": "b01c50c5b13b0cef2bd279400a98a58d667b1c2db5b95fd5f96b6c7fd6de91de",
+      "started_at": "2026-11-23T11:12:19.55005555Z",
+      "finished_at": "2026-11-23T11:12:37.506972539Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 679,
+      "full_output_sha256": "97b34fd13b57e5aa914fc88f029f7cbcc0b2e7ffc06ab986fa7762b73d63c2ca",
+      "resources": {
+        "user_cpu_seconds": 14.381255,
+        "system_cpu_seconds": 1.112136,
+        "max_rss_bytes": 113725440
+      }
+    },
+    {
+      "role": "development sp1",
+      "owner": "node-32ff91607fe60300bf0b4154e116a288",
+      "job": "p2-f747-haneda-sp1-calibration-complex-donor-projection-original",
+      "request_sha256": "cc9e75303895d94aaea066b8fe6fa91d1562df3b4862a4c2afd6be68f382ce8f",
+      "generation": "b7f5a33fd64cf72c7f3668902a550379d7e2c705605f6866d86429719108eb84",
+      "native_receipt_sha256": "ff236edbf9649127e3cd88707927dc68a952523d714272c197ca0b1055a14880",
+      "started_at": "2026-11-23T11:14:40.078893609Z",
+      "finished_at": "2026-11-23T11:14:45.685487458Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 238204,
+      "full_output_sha256": "daaebaba1fb8ca18b7d58ad226ddb8526495652154b26e660da738f8e8f7e0e7",
+      "resources": {
+        "user_cpu_seconds": 3.036261,
+        "system_cpu_seconds": 1.00499,
+        "max_rss_bytes": 52772864
+      }
+    },
+    {
+      "role": "held donors only sp2",
+      "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+      "job": "p2-f747-haneda-sp2-donors-complex-donor-projection-original",
+      "request_sha256": "13a34a506c8e5859ce49d5ced1bfa171a0e7e81b23e90997d6eb836cdcc5a45f",
+      "generation": "c51d0f9a64bf3cf81b459f4755758706d95888912adbe77f5047aee81ea3f23b",
+      "native_receipt_sha256": "97212fcf1df5877452a13dcc9d7d2b4cf203d4f012c9722595bd60c32afb5de8",
+      "started_at": "2026-11-23T11:14:39.56467046Z",
+      "finished_at": "2026-11-23T11:14:45.306119924Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 230740,
+      "full_output_sha256": "1ccfdd9224f1f38e8b9f2191336e5701ec95929e5db27a0b3ea2809715e0a010",
+      "resources": {
+        "user_cpu_seconds": 2.820739,
+        "system_cpu_seconds": 0.731649,
+        "max_rss_bytes": 53014528
+      }
+    },
+    {
+      "role": "development sp3",
+      "owner": "node-5ac3f22d329300cd2bd708147fb06e85",
+      "job": "p2-f747-haneda-sp3-calibration-complex-donor-projection-original",
+      "request_sha256": "cbf54b5c12b6b6a746bde38b7f458bb4a330ff008de486c83e1a90d35b97fe6e",
+      "generation": "ccd2e6f076a53d340a489bab84e32a58b6a2038898d119a147e6106275ee7b2b",
+      "native_receipt_sha256": "e183f7837ecfd18b9c1b1c1f8f0b023c099a644e2adb727f8a54fbfe70b81bca",
+      "started_at": "2026-11-23T11:14:39.584959355Z",
+      "finished_at": "2026-11-23T11:14:45.248790127Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 238196,
+      "full_output_sha256": "21720a80159438ea40f160702be74b07826af014ece0305cf810abe3db5b5104",
+      "resources": {
+        "user_cpu_seconds": 2.82156,
+        "system_cpu_seconds": 0.434113,
+        "max_rss_bytes": 53252096
+      }
+    },
+    {
+      "role": "held donors only sp4",
+      "owner": "node-5ac3f22d329300cd2bd708147fb06e85",
+      "job": "p2-f747-haneda-sp4-donors-complex-donor-projection-original",
+      "request_sha256": "6942cbd24f437f3fbed4112f0998006046a1e6ad8de37bf4f91a43830ec92930",
+      "generation": "a8873635390467a611827c7c6129546a0259bebf8ec9ce885168318723d05d61",
+      "native_receipt_sha256": "46ea0e658f76daab354b7bbdc95069400f3b91917a44765b2db717951b84f51d",
+      "started_at": "2026-11-23T11:14:39.954160014Z",
+      "finished_at": "2026-11-23T11:14:45.225296708Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 230732,
+      "full_output_sha256": "1f9e5a8b112a8808b2ba50277a54f74b92b72e6c494a2023ce6bc17fa0582de0",
+      "resources": {
+        "user_cpu_seconds": 2.859745,
+        "system_cpu_seconds": 0.398862,
+        "max_rss_bytes": 53276672
+      }
+    },
+    {
+      "role": "full roster and all eight gate forecast lock",
+      "owner": "node-5ac3f22d329300cd2bd708147fb06e85",
+      "job": "p2-f747-haneda-complete-559-design-forecast-bank-before-sp2-sp4-targets",
+      "request_sha256": "7a951f34e0d1742ea64990442f4f2bbb5e19ff2467c204be7bf4f3730d0488dd",
+      "generation": "5a119bb0281abf40b279bf0eff7a751ce35961de9946b8f4ffef4274c906b86d",
+      "native_receipt_sha256": "dba6075bdd1987871f093ead195c2ce4c7aae111a4d7e44b6801acc793df74d6",
+      "started_at": "2026-11-23T11:16:15.323936689Z",
+      "finished_at": "2026-11-23T11:16:31.410806226Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 388004,
+      "full_output_sha256": "fb4e5dbe528a24fa88c567f9353b78688a978112bf0c823fac6964172ecde6b8",
+      "resources": {
+        "user_cpu_seconds": 13.047278,
+        "system_cpu_seconds": 0.728787,
+        "max_rss_bytes": 114274304
+      }
+    },
+    {
+      "role": "complete held target sp2",
+      "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+      "job": "p2-f747-haneda-sp2-whole-held-center-original-with-complete-forecast-file",
+      "request_sha256": "bf42149e0b5f411d44da2506c5e17fda306dd527a20c80dca9ec9edf4502dbdb",
+      "generation": "86883d0287c615acf1bedac2a7dc1b1bbd749bdbe0f04f5024eddea071aa76ef",
+      "native_receipt_sha256": "27fb0585c7485bee4cdfa686ad07012fee277df649596d3832f84d2479e40c9f",
+      "started_at": "2026-11-23T11:18:28.830714053Z",
+      "finished_at": "2026-11-23T11:18:34.327305615Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 9653,
+      "full_output_sha256": "aca5dd88c40d066f0a726d3cac28fe1fbe36ca7cc83747e4c6eda9b3b317dec6",
+      "resources": {
+        "user_cpu_seconds": 2.826465,
+        "system_cpu_seconds": 0.741739,
+        "max_rss_bytes": 56868864
+      }
+    },
+    {
+      "role": "complete held target sp4",
+      "owner": "node-5ac3f22d329300cd2bd708147fb06e85",
+      "job": "p2-f747-haneda-sp4-whole-held-center-original-with-complete-forecast-file",
+      "request_sha256": "955f6bb64d1ede925c2eac8e897d3b7ec6a4cb74147d660abc0ea97eb44d9bcb",
+      "generation": "46955553d581cf9b7a8d3dea5c1886c928d24069e42e67a715aa0f33f23fae75",
+      "native_receipt_sha256": "22c44e4b41b12a9e4ce0eb4e8f8d8bdd06a5d5ddc3bb292c0fe5956af49de66a",
+      "started_at": "2026-11-23T11:18:28.757873075Z",
+      "finished_at": "2026-11-23T11:18:33.867249383Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 9653,
+      "full_output_sha256": "0d90a70d361990a542926757abe4c7a8a7bab09e2545bdc7fac5e7ee22278aa4",
+      "resources": {
+        "user_cpu_seconds": 2.681509,
+        "system_cpu_seconds": 0.451867,
+        "max_rss_bytes": 57053184
+      }
+    },
+    {
+      "role": "all held endpoint and eight-gate original",
+      "owner": "node-fa7e1f4e6f040c8f8670d3e314319121",
+      "job": "p2-f747-haneda-all-eight-gates-sealed-real-four-source-receiver",
+      "request_sha256": "6c12b18f617dfe84842095bd320cdd9b38546fe53a80989eefab72c1befffd9b",
+      "generation": "c7d451d4a14a66a454901324b9b8d70e325de70f314dfb85dde4bb0197eb926c",
+      "native_receipt_sha256": "5e56156551141927851451c3487a2e1814a24d754570492ec86ce9356f23f591",
+      "started_at": "2026-11-23T11:20:11.384282911Z",
+      "finished_at": "2026-11-23T11:20:20.660446184Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 28080,
+      "full_output_sha256": "246a58b8252373f4f327623a55bdbb335df598bb8c03916f7d019842b79d4cf5",
+      "resources": {
+        "user_cpu_seconds": 6.006545,
+        "system_cpu_seconds": 0.651698,
+        "max_rss_bytes": 114335744
+      }
+    },
+    {
+      "role": "independent direct physical phasors and full worst slice sp2",
+      "owner": "node-38cd0d14b67e07c42ab844a3c4614a46",
+      "job": "p2-f747-haneda-sp2-raw-independent-700-components-and-32-position-worst-slice",
+      "request_sha256": "06db110dd14ea1686e3fe3740ec9a68c6d82980d1ca70fb980dcba5e199f0463",
+      "generation": "a6780b88d54810784552966109479436a71d1351fc02dcb0c488ce60779f7161",
+      "native_receipt_sha256": "a6a32f8f10af5a40b8ad37bda7e05a7f807decb84e0c81a2dc2e397d9f6d651a",
+      "started_at": "2026-11-23T11:22:05.846988373Z",
+      "finished_at": "2026-11-23T11:22:07.20046914Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 21060,
+      "full_output_sha256": "6f9d26aa9ac79dcc19dc2388dc9b08ea6af42e83b44484e2a159cf678298b59f",
+      "resources": {
+        "user_cpu_seconds": 0.907478,
+        "system_cpu_seconds": 0.385442,
+        "max_rss_bytes": 57638912
+      }
+    },
+    {
+      "role": "independent direct physical phasors and full worst slice sp4",
+      "owner": "node-5ac3f22d329300cd2bd708147fb06e85",
+      "job": "p2-f747-haneda-sp4-raw-independent-700-components-and-32-position-worst-slice",
+      "request_sha256": "87dadf08193f80322ec5a6a70e47fe185feb9c7a460c14a89c253cfd952d8b37",
+      "generation": "ff823b0e1e7719a8140d9808c22cd4f25964609560f5fabdd228c8c864ad04f5",
+      "native_receipt_sha256": "19dd3f053a9a50a2312cf48f53c283354a339c10fc47597866530a6c605a2ae6",
+      "started_at": "2026-11-23T11:22:05.705242927Z",
+      "finished_at": "2026-11-23T11:22:06.847380128Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "adopted_waits": 0,
+        "state": "drained"
+      },
+      "full_output_bytes": 21130,
+      "full_output_sha256": "272b1e57f64732cdd866d7de8c8fa936d1c5c421e2b6ccba667107ccf3e085d2",
+      "resources": {
+        "user_cpu_seconds": 0.856776,
+        "system_cpu_seconds": 0.225112,
+        "max_rss_bytes": 57552896
+      }
+    },
+    {
+      "role": "different worker, stdlib independent scalar score and raw-phasor recount",
+      "owner": "node-5ac3f22d329300cd2bd708147fb06e85",
+      "job": "p2-f747-haneda-independent-complete-layout-scores-measured-receiving",
+      "request_sha256": "df0421f8e74cfdacd61af2081daabb3c685172ba7051c6c0c48cbd0d1e70c1c9",
+      "generation": "ae8541422b415d7c4b681a84c3df9cabb0fca85a2ed021991f12b12a715c2a54",
+      "native_receipt_sha256": "221ce1eaf1fee43ef38b00fc9cbafefd1d2fd39875cafda3cdb96a6562193269",
+      "started_at": "2026-11-23T11:23:10.551407794Z",
+      "finished_at": "2026-11-23T11:23:11.121508309Z",
+      "exit_code": 0,
+      "descendant_wait": {
+        "state": "drained",
+        "adopted_waits": 0
+      },
+      "full_output_bytes": 3004,
+      "full_output_sha256": "d582ac39c1af641c204b4ff0a7a063325f5e35324dd3717067850587a7c2d187",
+      "resources": {
+        "user_cpu_seconds": 0.09421,
+        "system_cpu_seconds": 0.017713,
+        "max_rss_bytes": 22728704
+      }
+    }
+  ],
+  "source_header_reads": "The first successful range-based source header pass read bounded HDF5 pages; adjacent uninterpreted bytes could include numerical payload. Its fourth grid transfer failed TLS authentication. Four later full originals authenticated full MD5 and SHA256 and decoded only grid/attributes before freeze. Numerical /rir selection began after the source freeze."
+}

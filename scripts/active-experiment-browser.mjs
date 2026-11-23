@@ -763,6 +763,72 @@ try{
   }
   mark('identical root readings choose c before its measured position determines e or f');
 
+  await openDetails('source-details');await page.locator('#example').selectOption('driftSegments');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/persistent rate families/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#readout-source').fill('Synthetic persistent parameter two fifths');
+  await page.locator('#acquisition-kind').selectOption('synthetic');
+  for(const t of [0,41])await page.locator('#drift-reading-'+t).fill('0');
+  await page.locator('#evaluate-readings').click();await idle();
+  await page.reload();await idle();await openDetails('supplied-details');
+  for(const t of [82,123])await page.locator('#drift-reading-'+t).fill('41/5');
+  await page.locator('#evaluate-readings').click();await idle();
+  const segmentBook=await accepted();assert.deepEqual(segmentBook.readouts.at(-1).result.consistentHypothesisIds,['B']);
+  assert.match(await page.locator('#candidate-results').textContent(),/Parameter values compatible/);
+  const segmentFile=await download('export-notebook','rate-segments.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',segmentFile]).stdout),segmentBook);
+  await openDetails('source-details');await page.locator('#example').selectOption('driftSegmentAlias');
+  await page.locator('#load-example').click();await idle();await page.locator('#freeze-plan').click();
+  await page.locator('#drift-word').fill('b 10000000000000000000001\nc 2');await page.locator('#drift-trace').click();await idle();
+  const aliasBook=await accepted(),aliasTrace=aliasBook.readouts[0].result.trace;
+  assert.deepEqual(aliasTrace.parameters,['0','1/2']);assert.deepEqual(aliasTrace.readings[0],aliasTrace.readings[1]);
+  const aliasFile=await download('export-notebook','rate-segment-alias.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',aliasFile]).stdout),aliasBook);
+  mark('continuous parameter range and interior gauge alias survive browser and CLI replay');
+
+  await openDetails('source-details');await page.locator('#example').selectOption('driftSimplex');
+  await page.locator('#load-example').click();await idle();await page.locator('#freeze-plan').click();
+  await openDetails('supplied-details');await page.locator('#acquisition-kind').selectOption('synthetic');
+  await page.locator('#readout-source').fill('One persistent three-vertex mixture');
+  for(const [tick,value] of [[0,'0'],[17,'0'],[34,'17/3']])await page.locator('#drift-reading-'+tick).fill(value);
+  await page.locator('#evaluate-readings').click();await idle();await page.reload();await idle();await openDetails('supplied-details');
+  for(const [tick,value] of [[51,'34/3'],[68,'17']])await page.locator('#drift-reading-'+tick).fill(value);
+  await page.locator('#evaluate-readings').click();await idle();
+  const simplexBook=await accepted(),simplexResult=simplexBook.readouts.at(-1).result;
+  assert.deepEqual(simplexResult.consistentHypothesisIds,['B']);
+  assert.equal(simplexResult.checked.surviving[0].jointRegion.weightCoordinates,2);
+  const simplexFile=await download('export-notebook','persistent-simplex.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',simplexFile]).stdout),simplexBook);
+  await openDetails('source-details');await page.locator('#new-draft').click();await idle();
+  const projectedSimplex=JSON.parse(await page.locator('#source-text').inputValue());
+  projectedSimplex.commands.shift();for(const law of projectedSimplex.laws)for(const row of law.vertices)row.shift();
+  await page.locator('#source-text').fill(JSON.stringify(projectedSimplex));await page.locator('#replan').click();await idle();
+  await page.locator('#freeze-plan').click();await page.locator('#drift-trace').click();await idle();
+  const simplexAlias=await accepted(),simplexTrace=simplexAlias.readouts[0].result.trace;
+  assert.deepEqual(simplexTrace.parameters,[['1'],['1/3','1/3','1/3']]);
+  assert.deepEqual(simplexTrace.readings[0],simplexTrace.readings[1]);
+  const simplexAliasFile=await download('export-notebook','simplex-interior-alias.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',simplexAliasFile]).stdout),simplexAlias);
+  mark('persistent simplex region and a strictly interior three-way alias survive browser and CLI replay');
+
+  await openDetails('source-details');await page.locator('#example').selectOption('driftMinimax');
+  await page.locator('#load-example').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/require 49 pulses/);
+  await page.locator('#freeze-plan').click();await openDetails('supplied-details');
+  await page.locator('#acquisition-kind').selectOption('synthetic');await page.locator('#readout-source').fill('Uniform mixture with two aggregate command blocks');
+  for(const [tick,value] of [[0,'0'],[25,'0'],[33,'8/3']])await page.locator('#drift-reading-'+tick).fill(value);
+  await page.locator('#evaluate-readings').click();await idle();await page.reload();await idle();await openDetails('supplied-details');
+  await page.locator('#drift-reading-41').fill('16/3');await page.locator('#drift-reading-49').fill('8');
+  await page.locator('#evaluate-readings').click();await idle();
+  const minimaxBook=await accepted();assert.deepEqual(minimaxBook.readouts.at(-1).result.consistentHypothesisIds,['B']);
+  const minimaxFile=await download('export-notebook','minimax-horizon.json');
+  assert.deepEqual(JSON.parse(cli(['--notebook',minimaxFile]).stdout),minimaxBook);
+  await openDetails('source-details');await page.locator('#new-draft').click();await idle();
+  await page.locator('#noise-bound').fill('0');await page.locator('#replan').click();await idle();
+  assert.match(await page.locator('#plan-heading').textContent(),/between 2 and 4 pulses/);
+  mark('persistent binary minimax certifies 49, while unmatched integer bounds stay open after a changed noise input');
+
   const failureContext=await browser.newContext({viewport:{width:390,height:844},acceptDownloads:true});
   await failureContext.addInitScript(()=>{
     const pointer='worldlaw-active-current-v1',key='worldlaw-active-notebook-v1:protected-original';

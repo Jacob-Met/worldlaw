@@ -1,0 +1,90 @@
+[
+  {
+    "job_id": "p3-f747-iers-independent-model-source-and-c04-metadata-census",
+    "worker": "node-c701a0127ac0f5eea88adc5f1342e52c",
+    "generation": "0b7d5f5642151ee39ccc51f7c10a84e7399d8948bbabcf2399f0b355c4a85d53",
+    "request": "1cc0c7d4a4fea17a6435509f48e1aae11e9c66654446fa256b0c82b35b7edec3",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 1521,
+    "stdout_sha256": "67b29d7088d7b8e270fd2fe77ca5bcb9ff6bfa2b63e19f0fcf6c4d7d1a4fb4fc"
+  },
+  {
+    "job_id": "p3-f747-iers-gfz-product-document-and-rigid-conjugate-capacity",
+    "worker": "node-7a9dead9904fa3581a4286fb5ced2323",
+    "generation": "b13ec80f42c3cbc07e82cc33273735ec4e04560a35e3d327b3ee82d74c6fca31",
+    "request": "78bbad9f753ab8635be4e5ca516048dba6b5c908cb3772490eeb90c93ef269f9",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 5649,
+    "stdout_sha256": "ba65ffb97fd0d9a61361ca0f6bf861184df40708f373d79e8545a3889bcbfc86"
+  },
+  {
+    "job_id": "p3-f747-iers-17-authentic-product-clocks-and-header-only",
+    "worker": "node-408916f225fedd58ae6e48e0e6e1a436",
+    "generation": "84d10f00638ca4f6c2bb96b6fc1b5cf2c1259ad67a9be0204ac6560cc5401797",
+    "request": "48edec29129cea8588f309f9d228d147bece881ef1fb3a46d155ba71043f8fca",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 49085,
+    "stdout_sha256": "e2c2db71be0a488b14743c1616b9d4ab3eb4257dde3c7aaac4a3addcfbdbd6a6"
+  },
+  {
+    "job_id": "p3-f747-iers-89-whole-file-pins-clock-qualification-before-values",
+    "worker": "node-49b54506b7dba476ddbe7515b0d39c8a",
+    "generation": "630bc54fdfd096f20b37b4ad6b4a97f013793f925b45853f8c75d2464efff4f8",
+    "request": "ccd6a07627b6ce3b3ea2e11b2a963de5b11cc071bfc43aee801d08a786fb17d1",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 18544,
+    "stdout_sha256": "8202ac640a3539368fc424d63b5e2ef15237124dcf065c5d2f7fa902b1a6d10f"
+  },
+  {
+    "job_id": "p3-f747-iers-12-source-years-eight-locked-complete-hindcasts",
+    "worker": "node-408916f225fedd58ae6e48e0e6e1a436",
+    "generation": "b1419c69c47c62ff9f44d16ed66046d90fbfc9354a4b06851fea34e7e99d48d6",
+    "request": "a3281f0e10901b26952c697273d8f57c95c8379bfc7843fa0832663feb76c1bf",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 528274,
+    "stdout_sha256": "725921cd6c39458e102783e952666cda1dc7fadb29a0ddf6e0bd3ef1ae8212e7"
+  },
+  {
+    "job_id": "p3-f747-iers-ten-fixed-year-3643-protected-position-days",
+    "worker": "node-49b54506b7dba476ddbe7515b0d39c8a",
+    "generation": "1cfdbe8a20fcfc1dadd13ec92a5c6ba3ce8daaecbbb3e667e31cf5b47151e879",
+    "request": "d623792f989cdb143e910998266b71422ec70ad29cf4976c6b00d5d5e3c76893",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 33295,
+    "stdout_sha256": "9f3759404051cdd4ce6a1cdc10cb81386db2c6e9d4d30da956323f5dee7ec33b"
+  },
+  {
+    "job_id": "p3-f747-iers-ordered-89-input-scalar-recurrence-and-58288-receiver",
+    "worker": "node-408916f225fedd58ae6e48e0e6e1a436",
+    "generation": "3b7c605120f7b736d209efce51e99496db5bbee5a6ed7ec3cdfe30d757e90061",
+    "request": "188a0534713597bfa3f67cb640c2060919f6ad5af0e23f74426e99a4e9f73e5b",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 61069,
+    "stdout_sha256": "f69d4b21b9c6859c8665d4729039878abe0e45bd0f4fa1af61add9d3091ccf18"
+  },
+  {
+    "job_id": "p3-f747-iers-crossed-frozen-nuisance-propagators-postscore",
+    "worker": "node-4e105730de5e78651a704e31c3991a3e",
+    "generation": "560389c202a31aab944153f656fc6cd207e0119745f7d6e45fe0d978d22a88b9",
+    "request": "14f0dd5de7fec6fd147874704c299905415d20409a511c3be49f3e6d3925da7a",
+    "state": "completed",
+    "exit": 0,
+    "descendants": "drained",
+    "stdout_bytes": 1587,
+    "stdout_sha256": "bc758e1097d32253b539a38b0d9ea8d12439f66ca3d2866dc69ecfcd4e757765"
+  }
+]

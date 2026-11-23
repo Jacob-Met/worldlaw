@@ -1,4 +1,4 @@
-import {isGuidedPlan,BINARY_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,TREE_PLAN,driftFeedbackInconclusive,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
+import {isGuidedPlan,MINIMAX_PLAN,POLYTOPE_PLAN,SEGMENT_PLAN,BINARY_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,TREE_PLAN,driftFeedbackInconclusive,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
 import {escapeHTML as html} from './view.mjs';
 
 const byId=id=>document.getElementById(id);
@@ -7,6 +7,18 @@ function table(caption,head,rows){
     '</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+html(c)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
 }
 function guidedProof(p){
+  if((p.schema===POLYTOPE_PLAN||p.schema===MINIMAX_PLAN)&&p.status==='design-budget-exhausted')return {heading:'The design work limit was reached.',summary:'The search used '+p.work+' work units. This catalog has no completed classification.',proof:''};
+  if(p.schema===MINIMAX_PLAN)return {heading:p.status==='minimum-certified'?'These families require '+p.adaptiveLower+' pulses.':
+      'The minimum lies between '+p.adaptiveLower+' and '+p.pulseUpperBound+' pulses.',
+    summary:'A fixed pair of family members supplies the adaptive lower bound. Two blocks of integer command counts give the upper bound.',
+    proof:table('Apply these command runs in order.',['Command','Pulses'],p.runs.map(r=>[r.command,r.repeats]))+
+      table('The chord contrast uses ticks '+p.certificateTicks.join(', ')+'.',['Family','Hardest mixture','Closed measured contrast interval'],
+        p.source.laws.map((l,i)=>[l.id,p.equilibrium.parameters[i].join(', '),p.chordIntervals[i].join(' to ')]))};
+  if(p.schema===POLYTOPE_PLAN||p.schema===SEGMENT_PLAN)return {heading:'One schedule separates all persistent rate families.',
+    summary:'Apply each command for '+p.runs[0].repeats+' pulses. The '+p.pulseUpperBound+'-pulse guarantee covers every permitted parameter value. The minimum horizon is open.',
+    proof:table('Each law uses the same rate vector for the complete run.',['Command','Pulses'],p.runs.map(r=>[r.command,r.repeats]))+
+      table('The response gap is per repeat. The error radius applies to each complete checkpoint contrast.',
+        ['Families','Checkpoint weights','Response gap','Error radius'],p.certificates.map(c=>[c.laws.join(' / '),c.checkpointWeights.join(', '),c.unitGap,c.noiseRadius]))};
   if(p.schema===TREE_PLAN&&p.nodes){
     if(p.status==='tree-budget-exhausted')return {heading:'The adaptive-tree proof reached its budget.',
       summary:'The remaining adversarial assignments are inconclusive. The search used '+p.work.assignments+' assignments and '+p.work.linearWork+' linear-work units.',proof:''};
@@ -109,7 +121,7 @@ export function renderDriftNotebook(book,index,mode,dirty){
   const finite=guided||p.status==='finite-schedule',frozen=mode==='frozen';
   const guidedView=guided?guidedProof(p):null;
   const latest=book.readouts.at(-1)?.result,pending=guided?pendingDriftSteps(p,latest):[];
-  const witnesses=p.witnesses??(p.witness?[p.witness]:[]);
+  const witnesses=p.aliases??p.witnesses??(p.witness?[p.witness]:[]);
   const row=book.readouts[index], result=row?.result;
   byId('phase').textContent=dirty?'Unapplied source edits':frozen?'Frozen experiment':'Prospective preview';
   byId('source-kind').textContent='Persistent position and drift';
@@ -126,6 +138,8 @@ export function renderDriftNotebook(book,index,mode,dirty){
     table('For each pair, the contrast is the first reading minus twice the middle reading plus the last reading.',
       ['Laws','Block','First interval','Second interval','Separation margin'],
       p.pairCertificates.map(c=>[c.laws.join(' / '),String(c.block+1),c.intervals[0].join(' to '),c.intervals[1].join(' to '),c.margin])):
+    (p.schema===SEGMENT_PLAN||p.schema===POLYTOPE_PLAN||p.schema===MINIMAX_PLAN)?table('These fixed parameter choices coincide at every horizon after shifting the second drift.',
+      ['Families','Parameter values','Drift shift'],witnesses.map(w=>[w.laws.join(' / '),w.parameters.map(t=>Array.isArray(t)?'('+t.join(', ')+')':t).join(' / '),w.driftShift])):
     table('From the same starting position, shifting the second law’s drift by this amount preserves each commanded increment.',
       ['First law','Second law','Drift shift'],witnesses.map(w=>[...w.laws,w.driftShift]));
   byId('drift-gauge-controls').hidden=finite;
@@ -151,7 +165,7 @@ export function renderDriftNotebook(book,index,mode,dirty){
     '<input id="drift-reading-'+i+'" data-tick="'+html(t)+'" type="text" inputmode="text"></label>').join(''):'';
   for(const id of ['adaptive-policy','control-course','joint-comparison','demo-controls','adaptive-controls','future-region'])
     byId(id).hidden=true;
-  byId('source-description').textContent=p.source.laws.length+' laws on '+p.source.commands.length+' commands, with one unknown initial position and constant drift.';
+  byId('source-description').textContent=p.source.laws.length+' laws on '+p.source.commands.length+' commands, with one unknown initial position and constant drift.'+(p.schema===SEGMENT_PLAN?' Each family also has one persistent parameter in [0,1].':(p.schema===POLYTOPE_PLAN||p.schema===MINIMAX_PLAN)?' Each family keeps a single convex mixture of its rate rows.':'');
   byId('source-digest').textContent=p.sourceSHA256;byId('plan-digest').textContent=p.planSHA256;
   byId('reading-digest').textContent=result?.readingsSHA256??'No input received';
   byId('custody-summary').textContent=book.readouts.length+' saved inputs. Reopening recalculates the plan and each result.';
@@ -162,6 +176,12 @@ export function renderDriftNotebook(book,index,mode,dirty){
   byId('result-origin').textContent=finite?(result.acquisition==='synthetic'?'SYNTHETIC CHECKPOINTS':'SUPPLIED CHECKPOINTS'):'CALCULATED GAUGE TRACE';
   byId('reading-set').replaceChildren(...book.readouts.map((r,i)=>new Option((guided?'Through tick '+r.result.checked.ticks.at(-1)+' · packet ':finite?'Checkpoint set ':'Trace ')+(i+1),String(i))));
   byId('reading-set').value=String(index);
+  if(result.status==='receiver_budget_exhausted'){
+    byId('result-heading').textContent='The receiving work limit was reached.';
+    byId('result-summary').textContent='The measurements are saved. No family verdict was reached after '+result.checked.calculation.work+' work units.';
+    for(const id of ['candidate-results','missing-readings','result-interpretation'])byId(id).replaceChildren();
+    return;
+  }
   byId('result-heading').textContent=finite?({'one_hypothesis_consistent':'One law fits the checkpoints.',
     'all_hypotheses_falsified':'No law fits the checkpoints.','multiple_hypotheses_consistent':'Several laws fit this prefix.'})[result.status]:
     'Both trajectories coincide.';
@@ -171,7 +191,7 @@ export function renderDriftNotebook(book,index,mode,dirty){
     const checked=result.checked;
     byId('candidate-results').innerHTML=(guided?table('Retained measurements',['Tick','Applied command','Position'],
       checked.ticks.map((t,i)=>[t,i?checked.commands[i-1]:'Initial reading',checked.values[i]])):'')+table('Compatible initial states',['Law','Position witness','Drift witness'],
-      checked.surviving.map(s=>[s.law,...s.initialWitness]));
+      checked.surviving.map(s=>[s.law,...s.initialWitness]))+(p.schema===SEGMENT_PLAN?table('Parameter values compatible with every checkpoint.',['Family','Closed interval','Parameter used for the displayed start'],checked.surviving.map(s=>[s.law,s.parameterRange.join(' to '),s.witnessParameter])):(p.schema===POLYTOPE_PLAN||p.schema===MINIMAX_PLAN)?table('One admissible mixture per family. The notebook retains every joint inequality.',['Family','Weights in source order','Joint inequalities'],checked.surviving.map(s=>[s.law,s.weightWitness.join(', '),String(s.jointRegion.inequalities.length)])):'');
     byId('missing-readings').textContent=checked.nextTick===null?'':guided?'Next command: '+checked.nextCommand+' · next reading at tick '+checked.nextTick+'.':'Next planned checkpoint: '+checked.nextTick+'.';
   }else{
     const trace=result.trace;
