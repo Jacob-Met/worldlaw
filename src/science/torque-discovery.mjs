@@ -127,7 +127,7 @@ function predictUnchecked(model, row) {
   return value;
 }
 export function predict(model, values) {
-  if (model?.schema==='worldlaw.symbolic-evolution/v1') return predictEvolution(model,values);
+  if (model?.schema==='worldlaw.symbolic-evolution/v1' && model.kind==='torque') return predictEvolution(model,values);
   if(model?.schema==='worldlaw.split-torque-experiment/v1')return prepareSplitTorquePoint(model)(values).roundedPrediction;
   if(model?.schema==='worldlaw.centered-torque-experiment/v1')return evaluateCenteredTorquePoint(model,values).rounded;
   checkedTerms(model); return predictUnchecked(model, input(values));
@@ -173,6 +173,10 @@ export function evaluateCenteredTorquePoint(model,values,reading) {
  * prevents a caller's later edits from changing a running solver's equation.
  */
 export function prepareTorquePredictor(model) {
+  if (model?.schema==='worldlaw.symbolic-evolution/v1' && model.kind==='torque') {
+    const snapshot=structuredClone(model);
+    return (command,position,rate)=>predictEvolution(snapshot,{command,position,rate});
+  }
   if(model?.schema==='worldlaw.periodic-origin-experiment/v1'){const point=preparePeriodicOrigin(model.originalModel,model.positionOrigin);return(command,delta,rate)=>{const pair=point(command,delta,rate).response;return pair[0]+pair[1];};}
   if(model?.schema==='worldlaw.split-torque-experiment/v1'){const point=prepareSplitTorquePoint(model);return (command,position,rate)=>point({command,position,rate}).roundedPrediction;}
   if(model?.schema==='worldlaw.centered-torque-experiment/v1'){
@@ -204,10 +208,11 @@ export function evaluate(model, observations) {
     const residuals=result.map(row=>row.residual),roundedResiduals=result.map(row=>row.roundedResidual);
     return {count:result.length,rmse:result.length?norm(residuals)/Math.sqrt(result.length):null,roundedRmse:result.length?norm(roundedResiduals)/Math.sqrt(result.length):null,maxAbsResidual:result.length?Math.max(...residuals.map(Math.abs)):null,rows:result,representation:'origin_plus_delta; solver predictions remain rounded'};
   }
-  checkedTerms(model);
+  const symbolic=model?.schema==='worldlaw.symbolic-evolution/v1' && model.kind==='torque';
+  if (!symbolic) checkedTerms(model);
   const samples = rows(observations);
   const result = samples.map(row => {
-    const prediction = predictUnchecked(model, row);
+    const prediction = symbolic ? predictEvolution(model,row) : predictUnchecked(model, row);
     return { ...row, prediction, residual: row.jointTorque - prediction };
   });
   const residuals = result.map(row => row.residual);
@@ -222,7 +227,8 @@ export function discover(observations, requestedOptions = {}) {
     requireThat(supplied && typeof supplied==='object' && !Array.isArray(supplied),'Declare an operator grammar.');
     requireThat(Object.keys(requestedOptions).length===1,'Operator discovery accepts its own explicit grammar and tolerance.');
     const training=rows(observations,8).map(r=>({...r,change:r.jointTorque}));
-    return synthesizeEvolution(training,{...supplied,kind:'torque'});
+    const study=synthesizeEvolution(training,{...supplied,kind:'torque'});
+    return {...study,selected:study.model};
   }
   const samples = rows(observations, 8), options = normalizeOptions(requestedOptions);
   const robustWork = discoveryRobustWork(samples.length, options);

@@ -44,5 +44,7 @@ export function runOperatorCourse(source){
 }
 if(process.argv[1]&&pathToFileURL(process.argv[1]).href===import.meta.url){
   if(process.argv.length!==3)throw new RangeError('Pass one Nullgarden operator-course JSON file');
-  console.log(JSON.stringify(runOperatorCourse(JSON.parse(readFileSync(process.argv[2],'utf8')))));
+  const report=runOperatorCourse(JSON.parse(readFileSync(process.argv[2],'utf8')));
+  console.log(JSON.stringify(report));
+  if(report.acceptedLaws!==2 || report.acceptedShams!==0 || report.acceptedOutside!==0 || report.excitation.selected!=='wide-chirp') process.exitCode=1;
 }

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {discover,predict} from '../src/science/torque-discovery.mjs';
+import {discover,predict,evaluate,prepareTorquePredictor} from '../src/science/torque-discovery.mjs';
 import {synthesizeEvolution,predictEvolution,assessEvolution} from '../src/science/operator-synthesis.mjs';
 import {designEvolutionExcitation,rolloutEvolution,verifyEvolutionRollout} from '../src/science/operator-rollout.mjs';
 
@@ -21,6 +21,8 @@ test('the maintained torque entry distinguishes a command-position product from 
     train.push({position,command,rate,jointTorque:command*Math.cos(position)});
   const recovered=discover(train,{operatorGrammar:grammar});
   assert.equal(recovered.status,'candidate');
+  assert.ok(evaluate(recovered.selected,train).maxAbsResidual < 1e-9);
+  assert.ok(Math.abs(prepareTorquePredictor(recovered.selected)(2,0,0)-2)<1e-9);
   assert.deepEqual(recovered.model.terms.map(t=>t.tree),[['mul','command',['cos','position']]]);
   assert.ok(Math.abs(predict(recovered.model,{position:2.13,rate:-.6,command:-1.5})+1.5*Math.cos(2.13))<1e-9);
   assert.throws(()=>rolloutEvolution(recovered.model,drive('uncalibrated',[1,0],1)),/initial state/);
