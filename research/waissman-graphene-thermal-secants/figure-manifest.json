@@ -1,0 +1,1364 @@
+{
+  "Fig1_d.fig": {
+    "size": 29400,
+    "md5": "md5:193c024f8abd39550f8acb9be9950c42",
+    "sha256": "304c641a8083b865f060e30bcf1ed85bed14ca03730d76a6a2936b2578a18134",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "3,5"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            8
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            8
+          ],
+          6,
+          1
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig2_a.fig": {
+    "size": 59718,
+    "md5": "md5:1f26ae27c296969657018bdff3747916",
+    "sha256": "e26d7284779f1fa33ca9cea3c894a21c859c1f1af3456134262ce5acd6f02e0c",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "V_g^b^r^i^d^g^e (V)"
+        ],
+        [
+          "String",
+          "\\DeltaT_C (K)"
+        ],
+        [
+          "String",
+          "\\DeltaT_H (K)"
+        ],
+        [
+          "Tag",
+          "scribeOverlay"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "scribe.scribeaxes"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            211
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            211
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            121
+          ],
+          6,
+          4
+        ],
+        [
+          "YData",
+          [
+            1,
+            121
+          ],
+          6,
+          4
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig2_b_bottom.fig": {
+    "size": 38951,
+    "md5": "md5:a5b74e3c259f351ec626f8fdf053dd74",
+    "sha256": "c17d51ad0591896fc5604189dc3b2499a96baf31ac94f55be4f13162e8aec6a8",
+    "graphics": {
+      "labels": [
+        [
+          "DisplayName",
+          "T=20K"
+        ],
+        [
+          "DisplayName",
+          "T=30K"
+        ],
+        [
+          "DisplayName",
+          "T=5K"
+        ],
+        [
+          "String",
+          "L_b_r_i_d_g_e/L_0"
+        ],
+        [
+          "String",
+          "V_g^b^r^i^d^g^e (V)"
+        ],
+        [
+          "Tag",
+          "scribeOverlay"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "scribe.scribeaxes"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            121
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            121
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            211
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            211
+          ],
+          6,
+          1
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig2_b_top_middle.fig": {
+    "size": 62506,
+    "md5": "md5:43c1e5efc274babbd4ea4a8066c300e8",
+    "sha256": "8d2333780b9de0fcca62e69eeb7a674531fdcde6b6e46a7e0e94fdc8394ecca3",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "G^{th}_{bridge} (nW/K)"
+        ],
+        [
+          "String",
+          "R_{bridge} (k\\Omega)"
+        ],
+        [
+          "String",
+          "V_g^b^r^i^d^g^e (V)"
+        ],
+        [
+          "Tag",
+          "scribeOverlay"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "scribe.scribeaxes"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            211
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            211
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            121
+          ],
+          6,
+          4
+        ],
+        [
+          "YData",
+          [
+            1,
+            121
+          ],
+          6,
+          4
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig3_b_bottom.fig": {
+    "size": 34962,
+    "md5": "md5:e86482b572a4c3a94e2f6bd0e322d7e7",
+    "sha256": "1d5fbb028db0b27e5a515812cf19292878fd092535d27105285e005fe43069ad",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "G^{th}_{bridge} (pW/K)"
+        ],
+        [
+          "String",
+          "V_t_g (V)"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            496
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            496
+          ],
+          6,
+          1
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig3_b_bottom_inset.fig": {
+    "size": 37482,
+    "md5": "md5:5ce6fda29e8e467c03b20e8b613a6d87",
+    "sha256": "87122b1bf363b8b43d4e3b54c8345773f4fa11ebb54ac756a4c269b36c8e4e42",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "G^{el}_{bridge} (\\muS)"
+        ],
+        [
+          "String",
+          "V_t_g (V)"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            496
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            496
+          ],
+          6,
+          1
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig3_b_mid.fig": {
+    "size": 34942,
+    "md5": "md5:dff02ec0b3bbc2f8aae1dc3a0bbe404e",
+    "sha256": "0fd8351443c3a70c70dc72efd1dc75eb67e52f174e796f2a4fb85191fc476297",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "G^{th}_{bridge} (pW/K)"
+        ],
+        [
+          "String",
+          "V_t_g (V)"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            500
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            500
+          ],
+          6,
+          1
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig3_b_mid_inset.fig": {
+    "size": 34789,
+    "md5": "md5:e8c82ce70ee673b55b497481917da154",
+    "sha256": "43cbc69ab6a202033f4a543bf296641036e672cb5a391667a978f8a6a10f3425",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "G^{el}_{bridge} (\\muS)"
+        ],
+        [
+          "String",
+          "V_t_g (V)"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            500
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            500
+          ],
+          6,
+          1
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig3_b_top.fig": {
+    "size": 34953,
+    "md5": "md5:e2f0eb558d947f5ead345470adb37a73",
+    "sha256": "bc89ff4d6be52358f2829dd169f18e2ef1ed20465df86d889e99910a3aad9817",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "G^{th}_{bridge} (pW/K)"
+        ],
+        [
+          "String",
+          "V_t_g (V)"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            502
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            502
+          ],
+          6,
+          1
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig3_b_top_inset.fig": {
+    "size": 34792,
+    "md5": "md5:afb1d31004ff45f894a88c22e182c77f",
+    "sha256": "9f9dea4dded40c956556d48a496e88880ee47d3f2b8060b98613244abd503551",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "G^{el}_{bridge} (\\muS)"
+        ],
+        [
+          "String",
+          "V_t_g (V)"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            502
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            502
+          ],
+          6,
+          1
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig3_c_bottom.fig": {
+    "size": 143918,
+    "md5": "md5:7c4544a6bccef469032129a9ce492d78",
+    "sha256": "9d4443019f9ffc28803f4a92a0638fce9279e3d6f93febc0d2a793006c22e16a",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "(L/L_{0})^{-1}"
+        ],
+        [
+          "String",
+          "G_{bridge}^{el} (\\muS)"
+        ],
+        [
+          "String",
+          "V_{tg} (V)"
+        ],
+        [
+          "Tag",
+          "scribeOverlay"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "scribe.scribeaxes"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            2001
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            2001
+          ],
+          6,
+          2
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig3_c_mid.fig": {
+    "size": 116769,
+    "md5": "md5:344b20d4c80134a91ce479df15fc845b",
+    "sha256": "3242bf5220b7955bcf551720190e85b3fdb754904e1cb45b0c7b5a7936094788",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "(L/L_{0})^{-1}"
+        ],
+        [
+          "String",
+          "G_{bridge}^{el} (\\muS)"
+        ],
+        [
+          "String",
+          "V_{tg} (V)"
+        ],
+        [
+          "Tag",
+          "scribeOverlay"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "scribe.scribeaxes"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            1501
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            1501
+          ],
+          6,
+          2
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig3_c_top.fig": {
+    "size": 172513,
+    "md5": "md5:d19719cb30f55030c3c2a94f7fa509d9",
+    "sha256": "3e434f19d125227bec13e52e7b0bbf0b75a8a672eb64bb921b8c384bf446dcf6",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "(L/L_{0})^{-1}"
+        ],
+        [
+          "String",
+          "G_{bridge}^{th} (pW/K)"
+        ],
+        [
+          "String",
+          "V_{tg} (V)"
+        ],
+        [
+          "Tag",
+          "scribeOverlay"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "scribe.scribeaxes"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            2502
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            2502
+          ],
+          6,
+          2
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig4_a.fig": {
+    "size": 46000,
+    "md5": "md5:e3b2b5921cccf1b08f85a98b9ffdf5cc",
+    "sha256": "1b353e3d7dc6cb7fe5053544a0ff61b4461a263cffb13bea3ccfc1ff539b2a79",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "Q_{NT} (nW)"
+        ],
+        [
+          "String",
+          "\\DeltaT_H/T_{bath}"
+        ],
+        [
+          "Tag",
+          "scribeOverlay"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "scribe.scribeaxes"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            156
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            156
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            125
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            125
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            182
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            182
+          ],
+          6,
+          2
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig4_b.fig": {
+    "size": 74221,
+    "md5": "md5:051b71b8a067fa273d84e6cbe637cf40",
+    "sha256": "aaab6281059000f010396bdd846b8ab11eda3d4e95f85e9a5e93e09319e4461a",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "(\\DeltaT_H+T_{bath})/T_{bath}"
+        ],
+        [
+          "String",
+          "Q_{NT}+a\\DeltaT_H^p (nW)"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "XData",
+          [
+            1,
+            110
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            110
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            156
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            156
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            125
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            125
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            226
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            226
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            270
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            270
+          ],
+          6,
+          2
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  },
+  "Fig4_c.fig": {
+    "size": 21648,
+    "md5": "md5:59dcc31dce78b44f4ddfae711af06077",
+    "sha256": "b6bcc5243b4e14507c78c5bb9c88219a0ad5b6b248659dea0c0f54a6f08f36db",
+    "graphics": {
+      "labels": [
+        [
+          "String",
+          "Exponent in Q_{bridge}(\\DeltaT_H)"
+        ],
+        [
+          "String",
+          "R_{tube} (\\Omega)"
+        ],
+        [
+          "type",
+          "axes"
+        ],
+        [
+          "type",
+          "figure"
+        ],
+        [
+          "type",
+          "graph2d.lineseries"
+        ],
+        [
+          "type",
+          "line"
+        ],
+        [
+          "type",
+          "specgraph.errorbarseries"
+        ],
+        [
+          "type",
+          "text"
+        ]
+      ],
+      "scientific_array_shapes": [
+        [
+          "UData",
+          [
+            1,
+            4
+          ],
+          6,
+          1
+        ],
+        [
+          "XData",
+          [
+            1,
+            4
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            4
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            36
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            36
+          ],
+          6,
+          1
+        ],
+        [
+          "UData",
+          [
+            1,
+            3
+          ],
+          6,
+          1
+        ],
+        [
+          "XData",
+          [
+            1,
+            3
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            3
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            27
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            27
+          ],
+          6,
+          1
+        ],
+        [
+          "UData",
+          [
+            1,
+            2
+          ],
+          6,
+          1
+        ],
+        [
+          "XData",
+          [
+            1,
+            2
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            2
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            18
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            18
+          ],
+          6,
+          1
+        ],
+        [
+          "XData",
+          [
+            1,
+            100
+          ],
+          6,
+          1
+        ],
+        [
+          "YData",
+          [
+            1,
+            100
+          ],
+          6,
+          1
+        ],
+        [
+          "UData",
+          [
+            1,
+            1
+          ],
+          6,
+          2
+        ],
+        [
+          "XData",
+          [
+            1,
+            1
+          ],
+          6,
+          4
+        ],
+        [
+          "YData",
+          [
+            1,
+            1
+          ],
+          6,
+          4
+        ],
+        [
+          "XData",
+          [
+            1,
+            9
+          ],
+          6,
+          2
+        ],
+        [
+          "YData",
+          [
+            1,
+            9
+          ],
+          6,
+          2
+        ]
+      ],
+      "top_level": [
+        15,
+        15,
+        15
+      ]
+    }
+  }
+}
