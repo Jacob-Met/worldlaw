@@ -1,4 +1,4 @@
-import {isGuidedPlan,SUPPORT_PLAN,MINIMAX_PLAN,POLYTOPE_PLAN,SEGMENT_PLAN,BINARY_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,TREE_PLAN,driftFeedbackInconclusive,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
+import {isGuidedPlan,THREE_HULL_PLAN,SUPPORT_PLAN,MINIMAX_PLAN,POLYTOPE_PLAN,SEGMENT_PLAN,BINARY_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,TREE_PLAN,driftFeedbackInconclusive,pendingDriftSteps,fixedDriftRuns} from '../science/active-guided-drift.mjs';
 import {escapeHTML as html} from './view.mjs';
 
 const byId=id=>document.getElementById(id);
@@ -7,6 +7,19 @@ function table(caption,head,rows){
     '</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(c=>'<td>'+html(c)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
 }
 function guidedProof(p){
+  if(p.schema===THREE_HULL_PLAN){
+    if(p.status==='design-budget-exhausted')return {heading:'The three-pulse design reached its work limit.',summary:'No horizon verdict was certified.',proof:''};
+    if(p.status==='three-refuted')return {heading:'Every three-pulse strategy admits a shared history.',
+      summary:p.fixedMinimum==='4'?'The supplied fixed four-pulse tape separates both families, so the minimum is four.':'Longer horizons remain open.',
+      proof:table('The initial normalized readings are zero on each tested prefix.',['First commands','Common third reading','Possible final readings by command'],
+        p.trials.map(t=>[t.prefix.join(' → '),t.collision.prefixReadings[2],t.collision.branches.map(b=>b.command+' = '+b.reading).join(', ')]))};
+    return {heading:p.status==='two-certified'?'Two pulses identify the family.':'Three pulses identify the family.',
+      summary:'Begin with '+p.prefix.join(' → ')+'. '+(p.status==='two-certified'?'The second difference separates the families.':
+        'The measured second difference determines which final command is safe.')+
+        (p.fixedMinimum==='4'?' Every fixed three-pulse tape can collide. The supplied four-pulse tape separates.':''),
+      proof:p.status==='two-certified'?'':table('An interval includes both endpoints. Select a command whose interval excludes the measurement.',
+        ['Possible last command','Unsafe second differences'],p.unsafe.map((band,i)=>[p.source.commands[i],band?band.join(' to '):'None']))};
+  }
   if(p.schema===SUPPORT_PLAN&&p.method==='disagreement-cuts'){
     if(p.status==='design-budget-exhausted')return {heading:'The disagreement search reached its '+p.reason+' limit.',
       summary:'The completed hitting-set lower bound is '+p.provedLower+' pulses. No separating tape was certified.',proof:''};
@@ -157,7 +170,7 @@ export function renderDriftNotebook(book,index,mode,dirty){
     table('For each pair, the contrast is the first reading minus twice the middle reading plus the last reading.',
       ['Laws','Block','First interval','Second interval','Separation margin'],
       p.pairCertificates.map(c=>[c.laws.join(' / '),String(c.block+1),c.intervals[0].join(' to '),c.intervals[1].join(' to '),c.margin])):
-    (p.schema===SEGMENT_PLAN||[POLYTOPE_PLAN,MINIMAX_PLAN,SUPPORT_PLAN].includes(p.schema))?table('These fixed parameter choices coincide at every horizon after shifting the second drift.',
+    (p.schema===SEGMENT_PLAN||[POLYTOPE_PLAN,MINIMAX_PLAN,SUPPORT_PLAN,THREE_HULL_PLAN].includes(p.schema))?table('These fixed parameter choices coincide at every horizon after shifting the second drift.',
       ['Families','Parameter values','Drift shift'],witnesses.map(w=>[w.laws.join(' / '),w.parameters.map(t=>Array.isArray(t)?'('+t.join(', ')+')':t).join(' / '),w.driftShift])):
     table('From the same starting position, shifting the second law’s drift by this amount preserves each commanded increment.',
       ['First law','Second law','Drift shift'],witnesses.map(w=>[...w.laws,w.driftShift]));
@@ -184,7 +197,7 @@ export function renderDriftNotebook(book,index,mode,dirty){
     '<input id="drift-reading-'+i+'" data-tick="'+html(t)+'" type="text" inputmode="text"></label>').join(''):'';
   for(const id of ['adaptive-policy','control-course','joint-comparison','demo-controls','adaptive-controls','future-region'])
     byId(id).hidden=true;
-  byId('source-description').textContent=p.source.laws.length+' laws on '+p.source.commands.length+' commands, with one unknown initial position and constant drift.'+(p.schema===SEGMENT_PLAN?' Each family also has one persistent parameter in [0,1].':([POLYTOPE_PLAN,MINIMAX_PLAN,SUPPORT_PLAN].includes(p.schema))?' Each family keeps a single convex mixture of its rate rows.':'');
+  byId('source-description').textContent=p.source.laws.length+' laws on '+p.source.commands.length+' commands, with one unknown initial position and constant drift.'+(p.schema===SEGMENT_PLAN?' Each family also has one persistent parameter in [0,1].':([POLYTOPE_PLAN,MINIMAX_PLAN,SUPPORT_PLAN,THREE_HULL_PLAN].includes(p.schema))?' Each family keeps a single convex mixture of its rate rows.':'');
   byId('source-digest').textContent=p.sourceSHA256;byId('plan-digest').textContent=p.planSHA256;
   byId('reading-digest').textContent=result?.readingsSHA256??'No input received';
   byId('custody-summary').textContent=book.readouts.length+' saved inputs. Reopening recalculates the plan and each result.';
@@ -210,7 +223,7 @@ export function renderDriftNotebook(book,index,mode,dirty){
     const checked=result.checked;
     byId('candidate-results').innerHTML=(guided?table('Retained measurements',['Tick','Applied command','Position'],
       checked.ticks.map((t,i)=>[t,i?checked.commands[i-1]:'Initial reading',checked.values[i]])):'')+table('Compatible initial states',['Law','Position witness','Drift witness'],
-      checked.surviving.map(s=>[s.law,...s.initialWitness]))+(p.schema===SEGMENT_PLAN?table('Parameter values compatible with every checkpoint.',['Family','Closed interval','Parameter used for the displayed start'],checked.surviving.map(s=>[s.law,s.parameterRange.join(' to '),s.witnessParameter])):([POLYTOPE_PLAN,MINIMAX_PLAN,SUPPORT_PLAN].includes(p.schema))?table('One admissible mixture per family. The notebook retains every joint inequality.',['Family','Weights in source order','Joint inequalities'],checked.surviving.map(s=>[s.law,s.weightWitness.join(', '),String(s.jointRegion.inequalities.length)])):'');
+      checked.surviving.map(s=>[s.law,...s.initialWitness]))+(p.schema===SEGMENT_PLAN?table('Parameter values compatible with every checkpoint.',['Family','Closed interval','Parameter used for the displayed start'],checked.surviving.map(s=>[s.law,s.parameterRange.join(' to '),s.witnessParameter])):([POLYTOPE_PLAN,MINIMAX_PLAN,SUPPORT_PLAN,THREE_HULL_PLAN].includes(p.schema))?table('One admissible mixture per family. The notebook retains every joint inequality.',['Family','Weights in source order','Joint inequalities'],checked.surviving.map(s=>[s.law,s.weightWitness.join(', '),String(s.jointRegion.inequalities.length)])):'');
     byId('missing-readings').textContent=checked.nextTick===null?'':guided?'Next command: '+checked.nextCommand+' · next reading at tick '+checked.nextTick+'.':'Next planned checkpoint: '+checked.nextTick+'.';
   }else{
     const trace=result.trace;

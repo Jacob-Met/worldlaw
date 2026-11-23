@@ -1,3 +1,5 @@
+import {THREE_HULL_SOURCE,THREE_HULL_PLAN,planThreePulseHulls,receiveThreePulseHulls} from './position-drift-three-pulse-hulls.mjs';
+export {THREE_HULL_SOURCE,THREE_HULL_PLAN};
 import {CUT_SOURCE,planPointCuts} from './position-drift-point-cuts.mjs';
 export {CUT_SOURCE};
 import {SUPPORT_SOURCE,SUPPORT_PLAN,planPointSupport} from './position-drift-point-support.mjs';
@@ -13,7 +15,7 @@ import {SHARED_SUFFIX_REQUEST,PLANAR_SUFFIX_REQUEST,REGION_SUFFIX_REQUEST,HISTOR
 import {EXACT_TREE_REQUEST,TREE_REQUEST,TREE_PLAN,planFeedbackTree,receiveFeedbackTree} from './position-drift-feedback-tree.mjs';
 export {ONE_FEEDBACK_REQUEST,ONE_FEEDBACK_PLAN,SUFFIX_REQUEST,HISTORY_SUFFIX_REQUEST,SUFFIX_PLAN,TREE_PLAN};
 export const isSuffixRequest=request=>request?.schema===SUFFIX_REQUEST||request?.schema===HISTORY_SUFFIX_REQUEST||request?.schema===REGION_SUFFIX_REQUEST||request?.schema===PLANAR_SUFFIX_REQUEST||request?.schema===SHARED_SUFFIX_REQUEST||request?.schema===TREE_REQUEST||request?.schema===EXACT_TREE_REQUEST;
-export const driftFeedbackInconclusive=p=>([POLYTOPE_PLAN,MINIMAX_PLAN,SUPPORT_PLAN].includes(p.schema)&&p.status==='design-budget-exhausted')||(p.schema===ONE_FEEDBACK_PLAN&&p.status!=='one-feedback-certified')||
+export const driftFeedbackInconclusive=p=>(p.schema===THREE_HULL_PLAN&&!['two-certified','three-certified'].includes(p.status))||([POLYTOPE_PLAN,MINIMAX_PLAN,SUPPORT_PLAN].includes(p.schema)&&p.status==='design-budget-exhausted')||(p.schema===ONE_FEEDBACK_PLAN&&p.status!=='one-feedback-certified')||
   (p.schema===SUFFIX_PLAN&&p.status!=='suffix-certified')||(p.schema===TREE_PLAN&&p.status!=='tree-certified');
 /** Measurement-led notebook continuations for minimum and case-12 drift plans. */
 import {planAllHorizonPositionDrift,planBinaryPositionDriftMinimum,observeCertifiedPositionDriftTape} from './persistent-position-drift-all-horizon.mjs';
@@ -26,11 +28,12 @@ export const BINARY_PLAN='worldlaw.position-drift-binary-minimum/v1';
 export const MULTICLASS_PLAN='worldlaw.multiclass-position-drift-minimum/v1';
 export const GUIDED_INPUT='worldlaw.active-guided-drift-readings/v1';
 export const GUIDED_RESULT='worldlaw.active-guided-drift-result/v1';
-export const isGuidedPlan=p=>[BINARY_PLAN,MULTICLASS_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,TREE_PLAN,SEGMENT_PLAN,POLYTOPE_PLAN,MINIMAX_PLAN,SUPPORT_PLAN].includes(p?.schema);
+export const isGuidedPlan=p=>[BINARY_PLAN,MULTICLASS_PLAN,CASE_TWELVE_PLAN,ONE_FEEDBACK_PLAN,SUFFIX_PLAN,TREE_PLAN,SEGMENT_PLAN,POLYTOPE_PLAN,MINIMAX_PLAN,SUPPORT_PLAN,THREE_HULL_PLAN].includes(p?.schema);
 const need=(ok,msg)=>{if(!ok)throw Error('Guided position/drift: '+msg);};
 const fields=(o,ks)=>o && typeof o==='object'&&!Array.isArray(o)&&Object.keys(o).sort().join(',')===[...ks].sort().join(',');
 
 export function designCatalog(request,design={}){
+  if(request.schema===THREE_HULL_SOURCE)return planThreePulseHulls(request);
   if(request.schema===CUT_SOURCE)return planPointCuts(request);
   if(request.schema===SUPPORT_SOURCE)return planPointSupport(request);
   if(request.schema===MINIMAX_SOURCE)return planMinimaxHorizon(request);
@@ -54,6 +57,10 @@ export function pendingDriftSteps(plan,last){
   if(driftFeedbackInconclusive(plan)||plan.status==='indistinguishable'||(last&&!last.checked.surviving?.length))return [];
   const count=last?.checked.values.length??0;
   const initial={tick:'0',command:null,repeats:'0'};
+  if(plan.schema===THREE_HULL_PLAN){
+    if(count<3)return [initial,...plan.prefix.map((command,i)=>({tick:String(i+1),command,repeats:'1'}))].slice(count);
+    return count===3&&plan.status==='three-certified'?[{tick:'3',command:last.checked.nextCommand,repeats:'1'}]:[];
+  }
   if(plan.schema===TREE_PLAN){
     const word=last?.checked.committed??(plan.nodes?plan.nodes[0].commands:plan.tables[plan.entry].commands);
     return [initial,...word.map((command,i)=>({tick:String(i+1),command,repeats:'1'}))].slice(count);
@@ -99,7 +106,11 @@ export function receiveGuidedDrift(book,input){
     if(row.command!==null)commands.push(row.command);
   }
   let surviving,nextCommand,suffix,tree,calculation;
-  if(p.schema===CASE_TWELVE_PLAN||p.schema===ONE_FEEDBACK_PLAN||p.schema===SUFFIX_PLAN||p.schema===TREE_PLAN){
+  if(p.schema===THREE_HULL_PLAN){
+    const result=receiveThreePulseHulls(p,values);
+    need(result.status==='receiver-budget-exhausted'||JSON.stringify(result.commands)===JSON.stringify(commands),'applied commands differ from the measured feedback choice');
+    surviving=result.surviving;nextCommand=result.nextCommand;calculation={status:result.status,work:result.work};
+  }else if(p.schema===CASE_TWELVE_PLAN||p.schema===ONE_FEEDBACK_PLAN||p.schema===SUFFIX_PLAN||p.schema===TREE_PLAN){
     const checked=p.schema===TREE_PLAN?receiveFeedbackTree(p,values):p.schema===SUFFIX_PLAN?receiveSuffixFeedback(p,values):p.schema===CASE_TWELVE_PLAN?openCaseTwelveOneFeedback(p.prefix[0]).receive(values):receiveOneFeedback(p,values);
     need(JSON.stringify(checked.commands)===JSON.stringify(commands),'applied commands disagree with the retained readings');
     surviving=checked.witnesses.map(w=>({law:w.law,initialWitness:w.start}));nextCommand=checked.nextCommand;suffix=checked.suffix;

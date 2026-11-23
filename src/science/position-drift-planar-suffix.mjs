@@ -13,15 +13,16 @@ const times=(n,x)=>mul(Q(BigInt(n)),x);
 const need=(ok,msg)=>{if(!ok)throw Error('Planar suffix: '+msg);};
 export const PLANAR_SUFFIX_REQUEST='worldlaw.position-drift-suffix-feedback-source/v4';
 
-function hull(points){
+export function planarPointHull(points,spend=()=>{}){
   const ordered=[...new Map(points.map(p=>[p.map(fmt).join(','),p])).values()]
     .sort((a,b)=>compare(a[0],b[0])||compare(a[1],b[1]));
+  for(const _ of ordered)spend();
   if(ordered.length<3)return ordered;
   function half(ps){
     const chain=[];
     for(const p of ps){
       while(chain.length>=2){
-        const a=chain.at(-2),b=chain.at(-1);
+        spend();const a=chain.at(-2),b=chain.at(-1);
         const turn=sub(mul(sub(b[0],a[0]),sub(p[1],a[1])),mul(sub(b[1],a[1]),sub(p[0],a[0])));
         if(turn.n>0n)break;
         chain.pop();
@@ -42,7 +43,7 @@ function projectPlane(left,right,error){
       points.push([add(centers[0],add(affine(a,b,2),e)),add(centers[1],add(affine(a,b,3),f))]);
     }
   });
-  return hull(points);
+  return planarPointHull(points);
 }
 
 function physicalBranch(cat,action,pair,readings){

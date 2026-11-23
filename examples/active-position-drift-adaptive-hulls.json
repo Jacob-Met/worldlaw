@@ -1,0 +1,59 @@
+{
+  "schema": "worldlaw.position-drift-three-pulse-hulls/v1",
+  "catalog": {
+    "schema": "worldlaw.position-drift-rate-polytopes/v1",
+    "commands": [
+      "ref",
+      "x",
+      "y",
+      "z"
+    ],
+    "noiseBound": "1/24",
+    "limits": {
+      "designWork": 1000000,
+      "receiverWork": 20000
+    },
+    "laws": [
+      {
+        "id": "A",
+        "vertices": [
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "B",
+        "vertices": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            -1
+          ]
+        ]
+      }
+    ]
+  },
+  "fourPulseControl": [
+    "ref",
+    "x",
+    "y",
+    "z"
+  ]
+}

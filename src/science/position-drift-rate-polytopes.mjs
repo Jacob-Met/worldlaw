@@ -167,3 +167,14 @@ export function openRatePolytopes(source,policy){
 }
 
 export {compareFamilies as compareRateHulls,parse as parseRatePolytopeSource,exactRow as primitiveRateInequality,mixture as mixRateRows,budget as rateWorkBudget,exhausted as RATE_WORK_EXHAUSTED};
+
+/** Exact physical regions on a named unit-pulse tape already chosen by the planner. */
+export function receiveChosenRateTape(cat,commands,ys,spend){
+  const ticks=ys.map((_,i)=>BigInt(i));
+  const runs=commands.map(command=>({command:cat.commands.indexOf(command),repeats:one}));
+  need(ys.length===runs.length+1&&runs.every(r=>r.command>=0),'invalid unit-pulse receiving course');
+  return cat.ids.flatMap((law,i)=>{
+    const region=receiveFamily(cat.vertices[i],ys,ticks,runs,cat.error,spend,cat.error.n===0n);
+    return region?[{law,...region}]:[];
+  });
+}
