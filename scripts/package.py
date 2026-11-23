@@ -16,6 +16,13 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "research/hohenbrink-drying-conductivity/README.md",
+    "research/hohenbrink-drying-conductivity/capillary_transport.py",
+    "research/hohenbrink-drying-conductivity/controls.py",
+    "research/hohenbrink-drying-conductivity/observed.json",
+    "research/hohenbrink-drying-conductivity/replay.py",
+    "research/hohenbrink-drying-conductivity/scoring.py",
+    "research/hohenbrink-drying-conductivity/source.py",
     "research/switching-trap-time-reversal/README.md",
     "research/switching-trap-time-reversal/conditional_forecast.py",
     "research/switching-trap-time-reversal/exact_controls.py",
