@@ -1,0 +1,11 @@
+{
+  "sha256": "40c70a27033bf30b75a718d76ebaa043a0824715bd47011d5dec1140cdf534ab",
+  "bytes": 38960,
+  "native_original": "p3-f747-ider-28-functions-13-roles-before-stopped-grids",
+  "whole_stdout_size": 39008,
+  "whole_stdout_sha256": "055b39f6fec14c0a8d011eb0a84a3722613b136db152fb61dd33a0f29d43437c",
+  "source": "4dcaaa64a8bd4d5f808f644ee1d1455f6a45454f",
+  "held_files": 28,
+  "model_functions": 364,
+  "held_grid_read": 0
+}
