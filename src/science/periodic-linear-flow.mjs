@@ -2,6 +2,18 @@ import {EvolutionDomainError,predictEvolution} from './operator-synthesis.mjs';
 
 import {affineCoefficients} from './affine-operator-columns.mjs';
 
+import {periodicStateRow} from './periodic-state-row.mjs';
+
+export function periodicRates(n,k,h,coeff) {
+  const angle=2*Math.PI*k/n;
+  const curvature=-4*(Math.sin(angle/2)/h)**2;
+  const slope=k===0||2*k===n?0:Math.sin(angle)/h;
+  const real=coeff.field+(coeff.dxx===0?0:coeff.dxx*curvature)
+    +(coeff.dxxxx===0?0:(coeff.dxxxx*curvature)*curvature);
+  const imag=(coeff.dx===0?0:coeff.dx*slope)+(coeff.dxxx===0||slope===0?0:(coeff.dxxx*slope)*curvature);
+  return [real,imag];
+}
+
 const PI2=2*Math.PI;
 const add=(a,b)=>[a[0]+b[0],a[1]+b[1]];
 const scale=(a,s)=>[a[0]*s,a[1]*s];
@@ -47,7 +59,7 @@ export function onAlternatingOrbit(model,course) {
       forcing.spatialMode!==0&&2*forcing.spatialMode!==n) return model;
   const gradients=model.terms.filter(t=>Array.isArray(t.tree)&&t.tree[0]==='gradient');
   if(!gradients.length) return model;
-  predictEvolution(model,{field:initial[0],left:initial[n-1],right:initial[1],spacing:course.spacing,command:forcing.offset});
+  predictEvolution(model,periodicStateRow(initial,0,course.spacing,forcing.offset));
   const keep=model.terms.filter(t=>!gradients.includes(t)),coeff=[0,0,0,0,0];
   for(const term of keep) {
     const row=affineCoefficients(term.tree,['field','dx','dxx','command']);
@@ -68,9 +80,10 @@ function coefficients(model,course) {
   const f=course.forcing;
   if(f.amplitude!==0&&f.startFrequency!==f.endFrequency) return null;
   const initial=course.initial,n=initial.length;
-  predictEvolution(model,{field:initial[0],left:initial[n-1],right:initial[1],spacing:course.spacing,command:f.offset});
+  predictEvolution(model,periodicStateRow(initial,0,course.spacing,f.offset));
   const stationary=f.amplitude===0||f.startFrequency===0;
-  const variables=stationary?['field','dx','dxx']:['field','dx','dxx','command'];
+  const variables=['field','dx','dxx','dxxx','dxxxx'];
+  if(!stationary)variables.push('command');
   const constants=stationary?{command:f.offset}:{};
   const sum=Array(variables.length+1).fill(0);
   for(const {tree,weight} of model.terms) {
@@ -100,8 +113,7 @@ export function periodicLinearPlan(model,course) {
       z[1]-=(initial[j]/n)*inverse[j][1];
     }
     if(z[0]===0&&z[1]===0&&dc===0&&sine===0) continue;
-    const a=coeff.field-4*coeff.dxx*(Math.sin(angle/2)/spacing)**2;
-    const b=k===0||2*k===n?0:coeff.dx*Math.sin(angle)/spacing;
+    const [a,b]=periodicRates(n,k,spacing,coeff);
     modes.push({a,b,z,dc,sine,inverse});
   }
   return {
