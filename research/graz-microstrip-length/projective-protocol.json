@@ -1,0 +1,13 @@
+{
+  "id": "graz-50ohm-projective-successor-v2",
+  "parent": "att-mwsk0ud0dnbpow",
+  "parent_source_refusal": 185374,
+  "unchanged_roles": "six source physical standards, two independent documented shorts, withheld physical lines 1/6.5 mm, all 25 paired sweeps, all 299 frequencies and four complex S components",
+  "unchanged_outcome": "exact score.py from frozen original; identical six model arms and ten strict whole-course gates; no altered target rights or accepted output masks",
+  "reason": "The source data have unstructured perturbation ratios up to15.6567 but the intermediate T chart division and matrix inverse cancel from the desired scattering output. The registered original remains failed. Before any held access a new numerical representation and its actually relevant raw-S denominator certificate are prospectively frozen. Source-only maximum floating point radius ratio0.57425 already observed, so this source certificate is not independent confirmation of that ratio.",
+  "maps": "Let u=b22-a22, v=c11-b11, D=b12*b21+u*v. Output [a11+a12*a21*v/D, a12*b21*c12/D; a21*b12*c21/D, c22-c12*c21*u/D]. Preserve both orders and fixed simplex covariance over original path set and same source noise independence assumptions.",
+  "certificate": "Every ordered source path and frequency, all4784, must pass strict radius_upper < modulus_lower(D) using exact dyadic centers of stored binary64 B@inv(A) scattering means. Independent closed discs around each source component contain all25 stored within-standard sweep values, raw centers and deviations exactly rationalized, square roots bounded outward on a 2^-80 lattice. No assertion of domain-level manufacturing, probe placement or between-standard drift bounds. No inferential confidence interval.",
+  "primary": "coupled, common-error-box raw S prediction under registered observable and bands; ordinary actual archived/maintained TUG plus nominal phase empirical and equal paths all compulsory",
+  "candidates_distinct": "projective chart and explicit analytic Jacobian for the same estimator; this is not a new parameter fitting course",
+  "max_source_gating": "all earlier incident-wave conditioning/clock/finite data/authentic roundtrip checks retained; original T ball computed as a failed diagnostic beside new raw-output denominator gate. No source-dependent short, frequency or path removal. No held results to date."
+}
