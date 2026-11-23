@@ -6,7 +6,7 @@ self.addEventListener('message',async event=>{
   const {id,action,sourceText,plan,book,text,profile}=event.data??{};
   try{
     let result;
-    if(action==='plan')result=await createActiveNotebook(sourceText,{plan:plan??null});
+    if(action==='plan')result=await createActiveNotebook(sourceText,{plan:plan??null,design:event.data.design});
     else if(action==='recommend')result=await recommendActiveFollowup(book,event.data.readingIndex);
     else if(action==='open')result=await replayActiveNotebook(text);
     else if(action==='read')result=await receiveActiveNotebook(book,text);

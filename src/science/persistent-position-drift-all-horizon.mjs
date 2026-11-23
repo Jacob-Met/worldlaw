@@ -146,6 +146,18 @@ function readSchedule(policy,catalog,runs,values) {
     nextTick:surviving.length&&ys.length<policy.readAt.length?policy.readAt[ys.length]:null};
 }
 
+/** Receive checkpoints of an already certified fixed tape without expanding its runs. */
+export function observeCertifiedPositionDriftTape(source,word,values){
+  const catalog=parsePositionDriftRates(source,rational),readAt=['0'];
+  let tick=0n;
+  const runs=word.map(({command,repeats})=>{
+    const u=catalog.commands.indexOf(command),n=count(repeats);
+    need(u>=0,'command absent from certified tape');
+    tick+=n;readAt.push(String(tick));return {u,n};
+  });
+  return readSchedule({readAt},catalog,runs,values);
+}
+
 function traceAlias(catalog,first,second,runs,origin) {
   const i=catalog.ids.indexOf(first),j=catalog.ids.indexOf(second);
   need(i>=0&&j>=0&&i!==j,'select two distinct catalog laws');
