@@ -7,7 +7,7 @@ const torque=(id,terms) => ({schema:'worldlaw.torque-model/v1',id,
 const rivals=()=>[torque('positive',{command:1}),torque('negative',{command:-1})];
 const config=()=>({inertia:1,initialPosition:0,initialRate:0,duration:1,dt:.125,maxStep:.125,
   amplitudeBounds:[-.713,.261],segmentDurations:[.25,.25,.25,.25],positionDomain:[-10,10],
-  noiseSigma:.02,starts:3,sweeps:3,maxTotalSteps:100000,maxRefinementError:1e-9});
+  noiseSigma:.02,minSeparation:0,starts:3,sweeps:3,maxTotalSteps:100000,maxRefinementError:1e-9});
 
 test('reported schedules reproduce every prediction by independent left-held integration',()=>{
   const c=config(), models=rivals(), before=structuredClone({c,models});
@@ -65,4 +65,14 @@ test('the selected schedule is withheld when half-step trajectories disagree',()
   const p=planContinuousExperiment([torque('free',{}),torque('linear',{spring:-16})],c);
   assert.equal(p.status,'refused'); assert.equal(p.reason,'numerically_unresolved');
   assert.equal(p.request,null); assert.ok(p.diagnostics.maxRefinementErrorObserved>c.maxRefinementError);
+});
+
+test('refined all-pair separation must meet the declared noise-unit floor',()=>{
+  const p=planContinuousExperiment(rivals(),config());
+  assert.equal(planContinuousExperiment(rivals(),{...config(),minSeparation:p.objective}).status,'planned');
+  const q=planContinuousExperiment(rivals(),{...config(),minSeparation:p.objective+1});
+  assert.equal(q.reason,'insufficient_separation');
+  assert.equal(q.request,null); assert.equal(q.diagnostics.fineObjective,p.objective);
+  const c=config(); delete c.minSeparation;
+  assert.throws(()=>planContinuousExperiment(rivals(),c),/minSeparation/);
 });

@@ -5,7 +5,7 @@ const SCHEMA = 'worldlaw.continuous-command-plan/v1';
 const PRIME = [2, 3, 5, 7, 11, 13, 17, 19];
 const FIELDS = new Set(['inertia','initialPosition','initialRate','duration','dt','maxStep',
   'amplitudeBounds','segmentDurations','positionDomain','noiseSigma','starts','sweeps',
-  'maxTotalSteps','maxRefinementError','rateDomain']);
+  'maxTotalSteps','maxRefinementError','rateDomain','minSeparation']);
 
 function check(ok, message) {
   if (!ok) throw new RangeError(message);
@@ -53,6 +53,7 @@ export function planContinuousExperiment(models, config) {
   for (const name of ['duration','dt','maxStep','inertia','noiseSigma','maxRefinementError'])
     check(Number.isFinite(c[name]) && c[name] > 0, 'Invalid '+name);
   check(c.maxStep <= c.dt && c.maxStep/2 > 0 && c.inertia <= 1e12, 'Unsupported integrator settings');
+  check(Number.isFinite(c.minSeparation) && c.minSeparation >= 0, 'Invalid minSeparation');
   const domain = bounds(c.positionDomain,'positionDomain');
   const rateDomain = bounds(c.rateDomain ?? [-1e6,1e6], 'rateDomain');
   const [lo, hi] = bounds(c.amplitudeBounds,'amplitudeBounds');
@@ -79,7 +80,7 @@ export function planContinuousExperiment(models, config) {
     fineStepsPerModel:fine, reservedSteps:models.length*(maxDesigns*coarse+fine),
     designsEvaluated:0, rolloutCalls:0, chargedSteps:0, completedSteps:0, rejectedDesigns:0};
   const diagnostics = {models:models.map(m=>m.id), failedRollouts:[], pairCount:models.length*(models.length-1)/2,
-    positionDomain:domain,rateDomain,rateDomainCheck:'scheduled endpoints; engine absolute state bound also applies at RK4 stages', units:{position:'rad',command:'N·m',time:'s'},
+    minSeparation:c.minSeparation,positionDomain:domain,rateDomain,rateDomainCheck:'scheduled endpoints; engine absolute state bound also applies at RK4 stages', units:{position:'rad',command:'N·m',time:'s'},
     objectiveDefinition:'minimum pairwise RMS over all postinitial positions / declared noise sigma',
     method:'deterministic bounded multistart coordinate search; no global optimality certificate',
     numericalCheck:'all rivals; consecutive RK4 step limits; no physical acquisition'};
@@ -164,6 +165,7 @@ export function planContinuousExperiment(models, config) {
     maxRefinementErrorObserved:maxError,maxRefinementErrorAllowed:c.maxRefinementError});
   if (maxError>c.maxRefinementError) return refused('numerically_unresolved');
   if (checked.score<=0) return refused('no_model_separation');
+  if (checked.score<c.minSeparation) return refused('insufficient_separation');
   const request={schema:'worldlaw.continuous-command-request/v1',inertia:c.inertia,
     initialPosition:c.initialPosition,initialRate:c.initialRate,duration:times[n],dt:c.dt,
     noiseSigma:c.noiseSigma,segments:schedule(best.amplitudes),
