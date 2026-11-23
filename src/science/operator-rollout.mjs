@@ -1,6 +1,8 @@
 import {predictEvolution,EvolutionDomainError} from './operator-synthesis.mjs';
 import {constantOscillatorFlow} from './affine-oscillator-flow.mjs';
-import {periodicLinearPlan} from './periodic-linear-flow.mjs';
+import {periodicLinearPlan,onAlternatingOrbit} from './periodic-linear-flow.mjs';
+
+import {periodicSemilinearPlan} from './periodic-semilinear-flow.mjs';
 
 function need(ok,reason){if(!ok)throw new RangeError(reason);}
 function admit(kind,course) {
@@ -32,6 +34,10 @@ function drive(course,t,j,n) {
   const cycles=f.startFrequency*t+(f.endFrequency-f.startFrequency)*t*(t/duration)/2;
   const spatial=j===null?1:Math.cos(2*Math.PI*f.spatialMode*j/n);
   return f.offset+f.amplitude*spatial*Math.sin(2*Math.PI*cycles);
+}
+function periodicTrajectoryPlan(model,course) {
+  const restricted=onAlternatingOrbit(model,course);
+  return periodicLinearPlan(restricted,course) ?? periodicSemilinearPlan(restricted,course,drive);
 }
 function derivative(model,course,t,x) {
   if(!x.every(Number.isFinite)) throw new EvolutionDomainError('nonfinite_trajectory');
@@ -102,8 +108,10 @@ export function designEvolutionExcitation(models, courses, {resolution=0, observ
   const excluded=[], scores=[];
   for(const c of courses){
     try {
-      const substeps=forcingResolution(c).required;
-      const plans=models.map(model=>periodicLinearPlan(model,c));
+      const {required,allowed}=forcingResolution(c);
+      const plans=models.map(model=>periodicTrajectoryPlan(model,c));
+      const substeps=Math.max(required,...plans.map(p=>p?.minimumSubsteps??1));
+      if(substeps>allowed)throw new EvolutionDomainError('semilinear_mixing_budget');
       const cost=plans.reduce((sum,plan)=>sum+(plan?plan.work(substeps):c.steps*c.initial.length*substeps),0);
       if(plans.some(Boolean)&&cost>2000000)throw new EvolutionDomainError('periodic_transition_budget');
       rolloutWork+=cost;
@@ -173,9 +181,11 @@ export function verifyEvolutionRollout(model,course,observations,{maxError,resol
   try {
     admit(model.kind,course);
     const {required,allowed}=forcingResolution(course);
-    const fineSteps=Math.min(2*required,allowed);
+    const plan=periodicTrajectoryPlan(model,course);
+    const minimum=Math.max(required,plan?.minimumSubsteps??1);
+    if(minimum>allowed)throw new EvolutionDomainError('semilinear_mixing_budget');
+    const fineSteps=Math.min(2*minimum,allowed);
     const coarseSteps=Math.floor(fineSteps/2);
-    const plan=periodicLinearPlan(model,course);
     if(plan&&plan.work(coarseSteps)+plan.work(fineSteps)>2000000)throw new EvolutionDomainError('periodic_transition_budget');
     const flow=steps=>plan?.run(steps) ?? constantOscillatorFlow(model,course,steps) ?? rolloutEvolution(model,course,steps);
     const coarse=flow(coarseSteps),fine=flow(fineSteps);
