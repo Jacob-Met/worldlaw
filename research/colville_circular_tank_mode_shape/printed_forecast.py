@@ -1,15 +1,21 @@
 """Fixed PDF-chart receiver. Forecast stage receives development plus upper-envelope summaries only."""
 import hashlib,io,json,pathlib,sys,urllib.request
 from collections import Counter
+from functools import lru_cache
 import numpy as np
 import pymupdf
 from PIL import Image
 P=pathlib.Path(".")
 def sha(b):return hashlib.sha256(b).hexdigest()
 def read(n):return json.loads((P/n).read_text())
+@lru_cache(maxsize=1)
+def pdf_bytes(url,expected):
+    with urllib.request.urlopen(url,timeout=100) as f:pdf=f.read()
+    assert sha(pdf)==expected
+    return pdf
+
 def chart(reg,which):
-    with urllib.request.urlopen(reg["source"]["pdf_url"],timeout=100) as f:pdf=f.read()
-    assert sha(pdf)==reg["source"]["pdf_sha256"]
+    pdf=pdf_bytes(reg["source"]["pdf_url"],reg["source"]["pdf_sha256"])
     doc=pymupdf.open(stream=pdf,filetype="pdf");g=reg["figs"][which]
     im=doc.extract_image(g["xref"]);raw=im["image"]
     pic=np.asarray(Image.open(io.BytesIO(raw)).convert("RGB"),dtype=np.int32)
