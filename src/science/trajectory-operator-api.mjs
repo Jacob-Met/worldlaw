@@ -13,7 +13,8 @@ export async function handleTrajectoryOperators(req,res) {
     const chunks=[];let bytes=0;
     for await(const chunk of req){bytes+=chunk.length;if(bytes>MAX_BYTES){json(413,{error:'State observations exceed the request budget.'});req.destroy();return;}chunks.push(chunk);}
     let input;try{input=JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{json(400,{error:'Request body is not valid JSON.'});return;}
-    if(!input||Array.isArray(input)||Object.keys(input).some(k=>!['training','selection','options','plans'].includes(k))){json(400,{error:'Send training, selection and optional options and plans.'});return;}
+    if(!input||Array.isArray(input)||Object.keys(input).some(k=>!['training','selection','options','plans','continuousPlan'].includes(k))){json(400,{error:'Send training, selection, optional options and one experiment design request.'});return;}
+    if(input.plans&&input.continuousPlan){json(400,{error:'Choose a finite menu or a continuous design request.'});return;}
     const result=await new Promise(resolve=>{
       const worker=new Worker(new URL('./trajectory-operator-worker.mjs',import.meta.url),{workerData:input,resourceLimits:{maxOldGenerationSizeMb:512}});
       let settled=false;

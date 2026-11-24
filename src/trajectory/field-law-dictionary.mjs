@@ -1,3 +1,4 @@
+import {compileContinuousInput} from '../science/continuous-input.mjs';
 /** Finite two-coefficient dynamical-law dictionary and forward integrator.
  * The observation layout, command and step are public. A fitted model supplies
  * its own structure and coefficients for each forward prediction.
@@ -70,7 +71,16 @@ export function components(id,y) {
   return [zero,a,b];
 }
 
+export function compileFieldCommand(layout,input) {
+  if(input?.schema!=='worldlaw.continuous-input/v1'||input.startTime!==0||
+    Math.abs(input.waveform?.duration-DT*N)>1e-12)throw new RangeError('Invalid measured continuous drive interval');
+  const n=layout==='periodic'?GRID:2,compiled=compileContinuousInput(input,layout,n);
+  if(DT*compiled.maximumComponentFrequency>1/8+1e-12)throw new RangeError('Continuous field drive is unresolved');
+  return layout==='oscillator'?t=>[0,compiled.at(t)]:compiled.at;
+}
+
 export function command(layout,id,t) {
+  if(typeof id==='object')return compileFieldCommand(layout,id)(t);
   const n=layout==='periodic'?GRID:2;
   if (id<0) return Array(n).fill(0);
   const temporal=(id%4)+1, sign=id<4?1:-1;
@@ -89,13 +99,14 @@ const plus=(y,k,h)=>y.map((v,i)=>v+h*k[i]);
 export function rollout(id,coef,initial,drive,{steps=N,start=0}={}) {
   if(!Number.isInteger(steps)||steps<0||!Number.isInteger(start)||start<0||start+steps>N) throw new RangeError('Invalid rollout interval');
   const layout=layoutFor(id), states=[initial.slice()];
+  const commandAt=typeof drive==='object'?compileFieldCommand(layout,drive):t=>command(layout,drive,t);
   let y=initial.slice();
   for (let t=start;t<start+steps;t++) {
-    const k1=derivative(id,coef,y,command(layout,drive,t*DT));
-    const mid=command(layout,drive,(t+.5)*DT);
+    const k1=derivative(id,coef,y,commandAt(t*DT));
+    const mid=commandAt((t+.5)*DT);
     const k2=derivative(id,coef,plus(y,k1,.5*DT),mid);
     const k3=derivative(id,coef,plus(y,k2,.5*DT),mid);
-    const k4=derivative(id,coef,plus(y,k3,DT),command(layout,drive,(t+1)*DT));
+    const k4=derivative(id,coef,plus(y,k3,DT),commandAt((t+1)*DT));
     y=y.map((v,i)=>v+DT*(k1[i]+2*k2[i]+2*k3[i]+k4[i])/6);
     if (y.some(v=>!Number.isFinite(v)||Math.abs(v)>80)) return null;
     states.push(y);

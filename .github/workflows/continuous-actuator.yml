@@ -1,0 +1,54 @@
+name: Continuous actuator integration
+on:
+  pull_request:
+    paths:
+      - 'src/science/continuous-*.mjs'
+      - 'src/science/trajectory-continuous-excitation.mjs'
+      - 'src/science/state-trajectory.mjs'
+      - 'src/science/trajectory-operator-api.mjs'
+      - 'src/science/trajectory-operator-worker.mjs'
+      - 'src/trajectory/field-law-dictionary.mjs'
+      - 'src/trajectory/noisy-field-intervention.mjs'
+      - 'src/trajectory/continuous-field-excitation.mjs'
+      - 'scripts/continuous-input-adapter.mjs'
+      - 'scripts/verify-continuous-input-adapter.mjs'
+      - 'tests/continuous-input.test.mjs'
+      - 'tests/state-operator-continuous-http.test.mjs'
+      - '.github/workflows/continuous-actuator.yml'
+permissions:
+  contents: read
+concurrency:
+  group: continuous-actuator-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+jobs:
+  continuous-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Receive the exact independent state-only producer
+        uses: actions/checkout@v4
+        with:
+          repository: Jacob-Met/nullgarden
+          ref: c8dfb73b3990d4737171aca83a1397529116ca23
+          path: .independent-state-nullgarden
+          persist-credentials: false
+      - name: Verify analytic energy, causal forecasts and the launched HTTP planner
+        run: node --test tests/continuous-input.test.mjs tests/state-operator-continuous-http.test.mjs
+      - name: Verify complete frozen-producer parity under kernel limits
+        env:
+          NULLGARDEN_SOURCE: ${{ github.workspace }}/.independent-state-nullgarden
+        run: |
+          NODE_BIN="$(command -v node)"
+          sudo systemd-run --quiet --scope --collect --unit="worldlaw-continuous-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" -p MemoryMax=4294967296 -p MemorySwapMax=0 -p CPUQuota=200% /usr/bin/env NODE_OPTIONS=--max-old-space-size=1536 NULLGARDEN_SOURCE="$NULLGARDEN_SOURCE" CONTINUOUS_EXPECT_CGROUP=1 "$NODE_BIN" scripts/verify-continuous-input-adapter.mjs .receipts/continuous-input
+      - name: Retain original parity or failure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: continuous-input-${{ github.run_id }}
+          path: .receipts/continuous-input/
+          retention-days: 14
+          if-no-files-found: warn

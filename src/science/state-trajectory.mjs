@@ -1,3 +1,4 @@
+import {compileContinuousInput,validateRecordedContinuousInput} from './continuous-input.mjs';
 import {fitPrefixState} from './prefix-state-fit.mjs';
 import {fitLinearColumns} from './linear-fit.mjs';
 
@@ -63,7 +64,8 @@ export function validateStateTrajectory(run) {
     requireState(!['change','derivative','rhs','truth'].some(k=>Object.hasOwn(row,k)),'Derivative labels are not accepted');
     requireState(run.kind==='oscillator'?Number.isFinite(row.command):Array.isArray(row.command)&&row.command.length===n&&row.command.every(Number.isFinite),'Require measured input at every state sample');
   }
-  return {run,dt,n,length:s.length};
+  const continuousInput=validateRecordedContinuousInput(run);
+  return {run,dt,n,length:s.length,...(continuousInput?{continuousInput}:{})};
 }
 
 const filterCache=new Map();
@@ -122,10 +124,11 @@ function modelPredictor(model,n,spacing) {
   });
 }
 
-function integrateSegment(rhs,run,initial,startIndex,endIndex,dt,substeps,maxMagnitude) {
+function integrateSegment(rhs,run,initial,startIndex,endIndex,dt,substeps,maxMagnitude,continuousInput=null) {
   const states=[initial.slice()],h=dt/substeps;
   let x=initial.slice();
   function command(i,f) {
+    if(continuousInput)return continuousInput.at(run.samples[i].time+f*dt);
     const a=run.samples[i].command,b=run.samples[i+1].command;
     return run.kind==='oscillator'?a+(b-a)*f:a.map((v,j)=>v+(b[j]-v)*f);
   }
@@ -156,12 +159,12 @@ export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2
     // exogenous inputs; future measured states are read below for scoring only.
     const observations=run.samples.slice(0,prefixPoints).map(row=>row.state.slice());
     prefix=fitPrefixState(observations,
-      x=>integrateSegment(rhs,run,x,0,prefixPoints-1,dt,substeps,maxMagnitude),
+      x=>integrateSegment(rhs,run,x,0,prefixPoints-1,dt,substeps,maxMagnitude,p.continuousInput),
       {maxMagnitude});
     if(prefix.status!=='fitted')return {status:'diverged',reason:prefix.reason,startIndex:prefixPoints-1,states:null,prefix};
     initial=prefix.terminal;startIndex=prefixPoints-1;
   }
-  const states=integrateSegment(rhs,run,initial,startIndex,p.length-1,dt,substeps,maxMagnitude);
+  const states=integrateSegment(rhs,run,initial,startIndex,p.length-1,dt,substeps,maxMagnitude,p.continuousInput);
   if(!states)return {status:'diverged',reason:'state_domain',startIndex,states:null,...(prefix?{prefix}:{})};
   let squared=0,signal=0,count=0;
   for(let i=1;i<states.length;i++)for(let j=0;j<n;j++) {
@@ -169,5 +172,26 @@ export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2
   }
   return {status:'forecast',startIndex,states,rmse:Math.sqrt(squared/count),relativeRmse:Math.sqrt(squared/Math.max(signal,count*1e-8)),noiseSigma:p.noiseSigma,
     initialization:prefix?'trajectory fit to first '+prefixPoints+' noisy state samples only':'first '+p.points+' noisy state samples only',
-    inputInterpolation:'linear between recorded commands',...(prefix?{prefix,firstScored:prefixPoints,scoredValues:count}:{})};
+    inputInterpolation:p.continuousInput?'declared continuous actuator law at every integration stage':'linear between recorded commands',...(prefix?{prefix,firstScored:prefixPoints,scoredValues:count}:{})};
+}
+
+
+/** Simulated design path from an explicitly supplied estimate; no observations,
+ * exact initial-state oracle or trajectory resets enter this forward solve.
+ */
+export function simulateStateModel(model,{initialEstimate,step,steps,spacing,continuousInput,substeps=2,maxMagnitude=1e6}) {
+  requireState(Array.isArray(initialEstimate)&&initialEstimate.every(Number.isFinite),'Require a finite initial estimate');
+  const n=initialEstimate.length;
+  requireState(model.kind==='oscillator'?n===2:model.kind==='periodic'&&n>=6&&n<=128,'Invalid design state dimension');
+  requireState(Number.isFinite(step)&&step>0&&Number.isInteger(steps)&&steps>=32&&steps<=4096&&Number.isFinite(step*steps),'Invalid design grid');
+  requireState(Number.isInteger(substeps)&&substeps>=1&&substeps<=16&&steps*n*substeps<=2097152,'Design rollout work budget exceeded');
+  requireState(Number.isFinite(maxMagnitude)&&maxMagnitude>0,'Invalid design state bound');
+  if(model.kind==='periodic')requireState(Number.isFinite(spacing)&&spacing>0,'Require design spacing');
+  const input=compileContinuousInput(continuousInput,model.kind,n);
+  requireState(Math.abs(continuousInput.waveform.duration-step*steps)<=1e-10*Math.max(1,step*steps),'Design and waveform durations differ');
+  requireState(step*input.maximumComponentFrequency<=1/8+1e-12,'Continuous input is unresolved on the declared sample grid');
+  const start=continuousInput.startTime;
+  requireState(Number.isFinite(start+step*steps)&&8*Number.EPSILON*Math.max(1,Math.abs(start),Math.abs(start+step*steps))<step/8,'Design timestamps lose interval precision');
+  const run={kind:model.kind,samples:Array.from({length:steps+1},(_,i)=>({time:start+i*step}))};
+  return integrateSegment(modelPredictor(model,n,spacing),run,initialEstimate,0,steps,step,substeps,maxMagnitude,input);
 }

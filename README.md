@@ -677,3 +677,7 @@ https://dfki-ric-underactuated-lab.github.io/real_ai_gym_leaderboard/acrobot_rea
 ### Fixed-prefix initialization for noisy state forecasts
 
 The maintained symbolic discovery API and finite field-law verifier now offer an explicit `prefix-shooting` initializer. It fits the initial state from a declared opening prefix with the law and coefficients held fixed, then scores only the later suffix. Historical initialization defaults remain available. See [the initialization contract and fresh registered course](docs/NOISY_PREFIX_INITIALIZATION.md) for the API options, supplied synthetic calibration, causal boundary, reproduction commands and qualification limits.
+
+## Continuous actuator experiments
+
+The existing trajectory discovery API can now plan three smooth sinusoidal bursts with continuous frequencies, phases and energy allocation, and use their exact command law during forecasts. See [Continuous actuator experiments](docs/CONTINUOUS_EXCITATION.md) for the executable input schema, energy/peak constraints, external simulator boundary and remaining qualification work. This capability does not establish unique structural identification or satisfy the full noisy-state discovery comparison.
