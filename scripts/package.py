@@ -25,6 +25,7 @@ INCLUDE = (
     "tests/continuous-input.test.mjs",
     "tests/state-operator-continuous-http.test.mjs",
     "docs/CONTINUOUS_EXCITATION.md",
+    "docs/receipts/continuous-input/release.json",
     "docs/NOISY_PREFIX_RESULTS.md",
     "scripts/inspect-prefix-original.py",
     "docs/receipts/noisy-prefix-initialization/summary.json",
