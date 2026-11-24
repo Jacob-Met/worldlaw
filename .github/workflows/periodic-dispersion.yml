@@ -1,0 +1,36 @@
+name: Quarter-wave dispersive observability
+on:
+  pull_request:
+    paths:
+      - 'src/science/periodic-dispersion.mjs'
+      - 'scripts/periodic-dispersion.mjs'
+      - 'scripts/receive-periodic-dispersion.mjs'
+      - 'tests/periodic-dispersion.test.mjs'
+      - '.github/workflows/periodic-dispersion.yml'
+permissions:
+  contents: read
+jobs:
+  paired:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/checkout@v4
+        with:
+          repository: Jacob-Met/nullgarden
+          ref: 4af7717a866e0246e7c0bcd81977cea53cddbd8c
+          path: .independent-state-nullgarden
+          persist-credentials: false
+      - run: node --test tests/periodic-dispersion.test.mjs
+      - run: node scripts/receive-periodic-dispersion.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: periodic-dispersion-receipt
+          path: .receipts/periodic-dispersion/
+          if-no-files-found: error
+      - name: Frozen scientific gate
+        run: node -e "if (!require('./.receipts/periodic-dispersion/report.json').gate) process.exit(1)"
