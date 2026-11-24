@@ -1,0 +1,42 @@
+name: Receive the fixed eight-drive retrospective
+on:
+  pull_request:
+    paths:
+      - 'scripts/noisy-history-drive-census.mjs'
+      - '.github/workflows/noisy-history-drive-census.yml'
+permissions:
+  actions: read
+  contents: read
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.22.3'
+      - name: Receive the completed registered course
+        id: retained
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          run-id: '45297719173'
+          name: noisy-history-reset-originals
+          github-token: ${{ github.token }}
+          path: original
+      - name: Regenerate the pinned recording when the Actions retention period has elapsed
+        if: steps.retained.outcome == 'failure'
+        run: node scripts/noisy-history-reset.mjs regenerated
+      - name: Select recovered or regenerated input
+        run: |
+          if test "${{ steps.retained.outcome }}" = success; then source=original; else source=regenerated; fi
+          echo "RECORDING_DIR=$source" >> "$GITHUB_ENV"
+      - name: Verify every measured interval pair against its original source
+        run: node scripts/receive-noisy-history-reset.mjs "$RECORDING_DIR"
+      - name: Run all alternative drives and join the actually selected fits
+        run: node scripts/noisy-history-drive-census.mjs "$RECORDING_DIR/report.json" drive-census.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: field-drive-census
+          path: drive-census.json

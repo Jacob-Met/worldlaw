@@ -1,0 +1,33 @@
+name: Noisy reset-history intervention
+on:
+  pull_request:
+    paths:
+      - 'src/trajectory/reset-history-intervals.mjs'
+      - 'scripts/noisy-history-reset.mjs'
+      - 'scripts/noisy-field-acquisition.mjs'
+      - 'scripts/generate-reset-histories.mjs'
+      - 'scripts/receive-noisy-history-reset.mjs'
+      - 'tests/reset-history-intervals.test.mjs'
+      - 'experiments/noisy-history-reset/**'
+      - '.github/workflows/noisy-reset-history.yml'
+jobs:
+  course:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Exercise interval, preparation, and planner contracts
+        run: node --test tests/reset-history-intervals.test.mjs tests/noisy-field-intervention.test.mjs
+      - name: Run preregistered held simulation on the merge preview
+        run: node scripts/noisy-history-reset.mjs history-output
+      - name: Independent receiving of all physical interval pairs and arm decisions
+        run: node scripts/receive-noisy-history-reset.mjs history-output
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: noisy-history-reset-originals
+          path: history-output/
+          if-no-files-found: warn
