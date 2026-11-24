@@ -147,18 +147,80 @@ function columns(kind,xs,operators,maxNodes,maxCandidates) {
   return bank;
 }
 
-export function synthesizeEvolution(rows, options={}) {
+function synthesisOptions(options) {
   const {kind,operators,maxNodes=4,maxCandidates=3000,maxTerms=2,beam=6,tolerance}=options;
   insist(Object.hasOwn(terminals,kind),'Invalid evolution geometry');
   insist(Array.isArray(operators)&&operators.length>0&&new Set(operators).size===operators.length&&
     operators.every(op=>unary.has(op)||binary.has(op)||(kind==='periodic'&&spatial.has(op))),'Invalid operator menu');
   limit(maxNodes,1,7,'node budget');limit(maxCandidates,5,12000,'candidate budget');
   limit(maxTerms,1,4,'support budget');limit(beam,1,32,'beam width');
-  insist(Array.isArray(rows)&&rows.length>=4&&rows.length<=1024&&Number.isFinite(tolerance)&&tolerance>=0,'Invalid training design');
+  insist(Number.isFinite(tolerance)&&tolerance>=0,'Invalid training tolerance');
+  return {kind,operators,maxNodes,maxCandidates,maxTerms,beam,tolerance};
+}
+
+export function synthesizeEvolution(rows, options={}) {
+  const settings=synthesisOptions(options);
+  const {kind,operators,maxNodes,maxCandidates}=settings;
+  insist(Array.isArray(rows)&&rows.length>=4&&rows.length<=1024,'Invalid training design');
   insist(maxCandidates*rows.length<=2000000,'Declared grammar exceeds its column storage budget');
-  const xs=rows.map(r=>coordinates(kind,r)), target=rows.map(r=>r.change);
+  const xs=rows.map(r=>coordinates(kind,r)),target=rows.map(r=>r.change);
   insist(target.every(Number.isFinite),'Invalid measured training response');
+  return fitBank(columns(kind,xs,operators,maxNodes,maxCandidates),target,settings);
+}
+
+// At an observed edge, integrate test(t) du by parts. For the midpoint hat
+// weights, the coefficient on an interior state is w[i-1] - w[i]. Thus the
+// receiver consumes state levels and never forms a pointwise time derivative.
+export function synthesizeWeakEvolution(runs, options={}) {
+  const settings=synthesisOptions(options);
+  const {kind,operators,maxNodes,maxCandidates}=settings;
+  const {step,width=16,stride=8,spacing,component=kind==='periodic'?'field':'rate'}=options;
+  insist(Number.isFinite(step)&&step>0,'Invalid observation cadence');
+  limit(width,4,128,'weak window');limit(stride,1,128,'weak stride');
+  insist(kind==='periodic'?component==='field':['position','rate'].includes(component),'Invalid observed component');
+  insist(Array.isArray(runs)&&runs.length>0&&runs.length<=16,'Invalid weak training runs');
+  const xs=[],windows=[];
+  const w=Array.from({length:width},(_,i)=>1-Math.abs((2*i+1)/width-1));
+  const area=w.reduce((s,v)=>s+v,0)*step;
+  const stateWeight=Array.from({length:width+1},(_,i)=>((w[i-1]??0)-(w[i]??0))/area);
+  const featureWeight=Array.from({length:width+1},(_,i)=>step*((w[i-1]??0)+(w[i]??0))/(2*area));
+  for(const {values,commands} of runs) {
+    insist(Array.isArray(values)&&values.length>width&&values.length<=2048&&
+      Array.isArray(commands)&&commands.length===values.length,'Invalid measured trajectory');
+    const n=Array.isArray(values[0])?values[0].length:0;
+    insist(kind==='periodic'?n>=5&&n<=128&&Number.isFinite(spacing)&&spacing>0:n===2,'Invalid observation geometry');
+    const channels=kind==='periodic'?n:1,start=xs.length;
+    insist(start+values.length*channels<=16384&&maxCandidates*(start+values.length*channels)<=2000000,'Declared grammar exceeds its column storage budget');
+    for(let t=0;t<values.length;t++) {
+      const y=values[t],u=commands[t];
+      insist(Array.isArray(y)&&y.length===n&&y.every(Number.isFinite),'Invalid measured state');
+      if(kind==='periodic') {
+        insist(Array.isArray(u)&&u.length===n&&u.every(Number.isFinite),'Invalid field command');
+        for(let j=0;j<n;j++) xs.push(coordinates(kind,{field:y[j],command:u[j],spacing,
+          left:y[(j+n-1)%n],right:y[(j+1)%n],left2:y[(j+n-2)%n],right2:y[(j+2)%n]}));
+      } else {
+        insist(Number.isFinite(u),'Invalid scalar command');
+        xs.push(coordinates(kind,{position:y[0],rate:y[1],command:u}));
+      }
+    }
+    for(let t=0;t+width<values.length;t+=stride) for(let j=0;j<channels;j++)
+      windows.push({offset:start+t*channels+j,channels});
+  }
+  insist(windows.length>=4&&windows.length<=4096,'Invalid weak training design');
+  insist(maxCandidates*windows.length*(width+1)<=50000000,'Weak projection exceeds its work budget');
+  const project=(v,weights)=>windows.map(({offset,channels})=>weights.reduce((s,w,i)=>s+w*v[offset+i*channels],0));
+  const target=project(xs.map(row=>row[component]),stateWeight);
+  insist(target.every(Number.isFinite),'Nonfinite weak target');
   const bank=columns(kind,xs,operators,maxNodes,maxCandidates);
+  for(const term of bank) {
+    term.values=project(term.values,featureWeight);
+    term.norm=term.values.every(Number.isFinite)?Math.hypot(...term.values):NaN;
+  }
+  const result=fitBank(bank,target,settings);
+  return {...result,weak:{windows:windows.length,step,width,stride,component}};
+}
+
+function fitBank(bank,target,{kind,maxTerms,beam,tolerance}) {
   let work=bank.length*target.length;
   function charge(n) {
     work+=n;
