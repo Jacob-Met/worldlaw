@@ -1,0 +1,262 @@
+{
+  "trainingIds": [
+    "wlcv1-development-1006-acquisition-0",
+    "wlcv1-development-1006-acquisition-1",
+    "wlcv1-development-1006-acquisition-3"
+  ],
+  "models": [
+    {
+      "schema": "worldlaw.torque-model/v1",
+      "id": "command+rate+spring+cubic",
+      "terms": [
+        {
+          "id": "command",
+          "coefficient": 1.11845452434908
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.15556493555083173
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8344520110063216
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.31722775548424187
+        }
+      ]
+    },
+    {
+      "schema": "worldlaw.torque-model/v1",
+      "id": "command_cubic+rate+spring+cubic",
+      "terms": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.11845452434908
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.15556493555083173
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8344520110063216
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.31722775548424187
+        }
+      ]
+    }
+  ],
+  "config": {
+    "inertia": 1,
+    "initialPosition": 0.25,
+    "initialRate": 0,
+    "duration": 8,
+    "dt": 0.04,
+    "maxStep": 0.01,
+    "amplitudeBounds": [
+      -1,
+      1
+    ],
+    "segmentDurations": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "positionDomain": [
+      -20,
+      20
+    ],
+    "rateDomain": [
+      -20,
+      20
+    ],
+    "noiseSigma": 0.002,
+    "starts": 4,
+    "sweeps": 3,
+    "maxTotalSteps": 1000000,
+    "maxRefinementError": 0.0001,
+    "minSeparation": 0
+  },
+  "analytic": {
+    "status": "planned",
+    "request": {
+      "schema": "worldlaw.continuous-command-request/v1",
+      "inertia": 1,
+      "initialPosition": 0.25,
+      "initialRate": 0,
+      "duration": 8,
+      "dt": 0.04,
+      "noiseSigma": 0.002,
+      "segments": [
+        {
+          "startIndex": 0,
+          "endIndex": 50,
+          "amplitude": 0.5773502691896258
+        },
+        {
+          "startIndex": 50,
+          "endIndex": 100,
+          "amplitude": -0.5773502691896258
+        },
+        {
+          "startIndex": 100,
+          "endIndex": 150,
+          "amplitude": -0.5773502691896258
+        },
+        {
+          "startIndex": 150,
+          "endIndex": 200,
+          "amplitude": 0.5773502691896258
+        }
+      ],
+      "commandConvention": "hold amplitude on [startIndex*dt,endIndex*dt); terminal value unused"
+    },
+    "sourceActiveIntervals": 500,
+    "addedIntervals": 200,
+    "amplitude": 0.5773502691896258,
+    "actuatorFeatureContrast": 0.3849001794597505,
+    "jointGramDeterminant": 14814.814814814818
+  },
+  "arms": [
+    {
+      "arm": "interior",
+      "segments": [
+        {
+          "startIndex": 0,
+          "endIndex": 50,
+          "amplitude": 0.5773502691896258
+        },
+        {
+          "startIndex": 50,
+          "endIndex": 100,
+          "amplitude": -0.5773502691896258
+        },
+        {
+          "startIndex": 100,
+          "endIndex": 150,
+          "amplitude": -0.5773502691896258
+        },
+        {
+          "startIndex": 150,
+          "endIndex": 200,
+          "amplitude": 0.5773502691896258
+        }
+      ],
+      "coarse": {
+        "rms": 0.6130824919035188,
+        "maxAbs": 1.1977264295338281
+      },
+      "fine": {
+        "rms": 0.6130824918626675,
+        "maxAbs": 1.1977264293575753
+      }
+    },
+    {
+      "arm": "unit",
+      "segments": [
+        {
+          "startIndex": 0,
+          "endIndex": 50,
+          "amplitude": 1
+        },
+        {
+          "startIndex": 50,
+          "endIndex": 100,
+          "amplitude": -1
+        },
+        {
+          "startIndex": 100,
+          "endIndex": 150,
+          "amplitude": -1
+        },
+        {
+          "startIndex": 150,
+          "endIndex": 200,
+          "amplitude": 1
+        }
+      ],
+      "coarse": {
+        "rms": 0,
+        "maxAbs": 0
+      },
+      "fine": {
+        "rms": 0,
+        "maxAbs": 0
+      }
+    },
+    {
+      "arm": "existing_active",
+      "segments": [
+        {
+          "startIndex": 0,
+          "endIndex": 50,
+          "amplitude": -0.75
+        },
+        {
+          "startIndex": 50,
+          "endIndex": 100,
+          "amplitude": 0.41666666666666663
+        },
+        {
+          "startIndex": 100,
+          "endIndex": 150,
+          "amplitude": -0.35
+        },
+        {
+          "startIndex": 150,
+          "endIndex": 200,
+          "amplitude": -0.4642857142857143
+        }
+      ],
+      "coarse": {
+        "rms": 0.750593592560903,
+        "maxAbs": 1.5339914669202155
+      },
+      "fine": {
+        "rms": 0.7505935926120285,
+        "maxAbs": 1.5339914670464108
+      }
+    }
+  ],
+  "existingActiveWork": {
+    "maxDesigns": 100,
+    "maxTotalSteps": 1000000,
+    "coarseStepsPerModel": 976,
+    "fineStepsPerModel": 1776,
+    "reservedSteps": 198752,
+    "designsEvaluated": 100,
+    "rolloutCalls": 202,
+    "chargedSteps": 198752,
+    "completedSteps": 198752,
+    "rejectedDesigns": 0
+  },
+  "preregistration": 194295,
+  "artifactSha256": "e8bac61ac3f0eb639ca039d27952e8f0a65ffd6f6118c980ca32860c47d09128",
+  "trainingNames": [
+    "source-0",
+    "source-1",
+    "round-2"
+  ],
+  "fitOptions": {
+    "terms": [
+      "command",
+      "command_cubic",
+      "rate",
+      "spring",
+      "gravity",
+      "cubic",
+      "bias"
+    ],
+    "maxTerms": 4,
+    "noiseSigma": 0.002,
+    "ambiguityDelta": 6,
+    "windowDuration": 1,
+    "windowStride": 0.5,
+    "rateWindowSize": 9
+  }
+}
