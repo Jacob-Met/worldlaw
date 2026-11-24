@@ -16,6 +16,11 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "src/science/periodic-parity.mjs",
+    "scripts/periodic-parity.mjs",
+    "scripts/receive-periodic-parity.mjs",
+    "tests/periodic-parity.test.mjs",
+    "docs/PERIODIC_PARITY.md",
     "scripts/replay-state-operator-course.py",
     "experiments/noisy-field-interventions/RESULTS.md",
     "experiments/noisy-field-interventions/result.json",
