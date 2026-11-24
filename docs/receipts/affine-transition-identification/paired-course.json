@@ -1,0 +1,236 @@
+{
+  "schema": "worldlaw.affine-transition-comparison/v1",
+  "protocol": {
+    "baseline": "Worldlaw #888 e4da6a8cdc3d048ebb41965e3bf2dbe2439bfa47 synthesizeWeakEvolution",
+    "candidate": "Worldlaw #891 e19ba64e74bef62f42982386dc4b66a7d436f46e recoverAffineOscillator",
+    "worlds": [
+      [
+        -0.6,
+        0.25,
+        0.8
+      ],
+      [
+        -0.6,
+        1.25,
+        0.8
+      ],
+      [
+        -1.4,
+        0.5,
+        -0.7
+      ],
+      [
+        -1.4,
+        1,
+        -0.7
+      ],
+      [
+        -2.2,
+        0.75,
+        1.3
+      ],
+      [
+        -2.2,
+        1.25,
+        1.3
+      ]
+    ],
+    "bias": 0.17,
+    "noise": [
+      0,
+      0.000001,
+      0.001
+    ],
+    "training": "8 acquisitions at q in {-1.3,1.9}, v in {-.8,1.2}, held u in {-.5,.9}; 17 measured positions and velocities per acquisition. At row t>0 independently perturb q by sigma sin(1.37*t+.73*j), v by sigma cos(.91*t-1.17*j); exact initial conditions. Neither arm sees derivative targets.",
+    "weak": "actual triangular method; width 4,stride 2,operators [mul],maxNodes1,maxCandidates10,maxTerms3,beam8,tolerance=20*sigma+1e-9",
+    "direct": "default minimum relative pivot 1e-8, both state tolerances=20*sigma+1e-9, identical measured states and known commands.",
+    "held": "Three changed initial/constant-command cases: [.31,-.27,-.91],[-.42,.65,.33],[1.07,-.41,1.67], each at 13 checkpoints over 1.8 seconds. Compare worst absolute position or velocity error to independent analytic source; report every missing/abstained fit.",
+    "gate": "For limited clean affine-family qualification require 6/6 clean candidates with worst error <1e-9 and strictly lower error than actual weak fit. At both perturbed levels report per-world error, all abstentions, wins and worst case; do not promote a general noise claim."
+  },
+  "preregisteredThreadReceipt": 194022,
+  "weakCommit": "e4da6a8cdc3d048ebb41965e3bf2dbe2439bfa47",
+  "weakBlob": "c3f042336a6ef6011cab84bb88e5ef9a6670fb12",
+  "candidateCommit": "e19ba64e74bef62f42982386dc4b66a7d436f46e",
+  "rows": [
+    {
+      "sigma": 0,
+      "b": -0.6,
+      "step": 0.25,
+      "g": 0.8,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.0026750907063486373,
+      "directMax": 3.552713678800501e-15
+    },
+    {
+      "sigma": 0,
+      "b": -0.6,
+      "step": 1.25,
+      "g": 0.8,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.06434851230111249,
+      "directMax": 3.1086244689504383e-15
+    },
+    {
+      "sigma": 0,
+      "b": -1.4,
+      "step": 0.5,
+      "g": -0.7,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.017301017026527532,
+      "directMax": 1.5994150448506161e-15
+    },
+    {
+      "sigma": 0,
+      "b": -1.4,
+      "step": 1,
+      "g": -0.7,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.06481528489543387,
+      "directMax": 3.3306690738754696e-16
+    },
+    {
+      "sigma": 0,
+      "b": -2.2,
+      "step": 0.75,
+      "g": 1.3,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.12679213842073578,
+      "directMax": 1.7763568394002505e-15
+    },
+    {
+      "sigma": 0,
+      "b": -2.2,
+      "step": 1.25,
+      "g": 1.3,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.30678768547646973,
+      "directMax": 1.5543122344752192e-15
+    },
+    {
+      "sigma": 0.000001,
+      "b": -0.6,
+      "step": 0.25,
+      "g": 0.8,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.0026752015786368766,
+      "directMax": 2.5179234508510007e-7
+    },
+    {
+      "sigma": 0.000001,
+      "b": -0.6,
+      "step": 1.25,
+      "g": 0.8,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.06434938000648538,
+      "directMax": 1.1003191113800881e-7
+    },
+    {
+      "sigma": 0.000001,
+      "b": -1.4,
+      "step": 0.5,
+      "g": -0.7,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.01730153315756544,
+      "directMax": 1.948481880634234e-7
+    },
+    {
+      "sigma": 0.000001,
+      "b": -1.4,
+      "step": 1,
+      "g": -0.7,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.06481646763343196,
+      "directMax": 1.369319100469335e-7
+    },
+    {
+      "sigma": 0.000001,
+      "b": -2.2,
+      "step": 0.75,
+      "g": 1.3,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.12679379556296144,
+      "directMax": 7.82610778404802e-8
+    },
+    {
+      "sigma": 0.000001,
+      "b": -2.2,
+      "step": 1.25,
+      "g": 1.3,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.3067904445690668,
+      "directMax": 3.446063967516011e-8
+    },
+    {
+      "sigma": 0.001,
+      "b": -0.6,
+      "step": 0.25,
+      "g": 0.8,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.0027867922417934565,
+      "directMax": 0.0002523748847238494
+    },
+    {
+      "sigma": 0.001,
+      "b": -0.6,
+      "step": 1.25,
+      "g": 0.8,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.06522806302425543,
+      "directMax": 0.0001086339093130384
+    },
+    {
+      "sigma": 0.001,
+      "b": -1.4,
+      "step": 0.5,
+      "g": -0.7,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.017821876717958762,
+      "directMax": 0.0001953703734262624
+    },
+    {
+      "sigma": 0.001,
+      "b": -1.4,
+      "step": 1,
+      "g": -0.7,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.0660204948881048,
+      "directMax": 0.00013914649347619018
+    },
+    {
+      "sigma": 0.001,
+      "b": -2.2,
+      "step": 0.75,
+      "g": 1.3,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.1285005166614357,
+      "directMax": 0.00008050955186533759
+    },
+    {
+      "sigma": 0.001,
+      "b": -2.2,
+      "step": 1.25,
+      "g": 1.3,
+      "weakStatus": "candidate",
+      "directStatus": "candidate",
+      "weakMax": 0.30968827613239025,
+      "directMax": 0.00003924410745292928
+    }
+  ]
+}
