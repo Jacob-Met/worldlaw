@@ -1,0 +1,98 @@
+{
+  "schema": "worldlaw-causal-prefix-shooting/v1",
+  "base": "4c489b585db65430e722dc03763842e629662e32",
+  "registeredBeforeOutcomes": true,
+  "predecessors": {
+    "original": "experiments/noisy-field-interventions/protocol.json",
+    "reset": "experiments/noisy-history-reset/protocol-v2.json",
+    "diagnosticOnly": "#893 retrospective eight-drive ceiling; no reused score"
+  },
+  "worlds": [
+    "pendulum",
+    "duffing",
+    "van-der-pol",
+    "rayleigh",
+    "quartic-spring",
+    "double-well",
+    "morse",
+    "toda",
+    "quadratic-drag",
+    "dry-friction",
+    "lotka-volterra",
+    "brusselator",
+    "fitzhugh-nagumo",
+    "competition",
+    "holling-tanner",
+    "burgers",
+    "kdv",
+    "modified-kdv",
+    "allen-cahn",
+    "fisher-kpp",
+    "porous-medium",
+    "cahn-hilliard"
+  ],
+  "ood": [
+    "lorenz-hidden-z",
+    "delay-feedback"
+  ],
+  "seeds": [
+    {
+      "seed": 1205609,
+      "coefficients": [
+        1.03,
+        0.91
+      ]
+    },
+    {
+      "seed": 1768391,
+      "coefficients": [
+        0.88,
+        1.21
+      ]
+    }
+  ],
+  "snrDb": [
+    15,
+    25,
+    40
+  ],
+  "prefixPoints": 17,
+  "samples": 129,
+  "step": 0.025,
+  "grid": 16,
+  "estimator": {
+    "kind": "damped Gauss-Newton shooting of initial state only",
+    "iterations": 4,
+    "lineSearch": [
+      1,
+      0.5,
+      0.25,
+      0.125
+    ],
+    "ridge": 0.000001,
+    "finiteDifference": 0.00001,
+    "coefficients": "frozen from both training records",
+    "stateInput": "first 17 observed states only; supplied latent initial states prohibited",
+    "verification": "score indices 17..128 only, standardized RMS <=3, same suffix for legacy and prefix fits"
+  },
+  "noise": "Independent Gaussian draws at every time/channel. Sigma equals centered clean trajectory channel SD *10^(-dB/20), supplied as synthetic calibrated sensor scale; no whole-record mean removal or RMS rescaling. Nominal SNR is expected, not exact realized SNR. This differs prospectively from the old normalized-noise cohorts.",
+  "arms": [
+    "contender-weak",
+    "committee-weak",
+    "random-weak",
+    "passive-finite-template-differential"
+  ],
+  "comparisons": "For every arm use identical acquired records for the old first-observation initializer and the new fixed-prefix shooting initializer. Both are evaluated on the same suffix. Active/random retain equal excitation power and acquisition count. Passive differential comparison retains a fixed two-coefficient law dictionary and is not unrestricted SINDy.",
+  "memory": "Same shared bounded twin-reset witness and preparation as protocol-v2; archive original observations, bounds and witness. No tuning from memory or verification outcomes.",
+  "sham": "Apply each planner to its own time-permuted pilot; acquire that drive, permute response and independent verification, preserve supplied commands. Both estimators score the same suffix. Any admitted time-permuted law counts false positive.",
+  "denominators": {
+    "inside": 132,
+    "outside": 12,
+    "total": 144
+  },
+  "primary": "New contender correct strictly exceeds new random and new passive; zero wrong, time-permuted, and outside admissions. Report every arm, old/new paired contingencies, initialization failures, all suffix errors and observed realized SNR. A tie or loss fails; never shrink denominator or change thresholds.",
+  "estimatorGate": "New contender correct exceeds its old-initializer counterpart on the identical suffix with no increase in wrong, sham or outside admissions. This is a separate estimator improvement, never a substitute for the primary active superiority gate.",
+  "scope": "Synthetic finite-roster noisy-state evidence only; no physical transfer, unrestricted law-discovery, external human, ARC or complete parent-oracle qualification.",
+  "integration": "Shared prefix solver consumed by maintained field-law identification and optional public symbolic state-trajectory forecasts/model selection. Preserve historical default behavior and original protocol results.",
+  "qualification": "Exact-head full npm verification and source distribution, launched product HTTP integration, original state-operator external course, and this complete fresh registered course. Preserve all failed/partial originals; no outcome-driven protocol edits."
+}

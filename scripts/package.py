@@ -16,6 +16,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "src/science/prefix-state-fit.mjs",
+    "experiments/noisy-prefix-initialization/protocol.json",
     "src/science/periodic-parity.mjs",
     "scripts/periodic-parity.mjs",
     "scripts/receive-periodic-parity.mjs",

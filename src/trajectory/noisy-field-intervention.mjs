@@ -1,3 +1,4 @@
+import {fitPrefixState} from '../science/prefix-state-fit.mjs';
 /** Weak temporal moments over observed state channels, finite-law ranking and active design. */
 import {fitLinearColumns} from '../science/linear-fit.mjs';
 import {laws,components,command,rollout,DT,N,GRID} from './field-law-dictionary.mjs';
@@ -97,16 +98,31 @@ export function activeDesign(pilot) {
   return {drive:design[0].drive,committee:committee.map(c=>c.law),scores:design};
 }
 
-export function identify(runs,verification,method='weak') {
+export function identify(runs,verification,method='weak',{initialization='first-observation',prefixPoints=17,scoreStart=null}={}) {
   check(verification);
+  if(!['first-observation','prefix-shooting'].includes(initialization))throw new RangeError('Unknown verification initialization');
+  if(!Number.isInteger(prefixPoints)||prefixPoints<5||prefixPoints>33)throw new RangeError('Invalid verification prefix');
+  const firstScored=scoreStart??(initialization==='prefix-shooting'?prefixPoints:1);
+  if(!Number.isInteger(firstScored)||firstScored<1||firstScored>N||
+    (initialization==='prefix-shooting'&&firstScored<prefixPoints))throw new RangeError('Verification suffix overlaps fitted prefix');
   if (verification.layout!==runs[0].layout) throw Error('changed verification layout');
   const [best,runner]=rankObserved(runs,method);
-  const path=rollout(best.law,best.coef,verification.values[0],verification.drive);
-  if(!path) return {...best,admitted:false,standardizedError:null,runner:runner.law};
+  let start=verification.values[0],prefix=null;
+  if(initialization==='prefix-shooting') {
+    const observations=verification.values.slice(0,prefixPoints).map(row=>row.slice());
+    prefix=fitPrefixState(observations,
+      initial=>rollout(best.law,best.coef,initial,verification.drive,{steps:prefixPoints-1}),
+      {scales:verification.sigma,maxMagnitude:80});
+    if(prefix.status!=='fitted')return {...best,runner:runner.law,admitted:false,standardizedError:null,initialization,prefix,firstScored};
+    start=prefix.initial;
+  }
+  const details=initialization==='first-observation'&&scoreStart===null?{}:{initialization,prefix,firstScored};
+  const path=rollout(best.law,best.coef,start,verification.drive);
+  if(!path)return {...best,admitted:false,standardizedError:null,runner:runner.law,...details};
   let loss=0,count=0;
-  for(let t=1;t<=N;t++) for(let k=0;k<verification.sigma.length;k++) {
+  for(let t=firstScored;t<=N;t++)for(let k=0;k<verification.sigma.length;k++) {
     loss+=square((path[t][k]-verification.values[t][k])/verification.sigma[k]);count++;
   }
   const standardizedError=Math.sqrt(loss/count);
-  return {...best,runner:runner.law,standardizedError,admitted:standardizedError<=3};
+  return {...best,runner:runner.law,standardizedError,admitted:standardizedError<=3,...details,...(Object.keys(details).length?{scoredValues:count}:{})};
 }
