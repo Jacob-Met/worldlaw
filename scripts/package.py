@@ -16,6 +16,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "scripts/replay-state-operator-course.py",
     "experiments/noisy-field-interventions/RESULTS.md",
     "experiments/noisy-field-interventions/result.json",
     "tests/fixtures/continuous-forecast-diameter-protocol.json",

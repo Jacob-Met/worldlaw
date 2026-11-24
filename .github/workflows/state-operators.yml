@@ -1,0 +1,56 @@
+name: Noisy state-only operator course
+on:
+  pull_request:
+    paths:
+      - 'src/science/*operator*.mjs'
+      - 'src/science/state-trajectory.mjs'
+      - 'src/science/linear-fit.mjs'
+      - 'server.mjs'
+      - 'tests/state-operator*.mjs'
+      - 'scripts/receive-state-operator-course.mjs'
+      - '.github/workflows/state-operators.yml'
+permissions:
+  contents: read
+concurrency:
+  group: state-operator-course-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  course:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        shard: [0, 1]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Receive the frozen independent producer
+        uses: actions/checkout@v4
+        with:
+          repository: Jacob-Met/nullgarden
+          ref: 4af7717a866e0246e7c0bcd81977cea53cddbd8c
+          path: .independent-state-nullgarden
+          persist-credentials: false
+      - name: Check independent source and actual HTTP consumer
+        run: |
+          node --test .independent-state-nullgarden/test/state-operator-course.test.mjs
+          node --test tests/state-operator*.test.mjs
+      - name: Run the complete registered shard
+        env:
+          NODE_OPTIONS: --max-old-space-size=1536
+          STATE_OPERATOR_SHARD: ${{ matrix.shard }}
+          STATE_OPERATOR_SHARDS: '2'
+          STATE_OPERATOR_OUTPUT: .receipts/state-operators-${{ matrix.shard }}
+        run: node scripts/receive-state-operator-course.mjs
+      - name: Retain every observation, model, forecast and failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: state-operators-${{ matrix.shard }}-${{ github.run_id }}
+          path: .receipts/state-operators-${{ matrix.shard }}/
+          retention-days: 14
+          if-no-files-found: error
