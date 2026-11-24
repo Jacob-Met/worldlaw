@@ -3,6 +3,7 @@ import {execFileSync} from 'node:child_process';
 import {readFileSync} from 'node:fs';
 import test from 'node:test';
 import {rollout} from '../src/trajectory/forward.mjs';
+import {discoverWeak} from '../src/trajectory/weak-discovery.mjs';
 import {refineTrajectoryOutput} from '../src/trajectory/output-error-fit.mjs';
 
 const receipt=JSON.parse(readFileSync(new URL('../docs/receipts/position-output-development/six-training-worlds.json',import.meta.url)));
@@ -66,6 +67,50 @@ test('original development artifact replays all four active training acquisition
           close(Math.hypot(...d)/Math.sqrt(d.length),fine.perRun[j].rms);
           close(Math.max(...d.map(Math.abs)),fine.perRun[j].maxAbs);
         }
+      }
+    }
+  });
+
+const folds=JSON.parse(readFileSync(new URL('../docs/receipts/position-output-development/within-training-folds.json',import.meta.url)));
+test('three-run fits retain the omitted acquisition, including the failed actuator transfer',()=>{
+  assert.equal(folds.preregistration,194243);assert.equal(folds.rows.length,24);
+  let wins=0,worldWins=0;
+  for(const world of receipt.worlds){
+    const cases=folds.rows.filter(row=>row.world===world.world);
+    assert.deepEqual(cases.map(row=>row.omitted),[0,1,2,3]);
+    for(const row of cases){
+      assert.equal(row.trainingIds.length,3);assert.ok(!row.trainingIds.includes(row.testId));
+      if(row.metrics.output.standard.rms<row.metrics.weak.standard.rms)wins++;
+    }
+    const rms=id=>Math.hypot(...cases.map(row=>row.metrics[id].standard.rms))/2;
+    if(rms('output')<rms('weak'))worldWins++;
+    assert.ok(rms('output')<=1.05*rms('weak'));
+  }
+  assert.equal(wins,23);assert.equal(worldWins,5);
+  const worst=folds.rows.find(x=>x.world==='1006'&&x.omitted===2);
+  assert.equal(worst.support,'command+rate+spring+cubic');
+  assert.ok(worst.metrics.output.standard.rms>worst.metrics.weak.standard.rms);
+});
+
+test('original training folds reselect support before the omitted acquisition',
+  {skip:archive?false:'Set WORLDLAW_POSITION_OUTPUT_ARCHIVE to the registered development ZIP'},()=>{
+    const cases=JSON.parse(execFileSync('python3',['-c',extractor,archive,receipt.artifactSha256],{encoding:'utf8',maxBuffer:2500000}));
+    for(const row of folds.rows){
+      const runs=cases[row.world].runs,omitted=runs[row.omitted],train=runs.filter((_,i)=>i!==row.omitted);
+      assert.deepEqual(train.map(r=>r.id),row.trainingIds);assert.equal(omitted.id,row.testId);
+      const weak=discoverWeak(train,folds.fitOptions).selected,output=refineTrajectoryOutput(weak,train).model;
+      assert.equal(weak.id,row.support);
+      for(const [id,model] of [['weak',weak],['output',output]]){
+        model.terms.forEach((t,i)=>close(t.coefficient,row[id][i].coefficient));
+        for(const [grid,maxStep] of [['standard',.01],['fine',.005]]){
+          const errors=rollout(model,omitted,{maxStep}).rows.slice(1).map(z=>z.residual);
+          close(Math.hypot(...errors)/Math.sqrt(errors.length),row.metrics[id][grid].rms);
+          close(Math.max(...errors.map(Math.abs)),row.metrics[id][grid].maxAbs);
+        }
+      }
+      if(row.world==='1006'&&row.omitted===2){
+        assert.ok(train.every(r=>r.samples.slice(0,-1).every(s=>s.command===s.command**3)));
+        assert.equal(Math.max(...omitted.samples.slice(0,-1).map(s=>Math.abs(s.command-s.command**3))),.375);
       }
     }
   });

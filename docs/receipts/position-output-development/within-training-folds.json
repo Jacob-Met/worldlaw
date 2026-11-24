@@ -1,0 +1,1577 @@
+{
+  "schema": "worldlaw.position-output-folds/v1",
+  "preregistration": 194243,
+  "weakCommit": "a0811f49e01fd2b2a4021a3933a725bba2da8438",
+  "weakSourceBlob": "9f5a35e6c3f4fa3ee8ef8c99829b643783a4e3d1",
+  "fitOptions": {
+    "terms": [
+      "command",
+      "command_cubic",
+      "rate",
+      "spring",
+      "gravity",
+      "cubic",
+      "bias"
+    ],
+    "maxTerms": 4,
+    "noiseSigma": 0.002,
+    "ambiguityDelta": 6,
+    "windowDuration": 1,
+    "windowStride": 0.5,
+    "rateWindowSize": 9
+  },
+  "rows": [
+    {
+      "world": "1001",
+      "omitted": 0,
+      "testId": "wlcv1-development-1001-acquisition-0",
+      "trainingIds": [
+        "wlcv1-development-1001-acquisition-1",
+        "wlcv1-development-1001-acquisition-2",
+        "wlcv1-development-1001-acquisition-3"
+      ],
+      "support": "command+rate+spring",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 0.8796388443189205
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.237392555931413
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7750729448048868
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 0.8787827992565282
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.235498242981279
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7758688770535535
+        }
+      ],
+      "accepted": 6,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.004012586035889887,
+            "maxAbs": 0.010333371500569344
+          },
+          "fine": {
+            "rms": 0.0040125859909144945,
+            "maxAbs": 0.010333371415366388
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0019742862848989187,
+            "maxAbs": 0.007629666836877824
+          },
+          "fine": {
+            "rms": 0.0019742862888146528,
+            "maxAbs": 0.007629666879210628
+          }
+        }
+      }
+    },
+    {
+      "world": "1001",
+      "omitted": 1,
+      "testId": "wlcv1-development-1001-acquisition-1",
+      "trainingIds": [
+        "wlcv1-development-1001-acquisition-0",
+        "wlcv1-development-1001-acquisition-2",
+        "wlcv1-development-1001-acquisition-3"
+      ],
+      "support": "command+rate+spring",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 0.8811060291635447
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.23677791598833822
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7760823577875294
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 0.8786867393936703
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.23554670270898848
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7758337701372452
+        }
+      ],
+      "accepted": 4,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.00259838836300234,
+            "maxAbs": 0.006697590837558609
+          },
+          "fine": {
+            "rms": 0.0025983883486184046,
+            "maxAbs": 0.006697590847312362
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0020852017131131315,
+            "maxAbs": 0.006244560697539536
+          },
+          "fine": {
+            "rms": 0.0020852017124958085,
+            "maxAbs": 0.006244560560201506
+          }
+        }
+      }
+    },
+    {
+      "world": "1001",
+      "omitted": 2,
+      "testId": "wlcv1-development-1001-acquisition-2",
+      "trainingIds": [
+        "wlcv1-development-1001-acquisition-0",
+        "wlcv1-development-1001-acquisition-1",
+        "wlcv1-development-1001-acquisition-3"
+      ],
+      "support": "command+rate+spring",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 0.8790029189020927
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.23687291596324586
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7755834982143791
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 0.8788211436580665
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.235540476276452
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7758395778005838
+        }
+      ],
+      "accepted": 6,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.002425697486712907,
+            "maxAbs": 0.0066635195580189155
+          },
+          "fine": {
+            "rms": 0.0024256974844530086,
+            "maxAbs": 0.006663519569650722
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0020260538644400945,
+            "maxAbs": 0.0056294686377883485
+          },
+          "fine": {
+            "rms": 0.0020260538615810048,
+            "maxAbs": 0.005629468645249824
+          }
+        }
+      }
+    },
+    {
+      "world": "1001",
+      "omitted": 3,
+      "testId": "wlcv1-development-1001-acquisition-3",
+      "trainingIds": [
+        "wlcv1-development-1001-acquisition-0",
+        "wlcv1-development-1001-acquisition-1",
+        "wlcv1-development-1001-acquisition-2"
+      ],
+      "support": "command+rate+spring",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 0.8785684030466976
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2361594132147955
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7752728487368283
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 0.8788945826976976
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.23562896166488845
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7758779386991004
+        }
+      ],
+      "accepted": 3,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.0023409204519134873,
+            "maxAbs": 0.006761542100120699
+          },
+          "fine": {
+            "rms": 0.002340920430142767,
+            "maxAbs": 0.006761542143510879
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0019715462538453894,
+            "maxAbs": 0.007284128099295906
+          },
+          "fine": {
+            "rms": 0.0019715462591371235,
+            "maxAbs": 0.007284128142780566
+          }
+        }
+      }
+    },
+    {
+      "world": "1002",
+      "omitted": 0,
+      "testId": "wlcv1-development-1002-acquisition-0",
+      "trainingIds": [
+        "wlcv1-development-1002-acquisition-1",
+        "wlcv1-development-1002-acquisition-2",
+        "wlcv1-development-1002-acquisition-3"
+      ],
+      "support": "command_cubic+rate+spring",
+      "weak": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1210202084735268
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2789687511341104
+        },
+        {
+          "id": "spring",
+          "coefficient": -1.011252137770074
+        }
+      ],
+      "output": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.126461028588941
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2817969223971585
+        },
+        {
+          "id": "spring",
+          "coefficient": -1.010999056757952
+        }
+      ],
+      "accepted": 3,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.004897482312624361,
+            "maxAbs": 0.012590479288638212
+          },
+          "fine": {
+            "rms": 0.004897482378594844,
+            "maxAbs": 0.012590479298804302
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0023247760449792306,
+            "maxAbs": 0.006043041956321327
+          },
+          "fine": {
+            "rms": 0.002324776041006638,
+            "maxAbs": 0.006043041966202978
+          }
+        }
+      }
+    },
+    {
+      "world": "1002",
+      "omitted": 1,
+      "testId": "wlcv1-development-1002-acquisition-1",
+      "trainingIds": [
+        "wlcv1-development-1002-acquisition-0",
+        "wlcv1-development-1002-acquisition-2",
+        "wlcv1-development-1002-acquisition-3"
+      ],
+      "support": "command_cubic+rate+spring",
+      "weak": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.130729912526797
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2842480197222329
+        },
+        {
+          "id": "spring",
+          "coefficient": -1.0112991833383862
+        }
+      ],
+      "output": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1267663575824343
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2823731458516419
+        },
+        {
+          "id": "spring",
+          "coefficient": -1.0111036275416705
+        }
+      ],
+      "accepted": 5,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.0034683378414469674,
+            "maxAbs": 0.008333229791697816
+          },
+          "fine": {
+            "rms": 0.0034683378034634786,
+            "maxAbs": 0.008333229763626049
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0020762508445908903,
+            "maxAbs": 0.005565232845639478
+          },
+          "fine": {
+            "rms": 0.002076250844409327,
+            "maxAbs": 0.005565232844597201
+          }
+        }
+      }
+    },
+    {
+      "world": "1002",
+      "omitted": 2,
+      "testId": "wlcv1-development-1002-acquisition-2",
+      "trainingIds": [
+        "wlcv1-development-1002-acquisition-0",
+        "wlcv1-development-1002-acquisition-1",
+        "wlcv1-development-1002-acquisition-3"
+      ],
+      "support": "command_cubic+rate+spring",
+      "weak": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1256540969506292
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2818799811967979
+        },
+        {
+          "id": "spring",
+          "coefficient": -1.0111730220920634
+        }
+      ],
+      "output": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1267178964371531
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2822670589392686
+        },
+        {
+          "id": "spring",
+          "coefficient": -1.0110886441792308
+        }
+      ],
+      "accepted": 4,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.0020353717563663153,
+            "maxAbs": 0.006819641477196325
+          },
+          "fine": {
+            "rms": 0.0020353717567838116,
+            "maxAbs": 0.0068196414767758284
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.002006656453401394,
+            "maxAbs": 0.006705778586030109
+          },
+          "fine": {
+            "rms": 0.002006656453310232,
+            "maxAbs": 0.006705778585581135
+          }
+        }
+      }
+    },
+    {
+      "world": "1002",
+      "omitted": 3,
+      "testId": "wlcv1-development-1002-acquisition-3",
+      "trainingIds": [
+        "wlcv1-development-1002-acquisition-0",
+        "wlcv1-development-1002-acquisition-1",
+        "wlcv1-development-1002-acquisition-2"
+      ],
+      "support": "command_cubic+rate+spring",
+      "weak": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.127043110780348
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2828157800903154
+        },
+        {
+          "id": "spring",
+          "coefficient": -1.0115452696842357
+        }
+      ],
+      "output": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1266613589515064
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2822353345937916
+        },
+        {
+          "id": "spring",
+          "coefficient": -1.0110795355287765
+        }
+      ],
+      "accepted": 2,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.0019673551926725976,
+            "maxAbs": 0.005215748864706382
+          },
+          "fine": {
+            "rms": 0.001967355194391578,
+            "maxAbs": 0.0052157488534205765
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0019447548295807944,
+            "maxAbs": 0.005254006527128735
+          },
+          "fine": {
+            "rms": 0.0019447548305397838,
+            "maxAbs": 0.005254006515862608
+          }
+        }
+      }
+    },
+    {
+      "world": "1003",
+      "omitted": 0,
+      "testId": "wlcv1-development-1003-acquisition-0",
+      "trainingIds": [
+        "wlcv1-development-1003-acquisition-1",
+        "wlcv1-development-1003-acquisition-2",
+        "wlcv1-development-1003-acquisition-3"
+      ],
+      "support": "command+rate+gravity",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 1.080304569943483
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.22989815381288836
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.8660109684060576
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 1.0793798893399729
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.22965428693475445
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.8646515223601677
+        }
+      ],
+      "accepted": 3,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.00474796911304028,
+            "maxAbs": 0.015441553687941312
+          },
+          "fine": {
+            "rms": 0.004747969181088427,
+            "maxAbs": 0.015441553864902868
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0018013461362743459,
+            "maxAbs": 0.004809787801788139
+          },
+          "fine": {
+            "rms": 0.001801346137222571,
+            "maxAbs": 0.004809787727433894
+          }
+        }
+      }
+    },
+    {
+      "world": "1003",
+      "omitted": 1,
+      "testId": "wlcv1-development-1003-acquisition-1",
+      "trainingIds": [
+        "wlcv1-development-1003-acquisition-0",
+        "wlcv1-development-1003-acquisition-2",
+        "wlcv1-development-1003-acquisition-3"
+      ],
+      "support": "command+rate+gravity",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 1.0799307783530299
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.23009234402145057
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.8641689741509108
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 1.0794347540061533
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.22967986547615568
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.8646933873564918
+        }
+      ],
+      "accepted": 4,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.0033676418274722363,
+            "maxAbs": 0.012322420566943264
+          },
+          "fine": {
+            "rms": 0.0033676418058181373,
+            "maxAbs": 0.01232242052213691
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0020999737287744178,
+            "maxAbs": 0.007764468048948335
+          },
+          "fine": {
+            "rms": 0.002099973729896824,
+            "maxAbs": 0.007764468003997431
+          }
+        }
+      }
+    },
+    {
+      "world": "1003",
+      "omitted": 2,
+      "testId": "wlcv1-development-1003-acquisition-2",
+      "trainingIds": [
+        "wlcv1-development-1003-acquisition-0",
+        "wlcv1-development-1003-acquisition-1",
+        "wlcv1-development-1003-acquisition-3"
+      ],
+      "support": "command+rate+gravity",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 1.0798625061266223
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.22923981797359555
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.8644770337534105
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 1.079414173227556
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.22966922387167957
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.8646678896708712
+        }
+      ],
+      "accepted": 4,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.02268600417552603,
+            "maxAbs": 0.05101955120258861
+          },
+          "fine": {
+            "rms": 0.022686004333792354,
+            "maxAbs": 0.051019551534539964
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0019023739534315904,
+            "maxAbs": 0.005454439355752072
+          },
+          "fine": {
+            "rms": 0.0019023739803134586,
+            "maxAbs": 0.005454439686018553
+          }
+        }
+      }
+    },
+    {
+      "world": "1003",
+      "omitted": 3,
+      "testId": "wlcv1-development-1003-acquisition-3",
+      "trainingIds": [
+        "wlcv1-development-1003-acquisition-0",
+        "wlcv1-development-1003-acquisition-1",
+        "wlcv1-development-1003-acquisition-2"
+      ],
+      "support": "command+rate+gravity",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 1.0789956468533357
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.23025277031561264
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.8636893945308614
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 1.0793378362815826
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.22963959248170754
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.8646223602507138
+        }
+      ],
+      "accepted": 5,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.009746553303829076,
+            "maxAbs": 0.023918162968366907
+          },
+          "fine": {
+            "rms": 0.009746553149133506,
+            "maxAbs": 0.023918162679581023
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0019809711869604872,
+            "maxAbs": 0.007023744814528499
+          },
+          "fine": {
+            "rms": 0.0019809711598583074,
+            "maxAbs": 0.0070237447679337706
+          }
+        }
+      }
+    },
+    {
+      "world": "1004",
+      "omitted": 0,
+      "testId": "wlcv1-development-1004-acquisition-0",
+      "trainingIds": [
+        "wlcv1-development-1004-acquisition-1",
+        "wlcv1-development-1004-acquisition-2",
+        "wlcv1-development-1004-acquisition-3"
+      ],
+      "support": "command_cubic+rate+gravity",
+      "weak": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.0602254786802994
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.21263452096999652
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.9773739297683619
+        }
+      ],
+      "output": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.0589105687050242
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.21160479363298695
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.975615095814917
+        }
+      ],
+      "accepted": 8,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.006762255420459461,
+            "maxAbs": 0.02648081781584377
+          },
+          "fine": {
+            "rms": 0.006762255317111902,
+            "maxAbs": 0.026480817429488823
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0019377076775445494,
+            "maxAbs": 0.0059747218451144946
+          },
+          "fine": {
+            "rms": 0.001937707663193759,
+            "maxAbs": 0.005974721948296402
+          }
+        }
+      }
+    },
+    {
+      "world": "1004",
+      "omitted": 1,
+      "testId": "wlcv1-development-1004-acquisition-1",
+      "trainingIds": [
+        "wlcv1-development-1004-acquisition-0",
+        "wlcv1-development-1004-acquisition-2",
+        "wlcv1-development-1004-acquisition-3"
+      ],
+      "support": "command_cubic+rate+gravity",
+      "weak": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.0599543692669287
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.21225811932965202
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.9759688581267829
+        }
+      ],
+      "output": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.059035455843935
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.21164746204172533
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.9757109287757744
+        }
+      ],
+      "accepted": 3,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.002177870303102726,
+            "maxAbs": 0.005752992189587358
+          },
+          "fine": {
+            "rms": 0.0021778702990763858,
+            "maxAbs": 0.005752992136261348
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0020102847498332205,
+            "maxAbs": 0.005642968170448404
+          },
+          "fine": {
+            "rms": 0.002010284750908727,
+            "maxAbs": 0.00564296816320109
+          }
+        }
+      }
+    },
+    {
+      "world": "1004",
+      "omitted": 2,
+      "testId": "wlcv1-development-1004-acquisition-2",
+      "trainingIds": [
+        "wlcv1-development-1004-acquisition-0",
+        "wlcv1-development-1004-acquisition-1",
+        "wlcv1-development-1004-acquisition-3"
+      ],
+      "support": "command_cubic+rate+gravity",
+      "weak": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.0600746152140457
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.21227933428738713
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.9759656134857967
+        }
+      ],
+      "output": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.0589976414986773
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2116333341339699
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.9757035519955644
+        }
+      ],
+      "accepted": 4,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.0023981500889647565,
+            "maxAbs": 0.006702160607393592
+          },
+          "fine": {
+            "rms": 0.00239815008439317,
+            "maxAbs": 0.006702160564439952
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0021679850824308337,
+            "maxAbs": 0.005947731091265007
+          },
+          "fine": {
+            "rms": 0.0021679850831807404,
+            "maxAbs": 0.005947731073071116
+          }
+        }
+      }
+    },
+    {
+      "world": "1004",
+      "omitted": 3,
+      "testId": "wlcv1-development-1004-acquisition-3",
+      "trainingIds": [
+        "wlcv1-development-1004-acquisition-0",
+        "wlcv1-development-1004-acquisition-1",
+        "wlcv1-development-1004-acquisition-2"
+      ],
+      "support": "command_cubic+rate+gravity",
+      "weak": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.0608333254054412
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.21257828691560926
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.9766661791216122
+        }
+      ],
+      "output": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.059003179123283
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.21163241084593007
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.9756646538548108
+        }
+      ],
+      "accepted": 3,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.0022906942970453105,
+            "maxAbs": 0.006094768359424463
+          },
+          "fine": {
+            "rms": 0.0022906943130907103,
+            "maxAbs": 0.006094768355378255
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0019894905396804262,
+            "maxAbs": 0.006924769389037966
+          },
+          "fine": {
+            "rms": 0.0019894905414506838,
+            "maxAbs": 0.006924769315587609
+          }
+        }
+      }
+    },
+    {
+      "world": "1005",
+      "omitted": 0,
+      "testId": "wlcv1-development-1005-acquisition-0",
+      "trainingIds": [
+        "wlcv1-development-1005-acquisition-1",
+        "wlcv1-development-1005-acquisition-2",
+        "wlcv1-development-1005-acquisition-3"
+      ],
+      "support": "command+rate+spring+cubic",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 0.8945586565761444
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.130816807177934
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7235902699924935
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.15288051565334157
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 0.8960261758784398
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.13163063954527227
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7276253713270007
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.15170106326569088
+        }
+      ],
+      "accepted": 6,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.0025649518744529395,
+            "maxAbs": 0.007235197056353226
+          },
+          "fine": {
+            "rms": 0.002564951763770448,
+            "maxAbs": 0.007235197026271845
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.001786602900569904,
+            "maxAbs": 0.005701535008190817
+          },
+          "fine": {
+            "rms": 0.0017866029123411664,
+            "maxAbs": 0.005701534978086231
+          }
+        }
+      }
+    },
+    {
+      "world": "1005",
+      "omitted": 1,
+      "testId": "wlcv1-development-1005-acquisition-1",
+      "trainingIds": [
+        "wlcv1-development-1005-acquisition-0",
+        "wlcv1-development-1005-acquisition-2",
+        "wlcv1-development-1005-acquisition-3"
+      ],
+      "support": "command+rate+spring+cubic",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 0.892781581023681
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.13153123423549196
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7255004739626346
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.15207399706531427
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 0.8958362727143233
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.13154460914726054
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7276403040578745
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.15167345804380497
+        }
+      ],
+      "accepted": 6,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.004250152109595969,
+            "maxAbs": 0.012658305434479766
+          },
+          "fine": {
+            "rms": 0.004250151999542878,
+            "maxAbs": 0.012658305112707158
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.002096778879808138,
+            "maxAbs": 0.007127283603713064
+          },
+          "fine": {
+            "rms": 0.002096778873979981,
+            "maxAbs": 0.007127283590148137
+          }
+        }
+      }
+    },
+    {
+      "world": "1005",
+      "omitted": 2,
+      "testId": "wlcv1-development-1005-acquisition-2",
+      "trainingIds": [
+        "wlcv1-development-1005-acquisition-0",
+        "wlcv1-development-1005-acquisition-1",
+        "wlcv1-development-1005-acquisition-3"
+      ],
+      "support": "command+rate+spring+cubic",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 0.895180683965841
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.13146416527608906
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7257441038015852
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.15206101307692368
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 0.8959188614054919
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.13157963037200776
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7276637436358235
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.15167514691309644
+        }
+      ],
+      "accepted": 7,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.0022704919672363274,
+            "maxAbs": 0.008752550858010966
+          },
+          "fine": {
+            "rms": 0.0022704919418204874,
+            "maxAbs": 0.008752550813080795
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.002034053398016004,
+            "maxAbs": 0.007256203781309645
+          },
+          "fine": {
+            "rms": 0.002034053401100877,
+            "maxAbs": 0.007256203736350386
+          }
+        }
+      }
+    },
+    {
+      "world": "1005",
+      "omitted": 3,
+      "testId": "wlcv1-development-1005-acquisition-3",
+      "trainingIds": [
+        "wlcv1-development-1005-acquisition-0",
+        "wlcv1-development-1005-acquisition-1",
+        "wlcv1-development-1005-acquisition-2"
+      ],
+      "support": "command+rate+spring+cubic",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 0.8907406002149154
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.12881558293687007
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7221170450957249
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.152996678794905
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 0.8955987666054079
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.13134668401928168
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7272765470907278
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.15179065731546096
+        }
+      ],
+      "accepted": 6,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.006340614773890583,
+            "maxAbs": 0.013959004489679835
+          },
+          "fine": {
+            "rms": 0.00634061464777905,
+            "maxAbs": 0.013959004411561268
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0021451515788685465,
+            "maxAbs": 0.0059347867486392175
+          },
+          "fine": {
+            "rms": 0.002145151554562641,
+            "maxAbs": 0.00593478666959299
+          }
+        }
+      }
+    },
+    {
+      "world": "1006",
+      "omitted": 0,
+      "testId": "wlcv1-development-1006-acquisition-0",
+      "trainingIds": [
+        "wlcv1-development-1006-acquisition-1",
+        "wlcv1-development-1006-acquisition-2",
+        "wlcv1-development-1006-acquisition-3"
+      ],
+      "support": "command_cubic+rate+spring+cubic",
+      "weak": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1167787086471364
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.15512599289302004
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8331885891975487
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.3179092641922764
+        }
+      ],
+      "output": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1203906537668398
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.15571131651573397
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8350754049706074
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.3173054520360233
+        }
+      ],
+      "accepted": 3,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.0032296110031970592,
+            "maxAbs": 0.00973535470541198
+          },
+          "fine": {
+            "rms": 0.0032296108178949956,
+            "maxAbs": 0.009735354185511635
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0021291402307359094,
+            "maxAbs": 0.005269329131851297
+          },
+          "fine": {
+            "rms": 0.002129140287390619,
+            "maxAbs": 0.005269329113827048
+          }
+        }
+      }
+    },
+    {
+      "world": "1006",
+      "omitted": 1,
+      "testId": "wlcv1-development-1006-acquisition-1",
+      "trainingIds": [
+        "wlcv1-development-1006-acquisition-0",
+        "wlcv1-development-1006-acquisition-2",
+        "wlcv1-development-1006-acquisition-3"
+      ],
+      "support": "command_cubic+rate+spring+cubic",
+      "weak": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1185482887919325
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.15577576081621572
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8323389077768836
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.3178499314688241
+        }
+      ],
+      "output": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1205267539154644
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.155763155081667
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8351100393885009
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.3172492738455483
+        }
+      ],
+      "accepted": 7,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.002314122344021062,
+            "maxAbs": 0.005844451029830333
+          },
+          "fine": {
+            "rms": 0.00231412224303304,
+            "maxAbs": 0.005844450547549895
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.001952235388329897,
+            "maxAbs": 0.005130447364196877
+          },
+          "fine": {
+            "rms": 0.0019522353969237815,
+            "maxAbs": 0.0051304473377198345
+          }
+        }
+      }
+    },
+    {
+      "world": "1006",
+      "omitted": 2,
+      "testId": "wlcv1-development-1006-acquisition-2",
+      "trainingIds": [
+        "wlcv1-development-1006-acquisition-0",
+        "wlcv1-development-1006-acquisition-1",
+        "wlcv1-development-1006-acquisition-3"
+      ],
+      "support": "command+rate+spring+cubic",
+      "weak": [
+        {
+          "id": "command",
+          "coefficient": 1.11845452434908
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.15556493555083173
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8344520110063216
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.31722775548424187
+        }
+      ],
+      "output": [
+        {
+          "id": "command",
+          "coefficient": 1.1205426124897564
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.15580490430284538
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8353092766560988
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.31720377604714384
+        }
+      ],
+      "accepted": 8,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.7069110592081614,
+            "maxAbs": 1.5147758025004452
+          },
+          "fine": {
+            "rms": 0.7069110592978213,
+            "maxAbs": 1.514775802548955
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.7083865611449803,
+            "maxAbs": 1.516735916148581
+          },
+          "fine": {
+            "rms": 0.7083865612341832,
+            "maxAbs": 1.5167359161942213
+          }
+        }
+      }
+    },
+    {
+      "world": "1006",
+      "omitted": 3,
+      "testId": "wlcv1-development-1006-acquisition-3",
+      "trainingIds": [
+        "wlcv1-development-1006-acquisition-0",
+        "wlcv1-development-1006-acquisition-1",
+        "wlcv1-development-1006-acquisition-2"
+      ],
+      "support": "command_cubic+rate+spring+cubic",
+      "weak": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1156705207082123
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.15560086541920812
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8343195384769434
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.3163170927489442
+        }
+      ],
+      "output": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1204487147305429
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.15580611986384132
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8353761219888206
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.3171158670782408
+        }
+      ],
+      "accepted": 8,
+      "metrics": {
+        "weak": {
+          "standard": {
+            "rms": 0.019856582890581627,
+            "maxAbs": 0.05397509181495974
+          },
+          "fine": {
+            "rms": 0.019856580690442487,
+            "maxAbs": 0.053975086342304524
+          }
+        },
+        "output": {
+          "standard": {
+            "rms": 0.0021364919395996463,
+            "maxAbs": 0.006591230689173805
+          },
+          "fine": {
+            "rms": 0.002136491205533761,
+            "maxAbs": 0.0065912300619975495
+          }
+        }
+      }
+    }
+  ]
+}
