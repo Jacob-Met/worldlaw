@@ -6,7 +6,7 @@ const phase=x=>((x+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;
 function specification(options) {
   const {duration,rms,peak,cycleBounds=[2,8],maxEvaluations=37,method='pattern',seed=1009}=options;
   need(Number.isFinite(duration)&&duration>0&&Number.isFinite(rms)&&rms>0&&Number.isFinite(peak)&&peak>0,'Invalid continuous design constraints');
-  need(Array.isArray(cycleBounds)&&cycleBounds.length===2&&cycleBounds.every(Number.isFinite)&&cycleBounds[0]>=.5&&cycleBounds[1]<=128&&cycleBounds[0]<cycleBounds[1],'Invalid continuous frequency bounds');
+  need(Array.isArray(cycleBounds)&&cycleBounds.length===2&&Array.from(cycleBounds).every(Number.isFinite)&&cycleBounds[0]>=.5&&cycleBounds[1]<=128&&cycleBounds[0]<cycleBounds[1],'Invalid continuous frequency bounds');
   need(Number.isInteger(maxEvaluations)&&maxEvaluations>=1&&maxEvaluations<=97&&['pattern','random-search'].includes(method),'Invalid continuous search budget');
   need(Number.isInteger(seed)&&seed>=1&&seed<=4294967295,'Invalid design seed');
   return {duration,rms,peak,cycleBounds:cycleBounds.slice(),maxEvaluations,method,seed};

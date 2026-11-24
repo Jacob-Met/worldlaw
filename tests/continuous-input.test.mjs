@@ -117,3 +117,25 @@ test('forecast refuses foreign, changed, or fabricated prepared observations',()
   a.samples[20].state[0]+=.1;
   assert.throws(()=>forecastStateTrajectory(model,a,{prepared}),/different or changed/);
 });
+
+test('positive energy and dense vector contracts refuse unrepresentable or missing data',()=>{
+  assert.throws(()=>compileBurstSchedule({...schedule(),rms:1e-300}),/positive actuator energy/);
+  for(const key of ['cycles','phases','energyShares'])assert.throws(()=>compileBurstSchedule({...schedule(),[key]:new Array(3)}),RangeError);
+  assert.throws(()=>compileContinuousInput({...input(),profile:new Array(8)},'periodic',8),/profile/);
+  const model={schema:'worldlaw.symbolic-evolution/v1',kind:'oscillator',terms:[]};
+  assert.throws(()=>simulateStateModel(model,{initialEstimate:new Array(2),step:.025,steps:128,continuousInput:input()}),/initial estimate/);
+  const world={id:'unforced-field',kind:'periodic',rhs:x=>x.map(()=>0)};
+  const plan={initial:Array(8).fill(.5),step:.025,steps:128};
+  const producer={observeStateOperatorWorld:(w,p)=>{
+    w.rhs(p.initial,Array(8).fill(0),.25,.00625,()=>p.initial);
+    return {observation:{samples:[]},reference:{plan:p}};
+  }};
+  const fieldInput={...input(),profile:Array(8).fill(1)};
+  assert.throws(()=>observeWithActuator(producer,world,plan,25,1,()=>new Array(8),
+    {sequence:19,continuousInput:fieldInput}),/Invalid applied command/);
+  const descriptor=compileContinuousInput(fieldInput,'periodic',8);
+  const run={schema:'worldlaw.state-trajectory/v1',id:'dense-field',kind:'periodic',spacing:.25,continuousInput:fieldInput,
+    samples:Array.from({length:129},(_,i)=>({time:i*.025,state:Array(8).fill(.5),command:descriptor.at(i*.025)}))};
+  run.samples[8].command=new Array(8);
+  assert.throws(()=>validateStateTrajectory(run),/measured input/);
+});

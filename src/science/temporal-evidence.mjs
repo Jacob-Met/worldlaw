@@ -45,29 +45,7 @@ function blockStructure(observed,prediction){
   for(let i=0;i<255;i++){shuffle(order,random);if(statistic(order)>=observedScore)exceed++;}
   return {p:exceed/256,exceed,total:256,used:n};
 }
-export function shrinkPeriodicPrefix(initial,rows) {
-  const n=initial.length;
-  if(n<6||n>128||rows.length!==11)throw RangeError('Require eleven periodic prefix observations');
-  const differences=[];
-  for(let t=1;t<10;t++)for(let j=0;j<n;j++){
-    differences.push(Math.abs(rows[t-1].state[j]-2*rows[t].state[j]+rows[t+1].state[j]));
-  }
-  differences.sort((a,b)=>a-b);
-  const sigma=differences[Math.floor(differences.length/2)]/(.6744897501960817*Math.sqrt(6));
-  const variance=sigma*sigma*113/143;
-  const mean=initial.reduce((a,b)=>a+b,0)/n, result=Array(n).fill(mean);
-  for(let k=1;k<=Math.floor(n/2);k++){
-    const singleton=2*k===n, factor=singleton?1/n:2/n;
-    const cos=Array.from({length:n},(_,j)=>Math.cos(2*Math.PI*k*j/n));
-    const sin=singleton?Array(n).fill(0):Array.from({length:n},(_,j)=>Math.sin(2*Math.PI*k*j/n));
-    let re=0,im=0;
-    for(let j=0;j<n;j++){re+=initial[j]*cos[j]*factor;im+=initial[j]*sin[j]*factor;}
-    const power=re*re+im*im,noise=(singleton?1:4)*variance/n;
-    const weight=power>noise?1-noise/power:0;
-    for(let j=0;j<n;j++)result[j]+=weight*(re*cos[j]+im*sin[j]);
-  }
-  return result;
-}
+export {shrinkPeriodicPrefix} from './state-trajectory.mjs';
 
 export function prefixForecast(model,observation,shrink=false) {
   const {length}=validateStateTrajectory(observation), points=11;
@@ -75,8 +53,7 @@ export function prefixForecast(model,observation,shrink=false) {
   if(shrink&&observation.kind!=='periodic')throw RangeError('Shrinkage requires a periodic field');
   const sanitized={...observation,samples:observation.samples.map((row,i)=>i<points?row:
     {...row,state:observation.samples[points-1].state})};
-  const prepared=prepareStateTrajectory(sanitized,points);
-  if(shrink) prepared.initial=shrinkPeriodicPrefix(prepared.initial,sanitized.samples.slice(0,points));
+  const prepared=prepareStateTrajectory(sanitized,points,{prefixShrinkage:shrink});
   const {status,states,startIndex,reason}=forecastStateTrajectory(model,sanitized,{prepared,smoothingPoints:points});
   return {status,states,startIndex,reason};
 }

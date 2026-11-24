@@ -15,8 +15,8 @@ export function observeWithActuator(producer,world,plan,snrDb,seed,commandAt,
   const at=time=>{
     const command=commandAt(time);
     need(world.kind==='oscillator'?Number.isFinite(command):
-      Array.isArray(command)&&command.length===n&&command.every(Number.isFinite),'Invalid applied command');
-    if(declared){const expected=declared.at(time);need(world.kind==='oscillator'?command===expected:command.every((v,j)=>v===expected[j]),'Applied stage command disagrees with declared continuous input');}
+      Array.isArray(command)&&command.length===n&&Array.from(command).every(Number.isFinite),'Invalid applied command');
+    if(declared){const expected=declared.at(time);need(world.kind==='oscillator'?command===expected:Array.from(command).every((v,j)=>v===expected[j]),'Applied stage command disagrees with declared continuous input');}
     return world.kind==='oscillator'?command:Object.freeze(command.slice());
   };
   const wrapped={...world,rhs:(state,_stockCommand,spacing,time,past)=>{

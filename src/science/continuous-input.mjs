@@ -2,7 +2,7 @@
  * Energy is integrated analytically; peak is a conservative physical bound.
  */
 const need=(ok,message)=>{if(!ok)throw new RangeError(message);};
-const triple=(a,p)=>Array.isArray(a)&&a.length===3&&a.every(p);
+const triple=(a,p)=>Array.isArray(a)&&a.length===3&&Array.from(a).every(p);
 function cosineIntegral(w,phase,length) {
   const x=w*length/2;
   const sinc=Math.abs(x)<1e-4?1-x*x/6+x**4/120-x**6/5040:Math.sin(x)/x;
@@ -23,12 +23,15 @@ export function compileBurstSchedule(schedule) {
   need(triple(phases,x=>Number.isFinite(x)&&Math.abs(x)<=Math.PI),'Invalid burst phases');
   need(triple(energyShares,x=>Number.isFinite(x)&&x>0&&x<1)&&Math.abs(energyShares.reduce((s,x)=>s+x,0)-1)<=1e-12,'Invalid energy shares');
   need([rms,peak].every(x=>Number.isFinite(x)&&x>0&&x<=1e3),'Invalid actuator energy or peak');
+  const targetEnergy=rms*rms*duration;
+  need(Number.isFinite(targetEnergy)&&targetEnergy>0,'Requested positive actuator energy is not representable');
   const phaseValues=phases.slice(),length=duration/3,frequencies=cycles.map(c=>c/duration);
   const integrals=frequencies.map((f,i)=>burstEnergyIntegral(f,phaseValues[i],length));
   need(integrals.every(x=>Number.isFinite(x)&&x>1e-12*length),'Degenerate burst energy');
-  const amplitudes=integrals.map((v,i)=>Math.sqrt(rms*rms*duration*energyShares[i]/v));
-  need(amplitudes.every(a=>Number.isFinite(a)&&a<=peak*(1+1e-12)),'Continuous waveform exceeds its peak bound');
+  const amplitudes=integrals.map((v,i)=>Math.sqrt(targetEnergy*energyShares[i]/v));
+  need(amplitudes.every(a=>Number.isFinite(a)&&a>0&&a<=peak*(1+1e-12)),'Continuous waveform exceeds its peak bound');
   const totalEnergy=amplitudes.reduce((s,a,i)=>s+a*a*integrals[i],0);
+  need(Number.isFinite(totalEnergy)&&totalEnergy>0&&Math.abs(totalEnergy/targetEnergy-1)<=1e-12,'Actuator energy cannot be represented within tolerance');
   const at=time=>{
     need(Number.isFinite(time)&&time>=-1e-12*duration&&time<=duration*(1+1e-12),'Command outside declared waveform interval');
     if(time<=0||time>=duration)return 0;
@@ -49,7 +52,7 @@ export function compileContinuousInput(input,kind,n) {
   need(Number.isInteger(n)&&n>=2&&n<=128&&(kind==='periodic'||n===2),'Invalid actuator dimension');
   const wave=compileBurstSchedule(input.waveform);
   if(kind==='oscillator')need(input.profile===undefined,'Scalar oscillator input has no spatial profile');
-  else need(Array.isArray(input.profile)&&input.profile.length===n&&input.profile.every(x=>Number.isFinite(x)&&Math.abs(x)<=4)&&input.profile.some(x=>x!==0),'Invalid actuator profile');
+  else need(Array.isArray(input.profile)&&input.profile.length===n&&Array.from(input.profile).every(x=>Number.isFinite(x)&&Math.abs(x)<=4)&&input.profile.some(x=>x!==0),'Invalid actuator profile');
   const profile=kind==='oscillator'?[1]:input.profile.slice();
   return Object.freeze({...wave,at:time=>{
     const value=wave.at(time-startTime);
@@ -70,7 +73,7 @@ export function validateRecordedContinuousInput(run) {
   for(const row of samples) {
     const expected=compiled.at(row.time);
     need(kind==='oscillator'?Math.abs(row.command-expected)<=tolerance:
-      row.command.every((v,j)=>Math.abs(v-expected[j])<=tolerance),'Recorded commands disagree with continuous input');
+      Array.isArray(row.command)&&row.command.length===n&&Array.from(row.command).every((v,j)=>Number.isFinite(v)&&Math.abs(v-expected[j])<=tolerance),'Recorded commands disagree with continuous input');
   }
   return compiled;
 }

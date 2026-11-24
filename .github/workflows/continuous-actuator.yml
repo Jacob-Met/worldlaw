@@ -37,7 +37,7 @@ jobs:
           path: .independent-state-nullgarden
           persist-credentials: false
       - name: Verify analytic energy, causal forecasts and the launched HTTP planner
-        run: node --test tests/continuous-input.test.mjs tests/state-operator-continuous-http.test.mjs
+        run: node --test tests/continuous-input.test.mjs tests/state-operator-continuous-http.test.mjs tests/temporal-evidence.test.mjs
       - name: Verify complete frozen-producer parity under kernel limits
         env:
           NULLGARDEN_SOURCE: ${{ github.workspace }}/.independent-state-nullgarden

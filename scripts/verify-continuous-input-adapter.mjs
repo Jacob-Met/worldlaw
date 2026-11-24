@@ -56,11 +56,11 @@ try {
 }catch(error){report.status='failed';report.error={name:error.name,message:error.message,stack:error.stack};throw error;}
 finally {
   try{const relative=readFileSync('/proc/self/cgroup','utf8').trim().split('\n').find(s=>s.startsWith('0::')).slice(3);
-    report.kernelLimits={cgroup:relative,memoryMax:readFileSync('/sys/fs/cgroup'+relative+'/memory.max','utf8').trim(),cpuMax:readFileSync('/sys/fs/cgroup'+relative+'/cpu.max','utf8').trim()};}catch(error){report.kernelLimits={unavailable:error.message};}
+    report.kernelLimits={cgroup:relative,memoryMax:readFileSync('/sys/fs/cgroup'+relative+'/memory.max','utf8').trim(),memorySwapMax:readFileSync('/sys/fs/cgroup'+relative+'/memory.swap.max','utf8').trim(),cpuMax:readFileSync('/sys/fs/cgroup'+relative+'/cpu.max','utf8').trim()};}catch(error){report.kernelLimits={unavailable:error.message};}
   if(process.env.CONTINUOUS_EXPECT_CGROUP==='1'){
     const memory=Number(report.kernelLimits.memoryMax),cpu=String(report.kernelLimits.cpuMax).split(' ').map(Number);
-    if(!(memory>0&&memory<=4294967296&&cpu.length===2&&cpu.every(x=>Number.isFinite(x)&&x>0)&&cpu[0]/cpu[1]<=2)){
-      report.status='failed';report.limitFailure='Required kernel memory and CPU limits were not observed';process.exitCode=1;
+    if(!(memory>0&&memory<=4294967296&&report.kernelLimits.memorySwapMax==='0'&&cpu.length===2&&cpu.every(x=>Number.isFinite(x)&&x>0)&&cpu[0]/cpu[1]<=2)){
+      report.status='failed';report.limitFailure='Required kernel memory, no-swap and CPU limits were not observed';process.exitCode=1;
     }
   }
   report.usage=process.resourceUsage();writeFileSync(join(output,'adapter-parity.json'),JSON.stringify(report)+'\n');
