@@ -39,3 +39,8 @@ test-continuous-law:
 .PHONY: qualify-continuous-law
 qualify-continuous-law:
 	node experiments/qualify-continuous-law.mjs
+
+.PHONY: qualify-noisy-field-interventions
+qualify-noisy-field-interventions:
+	node --test tests/noisy-field-intervention.test.mjs
+	node scripts/noisy-field-course.mjs "$${ARTIFACT_DIR:-.}/noisy-field-result.json"

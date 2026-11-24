@@ -23,18 +23,18 @@ export function compileStateTree(tree, kind) {
       requireState(t.length===2,'Invalid unary expression');
       const a=local(t[1],fieldOnly), fn=unary[t[0]]; return (x,u,context)=>{const v=a(x,u,context);return Number.isFinite(v)?finite(fn(v)):NaN;};
     }
-    if(kind==='periodic'&&!fieldOnly&&['dx','dxx'].includes(t[0])){
+    if(kind==='periodic'&&!fieldOnly&&['gradient','laplacian'].includes(t[0])){
       requireState(t.length===2,'Invalid nested flux');requiresPointwise=true;
       const fn=local(t[1],true);
-      return(x,_u,context)=>{if(!context)return NaN;const a=fn(context.left),b=fn(x),c=fn(context.right);return [a,b,c].every(Number.isFinite)?finite(t[0]==='dx'?(c-a)/(2*context.spacing):(a-2*b+c)/context.spacing**2):NaN;};
+      return(x,_u,context)=>{if(!context)return NaN;const a=fn(context.left),b=fn(x),c=fn(context.right);return [a,b,c].every(Number.isFinite)?finite(t[0]==='gradient'?(c-a)/(2*context.spacing):(a-2*b+c)/context.spacing**2):NaN;};
     }
     requireState(['add','mul','div'].includes(t[0])&&t.length===3,'Invalid local state operator');
     const a=local(t[1],fieldOnly),b=local(t[2],fieldOnly);
     return(x,u,context)=>{const av=a(x,u,context),bv=b(x,u,context);if(!Number.isFinite(av)||!Number.isFinite(bv)||(t[0]==='div'&&bv===0))return NaN;return finite(t[0]==='add'?av+bv:t[0]==='mul'?av*bv:av/bv);};
   }
-  if(kind==='periodic'&&Array.isArray(tree)&&['dx','dxx'].includes(tree[0])) {
+  if(kind==='periodic'&&Array.isArray(tree)&&['gradient','laplacian'].includes(tree[0])) {
     requireState(tree.length===2,'Invalid flux expression');
-    const fn=local(tree[1],true); return {order:tree[0]==='dx'?1:2,fn};
+    const fn=local(tree[1],true); return {order:tree[0]==='gradient'?1:2,fn};
   }
   if(kind==='periodic'&&(tree==='dx'||tree==='dxx')) return {order:tree==='dx'?1:2,fn:x=>x};
   const fn=local(tree);return {order:0,fn,requiresPointwise};

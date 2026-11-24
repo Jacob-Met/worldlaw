@@ -6,6 +6,7 @@ const terminals = {
   periodic: ['field','command','dx','dxx']
 };
 const unary = new Map([['sin',Math.sin],['cos',Math.cos],['abs',Math.abs],['tanh',Math.tanh]]);
+const spatial = new Set(['gradient','laplacian','thirdDerivative','biharmonic']);
 const binary = new Map([['add',(a,b)=>a+b],['mul',(a,b)=>a*b],['div',(a,b)=>b===0?NaN:a/b]]);
 export class EvolutionDomainError extends RangeError {
   constructor(reason) { super(reason); this.code=reason; }
@@ -24,12 +25,37 @@ function coordinates(kind, row) {
   const dx=(row.right-row.left)/(2*row.spacing);
   const dxx=(row.left-2*row.field+row.right)/(row.spacing**2);
   insist(Number.isFinite(dx)&&Number.isFinite(dxx),'Nonfinite spatial derivative');
-  return {...row,dx,dxx};
+  return {field:row.field,command:row.command,left:row.left,right:row.right,spacing:row.spacing,left2:row.left2,right2:row.right2,dx,dxx};
 }
 function apply(op,a,b) {
   if (!Number.isFinite(a) || (binary.has(op) && !Number.isFinite(b))) return NaN;
   const value=unary.has(op)?unary.get(op)(a):binary.get(op)(a,b);
   return Number.isFinite(value)?value:NaN;
+}
+// Apply the same pointwise expression at each observed cell of the requested stencil.
+function pointValues(tree,field,size) {
+  insist(++size.count<=32,'Operator tree is too large');
+  if(tree==='field') return field;
+  if(tree==='one') return field.map(()=>1);
+  insist(Array.isArray(tree)&&(unary.has(tree[0])?tree.length===2:binary.has(tree[0])&&tree.length===3),
+    'Spatial potential must use only the field, constants and pointwise operators');
+  const a=pointValues(tree[1],field,size);
+  const b=tree.length===3?pointValues(tree[2],field,size):null;
+  return a.map((v,i)=>apply(tree[0],v,b?.[i]));
+}
+function spatialValue(op,tree,row,size) {
+  const h=row.spacing;
+  if(op==='thirdDerivative'||op==='biharmonic') {
+    insist(Number.isFinite(row.left2)&&Number.isFinite(row.right2),'Second spatial neighbors required');
+    const [ll,l,c,r,rr]=pointValues(tree,[row.left2,row.left,row.field,row.right,row.right2],size);
+    return op==='thirdDerivative'?(rr-2*r+2*l-ll)/(2*h**3):(rr-4*r+6*c-4*l+ll)/h**4;
+  }
+  const [l,c,r]=pointValues(tree,[row.left,row.field,row.right],size);
+  return op==='gradient'?(r-l)/(2*h):(l-2*c+r)/h**2;
+}
+function isPointPotential(tree) {
+  if(typeof tree==='string')return tree==='field'||tree==='one';
+  return !spatial.has(tree[0])&&tree.slice(1).every(isPointPotential);
 }
 function treeValue(tree,row,kind,size) {
   insist(++size.count<=32,'Operator tree is too large');
@@ -37,20 +63,9 @@ function treeValue(tree,row,kind,size) {
     insist(tree==='one'||terminals[kind].includes(tree),'Invalid evolution terminal');
     return tree==='one'?1:row[tree];
   }
-  // Conservative fluxes admit discrete weak adjoints without differentiating data.
-  if (kind==='periodic' && Array.isArray(tree) && ['dx','dxx'].includes(tree[0])) {
-    insist(tree.length===2,'Invalid spatial operator');
-    function local(t, field, budget) {
-      insist(++budget.count<=32,'Operator tree is too large');
-      if (typeof t==='string') {
-        insist(t==='field'||t==='one','A flux must depend on the local field only');
-        return t==='one'?1:field;
-      }
-      insist(Array.isArray(t)&&(unary.has(t[0])?t.length===2:binary.has(t[0])&&t.length===3),'Invalid flux node');
-      return apply(t[0],local(t[1],field,budget),t.length===3?local(t[2],field,budget):undefined);
-    }
-    const a=local(tree[1],row.left,{count:0}), b=local(tree[1],row.field,{count:0}), c=local(tree[1],row.right,{count:0});
-    return tree[0]==='dx'?(c-a)/(2*row.spacing):(a-2*b+c)/(row.spacing**2);
+  if(Array.isArray(tree)&&spatial.has(tree[0])) {
+    insist(kind==='periodic'&&tree.length===2,'Spatial operators require one periodic-field potential');
+    return spatialValue(tree[0],tree[1],row,size);
   }
   insist(Array.isArray(tree)&&(unary.has(tree[0])?tree.length===2:binary.has(tree[0])&&tree.length===3),'Invalid operator node');
   return apply(tree[0],treeValue(tree[1],row,kind,size),tree.length===3?treeValue(tree[2],row,kind,size):undefined);
@@ -103,6 +118,15 @@ function columns(kind,xs,operators,maxNodes,maxCandidates) {
   for(let n=2;n<=maxNodes;n++) {
     const level=[];
     for(const op of operators) {
+      if(spatial.has(op)) {
+        for(const i of sizes[n-1]) {
+          const tree=bank[i].tree;
+          // The bare-field derivatives already have the one-node terminals dx and dxx.
+          if((typeof tree!=='string'||(tree==='field'&&(op==='thirdDerivative'||op==='biharmonic')))&&isPointPotential(tree))
+            record([op,tree],xs.map(row=>spatialValue(op,tree,row,{count:1})),level);
+        }
+        continue;
+      }
       if(unary.has(op)) {
         for(const i of sizes[n-1]) {
           const a=bank[i];
@@ -127,7 +151,7 @@ export function synthesizeEvolution(rows, options={}) {
   const {kind,operators,maxNodes=4,maxCandidates=3000,maxTerms=2,beam=6,tolerance}=options;
   insist(Object.hasOwn(terminals,kind),'Invalid evolution geometry');
   insist(Array.isArray(operators)&&operators.length>0&&new Set(operators).size===operators.length&&
-    operators.every(op=>unary.has(op)||binary.has(op)),'Invalid operator menu');
+    operators.every(op=>unary.has(op)||binary.has(op)||(kind==='periodic'&&spatial.has(op))),'Invalid operator menu');
   limit(maxNodes,1,7,'node budget');limit(maxCandidates,5,12000,'candidate budget');
   limit(maxTerms,1,4,'support budget');limit(beam,1,32,'beam width');
   insist(Array.isArray(rows)&&rows.length>=4&&rows.length<=1024&&Number.isFinite(tolerance)&&tolerance>=0,'Invalid training design');

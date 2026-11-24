@@ -26,10 +26,10 @@ test('periodic spatial adjoints hold for smooth and nonsmooth arrays at two grid
 test('every grammar expression compiles and conservative nonlinear flux reaches the maintained predictor',()=>{
   for(const kind of ['oscillator','periodic'])for(const tree of trajectoryOperatorGrammar(kind))assert.doesNotThrow(()=>compileStateTree(tree,kind));
   const row={field:.6,left:-.2,right:1.1,spacing:.25,command:.3};
-  const m={schema:'worldlaw.symbolic-evolution/v1',kind:'periodic',terms:[{tree:['dx',['mul','field','field']],weight:-.5},{tree:['dxx','field'],weight:.13}]};
+  const m={schema:'worldlaw.symbolic-evolution/v1',kind:'periodic',terms:[{tree:['gradient',['mul','field','field']],weight:-.5},{tree:['laplacian','field'],weight:.13}]};
   const expected=-.5*(row.right**2-row.left**2)/(2*row.spacing)+.13*(row.left-2*row.field+row.right)/row.spacing**2;
   assert.ok(Math.abs(predictEvolution(m,row)-expected)<1e-13);
-  assert.throws(()=>predictEvolution({...m,terms:[{tree:['dx','command'],weight:1}]},row),/field only/);
+  assert.throws(()=>predictEvolution({...m,terms:[{tree:['gradient','command'],weight:1}]},row),/Spatial potential/);
 });
 function recording(id='one',refinement=1) {
   return {schema:'worldlaw.state-trajectory/v1',id,kind:'oscillator',samples:Array.from({length:160*refinement+1},(_,j)=>{const t=j*.025/refinement;return {time:t,state:[Math.cos(t),-Math.sin(t)],command:0};})};

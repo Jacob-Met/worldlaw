@@ -1,4 +1,8 @@
 import {predictEvolution,EvolutionDomainError} from './operator-synthesis.mjs';
+import {constantOscillatorFlow} from './affine-oscillator-flow.mjs';
+import {periodicLinearPlan,onAlternatingOrbit} from './periodic-linear-flow.mjs';
+
+import {periodicSemilinearPlan} from './periodic-semilinear-flow.mjs';
 
 function need(ok,reason){if(!ok)throw new RangeError(reason);}
 function admit(kind,course) {
@@ -31,6 +35,10 @@ function drive(course,t,j,n) {
   const spatial=j===null?1:Math.cos(2*Math.PI*f.spatialMode*j/n);
   return f.offset+f.amplitude*spatial*Math.sin(2*Math.PI*cycles);
 }
+function periodicTrajectoryPlan(model,course) {
+  const restricted=onAlternatingOrbit(model,course);
+  return periodicLinearPlan(restricted,course) ?? periodicSemilinearPlan(restricted,course,drive);
+}
 function derivative(model,course,t,x) {
   if(!x.every(Number.isFinite)) throw new EvolutionDomainError('nonfinite_trajectory');
   if(model.kind==='oscillator')
@@ -60,15 +68,20 @@ export function rolloutEvolution(model, experiment, substeps=1) {
 }
 function distance(a,b) {
   need(Array.isArray(b)&&a.length===b.length,'Incompatible trajectory length');
-  let squared=0,maxError=0,n=0;
+  let scaledSquares=0,maxError=0,n=0;
   for(let t=0;t<a.length;t++){
     need(Array.isArray(b[t])&&b[t].length===a[t].length&&b[t].every(Number.isFinite),'Incompatible measured states');
     for(let j=0;j<a[t].length;j++){
-      const e=Math.abs(a[t][j]-b[t][j]);maxError=Math.max(maxError,e);squared+=e*e;n++;
+      const e=Math.abs(a[t][j]-b[t][j]);
+      if(!Number.isFinite(e))throw new EvolutionDomainError('nonfinite_trajectory_error');
+      if(e>maxError) {
+        scaledSquares=scaledSquares*(maxError/e)**2+1;
+        maxError=e;
+      } else if(e>0) scaledSquares+=(e/maxError)**2;
+      n++;
     }
   }
-  need(Number.isFinite(squared),'Nonfinite trajectory error');
-  return {rmse:Math.sqrt(squared/n),maxError};
+  return {rmse:maxError*Math.sqrt(scaledSquares/n),maxError};
 }
 
 /** Score only simulated observations on the declared finite menu. Resolution is
@@ -95,11 +108,16 @@ export function designEvolutionExcitation(models, courses, {resolution=0, observ
   const excluded=[], scores=[];
   for(const c of courses){
     try {
-      const substeps=forcingResolution(c).required;
-      rolloutWork+=c.steps*c.initial.length*models.length*substeps;
+      const {required,allowed}=forcingResolution(c);
+      const plans=models.map(model=>periodicTrajectoryPlan(model,c));
+      const substeps=Math.max(required,...plans.map(p=>p?.minimumSubsteps??1));
+      if(substeps>allowed)throw new EvolutionDomainError('semilinear_mixing_budget');
+      const cost=plans.reduce((sum,plan)=>sum+(plan?plan.work(substeps):c.steps*c.initial.length*substeps),0);
+      if(plans.some(Boolean)&&cost>2000000)throw new EvolutionDomainError('periodic_transition_budget');
+      rolloutWork+=cost;
       need(rolloutWork<=2000000,'Excitation menu exceeds rollout budget');
-      const paths=models.map(model=>{
-        const path=rolloutEvolution(model,c,substeps);
+      const paths=models.map((model,index)=>{
+        const path=plans[index]?.run(substeps) ?? constantOscillatorFlow(model,c,substeps) ?? rolloutEvolution(model,c,substeps);
         return observedIndices===null?path:path.map(state=>observedIndices.map(j=>state[j]));
       });
       scores.push({id:c.id,substeps,gaps:pairs.map(([a,b])=>distance(paths[a],paths[b]).rmse)});
@@ -159,19 +177,24 @@ export function designEvolutionExcitation(models, courses, {resolution=0, observ
 
 export function verifyEvolutionRollout(model,course,observations,{maxError,resolutionTolerance}) {
   need([maxError,resolutionTolerance].every(x=>Number.isFinite(x)&&x>=0),'Declare finite rollout tolerances');
-  let coarse,fine;
+  let resolution,held;
   try {
     admit(model.kind,course);
     const {required,allowed}=forcingResolution(course);
-    const fineSteps=Math.min(2*required,allowed);
-    coarse=rolloutEvolution(model,course,Math.floor(fineSteps/2));
-    fine=rolloutEvolution(model,course,fineSteps);
+    const plan=periodicTrajectoryPlan(model,course);
+    const minimum=Math.max(required,plan?.minimumSubsteps??1);
+    if(minimum>allowed)throw new EvolutionDomainError('semilinear_mixing_budget');
+    const fineSteps=Math.min(2*minimum,allowed);
+    const coarseSteps=Math.floor(fineSteps/2);
+    if(plan&&plan.work(coarseSteps)+plan.work(fineSteps)>2000000)throw new EvolutionDomainError('periodic_transition_budget');
+    const flow=steps=>plan?.run(steps) ?? constantOscillatorFlow(model,course,steps) ?? rolloutEvolution(model,course,steps);
+    const coarse=flow(coarseSteps),fine=flow(fineSteps);
+    resolution=distance(coarse,fine);held=distance(fine,observations);
   }
   catch(err) {
     if(!(err instanceof EvolutionDomainError))throw err;
     return {accepted:false,reason:err.code,resolution:null,held:null};
   }
-  const resolution=distance(coarse,fine),held=distance(fine,observations);
   const reason=resolution.maxError>resolutionTolerance?'resolution_failure':held.maxError>maxError?'trajectory_mismatch':'within_tolerance';
   return {accepted:reason==='within_tolerance',reason,resolution,held};
 }

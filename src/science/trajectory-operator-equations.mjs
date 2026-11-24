@@ -17,7 +17,7 @@ export function trajectoryOperatorGrammar(kind,{degree=3,unary=['sin','cos','tan
   if(rational)for(const a of atoms)add(['div',a,['add','one',['mul',a,a]]]);
   if(kind==='periodic'&&flux) {
     const fieldOnly=t=>typeof t==='string'?t==='field'||t==='one':t.slice(1).every(fieldOnly);
-    for(const t of [...bank.values()])if(t!=='one'&&fieldOnly(t))for(const op of ['dx','dxx'])add([op,t]);
+    for(const t of [...bank.values()])if(t!=='one'&&fieldOnly(t))for(const op of ['gradient','laplacian'])add([op,t]);
   }
   requireState(bank.size<=256,'Operator grammar exceeds its budget');
   return [...bank.values()];
