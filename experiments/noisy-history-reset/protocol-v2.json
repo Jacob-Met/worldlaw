@@ -1,0 +1,38 @@
+{
+  "schema": "worldlaw-noisy-history-pair-v2",
+  "base": "30a93b7d67f089360cfd20405edd674b2a8b9897",
+  "predecessor": "experiments/noisy-field-interventions/protocol.json",
+  "roster": "Exactly the named 22 law families and two deliberate hidden-dynamics controls from #883; all three measurement layouts.",
+  "seeds": [
+    {
+      "seed": 492983,
+      "coefficients": [
+        0.94,
+        1.1
+      ]
+    },
+    {
+      "seed": 831319,
+      "coefficients": [
+        1.12,
+        0.83
+      ]
+    }
+  ],
+  "snr_db": [
+    15,
+    25,
+    40
+  ],
+  "acquisition": "Each arm receives the same unforced noisy pilot and one drive. Fit the closest two contenders with the released weak regression; choose one of the equal-power eight drives maximizing the squared, channel-whitened separation of just these two, averaged across every fourth reported state. Positive ties use the lower drive index. Compare to original four-contender maximin, random with identical fit, and prior passive structurally constrained differential baseline; the latter is not free-support SINDy.",
+  "memory_test": "All arms receive the same auxiliary pair, apart from acquisition. Two separate preparations apply +/-0.48 on the oscillator or kinetic actuator, or +/-0.05 times the normalized first spatial mode on the periodic actuator for the previous 128 samples, then reset every measured coordinate to the same declared physical start, preserving any unmeasured prehistory or coordinate; use identical drive 2 for 128 samples. Each twin has its own measurement errors. Use calibrated uniform bounded error with half-width sqrt(3)*channel clean-signal SD*10^(-SNR/20) (expected SNR, no forced zero time mean); truth belongs only to the simulation. For each corresponding time and channel check whether the two measurement intervals are disjoint after outward floating tolerance. Any separation abstains for every Markov candidate. Preserve the separating raw readings and declared bounds; a lack of separation is inconclusive. Report both pre- and post-veto outputs.",
+  "estimation": "Reuse the released finite two-parameter field-law model, weak ranking, fixed verification error threshold 3, matched acquisition starts and noisy independent verification. Apply each active planner again to time-shuffled pilot and use the resulting drive before shuffling its own response. Ordinary Gaussian measurement and historical workflow retained for the selection arms; the bounded pair is a separate, shared observation cost.",
+  "primary": "All 132 in-roster and 12 OOD cases must be present. Active correct strictly exceeds both random and structurally constrained passive, zero time-shuffled and zero OOD admissions. Report complete paired contingency, misses, delivered histories and possible negative. A free-support SINDy comparison and physical-world evaluation remain separate. No model tuning on the new outcomes.",
+  "disclosure": "The intervention uses an exactly repeatable visible-state reset while latent memory is preserved. With only approximate physical resets the witness requires an independently bounded flow sensitivity before reuse.",
+  "preparation_derivation": "Periodic start is at least 0.27. Over 3.2 time units the worst negative integrated forcing is at most 3.2*0.05*sqrt(2)<0.227. While the spatial minimum lies between 0 and 1, both Fisher logistic reaction and diffusion at the minimum are nonnegative. Every preparation must still produce finite sampled values.",
+  "predecessor_failure": {
+    "github_run": 45297451145,
+    "failure": "nonfinite Fisher-KPP constant spatial preparation; no complete held comparison",
+    "partial_zip_sha256": "473b3e09eb67ef700b1777ad21b2624650095612a091cefa247d15c0fdc406fb"
+  }
+}

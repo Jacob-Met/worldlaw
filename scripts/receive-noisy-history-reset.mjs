@@ -10,7 +10,7 @@ if(!root) throw Error('usage: node scripts/receive-noisy-history-reset.mjs OUTPU
 const read=(p)=>readFileSync(join(root,p));
 const digest=b=>createHash('sha256').update(b).digest('hex');
 const bytes=read('report.json'), report=JSON.parse(bytes);
-const raw=readFileSync(new URL('../experiments/noisy-history-reset/protocol.json',import.meta.url));
+const raw=readFileSync(new URL('../experiments/noisy-history-reset/protocol-v2.json',import.meta.url));
 const protocol=JSON.parse(raw);
 const roster=JSON.parse(readFileSync(new URL('../experiments/noisy-field-interventions/protocol.json',import.meta.url)));
 assert.equal(report.status,'complete');assert.equal(report.schema,protocol.schema);

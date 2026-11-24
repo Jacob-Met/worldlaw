@@ -12,7 +12,7 @@ import { acquireHistoryPair } from './generate-reset-histories.mjs';
 const output=process.argv[2];
 if(!output)throw Error('usage: node scripts/noisy-history-reset.mjs OUTPUT_DIR');
 mkdirSync(output,{recursive:true});
-const raw=readFileSync(new URL('../experiments/noisy-history-reset/protocol.json',import.meta.url));
+const raw=readFileSync(new URL('../experiments/noisy-history-reset/protocol-v2.json',import.meta.url));
 const protocol=JSON.parse(raw);
 const old=JSON.parse(readFileSync(new URL('../experiments/noisy-field-interventions/protocol.json',import.meta.url)));
 const cases=[...old.worlds,...old.ood],rows=[];

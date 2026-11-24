@@ -5,7 +5,7 @@ import { rng } from './noisy-field-acquisition.mjs';
 function preparationInput(layout,sign) {
   if(layout==='oscillator') return [0,sign*.48];
   if(layout==='kinetic') return [sign*.48,0];
-  return Array.from({length:GRID},(_,i)=>sign*.48*Math.SQRT2*Math.sin(2*Math.PI*i/GRID+.3));
+  return Array.from({length:GRID},(_,i)=>sign*.05*Math.SQRT2*Math.sin(2*Math.PI*i/GRID+.3));
 }
 
 function preparedHidden(id,coef,start,reset,sign) {
