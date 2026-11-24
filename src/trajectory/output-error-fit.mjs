@@ -20,7 +20,8 @@ function measure(model,runs,maxStep){
 
 function modelAt(source,coefficients){
   return {schema:source.schema,id:source.id,terms:source.terms.map((t,i)=>({id:t.id,coefficient:coefficients[i]})),
-    ...(source.units?{units:{...source.units}}:{}),method:'fixed_support_position_output_fit'};
+    ...(source.units?{units:{...source.units}}:{}),...(source.domain?{domain:structuredClone(source.domain)}:{}),
+    method:'fixed_support_position_output_fit'};
 }
 
 /** Fit coefficients on a fixed torque-library support. Every residual is a

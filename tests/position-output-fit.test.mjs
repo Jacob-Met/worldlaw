@@ -17,7 +17,10 @@ const model=value=>({schema:'worldlaw.torque-model/v1',id:'command',terms:[{id:'
 test('complete independent position recordings recover a changed gain with no measured later velocities',()=>{
   const commands=[.3,.3,-.9,-.9,.6,1,.2,-.4];
   const a=recorded('first',1,.28,commands,1.37),b=recorded('second',-.52,-.81,commands.toReversed(),1.37);
-  const original=model(.8),fit=refineTrajectoryOutput(original,[a,b]);
+  const original={...model(.8),domain:{position:{min:-2,max:2}},metrics:{rmse:999}};
+  const fit=refineTrajectoryOutput(original,[a,b]);
+  assert.deepEqual(fit.model.domain,original.domain);assert.notEqual(fit.model.domain,original.domain);
+  assert.equal(fit.model.metrics,undefined);
   assert.ok(Math.abs(fit.model.terms[0].coefficient-1.37)<1e-10);
   assert.equal(original.terms[0].coefficient,.8);assert.equal(fit.before.perRun.length,2);
   assert.ok(fit.after.rms<1e-12&&fit.before.rms>.01);
