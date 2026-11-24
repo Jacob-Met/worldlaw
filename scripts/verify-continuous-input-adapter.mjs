@@ -28,10 +28,10 @@ const report={schema:'worldlaw.continuous-input-parity/v1',producer:commit,node:
 try {
   const worlds=[...producer.stateOperatorWorlds('development'),...producer.stateOperatorWorlds('evaluation'),...producer.outsideStateOperatorWorlds()];
   for(const [i,world] of worlds.entries())for(const snr of [40,25,15]){
-    const plan=producer.stateOperatorPlan(world.kind,'query',0),a=trace(),b=trace(),id='opaque-'+i+'-'+snr;
+    const plan=producer.stateOperatorPlan(world.kind,'query',0),a=trace(),b=trace(),sequence=100*i+snr,id='acquisition-'+sequence;
     const original=producer.observeStateOperatorWorld({...world,rhs:(state,u,h,t,past)=>{a.record(t,u);return world.rhs(state,u,h,t,past);}},plan,snr,709901+i,{substeps:24});
     const adapted=observeWithActuator(producer,world,plan,snr,709901+i,t=>stockInput(world,plan,t),
-      {observationId:id,stageRecorder:b.record,substeps:24});
+      {sequence,stageRecorder:b.record,substeps:24});
     original.observation.id=id;
     assert.deepEqual(adapted.observation,original.observation);
     assert.deepEqual(adapted.reference,original.reference);
@@ -47,7 +47,7 @@ try {
     const input={schema:'worldlaw.continuous-input/v1',startTime:0,
       waveform:{schema:'worldlaw.hann-bursts/v1',duration,cycles:[2.7,4.1,6.3],phases:[.2,-.4,.7],energyShares:[.25,.35,.4],rms:.1,peak:.5},
       ...(world.kind==='periodic'?{profile:plan.initial.map((_,j)=>Math.cos(2*Math.PI*j/plan.initial.length))}:{})};
-    const stages=trace(),record=observeWithContinuousInput(producer,world,plan,25,719903+i,input,{observationId:'continuous-'+i,stageRecorder:stages.record});
+    const stages=trace(),record=observeWithContinuousInput(producer,world,plan,25,719903+i,input,{sequence:10000+i,stageRecorder:stages.record});
     validateStateTrajectory(record.observation);
     assert.equal(record.reference.plan,plan);assert.deepEqual(record.appliedActuator.input,input);
     report.continuous.push({id:'continuous-'+i,kind:world.kind,observation:hash(record.observation),reference:hash(record.reference),stages:stages.finish()});

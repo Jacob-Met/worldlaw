@@ -2,7 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {burstEnergyIntegral,compileBurstSchedule,compileContinuousInput} from '../src/science/continuous-input.mjs';
 import {searchContinuousExcitation,drawContinuousSchedule} from '../src/science/continuous-excitation-search.mjs';
-import {simulateStateModel,forecastStateTrajectory,validateStateTrajectory} from '../src/science/state-trajectory.mjs';
+import {simulateStateModel,forecastStateTrajectory,validateStateTrajectory,prepareStateTrajectory} from '../src/science/state-trajectory.mjs';
+
+import {observeWithActuator} from '../scripts/continuous-input-adapter.mjs';
 
 const schedule=()=>({schema:'worldlaw.hann-bursts/v1',duration:3.2,cycles:[2.7,4.1,6.3],
   phases:[.2,-.4,.7],energyShares:[.25,.35,.4],rms:.1,peak:.5});
@@ -80,4 +82,38 @@ test('stage-time input follows the independent analytic forced trajectory and pr
   assert.throws(()=>validateStateTrajectory(bad),/disagree/);
   const unresolved={...input(),waveform:{...s,cycles:[100,110,120]}};
   assert.throws(()=>simulateStateModel(model,{initialEstimate:[0,0],step,steps,continuousInput:unresolved}),/unresolved/);
+});
+
+test('compiled actuator is immutable and rejects metadata outside its declared schema',()=>{
+  const descriptor=input(),compiled=compileContinuousInput(descriptor,'oscillator',2),before=compiled.at(.4);
+  descriptor.startTime=1;descriptor.waveform.phases[0]=2;
+  assert.equal(compiled.at(.4),before);
+  assert.throws(()=>{compiled.amplitudes[0]=90;},TypeError);
+  assert.throws(()=>compileContinuousInput({...input(),truth:'hidden'},'oscillator',2),/metadata/);
+  assert.throws(()=>compileBurstSchedule({...schedule(),truth:'hidden'}),/metadata/);
+});
+test('adapter binds descriptor to actual midpoint commands and allocates identity without a law string',()=>{
+  const descriptor=input(),compiled=compileContinuousInput(descriptor,'oscillator',2);
+  const world={id:'secret-law',kind:'oscillator',rhs:(x,u)=>[x[1],u]};
+  const plan={initial:[0,0],step:.025,steps:128};
+  const producer={observeStateOperatorWorld:(w,p)=>{
+    w.rhs(p.initial,0,undefined,.00625,()=>[0,0]);
+    return {observation:{id:'secret-law:query',samples:[{time:0,state:[0,0],command:0}]},reference:{plan:p}};
+  }};
+  assert.throws(()=>observeWithActuator(producer,world,plan,25,1,t=>compiled.at(t)+.1*Math.sin(2*Math.PI*t/.025),
+    {sequence:17,continuousInput:descriptor}),/stage command disagrees/);
+  const received=observeWithActuator(producer,world,plan,25,1,compiled.at,{sequence:17,continuousInput:descriptor});
+  assert.equal(received.observation.id,'acquisition-17');
+  assert.throws(()=>observeWithActuator(producer,world,plan,25,1,compiled.at,{sequence:'secret-law'}),/sequence/);
+});
+test('forecast refuses foreign, changed, or fabricated prepared observations',()=>{
+  const model={schema:'worldlaw.symbolic-evolution/v1',kind:'oscillator',terms:[{tree:'position',weight:-1}]};
+  const a={schema:'worldlaw.state-trajectory/v1',id:'prepare-a',kind:'oscillator',
+    samples:Array.from({length:65},(_,j)=>({time:j*.025,state:[Math.cos(j*.025),-Math.sin(j*.025)],command:0}))};
+  const prepared=prepareStateTrajectory(a),b=structuredClone(a);
+  assert.equal(forecastStateTrajectory(model,a,{prepared}).status,'forecast');
+  assert.throws(()=>forecastStateTrajectory(model,b,{prepared}),/different or changed/);
+  assert.throws(()=>forecastStateTrajectory(model,a,{prepared:{...prepared}}),/different or changed/);
+  a.samples[20].state[0]+=.1;
+  assert.throws(()=>forecastStateTrajectory(model,a,{prepared}),/different or changed/);
 });

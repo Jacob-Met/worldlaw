@@ -69,6 +69,7 @@ export function validateStateTrajectory(run) {
 }
 
 const filterCache=new Map();
+const preparationSources=new WeakMap();
 function polynomialWeights(points) {
   if(filterCache.has(points)) return filterCache.get(points);
   const half=(points-1)/2, kernels=[];
@@ -106,7 +107,9 @@ export function prepareStateTrajectory(run, points=11) {
   for(let i=1;i<length-1;i++) for(let d=0;d<n;d++) residuals.push(Math.abs(run.samples[i-1].state[d]-2*run.samples[i].state[d]+run.samples[i+1].state[d]));
   residuals.sort((a,b)=>a-b);
   const noiseSigma=residuals[Math.floor(residuals.length/2)]/(0.6744897501960817*Math.sqrt(6));
-  return {...source,states,derivatives,points,initial,startIndex:points-1,noiseSigma};
+  const prepared={...source,states,derivatives,points,initial:Object.freeze(initial),startIndex:points-1,noiseSigma};
+  preparationSources.set(prepared,{run,signature:JSON.stringify(run)});
+  return Object.freeze(prepared);
 }
 
 function modelPredictor(model,n,spacing) {
@@ -145,6 +148,7 @@ function integrateSegment(rhs,run,initial,startIndex,endIndex,dt,substeps,maxMag
 }
 
 export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2,maxMagnitude=1e6,prepared=null,initialization='polynomial',prefixPoints=17}={}) {
+  if(prepared){const owner=preparationSources.get(prepared);requireState(!!owner&&owner.run===run&&owner.signature===JSON.stringify(run),'Prepared trajectory belongs to a different or changed recording');}
   const p=prepared||prepareStateTrajectory(run,smoothingPoints),{n,dt}=p;
   requireState(model.kind===run.kind,'Model and observation geometries differ');
   requireState(Number.isInteger(substeps)&&substeps>=1&&substeps<=16&&p.length*n*substeps<=2097152,'Invalid forecast work budget');

@@ -14,7 +14,7 @@ The descriptor contains `duration`, three `cycles` measured over the full durati
 
 For a vector actuator, mean channel energy equals scalar energy multiplied by the mean square of its profile. A unit-amplitude cosine on 32 sites has mean square 1/2. Every comparison must fix the same complete profile, initial condition, observation convention, energy target and peak cap across arms.
 
-The input schema `worldlaw.continuous-input/v1` carries a start time, waveform and, for a vector input, its complete profile. Recorded command samples must agree with that descriptor. Forecasts evaluate the descriptor at every Runge–Kutta stage. Recordings without it retain linear interpolation between recorded commands.
+The input schema `worldlaw.continuous-input/v1` carries a start time, waveform and, for a vector input, its complete profile. Unexpected descriptor metadata is refused. Compiled inputs are immutable snapshots. Recorded command samples must agree with that descriptor. Forecasts evaluate the descriptor at every Runge–Kutta stage. Recordings without it retain linear interpolation between recorded commands. Reused preparation must belong to the identical unchanged recording; foreign or fabricated preparation is refused.
 
 Validation requires at least eight reported samples per cycle of the highest carrier-plus-envelope frequency. This is an explicit resolution rule, not a strict band-limit theorem: the joined bursts are continuously differentiable but not globally band-limited. The descriptor is known exogenous actuator information, available identically to all learners and baselines. It is never inferred from future measured states.
 
@@ -52,7 +52,7 @@ The twenty-two-world dictionary also accepts the same continuous descriptor, and
 
 The independent source is pinned to Jacob-Met/nullgarden at `c8dfb73b3990d4737171aca83a1397529116ca23`. That version supports only a constant-amplitude chirp. The evaluator-only adapter therefore makes a deliberate, visible input-interface extension: it wraps the exported world RHS to substitute the new command at every original midpoint stage. It preserves the complete world object, including hidden-state initialization, projection, delayed history, equations, 24-substep integrator and noise generator.
 
-The original `reference.plan` is preserved. The applied input is separately bound in `appliedActuator.input` and in the learner's observation descriptor. Identities are replaced with opaque recording identifiers before learning; original producer IDs contain law names. Only observations enter learning.
+The original `reference.plan` is preserved. The applied input is separately bound in `appliedActuator.input` and in the learner's observation descriptor. The adapter allocates recording identities from integer acquisition sequences assigned independently of the world; original producer IDs contain law names. Every actually applied midpoint command must equal the descriptor, including between observation samples. Only observations enter learning.
 
 Parity checks compare all state samples, noise draws, references, recorded commands and hashes of every midpoint-stage command for the original chirp, over the four development laws, twenty evaluation laws, four omitted mechanisms and all three SNR levels. Continuous-command plumbing is checked separately. These checks provide no new law-identification score.
 
