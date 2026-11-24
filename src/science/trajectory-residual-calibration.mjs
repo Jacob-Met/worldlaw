@@ -1,4 +1,5 @@
 import {verifyEvolutionRollout} from './operator-rollout.mjs';
+import {createResidualCalibration,assessResidual} from '../trajectory/residual-abstention.mjs';
 
 function ensure(ok,message){if(!ok)throw new RangeError(message);}
 function scoreGroup(model,group,tolerance){
@@ -44,7 +45,11 @@ export function assessCalibratedTrajectory(model,calibration,target,{alpha,resol
   }
   const observed=scoreGroup(model,target,resolutionTolerance);
   if(observed.score===null)return {status:'unresolved_target_course',failure:observed,p:null};
-  const rank=1+scores.filter(r=>r.score>=observed.score).length;
+  const policyId='symbolic-group-maximum/v1';
+  const reference=createResidualCalibration({policyId,alpha:numerator/denominator,maxRounds:1,
+    roundScoresByWorld:scores.map(r=>({worldId:r.id,scores:[r.score]}))});
+  const assessment=assessResidual(reference,{policyId,round:1,worldId:observed.id,score:observed.score});
+  const rank=1+assessment.atLeast;
   const p={numerator:rank,denominator:size};
   return {status:rank*denominator<=numerator*size?'residual_outlier':'within_calibrated_residual',
     p,minimumP:minP,observed,calibration:scores};
