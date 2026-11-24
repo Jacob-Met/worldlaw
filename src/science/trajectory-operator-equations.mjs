@@ -1,11 +1,14 @@
+import {extendedStateBasis,periodicStencil} from './state-operator-basis.mjs';
 import {compileStateTree,prepareStateTrajectory,validateStateTrajectory,requireState} from './state-trajectory.mjs';
 
 // Response-independent, bounded compositional grammar shared by all estimators.
-export function trajectoryOperatorGrammar(kind,{degree=3,unary=['sin','cos','tanh','abs'],rational=true,flux=true}={}) {
-  requireState(['oscillator','periodic'].includes(kind),'Invalid operator geometry');
+export function trajectoryOperatorGrammar(kind,{degree=3,unary=['sin','cos','tanh','abs'],rational=true,flux=true,basis='compositional'}={}) {
+  requireState(['compositional','extended-state'].includes(basis),'Unknown operator basis');
+  if(basis==='extended-state')return extendedStateBasis(kind);
+  requireState(['oscillator','kinetic','periodic'].includes(kind),'Invalid operator geometry');
   requireState(Number.isInteger(degree)&&degree>=1&&degree<=3,'Invalid polynomial degree');
   requireState(Array.isArray(unary)&&new Set(unary).size===unary.length&&unary.every(x=>['sin','cos','tanh','abs'].includes(x)),'Invalid unary grammar');
-  const atoms=kind==='oscillator'?['position','rate','command']:['field','command'],bank=new Map();
+  const atoms=kind==='oscillator'?['position','rate','command']:kind==='kinetic'?['state0','state1','command0','command1']:['field','command'],bank=new Map();
   const add=t=>bank.set(JSON.stringify(t),t);
   add('one');
   function products(factors,start,left) {
@@ -37,11 +40,12 @@ export function temporalTestWeights(points,dt) {
 // Exact adjoints of periodic central-difference stencils. The identity holds
 // for arbitrary arrays; continuum product-rule equivalence is not presumed.
 export function spatialTestWeights(n,center,radius,h,order=0) {
-  requireState(Number.isInteger(n)&&n>=6&&Number.isInteger(center)&&center>=0&&center<n&&Number.isInteger(radius)&&radius>=2&&2*radius<n&&Number.isFinite(h)&&h>0&&[0,1,2].includes(order),'Invalid spatial test');
+  requireState(Number.isInteger(n)&&n>=6&&Number.isInteger(center)&&center>=0&&center<n&&Number.isInteger(radius)&&radius>=2&&2*radius<n&&Number.isFinite(h)&&h>0&&[0,1,2,3,4].includes(order),'Invalid spatial test');
   const w=new Float64Array(n);let sum=0;
   for(let j=-radius;j<=radius;j++){const v=(1-(j/radius)**2)**4;w[(center+j+n)%n]+=v;sum+=v;}
   for(let j=0;j<n;j++)w[j]/=sum;
   if(!order)return w;
+  if(order>2)return Float64Array.from(w,(_,j)=>(order%2?-1:1)*periodicStencil(w,j,h,order));
   return Float64Array.from(w,(_,j)=>order===1?-(w[(j+1)%n]-w[(j+n-1)%n])/(2*h):(w[(j+n-1)%n]-2*w[j]+w[(j+1)%n])/(h*h));
 }
 
@@ -56,7 +60,9 @@ export function stateOperatorEquations(recordings,trees,{method='weak',smoothing
   requireState(Number.isInteger(windowPoints)&&windowPoints>=9&&windowPoints<=129&&windowPoints%2===1&&Number.isInteger(stride)&&stride>=1&&stride<=windowPoints,'Invalid weak window schedule');
   requireState(Number.isInteger(spatialStride)&&spatialStride>=1&&spatialStride<=16,'Invalid spatial stride');
   requireState(Array.isArray(trees)&&trees.length>=1&&trees.length<=256,'Invalid expression bank');
-  const kind=recordings[0].kind,compiled=trees.map(t=>compileStateTree(t,kind)),columns=trees.map(()=>[]),target=[],coverage=[];
+  const kind=recordings[0].kind;
+  if(kind==='kinetic')return kineticStateEquations(recordings,trees,{method,smoothingPoints,windowPoints,stride});
+  const compiled=trees.map(t=>compileStateTree(t,kind)),columns=trees.map(()=>[]),target=[],coverage=[];
   requireState(compiled.every(c=>!c.requiresPointwise),'Weak trajectory fitting requires complete conservative fluxes, not pointwise derivative products');
   let observed=0,equations=0,reductionWork=0;
   // Reject excessive work before allocating feature arrays or smoothing samples.
@@ -80,7 +86,7 @@ export function stateOperatorEquations(recordings,trees,{method='weak',smoothing
     const derivatives=kind==='periodic'?p.derivatives.map(filterPeriodicObservation):p.derivatives;
     requireState(features.every(c=>c.every(a=>a.every(Number.isFinite))),'Operator undefined on a fitting observation');
     const centers=kind==='oscillator'?[0]:Array.from({length:Math.ceil(n/spatialStride)},(_,j)=>j*spatialStride);
-    const kernels=kind==='periodic'?centers.map(j=>[0,1,2].map(order=>spatialTestWeights(n,j,spatialRadius,run.spacing,order))):null;
+    const kernels=kind==='periodic'?centers.map(j=>[0,1,2,3,4].map(order=>spatialTestWeights(n,j,spatialRadius,run.spacing,order))):null;
     const tw=temporalTestWeights(windowPoints,dt),half=(windowPoints-1)/2;
     const dot=(a,b)=>a.reduce((s,v,j)=>s+v*b[j],0);
     let rows=0;
@@ -98,7 +104,7 @@ export function stateOperatorEquations(recordings,trees,{method='weak',smoothing
         target.push(derivatives[t][kind==='oscillator'?1:center]);
         for(let j=0;j<trees.length;j++) {
           const a=features[j][t],order=compiled[j].order,l=(center+n-1)%n,r=(center+1)%n;
-          columns[j].push(kind==='oscillator'?a[0]:order===0?a[center]:order===1?(a[r]-a[l])/(2*run.spacing):(a[l]-2*a[center]+a[r])/(run.spacing**2));
+          columns[j].push(kind==='oscillator'?a[0]:order===0?a[center]:order===1?(a[r]-a[l])/(2*run.spacing):order===2?(a[l]-2*a[center]+a[r])/(run.spacing**2):periodicStencil(a,center,run.spacing,order));
         }
       }
       rows++;requireState(target.length<=4096,'Weak equation budget exceeded');
@@ -107,4 +113,59 @@ export function stateOperatorEquations(recordings,trees,{method='weak',smoothing
   }
   requireState(target.length>=12&&target.every(Number.isFinite)&&columns.every(c=>c.every(Number.isFinite)),'Insufficient or nonfinite trajectory equations');
   return {kind,trees,columns,target,coverage,method,reductionWork};
+}
+
+/** Two first-order response rows with no imposed kinematic relation or tied
+ * coefficients. The same free feature bank is offered to both outputs.
+ */
+function kineticStateEquations(recordings,trees,{method,smoothingPoints,windowPoints,stride}){
+  const compiled=trees.map(t=>compileStateTree(t,'kinetic')),columns=trees.map(()=>[]),targets=[[],[]],coverage=[];
+  requireState(compiled.every(c=>c.order===0&&!c.requiresPointwise),'Kinetic features must be local state/input expressions');
+  let observed=0,equations=0,reductionWork=0;
+  for(const run of recordings){
+    requireState(run.kind==='kinetic','Mixed fitting geometries');
+    const p=validateStateTrajectory(run);
+    requireState(p.length>=windowPoints,'Recording is shorter than a complete test window');
+    const rows=Math.floor((p.length-windowPoints)/stride)+1;
+    observed+=2*p.length;equations+=2*rows;
+    reductionWork+=rows*(method==='weak'?windowPoints:1)*(trees.length+2);
+    requireState(trees.length*p.length<=16777216,'Operator feature storage budget exceeded');
+  }
+  requireState(observed<=262144&&equations<=4096&&reductionWork<=200000000,'Trajectory equation work budget exceeded');
+  for(const run of recordings){
+    const p=prepareStateTrajectory(run,smoothingPoints),{length,dt}=p;
+    const features=compiled.map(({fn})=>p.states.map((state,t)=>fn(state,run.samples[t].command)));
+    requireState(features.every(c=>c.every(Number.isFinite)),'Operator undefined on a fitting observation');
+    const tw=temporalTestWeights(windowPoints,dt),half=(windowPoints-1)/2;let rows=0;
+    for(let start=0;start+windowPoints<=length;start+=stride){
+      if(method==='weak'){
+        const y=[0,0],values=trees.map(()=>0);
+        for(let k=0;k<windowPoints;k++){
+          const at=start+k;
+          for(let channel=0;channel<2;channel++)y[channel]+=tw.target[k]*run.samples[at].state[channel];
+          for(let j=0;j<trees.length;j++)values[j]+=tw.value[k]*features[j][at];
+        }
+        for(let channel=0;channel<2;channel++)targets[channel].push(y[channel]);
+        for(let j=0;j<trees.length;j++)columns[j].push(values[j]);
+      }else{
+        const at=start+half;
+        for(let channel=0;channel<2;channel++)targets[channel].push(p.derivatives[at][channel]);
+        for(let j=0;j<trees.length;j++)columns[j].push(features[j][at]);
+      }
+      rows++;
+    }
+    coverage.push({id:run.id,samples:length,stateValues:2*length,equations:2*rows,noiseSigma:p.noiseSigma});
+  }
+  requireState(targets[0].length>=12&&targets.every(y=>y.every(Number.isFinite))&&columns.every(c=>c.every(Number.isFinite)),'Insufficient or nonfinite kinetic equations');
+  const scales=targets.map(y=>Math.hypot(...y)||1),n=targets[0].length;
+  // Unit response norms balance the joint beam's two independent output rows.
+  // STLSQ receives the original rows and normalizes each independently.
+  const blocked=[],features=[];
+  for(let channel=0;channel<2;channel++)for(let j=0;j<trees.length;j++){
+    const values=columns[j].map(v=>v/scales[channel]),zeros=Array(n).fill(0);
+    blocked.push(channel===0?values.concat(zeros):zeros.concat(values));
+    features.push({tree:trees[j],channel});
+  }
+  return {kind:'kinetic',trees,features,columns:blocked,target:targets.flatMap((y,c)=>y.map(v=>v/scales[c])),
+    outputEquations:targets.map(target=>({columns,target})),coverage,method,reductionWork,outputScales:scales};
 }

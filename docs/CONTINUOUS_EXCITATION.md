@@ -97,3 +97,5 @@ Under conservative burst amplitude cap P, the squared Hann envelope bounds total
 Report one-draw unscored random acquisition separately from equal-budget random search using the fitted committee. Refusals consume their allocation. Match physical acquisition counts, complete profiles, initial conditions and measurement conventions across arms.
 
 Adding exact semidiscrete D3 makes Nullgarden's `outside_dispersion` representable by D3(field), gradient(field²) and command. Keep it in the denominator; distinguish named-roster novelty from missing-mechanism OOD. Neither low residual nor matching support alone identifies a unique named law.
+
+The optional [free-support state-discovery path](FREE_WEAK_STATE_DISCOVERY.md) adds independent kinetic outputs and exact higher spatial operators to this same discovery and continuous-input interface. Its full new scientific comparison is not yet qualified.
