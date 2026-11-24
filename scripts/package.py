@@ -16,6 +16,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "src/science/temporal-evidence.mjs",
+    "tests/temporal-evidence.test.mjs",
+    "scripts/verify-temporal-model.mjs",
+    "experiments/independent-temporal-evidence/course.mjs",
+    "experiments/independent-temporal-evidence/frozen-models.json",
+    "experiments/independent-temporal-evidence/README.md",
     "src/science/periodic-parity.mjs",
     "scripts/periodic-parity.mjs",
     "scripts/receive-periodic-parity.mjs",
