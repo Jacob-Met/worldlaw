@@ -1,3 +1,4 @@
+import {compileContinuousInput,validateRecordedContinuousInput} from './continuous-input.mjs';
 import {fitPrefixState} from './prefix-state-fit.mjs';
 import {fitLinearColumns} from './linear-fit.mjs';
 
@@ -59,14 +60,16 @@ export function validateStateTrajectory(run) {
     const row=s[i];
     requireState(row&&Number.isFinite(row.time),'Require finite sample times');
     if(i)requireState(row.time>s[i-1].time&&Math.abs((row.time-s[i-1].time)-dt)<=1e-8*dt+roundoff,'Require a strictly increasing uniform time grid');
-    requireState(Array.isArray(row.state)&&row.state.length===n&&row.state.every(Number.isFinite),'Require finite observed states');
+    requireState(Array.isArray(row.state)&&row.state.length===n&&Array.from(row.state).every(Number.isFinite),'Require finite observed states');
     requireState(!['change','derivative','rhs','truth'].some(k=>Object.hasOwn(row,k)),'Derivative labels are not accepted');
-    requireState(run.kind==='oscillator'?Number.isFinite(row.command):Array.isArray(row.command)&&row.command.length===n&&row.command.every(Number.isFinite),'Require measured input at every state sample');
+    requireState(run.kind==='oscillator'?Number.isFinite(row.command):Array.isArray(row.command)&&row.command.length===n&&Array.from(row.command).every(Number.isFinite),'Require measured input at every state sample');
   }
-  return {run,dt,n,length:s.length};
+  const continuousInput=validateRecordedContinuousInput(run);
+  return {run,dt,n,length:s.length,...(continuousInput?{continuousInput}:{})};
 }
 
 const filterCache=new Map();
+const preparationSources=new WeakMap();
 function polynomialWeights(points) {
   if(filterCache.has(points)) return filterCache.get(points);
   const half=(points-1)/2, kernels=[];
@@ -83,12 +86,37 @@ function polynomialWeights(points) {
   filterCache.set(points,kernels);return kernels;
 }
 
+export function shrinkPeriodicPrefix(initial,rows) {
+  const n=initial.length;
+  if(n<6||n>128||rows.length!==11)throw RangeError('Require eleven periodic prefix observations');
+  const differences=[];
+  for(let t=1;t<10;t++)for(let j=0;j<n;j++){
+    differences.push(Math.abs(rows[t-1].state[j]-2*rows[t].state[j]+rows[t+1].state[j]));
+  }
+  differences.sort((a,b)=>a-b);
+  const sigma=differences[Math.floor(differences.length/2)]/(.6744897501960817*Math.sqrt(6));
+  const variance=sigma*sigma*113/143;
+  const mean=initial.reduce((a,b)=>a+b,0)/n, result=Array(n).fill(mean);
+  for(let k=1;k<=Math.floor(n/2);k++){
+    const singleton=2*k===n, factor=singleton?1/n:2/n;
+    const cos=Array.from({length:n},(_,j)=>Math.cos(2*Math.PI*k*j/n));
+    const sin=singleton?Array(n).fill(0):Array.from({length:n},(_,j)=>Math.sin(2*Math.PI*k*j/n));
+    let re=0,im=0;
+    for(let j=0;j<n;j++){re+=initial[j]*cos[j]*factor;im+=initial[j]*sin[j]*factor;}
+    const power=re*re+im*im,noise=(singleton?1:4)*variance/n;
+    const weight=power>noise?1-noise/power:0;
+    for(let j=0;j<n;j++)result[j]+=weight*(re*cos[j]+im*sin[j]);
+  }
+  return result;
+}
+
 /** One deterministic local cubic filter, shared by weak and derivative methods.
  * A separate prefix-only fit initializes free forecasts; no later state is read.
  */
-export function prepareStateTrajectory(run, points=11) {
+export function prepareStateTrajectory(run, points=11,{prefixShrinkage=false}={}) {
   const source=validateStateTrajectory(run),{n,length,dt}=source;
   requireState(Number.isInteger(points)&&points>=5&&points<=31&&points%2===1&&points<length,'Invalid smoothing width');
+  requireState(typeof prefixShrinkage==='boolean'&&(!prefixShrinkage||(run.kind==='periodic'&&points===11)),'Prefix shrinkage requires an eleven-point periodic prefix');
   const kernels=polynomialWeights(points),half=(points-1)/2,states=[],derivatives=[];
   for(let i=0;i<length;i++) {
     const start=Math.min(length-points,Math.max(0,i-half)),k=kernels[i-start];
@@ -99,12 +127,15 @@ export function prepareStateTrajectory(run, points=11) {
     }
     states.push(state);derivatives.push(derivative);
   }
-  const initial=Array.from({length:n},(_,d)=>kernels[points-1].value.reduce((a,w,j)=>a+w*run.samples[j].state[d],0));
+  let initial=Array.from({length:n},(_,d)=>kernels[points-1].value.reduce((a,w,j)=>a+w*run.samples[j].state[d],0));
+  if(prefixShrinkage)initial=shrinkPeriodicPrefix(initial,run.samples.slice(0,points));
   const residuals=[];
   for(let i=1;i<length-1;i++) for(let d=0;d<n;d++) residuals.push(Math.abs(run.samples[i-1].state[d]-2*run.samples[i].state[d]+run.samples[i+1].state[d]));
   residuals.sort((a,b)=>a-b);
   const noiseSigma=residuals[Math.floor(residuals.length/2)]/(0.6744897501960817*Math.sqrt(6));
-  return {...source,states,derivatives,points,initial,startIndex:points-1,noiseSigma};
+  const prepared={...source,states,derivatives,points,initial:Object.freeze(initial),startIndex:points-1,noiseSigma};
+  preparationSources.set(prepared,{run,signature:JSON.stringify(run)});
+  return Object.freeze(prepared);
 }
 
 function modelPredictor(model,n,spacing) {
@@ -122,10 +153,11 @@ function modelPredictor(model,n,spacing) {
   });
 }
 
-function integrateSegment(rhs,run,initial,startIndex,endIndex,dt,substeps,maxMagnitude) {
+function integrateSegment(rhs,run,initial,startIndex,endIndex,dt,substeps,maxMagnitude,continuousInput=null) {
   const states=[initial.slice()],h=dt/substeps;
   let x=initial.slice();
   function command(i,f) {
+    if(continuousInput)return continuousInput.at(run.samples[i].time+f*dt);
     const a=run.samples[i].command,b=run.samples[i+1].command;
     return run.kind==='oscillator'?a+(b-a)*f:a.map((v,j)=>v+(b[j]-v)*f);
   }
@@ -142,6 +174,7 @@ function integrateSegment(rhs,run,initial,startIndex,endIndex,dt,substeps,maxMag
 }
 
 export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2,maxMagnitude=1e6,prepared=null,initialization='polynomial',prefixPoints=17}={}) {
+  if(prepared){const owner=preparationSources.get(prepared);requireState(!!owner&&owner.run===run&&owner.signature===JSON.stringify(run),'Prepared trajectory belongs to a different or changed recording');}
   const p=prepared||prepareStateTrajectory(run,smoothingPoints),{n,dt}=p;
   requireState(model.kind===run.kind,'Model and observation geometries differ');
   requireState(Number.isInteger(substeps)&&substeps>=1&&substeps<=16&&p.length*n*substeps<=2097152,'Invalid forecast work budget');
@@ -156,12 +189,12 @@ export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2
     // exogenous inputs; future measured states are read below for scoring only.
     const observations=run.samples.slice(0,prefixPoints).map(row=>row.state.slice());
     prefix=fitPrefixState(observations,
-      x=>integrateSegment(rhs,run,x,0,prefixPoints-1,dt,substeps,maxMagnitude),
+      x=>integrateSegment(rhs,run,x,0,prefixPoints-1,dt,substeps,maxMagnitude,p.continuousInput),
       {maxMagnitude});
     if(prefix.status!=='fitted')return {status:'diverged',reason:prefix.reason,startIndex:prefixPoints-1,states:null,prefix};
     initial=prefix.terminal;startIndex=prefixPoints-1;
   }
-  const states=integrateSegment(rhs,run,initial,startIndex,p.length-1,dt,substeps,maxMagnitude);
+  const states=integrateSegment(rhs,run,initial,startIndex,p.length-1,dt,substeps,maxMagnitude,p.continuousInput);
   if(!states)return {status:'diverged',reason:'state_domain',startIndex,states:null,...(prefix?{prefix}:{})};
   let squared=0,signal=0,count=0;
   for(let i=1;i<states.length;i++)for(let j=0;j<n;j++) {
@@ -169,5 +202,26 @@ export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2
   }
   return {status:'forecast',startIndex,states,rmse:Math.sqrt(squared/count),relativeRmse:Math.sqrt(squared/Math.max(signal,count*1e-8)),noiseSigma:p.noiseSigma,
     initialization:prefix?'trajectory fit to first '+prefixPoints+' noisy state samples only':'first '+p.points+' noisy state samples only',
-    inputInterpolation:'linear between recorded commands',...(prefix?{prefix,firstScored:prefixPoints,scoredValues:count}:{})};
+    inputInterpolation:p.continuousInput?'declared continuous actuator law at every integration stage':'linear between recorded commands',...(prefix?{prefix,firstScored:prefixPoints,scoredValues:count}:{})};
+}
+
+
+/** Simulated design path from an explicitly supplied estimate; no observations,
+ * exact initial-state oracle or trajectory resets enter this forward solve.
+ */
+export function simulateStateModel(model,{initialEstimate,step,steps,spacing,continuousInput,substeps=2,maxMagnitude=1e6}) {
+  requireState(Array.isArray(initialEstimate)&&Array.from(initialEstimate).every(Number.isFinite),'Require a finite initial estimate');
+  const n=initialEstimate.length;
+  requireState(model.kind==='oscillator'?n===2:model.kind==='periodic'&&n>=6&&n<=128,'Invalid design state dimension');
+  requireState(Number.isFinite(step)&&step>0&&Number.isInteger(steps)&&steps>=32&&steps<=4096&&Number.isFinite(step*steps),'Invalid design grid');
+  requireState(Number.isInteger(substeps)&&substeps>=1&&substeps<=16&&steps*n*substeps<=2097152,'Design rollout work budget exceeded');
+  requireState(Number.isFinite(maxMagnitude)&&maxMagnitude>0,'Invalid design state bound');
+  if(model.kind==='periodic')requireState(Number.isFinite(spacing)&&spacing>0,'Require design spacing');
+  const input=compileContinuousInput(continuousInput,model.kind,n);
+  requireState(Math.abs(continuousInput.waveform.duration-step*steps)<=1e-10*Math.max(1,step*steps),'Design and waveform durations differ');
+  requireState(step*input.maximumComponentFrequency<=1/8+1e-12,'Continuous input is unresolved on the declared sample grid');
+  const start=continuousInput.startTime;
+  requireState(Number.isFinite(start+step*steps)&&8*Number.EPSILON*Math.max(1,Math.abs(start),Math.abs(start+step*steps))<step/8,'Design timestamps lose interval precision');
+  const run={kind:model.kind,samples:Array.from({length:steps+1},(_,i)=>({time:start+i*step}))};
+  return integrateSegment(modelPredictor(model,n,spacing),run,initialEstimate,0,steps,step,substeps,maxMagnitude,input);
 }

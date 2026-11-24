@@ -1,7 +1,7 @@
 import {fitPrefixState} from '../science/prefix-state-fit.mjs';
 /** Weak temporal moments over observed state channels, finite-law ranking and active design. */
 import {fitLinearColumns} from '../science/linear-fit.mjs';
-import {laws,components,command,rollout,DT,N,GRID} from './field-law-dictionary.mjs';
+import {laws,components,command,compileFieldCommand,rollout,DT,N,GRID} from './field-law-dictionary.mjs';
 
 const square=x=>x*x;
 const dot=(a,b)=>a.reduce((total,x,i)=>total+x*b[i],0);
@@ -16,8 +16,9 @@ function testVectors(layout) {
 }
 
 function check(run) {
-  if (!Object.hasOwn(laws,run.layout)||run.values?.length!==N+1||!Number.isInteger(run.drive)
-      ||run.drive < -1||run.drive>7) throw Error('invalid measured run');
+  if (!Object.hasOwn(laws,run.layout)||run.values?.length!==N+1||
+    (typeof run.drive!=='object'&&(!Number.isInteger(run.drive)||run.drive < -1||run.drive>7))) throw Error('invalid measured run');
+  if(typeof run.drive==='object')compileFieldCommand(run.layout,run.drive);
   const n=run.layout==='periodic'?GRID:2;
   if (run.values.some(row=>row.length!==n||row.some(v=>!Number.isFinite(v)))) throw Error('invalid state observations');
   if (run.sigma?.length!==n||run.sigma.some(s=>!Number.isFinite(s)||s<=0)) throw Error('invalid measurement scales');

@@ -16,6 +16,16 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "src/science/continuous-input.mjs",
+    "src/science/continuous-excitation-search.mjs",
+    "src/science/trajectory-continuous-excitation.mjs",
+    "src/trajectory/continuous-field-excitation.mjs",
+    "scripts/continuous-input-adapter.mjs",
+    "scripts/verify-continuous-input-adapter.mjs",
+    "tests/continuous-input.test.mjs",
+    "tests/state-operator-continuous-http.test.mjs",
+    "docs/CONTINUOUS_EXCITATION.md",
+    "docs/receipts/continuous-input/release.json",
     "docs/NOISY_PREFIX_RESULTS.md",
     "scripts/inspect-prefix-original.py",
     "docs/receipts/noisy-prefix-initialization/summary.json",

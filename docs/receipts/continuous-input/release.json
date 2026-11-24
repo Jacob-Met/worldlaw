@@ -1,0 +1,1185 @@
+{
+  "schema": "worldlaw.continuous-input-release/v1",
+  "scope": "Input integration and historical regressions only; no new discovery score.",
+  "candidate": "7d153a441bb4bf6f6b1cd62c7c206681f3dae983",
+  "executedMerge": "0b5d66e8f5a9f02581500bc0d2fc76a9031abc2a",
+  "executedTree": "5686b722ff7807327ceae43a4fc5ded6e372703f",
+  "originalFailure": {
+    "candidate": "bea2d73ce210253712be29644242dc5b85eed5e1",
+    "run": 45315297925,
+    "job": 138180583113,
+    "pass": 2820,
+    "fail": 1,
+    "skip": 5,
+    "reason": "Temporal-evidence assigned immutable prepared.initial."
+  },
+  "originalParity": {
+    "run": 45315297722,
+    "job": 138180581988,
+    "artifact": 14884477990,
+    "zipBytes": 8270,
+    "zipSha256": "8d8bb5bb8a7321a4e45c3a627aa4cd1dc2adc9f6e7e37b09b1345c3470bcb1ad",
+    "cases": 84,
+    "stages": 1612800,
+    "focusedTests": 10,
+    "limit": "Swap cap requested but not read back."
+  },
+  "qualification": {
+    "scientific": {
+      "run": 45318272797,
+      "jobs": [
+        138190301562,
+        138190301961,
+        138190302085
+      ],
+      "pass": 2822,
+      "fail": 0,
+      "skip": 5,
+      "smokes": true,
+      "realChrome": true,
+      "sourceDistribution": true
+    },
+    "continuous": {
+      "run": 45318272864,
+      "job": 138190302043,
+      "focusedPass": 14,
+      "artifact": 14886107589,
+      "zipBytes": 8282,
+      "zipSha256": "41c10926b42212e63405c6212c386d7f80a83ca0fed323f8f25bea43a4422ff2"
+    },
+    "historicalRegressionSuccess": [
+      45318272793,
+      45318272789,
+      45318272792
+    ],
+    "sourceArtifact": {
+      "id": 14886697039,
+      "bytes": 79803531,
+      "sha256": "295bd27ba8208ea3f9e94ba357aa82fc227f7f58da3e757277adebd09c477ba1"
+    }
+  },
+  "adapterReportRecoveredFromOriginalJobLog": {
+    "schema": "worldlaw.continuous-input-parity/v1",
+    "producer": "c8dfb73b3990d4737171aca83a1397529116ca23",
+    "node": "v24.22.3",
+    "scope": "Input-interface parity and integration checks only; no discovery or held-cohort qualification score.",
+    "rows": [
+      {
+        "id": "acquisition-40",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "a1c8b4b8737eef9631289dc6a583a0e77de3f512dcf3b8ee4d2026c114d161b3",
+        "reference": "ce35ea6eba55a26d6a6f4bb6fddd1e25635ac153f34abb24194108efd4f49e80",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-25",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "d6fdd6da89cbd970544f717441875a7ca14e38deb78832626fa8a440bb6ad9e3",
+        "reference": "c14fe1bf6892703123260194bc754fdb892e42be9577b3e94c49ddb29f344b25",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-15",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "23298e2e665f0f24ee9ef5d5767546b68166cd4a05cafef2d98da5c91de0695e",
+        "reference": "a86e7191d38c0602d533295db7912681daa68e13b031aae1f56728ef06af9184",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-140",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "814a450d1e16b6c8b3b8b9d9a348c1140e774d7f6ace141c50ea12c740bc9c53",
+        "reference": "a7be9925d0fe7ff8a133c474c8534adb6538465d43fa7d8263d67a89abb22bdd",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-125",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "11b5e7f03133ed1e59bc4be99411f5e5f9b5f73d605aa29c9fbdff8d680ef352",
+        "reference": "b696e5304b5bd35d9c0dff757551100fb3a0cb6c0e0a42b86a9e0f14edb99f43",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-115",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "123729ee56ae0c34685282aafe47afa7f41be7b38d90b98c44ae3b150175eab5",
+        "reference": "8662655aa5089972ddd962e35df9f42caabfeb241998e1bac435ddd186e8f0cc",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-240",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "6b67c3635e9255185e8649dda0a1ddfac3f2e6e0c514186dcea8aa5d4391a20b",
+        "reference": "94b10c3c4c7ea45f44d88f28c8cdcd01586317f6b44823a9af77e0052c398117",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-225",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "db0c5603a1533d353b8d2ca826141573f6e4d4a1cd8e452d5c09b55833d750c1",
+        "reference": "81365c4b90f0424cb023478362f1672735fecf3913fe191a96f0e1cd88b17719",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-215",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "2050f6c4caf60d049872cb195663fa669126c5b5a22fdda99b0d7f75fc980bc5",
+        "reference": "88a2b8c79250d448331fc2025573aa280c62a0f34848aa149d406883c89877ed",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-340",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "d461b06eaa37656cc8440925fcb9d543e6d824f37e98878925cd74a33716f5df",
+        "reference": "46e1cafa1d0322aa963d92154f5409aec17544a0c71ac2adcfd51126e55c0a78",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-325",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "3b7feb17cf9fd682af1b55f211c79503c03a24cdd703296e05d8185ccaf8687d",
+        "reference": "c25032934b4153d654ad0ec8a6a5849bf0ca95d98ac6a3b873c74e3184cfd192",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-315",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "f37a68f14acf97dc1c793d8f88667f61fc90666840a4a067f8a12927cbf6bf77",
+        "reference": "8460e993f28a4601d17aeb15b7c43f3ca188098855727cd5a7495bfdd14ffa15",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-440",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "110855119794bdf55b367ee424df4349901a83b1e05e977042d6980cde406c80",
+        "reference": "73488e616d73ea1cbddf3984d18c89c5454c75a103444bd96ef6816f43fcff9f",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-425",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "40db68572d8c37a37168c3c14c278ab9b5e6c2764e3dcecc65744f1c268b4f48",
+        "reference": "cb3613355142e707d9ae67148eec84b12ab09e4c150de161dfe968ccafe7449c",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-415",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "9d3e0f3892139450c30ddab07de2c692d9578839c0aec19d992b86a4878c1b38",
+        "reference": "b5bb4d24fc6fb5a0a13be4ed8ac00e1ce68f4acf9253598141baeeb026db0522",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-540",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "69983fe8bb861a0c1fa8522393f975a26ba6f11aa24b6eccd8b7eda9ef188b10",
+        "reference": "2abe12b168c1dc14cafc66148ebbc0481528e1aa2a3615f080d6727270145a43",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-525",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "139eb37d59d32d40578b2c0461cd9553bb2850f537cb6f76ee998070448d017a",
+        "reference": "58b2c0f9d69c602c6c712e4c9587b43fe30686e39df9c3d967e2282296494224",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-515",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "ca731fa2c24e395719449b2c12a05a6b0a7d100d4d5318c69fc1c8b0ce74169a",
+        "reference": "d24b51f769db403a77630623db663aa92f6c7a5df82499a7ea59f7c0127be8e4",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-640",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "6f835124020c1f3c983fa2d7cb5a1317efc439793aec29591736e2a9cc32a6ab",
+        "reference": "20aaf8786980a052cf5f42cbfdb089df9495855e110bb4e3f480e0856b3568d5",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-625",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "0027ff4f2cfded32db6d4505f62d7da0b7a1342fb9d45615818397abfb7d36bc",
+        "reference": "fd09a3ef3afc33018d3c0a5933baff6483abb433221dad3f7e08f72c6e25aa16",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-615",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "8a520e0776e987121c7ea4c17b74d724ccdfa801bb6bb4a25c0afff7fab09867",
+        "reference": "0a6c679f6d2268dc6bc2b57bf27d223a03e44129dcd7db59cd3ad94730ee3505",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-740",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "33ae769c6dff24ab531ebdac805dcd328ba53dd043ea029428265d818112d617",
+        "reference": "a13f05f7a73dfca8743fd4eabb785512947ca3d6d23ab0d75f9a034176c93e6d",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-725",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "d2c3b4e363a2800cff24f71125c1dfd809aa37b3d713bd7e2117f2e5ff6aeaaf",
+        "reference": "9e5956b4ebdbe2b782c93fa99964600e25bc79d1b64a5749acc8739f25e4a1aa",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-715",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "b40f3f7dfd884208c52105093d68dfaa32faed7a62721d955debafcd5e74e6e3",
+        "reference": "bce99804b463a79282c9e0d2f724b656c4c4acad49edc4dd7c966d6fdd27cc17",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-840",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "a4fcb4c3568084694889d9eda0962e7cfa34d286cb20bfe657635dc6652d3764",
+        "reference": "3949d5ef2ed842663b8f0460ab4cdce89a28354a16c9bf930db496c2defcd225",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-825",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "7ea7a2623536576010def012cc86c0c8ec825ccad49c842a568fc43c709737ce",
+        "reference": "f1cf3143b08a6fa498b76499b4d0ecef7a5d213f084289e312ebe3db6ae54225",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-815",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "07d69e0a21f7d48a1f516925ceeff09fb8a406d231d176b25599474e322216e1",
+        "reference": "60b14db5236d3bdfec0c920c159efc07b181c8e0c8090aa2792e7a1270742cfc",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-940",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "274624768e6dae4e7c767d83ac354543c7cef443ab539ea712057a61ab876495",
+        "reference": "37c579e3f6659b6fefd1fea653dcb6e0a11e3398d9926e2e829e2be9a7e7ae35",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-925",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "88f782c90a753c041db5786fa37d6c2a57263d0561ca0643bbc96da9a9dfc746",
+        "reference": "6920cfaece9c37ba3338a4f9c5f41bf51be05a05a5d632cdfd2e0bf4d629fa2d",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-915",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "0de657d2222b69fb7008853fc534ada43340047acd3f8ded1ad0398ad5755498",
+        "reference": "92dac656f1d8499405d267adb139a67207a09ad37b0547a19569432767a2c9b2",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1040",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "b4f3b7c36fbe1b5ab35c1e5a114a3b97f3162bdba5662c6e0e213fadc73fdee5",
+        "reference": "57f713495c42a41bdf5c512214f0cb9817682f6f7207920a8db189b7aabe6244",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1025",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "512900f1a9a8e18dbc1338ff6d1623ac9c0948c3e1c8dc57485204cfe05a85f5",
+        "reference": "4e428bae1ef6b136e6e8e315a12b118fb1a01999fc761f47745ffc34fe156ac8",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1015",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "51524b2460b5658ef5588fe303258dfc3bbdae44bab9d4be3ec315785b5bfb2d",
+        "reference": "baeb19c000a4f3d1c58dd3a66e0df419e62e0c4dd3af92470cdc4028d36f10c1",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1140",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "2b42ca40dd7d27656a93b7d82a1dd6074d17db025d0ada5adb39b59ca8621d4b",
+        "reference": "f4796416bf588dd6fdc0e7ec2e0865533a7449e2c3536fb97f0dd83815a1ace3",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1125",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "bc00dde5d2ea4a5f3899ba495d4ecebddd238ec9b7e2c7fcd05b495d592b62d9",
+        "reference": "3eaff1b2156105ab5da532f64ccc95ad563edc44004ef0954f46ab7e7139a1b6",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1115",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "f97fa3030abccfd702c8bb8a95eddb33a1fc9bad38363b94a25ec2fa774fa7c6",
+        "reference": "f88fef23f87908b1dae36705ccf8e53276947c4e373af6b914c130e0ea43b7e8",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1240",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "ac0f7b27755a7cee84478f980b94c9a083be8ef45e78ff11b25760fcda91af7b",
+        "reference": "89143da56d9549d1c436dd88f4495406a1c8169bc8f7f79f60d818576780f119",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1225",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "6243c13260f8e5a6e4d5a923bf2b6d1022371196d350f4f099631988f9768fb2",
+        "reference": "7149943c7c8c0a24f5cb009a29263cd6a66a92438d39ec1870aac68677a0ddf0",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1215",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "b19c30e3237bac75b0982d6f624c172732ef9d67dcb9a84f60013d6f6cd7740c",
+        "reference": "f51832a7b662b3e7e2c202beda15e585002b944e7aa737208a2a8774bde6d447",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1340",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "3d610c82ad1cc7ae773f25cd33612d1c4c281d38d71a2f3577e900080e4a5edd",
+        "reference": "0c264cd1346320ab7a32773dc182fec7bdcc9c2e419a9f2e6ae27113e8eed0a8",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1325",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "730e93f0fcff74877abe1993cc9b0996a34ca84330e5cc7202eefa142fcdc01d",
+        "reference": "561798020e313bb33bdec370eca8ba677625bf2d0cae7ea72ee05abae3cf0983",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1315",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "f7fb71e9e936e812bf5052d3bc12f78b5518c3707f406747a5666f3f4b6223df",
+        "reference": "f57d1141cf36cb7a8186e4495b50fd4f63cbeaabae6aaef9039e35e5d5f3ee2b",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1440",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "ebe599527a03ca3a14fb9ed6d05eabed8f4467e3279c910aaaa8d6c77951dbee",
+        "reference": "73dcf2b7f56a170357fded10405e32adc1cdb0524a7a03376dee154e52e6bf1a",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1425",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "1f084d661fb3399982ec49249d3ebcebb8215b7094cccace4772b698c31fe1b2",
+        "reference": "092f0322a0fb69d9f74d47014c662eb096011d91463a4efaa3e1488f3a6ff5f6",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1415",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "1b6f4f327767921291f751eb1aa3965778e9405b4e127f34c67a95a0a1dd642b",
+        "reference": "e441b374df16c5449bccc5cf39a4e04f2ab0730e66206ec812334e2cff6e7dbd",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1540",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "ff9c3f9e265af5e63d3297f720ba9c3ff6adbcb0bede5513354b391a55420c7c",
+        "reference": "586c01f7c30ee3b8cb67d533061c9b45df97357c477b400288b82bb8a9f403af",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1525",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "872f2806fdd67cc806485b512af765cbe3e177630e5b22f14d0c6663c82ef164",
+        "reference": "5b6f6b6c307b42777c15e93281a0edf249118f53937ac901c4e254607f3b4cec",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1515",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "074d9e14f1404bb54cef2a48b67b388615c9162f7ec51eb99062b623bc1c347e",
+        "reference": "533d4df1a8d9c2b48d1ebc26e9d98e02b5a141989d01749a1648bd52fa6f1f7d",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1640",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "2ab4afe49e3f360b8fb0b8baf56265eb236d1e2f80e5d17fd7d23719d7cd05ca",
+        "reference": "b1a65a50812ad23aab6d619e4b6f01edd26a4ec875fec1498c5f74d32c2032ee",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1625",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "2f5cc443aeaabce4f6c18f1698d00e64c4d9aaa53f10d977d59090e5541b94f7",
+        "reference": "ee811d1d4dd89e1daa189c92562685d1554bd3dae0d510e7403a5a865852db15",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1615",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "36217c6fb7f20b4a1a333709b8259d91a53596cdb332ce053d8c6405b5ef9028",
+        "reference": "eef742dec3eae7ee53d9e11097159a2f718dd814d45e247bc84d6a8dcc6692c4",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1740",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "573998f8a6292b7f89f52a04c1ddb69d3dc21483272be274f623655de4783185",
+        "reference": "b0c2d986f99e05f944658c7ab640ebb7061597aa5deb919bb8973f4f3b95ec3c",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1725",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "7c8386c978561ea42fe892f647dd2ad098971ed0d4cebe28a53b69648e5f05b2",
+        "reference": "f8b38a50f6676b4479d8c44cd0834dc8bc75d3d98af392e1c24f841bd547b34f",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1715",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "6f06086147201a46adb8ff6912ed9026a2cd398a474a34efcb29c32a8ddb7b83",
+        "reference": "ff78e5e3e6b45342c078949ab3e4da39eae78222f4eb4a7650b915fa6692f3fa",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1840",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "51b6c7b7e15250f65a22fa11cf60e80531be990691284da36870757534b87184",
+        "reference": "25bf414f976832ebadd11f9c2c3194e64e2a0539aa21ca14245169636333c7f4",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1825",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "ec15edd400047ba9029fd31e1de417712db53d8aa6f322a4236873fce5c16803",
+        "reference": "a0fc39725f71b08c600e591014ea3064294503d5c0eaa14ac0baf3d34670e0b7",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1815",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "5d1aee469c05b00315291e20aa672649617b258d4c7b9dc53d8b408ba950b3a7",
+        "reference": "a1bac20ea85d74750da37b4479995e035d36dee1896b765594c7d88f7a173401",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1940",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "199cf305845555d322992c7f1c43d8b4c2fc930f7b12a2731f6f1b9b2e6f8a95",
+        "reference": "159c0d6f17df93bc3703aa1de573e9fbbed8034a124832c3ea42d944b5a28515",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1925",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "fff0d041ff84034bf2170c3c210ab830890499b663ef0707929ac4ef0f914531",
+        "reference": "78798e0730eaf7d6e0f74bf9e08137586e3305943af35c5252809423cbf420b4",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-1915",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "ac1a34c4078a4faa26435af0eee3ddfcf9fee40dc3731f457411a7edbe16b1a0",
+        "reference": "68df1ff21c547058d220681de5720cd0bdcd1196d1737f84ea3b01e7ce1c704a",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2040",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "a9000d2f27dad18f51f770285837d0ffd99bfb87b9651d3fdb994aa9c869dd9d",
+        "reference": "04a8b2c62736f3125ef6ba7ec295ce323aca9d37a8788eb710d6d2db49ba8d91",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2025",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "c9cdc1d04ab091a2176894b8a6b3e2990faee12f0cb0e8bcb167e1bc8f94376f",
+        "reference": "3d1fdbf50552d6f276b700c9674cad06220ecde8d379c65061e05dbd7321bf53",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2015",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "fd0be188b0f2ffbd2dddff61d873d8f364ac61cb242d0d364eb910e2a81e82f5",
+        "reference": "9bd1ab175209291e56284dbef259032fb6ca2f074c8f4cff65ade91a1d8531be",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2140",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "df34616e7aa5cfb283a560f28dcd3c2389fc4837d882cacee8a59a3c0dfa2a9b",
+        "reference": "b80a6a138f12a11360267a0c876989040bc7c394640f31f1f1a7c55a1816d933",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2125",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "7fef9bf942afc46b4c7a4f314ec4599a62065fcbf13751dad50239e41d097fdc",
+        "reference": "747965607dba55e80ae0257c547d52cebb37b78ba3ffc2dc7a5e17d4cce02c4d",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2115",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "2124ae1fbb6aef4b3433816d69f8fa599fc3e9dc032167fa808b54d624dd4df2",
+        "reference": "c2002bd0a2cbca0342dde2a26256747427c222aa207e8dd80d65c608fe7368ca",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2240",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "af5f619cff8dfbe387387a1c250bddb747fbd635a52b44adbf287d34823239c2",
+        "reference": "4a4ce4cca75e5709672a02a2c59dc28eeb8a780b2801dff48cc29a22c320e93b",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2225",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "2017828ad2d33e17cf4bdd3dafc8839fc58d1190ea8142468073e3cb5362a291",
+        "reference": "dded26410c3ef5996c42ece1013e2f7e425c618b18a71106bb5918d47b2ff247",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2215",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "d86ee63269ca5885133bd9c555349c300cf5c503709c0dfbcafd1b3c08fb4859",
+        "reference": "381c7f14f5d3589e5c423eb0aaf70e1306911c21c07709c1167e021b8a18a5b7",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2340",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "7faa6b9efc2f1f9ca8b6e80cde205039638abfb2d71874b46c16719b55ba5c2f",
+        "reference": "eeb813181362bfdf9c74dee093641c3e929ac76457d25190bbfdec8d92cb0e70",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2325",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "5b67ae74a0e8ceef3c6f5b2020de797e868763f001116bdb009ccb9ed8838684",
+        "reference": "6601c8c4d8907bc8d53ea7c5dc23e43de214d318fb5ded0177f05b191f07f9d5",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2315",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "5a72cc72d4544c9e0e1320e99cfff272cddf4392799cb099d2232390e6627af9",
+        "reference": "1f4ba7a7bc5f332d22e7ef9936e0651006c105c28ffc10cc0cd88ec210e30927",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2440",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "0d7e01915c80bca9855344e532734e05b1d26c73fce2a110ed77a4d8a933ce84",
+        "reference": "cf3d134e01bf197d707e947a1217681d24d79b7630c257257cad12ab84010eaa",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2425",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "9d12b8111cbb57c68b958cf3e8636336fc31cac8be45865aad3a1b5d043cd648",
+        "reference": "1a14e62a2a71a8ea92c4ee4ec46b7feb586b4b7a7c2f10cef0f1dcb57e61348c",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2415",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "f7e10f96af23e78282c827a566138f0e25e1e9b592f3641a53dcc3ace01b35a5",
+        "reference": "9f0dedde1ef138e2cb47d6587a71175bfe2a6b47e976486b649ea622c72ffebf",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2540",
+        "kind": "oscillator",
+        "snr": 40,
+        "observation": "c6d780489a6391a365256e7614e367f2825415a668293d9f64c34468c18a7df3",
+        "reference": "28a1ed344acbf937238754d79df8bc58765c3cb5780ca67f8cccb5ee5483ecc6",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2525",
+        "kind": "oscillator",
+        "snr": 25,
+        "observation": "7fb96ef84bf1c9fd08b80b3c1c1f7bfb9547091d4428eaea39f5dc66d7f5ede0",
+        "reference": "25bcc4a5c4c46a79fa50ee74d5b5f6668c390c6905f0fe4746c1020a8a2adb99",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2515",
+        "kind": "oscillator",
+        "snr": 15,
+        "observation": "aa6356a52a25fe349ab6c83a0dac6f3dfb61874beb230ad6b10836019a73798e",
+        "reference": "957993fec10fde14272bbeb7d0c5e87bd24a7f6d8f5963890f6a1ae61bc79e5c",
+        "stages": {
+          "count": 19200,
+          "sha256": "42ae83c27b4e24160b79b214e1d561e071ccbea9c17469f695e3b713e031c8d7"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2640",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "e44d34ac7b6143c9ec16f6b9c262207b31820fe9b5cd2cfdcd39660c0a051978",
+        "reference": "188f1884383c0ff6fab54c95839f487e7ba27ba04bef40eec2f4c13027665162",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2625",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "dd1fd4f217b096f7ddd29562f9e380e21d3d30ceb89ecf2daf4475d56cff4245",
+        "reference": "576363991a9a572f26e80b2a3054e5844ff3dffa8a5903dd99ab6c32687fa618",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2615",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "9c9478ad6652d0599c252823ee4025c5aae627a0c50fb3218048b744589200f6",
+        "reference": "f27c63073ce3f177ec34a5c1f690a7967fdb937cf4363db139c327c57bf90750",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2740",
+        "kind": "periodic",
+        "snr": 40,
+        "observation": "3a1d936e5729623557c36e6bbcab01ad50ed207732c0a4514f2a6bbd8885b9da",
+        "reference": "ffb82852a194392ec4b42a481ff528f34267c4928c17327c8f45ae7bff59eae7",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2725",
+        "kind": "periodic",
+        "snr": 25,
+        "observation": "fd315b43a5f9ec66f9ea9b1f3a03741e02e5a80db6bf7b39bb9ca74c7ade3ee9",
+        "reference": "ef681afce204b73d62ae99bea8e2d4fa4acb13856e657da554dda70408a8d0c4",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      },
+      {
+        "id": "acquisition-2715",
+        "kind": "periodic",
+        "snr": 15,
+        "observation": "9f6fc8248bfffaa2097ca150fab47597e2a5f397479c60bad0b066a86320cdb0",
+        "reference": "d45e0c893477e1ed84e854a991d1a75f73b8e765c30f2ce117a3a670e5d5eb83",
+        "stages": {
+          "count": 19200,
+          "sha256": "3de4f10b52c86f661fa949b9c8fef4806ddf767d5b32bee37c2a3650cca7ca75"
+        },
+        "identical": true
+      }
+    ],
+    "status": "passed",
+    "continuous": [
+      {
+        "id": "continuous-0",
+        "kind": "oscillator",
+        "observation": "76d8e59efbc94d8f3de99f4ae1207f2bac186dc02d36167b9d0c6a514af5d22b",
+        "reference": "a7b55a68f45c52637d5691f95b54906d8e88ec0164cac183fe9d1ea17cfb3f1d",
+        "stages": {
+          "count": 19200,
+          "sha256": "c4e49a404a611cace0e027398cb3346f66807d968c7cb3ba9a447c48b53f05b9"
+        }
+      },
+      {
+        "id": "continuous-1",
+        "kind": "oscillator",
+        "observation": "d314c0b465572020f32a6f787ef61ea234d08e5263bc84697173f74354ab0ef2",
+        "reference": "816f11ee5d603f3837b9672ff2db9a62076fe588a8baeeac5b8a10082d376fc3",
+        "stages": {
+          "count": 19200,
+          "sha256": "c4e49a404a611cace0e027398cb3346f66807d968c7cb3ba9a447c48b53f05b9"
+        }
+      },
+      {
+        "id": "continuous-2",
+        "kind": "periodic",
+        "observation": "0ade7adddc72e7828ae578c41c543d3ce762e3cb6665bd3862c841e5f0ea67fb",
+        "reference": "81365c4b90f0424cb023478362f1672735fecf3913fe191a96f0e1cd88b17719",
+        "stages": {
+          "count": 19200,
+          "sha256": "1ccf19e1eb21723346fc8cec2d499ca33e40a398a960fc73b7b10a7da751cf5d"
+        }
+      },
+      {
+        "id": "continuous-3",
+        "kind": "periodic",
+        "observation": "0213adcd2adb0ed9b8f3da52c28be08784f4805dbdaf1575baf0ba153234af17",
+        "reference": "7a041c4f3106f099452d70cd03ed80b38bd0c40c47693f74b2710d7a9b271d7b",
+        "stages": {
+          "count": 19200,
+          "sha256": "1ccf19e1eb21723346fc8cec2d499ca33e40a398a960fc73b7b10a7da751cf5d"
+        }
+      },
+      {
+        "id": "continuous-4",
+        "kind": "oscillator",
+        "observation": "27f0668f1ecf2c00d7d24782b57be090fdf8d060bbb9ac9268b98a42de794864",
+        "reference": "43749e064b34acdb26b8f5b08ef2cd89484a841511c468ea0b360d46430a4908",
+        "stages": {
+          "count": 19200,
+          "sha256": "c4e49a404a611cace0e027398cb3346f66807d968c7cb3ba9a447c48b53f05b9"
+        }
+      },
+      {
+        "id": "continuous-5",
+        "kind": "oscillator",
+        "observation": "ece60865ee2f3082616d61b8ef7d71a8b49d225ed9a4018c87a2b76a5939a89b",
+        "reference": "365b787806e2cf8506169afb50774b9fa5fc1e8b7f177b0f46ccfd0f24807e48",
+        "stages": {
+          "count": 19200,
+          "sha256": "c4e49a404a611cace0e027398cb3346f66807d968c7cb3ba9a447c48b53f05b9"
+        }
+      },
+      {
+        "id": "continuous-6",
+        "kind": "periodic",
+        "observation": "4dcbbabf42f4cb91f1fb11444097bdfc31bf39a2121ecf790f463d5051cb0f5a",
+        "reference": "6bb8323e06db333ccc2d5d7e1f4fd03689d0ce72d5606ca18c41e0689927fd0e",
+        "stages": {
+          "count": 19200,
+          "sha256": "1ccf19e1eb21723346fc8cec2d499ca33e40a398a960fc73b7b10a7da751cf5d"
+        }
+      },
+      {
+        "id": "continuous-7",
+        "kind": "periodic",
+        "observation": "bb173c883515bece40a1970ef4f35ab738e5f5af42956d4ee1c6665d4fe44937",
+        "reference": "a1d22c7e53dc6692b102394175aecf23b43c1c93cd67340d88102bb69e5446ed",
+        "stages": {
+          "count": 19200,
+          "sha256": "1ccf19e1eb21723346fc8cec2d499ca33e40a398a960fc73b7b10a7da751cf5d"
+        }
+      }
+    ],
+    "kernelLimits": {
+      "cgroup": "/system.slice/worldlaw-continuous-45318272864-1.scope",
+      "memoryMax": "4294967296",
+      "memorySwapMax": "0",
+      "cpuMax": "200000 100000"
+    },
+    "usage": {
+      "userCPUTime": 18030639,
+      "systemCPUTime": 227146,
+      "maxRSS": 264640,
+      "sharedMemorySize": 0,
+      "unsharedDataSize": 0,
+      "unsharedStackSize": 0,
+      "minorPageFault": 70395,
+      "majorPageFault": 4,
+      "swappedOut": 0,
+      "fsRead": 504,
+      "fsWrite": 0,
+      "ipcSent": 0,
+      "ipcReceived": 0,
+      "signalsCount": 0,
+      "voluntaryContextSwitches": 2635,
+      "involuntaryContextSwitches": 693
+    }
+  },
+  "frontier": "UNMET: #900 contender130/132 ties random130/132, one wrong. No new discovery vote."
+}
