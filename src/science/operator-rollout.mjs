@@ -4,6 +4,8 @@ import {periodicLinearPlan,onAlternatingOrbit} from './periodic-linear-flow.mjs'
 
 import {periodicSemilinearPlan} from './periodic-semilinear-flow.mjs';
 
+import {periodicStateRow} from './periodic-state-row.mjs';
+
 function need(ok,reason){if(!ok)throw new RangeError(reason);}
 function admit(kind,course) {
   need(course && typeof course.id==='string' && course.id.length>0 && course.id.length<=160,'Declare a course id');
@@ -43,8 +45,7 @@ function derivative(model,course,t,x) {
   if(!x.every(Number.isFinite)) throw new EvolutionDomainError('nonfinite_trajectory');
   if(model.kind==='oscillator')
     return [x[1],predictEvolution(model,{position:x[0],rate:x[1],command:drive(course,t,null)})];
-  return x.map((field,j)=>predictEvolution(model,{field,left:x[(j+x.length-1)%x.length],right:x[(j+1)%x.length],
-    spacing:course.spacing,command:drive(course,t,j,x.length)}));
+  return x.map((_,j)=>predictEvolution(model,periodicStateRow(x,j,course.spacing,drive(course,t,j,x.length))));
 }
 function advance(x,s,d){return x.map((v,j)=>v+s*d[j]);}
 

@@ -1,6 +1,7 @@
 // Last coefficient is the constant. All other coordinates are independent
 // source terminals. Undefined/nonlinear subexpressions retain the general path.
 const fixedUnary = {sin: Math.sin, cos: Math.cos, abs: Math.abs, tanh: Math.tanh};
+const spatialCoordinate={gradient:'dx',laplacian:'dxx',thirdDerivative:'dxxx',biharmonic:'dxxxx'};
 export function affineCoefficients(tree, variables, constants={}) {
   const k=variables.length;
   const constant=row=>row.slice(0,k).every(v=>v===0);
@@ -14,8 +15,8 @@ export function affineCoefficients(tree, variables, constants={}) {
       return row;
     }
     const [operator,left,right]=tree;
-    if (operator==='gradient'||operator==='laplacian') {
-      const index=variables.indexOf(operator==='gradient'?'dx':'dxx');
+    if (Object.hasOwn(spatialCoordinate,operator)) {
+      const index=variables.indexOf(spatialCoordinate[operator]);
       if (index===-1) return null;
       const potential=affineCoefficients(left,['field']);
       if (!potential) return null;
