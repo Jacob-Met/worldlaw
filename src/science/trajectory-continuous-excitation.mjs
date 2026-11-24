@@ -14,8 +14,8 @@ export function designContinuousTrajectoryExcitation(discovery,request) {
   if(models.length<2)return {status:'abstained',reason:'insufficient_comparable_hypotheses',selected:null,consideredModels:models.length};
   const kind=models[0].kind;
   requireState(models.every(m=>m.kind===kind),'Mixed model geometries');
-  requireState(kind==='oscillator'?n===2:kind==='periodic'&&n>=6&&n<=128,'Invalid continuous design geometry');
-  if(kind==='periodic')requireState(Array.isArray(profile)&&profile.length===n&&Array.from(profile).every(x=>Number.isFinite(x)&&Math.abs(x)<=4)&&profile.some(x=>x!==0),'Invalid continuous actuator profile');
+  requireState(['oscillator','kinetic'].includes(kind)?n===2:kind==='periodic'&&n>=6&&n<=128,'Invalid continuous design geometry');
+  if(kind!=='oscillator')requireState(Array.isArray(profile)&&profile.length===n&&Array.from(profile).every(x=>Number.isFinite(x)&&Math.abs(x)<=4)&&profile.some(x=>x!==0),'Invalid continuous actuator profile');
   requireState(Number.isFinite(step)&&step>0&&Number.isInteger(steps)&&steps>=32&&steps<=4096,'Invalid continuous design grid');
   requireState(Number.isInteger(substeps)&&substeps>=1&&substeps<=16,'Invalid design refinement');
   const maxEvaluations=search.maxEvaluations??37;
