@@ -1,0 +1,889 @@
+{
+  "schema": "worldlaw.position-output-development/v1",
+  "preregistration": 194147,
+  "artifactId": "14865225011",
+  "artifactSha256": "e8bac61ac3f0eb639ca039d27952e8f0a65ffd6f6118c980ca32860c47d09128",
+  "arm": "frozen/active",
+  "acquisitions": [
+    "source-0",
+    "source-1",
+    "round-1",
+    "round-2"
+  ],
+  "worlds": [
+    {
+      "world": "1001",
+      "support": "command+rate+spring",
+      "original": [
+        {
+          "id": "command",
+          "coefficient": 0.8795449618727161
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.23678357490260513
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7755231310955716
+        }
+      ],
+      "coefficients": [
+        {
+          "id": "command",
+          "coefficient": 0.8787925276320654
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2355538667499803
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7758471691830827
+        }
+      ],
+      "before": {
+        "rms": 0.0024322310403396014,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1001-acquisition-0",
+            "count": 200,
+            "rms": 0.0027102278506351473,
+            "maxAbs": 0.0068738361947227045
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-1",
+            "count": 200,
+            "rms": 0.0024795021882943157,
+            "maxAbs": 0.008512920315160488
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-2",
+            "count": 200,
+            "rms": 0.002223460081389901,
+            "maxAbs": 0.005570489098314424
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-3",
+            "count": 200,
+            "rms": 0.002286033791683043,
+            "maxAbs": 0.007347159574714435
+          }
+        ]
+      },
+      "after": {
+        "rms": 0.0020048395177467457,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1001-acquisition-0",
+            "count": 200,
+            "rms": 0.001964815901656385,
+            "maxAbs": 0.007364761062963243
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-1",
+            "count": 200,
+            "rms": 0.002066843996654546,
+            "maxAbs": 0.006160741427975069
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-2",
+            "count": 200,
+            "rms": 0.002020482087316276,
+            "maxAbs": 0.005598648832626396
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-3",
+            "count": 200,
+            "rms": 0.0019654089825278994,
+            "maxAbs": 0.007226750765922274
+          }
+        ]
+      },
+      "fineBefore": {
+        "rms": 0.0024322310254142926,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1001-acquisition-0",
+            "rms": 0.002710227817143801,
+            "maxAbs": 0.006873836109349218
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-1",
+            "rms": 0.0024795021685928473,
+            "maxAbs": 0.00851292017816696
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-2",
+            "rms": 0.00222346007416845,
+            "maxAbs": 0.005570489084478908
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-3",
+            "rms": 0.002286033796262338,
+            "maxAbs": 0.007347159618132815
+          }
+        ]
+      },
+      "fineAfter": {
+        "rms": 0.0020048395175075386,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1001-acquisition-0",
+            "rms": 0.001964815903119144,
+            "maxAbs": 0.007364761105289386
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-1",
+            "rms": 0.0020668439950715088,
+            "maxAbs": 0.0061607412906168335
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-2",
+            "rms": 0.0020204820848735714,
+            "maxAbs": 0.005598648818802343
+          },
+          {
+            "id": "wlcv1-development-1001-acquisition-3",
+            "rms": 0.0019654089842654466,
+            "maxAbs": 0.007226750809403826
+          }
+        ]
+      },
+      "accepted": 8,
+      "evaluations": 71,
+      "reason": "iteration_limit"
+    },
+    {
+      "world": "1002",
+      "support": "command_cubic+rate+spring",
+      "original": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1262212721677711
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.28223561825339544
+        },
+        {
+          "id": "spring",
+          "coefficient": -1.011341685929731
+        }
+      ],
+      "coefficients": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1267301205495226
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.2822701126660531
+        },
+        {
+          "id": "spring",
+          "coefficient": -1.0110909010476825
+        }
+      ],
+      "before": {
+        "rms": 0.0021624582732505857,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1002-acquisition-0",
+            "count": 200,
+            "rms": 0.0023355135318160612,
+            "maxAbs": 0.006798931373647843
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-1",
+            "count": 200,
+            "rms": 0.002283574466464028,
+            "maxAbs": 0.006515163498882481
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-2",
+            "count": 200,
+            "rms": 0.002024710109794569,
+            "maxAbs": 0.00679873502884501
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-3",
+            "count": 200,
+            "rms": 0.0019839647941213272,
+            "maxAbs": 0.005448779477091464
+          }
+        ]
+      },
+      "after": {
+        "rms": 0.002056210575046513,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1002-acquisition-0",
+            "count": 200,
+            "rms": 0.0022024815405583455,
+            "maxAbs": 0.005868284393174328
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-1",
+            "count": 200,
+            "rms": 0.002063518052149435,
+            "maxAbs": 0.005565543457259903
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-2",
+            "count": 200,
+            "rms": 0.002006578687777582,
+            "maxAbs": 0.0067047341559341445
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-3",
+            "count": 200,
+            "rms": 0.001943352257683198,
+            "maxAbs": 0.005234164283464682
+          }
+        ]
+      },
+      "fineBefore": {
+        "rms": 0.002162458288660376,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1002-acquisition-0",
+            "rms": 0.0023355135632177524,
+            "maxAbs": 0.006798931383559692
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-1",
+            "rms": 0.0022835744916397667,
+            "maxAbs": 0.0065151634978626305
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-2",
+            "rms": 0.0020247101102002503,
+            "maxAbs": 0.0067987350284084425
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-3",
+            "rms": 0.0019839647949484477,
+            "maxAbs": 0.005448779465815762
+          }
+        ]
+      },
+      "fineAfter": {
+        "rms": 0.002056210574733634,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1002-acquisition-0",
+            "rms": 0.0022024815388008885,
+            "maxAbs": 0.005868284403046431
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-1",
+            "rms": 0.002063518051901266,
+            "maxAbs": 0.0055655434562134065
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-2",
+            "rms": 0.0020065786876837187,
+            "maxAbs": 0.006704734155484976
+          },
+          {
+            "id": "wlcv1-development-1002-acquisition-3",
+            "rms": 0.0019433522587112312,
+            "maxAbs": 0.0052341642721982495
+          }
+        ]
+      },
+      "accepted": 8,
+      "evaluations": 71,
+      "reason": "iteration_limit"
+    },
+    {
+      "world": "1003",
+      "support": "command+rate+gravity",
+      "original": [
+        {
+          "id": "command",
+          "coefficient": 1.0796604238062169
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.22981615024821692
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.8645470422091379
+        }
+      ],
+      "coefficients": [
+        {
+          "id": "command",
+          "coefficient": 1.0793899760816084
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.22966050463045426
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.8646565813837179
+        }
+      ],
+      "before": {
+        "rms": 0.003314013463736615,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1003-acquisition-0",
+            "count": 200,
+            "rms": 0.0024594743993843755,
+            "maxAbs": 0.008243864795122402
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-1",
+            "count": 200,
+            "rms": 0.002245474505707791,
+            "maxAbs": 0.009340154987777433
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-2",
+            "count": 200,
+            "rms": 0.004169595783968187,
+            "maxAbs": 0.012425231762226652
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-3",
+            "count": 200,
+            "rms": 0.003931162916061119,
+            "maxAbs": 0.01097735318042492
+          }
+        ]
+      },
+      "after": {
+        "rms": 0.0019392052003110445,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1003-acquisition-0",
+            "count": 200,
+            "rms": 0.0018009706541446898,
+            "maxAbs": 0.004809937931285341
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-1",
+            "count": 200,
+            "rms": 0.002098594587442707,
+            "maxAbs": 0.007831924428733483
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-2",
+            "count": 200,
+            "rms": 0.001882703030999892,
+            "maxAbs": 0.005132679275404506
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-3",
+            "count": 200,
+            "rms": 0.0019621167124264636,
+            "maxAbs": 0.006982392796627934
+          }
+        ]
+      },
+      "fineBefore": {
+        "rms": 0.0033140135382114136,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1003-acquisition-0",
+            "rms": 0.0024594743526672623,
+            "maxAbs": 0.00824386463714255
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-1",
+            "rms": 0.002245474497205051,
+            "maxAbs": 0.009340154942873657
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-2",
+            "rms": 0.004169595925062946,
+            "maxAbs": 0.012425232092039273
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-3",
+            "rms": 0.0039311630516255976,
+            "maxAbs": 0.01097735351053064
+          }
+        ]
+      },
+      "fineAfter": {
+        "rms": 0.001939205200036446,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1003-acquisition-0",
+            "rms": 0.001800970654003031,
+            "maxAbs": 0.004809937856926773
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-1",
+            "rms": 0.0020985945879284738,
+            "maxAbs": 0.007831924383791926
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-2",
+            "rms": 0.0018827030449588798,
+            "maxAbs": 0.005132679605772239
+          },
+          {
+            "id": "wlcv1-development-1003-acquisition-3",
+            "rms": 0.0019621166975573464,
+            "maxAbs": 0.0069823927500252125
+          }
+        ]
+      },
+      "accepted": 3,
+      "evaluations": 36,
+      "reason": "no_decreasing_step"
+    },
+    {
+      "world": "1004",
+      "support": "command_cubic+rate+gravity",
+      "original": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.060270079556395
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.21242448687076596
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.9764822301049696
+        }
+      ],
+      "coefficients": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.0589816401522174
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.21162559405688802
+        },
+        {
+          "id": "gravity",
+          "coefficient": -0.9756760908110733
+        }
+      ],
+      "before": {
+        "rms": 0.0030735287100459086,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1004-acquisition-0",
+            "count": 200,
+            "rms": 0.004526672652425406,
+            "maxAbs": 0.019130329751259723
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-1",
+            "count": 200,
+            "rms": 0.0024152897623023755,
+            "maxAbs": 0.006956800769731597
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-2",
+            "count": 200,
+            "rms": 0.00243186227903413,
+            "maxAbs": 0.006865930999279124
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-3",
+            "count": 200,
+            "rms": 0.002355413094049126,
+            "maxAbs": 0.006185018251172236
+          }
+        ]
+      },
+      "after": {
+        "rms": 0.0020173538169763728,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1004-acquisition-0",
+            "count": 200,
+            "rms": 0.0019269632691322634,
+            "maxAbs": 0.006113417640703833
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-1",
+            "count": 200,
+            "rms": 0.002008807274799533,
+            "maxAbs": 0.005675959607500447
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-2",
+            "count": 200,
+            "rms": 0.0021582415890776417,
+            "maxAbs": 0.005900258537596459
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-3",
+            "count": 200,
+            "rms": 0.001967832520002592,
+            "maxAbs": 0.006951576125985959
+          }
+        ]
+      },
+      "fineBefore": {
+        "rms": 0.0030735286708021567,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1004-acquisition-0",
+            "rms": 0.004526672544168708,
+            "maxAbs": 0.019130329365109056
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-1",
+            "rms": 0.002415289760366652,
+            "maxAbs": 0.006956800767497828
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-2",
+            "rms": 0.0024318622856536226,
+            "maxAbs": 0.0068659310230019255
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-3",
+            "rms": 0.0023554130924158985,
+            "maxAbs": 0.006185018177720103
+          }
+        ]
+      },
+      "fineAfter": {
+        "rms": 0.0020173538165157157,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1004-acquisition-0",
+            "rms": 0.0019269632661303396,
+            "maxAbs": 0.006113417743897287
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-1",
+            "rms": 0.0020088072755230124,
+            "maxAbs": 0.00567595960025602
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-2",
+            "rms": 0.0021582415892664754,
+            "maxAbs": 0.005900258519397683
+          },
+          {
+            "id": "wlcv1-development-1004-acquisition-3",
+            "rms": 0.001967832520107521,
+            "maxAbs": 0.006951576052533159
+          }
+        ]
+      },
+      "accepted": 2,
+      "evaluations": 29,
+      "reason": "no_decreasing_step"
+    },
+    {
+      "world": "1005",
+      "support": "command+rate+spring+cubic",
+      "original": [
+        {
+          "id": "command",
+          "coefficient": 0.893457527529659
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.1306875515876437
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7244082012818825
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.15244801882033085
+        }
+      ],
+      "coefficients": [
+        {
+          "id": "command",
+          "coefficient": 0.89590290102686
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.13155728868815275
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.7276074380399485
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.15169163038359407
+        }
+      ],
+      "before": {
+        "rms": 0.003123622026106948,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1005-acquisition-0",
+            "count": 200,
+            "rms": 0.0026610429957419843,
+            "maxAbs": 0.006458874061721298
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-1",
+            "count": 200,
+            "rms": 0.002761159669209853,
+            "maxAbs": 0.007547350386728491
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-2",
+            "count": 200,
+            "rms": 0.002547229933321789,
+            "maxAbs": 0.009103558087775077
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-3",
+            "count": 200,
+            "rms": 0.004223094288629232,
+            "maxAbs": 0.010184971326578487
+          }
+        ]
+      },
+      "after": {
+        "rms": 0.0020069355782897915,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1005-acquisition-0",
+            "count": 200,
+            "rms": 0.001779347771550966,
+            "maxAbs": 0.0055888350242916385
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-1",
+            "count": 200,
+            "rms": 0.002089857771251281,
+            "maxAbs": 0.007231197537178158
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-2",
+            "count": 200,
+            "rms": 0.002031763806409242,
+            "maxAbs": 0.007300458798817244
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-3",
+            "count": 200,
+            "rms": 0.00210938699635799,
+            "maxAbs": 0.00544250147608559
+          }
+        ]
+      },
+      "fineBefore": {
+        "rms": 0.0031236219277681557,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1005-acquisition-0",
+            "rms": 0.00266104285884351,
+            "maxAbs": 0.006458874028338668
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-1",
+            "rms": 0.0027611595707384183,
+            "maxAbs": 0.007547350373274808
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-2",
+            "rms": 0.0025472298981287027,
+            "maxAbs": 0.009103558042975246
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-3",
+            "rms": 0.004223094169555425,
+            "maxAbs": 0.010184971248113336
+          }
+        ]
+      },
+      "fineAfter": {
+        "rms": 0.0020069355782004793,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1005-acquisition-0",
+            "rms": 0.0017793477812076837,
+            "maxAbs": 0.005588834994179281
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-1",
+            "rms": 0.002089857768490363,
+            "maxAbs": 0.0072311975236112325
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-2",
+            "rms": 0.002031763808854565,
+            "maxAbs": 0.007300458753857764
+          },
+          {
+            "id": "wlcv1-development-1005-acquisition-3",
+            "rms": 0.0021093869882523055,
+            "maxAbs": 0.005442501396993635
+          }
+        ]
+      },
+      "accepted": 8,
+      "evaluations": 80,
+      "reason": "iteration_limit"
+    },
+    {
+      "world": "1006",
+      "support": "command_cubic+rate+spring+cubic",
+      "original": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1180668193023118
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.15566545373024548
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8336438275600672
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.31746885347279646
+        }
+      ],
+      "coefficients": [
+        {
+          "id": "command_cubic",
+          "coefficient": 1.1205213320499785
+        },
+        {
+          "id": "rate",
+          "coefficient": -0.15579379938121793
+        },
+        {
+          "id": "spring",
+          "coefficient": -0.8352024275480459
+        },
+        {
+          "id": "cubic",
+          "coefficient": -0.3172420264510773
+        }
+      ],
+      "before": {
+        "rms": 0.004898621190589061,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1006-acquisition-0",
+            "count": 200,
+            "rms": 0.0031161593801516487,
+            "maxAbs": 0.009672096391485807
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-1",
+            "count": 200,
+            "rms": 0.002470753651120194,
+            "maxAbs": 0.00589002705831243
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-2",
+            "count": 200,
+            "rms": 0.002471494243869037,
+            "maxAbs": 0.007758109002430791
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-3",
+            "count": 200,
+            "rms": 0.008605963141394697,
+            "maxAbs": 0.02403405801379277
+          }
+        ]
+      },
+      "after": {
+        "rms": 0.0020371000933013445,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1006-acquisition-0",
+            "count": 200,
+            "rms": 0.0021218862578296976,
+            "maxAbs": 0.005277207190403699
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-1",
+            "count": 200,
+            "rms": 0.0019430204557747952,
+            "maxAbs": 0.005202698067292122
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-2",
+            "count": 200,
+            "rms": 0.002055156233345939,
+            "maxAbs": 0.006038871570394844
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-3",
+            "count": 200,
+            "rms": 0.002024280176834943,
+            "maxAbs": 0.006795635075438344
+          }
+        ]
+      },
+      "fineBefore": {
+        "rms": 0.004898620190533827,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1006-acquisition-0",
+            "rms": 0.0031161590860139593,
+            "maxAbs": 0.009672095871861464
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-1",
+            "rms": 0.0024707535605546452,
+            "maxAbs": 0.005890027032002365
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-2",
+            "rms": 0.002471494209040054,
+            "maxAbs": 0.0077581089619829235
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-3",
+            "rms": 0.008605961006927891,
+            "maxAbs": 0.02403405248609758
+          }
+        ]
+      },
+      "fineAfter": {
+        "rms": 0.0020371000863631944,
+        "perRun": [
+          {
+            "id": "wlcv1-development-1006-acquisition-0",
+            "rms": 0.00212188629811101,
+            "maxAbs": 0.005277207172381004
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-1",
+            "rms": 0.0019430204642164116,
+            "maxAbs": 0.005202698340487366
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-2",
+            "rms": 0.002055156236482256,
+            "maxAbs": 0.006038871692244929
+          },
+          {
+            "id": "wlcv1-development-1006-acquisition-3",
+            "rms": 0.002024280095396093,
+            "maxAbs": 0.006795635655500121
+          }
+        ]
+      },
+      "accepted": 5,
+      "evaluations": 69,
+      "reason": "no_decreasing_step"
+    }
+  ]
+}
