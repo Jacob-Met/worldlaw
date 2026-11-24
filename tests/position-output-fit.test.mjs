@@ -33,3 +33,10 @@ test('unobserved parameter directions retain the original and repeated acquisiti
   assert.deepEqual(fit.before,fit.after);assert.equal(fit.model.terms[0].coefficient,.57);
   assert.throws(()=>refineTrajectoryOutput(source,[r,r]),/distinct/);
 });
+
+test('combined baseline work is checked before reading a position',()=>{
+  const runs=Array.from({length:26},(_,i)=>({id:String(i),samples:[0,2000].map(time=>({
+    time,get position(){throw Error('measured position accessed before budget check');}
+  }))}));
+  assert.throws(()=>refineTrajectoryOutput(model(.8),runs),/Combined trajectory integration budget/);
+});

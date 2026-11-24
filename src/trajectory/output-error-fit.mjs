@@ -32,6 +32,16 @@ export function refineTrajectoryOutput(source,runs,{maxStep=.01}={}){
   requireInput(runs.every(r=>Array.isArray(r.samples))&&runs.reduce((s,r)=>s+r.samples.length,0)<=8192,'Position observation budget exceeded');
   requireInput(Array.isArray(source?.terms)&&source.terms.length<=12,'Require a bounded fixed torque-model support');
   requireInput(Number.isFinite(maxStep)&&maxStep>0,'Require a positive integration step');
+  // Rollout checks each recording. Enforce the shared limit before the first fit.
+  let requiredSteps=0;
+  for(const {samples} of runs){
+    for(let i=1;i<samples.length;i++){
+      const interval=samples[i].time-samples[i-1].time;
+      requireInput(Number.isFinite(interval)&&interval>0,'Sample times must be finite and strictly increasing');
+      requiredSteps+=Math.max(1,Math.ceil(interval/maxStep));
+    }
+  }
+  requireInput(requiredSteps<=5000000,'Combined trajectory integration budget exceeded');
   let coefficients=source.terms.map(t=>t.coefficient);
   const initial=measure(modelAt(source,coefficients),runs,maxStep);
   // The ordinary held-command timeline and maximum step are fixed across
