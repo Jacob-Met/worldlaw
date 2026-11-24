@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /** Native-only development course. Child CLI processes see recordings, never private instrument parameters. */
-import {readFileSync,mkdirSync,readdirSync,openSync,writeSync,fsyncSync,closeSync} from 'node:fs';
+import {readFileSync,mkdirSync,readdirSync,openSync,writeSync,fsyncSync,closeSync,existsSync,realpathSync} from 'node:fs';
 import {resolve,join,dirname,relative} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
@@ -235,6 +235,6 @@ function main(){
   console.log(JSON.stringify({event:'development_course_finished',output,receipt,summary}));
   if(!summary.executionQualified)process.exitCode=2;
 }
-if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+if(process.argv[1]&&existsSync(process.argv[1])&&realpathSync(process.argv[1])===fileURLToPath(import.meta.url)){
   try{main();}catch(e){console.error(JSON.stringify({status:'refused',error:err(e)}));process.exitCode=2;}
 }
