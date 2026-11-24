@@ -6,6 +6,16 @@ The new request uses four equal dwells with signs +, −, −, +. Each drive has
 
 If S past intervals had nonzero unit commands, their two-column Gram matrix has every entry equal to S. Adding N intervals with magnitude a contributes N times the outer product of (a, a³) with itself. The resulting determinant is S N (a−a³)². Thus a single interior magnitude **together with the unit-amplitude training data** gives rank two. An acquisition confined to ±a by itself still has rank one. The count gives each sampled command interval one row. Uneven training dwells or input correlations with other state terms require their own conditioning analysis.
 
+## Optimality for the original interval budget
+
+When S ≥ N and commands are bounded by one in magnitude, the interior design also maximizes this two-column determinant over **every** allocation of the N new commands, including schedules with unequal magnitudes. This result requires ±1/√3 to be allowed. It concerns only the actuator input columns.
+
+Write v(u)=(u,u³), b=v(1), c=v(1/√3). In this basis v(u)=p b+q c with p=(3u³−u)/2 and q=3√3(u−u³)/2. For x=u²,
+
+    1 − p² − q² = (1−x)(3x−1)² ≥ 0.
+
+The analytic design has Gram matrix G=S b bᵀ+N c cᵀ. The leverage of any possible next input relative to G is p²/S+q²/N ≤ 1/N. For an alternative total Gram matrix A with the same S source intervals and any N new commands, the trace of G⁻¹A is at most 1+N/N=2. The two nonnegative eigenvalues of G⁻¹ᐟ² A G⁻¹ᐟ² then have product at most one, giving det(A) ≤ det(G). The analytic schedule attains equality. When S<N, moving some new rows to unit amplitude can improve the determinant; the bound here relies on the observed budget. The maintained position planner optimizes a different, dynamical criterion.
+
 ## Original development design
 
 Receipt 194295 fixed the design and comparators before evaluating a new simulated response. The source contains only the three recordings retained in the worst Worldlaw #894 fold. They supplied 500 nonzero unit-command intervals. One additional 8-second request at 0.04-second cadence adds 200 intervals, raising the actuator determinant from zero to 14814.8148. No fourth recording supplies a training label or an observed response in this comparison. The initial state is 0.25 rad and zero rate, and each dwell takes two seconds.

@@ -96,3 +96,18 @@ print(json.dumps(runs))
     }
     assert.deepEqual(planActuatorExcitation(runs,runs.at(-1).source.request),record.analytic);
 });
+
+test('interval-budget determinant bound holds for S≥N and fails beyond that condition',()=>{
+  const a=1/Math.sqrt(3);
+  const det=(S,cmds)=>{
+    const moment=k=>S+cmds.reduce((sum,u)=>sum+u**k,0);
+    return moment(2)*moment(6)-moment(4)**2;
+  };
+  const grid=[-1,-.9,-a,-.2,0,.13,a,.75,1];
+  for(const S of [3,7]){
+    const optimum=det(S,[a,a,a]);
+    for(const x of grid)for(const y of grid)for(const z of grid)
+      assert.ok(det(S,[x,y,z])<=optimum+1e-12);
+  }
+  assert.ok(det(1,[a,a,1])>det(1,[a,a,a]));
+});
