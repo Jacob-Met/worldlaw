@@ -4,6 +4,7 @@ on:
     paths:
       - 'src/science/temporal-memory.mjs'
       - 'scripts/receive-temporal-memory.mjs'
+      - 'scripts/verify-temporal-memory.mjs'
       - 'tests/temporal-memory.test.mjs'
       - '.github/workflows/temporal-memory.yml'
 permissions:
@@ -18,7 +19,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Match immutable original source
+      - run: node --test tests/temporal-memory.test.mjs
+      - name: Match frozen study source
         id: original
         run: |
           matched=yes
@@ -27,31 +29,37 @@ jobs:
           test "$(git hash-object tests/temporal-memory.test.mjs)" = "95ae1bb299a20d828ade40c1be998bae2474e521" || matched=no
           test "$(git hash-object docs/TEMPORAL_MEMORY_PROBE.md)" = "2472daf7a00225795975c26dfa9bb5f656acf270" || matched=no
           echo "matched=$matched" >> "$GITHUB_OUTPUT"
-      - uses: actions/checkout@v4
-        if: steps.original.outputs.matched != 'yes'
-        with:
-          repository: Jacob-Met/nullgarden
-          ref: 4af7717a866e0246e7c0bcd81977cea53cddbd8c
-          path: .independent-state-nullgarden
-          persist-credentials: false
-      - run: node --test tests/temporal-memory.test.mjs
-      - uses: actions/download-artifact@v4
+      - name: Fetch original immutable forecasts when retained
+        id: archive
         if: steps.original.outputs.matched == 'yes'
+        continue-on-error: true
+        uses: actions/download-artifact@v4
         with:
           github-token: ${{ github.token }}
           run-id: 45313669592
           artifact-ids: 14883709811
           path: .receipts/original-download
-      - name: Verify original archive
-        if: steps.original.outputs.matched == 'yes'
+      - name: Recount original retained forecasts
+        if: steps.archive.outcome == 'success'
         run: |
           report=$(find .receipts/original-download -name report.json -type f)
           test -f "$report"
           node scripts/verify-temporal-memory.mjs "$(dirname "$report")"
-      - run: node scripts/receive-temporal-memory.mjs
-        if: steps.original.outputs.matched != 'yes'
+      - name: Check out independent simulator for fresh source or expired archive
+        if: steps.archive.outcome != 'success'
+        uses: actions/checkout@v4
+        with:
+          repository: Jacob-Met/nullgarden
+          ref: 4af7717a866e0246e7c0bcd81977cea53cddbd8c
+          path: .independent-state-nullgarden
+          persist-credentials: false
+      - name: Run and verify fresh source
+        if: steps.archive.outcome != 'success'
+        run: |
+          node scripts/receive-temporal-memory.mjs
+          node scripts/verify-temporal-memory.mjs .receipts/temporal-memory
       - uses: actions/upload-artifact@v4
-        if: always() && steps.original.outputs.matched != 'yes'
+        if: always() && steps.archive.outcome != 'success'
         with:
           name: temporal-memory-receipt
           path: .receipts/temporal-memory/
