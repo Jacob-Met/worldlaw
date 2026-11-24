@@ -32,6 +32,7 @@ export function compileBurstSchedule(schedule) {
     need(Number.isFinite(time)&&time>=-1e-12*duration&&time<=duration*(1+1e-12),'Command outside declared waveform interval');
     if(time<=0||time>=duration)return 0;
     const i=Math.min(2,Math.floor(time/length)),t=time-i*length;
+    if(t===0)return 0;
     return amplitudes[i]*Math.sin(Math.PI*t/length)**2*Math.sin(2*Math.PI*frequencies[i]*t+phases[i]);
   };
   return {at,amplitudes,integrals,totalEnergy,peakBound:Math.max(...amplitudes),
