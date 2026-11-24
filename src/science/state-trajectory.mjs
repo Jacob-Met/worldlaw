@@ -230,9 +230,11 @@ export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2
     const y=run.samples[startIndex+i].state[j];errors.add(states[i][j]-y);signals.add(y);
   }
   const count=errors.count,rmse=errors.value(),signalRms=signals.value();
-  const relativeRmse=errors.ordinarySum!==null&&signals.ordinarySum!==null?
-    Math.sqrt(errors.ordinarySum/Math.max(signals.ordinarySum,count*1e-8)):rmse/Math.max(signalRms,1e-4);
-  if(![rmse,signalRms,relativeRmse,p.noiseSigma].every(Number.isFinite))
+  const relativeSquare=errors.ordinarySum!==null&&signals.ordinarySum!==null?
+    errors.ordinarySum/Math.max(signals.ordinarySum,count*1e-8):null;
+  const relativeRmse=relativeSquare!==null&&relativeSquare>=2**-1022&&Number.isFinite(relativeSquare)?
+    Math.sqrt(relativeSquare):rmse/Math.max(signalRms,1e-4);
+  if(![rmse,signalRms,relativeRmse,p.noiseSigma].every(Number.isFinite)||(rmse>0&&relativeRmse===0))
     return {status:'refused',reason:'nonfinite_metrics',startIndex,states,...(prefix?{prefix}:{})};
   return {status:'forecast',startIndex,states,rmse,signalRms,relativeRmse,noiseSigma:p.noiseSigma,
     initialization:prefix?'trajectory fit to first '+prefixPoints+' noisy state samples only':'first '+p.points+' noisy state samples only',

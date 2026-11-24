@@ -17,6 +17,21 @@ test('RMS retains representable large and tiny magnitudes and weighted counts',(
   ordinary.add(Infinity);assert.ok(Number.isNaN(ordinary.value()));
 });
 
+test('positive subnormal squares and final means never become an exact zero error',()=>{
+  const a=createRmsAccumulator();for(const v of [2**-537,0,0,0])a.add(v);
+  assert.equal(a.value(),2**-538);
+  const b=createRmsAccumulator();b.add(2**-511);b.add(0,3);
+  assert.equal(b.value(),2**-512);
+  const impossible=createRmsAccumulator();impossible.add(Number.MIN_VALUE);impossible.add(0,3);
+  assert.ok(Number.isNaN(impossible.value()));
+  const selected=zero('selection');selected.samples[50].state[0]=2**-537;
+  const result=discoverTrajectoryEvolution([zero('fit-a'),zero('fit-b')],[selected],base);
+  assert.equal(result.status,'abstained');assert.ok(result.selection.selectionRmse>0);
+  assert.ok(result.selection.selectionRmse>result.diagnostics.tolerance);
+  const forecast=forecastStateTrajectory(result.model,selected);
+  assert.equal(forecast.status,'forecast');assert.ok(forecast.rmse>0);assert.ok(forecast.relativeRmse>0);
+});
+
 test('finite huge suffixes cannot be admitted by overflowing residual and signal squares',()=>{
   const selected=zero('selection');for(let i=11;i<selected.samples.length;i++)selected.samples[i].state=[1e200,1e200];
   for(const selectionScaling of ['raw','channel-noise']){

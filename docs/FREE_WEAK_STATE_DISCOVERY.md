@@ -75,3 +75,5 @@ Forecast and selection RMS accumulators retain representable magnitudes when squ
 Every fitted model is checked against the existing state and expression forecast limits, including its actual term count and prefix-shooting cost. A model over budget remains a reported `budget_refused` candidate; affordable candidates continue. A menu containing no completed fit reports `all_fits_refused`. These computational refusals remain in any experiment denominator and must not be relabelled as empirical prediction failures.
 
 The maintained HTTP regression exercises both independently fitted kinetic STLSQ rows and the joint kinetic beam, followed by a separate analytic forecast. Larger input-direction identifiability and the full held-out discovery comparison remain unmeasured.
+
+Positive subnormal squares and final means use square-root scaling before division. A mathematically positive RMS that is itself below the representable range refuses rather than becoming an exact zero. The regressions include the representable RMS of `[2**-537, 0, 0, 0]` and a single tiny suffix error through public discovery.
