@@ -672,3 +672,8 @@ Open **Hardware replay** in Coupling Lab. Load a pinned DFKI double-pendulum rec
 
 The parameter convention and original real-system recordings are published by DFKI.
 https://dfki-ric-underactuated-lab.github.io/real_ai_gym_leaderboard/acrobot_real_system_leaderboard_v1.html
+
+
+### Fixed-prefix initialization for noisy state forecasts
+
+The maintained symbolic discovery API and finite field-law verifier now offer an explicit `prefix-shooting` initializer. It fits the initial state from a declared opening prefix with the law and coefficients held fixed, then scores only the later suffix. Historical initialization defaults remain available. See [the initialization contract and fresh registered course](docs/NOISY_PREFIX_INITIALIZATION.md) for the API options, supplied synthetic calibration, causal boundary, reproduction commands and qualification limits.

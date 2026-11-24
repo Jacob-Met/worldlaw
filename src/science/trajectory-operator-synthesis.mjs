@@ -78,7 +78,7 @@ export function discoverTrajectoryEvolution(training,selection,options={}) {
   requireState(['polynomial','prefix-shooting'].includes(forecastInitialization),'Unknown forecast initialization');
   requireState(Number.isInteger(prefixPoints)&&prefixPoints>=5&&prefixPoints<=33,'Invalid forecast prefix');
   const candidateBudget=estimator==='beam'?1+beam*maxTerms:thresholds.length*ridges.length;
-  const forecastCells=selection.reduce((s,run)=>{const p=validateStateTrajectory(run);const prefixCost=forecastInitialization==='prefix-shooting'?prefixPoints*p.n*(1+4*(p.n+4))*8:0;return s+Math.max(0,p.length-smoothingPoints)*p.n*8+prefixCost;},0)*candidateBudget;
+  const forecastCells=selection.reduce((s,run)=>{const p=validateStateTrajectory(run);const prefixCost=forecastInitialization==='prefix-shooting'?prefixPoints*p.n*(1+4*(p.n+4))*8:0;return s+Math.max(0,p.length-(forecastInitialization==='prefix-shooting'?prefixPoints:smoothingPoints))*p.n*8+prefixCost;},0)*candidateBudget;
   requireState(forecastCells<=20000000,'Aggregate selection forecast work budget exceeded');
   const trees=trajectoryOperatorGrammar(training[0]?.kind,options.grammar),eq=stateOperatorEquations(training,trees,options);
   const fits=estimator==='beam'?sparseBeam(eq,maxTerms,beam):thresholdFits(eq,maxTerms,thresholds,ridges);

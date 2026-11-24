@@ -1,0 +1,48 @@
+name: Causal prefix initialization course
+on:
+  pull_request:
+    paths:
+      - 'src/science/prefix-state-fit.mjs'
+      - 'src/science/state-trajectory.mjs'
+      - 'src/science/trajectory-operator-synthesis.mjs'
+      - 'src/trajectory/field-law-dictionary.mjs'
+      - 'src/trajectory/noisy-field-intervention.mjs'
+      - 'tests/prefix-state-fit.test.mjs'
+      - 'tests/field-prefix-fit.test.mjs'
+      - 'tests/state-operator-prefix-http.test.mjs'
+      - 'scripts/noisy-prefix-course.mjs'
+      - 'scripts/receive-noisy-prefix.mjs'
+      - 'experiments/noisy-prefix-initialization/**'
+      - '.github/workflows/noisy-prefix-initialization.yml'
+permissions:
+  contents: read
+concurrency:
+  group: causal-prefix-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+jobs:
+  course:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Check analytic fits, causal boundaries and the launched HTTP consumer
+        run: node --test tests/prefix-state-fit.test.mjs tests/field-prefix-fit.test.mjs tests/state-operator*.test.mjs tests/noisy-field-intervention.test.mjs
+      - name: Run the complete preregistered fresh noisy-state course
+        env:
+          NODE_OPTIONS: --max-old-space-size=1536
+        run: node scripts/noisy-prefix-course.mjs prefix-output
+      - name: Receive all raw recordings and recompute every suffix decision
+        env:
+          NODE_OPTIONS: --max-old-space-size=1536
+        run: node scripts/receive-noisy-prefix.mjs prefix-output
+      - name: Retain complete and failed original courses
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: causal-prefix-${{ github.run_id }}
+          path: prefix-output/
+          retention-days: 14
+          if-no-files-found: warn

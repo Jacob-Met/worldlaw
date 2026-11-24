@@ -21,7 +21,7 @@ export function fitPrefixState(observations,simulate,{scales=null,iterations=4,m
   requirePrefix(Array.isArray(units)&&units.length===n&&units.every(x=>Number.isFinite(x)&&x>0),'Invalid prefix measurement scales');
   // Copy before invoking user code. The numerical fit never mutates recordings.
   const measured=observations.map(row=>row.slice()),weights=units.slice();
-  let evaluations=0,steps=0,converged=false;
+  let evaluations=0,steps=0,stopReason='iteration_budget';
   function evaluate(initial) {
     evaluations++;
     if(initial.some(x=>!Number.isFinite(x)||Math.abs(x)>maxMagnitude))return null;
@@ -56,14 +56,14 @@ export function fitPrefixState(observations,simulate,{scales=null,iterations=4,m
       if(trial&&trial.loss<best.loss){accepted=trial;break;}
     }
     steps++;
-    if(!accepted){converged=true;break;}
+    if(!accepted){stopReason='no_accepted_trial';break;}
     const improvement=best.loss-accepted.loss;
     best=accepted;
-    if(improvement<=1e-9*(1+best.loss)){converged=true;break;}
+    if(improvement<=1e-9*(1+best.loss)){stopReason='small_loss_change';break;}
   }
   requirePrefix(evaluations<=maxEvaluations,'Internal prefix evaluation budget exceeded');
   return {status:'fitted',initial:best.initial,terminal:best.path.at(-1).slice(),
-    points,iterations:steps,evaluations,converged,lossBefore,lossAfter:best.loss,
+    points,iterations:steps,evaluations,stopReason,lossBefore,lossAfter:best.loss,
     prefixRmse:Math.sqrt(best.loss/(points*n)),usedStateRange:[0,points-1],
     scope:'local fit to the supplied prefix only; coefficients and simulator fixed'};
 }
