@@ -16,6 +16,9 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "docs/NOISY_PREFIX_RESULTS.md",
+    "scripts/inspect-prefix-original.py",
+    "docs/receipts/noisy-prefix-initialization/summary.json",
     "src/science/prefix-state-fit.mjs",
     "experiments/noisy-prefix-initialization/protocol.json",
     "tests/prefix-state-fit.test.mjs",

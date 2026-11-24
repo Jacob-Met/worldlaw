@@ -54,7 +54,7 @@ The four existing acquisition arms are unchanged: two-contender weak, committee 
 
 The primary gate requires strictly more correctly admitted laws for the new contender than for new random and new passive, with zero wrong, sham and outside admissions. A separate estimator gate compares new and old contender initialization on identical suffixes. Passing the estimator gate cannot replace the active-superiority gate. Ties and losses remain failures.
 
-This is a finite synthetic law dictionary, not unrestricted SINDy or physical-world qualification. The existing #893 144-cell result and retrospective drive ceiling remain historical diagnostics. No new result is asserted until the exact-source workflow has completed.
+This is a finite synthetic law dictionary, not unrestricted SINDy or physical-world qualification. The existing #893 144-cell result and retrospective drive ceiling remain historical diagnostics. The original course has completed: the estimator gate passed and the strict active-superiority gate failed. See [the full original result and qualification limits](NOISY_PREFIX_RESULTS.md).
 
 ## Reproduce and receive
 
