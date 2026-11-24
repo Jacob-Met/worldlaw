@@ -1,10 +1,11 @@
+import {periodicStencil,SPATIAL_OPERATOR_ORDERS} from './state-operator-basis.mjs';
 import {compileContinuousInput,validateRecordedContinuousInput} from './continuous-input.mjs';
 import {fitPrefixState} from './prefix-state-fit.mjs';
 import {fitLinearColumns} from './linear-fit.mjs';
 
 export function requireState(ok, message) { if (!ok) throw new RangeError(message); }
 export function meanSquare(xs) { let s=0; for (const x of xs) s+=x*x; return s/xs.length; }
-const unary={sin:Math.sin,cos:Math.cos,tanh:Math.tanh,abs:Math.abs};
+const unary={sin:Math.sin,cos:Math.cos,tanh:Math.tanh,abs:Math.abs,exp:Math.exp};
 
 /** Compile the same executable AST used by symbolic-evolution/v1. Spatial
  * operators act on a complete local flux, never on a noisy supplied derivative.
@@ -14,10 +15,12 @@ export function compileStateTree(tree, kind) {
   const finite=x=>Number.isFinite(x)?x:NaN;
   function local(t, fieldOnly=false) {
     requireState(++count<=32,'Operator tree is too large');
+    if(typeof t==='number'){requireState(Number.isFinite(t)&&Math.abs(t)<=16,'Invalid fixed atom constant');return()=>t;}
     if(typeof t==='string') {
-      const allowed=fieldOnly?['one','field']:kind==='periodic'?['one','field','command','dx','dxx']:['one','position','rate','command'];
+      const allowed=fieldOnly?['one','field']:kind==='periodic'?['one','field','command','dx','dxx']:kind==='kinetic'?['one','state0','state1','command0','command1']:['one','position','rate','command'];
       requireState(allowed.includes(t),'Invalid state terminal');
       if(t==='dx'||t==='dxx'){requiresPointwise=true;return(_x,_u,context)=>context?.[t]??NaN;}
+      if(kind==='kinetic'&&t!=='one'){const j=Number(t.at(-1));return t.startsWith('command')?(_x,u)=>u[j]:x=>x[j];}
       return t==='one'?()=>1:t==='command'?(_x,u)=>u:kind==='periodic'?(x)=>x:t==='position'?(x)=>x[0]:(x)=>x[1];
     }
     requireState(Array.isArray(t),'Invalid state expression');
@@ -34,22 +37,22 @@ export function compileStateTree(tree, kind) {
     const a=local(t[1],fieldOnly),b=local(t[2],fieldOnly);
     return(x,u,context)=>{const av=a(x,u,context),bv=b(x,u,context);if(!Number.isFinite(av)||!Number.isFinite(bv)||(t[0]==='div'&&bv===0))return NaN;return finite(t[0]==='add'?av+bv:t[0]==='mul'?av*bv:av/bv);};
   }
-  if(kind==='periodic'&&Array.isArray(tree)&&['gradient','laplacian'].includes(tree[0])) {
+  if(kind==='periodic'&&Array.isArray(tree)&&Object.hasOwn(SPATIAL_OPERATOR_ORDERS,tree[0])) {
     requireState(tree.length===2,'Invalid flux expression');
-    const fn=local(tree[1],true); return {order:tree[0]==='gradient'?1:2,fn};
+    const fn=local(tree[1],true); return {order:SPATIAL_OPERATOR_ORDERS[tree[0]],fn};
   }
   if(kind==='periodic'&&(tree==='dx'||tree==='dxx')) return {order:tree==='dx'?1:2,fn:x=>x};
   const fn=local(tree);return {order:0,fn,requiresPointwise};
 }
 
 export function validateStateTrajectory(run) {
-  requireState(run?.schema==='worldlaw.state-trajectory/v1'&&['oscillator','periodic'].includes(run.kind),'Invalid state trajectory schema');
+  requireState(run?.schema==='worldlaw.state-trajectory/v1'&&['oscillator','kinetic','periodic'].includes(run.kind),'Invalid state trajectory schema');
   requireState(typeof run.id==='string'&&run.id.length>0&&run.id.length<=160,'Require a recording identity');
   requireState(!['change','derivative','rhs','truth','model'].some(k=>Object.hasOwn(run,k)),'Derivative or truth labels are not state observations');
   const s=run.samples;
   requireState(Array.isArray(s)&&s.length>=33&&s.length<=4097,'Require 33–4097 time samples');
   const n=s[0]?.state?.length;
-  requireState(Number.isInteger(n)&&(run.kind==='oscillator'?n===2:n>=6&&n<=128),'Invalid state dimension');
+  requireState(Number.isInteger(n)&&(run.kind!=='periodic'?n===2:n>=6&&n<=128),'Invalid state dimension');
   requireState(n*s.length<=131072,'State trajectory exceeds the observation budget');
   if(run.kind==='periodic') requireState(Number.isFinite(run.spacing)&&run.spacing>0,'Require positive periodic grid spacing');
   const dt=s[1]?.time-s[0]?.time;
@@ -139,18 +142,29 @@ export function prepareStateTrajectory(run, points=11,{prefixShrinkage=false}={}
 }
 
 function modelPredictor(model,n,spacing) {
-  requireState(model?.schema==='worldlaw.symbolic-evolution/v1'&&['oscillator','periodic'].includes(model.kind)&&Array.isArray(model.terms)&&model.terms.length<=4,'Invalid state evolution model');
-  const terms=model.terms.map(({tree,weight})=>{requireState(Number.isFinite(weight),'Invalid coefficient');return {...compileStateTree(tree,model.kind),weight};});
-  if(model.kind==='oscillator') return (x,u)=>[x[1],terms.reduce((s,t)=>s+t.weight*t.fn(x,u),0)];
-  return (x,u)=>Array.from({length:n},(_,j)=>{
-    let y=0;const l=(j+n-1)%n,r=(j+1)%n;
-    const context={left:x[l],right:x[r],spacing,dx:(x[r]-x[l])/(2*spacing),dxx:(x[l]-2*x[j]+x[r])/(spacing*spacing)};
-    for(const t of terms) {
-      const v=t.order===0?t.fn(x[j],u[j],context):t.order===1?(t.fn(x[r],0)-t.fn(x[l],0))/(2*spacing):(t.fn(x[l],0)-2*t.fn(x[j],0)+t.fn(x[r],0))/(spacing*spacing);
-      y+=t.weight*v;
-    }
-    return y;
+  requireState(model?.schema==='worldlaw.symbolic-evolution/v1'&&['oscillator','kinetic','periodic'].includes(model.kind)&&Array.isArray(model.terms)&&model.terms.length<=256,'Invalid state evolution model');
+  const terms=Array.from(model.terms,t=>{
+    requireState(t&&typeof t==='object'&&Number.isFinite(t.weight),'Invalid coefficient');
+    if(model.kind==='kinetic')requireState(t.channel===0||t.channel===1,'Require a kinetic output channel');
+    return {...compileStateTree(t.tree,model.kind),weight:t.weight,channel:t.channel};
   });
+  if(model.kind==='oscillator')return (x,u)=>[x[1],terms.reduce((s,t)=>s+t.weight*t.fn(x,u),0)];
+  if(model.kind==='kinetic'){
+    const rows=[0,1].map(channel=>terms.filter(t=>t.channel===channel));
+    return (x,u)=>rows.map(row=>row.reduce((sum,t)=>sum+t.weight*t.fn(x,u),0));
+  }
+  return (x,u)=>{
+    const fluxes=terms.map(t=>t.order?Float64Array.from(x,v=>t.fn(v,0)):null);
+    return Array.from({length:n},(_,j)=>{
+      let y=0;const l=(j+n-1)%n,r=(j+1)%n;
+      const context={left:x[l],right:x[r],spacing,dx:(x[r]-x[l])/(2*spacing),dxx:(x[l]-2*x[j]+x[r])/(spacing*spacing)};
+      for(let k=0;k<terms.length;k++){
+        const t=terms[k],v=t.order===0?t.fn(x[j],u[j],context):periodicStencil(fluxes[k],j,spacing,t.order);
+        y+=t.weight*v;
+      }
+      return y;
+    });
+  };
 }
 
 function integrateSegment(rhs,run,initial,startIndex,endIndex,dt,substeps,maxMagnitude,continuousInput=null) {
@@ -176,7 +190,9 @@ function integrateSegment(rhs,run,initial,startIndex,endIndex,dt,substeps,maxMag
 export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2,maxMagnitude=1e6,prepared=null,initialization='polynomial',prefixPoints=17}={}) {
   if(prepared){const owner=preparationSources.get(prepared);requireState(!!owner&&owner.run===run&&owner.signature===JSON.stringify(run),'Prepared trajectory belongs to a different or changed recording');}
   const p=prepared||prepareStateTrajectory(run,smoothingPoints),{n,dt}=p;
-  requireState(model.kind===run.kind,'Model and observation geometries differ');
+  requireState(model?.kind===run.kind,'Model and observation geometries differ');
+  const termCount=Math.max(1,model.terms?.length??257);
+  requireState(p.length*n*substeps*termCount<=8388608,'Forecast expression work budget exceeded');
   requireState(Number.isInteger(substeps)&&substeps>=1&&substeps<=16&&p.length*n*substeps<=2097152,'Invalid forecast work budget');
   requireState(Number.isFinite(maxMagnitude)&&maxMagnitude>0,'Invalid state-domain bound');
   requireState(['polynomial','prefix-shooting'].includes(initialization),'Unknown forecast initialization');
@@ -184,7 +200,7 @@ export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2
   let startIndex=p.startIndex,initial=p.initial,prefix=null;
   if(initialization==='prefix-shooting') {
     requireState(Number.isInteger(prefixPoints)&&prefixPoints>=5&&prefixPoints<=33&&prefixPoints<p.length,'Invalid forecast prefix');
-    requireState(prefixPoints*n*(1+4*(n+4))*substeps<=2097152,'Prefix forecast work budget exceeded');
+    requireState(prefixPoints*n*(1+4*(n+4))*substeps<=2097152&&prefixPoints*n*(1+4*(n+4))*substeps*termCount<=8388608,'Prefix forecast work budget exceeded');
     // Only these copied states enter optimization. Future commands remain legal
     // exogenous inputs; future measured states are read below for scoring only.
     const observations=run.samples.slice(0,prefixPoints).map(row=>row.state.slice());
@@ -212,10 +228,11 @@ export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2
 export function simulateStateModel(model,{initialEstimate,step,steps,spacing,continuousInput,substeps=2,maxMagnitude=1e6}) {
   requireState(Array.isArray(initialEstimate)&&Array.from(initialEstimate).every(Number.isFinite),'Require a finite initial estimate');
   const n=initialEstimate.length;
-  requireState(model.kind==='oscillator'?n===2:model.kind==='periodic'&&n>=6&&n<=128,'Invalid design state dimension');
+  requireState(['oscillator','kinetic'].includes(model?.kind)?n===2:model?.kind==='periodic'&&n>=6&&n<=128,'Invalid design state dimension');
   requireState(Number.isFinite(step)&&step>0&&Number.isInteger(steps)&&steps>=32&&steps<=4096&&Number.isFinite(step*steps),'Invalid design grid');
   requireState(Number.isInteger(substeps)&&substeps>=1&&substeps<=16&&steps*n*substeps<=2097152,'Design rollout work budget exceeded');
   requireState(Number.isFinite(maxMagnitude)&&maxMagnitude>0,'Invalid design state bound');
+  requireState(steps*n*substeps*Math.max(1,model.terms?.length??257)<=8388608,'Design expression work budget exceeded');
   if(model.kind==='periodic')requireState(Number.isFinite(spacing)&&spacing>0,'Require design spacing');
   const input=compileContinuousInput(continuousInput,model.kind,n);
   requireState(Math.abs(continuousInput.waveform.duration-step*steps)<=1e-10*Math.max(1,step*steps),'Design and waveform durations differ');

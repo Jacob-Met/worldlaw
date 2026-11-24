@@ -16,6 +16,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "src/science/free-weak-stlsq.mjs",
+    "src/science/state-operator-basis.mjs",
+    "tests/free-weak-stlsq.test.mjs",
+    "tests/extended-state-operators.test.mjs",
+    "tests/kinetic-weak-http.test.mjs",
+    "docs/FREE_WEAK_STATE_DISCOVERY.md",
     "src/science/continuous-input.mjs",
     "src/science/continuous-excitation-search.mjs",
     "src/science/trajectory-continuous-excitation.mjs",
