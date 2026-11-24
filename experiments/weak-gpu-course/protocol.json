@@ -1,0 +1,173 @@
+{
+  "schema": "worldlaw.weak-gpu-course/1",
+  "source": "f85e8c1dcb064eefcfb6119d051f78965612939b",
+  "seeds": [
+    619087,
+    817603
+  ],
+  "coefficients": [
+    [
+      0.91,
+      1.08
+    ],
+    [
+      1.17,
+      0.79
+    ]
+  ],
+  "snr_db": [
+    15,
+    25,
+    40
+  ],
+  "cases": [
+    {
+      "name": "pendulum",
+      "layout": "oscillator",
+      "ood": false,
+      "sha256": "bacf86b8fd821c1d7689d8fe544d27dddcc03c19c828a0d9bdc9b4805c8adf67"
+    },
+    {
+      "name": "duffing",
+      "layout": "oscillator",
+      "ood": false,
+      "sha256": "6a36a3ec7d28eeec2ae57adb22c9e1eaf01805bd15bc4cc34cd12f58262ae107"
+    },
+    {
+      "name": "van-der-pol",
+      "layout": "oscillator",
+      "ood": false,
+      "sha256": "764f2b7c2df8c50358073164d8b15e362b593f542c969ec517f247ea5247e2bd"
+    },
+    {
+      "name": "rayleigh",
+      "layout": "oscillator",
+      "ood": false,
+      "sha256": "9bc0913505ba5fbb5160cfcf2e8bc781c40315accf16e8f1537e417aa844a959"
+    },
+    {
+      "name": "quartic-spring",
+      "layout": "oscillator",
+      "ood": false,
+      "sha256": "1ac15d226f1f1c8fae912e1c54d0f8ce160692a65af150323a8d0c64247a813b"
+    },
+    {
+      "name": "double-well",
+      "layout": "oscillator",
+      "ood": false,
+      "sha256": "c0b9b82eb45fa6b6f0fe5f2502470e0d415bd282019ecd65b88ff11b24bada9e"
+    },
+    {
+      "name": "morse",
+      "layout": "oscillator",
+      "ood": false,
+      "sha256": "44e5f3a56e7e9a3ee5ff1e2aba0db83c028ab20a36f7e942ffca9d32e14e7c14"
+    },
+    {
+      "name": "toda",
+      "layout": "oscillator",
+      "ood": false,
+      "sha256": "5c7ecaaaf01f5a2d30eedd39db2a8b32d5409ac217e6874a6116c6013504629c"
+    },
+    {
+      "name": "quadratic-drag",
+      "layout": "oscillator",
+      "ood": false,
+      "sha256": "b9bafea4b29c5133bb5022a383017719f78ea80b234edf629dad7546f669e60b"
+    },
+    {
+      "name": "dry-friction",
+      "layout": "oscillator",
+      "ood": false,
+      "sha256": "dfa843c608691c154c8e72951d0ac09049b57840b3302f47861a555a41c3336d"
+    },
+    {
+      "name": "lotka-volterra",
+      "layout": "kinetic",
+      "ood": false,
+      "sha256": "722cbe309791e010a2548cfa55cdbd4696b2d544f880a86e11cb979a24a423bb"
+    },
+    {
+      "name": "brusselator",
+      "layout": "kinetic",
+      "ood": false,
+      "sha256": "f7afa55fa82ad3ac6b680b632867328475696643ca3f845698e571517ba8ad10"
+    },
+    {
+      "name": "fitzhugh-nagumo",
+      "layout": "kinetic",
+      "ood": false,
+      "sha256": "a0b8b736ba052ccdba306e4122183726fe048bd862f8ed2c0faf587df20a9035"
+    },
+    {
+      "name": "competition",
+      "layout": "kinetic",
+      "ood": false,
+      "sha256": "a35a9f715f771aefc1303d62eedfd0848ef5d844c16d452146119aa9478ed798"
+    },
+    {
+      "name": "holling-tanner",
+      "layout": "kinetic",
+      "ood": false,
+      "sha256": "ac8d72dfeb8d28b9d4c6b17a50776ad4c081830e796af87b8d28537fab74dcf7"
+    },
+    {
+      "name": "burgers",
+      "layout": "periodic",
+      "ood": false,
+      "sha256": "a3e87d1b37eecfdc8de8f68a3583468fc5537b860d49ad81d42fe1400e7adcc9"
+    },
+    {
+      "name": "kdv",
+      "layout": "periodic",
+      "ood": false,
+      "sha256": "e0f9541d39b2ca9decb4244237f9566b8a12106821fd842ceb83a8a23ae0b227"
+    },
+    {
+      "name": "modified-kdv",
+      "layout": "periodic",
+      "ood": false,
+      "sha256": "e8572179db3f9bc14b8b0a2084c72433cfe8967edbdd71740691f5583b33be35"
+    },
+    {
+      "name": "allen-cahn",
+      "layout": "periodic",
+      "ood": false,
+      "sha256": "76727518028cdae8250911e428012c6acdc7cf54956ffcf50771240290a7fbb0"
+    },
+    {
+      "name": "fisher-kpp",
+      "layout": "periodic",
+      "ood": false,
+      "sha256": "f778c12d6b3a45823da3123232f5552b1039e825020f8aa4272e0a126e5119ca"
+    },
+    {
+      "name": "porous-medium",
+      "layout": "periodic",
+      "ood": false,
+      "sha256": "d3ed82319b46f6b161a03a29c20eb6f96910f42de84337e92d0849836b0d6b1b"
+    },
+    {
+      "name": "cahn-hilliard",
+      "layout": "periodic",
+      "ood": false,
+      "sha256": "805740da50473ab16dd7d22535baf8a871ed9007496741c7906b126bc730c6f5"
+    },
+    {
+      "name": "lorenz-hidden-z",
+      "layout": "kinetic",
+      "ood": true,
+      "sha256": "5da2af0b4843cc150cea8e23f4af67a959783cf39c315434e53659da9f01dc1d"
+    },
+    {
+      "name": "delay-feedback",
+      "layout": "oscillator",
+      "ood": true,
+      "sha256": "53747ec4663642098e157b7bd4b9643313df79f95cb6f000275ff2ac6b0c1db0"
+    }
+  ],
+  "course": "22 known families and two out-of-roster controls. Two new outer coefficient/seed pairs and two unseen ICs per world. The learner receives measured states, commands, cadence, geometry, calibrated noise and one pilot plus one acquisition. No family or derivative labels. Simulator packets are float32 little endian, promoted to float64 before Gaussian calibrated SNR noise. Shared pilot, response Gaussian draws and holdouts across the three arms. Seeds fixed before the first GPU execution.",
+  "selection": "Exhaustive search over 1, 2, or 3 terms from trees generated by products up to degree three, pointwise nonlinearities, and centered first to fourth spatial operators on degree-one through degree-three potentials; BIC on the integrated residual; independently fitted output components. Same grammar in all three arms. Equal-power active/random drives; active ranks eight drives by minimum predicted 32-step standardized separation for three pilot-fitted support combinations. Passive seven-point smoothed observed slopes, with no true derivative labels.",
+  "verification": "Validation rollout from noisy fresh initial state on drive 2, no refit. Admit with normalized RMSE <=3. Independent drive 5 and new noisy initial condition determine transfer by the same threshold. Count all 132 known cases, 12 OOD and 144 shuffled controls per arm. Performance means held-out forecast transfer of the synthesized expression, not exact structural equivalence to a simulator label.",
+  "gate": "Active in-roster admitted and transferred count must strictly exceed random and passive. Zero active shuffled admissions and zero active OOD admissions. Any fail rejects the overall experiment; publish the complete denominator, worst rows and full trees."
+}
