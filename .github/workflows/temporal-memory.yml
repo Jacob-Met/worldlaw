@@ -1,0 +1,33 @@
+name: Causal projected-state temporal memory
+on:
+  pull_request:
+    paths:
+      - 'src/science/temporal-memory.mjs'
+      - 'scripts/receive-temporal-memory.mjs'
+      - 'tests/temporal-memory.test.mjs'
+      - '.github/workflows/temporal-memory.yml'
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/checkout@v4
+        with:
+          repository: Jacob-Met/nullgarden
+          ref: 4af7717a866e0246e7c0bcd81977cea53cddbd8c
+          path: .independent-state-nullgarden
+          persist-credentials: false
+      - run: node --test tests/temporal-memory.test.mjs
+      - run: node scripts/receive-temporal-memory.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: temporal-memory-receipt
+          path: .receipts/temporal-memory/
+          if-no-files-found: error
