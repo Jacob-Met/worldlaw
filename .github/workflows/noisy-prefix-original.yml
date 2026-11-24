@@ -1,0 +1,27 @@
+name: Receive the original prefix course
+on:
+  pull_request:
+    paths:
+      - 'scripts/inspect-prefix-original.py'
+      - '.github/workflows/noisy-prefix-original.yml'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  receive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify the original archive bytes and inspect its frozen rows
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/inspect-prefix-original.py "$RUNNER_TEMP/prefix-original.zip" --download --output .receipts/prefix-original
+      - name: Retain the source-bound retrospective inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prefix-original-${{ github.run_id }}
+          path: .receipts/prefix-original/
+          retention-days: 14
+          if-no-files-found: error

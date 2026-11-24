@@ -86,10 +86,11 @@ function derivative(id,coef,y,u) {
   return drift.map((d,i)=>d+coef[0]*a[i]+coef[1]*b[i]+u[i]);
 }
 const plus=(y,k,h)=>y.map((v,i)=>v+h*k[i]);
-export function rollout(id,coef,initial,drive) {
+export function rollout(id,coef,initial,drive,{steps=N,start=0}={}) {
+  if(!Number.isInteger(steps)||steps<0||!Number.isInteger(start)||start<0||start+steps>N) throw new RangeError('Invalid rollout interval');
   const layout=layoutFor(id), states=[initial.slice()];
   let y=initial.slice();
-  for (let t=0;t<N;t++) {
+  for (let t=start;t<start+steps;t++) {
     const k1=derivative(id,coef,y,command(layout,drive,t*DT));
     const mid=command(layout,drive,(t+.5)*DT);
     const k2=derivative(id,coef,plus(y,k1,.5*DT),mid);

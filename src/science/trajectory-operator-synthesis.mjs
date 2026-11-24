@@ -67,7 +67,7 @@ function thresholdFits(eq,maxTerms,thresholds,ridges) {
  * correlated windows and noisy nonlinear features have no calibrated likelihood.
  */
 export function discoverTrajectoryEvolution(training,selection,options={}) {
-  const {method='weak',estimator='beam',maxTerms=4,beam=6,smoothingPoints=11,thresholds=[.025,.05,.1,.2],ridges=[1e-6,1e-3,.1],adequacyNoiseMultiplier=3,adequacySignalFraction=.03}=options;
+  const {method='weak',estimator='beam',maxTerms=4,beam=6,smoothingPoints=11,forecastInitialization='polynomial',prefixPoints=17,thresholds=[.025,.05,.1,.2],ridges=[1e-6,1e-3,.1],adequacyNoiseMultiplier=3,adequacySignalFraction=.03}=options;
   requireState(Array.isArray(training)&&training.length>=1&&training.length<=6,'Require fitting recordings');
   requireState(Array.isArray(selection)&&selection.length>=1&&selection.length<=3,'Require independent selection recordings');
   requireState(['beam','stlsq'].includes(estimator)&&Number.isInteger(maxTerms)&&maxTerms>=1&&maxTerms<=4&&Number.isInteger(beam)&&beam>=1&&beam<=12,'Invalid sparse search budget');
@@ -75,8 +75,10 @@ export function discoverTrajectoryEvolution(training,selection,options={}) {
   requireState(Array.isArray(ridges)&&ridges.length>=1&&ridges.length<=4&&ridges.every(x=>Number.isFinite(x)&&x>0&&x<=1),'Invalid ridge menu');
   requireState([adequacyNoiseMultiplier,adequacySignalFraction].every(x=>Number.isFinite(x)&&x>=0),'Invalid residual screen');
   const all=[...training,...selection];requireState(new Set(all.map(r=>r.id)).size===all.length,'Fitting and selection recordings must be disjoint');
+  requireState(['polynomial','prefix-shooting'].includes(forecastInitialization),'Unknown forecast initialization');
+  requireState(Number.isInteger(prefixPoints)&&prefixPoints>=5&&prefixPoints<=33,'Invalid forecast prefix');
   const candidateBudget=estimator==='beam'?1+beam*maxTerms:thresholds.length*ridges.length;
-  const forecastCells=selection.reduce((s,run)=>{const p=validateStateTrajectory(run);return s+Math.max(0,p.length-smoothingPoints)*p.n*8;},0)*candidateBudget;
+  const forecastCells=selection.reduce((s,run)=>{const p=validateStateTrajectory(run);const prefixCost=forecastInitialization==='prefix-shooting'?prefixPoints*p.n*(1+4*(p.n+4))*8:0;return s+Math.max(0,p.length-(forecastInitialization==='prefix-shooting'?prefixPoints:smoothingPoints))*p.n*8+prefixCost;},0)*candidateBudget;
   requireState(forecastCells<=20000000,'Aggregate selection forecast work budget exceeded');
   const trees=trajectoryOperatorGrammar(training[0]?.kind,options.grammar),eq=stateOperatorEquations(training,trees,options);
   const fits=estimator==='beam'?sparseBeam(eq,maxTerms,beam):thresholdFits(eq,maxTerms,thresholds,ridges);
@@ -85,7 +87,7 @@ export function discoverTrajectoryEvolution(training,selection,options={}) {
     const model={schema:'worldlaw.symbolic-evolution/v1',kind:eq.kind,terms:fit.ids.map((id,j)=>({tree:trees[id],weight:fit.weights[j]}))};
     let squared=0,signal=0,count=0,noise=0,diverged=false;
     for(let j=0;j<selection.length;j++) {
-      const forecast=forecastStateTrajectory(model,selection[j],{smoothingPoints,prepared:prepared[j]});
+      const forecast=forecastStateTrajectory(model,selection[j],{smoothingPoints,prepared:prepared[j],initialization:forecastInitialization,prefixPoints});
       if(forecast.status!=='forecast'){diverged=true;break;}
       const n=(forecast.states.length-1)*prepared[j].n;
       squared+=forecast.rmse**2*n;count+=n;noise+=prepared[j].noiseSigma**2*n;
@@ -100,5 +102,5 @@ export function discoverTrajectoryEvolution(training,selection,options={}) {
   const tolerance=best.diverged?null:adequacyNoiseMultiplier*best.noiseSigma+adequacySignalFraction*best.signalRms;
   const adequate=!best.diverged&&best.selectionRmse<=tolerance;
   const clean=r=>({...r,selectionRmse:Number.isFinite(r.selectionRmse)?r.selectionRmse:null,score:Number.isFinite(r.score)?r.score:null});
-  return {schema:'worldlaw.trajectory-operator-discovery/v1',status:adequate?'predictive_candidate':'abstained',reason:adequate?'selection_residual_within_declared_screen':'selection_forecast_mismatch',structuralIdentification:false,model:best.model,frontier:ranked.filter(r=>!r.diverged).slice(0,8).map(r=>r.model),selection:clean(best),candidates:ranked.map(clean),diagnostics:{method,estimator,grammarSize:trees.length,equationCount:eq.target.length,coverage:eq.coverage,tolerance,selectionIds:selection.map(r=>r.id),initialization:'prefix-only local cubic; all later states withheld from integration',limitations:['Bounded scalar oscillator and periodic scalar-field grammar.','Noisy nonlinear regressors and overlapping windows are not independent likelihood observations.','Residual screening is not calibrated OOD rejection or a unique structural identification.','Selection recordings are consumed by model selection; external test recordings remain separate.']}};
+  return {schema:'worldlaw.trajectory-operator-discovery/v1',status:adequate?'predictive_candidate':'abstained',reason:adequate?'selection_residual_within_declared_screen':'selection_forecast_mismatch',structuralIdentification:false,model:best.model,frontier:ranked.filter(r=>!r.diverged).slice(0,8).map(r=>r.model),selection:clean(best),candidates:ranked.map(clean),diagnostics:{method,estimator,grammarSize:trees.length,equationCount:eq.target.length,coverage:eq.coverage,tolerance,selectionIds:selection.map(r=>r.id),initialization:forecastInitialization==='prefix-shooting'?'fixed '+prefixPoints+'-sample trajectory fit; all later states withheld from integration':'prefix-only local cubic; all later states withheld from integration',limitations:['Bounded scalar oscillator and periodic scalar-field grammar.','Noisy nonlinear regressors and overlapping windows are not independent likelihood observations.','Residual screening is not calibrated OOD rejection or a unique structural identification.','Selection recordings are consumed by model selection; external test recordings remain separate.']}};
 }

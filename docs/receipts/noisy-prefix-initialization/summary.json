@@ -1,0 +1,207 @@
+{
+  "originalRun": 45303778005,
+  "artifact": 14879722662,
+  "zipBytes": 12329535,
+  "zipSha256": "9c48ca7a88d8b47601eb4b9e4467a655b9d7bdc488eaeaf586fdcdade70e8bdd",
+  "primary": false,
+  "estimatorGate": true,
+  "scores": {
+    "legacy": {
+      "contender": {
+        "correct": 125,
+        "wrong": 1,
+        "abstain": 6,
+        "shamBefore": 0,
+        "sham": 0,
+        "oodBefore": 3,
+        "ood": 0,
+        "initializationFailures": 0,
+        "versusRandom": {
+          "10": 2,
+          "11": 123,
+          "00": 3,
+          "01": 4
+        }
+      },
+      "committee": {
+        "correct": 127,
+        "wrong": 0,
+        "abstain": 5,
+        "shamBefore": 0,
+        "sham": 0,
+        "oodBefore": 3,
+        "ood": 0,
+        "initializationFailures": 0,
+        "versusRandom": {
+          "10": 2,
+          "11": 125,
+          "00": 3,
+          "01": 2
+        }
+      },
+      "random": {
+        "correct": 127,
+        "wrong": 2,
+        "abstain": 3,
+        "shamBefore": 0,
+        "sham": 0,
+        "oodBefore": 3,
+        "ood": 0,
+        "initializationFailures": 0,
+        "versusRandom": {
+          "10": 0,
+          "11": 127,
+          "00": 5,
+          "01": 0
+        }
+      },
+      "passive": {
+        "correct": 120,
+        "wrong": 7,
+        "abstain": 5,
+        "shamBefore": 0,
+        "sham": 0,
+        "oodBefore": 3,
+        "ood": 0,
+        "initializationFailures": 0,
+        "versusRandom": {
+          "10": 2,
+          "11": 118,
+          "00": 3,
+          "01": 9
+        }
+      }
+    },
+    "prefix": {
+      "contender": {
+        "correct": 130,
+        "wrong": 1,
+        "abstain": 1,
+        "shamBefore": 0,
+        "sham": 0,
+        "oodBefore": 3,
+        "ood": 0,
+        "initializationFailures": 0,
+        "versusRandom": {
+          "10": 2,
+          "11": 128,
+          "00": 0,
+          "01": 2
+        }
+      },
+      "committee": {
+        "correct": 131,
+        "wrong": 0,
+        "abstain": 1,
+        "shamBefore": 0,
+        "sham": 0,
+        "oodBefore": 3,
+        "ood": 0,
+        "initializationFailures": 0,
+        "versusRandom": {
+          "10": 2,
+          "11": 129,
+          "00": 0,
+          "01": 1
+        }
+      },
+      "random": {
+        "correct": 130,
+        "wrong": 2,
+        "abstain": 0,
+        "shamBefore": 0,
+        "sham": 0,
+        "oodBefore": 3,
+        "ood": 0,
+        "initializationFailures": 0,
+        "versusRandom": {
+          "10": 0,
+          "11": 130,
+          "00": 2,
+          "01": 0
+        }
+      },
+      "passive": {
+        "correct": 124,
+        "wrong": 7,
+        "abstain": 1,
+        "shamBefore": 0,
+        "sham": 0,
+        "oodBefore": 4,
+        "ood": 0,
+        "initializationFailures": 0,
+        "versusRandom": {
+          "10": 2,
+          "11": 122,
+          "00": 0,
+          "01": 8
+        }
+      }
+    }
+  },
+  "paired": {
+    "contender": {
+      "10": 1,
+      "11": 124,
+      "00": 1,
+      "01": 6
+    },
+    "committee": {
+      "10": 1,
+      "11": 126,
+      "00": 0,
+      "01": 5
+    },
+    "random": {
+      "10": 0,
+      "11": 127,
+      "00": 2,
+      "01": 3
+    },
+    "passive": {
+      "10": 1,
+      "11": 119,
+      "00": 7,
+      "01": 5
+    }
+  },
+  "memory": {
+    "inside": 0,
+    "outside": 11
+  },
+  "receiving": {
+    "schema": "worldlaw-prefix-receiving/v1",
+    "reportSha256": "ba1d9919669b62e63181d37fa4a4a7aaf396026b63f9d76974f7c840583b5e78",
+    "protocolSha256": "9afddeabd61994edda8fe0b0d07517c9ddff1b2d77dae5417370207ca931538b",
+    "recordings": 144,
+    "rawBytes": 12103351,
+    "replays": 2304,
+    "suffixChecks": 2304,
+    "causalLayouts": [
+      "oscillator",
+      "kinetic",
+      "periodic"
+    ],
+    "primary": false,
+    "estimatorGate": true,
+    "resourceUsage": {
+      "userCPUTime": 16212626,
+      "systemCPUTime": 152156,
+      "maxRSS": 253992,
+      "sharedMemorySize": 0,
+      "unsharedDataSize": 0,
+      "unsharedStackSize": 0,
+      "minorPageFault": 63745,
+      "majorPageFault": 0,
+      "swappedOut": 0,
+      "fsRead": 0,
+      "fsWrite": 0,
+      "ipcSent": 0,
+      "ipcReceived": 0,
+      "signalsCount": 0,
+      "voluntaryContextSwitches": 6206,
+      "involuntaryContextSwitches": 155
+    },
+    "scope": "complete raw-record replay and independent suffix arithmetic; synthetic finite roster, not an external physical oracle"
+  }
+}

@@ -1,3 +1,4 @@
+import {fitPrefixState} from './prefix-state-fit.mjs';
 import {fitLinearColumns} from './linear-fit.mjs';
 
 export function requireState(ok, message) { if (!ok) throw new RangeError(message); }
@@ -121,29 +122,52 @@ function modelPredictor(model,n,spacing) {
   });
 }
 
-export function forecastStateTrajectory(model, run, {smoothingPoints=11,substeps=2,maxMagnitude=1e6,prepared=null}={}) {
-  const p=prepared||prepareStateTrajectory(run,smoothingPoints),{n,dt,startIndex}=p;
-  requireState(model.kind===run.kind,'Model and observation geometries differ');
-  requireState(Number.isInteger(substeps)&&substeps>=1&&substeps<=16&&p.length*n*substeps<=2097152,'Invalid forecast work budget');
-  requireState(Number.isFinite(maxMagnitude)&&maxMagnitude>0,'Invalid state-domain bound');
-  const rhs=modelPredictor(model,n,run.spacing),states=[p.initial.slice()],h=dt/substeps;
-  let x=p.initial.slice();
+function integrateSegment(rhs,run,initial,startIndex,endIndex,dt,substeps,maxMagnitude) {
+  const states=[initial.slice()],h=dt/substeps;
+  let x=initial.slice();
   function command(i,f) {
     const a=run.samples[i].command,b=run.samples[i+1].command;
     return run.kind==='oscillator'?a+(b-a)*f:a.map((v,j)=>v+(b[j]-v)*f);
   }
-  for(let i=startIndex;i<p.length-1;i++) {
+  for(let i=startIndex;i<endIndex;i++) {
     for(let k=0;k<substeps;k++) {
-      const a=rhs(x,command(i,k/substeps)), b=rhs(x.map((v,j)=>v+h*a[j]/2),command(i,(k+.5)/substeps));
+      const a=rhs(x,command(i,k/substeps)),b=rhs(x.map((v,j)=>v+h*a[j]/2),command(i,(k+.5)/substeps));
       const c=rhs(x.map((v,j)=>v+h*b[j]/2),command(i,(k+.5)/substeps)),d=rhs(x.map((v,j)=>v+h*c[j]),command(i,(k+1)/substeps));
       x=x.map((v,j)=>v+h*(a[j]+2*b[j]+2*c[j]+d[j])/6);
-      if(x.some(v=>!Number.isFinite(v)||Math.abs(v)>maxMagnitude)) return {status:'diverged',reason:'state_domain',startIndex,states:null};
+      if(x.some(v=>!Number.isFinite(v)||Math.abs(v)>maxMagnitude))return null;
     }
     states.push(x.slice());
   }
+  return states;
+}
+
+export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2,maxMagnitude=1e6,prepared=null,initialization='polynomial',prefixPoints=17}={}) {
+  const p=prepared||prepareStateTrajectory(run,smoothingPoints),{n,dt}=p;
+  requireState(model.kind===run.kind,'Model and observation geometries differ');
+  requireState(Number.isInteger(substeps)&&substeps>=1&&substeps<=16&&p.length*n*substeps<=2097152,'Invalid forecast work budget');
+  requireState(Number.isFinite(maxMagnitude)&&maxMagnitude>0,'Invalid state-domain bound');
+  requireState(['polynomial','prefix-shooting'].includes(initialization),'Unknown forecast initialization');
+  const rhs=modelPredictor(model,n,run.spacing);
+  let startIndex=p.startIndex,initial=p.initial,prefix=null;
+  if(initialization==='prefix-shooting') {
+    requireState(Number.isInteger(prefixPoints)&&prefixPoints>=5&&prefixPoints<=33&&prefixPoints<p.length,'Invalid forecast prefix');
+    requireState(prefixPoints*n*(1+4*(n+4))*substeps<=2097152,'Prefix forecast work budget exceeded');
+    // Only these copied states enter optimization. Future commands remain legal
+    // exogenous inputs; future measured states are read below for scoring only.
+    const observations=run.samples.slice(0,prefixPoints).map(row=>row.state.slice());
+    prefix=fitPrefixState(observations,
+      x=>integrateSegment(rhs,run,x,0,prefixPoints-1,dt,substeps,maxMagnitude),
+      {maxMagnitude});
+    if(prefix.status!=='fitted')return {status:'diverged',reason:prefix.reason,startIndex:prefixPoints-1,states:null,prefix};
+    initial=prefix.terminal;startIndex=prefixPoints-1;
+  }
+  const states=integrateSegment(rhs,run,initial,startIndex,p.length-1,dt,substeps,maxMagnitude);
+  if(!states)return {status:'diverged',reason:'state_domain',startIndex,states:null,...(prefix?{prefix}:{})};
   let squared=0,signal=0,count=0;
-  for(let i=1;i<states.length;i++) for(let j=0;j<n;j++) {
+  for(let i=1;i<states.length;i++)for(let j=0;j<n;j++) {
     const y=run.samples[startIndex+i].state[j];squared+=(states[i][j]-y)**2;signal+=y*y;count++;
   }
-  return {status:'forecast',startIndex,states,rmse:Math.sqrt(squared/count),relativeRmse:Math.sqrt(squared/Math.max(signal,count*1e-8)),noiseSigma:p.noiseSigma,initialization:'first '+p.points+' noisy state samples only',inputInterpolation:'linear between recorded commands'};
+  return {status:'forecast',startIndex,states,rmse:Math.sqrt(squared/count),relativeRmse:Math.sqrt(squared/Math.max(signal,count*1e-8)),noiseSigma:p.noiseSigma,
+    initialization:prefix?'trajectory fit to first '+prefixPoints+' noisy state samples only':'first '+p.points+' noisy state samples only',
+    inputInterpolation:'linear between recorded commands',...(prefix?{prefix,firstScored:prefixPoints,scoredValues:count}:{})};
 }
