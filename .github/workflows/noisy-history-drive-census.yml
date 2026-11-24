@@ -1,0 +1,33 @@
+name: Receive the fixed eight-drive retrospective
+on:
+  pull_request:
+    paths:
+      - 'scripts/noisy-history-drive-census.mjs'
+      - '.github/workflows/noisy-history-drive-census.yml'
+permissions:
+  actions: read
+  contents: read
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.22.3'
+      - name: Receive the completed registered course
+        uses: actions/download-artifact@v4
+        with:
+          run-id: '45297719173'
+          name: noisy-history-reset-originals
+          github-token: ${{ github.token }}
+          path: original
+      - name: Verify every measured interval pair against its original source
+        run: node scripts/receive-noisy-history-reset.mjs original
+      - name: Run all alternative drives and join the actually selected fits
+        run: node scripts/noisy-history-drive-census.mjs original/report.json drive-census.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: field-drive-census
+          path: drive-census.json

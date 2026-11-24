@@ -25,6 +25,7 @@ INCLUDE = (
     "scripts/noisy-field-acquisition.mjs",
     "scripts/generate-reset-histories.mjs",
     "scripts/noisy-history-reset.mjs",
+    "scripts/noisy-history-drive-census.mjs",
     "scripts/receive-noisy-history-reset.mjs",
     "src/trajectory/reset-history-intervals.mjs",
     "tests/reset-history-intervals.test.mjs",
