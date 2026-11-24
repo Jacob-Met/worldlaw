@@ -67,3 +67,11 @@ npm run verify
 ```
 
 The focused checks include coefficient units, more-than-four-term support, a coefficient crossing threshold after refit, explicit rank/work failures, both producer-grid adjoint identities, constant/Nyquist modes, an independent Fourier evolution, two distinct kinetic rates, prefix causality and an actual launched HTTP worker. Hosted qualification and the full prospective scientific course remain to be recorded.
+
+## Finite metrics and explicit forecast refusals
+
+Forecast and selection RMS accumulators retain representable magnitudes when squaring would overflow or underflow. Nonfinite error, signal, noise, score or tolerance cannot produce a positive residual-screen verdict. This is numerical validation, not a confidence guarantee.
+
+Every fitted model is checked against the existing state and expression forecast limits, including its actual term count and prefix-shooting cost. A model over budget remains a reported `budget_refused` candidate; affordable candidates continue. A menu containing no completed fit reports `all_fits_refused`. These computational refusals remain in any experiment denominator and must not be relabelled as empirical prediction failures.
+
+The maintained HTTP regression exercises both independently fitted kinetic STLSQ rows and the joint kinetic beam, followed by a separate analytic forecast. Larger input-direction identifiability and the full held-out discovery comparison remain unmeasured.

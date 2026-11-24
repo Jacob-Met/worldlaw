@@ -15,6 +15,12 @@ test('launched HTTP worker fits genuinely free kinetic outputs and retains refus
     assert.equal(result.diagnostics.supportCap,null);assert.equal(result.diagnostics.outputChannels,2);
     assert.equal(result.structuralIdentification,false);assert.equal(result.candidates.length,2);
     const held=forecastStateTrajectory(result.model,run('test-only',1.3,.9));assert.ok(held.rmse<3e-5);
+    const beamResponse=await post({...payload,options:{...payload.options,estimator:'beam',maxTerms:2,beam:4}});
+    assert.equal(beamResponse.status,200);
+    const beam=await beamResponse.json();assert.equal(beam.status,'predictive_candidate');
+    assert.deepEqual(beam.model.terms.map(t=>[t.channel,t.tree]),[[0,'state0'],[1,'state1']]);
+    assert.ok(Math.abs(beam.model.terms[0].weight+.3)<2e-5);assert.ok(Math.abs(beam.model.terms[1].weight+.7)<2e-5);
+    assert.ok(forecastStateTrajectory(beam.model,run('beam-test-only',1.3,.9)).rmse<3e-5);
     payload.options.maxWorkPerRow=0;
     const refused=await post(payload);assert.equal(refused.status,400);assert.match((await refused.json()).error,/work budget/);
     payload.options.maxWorkPerRow=50000000;payload.training[0].samples[3].command=0;

@@ -16,6 +16,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "src/science/stable-rms.mjs",
+    "tests/state-selection-boundaries.test.mjs",
     "src/science/free-weak-stlsq.mjs",
     "src/science/state-operator-basis.mjs",
     "tests/free-weak-stlsq.test.mjs",

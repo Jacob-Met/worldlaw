@@ -1,3 +1,4 @@
+import {createRmsAccumulator} from './stable-rms.mjs';
 import {periodicStencil,SPATIAL_OPERATOR_ORDERS} from './state-operator-basis.mjs';
 import {compileContinuousInput,validateRecordedContinuousInput} from './continuous-input.mjs';
 import {fitPrefixState} from './prefix-state-fit.mjs';
@@ -187,20 +188,32 @@ function integrateSegment(rhs,run,initial,startIndex,endIndex,dt,substeps,maxMag
   return states;
 }
 
+/** Exact published work guards, reusable before evaluating a fitted model.
+ * A candidate over budget is a refusal, not an observed forecast failure.
+ */
+export function stateForecastWork(model,p,{substeps=2,initialization='polynomial',prefixPoints=17}={}){
+  const termCount=Math.max(1,model?.terms?.length??257);
+  const forward=p.length*p.n*substeps;
+  const prefix=initialization==='prefix-shooting'?prefixPoints*p.n*(1+4*(p.n+4))*substeps:0;
+  const reason=forward>2097152?'forecast_state_work':forward*termCount>8388608?'forecast_expression_work':
+    prefix>2097152?'prefix_state_work':prefix*termCount>8388608?'prefix_expression_work':null;
+  return {allowed:reason===null,reason,termCount,forward,forwardExpressions:forward*termCount,prefix,prefixExpressions:prefix*termCount};
+}
+
 export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2,maxMagnitude=1e6,prepared=null,initialization='polynomial',prefixPoints=17}={}) {
   if(prepared){const owner=preparationSources.get(prepared);requireState(!!owner&&owner.run===run&&owner.signature===JSON.stringify(run),'Prepared trajectory belongs to a different or changed recording');}
   const p=prepared||prepareStateTrajectory(run,smoothingPoints),{n,dt}=p;
   requireState(model?.kind===run.kind,'Model and observation geometries differ');
-  const termCount=Math.max(1,model.terms?.length??257);
-  requireState(p.length*n*substeps*termCount<=8388608,'Forecast expression work budget exceeded');
   requireState(Number.isInteger(substeps)&&substeps>=1&&substeps<=16&&p.length*n*substeps<=2097152,'Invalid forecast work budget');
   requireState(Number.isFinite(maxMagnitude)&&maxMagnitude>0,'Invalid state-domain bound');
   requireState(['polynomial','prefix-shooting'].includes(initialization),'Unknown forecast initialization');
+  if(initialization==='prefix-shooting')requireState(Number.isInteger(prefixPoints)&&prefixPoints>=5&&prefixPoints<=33&&prefixPoints<p.length,'Invalid forecast prefix');
+  const work=stateForecastWork(model,p,{substeps,initialization,prefixPoints});
+  requireState(work.allowed,'Forecast work budget exceeded: '+work.reason);
   const rhs=modelPredictor(model,n,run.spacing);
   let startIndex=p.startIndex,initial=p.initial,prefix=null;
   if(initialization==='prefix-shooting') {
     requireState(Number.isInteger(prefixPoints)&&prefixPoints>=5&&prefixPoints<=33&&prefixPoints<p.length,'Invalid forecast prefix');
-    requireState(prefixPoints*n*(1+4*(n+4))*substeps<=2097152&&prefixPoints*n*(1+4*(n+4))*substeps*termCount<=8388608,'Prefix forecast work budget exceeded');
     // Only these copied states enter optimization. Future commands remain legal
     // exogenous inputs; future measured states are read below for scoring only.
     const observations=run.samples.slice(0,prefixPoints).map(row=>row.state.slice());
@@ -212,11 +225,16 @@ export function forecastStateTrajectory(model,run,{smoothingPoints=11,substeps=2
   }
   const states=integrateSegment(rhs,run,initial,startIndex,p.length-1,dt,substeps,maxMagnitude,p.continuousInput);
   if(!states)return {status:'diverged',reason:'state_domain',startIndex,states:null,...(prefix?{prefix}:{})};
-  let squared=0,signal=0,count=0;
+  const errors=createRmsAccumulator(),signals=createRmsAccumulator();
   for(let i=1;i<states.length;i++)for(let j=0;j<n;j++) {
-    const y=run.samples[startIndex+i].state[j];squared+=(states[i][j]-y)**2;signal+=y*y;count++;
+    const y=run.samples[startIndex+i].state[j];errors.add(states[i][j]-y);signals.add(y);
   }
-  return {status:'forecast',startIndex,states,rmse:Math.sqrt(squared/count),relativeRmse:Math.sqrt(squared/Math.max(signal,count*1e-8)),noiseSigma:p.noiseSigma,
+  const count=errors.count,rmse=errors.value(),signalRms=signals.value();
+  const relativeRmse=errors.ordinarySum!==null&&signals.ordinarySum!==null?
+    Math.sqrt(errors.ordinarySum/Math.max(signals.ordinarySum,count*1e-8)):rmse/Math.max(signalRms,1e-4);
+  if(![rmse,signalRms,relativeRmse,p.noiseSigma].every(Number.isFinite))
+    return {status:'refused',reason:'nonfinite_metrics',startIndex,states,...(prefix?{prefix}:{})};
+  return {status:'forecast',startIndex,states,rmse,signalRms,relativeRmse,noiseSigma:p.noiseSigma,
     initialization:prefix?'trajectory fit to first '+prefixPoints+' noisy state samples only':'first '+p.points+' noisy state samples only',
     inputInterpolation:p.continuousInput?'declared continuous actuator law at every integration stage':'linear between recorded commands',...(prefix?{prefix,firstScored:prefixPoints,scoredValues:count}:{})};
 }
