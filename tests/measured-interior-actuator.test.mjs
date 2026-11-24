@@ -7,7 +7,7 @@ import {developmentTrainingInstrument} from '../experiments/continuous-law-cours
 import {frozenForecasts,scoreMeasured,runCourse} from '../experiments/measure-interior-actuator.mjs';
 import {discoverWeak} from '../src/trajectory/weak-discovery.mjs';
 
-const dir=new URL('../docs/receipts/position-output-development/paired-acquisitions/',import.meta.url);
+const dir=new URL('../docs/receipts/paired-actuator-acquisitions/',import.meta.url);
 const read=p=>JSON.parse(readFileSync(new URL(p,dir)));
 const pre=frozenForecasts(),seal=read('forecast-seal.json'),receipt=read('scores.json');
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
@@ -44,7 +44,7 @@ with tarfile.open(fileobj=io.BytesIO(pack)) as t:
     print(json.dumps([json.load(t.extractfile('evidence/development/world-1006/active/'+n+'.run.json')) for n in ['source-0','source-1','round-2']]))
 `;
   const runs=JSON.parse(execFileSync('python3',['-c',script,process.env.WORLDLAW_POSITION_OUTPUT_ARCHIVE],{encoding:'utf8',maxBuffer:600000}));
-  const options=read('../interior-actuator-excitation.json').fitOptions;
+  const options=read('../position-output-development/interior-actuator-excitation.json').fitOptions;
   for(const r of receipt.results){
     const model=discoverWeak([...runs,read(r.arm+'.run.json')],options).selected;
     assert.equal(model.id,r.weakRefit.id);
