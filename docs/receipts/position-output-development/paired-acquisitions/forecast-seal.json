@@ -1,0 +1,8 @@
+{
+  "preregistration": 194490,
+  "forecastsSHA256": "8e9b69b7c129349dc04dcb300d857ecd228edd56565c386da9696c7ce71957d7",
+  "arms": [
+    "interior",
+    "existing_active"
+  ]
+}

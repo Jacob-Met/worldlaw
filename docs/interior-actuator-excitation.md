@@ -26,7 +26,7 @@ Receipt 194295 fixed the design and comparators before evaluating a new simulate
 | Analytic interior amplitude | 0.61308249 | 1.19772643 |
 | Existing position-separation planner | 0.75059359 | 1.53399147 |
 
-Both fitted rivals come from the three retained training acquisitions. Forecast separation uses the 200 postinitial points, with RK4 repeated at maximum steps of 0.01 and 0.005 seconds. The existing planner obtained the largest separation across these requests using 100 candidate schedules and 202 rollouts. The analytic request requires no rollout to choose its amplitude. These are design predictions. A physical acquisition and the protected campaign remain unmeasured.
+Both fitted rivals come from the three retained training acquisitions. Forecast separation uses the 200 postinitial points, with RK4 repeated at maximum steps of 0.01 and 0.005 seconds. The existing planner obtained the largest separation across these requests using 100 candidate schedules and 202 rollouts. The analytic request requires no rollout to choose its amplitude. These are design predictions. The subsequent paired development-instrument measurements are reported below.
 
 A separate closed-form control applies each of the two laws at gains −0.7 and 1.3, then adds alternating position errors of magnitude 0.002 rad. All four fresh courses select their generating actuator. The true-law residual RMS is 0.002 rad in each case, and the clean rival separation exceeds twice the noise bound. Under any pointwise errors bounded by that value, the triangle inequality still separates the two forecast residual norms on this fixture. The comparison assumes the source unit-command gain is fixed; estimating all nuisance terms jointly is a different problem.
 
@@ -35,3 +35,16 @@ The test and JSON receipt retain the four-segment requests, both integration mes
 ```sh
 node --test tests/actuator-excitation.test.mjs
 ```
+
+## Paired measurements on the development instrument
+
+The protocol's original synthetic development oracle generated one fresh eight-second training run per design. Both arms used world 1006's original physical parameters, the same three archived source trajectories, the same independent noise stream and exactly 201 new positions. The first position is imposed. Each arm scores the other 200 before refitting. The forecast seal binds both request and position arrays before either acquisition. Registration 194490 fixed the two requests, noise derivation and decision rule.
+
+| Acquired training request | Linear rival RMS (rad) | Cubic rival RMS (rad) | Identified actuator | Four-run weak refit |
+| --- | ---: | ---: | --- | --- |
+| Analytic interior | 0.61245664 | 0.00219608 | Cubic | Cubic |
+| Existing active planner | 0.74949906 | 0.00236590 | Cubic | Cubic |
+
+The frozen rivals had identical nuisance coefficients. Both measured runs identified the cubic actuator registered for this world, and both independent four-acquisition refits recovered its cubic drive, rate, spring and cubic restoring terms. The active planner produced the larger gap between rival residuals, 0.74713 versus 0.61026 rad. The decision agrees for this one development world and this one paired noise draw. Calibration, protected evaluation, historical forecast observations and physical hardware were outside the comparison.
+
+The two raw position recordings, seal and usage receipts live under `docs/receipts/position-output-development/paired-acquisitions/`. To score those recordings without another acquisition, run `node --test tests/measured-interior-actuator.test.mjs`. The optional `WORLDLAW_POSITION_OUTPUT_ARCHIVE` check also reconstructs the four-run weak fits using only the three named training members. The supplemental generator requires their original contents, admits only registered development world IDs and caps the new instrument at one acquisition per arm.

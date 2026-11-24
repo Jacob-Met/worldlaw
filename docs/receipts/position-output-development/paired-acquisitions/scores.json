@@ -1,0 +1,170 @@
+{
+  "world": 1006,
+  "preregistration": 194490,
+  "seedMaterial": "worldlaw-development-interior-acquisition/v1:1006",
+  "noiseSeed": 1518081849,
+  "forecastsSHA256": "8e9b69b7c129349dc04dcb300d857ecd228edd56565c386da9696c7ce71957d7",
+  "trainingIds": [
+    "wlcv1-development-1006-acquisition-0",
+    "wlcv1-development-1006-acquisition-1",
+    "wlcv1-development-1006-acquisition-3"
+  ],
+  "results": [
+    {
+      "arm": "interior",
+      "usage": {
+        "acquired": 1,
+        "chargedSamples": 201,
+        "requests": [
+          {
+            "schema": "worldlaw.continuous-command-request/v1",
+            "inertia": 1,
+            "initialPosition": 0.25,
+            "initialRate": 0,
+            "duration": 8,
+            "dt": 0.04,
+            "noiseSigma": 0.002,
+            "segments": [
+              {
+                "startIndex": 0,
+                "endIndex": 50,
+                "amplitude": 0.5773502691896258
+              },
+              {
+                "startIndex": 50,
+                "endIndex": 100,
+                "amplitude": -0.5773502691896258
+              },
+              {
+                "startIndex": 100,
+                "endIndex": 150,
+                "amplitude": -0.5773502691896258
+              },
+              {
+                "startIndex": 150,
+                "endIndex": 200,
+                "amplitude": 0.5773502691896258
+              }
+            ],
+            "commandConvention": "hold amplitude on [startIndex*dt,endIndex*dt); terminal value unused"
+          }
+        ]
+      },
+      "measurementSHA256": "6866412d282e1a9e43a890b1baab8e770b3b57a185ac9dc75f81cb4632e02d84",
+      "beforeRefit": {
+        "scores": [
+          {
+            "id": "command+rate+spring+cubic",
+            "rms": 0.6124566419572716,
+            "peak": 1.2000773849637005
+          },
+          {
+            "id": "command_cubic+rate+spring+cubic",
+            "rms": 0.0021960770695269335,
+            "peak": 0.005755735079339408
+          }
+        ],
+        "selected": "command_cubic+rate+spring+cubic"
+      },
+      "weakRefit": {
+        "id": "command_cubic+rate+spring+cubic",
+        "terms": [
+          {
+            "id": "command_cubic",
+            "coefficient": 1.118374318195414
+          },
+          {
+            "id": "rate",
+            "coefficient": -0.15555210261950483
+          },
+          {
+            "id": "spring",
+            "coefficient": -0.8346564062021323
+          },
+          {
+            "id": "cubic",
+            "coefficient": -0.3171688519648714
+          }
+        ]
+      }
+    },
+    {
+      "arm": "existing_active",
+      "usage": {
+        "acquired": 1,
+        "chargedSamples": 201,
+        "requests": [
+          {
+            "schema": "worldlaw.continuous-command-request/v1",
+            "inertia": 1,
+            "initialPosition": 0.25,
+            "initialRate": 0,
+            "duration": 8,
+            "dt": 0.04,
+            "noiseSigma": 0.002,
+            "segments": [
+              {
+                "startIndex": 0,
+                "endIndex": 50,
+                "amplitude": -0.75
+              },
+              {
+                "startIndex": 50,
+                "endIndex": 100,
+                "amplitude": 0.41666666666666663
+              },
+              {
+                "startIndex": 100,
+                "endIndex": 150,
+                "amplitude": -0.35
+              },
+              {
+                "startIndex": 150,
+                "endIndex": 200,
+                "amplitude": -0.4642857142857143
+              }
+            ],
+            "commandConvention": "hold amplitude on [startIndex*dt,endIndex*dt); terminal value unused"
+          }
+        ]
+      },
+      "measurementSHA256": "122e5a7d80b1d8c7467667a608db4dced36a96192aa92cdde63ed2bc65a05eb0",
+      "beforeRefit": {
+        "scores": [
+          {
+            "id": "command+rate+spring+cubic",
+            "rms": 0.7494990640703961,
+            "peak": 1.5336717433530493
+          },
+          {
+            "id": "command_cubic+rate+spring+cubic",
+            "rms": 0.002365901543037144,
+            "peak": 0.006667762056466242
+          }
+        ],
+        "selected": "command_cubic+rate+spring+cubic"
+      },
+      "weakRefit": {
+        "id": "command_cubic+rate+spring+cubic",
+        "terms": [
+          {
+            "id": "command_cubic",
+            "coefficient": 1.1188259833167067
+          },
+          {
+            "id": "rate",
+            "coefficient": -0.15566942647787474
+          },
+          {
+            "id": "spring",
+            "coefficient": -0.8350884493472257
+          },
+          {
+            "id": "cubic",
+            "coefficient": -0.3170344474289816
+          }
+        ]
+      }
+    }
+  ]
+}

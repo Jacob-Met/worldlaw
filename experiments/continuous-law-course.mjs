@@ -67,6 +67,15 @@ function privateWorld(entry,phase){
       rate:-damping,...Object.fromEntries(Object.entries(restoring).map(([k,v])=>[k,-v]))},
       hidden:entry.outOfFamily?hidden:null}};
 }
+/** A single fresh acquisition on a registered development world. The caller
+ * receives only the instrument interface; all physical parameters stay here. */
+export function developmentTrainingInstrument(worldSeed, noiseSeed, recordingPrefix){
+  const entry=P.sourceWorlds.find(x=>x.seed===worldSeed);
+  check(entry,'Only a registered development world can supply training acquisitions');
+  const world=privateWorld(entry,'development');
+  return createControlledInstrument({...world.instrument,sourceId:recordingPrefix,
+    seed:noiseSeed,maximumAcquisitions:1});
+}
 function request(s){
   return {schema:'worldlaw.continuous-command-request/v1',inertia:P.inertia,
     initialPosition:s.initialPosition,initialRate:s.initialRate,duration:8,dt:.04,noiseSigma:P.noiseSigma,
@@ -226,4 +235,6 @@ function main(){
   console.log(JSON.stringify({event:'development_course_finished',output,receipt,summary}));
   if(!summary.executionQualified)process.exitCode=2;
 }
-try{main();}catch(e){console.error(JSON.stringify({status:'refused',error:err(e)}));process.exitCode=2;}
+if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+  try{main();}catch(e){console.error(JSON.stringify({status:'refused',error:err(e)}));process.exitCode=2;}
+}
