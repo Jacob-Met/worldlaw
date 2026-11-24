@@ -16,6 +16,11 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = (
+    "src/science/periodic-dispersion.mjs",
+    "scripts/periodic-dispersion.mjs",
+    "scripts/receive-periodic-dispersion.mjs",
+    "tests/periodic-dispersion.test.mjs",
+    "docs/PERIODIC_DISPERSION.md",
     "src/science/temporal-evidence.mjs",
     "tests/temporal-evidence.test.mjs",
     "scripts/verify-temporal-model.mjs",
