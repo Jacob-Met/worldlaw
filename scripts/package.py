@@ -22,6 +22,7 @@ INCLUDE = (
     "experiments/noisy-field-interventions/protocol.json",
     "experiments/noisy-history-reset/protocol.json",
     "experiments/noisy-history-reset/protocol-v2.json",
+    "experiments/noisy-history-reset/RESULTS.md",
     "scripts/noisy-field-acquisition.mjs",
     "scripts/generate-reset-histories.mjs",
     "scripts/noisy-history-reset.mjs",
